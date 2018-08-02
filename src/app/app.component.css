@@ -12,6 +12,26 @@
   overflow: auto;
 }
 
+.steam-login-container {
+  align-content: center;
+}
+
+.steam-login {
+  background-image: url('http://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_01.png');
+  width: 180px;
+  height: 35px;
+  margin: 16px 48px 48px 48px;
+}
+
+.drop-down-arrow {
+  margin: 0;
+}
+
+.user-content {
+  padding: 16px;
+  z-index: 10;
+}
+
 @media only screen and (max-width: 1024px) {
   .content {
     padding: 0 15px;

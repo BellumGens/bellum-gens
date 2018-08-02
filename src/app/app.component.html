@@ -1,14 +1,33 @@
 <div igxLayout>
   <igx-nav-drawer #nav id="project-menu" isOpen="true" [enableGestures]='true' width="280px">
     <ng-template igxDrawer>
-      <span igxDrawerItem [isHeader]="true">Views</span>
-      <span *ngFor="let route of topNavLinks" igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="{{route.path}}">{{route.name}}</span>
+      <span igxDrawerItem [isHeader]="true"><igx-avatar src="assets/avatar_BG_blood.png" [roundShape]="'isCircular'" [size]="'small'"></igx-avatar></span>
+      <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="/home">Home</span>
+      <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="/players">Active Players</span>
     </ng-template>
   </igx-nav-drawer>
   <div igxFlex class="main">
-    <igx-navbar title="bellum-gens" actionButtonIcon="menu" (onAction)="nav.toggle()"></igx-navbar>
+    <igx-navbar title="Bellum Gens: Looking for Group" actionButtonIcon="menu" (onAction)="nav.toggle()">
+        <button igxButton="raised" igxRipple="white" *ngIf="!isAuthenticated" (click)="openLogin()">Login</button>
+        <div *ngIf="isAuthenticated" igxFlex>
+          <igx-avatar [src]="steamUser.avatarMedium" roundShape="true" style="float: left"></igx-avatar>
+          <button #userButton igxButton="icon" (click)="toggleUserActions()" igxRippleCentered="true" class="drop-down-arrow">
+            <igx-icon fontSet="material" name="arrow_drop_down"></igx-icon>
+          </button>
+          <div class="user-content" igxToggle #toggleRef="toggle">
+            <section class="toggle-section">
+                <ul>
+                    <li><button igxButton="raised" igxRipple="white" (click)="logout()">Logout</button></li>
+                </ul>
+            </section>
+          </div>
+        </div>
+    </igx-navbar>
     <div class="content">
       <router-outlet></router-outlet>
-     </div>
+    </div>
   </div>
+  <igx-dialog closeOnOutsideSelect="true" title="Sign in with Steam" width="600px">
+    <button type="icon" class="steam-login" (click)="login('Steam')"></button>
+  </igx-dialog>
 </div>

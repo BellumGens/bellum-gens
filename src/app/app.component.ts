@@ -1,11 +1,17 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
-import { routes } from './app-routing.module';
-
-import { IgxNavigationDrawerComponent } from 'igniteui-angular/navigation-drawer';
-
+import { IgxNavigationDrawerComponent,
+  IgxDialogComponent,
+  IgxToggleDirective,
+  VerticalAlignment,
+  HorizontalAlignment,
+  ConnectedPositioningStrategy,
+  CloseScrollStrategy,
+  PositionSettings} from 'igniteui-angular';
+import { LoginService } from './services/login.service';
+import { SteamUser } from './models/steamuser';
 
 @Component({
   selector: 'app-root',
@@ -13,32 +19,66 @@ import { IgxNavigationDrawerComponent } from 'igniteui-angular/navigation-drawer
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  public topNavLinks: Array<{
-    path: string,
-    name: string
-  }> = [];
-  @ViewChild(IgxNavigationDrawerComponent) public navdrawer: IgxNavigationDrawerComponent;
+  public title: string;
+  public steamUser: SteamUser;
 
-  constructor(private router: Router) {
-    for (const route of routes) {
-      if (route.path && route.data && route.path.indexOf('*') === -1) {
-        this.topNavLinks.push({
-          name: route.data.text,
-          path: '/' + route.path
-        });
-      }
-    }
+  private _isAuthenticated = false;
+  private _positionSettings: PositionSettings = {
+    horizontalStartPoint: HorizontalAlignment.Right,
+    verticalStartPoint: VerticalAlignment.Bottom,
+    horizontalDirection: HorizontalAlignment.Left
+  };
+  private _overlaySettings = {
+    closeOnOutsideClick: true,
+    modal: false,
+    positionStrategy: new ConnectedPositioningStrategy(this._positionSettings),
+    scrollStrategy: new CloseScrollStrategy()
+  };
+
+  @ViewChild(IgxNavigationDrawerComponent) public navdrawer: IgxNavigationDrawerComponent;
+  @ViewChild(IgxDialogComponent) public dialog: IgxDialogComponent;
+  @ViewChild(IgxToggleDirective) toggle: IgxToggleDirective;
+  @ViewChild('userButton') public userButton: ElementRef;
+
+  constructor(private router: Router,
+              private authManager: LoginService) {
+    this.authManager.steamUser().subscribe((data: SteamUser) => {
+      this.steamUser = data;
+      this._isAuthenticated = true;
+    });
   }
 
   public ngOnInit(): void {
     this.router.events.pipe(
       filter((x) => x instanceof NavigationStart)
-    )
-      .subscribe((event: NavigationStart) => {
-          if (event.url !== '/' && !this.navdrawer.pin) {
-              // Close drawer when selecting a view on mobile (unpinned)
-              this.navdrawer.close();
-          }
-      });
+    ).subscribe((event: NavigationStart) => {
+        if (event.url !== '/' && !this.navdrawer.pin) {
+            // Close drawer when selecting a view on mobile (unpinned)
+            this.navdrawer.close();
+        }
+    });
+  }
+
+  public openLogin() {
+    this.dialog.open();
+  }
+
+  public login(provider: string) {
+    this.authManager.login(provider);
+  }
+
+  public logout() {
+    this.authManager.logout().subscribe((data) => {
+      this._isAuthenticated = false;
+    });
+  }
+
+  public get isAuthenticated(): boolean {
+    return this._isAuthenticated;
+  }
+
+  public toggleUserActions() {
+    this._overlaySettings.positionStrategy.settings.target = this.userButton.nativeElement;
+    this.toggle.toggle(this._overlaySettings);
   }
 }
