@@ -15,9 +15,11 @@
             <igx-icon fontSet="material" name="arrow_drop_down"></igx-icon>
           </button>
           <div class="user-content" igxToggle #toggleRef="toggle">
+            <span>{{steamUser.steamID}}</span>
             <section class="toggle-section">
                 <ul>
-                    <li><button igxButton="raised" igxRipple="white" (click)="logout()">Logout</button></li>
+                    <li><a href="/player-details">profile</a></li>
+                    <li><a href="#" (click)="logout()">logout</a></li>
                 </ul>
             </section>
           </div>
@@ -28,6 +30,6 @@
     </div>
   </div>
   <igx-dialog closeOnOutsideSelect="true" title="Sign in with Steam" width="600px">
-    <button type="icon" class="steam-login" (click)="login('Steam')"></button>
+    <button type="icon" IgxButton class="steam-login" (click)="login('Steam')"></button>
   </igx-dialog>
 </div>

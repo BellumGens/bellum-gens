@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { IgxFilterOptions } from 'igniteui-angular';
-import { SteamUser } from '../models/steamuser';
+import { SteamUserWithStats } from '../models/steamuser';
 import { BellumgensApiService } from '../services/bellumgens-api.service';
 
 @Component({
@@ -10,20 +10,20 @@ import { BellumgensApiService } from '../services/bellumgens-api.service';
   encapsulation: ViewEncapsulation.None
 })
 export class PlayersComponent implements OnInit {
-  public searchContact: string;
+  public searchPlayer: string;
 
-  public activeUsers: SteamUser[];
+  public activeUsers: SteamUserWithStats[];
 
   constructor(private apiManager: BellumgensApiService) {
-    this.apiManager.activeUsers().subscribe((data: SteamUser[]) => this.activeUsers = data);
+    this.apiManager.activeUsers().subscribe((data: SteamUserWithStats[]) => this.activeUsers = data);
   }
 
   ngOnInit() { }
 
-  get filterContacts() {
+  get filterPlayers() {
     const fo = new IgxFilterOptions();
     fo.key = 'steamID';
-    fo.inputValue = this.searchContact;
+    fo.inputValue = this.searchPlayer;
     return fo;
   }
 }

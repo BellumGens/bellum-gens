@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { SteamUser } from '../models/steamuser';
+import { SteamUserWithStats } from '../models/steamuser';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -12,7 +12,7 @@ export class BellumgensApiService {
 
   constructor(private http: HttpClient) { }
 
-  public activeUsers(): Observable<SteamUser []> {
-    return this.http.get<SteamUser []>(this._apiEndpoint + '/activeusers');
+  public activeUsers(): Observable<SteamUserWithStats []> {
+    return this.http.get<SteamUserWithStats []>(this._apiEndpoint + '/activeusers');
   }
 }

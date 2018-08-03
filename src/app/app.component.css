@@ -27,9 +27,14 @@
   margin: 0;
 }
 
+.toggle-section {
+  padding-top: 8px;
+}
+
 .user-content {
-  padding: 16px;
+  padding: 16px 16px 0px 16px;
   z-index: 10;
+  background-color: #dddddd;
 }
 
 @media only screen and (max-width: 1024px) {

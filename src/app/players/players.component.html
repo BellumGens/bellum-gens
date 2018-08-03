@@ -3,23 +3,37 @@
     <igx-prefix>
         <igx-icon>search</igx-icon>
     </igx-prefix>
-    <input #search igxInput placeholder="Search" [(ngModel)]="searchContact">
-    <igx-suffix *ngIf="search.value.length > 0" (click)="searchContact = null">
+    <input #search igxInput placeholder="Search" [(ngModel)]="searchplayer">
+    <igx-suffix *ngIf="search.value.length > 0" (click)="searchplayer = null">
         <igx-icon>clear</igx-icon>
     </igx-suffix>
 </igx-input-group>
 <igx-list>
   <igx-list-item isHeader="true"> Active CS:GO Players </igx-list-item>
-  <igx-list-item #item *ngFor="let user of activeUsers | igxFilter: filterContacts;">
+  <igx-list-item #item *ngFor="let user of activeUsers">
     <div class="item-container">
-      <div class="contact">
-        <igx-avatar [src]="user.avatarMedium" roundShape="true"></igx-avatar>
-        <div class="contact__info">
-          <span class="name">{{ user.steamID }}</span>
-          <!-- <span class="phone">{{ contact.phone }}</span> -->
+      <div class="player">
+        <igx-avatar [src]="user.steamUser.avatarMedium" roundShape="true"></igx-avatar>
+        <div class="player__info">
+          <span class="name">{{ user.steamUser.steamID }}</span>
+          <span class="phone">{{ user.steamUser.realname }}</span>
         </div>
       </div>
-      <!-- <igx-icon name="star" [color]="contact.isFavorite ? 'orange' : 'lightgray'" (click)="toggleFavorite(item)"></igx-icon> -->
+      
+      <div class="player__stats">
+        <igx-circular-bar class="icon-avatar" [value]="user.userStats.killDeathRatio * 100" [max]="200" [animate]="true" [textVisibility]="false"></igx-circular-bar>
+        <igx-avatar src="assets/hs-img.jpg" title="headshot percentage" roundShape="true" class="icon-avatar"></igx-avatar>
+      </div>
+
+      <div class="player__stats">
+        <span class="name">{{ user.userStats.killDeathRatio }}</span>
+        <span>{{ user.userStats.headshotPercentage }}%</span>
+      </div>
+      <!-- <div class="player__stats">
+          <igx-avatar src="assets/hs-img.jpg" roundShape="true" class="icon-avatar"></igx-avatar>
+          <igx-avatar src="assets/hs-img.jpg" roundShape="true" class="icon-avatar"></igx-avatar>
+      </div> -->
+      <!-- <igx-icon name="star" [color]="player.isFavorite ? 'orange' : 'lightgray'" (click)="toggleFavorite(item)"></igx-icon> -->
     </div>
   </igx-list-item>
 </igx-list>

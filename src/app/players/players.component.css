@@ -9,16 +9,29 @@ igx-icon {
   align-items: center;
 }
 
-.contact {
+.player {
   display: flex;
   flex: 1 0 240px;
   align-items: center;
 }
 
-.contact__info {
+.player__info {
   display: flex;
   flex-flow: column nowrap;
   margin-left: 24px;
+}
+
+.player__stats {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-end;
+  margin-left: 24px;
+}
+
+.icon-avatar {
+  width: 24px;
+  min-width: 24px;
+  height: 24px;
 }
 
 .name {
