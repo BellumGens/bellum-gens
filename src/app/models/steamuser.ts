@@ -3,4 +3,5 @@ export interface SteamUser {
   steamID: string;
   avatarIcon: string;
   avatarMedium: string;
+  avatarFull: string;
 }

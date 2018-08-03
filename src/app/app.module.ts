@@ -19,15 +19,14 @@ import { IgxNavigationDrawerModule,
   IgxDialogModule,
   IgxButtonModule,
   IgxToggleModule } from 'igniteui-angular';
-import { HomeComponent } from './home/home.component';
 import { PlayersComponent } from './players/players.component';
 import { PlayerDetailsComponent } from './player-details/player-details.component';
 import { LoginService } from './services/login.service';
+import { BellumgensApiService } from './services/bellumgens-api.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
     PlayersComponent,
     PlayerDetailsComponent
   ],
@@ -52,7 +51,8 @@ import { LoginService } from './services/login.service';
     IgxToggleModule
   ],
   providers: [
-    LoginService
+    LoginService,
+    BellumgensApiService
   ],
   bootstrap: [AppComponent]
 })
