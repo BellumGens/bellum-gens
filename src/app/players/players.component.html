@@ -3,7 +3,7 @@
     <igx-prefix>
         <igx-icon>search</igx-icon>
     </igx-prefix>
-    <input #search igxInput placeholder="Search" [(ngModel)]="searchplayer">
+    <input #search igxInput placeholder="Search" [(ngModel)]="searchPlayer">
     <igx-suffix *ngIf="search.value.length > 0" (click)="searchplayer = null">
         <igx-icon>clear</igx-icon>
     </igx-suffix>
@@ -21,7 +21,7 @@
       </div>
       
       <div class="player__stats">
-        <igx-circular-bar class="icon-avatar" [value]="user.userStats.killDeathRatio * 100" [max]="200" [animate]="true" [textVisibility]="false"></igx-circular-bar>
+        <igx-circular-bar class="icon-avatar" [value]="user.userStats.killDeathRatio * 100" [max]="200" [animate]="true" [textVisibility]="false" title="KDR"></igx-circular-bar>
         <igx-avatar src="assets/hs-img.jpg" title="headshot percentage" roundShape="true" class="icon-avatar"></igx-avatar>
       </div>
 
