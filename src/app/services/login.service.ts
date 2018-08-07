@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, ReplaySubject } from 'rxjs';
 import { LoginProvider } from '../models/login-provider';
 import { SteamUser } from '../models/steamuser';
 
@@ -10,6 +10,10 @@ import { SteamUser } from '../models/steamuser';
 export class LoginService {
   private _apiEndpoint = 'http://localhost:25702/api/account';
   private _rootApiEndpoint = 'http://localhost:25702';
+  private _dataSubject = new ReplaySubject<SteamUser>(1);
+
+  public steamUser: Observable<SteamUser> = this._dataSubject.asObservable();
+  public callMade = false;
 
   constructor(private http: HttpClient) { }
 
@@ -24,11 +28,14 @@ export class LoginService {
   }
 
   public logout() {
-    return this.http.post(this._apiEndpoint + '/logout', null, {withCredentials: true});
+    this.http.post(this._apiEndpoint + '/logout', null, {withCredentials: true}).subscribe(data => this._dataSubject.next(null));
   }
 
-  public steamUser(): Observable<SteamUser> {
-    return this.http.get<SteamUser>(this._apiEndpoint + '/userinfo', {withCredentials: true});
+  public getSteamUser(): void {
+    this.http.get<SteamUser>(this._apiEndpoint + '/userinfo', {withCredentials: true}).subscribe(data => {
+      this._dataSubject.next(data);
+      this.callMade = true;
+    });
   }
 
   public loginProviders(): Observable<LoginProvider []> {

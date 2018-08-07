@@ -12,6 +12,7 @@ import { IgxNavigationDrawerComponent,
   PositionSettings} from 'igniteui-angular';
 import { LoginService } from './services/login.service';
 import { SteamUser } from './models/steamuser';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -22,7 +23,6 @@ export class AppComponent implements OnInit {
   public title: string;
   public steamUser: SteamUser;
 
-  private _isAuthenticated = false;
   private _positionSettings: PositionSettings = {
     horizontalStartPoint: HorizontalAlignment.Right,
     verticalStartPoint: VerticalAlignment.Bottom,
@@ -42,10 +42,10 @@ export class AppComponent implements OnInit {
 
   constructor(private router: Router,
               private authManager: LoginService) {
-    this.authManager.steamUser().subscribe((data: SteamUser) => {
-      this.steamUser = data;
-      this._isAuthenticated = true;
-    });
+    if (!this.authManager.callMade) {
+      this.authManager.getSteamUser();
+    }
+    this.authManager.steamUser.subscribe(data => this.steamUser = data);
   }
 
   public ngOnInit(): void {
@@ -68,13 +68,7 @@ export class AppComponent implements OnInit {
   }
 
   public logout() {
-    this.authManager.logout().subscribe((data) => {
-      this._isAuthenticated = false;
-    });
-  }
-
-  public get isAuthenticated(): boolean {
-    return this._isAuthenticated;
+    this.authManager.logout();
   }
 
   public toggleUserActions() {

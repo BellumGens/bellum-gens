@@ -15,7 +15,8 @@ export class PlayersComponent implements OnInit {
   public activeUsers: SteamUserWithStats[];
 
   constructor(private apiManager: BellumgensApiService) {
-    this.apiManager.activeUsers().subscribe((data: SteamUserWithStats[]) => this.activeUsers = data);
+    this.apiManager.getActiveUsers();
+    this.apiManager.activeUsers.subscribe((data: SteamUserWithStats[]) => this.activeUsers = data);
   }
 
   ngOnInit() { }

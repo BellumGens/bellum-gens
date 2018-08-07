@@ -19,6 +19,8 @@ import { IgxNavigationDrawerModule,
   IgxDialogModule,
   IgxButtonModule,
   IgxProgressBarModule,
+  IgxBadgeModule,
+  IgxCardModule,
   IgxToggleModule } from 'igniteui-angular';
 import { PlayersComponent } from './players/players.component';
 import { PlayerDetailsComponent } from './player-details/player-details.component';
@@ -50,6 +52,8 @@ import { BellumgensApiService } from './services/bellumgens-api.service';
     IgxDatePickerModule,
     IgxButtonModule,
     IgxToggleModule,
+    IgxBadgeModule,
+    IgxCardModule,
     IgxProgressBarModule
   ],
   providers: [

@@ -1,10 +1,13 @@
-export interface SteamUser {
+export class SteamUser {
   steamID64: string;
   steamID: string;
   avatarIcon: string;
   avatarMedium: string;
   avatarFull: string;
   realname: string;
+  location: string;
+  country: string;
+  summary: string;
 }
 
 export interface CSGOStats {

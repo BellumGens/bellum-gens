@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PlayerDetailsComponent } from './player-details.component';
-import { IgxDatePickerModule } from 'igniteui-angular/main';
+import { IgxDatePickerModule } from 'igniteui-angular';
 
 describe('PlayerDetailsComponent', () => {
   let component: PlayerDetailsComponent;

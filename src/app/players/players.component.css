@@ -34,6 +34,15 @@ igx-icon {
   height: 24px;
 }
 
+.country-badge {
+  position: absolute;
+  top: -4px;
+  left: 24px;
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+}
+
 .name {
   font-weight: 600;
 }

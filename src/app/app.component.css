@@ -37,6 +37,12 @@
   background-color: #dddddd;
 }
 
+.discord-container {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-end;
+}
+
 @media only screen and (max-width: 1024px) {
   .content {
     padding: 0 15px;

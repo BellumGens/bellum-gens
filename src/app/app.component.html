@@ -8,8 +8,8 @@
   </igx-nav-drawer>
   <div igxFlex class="main">
     <igx-navbar title="Bellum Gens: Looking for Group" actionButtonIcon="menu" (onAction)="nav.toggle()">
-        <button igxButton="raised" igxRipple="white" *ngIf="!isAuthenticated" (click)="openLogin()">Login</button>
-        <div *ngIf="isAuthenticated" igxFlex>
+        <button igxButton="raised" igxRipple="white" *ngIf="!steamUser" (click)="openLogin()">Login</button>
+        <div *ngIf="steamUser" igxFlex>
           <igx-avatar [src]="steamUser.avatarMedium" roundShape="true" style="float: left"></igx-avatar>
           <button #userButton igxButton="icon" (click)="toggleUserActions()" igxRippleCentered="true" class="drop-down-arrow">
             <igx-icon fontSet="material" name="arrow_drop_down"></igx-icon>
@@ -18,7 +18,7 @@
             <span>{{steamUser.steamID}}</span>
             <section class="toggle-section">
                 <ul>
-                    <li><a href="/player-details">profile</a></li>
+                    <li><a [routerLink]="'/player-details'">profile</a></li>
                     <li><a href="#" (click)="logout()">logout</a></li>
                 </ul>
             </section>
@@ -27,6 +27,10 @@
     </igx-navbar>
     <div class="content">
       <router-outlet></router-outlet>
+
+      <div class="discord-container">
+          <iframe src="https://discordapp.com/widget?id=314362408783052800&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0"></iframe>
+      </div>
     </div>
   </div>
   <igx-dialog closeOnOutsideSelect="true" title="Sign in with Steam" width="600px">

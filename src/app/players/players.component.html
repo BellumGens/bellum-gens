@@ -13,7 +13,9 @@
   <igx-list-item #item *ngFor="let user of activeUsers">
     <div class="item-container">
       <div class="player">
-        <igx-avatar [src]="user.steamUser.avatarMedium" roundShape="true"></igx-avatar>
+        <igx-avatar [src]="user.steamUser.avatarMedium" roundShape="true">
+          <igx-avatar [src]="'assets/country-flags/svg/' + user.steamUser.country.toLowerCase() + '.svg'" class="country-badge"></igx-avatar>
+        </igx-avatar>
         <div class="player__info">
           <span class="name">{{ user.steamUser.steamID }}</span>
           <span class="phone">{{ user.steamUser.realname }}</span>
@@ -28,12 +30,8 @@
       <div class="player__stats">
         <span class="name">{{ user.userStats.killDeathRatio }}</span>
         <span>{{ user.userStats.headshotPercentage }}%</span>
+        <!-- <igx-circular-bar class="icon-avatar" [value]="37.79" [max]="100" [animate]="true" [textVisibility]="true" title="KDR"></igx-circular-bar> -->
       </div>
-      <!-- <div class="player__stats">
-          <igx-avatar src="assets/hs-img.jpg" roundShape="true" class="icon-avatar"></igx-avatar>
-          <igx-avatar src="assets/hs-img.jpg" roundShape="true" class="icon-avatar"></igx-avatar>
-      </div> -->
-      <!-- <igx-icon name="star" [color]="player.isFavorite ? 'orange' : 'lightgray'" (click)="toggleFavorite(item)"></igx-icon> -->
     </div>
   </igx-list-item>
 </igx-list>
