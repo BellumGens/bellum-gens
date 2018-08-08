@@ -12,12 +12,18 @@ export class BellumgensApiService {
   private _dataSubject = new ReplaySubject<SteamUserWithStats []>(1);
 
   public activeUsers: Observable<SteamUserWithStats []> = this._dataSubject.asObservable();
+  public error: any = null;
 
   constructor(private http: HttpClient) { }
 
   public getActiveUsers(): void {
     this.http.get<SteamUserWithStats []>(this._apiEndpoint + '/activeusers').subscribe(
-      data => this._dataSubject.next(data)
+      data => this._dataSubject.next(data),
+      error => this.error = error
     );
+  }
+
+  public getUser(userid: string): Observable<SteamUserWithStats> {
+    return this.http.get<SteamUserWithStats>(this._apiEndpoint + '/user?userid=' + userid);
   }
 }

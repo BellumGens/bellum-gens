@@ -1,21 +1,31 @@
 
 <div class="player-overview">
-  <igx-card *ngIf="steamUser">
+  <igx-card *ngIf="player">
     <igx-card-header>
-        <igx-avatar [src]="steamUser.avatarFull" roundShape="true" [size]="'large'">
-          <igx-avatar [src]="'assets/country-flags/svg/' + steamUser.country.toLowerCase() + '.svg'" class="country-badge-large"></igx-avatar>
+        <igx-avatar [src]="player.steamUser.avatarFull" roundShape="true" [size]="'large'">
+          <igx-avatar [src]="'assets/country-flags/svg/' + player.steamUser.country.toLowerCase() + '.svg'" [title]="player.steamUser.country" class="country-badge-large"></igx-avatar>
         </igx-avatar>
         <div class="player__info">
-          <h1 class="igx-card-header__title">{{ steamUser.steamID }}</h1>
-          <h3 class="igx-card-header__subtitle">{{ steamUser.realname }}</h3>
+          <h1 class="igx-card-header__title"><a [href]="'https://steamcommunity.com/id/' + player.steamUser.steamID" target="_blank">{{ player.steamUser.steamID }}</a></h1>
+          <h3 class="igx-card-header__subtitle">{{ player.steamUser.realname }}</h3>
         </div>
-        <div class="player__info">
-          <h1 class="igx-card-header__title">{{ steamUser.steamID }}</h1>
-          <h3 class="igx-card-header__subtitle">{{ steamUser.realname }}</h3>
+        <div class="player-stats__container">
+          <div class="player__stats">
+            <h3 class="no-margin">KDR:</h3>
+            <igx-circular-bar class="stats-progress" [value]="player.userStats.killDeathRatio * 100" [max]="200" [animate]="true" title="KDR"></igx-circular-bar>
+          </div>
+          <div class="player__stats">
+            <h3 class="no-margin">Headshots:</h3>
+            <igx-circular-bar class="stats-progress" [value]="player.userStats.headshotPercentage" [max]="100" [animate]="true" title="Headshot Percentage"></igx-circular-bar>
+          </div>
+          <div class="player__stats">
+            <h3 class="no-margin">Accuracy:</h3>
+            <igx-circular-bar class="stats-progress" [value]="player.userStats.accuracy" [max]="100" [animate]="true" title="Accuracy"></igx-circular-bar>
+          </div>
         </div>
     </igx-card-header>
     <igx-card-content>
-      <p class="igx-card-content__text">{{steamUser.summary}}</p>
+      <p class="igx-card-content__text">{{ player.steamUser.summary }}</p>
     </igx-card-content>
   </igx-card>
 </div>

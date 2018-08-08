@@ -5,8 +5,9 @@ import { PlayerDetailsComponent } from './player-details/player-details.componen
 
 export const routes: Routes = [
   { path: '', redirectTo: '/players', pathMatch: 'full' },
-  { path: 'players', component: PlayersComponent, data: { text: 'players' } },
-  { path: 'player-details', component: PlayerDetailsComponent, data: { text: 'player-details' } }
+  { path: 'players', component: PlayersComponent },
+  { path: 'player-details', component: PlayerDetailsComponent },
+  { path: 'player-details/:userid', component: PlayerDetailsComponent }
 ];
 
 @NgModule({

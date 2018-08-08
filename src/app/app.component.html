@@ -18,7 +18,7 @@
             <span>{{steamUser.steamID}}</span>
             <section class="toggle-section">
                 <ul>
-                    <li><a [routerLink]="'/player-details'">profile</a></li>
+                    <li><a [routerLink]="['/player-details', steamUser.steamID]">profile</a></li>
                     <li><a href="#" (click)="logout()">logout</a></li>
                 </ul>
             </section>

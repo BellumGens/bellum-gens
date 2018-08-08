@@ -11,7 +11,32 @@
   margin-left: 16px;
 }
 
+.player-stats__container {
+  display: flex;
+  flex-flow: row;
+  margin-left: auto;
+}
+
+.player__stats {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  vertical-align: middle;
+  margin-left: 64px;
+}
+
 .player-overview {
   margin-top: 16px;
   margin-right: 16px;
+}
+
+.stats-progress {
+  margin-left: 8px;
+  width: 52px;
+  min-width: 52px;
+  height: 52px;
+}
+
+.no-margin {
+  margin: 0;
 }
