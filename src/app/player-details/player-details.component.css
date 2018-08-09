@@ -40,3 +40,7 @@
 .no-margin {
   margin: 0;
 }
+
+.igx-chip__text {
+  font-size: 13pt;
+}
