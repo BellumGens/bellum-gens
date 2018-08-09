@@ -42,6 +42,7 @@
   flex-direction: column;
   align-self: flex-end;
   margin-top: 16px;
+  margin-left: auto;
 }
 
 @media only screen and (max-width: 1024px) {

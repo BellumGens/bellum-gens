@@ -37,7 +37,7 @@ export class AppComponent implements OnInit {
 
   @ViewChild(IgxNavigationDrawerComponent) public navdrawer: IgxNavigationDrawerComponent;
   @ViewChild(IgxDialogComponent) public dialog: IgxDialogComponent;
-  @ViewChild(IgxToggleDirective) toggle: IgxToggleDirective;
+  @ViewChild(IgxToggleDirective) public toggle: IgxToggleDirective;
   @ViewChild('userButton') public userButton: ElementRef;
 
   constructor(private router: Router,

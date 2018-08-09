@@ -17,7 +17,7 @@
   margin-left: auto;
 }
 
-.player__stats {
+.player-detail__stats {
   display: flex;
   flex-flow: row;
   align-items: center;

@@ -14,10 +14,15 @@
     <div class="item-container">
       <div class="player">
         <igx-avatar [src]="user.steamUser.avatarMedium" roundShape="true">
-          <igx-avatar [src]="'assets/country-flags/svg/' + user.steamUser.country.toLowerCase() + '.svg'" class="country-badge"></igx-avatar>
+          <igx-avatar [src]="'assets/country-flags/svg/' + user.steamUser.country.toLowerCase() + '.svg'" [roundShape]="true" class="country-badge"></igx-avatar>
         </igx-avatar>
         <div class="player__info">
-          <span class="name">{{ user.steamUser.steamID }}</span>
+          <span class="name">
+            <a [routerLink]="['/player-details', user.steamUser.steamID64]">
+              {{ user.steamUser.steamID }}
+              <igx-avatar [src]="'assets/csgo-ranks/icons/skillgroup14.png'" class="skill-badge" [roundShape]="true"></igx-avatar>
+            </a>
+          </span>
           <span class="phone">{{ user.steamUser.realname }}</span>
         </div>
       </div>

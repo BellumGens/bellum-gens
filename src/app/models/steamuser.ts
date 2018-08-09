@@ -8,6 +8,7 @@ export class SteamUser {
   location: string;
   country: string;
   summary: string;
+  customURL: string;
 }
 
 export interface CSGOStats {
