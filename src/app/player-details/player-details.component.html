@@ -11,6 +11,10 @@
         </div>
         <div class="player-stats__container">
           <div class="player__stats">
+            <h3 class="no-margin">Rank:</h3>
+            <igx-circular-bar class="stats-progress" [value]="player.userStats.killDeathRatio * 100" [max]="200" [animate]="true" title="KDR"></igx-circular-bar>
+          </div>
+          <div class="player__stats">
             <h3 class="no-margin">KDR:</h3>
             <igx-circular-bar class="stats-progress" [value]="player.userStats.killDeathRatio * 100" [max]="200" [animate]="true" title="KDR"></igx-circular-bar>
           </div>
