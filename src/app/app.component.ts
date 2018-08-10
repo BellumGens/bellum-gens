@@ -12,7 +12,6 @@ import { IgxNavigationDrawerComponent,
   PositionSettings} from 'igniteui-angular';
 import { LoginService } from './services/login.service';
 import { SteamUser } from './models/steamuser';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -60,6 +59,7 @@ export class AppComponent implements OnInit {
   }
 
   public openLogin() {
+    this.authManager.getLoginProviders();
     this.dialog.open();
   }
 
@@ -69,6 +69,7 @@ export class AppComponent implements OnInit {
 
   public logout() {
     this.authManager.logout();
+    this.steamUser = null;
   }
 
   public toggleUserActions() {

@@ -15,6 +15,7 @@ export class PlayerDetailsComponent {
 
   public authUser: SteamUser;
   public player: SteamUserWithStats;
+  public selectedDay: string;
   public weekDays = [
     { day: 'Mondays', available: false },
     { day: 'Tuesdays', available: false },

@@ -22,7 +22,14 @@
   flex-flow: row;
   align-items: center;
   vertical-align: middle;
-  margin-left: 64px;
+  margin-left: 32px;
+}
+
+.availability-time {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  vertical-align: middle;
 }
 
 .player-overview {
@@ -31,10 +38,14 @@
 }
 
 .stats-progress {
-  margin-left: 8px;
-  width: 52px;
-  min-width: 52px;
-  height: 52px;
+  margin-left: 4px;
+  width: 64px;
+  min-width: 64px;
+  height: 64px;
+}
+
+.progress-circular__text {
+  font-size: 1.75rem;
 }
 
 .no-margin {
@@ -42,5 +53,6 @@
 }
 
 .igx-chip__text {
-  font-size: 13pt;
+  font-size: 1rem;
+  font-weight: 600;
 }

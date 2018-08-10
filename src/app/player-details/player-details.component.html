@@ -12,15 +12,15 @@
         <div class="player-stats__container">
           <div class="player-detail__stats">
             <h3 class="no-margin">KDR:</h3>
-            <igx-circular-bar class="stats-progress" [value]="player.userStats.killDeathRatio * 100" [max]="200" [animate]="true" title="KDR"></igx-circular-bar>
+            <igx-circular-bar class="stats-progress" [value]="player.userStats.killDeathRatio" [max]="2" [animate]="true" title="KDR" [text]="player.userStats.killDeathRatio"></igx-circular-bar>
           </div>
           <div class="player-detail__stats">
             <h3 class="no-margin">Headshots:</h3>
-            <igx-circular-bar class="stats-progress" [value]="player.userStats.headshotPercentage" [max]="100" [animate]="true" title="Headshot Percentage"></igx-circular-bar>
+            <igx-circular-bar class="stats-progress" [value]="player.userStats.headshotPercentage" [max]="100" [animate]="true" title="Headshot Percentage" [text]="player.userStats.headshotPercentage + '%'"></igx-circular-bar>
           </div>
           <div class="player-detail__stats">
             <h3 class="no-margin">Accuracy:</h3>
-            <igx-circular-bar class="stats-progress" [value]="player.userStats.accuracy" [max]="100" [animate]="true" title="Accuracy"></igx-circular-bar>
+            <igx-circular-bar class="stats-progress" [value]="player.userStats.accuracy" [max]="100" [animate]="true" [text]="player.userStats.accuracy + '%'"></igx-circular-bar>
           </div>
           <div class="player-detail__stats">
             <img src="assets/csgo-ranks/status-icons/skillgroup14.png" alt="rank" />
@@ -34,9 +34,15 @@
               <span class='igx-chip__text'>{{ weekday.day }}</span>
           </igx-chip>
       </igx-chips-area>
-      <igx-time-picker [disabled]="!playerIsUser()" [itemsDelta]="{hours: 1, minutes: 15}">
-        
-      </igx-time-picker>
+      <p *ngIf="playerIsUser()" class="igx-card-content__text">Available time for {{ selectedDay }}:</p>
+      <div class="availability-time" *ngIf="playerIsUser()">
+        <igx-time-picker #from class="player__info" [disabled]="!playerIsUser()" [itemsDelta]="{hours: 1, minutes: 15}">
+          
+        </igx-time-picker>
+        <igx-time-picker #to class="player__info" [disabled]="!playerIsUser()" [itemsDelta]="{hours: 1, minutes: 15}">
+          
+        </igx-time-picker>
+      </div>
     </igx-card-content>
   </igx-card>
 </div>

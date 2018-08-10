@@ -28,7 +28,8 @@
       </div>
       
       <div class="player__stats">
-        <igx-circular-bar class="icon-avatar" [value]="user.userStats.killDeathRatio * 100" [max]="200" [animate]="true" [textVisibility]="false" title="KDR"></igx-circular-bar>
+        <igx-circular-bar class="icon-avatar" [value]="user.userStats.killDeathRatio" [max]="2" [animate]="true" [textVisibility]="false" title="KDR"></igx-circular-bar>
+        <igx-avatar src="assets/hs-img.jpg" title="headshot percentage" roundShape="true" class="icon-avatar"></igx-avatar>
       </div>
 
       <div class="player__stats">
