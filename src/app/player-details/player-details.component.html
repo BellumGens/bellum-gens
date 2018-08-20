@@ -30,8 +30,8 @@
     <igx-card-content>
       <p class="igx-card-content__text">Availability:</p>
       <igx-chips-area>
-          <igx-chip *ngFor="let weekday of weekDays" [selectable]="playerIsUser()">
-              <span class='igx-chip__text'>{{ weekday.day }}</span>
+          <igx-chip *ngFor="let weekday of player.availability" [selectable]="playerIsUser()">
+              <span class='igx-chip__text'>{{ dayName(weekday.Day) }}</span>
           </igx-chip>
       </igx-chips-area>
       <p *ngIf="playerIsUser()" class="igx-card-content__text">Available time for {{ selectedDay }}:</p>

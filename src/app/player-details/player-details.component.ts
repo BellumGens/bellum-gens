@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
 import { LoginService } from '../services/login.service';
-import { SteamUser, SteamUserWithStats } from '../models/steamuser';
+import { SteamUser, SteamUserWithStats, DayOfWeek } from '../models/steamuser';
 import { ActivatedRoute } from '../../../node_modules/@angular/router';
 import { BellumgensApiService } from '../services/bellumgens-api.service';
 import { IgxChipsAreaComponent } from '../../../node_modules/igniteui-angular';
@@ -17,13 +17,7 @@ export class PlayerDetailsComponent {
   public player: SteamUserWithStats;
   public selectedDay: string;
   public weekDays = [
-    { day: 'Mondays', available: false },
-    { day: 'Tuesdays', available: false },
-    { day: 'Wednesdays', available: false },
-    { day: 'Thursdays', available: true },
-    { day: 'Fridays', available: false },
-    { day: 'Saturdays', available: false },
-    { day: 'Sundays', available: false }
+    'Sundays', 'Mondays', 'Tuesdays', 'Wednesdays', 'Thursdays', 'Fridays', 'Saturdays'
   ];
 
   @ViewChild(IgxChipsAreaComponent) public chips: IgxChipsAreaComponent;
@@ -43,12 +37,16 @@ export class PlayerDetailsComponent {
           this.chips.chipsList.forEach((item, index) => {
             const temp = item.selectable;
             item.selectable = true;
-            item.selected = this.weekDays[index].available;
+            item.selected = this.player.availability[index].Available;
             item.selectable = temp;
           });
         }
       );
     });
+  }
+
+  public dayName(day: DayOfWeek) {
+    return this.weekDays[day];
   }
 
   public playerIsUser(): boolean {

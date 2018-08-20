@@ -9,7 +9,6 @@ export class SteamUser {
   country: string;
   summary: string;
   customURL: string;
-  availability: Availability [];
 }
 
 export interface CSGOStats {
@@ -22,6 +21,7 @@ export interface CSGOStats {
 export interface SteamUserWithStats {
   steamUser: SteamUser;
   userStats: CSGOStats;
+  availability: Availability [];
 }
 
 export interface WeaponDescriptor {
@@ -31,13 +31,19 @@ export interface WeaponDescriptor {
 }
 
 export interface Availability {
-  day: string;
-  available: boolean;
-  timeslot: Timeslot;
+  Day: DayOfWeek;
+  Available: boolean;
+  From: Date;
+  To: Date;
 }
 
-export interface Timeslot {
-  from: Date;
-  to: Date;
+export enum DayOfWeek {
+  Sunday,
+  Monday,
+  Tuesday,
+  Wednesday,
+  Thursday,
+  Friday,
+  Saturday
 }
 
