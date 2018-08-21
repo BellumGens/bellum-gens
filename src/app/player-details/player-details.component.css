@@ -62,6 +62,10 @@
   font-weight: 200;
 }
 
+.igx-chip__item--selected .igx-chip__subtext {
+  color: #ffffff;
+}
+
 .highlight {
   color: #e41c77;
   font-weight: 600;
