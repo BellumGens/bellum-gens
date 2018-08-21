@@ -9,6 +9,11 @@
           <h1 class="igx-card-header__title"><a [href]="'https://steamcommunity.com/id/' + player.steamUser.customURL" target="_blank">{{ player.steamUser.steamID }}</a></h1>
           <h3 class="igx-card-header__subtitle">{{ player.steamUser.realname }}</h3>
         </div>
+        <div class="player__info">
+            <img [src]="'assets/weapon-icons/svg_normal/weapon_' + player.userStats.favouriteWeapon.name + '.svg'"
+                 [alt]="'Top Weapon with ' + player.userStats.favouriteWeapon.kills + ' kills: ' + player.userStats.favouriteWeapon.name"
+                 [title]="'Top Weapon with ' + player.userStats.favouriteWeapon.kills + ' kills: ' + player.userStats.favouriteWeapon.name" /> 
+        </div>
         <div class="player-stats__container">
           <div class="player-detail__stats">
             <h3 class="no-margin">KDR:</h3>
@@ -32,14 +37,15 @@
       <igx-chips-area>
           <igx-chip *ngFor="let weekday of player.availability" [selectable]="playerIsUser()" (onSelection)="daySelected($event)">
               <span class='igx-chip__text'>{{ dayName(weekday.Day) }}</span>
+              <span class='igx-chip__subtext' *ngIf="weekday.Available">{{ getTime(weekday.From) }}-{{ getTime(weekday.To) }}</span>
           </igx-chip>
       </igx-chips-area>
       <p *ngIf="playerIsUser()" class="igx-card-content__text">Available times for <span class="highlight" [textContent]="selectedDay ? dayName(selectedDay.Day) : ''"></span>:</p>
-      <div class="availability-time" *ngIf="playerIsUser()">
-        <igx-time-picker #from class="player__info" [disabled]="!playerIsUser()" [itemsDelta]="{hours: 1, minutes: 15}" (onValue)="fromChange($event)">
+      <div class="availability-time" *ngIf="playerIsUser() && selectedDay">
+        <igx-time-picker #from class="player__info" [disabled]="!playerIsUser()" [value]="dateFromString(this.selectedDay.From)" [itemsDelta]="{hours: 1, minutes: 15}" (onValueChanged)="fromChange($event)">
           
         </igx-time-picker>
-        <igx-time-picker #to class="player__info" [disabled]="!playerIsUser()" [itemsDelta]="{hours: 1, minutes: 15}" (onValue)="toChange($event)">
+        <igx-time-picker #to class="player__info" [disabled]="!playerIsUser()" [value]="dateFromString(this.selectedDay.To)" [itemsDelta]="{hours: 1, minutes: 15}" (onValueChanged)="toChange($event)">
           
         </igx-time-picker>
       </div>

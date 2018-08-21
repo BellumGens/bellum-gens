@@ -45,7 +45,7 @@
 }
 
 .progress-circular__text {
-  font-size: 1.75rem;
+  font-size: 1.70rem;
 }
 
 .no-margin {
@@ -55,6 +55,11 @@
 .igx-chip__text {
   font-size: 1rem;
   font-weight: 600;
+}
+
+.igx-chip__subtext {
+  font-size: 0.55rem;
+  font-weight: 200;
 }
 
 .highlight {

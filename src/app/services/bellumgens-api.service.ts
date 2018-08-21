@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { SteamUserWithStats } from '../models/steamuser';
+import { SteamUserWithStats, Availability } from '../models/steamuser';
 import { Observable, ReplaySubject } from 'rxjs';
 
 @Injectable({
@@ -25,5 +25,9 @@ export class BellumgensApiService {
 
   public getUser(userid: string): Observable<SteamUserWithStats> {
     return this.http.get<SteamUserWithStats>(this._apiEndpoint + '/user?userid=' + userid);
+  }
+
+  public setAvailability(availability: Availability): Observable<any> {
+    return this.http.put(this._apiEndpoint + '/availability', availability, { withCredentials: true });
   }
 }
