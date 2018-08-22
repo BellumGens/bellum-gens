@@ -3,7 +3,17 @@ import { LoginService } from '../services/login.service';
 import { SteamUser, SteamUserWithStats, DayOfWeek, Availability } from '../models/steamuser';
 import { ActivatedRoute } from '../../../node_modules/@angular/router';
 import { BellumgensApiService } from '../services/bellumgens-api.service';
-import { IgxChipsAreaComponent, IgxTimePickerComponent, IgxTimePickerValueChangedEventArgs } from '../../../node_modules/igniteui-angular';
+import {
+  IgxChipsAreaComponent,
+  IgxTimePickerComponent,
+  IgxTimePickerValueChangedEventArgs,
+  IgxToastComponent,
+  IgxToastPosition,
+  IgxDropDownComponent,
+  HorizontalAlignment,
+  VerticalAlignment,
+  ConnectedPositioningStrategy
+} from '../../../node_modules/igniteui-angular';
 import { noop } from 'rxjs';
 
 @Component({
@@ -14,6 +24,17 @@ import { noop } from 'rxjs';
 })
 export class PlayerDetailsComponent {
 
+  private _positionSettings = {
+    horizontalStartPoint: HorizontalAlignment.Left,
+    verticalStartPoint: VerticalAlignment.Bottom
+  };
+
+  private _overlaySettings = {
+    closeOnOutsideClick: true,
+    modal: false,
+    positionStrategy: new ConnectedPositioningStrategy(this._positionSettings)
+  };
+
   public authUser: SteamUser;
   public player: SteamUserWithStats;
   public selectedDay: Availability;
@@ -22,8 +43,11 @@ export class PlayerDetailsComponent {
   ];
 
   @ViewChild(IgxChipsAreaComponent) public chips: IgxChipsAreaComponent;
+  @ViewChild(IgxToastComponent) public error: IgxToastComponent;
   @ViewChild('from') public from: IgxTimePickerComponent;
   @ViewChild('to') public to: IgxTimePickerComponent;
+  @ViewChild('primaryRole') public primaryRole: IgxDropDownComponent;
+  @ViewChild('secondaryRole') public secondaryRole: IgxDropDownComponent;
 
   constructor(private authManager: LoginService,
               private apiService: BellumgensApiService,
@@ -38,7 +62,13 @@ export class PlayerDetailsComponent {
       this.apiService.getUser(userid).subscribe(
         data => {
           this.player = data;
+          if (!data.userStats) {
+            this.error.position = IgxToastPosition.Middle;
+            this.error.displayTime = 7000;
+            this.error.show();
+          }
           // Waiting on the chip bug fix to be released.
+          this.cdr.detectChanges();
           this.chips.chipsList.forEach((item, index) => {
             const temp = item.selectable;
             item.selectable = true;
@@ -66,6 +96,13 @@ export class PlayerDetailsComponent {
   public daySelected(args: any) {
     const index = this.chips.chipsList.toArray().indexOf(args.owner);
     this.selectedDay = this.player.availability[index];
+    if (!args.nextStatus) {
+      this.selectedDay.Available = false;
+      this.apiService.setAvailability(this.selectedDay).subscribe(
+        data => noop,
+        error => console.log(error)
+      );
+    }
     this.cdr.detectChanges();
   }
 
@@ -95,5 +132,15 @@ export class PlayerDetailsComponent {
 
   public playerIsUser(): boolean {
     return this.player && this.authUser && (this.player.steamUser.steamID64 === this.authUser.steamID64);
+  }
+
+  public togglePrimary(args) {
+    this._overlaySettings.positionStrategy.settings.target = args.target;
+    this.primaryRole.toggle(this._overlaySettings);
+  }
+
+  public toggleSecondary(args) {
+    this._overlaySettings.positionStrategy.settings.target = args.target;
+    this.secondaryRole.toggle(this._overlaySettings);
   }
 }

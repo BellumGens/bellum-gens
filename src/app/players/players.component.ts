@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { IgxFilterOptions } from 'igniteui-angular';
+import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
+import { IgxFilterOptions, IgxListComponent } from 'igniteui-angular';
 import { SteamUserWithStats } from '../models/steamuser';
 import { BellumgensApiService } from '../services/bellumgens-api.service';
 
@@ -14,9 +14,14 @@ export class PlayersComponent implements OnInit {
 
   public activeUsers: SteamUserWithStats[];
 
+  @ViewChild(IgxListComponent) public list: IgxListComponent;
+
   constructor(private apiManager: BellumgensApiService) {
     this.apiManager.getActiveUsers();
-    this.apiManager.activeUsers.subscribe((data: SteamUserWithStats[]) => this.activeUsers = data);
+    this.apiManager.activeUsers.subscribe((data: SteamUserWithStats[]) => {
+      this.activeUsers = data;
+      this.list.isLoading = false;
+    });
   }
 
   ngOnInit() { }

@@ -23,6 +23,8 @@ import { IgxNavigationDrawerModule,
   IgxCardModule,
   IgxChipsModule,
   IgxTimePickerModule,
+  IgxToastModule,
+  IgxDropDownModule,
   IgxToggleModule } from 'igniteui-angular';
 import { PlayersComponent } from './players/players.component';
 import { PlayerDetailsComponent } from './player-details/player-details.component';
@@ -58,6 +60,8 @@ import { BellumgensApiService } from './services/bellumgens-api.service';
     IgxCardModule,
     IgxChipsModule,
     IgxTimePickerModule,
+    IgxToastModule,
+    IgxDropDownModule,
     IgxProgressBarModule
   ],
   providers: [

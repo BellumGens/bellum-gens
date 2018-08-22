@@ -3,18 +3,13 @@
   <igx-card>
     <igx-card-header *ngIf="player">
         <igx-avatar [src]="player.steamUser.avatarFull" roundShape="true" [size]="'large'">
-          <igx-avatar [src]="'assets/country-flags/svg/' + player.steamUser.country.toLowerCase() + '.svg'" [title]="player.steamUser.country" class="country-badge-large"></igx-avatar>
+          <igx-avatar *ngIf="player.steamUser.country" [src]="'assets/country-flags/svg/' + player.steamUser.country.toLowerCase() + '.svg'" [title]="player.steamUser.country" class="country-badge-large"></igx-avatar>
         </igx-avatar>
         <div class="player__info">
           <h1 class="igx-card-header__title"><a [href]="'https://steamcommunity.com/id/' + player.steamUser.customURL" target="_blank">{{ player.steamUser.steamID }}</a></h1>
           <h3 class="igx-card-header__subtitle">{{ player.steamUser.realname }}</h3>
         </div>
-        <div class="player__info">
-            <img [src]="'assets/weapon-icons/svg_normal/weapon_' + player.userStats.favouriteWeapon.name + '.svg'"
-                 [alt]="'Top Weapon with ' + player.userStats.favouriteWeapon.kills + ' kills: ' + player.userStats.favouriteWeapon.name"
-                 [title]="'Top Weapon with ' + player.userStats.favouriteWeapon.kills + ' kills: ' + player.userStats.favouriteWeapon.name" /> 
-        </div>
-        <div class="player-stats__container">
+        <div *ngIf="player.userStats" class="player-stats__container">
           <div class="player-detail__stats">
             <h3 class="no-margin">KDR:</h3>
             <igx-circular-bar class="stats-progress" [value]="player.userStats.killDeathRatio" [max]="2" [animate]="true" title="KDR" [text]="player.userStats.killDeathRatio"></igx-circular-bar>
@@ -28,11 +23,47 @@
             <igx-circular-bar class="stats-progress" [value]="player.userStats.accuracy" [max]="100" [animate]="true" [text]="player.userStats.accuracy + '%'"></igx-circular-bar>
           </div>
           <div class="player-detail__stats">
-            <img src="assets/csgo-ranks/status-icons/skillgroup14.png" alt="rank" />
+              <h3 class="no-margin">Top Weapon:</h3>
+              <img [src]="'assets/weapon-icons/svg_normal/weapon_' + player.userStats.favouriteWeapon.name + '.svg'"
+                  [alt]="'Top Weapon with ' + player.userStats.favouriteWeapon.kills + ' kills: ' + player.userStats.favouriteWeapon.name"
+                  [title]="player.userStats.favouriteWeapon.kills + ' kills'" /> 
           </div>
+          <div *ngIf="playerIsUser() && player.userStatsException" class="player-stats__container">
+            <h3>Your Steam account is private.</h3>
+            <p>In order to allow us to retrieve your ingame statistics, you need to change the privacy level of your account, so we can access them from Steam.</p>
+            <p>To do this go to Steam Profile --> Edit Profile --> Privacy Settings --> Set: 'My profile: Public' and 'Game details: public'</p>
+          </div>
+          <!-- <div class="player-detail__stats">
+            <img src="assets/csgo-ranks/status-icons/skillgroup14.png" alt="rank" />
+          </div> -->
         </div>
     </igx-card-header>
-    <igx-card-content *ngIf="player">
+    <igx-card-content *ngIf="player && player.availability">
+
+<!-- Playstyle Roles -->
+      <div class="player-detail__stats">
+          <h3>Preferred Primary Role:</h3>
+          <h3>{{ player.roles[player.primaryRole].Name }}</h3>
+          <button igxButton="raised" *ngIf="playerIsUser()" (click)="togglePrimary($event)">Select Primary Role</button>
+          <igx-drop-down #primaryRole>
+            <igx-drop-down-item *ngFor="let role of player.roles" [isSelected]="role.Id === player.primaryRole" [value]="role.Id">
+              {{ role.Name }}
+            </igx-drop-down-item>
+          </igx-drop-down>
+      </div>
+      <div class="player-detail__stats">
+          <h3>Preferred Secondary Role:</h3>
+          <h3>{{ player.roles[player.secondaryRole].Name }}</h3>
+          <button igxButton="raised" *ngIf="playerIsUser()" (click)="toggleSecondary($event)">Select Primary Role</button>
+          <igx-drop-down #secondaryRole>
+            <igx-drop-down-item *ngFor="let role of player.roles" [isSelected]="role.Id === player.secondaryRole">
+              {{ role.Name }}
+            </igx-drop-down-item>
+          </igx-drop-down>
+      </div>
+<!-- END Playstyle Roles -->
+
+<!-- Availability -->
       <p class="igx-card-content__text">Availability:</p>
       <igx-chips-area>
           <igx-chip *ngFor="let weekday of player.availability" [selectable]="playerIsUser()" (onSelection)="daySelected($event)">
@@ -49,6 +80,9 @@
           
         </igx-time-picker>
       </div>
+<!-- END Availability -->
+
     </igx-card-content>
   </igx-card>
+  <igx-toast #error message="Account is private!"></igx-toast>
 </div>

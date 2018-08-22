@@ -20,8 +20,13 @@ export interface CSGOStats {
 
 export interface SteamUserWithStats {
   steamUser: SteamUser;
+  steamUserException: string;
   userStats: CSGOStats;
+  userStatsException: string;
   availability: Availability [];
+  primaryRole: PlaystyleRole;
+  secondaryRole: PlaystyleRole;
+  roles: Role [];
 }
 
 export interface WeaponDescriptor {
@@ -37,6 +42,11 @@ export interface Availability {
   To: Date;
 }
 
+export interface Role {
+  Id: PlaystyleRole;
+  Name: string;
+}
+
 export enum DayOfWeek {
   Sunday,
   Monday,
@@ -45,5 +55,13 @@ export enum DayOfWeek {
   Thursday,
   Friday,
   Saturday
+}
+
+export enum PlaystyleRole {
+  IGL,
+  Awper,
+  EntryFragger,
+  Support,
+  Lurker
 }
 

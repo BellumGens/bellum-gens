@@ -8,8 +8,13 @@
         <igx-icon>clear</igx-icon>
     </igx-suffix>
 </igx-input-group>
-<igx-list>
-  <igx-list-item isHeader="true"> Active CS:GO Players </igx-list-item>
+<igx-list [isLoading]="true">
+  <ng-template igxDataLoading>
+      <div class="center"><span>Fetching data from our server...</span></div>
+  </ng-template>
+  <ng-template igxEmptyList>
+      <div class="center"><span>Nobody is active...</span></div>
+  </ng-template>
   <igx-list-item #item *ngFor="let user of activeUsers">
     <div class="item-container">
       <div class="player">
@@ -20,7 +25,7 @@
           <span class="name">
             <a [routerLink]="['/player-details', user.steamUser.steamID64]">
               {{ user.steamUser.steamID }}
-              <igx-avatar [src]="'assets/csgo-ranks/icons/skillgroup14.png'" class="skill-badge" [roundShape]="true"></igx-avatar>
+              <!-- <igx-avatar [src]="'assets/csgo-ranks/icons/skillgroup14.png'" class="skill-badge" [roundShape]="true"></igx-avatar> -->
             </a>
           </span>
           <span class="phone">{{ user.steamUser.realname }}</span>
@@ -29,7 +34,7 @@
       
       <div class="player__stats">
         <igx-circular-bar class="icon-avatar" [value]="user.userStats.killDeathRatio" [max]="2" [animate]="true" [textVisibility]="false" title="KDR"></igx-circular-bar>
-        <igx-avatar src="assets/hs-img.jpg" title="headshot percentage" roundShape="true" class="icon-avatar"></igx-avatar>
+        <igx-avatar src="assets/hs-img.jpg" title="Headshot Percentage" roundShape="true" class="icon-avatar"></igx-avatar>
       </div>
 
       <div class="player__stats">
