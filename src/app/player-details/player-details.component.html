@@ -41,26 +41,34 @@
     <igx-card-content *ngIf="player && player.availability">
 
 <!-- Playstyle Roles -->
-      <div class="player-detail__stats">
-          <h3>Preferred Primary Role:</h3>
-          <h3>{{ player.roles[player.primaryRole].Name }}</h3>
-          <button igxButton="raised" *ngIf="playerIsUser()" (click)="togglePrimary($event)">Select Primary Role</button>
-          <igx-drop-down #primaryRole>
-            <igx-drop-down-item *ngFor="let role of player.roles" [isSelected]="role.Id === player.primaryRole">
-              {{ role.Name }}
-            </igx-drop-down-item>
-          </igx-drop-down>
-      </div>
-      <div class="player-detail__stats">
-          <h3>Preferred Secondary Role:</h3>
-          <h3>{{ player.roles[player.secondaryRole].Name }}</h3>
-          <button igxButton="raised" *ngIf="playerIsUser()" (click)="toggleSecondary($event)">Select Primary Role</button>
-          <igx-drop-down #secondaryRole>
-            <igx-drop-down-item *ngFor="let role of player.roles" [isSelected]="role.Id === player.secondaryRole">
-                {{ role.Name }}
-            </igx-drop-down-item>
-          </igx-drop-down>
-      </div>
+      <div class="player-stats__container">
+          <div class="player-detail__stats">
+              <h4 class="no-margin">Preferred Primary Role:</h4>
+              <h4 *ngIf="!playerIsUser()">{{ player.roles[player.primaryRole].Name }}</h4>
+              <button igxButton="flat" *ngIf="playerIsUser()" [igxToggleAction]="primaryRole" igxRippleCentered="true">
+                {{ player.roles[player.primaryRole].Name }}
+                <igx-icon fontSet="material" name="arrow_drop_down"></igx-icon>
+              </button>
+              <igx-drop-down #primaryRole (onSelection)="selectPrimary($event)">
+                <igx-drop-down-item *ngFor="let role of player.roles" [isSelected]="role.Id === player.primaryRole">
+                  {{ role.Name }}
+                </igx-drop-down-item>
+              </igx-drop-down>
+          </div>
+          <div class="player-detail__stats">
+              <h4 class="no-margin">Preferred Secondary Role:</h4>
+              <h4 *ngIf="!playerIsUser()">{{ player.roles[player.secondaryRole].Name }}</h4>
+              <button igxButton="flat" *ngIf="playerIsUser()" [igxToggleAction]="secondaryRole" igxRippleCentered="true">
+                {{ player.roles[player.secondaryRole].Name }}
+                <igx-icon fontSet="material" name="arrow_drop_down"></igx-icon>
+              </button>
+              <igx-drop-down #secondaryRole (onSelection)="selectSecondary($event)">
+                <igx-drop-down-item *ngFor="let role of player.roles" [isSelected]="role.Id === player.secondaryRole">
+                    {{ role.Name }}
+                </igx-drop-down-item>
+              </igx-drop-down>
+          </div>
+        </div>
 <!-- END Playstyle Roles -->
 
 <!-- Availability -->

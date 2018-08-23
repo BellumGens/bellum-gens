@@ -10,9 +10,7 @@ import {
   IgxToastComponent,
   IgxToastPosition,
   IgxDropDownComponent,
-  HorizontalAlignment,
-  VerticalAlignment,
-  ConnectedPositioningStrategy
+  ISelectionEventArgs
 } from '../../../node_modules/igniteui-angular';
 import { noop } from 'rxjs';
 
@@ -23,17 +21,6 @@ import { noop } from 'rxjs';
   encapsulation: ViewEncapsulation.None,
 })
 export class PlayerDetailsComponent {
-
-  private _positionSettings = {
-    horizontalStartPoint: HorizontalAlignment.Left,
-    verticalStartPoint: VerticalAlignment.Bottom
-  };
-
-  private _overlaySettings = {
-    closeOnOutsideClick: true,
-    modal: false,
-    positionStrategy: new ConnectedPositioningStrategy(this._positionSettings)
-  };
 
   public authUser: SteamUser;
   public player: SteamUserWithStats;
@@ -134,13 +121,25 @@ export class PlayerDetailsComponent {
     return this.player && this.authUser && (this.player.steamUser.steamID64 === this.authUser.steamID64);
   }
 
-  public togglePrimary(args) {
-    this._overlaySettings.positionStrategy.settings.target = args.target;
-    this.primaryRole.toggle(this._overlaySettings);
+  public selectPrimary(args: ISelectionEventArgs) {
+    const index = this.primaryRole.items.indexOf(args.newSelection);
+    if (this.player.primaryRole !== this.player.roles[index].Id) {
+      this.player.primaryRole = this.player.roles[index].Id;
+      this.apiService.setPrimaryRole(this.player.primaryRole).subscribe(
+        data => noop,
+        error => console.log(error)
+      );
+    }
   }
 
-  public toggleSecondary(args) {
-    this._overlaySettings.positionStrategy.settings.target = args.target;
-    this.secondaryRole.toggle(this._overlaySettings);
+  public selectSecondary(args: ISelectionEventArgs) {
+    const index = this.secondaryRole.items.indexOf(args.newSelection);
+    if (this.player.secondaryRole !== this.player.roles[index].Id) {
+      this.player.secondaryRole = this.player.roles[index].Id;
+      this.apiService.setSecondaryRole(this.player.secondaryRole).subscribe(
+        data => noop,
+        error => console.log(error)
+      );
+    }
   }
 }
