@@ -46,7 +46,7 @@
           <h3>{{ player.roles[player.primaryRole].Name }}</h3>
           <button igxButton="raised" *ngIf="playerIsUser()" (click)="togglePrimary($event)">Select Primary Role</button>
           <igx-drop-down #primaryRole>
-            <igx-drop-down-item *ngFor="let role of player.roles" [isSelected]="role.Id === player.primaryRole" [value]="role.Id">
+            <igx-drop-down-item *ngFor="let role of player.roles" [isSelected]="role.Id === player.primaryRole">
               {{ role.Name }}
             </igx-drop-down-item>
           </igx-drop-down>
@@ -57,7 +57,7 @@
           <button igxButton="raised" *ngIf="playerIsUser()" (click)="toggleSecondary($event)">Select Primary Role</button>
           <igx-drop-down #secondaryRole>
             <igx-drop-down-item *ngFor="let role of player.roles" [isSelected]="role.Id === player.secondaryRole">
-              {{ role.Name }}
+                {{ role.Name }}
             </igx-drop-down-item>
           </igx-drop-down>
       </div>
