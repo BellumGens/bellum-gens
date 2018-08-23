@@ -125,7 +125,7 @@ export class PlayerDetailsComponent {
     const index = this.primaryRole.items.indexOf(args.newSelection);
     if (this.player.primaryRole !== this.player.roles[index].Id) {
       this.player.primaryRole = this.player.roles[index].Id;
-      this.apiService.setPrimaryRole(this.player.primaryRole).subscribe(
+      this.apiService.setPrimaryRole(this.player.roles[index]).subscribe(
         data => noop,
         error => console.log(error)
       );
@@ -136,7 +136,7 @@ export class PlayerDetailsComponent {
     const index = this.secondaryRole.items.indexOf(args.newSelection);
     if (this.player.secondaryRole !== this.player.roles[index].Id) {
       this.player.secondaryRole = this.player.roles[index].Id;
-      this.apiService.setSecondaryRole(this.player.secondaryRole).subscribe(
+      this.apiService.setSecondaryRole(this.player.roles[index]).subscribe(
         data => noop,
         error => console.log(error)
       );
