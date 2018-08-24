@@ -25,6 +25,7 @@ import { IgxNavigationDrawerModule,
   IgxTimePickerModule,
   IgxToastModule,
   IgxDropDownModule,
+  IgxCheckboxModule,
   IgxToggleModule } from 'igniteui-angular';
 import { PlayersComponent } from './players/players.component';
 import { PlayerDetailsComponent } from './player-details/player-details.component';
@@ -62,6 +63,7 @@ import { BellumgensApiService } from './services/bellumgens-api.service';
     IgxTimePickerModule,
     IgxToastModule,
     IgxDropDownModule,
+    IgxCheckboxModule,
     IgxProgressBarModule
   ],
   providers: [

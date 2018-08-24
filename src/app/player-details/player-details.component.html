@@ -38,57 +38,78 @@
           </div> -->
         </div>
     </igx-card-header>
-    <igx-card-content *ngIf="player && player.availability">
+    <igx-card-content *ngIf="player">
 
 <!-- Playstyle Roles -->
       <div class="player-stats__container">
-          <div class="player-detail__stats">
-              <h4 class="no-margin">Preferred Primary Role:</h4>
-              <h4 *ngIf="!playerIsUser()">{{ player.roles[player.primaryRole].Name }}</h4>
-              <button igxButton="flat" *ngIf="playerIsUser()" [igxToggleAction]="primaryRole" igxRippleCentered="true">
-                {{ player.roles[player.primaryRole].Name }}
-                <igx-icon fontSet="material" name="arrow_drop_down"></igx-icon>
-              </button>
-              <igx-drop-down #primaryRole (onSelection)="selectPrimary($event)">
-                <igx-drop-down-item *ngFor="let role of player.roles" [isSelected]="role.Id === player.primaryRole">
-                  {{ role.Name }}
-                </igx-drop-down-item>
-              </igx-drop-down>
-          </div>
-          <div class="player-detail__stats">
-              <h4 class="no-margin">Preferred Secondary Role:</h4>
-              <h4 *ngIf="!playerIsUser()">{{ player.roles[player.secondaryRole].Name }}</h4>
-              <button igxButton="flat" *ngIf="playerIsUser()" [igxToggleAction]="secondaryRole" igxRippleCentered="true">
-                {{ player.roles[player.secondaryRole].Name }}
-                <igx-icon fontSet="material" name="arrow_drop_down"></igx-icon>
-              </button>
-              <igx-drop-down #secondaryRole (onSelection)="selectSecondary($event)">
-                <igx-drop-down-item *ngFor="let role of player.roles" [isSelected]="role.Id === player.secondaryRole">
-                    {{ role.Name }}
-                </igx-drop-down-item>
-              </igx-drop-down>
-          </div>
+        <div class="player-detail__stats">
+            <h4 class="no-margin">Preferred Primary Role:</h4>
+            <h4 *ngIf="!playerIsUser()">{{ player.roles[player.primaryRole].Name }}</h4>
+            <button igxButton="flat" *ngIf="playerIsUser()" [igxToggleAction]="primaryRole" igxRippleCentered="true">
+              {{ player.roles[player.primaryRole].Name }}
+              <igx-icon fontSet="material" name="arrow_drop_down"></igx-icon>
+            </button>
+            <igx-drop-down #primaryRole (onSelection)="selectPrimary($event)">
+              <igx-drop-down-item *ngFor="let role of player.roles" [isSelected]="role.Id === player.primaryRole">
+                {{ role.Name }}
+              </igx-drop-down-item>
+            </igx-drop-down>
         </div>
+        <div class="player-detail__stats">
+            <h4 class="no-margin">Preferred Secondary Role:</h4>
+            <h4 *ngIf="!playerIsUser()">{{ player.roles[player.secondaryRole].Name }}</h4>
+            <button igxButton="flat" *ngIf="playerIsUser()" [igxToggleAction]="secondaryRole" igxRippleCentered="true">
+              {{ player.roles[player.secondaryRole].Name }}
+              <igx-icon fontSet="material" name="arrow_drop_down"></igx-icon>
+            </button>
+            <igx-drop-down #secondaryRole (onSelection)="selectSecondary($event)">
+              <igx-drop-down-item *ngFor="let role of player.roles" [isSelected]="role.Id === player.secondaryRole">
+                  {{ role.Name }}
+              </igx-drop-down-item>
+            </igx-drop-down>
+        </div>
+      </div>
 <!-- END Playstyle Roles -->
 
 <!-- Availability -->
-      <p class="igx-card-content__text">Availability:</p>
-      <igx-chips-area>
-          <igx-chip *ngFor="let weekday of player.availability" [selectable]="playerIsUser()" (onSelection)="daySelected($event)">
-              <span class='igx-chip__text'>{{ dayName(weekday.Day) }}</span>
-              <span class='igx-chip__subtext' *ngIf="weekday.Available">{{ getTime(weekday.From) }}-{{ getTime(weekday.To) }}</span>
-          </igx-chip>
-      </igx-chips-area>
-      <p *ngIf="playerIsUser()" class="igx-card-content__text">Available times for <span class="highlight" [textContent]="selectedDay ? dayName(selectedDay.Day) : ''"></span>:</p>
-      <div class="availability-time" *ngIf="playerIsUser() && selectedDay">
-        <igx-time-picker #from class="player__info" [disabled]="!playerIsUser()" [value]="dateFromString(this.selectedDay.From)" [itemsDelta]="{hours: 1, minutes: 15}" (onValueChanged)="fromChange($event)">
-          
-        </igx-time-picker>
-        <igx-time-picker #to class="player__info" [disabled]="!playerIsUser()" [value]="dateFromString(this.selectedDay.To)" [itemsDelta]="{hours: 1, minutes: 15}" (onValueChanged)="toChange($event)">
-          
-        </igx-time-picker>
+      <div *ngIf="player.availability">
+        <p class="igx-card-content__text">Availability:</p>
+        <igx-chips-area>
+            <igx-chip *ngFor="let weekday of player.availability" [selectable]="playerIsUser()" (onSelection)="daySelected($event)">
+                <span class='igx-chip__text'>{{ dayName(weekday.Day) }}</span>
+                <span class='igx-chip__subtext' *ngIf="weekday.Available">{{ getTime(weekday.From) }}-{{ getTime(weekday.To) }}</span>
+            </igx-chip>
+        </igx-chips-area>
+        <p *ngIf="playerIsUser() && selectedDay" class="igx-card-content__text">Available times for <span class="highlight" [textContent]="selectedDay ? dayName(selectedDay.Day) : ''"></span>:</p>
+        <div class="availability-time" *ngIf="playerIsUser() && selectedDay">
+          <igx-time-picker #from class="player__info" [disabled]="!playerIsUser()" [value]="dateFromString(this.selectedDay.From)" [itemsDelta]="{hours: 1, minutes: 15}" (onValueChanged)="fromChange($event)">
+            
+          </igx-time-picker>
+          <igx-time-picker #to class="player__info" [disabled]="!playerIsUser()" [value]="dateFromString(this.selectedDay.To)" [itemsDelta]="{hours: 1, minutes: 15}" (onValueChanged)="toChange($event)">
+            
+          </igx-time-picker>
+        </div>
       </div>
 <!-- END Availability -->
+
+<!-- Map Pool -->
+      <div *ngIf="player">
+          <p class="igx-card-content__text">Maps Played:</p>
+          <div class="card-wrapper">
+              <div class="map-column map-wrapper" *ngFor="let map of activeDuty">
+                <igx-card>
+                  <img width="100%" height="100%" [src]="map.image" [alt]="map.map" />
+                  <igx-card-actions>
+                      {{ map.map }}
+                      <div class="igx-card-actions__igroup--end">
+                        <igx-checkbox checked="false"></igx-checkbox>
+                      </div>
+                  </igx-card-actions>
+                </igx-card>
+              </div>
+          </div>
+        </div>
+  <!-- END Map Pool -->
 
     </igx-card-content>
   </igx-card>

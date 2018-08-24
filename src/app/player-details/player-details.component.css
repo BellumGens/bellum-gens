@@ -70,3 +70,25 @@
   color: #e41c77;
   font-weight: 600;
 }
+
+.map-column {
+  display: flex;
+  flex-flow: row wrap;
+  flex: 1 0 25%;
+  align-content: flex-start;
+  margin: 16px;
+  min-width: 200px;
+}
+
+.map-wrapper {
+  max-width: 300px;
+  min-width: 200px;
+}
+
+.card-wrapper {
+  display: flex;
+  flex-grow: 1;
+  flex-flow: row wrap;
+  justify-content: flex-start;
+  padding: 0;
+}
