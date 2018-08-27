@@ -99,6 +99,7 @@ export class PlayerDetailsComponent {
         data => noop,
         error => console.log(error)
       );
+      this.selectedDay = null;
     }
     this.cdr.detectChanges();
   }

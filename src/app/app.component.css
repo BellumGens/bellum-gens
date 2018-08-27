@@ -40,7 +40,6 @@
 .discord-container {
   display: flex;
   flex-direction: column;
-  align-self: flex-end;
   margin-top: 16px;
   margin-left: auto;
 }
