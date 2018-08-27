@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { LoginService } from '../services/login.service';
-import { SteamUser, SteamUserWithStats, DayOfWeek, Availability } from '../models/steamuser';
+import { SteamUser, SteamUserWithStats, DayOfWeek, Availability, MapPool } from '../models/steamuser';
 import { ActivatedRoute } from '../../../node_modules/@angular/router';
 import { BellumgensApiService } from '../services/bellumgens-api.service';
 import {
@@ -10,9 +10,9 @@ import {
   IgxToastComponent,
   IgxToastPosition,
   IgxDropDownComponent,
-  ISelectionEventArgs
+  ISelectionEventArgs,
+  IChangeCheckboxEventArgs
 } from '../../../node_modules/igniteui-angular';
-import { noop } from 'rxjs';
 
 @Component({
   selector: 'app-player-details',
@@ -30,7 +30,7 @@ export class PlayerDetailsComponent {
   ];
 
   public activeDuty = [
-    { id: 0, map: 'Cache', image: 'assets/csgo_maps/320px-Csgo_cache.png', active: true },
+    { id: 0, map: 'Cache', image: 'assets/csgo_maps/CSGO_Cache_A_site.jpg', active: true },
     { id: 1, map: 'Dust 2', image: 'assets/csgo_maps/320px-Csgo_dust2.0.jpg', active: true },
     { id: 2, map: 'Inferno', image: 'assets/csgo_maps/320px-De_new_inferno.jpg', active: true },
     { id: 3, map: 'Mirage', image: 'assets/csgo_maps/320px-Csgo_mirage.jpg', active: true },
@@ -40,7 +40,8 @@ export class PlayerDetailsComponent {
   ];
 
   @ViewChild(IgxChipsAreaComponent) public chips: IgxChipsAreaComponent;
-  @ViewChild(IgxToastComponent) public error: IgxToastComponent;
+  @ViewChild('error') public error: IgxToastComponent;
+  @ViewChild('saveSuccess') public success: IgxToastComponent;
   @ViewChild('from') public from: IgxTimePickerComponent;
   @ViewChild('to') public to: IgxTimePickerComponent;
   @ViewChild('primaryRole') public primaryRole: IgxDropDownComponent;
@@ -58,10 +59,10 @@ export class PlayerDetailsComponent {
       const userid = params['userid'];
       this.apiService.getUser(userid).subscribe(
         data => {
+          data.mapPool.sort(m => m.IsPlayed ? 0 : 1);
           this.player = data;
           if (!data.userStats) {
             this.error.position = IgxToastPosition.Middle;
-            this.error.displayTime = 7000;
             this.error.show();
           }
           // Waiting on the chip bug fix to be released.
@@ -85,6 +86,14 @@ export class PlayerDetailsComponent {
     return new Date(date);
   }
 
+  public mapName(map: MapPool) {
+    return this.activeDuty.find(m => m.id === map.Map).map;
+  }
+
+  public mapImage(map: MapPool) {
+    return this.activeDuty.find(m => m.id === map.Map).image;
+  }
+
   public getTime(date: Date | string): string {
     const value = this.dateFromString(date);
     return value.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
@@ -96,7 +105,7 @@ export class PlayerDetailsComponent {
     if (!args.nextStatus) {
       this.selectedDay.Available = false;
       this.apiService.setAvailability(this.selectedDay).subscribe(
-        data => noop,
+        data => this.showSuccess(),
         error => console.log(error)
       );
       this.selectedDay = null;
@@ -110,7 +119,7 @@ export class PlayerDetailsComponent {
       this.selectedDay.To = this.to.value;
       this.selectedDay.Available = true;
       this.apiService.setAvailability(this.selectedDay).subscribe(
-        data => noop,
+        data => this.showSuccess(),
         error => console.log(error)
       );
     }
@@ -122,7 +131,7 @@ export class PlayerDetailsComponent {
       this.selectedDay.From = this.from.value;
       this.selectedDay.Available = true;
       this.apiService.setAvailability(this.selectedDay).subscribe(
-        data => noop,
+        data => this.showSuccess(),
         error => console.log(error)
       );
     }
@@ -140,7 +149,7 @@ export class PlayerDetailsComponent {
     if (this.player.primaryRole !== this.player.roles[index].Id) {
       this.player.primaryRole = this.player.roles[index].Id;
       this.apiService.setPrimaryRole(this.player.roles[index]).subscribe(
-        data => noop,
+        data => this.showSuccess(),
         error => console.log(error)
       );
     }
@@ -154,9 +163,22 @@ export class PlayerDetailsComponent {
     if (this.player.secondaryRole !== this.player.roles[index].Id) {
       this.player.secondaryRole = this.player.roles[index].Id;
       this.apiService.setSecondaryRole(this.player.roles[index]).subscribe(
-        data => noop,
+        data => this.showSuccess(),
         error => console.log(error)
       );
     }
+  }
+
+  public mapChange(args: IChangeCheckboxEventArgs) {
+    this.player.mapPool.find(m => m.Map === args.checkbox.value.Map).IsPlayed = args.checked;
+    this.player.mapPool.sort(m => m.IsPlayed ? 0 : 1);
+    this.apiService.setMapPool(args.checkbox.value).subscribe(
+      data => this.showSuccess(),
+      error => console.log(error)
+    );
+  }
+
+  public showSuccess() {
+    this.success.show();
   }
 }

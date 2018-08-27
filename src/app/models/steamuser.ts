@@ -27,6 +27,7 @@ export interface SteamUserWithStats {
   primaryRole: PlaystyleRole;
   secondaryRole: PlaystyleRole;
   roles: Role [];
+  mapPool: MapPool [];
 }
 
 export interface WeaponDescriptor {
@@ -47,6 +48,11 @@ export interface Role {
   Name: string;
 }
 
+export interface MapPool {
+  Map: CSGOMap;
+  IsPlayed: boolean;
+}
+
 export enum DayOfWeek {
   Sunday,
   Monday,
@@ -63,5 +69,15 @@ export enum PlaystyleRole {
   EntryFragger,
   Support,
   Lurker
+}
+
+export enum CSGOMap {
+  Cache,
+  Dust2,
+  Inferno,
+  Mirage,
+  Nuke,
+  Overpass,
+  Train
 }
 

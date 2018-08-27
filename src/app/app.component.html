@@ -8,21 +8,22 @@
   <div igxFlex class="main">
     <igx-navbar title="Bellum Gens: Looking for Group" actionButtonIcon="menu" (onAction)="nav.toggle()">
         <button igxButton="raised" igxRipple="white" *ngIf="!steamUser" (click)="openLogin()">Login</button>
-
-        <button *ngIf="steamUser" class="profile-button" igxButton="flat" [igxToggleAction]="userProfile">
-          <igx-avatar [src]="steamUser.avatarMedium" roundShape="true"></igx-avatar>
-          <igx-icon fontSet="material" name="arrow_drop_down" class="drop-down-arrow"></igx-icon>
-        </button>
-        <igx-drop-down #userProfile>
-          <igx-drop-down-item>
-            <igx-icon fontSet="material" name="person"></igx-icon>
-            <a [routerLink]="['/player-details', steamUser.steamID64]">profile</a>
-          </igx-drop-down-item>
-          <igx-drop-down-item>
-            <igx-icon fontSet="material" name="exit_to_app"></igx-icon>
-            <a href="#" (click)="logout()">logout</a>
-          </igx-drop-down-item>
-        </igx-drop-down>
+        <div *ngIf="steamUser">
+          <button class="profile-button" igxButton="flat" [igxToggleAction]="userProfile">
+            <igx-avatar [src]="steamUser.avatarMedium" roundShape="true"></igx-avatar>
+            <igx-icon fontSet="material" name="arrow_drop_down" class="drop-down-arrow"></igx-icon>
+          </button>
+          <igx-drop-down #userProfile>
+            <igx-drop-down-item>
+              <igx-icon fontSet="material" name="person"></igx-icon>
+              <a [routerLink]="['/player-details', steamUser.steamID64]">profile</a>
+            </igx-drop-down-item>
+            <igx-drop-down-item>
+              <igx-icon fontSet="material" name="exit_to_app"></igx-icon>
+              <a href="#" (click)="logout()">logout</a>
+            </igx-drop-down-item>
+          </igx-drop-down>
+        </div>
     </igx-navbar>
     <div class="content">
       <router-outlet></router-outlet>

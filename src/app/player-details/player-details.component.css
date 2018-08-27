@@ -81,8 +81,11 @@
 }
 
 .map-wrapper {
-  max-width: 300px;
-  min-width: 200px;
+  max-width: 200px;
+}
+
+.map-inactive {
+  opacity: 0.5;
 }
 
 .card-wrapper {
