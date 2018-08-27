@@ -8,7 +8,7 @@
 }
 
 .player__info {
-  margin-left: 16px;
+  margin: 0 16px;
 }
 
 .player-stats__container {
@@ -30,6 +30,10 @@
   flex-flow: row;
   align-items: center;
   vertical-align: middle;
+}
+
+.time-picker {
+  width: 200px;
 }
 
 .player-overview {
