@@ -27,14 +27,8 @@
   margin: 0;
 }
 
-.toggle-section {
-  padding-top: 8px;
-}
-
-.user-content {
-  padding: 16px 16px 0px 16px;
-  z-index: 10;
-  background-color: #dddddd;
+.profile-button {
+  height: 58px;
 }
 
 .discord-container {
