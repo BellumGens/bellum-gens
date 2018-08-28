@@ -19,7 +19,7 @@
     <div class="item-container">
       <div class="player">
         <igx-avatar [src]="user.steamUser.avatarMedium" roundShape="true">
-          <igx-avatar [src]="'assets/country-flags/svg/' + user.steamUser.country.toLowerCase() + '.svg'" [roundShape]="true" class="country-badge"></igx-avatar>
+          <igx-avatar [src]="'assets/country-flags/svg/' + user.steamUser.country.toLowerCase() + '.svg'" [roundShape]="true" [title]="user.steamUser.country" class="country-badge"></igx-avatar>
         </igx-avatar>
         <div class="player__info">
           <span class="name">
