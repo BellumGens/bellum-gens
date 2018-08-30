@@ -5,8 +5,16 @@ igx-icon {
 
 .item-container {
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
   align-items: center;
+}
+
+.list-container {
+  display: flex;
+  flex-flow: column nowrap;
+  margin-left: 24px;
+  min-width: 420px;
 }
 
 .player {

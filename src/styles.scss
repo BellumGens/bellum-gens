@@ -16,3 +16,8 @@ $app-palette: igx-palette($primary, $secondary);
 .content p {
   margin: 15px;
 }
+
+.card-with-margins {
+  margin-top: 16px;
+  margin-right: 16px;
+}

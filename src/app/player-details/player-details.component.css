@@ -46,11 +46,6 @@
   width: 200px;
 }
 
-.player-overview {
-  margin-top: 16px;
-  margin-right: 16px;
-}
-
 .player-role-chooser {
   display: flex;
   flex-flow: row;

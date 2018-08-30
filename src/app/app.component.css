@@ -38,6 +38,14 @@
   margin-left: auto;
 }
 
+.profile-item {
+  padding: 0 0.75em;
+}
+
+.profile-link {
+  margin-left: 0.75em;
+}
+
 @media only screen and (max-width: 1024px) {
   .content {
     padding: 0 15px;
