@@ -1,8 +1,8 @@
 <igx-card class="card-with-margins">
   <igx-card-header>
-    <div>
+    <div *ngIf="!team">
       <h1 class="igx-card-header__title">You have no teams yet.</h1>
-      <h3 class="igx-card-header__subtitle">Create or join a team.</h3>
+      <h3 class="igx-card-header__subtitle"><button>Create</button> or <a routerLink="/">join</a> a team.</h3>
     </div>
   </igx-card-header>
 </igx-card>

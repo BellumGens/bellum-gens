@@ -9,7 +9,8 @@ export const routes: Routes = [
   { path: 'players', component: PlayersComponent },
   { path: 'player-details', component: PlayerDetailsComponent },
   { path: 'player-details/:userid', component: PlayerDetailsComponent },
-  { path: 'team', component: TeamComponent, data: { text: 'team' } }
+  { path: 'team', component: TeamComponent, data: { text: 'team' } },
+  { path: 'team/:teamid', component: TeamComponent, data: { text: 'team' } }
 ];
 
 @NgModule({

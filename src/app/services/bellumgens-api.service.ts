@@ -2,29 +2,38 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SteamUserWithStats, Availability, Role, MapPool } from '../models/steamuser';
 import { Observable, ReplaySubject } from 'rxjs';
+import { CSGOTeam } from '../models/csgoteam';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BellumgensApiService {
   private _apiEndpoint = 'http://localhost:25702/api';
-  private _rootApiEndpoint = 'http://localhost:25702';
-  private _dataSubject = new ReplaySubject<SteamUserWithStats []>(1);
+  private _usersDataSubject = new ReplaySubject<SteamUserWithStats []>(1);
+  private _teamsDataSubject = new ReplaySubject<CSGOTeam []>(1);
 
-  public activeUsers: Observable<SteamUserWithStats []> = this._dataSubject.asObservable();
+  public activeUsers: Observable<SteamUserWithStats []> = this._usersDataSubject.asObservable();
+  public csgoTeams: Observable<CSGOTeam []> = this._teamsDataSubject.asObservable();
   public error: any = null;
 
   constructor(private http: HttpClient) { }
 
   public getActiveUsers(): void {
     this.http.get<SteamUserWithStats []>(this._apiEndpoint + '/users/activeusers').subscribe(
-      data => this._dataSubject.next(data),
+      data => this._usersDataSubject.next(data),
       error => this.error = error
     );
   }
 
-  public getTeams(): void {
+  public getTeam(): void {
 
+  }
+
+  public getTeams(): void {
+    this.http.get<CSGOTeam []>(this._apiEndpoint + '/teams/teams').subscribe(
+      data => this._teamsDataSubject.next(data),
+      error => this.error = error
+    );
   }
 
   public getUser(userid: string): Observable<SteamUserWithStats> {
