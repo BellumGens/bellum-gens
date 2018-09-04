@@ -1,8 +1,36 @@
 <igx-card class="card-with-margins">
   <igx-card-header>
-    <div *ngIf="!team">
-      <h1 class="igx-card-header__title">You have no teams yet.</h1>
-      <h3 class="igx-card-header__subtitle"><button>Create</button> or <a routerLink="/">join</a> a team.</h3>
+    <div *ngIf="!team && !authUser">
+      <h1 class="igx-card-header__title">You need to login to view your teams.</h1>
+    </div>
+    <div *ngIf="!team && authUser">
+      <h1 class="igx-card-header__title">You are not part of any teams.</h1>
+      <h3 class="igx-card-header__subtitle"><button igxButton="flat" igxRippleCentered="true" (click)="createTeam.open()">Create New Team</button> or <a routerLink="/">join</a> a team.</h3>
     </div>
   </igx-card-header>
 </igx-card>
+
+<igx-dialog #createTeam closeOnOutsideSelect="true">
+  <div class="create-team">
+      <igx-list>
+        <igx-list-item *ngIf="getPrimaryGroups().length" [isHeader]="true">Import from Steam Group</igx-list-item>
+        <igx-list-item *ngFor="let group of getPrimaryGroups()" (click)="createFromSteam(group)">
+          <div class="item-container">
+            <div class="steam-groups">
+              <igx-avatar [src]="group.avatarFull" roundShape="true">
+              </igx-avatar>
+              <div class="steam-group-name">
+                <span class="name">
+                    {{ group.groupName }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </igx-list-item>
+        <igx-list-item [isHeader]="true">Register with form</igx-list-item>
+        <igx-list-item>
+          
+        </igx-list-item>
+      </igx-list>
+  </div>
+</igx-dialog>

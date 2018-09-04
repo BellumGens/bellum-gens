@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { SteamUserWithStats, Availability, Role, MapPool } from '../models/steamuser';
+import { SteamUserWithStats, Availability, Role, MapPool, SteamGroup } from '../models/steamuser';
 import { Observable, ReplaySubject } from 'rxjs';
 import { CSGOTeam } from '../models/csgoteam';
 
@@ -25,8 +25,8 @@ export class BellumgensApiService {
     );
   }
 
-  public getTeam(): void {
-
+  public getTeam(teamId: string): Observable<CSGOTeam> {
+    return this.http.get<CSGOTeam>(this._apiEndpoint + '/teams/team?teamid' + teamId);
   }
 
   public getTeams(): void {
@@ -34,6 +34,10 @@ export class BellumgensApiService {
       data => this._teamsDataSubject.next(data),
       error => this.error = error
     );
+  }
+
+  public registerSteamGroup(group: SteamGroup): Observable<any> {
+    return this.http.post(this._apiEndpoint + '/teams/createFromSteam', group, { withCredentials: true });
   }
 
   public getUser(userid: string): Observable<SteamUserWithStats> {

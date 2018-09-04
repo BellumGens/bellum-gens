@@ -9,6 +9,7 @@ export class SteamUser {
   country: string;
   summary: string;
   customURL: string;
+  groups: SteamGroup [];
 }
 
 export interface CSGOStats {
@@ -28,6 +29,15 @@ export interface SteamUserWithStats {
   secondaryRole: PlaystyleRole;
   roles: Role [];
   mapPool: MapPool [];
+}
+
+export interface SteamGroup {
+  isPrimary: boolean;
+  groupID64: string;
+  groupName: string;
+  avatarIcon: string;
+  avatarMedium: string;
+  avatarFull: string;
 }
 
 export interface WeaponDescriptor {
