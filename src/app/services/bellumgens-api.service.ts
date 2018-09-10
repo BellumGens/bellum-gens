@@ -37,7 +37,7 @@ export class BellumgensApiService {
   }
 
   public registerSteamGroup(group: SteamGroup): Observable<any> {
-    return this.http.post(this._apiEndpoint + '/teams/createFromSteam', group, { withCredentials: true });
+    return this.http.post(this._apiEndpoint + '/teams/team', group, { withCredentials: true });
   }
 
   public getUser(userid: string): Observable<SteamUserWithStats> {
