@@ -1,8 +1,7 @@
-import { Component, OnInit, ViewEncapsulation, ViewChild } from '@angular/core';
-import { IgxFilterOptions, IgxListComponent } from 'igniteui-angular';
+import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
+import { IgxListComponent } from 'igniteui-angular';
 import { SteamUserWithStats } from '../models/steamuser';
 import { BellumgensApiService } from '../services/bellumgens-api.service';
-import { CSGOTeam } from '../models/csgoteam';
 
 @Component({
   selector: 'app-players',
@@ -10,14 +9,12 @@ import { CSGOTeam } from '../models/csgoteam';
   styleUrls: ['./players.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class PlayersComponent implements OnInit {
+export class PlayersComponent {
   public searchPlayer: string;
 
   public activeUsers: SteamUserWithStats[];
-  public csgoTeams: CSGOTeam [];
 
-  @ViewChild('players') public players: IgxListComponent;
-  @ViewChild('teams') public teams: IgxListComponent;
+  @ViewChild(IgxListComponent) public players: IgxListComponent;
 
   constructor(private apiManager: BellumgensApiService) {
     this.apiManager.getActiveUsers();
@@ -25,19 +22,5 @@ export class PlayersComponent implements OnInit {
       this.activeUsers = data;
       this.players.isLoading = false;
     });
-    this.apiManager.getTeams();
-    this.apiManager.csgoTeams.subscribe((data: CSGOTeam[]) => {
-      this.csgoTeams = data;
-      this.teams.isLoading = false;
-    });
-  }
-
-  ngOnInit() { }
-
-  get filterPlayers() {
-    const fo = new IgxFilterOptions();
-    fo.key = 'steamID';
-    fo.inputValue = this.searchPlayer;
-    return fo;
   }
 }

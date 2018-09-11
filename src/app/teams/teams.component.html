@@ -1,0 +1,42 @@
+<h4>These teams are currently looking for recruits.</h4>
+<igx-input-group type="search" class="search">
+    <igx-prefix>
+        <igx-icon>search</igx-icon>
+    </igx-prefix>
+    <input #search igxInput placeholder="Search" [(ngModel)]="searchPlayer">
+    <igx-suffix *ngIf="search.value.length > 0" (click)="searchplayer = null">
+        <igx-icon>clear</igx-icon>
+    </igx-suffix>
+</igx-input-group>
+<igx-list #teams [isLoading]="true">
+  <ng-template igxDataLoading>
+      <div class="center-message"><span>Fetching data from our server...</span></div>
+  </ng-template>
+  <ng-template igxEmptyList>
+      <div class="center-message"><span>No teams recruiting...</span></div>
+  </ng-template>
+  <igx-list-item #item *ngFor="let team of csgoTeams">
+    <div class="item-container">
+      <div class="player">
+        <igx-avatar [src]="team.TeamAvatar" roundShape="true">
+        </igx-avatar>
+        <div class="player__info">
+          <span class="name">
+            <a [routerLink]="['/team', team.TeamId]">
+              {{ team.TeamName }}
+            </a>
+          </span>
+        </div>
+      </div>
+      
+      <div class="player__stats">
+        3 / 5 Members
+      </div>
+
+      <!-- <div class="player__stats">
+        <span class="name">{{ user.userStats.killDeathRatio }}</span>
+        <span>{{ user.userStats.headshotPercentage }}%</span>
+      </div> -->
+    </div>
+  </igx-list-item>
+</igx-list>

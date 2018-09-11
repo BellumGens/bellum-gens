@@ -1,3 +1,5 @@
+import { CSGOTeam } from './csgoteam';
+
 export class SteamUser {
   steamID64: string;
   steamID: string;
@@ -29,6 +31,7 @@ export interface SteamUserWithStats {
   secondaryRole: PlaystyleRole;
   roles: Role [];
   mapPool: MapPool [];
+  teams: CSGOTeam [];
 }
 
 export interface SteamGroup {

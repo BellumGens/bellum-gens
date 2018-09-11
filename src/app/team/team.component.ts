@@ -1,10 +1,10 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BellumgensApiService } from '../services/bellumgens-api.service';
 import { CSGOTeam } from '../models/csgoteam';
 import { SteamUser, SteamGroup } from '../models/steamuser';
 import { LoginService } from '../services/login.service';
-import { noop } from '@angular/compiler/src/render3/view/util';
+import { IgxDialogComponent } from 'igniteui-angular';
 
 @Component({
   selector: 'app-team',
@@ -15,6 +15,8 @@ import { noop } from '@angular/compiler/src/render3/view/util';
 export class TeamComponent {
   public team: CSGOTeam;
   public authUser: SteamUser;
+
+  @ViewChild(IgxDialogComponent) public createTeam: IgxDialogComponent;
 
   constructor(private activatedRoute: ActivatedRoute,
               private apiService: BellumgensApiService,
@@ -37,7 +39,10 @@ export class TeamComponent {
 
   public createFromSteam(group: SteamGroup): void {
     this.apiService.registerSteamGroup(group).subscribe(
-      data => console.log('success')
+      team => {
+        this.team = team;
+        this.createTeam.close();
+      }
     );
   }
 }

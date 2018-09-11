@@ -11,7 +11,8 @@ import {
   IgxToastPosition,
   IgxDropDownComponent,
   ISelectionEventArgs,
-  IChangeCheckboxEventArgs
+  IChangeCheckboxEventArgs,
+  IChipSelectEventArgs
 } from '../../../node_modules/igniteui-angular';
 
 @Component({
@@ -99,10 +100,10 @@ export class PlayerDetailsComponent {
     return value.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: false });
   }
 
-  public daySelected(args: any) {
+  public daySelected(args: IChipSelectEventArgs) {
     const index = this.chips.chipsList.toArray().indexOf(args.owner);
     this.selectedDay = this.player.availability[index];
-    if (!args.nextStatus) {
+    if (!args.selected) {
       this.selectedDay.Available = false;
       this.apiService.setAvailability(this.selectedDay).subscribe(
         data => this.showSuccess(),

@@ -32,13 +32,17 @@ import { PlayerDetailsComponent } from './player-details/player-details.componen
 import { LoginService } from './services/login.service';
 import { BellumgensApiService } from './services/bellumgens-api.service';
 import { TeamComponent } from './team/team.component';
+import { HomeComponent } from './home/home.component';
+import { TeamsComponent } from './teams/teams.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PlayersComponent,
     PlayerDetailsComponent,
-    TeamComponent
+    TeamComponent,
+    HomeComponent,
+    TeamsComponent
   ],
   imports: [
     FormsModule,
