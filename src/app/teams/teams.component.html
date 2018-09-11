@@ -3,8 +3,8 @@
     <igx-prefix>
         <igx-icon>search</igx-icon>
     </igx-prefix>
-    <input #search igxInput placeholder="Search" [(ngModel)]="searchPlayer">
-    <igx-suffix *ngIf="search.value.length > 0" (click)="searchplayer = null">
+    <input #search igxInput placeholder="Search">
+    <igx-suffix *ngIf="search.value.length > 0">
         <igx-icon>clear</igx-icon>
     </igx-suffix>
 </igx-input-group>
