@@ -1,6 +1,6 @@
 import { Component, ViewEncapsulation, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { LoginService } from '../services/login.service';
-import { SteamUser, SteamUserWithStats, DayOfWeek, Availability, MapPool } from '../models/steamuser';
+import { SteamUser } from '../models/steamuser';
 import { ActivatedRoute } from '../../../node_modules/@angular/router';
 import { BellumgensApiService } from '../services/bellumgens-api.service';
 import {
@@ -14,6 +14,9 @@ import {
   IChangeCheckboxEventArgs,
   IChipSelectEventArgs
 } from '../../../node_modules/igniteui-angular';
+import { CSGOPlayer } from '../models/csgoplayer';
+import { Availability, DayOfWeek } from '../models/playeravailability';
+import { MapPool } from '../models/csgomaps';
 
 @Component({
   selector: 'app-player-details',
@@ -24,7 +27,7 @@ import {
 export class PlayerDetailsComponent {
 
   public authUser: SteamUser;
-  public player: SteamUserWithStats;
+  public player: CSGOPlayer;
   public selectedDay: Availability;
   public weekDays = [
     'Sundays', 'Mondays', 'Tuesdays', 'Wednesdays', 'Thursdays', 'Fridays', 'Saturdays'

@@ -7,13 +7,20 @@
       <h1 class="igx-card-header__title">You are not part of any teams.</h1>
       <h3 class="igx-card-header__subtitle"><button igxButton="flat" igxRippleCentered="true" (click)="createTeam.open()">Create New Team</button> or <a routerLink="/">join</a> a team.</h3>
     </div>
-    <div *ngIf="team">
-      <h1 class="igx-card-header__title">{{ team.TeamName }}</h1>
+    <div *ngIf="team" class="horizontal">
+      <igx-avatar [src]="team.TeamAvatar" roundShape="true" [size]="'large'">
+      </igx-avatar>
+      <div class="horizontal-info__left">
+        <h1 class="igx-card-header__title">{{ team.TeamName }}</h1>
+      </div>
+      <div class="horizontal-info__right">
+        <h1 class="igx-card-header__title">{{ team.TeamName }}</h1>
+      </div>
     </div>
   </igx-card-header>
 </igx-card>
 
-<igx-dialog #createTeam closeOnOutsideSelect="true">
+<igx-dialog #createTeam closeOnOutsideSelect="true" *ngIf="authUser">
   <div class="create-team">
       <igx-list>
         <igx-list-item *ngIf="getPrimaryGroups().length" [isHeader]="true">Import from Steam Group</igx-list-item>
@@ -37,3 +44,6 @@
       </igx-list>
   </div>
 </igx-dialog>
+
+<igx-toast #error [displayTime]="7000" message="Something went wrong..."></igx-toast>
+<igx-toast #saveSuccess [displayTime]="2000" message="Team successfully created!"></igx-toast>

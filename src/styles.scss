@@ -50,3 +50,22 @@ $app-palette: igx-palette($primary, $secondary);
 igx-card-content h4 {
   margin: 24px 0px 0px 8px;
 }
+
+.horizontal {
+  display: flex;
+  flex: 1 0 180px;
+  align-items: center;
+}
+
+.horizontal-info__left {
+  display: flex;
+  flex-flow: column nowrap;
+  margin-left: 24px;
+}
+
+.horizontal-info__right {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-end;
+  margin-left: 24px;
+}

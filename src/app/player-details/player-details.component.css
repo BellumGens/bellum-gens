@@ -52,6 +52,7 @@
   align-items: center;
   vertical-align: middle;
   margin-left: 16px;
+  margin-top: 6px;
 }
 
 .stats-progress {
@@ -75,8 +76,9 @@
 }
 
 .igx-chip__subtext {
-  font-size: 0.55rem;
+  font-size: 0.75rem;
   font-weight: 200;
+  margin-left: 4px;
 }
 
 .igx-chip__item--selected .igx-chip__subtext {

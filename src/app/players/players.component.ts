@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
 import { IgxListComponent } from 'igniteui-angular';
-import { SteamUserWithStats } from '../models/steamuser';
 import { BellumgensApiService } from '../services/bellumgens-api.service';
+import { CSGOPlayer } from '../models/csgoplayer';
 
 @Component({
   selector: 'app-players',
@@ -12,13 +12,13 @@ import { BellumgensApiService } from '../services/bellumgens-api.service';
 export class PlayersComponent {
   public searchPlayer: string;
 
-  public activeUsers: SteamUserWithStats[];
+  public activeUsers: CSGOPlayer[];
 
   @ViewChild(IgxListComponent) public players: IgxListComponent;
 
   constructor(private apiManager: BellumgensApiService) {
     this.apiManager.getActiveUsers();
-    this.apiManager.activeUsers.subscribe((data: SteamUserWithStats[]) => {
+    this.apiManager.activeUsers.subscribe((data: CSGOPlayer[]) => {
       this.activeUsers = data;
       this.players.isLoading = false;
     });

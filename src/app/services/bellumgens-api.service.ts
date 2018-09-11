@@ -1,32 +1,36 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { SteamUserWithStats, Availability, Role, MapPool, SteamGroup } from '../models/steamuser';
+import { SteamGroup } from '../models/steamuser';
 import { Observable, ReplaySubject } from 'rxjs';
 import { CSGOTeam } from '../models/csgoteam';
+import { CSGOPlayer } from '../models/csgoplayer';
+import { Availability } from '../models/playeravailability';
+import { Role } from '../models/playerrole';
+import { MapPool } from 'src/app/models/csgomaps';
 
 @Injectable({
   providedIn: 'root'
 })
 export class BellumgensApiService {
   private _apiEndpoint = 'http://localhost:25702/api';
-  private _usersDataSubject = new ReplaySubject<SteamUserWithStats []>(1);
+  private _usersDataSubject = new ReplaySubject<CSGOPlayer []>(1);
   private _teamsDataSubject = new ReplaySubject<CSGOTeam []>(1);
 
-  public activeUsers: Observable<SteamUserWithStats []> = this._usersDataSubject.asObservable();
+  public activeUsers: Observable<CSGOPlayer []> = this._usersDataSubject.asObservable();
   public csgoTeams: Observable<CSGOTeam []> = this._teamsDataSubject.asObservable();
   public error: any = null;
 
   constructor(private http: HttpClient) { }
 
   public getActiveUsers(): void {
-    this.http.get<SteamUserWithStats []>(this._apiEndpoint + '/users/activeusers').subscribe(
+    this.http.get<CSGOPlayer []>(this._apiEndpoint + '/users/activeusers').subscribe(
       data => this._usersDataSubject.next(data),
       error => this.error = error
     );
   }
 
   public getTeam(teamId: string): Observable<CSGOTeam> {
-    return this.http.get<CSGOTeam>(this._apiEndpoint + '/teams/team?teamid' + teamId);
+    return this.http.get<CSGOTeam>(this._apiEndpoint + '/teams/team?teamid=' + teamId);
   }
 
   public getTeams(): void {
@@ -40,8 +44,8 @@ export class BellumgensApiService {
     return this.http.post(this._apiEndpoint + '/teams/team', group, { withCredentials: true });
   }
 
-  public getUser(userid: string): Observable<SteamUserWithStats> {
-    return this.http.get<SteamUserWithStats>(this._apiEndpoint + '/users/user?userid=' + userid);
+  public getUser(userid: string): Observable<CSGOPlayer> {
+    return this.http.get<CSGOPlayer>(this._apiEndpoint + '/users/user?userid=' + userid);
   }
 
   public setAvailability(availability: Availability): Observable<any> {

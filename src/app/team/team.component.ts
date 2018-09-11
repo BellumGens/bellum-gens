@@ -4,7 +4,7 @@ import { BellumgensApiService } from '../services/bellumgens-api.service';
 import { CSGOTeam } from '../models/csgoteam';
 import { SteamUser, SteamGroup } from '../models/steamuser';
 import { LoginService } from '../services/login.service';
-import { IgxDialogComponent } from 'igniteui-angular';
+import { IgxDialogComponent, IgxToastComponent } from 'igniteui-angular';
 
 @Component({
   selector: 'app-team',
@@ -17,6 +17,8 @@ export class TeamComponent {
   public authUser: SteamUser;
 
   @ViewChild(IgxDialogComponent) public createTeam: IgxDialogComponent;
+  @ViewChild('error') public error: IgxToastComponent;
+  @ViewChild('saveSuccess') public success: IgxToastComponent;
 
   constructor(private activatedRoute: ActivatedRoute,
               private apiService: BellumgensApiService,
@@ -25,7 +27,7 @@ export class TeamComponent {
       this.authUser = data;
     });
     this.activatedRoute.params.subscribe(params => {
-      const teamId = params['teamId'];
+      const teamId = params['teamid'];
 
       if (teamId) {
         this.apiService.getTeam(teamId).subscribe(team => this.team = team);
@@ -42,6 +44,13 @@ export class TeamComponent {
       team => {
         this.team = team;
         this.createTeam.close();
+        this.success.show();
+      },
+      error => {
+        if (error.error.Message) {
+          this.error.message = error.error.Message;
+        }
+        this.error.show();
       }
     );
   }
