@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
+import { Component, ViewEncapsulation, ViewChild, OnInit } from '@angular/core';
 import { IgxListComponent } from 'igniteui-angular';
 import { BellumgensApiService } from '../services/bellumgens-api.service';
 import { CSGOPlayer } from '../models/csgoplayer';
@@ -9,7 +9,7 @@ import { CSGOPlayer } from '../models/csgoplayer';
   styleUrls: ['./players.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class PlayersComponent {
+export class PlayersComponent implements OnInit {
   public searchPlayer: string;
 
   public activeUsers: CSGOPlayer[];
@@ -18,6 +18,9 @@ export class PlayersComponent {
 
   constructor(private apiManager: BellumgensApiService) {
     this.apiManager.getActiveUsers();
+  }
+
+  ngOnInit() {
     this.apiManager.activeUsers.subscribe((data: CSGOPlayer[]) => {
       this.activeUsers = data;
       this.players.isLoading = false;

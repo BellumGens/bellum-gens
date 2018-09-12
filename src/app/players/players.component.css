@@ -3,25 +3,6 @@ igx-icon {
   user-select: none;
 }
 
-.player {
-  display: flex;
-  flex: 1 0 180px;
-  align-items: center;
-}
-
-.player__info {
-  display: flex;
-  flex-flow: column nowrap;
-  margin-left: 24px;
-}
-
-.player__stats {
-  display: flex;
-  flex-flow: column nowrap;
-  align-items: flex-end;
-  margin-left: 24px;
-}
-
 .icon-avatar {
   width: 24px;
   min-width: 24px;
@@ -44,12 +25,4 @@ igx-icon {
   width: 16px;
   height: 16px;
   min-width: 16px;
-}
-
-.name {
-  font-weight: 600;
-}
-
-.phone {
-  font-size: 0.875em;
 }

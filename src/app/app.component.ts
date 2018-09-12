@@ -44,10 +44,10 @@ export class AppComponent implements OnInit {
     if (!this.authManager.callMade) {
       this.authManager.getSteamUser();
     }
-    this.authManager.steamUser.subscribe(data => this.steamUser = data);
   }
 
   public ngOnInit(): void {
+    this.authManager.steamUser.subscribe(data => this.steamUser = data);
     this.router.events.pipe(
       filter((x) => x instanceof NavigationStart)
     ).subscribe((event: NavigationStart) => {

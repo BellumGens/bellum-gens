@@ -17,28 +17,28 @@
   </ng-template>
   <igx-list-item #item *ngFor="let user of activeUsers">
     <div class="item-container">
-      <div class="player">
+      <div class="horizontal">
         <igx-avatar [src]="user.steamUser.avatarMedium" roundShape="true">
           <igx-avatar [src]="'assets/country-flags/svg/' + user.steamUser.country.toLowerCase() + '.svg'" [roundShape]="true" [title]="user.steamUser.country" class="country-badge"></igx-avatar>
         </igx-avatar>
-        <div class="player__info">
-          <span class="name">
+        <div class="horizontal-info__left">
+          <span class="title">
             <a [routerLink]="['/player-details', user.steamUser.steamID64]">
               {{ user.steamUser.steamID }}
               <!-- <igx-avatar [src]="'assets/csgo-ranks/icons/skillgroup14.png'" class="skill-badge" [roundShape]="true"></igx-avatar> -->
             </a>
           </span>
-          <span class="phone">{{ user.steamUser.realname }}</span>
+          <span class="subtitle">{{ user.steamUser.realname }}</span>
         </div>
       </div>
       
-      <div class="player__stats">
+      <div class="horizontal-info__right">
         <igx-circular-bar class="icon-avatar" [value]="user.userStats.killDeathRatio" [max]="2" [animate]="true" [textVisibility]="false" title="KDR"></igx-circular-bar>
         <igx-avatar src="assets/hs-img.jpg" title="Headshot Percentage" roundShape="true" class="icon-avatar"></igx-avatar>
       </div>
 
-      <div class="player__stats">
-        <span class="name">{{ user.userStats.killDeathRatio }}</span>
+      <div class="horizontal-info__right">
+        <span class="title">{{ user.userStats.killDeathRatio }}</span>
         <span>{{ user.userStats.headshotPercentage }}%</span>
       </div>
     </div>

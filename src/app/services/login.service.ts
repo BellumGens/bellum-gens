@@ -31,14 +31,14 @@ export class LoginService {
   }
 
   public logout() {
-    this.http.post(this._apiEndpoint + '/logout', null, {withCredentials: true}).subscribe(
+    this.http.post(this._apiEndpoint + '/logout', null, { withCredentials: true }).subscribe(
       data => this._dataSubject.next(null),
       error => this.error = error
     );
   }
 
   public getSteamUser(): void {
-    this.http.get<SteamUser>(this._apiEndpoint + '/userinfo', {withCredentials: true}).subscribe(
+    this.http.get<SteamUser>(this._apiEndpoint + '/userinfo', { withCredentials: true }).subscribe(
       data => {
         this._dataSubject.next(data);
         this.callMade = true;

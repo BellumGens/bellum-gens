@@ -8,13 +8,16 @@ import { CSGOTeam } from '../models/csgoteam';
   templateUrl: './teams.component.html',
   styleUrls: ['./teams.component.css']
 })
-export class TeamsComponent {
+export class TeamsComponent implements OnInit {
   public csgoTeams: CSGOTeam [];
 
-  @ViewChild(IgxListComponent) public teams: IgxListComponent;
+  @ViewChild('teams') public teams: IgxListComponent;
 
   constructor(private apiManager: BellumgensApiService) {
     this.apiManager.getTeams();
+  }
+
+  ngOnInit() {
     this.apiManager.csgoTeams.subscribe((data: CSGOTeam[]) => {
       this.csgoTeams = data;
       this.teams.isLoading = false;
