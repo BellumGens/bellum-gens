@@ -4,6 +4,7 @@ export interface Role {
 }
 
 export enum PlaystyleRole {
+  NotSet,
   IGL,
   Awper,
   EntryFragger,

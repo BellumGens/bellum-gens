@@ -57,6 +57,13 @@ igx-card-content h4 {
   align-items: center;
 }
 
+.horizontal-space-between {
+  display: flex;
+  flex: 1 0 180px;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .horizontal-info__left {
   display: flex;
   flex-flow: column nowrap;

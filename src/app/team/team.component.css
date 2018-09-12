@@ -12,3 +12,23 @@ igx-icon {
 .steam-group-name {
   margin-left: 1em;
 }
+
+.country-badge {
+  position: absolute;
+  top: -8px;
+  left: 60%;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+}
+
+.member-slot {
+  display: flex;
+	flex-flow: column nowrap;
+	align-items: center;
+  width: 20%;
+}
+
+.horizontal-space-between.padding-top {
+  padding-top: 32px;
+}

@@ -1,10 +1,17 @@
 import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BellumgensApiService } from '../services/bellumgens-api.service';
-import { CSGOTeam } from '../models/csgoteam';
+import { CSGOTeam, TeamMember } from '../models/csgoteam';
 import { SteamUser, SteamGroup } from '../models/steamuser';
 import { LoginService } from '../services/login.service';
 import { IgxDialogComponent, IgxToastComponent } from 'igniteui-angular';
+import { PlaystyleRole } from '../models/playerrole';
+
+interface RoleSlot {
+  roleName: string;
+  role: PlaystyleRole;
+  user: SteamUser;
+}
 
 @Component({
   selector: 'app-team',
@@ -14,7 +21,17 @@ import { IgxDialogComponent, IgxToastComponent } from 'igniteui-angular';
 })
 export class TeamComponent {
   public team: CSGOTeam;
+  public activeMembers: TeamMember [];
+  public inactiveMembers: TeamMember [];
   public authUser: SteamUser;
+  public isAdmin = false;
+  public roleSlots: RoleSlot [] = [
+    { roleName: 'IGL', role: PlaystyleRole.IGL, user: null },
+    { roleName: 'Awper', role: PlaystyleRole.Awper, user: null },
+    { roleName: 'Entry Fragger', role: PlaystyleRole.EntryFragger, user: null },
+    { roleName: 'Support', role: PlaystyleRole.Support, user: null },
+    { roleName: 'Lurker', role: PlaystyleRole.Lurker, user: null }
+  ];
 
   @ViewChild(IgxDialogComponent) public createTeam: IgxDialogComponent;
   @ViewChild('error') public error: IgxToastComponent;
@@ -30,9 +47,30 @@ export class TeamComponent {
       const teamId = params['teamid'];
 
       if (teamId) {
-        this.apiService.getTeam(teamId).subscribe(team => this.team = team);
+        this.apiService.getTeam(teamId).subscribe(team => {
+          this.team = team;
+          if (this.authUser) {
+            this.isAdmin = this.team.Members.find(m => m.UserId === this.authUser.steamID64).IsAdmin;
+          }
+          this.roleSlots.forEach((role) => {
+            const member = this.team.Members.find(m => m.Role === role.role);
+            if (member) {
+              role.user = member.SteamUser;
+            }
+          });
+          this.activeMembers = this.team.Members.filter(m => m.IsActive && m.Role === PlaystyleRole.NotSet);
+          this.inactiveMembers = this.team.Members.filter(m => !m.IsActive);
+        });
       }
     });
+  }
+
+  public removeFromRole(role: RoleSlot) {
+    role.user = null;
+  }
+
+  public removeFromTeam(user: SteamUser) {
+
   }
 
   public getPrimaryGroups(): SteamGroup[] {

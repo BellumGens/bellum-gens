@@ -1,4 +1,5 @@
 import { PlaystyleRole } from './playerrole';
+import { SteamUser } from './steamuser';
 
 export interface CSGOTeam {
   TeamId: string;
@@ -9,7 +10,8 @@ export interface CSGOTeam {
 
 export interface TeamMember {
   UserId: string;
-  IsActive: string;
-  IsAdmin: string;
+  IsActive: boolean;
+  IsAdmin: boolean;
   Role: PlaystyleRole;
+  SteamUser: SteamUser;
 }
