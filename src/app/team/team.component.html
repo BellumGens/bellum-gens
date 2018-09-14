@@ -27,8 +27,8 @@
           </span>
         </div>
         <igx-avatar *ngIf="role.user" [src]="role.user.avatarFull" roundShape="true" [size]="'large'">
-          <igx-avatar *ngIf="isAdmin" icon='clear' [roundShape]="true" class="country-badge" title="Remove from role" (click)="removeFromRole(role)"></igx-avatar>
-          <igx-avatar *ngIf="!isAdmin" [src]="'assets/country-flags/svg/' + role.user.country.toLowerCase() + '.svg'" [roundShape]="true" [title]="role.user.country" class="country-badge"></igx-avatar>
+          <igx-avatar *ngIf="isAdmin" icon='clear' [roundShape]="true" class="country-badge-medium" title="Remove from role" (click)="removeFromRole(role)"></igx-avatar>
+          <igx-avatar *ngIf="!isAdmin" [src]="'assets/country-flags/svg/' + role.user.country.toLowerCase() + '.svg'" [roundShape]="true" [title]="role.user.country" class="country-badge-medium"></igx-avatar>
         </igx-avatar>
         <igx-avatar *ngIf="!role.user" icon='add' roundShape="true" [size]="'large'">
         </igx-avatar>
@@ -45,7 +45,7 @@
     <div class="horizontal-space-between padding-top">
       <div *ngFor="let user of activeMembers" class="member-slot">
         <igx-avatar [src]="user.SteamUser.avatarFull" roundShape="true" [size]="'large'">
-          <igx-avatar [src]="'assets/country-flags/svg/' + user.SteamUser.country.toLowerCase() + '.svg'" [roundShape]="true" [title]="user.SteamUser.country" class="country-badge"></igx-avatar>
+          <igx-avatar [src]="'assets/country-flags/svg/' + user.SteamUser.country.toLowerCase() + '.svg'" [roundShape]="true" [title]="user.SteamUser.country" class="country-badge-medium"></igx-avatar>
         </igx-avatar>
         <div>
           <span class="title">
