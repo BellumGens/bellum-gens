@@ -70,9 +70,11 @@ export class PlayerDetailsComponent implements OnInit {
       const userid = params['userid'];
       this.apiService.getUser(userid).subscribe(
         data => {
-          data.mapPool.sort(m => m.IsPlayed ? 0 : 1);
+          if (data.mapPool) {
+            data.mapPool.sort(m => m.IsPlayed ? 0 : 1);
+          }
           this.player = data;
-          if (!data.userStats) {
+          if (data.userStatsException) {
             this.error.position = IgxToastPosition.Middle;
             this.error.show();
           }

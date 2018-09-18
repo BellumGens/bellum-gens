@@ -39,8 +39,7 @@ export class TeamComponent {
 
   constructor(private activatedRoute: ActivatedRoute,
               private apiService: BellumgensApiService,
-              private authManager: LoginService,
-              private cdr: ChangeDetectorRef) {
+              private authManager: LoginService) {
     this.authManager.steamUser.subscribe((data: SteamUser) => {
       this.authUser = data;
     });
@@ -82,7 +81,7 @@ export class TeamComponent {
   }
 
   public getPrimaryGroups(): SteamGroup[] {
-    return this.authUser.groups.filter(g => g.isPrimary);
+    return this.authUser.groups.slice(0, 3);
   }
 
   public createFromSteam(group: SteamGroup): void {
