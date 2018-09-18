@@ -19,6 +19,7 @@
     </div>
   </igx-card-header>
   <igx-card-content *ngIf="team">
+    <h4>Active lineup:</h4>
     <div class="horizontal-space-between"> 
       <div *ngFor="let role of roleSlots" class="member-slot">
         <div>
@@ -26,25 +27,25 @@
             {{ role.roleName }}
           </span>
         </div>
-        <igx-avatar *ngIf="role.user" [src]="role.user.avatarFull" roundShape="true" [size]="'large'">
+        <igx-avatar *ngIf="role.user" [src]="role.user.SteamUser.avatarFull" roundShape="true" [size]="'large'">
           <igx-avatar *ngIf="isAdmin" icon='clear' [roundShape]="true" class="country-badge-medium" title="Remove from role" (click)="removeFromRole(role)"></igx-avatar>
-          <igx-avatar *ngIf="!isAdmin" [src]="'assets/country-flags/svg/' + role.user.country.toLowerCase() + '.svg'" [roundShape]="true" [title]="role.user.country" class="country-badge-medium"></igx-avatar>
+          <igx-avatar *ngIf="!isAdmin" [src]="'assets/country-flags/svg/' + role.user.SteamUser.country.toLowerCase() + '.svg'" [roundShape]="true" [title]="role.user.SteamUser.country" class="country-badge-medium"></igx-avatar>
         </igx-avatar>
-        <igx-avatar *ngIf="!role.user" icon='add' roundShape="true" [size]="'large'">
+        <igx-avatar *ngIf="!role.user" icon='add' roundShape="true" [size]="'large'" igxDrop (onDrop)="assignToRole($event)">
         </igx-avatar>
         <div *ngIf="role.user">
           <span class="title">
-            <a [routerLink]="['/player-details', role.user.steamID64]">
-              {{ role.user.steamID }}
+            <a [routerLink]="['/player-details', role.user.SteamUser.steamID64]">
+              {{ role.user.SteamUser.steamID }}
             </a>
           </span>
         </div>
       </div>
     </div>
-    <h4>Active members not in lineup:</h4>
+    <h4>Bench:</h4>
     <div class="horizontal-space-between padding-top">
       <div *ngFor="let user of activeMembers" class="member-slot">
-        <igx-avatar [src]="user.SteamUser.avatarFull" roundShape="true" [size]="'large'">
+        <igx-avatar [src]="user.SteamUser.avatarFull" roundShape="true" [size]="'large'" [igxDrag]="user">
           <igx-avatar [src]="'assets/country-flags/svg/' + user.SteamUser.country.toLowerCase() + '.svg'" [roundShape]="true" [title]="user.SteamUser.country" class="country-badge-medium"></igx-avatar>
         </igx-avatar>
         <div>

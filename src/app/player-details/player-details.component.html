@@ -44,7 +44,7 @@
       <div *ngIf="player.availability">
         <h4>Availability:</h4>
         <igx-chips-area>
-            <igx-chip *ngFor="let weekday of player.availability" [selectable]="playerIsUser()" [selected]="weekday.Available" (onSelection)="daySelected($event)">
+            <igx-chip *ngFor="let weekday of player.availability" [selectable]="playerIsUser()" [removable]="playerIsUser() && weekday.Available" [selected]="weekday.Available" (onSelection)="daySelected($event)" (onRemove)="dayDeselected($event)">
                 <span class='igx-chip__text'>{{ dayName(weekday.Day) }}</span>
                 <span class='igx-chip__subtext' *ngIf="weekday.Available">{{ getTime(weekday.From) }}-{{ getTime(weekday.To) }}</span>
             </igx-chip>

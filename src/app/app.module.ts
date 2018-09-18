@@ -26,7 +26,8 @@ import { IgxNavigationDrawerModule,
   IgxToastModule,
   IgxDropDownModule,
   IgxCheckboxModule,
-  IgxToggleModule } from 'igniteui-angular';
+  IgxToggleModule,
+  IgxDragDropModule} from 'igniteui-angular';
 import { PlayersComponent } from './players/players.component';
 import { PlayerDetailsComponent } from './player-details/player-details.component';
 import { LoginService } from './services/login.service';
@@ -70,6 +71,7 @@ import { TeamsComponent } from './teams/teams.component';
     IgxToastModule,
     IgxDropDownModule,
     IgxCheckboxModule,
+    IgxDragDropModule,
     IgxProgressBarModule
   ],
   providers: [

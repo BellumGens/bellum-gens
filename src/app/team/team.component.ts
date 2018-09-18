@@ -1,16 +1,16 @@
-import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
+import { Component, ViewEncapsulation, ViewChild, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BellumgensApiService } from '../services/bellumgens-api.service';
 import { CSGOTeam, TeamMember } from '../models/csgoteam';
 import { SteamUser, SteamGroup } from '../models/steamuser';
 import { LoginService } from '../services/login.service';
-import { IgxDialogComponent, IgxToastComponent } from 'igniteui-angular';
+import { IgxDialogComponent, IgxToastComponent, IgxDropEventArgs } from 'igniteui-angular';
 import { PlaystyleRole } from '../models/playerrole';
 
 interface RoleSlot {
   roleName: string;
   role: PlaystyleRole;
-  user: SteamUser;
+  user: TeamMember;
 }
 
 @Component({
@@ -39,7 +39,8 @@ export class TeamComponent {
 
   constructor(private activatedRoute: ActivatedRoute,
               private apiService: BellumgensApiService,
-              private authManager: LoginService) {
+              private authManager: LoginService,
+              private cdr: ChangeDetectorRef) {
     this.authManager.steamUser.subscribe((data: SteamUser) => {
       this.authUser = data;
     });
@@ -55,7 +56,7 @@ export class TeamComponent {
           this.roleSlots.forEach((role) => {
             const member = this.team.Members.find(m => m.Role === role.role);
             if (member) {
-              role.user = member.SteamUser;
+              role.user = member;
             }
           });
           this.activeMembers = this.team.Members.filter(m => m.IsActive && m.Role === PlaystyleRole.NotSet);
@@ -66,11 +67,18 @@ export class TeamComponent {
   }
 
   public removeFromRole(role: RoleSlot) {
+    this.activeMembers.push(role.user);
     role.user = null;
   }
 
   public removeFromTeam(user: SteamUser) {
 
+  }
+
+  public assignToRole(args: IgxDropEventArgs) {
+    this.roleSlots.filter(r => r.user === null)[0].user = args.drag.data;
+    this.activeMembers.splice(this.activeMembers.indexOf(args.drag.data), 1);
+    args.cancel = true;
   }
 
   public getPrimaryGroups(): SteamGroup[] {

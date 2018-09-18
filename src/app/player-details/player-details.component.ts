@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, ViewChild, ChangeDetectorRef } from '@angular/core';
+import { Component, ViewEncapsulation, ViewChild, ChangeDetectorRef, OnInit } from '@angular/core';
 import { LoginService } from '../services/login.service';
 import { SteamUser } from '../models/steamuser';
 import { ActivatedRoute } from '../../../node_modules/@angular/router';
@@ -12,7 +12,8 @@ import {
   IgxDropDownComponent,
   ISelectionEventArgs,
   IChangeCheckboxEventArgs,
-  IChipSelectEventArgs
+  IChipSelectEventArgs,
+  IBaseChipEventArgs
 } from '../../../node_modules/igniteui-angular';
 import { CSGOPlayer } from '../models/csgoplayer';
 import { Availability, DayOfWeek } from '../models/playeravailability';
@@ -24,7 +25,7 @@ import { MapPool } from '../models/csgomaps';
   styleUrls: ['./player-details.component.css'],
   encapsulation: ViewEncapsulation.None,
 })
-export class PlayerDetailsComponent {
+export class PlayerDetailsComponent implements OnInit {
 
   public authUser: SteamUser;
   public player: CSGOPlayer;
@@ -55,6 +56,12 @@ export class PlayerDetailsComponent {
               private apiService: BellumgensApiService,
               private activatedRoute: ActivatedRoute,
               private cdr: ChangeDetectorRef) {
+    if (!this.authManager.callMade) {
+      this.authManager.getSteamUser();
+    }
+  }
+
+  ngOnInit() {
     this.authManager.steamUser.subscribe((data: SteamUser) => {
       this.authUser = data;
     });
@@ -99,16 +106,22 @@ export class PlayerDetailsComponent {
     if (this.chips) {
       const index = this.chips.chipsList.toArray().indexOf(args.owner);
       this.selectedDay = this.player.availability[index];
+
       if (!args.selected) {
-        this.selectedDay.Available = false;
-        this.apiService.setAvailability(this.selectedDay).subscribe(
-          data => this.showSuccess(),
-          error => console.log(error)
-        );
-        this.selectedDay = null;
+        args.cancel = true;
+      } else {
+        this.cdr.detectChanges();
       }
-      this.cdr.detectChanges();
     }
+  }
+
+  public dayDeselected(args: IBaseChipEventArgs) {
+    this.selectedDay.Available = false;
+    this.apiService.setAvailability(this.selectedDay).subscribe(
+      data => this.showSuccess(),
+      error => console.log(error)
+    );
+    this.selectedDay = null;
   }
 
   public fromChange(args: IgxTimePickerValueChangedEventArgs) {
