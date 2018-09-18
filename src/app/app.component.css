@@ -33,9 +33,9 @@
 
 .discord-container {
   display: flex;
+  align-self: flex-end;
   flex-direction: column;
-  margin-top: 16px;
-  margin-left: auto;
+  margin: 16px 0px 0px 16px;
 }
 
 .profile-item {

@@ -25,10 +25,15 @@ igx-icon {
 .member-slot {
   display: flex;
 	flex-flow: column nowrap;
-	align-items: center;
+  align-items: center;
+  padding: 16px;
+}
+
+.member-slot.five-slots {
   width: 20%;
 }
 
-.horizontal-space-between.padding-top {
+.horizontal-space-between.padding-top,
+.horizontal.padding-top {
   padding-top: 32px;
 }

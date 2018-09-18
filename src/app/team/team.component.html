@@ -1,79 +1,80 @@
-<igx-card class="card-with-margins">
-  <igx-card-header>
-    <div *ngIf="!team && !authUser">
-      <h1 class="igx-card-header__title">You need to login to view your teams.</h1>
-    </div>
-    <div *ngIf="!team && authUser">
-      <h1 class="igx-card-header__title">You are not part of any teams.</h1>
-      <h3 class="igx-card-header__subtitle"><button igxButton="flat" igxRippleCentered="true" (click)="createTeam.open()">Create New Team</button> or <a routerLink="/">join</a> a team.</h3>
-    </div>
-    <div *ngIf="team" class="horizontal">
-      <igx-avatar [src]="team.TeamAvatar" roundShape="true" [size]="'large'">
-      </igx-avatar>
-      <div class="horizontal-info__left">
-        <h1 class="igx-card-header__title">{{ team.TeamName }}</h1>
+<div class="card-with-margins">
+  <igx-card>
+    <igx-card-header>
+      <div *ngIf="!team && !authUser">
+        <h1 class="igx-card-header__title">You need to login to view your teams.</h1>
       </div>
-      <div class="horizontal-info__right">
-        Some team motto goes in here, and other general or recruitment information.
+      <div *ngIf="!team && authUser">
+        <h1 class="igx-card-header__title">You are not part of any teams.</h1>
+        <h3 class="igx-card-header__subtitle"><button igxButton="flat" igxRippleCentered="true" (click)="createTeam.open()">Create New Team</button> or <a routerLink="/">join</a> a team.</h3>
       </div>
-    </div>
-  </igx-card-header>
-  <igx-card-content *ngIf="team">
-    <h4>Active lineup:</h4>
-    <div class="horizontal-space-between"> 
-      <div *ngFor="let role of roleSlots" class="member-slot">
-        <div>
-          <span class="title">
-            {{ role.roleName }}
-          </span>
+      <div *ngIf="team" class="horizontal">
+        <igx-avatar [src]="team.TeamAvatar" roundShape="true" [size]="'large'">
+        </igx-avatar>
+        <div class="horizontal-info__left">
+          <h1 class="igx-card-header__title">{{ team.TeamName }}</h1>
         </div>
-        <igx-avatar *ngIf="role.user" [src]="role.user.SteamUser.avatarFull" roundShape="true" [size]="'large'">
-          <igx-avatar *ngIf="isAdmin" icon='clear' [roundShape]="true" class="country-badge-medium" title="Remove from role" (click)="removeFromRole(role)"></igx-avatar>
-          <igx-avatar *ngIf="!isAdmin" [src]="'assets/country-flags/svg/' + role.user.SteamUser.country.toLowerCase() + '.svg'" [roundShape]="true" [title]="role.user.SteamUser.country" class="country-badge-medium"></igx-avatar>
-        </igx-avatar>
-        <igx-avatar *ngIf="!role.user" icon='add' roundShape="true" [size]="'large'" igxDrop (onDrop)="assignToRole($event)">
-        </igx-avatar>
-        <div *ngIf="role.user">
-          <span class="title">
-            <a [routerLink]="['/player-details', role.user.SteamUser.steamID64]">
-              {{ role.user.SteamUser.steamID }}
-            </a>
-          </span>
+        <div class="horizontal-info__right">
+          Some team motto goes in here, and other general or recruitment information.
         </div>
       </div>
-    </div>
-    <h4>Bench:</h4>
-    <div class="horizontal-space-between padding-top">
-      <div *ngFor="let user of activeMembers" class="member-slot">
-        <igx-avatar [src]="user.SteamUser.avatarFull" roundShape="true" [size]="'large'" [igxDrag]="user">
-          <igx-avatar [src]="'assets/country-flags/svg/' + user.SteamUser.country.toLowerCase() + '.svg'" [roundShape]="true" [title]="user.SteamUser.country" class="country-badge-medium"></igx-avatar>
-        </igx-avatar>
-        <div>
-          <span class="title">
-            <a [routerLink]="['/player-details', user.SteamUser.steamID64]">
-              {{ user.SteamUser.steamID }}
-            </a>
-          </span>
+    </igx-card-header>
+    <igx-card-content *ngIf="team">
+      <h4>Active lineup:</h4>
+      <div class="horizontal-space-between padding-top"> 
+        <div *ngFor="let role of roleSlots" class="member-slot five-slots">
+          <div>
+            <span class="title">
+              {{ role.roleName }}
+            </span>
+          </div>
+          <igx-avatar *ngIf="role.user" [src]="role.user.SteamUser.avatarFull" roundShape="true" [size]="'large'">
+            <igx-avatar *ngIf="isAdmin" icon='clear' [roundShape]="true" class="country-badge-medium" title="Remove from role" (click)="removeFromRole(role)"></igx-avatar>
+            <igx-avatar *ngIf="!isAdmin" [src]="'assets/country-flags/svg/' + role.user.SteamUser.country.toLowerCase() + '.svg'" [roundShape]="true" [title]="role.user.SteamUser.country" class="country-badge-medium"></igx-avatar>
+          </igx-avatar>
+          <igx-avatar *ngIf="!role.user" icon='add' roundShape="true" [size]="'large'" igxDrop (onDrop)="assignToRole($event)">
+          </igx-avatar>
+          <div *ngIf="role.user">
+            <span class="title">
+              <a [routerLink]="['/player-details', role.user.SteamUser.steamID64]">
+                {{ role.user.SteamUser.steamID }}
+              </a>
+            </span>
+          </div>
         </div>
       </div>
-    </div>
-    <h4>Inactive members:</h4>
-    <div class="horizontal-space-between padding-top">
-      <div *ngFor="let user of inactiveMembers" class="member-slot">
-        <igx-avatar [src]="user.SteamUser.avatarFull" roundShape="true" [size]="'large'">
-          <igx-avatar *ngIf="isAdmin" icon='clear' [roundShape]="true" class="country-badge" title="Remove from team" (click)="removeFromTeam(user)"></igx-avatar>
-        </igx-avatar>
-        <div *ngIf="user.SteamUser">
-          <span class="title">
-            <a [routerLink]="['/player-details', user.SteamUser.steamID64]">
-              {{ user.SteamUser.steamID }}
-            </a>
-          </span>
+      <h4>Bench:</h4>
+      <div class="horizontal padding-top">
+        <div *ngFor="let user of activeMembers" class="member-slot">
+          <igx-avatar [src]="user.SteamUser.avatarMedium" roundShape="true" [size]="'medium'" [igxDrag]="user">
+          </igx-avatar>
+          <div>
+            <span class="title">
+              <a [routerLink]="['/player-details', user.SteamUser.steamID64]">
+                {{ user.SteamUser.steamID }}
+              </a>
+            </span>
+          </div>
         </div>
       </div>
-    </div>
-  </igx-card-content>
-</igx-card>
+      <h4>Inactive members:</h4>
+      <div class="horizontal-space-between padding-top">
+        <div *ngFor="let user of inactiveMembers" class="member-slot">
+          <igx-avatar [src]="user.SteamUser.avatarFull" roundShape="true" [size]="'large'">
+            <igx-avatar *ngIf="isAdmin" icon='clear' [roundShape]="true" class="country-badge" title="Remove from team" (click)="removeFromTeam(user)"></igx-avatar>
+          </igx-avatar>
+          <div *ngIf="user.SteamUser">
+            <span class="title">
+              <a [routerLink]="['/player-details', user.SteamUser.steamID64]">
+                {{ user.SteamUser.steamID }}
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </igx-card-content>
+  </igx-card>
+</div>
 
 <igx-dialog #createTeam closeOnOutsideSelect="true" *ngIf="authUser">
   <div class="create-team">
