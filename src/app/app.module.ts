@@ -35,6 +35,11 @@ import { BellumgensApiService } from './services/bellumgens-api.service';
 import { TeamComponent } from './team/team.component';
 import { HomeComponent } from './home/home.component';
 import { TeamsComponent } from './teams/teams.component';
+import { GroupsFilterPipe } from './pipes/groups-filter.pipe';
+import { WeekdayPipe } from './pipes/weekday.pipe';
+import { MapnamePipe } from './pipes/mapname.pipe';
+import { MapimagePipe } from './pipes/mapimage.pipe';
+import { OrdermapsPipe } from './pipes/ordermaps.pipe';
 
 @NgModule({
   declarations: [
@@ -43,7 +48,12 @@ import { TeamsComponent } from './teams/teams.component';
     PlayerDetailsComponent,
     TeamComponent,
     HomeComponent,
-    TeamsComponent
+    TeamsComponent,
+    GroupsFilterPipe,
+    WeekdayPipe,
+    MapnamePipe,
+    MapimagePipe,
+    OrdermapsPipe
   ],
   imports: [
     FormsModule,

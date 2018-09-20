@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SteamGroup } from '../models/steamuser';
 import { Observable, ReplaySubject } from 'rxjs';
-import { CSGOTeam } from '../models/csgoteam';
+import { CSGOTeam, TeamMember } from '../models/csgoteam';
 import { CSGOPlayer } from '../models/csgoplayer';
 import { Availability } from '../models/playeravailability';
 import { Role } from '../models/playerrole';
@@ -40,8 +40,22 @@ export class BellumgensApiService {
     );
   }
 
-  public registerSteamGroup(group: SteamGroup): Observable<any> {
-    return this.http.post(this._apiEndpoint + '/teams/team', group, { withCredentials: true });
+  public registerSteamGroup(group: SteamGroup): Observable<CSGOTeam> {
+    return this.http.post<CSGOTeam>(this._apiEndpoint + '/teams/team', group, { withCredentials: true });
+  }
+
+  public registerTeam(team: CSGOTeam): Observable<CSGOTeam> {
+    return this.http.post<CSGOTeam>(this._apiEndpoint + '/teams/newteam', team, { withCredentials: true });
+  }
+
+  public updateTeamMember(teamMember: TeamMember): Observable<any> {
+    return this.http.put(this._apiEndpoint + '/teams/member', teamMember, { withCredentials: true });
+  }
+
+  public removeTeamMember(teamMember: TeamMember): Observable<any> {
+    return this.http.delete(this._apiEndpoint +
+              `/teams/removemember?teamId=${teamMember.TeamId}&userId=${teamMember.UserId}`,
+              { withCredentials: true });
   }
 
   public getUser(userid: string): Observable<CSGOPlayer> {

@@ -44,13 +44,13 @@
         <h4>Availability:</h4>
         <igx-chips-area>
             <igx-chip *ngFor="let weekday of player.availability" [selectable]="playerIsUser()" [removable]="playerIsUser() && weekday.Available" [selected]="weekday.Available" (onSelection)="daySelected($event)" (onRemove)="dayDeselected($event)">
-                <span class='igx-chip__text'>{{ dayName(weekday.Day) }}</span>
-                <span class='igx-chip__subtext' *ngIf="weekday.Available">{{ getTime(weekday.From) }}-{{ getTime(weekday.To) }}</span>
+                <span class='igx-chip__text'>{{ weekday.Day | weekday }}</span>
+                <span class='igx-chip__subtext' *ngIf="weekday.Available">{{ weekday.From | date:'H:mm' }}-{{ weekday.To | date:'H:mm' }}</span>
             </igx-chip>
         </igx-chips-area>
         <div class="available-time-container">
           <div>
-            <h4 *ngIf="playerIsUser() && selectedDay">Available times for <span class="highlight" [textContent]="selectedDay ? dayName(selectedDay.Day) : ''"></span>:</h4>
+            <h4 *ngIf="playerIsUser() && selectedDay">Available times for <span class="highlight" [textContent]="selectedDay ? (selectedDay.Day | weekday) : ''"></span>:</h4>
             <div class="availability-time" *ngIf="playerIsUser() && selectedDay">
               <igx-time-picker #from class="time-picker player__info" [disabled]="!playerIsUser()" [value]="dateFromString(this.selectedDay.From)" [itemsDelta]="{hours: 1, minutes: 15}" (onValueChanged)="fromChange($event)">
                 
@@ -97,11 +97,11 @@
       <div *ngIf="player">
           <h4>Maps played:</h4>
           <div class="card-wrapper">
-            <div class="map-column map-wrapper" *ngFor="let map of player.mapPool">
+            <div class="map-column map-wrapper" *ngFor="let map of player.mapPool | ordermaps:'IsPlayed'">
               <igx-card [class]="map.IsPlayed ? '' : 'map-inactive'">
-                <img width="100%" height="100%" [src]="mapImage(map)" />
+                <img width="100%" height="100%" [src]="map | mapimage" />
                 <igx-card-actions>
-                    <span class="highlight">{{ mapName(map) }}</span>
+                    <span class="highlight">{{ map | mapname }}</span>
                     <div class="igx-card-actions__igroup--end">
                       <igx-checkbox [checked]="map.IsPlayed" [value]="map" (change)="mapChange($event)"></igx-checkbox>
                     </div>

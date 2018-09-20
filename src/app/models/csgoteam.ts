@@ -9,6 +9,7 @@ export interface CSGOTeam {
 }
 
 export interface TeamMember {
+  TeamId: string;
   UserId: string;
   IsActive: boolean;
   IsAdmin: boolean;

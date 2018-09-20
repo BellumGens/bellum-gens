@@ -6,6 +6,7 @@ import { SteamUser, SteamGroup } from '../models/steamuser';
 import { LoginService } from '../services/login.service';
 import { IgxDialogComponent, IgxToastComponent, IgxDropEventArgs } from 'igniteui-angular';
 import { PlaystyleRole } from '../models/playerrole';
+import { noop } from 'rxjs';
 
 interface RoleSlot {
   roleName: string;
@@ -20,7 +21,14 @@ interface RoleSlot {
   encapsulation: ViewEncapsulation.None
 })
 export class TeamComponent {
+  public searchGroups: string;
   public team: CSGOTeam;
+  public newTeam: CSGOTeam = {
+    TeamName: '',
+    TeamAvatar: '',
+    TeamId: undefined,
+    Members: undefined
+  };
   public activeMembers: TeamMember [];
   public inactiveMembers: TeamMember [];
   public authUser: SteamUser;
@@ -66,26 +74,69 @@ export class TeamComponent {
   }
 
   public removeFromRole(role: RoleSlot) {
-    this.activeMembers.push(role.user);
+    const user = role.user;
+    this.activeMembers.push(user);
     role.user = null;
+    user.Role = PlaystyleRole.NotSet;
+    this.apiService.updateTeamMember(user).subscribe(
+      data => noop,
+      error => {
+        if (error.error.Message) {
+          this.error.message = error.error.Message;
+        }
+        this.error.show();
+      }
+    );
   }
 
-  public removeFromTeam(user: SteamUser) {
-
+  public removeFromTeam(user: TeamMember) {
+    this.apiService.removeTeamMember(user).subscribe(
+      data => noop,
+      error => {
+        if (error.error.Message) {
+          this.error.message = error.error.Message;
+        }
+        this.error.show();
+      }
+    );
   }
 
   public assignToRole(args: IgxDropEventArgs) {
-    this.roleSlots.filter(r => r.user === null)[0].user = args.drag.data;
+    const roleSlot = this.roleSlots.filter(r => r.user === null)[0];
+    const user = args.drag.data;
+    user.Role = roleSlot.role;
+    roleSlot.user = user;
     this.activeMembers.splice(this.activeMembers.indexOf(args.drag.data), 1);
     args.cancel = true;
-  }
-
-  public getPrimaryGroups(): SteamGroup[] {
-    return this.authUser.groups.slice(0, 3);
+    this.apiService.updateTeamMember(user).subscribe(
+      data => noop,
+      error => {
+        if (error.error.Message) {
+          this.error.message = error.error.Message;
+        }
+        this.error.show();
+      }
+    );
   }
 
   public createFromSteam(group: SteamGroup): void {
     this.apiService.registerSteamGroup(group).subscribe(
+      team => {
+        this.team = team;
+        this.createTeam.close();
+        this.success.show();
+      },
+      error => {
+        if (error.error.Message) {
+          this.error.message = error.error.Message;
+        }
+        this.error.show();
+      }
+    );
+  }
+
+  public createFromForm(): void {
+    this.apiService.registerTeam(this.newTeam).subscribe(
       team => {
         this.team = team;
         this.createTeam.close();
