@@ -1,4 +1,4 @@
-export class SteamUser {
+export interface SteamUser {
   steamID64: string;
   steamID: string;
   avatarIcon: string;

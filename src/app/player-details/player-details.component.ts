@@ -1,6 +1,5 @@
 import { Component, ViewEncapsulation, ViewChild, ChangeDetectorRef, OnInit } from '@angular/core';
 import { LoginService } from '../services/login.service';
-import { SteamUser } from '../models/steamuser';
 import { ActivatedRoute } from '../../../node_modules/@angular/router';
 import { BellumgensApiService } from '../services/bellumgens-api.service';
 import {
@@ -16,8 +15,8 @@ import {
   IBaseChipEventArgs
 } from '../../../node_modules/igniteui-angular';
 import { CSGOPlayer } from '../models/csgoplayer';
-import { Availability, DayOfWeek } from '../models/playeravailability';
-import { MapPool } from '../models/csgomaps';
+import { Availability } from '../models/playeravailability';
+import { ApplicationUser } from '../models/applicationuser';
 
 @Component({
   selector: 'app-player-details',
@@ -27,7 +26,7 @@ import { MapPool } from '../models/csgomaps';
 })
 export class PlayerDetailsComponent implements OnInit {
 
-  public authUser: SteamUser;
+  public authUser: ApplicationUser;
   public player: CSGOPlayer;
   public selectedDay: Availability;
 
@@ -49,7 +48,7 @@ export class PlayerDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.authManager.steamUser.subscribe((data: SteamUser) => {
+    this.authManager.applicationUser.subscribe((data: ApplicationUser) => {
       this.authUser = data;
     });
 
@@ -118,7 +117,7 @@ export class PlayerDetailsComponent implements OnInit {
   }
 
   public playerIsUser(): boolean {
-    return this.player && this.authUser && (this.player.steamUser.steamID64 === this.authUser.steamID64);
+    return this.player && this.authUser && (this.player.steamUser.steamID64 === this.authUser.SteamUser.steamID64);
   }
 
   public selectPrimary(args: ISelectionEventArgs) {

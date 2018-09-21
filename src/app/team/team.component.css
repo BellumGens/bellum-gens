@@ -13,13 +13,22 @@ igx-icon {
   margin-left: 1em;
 }
 
-.country-badge-medium {
+.country-badge-large {
   position: absolute;
   top: -8px;
   left: 60%;
   width: 40px;
   height: 40px;
   min-width: 40px;
+}
+
+.country-badge-medium {
+  position: absolute;
+  top: -6px;
+  left: 60%;
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
 }
 
 .member-slot {

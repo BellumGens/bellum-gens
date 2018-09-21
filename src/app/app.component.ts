@@ -11,7 +11,7 @@ import { IgxNavigationDrawerComponent,
   CloseScrollStrategy,
   PositionSettings} from 'igniteui-angular';
 import { LoginService } from './services/login.service';
-import { SteamUser } from './models/steamuser';
+import { ApplicationUser } from './models/applicationuser';
 
 @Component({
   selector: 'app-root',
@@ -20,7 +20,7 @@ import { SteamUser } from './models/steamuser';
 })
 export class AppComponent implements OnInit {
   public title: string;
-  public steamUser: SteamUser;
+  public authUser: ApplicationUser;
 
   private _positionSettings: PositionSettings = {
     horizontalStartPoint: HorizontalAlignment.Right,
@@ -47,7 +47,7 @@ export class AppComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    this.authManager.steamUser.subscribe(data => this.steamUser = data);
+    this.authManager.applicationUser.subscribe(data => this.authUser = data);
     this.router.events.pipe(
       filter((x) => x instanceof NavigationStart)
     ).subscribe((event: NavigationStart) => {
@@ -69,7 +69,7 @@ export class AppComponent implements OnInit {
 
   public logout() {
     this.authManager.logout();
-    this.steamUser = null;
+    this.authUser = null;
   }
 
   public toggleUserActions() {

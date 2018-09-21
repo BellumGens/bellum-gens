@@ -2,11 +2,12 @@ import { Component, ViewEncapsulation, ViewChild, ChangeDetectorRef } from '@ang
 import { ActivatedRoute } from '@angular/router';
 import { BellumgensApiService } from '../services/bellumgens-api.service';
 import { CSGOTeam, TeamMember } from '../models/csgoteam';
-import { SteamUser, SteamGroup } from '../models/steamuser';
+import { SteamGroup } from '../models/steamuser';
 import { LoginService } from '../services/login.service';
 import { IgxDialogComponent, IgxToastComponent, IgxDropEventArgs } from 'igniteui-angular';
 import { PlaystyleRole } from '../models/playerrole';
 import { noop } from 'rxjs';
+import { ApplicationUser } from '../models/applicationuser';
 
 interface RoleSlot {
   roleName: string;
@@ -31,7 +32,7 @@ export class TeamComponent {
   };
   public activeMembers: TeamMember [];
   public inactiveMembers: TeamMember [];
-  public authUser: SteamUser;
+  public authUser: ApplicationUser;
   public isAdmin = false;
   public roleSlots: RoleSlot [] = [
     { roleName: 'IGL', role: PlaystyleRole.IGL, user: null },
@@ -48,7 +49,7 @@ export class TeamComponent {
   constructor(private activatedRoute: ActivatedRoute,
               private apiService: BellumgensApiService,
               private authManager: LoginService) {
-    this.authManager.steamUser.subscribe((data: SteamUser) => {
+    this.authManager.applicationUser.subscribe((data: ApplicationUser) => {
       this.authUser = data;
     });
     this.activatedRoute.params.subscribe(params => {
@@ -58,7 +59,7 @@ export class TeamComponent {
         this.apiService.getTeam(teamId).subscribe(team => {
           this.team = team;
           if (this.authUser) {
-            this.isAdmin = this.team.Members.find(m => m.UserId === this.authUser.steamID64).IsAdmin;
+            this.isAdmin = this.team.Members.find(m => m.UserId === this.authUser.SteamUser.steamID64).IsAdmin;
           }
           this.roleSlots.forEach((role) => {
             const member = this.team.Members.find(m => m.Role === role.role);

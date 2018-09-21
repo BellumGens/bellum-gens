@@ -29,8 +29,8 @@
             </span>
           </div>
           <igx-avatar *ngIf="role.user" [src]="role.user.SteamUser.avatarFull" roundShape="true" [size]="'large'">
-            <igx-avatar *ngIf="isAdmin" icon='clear' [roundShape]="true" class="country-badge-medium" title="Remove from role" (click)="removeFromRole(role)"></igx-avatar>
-            <igx-avatar *ngIf="!isAdmin" [src]="'assets/country-flags/svg/' + role.user.SteamUser.country.toLowerCase() + '.svg'" [roundShape]="true" [title]="role.user.SteamUser.country" class="country-badge-medium"></igx-avatar>
+            <igx-avatar *ngIf="isAdmin" icon='clear' [roundShape]="true" class="country-badge-large" title="Remove from role" (click)="removeFromRole(role)"></igx-avatar>
+            <igx-avatar *ngIf="!isAdmin" [src]="'assets/country-flags/svg/' + role.user.SteamUser.country.toLowerCase() + '.svg'" [roundShape]="true" [title]="role.user.SteamUser.country" class="country-badge-large"></igx-avatar>
           </igx-avatar>
           <igx-avatar *ngIf="!role.user" icon='add' roundShape="true" [size]="'large'" igxDrop (onDrop)="assignToRole($event)">
           </igx-avatar>
@@ -47,7 +47,7 @@
       <div class="horizontal padding-top">
         <div *ngFor="let user of activeMembers" class="member-slot">
           <igx-avatar [src]="user.SteamUser.avatarMedium" roundShape="true" [size]="'medium'" [igxDrag]="user">
-            <igx-avatar *ngIf="isAdmin" icon='clear' [roundShape]="true" class="country-badge" title="Move to inactive" (click)="removeFromTeam(user)"></igx-avatar>
+            <igx-avatar *ngIf="isAdmin" icon='clear' [roundShape]="true" class="country-badge-medium" title="Move to inactive" (click)="removeFromTeam(user)"></igx-avatar>
           </igx-avatar>
           <div>
             <span class="title">
@@ -80,7 +80,7 @@
 <igx-dialog #createTeam closeOnOutsideSelect="true" *ngIf="authUser">
   <div class="create-team">
       <igx-list>
-        <igx-list-item *ngIf="authUser.groups.length" [isHeader]="true">Import from Steam Group</igx-list-item>
+        <igx-list-item *ngIf="authUser.SteamUser.groups.length" [isHeader]="true">Import from Steam Group</igx-list-item>
         <igx-input-group type="search" class="search">
           <igx-prefix>
               <igx-icon>search</igx-icon>
@@ -90,7 +90,7 @@
               <igx-icon>clear</igx-icon>
           </igx-suffix>
         </igx-input-group>
-        <igx-list-item *ngFor="let group of authUser.groups | groupsFilter:searchGroups" (click)="createFromSteam(group)">
+        <igx-list-item *ngFor="let group of authUser.SteamUser.groups | groupsFilter:searchGroups" (click)="createFromSteam(group)">
           <div class="item-container">
             <div class="steam-groups">
               <igx-avatar [src]="group.avatarFull" roundShape="true">
