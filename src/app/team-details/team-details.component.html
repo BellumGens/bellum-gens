@@ -1,0 +1,71 @@
+<div class="card-with-margins">
+  <igx-card>
+    <igx-card-header>
+      <div *ngIf="team" class="horizontal">
+        <igx-avatar [src]="team.TeamAvatar" roundShape="true" [size]="'large'">
+        </igx-avatar>
+        <div class="horizontal-info__left">
+          <h1 class="igx-card-header__title">{{ team.TeamName }}</h1>
+        </div>
+        <div class="horizontal-info__right">
+          Some team motto goes in here, and other general or recruitment information.
+        </div>
+      </div>
+    </igx-card-header>
+    <igx-card-content *ngIf="team">
+      <h4>Active lineup:</h4>
+      <div class="horizontal-space-between padding-top"> 
+        <div *ngFor="let role of roleSlots" class="member-slot five-slots">
+          <div>
+            <span class="title">
+              {{ role.roleName }}
+            </span>
+          </div>
+          <igx-avatar *ngIf="role.user" [src]="role.user.SteamUser.avatarFull" roundShape="true" [size]="'large'">
+            <igx-avatar *ngIf="isAdmin" icon='clear' [roundShape]="true" class="country-badge-large" title="Remove from role" (click)="removeFromRole(role)"></igx-avatar>
+            <igx-avatar *ngIf="!isAdmin" [src]="'assets/country-flags/svg/' + role.user.SteamUser.country.toLowerCase() + '.svg'" [roundShape]="true" [title]="role.user.SteamUser.country" class="country-badge-large"></igx-avatar>
+          </igx-avatar>
+          <igx-avatar *ngIf="!role.user" icon='add' roundShape="true" [size]="'large'" igxDrop (onDrop)="assignToRole($event)">
+          </igx-avatar>
+          <div *ngIf="role.user">
+            <span class="title">
+              <a [routerLink]="['/player-details', role.user.SteamUser.steamID64]">
+                {{ role.user.SteamUser.steamID }}
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
+      <h4 *ngIf="activeMembers.length">Bench:</h4>
+      <div class="horizontal padding-top">
+        <div *ngFor="let user of activeMembers" class="member-slot">
+          <igx-avatar [src]="user.SteamUser.avatarMedium" roundShape="true" [size]="'medium'" [igxDrag]="user">
+            <igx-avatar *ngIf="isAdmin" icon='clear' [roundShape]="true" class="country-badge-medium" title="Move to inactive" (click)="removeFromTeam(user)"></igx-avatar>
+          </igx-avatar>
+          <div>
+            <span class="title">
+              <a [routerLink]="['/player-details', user.SteamUser.steamID64]">
+                {{ user.SteamUser.steamID }}
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
+      <h4 *ngIf="inactiveMembers.length">Inactive members:</h4>
+      <div class="horizontal-space-between padding-top">
+        <div *ngFor="let user of inactiveMembers" class="member-slot">
+          <igx-avatar [src]="user.SteamUser.avatarFull" roundShape="true" [size]="'large'">
+            <igx-avatar *ngIf="isAdmin" icon='clear' [roundShape]="true" class="country-badge" title="Remove from team" (click)="removeFromTeam(user)"></igx-avatar>
+          </igx-avatar>
+          <div *ngIf="user.SteamUser">
+            <span class="title">
+              <a [routerLink]="['/player-details', user.SteamUser.steamID64]">
+                {{ user.SteamUser.steamID }}
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
+    </igx-card-content>
+  </igx-card>
+</div>

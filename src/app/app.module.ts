@@ -40,6 +40,7 @@ import { WeekdayPipe } from './pipes/weekday.pipe';
 import { MapnamePipe } from './pipes/mapname.pipe';
 import { MapimagePipe } from './pipes/mapimage.pipe';
 import { OrdermapsPipe } from './pipes/ordermaps.pipe';
+import { TeamDetailsComponent } from './team-details/team-details.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { OrdermapsPipe } from './pipes/ordermaps.pipe';
     WeekdayPipe,
     MapnamePipe,
     MapimagePipe,
-    OrdermapsPipe
+    OrdermapsPipe,
+    TeamDetailsComponent
   ],
   imports: [
     FormsModule,
