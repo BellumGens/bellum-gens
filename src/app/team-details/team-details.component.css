@@ -1,0 +1,33 @@
+.country-badge-large {
+  position: absolute;
+  top: -8px;
+  left: 60%;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+}
+
+.country-badge-medium {
+  position: absolute;
+  top: -6px;
+  left: 60%;
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+}
+
+.member-slot {
+  display: flex;
+	flex-flow: column nowrap;
+  align-items: center;
+  padding: 16px;
+}
+
+.member-slot.five-slots {
+  width: 20%;
+}
+
+.horizontal-space-between.padding-top,
+.horizontal.padding-top {
+  padding-top: 32px;
+}

@@ -13,36 +13,15 @@ igx-icon {
   margin-left: 1em;
 }
 
-.country-badge-large {
-  position: absolute;
-  top: -8px;
-  left: 60%;
-  width: 40px;
-  height: 40px;
-  min-width: 40px;
-}
-
-.country-badge-medium {
-  position: absolute;
-  top: -6px;
-  left: 60%;
-  width: 32px;
-  height: 32px;
-  min-width: 32px;
-}
-
-.member-slot {
+.card-row {
   display: flex;
-	flex-flow: column nowrap;
-  align-items: center;
-  padding: 16px;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
-.member-slot.five-slots {
-  width: 20%;
-}
-
-.horizontal-space-between.padding-top,
-.horizontal.padding-top {
-  padding-top: 32px;
+.card-column {
+  display: flex;
+  flex-direction: column;
+  max-width: 300px;
+  margin: 16px 0px 0px 16px;
 }

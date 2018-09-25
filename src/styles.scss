@@ -13,6 +13,11 @@ $app-palette: igx-palette($primary, $secondary);
 //$navbar-theme: igx-navbar-theme($background: #731963)
 //@include igx-navbar($navbar-theme)
 
+igx-icon {
+  cursor: pointer;
+  user-select: none;
+}
+
 .content p {
   margin: 15px;
 }
