@@ -96,11 +96,10 @@ export class TeamDetailsComponent implements OnInit {
     );
   }
 
-  public assignToRole(args: IgxDropEventArgs) {
-    const roleSlot = this.roleSlots.filter(r => r.user === null)[0];
+  public assignToRole(args: IgxDropEventArgs, role: RoleSlot) {
     const user = args.drag.data;
-    user.Role = roleSlot.role;
-    roleSlot.user = user;
+    user.Role = role.role;
+    role.user = user;
     this.activeMembers.splice(this.activeMembers.indexOf(args.drag.data), 1);
     args.cancel = true;
     this.apiService.updateTeamMember(user).subscribe(

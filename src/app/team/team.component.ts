@@ -42,6 +42,8 @@ export class TeamComponent {
     this.apiService.registerSteamGroup(group).subscribe(
       team => {
         this.createTeam.close();
+        this.authUser.Teams.push(team);
+        this.success.message = group.groupName + ' team successfully created!';
         this.success.show();
       },
       error => {
@@ -57,6 +59,24 @@ export class TeamComponent {
     this.apiService.registerTeam(this.newTeam).subscribe(
       team => {
         this.createTeam.close();
+        this.authUser.Teams.push(team);
+        this.success.message = this.newTeam.TeamName + ' team successfully created!';
+        this.success.show();
+      },
+      error => {
+        if (error.error.Message) {
+          this.error.message = error.error.Message;
+        }
+        this.error.show();
+      }
+    );
+  }
+
+  public abandonTeam(team: CSGOTeam) {
+    this.authUser.Teams.splice(this.authUser.Teams.indexOf(team), 1);
+    this.apiService.abandonTeam(team.TeamId).subscribe(
+      data => {
+        this.success.message = 'You are no longer part of ' + team.TeamName;
         this.success.show();
       },
       error => {

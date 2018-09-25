@@ -25,7 +25,7 @@
             <igx-avatar *ngIf="isAdmin" icon='clear' [roundShape]="true" class="country-badge-large" title="Remove from role" (click)="removeFromRole(role)"></igx-avatar>
             <igx-avatar *ngIf="!isAdmin" [src]="'assets/country-flags/svg/' + role.user.SteamUser.country.toLowerCase() + '.svg'" [roundShape]="true" [title]="role.user.SteamUser.country" class="country-badge-large"></igx-avatar>
           </igx-avatar>
-          <igx-avatar *ngIf="!role.user" icon='add' roundShape="true" [size]="'large'" igxDrop (onDrop)="assignToRole($event)">
+          <igx-avatar *ngIf="!role.user" icon='add' roundShape="true" [size]="'large'" igxDrop (onDrop)="assignToRole($event, role)">
           </igx-avatar>
           <div *ngIf="role.user">
             <span class="title">

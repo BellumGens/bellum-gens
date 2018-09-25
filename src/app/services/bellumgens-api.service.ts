@@ -58,6 +58,11 @@ export class BellumgensApiService {
               { withCredentials: true });
   }
 
+  public abandonTeam(teamId: string): Observable<any> {
+    return this.http.delete(this._apiEndpoint + `/teams/abandon?teamId=${teamId}`,
+              { withCredentials: true });
+  }
+
   public getUser(userid: string): Observable<CSGOPlayer> {
     return this.http.get<CSGOPlayer>(this._apiEndpoint + '/users/user?userid=' + userid);
   }

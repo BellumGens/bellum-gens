@@ -11,7 +11,7 @@
       <igx-card-actions>
         <div class="igx-card-actions__bgroup">
           <button igxButton igxRipple [routerLink]="['/team-details', team.TeamId]">Team Details</button>
-          <button igxButton igxRipple>Abandon Team</button>
+          <button igxButton igxRipple (click)="abandonTeam(team)">Abandon Team</button>
         </div>
       </igx-card-actions>
     </igx-card>
