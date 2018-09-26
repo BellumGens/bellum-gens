@@ -34,7 +34,6 @@
 
 .discord-container {
   display: flex;
-  align-self: flex-end;
   flex-direction: column;
   margin: 16px 0px 0px 16px;
 }

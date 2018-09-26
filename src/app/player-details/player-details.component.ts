@@ -17,6 +17,7 @@ import {
 import { CSGOPlayer } from '../models/csgoplayer';
 import { Availability } from '../models/playeravailability';
 import { ApplicationUser } from '../models/applicationuser';
+import { CSGOTeam } from '../models/csgoteam';
 
 @Component({
   selector: 'app-player-details',
@@ -27,6 +28,7 @@ import { ApplicationUser } from '../models/applicationuser';
 export class PlayerDetailsComponent implements OnInit {
 
   public authUser: ApplicationUser;
+  public teamsAdmin: CSGOTeam [];
   public player: CSGOPlayer;
   public selectedDay: Availability;
 
@@ -116,7 +118,7 @@ export class PlayerDetailsComponent implements OnInit {
     }
   }
 
-  public playerIsUser(): boolean {
+  public get playerIsUser(): boolean {
     return this.player && this.authUser && (this.player.steamUser.steamID64 === this.authUser.SteamUser.steamID64);
   }
 
@@ -149,8 +151,7 @@ export class PlayerDetailsComponent implements OnInit {
   }
 
   public mapChange(args: IChangeCheckboxEventArgs) {
-    this.player.mapPool.find(m => m.Map === args.checkbox.value.Map).IsPlayed = args.checked;
-    this.player.mapPool.sort(m => m.IsPlayed ? 0 : 1);
+    args.checkbox.value.IsPlayed = args.checked;
     this.apiService.setMapPool(args.checkbox.value).subscribe(
       data => this.success.show(),
       error => console.log(error)
