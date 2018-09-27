@@ -115,3 +115,12 @@
   justify-content: flex-start;
   padding: 0;
 }
+
+.team-invites {
+  height: 56px;
+  padding: 8px;
+}
+
+.title.margin-left {
+  margin-left: 8px;
+}

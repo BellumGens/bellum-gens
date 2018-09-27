@@ -1,39 +1,32 @@
 <div class="card-with-margins">
   <igx-card>
-    <igx-card-header *ngIf="player">
-      <igx-avatar [src]="player.steamUser.avatarFull" roundShape="true" [size]="'large'">
-        <igx-avatar *ngIf="player.steamUser.country" [src]="'assets/country-flags/svg/' + player.steamUser.country.toLowerCase() + '.svg'" [title]="player.steamUser.country" class="country-badge-large"></igx-avatar>
+    <igx-card-header>
+      <igx-avatar [src]="player?.steamUser?.avatarFull" roundShape="true" [size]="'large'">
+        <igx-avatar *ngIf="player?.steamUser?.country" [src]="'assets/country-flags/svg/' + player?.steamUser?.country.toLowerCase() + '.svg'" [title]="player?.steamUser?.country" class="country-badge-large"></igx-avatar>
       </igx-avatar>
       <div class="player__info">
-        <h1 class="igx-card-header__title"><a [href]="'https://steamcommunity.com/id/' + player.steamUser.customURL" target="_blank">{{ player.steamUser.steamID }}</a></h1>
-        <h3 class="igx-card-header__subtitle">{{ player.steamUser.realname }}</h3>
+        <h1 class="igx-card-header__title"><a [href]="'https://steamcommunity.com/id/' + player?.steamUser?.customURL" target="_blank">{{ player?.steamUser?.steamID }}</a></h1>
+        <h3 class="igx-card-header__subtitle">{{ player?.steamUser?.realname }}</h3>
       </div>
 
-      <!-- TODO: Invite to your team -->
-      <div class="player__info" *ngIf="!playerIsUser">
-        <h1 class="igx-card-header__title"><a [href]="'https://steamcommunity.com/id/' + player.steamUser.customURL" target="_blank">{{ player.steamUser.steamID }}</a></h1>
-        <h3 class="igx-card-header__subtitle">{{ player.steamUser.realname }}</h3>
-      </div>
-      <!-- END Invite to your team -->
-
-      <div *ngIf="player.userStats" class="player-stats__container">
+      <div class="player-stats__container">
         <div class="player-detail__stats">
           <h3 class="no-margin">KDR:</h3>
-          <igx-circular-bar class="stats-progress" [value]="player.userStats.killDeathRatio" [max]="2" [animate]="true" title="KDR" [text]="player.userStats.killDeathRatio"></igx-circular-bar>
+          <igx-circular-bar class="stats-progress" [value]="player?.userStats?.killDeathRatio" [max]="2" [animate]="true" title="KDR" [text]="player?.userStats?.killDeathRatio"></igx-circular-bar>
         </div>
         <div class="player-detail__stats">
           <h3 class="no-margin">Headshots:</h3>
-          <igx-circular-bar class="stats-progress" [value]="player.userStats.headshotPercentage" [max]="100" [animate]="true" title="Headshot Percentage" [text]="player.userStats.headshotPercentage + '%'"></igx-circular-bar>
+          <igx-circular-bar class="stats-progress" [value]="player?.userStats?.headshotPercentage" [max]="100" [animate]="true" title="Headshot Percentage" [text]="player?.userStats?.headshotPercentage + '%'"></igx-circular-bar>
         </div>
         <div class="player-detail__stats">
           <h3 class="no-margin">Accuracy:</h3>
-          <igx-circular-bar class="stats-progress" [value]="player.userStats.accuracy" [max]="100" [animate]="true" [text]="player.userStats.accuracy + '%'"></igx-circular-bar>
+          <igx-circular-bar class="stats-progress" [value]="player?.userStats?.accuracy" [max]="100" [animate]="true" [text]="player?.userStats?.accuracy + '%'"></igx-circular-bar>
         </div>
         <div class="player-detail__stats">
             <h3 class="no-margin">Top Weapon:</h3>
-            <img [src]="'assets/weapon-icons/svg_normal/weapon_' + player.userStats.favouriteWeapon.name + '.svg'"
-                [alt]="'Top Weapon with ' + player.userStats.favouriteWeapon.kills + ' kills: ' + player.userStats.favouriteWeapon.name"
-                [title]="player.userStats.favouriteWeapon.kills + ' kills'" /> 
+            <img [src]="'assets/weapon-icons/svg_normal/weapon_' + player?.userStats?.favouriteWeapon.name + '.svg'"
+                [alt]="'Top Weapon with ' + player?.userStats?.favouriteWeapon.kills + ' kills: ' + player?.userStats?.favouriteWeapon.name"
+                [title]="player?.userStats?.favouriteWeapon.kills + ' kills'" /> 
         </div>
         <div *ngIf="playerIsUser && player.userStatsException" class="player-stats__container">
           <h3>Your Steam account is private.</h3>
@@ -44,6 +37,23 @@
           <img src="assets/csgo-ranks/status-icons/skillgroup14.png" alt="rank" />
         </div> -->
       </div>
+      <!-- TODO: Invite to your team -->
+      <div class="player-stats__container" *ngIf="authUser?.TeamAdmin.length > 0">
+        <button igxButton="flat" [igxToggleAction]="teamInvite">
+          Invite to team
+          <igx-icon fontSet="material" name="arrow_drop_down" class="drop-down-arrow"></igx-icon>
+        </button>
+        <igx-drop-down (onSelection)="inviteToTeam($event)" #teamInvite>
+          <igx-drop-down-item class="team-invites" *ngFor="let team of authUser?.TeamAdmin">
+            <igx-avatar [src]="team.TeamAvatar" roundShape="true">
+            </igx-avatar>
+            <span class="title margin-left">
+              {{ team.TeamName }}
+            </span>
+          </igx-drop-down-item>
+        </igx-drop-down>
+      </div>
+      <!-- END Invite to your team -->
     </igx-card-header>
     <igx-card-content *ngIf="player">
 

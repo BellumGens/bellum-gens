@@ -157,4 +157,8 @@ export class PlayerDetailsComponent implements OnInit {
       error => console.log(error)
     );
   }
+
+  public inviteToTeam(args) {
+    console.log(args);
+  }
 }
