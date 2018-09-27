@@ -42,6 +42,10 @@
   padding: 0 0.75em;
 }
 
+.profile-item a {
+  color: currentColor;
+}
+
 .profile-link {
   margin-left: 0.75em;
 }
