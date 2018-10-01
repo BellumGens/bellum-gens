@@ -44,16 +44,12 @@ export class PlayerDetailsComponent implements OnInit {
               private apiService: BellumgensApiService,
               private activatedRoute: ActivatedRoute,
               private cdr: ChangeDetectorRef) {
-    if (!this.authManager.callMade) {
-      this.authManager.getSteamUser();
-    }
   }
 
   ngOnInit() {
     this.authManager.applicationUser.subscribe((data: ApplicationUser) => {
       this.authUser = data;
     });
-
     this.activatedRoute.params.subscribe(params => {
       const userid = params['userid'];
       this.apiService.getUser(userid).subscribe(
@@ -131,7 +127,7 @@ export class PlayerDetailsComponent implements OnInit {
       this.player.primaryRole = this.player.roles[index].Id;
       this.apiService.setPrimaryRole(this.player.roles[index]).subscribe(
         data => this.success.show(),
-        error => console.log(error)
+        error => this.error.show()
       );
     }
   }
@@ -145,7 +141,7 @@ export class PlayerDetailsComponent implements OnInit {
       this.player.secondaryRole = this.player.roles[index].Id;
       this.apiService.setSecondaryRole(this.player.roles[index]).subscribe(
         data => this.success.show(),
-        error => console.log(error)
+        error => this.error.show()
       );
     }
   }
@@ -154,11 +150,17 @@ export class PlayerDetailsComponent implements OnInit {
     args.checkbox.value.IsPlayed = args.checked;
     this.apiService.setMapPool(args.checkbox.value).subscribe(
       data => this.success.show(),
-      error => console.log(error)
+      error => this.error.show()
     );
   }
 
-  public inviteToTeam(args) {
-    console.log(args);
+  public inviteToTeam(args: ISelectionEventArgs) {
+    this.apiService.inviteToTeam(this.player.steamUser.steamID64, args.newSelection.value).subscribe(
+      data => this.success.show(),
+      error => {
+        this.error.message = 'Something went wrong. Invitation not sent!';
+        this.error.show();
+      }
+    );
   }
 }

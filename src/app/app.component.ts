@@ -41,9 +41,6 @@ export class AppComponent implements OnInit {
 
   constructor(private router: Router,
               private authManager: LoginService) {
-    if (!this.authManager.callMade) {
-      this.authManager.getSteamUser();
-    }
   }
 
   public ngOnInit(): void {
@@ -59,7 +56,6 @@ export class AppComponent implements OnInit {
   }
 
   public openLogin() {
-    this.authManager.getLoginProviders();
     this.dialog.open();
   }
 

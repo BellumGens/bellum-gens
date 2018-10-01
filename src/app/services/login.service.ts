@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, ReplaySubject } from 'rxjs';
+import { Observable } from 'rxjs';
 import { LoginProvider } from '../models/login-provider';
 import { ApplicationUser } from '../models/applicationuser';
+import { map, shareReplay } from 'rxjs/operators';
+
+const CACHE_SIZE = 1;
 
 @Injectable({
   providedIn: 'root'
@@ -10,15 +13,33 @@ import { ApplicationUser } from '../models/applicationuser';
 export class LoginService {
   private _apiEndpoint = 'http://localhost:25702/api/account';
   private _rootApiEndpoint = 'http://localhost:25702';
-  private _dataSubject = new ReplaySubject<ApplicationUser>(1);
-  private _providersSubject = new ReplaySubject<LoginProvider []>(1);
 
-  public applicationUser: Observable<ApplicationUser> = this._dataSubject.asObservable();
-  public loginProviders: Observable<LoginProvider []> = this._providersSubject.asObservable();
+  private _applicationUser: Observable<ApplicationUser>;
+  private _loginProviders: Observable<LoginProvider []>;
   public error: any;
   public callMade = false;
 
   constructor(private http: HttpClient) { }
+
+  public get loginProviders() {
+    if (!this._loginProviders) {
+      this._loginProviders = this.getLoginProviders().pipe(
+        shareReplay(CACHE_SIZE)
+      );
+    }
+
+    return this._loginProviders;
+  }
+
+  public get applicationUser() {
+    if (!this._applicationUser) {
+      this._applicationUser = this.getSteamUser().pipe(
+        shareReplay(CACHE_SIZE)
+      );
+    }
+
+    return this._applicationUser;
+  }
 
   public login(provider: string) {
     this.loginProviders.subscribe((data: LoginProvider []) =>
@@ -32,25 +53,19 @@ export class LoginService {
 
   public logout() {
     this.http.post(this._apiEndpoint + '/logout', null, { withCredentials: true }).subscribe(
-      data => this._dataSubject.next(null),
-      error => this.error = error
+      data => this._applicationUser = null
     );
   }
 
-  public getSteamUser(): void {
-    this.http.get<ApplicationUser>(this._apiEndpoint + '/userinfo', { withCredentials: true }).subscribe(
-      data => {
-        this._dataSubject.next(data);
-        this.callMade = true;
-      },
-      error => this.error = error
+  private getSteamUser() {
+    return this.http.get<ApplicationUser>(this._apiEndpoint + '/userinfo', { withCredentials: true }).pipe(
+      map(response => response)
     );
   }
 
-  public getLoginProviders(): void {
-    this.http.get<LoginProvider []>(this._apiEndpoint + '/ExternalLogins?returnUrl=%2F&generateState=true').subscribe(
-      data => this._providersSubject.next(data),
-      error => this.error = error
+  private getLoginProviders() {
+    return this.http.get<LoginProvider []>(this._apiEndpoint + '/ExternalLogins?returnUrl=%2F&generateState=true').pipe(
+      map(response => response)
     );
   }
 }

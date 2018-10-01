@@ -14,7 +14,6 @@ export class TeamsComponent implements OnInit {
   @ViewChild('teams') public teams: IgxListComponent;
 
   constructor(private apiManager: BellumgensApiService) {
-    this.apiManager.getTeams();
   }
 
   ngOnInit() {

@@ -44,7 +44,7 @@
           <igx-icon fontSet="material" name="arrow_drop_down" class="drop-down-arrow"></igx-icon>
         </button>
         <igx-drop-down (onSelection)="inviteToTeam($event)" #teamInvite>
-          <igx-drop-down-item class="team-invites" *ngFor="let team of authUser?.TeamAdmin">
+          <igx-drop-down-item class="team-invites" [value]="team" *ngFor="let team of authUser?.TeamAdmin">
             <igx-avatar [src]="team.TeamAvatar" roundShape="true">
             </igx-avatar>
             <span class="title margin-left">

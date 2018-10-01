@@ -17,7 +17,6 @@ export class PlayersComponent implements OnInit {
   @ViewChild(IgxListComponent) public players: IgxListComponent;
 
   constructor(private apiManager: BellumgensApiService) {
-    this.apiManager.getActiveUsers();
   }
 
   ngOnInit() {
