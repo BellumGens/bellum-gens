@@ -69,15 +69,14 @@ export class PlayerDetailsComponent implements OnInit {
   }
 
   public daySelected(args: IChipSelectEventArgs) {
-    if (this.chips) {
+    if (this.chips && args.originalEvent) {
       const index = this.chips.chipsList.toArray().indexOf(args.owner);
       this.selectedDay = this.player.availability[index];
 
       if (!args.selected) {
         args.cancel = true;
-      } else {
-        this.cdr.detectChanges();
       }
+      this.cdr.detectChanges();
     }
   }
 
