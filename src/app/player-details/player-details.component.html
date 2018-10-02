@@ -41,7 +41,7 @@
       <div class="player-stats__container" *ngIf="authUser?.TeamAdmin.length > 0">
         <button igxButton="flat" [igxToggleAction]="teamInvite">
           Invite to team
-          <igx-icon fontSet="material" name="arrow_drop_down" class="drop-down-arrow"></igx-icon>
+          <igx-icon fontSet="material" class="drop-down-arrow">arrow_drop_down</igx-icon>
         </button>
         <igx-drop-down (onSelection)="inviteToTeam($event)" #teamInvite>
           <igx-drop-down-item class="team-invites" [value]="team" *ngFor="let team of authUser?.TeamAdmin">
@@ -85,7 +85,7 @@
               <h4 class="no-margin">Primary Role:</h4>
               <button igxButton="flat" [disabled]="!playerIsUser" [igxToggleAction]="primaryRole" igxRippleCentered="true">
                 {{ player.roles[player.primaryRole].Name }}
-                <igx-icon *ngIf="playerIsUser" fontSet="material" name="arrow_drop_down"></igx-icon>
+                <igx-icon *ngIf="playerIsUser" fontSet="material">arrow_drop_down</igx-icon>
               </button>
               <igx-drop-down #primaryRole (onSelection)="selectPrimary($event)">
                 <igx-drop-down-item *ngFor="let role of player.roles" [isSelected]="role.Id === player.primaryRole">
@@ -97,7 +97,7 @@
               <h4 class="no-margin">Secondary Role:</h4>
               <button igxButton="flat" [disabled]="!playerIsUser" [igxToggleAction]="secondaryRole" igxRippleCentered="true">
                 {{ player.roles[player.secondaryRole].Name }}
-                <igx-icon *ngIf="playerIsUser" fontSet="material" name="arrow_drop_down"></igx-icon>
+                <igx-icon *ngIf="playerIsUser" fontSet="material">arrow_drop_down</igx-icon>
               </button>
               <igx-drop-down #secondaryRole (onSelection)="selectSecondary($event)">
                 <igx-drop-down-item *ngFor="let role of player.roles" [isSelected]="role.Id === player.secondaryRole">
