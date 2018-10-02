@@ -1,0 +1,29 @@
+<igx-dialog closeOnOutsideSelect="true" title="Sign in with Steam" width="600px">
+  <button type="icon" IgxButton class="steam-login" (click)="login('Steam')"></button>
+</igx-dialog>
+
+<button igxButton="raised" igxRipple="white" *ngIf="!authUser" (click)="openLogin()">Login</button>
+<div *ngIf="authUser">
+  <button class="profile-button" igxButton="flat" [igxToggleAction]="userProfile">
+    <igx-avatar [src]="authUser.SteamUser.avatarMedium" roundShape="true"></igx-avatar>
+    <igx-icon fontSet="material" name="arrow_drop_down" class="drop-down-arrow"></igx-icon>
+  </button>
+  <igx-drop-down #userProfile>
+    <igx-drop-down-item class="profile-item" [routerLink]="['/player-details', authUser.SteamUser.steamID64]">
+      <igx-icon fontSet="material" name="person"></igx-icon>
+      <span class="profile-link">profile</span>
+    </igx-drop-down-item>
+    <igx-drop-down-item class="profile-item" [routerLink]="['/player-details', authUser.SteamUser.steamID64]">
+      <igx-icon fontSet="material" name="notifications"></igx-icon>
+      <span class="profile-link">notifications</span>
+    </igx-drop-down-item>
+    <igx-drop-down-item class="profile-item" routerLink="/team">
+      <igx-icon fontSet="material" name="people"></igx-icon>
+      <span class="profile-link">teams</span>
+    </igx-drop-down-item>
+    <igx-drop-down-item class="profile-item" (click)="logout()">
+      <igx-icon fontSet="material" name="exit_to_app"></igx-icon>
+      <span class="profile-link">logout</span>
+    </igx-drop-down-item>
+  </igx-drop-down>
+</div>

@@ -8,31 +8,7 @@
   </igx-nav-drawer>
   <div igxFlex class="main">
     <igx-navbar title="Bellum Gens: Looking for Group" actionButtonIcon="menu" (onAction)="nav.toggle()">
-        <button igxButton="raised" igxRipple="white" *ngIf="!authUser" (click)="openLogin()">Login</button>
-        <div *ngIf="authUser">
-          <button class="profile-button" igxButton="flat" [igxToggleAction]="userProfile">
-            <igx-avatar [src]="authUser.SteamUser.avatarMedium" roundShape="true"></igx-avatar>
-            <igx-icon fontSet="material" name="arrow_drop_down" class="drop-down-arrow"></igx-icon>
-          </button>
-          <igx-drop-down #userProfile>
-            <igx-drop-down-item class="profile-item">
-              <igx-icon fontSet="material" name="person"></igx-icon>
-              <a class="profile-link" [routerLink]="['/player-details', authUser.SteamUser.steamID64]">profile</a>
-            </igx-drop-down-item>
-            <igx-drop-down-item class="profile-item">
-              <igx-icon fontSet="material" name="notifications"></igx-icon>
-              <a class="profile-link" [routerLink]="['/player-details', authUser.SteamUser.steamID64]">notifications</a>
-            </igx-drop-down-item>
-            <igx-drop-down-item class="profile-item">
-              <igx-icon fontSet="material" name="people"></igx-icon>
-              <a class="profile-link" routerLink="/team">teams</a>
-            </igx-drop-down-item>
-            <igx-drop-down-item class="profile-item">
-              <igx-icon fontSet="material" name="exit_to_app"></igx-icon>
-              <a class="profile-link" href="#" (click)="logout()">logout</a>
-            </igx-drop-down-item>
-          </igx-drop-down>
-        </div>
+      <app-login></app-login>
     </igx-navbar>
     <div class="content">
       <router-outlet></router-outlet>
@@ -42,7 +18,4 @@
       </div>
     </div>
   </div>
-  <igx-dialog closeOnOutsideSelect="true" title="Sign in with Steam" width="600px">
-    <button type="icon" IgxButton class="steam-login" (click)="login('Steam')"></button>
-  </igx-dialog>
 </div>

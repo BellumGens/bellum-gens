@@ -41,6 +41,7 @@ import { MapnamePipe } from './pipes/mapname.pipe';
 import { MapimagePipe } from './pipes/mapimage.pipe';
 import { OrdermapsPipe } from './pipes/ordermaps.pipe';
 import { TeamDetailsComponent } from './team-details/team-details.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +56,8 @@ import { TeamDetailsComponent } from './team-details/team-details.component';
     MapnamePipe,
     MapimagePipe,
     OrdermapsPipe,
-    TeamDetailsComponent
+    TeamDetailsComponent,
+    LoginComponent
   ],
   imports: [
     FormsModule,

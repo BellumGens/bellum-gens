@@ -12,42 +12,10 @@
   overflow: auto;
 }
 
-.steam-login-container {
-  align-content: center;
-}
-
-.steam-login {
-  background-image: url('http://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_01.png');
-  width: 180px;
-  height: 35px;
-  margin: 16px 48px 48px 48px;
-}
-
-.drop-down-arrow {
-  margin: 0;
-}
-
-.profile-button {
-  height: 58px;
-  margin-right: 16px;
-}
-
 .discord-container {
   display: flex;
   flex-direction: column;
   margin: 16px 0px 0px 16px;
-}
-
-.profile-item {
-  padding: 0 0.75em;
-}
-
-.profile-item a {
-  color: currentColor;
-}
-
-.profile-link {
-  margin-left: 0.75em;
 }
 
 @media only screen and (max-width: 1024px) {
