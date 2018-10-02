@@ -5,7 +5,9 @@
 <button igxButton="raised" igxRipple="white" *ngIf="!authUser" (click)="openLogin()">Login</button>
 <div *ngIf="authUser">
   <button class="profile-button" igxButton="flat" [igxToggleAction]="userProfile">
-    <igx-avatar [src]="authUser.SteamUser.avatarMedium" roundShape="true"></igx-avatar>
+    <igx-avatar [src]="authUser.SteamUser.avatarMedium" roundShape="true">
+      <igx-badge *ngIf="authUser.Notifications.length" [value]="authUser.Notifications | unreadNotifications" type="info" class="notification-badge"></igx-badge>
+    </igx-avatar>
     <igx-icon fontSet="material" class="drop-down-arrow">arrow_drop_down</igx-icon>
   </button>
   <igx-drop-down #userProfile>
@@ -14,7 +16,9 @@
       <span class="profile-link">profile</span>
     </igx-drop-down-item>
     <igx-drop-down-item class="profile-item" [routerLink]="['/player-details', authUser.SteamUser.steamID64]">
-      <igx-icon fontSet="material">notifications</igx-icon>
+      <igx-icon fontSet="material">notifications
+      </igx-icon>
+      <igx-badge *ngIf="authUser.Notifications.length" [value]="authUser.Notifications | unreadNotifications" type="info"></igx-badge>
       <span class="profile-link">notifications</span>
     </igx-drop-down-item>
     <igx-drop-down-item class="profile-item" routerLink="/team">

@@ -42,6 +42,7 @@ import { MapimagePipe } from './pipes/mapimage.pipe';
 import { OrdermapsPipe } from './pipes/ordermaps.pipe';
 import { TeamDetailsComponent } from './team-details/team-details.component';
 import { LoginComponent } from './login/login.component';
+import { UnreadNotificationsPipe } from './pipes/unread-notifications.pipe';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { LoginComponent } from './login/login.component';
     MapimagePipe,
     OrdermapsPipe,
     TeamDetailsComponent,
-    LoginComponent
+    LoginComponent,
+    UnreadNotificationsPipe
   ],
   imports: [
     FormsModule,
