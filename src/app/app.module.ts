@@ -43,6 +43,7 @@ import { OrdermapsPipe } from './pipes/ordermaps.pipe';
 import { TeamDetailsComponent } from './team-details/team-details.component';
 import { LoginComponent } from './login/login.component';
 import { UnreadNotificationsPipe } from './pipes/unread-notifications.pipe';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { UnreadNotificationsPipe } from './pipes/unread-notifications.pipe';
     OrdermapsPipe,
     TeamDetailsComponent,
     LoginComponent,
-    UnreadNotificationsPipe
+    UnreadNotificationsPipe,
+    NotificationsComponent
   ],
   imports: [
     FormsModule,

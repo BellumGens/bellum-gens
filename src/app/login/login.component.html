@@ -15,7 +15,7 @@
       <igx-icon fontSet="material">person</igx-icon>
       <span class="profile-link">profile</span>
     </igx-drop-down-item>
-    <igx-drop-down-item class="profile-item" [routerLink]="['/player-details', authUser.SteamUser.steamID64]">
+    <igx-drop-down-item class="profile-item" routerLink="/notifications">
       <igx-icon fontSet="material">notifications
       </igx-icon>
       <igx-badge *ngIf="authUser.Notifications.length" [value]="authUser.Notifications | unreadNotifications" type="info"></igx-badge>
