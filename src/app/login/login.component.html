@@ -4,7 +4,7 @@
 
 <button igxButton="raised" igxRipple="white" *ngIf="!authUser" (click)="openLogin()">Login</button>
 <div *ngIf="authUser">
-  <button class="profile-button" igxButton="flat" [igxToggleAction]="userProfile">
+  <button class="profile-button" #profileButton igxButton="flat" [igxToggleAction]="userProfile">
     <igx-avatar [src]="authUser.SteamUser.avatarMedium" roundShape="true">
       <igx-badge *ngIf="authUser.Notifications.length" [value]="authUser.Notifications | unreadNotifications" type="info" class="notification-badge"></igx-badge>
     </igx-avatar>

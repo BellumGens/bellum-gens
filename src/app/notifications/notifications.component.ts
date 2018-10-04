@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { LoginService } from '../services/login.service';
 import { ApplicationUser } from '../models/applicationuser';
-import { IgxListComponent } from 'igniteui-angular';
+import { IgxListComponent, IgxToastComponent } from 'igniteui-angular';
 import { UserNotification } from '../models/usernotifications';
+import { BellumgensApiService } from '../services/bellumgens-api.service';
 
 @Component({
   selector: 'app-notifications',
@@ -14,8 +15,11 @@ export class NotificationsComponent implements OnInit {
   public authUser: ApplicationUser;
 
   @ViewChild(IgxListComponent) public notifications: IgxListComponent;
+  @ViewChild('error') public error: IgxToastComponent;
+  @ViewChild('saveSuccess') public success: IgxToastComponent;
 
-  constructor(private authManager: LoginService) { }
+  constructor(private authManager: LoginService,
+              private apiService: BellumgensApiService) { }
 
   ngOnInit() {
     this.authManager.applicationUser.subscribe(
@@ -27,11 +31,29 @@ export class NotificationsComponent implements OnInit {
   }
 
   public acceptInvitation(notification: UserNotification) {
-    console.log(notification);
+    this.apiService.acceptInvite(notification).subscribe(
+      data => {
+        this.success.message = 'Invite accepted...';
+        this.success.show();
+      },
+      error => {
+        this.error.message = error.error.Message;
+        this.error.show();
+      }
+    );
   }
 
   public rejectInvitation(notification: UserNotification) {
-    console.log(notification);
+    this.apiService.rejectInvite(notification).subscribe(
+      data => {
+        this.success.message = 'Invite rejected...';
+        this.success.show();
+      },
+      error => {
+        this.error.message = error.error.Message;
+        this.error.show();
+      }
+    );
   }
 
 }

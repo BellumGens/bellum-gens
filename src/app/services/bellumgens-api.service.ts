@@ -8,6 +8,7 @@ import { Availability } from '../models/playeravailability';
 import { Role } from '../models/playerrole';
 import { MapPool } from 'src/app/models/csgomaps';
 import { map, shareReplay } from 'rxjs/operators';
+import { UserNotification } from '../models/usernotifications';
 
 const CACHE_SIZE = 1;
 
@@ -104,5 +105,13 @@ export class BellumgensApiService {
 
   public setMapPool(mapstatus: MapPool): Observable<any> {
     return this.http.put(this._apiEndpoint + '/users/mapPool', mapstatus, { withCredentials: true });
+  }
+
+  public acceptInvite(notification: UserNotification) {
+    return this.http.put(this._apiEndpoint + '/users/acceptTeamInvite', notification, { withCredentials: true });
+  }
+
+  public rejectInvite(notification: UserNotification) {
+    return this.http.put(this._apiEndpoint + '/users/rejectTeamInvite', notification, { withCredentials: true });
   }
 }

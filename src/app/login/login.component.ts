@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IgxDialogComponent, ConnectedPositioningStrategy, VerticalAlignment, HorizontalAlignment } from 'igniteui-angular';
+import { IgxDialogComponent } from 'igniteui-angular';
 import { LoginService } from '../services/login.service';
 import { ApplicationUser } from '../models/applicationuser';
 
@@ -12,16 +12,6 @@ export class LoginComponent implements OnInit {
   public authUser: ApplicationUser;
 
   @ViewChild(IgxDialogComponent) public dialog: IgxDialogComponent;
-
-  private _positionSettings = {
-    horizontalStartPoint: HorizontalAlignment.Right,
-    verticalStartPoint: VerticalAlignment.Bottom
-  };
-  public overlaySettings = {
-    closeOnOutsideClick: true,
-    modal: false,
-    positionStrategy: new ConnectedPositioningStrategy(this._positionSettings)
-  };
 
   constructor(private authManager: LoginService) { }
 
