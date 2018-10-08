@@ -6,6 +6,7 @@ import { LoginService } from '../services/login.service';
 import { IgxDialogComponent, IgxToastComponent } from 'igniteui-angular';
 import { ApplicationUser } from '../models/applicationuser';
 import { Router } from '@angular/router';
+import { SuccessErrorComponent } from '../success-error/success-error.component';
 
 
 @Component({
@@ -27,8 +28,7 @@ export class TeamComponent {
   public authUser: ApplicationUser;
 
   @ViewChild(IgxDialogComponent) public createTeam: IgxDialogComponent;
-  @ViewChild('error') public error: IgxToastComponent;
-  @ViewChild('saveSuccess') public success: IgxToastComponent;
+  @ViewChild(SuccessErrorComponent) public toast: SuccessErrorComponent;
 
   constructor(private apiService: BellumgensApiService,
               public router: Router,
@@ -43,14 +43,10 @@ export class TeamComponent {
       team => {
         this.createTeam.close();
         this.authUser.Teams.push(team);
-        this.success.message = group.groupName + ' team successfully created!';
-        this.success.show();
+        this.toast.showSuccess(group.groupName + ' team successfully created!');
       },
       error => {
-        if (error.error.Message) {
-          this.error.message = error.error.Message;
-        }
-        this.error.show();
+        this.toast.showError(error.error.Message);
       }
     );
   }
@@ -60,14 +56,10 @@ export class TeamComponent {
       team => {
         this.createTeam.close();
         this.authUser.Teams.push(team);
-        this.success.message = this.newTeam.TeamName + ' team successfully created!';
-        this.success.show();
+        this.toast.showSuccess(this.newTeam.TeamName + ' team successfully created!');
       },
       error => {
-        if (error.error.Message) {
-          this.error.message = error.error.Message;
-        }
-        this.error.show();
+        this.toast.showError(error.error.Message);
       }
     );
   }
@@ -76,14 +68,10 @@ export class TeamComponent {
     this.authUser.Teams.splice(this.authUser.Teams.indexOf(team), 1);
     this.apiService.abandonTeam(team.TeamId).subscribe(
       data => {
-        this.success.message = 'You are no longer part of ' + team.TeamName;
-        this.success.show();
+        this.toast.showSuccess('You are no longer part of ' + team.TeamName);
       },
       error => {
-        if (error.error.Message) {
-          this.error.message = error.error.Message;
-        }
-        this.error.show();
+        this.toast.showError(error.error.Message);
       }
     );
   }

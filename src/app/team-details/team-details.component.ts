@@ -7,6 +7,7 @@ import { BellumgensApiService } from '../services/bellumgens-api.service';
 import { ApplicationUser } from '../models/applicationuser';
 import { IgxToastComponent, IgxDropEventArgs } from 'igniteui-angular';
 import { noop } from 'rxjs';
+import { SuccessErrorComponent } from '../success-error/success-error.component';
 
 interface RoleSlot {
   roleName: string;
@@ -33,8 +34,7 @@ export class TeamDetailsComponent implements OnInit {
     { roleName: 'Lurker', role: PlaystyleRole.Lurker, user: null }
   ];
 
-  @ViewChild('error') public error: IgxToastComponent;
-  @ViewChild('saveSuccess') public success: IgxToastComponent;
+  @ViewChild(SuccessErrorComponent) public toast: SuccessErrorComponent;
 
   constructor(private activatedRoute: ActivatedRoute,
     private apiService: BellumgensApiService,
@@ -76,10 +76,7 @@ export class TeamDetailsComponent implements OnInit {
     this.apiService.updateTeamMember(user).subscribe(
       data => noop,
       error => {
-        if (error.error.Message) {
-          this.error.message = error.error.Message;
-        }
-        this.error.show();
+        this.toast.showError(error.error.Message);
       }
     );
   }
@@ -88,10 +85,7 @@ export class TeamDetailsComponent implements OnInit {
     this.apiService.removeTeamMember(user).subscribe(
       data => noop,
       error => {
-        if (error.error.Message) {
-          this.error.message = error.error.Message;
-        }
-        this.error.show();
+        this.toast.showError(error.error.Message);
       }
     );
   }
@@ -105,10 +99,7 @@ export class TeamDetailsComponent implements OnInit {
     this.apiService.updateTeamMember(user).subscribe(
       data => noop,
       error => {
-        if (error.error.Message) {
-          this.error.message = error.error.Message;
-        }
-        this.error.show();
+        this.toast.showError(error.error.Message);
       }
     );
   }

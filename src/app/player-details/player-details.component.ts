@@ -18,6 +18,7 @@ import { CSGOPlayer } from '../models/csgoplayer';
 import { Availability } from '../models/playeravailability';
 import { ApplicationUser } from '../models/applicationuser';
 import { CSGOTeam } from '../models/csgoteam';
+import { SuccessErrorComponent } from '../success-error/success-error.component';
 
 @Component({
   selector: 'app-player-details',
@@ -33,8 +34,7 @@ export class PlayerDetailsComponent implements OnInit {
   public selectedDay: Availability;
 
   @ViewChild(IgxChipsAreaComponent) public chips: IgxChipsAreaComponent;
-  @ViewChild('error') public error: IgxToastComponent;
-  @ViewChild('saveSuccess') public success: IgxToastComponent;
+  @ViewChild(SuccessErrorComponent) public toast: SuccessErrorComponent;
   @ViewChild('from') public from: IgxTimePickerComponent;
   @ViewChild('to') public to: IgxTimePickerComponent;
   @ViewChild('primaryRole') public primaryRole: IgxDropDownComponent;
@@ -56,8 +56,7 @@ export class PlayerDetailsComponent implements OnInit {
         data => {
           this.player = data;
           if (data.userStatsException) {
-            this.error.position = IgxToastPosition.Middle;
-            this.error.show();
+            this.toast.showError('Account is private!', IgxToastPosition.Middle);
           }
         }
       );
@@ -83,8 +82,8 @@ export class PlayerDetailsComponent implements OnInit {
   public dayDeselected(args: IBaseChipEventArgs) {
     this.selectedDay.Available = false;
     this.apiService.setAvailability(this.selectedDay).subscribe(
-      data => this.success.show(),
-      error => console.log(error)
+      data => this.toast.showSuccess(),
+      error => this.toast.showError()
     );
     this.selectedDay = null;
   }
@@ -95,8 +94,8 @@ export class PlayerDetailsComponent implements OnInit {
       this.selectedDay.To = this.to.value;
       this.selectedDay.Available = true;
       this.apiService.setAvailability(this.selectedDay).subscribe(
-        data => this.success.show(),
-        error => console.log(error)
+        data => this.toast.showSuccess(),
+        error => this.toast.showError()
       );
     }
   }
@@ -107,8 +106,8 @@ export class PlayerDetailsComponent implements OnInit {
       this.selectedDay.From = this.from.value;
       this.selectedDay.Available = true;
       this.apiService.setAvailability(this.selectedDay).subscribe(
-        data => this.success.show(),
-        error => console.log(error)
+        data => this.toast.showSuccess(),
+        error => this.toast.showError()
       );
     }
   }
@@ -125,8 +124,8 @@ export class PlayerDetailsComponent implements OnInit {
     if (this.player.primaryRole !== this.player.roles[index].Id) {
       this.player.primaryRole = this.player.roles[index].Id;
       this.apiService.setPrimaryRole(this.player.roles[index]).subscribe(
-        data => this.success.show(),
-        error => this.error.show()
+        data => this.toast.showSuccess(),
+        error => this.toast.showError()
       );
     }
   }
@@ -139,8 +138,8 @@ export class PlayerDetailsComponent implements OnInit {
     if (this.player.secondaryRole !== this.player.roles[index].Id) {
       this.player.secondaryRole = this.player.roles[index].Id;
       this.apiService.setSecondaryRole(this.player.roles[index]).subscribe(
-        data => this.success.show(),
-        error => this.error.show()
+        data => this.toast.showSuccess(),
+        error => this.toast.showError()
       );
     }
   }
@@ -148,18 +147,15 @@ export class PlayerDetailsComponent implements OnInit {
   public mapChange(args: IChangeCheckboxEventArgs) {
     args.checkbox.value.IsPlayed = args.checked;
     this.apiService.setMapPool(args.checkbox.value).subscribe(
-      data => this.success.show(),
-      error => this.error.show()
+      data => this.toast.showSuccess(),
+      error => this.toast.showError()
     );
   }
 
   public inviteToTeam(args: ISelectionEventArgs) {
     this.apiService.inviteToTeam(this.player.steamUser.steamID64, args.newSelection.value).subscribe(
-      data => this.success.show(),
-      error => {
-        this.error.message = 'Something went wrong. Invitation not sent!';
-        this.error.show();
-      }
+      data => this.toast.showSuccess(),
+      error => this.toast.showError('Something went wrong. Invitation not sent!')
     );
   }
 }

@@ -46,6 +46,7 @@ import { UnreadNotificationsPipe } from './pipes/unread-notifications.pipe';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { SortNotificationsPipe } from './pipes/sort-notifications.pipe';
 import { DisabledNotificationsPipe } from './pipes/disabled-notifications.pipe';
+import { SuccessErrorComponent } from './success-error/success-error.component';
 
 @NgModule({
   declarations: [
@@ -65,7 +66,8 @@ import { DisabledNotificationsPipe } from './pipes/disabled-notifications.pipe';
     UnreadNotificationsPipe,
     NotificationsComponent,
     SortNotificationsPipe,
-    DisabledNotificationsPipe
+    DisabledNotificationsPipe,
+    SuccessErrorComponent
   ],
   imports: [
     FormsModule,
