@@ -13,6 +13,7 @@ import { BellumgensApiService } from '../services/bellumgens-api.service';
 export class NotificationsComponent implements OnInit {
 
   public authUser: ApplicationUser;
+  public notificationClass = ['', '', 'notification-disabled', 'notification-disabled'];
 
   @ViewChild(IgxListComponent) public notifications: IgxListComponent;
   @ViewChild('error') public error: IgxToastComponent;

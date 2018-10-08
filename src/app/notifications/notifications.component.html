@@ -5,8 +5,8 @@
   <ng-template igxEmptyList>
       <div class="center-message"><span>No new notifications.</span></div>
   </ng-template>
-  <igx-list-item *ngFor="let notification of authUser?.Notifications">
-    <div class="horizontal">
+  <igx-list-item *ngFor="let notification of authUser?.Notifications | sortNotifications">
+    <div [class]="'horizontal ' + notificationClass[notification.State]">
       <igx-avatar [src]="notification.TeamInfo.TeamAvatar" roundShape="true">
       </igx-avatar>
       <div class="horizontal-info__left">
@@ -16,10 +16,10 @@
         <span class="subtitle">{{notification.Sent | date}}</span>
       </div>
       <div class="horizontal-info__right">
-        <button igxButton="flat" (click)="acceptInvitation(notification)">Accept</button>
+        <button igxButton="flat" [disabled]="notification.State | disabledNotifications" (click)="acceptInvitation(notification)">Accept</button>
       </div>
       <div class="horizontal-info__right">
-        <button igxButton="flat" (click)="rejectInvitation(notification)">Reject</button>
+        <button igxButton="flat" [disabled]="notification.State | disabledNotifications" (click)="rejectInvitation(notification)">Reject</button>
       </div>
     </div>
   </igx-list-item>

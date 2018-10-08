@@ -44,6 +44,8 @@ import { TeamDetailsComponent } from './team-details/team-details.component';
 import { LoginComponent } from './login/login.component';
 import { UnreadNotificationsPipe } from './pipes/unread-notifications.pipe';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { SortNotificationsPipe } from './pipes/sort-notifications.pipe';
+import { DisabledNotificationsPipe } from './pipes/disabled-notifications.pipe';
 
 @NgModule({
   declarations: [
@@ -61,7 +63,9 @@ import { NotificationsComponent } from './notifications/notifications.component'
     TeamDetailsComponent,
     LoginComponent,
     UnreadNotificationsPipe,
-    NotificationsComponent
+    NotificationsComponent,
+    SortNotificationsPipe,
+    DisabledNotificationsPipe
   ],
   imports: [
     FormsModule,
