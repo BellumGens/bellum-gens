@@ -154,7 +154,7 @@ export class PlayerDetailsComponent implements OnInit {
 
   public inviteToTeam(args: ISelectionEventArgs) {
     this.apiService.inviteToTeam(this.player.steamUser.steamID64, args.newSelection.value).subscribe(
-      data => this.toast.showSuccess(),
+      data => this.toast.showSuccess('Invite sent!'),
       error => this.toast.showError('Something went wrong. Invitation not sent!')
     );
   }

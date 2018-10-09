@@ -121,7 +121,7 @@
               <igx-card-actions>
                 <span class="highlight">{{ map | mapname }}</span>
                 <div class="igx-card-actions__igroup--end">
-                  <igx-checkbox [(ngModel)]="map.IsPlayed" [value]="map" [disabled]="!playerIsUser" (change)="mapChange($event)"></igx-checkbox>
+                  <igx-checkbox [checked]="map.IsPlayed" [value]="map" [disabled]="!playerIsUser" (change)="mapChange($event)"></igx-checkbox>
                 </div>
               </igx-card-actions>
             </igx-card>
