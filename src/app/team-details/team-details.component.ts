@@ -25,7 +25,6 @@ export class TeamDetailsComponent implements OnInit {
   public inactiveMembers: TeamMember [];
   public authUser: ApplicationUser;
   public team: CSGOTeam;
-  public isAdmin = false;
   public roleSlots: RoleSlot [] = [
     { roleName: 'IGL', role: PlaystyleRole.IGL, user: null },
     { roleName: 'Awper', role: PlaystyleRole.Awper, user: null },
@@ -49,9 +48,6 @@ export class TeamDetailsComponent implements OnInit {
         if (teamId) {
           this.apiService.getTeam(teamId).subscribe(team => {
             this.team = team;
-            if (this.authUser) {
-              this.isAdmin = this.team.Members.find(m => m.UserId === this.authUser.SteamUser.steamID64).IsAdmin;
-            }
             this.roleSlots.forEach((role) => {
               const member = this.team.Members.find(m => m.Role === role.role);
               if (member) {
@@ -102,6 +98,17 @@ export class TeamDetailsComponent implements OnInit {
         this.toast.showError(error.error.Message);
       }
     );
+  }
+
+  public get isAdmin() {
+    if (!this.team || !this.authUser) {
+      return false;
+    }
+    return this.team.Members.find(m => m.UserId === this.authUser.SteamUser.steamID64).IsAdmin;
+  }
+
+  public applyToJoin() {
+    // TODO
   }
 
 }

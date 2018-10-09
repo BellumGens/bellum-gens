@@ -10,6 +10,9 @@
         <div class="horizontal-info__right">
           Some team motto goes in here, and other general or recruitment information.
         </div>
+        <div *ngIf="authUser && !isAdmin" class="horizontal-info__right">
+          <button igxButton="flat" (click)="applyToJoin()">Apply to join</button>
+        </div>
       </div>
     </igx-card-header>
     <igx-card-content *ngIf="team">
