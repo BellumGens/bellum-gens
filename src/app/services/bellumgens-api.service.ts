@@ -88,7 +88,7 @@ export class BellumgensApiService {
   }
 
   public submitApplication(application: TeamApplication) {
-    return this.http.put(this._apiEndpoint + '/teams/apply', application, { withCredentials: true });
+    return this.http.post(this._apiEndpoint + '/teams/apply', application, { withCredentials: true });
   }
 
   public getUser(userid: string): Observable<CSGOPlayer> {
