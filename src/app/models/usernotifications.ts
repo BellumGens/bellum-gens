@@ -2,13 +2,13 @@ import { CSGOTeam } from './csgoteam';
 import { ApplicationUser } from './applicationuser';
 
 export interface UserNotification {
-  State: InviteState;
+  State: NotificationState;
   TeamInfo: CSGOTeam;
   InvitingUser: ApplicationUser;
   Sent: string;
 }
 
-export enum InviteState {
+export enum NotificationState {
   NotSeen,
   Seen,
   Rejected,

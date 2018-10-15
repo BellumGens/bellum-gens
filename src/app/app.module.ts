@@ -48,6 +48,7 @@ import { SortNotificationsPipe } from './pipes/sort-notifications.pipe';
 import { DisabledNotificationsPipe } from './pipes/disabled-notifications.pipe';
 import { SuccessErrorComponent } from './success-error/success-error.component';
 import { TeamStrategiesComponent } from './team-strategies/team-strategies.component';
+import { TeamApplicationComponent } from './team-application/team-application.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +70,8 @@ import { TeamStrategiesComponent } from './team-strategies/team-strategies.compo
     SortNotificationsPipe,
     DisabledNotificationsPipe,
     SuccessErrorComponent,
-    TeamStrategiesComponent
+    TeamStrategiesComponent,
+    TeamApplicationComponent
   ],
   imports: [
     FormsModule,

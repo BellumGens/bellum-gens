@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { UserNotification, InviteState } from '../models/usernotifications';
+import { UserNotification, NotificationState } from '../models/usernotifications';
 
 @Pipe({
   name: 'disabledNotifications'
@@ -7,7 +7,7 @@ import { UserNotification, InviteState } from '../models/usernotifications';
 export class DisabledNotificationsPipe implements PipeTransform {
 
   transform(notification: UserNotification): boolean {
-    return notification.State === InviteState.Accepted || notification.State === InviteState.Rejected;
+    return notification.State === NotificationState.Accepted || notification.State === NotificationState.Rejected;
   }
 
 }

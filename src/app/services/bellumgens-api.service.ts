@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SteamGroup } from '../models/steamuser';
 import { Observable } from 'rxjs';
-import { CSGOTeam, TeamMember } from '../models/csgoteam';
+import { CSGOTeam, TeamMember, TeamApplication } from '../models/csgoteam';
 import { CSGOPlayer } from '../models/csgoplayer';
 import { Availability } from '../models/playeravailability';
 import { Role } from '../models/playerrole';
@@ -85,6 +85,10 @@ export class BellumgensApiService {
 
   public inviteToTeam(userId: string, team: CSGOTeam) {
     return this.http.post(this._apiEndpoint + `/teams/invite?userId=${userId}`, team, { withCredentials: true });
+  }
+
+  public submitApplication(application: TeamApplication) {
+    return this.http.put(this._apiEndpoint + '/teams/apply', application, { withCredentials: true });
   }
 
   public getUser(userid: string): Observable<CSGOPlayer> {

@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { UserNotification, InviteState } from '../models/usernotifications';
+import { UserNotification, NotificationState } from '../models/usernotifications';
 
 @Pipe({
   name: 'unreadNotifications'
@@ -7,7 +7,7 @@ import { UserNotification, InviteState } from '../models/usernotifications';
 export class UnreadNotificationsPipe implements PipeTransform {
 
   transform(notifications: UserNotification []): number {
-    return notifications.filter(n => n.State === InviteState.NotSeen).length;
+    return notifications.filter(n => n.State === NotificationState.NotSeen).length;
   }
 
 }

@@ -1,5 +1,6 @@
 import { PlaystyleRole } from './playerrole';
 import { SteamUser } from './steamuser';
+import { NotificationState } from './usernotifications';
 
 export interface CSGOTeam {
   TeamId: string;
@@ -15,4 +16,11 @@ export interface TeamMember {
   IsAdmin: boolean;
   Role: PlaystyleRole;
   SteamUser: SteamUser;
+}
+
+export interface TeamApplication {
+  TeamId: string;
+  ApplicantId: string;
+  Message: string;
+  State: NotificationState;
 }

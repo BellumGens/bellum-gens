@@ -106,9 +106,4 @@ export class TeamDetailsComponent implements OnInit {
     }
     return this.team.Members.find(m => m.UserId === this.authUser.SteamUser.steamID64).IsAdmin;
   }
-
-  public applyToJoin() {
-    // TODO
-  }
-
 }

@@ -1,0 +1,19 @@
+<button igxButton="flat" (click)="applicationDialog.open()">Apply to join</button>
+<igx-dialog #applicationDialog
+            title="Why do you want to join our team?"
+            leftButtonLabel="Cancel"
+            rightButtonLabel="Submit Application"
+            (onLeftButtonSelect)="applicationDialog.close()"
+            (onRightButtonSelect)="submitApplication()">
+  <div class="application-dialog">
+    <igx-input-group type="search" class="search">
+      <label for="motivation" igxLabel>Tell us about your motivation to join our team...</label>
+      <textarea igxInput name="motivation" [(ngModel)]="application.Message" class="application-message"></textarea>
+      <igx-suffix *ngIf="application.Message.length > 0" (click)="application.Message = ''">
+          <igx-icon>clear</igx-icon>
+      </igx-suffix>
+    </igx-input-group>
+  </div>
+</igx-dialog>
+
+<app-success-error></app-success-error>
