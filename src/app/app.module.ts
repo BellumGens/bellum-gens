@@ -27,7 +27,8 @@ import { IgxNavigationDrawerModule,
   IgxDropDownModule,
   IgxCheckboxModule,
   IgxToggleModule,
-  IgxDragDropModule} from 'igniteui-angular';
+  IgxDragDropModule,
+  IgxTabsModule} from 'igniteui-angular';
 import { PlayersComponent } from './players/players.component';
 import { PlayerDetailsComponent } from './player-details/player-details.component';
 import { LoginService } from './services/login.service';
@@ -49,6 +50,7 @@ import { DisabledNotificationsPipe } from './pipes/disabled-notifications.pipe';
 import { SuccessErrorComponent } from './success-error/success-error.component';
 import { TeamStrategiesComponent } from './team-strategies/team-strategies.component';
 import { TeamApplicationComponent } from './team-application/team-application.component';
+import { TeamOverviewComponent } from './team-overview/team-overview.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +73,8 @@ import { TeamApplicationComponent } from './team-application/team-application.co
     DisabledNotificationsPipe,
     SuccessErrorComponent,
     TeamStrategiesComponent,
-    TeamApplicationComponent
+    TeamApplicationComponent,
+    TeamOverviewComponent
   ],
   imports: [
     FormsModule,
@@ -100,6 +103,7 @@ import { TeamApplicationComponent } from './team-application/team-application.co
     IgxDropDownModule,
     IgxCheckboxModule,
     IgxDragDropModule,
+    IgxTabsModule,
     IgxProgressBarModule
   ],
   providers: [

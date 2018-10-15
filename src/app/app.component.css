@@ -8,7 +8,7 @@
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: stretch;
-  padding: 0 24px;
+  padding: 0 16px;
   overflow: auto;
 }
 
@@ -20,7 +20,7 @@
 
 @media only screen and (max-width: 1024px) {
   .content {
-    padding: 0 15px;
+    padding: 0 8px;
     justify-content: flex-start;
   }
 }
