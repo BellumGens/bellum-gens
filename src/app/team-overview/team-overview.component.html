@@ -1,9 +1,34 @@
-<igx-tabs tabsType="fixed">
-  <igx-tabs-group label="Team Details">
-    <app-team-details></app-team-details>
-  </igx-tabs-group>
-  <igx-tabs-group [disabled]="true" label="Team Strats (coming soon)">Coming Up...</igx-tabs-group>
-  <igx-tabs-group label="Recruit New Members">
-    <app-players></app-players>
-  </igx-tabs-group>
-</igx-tabs>
+<div class="card-with-margins">
+  <igx-card>
+    <igx-card-header>
+      <div *ngIf="team" class="horizontal">
+        <igx-avatar [src]="team.TeamAvatar" roundShape="true" [size]="'large'">
+        </igx-avatar>
+        <div class="horizontal-info__left">
+          <h1 class="igx-card-header__title">{{ team.TeamName }}</h1>
+        </div>
+        <div class="horizontal-info__right">
+          Some team motto goes in here, and other general or recruitment information.
+        </div>
+        <div *ngIf="authUser" class="horizontal-info__right">
+          <app-team-application></app-team-application>
+        </div>
+      </div>
+    </igx-card-header>
+    <igx-card-content *ngIf="team">
+
+        <igx-tabs>
+          <igx-tabs-group label="Team Details">
+            <app-team-details></app-team-details>
+          </igx-tabs-group>
+          <igx-tabs-group label="Team Strats">
+            <app-team-strategies></app-team-strategies>
+          </igx-tabs-group>
+          <!-- <igx-tabs-group label="Recruit New Members">
+            <app-players></app-players>
+          </igx-tabs-group> -->
+        </igx-tabs>
+        
+    </igx-card-content>
+  </igx-card>
+</div>
