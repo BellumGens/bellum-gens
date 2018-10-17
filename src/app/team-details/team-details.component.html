@@ -21,7 +21,7 @@
     </div>
   </div>
 </div>
-<h4 *ngIf="activeMembers.length">Bench:</h4>
+<h4 *ngIf="activeMembers?.length">Bench:</h4>
 <div class="horizontal padding-top">
   <div *ngFor="let user of activeMembers" class="member-slot">
     <igx-avatar [src]="user.SteamUser.avatarMedium" roundShape="true" [size]="'medium'" [igxDrag]="user">
@@ -36,7 +36,7 @@
     </div>
   </div>
 </div>
-<h4 *ngIf="inactiveMembers.length">Inactive members:</h4>
+<h4 *ngIf="inactiveMembers?.length">Inactive members:</h4>
 <div class="horizontal-space-between padding-top">
   <div *ngFor="let user of inactiveMembers" class="member-slot">
     <igx-avatar [src]="user.SteamUser.avatarFull" roundShape="true" [size]="'large'">
