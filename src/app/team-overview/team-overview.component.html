@@ -10,7 +10,7 @@
         <div class="horizontal-info__right">
           Some team motto goes in here, and other general or recruitment information.
         </div>
-        <div *ngIf="authUser" class="horizontal-info__right">
+        <div *ngIf="!userIsMember" class="horizontal-info__right">
           <app-team-application></app-team-application>
         </div>
       </div>
@@ -26,6 +26,9 @@
           </igx-tabs-group>
           <igx-tabs-group label="Recruit New Members">
             <app-players></app-players>
+          </igx-tabs-group>
+          <igx-tabs-group *ngIf="userIsMember" label="Notifications">
+            <app-team-notifications></app-team-notifications>
           </igx-tabs-group>
         </igx-tabs>
         

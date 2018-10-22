@@ -8,6 +8,13 @@ export interface UserNotification {
   Sent: string;
 }
 
+export interface TeamApplication {
+  State: NotificationState;
+  ApplicantId: string;
+  TeamId: string;
+  Message: string;
+}
+
 export enum NotificationState {
   NotSeen,
   Seen,

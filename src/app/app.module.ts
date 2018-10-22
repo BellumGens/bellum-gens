@@ -51,6 +51,7 @@ import { SuccessErrorComponent } from './success-error/success-error.component';
 import { TeamStrategiesComponent } from './team-strategies/team-strategies.component';
 import { TeamApplicationComponent } from './team-application/team-application.component';
 import { TeamOverviewComponent } from './team-overview/team-overview.component';
+import { TeamNotificationsComponent } from './team-notifications/team-notifications.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +75,8 @@ import { TeamOverviewComponent } from './team-overview/team-overview.component';
     SuccessErrorComponent,
     TeamStrategiesComponent,
     TeamApplicationComponent,
-    TeamOverviewComponent
+    TeamOverviewComponent,
+    TeamNotificationsComponent
   ],
   imports: [
     FormsModule,

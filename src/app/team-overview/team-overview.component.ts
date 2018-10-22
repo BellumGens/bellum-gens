@@ -15,22 +15,29 @@ export class TeamOverviewComponent implements OnInit {
   team: CSGOTeam;
 
   constructor(private activatedRoute: ActivatedRoute,
-    private apiService: BellumgensApiService,
-    private authManager: LoginService) {
-      this.authManager.applicationUser.subscribe((data: ApplicationUser) => {
-        this.authUser = data;
-      });
+              private apiService: BellumgensApiService,
+              private authManager: LoginService) {
+    this.authManager.applicationUser.subscribe((data: ApplicationUser) => {
+      this.authUser = data;
+    });
 
-      this.activatedRoute.params.subscribe(params => {
-        const teamId = params['teamid'];
+    this.activatedRoute.params.subscribe(params => {
+      const teamId = params['teamid'];
 
-        if (teamId) {
-          this.apiService.getTeam(teamId).subscribe(team => {
-            this.team = team;
-          });
-        }
-      });
+      if (teamId) {
+        this.apiService.getTeam(teamId).subscribe(team => {
+          this.team = team;
+        });
+      }
+    });
+  }
+
+  public get userIsMember() {
+    if (this.authUser && this.team) {
+      return this.team.Members.filter(m => m.UserId === this.authUser.SteamUser.steamID64).length;
     }
+    return false;
+  }
 
   ngOnInit() {
   }

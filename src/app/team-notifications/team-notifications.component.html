@@ -1,0 +1,27 @@
+<igx-list [isLoading]="true">
+  <ng-template igxDataLoading>
+      <div class="center-message"><span>Fetching data from our server...</span></div>
+  </ng-template>
+  <ng-template igxEmptyList>
+      <div class="center-message"><span>No new notifications.</span></div>
+  </ng-template>
+  <igx-list-item *ngFor="let notification of authUser?.Notifications | sortNotifications">
+    <div [class]="'horizontal ' + notificationClass[notification.State]">
+      <igx-avatar [src]="notification.TeamInfo.TeamAvatar" roundShape="true">
+      </igx-avatar>
+      <div class="horizontal-info__left">
+        <span class="title">
+          You have been invited to join {{ notification.TeamInfo.TeamName }}
+        </span>
+        <span class="subtitle">{{notification.Sent | date}}</span>
+      </div>
+      <div class="horizontal-info__right">
+        <button igxButton="flat" [disabled]="notification.State | disabledNotifications">Accept</button>
+      </div>
+      <div class="horizontal-info__right">
+        <button igxButton="flat" [disabled]="notification.State | disabledNotifications">Reject</button>
+      </div>
+    </div>
+  </igx-list-item>
+</igx-list>
+<app-success-error></app-success-error>
