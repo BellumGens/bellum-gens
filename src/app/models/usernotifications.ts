@@ -1,18 +1,12 @@
 import { CSGOTeam } from './csgoteam';
 import { ApplicationUser } from './applicationuser';
+import { SteamUser } from './steamuser';
 
 export interface UserNotification {
   State: NotificationState;
   TeamInfo: CSGOTeam;
   InvitingUser: ApplicationUser;
   Sent: string;
-}
-
-export interface TeamApplication {
-  State: NotificationState;
-  ApplicantId: string;
-  TeamId: string;
-  Message: string;
 }
 
 export enum NotificationState {

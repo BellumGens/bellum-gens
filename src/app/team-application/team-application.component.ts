@@ -19,7 +19,9 @@ export class TeamApplicationComponent implements OnInit {
     TeamId: '',
     ApplicantId: '',
     State: NotificationState.NotSeen,
-    Message: ''
+    Sent: '',
+    Message: '',
+    UserInfo: null
   };
 
   @ViewChild(SuccessErrorComponent) public toast: SuccessErrorComponent;

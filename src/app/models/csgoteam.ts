@@ -19,8 +19,10 @@ export interface TeamMember {
 }
 
 export interface TeamApplication {
-  TeamId: string;
-  ApplicantId: string;
-  Message: string;
   State: NotificationState;
+  ApplicantId: string;
+  TeamId: string;
+  Message: string;
+  Sent: string;
+  UserInfo: SteamUser;
 }

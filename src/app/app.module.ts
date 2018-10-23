@@ -52,6 +52,7 @@ import { TeamStrategiesComponent } from './team-strategies/team-strategies.compo
 import { TeamApplicationComponent } from './team-application/team-application.component';
 import { TeamOverviewComponent } from './team-overview/team-overview.component';
 import { TeamNotificationsComponent } from './team-notifications/team-notifications.component';
+import { SortApplicationsPipe } from './pipes/sort-applications.pipe';
 
 @NgModule({
   declarations: [
@@ -76,7 +77,8 @@ import { TeamNotificationsComponent } from './team-notifications/team-notificati
     TeamStrategiesComponent,
     TeamApplicationComponent,
     TeamOverviewComponent,
-    TeamNotificationsComponent
+    TeamNotificationsComponent,
+    SortApplicationsPipe
   ],
   imports: [
     FormsModule,
