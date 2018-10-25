@@ -45,81 +45,87 @@ export class BellumgensApiService {
   }
 
   private getActiveUsers() {
-    return this.http.get<CSGOPlayer []>(this._apiEndpoint + '/users/activeusers').pipe(
+    return this.http.get<CSGOPlayer []>(`${this._apiEndpoint}/users/activeusers`).pipe(
       map(response => response)
     );
   }
 
   private getTeams() {
-    return this.http.get<CSGOTeam []>(this._apiEndpoint + '/teams/teams').pipe(
+    return this.http.get<CSGOTeam []>(`${this._apiEndpoint}/teams/teams`).pipe(
       map(response => response)
     );
   }
 
   public getTeam(teamId: string): Observable<CSGOTeam> {
-    return this.http.get<CSGOTeam>(this._apiEndpoint + '/teams/team?teamid=' + teamId);
+    return this.http.get<CSGOTeam>(`${this._apiEndpoint}/teams/team?teamid=${teamId}`);
   }
 
   public registerSteamGroup(group: SteamGroup): Observable<CSGOTeam> {
-    return this.http.post<CSGOTeam>(this._apiEndpoint + '/teams/team', group, { withCredentials: true });
+    return this.http.post<CSGOTeam>(`${this._apiEndpoint}/teams/team`, group, { withCredentials: true });
   }
 
   public registerTeam(team: CSGOTeam): Observable<CSGOTeam> {
-    return this.http.post<CSGOTeam>(this._apiEndpoint + '/teams/newteam', team, { withCredentials: true });
+    return this.http.post<CSGOTeam>(`${this._apiEndpoint}/teams/newteam`, team, { withCredentials: true });
   }
 
   public updateTeamMember(teamMember: TeamMember) {
-    return this.http.put(this._apiEndpoint + '/teams/member', teamMember, { withCredentials: true });
+    return this.http.put(`${this._apiEndpoint}/teams/member`, teamMember, { withCredentials: true });
   }
 
   public removeTeamMember(teamMember: TeamMember) {
-    return this.http.delete(this._apiEndpoint +
-              `/teams/removemember?teamId=${teamMember.TeamId}&userId=${teamMember.UserId}`,
+    return this.http.delete(`${this._apiEndpoint}/teams/removemember?teamId=${teamMember.TeamId}&userId=${teamMember.UserId}`,
               { withCredentials: true });
   }
 
   public abandonTeam(teamId: string) {
-    return this.http.delete(this._apiEndpoint + `/teams/abandon?teamId=${teamId}`,
-              { withCredentials: true });
+    return this.http.delete(`${this._apiEndpoint}/teams/abandon?teamId=${teamId}`, { withCredentials: true });
   }
 
   public inviteToTeam(userId: string, team: CSGOTeam) {
-    return this.http.post(this._apiEndpoint + `/teams/invite?userId=${userId}`, team, { withCredentials: true });
+    return this.http.post(`${this._apiEndpoint}/teams/invite?userId=${userId}`, team, { withCredentials: true });
   }
 
   public submitApplication(application: TeamApplication) {
-    return this.http.post(this._apiEndpoint + '/teams/apply', application, { withCredentials: true });
+    return this.http.post(`${this._apiEndpoint}/teams/apply`, application, { withCredentials: true });
   }
 
   public getTeamApplications(teamId: string): Observable<TeamApplication []> {
-    return this.http.get<TeamApplication []>(this._apiEndpoint + '/teams/applications?teamId=' + teamId, { withCredentials: true });
+    return this.http.get<TeamApplication []>(`${this._apiEndpoint}/teams/applications?teamId=${teamId}`, { withCredentials: true });
   }
 
-  public getUser(userid: string): Observable<CSGOPlayer> {
-    return this.http.get<CSGOPlayer>(this._apiEndpoint + '/users/user?userid=' + userid);
+  public approveApplication(application: TeamApplication) {
+    return this.http.put(`${this._apiEndpoint}/teams/approveapplication`, application, { withCredentials: true });
+  }
+
+  public rejectApplication(application: TeamApplication) {
+    return this.http.put(`${this._apiEndpoint}/teams/rejectapplication`, application, { withCredentials: true });
+  }
+
+  public getUser(userId: string): Observable<CSGOPlayer> {
+    return this.http.get<CSGOPlayer>(`${this._apiEndpoint}/users/user?userid=${userId}`);
   }
 
   public setAvailability(availability: Availability): Observable<any> {
-    return this.http.put(this._apiEndpoint + '/users/availability', availability, { withCredentials: true });
+    return this.http.put(`${this._apiEndpoint}/users/availability`, availability, { withCredentials: true });
   }
 
   public setPrimaryRole(role: Role): Observable<any> {
-    return this.http.put(this._apiEndpoint + '/users/primaryrole', role, { withCredentials: true });
+    return this.http.put(`${this._apiEndpoint}/users/primaryrole`, role, { withCredentials: true });
   }
 
   public setSecondaryRole(role: Role): Observable<any> {
-    return this.http.put(this._apiEndpoint + '/users/secondaryrole', role, { withCredentials: true });
+    return this.http.put(`${this._apiEndpoint}/users/secondaryrole`, role, { withCredentials: true });
   }
 
   public setMapPool(mapstatus: MapPool): Observable<any> {
-    return this.http.put(this._apiEndpoint + '/users/mapPool', mapstatus, { withCredentials: true });
+    return this.http.put(`${this._apiEndpoint}/users/mapPool`, mapstatus, { withCredentials: true });
   }
 
   public acceptInvite(notification: UserNotification) {
-    return this.http.put(this._apiEndpoint + '/users/acceptTeamInvite', notification, { withCredentials: true });
+    return this.http.put(`${this._apiEndpoint}/users/acceptTeamInvite`, notification, { withCredentials: true });
   }
 
   public rejectInvite(notification: UserNotification) {
-    return this.http.put(this._apiEndpoint + '/users/rejectTeamInvite', notification, { withCredentials: true });
+    return this.http.put(`${this._apiEndpoint}/users/rejectTeamInvite`, notification, { withCredentials: true });
   }
 }
