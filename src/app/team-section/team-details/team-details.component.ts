@@ -1,13 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { PlaystyleRole } from '../models/playerrole';
-import { TeamMember, CSGOTeam } from '../models/csgoteam';
-import { LoginService } from '../services/login.service';
 import { ActivatedRoute } from '@angular/router';
-import { BellumgensApiService } from '../services/bellumgens-api.service';
-import { ApplicationUser } from '../models/applicationuser';
-import { IgxToastComponent, IgxDropEventArgs } from 'igniteui-angular';
+import { IgxDropEventArgs } from 'igniteui-angular';
 import { noop } from 'rxjs';
-import { SuccessErrorComponent } from '../success-error/success-error.component';
+import { PlaystyleRole } from 'src/app/models/playerrole';
+import { TeamMember, CSGOTeam } from 'src/app/models/csgoteam';
+import { ApplicationUser } from 'src/app/models/applicationuser';
+import { SuccessErrorComponent } from 'src/app/success-error/success-error.component';
+import { BellumgensApiService } from 'src/app/services/bellumgens-api.service';
+import { LoginService } from 'src/app/services/login.service';
 
 interface RoleSlot {
   roleName: string;

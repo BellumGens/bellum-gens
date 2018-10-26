@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { LoginService } from '../services/login.service';
-import { BellumgensApiService } from '../services/bellumgens-api.service';
 import { ActivatedRoute } from '@angular/router';
-import { ApplicationUser } from '../models/applicationuser';
-import { TeamApplication } from '../models/csgoteam';
 import { IgxListComponent } from 'igniteui-angular';
+import { ApplicationUser } from 'src/app/models/applicationuser';
+import { TeamApplication } from 'src/app/models/csgoteam';
+import { BellumgensApiService } from 'src/app/services/bellumgens-api.service';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-team-notifications',

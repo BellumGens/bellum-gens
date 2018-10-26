@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BellumgensApiService } from '../services/bellumgens-api.service';
-import { LoginService } from '../services/login.service';
-import { ApplicationUser } from '../models/applicationuser';
-import { CSGOTeam } from '../models/csgoteam';
+import { ApplicationUser } from 'src/app/models/applicationuser';
+import { CSGOTeam } from 'src/app/models/csgoteam';
+import { BellumgensApiService } from 'src/app/services/bellumgens-api.service';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-team-overview',

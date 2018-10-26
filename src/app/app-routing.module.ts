@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { PlayerDetailsComponent } from './player-details/player-details.component';
-import { TeamComponent } from './team/team.component';
 import { HomeComponent } from './home/home.component';
 import { NotificationsComponent } from './notifications/notifications.component';
-import { TeamOverviewComponent } from './team-overview/team-overview.component';
+import { TeamComponent } from './team-section/team/team.component';
+import { TeamOverviewComponent } from './team-section/team-overview/team-overview.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
