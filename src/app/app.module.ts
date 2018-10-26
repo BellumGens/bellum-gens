@@ -28,7 +28,8 @@ import { IgxNavigationDrawerModule,
   IgxCheckboxModule,
   IgxToggleModule,
   IgxDragDropModule,
-  IgxTabsModule} from 'igniteui-angular';
+  IgxTabsModule,
+  IgxCalendarModule} from 'igniteui-angular';
 import { PlayersComponent } from './players/players.component';
 import { PlayerDetailsComponent } from './player-details/player-details.component';
 import { LoginService } from './services/login.service';
@@ -53,6 +54,7 @@ import { TeamApplicationComponent } from './team-section/team-application/team-a
 import { TeamOverviewComponent } from './team-section/team-overview/team-overview.component';
 import { TeamNotificationsComponent } from './team-section/team-notifications/team-notifications.component';
 import { SortApplicationsPipe } from './pipes/sort-applications.pipe';
+import { TeamCalendarComponent } from './team-section/team-calendar/team-calendar.component';
 
 @NgModule({
   declarations: [
@@ -78,6 +80,7 @@ import { SortApplicationsPipe } from './pipes/sort-applications.pipe';
     TeamApplicationComponent,
     TeamOverviewComponent,
     TeamNotificationsComponent,
+    TeamCalendarComponent,
     SortApplicationsPipe
   ],
   imports: [
@@ -108,6 +111,7 @@ import { SortApplicationsPipe } from './pipes/sort-applications.pipe';
     IgxCheckboxModule,
     IgxDragDropModule,
     IgxTabsModule,
+    IgxCalendarModule,
     IgxProgressBarModule
   ],
   providers: [

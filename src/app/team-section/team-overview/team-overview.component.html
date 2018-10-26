@@ -27,6 +27,9 @@
           <igx-tabs-group label="Recruit New Members">
             <app-players></app-players>
           </igx-tabs-group>
+          <igx-tabs-group *ngIf="userIsMember" label="Team Calendar">
+            <app-team-calendar></app-team-calendar>
+          </igx-tabs-group>
           <igx-tabs-group *ngIf="userIsMember" label="Notifications">
             <app-team-notifications></app-team-notifications>
           </igx-tabs-group>
