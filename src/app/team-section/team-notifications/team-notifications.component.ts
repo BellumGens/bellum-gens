@@ -23,25 +23,17 @@ export class TeamNotificationsComponent implements OnInit {
   @ViewChild(SuccessErrorComponent) public toast: SuccessErrorComponent;
 
   constructor(private activatedRoute: ActivatedRoute,
-              private apiService: BellumgensApiService,
-              private authManager: LoginService) {
-    this.authManager.applicationUser.subscribe((data: ApplicationUser) => {
-      this.authUser = data;
-    });
-
-    this.activatedRoute.params.subscribe(params => {
-      this.teamId = params['teamid'];
-
-      if (this.teamId) {
-        this.apiService.getTeamApplications(this.teamId).subscribe(data => {
-          this.applications = data;
-          this.notifications.isLoading = false;
-        });
-      }
-    });
+              private apiService: BellumgensApiService) {
   }
 
   ngOnInit() {
+    this.activatedRoute.params.subscribe(params => {
+      const teamId = params['teamid'];
+      this.apiService.teamApplications(teamId).subscribe(data => {
+        this.applications = data;
+        this.notifications.isLoading = false;
+      });
+    });
   }
 
   public approveApplication(application: TeamApplication) {

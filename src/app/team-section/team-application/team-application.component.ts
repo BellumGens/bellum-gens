@@ -43,7 +43,10 @@ export class TeamApplicationComponent implements OnInit {
 
   public submitApplication() {
     this.apiService.submitApplication(this.application).subscribe(
-      data => this.toast.showSuccess('Application submitted'),
+      data => {
+        this.toast.showSuccess('Application submitted successfully!');
+        this.dialog.close();
+      },
       error => this.toast.showError(error.error.Message)
     );
   }

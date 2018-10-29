@@ -20,6 +20,7 @@ export class BellumgensApiService {
 
   private _activeUsers: Observable<CSGOPlayer []>;
   private _csgoTeams: Observable<CSGOTeam []>;
+  private _teamApplications = new Map<string, Observable<TeamApplication[]>>();
   public error: any = null;
 
   constructor(private http: HttpClient) { }
@@ -42,6 +43,16 @@ export class BellumgensApiService {
     }
 
     return this._csgoTeams;
+  }
+
+  public teamApplications(teamId: string): Observable<TeamApplication []> {
+    if (!this._teamApplications[teamId]) {
+      this._teamApplications[teamId] = this.getTeamApplications(teamId).pipe(
+        shareReplay(CACHE_SIZE)
+      );
+    }
+
+    return this._teamApplications[teamId];
   }
 
   private getActiveUsers() {

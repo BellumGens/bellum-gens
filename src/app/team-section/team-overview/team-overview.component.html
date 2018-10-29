@@ -24,13 +24,20 @@
           <igx-tabs-group [disabled]="true" label="Team Strats (coming soon)">
             <app-team-strategies></app-team-strategies>
           </igx-tabs-group>
-          <igx-tabs-group label="Recruit New Members">
+          <igx-tabs-group *ngIf="userIsMember" label="Recruit New Members">
             <app-players></app-players>
           </igx-tabs-group>
           <igx-tabs-group *ngIf="userIsMember" label="Team Calendar">
             <app-team-calendar></app-team-calendar>
           </igx-tabs-group>
-          <igx-tabs-group *ngIf="userIsMember" label="Notifications">
+          <igx-tabs-group *ngIf="userIsMember" label="Notifications" icon="notifications">
+              <ng-template igxTab>
+                <div class="horizontal">
+                  <igx-icon fontSet="material">notifications</igx-icon>
+                  <div class="igx-tabs__item-label">Notifications</div>
+                  <igx-badge [value]="notifications | unreadNotifications" type="info"></igx-badge>
+                </div> 
+              </ng-template>
             <app-team-notifications></app-team-notifications>
           </igx-tabs-group>
         </igx-tabs>
