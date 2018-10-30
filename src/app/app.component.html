@@ -1,21 +1,18 @@
 <div igxLayout>
-  <igx-nav-drawer #nav id="project-menu" isOpen="true" [enableGestures]='true' width="280px">
-    <ng-template igxDrawer>
-      <span igxDrawerItem [isHeader]="true"><igx-avatar src="assets/avatar_BG_blood.png" [roundShape]="'isCircular'" [size]="'small'"></igx-avatar></span>
-      <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="/home">Home</span>
-      <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="/team">Teams</span>
-    </ng-template>
-  </igx-nav-drawer>
   <div igxFlex class="main">
-    <igx-navbar title="[Beta] Bellum Gens: Looking for Group" actionButtonIcon="menu" (onAction)="nav.toggle()">
+    <igx-navbar title="[Beta] Bellum Gens: Looking for Group">
+      <div class="navigation">
+        <a igxButton="raised" routerLink="/team">Teams</a>
+        <a igxButton="raised" routerLink="/player-details">Players</a>
+      </div>
       <app-login></app-login>
     </igx-navbar>
     <div class="content">
       <router-outlet></router-outlet>
 
-      <div class="discord-container">
+      <!-- <div class="discord-container">
           <iframe src="https://discordapp.com/widget?id=314362408783052800&theme=light" width="350" height="884" allowtransparency="true" frameborder="0"></iframe>
-      </div>
+      </div> -->
     </div>
   </div>
 </div>

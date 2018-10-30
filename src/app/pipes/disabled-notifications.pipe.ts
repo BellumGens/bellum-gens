@@ -6,8 +6,8 @@ import { UserNotification, NotificationState } from '../models/usernotifications
 })
 export class DisabledNotificationsPipe implements PipeTransform {
 
-  transform(notification: UserNotification): boolean {
-    return notification.State === NotificationState.Accepted || notification.State === NotificationState.Rejected;
+  transform(notification: NotificationState): boolean {
+    return notification === NotificationState.Accepted || notification === NotificationState.Rejected;
   }
 
 }

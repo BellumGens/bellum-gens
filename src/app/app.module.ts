@@ -6,8 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import { IgxNavigationDrawerModule,
-  IgxNavbarModule,
+import { IgxNavbarModule,
   IgxLayoutModule,
   IgxRippleModule,
   IgxAvatarModule,
@@ -90,7 +89,6 @@ import { TeamCalendarComponent } from './team-section/team-calendar/team-calenda
     BrowserAnimationsModule,
     AppRoutingModule,
     IgxAvatarModule,
-    IgxNavigationDrawerModule,
     IgxNavbarModule,
     IgxLayoutModule,
     IgxRippleModule,

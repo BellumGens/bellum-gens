@@ -13,15 +13,17 @@ igx-icon {
   margin-left: 1em;
 }
 
-.card-row {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
 .card-column {
   display: flex;
   flex-direction: column;
-  max-width: 300px;
-  margin: 16px 0px 0px 16px;
+  max-width: 380px;
+  padding: 4px;
+}
+
+.create-team-card {
+  margin-bottom: 8px;
+}
+
+.team-card {
+  margin-bottom: 4px;
 }
