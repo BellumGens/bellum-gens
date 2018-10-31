@@ -1,4 +1,26 @@
-<div class="item-container">
-  <app-players class="list-container"></app-players>
-  <app-teams class="list-container"></app-teams>
+<div class="horizontal">
+  <div class="item-container">
+    <app-players class="list-container"></app-players>
+    <app-teams class="list-container"></app-teams>
+  </div>
+
+  <div class="middle-card">
+    <igx-card>
+      <igx-card-header>
+        <h3 class="igx-card-header__title">Bellum Gens - Looking for group</h3>
+        <h5 class="igx-card-header__subtitle">Because it is a team game.</h5>
+      </igx-card-header>
+      <igx-card-content>
+        <p class="igx-card-content__text">Build your player profile and find the right team for you!</p>
+        <p class="igx-card-content__text">Build and manage your team! Find the right teammates, and share your team strategies and team schedule all in one place!</p>
+      </igx-card-content>
+      <igx-card-actions *ngIf="!authUser">
+        <app-login></app-login>
+      </igx-card-actions>
+    </igx-card>
+  </div>
+
+  <div class="discord-container">
+      <iframe src="https://discordapp.com/widget?id=314362408783052800&theme=light" width="350" height="884" allowtransparency="true" frameborder="0"></iframe>
+  </div>
 </div>

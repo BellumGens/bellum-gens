@@ -32,6 +32,7 @@ export class PlayerDetailsComponent implements OnInit {
   public teamsAdmin: CSGOTeam [];
   public player: CSGOPlayer;
   public selectedDay: Availability;
+  public newUser = false;
 
   @ViewChild(IgxChipsAreaComponent) public chips: IgxChipsAreaComponent;
   @ViewChild(SuccessErrorComponent) public toast: SuccessErrorComponent;
@@ -52,6 +53,8 @@ export class PlayerDetailsComponent implements OnInit {
     });
     this.activatedRoute.params.subscribe(params => {
       const userid = params['userid'];
+      this.newUser = params['newuser'];
+
       this.apiService.getUser(userid).subscribe(
         data => {
           this.player = data;

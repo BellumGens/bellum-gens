@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../services/login.service';
+import { ApplicationUser } from '../models/applicationuser';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  authUser: ApplicationUser;
 
-  constructor() { }
+  constructor(private authManager: LoginService) { }
 
   ngOnInit() {
+    this.authManager.applicationUser.subscribe(data => this.authUser = data);
   }
 
 }

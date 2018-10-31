@@ -12,6 +12,7 @@ export const routes: Routes = [
   { path: 'notifications', component: NotificationsComponent },
   { path: 'player-details', component: PlayerDetailsComponent },
   { path: 'player-details/:userid', component: PlayerDetailsComponent },
+  { path: 'player-details/:userid/:newuser', component: PlayerDetailsComponent },
   { path: 'team', component: TeamComponent },
   { path: 'team-details/:teamid', component: TeamOverviewComponent }
 ];
