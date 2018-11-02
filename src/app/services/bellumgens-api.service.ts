@@ -9,6 +9,7 @@ import { Role } from '../models/playerrole';
 import { MapPool } from 'src/app/models/csgomaps';
 import { map, shareReplay } from 'rxjs/operators';
 import { UserNotification } from '../models/usernotifications';
+import { TeamStrategy } from '../models/csgoteamstrategy';
 
 const CACHE_SIZE = 1;
 
@@ -53,6 +54,10 @@ export class BellumgensApiService {
     }
 
     return this._teamApplications[teamId];
+  }
+
+  public getTeamStrats(teamId: string) {
+    return this.http.get<TeamStrategy []>(`${this._apiEndpoint}/teams/strats?teamid=${teamId}`);
   }
 
   private getActiveUsers() {

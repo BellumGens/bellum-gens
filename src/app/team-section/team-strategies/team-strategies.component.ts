@@ -4,6 +4,7 @@ import { ApplicationUser } from 'src/app/models/applicationuser';
 import { CSGOTeam } from 'src/app/models/csgoteam';
 import { BellumgensApiService } from 'src/app/services/bellumgens-api.service';
 import { LoginService } from 'src/app/services/login.service';
+import { TeamStrategy } from 'src/app/models/csgoteamstrategy';
 
 @Component({
   selector: 'app-team-strategies',
@@ -11,26 +12,20 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./team-strategies.component.css']
 })
 export class TeamStrategiesComponent implements OnInit {
-  public authUser: ApplicationUser;
-  public team: CSGOTeam;
+  teamStrats: TeamStrategy [];
 
   constructor(private activatedRoute: ActivatedRoute,
-    private apiService: BellumgensApiService,
-    private authManager: LoginService) {
-      this.authManager.applicationUser.subscribe((data: ApplicationUser) => {
-        this.authUser = data;
-      });
-
-      this.activatedRoute.params.subscribe(params => {
-        const teamId = params['teamid'];
-
-        if (teamId) {
-          this.apiService.getTeam(teamId).subscribe(team => this.team = team);
-        }
-      });
-    }
+              private apiService: BellumgensApiService) {
+  }
 
   ngOnInit() {
+    this.activatedRoute.params.subscribe(params => {
+      const teamId = params['teamid'];
+
+      if (teamId) {
+        this.apiService.getTeamStrats(teamId).subscribe(strats => this.teamStrats = strats);
+      }
+    });
   }
 
 }
