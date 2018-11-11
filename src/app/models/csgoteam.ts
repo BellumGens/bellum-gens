@@ -26,3 +26,10 @@ export interface TeamApplication {
   Sent: string;
   UserInfo: SteamUser;
 }
+
+export const TEAM_PLACEHOLDER: CSGOTeam = {
+  TeamName: '',
+  TeamAvatar: '',
+  TeamId: undefined,
+  Members: undefined
+};

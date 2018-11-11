@@ -57,7 +57,7 @@ export class BellumgensApiService {
   }
 
   public getTeamStrats(teamId: string) {
-    return this.http.get<TeamStrategy []>(`${this._apiEndpoint}/teams/strats?teamid=${teamId}`);
+    return this.http.get<TeamStrategy []>(`${this._apiEndpoint}/teams/strats?teamid=${teamId}`, { withCredentials: true });
   }
 
   private getActiveUsers() {

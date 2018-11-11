@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
 import { IgxDialogComponent } from 'igniteui-angular';
 import { Router } from '@angular/router';
-import { CSGOTeam, TeamMember } from 'src/app/models/csgoteam';
+import { CSGOTeam, TeamMember, TEAM_PLACEHOLDER } from 'src/app/models/csgoteam';
 import { ApplicationUser } from 'src/app/models/applicationuser';
 import { SuccessErrorComponent } from 'src/app/success-error/success-error.component';
 import { BellumgensApiService } from 'src/app/services/bellumgens-api.service';
@@ -17,12 +17,7 @@ import { SteamGroup } from 'src/app/models/steamuser';
 })
 export class TeamComponent {
   public searchGroups: string;
-  public newTeam: CSGOTeam = {
-    TeamName: '',
-    TeamAvatar: '',
-    TeamId: undefined,
-    Members: undefined
-  };
+  public newTeam: CSGOTeam = TEAM_PLACEHOLDER;
   public activeMembers: TeamMember [];
   public inactiveMembers: TeamMember [];
   public authUser: ApplicationUser;

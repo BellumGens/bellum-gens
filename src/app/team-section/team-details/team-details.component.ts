@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { IgxDropEventArgs } from 'igniteui-angular';
 import { noop } from 'rxjs';
 import { PlaystyleRole } from 'src/app/models/playerrole';
-import { TeamMember, CSGOTeam } from 'src/app/models/csgoteam';
+import { TeamMember, CSGOTeam, TEAM_PLACEHOLDER } from 'src/app/models/csgoteam';
 import { ApplicationUser } from 'src/app/models/applicationuser';
 import { SuccessErrorComponent } from 'src/app/success-error/success-error.component';
 import { BellumgensApiService } from 'src/app/services/bellumgens-api.service';
@@ -24,7 +24,7 @@ export class TeamDetailsComponent implements OnInit {
   public activeMembers: TeamMember [];
   public inactiveMembers: TeamMember [];
   public authUser: ApplicationUser;
-  public team: CSGOTeam;
+  public team: CSGOTeam = TEAM_PLACEHOLDER;
   public roleSlots: RoleSlot [] = [
     { roleName: 'IGL', role: PlaystyleRole.IGL, user: null },
     { roleName: 'Awper', role: PlaystyleRole.Awper, user: null },

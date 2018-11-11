@@ -8,6 +8,7 @@
         <igx-card-header>
           <div *ngIf="!authUser">
             <h1 class="igx-card-header__title">You need to login to view your teams.</h1>
+            <app-login></app-login>
           </div>
           <div *ngIf="authUser">
             <div *ngIf="authUser.Teams.length">

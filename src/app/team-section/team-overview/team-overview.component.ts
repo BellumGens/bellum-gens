@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApplicationUser } from 'src/app/models/applicationuser';
-import { CSGOTeam, TeamApplication } from 'src/app/models/csgoteam';
+import { CSGOTeam, TeamApplication, TEAM_PLACEHOLDER } from 'src/app/models/csgoteam';
 import { BellumgensApiService } from 'src/app/services/bellumgens-api.service';
 import { LoginService } from 'src/app/services/login.service';
 
@@ -12,7 +12,7 @@ import { LoginService } from 'src/app/services/login.service';
 })
 export class TeamOverviewComponent implements OnInit {
   authUser: ApplicationUser;
-  team: CSGOTeam;
+  team: CSGOTeam = TEAM_PLACEHOLDER;
   notifications: TeamApplication [];
 
   constructor(private activatedRoute: ActivatedRoute,
