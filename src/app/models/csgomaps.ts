@@ -1,6 +1,7 @@
 export interface MapPool {
   Map: CSGOMap;
   IsPlayed: boolean;
+  TeamId: string;
 }
 
 export interface ActiveDutyDescriptor {

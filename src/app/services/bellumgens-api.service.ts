@@ -117,6 +117,14 @@ export class BellumgensApiService {
     return this.http.put(`${this._apiEndpoint}/teams/rejectapplication`, application, { withCredentials: true });
   }
 
+  public getTeamMapPool(teamId: string): Observable<MapPool []> {
+    return this.http.get<MapPool []>(`${this._apiEndpoint}/teams/mapPool?teamId=${teamId}`, { withCredentials: true });
+  }
+
+  public setTeamMapPool(mapstatus: MapPool): Observable<any> {
+    return this.http.put(`${this._apiEndpoint}/teams/mapPool`, mapstatus, { withCredentials: true });
+  }
+
   public getUser(userId: string): Observable<CSGOPlayer> {
     return this.http.get<CSGOPlayer>(`${this._apiEndpoint}/users/user?userid=${userId}`);
   }

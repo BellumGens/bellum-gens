@@ -11,9 +11,6 @@
             <app-login></app-login>
           </div>
           <div *ngIf="authUser">
-            <div *ngIf="authUser.Teams.length">
-    
-            </div>
             <h1 class="igx-card-header__title" *ngIf="!authUser.Teams.length">You are not part of any teams.</h1>
             <h3 class="igx-card-header__subtitle"><button igxButton="flat" igxRippleCentered="true" (click)="createTeam.open()">Create New Team</button></h3>
           </div>
@@ -21,7 +18,7 @@
         <igx-card-content>
         </igx-card-content>
       </igx-card>
-      <igx-card class="team-card" *ngFor="let team of authUser.Teams">
+      <igx-card class="team-card" *ngFor="let team of authUser?.Teams">
         <igx-card-header class="compact">
           <igx-avatar [src]="team.TeamAvatar" roundShape="true"></igx-avatar>
           <div class="igx-card-header__tgroup">
