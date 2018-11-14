@@ -18,6 +18,14 @@
   margin: 8px 0px 0px 16px;
 }
 
+.navigation {
+  margin-right: 600px;
+}
+
+.navigation-item {
+  margin: 0px 4px;
+}
+
 @media only screen and (max-width: 1024px) {
   .content {
     padding: 0 8px;

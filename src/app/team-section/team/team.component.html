@@ -1,8 +1,8 @@
-<igx-tabs>
+<igx-tabs [selectedIndex]="1">
   <igx-tabs-group label="All Teams">
     <app-teams></app-teams>
   </igx-tabs-group>
-  <igx-tabs-group label="My Teams" *ngIf="authUser">
+  <igx-tabs-group label="My Teams">
     <div class="card-column">
       <igx-card class="create-team-card">
         <igx-card-header>
