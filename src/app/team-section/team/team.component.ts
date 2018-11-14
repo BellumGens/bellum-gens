@@ -17,7 +17,13 @@ import { SteamGroup } from 'src/app/models/steamuser';
 })
 export class TeamComponent {
   public searchGroups: string;
-  public newTeam: CSGOTeam = TEAM_PLACEHOLDER;
+  public newTeam: CSGOTeam = {
+    TeamName: '',
+    TeamAvatar: '',
+    Description: '',
+    TeamId: undefined,
+    Members: undefined
+  };
   public activeMembers: TeamMember [];
   public inactiveMembers: TeamMember [];
   public authUser: ApplicationUser;

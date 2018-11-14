@@ -3,8 +3,8 @@
   <div class="card-with-margins">
     <igx-card>
       <igx-card-header>
-        <div *ngIf="team" class="horizontal">
-          <igx-avatar [src]="team.TeamAvatar" roundShape="true" [size]="'large'">
+        <div class="horizontal">
+          <igx-avatar [initials]="'NA'" [src]="team.TeamAvatar" roundShape="true" [size]="'large'">
           </igx-avatar>
           <div class="horizontal-info__left">
             <h1 class="igx-card-header__title">{{ team.TeamName }}</h1>
@@ -12,18 +12,17 @@
           <div class="horizontal-info__right">
             Some team motto goes in here, and other general or recruitment information.
           </div>
-          <div *ngIf="!userIsMember" class="horizontal-info__right">
+          <div *ngIf="!userIsMember && team.TeamId" class="horizontal-info__right">
             <app-team-application></app-team-application>
           </div>
         </div>
       </igx-card-header>
-      <igx-card-content *ngIf="team">
-
+      <igx-card-content>
           <igx-tabs>
             <igx-tabs-group label="Team Details">
               <app-team-details></app-team-details>
             </igx-tabs-group>
-            <igx-tabs-group label="Team Strats">
+            <igx-tabs-group *ngIf="userIsMember" label="Team Strats">
               <app-team-strategies></app-team-strategies>
             </igx-tabs-group>
             <igx-tabs-group *ngIf="userIsMember" label="Recruit New Members">

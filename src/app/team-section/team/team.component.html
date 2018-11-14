@@ -31,7 +31,7 @@
         </igx-card-header>
         <igx-card-actions>
           <div class="igx-card-actions__bgroup">
-            <button igxButton igxRipple [routerLink]="['/team-details', team.TeamId]">Team Details</button>
+            <button igxButton igxRipple [routerLink]="['/team', team.TeamId]">Team Details</button>
             <button igxButton igxRipple (click)="abandonTeam(team)">Abandon Team</button>
           </div>
         </igx-card-actions>
@@ -71,6 +71,15 @@
           <igx-input-group>
             <input #teamName igxInput placeholder="Team name" minlength="2" required [(ngModel)]="newTeam.TeamName">
             <igx-suffix *ngIf="teamName.value.length > 0" (click)="newTeam.TeamName = null">
+                <igx-icon>clear</igx-icon>
+            </igx-suffix>
+          </igx-input-group>
+        </igx-list-item>
+        <igx-list-item>
+          <igx-input-group>
+            <textarea #teamDescripton igxInput placeholder="Add a team motto or recruitment information" minlength="2" required [(ngModel)]="newTeam.Description">
+            </textarea>
+            <igx-suffix *ngIf="teamDescripton.value.length > 0" (click)="newTeam.Description = null">
                 <igx-icon>clear</igx-icon>
             </igx-suffix>
           </igx-input-group>

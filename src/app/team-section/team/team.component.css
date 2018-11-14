@@ -16,7 +16,7 @@ igx-icon {
 .card-column {
   display: flex;
   flex-direction: column;
-  max-width: 380px;
+  max-width: 360px;
   padding: 4px;
 }
 

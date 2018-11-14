@@ -6,6 +6,7 @@ export interface CSGOTeam {
   TeamId: string;
   TeamName: string;
   TeamAvatar: string;
+  Description: string;
   Members: TeamMember [];
 }
 
@@ -28,8 +29,9 @@ export interface TeamApplication {
 }
 
 export const TEAM_PLACEHOLDER: CSGOTeam = {
-  TeamName: '',
+  TeamName: 'Create or view teams',
   TeamAvatar: '',
+  Description: 'Use the left navigation to create your own team or to view existing teams.',
   TeamId: undefined,
   Members: undefined
 };

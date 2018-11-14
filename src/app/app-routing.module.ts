@@ -13,8 +13,8 @@ export const routes: Routes = [
   { path: 'player-details', component: PlayerDetailsComponent },
   { path: 'player-details/:userid', component: PlayerDetailsComponent },
   { path: 'player-details/:userid/:newuser', component: PlayerDetailsComponent },
-  { path: 'team', component: TeamComponent },
-  { path: 'team-details/:teamid', component: TeamOverviewComponent }
+  { path: 'team', component: TeamOverviewComponent },
+  { path: 'team/:teamid', component: TeamOverviewComponent }
 ];
 
 @NgModule({

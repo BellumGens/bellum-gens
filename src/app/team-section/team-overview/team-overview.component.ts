@@ -37,7 +37,7 @@ export class TeamOverviewComponent implements OnInit {
   }
 
   public get userIsMember() {
-    if (this.authUser && this.team) {
+    if (this.authUser && this.team && this.team.Members) {
       return this.team.Members.filter(m => m.UserId === this.authUser.SteamUser.steamID64).length;
     }
     return false;
