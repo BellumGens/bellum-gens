@@ -91,31 +91,6 @@
   font-weight: 600;
 }
 
-.map-column {
-  display: flex;
-  flex-flow: row wrap;
-  flex: 1 0 25%;
-  align-content: flex-start;
-  margin: 16px;
-  min-width: 200px;
-}
-
-.map-wrapper {
-  max-width: 200px;
-}
-
-.map-inactive {
-  opacity: 0.5;
-}
-
-.card-wrapper {
-  display: flex;
-  flex-grow: 1;
-  flex-flow: row wrap;
-  justify-content: flex-start;
-  padding: 0;
-}
-
 .team-invites {
   height: 56px;
   padding: 8px;
