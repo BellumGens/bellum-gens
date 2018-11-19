@@ -1,10 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ApplicationUser } from 'src/app/models/applicationuser';
-import { CSGOTeam } from 'src/app/models/csgoteam';
 import { BellumgensApiService } from 'src/app/services/bellumgens-api.service';
-import { LoginService } from 'src/app/services/login.service';
 import { TeamStrategy } from 'src/app/models/csgoteamstrategy';
+import { MapPool } from 'src/app/models/csgomaps';
+import { SuccessErrorComponent } from 'src/app/success-error/success-error.component';
 
 @Component({
   selector: 'app-team-strategies',
@@ -13,6 +12,9 @@ import { TeamStrategy } from 'src/app/models/csgoteamstrategy';
 })
 export class TeamStrategiesComponent implements OnInit {
   teamStrats: TeamStrategy [];
+  maps: MapPool [];
+
+  @ViewChild(SuccessErrorComponent) public toast: SuccessErrorComponent;
 
   constructor(private activatedRoute: ActivatedRoute,
               private apiService: BellumgensApiService) {
@@ -24,8 +26,16 @@ export class TeamStrategiesComponent implements OnInit {
 
       if (teamId) {
         this.apiService.getTeamStrats(teamId).subscribe(strats => this.teamStrats = strats);
+        this.apiService.getTeamMapPool(teamId).subscribe(maps => this.maps = maps);
       }
     });
+  }
+
+  public changeMaps(args: MapPool) {
+    this.apiService.setTeamMapPool(args).subscribe(
+      success => this.toast.showSuccess('Map pool updated successfully!'),
+      error => this.toast.showError(error.error.Message)
+    );
   }
 
 }

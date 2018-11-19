@@ -112,20 +112,9 @@
 
 <!-- Map Pool -->
     <div *ngIf="player">
-        <h5>Maps played:</h5>
-        <div class="card-wrapper">
-          <div class="map-column map-wrapper" *ngFor="let map of player.mapPool | ordermaps">
-            <igx-card [class]="map.IsPlayed ? '' : 'map-inactive'">
-              <img width="100%" height="100%" [src]="map | mapimage" />
-              <igx-card-actions>
-                <span class="highlight">{{ map | mapname }}</span>
-                <div class="igx-card-actions__igroup--end">
-                  <igx-checkbox [checked]="map.IsPlayed" [value]="map" [disabled]="!playerIsUser" (change)="mapChange($event)"></igx-checkbox>
-                </div>
-              </igx-card-actions>
-            </igx-card>
-          </div>
-        </div>
+      <app-map-pool [readOnly]="!playerIsUser"
+                    [mapPool]="player.mapPool"
+                    (update)="mapChange($event)"></app-map-pool>
       </div>
   <!-- END Map Pool -->
 

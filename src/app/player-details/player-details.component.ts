@@ -19,6 +19,7 @@ import { Availability } from '../models/playeravailability';
 import { ApplicationUser } from '../models/applicationuser';
 import { CSGOTeam } from '../models/csgoteam';
 import { SuccessErrorComponent } from '../success-error/success-error.component';
+import { MapPool } from '../models/csgomaps';
 
 @Component({
   selector: 'app-player-details',
@@ -147,11 +148,10 @@ export class PlayerDetailsComponent implements OnInit {
     }
   }
 
-  public mapChange(args: IChangeCheckboxEventArgs) {
-    args.checkbox.value.IsPlayed = args.checked;
-    this.apiService.setMapPool(args.checkbox.value).subscribe(
-      data => this.toast.showSuccess(),
-      error => this.toast.showError()
+  public mapChange(args: MapPool) {
+    this.apiService.setMapPool(args).subscribe(
+      data => this.toast.showSuccess('Map pool updated successfully!'),
+      error => this.toast.showError(error.error.Message)
     );
   }
 
