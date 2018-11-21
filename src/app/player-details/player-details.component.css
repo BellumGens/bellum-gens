@@ -80,10 +80,7 @@
   font-size: 0.75rem;
   font-weight: 200;
   margin-left: 4px;
-}
-
-.igx-chip__item--selected .igx-chip__subtext {
-  color: #ffffff;
+  color: #e41c77;
 }
 
 .highlight {

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BellumgensApiService } from 'src/app/services/bellumgens-api.service';
-import { TeamStrategy } from 'src/app/models/csgoteamstrategy';
+import { TeamStrategy, Side } from 'src/app/models/csgoteamstrategy';
 import { MapPool } from 'src/app/models/csgomaps';
 import { SuccessErrorComponent } from 'src/app/success-error/success-error.component';
 
@@ -13,6 +13,15 @@ import { SuccessErrorComponent } from 'src/app/success-error/success-error.compo
 export class TeamStrategiesComponent implements OnInit {
   teamStrats: TeamStrategy [];
   maps: MapPool [];
+  teamId: string;
+  newStrategy: TeamStrategy = {
+    Id: '',
+    TeamId: '',
+    Side: Side.TSide,
+    Title: '',
+    Description: '',
+    Url: ''
+  };
 
   @ViewChild(SuccessErrorComponent) public toast: SuccessErrorComponent;
 
@@ -22,11 +31,11 @@ export class TeamStrategiesComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
-      const teamId = params['teamid'];
+      this.teamId = params['teamid'];
 
-      if (teamId) {
-        this.apiService.getTeamStrats(teamId).subscribe(strats => this.teamStrats = strats);
-        this.apiService.getTeamMapPool(teamId).subscribe(maps => this.maps = maps);
+      if (this.teamId) {
+        this.apiService.getTeamStrats(this.teamId).subscribe(strats => this.teamStrats = strats);
+        this.apiService.getTeamMapPool(this.teamId).subscribe(maps => this.maps = maps);
       }
     });
   }
@@ -36,6 +45,10 @@ export class TeamStrategiesComponent implements OnInit {
       success => this.toast.showSuccess('Map pool updated successfully!'),
       error => this.toast.showError(error.error.Message)
     );
+  }
+
+  public submitStrategy() {
+    this.newStrategy.TeamId = this.teamId;
   }
 
 }

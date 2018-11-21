@@ -29,8 +29,10 @@ igx-icon {
 .list-container {
   display: flex;
   flex-flow: column nowrap;
-  margin-left: 24px;
-  min-width: 320px;
+  width: 320px;
+  + .list-container {
+    margin-left: 16px;
+  }
 }
 
 .item-container {
@@ -55,12 +57,12 @@ igx-card-content h4 {
 
 .horizontal {
   display: flex;
-  flex: 1 0 60px;
+  flex: 0 0 auto;
 }
 
 .horizontal-center {
   display: flex;
-  flex: 1 0 60px;
+  flex: 0 0 auto;
   align-items: center;
 }
 
@@ -127,4 +129,8 @@ a {
 
 .map-inactive {
   opacity: 0.5;
+}
+
+textarea {
+  resize: none;
 }

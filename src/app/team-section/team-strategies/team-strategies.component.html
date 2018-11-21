@@ -11,11 +11,55 @@
     <div class="card-column-2">
       <igx-card>
         <igx-card-content>
-          <button igxButton="raised" igxRipple>Add new CT-Side strategy</button>
+          <button igxButton="raised" igxRipple (click)="newStrat.open()">Add new CT-Side strategy</button>
         </igx-card-content>
       </igx-card>
     </div>
   </div>
 </div>
+
+<!-- New strategy dialog-->
+<igx-dialog #newStrat closeOnOutsideSelect="true">
+  <div class="new-strategy">
+    <igx-list>
+      <igx-list-item [isHeader]="true">Add a new team strategy</igx-list-item>
+      <igx-list-item>
+        <igx-input-group>
+          <input #strategyName igxInput placeholder="Strategy title" minlength="2" required [(ngModel)]="newStrategy.Title">
+          <igx-suffix *ngIf="strategyName.value.length > 0" (click)="newStrategy.Title = ''">
+              <igx-icon>clear</igx-icon>
+          </igx-suffix>
+        </igx-input-group>
+      </igx-list-item>
+      <igx-list-item>
+        <igx-input-group>
+          <textarea #strategyDescription igxInput placeholder="Add strategy description" minlength="2" required [(ngModel)]="newStrategy.Description">
+          </textarea>
+          <igx-suffix *ngIf="strategyDescription.value.length > 0" (click)="newStrategy.Description = ''">
+              <igx-icon>clear</igx-icon>
+          </igx-suffix>
+        </igx-input-group>
+      </igx-list-item>
+      <igx-list-item>
+        <igx-input-group>
+          <igx-prefix>
+            <igx-icon>link</igx-icon>
+          </igx-prefix>
+          <input #strategyUrl igxInput placeholder="Link to a video/resource" [(ngModel)]="newStrategy.Url">
+          <igx-suffix *ngIf="strategyUrl.value.length > 0" (click)="newStrategy.Url = ''">
+              <igx-icon>clear</igx-icon>
+          </igx-suffix>
+        </igx-input-group>
+      </igx-list-item>
+      <igx-list-item>
+        <iframe width="560" height="315" [src]="'https://www.youtube.com/embed/_bOFeh5gEJQ'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </igx-list-item>
+      <igx-list-item>
+        <button igxButton igxRippleCentered="true" (click)="submitStrategy()" [disabled]="strategyName.invalid || strategyDescription.invalid">Submit</button>
+      </igx-list-item>
+    </igx-list>
+  </div>
+</igx-dialog>
+<!-- END New strategy dialog -->
 
 <app-success-error></app-success-error>

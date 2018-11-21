@@ -83,6 +83,9 @@
         </igx-list-item>
         <igx-list-item>
           <igx-input-group>
+            <igx-prefix>
+              <igx-icon>link</igx-icon>
+            </igx-prefix>
             <input #teamAvatar igxInput placeholder="Team Avatar URL" [(ngModel)]="newTeam.TeamAvatar">
             <igx-suffix *ngIf="teamAvatar.value.length > 0" (click)="newTeam.TeamAvatar = null">
                 <igx-icon>clear</igx-icon>
