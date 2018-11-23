@@ -6,7 +6,10 @@ import { MapPool } from '../models/csgomaps';
 })
 export class OrdermapsPipe implements PipeTransform {
 
-  transform(mapPool: MapPool []): any {
+  transform(mapPool: MapPool []): MapPool [] {
+    if (!mapPool) {
+      return mapPool;
+    }
     return mapPool.sort((x, y) => x.IsPlayed === y.IsPlayed ? 0 : x.IsPlayed < y.IsPlayed ? 1 : -1);
   }
 

@@ -4,14 +4,14 @@
     <div class="card-column-2">
       <igx-card>
         <igx-card-content>
-          <button igxButton="raised" igxRipple>Add new T-Side strategy</button>
+          <button igxButton="raised" igxRipple (click)="openNewStrategy(0)">Add new T-Side strategy</button>
         </igx-card-content>
       </igx-card>
     </div>
     <div class="card-column-2">
       <igx-card>
         <igx-card-content>
-          <button igxButton="raised" igxRipple (click)="newStrat.open()">Add new CT-Side strategy</button>
+          <button igxButton="raised" igxRipple (click)="openNewStrategy(1)">Add new CT-Side strategy</button>
         </igx-card-content>
       </igx-card>
     </div>
@@ -41,6 +41,17 @@
         </igx-input-group>
       </igx-list-item>
       <igx-list-item>
+        <button igxButton="flat" [igxToggleAction]="mapPicker" igxRippleCentered="true">
+          Map: {{ newStrategy.Map | mapname }}
+          <igx-icon fontSet="material">arrow_drop_down</igx-icon>
+        </button>
+        <igx-drop-down #mapPicker (onSelection)="selectMap($event)">
+          <igx-drop-down-item *ngFor="let map of mapList" [value]="map.id" [isSelected]="map.id === newStrategy.Map">
+            {{ map.map }}
+          </igx-drop-down-item>
+        </igx-drop-down>
+      </igx-list-item>
+      <igx-list-item>
         <igx-input-group>
           <igx-prefix>
             <igx-icon>link</igx-icon>
@@ -51,8 +62,8 @@
           </igx-suffix>
         </igx-input-group>
       </igx-list-item>
-      <igx-list-item>
-        <iframe width="560" height="315" [src]="'https://www.youtube.com/embed/_bOFeh5gEJQ'" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <igx-list-item *ngIf="getVideoEmbedLink()">
+        <iframe width="560" height="315" [src]="sanitizedUrl" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </igx-list-item>
       <igx-list-item>
         <button igxButton igxRippleCentered="true" (click)="submitStrategy()" [disabled]="strategyName.invalid || strategyDescription.invalid">Submit</button>

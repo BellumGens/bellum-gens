@@ -1,3 +1,5 @@
+import { CSGOMap } from './csgomaps';
+
 export interface TeamStrategy {
   Id: string;
   TeamId: string;
@@ -5,6 +7,7 @@ export interface TeamStrategy {
   Title: string;
   Description: string;
   Url: string;
+  Map: CSGOMap;
 }
 
 export enum Side {

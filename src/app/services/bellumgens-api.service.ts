@@ -125,6 +125,10 @@ export class BellumgensApiService {
     return this.http.put(`${this._apiEndpoint}/teams/mapPool`, mapstatus, { withCredentials: true });
   }
 
+  public submitStrategy(strat: TeamStrategy): Observable<any> {
+    return this.http.post(`${this._apiEndpoint}/teams/strategy`, strat, { withCredentials: true });
+  }
+
   public getUser(userId: string): Observable<CSGOPlayer> {
     return this.http.get<CSGOPlayer>(`${this._apiEndpoint}/users/user?userid=${userId}`);
   }
