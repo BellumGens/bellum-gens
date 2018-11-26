@@ -69,21 +69,33 @@ export class TeamStrategiesComponent implements OnInit {
   public submitStrategy() {
     this.newStrategy.TeamId = this.teamId;
     this.apiService.submitStrategy(this.newStrategy).subscribe(
-      success => this.toast.showSuccess('Update submitted successfully!'),
+      success => {
+        this.teamStrats.push(this.newStrategy);
+        this.toast.showSuccess('Update submitted successfully!');
+      },
       error => this.toast.showError(error.error.Message)
     );
   }
 
   public getVideoEmbedLink() {
     if (this._youtubeRegEx.test(this.newStrategy.Url)) {
-      const parts = this._youtubeRegEx.exec(this.newStrategy.Url);
-      if (this.videoId && this.videoId === parts[5]) {
-        return true;
-      }
-      this.videoId = parts[5];
-      this.sanitizedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(`https://www.youtube.com/embed/${parts[5]}`);
+      this.sanitizedUrl = this.getYoutubeEmbedLink(this.newStrategy.Url);
+      return true;
     }
     return false;
+  }
+
+  public getYoutubeEmbedLink(url: string) {
+    const parts = this._youtubeRegEx.exec(url);
+    if (this.videoId && this.videoId === parts[5]) {
+      return true;
+    }
+    this.videoId = parts[5];
+    return this.getSanitizedUrl(`https://www.youtube.com/embed/${parts[5]}`);
+  }
+
+  public getSanitizedUrl(url: string) {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 
 }

@@ -55,6 +55,7 @@ import { TeamNotificationsComponent } from './team-section/team-notifications/te
 import { SortApplicationsPipe } from './pipes/sort-applications.pipe';
 import { TeamCalendarComponent } from './team-section/team-calendar/team-calendar.component';
 import { MapPoolComponent } from './map-pool/map-pool.component';
+import { SideStratsPipe } from './pipes/sidestrats.pipe';
 
 @NgModule({
   declarations: [
@@ -82,7 +83,8 @@ import { MapPoolComponent } from './map-pool/map-pool.component';
     TeamNotificationsComponent,
     TeamCalendarComponent,
     SortApplicationsPipe,
-    MapPoolComponent
+    MapPoolComponent,
+    SideStratsPipe
   ],
   imports: [
     FormsModule,

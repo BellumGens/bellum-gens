@@ -7,6 +7,15 @@
           <button igxButton="raised" igxRipple (click)="openNewStrategy(0)">Add new T-Side strategy</button>
         </igx-card-content>
       </igx-card>
+      <igx-card *ngFor="let strat of teamStrats | sidestrats:0">
+        <igx-card-header>
+          <h5>{{ strat.Title }}</h5>
+        </igx-card-header>
+        <igx-card-content>
+          <p>{{ strat.Description }}</p>
+          <iframe width="560" height="315" *ngIf="strat.Url" [src]="getYoutubeEmbedLink(strat.Url)" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </igx-card-content>
+      </igx-card>
     </div>
     <div class="card-column-2">
       <igx-card>
@@ -14,6 +23,11 @@
           <button igxButton="raised" igxRipple (click)="openNewStrategy(1)">Add new CT-Side strategy</button>
         </igx-card-content>
       </igx-card>
+      <igx-card *ngFor="let strat of teamStrats | sidestrats:1">
+          <igx-card-content>
+            <p>{{ strat.Description }}</p>
+          </igx-card-content>
+        </igx-card>
     </div>
   </div>
 </div>
