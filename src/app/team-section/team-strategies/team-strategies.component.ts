@@ -79,6 +79,11 @@ export class TeamStrategiesComponent implements OnInit {
 
   public getVideoEmbedLink() {
     if (this._youtubeRegEx.test(this.newStrategy.Url)) {
+      const parts = this._youtubeRegEx.exec(this.newStrategy.Url);
+      if (this.videoId && this.videoId === parts[5]) {
+        return true;
+      }
+      this.videoId = parts[5];
       this.sanitizedUrl = this.getYoutubeEmbedLink(this.newStrategy.Url);
       return true;
     }
@@ -87,10 +92,6 @@ export class TeamStrategiesComponent implements OnInit {
 
   public getYoutubeEmbedLink(url: string) {
     const parts = this._youtubeRegEx.exec(url);
-    if (this.videoId && this.videoId === parts[5]) {
-      return true;
-    }
-    this.videoId = parts[5];
     return this.getSanitizedUrl(`https://www.youtube.com/embed/${parts[5]}`);
   }
 

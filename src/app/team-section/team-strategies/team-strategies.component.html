@@ -1,5 +1,5 @@
 <div class="card-with-margins">
-  <app-map-pool [mapPool]="maps" [readOnly]="false" (update)="changeMaps($event)"></app-map-pool>
+  <!-- <app-map-pool [mapPool]="maps" [readOnly]="false" (update)="changeMaps($event)"></app-map-pool> -->
   <div class="horizontal">
     <div class="card-column-2">
       <igx-card>
@@ -24,10 +24,14 @@
         </igx-card-content>
       </igx-card>
       <igx-card *ngFor="let strat of teamStrats | sidestrats:1">
+          <igx-card-header>
+            <h5>{{ strat.Title }}</h5>
+          </igx-card-header>
           <igx-card-content>
             <p>{{ strat.Description }}</p>
+            <iframe width="560" height="315" *ngIf="strat.Url" [src]="getYoutubeEmbedLink(strat.Url)" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </igx-card-content>
-        </igx-card>
+      </igx-card>
     </div>
   </div>
 </div>

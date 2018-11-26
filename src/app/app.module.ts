@@ -29,8 +29,8 @@ import { IgxNavbarModule,
   IgxDragDropModule,
   IgxTabsModule,
   IgxCalendarModule} from 'igniteui-angular';
-import { PlayersComponent } from './players/players.component';
-import { PlayerDetailsComponent } from './player-details/player-details.component';
+import { PlayersComponent } from './player-section/players/players.component';
+import { PlayerDetailsComponent } from './player-section/player-details/player-details.component';
 import { LoginService } from './services/login.service';
 import { BellumgensApiService } from './services/bellumgens-api.service';
 import { TeamComponent } from './team-section/team/team.component';
@@ -56,6 +56,7 @@ import { SortApplicationsPipe } from './pipes/sort-applications.pipe';
 import { TeamCalendarComponent } from './team-section/team-calendar/team-calendar.component';
 import { MapPoolComponent } from './map-pool/map-pool.component';
 import { SideStratsPipe } from './pipes/sidestrats.pipe';
+import { PlayerComponent } from './player-section/player/player.component';
 
 @NgModule({
   declarations: [
@@ -84,7 +85,8 @@ import { SideStratsPipe } from './pipes/sidestrats.pipe';
     TeamCalendarComponent,
     SortApplicationsPipe,
     MapPoolComponent,
-    SideStratsPipe
+    SideStratsPipe,
+    PlayerComponent
   ],
   imports: [
     FormsModule,

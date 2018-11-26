@@ -7,7 +7,7 @@ import { TeamStrategy, Side } from '../models/csgoteamstrategy';
 export class SideStratsPipe implements PipeTransform {
 
   transform(strats: TeamStrategy [], args: Side): any {
-    return strats.filter(s => s.Side === args);
+    return strats && strats.filter(s => s.Side === args);
   }
 
 }
