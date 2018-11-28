@@ -57,25 +57,9 @@
 
 <!-- Availability -->
     <div *ngIf="player.availability">
-      <h5>Availability:</h5>
-      <igx-chips-area>
-        <igx-chip *ngFor="let weekday of player.availability" [selectable]="playerIsUser" [removable]="playerIsUser && weekday.Available" [selected]="weekday.Available" (onSelection)="daySelected($event)" (onRemove)="dayDeselected($event)">
-            <span class='igx-chip__text'>{{ weekday.Day | weekday }}</span>
-            <span class='igx-chip__subtext' *ngIf="weekday.Available">{{ weekday.From | date:'H:mm' }}-{{ weekday.To | date:'H:mm' }}</span>
-        </igx-chip>
-      </igx-chips-area>
+      <h5>Availability</h5>
+      <app-availability [availability]="player.availability" (availabilityChanged)="submitAvailability($event)" [editable]="playerIsUser"></app-availability>
       <div class="available-time-container">
-        <div>
-          <h5 *ngIf="playerIsUser && selectedDay">Available times for <span class="highlight" [textContent]="selectedDay ? (selectedDay.Day | weekday) : ''"></span>:</h5>
-          <div class="availability-time" *ngIf="playerIsUser && selectedDay">
-            <igx-time-picker #from class="time-picker player__info" [disabled]="!playerIsUser" [value]="dateFromString(this.selectedDay.From)" [itemsDelta]="{hours: 1, minutes: 15}" (onValueChanged)="fromChange($event)">
-              
-            </igx-time-picker>
-            <igx-time-picker #to class="time-picker player__info" [disabled]="!playerIsUser" [value]="dateFromString(this.selectedDay.To)" [itemsDelta]="{hours: 1, minutes: 15}" (onValueChanged)="toChange($event)">
-              
-            </igx-time-picker>
-          </div>
-        </div>
         <!-- Playstyle Roles -->
         <div class="player-roles__container">
           <h5>Preferred <span class="highlight">playstyle</span>:</h5>

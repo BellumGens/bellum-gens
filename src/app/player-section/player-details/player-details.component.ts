@@ -3,14 +3,9 @@ import { LoginService } from '../../services/login.service';
 import { ActivatedRoute } from '../../../../node_modules/@angular/router';
 import { BellumgensApiService } from '../../services/bellumgens-api.service';
 import {
-  IgxChipsAreaComponent,
-  IgxTimePickerComponent,
-  IgxTimePickerValueChangedEventArgs,
   IgxToastPosition,
   IgxDropDownComponent,
-  ISelectionEventArgs,
-  IChipSelectEventArgs,
-  IBaseChipEventArgs
+  ISelectionEventArgs
 } from '../../../../node_modules/igniteui-angular';
 import { CSGOPlayer } from '../../models/csgoplayer';
 import { Availability } from '../../models/playeravailability';
@@ -30,13 +25,9 @@ export class PlayerDetailsComponent implements OnInit {
   public authUser: ApplicationUser;
   public teamsAdmin: CSGOTeam [];
   public player: CSGOPlayer;
-  public selectedDay: Availability;
   public newUser = false;
 
-  @ViewChild(IgxChipsAreaComponent) public chips: IgxChipsAreaComponent;
   @ViewChild(SuccessErrorComponent) public toast: SuccessErrorComponent;
-  @ViewChild('from') public from: IgxTimePickerComponent;
-  @ViewChild('to') public to: IgxTimePickerComponent;
   @ViewChild('primaryRole') public primaryRole: IgxDropDownComponent;
   @ViewChild('secondaryRole') public secondaryRole: IgxDropDownComponent;
 
@@ -65,53 +56,11 @@ export class PlayerDetailsComponent implements OnInit {
     });
   }
 
-  public dateFromString(date: string): Date {
-    return new Date(date);
-  }
-
-  public daySelected(args: IChipSelectEventArgs) {
-    if (this.chips && args.originalEvent) {
-      const index = this.chips.chipsList.toArray().indexOf(args.owner);
-      this.selectedDay = this.player.availability[index];
-
-      if (!args.selected) {
-        args.cancel = true;
-      }
-      this.cdr.detectChanges();
-    }
-  }
-
-  public dayDeselected(args: IBaseChipEventArgs) {
-    this.selectedDay.Available = false;
-    this.apiService.setAvailability(this.selectedDay).subscribe(
+  public submitAvailability(args: Availability) {
+    this.apiService.setAvailability(args).subscribe(
       data => this.toast.showSuccess(),
       error => this.toast.showError()
     );
-    this.selectedDay = null;
-  }
-
-  public fromChange(args: IgxTimePickerValueChangedEventArgs) {
-    if (this.to.value) {
-      this.selectedDay.From = args.newValue;
-      this.selectedDay.To = this.to.value;
-      this.selectedDay.Available = true;
-      this.apiService.setAvailability(this.selectedDay).subscribe(
-        data => this.toast.showSuccess(),
-        error => this.toast.showError()
-      );
-    }
-  }
-
-  public toChange(args) {
-    if (this.from.value) {
-      this.selectedDay.To = args.newValue;
-      this.selectedDay.From = this.from.value;
-      this.selectedDay.Available = true;
-      this.apiService.setAvailability(this.selectedDay).subscribe(
-        data => this.toast.showSuccess(),
-        error => this.toast.showError()
-      );
-    }
   }
 
   public get playerIsUser(): boolean {

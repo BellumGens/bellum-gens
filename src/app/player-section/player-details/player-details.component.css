@@ -43,10 +43,6 @@
   margin-top: 24px;
 }
 
-.time-picker {
-  width: 200px;
-}
-
 .player-role-chooser {
   display: flex;
   flex-flow: row;
