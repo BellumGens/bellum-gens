@@ -61,7 +61,7 @@ export class AvailabilityComponent implements OnInit {
     this.selectedDay = null;
   }
 
-  public availabilityChange(args: IgxTimePickerValueChangedEventArgs) {
+  public availabilityChange() {
     this.selectedDay.From = this.from.value;
     this.selectedDay.To = this.to.value;
     this.selectedDay.Available = true;
