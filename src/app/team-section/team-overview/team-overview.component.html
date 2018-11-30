@@ -26,7 +26,7 @@
               <app-team-strategies></app-team-strategies>
             </igx-tabs-group>
             <igx-tabs-group *ngIf="userIsMember" label="Team Calendar">
-              <app-team-calendar></app-team-calendar>
+              <app-team-calendar [practiceSchedule]="team.PracticeSchedule"></app-team-calendar>
             </igx-tabs-group>
             <igx-tabs-group *ngIf="userIsMember" label="Notifications" icon="notifications">
                 <ng-template igxTab>

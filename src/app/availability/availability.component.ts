@@ -3,9 +3,9 @@ import { Availability } from '../models/playeravailability';
 import { IgxTimePickerComponent,
   IBaseChipEventArgs,
   IChipSelectEventArgs,
-  IgxTimePickerValueChangedEventArgs,
   IgxChipsAreaComponent,
-  IgxDialogComponent} from 'igniteui-angular';
+  IgxDialogComponent,
+  IgxChipComponent} from 'igniteui-angular';
 
 @Component({
   selector: 'app-availability',
@@ -13,6 +13,7 @@ import { IgxTimePickerComponent,
   styleUrls: ['./availability.component.css']
 })
 export class AvailabilityComponent implements OnInit {
+  selectedChip: IgxChipComponent;
   public get selectedDay() {
     return this._availability;
   }
@@ -52,13 +53,16 @@ export class AvailabilityComponent implements OnInit {
 
       if (!args.selected) {
         args.cancel = true;
+      } else {
+        this.selectedChip = args.owner;
       }
     }
   }
 
-  public dayDeselected(args: IBaseChipEventArgs) {
+  public dayDeselected() {
     this.selectedDay.Available = false;
     this.selectedDay = null;
+    this.selectedChip = null;
   }
 
   public availabilityChange() {
@@ -66,6 +70,11 @@ export class AvailabilityComponent implements OnInit {
     this.selectedDay.To = this.to.value;
     this.selectedDay.Available = true;
     this.availabilityChanged.emit(this.selectedDay);
+    this.dialog.close();
+  }
+
+  public availabilityCancel() {
+    this.selectedChip.selected = false;
     this.dialog.close();
   }
 }

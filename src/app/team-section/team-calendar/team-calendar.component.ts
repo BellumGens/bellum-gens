@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { Availability } from 'src/app/models/playeravailability';
 
 @Component({
   selector: 'app-team-calendar',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./team-calendar.component.css']
 })
 export class TeamCalendarComponent implements OnInit {
+  @Input()
+  public practiceSchedule: Availability[];
 
   constructor() { }
 

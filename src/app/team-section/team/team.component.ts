@@ -22,6 +22,7 @@ export class TeamComponent {
     TeamAvatar: '',
     Description: '',
     TeamId: undefined,
+    PracticeSchedule: [],
     Members: undefined
   };
   public activeMembers: TeamMember [];

@@ -1,6 +1,7 @@
 import { PlaystyleRole } from './playerrole';
 import { SteamUser } from './steamuser';
 import { NotificationState } from './usernotifications';
+import { Availability } from './playeravailability';
 
 export interface CSGOTeam {
   TeamId: string;
@@ -8,6 +9,7 @@ export interface CSGOTeam {
   TeamAvatar: string;
   Description: string;
   Members: TeamMember [];
+  PracticeSchedule: Availability [];
 }
 
 export interface TeamMember {
@@ -33,5 +35,6 @@ export const TEAM_PLACEHOLDER: CSGOTeam = {
   TeamAvatar: '',
   Description: 'Use the left navigation to create your own team or to view existing teams.',
   TeamId: undefined,
+  PracticeSchedule: [],
   Members: undefined
 };

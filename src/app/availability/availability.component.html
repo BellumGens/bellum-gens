@@ -1,11 +1,11 @@
 <igx-chips-area>
-  <igx-chip *ngFor="let weekday of availability" [selectable]="editable" [removable]="editable && weekday.Available" [selected]="weekday.Available" (onSelection)="daySelected($event)" (onRemove)="dayDeselected($event)">
+  <igx-chip *ngFor="let weekday of availability" [selectable]="editable" [removable]="editable && weekday.Available" [selected]="weekday.Available" (onSelection)="daySelected($event)" (onRemove)="dayDeselected()">
       <span class='igx-chip__text'>{{ weekday.Day | weekday }}</span>
       <span class='igx-chip__subtext' *ngIf="weekday.Available">{{ weekday.From | date:'H:mm' }}-{{ weekday.To | date:'H:mm' }}</span>
   </igx-chip>
 </igx-chips-area>
 
-<igx-dialog #edit closeOnOutsideSelect="true" leftButtonLabel="Cancel" rightButtonLabel="Submit" (onLeftButtonSelect)="edit.close()" (onRightButtonSelect)="availabilityChange()">
+<igx-dialog #edit closeOnOutsideSelect="true" leftButtonLabel="Cancel" rightButtonLabel="Submit" (onLeftButtonSelect)="availabilityCancel()" (onRightButtonSelect)="availabilityChange()">
   <div class="time-pickers" *ngIf="selectedDay">
     <h5>Available times for <span class="highlight" [textContent]="selectedDay ? (selectedDay.Day | weekday) : ''"></span>:</h5>
     <div class="availability-time">
