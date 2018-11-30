@@ -10,7 +10,7 @@
       <igx-avatar *ngIf="isAdmin" icon='clear' [roundShape]="true" class="country-badge-large" title="Remove from role" (click)="removeFromRole(role)"></igx-avatar>
       <igx-avatar *ngIf="!isAdmin" [src]="'assets/country-flags/svg/' + role.user.SteamUser.country.toLowerCase() + '.svg'" [roundShape]="true" [title]="role.user.SteamUser.country" class="country-badge-large"></igx-avatar>
     </igx-avatar>
-    <igx-avatar *ngIf="!role.user" icon='add' roundShape="true" [size]="'large'" igxDrop (onDrop)="assignToRole($event, role)">
+    <igx-avatar *ngIf="!role.user" class="empty-role" icon='add' roundShape="true" [size]="'large'" igxDrop (onDrop)="assignToRole($event, role)">
     </igx-avatar>
     <div *ngIf="role.user">
       <span class="title">
@@ -24,7 +24,9 @@
 <h4 *ngIf="activeMembers?.length">Bench:</h4>
 <div class="horizontal padding-top">
   <div *ngFor="let user of activeMembers" class="member-slot">
-    <igx-avatar [src]="user.SteamUser.avatarMedium" roundShape="true" [size]="'medium'" [igxDrag]="user">
+    <igx-avatar [src]="user.SteamUser.avatarMedium" roundShape="true" [size]="'medium'" [igxDrag]="user"
+        (dragStart)="roleDragging()"
+        (dragEnd)="roleDraggingEnd()">
       <igx-avatar *ngIf="isAdmin" icon='clear' [roundShape]="true" class="country-badge-medium" title="Move to inactive" (click)="removeFromTeam(user)"></igx-avatar>
     </igx-avatar>
     <div>

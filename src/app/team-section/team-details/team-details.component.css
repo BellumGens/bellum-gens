@@ -31,3 +31,15 @@
 .horizontal.padding-top {
   padding-top: 32px;
 }
+
+.empty-role {
+  width: 88px;
+  height: 88px;
+}
+
+.empty-role-active {
+  --my-color: #3040AA;
+  box-shadow: inset 0 0 0 2px var(--my-color);
+  --igx-avatar-icon-color: var(--my-color);
+  --igx-avatar-icon-background: rgba(0, 0, 0, 0.15);
+}

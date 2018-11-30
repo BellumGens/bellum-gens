@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { IgxDropEventArgs } from 'igniteui-angular';
+import { IgxDropEventArgs, IgxAvatarComponent } from 'igniteui-angular';
 import { noop } from 'rxjs';
 import { PlaystyleRole } from 'src/app/models/playerrole';
 import { TeamMember, CSGOTeam, TEAM_PLACEHOLDER } from 'src/app/models/csgoteam';
@@ -34,6 +34,7 @@ export class TeamDetailsComponent implements OnInit {
   ];
 
   @ViewChild(SuccessErrorComponent) public toast: SuccessErrorComponent;
+  @ViewChildren(IgxAvatarComponent, { read: ElementRef }) public emptyRoles: QueryList<ElementRef>;
 
   constructor(private activatedRoute: ActivatedRoute,
     private apiService: BellumgensApiService,
@@ -92,6 +93,7 @@ export class TeamDetailsComponent implements OnInit {
     role.user = user;
     this.activeMembers.splice(this.activeMembers.indexOf(args.drag.data), 1);
     args.cancel = true;
+    this.roleDraggingEnd();
     this.apiService.updateTeamMember(user).subscribe(
       data => noop,
       error => {
@@ -105,5 +107,17 @@ export class TeamDetailsComponent implements OnInit {
       return false;
     }
     return this.team.Members.find(m => m.UserId === this.authUser.SteamUser.steamID64).IsAdmin;
+  }
+
+  public roleDragging() {
+    this.emptyRoles.filter(e => e.nativeElement.classList.contains('empty-role')).forEach((avatar) => {
+      avatar.nativeElement.classList.add('empty-role-active');
+    });
+  }
+
+  public roleDraggingEnd() {
+    this.emptyRoles.forEach((avatar) => {
+      avatar.nativeElement.classList.remove('empty-role-active');
+    });
   }
 }

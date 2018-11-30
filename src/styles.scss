@@ -8,7 +8,7 @@ $secondary: #990116 !default;
 $app-palette: igx-palette($primary, $secondary);
 
 @include igx-core();
-@include igx-theme($app-palette);
+@include igx-theme($app-palette, $legacy-support: false);
 
 //$navbar-theme: igx-navbar-theme($background: #731963)
 //@include igx-navbar($navbar-theme)
