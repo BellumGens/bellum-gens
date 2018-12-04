@@ -71,6 +71,7 @@ export class TeamStrategiesComponent implements OnInit {
     this.apiService.submitStrategy(this.newStrategy).subscribe(
       success => {
         this.teamStrats.push(this.newStrategy);
+        this.dialog.close();
         this.toast.showSuccess('Update submitted successfully!');
       },
       error => this.toast.showError(error.error.Message)
@@ -90,12 +91,12 @@ export class TeamStrategiesComponent implements OnInit {
     return false;
   }
 
-  public getYoutubeEmbedLink(url: string) {
+  public getYoutubeEmbedLink(url: string): SafeResourceUrl {
     const parts = this._youtubeRegEx.exec(url);
     return this.getSanitizedUrl(`https://www.youtube.com/embed/${parts[5]}`);
   }
 
-  public getSanitizedUrl(url: string) {
+  public getSanitizedUrl(url: string): SafeResourceUrl {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 
