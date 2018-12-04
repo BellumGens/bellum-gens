@@ -10,6 +10,7 @@
       <igx-card *ngFor="let strat of teamStrats | sidestrats:0">
         <igx-card-header>
           <h5>{{ strat.Title }}</h5>
+          <button igxButton="flat" (click)="editStrategy(strat)">Edit</button>
         </igx-card-header>
         <igx-card-content>
           <p>{{ strat.Description }}</p>
@@ -26,6 +27,7 @@
       <igx-card *ngFor="let strat of teamStrats | sidestrats:1">
           <igx-card-header>
             <h5>{{ strat.Title }}</h5>
+            <button igxButton="flat" (click)="editStrategy(strat)">Edit</button>
           </igx-card-header>
           <igx-card-content>
             <p>{{ strat.Description }}</p>

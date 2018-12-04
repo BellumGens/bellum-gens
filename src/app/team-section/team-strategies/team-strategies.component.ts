@@ -66,6 +66,11 @@ export class TeamStrategiesComponent implements OnInit {
     this.newStrategy.Map = args.newSelection.value;
   }
 
+  public editStrategy(strat: TeamStrategy) {
+    this.newStrategy = strat;
+    this.dialog.open();
+  }
+
   public submitStrategy() {
     this.newStrategy.TeamId = this.teamId;
     this.apiService.submitStrategy(this.newStrategy).subscribe(
