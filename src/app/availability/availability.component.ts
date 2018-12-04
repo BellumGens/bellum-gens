@@ -74,7 +74,6 @@ export class AvailabilityComponent implements OnInit {
   }
 
   public availabilityCancel() {
-    this.selectedChip.selected = false;
     this.dialog.close();
   }
 }
