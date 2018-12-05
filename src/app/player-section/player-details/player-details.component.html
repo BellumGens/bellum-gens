@@ -95,6 +95,7 @@
 
 <!-- Map Pool -->
   <div *ngIf="player">
+    <h5>Maps played:</h5>
     <app-map-pool [readOnly]="!playerIsUser"
                   [mapPool]="player.mapPool"
                   (update)="mapChange($event)"></app-map-pool>

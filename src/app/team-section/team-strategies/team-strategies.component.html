@@ -1,5 +1,5 @@
 <div class="card-with-margins">
-  <!-- <app-map-pool [mapPool]="maps" [readOnly]="false" (update)="changeMaps($event)"></app-map-pool> -->
+  <app-map-pool [mapPool]="maps" [readOnly]="false" (update)="changeMaps($event)"></app-map-pool>
   <div class="horizontal">
     <div class="card-column-2">
       <igx-card>
@@ -14,7 +14,7 @@
         </igx-card-header>
         <igx-card-content>
           <p>{{ strat.Description }}</p>
-          <iframe width="560" height="315" *ngIf="strat.Url" [src]="getYoutubeEmbedLink(strat.Url)" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="youtube-frame" *ngIf="strat.Url" [src]="getYoutubeEmbedLink(strat.Url)" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </igx-card-content>
       </igx-card>
     </div>
@@ -31,7 +31,7 @@
           </igx-card-header>
           <igx-card-content>
             <p>{{ strat.Description }}</p>
-            <iframe width="560" height="315" *ngIf="strat.Url" [src]="getYoutubeEmbedLink(strat.Url)" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe class="youtube-frame" *ngIf="strat.Url" [src]="getYoutubeEmbedLink(strat.Url)" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </igx-card-content>
       </igx-card>
     </div>

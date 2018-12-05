@@ -8,3 +8,8 @@
   padding: 4px;
   min-width: 560px
 }
+
+.youtube-frame {
+  width: 100%;
+  min-height: 315px;
+}
