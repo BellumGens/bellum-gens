@@ -58,6 +58,7 @@ import { MapPoolComponent } from './map-pool/map-pool.component';
 import { SideStratsPipe } from './pipes/sidestrats.pipe';
 import { PlayerComponent } from './player-section/player/player.component';
 import { AvailabilityComponent } from './availability/availability.component';
+import { SafeVideoLinkPipe } from './pipes/safe-video-link.pipe';
 
 @NgModule({
   declarations: [
@@ -88,7 +89,8 @@ import { AvailabilityComponent } from './availability/availability.component';
     MapPoolComponent,
     SideStratsPipe,
     PlayerComponent,
-    AvailabilityComponent
+    AvailabilityComponent,
+    SafeVideoLinkPipe
   ],
   imports: [
     FormsModule,

@@ -35,8 +35,7 @@ export class TeamStrategiesComponent implements OnInit {
   @ViewChild(IgxDialogComponent) public dialog: IgxDialogComponent;
 
   constructor(private activatedRoute: ActivatedRoute,
-              private apiService: BellumgensApiService,
-              private sanitizer: DomSanitizer) {
+              private apiService: BellumgensApiService) {
   }
 
   ngOnInit() {
@@ -75,7 +74,9 @@ export class TeamStrategiesComponent implements OnInit {
     this.newStrategy.TeamId = this.teamId;
     this.apiService.submitStrategy(this.newStrategy).subscribe(
       success => {
-        this.teamStrats.push(this.newStrategy);
+        if (!this.newStrategy.Id) {
+          this.teamStrats.push(this.newStrategy);
+        }
         this.dialog.close();
         this.toast.showSuccess('Update submitted successfully!');
       },
@@ -90,19 +91,15 @@ export class TeamStrategiesComponent implements OnInit {
         return true;
       }
       this.videoId = parts[5];
-      this.sanitizedUrl = this.getYoutubeEmbedLink(this.newStrategy.Url);
+      this.newStrategy.Url = this.getYoutubeEmbedLink(this.newStrategy.Url);
       return true;
     }
     return false;
   }
 
-  public getYoutubeEmbedLink(url: string): SafeResourceUrl {
+  public getYoutubeEmbedLink(url: string): string {
     const parts = this._youtubeRegEx.exec(url);
-    return this.getSanitizedUrl(`https://www.youtube.com/embed/${parts[5]}`);
-  }
-
-  public getSanitizedUrl(url: string): SafeResourceUrl {
-    return this.sanitizer.bypassSecurityTrustResourceUrl(url);
+    return `https://www.youtube.com/embed/${parts[5]}`;
   }
 
 }

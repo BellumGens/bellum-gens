@@ -14,7 +14,7 @@
         </igx-card-header>
         <igx-card-content>
           <p>{{ strat.Description }}</p>
-          <iframe class="youtube-frame" *ngIf="strat.Url" [src]="getYoutubeEmbedLink(strat.Url)" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="youtube-frame" *ngIf="strat.Url" [src]="strat.Url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </igx-card-content>
       </igx-card>
     </div>
@@ -31,7 +31,7 @@
           </igx-card-header>
           <igx-card-content>
             <p>{{ strat.Description }}</p>
-            <iframe class="youtube-frame" *ngIf="strat.Url" [src]="getYoutubeEmbedLink(strat.Url)" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            <iframe class="youtube-frame" *ngIf="strat.Url" [src]="strat.Url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
           </igx-card-content>
       </igx-card>
     </div>
@@ -83,7 +83,7 @@
         </igx-input-group>
       </igx-list-item>
       <igx-list-item *ngIf="getVideoEmbedLink()">
-        <iframe width="560" height="315" [src]="sanitizedUrl" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe width="560" height="315" [src]="newStrategy.Url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </igx-list-item>
       <igx-list-item>
         <button igxButton igxRippleCentered="true" (click)="submitStrategy()" [disabled]="strategyName.invalid || strategyDescription.invalid">Submit</button>
