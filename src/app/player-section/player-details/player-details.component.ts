@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, ViewChild, ChangeDetectorRef, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation, ViewChild, OnInit } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import { ActivatedRoute } from '../../../../node_modules/@angular/router';
 import { BellumgensApiService } from '../../services/bellumgens-api.service';
@@ -33,8 +33,7 @@ export class PlayerDetailsComponent implements OnInit {
 
   constructor(private authManager: LoginService,
               private apiService: BellumgensApiService,
-              private activatedRoute: ActivatedRoute,
-              private cdr: ChangeDetectorRef) {
+              private activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
@@ -44,15 +43,16 @@ export class PlayerDetailsComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       const userid = params['userid'];
       this.newUser = params['newuser'];
-
-      this.apiService.getUser(userid).subscribe(
-        data => {
-          this.player = data;
-          if (data.userStatsException) {
-            this.toast.showError('Account is private!', IgxToastPosition.Middle);
+      if (userid) {
+        this.apiService.getUser(userid).subscribe(
+          data => {
+            this.player = data;
+            if (data.userStatsException) {
+              this.toast.showError('Account is private!', IgxToastPosition.Middle);
+            }
           }
-        }
-      );
+        );
+      }
     });
   }
 
