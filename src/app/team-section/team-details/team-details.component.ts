@@ -1,13 +1,10 @@
-import { Component, OnInit, ViewChild, ViewChildren, QueryList, ElementRef } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, ViewChild, ViewChildren, QueryList, ElementRef, Input } from '@angular/core';
 import { IgxDropEventArgs, IgxAvatarComponent } from 'igniteui-angular';
-import { noop } from 'rxjs';
 import { PlaystyleRole } from 'src/app/models/playerrole';
 import { TeamMember, CSGOTeam, TEAM_PLACEHOLDER } from 'src/app/models/csgoteam';
 import { ApplicationUser } from 'src/app/models/applicationuser';
 import { SuccessErrorComponent } from 'src/app/success-error/success-error.component';
 import { BellumgensApiService } from 'src/app/services/bellumgens-api.service';
-import { LoginService } from 'src/app/services/login.service';
 
 interface RoleSlot {
   roleName: string;
@@ -21,10 +18,31 @@ interface RoleSlot {
   styleUrls: ['./team-details.component.css']
 })
 export class TeamDetailsComponent implements OnInit {
+  private _team = TEAM_PLACEHOLDER;
+
+  public get team() {
+    return this._team;
+  }
+
+  @Input()
+  public set team(team: CSGOTeam) {
+    if (this._team !== team) {
+      this._team = team;
+      this.roleSlots.forEach((role) => {
+        const member = this._team.Members.find(m => m.Role === role.role);
+        if (member) {
+          role.user = member;
+        }
+      });
+      this.activeMembers = this._team.Members.filter(m => m.IsActive && m.Role === PlaystyleRole.NotSet);
+      this.inactiveMembers = this._team.Members.filter(m => !m.IsActive);
+    }
+  }
   public activeMembers: TeamMember [];
   public inactiveMembers: TeamMember [];
+
+  @Input()
   public authUser: ApplicationUser;
-  public team: CSGOTeam = TEAM_PLACEHOLDER;
   public roleSlots: RoleSlot [] = [
     { roleName: 'IGL', role: PlaystyleRole.IGL, user: null },
     { roleName: 'Awper', role: PlaystyleRole.Awper, user: null },
@@ -36,31 +54,7 @@ export class TeamDetailsComponent implements OnInit {
   @ViewChild(SuccessErrorComponent) public toast: SuccessErrorComponent;
   @ViewChildren(IgxAvatarComponent, { read: ElementRef }) public emptyRoles: QueryList<ElementRef>;
 
-  constructor(private activatedRoute: ActivatedRoute,
-    private apiService: BellumgensApiService,
-    private authManager: LoginService) {
-      this.authManager.applicationUser.subscribe((data: ApplicationUser) => {
-        this.authUser = data;
-      });
-
-      this.activatedRoute.params.subscribe(params => {
-        const teamId = params['teamid'];
-
-        if (teamId) {
-          this.apiService.getTeam(teamId).subscribe(team => {
-            this.team = team;
-            this.roleSlots.forEach((role) => {
-              const member = this.team.Members.find(m => m.Role === role.role);
-              if (member) {
-                role.user = member;
-              }
-            });
-            this.activeMembers = this.team.Members.filter(m => m.IsActive && m.Role === PlaystyleRole.NotSet);
-            this.inactiveMembers = this.team.Members.filter(m => !m.IsActive);
-          });
-        }
-      });
-    }
+  constructor(private apiService: BellumgensApiService) { }
 
   ngOnInit() {
   }
@@ -71,7 +65,7 @@ export class TeamDetailsComponent implements OnInit {
     role.user = null;
     user.Role = PlaystyleRole.NotSet;
     this.apiService.updateTeamMember(user).subscribe(
-      data => noop,
+      data => this.toast.showSuccess(`${user.SteamUser.steamID} removed from role ${role.roleName}`),
       error => {
         this.toast.showError(error.error.Message);
       }
@@ -80,7 +74,7 @@ export class TeamDetailsComponent implements OnInit {
 
   public removeFromTeam(user: TeamMember) {
     this.apiService.removeTeamMember(user).subscribe(
-      data => noop,
+      data => this.toast.showSuccess(`${user.SteamUser.steamID} removed from ${this.team.TeamName}`),
       error => {
         this.toast.showError(error.error.Message);
       }
@@ -95,7 +89,7 @@ export class TeamDetailsComponent implements OnInit {
     args.cancel = true;
     this.roleDraggingEnd();
     this.apiService.updateTeamMember(user).subscribe(
-      data => noop,
+      data => this.toast.showSuccess(`${user.SteamUser.steamID} assigned to role ${role.roleName}`),
       error => {
         this.toast.showError(error.error.Message);
       }

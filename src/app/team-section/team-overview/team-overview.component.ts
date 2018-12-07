@@ -25,7 +25,7 @@ export class TeamOverviewComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       const teamId = params['teamid'];
 
-      if (teamId) {
+      if (teamId !== '0') {
         this.apiService.getTeam(teamId).subscribe(team => {
           this.team = team;
         });

@@ -43,7 +43,7 @@ export class PlayerDetailsComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       const userid = params['userid'];
       this.newUser = params['newuser'];
-      if (userid) {
+      if (userid !== '0') {
         this.apiService.getUser(userid).subscribe(
           data => {
             this.player = data;

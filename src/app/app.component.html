@@ -2,8 +2,8 @@
   <div igxFlex class="main">
     <igx-navbar title="[Beta] Bellum Gens: Looking for Group">
       <div class="navigation">
-        <a class="navigation-item" igxButton="raised" routerLink="/team">Teams</a>
-        <a class="navigation-item" igxButton="raised" routerLink="/player-details">Players</a>
+        <a class="navigation-item" igxButton="raised" [routerLink]="['/team', 0]">Teams</a>
+        <a class="navigation-item" igxButton="raised" [routerLink]="['/players', 0]">Players</a>
       </div>
       <app-login></app-login>
     </igx-navbar>

@@ -1,0 +1,102 @@
+<igx-tabs [selectedIndex]="1">
+  <igx-tabs-group label="All Teams">
+    <app-teams></app-teams>
+  </igx-tabs-group>
+  <igx-tabs-group label="My Teams">
+    <div class="card-column">
+      <igx-card class="create-team-card">
+        <igx-card-header>
+          <div *ngIf="!authUser">
+            <h1 class="igx-card-header__title">You need to login to view your teams.</h1>
+            <app-login></app-login>
+          </div>
+          <div *ngIf="authUser">
+            <h1 class="igx-card-header__title" *ngIf="!authUser.Teams.length">You are not part of any teams.</h1>
+            <h3 class="igx-card-header__subtitle"><button igxButton="flat" igxRippleCentered="true" (click)="createTeam.open()">Create New Team</button></h3>
+          </div>
+        </igx-card-header>
+        <igx-card-content>
+        </igx-card-content>
+      </igx-card>
+      <igx-card class="team-card" *ngFor="let team of authUser?.Teams">
+        <igx-card-header class="compact">
+          <igx-avatar [src]="team.TeamAvatar" roundShape="true"></igx-avatar>
+          <div class="igx-card-header__tgroup">
+            <h3 class="igx-card-header__title--small">{{ team.TeamName }}</h3>
+            <h5 class="igx-card-header__subtitle">Some team description</h5>
+          </div>
+        </igx-card-header>
+        <igx-card-actions>
+          <div class="igx-card-actions__bgroup">
+            <button igxButton igxRipple [routerLink]="['/team', team.TeamId]">Team Details</button>
+            <button igxButton igxRipple (click)="abandonTeam(team)">Abandon Team</button>
+          </div>
+        </igx-card-actions>
+      </igx-card>
+    </div>
+  </igx-tabs-group>
+</igx-tabs>
+
+<igx-dialog #createTeam closeOnOutsideSelect="true" *ngIf="authUser">
+  <div class="create-team">
+      <igx-list>
+        <igx-list-item *ngIf="authUser.SteamUser.groups.length" [isHeader]="true">Import from Steam Group</igx-list-item>
+        <igx-input-group type="search" class="search">
+          <igx-prefix>
+              <igx-icon>search</igx-icon>
+          </igx-prefix>
+          <input #search igxInput placeholder="Search Groups" [(ngModel)]="searchGroups">
+          <igx-suffix *ngIf="search.value.length > 0" (click)="searchGroups = null">
+              <igx-icon>clear</igx-icon>
+          </igx-suffix>
+        </igx-input-group>
+        <igx-list-item *ngFor="let group of authUser.SteamUser.groups | groupsFilter:searchGroups" (click)="createFromSteam(group)">
+          <div class="item-container">
+            <div class="steam-groups">
+              <igx-avatar [src]="group.avatarFull" roundShape="true">
+              </igx-avatar>
+              <div class="steam-group-name">
+                <span class="name">
+                    {{ group.groupName }}
+                </span>
+              </div>
+            </div>
+          </div>
+        </igx-list-item>
+        <igx-list-item [isHeader]="true">Register with form</igx-list-item>
+        <igx-list-item>
+          <igx-input-group>
+            <input #teamName igxInput placeholder="Team name" minlength="2" required [(ngModel)]="newTeam.TeamName">
+            <igx-suffix *ngIf="teamName.value.length > 0" (click)="newTeam.TeamName = null">
+                <igx-icon>clear</igx-icon>
+            </igx-suffix>
+          </igx-input-group>
+        </igx-list-item>
+        <igx-list-item>
+          <igx-input-group>
+            <textarea #teamDescripton igxInput placeholder="Add a team motto or recruitment information" minlength="2" required [(ngModel)]="newTeam.Description">
+            </textarea>
+            <igx-suffix *ngIf="teamDescripton.value.length > 0" (click)="newTeam.Description = null">
+                <igx-icon>clear</igx-icon>
+            </igx-suffix>
+          </igx-input-group>
+        </igx-list-item>
+        <igx-list-item>
+          <igx-input-group>
+            <igx-prefix>
+              <igx-icon>link</igx-icon>
+            </igx-prefix>
+            <input #teamAvatar igxInput placeholder="Team Avatar URL" [(ngModel)]="newTeam.TeamAvatar">
+            <igx-suffix *ngIf="teamAvatar.value.length > 0" (click)="newTeam.TeamAvatar = null">
+                <igx-icon>clear</igx-icon>
+            </igx-suffix>
+          </igx-input-group>
+        </igx-list-item>
+        <igx-list-item>
+          <button igxButton igxRippleCentered="true" (click)="createFromForm()" [disabled]="teamName.invalid">Register</button>
+        </igx-list-item>
+      </igx-list>
+  </div>
+</igx-dialog>
+
+<app-success-error></app-success-error>

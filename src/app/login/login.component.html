@@ -11,7 +11,7 @@
     <igx-icon fontSet="material" class="drop-down-arrow">arrow_drop_down</igx-icon>
   </button>
   <igx-drop-down #userProfile>
-    <igx-drop-down-item class="profile-item" [routerLink]="['/player-details', authUser.SteamUser.steamID64]">
+    <igx-drop-down-item class="profile-item" [routerLink]="['/players', authUser.SteamUser.steamID64]">
       <igx-icon fontSet="material">person</igx-icon>
       <span class="profile-link">profile</span>
     </igx-drop-down-item>
@@ -20,7 +20,7 @@
       <igx-badge *ngIf="authUser.Notifications.length" [value]="authUser.Notifications | unreadNotifications" type="info"></igx-badge>
       <span class="profile-link">notifications</span>
     </igx-drop-down-item>
-    <igx-drop-down-item class="profile-item" routerLink="/team">
+    <igx-drop-down-item class="profile-item" [routerLink]="['/team', authUser.Teams.length ? authUser.Teams[0].TeamId : 0]">
       <igx-icon fontSet="material">people</igx-icon>
       <span class="profile-link">teams</span>
     </igx-drop-down-item>
