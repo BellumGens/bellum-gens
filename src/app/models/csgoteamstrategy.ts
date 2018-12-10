@@ -10,6 +10,11 @@ export interface TeamStrategy {
   Map: CSGOMap;
 }
 
+export enum Side {
+  TSide,
+  CTSide
+}
+
 export function newEmptyStrategy(): TeamStrategy {
   return {
     Id: '',
@@ -20,9 +25,4 @@ export function newEmptyStrategy(): TeamStrategy {
     Url: '',
     Map: CSGOMap.Cache
   };
-}
-
-export enum Side {
-  TSide,
-  CTSide
 }
