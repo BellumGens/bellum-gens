@@ -43,6 +43,13 @@ export class TeamOverviewComponent implements OnInit {
     return false;
   }
 
+  public get userIsAdmin() {
+    if (this.authUser && this.team && this.team.Members) {
+      return this.team.Members.filter(m => m.IsAdmin && m.UserId === this.authUser.SteamUser.steamID64).length;
+    }
+    return false;
+  }
+
   ngOnInit() {
   }
 

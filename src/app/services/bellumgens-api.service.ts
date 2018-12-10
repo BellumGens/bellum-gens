@@ -121,7 +121,7 @@ export class BellumgensApiService {
     return this.http.get<MapPool []>(`${this._apiEndpoint}/teams/mapPool?teamId=${teamId}`, { withCredentials: true });
   }
 
-  public setTeamMapPool(mapstatus: MapPool): Observable<any> {
+  public setTeamMapPool(mapstatus: MapPool []): Observable<any> {
     return this.http.put(`${this._apiEndpoint}/teams/mapPool`, mapstatus, { withCredentials: true });
   }
 

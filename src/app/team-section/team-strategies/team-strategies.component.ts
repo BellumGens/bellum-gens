@@ -1,11 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BellumgensApiService } from 'src/app/services/bellumgens-api.service';
-import { TeamStrategy, Side } from 'src/app/models/csgoteamstrategy';
+import { TeamStrategy, Side, newEmptyStrategy } from 'src/app/models/csgoteamstrategy';
 import { MapPool, CSGOMap, ActiveDutyDescriptor, ActiveDuty } from 'src/app/models/csgomaps';
 import { SuccessErrorComponent } from 'src/app/success-error/success-error.component';
 import { IgxDialogComponent } from 'igniteui-angular';
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { SafeResourceUrl } from '@angular/platform-browser';
+import { MapnamePipe } from 'src/app/pipes/mapname.pipe';
 
 @Component({
   selector: 'app-team-strategies',
@@ -17,17 +18,14 @@ export class TeamStrategiesComponent implements OnInit {
   maps: MapPool [];
   mapList: ActiveDutyDescriptor [] = ActiveDuty;
   teamId: string;
-  newStrategy: TeamStrategy = {
-    Id: '',
-    TeamId: '',
-    Side: Side.TSide,
-    Title: '',
-    Description: '',
-    Url: '',
-    Map: CSGOMap.Cache
-  };
+  newStrategy: TeamStrategy = newEmptyStrategy();
   sanitizedUrl: SafeResourceUrl;
   videoId: string;
+  pipeTrigger = 0;
+  changes = false;
+
+  @Input()
+  isAdmin = false;
 
   private _youtubeRegEx = /(youtu\.be\/|youtube\.com\/(watch\?(.*&)?v=|(embed|v)\/))([^\?&"'>]+)/;
 
@@ -49,15 +47,41 @@ export class TeamStrategiesComponent implements OnInit {
     });
   }
 
+  public get selectedMaps() {
+    let names = '';
+    if (this.maps) {
+      const pipe = new MapnamePipe();
+      this.maps.forEach((map) => {
+        if (map.IsPlayed) {
+          if (names.length) {
+            names += ', ' + pipe.transform(map.Map);
+          } else {
+            names += pipe.transform(map.Map);
+          }
+        }
+      });
+    }
+    return names;
+  }
+
   public changeMaps(args: MapPool) {
-    this.apiService.setTeamMapPool(args).subscribe(
-      success => this.toast.showSuccess('Map pool updated successfully!'),
+    this.maps.find(m => m.Map === args.Map).IsPlayed = args.IsPlayed;
+    this.changes = true;
+    this.pipeTrigger++;
+  }
+
+  public saveMaps() {
+    this.apiService.setTeamMapPool(this.maps).subscribe(
+      success => {
+        this.changes = false;
+        this.toast.showSuccess('Map pool updated successfully!');
+      },
       error => this.toast.showError(error.error.Message)
     );
   }
 
-  public openNewStrategy(side: Side) {
-    this.newStrategy.Side = side;
+  public openNewStrategy(event: Event) {
+    event.preventDefault();
     this.dialog.open();
   }
 
@@ -76,7 +100,9 @@ export class TeamStrategiesComponent implements OnInit {
       success => {
         if (!this.newStrategy.Id) {
           this.teamStrats.push(this.newStrategy);
+          this.pipeTrigger++;
         }
+        this.newStrategy = newEmptyStrategy();
         this.dialog.close();
         this.toast.showSuccess('Update submitted successfully!');
       },

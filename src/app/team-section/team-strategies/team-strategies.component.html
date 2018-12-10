@@ -1,40 +1,31 @@
 <div class="card-with-margins">
-  <app-map-pool [mapPool]="maps" [readOnly]="false" (update)="changeMaps($event)"></app-map-pool>
-  <div class="horizontal">
-    <div class="card-column-2">
-      <igx-card>
-        <igx-card-content>
-          <button igxButton="raised" igxRipple (click)="openNewStrategy(0)">Add new T-Side strategy</button>
-        </igx-card-content>
-      </igx-card>
-      <igx-card *ngFor="let strat of teamStrats | sidestrats:0">
-        <igx-card-header>
-          <h5>{{ strat.Title }}</h5>
-          <button igxButton="flat" (click)="editStrategy(strat)">Edit</button>
-        </igx-card-header>
-        <igx-card-content>
-          <p>{{ strat.Description }}</p>
-          <iframe class="youtube-frame" *ngIf="strat.Url" [src]="strat.Url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        </igx-card-content>
-      </igx-card>
-    </div>
-    <div class="card-column-2">
-      <igx-card>
-        <igx-card-content>
-          <button igxButton="raised" igxRipple (click)="openNewStrategy(1)">Add new CT-Side strategy</button>
-        </igx-card-content>
-      </igx-card>
-      <igx-card *ngFor="let strat of teamStrats | sidestrats:1">
-          <igx-card-header>
-            <h5>{{ strat.Title }}</h5>
-            <button igxButton="flat" (click)="editStrategy(strat)">Edit</button>
-          </igx-card-header>
-          <igx-card-content>
-            <p>{{ strat.Description }}</p>
-            <iframe class="youtube-frame" *ngIf="strat.Url" [src]="strat.Url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-          </igx-card-content>
-      </igx-card>
-    </div>
+  <igx-expansion-panel>
+    <igx-expansion-panel-header>
+      <igx-expansion-panel-title>
+        Map Filter for Strategies
+      </igx-expansion-panel-title>
+      <igx-expansion-panel-description>
+        {{ selectedMaps }}
+      </igx-expansion-panel-description>
+      <button class="navigation-item" *ngIf="changes && isAdmin" igxButton="raised" (click)="saveMaps()">Save current maps</button>
+      <button class="navigation-item" igxButton="raised" igxRipple (click)="openNewStrategy($event)">Add new strategy</button>
+    </igx-expansion-panel-header>
+    <igx-expansion-panel-body>
+      <app-map-pool [mapPool]="maps" [readOnly]="false" (update)="changeMaps($event)">
+      </app-map-pool>
+    </igx-expansion-panel-body>
+  </igx-expansion-panel>
+  <div class="card-wrapper">
+    <igx-card class="map-column strat" *ngFor="let strat of teamStrats | sidestrats:maps:pipeTrigger">
+      <igx-card-header>
+        <h5>{{ strat.Title }}</h5>
+        <button igxButton="flat" (click)="editStrategy(strat)">Edit</button>
+      </igx-card-header>
+      <igx-card-content>
+        <p>{{ strat.Description }}</p>
+        <iframe class="youtube-frame" *ngIf="strat.Url" [src]="strat.Url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </igx-card-content>
+    </igx-card>
   </div>
 </div>
 
@@ -83,7 +74,7 @@
         </igx-input-group>
       </igx-list-item>
       <igx-list-item *ngIf="getVideoEmbedLink()">
-        <iframe width="560" height="315" [src]="newStrategy.Url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe class="youtube-frame" [src]="newStrategy.Url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </igx-list-item>
       <igx-list-item>
         <button igxButton igxRippleCentered="true" (click)="submitStrategy()" [disabled]="strategyName.invalid || strategyDescription.invalid">Submit</button>
