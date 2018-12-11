@@ -52,6 +52,14 @@
         </igx-input-group>
       </igx-list-item>
       <igx-list-item>
+        <igx-radio [(ngModel)]="newStrategy.Side" value="0">
+          T-Side
+        </igx-radio>
+        <igx-radio [(ngModel)]="newStrategy.Side" value="1">
+          CT-Side
+        </igx-radio>
+      </igx-list-item>
+      <igx-list-item>
         <button igxButton="flat" [igxToggleAction]="mapPicker" igxRippleCentered="true">
           Map: {{ newStrategy.Map | mapname }}
           <igx-icon fontSet="material">arrow_drop_down</igx-icon>

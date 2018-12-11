@@ -29,7 +29,8 @@ import { IgxNavbarModule,
   IgxDragDropModule,
   IgxTabsModule,
   IgxCalendarModule,
-  IgxExpansionPanelModule} from 'igniteui-angular';
+  IgxExpansionPanelModule,
+  IgxRadioModule} from 'igniteui-angular';
 import { PlayersComponent } from './player-section/players/players.component';
 import { PlayerDetailsComponent } from './player-section/player-details/player-details.component';
 import { LoginService } from './services/login.service';
@@ -124,6 +125,7 @@ import { TeamNavComponent } from './team-section/team-nav/team-nav.component';
     IgxTabsModule,
     IgxCalendarModule,
     IgxExpansionPanelModule,
+    IgxRadioModule,
     IgxProgressBarModule
   ],
   providers: [
