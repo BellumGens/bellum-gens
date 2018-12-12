@@ -129,6 +129,10 @@ export class BellumgensApiService {
     return this.http.post(`${this._apiEndpoint}/teams/strategy`, strat, { withCredentials: true });
   }
 
+  public setTeamPractice(day: Availability) {
+    return this.http.put(`${this._apiEndpoint}/teams/availability`, day, { withCredentials: true });
+  }
+
   public getUser(userId: string): Observable<CSGOPlayer> {
     return this.http.get<CSGOPlayer>(`${this._apiEndpoint}/users/user?userid=${userId}`);
   }
