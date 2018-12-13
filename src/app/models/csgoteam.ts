@@ -30,6 +30,12 @@ export interface TeamApplication {
   UserInfo: SteamUser;
 }
 
+export interface TeamSearch {
+  name: string;
+  role: PlaystyleRole;
+  scheduleOverlap: number;
+}
+
 export const TEAM_PLACEHOLDER: CSGOTeam = {
   TeamName: 'Create or view teams',
   TeamAvatar: '',

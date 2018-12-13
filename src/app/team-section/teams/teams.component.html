@@ -1,12 +1,3 @@
-<igx-input-group type="search" class="search">
-    <igx-prefix>
-        <igx-icon>search</igx-icon>
-    </igx-prefix>
-    <input #search igxInput placeholder="Search">
-    <igx-suffix *ngIf="search.value.length > 0">
-        <igx-icon>clear</igx-icon>
-    </igx-suffix>
-</igx-input-group>
 <igx-list #teams [isLoading]="true">
   <ng-template igxDataLoading>
       <div class="center-message"><span>Fetching data from our server...</span></div>
