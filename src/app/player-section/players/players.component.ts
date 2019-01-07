@@ -10,8 +10,6 @@ import { CSGOPlayer } from '../../models/csgoplayer';
   encapsulation: ViewEncapsulation.None
 })
 export class PlayersComponent implements OnInit {
-  public searchPlayer: string;
-
   public activeUsers: CSGOPlayer[];
 
   @ViewChild(IgxListComponent) public players: IgxListComponent;

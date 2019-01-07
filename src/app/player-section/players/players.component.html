@@ -1,13 +1,4 @@
 <div class="list-container">
-  <igx-input-group type="search" class="search">
-    <igx-prefix>
-        <igx-icon>search</igx-icon>
-    </igx-prefix>
-    <input #search igxInput placeholder="Search" [(ngModel)]="searchPlayer">
-    <igx-suffix *ngIf="search.value.length > 0" (click)="searchplayer = null">
-        <igx-icon>clear</igx-icon>
-    </igx-suffix>
-  </igx-input-group>
   <igx-list #players [isLoading]="true">
     <ng-template igxDataLoading>
         <div class="center-message"><span>Fetching data from our server...</span></div>
@@ -15,6 +6,7 @@
     <ng-template igxEmptyList>
         <div class="center-message"><span>Nobody is active...</span></div>
     </ng-template>
+    <igx-list-item [isHeader]="true">Available Players</igx-list-item>
     <igx-list-item #item *ngFor="let user of activeUsers">
       <div class="item-container">
         <div class="horizontal">
