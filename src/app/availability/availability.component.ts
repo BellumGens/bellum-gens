@@ -1,7 +1,6 @@
 import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { Availability } from '../models/playeravailability';
 import { IgxTimePickerComponent,
-  IBaseChipEventArgs,
   IChipSelectEventArgs,
   IgxChipsAreaComponent,
   IgxDialogComponent,
