@@ -77,7 +77,9 @@ export class BellumgensApiService {
   }
 
   public filterTeams(model: TeamSearch) {
-    return this.http.post<CSGOTeam []>(`${this._apiEndpoint}/teams/search`, model);
+    this.http.post<CSGOTeam []>(`${this._apiEndpoint}/teams/search`, model).pipe(
+      teams => this._csgoTeams = teams
+    ).subscribe();
   }
 
   public registerSteamGroup(group: SteamGroup): Observable<CSGOTeam> {

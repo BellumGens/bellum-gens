@@ -29,7 +29,7 @@ export class TeamSearchComponent implements OnInit {
   }
 
   public searchTeams() {
-    this.apiService.filterTeams(this.searchModel).subscribe();
+    this.apiService.filterTeams(this.searchModel);
   }
 
 }
