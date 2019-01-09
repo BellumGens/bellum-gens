@@ -44,3 +44,9 @@ export const TEAM_PLACEHOLDER: CSGOTeam = {
   PracticeSchedule: [],
   Members: undefined
 };
+
+export const TEAM_SEARCH: TeamSearch = {
+  name: '',
+  role: null,
+  scheduleOverlap: 0
+};

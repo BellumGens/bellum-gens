@@ -36,8 +36,12 @@ export class BellumgensApiService {
     return this._activeUsers;
   }
 
-  public get csgoTeams() {
-    if (!this._csgoTeams) {
+  public csgoTeams(model?: TeamSearch) {
+    if (model) {
+      this._csgoTeams = this.getFilteredTeams(model).pipe(
+        shareReplay(CACHE_SIZE)
+      );
+    } else if (!this._csgoTeams) {
       this._csgoTeams = this.getTeams().pipe(
         shareReplay(CACHE_SIZE)
       );
@@ -72,14 +76,14 @@ export class BellumgensApiService {
     );
   }
 
-  public getTeam(teamId: string): Observable<CSGOTeam> {
-    return this.http.get<CSGOTeam>(`${this._apiEndpoint}/teams/team?teamid=${teamId}`);
+  private getFilteredTeams(model: TeamSearch) {
+    return this.http.post<CSGOTeam []>(`${this._apiEndpoint}/teams/search`, model).pipe(
+      map(response => response)
+    );
   }
 
-  public filterTeams(model: TeamSearch) {
-    this.http.post<CSGOTeam []>(`${this._apiEndpoint}/teams/search`, model).pipe(
-      teams => this._csgoTeams = teams
-    ).subscribe();
+  public getTeam(teamId: string): Observable<CSGOTeam> {
+    return this.http.get<CSGOTeam>(`${this._apiEndpoint}/teams/team?teamid=${teamId}`);
   }
 
   public registerSteamGroup(group: SteamGroup): Observable<CSGOTeam> {
