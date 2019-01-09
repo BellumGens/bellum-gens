@@ -6,7 +6,7 @@
       <div class="center-message"><span>No teams recruiting...</span></div>
   </ng-template>
   <igx-list-item [isHeader]="true">Available Teams</igx-list-item>
-  <igx-list-item #item *ngFor="let team of csgoTeams | async">
+  <igx-list-item #item *ngFor="let team of csgoTeams">
     <div class="item-container">
       <div class="horizontal">
         <igx-avatar [src]="team.TeamAvatar" roundShape="true">

@@ -1,8 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { IgxListComponent } from 'igniteui-angular';
-import { CSGOTeam } from 'src/app/models/csgoteam';
+import { CSGOTeam, TeamSearch } from 'src/app/models/csgoteam';
 import { BellumgensApiService } from 'src/app/services/bellumgens-api.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-teams',
@@ -10,7 +9,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./teams.component.css']
 })
 export class TeamsComponent implements OnInit {
-  public csgoTeams: Observable<CSGOTeam []>;
+  public csgoTeams: CSGOTeam [];
 
   @ViewChild('teams') public teams: IgxListComponent;
 
@@ -18,6 +17,17 @@ export class TeamsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.csgoTeams = this.apiManager.csgoTeams;
+    this.apiManager.csgoTeams().subscribe(data => {
+      this.csgoTeams = data;
+      this.teams.isLoading = false;
+    });
+  }
+
+  public search(term: TeamSearch) {
+    this.teams.isLoading = true;
+    this.apiManager.csgoTeams(term).subscribe(data => {
+      this.csgoTeams = data;
+      this.teams.isLoading = false;
+    });
   }
 }

@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IgxDialogComponent } from 'igniteui-angular';
 import { Router } from '@angular/router';
-import { CSGOTeam, TeamMember } from 'src/app/models/csgoteam';
+import { CSGOTeam, TeamMember, TeamSearch } from 'src/app/models/csgoteam';
 import { ApplicationUser } from 'src/app/models/applicationuser';
 import { SuccessErrorComponent } from 'src/app/success-error/success-error.component';
 import { BellumgensApiService } from 'src/app/services/bellumgens-api.service';
@@ -36,6 +36,10 @@ export class TeamNavComponent {
     this.authManager.applicationUser.subscribe((data: ApplicationUser) => {
       this.authUser = data;
     });
+  }
+
+  public searchTeams(term: TeamSearch) {
+    console.log(term);
   }
 
   public createFromSteam(group: SteamGroup): void {

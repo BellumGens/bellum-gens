@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { PlaystyleRole } from 'src/app/models/playerrole';
-import { BellumgensApiService } from 'src/app/services/bellumgens-api.service';
-import { TeamSearch } from 'src/app/models/csgoteam';
+import { TeamSearch, TEAM_SEARCH } from 'src/app/models/csgoteam';
 
 @Component({
   selector: 'app-team-search',
@@ -9,11 +8,10 @@ import { TeamSearch } from 'src/app/models/csgoteam';
   styleUrls: ['./team-search.component.css']
 })
 export class TeamSearchComponent implements OnInit {
-  public searchModel: TeamSearch = {
-    name: '',
-    role: null,
-    scheduleOverlap: 0
-  };
+  public searchModel: TeamSearch = TEAM_SEARCH;
+
+  @Output()
+  public search: EventEmitter<TeamSearch> = new EventEmitter<TeamSearch>();
 
   public activeLineup = [
     { roleName: 'IGL', role: PlaystyleRole.IGL },
@@ -23,13 +21,13 @@ export class TeamSearchComponent implements OnInit {
     { roleName: 'Lurker', role: PlaystyleRole.Lurker }
   ];
 
-  constructor(private apiService: BellumgensApiService) { }
+  constructor() { }
 
   ngOnInit() {
   }
 
   public searchTeams() {
-    this.apiService.filterTeams(this.searchModel);
+    this.search.emit(this.searchModel);
   }
 
 }
