@@ -29,3 +29,15 @@ export interface WeaponDescriptor {
   kills: number;
   accuracy: number;
 }
+
+export interface PlayerSearch {
+  name: string;
+  role: PlaystyleRole;
+  scheduleOverlap: number;
+}
+
+export const PLAYER_SEARCH: PlayerSearch = {
+  name: '',
+  role: null,
+  scheduleOverlap: 0
+};

@@ -63,6 +63,7 @@ import { AvailabilityComponent } from './availability/availability.component';
 import { SafeVideoLinkPipe } from './pipes/safe-video-link.pipe';
 import { TeamNavComponent } from './team-section/team-nav/team-nav.component';
 import { TeamSearchComponent } from './search/team-search/team-search.component';
+import { PlayerSearchComponent } from './search/player-search/player-search.component';
 
 @NgModule({
   declarations: [
@@ -96,7 +97,8 @@ import { TeamSearchComponent } from './search/team-search/team-search.component'
     AvailabilityComponent,
     SafeVideoLinkPipe,
     TeamNavComponent,
-    TeamSearchComponent
+    TeamSearchComponent,
+    PlayerSearchComponent
   ],
   imports: [
     FormsModule,
