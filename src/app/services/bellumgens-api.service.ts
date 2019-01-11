@@ -7,7 +7,7 @@ import { CSGOPlayer } from '../models/csgoplayer';
 import { Availability } from '../models/playeravailability';
 import { Role } from '../models/playerrole';
 import { MapPool } from 'src/app/models/csgomaps';
-import { map, shareReplay } from 'rxjs/operators';
+import { map, shareReplay, delay } from 'rxjs/operators';
 import { UserNotification } from '../models/usernotifications';
 import { TeamStrategy } from '../models/csgoteamstrategy';
 
@@ -54,6 +54,7 @@ export class BellumgensApiService {
   }
 
   public searchTeams(model: TeamSearch) {
+    this._csgoTeams.next([]);
     this.loadingTeams.next(true);
     this.getFilteredTeams(model).subscribe(
       teams => {
