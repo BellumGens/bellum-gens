@@ -10,24 +10,15 @@ import { BellumgensApiService } from 'src/app/services/bellumgens-api.service';
 })
 export class TeamsComponent implements OnInit {
   public csgoTeams: CSGOTeam [];
-
-  @ViewChild('teams') public teams: IgxListComponent;
+  public loading = true;
 
   constructor(private apiManager: BellumgensApiService) {
   }
 
   ngOnInit() {
-    this.apiManager.csgoTeams().subscribe(data => {
+    this.apiManager.loadingTeams.subscribe(loading => this.loading = loading);
+    this.apiManager.csgoTeams.subscribe(data => {
       this.csgoTeams = data;
-      this.teams.isLoading = false;
-    });
-  }
-
-  public search(term: TeamSearch) {
-    this.teams.isLoading = true;
-    this.apiManager.csgoTeams(term).subscribe(data => {
-      this.csgoTeams = data;
-      this.teams.isLoading = false;
     });
   }
 }

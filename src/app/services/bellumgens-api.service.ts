@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SteamGroup } from '../models/steamuser';
-import { Observable } from 'rxjs';
+import { Observable, ReplaySubject, noop } from 'rxjs';
 import { CSGOTeam, TeamMember, TeamApplication, TeamSearch } from '../models/csgoteam';
 import { CSGOPlayer } from '../models/csgoplayer';
 import { Availability } from '../models/playeravailability';
@@ -20,9 +20,10 @@ export class BellumgensApiService {
   private _apiEndpoint = 'http://localhost:25702/api';
 
   private _activeUsers: Observable<CSGOPlayer []>;
-  private _csgoTeams: Observable<CSGOTeam []>;
+  private _csgoTeams: ReplaySubject<CSGOTeam []>;
   private _teamApplications = new Map<string, Observable<TeamApplication[]>>();
   public error: any = null;
+  public loadingTeams = new ReplaySubject<boolean>(1);
 
   constructor(private http: HttpClient) { }
 
@@ -36,18 +37,36 @@ export class BellumgensApiService {
     return this._activeUsers;
   }
 
-  public csgoTeams(model?: TeamSearch) {
-    if (model) {
-      this._csgoTeams = this.getFilteredTeams(model).pipe(
-        shareReplay(CACHE_SIZE)
-      );
-    } else if (!this._csgoTeams) {
-      this._csgoTeams = this.getTeams().pipe(
-        shareReplay(CACHE_SIZE)
+  public get csgoTeams() {
+    if (!this._csgoTeams) {
+      this.loadingTeams.next(true);
+      this._csgoTeams = new ReplaySubject<CSGOTeam []>(1);
+      this.getTeams().subscribe(
+        teams => {
+          this._csgoTeams.next(teams);
+          this.loadingTeams.next(false);
+        },
+        error => this._csgoTeams = null
       );
     }
 
-    return this._csgoTeams;
+    return this._csgoTeams.asObservable();
+  }
+
+  public searchTeams(model: TeamSearch) {
+    this.loadingTeams.next(true);
+    this.getFilteredTeams(model).subscribe(
+      teams => {
+        this._csgoTeams.next(teams);
+        this.loadingTeams.next(false);
+      },
+      error => this.emitError()
+    );
+  }
+
+
+  public emitError() {
+    noop();
   }
 
   public teamApplications(teamId: string): Observable<TeamApplication []> {
@@ -65,7 +84,7 @@ export class BellumgensApiService {
   }
 
   private getActiveUsers() {
-    return this.http.get<CSGOPlayer []>(`${this._apiEndpoint}/users/activeusers`).pipe(
+    return this.http.get<CSGOPlayer []>(`${this._apiEndpoint}/users/users`).pipe(
       map(response => response)
     );
   }

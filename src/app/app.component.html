@@ -6,6 +6,7 @@
       </igx-action-icon>
       <igx-icon>search</igx-icon>
       <igx-icon *ngIf="authUser">notifications</igx-icon>
+      <igx-badge *ngIf="authUser?.Notifications.length" [value]="authUser.Notifications | unreadNotifications" type="info"></igx-badge>
       <app-login [authUser]='authUser'></app-login>
     </igx-navbar>
     <div class="content">

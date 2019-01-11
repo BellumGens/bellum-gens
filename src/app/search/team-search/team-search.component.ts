@@ -1,6 +1,7 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PlaystyleRole } from 'src/app/models/playerrole';
 import { TeamSearch, TEAM_SEARCH } from 'src/app/models/csgoteam';
+import { BellumgensApiService } from 'src/app/services/bellumgens-api.service';
 
 @Component({
   selector: 'app-team-search',
@@ -10,9 +11,6 @@ import { TeamSearch, TEAM_SEARCH } from 'src/app/models/csgoteam';
 export class TeamSearchComponent implements OnInit {
   public searchModel: TeamSearch = TEAM_SEARCH;
 
-  @Output()
-  public search: EventEmitter<TeamSearch> = new EventEmitter<TeamSearch>();
-
   public activeLineup = [
     { roleName: 'IGL', role: PlaystyleRole.IGL },
     { roleName: 'Awper', role: PlaystyleRole.Awper },
@@ -21,13 +19,13 @@ export class TeamSearchComponent implements OnInit {
     { roleName: 'Lurker', role: PlaystyleRole.Lurker }
   ];
 
-  constructor() { }
+  constructor(private apiManager: BellumgensApiService) { }
 
   ngOnInit() {
   }
 
   public searchTeams() {
-    this.search.emit(this.searchModel);
+    this.apiManager.searchTeams(this.searchModel);
   }
 
 }
