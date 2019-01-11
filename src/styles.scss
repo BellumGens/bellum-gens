@@ -13,6 +13,10 @@ $app-palette: igx-palette($primary, $secondary);
 //$navbar-theme: igx-navbar-theme($background: #731963)
 //@include igx-navbar($navbar-theme)
 
+html, body {
+  height: 100%;
+}
+
 igx-icon {
   cursor: pointer;
   user-select: none;
@@ -58,6 +62,7 @@ igx-card-content h4 {
 .horizontal {
   display: flex;
   flex: 0 0 auto;
+  height: 100%;
 }
 
 .horizontal-center {

@@ -1,19 +1,15 @@
-.main {
-  width: 100%;
+
+:host > div {
+  height: 100%;
 }
 
 .content {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
-  align-items: stretch;
   padding: 16px;
+  height: 100%;
 }
 
-.discord-container {
-  display: flex;
-  flex-direction: column;
-  margin: 8px 0px 0px 16px;
+.home-button {
+  height: 24px;
 }
 
 @media only screen and (max-width: 1024px) {

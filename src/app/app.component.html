@@ -1,11 +1,12 @@
 <div igxLayout>
-  <div igxFlex class="main">
+  <div igxFlex igxLayout igxLayoutDir="columns">
     <igx-navbar title="[Beta] Bellum Gens: Looking for Group">
-      <div class="navigation">
-        <a class="navigation-item" igxButton="raised" [routerLink]="['/team', 0]">Teams</a>
-        <a class="navigation-item" igxButton="raised" [routerLink]="['/players', 0]">Players</a>
-      </div>
-      <app-login></app-login>
+      <igx-action-icon class="home-button">
+        <igx-icon igxActionIcon fontSet="material" [routerLink]="'/home'">home</igx-icon>
+      </igx-action-icon>
+      <igx-icon>search</igx-icon>
+      <igx-icon *ngIf="authUser">notifications</igx-icon>
+      <app-login [authUser]='authUser'></app-login>
     </igx-navbar>
     <div class="content">
       <router-outlet></router-outlet>

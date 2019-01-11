@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { IgxDialogComponent, PositionSettings, HorizontalAlignment, OverlaySettings, ConnectedPositioningStrategy } from 'igniteui-angular';
 import { LoginService } from '../services/login.service';
 import { ApplicationUser } from '../models/applicationuser';
@@ -9,6 +9,7 @@ import { ApplicationUser } from '../models/applicationuser';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  @Input()
   public authUser: ApplicationUser;
 
   public positionSettings: PositionSettings = {
@@ -25,7 +26,6 @@ export class LoginComponent implements OnInit {
   constructor(private authManager: LoginService) { }
 
   ngOnInit() {
-    this.authManager.applicationUser.subscribe(data => this.authUser = data);
   }
 
   public openLogin() {
@@ -38,7 +38,6 @@ export class LoginComponent implements OnInit {
 
   public logout() {
     this.authManager.logout();
-    this.authUser = null;
   }
 
 }
