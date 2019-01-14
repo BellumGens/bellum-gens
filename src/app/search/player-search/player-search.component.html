@@ -9,7 +9,8 @@
           <igx-radio *ngFor="let slot of activeLineup" [(ngModel)]="searchModel.role" [value]="slot.role">{{ slot.roleName }}</igx-radio>
         </igx-radio-group>
     </div>
-    <igx-input-group>
+
+    <igx-input-group *ngIf="authUser">
       <igx-prefix>
           <igx-icon>search</igx-icon>
       </igx-prefix>
