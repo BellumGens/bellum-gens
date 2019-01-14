@@ -18,7 +18,7 @@ export class PlayersComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.apiManager.activeUsers.subscribe((data: CSGOPlayer[]) => {
+    this.apiManager.players.subscribe((data: CSGOPlayer[]) => {
       this.activeUsers = data;
       this.players.isLoading = false;
     });

@@ -3,11 +3,11 @@ import { HttpClient } from '@angular/common/http';
 import { SteamGroup } from '../models/steamuser';
 import { Observable, ReplaySubject, noop } from 'rxjs';
 import { CSGOTeam, TeamMember, TeamApplication, TeamSearch } from '../models/csgoteam';
-import { CSGOPlayer } from '../models/csgoplayer';
+import { CSGOPlayer, PlayerSearch } from '../models/csgoplayer';
 import { Availability } from '../models/playeravailability';
 import { Role } from '../models/playerrole';
 import { MapPool } from 'src/app/models/csgomaps';
-import { map, shareReplay, delay } from 'rxjs/operators';
+import { map, shareReplay } from 'rxjs/operators';
 import { UserNotification } from '../models/usernotifications';
 import { TeamStrategy } from '../models/csgoteamstrategy';
 
@@ -19,22 +19,32 @@ const CACHE_SIZE = 1;
 export class BellumgensApiService {
   private _apiEndpoint = 'http://localhost:25702/api';
 
-  private _activeUsers: Observable<CSGOPlayer []>;
+  private _players: ReplaySubject<CSGOPlayer []>;
   private _csgoTeams: ReplaySubject<CSGOTeam []>;
   private _teamApplications = new Map<string, Observable<TeamApplication[]>>();
   public error: any = null;
   public loadingTeams = new ReplaySubject<boolean>(1);
+  public loadingPlayers = new ReplaySubject<boolean>(1);
 
   constructor(private http: HttpClient) { }
 
-  public get activeUsers() {
-    if (!this._activeUsers) {
-      this._activeUsers = this.getActiveUsers().pipe(
-        shareReplay(CACHE_SIZE)
+  public get players() {
+    if (!this._players) {
+      this.loadingPlayers.next(true);
+      this._players = new ReplaySubject<CSGOPlayer []>(1);
+      this.getPlayers().subscribe(
+        players => {
+          this._players.next(players);
+          this.loadingPlayers.next(false);
+        },
+        error => {
+          this._players = null;
+          this.emitError(error);
+        }
       );
     }
 
-    return this._activeUsers;
+    return this._players;
   }
 
   public get csgoTeams() {
@@ -46,7 +56,10 @@ export class BellumgensApiService {
           this._csgoTeams.next(teams);
           this.loadingTeams.next(false);
         },
-        error => this._csgoTeams = null
+        error => {
+          this._csgoTeams = null;
+          this.emitError(error);
+        }
       );
     }
 
@@ -61,12 +74,29 @@ export class BellumgensApiService {
         this._csgoTeams.next(teams);
         this.loadingTeams.next(false);
       },
-      error => this.emitError()
+      error => {
+        this._csgoTeams = null;
+        this.emitError(error);
+      }
     );
   }
 
+  public searchPlayers(model: PlayerSearch) {
+    this._players.next([]);
+    this.loadingPlayers.next(true);
+    this.getFilteredPlayers(model).subscribe(
+      players => {
+        this._players.next(players);
+        this.loadingPlayers.next(false);
+      },
+      error => {
+        this._players = null;
+        this.emitError(error);
+      }
+    );
+  }
 
-  public emitError() {
+  public emitError(error: any) {
     noop();
   }
 
@@ -84,10 +114,14 @@ export class BellumgensApiService {
     return this.http.get<TeamStrategy []>(`${this._apiEndpoint}/teams/strats?teamid=${teamId}`, { withCredentials: true });
   }
 
-  private getActiveUsers() {
+  private getPlayers() {
     return this.http.get<CSGOPlayer []>(`${this._apiEndpoint}/users/users`).pipe(
       map(response => response)
     );
+  }
+
+  private getFilteredPlayers(model: PlayerSearch) {
+    return this.http.post<CSGOPlayer []>(`${this._apiEndpoint}/users/search`, model);
   }
 
   private getTeams() {
@@ -97,9 +131,7 @@ export class BellumgensApiService {
   }
 
   private getFilteredTeams(model: TeamSearch) {
-    return this.http.post<CSGOTeam []>(`${this._apiEndpoint}/teams/search`, model).pipe(
-      map(response => response)
-    );
+    return this.http.post<CSGOTeam []>(`${this._apiEndpoint}/teams/search`, model);
   }
 
   public getTeam(teamId: string): Observable<CSGOTeam> {
@@ -163,7 +195,7 @@ export class BellumgensApiService {
     return this.http.put(`${this._apiEndpoint}/teams/availability`, day, { withCredentials: true });
   }
 
-  public getUser(userId: string): Observable<CSGOPlayer> {
+  public getPlayer(userId: string): Observable<CSGOPlayer> {
     return this.http.get<CSGOPlayer>(`${this._apiEndpoint}/users/user?userid=${userId}`);
   }
 

@@ -44,7 +44,7 @@ export class PlayerDetailsComponent implements OnInit {
       const userid = params['userid'];
       this.newUser = params['newuser'];
       if (userid !== '0') {
-        this.apiService.getUser(userid).subscribe(
+        this.apiService.getPlayer(userid).subscribe(
           data => {
             this.player = data;
             if (data.userStatsException) {
