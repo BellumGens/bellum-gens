@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { PlaystyleRole } from 'src/app/models/playerrole';
 import { TeamSearch, TEAM_SEARCH } from 'src/app/models/csgoteam';
 import { BellumgensApiService } from 'src/app/services/bellumgens-api.service';
+import { ApplicationUser } from 'src/app/models/applicationuser';
 
 @Component({
   selector: 'app-team-search',
@@ -10,6 +11,9 @@ import { BellumgensApiService } from 'src/app/services/bellumgens-api.service';
 })
 export class TeamSearchComponent implements OnInit {
   public searchModel: TeamSearch = TEAM_SEARCH;
+
+  @Input()
+  public authUser: ApplicationUser;
 
   public activeLineup = [
     { roleName: 'IGL', role: PlaystyleRole.IGL },

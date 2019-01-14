@@ -1,6 +1,6 @@
 <igx-tabs [selectedIndex]="1">
   <igx-tabs-group label="All Teams">
-    <app-team-search></app-team-search>
+    <app-team-search [authUser]="authUser"></app-team-search>
     <app-teams></app-teams>
   </igx-tabs-group>
   <igx-tabs-group label="My Teams">
