@@ -5,13 +5,16 @@
         <igx-icon igxActionIcon fontSet="material" [routerLink]="'/home'">home</igx-icon>
       </igx-action-icon>
       <igx-icon [igxToggleAction]="search" [overlaySettings]="overlaySettings">search</igx-icon>
-      <igx-icon *ngIf="authUser">people</igx-icon>
+      <igx-icon [igxToggleAction]="myTeam" [overlaySettings]="overlaySettings" *ngIf="authUser">people</igx-icon>
       <igx-icon *ngIf="authUser">notifications</igx-icon>
       <igx-badge *ngIf="authUser?.Notifications.length" [value]="authUser.Notifications | unreadNotifications" type="info"></igx-badge>
       <app-login [authUser]='authUser'></app-login>
     </igx-navbar>
     <igx-drop-down #search>
       <app-search [authUser]="authUser"></app-search>
+    </igx-drop-down>
+    <igx-drop-down #myTeam>
+      <app-team-nav [authUser]="authUser"></app-team-nav>
     </igx-drop-down>
     <div class="content">
       <router-outlet></router-outlet>

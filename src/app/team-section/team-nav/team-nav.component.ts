@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, Input } from '@angular/core';
 import { IgxDialogComponent } from 'igniteui-angular';
 import { Router } from '@angular/router';
 import { CSGOTeam, TeamMember, TeamSearch } from 'src/app/models/csgoteam';
@@ -25,21 +25,15 @@ export class TeamNavComponent {
   };
   public activeMembers: TeamMember [];
   public inactiveMembers: TeamMember [];
+
+  @Input()
   public authUser: ApplicationUser;
 
   @ViewChild(IgxDialogComponent) public createTeam: IgxDialogComponent;
   @ViewChild(SuccessErrorComponent) public toast: SuccessErrorComponent;
 
   constructor(private apiService: BellumgensApiService,
-              public router: Router,
-              private authManager: LoginService) {
-    this.authManager.applicationUser.subscribe((data: ApplicationUser) => {
-      this.authUser = data;
-    });
-  }
-
-  public searchTeams(term: TeamSearch) {
-    console.log(term);
+              public router: Router) {
   }
 
   public createFromSteam(group: SteamGroup): void {
