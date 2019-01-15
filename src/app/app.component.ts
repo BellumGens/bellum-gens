@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
-import { IgxToggleDirective} from 'igniteui-angular';
+import { IgxToggleDirective, PositionSettings, HorizontalAlignment, OverlaySettings, ConnectedPositioningStrategy} from 'igniteui-angular';
 import { LoginService } from './services/login.service';
 import { ApplicationUser } from './models/applicationuser';
 
@@ -12,6 +12,15 @@ import { ApplicationUser } from './models/applicationuser';
 export class AppComponent implements OnInit {
   public title: string;
   public authUser: ApplicationUser;
+
+  public positionSettings: PositionSettings = {
+    horizontalDirection: HorizontalAlignment.Left,
+    horizontalStartPoint: HorizontalAlignment.Right
+  };
+
+  public overlaySettings: OverlaySettings = {
+    positionStrategy: new ConnectedPositioningStrategy(this.positionSettings)
+  };
 
   @ViewChild(IgxToggleDirective) public toggle: IgxToggleDirective;
   @ViewChild('userButton') public userButton: ElementRef;

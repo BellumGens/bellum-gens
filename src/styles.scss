@@ -143,3 +143,28 @@ a {
 textarea {
   resize: none;
 }
+
+/* SEARCH */
+.role-slots {
+  display: flex;
+  flex-flow: column;
+}
+
+.search-body {
+  padding: 8px;
+}
+
+.search-box {
+  border-bottom: 1px solid #990116;
+  border-left: 1px solid #990116;
+  border-right: 1px solid #990116;
+}
+
+.search-radio-group {
+  padding: 8px;
+}
+
+.submit-button {
+  width: 100%;
+}
+/* END SEARCH */

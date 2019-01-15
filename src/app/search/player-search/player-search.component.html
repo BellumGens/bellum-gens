@@ -38,5 +38,9 @@
       </igx-hint>
     </igx-input-group>
     <button class="submit-button" igxButton="flat" (click)="searchPlayers()">Submit</button>
+    <div *ngIf="!authUser">
+      <p><b class="highlight">NOTE: </b>Signing in gives you access to more advanced search options!</p>
+      <app-login></app-login>
+    </div>
   </igx-expansion-panel-body>
 </igx-expansion-panel>
