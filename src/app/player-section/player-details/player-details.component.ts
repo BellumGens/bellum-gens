@@ -3,7 +3,6 @@ import { LoginService } from '../../services/login.service';
 import { ActivatedRoute } from '../../../../node_modules/@angular/router';
 import { BellumgensApiService } from '../../services/bellumgens-api.service';
 import {
-  IgxToastPosition,
   IgxDropDownComponent,
   ISelectionEventArgs
 } from '../../../../node_modules/igniteui-angular';
@@ -48,7 +47,7 @@ export class PlayerDetailsComponent implements OnInit {
           data => {
             this.player = data;
             if (data.userStatsException) {
-              this.toast.showError('Account is private!', IgxToastPosition.Middle);
+              this.toast.showError('Account is private!');
             }
           }
         );

@@ -1,13 +1,13 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SteamGroup } from '../models/steamuser';
-import { Observable, ReplaySubject, noop } from 'rxjs';
+import { Observable, ReplaySubject, throwError } from 'rxjs';
 import { CSGOTeam, TeamMember, TeamApplication, TeamSearch } from '../models/csgoteam';
 import { CSGOPlayer, PlayerSearch } from '../models/csgoplayer';
 import { Availability } from '../models/playeravailability';
 import { Role } from '../models/playerrole';
 import { MapPool } from 'src/app/models/csgomaps';
-import { map, shareReplay } from 'rxjs/operators';
+import { map, shareReplay, catchError } from 'rxjs/operators';
 import { UserNotification } from '../models/usernotifications';
 import { TeamStrategy } from '../models/csgoteamstrategy';
 
@@ -22,7 +22,8 @@ export class BellumgensApiService {
   private _players: ReplaySubject<CSGOPlayer []>;
   private _csgoTeams: ReplaySubject<CSGOTeam []>;
   private _teamApplications = new Map<string, Observable<TeamApplication[]>>();
-  public error: any = null;
+  public success = new EventEmitter<string>();
+  public error = new EventEmitter<string>();
   public loadingTeams = new ReplaySubject<boolean>(1);
   public loadingPlayers = new ReplaySubject<boolean>(1);
 
@@ -96,8 +97,12 @@ export class BellumgensApiService {
     );
   }
 
-  public emitError(error: any) {
-    noop();
+  public emitError(error: string) {
+    this.error.emit(error);
+  }
+
+  public emitSuccess(success: string) {
+    this.success.emit(success);
   }
 
   public teamApplications(teamId: string): Observable<TeamApplication []> {
@@ -138,25 +143,80 @@ export class BellumgensApiService {
     return this.http.get<CSGOTeam>(`${this._apiEndpoint}/teams/team?teamid=${teamId}`);
   }
 
-  public registerSteamGroup(group: SteamGroup): Observable<CSGOTeam> {
-    return this.http.post<CSGOTeam>(`${this._apiEndpoint}/teams/team`, group, { withCredentials: true });
+  public registerSteamGroup(group: SteamGroup) {
+    return this.http.post<CSGOTeam>(`${this._apiEndpoint}/teams/team`, group, { withCredentials: true }).pipe(
+      map(response => {
+        if (response) {
+          this.emitSuccess(`${group.groupName} registered successfully!`);
+        }
+        return response;
+      }),
+      catchError(error => {
+        this.emitError(error.error.Message);
+        return throwError(error);
+      })
+    );
   }
 
   public registerTeam(team: CSGOTeam): Observable<CSGOTeam> {
-    return this.http.post<CSGOTeam>(`${this._apiEndpoint}/teams/newteam`, team, { withCredentials: true });
+    return this.http.post<CSGOTeam>(`${this._apiEndpoint}/teams/newteam`, team, { withCredentials: true }).pipe(
+      map(response => {
+        if (response) {
+          this.emitSuccess(`${team.TeamName} registered successfully!`);
+        }
+        return response;
+      }),
+      catchError(error => {
+        this.emitError(error.error.Message);
+        return throwError(error);
+      })
+    );
   }
 
   public updateTeamMember(teamMember: TeamMember) {
-    return this.http.put(`${this._apiEndpoint}/teams/member`, teamMember, { withCredentials: true });
+    return this.http.put(`${this._apiEndpoint}/teams/member`, teamMember, { withCredentials: true }).pipe(
+      map(response => {
+        if (response) {
+          this.emitSuccess(`${teamMember.SteamUser.steamID} updated successfully!`);
+        }
+        return response;
+      }),
+      catchError(error => {
+        this.emitError(error.error.Message);
+        return throwError(error);
+      })
+    );
   }
 
   public removeTeamMember(teamMember: TeamMember) {
     return this.http.delete(`${this._apiEndpoint}/teams/removemember?teamId=${teamMember.TeamId}&userId=${teamMember.UserId}`,
-              { withCredentials: true });
+              { withCredentials: true }).pipe(
+                map(response => {
+                  if (response) {
+                    this.emitSuccess(`${teamMember.SteamUser.steamID} removed from team!`);
+                  }
+                  return response;
+                }),
+                catchError(error => {
+                  this.emitError(error.error.Message);
+                  return throwError(error);
+                })
+              );
   }
 
-  public abandonTeam(teamId: string) {
-    return this.http.delete(`${this._apiEndpoint}/teams/abandon?teamId=${teamId}`, { withCredentials: true });
+  public abandonTeam(team: CSGOTeam) {
+    return this.http.delete(`${this._apiEndpoint}/teams/abandon?teamId=${team.TeamId}`, { withCredentials: true }).pipe(
+      map(response => {
+        if (response) {
+          this.emitSuccess(`You're are no longer part of ${team.TeamName}`);
+        }
+        return response;
+      }),
+      catchError(error => {
+        this.emitError(error.error.Message);
+        return throwError(error);
+      })
+    );
   }
 
   public inviteToTeam(userId: string, team: CSGOTeam) {
@@ -184,15 +244,48 @@ export class BellumgensApiService {
   }
 
   public setTeamMapPool(mapstatus: MapPool []): Observable<any> {
-    return this.http.put(`${this._apiEndpoint}/teams/mapPool`, mapstatus, { withCredentials: true });
+    return this.http.put(`${this._apiEndpoint}/teams/mapPool`, mapstatus, { withCredentials: true }).pipe(
+      map(response => {
+        if (response) {
+          this.emitSuccess('Map selection saved!');
+        }
+        return response;
+      }),
+      catchError(error => {
+        this.emitError(error.error.Message);
+        return throwError(error);
+      })
+    );
   }
 
   public submitStrategy(strat: TeamStrategy): Observable<any> {
-    return this.http.post(`${this._apiEndpoint}/teams/strategy`, strat, { withCredentials: true });
+    return this.http.post(`${this._apiEndpoint}/teams/strategy`, strat, { withCredentials: true }).pipe(
+      map(response => {
+        if (response) {
+          this.emitSuccess('New strategy successfully submitted!');
+        }
+        return response;
+      }),
+      catchError(error => {
+        this.emitError(error.error.Message);
+        return throwError(error);
+      })
+    );
   }
 
   public setTeamPractice(day: Availability) {
-    return this.http.put(`${this._apiEndpoint}/teams/availability`, day, { withCredentials: true });
+    return this.http.put(`${this._apiEndpoint}/teams/availability`, day, { withCredentials: true }).pipe(
+      map(response => {
+        if (response) {
+          this.emitSuccess('Practice schedule updated!');
+        }
+        return response;
+      }),
+      catchError(error => {
+        this.emitError(error.error.Message);
+        return throwError(error);
+      })
+    );
   }
 
   public getPlayer(userId: string): Observable<CSGOPlayer> {

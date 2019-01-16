@@ -1,9 +1,8 @@
-import { Component, OnInit, ViewChild, ViewChildren, QueryList, ElementRef, Input } from '@angular/core';
+import { Component, OnInit, ViewChildren, QueryList, ElementRef, Input } from '@angular/core';
 import { IgxDropEventArgs, IgxAvatarComponent } from 'igniteui-angular';
 import { PlaystyleRole } from 'src/app/models/playerrole';
 import { TeamMember, CSGOTeam, TEAM_PLACEHOLDER } from 'src/app/models/csgoteam';
 import { ApplicationUser } from 'src/app/models/applicationuser';
-import { SuccessErrorComponent } from 'src/app/success-error/success-error.component';
 import { BellumgensApiService } from 'src/app/services/bellumgens-api.service';
 
 interface RoleSlot {
@@ -51,7 +50,6 @@ export class TeamDetailsComponent implements OnInit {
     { roleName: 'Lurker', role: PlaystyleRole.Lurker, user: null }
   ];
 
-  @ViewChild(SuccessErrorComponent) public toast: SuccessErrorComponent;
   @ViewChildren(IgxAvatarComponent, { read: ElementRef }) public emptyRoles: QueryList<ElementRef>;
 
   constructor(private apiService: BellumgensApiService) { }
@@ -64,21 +62,11 @@ export class TeamDetailsComponent implements OnInit {
     this.activeMembers.push(user);
     role.user = null;
     user.Role = PlaystyleRole.NotSet;
-    this.apiService.updateTeamMember(user).subscribe(
-      data => this.toast.showSuccess(`${user.SteamUser.steamID} removed from role ${role.roleName}`),
-      error => {
-        this.toast.showError(error.error.Message);
-      }
-    );
+    this.apiService.updateTeamMember(user).subscribe();
   }
 
   public removeFromTeam(user: TeamMember) {
-    this.apiService.removeTeamMember(user).subscribe(
-      data => this.toast.showSuccess(`${user.SteamUser.steamID} removed from ${this.team.TeamName}`),
-      error => {
-        this.toast.showError(error.error.Message);
-      }
-    );
+    this.apiService.removeTeamMember(user).subscribe();
   }
 
   public assignToRole(args: IgxDropEventArgs, role: RoleSlot) {
@@ -88,12 +76,7 @@ export class TeamDetailsComponent implements OnInit {
     this.activeMembers.splice(this.activeMembers.indexOf(args.drag.data), 1);
     args.cancel = true;
     this.roleDraggingEnd();
-    this.apiService.updateTeamMember(user).subscribe(
-      data => this.toast.showSuccess(`${user.SteamUser.steamID} assigned to role ${role.roleName}`),
-      error => {
-        this.toast.showError(error.error.Message);
-      }
-    );
+    this.apiService.updateTeamMember(user).subscribe();
   }
 
   public get isAdmin() {

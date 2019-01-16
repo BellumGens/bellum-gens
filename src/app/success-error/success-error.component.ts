@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IgxToastComponent, IgxToastPosition } from 'igniteui-angular';
+import { IgxToastComponent } from 'igniteui-angular';
+import { BellumgensApiService } from '../services/bellumgens-api.service';
 
 @Component({
   selector: 'app-success-error',
@@ -8,26 +9,25 @@ import { IgxToastComponent, IgxToastPosition } from 'igniteui-angular';
 })
 export class SuccessErrorComponent implements OnInit {
   @ViewChild('error') public error: IgxToastComponent;
-  @ViewChild('saveSuccess') public success: IgxToastComponent;
+  @ViewChild('success') public success: IgxToastComponent;
 
-  constructor() { }
+  constructor(private apiService: BellumgensApiService) { }
 
   ngOnInit() {
+    this.apiService.error.subscribe(message => this.showError(message));
+    this.apiService.success.subscribe(message => this.showSuccess(message));
   }
 
-  public showSuccess(msg?: string, delay?: number) {
+  public showSuccess(msg?: string) {
     if (msg) {
       this.success.message = msg;
     }
     this.success.show();
   }
 
-  public showError(msg?: string, position?: IgxToastPosition, delay?: number) {
+  public showError(msg?: string) {
     if (msg) {
       this.error.message = msg;
-    }
-    if (position) {
-      this.error.position = position;
     }
     this.error.show();
   }

@@ -1,9 +1,8 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BellumgensApiService } from 'src/app/services/bellumgens-api.service';
-import { TeamStrategy, Side, newEmptyStrategy } from 'src/app/models/csgoteamstrategy';
-import { MapPool, CSGOMap, ActiveDutyDescriptor, ActiveDuty } from 'src/app/models/csgomaps';
-import { SuccessErrorComponent } from 'src/app/success-error/success-error.component';
+import { TeamStrategy, newEmptyStrategy } from 'src/app/models/csgoteamstrategy';
+import { MapPool, ActiveDutyDescriptor, ActiveDuty } from 'src/app/models/csgomaps';
 import { IgxDialogComponent } from 'igniteui-angular';
 import { SafeResourceUrl } from '@angular/platform-browser';
 import { MapnamePipe } from 'src/app/pipes/mapname.pipe';
@@ -29,7 +28,6 @@ export class TeamStrategiesComponent implements OnInit {
 
   private _youtubeRegEx = /(youtu\.be\/|youtube\.com\/(watch\?(.*&)?v=|(embed|v)\/))([^\?&"'>]+)/;
 
-  @ViewChild(SuccessErrorComponent) public toast: SuccessErrorComponent;
   @ViewChild(IgxDialogComponent) public dialog: IgxDialogComponent;
 
   constructor(private activatedRoute: ActivatedRoute,
@@ -72,11 +70,9 @@ export class TeamStrategiesComponent implements OnInit {
 
   public saveMaps() {
     this.apiService.setTeamMapPool(this.maps).subscribe(
-      success => {
+      _ => {
         this.changes = false;
-        this.toast.showSuccess('Map pool updated successfully!');
-      },
-      error => this.toast.showError(error.error.Message)
+      }
     );
   }
 
@@ -97,16 +93,14 @@ export class TeamStrategiesComponent implements OnInit {
   public submitStrategy() {
     this.newStrategy.TeamId = this.teamId;
     this.apiService.submitStrategy(this.newStrategy).subscribe(
-      success => {
+      _ => {
         if (!this.newStrategy.Id) {
           this.teamStrats.push(this.newStrategy);
           this.pipeTrigger++;
         }
         this.newStrategy = newEmptyStrategy();
         this.dialog.close();
-        this.toast.showSuccess('Update submitted successfully!');
-      },
-      error => this.toast.showError(error.error.Message)
+      }
     );
   }
 
