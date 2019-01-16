@@ -4,7 +4,6 @@ import { IgxDialogComponent } from 'igniteui-angular';
 import { ApplicationUser } from 'src/app/models/applicationuser';
 import { TeamApplication } from 'src/app/models/csgoteam';
 import { NotificationState } from 'src/app/models/usernotifications';
-import { SuccessErrorComponent } from 'src/app/success-error/success-error.component';
 import { BellumgensApiService } from 'src/app/services/bellumgens-api.service';
 import { LoginService } from 'src/app/services/login.service';
 
@@ -24,7 +23,6 @@ export class TeamApplicationComponent implements OnInit {
     UserInfo: null
   };
 
-  @ViewChild(SuccessErrorComponent) public toast: SuccessErrorComponent;
   @ViewChild(IgxDialogComponent) public dialog: IgxDialogComponent;
 
   constructor(private activatedRoute: ActivatedRoute,
@@ -42,12 +40,6 @@ export class TeamApplicationComponent implements OnInit {
   }
 
   public submitApplication() {
-    this.apiService.submitApplication(this.application).subscribe(
-      data => {
-        this.toast.showSuccess('Application submitted successfully!');
-        this.dialog.close();
-      },
-      error => this.toast.showError(error.error.Message)
-    );
+    this.apiService.submitApplication(this.application).subscribe(_ => this.dialog.close());
   }
 }

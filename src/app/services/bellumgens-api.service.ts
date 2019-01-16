@@ -1,6 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { SteamGroup } from '../models/steamuser';
+import { SteamGroup, SteamUser } from '../models/steamuser';
 import { Observable, ReplaySubject, throwError } from 'rxjs';
 import { CSGOTeam, TeamMember, TeamApplication, TeamSearch } from '../models/csgoteam';
 import { CSGOPlayer, PlayerSearch } from '../models/csgoplayer';
@@ -219,24 +219,68 @@ export class BellumgensApiService {
     );
   }
 
-  public inviteToTeam(userId: string, team: CSGOTeam) {
-    return this.http.post(`${this._apiEndpoint}/teams/invite?userId=${userId}`, team, { withCredentials: true });
+  public inviteToTeam(steamUser: SteamUser, team: CSGOTeam) {
+    return this.http.post(`${this._apiEndpoint}/teams/invite?userId=${steamUser.steamID64}`, team, { withCredentials: true }).pipe(
+      map(response => {
+        if (response) {
+          this.emitSuccess(`${steamUser.steamID} successfully invited to ${team.TeamName}`);
+        }
+        return response;
+      }),
+      catchError(error => {
+        this.emitError(error.error.Message);
+        return throwError(error);
+      })
+    );
   }
 
   public submitApplication(application: TeamApplication) {
-    return this.http.post(`${this._apiEndpoint}/teams/apply`, application, { withCredentials: true });
+    return this.http.post(`${this._apiEndpoint}/teams/apply`, application, { withCredentials: true }).pipe(
+      map(response => {
+        if (response) {
+          this.emitSuccess(`Application submitted successfully!`);
+        }
+        return response;
+      }),
+      catchError(error => {
+        this.emitError(error.error.Message);
+        return throwError(error);
+      })
+    );
   }
 
   public getTeamApplications(teamId: string): Observable<TeamApplication []> {
     return this.http.get<TeamApplication []>(`${this._apiEndpoint}/teams/applications?teamId=${teamId}`, { withCredentials: true });
   }
 
-  public approveApplication(application: TeamApplication) {
-    return this.http.put(`${this._apiEndpoint}/teams/approveapplication`, application, { withCredentials: true });
+  public approveApplication(application: TeamApplication): Observable<TeamApplication> {
+    return this.http.put<TeamApplication>(`${this._apiEndpoint}/teams/approveapplication`, application, { withCredentials: true }).pipe(
+      map(response => {
+        if (response) {
+          this.emitSuccess(`${application.UserInfo.steamID} is now part of your team!`);
+        }
+        return response;
+      }),
+      catchError(error => {
+        this.emitError(error.error.Message);
+        return throwError(error);
+      })
+    );
   }
 
-  public rejectApplication(application: TeamApplication) {
-    return this.http.put(`${this._apiEndpoint}/teams/rejectapplication`, application, { withCredentials: true });
+  public rejectApplication(application: TeamApplication): Observable<TeamApplication> {
+    return this.http.put<TeamApplication>(`${this._apiEndpoint}/teams/rejectapplication`, application, { withCredentials: true }).pipe(
+      map(response => {
+        if (response) {
+          this.emitSuccess(`${application.UserInfo.steamID} application has been rejected!`);
+        }
+        return response;
+      }),
+      catchError(error => {
+        this.emitError(error.error.Message);
+        return throwError(error);
+      })
+    );
   }
 
   public getTeamMapPool(teamId: string): Observable<MapPool []> {
@@ -289,30 +333,107 @@ export class BellumgensApiService {
   }
 
   public getPlayer(userId: string): Observable<CSGOPlayer> {
-    return this.http.get<CSGOPlayer>(`${this._apiEndpoint}/users/user?userid=${userId}`);
+    return this.http.get<CSGOPlayer>(`${this._apiEndpoint}/users/user?userid=${userId}`).pipe(
+      map(response => {
+        if (response.userStatsException) {
+          this.emitError('Account is private!');
+        }
+        return response;
+      }),
+      catchError(error => {
+        this.emitError(error.error.Message);
+        return throwError(error);
+      })
+    );
   }
 
   public setAvailability(availability: Availability): Observable<any> {
-    return this.http.put(`${this._apiEndpoint}/users/availability`, availability, { withCredentials: true });
+    return this.http.put(`${this._apiEndpoint}/users/availability`, availability, { withCredentials: true }).pipe(
+      map(response => {
+        if (response) {
+          this.emitSuccess('Availability updated!');
+        }
+        return response;
+      }),
+      catchError(error => {
+        this.emitError(error.error.Message);
+        return throwError(error);
+      })
+    );
   }
 
   public setPrimaryRole(role: Role): Observable<any> {
-    return this.http.put(`${this._apiEndpoint}/users/primaryrole`, role, { withCredentials: true });
+    return this.http.put(`${this._apiEndpoint}/users/primaryrole`, role, { withCredentials: true }).pipe(
+      map(response => {
+        if (response) {
+          this.emitSuccess(`Primary role set to ${role.Name}`);
+        }
+        return response;
+      }),
+      catchError(error => {
+        this.emitError(error.error.Message);
+        return throwError(error);
+      })
+    );
   }
 
   public setSecondaryRole(role: Role): Observable<any> {
-    return this.http.put(`${this._apiEndpoint}/users/secondaryrole`, role, { withCredentials: true });
+    return this.http.put(`${this._apiEndpoint}/users/secondaryrole`, role, { withCredentials: true }).pipe(
+      map(response => {
+        if (response) {
+          this.emitSuccess(`Secondary role set to ${role.Name}`);
+        }
+        return response;
+      }),
+      catchError(error => {
+        this.emitError(error.error.Message);
+        return throwError(error);
+      })
+    );
   }
 
   public setMapPool(mapstatus: MapPool): Observable<any> {
-    return this.http.put(`${this._apiEndpoint}/users/mapPool`, mapstatus, { withCredentials: true });
+    return this.http.put(`${this._apiEndpoint}/users/mapPool`, mapstatus, { withCredentials: true }).pipe(
+      map(response => {
+        if (response) {
+          this.emitSuccess('Map pool updated!');
+        }
+        return response;
+      }),
+      catchError(error => {
+        this.emitError(error.error.Message);
+        return throwError(error);
+      })
+    );
   }
 
   public acceptInvite(notification: UserNotification) {
-    return this.http.put(`${this._apiEndpoint}/users/acceptTeamInvite`, notification, { withCredentials: true });
+    return this.http.put(`${this._apiEndpoint}/users/acceptTeamInvite`, notification, { withCredentials: true }).pipe(
+      map(response => {
+        if (response) {
+          this.emitSuccess('Team invite accepted!');
+        }
+        return response;
+      }),
+      catchError(error => {
+        this.emitError(error.error.Message);
+        return throwError(error);
+      })
+    );
   }
 
   public rejectInvite(notification: UserNotification) {
-    return this.http.put(`${this._apiEndpoint}/users/rejectTeamInvite`, notification, { withCredentials: true });
+    return this.http.put(`${this._apiEndpoint}/users/rejectTeamInvite`, notification, { withCredentials: true }).pipe(
+      map(response => {
+        if (response) {
+          this.emitSuccess('Team invite rejected!');
+        }
+        return response;
+      }),
+      catchError(error => {
+        this.emitError(error.error.Message);
+        return throwError(error);
+      })
+    );
   }
 }
