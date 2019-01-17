@@ -40,7 +40,7 @@
             <igx-icon>search</igx-icon>
         </igx-prefix>
         <label igxLabel for="overlap">Minimum availability overlap of...</label>
-        <input #overlap type="number" [(ngModel)]="searchModel.scheduleOverlap" name="scheduleOverlap" igxInput>
+        <input #overlap type="number" [(ngModel)]="searchModel.scheduleOverlap" name="scheduleOverlap" autocomplete="off" igxInput>
         <igx-suffix *ngIf="overlap.value !== '0'">
             <igx-icon (click)="searchModel.scheduleOverlap = 0">clear</igx-icon>
         </igx-suffix>
@@ -54,7 +54,7 @@
             <igx-icon>search</igx-icon>
         </igx-prefix>
         <label igxLabel for="search">Player name contains...</label>
-        <input #search [(ngModel)]="searchModel.name" name="name" igxInput>
+        <input #search [(ngModel)]="searchModel.name" name="name" autocomplete="off" igxInput>
         <igx-suffix *ngIf="search.value.length">
             <igx-icon (click)="searchModel.name = ''">clear</igx-icon>
         </igx-suffix>
