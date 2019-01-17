@@ -17,10 +17,17 @@ html, body {
   height: 100%;
 }
 
+/* ICONS */
 igx-icon {
   cursor: pointer;
   user-select: none;
 }
+
+.button-icon {
+  --igx-navbar-hover-icon-color: #990116;
+}
+
+/* END ICONS */
 
 .content p {
   margin: 15px;
@@ -168,3 +175,5 @@ textarea {
   width: 100%;
 }
 /* END SEARCH */
+
+

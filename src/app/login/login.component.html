@@ -8,7 +8,7 @@
     <igx-avatar [src]="authUser.SteamUser.avatarMedium" roundShape="true">
       <igx-badge *ngIf="authUser.Notifications.length" [value]="authUser.Notifications | unreadNotifications" type="info" class="notification-badge"></igx-badge>
     </igx-avatar>
-    <igx-icon fontSet="material" class="drop-down-arrow">arrow_drop_down</igx-icon>
+    <igx-icon class="drop-down-arrow button-icon">arrow_drop_down</igx-icon>
   </button>
   <igx-drop-down #userProfile>
     <igx-drop-down-item class="profile-item" [routerLink]="['/players', authUser.SteamUser.steamID64]">

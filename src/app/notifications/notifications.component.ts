@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { LoginService } from '../services/login.service';
 import { ApplicationUser } from '../models/applicationuser';
 import { IgxListComponent } from 'igniteui-angular';
@@ -12,21 +12,15 @@ import { BellumgensApiService } from '../services/bellumgens-api.service';
 })
 export class NotificationsComponent implements OnInit {
 
+  @Input()
   public authUser: ApplicationUser;
   public notificationClass = ['', '', 'notification-disabled', 'notification-disabled'];
 
   @ViewChild(IgxListComponent) public notifications: IgxListComponent;
 
-  constructor(private authManager: LoginService,
-              private apiService: BellumgensApiService) { }
+  constructor(private apiService: BellumgensApiService) { }
 
   ngOnInit() {
-    this.authManager.applicationUser.subscribe(
-      user => {
-        this.authUser = user;
-        this.notifications.isLoading = false;
-      }
-    );
   }
 
   public acceptInvitation(notification: UserNotification) {

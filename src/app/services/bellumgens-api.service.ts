@@ -39,8 +39,8 @@ export class BellumgensApiService {
           this.loadingPlayers.next(false);
         },
         error => {
-          this._players = null;
-          this.emitError(error);
+          this._players.next([]);
+          this.emitError(error.error.Message);
         }
       );
     }
@@ -58,8 +58,8 @@ export class BellumgensApiService {
           this.loadingTeams.next(false);
         },
         error => {
-          this._csgoTeams = null;
-          this.emitError(error);
+          this._csgoTeams.next([]);
+          this.emitError(error.error.Message);
         }
       );
     }
@@ -76,8 +76,7 @@ export class BellumgensApiService {
         this.loadingTeams.next(false);
       },
       error => {
-        this._csgoTeams = null;
-        this.emitError(error);
+        this.emitError(error.error.Message);
       }
     );
   }
@@ -91,8 +90,7 @@ export class BellumgensApiService {
         this.loadingPlayers.next(false);
       },
       error => {
-        this._players = null;
-        this.emitError(error);
+        this.emitError(error.error.Message);
       }
     );
   }

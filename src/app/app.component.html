@@ -4,9 +4,9 @@
       <igx-action-icon class="home-button">
         <igx-icon igxActionIcon fontSet="material" [routerLink]="'/home'">home</igx-icon>
       </igx-action-icon>
-      <igx-icon [igxToggleAction]="search" [overlaySettings]="overlaySettings">search</igx-icon>
-      <igx-icon [igxToggleAction]="myTeam" [overlaySettings]="overlaySettings" *ngIf="authUser">people</igx-icon>
-      <igx-icon *ngIf="authUser">notifications</igx-icon>
+      <igx-icon class="button-icon" [igxToggleAction]="search" [overlaySettings]="overlaySettings">search</igx-icon>
+      <igx-icon class="button-icon" [igxToggleAction]="myTeam" [overlaySettings]="overlaySettings" *ngIf="authUser">people</igx-icon>
+      <igx-icon class="button-icon" [igxToggleAction]="notifications" [overlaySettings]="overlaySettings" *ngIf="authUser">notifications</igx-icon>
       <igx-badge *ngIf="authUser?.Notifications.length" [value]="authUser.Notifications | unreadNotifications" type="info"></igx-badge>
       <app-login [authUser]='authUser'></app-login>
     </igx-navbar>
@@ -15,6 +15,9 @@
     </igx-drop-down>
     <igx-drop-down #myTeam>
       <app-team-nav [authUser]="authUser"></app-team-nav>
+    </igx-drop-down>
+    <igx-drop-down #notifications>
+      <app-notifications [authUser]="authUser"></app-notifications>
     </igx-drop-down>
     <app-success-error></app-success-error>
     <div class="content">
