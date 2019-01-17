@@ -3,41 +3,43 @@
     <igx-expansion-panel-title>Search teams</igx-expansion-panel-title>
   </igx-expansion-panel-header>
   <igx-expansion-panel-body class="search-body">
-    <label for="lineup">Teams looking for:</label>
-    <div class="search-radio-group">
-        <igx-radio-group id="lineup" class="role-slots">
-          <igx-radio *ngFor="let slot of activeLineup" [(ngModel)]="searchModel.role" [value]="slot.role">{{ slot.roleName }}</igx-radio>
-        </igx-radio-group>
-    </div>
-
-    <igx-input-group *ngIf="authUser">
-      <igx-prefix>
-          <igx-icon>search</igx-icon>
-      </igx-prefix>
-      <label igxLabel for="overlap">Minimum availability overlap of...</label>
-      <input #overlap type="number" [(ngModel)]="searchModel.scheduleOverlap" igxInput>
-      <igx-suffix *ngIf="overlap.value !== '0'">
-          <igx-icon (click)="searchModel.scheduleOverlap = 0">clear</igx-icon>
-      </igx-suffix>
-      <igx-hint>
-        Hours
-      </igx-hint>
-    </igx-input-group>
-    
-    <igx-input-group>
-      <igx-prefix>
-          <igx-icon>search</igx-icon>
-      </igx-prefix>
-      <label igxLabel for="search">Team name contains...</label>
-      <input #search [(ngModel)]="searchModel.name" igxInput>
-      <igx-suffix *ngIf="search.value.length">
-          <igx-icon (click)="searchModel.name = ''">clear</igx-icon>
-      </igx-suffix>
-      <igx-hint>
-        Searching by name ignores other search criterial...
-      </igx-hint>
-    </igx-input-group>
-    <button class="submit-button" igxButton="flat" (click)="searchTeams()">Submit</button>
+    <form (ngSubmit)="searchTeams()">
+      <label for="lineup">Teams looking for:</label>
+      <div class="search-radio-group">
+          <igx-radio-group id="lineup" class="role-slots">
+            <igx-radio *ngFor="let slot of activeLineup" [(ngModel)]="searchModel.role" name="role" [value]="slot.role">{{ slot.roleName }}</igx-radio>
+          </igx-radio-group>
+      </div>
+  
+      <igx-input-group *ngIf="authUser">
+        <igx-prefix>
+            <igx-icon>search</igx-icon>
+        </igx-prefix>
+        <label igxLabel for="overlap">Minimum availability overlap of...</label>
+        <input #overlap type="number" name="scheduleOverlap" autocomplete="off" [(ngModel)]="searchModel.scheduleOverlap" igxInput>
+        <igx-suffix *ngIf="overlap.value !== '0'">
+            <igx-icon (click)="searchModel.scheduleOverlap = 0">clear</igx-icon>
+        </igx-suffix>
+        <igx-hint>
+          Hours
+        </igx-hint>
+      </igx-input-group>
+      
+      <igx-input-group>
+        <igx-prefix>
+            <igx-icon>search</igx-icon>
+        </igx-prefix>
+        <label igxLabel for="search">Team name contains...</label>
+        <input #search name="name" [(ngModel)]="searchModel.name" autocomplete="off" igxInput>
+        <igx-suffix *ngIf="search.value.length">
+            <igx-icon (click)="searchModel.name = ''">clear</igx-icon>
+        </igx-suffix>
+        <igx-hint>
+          Searching by name ignores other search criterial...
+        </igx-hint>
+      </igx-input-group>
+      <button class="submit-button" igxButton="flat">Submit</button>
+    </form>
     <div *ngIf="!authUser">
       <p><b class="highlight">NOTE: </b>Signing in gives you access to more advanced search options!</p>
       <app-login></app-login>

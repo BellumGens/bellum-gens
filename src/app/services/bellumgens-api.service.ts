@@ -124,7 +124,7 @@ export class BellumgensApiService {
   }
 
   private getFilteredPlayers(model: PlayerSearch) {
-    return this.http.post<CSGOPlayer []>(`${this._apiEndpoint}/search/players`, model);
+    return this.http.post<CSGOPlayer []>(`${this._apiEndpoint}/search/players`, model, { withCredentials: true });
   }
 
   private getTeams() {
@@ -134,7 +134,7 @@ export class BellumgensApiService {
   }
 
   private getFilteredTeams(model: TeamSearch) {
-    return this.http.post<CSGOTeam []>(`${this._apiEndpoint}/search/teams`, model);
+    return this.http.post<CSGOTeam []>(`${this._apiEndpoint}/search/teams`, model, { withCredentials: true });
   }
 
   public getTeam(teamId: string): Observable<CSGOTeam> {

@@ -20,7 +20,8 @@ export class AppComponent implements OnInit {
   };
 
   public overlaySettings: OverlaySettings = {
-    positionStrategy: new ConnectedPositioningStrategy(this.positionSettings)
+    positionStrategy: new ConnectedPositioningStrategy(this.positionSettings),
+    modal: true
   };
 
   @ViewChild(IgxToggleDirective) public toggle: IgxToggleDirective;
