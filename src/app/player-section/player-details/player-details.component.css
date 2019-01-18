@@ -77,14 +77,12 @@
   flex: 0 0 100%;
   justify-content: space-between;
   flex-wrap: wrap;
-  padding-left: 60px;
 }
 
 .player-detail__stats {
   display: flex;
   align-items: center;
-  margin-left: 64px;
-  margin-top: 16px;
+  width: 236px;
 }
 
 .progress-circular__text {
@@ -96,10 +94,6 @@
   flex: 1 1 100%;
   justify-content: space-between;
   flex-wrap: wrap;
-}
-
-.player-detail__stats {
-  width: 236px;
 }
 
 .player-detail__stats .progress-circular {
@@ -121,3 +115,10 @@
   width: 202px;
 }
 /* END User Overview */
+
+/* Availability */
+.left-container {
+  max-width: 256px;
+}
+/* END Availability */
+

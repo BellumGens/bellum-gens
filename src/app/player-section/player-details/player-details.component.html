@@ -3,7 +3,7 @@
   <igx-card>
     <igx-card-header>
       <div class="overview-container">
-        <div class="user-profile">
+        <div>
           <igx-avatar [src]="player?.steamUser?.avatarFull" class="player-avatar">
             <igx-avatar *ngIf="player?.steamUser?.country" [src]="player?.steamUser?.country | playerCountry" [title]="player?.steamUser?.country" class="country-badge-large"></igx-avatar>
           </igx-avatar>
@@ -15,9 +15,9 @@
           <div class="player-overview-container">
             <h4>Overview</h4>
             
-            <div *ngIf="authUser?.TeamAdmin.length > 0">
+            <div *ngIf="!playerIsUser">
               <button igxButton="raised">Send message <igx-icon>mail</igx-icon></button>
-              <button igxButton="flat" class="title margin-left" [igxToggleAction]="teamInvite">
+              <button *ngIf="authUser?.TeamAdmin.length > 0" igxButton="flat" class="title margin-left" [igxToggleAction]="teamInvite">
                 Invite to team
                 <igx-icon>arrow_drop_down</igx-icon>
               </button>
@@ -80,53 +80,60 @@
       </div>
     </igx-card-header>
     <igx-card-content *ngIf="player">
-
-  <!-- Availability -->
-      <div *ngIf="player.availability">
-        <h5>Availability</h5>
-        <app-availability [availability]="player.availability" (availabilityChanged)="submitAvailability($event)" [editable]="playerIsUser"></app-availability>
-        <div class="available-time-container">
-          <!-- Playstyle Roles -->
-          <div class="player-roles__container">
-            <h5>Preferred <span class="highlight">playstyle</span>:</h5>
-            <div class="player-role-chooser">
-              <h5 class="no-margin">Primary Role:</h5>
-              <button igxButton="flat" [disabled]="!playerIsUser" [igxToggleAction]="primaryRole" igxRippleCentered="true">
-                {{ player.roles[player.primaryRole].Name }}
-                <igx-icon *ngIf="playerIsUser" fontSet="material">arrow_drop_down</igx-icon>
-              </button>
-              <igx-drop-down #primaryRole (onSelection)="selectPrimary($event)">
-                <igx-drop-down-item *ngFor="let role of player.roles" [isSelected]="role.Id === player.primaryRole">
-                  {{ role.Name }}
-                </igx-drop-down-item>
-              </igx-drop-down>
-            </div>
-            <div class="player-role-chooser">
-              <h5 class="no-margin">Secondary Role:</h5>
-              <button igxButton="flat" [disabled]="!playerIsUser" [igxToggleAction]="secondaryRole" igxRippleCentered="true">
-                {{ player.roles[player.secondaryRole].Name }}
-                <igx-icon *ngIf="playerIsUser" fontSet="material">arrow_drop_down</igx-icon>
-              </button>
-              <igx-drop-down #secondaryRole (onSelection)="selectSecondary($event)">
-                <igx-drop-down-item *ngFor="let role of player.roles" [isSelected]="role.Id === player.secondaryRole">
-                    {{ role.Name }}
-                </igx-drop-down-item>
-              </igx-drop-down>
-            </div>
+      <div class="overview-container">
+          <!-- Availability -->
+          <div class="left-container">
+              <h5>Availability</h5>
+              <app-availability [availability]="player.availability" (availabilityChanged)="submitAvailability($event)" [editable]="playerIsUser"></app-availability>
           </div>
-          <!-- END Playstyle Roles -->
-        </div>
-      </div>
-  <!-- END Availability -->
+          <!-- END Availability -->
+          
+          <div class="player-stats__container">
+            <div class="player-detail-stats-container">
+              <!-- Playstyle Roles -->
+              <igx-card class="player-detail__stats">
+                <igx-card-header>
+                  <h4>Playstyle</h4>
+                </igx-card-header>
+                <igx-card-content>
+                  <p>Primary</p>
+                  <button igxButton="flat" [disabled]="!playerIsUser" [igxToggleAction]="primaryRole" igxRippleCentered="true">
+                    {{ player.roles[player.primaryRole].Name }}
+                    <igx-icon *ngIf="playerIsUser" fontSet="material">arrow_drop_down</igx-icon>
+                  </button>
+                  <igx-drop-down #primaryRole (onSelection)="selectPrimary($event)">
+                    <igx-drop-down-item *ngFor="let role of player.roles" [isSelected]="role.Id === player.primaryRole">
+                      {{ role.Name }}
+                    </igx-drop-down-item>
+                  </igx-drop-down>
+                  
+                  <p class="no-margin">Secondary</p>
+                  <button igxButton="flat" [disabled]="!playerIsUser" [igxToggleAction]="secondaryRole" igxRippleCentered="true">
+                    {{ player.roles[player.secondaryRole].Name }}
+                    <igx-icon *ngIf="playerIsUser" fontSet="material">arrow_drop_down</igx-icon>
+                  </button>
+                  <igx-drop-down #secondaryRole (onSelection)="selectSecondary($event)">
+                    <igx-drop-down-item *ngFor="let role of player.roles" [isSelected]="role.Id === player.secondaryRole">
+                        {{ role.Name }}
+                    </igx-drop-down-item>
+                  </igx-drop-down>
+                </igx-card-content>
+              </igx-card>
+              <!-- END Playstyle Roles -->
+            </div>
+            
 
-  <!-- Map Pool -->
-    <div *ngIf="player">
-      <h5>Maps played:</h5>
-      <app-map-pool [readOnly]="!playerIsUser"
-                    [mapPool]="player.mapPool"
-                    (update)="mapChange($event)"></app-map-pool>
+            <!-- Map Pool -->
+            <div class="player-detail-stats-container">
+                <h5>Maps played:</h5>
+                <app-map-pool [readOnly]="!playerIsUser"
+                              [mapPool]="player.mapPool"
+                              (update)="mapChange($event)"></app-map-pool>
+            </div>
+            <!-- END Map Pool -->
+          </div>
+            
       </div>
-  <!-- END Map Pool -->
 
     </igx-card-content>
   </igx-card>
