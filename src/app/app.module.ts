@@ -65,6 +65,10 @@ import { TeamNavComponent } from './team-section/team-nav/team-nav.component';
 import { TeamSearchComponent } from './search/team-search/team-search.component';
 import { PlayerSearchComponent } from './search/player-search/player-search.component';
 import { SearchComponent } from './search/search/search.component';
+import { SteamCustomUrlPipe } from './pipes/steam-custom-url.pipe';
+import { PlayerCountryPipe } from './pipes/player-country.pipe';
+import { TopWeaponSvgPipe } from './pipes/top-weapon-svg.pipe';
+import { TopWeaponAltPipe } from './pipes/top-weapon-alt.pipe';
 
 @NgModule({
   declarations: [
@@ -100,7 +104,11 @@ import { SearchComponent } from './search/search/search.component';
     TeamNavComponent,
     TeamSearchComponent,
     PlayerSearchComponent,
-    SearchComponent
+    SearchComponent,
+    SteamCustomUrlPipe,
+    PlayerCountryPipe,
+    TopWeaponSvgPipe,
+    TopWeaponAltPipe
   ],
   imports: [
     FormsModule,
