@@ -11,16 +11,13 @@ import { CSGOPlayer } from '../../models/csgoplayer';
 })
 export class PlayersComponent implements OnInit {
   public activeUsers: CSGOPlayer[];
-
-  @ViewChild(IgxListComponent) public players: IgxListComponent;
+  public loading = true;
 
   constructor(private apiManager: BellumgensApiService) {
   }
 
   ngOnInit() {
-    this.apiManager.players.subscribe((data: CSGOPlayer[]) => {
-      this.activeUsers = data;
-      this.players.isLoading = false;
-    });
+    this.apiManager.players.subscribe((data: CSGOPlayer[]) => this.activeUsers = data);
+    this.apiManager.loadingPlayers.subscribe(loading => this.loading = loading);
   }
 }

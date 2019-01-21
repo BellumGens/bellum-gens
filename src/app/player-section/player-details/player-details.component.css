@@ -3,27 +3,6 @@
   flex-flow: column;
 }
 
-.available-time-container {
-  display: flex;
-}
-
-.availability-time {
-  display: flex;
-  flex-flow: row;
-  align-items: center;
-  vertical-align: middle;
-  margin-top: 24px;
-}
-
-.player-role-chooser {
-  display: flex;
-  flex-flow: row;
-  align-items: center;
-  vertical-align: middle;
-  margin-left: 16px;
-  margin-top: 6px;
-}
-
 .no-margin {
   margin: 0;
 }
@@ -79,13 +58,18 @@
 }
 
 .player-detail__stats {
-  flex: 1 1 236px;
-  width: 236px;
-  margin-right: 16px;
+  flex: 1 0 236px;
+  width: 264px;
 }
 
 .player-detail__stats-span {
-  flex: 2 1 75%;
+  flex: 1 1 75%;
+}
+
+.player-detail__stats,
+.player-detail__stats-span {
+  margin-right: 16px;
+  margin-bottom: 16px;
 }
 
 .player-detail__stats .igx-circular-bar__text {
@@ -99,23 +83,40 @@
   flex-wrap: wrap;
 }
 
-.player-detail__stats .progress-circular {
-  width: 202px;
-  height: 202px;
+.player-detail__stats .igx-circular-bar {
+  width: 238px;
+  height: 238px;
 }
 
 .player-detail__stats .igx-card igx-card-header {
   padding: 16px 16px 0px 16px;
 }
 
+.player-details-card .igx-card igx-card-header {
+  padding-bottom: 0px;
+}
+
+.player-details-card .igx-card igx-card-content {
+  padding-top: 0px;
+}
+
+.center-items {
+  text-align: center;
+}
+
 .weapon-wrapper {
   display: flex;
   align-items: center;
-  height: 202px;
 }
 
 .weapon-image {
-  width: 202px;
+  flex: 1 1 auto;
+  min-height: 210px;
+  max-width: 222px;
+}
+
+.weapon-name {
+  text-align: center;
 }
 /* END User Overview */
 
