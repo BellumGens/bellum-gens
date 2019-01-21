@@ -3,7 +3,7 @@
   <igx-card>
     <igx-card-header>
       <div class="overview-container">
-        <div>
+        <div class="left-container">
           <igx-avatar [src]="player?.steamUser?.avatarFull" class="player-avatar">
             <igx-avatar *ngIf="player?.steamUser?.country" [src]="player?.steamUser?.country | playerCountry" [title]="player?.steamUser?.country" class="country-badge-large"></igx-avatar>
           </igx-avatar>
@@ -79,6 +79,7 @@
         </div>
       </div>
     </igx-card-header>
+
     <igx-card-content *ngIf="player">
       <div class="overview-container">
           <!-- Availability -->
@@ -120,15 +121,31 @@
                 </igx-card-content>
               </igx-card>
               <!-- END Playstyle Roles -->
+
+              <igx-card class="player-detail__stats-span">
+                <igx-card-header>
+                  <h4>Teams</h4>
+                </igx-card-header>
+                <igx-card-content>
+                  <igx-avatar *ngFor="let team of authUser.Teams" [initials]="team.TeamName" [src]="team.TeamAvatar" roundShape="true" [size]="'large'">
+                  </igx-avatar>
+                </igx-card-content>
+              </igx-card>
             </div>
             
 
             <!-- Map Pool -->
             <div class="player-detail-stats-container">
-                <h5>Maps played:</h5>
-                <app-map-pool [readOnly]="!playerIsUser"
-                              [mapPool]="player.mapPool"
-                              (update)="mapChange($event)"></app-map-pool>
+                <igx-card class="player-detail__stats-span">
+                  <igx-card-header>
+                    <h4>Maps</h4>
+                  </igx-card-header>
+                  <igx-card-content>
+                    <app-map-pool [readOnly]="!playerIsUser"
+                      [mapPool]="player.mapPool"
+                      (update)="mapChange($event)"></app-map-pool>
+                  </igx-card-content>
+                </igx-card>
             </div>
             <!-- END Map Pool -->
           </div>

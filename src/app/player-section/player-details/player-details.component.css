@@ -68,7 +68,6 @@
 .player-stats__container {
   display: flex;
   flex-flow: row;
-  margin-left: auto;
   flex-wrap: wrap;
 }
 
@@ -80,12 +79,16 @@
 }
 
 .player-detail__stats {
-  display: flex;
-  align-items: center;
+  flex: 1 1 236px;
   width: 236px;
+  margin-right: 16px;
 }
 
-.progress-circular__text {
+.player-detail__stats-span {
+  flex: 2 1 75%;
+}
+
+.player-detail__stats .igx-circular-bar__text {
   font-size: 1.70rem;
 }
 
@@ -118,7 +121,8 @@
 
 /* Availability */
 .left-container {
-  max-width: 256px;
+  width: 250px;
+  padding-right: 16px;
 }
 /* END Availability */
 
