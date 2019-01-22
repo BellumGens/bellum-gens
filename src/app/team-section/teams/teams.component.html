@@ -9,7 +9,7 @@
   <igx-list-item *ngFor="let team of csgoTeams">
     <div class="item-container">
       <div class="horizontal">
-        <igx-avatar [src]="team.TeamAvatar" roundShape="true">
+        <igx-avatar [src]="team.TeamAvatar" [initials]="team.TeamName" roundShape="true">
         </igx-avatar>
         <div class="horizontal-info__left">
           <span class="title">

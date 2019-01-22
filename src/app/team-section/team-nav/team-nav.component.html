@@ -7,7 +7,7 @@
   <div class="card-margins" *ngFor="let team of authUser?.Teams">
     <igx-card>
       <igx-card-header class="compact">
-        <igx-avatar [src]="team.TeamAvatar" roundShape="true"></igx-avatar>
+        <igx-avatar [src]="team.TeamAvatar" [initials]="team.TeamName" roundShape="true"></igx-avatar>
         <div class="igx-card-header__tgroup">
           <h3 class="igx-card-header__title--small">{{ team.TeamName }}</h3>
           <h5 class="igx-card-header__subtitle">Some team description</h5>
@@ -39,7 +39,7 @@
         <igx-list-item *ngFor="let group of authUser.SteamUser.groups | groupsFilter:searchGroups" (click)="createFromSteam(group)">
           <div class="item-container">
             <div class="steam-groups">
-              <igx-avatar [src]="group.avatarFull" roundShape="true">
+              <igx-avatar [src]="group.avatarFull" [initials]="group.groupName" roundShape="true">
               </igx-avatar>
               <div class="steam-group-name">
                 <span class="name">

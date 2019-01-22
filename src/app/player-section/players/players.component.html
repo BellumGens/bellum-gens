@@ -10,7 +10,7 @@
     <igx-list-item #item *ngFor="let user of activeUsers">
       <div class="item-container">
         <div class="horizontal">
-          <igx-avatar [src]="user.steamUser.avatarMedium" roundShape="true">
+          <igx-avatar [src]="user.steamUser.avatarMedium" [initials]="user.steamUser.steamID" roundShape="true">
             <igx-avatar [src]="'assets/country-flags/svg/' + user.steamUser.country.toLowerCase() + '.svg'" [roundShape]="true" [title]="user.steamUser.country" class="country-badge-small"></igx-avatar>
           </igx-avatar>
           <div class="horizontal-info__left">

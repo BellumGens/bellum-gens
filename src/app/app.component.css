@@ -12,6 +12,12 @@
   height: 24px;
 }
 
+.notifications-badge {
+  position: relative;
+  top: -12px;
+  left: -24px;
+}
+
 @media only screen and (max-width: 1024px) {
   .content {
     padding: 0 8px;

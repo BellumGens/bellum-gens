@@ -4,7 +4,7 @@
   </ng-template>
   <igx-list-item *ngFor="let notification of authUser?.Notifications | sortNotifications">
     <div [class]="'horizontal ' + notificationClass[notification.State]">
-      <igx-avatar [src]="notification.TeamInfo.TeamAvatar" roundShape="true">
+      <igx-avatar [src]="notification.TeamInfo.TeamAvatar" [initials]="notification.TeamInfo.TeamName" roundShape="true">
       </igx-avatar>
       <div class="horizontal-info__left">
         <span class="title">

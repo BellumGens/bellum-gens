@@ -4,7 +4,7 @@
     <igx-card-header>
       <div class="overview-container">
         <div class="left-container">
-          <igx-avatar [src]="player?.steamUser?.avatarFull" class="player-avatar">
+          <igx-avatar [src]="player?.steamUser?.avatarFull" [initials]="player?.steamUser?.steamID" class="player-avatar">
             <igx-avatar *ngIf="player?.steamUser?.country" [src]="player?.steamUser?.country | playerCountry" [title]="player?.steamUser?.country" class="country-badge-large"></igx-avatar>
           </igx-avatar>
           <h1 class="igx-card-header__title"><a [href]="player?.steamUser?.customURL | steamCustomUrl" target="_blank">{{ player?.steamUser?.steamID }}</a></h1>
@@ -23,7 +23,7 @@
               </button>
               <igx-drop-down (onSelection)="inviteToTeam($event)" #teamInvite>
                 <igx-drop-down-item class="team-invites" [value]="team" *ngFor="let team of authUser?.TeamAdmin">
-                  <igx-avatar [src]="team.TeamAvatar" roundShape="true">
+                  <igx-avatar [src]="team.TeamAvatar" [initials]="team.TeamName" roundShape="true">
                   </igx-avatar>
                   <span class="title margin-left">
                     {{ team.TeamName }}
@@ -130,7 +130,7 @@
                   <h4>Teams</h4>
                 </igx-card-header>
                 <igx-card-content>
-                  <igx-avatar *ngFor="let team of authUser.Teams" [initials]="team.TeamName" [src]="team.TeamAvatar" roundShape="true" [size]="'large'">
+                  <igx-avatar *ngFor="let team of authUser?.Teams" [initials]="team.TeamName" [src]="team.TeamAvatar" roundShape="true" [size]="'large'">
                   </igx-avatar>
                 </igx-card-content>
               </igx-card>

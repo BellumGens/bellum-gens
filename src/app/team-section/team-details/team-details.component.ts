@@ -18,6 +18,7 @@ interface RoleSlot {
 })
 export class TeamDetailsComponent implements OnInit {
   private _team = TEAM_PLACEHOLDER;
+  private _isAdmin = null;
 
   public get team() {
     return this._team;
@@ -25,12 +26,14 @@ export class TeamDetailsComponent implements OnInit {
 
   @Input()
   public set team(team: CSGOTeam) {
-    if (this._team !== team) {
+    if (this._team.TeamId !== team.TeamId) {
       this._team = team;
       this.roleSlots.forEach((role) => {
         const member = this._team.Members.find(m => m.Role === role.role);
         if (member) {
           role.user = member;
+        } else {
+          role.user = null;
         }
       });
       this.activeMembers = this._team.Members.filter(m => m.IsActive && m.Role === PlaystyleRole.NotSet);
@@ -80,10 +83,14 @@ export class TeamDetailsComponent implements OnInit {
   }
 
   public get isAdmin() {
-    if (!this.team || !this.authUser) {
+    if (this._isAdmin !== null) {
+      return this._isAdmin;
+    }
+    if (!this._team.Members || !this.authUser) {
       return false;
     }
-    return this.team.Members.find(m => m.UserId === this.authUser.SteamUser.steamID64).IsAdmin;
+    this._isAdmin = this.team.Members.find(m => m.UserId === this.authUser.SteamUser.steamID64).IsAdmin;
+    return this._isAdmin;
   }
 
   public roleDragging() {
