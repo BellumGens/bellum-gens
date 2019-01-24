@@ -54,11 +54,17 @@ igx-icon {
 
 .center-message {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   color: #999;
   font-size: 24px;
   min-height: 320px;
+}
+
+.loading-indicator {
+  margin-top: 16px;
+  width: 66px;
 }
 
 igx-card-content h4 {

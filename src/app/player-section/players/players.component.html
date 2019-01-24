@@ -1,7 +1,12 @@
 <div class="list-container">
   <igx-list #players [isLoading]="loading">
     <ng-template igxDataLoading>
-        <div class="center-message"><span>Fetching data from our server...</span></div>
+        <div class="center-message">
+          <span>Loading players...</span>
+          <div class="loading-indicator">
+            <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
+          </div>
+        </div>
     </ng-template>
     <ng-template igxEmptyList>
         <div class="center-message"><span>Nobody is active...</span></div>

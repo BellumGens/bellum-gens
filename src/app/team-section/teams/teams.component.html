@@ -1,11 +1,16 @@
 <igx-list [isLoading]="loading">
   <ng-template igxDataLoading>
-    <div class="center-message"><span>Loading teams...</span></div>
+    <div class="center-message">
+      <span>Loading teams...</span>
+      <div class="loading-indicator">
+        <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
+      </div>
+    </div>
   </ng-template>
   <ng-template igxEmptyList>
     <div class="center-message"><span>No teams recruiting...</span></div>
   </ng-template>
-  <igx-list-item *ngIf="!loading" [isHeader]="true">Teams</igx-list-item>
+  <igx-list-item [isHeader]="true">Teams</igx-list-item>
   <igx-list-item *ngFor="let team of csgoTeams">
     <div class="item-container">
       <div class="horizontal">
