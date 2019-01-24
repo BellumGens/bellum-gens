@@ -1,7 +1,11 @@
+.user-in-role {
+  position: relative;
+}
+
 .country-badge-large {
   position: absolute;
-  top: -8px;
-  left: 60%;
+  top: -6px;
+  left: 56px;
   width: 40px;
   height: 40px;
   min-width: 40px;
@@ -10,7 +14,7 @@
 .country-badge-medium {
   position: absolute;
   top: -6px;
-  left: 60%;
+  left: 40px;
   width: 32px;
   height: 32px;
   min-width: 32px;
@@ -18,13 +22,18 @@
 
 .member-slot {
   display: flex;
-	flex-flow: column nowrap;
+  flex: 0 0 20%;
+	flex-flow: column;
   align-items: center;
   padding: 16px;
 }
 
-.member-slot.five-slots {
-  width: 20%;
+.active-inactive-users {
+  display: flex;
+  flex: 0 0 88px;
+	flex-flow: column;
+  align-items: center;
+  padding: 16px;
 }
 
 .horizontal-space-between.padding-top,
