@@ -22,7 +22,6 @@ import { IgxNavbarModule,
   IgxCardModule,
   IgxChipsModule,
   IgxTimePickerModule,
-  IgxToastModule,
   IgxDropDownModule,
   IgxCheckboxModule,
   IgxToggleModule,
@@ -30,7 +29,8 @@ import { IgxNavbarModule,
   IgxTabsModule,
   IgxCalendarModule,
   IgxExpansionPanelModule,
-  IgxRadioModule} from 'igniteui-angular';
+  IgxRadioModule,
+  IgxSnackbarModule} from 'igniteui-angular';
 import { PlayersComponent } from './player-section/players/players.component';
 import { PlayerDetailsComponent } from './player-section/player-details/player-details.component';
 import { LoginService } from './services/login.service';
@@ -132,7 +132,6 @@ import { TopWeaponAltPipe } from './pipes/top-weapon-alt.pipe';
     IgxCardModule,
     IgxChipsModule,
     IgxTimePickerModule,
-    IgxToastModule,
     IgxDropDownModule,
     IgxCheckboxModule,
     IgxDragDropModule,
@@ -140,6 +139,7 @@ import { TopWeaponAltPipe } from './pipes/top-weapon-alt.pipe';
     IgxCalendarModule,
     IgxExpansionPanelModule,
     IgxRadioModule,
+    IgxSnackbarModule,
     IgxProgressBarModule
   ],
   providers: [

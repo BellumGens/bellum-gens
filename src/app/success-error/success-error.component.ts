@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IgxToastComponent } from 'igniteui-angular';
+import { IgxSnackbarComponent } from 'igniteui-angular';
 import { BellumgensApiService } from '../services/bellumgens-api.service';
 
 @Component({
@@ -8,8 +8,8 @@ import { BellumgensApiService } from '../services/bellumgens-api.service';
   styleUrls: ['./success-error.component.css']
 })
 export class SuccessErrorComponent implements OnInit {
-  @ViewChild('error') public error: IgxToastComponent;
-  @ViewChild('success') public success: IgxToastComponent;
+  @ViewChild('error') public error: IgxSnackbarComponent;
+  @ViewChild('success') public success: IgxSnackbarComponent;
 
   constructor(private apiService: BellumgensApiService) { }
 
