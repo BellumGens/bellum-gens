@@ -5,3 +5,11 @@ igx-snackbar {
   bottom: 16px;
   z-index: 10000;
 }
+
+.color-success {
+  color: var(--igx-linear-bar-fill-color-success);
+}
+
+.color-error {
+  color: var(--igx-linear-bar-fill-color-danger);
+}
