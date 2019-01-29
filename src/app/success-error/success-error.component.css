@@ -7,9 +7,9 @@ igx-snackbar {
 }
 
 .color-success {
-  color: var(--igx-linear-bar-fill-color-success);
+  color: var(--igx-input-group-success-secondary-color);
 }
 
 .color-error {
-  color: var(--igx-linear-bar-fill-color-danger);
+  color: var(--igx-input-group-error-secondary-color);
 }

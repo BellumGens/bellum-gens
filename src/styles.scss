@@ -1,17 +1,107 @@
 /* You can add global styles to this file, and also import other style files */
 /* See: https://www.infragistics.com/products/ignite-ui-angular/angular/components/themes.html */
 @import "~igniteui-angular/lib/core/styles/themes/index";
+@include igx-core();
 
 $primary: #0c030a !default;
 $secondary: #990116 !default;
 
 $app-palette: igx-palette($primary, $secondary);
 
-@include igx-core();
-@include igx-theme($app-palette, $legacy-support: false);
+/* Avatar */
+$avatar-theme: igx-avatar-theme($app-palette);
+@include igx-avatar($avatar-theme);
+/* END Avatar */
 
-//$navbar-theme: igx-navbar-theme($background: #731963)
-//@include igx-navbar($navbar-theme)
+/* Navbar */
+$navbar-theme: igx-navbar-theme($app-palette);
+@include igx-navbar($navbar-theme);
+/* END Navbar */
+
+/* List */
+$list-theme: igx-list-theme($app-palette);
+@include igx-list($list-theme);
+/* END List */
+
+/* Ripple */
+$ripple-theme: igx-ripple-theme($app-palette);
+@include igx-ripple($ripple-theme);
+/* END Ripple */
+
+/* Icon */
+$icon-theme: igx-icon-theme($app-palette);
+@include igx-icon($icon-theme);
+/* END Icon */
+
+/* Dialog */
+$dialog-theme: igx-dialog-theme($app-palette);
+@include igx-dialog($dialog-theme);
+/* END Dialog */
+
+/* Input Group */
+$input-group-theme: igx-input-group-theme($app-palette);
+@include igx-input-group($input-group-theme);
+/* END Input Group */
+
+/* Button */
+$button-theme: igx-button-theme($app-palette);
+@include igx-button($button-theme);
+/* END Button */
+
+/* Drop Down */
+$drop-down-theme: igx-drop-down-theme($app-palette);
+@include igx-drop-down($drop-down-theme);
+/* END Drop Down */
+
+/* Badge */
+$badge-theme: igx-badge-theme($app-palette);
+@include igx-badge($badge-theme);
+/* END Badge */
+
+/* Card */
+$card-theme: igx-card-theme($app-palette);
+@include igx-card($card-theme);
+/* END Card */
+
+/* Card */
+$chips-theme: igx-chip-theme($app-palette);
+@include igx-chip($chips-theme);
+/* END Card */
+
+/* Card */
+$time-picker-theme: igx-time-picker-theme($app-palette);
+@include igx-time-picker($time-picker-theme);
+/* END Card */
+
+/* Checkbox */
+$checkbox-theme: igx-checkbox-theme($app-palette);
+@include igx-checkbox($checkbox-theme);
+/* END Checkbox */
+
+/* Tabs */
+$tabs-theme: igx-tabs-theme($app-palette);
+@include igx-tabs($tabs-theme);
+/* END Tabs */
+
+/* Expansion Panel */
+$expansion-panel-theme: igx-expansion-panel-theme($app-palette);
+@include igx-expansion-panel($expansion-panel-theme);
+/* END Expansion Panel */
+
+/* Radio */
+$radio-theme: igx-radio-theme($app-palette);
+@include igx-radio($radio-theme);
+/* END Radio */
+
+/* Snackbar */
+$snackbar-theme: igx-snackbar-theme($app-palette);
+@include igx-snackbar($snackbar-theme);
+/* END Snackbar */
+
+/* Snackbar */
+$progress-bar-theme: igx-progress-circular-theme($app-palette);
+@include igx-progress-circular($progress-bar-theme);
+/* END Snackbar */
 
 html, body {
   height: 100%;
