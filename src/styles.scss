@@ -33,6 +33,11 @@ $icon-theme: igx-icon-theme($app-palette);
 @include igx-icon($icon-theme);
 /* END Icon */
 
+/* Overlay */
+$overlay-theme: igx-overlay-theme($app-palette);
+@include igx-overlay($overlay-theme);
+/* END Overlay */
+
 /* Dialog */
 $dialog-theme: igx-dialog-theme($app-palette);
 @include igx-dialog($dialog-theme);
