@@ -10,6 +10,7 @@ import { MapPool } from 'src/app/models/csgomaps';
 import { map, shareReplay, catchError } from 'rxjs/operators';
 import { UserNotification } from '../models/usernotifications';
 import { TeamStrategy } from '../models/csgoteamstrategy';
+import { SearchResult } from '../models/searchresult';
 
 const CACHE_SIZE = 1;
 
@@ -65,6 +66,16 @@ export class BellumgensApiService {
     }
 
     return this._csgoTeams.asObservable();
+  }
+
+  public quickSearch(name: string) {
+    return this.http.get<SearchResult>(`${this._apiEndpoint}/search/search?name=${name}`).pipe(
+      map(response => response),
+      catchError(error => {
+        this.emitError(error.error.Message);
+        return throwError(error);
+      })
+    );
   }
 
   public searchTeams(model: TeamSearch) {

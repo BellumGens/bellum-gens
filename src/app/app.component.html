@@ -4,11 +4,11 @@
       <igx-action-icon class="home-button">
         <igx-icon igxActionIcon fontSet="material" [routerLink]="'/home'">home</igx-icon>
       </igx-action-icon>
-      <igx-input-group type="search" class="search-group">
+      <igx-input-group type="search" class="search-group" #searchGroup>
         <igx-prefix>
-          <igx-icon class="button-icon" [igxToggleAction]="search" [overlaySettings]="overlaySettings">search</igx-icon>
+          <igx-icon class="button-icon">search</igx-icon>
         </igx-prefix>
-        <input #searchInput igxInput (focus)="advancedSearch.toggle()" class="search-input" placeholder="Search" />
+        <input #searchInput igxInput (focus)="advancedSearch.open()" class="search-input" placeholder="Search" />
         <igx-suffix *ngIf="searchInput.value.length > 0" (click)="searchInput.value = ''">
           <igx-icon>clear</igx-icon>
         </igx-suffix>
@@ -21,9 +21,12 @@
     </igx-navbar>
     <igx-banner #advancedSearch>
       Advanced search:
+      <igx-banner-actions>
+        <button igxButton="flat" (click)="advancedSearch.close()">Hide</button>
+      </igx-banner-actions>
     </igx-banner>
 
-    <igx-drop-down #search>
+    <igx-drop-down #quickSearch>
       <app-search [authUser]="authUser"></app-search>
     </igx-drop-down>
     <igx-drop-down #myTeam>

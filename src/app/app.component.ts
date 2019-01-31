@@ -1,9 +1,17 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
-import { IgxToggleDirective, PositionSettings, HorizontalAlignment, OverlaySettings, ConnectedPositioningStrategy} from 'igniteui-angular';
+import { PositionSettings,
+  HorizontalAlignment,
+  OverlaySettings,
+  ConnectedPositioningStrategy,
+  IgxDropDownComponent,
+  IgxInputGroupComponent} from 'igniteui-angular';
 import { LoginService } from './services/login.service';
 import { ApplicationUser } from './models/applicationuser';
-import { SuccessErrorComponent } from './success-error/success-error.component';
+import { BellumgensApiService } from './services/bellumgens-api.service';
+import { SearchResult } from './models/searchresult';
+import { fromEvent } from 'rxjs';
+import { map, debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +21,7 @@ import { SuccessErrorComponent } from './success-error/success-error.component';
 export class AppComponent implements OnInit {
   public title: string;
   public authUser: ApplicationUser;
+  public searchResult: SearchResult;
 
   public positionSettings: PositionSettings = {
     horizontalDirection: HorizontalAlignment.Left,
@@ -23,14 +32,33 @@ export class AppComponent implements OnInit {
     positionStrategy: new ConnectedPositioningStrategy(this.positionSettings)
   };
 
-  @ViewChild(IgxToggleDirective) public toggle: IgxToggleDirective;
-  @ViewChild('userButton') public userButton: ElementRef;
-  @ViewChild(SuccessErrorComponent) public toast: SuccessErrorComponent;
+  @ViewChild('quickSearch') public quickSearchDropDown: IgxDropDownComponent;
+  @ViewChild('searchGroup') public searchGroup: IgxInputGroupComponent;
+  @ViewChild('searchInput') public searchInput: ElementRef;
 
-  constructor(private authManager: LoginService) {
+  constructor(private authManager: LoginService,
+              private apiService: BellumgensApiService) {
   }
 
   public ngOnInit(): void {
     this.authManager.applicationUser.subscribe(data => this.authUser = data);
+    const input = fromEvent(this.searchInput.nativeElement, 'keyup')
+                    .pipe(map<Event, string>(e => (<HTMLInputElement>e.currentTarget).value));
+    const debouncedInput = input.pipe(debounceTime(300));
+    debouncedInput.subscribe(val => {
+      const positionSettings: PositionSettings = {
+        horizontalDirection: HorizontalAlignment.Left,
+        horizontalStartPoint: HorizontalAlignment.Right,
+        target: this.searchGroup.element.nativeElement
+      };
+      const overlaySettings: OverlaySettings = {
+        positionStrategy: new ConnectedPositioningStrategy(positionSettings),
+        modal: false
+      };
+      this.quickSearchDropDown.open(overlaySettings);
+      this.apiService.quickSearch(val).subscribe(
+        result => this.searchResult = result
+      );
+    });
   }
 }

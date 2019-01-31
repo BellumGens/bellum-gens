@@ -41,7 +41,7 @@ $input-group-theme: igx-input-group-theme($search-background: $primary, $idle-te
 /* END Input Group */
 
 /* Banner */
-$banner-theme: igx-banner-theme(igx-palette($primary, $primary));
+$banner-theme: igx-banner-theme($banner-background: $primary);
 @include igx-banner($banner-theme);
 /* END Banner */
 
@@ -140,10 +140,10 @@ $banner-theme: igx-banner-theme(igx-palette($primary, $primary));
 // @include igx-snackbar($snackbar-theme);
 // /* END Snackbar */
 
-// /* Snackbar */
+// /* Progress Circular */
 // $progress-bar-theme: igx-progress-circular-theme($app-palette);
 // @include igx-progress-circular($progress-bar-theme);
-// /* END Snackbar */
+// /* END Progress Circular */
 
 html, body {
   height: 100%;
