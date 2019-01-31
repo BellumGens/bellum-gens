@@ -46,19 +46,21 @@ export class AppComponent implements OnInit {
                     .pipe(map<Event, string>(e => (<HTMLInputElement>e.currentTarget).value));
     const debouncedInput = input.pipe(debounceTime(300));
     debouncedInput.subscribe(val => {
-      const positionSettings: PositionSettings = {
-        horizontalDirection: HorizontalAlignment.Left,
-        horizontalStartPoint: HorizontalAlignment.Right,
-        target: this.searchGroup.element.nativeElement
-      };
-      const overlaySettings: OverlaySettings = {
-        positionStrategy: new ConnectedPositioningStrategy(positionSettings),
-        modal: false
-      };
-      this.quickSearchDropDown.open(overlaySettings);
-      this.apiService.quickSearch(val).subscribe(
-        result => this.searchResult = result
-      );
+      if (val.length) {
+        const positionSettings: PositionSettings = {
+          horizontalDirection: HorizontalAlignment.Left,
+          horizontalStartPoint: HorizontalAlignment.Right,
+          target: this.searchGroup.element.nativeElement
+        };
+        const overlaySettings: OverlaySettings = {
+          positionStrategy: new ConnectedPositioningStrategy(positionSettings),
+          modal: false
+        };
+        this.quickSearchDropDown.open(overlaySettings);
+        this.apiService.quickSearch(val).subscribe(
+          result => this.searchResult = result
+        );
+      }
     });
   }
 }
