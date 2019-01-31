@@ -4,14 +4,25 @@
       <igx-action-icon class="home-button">
         <igx-icon igxActionIcon fontSet="material" [routerLink]="'/home'">home</igx-icon>
       </igx-action-icon>
-      <igx-icon class="button-icon" [igxToggleAction]="search" [overlaySettings]="overlaySettings">search</igx-icon>
+      <igx-input-group type="search" class="search-group">
+        <igx-prefix>
+          <igx-icon class="button-icon" [igxToggleAction]="search" [overlaySettings]="overlaySettings">search</igx-icon>
+        </igx-prefix>
+        <input #searchInput igxInput (focus)="advancedSearch.toggle()" class="search-input" placeholder="Search" />
+        <igx-suffix *ngIf="searchInput.value.length > 0" (click)="searchInput.value = ''">
+          <igx-icon>clear</igx-icon>
+        </igx-suffix>
+      </igx-input-group>
       <igx-icon class="button-icon" [igxToggleAction]="myTeam" [overlaySettings]="overlaySettings" *ngIf="authUser">people</igx-icon>
-
-        <igx-icon class="button-icon" [igxToggleAction]="notifications" [overlaySettings]="overlaySettings" *ngIf="authUser">notifications</igx-icon>
-        <igx-badge class="notifications-badge" *ngIf="authUser?.Notifications.length" [value]="authUser.Notifications | unreadNotifications" type="info"></igx-badge>
+      <igx-icon class="button-icon" [igxToggleAction]="notifications" [overlaySettings]="overlaySettings" *ngIf="authUser">notifications</igx-icon>
+      <igx-badge class="notifications-badge" *ngIf="authUser?.Notifications.length" [value]="authUser.Notifications | unreadNotifications" type="info"></igx-badge>
 
       <app-login [authUser]='authUser'></app-login>
     </igx-navbar>
+    <igx-banner #advancedSearch>
+      Advanced search:
+    </igx-banner>
+
     <igx-drop-down #search>
       <app-search [authUser]="authUser"></app-search>
     </igx-drop-down>

@@ -29,7 +29,8 @@ import { IgxNavbarModule,
   IgxCalendarModule,
   IgxExpansionPanelModule,
   IgxRadioModule,
-  IgxSnackbarModule} from 'igniteui-angular';
+  IgxSnackbarModule,
+  IgxBannerModule} from 'igniteui-angular';
 import { PlayersComponent } from './player-section/players/players.component';
 import { PlayerDetailsComponent } from './player-section/player-details/player-details.component';
 import { LoginService } from './services/login.service';
@@ -138,6 +139,7 @@ import { TopWeaponAltPipe } from './pipes/top-weapon-alt.pipe';
     IgxExpansionPanelModule,
     IgxRadioModule,
     IgxSnackbarModule,
+    IgxBannerModule,
     IgxProgressBarModule
   ],
   providers: [
