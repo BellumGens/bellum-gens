@@ -1,10 +1,12 @@
 
 <form (ngSubmit)="searchTeams()">
   <div class="form-row">
-    <label for="lineup">Teams looking for:</label>
-    <igx-radio-group id="lineup">
-      <igx-radio *ngFor="let slot of activeLineup" [(ngModel)]="searchModel.role" name="role" [value]="slot.role">{{ slot.roleName }}</igx-radio>
-    </igx-radio-group>
+    <div>
+      <label for="lineup">Teams looking for:</label>
+      <igx-radio-group id="lineup" class="role-slots">
+        <igx-radio *ngFor="let slot of activeLineup" [(ngModel)]="searchModel.role" name="role" [value]="slot.role">{{ slot.roleName }}</igx-radio>
+      </igx-radio-group>
+    </div>
   
     <igx-input-group type="search" *ngIf="authUser">
       <igx-prefix>
