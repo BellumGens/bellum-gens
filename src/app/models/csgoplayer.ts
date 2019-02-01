@@ -31,14 +31,12 @@ export interface WeaponDescriptor {
 }
 
 export interface PlayerSearch {
-  name: string;
   role: PlaystyleRole;
   scheduleOverlap: number;
   teamId?: string;
 }
 
 export const PLAYER_SEARCH: PlayerSearch = {
-  name: '',
   role: null,
   scheduleOverlap: 0
 };

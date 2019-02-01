@@ -32,18 +32,24 @@ $include: (igx-avatar,
 
 @include igx-theme(
     $palette: $app-palette,
-    $exclude: map-keys(map-remove($components, $include...))
+    $exclude: map-keys(map-remove($components, $include...),),
+    $legacy-support: false
 );
 
 /* Input Group */
 $input-group-theme: igx-input-group-theme($search-background: $primary, $idle-text-color: white, $filled-text-color: white, $focused-text-color: white, $placeholder-color: #999);
-@include igx-input-group($input-group-theme);
+@include igx-css-vars($input-group-theme);
 /* END Input Group */
 
 /* Banner */
 $banner-theme: igx-banner-theme($banner-background: $primary);
-@include igx-banner($banner-theme);
+@include igx-css-vars($banner-theme);
 /* END Banner */
+
+/* Radio */
+$radio-theme: igx-radio-theme($label-color: white, $empty-color: $secondary);
+@include igx-css-vars($radio-theme);
+/* END Radio */
 
 // /* Avatar */
 // $avatar-theme: igx-avatar-theme($app-palette);
@@ -295,18 +301,11 @@ textarea {
   flex-flow: column;
 }
 
-.search-body {
-  padding: 8px;
-}
-
-.search-box {
-  border-bottom: 1px solid $secondary;
-  border-left: 1px solid $secondary;
-  border-right: 1px solid $secondary;
-}
-
-.search-radio-group {
-  padding: 8px;
+.form-row {
+  display: flex;
+  flex: 1 1 100%;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
 }
 
 .submit-button {

@@ -69,6 +69,8 @@ import { SteamCustomUrlPipe } from './pipes/steam-custom-url.pipe';
 import { PlayerCountryPipe } from './pipes/player-country.pipe';
 import { TopWeaponSvgPipe } from './pipes/top-weapon-svg.pipe';
 import { TopWeaponAltPipe } from './pipes/top-weapon-alt.pipe';
+import { QuickSearchComponent } from './search/quick-search/quick-search.component';
+import { ReduceQuickSearchResultPipe } from './pipes/reduce-quick-search-result.pipe';
 
 @NgModule({
   declarations: [
@@ -108,7 +110,9 @@ import { TopWeaponAltPipe } from './pipes/top-weapon-alt.pipe';
     SteamCustomUrlPipe,
     PlayerCountryPipe,
     TopWeaponSvgPipe,
-    TopWeaponAltPipe
+    TopWeaponAltPipe,
+    QuickSearchComponent,
+    ReduceQuickSearchResultPipe
   ],
   imports: [
     FormsModule,

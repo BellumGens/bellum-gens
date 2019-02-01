@@ -20,14 +20,15 @@
       <app-login [authUser]='authUser'></app-login>
     </igx-navbar>
     <igx-banner #advancedSearch>
-      Advanced search:
+      Advanced search for:
+      <app-search [authUser]="authUser"></app-search>
       <igx-banner-actions>
         <button igxButton="flat" (click)="advancedSearch.close()">Hide</button>
       </igx-banner-actions>
     </igx-banner>
 
     <igx-drop-down #quickSearch>
-      <app-search [authUser]="authUser"></app-search>
+      <app-quick-search></app-quick-search>
     </igx-drop-down>
     <igx-drop-down #myTeam>
       <app-team-nav [authUser]="authUser"></app-team-nav>

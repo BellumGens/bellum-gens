@@ -57,9 +57,7 @@ export class AppComponent implements OnInit {
           modal: false
         };
         this.quickSearchDropDown.open(overlaySettings);
-        this.apiService.quickSearch(val).subscribe(
-          result => this.searchResult = result
-        );
+        this.apiService.quickSearch(val);
       }
     });
   }

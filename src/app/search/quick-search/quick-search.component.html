@@ -12,7 +12,7 @@
         <div class="center-message"><span>Nobody is active...</span></div>
     </ng-template>
     <igx-list-item [isHeader]="true">Players</igx-list-item>
-    <igx-list-item #item *ngFor="let user of activeUsers">
+    <igx-list-item #item *ngFor="let user of searchResult.Players | reduceQuickSearchResult">
       <div class="item-container">
         <div class="horizontal">
           <igx-avatar [src]="user.steamUser.avatarMedium" [initials]="user.steamUser.steamID" roundShape="true">
@@ -39,6 +39,45 @@
           <span>{{ user.userStats.headshotPercentage }}%</span>
         </div>
       </div>
+    </igx-list-item>
+    <igx-list-item *ngIf="searchResult.Players.length > 3">
+      <button igxButton="flat" class="submit-button">View more players...</button>
+    </igx-list-item>
+  </igx-list>
+  <igx-list [isLoading]="loading">
+    <ng-template igxDataLoading>
+      <div class="center-message">
+        <span>Loading teams...</span>
+        <div class="loading-indicator">
+          <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template igxEmptyList>
+      <div class="center-message"><span>No teams recruiting...</span></div>
+    </ng-template>
+    <igx-list-item [isHeader]="true">Teams</igx-list-item>
+    <igx-list-item *ngFor="let team of searchResult.Teams | reduceQuickSearchResult">
+      <div class="item-container">
+        <div class="horizontal">
+          <igx-avatar [src]="team.TeamAvatar" [initials]="team.TeamName" roundShape="true">
+          </igx-avatar>
+          <div class="horizontal-info__left">
+            <span class="title">
+              <a [routerLink]="['/team', team.TeamId]">
+                {{ team.TeamName }}
+              </a>
+            </span>
+          </div>
+        </div>
+        
+        <div class="horizontal-info__right">
+          {{ team.Members.length }} Members
+        </div>
+      </div>
+    </igx-list-item>
+    <igx-list-item *ngIf="searchResult.Teams.length > 3">
+      <button igxButton="flat" class="submit-button">View more teams...</button>
     </igx-list-item>
   </igx-list>
 </div>

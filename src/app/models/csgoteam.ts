@@ -31,7 +31,6 @@ export interface TeamApplication {
 }
 
 export interface TeamSearch {
-  name: string;
   role: PlaystyleRole;
   scheduleOverlap: number;
 }
@@ -46,7 +45,6 @@ export const TEAM_PLACEHOLDER: CSGOTeam = {
 };
 
 export const TEAM_SEARCH: TeamSearch = {
-  name: '',
   role: null,
   scheduleOverlap: 0
 };

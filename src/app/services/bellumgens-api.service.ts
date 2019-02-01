@@ -27,6 +27,9 @@ export class BellumgensApiService {
   public error = new EventEmitter<string>();
   public loadingTeams = new ReplaySubject<boolean>(1);
   public loadingPlayers = new ReplaySubject<boolean>(1);
+  public loadingQuickSearch = new ReplaySubject<boolean>(1);
+  public searchResult = new ReplaySubject<SearchResult>(1);
+  private _searchResultCache: Map<string, SearchResult> = new Map();
 
   constructor(private http: HttpClient) { }
 
@@ -69,6 +72,21 @@ export class BellumgensApiService {
   }
 
   public quickSearch(name: string) {
+    if (this._searchResultCache.has(name)) {
+      this.searchResult.next(this._searchResultCache.get(name));
+    } else {
+      this.loadingQuickSearch.next(true);
+      this.getQuickSearch(name).subscribe(
+        data => {
+          this._searchResultCache.set(name, data);
+          this.searchResult.next(data);
+          this.loadingQuickSearch.next(false);
+        }
+      );
+    }
+  }
+
+  private getQuickSearch(name: string) {
     return this.http.get<SearchResult>(`${this._apiEndpoint}/search/search?name=${name}`).pipe(
       map(response => response),
       catchError(error => {
