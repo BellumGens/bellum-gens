@@ -8,13 +8,21 @@
 }
 
 .igx-chip__text {
+  display: inline-block;
+  min-width: 10ch;
   font-size: 1rem;
   font-weight: 600;
 }
 
 .igx-chip__subtext {
+  display: inline-block;
+  min-width: 10ch;
   font-size: 0.75rem;
   font-weight: 200;
   margin-left: 4px;
   color: #e41c77;
+}
+
+igx-chip {
+  width: 232px;
 }
