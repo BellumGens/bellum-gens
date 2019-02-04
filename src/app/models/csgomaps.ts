@@ -1,6 +1,7 @@
 export interface MapPool {
   Map: CSGOMap;
   IsPlayed: boolean;
+  UserId: string;
   TeamId: string;
 }
 

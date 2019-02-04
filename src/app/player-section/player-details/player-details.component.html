@@ -5,8 +5,8 @@
       <div class="overview-container">
         <div class="left-container">
           <igx-avatar [src]="player?.steamUser?.avatarFull" [initials]="player?.steamUser?.steamID" class="player-avatar">
-            <igx-avatar *ngIf="player?.steamUser?.country" [src]="player?.steamUser?.country | playerCountry" [title]="player?.steamUser?.country" class="country-badge-large"></igx-avatar>
           </igx-avatar>
+          <igx-avatar *ngIf="player?.steamUser?.country" [src]="player?.steamUser?.country | playerCountry" [roundShape]="true" [title]="player?.steamUser?.country" class="country-badge-large"></igx-avatar>
           <h1 class="igx-card-header__title"><a [href]="player?.steamUser?.customURL | steamCustomUrl" target="_blank">{{ player?.steamUser?.steamID }}</a></h1>
           <h4 class="igx-card-header__subtitle">{{ player?.steamUser?.realname }}</h4>
         </div>

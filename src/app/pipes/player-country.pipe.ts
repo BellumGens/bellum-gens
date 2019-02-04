@@ -6,6 +6,9 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class PlayerCountryPipe implements PipeTransform {
 
   transform(country: string): string {
+    if (!country) {
+      return null;
+    }
     return 'assets/country-flags/svg/' + country.toLowerCase() + '.svg';
   }
 

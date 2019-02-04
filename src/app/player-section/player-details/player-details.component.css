@@ -28,9 +28,9 @@
 }
 
 .country-badge-large {
-  position: absolute;
-  top: -152px;
-  left: 100px;
+  position: relative;
+  top: -109px;
+  left: -38px;
   width: 52px;
   height: 52px;
   min-width: 52px;
