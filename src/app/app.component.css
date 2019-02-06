@@ -3,8 +3,14 @@
   height: 100%;
 }
 
-.content {
+.main-content-wrapper {
+  height: 100%;
+  display: flex;
   padding: 16px;
+  flex-basis: row nowrap;
+}
+
+.content {
   height: 100%;
 }
 
@@ -26,9 +32,29 @@
   caret-color: white;
 }
 
-@media only screen and (max-width: 1024px) {
-  .content {
+.discord-container {
+  height: 100%;
+  margin-left: 16px;
+}
+
+.discord-container > iframe {
+  height: 100%;
+}
+
+@media only screen and (max-width: 1280px) {
+  .main-content-wrapper {
     padding: 0 8px;
+  }
+
+  .content {
+    width: 100%;
+    justify-content: flex-start;
+  }
+}
+
+@media only screen and (min-width: 1600px) {
+  .content {
+    width: calc(100% - 350px);
     justify-content: flex-start;
   }
 }

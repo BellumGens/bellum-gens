@@ -37,8 +37,15 @@
       <app-notifications [authUser]="authUser"></app-notifications>
     </igx-drop-down>
     <app-success-error></app-success-error>
-    <div class="content">
-      <router-outlet></router-outlet>
+    
+    <div class="main-content-wrapper">
+      <div class="content">
+        <router-outlet></router-outlet>
+      </div>
+      
+      <div class="discord-container">
+        <iframe src="https://discordapp.com/widget?id=314362408783052800&theme=light" width="350" allowtransparency="true" frameborder="0"></iframe>
+      </div>
     </div>
   </div>
 </div>

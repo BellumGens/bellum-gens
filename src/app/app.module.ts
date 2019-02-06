@@ -35,7 +35,6 @@ import { PlayersComponent } from './player-section/players/players.component';
 import { PlayerDetailsComponent } from './player-section/player-details/player-details.component';
 import { LoginService } from './services/login.service';
 import { BellumgensApiService } from './services/bellumgens-api.service';
-import { TeamComponent } from './team-section/team/team.component';
 import { HomeComponent } from './home/home.component';
 import { TeamsComponent } from './team-section/teams/teams.component';
 import { GroupsFilterPipe } from './pipes/groups-filter.pipe';
@@ -58,7 +57,6 @@ import { SortApplicationsPipe } from './pipes/sort-applications.pipe';
 import { TeamCalendarComponent } from './team-section/team-calendar/team-calendar.component';
 import { MapPoolComponent } from './map-pool/map-pool.component';
 import { SideStratsPipe } from './pipes/sidestrats.pipe';
-import { PlayerComponent } from './player-section/player/player.component';
 import { AvailabilityComponent } from './availability/availability.component';
 import { SafeVideoLinkPipe } from './pipes/safe-video-link.pipe';
 import { TeamNavComponent } from './team-section/team-nav/team-nav.component';
@@ -77,7 +75,6 @@ import { ReduceQuickSearchResultPipe } from './pipes/reduce-quick-search-result.
     AppComponent,
     PlayersComponent,
     PlayerDetailsComponent,
-    TeamComponent,
     HomeComponent,
     TeamsComponent,
     GroupsFilterPipe,
@@ -100,7 +97,6 @@ import { ReduceQuickSearchResultPipe } from './pipes/reduce-quick-search-result.
     SortApplicationsPipe,
     MapPoolComponent,
     SideStratsPipe,
-    PlayerComponent,
     AvailabilityComponent,
     SafeVideoLinkPipe,
     TeamNavComponent,

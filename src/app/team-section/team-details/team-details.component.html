@@ -14,11 +14,14 @@
     </div>
     <igx-avatar *ngIf="!role.user" class="empty-role" icon='add' roundShape="true" [size]="'large'" igxDrop (onDrop)="assignToRole($event, role)">
     </igx-avatar>
-    <div *ngIf="role.user">
-      <span class="title">
+    <div>
+      <span *ngIf="role.user" class="title">
         <a [routerLink]="['/player-details', role.user.SteamUser.steamID64]">
           {{ role.user.SteamUser.steamID }}
         </a>
+      </span>
+      <span *ngIf="!role.user" class="title">
+        [ empty ]
       </span>
     </div>
   </div>

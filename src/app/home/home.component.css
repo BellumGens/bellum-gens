@@ -1,6 +1,5 @@
 .middle-card {
   margin-left: 16px;
-  margin-right: 16px;
 }
 
 h1 {
@@ -12,12 +11,4 @@ h1 {
 h3 {
   font-size: 1.75rem;
   font-weight: 600;
-}
-
-.discord-container {
-  height: 100%;
-}
-
-.discord-container > iframe {
-  height: 100%;
 }
