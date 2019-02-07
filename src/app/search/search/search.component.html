@@ -1,5 +1,7 @@
-<button igxButton="flat" (click)="searchType = 1">Players</button>
-<button igxButton="flat" (click)="searchType = 2">Teams</button>
+<igx-buttongroup class="search-type" [multiSelection]="false" (onSelect)="searchType = $event.index + 1">
+  <button igxButton igxRipple>Players</button>
+  <button igxButton igxRipple>Teams</button>
+</igx-buttongroup>
 
 <app-player-search *ngIf="searchType === 1" [authUser]="authUser"></app-player-search>
 <app-team-search *ngIf="searchType === 2" [authUser]="authUser"></app-team-search>

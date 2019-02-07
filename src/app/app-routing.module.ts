@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { TeamOverviewComponent } from './team-section/team-overview/team-overview.component';
 import { PlayerDetailsComponent } from './player-section/player-details/player-details.component';
+import { SearchResultsComponent } from './search/search-results/search-results.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -11,7 +12,8 @@ export const routes: Routes = [
   { path: 'notifications', component: NotificationsComponent },
   { path: 'players/:userid', component: PlayerDetailsComponent },
   { path: 'players/:userid/:newuser', component: PlayerDetailsComponent },
-  { path: 'team/:teamid', component: TeamOverviewComponent }
+  { path: 'team/:teamid', component: TeamOverviewComponent },
+  { path: 'search', component: SearchResultsComponent }
 ];
 
 @NgModule({

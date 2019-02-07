@@ -30,7 +30,8 @@ import { IgxNavbarModule,
   IgxExpansionPanelModule,
   IgxRadioModule,
   IgxSnackbarModule,
-  IgxBannerModule} from 'igniteui-angular';
+  IgxBannerModule,
+  IgxButtonGroupModule} from 'igniteui-angular';
 import { PlayersComponent } from './player-section/players/players.component';
 import { PlayerDetailsComponent } from './player-section/player-details/player-details.component';
 import { LoginService } from './services/login.service';
@@ -69,6 +70,7 @@ import { TopWeaponSvgPipe } from './pipes/top-weapon-svg.pipe';
 import { TopWeaponAltPipe } from './pipes/top-weapon-alt.pipe';
 import { QuickSearchComponent } from './search/quick-search/quick-search.component';
 import { ReduceQuickSearchResultPipe } from './pipes/reduce-quick-search-result.pipe';
+import { SearchResultsComponent } from './search/search-results/search-results.component';
 
 @NgModule({
   declarations: [
@@ -108,7 +110,8 @@ import { ReduceQuickSearchResultPipe } from './pipes/reduce-quick-search-result.
     TopWeaponSvgPipe,
     TopWeaponAltPipe,
     QuickSearchComponent,
-    ReduceQuickSearchResultPipe
+    ReduceQuickSearchResultPipe,
+    SearchResultsComponent
   ],
   imports: [
     FormsModule,
@@ -140,6 +143,7 @@ import { ReduceQuickSearchResultPipe } from './pipes/reduce-quick-search-result.
     IgxRadioModule,
     IgxSnackbarModule,
     IgxBannerModule,
+    IgxButtonGroupModule,
     IgxProgressBarModule
   ],
   providers: [
