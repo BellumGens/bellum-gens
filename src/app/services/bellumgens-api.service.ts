@@ -30,6 +30,8 @@ export class BellumgensApiService {
   public loadingQuickSearch = new ReplaySubject<boolean>(1);
   public searchResult = new ReplaySubject<SearchResult>(1);
   private _searchResultCache: Map<string, SearchResult> = new Map();
+  public playersSearchResult = new ReplaySubject<CSGOPlayer []>(1);
+  public teamSearchResult = new ReplaySubject<CSGOTeam []>(1);
 
   constructor(private http: HttpClient) { }
 
@@ -96,12 +98,12 @@ export class BellumgensApiService {
     );
   }
 
-  public searchTeams(model: TeamSearch) {
-    this._csgoTeams.next([]);
+  public searchTeams(query: string) {
+    this.teamSearchResult.next([]);
     this.loadingTeams.next(true);
-    this.getFilteredTeams(model).subscribe(
+    this.getFilteredTeams(query).subscribe(
       teams => {
-        this._csgoTeams.next(teams);
+        this.teamSearchResult.next(teams);
         this.loadingTeams.next(false);
       },
       error => {
@@ -110,12 +112,12 @@ export class BellumgensApiService {
     );
   }
 
-  public searchPlayers(model: PlayerSearch) {
-    this._players.next([]);
+  public searchPlayers(query: string) {
+    this.playersSearchResult.next([]);
     this.loadingPlayers.next(true);
-    this.getFilteredPlayers(model).subscribe(
+    this.getFilteredPlayers(query).subscribe(
       players => {
-        this._players.next(players);
+        this.playersSearchResult.next(players);
         this.loadingPlayers.next(false);
       },
       error => {
@@ -152,8 +154,8 @@ export class BellumgensApiService {
     );
   }
 
-  private getFilteredPlayers(model: PlayerSearch) {
-    return this.http.post<CSGOPlayer []>(`${this._apiEndpoint}/search/players`, model, { withCredentials: true });
+  private getFilteredPlayers(query: string) {
+    return this.http.get<CSGOPlayer []>(`${this._apiEndpoint}/search/players?${query}`, { withCredentials: true });
   }
 
   private getTeams() {
@@ -162,8 +164,8 @@ export class BellumgensApiService {
     );
   }
 
-  private getFilteredTeams(model: TeamSearch) {
-    return this.http.post<CSGOTeam []>(`${this._apiEndpoint}/search/teams`, model, { withCredentials: true });
+  private getFilteredTeams(query: string) {
+    return this.http.get<CSGOTeam []>(`${this._apiEndpoint}/search/teams?${query}`, { withCredentials: true });
   }
 
   public getTeam(teamId: string): Observable<CSGOTeam> {

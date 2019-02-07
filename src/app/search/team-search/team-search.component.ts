@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { PlaystyleRole } from 'src/app/models/playerrole';
 import { TeamSearch, TEAM_SEARCH } from 'src/app/models/csgoteam';
-import { BellumgensApiService } from 'src/app/services/bellumgens-api.service';
 import { ApplicationUser } from 'src/app/models/applicationuser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-team-search',
@@ -23,13 +23,16 @@ export class TeamSearchComponent implements OnInit {
     { roleName: 'Lurker', role: PlaystyleRole.Lurker }
   ];
 
-  constructor(private apiManager: BellumgensApiService) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
   public searchTeams() {
-    this.apiManager.searchTeams(this.searchModel);
+    this.router.navigate(['search/teams', this.searchQuery]);
   }
 
+  private get searchQuery() {
+    return `role=${this.searchModel.role}&overlap=${this.searchModel.scheduleOverlap}`;
+  }
 }

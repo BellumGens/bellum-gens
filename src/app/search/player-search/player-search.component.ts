@@ -2,8 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { PLAYER_SEARCH, PlayerSearch } from 'src/app/models/csgoplayer';
 import { PlaystyleRole } from 'src/app/models/playerrole';
 import { ApplicationUser } from 'src/app/models/applicationuser';
-import { BellumgensApiService } from 'src/app/services/bellumgens-api.service';
 import { ISelectionEventArgs } from 'igniteui-angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-player-search',
@@ -28,7 +28,7 @@ export class PlayerSearchComponent implements OnInit {
     { roleName: 'Lurker', role: PlaystyleRole.Lurker }
   ];
 
-  constructor(private apiManager: BellumgensApiService) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -36,14 +36,18 @@ export class PlayerSearchComponent implements OnInit {
   public searchPlayers() {
     if (!this.userOverlap) {
       this.teamName = 'Select Team';
-      delete this.searchModel.teamId;
+      this.searchModel.teamId = null;
     }
-    this.apiManager.searchPlayers(this.searchModel);
+    this.router.navigate(['search/players', this.searchQuery]);
   }
 
   public selectTeam(args: ISelectionEventArgs) {
     this.teamName = args.newSelection.value.TeamName;
     this.searchModel.teamId = args.newSelection.value.TeamId;
+  }
+
+  private get searchQuery() {
+    return `role=${this.searchModel.role}&overlap=${this.searchModel.scheduleOverlap}&teamid=${this.searchModel.teamId}`;
   }
 
 }

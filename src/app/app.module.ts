@@ -70,7 +70,8 @@ import { TopWeaponSvgPipe } from './pipes/top-weapon-svg.pipe';
 import { TopWeaponAltPipe } from './pipes/top-weapon-alt.pipe';
 import { QuickSearchComponent } from './search/quick-search/quick-search.component';
 import { ReduceQuickSearchResultPipe } from './pipes/reduce-quick-search-result.pipe';
-import { SearchResultsComponent } from './search/search-results/search-results.component';
+import { TeamResultsComponent } from './search/search-results/team-results/team-results.component';
+import { PlayerResultsComponent } from './search/search-results/player-results/player-results.component';
 
 @NgModule({
   declarations: [
@@ -111,7 +112,8 @@ import { SearchResultsComponent } from './search/search-results/search-results.c
     TopWeaponAltPipe,
     QuickSearchComponent,
     ReduceQuickSearchResultPipe,
-    SearchResultsComponent
+    TeamResultsComponent,
+    PlayerResultsComponent
   ],
   imports: [
     FormsModule,
