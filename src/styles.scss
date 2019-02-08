@@ -209,6 +209,7 @@ igx-card-content h4 {
 .horizontal {
   display: flex;
   flex: 0 0 auto;
+  flex-direction: row wrap;
   height: 100%;
 }
 

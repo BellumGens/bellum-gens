@@ -9,8 +9,8 @@ import { CSGOTeam } from 'src/app/models/csgoteam';
   styleUrls: ['./team-results.component.css']
 })
 export class TeamResultsComponent implements OnInit {
-  public isLoading = true;
-  public teamResults: CSGOTeam [];
+  public teams: CSGOTeam [];
+  public loading = true;
 
   constructor(private route: ActivatedRoute,
               private apiService: BellumgensApiService) {
@@ -22,6 +22,8 @@ export class TeamResultsComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.apiService.loadingSearch.subscribe(loading => this.loading = loading);
+    this.apiService.teamSearchResult.subscribe(players => this.teams = players);
   }
 
 }

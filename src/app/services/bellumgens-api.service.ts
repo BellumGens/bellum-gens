@@ -20,18 +20,23 @@ const CACHE_SIZE = 1;
 export class BellumgensApiService {
   private _apiEndpoint = 'http://localhost:25702/api';
 
-  private _players: ReplaySubject<CSGOPlayer []>;
-  private _csgoTeams: ReplaySubject<CSGOTeam []>;
-  private _teamApplications = new Map<string, Observable<TeamApplication[]>>();
   public success = new EventEmitter<string>();
   public error = new EventEmitter<string>();
   public loadingTeams = new ReplaySubject<boolean>(1);
   public loadingPlayers = new ReplaySubject<boolean>(1);
   public loadingQuickSearch = new ReplaySubject<boolean>(1);
+  public loadingSearch = new ReplaySubject<boolean>(1);
   public searchResult = new ReplaySubject<SearchResult>(1);
-  private _searchResultCache: Map<string, SearchResult> = new Map();
-  public playersSearchResult = new ReplaySubject<CSGOPlayer []>(1);
+  public playerSearchResult = new ReplaySubject<CSGOPlayer []>(1);
   public teamSearchResult = new ReplaySubject<CSGOTeam []>(1);
+
+  // Cache
+  private _players: ReplaySubject<CSGOPlayer []>;
+  private _csgoTeams: ReplaySubject<CSGOTeam []>;
+  private _teamApplications = new Map<string, Observable<TeamApplication[]>>();
+  private _searchResultCache: Map<string, SearchResult> = new Map();
+  private _playerSearchCache: Map<string, CSGOPlayer []> = new Map();
+  private _teamSearchCache: Map<string, CSGOTeam []> = new Map();
 
   constructor(private http: HttpClient) { }
 
@@ -99,31 +104,41 @@ export class BellumgensApiService {
   }
 
   public searchTeams(query: string) {
-    this.teamSearchResult.next([]);
-    this.loadingTeams.next(true);
-    this.getFilteredTeams(query).subscribe(
-      teams => {
-        this.teamSearchResult.next(teams);
-        this.loadingTeams.next(false);
-      },
-      error => {
-        this.emitError(error.error.Message);
-      }
-    );
+    if (this._teamSearchCache.has(query)) {
+      this.teamSearchResult.next(this._teamSearchCache.get(query));
+    } else {
+      this.teamSearchResult.next([]);
+      this.loadingSearch.next(true);
+      this.getFilteredTeams(query).subscribe(
+        teams => {
+          this._teamSearchCache.set(query, teams);
+          this.teamSearchResult.next(teams);
+          this.loadingSearch.next(false);
+        },
+        error => {
+          this.emitError(error.error.Message);
+        }
+      );
+    }
   }
 
   public searchPlayers(query: string) {
-    this.playersSearchResult.next([]);
-    this.loadingPlayers.next(true);
-    this.getFilteredPlayers(query).subscribe(
-      players => {
-        this.playersSearchResult.next(players);
-        this.loadingPlayers.next(false);
-      },
-      error => {
-        this.emitError(error.error.Message);
-      }
-    );
+    if (this._playerSearchCache.has(query)) {
+      this.playerSearchResult.next(this._playerSearchCache.get(query));
+    } else {
+      this.playerSearchResult.next([]);
+      this.loadingSearch.next(true);
+      this.getFilteredPlayers(query).subscribe(
+        players => {
+          this._playerSearchCache.set(query, players);
+          this.playerSearchResult.next(players);
+          this.loadingSearch.next(false);
+        },
+        error => {
+          this.emitError(error.error.Message);
+        }
+      );
+    }
   }
 
   public emitError(error: string) {
@@ -155,7 +170,13 @@ export class BellumgensApiService {
   }
 
   private getFilteredPlayers(query: string) {
-    return this.http.get<CSGOPlayer []>(`${this._apiEndpoint}/search/players?${query}`, { withCredentials: true });
+    return this.http.get<CSGOPlayer []>(`${this._apiEndpoint}/search/players?${query}`, { withCredentials: true }).pipe(
+      map(response => response),
+      catchError(error => {
+        this.emitError(error.error.Message);
+        return throwError(error);
+      })
+    );
   }
 
   private getTeams() {
@@ -165,7 +186,13 @@ export class BellumgensApiService {
   }
 
   private getFilteredTeams(query: string) {
-    return this.http.get<CSGOTeam []>(`${this._apiEndpoint}/search/teams?${query}`, { withCredentials: true });
+    return this.http.get<CSGOTeam []>(`${this._apiEndpoint}/search/teams?${query}`, { withCredentials: true }).pipe(
+      map(response => response),
+      catchError(error => {
+        this.emitError(error.error.Message);
+        return throwError(error);
+      })
+    );
   }
 
   public getTeam(teamId: string): Observable<CSGOTeam> {
@@ -219,18 +246,18 @@ export class BellumgensApiService {
 
   public removeTeamMember(teamMember: TeamMember) {
     return this.http.delete(`${this._apiEndpoint}/teams/removemember?teamId=${teamMember.TeamId}&userId=${teamMember.UserId}`,
-              { withCredentials: true }).pipe(
-                map(response => {
-                  if (response) {
-                    this.emitSuccess(`${teamMember.SteamUser.steamID} removed from team!`);
-                  }
-                  return response;
-                }),
-                catchError(error => {
-                  this.emitError(error.error.Message);
-                  return throwError(error);
-                })
-              );
+      { withCredentials: true }).pipe(
+        map(response => {
+          if (response) {
+            this.emitSuccess(`${teamMember.SteamUser.steamID} removed from team!`);
+          }
+          return response;
+        }),
+        catchError(error => {
+          this.emitError(error.error.Message);
+          return throwError(error);
+        })
+      );
   }
 
   public abandonTeam(team: CSGOTeam) {

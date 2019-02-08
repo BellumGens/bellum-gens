@@ -1,3 +1,8 @@
-<p>
-  player-results works!
-</p>
+<igx-circular-bar *ngIf="loading" [indeterminate]="true"></igx-circular-bar>
+<div>
+  <igx-card *ngFor="let player of players">
+    <igx-card-header>
+      {{ player.steamUser.steamID }}
+    </igx-card-header>
+  </igx-card>
+</div>

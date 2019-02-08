@@ -59,8 +59,9 @@
 }
 
 .player-detail__stats {
-  flex: 1 0 236px;
+  flex: 1 0 264px;
   width: 264px;
+  min-width: 264px;
 }
 
 .player-detail__stats-span {
@@ -124,6 +125,7 @@
 /* Availability */
 .left-container {
   width: 250px;
+  min-width: 250px;
   padding-right: 16px;
 }
 /* END Availability */

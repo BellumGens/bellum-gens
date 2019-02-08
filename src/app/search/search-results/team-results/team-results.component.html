@@ -1,3 +1,10 @@
-<p>
-  team-results works!
-</p>
+<div>
+  <igx-circular-bar *ngIf="loading" [indeterminate]="true"></igx-circular-bar>
+</div>
+<div>
+  <igx-card *ngFor="let team of teams">
+    <igx-card-header>
+      {{ team.TeamName }}
+    </igx-card-header>
+  </igx-card>
+</div>
