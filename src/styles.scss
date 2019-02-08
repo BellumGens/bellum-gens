@@ -3,8 +3,9 @@
 @import "~igniteui-angular/lib/core/styles/themes/index";
 @include igx-core();
 
-$primary: #0c030a !default;
-$secondary: #990116 !default;
+$primary: #fff !default;
+$secondary: #FF0958 !default;
+$background: #192053;
 
 $app-palette: igx-palette($primary, $secondary);
 
@@ -51,6 +52,11 @@ $banner-theme: igx-banner-theme($banner-background: $primary);
 $radio-theme: igx-radio-theme($label-color: white, $empty-color: $secondary);
 @include igx-css-vars($radio-theme);
 /* END Radio */
+
+/* Card */
+$card-theme: igx-card-theme($background: $background);
+@include igx-css-vars($card-theme);
+/* END Card */
 
 // /* Avatar */
 // $avatar-theme: igx-avatar-theme($app-palette);
@@ -108,11 +114,6 @@ $radio-theme: igx-radio-theme($label-color: white, $empty-color: $secondary);
 // /* END Badge */
 
 // /* Card */
-// $card-theme: igx-card-theme($app-palette);
-// @include igx-card($card-theme);
-// /* END Card */
-
-// /* Card */
 // $chips-theme: igx-chip-theme($app-palette);
 // @include igx-chip($chips-theme);
 // /* END Card */
@@ -154,6 +155,7 @@ $radio-theme: igx-radio-theme($label-color: white, $empty-color: $secondary);
 
 html, body {
   height: 100%;
+  background-color: $background;
 }
 
 /* ICONS */
@@ -281,7 +283,7 @@ a {
 }
 
 .highlight {
-  color: #e41c77;
+  color: $secondary;
   font-weight: 600;
 }
 
