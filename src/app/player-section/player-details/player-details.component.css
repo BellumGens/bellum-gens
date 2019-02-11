@@ -113,8 +113,8 @@
 
 .weapon-image {
   flex: 1 1 auto;
-  min-height: 210px;
-  max-width: 222px;
+  height: 210px;
+  width: 222px;
 }
 
 .weapon-name {

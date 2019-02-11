@@ -32,19 +32,29 @@ $include: (igx-avatar,
            igx-circular-bar,
            igx-banner);
 
-@include igx-theme(
+@include igx-dark-theme(
     $palette: $app-palette,
     $exclude: map-keys(map-remove($components, $include...),),
     $legacy-support: false
 );
 
+/* Navbar */
+$navbar-theme: igx-navbar-theme(igx-palette($background, $secondary));
+@include igx-css-vars($navbar-theme);
+/* END Navbar */
+
+/* Avatar */
+$avatar-theme: igx-avatar-theme(igx-palette($background, $secondary));
+@include igx-css-vars($avatar-theme);
+/* END Avatar */
+
 /* Input Group */
-$input-group-theme: igx-input-group-theme($search-background: $primary, $idle-text-color: white, $filled-text-color: white, $focused-text-color: white, $placeholder-color: #999);
+$input-group-theme: igx-input-group-theme($search-background: $background, $idle-text-color: white, $filled-text-color: white, $focused-text-color: white, $placeholder-color: #999);
 @include igx-css-vars($input-group-theme);
 /* END Input Group */
 
 /* Banner */
-$banner-theme: igx-banner-theme($banner-background: $primary);
+$banner-theme: igx-banner-theme($banner-background: $background);
 @include igx-css-vars($banner-theme);
 /* END Banner */
 
@@ -58,6 +68,11 @@ $card-theme: igx-card-theme($background: $background);
 @include igx-css-vars($card-theme);
 /* END Card */
 
+/* List */
+$list-theme: igx-list-theme($background: $background);
+@include igx-css-vars($list-theme);
+/* END List */
+
 // /* Avatar */
 // $avatar-theme: igx-avatar-theme($app-palette);
 // @include igx-avatar($avatar-theme);
@@ -67,11 +82,6 @@ $card-theme: igx-card-theme($background: $background);
 // $navbar-theme: igx-navbar-theme($app-palette);
 // @include igx-navbar($navbar-theme);
 // /* END Navbar */
-
-// /* List */
-// $list-theme: igx-list-theme($app-palette);
-// @include igx-list($list-theme);
-// /* END List */
 
 // /* Ripple */
 // $ripple-theme: igx-ripple-theme($app-palette);

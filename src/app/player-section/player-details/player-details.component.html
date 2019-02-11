@@ -63,9 +63,9 @@
               </igx-card-header>
               <igx-card-content class="center-items">
                 <div>
-                  <img class="weapon-image" *ngIf="player?.userStats?.favouriteWeapon" [src]="player?.userStats?.favouriteWeapon | topWeaponSvg"
-                    [alt]="player?.userStats?.favouriteWeapon | topWeaponAlt"
-                    [title]="player?.userStats?.favouriteWeapon | topWeaponAlt:true" />
+                  <igx-icon class="weapon-image" fontSet="weapon-icons" [name]="player?.userStats?.favouriteWeapon?.name"
+                    [title]="player?.userStats?.favouriteWeapon | topWeaponAlt">
+                  </igx-icon>
                 </div>
                 <div>
                   <h5>{{ player?.userStats?.favouriteWeapon?.name }}</h5>

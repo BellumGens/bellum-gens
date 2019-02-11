@@ -1,15 +1,15 @@
 <div class="list-container">
   <igx-list #players [isLoading]="loading">
     <ng-template igxDataLoading>
-        <div class="center-message">
-          <span>Loading players...</span>
-          <div class="loading-indicator">
-            <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
-          </div>
+      <div class="center-message">
+        <span>Loading players...</span>
+        <div class="loading-indicator">
+          <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
         </div>
+      </div>
     </ng-template>
     <ng-template igxEmptyList>
-        <div class="center-message"><span>Nobody is active...</span></div>
+      <div class="center-message"><span>Nobody is active...</span></div>
     </ng-template>
     <igx-list-item [isHeader]="true">Players</igx-list-item>
     <igx-list-item #item *ngFor="let user of activeUsers">
