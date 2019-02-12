@@ -188,7 +188,7 @@ igx-icon {
 .item-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  align-items: center;
 }
 
 .overview-container-card {
@@ -215,6 +215,10 @@ igx-icon {
 .igx-list__header,
 .igx-list__item-content {
   background-color: transparent;
+}
+
+.igx-list__item-content:active {
+  background-color: rgba(0, 0, 0, 0.11)
 }
 
 .igx-overlay {
