@@ -12,3 +12,23 @@ h3 {
   font-size: 1.75rem;
   font-weight: 600;
 }
+
+.major-stream-row {
+  display: flex;
+  flex: 1 1 100%;
+  flex-direction: row wrap;
+}
+
+.major-stream-column {
+  display: flex;
+  flex: 1 1 50%;
+  flex-direction: column;
+  color: white;
+  margin: 16px;
+  align-items: center;
+  justify-content: center;
+}
+
+.social-media-icon {
+  width: 48px;
+}

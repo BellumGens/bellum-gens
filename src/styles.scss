@@ -3,8 +3,11 @@
 @import "~igniteui-angular/lib/core/styles/themes/index";
 @include igx-core();
 
-$primary: #0c030a !default;
-$secondary: #990116 !default;
+$primary: white !default;
+$secondary: #FF0A3A !default;
+$background: #192053;
+$banner-background: #2C3D93;
+$background-gradient: linear-gradient(to right, #192053, #04081D);
 
 $app-palette: igx-palette($primary, $secondary);
 
@@ -31,19 +34,29 @@ $include: (igx-avatar,
            igx-circular-bar,
            igx-banner);
 
-@include igx-theme(
+@include igx-dark-theme(
     $palette: $app-palette,
     $exclude: map-keys(map-remove($components, $include...),),
     $legacy-support: false
 );
 
+/* Navbar */
+$navbar-theme: igx-navbar-theme(igx-palette($background, $secondary));
+@include igx-css-vars($navbar-theme);
+/* END Navbar */
+
+/* Avatar */
+$avatar-theme: igx-avatar-theme(igx-palette($background, $secondary));
+@include igx-css-vars($avatar-theme);
+/* END Avatar */
+
 /* Input Group */
-$input-group-theme: igx-input-group-theme($search-background: $primary, $idle-text-color: white, $filled-text-color: white, $focused-text-color: white, $placeholder-color: #999);
+$input-group-theme: igx-input-group-theme($search-background: $background, $idle-text-color: white, $filled-text-color: white, $focused-text-color: white, $placeholder-color: #999);
 @include igx-css-vars($input-group-theme);
 /* END Input Group */
 
 /* Banner */
-$banner-theme: igx-banner-theme($banner-background: $primary);
+$banner-theme: igx-banner-theme($banner-background: $banner-background);
 @include igx-css-vars($banner-theme);
 /* END Banner */
 
@@ -51,6 +64,21 @@ $banner-theme: igx-banner-theme($banner-background: $primary);
 $radio-theme: igx-radio-theme($label-color: white, $empty-color: $secondary);
 @include igx-css-vars($radio-theme);
 /* END Radio */
+
+/* Tabs */
+$tabs-theme: igx-tabs-theme($item-background: $background);
+@include igx-css-vars($tabs-theme);
+/* END Tabs */
+
+/* Drop Down */
+$drop-down-theme: igx-drop-down-theme($background-color: $background);
+@include igx-css-vars($drop-down-theme);
+/* END Drop Down */
+
+/* Dialog */
+$dialog-theme: igx-dialog-theme($background: $background);
+@include igx-css-vars($dialog-theme);
+/* END Dialog */
 
 // /* Avatar */
 // $avatar-theme: igx-avatar-theme($app-palette);
@@ -61,11 +89,6 @@ $radio-theme: igx-radio-theme($label-color: white, $empty-color: $secondary);
 // $navbar-theme: igx-navbar-theme($app-palette);
 // @include igx-navbar($navbar-theme);
 // /* END Navbar */
-
-// /* List */
-// $list-theme: igx-list-theme($app-palette);
-// @include igx-list($list-theme);
-// /* END List */
 
 // /* Ripple */
 // $ripple-theme: igx-ripple-theme($app-palette);
@@ -82,11 +105,6 @@ $radio-theme: igx-radio-theme($label-color: white, $empty-color: $secondary);
 // @include igx-overlay($overlay-theme);
 // /* END Overlay */
 
-// /* Dialog */
-// $dialog-theme: igx-dialog-theme($app-palette);
-// @include igx-dialog($dialog-theme);
-// /* END Dialog */
-
 // /* Input Group */
 // $input-group-theme: igx-input-group-theme($app-palette);
 // @include igx-input-group($input-group-theme);
@@ -97,20 +115,10 @@ $radio-theme: igx-radio-theme($label-color: white, $empty-color: $secondary);
 // @include igx-button($button-theme);
 // /* END Button */
 
-// /* Drop Down */
-// $drop-down-theme: igx-drop-down-theme($app-palette);
-// @include igx-drop-down($drop-down-theme);
-// /* END Drop Down */
-
 // /* Badge */
 // $badge-theme: igx-badge-theme($app-palette);
 // @include igx-badge($badge-theme);
 // /* END Badge */
-
-// /* Card */
-// $card-theme: igx-card-theme($app-palette);
-// @include igx-card($card-theme);
-// /* END Card */
 
 // /* Card */
 // $chips-theme: igx-chip-theme($app-palette);
@@ -126,11 +134,6 @@ $radio-theme: igx-radio-theme($label-color: white, $empty-color: $secondary);
 // $checkbox-theme: igx-checkbox-theme($app-palette);
 // @include igx-checkbox($checkbox-theme);
 // /* END Checkbox */
-
-// /* Tabs */
-// $tabs-theme: igx-tabs-theme($app-palette);
-// @include igx-tabs($tabs-theme);
-// /* END Tabs */
 
 // /* Expansion Panel */
 // $expansion-panel-theme: igx-expansion-panel-theme($app-palette);
@@ -154,6 +157,7 @@ $radio-theme: igx-radio-theme($label-color: white, $empty-color: $secondary);
 
 html, body {
   height: 100%;
+  background-image: $background-gradient;
 }
 
 /* ICONS */
@@ -185,6 +189,36 @@ igx-icon {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.overview-container-card {
+  padding: 16px 0px 8px 8px;
+  color: white;
+}
+
+.igx-navbar {
+  background: $background-gradient;
+  -webkit-box-shadow: 0px 15px 30px 0px rgba(0,0,0,0.4);
+  -moz-box-shadow: 0px 15px 30px 0px rgba(0,0,0,0.4);
+  box-shadow: 0px 15px 30px 0px rgba(0,0,0,0.4);
+}
+
+.igx-card,
+.igx-list,
+.igx-list__empty {
+  background: linear-gradient(135deg, rgba(47,57,120,1) 0%, rgba(16,25,63,1) 100%);
+  -webkit-box-shadow: 0px 15px 30px 0px rgba(0,0,0,0.4);
+  -moz-box-shadow: 0px 15px 30px 0px rgba(0,0,0,0.4);
+  box-shadow: 0px 15px 30px 0px rgba(0,0,0,0.4);
+}
+
+.igx-list__header,
+.igx-list__item-content {
+  background-color: transparent;
+}
+
+.igx-overlay {
+  color: $primary;
 }
 
 .center-message {
@@ -281,7 +315,7 @@ a {
 }
 
 .highlight {
-  color: #e41c77;
+  color: $secondary;
   font-weight: 600;
 }
 

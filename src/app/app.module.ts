@@ -31,7 +31,8 @@ import { IgxNavbarModule,
   IgxRadioModule,
   IgxSnackbarModule,
   IgxBannerModule,
-  IgxButtonGroupModule} from 'igniteui-angular';
+  IgxButtonGroupModule,
+  IgxIconService} from 'igniteui-angular';
 import { PlayersComponent } from './player-section/players/players.component';
 import { PlayerDetailsComponent } from './player-section/player-details/player-details.component';
 import { LoginService } from './services/login.service';
@@ -66,7 +67,6 @@ import { PlayerSearchComponent } from './search/player-search/player-search.comp
 import { SearchComponent } from './search/search/search.component';
 import { SteamCustomUrlPipe } from './pipes/steam-custom-url.pipe';
 import { PlayerCountryPipe } from './pipes/player-country.pipe';
-import { TopWeaponSvgPipe } from './pipes/top-weapon-svg.pipe';
 import { TopWeaponAltPipe } from './pipes/top-weapon-alt.pipe';
 import { QuickSearchComponent } from './search/quick-search/quick-search.component';
 import { ReduceQuickSearchResultPipe } from './pipes/reduce-quick-search-result.pipe';
@@ -108,7 +108,6 @@ import { PlayerResultsComponent } from './search/search-results/player-results/p
     SearchComponent,
     SteamCustomUrlPipe,
     PlayerCountryPipe,
-    TopWeaponSvgPipe,
     TopWeaponAltPipe,
     QuickSearchComponent,
     ReduceQuickSearchResultPipe,
@@ -150,9 +149,26 @@ import { PlayerResultsComponent } from './search/search-results/player-results/p
   ],
   providers: [
     LoginService,
-    BellumgensApiService
+    BellumgensApiService,
+    IgxIconService
   ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
+  constructor(private iconService: IgxIconService) {
+    this.iconService.addSvgIcon('ak47', '/assets/weapon-icons/svg_normal/weapon_ak47.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('awp', '/assets/weapon-icons/svg_normal/weapon_awp.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('aug', '/assets/weapon-icons/svg_normal/weapon_aug.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('bizon', '/assets/weapon-icons/svg_normal/weapon_bizon.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('deagle', '/assets/weapon-icons/svg_normal/weapon_deagle.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('famas', '/assets/weapon-icons/svg_normal/weapon_famas.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('fiveseven', '/assets/weapon-icons/svg_normal/weapon_fiveseven.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('g3sg1', '/assets/weapon-icons/svg_normal/weapon_g3sg1.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('galilar', '/assets/weapon-icons/svg_normal/weapon_galilar.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('glock', '/assets/weapon-icons/svg_normal/weapon_glock.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('m4a1', '/assets/weapon-icons/svg_normal/weapon_m4a1.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('m4a1_silencer', '/assets/weapon-icons/svg_normal/weapon_m4a1_silencer.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('usp_silencer', '/assets/weapon-icons/svg_normal/weapon_usp_silencer.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('sg556', '/assets/weapon-icons/svg_normal/weapon_sg556.svg', 'weapon-icons');
+  }
 }

@@ -1,42 +1,36 @@
-<div class="card-with-margins">
-  <igx-card>
-    <igx-card-header>
-      <div class="horizontal">
-        <igx-avatar [initials]="team.TeamName" [src]="team.TeamAvatar" roundShape="true" [size]="'large'">
-        </igx-avatar>
-        <div class="horizontal-info__left">
-          <h1 class="igx-card-header__title">{{ team.TeamName }}</h1>
-        </div>
-        <div class="horizontal-info__right">
-          Some team motto goes in here, and other general or recruitment information.
-        </div>
-        <div *ngIf="!userIsMember && team.TeamId" class="horizontal-info__right">
-          <app-team-application></app-team-application>
-        </div>
-      </div>
-    </igx-card-header>
-    <igx-card-content>
-        <igx-tabs>
-          <igx-tabs-group label="Team Details">
-            <app-team-details [team]="team" [authUser]="authUser"></app-team-details>
-          </igx-tabs-group>
-          <igx-tabs-group *ngIf="userIsMember" label="Team Strats">
-            <app-team-strategies [isAdmin]="userIsAdmin"></app-team-strategies>
-          </igx-tabs-group>
-          <igx-tabs-group label="Team Calendar">
-            <app-team-calendar [practiceSchedule]="team.PracticeSchedule" [isAdmin]="userIsAdmin"></app-team-calendar>
-          </igx-tabs-group>
-          <igx-tabs-group *ngIf="userIsMember" label="Notifications" icon="notifications">
-              <ng-template igxTab>
-                <div class="horizontal-center">
-                  <igx-icon fontSet="material">notifications</igx-icon>
-                  <div class="igx-tabs__item-label">Notifications</div>
-                  <igx-badge [value]="notifications | unreadNotifications" type="info"></igx-badge>
-                </div> 
-              </ng-template>
-            <app-team-notifications></app-team-notifications>
-          </igx-tabs-group>
-        </igx-tabs>
-    </igx-card-content>
-  </igx-card>
+<div class="overview-container-card">
+  <div class="horizontal">
+    <igx-avatar [initials]="team.TeamName" [src]="team.TeamAvatar" roundShape="true" [size]="'large'">
+    </igx-avatar>
+    <div class="horizontal-info__left">
+      <h1 class="igx-card-header__title">{{ team.TeamName }}</h1>
+    </div>
+    <div class="horizontal-info__right">
+      Some team motto goes in here, and other general or recruitment information.
+    </div>
+    <div *ngIf="!userIsMember && team.TeamId" class="horizontal-info__right">
+      <app-team-application></app-team-application>
+    </div>
+  </div>
+  <igx-tabs>
+    <igx-tabs-group label="Team Details">
+      <app-team-details [team]="team" [authUser]="authUser"></app-team-details>
+    </igx-tabs-group>
+    <igx-tabs-group *ngIf="userIsMember" label="Team Strats">
+      <app-team-strategies [isAdmin]="userIsAdmin"></app-team-strategies>
+    </igx-tabs-group>
+    <igx-tabs-group label="Team Calendar">
+      <app-team-calendar [practiceSchedule]="team.PracticeSchedule" [isAdmin]="userIsAdmin"></app-team-calendar>
+    </igx-tabs-group>
+    <igx-tabs-group *ngIf="userIsMember" label="Notifications" icon="notifications">
+        <ng-template igxTab>
+          <div class="horizontal-center">
+            <igx-icon fontSet="material">notifications</igx-icon>
+            <div class="igx-tabs__item-label">Notifications</div>
+            <igx-badge [value]="notifications | unreadNotifications" type="info"></igx-badge>
+          </div> 
+        </ng-template>
+      <app-team-notifications></app-team-notifications>
+    </igx-tabs-group>
+  </igx-tabs>
 </div>
