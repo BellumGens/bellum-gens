@@ -8,18 +8,16 @@
       </igx-radio-group>
     </div>
   
-    <igx-input-group type="search" *ngIf="authUser">
+    <igx-input-group *ngIf="authUser">
       <igx-prefix>
           <igx-icon>search</igx-icon>
       </igx-prefix>
-      <label igxLabel for="overlap">Minimum availability overlap of...</label>
+      <label igxLabel for="overlap">Minimum overlap of...</label>
       <input #overlap type="number" name="scheduleOverlap" autocomplete="off" [(ngModel)]="searchModel.scheduleOverlap" igxInput>
       <igx-suffix *ngIf="overlap.value !== '0'">
           <igx-icon (click)="searchModel.scheduleOverlap = 0">clear</igx-icon>
       </igx-suffix>
-      <igx-hint>
-        Hours
-      </igx-hint>
+      <igx-hint>Hours availability</igx-hint>
     </igx-input-group>
   </div>
   <button class="submit-button" igxButton="flat">Submit</button>

@@ -1,44 +1,42 @@
-<div class="list-container">
-  <igx-list #players [isLoading]="loading">
-    <ng-template igxDataLoading>
-      <div class="center-message">
-        <span>Loading players...</span>
-        <div class="loading-indicator">
-          <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
+<igx-list #players [isLoading]="loading">
+  <ng-template igxDataLoading>
+    <div class="center-message">
+      <span>Loading players...</span>
+      <div class="loading-indicator">
+        <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template igxEmptyList>
+    <div class="center-message"><span>Nobody is active...</span></div>
+  </ng-template>
+  <igx-list-item [isHeader]="true">Players</igx-list-item>
+  <igx-list-item #item *ngFor="let user of activeUsers">
+    <div class="item-container">
+      <div class="horizontal">
+        <igx-avatar [src]="user.steamUser.avatarMedium" [initials]="user.steamUser.steamID" roundShape="true">
+        </igx-avatar>
+        <igx-avatar [src]="user?.steamUser?.country | playerCountry" [roundShape]="true" [title]="user.steamUser.country" class="country-badge-small"></igx-avatar>
+        <div class="horizontal-info__left">
+          <span class="title">
+            <a [routerLink]="['/players', user.steamUser.steamID64]">
+              {{ user.steamUser.steamID }}
+              <!-- <igx-avatar [src]="'assets/csgo-ranks/icons/skillgroup14.png'" class="skill-badge" [roundShape]="true"></igx-avatar> -->
+            </a>
+          </span>
+          <span class="subtitle">{{ user.steamUser.realname }}</span>
         </div>
       </div>
-    </ng-template>
-    <ng-template igxEmptyList>
-      <div class="center-message"><span>Nobody is active...</span></div>
-    </ng-template>
-    <igx-list-item [isHeader]="true">Players</igx-list-item>
-    <igx-list-item #item *ngFor="let user of activeUsers">
-      <div class="item-container">
-        <div class="horizontal">
-          <igx-avatar [src]="user.steamUser.avatarMedium" [initials]="user.steamUser.steamID" roundShape="true">
-          </igx-avatar>
-          <igx-avatar [src]="user?.steamUser?.country | playerCountry" [roundShape]="true" [title]="user.steamUser.country" class="country-badge-small"></igx-avatar>
-          <div class="horizontal-info__left">
-            <span class="title">
-              <a [routerLink]="['/players', user.steamUser.steamID64]">
-                {{ user.steamUser.steamID }}
-                <!-- <igx-avatar [src]="'assets/csgo-ranks/icons/skillgroup14.png'" class="skill-badge" [roundShape]="true"></igx-avatar> -->
-              </a>
-            </span>
-            <span class="subtitle">{{ user.steamUser.realname }}</span>
-          </div>
-        </div>
-        
-        <div class="horizontal-info__right">
-          <igx-circular-bar class="icon-avatar" [value]="user.userStats.killDeathRatio" [max]="2" [animate]="true" [textVisibility]="false" title="KDR"></igx-circular-bar>
-          <igx-avatar src="assets/hs-img.jpg" title="Headshot Percentage" roundShape="true" class="icon-avatar"></igx-avatar>
-        </div>
+      
+      <div class="horizontal-info__right">
+        <igx-circular-bar class="icon-avatar" [value]="user.userStats.killDeathRatio" [max]="2" [animate]="true" [textVisibility]="false" title="KDR"></igx-circular-bar>
+        <igx-avatar src="assets/hs-img.jpg" title="Headshot Percentage" roundShape="true" class="icon-avatar"></igx-avatar>
+      </div>
 
-        <div class="horizontal-info__right">
-          <span class="title">{{ user.userStats.killDeathRatio }}</span>
-          <span>{{ user.userStats.headshotPercentage }}%</span>
-        </div>
+      <div class="horizontal-info__right">
+        <span class="title">{{ user.userStats.killDeathRatio }}</span>
+        <span>{{ user.userStats.headshotPercentage }}%</span>
       </div>
-    </igx-list-item>
-  </igx-list>
-</div>
+    </div>
+  </igx-list-item>
+</igx-list>

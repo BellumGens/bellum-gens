@@ -94,14 +94,6 @@
   padding: 16px 16px 0px 16px;
 }
 
-.player-details-card .igx-card igx-card-header {
-  padding-bottom: 0px;
-}
-
-.player-details-card .igx-card igx-card-content {
-  padding-top: 0px;
-}
-
 .center-items {
   text-align: center;
 }

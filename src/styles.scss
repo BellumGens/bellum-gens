@@ -3,9 +3,11 @@
 @import "~igniteui-angular/lib/core/styles/themes/index";
 @include igx-core();
 
-$primary: #fff !default;
+$primary: white !default;
 $secondary: #FF0958 !default;
 $background: #192053;
+$banner-background: #2C3D93;
+$background-gradient: linear-gradient(to right, #192053, #04081D);
 
 $app-palette: igx-palette($primary, $secondary);
 
@@ -54,7 +56,7 @@ $input-group-theme: igx-input-group-theme($search-background: $background, $idle
 /* END Input Group */
 
 /* Banner */
-$banner-theme: igx-banner-theme($banner-background: $background);
+$banner-theme: igx-banner-theme($banner-background: $banner-background);
 @include igx-css-vars($banner-theme);
 /* END Banner */
 
@@ -63,15 +65,20 @@ $radio-theme: igx-radio-theme($label-color: white, $empty-color: $secondary);
 @include igx-css-vars($radio-theme);
 /* END Radio */
 
-/* Card */
-$card-theme: igx-card-theme($background: $background);
-@include igx-css-vars($card-theme);
-/* END Card */
+/* Tabs */
+$tabs-theme: igx-tabs-theme($item-background: $background);
+@include igx-css-vars($tabs-theme);
+/* END Tabs */
 
-/* List */
-$list-theme: igx-list-theme($background: $background);
-@include igx-css-vars($list-theme);
-/* END List */
+/* Drop Down */
+$drop-down-theme: igx-drop-down-theme($background-color: $background);
+@include igx-css-vars($drop-down-theme);
+/* END Drop Down */
+
+/* Dialog */
+$dialog-theme: igx-dialog-theme($background: $background);
+@include igx-css-vars($dialog-theme);
+/* END Dialog */
 
 // /* Avatar */
 // $avatar-theme: igx-avatar-theme($app-palette);
@@ -98,11 +105,6 @@ $list-theme: igx-list-theme($background: $background);
 // @include igx-overlay($overlay-theme);
 // /* END Overlay */
 
-// /* Dialog */
-// $dialog-theme: igx-dialog-theme($app-palette);
-// @include igx-dialog($dialog-theme);
-// /* END Dialog */
-
 // /* Input Group */
 // $input-group-theme: igx-input-group-theme($app-palette);
 // @include igx-input-group($input-group-theme);
@@ -112,11 +114,6 @@ $list-theme: igx-list-theme($background: $background);
 // $button-theme: igx-button-theme($app-palette);
 // @include igx-button($button-theme);
 // /* END Button */
-
-// /* Drop Down */
-// $drop-down-theme: igx-drop-down-theme($app-palette);
-// @include igx-drop-down($drop-down-theme);
-// /* END Drop Down */
 
 // /* Badge */
 // $badge-theme: igx-badge-theme($app-palette);
@@ -137,11 +134,6 @@ $list-theme: igx-list-theme($background: $background);
 // $checkbox-theme: igx-checkbox-theme($app-palette);
 // @include igx-checkbox($checkbox-theme);
 // /* END Checkbox */
-
-// /* Tabs */
-// $tabs-theme: igx-tabs-theme($app-palette);
-// @include igx-tabs($tabs-theme);
-// /* END Tabs */
 
 // /* Expansion Panel */
 // $expansion-panel-theme: igx-expansion-panel-theme($app-palette);
@@ -165,7 +157,7 @@ $list-theme: igx-list-theme($background: $background);
 
 html, body {
   height: 100%;
-  background-color: $background;
+  background-image: $background-gradient;
 }
 
 /* ICONS */
@@ -199,6 +191,15 @@ igx-icon {
   justify-content: space-between;
 }
 
+.overview-container-card {
+  padding: 16px 0px 8px 8px;
+  color: white;
+}
+
+.igx-overlay {
+  color: $primary;
+}
+
 .center-message {
   display: flex;
   flex-direction: column;
@@ -212,6 +213,20 @@ igx-icon {
 .loading-indicator {
   margin-top: 16px;
   width: 66px;
+}
+
+.igx-card,
+.igx-list,
+.igx-list__empty {
+  background: linear-gradient(135deg, rgba(47,57,120,1) 0%, rgba(16,25,63,1) 100%);
+  -webkit-box-shadow: 0px 15px 30px 0px rgba(0,0,0,0.4);
+  -moz-box-shadow: 0px 15px 30px 0px rgba(0,0,0,0.4);
+  box-shadow: 0px 15px 30px 0px rgba(0,0,0,0.4);
+}
+
+.igx-list__header,
+.igx-list__item-content {
+  background-color: transparent;
 }
 
 igx-card-content h4 {
