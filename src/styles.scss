@@ -4,7 +4,7 @@
 @include igx-core();
 
 $primary: white !default;
-$secondary: #FF0958 !default;
+$secondary: #FF0A3A !default;
 $background: #192053;
 $banner-background: #2C3D93;
 $background-gradient: linear-gradient(to right, #192053, #04081D);
@@ -196,6 +196,27 @@ igx-icon {
   color: white;
 }
 
+.igx-navbar {
+  background: $background-gradient;
+  -webkit-box-shadow: 0px 15px 30px 0px rgba(0,0,0,0.4);
+  -moz-box-shadow: 0px 15px 30px 0px rgba(0,0,0,0.4);
+  box-shadow: 0px 15px 30px 0px rgba(0,0,0,0.4);
+}
+
+.igx-card,
+.igx-list,
+.igx-list__empty {
+  background: linear-gradient(135deg, rgba(47,57,120,1) 0%, rgba(16,25,63,1) 100%);
+  -webkit-box-shadow: 0px 15px 30px 0px rgba(0,0,0,0.4);
+  -moz-box-shadow: 0px 15px 30px 0px rgba(0,0,0,0.4);
+  box-shadow: 0px 15px 30px 0px rgba(0,0,0,0.4);
+}
+
+.igx-list__header,
+.igx-list__item-content {
+  background-color: transparent;
+}
+
 .igx-overlay {
   color: $primary;
 }
@@ -213,20 +234,6 @@ igx-icon {
 .loading-indicator {
   margin-top: 16px;
   width: 66px;
-}
-
-.igx-card,
-.igx-list,
-.igx-list__empty {
-  background: linear-gradient(135deg, rgba(47,57,120,1) 0%, rgba(16,25,63,1) 100%);
-  -webkit-box-shadow: 0px 15px 30px 0px rgba(0,0,0,0.4);
-  -moz-box-shadow: 0px 15px 30px 0px rgba(0,0,0,0.4);
-  box-shadow: 0px 15px 30px 0px rgba(0,0,0,0.4);
-}
-
-.igx-list__header,
-.igx-list__item-content {
-  background-color: transparent;
 }
 
 igx-card-content h4 {
