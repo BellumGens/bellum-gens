@@ -128,6 +128,7 @@
             <igx-card-content>
               <igx-avatar *ngFor="let team of authUser?.Teams" [initials]="team.TeamName" [src]="team.TeamAvatar" roundShape="true" [size]="'large'">
               </igx-avatar>
+              <h4 *ngIf="!authUser?.Teams.length">Not a member of a team yet.</h4>
             </igx-card-content>
           </igx-card>
         </div>
@@ -135,16 +136,16 @@
 
         <!-- Map Pool -->
         <div class="player-detail-stats-container">
-            <igx-card class="player-detail__stats-span">
-              <igx-card-header>
-                <h4>Maps</h4>
-              </igx-card-header>
-              <igx-card-content>
-                <app-map-pool [readOnly]="!playerIsUser"
-                  [mapPool]="player?.mapPool"
-                  (update)="mapChange($event)"></app-map-pool>
-              </igx-card-content>
-            </igx-card>
+          <igx-card>
+            <igx-card-header>
+              <h4>Maps</h4>
+            </igx-card-header>
+            <igx-card-content>
+              <app-map-pool [readOnly]="!playerIsUser"
+                [mapPool]="player?.mapPool"
+                (update)="mapChange($event)"></app-map-pool>
+            </igx-card-content>
+          </igx-card>
         </div>
         <!-- END Map Pool -->
       </div>

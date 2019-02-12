@@ -80,6 +80,11 @@ $dialog-theme: igx-dialog-theme($background: $background);
 @include igx-css-vars($dialog-theme);
 /* END Dialog */
 
+/* Snackbar */
+$snackbar-theme: igx-snackbar-theme($background: $banner-background);
+@include igx-css-vars($snackbar-theme);
+/* END Snackbar */
+
 // /* Avatar */
 // $avatar-theme: igx-avatar-theme($app-palette);
 // @include igx-avatar($avatar-theme);
@@ -144,11 +149,6 @@ $dialog-theme: igx-dialog-theme($background: $background);
 // $radio-theme: igx-radio-theme($app-palette);
 // @include igx-radio($radio-theme);
 // /* END Radio */
-
-// /* Snackbar */
-// $snackbar-theme: igx-snackbar-theme($app-palette);
-// @include igx-snackbar($snackbar-theme);
-// /* END Snackbar */
 
 // /* Progress Circular */
 // $progress-bar-theme: igx-progress-circular-theme($app-palette);

@@ -68,6 +68,10 @@
   flex: 1 1 75%;
 }
 
+.player-detail__stats-span .igx-card {
+  min-height: 276px;
+}
+
 .player-detail__stats,
 .player-detail__stats-span {
   margin-right: 16px;
