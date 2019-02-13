@@ -4,6 +4,7 @@ import { Observable, ReplaySubject } from 'rxjs';
 import { LoginProvider } from '../models/login-provider';
 import { ApplicationUser } from '../models/applicationuser';
 import { map, shareReplay } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 
 const CACHE_SIZE = 1;
 
@@ -11,8 +12,8 @@ const CACHE_SIZE = 1;
   providedIn: 'root'
 })
 export class LoginService {
-  private _apiEndpoint = 'http://localhost:25702/api/account';
-  private _rootApiEndpoint = 'http://localhost:25702';
+  private _apiEndpoint = environment.authApiEndpoint;
+  private _rootApiEndpoint = environment.rootApiEndpoint;
 
   private _applicationUser: ReplaySubject<ApplicationUser>;
   private _loginProviders: Observable<LoginProvider []>;

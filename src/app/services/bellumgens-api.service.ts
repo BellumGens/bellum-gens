@@ -2,8 +2,8 @@ import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SteamGroup, SteamUser } from '../models/steamuser';
 import { Observable, ReplaySubject, throwError } from 'rxjs';
-import { CSGOTeam, TeamMember, TeamApplication, TeamSearch } from '../models/csgoteam';
-import { CSGOPlayer, PlayerSearch } from '../models/csgoplayer';
+import { CSGOTeam, TeamMember, TeamApplication } from '../models/csgoteam';
+import { CSGOPlayer } from '../models/csgoplayer';
 import { Availability } from '../models/playeravailability';
 import { Role } from '../models/playerrole';
 import { MapPool } from 'src/app/models/csgomaps';
@@ -11,6 +11,7 @@ import { map, shareReplay, catchError } from 'rxjs/operators';
 import { UserNotification } from '../models/usernotifications';
 import { TeamStrategy } from '../models/csgoteamstrategy';
 import { SearchResult } from '../models/searchresult';
+import { environment } from 'src/environments/environment';
 
 const CACHE_SIZE = 1;
 
@@ -18,7 +19,7 @@ const CACHE_SIZE = 1;
   providedIn: 'root'
 })
 export class BellumgensApiService {
-  private _apiEndpoint = 'http://localhost:25702/api';
+  private _apiEndpoint = environment.apiEndpoint;
 
   public success = new EventEmitter<string>();
   public error = new EventEmitter<string>();
