@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ngSIX-Pure-Proj": {
+    "bellum-gens": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,14 +13,15 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ngSIX-Pure-Proj",
+            "outputPath": "dist/bellum-gens",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/web.config"
             ],
             "styles": [
               "src/styles.scss"
@@ -50,18 +51,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ngSIX-Pure-Proj:build"
+            "browserTarget": "bellum-gens:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ngSIX-Pure-Proj:build:production"
+              "browserTarget": "bellum-gens:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ngSIX-Pure-Proj:build"
+            "browserTarget": "bellum-gens:build"
           }
         },
         "test": {
@@ -95,7 +96,7 @@
         }
       }
     },
-    "ngSIX-Pure-Proj-e2e": {
+    "bellum-gens-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "architect": {
@@ -103,7 +104,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ngSIX-Pure-Proj:serve"
+            "devServerTarget": "bellum-gens:serve"
           }
         },
         "lint": {
@@ -118,5 +119,5 @@
       }
     }
   },
-  "defaultProject": "ngSIX-Pure-Proj"
+  "defaultProject": "bellum-gens"
 }
