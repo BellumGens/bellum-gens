@@ -80,6 +80,11 @@ $dialog-theme: igx-dialog-theme($background: $background);
 @include igx-css-vars($dialog-theme);
 /* END Dialog */
 
+/* Snackbar */
+$snackbar-theme: igx-snackbar-theme($background: $banner-background);
+@include igx-css-vars($snackbar-theme);
+/* END Snackbar */
+
 // /* Avatar */
 // $avatar-theme: igx-avatar-theme($app-palette);
 // @include igx-avatar($avatar-theme);
@@ -145,11 +150,6 @@ $dialog-theme: igx-dialog-theme($background: $background);
 // @include igx-radio($radio-theme);
 // /* END Radio */
 
-// /* Snackbar */
-// $snackbar-theme: igx-snackbar-theme($app-palette);
-// @include igx-snackbar($snackbar-theme);
-// /* END Snackbar */
-
 // /* Progress Circular */
 // $progress-bar-theme: igx-progress-circular-theme($app-palette);
 // @include igx-progress-circular($progress-bar-theme);
@@ -188,7 +188,7 @@ igx-icon {
 .item-container {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  align-items: center;
 }
 
 .overview-container-card {
@@ -215,6 +215,10 @@ igx-icon {
 .igx-list__header,
 .igx-list__item-content {
   background-color: transparent;
+}
+
+.igx-list__item-content:active {
+  background-color: rgba(0, 0, 0, 0.11)
 }
 
 .igx-overlay {

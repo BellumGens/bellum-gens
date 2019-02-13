@@ -41,9 +41,13 @@
   height: 100%;
 }
 
-@media only screen and (max-width: 1280px) {
+@media only screen and (max-width: 1366px) {
   .main-content-wrapper {
     padding: 0 8px;
+  }
+
+  .discord-container {
+    display: none;
   }
 
   .content {
