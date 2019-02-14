@@ -85,6 +85,17 @@ $snackbar-theme: igx-snackbar-theme($background: $banner-background);
 @include igx-css-vars($snackbar-theme);
 /* END Snackbar */
 
+/* Badge */
+.igx-badge__circle--info {
+  background-color: $secondary;
+}
+/* END Badge */
+
+/* Progress Circular */
+// $progress-bar-theme: igx-progress-circular-theme($app-palette);
+// @include igx-css-vars($progress-bar-theme);
+/* END Progress Circular */
+
 // /* Avatar */
 // $avatar-theme: igx-avatar-theme($app-palette);
 // @include igx-avatar($avatar-theme);
@@ -119,11 +130,6 @@ $snackbar-theme: igx-snackbar-theme($background: $banner-background);
 // $button-theme: igx-button-theme($app-palette);
 // @include igx-button($button-theme);
 // /* END Button */
-
-// /* Badge */
-// $badge-theme: igx-badge-theme($app-palette);
-// @include igx-badge($badge-theme);
-// /* END Badge */
 
 // /* Card */
 // $chips-theme: igx-chip-theme($app-palette);
@@ -238,6 +244,7 @@ igx-icon {
 .loading-indicator {
   margin-top: 16px;
   width: 66px;
+  height: 66px;
 }
 
 igx-card-content h4 {

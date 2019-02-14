@@ -1,9 +1,9 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
-import { LoginService } from '../services/login.service';
 import { ApplicationUser } from '../models/applicationuser';
 import { IgxListComponent } from 'igniteui-angular';
-import { UserNotification } from '../models/usernotifications';
+import { UserNotification, NotificationState } from '../models/usernotifications';
 import { BellumgensApiService } from '../services/bellumgens-api.service';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-notifications',
@@ -14,6 +14,7 @@ export class NotificationsComponent implements OnInit {
 
   @Input()
   public authUser: ApplicationUser;
+  public loading = false;
   public notificationClass = ['', '', 'notification-disabled', 'notification-disabled'];
 
   @ViewChild(IgxListComponent) public notifications: IgxListComponent;
@@ -24,11 +25,17 @@ export class NotificationsComponent implements OnInit {
   }
 
   public acceptInvitation(notification: UserNotification) {
-    this.apiService.acceptInvite(notification).subscribe();
+    this.loading = true;
+    this.apiService.acceptInvite(notification).pipe(finalize(() => this.loading = false)).subscribe(
+      _ => notification.State = NotificationState.Accepted
+    );
   }
 
   public rejectInvitation(notification: UserNotification) {
-    this.apiService.rejectInvite(notification).subscribe();
+    this.loading = true;
+    this.apiService.rejectInvite(notification).pipe(finalize(() => this.loading = false)).subscribe(
+      _ => notification.State = NotificationState.Rejected
+    );
   }
 
 }

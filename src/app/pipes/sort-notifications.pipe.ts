@@ -7,7 +7,7 @@ import { UserNotification } from '../models/usernotifications';
 export class SortNotificationsPipe implements PipeTransform {
 
   transform(notifications: UserNotification []): UserNotification [] {
-    return notifications && notifications.sort((x, y) => x.State > y.State ? 1 : 0);
+    return notifications && notifications.sort((x, y) => x.State === y.State ? 0 : x.State > y.State ? 1 : -1);
   }
 
 }

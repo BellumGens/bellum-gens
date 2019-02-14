@@ -1,4 +1,9 @@
-<igx-list>
+<igx-list [isLoading]="loading">
+  <ng-template igxDataLoading>
+    <div class="loading-overlay">
+      <igx-circular-bar class="loading-indicator" [indeterminate]="true"></igx-circular-bar>
+    </div>
+  </ng-template>
   <ng-template igxEmptyList>
       <div class="center-message"><span>No new notifications.</span></div>
   </ng-template>

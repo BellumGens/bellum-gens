@@ -93,10 +93,14 @@ export class TeamDetailsComponent implements OnInit {
     return this._isAdmin;
   }
 
-  public roleDragging() {
-    this.emptyRoles.filter(e => e.nativeElement.classList.contains('empty-role')).forEach((avatar) => {
-      avatar.nativeElement.classList.add('empty-role-active');
-    });
+  public roleDragging(args) {
+    if (!this.isAdmin) {
+      args.cancel = true;
+    } else {
+      this.emptyRoles.filter(e => e.nativeElement.classList.contains('empty-role')).forEach((avatar) => {
+        avatar.nativeElement.classList.add('empty-role-active');
+      });
+    }
   }
 
   public roleDraggingEnd() {
