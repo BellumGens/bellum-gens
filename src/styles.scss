@@ -92,8 +92,8 @@ $snackbar-theme: igx-snackbar-theme($background: $banner-background);
 /* END Badge */
 
 /* Progress Circular */
-// $progress-bar-theme: igx-progress-circular-theme($app-palette);
-// @include igx-css-vars($progress-bar-theme);
+$progress-bar-theme: igx-progress-circular-theme($progress-circle-color: $secondary);
+@include igx-css-vars($progress-bar-theme);
 /* END Progress Circular */
 
 // /* Avatar */
@@ -155,11 +155,6 @@ $snackbar-theme: igx-snackbar-theme($background: $banner-background);
 // $radio-theme: igx-radio-theme($app-palette);
 // @include igx-radio($radio-theme);
 // /* END Radio */
-
-// /* Progress Circular */
-// $progress-bar-theme: igx-progress-circular-theme($app-palette);
-// @include igx-progress-circular($progress-bar-theme);
-// /* END Progress Circular */
 
 html, body {
   height: 100%;
