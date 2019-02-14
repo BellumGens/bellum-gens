@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  rootApiEndpoint: 'http://localhost:25702',
-  authApiEndpoint: 'http://localhost:25702/api/account',
-  apiEndpoint: 'http://localhost:25702/api'
+  rootApiEndpoint: 'https://localhost:44394',
+  authApiEndpoint: 'https://localhost:44394/api/account',
+  apiEndpoint: 'https://localhost:44394/api'
 };
 
 /*

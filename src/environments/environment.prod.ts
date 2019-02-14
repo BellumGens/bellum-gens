@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  rootApiEndpoint: 'http://api.bellumgens.com',
-  authApiEndpoint: 'http://api.bellumgens.com/api/account',
-  apiEndpoint: 'http://api.bellumgens.com/api'
+  rootApiEndpoint: 'https://api.bellumgens.com',
+  authApiEndpoint: 'https://api.bellumgens.com/api/account',
+  apiEndpoint: 'https://api.bellumgens.com/api'
 };
