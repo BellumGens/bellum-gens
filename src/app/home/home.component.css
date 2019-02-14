@@ -39,21 +39,21 @@ h3 {
 
 @media only screen and (max-width: 1600px) {
   .video-container {
-    height: 378px;
-    width: 620px;
+    height: 365px;
+    width: 600px;
   }
 }
 
-@media only screen and (min-width: 1600px) {
+@media only screen and (min-width: 1601px) {
   .video-container {
-    height: 448px;
     width: 735px;
+    height: 448px;
   }
 }
 
 @media only screen and (min-width: 1925px) {
   .video-container {
-    height: 649px;
     width: 1065px;
+    height: 649px;
   }
 }
