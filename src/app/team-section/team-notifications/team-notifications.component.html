@@ -11,7 +11,7 @@
       </igx-avatar>
       <div class="horizontal-info__left">
         <span class="title">
-          <a [href]="notification.UserInfo.customURL">{{ notification.UserInfo.steamID }}</a> has applied to join your team!
+          <a [href]="notification.UserInfo.customURL" target="_blank">{{ notification.UserInfo.steamID }}</a> has applied to join your team!
         </span>
         <span class="subtitle">Application: {{ notification.Message }}</span>
         <span class="subtitle">Submitted on: {{ notification.Sent | date }}</span>
