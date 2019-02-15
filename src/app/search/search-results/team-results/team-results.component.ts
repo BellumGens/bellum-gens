@@ -11,11 +11,13 @@ import { CSGOTeam } from 'src/app/models/csgoteam';
 export class TeamResultsComponent implements OnInit {
   public teams: CSGOTeam [];
   public loading = true;
+  public query: string;
 
   constructor(private route: ActivatedRoute,
               private apiService: BellumgensApiService) {
     this.route.params.subscribe(params => {
       if (params.query) {
+        this.query = params.query;
         this.apiService.searchTeams(params.query);
       }
     });

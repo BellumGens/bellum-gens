@@ -7,7 +7,7 @@
       <igx-expansion-panel-description>
         {{ selectedMaps }}
       </igx-expansion-panel-description>
-      <button class="navigation-item" *ngIf="changes && isAdmin" igxButton="raised" (click)="saveMaps()">Save current maps</button>
+      <button class="navigation-item" *ngIf="changes && isAdmin" igxButton="raised" (click)="saveMaps($event)">Save current maps</button>
       <button class="navigation-item" igxButton="raised" igxRipple (click)="openNewStrategy($event)">Add new strategy</button>
     </igx-expansion-panel-header>
     <igx-expansion-panel-body>

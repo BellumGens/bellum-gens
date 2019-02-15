@@ -6,7 +6,7 @@
 
   <div class="card-margins" *ngFor="let team of authUser?.Teams">
     <igx-card>
-      <igx-card-header class="compact">
+      <igx-card-header>
         <igx-avatar [src]="team.TeamAvatar" [initials]="team.TeamName" roundShape="true"></igx-avatar>
         <div class="igx-card-header__tgroup">
           <h3 class="igx-card-header__title--small">{{ team.TeamName }}</h3>

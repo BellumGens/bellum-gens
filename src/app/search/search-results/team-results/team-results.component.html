@@ -1,10 +1,18 @@
-<div>
+<div class="horizontal">
+  <!-- <h5>Results for: Teams > {{ this.query }}</h5> -->
   <igx-circular-bar *ngIf="loading" [indeterminate]="true"></igx-circular-bar>
-</div>
-<div>
-  <igx-card *ngFor="let team of teams">
+  <igx-card *ngFor="let team of teams" class="card-margins">
     <igx-card-header>
-      {{ team.TeamName }}
+      <igx-avatar [src]="team.TeamAvatar" [initials]="team.TeamName" roundShape="true"></igx-avatar>
+      <div class="igx-card-header__tgroup">
+        <h3 class="igx-card-header__title--small">{{ team.TeamName }}</h3>
+        <h5 class="igx-card-header__subtitle">{{ team.Description }}</h5>
+      </div>
     </igx-card-header>
+    <igx-card-actions>
+      <div class="igx-card-actions__bgroup">
+        <button igxButton igxRipple [routerLink]="['/team', team.TeamId]">Team Details</button>
+      </div>
+    </igx-card-actions>
   </igx-card>
 </div>

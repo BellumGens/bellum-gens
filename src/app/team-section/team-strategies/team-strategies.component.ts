@@ -68,7 +68,8 @@ export class TeamStrategiesComponent implements OnInit {
     this.pipeTrigger++;
   }
 
-  public saveMaps() {
+  public saveMaps(event: Event) {
+    event.stopPropagation();
     this.apiService.setTeamMapPool(this.maps).subscribe(
       _ => {
         this.changes = false;
