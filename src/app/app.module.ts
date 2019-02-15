@@ -170,5 +170,6 @@ export class AppModule {
     this.iconService.addSvgIcon('m4a1_silencer', '/assets/weapon-icons/svg_normal/weapon_m4a1_silencer.svg', 'weapon-icons');
     this.iconService.addSvgIcon('usp_silencer', '/assets/weapon-icons/svg_normal/weapon_usp_silencer.svg', 'weapon-icons');
     this.iconService.addSvgIcon('sg556', '/assets/weapon-icons/svg_normal/weapon_sg556.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('p90', '/assets/weapon-icons/svg_normal/weapon_p90.svg', 'weapon-icons');
   }
 }
