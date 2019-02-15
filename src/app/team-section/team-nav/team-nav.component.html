@@ -4,23 +4,21 @@
   <p *ngIf="authUser && !authUser.Teams.length">You are not part of any teams.</p>
   <button *ngIf="authUser" class="submit-button" igxButton="flat" igxRippleCentered="true" (click)="createTeam.open()">Create New Team</button>
 
-  <div class="card-margins" *ngFor="let team of authUser?.Teams">
-    <igx-card>
-      <igx-card-header>
-        <igx-avatar [src]="team.TeamAvatar" [initials]="team.TeamName" roundShape="true"></igx-avatar>
-        <div class="igx-card-header__tgroup">
-          <h3 class="igx-card-header__title--small">{{ team.TeamName }}</h3>
-          <h5 class="igx-card-header__subtitle">Some team description</h5>
-        </div>
-      </igx-card-header>
-      <igx-card-actions>
-        <div class="igx-card-actions__bgroup">
-          <button igxButton igxRipple [routerLink]="['/team', team.TeamId]">Team Details</button>
-          <button igxButton igxRipple (click)="abandonTeam(team)">Abandon Team</button>
-        </div>
-      </igx-card-actions>
-    </igx-card>
-  </div>
+  <igx-card class="card-margins" *ngFor="let team of authUser?.Teams">
+    <igx-card-header>
+      <igx-avatar [src]="team.TeamAvatar" [initials]="team.TeamName" roundShape="true"></igx-avatar>
+      <div class="igx-card-header__tgroup">
+        <h3 class="igx-card-header__title--small">{{ team.TeamName }}</h3>
+        <h5 class="igx-card-header__subtitle">Some team description</h5>
+      </div>
+    </igx-card-header>
+    <igx-card-actions>
+      <div class="igx-card-actions__bgroup">
+        <button igxButton igxRipple [routerLink]="['/team', team.TeamId]">Team Details</button>
+        <button igxButton igxRipple (click)="abandonTeam(team)">Abandon Team</button>
+      </div>
+    </igx-card-actions>
+  </igx-card>
 </div>
 
 <igx-dialog #createTeam closeOnOutsideSelect="true" *ngIf="authUser">
