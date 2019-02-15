@@ -4,6 +4,7 @@ import { PlaystyleRole } from 'src/app/models/playerrole';
 import { TeamMember, CSGOTeam, TEAM_PLACEHOLDER } from 'src/app/models/csgoteam';
 import { ApplicationUser } from 'src/app/models/applicationuser';
 import { BellumgensApiService } from 'src/app/services/bellumgens-api.service';
+import { Availability } from 'src/app/models/playeravailability';
 
 interface RoleSlot {
   roleName: string;
@@ -20,7 +21,7 @@ export class TeamDetailsComponent implements OnInit {
   private _team = TEAM_PLACEHOLDER;
   private _isAdmin = null;
 
-  public get team() {
+  public get team(): CSGOTeam {
     return this._team;
   }
 
@@ -107,5 +108,9 @@ export class TeamDetailsComponent implements OnInit {
     this.emptyRoles.forEach((avatar) => {
       avatar.nativeElement.classList.remove('empty-role-active');
     });
+  }
+
+  public changeSchedule(day: Availability) {
+    this.apiService.setTeamPractice(day).subscribe();
   }
 }

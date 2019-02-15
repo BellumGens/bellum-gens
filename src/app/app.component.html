@@ -9,7 +9,7 @@
           <igx-icon class="button-icon">search</igx-icon>
         </igx-prefix>
         <label igxLabel for="searchInput">Search</label>
-        <input #searchInput igxInput (focus)="advancedSearch.open()" class="search-input" />
+        <input id="searchInput" #searchInput igxInput (focus)="advancedSearch.open()" class="search-input" />
         <igx-suffix *ngIf="searchInput.value.length > 0" (click)="searchInput.value = ''">
           <igx-icon>clear</igx-icon>
         </igx-suffix>

@@ -4,6 +4,7 @@ import { IgxListComponent } from 'igniteui-angular';
 import { UserNotification, NotificationState } from '../models/usernotifications';
 import { BellumgensApiService } from '../services/bellumgens-api.service';
 import { finalize } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-notifications',
@@ -19,7 +20,8 @@ export class NotificationsComponent implements OnInit {
 
   @ViewChild(IgxListComponent) public notifications: IgxListComponent;
 
-  constructor(private apiService: BellumgensApiService) { }
+  constructor(private apiService: BellumgensApiService,
+              private router: Router) { }
 
   ngOnInit() {
   }
@@ -27,7 +29,10 @@ export class NotificationsComponent implements OnInit {
   public acceptInvitation(notification: UserNotification) {
     this.loading = true;
     this.apiService.acceptInvite(notification).pipe(finalize(() => this.loading = false)).subscribe(
-      _ => notification.State = NotificationState.Accepted
+      _ => {
+        notification.State = NotificationState.Accepted;
+        this.router.navigate(['team', notification.TeamInfo.TeamId]);
+      }
     );
   }
 

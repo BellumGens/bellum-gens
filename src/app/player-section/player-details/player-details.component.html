@@ -1,7 +1,7 @@
 <div class="overview-container-card">
   <h1 *ngIf="newUser">Complete your profile</h1>
   <div class="overview-container">
-    <div class="left-container">
+    <div class="left-details-container">
       <igx-avatar [src]="player?.steamUser?.avatarFull" [initials]="player?.steamUser?.steamID" class="player-avatar">
       </igx-avatar>
       <igx-avatar *ngIf="player?.steamUser?.country" [src]="player?.steamUser?.country | playerCountry" [roundShape]="true" [title]="player?.steamUser?.country" class="country-badge-large"></igx-avatar>
@@ -82,7 +82,7 @@
 
   <div class="overview-container">
       <!-- Availability -->
-      <div class="left-container">
+      <div class="left-details-container">
           <h5>Availability</h5>
           <app-availability [availability]="player?.availability" (availabilityChanged)="submitAvailability($event)" [editable]="playerIsUser"></app-availability>
       </div>
