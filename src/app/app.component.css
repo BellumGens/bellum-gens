@@ -41,6 +41,12 @@
   height: 100%;
 }
 
+@media only screen and (max-width: 720px) {
+  .search-group {
+    width: auto;
+  }
+}
+
 @media only screen and (max-width: 1366px) {
   .main-content-wrapper {
     padding: 0 8px;

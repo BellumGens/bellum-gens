@@ -77,7 +77,7 @@ export class TeamStrategiesComponent implements OnInit {
   }
 
   public openNewStrategy(event: Event) {
-    event.preventDefault();
+    event.stopPropagation();
     this.dialog.open();
   }
 

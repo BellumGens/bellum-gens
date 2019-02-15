@@ -1,12 +1,12 @@
 <div class="overview-container-card">
-  <div class="horizontal">
+  <div class="team-details-header">
     <igx-avatar [initials]="team.TeamName" [src]="team.TeamAvatar" roundShape="true" [size]="'large'">
     </igx-avatar>
     <div class="horizontal-info__left">
       <h1 class="igx-card-header__title">{{ team.TeamName }}</h1>
     </div>
     <div class="horizontal-info__right">
-      Some team motto goes in here, and other general or recruitment information.
+      {{ team.Description }}
     </div>
     <div *ngIf="!userIsMember && team.TeamId" class="horizontal-info__right">
       <app-team-application></app-team-application>

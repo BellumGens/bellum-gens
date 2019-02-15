@@ -11,3 +11,7 @@
 .map-column.strat {
   max-width: 592px;
 }
+
+.strat igx-card-header {
+  justify-content: space-between;
+}

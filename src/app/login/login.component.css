@@ -17,6 +17,12 @@
   height: 58px;
 }
 
+.profile-button:hover,
+.profile-button:active,
+.profile-button:focus {
+  background-color: transparent;
+}
+
 .profile-item {
   padding: 0 0.75em;
 }

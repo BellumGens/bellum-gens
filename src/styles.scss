@@ -51,7 +51,7 @@ $avatar-theme: igx-avatar-theme(igx-palette($background, $secondary));
 /* END Avatar */
 
 /* Input Group */
-$input-group-theme: igx-input-group-theme($search-background: $background, $idle-text-color: white, $filled-text-color: white, $focused-text-color: white, $placeholder-color: #999);
+$input-group-theme: igx-input-group-theme($search-background: transparent, $idle-text-color: white, $filled-text-color: white, $focused-text-color: white, $placeholder-color: #999);
 @include igx-css-vars($input-group-theme);
 /* END Input Group */
 
@@ -95,6 +95,11 @@ $snackbar-theme: igx-snackbar-theme($background: $banner-background);
 $progress-bar-theme: igx-progress-circular-theme($progress-circle-color: $secondary);
 @include igx-css-vars($progress-bar-theme);
 /* END Progress Circular */
+
+/* Expansion Panel */
+$expansion-panel-theme: igx-expansion-panel-theme($header-background: $background, $header-focus-background: $background, $body-background: $background);
+@include igx-css-vars($expansion-panel-theme);
+/* END Expansion Panel */
 
 // /* Avatar */
 // $avatar-theme: igx-avatar-theme($app-palette);
@@ -329,6 +334,7 @@ a {
   margin: 0px 4px;
 }
 
+.igx-input-group__textarea, 
 textarea {
   resize: none;
 }

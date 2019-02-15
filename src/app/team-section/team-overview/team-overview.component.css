@@ -1,0 +1,7 @@
+.team-details-header {
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: row wrap;
+  align-items: center;
+  padding-bottom: 8xp;
+}
