@@ -131,9 +131,9 @@
               <h4>Teams</h4>
             </igx-card-header>
             <igx-card-content>
-              <igx-avatar *ngFor="let team of authUser?.Teams" [initials]="team.TeamName" [src]="team.TeamAvatar" roundShape="true" [size]="'large'">
+              <igx-avatar *ngFor="let team of player.teams" [initials]="team.TeamName" [src]="team.TeamAvatar" roundShape="true" [size]="'large'">
               </igx-avatar>
-              <h4 *ngIf="!authUser?.Teams.length">Not a member of a team yet.</h4>
+              <h4 *ngIf="!player.teams.length">Not a member of a team yet.</h4>
             </igx-card-content>
           </igx-card>
         </div>
