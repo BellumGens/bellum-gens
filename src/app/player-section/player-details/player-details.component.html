@@ -1,5 +1,10 @@
-<div class="overview-container-card">
+<div *ngIf="!player" class="loading-overview">
+  <igx-circular-bar class="loading-user-data" [indeterminate]="true"></igx-circular-bar>
+</div>
+
+<div *ngIf="player" class="overview-container-card">
   <h1 *ngIf="newUser">Now it's time to complete your profile</h1>
+
   <div class="overview-container">
     <div class="left-details-container">
       <igx-avatar [src]="player?.steamUser?.avatarFull" [initials]="player?.steamUser?.steamID" class="player-avatar">
@@ -29,9 +34,6 @@
             </igx-drop-down-item>
           </igx-drop-down>
         </div>
-      </div>
-      <div *ngIf="!player?.userStats && !player?.userStatsException" class="player-detail-stats-container">
-        <igx-circular-bar class="loading-indicator-large" [indeterminate]="true"></igx-circular-bar>
       </div>
       <div *ngIf="player?.userStats" class="player-detail-stats-container">
         <igx-card class="player-detail__stats">
@@ -129,9 +131,9 @@
               <h4>Teams</h4>
             </igx-card-header>
             <igx-card-content>
-              <igx-avatar *ngFor="let team of authUser?.Teams" [initials]="team.TeamName" [src]="team.TeamAvatar" roundShape="true" [size]="'large'">
+              <igx-avatar *ngFor="let team of player.teams" [initials]="team.TeamName" [src]="team.TeamAvatar" roundShape="true" [size]="'large'">
               </igx-avatar>
-              <h4 *ngIf="!authUser?.Teams.length">Not a member of a team yet.</h4>
+              <h4 *ngIf="!player.teams.length">Not a member of a team yet.</h4>
             </igx-card-content>
           </igx-card>
         </div>
