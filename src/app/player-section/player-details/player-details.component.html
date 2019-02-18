@@ -30,7 +30,7 @@
           </igx-drop-down>
         </div>
       </div>
-      <div *ngIf="!player?.userStats" class="player-detail-stats-container">
+      <div *ngIf="!player?.userStats && !player?.userStatsException" class="player-detail-stats-container">
         <igx-circular-bar class="loading-indicator-large" [indeterminate]="true"></igx-circular-bar>
       </div>
       <div *ngIf="player?.userStats" class="player-detail-stats-container">
