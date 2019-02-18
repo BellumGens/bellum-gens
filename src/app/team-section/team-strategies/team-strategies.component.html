@@ -19,7 +19,16 @@
     <igx-card class="map-column strat" *ngFor="let strat of teamStrats | sidestrats:maps:pipeTrigger">
       <igx-card-header>
         <h5>{{ strat.Title }}</h5>
-        <button igxButton="flat" (click)="editStrategy(strat)">Edit</button>
+        <div class="admin-actions" *ngIf="isAdmin">
+          <button igxButton="flat" igxRipple (click)="editStrategy(strat)">
+            <igx-icon title="edit strategy">edit</igx-icon>
+            Edit
+          </button>
+          <button igxButton="flat" igxRipple (click)="confirm.open(strat)">
+            <igx-icon class="margin-left" title="delete strategy">delete_forever</igx-icon>
+            Delete
+          </button>
+        </div>
       </igx-card-header>
       <igx-card-content>
         <p>{{ strat.Description }}</p>
@@ -91,3 +100,9 @@
   </div>
 </igx-dialog>
 <!-- END New strategy dialog -->
+
+<!-- Confirm -->
+<app-confirm #confirm title="Are you sure?" (ok)="deleteStrat($event)">
+  Pressing OK will permanently remove this strategy...
+</app-confirm>
+<!-- END Confirm -->

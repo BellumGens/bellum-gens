@@ -374,6 +374,21 @@ export class BellumgensApiService {
     );
   }
 
+  public deleteStrategy(id: string, teamid: string): Observable<any> {
+    return this.http.delete(`${this._apiEndpoint}/teams/strategy?id=${id}&teamid=${teamid}`, { withCredentials: true }).pipe(
+      map(response => {
+        if (response) {
+          this.emitSuccess('Strategy successfully deleted!');
+        }
+        return response;
+      }),
+      catchError(error => {
+        this.emitError(error.error.Message);
+        return throwError(error);
+      })
+    );
+  }
+
   public setTeamPractice(day: Availability) {
     return this.http.put(`${this._apiEndpoint}/teams/availability`, day, { withCredentials: true }).pipe(
       map(response => {

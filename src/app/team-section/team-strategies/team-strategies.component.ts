@@ -94,9 +94,9 @@ export class TeamStrategiesComponent implements OnInit {
   public submitStrategy() {
     this.newStrategy.TeamId = this.teamId;
     this.apiService.submitStrategy(this.newStrategy).subscribe(
-      _ => {
+      strat => {
         if (!this.newStrategy.Id) {
-          this.teamStrats.push(this.newStrategy);
+          this.teamStrats.push(strat);
           this.pipeTrigger++;
         }
         this.newStrategy = newEmptyStrategy();
@@ -121,6 +121,15 @@ export class TeamStrategiesComponent implements OnInit {
   public getYoutubeEmbedLink(url: string): string {
     const parts = this._youtubeRegEx.exec(url);
     return `https://www.youtube.com/embed/${parts[5]}`;
+  }
+
+  public deleteStrat(args: TeamStrategy) {
+    this.apiService.deleteStrategy(args.Id, args.TeamId).subscribe(
+      _ => {
+        this.teamStrats.splice(this.teamStrats.indexOf(args), 1);
+        this.pipeTrigger++;
+      }
+    );
   }
 
 }

@@ -72,6 +72,7 @@ import { QuickSearchComponent } from './search/quick-search/quick-search.compone
 import { ReduceQuickSearchResultPipe } from './pipes/reduce-quick-search-result.pipe';
 import { TeamResultsComponent } from './search/search-results/team-results/team-results.component';
 import { PlayerResultsComponent } from './search/search-results/player-results/player-results.component';
+import { ConfirmComponent } from './confirm/confirm.component';
 
 @NgModule({
   declarations: [
@@ -112,7 +113,8 @@ import { PlayerResultsComponent } from './search/search-results/player-results/p
     QuickSearchComponent,
     ReduceQuickSearchResultPipe,
     TeamResultsComponent,
-    PlayerResultsComponent
+    PlayerResultsComponent,
+    ConfirmComponent
   ],
   imports: [
     FormsModule,

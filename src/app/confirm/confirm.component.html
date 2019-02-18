@@ -1,0 +1,11 @@
+<igx-dialog #confirm closeOnOutsideSelect="true"
+            [title]="title"
+            leftButtonLabel="Cancel"
+            rightButtonLabel="OK"
+            (onLeftButtonSelect)="cancelClicked($event)"
+            (onRightButtonSelect)="okClicked()"
+            (onClose)="onClose()">
+  <div class="dialog-content">
+    <ng-content></ng-content>
+  </div>
+</igx-dialog>
