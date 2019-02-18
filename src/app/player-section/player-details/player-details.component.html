@@ -39,7 +39,7 @@
             <h4>KDR</h4>
           </igx-card-header>
           <igx-card-content class="center-items">
-            <igx-circular-bar [value]="player?.userStats?.killDeathRatio" [max]="2" [animate]="true" title="KDR" [text]="player?.userStats?.killDeathRatio"></igx-circular-bar>
+            <igx-circular-bar [value]="player.userStats.killDeathRatio" [max]="2" [animate]="true" title="KDR" [text]="player.userStats.killDeathRatio"></igx-circular-bar>
           </igx-card-content>
         </igx-card>
         <igx-card class="player-detail__stats">
@@ -47,7 +47,7 @@
             <h4>Headshots</h4>
           </igx-card-header>
           <igx-card-content class="center-items">
-            <igx-circular-bar [value]="player?.userStats?.headshotPercentage" [max]="100" [animate]="true" title="Headshot Percentage" [text]="player?.userStats?.headshotPercentage + '%'"></igx-circular-bar>
+            <igx-circular-bar [value]="player.userStats.headshotPercentage" [max]="100" [animate]="true" title="Headshot Percentage" [text]="player.userStats.headshotPercentage + '%'"></igx-circular-bar>
           </igx-card-content>
         </igx-card>
         <igx-card class="player-detail__stats">
@@ -55,7 +55,7 @@
             <h4>Accuracy</h4>
           </igx-card-header>
           <igx-card-content class="center-items">
-            <igx-circular-bar [value]="player?.userStats?.accuracy" [max]="100" [animate]="true" [text]="player?.userStats?.accuracy + '%'"></igx-circular-bar>
+            <igx-circular-bar [value]="player.userStats.accuracy" [max]="100" [animate]="true" [text]="player.userStats.accuracy + '%'"></igx-circular-bar>
           </igx-card-content>
         </igx-card>
         <igx-card class="player-detail__stats">
@@ -64,7 +64,7 @@
           </igx-card-header>
           <igx-card-content class="center-items">
             <div>
-              <igx-icon class="weapon-image" fontSet="weapon-icons" [name]="player?.userStats?.favouriteWeapon?.name"
+              <igx-icon class="weapon-image" fontSet="weapon-icons" [name]="player.userStats.favouriteWeapon?.name"
                 [title]="player?.userStats?.favouriteWeapon | topWeaponAlt">
               </igx-icon>
             </div>
@@ -78,7 +78,7 @@
       <div *ngIf="playerIsUser && player.userStatsException" class="player-stats__container">
         <h4>Your Steam account is private.</h4>
         <p>In order to allow us to retrieve your ingame statistics, you need to change the privacy level of your account, so we can access them from Steam.</p>
-        <p>To do this go to Steam Profile --> Edit Profile --> Privacy Settings --> Set: 'My profile: Public' and 'Game details: public'</p>
+        <p>To do this go to <span class="highlight">Steam Profile --> Edit Profile --> Privacy Settings --> Set: 'My profile: Public' and 'Game details: public'</span></p>
       </div>
     </div>
   </div>
