@@ -99,7 +99,6 @@ export class TeamStrategiesComponent implements OnInit {
           this.teamStrats.push(strat);
           this.pipeTrigger++;
         }
-        this.newStrategy = newEmptyStrategy();
         this.dialog.close();
       }
     );
@@ -132,4 +131,7 @@ export class TeamStrategiesComponent implements OnInit {
     );
   }
 
+  public resetStrategy() {
+    this.newStrategy = newEmptyStrategy();
+  }
 }

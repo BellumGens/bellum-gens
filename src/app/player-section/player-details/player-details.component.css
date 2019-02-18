@@ -38,12 +38,6 @@
 /* END User Profile */
 
 /* User Overview */
-.overview-container {
-  display: flex;
-  flex: 0 0 100%;
-  flex-wrap: nowrap;
-}
-
 .player-stats__container {
   display: flex;
   flex-flow: row;

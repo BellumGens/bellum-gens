@@ -52,3 +52,16 @@
   --igx-avatar-icon-color: var(--my-color);
   --igx-avatar-icon-background: rgba(0, 0, 0, 0.15);
 }
+
+.right-details-container igx-card {
+  width: 100%;
+  min-width: 100%;
+}
+
+.right-details-container igx-card:not(:first-child) {
+  margin: 16px 0px 0px 0px;
+}
+
+.overview-container-paddings {
+  padding: 16px 0px;
+}

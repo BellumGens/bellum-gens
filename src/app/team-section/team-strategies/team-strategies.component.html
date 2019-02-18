@@ -39,7 +39,7 @@
 </div>
 
 <!-- New strategy dialog-->
-<igx-dialog #newStrat closeOnOutsideSelect="true">
+<igx-dialog closeOnOutsideSelect="true" (onClose)="resetStrategy()">
   <div class="new-strategy">
     <igx-list>
       <igx-list-item [isHeader]="true">Add a new team strategy</igx-list-item>
@@ -61,10 +61,10 @@
         </igx-input-group>
       </igx-list-item>
       <igx-list-item>
-        <igx-radio [(ngModel)]="newStrategy.Side" value="0">
+        <igx-radio [(ngModel)]="newStrategy.Side" [value]="0">
           T-Side
         </igx-radio>
-        <igx-radio [(ngModel)]="newStrategy.Side" value="1">
+        <igx-radio [(ngModel)]="newStrategy.Side" [value]="1">
           CT-Side
         </igx-radio>
       </igx-list-item>

@@ -101,6 +101,11 @@ $expansion-panel-theme: igx-expansion-panel-theme($header-background: $backgroun
 @include igx-css-vars($expansion-panel-theme);
 /* END Expansion Panel */
 
+/* Time Picker */
+$time-picker-theme: igx-time-picker-theme($background-color: $background);
+@include igx-css-vars($time-picker-theme);
+/* END Time Picker */
+
 // /* Avatar */
 // $avatar-theme: igx-avatar-theme($app-palette);
 // @include igx-avatar($avatar-theme);
@@ -139,11 +144,6 @@ $expansion-panel-theme: igx-expansion-panel-theme($header-background: $backgroun
 // /* Card */
 // $chips-theme: igx-chip-theme($app-palette);
 // @include igx-chip($chips-theme);
-// /* END Card */
-
-// /* Card */
-// $time-picker-theme: igx-time-picker-theme($app-palette);
-// @include igx-time-picker($time-picker-theme);
 // /* END Card */
 
 // /* Checkbox */
@@ -197,18 +197,30 @@ igx-icon {
   align-items: center;
 }
 
-.overview-container-card {
-  padding: 16px 0px 8px 8px;
-  color: white;
-}
-
-/* Availability */
+/* Team and Player Details */
 .left-details-container {
   width: 250px;
   min-width: 250px;
   padding-right: 16px;
 }
-/* END Availability */
+
+.right-details-container {
+  display: flex;
+  flex: 1 1 100%;
+  flex-flow: row wrap;
+}
+
+.overview-container-card {
+  padding: 16px 0px 8px 8px;
+  color: white;
+}
+
+.overview-container {
+  display: flex;
+  flex: 0 0 100%;
+  flex-wrap: nowrap;
+}
+/* END Team and Player Details */
 
 .igx-navbar {
   background: $background-gradient;
