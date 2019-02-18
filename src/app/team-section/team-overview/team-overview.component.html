@@ -13,10 +13,46 @@
     </div>
   </div>
   <igx-tabs>
-    <igx-tabs-group label="Team Details">
+    <igx-tabs-group>
+      <ng-template igxTab>
+        <div class="horizontal-center">
+          <igx-icon>people_outline</igx-icon>
+          <div class="igx-tabs__item-label">Team Details</div>
+        </div> 
+      </ng-template>
+
       <app-team-details [team]="team" [authUser]="authUser"></app-team-details>
     </igx-tabs-group>
-    <igx-tabs-group *ngIf="userIsMember" label="Team Strats">
+
+    <igx-tabs-group *ngIf="userIsMember">
+      <ng-template igxTab>
+        <div class="horizontal-center">
+          <igx-icon>playlist_add_check</igx-icon>
+          <div class="igx-tabs__item-label">Team Strats</div>
+        </div> 
+      </ng-template>
+
+      <app-team-strategies [isAdmin]="userIsAdmin"></app-team-strategies>
+    </igx-tabs-group>
+
+    <igx-tabs-group [disabled]="true">
+        <ng-template igxTab>
+          <div class="horizontal-center">
+            <igx-icon>date_range</igx-icon>
+            <div class="igx-tabs__item-label">Team Calendar (Coming Soon)</div>
+          </div> 
+        </ng-template>
+      <app-team-calendar [practiceSchedule]="team.PracticeSchedule" [isAdmin]="userIsAdmin"></app-team-calendar>
+    </igx-tabs-group>
+
+    <igx-tabs-group *ngIf="userIsAdmin">
+      <ng-template igxTab>
+        <div class="horizontal-center">
+          <igx-icon>settings</igx-icon>
+          <div class="igx-tabs__item-label">Settings</div>
+        </div> 
+      </ng-template>
+
       <app-team-strategies [isAdmin]="userIsAdmin"></app-team-strategies>
     </igx-tabs-group>
     <!-- <igx-tabs-group label="Team Calendar">
