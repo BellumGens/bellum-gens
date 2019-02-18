@@ -52,7 +52,8 @@ export class TeamNavComponent {
   }
 
   public abandonTeam(team: CSGOTeam) {
-    this.authUser.Teams.splice(this.authUser.Teams.indexOf(team), 1);
-    this.apiService.abandonTeam(team).subscribe();
+    this.apiService.abandonTeam(team).subscribe(
+      _ => this.authUser.Teams.splice(this.authUser.Teams.indexOf(team), 1)
+    );
 }
 }

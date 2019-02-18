@@ -15,7 +15,7 @@
     <igx-card-actions>
       <div class="igx-card-actions__bgroup">
         <button igxButton igxRipple [routerLink]="['/team', team.TeamId]">Team Details</button>
-        <button igxButton igxRipple (click)="abandonTeam(team)">Abandon Team</button>
+        <button igxButton igxRipple (click)="confirm.open(team)">Abandon Team</button>
       </div>
     </igx-card-actions>
   </igx-card>
@@ -78,3 +78,7 @@
     </igx-list>
   </div>
 </igx-dialog>
+
+<app-confirm #confirm title="Are you sure?" (ok)="abandonTeam($event)">
+  You will leave this team permanently. If you own the team and are the only team member, then the team will also be deleted...
+</app-confirm>
