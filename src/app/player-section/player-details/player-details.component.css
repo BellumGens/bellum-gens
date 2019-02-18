@@ -83,6 +83,12 @@
   flex-wrap: wrap;
 }
 
+.player-detail-stats-loading {
+  display: flex;
+  flex: 1 1 100%;
+  align-items: center;
+}
+
 .player-detail__stats .igx-circular-bar {
   width: 238px;
   height: 238px;
