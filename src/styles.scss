@@ -262,9 +262,15 @@ igx-icon {
 }
 
 .loading-indicator {
-  margin-top: 16px;
+  margin: 16px;
   width: 66px;
   height: 66px;
+}
+
+.loading-indicator-large {
+  margin: 16px;
+  width: 132px;
+  height: 132px;
 }
 
 igx-card-content h4 {

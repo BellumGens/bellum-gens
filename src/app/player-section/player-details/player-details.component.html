@@ -1,5 +1,5 @@
 <div class="overview-container-card">
-  <h1 *ngIf="newUser">Complete your profile</h1>
+  <h1 *ngIf="newUser">Now it's time to complete your profile</h1>
   <div class="overview-container">
     <div class="left-details-container">
       <igx-avatar [src]="player?.steamUser?.avatarFull" [initials]="player?.steamUser?.steamID" class="player-avatar">
@@ -30,7 +30,10 @@
           </igx-drop-down>
         </div>
       </div>
-      <div class="player-detail-stats-container">
+      <div *ngIf="!player?.userStats" class="player-detail-stats-container">
+        <igx-circular-bar class="loading-indicator-large" [indeterminate]="true"></igx-circular-bar>
+      </div>
+      <div *ngIf="player?.userStats" class="player-detail-stats-container">
         <igx-card class="player-detail__stats">
           <igx-card-header>
             <h4>KDR</h4>
