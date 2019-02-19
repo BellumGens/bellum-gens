@@ -1,3 +1,3 @@
 <app-player-notifications [authUser]="authUser" (loaded)="aggregate($event)"></app-player-notifications>
 
-<app-team-notifications *ngFor="let team of authUser.TeamAdmin" [team]="team" (loaded)="aggregate($event)"></app-team-notifications>
+<app-team-notifications *ngFor="let team of authUser?.TeamAdmin" [team]="team" (loaded)="aggregate($event)"></app-team-notifications>

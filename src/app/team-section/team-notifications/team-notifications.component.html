@@ -1,4 +1,4 @@
-<igx-list *ngIf="applications.length">
+<igx-list *ngIf="applications?.length">
   <igx-list-item [isHeader]="true">Notifications for {{ team.TeamName }}</igx-list-item>
   <igx-list-item *ngFor="let notification of applications | sortApplications">
     <div [class]="'horizontal-center ' + notificationClass[notification.State]">

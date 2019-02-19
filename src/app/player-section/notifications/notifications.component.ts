@@ -27,7 +27,6 @@ export class PlayerNotificationsComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit() {
-    this.loaded.emit(this.authUser.Notifications);
   }
 
   public acceptInvitation(notification: UserNotification) {

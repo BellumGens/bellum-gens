@@ -1,4 +1,4 @@
-<igx-list [isLoading]="loading">
+<igx-list *ngIf="authUser" [isLoading]="loading">
   <ng-template igxDataLoading>
     <div class="loading-overlay">
       <igx-circular-bar class="loading-indicator" [indeterminate]="true"></igx-circular-bar>
