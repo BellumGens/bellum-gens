@@ -1,28 +1,3 @@
-<igx-list [isLoading]="loading">
-  <ng-template igxDataLoading>
-    <div class="loading-overlay">
-      <igx-circular-bar class="loading-indicator" [indeterminate]="true"></igx-circular-bar>
-    </div>
-  </ng-template>
-  <ng-template igxEmptyList>
-      <div class="center-message"><span>No new notifications.</span></div>
-  </ng-template>
-  <igx-list-item *ngFor="let notification of authUser?.Notifications | sortNotifications">
-    <div [class]="'horizontal ' + notificationClass[notification.State]">
-      <igx-avatar [src]="notification.TeamInfo.TeamAvatar" [initials]="notification.TeamInfo.TeamName" roundShape="true">
-      </igx-avatar>
-      <div class="horizontal-info__left">
-        <span class="title">
-          You have been invited to join {{ notification.TeamInfo.TeamName }}
-        </span>
-        <span class="subtitle">{{notification.Sent | date}}</span>
-      </div>
-      <div class="horizontal-info__right">
-        <button igxButton="flat" [disabled]="notification.State | disabledNotifications" (click)="acceptInvitation(notification)">Accept</button>
-      </div>
-      <div class="horizontal-info__right">
-        <button igxButton="flat" [disabled]="notification.State | disabledNotifications" (click)="rejectInvitation(notification)">Reject</button>
-      </div>
-    </div>
-  </igx-list-item>
-</igx-list>
+<app-player-notifications [authUser]="authUser" (loaded)="aggregate($event)"></app-player-notifications>
+
+<app-team-notifications *ngFor="let team of authUser?.TeamAdmin" [team]="team" (loaded)="aggregate($event)"></app-team-notifications>

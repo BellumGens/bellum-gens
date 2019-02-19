@@ -299,8 +299,8 @@ igx-card-content h4 {
 
 .horizontal-info__right {
   display: flex;
-  flex-flow: column nowrap;
-  margin-left: 24px;
+  flex-flow: row nowrap;
+  margin-left: auto;
 }
 
 .title {

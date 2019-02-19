@@ -8,7 +8,7 @@
     <div class="horizontal-info__right">
       {{ team.Description }}
     </div>
-    <div *ngIf="!userIsMember && team.TeamId" class="horizontal-info__right">
+    <div *ngIf="team.TeamId" class="horizontal-info__right">
       <app-team-application></app-team-application>
     </div>
   </div>
@@ -52,8 +52,8 @@
           <div class="igx-tabs__item-label">Settings</div>
         </div> 
       </ng-template>
-
-      <app-team-strategies [isAdmin]="userIsAdmin"></app-team-strategies>
+      
+      <app-team-notifications [team]="team"></app-team-notifications>
     </igx-tabs-group>
     <!-- <igx-tabs-group label="Team Calendar">
       <app-team-calendar [practiceSchedule]="team.PracticeSchedule" [isAdmin]="userIsAdmin"></app-team-calendar>

@@ -1,8 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { IgxListComponent } from 'igniteui-angular';
-import { ApplicationUser } from 'src/app/models/applicationuser';
-import { TeamApplication } from 'src/app/models/csgoteam';
+import { TeamApplication, CSGOTeam } from 'src/app/models/csgoteam';
 import { BellumgensApiService } from 'src/app/services/bellumgens-api.service';
 
 @Component({
@@ -11,24 +9,24 @@ import { BellumgensApiService } from 'src/app/services/bellumgens-api.service';
   styleUrls: ['./team-notifications.component.css']
 })
 export class TeamNotificationsComponent implements OnInit {
-  authUser: ApplicationUser;
-  teamId: string;
   notificationClass = ['', '', 'notification-disabled', 'notification-disabled'];
-  applications: TeamApplication[];
+  applications: TeamApplication [];
+
+  @Input()
+  team: CSGOTeam;
+
+  @Output()
+  loaded = new EventEmitter<TeamApplication []>();
 
   @ViewChild(IgxListComponent) public notifications: IgxListComponent;
 
-  constructor(private activatedRoute: ActivatedRoute,
-              private apiService: BellumgensApiService) {
+  constructor(private apiService: BellumgensApiService) {
   }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(params => {
-      const teamId = params['teamid'];
-      this.apiService.teamApplications(teamId).subscribe(data => {
-        this.applications = data;
-        this.notifications.isLoading = false;
-      });
+    this.apiService.teamApplications(this.team.TeamId).subscribe(data => {
+      this.applications = data;
+      this.loaded.emit(data);
     });
   }
 

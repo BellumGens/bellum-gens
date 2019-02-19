@@ -1,0 +1,25 @@
+<igx-list *ngIf="authUser" [isLoading]="loading">
+  <ng-template igxDataLoading>
+    <div class="loading-overlay">
+      <igx-circular-bar class="loading-indicator" [indeterminate]="true"></igx-circular-bar>
+    </div>
+  </ng-template>
+  <igx-list-item [isHeader]="true">Notifications for {{ authUser.SteamUser.steamID }}</igx-list-item>
+  <igx-list-item *ngIf="!authUser?.Notifications?.length"><span>No new notifications.</span></igx-list-item>
+  <igx-list-item *ngFor="let notification of authUser?.Notifications | sortNotifications">
+    <div [class]="'horizontal-center ' + notificationClass[notification.State]">
+      <igx-avatar [src]="notification.TeamInfo.TeamAvatar" [initials]="notification.TeamInfo.TeamName" roundShape="true">
+      </igx-avatar>
+      <div class="horizontal-info__left">
+        <span class="title">
+          You have been invited to join <a [routerLink]="['team', notification.TeamInfo.TeamId]">{{ notification.TeamInfo.TeamName }}</a>
+        </span>
+        <span class="subtitle">{{notification.Sent | date}}</span>
+      </div>
+      <div class="horizontal-info__right">
+        <button igxButton="flat" [disabled]="notification.State | disabledNotifications" (click)="acceptInvitation(notification)">Accept</button>
+        <button igxButton="flat" [disabled]="notification.State | disabledNotifications" (click)="rejectInvitation(notification)">Decline</button>
+      </div>
+    </div>
+  </igx-list-item>
+</igx-list>

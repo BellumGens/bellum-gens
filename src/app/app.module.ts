@@ -47,7 +47,7 @@ import { OrdermapsPipe } from './pipes/ordermaps.pipe';
 import { TeamDetailsComponent } from './team-section/team-details/team-details.component';
 import { LoginComponent } from './login/login.component';
 import { UnreadNotificationsPipe } from './pipes/unread-notifications.pipe';
-import { NotificationsComponent } from './notifications/notifications.component';
+import { PlayerNotificationsComponent } from './player-section/notifications/notifications.component';
 import { SortNotificationsPipe } from './pipes/sort-notifications.pipe';
 import { DisabledNotificationsPipe } from './pipes/disabled-notifications.pipe';
 import { SuccessErrorComponent } from './success-error/success-error.component';
@@ -73,6 +73,7 @@ import { ReduceQuickSearchResultPipe } from './pipes/reduce-quick-search-result.
 import { TeamResultsComponent } from './search/search-results/team-results/team-results.component';
 import { PlayerResultsComponent } from './search/search-results/player-results/player-results.component';
 import { ConfirmComponent } from './confirm/confirm.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +90,7 @@ import { ConfirmComponent } from './confirm/confirm.component';
     TeamDetailsComponent,
     LoginComponent,
     UnreadNotificationsPipe,
-    NotificationsComponent,
+    PlayerNotificationsComponent,
     SortNotificationsPipe,
     DisabledNotificationsPipe,
     SuccessErrorComponent,
@@ -114,7 +115,8 @@ import { ConfirmComponent } from './confirm/confirm.component';
     ReduceQuickSearchResultPipe,
     TeamResultsComponent,
     PlayerResultsComponent,
-    ConfirmComponent
+    ConfirmComponent,
+    NotificationsComponent
   ],
   imports: [
     FormsModule,

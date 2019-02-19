@@ -6,7 +6,6 @@
 <div *ngIf="authUser">
   <button class="profile-button" #profileButton igxButton="flat" [igxToggleAction]="userProfile" [overlaySettings]="overlaySettings">
     <igx-avatar [src]="authUser.SteamUser.avatarMedium" [initials]="authUser.SteamUser.steamID" roundShape="true">
-      <igx-badge *ngIf="authUser.Notifications.length" [value]="authUser.Notifications | unreadNotifications" type="info" class="notification-badge"></igx-badge>
     </igx-avatar>
     <igx-icon class="drop-down-arrow button-icon">arrow_drop_down</igx-icon>
   </button>
@@ -14,11 +13,6 @@
     <igx-drop-down-item class="profile-item" [routerLink]="['/players', authUser.SteamUser.steamID64]">
       <igx-icon fontSet="material">person</igx-icon>
       <span class="profile-link">profile</span>
-    </igx-drop-down-item>
-    <igx-drop-down-item class="profile-item" routerLink="/notifications">
-      <igx-icon fontSet="material">notifications</igx-icon>
-      <igx-badge *ngIf="authUser.Notifications.length" [value]="authUser.Notifications | unreadNotifications" type="info"></igx-badge>
-      <span class="profile-link">notifications</span>
     </igx-drop-down-item>
     <igx-drop-down-item class="profile-item" (click)="logout()">
       <igx-icon fontSet="material">exit_to_app</igx-icon>
