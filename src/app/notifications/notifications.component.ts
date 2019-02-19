@@ -1,10 +1,5 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ApplicationUser } from '../models/applicationuser';
-import { IgxListComponent } from 'igniteui-angular';
-import { UserNotification, NotificationState } from '../models/usernotifications';
-import { BellumgensApiService } from '../services/bellumgens-api.service';
-import { finalize } from 'rxjs/operators';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-notifications',
@@ -15,32 +10,10 @@ export class NotificationsComponent implements OnInit {
 
   @Input()
   public authUser: ApplicationUser;
-  public loading = false;
-  public notificationClass = ['', '', 'notification-disabled', 'notification-disabled'];
 
-  @ViewChild(IgxListComponent) public notifications: IgxListComponent;
-
-  constructor(private apiService: BellumgensApiService,
-              private router: Router) { }
+  constructor() { }
 
   ngOnInit() {
-  }
-
-  public acceptInvitation(notification: UserNotification) {
-    this.loading = true;
-    this.apiService.acceptInvite(notification).pipe(finalize(() => this.loading = false)).subscribe(
-      _ => {
-        notification.State = NotificationState.Accepted;
-        this.router.navigate(['team', notification.TeamInfo.TeamId]);
-      }
-    );
-  }
-
-  public rejectInvitation(notification: UserNotification) {
-    this.loading = true;
-    this.apiService.rejectInvite(notification).pipe(finalize(() => this.loading = false)).subscribe(
-      _ => notification.State = NotificationState.Rejected
-    );
   }
 
 }

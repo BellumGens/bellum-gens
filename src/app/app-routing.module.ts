@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { NotificationsComponent } from './notifications/notifications.component';
 import { TeamOverviewComponent } from './team-section/team-overview/team-overview.component';
 import { PlayerDetailsComponent } from './player-section/player-details/player-details.component';
 import { TeamResultsComponent } from './search/search-results/team-results/team-results.component';
@@ -10,7 +9,6 @@ import { PlayerResultsComponent } from './search/search-results/player-results/p
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'notifications', component: NotificationsComponent },
   { path: 'players/:userid', component: PlayerDetailsComponent },
   { path: 'players/:userid/:newuser', component: PlayerDetailsComponent },
   { path: 'team/:teamid', component: TeamOverviewComponent },

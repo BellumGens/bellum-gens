@@ -15,11 +15,6 @@
       <igx-icon fontSet="material">person</igx-icon>
       <span class="profile-link">profile</span>
     </igx-drop-down-item>
-    <igx-drop-down-item class="profile-item" routerLink="/notifications">
-      <igx-icon fontSet="material">notifications</igx-icon>
-      <igx-badge *ngIf="authUser.Notifications.length" [value]="authUser.Notifications | unreadNotifications" type="info"></igx-badge>
-      <span class="profile-link">notifications</span>
-    </igx-drop-down-item>
     <igx-drop-down-item class="profile-item" (click)="logout()">
       <igx-icon fontSet="material">exit_to_app</igx-icon>
       <span class="profile-link">logout</span>

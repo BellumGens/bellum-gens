@@ -1,25 +1,18 @@
-<igx-list [isLoading]="true">
-  <ng-template igxDataLoading>
-      <div class="center-message"><span>Fetching data from our server...</span></div>
-  </ng-template>
-  <ng-template igxEmptyList>
-      <div class="center-message"><span>No new notifications.</span></div>
-  </ng-template>
+<igx-list *ngIf="applications.length">
+  <igx-list-item [isHeader]="true">Notifications for {{ team.TeamName }}</igx-list-item>
   <igx-list-item *ngFor="let notification of applications | sortApplications">
-    <div [class]="'horizontal ' + notificationClass[notification.State]">
+    <div [class]="'horizontal-center ' + notificationClass[notification.State]">
       <igx-avatar [src]="notification.UserInfo.avatarFull" [initials]="notification.UserInfo.steamID" roundShape="true">
       </igx-avatar>
       <div class="horizontal-info__left">
         <span class="title">
-          <a [href]="notification.UserInfo.customURL" target="_blank" rel="noopener">{{ notification.UserInfo.steamID }}</a> has applied to join your team!
+          <a [routerLink]="['players', notification.ApplicantId]">{{ notification.UserInfo.steamID }}</a> has applied to join your team!
         </span>
         <span class="subtitle">Application: {{ notification.Message }}</span>
-        <span class="subtitle">Submitted on: {{ notification.Sent | date }}</span>
+        <span class="subtitle">{{ notification.Sent | date }}</span>
       </div>
       <div class="horizontal-info__right">
         <button igxButton="flat" [disabled]="notification.State | disabledNotifications" (click)="approveApplication(notification)">Approve</button>
-      </div>
-      <div class="horizontal-info__right">
         <button igxButton="flat" [disabled]="notification.State | disabledNotifications" (click)="rejectApplication(notification)">Reject</button>
       </div>
     </div>
