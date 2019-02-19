@@ -75,6 +75,8 @@ import { TeamResultsComponent } from './search/search-results/team-results/team-
 import { PlayerResultsComponent } from './search/search-results/player-results/player-results.component';
 import { ConfirmComponent } from './confirm/confirm.component';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { DaysAvailablePipe } from './pipes/days-available.pipe';
+import { OpenPositionsPipe } from './pipes/open-positions.pipe';
 
 @NgModule({
   declarations: [
@@ -117,7 +119,9 @@ import { NotificationsComponent } from './notifications/notifications.component'
     TeamResultsComponent,
     PlayerResultsComponent,
     ConfirmComponent,
-    NotificationsComponent
+    NotificationsComponent,
+    DaysAvailablePipe,
+    OpenPositionsPipe
   ],
   imports: [
     FormsModule,

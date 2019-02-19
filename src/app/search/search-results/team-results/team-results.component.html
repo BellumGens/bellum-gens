@@ -1,7 +1,10 @@
-<div class="horizontal">
+<div *ngIf="loading" class="loading-overview">
+  <igx-circular-bar class="loading-user-data" [indeterminate]="true"></igx-circular-bar>
+</div>
+
+<div *ngIf="!loading" class="horizontal">
   <!-- <h5>Results for: Teams > {{ this.query }}</h5> -->
-  <igx-circular-bar *ngIf="loading" [indeterminate]="true"></igx-circular-bar>
-  <igx-card *ngFor="let team of teams" class="card-margins">
+  <igx-card *ngFor="let team of teams" class="search-result card-margins">
     <igx-card-header>
       <igx-avatar [src]="team.TeamAvatar" [initials]="team.TeamName" roundShape="true"></igx-avatar>
       <div class="igx-card-header__tgroup">
@@ -9,6 +12,22 @@
         <h5 class="igx-card-header__subtitle">{{ team.Description }}</h5>
       </div>
     </igx-card-header>
+    <igx-card-content>
+      <div>Open positions in the active line-up</div>
+      <igx-chips-area>
+        <igx-chip *ngFor="let role of team.Members | openPositions"
+                  [selectable]="false">
+          <span class='igx-chip__text'>{{ role.roleName }}</span>
+        </igx-chip>
+      </igx-chips-area>
+      <div>Practice days</div>
+      <igx-chips-area>
+        <igx-chip *ngFor="let weekday of team.PracticeSchedule | daysAvailable"
+                  [selectable]="false" [selected]="true">
+          <span class='igx-chip__text'>{{ weekday.Day | weekday }}</span>
+        </igx-chip>
+      </igx-chips-area>
+    </igx-card-content>
     <igx-card-actions>
       <div class="igx-card-actions__bgroup">
         <button igxButton igxRipple [routerLink]="['/team', team.TeamId]">Team Details</button>

@@ -1,5 +1,8 @@
-<div class="horizontal">
-  <igx-circular-bar *ngIf="loading" [indeterminate]="true"></igx-circular-bar>
+<div *ngIf="loading" class="loading-overview">
+  <igx-circular-bar class="loading-user-data" [indeterminate]="true"></igx-circular-bar>
+</div>
+
+<div *ngIf="!loading" class="horizontal">
   <igx-card *ngFor="let player of players" class="card-margins">
     <igx-card-header>
       <igx-avatar [src]="player.steamUser.avatarMedium" [initials]="player.steamUser.steamID" roundShape="true"></igx-avatar>
