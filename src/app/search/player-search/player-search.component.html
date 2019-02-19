@@ -1,14 +1,14 @@
 <form (ngSubmit)="searchPlayers()">
   <div class="form-row">
     <div>
-      <label for="lineup">Players playing as:</label>
+      <label for="lineup">Players playing as</label>
       <igx-radio-group id="lineup" class="role-slots">
         <igx-radio *ngFor="let slot of activeLineup" [(ngModel)]="searchModel.role" name="role" [value]="slot.role">{{ slot.roleName }}</igx-radio>
       </igx-radio-group>
     </div>
 
     <div *ngIf="authUser && authUser.TeamAdmin">
-      <label for="availability">A minimum overlap with my:</label>
+      <label for="availability">A minimum overlap with my</label>
       <div class="search-radio-group">
         <igx-radio-group id="availability" class="role-slots">
           <igx-radio [(ngModel)]="userOverlap" name="userOverlap" [value]="0">Availability</igx-radio>
@@ -31,17 +31,13 @@
       </igx-drop-down>
     </div>
 
-    <igx-input-group *ngIf="authUser">
-      <igx-prefix>
-          <igx-icon>search</igx-icon>
-      </igx-prefix>
-      <label igxLabel for="overlap">Minimum overlap of...</label>
-      <input #overlap type="number" [(ngModel)]="searchModel.scheduleOverlap" name="scheduleOverlap" autocomplete="off" igxInput>
-      <igx-suffix *ngIf="overlap.value !== '0'">
-          <igx-icon (click)="searchModel.scheduleOverlap = 0">clear</igx-icon>
-      </igx-suffix>
-      <igx-hint>Hours availability</igx-hint>
-    </igx-input-group>
+    <div class="slider-holder" *ngIf="authUser">
+      <label for="overlap">Minimum overlap of</label>
+      <igx-slider #overlap name="scheduleOverlap" [minValue]="0" [maxValue]="60" [(ngModel)]="searchModel.scheduleOverlap">
+  
+      </igx-slider>
+      <label>Hours availability</label>
+    </div>
   </div>
   <button class="submit-button" igxButton="flat">Search</button>
 </form>

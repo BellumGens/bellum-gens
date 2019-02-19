@@ -32,6 +32,7 @@ $include: (igx-avatar,
            igx-radio,
            igx-snackbar,
            igx-circular-bar,
+           igx-slider,
            igx-banner);
 
 @include igx-dark-theme(
@@ -378,6 +379,10 @@ textarea {
 
 .submit-button {
   width: 100%;
+}
+
+.slider-holder {
+  min-width: 200px;
 }
 /* END SEARCH */
 
