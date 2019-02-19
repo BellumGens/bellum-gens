@@ -8,7 +8,7 @@
     <div class="horizontal-info__right">
       {{ team.Description }}
     </div>
-    <div *ngIf="team.TeamId" class="horizontal-info__right">
+    <div *ngIf="!userIsMember && team.TeamId" class="horizontal-info__right">
       <app-team-application></app-team-application>
     </div>
   </div>
