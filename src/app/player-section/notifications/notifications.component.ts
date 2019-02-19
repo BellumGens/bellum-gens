@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { ApplicationUser } from '../../models/applicationuser';
 import { IgxListComponent } from 'igniteui-angular';
 import { UserNotification, NotificationState } from '../../models/usernotifications';
@@ -18,12 +18,16 @@ export class PlayerNotificationsComponent implements OnInit {
   public loading = false;
   public notificationClass = ['', '', 'notification-disabled', 'notification-disabled'];
 
+  @Output()
+  public loaded = new EventEmitter<UserNotification []>();
+
   @ViewChild(IgxListComponent) public notifications: IgxListComponent;
 
   constructor(private apiService: BellumgensApiService,
               private router: Router) { }
 
   ngOnInit() {
+    this.loaded.emit(this.authUser.Notifications);
   }
 
   public acceptInvitation(notification: UserNotification) {
