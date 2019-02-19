@@ -1,5 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ApplicationUser } from '../models/applicationuser';
+import { UnreadNotificationsPipe } from '../pipes/unread-notifications.pipe';
 
 @Component({
   selector: 'app-notifications',
@@ -11,9 +12,21 @@ export class NotificationsComponent implements OnInit {
   @Input()
   public authUser: ApplicationUser;
 
+  @Output()
+  public loaded = new EventEmitter<number>();
+
+  private unreadPipe = new UnreadNotificationsPipe();
+
   constructor() { }
 
   ngOnInit() {
+  }
+
+  public aggregate(args: any[]) {
+    const unread = this.unreadPipe.transform(args);
+    if (unread > 0) {
+      this.loaded.emit(unread);
+    }
   }
 
 }

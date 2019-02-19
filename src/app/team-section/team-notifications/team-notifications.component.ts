@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { IgxListComponent } from 'igniteui-angular';
 import { TeamApplication, CSGOTeam } from 'src/app/models/csgoteam';
 import { BellumgensApiService } from 'src/app/services/bellumgens-api.service';
@@ -15,6 +15,9 @@ export class TeamNotificationsComponent implements OnInit {
   @Input()
   team: CSGOTeam;
 
+  @Output()
+  loaded = new EventEmitter<TeamApplication []>();
+
   @ViewChild(IgxListComponent) public notifications: IgxListComponent;
 
   constructor(private apiService: BellumgensApiService) {
@@ -23,6 +26,7 @@ export class TeamNotificationsComponent implements OnInit {
   ngOnInit() {
     this.apiService.teamApplications(this.team.TeamId).subscribe(data => {
       this.applications = data;
+      this.loaded.emit(data);
     });
   }
 

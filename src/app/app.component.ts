@@ -12,6 +12,7 @@ import { BellumgensApiService } from './services/bellumgens-api.service';
 import { SearchResult } from './models/searchresult';
 import { fromEvent } from 'rxjs';
 import { map, debounceTime } from 'rxjs/operators';
+import { UnreadNotificationsPipe } from './pipes/unread-notifications.pipe';
 
 @Component({
   selector: 'app-root',
@@ -22,6 +23,7 @@ export class AppComponent implements OnInit {
   public title: string;
   public authUser: ApplicationUser;
   public searchResult: SearchResult;
+  public unreadNotifications = 0;
 
   public positionSettings: PositionSettings = {
     horizontalDirection: HorizontalAlignment.Left,
@@ -36,12 +38,17 @@ export class AppComponent implements OnInit {
   @ViewChild('searchGroup') public searchGroup: IgxInputGroupComponent;
   @ViewChild('searchInput') public searchInput: ElementRef;
 
+  private unreadPipe = new UnreadNotificationsPipe();
+
   constructor(private authManager: LoginService,
               private apiService: BellumgensApiService) {
   }
 
   public ngOnInit(): void {
-    this.authManager.applicationUser.subscribe(data => this.authUser = data);
+    this.authManager.applicationUser.subscribe(data => {
+      this.authUser = data;
+      this.unreadNotifications += this.unreadPipe.transform(data.Notifications);
+    });
     const input = fromEvent(this.searchInput.nativeElement, 'keyup')
                     .pipe(map<Event, string>(e => (<HTMLInputElement>e.currentTarget).value));
     const debouncedInput = input.pipe(debounceTime(300));
@@ -60,5 +67,9 @@ export class AppComponent implements OnInit {
         this.apiService.quickSearch(val);
       }
     });
+  }
+
+  public notificationsLoaded(args: number) {
+    this.unreadNotifications += args;
   }
 }
