@@ -6,9 +6,9 @@
   <!-- <h5>Results for: Teams > {{ this.query }}</h5> -->
   <igx-card *ngFor="let team of teams" class="search-result card-margins">
     <igx-card-header>
-      <igx-avatar [src]="team.TeamAvatar" [initials]="team.TeamName" roundShape="true"></igx-avatar>
+      <igx-avatar [src]="team.TeamAvatar" [initials]="team.TeamName" [size]="'medium'" roundShape="true"></igx-avatar>
       <div class="igx-card-header__tgroup">
-        <h3 class="igx-card-header__title--small">{{ team.TeamName }}</h3>
+        <h3 class="igx-card-header__title highlight">{{ team.TeamName }}</h3>
         <h5 class="igx-card-header__subtitle">{{ team.Description }}</h5>
       </div>
     </igx-card-header>
@@ -23,7 +23,7 @@
       <div>Practice days</div>
       <igx-chips-area>
         <igx-chip *ngFor="let weekday of team.PracticeSchedule | daysAvailable"
-                  [selectable]="false" [selected]="true">
+                  [selectable]="false">
           <span class='igx-chip__text'>{{ weekday.Day | weekday }}</span>
         </igx-chip>
       </igx-chips-area>

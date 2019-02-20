@@ -26,6 +26,24 @@
         </div>
       </div>
     </igx-card-header>
+    <igx-card-content>
+      <div>Preferred roles</div>
+      <igx-chips-area>
+        <igx-chip [selectable]="false">
+          <span class='igx-chip__text'>{{ player?.roles[player.primaryRole].Name }}</span>
+        </igx-chip>
+        <igx-chip [selectable]="false">
+          <span class='igx-chip__text'>{{ player?.roles[player.secondaryRole].Name }}</span>
+        </igx-chip>
+      </igx-chips-area>
+      <div>Practice days</div>
+      <igx-chips-area>
+        <igx-chip *ngFor="let weekday of player.availability | daysAvailable"
+                  [selectable]="false">
+          <span class='igx-chip__text'>{{ weekday.Day | weekday }}</span>
+        </igx-chip>
+      </igx-chips-area>
+    </igx-card-content>
     <igx-card-actions>
       <div class="igx-card-actions__bgroup">
         <button igxButton igxRipple [routerLink]="['/players', player.steamUser.steamID64]">Player Details</button>
