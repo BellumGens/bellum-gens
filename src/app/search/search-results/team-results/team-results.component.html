@@ -4,7 +4,7 @@
 
 <div *ngIf="!loading" class="horizontal">
   <!-- <h5>Results for: Teams > {{ this.query }}</h5> -->
-  <igx-card *ngFor="let team of teams" class="search-result card-margins">
+  <igx-card *ngFor="let team of teams" class="search-result card-margins" [routerLink]="['/team', team.TeamId]">
     <igx-card-header>
       <igx-avatar [src]="team.TeamAvatar" [initials]="team.TeamName" [size]="'medium'" roundShape="true"></igx-avatar>
       <div class="igx-card-header__tgroup">
@@ -28,10 +28,5 @@
         </igx-chip>
       </igx-chips-area>
     </igx-card-content>
-    <igx-card-actions>
-      <div class="igx-card-actions__bgroup">
-        <button igxButton igxRipple [routerLink]="['/team', team.TeamId]">Team Details</button>
-      </div>
-    </igx-card-actions>
   </igx-card>
 </div>

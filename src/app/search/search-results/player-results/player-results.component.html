@@ -3,7 +3,7 @@
 </div>
 
 <div *ngIf="!loading" class="horizontal">
-  <igx-card *ngFor="let player of players" class="search-result card-margins">
+  <igx-card *ngFor="let player of players" class="search-result card-margins" [routerLink]="['/players', player.steamUser.steamID64]">
     <igx-card-header>
       <div class="horizontal-center">
         <igx-avatar [src]="player.steamUser.avatarMedium" [size]="'medium'" [initials]="player.steamUser.steamID" roundShape="true"></igx-avatar>
@@ -44,10 +44,5 @@
         </igx-chip>
       </igx-chips-area>
     </igx-card-content>
-    <igx-card-actions>
-      <div class="igx-card-actions__bgroup">
-        <button igxButton igxRipple [routerLink]="['/players', player.steamUser.steamID64]">Player Details</button>
-      </div>
-    </igx-card-actions>
   </igx-card>
 </div>

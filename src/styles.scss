@@ -413,7 +413,13 @@ textarea {
 }
 
 .search-result {
-  max-width: 360px;
+  max-width: 400px;
+  min-width: 340px;
+  cursor: pointer;
+}
+
+.search-result:focus {
+  outline: none;
 }
 
 .icon-avatar {
