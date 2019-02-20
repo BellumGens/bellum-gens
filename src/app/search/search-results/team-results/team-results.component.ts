@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BellumgensApiService } from 'src/app/services/bellumgens-api.service';
-import { CSGOTeam } from 'src/app/models/csgoteam';
+import { BellumgensApiService } from '../../../services/bellumgens-api.service';
+import { CSGOTeam } from '../../../models/csgoteam';
 
 @Component({
   selector: 'app-team-results',

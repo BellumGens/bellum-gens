@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BellumgensApiService } from 'src/app/services/bellumgens-api.service';
-import { TeamStrategy, newEmptyStrategy } from 'src/app/models/csgoteamstrategy';
-import { MapPool, ActiveDutyDescriptor, ActiveDuty } from 'src/app/models/csgomaps';
+import { BellumgensApiService } from '../../services/bellumgens-api.service';
+import { TeamStrategy, newEmptyStrategy } from '../../models/csgoteamstrategy';
+import { MapPool, ActiveDutyDescriptor, ActiveDuty } from '../../models/csgomaps';
 import { IgxDialogComponent } from 'igniteui-angular';
 import { SafeResourceUrl } from '@angular/platform-browser';
-import { MapnamePipe } from 'src/app/pipes/mapname.pipe';
+import { MapnamePipe } from '../../pipes/mapname.pipe';
 
 @Component({
   selector: 'app-team-strategies',

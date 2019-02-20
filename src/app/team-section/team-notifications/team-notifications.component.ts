@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { IgxListComponent } from 'igniteui-angular';
-import { TeamApplication, CSGOTeam } from 'src/app/models/csgoteam';
-import { BellumgensApiService } from 'src/app/services/bellumgens-api.service';
+import { TeamApplication, CSGOTeam } from '../../models/csgoteam';
+import { BellumgensApiService } from '../../services/bellumgens-api.service';
 
 @Component({
   selector: 'app-team-notifications',

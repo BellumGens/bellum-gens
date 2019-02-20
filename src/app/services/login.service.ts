@@ -4,7 +4,7 @@ import { Observable, ReplaySubject } from 'rxjs';
 import { LoginProvider } from '../models/login-provider';
 import { ApplicationUser } from '../models/applicationuser';
 import { map, shareReplay } from 'rxjs/operators';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../environments/environment';
 
 const CACHE_SIZE = 1;
 

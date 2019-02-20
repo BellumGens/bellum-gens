@@ -1,10 +1,10 @@
 import { Component, ViewChild, Input } from '@angular/core';
 import { IgxDialogComponent } from 'igniteui-angular';
 import { Router } from '@angular/router';
-import { CSGOTeam, TeamMember } from 'src/app/models/csgoteam';
-import { ApplicationUser } from 'src/app/models/applicationuser';
-import { BellumgensApiService } from 'src/app/services/bellumgens-api.service';
-import { SteamGroup } from 'src/app/models/steamuser';
+import { CSGOTeam, TeamMember } from '../../models/csgoteam';
+import { ApplicationUser } from '../../models/applicationuser';
+import { BellumgensApiService } from '../../services/bellumgens-api.service';
+import { SteamGroup } from '../../models/steamuser';
 
 @Component({
   selector: 'app-team-nav',
