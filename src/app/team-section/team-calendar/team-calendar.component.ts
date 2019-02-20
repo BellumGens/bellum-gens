@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Availability } from 'src/app/models/playeravailability';
-import { BellumgensApiService } from 'src/app/services/bellumgens-api.service';
+import { Availability } from '../../models/playeravailability';
+import { BellumgensApiService } from '../../services/bellumgens-api.service';
 
 @Component({
   selector: 'app-team-calendar',

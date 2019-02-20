@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { PLAYER_SEARCH, PlayerSearch } from 'src/app/models/csgoplayer';
-import { PlaystyleRole } from 'src/app/models/playerrole';
-import { ApplicationUser } from 'src/app/models/applicationuser';
+import { PLAYER_SEARCH, PlayerSearch } from '../../models/csgoplayer';
+import { PlaystyleRole } from '../../models/playerrole';
+import { ApplicationUser } from '../../models/applicationuser';
 import { ISelectionEventArgs } from 'igniteui-angular';
 import { Router } from '@angular/router';
 

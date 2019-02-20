@@ -1,7 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { IgxListComponent } from 'igniteui-angular';
-import { CSGOTeam, TeamSearch } from 'src/app/models/csgoteam';
-import { BellumgensApiService } from 'src/app/services/bellumgens-api.service';
+import { Component, OnInit } from '@angular/core';
+import { CSGOTeam } from '../../models/csgoteam';
+import { BellumgensApiService } from '../../services/bellumgens-api.service';
 
 @Component({
   selector: 'app-teams',

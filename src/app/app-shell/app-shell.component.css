@@ -18,6 +18,18 @@
   width: 48px;
 }
 
+.loading-indicator {
+  margin: 16px;
+  width: 66px;
+  height: 66px;
+}
+
+.video-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 @media only screen and (max-width: 520px) {
   .video-container {
     width: 400px;

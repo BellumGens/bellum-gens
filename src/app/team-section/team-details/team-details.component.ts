@@ -1,10 +1,10 @@
 import { Component, OnInit, ViewChildren, QueryList, ElementRef, Input } from '@angular/core';
 import { IgxDropEventArgs, IgxAvatarComponent } from 'igniteui-angular';
-import { PlaystyleRole, RoleSlot } from 'src/app/models/playerrole';
-import { TeamMember, CSGOTeam, TEAM_PLACEHOLDER } from 'src/app/models/csgoteam';
-import { ApplicationUser } from 'src/app/models/applicationuser';
-import { BellumgensApiService } from 'src/app/services/bellumgens-api.service';
-import { Availability } from 'src/app/models/playeravailability';
+import { PlaystyleRole, RoleSlot } from '../../models/playerrole';
+import { TeamMember, CSGOTeam, TEAM_PLACEHOLDER } from '../../models/csgoteam';
+import { ApplicationUser } from '../../models/applicationuser';
+import { BellumgensApiService } from '../../services/bellumgens-api.service';
+import { Availability } from '../../models/playeravailability';
 
 @Component({
   selector: 'app-team-details',

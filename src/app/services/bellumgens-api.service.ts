@@ -6,12 +6,12 @@ import { CSGOTeam, TeamMember, TeamApplication } from '../models/csgoteam';
 import { CSGOPlayer } from '../models/csgoplayer';
 import { Availability } from '../models/playeravailability';
 import { Role } from '../models/playerrole';
-import { MapPool } from 'src/app/models/csgomaps';
+import { MapPool } from '../models/csgomaps';
 import { map, shareReplay, catchError } from 'rxjs/operators';
 import { UserNotification } from '../models/usernotifications';
 import { TeamStrategy } from '../models/csgoteamstrategy';
 import { SearchResult } from '../models/searchresult';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../environments/environment';
 
 const CACHE_SIZE = 1;
 

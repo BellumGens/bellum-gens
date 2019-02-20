@@ -3,6 +3,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -126,7 +127,7 @@ import { OpenPositionsPipe } from './pipes/open-positions.pipe';
   imports: [
     FormsModule,
     HttpClientModule,
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     AppRoutingModule,
     IgxAvatarModule,
@@ -155,7 +156,8 @@ import { OpenPositionsPipe } from './pipes/open-positions.pipe';
     IgxBannerModule,
     IgxButtonGroupModule,
     IgxSliderModule,
-    IgxProgressBarModule
+    IgxProgressBarModule,
+    RouterModule
   ],
   providers: [
     LoginService,

@@ -1,11 +1,11 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IgxDialogComponent } from 'igniteui-angular';
-import { ApplicationUser } from 'src/app/models/applicationuser';
-import { TeamApplication } from 'src/app/models/csgoteam';
-import { NotificationState } from 'src/app/models/usernotifications';
-import { BellumgensApiService } from 'src/app/services/bellumgens-api.service';
-import { LoginService } from 'src/app/services/login.service';
+import { ApplicationUser } from '../../models/applicationuser';
+import { TeamApplication } from '../../models/csgoteam';
+import { NotificationState } from '../../models/usernotifications';
+import { BellumgensApiService } from '../../services/bellumgens-api.service';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-team-application',

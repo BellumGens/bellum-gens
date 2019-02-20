@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { BellumgensApiService } from 'src/app/services/bellumgens-api.service';
-import { SearchResult } from 'src/app/models/searchresult';
+import { BellumgensApiService } from '../../services/bellumgens-api.service';
+import { SearchResult } from '../../models/searchresult';
 
 @Component({
   selector: 'app-quick-search',
