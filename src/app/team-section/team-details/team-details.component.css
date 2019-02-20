@@ -9,6 +9,7 @@
   width: 40px;
   height: 40px;
   min-width: 40px;
+  color: white;
 }
 
 .country-badge-medium {
@@ -44,13 +45,13 @@
 .empty-role {
   width: 88px;
   height: 88px;
+  color: white;
 }
 
-.empty-role-active {
+.empty-role.empty-role-active {
   --my-color: #3040AA;
   box-shadow: inset 0 0 0 2px var(--my-color);
-  --igx-avatar-icon-color: var(--my-color);
-  --igx-avatar-icon-background: rgba(0, 0, 0, 0.15);
+  --igx-avatar-icon-background: rgba(0, 0, 0, 0.35);
 }
 
 .right-details-container igx-card {
