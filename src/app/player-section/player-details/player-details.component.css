@@ -12,10 +12,6 @@
   padding: 8px;
 }
 
-.title.margin-left {
-  margin-left: 8px;
-}
-
 /* User Profile */
 .player-avatar {
   width: 144px;
@@ -73,7 +69,7 @@
 }
 
 .player-detail__stats .igx-circular-bar__text {
-  font-size: 1.70rem;
+  font-size: 1.55rem;
 }
 
 .player-detail-stats-container {

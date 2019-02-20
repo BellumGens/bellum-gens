@@ -47,8 +47,8 @@ $navbar-theme: igx-navbar-theme(igx-palette($background, $secondary));
 /* END Navbar */
 
 /* Avatar */
-$avatar-theme: igx-avatar-theme(igx-palette($background, $secondary));
-@include igx-css-vars($avatar-theme);
+// $avatar-theme: igx-avatar-theme(igx-palette($background, $secondary));
+// @include igx-css-vars($avatar-theme);
 /* END Avatar */
 
 /* Input Group */
@@ -321,9 +321,19 @@ igx-card-content h4 {
   margin-left: auto;
 }
 
+.horizontal-info__right--column {
+  display: flex;
+  flex-flow: column;
+  margin-left: auto;
+}
+
 .title {
   font-weight: 600;
 }
+
+  .title.margin-left {
+    margin-left: 8px;
+  }
 
 .subtitle {
   font-size: 0.875em;
@@ -404,6 +414,13 @@ textarea {
 
 .search-result {
   max-width: 360px;
+}
+
+.icon-avatar {
+  width: 24px;
+  min-width: 24px;
+  max-width: 24px;
+  height: 24px;
 }
 /* END SEARCH */
 
