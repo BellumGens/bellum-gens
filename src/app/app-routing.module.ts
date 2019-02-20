@@ -13,7 +13,8 @@ export const routes: Routes = [
   { path: 'players/:userid/:newuser', component: PlayerDetailsComponent },
   { path: 'team/:teamid', component: TeamOverviewComponent },
   { path: 'search/teams/:query', component: TeamResultsComponent },
-  { path: 'search/players/:query', component: PlayerResultsComponent }
+  { path: 'search/players/:query', component: PlayerResultsComponent },
+  { path: '**', component: HomeComponent}
 ];
 
 @NgModule({
