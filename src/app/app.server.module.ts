@@ -5,7 +5,7 @@ import { AppModule } from './app.module';
 import { AppComponent } from './app.component';
 import { Routes, RouterModule, Router } from '@angular/router';
 import { AppShellComponent } from './app-shell/app-shell.component';
-import { IgxCardModule } from 'igniteui-angular';
+import { IgxCardModule, IgxProgressBarModule } from 'igniteui-angular';
 
 const routes: Routes = [ { path: 'app-shell-path', component: AppShellComponent }];
 
@@ -14,6 +14,7 @@ const routes: Routes = [ { path: 'app-shell-path', component: AppShellComponent 
     AppModule,
     ServerModule,
     IgxCardModule,
+    IgxProgressBarModule,
     RouterModule.forRoot(routes)
   ],
   bootstrap: [AppComponent],
