@@ -292,13 +292,16 @@ igx-card-content h4 {
 .horizontal {
   display: flex;
   flex: 0 0 auto;
-  flex-direction: row wrap;
-  height: 100%;
+  flex-flow: row wrap;
+}
+
+.space-between {
+  justify-content: space-between;
 }
 
 .horizontal-center {
   display: flex;
-  flex: 0 0 auto;
+  flex: 1 1 auto;
   align-items: center;
 }
 
@@ -413,9 +416,12 @@ textarea {
 }
 
 .search-result {
-  max-width: 400px;
-  min-width: 340px;
   cursor: pointer;
+  position: relative;
+  display: flex;
+  flex: 0 1 360px;
+  min-width: 360px;
+  margin-bottom: 24px;
 }
 
 .search-result:focus {

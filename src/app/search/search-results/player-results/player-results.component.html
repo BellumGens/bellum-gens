@@ -2,8 +2,8 @@
   <igx-circular-bar class="loading-user-data" [indeterminate]="true"></igx-circular-bar>
 </div>
 
-<div *ngIf="!loading" class="horizontal">
-  <igx-card *ngFor="let player of players" class="search-result card-margins" [routerLink]="['/players', player.steamUser.steamID64]">
+<div *ngIf="!loading" class="horizontal space-between">
+  <igx-card *ngFor="let player of players" igxRipple class="search-result" [routerLink]="['/players', player.steamUser.steamID64]">
     <igx-card-header>
       <div class="horizontal-center">
         <igx-avatar [src]="player.steamUser.avatarMedium" [size]="'medium'" [initials]="player.steamUser.steamID" roundShape="true"></igx-avatar>

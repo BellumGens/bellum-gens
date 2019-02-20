@@ -2,9 +2,9 @@
   <igx-circular-bar class="loading-user-data" [indeterminate]="true"></igx-circular-bar>
 </div>
 
-<div *ngIf="!loading" class="horizontal">
+<div *ngIf="!loading" class="horizontal space-between">
   <!-- <h5>Results for: Teams > {{ this.query }}</h5> -->
-  <igx-card *ngFor="let team of teams" class="search-result card-margins" [routerLink]="['/team', team.TeamId]">
+  <igx-card *ngFor="let team of teams" igxRipple class="search-result" [routerLink]="['/team', team.TeamId]">
     <igx-card-header>
       <igx-avatar [src]="team.TeamAvatar" [initials]="team.TeamName" [size]="'medium'" roundShape="true"></igx-avatar>
       <div class="igx-card-header__tgroup">
