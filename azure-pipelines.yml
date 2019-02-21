@@ -21,3 +21,13 @@ steps:
     ng lint
     ng run bellum-gens:app-shell:production
   displayName: 'npm install, lint and build'
+
+# Publish Build Artifacts to Azure Pipelines
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: 'dist/bellum-gens' 
+    artifactName: 'dist' 
+    publishLocation: 'Container'
+    targetPath: 'dist/bellum-gens'
+    #parallel: false # Optional
+    #parallelCount: # Optional
