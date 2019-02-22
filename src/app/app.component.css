@@ -47,9 +47,9 @@
   }
 }
 
-@media only screen and (max-width: 1366px) {
+@media only screen and (max-width: 1600px) {
   .main-content-wrapper {
-    padding: 0 8px;
+    padding: 8px;
   }
 
   .discord-container {
@@ -62,7 +62,7 @@
   }
 }
 
-@media only screen and (min-width: 1600px) {
+@media only screen and (min-width: 1601px) {
   .content {
     width: calc(100% - 350px);
     justify-content: flex-start;

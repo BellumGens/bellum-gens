@@ -18,6 +18,10 @@
   width: 48px;
 }
 
+.chat-container {
+  min-height: 500px;
+}
+
 @media only screen and (max-width: 520px) {
   .video-container {
     width: 433px;
@@ -26,6 +30,10 @@
 }
 
 @media only screen and (max-width: 1600px) {
+  .major-stream-row {
+    flex: 1 1;
+  }
+
   .video-container {
     width: 648px;
     height: 365px;
