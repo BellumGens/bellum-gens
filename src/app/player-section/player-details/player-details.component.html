@@ -19,8 +19,8 @@
         <h4>Overview</h4>
         
         <div *ngIf="!playerIsUser">
-          <button igxButton="raised">Send message <igx-icon>mail</igx-icon></button>
-          <button *ngIf="authUser?.TeamAdmin.length > 0" igxButton="flat" class="title margin-left" [igxToggleAction]="teamInvite">
+          <button igxButton="raised" [disabled]="true">Send message <igx-icon>mail</igx-icon></button>
+          <button *ngIf="authUser?.TeamAdmin.length > 0" igxButton="flat" igxRipple class="title margin-left" [igxToggleAction]="teamInvite">
             Invite to team
             <igx-icon>arrow_drop_down</igx-icon>
           </button>
@@ -102,7 +102,7 @@
             </igx-card-header>
             <igx-card-content>
               <p>Primary</p>
-              <button igxButton="flat" class="submit-button" [disabled]="!playerIsUser" [igxToggleAction]="primaryRole" igxRippleCentered="true">
+              <button igxButton="flat" igxRipple class="submit-button" [disabled]="!playerIsUser" [igxToggleAction]="primaryRole" igxRippleCentered="true">
                 {{ player?.roles[player.primaryRole].Name }}
                 <igx-icon *ngIf="playerIsUser" fontSet="material">arrow_drop_down</igx-icon>
               </button>
@@ -113,7 +113,7 @@
               </igx-drop-down>
               
               <p class="no-margin">Secondary</p>
-              <button igxButton="flat" class="submit-button" [disabled]="!playerIsUser" [igxToggleAction]="secondaryRole" igxRippleCentered="true">
+              <button igxButton="flat" igxRipple class="submit-button" [disabled]="!playerIsUser" [igxToggleAction]="secondaryRole" igxRippleCentered="true">
                 {{ player?.roles[player.secondaryRole].Name }}
                 <igx-icon *ngIf="playerIsUser" fontSet="material">arrow_drop_down</igx-icon>
               </button>

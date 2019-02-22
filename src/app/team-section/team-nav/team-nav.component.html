@@ -2,7 +2,7 @@
 <div class="team-nav-container">
   <p *ngIf="!authUser">You need to login to view your teams.</p>
   <p *ngIf="authUser && !authUser.Teams.length">You are not part of any teams.</p>
-  <button *ngIf="authUser" class="submit-button" igxButton="flat" igxRippleCentered="true" (click)="createTeam.open()">Create New Team</button>
+  <button *ngIf="authUser" class="submit-button" igxButton="flat" igxRipple (click)="createTeam.open()">Create New Team</button>
 
   <igx-card class="card-margins" *ngFor="let team of authUser?.Teams">
     <igx-card-header>
@@ -73,7 +73,7 @@
         </igx-input-group>
       </igx-list-item>
       <igx-list-item>
-        <button igxButton igxRippleCentered="true" (click)="createFromForm()" [disabled]="teamName.invalid">Register</button>
+        <button igxButton igxRipple (click)="createFromForm()" [disabled]="teamName.invalid">Register</button>
       </igx-list-item>
     </igx-list>
   </div>

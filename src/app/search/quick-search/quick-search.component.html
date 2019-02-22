@@ -40,7 +40,7 @@
       </div>
     </igx-list-item>
     <igx-list-item *ngIf="searchResult.Players.length > 3">
-      <button igxButton="flat" class="submit-button">View more players...</button>
+      <button igxButton="flat" igxRipple class="submit-button">View more players...</button>
     </igx-list-item>
   </igx-list>
   <igx-list [isLoading]="loading">
@@ -74,7 +74,7 @@
       </div>
     </igx-list-item>
     <igx-list-item *ngIf="searchResult.Teams.length > 3">
-      <button igxButton="flat" class="submit-button">View more teams...</button>
+      <button igxButton="flat" igxRipple class="submit-button">View more teams...</button>
     </igx-list-item>
   </igx-list>
 </div>

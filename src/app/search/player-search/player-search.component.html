@@ -16,7 +16,7 @@
         </igx-radio-group>
       </div>
 
-      <button type="button" *ngIf="userOverlap" igxButton="flat" [igxToggleAction]="teamSelect">
+      <button type="button" *ngIf="userOverlap" igxButton="flat" igxRipple [igxToggleAction]="teamSelect">
         {{teamName}}
         <igx-icon fontSet="material" class="drop-down-arrow">arrow_drop_down</igx-icon>
       </button>
@@ -39,7 +39,7 @@
       <label>Hours availability</label>
     </div>
   </div>
-  <button class="submit-button" igxButton="flat">Search</button>
+  <button class="submit-button" igxButton="flat" igxRipple>Search</button>
 </form>
 <div *ngIf="!authUser">
   <p><b class="highlight">NOTE: </b>Signing in gives you access to more search options!</p>
