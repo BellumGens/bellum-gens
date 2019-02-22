@@ -7,7 +7,7 @@
       <igx-expansion-panel-description>
         {{ selectedMaps }}
       </igx-expansion-panel-description>
-      <button class="navigation-item" *ngIf="changes && isAdmin" igxButton="raised" (click)="saveMaps($event)">Save current maps</button>
+      <button class="navigation-item" *ngIf="changes && isAdmin" igxButton="raised" igxRipple (click)="saveMaps($event)">Save current maps</button>
       <button class="navigation-item" igxButton="raised" igxRipple (click)="openNewStrategy($event)">Add new strategy</button>
     </igx-expansion-panel-header>
     <igx-expansion-panel-body>
@@ -69,7 +69,7 @@
         </igx-radio>
       </igx-list-item>
       <igx-list-item>
-        <button igxButton="flat" [igxToggleAction]="mapPicker" igxRippleCentered="true">
+        <button igxButton="flat" [igxToggleAction]="mapPicker" igxRipple>
           Map: {{ newStrategy.Map | mapname }}
           <igx-icon fontSet="material">arrow_drop_down</igx-icon>
         </button>
@@ -94,7 +94,7 @@
         <iframe class="youtube-frame" [src]="newStrategy.Url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </igx-list-item>
       <igx-list-item>
-        <button igxButton igxRippleCentered="true" (click)="submitStrategy()" [disabled]="strategyName.invalid || strategyDescription.invalid">Submit</button>
+        <button igxButton igxRipple (click)="submitStrategy()" [disabled]="strategyName.invalid || strategyDescription.invalid">Submit</button>
       </igx-list-item>
     </igx-list>
   </div>

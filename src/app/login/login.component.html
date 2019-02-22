@@ -2,9 +2,9 @@
   <button type="icon" IgxButton class="steam-login" (click)="login('Steam')"></button>
 </igx-dialog>
 
-<button igxButton="raised" igxRipple="white" *ngIf="!authUser" (click)="openLogin()">Login</button>
+<button igxButton="raised" igxRipple *ngIf="!authUser" (click)="openLogin()">Login</button>
 <div *ngIf="authUser">
-  <button class="profile-button" #profileButton igxButton="flat" [igxToggleAction]="userProfile" [overlaySettings]="overlaySettings">
+  <button class="profile-button" #profileButton igxButton="flat" igxRipple [igxToggleAction]="userProfile" [overlaySettings]="overlaySettings">
     <igx-avatar [src]="authUser.SteamUser.avatarMedium" [initials]="authUser.SteamUser.steamID" roundShape="true">
     </igx-avatar>
     <igx-icon class="drop-down-arrow button-icon">arrow_drop_down</igx-icon>

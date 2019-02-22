@@ -17,8 +17,8 @@
         <span class="subtitle">{{notification.Sent | date}}</span>
       </div>
       <div class="horizontal-info__right">
-        <button igxButton="flat" [disabled]="notification.State | disabledNotifications" (click)="acceptInvitation(notification)">Accept</button>
-        <button igxButton="flat" [disabled]="notification.State | disabledNotifications" (click)="rejectInvitation(notification)">Decline</button>
+        <button igxButton="flat" igxRipple [disabled]="notification.State | disabledNotifications" (click)="acceptInvitation(notification)">Accept</button>
+        <button igxButton="flat" igxRipple [disabled]="notification.State | disabledNotifications" (click)="rejectInvitation(notification)">Decline</button>
       </div>
     </div>
   </igx-list-item>

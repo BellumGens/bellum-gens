@@ -1,4 +1,4 @@
-<button igxButton="flat" (click)="applicationDialog.open()">Apply to join</button>
+<button igxButton="flat" igxRipple (click)="applicationDialog.open()" [disabled]="!authUser">Apply to join</button>
 <igx-dialog #applicationDialog
             title="Why do you want to join our team?"
             leftButtonLabel="Cancel"
