@@ -2,6 +2,7 @@
   display: flex;
   flex: 1 1 100%;
   flex-flow: row wrap;
+  padding-bottom: 16px;
 }
 
 .major-stream-column {
@@ -9,7 +10,6 @@
   flex: 1 1 50%;
   flex-direction: column;
   color: white;
-  margin: 16px 0px;
   align-items: center;
   justify-content: center;
 }
@@ -20,28 +20,28 @@
 
 @media only screen and (max-width: 520px) {
   .video-container {
-    width: 400px;
+    width: 433px;
     height: 244px;
   }
 }
 
 @media only screen and (max-width: 1600px) {
   .video-container {
+    width: 648px;
     height: 365px;
-    width: 600px;
   }
 }
 
 @media only screen and (min-width: 1601px) {
   .video-container {
-    width: 735px;
+    width: 798px;
     height: 448px;
   }
 }
 
 @media only screen and (min-width: 1925px) {
   .video-container {
-    width: 1065px;
+    width: 1153px;
     height: 649px;
   }
 }

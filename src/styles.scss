@@ -192,12 +192,6 @@ igx-icon {
   }
 }
 
-.item-container {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-}
-
 /* Team and Player Details */
 .left-details-container {
   width: 250px;
@@ -345,6 +339,15 @@ igx-card-content h4 {
 a {
   text-decoration: none;
   color: igx-color($app-palette, secondary);
+}
+
+.country-badge-small {
+  position: absolute;
+  top: 12px;
+  left: 42px;
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
 }
 
 .igx-chip {
