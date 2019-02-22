@@ -12,19 +12,17 @@
   </ng-template>
   <igx-list-item [isHeader]="true">Teams</igx-list-item>
   <igx-list-item *ngFor="let team of csgoTeams">
-    <div class="item-container">
-      <div class="horizontal">
-        <igx-avatar [src]="team.TeamAvatar" [initials]="team.TeamName" roundShape="true">
-        </igx-avatar>
-        <div class="horizontal-info__left">
-          <span class="title">
-            <a [routerLink]="['/team', team.TeamId]">
-              {{ team.TeamName }}
-            </a>
-          </span>
-        </div>
+    <div class="horizontal-center">
+      <igx-avatar [src]="team.TeamAvatar" [initials]="team.TeamName" roundShape="true">
+      </igx-avatar>
+      <div class="horizontal-info__left">
+        <span class="title">
+          <a [routerLink]="['/team', team.TeamId]">
+            {{ team.TeamName }}
+          </a>
+        </span>
       </div>
-      
+    
       <div class="horizontal-info__right">
         {{ team.Members.length }} Members
       </div>

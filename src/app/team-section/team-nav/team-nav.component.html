@@ -35,7 +35,7 @@
         </igx-suffix>
       </igx-input-group>
       <igx-list-item *ngFor="let group of authUser.SteamUser.groups | groupsFilter:searchGroups" (click)="createFromSteam(group)">
-        <div class="item-container">
+        <div class="horizontal-center">
           <igx-avatar [src]="group.avatarFull" [initials]="group.groupName" roundShape="true">
           </igx-avatar>
           <span class="group-name">

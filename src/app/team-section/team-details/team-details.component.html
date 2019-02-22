@@ -27,7 +27,7 @@
             </igx-avatar>
             <div>
               <span *ngIf="role.user" class="title">
-                <a [routerLink]="['/player-details', role.user.SteamUser.steamID64]">
+                <a [routerLink]="['/players', role.user.SteamUser.steamID64]">
                   {{ role.user.SteamUser.steamID }}
                 </a>
               </span>
@@ -56,7 +56,7 @@
               <igx-avatar *ngIf="isAdmin && authUser.SteamUser.steamID64 !== user.SteamUser.steamID64" icon='clear' [roundShape]="true" class="country-badge-medium" title="Move to inactive" (click)="removeFromTeam(user)"></igx-avatar>
             </div>
             <span class="title">
-              <a [routerLink]="['/player-details', user.SteamUser.steamID64]">
+              <a [routerLink]="['/players', user.SteamUser.steamID64]">
                 {{ user.SteamUser.steamID }}
               </a>
             </span>
@@ -81,7 +81,7 @@
               <igx-avatar *ngIf="isAdmin && authUser.SteamUser.steamID64 !== user.SteamUser.steamID64" icon='clear' [roundShape]="true" class="country-badge" title="Remove from team" (click)="removeFromTeam(user)"></igx-avatar>
             </div>
             <span class="title">
-              <a [routerLink]="['/player-details', user.SteamUser.steamID64]">
+              <a [routerLink]="['/players', user.SteamUser.steamID64]">
                 {{ user.SteamUser.steamID }}
               </a>
             </span>

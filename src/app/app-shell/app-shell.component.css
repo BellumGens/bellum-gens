@@ -1,59 +1,13 @@
-.major-stream-row {
+.loading-overview {
   display: flex;
-  flex: 1 1 100%;
-  flex-flow: row wrap;
-}
-
-.major-stream-column {
-  display: flex;
-  flex: 1 1 50%;
-  flex-direction: column;
-  color: white;
-  margin: 16px 0px;
-  align-items: center;
-  justify-content: center;
-}
-
-.social-media-icon {
-  width: 48px;
-}
-
-.loading-indicator {
-  margin: 16px;
-  width: 66px;
-  height: 66px;
-}
-
-.video-container {
-  display: flex;
+  height: 100%;
   justify-content: center;
   align-items: center;
 }
 
-@media only screen and (max-width: 520px) {
-  .video-container {
-    width: 400px;
-    height: 244px;
-  }
-}
-
-@media only screen and (max-width: 1600px) {
-  .video-container {
-    height: 365px;
-    width: 600px;
-  }
-}
-
-@media only screen and (min-width: 1601px) {
-  .video-container {
-    width: 735px;
-    height: 448px;
-  }
-}
-
-@media only screen and (min-width: 1925px) {
-  .video-container {
-    width: 1065px;
-    height: 649px;
-  }
+.loading-user-data {
+  height: 128px;
+  max-height: 128px;
+  width: 128px;
+  max-width: 128px;
 }
