@@ -1,0 +1,11 @@
+.team-info-form {
+  display: flex;
+  flex-flow: column;
+  flex: 1 1 380px;
+  padding: 0 16px;
+}
+
+.team-info-input {
+  margin: 16px 0 0 0;
+  padding: 0 4px;
+}
