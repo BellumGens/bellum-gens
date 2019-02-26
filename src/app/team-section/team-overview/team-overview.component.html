@@ -19,7 +19,7 @@
         </div> 
       </ng-template>
 
-      <app-team-details [team]="team" [authUser]="authUser"></app-team-details>
+      <app-team-details [team]="team" [userId]="authUser.SteamUser.steamID64" [isAdmin]="userIsAdmin"></app-team-details>
     </igx-tabs-group>
 
     <igx-tabs-group *ngIf="userIsMember">
@@ -30,7 +30,7 @@
         </div> 
       </ng-template>
 
-      <app-team-strategies [isAdmin]="userIsAdmin"></app-team-strategies>
+      <app-team-strategies [isAdmin]="userIsAdmin" [isEditor]="userIsEditor"></app-team-strategies>
     </igx-tabs-group>
 
     <igx-tabs-group [disabled]="true">
