@@ -19,7 +19,7 @@
         </div> 
       </ng-template>
 
-      <app-team-details [team]="team" [authUser]="authUser"></app-team-details>
+      <app-team-details [team]="team" [userId]="authUser.SteamUser.steamID64" [isAdmin]="userIsAdmin"></app-team-details>
     </igx-tabs-group>
 
     <igx-tabs-group *ngIf="userIsMember">

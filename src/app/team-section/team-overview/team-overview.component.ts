@@ -15,9 +15,9 @@ export class TeamOverviewComponent {
   team: CSGOTeam = TEAM_PLACEHOLDER;
   notifications: TeamApplication [];
 
-  private _isAdmin = false;
-  private _isEditor = false;
-  private _isMember = false;
+  private _isAdmin: boolean = null;
+  private _isEditor: boolean = null;
+  private _isMember: boolean = null;
 
   constructor(private activatedRoute: ActivatedRoute,
               private apiService: BellumgensApiService,
@@ -41,6 +41,9 @@ export class TeamOverviewComponent {
   }
 
   public get userIsMember() {
+    if (this._isMember !== null) {
+      return this._isMember;
+    }
     if (this.authUser && this.team && this.team.Members) {
       this._isMember = this.team.Members.filter(m => m.UserId === this.authUser.SteamUser.steamID64).length > 0;
     }
@@ -48,6 +51,9 @@ export class TeamOverviewComponent {
   }
 
   public get userIsAdmin() {
+    if (this._isAdmin !== null) {
+      return this._isAdmin;
+    }
     if (this.authUser && this.team && this.team.Members) {
       this._isAdmin = this.team.Members.filter(m => m.IsAdmin && m.UserId === this.authUser.SteamUser.steamID64).length > 0;
     }
@@ -55,6 +61,9 @@ export class TeamOverviewComponent {
   }
 
   public get userIsEditor() {
+    if (this._isEditor !== null) {
+      return this._isEditor;
+    }
     if (this.authUser && this.team && this.team.Members) {
       this._isEditor = this.team.Members.filter(m => m.IsEditor && m.UserId === this.authUser.SteamUser.steamID64).length > 0;
     }

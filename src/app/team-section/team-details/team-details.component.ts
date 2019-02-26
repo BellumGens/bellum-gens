@@ -13,7 +13,6 @@ import { Availability } from '../../models/playeravailability';
 })
 export class TeamDetailsComponent implements OnInit {
   private _team = TEAM_PLACEHOLDER;
-  private _isAdmin = null;
 
   public get team(): CSGOTeam {
     return this._team;
@@ -39,7 +38,11 @@ export class TeamDetailsComponent implements OnInit {
   public inactiveMembers: TeamMember [];
 
   @Input()
-  public authUser: ApplicationUser;
+  public userId: string;
+
+  @Input()
+  public isAdmin = false;
+
   public roleSlots: RoleSlot [] = [
     { roleName: 'IGL', role: PlaystyleRole.IGL, user: null },
     { roleName: 'Awper', role: PlaystyleRole.Awper, user: null },
@@ -75,17 +78,6 @@ export class TeamDetailsComponent implements OnInit {
     args.cancel = true;
     this.roleDraggingEnd();
     this.apiService.updateTeamMember(user).subscribe();
-  }
-
-  public get isAdmin() {
-    if (this._isAdmin !== null) {
-      return this._isAdmin;
-    }
-    if (!this._team.Members || !this.authUser) {
-      return false;
-    }
-    this._isAdmin = this.team.Members.find(m => m.UserId === this.authUser.SteamUser.steamID64).IsAdmin;
-    return this._isAdmin;
   }
 
   public roleDragging(args) {
