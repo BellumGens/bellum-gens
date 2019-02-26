@@ -30,6 +30,21 @@
         </igx-input-group>
       </igx-list-item>
       <igx-list-item>
+        <igx-input-group class="team-info-input">
+          <label for="teamDiscord" igxLabel>Discord</label>
+          <input #teamDiscord igxInput id="teamDiscord" name="teamDiscord" [(ngModel)]="team.Discord" />
+          <igx-suffix *ngIf="teamDiscord.value.length > 0" (click)="teamDiscord.value = null">
+              <igx-icon>clear</igx-icon>
+          </igx-suffix>
+        </igx-input-group>
+      </igx-list-item>
+      <igx-list-item>
+        <div class="team-info-input horizontal-center">
+          <label for="teamVisibility">Show team in searches</label>
+          <igx-switch class="horizontal-info__right" #teamVisibility id="teamVisibility" name="teamVisibility" [(ngModel)]="team.Visible"></igx-switch>
+        </div>
+      </igx-list-item>
+      <igx-list-item>
         <button igxButton="raised" igxRipple class="submit-button team-info-input" [disabled]="teamInfo.invalid">Update Team Info</button>
       </igx-list-item>
     </igx-list>

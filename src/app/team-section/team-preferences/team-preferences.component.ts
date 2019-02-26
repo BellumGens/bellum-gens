@@ -20,7 +20,7 @@ export class TeamPreferencesComponent implements OnInit {
   }
 
   public updateTeamInfo() {
-    this.apiService.updateTeam(this.team).subscribe(team => this.team = team);
+    this.apiService.updateTeam(this.team).subscribe();
   }
 
   public adminStatusUpdated(user: TeamMember) {
