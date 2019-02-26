@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApplicationUser } from '../../models/applicationuser';
 import { CSGOTeam, TeamApplication, TEAM_PLACEHOLDER } from '../../models/csgoteam';
@@ -10,10 +10,14 @@ import { LoginService } from '../../services/login.service';
   templateUrl: './team-overview.component.html',
   styleUrls: ['./team-overview.component.css']
 })
-export class TeamOverviewComponent implements OnInit {
+export class TeamOverviewComponent {
   authUser: ApplicationUser;
   team: CSGOTeam = TEAM_PLACEHOLDER;
   notifications: TeamApplication [];
+
+  private _isAdmin = false;
+  private _isEditor = false;
+  private _isMember = false;
 
   constructor(private activatedRoute: ActivatedRoute,
               private apiService: BellumgensApiService,
@@ -38,19 +42,23 @@ export class TeamOverviewComponent implements OnInit {
 
   public get userIsMember() {
     if (this.authUser && this.team && this.team.Members) {
-      return this.team.Members.filter(m => m.UserId === this.authUser.SteamUser.steamID64).length;
+      this._isMember = this.team.Members.filter(m => m.UserId === this.authUser.SteamUser.steamID64).length > 0;
     }
-    return false;
+    return this._isMember;
   }
 
   public get userIsAdmin() {
     if (this.authUser && this.team && this.team.Members) {
-      return this.team.Members.filter(m => m.IsAdmin && m.UserId === this.authUser.SteamUser.steamID64).length;
+      this._isAdmin = this.team.Members.filter(m => m.IsAdmin && m.UserId === this.authUser.SteamUser.steamID64).length > 0;
     }
-    return false;
+    return this._isAdmin;
   }
 
-  ngOnInit() {
+  public get userIsEditor() {
+    if (this.authUser && this.team && this.team.Members) {
+      this._isEditor = this.team.Members.filter(m => m.IsEditor && m.UserId === this.authUser.SteamUser.steamID64).length > 0;
+    }
+    return this._isEditor;
   }
 
 }

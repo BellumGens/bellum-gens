@@ -8,7 +8,7 @@
         {{ selectedMaps }}
       </igx-expansion-panel-description>
       <button class="navigation-item" *ngIf="changes && isAdmin" igxButton="raised" igxRipple (click)="saveMaps($event)">Save current maps</button>
-      <button class="navigation-item" igxButton="raised" igxRipple (click)="openNewStrategy($event)">Add new strategy</button>
+      <button class="navigation-item" *ngIf="isEditor" igxButton="raised" igxRipple (click)="openNewStrategy($event)">Add new strategy</button>
     </igx-expansion-panel-header>
     <igx-expansion-panel-body>
       <app-map-pool [mapPool]="maps" [readOnly]="false" (update)="changeMaps($event)">
@@ -19,7 +19,7 @@
     <igx-card class="map-column strat" *ngFor="let strat of teamStrats | sidestrats:maps:pipeTrigger">
       <igx-card-header>
         <h5>{{ strat.Title }}</h5>
-        <div class="admin-actions" *ngIf="isAdmin">
+        <div class="admin-actions" *ngIf="isEditor">
           <button igxButton="flat" igxRipple (click)="editStrategy(strat)">
             <igx-icon title="edit strategy">edit</igx-icon>
             Edit

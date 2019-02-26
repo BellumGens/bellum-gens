@@ -26,6 +26,9 @@ export class TeamStrategiesComponent implements OnInit {
   @Input()
   isAdmin = false;
 
+  @Input()
+  isEditor = false;
+
   private _youtubeRegEx = /(youtu\.be\/|youtube\.com\/(watch\?(.*&)?v=|(embed|v)\/))([^\?&"'>]+)/;
 
   @ViewChild(IgxDialogComponent) public dialog: IgxDialogComponent;
