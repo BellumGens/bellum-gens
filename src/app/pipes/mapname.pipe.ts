@@ -7,7 +7,7 @@ import { MapPool, ActiveDuty, CSGOMap } from '../models/csgomaps';
 export class MapnamePipe implements PipeTransform {
 
   transform(map: CSGOMap): string {
-    return ActiveDuty.find(m => m.id === map).map;
+    return map !== undefined ? ActiveDuty.find(m => m.id === map).map : '';
   }
 
 }

@@ -107,6 +107,10 @@ export class TeamStrategiesComponent implements OnInit {
     );
   }
 
+  public isYoutube(url: string) {
+    return this._youtubeRegEx.test(url);
+  }
+
   public getVideoEmbedLink() {
     if (this._youtubeRegEx.test(this.newStrategy.Url)) {
       const parts = this._youtubeRegEx.exec(this.newStrategy.Url);
