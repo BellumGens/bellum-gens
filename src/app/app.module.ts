@@ -34,7 +34,8 @@ import { IgxNavbarModule,
   IgxBannerModule,
   IgxButtonGroupModule,
   IgxIconService,
-  IgxSliderModule} from 'igniteui-angular';
+  IgxSliderModule,
+  IgxSwitchModule} from 'igniteui-angular';
 import { PlayersComponent } from './player-section/players/players.component';
 import { PlayerDetailsComponent } from './player-section/player-details/player-details.component';
 import { LoginService } from './services/login.service';
@@ -78,6 +79,7 @@ import { ConfirmComponent } from './confirm/confirm.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { DaysAvailablePipe } from './pipes/days-available.pipe';
 import { OpenPositionsPipe } from './pipes/open-positions.pipe';
+import { TeamPreferencesComponent } from './team-section/team-preferences/team-preferences.component';
 
 @NgModule({
   declarations: [
@@ -122,6 +124,7 @@ import { OpenPositionsPipe } from './pipes/open-positions.pipe';
     ConfirmComponent,
     NotificationsComponent,
     DaysAvailablePipe,
+    TeamPreferencesComponent,
     OpenPositionsPipe
   ],
   imports: [
@@ -157,6 +160,7 @@ import { OpenPositionsPipe } from './pipes/open-positions.pipe';
     IgxButtonGroupModule,
     IgxSliderModule,
     IgxProgressBarModule,
+    IgxSwitchModule,
     RouterModule
   ],
   providers: [

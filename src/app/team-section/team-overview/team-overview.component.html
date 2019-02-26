@@ -4,9 +4,7 @@
     </igx-avatar>
     <div class="horizontal-info__left">
       <h1 class="igx-card-header__title">{{ team.TeamName }}</h1>
-    </div>
-    <div class="horizontal-info__right">
-      {{ team.Description }}
+      <h3 class="igx-card-header__subtitle">{{ team.Description }}</h3>
     </div>
     <div *ngIf="!userIsMember && team.TeamId" class="horizontal-info__right">
       <app-team-application></app-team-application>
@@ -49,11 +47,11 @@
       <ng-template igxTab>
         <div class="horizontal-center">
           <igx-icon>settings</igx-icon>
-          <div class="igx-tabs__item-label">Settings</div>
+          <div class="igx-tabs__item-label">Preferences</div>
         </div> 
       </ng-template>
       
-      <app-team-notifications [team]="team"></app-team-notifications>
+      <app-team-preferences [team]="team" [adminId]="authUser.SteamUser.steamID64"></app-team-preferences>
     </igx-tabs-group>
     <!-- <igx-tabs-group label="Team Calendar">
       <app-team-calendar [practiceSchedule]="team.PracticeSchedule" [isAdmin]="userIsAdmin"></app-team-calendar>

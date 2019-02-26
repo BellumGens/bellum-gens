@@ -230,8 +230,23 @@ export class BellumgensApiService {
     );
   }
 
-  public updateTeamMember(teamMember: TeamMember) {
-    return this.http.put(`${this._apiEndpoint}/teams/member`, teamMember, { withCredentials: true }).pipe(
+  public updateTeam(team: CSGOTeam): Observable<CSGOTeam> {
+    return this.http.put<CSGOTeam>(`${this._apiEndpoint}/teams/team`, team, { withCredentials: true }).pipe(
+      map(response => {
+        if (response) {
+          this.emitSuccess(`${team.TeamName} updated successfully!`);
+        }
+        return response;
+      }),
+      catchError(error => {
+        this.emitError(error.error.Message);
+        return throwError(error);
+      })
+    );
+  }
+
+  public updateTeamMember(teamMember: TeamMember): Observable<TeamMember> {
+    return this.http.put<TeamMember>(`${this._apiEndpoint}/teams/member`, teamMember, { withCredentials: true }).pipe(
       map(response => {
         if (response) {
           this.emitSuccess(`${teamMember.SteamUser.steamID} updated successfully!`);

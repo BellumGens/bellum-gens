@@ -8,6 +8,8 @@ export interface CSGOTeam {
   TeamName: string;
   TeamAvatar: string;
   Description: string;
+  Discord: string;
+  Visible: boolean;
   Members: TeamMember [];
   PracticeSchedule: Availability [];
 }
@@ -17,6 +19,7 @@ export interface TeamMember {
   UserId: string;
   IsActive: boolean;
   IsAdmin: boolean;
+  IsEditor: boolean;
   Role: PlaystyleRole;
   SteamUser: SteamUser;
 }
@@ -39,6 +42,8 @@ export const TEAM_PLACEHOLDER: CSGOTeam = {
   TeamName: 'Create or view teams',
   TeamAvatar: '',
   Description: 'Use the left navigation to create your own team or to view existing teams.',
+  Discord: '',
+  Visible: true,
   TeamId: undefined,
   PracticeSchedule: [],
   Members: undefined

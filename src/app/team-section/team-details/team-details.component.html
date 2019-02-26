@@ -43,7 +43,7 @@
     <igx-card>
       <igx-card-header>
         <h3 class="igx-card-header__title">Bench</h3>
-        <h4 class="igx-card-header__subtitle">Drag players to add them to the active lineup</h4>
+        <h4 class="igx-card-header__subtitle" *ngIf="isAdmin">Drag players to add them to the active lineup</h4>
       </igx-card-header>
       <igx-card-content>
         <div class="horizontal padding-top">
@@ -53,7 +53,7 @@
                   (dragStart)="roleDragging($event)"
                   (dragEnd)="roleDraggingEnd()">
               </igx-avatar>
-              <igx-avatar *ngIf="isAdmin && authUser.SteamUser.steamID64 !== user.SteamUser.steamID64" icon='clear' [roundShape]="true" class="country-badge-medium" title="Move to inactive" (click)="removeFromTeam(user)"></igx-avatar>
+              <igx-avatar *ngIf="isAdmin && authUser.SteamUser.steamID64 !== user.SteamUser.steamID64" icon='clear' [roundShape]="true" class="country-badge-medium" title="Remove from team" (click)="confirm.open(user)"></igx-avatar>
             </div>
             <span class="title">
               <a [routerLink]="['/players', user.SteamUser.steamID64]">
@@ -94,3 +94,9 @@
     </igx-card>
   </div>
 </div>
+
+<!-- Confirm -->
+<app-confirm #confirm title="Are you sure?" (ok)="removeFromTeam($event)">
+  Pressing OK will permanently remove this player from the team...
+</app-confirm>
+<!-- END Confirm -->

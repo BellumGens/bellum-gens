@@ -1,0 +1,18 @@
+.team-info-column {
+  display: flex;
+  flex-flow: column;
+  flex: 1 1 380px;
+  padding: 0 16px;
+  margin-top: 16px;
+  align-self: baseline;
+}
+
+.team-info-input {
+  margin: 16px 0 0 0;
+  padding: 0 4px;
+}
+
+.title.margins {
+  margin-left: 32px;
+  margin-right: 16px;
+}

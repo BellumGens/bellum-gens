@@ -17,6 +17,8 @@ export class TeamNavComponent {
     TeamName: '',
     TeamAvatar: '',
     Description: '',
+    Discord: '',
+    Visible: true,
     TeamId: undefined,
     PracticeSchedule: [],
     Members: undefined
