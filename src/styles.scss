@@ -33,6 +33,7 @@ $include: (igx-avatar,
            igx-snackbar,
            igx-circular-bar,
            igx-slider,
+           igx-switch,
            igx-banner);
 
 @include igx-dark-theme(
@@ -296,6 +297,7 @@ igx-card-content h4 {
 .horizontal-center {
   display: flex;
   flex: 1 1 auto;
+  flex-flow: row wrap;
   align-items: center;
 }
 

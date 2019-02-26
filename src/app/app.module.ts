@@ -34,7 +34,8 @@ import { IgxNavbarModule,
   IgxBannerModule,
   IgxButtonGroupModule,
   IgxIconService,
-  IgxSliderModule} from 'igniteui-angular';
+  IgxSliderModule,
+  IgxSwitchModule} from 'igniteui-angular';
 import { PlayersComponent } from './player-section/players/players.component';
 import { PlayerDetailsComponent } from './player-section/player-details/player-details.component';
 import { LoginService } from './services/login.service';
@@ -159,6 +160,7 @@ import { TeamPreferencesComponent } from './team-section/team-preferences/team-p
     IgxButtonGroupModule,
     IgxSliderModule,
     IgxProgressBarModule,
+    IgxSwitchModule,
     RouterModule
   ],
   providers: [

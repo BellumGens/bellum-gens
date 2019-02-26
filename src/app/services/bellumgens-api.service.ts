@@ -245,8 +245,8 @@ export class BellumgensApiService {
     );
   }
 
-  public updateTeamMember(teamMember: TeamMember) {
-    return this.http.put(`${this._apiEndpoint}/teams/member`, teamMember, { withCredentials: true }).pipe(
+  public updateTeamMember(teamMember: TeamMember): Observable<TeamMember> {
+    return this.http.put<TeamMember>(`${this._apiEndpoint}/teams/member`, teamMember, { withCredentials: true }).pipe(
       map(response => {
         if (response) {
           this.emitSuccess(`${teamMember.SteamUser.steamID} updated successfully!`);

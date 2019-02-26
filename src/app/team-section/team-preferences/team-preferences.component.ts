@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { BellumgensApiService } from 'src/app/services/bellumgens-api.service';
-import { CSGOTeam } from 'src/app/models/csgoteam';
+import { CSGOTeam, TeamMember } from 'src/app/models/csgoteam';
 
 @Component({
   selector: 'app-team-preferences',
@@ -11,6 +11,9 @@ export class TeamPreferencesComponent implements OnInit {
   @Input()
   team: CSGOTeam;
 
+  @Input()
+  adminId: string;
+
   constructor(private apiService: BellumgensApiService) { }
 
   ngOnInit() {
@@ -18,5 +21,16 @@ export class TeamPreferencesComponent implements OnInit {
 
   public updateTeamInfo() {
     this.apiService.updateTeam(this.team).subscribe(team => this.team = team);
+  }
+
+  public adminStatusUpdated(user: TeamMember) {
+    if (user.IsAdmin) {
+      user.IsEditor = true;
+    }
+    this.editorStatusUpdated(user);
+  }
+
+  public editorStatusUpdated(user: TeamMember) {
+    this.apiService.updateTeamMember(user).subscribe();
   }
 }

@@ -17,6 +17,7 @@ export interface TeamMember {
   UserId: string;
   IsActive: boolean;
   IsAdmin: boolean;
+  IsEditor: boolean;
   Role: PlaystyleRole;
   SteamUser: SteamUser;
 }
