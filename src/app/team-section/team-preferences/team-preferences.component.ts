@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { BellumgensApiService } from 'src/app/services/bellumgens-api.service';
-import { CSGOTeam, TeamMember } from 'src/app/models/csgoteam';
+import { BellumgensApiService } from '../../services/bellumgens-api.service';
+import { CSGOTeam, TeamMember } from '../../models/csgoteam';
 
 @Component({
   selector: 'app-team-preferences',
