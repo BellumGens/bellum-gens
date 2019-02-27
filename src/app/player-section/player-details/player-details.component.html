@@ -35,6 +35,7 @@
           </igx-drop-down>
         </div>
       </div>
+
       <div *ngIf="player?.userStats" class="player-detail-stats-container">
         <igx-card class="player-detail__stats">
           <igx-card-header>
@@ -75,6 +76,16 @@
             </div>
           </igx-card-content>
         </igx-card>
+        <igx-card class="player-detail__stats">
+          <igx-card-header>
+            <h4>Teams</h4>
+          </igx-card-header>
+          <igx-card-content>
+            <igx-avatar *ngFor="let team of player.teams" [initials]="team.TeamName" [src]="team.TeamAvatar" roundShape="true" [size]="'large'">
+            </igx-avatar>
+            <h4 *ngIf="!player.teams.length">Not a member of a team yet.</h4>
+          </igx-card-content>
+        </igx-card>
       </div>
 
       <div *ngIf="playerIsUser && player.userStatsException" class="player-stats__container">
@@ -88,21 +99,15 @@
   <div class="overview-container">
       <!-- Availability -->
       <div class="left-details-container">
-          <h5>Availability</h5>
+          <h4>Availability</h4>
           <app-availability [availability]="player?.availability" (availabilityChanged)="submitAvailability($event)" [editable]="playerIsUser"></app-availability>
-      </div>
-      <!-- END Availability -->
-      
-      <div class="player-stats__container">
-        <div class="player-detail-stats-container">
+
           <!-- Playstyle Roles -->
-          <igx-card class="player-detail__stats">
-            <igx-card-header>
-              <h4>Playstyle</h4>
-            </igx-card-header>
-            <igx-card-content>
-              <p>Primary</p>
-              <button igxButton="flat" igxRipple class="submit-button" [disabled]="!playerIsUser" [igxToggleAction]="primaryRole" igxRippleCentered="true">
+          <h4>Playstyle</h4>
+          <div class="horizontal-center">
+            <label for="primary-role">Primary</label>
+            <div class="horizontal-info__right">
+              <button id="primary-role" igxButton="flat" igxRipple [disabled]="!playerIsUser" [igxToggleAction]="primaryRole" igxRippleCentered="true">
                 {{ player?.roles[player.primaryRole].Name }}
                 <igx-icon *ngIf="playerIsUser" fontSet="material">arrow_drop_down</igx-icon>
               </button>
@@ -111,9 +116,13 @@
                   {{ role.Name }}
                 </igx-drop-down-item>
               </igx-drop-down>
-              
-              <p class="no-margin">Secondary</p>
-              <button igxButton="flat" igxRipple class="submit-button" [disabled]="!playerIsUser" [igxToggleAction]="secondaryRole" igxRippleCentered="true">
+            </div>
+          </div>
+
+          <div class="horizontal-center">
+            <label for="secondary-role">Secondary</label>
+            <div class="horizontal-info__right">
+              <button id="secondary-role" igxButton="flat" igxRipple [disabled]="!playerIsUser" [igxToggleAction]="secondaryRole" igxRippleCentered="true">
                 {{ player?.roles[player.secondaryRole].Name }}
                 <igx-icon *ngIf="playerIsUser" fontSet="material">arrow_drop_down</igx-icon>
               </button>
@@ -122,23 +131,14 @@
                     {{ role.Name }}
                 </igx-drop-down-item>
               </igx-drop-down>
-            </igx-card-content>
-          </igx-card>
+            </div>
+          </div>
+          
           <!-- END Playstyle Roles -->
-
-          <igx-card class="player-detail__stats-span">
-            <igx-card-header>
-              <h4>Teams</h4>
-            </igx-card-header>
-            <igx-card-content>
-              <igx-avatar *ngFor="let team of player.teams" [initials]="team.TeamName" [src]="team.TeamAvatar" roundShape="true" [size]="'large'">
-              </igx-avatar>
-              <h4 *ngIf="!player.teams.length">Not a member of a team yet.</h4>
-            </igx-card-content>
-          </igx-card>
-        </div>
-        
-
+      </div>
+      <!-- END Availability -->
+      
+      <div class="player-stats__container">
         <!-- Map Pool -->
         <div class="player-detail-stats-container">
           <igx-card>
