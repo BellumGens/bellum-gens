@@ -34,32 +34,17 @@
 /* END User Profile */
 
 /* User Overview */
-.player-stats__container {
-  display: flex;
-  flex-flow: row;
-  flex-wrap: wrap;
-}
-
 .player-overview-container {
   display: flex;
-  flex: 0 0 100%;
+  flex: 1 1 100%;
   justify-content: space-between;
   flex-wrap: wrap;
   margin-bottom: 16px;
 }
 
 .player-detail__stats {
-  flex: 1 0 264px;
-  width: 264px;
-  min-width: 264px;
-}
-
-.player-detail__stats-span {
-  flex: 1 1 75%;
-}
-
-.player-detail__stats-span .igx-card {
-  min-height: 276px;
+  display: flex;
+  flex: 1 1 200px;
 }
 
 .player-detail__stats,
@@ -86,8 +71,8 @@
 }
 
 .player-detail__stats .igx-circular-bar {
-  width: 238px;
-  height: 238px;
+  width: 156px;
+  height: 156px;
 }
 
 .player-detail__stats .igx-card igx-card-header {
@@ -104,9 +89,8 @@
 }
 
 .weapon-image {
-  flex: 1 1 auto;
-  height: 210px;
-  width: 222px;
+  height: 128px;
+  width: 156px;
 }
 
 .weapon-name {
