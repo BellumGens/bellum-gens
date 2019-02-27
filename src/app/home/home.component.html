@@ -1,3 +1,15 @@
+<div class="horizontal">
+  <igx-input-group type="search" class="user-stats-search">
+    <igx-prefix>
+      <igx-icon class="button-icon">search</igx-icon>
+    </igx-prefix>
+    <label igxLabel for="searchInput">Provide SteamID64 or Steam Custom URL to view CS:GO user stats...</label>
+    <input id="searchInput" #searchInput igxInput class="search-input" (keyup.enter)="viewStats(searchInput.value)" />
+    <igx-suffix *ngIf="searchInput.value.length > 0" (click)="searchInput.value = ''">
+      <igx-icon>clear</igx-icon>
+    </igx-suffix>
+  </igx-input-group>
+</div>
 <div class="major-stream-row">
   <app-players class="list-container"></app-players>
   <div class="major-stream-column">

@@ -2,10 +2,14 @@
   <igx-circular-bar class="loading-user-data" [indeterminate]="true"></igx-circular-bar>
 </div>
 
+<div class="loading-overview" *ngIf="player.steamUserException">
+  <h1>Player not found...</h1>
+</div>
+
 <div *ngIf="player" class="overview-container-card">
   <h1 *ngIf="newUser">Now it's time to complete your profile</h1>
 
-  <div class="overview-container">
+  <div class="overview-container" *ngIf="!player.steamUserException">
     <div class="left-details-container">
       <igx-avatar [src]="player?.steamUser?.avatarFull" [initials]="player?.steamUser?.steamID" class="player-avatar">
       </igx-avatar>
@@ -18,7 +22,7 @@
       <div class="player-overview-container">
         <h4>Overview</h4>
         
-        <div *ngIf="!playerIsUser">
+        <div *ngIf="!playerIsUser && player.registered">
           <button igxButton="raised" [disabled]="true">Send message <igx-icon>mail</igx-icon></button>
           <button *ngIf="authUser?.TeamAdmin.length > 0" igxButton="flat" igxRipple class="title margin-left" [igxToggleAction]="teamInvite">
             Invite to team
@@ -33,6 +37,11 @@
               </span>
             </igx-drop-down-item>
           </igx-drop-down>
+        </div>
+
+        <div *ngIf="!player.registered">
+          This player is not registered! If you own the profile then register to complete it.
+          <app-login *ngIf="!authUser"></app-login>
         </div>
       </div>
 
@@ -76,27 +85,27 @@
             </div>
           </igx-card-content>
         </igx-card>
-        <igx-card class="player-detail__stats">
+        <igx-card class="player-detail__stats" *ngIf="player.registered">
           <igx-card-header>
             <h4>Teams</h4>
           </igx-card-header>
           <igx-card-content>
-            <igx-avatar *ngFor="let team of player.teams" [initials]="team.TeamName" [src]="team.TeamAvatar" roundShape="true" [size]="'large'">
+            <igx-avatar *ngFor="let team of player?.teams" [initials]="team.TeamName" [src]="team.TeamAvatar" roundShape="true" [size]="'large'">
             </igx-avatar>
-            <h4 *ngIf="!player.teams.length">Not a member of a team yet.</h4>
+            <h4 *ngIf="!player?.teams.length">Not a member of a team yet.</h4>
           </igx-card-content>
         </igx-card>
       </div>
 
-      <div *ngIf="playerIsUser && player.userStatsException" class="player-stats__container">
-        <h4>Your Steam account is private.</h4>
-        <p>In order to allow us to retrieve your ingame statistics, you need to change the privacy level of your account, so we can access them from Steam.</p>
+      <div *ngIf="player.userStatsException" class="player-stats__container">
+        <h4>Steam account is private.</h4>
+        <p>If this is your account, you need to change the privacy level of your account, so we can access game stats from Steam.</p>
         <p>To do this go to <span class="highlight">Steam Profile --> Edit Profile --> Privacy Settings --> Set: 'My profile: Public' and 'Game details: public'</span></p>
       </div>
     </div>
   </div>
 
-  <div class="overview-container">
+  <div class="overview-container" *ngIf="player.registered">
       <!-- Availability -->
       <div class="left-details-container">
           <h4>Availability</h4>
