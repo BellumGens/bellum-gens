@@ -2,7 +2,7 @@
   <igx-circular-bar class="loading-user-data" [indeterminate]="true"></igx-circular-bar>
 </div>
 
-<div class="loading-overview" *ngIf="player.steamUserException">
+<div class="loading-overview" *ngIf="player?.steamUserException">
   <h1>Player not found...</h1>
 </div>
 
