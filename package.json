@@ -8,6 +8,7 @@
     "build": "ng build --prod",
     "test": "ng test",
     "test:prod": "ng test -- --no-watch --no-progress --browsers=ChromeHeadlessCI",
+    "test:prod-travis": "ng test -- --no-watch --no-progress",
     "lint": "ng lint",
     "build:app-shell": "ng run bellum-gens:app-shell:production",
     "e2e": "ng e2e"
