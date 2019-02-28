@@ -18,14 +18,10 @@ steps:
 - script: |
     npm install -g @angular/cli
     npm install
-    displayName: 'npm install'
-    
-- script: npm run lint
-  displayName: 'npm lint'
-- script: npm run test:prod
-  displayName: 'npm test'
-- script: npm run build:app-shell
-  displayName: 'npm build'
+    npm run lint
+    npm run test:prod
+    npm run build:app-shell
+  displayName: 'npm install, lint, test and build'
 
 # Publish Build Artifacts to Azure Pipelines
 - task: PublishBuildArtifacts@1
