@@ -7,7 +7,7 @@ import { IgxProgressBarModule,
   IgxToggleModule,
   IgxDropDownModule,
   IgxIconModule,
-  IgxDialogModule, 
+  IgxDialogModule,
   IgxChipsModule,
   IgxTimePickerModule,
   IgxCheckboxModule} from 'igniteui-angular';
