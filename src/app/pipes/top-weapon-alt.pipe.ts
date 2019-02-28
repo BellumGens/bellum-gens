@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class TopWeaponAltPipe implements PipeTransform {
 
-  transform(weapon: any): any {
+  transform(weapon: any): string {
     return weapon ? weapon.kills + ' kills' : '';
   }
 

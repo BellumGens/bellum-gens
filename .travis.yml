@@ -2,5 +2,6 @@ language: node_js
 node_js:
   - "10.4.1"
 script:
-  - ng lint
-  - ng build --prod
+  - npm run lint
+  - npm run test:prod
+  - npm run build:app-shell

@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AvailabilityComponent } from './availability.component';
+import { IgxChipsModule, IgxTimePickerModule, IgxDialogModule } from 'igniteui-angular';
+import { WeekdayPipe } from '../pipes/weekday.pipe';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('AvailabilityComponent', () => {
   let component: AvailabilityComponent;
@@ -8,7 +11,16 @@ describe('AvailabilityComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AvailabilityComponent ]
+      imports: [
+        NoopAnimationsModule,
+        IgxChipsModule,
+        IgxTimePickerModule,
+        IgxDialogModule
+      ],
+      declarations: [
+        AvailabilityComponent,
+        WeekdayPipe
+      ]
     })
     .compileComponents();
   }));

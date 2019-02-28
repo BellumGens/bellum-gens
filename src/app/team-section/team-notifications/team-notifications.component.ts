@@ -24,10 +24,12 @@ export class TeamNotificationsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.apiService.teamApplications(this.team.TeamId).subscribe(data => {
-      this.applications = data;
-      this.loaded.emit(data);
-    });
+    if (this.team) {
+      this.apiService.teamApplications(this.team.TeamId).subscribe(data => {
+        this.applications = data;
+        this.loaded.emit(data);
+      });
+    }
   }
 
   public approveApplication(application: TeamApplication) {

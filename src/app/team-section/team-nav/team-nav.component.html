@@ -29,7 +29,8 @@
         <igx-prefix>
             <igx-icon>search</igx-icon>
         </igx-prefix>
-        <input #search igxInput placeholder="Search Groups" [(ngModel)]="searchGroups">
+        <label for="searchGroups" igxLabel>Search Groups</label>
+        <input #search igxInput id="searchGroups" [(ngModel)]="searchGroups">
         <igx-suffix *ngIf="search.value.length > 0" (click)="searchGroups = null">
             <igx-icon>clear</igx-icon>
         </igx-suffix>

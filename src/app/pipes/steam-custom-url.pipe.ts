@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SteamCustomUrlPipe implements PipeTransform {
 
-  transform(customUrl: string): any {
+  transform(customUrl: string): string {
     return 'https://steamcommunity.com/id/' + customUrl;
   }
 

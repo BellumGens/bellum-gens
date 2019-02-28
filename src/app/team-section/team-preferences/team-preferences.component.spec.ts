@@ -1,6 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TeamPreferencesComponent } from './team-preferences.component';
+import { IgxListModule, IgxIconModule, IgxSwitchModule, IgxInputGroupModule, IgxAvatarModule } from 'igniteui-angular';
+import { FormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
+import { PlayerCountryPipe } from 'src/app/pipes/player-country.pipe';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { TEAM_PLACEHOLDER } from 'src/app/models/csgoteam';
 
 describe('TeamPreferencesComponent', () => {
   let component: TeamPreferencesComponent;
@@ -8,7 +14,21 @@ describe('TeamPreferencesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TeamPreferencesComponent ]
+      imports: [
+        FormsModule,
+        RouterTestingModule,
+        NoopAnimationsModule,
+        IgxListModule,
+        IgxIconModule,
+        IgxSwitchModule,
+        IgxInputGroupModule,
+        IgxInputGroupModule,
+        IgxAvatarModule
+      ],
+      declarations: [
+        TeamPreferencesComponent,
+        PlayerCountryPipe
+      ]
     })
     .compileComponents();
   }));
@@ -16,6 +36,7 @@ describe('TeamPreferencesComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(TeamPreferencesComponent);
     component = fixture.componentInstance;
+    component.team = TEAM_PLACEHOLDER;
     fixture.detectChanges();
   });
 

@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TeamNotificationsComponent } from './team-notifications.component';
+import { IgxListModule, IgxAvatarModule } from 'igniteui-angular';
+import { SortApplicationsPipe } from 'src/app/pipes/sort-applications.pipe';
+import { DisabledNotificationsPipe } from 'src/app/pipes/disabled-notifications.pipe';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('TeamNotificationsComponent', () => {
   let component: TeamNotificationsComponent;
@@ -8,7 +12,16 @@ describe('TeamNotificationsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TeamNotificationsComponent ]
+      imports: [
+        RouterTestingModule,
+        IgxListModule,
+        IgxAvatarModule
+      ],
+      declarations: [
+        TeamNotificationsComponent,
+        SortApplicationsPipe,
+        DisabledNotificationsPipe
+      ]
     })
     .compileComponents();
   }));

@@ -6,7 +6,7 @@ import { Availability } from '../models/playeravailability';
 })
 export class DaysAvailablePipe implements PipeTransform {
 
-  transform(available: Availability []): any {
+  transform(available: Availability []): Availability [] {
     return available ? available.filter(a => a.Available) : available;
   }
 

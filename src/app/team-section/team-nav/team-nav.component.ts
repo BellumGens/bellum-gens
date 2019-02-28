@@ -1,7 +1,7 @@
 import { Component, ViewChild, Input } from '@angular/core';
 import { IgxDialogComponent } from 'igniteui-angular';
 import { Router } from '@angular/router';
-import { CSGOTeam, TeamMember } from '../../models/csgoteam';
+import { CSGOTeam, TeamMember, getEmptyNewTeam } from '../../models/csgoteam';
 import { ApplicationUser } from '../../models/applicationuser';
 import { BellumgensApiService } from '../../services/bellumgens-api.service';
 import { SteamGroup } from '../../models/steamuser';
@@ -13,16 +13,7 @@ import { SteamGroup } from '../../models/steamuser';
 })
 export class TeamNavComponent {
   public searchGroups: string;
-  public newTeam: CSGOTeam = {
-    TeamName: '',
-    TeamAvatar: '',
-    Description: '',
-    Discord: '',
-    Visible: true,
-    TeamId: undefined,
-    PracticeSchedule: [],
-    Members: undefined
-  };
+  public newTeam = getEmptyNewTeam();
   public activeMembers: TeamMember [];
   public inactiveMembers: TeamMember [];
 

@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MapPoolComponent } from './map-pool.component';
+import { MapnamePipe } from '../pipes/mapname.pipe';
+import { MapimagePipe } from '../pipes/mapimage.pipe';
+import { IgxCheckboxModule, IgxCardModule } from 'igniteui-angular';
+import { OrdermapsPipe } from '../pipes/ordermaps.pipe';
 
 describe('MapPoolComponent', () => {
   let component: MapPoolComponent;
@@ -8,7 +12,16 @@ describe('MapPoolComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MapPoolComponent ]
+      imports: [
+        IgxCheckboxModule,
+        IgxCardModule
+      ],
+      declarations: [
+        MapPoolComponent,
+        MapimagePipe,
+        MapnamePipe,
+        OrdermapsPipe
+      ]
     })
     .compileComponents();
   }));
