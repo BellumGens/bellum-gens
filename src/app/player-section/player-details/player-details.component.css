@@ -19,6 +19,15 @@
   border-radius: 16px;
 }
 
+.team-avatar-link {
+  cursor: pointer;
+}
+
+.team-avatar-link:focus,
+.team-avatar-link:active {
+  outline: none;
+}
+
 .igx-card-header__title {
   margin-top: 16px;
 }
