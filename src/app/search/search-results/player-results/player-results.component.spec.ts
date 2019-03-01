@@ -5,6 +5,7 @@ import { IgxProgressBarModule, IgxCardModule, IgxAvatarModule, IgxChipsModule } 
 import { DaysAvailablePipe } from 'src/app/pipes/days-available.pipe';
 import { WeekdayPipe } from 'src/app/pipes/weekday.pipe';
 import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('PlayerResultsComponent', () => {
   let component: PlayerResultsComponent;
@@ -13,6 +14,7 @@ describe('PlayerResultsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        HttpClientTestingModule,
         RouterTestingModule,
         IgxProgressBarModule,
         IgxCardModule,

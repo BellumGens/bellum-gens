@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { MapPool } from '../models/csgomaps';
 
 @Component({
@@ -6,7 +6,7 @@ import { MapPool } from '../models/csgomaps';
   templateUrl: './map-pool.component.html',
   styleUrls: ['./map-pool.component.css']
 })
-export class MapPoolComponent implements OnInit {
+export class MapPoolComponent {
 
   @Input()
   mapPool: MapPool [];
@@ -18,9 +18,6 @@ export class MapPoolComponent implements OnInit {
   update = new EventEmitter<MapPool>();
 
   constructor() { }
-
-  ngOnInit() {
-  }
 
   public mapChange(args) {
     args.checkbox.value.IsPlayed = args.checked;

@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TeamsComponent } from './teams.component';
 import { IgxListModule, IgxProgressBarModule, IgxAvatarModule } from 'igniteui-angular';
 import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('TeamsComponent', () => {
   let component: TeamsComponent;
@@ -11,6 +12,7 @@ describe('TeamsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        HttpClientTestingModule,
         RouterTestingModule,
         IgxListModule,
         IgxProgressBarModule,

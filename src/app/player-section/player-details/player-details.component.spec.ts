@@ -22,6 +22,7 @@ import { WeekdayPipe } from 'src/app/pipes/weekday.pipe';
 import { MapnamePipe } from 'src/app/pipes/mapname.pipe';
 import { MapimagePipe } from 'src/app/pipes/mapimage.pipe';
 import { OrdermapsPipe } from 'src/app/pipes/ordermaps.pipe';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('PlayerDetailsComponent', () => {
   let component: PlayerDetailsComponent;
@@ -43,6 +44,7 @@ describe('PlayerDetailsComponent', () => {
         OrdermapsPipe
       ],
       imports: [
+        HttpClientTestingModule,
         RouterTestingModule,
         IgxProgressBarModule,
         IgxCardModule,

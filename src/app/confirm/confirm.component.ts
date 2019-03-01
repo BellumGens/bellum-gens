@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, EventEmitter, Output, ViewChild } from '@angular/core';
+import { Component, Input, EventEmitter, Output, ViewChild } from '@angular/core';
 import { IDialogEventArgs, IgxDialogComponent } from 'igniteui-angular';
 
 @Component({
@@ -6,7 +6,7 @@ import { IDialogEventArgs, IgxDialogComponent } from 'igniteui-angular';
   templateUrl: './confirm.component.html',
   styleUrls: ['./confirm.component.css']
 })
-export class ConfirmComponent implements OnInit {
+export class ConfirmComponent {
 
   @Input()
   public title = '';
@@ -22,9 +22,6 @@ export class ConfirmComponent implements OnInit {
   private confirmEntity: any;
 
   constructor() { }
-
-  ngOnInit() {
-  }
 
   public okClicked() {
     this.ok.emit(this.confirmEntity);

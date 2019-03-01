@@ -35,6 +35,7 @@ import { WeekdayPipe } from 'src/app/pipes/weekday.pipe';
 import { MapimagePipe } from 'src/app/pipes/mapimage.pipe';
 import { OrdermapsPipe } from 'src/app/pipes/ordermaps.pipe';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('TeamOverviewComponent', () => {
   let component: TeamOverviewComponent;
@@ -43,6 +44,7 @@ describe('TeamOverviewComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        HttpClientTestingModule,
         RouterTestingModule,
         FormsModule,
         NoopAnimationsModule,

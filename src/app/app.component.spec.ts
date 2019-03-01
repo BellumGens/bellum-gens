@@ -39,6 +39,7 @@ import { DisabledNotificationsPipe } from './pipes/disabled-notifications.pipe';
 import { SortNotificationsPipe } from './pipes/sort-notifications.pipe';
 import { SortApplicationsPipe } from './pipes/sort-applications.pipe';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 describe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
@@ -46,6 +47,7 @@ describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        HttpClientTestingModule,
         RouterTestingModule,
         FormsModule,
         NoopAnimationsModule,

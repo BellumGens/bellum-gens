@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { PlaystyleRole } from '../../models/playerrole';
 import { TeamSearch, TEAM_SEARCH } from '../../models/csgoteam';
 import { ApplicationUser } from '../../models/applicationuser';
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   templateUrl: './team-search.component.html',
   styleUrls: ['./team-search.component.css']
 })
-export class TeamSearchComponent implements OnInit {
+export class TeamSearchComponent {
   public searchModel: TeamSearch = TEAM_SEARCH;
 
   @Input()
@@ -24,9 +24,6 @@ export class TeamSearchComponent implements OnInit {
   ];
 
   constructor(private router: Router) { }
-
-  ngOnInit() {
-  }
 
   public searchTeams() {
     this.router.navigate(['search/teams', this.searchQuery]);

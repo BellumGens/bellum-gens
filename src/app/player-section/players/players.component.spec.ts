@@ -4,6 +4,7 @@ import { PlayersComponent } from './players.component';
 import { IgxListModule, IgxAvatarModule, IgxIconModule, IgxInputGroupModule, IgxProgressBarModule } from 'igniteui-angular';
 import { PlayerCountryPipe } from 'src/app/pipes/player-country.pipe';
 import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('PlayersComponent', () => {
   let component: PlayersComponent;
@@ -16,6 +17,7 @@ describe('PlayersComponent', () => {
         PlayerCountryPipe
       ],
       imports: [
+        HttpClientTestingModule,
         FormsModule,
         RouterTestingModule,
         IgxListModule,

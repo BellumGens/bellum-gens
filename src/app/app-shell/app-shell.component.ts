@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-app-shell',
   templateUrl: './app-shell.component.html',
   styleUrls: ['./app-shell.component.css']
 })
-export class AppShellComponent implements OnInit {
+export class AppShellComponent {
 
   constructor() { }
-
-  ngOnInit() {
-  }
 
 }

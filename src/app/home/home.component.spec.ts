@@ -5,6 +5,7 @@ import { IgxInputGroupModule, IgxIconModule, IgxCardModule, IgxListModule, IgxAv
 import { PlayersComponent } from '../player-section/players/players.component';
 import { PlayerCountryPipe } from '../pipes/player-country.pipe';
 import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -13,6 +14,7 @@ describe('HomeComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        HttpClientTestingModule,
         RouterTestingModule,
         IgxInputGroupModule,
         IgxIconModule,
