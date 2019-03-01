@@ -10,7 +10,8 @@ import { IgxProgressBarModule,
   IgxDialogModule,
   IgxChipsModule,
   IgxTimePickerModule,
-  IgxCheckboxModule} from 'igniteui-angular';
+  IgxCheckboxModule,
+  IgxListModule} from 'igniteui-angular';
 import { SteamCustomUrlPipe } from 'src/app/pipes/steam-custom-url.pipe';
 import { PlayerCountryPipe } from 'src/app/pipes/player-country.pipe';
 import { LoginComponent } from 'src/app/login/login.component';
@@ -23,6 +24,7 @@ import { MapnamePipe } from 'src/app/pipes/mapname.pipe';
 import { MapimagePipe } from 'src/app/pipes/mapimage.pipe';
 import { OrdermapsPipe } from 'src/app/pipes/ordermaps.pipe';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { SortWeaponsPipe } from 'src/app/pipes/sort-weapons.pipe';
 
 describe('PlayerDetailsComponent', () => {
   let component: PlayerDetailsComponent;
@@ -41,7 +43,8 @@ describe('PlayerDetailsComponent', () => {
         WeekdayPipe,
         MapnamePipe,
         MapimagePipe,
-        OrdermapsPipe
+        OrdermapsPipe,
+        SortWeaponsPipe
       ],
       imports: [
         HttpClientTestingModule,
@@ -55,7 +58,8 @@ describe('PlayerDetailsComponent', () => {
         IgxDialogModule,
         IgxChipsModule,
         IgxTimePickerModule,
-        IgxCheckboxModule
+        IgxCheckboxModule,
+        IgxListModule
       ]
     }).compileComponents();
   }));
