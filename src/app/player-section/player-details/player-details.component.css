@@ -42,15 +42,32 @@
   margin-bottom: 16px;
 }
 
+.player-stats__container {
+  max-width: calc(100% - 16px);
+}
+
 .player-detail__stats {
   display: flex;
   flex: 1 1 200px;
 }
 
+.player-detail__stats-span {
+  display: flex;
+  flex: 1 1 100%;
+}
+
+.player-detail__stats .igx-card,
+.player-detail__stats-span .igx-card {
+  width: 100%;
+}
+
 .player-detail__stats,
 .player-detail__stats-span {
-  margin-right: 16px;
   margin-bottom: 16px;
+}
+
+.player-detail__stats:not(:last-child) {
+  margin-right: 16px;
 }
 
 .player-detail__stats .igx-circular-bar__text {
@@ -98,3 +115,17 @@
 }
 /* END User Overview */
 
+@media screen and (max-width: 460px) {
+
+  .player-detail__stats {
+    display: flex;
+    flex: 1 1 100%;
+    width: 100%;
+    min-width: 100%;
+  }
+
+  .player-detail__stats {
+    margin-right: 0;
+  }
+
+}
