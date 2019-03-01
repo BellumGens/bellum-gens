@@ -54,6 +54,7 @@
             <igx-circular-bar [value]="player.userStats.killDeathRatio" [max]="2" [animate]="true" title="KDR" [text]="player.userStats.killDeathRatio"></igx-circular-bar>
           </igx-card-content>
         </igx-card>
+
         <igx-card class="player-detail__stats">
           <igx-card-header>
             <h4>Headshots</h4>
@@ -70,6 +71,7 @@
             <igx-circular-bar [value]="player.userStats.accuracy" [max]="100" [animate]="true" [text]="player.userStats.accuracy + '%'"></igx-circular-bar>
           </igx-card-content>
         </igx-card>
+
         <igx-card class="player-detail__stats">
           <igx-card-header>
             <h4>Top weapon</h4>
@@ -85,6 +87,7 @@
             </div>
           </igx-card-content>
         </igx-card>
+
         <igx-card class="player-detail__stats" *ngIf="player.registered">
           <igx-card-header>
             <h4>Teams</h4>
@@ -147,7 +150,27 @@
       </div>
       <!-- END Availability -->
       
-      <div class="player-stats__container">
+      <div class="player-detail-stats-container">
+        <div class="list-container">
+          <igx-list *ngIf="!player.userStatsException">
+            <igx-list-item [isHeader]="true">Weapons</igx-list-item>
+            <igx-list-item *ngFor="let weapon of player.userStats.weapons | sortWeapons">
+              <div class="horizontal-center">
+                <igx-icon class="weapon-image-small" fontSet="weapon-icons" [name]="weapon.name"></igx-icon>
+                <div class="horizontal-info__left">
+                  <span class="highlight">
+                    {{ weapon.name }}
+                  </span>
+                </div>
+              
+                <div class="horizontal-info__right">
+                  {{ weapon.kills }} kills
+                </div>
+              </div>
+            </igx-list-item>
+          </igx-list>
+        </div>
+
         <!-- Map Pool -->
         <igx-card class="player-detail__stats-span">
           <igx-card-header>

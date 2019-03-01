@@ -9,6 +9,7 @@ export interface CSGOStats {
   killDeathRatio: number;
   accuracy: number;
   favouriteWeapon: WeaponDescriptor;
+  weapons: WeaponDescriptor [];
 }
 
 export interface CSGOPlayer {

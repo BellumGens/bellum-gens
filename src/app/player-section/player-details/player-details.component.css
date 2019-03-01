@@ -55,6 +55,15 @@
   max-width: calc(100% - 16px);
 }
 
+.list-container {
+  margin-right: 16px;
+  margin-bottom: 16px;
+}
+
+.list-container .igx-list {
+  height: auto;
+}
+
 .player-detail__stats {
   display: flex;
   flex: 1 1 200px;
@@ -62,7 +71,7 @@
 
 .player-detail__stats-span {
   display: flex;
-  flex: 1 1 100%;
+  flex: 1 1 66%;
 }
 
 .player-detail__stats .igx-card,
@@ -87,7 +96,7 @@
   display: flex;
   flex: 1 1 100%;
   justify-content: space-between;
-  flex-wrap: wrap;
+  flex-flow: row wrap;
 }
 
 .player-detail-stats-loading {
@@ -117,6 +126,11 @@
 .weapon-image {
   height: 128px;
   width: 156px;
+}
+
+.weapon-image-small {
+  height: 60px;
+  width: 100px;
 }
 
 .weapon-name {
