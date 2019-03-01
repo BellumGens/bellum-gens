@@ -49,6 +49,19 @@ export const TEAM_PLACEHOLDER: CSGOTeam = {
   Members: undefined
 };
 
+export function getEmptyNewTeam(): CSGOTeam {
+  return {
+    TeamName: '',
+    TeamAvatar: '',
+    Description: '',
+    Discord: '',
+    Visible: true,
+    TeamId: undefined,
+    PracticeSchedule: [],
+    Members: undefined
+  };
+}
+
 export const TEAM_SEARCH: TeamSearch = {
   role: null,
   scheduleOverlap: 0

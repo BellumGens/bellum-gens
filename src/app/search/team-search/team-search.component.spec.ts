@@ -1,6 +1,18 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TeamSearchComponent } from './team-search.component';
+import { FormsModule } from '@angular/forms';
+import { IgxRadioModule,
+  IgxSliderModule,
+  IgxDialogModule,
+  IgxRippleModule,
+  IgxAvatarModule,
+  IgxIconModule,
+  IgxDropDownModule,
+  IgxToggleModule } from 'igniteui-angular';
+import { LoginComponent } from 'src/app/login/login.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('TeamSearchComponent', () => {
   let component: TeamSearchComponent;
@@ -8,7 +20,23 @@ describe('TeamSearchComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TeamSearchComponent ]
+      imports: [
+        FormsModule,
+        RouterTestingModule,
+        NoopAnimationsModule,
+        IgxRadioModule,
+        IgxSliderModule,
+        IgxDialogModule,
+        IgxRippleModule,
+        IgxAvatarModule,
+        IgxIconModule,
+        IgxToggleModule,
+        IgxDropDownModule
+      ],
+      declarations: [
+        TeamSearchComponent,
+        LoginComponent
+      ]
     })
     .compileComponents();
   }));

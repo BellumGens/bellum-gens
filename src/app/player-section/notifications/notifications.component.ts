@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angular/core';
+import { Component, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { ApplicationUser } from '../../models/applicationuser';
 import { IgxListComponent } from 'igniteui-angular';
 import { UserNotification, NotificationState } from '../../models/usernotifications';
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   templateUrl: './notifications.component.html',
   styleUrls: ['./notifications.component.css']
 })
-export class PlayerNotificationsComponent implements OnInit {
+export class PlayerNotificationsComponent {
 
   @Input()
   public authUser: ApplicationUser;
@@ -25,9 +25,6 @@ export class PlayerNotificationsComponent implements OnInit {
 
   constructor(private apiService: BellumgensApiService,
               private router: Router) { }
-
-  ngOnInit() {
-  }
 
   public acceptInvitation(notification: UserNotification) {
     this.loading = true;

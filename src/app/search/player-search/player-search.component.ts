@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { PLAYER_SEARCH, PlayerSearch } from '../../models/csgoplayer';
 import { PlaystyleRole } from '../../models/playerrole';
 import { ApplicationUser } from '../../models/applicationuser';
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   templateUrl: './player-search.component.html',
   styleUrls: ['./player-search.component.css']
 })
-export class PlayerSearchComponent implements OnInit {
+export class PlayerSearchComponent {
   public searchModel: PlayerSearch = PLAYER_SEARCH;
 
   @Input()
@@ -29,9 +29,6 @@ export class PlayerSearchComponent implements OnInit {
   ];
 
   constructor(private router: Router) { }
-
-  ngOnInit() {
-  }
 
   public searchPlayers() {
     if (!this.userOverlap) {

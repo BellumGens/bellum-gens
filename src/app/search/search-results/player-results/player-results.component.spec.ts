@@ -1,6 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PlayerResultsComponent } from './player-results.component';
+import { IgxProgressBarModule, IgxCardModule, IgxAvatarModule, IgxChipsModule } from 'igniteui-angular';
+import { DaysAvailablePipe } from 'src/app/pipes/days-available.pipe';
+import { WeekdayPipe } from 'src/app/pipes/weekday.pipe';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('PlayerResultsComponent', () => {
   let component: PlayerResultsComponent;
@@ -8,7 +13,19 @@ describe('PlayerResultsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PlayerResultsComponent ]
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule,
+        IgxProgressBarModule,
+        IgxCardModule,
+        IgxAvatarModule,
+        IgxChipsModule
+      ],
+      declarations: [
+        PlayerResultsComponent,
+        DaysAvailablePipe,
+        WeekdayPipe
+      ]
     })
     .compileComponents();
   }));

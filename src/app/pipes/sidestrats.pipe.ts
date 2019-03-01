@@ -7,7 +7,7 @@ import { MapPool } from '../models/csgomaps';
 })
 export class SideStratsPipe implements PipeTransform {
 
-  transform(strats: TeamStrategy [], maps: MapPool []): any {
+  transform(strats: TeamStrategy [], maps: MapPool []): TeamStrategy [] {
     return strats && maps && strats.filter(s => maps.find(m => m.Map === s.Map).IsPlayed);
   }
 

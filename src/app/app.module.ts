@@ -59,7 +59,6 @@ import { TeamApplicationComponent } from './team-section/team-application/team-a
 import { TeamOverviewComponent } from './team-section/team-overview/team-overview.component';
 import { TeamNotificationsComponent } from './team-section/team-notifications/team-notifications.component';
 import { SortApplicationsPipe } from './pipes/sort-applications.pipe';
-import { TeamCalendarComponent } from './team-section/team-calendar/team-calendar.component';
 import { MapPoolComponent } from './map-pool/map-pool.component';
 import { SideStratsPipe } from './pipes/sidestrats.pipe';
 import { AvailabilityComponent } from './availability/availability.component';
@@ -104,7 +103,6 @@ import { TeamPreferencesComponent } from './team-section/team-preferences/team-p
     TeamApplicationComponent,
     TeamOverviewComponent,
     TeamNotificationsComponent,
-    TeamCalendarComponent,
     SortApplicationsPipe,
     MapPoolComponent,
     SideStratsPipe,

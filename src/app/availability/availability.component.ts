@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Input, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
+import { Component, ViewChild, Input, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { Availability } from '../models/playeravailability';
 import { IgxTimePickerComponent,
   IChipSelectEventArgs,
@@ -11,7 +11,7 @@ import { IgxTimePickerComponent,
   templateUrl: './availability.component.html',
   styleUrls: ['./availability.component.css']
 })
-export class AvailabilityComponent implements OnInit {
+export class AvailabilityComponent {
   selectedChip: IgxChipComponent;
   public get selectedDay() {
     return this._availability;
@@ -40,9 +40,6 @@ export class AvailabilityComponent implements OnInit {
   private _availability: Availability;
 
   constructor(private _cdr: ChangeDetectorRef) { }
-
-  ngOnInit() {
-  }
 
   public daySelected(args: IChipSelectEventArgs) {
     if (this.chips && args.originalEvent) {

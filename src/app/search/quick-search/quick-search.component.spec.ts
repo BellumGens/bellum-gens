@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { QuickSearchComponent } from './quick-search.component';
+import { IgxProgressBarModule, IgxListModule, IgxAvatarModule } from 'igniteui-angular';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ReduceQuickSearchResultPipe } from 'src/app/pipes/reduce-quick-search-result.pipe';
 
 describe('QuickSearchComponent', () => {
   let component: QuickSearchComponent;
@@ -8,7 +11,16 @@ describe('QuickSearchComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ QuickSearchComponent ]
+      imports: [
+        RouterTestingModule,
+        IgxProgressBarModule,
+        IgxListModule,
+        IgxAvatarModule
+      ],
+      declarations: [
+        QuickSearchComponent,
+        ReduceQuickSearchResultPipe
+      ]
     })
     .compileComponents();
   }));

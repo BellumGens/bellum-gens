@@ -18,9 +18,10 @@ steps:
 - script: |
     npm install -g @angular/cli
     npm install
-    ng lint
-    ng run bellum-gens:app-shell:production
-  displayName: 'npm install, lint and build'
+    npm run lint
+    npm run test:prod
+    npm run build:app-shell
+  displayName: 'npm install, lint, test and build'
 
 # Publish Build Artifacts to Azure Pipelines
 - task: PublishBuildArtifacts@1

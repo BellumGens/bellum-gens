@@ -22,7 +22,7 @@
       <div class="player-overview-container">
         <h4>Overview</h4>
         
-        <div *ngIf="!playerIsUser && player.registered">
+        <div *ngIf="player.registered && !playerIsUser">
           <button igxButton="raised" [disabled]="true">Send message <igx-icon>mail</igx-icon></button>
           <button *ngIf="authUser?.TeamAdmin.length > 0" igxButton="flat" igxRipple class="title margin-left" [igxToggleAction]="teamInvite">
             Invite to team
@@ -90,7 +90,7 @@
             <h4>Teams</h4>
           </igx-card-header>
           <igx-card-content>
-            <igx-avatar *ngFor="let team of player?.teams" [initials]="team.TeamName" [src]="team.TeamAvatar" roundShape="true" [size]="'large'">
+            <igx-avatar class="team-avatar-link" *ngFor="let team of player?.teams" [initials]="team.TeamName" [src]="team.TeamAvatar" [routerLink]="['/team', team.TeamId]" roundShape="true" [size]="'large'">
             </igx-avatar>
             <h4 *ngIf="!player?.teams.length">Not a member of a team yet.</h4>
           </igx-card-content>
@@ -149,18 +149,16 @@
       
       <div class="player-stats__container">
         <!-- Map Pool -->
-        <div class="player-detail-stats-container">
-          <igx-card>
-            <igx-card-header>
-              <h4>Maps</h4>
-            </igx-card-header>
-            <igx-card-content>
-              <app-map-pool [readOnly]="!playerIsUser"
-                [mapPool]="player?.mapPool"
-                (update)="mapChange($event)"></app-map-pool>
-            </igx-card-content>
-          </igx-card>
-        </div>
+        <igx-card class="player-detail__stats-span">
+          <igx-card-header>
+            <h4>Maps</h4>
+          </igx-card-header>
+          <igx-card-content>
+            <app-map-pool [readOnly]="!playerIsUser"
+              [mapPool]="player?.mapPool"
+              (update)="mapChange($event)"></app-map-pool>
+          </igx-card-content>
+        </igx-card>
         <!-- END Map Pool -->
       </div>
         

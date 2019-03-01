@@ -8,7 +8,7 @@ import { CSGOTeam } from '../../../models/csgoteam';
   templateUrl: './team-results.component.html',
   styleUrls: ['./team-results.component.css']
 })
-export class TeamResultsComponent implements OnInit {
+export class TeamResultsComponent {
   public teams: CSGOTeam [];
   public loading = true;
   public query: string;
@@ -21,11 +21,7 @@ export class TeamResultsComponent implements OnInit {
         this.apiService.searchTeams(params.query);
       }
     });
-  }
-
-  ngOnInit() {
     this.apiService.loadingSearch.subscribe(loading => this.loading = loading);
     this.apiService.teamSearchResult.subscribe(players => this.teams = players);
   }
-
 }

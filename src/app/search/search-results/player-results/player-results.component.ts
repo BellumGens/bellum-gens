@@ -8,7 +8,7 @@ import { CSGOPlayer } from '../../../models/csgoplayer';
   templateUrl: './player-results.component.html',
   styleUrls: ['./player-results.component.css']
 })
-export class PlayerResultsComponent implements OnInit {
+export class PlayerResultsComponent {
   public players: CSGOPlayer [];
   public loading = true;
 
@@ -19,9 +19,6 @@ export class PlayerResultsComponent implements OnInit {
         this.apiService.searchPlayers(params.query);
       }
     });
-  }
-
-  ngOnInit() {
     this.apiService.loadingSearch.subscribe(loading => this.loading = loading);
     this.apiService.playerSearchResult.subscribe(players => this.players = players);
   }

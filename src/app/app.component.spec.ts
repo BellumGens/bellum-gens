@@ -1,25 +1,107 @@
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { IgxNavigationDrawerModule, IgxNavbarModule, IgxLayoutModule, IgxRippleModule } from 'igniteui-angular';
+import { IgxNavigationDrawerModule,
+  IgxNavbarModule,
+  IgxLayoutModule,
+  IgxRippleModule,
+  IgxIconModule,
+  IgxDropDownModule,
+  IgxInputGroupModule,
+  IgxToggleModule,
+  IgxBadgeModule,
+  IgxBannerModule,
+  IgxButtonModule,
+  IgxSnackbarModule,
+  IgxAvatarModule,
+  IgxCardModule,
+  IgxListModule,
+  IgxDialogModule,
+  IgxProgressBarModule,
+  IgxButtonGroupModule,
+  IgxSliderModule,
+  IgxRadioModule} from 'igniteui-angular';
+import { SuccessErrorComponent } from './success-error/success-error.component';
+import { NotificationsComponent } from './notifications/notifications.component';
+import { TeamNavComponent } from './team-section/team-nav/team-nav.component';
+import { LoginComponent } from './login/login.component';
+import { QuickSearchComponent } from './search/quick-search/quick-search.component';
+import { SearchComponent } from './search/search/search.component';
+import { TeamNotificationsComponent } from './team-section/team-notifications/team-notifications.component';
+import { PlayerNotificationsComponent } from './player-section/notifications/notifications.component';
+import { FormsModule } from '@angular/forms';
+import { ConfirmComponent } from './confirm/confirm.component';
+import { GroupsFilterPipe } from './pipes/groups-filter.pipe';
+import { ReduceQuickSearchResultPipe } from './pipes/reduce-quick-search-result.pipe';
+import { PlayerSearchComponent } from './search/player-search/player-search.component';
+import { TeamSearchComponent } from './search/team-search/team-search.component';
+import { DisabledNotificationsPipe } from './pipes/disabled-notifications.pipe';
+import { SortNotificationsPipe } from './pipes/sort-notifications.pipe';
+import { SortApplicationsPipe } from './pipes/sort-applications.pipe';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 describe('AppComponent', () => {
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        HttpClientTestingModule,
         RouterTestingModule,
+        FormsModule,
+        NoopAnimationsModule,
         IgxNavigationDrawerModule,
         IgxNavbarModule,
         IgxLayoutModule,
-        IgxRippleModule
+        IgxIconModule,
+        IgxToggleModule,
+        IgxDropDownModule,
+        IgxInputGroupModule,
+        IgxBadgeModule,
+        IgxBannerModule,
+        IgxButtonModule,
+        IgxNavbarModule,
+        IgxSnackbarModule,
+        IgxAvatarModule,
+        IgxCardModule,
+        IgxListModule,
+        IgxDialogModule,
+        IgxRippleModule,
+        IgxProgressBarModule,
+        IgxButtonGroupModule,
+        IgxSliderModule,
+        IgxRadioModule
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        SuccessErrorComponent,
+        NotificationsComponent,
+        TeamNavComponent,
+        LoginComponent,
+        QuickSearchComponent,
+        SearchComponent,
+        TeamNotificationsComponent,
+        PlayerNotificationsComponent,
+        ConfirmComponent,
+        PlayerSearchComponent,
+        TeamSearchComponent,
+        GroupsFilterPipe,
+        ReduceQuickSearchResultPipe,
+        DisabledNotificationsPipe,
+        SortApplicationsPipe,
+        SortNotificationsPipe
       ],
     }).compileComponents();
   }));
-  it('should create the app', async(() => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app).toBeTruthy();
-  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create the app', () => {
+    expect(component).toBeTruthy();
+  });
 });
