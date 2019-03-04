@@ -48,7 +48,7 @@
       <div *ngIf="player?.userStats" class="player-detail-stats-container">
         <igx-card class="player-detail__stats">
           <igx-card-header>
-            <h4>KDR</h4>
+            <h4 class="igx-card-header__title">KDR</h4>
           </igx-card-header>
           <igx-card-content class="center-items">
             <igx-circular-bar [value]="player.userStats.killDeathRatio" [max]="2" [animate]="true" title="KDR" [text]="player.userStats.killDeathRatio"></igx-circular-bar>
@@ -57,7 +57,7 @@
 
         <igx-card class="player-detail__stats">
           <igx-card-header>
-            <h4>Headshots</h4>
+            <h4 class="igx-card-header__title">Headshots</h4>
           </igx-card-header>
           <igx-card-content class="center-items">
             <igx-circular-bar [value]="player.userStats.headshotPercentage" [max]="100" [animate]="true" title="Headshot Percentage" [text]="player.userStats.headshotPercentage + '%'"></igx-circular-bar>
@@ -65,7 +65,7 @@
         </igx-card>
         <igx-card class="player-detail__stats">
           <igx-card-header>
-            <h4>Accuracy</h4>
+            <h4 class="igx-card-header__title">Accuracy</h4>
           </igx-card-header>
           <igx-card-content class="center-items">
             <igx-circular-bar [value]="player.userStats.accuracy" [max]="100" [animate]="true" [text]="player.userStats.accuracy + '%'"></igx-circular-bar>
@@ -74,7 +74,7 @@
 
         <igx-card class="player-detail__stats">
           <igx-card-header>
-            <h4>Top weapon</h4>
+            <h4 class="igx-card-header__title">Top weapon</h4>
           </igx-card-header>
           <igx-card-content class="center-items">
             <div>
@@ -90,10 +90,10 @@
 
         <igx-card class="player-detail__stats" *ngIf="player.registered">
           <igx-card-header>
-            <h4>Teams</h4>
+            <h4 class="igx-card-header__title">Teams</h4>
           </igx-card-header>
           <igx-card-content>
-            <igx-avatar class="team-avatar-link" *ngFor="let team of player?.teams" [initials]="team.TeamName" [src]="team.TeamAvatar" [routerLink]="['/team', team.TeamId]" roundShape="true" [size]="'large'">
+            <igx-avatar class="team-avatar-link" *ngFor="let team of player?.teams" [initials]="team.TeamName" [src]="team.TeamAvatar" [title]="team.TeamName" [routerLink]="['/team', team.TeamId]" roundShape="true" [size]="'large'">
             </igx-avatar>
             <h4 *ngIf="!player?.teams.length">Not a member of a team yet.</h4>
           </igx-card-content>
@@ -174,7 +174,7 @@
         <!-- Map Pool -->
         <igx-card class="player-detail__stats-span">
           <igx-card-header>
-            <h4>Maps</h4>
+            <h4 class="igx-card-header__title">Maps</h4>
           </igx-card-header>
           <igx-card-content>
             <app-map-pool [readOnly]="!playerIsUser"
