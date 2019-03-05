@@ -1,6 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 /* See: https://www.infragistics.com/products/ignite-ui-angular/angular/components/themes.html */
 @import "~igniteui-angular/lib/core/styles/themes/index";
+@import "normalize";
+
+@include normalize();
 @include igx-core();
 
 $primary: white !default;
