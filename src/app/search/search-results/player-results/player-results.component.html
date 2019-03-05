@@ -14,7 +14,7 @@
           </div>
         </div>
 
-        <div class="horizontal-info__right--column">
+        <div class="horizontal-info__right--column" *ngIf="player.userStats">
           <div class="horizontal-center">
             <igx-circular-bar class="icon-avatar" [value]="player.userStats.killDeathRatio" [max]="2" [animate]="true" [textVisibility]="false" title="KDR"></igx-circular-bar>
             <span class="title margin-left">{{ player.userStats.killDeathRatio }}</span>
