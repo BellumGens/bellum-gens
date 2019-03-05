@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PlayerResultsComponent } from './player-results.component';
-import { IgxProgressBarModule, IgxCardModule, IgxAvatarModule, IgxChipsModule } from 'igniteui-angular';
+import { IgxProgressBarModule, IgxCardModule, IgxAvatarModule, IgxChipsModule, IgxIconModule } from 'igniteui-angular';
 import { DaysAvailablePipe } from 'src/app/pipes/days-available.pipe';
 import { WeekdayPipe } from 'src/app/pipes/weekday.pipe';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -19,7 +19,8 @@ describe('PlayerResultsComponent', () => {
         IgxProgressBarModule,
         IgxCardModule,
         IgxAvatarModule,
-        IgxChipsModule
+        IgxChipsModule,
+        IgxIconModule
       ],
       declarations: [
         PlayerResultsComponent,
