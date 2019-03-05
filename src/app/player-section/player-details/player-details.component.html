@@ -151,7 +151,7 @@
       <!-- END Availability -->
       
       <div class="player-detail-stats-container">
-        <div class="list-container">
+        <div class="list-container weapon-list">
           <igx-list *ngIf="!player.userStatsException">
             <igx-list-item [isHeader]="true">Weapons</igx-list-item>
             <igx-list-item *ngFor="let weapon of player.userStats.weapons | sortWeapons">

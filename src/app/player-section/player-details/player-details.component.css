@@ -55,12 +55,12 @@
   max-width: 100%;
 }
 
-.list-container {
+.weapon-list {
   margin-right: 16px;
   margin-bottom: 16px;
 }
 
-.list-container .igx-list {
+.weapon-list .igx-list {
   height: auto;
 }
 

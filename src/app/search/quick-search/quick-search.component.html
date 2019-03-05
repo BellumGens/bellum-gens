@@ -8,10 +8,8 @@
           </div>
         </div>
     </ng-template>
-    <ng-template igxEmptyList>
-        <div class="center-message"><span>Nobody is active...</span></div>
-    </ng-template>
     <igx-list-item [isHeader]="true">Players</igx-list-item>
+    <igx-list-item *ngIf="!searchResult.Players.length">No matching players...</igx-list-item>
     <igx-list-item #item *ngFor="let user of searchResult.Players | reduceQuickSearchResult">
       <div class="horizontal-center">
         <igx-avatar [src]="user.steamUser.avatarMedium" [initials]="user.steamUser.steamID" roundShape="true">
@@ -52,10 +50,8 @@
         </div>
       </div>
     </ng-template>
-    <ng-template igxEmptyList>
-      <div class="center-message"><span>No teams recruiting...</span></div>
-    </ng-template>
     <igx-list-item [isHeader]="true">Teams</igx-list-item>
+    <igx-list-item *ngIf="!searchResult.Teams.length">No matching teams...</igx-list-item>
     <igx-list-item *ngFor="let team of searchResult.Teams | reduceQuickSearchResult">
       <div class="horizontal-center">
         <igx-avatar [src]="team.TeamAvatar" [initials]="team.TeamName" roundShape="true">
