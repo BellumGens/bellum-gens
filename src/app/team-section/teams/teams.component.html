@@ -7,14 +7,14 @@
       </div>
     </div>
   </ng-template>
-  <igx-list-item [isHeader]="true">Teams</igx-list-item>
-  <igx-list-item *ngFor="let team of csgoTeams">
+  <igx-list-item [isHeader]="true">Newest Teams</igx-list-item>
+  <igx-list-item *ngFor="let team of csgoTeams" [routerLink]="['/team', team.TeamId]">
     <div class="horizontal-center">
       <igx-avatar [src]="team.TeamAvatar" [initials]="team.TeamName" roundShape="true">
       </igx-avatar>
       <div class="horizontal-info__left">
         <span class="title">
-          <a [routerLink]="['/team', team.TeamId]">
+          <a>
             {{ team.TeamName }}
           </a>
         </span>

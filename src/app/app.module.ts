@@ -206,5 +206,6 @@ export class AppModule {
     this.iconService.addSvgIcon('elite', '/assets/weapon-icons/svg_normal/weapon_elite.svg', 'weapon-icons');
     this.iconService.addSvgIcon('sawedoff', '/assets/weapon-icons/svg_normal/weapon_sawedoff.svg', 'weapon-icons');
     this.iconService.addSvgIcon('taser', '/assets/weapon-icons/svg_normal/weapon_taser.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('headshot', '/assets/headshot24x24.svg', 'weapon-icons');
   }
 }

@@ -31,8 +31,8 @@
             <span class="title margin-left">{{ user.userStats.killDeathRatio }}</span>
           </div>
           <div class="horizontal-center">
-            <igx-avatar src="assets/hs-img.jpg" title="Headshot Percentage" roundShape="true" class="icon-avatar"></igx-avatar>
-            <span class="title margin-left">{{ user.userStats.headshotPercentage }}%</span>
+            <igx-icon fontSet="weapon-icons" name="headshot" class="icon-avatar"></igx-icon>
+            <span class="title margin-left">{{ user.userStats.headshotPercentage | number:'1.2' }}%</span>
           </div>
         </div>
       </div>

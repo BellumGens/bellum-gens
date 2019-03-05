@@ -7,18 +7,15 @@
       </div>
     </div>
   </ng-template>
-  <ng-template igxEmptyList>
-    <div class="center-message"><span>Nobody is active...</span></div>
-  </ng-template>
   <igx-list-item [isHeader]="true">Newest Players</igx-list-item>
-  <igx-list-item #item *ngFor="let user of activeUsers">
+  <igx-list-item #item *ngFor="let user of activeUsers" [routerLink]="['/players', user.steamUser.steamID64]">
     <div class="horizontal-center">
       <igx-avatar [src]="user.steamUser.avatarMedium" [initials]="user.steamUser.steamID" roundShape="true">
       </igx-avatar>
       <igx-avatar [src]="user?.steamUser?.country | playerCountry" [roundShape]="true" [title]="user.steamUser.country" class="country-badge-small"></igx-avatar>
       <div class="horizontal-info__left">
         <span class="title">
-          <a [routerLink]="['/players', user.steamUser.steamID64]">
+          <a>
             {{ user.steamUser.steamID }}
             <!-- <igx-avatar [src]="'assets/csgo-ranks/icons/skillgroup14.png'" class="skill-badge" [roundShape]="true"></igx-avatar> -->
           </a>
@@ -33,8 +30,8 @@
           </div>
     
           <div class="horizontal-center">
-            <igx-avatar src="assets/hs-img.jpg" title="Headshot Percentage" roundShape="true" class="icon-avatar"></igx-avatar>
-            <span class="title margin-left">{{ user.userStats.headshotPercentage }}%</span>
+            <igx-icon fontSet="weapon-icons" name="headshot" class="icon-avatar"></igx-icon>
+            <span class="title margin-left">{{ user.userStats.headshotPercentage | number:'1.2' }}%</span>
           </div>
       </div>
     </div>
