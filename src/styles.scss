@@ -1,6 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
 /* See: https://www.infragistics.com/products/ignite-ui-angular/angular/components/themes.html */
 @import "~igniteui-angular/lib/core/styles/themes/index";
+@import "normalize";
+
+@include normalize();
 @include igx-core();
 
 $primary: white !default;
@@ -434,6 +437,7 @@ textarea {
   flex: 0 1 360px;
   min-width: 360px;
   margin-bottom: 24px;
+  margin-right: 24px;
 }
 
 .search-result:focus {
@@ -445,6 +449,7 @@ textarea {
   min-width: 24px;
   max-width: 24px;
   height: 24px;
+  background-color: transparent;
 }
 /* END SEARCH */
 

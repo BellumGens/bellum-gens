@@ -6,6 +6,7 @@ import { PlayersComponent } from '../player-section/players/players.component';
 import { PlayerCountryPipe } from '../pipes/player-country.pipe';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { TeamsComponent } from '../team-section/teams/teams.component';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -25,6 +26,7 @@ describe('HomeComponent', () => {
       ],
       declarations: [
         HomeComponent,
+        TeamsComponent,
         PlayersComponent,
         PlayerCountryPipe
       ]

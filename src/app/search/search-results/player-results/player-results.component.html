@@ -2,7 +2,7 @@
   <igx-circular-bar class="loading-user-data" [indeterminate]="true"></igx-circular-bar>
 </div>
 
-<div *ngIf="!loading" class="horizontal space-between">
+<div *ngIf="!loading" class="horizontal">
   <igx-card *ngFor="let player of players" igxRipple class="search-result" [routerLink]="['/players', player.steamUser.steamID64]">
     <igx-card-header>
       <div class="horizontal-center">
@@ -14,15 +14,19 @@
           </div>
         </div>
 
-        <div class="horizontal-info__right--column">
+        <div class="horizontal-info__right--column" *ngIf="!player.userStatsException">
           <div class="horizontal-center">
             <igx-circular-bar class="icon-avatar" [value]="player.userStats.killDeathRatio" [max]="2" [animate]="true" [textVisibility]="false" title="KDR"></igx-circular-bar>
             <span class="title margin-left">{{ player.userStats.killDeathRatio }}</span>
           </div>
           <div class="horizontal-center">
-            <igx-avatar src="assets/hs-img.jpg" title="Headshot Percentage" roundShape="true" class="icon-avatar"></igx-avatar>
-            <span class="title margin-left">{{ player.userStats.headshotPercentage }}%</span>
+            <igx-icon fontSet="weapon-icons" name="headshot" class="icon-avatar"></igx-icon>
+            <span class="title margin-left">{{ player.userStats.headshotPercentage | number:'1.2' }}%</span>
           </div>
+        </div>
+
+        <div class="horizontal-info__right" *ngIf="player.userStatsException">
+          <span class="title">Private</span>
         </div>
       </div>
     </igx-card-header>

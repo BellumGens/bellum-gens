@@ -34,7 +34,7 @@
 
 .country-badge-large {
   position: relative;
-  top: -109px;
+  top: -63px;
   left: -38px;
   width: 52px;
   height: 52px;
@@ -52,15 +52,15 @@
 }
 
 .player-stats__container {
-  max-width: calc(100% - 16px);
+  max-width: 100%;
 }
 
-.list-container {
+.weapon-list {
   margin-right: 16px;
   margin-bottom: 16px;
 }
 
-.list-container .igx-list {
+.weapon-list .igx-list {
   height: auto;
 }
 
@@ -72,6 +72,11 @@
 .player-detail__stats-span {
   display: flex;
   flex: 1 1 66%;
+}
+
+.player-detail__stats igx-card-header,
+.player-detail__stats-span igx-card-header {
+  height: 50px;
 }
 
 .player-detail__stats .igx-card,
@@ -125,7 +130,7 @@
 
 .weapon-image {
   height: 128px;
-  width: 156px;
+  width: 200px;
 }
 
 .weapon-image-small {
@@ -147,7 +152,8 @@
     min-width: 100%;
   }
 
-  .player-detail__stats {
+  .player-detail__stats,
+  .player-detail__stats:not(:last-child) {
     margin-right: 0;
   }
 
