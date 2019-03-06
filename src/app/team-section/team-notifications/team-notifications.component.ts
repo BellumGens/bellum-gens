@@ -19,6 +19,9 @@ export class TeamNotificationsComponent implements OnInit {
   @Output()
   loaded = new EventEmitter<TeamApplication []>();
 
+  @Output()
+  changed = new EventEmitter<number>();
+
   @ViewChild(IgxListComponent) public notifications: IgxListComponent;
 
   constructor(private apiService: BellumgensApiService) {
@@ -29,7 +32,6 @@ export class TeamNotificationsComponent implements OnInit {
       this.apiService.teamApplications(this.team.TeamId).subscribe(data => {
         this.applications = data;
         this.loaded.emit(data);
-        this.loaded.emit(this.applications);
       });
     }
   }
@@ -38,6 +40,7 @@ export class TeamNotificationsComponent implements OnInit {
     this.apiService.approveApplication(application).subscribe(data => {
       application = data;
       this.pipeTrigger++;
+      this.changed.emit(-1);
     });
   }
 
@@ -45,7 +48,7 @@ export class TeamNotificationsComponent implements OnInit {
     this.apiService.rejectApplication(application).subscribe(data => {
       application = data;
       this.pipeTrigger++;
-      this.loaded.emit(this.applications);
+      this.changed.emit(-1);
     });
   }
 }
