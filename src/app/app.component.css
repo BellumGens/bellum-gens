@@ -14,14 +14,16 @@
   height: 100%;
 }
 
-.home-button {
-  height: 24px;
+.action-button-container {
+  position: relative;
+  display: flex;
+  align-items: center;
 }
 
 .notifications-badge {
-  position: relative;
+  position: absolute;
   top: -12px;
-  left: -24px;
+  left: 12px;
 }
 
 .search-group {

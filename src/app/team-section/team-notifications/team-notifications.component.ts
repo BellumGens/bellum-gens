@@ -11,12 +11,16 @@ import { BellumgensApiService } from '../../services/bellumgens-api.service';
 export class TeamNotificationsComponent implements OnInit {
   notificationClass = ['', '', 'notification-disabled', 'notification-disabled'];
   applications: TeamApplication [];
+  public pipeTrigger = 0;
 
   @Input()
   team: CSGOTeam;
 
   @Output()
   loaded = new EventEmitter<TeamApplication []>();
+
+  @Output()
+  changed = new EventEmitter<number>();
 
   @ViewChild(IgxListComponent) public notifications: IgxListComponent;
 
@@ -33,10 +37,18 @@ export class TeamNotificationsComponent implements OnInit {
   }
 
   public approveApplication(application: TeamApplication) {
-    this.apiService.approveApplication(application).subscribe(data => application = data);
+    this.apiService.approveApplication(application).subscribe(data => {
+      application = data;
+      this.pipeTrigger++;
+      this.changed.emit(-1);
+    });
   }
 
   public rejectApplication(application: TeamApplication) {
-    this.apiService.rejectApplication(application).subscribe(data => application = data);
+    this.apiService.rejectApplication(application).subscribe(data => {
+      application = data;
+      this.pipeTrigger++;
+      this.changed.emit(-1);
+    });
   }
 }

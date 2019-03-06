@@ -29,4 +29,8 @@ export class NotificationsComponent implements OnInit {
     }
   }
 
+  public changed(args: number) {
+    this.loaded.emit(args);
+  }
+
 }

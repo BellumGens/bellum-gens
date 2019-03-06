@@ -14,9 +14,14 @@
           <igx-icon>clear</igx-icon>
         </igx-suffix>
       </igx-input-group>
-      <igx-icon class="button-icon" [igxToggleAction]="myTeam" [overlaySettings]="overlaySettings" *ngIf="authUser">people</igx-icon>
-      <igx-icon class="button-icon" [igxToggleAction]="notifications" [overlaySettings]="overlaySettings" *ngIf="authUser">notifications</igx-icon>
-      <igx-badge class="notifications-badge" *ngIf="unreadNotifications > 0" [value]="unreadNotifications" type="info"></igx-badge>
+      <div class="action-button-container" [igxToggleAction]="myTeam" [overlaySettings]="overlaySettings" *ngIf="authUser">
+        <igx-icon class="button-icon">people</igx-icon>
+        <igx-badge class="notifications-badge" *ngIf="authUser.Teams?.length > 0" [value]="authUser.Teams?.length" type="info"></igx-badge>
+      </div>
+      <div class="action-button-container" [igxToggleAction]="notifications" [overlaySettings]="overlaySettings" *ngIf="authUser">
+        <igx-icon class="button-icon">notifications</igx-icon>
+        <igx-badge class="notifications-badge" *ngIf="unreadNotifications > 0" [value]="unreadNotifications" type="info"></igx-badge>
+      </div>
 
       <app-login [authUser]='authUser'></app-login>
     </igx-navbar>
