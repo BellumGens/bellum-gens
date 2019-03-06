@@ -143,7 +143,12 @@
 }
 /* END User Overview */
 
-@media screen and (max-width: 460px) {
+@media only screen and (max-width: 495px) {
+
+  /* Team and Player Details */
+  .left-details-container {
+    width: 100%;
+  }
 
   .player-detail__stats {
     display: flex;
@@ -155,6 +160,13 @@
   .player-detail__stats,
   .player-detail__stats:not(:last-child) {
     margin-right: 0;
+  }
+
+  .weapon-list {
+    flex: 1 1 100%;
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 16px;
   }
 
 }

@@ -1,0 +1,5 @@
+@media only screen and (max-width: 512px) {
+  .map-wrapper {
+    max-width: 100%;
+  }
+}

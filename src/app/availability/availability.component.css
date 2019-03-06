@@ -26,3 +26,9 @@
 igx-chip {
   width: 232px;
 }
+
+@media only screen and (max-width: 495px) {
+  igx-chip {
+    width: 100%;
+  }
+}

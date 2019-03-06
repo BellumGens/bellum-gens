@@ -38,11 +38,19 @@
     flex: 1 1 100%;
     width: 100%;
     margin-left: 0;
+    margin-bottom: 8px;
+  }
+
+  .middle-card {
+    flex: 1 1 100%;
+    margin: 0;
   }
 }
 
-@media only screen and (max-width: 1010px) {
+@media only screen and (min-width: 681px) and (max-width: 1020px) {
   .list-container {
+    flex: 1 1 45%;
+    width: 50%;
     margin-bottom: 8px;
   }
 
