@@ -22,6 +22,9 @@ export class PlayerNotificationsComponent {
   @Output()
   public loaded = new EventEmitter<UserNotification []>();
 
+  @Output()
+  public changed = new EventEmitter<number>();
+
   @ViewChild(IgxListComponent) public notifications: IgxListComponent;
 
   constructor(private apiService: BellumgensApiService,
@@ -34,6 +37,7 @@ export class PlayerNotificationsComponent {
         notification.State = NotificationState.Accepted;
         this.pipeTrigger++;
         this.router.navigate(['team', notification.TeamInfo.TeamId]);
+        this.changed.emit(-1);
       }
     );
   }
@@ -44,6 +48,7 @@ export class PlayerNotificationsComponent {
       _ => {
         notification.State = NotificationState.Rejected;
         this.pipeTrigger++;
+        this.changed.emit(-1);
       }
     );
   }

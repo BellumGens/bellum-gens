@@ -29,6 +29,7 @@ export class TeamNotificationsComponent implements OnInit {
       this.apiService.teamApplications(this.team.TeamId).subscribe(data => {
         this.applications = data;
         this.loaded.emit(data);
+        this.loaded.emit(this.applications);
       });
     }
   }
@@ -44,6 +45,7 @@ export class TeamNotificationsComponent implements OnInit {
     this.apiService.rejectApplication(application).subscribe(data => {
       application = data;
       this.pipeTrigger++;
+      this.loaded.emit(this.applications);
     });
   }
 }
