@@ -11,6 +11,7 @@ import { BellumgensApiService } from '../../services/bellumgens-api.service';
 export class TeamNotificationsComponent implements OnInit {
   notificationClass = ['', '', 'notification-disabled', 'notification-disabled'];
   applications: TeamApplication [];
+  public pipeTrigger = 0;
 
   @Input()
   team: CSGOTeam;
@@ -33,10 +34,16 @@ export class TeamNotificationsComponent implements OnInit {
   }
 
   public approveApplication(application: TeamApplication) {
-    this.apiService.approveApplication(application).subscribe(data => application = data);
+    this.apiService.approveApplication(application).subscribe(data => {
+      application = data;
+      this.pipeTrigger++;
+    });
   }
 
   public rejectApplication(application: TeamApplication) {
-    this.apiService.rejectApplication(application).subscribe(data => application = data);
+    this.apiService.rejectApplication(application).subscribe(data => {
+      application = data;
+      this.pipeTrigger++;
+    });
   }
 }

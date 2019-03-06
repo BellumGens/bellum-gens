@@ -1,6 +1,6 @@
 <igx-list *ngIf="applications?.length">
   <igx-list-item [isHeader]="true">Notifications for {{ team.TeamName }}</igx-list-item>
-  <igx-list-item *ngFor="let notification of applications | sortApplications">
+  <igx-list-item *ngFor="let notification of applications | sortApplications:pipeTrigger">
     <div [class]="'horizontal-center ' + notificationClass[notification.State]">
       <igx-avatar [src]="notification.UserInfo.avatarFull" [initials]="notification.UserInfo.steamID" roundShape="true">
       </igx-avatar>

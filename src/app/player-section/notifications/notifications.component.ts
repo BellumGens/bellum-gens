@@ -17,6 +17,7 @@ export class PlayerNotificationsComponent {
   public authUser: ApplicationUser;
   public loading = false;
   public notificationClass = ['', '', 'notification-disabled', 'notification-disabled'];
+  public pipeTrigger = 0;
 
   @Output()
   public loaded = new EventEmitter<UserNotification []>();
@@ -31,6 +32,7 @@ export class PlayerNotificationsComponent {
     this.apiService.acceptInvite(notification).pipe(finalize(() => this.loading = false)).subscribe(
       _ => {
         notification.State = NotificationState.Accepted;
+        this.pipeTrigger++;
         this.router.navigate(['team', notification.TeamInfo.TeamId]);
       }
     );
@@ -39,7 +41,10 @@ export class PlayerNotificationsComponent {
   public rejectInvitation(notification: UserNotification) {
     this.loading = true;
     this.apiService.rejectInvite(notification).pipe(finalize(() => this.loading = false)).subscribe(
-      _ => notification.State = NotificationState.Rejected
+      _ => {
+        notification.State = NotificationState.Rejected;
+        this.pipeTrigger++;
+      }
     );
   }
 
