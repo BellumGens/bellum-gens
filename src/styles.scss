@@ -167,8 +167,11 @@ html, body {
 
 /* ICONS */
 igx-icon {
-  cursor: pointer;
   user-select: none;
+}
+
+.navigatable {
+  cursor: pointer;
 }
 
 .button-icon {

@@ -35,7 +35,7 @@ import { IgxNavbarModule,
   IgxButtonGroupModule,
   IgxIconService,
   IgxSliderModule,
-  IgxSwitchModule} from 'igniteui-angular';
+  IgxSwitchModule } from 'igniteui-angular';
 import { PlayersComponent } from './player-section/players/players.component';
 import { PlayerDetailsComponent } from './player-section/player-details/player-details.component';
 import { LoginService } from './services/login.service';
