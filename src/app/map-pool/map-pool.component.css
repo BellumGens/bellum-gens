@@ -1,5 +1,21 @@
 @media only screen and (max-width: 512px) {
-  .map-wrapper {
+  .map-column {
     max-width: 100%;
   }
+}
+
+.map-column {
+  display: flex;
+  flex: 1 1 320px;
+  margin: 8px;
+  max-width: 320px;
+}
+
+.map-wrapper {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.map-inactive {
+  opacity: 0.5;
 }

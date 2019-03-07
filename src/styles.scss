@@ -5,6 +5,10 @@
 
 @include igx-core();
 
+@include igx-typography(
+  $font-family: "'Poppins', sans-serif"
+);
+
 $primary: white !default;
 $secondary: #FF0A3A !default;
 $background: #192053;
@@ -363,27 +367,6 @@ a {
 
 .card-margins {
   margin: 8px 0px 0px 8px;
-}
-
-.card-wrapper {
-  display: flex;
-  flex-flow: row wrap;
-  padding: 0;
-}
-
-.map-column {
-  display: flex;
-  flex-flow: row wrap;
-  margin: 8px;
-  min-width: 200px;
-}
-
-.map-wrapper {
-  max-width: 200px;
-}
-
-.map-inactive {
-  opacity: 0.5;
 }
 
 .highlight {
