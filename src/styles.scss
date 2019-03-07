@@ -1,9 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 /* See: https://www.infragistics.com/products/ignite-ui-angular/angular/components/themes.html */
 @import "~igniteui-angular/lib/core/styles/themes/index";
-@import "normalize";
+@import "~minireset.css/minireset";
 
-@include normalize();
 @include igx-core();
 
 $primary: white !default;
@@ -116,11 +115,6 @@ $time-picker-theme: igx-time-picker-theme($background-color: $background);
 // @include igx-avatar($avatar-theme);
 // /* END Avatar */
 
-// /* Navbar */
-// $navbar-theme: igx-navbar-theme($app-palette);
-// @include igx-navbar($navbar-theme);
-// /* END Navbar */
-
 // /* Ripple */
 // $ripple-theme: igx-ripple-theme($app-palette);
 // @include igx-ripple($ripple-theme);
@@ -218,12 +212,6 @@ igx-icon {
   display: flex;
   flex: 0 0 100%;
   flex-wrap: nowrap;
-}
-
-@media screen and (max-width: 720px) {
-  .overview-container {
-    flex-wrap: wrap;
-  }
 }
 /* END Team and Player Details */
 
@@ -454,3 +442,15 @@ textarea {
 /* END SEARCH */
 
 
+
+@media screen and (max-width: 720px) {
+  .overview-container {
+    flex-wrap: wrap;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .bellum-gens-navbar .igx-navbar__title {
+    display: none;
+  }
+}
