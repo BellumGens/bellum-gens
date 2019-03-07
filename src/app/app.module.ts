@@ -80,6 +80,8 @@ import { DaysAvailablePipe } from './pipes/days-available.pipe';
 import { OpenPositionsPipe } from './pipes/open-positions.pipe';
 import { TeamPreferencesComponent } from './team-section/team-preferences/team-preferences.component';
 import { SortWeaponsPipe } from './pipes/sort-weapons.pipe';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -161,7 +163,8 @@ import { SortWeaponsPipe } from './pipes/sort-weapons.pipe';
     IgxSliderModule,
     IgxProgressBarModule,
     IgxSwitchModule,
-    RouterModule
+    RouterModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     LoginService,

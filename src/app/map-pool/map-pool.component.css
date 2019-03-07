@@ -1,19 +1,28 @@
 @media only screen and (max-width: 512px) {
   .map-column {
+    flex: 1 1 100%;
     max-width: 100%;
+  }
+
+  .map-image {
+    height: auto;
   }
 }
 
 .map-column {
   display: flex;
-  flex: 1 1 320px;
+  flex: 1 1 260px;
   margin: 8px;
-  max-width: 320px;
+  max-width: 260px;
 }
 
 .map-wrapper {
   display: flex;
   flex-flow: row wrap;
+}
+
+.map-image {
+  height: 146px;
 }
 
 .map-inactive {
