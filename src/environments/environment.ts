@@ -6,7 +6,8 @@ export const environment = {
   production: false,
   rootApiEndpoint: 'https://localhost:44394',
   authApiEndpoint: 'https://localhost:44394/api/account',
-  apiEndpoint: 'https://localhost:44394/api'
+  apiEndpoint: 'https://localhost:44394/api',
+  VAPID_PUBLIC_KEY: 'BBhF-qAILpw5jSm7LLfTLT7kGzDkOZHn56tFB2ecwZ6ToZxLsXyrA6X6k55KvUElzY56JtSccTSjJSm3gx-wGYk'
 };
 
 /*

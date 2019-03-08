@@ -49,6 +49,11 @@ export class AppComponent implements OnInit {
       this.authUser = data;
       this.unreadNotifications += this.unreadPipe.transform(data.Notifications);
     });
+
+    this.initQuickSearch();
+  }
+
+  private initQuickSearch() {
     const input = fromEvent(this.searchInput.nativeElement, 'keyup')
                     .pipe(map<Event, string>(e => (<HTMLInputElement>e.currentTarget).value));
     const debouncedInput = input.pipe(debounceTime(300));

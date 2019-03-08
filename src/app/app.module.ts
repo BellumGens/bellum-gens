@@ -35,7 +35,8 @@ import { IgxNavbarModule,
   IgxButtonGroupModule,
   IgxIconService,
   IgxSliderModule,
-  IgxSwitchModule} from 'igniteui-angular';
+  IgxSwitchModule,
+  IgxSelectModule} from 'igniteui-angular';
 import { PlayersComponent } from './player-section/players/players.component';
 import { PlayerDetailsComponent } from './player-section/player-details/player-details.component';
 import { LoginService } from './services/login.service';
@@ -80,6 +81,8 @@ import { DaysAvailablePipe } from './pipes/days-available.pipe';
 import { OpenPositionsPipe } from './pipes/open-positions.pipe';
 import { TeamPreferencesComponent } from './team-section/team-preferences/team-preferences.component';
 import { SortWeaponsPipe } from './pipes/sort-weapons.pipe';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -161,7 +164,9 @@ import { SortWeaponsPipe } from './pipes/sort-weapons.pipe';
     IgxSliderModule,
     IgxProgressBarModule,
     IgxSwitchModule,
-    RouterModule
+    IgxSelectModule,
+    RouterModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     LoginService,

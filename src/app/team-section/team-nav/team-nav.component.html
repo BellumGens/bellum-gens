@@ -2,7 +2,7 @@
 <div class="team-nav-container">
   <p *ngIf="!authUser">You need to login to view your teams.</p>
   <p *ngIf="authUser && !authUser.Teams.length">You are not part of any teams.</p>
-  <button *ngIf="authUser" class="submit-button" igxButton="flat" igxRipple (click)="createTeam.open()">Create New Team</button>
+  <button *ngIf="authUser" class="submit-button" igxButton="outlined" igxRipple (click)="createTeam.open()">Create New Team</button>
 
   <igx-card class="card-margins" *ngFor="let team of authUser?.Teams">
     <igx-card-header>

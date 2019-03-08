@@ -7,6 +7,7 @@ import { PlayerCountryPipe } from '../pipes/player-country.pipe';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TeamsComponent } from '../team-section/teams/teams.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -17,6 +18,7 @@ describe('HomeComponent', () => {
       imports: [
         HttpClientTestingModule,
         RouterTestingModule,
+        ServiceWorkerModule.register('', {enabled: false}),
         IgxInputGroupModule,
         IgxIconModule,
         IgxCardModule,

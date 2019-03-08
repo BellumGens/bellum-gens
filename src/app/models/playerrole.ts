@@ -18,3 +18,24 @@ export enum PlaystyleRole {
   Support,
   Lurker
 }
+
+export const ALL_ROLES: Role [] = [{
+    Id: PlaystyleRole.NotSet,
+    Name: '---'
+  }, {
+    Id: PlaystyleRole.IGL,
+    Name: 'IGL'
+  }, {
+    Id: PlaystyleRole.Awper,
+    Name: 'Awper'
+  }, {
+    Id: PlaystyleRole.EntryFragger,
+    Name: 'Entry Fragger'
+  }, {
+    Id: PlaystyleRole.Support,
+    Name: 'Support'
+  }, {
+    Id: PlaystyleRole.Lurker,
+    Name: 'Lurker'
+  }
+];

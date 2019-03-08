@@ -11,13 +11,13 @@ import { IgxAvatarModule,
   IgxInputGroupModule,
   IgxRadioModule,
   IgxToggleModule,
-  IgxDropDownModule,
   IgxDialogModule,
   IgxSwitchModule,
   IgxChipsModule,
   IgxTimePickerModule,
   IgxCheckboxModule,
-  IgxRippleModule} from 'igniteui-angular';
+  IgxRippleModule,
+  IgxSelectModule} from 'igniteui-angular';
 import { TeamDetailsComponent } from '../team-details/team-details.component';
 import { TeamStrategiesComponent } from '../team-strategies/team-strategies.component';
 import { TeamApplicationComponent } from '../team-application/team-application.component';
@@ -36,6 +36,7 @@ import { MapimagePipe } from 'src/app/pipes/mapimage.pipe';
 import { OrdermapsPipe } from 'src/app/pipes/ordermaps.pipe';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 describe('TeamOverviewComponent', () => {
   let component: TeamOverviewComponent;
@@ -48,6 +49,7 @@ describe('TeamOverviewComponent', () => {
         RouterTestingModule,
         FormsModule,
         NoopAnimationsModule,
+        ServiceWorkerModule.register('', {enabled: false}),
         IgxAvatarModule,
         IgxIconModule,
         IgxTabsModule,
@@ -58,7 +60,7 @@ describe('TeamOverviewComponent', () => {
         IgxInputGroupModule,
         IgxRadioModule,
         IgxToggleModule,
-        IgxDropDownModule,
+        IgxSelectModule,
         IgxDialogModule,
         IgxSwitchModule,
         IgxChipsModule,

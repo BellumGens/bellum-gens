@@ -1,10 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 /* See: https://www.infragistics.com/products/ignite-ui-angular/angular/components/themes.html */
 @import "~igniteui-angular/lib/core/styles/themes/index";
-@import "normalize";
+@import "~minireset.css/minireset";
 
-@include normalize();
 @include igx-core();
+
+@include igx-typography(
+  $font-family: "'Poppins', sans-serif"
+);
 
 $primary: white !default;
 $secondary: #FF0A3A !default;
@@ -116,11 +119,6 @@ $time-picker-theme: igx-time-picker-theme($background-color: $background);
 // @include igx-avatar($avatar-theme);
 // /* END Avatar */
 
-// /* Navbar */
-// $navbar-theme: igx-navbar-theme($app-palette);
-// @include igx-navbar($navbar-theme);
-// /* END Navbar */
-
 // /* Ripple */
 // $ripple-theme: igx-ripple-theme($app-palette);
 // @include igx-ripple($ripple-theme);
@@ -173,8 +171,11 @@ html, body {
 
 /* ICONS */
 igx-icon {
-  cursor: pointer;
   user-select: none;
+}
+
+.navigatable {
+  cursor: pointer;
 }
 
 .button-icon {
@@ -218,12 +219,6 @@ igx-icon {
   display: flex;
   flex: 0 0 100%;
   flex-wrap: nowrap;
-}
-
-@media screen and (max-width: 720px) {
-  .overview-container {
-    flex-wrap: wrap;
-  }
 }
 /* END Team and Player Details */
 
@@ -374,27 +369,6 @@ a {
   margin: 8px 0px 0px 8px;
 }
 
-.card-wrapper {
-  display: flex;
-  flex-flow: row wrap;
-  padding: 0;
-}
-
-.map-column {
-  display: flex;
-  flex-flow: row wrap;
-  margin: 8px;
-  min-width: 200px;
-}
-
-.map-wrapper {
-  max-width: 200px;
-}
-
-.map-inactive {
-  opacity: 0.5;
-}
-
 .highlight {
   color: $secondary;
   font-weight: 600;
@@ -453,4 +427,14 @@ textarea {
 }
 /* END SEARCH */
 
+@media screen and (max-width: 720px) {
+  .overview-container {
+    flex-wrap: wrap;
+  }
+}
 
+@media only screen and (max-width: 550px) {
+  .bellum-gens-navbar .igx-navbar__title {
+    display: none;
+  }
+}
