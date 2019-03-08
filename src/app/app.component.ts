@@ -13,6 +13,8 @@ import { SearchResult } from './models/searchresult';
 import { fromEvent } from 'rxjs';
 import { map, debounceTime } from 'rxjs/operators';
 import { UnreadNotificationsPipe } from './pipes/unread-notifications.pipe';
+import { SwPush } from '@angular/service-worker';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -41,7 +43,8 @@ export class AppComponent implements OnInit {
   private unreadPipe = new UnreadNotificationsPipe();
 
   constructor(private authManager: LoginService,
-              private apiService: BellumgensApiService) {
+              private apiService: BellumgensApiService,
+              private swPush: SwPush) {
   }
 
   public ngOnInit(): void {
@@ -49,6 +52,17 @@ export class AppComponent implements OnInit {
       this.authUser = data;
       this.unreadNotifications += this.unreadPipe.transform(data.Notifications);
     });
+
+    this.swPush.requestSubscription({
+      serverPublicKey: environment.VAPID_PUBLIC_KEY
+    })
+    .then(sub => this.apiService.addPushSubscriber(sub).subscribe())
+    .catch(error => console.log(error));
+
+    this.initQuickSearch();
+  }
+
+  private initQuickSearch() {
     const input = fromEvent(this.searchInput.nativeElement, 'keyup')
                     .pipe(map<Event, string>(e => (<HTMLInputElement>e.currentTarget).value));
     const debouncedInput = input.pipe(debounceTime(300));
