@@ -14,7 +14,7 @@ import { fromEvent } from 'rxjs';
 import { map, debounceTime } from 'rxjs/operators';
 import { UnreadNotificationsPipe } from './pipes/unread-notifications.pipe';
 import { SwPush } from '@angular/service-worker';
-import { environment } from 'src/environments/environment';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
