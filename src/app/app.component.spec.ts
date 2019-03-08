@@ -40,7 +40,6 @@ import { SortNotificationsPipe } from './pipes/sort-notifications.pipe';
 import { SortApplicationsPipe } from './pipes/sort-applications.pipe';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ServiceWorkerModule } from '@angular/service-worker';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -53,7 +52,6 @@ describe('AppComponent', () => {
         RouterTestingModule,
         FormsModule,
         NoopAnimationsModule,
-        ServiceWorkerModule.register('', {enabled: false}),
         IgxNavigationDrawerModule,
         IgxNavbarModule,
         IgxLayoutModule,

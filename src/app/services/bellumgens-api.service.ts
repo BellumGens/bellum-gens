@@ -41,10 +41,6 @@ export class BellumgensApiService {
 
   constructor(private http: HttpClient) { }
 
-  public addPushSubscriber(sub: PushSubscription) {
-    return this.http.post(`${this._apiEndpoint}/push/subscribe`, sub);
-  }
-
   public get players() {
     if (!this._players) {
       this.loadingPlayers.next(true);

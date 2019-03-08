@@ -5,6 +5,7 @@ import { LoginProvider } from '../models/login-provider';
 import { ApplicationUser } from '../models/applicationuser';
 import { map, shareReplay } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
+import { SwPush } from '@angular/service-worker';
 
 const CACHE_SIZE = 1;
 
@@ -20,7 +21,16 @@ export class LoginService {
   public error: any;
   public callMade = false;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private swPush: SwPush) { }
+
+  public addPushSubscriber(sub: PushSubscription, user: ApplicationUser) {
+    const userSub = {
+      sub: sub,
+      userId: user.SteamUser.steamID64
+    };
+    return this.http.post(`${this._apiEndpoint}/push/subscribe`, userSub);
+  }
 
   public get loginProviders() {
     if (!this._loginProviders) {
@@ -36,7 +46,15 @@ export class LoginService {
     if (!this._applicationUser) {
       this._applicationUser = new ReplaySubject<ApplicationUser>(1);
       this.getSteamUser().subscribe(
-        user => this._applicationUser.next(user),
+        user => {
+          this._applicationUser.next(user);
+
+          this.swPush.requestSubscription({
+            serverPublicKey: environment.VAPID_PUBLIC_KEY
+          })
+          .then(sub => this.addPushSubscriber(sub, user).subscribe())
+          .catch(error => console.log(error));
+        },
         error => this._applicationUser = null
       );
     }
