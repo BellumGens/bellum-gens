@@ -13,6 +13,7 @@ import { IgxRadioModule,
 import { LoginComponent } from 'src/app/login/login.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 describe('TeamSearchComponent', () => {
   let component: TeamSearchComponent;
@@ -24,6 +25,7 @@ describe('TeamSearchComponent', () => {
         FormsModule,
         RouterTestingModule,
         NoopAnimationsModule,
+        ServiceWorkerModule.register('', {enabled: false}),
         IgxRadioModule,
         IgxSliderModule,
         IgxDialogModule,

@@ -4,6 +4,7 @@ import { LoginComponent } from './login.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { IgxAvatarModule, IgxIconModule, IgxToggleModule, IgxDropDownModule, IgxDialogModule, IgxRippleModule } from 'igniteui-angular';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -14,6 +15,7 @@ describe('LoginComponent', () => {
       imports: [
         RouterTestingModule,
         NoopAnimationsModule,
+        ServiceWorkerModule.register('', {enabled: false}),
         IgxAvatarModule,
         IgxIconModule,
         IgxToggleModule,

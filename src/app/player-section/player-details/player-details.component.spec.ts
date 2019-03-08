@@ -27,6 +27,7 @@ import { OrdermapsPipe } from 'src/app/pipes/ordermaps.pipe';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { SortWeaponsPipe } from 'src/app/pipes/sort-weapons.pipe';
 import { FormsModule } from '@angular/forms';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 describe('PlayerDetailsComponent', () => {
   let component: PlayerDetailsComponent;
@@ -52,6 +53,7 @@ describe('PlayerDetailsComponent', () => {
         HttpClientTestingModule,
         RouterTestingModule,
         FormsModule,
+        ServiceWorkerModule.register('', {enabled: false}),
         IgxProgressBarModule,
         IgxCardModule,
         IgxAvatarModule,

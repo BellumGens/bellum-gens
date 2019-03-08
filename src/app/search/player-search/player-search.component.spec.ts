@@ -13,6 +13,7 @@ import { IgxRadioModule,
   IgxToggleModule,
   IgxDropDownModule } from 'igniteui-angular';
 import { LoginComponent } from 'src/app/login/login.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 describe('PlayerSearchComponent', () => {
   let component: PlayerSearchComponent;
@@ -24,6 +25,7 @@ describe('PlayerSearchComponent', () => {
         FormsModule,
         RouterTestingModule,
         NoopAnimationsModule,
+        ServiceWorkerModule.register('', {enabled: false}),
         IgxRadioModule,
         IgxSliderModule,
         IgxDialogModule,

@@ -14,6 +14,7 @@ const CACHE_SIZE = 1;
 })
 export class LoginService {
   private _apiEndpoint = environment.authApiEndpoint;
+  private _apiBase = environment.apiEndpoint;
   private _rootApiEndpoint = environment.rootApiEndpoint;
 
   private _applicationUser: ReplaySubject<ApplicationUser>;
@@ -24,12 +25,8 @@ export class LoginService {
   constructor(private http: HttpClient,
               private swPush: SwPush) { }
 
-  public addPushSubscriber(sub: PushSubscription, user: ApplicationUser) {
-    const userSub = {
-      sub: sub,
-      userId: user.SteamUser.steamID64
-    };
-    return this.http.post(`${this._apiEndpoint}/push/subscribe`, userSub);
+  public addPushSubscriber(sub: PushSubscription) {
+    return this.http.post(`${this._apiBase}/push/subscribe`, sub, { withCredentials: true });
   }
 
   public get loginProviders() {
@@ -52,7 +49,7 @@ export class LoginService {
           this.swPush.requestSubscription({
             serverPublicKey: environment.VAPID_PUBLIC_KEY
           })
-          .then(sub => this.addPushSubscriber(sub, user).subscribe())
+          .then(sub => this.addPushSubscriber(sub).subscribe())
           .catch(error => console.log(error));
         },
         error => this._applicationUser = null
