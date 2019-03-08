@@ -8,10 +8,22 @@
   height: 315px;
 }
 
-.map-column.strat {
+.strat {
   max-width: 592px;
+  margin: 16px 0 0 16px;
 }
 
 .strat igx-card-header {
   justify-content: space-between;
+  flex-flow: row nowrap;
+}
+
+.card-wrapper {
+  display: flex;
+  flex: 1 1 100%;
+  flex-flow: row wrap;
+}
+
+.wrap {
+  flex-wrap: wrap;
 }
