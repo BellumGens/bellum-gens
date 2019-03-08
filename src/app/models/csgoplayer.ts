@@ -21,7 +21,6 @@ export interface CSGOPlayer {
   availability: Availability [];
   primaryRole: PlaystyleRole;
   secondaryRole: PlaystyleRole;
-  roles: Role [];
   mapPool: MapPool [];
   teams: CSGOTeam [];
 }

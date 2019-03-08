@@ -11,6 +11,7 @@ import { Availability } from '../../models/playeravailability';
 import { ApplicationUser } from '../../models/applicationuser';
 import { CSGOTeam } from '../../models/csgoteam';
 import { MapPool } from '../../models/csgomaps';
+import { ALL_ROLES } from 'src/app/models/playerrole';
 
 @Component({
   selector: 'app-player-details',
@@ -24,6 +25,7 @@ export class PlayerDetailsComponent implements OnInit {
   public teamsAdmin: CSGOTeam [];
   public player: CSGOPlayer;
   public newUser = false;
+  public roles = ALL_ROLES;
 
   @ViewChild('primaryRole') public primaryRole: IgxDropDownComponent;
   @ViewChild('secondaryRole') public secondaryRole: IgxDropDownComponent;
@@ -58,25 +60,17 @@ export class PlayerDetailsComponent implements OnInit {
     return this.player && this.authUser && (this.player.steamUser.steamID64 === this.authUser.SteamUser.steamID64);
   }
 
-  public selectPrimary(args: ISelectionEventArgs) {
-    if (!args.oldSelection) {
-      return;
-    }
-    const index = this.primaryRole.items.indexOf(args.newSelection);
-    if (this.player.primaryRole !== this.player.roles[index].Id) {
-      this.player.primaryRole = this.player.roles[index].Id;
-      this.apiService.setPrimaryRole(this.player.roles[index]).subscribe();
+  public selectPrimary(value: number) {
+    if (this.player.primaryRole !== value) {
+      this.player.primaryRole = value;
+      this.apiService.setPrimaryRole(this.roles.find(r => r.Id === value)).subscribe();
     }
   }
 
-  public selectSecondary(args: ISelectionEventArgs) {
-    if (!args.oldSelection) {
-      return;
-    }
-    const index = this.secondaryRole.items.indexOf(args.newSelection);
-    if (this.player.secondaryRole !== this.player.roles[index].Id) {
-      this.player.secondaryRole = this.player.roles[index].Id;
-      this.apiService.setSecondaryRole(this.player.roles[index]).subscribe();
+  public selectSecondary(value: number) {
+    if (this.player.secondaryRole !== value) {
+      this.player.secondaryRole = value;
+      this.apiService.setSecondaryRole(this.roles.find(r => r.Id === value)).subscribe();
     }
   }
 

@@ -73,15 +73,12 @@
         </igx-radio>
       </igx-list-item>
       <igx-list-item>
-        <button type="button" name="strategyMap" igxButton="flat" [igxToggleAction]="mapPicker" igxRipple>
-          Map: {{ newStrategy.Map | mapname }}
-          <igx-icon fontSet="material">arrow_drop_down</igx-icon>
-        </button>
-        <igx-drop-down #mapPicker (onSelection)="selectMap($event)">
-          <igx-drop-down-item *ngFor="let map of mapList" [value]="map.id" [isSelected]="map.id === newStrategy.Map">
+        <igx-select id="mapSelector" name="map" [(ngModel)]="newStrategy.Map">
+          <label for="mapSelector" igxLabel>Map</label>
+          <igx-select-item *ngFor="let map of mapList" [value]="map.id">
             {{ map.map }}
-          </igx-drop-down-item>
-        </igx-drop-down>
+          </igx-select-item>
+        </igx-select>
       </igx-list-item>
       <igx-list-item>
         <igx-input-group>
