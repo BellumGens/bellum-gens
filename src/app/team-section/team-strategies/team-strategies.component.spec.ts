@@ -7,12 +7,12 @@ import { IgxExpansionPanelModule,
   IgxListModule,
   IgxInputGroupModule,
   IgxRadioModule,
-  IgxDropDownModule,
   IgxDialogModule,
   IgxToggleModule,
   IgxCheckboxModule,
   IgxChipsModule,
-  IgxTimePickerModule} from 'igniteui-angular';
+  IgxTimePickerModule,
+  IgxSelectModule} from 'igniteui-angular';
 import { MapPoolComponent } from 'src/app/map-pool/map-pool.component';
 import { SafeVideoLinkPipe } from 'src/app/pipes/safe-video-link.pipe';
 import { FormsModule } from '@angular/forms';
@@ -43,7 +43,7 @@ describe('TeamStrategiesComponent', () => {
         IgxInputGroupModule,
         IgxRadioModule,
         IgxToggleModule,
-        IgxDropDownModule,
+        IgxSelectModule,
         IgxDialogModule,
         IgxCheckboxModule,
         IgxChipsModule,

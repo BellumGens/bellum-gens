@@ -11,13 +11,13 @@ import { IgxAvatarModule,
   IgxInputGroupModule,
   IgxRadioModule,
   IgxToggleModule,
-  IgxDropDownModule,
   IgxDialogModule,
   IgxSwitchModule,
   IgxChipsModule,
   IgxTimePickerModule,
   IgxCheckboxModule,
-  IgxRippleModule} from 'igniteui-angular';
+  IgxRippleModule,
+  IgxSelectModule} from 'igniteui-angular';
 import { TeamDetailsComponent } from '../team-details/team-details.component';
 import { TeamStrategiesComponent } from '../team-strategies/team-strategies.component';
 import { TeamApplicationComponent } from '../team-application/team-application.component';
@@ -58,7 +58,7 @@ describe('TeamOverviewComponent', () => {
         IgxInputGroupModule,
         IgxRadioModule,
         IgxToggleModule,
-        IgxDropDownModule,
+        IgxSelectModule,
         IgxDialogModule,
         IgxSwitchModule,
         IgxChipsModule,

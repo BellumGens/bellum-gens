@@ -11,7 +11,7 @@ import { Availability } from '../../models/playeravailability';
 import { ApplicationUser } from '../../models/applicationuser';
 import { CSGOTeam } from '../../models/csgoteam';
 import { MapPool } from '../../models/csgomaps';
-import { ALL_ROLES } from 'src/app/models/playerrole';
+import { ALL_ROLES } from '../../models/playerrole';
 
 @Component({
   selector: 'app-player-details',
