@@ -1,6 +1,6 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { SteamGroup, SteamUser } from '../models/steamuser';
+import { SteamGroup, SteamUser, SteamUserSummary } from '../models/steamuser';
 import { Observable, ReplaySubject, throwError } from 'rxjs';
 import { CSGOTeam, TeamMember, TeamApplication } from '../models/csgoteam';
 import { CSGOPlayer } from '../models/csgoplayer';
@@ -289,6 +289,19 @@ export class BellumgensApiService {
         return throwError(error);
       })
     );
+  }
+
+  public getSteamMembers(teamid: string, members: string []): Observable<SteamUserSummary []> {
+    return this.http.get<SteamUserSummary []>(`${this._apiEndpoint}/teams/steammembers?teamId=${teamid}&members=${members}`,
+      { withCredentials: true }).pipe(
+        map(response => {
+          return response;
+        }),
+        catchError(error => {
+          this.emitError(error.error.Message);
+          return throwError(error);
+        })
+      );
   }
 
   public inviteToTeam(steamUser: SteamUser, team: CSGOTeam) {

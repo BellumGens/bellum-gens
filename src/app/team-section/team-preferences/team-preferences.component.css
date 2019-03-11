@@ -2,7 +2,7 @@
   display: flex;
   flex-flow: column;
   flex: 1 1 380px;
-  padding: 0 16px;
+  padding: 0 8px;
   margin-top: 16px;
   align-self: baseline;
 }
@@ -13,6 +13,6 @@
 }
 
 .title.margins {
-  margin-left: 32px;
+  margin-left: 16px;
   margin-right: 16px;
 }
