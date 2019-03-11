@@ -7,6 +7,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { PlayerCountryPipe } from 'src/app/pipes/player-country.pipe';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TEAM_PLACEHOLDER } from 'src/app/models/csgoteam';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ExcludeMembersPipe } from 'src/app/pipes/exclude-members.pipe';
 
 describe('TeamPreferencesComponent', () => {
   let component: TeamPreferencesComponent;
@@ -18,6 +20,7 @@ describe('TeamPreferencesComponent', () => {
         FormsModule,
         RouterTestingModule,
         NoopAnimationsModule,
+        HttpClientTestingModule,
         IgxListModule,
         IgxIconModule,
         IgxSwitchModule,
@@ -27,7 +30,8 @@ describe('TeamPreferencesComponent', () => {
       ],
       declarations: [
         TeamPreferencesComponent,
-        PlayerCountryPipe
+        PlayerCountryPipe,
+        ExcludeMembersPipe
       ]
     })
     .compileComponents();
