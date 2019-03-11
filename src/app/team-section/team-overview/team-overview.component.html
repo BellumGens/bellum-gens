@@ -33,15 +33,14 @@
       <app-team-strategies [isAdmin]="userIsAdmin" [isEditor]="userIsEditor"></app-team-strategies>
     </igx-tabs-group>
 
-    <igx-tabs-group [disabled]="true">
+    <!-- <igx-tabs-group [disabled]="true">
         <ng-template igxTab>
           <div class="horizontal-center">
             <igx-icon>date_range</igx-icon>
             <div class="igx-tabs__item-label">Team Calendar (Coming Soon)</div>
           </div> 
         </ng-template>
-      <!-- <app-team-calendar [practiceSchedule]="team.PracticeSchedule" [isAdmin]="userIsAdmin"></app-team-calendar> -->
-    </igx-tabs-group>
+    </igx-tabs-group> -->
 
     <igx-tabs-group *ngIf="userIsAdmin">
       <ng-template igxTab>
