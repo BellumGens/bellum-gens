@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { BellumgensApiService } from '../../services/bellumgens-api.service';
 import { CSGOTeam, TeamMember } from '../../models/csgoteam';
-import { SteamUserSummary } from 'src/app/models/steamuser';
+import { SteamUserSummary } from '../../models/steamuser';
 
 @Component({
   selector: 'app-team-preferences',
