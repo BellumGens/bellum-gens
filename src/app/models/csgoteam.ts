@@ -1,5 +1,5 @@
 import { PlaystyleRole } from './playerrole';
-import { SteamUser } from './steamuser';
+import { SteamUser, SteamGroup } from './steamuser';
 import { NotificationState } from './usernotifications';
 import { Availability } from './playeravailability';
 
@@ -12,6 +12,7 @@ export interface CSGOTeam {
   Visible: boolean;
   Members: TeamMember [];
   PracticeSchedule: Availability [];
+  SteamGroup?: SteamGroup;
 }
 
 export interface TeamMember {

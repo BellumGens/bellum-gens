@@ -68,8 +68,8 @@
             <span class="subtitle">{{ user.SteamUser.realname }}</span>
           </div>
         
-          <div class="horizontal-info__right">
-              <div class="horizontal-center">
+          <div class="horizontal-info__right--column">
+              <div class="horizontal-center space-between">
                 <label [for]="'admin_switch_' + i" class="title margins">Admin</label>
                 <igx-switch [id]="'admin_switch_' + i"
                             [aria-label]="user.SteamUser.steamID + ' is admin'"
@@ -78,7 +78,7 @@
                 </igx-switch>
               </div>
         
-              <div class="horizontal-center">
+              <div class="horizontal-center space-between">
                 <label [for]="'editor_switch_' + i" class="title margins">Editor</label>
                 <igx-switch [id]="'editor_switch_' + i"
                             [aria-label]="user.SteamUser.steamID + ' can add and edit strategies'"
@@ -87,6 +87,24 @@
                             (ngModelChange)="editorStatusUpdated(user)">
                 </igx-switch>
               </div>
+          </div>
+        </div>
+      </igx-list-item>
+    </igx-list>
+  </div>
+  <div class="team-info-column" *ngIf="team.SteamGroup">
+    <igx-list>
+      <igx-list-item [isHeader]="true">{{ team.SteamGroup.groupName }} steam group members [not part of the team]</igx-list-item>
+      <igx-list-item *ngFor="let member of steamMembers | excludeMembers:team.Members">
+        <div class="horizontal-center">
+          <igx-avatar [src]="member.avatarmedium" [initials]="member.personaname" roundShape="true">
+          </igx-avatar>
+          <div class="horizontal-info__left">
+            <span class="title">
+              <a [routerLink]="['/players', member.steamid]">
+                {{ member.personaname }}
+              </a>
+            </span>
           </div>
         </div>
       </igx-list-item>

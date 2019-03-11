@@ -37,6 +37,7 @@ import { OrdermapsPipe } from 'src/app/pipes/ordermaps.pipe';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { ExcludeMembersPipe } from 'src/app/pipes/exclude-members.pipe';
 
 describe('TeamOverviewComponent', () => {
   let component: TeamOverviewComponent;
@@ -83,7 +84,8 @@ describe('TeamOverviewComponent', () => {
         MapnamePipe,
         WeekdayPipe,
         MapimagePipe,
-        OrdermapsPipe
+        OrdermapsPipe,
+        ExcludeMembersPipe
       ]
     })
     .compileComponents();

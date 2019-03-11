@@ -145,11 +145,6 @@
 
 @media only screen and (max-width: 495px) {
 
-  /* Team and Player Details */
-  .left-details-container {
-    width: 100%;
-  }
-
   .player-detail__stats {
     display: flex;
     flex: 1 1 100%;
