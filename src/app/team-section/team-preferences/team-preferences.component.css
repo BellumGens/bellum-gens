@@ -1,7 +1,7 @@
 .team-info-column {
   display: flex;
   flex-flow: column;
-  flex: 1 1 380px;
+  flex: 1 1 320px;
   padding: 0 8px;
   margin-top: 16px;
   align-self: baseline;

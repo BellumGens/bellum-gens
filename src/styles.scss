@@ -428,7 +428,8 @@ textarea {
 /* END SEARCH */
 
 @media screen and (max-width: 720px) {
-  .overview-container {
+  .overview-container,
+  .horizontal-space-between {
     flex-wrap: wrap;
   }
 }
@@ -436,5 +437,9 @@ textarea {
 @media only screen and (max-width: 550px) {
   .bellum-gens-navbar .igx-navbar__title {
     display: none;
+  }
+  
+  .left-details-container {
+    width: 100%;
   }
 }
