@@ -178,6 +178,11 @@ igx-icon {
   cursor: pointer;
 }
 
+.navigatable:focus,
+.navigatable:active {
+  outline: none;
+}
+
 .button-icon {
   --igx-navbar-hover-icon-color: $secondary;
 }
