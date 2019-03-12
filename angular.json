@@ -23,7 +23,7 @@
               "src/assets",
               "src/web.config",
               "src/robots.txt",
-              "src/manifest.jason"
+              "src/manifest.json"
             ],
             "styles": [
               "src/styles.scss"
@@ -87,7 +87,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/manifest.jason"
+              "src/manifest.json"
             ]
           }
         },
