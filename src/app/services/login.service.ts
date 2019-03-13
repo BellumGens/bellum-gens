@@ -49,7 +49,13 @@ export class LoginService {
           this.swPush.requestSubscription({
             serverPublicKey: environment.VAPID_PUBLIC_KEY
           })
-          .then(sub => this.addPushSubscriber(sub).subscribe())
+          .then(sub => {
+            this.addPushSubscriber(sub).subscribe();
+            this.swPush.messages.subscribe(message => console.log(message));
+            this.swPush.notificationClicks.subscribe(action => {
+              console.log(action);
+            });
+          })
           .catch(error => console.log(error));
         },
         error => this._applicationUser = null
