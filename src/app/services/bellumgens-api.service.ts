@@ -23,6 +23,7 @@ export class BellumgensApiService {
 
   public success = new EventEmitter<string>();
   public error = new EventEmitter<string>();
+  public message = new EventEmitter<string>();
   public loadingTeams = new ReplaySubject<boolean>(1);
   public loadingPlayers = new ReplaySubject<boolean>(1);
   public loadingQuickSearch = new ReplaySubject<boolean>(1);
@@ -148,6 +149,10 @@ export class BellumgensApiService {
 
   public emitSuccess(success: string) {
     this.success.emit(success);
+  }
+
+  public emitMessage(message: string) {
+    this.message.emit(message);
   }
 
   public teamApplications(teamId: string): Observable<TeamApplication []> {

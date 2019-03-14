@@ -9,6 +9,9 @@
     <div *ngIf="!userIsMember && team.TeamId" class="horizontal-info__right">
       <app-team-application [authUser]="authUser"></app-team-application>
     </div>
+    <div *ngIf="userIsMember && team.Discord" class="horizontal-info__right">
+      <a [href]="team.Discord" target="_blank" rel="noopener"><igx-icon class="discord-icon" fontSet="weapon-icons" name="discord"></igx-icon></a>
+    </div>
   </div>
   <igx-tabs>
     <igx-tabs-group>

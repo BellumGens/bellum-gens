@@ -4,3 +4,8 @@
   align-items: center;
   padding-bottom: 16px;
 }
+
+.discord-icon {
+  width: 128px;
+  height: 64px;
+}

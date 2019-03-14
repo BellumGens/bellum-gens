@@ -3,5 +3,5 @@ export const environment = {
   rootApiEndpoint: 'https://api.bellumgens.com',
   authApiEndpoint: 'https://api.bellumgens.com/api/account',
   apiEndpoint: 'https://api.bellumgens.com/api',
-  VAPID_PUBLIC_KEY: 'BBhF-qAILpw5jSm7LLfTLT7kGzDkOZHn56tFB2ecwZ6ToZxLsXyrA6X6k55KvUElzY56JtSccTSjJSm3gx-wGYk'
+  VAPID_PUBLIC_KEY: 'BNmXyw15axbl9tOAKz0ybCcfui-w4WiILSO_PRvU2qF0gdB56C0jRieaFSncZnpaulsyl0c3VUsRCyOR4foil50'
 };

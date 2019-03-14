@@ -6,6 +6,9 @@ import { ApplicationUser } from '../models/applicationuser';
 import { map, shareReplay } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { SwPush } from '@angular/service-worker';
+import { NotificationActions, PushNotificationWrapper } from '../models/usernotifications';
+import { Router } from '@angular/router';
+import { BellumgensApiService } from './bellumgens-api.service';
 
 const CACHE_SIZE = 1;
 
@@ -23,7 +26,9 @@ export class LoginService {
   public callMade = false;
 
   constructor(private http: HttpClient,
-              private swPush: SwPush) { }
+              private swPush: SwPush,
+              private router: Router,
+              private apiService: BellumgensApiService) { }
 
   public addPushSubscriber(sub: PushSubscription) {
     return this.http.post(`${this._apiBase}/push/subscribe`, sub, { withCredentials: true });
@@ -49,7 +54,19 @@ export class LoginService {
           this.swPush.requestSubscription({
             serverPublicKey: environment.VAPID_PUBLIC_KEY
           })
-          .then(sub => this.addPushSubscriber(sub).subscribe())
+          .then(sub => {
+            this.addPushSubscriber(sub).subscribe();
+            this.swPush.messages.subscribe(message => {
+              this.apiService.emitMessage((<PushNotificationWrapper>message).notification.title);
+            });
+            this.swPush.notificationClicks.subscribe(action => {
+              if (action.action === NotificationActions.ViewTeam) {
+                this.router.navigate(['team', action.notification.data]);
+              } else if (action.action === NotificationActions.ViewUser) {
+                this.router.navigate(['players', action.notification.data]);
+              }
+            });
+          })
           .catch(error => console.log(error));
         },
         error => this._applicationUser = null
