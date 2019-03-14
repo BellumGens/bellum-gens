@@ -10,12 +10,14 @@ import { BellumgensApiService } from '../services/bellumgens-api.service';
 export class SuccessErrorComponent implements OnInit {
   @ViewChild('error') public error: IgxSnackbarComponent;
   @ViewChild('success') public success: IgxSnackbarComponent;
+  @ViewChild('message') public message: IgxSnackbarComponent;
 
   constructor(private apiService: BellumgensApiService) { }
 
   ngOnInit() {
     this.apiService.error.subscribe(message => this.showError(message));
     this.apiService.success.subscribe(message => this.showSuccess(message));
+    this.apiService.message.subscribe(message => this.showMessage(message));
   }
 
   public showSuccess(msg?: string) {
@@ -30,5 +32,12 @@ export class SuccessErrorComponent implements OnInit {
       this.error.message = msg;
     }
     this.error.show();
+  }
+
+  public showMessage(msg?: string) {
+    if (msg) {
+      this.message.message = msg;
+    }
+    this.message.show();
   }
 }

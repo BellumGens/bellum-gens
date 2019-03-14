@@ -14,7 +14,7 @@
       <igx-avatar [src]="player?.steamUser?.avatarFull" [initials]="player?.steamUser?.steamID" class="player-avatar">
       </igx-avatar>
       <igx-avatar *ngIf="player?.steamUser?.country" [src]="player?.steamUser?.country | playerCountry" [roundShape]="true" [title]="player?.steamUser?.country" class="country-badge-large"></igx-avatar>
-      <h1 class="igx-card-header__title"><a [href]="player?.steamUser?.customURL | steamCustomUrl" target="_blank" rel="noopener">{{ player?.steamUser?.steamID }}</a></h1>
+      <h1 class="igx-card-header__title"><a [href]="player?.steamUser | steamCustomUrl" target="_blank" rel="noopener">{{ player?.steamUser?.steamID }}</a></h1>
       <h4 class="igx-card-header__subtitle">{{ player?.steamUser?.realname }}</h4>
     </div>
 
