@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BellumgensApiService } from '../../../services/bellumgens-api.service';
 import { CSGOPlayer } from '../../../models/csgoplayer';
+import { ALL_ROLES } from '../../../models/playerrole';
 
 @Component({
   selector: 'app-player-results',
@@ -11,6 +12,7 @@ import { CSGOPlayer } from '../../../models/csgoplayer';
 export class PlayerResultsComponent {
   public players: CSGOPlayer [];
   public loading = true;
+  public roles = ALL_ROLES;
 
   constructor(private route: ActivatedRoute,
               private apiService: BellumgensApiService) {

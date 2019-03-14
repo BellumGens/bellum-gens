@@ -13,3 +13,7 @@ igx-snackbar {
 .color-error {
   color: var(--igx-input-group-error-secondary-color);
 }
+
+.color-warn {
+  color: var(--igx-input-group-warning-secondary-color);
+}

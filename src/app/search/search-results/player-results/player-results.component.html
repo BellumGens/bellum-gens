@@ -34,10 +34,10 @@
       <div>Preferred roles</div>
       <igx-chips-area>
         <igx-chip [selectable]="false">
-          <span class='igx-chip__text'>{{ player?.roles[player.primaryRole].Name }}</span>
+          <span class='igx-chip__text'>{{ roles[player?.primaryRole].Name }}</span>
         </igx-chip>
         <igx-chip [selectable]="false">
-          <span class='igx-chip__text'>{{ player?.roles[player.secondaryRole].Name }}</span>
+          <span class='igx-chip__text'>{{ roles[player?.secondaryRole].Name }}</span>
         </igx-chip>
       </igx-chips-area>
       <div>Practice days</div>

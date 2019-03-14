@@ -324,6 +324,10 @@ igx-card-content h4 {
   margin-left: 24px;
 }
 
+.list-container .horizontal-info__left {
+  max-width: 135px;
+}
+
 .horizontal-info__right {
   display: flex;
   flex-flow: row nowrap;
@@ -432,7 +436,13 @@ textarea {
 }
 /* END SEARCH */
 
-@media screen and (max-width: 720px) {
+@media only screen and (max-width: 680px) {
+  .list-container .horizontal-info__left {
+    max-width: 100%;
+  }
+}
+
+@media only screen and (max-width: 720px) {
   .overview-container,
   .horizontal-space-between {
     flex-wrap: wrap;

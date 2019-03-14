@@ -50,24 +50,7 @@ export class LoginService {
       this.getSteamUser().subscribe(
         user => {
           this._applicationUser.next(user);
-
-          this.swPush.requestSubscription({
-            serverPublicKey: environment.VAPID_PUBLIC_KEY
-          })
-          .then(sub => {
-            this.addPushSubscriber(sub).subscribe();
-            this.swPush.messages.subscribe(message => {
-              this.apiService.emitMessage((<PushNotificationWrapper>message).notification.title);
-            });
-            this.swPush.notificationClicks.subscribe(action => {
-              if (action.action === NotificationActions.ViewTeam) {
-                this.router.navigate(['team', action.notification.data]);
-              } else if (action.action === NotificationActions.ViewUser) {
-                this.router.navigate(['players', action.notification.data]);
-              }
-            });
-          })
-          .catch(error => console.log(error));
+          this.initSw();
         },
         error => this._applicationUser = null
       );
@@ -90,6 +73,29 @@ export class LoginService {
     this.http.post(this._apiEndpoint + '/logout', null, { withCredentials: true }).subscribe(
       _ => this._applicationUser.next(null)
     );
+  }
+
+  private initSw() {
+    this.swPush.requestSubscription({
+      serverPublicKey: environment.VAPID_PUBLIC_KEY
+    })
+    .then(sub => {
+      this.addPushSubscriber(sub).subscribe();
+      this.swPush.messages.subscribe(message => {
+        this.apiService.emitMessage((<PushNotificationWrapper>message).notification.title);
+
+        // Update the app user with new notifications and teams
+        this.getSteamUser().subscribe(user => this._applicationUser.next(user));
+      });
+      this.swPush.notificationClicks.subscribe(action => {
+        if (action.action === NotificationActions.ViewTeam) {
+          this.router.navigate(['team', action.notification.data]);
+        } else if (action.action === NotificationActions.ViewUser) {
+          this.router.navigate(['players', action.notification.data]);
+        }
+      });
+    })
+    .catch(error => console.log(error));
   }
 
   private getSteamUser() {
