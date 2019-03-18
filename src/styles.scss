@@ -114,56 +114,6 @@ $time-picker-theme: igx-time-picker-theme($background-color: $background);
 @include igx-css-vars($time-picker-theme);
 /* END Time Picker */
 
-// /* Avatar */
-// $avatar-theme: igx-avatar-theme($app-palette);
-// @include igx-avatar($avatar-theme);
-// /* END Avatar */
-
-// /* Ripple */
-// $ripple-theme: igx-ripple-theme($app-palette);
-// @include igx-ripple($ripple-theme);
-// /* END Ripple */
-
-// /* Icon */
-// $icon-theme: igx-icon-theme($app-palette);
-// @include igx-icon($icon-theme);
-// /* END Icon */
-
-// /* Overlay */
-// $overlay-theme: igx-overlay-theme($app-palette);
-// @include igx-overlay($overlay-theme);
-// /* END Overlay */
-
-// /* Input Group */
-// $input-group-theme: igx-input-group-theme($app-palette);
-// @include igx-input-group($input-group-theme);
-// /* END Input Group */
-
-// /* Button */
-// $button-theme: igx-button-theme($app-palette);
-// @include igx-button($button-theme);
-// /* END Button */
-
-// /* Card */
-// $chips-theme: igx-chip-theme($app-palette);
-// @include igx-chip($chips-theme);
-// /* END Card */
-
-// /* Checkbox */
-// $checkbox-theme: igx-checkbox-theme($app-palette);
-// @include igx-checkbox($checkbox-theme);
-// /* END Checkbox */
-
-// /* Expansion Panel */
-// $expansion-panel-theme: igx-expansion-panel-theme($app-palette);
-// @include igx-expansion-panel($expansion-panel-theme);
-// /* END Expansion Panel */
-
-// /* Radio */
-// $radio-theme: igx-radio-theme($app-palette);
-// @include igx-radio($radio-theme);
-// /* END Radio */
-
 html, body {
   height: 100%;
   background-image: $background-gradient;
@@ -302,6 +252,10 @@ igx-card-content h4 {
 
 .space-between {
   justify-content: space-between;
+}
+
+.center-items {
+  text-align: center;
 }
 
 .horizontal-center {

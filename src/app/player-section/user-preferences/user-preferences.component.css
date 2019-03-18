@@ -1,0 +1,12 @@
+.preferences-container {
+  padding: 32px 8px;
+}
+
+.horizontal-center.margin-top {
+  margin-top: 32px;
+}
+
+.preferences-submit {
+  width: calc(100% - 8px);
+  margin: 0 4px 4px 4px;
+}

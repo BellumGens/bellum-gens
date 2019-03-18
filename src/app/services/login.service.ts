@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, ReplaySubject } from 'rxjs';
+import { Observable, ReplaySubject, throwError } from 'rxjs';
 import { LoginProvider } from '../models/login-provider';
-import { ApplicationUser } from '../models/applicationuser';
-import { map, shareReplay } from 'rxjs/operators';
+import { ApplicationUser, UserPreferences } from '../models/applicationuser';
+import { map, shareReplay, catchError } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { SwPush } from '@angular/service-worker';
 import { NotificationActions, PushNotificationWrapper } from '../models/usernotifications';
@@ -72,6 +72,21 @@ export class LoginService {
   public logout() {
     this.http.post(this._apiEndpoint + '/logout', null, { withCredentials: true }).subscribe(
       _ => this._applicationUser.next(null)
+    );
+  }
+
+  public updateUserPreferences(preferences: UserPreferences) {
+    return this.http.put(`${this._apiEndpoint}/userinfo`, preferences, { withCredentials: true}).pipe(
+      map(response => {
+        if (response) {
+          this.apiService.emitSuccess(`Preferences updated successfully!`);
+        }
+        return response;
+      }),
+      catchError(error => {
+        this.apiService.emitError(error.error.Message);
+        return throwError(error);
+      })
     );
   }
 

@@ -7,7 +7,7 @@ import { CSGOPlayer } from '../models/csgoplayer';
 import { Availability } from '../models/playeravailability';
 import { Role } from '../models/playerrole';
 import { MapPool } from '../models/csgomaps';
-import { map, shareReplay, catchError } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 import { UserNotification } from '../models/usernotifications';
 import { TeamStrategy } from '../models/csgoteamstrategy';
 import { SearchResult } from '../models/searchresult';
@@ -35,7 +35,6 @@ export class BellumgensApiService {
   // Cache
   private _players: ReplaySubject<CSGOPlayer []>;
   private _csgoTeams: ReplaySubject<CSGOTeam []>;
-  private _teamApplications = new Map<string, Observable<TeamApplication[]>>();
   private _searchResultCache: Map<string, SearchResult> = new Map();
   private _playerSearchCache: Map<string, CSGOPlayer []> = new Map();
   private _teamSearchCache: Map<string, CSGOTeam []> = new Map();
@@ -156,13 +155,7 @@ export class BellumgensApiService {
   }
 
   public teamApplications(teamId: string): Observable<TeamApplication []> {
-    if (!this._teamApplications[teamId]) {
-      this._teamApplications[teamId] = this.getTeamApplications(teamId).pipe(
-        shareReplay(CACHE_SIZE)
-      );
-    }
-
-    return this._teamApplications[teamId];
+    return this.http.get<TeamApplication []>(`${this._apiEndpoint}/teams/applications?teamId=${teamId}`, { withCredentials: true });
   }
 
   public getTeamStrats(teamId: string) {
@@ -337,10 +330,6 @@ export class BellumgensApiService {
         return throwError(error);
       })
     );
-  }
-
-  public getTeamApplications(teamId: string): Observable<TeamApplication []> {
-    return this.http.get<TeamApplication []>(`${this._apiEndpoint}/teams/applications?teamId=${teamId}`, { withCredentials: true });
   }
 
   public approveApplication(application: TeamApplication): Observable<TeamApplication> {

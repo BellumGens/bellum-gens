@@ -45,7 +45,7 @@
         </div>
       </igx-list-item>
       <igx-list-item>
-        <button igxButton="raised" igxRipple class="submit-button team-info-input" [disabled]="teamInfo.invalid">Update Team Info</button>
+        <button igxButton="raised" igxRipple class="submit-button team-info-input" [disabled]="!teamInfo.touched || teamInfo.invalid">Update Team Info</button>
       </igx-list-item>
     </igx-list>
   </form>

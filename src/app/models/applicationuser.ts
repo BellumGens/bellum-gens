@@ -7,4 +7,11 @@ export interface ApplicationUser {
   Teams: CSGOTeam [];
   TeamAdmin: CSGOTeam [];
   Notifications: UserNotification [];
+  Email: string;
+  SearchVisible: boolean;
+}
+
+export interface UserPreferences {
+  email: string;
+  searchVisible: boolean;
 }

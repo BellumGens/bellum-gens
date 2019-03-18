@@ -119,10 +119,6 @@
   padding: 16px 16px 0px 16px;
 }
 
-.center-items {
-  text-align: center;
-}
-
 .weapon-wrapper {
   display: flex;
   align-items: center;

@@ -13,7 +13,6 @@ import { LoginService } from '../../services/login.service';
 export class TeamOverviewComponent {
   authUser: ApplicationUser;
   team: CSGOTeam = TEAM_PLACEHOLDER;
-  notifications: TeamApplication [];
 
   private _isAdmin: boolean = null;
   private _isEditor: boolean = null;
@@ -32,9 +31,6 @@ export class TeamOverviewComponent {
       if (teamId !== '0') {
         this.apiService.getTeam(teamId).subscribe(team => {
           this.team = team;
-        });
-        this.apiService.teamApplications(teamId).subscribe(data => {
-          this.notifications = data;
         });
       }
     });

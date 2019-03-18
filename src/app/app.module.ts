@@ -84,6 +84,7 @@ import { SortWeaponsPipe } from './pipes/sort-weapons.pipe';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { ExcludeMembersPipe } from './pipes/exclude-members.pipe';
+import { UserPreferencesComponent } from './player-section/user-preferences/user-preferences.component';
 
 @NgModule({
   declarations: [
@@ -130,7 +131,8 @@ import { ExcludeMembersPipe } from './pipes/exclude-members.pipe';
     TeamPreferencesComponent,
     OpenPositionsPipe,
     SortWeaponsPipe,
-    ExcludeMembersPipe
+    ExcludeMembersPipe,
+    UserPreferencesComponent
   ],
   imports: [
     FormsModule,

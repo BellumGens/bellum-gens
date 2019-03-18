@@ -1,5 +1,5 @@
 <igx-dialog closeOnOutsideSelect="true" title="Sign in with Steam" width="600px">
-  <button type="icon" IgxButton class="steam-login" (click)="login('Steam')"></button>
+  <button type="icon" IgxButton class="steam-login navigatable" (click)="login('Steam')"></button>
 </igx-dialog>
 
 <button igxButton="raised" igxRipple *ngIf="!authUser" (click)="openLogin()">Login</button>
@@ -10,17 +10,35 @@
     <igx-icon class="drop-down-arrow button-icon">arrow_drop_down</igx-icon>
   </button>
   <igx-drop-down #userProfile>
-    <igx-drop-down-item class="profile-item" [routerLink]="['/players', authUser.SteamUser.steamID64]">
-      <igx-icon fontSet="material">person</igx-icon>
-      <span class="profile-link">profile</span>
-    </igx-drop-down-item>
-    <igx-drop-down-item class="profile-item" [routerLink]="['/players', authUser.SteamUser.steamID64]">
-      <igx-icon>settings</igx-icon>
-      <span class="profile-link">preferences</span>
-    </igx-drop-down-item>
-    <igx-drop-down-item class="profile-item" (click)="logout()">
-      <igx-icon fontSet="material">exit_to_app</igx-icon>
-      <span class="profile-link">logout</span>
-    </igx-drop-down-item>
+    <div class="profile-container">
+      <igx-tabs [tabsType]="'fixed'">
+        <igx-tabs-group class="profile-content">
+          <ng-template igxTab>
+            <div class="horizontal-center">
+              <igx-icon>person</igx-icon>
+              <div class="igx-tabs__item-label">User Profile</div>
+            </div> 
+          </ng-template>
+          <div class="center-items profile-view">
+            <igx-avatar [src]="authUser.SteamUser.avatarFull" [initials]="authUser.SteamUser.steamID" roundShape="true" [size]="'large'">
+            </igx-avatar>
+            <h1 class="igx-card-header__title highlight navigatable" [routerLink]="['/players', authUser.SteamUser.steamID64]">{{ authUser.SteamUser.steamID }}</h1>
+            <h4 class="igx-card-header__subtitle">{{ authUser.SteamUser.realname }}</h4>
+          </div>
+          <button class="submit-button" igxButton="flat" igxRipple (click)="logout()"><igx-icon fontSet="material">exit_to_app</igx-icon>logout</button>
+        </igx-tabs-group>
+  
+        <igx-tabs-group class="profile-content">
+          <ng-template igxTab>
+            <div class="horizontal-center">
+              <igx-icon>settings</igx-icon>
+              <div class="igx-tabs__item-label">Preferences</div>
+            </div> 
+          </ng-template>
+  
+          <app-user-preferences [authUser]="authUser"></app-user-preferences>
+        </igx-tabs-group>
+      </igx-tabs>
+    </div>
   </igx-drop-down>
 </div>
