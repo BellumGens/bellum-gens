@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { UserPreferences, ApplicationUser } from 'src/app/models/applicationuser';
-import { LoginService } from 'src/app/services/login.service';
+import { UserPreferences, ApplicationUser } from '../../models/applicationuser';
+import { LoginService } from '../../services/login.service';
 
 @Component({
   selector: 'app-user-preferences',
