@@ -36,19 +36,30 @@ export class TeamNotificationsComponent implements OnInit {
     }
   }
 
-  public approveApplication(application: TeamApplication) {
+  public approveApplication(application: TeamApplication, event: Event) {
+    const button = (<HTMLButtonElement>event.target);
+    button.textContent = 'Approving';
     this.apiService.approveApplication(application).subscribe(data => {
       application = data;
       this.pipeTrigger++;
       this.changed.emit(-1);
+    },
+    _ => {
+      button.textContent = 'Approve';
+      button.disabled = false;
     });
   }
 
-  public rejectApplication(application: TeamApplication) {
+  public rejectApplication(application: TeamApplication, event: Event) {
+    const button = (<HTMLButtonElement>event.target);
+    button.textContent = 'Rejecting';
     this.apiService.rejectApplication(application).subscribe(data => {
       application = data;
       this.pipeTrigger++;
       this.changed.emit(-1);
+    },
+    _ => {
+      button.textContent = 'Reject';
     });
   }
 }

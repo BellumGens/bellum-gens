@@ -9,13 +9,18 @@ import { IgxButtonGroupModule,
   IgxDropDownModule,
   IgxAvatarModule,
   IgxSliderModule,
-  IgxDialogModule} from 'igniteui-angular';
+  IgxDialogModule,
+  IgxTabsModule,
+  IgxInputGroupModule,
+  IgxSwitchModule} from 'igniteui-angular';
 import { PlayerSearchComponent } from '../player-search/player-search.component';
 import { TeamSearchComponent } from '../team-search/team-search.component';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from 'src/app/login/login.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { UserPreferencesComponent } from 'src/app/player-section/user-preferences/user-preferences.component';
+import { ConfirmComponent } from 'src/app/confirm/confirm.component';
 
 describe('SearchComponent', () => {
   let component: SearchComponent;
@@ -36,13 +41,18 @@ describe('SearchComponent', () => {
         IgxAvatarModule,
         IgxSliderModule,
         IgxDialogModule,
-        IgxRippleModule
+        IgxRippleModule,
+        IgxTabsModule,
+        IgxInputGroupModule,
+        IgxSwitchModule
       ],
       declarations: [
         SearchComponent,
         PlayerSearchComponent,
         TeamSearchComponent,
-        LoginComponent
+        LoginComponent,
+        UserPreferencesComponent,
+        ConfirmComponent
       ]
     })
     .compileComponents();

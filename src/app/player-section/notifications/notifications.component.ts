@@ -3,7 +3,6 @@ import { ApplicationUser } from '../../models/applicationuser';
 import { IgxListComponent } from 'igniteui-angular';
 import { UserNotification, NotificationState } from '../../models/usernotifications';
 import { BellumgensApiService } from '../../services/bellumgens-api.service';
-import { finalize } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 @Component({
@@ -15,7 +14,6 @@ export class PlayerNotificationsComponent {
 
   @Input()
   public authUser: ApplicationUser;
-  public loading = false;
   public notificationClass = ['', '', 'notification-disabled', 'notification-disabled'];
   public pipeTrigger = 0;
 
@@ -30,25 +28,33 @@ export class PlayerNotificationsComponent {
   constructor(private apiService: BellumgensApiService,
               private router: Router) { }
 
-  public acceptInvitation(notification: UserNotification) {
-    this.loading = true;
-    this.apiService.acceptInvite(notification).pipe(finalize(() => this.loading = false)).subscribe(
+  public acceptInvitation(notification: UserNotification, event: Event) {
+    const button = (<HTMLButtonElement>event.target);
+    button.textContent = 'Accepting';
+    this.apiService.acceptInvite(notification).subscribe(
       _ => {
         notification.State = NotificationState.Accepted;
         this.pipeTrigger++;
         this.router.navigate(['team', notification.TeamInfo.TeamId]);
         this.changed.emit(-1);
+      },
+      _ => {
+        button.textContent = 'Accept';
       }
     );
   }
 
-  public rejectInvitation(notification: UserNotification) {
-    this.loading = true;
-    this.apiService.rejectInvite(notification).pipe(finalize(() => this.loading = false)).subscribe(
+  public rejectInvitation(notification: UserNotification, event: Event) {
+    const button = (<HTMLButtonElement>event.target);
+    button.textContent = 'Rejecting';
+    this.apiService.rejectInvite(notification).subscribe(
       _ => {
         notification.State = NotificationState.Rejected;
         this.pipeTrigger++;
         this.changed.emit(-1);
+      },
+      _ => {
+        button.textContent = 'Reject';
       }
     );
   }

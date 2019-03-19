@@ -23,10 +23,21 @@
   background-color: transparent;
 }
 
-.profile-item {
-  padding: 0 0.75em;
+.profile-view {
+  padding: 32px 0;
 }
 
-.profile-link {
-  margin-left: 0.75em;
+.profile-container {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+  min-width: 320px;
+}
+
+.profile-content {
+  min-height: 310px;
+}
+
+.profile-username {
+  margin-top: 8px;
 }
