@@ -37,3 +37,7 @@
 .profile-content {
   min-height: 300px;
 }
+
+.profile-username {
+  margin-top: 8px;
+}

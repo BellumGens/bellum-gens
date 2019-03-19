@@ -70,7 +70,7 @@ export class LoginService {
   }
 
   public logout() {
-    this.http.post(this._apiEndpoint + '/logout', null, { withCredentials: true }).subscribe(
+    this.http.post(`${this._apiEndpoint}/logout`, null, { withCredentials: true }).subscribe(
       _ => this._applicationUser.next(null)
     );
   }
@@ -80,6 +80,22 @@ export class LoginService {
       map(response => {
         if (response) {
           this.apiService.emitSuccess(`Preferences updated successfully!`);
+        }
+        return response;
+      }),
+      catchError(error => {
+        this.apiService.emitError(error.error.Message);
+        return throwError(error);
+      })
+    );
+  }
+
+  public deleteAccount(userid: string) {
+    return this.http.delete(`${this._apiEndpoint}/delete?userid=${userid}`, { withCredentials: true }).pipe(
+      map(response => {
+        if (response) {
+          this._applicationUser.next(null);
+          this.apiService.emitSuccess(`Account deleted!`);
         }
         return response;
       }),

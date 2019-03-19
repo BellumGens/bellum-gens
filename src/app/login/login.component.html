@@ -22,7 +22,7 @@
           <div class="center-items profile-view">
             <igx-avatar [src]="authUser.SteamUser.avatarFull" [initials]="authUser.SteamUser.steamID" roundShape="true" [size]="'large'">
             </igx-avatar>
-            <h1 class="igx-card-header__title highlight navigatable" [routerLink]="['/players', authUser.SteamUser.steamID64]">{{ authUser.SteamUser.steamID }}</h1>
+            <h1 class="igx-card-header__title highlight navigatable profile-username" [routerLink]="['/players', authUser.SteamUser.steamID64]">{{ authUser.SteamUser.steamID }}</h1>
             <h4 class="igx-card-header__subtitle">{{ authUser.SteamUser.realname }}</h4>
           </div>
           <button class="submit-button" igxButton="flat" igxRipple (click)="logout()"><igx-icon fontSet="material">exit_to_app</igx-icon>logout</button>

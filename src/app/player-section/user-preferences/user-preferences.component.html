@@ -2,15 +2,29 @@
   <div class="preferences-container">
     <igx-input-group>
       <label for="userEmail" igxLabel>Email address</label>
-      <input #userEmail igxInput id="userEmail" type="email" name="userEmail" [(ngModel)]="preferences.email" />
+      <input #userEmail igxInput id="userEmail" type="email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="userEmail" [(ngModel)]="preferences.email" />
       <igx-suffix *ngIf="userEmail.value.length > 0" (click)="userEmail.value = null">
         <igx-icon>clear</igx-icon>
       </igx-suffix>
     </igx-input-group>
-    <div class="horizontal-center margin-top">
+    <div class="horizontal-center margin-top-large">
       <label for="userVisibility">Show in searches</label>
       <igx-switch class="horizontal-info__right" #teamVisibility id="userVisibility" name="userVisibility" [(ngModel)]="preferences.searchVisible"></igx-switch>
     </div>
   </div>
-  <button igxButton="raised" igxRipple class="preferences-submit" [disabled]="!userPreferences.touched || userPreferences.invalid">Update User Preferences</button>
+  <button igxButton="outlined" igxRipple class="preferences-submit"
+          [disabled]="!userPreferences.touched || !userPreferences.valueChanges || userPreferences.invalid">
+    Update User Preferences
+  </button>
 </form>
+
+<button igxButton="raised" igxRipple class="preferences-submit margin-top-large" (click)="confirm.open()">
+  <igx-icon title="delete account">delete_forever</igx-icon>
+  Delete Account
+</button>
+
+<!-- Confirm -->
+<app-confirm #confirm title="Are you sure?" (ok)="deleteAccount()">
+  Pressing OK will delete your user account permanently...
+</app-confirm>
+<!-- END Confirm -->

@@ -32,4 +32,8 @@ export class UserPreferencesComponent {
   public submitPreferences() {
     this.authManager.updateUserPreferences(this.preferences).subscribe();
   }
+
+  public deleteAccount() {
+    this.authManager.deleteAccount(this._authUser.SteamUser.steamID64).subscribe();
+  }
 }
