@@ -11,9 +11,14 @@ import { IgxRadioModule,
   IgxAvatarModule,
   IgxIconModule,
   IgxToggleModule,
-  IgxDropDownModule } from 'igniteui-angular';
+  IgxDropDownModule,
+  IgxTabsModule,
+  IgxSwitchModule,
+  IgxInputGroupModule} from 'igniteui-angular';
 import { LoginComponent } from 'src/app/login/login.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { UserPreferencesComponent } from 'src/app/player-section/user-preferences/user-preferences.component';
+import { ConfirmComponent } from 'src/app/confirm/confirm.component';
 
 describe('PlayerSearchComponent', () => {
   let component: PlayerSearchComponent;
@@ -33,11 +38,16 @@ describe('PlayerSearchComponent', () => {
         IgxAvatarModule,
         IgxIconModule,
         IgxToggleModule,
-        IgxDropDownModule
+        IgxDropDownModule,
+        IgxTabsModule,
+        IgxSwitchModule,
+        IgxInputGroupModule
       ],
       declarations: [
         PlayerSearchComponent,
-        LoginComponent
+        LoginComponent,
+        UserPreferencesComponent,
+        ConfirmComponent
       ]
     })
     .compileComponents();

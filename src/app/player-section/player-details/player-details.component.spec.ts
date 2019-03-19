@@ -12,7 +12,10 @@ import { IgxProgressBarModule,
   IgxTimePickerModule,
   IgxCheckboxModule,
   IgxListModule,
-  IgxSelectModule} from 'igniteui-angular';
+  IgxSelectModule,
+  IgxTabsModule,
+  IgxSwitchModule,
+  IgxInputGroupModule} from 'igniteui-angular';
 import { SteamCustomUrlPipe } from 'src/app/pipes/steam-custom-url.pipe';
 import { PlayerCountryPipe } from 'src/app/pipes/player-country.pipe';
 import { LoginComponent } from 'src/app/login/login.component';
@@ -28,6 +31,8 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { SortWeaponsPipe } from 'src/app/pipes/sort-weapons.pipe';
 import { FormsModule } from '@angular/forms';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { UserPreferencesComponent } from '../user-preferences/user-preferences.component';
+import { ConfirmComponent } from 'src/app/confirm/confirm.component';
 
 describe('PlayerDetailsComponent', () => {
   let component: PlayerDetailsComponent;
@@ -47,7 +52,9 @@ describe('PlayerDetailsComponent', () => {
         MapnamePipe,
         MapimagePipe,
         OrdermapsPipe,
-        SortWeaponsPipe
+        SortWeaponsPipe,
+        UserPreferencesComponent,
+        ConfirmComponent
       ],
       imports: [
         HttpClientTestingModule,
@@ -65,7 +72,10 @@ describe('PlayerDetailsComponent', () => {
         IgxTimePickerModule,
         IgxCheckboxModule,
         IgxSelectModule,
-        IgxListModule
+        IgxListModule,
+        IgxTabsModule,
+        IgxSwitchModule,
+        IgxInputGroupModule
       ]
     }).compileComponents();
   }));

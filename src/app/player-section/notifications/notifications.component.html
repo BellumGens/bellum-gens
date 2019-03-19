@@ -1,9 +1,4 @@
-<igx-list *ngIf="authUser" [isLoading]="loading">
-  <ng-template igxDataLoading>
-    <div class="loading-overlay">
-      <igx-circular-bar class="loading-indicator" [indeterminate]="true"></igx-circular-bar>
-    </div>
-  </ng-template>
+<igx-list *ngIf="authUser">
   <igx-list-item [isHeader]="true">Notifications for {{ authUser.SteamUser.steamID }}</igx-list-item>
   <igx-list-item *ngIf="!authUser?.Notifications?.length"><span>No new notifications.</span></igx-list-item>
   <igx-list-item *ngFor="let notification of authUser?.Notifications | sortNotifications:pipeTrigger">
@@ -16,9 +11,12 @@
         </span>
         <span class="subtitle">{{notification.Sent | date}}</span>
       </div>
-      <div class="horizontal-info__right">
-        <button igxButton="flat" igxRipple [disabled]="notification.State | disabledNotifications" (click)="acceptInvitation(notification)">Accept</button>
-        <button igxButton="flat" igxRipple [disabled]="notification.State | disabledNotifications" (click)="rejectInvitation(notification)">Decline</button>
+      <div class="horizontal-info__right" *ngIf="notification.State | disabledNotifications:true">
+        <button igxButton="flat" igxRipple (click)="acceptInvitation(notification, $event)">Accept</button>
+        <button igxButton="flat" igxRipple (click)="rejectInvitation(notification, $event)">Reject</button>
+      </div>
+      <div class="horizontal-info__right" *ngIf="notification.State | disabledNotifications">
+        <button igxButton="flat" igxRipple [disabled]="true">{{ notification.State | notificationState }}</button>
       </div>
     </div>
   </igx-list-item>

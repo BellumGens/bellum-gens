@@ -9,11 +9,16 @@ import { IgxRadioModule,
   IgxAvatarModule,
   IgxIconModule,
   IgxDropDownModule,
-  IgxToggleModule } from 'igniteui-angular';
+  IgxToggleModule,
+  IgxTabsModule,
+  IgxInputGroupModule,
+  IgxSwitchModule} from 'igniteui-angular';
 import { LoginComponent } from 'src/app/login/login.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { UserPreferencesComponent } from 'src/app/player-section/user-preferences/user-preferences.component';
+import { ConfirmComponent } from 'src/app/confirm/confirm.component';
 
 describe('TeamSearchComponent', () => {
   let component: TeamSearchComponent;
@@ -33,11 +38,16 @@ describe('TeamSearchComponent', () => {
         IgxAvatarModule,
         IgxIconModule,
         IgxToggleModule,
-        IgxDropDownModule
+        IgxDropDownModule,
+        IgxTabsModule,
+        IgxInputGroupModule,
+        IgxSwitchModule
       ],
       declarations: [
         TeamSearchComponent,
-        LoginComponent
+        LoginComponent,
+        UserPreferencesComponent,
+        ConfirmComponent
       ]
     })
     .compileComponents();

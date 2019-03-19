@@ -20,7 +20,9 @@ import { IgxNavigationDrawerModule,
   IgxProgressBarModule,
   IgxButtonGroupModule,
   IgxSliderModule,
-  IgxRadioModule} from 'igniteui-angular';
+  IgxRadioModule,
+  IgxTabsModule,
+  IgxSwitchModule} from 'igniteui-angular';
 import { SuccessErrorComponent } from './success-error/success-error.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { TeamNavComponent } from './team-section/team-nav/team-nav.component';
@@ -41,6 +43,8 @@ import { SortApplicationsPipe } from './pipes/sort-applications.pipe';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { UserPreferencesComponent } from './player-section/user-preferences/user-preferences.component';
+import { NotificationStatePipe } from './pipes/notification-state.pipe';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -74,7 +78,9 @@ describe('AppComponent', () => {
         IgxProgressBarModule,
         IgxButtonGroupModule,
         IgxSliderModule,
-        IgxRadioModule
+        IgxRadioModule,
+        IgxTabsModule,
+        IgxSwitchModule
       ],
       declarations: [
         AppComponent,
@@ -93,7 +99,9 @@ describe('AppComponent', () => {
         ReduceQuickSearchResultPipe,
         DisabledNotificationsPipe,
         SortApplicationsPipe,
-        SortNotificationsPipe
+        SortNotificationsPipe,
+        UserPreferencesComponent,
+        NotificationStatePipe
       ],
     }).compileComponents();
   }));

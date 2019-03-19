@@ -8,6 +8,7 @@ import { DisabledNotificationsPipe } from '../pipes/disabled-notifications.pipe'
 import { SortNotificationsPipe } from '../pipes/sort-notifications.pipe';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SortApplicationsPipe } from '../pipes/sort-applications.pipe';
+import { NotificationStatePipe } from '../pipes/notification-state.pipe';
 
 describe('NotificationsComponent', () => {
   let component: NotificationsComponent;
@@ -27,7 +28,8 @@ describe('NotificationsComponent', () => {
         TeamNotificationsComponent,
         DisabledNotificationsPipe,
         SortNotificationsPipe,
-        SortApplicationsPipe
+        SortApplicationsPipe,
+        NotificationStatePipe
       ]
     })
     .compileComponents();

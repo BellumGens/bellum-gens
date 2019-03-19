@@ -8,7 +8,10 @@ import { LoginService } from 'src/app/services/login.service';
   styleUrls: ['./user-preferences.component.css']
 })
 export class UserPreferencesComponent {
-  public preferences: UserPreferences;
+  public preferences: UserPreferences = {
+    email: '',
+    searchVisible: true
+  };
 
   @Input()
   public set authUser(user: ApplicationUser) {
