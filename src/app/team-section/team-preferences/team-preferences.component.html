@@ -59,7 +59,7 @@
       </igx-list-item>
       <igx-list-item *ngFor="let user of team.Members; let i = index">
         <div class="horizontal-center" *ngIf="user.SteamUser.steamID64 !== adminId">
-          <igx-avatar [src]="user.SteamUser.avatarMedium" [initials]="user.SteamUser.steamID" roundShape="true">
+          <igx-avatar [src]="user.SteamUser.avatarIcon" [initials]="user.SteamUser.steamID" roundShape="true">
           </igx-avatar>
           <igx-avatar [src]="user.SteamUser.country | playerCountry" [roundShape]="true" [title]="user.SteamUser.country" class="country-badge-small"></igx-avatar>
           <div class="horizontal-info__left">
@@ -100,7 +100,7 @@
       <igx-list-item [isHeader]="true">{{ team.SteamGroup.groupName }} steam group members [not part of the team]</igx-list-item>
       <igx-list-item *ngFor="let member of steamMembers | excludeMembers:team.Members">
         <div class="horizontal-center">
-          <igx-avatar [src]="member.avatarmedium" [initials]="member.personaname" roundShape="true">
+          <igx-avatar [src]="member.avatar" [initials]="member.personaname" roundShape="true">
           </igx-avatar>
           <div class="horizontal-info__left">
             <span class="title">
