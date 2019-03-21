@@ -34,7 +34,7 @@
       </igx-card-header>
       <igx-card-content>
         <p class="igx-card-header__subtitle">{{ strat.Description }}</p>
-        <iframe class="youtube-frame" *ngIf="isYoutube(strat.Url)" [src]="strat.Url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe class="video-frame" *ngIf="isVideo(strat.Url)" [src]="strat.Url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </igx-card-content>
     </igx-card>
   </div>
@@ -93,7 +93,7 @@
         </igx-input-group>
       </igx-list-item>
       <igx-list-item *ngIf="getVideoEmbedLink()">
-        <iframe class="youtube-frame" [src]="newStrategy.Url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe class="video-frame" [src]="newStrategy.Url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </igx-list-item>
       <igx-list-item>
         <button igxButton igxRipple [disabled]="strategyForm.invalid">Submit</button>
