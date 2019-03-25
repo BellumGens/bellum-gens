@@ -14,4 +14,5 @@ export interface ApplicationUser {
 export interface UserPreferences {
   email: string;
   searchVisible: boolean;
+  newEmail?: boolean;
 }

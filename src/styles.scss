@@ -344,6 +344,7 @@ a {
 .igx-input-group__textarea, 
 textarea {
   resize: none;
+  min-height: 128px;
 }
 
 /* SEARCH */
