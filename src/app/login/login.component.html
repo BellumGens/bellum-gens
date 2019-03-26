@@ -7,7 +7,7 @@
   <button class="profile-button" #profileButton igxButton="flat" igxRipple [igxToggleAction]="userProfile" [overlaySettings]="overlaySettings">
     <igx-avatar [src]="authUser.SteamUser.avatarMedium" [initials]="authUser.SteamUser.steamID" roundShape="true">
     </igx-avatar>
-    <igx-icon class="drop-down-arrow button-icon">arrow_drop_down</igx-icon>
+    <igx-icon class="drop-down-arrow">arrow_drop_down</igx-icon>
   </button>
   <igx-drop-down #userProfile>
     <div class="profile-container">

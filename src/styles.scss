@@ -14,6 +14,7 @@ $secondary: #FF0A3A !default;
 $background: #192053;
 $banner-background: #2C3D93;
 $background-gradient: linear-gradient(to right, #192053, #04081D);
+$background-gradient-lighter: linear-gradient(135deg, rgba(47,57,120,1) 0%, rgba(16,25,63,1) 100%);
 
 $app-palette: igx-palette($primary, $secondary);
 
@@ -49,14 +50,30 @@ $include: (igx-avatar,
 );
 
 /* Navbar */
-$navbar-theme: igx-navbar-theme(igx-palette($background, $secondary));
+$navbar-theme: igx-navbar-theme(igx-palette($background, $secondary),
+                                $background: $background-gradient,
+                                $text-color: white,
+                                $shadow: 0px 15px 30px 0px rgba(0,0,0,0.4),
+                                $idle-icon-color: white,
+                                $hover-icon-color: $secondary);
 @include igx-css-vars($navbar-theme);
 /* END Navbar */
 
-/* Avatar */
-// $avatar-theme: igx-avatar-theme(igx-palette($background, $secondary));
-// @include igx-css-vars($avatar-theme);
-/* END Avatar */
+/* Card */
+$card-theme: igx-card-theme($background: $background-gradient-lighter,
+                            $header-text-color: rgba(255, 255, 255, 0.87),
+                            $resting-shadow: 0px 15px 30px 0px rgba(0,0,0,0.4),
+                            $hover-shadow: 0px 15px 30px 0px rgba(0,0,0,0.7));
+@include igx-css-vars($card-theme);
+/* END Card */
+
+/* Card */
+$list-theme: igx-list-theme($background: transparent,
+                            $header-background: transparent,
+                            $item-background: transparent,
+                            $item-background-active: rgba(0, 0, 0, 0.11));
+@include igx-css-vars($list-theme);
+/* END Card */
 
 /* Input Group */
 $input-group-theme: igx-input-group-theme($search-background: transparent, $idle-text-color: white, $filled-text-color: white, $focused-text-color: white, $placeholder-color: #999);
@@ -133,11 +150,11 @@ igx-icon {
   outline: none;
 }
 
-.button-icon {
-  --igx-navbar-hover-icon-color: $secondary;
-}
-
 /* END ICONS */
+
+.igx-card-header__title {
+  color: var(--igx-card-header-text-color);
+}
 
 .content p {
   margin: 15px;
@@ -176,31 +193,6 @@ igx-icon {
   flex-wrap: nowrap;
 }
 /* END Team and Player Details */
-
-.igx-navbar {
-  background: $background-gradient;
-  -webkit-box-shadow: 0px 15px 30px 0px rgba(0,0,0,0.4);
-  -moz-box-shadow: 0px 15px 30px 0px rgba(0,0,0,0.4);
-  box-shadow: 0px 15px 30px 0px rgba(0,0,0,0.4);
-}
-
-.igx-card,
-.igx-list,
-.igx-list__empty {
-  background: linear-gradient(135deg, rgba(47,57,120,1) 0%, rgba(16,25,63,1) 100%);
-  -webkit-box-shadow: 0px 15px 30px 0px rgba(0,0,0,0.4);
-  -moz-box-shadow: 0px 15px 30px 0px rgba(0,0,0,0.4);
-  box-shadow: 0px 15px 30px 0px rgba(0,0,0,0.4);
-}
-
-.igx-list__header,
-.igx-list__item-content {
-  background-color: transparent;
-}
-
-.igx-list__item-content:active {
-  background-color: rgba(0, 0, 0, 0.11)
-}
 
 .igx-overlay {
   color: $primary;
@@ -309,6 +301,10 @@ igx-card-content h4 {
 a {
   text-decoration: none;
   color: igx-color($app-palette, secondary);
+}
+
+.margin-bottom {
+  margin-bottom: 16px;
 }
 
 .country-badge-small {
