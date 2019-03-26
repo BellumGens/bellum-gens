@@ -7,6 +7,7 @@ import { DaysAvailablePipe } from 'src/app/pipes/days-available.pipe';
 import { OpenPositionsPipe } from 'src/app/pipes/open-positions.pipe';
 import { WeekdayPipe } from 'src/app/pipes/weekday.pipe';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { QueryParsedPipe } from 'src/app/pipes/query-parsed.pipe';
 
 describe('TeamResultsComponent', () => {
   let component: TeamResultsComponent;
@@ -26,7 +27,8 @@ describe('TeamResultsComponent', () => {
         TeamResultsComponent,
         DaysAvailablePipe,
         OpenPositionsPipe,
-        WeekdayPipe
+        WeekdayPipe,
+        QueryParsedPipe
       ]
     })
     .compileComponents();
