@@ -39,7 +39,7 @@ export class QueryParsedPipe implements PipeTransform {
         return result;
       }
     }
-    return null;
+    return ' with no search criteria';
   }
 
 }
