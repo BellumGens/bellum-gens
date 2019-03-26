@@ -17,6 +17,8 @@ export class QueryParsedPipe implements PipeTransform {
             result += ` playing as ${ALL_ROLES.find(r => r.Id.toString() === token[1]).Name}`;
           } else if (token[0] === 'overlap' && token[1] !== '0') {
             result += ` with availability overlap of at least ${token[1]} hours`;
+          } else if (token[0] === 'name' && token[1]) {
+            result += ` with name containing '${token[1]}'`;
           }
         });
         if (!result) {
@@ -31,6 +33,8 @@ export class QueryParsedPipe implements PipeTransform {
             result += ` looking for ${ALL_ROLES.find(r => r.Id.toString() === token[1]).Name}`;
           } else if (token[0] === 'overlap' && token[1] !== '0') {
             result += ` with availability overlap of at least ${token[1]} hours`;
+          } else if (token[0] === 'name' && token[1]) {
+            result += ` with name containing '${token[1]}'`;
           }
         });
         if (!result) {

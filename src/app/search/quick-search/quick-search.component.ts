@@ -9,13 +9,15 @@ import { SearchResult } from '../../models/searchresult';
 })
 export class QuickSearchComponent implements OnInit {
   public searchResult: SearchResult = {Players: [], Teams: []};
-  public loading = true;
+  public loading = false;
+  public term = '';
 
   constructor(private apiService: BellumgensApiService) { }
 
   ngOnInit() {
     this.apiService.searchResult.subscribe(data => this.searchResult = data);
     this.apiService.loadingQuickSearch.subscribe(data => this.loading = data);
+    this.apiService.searchTerm.subscribe(term => this.term = term);
   }
 
 }

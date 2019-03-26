@@ -11,7 +11,7 @@ import { ALL_ROLES } from '../../../models/playerrole';
 })
 export class PlayerResultsComponent {
   public players: CSGOPlayer [];
-  public loading = true;
+  public loading = false;
   public roles = ALL_ROLES;
   public query: string;
 

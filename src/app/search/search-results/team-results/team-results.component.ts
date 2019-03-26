@@ -10,7 +10,7 @@ import { CSGOTeam } from '../../../models/csgoteam';
 })
 export class TeamResultsComponent {
   public teams: CSGOTeam [];
-  public loading = true;
+  public loading = false;
   public query: string;
 
   constructor(private route: ActivatedRoute,

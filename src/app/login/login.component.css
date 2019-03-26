@@ -24,7 +24,7 @@
 }
 
 .profile-view {
-  padding: 32px 0;
+  padding: 58px 0;
 }
 
 .profile-container {
@@ -35,9 +35,17 @@
 }
 
 .profile-content {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
   min-height: 310px;
 }
 
 .profile-username {
   margin-top: 8px;
+}
+
+.logout-button {
+  width: calc(100% - 16px);
+  margin: 0 8px 8px 8px;
 }
