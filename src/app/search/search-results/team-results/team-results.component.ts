@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BellumgensApiService } from '../../../services/bellumgens-api.service';
 import { CSGOTeam } from '../../../models/csgoteam';
@@ -10,7 +10,7 @@ import { CSGOTeam } from '../../../models/csgoteam';
 })
 export class TeamResultsComponent {
   public teams: CSGOTeam [];
-  public loading = true;
+  public loading = false;
   public query: string;
 
   constructor(private route: ActivatedRoute,

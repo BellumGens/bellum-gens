@@ -87,6 +87,7 @@ import { ExcludeMembersPipe } from './pipes/exclude-members.pipe';
 import { UserPreferencesComponent } from './player-section/user-preferences/user-preferences.component';
 import { NotificationStatePipe } from './pipes/notification-state.pipe';
 import { EmailconfirmComponent } from './emailconfirm/emailconfirm.component';
+import { QueryParsedPipe } from './pipes/query-parsed.pipe';
 
 @NgModule({
   declarations: [
@@ -136,7 +137,8 @@ import { EmailconfirmComponent } from './emailconfirm/emailconfirm.component';
     ExcludeMembersPipe,
     UserPreferencesComponent,
     NotificationStatePipe,
-    EmailconfirmComponent
+    EmailconfirmComponent,
+    QueryParsedPipe
   ],
   imports: [
     FormsModule,

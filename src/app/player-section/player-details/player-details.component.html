@@ -115,7 +115,7 @@
           <app-availability [availability]="player?.availability" (availabilityChanged)="submitAvailability($event)" [editable]="playerIsUser"></app-availability>
 
           <!-- Playstyle Roles -->
-          <h4>Playstyle</h4>
+          <h4 class="margin-top">Playstyle</h4>
           <div class="horizontal-center">
             <igx-select id="primary-role" [disabled]="!playerIsUser" [ngModel]="player.primaryRole" (ngModelChange)="selectPrimary($event)">
               <label for="primary-role" igxLabel>Primary</label>
@@ -136,8 +136,8 @@
       
       <div class="player-detail-stats-container">
         <div class="list-container weapon-list">
+          <h4>Weapons</h4>
           <igx-list *ngIf="!player.userStatsException">
-            <igx-list-item [isHeader]="true">Weapons</igx-list-item>
             <igx-list-item *ngFor="let weapon of player.userStats.weapons | sortWeapons">
               <div class="horizontal-center">
                 <igx-icon class="weapon-image-small" fontSet="weapon-icons" [name]="weapon.name"></igx-icon>

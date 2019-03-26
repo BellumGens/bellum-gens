@@ -11,13 +11,15 @@ import { ALL_ROLES } from '../../../models/playerrole';
 })
 export class PlayerResultsComponent {
   public players: CSGOPlayer [];
-  public loading = true;
+  public loading = false;
   public roles = ALL_ROLES;
+  public query: string;
 
   constructor(private route: ActivatedRoute,
               private apiService: BellumgensApiService) {
     this.route.params.subscribe(params => {
       if (params.query) {
+        this.query = params.query;
         this.apiService.searchPlayers(params.query);
       }
     });
