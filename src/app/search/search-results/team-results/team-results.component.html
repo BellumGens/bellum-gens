@@ -2,8 +2,11 @@
   <igx-circular-bar class="loading-user-data" [indeterminate]="true"></igx-circular-bar>
 </div>
 
+<div class="margin-bottom">
+  <h4 class="igx-card-header__title margin-bottom">Found <span class="highlight">{{teams?.length }}</span> results for teams{{ query | queryParsed }}</h4>
+</div>
+
 <div *ngIf="!loading" class="horizontal">
-  <!-- <h5>Results for: Teams > {{ this.query }}</h5> -->
   <igx-card *ngFor="let team of teams" igxRipple class="search-result" [routerLink]="['/team', team.TeamId]">
     <igx-card-header>
       <igx-avatar [src]="team.TeamAvatar" [initials]="team.TeamName" [size]="'medium'" roundShape="true"></igx-avatar>

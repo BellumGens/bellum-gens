@@ -6,7 +6,7 @@
       </igx-action-icon>
       <igx-input-group type="search" class="search-group" #searchGroup>
         <igx-prefix>
-          <igx-icon class="button-icon">search</igx-icon>
+          <igx-icon>search</igx-icon>
         </igx-prefix>
         <label igxLabel for="searchInput">Search</label>
         <input id="searchInput" #searchInput igxInput (focus)="advancedSearch.open()" class="search-input" />
@@ -15,11 +15,11 @@
         </igx-suffix>
       </igx-input-group>
       <div class="action-button-container" [igxToggleAction]="myTeam" [overlaySettings]="overlaySettings" *ngIf="authUser">
-        <igx-icon class="button-icon">people</igx-icon>
+        <igx-icon>people</igx-icon>
         <igx-badge class="notifications-badge" *ngIf="authUser.Teams?.length > 0" [value]="authUser.Teams?.length" type="info"></igx-badge>
       </div>
       <div class="action-button-container" [igxToggleAction]="notifications" [overlaySettings]="overlaySettings" *ngIf="authUser">
-        <igx-icon class="button-icon">notifications</igx-icon>
+        <igx-icon>notifications</igx-icon>
         <igx-badge class="notifications-badge" *ngIf="unreadNotifications > 0" [value]="unreadNotifications" type="info"></igx-badge>
       </div>
 

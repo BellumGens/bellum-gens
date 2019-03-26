@@ -31,6 +31,7 @@ export class BellumgensApiService {
   public searchResult = new ReplaySubject<SearchResult>(1);
   public playerSearchResult = new ReplaySubject<CSGOPlayer []>(1);
   public teamSearchResult = new ReplaySubject<CSGOTeam []>(1);
+  public searchTerm = new ReplaySubject<string>(1);
 
   // Cache
   private _players: ReplaySubject<CSGOPlayer []>;
@@ -81,6 +82,7 @@ export class BellumgensApiService {
   }
 
   public quickSearch(name: string) {
+    this.searchTerm.next(name);
     if (this._searchResultCache.has(name)) {
       this.searchResult.next(this._searchResultCache.get(name));
     } else {
@@ -109,18 +111,25 @@ export class BellumgensApiService {
     if (this._teamSearchCache.has(query)) {
       this.teamSearchResult.next(this._teamSearchCache.get(query));
     } else {
-      this.teamSearchResult.next([]);
-      this.loadingSearch.next(true);
-      this.getFilteredTeams(query).subscribe(
-        teams => {
-          this._teamSearchCache.set(query, teams);
-          this.teamSearchResult.next(teams);
-          this.loadingSearch.next(false);
-        },
-        error => {
-          this.emitError(error.error.Message);
+      if (query.startsWith('name')) {
+        const val = query.split('=')[1];
+        if (this._searchResultCache.has(val)) {
+          this.teamSearchResult.next(this._searchResultCache.get(val).Teams);
         }
-      );
+      } else {
+        this.teamSearchResult.next([]);
+        this.loadingSearch.next(true);
+        this.getFilteredTeams(query).subscribe(
+          teams => {
+            this._teamSearchCache.set(query, teams);
+            this.teamSearchResult.next(teams);
+            this.loadingSearch.next(false);
+          },
+          error => {
+            this.emitError(error.error.Message);
+          }
+        );
+      }
     }
   }
 
@@ -128,18 +137,25 @@ export class BellumgensApiService {
     if (this._playerSearchCache.has(query)) {
       this.playerSearchResult.next(this._playerSearchCache.get(query));
     } else {
-      this.playerSearchResult.next([]);
-      this.loadingSearch.next(true);
-      this.getFilteredPlayers(query).subscribe(
-        players => {
-          this._playerSearchCache.set(query, players);
-          this.playerSearchResult.next(players);
-          this.loadingSearch.next(false);
-        },
-        error => {
-          this.emitError(error.error.Message);
+      if (query.startsWith('name')) {
+        const val = query.split('=')[1];
+        if (this._searchResultCache.has(val)) {
+          this.playerSearchResult.next(this._searchResultCache.get(val).Players);
         }
-      );
+      } else {
+        this.playerSearchResult.next([]);
+        this.loadingSearch.next(true);
+        this.getFilteredPlayers(query).subscribe(
+          players => {
+            this._playerSearchCache.set(query, players);
+            this.playerSearchResult.next(players);
+            this.loadingSearch.next(false);
+          },
+          error => {
+            this.emitError(error.error.Message);
+          }
+        );
+      }
     }
   }
 

@@ -43,6 +43,14 @@
 /* END User Profile */
 
 /* User Overview */
+.overview-container-card h4 {
+  margin-top: 0;
+}
+
+.overview-container-card h4.margin-top {
+  margin-top: 1.75rem;
+}
+
 .player-overview-container {
   display: flex;
   flex: 1 1 100%;
