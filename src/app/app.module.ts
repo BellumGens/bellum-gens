@@ -88,6 +88,7 @@ import { UserPreferencesComponent } from './player-section/user-preferences/user
 import { NotificationStatePipe } from './pipes/notification-state.pipe';
 import { EmailconfirmComponent } from './emailconfirm/emailconfirm.component';
 import { QueryParsedPipe } from './pipes/query-parsed.pipe';
+import { StrategyEditorComponent } from './team-section/team-strategies/strategy-editor/strategy-editor.component';
 
 @NgModule({
   declarations: [
@@ -138,7 +139,8 @@ import { QueryParsedPipe } from './pipes/query-parsed.pipe';
     UserPreferencesComponent,
     NotificationStatePipe,
     EmailconfirmComponent,
-    QueryParsedPipe
+    QueryParsedPipe,
+    StrategyEditorComponent
   ],
   imports: [
     FormsModule,
