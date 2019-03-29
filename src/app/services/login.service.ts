@@ -49,14 +49,15 @@ export class LoginService {
       this._applicationUser = new ReplaySubject<ApplicationUser>(1);
       this.getSteamUser().subscribe(
         user => {
-          this._applicationUser.next(user);
-          this.initSw();
-        },
-        error => this._applicationUser = null
+          if (user) {
+            this._applicationUser.next(user);
+            this.initSw();
+          }
+        }
       );
     }
 
-    return this._applicationUser.asObservable();
+    return this._applicationUser;
   }
 
   public login(provider: string) {
