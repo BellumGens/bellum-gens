@@ -39,6 +39,7 @@ $include: (igx-avatar,
            igx-radio,
            igx-snackbar,
            igx-circular-bar,
+           igx-linear-bar,
            igx-slider,
            igx-switch,
            igx-banner);
@@ -117,9 +118,14 @@ $snackbar-theme: igx-snackbar-theme($background: $banner-background, $border-rad
 /* END Badge */
 
 /* Progress Circular */
-$progress-bar-theme: igx-progress-circular-theme($progress-circle-color: $secondary);
-@include igx-css-vars($progress-bar-theme);
+$circular-progress-bar-theme: igx-progress-circular-theme($progress-circle-color: $secondary);
+@include igx-css-vars($circular-progress-bar-theme);
 /* END Progress Circular */
+
+/* Progress Linear */
+// $linear-progress-bar-theme: igx-progress-linear-theme($track-color: $secondary);
+// @include igx-css-vars($linear-progress-bar-theme);
+/* END Progress Linear */
 
 /* Expansion Panel */
 $expansion-panel-theme: igx-expansion-panel-theme($header-background: $background, $header-focus-background: $background, $body-background: $background);
@@ -399,6 +405,18 @@ textarea {
   background-color: transparent;
 }
 /* END SEARCH */
+
+.color-success {
+  color: var(--igx-input-group-success-secondary-color);
+}
+
+.color-error {
+  color: var(--igx-input-group-error-secondary-color);
+}
+
+.color-warn {
+  color: var(--igx-input-group-warning-secondary-color);
+}
 
 @media only screen and (max-width: 680px) {
   .list-container .horizontal-info__left {

@@ -7,15 +7,3 @@ igx-snackbar {
   bottom: 16px;
   z-index: 10000;
 }
-
-.color-success {
-  color: var(--igx-input-group-success-secondary-color);
-}
-
-.color-error {
-  color: var(--igx-input-group-error-secondary-color);
-}
-
-.color-warn {
-  color: var(--igx-input-group-warning-secondary-color);
-}

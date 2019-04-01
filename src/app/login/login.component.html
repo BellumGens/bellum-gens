@@ -25,7 +25,26 @@
             <h1 class="igx-card-header__title highlight navigatable profile-username" [routerLink]="['/players', authUser.SteamUser.steamID64]">{{ authUser.SteamUser.steamID }}</h1>
             <h4 class="igx-card-header__subtitle">{{ authUser.SteamUser.realname }}</h4>
           </div>
-          <button class="submit-button logout-button" igxButton="outlined" igxRipple (click)="logout()"><igx-icon fontSet="material">exit_to_app</igx-icon>logout</button>
+          <div *ngIf="authUser" class="profile-completeness">
+            <igx-linear-bar [type]="authUser | profileCompleteness:true" [max]="4" [value]="authUser | profileCompleteness" text="Profile Completeness" [textTop]="true"></igx-linear-bar>
+            <div class="completeness-item">
+              <igx-icon [class]="authUser.Availability | profileAvaiabilityComplete:true">{{authUser.Availability | profileAvaiabilityComplete}}</igx-icon>
+              Availability
+            </div>
+            <div class="completeness-item">
+              <igx-icon [class]="authUser.PreferredPrimaryRole | profileRoleComplete:true">{{authUser.PreferredPrimaryRole | profileRoleComplete}}</igx-icon>
+              Primary Role
+            </div>
+            <div class="completeness-item">
+              <igx-icon [class]="authUser.PreferredSecondaryRole | profileRoleComplete:true">{{authUser.PreferredSecondaryRole | profileRoleComplete}}</igx-icon>
+              Secondary Role
+            </div>
+            <div class="completeness-item">
+              <igx-icon [class]="authUser.MapPool | profileMapsComplete:true">{{authUser.MapPool | profileMapsComplete}}</igx-icon>
+              Preferred maps
+            </div>
+          </div>
+          <button class="submit-button logout-button" igxButton="outlined" igxRipple (click)="logout()"><igx-icon>exit_to_app</igx-icon>logout</button>
         </igx-tabs-group>
   
         <igx-tabs-group class="profile-content">
