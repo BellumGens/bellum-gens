@@ -23,17 +23,17 @@
       <div class="horizontal-info__right--column" *ngIf="!user.userStatsException">
           <div class="horizontal-center">
             <igx-circular-bar class="icon-avatar" [value]="user.userStats.killDeathRatio" [max]="2" [animate]="true" [textVisibility]="false" title="KDR"></igx-circular-bar>
-            <span class="title margin-left">{{ user.userStats.killDeathRatio }}</span>
+            <span class="title margin-left player-summary-stat">{{ user.userStats.killDeathRatio }}</span>
           </div>
     
           <div class="horizontal-center">
             <igx-icon fontSet="weapon-icons" name="headshot" class="icon-avatar"></igx-icon>
-            <span class="title margin-left">{{ user.userStats.headshotPercentage | number:'1.2' }}%</span>
+            <span class="title margin-left player-summary-stat">{{ user.userStats.headshotPercentage | number:'1.2' }}%</span>
           </div>
       </div>
 
       <div class="horizontal-info__right--column" *ngIf="user.userStatsException">
-          <span class="title">Private</span>
+        <span class="title">Private</span>
       </div>
     </div>
   </igx-list-item>

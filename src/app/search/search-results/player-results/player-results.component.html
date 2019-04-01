@@ -10,21 +10,19 @@
     <igx-card-header>
       <div class="horizontal-center">
         <igx-avatar [src]="player.steamUser.avatarMedium" [size]="'medium'" [initials]="player.steamUser.steamID" roundShape="true"></igx-avatar>
-        <div class="horizontal-info__left">
-          <div class="igx-card-header__tgroup">
-            <h3 class="igx-card-header__title highlight">{{ player.steamUser.steamID }}</h3>
-            <h5 class="igx-card-header__subtitle">{{ player.steamUser.realname }}</h5>
-          </div>
+        <div class="igx-card-header__tgroup">
+          <h3 class="igx-card-header__title highlight">{{ player.steamUser.steamID }}</h3>
+          <h5 class="igx-card-header__subtitle">{{ player.steamUser.realname }}</h5>
         </div>
 
         <div class="horizontal-info__right--column" *ngIf="!player.userStatsException">
           <div class="horizontal-center">
             <igx-circular-bar class="icon-avatar" [value]="player.userStats.killDeathRatio" [max]="2" [animate]="true" [textVisibility]="false" title="KDR"></igx-circular-bar>
-            <span class="title margin-left">{{ player.userStats.killDeathRatio }}</span>
+            <span class="title margin-left player-summary-stat">{{ player.userStats.killDeathRatio }}</span>
           </div>
           <div class="horizontal-center">
             <igx-icon fontSet="weapon-icons" name="headshot" class="icon-avatar"></igx-icon>
-            <span class="title margin-left">{{ player.userStats.headshotPercentage | number:'1.2' }}%</span>
+            <span class="title margin-left player-summary-stat">{{ player.userStats.headshotPercentage | number:'1.2' }}%</span>
           </div>
         </div>
 
@@ -37,13 +35,13 @@
       <div>Preferred roles</div>
       <igx-chips-area>
         <igx-chip [selectable]="false">
-          <span class='igx-chip__text'>{{ roles[player?.primaryRole].Name }}</span>
+          <span class='igx-chip__text'>{{ roles[player.primaryRole].Name }}</span>
         </igx-chip>
         <igx-chip [selectable]="false">
-          <span class='igx-chip__text'>{{ roles[player?.secondaryRole].Name }}</span>
+          <span class='igx-chip__text'>{{ roles[player.secondaryRole].Name }}</span>
         </igx-chip>
       </igx-chips-area>
-      <div>Practice days</div>
+      <div>Available</div>
       <igx-chips-area>
         <igx-chip *ngFor="let weekday of player.availability | daysAvailable"
                   [selectable]="false">
