@@ -37,7 +37,6 @@ describe('TeamStrategiesComponent', () => {
         FormsModule,
         RouterTestingModule,
         NoopAnimationsModule,
-        IgxExpansionPanelModule,
         IgxIconModule,
         IgxCardModule,
         IgxListModule,

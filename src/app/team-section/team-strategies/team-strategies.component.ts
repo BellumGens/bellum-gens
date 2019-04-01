@@ -3,9 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { BellumgensApiService } from '../../services/bellumgens-api.service';
 import { TeamStrategy, newEmptyStrategy } from '../../models/csgoteamstrategy';
 import { MapPool, ActiveDutyDescriptor, ActiveDuty } from '../../models/csgomaps';
-import { IgxDialogComponent } from 'igniteui-angular';
+import { IgxDialogComponent, IChipSelectEventArgs } from 'igniteui-angular';
 import { SafeResourceUrl } from '@angular/platform-browser';
-import { MapnamePipe } from '../../pipes/mapname.pipe';
 
 @Component({
   selector: 'app-team-strategies',
@@ -22,6 +21,7 @@ export class TeamStrategiesComponent implements OnInit {
   videoId: string;
   pipeTrigger = 0;
   changes = false;
+  viewAll = false;
 
   @Input()
   isAdmin = false;
@@ -49,27 +49,12 @@ export class TeamStrategiesComponent implements OnInit {
     });
   }
 
-  public get selectedMaps() {
-    let names = '';
-    if (this.maps) {
-      const pipe = new MapnamePipe();
-      this.maps.forEach((map) => {
-        if (map.IsPlayed) {
-          if (names.length) {
-            names += ', ' + pipe.transform(map.Map);
-          } else {
-            names += pipe.transform(map.Map);
-          }
-        }
-      });
+  public changeMaps(event: IChipSelectEventArgs, args: MapPool) {
+    if (event.originalEvent) {
+      this.maps.find(m => m.Map === args.Map).IsPlayed = event.selected;
+      this.changes = true;
+      this.pipeTrigger++;
     }
-    return names;
-  }
-
-  public changeMaps(args: MapPool) {
-    this.maps.find(m => m.Map === args.Map).IsPlayed = args.IsPlayed;
-    this.changes = true;
-    this.pipeTrigger++;
   }
 
   public saveMaps(event: Event) {
@@ -84,10 +69,6 @@ export class TeamStrategiesComponent implements OnInit {
   public openNewStrategy(event: Event) {
     event.stopPropagation();
     this.dialog.open();
-  }
-
-  public selectMap(args) {
-    this.newStrategy.Map = args.newSelection.value;
   }
 
   public editStrategy(strat: TeamStrategy) {

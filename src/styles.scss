@@ -236,6 +236,14 @@ igx-card-content h4 {
   margin: 24px 0px 0px 8px;
 }
 
+.overview-container-card h4 {
+  margin-top: 0;
+}
+
+.overview-container-card h4.margin-top {
+  margin-top: 1.75rem;
+}
+
 .horizontal {
   display: flex;
   flex: 0 0 auto;

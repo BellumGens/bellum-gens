@@ -1,22 +1,21 @@
 <div class="card-with-margins">
-  <igx-expansion-panel>
-    <igx-expansion-panel-header>
-      <igx-expansion-panel-title>
-        Map Filter for Strategies
-      </igx-expansion-panel-title>
-      <igx-expansion-panel-description>
-        {{ selectedMaps }}
-      </igx-expansion-panel-description>
+  <div class="strat-filter-header">
+    <div><h4>Maps</h4></div>
+    <div>
       <button class="navigation-item" *ngIf="changes && isAdmin" igxButton="outlined" igxRipple (click)="saveMaps($event)">Save current maps</button>
       <button class="navigation-item" *ngIf="isEditor" igxButton="outlined" igxRipple (click)="openNewStrategy($event)">Add new strategy</button>
-    </igx-expansion-panel-header>
-    <igx-expansion-panel-body>
-      <app-map-pool [mapPool]="maps" [readOnly]="false" (update)="changeMaps($event)">
-      </app-map-pool>
-    </igx-expansion-panel-body>
-  </igx-expansion-panel>
+      <button class="navigation-item" igxButton="outlined" igxRipple (click)="viewAll = !viewAll; $event.stopPropagation();">{{viewAll ? 'View Active Duty' : 'View All'}}</button>
+    </div>
+  </div>
+  <div class="strat-filter-header">
+    <igx-chips-area>
+      <igx-chip class="maps-chip" [selected]="map.IsPlayed" [selectable]="true" (onSelection)="changeMaps($event, map)" *ngFor="let map of maps | activeDutyMaps:viewAll | ordermaps">
+        {{ map.Map | mapname }}
+      </igx-chip>
+    </igx-chips-area>
+  </div>
   <div class="card-wrapper">
-    <igx-card class="strat" *ngFor="let strat of teamStrats | sidestrats:maps:pipeTrigger">
+    <igx-card class="strat" *ngFor="let strat of teamStrats | activeDutyMaps:viewAll:pipeTrigger | sidestrats:maps">
       <igx-card-header>
         <div>
           <h4 class="igx-card-header__title">{{ strat.Title }}</h4>

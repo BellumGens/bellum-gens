@@ -57,7 +57,6 @@ describe('TeamOverviewComponent', () => {
         IgxTabsModule,
         IgxCardModule,
         IgxDragDropModule,
-        IgxExpansionPanelModule,
         IgxListModule,
         IgxInputGroupModule,
         IgxRadioModule,
