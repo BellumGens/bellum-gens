@@ -23,6 +23,6 @@ export function newEmptyStrategy(): TeamStrategy {
     Title: '',
     Description: '',
     Url: '',
-    Map: CSGOMap.Cache
+    Map: CSGOMap.Dust2
   };
 }
