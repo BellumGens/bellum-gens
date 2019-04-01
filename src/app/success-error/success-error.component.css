@@ -1,4 +1,6 @@
 igx-snackbar {
+  display: flex;
+  justify-content: center;
   position: fixed;
   left: 16px;
   right: 16px;

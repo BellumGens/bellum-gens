@@ -157,11 +157,13 @@
 
         <!-- Map Pool -->
         <igx-card class="player-detail__stats-span">
-          <igx-card-header>
-            <h4 class="igx-card-header__title">Maps</h4>
+          <igx-card-header class="map-pool-header">
+            <div><h4 class="igx-card-header__title">{{ viewAll ? 'All' : 'Active Duty' }} Maps</h4></div>
+            <button igxButton="flat" igxRipple (click)="viewAll = !viewAll">{{viewAll ? 'View Active Duty' : 'View All'}}</button>
           </igx-card-header>
           <igx-card-content>
             <app-map-pool [readOnly]="!playerIsUser"
+              [viewAll]="viewAll"
               [mapPool]="player?.mapPool"
               (update)="mapChange($event)"></app-map-pool>
           </igx-card-content>

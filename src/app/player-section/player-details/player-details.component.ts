@@ -26,6 +26,7 @@ export class PlayerDetailsComponent implements OnInit {
   public player: CSGOPlayer;
   public newUser = false;
   public roles = ALL_ROLES;
+  public viewAll = false;
 
   @ViewChild('primaryRole') public primaryRole: IgxDropDownComponent;
   @ViewChild('secondaryRole') public secondaryRole: IgxDropDownComponent;

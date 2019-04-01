@@ -106,7 +106,7 @@ $dialog-theme: igx-dialog-theme($background: $background);
 /* END Dialog */
 
 /* Snackbar */
-$snackbar-theme: igx-snackbar-theme($background: $banner-background);
+$snackbar-theme: igx-snackbar-theme($background: $banner-background, $border-radius: 24px);
 @include igx-css-vars($snackbar-theme);
 /* END Snackbar */
 
