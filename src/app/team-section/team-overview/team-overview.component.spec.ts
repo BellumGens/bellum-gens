@@ -38,6 +38,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { ExcludeMembersPipe } from 'src/app/pipes/exclude-members.pipe';
+import { ActiveDutyMapsPipe } from 'src/app/pipes/active-duty-maps.pipe';
 
 describe('TeamOverviewComponent', () => {
   let component: TeamOverviewComponent;
@@ -85,7 +86,8 @@ describe('TeamOverviewComponent', () => {
         WeekdayPipe,
         MapimagePipe,
         OrdermapsPipe,
-        ExcludeMembersPipe
+        ExcludeMembersPipe,
+        ActiveDutyMapsPipe
       ]
     })
     .compileComponents();
