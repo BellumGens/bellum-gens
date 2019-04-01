@@ -15,15 +15,26 @@
 
 .strat igx-card-header {
   justify-content: space-between;
-  flex-flow: row nowrap;
 }
 
 .card-wrapper {
   display: flex;
   flex: 1 1 100%;
-  flex-flow: row wrap;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .wrap {
   flex-wrap: wrap;
+}
+
+.strat-filter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0 0 16px;
+}
+
+.maps-chip {
+  margin-right: 4px;
 }

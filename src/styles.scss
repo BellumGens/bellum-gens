@@ -106,7 +106,7 @@ $dialog-theme: igx-dialog-theme($background: $background);
 /* END Dialog */
 
 /* Snackbar */
-$snackbar-theme: igx-snackbar-theme($background: $banner-background);
+$snackbar-theme: igx-snackbar-theme($background: $banner-background, $border-radius: 24px);
 @include igx-css-vars($snackbar-theme);
 /* END Snackbar */
 
@@ -236,6 +236,14 @@ igx-card-content h4 {
   margin: 24px 0px 0px 8px;
 }
 
+.overview-container-card h4 {
+  margin-top: 0;
+}
+
+.overview-container-card h4.margin-top {
+  margin-top: 1.75rem;
+}
+
 .horizontal {
   display: flex;
   flex: 0 0 auto;
@@ -293,6 +301,11 @@ igx-card-content h4 {
   .title.margin-left {
     margin-left: 8px;
   }
+
+    .title.margin-left.player-summary-stat {
+      min-width: 54px;
+    }
+
 
 .subtitle {
   font-size: 0.875em;

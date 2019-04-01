@@ -43,13 +43,6 @@
 /* END User Profile */
 
 /* User Overview */
-.overview-container-card h4 {
-  margin-top: 0;
-}
-
-.overview-container-card h4.margin-top {
-  margin-top: 1.75rem;
-}
 
 .player-overview-container {
   display: flex;
@@ -146,6 +139,10 @@
   text-align: center;
 }
 /* END User Overview */
+
+.map-pool-header {
+  justify-content: space-between;
+}
 
 @media only screen and (max-width: 495px) {
 

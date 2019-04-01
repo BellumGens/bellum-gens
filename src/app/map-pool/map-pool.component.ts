@@ -7,6 +7,8 @@ import { MapPool } from '../models/csgomaps';
   styleUrls: ['./map-pool.component.css']
 })
 export class MapPoolComponent {
+  @Input()
+  public viewAll = false;
 
   @Input()
   mapPool: MapPool [];

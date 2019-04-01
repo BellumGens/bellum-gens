@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { MapPool, ActiveDuty, CSGOMap } from '../models/csgomaps';
+import { ActiveDuty, CSGOMap } from '../models/csgomaps';
 
 @Pipe({
   name: 'mapname'
