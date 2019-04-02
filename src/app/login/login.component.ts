@@ -8,6 +8,7 @@ import { IgxDialogComponent,
 import { LoginService } from '../services/login.service';
 import { ApplicationUser } from '../models/applicationuser';
 import { PlaystyleRole } from '../models/playerrole';
+import { BellumgensApiService } from '../services/bellumgens-api.service';
 
 export interface ProfileCompleteness {
   availability: boolean;
@@ -42,18 +43,7 @@ export class LoginComponent {
     return this._authUser;
   }
 
-  public profileCompleteness: ProfileCompleteness = {
-    availability: false,
-    primaryRole: false,
-    secondaryRole: false,
-    mapPool: false,
-    profileStage: 0,
-    doneColor: '#4eb862',
-    pendingColor: '#fbb13c',
-    doneIcon: 'done',
-    pendingIcon: 'priority_high',
-    progressType: IgxProgressType.INFO
-  };
+  public profileCompleteness: ProfileCompleteness;
 
   public positionSettings: PositionSettings = {
     horizontalDirection: HorizontalAlignment.Left,
@@ -66,7 +56,10 @@ export class LoginComponent {
 
   @ViewChild(IgxDialogComponent) public dialog: IgxDialogComponent;
 
-  constructor(private authManager: LoginService) { }
+  constructor(private authManager: LoginService,
+              private apiService: BellumgensApiService) {
+    this.apiService.authUserUpdate.subscribe(_ => this.fillCompleteness());
+  }
 
   public openLogin() {
     this.dialog.open();
@@ -81,6 +74,18 @@ export class LoginComponent {
   }
 
   private fillCompleteness() {
+    this.profileCompleteness = {
+      availability: false,
+      primaryRole: false,
+      secondaryRole: false,
+      mapPool: false,
+      profileStage: 0,
+      doneColor: '#4eb862',
+      pendingColor: '#fbb13c',
+      doneIcon: 'done',
+      pendingIcon: 'priority_high',
+      progressType: IgxProgressType.INFO
+    };
     if (this._authUser.Availability.filter(a => a.Available).length) {
       this.profileCompleteness.availability = true;
       this.profileCompleteness.profileStage++;
