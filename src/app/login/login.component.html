@@ -26,21 +26,21 @@
             <h4 class="igx-card-header__subtitle">{{ authUser.SteamUser.realname }}</h4>
           </div>
           <div *ngIf="authUser" class="profile-completeness">
-            <igx-linear-bar [type]="authUser | profileCompleteness:true" [max]="4" [value]="authUser | profileCompleteness" text="Profile Completeness" [textTop]="true"></igx-linear-bar>
+            <igx-linear-bar [type]="profileCompleteness.progressType" [max]="4" [value]="profileCompleteness.profileStage" text="Profile Completeness" [textTop]="true"></igx-linear-bar>
             <div class="completeness-item">
-              <igx-icon [class]="authUser.Availability | profileAvaiabilityComplete:true">{{authUser.Availability | profileAvaiabilityComplete}}</igx-icon>
+              <igx-icon [color]="profileCompleteness.availability ? profileCompleteness.doneColor : profileCompleteness.pendingColor">{{profileCompleteness.availability ? profileCompleteness.doneIcon : profileCompleteness.pendingIcon}}</igx-icon>
               Availability
             </div>
             <div class="completeness-item">
-              <igx-icon [class]="authUser.PreferredPrimaryRole | profileRoleComplete:true">{{authUser.PreferredPrimaryRole | profileRoleComplete}}</igx-icon>
+              <igx-icon [color]="profileCompleteness.primaryRole ? profileCompleteness.doneColor : profileCompleteness.pendingColor">{{profileCompleteness.primaryRole ? profileCompleteness.doneIcon : profileCompleteness.pendingIcon}}</igx-icon>
               Primary Role
             </div>
             <div class="completeness-item">
-              <igx-icon [class]="authUser.PreferredSecondaryRole | profileRoleComplete:true">{{authUser.PreferredSecondaryRole | profileRoleComplete}}</igx-icon>
+              <igx-icon [color]="profileCompleteness.secondaryRole ? profileCompleteness.doneColor : profileCompleteness.pendingColor">{{profileCompleteness.secondaryRole ? profileCompleteness.doneIcon : profileCompleteness.pendingIcon}}</igx-icon>
               Secondary Role
             </div>
             <div class="completeness-item">
-              <igx-icon [class]="authUser.MapPool | profileMapsComplete:true">{{authUser.MapPool | profileMapsComplete}}</igx-icon>
+              <igx-icon [color]="profileCompleteness.mapPool ? profileCompleteness.doneColor : profileCompleteness.pendingColor">{{profileCompleteness.mapPool ? profileCompleteness.doneIcon : profileCompleteness.pendingIcon}}</igx-icon>
               Preferred maps
             </div>
           </div>

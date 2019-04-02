@@ -90,10 +90,6 @@ import { EmailconfirmComponent } from './emailconfirm/emailconfirm.component';
 import { QueryParsedPipe } from './pipes/query-parsed.pipe';
 import { StrategyEditorComponent } from './team-section/team-strategies/strategy-editor/strategy-editor.component';
 import { ActiveDutyMapsPipe } from './pipes/active-duty-maps.pipe';
-import { ProfileCompletenessPipe } from './pipes/profile-completeness.pipe';
-import { ProfileAvailabilityCompletePipe } from './pipes/profile-availability-complete.pipe';
-import { ProfileRoleCompletePipe } from './pipes/profile-role-complete.pipe';
-import { ProfileMapsCompletePipe } from './pipes/profile-maps-complete.pipe';
 
 @NgModule({
   declarations: [
@@ -146,11 +142,7 @@ import { ProfileMapsCompletePipe } from './pipes/profile-maps-complete.pipe';
     EmailconfirmComponent,
     QueryParsedPipe,
     StrategyEditorComponent,
-    ActiveDutyMapsPipe,
-    ProfileCompletenessPipe,
-    ProfileAvailabilityCompletePipe,
-    ProfileRoleCompletePipe,
-    ProfileMapsCompletePipe
+    ActiveDutyMapsPipe
   ],
   imports: [
     FormsModule,
