@@ -7,3 +7,12 @@ igx-snackbar {
   bottom: 16px;
   z-index: 10000;
 }
+
+.snackbar-msg {
+  display: flex;
+}
+
+.msg-container {
+  margin-left: 8px;
+  padding-top: 2px;
+}

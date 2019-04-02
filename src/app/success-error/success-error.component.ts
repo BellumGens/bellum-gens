@@ -12,6 +12,10 @@ export class SuccessErrorComponent implements OnInit {
   @ViewChild('success') public success: IgxSnackbarComponent;
   @ViewChild('message') public message: IgxSnackbarComponent;
 
+  public successMsg = 'Success...';
+  public errorMsg = 'Error has occurred...';
+  public notificationMsg = '';
+
   constructor(private apiService: BellumgensApiService) { }
 
   ngOnInit() {
@@ -22,21 +26,21 @@ export class SuccessErrorComponent implements OnInit {
 
   public showSuccess(msg?: string) {
     if (msg) {
-      this.success.message = msg;
+      this.successMsg = msg;
     }
     this.success.show();
   }
 
   public showError(msg?: string) {
     if (msg) {
-      this.error.message = msg;
+      this.errorMsg = msg;
     }
     this.error.show();
   }
 
   public showMessage(msg?: string) {
     if (msg) {
-      this.message.message = msg;
+      this.notificationMsg = msg;
     }
     this.message.show();
   }
