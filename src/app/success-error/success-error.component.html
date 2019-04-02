@@ -1,3 +1,18 @@
-<igx-snackbar #message [displayTime]="5000" message="Message..."><igx-icon class="color-warn">priority_high</igx-icon></igx-snackbar>
-<igx-snackbar #error [displayTime]="5000" message="Error has occurred..."><igx-icon class="color-error">error</igx-icon></igx-snackbar>
-<igx-snackbar #success [displayTime]="2000" message="Success..."><igx-icon class="color-success">done</igx-icon></igx-snackbar>
+<igx-snackbar #message [displayTime]="5000">
+  <div class="snackbar-msg">
+    <igx-icon class="color-warn">priority_high</igx-icon>
+    <span class="msg-container">{{notificationMsg}}</span>
+  </div>
+</igx-snackbar>
+<igx-snackbar #error [displayTime]="5000">
+  <div class="snackbar-msg">
+    <igx-icon class="color-error">error</igx-icon>
+    <span class="msg-container">{{errorMsg}}</span>
+  </div>
+</igx-snackbar>
+<igx-snackbar #success [displayTime]="2000">
+  <div class="snackbar-msg">
+    <igx-icon class="color-success">done</igx-icon>
+    <span class="msg-container">{{successMsg}}</span>
+  </div>
+</igx-snackbar>

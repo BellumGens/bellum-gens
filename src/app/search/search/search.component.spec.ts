@@ -12,7 +12,8 @@ import { IgxButtonGroupModule,
   IgxDialogModule,
   IgxTabsModule,
   IgxInputGroupModule,
-  IgxSwitchModule} from 'igniteui-angular';
+  IgxSwitchModule,
+  IgxProgressBarModule} from 'igniteui-angular';
 import { PlayerSearchComponent } from '../player-search/player-search.component';
 import { TeamSearchComponent } from '../team-search/team-search.component';
 import { FormsModule } from '@angular/forms';
@@ -44,7 +45,8 @@ describe('SearchComponent', () => {
         IgxRippleModule,
         IgxTabsModule,
         IgxInputGroupModule,
-        IgxSwitchModule
+        IgxSwitchModule,
+        IgxProgressBarModule
       ],
       declarations: [
         SearchComponent,

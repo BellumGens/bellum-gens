@@ -24,6 +24,7 @@ export class BellumgensApiService {
   public success = new EventEmitter<string>();
   public error = new EventEmitter<string>();
   public message = new EventEmitter<string>();
+  public authUserUpdate = new EventEmitter<any>();
   public loadingTeams = new ReplaySubject<boolean>(1);
   public loadingPlayers = new ReplaySubject<boolean>(1);
   public loadingQuickSearch = new ReplaySubject<boolean>(1);
@@ -473,6 +474,7 @@ export class BellumgensApiService {
       map(response => {
         if (response) {
           this.emitSuccess('Availability updated!');
+          this.authUserUpdate.emit();
         }
         return response;
       }),
@@ -488,6 +490,7 @@ export class BellumgensApiService {
       map(response => {
         if (response) {
           this.emitSuccess(`Primary role set to ${role.Name}`);
+          this.authUserUpdate.emit();
         }
         return response;
       }),
@@ -503,6 +506,7 @@ export class BellumgensApiService {
       map(response => {
         if (response) {
           this.emitSuccess(`Secondary role set to ${role.Name}`);
+          this.authUserUpdate.emit();
         }
         return response;
       }),
@@ -518,6 +522,7 @@ export class BellumgensApiService {
       map(response => {
         if (response) {
           this.emitSuccess('Map pool updated!');
+          this.authUserUpdate.emit();
         }
         return response;
       }),

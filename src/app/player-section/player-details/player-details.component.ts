@@ -54,6 +54,7 @@ export class PlayerDetailsComponent implements OnInit {
   }
 
   public submitAvailability(args: Availability) {
+    this.authUser.Availability.find(a => a.Day === args.Day).Available = args.Available;
     this.apiService.setAvailability(args).subscribe();
   }
 
@@ -64,6 +65,7 @@ export class PlayerDetailsComponent implements OnInit {
   public selectPrimary(value: number) {
     if (this.player.primaryRole !== value) {
       this.player.primaryRole = value;
+      this.authUser.PreferredPrimaryRole = value;
       this.apiService.setPrimaryRole(this.roles.find(r => r.Id === value)).subscribe();
     }
   }
@@ -71,11 +73,13 @@ export class PlayerDetailsComponent implements OnInit {
   public selectSecondary(value: number) {
     if (this.player.secondaryRole !== value) {
       this.player.secondaryRole = value;
+      this.authUser.PreferredSecondaryRole = value;
       this.apiService.setSecondaryRole(this.roles.find(r => r.Id === value)).subscribe();
     }
   }
 
   public mapChange(args: MapPool) {
+    this.authUser.MapPool.find(m => m.Map === args.Map).IsPlayed = args.IsPlayed;
     this.apiService.setMapPool(args).subscribe();
   }
 

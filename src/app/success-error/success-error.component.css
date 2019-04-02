@@ -8,14 +8,11 @@ igx-snackbar {
   z-index: 10000;
 }
 
-.color-success {
-  color: var(--igx-input-group-success-secondary-color);
+.snackbar-msg {
+  display: flex;
 }
 
-.color-error {
-  color: var(--igx-input-group-error-secondary-color);
-}
-
-.color-warn {
-  color: var(--igx-input-group-warning-secondary-color);
+.msg-container {
+  margin-left: 8px;
+  padding-top: 2px;
 }
