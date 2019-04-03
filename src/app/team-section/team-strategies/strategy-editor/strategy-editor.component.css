@@ -1,0 +1,12 @@
+.strat-editor-host {
+  display: flex;
+}
+
+.map-selector {
+  display: flex;
+  flex-flow: column;
+}
+
+.map-choice {
+  margin: 0px 4px 4px 4px;
+}

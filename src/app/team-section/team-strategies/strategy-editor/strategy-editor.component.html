@@ -1,3 +1,6 @@
-<p>
-  strategy-editor works!
-</p>
+<div class="strat-editor-host">
+  <div class="map-selector">
+    <img *ngFor="let map of maps" class="map-choice" width="220px" [src]="map.image" (click)="changeMap(map)" />
+  </div>
+  <canvas width="1024px" height="1024px" #board></canvas>
+</div>
