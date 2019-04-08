@@ -147,6 +147,14 @@ igx-icon {
   user-select: none;
 }
 
+igx-tab-item igx-icon {
+  margin-right: 8px;
+}
+
+.igx-typography .igx-tabs__item-label {
+  letter-spacing: 0.07rem;
+}
+
 .navigatable {
   cursor: pointer;
 }

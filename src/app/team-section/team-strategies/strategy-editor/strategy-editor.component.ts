@@ -54,6 +54,7 @@ export class StrategyEditorComponent implements OnInit {
   }
 
   public surfaceDrop(args: IgxDropEventArgs) {
+    args.cancel = true;
     console.log(args);
   }
 

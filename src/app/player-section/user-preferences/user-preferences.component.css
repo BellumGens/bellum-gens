@@ -2,11 +2,12 @@
   padding: 64px 16px 32px 16px;
 }
 
-.preferences-submit {
-  width: calc(100% - 16px);
-  margin: 0 8px 8px 8px;
+.align-bottom {
+  margin-top: auto;
 }
 
-.margin-top-large {
-  margin-top: 32px;
+.preferences-divider {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
 }

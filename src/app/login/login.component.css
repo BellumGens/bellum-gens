@@ -24,36 +24,49 @@
 }
 
 .profile-view {
-  padding: 16px 0;
+  padding: 40px 0;
 }
 
 .profile-container {
   display: flex;
   flex-flow: column nowrap;
   width: 100%;
-  min-width: 320px;
+  min-width: 347px;
 }
 
 .profile-content {
   display: flex;
   flex-flow: column;
   justify-content: space-between;
-  min-height: 310px;
+  min-height: 515px;
   padding: 8px;
+}
+
+.preferences-divider {
+  display: flex;
+  height: 100%;
+  flex-flow: column;
+  justify-content: space-between;
 }
 
 .profile-username {
   margin-top: 8px;
 }
 
-.logout-button {
-  width: 100%
+.completeness-icon {
+  margin-right: 16px;
 }
 
-.profile-completeness {
+.profile-completeness,
+.completeness-bar {
   margin-bottom: 16px;
 }
 
 .completeness-item {
   display: flex;
+  padding: 8px;
+}
+
+.completeness-item span {
+  font-size: 0.9rem;
 }

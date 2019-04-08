@@ -6,7 +6,12 @@
   <div class="editor-elements">
     <div>
       <div>Team</div>
-      <igx-avatar *ngFor="let member of team.Members" [src]="member.SteamUser.avatarIcon" igxDrag="member" class="team-member-element" [title]="member.SteamUser.steamID" roundShape="true">
+      <igx-avatar *ngFor="let member of team?.Members" [src]="member.SteamUser.avatarIcon" igxDrag="member" class="team-member-element" [title]="member.SteamUser.steamID" roundShape="true">
+      </igx-avatar>
+    </div>
+    <div>
+      <div>Utility</div>
+      <igx-avatar *ngFor="let member of team?.Members" [src]="member.SteamUser.avatarIcon" igxDrag="member" class="team-member-element" [title]="member.SteamUser.steamID" roundShape="true">
       </igx-avatar>
     </div>
   </div>
