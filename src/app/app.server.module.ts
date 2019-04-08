@@ -13,7 +13,6 @@ const routes: Routes = [ { path: 'app-shell-path', component: AppShellComponent 
   imports: [
     AppModule,
     ServerModule,
-    IgxCardModule,
     IgxProgressBarModule,
     RouterModule.forRoot(routes)
   ],

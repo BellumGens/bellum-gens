@@ -1,6 +1,13 @@
 <div class="strat-editor-host">
-  <div class="map-selector">
+  <div class="editor-elements">
     <img *ngFor="let map of maps" class="map-choice" width="220px" [src]="map.image" (click)="changeMap(map)" />
   </div>
-  <canvas width="1024px" height="1024px" #board></canvas>
+  <canvas width="1024px" height="1024px" #board igxDrop (onDrop)="surfaceDrop($event)"></canvas>
+  <div class="editor-elements">
+    <div>
+      <div>Team</div>
+      <igx-avatar *ngFor="let member of team.Members" [src]="member.SteamUser.avatarIcon" igxDrag="member" class="team-member-element" [title]="member.SteamUser.steamID" roundShape="true">
+      </igx-avatar>
+    </div>
+  </div>
 </div>

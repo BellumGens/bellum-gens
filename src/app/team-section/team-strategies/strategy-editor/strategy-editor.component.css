@@ -2,11 +2,25 @@
   display: flex;
 }
 
-.map-selector {
+.editor-elements {
   display: flex;
   flex-flow: column;
+  color: white;
+  max-width: 230px;
 }
 
 .map-choice {
-  margin: 0px 4px 4px 4px;
+  margin: 0px 4px 4px 0px;
+}
+
+.team-member-element {
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  margin-right: 4px;
+}
+
+.team-member-element:focus,
+.team-member-element:active {
+  outline: 2px solid #FF0A3A;
 }
