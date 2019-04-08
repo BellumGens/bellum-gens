@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActiveDutyDescriptor, ActiveDuty } from '../../../models/csgomaps';
-import { StrategyEditor } from '../../../models/strategy-editor';
+import { StrategyEditor, BaseLayer } from '../../../models/strategy-editor';
 import { CSGOTeam } from '../../../models/csgoteam';
 import { BellumgensApiService } from '../../../services/bellumgens-api.service';
 import { ActivatedRoute } from '@angular/router';
@@ -14,6 +14,7 @@ import { IgxDropEventArgs } from 'igniteui-angular';
 export class StrategyEditorComponent implements OnInit {
   public maps: ActiveDutyDescriptor [] = ActiveDuty;
   public team: CSGOTeam;
+  public layers: BaseLayer [];
 
   private _activeMap: ActiveDutyDescriptor;
 
@@ -28,7 +29,6 @@ export class StrategyEditorComponent implements OnInit {
     layer.width = 1024;
     layer.height = 1024;
     this.editor.replaceLayer(0, layer);
-    this.renderContext();
   }
 
   private editor: StrategyEditor;
@@ -47,6 +47,7 @@ export class StrategyEditorComponent implements OnInit {
 
   ngOnInit() {
     this.editor = new StrategyEditor(this.canvas);
+    this.layers = this.editor.layers;
   }
 
   public changeMap(map: ActiveDutyDescriptor) {
@@ -55,10 +56,11 @@ export class StrategyEditorComponent implements OnInit {
 
   public surfaceDrop(args: IgxDropEventArgs) {
     args.cancel = true;
-    console.log(args);
-  }
-
-  public renderContext() {
-    this.editor.flip();
+    const layer = this.editor.createImageLayer();
+    layer.src = args.drag.data.SteamUser.avatarIcon;
+    layer.width = 24;
+    layer.height = 24;
+    layer.circle = true;
+    this.editor.addLayer(layer);
   }
 }
