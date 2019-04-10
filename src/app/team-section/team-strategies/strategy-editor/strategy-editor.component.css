@@ -21,7 +21,14 @@
   margin-right: 4px;
 }
 
-.team-member-element:focus,
-.team-member-element:active {
+.selected-element {
   outline: 2px solid #FF0A3A;
+}
+
+.editor-elements-section {
+  margin-bottom: 32px;
+}
+
+.hidden-layer {
+  opacity: 0.6;
 }

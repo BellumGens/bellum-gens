@@ -4,26 +4,37 @@
   </div>
   <canvas width="1024px" height="1024px" #board igxDrop (onDrop)="surfaceDrop($event)"></canvas>
   <div class="editor-elements">
-    <div>
+    <div class="editor-elements-section">
       <div>Team</div>
       <igx-avatar *ngFor="let member of team?.Members" [src]="member.SteamUser.avatarIcon" [igxDrag]="member" class="team-member-element" [title]="member.SteamUser.steamID" roundShape="true">
       </igx-avatar>
     </div>
-    <div>
+    <div class="editor-elements-section">
       <div>Utility</div>
-      <igx-avatar *ngFor="let member of team?.Members" [src]="member.SteamUser.avatarIcon" igxDrag="member" class="team-member-element" [title]="member.SteamUser.steamID" roundShape="true">
-      </igx-avatar>
+      <igx-icon *ngFor="let util of utility" [fontSet]="util.fontSet" [name]="util.icon" [title]="util.name"></igx-icon>
     </div>
-    <div>
+    <div class="editor-elements-section">
+      <div>Freeflow brushes</div>
+    </div>
+    <div class="editor-elements-section">
       <div>Layers</div>
       <igx-list>
         <igx-list-item *ngFor="let layer of layers">
-          <div class="horizontal">
-            <igx-icon (click)="layer.hidden = !layer.hidden">{{ layer.hidden ? 'visibility' : 'visibility_off'}}</igx-icon>
-            <span>{{ layer.name }}</span>
-          </div>
+          <igx-input-group [ngClass]="layer.hidden ? 'hidden-layer' : ''">
+            <igx-prefix>
+              <igx-icon (click)="layer.hidden = !layer.hidden">{{ layer.hidden ? 'visibility' : 'visibility_off'}}</igx-icon>
+            </igx-prefix>
+            <input igxInput [(ngModel)]="layer.name">
+            <igx-suffix>
+              <igx-icon (click)="confirm.open(layer)">clear</igx-icon>
+            </igx-suffix>
+          </igx-input-group>
         </igx-list-item>
       </igx-list>
     </div>
   </div>
 </div>
+
+<app-confirm #confirm title="Are you sure?" (ok)="deleteLayer($event)">
+  Are you sure you want to delete this layer...
+</app-confirm>

@@ -105,16 +105,18 @@ export class StrategyEditor {
   private _context: any;
   private _layers: BaseLayer[] = [];
   private _layerIndex = 0;
-  private _surfaceName: string;
+  private _width = 1024;
+  private _height = 1024;
+  public surfaceName: string;
 
   constructor(private _canvas: ElementRef, name?: string) {
     this._context = this._canvas.nativeElement.getContext('2d');
-    this._surfaceName = name ? name : this.generateId();
+    this.surfaceName = name ? name : this.generateId();
   }
 
   public flip(index = 0) {
     if (index === 0) {
-      this._context.clearRect(0, 0, 1024, 1024);
+      this._context.clearRect(0, 0, this._width, this._height);
     }
     if (this._layers.length > index) {
       const layer = this._layers[index];
@@ -166,6 +168,12 @@ export class StrategyEditor {
     } else {
       this.addLayer(layer);
     }
+  }
+
+  public removeLayer(layer: BaseLayer) {
+    layer.layerUpdate.unsubscribe();
+    this._layers.splice(this._layers.indexOf(layer), 1);
+    this.flip();
   }
 
   private generateId() {

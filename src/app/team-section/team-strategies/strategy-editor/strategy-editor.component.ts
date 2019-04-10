@@ -5,6 +5,7 @@ import { CSGOTeam } from '../../../models/csgoteam';
 import { BellumgensApiService } from '../../../services/bellumgens-api.service';
 import { ActivatedRoute } from '@angular/router';
 import { IgxDropEventArgs } from 'igniteui-angular';
+import { StratUtilities } from '../../../models/utility';
 
 @Component({
   selector: 'app-strategy-editor',
@@ -14,6 +15,7 @@ import { IgxDropEventArgs } from 'igniteui-angular';
 export class StrategyEditorComponent implements OnInit {
   public maps: ActiveDutyDescriptor [] = ActiveDuty;
   public team: CSGOTeam;
+  public utility = StratUtilities;
   public layers: BaseLayer [];
 
   private _activeMap: ActiveDutyDescriptor;
@@ -62,5 +64,9 @@ export class StrategyEditorComponent implements OnInit {
     layer.height = 24;
     layer.circle = true;
     this.editor.addLayer(layer);
+  }
+
+  public deleteLayer(layer: BaseLayer) {
+    this.editor.removeLayer(layer);
   }
 }
