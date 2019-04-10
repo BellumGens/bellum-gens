@@ -16,7 +16,7 @@ export const routes: Routes = [
   { path: 'players/:userid', component: PlayerDetailsComponent },
   { path: 'players/:userid/:newuser', component: PlayerDetailsComponent },
   { path: 'team/:teamid', component: TeamOverviewComponent },
-  { path: 'team/:teamid/newStrat', component: StrategyEditorComponent },
+  { path: 'team/:teamid/:stratid', component: StrategyEditorComponent },
   { path: 'search/teams/:query', component: TeamResultsComponent },
   { path: 'search/players/:query', component: PlayerResultsComponent },
   { path: '**', component: HomeComponent}

@@ -7,6 +7,7 @@ export interface TeamStrategy {
   Title: string;
   Description: string;
   Url: string;
+  Image?: string;
   Map: CSGOMap;
 }
 

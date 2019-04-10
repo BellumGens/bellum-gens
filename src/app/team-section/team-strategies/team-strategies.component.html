@@ -34,6 +34,7 @@
       <igx-card-content>
         <p class="igx-card-header__subtitle">{{ strat.Description }}</p>
         <iframe class="video-frame" *ngIf="isVideo(strat.Url)" [src]="strat.Url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <img *ngIf="strat.Image" [src]="strat.Image" />
       </igx-card-content>
     </igx-card>
   </div>
@@ -72,7 +73,7 @@
         </igx-radio>
       </igx-list-item>
       <igx-list-item>
-        <igx-select id="mapSelector" name="map" [(ngModel)]="newStrategy.Map">
+        <igx-select id="mapSelector" name="mapSelector" [(ngModel)]="newStrategy.Map">
           <label for="mapSelector" igxLabel>Map</label>
           <igx-select-item *ngFor="let map of mapList" [value]="map.id">
             {{ map.map }}
@@ -80,22 +81,26 @@
         </igx-select>
       </igx-list-item>
       <igx-list-item>
-        <igx-input-group>
-          <igx-prefix>
-            <igx-icon>link</igx-icon>
-          </igx-prefix>
-          <label for="strategyUrl" igxLabel>Link to a video/resource</label>
-          <input #strategyUrl name="strategyUrl" id="strategyUrl" igxInput placeholder="Link to a video/resource" pattern="^(?:http(s)?:\/\/)[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$" [(ngModel)]="newStrategy.Url">
-          <igx-suffix *ngIf="strategyUrl.value.length > 0" (click)="strategyUrl.value = ''">
-              <igx-icon>clear</igx-icon>
-          </igx-suffix>
-        </igx-input-group>
+        <div class="column-wrapper">
+          <igx-input-group>
+            <igx-prefix>
+              <igx-icon>link</igx-icon>
+            </igx-prefix>
+            <label for="strategyUrl" igxLabel>Link to a video/resource</label>
+            <input #strategyUrl name="strategyUrl" id="strategyUrl" igxInput placeholder="Link to a video/resource" pattern="^(?:http(s)?:\/\/)[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$" [(ngModel)]="newStrategy.Url">
+            <igx-suffix *ngIf="strategyUrl.value.length > 0" (click)="strategyUrl.value = ''">
+                <igx-icon>clear</igx-icon>
+            </igx-suffix>
+          </igx-input-group>
+          <span class="separate">OR</span>
+          <button type="button" igxButton="flat" class="strat-editor-button" (click)="createAndRedirect()">Strat Editor</button>
+        </div>
       </igx-list-item>
       <igx-list-item *ngIf="getVideoEmbedLink()">
         <iframe class="video-frame" [src]="newStrategy.Url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       </igx-list-item>
       <igx-list-item>
-        <button igxButton igxRipple [disabled]="strategyForm.invalid">Submit</button>
+        <button igxButton="outlined" igxRipple [disabled]="strategyForm.invalid">Submit</button>
       </igx-list-item>
     </igx-list>
   </form>

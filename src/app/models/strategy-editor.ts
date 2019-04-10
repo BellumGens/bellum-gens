@@ -8,6 +8,8 @@ export abstract class BaseLayer {
   public y: number;
   public width: number;
   public height: number;
+  public displayRatio: number;
+  public selected = false;
 
   public layerUpdate = new EventEmitter<BaseLayer>();
   public drawFinish = new EventEmitter<BaseLayer>();
@@ -21,24 +23,26 @@ export abstract class BaseLayer {
     this.layerUpdate.emit(this);
   }
 
-  public constructor(name: string) {
+  public constructor(name: string, displayRatio = 1) {
     this.name = name;
     this.x = 0;
     this.y = 0;
     this.width = 0;
     this.height = 0;
+    this.displayRatio = displayRatio;
   }
 
   public abstract draw();
 }
 
 export class ImageLayer extends BaseLayer {
-  src: string;
-  image: HTMLImageElement;
-  circle = false;
+  public src: string;
+  public image: HTMLImageElement;
+  public circle = false;
+  public color;
 
-  public constructor(private _context: any, name: string) {
-    super(name);
+  public constructor(private _context: any, name: string, displayRatio = 1) {
+    super(name, displayRatio);
   }
 
   public draw() {
@@ -46,11 +50,18 @@ export class ImageLayer extends BaseLayer {
       if (!this.image) {
         this.image = new Image();
         this.image.src = this.src;
+        this.image.crossOrigin = 'Anonymous';
+        this.image.width = Math.floor(this.width * this.displayRatio);
+        this.image.height = Math.floor(this.height * this.displayRatio);
         this.image.onload = () => {
           if (this.circle) {
             this.beginCircle();
           }
-          this._context.drawImage(this.image, this.x, this.y, this.width, this.height);
+          this._context.drawImage(this.image,
+                                  this.x,
+                                  this.y,
+                                  Math.floor(this.width * this.displayRatio),
+                                  Math.floor(this.height * this.displayRatio));
           if (this.circle) {
             this.endCircle();
           }
@@ -60,7 +71,11 @@ export class ImageLayer extends BaseLayer {
         if (this.circle) {
           this.beginCircle();
         }
-        this._context.drawImage(this.image, this.x, this.y, this.width, this.height);
+        this._context.drawImage(this.image,
+                                this.x,
+                                this.y,
+                                Math.floor(this.width * this.displayRatio),
+                                Math.floor(this.height * this.displayRatio));
         if (this.circle) {
           this.endCircle();
         }
@@ -73,9 +88,9 @@ export class ImageLayer extends BaseLayer {
 
   private beginCircle() {
     this._context.save();
-    this._context.arc(this.x + this.width / 2,
-                      this.y + this.height / 2,
-                      this.width / 2,
+    this._context.arc(this.x + Math.floor(this.width * this.displayRatio) / 2,
+                      this.y + Math.floor(this.height * this.displayRatio) / 2,
+                      Math.floor(this.width * this.displayRatio) / 2,
                       0,
                       Math.PI * 2,
                       true);
@@ -107,10 +122,15 @@ export class StrategyEditor {
   private _layerIndex = 0;
   private _width = 1024;
   private _height = 1024;
+  private _displayRatio: number;
+
+  private _selectedLayer: BaseLayer;
+
   public surfaceName: string;
 
-  constructor(private _canvas: ElementRef, name?: string) {
+  constructor(private _canvas: ElementRef, displayRatio = 1, name?: string) {
     this._context = this._canvas.nativeElement.getContext('2d');
+    this._displayRatio = displayRatio;
     this.surfaceName = name ? name : this.generateId();
   }
 
@@ -140,7 +160,7 @@ export class StrategyEditor {
   }
 
   public createImageLayer(): ImageLayer {
-    return new ImageLayer(this._context, `Layer_${this._layerIndex++}`);
+    return new ImageLayer(this._context, `Layer_${this._layerIndex++}`, this._displayRatio);
   }
 
   public addLayer(layer: BaseLayer) {

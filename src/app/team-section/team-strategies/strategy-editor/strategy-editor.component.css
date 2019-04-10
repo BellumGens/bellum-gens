@@ -1,5 +1,7 @@
 .strat-editor-host {
   display: flex;
+  justify-content: space-evenly;
+  height: 100%;
 }
 
 .editor-elements {

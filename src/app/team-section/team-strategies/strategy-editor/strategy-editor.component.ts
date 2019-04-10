@@ -6,6 +6,7 @@ import { BellumgensApiService } from '../../../services/bellumgens-api.service';
 import { ActivatedRoute } from '@angular/router';
 import { IgxDropEventArgs } from 'igniteui-angular';
 import { StratUtilities } from '../../../models/utility';
+import { TeamStrategy } from '../../../models/csgoteamstrategy';
 
 @Component({
   selector: 'app-strategy-editor',
@@ -15,6 +16,7 @@ import { StratUtilities } from '../../../models/utility';
 export class StrategyEditorComponent implements OnInit {
   public maps: ActiveDutyDescriptor [] = ActiveDuty;
   public team: CSGOTeam;
+  public newStrategy: TeamStrategy;
   public utility = StratUtilities;
   public layers: BaseLayer [];
 
@@ -45,10 +47,13 @@ export class StrategyEditorComponent implements OnInit {
         this.apiService.getTeam(teamId).subscribe(team => this.team = team);
       }
     });
+    this.apiService.currentStrategy.subscribe(strat => this.newStrategy = strat);
   }
 
   ngOnInit() {
-    this.editor = new StrategyEditor(this.canvas);
+    this.canvas.nativeElement.width = this.canvas.nativeElement.clientHeight;
+    this.canvas.nativeElement.height = this.canvas.nativeElement.clientHeight;
+    this.editor = new StrategyEditor(this.canvas, parseInt(this.canvas.nativeElement.clientHeight, 10) / 1024);
     this.layers = this.editor.layers;
   }
 
@@ -59,14 +64,19 @@ export class StrategyEditorComponent implements OnInit {
   public surfaceDrop(args: IgxDropEventArgs) {
     args.cancel = true;
     const layer = this.editor.createImageLayer();
-    layer.src = args.drag.data.SteamUser.avatarIcon;
-    layer.width = 24;
-    layer.height = 24;
-    layer.circle = true;
+    layer.src = args.drag.data.src;
+    layer.width = args.drag.data.width;
+    layer.height = args.drag.data.height;
+    layer.circle = args.drag.data.circle;
     this.editor.addLayer(layer);
   }
 
   public deleteLayer(layer: BaseLayer) {
     this.editor.removeLayer(layer);
+  }
+
+  public saveStrat() {
+    this.newStrategy.Image = this.canvas.nativeElement.toDataURL('image/png');
+    this.apiService.submitStrategy(this.newStrategy).subscribe();
   }
 }

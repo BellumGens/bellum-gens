@@ -2,16 +2,26 @@
   <div class="editor-elements">
     <img *ngFor="let map of maps" class="map-choice" width="220px" [src]="map.image" (click)="changeMap(map)" />
   </div>
-  <canvas width="1024px" height="1024px" #board igxDrop (onDrop)="surfaceDrop($event)"></canvas>
+  <canvas #board igxDrop (onDrop)="surfaceDrop($event)"></canvas>
   <div class="editor-elements">
     <div class="editor-elements-section">
       <div>Team</div>
-      <igx-avatar *ngFor="let member of team?.Members" [src]="member.SteamUser.avatarIcon" [igxDrag]="member" class="team-member-element" [title]="member.SteamUser.steamID" roundShape="true">
+      <igx-avatar *ngFor="let member of team?.Members"
+                  [src]="member.SteamUser.avatarIcon"
+                  [igxDrag]="{ src: member.SteamUser.avatarIcon, circle: true, width: 24, height: 24 }"
+                  class="team-member-element"
+                  [title]="member.SteamUser.steamID"
+                  roundShape="true">
       </igx-avatar>
     </div>
     <div class="editor-elements-section">
       <div>Utility</div>
-      <igx-icon *ngFor="let util of utility" [fontSet]="util.fontSet" [name]="util.icon" [title]="util.name"></igx-icon>
+      <igx-icon *ngFor="let util of utility"
+                [fontSet]="util.fontSet"
+                [name]="util.icon"
+                [title]="util.name"
+                [igxDrag]="{ src: util.svg, circle: false, width: 20, height: 20 }">
+      </igx-icon>
     </div>
     <div class="editor-elements-section">
       <div>Freeflow brushes</div>
@@ -31,6 +41,9 @@
           </igx-input-group>
         </igx-list-item>
       </igx-list>
+    </div>
+    <div class="editor-elements-section">
+      <button igxButton="raised" igxRipple (click)="saveStrat()">Save</button>
     </div>
   </div>
 </div>

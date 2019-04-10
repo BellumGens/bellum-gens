@@ -10,14 +10,14 @@
 .igx-chip__text {
   display: inline-block;
   min-width: 11ch;
-  font-size: 0.92rem;
+  font-size: 0.85rem;
   font-weight: 600;
 }
 
 .igx-chip__subtext {
   display: inline-block;
   min-width: 10ch;
-  font-size: 0.75rem;
+  font-size: 0.74rem;
   font-weight: 200;
   margin-left: 4px;
   color: #FF0958;
