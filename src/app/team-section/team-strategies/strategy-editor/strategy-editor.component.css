@@ -16,11 +16,11 @@
   margin: 0px 4px 4px 0px;
 }
 
-.team-member-element {
-  width: 24px;
-  height: 24px;
-  min-width: 24px;
-  margin-right: 4px;
+.editor-element-icon {
+  width: 36px;
+  height: 36px;
+  min-width: 36px;
+  margin: 4px;
 }
 
 .selected-element {

@@ -42,8 +42,8 @@ export class ImageLayer extends BaseLayer {
 
   public constructor(private _context: any, name: string, displayRatio = 1, meta?: EditorLayer) {
     super(name, displayRatio, meta);
-    this.src = meta.src;
-    this.circle = meta.circle;
+    this.src = meta ? meta.src : '';
+    this.circle = meta ? meta.circle : false;
   }
 
   public draw() {

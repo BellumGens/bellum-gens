@@ -9,7 +9,7 @@
       <igx-avatar *ngFor="let member of team?.Members"
                   [src]="member.SteamUser.avatarIcon"
                   [igxDrag]="{ src: member.SteamUser.avatarIcon, circle: true, width: 24, height: 24 }"
-                  class="team-member-element"
+                  class="editor-element-icon"
                   [title]="member.SteamUser.steamID"
                   roundShape="true">
       </igx-avatar>
@@ -20,6 +20,7 @@
                 [fontSet]="util.fontSet"
                 [name]="util.icon"
                 [title]="util.name"
+                class="editor-element-icon"
                 [igxDrag]="{ src: util.svg, circle: false, width: 20, height: 20 }">
       </igx-icon>
     </div>
