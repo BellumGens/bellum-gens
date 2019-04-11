@@ -1,7 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { StrategyEditorComponent } from './strategy-editor.component';
-import { IgxIconModule, IgxInputGroupModule, IgxListModule, IgxDragDropModule, IgxAvatarModule, IgxDialogModule } from 'igniteui-angular';
+import { IgxIconModule,
+  IgxInputGroupModule,
+  IgxListModule,
+  IgxDragDropModule,
+  IgxAvatarModule,
+  IgxDialogModule,
+  IgxCheckboxModule } from 'igniteui-angular';
 import { ConfirmComponent } from 'src/app/confirm/confirm.component';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -22,7 +28,8 @@ describe('StrategyEditorComponent', () => {
         IgxListModule,
         IgxDragDropModule,
         IgxAvatarModule,
-        IgxDialogModule
+        IgxDialogModule,
+        IgxCheckboxModule
       ],
       declarations: [ StrategyEditorComponent, ConfirmComponent ]
     })
