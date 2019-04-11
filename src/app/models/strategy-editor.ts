@@ -23,12 +23,12 @@ export abstract class BaseLayer {
     this.layerUpdate.emit(this);
   }
 
-  public constructor(name: string, displayRatio = 1) {
+  public constructor(name: string, displayRatio = 1, meta?: EditorLayer) {
     this.name = name;
-    this.x = 0;
-    this.y = 0;
-    this.width = 0;
-    this.height = 0;
+    this.x = meta ? meta.x : 0;
+    this.y = meta ? meta.y : 0;
+    this.width = meta ? meta.width : 0;
+    this.height = meta ? meta.height : 0;
     this.displayRatio = displayRatio;
   }
 
@@ -39,10 +39,11 @@ export class ImageLayer extends BaseLayer {
   public src: string;
   public image: HTMLImageElement;
   public circle = false;
-  public color;
 
-  public constructor(private _context: any, name: string, displayRatio = 1) {
-    super(name, displayRatio);
+  public constructor(private _context: any, name: string, displayRatio = 1, meta?: EditorLayer) {
+    super(name, displayRatio, meta);
+    this.src = meta.src;
+    this.circle = meta.circle;
   }
 
   public draw() {
@@ -104,11 +105,12 @@ export class ImageLayer extends BaseLayer {
 
 export interface EditorLayer {
   name: string;
-  type: EditorLayerType;
   x: number;
   y: number;
   width: number;
   height: number;
+  circle?: boolean;
+  src?: string;
 }
 
 export enum EditorLayerType {
@@ -134,6 +136,17 @@ export class StrategyEditor {
     this.surfaceName = name ? name : this.generateId();
   }
 
+  public restore(metadata: string) {
+    const layersMeta: EditorLayer [] = JSON.parse(metadata);
+    this._layers.forEach((layer) => {
+      this.removeLayer(layer);
+    });
+    layersMeta.forEach((meta) => {
+      const layer = this.createLayer(EditorLayerType.Image, meta);
+      this.addLayer(layer);
+    });
+  }
+
   public flip(index = 0) {
     if (index === 0) {
       this._context.clearRect(0, 0, this._width, this._height);
@@ -152,15 +165,15 @@ export class StrategyEditor {
     return this._layers;
   }
 
-  public createLayer(type): BaseLayer {
+  public createLayer(type, meta?: EditorLayer): BaseLayer {
     switch (type) {
       case EditorLayerType.Image:
-        return this.createImageLayer();
+        return this.createImageLayer(meta.name, meta);
     }
   }
 
-  public createImageLayer(): ImageLayer {
-    return new ImageLayer(this._context, `Layer_${this._layerIndex++}`, this._displayRatio);
+  public createImageLayer(name?: string, meta?: EditorLayer): ImageLayer {
+    return new ImageLayer(this._context, name || `Layer_${this._layerIndex++}`, this._displayRatio, meta);
   }
 
   public addLayer(layer: BaseLayer) {

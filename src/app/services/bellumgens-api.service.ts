@@ -33,9 +33,9 @@ export class BellumgensApiService {
   public playerSearchResult = new ReplaySubject<CSGOPlayer []>(1);
   public teamSearchResult = new ReplaySubject<CSGOTeam []>(1);
   public searchTerm = new ReplaySubject<string>(1);
-  public currentStrategy = new BehaviorSubject<TeamStrategy>(null);
 
   // Cache
+  private _currentStrategy = new BehaviorSubject<TeamStrategy>(null);
   private _currentTeam = new BehaviorSubject<CSGOTeam>(null);
   private _players: ReplaySubject<CSGOPlayer []>;
   private _csgoTeams = new BehaviorSubject<CSGOTeam []>([]);
@@ -66,9 +66,8 @@ export class BellumgensApiService {
   }
 
   public get csgoTeams() {
-    if (!this._csgoTeams) {
+    if (!this._csgoTeams.value.length) {
       this.loadingTeams.next(true);
-      this._csgoTeams = new BehaviorSubject<CSGOTeam []>(null);
       this.getTeams().subscribe(
         teams => {
           this._csgoTeams.next(teams);
@@ -184,8 +183,19 @@ export class BellumgensApiService {
     return this._teamApplications[teamId];
   }
 
+  public getTeamStrat(stratId: string) {
+    return this.http.get<TeamStrategy>(`${this._apiEndpoint}/teams/strat?stratId=${stratId}`, { withCredentials: true });
+  }
+
   public getTeamStrats(teamId: string) {
     return this.http.get<TeamStrategy []>(`${this._apiEndpoint}/teams/strats?teamid=${teamId}`, { withCredentials: true });
+  }
+
+  public getCurrentStrategy(stratId: string) {
+    if (!this._currentStrategy.value) {
+      this.getTeamStrat(stratId).subscribe(strat => this._currentStrategy.next(strat));
+    }
+    return this._currentStrategy;
   }
 
   private getPlayers() {
@@ -447,10 +457,11 @@ export class BellumgensApiService {
     );
   }
 
-  public submitStrategy(strat: TeamStrategy): Observable<any> {
-    return this.http.post(`${this._apiEndpoint}/teams/strategy`, strat, { withCredentials: true }).pipe(
+  public submitStrategy(strat: TeamStrategy) {
+    return this.http.post<TeamStrategy>(`${this._apiEndpoint}/teams/strategy`, strat, { withCredentials: true }).pipe(
       map(response => {
         if (response) {
+          this._currentStrategy.next(response);
           this.emitSuccess('New strategy successfully submitted!');
         }
         return response;

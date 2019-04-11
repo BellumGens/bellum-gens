@@ -69,7 +69,6 @@ export class TeamStrategiesComponent implements OnInit {
 
   public openNewStrategy(event: Event) {
     event.stopPropagation();
-    this.apiService.currentStrategy.next(this.newStrategy);
     this.dialog.open();
   }
 

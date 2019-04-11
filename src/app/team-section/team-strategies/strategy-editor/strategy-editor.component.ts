@@ -41,13 +41,6 @@ export class StrategyEditorComponent implements OnInit {
 
   constructor(private apiService: BellumgensApiService,
               private route: ActivatedRoute) {
-    this.route.params.subscribe(params => {
-      const teamId = params['teamid'];
-      if (params['teamid']) {
-        this.apiService.getTeam(teamId).subscribe(team => this.team = team);
-      }
-    });
-    this.apiService.currentStrategy.subscribe(strat => this.newStrategy = strat);
   }
 
   ngOnInit() {
@@ -55,6 +48,25 @@ export class StrategyEditorComponent implements OnInit {
     this.canvas.nativeElement.height = this.canvas.nativeElement.clientHeight;
     this.editor = new StrategyEditor(this.canvas, parseInt(this.canvas.nativeElement.clientHeight, 10) / 1024);
     this.layers = this.editor.layers;
+    this.route.params.subscribe(params => {
+      const teamId = params['teamid'];
+      if (teamId) {
+        this.apiService.getTeam(teamId).subscribe(team => this.team = team);
+      }
+      const stratid = params['stratid'];
+      if (stratid) {
+        this.apiService.getCurrentStrategy(stratid).subscribe(strat => {
+          if (strat) {
+            this.newStrategy = strat;
+            if (strat.EditorMetadata) {
+              this.editor.restore(strat.EditorMetadata);
+            } else {
+              this.map = this.maps.find(m => m.id === strat.Map);
+            }
+          }
+        });
+      }
+    });
   }
 
   public changeMap(map: ActiveDutyDescriptor) {
@@ -77,6 +89,7 @@ export class StrategyEditorComponent implements OnInit {
 
   public saveStrat() {
     this.newStrategy.Image = this.canvas.nativeElement.toDataURL('image/png');
+    this.newStrategy.EditorMetadata = JSON.stringify(this.layers, ['name', 'x', 'y', 'width', 'height', 'src', 'circle']);
     this.apiService.submitStrategy(this.newStrategy).subscribe();
   }
 }
