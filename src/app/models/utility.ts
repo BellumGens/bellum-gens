@@ -20,9 +20,9 @@ export const StratUtilities: UtilityDescriptor [] = [
     name: 'Smoke',
     icon: 'smoke',
     fontSet: 'weapon-icons',
-    width: 16,
-    height: 30,
-    svg: '/assets/weapon-icons/svg_normal/weapon_smokegrenade.svg'
+    width: 72,
+    height: 72,
+    svg: '/assets/editor/smoke-nade.png'
   },
   {
     name: 'Molotov',

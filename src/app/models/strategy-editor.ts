@@ -1,7 +1,35 @@
 import { ElementRef, EventEmitter } from '@angular/core';
 
+export interface EditorLayer {
+  name: string;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  circle?: boolean;
+  src?: string;
+}
+
+export interface PointCoordinate {
+  x: number;
+  y: number;
+}
+
+export interface LayerSelected {
+  layer: BaseLayer;
+  selected: boolean;
+}
+
+export enum EditorLayerType {
+  Image,
+  Draw
+}
+
 export abstract class BaseLayer {
   private _hidden = false;
+  private _selected = false;
+  public selectedBorderColor = '#ccc';
+  public selectedBorderWidth = 2;
 
   public name: string;
   public x: number;
@@ -9,9 +37,9 @@ export abstract class BaseLayer {
   public width: number;
   public height: number;
   public displayRatio: number;
-  public selected = false;
 
   public layerUpdate = new EventEmitter<BaseLayer>();
+  public layerSelect = new EventEmitter<LayerSelected>();
   public drawFinish = new EventEmitter<BaseLayer>();
 
   public get hidden() {
@@ -21,6 +49,15 @@ export abstract class BaseLayer {
   public set hidden(value: boolean) {
     this._hidden = value;
     this.layerUpdate.emit(this);
+  }
+
+  public get selected() {
+    return this._selected;
+  }
+
+  public set selected(selected: boolean) {
+    this._selected = selected;
+    this.layerSelect.emit({layer: this, selected: selected});
   }
 
   public constructor(name: string, displayRatio = 1, meta?: EditorLayer) {
@@ -65,6 +102,9 @@ export class ImageLayer extends BaseLayer {
           if (this.circle) {
             this.endCircle();
           }
+          if (this.selected) {
+            this.drawSelectedBorder();
+          }
           this.drawFinish.emit(this);
         };
       } else {
@@ -78,6 +118,9 @@ export class ImageLayer extends BaseLayer {
                                 Math.floor(this.height * this.displayRatio));
         if (this.circle) {
           this.endCircle();
+        }
+        if (this.selected) {
+          this.drawSelectedBorder();
         }
         this.drawFinish.emit(this);
       }
@@ -100,21 +143,15 @@ export class ImageLayer extends BaseLayer {
   private endCircle() {
     this._context.restore();
   }
-}
 
-export interface EditorLayer {
-  name: string;
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-  circle?: boolean;
-  src?: string;
-}
-
-export enum EditorLayerType {
-  Image,
-  Draw
+  private drawSelectedBorder() {
+    this._context.strokeStyle = this.selectedBorderColor;
+    this._context.lineWidth = this.selectedBorderWidth;
+    this._context.strokeRect(this.x,
+                            this.y,
+                            Math.floor(this.width * this.displayRatio),
+                            Math.floor(this.height * this.displayRatio));
+  }
 }
 
 export class StrategyEditor {
@@ -138,13 +175,11 @@ export class StrategyEditor {
   public restore(metadata: string) {
     const layersMeta: EditorLayer [] = JSON.parse(metadata);
     this._layers.forEach((layer) => {
-      layer.layerUpdate.unsubscribe();
-      this._layers.splice(this._layers.indexOf(layer), 1);
+      this._removeLayer(layer);
     });
     layersMeta.forEach((meta) => {
       const layer = this.createLayer(EditorLayerType.Image, meta);
-      layer.layerUpdate.subscribe(_ => this.flip());
-      this._layers.push(layer);
+      this._addLayer(layer);
     });
     this.flip();
   }
@@ -160,6 +195,14 @@ export class StrategyEditor {
         sub.unsubscribe();
       });
       layer.draw();
+    }
+  }
+
+  public moveSelected(coords: PointCoordinate) {
+    if (this._selectedLayer) {
+      this._selectedLayer.x += coords.x;
+      this._selectedLayer.y += coords.y;
+      this.flip();
     }
   }
 
@@ -179,35 +222,78 @@ export class StrategyEditor {
   }
 
   public addLayer(layer: BaseLayer) {
-    layer.layerUpdate.subscribe(_ => this.flip());
-    this._layers.push(layer);
+    this._addLayer(layer);
     this.flip();
   }
 
-  public insertLayer(layer: BaseLayer, index: number) {
+  private _addLayer(layer) {
+    layer.layerUpdate.subscribe(_ => this.flip());
+    layer.layerSelect.subscribe(current => this._selectionChanged(current));
+    this._layers.push(layer);
+  }
+
+  public insertLayer(index: number, layer: BaseLayer) {
     if (index < this._layers.length) {
-      layer.layerUpdate.subscribe(_ => this.flip());
-      this._layers.splice(index, 0, layer);
+      this._insertLayer(layer, index);
       this.flip();
     } else {
       this.addLayer(layer);
     }
+  }
+
+  private _insertLayer(layer: BaseLayer, index: number) {
+    layer.layerUpdate.subscribe(_ => this.flip());
+    layer.layerSelect.subscribe(current => this._selectionChanged(current));
+    this._layers.splice(index, 0, layer);
   }
 
   public replaceLayer(index: number, layer: BaseLayer) {
     if (index < this._layers.length) {
-      this._layers[index].layerUpdate.unsubscribe();
-      layer.layerUpdate.subscribe(_ => this.flip());
-      this._layers.splice(index, 1, layer);
+      this._replaceLayer(index, layer);
       this.flip();
     } else {
       this.addLayer(layer);
     }
   }
 
+  private _replaceLayer(index: number, layer: BaseLayer) {
+    this._layers[index].layerUpdate.unsubscribe();
+    this._layers[index].layerSelect.unsubscribe();
+    layer.layerUpdate.subscribe(_ => this.flip());
+    layer.layerSelect.subscribe(current => this._selectionChanged(current));
+    this._layers.splice(index, 1, layer);
+  }
+
   public removeLayer(layer: BaseLayer) {
+    this._removeLayer(layer);
+    this.flip();
+  }
+
+  private _removeLayer(layer: BaseLayer) {
     layer.layerUpdate.unsubscribe();
+    layer.layerSelect.unsubscribe();
     this._layers.splice(this._layers.indexOf(layer), 1);
+  }
+
+  public deselectAll() {
+    if (this._selectedLayer) {
+      this._selectedLayer.selected = false;
+      this._selectedLayer = null;
+      this.flip();
+    }
+  }
+
+  private _selectionChanged(args: LayerSelected) {
+    if (args.selected) {
+      if (this._selectedLayer) {
+        this._selectedLayer.selected = false;
+      }
+      this._selectedLayer = args.layer;
+    } else {
+      if (this._selectedLayer === args.layer) {
+        this._selectedLayer = null;
+      }
+    }
     this.flip();
   }
 

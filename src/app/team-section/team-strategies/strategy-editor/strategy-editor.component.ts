@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActiveDutyDescriptor, ActiveDuty } from '../../../models/csgomaps';
-import { StrategyEditor, BaseLayer } from '../../../models/strategy-editor';
+import { StrategyEditor, BaseLayer, PointCoordinate } from '../../../models/strategy-editor';
 import { CSGOTeam } from '../../../models/csgoteam';
 import { BellumgensApiService } from '../../../services/bellumgens-api.service';
 import { ActivatedRoute } from '@angular/router';
@@ -21,6 +21,11 @@ export class StrategyEditorComponent implements OnInit {
   public layers: BaseLayer [];
 
   private _activeMap: ActiveDutyDescriptor;
+  private _drag = false;
+  private _coordinates: PointCoordinate = {
+    x: 0,
+    y: 0
+  };
 
   public get map() {
     return this._activeMap;
@@ -88,8 +93,29 @@ export class StrategyEditorComponent implements OnInit {
   }
 
   public saveStrat() {
+    this.editor.deselectAll();
     this.newStrategy.Image = this.canvas.nativeElement.toDataURL('image/png');
     this.newStrategy.EditorMetadata = JSON.stringify(this.layers, ['name', 'x', 'y', 'width', 'height', 'src', 'circle']);
     this.apiService.submitStrategy(this.newStrategy).subscribe();
+  }
+
+  public canvasPointerDown(event: PointerEvent) {
+    this._drag = true;
+    this._coordinates.x = event.x;
+    this._coordinates.y = event.y;
+  }
+
+  public canvasPointerMove(event: PointerEvent) {
+    if (this._drag) {
+      this.editor.moveSelected({x: event.x - this._coordinates.x, y: event.y - this._coordinates.y});
+      this._coordinates.x = event.x;
+      this._coordinates.y = event.y;
+    }
+  }
+
+  public canvasPointerUp(event: PointerEvent) {
+    this._drag = false;
+    this._coordinates.x = 0;
+    this._coordinates.y = 0;
   }
 }

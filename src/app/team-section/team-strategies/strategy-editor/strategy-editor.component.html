@@ -2,7 +2,11 @@
   <div class="editor-elements">
     <img *ngFor="let map of maps" class="map-choice" width="220px" [src]="map.image" (click)="changeMap(map)" />
   </div>
-  <canvas #board igxDrop (onDrop)="surfaceDrop($event)"></canvas>
+  <canvas #board igxDrop
+          (onDrop)="surfaceDrop($event)"
+          (pointerdown)="canvasPointerDown($event)"
+          (pointermove)="canvasPointerMove($event)"
+          (pointerup)="canvasPointerUp($event)"></canvas>
   <div class="editor-elements">
     <div class="editor-elements-section">
       <div>Team</div>
@@ -31,15 +35,18 @@
       <div>Layers</div>
       <igx-list>
         <igx-list-item *ngFor="let layer of layers">
-          <igx-input-group [ngClass]="layer.hidden ? 'hidden-layer' : ''">
-            <igx-prefix>
-              <igx-icon (click)="layer.hidden = !layer.hidden">{{ layer.hidden ? 'visibility' : 'visibility_off'}}</igx-icon>
-            </igx-prefix>
-            <input igxInput [(ngModel)]="layer.name">
-            <igx-suffix>
-              <igx-icon (click)="confirm.open(layer)">clear</igx-icon>
-            </igx-suffix>
-          </igx-input-group>
+          <div class="layer-info">
+            <igx-checkbox class="layer-selected" [(ngModel)]="layer.selected"></igx-checkbox>
+            <igx-input-group [ngClass]="layer.hidden ? 'hidden-layer' : ''">
+              <igx-prefix>
+                <igx-icon (click)="layer.hidden = !layer.hidden">{{ layer.hidden ? 'visibility' : 'visibility_off'}}</igx-icon>
+              </igx-prefix>
+              <input igxInput [(ngModel)]="layer.name">
+              <igx-suffix>
+                <igx-icon (click)="confirm.open(layer)">clear</igx-icon>
+              </igx-suffix>
+            </igx-input-group>
+          </div>
         </igx-list-item>
       </igx-list>
     </div>
