@@ -28,8 +28,8 @@ export enum EditorLayerType {
 export abstract class BaseLayer {
   private _hidden = false;
   private _selected = false;
-  public selectedBorderColor = '#ccc';
-  public selectedBorderWidth = 2;
+  public selectedBorderColor = '#999';
+  public selectedBorderWidth = 1;
 
   public name: string;
   public x: number;
@@ -91,6 +91,9 @@ export class ImageLayer extends BaseLayer {
         this.image.width = Math.floor(this.width * this.displayRatio);
         this.image.height = Math.floor(this.height * this.displayRatio);
         this.image.onload = () => {
+          if (this.selected) {
+            this.drawSelectedBorder();
+          }
           if (this.circle) {
             this.beginCircle();
           }
@@ -102,12 +105,12 @@ export class ImageLayer extends BaseLayer {
           if (this.circle) {
             this.endCircle();
           }
-          if (this.selected) {
-            this.drawSelectedBorder();
-          }
           this.drawFinish.emit(this);
         };
       } else {
+        if (this.selected) {
+          this.drawSelectedBorder();
+        }
         if (this.circle) {
           this.beginCircle();
         }
@@ -118,9 +121,6 @@ export class ImageLayer extends BaseLayer {
                                 Math.floor(this.height * this.displayRatio));
         if (this.circle) {
           this.endCircle();
-        }
-        if (this.selected) {
-          this.drawSelectedBorder();
         }
         this.drawFinish.emit(this);
       }
@@ -157,7 +157,6 @@ export class ImageLayer extends BaseLayer {
 export class StrategyEditor {
   private _context: any;
   private _layers: BaseLayer[] = [];
-  private _layerIndex = 0;
   private _width = 1024;
   private _height = 1024;
   private _displayRatio: number;
@@ -218,7 +217,7 @@ export class StrategyEditor {
   }
 
   public createImageLayer(name?: string, meta?: EditorLayer): ImageLayer {
-    return new ImageLayer(this._context, name || `Layer_${this._layerIndex++}`, this._displayRatio, meta);
+    return new ImageLayer(this._context, name || `Layer_${this.layers.length + 1}`, this._displayRatio, meta);
   }
 
   public addLayer(layer: BaseLayer) {

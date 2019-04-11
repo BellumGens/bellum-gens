@@ -86,6 +86,7 @@ export class StrategyEditorComponent implements OnInit {
     layer.height = args.drag.data.height;
     layer.circle = args.drag.data.circle;
     this.editor.addLayer(layer);
+    layer.selected = true;
   }
 
   public deleteLayer(layer: BaseLayer) {
