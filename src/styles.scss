@@ -137,6 +137,11 @@ $time-picker-theme: igx-time-picker-theme($background-color: $background);
 @include igx-css-vars($time-picker-theme);
 /* END Time Picker */
 
+/* Icon */
+$icon-theme: igx-icon-theme($color: white);
+@include igx-css-vars($icon-theme);
+/* END Icon */
+
 html, body {
   height: 100%;
   background-image: $background-gradient;

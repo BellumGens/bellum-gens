@@ -51,7 +51,6 @@ export class ImageLayer extends BaseLayer {
       if (!this.image) {
         this.image = new Image();
         this.image.src = this.src;
-        this.image.crossOrigin = 'Anonymous';
         this.image.width = Math.floor(this.width * this.displayRatio);
         this.image.height = Math.floor(this.height * this.displayRatio);
         this.image.onload = () => {
