@@ -138,12 +138,15 @@ export class StrategyEditor {
   public restore(metadata: string) {
     const layersMeta: EditorLayer [] = JSON.parse(metadata);
     this._layers.forEach((layer) => {
-      this.removeLayer(layer);
+      layer.layerUpdate.unsubscribe();
+      this._layers.splice(this._layers.indexOf(layer), 1);
     });
     layersMeta.forEach((meta) => {
       const layer = this.createLayer(EditorLayerType.Image, meta);
-      this.addLayer(layer);
+      layer.layerUpdate.subscribe(_ => this.flip());
+      this._layers.push(layer);
     });
+    this.flip();
   }
 
   public flip(index = 0) {

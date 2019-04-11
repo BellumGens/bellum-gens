@@ -31,5 +31,13 @@ export const StratUtilities: UtilityDescriptor [] = [
     width: 21,
     height: 30,
     svg: '/assets/weapon-icons/svg_normal/weapon_molotov.svg'
+  },
+  {
+    name: 'HE Grenade',
+    icon: 'hegrenade',
+    fontSet: 'weapon-icons',
+    width: 21,
+    height: 30,
+    svg: '/assets/weapon-icons/svg_normal/weapon_hegrenade.svg'
   }
 ];
