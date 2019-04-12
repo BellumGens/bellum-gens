@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { ActiveDutyDescriptor, ActiveDuty } from '../../../models/csgomaps';
+import { ActiveDutyDescriptor, ActiveDuty, CSGOMap } from '../../../models/csgomaps';
 import { StrategyEditor, BaseLayer, PointCoordinate, ImageLayer } from '../../../models/strategy-editor';
 import { CSGOTeam } from '../../../models/csgoteam';
 import { BellumgensApiService } from '../../../services/bellumgens-api.service';
@@ -7,7 +7,6 @@ import { ActivatedRoute } from '@angular/router';
 import { IgxDropEventArgs } from 'igniteui-angular';
 import { StratUtilities } from '../../../models/utility';
 import { TeamStrategy } from '../../../models/csgoteamstrategy';
-import { isObject } from 'igniteui-angular/lib/core/utils';
 
 @Component({
   selector: 'app-strategy-editor',
@@ -35,7 +34,7 @@ export class StrategyEditorComponent implements OnInit {
 
   public set map(map: ActiveDutyDescriptor) {
     this._activeMap = map;
-    if (this.layers && this.layers.length && (<ImageLayer>this.layers[0]).src !== map.radar[0]) {
+    if (!this.layers.length || (<ImageLayer>this.layers[0]).src !== map.radar[0]) {
       const layer = this.editor.createImageLayer();
       layer.src = this._activeMap.radar[0];
       layer.width = 1024;
@@ -77,8 +76,8 @@ export class StrategyEditorComponent implements OnInit {
     });
   }
 
-  public changeMap(map: ActiveDutyDescriptor) {
-    this.map = map;
+  public changeMap(map: CSGOMap) {
+    this.map = this.maps.find(m => m.id === map);
   }
 
   public surfaceDrop(args: IgxDropEventArgs) {
