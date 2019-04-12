@@ -12,9 +12,9 @@ export const StratUtilities: UtilityDescriptor [] = [
     name: 'Flash',
     icon: 'flashbang',
     fontSet: 'weapon-icons',
-    width: 15,
-    height: 30,
-    svg: '/assets/weapon-icons/svg_normal/weapon_flashbang.svg'
+    width: 72,
+    height: 72,
+    svg: '/assets/editor/flashbang.png'
   },
   {
     name: 'Smoke',
@@ -28,17 +28,17 @@ export const StratUtilities: UtilityDescriptor [] = [
     name: 'Molotov',
     icon: 'molotov',
     fontSet: 'weapon-icons',
-    width: 21,
-    height: 30,
-    svg: '/assets/weapon-icons/svg_normal/weapon_molotov.svg'
+    width: 72,
+    height: 72,
+    svg: '/assets/editor/molotov.png'
   },
   {
     name: 'HE Grenade',
     icon: 'hegrenade',
     fontSet: 'weapon-icons',
-    width: 21,
-    height: 30,
-    svg: '/assets/weapon-icons/svg_normal/weapon_hegrenade.svg'
+    width: 72,
+    height: 72,
+    svg: '/assets/editor/he-nade.png'
   },
   {
     name: 'C4',
