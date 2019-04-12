@@ -1,12 +1,13 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActiveDutyDescriptor, ActiveDuty } from '../../../models/csgomaps';
-import { StrategyEditor, BaseLayer, PointCoordinate } from '../../../models/strategy-editor';
+import { StrategyEditor, BaseLayer, PointCoordinate, ImageLayer } from '../../../models/strategy-editor';
 import { CSGOTeam } from '../../../models/csgoteam';
 import { BellumgensApiService } from '../../../services/bellumgens-api.service';
 import { ActivatedRoute } from '@angular/router';
 import { IgxDropEventArgs } from 'igniteui-angular';
 import { StratUtilities } from '../../../models/utility';
 import { TeamStrategy } from '../../../models/csgoteamstrategy';
+import { isObject } from 'igniteui-angular/lib/core/utils';
 
 @Component({
   selector: 'app-strategy-editor',
@@ -19,6 +20,7 @@ export class StrategyEditorComponent implements OnInit {
   public newStrategy: TeamStrategy;
   public utility = StratUtilities;
   public layers: BaseLayer [];
+  public enemies = [1, 1, 1, 1, 1];
 
   private _activeMap: ActiveDutyDescriptor;
   private _drag = false;
@@ -33,11 +35,13 @@ export class StrategyEditorComponent implements OnInit {
 
   public set map(map: ActiveDutyDescriptor) {
     this._activeMap = map;
-    const layer = this.editor.createImageLayer();
-    layer.src = this._activeMap.radar[0];
-    layer.width = 1024;
-    layer.height = 1024;
-    this.editor.replaceLayer(0, layer);
+    if (this.layers && this.layers.length && (<ImageLayer>this.layers[0]).src !== map.radar[0]) {
+      const layer = this.editor.createImageLayer();
+      layer.src = this._activeMap.radar[0];
+      layer.width = 1024;
+      layer.height = 1024;
+      this.editor.replaceLayer(0, layer);
+    }
   }
 
   private editor: StrategyEditor;
@@ -65,9 +69,8 @@ export class StrategyEditorComponent implements OnInit {
             this.newStrategy = strat;
             if (strat.EditorMetadata) {
               this.editor.restore(strat.EditorMetadata);
-            } else {
-              this.map = this.maps.find(m => m.id === strat.Map);
             }
+            this.map = this.maps.find(m => m.id === strat.Map);
           }
         });
       }
@@ -87,6 +90,10 @@ export class StrategyEditorComponent implements OnInit {
     layer.circle = args.drag.data.circle;
     this.editor.addLayer(layer);
     layer.selected = true;
+
+    if (args.drag.data.removeEnemy && this.enemies.length > 1) {
+      this.enemies.splice(0, 1);
+    }
   }
 
   public deleteLayer(layer: BaseLayer) {

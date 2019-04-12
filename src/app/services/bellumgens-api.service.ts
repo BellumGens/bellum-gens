@@ -462,7 +462,7 @@ export class BellumgensApiService {
       map(response => {
         if (response) {
           this._currentStrategy.next(response);
-          this.emitSuccess('New strategy successfully submitted!');
+          this.emitSuccess('Strategy saved!');
         }
         return response;
       }),

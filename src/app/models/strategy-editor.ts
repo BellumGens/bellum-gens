@@ -174,8 +174,9 @@ export class StrategyEditor {
   public restore(metadata: string) {
     const layersMeta: EditorLayer [] = JSON.parse(metadata);
     this._layers.forEach((layer) => {
-      this._removeLayer(layer);
+      this._unsubLayer(layer);
     });
+    this._layers.length = 0;
     layersMeta.forEach((meta) => {
       const layer = this.createLayer(EditorLayerType.Image, meta);
       this._addLayer(layer);
@@ -268,9 +269,13 @@ export class StrategyEditor {
     this.flip();
   }
 
-  private _removeLayer(layer: BaseLayer) {
+  private _unsubLayer(layer: BaseLayer) {
     layer.layerUpdate.unsubscribe();
     layer.layerSelect.unsubscribe();
+  }
+
+  private _removeLayer(layer: BaseLayer) {
+    this._unsubLayer(layer);
     this._layers.splice(this._layers.indexOf(layer), 1);
   }
 

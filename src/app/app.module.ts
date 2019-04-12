@@ -227,6 +227,7 @@ export class AppModule {
     this.iconService.addSvgIcon('taser', '/assets/weapon-icons/svg_normal/weapon_taser.svg', 'weapon-icons');
     this.iconService.addSvgIcon('flashbang', '/assets/weapon-icons/svg_normal/weapon_flashbang.svg', 'weapon-icons');
     this.iconService.addSvgIcon('smoke', '/assets/weapon-icons/svg_normal/weapon_smokegrenade.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('c4', '/assets/weapon-icons/svg_normal/weapon_c4.svg', 'weapon-icons');
     this.iconService.addSvgIcon('headshot', '/assets/headshot24x24.svg', 'weapon-icons');
     this.iconService.addSvgIcon('discord', '/assets/discord.svg', 'weapon-icons');
   }

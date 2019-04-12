@@ -1,12 +1,36 @@
-<div class="strat-editor-host">
+<div class="strat-editor-host"
+    (pointermove)="canvasPointerMove($event)"
+    (pointerup)="canvasPointerUp($event)">
   <div class="editor-elements">
-    <img *ngFor="let map of maps" class="map-choice" width="220px" [src]="map.image" (click)="changeMap(map)" />
+    <igx-expansion-panel>
+      <igx-expansion-panel-header>Change map <span class="highlight">{{map?.map}}</span></igx-expansion-panel-header>
+      <igx-expansion-panel-body>
+        <img *ngFor="let map of maps" class="map-choice" width="220px" [src]="map.image" (click)="changeMap(map)" />
+      </igx-expansion-panel-body>
+    </igx-expansion-panel>
+    <div class="editor-elements-section">
+        <div>Layers</div>
+        <igx-list>
+          <igx-list-item *ngFor="let layer of layers">
+            <div class="layer-info">
+              <igx-checkbox class="layer-selected" [(ngModel)]="layer.selected"></igx-checkbox>
+              <igx-input-group [ngClass]="layer.hidden ? 'hidden-layer' : ''">
+                <igx-prefix>
+                  <igx-icon (click)="layer.hidden = !layer.hidden">{{ layer.hidden ? 'visibility' : 'visibility_off'}}</igx-icon>
+                </igx-prefix>
+                <input igxInput [(ngModel)]="layer.name">
+                <igx-suffix>
+                  <igx-icon (click)="confirm.open(layer)">clear</igx-icon>
+                </igx-suffix>
+              </igx-input-group>
+            </div>
+          </igx-list-item>
+        </igx-list>
+      </div>
   </div>
   <canvas #board igxDrop
           (onDrop)="surfaceDrop($event)"
-          (pointerdown)="canvasPointerDown($event)"
-          (pointermove)="canvasPointerMove($event)"
-          (pointerup)="canvasPointerUp($event)"></canvas>
+          (pointerdown)="canvasPointerDown($event)"></canvas>
   <div class="editor-elements">
     <div class="editor-elements-section">
       <div>Team</div>
@@ -17,6 +41,14 @@
                   [title]="member.SteamUser.steamID"
                   roundShape="true">
       </igx-avatar>
+    </div>
+    <div class="editor-elements-section">
+      <div>Enemy Team</div>
+      <igx-avatar class="editor-element-icon"
+                  *ngFor="let i of enemies"
+                  roundShape="true"
+                  src="/assets/editor/ct-t-pin.png"
+                  [igxDrag]="{ src: '/assets/editor/ct-t-pin.png', width: 24, height: 24, removeEnemy: true }"></igx-avatar>
     </div>
     <div class="editor-elements-section">
       <div>Utility</div>
@@ -30,25 +62,6 @@
     </div>
     <div class="editor-elements-section">
       <div>Freeflow brushes</div>
-    </div>
-    <div class="editor-elements-section">
-      <div>Layers</div>
-      <igx-list>
-        <igx-list-item *ngFor="let layer of layers">
-          <div class="layer-info">
-            <igx-checkbox class="layer-selected" [(ngModel)]="layer.selected"></igx-checkbox>
-            <igx-input-group [ngClass]="layer.hidden ? 'hidden-layer' : ''">
-              <igx-prefix>
-                <igx-icon (click)="layer.hidden = !layer.hidden">{{ layer.hidden ? 'visibility' : 'visibility_off'}}</igx-icon>
-              </igx-prefix>
-              <input igxInput [(ngModel)]="layer.name">
-              <igx-suffix>
-                <igx-icon (click)="confirm.open(layer)">clear</igx-icon>
-              </igx-suffix>
-            </igx-input-group>
-          </div>
-        </igx-list-item>
-      </igx-list>
     </div>
     <div class="editor-elements-section">
       <button igxButton="raised" igxRipple (click)="saveStrat()">Save</button>
