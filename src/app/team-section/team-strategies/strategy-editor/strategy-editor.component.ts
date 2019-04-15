@@ -1,12 +1,13 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActiveDutyDescriptor, ActiveDuty, CSGOMap } from '../../../models/csgomaps';
-import { StrategyEditor, BaseLayer, PointCoordinate, ImageLayer } from '../../../models/strategy-editor';
+import { StrategyEditor } from '../../../models/strat-editor/strategy-editor';
 import { CSGOTeam } from '../../../models/csgoteam';
 import { BellumgensApiService } from '../../../services/bellumgens-api.service';
 import { ActivatedRoute } from '@angular/router';
 import { IgxDropEventArgs } from 'igniteui-angular';
-import { StratUtilities } from '../../../models/utility';
+import { StratUtilities } from '../../../models/strat-editor/utility';
 import { TeamStrategy } from '../../../models/csgoteamstrategy';
+import { BaseLayer, PointCoordinate, ImageLayer } from '../../../models/strat-editor/editor-layer';
 
 @Component({
   selector: 'app-strategy-editor',
