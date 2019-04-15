@@ -87,6 +87,8 @@ export class StrategyEditorComponent implements OnInit {
     layer.width = args.drag.data.width;
     layer.height = args.drag.data.height;
     layer.circle = args.drag.data.circle;
+    layer.x = args.offsetX - Math.floor(layer.width / 2);
+    layer.y = args.offsetY - Math.floor(layer.height / 2);
     this.editor.addLayer(layer);
     layer.selected = true;
 

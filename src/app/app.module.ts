@@ -47,7 +47,6 @@ import { GroupsFilterPipe } from './pipes/groups-filter.pipe';
 import { WeekdayPipe } from './pipes/weekday.pipe';
 import { MapnamePipe } from './pipes/mapname.pipe';
 import { MapimagePipe } from './pipes/mapimage.pipe';
-import { OrdermapsPipe } from './pipes/ordermaps.pipe';
 import { TeamDetailsComponent } from './team-section/team-details/team-details.component';
 import { LoginComponent } from './login/login.component';
 import { UnreadNotificationsPipe } from './pipes/unread-notifications.pipe';
@@ -102,7 +101,6 @@ import { ActiveDutyMapsPipe } from './pipes/active-duty-maps.pipe';
     WeekdayPipe,
     MapnamePipe,
     MapimagePipe,
-    OrdermapsPipe,
     TeamDetailsComponent,
     LoginComponent,
     UnreadNotificationsPipe,

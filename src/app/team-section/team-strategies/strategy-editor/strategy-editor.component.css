@@ -4,6 +4,10 @@
   height: 100%;
 }
 
+.drawing-board {
+  border: 1px solid #939393;
+}
+
 .editor-elements {
   display: flex;
   flex-flow: column;
