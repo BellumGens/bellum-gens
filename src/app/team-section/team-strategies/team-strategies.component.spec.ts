@@ -1,8 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TeamStrategiesComponent } from './team-strategies.component';
-import { IgxExpansionPanelModule,
-  IgxIconModule,
+import { IgxIconModule,
   IgxCardModule,
   IgxListModule,
   IgxInputGroupModule,
@@ -20,7 +19,6 @@ import { MapnamePipe } from 'src/app/pipes/mapname.pipe';
 import { SideStratsPipe } from 'src/app/pipes/sidestrats.pipe';
 import { ConfirmComponent } from 'src/app/confirm/confirm.component';
 import { MapimagePipe } from 'src/app/pipes/mapimage.pipe';
-import { OrdermapsPipe } from 'src/app/pipes/ordermaps.pipe';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { AvailabilityComponent } from 'src/app/availability/availability.component';
@@ -58,7 +56,6 @@ describe('TeamStrategiesComponent', () => {
         MapnamePipe,
         SideStratsPipe,
         MapimagePipe,
-        OrdermapsPipe,
         WeekdayPipe,
         ActiveDutyMapsPipe
       ]

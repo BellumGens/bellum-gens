@@ -1,5 +1,4 @@
 import { EventEmitter } from '@angular/core';
-import { PathLocationStrategy } from '@angular/common';
 
 export interface EditorLayer {
   name: string;
@@ -88,7 +87,11 @@ export class ImageLayer extends BaseLayer {
     if (!this.hidden) {
       if (!this.image) {
         this.image = new Image();
-        this.image.src = this.src;
+        if (this.src.startsWith('http')) {
+          this.image.src = `/proxy/${encodeURIComponent(this.src)}`;
+        } else {
+          this.image.src = this.src;
+        }
         this.image.width = Math.floor(this.width * this.displayRatio);
         this.image.height = Math.floor(this.height * this.displayRatio);
         this.image.onload = () => {

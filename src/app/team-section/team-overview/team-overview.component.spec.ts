@@ -6,7 +6,6 @@ import { IgxAvatarModule,
   IgxTabsModule,
   IgxCardModule,
   IgxDragDropModule,
-  IgxExpansionPanelModule,
   IgxListModule,
   IgxInputGroupModule,
   IgxRadioModule,
@@ -33,7 +32,6 @@ import { SafeVideoLinkPipe } from 'src/app/pipes/safe-video-link.pipe';
 import { MapnamePipe } from 'src/app/pipes/mapname.pipe';
 import { WeekdayPipe } from 'src/app/pipes/weekday.pipe';
 import { MapimagePipe } from 'src/app/pipes/mapimage.pipe';
-import { OrdermapsPipe } from 'src/app/pipes/ordermaps.pipe';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -84,7 +82,6 @@ describe('TeamOverviewComponent', () => {
         MapnamePipe,
         WeekdayPipe,
         MapimagePipe,
-        OrdermapsPipe,
         ExcludeMembersPipe,
         ActiveDutyMapsPipe
       ]

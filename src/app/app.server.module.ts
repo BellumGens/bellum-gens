@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { Routes, RouterModule, Router } from '@angular/router';
 import { AppShellComponent } from './app-shell/app-shell.component';
 import { IgxProgressBarModule } from 'igniteui-angular';
+import { ModuleMapLoaderModule } from '@nguniversal/module-map-ngfactory-loader';
 
-const routes: Routes = [ { path: 'app-shell-path', component: AppShellComponent }];
+const routes: Routes = [{ path: 'app-shell-path', component: AppShellComponent }];
 
 @NgModule({
   imports: [
     AppModule,
     ServerModule,
+    ModuleMapLoaderModule,
     IgxProgressBarModule,
     RouterModule.forRoot(routes)
   ],
