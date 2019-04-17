@@ -7,8 +7,11 @@ import { Routes, RouterModule, Router } from '@angular/router';
 import { AppShellComponent } from './app-shell/app-shell.component';
 import { IgxProgressBarModule } from 'igniteui-angular';
 import { ModuleMapLoaderModule } from '@nguniversal/module-map-ngfactory-loader';
+import { PlayerDetailsComponent } from './player-section/player-details/player-details.component';
 
-const routes: Routes = [{ path: 'app-shell-path', component: AppShellComponent }];
+const routes: Routes = [
+  { path: 'home', component: AppShellComponent }
+];
 
 @NgModule({
   imports: [
