@@ -159,7 +159,7 @@ export class StrategyEditorComponent implements OnInit {
     this.editor.deselectAll();
   }
 
-  public deselectBrush(args) {
+  public deselectBrush() {
     this.brushSelected = false;
   }
 
