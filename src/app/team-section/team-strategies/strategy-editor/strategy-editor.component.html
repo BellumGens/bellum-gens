@@ -13,7 +13,7 @@
         <igx-list>
           <igx-list-item *ngFor="let layer of layers">
             <div class="layer-info">
-              <igx-checkbox class="layer-selected" [(ngModel)]="layer.selected"></igx-checkbox>
+              <igx-checkbox class="layer-selected" (change)="deselectBrush()" [(ngModel)]="layer.selected"></igx-checkbox>
               <igx-input-group [ngClass]="layer.hidden ? 'hidden-layer' : ''">
                 <igx-prefix>
                   <igx-icon (click)="layer.hidden = !layer.hidden">{{ layer.hidden ? 'visibility' : 'visibility_off'}}</igx-icon>
@@ -63,6 +63,14 @@
     </div>
     <div class="editor-elements-section">
       <div>Freeflow brushes</div>
+      <igx-icon [ngClass]="brushSelected ? 'editor-freeflow-element selected-element' : 'editor-freeflow-element'" (click)="selectBrush()">brush</igx-icon>
+    </div>
+    <div *ngIf="brushSelected" class="editor-elements-section">
+      <div>Brush Color</div>
+      <igx-icon *ngFor="let color of colors"
+                [ngClass]="color.selected ? 'editor-freeflow-element selected-element' : 'editor-freeflow-element'"
+                [color]="color.color"
+                (click)="selectColor(color)">color_lens</igx-icon>
     </div>
     <div class="editor-elements-section">
       <button igxButton="raised" igxRipple (click)="saveStrat()">Save</button>

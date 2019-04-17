@@ -25,7 +25,7 @@ export class StrategyEditor {
     });
     this._layers.length = 0;
     layersMeta.forEach((meta) => {
-      const layer = this.createLayer(EditorLayerType.Image, meta);
+      const layer = this.createLayer(meta.type, meta);
       this._addLayer(layer);
     });
     this.flip();

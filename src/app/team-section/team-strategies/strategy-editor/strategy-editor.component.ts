@@ -7,7 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { IgxDropEventArgs } from 'igniteui-angular';
 import { StratUtilities } from '../../../models/strat-editor/utility';
 import { TeamStrategy } from '../../../models/csgoteamstrategy';
-import { BaseLayer, PointCoordinate, ImageLayer } from '../../../models/strat-editor/editor-layer';
+import { BaseLayer, PointCoordinate, ImageLayer, FreeflowLayer } from '../../../models/strat-editor/editor-layer';
 
 @Component({
   selector: 'app-strategy-editor',
@@ -21,6 +21,14 @@ export class StrategyEditorComponent implements OnInit {
   public utility = StratUtilities;
   public layers: BaseLayer [];
   public enemies = [1, 1, 1, 1, 1];
+  public brushSelected = false;
+  public colors = [
+    { color: 'red', selected: true },
+    { color: 'yellow', selected: false },
+    { color: 'blue', selected: false },
+    { color: 'green', selected: false }
+  ];
+  public selectedColor = this.colors[0];
 
   private _activeMap: ActiveDutyDescriptor;
   private _drag = false;
@@ -28,6 +36,7 @@ export class StrategyEditorComponent implements OnInit {
     x: 0,
     y: 0
   };
+  private _drawLayer: FreeflowLayer;
 
   public get map() {
     return this._activeMap;
@@ -105,27 +114,58 @@ export class StrategyEditorComponent implements OnInit {
   public saveStrat() {
     this.editor.deselectAll();
     this.newStrategy.Image = this.canvas.nativeElement.toDataURL('image/png');
-    this.newStrategy.EditorMetadata = JSON.stringify(this.layers, ['name', 'x', 'y', 'width', 'height', 'src', 'circle']);
+    this.newStrategy.EditorMetadata = JSON.stringify(this.layers,
+                    ['name', 'x', 'y', 'width', 'height', 'src', 'circle', 'paths', 'color', 'type']);
     this.apiService.submitStrategy(this.newStrategy).subscribe();
   }
 
   public canvasPointerDown(event: PointerEvent) {
     this._drag = true;
-    this._coordinates.x = event.x;
-    this._coordinates.y = event.y;
+    this._coordinates.x = Math.floor(event.offsetX);
+    this._coordinates.y = Math.floor(event.offsetY);
+    if (this.brushSelected) {
+      this._drawLayer = this.editor.createFreeflowLayer();
+      this._drawLayer.color = this.selectedColor.color;
+      this._drawLayer.x = this._coordinates.x;
+      this._drawLayer.y = this._coordinates.y;
+      this.editor.addLayer(this._drawLayer);
+    }
   }
 
   public canvasPointerMove(event: PointerEvent) {
     if (this._drag) {
-      this.editor.moveSelected({x: event.x - this._coordinates.x, y: event.y - this._coordinates.y});
-      this._coordinates.x = event.x;
-      this._coordinates.y = event.y;
+      const offsetX = Math.floor(event.offsetX);
+      const offsetY = Math.floor(event.offsetY);
+      if (!this.brushSelected) {
+        this.editor.moveSelected({x: offsetX - this._coordinates.x, y: offsetY - this._coordinates.y});
+        this._coordinates.x = event.x;
+        this._coordinates.y = event.y;
+      } else {
+        this._drawLayer.addPoint(Object.assign({}, this._coordinates));
+        this._coordinates.x = offsetX;
+        this._coordinates.y = offsetY;
+      }
     }
   }
 
-  public canvasPointerUp(event: PointerEvent) {
+  public canvasPointerUp() {
     this._drag = false;
     this._coordinates.x = 0;
     this._coordinates.y = 0;
+  }
+
+  public selectBrush() {
+    this.brushSelected = !this.brushSelected;
+    this.editor.deselectAll();
+  }
+
+  public deselectBrush(args) {
+    this.brushSelected = false;
+  }
+
+  public selectColor(color) {
+    this.selectedColor.selected = false;
+    color.selected = true;
+    this.selectedColor = color;
   }
 }

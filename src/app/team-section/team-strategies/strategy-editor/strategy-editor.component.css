@@ -36,6 +36,13 @@
   margin: 4px;
 }
 
+.editor-freeflow-element {
+  width: 24px;
+  height: 24px;
+  min-width: 24px;
+  margin: 4px;
+}
+
 .selected-element {
   outline: 2px solid #FF0A3A;
 }

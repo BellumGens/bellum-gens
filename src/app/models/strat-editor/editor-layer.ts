@@ -6,8 +6,11 @@ export interface EditorLayer {
   y: number;
   width: number;
   height: number;
+  type: EditorLayerType;
   circle?: boolean;
   src?: string;
+  paths?: PointCoordinate [];
+  color?: string;
 }
 
 export interface PointCoordinate {
@@ -30,6 +33,7 @@ export abstract class BaseLayer {
   private _selected = false;
   public selectedBorderColor = '#939393';
   public selectedBorderWidth = 1;
+  public type: EditorLayerType;
 
   public name: string;
   public x: number;
@@ -81,17 +85,15 @@ export class ImageLayer extends BaseLayer {
     super(name, displayRatio, meta);
     this.src = meta ? meta.src : '';
     this.circle = meta ? meta.circle : false;
+    this.type = EditorLayerType.Image;
   }
 
   public draw() {
     if (!this.hidden) {
       if (!this.image) {
         this.image = new Image();
-        if (this.src.startsWith('https://steamcdn-a.akamaihd.net/steamcommunity/public/')) {
-          this.image.src = `/proxy/steam/${encodeURIComponent(this.src)}`;
-        } else {
-          this.image.src = this.src;
-        }
+        this.image.crossOrigin = 'Anonymous';
+        this.image.src = this.src;
         this.image.width = Math.floor(this.width * this.displayRatio);
         this.image.height = Math.floor(this.height * this.displayRatio);
         this.image.onload = () => {
@@ -161,20 +163,34 @@ export class ImageLayer extends BaseLayer {
 export class FreeflowLayer extends BaseLayer {
 
   public paths: PointCoordinate [];
+  public color = 'red';
 
   constructor(private _context: any, name: string, displayRatio = 1, meta?: EditorLayer) {
     super(name, displayRatio, meta);
+    this.paths = meta ? meta.paths : [];
+    this.color = meta ? meta.color : 'red';
+    this.type = EditorLayerType.Freeflow;
+  }
+
+  public addPoint(point: PointCoordinate) {
+    this.paths.push(point);
+    this.layerUpdate.emit(this);
   }
 
   public draw() {
-    if (this.paths.length > 1) {
-      for (let i = 0; i < this.paths.length - 1; i++) {
+    if (!this.hidden) {
+      if (this.paths.length > 1) {
         this._context.beginPath();
-        this._context.moveTo(this.paths[i]);
-        this._context.lineTo(this.paths[i + 1]);
+        this._context.moveTo(this.x, this.y);
+        for (let i = 0; i < this.paths.length; i++) {
+          this._context.lineTo(this.paths[i].x, this.paths[i].y);
+        }
+        this._context.lineWidth = 5;
+        this._context.strokeStyle = this.color;
         this._context.stroke();
         this._context.closePath();
       }
     }
+    this.drawFinish.emit(this);
   }
 }
