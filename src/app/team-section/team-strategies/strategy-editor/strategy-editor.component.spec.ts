@@ -7,7 +7,7 @@ import { IgxIconModule,
   IgxDragDropModule,
   IgxAvatarModule,
   IgxDialogModule,
-  IgxCheckboxModule, 
+  IgxCheckboxModule,
   IgxSelectModule} from 'igniteui-angular';
 import { ConfirmComponent } from 'src/app/confirm/confirm.component';
 import { FormsModule } from '@angular/forms';

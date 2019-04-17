@@ -87,8 +87,8 @@ export class ImageLayer extends BaseLayer {
     if (!this.hidden) {
       if (!this.image) {
         this.image = new Image();
-        if (this.src.startsWith('http')) {
-          this.image.src = `/proxy/${encodeURIComponent(this.src)}`;
+        if (this.src.startsWith('https://steamcdn-a.akamaihd.net/steamcommunity/public/')) {
+          this.image.src = `/proxy/steam/${encodeURIComponent(this.src)}`;
         } else {
           this.image.src = this.src;
         }

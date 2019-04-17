@@ -6,7 +6,7 @@ import {ngExpressEngine} from '@nguniversal/express-engine';
 import {provideModuleMap} from '@nguniversal/module-map-ngfactory-loader';
 
 import * as express from 'express';
-import fetch from 'node-fetch';
+import * as proxy from 'express-http-proxy';
 import {join} from 'path';
 
 // Faster server renders w/ Prod mode (dev mode never needed)
@@ -41,14 +41,12 @@ app.get('*.*', express.static(DIST_FOLDER, {
 
 
 // Image proxy on /proxy
-app.get('/proxy/:imageUrl', (req, res) => {
+app.get('/proxy/steam/:imageUrl', proxy((req) => {
   const imageUrl = decodeURIComponent(req.params.imageUrl);
-  fetch(imageUrl).then((response) => {
-    res.set('Content-Type', response.headers.get('Content-Type'));
-    res.set('Content-Length', response.headers.get('Content-Length'));
-    res.send(response.body);
-  });
-});
+  if (imageUrl.startsWith('https://steamcdn-a.akamaihd.net/steamcommunity/public')) {
+    return decodeURIComponent(imageUrl);
+  }
+}));
 
 // All regular routes use the Universal engine
 app.get('*', (req, res) => {
