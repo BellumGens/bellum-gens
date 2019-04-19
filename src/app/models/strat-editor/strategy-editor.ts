@@ -1,5 +1,11 @@
 import { ElementRef } from '@angular/core';
-import { BaseLayer, EditorLayerType, PointCoordinate, LayerSelected, ImageLayer, EditorLayer, FreeflowLayer } from './editor-layer';
+import { BaseLayer,
+  EditorLayerType,
+  PointCoordinate,
+  LayerSelected,
+  ImageLayer,
+  EditorLayer,
+  FreeflowLayer } from './editor-layer';
 
 export class StrategyEditor {
   private _context: any;

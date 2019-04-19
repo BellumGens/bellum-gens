@@ -115,7 +115,7 @@ export class StrategyEditorComponent implements OnInit {
     this.editor.deselectAll();
     this.newStrategy.Image = this.canvas.nativeElement.toDataURL('image/png');
     this.newStrategy.EditorMetadata = JSON.stringify(this.layers,
-                    ['name', 'x', 'y', 'width', 'height', 'src', 'circle', 'paths', 'color', 'type']);
+                    ['name', 'displayRatio', 'x', 'y', 'width', 'height', 'src', 'circle', 'paths', 'color', 'type']);
     this.apiService.submitStrategy(this.newStrategy).subscribe();
   }
 
@@ -138,8 +138,8 @@ export class StrategyEditorComponent implements OnInit {
       const offsetY = Math.floor(event.offsetY);
       if (!this.brushSelected) {
         this.editor.moveSelected({x: offsetX - this._coordinates.x, y: offsetY - this._coordinates.y});
-        this._coordinates.x = event.x;
-        this._coordinates.y = event.y;
+        this._coordinates.x = offsetX;
+        this._coordinates.y = offsetY;
       } else {
         this._drawLayer.addPoint(Object.assign({}, this._coordinates));
         this._coordinates.x = offsetX;

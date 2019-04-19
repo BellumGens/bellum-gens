@@ -7,6 +7,7 @@ export interface EditorLayer {
   width: number;
   height: number;
   type: EditorLayerType;
+  displayRatio: number;
   circle?: boolean;
   src?: string;
   paths?: PointCoordinate [];
@@ -31,6 +32,7 @@ export interface LayerSelected {
 export abstract class BaseLayer {
   private _hidden = false;
   private _selected = false;
+  protected _originalDR: number;
   public selectedBorderColor = '#939393';
   public selectedBorderWidth = 1;
   public type: EditorLayerType;
@@ -70,7 +72,12 @@ export abstract class BaseLayer {
     this.y = meta ? meta.y : 0;
     this.width = meta ? meta.width : 0;
     this.height = meta ? meta.height : 0;
+    this._originalDR = meta ? meta.displayRatio : 0;
     this.displayRatio = displayRatio;
+    if (this._originalDR && this._originalDR !== this.displayRatio) {
+      this.x = Math.round(this.x * (this.displayRatio / this._originalDR));
+      this.y = Math.round(this.y * (this.displayRatio / this._originalDR));
+    }
   }
 
   public abstract draw();
@@ -94,8 +101,8 @@ export class ImageLayer extends BaseLayer {
         this.image = new Image();
         this.image.crossOrigin = 'Anonymous';
         this.image.src = this.src;
-        this.image.width = Math.floor(this.width * this.displayRatio);
-        this.image.height = Math.floor(this.height * this.displayRatio);
+        this.image.width = Math.round(this.width * this.displayRatio);
+        this.image.height = Math.round(this.height * this.displayRatio);
         this.image.onload = () => {
           if (this.selected) {
             this.drawSelectedBorder();
@@ -106,8 +113,8 @@ export class ImageLayer extends BaseLayer {
           this._context.drawImage(this.image,
                                   this.x,
                                   this.y,
-                                  Math.floor(this.width * this.displayRatio),
-                                  Math.floor(this.height * this.displayRatio));
+                                  Math.round(this.width * this.displayRatio),
+                                  Math.round(this.height * this.displayRatio));
           if (this.circle) {
             this.endCircle();
           }
@@ -123,8 +130,8 @@ export class ImageLayer extends BaseLayer {
         this._context.drawImage(this.image,
                                 this.x,
                                 this.y,
-                                Math.floor(this.width * this.displayRatio),
-                                Math.floor(this.height * this.displayRatio));
+                                Math.round(this.width * this.displayRatio),
+                                Math.round(this.height * this.displayRatio));
         if (this.circle) {
           this.endCircle();
         }
@@ -137,9 +144,9 @@ export class ImageLayer extends BaseLayer {
 
   private beginCircle() {
     this._context.save();
-    this._context.arc(this.x + Math.floor(this.width * this.displayRatio) / 2,
-                      this.y + Math.floor(this.height * this.displayRatio) / 2,
-                      Math.floor(this.width * this.displayRatio) / 2,
+    this._context.arc(this.x + Math.round(this.width * this.displayRatio) / 2,
+                      this.y + Math.round(this.height * this.displayRatio) / 2,
+                      Math.round(this.width * this.displayRatio) / 2,
                       0,
                       Math.PI * 2,
                       true);
@@ -155,8 +162,8 @@ export class ImageLayer extends BaseLayer {
     this._context.lineWidth = this.selectedBorderWidth;
     this._context.strokeRect(this.x,
                             this.y,
-                            Math.floor(this.width * this.displayRatio),
-                            Math.floor(this.height * this.displayRatio));
+                            Math.round(this.width * this.displayRatio),
+                            Math.round(this.height * this.displayRatio));
   }
 }
 
@@ -170,6 +177,12 @@ export class FreeflowLayer extends BaseLayer {
     this.paths = meta ? meta.paths : [];
     this.color = meta ? meta.color : 'red';
     this.type = EditorLayerType.Freeflow;
+    if (this._originalDR && this.displayRatio !== this._originalDR) {
+      this.paths.forEach((path) => {
+        path.x = Math.round(path.x * (this.displayRatio / this._originalDR));
+        path.y = Math.round(path.y * (this.displayRatio / this._originalDR));
+      });
+    }
   }
 
   public addPoint(point: PointCoordinate) {

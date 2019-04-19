@@ -38,6 +38,7 @@
       <igx-avatar *ngFor="let member of team?.Members"
                   [src]="member.SteamUser.avatarIcon"
                   [igxDrag]="{ src: member.SteamUser.avatarIcon, circle: true, width: 24, height: 24 }"
+                  (dragStart)="deselectBrush()"
                   class="editor-element-icon"
                   [title]="member.SteamUser.steamID"
                   roundShape="true">
@@ -49,6 +50,7 @@
                   *ngFor="let i of enemies"
                   roundShape="true"
                   src="/assets/editor/ct-t-pin.png"
+                  (dragStart)="deselectBrush()"
                   [igxDrag]="{ src: '/assets/editor/ct-t-pin.png', width: 24, height: 24, removeEnemy: true }"></igx-avatar>
     </div>
     <div class="editor-elements-section">
@@ -58,6 +60,7 @@
                 [name]="util.icon"
                 [title]="util.name"
                 class="editor-element-icon"
+                (dragStart)="deselectBrush()"
                 [igxDrag]="{ src: util.svg, circle: false, width: util.width, height: util.height }">
       </igx-icon>
     </div>
