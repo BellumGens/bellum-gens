@@ -20,13 +20,13 @@ steps:
     npm install
     npm run lint
     npm run test:prod
-    npm run build:ssr
+    npm run build:app-shell
   displayName: 'npm install, lint, test and build'
 
 # Publish Build Artifacts to Azure Pipelines
 - task: PublishBuildArtifacts@1
   inputs:
-    pathtoPublish: 'dist' 
+    pathtoPublish: 'dist/bellum-gens' 
     artifactName: 'dist' 
     publishLocation: 'Container'
     targetPath: 'dist/bellum-gens'
