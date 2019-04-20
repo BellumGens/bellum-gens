@@ -115,7 +115,7 @@ export class StrategyEditorComponent implements OnInit {
     this.editor.deselectAll();
     this.newStrategy.Image = this.canvas.nativeElement.toDataURL('image/png');
     this.newStrategy.EditorMetadata = JSON.stringify(this.layers,
-                    ['name', 'displayRatio', 'x', 'y', 'width', 'height', 'src', 'circle', 'paths', 'color', 'type']);
+                    ['name', 'displayRatio', 'x', 'y', 'width', 'height', 'src', 'circle', 'paths', 'points', 'color', 'type']);
     this.apiService.submitStrategy(this.newStrategy).subscribe();
   }
 
@@ -124,11 +124,16 @@ export class StrategyEditorComponent implements OnInit {
     this._coordinates.x = Math.floor(event.offsetX);
     this._coordinates.y = Math.floor(event.offsetY);
     if (this.brushSelected) {
-      this._drawLayer = this.editor.createFreeflowLayer();
-      this._drawLayer.color = this.selectedColor.color;
-      this._drawLayer.x = this._coordinates.x;
-      this._drawLayer.y = this._coordinates.y;
-      this.editor.addLayer(this._drawLayer);
+      if (!this._drawLayer) {
+        this._drawLayer = this.editor.createFreeflowLayer();
+        this._drawLayer.color = this.selectedColor.color;
+        this._drawLayer.x = this._coordinates.x;
+        this._drawLayer.y = this._coordinates.y;
+        this._drawLayer.createPath();
+        this.editor.addLayer(this._drawLayer);
+      } else {
+        this._drawLayer.createPath();
+      }
     }
   }
 
@@ -152,6 +157,9 @@ export class StrategyEditorComponent implements OnInit {
     this._drag = false;
     this._coordinates.x = 0;
     this._coordinates.y = 0;
+    if (this._drawLayer) {
+      this._drawLayer.closePath();
+    }
   }
 
   public selectBrush() {
@@ -161,11 +169,13 @@ export class StrategyEditorComponent implements OnInit {
 
   public deselectBrush() {
     this.brushSelected = false;
+    this._drawLayer = null;
   }
 
   public selectColor(color) {
     this.selectedColor.selected = false;
     color.selected = true;
     this.selectedColor = color;
+    this._drawLayer = null;
   }
 }

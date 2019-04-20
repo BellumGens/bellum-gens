@@ -10,13 +10,17 @@ export interface EditorLayer {
   displayRatio: number;
   circle?: boolean;
   src?: string;
-  paths?: PointCoordinate [];
+  paths?: FreeflowPath [];
   color?: string;
 }
 
 export interface PointCoordinate {
   x: number;
   y: number;
+}
+
+export interface FreeflowPath {
+  points: PointCoordinate [];
 }
 
 export enum EditorLayerType {
@@ -169,8 +173,10 @@ export class ImageLayer extends BaseLayer {
 
 export class FreeflowLayer extends BaseLayer {
 
-  public paths: PointCoordinate [];
+  public paths: FreeflowPath [];
   public color = 'red';
+
+  private _currentPath: FreeflowPath;
 
   constructor(private _context: any, name: string, displayRatio = 1, meta?: EditorLayer) {
     super(name, displayRatio, meta);
@@ -179,30 +185,44 @@ export class FreeflowLayer extends BaseLayer {
     this.type = EditorLayerType.Freeflow;
     if (this._originalDR && this.displayRatio !== this._originalDR) {
       this.paths.forEach((path) => {
-        path.x = Math.round(path.x * (this.displayRatio / this._originalDR));
-        path.y = Math.round(path.y * (this.displayRatio / this._originalDR));
+        path.points.forEach((point) => {
+          point.x = Math.round(point.x * (this.displayRatio / this._originalDR));
+          point.y = Math.round(point.y * (this.displayRatio / this._originalDR));
+        });
       });
     }
   }
 
+  public createPath() {
+    const path = {points: []};
+    this.paths.push(path);
+    this._currentPath = path;
+  }
+
   public addPoint(point: PointCoordinate) {
-    this.paths.push(point);
+    this._currentPath.points.push(point);
     this.layerUpdate.emit(this);
+  }
+
+  public closePath() {
+    this._currentPath = null;
   }
 
   public draw() {
     if (!this.hidden) {
-      if (this.paths.length > 1) {
-        this._context.beginPath();
-        this._context.moveTo(this.x, this.y);
-        for (let i = 0; i < this.paths.length; i++) {
-          this._context.lineTo(this.paths[i].x, this.paths[i].y);
+      this.paths.forEach((path) => {
+        if (path.points.length > 1) {
+          this._context.beginPath();
+          this._context.moveTo(path.points[0].x, path.points[0].y);
+          for (let i = 1; i < path.points.length; i++) {
+            this._context.lineTo(path.points[i].x, path.points[i].y);
+          }
+          this._context.lineWidth = 5;
+          this._context.strokeStyle = this.color;
+          this._context.stroke();
+          this._context.closePath();
         }
-        this._context.lineWidth = 5;
-        this._context.strokeStyle = this.color;
-        this._context.stroke();
-        this._context.closePath();
-      }
+      });
     }
     this.drawFinish.emit(this);
   }
