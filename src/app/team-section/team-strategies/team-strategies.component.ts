@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, Input } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BellumgensApiService } from '../../services/bellumgens-api.service';
 import { TeamStrategy, newEmptyStrategy } from '../../models/csgoteamstrategy';
 import { MapPool, ActiveDutyDescriptor, ActiveDuty } from '../../models/csgomaps';
@@ -35,6 +35,7 @@ export class TeamStrategiesComponent implements OnInit {
   @ViewChild(IgxDialogComponent) public dialog: IgxDialogComponent;
 
   constructor(private activatedRoute: ActivatedRoute,
+              private router: Router,
               private apiService: BellumgensApiService) {
   }
 
@@ -143,5 +144,10 @@ export class TeamStrategiesComponent implements OnInit {
 
   public resetStrategy() {
     this.newStrategy = newEmptyStrategy();
+  }
+
+  public createAndRedirect() {
+    this.newStrategy.TeamId = this.teamId;
+    this.apiService.submitStrategy(this.newStrategy).subscribe(strat => this.router.navigate(['team', this.teamId, strat.Id]));
   }
 }

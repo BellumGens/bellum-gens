@@ -1,6 +1,18 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { StrategyEditorComponent } from './strategy-editor.component';
+import { IgxIconModule,
+  IgxInputGroupModule,
+  IgxListModule,
+  IgxDragDropModule,
+  IgxAvatarModule,
+  IgxDialogModule,
+  IgxCheckboxModule,
+  IgxSelectModule} from 'igniteui-angular';
+import { ConfirmComponent } from 'src/app/confirm/confirm.component';
+import { FormsModule } from '@angular/forms';
+import { RouterTestingModule } from '@angular/router/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('StrategyEditorComponent', () => {
   let component: StrategyEditorComponent;
@@ -8,7 +20,20 @@ describe('StrategyEditorComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ StrategyEditorComponent ]
+      imports: [
+        FormsModule,
+        RouterTestingModule,
+        NoopAnimationsModule,
+        IgxIconModule,
+        IgxInputGroupModule,
+        IgxListModule,
+        IgxDragDropModule,
+        IgxAvatarModule,
+        IgxDialogModule,
+        IgxCheckboxModule,
+        IgxSelectModule
+      ],
+      declarations: [ StrategyEditorComponent, ConfirmComponent ]
     })
     .compileComponents();
   }));

@@ -38,3 +38,12 @@
 .maps-chip {
   margin-right: 4px;
 }
+
+.column-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.separate {
+  padding: 0 32px;
+}

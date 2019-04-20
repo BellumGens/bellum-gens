@@ -81,9 +81,9 @@ export class LoginComponent {
       mapPool: false,
       profileStage: 0,
       doneColor: '#4eb862',
-      pendingColor: '#fbb13c',
+      pendingColor: '#ff134a',
       doneIcon: 'done',
-      pendingIcon: 'priority_high',
+      pendingIcon: 'clear',
       progressType: IgxProgressType.INFO
     };
     if (this._authUser.Availability.filter(a => a.Available).length) {

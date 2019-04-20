@@ -1,3 +1,89 @@
-<p>
-  strategy-editor works!
-</p>
+<div class="strat-editor-host"
+    (pointermove)="canvasPointerMove($event)"
+    (pointerup)="canvasPointerUp()">
+  <div class="editor-elements">
+    <igx-select *ngIf="newStrategy" class="editor-elements-section" id="mapSelector" name="mapSelector" [(ngModel)]="newStrategy.Map" (ngModelChange)="changeMap($event)">
+      <label for="mapSelector" igxLabel>Map</label>
+      <igx-select-item *ngFor="let map of maps" [value]="map.id">
+        {{ map.map }}
+      </igx-select-item>
+    </igx-select>
+    <div class="editor-elements-section">
+        <div>Layers</div>
+        <igx-list>
+          <igx-list-item *ngFor="let layer of layers">
+            <div class="layer-info">
+              <igx-checkbox class="layer-selected" (change)="deselectBrush()" [(ngModel)]="layer.selected"></igx-checkbox>
+              <igx-input-group [ngClass]="layer.hidden ? 'hidden-layer' : ''">
+                <igx-prefix>
+                  <igx-icon (click)="layer.hidden = !layer.hidden">{{ layer.hidden ? 'visibility' : 'visibility_off'}}</igx-icon>
+                </igx-prefix>
+                <input igxInput [(ngModel)]="layer.name">
+                <igx-suffix>
+                  <igx-icon (click)="confirm.open(layer)">clear</igx-icon>
+                </igx-suffix>
+              </igx-input-group>
+            </div>
+          </igx-list-item>
+        </igx-list>
+      </div>
+  </div>
+  <canvas #board igxDrop
+          class="drawing-board"
+          (onDrop)="surfaceDrop($event)"
+          (pointerdown)="canvasPointerDown($event)"></canvas>
+  <div class="editor-elements">
+    <div class="editor-elements-section">
+      <div>Team</div>
+      <igx-avatar *ngFor="let member of team?.Members"
+                  [src]="member.SteamUser.avatarIcon"
+                  [igxDrag]="{ src: member.SteamUser.avatarIcon, circle: true, width: 24, height: 24 }"
+                  (dragStart)="deselectBrush()"
+                  class="editor-element-icon"
+                  [title]="member.SteamUser.steamID"
+                  roundShape="true">
+      </igx-avatar>
+    </div>
+    <div class="editor-elements-section">
+      <div>Enemy Team</div>
+      <igx-avatar class="editor-element-icon"
+                  *ngFor="let i of enemies"
+                  roundShape="true"
+                  src="/assets/editor/ct-t-pin.png"
+                  (dragStart)="deselectBrush()"
+                  [igxDrag]="{ src: '/assets/editor/ct-t-pin.png', width: 24, height: 24, removeEnemy: true }"></igx-avatar>
+    </div>
+    <div class="editor-elements-section">
+      <div>Utility</div>
+      <igx-icon *ngFor="let util of utility"
+                [fontSet]="util.fontSet"
+                [name]="util.icon"
+                [title]="util.name"
+                class="editor-element-icon"
+                (dragStart)="deselectBrush()"
+                [igxDrag]="{ src: util.svg, circle: false, width: util.width, height: util.height }">
+      </igx-icon>
+    </div>
+    <div class="editor-elements-section">
+      <div>Freeflow brushes</div>
+      <igx-icon [ngClass]="brushSelected ? 'editor-freeflow-element selected-element' : 'editor-freeflow-element'" (click)="selectBrush()">brush</igx-icon>
+    </div>
+    <div *ngIf="brushSelected" class="editor-elements-section">
+      <div>Brush Color</div>
+      <igx-icon *ngFor="let color of colors"
+                [ngClass]="color.selected ? 'editor-freeflow-element selected-element' : 'editor-freeflow-element'"
+                [color]="color.color"
+                (click)="selectColor(color)">color_lens</igx-icon>
+    </div>
+    <div class="editor-elements-section">
+      <button igxButton="raised" igxRipple (click)="saveStrat()">Save</button>
+    </div>
+    <div class="editor-credits">
+      <div>All radars created with <a class="navigatable" href="http://simpleradar.com/" target="_blank" rel="noopener">simple radar</a></div>
+    </div>
+  </div>
+</div>
+
+<app-confirm #confirm title="Are you sure?" (ok)="deleteLayer($event)">
+  Are you sure you want to delete this layer...
+</app-confirm>

@@ -20,18 +20,20 @@ export class TeamDetailsComponent implements OnInit {
 
   @Input()
   public set team(team: CSGOTeam) {
-    if (this._team.TeamId !== team.TeamId) {
-      this._team = team;
-      this.roleSlots.forEach((role) => {
-        const member = this._team.Members.find(m => m.Role === role.role);
-        if (member) {
-          role.user = member;
-        } else {
-          role.user = null;
-        }
-      });
-      this.activeMembers = this._team.Members.filter(m => m.IsActive && m.Role === PlaystyleRole.NotSet);
-      this.inactiveMembers = this._team.Members.filter(m => !m.IsActive);
+    if (team) {
+      if (this._team.TeamId !== team.TeamId) {
+        this._team = team;
+        this.roleSlots.forEach((role) => {
+          const member = this._team.Members.find(m => m.Role === role.role);
+          if (member) {
+            role.user = member;
+          } else {
+            role.user = null;
+          }
+        });
+        this.activeMembers = this._team.Members.filter(m => m.IsActive && m.Role === PlaystyleRole.NotSet);
+        this.inactiveMembers = this._team.Members.filter(m => !m.IsActive);
+      }
     }
   }
   public activeMembers: TeamMember [];

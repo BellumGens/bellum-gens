@@ -1,15 +1,15 @@
 <div class="overview-container-card">
   <div class="team-details-header">
-    <igx-avatar [initials]="team.TeamName" [src]="team.TeamAvatar" roundShape="true" [size]="'large'">
+    <igx-avatar [initials]="team?.TeamName" [src]="team?.TeamAvatar" roundShape="true" [size]="'large'">
     </igx-avatar>
     <div class="horizontal-info__left">
-      <h1 class="igx-card-header__title">{{ team.TeamName }}</h1>
-      <h3 class="igx-card-header__subtitle">{{ team.Description }}</h3>
+      <h1 class="igx-card-header__title">{{ team?.TeamName }}</h1>
+      <h3 class="igx-card-header__subtitle">{{ team?.Description }}</h3>
     </div>
-    <div *ngIf="!userIsMember && team.TeamId" class="horizontal-info__right">
+    <div *ngIf="!userIsMember && team?.TeamId" class="horizontal-info__right">
       <app-team-application [authUser]="authUser"></app-team-application>
     </div>
-    <div *ngIf="userIsMember && team.Discord" class="horizontal-info__right">
+    <div *ngIf="userIsMember && team?.Discord" class="horizontal-info__right">
       <a [href]="team.Discord" target="_blank" rel="noopener"><igx-icon class="discord-icon" fontSet="weapon-icons" name="discord"></igx-icon></a>
     </div>
   </div>

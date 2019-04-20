@@ -6,6 +6,7 @@ import { PlayerDetailsComponent } from './player-section/player-details/player-d
 import { TeamResultsComponent } from './search/search-results/team-results/team-results.component';
 import { PlayerResultsComponent } from './search/search-results/player-results/player-results.component';
 import { EmailconfirmComponent } from './emailconfirm/emailconfirm.component';
+import { StrategyEditorComponent } from './team-section/team-strategies/strategy-editor/strategy-editor.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -15,6 +16,7 @@ export const routes: Routes = [
   { path: 'players/:userid', component: PlayerDetailsComponent },
   { path: 'players/:userid/:newuser', component: PlayerDetailsComponent },
   { path: 'team/:teamid', component: TeamOverviewComponent },
+  { path: 'team/:teamid/:stratid', component: StrategyEditorComponent },
   { path: 'search/teams/:query', component: TeamResultsComponent },
   { path: 'search/players/:query', component: PlayerResultsComponent },
   { path: '**', component: HomeComponent}

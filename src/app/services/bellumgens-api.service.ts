@@ -1,7 +1,7 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SteamGroup, SteamUser, SteamUserSummary } from '../models/steamuser';
-import { Observable, ReplaySubject, throwError } from 'rxjs';
+import { Observable, ReplaySubject, throwError, BehaviorSubject } from 'rxjs';
 import { CSGOTeam, TeamMember, TeamApplication } from '../models/csgoteam';
 import { CSGOPlayer } from '../models/csgoplayer';
 import { Availability } from '../models/playeravailability';
@@ -35,8 +35,10 @@ export class BellumgensApiService {
   public searchTerm = new ReplaySubject<string>(1);
 
   // Cache
+  private _currentStrategy = new BehaviorSubject<TeamStrategy>(null);
+  private _currentTeam = new BehaviorSubject<CSGOTeam>(null);
   private _players: ReplaySubject<CSGOPlayer []>;
-  private _csgoTeams: ReplaySubject<CSGOTeam []>;
+  private _csgoTeams = new BehaviorSubject<CSGOTeam []>([]);
   private _teamApplications = new Map<string, Observable<TeamApplication[]>>();
   private _searchResultCache: Map<string, SearchResult> = new Map();
   private _playerSearchCache: Map<string, CSGOPlayer []> = new Map();
@@ -64,9 +66,8 @@ export class BellumgensApiService {
   }
 
   public get csgoTeams() {
-    if (!this._csgoTeams) {
+    if (!this._csgoTeams.value.length) {
       this.loadingTeams.next(true);
-      this._csgoTeams = new ReplaySubject<CSGOTeam []>(1);
       this.getTeams().subscribe(
         teams => {
           this._csgoTeams.next(teams);
@@ -79,7 +80,7 @@ export class BellumgensApiService {
       );
     }
 
-    return this._csgoTeams.asObservable();
+    return this._csgoTeams;
   }
 
   public quickSearch(name: string) {
@@ -182,8 +183,19 @@ export class BellumgensApiService {
     return this._teamApplications[teamId];
   }
 
+  public getTeamStrat(stratId: string) {
+    return this.http.get<TeamStrategy>(`${this._apiEndpoint}/teams/strat?stratId=${stratId}`, { withCredentials: true });
+  }
+
   public getTeamStrats(teamId: string) {
     return this.http.get<TeamStrategy []>(`${this._apiEndpoint}/teams/strats?teamid=${teamId}`, { withCredentials: true });
+  }
+
+  public getCurrentStrategy(stratId: string) {
+    if (!this._currentStrategy.value) {
+      this.getTeamStrat(stratId).subscribe(strat => this._currentStrategy.next(strat));
+    }
+    return this._currentStrategy;
   }
 
   private getPlayers() {
@@ -203,9 +215,7 @@ export class BellumgensApiService {
   }
 
   private getTeams() {
-    return this.http.get<CSGOTeam []>(`${this._apiEndpoint}/teams/teams`).pipe(
-      map(response => response)
-    );
+    return this.http.get<CSGOTeam []>(`${this._apiEndpoint}/teams/teams`);
   }
 
   private getFilteredTeams(query: string) {
@@ -218,7 +228,45 @@ export class BellumgensApiService {
     );
   }
 
-  public getTeam(teamId: string): Observable<CSGOTeam> {
+  public getTeam(teamId: string) {
+    if (!this._currentTeam.value || this._currentTeam.value.TeamId !== teamId) {
+      this.checkTeamCache(teamId);
+    }
+    if (!this._currentTeam.value || this._currentTeam.value.TeamId !== teamId) {
+      this.checkSearchCache(teamId);
+    }
+    if (!this._currentTeam.value || this._currentTeam.value.TeamId !== teamId) {
+      this.getTeamFromServer(teamId).subscribe(team => this._currentTeam.next(team));
+    }
+    return this._currentTeam;
+  }
+
+  private checkTeamCache(teamId) {
+    this._csgoTeams.value.forEach((team) => {
+      if (team.TeamId === teamId) {
+        this._currentTeam.next(team);
+      }
+    });
+  }
+
+  private checkSearchCache(teamId) {
+    this._searchResultCache.forEach((result) => {
+      result.Teams.forEach((team) => {
+        if (team.TeamId === teamId) {
+          this._currentTeam.next(team);
+        }
+      });
+    });
+    this._teamSearchCache.forEach((result) => {
+      result.forEach((team) => {
+        if (team.TeamId === teamId) {
+          this._currentTeam.next(team);
+        }
+      });
+    });
+  }
+
+  private getTeamFromServer(teamId: string) {
     return this.http.get<CSGOTeam>(`${this._apiEndpoint}/teams/team?teamid=${teamId}`);
   }
 
@@ -409,11 +457,12 @@ export class BellumgensApiService {
     );
   }
 
-  public submitStrategy(strat: TeamStrategy): Observable<any> {
-    return this.http.post(`${this._apiEndpoint}/teams/strategy`, strat, { withCredentials: true }).pipe(
+  public submitStrategy(strat: TeamStrategy) {
+    return this.http.post<TeamStrategy>(`${this._apiEndpoint}/teams/strategy`, strat, { withCredentials: true }).pipe(
       map(response => {
         if (response) {
-          this.emitSuccess('New strategy successfully submitted!');
+          this._currentStrategy.next(response);
+          this.emitSuccess('Strategy saved!');
         }
         return response;
       }),

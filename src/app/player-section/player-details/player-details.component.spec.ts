@@ -26,7 +26,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { WeekdayPipe } from 'src/app/pipes/weekday.pipe';
 import { MapnamePipe } from 'src/app/pipes/mapname.pipe';
 import { MapimagePipe } from 'src/app/pipes/mapimage.pipe';
-import { OrdermapsPipe } from 'src/app/pipes/ordermaps.pipe';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { SortWeaponsPipe } from 'src/app/pipes/sort-weapons.pipe';
 import { FormsModule } from '@angular/forms';
@@ -52,7 +51,6 @@ describe('PlayerDetailsComponent', () => {
         WeekdayPipe,
         MapnamePipe,
         MapimagePipe,
-        OrdermapsPipe,
         SortWeaponsPipe,
         UserPreferencesComponent,
         ConfirmComponent,
