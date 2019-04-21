@@ -31,6 +31,7 @@
   display: flex;
   flex: 1 1 320px;
   margin-left: 16px;
+  height: fit-content;
 }
 
 @media only screen and (max-width: 680px) {
