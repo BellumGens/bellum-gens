@@ -21,6 +21,7 @@
 
 .team-avatar-link {
   cursor: pointer;
+  margin: 0 16px 16px 0;
 }
 
 .team-avatar-link:focus,
