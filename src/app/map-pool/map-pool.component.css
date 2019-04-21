@@ -18,7 +18,7 @@
 
 .map-wrapper {
   display: flex;
-  flex-flow: row wrap;
+  flex-wrap: wrap;
 }
 
 .map-image {

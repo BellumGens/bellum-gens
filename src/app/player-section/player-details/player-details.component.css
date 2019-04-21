@@ -21,6 +21,7 @@
 
 .team-avatar-link {
   cursor: pointer;
+  margin: 0 16px 16px 0;
 }
 
 .team-avatar-link:focus,
@@ -53,56 +54,31 @@
 }
 
 .player-stats__container {
-  max-width: 100%;
-}
-
-.weapon-list {
-  margin-right: 16px;
-  margin-bottom: 16px;
-}
-
-.weapon-list .igx-list {
-  height: auto;
-}
-
-.player-detail__stats {
-  display: flex;
-  flex: 1 1 200px;
-}
-
-.player-detail__stats-span {
-  display: flex;
-  flex: 1 1 66%;
-}
-
-.player-detail__stats igx-card-header,
-.player-detail__stats-span igx-card-header {
-  height: 50px;
-}
-
-.player-detail__stats .igx-card,
-.player-detail__stats-span .igx-card {
   width: 100%;
 }
 
-.player-detail__stats,
-.player-detail__stats-span {
-  margin-bottom: 16px;
+.player-detail-stats-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(calc(20% - 16px), 1fr));
+  grid-column-gap: 16px;
+  grid-row-gap: 16px;
+  padding-bottom: 16px;
 }
 
-.player-detail__stats:not(:last-child) {
-  margin-right: 16px;
+.player-detail-stats-maps-container {
+  display: grid;
+  grid-template-columns: calc(20% - 16px) 1fr;
+  grid-column-gap: 16px;
+  grid-row-gap: 16px;
+  padding-bottom: 16px;
+}
+
+.player-detail__stats {
+  border: 1px solid var(--igx-card-outline-color);
 }
 
 .player-detail__stats .igx-circular-bar__text {
   font-size: 1.55rem;
-}
-
-.player-detail-stats-container {
-  display: flex;
-  flex: 1 1 100%;
-  justify-content: space-between;
-  flex-flow: row wrap;
 }
 
 .player-detail-stats-loading {
@@ -111,32 +87,14 @@
   align-items: center;
 }
 
-.player-detail__stats .igx-circular-bar {
-  width: 156px;
-  height: 156px;
-}
-
-.player-detail__stats .igx-card igx-card-header {
-  padding: 16px 16px 0px 16px;
-}
-
-.weapon-wrapper {
-  display: flex;
-  align-items: center;
-}
-
 .weapon-image {
-  height: 128px;
-  width: 200px;
+  height: 100%;
+  width: 100%;
 }
 
 .weapon-image-small {
   height: 60px;
   width: 100px;
-}
-
-.weapon-name {
-  text-align: center;
 }
 /* END User Overview */
 
@@ -145,18 +103,6 @@
 }
 
 @media only screen and (max-width: 495px) {
-
-  .player-detail__stats {
-    display: flex;
-    flex: 1 1 100%;
-    width: 100%;
-    min-width: 100%;
-  }
-
-  .player-detail__stats,
-  .player-detail__stats:not(:last-child) {
-    margin-right: 0;
-  }
 
   .weapon-list {
     flex: 1 1 100%;

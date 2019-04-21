@@ -63,6 +63,7 @@
             <igx-circular-bar [value]="player.userStats.headshotPercentage" [max]="100" [animate]="true" title="Headshot Percentage" [text]="player.userStats.headshotPercentage + '%'"></igx-circular-bar>
           </igx-card-content>
         </igx-card>
+
         <igx-card class="player-detail__stats">
           <igx-card-header>
             <h4 class="igx-card-header__title">Accuracy</h4>
@@ -134,8 +135,8 @@
       </div>
       <!-- END Availability -->
       
-      <div class="player-detail-stats-container">
-        <div class="list-container weapon-list">
+      <div class="player-detail-stats-maps-container">
+        <div>
           <h4>Weapons</h4>
           <igx-list *ngIf="!player.userStatsException">
             <igx-list-item *ngFor="let weapon of player.userStats.weapons | sortWeapons">
@@ -156,16 +157,16 @@
         </div>
 
         <!-- Map Pool -->
-        <igx-card class="player-detail__stats-span">
+        <igx-card class="player-detail__stats">
           <igx-card-header class="map-pool-header">
             <div><h4 class="igx-card-header__title">{{ viewAll ? 'All' : 'Active Duty' }} Maps</h4></div>
             <button igxButton="flat" igxRipple (click)="viewAll = !viewAll">{{viewAll ? 'View Active Duty' : 'View All'}}</button>
           </igx-card-header>
           <igx-card-content>
             <app-map-pool [readOnly]="!playerIsUser"
-              [viewAll]="viewAll"
-              [mapPool]="player?.mapPool"
-              (update)="mapChange($event)"></app-map-pool>
+                          [viewAll]="viewAll"
+                          [mapPool]="player?.mapPool"
+                          (update)="mapChange($event)"></app-map-pool>
           </igx-card-content>
         </igx-card>
         <!-- END Map Pool -->
