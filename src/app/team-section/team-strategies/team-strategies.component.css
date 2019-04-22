@@ -8,24 +8,12 @@
   height: 315px;
 }
 
-.strat {
-  max-width: 592px;
-  margin: 16px 0 0 16px;
-}
-
-.strat igx-card-header {
-  justify-content: space-between;
-}
-
 .card-wrapper {
-  display: flex;
-  flex: 1 1 100%;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-}
-
-.wrap {
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-column-gap: 16px;
+  grid-row-gap: 16px;
+  padding-top: 8px;
 }
 
 .strat-filter-header {
@@ -37,6 +25,10 @@
 
 .maps-chip {
   margin-right: 4px;
+}
+
+.strat-image {
+  cursor: zoom-in;
 }
 
 .column-wrapper {

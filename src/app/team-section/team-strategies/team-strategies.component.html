@@ -15,33 +15,39 @@
     </igx-chips-area>
   </div>
   <div class="card-wrapper">
-    <igx-card class="strat" *ngFor="let strat of teamStrats | activeDutyMaps:viewAll:pipeTrigger | sidestrats:maps">
+    <igx-card type="outlined" *ngFor="let strat of teamStrats | activeDutyMaps:viewAll:pipeTrigger | sidestrats:maps">
       <igx-card-header>
         <div>
           <h4 class="igx-card-header__title">{{ strat.Title }}</h4>
         </div>
-        <div class="horizontal-info__right" *ngIf="isEditor">
-          <button igxButton="flat" igxRipple (click)="editStrategy(strat)">
-            <igx-icon title="edit strategy">edit</igx-icon>
-            Edit
-          </button>
-          <button igxButton="flat" igxRipple (click)="confirm.open(strat)">
-            <igx-icon title="delete strategy">delete_forever</igx-icon>
-            Delete
-          </button>
-        </div>
       </igx-card-header>
+      <igx-card-media>
+        <iframe class="video-frame" *ngIf="isVideo(strat.Url)" [src]="strat.Url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <img *ngIf="strat.Image" [src]="strat.Image" class="strat-image" (click)="selectedStrat = strat; previewStrat.open()" />
+      </igx-card-media>
       <igx-card-content>
         <p class="igx-card-header__subtitle">{{ strat.Description }}</p>
-        <iframe class="video-frame" *ngIf="isVideo(strat.Url)" [src]="strat.Url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <img *ngIf="strat.Image" [src]="strat.Image" />
       </igx-card-content>
+      <igx-card-actions *ngIf="isEditor" reverse="true">
+        <button igxButton="flat" igxRipple (click)="confirm.open(strat)">
+          <igx-icon title="delete strategy">delete_forever</igx-icon>
+          Delete
+        </button>
+        <button igxButton="raised" igxRipple (click)="editStrategy(strat)">
+          <igx-icon title="edit strategy">edit</igx-icon>
+          Edit
+        </button>
+      </igx-card-actions>
     </igx-card>
   </div>
 </div>
 
+<igx-dialog #previewStrat closeOnOutsideSelect="true" [title]="selectedStrat?.Title" (onClose)="selectedStrat = null">
+  <img *ngIf="selectedStrat" [src]="selectedStrat.Image" />
+</igx-dialog>
+
 <!-- New strategy dialog-->
-<igx-dialog closeOnOutsideSelect="true" (onClose)="resetStrategy()">
+<igx-dialog #newStrat closeOnOutsideSelect="true" (onClose)="resetStrategy()">
   <form #strategyForm="ngForm" (ngSubmit)="submitStrategy()" class="new-strategy">
     <igx-list>
       <igx-list-item [isHeader]="true">Add a new team strategy</igx-list-item>
