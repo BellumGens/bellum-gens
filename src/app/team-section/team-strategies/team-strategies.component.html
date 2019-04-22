@@ -23,7 +23,7 @@
       </igx-card-header>
       <igx-card-media>
         <iframe class="video-frame" *ngIf="isVideo(strat.Url)" [src]="strat.Url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <img *ngIf="strat.Image" [src]="strat.Image" />
+        <img *ngIf="strat.Image" [src]="strat.Image" class="strat-image" (click)="selectedStrat = strat; previewStrat.open()" />
       </igx-card-media>
       <igx-card-content>
         <p class="igx-card-header__subtitle">{{ strat.Description }}</p>
@@ -42,8 +42,12 @@
   </div>
 </div>
 
+<igx-dialog #previewStrat closeOnOutsideSelect="true" [title]="selectedStrat?.Title" (onClose)="selectedStrat = null">
+  <img *ngIf="selectedStrat" [src]="selectedStrat.Image" />
+</igx-dialog>
+
 <!-- New strategy dialog-->
-<igx-dialog closeOnOutsideSelect="true" (onClose)="resetStrategy()">
+<igx-dialog #newStrat closeOnOutsideSelect="true" (onClose)="resetStrategy()">
   <form #strategyForm="ngForm" (ngSubmit)="submitStrategy()" class="new-strategy">
     <igx-list>
       <igx-list-item [isHeader]="true">Add a new team strategy</igx-list-item>

@@ -10,7 +10,7 @@
 
 .card-wrapper {
   display: grid;
-  grid-template-columns: 33% 33% 1fr;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   grid-column-gap: 16px;
   grid-row-gap: 16px;
   padding-top: 8px;
@@ -25,6 +25,10 @@
 
 .maps-chip {
   margin-right: 4px;
+}
+
+.strat-image {
+  cursor: zoom-in;
 }
 
 .column-wrapper {

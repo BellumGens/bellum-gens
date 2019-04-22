@@ -22,6 +22,7 @@ export class TeamStrategiesComponent implements OnInit {
   pipeTrigger = 0;
   changes = false;
   viewAll = false;
+  selectedStrat: TeamStrategy;
 
   @Input()
   isAdmin = false;
@@ -32,7 +33,7 @@ export class TeamStrategiesComponent implements OnInit {
   private _youtubeRegEx = /(youtu\.be\/|youtube\.com\/(watch\?(.*&)?v=|(embed|v)\/))([^\?&"'>]+)/;
   private _twitchRegEx = /(twitch\.tv\/)(videos\/|\?[^\?"'>]+video\=v)([^\?&"'>]+)/;
 
-  @ViewChild(IgxDialogComponent) public dialog: IgxDialogComponent;
+  @ViewChild('newStrat') public dialog: IgxDialogComponent;
 
   constructor(private activatedRoute: ActivatedRoute,
               private router: Router,
