@@ -1,19 +1,9 @@
-@media only screen and (max-width: 512px) {
-  .map-column {
-    flex: 1 1 100%;
-    max-width: 100%;
-  }
-
-  .map-image {
-    height: auto;
-  }
-}
-
 .map-column {
   display: flex;
-  flex: 1 1 260px;
+  flex: 1 1 25%;
   margin: 8px;
-  max-width: 260px;
+  min-width: 220px;
+  max-width: calc(33% - 16px);
 }
 
 .map-wrapper {
@@ -27,4 +17,12 @@
 
 .map-inactive {
   opacity: 0.5;
+}
+
+@media only screen and (max-width: 512px) {
+  .map-column {
+    flex: 1 0 100%;
+    max-width: 100%;
+    margin: 0 0 8px 0;
+  }
 }
