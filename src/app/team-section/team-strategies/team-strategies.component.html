@@ -15,7 +15,7 @@
     </igx-chips-area>
   </div>
   <div class="card-wrapper">
-    <igx-card class="strat" *ngFor="let strat of teamStrats | activeDutyMaps:viewAll:pipeTrigger | sidestrats:maps">
+    <igx-card type="outlined" *ngFor="let strat of teamStrats | activeDutyMaps:viewAll:pipeTrigger | sidestrats:maps">
       <igx-card-header>
         <div>
           <h4 class="igx-card-header__title">{{ strat.Title }}</h4>
