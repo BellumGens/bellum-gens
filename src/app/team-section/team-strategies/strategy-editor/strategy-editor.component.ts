@@ -24,7 +24,7 @@ export class StrategyEditorComponent implements OnInit {
   public brushSelected = false;
   public colors = [
     { color: 'red', selected: true },
-    { color: 'yellow', selected: false },
+    { color: '#cbb87d', selected: false },
     { color: 'blue', selected: false },
     { color: 'green', selected: false }
   ];
