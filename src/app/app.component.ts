@@ -3,9 +3,9 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { PositionSettings,
   HorizontalAlignment,
   OverlaySettings,
-  ConnectedPositioningStrategy,
   IgxDropDownComponent,
-  IgxInputGroupComponent} from 'igniteui-angular';
+  IgxInputGroupComponent,
+  AutoPositionStrategy} from 'igniteui-angular';
 import { LoginService } from './services/login.service';
 import { ApplicationUser } from './models/applicationuser';
 import { BellumgensApiService } from './services/bellumgens-api.service';
@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
   };
 
   public overlaySettings: OverlaySettings = {
-    positionStrategy: new ConnectedPositioningStrategy(this.positionSettings)
+    positionStrategy: new AutoPositionStrategy(this.positionSettings)
   };
 
   @ViewChild('quickSearch') public quickSearchDropDown: IgxDropDownComponent;
@@ -65,7 +65,7 @@ export class AppComponent implements OnInit {
           target: this.searchGroup.element.nativeElement
         };
         const overlaySettings: OverlaySettings = {
-          positionStrategy: new ConnectedPositioningStrategy(positionSettings),
+          positionStrategy: new AutoPositionStrategy(positionSettings),
           modal: false
         };
         this.quickSearchDropDown.open(overlaySettings);

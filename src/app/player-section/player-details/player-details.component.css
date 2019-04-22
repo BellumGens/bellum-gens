@@ -59,7 +59,7 @@
 
 .player-detail-stats-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(calc(20% - 16px), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   grid-column-gap: 16px;
   grid-row-gap: 16px;
   padding-bottom: 16px;
@@ -67,7 +67,7 @@
 
 .player-detail-stats-maps-container {
   display: grid;
-  grid-template-columns: calc(20% - 16px) 1fr;
+  grid-template-columns: 320px 1fr;
   grid-column-gap: 16px;
   grid-row-gap: 16px;
   padding-bottom: 16px;
@@ -102,13 +102,8 @@
   justify-content: space-between;
 }
 
-@media only screen and (max-width: 495px) {
-
-  .weapon-list {
-    flex: 1 1 100%;
-    width: 100%;
-    margin-right: 0;
-    margin-bottom: 16px;
+@media only screen and (max-width: 620px) {
+  .player-detail-stats-maps-container {
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   }
-
 }
