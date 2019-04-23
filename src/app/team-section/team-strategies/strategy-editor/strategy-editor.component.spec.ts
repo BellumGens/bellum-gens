@@ -8,7 +8,8 @@ import { IgxIconModule,
   IgxAvatarModule,
   IgxDialogModule,
   IgxCheckboxModule,
-  IgxSelectModule} from 'igniteui-angular';
+  IgxSelectModule,
+  IgxButtonGroupModule} from 'igniteui-angular';
 import { ConfirmComponent } from 'src/app/confirm/confirm.component';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -31,7 +32,8 @@ describe('StrategyEditorComponent', () => {
         IgxAvatarModule,
         IgxDialogModule,
         IgxCheckboxModule,
-        IgxSelectModule
+        IgxSelectModule,
+        IgxButtonGroupModule
       ],
       declarations: [ StrategyEditorComponent, ConfirmComponent ]
     })
