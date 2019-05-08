@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApplicationUser } from '../../models/applicationuser';
-import { CSGOTeam, TeamApplication, TEAM_PLACEHOLDER } from '../../models/csgoteam';
+import { CSGOTeam, TEAM_PLACEHOLDER } from '../../models/csgoteam';
 import { BellumgensApiService } from '../../services/bellumgens-api.service';
 import { LoginService } from '../../services/login.service';
 
