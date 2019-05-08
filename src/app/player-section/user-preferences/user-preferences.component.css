@@ -6,8 +6,6 @@
   margin-top: auto;
 }
 
-.preferences-divider {
-  display: flex;
-  flex-flow: column;
-  justify-content: space-between;
+.space-out {
+  margin-top: 16px;
 }

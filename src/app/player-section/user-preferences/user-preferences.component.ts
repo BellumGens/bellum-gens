@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { UserPreferences, ApplicationUser } from '../../models/applicationuser';
 import { LoginService } from '../../services/login.service';
+import { LoginProvider } from 'src/app/models/login-provider';
 
 @Component({
   selector: 'app-user-preferences',
@@ -12,6 +13,8 @@ export class UserPreferencesComponent {
     email: '',
     searchVisible: true
   };
+
+  public providers: LoginProvider[];
 
   @Input()
   public set authUser(user: ApplicationUser) {
@@ -30,7 +33,13 @@ export class UserPreferencesComponent {
 
   private _authUser: ApplicationUser;
 
-  constructor(private authManager: LoginService) { }
+  constructor(private authManager: LoginService) {
+    this.authManager.loginProviders.subscribe(providers => this.providers = providers.filter(p => p.Name !== 'Steam'));
+  }
+
+  public addLogin(provider: string) {
+    this.authManager.login(provider);
+  }
 
   public submitPreferences() {
     this.authManager.updateUserPreferences(this.preferences).subscribe();

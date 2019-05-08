@@ -7,7 +7,7 @@
         <igx-icon>clear</igx-icon>
       </igx-suffix>
     </igx-input-group>
-    <div class="horizontal-center margin-top-large">
+    <div class="horizontal-center space-out">
       <label for="userVisibility">Show in searches</label>
       <igx-switch class="horizontal-info__right" #teamVisibility id="userVisibility" name="userVisibility" [(ngModel)]="preferences.searchVisible"></igx-switch>
     </div>
@@ -17,6 +17,10 @@
     Update User Preferences
   </button>
 </form>
+
+<button igxButton="outlined" igxRipple *ngFor="let provider of providers" (click)="addLogin(provider.Name)">
+  Add {{ provider.Name }}
+</button>
 
 <button igxButton="raised" igxRipple class="submit-button align-bottom" (click)="confirm.open()">
   <igx-icon title="delete account">delete_forever</igx-icon>

@@ -89,6 +89,7 @@ import { EmailconfirmComponent } from './emailconfirm/emailconfirm.component';
 import { QueryParsedPipe } from './pipes/query-parsed.pipe';
 import { StrategyEditorComponent } from './team-section/team-strategies/strategy-editor/strategy-editor.component';
 import { ActiveDutyMapsPipe } from './pipes/active-duty-maps.pipe';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 
 @NgModule({
   declarations: [
@@ -140,7 +141,8 @@ import { ActiveDutyMapsPipe } from './pipes/active-duty-maps.pipe';
     EmailconfirmComponent,
     QueryParsedPipe,
     StrategyEditorComponent,
-    ActiveDutyMapsPipe
+    ActiveDutyMapsPipe,
+    UnauthorizedComponent
   ],
   imports: [
     FormsModule,

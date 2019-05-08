@@ -7,10 +7,12 @@ import { TeamResultsComponent } from './search/search-results/team-results/team-
 import { PlayerResultsComponent } from './search/search-results/player-results/player-results.component';
 import { EmailconfirmComponent } from './emailconfirm/emailconfirm.component';
 import { StrategyEditorComponent } from './team-section/team-strategies/strategy-editor/strategy-editor.component';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
+  { path: 'unauthorized', component: UnauthorizedComponent },
   { path: 'emailconfirm', component: EmailconfirmComponent },
   { path: 'emailconfirm/:error', component: EmailconfirmComponent },
   { path: 'players/:userid', component: PlayerDetailsComponent },
