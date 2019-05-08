@@ -7,7 +7,7 @@
       </igx-radio-group>
     </div>
 
-    <div *ngIf="authUser && authUser.TeamAdmin">
+    <div *ngIf="authUser && authUser.teamAdmin">
       <label for="availability">A minimum overlap with my</label>
       <div class="search-radio-group">
         <igx-radio-group id="availability" class="role-slots">
@@ -21,7 +21,7 @@
         <igx-icon fontSet="material" class="drop-down-arrow">arrow_drop_down</igx-icon>
       </button>
       <igx-drop-down (onSelection)="selectTeam($event)" #teamSelect>
-        <igx-drop-down-item class="team-invites" [value]="team" *ngFor="let team of authUser?.TeamAdmin">
+        <igx-drop-down-item class="team-invites" [value]="team" *ngFor="let team of authUser?.teamAdmin">
           <igx-avatar [src]="team.TeamAvatar" [initials]="team.TeamName" roundShape="true">
           </igx-avatar>
           <span class="title margin-left">

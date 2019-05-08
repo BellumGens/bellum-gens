@@ -24,12 +24,12 @@
         
         <div *ngIf="player.registered && !playerIsUser">
           <button igxButton="raised" [disabled]="true">Send message <igx-icon>mail</igx-icon></button>
-          <button *ngIf="authUser?.TeamAdmin.length > 0" igxButton="flat" igxRipple class="title margin-left" [igxToggleAction]="teamInvite">
+          <button *ngIf="authUser?.teamAdmin.length > 0" igxButton="flat" igxRipple class="title margin-left" [igxToggleAction]="teamInvite">
             Invite to team
             <igx-icon>arrow_drop_down</igx-icon>
           </button>
           <igx-drop-down (onSelection)="inviteToTeam($event)" #teamInvite>
-            <igx-drop-down-item class="team-invites" [value]="team" *ngFor="let team of authUser?.TeamAdmin">
+            <igx-drop-down-item class="team-invites" [value]="team" *ngFor="let team of authUser?.teamAdmin">
               <igx-avatar [src]="team.TeamAvatar" [initials]="team.TeamName" roundShape="true">
               </igx-avatar>
               <span class="title margin-left">

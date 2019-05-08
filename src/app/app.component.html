@@ -16,7 +16,7 @@
       </igx-input-group>
       <div class="action-button-container" [igxToggleAction]="myTeam" [overlaySettings]="overlaySettings" *ngIf="authUser">
         <igx-icon>people</igx-icon>
-        <igx-badge class="notifications-badge" *ngIf="authUser.Teams?.length > 0" [value]="authUser.Teams?.length" type="info"></igx-badge>
+        <igx-badge class="notifications-badge" *ngIf="authUser.teams?.length > 0" [value]="authUser.teams?.length" type="info"></igx-badge>
       </div>
       <div class="action-button-container" [igxToggleAction]="notifications" [overlaySettings]="overlaySettings" *ngIf="authUser">
         <igx-icon>notifications</igx-icon>
