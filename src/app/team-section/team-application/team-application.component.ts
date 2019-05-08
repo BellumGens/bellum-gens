@@ -32,7 +32,7 @@ export class TeamApplicationComponent {
 
   public submitApplication() {
     if (this.authUser) {
-      this.application.ApplicantId = this.authUser.SteamUser.steamID64;
+      this.application.ApplicantId = this.authUser.id;
       this.apiService.submitApplication(this.application).subscribe(_ => this.dialog.close());
     }
   }

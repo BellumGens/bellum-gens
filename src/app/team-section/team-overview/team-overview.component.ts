@@ -41,7 +41,7 @@ export class TeamOverviewComponent {
       return this._isMember;
     }
     if (this.authUser && this.team && this.team.Members) {
-      this._isMember = this.team.Members.filter(m => m.UserId === this.authUser.SteamUser.steamID64).length > 0;
+      this._isMember = this.team.Members.filter(m => m.UserId === this.authUser.id).length > 0;
     }
     return this._isMember;
   }
@@ -51,7 +51,7 @@ export class TeamOverviewComponent {
       return this._isAdmin;
     }
     if (this.authUser && this.team && this.team.Members) {
-      this._isAdmin = this.team.Members.filter(m => m.IsAdmin && m.UserId === this.authUser.SteamUser.steamID64).length > 0;
+      this._isAdmin = this.team.Members.filter(m => m.IsAdmin && m.UserId === this.authUser.id).length > 0;
     }
     return this._isAdmin;
   }
@@ -61,7 +61,7 @@ export class TeamOverviewComponent {
       return this._isEditor;
     }
     if (this.authUser && this.team && this.team.Members) {
-      this._isEditor = this.team.Members.filter(m => m.IsEditor && m.UserId === this.authUser.SteamUser.steamID64).length > 0;
+      this._isEditor = this.team.Members.filter(m => m.IsEditor && m.UserId === this.authUser.id).length > 0;
     }
     return this._isEditor;
   }

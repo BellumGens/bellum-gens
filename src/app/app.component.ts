@@ -47,7 +47,7 @@ export class AppComponent implements OnInit {
   public ngOnInit(): void {
     this.authManager.applicationUser.subscribe(data => {
       this.authUser = data;
-      this.unreadNotifications += this.unreadPipe.transform(data.Notifications);
+      this.unreadNotifications += this.unreadPipe.transform(data.notifications);
     });
 
     this.initQuickSearch();

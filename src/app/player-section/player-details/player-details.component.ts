@@ -54,18 +54,18 @@ export class PlayerDetailsComponent implements OnInit {
   }
 
   public submitAvailability(args: Availability) {
-    this.authUser.Availability.find(a => a.Day === args.Day).Available = args.Available;
+    this.authUser.availability.find(a => a.Day === args.Day).Available = args.Available;
     this.apiService.setAvailability(args).subscribe();
   }
 
   public get playerIsUser(): boolean {
-    return this.player && this.authUser && (this.player.steamUser.steamID64 === this.authUser.SteamUser.steamID64);
+    return this.player && this.authUser && (this.player.steamUser.steamID64 === this.authUser.id);
   }
 
   public selectPrimary(value: number) {
     if (this.player.primaryRole !== value) {
       this.player.primaryRole = value;
-      this.authUser.PreferredPrimaryRole = value;
+      this.authUser.primaryRole = value;
       this.apiService.setPrimaryRole(this.roles.find(r => r.Id === value)).subscribe();
     }
   }
@@ -73,13 +73,13 @@ export class PlayerDetailsComponent implements OnInit {
   public selectSecondary(value: number) {
     if (this.player.secondaryRole !== value) {
       this.player.secondaryRole = value;
-      this.authUser.PreferredSecondaryRole = value;
+      this.authUser.secondaryRole = value;
       this.apiService.setSecondaryRole(this.roles.find(r => r.Id === value)).subscribe();
     }
   }
 
   public mapChange(args: MapPool) {
-    this.authUser.MapPool.find(m => m.Map === args.Map).IsPlayed = args.IsPlayed;
+    this.authUser.mapPool.find(m => m.Map === args.Map).IsPlayed = args.IsPlayed;
     this.apiService.setMapPool(args).subscribe();
   }
 

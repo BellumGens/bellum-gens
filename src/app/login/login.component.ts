@@ -86,19 +86,19 @@ export class LoginComponent {
       pendingIcon: 'clear',
       progressType: IgxProgressType.INFO
     };
-    if (this._authUser.Availability.filter(a => a.Available).length) {
+    if (this._authUser.availability.filter(a => a.Available).length) {
       this.profileCompleteness.availability = true;
       this.profileCompleteness.profileStage++;
     }
-    if (this._authUser.PreferredPrimaryRole !== PlaystyleRole.NotSet) {
+    if (this._authUser.primaryRole !== PlaystyleRole.NotSet) {
       this.profileCompleteness.primaryRole = true;
       this.profileCompleteness.profileStage++;
     }
-    if (this._authUser.PreferredSecondaryRole !== PlaystyleRole.NotSet) {
+    if (this._authUser.secondaryRole !== PlaystyleRole.NotSet) {
       this.profileCompleteness.secondaryRole = true;
       this.profileCompleteness.profileStage++;
     }
-    if (this._authUser.MapPool.filter(m => m.IsPlayed).length) {
+    if (this._authUser.mapPool.filter(m => m.IsPlayed).length) {
       this.profileCompleteness.mapPool = true;
       this.profileCompleteness.profileStage++;
     }

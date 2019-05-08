@@ -6,16 +6,17 @@ import { PlaystyleRole } from './playerrole';
 import { MapPool } from './csgomaps';
 
 export interface ApplicationUser {
-  SteamUser: SteamUser;
-  Teams: CSGOTeam [];
-  TeamAdmin: CSGOTeam [];
-  Notifications: UserNotification [];
-  Email: string;
-  SearchVisible: boolean;
-  Availability: Availability [];
-  PreferredPrimaryRole: PlaystyleRole;
-  PreferredSecondaryRole: PlaystyleRole;
-  MapPool: MapPool [];
+  id: string;
+  steamUser: SteamUser;
+  teams: CSGOTeam [];
+  teamAdmin: CSGOTeam [];
+  notifications: UserNotification [];
+  email: string;
+  searchVisible: boolean;
+  availability: Availability [];
+  primaryRole: PlaystyleRole;
+  secondaryRole: PlaystyleRole;
+  mapPool: MapPool [];
 }
 
 export interface UserPreferences {

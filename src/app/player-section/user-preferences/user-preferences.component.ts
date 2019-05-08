@@ -18,10 +18,10 @@ export class UserPreferencesComponent {
 
   @Input()
   public set authUser(user: ApplicationUser) {
-    if (!this._authUser || user.SteamUser.steamID64 !== this._authUser.SteamUser.steamID64) {
+    if (!this._authUser || user.id !== this._authUser.id) {
       this.preferences = {
-        email: user.Email,
-        searchVisible: user.SearchVisible
+        email: user.email,
+        searchVisible: user.searchVisible
       };
       this._authUser = user;
     }
@@ -46,6 +46,6 @@ export class UserPreferencesComponent {
   }
 
   public deleteAccount() {
-    this.authManager.deleteAccount(this._authUser.SteamUser.steamID64).subscribe();
+    this.authManager.deleteAccount(this._authUser.id).subscribe();
   }
 }

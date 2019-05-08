@@ -30,7 +30,7 @@ export class TeamNavComponent {
     this.apiService.registerSteamGroup(group).subscribe(
       team => {
         this.createTeam.close();
-        this.authUser.Teams.push(team);
+        this.authUser.teams.push(team);
       }
     );
   }
@@ -39,14 +39,14 @@ export class TeamNavComponent {
     this.apiService.registerTeam(this.newTeam).subscribe(
       team => {
         this.createTeam.close();
-        this.authUser.Teams.push(team);
+        this.authUser.teams.push(team);
       }
     );
   }
 
   public abandonTeam(team: CSGOTeam) {
     this.apiService.abandonTeam(team).subscribe(
-      _ => this.authUser.Teams.splice(this.authUser.Teams.indexOf(team), 1)
+      _ => this.authUser.teams.splice(this.authUser.teams.indexOf(team), 1)
     );
 }
 }
