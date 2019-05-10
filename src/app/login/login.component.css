@@ -2,13 +2,6 @@
   align-content: center;
 }
 
-.steam-login {
-  background-image: url('https://steamcommunity-a.akamaihd.net/public/images/signinthroughsteam/sits_01.png');
-  width: 180px;
-  height: 35px;
-  margin: 16px 48px 48px 48px;
-}
-
 .drop-down-arrow {
   margin: 0;
 }
@@ -69,4 +62,12 @@
 
 .completeness-item span {
   font-size: 0.9rem;
+}
+
+.login-buttons {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 24px 24px 24px;
 }

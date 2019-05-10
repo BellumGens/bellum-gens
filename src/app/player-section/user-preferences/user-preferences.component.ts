@@ -37,7 +37,7 @@ export class UserPreferencesComponent {
     this.authManager.loginProviders.subscribe(providers => this.providers = providers.filter(p => p.Name !== 'Steam'));
   }
 
-  public addLogin(provider: string) {
+  public login(provider: string) {
     this.authManager.login(provider);
   }
 
