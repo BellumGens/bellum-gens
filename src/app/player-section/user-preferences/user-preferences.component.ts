@@ -16,25 +16,17 @@ export class UserPreferencesComponent {
 
   public providers: LoginProvider[];
 
-  @Input()
-  public set authUser(user: ApplicationUser) {
-    if (!this._authUser || user.id !== this._authUser.id) {
+  public authUser: ApplicationUser;
+
+  constructor(private authManager: LoginService) {
+    this.authManager.applicationUser.subscribe(user => {
       this.preferences = {
         email: user.email,
         searchVisible: user.searchVisible
       };
-      this._authUser = user;
-    }
-  }
-
-  public get authUser() {
-    return this._authUser;
-  }
-
-  private _authUser: ApplicationUser;
-
-  constructor(private authManager: LoginService) {
-    this.authManager.loginProviders.subscribe(providers => this.providers = providers.filter(p => p.Name !== 'Steam'));
+      this.authUser = user;
+    });
+    this.authManager.loginProviders.subscribe(providers => this.providers = providers);
   }
 
   public login(provider: string) {
@@ -46,6 +38,10 @@ export class UserPreferencesComponent {
   }
 
   public deleteAccount() {
-    this.authManager.deleteAccount(this._authUser.id).subscribe();
+    this.authManager.deleteAccount(this.authUser.id).subscribe();
+  }
+
+  public disableLogin(provider: string) {
+    return this.authUser ? this.authUser.externalLogins.includes(provider) : false;
   }
 }

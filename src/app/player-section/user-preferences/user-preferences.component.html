@@ -1,5 +1,16 @@
 <form #userPreferences="ngForm" (ngSubmit)="submitPreferences()">
+  <button *ngFor="let provider of providers" 
+          type="button"
+          igxButton="outlined"
+          class="submit-button navigatable space-out" 
+          (click)="login(provider.Name)"
+          [disabled]="disableLogin(provider.Name)">
+    <igx-icon fontSet="login-icons" [name]="provider.Name"></igx-icon>
+    <span class="submit-button">Add {{ provider.Name }} Login</span>
+  </button>
+  
   <div class="preferences-container">
+    <label>Additional Preferences</label>
     <igx-input-group>
       <label for="userEmail" igxLabel>Email address</label>
       <input #userEmail igxInput id="userEmail" type="email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="userEmail" [(ngModel)]="preferences.email" />
@@ -8,24 +19,16 @@
       </igx-suffix>
     </igx-input-group>
     <div class="horizontal-center space-out">
-      <label for="userVisibility">Show in searches</label>
+      <label for="userVisibility">Show profile in searches</label>
       <igx-switch class="horizontal-info__right" #teamVisibility id="userVisibility" name="userVisibility" [(ngModel)]="preferences.searchVisible"></igx-switch>
     </div>
   </div>
-  <button igxButton="outlined" igxRipple class="submit-button"
+  <button igxButton="outlined"
+          igxRipple class="submit-button"
           [disabled]="!userPreferences.touched || !userPreferences.valueChanges || userPreferences.invalid">
     Update User Preferences
   </button>
 </form>
-
-<button *ngFor="let provider of providers" 
-        type="icon"
-        igxButton="outlined"
-        class="submit-button navigatable" 
-        (click)="login(provider.Name)">
-  <igx-icon fontSet="login-icons" [name]="provider.Name"></igx-icon>
-  <span class="submit-button">Add {{ provider.Name }}</span>
-</button>
 
 <button igxButton="raised" igxRipple class="submit-button align-bottom" (click)="confirm.open()">
   <igx-icon title="delete account">delete_forever</igx-icon>

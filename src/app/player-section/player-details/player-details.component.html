@@ -7,7 +7,8 @@
 </div>
 
 <div *ngIf="player" class="overview-container-card">
-  <h1 *ngIf="newUser">Now it's time to complete your profile</h1>
+  <h4>Welcome <span class="highlight">{{ player.steamUser.steamID }}</span>!</h4>
+  <p *ngIf="newUser">Now it's time to complete your profile! Fill in your <span class="highlight">preferred playstyle</span>, you <span class="highlight">availability</span> and your <span class="highlight">preferred map pool</span>.</p>
 
   <div class="overview-container" *ngIf="!player.steamUserException">
     <div class="left-details-container">
