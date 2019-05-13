@@ -7,6 +7,7 @@ import { ConfirmComponent } from 'src/app/confirm/confirm.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('UserPreferencesComponent', () => {
   let component: UserPreferencesComponent;
@@ -16,6 +17,7 @@ describe('UserPreferencesComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         FormsModule,
+        HttpClientTestingModule,
         RouterTestingModule,
         NoopAnimationsModule,
         ServiceWorkerModule.register('', {enabled: false}),
