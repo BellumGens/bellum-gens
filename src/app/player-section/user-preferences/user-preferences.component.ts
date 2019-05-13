@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { UserPreferences, ApplicationUser } from '../../models/applicationuser';
 import { LoginService } from '../../services/login.service';
 import { LoginProvider } from '../../models/login-provider';
-import { BaseComponent } from 'src/app/base/base.component';
+import { BaseComponent } from '../../base/base.component';
 
 @Component({
   selector: 'app-user-preferences',

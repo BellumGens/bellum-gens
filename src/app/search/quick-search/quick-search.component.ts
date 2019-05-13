@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { BellumgensApiService } from '../../services/bellumgens-api.service';
 import { SearchResult } from '../../models/searchresult';
-import { BaseComponent } from 'src/app/base/base.component';
+import { BaseComponent } from '../../base/base.component';
 
 @Component({
   selector: 'app-quick-search',
