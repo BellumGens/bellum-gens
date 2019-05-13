@@ -20,6 +20,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { UserPreferencesComponent } from 'src/app/player-section/user-preferences/user-preferences.component';
 import { ConfirmComponent } from 'src/app/confirm/confirm.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('TeamSearchComponent', () => {
   let component: TeamSearchComponent;
@@ -31,6 +32,7 @@ describe('TeamSearchComponent', () => {
         FormsModule,
         RouterTestingModule,
         NoopAnimationsModule,
+        HttpClientTestingModule,
         ServiceWorkerModule.register('', {enabled: false}),
         IgxRadioModule,
         IgxSliderModule,

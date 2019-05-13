@@ -6,6 +6,7 @@ import { SortApplicationsPipe } from 'src/app/pipes/sort-applications.pipe';
 import { DisabledNotificationsPipe } from 'src/app/pipes/disabled-notifications.pipe';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NotificationStatePipe } from 'src/app/pipes/notification-state.pipe';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('TeamNotificationsComponent', () => {
   let component: TeamNotificationsComponent;
@@ -15,6 +16,7 @@ describe('TeamNotificationsComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
+        HttpClientTestingModule,
         IgxListModule,
         IgxAvatarModule
       ],

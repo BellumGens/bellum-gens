@@ -4,6 +4,7 @@ import { QuickSearchComponent } from './quick-search.component';
 import { IgxProgressBarModule, IgxListModule, IgxAvatarModule, IgxIconModule } from 'igniteui-angular';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ReduceQuickSearchResultPipe } from 'src/app/pipes/reduce-quick-search-result.pipe';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('QuickSearchComponent', () => {
   let component: QuickSearchComponent;
@@ -13,6 +14,7 @@ describe('QuickSearchComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
+        HttpClientTestingModule,
         IgxProgressBarModule,
         IgxListModule,
         IgxAvatarModule,
