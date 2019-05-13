@@ -4,13 +4,14 @@ import { ApplicationUser } from '../../models/applicationuser';
 import { CSGOTeam, TEAM_PLACEHOLDER } from '../../models/csgoteam';
 import { BellumgensApiService } from '../../services/bellumgens-api.service';
 import { LoginService } from '../../services/login.service';
+import { BaseComponent } from '../../base/base.component';
 
 @Component({
   selector: 'app-team-overview',
   templateUrl: './team-overview.component.html',
   styleUrls: ['./team-overview.component.css']
 })
-export class TeamOverviewComponent {
+export class TeamOverviewComponent extends BaseComponent {
   authUser: ApplicationUser;
   team: CSGOTeam = TEAM_PLACEHOLDER;
 
@@ -21,11 +22,12 @@ export class TeamOverviewComponent {
   constructor(private activatedRoute: ActivatedRoute,
               private apiService: BellumgensApiService,
               private authManager: LoginService) {
-    this.authManager.applicationUser.subscribe((data: ApplicationUser) => {
+    super();
+    this.subs.push(this.authManager.applicationUser.subscribe((data: ApplicationUser) => {
       this.authUser = data;
-    });
+    }));
 
-    this.activatedRoute.params.subscribe(params => {
+    this.subs.push(this.activatedRoute.params.subscribe(params => {
       const teamId = params['teamid'];
 
       if (teamId !== '0') {
@@ -33,7 +35,7 @@ export class TeamOverviewComponent {
           this.team = team;
         });
       }
-    });
+    }));
   }
 
   public get userIsMember() {

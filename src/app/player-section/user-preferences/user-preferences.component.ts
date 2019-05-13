@@ -1,14 +1,15 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { UserPreferences, ApplicationUser } from '../../models/applicationuser';
 import { LoginService } from '../../services/login.service';
 import { LoginProvider } from '../../models/login-provider';
+import { BaseComponent } from 'src/app/base/base.component';
 
 @Component({
   selector: 'app-user-preferences',
   templateUrl: './user-preferences.component.html',
   styleUrls: ['./user-preferences.component.css']
 })
-export class UserPreferencesComponent {
+export class UserPreferencesComponent extends BaseComponent {
   public preferences: UserPreferences = {
     email: '',
     searchVisible: true
@@ -19,14 +20,15 @@ export class UserPreferencesComponent {
   public authUser: ApplicationUser;
 
   constructor(private authManager: LoginService) {
-    this.authManager.applicationUser.subscribe(user => {
+    super();
+    this.subs.push(this.authManager.applicationUser.subscribe(user => {
       this.preferences = {
         email: user.email,
         searchVisible: user.searchVisible
       };
       this.authUser = user;
-    });
-    this.authManager.loginProviders.subscribe(providers => this.providers = providers);
+    }));
+    this.subs.push(this.authManager.loginProviders.subscribe(providers => this.providers = providers));
   }
 
   public login(provider: string) {

@@ -5,13 +5,14 @@ import { ApplicationUser } from '../../models/applicationuser';
 import { TeamApplication } from '../../models/csgoteam';
 import { NotificationState } from '../../models/usernotifications';
 import { BellumgensApiService } from '../../services/bellumgens-api.service';
+import { BaseComponent } from '../../base/base.component';
 
 @Component({
   selector: 'app-team-application',
   templateUrl: './team-application.component.html',
   styleUrls: ['./team-application.component.css']
 })
-export class TeamApplicationComponent {
+export class TeamApplicationComponent extends BaseComponent {
   @Input()
   public authUser: ApplicationUser;
   public application: TeamApplication = {
@@ -25,9 +26,9 @@ export class TeamApplicationComponent {
 
   @ViewChild(IgxDialogComponent) public dialog: IgxDialogComponent;
 
-  constructor(private activatedRoute: ActivatedRoute,
-              private apiService: BellumgensApiService) {
-    this.activatedRoute.params.subscribe(params => this.application.TeamId = params['teamid']);
+  constructor(private activatedRoute: ActivatedRoute, private apiService: BellumgensApiService) {
+    super();
+    this.subs.push(this.activatedRoute.params.subscribe(params => this.application.TeamId = params['teamid']));
   }
 
   public submitApplication() {

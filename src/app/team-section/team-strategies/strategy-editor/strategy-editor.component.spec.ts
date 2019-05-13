@@ -14,6 +14,7 @@ import { ConfirmComponent } from 'src/app/confirm/confirm.component';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('StrategyEditorComponent', () => {
   let component: StrategyEditorComponent;
@@ -25,6 +26,7 @@ describe('StrategyEditorComponent', () => {
         FormsModule,
         RouterTestingModule,
         NoopAnimationsModule,
+        HttpClientTestingModule,
         IgxIconModule,
         IgxInputGroupModule,
         IgxListModule,

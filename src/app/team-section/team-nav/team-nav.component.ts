@@ -23,7 +23,7 @@ export class TeamNavComponent {
   @ViewChild(IgxDialogComponent) public createTeam: IgxDialogComponent;
 
   constructor(private apiService: BellumgensApiService,
-              public router: Router) {
+              private router: Router) {
   }
 
   public createFromSteam(group: SteamGroup): void {
@@ -31,6 +31,7 @@ export class TeamNavComponent {
       team => {
         this.createTeam.close();
         this.authUser.teams.push(team);
+        this.router.navigate(['/team', team.TeamId]);
       }
     );
   }
@@ -40,6 +41,7 @@ export class TeamNavComponent {
       team => {
         this.createTeam.close();
         this.authUser.teams.push(team);
+        this.router.navigate(['/team', team.TeamId]);
       }
     );
   }

@@ -7,6 +7,11 @@ export interface UtilityDescriptor {
   height: number;
 }
 
+export interface EditorBrushColor {
+  color: string;
+  selected: boolean;
+}
+
 export const StratUtilities: UtilityDescriptor [] = [
   {
     name: 'Flash',
@@ -48,4 +53,12 @@ export const StratUtilities: UtilityDescriptor [] = [
     height: 30,
     svg: '/assets/weapon-icons/svg_normal/weapon_c4.svg'
   }
+];
+
+export const EditorBrushColors: EditorBrushColor [] = [
+  { color: 'red', selected: true },
+  { color: '#cbb87d', selected: false },
+  { color: '#b2c9de', selected: false },
+  { color: '#647e95', selected: false },
+  { color: 'green', selected: false }
 ];

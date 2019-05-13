@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import { ActivatedRoute } from '../../../../node_modules/@angular/router';
 import { BellumgensApiService } from '../../services/bellumgens-api.service';
@@ -12,6 +12,7 @@ import { ApplicationUser } from '../../models/applicationuser';
 import { CSGOTeam } from '../../models/csgoteam';
 import { MapPool } from '../../models/csgomaps';
 import { ALL_ROLES } from '../../models/playerrole';
+import { BaseComponent } from '../../base/base.component';
 
 @Component({
   selector: 'app-player-details',
@@ -19,7 +20,7 @@ import { ALL_ROLES } from '../../models/playerrole';
   styleUrls: ['./player-details.component.css'],
   encapsulation: ViewEncapsulation.None,
 })
-export class PlayerDetailsComponent implements OnInit {
+export class PlayerDetailsComponent extends BaseComponent {
 
   public authUser: ApplicationUser;
   public teamsAdmin: CSGOTeam [];
@@ -34,13 +35,11 @@ export class PlayerDetailsComponent implements OnInit {
   constructor(private authManager: LoginService,
               private apiService: BellumgensApiService,
               private activatedRoute: ActivatedRoute) {
-  }
-
-  ngOnInit() {
-    this.authManager.applicationUser.subscribe((data: ApplicationUser) => {
+    super();
+    this.subs.push(this.authManager.applicationUser.subscribe((data: ApplicationUser) => {
       this.authUser = data;
-    });
-    this.activatedRoute.params.subscribe(params => {
+    }));
+    this.subs.push(this.activatedRoute.params.subscribe(params => {
       const userid = params['userid'];
       this.newUser = params['newuser'];
       if (userid !== '0') {
@@ -50,7 +49,7 @@ export class PlayerDetailsComponent implements OnInit {
           }
         );
       }
-    });
+    }));
   }
 
   public submitAvailability(args: Availability) {

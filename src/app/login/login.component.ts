@@ -10,6 +10,7 @@ import { ApplicationUser } from '../models/applicationuser';
 import { PlaystyleRole } from '../models/playerrole';
 import { BellumgensApiService } from '../services/bellumgens-api.service';
 import { LoginProvider } from '../models/login-provider';
+import { BaseComponent } from '../base/base.component';
 
 export interface ProfileCompleteness {
   availability: boolean;
@@ -29,7 +30,7 @@ export interface ProfileCompleteness {
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent extends BaseComponent {
   private _authUser: ApplicationUser;
 
   public loginProviders: LoginProvider [];
@@ -61,8 +62,9 @@ export class LoginComponent {
 
   constructor(private authManager: LoginService,
               private apiService: BellumgensApiService) {
-    this.apiService.authUserUpdate.subscribe(_ => this.fillCompleteness());
-    this.authManager.loginProviders.subscribe(providers => this.loginProviders = providers);
+    super();
+    this.subs.push(this.apiService.authUserUpdate.subscribe(_ => this.fillCompleteness()));
+    this.subs.push(this.authManager.loginProviders.subscribe(providers => this.loginProviders = providers));
   }
 
   public openLogin() {

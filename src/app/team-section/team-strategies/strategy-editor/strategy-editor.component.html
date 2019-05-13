@@ -72,8 +72,7 @@
       <div>Brush Color</div>
       <igx-buttongroup>
         <button igxButton igxRipple *ngFor="let color of colors" (click)="selectColor(color)">
-            <igx-icon [color]="color.color"
-                      (click)="selectColor(color)">color_lens</igx-icon>
+            <igx-icon [color]="color.color">color_lens</igx-icon>
         </button>
       </igx-buttongroup>
     </div>

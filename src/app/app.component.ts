@@ -13,13 +13,14 @@ import { SearchResult } from './models/searchresult';
 import { fromEvent } from 'rxjs';
 import { map, debounceTime } from 'rxjs/operators';
 import { UnreadNotificationsPipe } from './pipes/unread-notifications.pipe';
+import { BaseComponent } from './base/base.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent extends BaseComponent implements OnInit {
   public title: string;
   public authUser: ApplicationUser;
   public searchResult: SearchResult;
@@ -42,13 +43,14 @@ export class AppComponent implements OnInit {
 
   constructor(private authManager: LoginService,
               private apiService: BellumgensApiService) {
+    super();
   }
 
   public ngOnInit(): void {
-    this.authManager.applicationUser.subscribe(data => {
+    this.subs.push(this.authManager.applicationUser.subscribe(data => {
       this.authUser = data;
       this.unreadNotifications += this.unreadPipe.transform(data.notifications);
-    });
+    }));
 
     this.initQuickSearch();
   }
@@ -57,7 +59,7 @@ export class AppComponent implements OnInit {
     const input = fromEvent(this.searchInput.nativeElement, 'keyup')
                     .pipe(map<Event, string>(e => (<HTMLInputElement>e.currentTarget).value));
     const debouncedInput = input.pipe(debounceTime(300));
-    debouncedInput.subscribe(val => {
+    this.subs.push(debouncedInput.subscribe(val => {
       if (val.length) {
         const positionSettings: PositionSettings = {
           horizontalDirection: HorizontalAlignment.Left,
@@ -71,7 +73,7 @@ export class AppComponent implements OnInit {
         this.quickSearchDropDown.open(overlaySettings);
         this.apiService.quickSearch(val);
       }
-    });
+    }));
   }
 
   public notificationsLoaded(args: number) {

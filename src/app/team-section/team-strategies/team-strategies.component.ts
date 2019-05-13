@@ -1,17 +1,18 @@
-import { Component, OnInit, ViewChild, Input } from '@angular/core';
+import { Component, ViewChild, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BellumgensApiService } from '../../services/bellumgens-api.service';
 import { TeamStrategy, newEmptyStrategy } from '../../models/csgoteamstrategy';
 import { MapPool, ActiveDutyDescriptor, ActiveDuty } from '../../models/csgomaps';
 import { IgxDialogComponent, IChipSelectEventArgs } from 'igniteui-angular';
 import { SafeResourceUrl } from '@angular/platform-browser';
+import { BaseComponent } from '../../base/base.component';
 
 @Component({
   selector: 'app-team-strategies',
   templateUrl: './team-strategies.component.html',
   styleUrls: ['./team-strategies.component.css']
 })
-export class TeamStrategiesComponent implements OnInit {
+export class TeamStrategiesComponent extends BaseComponent {
   teamStrats: TeamStrategy [];
   maps: MapPool [];
   mapList: ActiveDutyDescriptor [] = ActiveDuty;
@@ -38,17 +39,15 @@ export class TeamStrategiesComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute,
               private router: Router,
               private apiService: BellumgensApiService) {
-  }
-
-  ngOnInit() {
-    this.activatedRoute.params.subscribe(params => {
+    super();
+    this.subs.push(this.activatedRoute.params.subscribe(params => {
       this.teamId = params['teamid'];
 
       if (this.teamId) {
         this.apiService.getTeamStrats(this.teamId).subscribe(strats => this.teamStrats = strats);
         this.apiService.getTeamMapPool(this.teamId).subscribe(maps => this.maps = maps);
       }
-    });
+    }));
   }
 
   public changeMaps(event: IChipSelectEventArgs, args: MapPool) {

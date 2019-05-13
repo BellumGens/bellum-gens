@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddSteamComponent } from './add-steam.component';
-import { IgxIconModule } from 'igniteui-angular';
+import { IgxIconModule, IgxButtonModule } from 'igniteui-angular';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { RouterTestingModule } from '@angular/router/testing';
 
@@ -14,7 +14,8 @@ describe('AddSteamComponent', () => {
       imports: [
         RouterTestingModule,
         ServiceWorkerModule.register('', {enabled: false}),
-        IgxIconModule
+        IgxIconModule,
+        IgxButtonModule
       ],
       declarations: [ AddSteamComponent ]
     })
