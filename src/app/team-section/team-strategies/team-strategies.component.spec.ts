@@ -24,6 +24,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { AvailabilityComponent } from 'src/app/availability/availability.component';
 import { WeekdayPipe } from 'src/app/pipes/weekday.pipe';
 import { ActiveDutyMapsPipe } from 'src/app/pipes/active-duty-maps.pipe';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('TeamStrategiesComponent', () => {
   let component: TeamStrategiesComponent;
@@ -35,6 +36,7 @@ describe('TeamStrategiesComponent', () => {
         FormsModule,
         RouterTestingModule,
         NoopAnimationsModule,
+        HttpClientTestingModule,
         IgxIconModule,
         IgxCardModule,
         IgxListModule,

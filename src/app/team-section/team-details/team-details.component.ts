@@ -1,8 +1,7 @@
-import { Component, OnInit, ViewChildren, QueryList, ElementRef, Input } from '@angular/core';
+import { Component, ViewChildren, QueryList, ElementRef, Input } from '@angular/core';
 import { IgxDropEventArgs, IgxAvatarComponent } from 'igniteui-angular';
 import { PlaystyleRole, RoleSlot } from '../../models/playerrole';
 import { TeamMember, CSGOTeam, TEAM_PLACEHOLDER } from '../../models/csgoteam';
-import { ApplicationUser } from '../../models/applicationuser';
 import { BellumgensApiService } from '../../services/bellumgens-api.service';
 import { Availability } from '../../models/playeravailability';
 
@@ -11,7 +10,7 @@ import { Availability } from '../../models/playeravailability';
   templateUrl: './team-details.component.html',
   styleUrls: ['./team-details.component.css']
 })
-export class TeamDetailsComponent implements OnInit {
+export class TeamDetailsComponent {
   private _team = TEAM_PLACEHOLDER;
 
   public get team(): CSGOTeam {
@@ -56,9 +55,6 @@ export class TeamDetailsComponent implements OnInit {
   @ViewChildren(IgxAvatarComponent, { read: ElementRef }) public emptyRoles: QueryList<ElementRef>;
 
   constructor(private apiService: BellumgensApiService) { }
-
-  ngOnInit() {
-  }
 
   public removeFromRole(role: RoleSlot) {
     const user = role.user;

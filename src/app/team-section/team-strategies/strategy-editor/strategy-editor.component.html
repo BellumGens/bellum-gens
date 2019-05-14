@@ -70,10 +70,11 @@
     </div>
     <div *ngIf="brushSelected" class="editor-elements-section">
       <div>Brush Color</div>
-      <igx-icon *ngFor="let color of colors"
-                [ngClass]="color.selected ? 'editor-freeflow-element selected-element' : 'editor-freeflow-element'"
-                [color]="color.color"
-                (click)="selectColor(color)">color_lens</igx-icon>
+      <igx-buttongroup>
+        <button igxButton igxRipple *ngFor="let color of colors" [selected]="color.selected" (click)="selectColor(color)">
+            <igx-icon [color]="color.color">color_lens</igx-icon>
+        </button>
+      </igx-buttongroup>
     </div>
     <div class="editor-elements-section">
       <button igxButton="raised" igxRipple (click)="saveStrat()">Save</button>

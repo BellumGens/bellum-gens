@@ -9,6 +9,8 @@ import { LoginService } from '../services/login.service';
 import { ApplicationUser } from '../models/applicationuser';
 import { PlaystyleRole } from '../models/playerrole';
 import { BellumgensApiService } from '../services/bellumgens-api.service';
+import { LoginProvider } from '../models/login-provider';
+import { BaseComponent } from '../base/base.component';
 
 export interface ProfileCompleteness {
   availability: boolean;
@@ -28,8 +30,10 @@ export interface ProfileCompleteness {
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent extends BaseComponent {
   private _authUser: ApplicationUser;
+
+  public loginProviders: LoginProvider [];
 
   @Input()
   public set authUser(user: ApplicationUser) {
@@ -58,7 +62,9 @@ export class LoginComponent {
 
   constructor(private authManager: LoginService,
               private apiService: BellumgensApiService) {
-    this.apiService.authUserUpdate.subscribe(_ => this.fillCompleteness());
+    super();
+    this.subs.push(this.apiService.authUserUpdate.subscribe(_ => this.fillCompleteness()));
+    this.subs.push(this.authManager.loginProviders.subscribe(providers => this.loginProviders = providers));
   }
 
   public openLogin() {
@@ -86,19 +92,19 @@ export class LoginComponent {
       pendingIcon: 'clear',
       progressType: IgxProgressType.INFO
     };
-    if (this._authUser.Availability.filter(a => a.Available).length) {
+    if (this._authUser.availability.filter(a => a.Available).length) {
       this.profileCompleteness.availability = true;
       this.profileCompleteness.profileStage++;
     }
-    if (this._authUser.PreferredPrimaryRole !== PlaystyleRole.NotSet) {
+    if (this._authUser.primaryRole !== PlaystyleRole.NotSet) {
       this.profileCompleteness.primaryRole = true;
       this.profileCompleteness.profileStage++;
     }
-    if (this._authUser.PreferredSecondaryRole !== PlaystyleRole.NotSet) {
+    if (this._authUser.secondaryRole !== PlaystyleRole.NotSet) {
       this.profileCompleteness.secondaryRole = true;
       this.profileCompleteness.profileStage++;
     }
-    if (this._authUser.MapPool.filter(m => m.IsPlayed).length) {
+    if (this._authUser.mapPool.filter(m => m.IsPlayed).length) {
       this.profileCompleteness.mapPool = true;
       this.profileCompleteness.profileStage++;
     }

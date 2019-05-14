@@ -23,14 +23,15 @@ export class TeamNavComponent {
   @ViewChild(IgxDialogComponent) public createTeam: IgxDialogComponent;
 
   constructor(private apiService: BellumgensApiService,
-              public router: Router) {
+              private router: Router) {
   }
 
   public createFromSteam(group: SteamGroup): void {
     this.apiService.registerSteamGroup(group).subscribe(
       team => {
         this.createTeam.close();
-        this.authUser.Teams.push(team);
+        this.authUser.teams.push(team);
+        this.router.navigate(['/team', team.TeamId]);
       }
     );
   }
@@ -39,14 +40,15 @@ export class TeamNavComponent {
     this.apiService.registerTeam(this.newTeam).subscribe(
       team => {
         this.createTeam.close();
-        this.authUser.Teams.push(team);
+        this.authUser.teams.push(team);
+        this.router.navigate(['/team', team.TeamId]);
       }
     );
   }
 
   public abandonTeam(team: CSGOTeam) {
     this.apiService.abandonTeam(team).subscribe(
-      _ => this.authUser.Teams.splice(this.authUser.Teams.indexOf(team), 1)
+      _ => this.authUser.teams.splice(this.authUser.teams.indexOf(team), 1)
     );
 }
 }

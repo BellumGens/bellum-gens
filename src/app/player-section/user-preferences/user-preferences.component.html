@@ -1,4 +1,20 @@
 <form #userPreferences="ngForm" (ngSubmit)="submitPreferences()">
+  <h6>Associated Logins</h6>
+  
+  <div class="preferences-container">
+    <button *ngFor="let provider of providers" 
+            type="button"
+            igxButton="outlined"
+            class="submit-button navigatable" 
+            (click)="login(provider.Name)"
+            [disabled]="disableLogin(provider.Name)">
+      <igx-icon fontSet="login-icons" [name]="provider.Name"></igx-icon>
+      <span class="submit-button">Add {{ provider.Name }} Login</span>
+      <igx-icon class="color-success">{{ disableLogin(provider.Name) ? 'done' : '' }}</igx-icon>
+    </button>
+  </div>
+  
+  <h6>Additional Preferences</h6>
   <div class="preferences-container">
     <igx-input-group>
       <label for="userEmail" igxLabel>Email address</label>
@@ -7,20 +23,21 @@
         <igx-icon>clear</igx-icon>
       </igx-suffix>
     </igx-input-group>
-    <div class="horizontal-center margin-top-large">
-      <label for="userVisibility">Show in searches</label>
+    <div class="horizontal-center space-out">
+      <label for="userVisibility">Show profile in searches</label>
       <igx-switch class="horizontal-info__right" #teamVisibility id="userVisibility" name="userVisibility" [(ngModel)]="preferences.searchVisible"></igx-switch>
     </div>
+    <button igxButton="outlined"
+            igxRipple class="submit-button space-out"
+            [disabled]="!userPreferences.touched || !userPreferences.valueChanges || userPreferences.invalid">
+      Update User Preferences
+    </button>
   </div>
-  <button igxButton="outlined" igxRipple class="submit-button"
-          [disabled]="!userPreferences.touched || !userPreferences.valueChanges || userPreferences.invalid">
-    Update User Preferences
-  </button>
 </form>
 
 <button igxButton="raised" igxRipple class="submit-button align-bottom" (click)="confirm.open()">
   <igx-icon title="delete account">delete_forever</igx-icon>
-  Delete Account
+  Delete Account Forever
 </button>
 
 <!-- Confirm -->

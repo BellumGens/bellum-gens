@@ -5,16 +5,17 @@ import { CSGOTeam } from '../../../models/csgoteam';
 import { BellumgensApiService } from '../../../services/bellumgens-api.service';
 import { ActivatedRoute } from '@angular/router';
 import { IgxDropEventArgs } from 'igniteui-angular';
-import { StratUtilities } from '../../../models/strat-editor/utility';
+import { StratUtilities, EditorBrushColors } from '../../../models/strat-editor/utility';
 import { TeamStrategy } from '../../../models/csgoteamstrategy';
 import { BaseLayer, PointCoordinate, ImageLayer, FreeflowLayer } from '../../../models/strat-editor/editor-layer';
+import { BaseComponent } from '../../../base/base.component';
 
 @Component({
   selector: 'app-strategy-editor',
   templateUrl: './strategy-editor.component.html',
   styleUrls: ['./strategy-editor.component.css']
 })
-export class StrategyEditorComponent implements OnInit {
+export class StrategyEditorComponent extends BaseComponent implements OnInit {
   public maps: ActiveDutyDescriptor [] = ActiveDuty;
   public team: CSGOTeam;
   public newStrategy: TeamStrategy;
@@ -22,12 +23,7 @@ export class StrategyEditorComponent implements OnInit {
   public layers: BaseLayer [];
   public enemies = [1, 1, 1, 1, 1];
   public brushSelected = false;
-  public colors = [
-    { color: 'red', selected: true },
-    { color: 'yellow', selected: false },
-    { color: 'blue', selected: false },
-    { color: 'green', selected: false }
-  ];
+  public colors = Object.assign([], EditorBrushColors);
   public selectedColor = this.colors[0];
 
   private _activeMap: ActiveDutyDescriptor;
@@ -57,8 +53,8 @@ export class StrategyEditorComponent implements OnInit {
 
   @ViewChild('board') public canvas: ElementRef;
 
-  constructor(private apiService: BellumgensApiService,
-              private route: ActivatedRoute) {
+  constructor(private apiService: BellumgensApiService, private route: ActivatedRoute) {
+    super();
   }
 
   ngOnInit() {
@@ -66,7 +62,7 @@ export class StrategyEditorComponent implements OnInit {
     this.canvas.nativeElement.height = this.canvas.nativeElement.clientHeight;
     this.editor = new StrategyEditor(this.canvas, parseInt(this.canvas.nativeElement.clientHeight, 10) / 1024);
     this.layers = this.editor.layers;
-    this.route.params.subscribe(params => {
+    this.subs.push(this.route.params.subscribe(params => {
       const teamId = params['teamid'];
       if (teamId) {
         this.apiService.getTeam(teamId).subscribe(team => this.team = team);
@@ -83,7 +79,7 @@ export class StrategyEditorComponent implements OnInit {
           }
         });
       }
-    });
+    }));
   }
 
   public changeMap(map: CSGOMap) {

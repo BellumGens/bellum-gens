@@ -1,42 +1,49 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { UserPreferences, ApplicationUser } from '../../models/applicationuser';
 import { LoginService } from '../../services/login.service';
+import { LoginProvider } from '../../models/login-provider';
+import { BaseComponent } from '../../base/base.component';
 
 @Component({
   selector: 'app-user-preferences',
   templateUrl: './user-preferences.component.html',
   styleUrls: ['./user-preferences.component.css']
 })
-export class UserPreferencesComponent {
+export class UserPreferencesComponent extends BaseComponent {
   public preferences: UserPreferences = {
     email: '',
     searchVisible: true
   };
 
-  @Input()
-  public set authUser(user: ApplicationUser) {
-    if (!this._authUser || user.SteamUser.steamID64 !== this._authUser.SteamUser.steamID64) {
+  public providers: LoginProvider[];
+
+  public authUser: ApplicationUser;
+
+  constructor(private authManager: LoginService) {
+    super();
+    this.subs.push(this.authManager.applicationUser.subscribe(user => {
       this.preferences = {
-        email: user.Email,
-        searchVisible: user.SearchVisible
+        email: user.email,
+        searchVisible: user.searchVisible
       };
-      this._authUser = user;
-    }
+      this.authUser = user;
+    }));
+    this.subs.push(this.authManager.loginProviders.subscribe(providers => this.providers = providers));
   }
 
-  public get authUser() {
-    return this._authUser;
+  public login(provider: string) {
+    this.authManager.login(provider);
   }
-
-  private _authUser: ApplicationUser;
-
-  constructor(private authManager: LoginService) { }
 
   public submitPreferences() {
     this.authManager.updateUserPreferences(this.preferences).subscribe();
   }
 
   public deleteAccount() {
-    this.authManager.deleteAccount(this._authUser.SteamUser.steamID64).subscribe();
+    this.authManager.deleteAccount(this.authUser.id).subscribe();
+  }
+
+  public disableLogin(provider: string) {
+    return this.authUser ? this.authUser.externalLogins.includes(provider) : false;
   }
 }

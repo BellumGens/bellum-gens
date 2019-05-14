@@ -10,7 +10,7 @@
       <app-team-application [authUser]="authUser"></app-team-application>
     </div>
     <div *ngIf="userIsMember && team?.Discord" class="horizontal-info__right">
-      <a [href]="team.Discord" target="_blank" rel="noopener"><igx-icon class="discord-icon" fontSet="weapon-icons" name="discord"></igx-icon></a>
+      <a [href]="team.Discord" target="_blank" rel="noopener"><igx-icon class="discord-icon" fontSet="login-icons" name="discord"></igx-icon></a>
     </div>
   </div>
   <igx-tabs>
@@ -22,7 +22,7 @@
         </div> 
       </ng-template>
 
-      <app-team-details [team]="team" [userId]="authUser?.SteamUser?.steamID64" [isAdmin]="userIsAdmin"></app-team-details>
+      <app-team-details [team]="team" [userId]="authUser?.steamUser?.steamID64" [isAdmin]="userIsAdmin"></app-team-details>
     </igx-tabs-group>
 
     <igx-tabs-group *ngIf="userIsMember">
@@ -53,7 +53,7 @@
         </div> 
       </ng-template>
       
-      <app-team-preferences [team]="team" [adminId]="authUser?.SteamUser?.steamID64"></app-team-preferences>
+      <app-team-preferences [team]="team" [adminId]="authUser.id"></app-team-preferences>
     </igx-tabs-group>
   </igx-tabs>
 </div>

@@ -4,14 +4,14 @@ import { NotificationState } from './usernotifications';
 import { Availability } from './playeravailability';
 
 export interface CSGOTeam {
-  TeamId: string;
+  TeamId?: string;
   TeamName: string;
   TeamAvatar: string;
   Description: string;
-  Discord: string;
+  Discord?: string;
   Visible: boolean;
-  Members: TeamMember [];
-  PracticeSchedule: Availability [];
+  Members?: TeamMember [];
+  PracticeSchedule?: Availability [];
   SteamGroup?: SteamGroup;
 }
 
@@ -43,11 +43,7 @@ export const TEAM_PLACEHOLDER: CSGOTeam = {
   TeamName: 'Create or view teams',
   TeamAvatar: '',
   Description: 'Use the left navigation to create your own team or to view existing teams.',
-  Discord: '',
   Visible: true,
-  TeamId: undefined,
-  PracticeSchedule: [],
-  Members: undefined
 };
 
 export function getEmptyNewTeam(): CSGOTeam {

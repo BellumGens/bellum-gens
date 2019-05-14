@@ -89,6 +89,9 @@ import { EmailconfirmComponent } from './emailconfirm/emailconfirm.component';
 import { QueryParsedPipe } from './pipes/query-parsed.pipe';
 import { StrategyEditorComponent } from './team-section/team-strategies/strategy-editor/strategy-editor.component';
 import { ActiveDutyMapsPipe } from './pipes/active-duty-maps.pipe';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+import { AddSteamComponent } from './add-steam/add-steam.component';
+import { BaseComponent } from './base/base.component';
 
 @NgModule({
   declarations: [
@@ -140,7 +143,10 @@ import { ActiveDutyMapsPipe } from './pipes/active-duty-maps.pipe';
     EmailconfirmComponent,
     QueryParsedPipe,
     StrategyEditorComponent,
-    ActiveDutyMapsPipe
+    ActiveDutyMapsPipe,
+    UnauthorizedComponent,
+    AddSteamComponent,
+    BaseComponent
   ],
   imports: [
     FormsModule,
@@ -227,6 +233,8 @@ export class AppModule {
     this.iconService.addSvgIcon('smoke', '/assets/weapon-icons/svg_normal/weapon_smokegrenade.svg', 'weapon-icons');
     this.iconService.addSvgIcon('c4', '/assets/weapon-icons/svg_normal/weapon_c4.svg', 'weapon-icons');
     this.iconService.addSvgIcon('headshot', '/assets/headshot24x24.svg', 'weapon-icons');
-    this.iconService.addSvgIcon('discord', '/assets/discord.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('discord', '/assets/login/discord.svg', 'login-icons');
+    this.iconService.addSvgIcon('Twitch', '/assets/login/Glitch_White_RGB.svg', 'login-icons');
+    this.iconService.addSvgIcon('Steam', '/assets/login/Steam_icon_logo.svg', 'login-icons');
   }
 }

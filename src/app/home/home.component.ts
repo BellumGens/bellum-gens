@@ -1,21 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { LoginService } from '../services/login.service';
 import { ApplicationUser } from '../models/applicationuser';
 import { Router } from '@angular/router';
+import { BaseComponent } from '../base/base.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent extends BaseComponent {
   authUser: ApplicationUser;
 
-  constructor(private authManager: LoginService,
-              private router: Router) { }
-
-  ngOnInit() {
-    this.authManager.applicationUser.subscribe(data => this.authUser = data);
+  constructor(private authManager: LoginService, private router: Router) {
+    super();
+    this.subs.push(this.authManager.applicationUser.subscribe(data => this.authUser = data));
   }
 
   public viewStats(id: string) {

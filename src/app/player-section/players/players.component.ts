@@ -1,6 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { BellumgensApiService } from '../../services/bellumgens-api.service';
 import { CSGOPlayer } from '../../models/csgoplayer';
+import { BaseComponent } from '../../base/base.component';
 
 @Component({
   selector: 'app-players',
@@ -8,12 +9,13 @@ import { CSGOPlayer } from '../../models/csgoplayer';
   styleUrls: ['./players.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class PlayersComponent {
+export class PlayersComponent extends BaseComponent {
   public activeUsers: CSGOPlayer[];
   public loading = true;
 
   constructor(private apiManager: BellumgensApiService) {
-    this.apiManager.players.subscribe((data: CSGOPlayer[]) => this.activeUsers = data);
-    this.apiManager.loadingPlayers.subscribe(loading => this.loading = loading);
+    super();
+    this.subs.push(this.apiManager.players.subscribe((data: CSGOPlayer[]) => this.activeUsers = data));
+    this.subs.push(this.apiManager.loadingPlayers.subscribe(loading => this.loading = loading));
   }
 }

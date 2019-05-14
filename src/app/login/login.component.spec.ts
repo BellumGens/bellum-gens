@@ -17,6 +17,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { UserPreferencesComponent } from '../player-section/user-preferences/user-preferences.component';
 import { FormsModule } from '@angular/forms';
 import { ConfirmComponent } from '../confirm/confirm.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -28,6 +29,7 @@ describe('LoginComponent', () => {
         FormsModule,
         RouterTestingModule,
         NoopAnimationsModule,
+        HttpClientTestingModule,
         ServiceWorkerModule.register('', {enabled: false}),
         IgxAvatarModule,
         IgxIconModule,

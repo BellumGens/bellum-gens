@@ -1,16 +1,17 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApplicationUser } from '../../models/applicationuser';
-import { CSGOTeam, TeamApplication, TEAM_PLACEHOLDER } from '../../models/csgoteam';
+import { CSGOTeam, TEAM_PLACEHOLDER } from '../../models/csgoteam';
 import { BellumgensApiService } from '../../services/bellumgens-api.service';
 import { LoginService } from '../../services/login.service';
+import { BaseComponent } from '../../base/base.component';
 
 @Component({
   selector: 'app-team-overview',
   templateUrl: './team-overview.component.html',
   styleUrls: ['./team-overview.component.css']
 })
-export class TeamOverviewComponent {
+export class TeamOverviewComponent extends BaseComponent {
   authUser: ApplicationUser;
   team: CSGOTeam = TEAM_PLACEHOLDER;
 
@@ -21,11 +22,12 @@ export class TeamOverviewComponent {
   constructor(private activatedRoute: ActivatedRoute,
               private apiService: BellumgensApiService,
               private authManager: LoginService) {
-    this.authManager.applicationUser.subscribe((data: ApplicationUser) => {
+    super();
+    this.subs.push(this.authManager.applicationUser.subscribe((data: ApplicationUser) => {
       this.authUser = data;
-    });
+    }));
 
-    this.activatedRoute.params.subscribe(params => {
+    this.subs.push(this.activatedRoute.params.subscribe(params => {
       const teamId = params['teamid'];
 
       if (teamId !== '0') {
@@ -33,7 +35,7 @@ export class TeamOverviewComponent {
           this.team = team;
         });
       }
-    });
+    }));
   }
 
   public get userIsMember() {
@@ -41,7 +43,7 @@ export class TeamOverviewComponent {
       return this._isMember;
     }
     if (this.authUser && this.team && this.team.Members) {
-      this._isMember = this.team.Members.filter(m => m.UserId === this.authUser.SteamUser.steamID64).length > 0;
+      this._isMember = this.team.Members.filter(m => m.UserId === this.authUser.id).length > 0;
     }
     return this._isMember;
   }
@@ -51,7 +53,7 @@ export class TeamOverviewComponent {
       return this._isAdmin;
     }
     if (this.authUser && this.team && this.team.Members) {
-      this._isAdmin = this.team.Members.filter(m => m.IsAdmin && m.UserId === this.authUser.SteamUser.steamID64).length > 0;
+      this._isAdmin = this.team.Members.filter(m => m.IsAdmin && m.UserId === this.authUser.id).length > 0;
     }
     return this._isAdmin;
   }
@@ -61,7 +63,7 @@ export class TeamOverviewComponent {
       return this._isEditor;
     }
     if (this.authUser && this.team && this.team.Members) {
-      this._isEditor = this.team.Members.filter(m => m.IsEditor && m.UserId === this.authUser.SteamUser.steamID64).length > 0;
+      this._isEditor = this.team.Members.filter(m => m.IsEditor && m.UserId === this.authUser.id).length > 0;
     }
     return this._isEditor;
   }

@@ -14,6 +14,7 @@ import { ConfirmComponent } from 'src/app/confirm/confirm.component';
 import { PlayerCountryPipe } from 'src/app/pipes/player-country.pipe';
 import { WeekdayPipe } from 'src/app/pipes/weekday.pipe';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('TeamDetailsComponent', () => {
   let component: TeamDetailsComponent;
@@ -24,6 +25,7 @@ describe('TeamDetailsComponent', () => {
       imports: [
         RouterTestingModule,
         NoopAnimationsModule,
+        HttpClientTestingModule,
         IgxAvatarModule,
         IgxCardModule,
         IgxDragDropModule,

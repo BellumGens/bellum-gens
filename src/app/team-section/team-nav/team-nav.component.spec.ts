@@ -7,6 +7,7 @@ import { ConfirmComponent } from 'src/app/confirm/confirm.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { GroupsFilterPipe } from 'src/app/pipes/groups-filter.pipe';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('TeamNavComponent', () => {
   let component: TeamNavComponent;
@@ -18,6 +19,7 @@ describe('TeamNavComponent', () => {
         FormsModule,
         RouterTestingModule,
         NoopAnimationsModule,
+        HttpClientTestingModule,
         IgxIconModule,
         IgxAvatarModule,
         IgxCardModule,

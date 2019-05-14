@@ -12,10 +12,11 @@ import { Router } from '@angular/router';
 })
 export class PlayerNotificationsComponent {
 
-  @Input()
-  public authUser: ApplicationUser;
   public notificationClass = ['', '', 'notification-disabled', 'notification-disabled'];
   public pipeTrigger = 0;
+
+  @Input()
+  public authUser: ApplicationUser;
 
   @Output()
   public loaded = new EventEmitter<UserNotification []>();

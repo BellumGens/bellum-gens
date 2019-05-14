@@ -92,7 +92,7 @@ $radio-theme: igx-radio-theme($label-color: white, $empty-color: $secondary);
 /* END Radio */
 
 /* Tabs */
-$tabs-theme: igx-tabs-theme($item-background: $background);
+$tabs-theme: igx-tabs-theme($item-background: $background, $indicator-color: $secondary);
 @include igx-css-vars($tabs-theme);
 /* END Tabs */
 
@@ -352,7 +352,7 @@ a {
 }
 
 .card-margins {
-  margin: 8px 0px 0px 8px;
+  margin-top: 8px;
 }
 
 .highlight {
