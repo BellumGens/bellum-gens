@@ -56,9 +56,9 @@ export const StratUtilities: UtilityDescriptor [] = [
 ];
 
 export const EditorBrushColors: EditorBrushColor [] = [
-  { color: 'red', selected: true },
-  { color: '#cbb87d', selected: false },
-  { color: '#b2c9de', selected: false },
-  { color: '#647e95', selected: false },
-  { color: 'green', selected: false }
+  { color: '#fff100', selected: true },
+  { color: '#5889ff', selected: false },
+  { color: '#ff282d', selected: false },
+  { color: '#00ee65', selected: false },
+  { color: '#ff63cd', selected: false }
 ];
