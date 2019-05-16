@@ -35,6 +35,11 @@ export class LoginComponent extends BaseComponent {
 
   public loginProviders: LoginProvider [];
 
+  public loginColors = {
+    Steam: '#00adee',
+    Twitch: '#6441a5'
+  };
+
   @Input()
   public set authUser(user: ApplicationUser) {
     this._authUser = user;

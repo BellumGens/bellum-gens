@@ -75,3 +75,8 @@
 .login-buttons button:not(:first-child) {
   margin-top: 8px;
 }
+
+.login-divider {
+  height: 16px;
+  margin-left: 8px;
+}
