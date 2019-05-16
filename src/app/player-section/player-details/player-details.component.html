@@ -26,7 +26,7 @@
         <h4>Overview</h4>
         
         <div *ngIf="player.registered && !playerIsUser">
-          <button igxButton="raised" [disabled]="true">Send message <igx-icon>mail</igx-icon></button>
+          <!-- <button igxButton="raised" [disabled]="true">Send message <igx-icon>mail</igx-icon></button> -->
           <button *ngIf="authUser?.teamAdmin.length > 0" igxButton="flat" igxRipple class="title margin-left" [igxToggleAction]="teamInvite">
             Invite to team
             <igx-icon>arrow_drop_down</igx-icon>

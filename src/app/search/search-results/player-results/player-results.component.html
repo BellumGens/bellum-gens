@@ -6,7 +6,7 @@
   <h4 class="igx-card-header__title">Found <span class="highlight">{{players?.length }}</span> results for players{{ query | queryParsed:true }}</h4>
 </div>
 <div *ngIf="!loading" class="horizontal">
-  <igx-card *ngFor="let player of players" igxRipple class="search-result" [routerLink]="['/players', player.steamUser.steamID64]">
+  <igx-card *ngFor="let player of players" igxRipple class="search-result" [routerLink]="['/players', player.steamUser.customURL || player.steamUser.steamID64]">
     <igx-card-header>
       <div class="horizontal-center">
         <igx-avatar [src]="player.steamUser.avatarMedium" [size]="'medium'" [initials]="player.steamUser.steamID" roundShape="true"></igx-avatar>
