@@ -1,10 +1,10 @@
 <igx-dialog closeOnOutsideSelect="true" title="Choose login provider" width="600px">
   <div class="login-buttons">
-    <button *ngFor="let provider of loginProviders" 
-            type="icon"
+    <button *ngFor="let provider of loginProviders"
             igxButton="raised"
             class="submit-button navigatable"
             [igxButtonBackground]="loginColors[provider.Name]"
+            igxButtonColor="#fff"
             (click)="login(provider.Name)">
       <igx-icon fontSet="login-icons" [name]="provider.Name"></igx-icon>
       <igx-divider [vertical]="true" [inset]="'0 0 0 8px'" [ngClass]="'login-divider'"></igx-divider>

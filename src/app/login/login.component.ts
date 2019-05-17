@@ -11,6 +11,7 @@ import { PlaystyleRole } from '../models/playerrole';
 import { BellumgensApiService } from '../services/bellumgens-api.service';
 import { LoginProvider } from '../models/login-provider';
 import { BaseComponent } from '../base/base.component';
+import { LOGIN_ASSETS } from '../models/misc';
 
 export interface ProfileCompleteness {
   availability: boolean;
@@ -35,10 +36,7 @@ export class LoginComponent extends BaseComponent {
 
   public loginProviders: LoginProvider [];
 
-  public loginColors = {
-    Steam: '#00adee',
-    Twitch: '#6441a5'
-  };
+  public loginColors = LOGIN_ASSETS;
 
   @Input()
   public set authUser(user: ApplicationUser) {

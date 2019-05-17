@@ -138,6 +138,11 @@ $time-picker-theme: igx-time-picker-theme($background-color: $background);
 @include igx-css-vars($time-picker-theme);
 /* END Time Picker */
 
+/* Time Picker */
+$overlay-theme: igx-overlay-theme($background-color: rgba(35, 51, 132, 0.7));
+@include igx-css-vars($overlay-theme);
+/* END Time Picker */
+
 html, body {
   height: 100%;
   background-image: $background-gradient;
@@ -429,6 +434,11 @@ button igx-icon {
 
 .color-warn {
   color: var(--igx-input-group-warning-secondary-color);
+}
+
+.login-divider {
+  height: 16px;
+  margin-left: 8px;
 }
 
 @media only screen and (max-width: 680px) {

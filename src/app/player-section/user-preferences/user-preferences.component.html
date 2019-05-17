@@ -2,14 +2,16 @@
   <h6>Associated Logins</h6>
   
   <div class="preferences-container">
-    <button *ngFor="let provider of providers" 
-            type="button"
-            igxButton="outlined"
-            class="submit-button navigatable" 
+    <button *ngFor="let provider of providers"
+            igxButton="raised"
+            class="submit-button navigatable"
+            [igxButtonBackground]="loginColors[provider.Name]"
+            igxButtonColor="#fff"
             (click)="login(provider.Name)"
             [disabled]="disableLogin(provider.Name)">
       <igx-icon fontSet="login-icons" [name]="provider.Name"></igx-icon>
-      <span class="submit-button">Add {{ provider.Name }} Login</span>
+      <igx-divider [vertical]="true" [inset]="'0 0 0 8px'" [ngClass]="'login-divider'"></igx-divider>
+      <span class="submit-button">Add {{ provider.Name }}</span>
       <igx-icon class="color-success">{{ disableLogin(provider.Name) ? 'done' : '' }}</igx-icon>
     </button>
   </div>
