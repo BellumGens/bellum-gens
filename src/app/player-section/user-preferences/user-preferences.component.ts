@@ -3,7 +3,7 @@ import { UserPreferences, ApplicationUser } from '../../models/applicationuser';
 import { LoginService } from '../../services/login.service';
 import { LoginProvider } from '../../models/login-provider';
 import { BaseComponent } from '../../base/base.component';
-import { LOGIN_ASSETS } from 'src/app/models/misc';
+import { LOGIN_ASSETS } from '../../models/misc';
 
 @Component({
   selector: 'app-user-preferences',
