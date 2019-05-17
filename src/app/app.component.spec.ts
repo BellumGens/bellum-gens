@@ -22,7 +22,8 @@ import { IgxNavigationDrawerModule,
   IgxSliderModule,
   IgxRadioModule,
   IgxTabsModule,
-  IgxSwitchModule} from 'igniteui-angular';
+  IgxSwitchModule,
+  IgxDividerModule} from 'igniteui-angular';
 import { SuccessErrorComponent } from './success-error/success-error.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { TeamNavComponent } from './team-section/team-nav/team-nav.component';
@@ -80,6 +81,7 @@ describe('AppComponent', () => {
         IgxSliderModule,
         IgxRadioModule,
         IgxTabsModule,
+        IgxDividerModule,
         IgxSwitchModule
       ],
       declarations: [

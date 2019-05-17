@@ -11,7 +11,9 @@ import { IgxAvatarModule,
   IgxTabsModule,
   IgxInputGroupModule,
   IgxSwitchModule,
-  IgxProgressBarModule} from 'igniteui-angular';
+  IgxProgressBarModule,
+  IgxDividerModule,
+  IgxButtonModule} from 'igniteui-angular';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { UserPreferencesComponent } from '../player-section/user-preferences/user-preferences.component';
@@ -40,6 +42,8 @@ describe('LoginComponent', () => {
         IgxTabsModule,
         IgxInputGroupModule,
         IgxSwitchModule,
+        IgxDividerModule,
+        IgxButtonModule,
         IgxProgressBarModule
       ],
       declarations: [ LoginComponent, UserPreferencesComponent, ConfirmComponent ]

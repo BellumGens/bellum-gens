@@ -2,7 +2,13 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UserPreferencesComponent } from './user-preferences.component';
 import { FormsModule } from '@angular/forms';
-import { IgxInputGroupModule, IgxSwitchModule, IgxIconModule, IgxDialogModule, IgxRippleModule } from 'igniteui-angular';
+import { IgxInputGroupModule,
+  IgxSwitchModule,
+  IgxIconModule,
+  IgxDialogModule,
+  IgxRippleModule,
+  IgxDividerModule,
+  IgxButtonModule } from 'igniteui-angular';
 import { ConfirmComponent } from 'src/app/confirm/confirm.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -25,6 +31,9 @@ describe('UserPreferencesComponent', () => {
         IgxSwitchModule,
         IgxIconModule,
         IgxDialogModule,
+        IgxDividerModule,
+        IgxButtonModule,
+        IgxDividerModule,
         IgxRippleModule
       ],
       declarations: [ UserPreferencesComponent, ConfirmComponent ]

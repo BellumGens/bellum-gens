@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { LoginService } from '../services/login.service';
+import { LOGIN_ASSETS } from '../models/misc';
 
 @Component({
   selector: 'app-add-steam',
@@ -7,6 +8,8 @@ import { LoginService } from '../services/login.service';
   styleUrls: ['./add-steam.component.css']
 })
 export class AddSteamComponent {
+
+  loginColor = LOGIN_ASSETS['Steam'];
 
   constructor(private authManager: LoginService) { }
 

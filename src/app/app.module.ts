@@ -36,7 +36,8 @@ import { IgxNavbarModule,
   IgxIconService,
   IgxSliderModule,
   IgxSwitchModule,
-  IgxSelectModule} from 'igniteui-angular';
+  IgxSelectModule,
+  IgxDividerModule} from 'igniteui-angular';
 import { PlayersComponent } from './player-section/players/players.component';
 import { PlayerDetailsComponent } from './player-section/player-details/player-details.component';
 import { LoginService } from './services/login.service';
@@ -183,6 +184,7 @@ import { BaseComponent } from './base/base.component';
     IgxProgressBarModule,
     IgxSwitchModule,
     IgxSelectModule,
+    IgxDividerModule,
     RouterModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
@@ -235,6 +237,6 @@ export class AppModule {
     this.iconService.addSvgIcon('headshot', '/assets/headshot24x24.svg', 'weapon-icons');
     this.iconService.addSvgIcon('discord', '/assets/login/discord.svg', 'login-icons');
     this.iconService.addSvgIcon('Twitch', '/assets/login/Glitch_White_RGB.svg', 'login-icons');
-    this.iconService.addSvgIcon('Steam', '/assets/login/Steam_icon_logo.svg', 'login-icons');
+    this.iconService.addSvgIcon('Steam', '/assets/login/steam-logo-white.svg', 'login-icons');
   }
 }
