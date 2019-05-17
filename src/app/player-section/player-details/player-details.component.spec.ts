@@ -15,7 +15,9 @@ import { IgxProgressBarModule,
   IgxSelectModule,
   IgxTabsModule,
   IgxSwitchModule,
-  IgxInputGroupModule} from 'igniteui-angular';
+  IgxInputGroupModule,
+  IgxDividerModule,
+  IgxButtonModule} from 'igniteui-angular';
 import { SteamCustomUrlPipe } from 'src/app/pipes/steam-custom-url.pipe';
 import { PlayerCountryPipe } from 'src/app/pipes/player-country.pipe';
 import { LoginComponent } from 'src/app/login/login.component';
@@ -75,6 +77,8 @@ describe('PlayerDetailsComponent', () => {
         IgxListModule,
         IgxTabsModule,
         IgxSwitchModule,
+        IgxDividerModule,
+        IgxButtonModule,
         IgxInputGroupModule
       ]
     }).compileComponents();

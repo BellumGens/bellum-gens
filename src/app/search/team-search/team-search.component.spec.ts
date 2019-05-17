@@ -13,7 +13,9 @@ import { IgxRadioModule,
   IgxTabsModule,
   IgxInputGroupModule,
   IgxSwitchModule,
-  IgxProgressBarModule} from 'igniteui-angular';
+  IgxProgressBarModule,
+  IgxDividerModule,
+  IgxButtonModule} from 'igniteui-angular';
 import { LoginComponent } from 'src/app/login/login.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -45,6 +47,8 @@ describe('TeamSearchComponent', () => {
         IgxTabsModule,
         IgxInputGroupModule,
         IgxSwitchModule,
+        IgxDividerModule,
+        IgxButtonModule,
         IgxProgressBarModule
       ],
       declarations: [
