@@ -7,7 +7,7 @@
 </div>
 
 <div *ngIf="!loading" class="horizontal">
-  <igx-card *ngFor="let team of teams" igxRipple class="search-result" [routerLink]="['/team', team.TeamId]">
+  <igx-card *ngFor="let team of teams" igxRipple class="search-result" [routerLink]="['/team', team.CustomUrl]">
     <igx-card-header>
       <igx-avatar [src]="team.TeamAvatar" [initials]="team.TeamName" [size]="'medium'" roundShape="true"></igx-avatar>
       <div class="igx-card-header__tgroup">

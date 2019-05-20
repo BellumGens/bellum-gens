@@ -18,7 +18,7 @@ export class TeamPreferencesComponent {
     if (team) {
       this._team = team;
       if (team.SteamGroup) {
-        this.apiService.getSteamMembers(team.TeamId, team.SteamGroup.members).subscribe(data => this.steamMembers = data);
+        this.apiService.getSteamMembers(team.SteamGroup.members).subscribe(data => this.steamMembers = data);
       }
     }
   }

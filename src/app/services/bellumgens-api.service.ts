@@ -229,37 +229,39 @@ export class BellumgensApiService {
   }
 
   public getTeam(teamId: string) {
-    if (!this._currentTeam.value || this._currentTeam.value.TeamId !== teamId) {
+    if (!this._currentTeam.value || (this._currentTeam.value.TeamId !== teamId &&  this._currentTeam.value.CustomUrl !== teamId)) {
       this.checkTeamCache(teamId);
     }
-    if (!this._currentTeam.value || this._currentTeam.value.TeamId !== teamId) {
+    if (!this._currentTeam.value || (this._currentTeam.value.TeamId !== teamId &&  this._currentTeam.value.CustomUrl !== teamId)) {
       this.checkSearchCache(teamId);
     }
-    if (!this._currentTeam.value || this._currentTeam.value.TeamId !== teamId) {
+    if (!this._currentTeam.value || (this._currentTeam.value.TeamId !== teamId &&  this._currentTeam.value.CustomUrl !== teamId)) {
       this.getTeamFromServer(teamId).subscribe(team => this._currentTeam.next(team));
     }
     return this._currentTeam;
   }
 
   private checkTeamCache(teamId) {
-    this._csgoTeams.value.forEach((team) => {
-      if (team.TeamId === teamId) {
+    const teams = this._csgoTeams.value;
+    for (const team of teams) {
+      if (team.CustomUrl === teamId || team.TeamId === teamId) {
         this._currentTeam.next(team);
+        break;
       }
-    });
+    }
   }
 
   private checkSearchCache(teamId) {
     this._searchResultCache.forEach((result) => {
       result.Teams.forEach((team) => {
-        if (team.TeamId === teamId) {
+        if (team.CustomUrl === teamId || team.TeamId === teamId) {
           this._currentTeam.next(team);
         }
       });
     });
     this._teamSearchCache.forEach((result) => {
       result.forEach((team) => {
-        if (team.TeamId === teamId) {
+        if (team.CustomUrl === teamId || team.TeamId === teamId) {
           this._currentTeam.next(team);
         }
       });
@@ -361,8 +363,8 @@ export class BellumgensApiService {
     );
   }
 
-  public getSteamMembers(teamid: string, members: string []): Observable<SteamUserSummary []> {
-    return this.http.get<SteamUserSummary []>(`${this._apiEndpoint}/teams/steammembers?teamId=${teamid}&members=${members}`,
+  public getSteamMembers(members: string []): Observable<SteamUserSummary []> {
+    return this.http.get<SteamUserSummary []>(`${this._apiEndpoint}/teams/steammembers?members=${members}`,
       { withCredentials: true }).pipe(
         map(response => {
           return response;
@@ -375,17 +377,18 @@ export class BellumgensApiService {
   }
 
   public inviteToTeam(steamUser: SteamUser, team: CSGOTeam) {
-    return this.http.post(`${this._apiEndpoint}/teams/invite?userId=${steamUser.steamID64}`, team, { withCredentials: true }).pipe(
-      map(response => {
-        if (response) {
-          this.emitSuccess(`${steamUser.steamID} successfully invited to ${team.TeamName}`);
-        }
-        return response;
-      }),
-      catchError(error => {
-        this.emitError(error.error.Message);
-        return throwError(error);
-      })
+    return this.http.post(`${this._apiEndpoint}/teams/invite`,
+      { userId: steamUser.steamID64, teamId: team.TeamId }, { withCredentials: true }).pipe(
+        map(response => {
+          if (response) {
+            this.emitSuccess(`${steamUser.steamID} successfully invited to ${team.TeamName}`);
+          }
+          return response;
+        }),
+        catchError(error => {
+          this.emitError(error.error.Message);
+          return throwError(error);
+        })
     );
   }
 

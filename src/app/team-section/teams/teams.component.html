@@ -8,7 +8,7 @@
     </div>
   </ng-template>
   <igx-list-item [isHeader]="true">Newest Teams</igx-list-item>
-  <igx-list-item *ngFor="let team of csgoTeams" class="navigatable" [routerLink]="['/team', team.TeamId]">
+  <igx-list-item *ngFor="let team of csgoTeams" class="navigatable" [routerLink]="['/team', team.CustomUrl]">
     <div class="horizontal-center">
       <igx-avatar [src]="team.TeamAvatar" [initials]="team.TeamName" roundShape="true">
       </igx-avatar>
