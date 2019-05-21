@@ -422,6 +422,18 @@ button igx-icon {
   height: 24px;
   background-color: transparent;
 }
+
+.result-chips {
+  padding: 8px 0;
+}
+
+.card-wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-column-gap: 16px;
+  grid-row-gap: 16px;
+  padding-top: 8px;
+}
 /* END SEARCH */
 
 .color-success {
