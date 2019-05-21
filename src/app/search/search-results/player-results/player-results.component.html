@@ -5,12 +5,12 @@
 <div class="margin-bottom">
   <h4 class="igx-card-header__title">Found <span class="highlight">{{players?.length }}</span> results for players{{ query | queryParsed:true }}</h4>
 </div>
-<div *ngIf="!loading" class="horizontal">
-  <igx-card *ngFor="let player of players" igxRipple class="search-result" [routerLink]="['/players', player.steamUser.customURL || player.steamUser.steamID64]">
+<div *ngIf="!loading" class="card-wrapper">
+  <igx-card *ngFor="let player of players" igxRipple [routerLink]="['/players', player.steamUser.customURL || player.steamUser.steamID64]">
     <igx-card-header>
       <div class="horizontal-center">
         <igx-avatar [src]="player.steamUser.avatarMedium" [size]="'medium'" [initials]="player.steamUser.steamID" roundShape="true"></igx-avatar>
-        <div class="igx-card-header__tgroup">
+        <div class="igx-card-header__tgroup title margin-left">
           <h3 class="igx-card-header__title highlight">{{ player.steamUser.steamID }}</h3>
           <h5 class="igx-card-header__subtitle">{{ player.steamUser.realname }}</h5>
         </div>
@@ -33,7 +33,7 @@
     </igx-card-header>
     <igx-card-content>
       <div>Preferred roles</div>
-      <igx-chips-area>
+      <igx-chips-area class="result-chips">
         <igx-chip [selectable]="false">
           <span class='igx-chip__text'>{{ roles[player.primaryRole].Name }}</span>
         </igx-chip>
@@ -42,7 +42,7 @@
         </igx-chip>
       </igx-chips-area>
       <div>Available</div>
-      <igx-chips-area>
+      <igx-chips-area class="result-chips">
         <igx-chip *ngFor="let weekday of player.availability | daysAvailable"
                   [selectable]="false">
           <span class='igx-chip__text'>{{ weekday.Day | weekday }}</span>

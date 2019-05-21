@@ -10,6 +10,7 @@ export interface CSGOTeam {
   Description: string;
   Discord?: string;
   Visible: boolean;
+  CustomUrl?: string;
   Members?: TeamMember [];
   PracticeSchedule?: Availability [];
   SteamGroup?: SteamGroup;

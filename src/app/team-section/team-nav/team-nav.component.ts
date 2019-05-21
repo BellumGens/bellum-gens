@@ -31,7 +31,7 @@ export class TeamNavComponent {
       team => {
         this.createTeam.close();
         this.authUser.teams.push(team);
-        this.router.navigate(['/team', team.TeamId]);
+        this.router.navigate(['/team', team.CustomUrl]);
       }
     );
   }
@@ -41,7 +41,7 @@ export class TeamNavComponent {
       team => {
         this.createTeam.close();
         this.authUser.teams.push(team);
-        this.router.navigate(['/team', team.TeamId]);
+        this.router.navigate(['/team', team.CustomUrl]);
       }
     );
   }

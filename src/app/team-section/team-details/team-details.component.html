@@ -18,12 +18,33 @@
               </span>
             </div>
             <div class="user-in-role" *ngIf="role.user">
-              <igx-avatar *ngIf="role.user" [src]="role.user.SteamUser.avatarFull" [src]="role.user.SteamUser.steamID" roundShape="true" [size]="'large'">
+              <igx-avatar *ngIf="role.user"
+                          [src]="role.user.SteamUser.avatarFull"
+                          [src]="role.user.SteamUser.steamID"
+                          roundShape="true"
+                          [size]="'large'">
               </igx-avatar>
-              <igx-avatar *ngIf="isAdmin" icon='clear' [roundShape]="true" class="country-badge-large" title="Remove from role" (click)="removeFromRole(role)"></igx-avatar>
-              <igx-avatar *ngIf="!isAdmin" [src]="role.user.SteamUser.country | playerCountry" [roundShape]="true" [title]="role.user.SteamUser.country" class="country-badge-large"></igx-avatar>
+              <igx-avatar *ngIf="isAdmin"
+                          icon='clear'
+                          [roundShape]="true"
+                          class="country-badge-large navigatable"
+                          title="Remove from role"
+                          (click)="removeFromRole(role)">
+              </igx-avatar>
+              <igx-avatar *ngIf="!isAdmin && role.user.SteamUser.country"
+                          [src]="role.user.SteamUser.country | playerCountry"
+                          [roundShape]="true"
+                          [title]="role.user.SteamUser.country"
+                          class="country-badge-large">
+              </igx-avatar>
             </div>
-            <igx-avatar *ngIf="!role.user" class="empty-role" icon='add' roundShape="true" [size]="'large'" igxDrop (onDrop)="assignToRole($event, role)">
+            <igx-avatar *ngIf="!role.user"
+                        class="empty-role"
+                        icon='add'
+                        roundShape="true"
+                        [size]="'large'"
+                        igxDrop
+                        (onDrop)="assignToRole($event, role)">
             </igx-avatar>
             <div>
               <span *ngIf="role.user" class="title">
@@ -49,11 +70,21 @@
         <div class="horizontal padding-top">
           <div class="active-inactive-users" *ngFor="let user of activeMembers">
             <div class="user-in-role">
-              <igx-avatar [src]="user.SteamUser.avatarMedium" [initials]="user.SteamUser.steamID" roundShape="true" [size]="'medium'" [igxDrag]="user"
-                  (dragStart)="roleDragging($event)"
-                  (dragEnd)="roleDraggingEnd()">
+              <igx-avatar [src]="user.SteamUser.avatarMedium"
+                          [initials]="user.SteamUser.steamID"
+                          roundShape="true"
+                          [size]="'medium'"
+                          [igxDrag]="user"
+                          (dragStart)="roleDragging($event)"
+                          (dragEnd)="roleDraggingEnd()">
               </igx-avatar>
-              <igx-avatar *ngIf="isAdmin && userId !== user.SteamUser.steamID64" icon='clear' [roundShape]="true" class="country-badge-medium" title="Remove from team" (click)="confirm.open(user)"></igx-avatar>
+              <igx-avatar *ngIf="isAdmin && userId !== user.SteamUser.steamID64"
+                          icon='clear'
+                          [roundShape]="true"
+                          class="country-badge-medium navigatable"
+                          title="Remove from team"
+                          (click)="confirm.open(user)">
+              </igx-avatar>
             </div>
             <span class="title">
               <a [routerLink]="['/players', user.SteamUser.customURL || user.SteamUser.steamID64]">
@@ -76,9 +107,18 @@
         <div class="horizontal padding-top">
           <div class="active-inactive-users" *ngFor="let user of inactiveMembers">
             <div class="user-in-role">
-              <igx-avatar [src]="user.SteamUser.avatarFull" [initials]="user.SteamUser.steamID" roundShape="true" [size]="'large'">
+              <igx-avatar [src]="user.SteamUser.avatarFull"
+                          [initials]="user.SteamUser.steamID"
+                          roundShape="true"
+                          [size]="'large'">
               </igx-avatar>
-              <igx-avatar *ngIf="isAdmin && userId !== user.SteamUser.steamID64" icon='clear' [roundShape]="true" class="country-badge" title="Remove from team" (click)="removeFromTeam(user)"></igx-avatar>
+              <igx-avatar *ngIf="isAdmin && userId !== user.SteamUser.steamID64"
+                          icon='clear'
+                          [roundShape]="true"
+                          class="country-badge"
+                          title="Remove from team"
+                          (click)="removeFromTeam(user)">
+              </igx-avatar>
             </div>
             <span class="title">
               <a [routerLink]="['/players', user.SteamUser.customURL || user.SteamUser.steamID64]">

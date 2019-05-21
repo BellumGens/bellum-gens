@@ -7,7 +7,7 @@
       </igx-avatar>
       <div class="horizontal-info__left">
         <span class="title">
-          You have been invited to join <a [routerLink]="['team', notification.TeamInfo.TeamId]">{{ notification.TeamInfo.TeamName }}</a>
+          You have been invited to join <a [routerLink]="['team', notification.TeamInfo.CustomUrl]">{{ notification.TeamInfo.TeamName }}</a>
         </span>
         <span class="subtitle">{{notification.Sent | date}}</span>
       </div>

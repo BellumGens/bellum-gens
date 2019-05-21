@@ -6,6 +6,7 @@ import { MapPool, ActiveDutyDescriptor, ActiveDuty } from '../../models/csgomaps
 import { IgxDialogComponent, IChipSelectEventArgs } from 'igniteui-angular';
 import { SafeResourceUrl } from '@angular/platform-browser';
 import { BaseComponent } from '../../base/base.component';
+import { CSGOTeam } from '../../models/csgoteam';
 
 @Component({
   selector: 'app-team-strategies',
@@ -16,7 +17,7 @@ export class TeamStrategiesComponent extends BaseComponent {
   teamStrats: TeamStrategy [];
   maps: MapPool [];
   mapList: ActiveDutyDescriptor [] = ActiveDuty;
-  teamId: string;
+  team: CSGOTeam;
   newStrategy: TeamStrategy = newEmptyStrategy();
   sanitizedUrl: SafeResourceUrl;
   videoId: string;
@@ -41,11 +42,12 @@ export class TeamStrategiesComponent extends BaseComponent {
               private apiService: BellumgensApiService) {
     super();
     this.subs.push(this.activatedRoute.params.subscribe(params => {
-      this.teamId = params['teamid'];
+      const teamId = params['teamid'];
 
-      if (this.teamId) {
-        this.apiService.getTeamStrats(this.teamId).subscribe(strats => this.teamStrats = strats);
-        this.apiService.getTeamMapPool(this.teamId).subscribe(maps => this.maps = maps);
+      if (teamId) {
+        this.apiService.getTeam(teamId).subscribe(team => this.team = team);
+        this.apiService.getTeamStrats(teamId).subscribe(strats => this.teamStrats = strats);
+        this.apiService.getTeamMapPool(teamId).subscribe(maps => this.maps = maps);
       }
     }));
   }
@@ -78,7 +80,7 @@ export class TeamStrategiesComponent extends BaseComponent {
   }
 
   public submitStrategy() {
-    this.newStrategy.TeamId = this.teamId;
+    this.newStrategy.TeamId = this.team.TeamId;
     this.apiService.submitStrategy(this.newStrategy).subscribe(
       strat => {
         if (!this.newStrategy.Id) {
@@ -147,7 +149,7 @@ export class TeamStrategiesComponent extends BaseComponent {
   }
 
   public createAndRedirect() {
-    this.newStrategy.TeamId = this.teamId;
-    this.apiService.submitStrategy(this.newStrategy).subscribe(strat => this.router.navigate(['team', this.teamId, strat.Id]));
+    this.newStrategy.TeamId = this.team.TeamId;
+    this.apiService.submitStrategy(this.newStrategy).subscribe(strat => this.router.navigate(['team', this.team.CustomUrl, strat.Id]));
   }
 }

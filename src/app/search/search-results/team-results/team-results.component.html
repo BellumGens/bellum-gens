@@ -6,24 +6,26 @@
   <h4 class="igx-card-header__title margin-bottom">Found <span class="highlight">{{teams?.length }}</span> results for teams{{ query | queryParsed }}</h4>
 </div>
 
-<div *ngIf="!loading" class="horizontal">
-  <igx-card *ngFor="let team of teams" igxRipple class="search-result" [routerLink]="['/team', team.TeamId]">
+<div *ngIf="!loading" class="card-wrapper">
+  <igx-card *ngFor="let team of teams" igxRipple [routerLink]="['/team', team.CustomUrl]">
     <igx-card-header>
-      <igx-avatar [src]="team.TeamAvatar" [initials]="team.TeamName" [size]="'medium'" roundShape="true"></igx-avatar>
-      <div class="igx-card-header__tgroup">
-        <h3 class="igx-card-header__title highlight">{{ team.TeamName }}</h3>
+      <div class="horizontal-center">
+        <igx-avatar [src]="team.TeamAvatar" [initials]="team.TeamName" [size]="'medium'" roundShape="true"></igx-avatar>
+        <div class="igx-card-header__tgroup title margin-left">
+          <h3 class="igx-card-header__title highlight">{{ team.TeamName }}</h3>
+        </div>
       </div>
     </igx-card-header>
     <igx-card-content>
       <div>Open positions in the active line-up</div>
-      <igx-chips-area>
+      <igx-chips-area class="result-chips">
         <igx-chip *ngFor="let role of team.Members | openPositions"
                   [selectable]="false">
           <span class='igx-chip__text'>{{ role.roleName }}</span>
         </igx-chip>
       </igx-chips-area>
       <div>Practice days</div>
-      <igx-chips-area>
+      <igx-chips-area class="result-chips">
         <igx-chip *ngFor="let weekday of team.PracticeSchedule | daysAvailable"
                   [selectable]="false">
           <span class='igx-chip__text'>{{ weekday.Day | weekday }}</span>
