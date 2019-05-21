@@ -6,7 +6,7 @@ import { MapPool, ActiveDutyDescriptor, ActiveDuty } from '../../models/csgomaps
 import { IgxDialogComponent, IChipSelectEventArgs } from 'igniteui-angular';
 import { SafeResourceUrl } from '@angular/platform-browser';
 import { BaseComponent } from '../../base/base.component';
-import { CSGOTeam } from 'src/app/models/csgoteam';
+import { CSGOTeam } from '../../models/csgoteam';
 
 @Component({
   selector: 'app-team-strategies',
