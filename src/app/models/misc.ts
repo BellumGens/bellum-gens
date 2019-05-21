@@ -1,4 +1,4 @@
 export const LOGIN_ASSETS = {
-  Steam: '#1b2838',
+  Steam: '#101821',
   Twitch: '#6441a5'
 };
