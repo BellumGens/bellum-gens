@@ -123,11 +123,6 @@ $circular-progress-bar-theme: igx-progress-circular-theme($progress-circle-color
 @include igx-css-vars($circular-progress-bar-theme);
 /* END Progress Circular */
 
-/* Progress Linear */
-// $linear-progress-bar-theme: igx-progress-linear-theme($track-color: $secondary);
-// @include igx-css-vars($linear-progress-bar-theme);
-/* END Progress Linear */
-
 /* Expansion Panel */
 $expansion-panel-theme: igx-expansion-panel-theme($header-background: $background, $header-focus-background: $background, $body-background: $background);
 @include igx-css-vars($expansion-panel-theme);
@@ -235,6 +230,12 @@ igx-tab-item igx-icon {
   height: 66px;
 }
 
+.loading-indicator-small {
+  position: relative;
+  margin-right: 8px;
+  width: 24px;
+  height: 24px;
+}
 
 .loading-overview {
   display: flex;

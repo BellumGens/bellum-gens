@@ -77,7 +77,13 @@
       </igx-buttongroup>
     </div>
     <div class="editor-elements-section">
-      <button igxButton="raised" igxRipple (click)="saveStrat()">Save</button>
+      <button igxButton="raised" igxRipple (click)="saveStrat()" [disabled]="saveInProgress">
+        <igx-circular-bar *ngIf="saveInProgress"
+                          [indeterminate]="true"
+                          class="loading-indicator-small">
+        </igx-circular-bar>
+        {{ saveInProgress ? 'Saving' : 'Save' }}
+      </button>
     </div>
     <div class="editor-credits">
       <div>All radars created with <a class="navigatable" href="http://simpleradar.com/" target="_blank" rel="noopener">simple radar</a></div>

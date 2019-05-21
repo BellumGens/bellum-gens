@@ -25,6 +25,7 @@ export class StrategyEditorComponent extends BaseComponent implements OnInit {
   public brushSelected = false;
   public colors = Object.assign([], EditorBrushColors);
   public selectedColor = this.colors[0];
+  public saveInProgress = false;
 
   private _activeMap: ActiveDutyDescriptor;
   private _drag = false;
@@ -108,11 +109,17 @@ export class StrategyEditorComponent extends BaseComponent implements OnInit {
   }
 
   public saveStrat() {
+    this.saveInProgress = true;
     this.editor.deselectAll();
+    this.deselectBrush();
     this.newStrategy.Image = this.canvas.nativeElement.toDataURL('image/png');
     this.newStrategy.EditorMetadata = JSON.stringify(this.layers,
-                    ['name', 'displayRatio', 'x', 'y', 'width', 'height', 'src', 'circle', 'paths', 'points', 'color', 'type']);
-    this.apiService.submitStrategy(this.newStrategy).subscribe();
+        ['name', 'displayRatio', 'x', 'y', 'width', 'height', 'src', 'circle', 'paths', 'points', 'color', 'type']);
+    this.apiService.submitStrategy(this.newStrategy).subscribe(
+      _ => this.noop,
+      _ => this.noop,
+      () => this.saveInProgress = false
+    );
   }
 
   public canvasPointerDown(event: PointerEvent) {
@@ -173,5 +180,8 @@ export class StrategyEditorComponent extends BaseComponent implements OnInit {
     color.selected = true;
     this.selectedColor = color;
     this._drawLayer = null;
+  }
+
+  private noop() {
   }
 }
