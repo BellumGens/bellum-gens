@@ -12,8 +12,12 @@
         <span class="subtitle">{{notification.Sent | date}}</span>
       </div>
       <div class="horizontal-info__right" *ngIf="notification.State | disabledNotifications:true">
-        <button igxButton="flat" igxRipple (click)="acceptInvitation(notification, $event)">Accept</button>
-        <button igxButton="flat" igxRipple (click)="rejectInvitation(notification, $event)">Reject</button>
+        <button igxButton="flat" igxRipple [disabled]="actionInProgress" (click)="acceptInvitation(notification)">
+          {{actionInProgress ? actionText : 'Accept'}}
+        </button>
+        <button igxButton="flat" igxRipple [disabled]="actionInProgress" (click)="rejectInvitation(notification)">
+          {{actionInProgress ? actionText : 'Reject'}}
+        </button>
       </div>
       <div class="horizontal-info__right" *ngIf="notification.State | disabledNotifications">
         <button igxButton="flat" igxRipple [disabled]="true">{{ notification.State | notificationState }}</button>

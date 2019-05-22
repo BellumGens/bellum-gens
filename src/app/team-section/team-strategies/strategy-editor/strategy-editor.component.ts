@@ -9,6 +9,7 @@ import { StratUtilities, EditorBrushColors } from '../../../models/strat-editor/
 import { TeamStrategy } from '../../../models/csgoteamstrategy';
 import { BaseLayer, PointCoordinate, ImageLayer, FreeflowLayer } from '../../../models/strat-editor/editor-layer';
 import { BaseComponent } from '../../../base/base.component';
+import { noop } from 'rxjs';
 
 @Component({
   selector: 'app-strategy-editor',
@@ -116,8 +117,8 @@ export class StrategyEditorComponent extends BaseComponent implements OnInit {
     this.newStrategy.EditorMetadata = JSON.stringify(this.layers,
         ['name', 'displayRatio', 'x', 'y', 'width', 'height', 'src', 'circle', 'paths', 'points', 'color', 'type']);
     this.apiService.submitStrategy(this.newStrategy).subscribe(
-      _ => this.noop,
-      _ => this.noop,
+      _ => noop,
+      _ => noop,
       () => this.saveInProgress = false
     );
   }
@@ -180,8 +181,5 @@ export class StrategyEditorComponent extends BaseComponent implements OnInit {
     color.selected = true;
     this.selectedColor = color;
     this._drawLayer = null;
-  }
-
-  private noop() {
   }
 }

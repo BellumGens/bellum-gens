@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angu
 import { IgxListComponent } from 'igniteui-angular';
 import { TeamApplication, CSGOTeam } from '../../models/csgoteam';
 import { BellumgensApiService } from '../../services/bellumgens-api.service';
+import { noop } from 'rxjs';
 
 @Component({
   selector: 'app-team-notifications',
@@ -12,6 +13,8 @@ export class TeamNotificationsComponent implements OnInit {
   notificationClass = ['', '', 'notification-disabled', 'notification-disabled'];
   applications: TeamApplication [];
   public pipeTrigger = 0;
+  public actionInProgress = false;
+  public actionText = '';
 
   @Input()
   team: CSGOTeam;
@@ -36,30 +39,27 @@ export class TeamNotificationsComponent implements OnInit {
     }
   }
 
-  public approveApplication(application: TeamApplication, event: Event) {
-    const button = (<HTMLButtonElement>event.target);
-    button.textContent = 'Approving';
+  public approveApplication(application: TeamApplication) {
+    this.actionText = 'Approving...';
+    this.actionInProgress = true;
     this.apiService.approveApplication(application).subscribe(data => {
       application = data;
       this.pipeTrigger++;
       this.changed.emit(-1);
     },
-    _ => {
-      button.textContent = 'Approve';
-      button.disabled = false;
-    });
+    _ => noop,
+    () => this.actionInProgress = false);
   }
 
-  public rejectApplication(application: TeamApplication, event: Event) {
-    const button = (<HTMLButtonElement>event.target);
-    button.textContent = 'Rejecting';
+  public rejectApplication(application: TeamApplication) {
+    this.actionText = 'Rejecting...';
+    this.actionInProgress = true;
     this.apiService.rejectApplication(application).subscribe(data => {
       application = data;
       this.pipeTrigger++;
       this.changed.emit(-1);
     },
-    _ => {
-      button.textContent = 'Reject';
-    });
+    _ => noop,
+    () => this.actionInProgress = false);
   }
 }
