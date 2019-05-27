@@ -4,7 +4,7 @@
   <div class="editor-elements">
     <igx-select *ngIf="newStrategy" class="editor-elements-section" id="mapSelector" name="mapSelector" [(ngModel)]="newStrategy.Map" (ngModelChange)="changeMap($event)">
       <label for="mapSelector" igxLabel>Map</label>
-      <igx-select-item *ngFor="let map of maps" [value]="map.id">
+      <igx-select-item *ngFor="let map of maps" [disabled]="map.disabled" [value]="map.id">
         {{ map.map }}
       </igx-select-item>
     </igx-select>
@@ -13,7 +13,7 @@
         <igx-list [displayDensity]="'compact'">
           <igx-list-item *ngFor="let layer of layers">
             <div class="layer-info">
-              <igx-checkbox class="layer-selected" (change)="deselectBrush()" [(ngModel)]="layer.selected"></igx-checkbox>
+              <igx-checkbox class="layer-selected" [disabled]="!layer.movable" (change)="deselectBrush()" [(ngModel)]="layer.selected"></igx-checkbox>
               <igx-input-group [ngClass]="layer.hidden ? 'hidden-layer' : ''" [displayDensity]="'compact'">
                 <igx-prefix>
                   <igx-icon (click)="layer.hidden = !layer.hidden">{{ layer.hidden ? 'visibility' : 'visibility_off'}}</igx-icon>

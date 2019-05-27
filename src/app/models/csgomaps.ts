@@ -10,6 +10,7 @@ export interface ActiveDutyDescriptor {
   map: string;
   image: string;
   active: boolean;
+  disabled: boolean;
   radar?: string [];
 }
 
@@ -30,44 +31,51 @@ export const ActiveDuty: ActiveDutyDescriptor [] = [{
     map: 'Cache',
     image: 'assets/csgo_maps/de_cache.jpg',
     radar: ['assets/csgo_map_radars/de_cache_radar.png'],
-    active: false
+    active: false,
+    disabled: false
   }, {
     id: CSGOMap.Dust2,
     map: 'Dust 2',
     image: 'assets/csgo_maps/de_dust2.jpg',
     radar: ['assets/csgo_map_radars/de_dust2_radar.png'],
-    active: true
+    active: true,
+    disabled: false
   }, {
     id: CSGOMap.Inferno,
     map: 'Inferno',
     image: 'assets/csgo_maps/de_inferno.jpg',
     radar: ['assets/csgo_map_radars/de_inferno_radar.png'],
-    active: true
+    active: true,
+    disabled: false
   }, {
     id: CSGOMap.Mirage,
     map: 'Mirage',
     image: 'assets/csgo_maps/de_mirage.jpg',
     radar: ['assets/csgo_map_radars/de_mirage_radar.png'],
-    active: true
+    active: true,
+    disabled: false
   }, {
     id: CSGOMap.Nuke,
     map: 'Nuke',
     image: 'assets/csgo_maps/de_nuke.jpg',
-    radar: ['assets/csgo_map_radars/de_nuke_radar.png', 'assets/csgo_map_radars/de_nuke_lower_radar.png'],
-    active: true
+    radar: ['assets/csgo_map_radars/de_nuke_combined.png'],
+    active: true,
+    disabled: false
   }, {
     id: CSGOMap.Overpass,
     map: 'Overpass',
     image: 'assets/csgo_maps/de_overpass.jpg',
     radar: ['assets/csgo_map_radars/de_overpass_radar.png'],
-    active: true
+    active: true,
+    disabled: false
   }, {
     id: CSGOMap.Train,
     map: 'Train',
     image: 'assets/csgo_maps/de_train.jpg',
     radar: ['assets/csgo_map_radars/de_train_radar.png'],
-    active: true
+    active: true,
+    disabled: false
   },
-  { id: CSGOMap.Vertigo, map: 'Vertigo', image: 'assets/csgo_maps/de_vertigo.jpg', active: true },
-  { id: CSGOMap.Cobblestone, map: 'Cobblestone', image: 'assets/csgo_maps/de_cbble.jpg', active: false }
+  { id: CSGOMap.Vertigo, map: 'Vertigo', image: 'assets/csgo_maps/de_vertigo.jpg', active: true, disabled: true },
+  { id: CSGOMap.Cobblestone, map: 'Cobblestone', image: 'assets/csgo_maps/de_cbble.jpg', active: false, disabled: true }
 ];
