@@ -12,6 +12,7 @@ export interface EditorLayer {
   src?: string;
   paths?: FreeflowPath [];
   color?: string;
+  movable?: boolean;
 }
 
 export interface PointCoordinate {
@@ -39,6 +40,7 @@ export abstract class BaseLayer {
   protected _originalDR: number;
   public selectedBorderColor = '#939393';
   public selectedBorderWidth = 1;
+  public movable: boolean;
   public type: EditorLayerType;
 
   public name: string;
@@ -76,6 +78,7 @@ export abstract class BaseLayer {
     this.y = meta ? meta.y : 0;
     this.width = meta ? meta.width : 0;
     this.height = meta ? meta.height : 0;
+    this.movable = meta ? meta.movable : true;
     this._originalDR = meta ? meta.displayRatio : 0;
     this.displayRatio = displayRatio;
     if (this._originalDR && this._originalDR !== this.displayRatio) {
@@ -183,6 +186,7 @@ export class FreeflowLayer extends BaseLayer {
     this.paths = meta ? meta.paths : [];
     this.color = meta ? meta.color : 'red';
     this.type = EditorLayerType.Freeflow;
+    this.movable = false;
     if (this._originalDR && this.displayRatio !== this._originalDR) {
       this.paths.forEach((path) => {
         path.points.forEach((point) => {

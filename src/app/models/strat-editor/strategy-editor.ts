@@ -24,6 +24,11 @@ export class StrategyEditor {
     this.surfaceName = name ? name : this.generateId();
   }
 
+  public save(): string {
+    return JSON.stringify(this.layers,
+      ['name', 'displayRatio', 'x', 'y', 'width', 'height', 'src', 'circle', 'paths', 'points', 'color', 'type', 'movable']);
+  }
+
   public restore(metadata: string) {
     const layersMeta: EditorLayer [] = JSON.parse(metadata);
     this._layers.forEach((layer) => {
@@ -52,7 +57,7 @@ export class StrategyEditor {
   }
 
   public moveSelected(coords: PointCoordinate) {
-    if (this._selectedLayer) {
+    if (this._selectedLayer && this._selectedLayer.movable) {
       this._selectedLayer.x += coords.x;
       this._selectedLayer.y += coords.y;
       this.flip();

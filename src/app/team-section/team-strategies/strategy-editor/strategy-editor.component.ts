@@ -47,6 +47,7 @@ export class StrategyEditorComponent extends BaseComponent implements OnInit {
       layer.src = this._activeMap.radar[0];
       layer.width = 1024;
       layer.height = 1024;
+      layer.movable = false;
       this.editor.replaceLayer(0, layer);
     }
   }
@@ -114,8 +115,7 @@ export class StrategyEditorComponent extends BaseComponent implements OnInit {
     this.editor.deselectAll();
     this.deselectBrush();
     this.newStrategy.Image = this.canvas.nativeElement.toDataURL('image/png');
-    this.newStrategy.EditorMetadata = JSON.stringify(this.layers,
-        ['name', 'displayRatio', 'x', 'y', 'width', 'height', 'src', 'circle', 'paths', 'points', 'color', 'type']);
+    this.newStrategy.EditorMetadata = this.editor.save();
     this.apiService.submitStrategy(this.newStrategy).subscribe(
       _ => noop,
       _ => noop,
