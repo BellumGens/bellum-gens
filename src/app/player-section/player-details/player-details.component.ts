@@ -49,7 +49,9 @@ export class PlayerDetailsComponent extends BaseComponent {
           player => {
             if (player) {
               this.player = player;
-              this.title.setTitle('CS:GO Player: ' + player.steamUser.steamID);
+              if (!player.steamUserException) {
+                this.title.setTitle('CS:GO Player: ' + player.steamUser.steamID);
+              }
             }
           }
         );
