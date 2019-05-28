@@ -17,9 +17,7 @@
   <div class="card-wrapper">
     <igx-card type="outlined" *ngFor="let strat of teamStrats | activeDutyMaps:viewAll:pipeTrigger | sidestrats:maps">
       <igx-card-header>
-        <div>
-          <h4 class="igx-card-header__title">{{ strat.Title }}</h4>
-        </div>
+        <h4 class="igx-card-header__title">{{ strat.Title }}</h4>
       </igx-card-header>
       <igx-card-media>
         <iframe class="video-frame" *ngIf="isVideo(strat.Url)" [src]="strat.Url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -38,6 +36,20 @@
           Edit
         </button>
       </igx-card-actions>
+    </igx-card>
+    <igx-card *ngIf="!(teamStrats | activeDutyMaps:viewAll:pipeTrigger | sidestrats:maps)?.length">
+        <igx-card-header class="empty-strategy">
+          <h4 class="igx-card-header__title">No strategies found</h4>
+        </igx-card-header>
+        <igx-card-content *ngIf="isEditor" class="empty-strategy empty-strategy-content">
+            <igx-avatar icon="add"
+                        class="navigatable"
+                        roundShape="true"
+                        [size]="'large'"
+                        (click)="openNewStrategy($event)">
+            </igx-avatar>
+            <p class="highlight navigatable" (click)="openNewStrategy($event)">Create strategy</p>
+        </igx-card-content>
     </igx-card>
   </div>
 </div>
@@ -81,7 +93,7 @@
       <igx-list-item>
         <igx-select id="mapSelector" name="mapSelector" [(ngModel)]="newStrategy.Map">
           <label for="mapSelector" igxLabel>Map</label>
-          <igx-select-item *ngFor="let map of mapList" [value]="map.id">
+          <igx-select-item *ngFor="let map of mapList" (click)="selectedMap = map" [value]="map.id">
             {{ map.map }}
           </igx-select-item>
         </igx-select>
@@ -99,7 +111,7 @@
             </igx-suffix>
           </igx-input-group>
           <span class="separate">OR</span>
-          <button type="button" igxButton="flat" class="strat-editor-button" (click)="createAndRedirect()">Strat Editor</button>
+          <button type="button" igxButton="flat" class="strat-editor-button" [disabled]="selectedMap.disabled" (click)="createAndRedirect()">Strat Editor</button>
         </div>
       </igx-list-item>
       <igx-list-item *ngIf="getVideoEmbedLink()">

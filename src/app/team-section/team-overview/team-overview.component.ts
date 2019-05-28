@@ -5,6 +5,7 @@ import { CSGOTeam, TEAM_PLACEHOLDER } from '../../models/csgoteam';
 import { BellumgensApiService } from '../../services/bellumgens-api.service';
 import { LoginService } from '../../services/login.service';
 import { BaseComponent } from '../../base/base.component';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-team-overview',
@@ -21,7 +22,8 @@ export class TeamOverviewComponent extends BaseComponent {
 
   constructor(private activatedRoute: ActivatedRoute,
               private apiService: BellumgensApiService,
-              private authManager: LoginService) {
+              private authManager: LoginService,
+              private title: Title) {
     super();
     this.subs.push(this.authManager.applicationUser.subscribe((data: ApplicationUser) => {
       this.authUser = data;
@@ -30,9 +32,12 @@ export class TeamOverviewComponent extends BaseComponent {
     this.subs.push(this.activatedRoute.params.subscribe(params => {
       const teamId = params['teamid'];
 
-      if (teamId !== '0') {
+      if (teamId) {
         this.apiService.getTeam(teamId).subscribe(team => {
-          this.team = team;
+          if (team) {
+            this.team = team;
+            this.title.setTitle('CS:GO Team: ' + team.TeamName);
+          }
         });
       }
     }));

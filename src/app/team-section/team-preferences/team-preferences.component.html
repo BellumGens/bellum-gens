@@ -58,7 +58,7 @@
         Team Members
       </igx-list-item>
       <igx-list-item *ngFor="let user of team.Members; let i = index">
-        <div class="horizontal-center" *ngIf="user.SteamUser.steamID64 !== adminId">
+        <div class="horizontal-center" *ngIf="user.SteamUser?.steamID64 !== adminId">
           <igx-avatar [src]="user.SteamUser.avatarIcon" [initials]="user.SteamUser.steamID" roundShape="true">
           </igx-avatar>
           <igx-avatar [src]="user.SteamUser.country | playerCountry" [roundShape]="true" [title]="user.SteamUser.country" class="country-badge-small"></igx-avatar>

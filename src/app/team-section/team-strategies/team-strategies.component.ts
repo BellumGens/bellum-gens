@@ -25,6 +25,7 @@ export class TeamStrategiesComponent extends BaseComponent {
   changes = false;
   viewAll = false;
   selectedStrat: TeamStrategy;
+  selectedMap = this.mapList[0];
 
   @Input()
   isAdmin = false;
