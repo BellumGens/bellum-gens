@@ -31,3 +31,14 @@
 .separate {
   padding: 0 32px;
 }
+
+.empty-strategy {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
+.empty-strategy.empty-strategy-content {
+  min-height: 200px;
+  justify-content: space-evenly;
+}

@@ -240,5 +240,6 @@ export class AppModule {
     this.iconService.addSvgIcon('Steam', '/assets/login/steam-logo-white.svg', 'login-icons');
     this.iconService.addSvgIcon('Facebook', '/assets/fb.svg', 'login-icons');
     this.iconService.addSvgIcon('Twitter', '/assets/twitter.svg', 'login-icons');
+    this.iconService.addSvgIcon('SimpleRadar', '/assets/simple_radar.svg', 'login-icons');
   }
 }

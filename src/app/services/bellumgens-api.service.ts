@@ -399,6 +399,10 @@ export class BellumgensApiService {
       map(response => {
         if (response) {
           this.emitSuccess(`You're are no longer part of ${team.TeamName}`);
+          if (response['removed']) {
+            this._csgoTeams.value.splice(this._csgoTeams.value.indexOf(team), 1);
+            this._csgoTeams.next(this._csgoTeams.value);
+          }
         }
         return response;
       }),
