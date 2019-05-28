@@ -11,7 +11,8 @@ import { IgxIconModule,
   IgxCheckboxModule,
   IgxChipsModule,
   IgxTimePickerModule,
-  IgxSelectModule} from 'igniteui-angular';
+  IgxSelectModule,
+  IgxAvatarModule} from 'igniteui-angular';
 import { MapPoolComponent } from 'src/app/map-pool/map-pool.component';
 import { SafeVideoLinkPipe } from 'src/app/pipes/safe-video-link.pipe';
 import { FormsModule } from '@angular/forms';
@@ -38,6 +39,7 @@ describe('TeamStrategiesComponent', () => {
         NoopAnimationsModule,
         HttpClientTestingModule,
         IgxIconModule,
+        IgxAvatarModule,
         IgxCardModule,
         IgxListModule,
         IgxInputGroupModule,
