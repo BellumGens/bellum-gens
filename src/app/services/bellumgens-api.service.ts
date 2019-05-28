@@ -37,7 +37,8 @@ export class BellumgensApiService {
   // Cache
   private _currentStrategy = new BehaviorSubject<TeamStrategy>(null);
   private _currentTeam = new BehaviorSubject<CSGOTeam>(null);
-  private _players: ReplaySubject<CSGOPlayer []>;
+  private _players = new BehaviorSubject<CSGOPlayer []>([]);
+  private _currentPlayer = new BehaviorSubject<CSGOPlayer>(null);
   private _csgoTeams = new BehaviorSubject<CSGOTeam []>([]);
   private _teamApplications = new Map<string, Observable<TeamApplication[]>>();
   private _searchResultCache: Map<string, SearchResult> = new Map();
@@ -47,9 +48,8 @@ export class BellumgensApiService {
   constructor(private http: HttpClient) { }
 
   public get players() {
-    if (!this._players) {
+    if (!this._players.value.length) {
       this.loadingPlayers.next(true);
-      this._players = new ReplaySubject<CSGOPlayer []>(1);
       this.getPlayers().subscribe(
         players => {
           this._players.next(players);
@@ -233,7 +233,7 @@ export class BellumgensApiService {
       this.checkTeamCache(teamId);
     }
     if (!this._currentTeam.value || (this._currentTeam.value.TeamId !== teamId &&  this._currentTeam.value.CustomUrl !== teamId)) {
-      this.checkSearchCache(teamId);
+      this.checkSearchCacheForTeam(teamId);
     }
     if (!this._currentTeam.value || (this._currentTeam.value.TeamId !== teamId &&  this._currentTeam.value.CustomUrl !== teamId)) {
       this.getTeamFromServer(teamId).subscribe(team => this._currentTeam.next(team));
@@ -251,21 +251,67 @@ export class BellumgensApiService {
     }
   }
 
-  private checkSearchCache(teamId) {
+  private checkPlayerCache(userId) {
+    const players = this._players.value;
+    for (const player of players) {
+      if (player.steamUser.customURL === userId || player.steamUser.steamID64 === userId) {
+        this._currentPlayer.next(player);
+        break;
+      }
+    }
+  }
+
+  private checkSearchCacheForTeam(teamId) {
+    let found = false;
     this._searchResultCache.forEach((result) => {
       result.Teams.forEach((team) => {
-        if (team.CustomUrl === teamId || team.TeamId === teamId) {
-          this._currentTeam.next(team);
+        if (!found) {
+          if (team.CustomUrl === teamId || team.TeamId === teamId) {
+            this._currentTeam.next(team);
+            found = true;
+          }
         }
       });
     });
-    this._teamSearchCache.forEach((result) => {
-      result.forEach((team) => {
-        if (team.CustomUrl === teamId || team.TeamId === teamId) {
-          this._currentTeam.next(team);
+    if (!found) {
+      this._teamSearchCache.forEach((result) => {
+        result.forEach((team) => {
+          if (!found) {
+            if (team.CustomUrl === teamId || team.TeamId === teamId) {
+              this._currentTeam.next(team);
+              found = true;
+            }
+          }
+        });
+      });
+    }
+  }
+
+  private checkSearchCacheForPlayer(userId) {
+    let found = false;
+    this._searchResultCache.forEach((result) => {
+      result.Players.forEach((player) => {
+        if (!found) {
+          if (player.steamUser.customURL === userId || player.steamUser.steamID64 === userId) {
+            this._currentPlayer.next(player);
+            found = true;
+          }
         }
       });
     });
+    if (!found) {
+      this._playerSearchCache.forEach((result) => {
+        result.forEach((player) => {
+          if (!found) {
+            if (player.steamUser.customURL === userId || player.steamUser.steamID64 === userId) {
+              this._currentPlayer.next(player);
+              found = true;
+            }
+          }
+        });
+      });
+
+    }
   }
 
   private getTeamFromServer(teamId: string) {
@@ -506,7 +552,25 @@ export class BellumgensApiService {
     );
   }
 
-  public getPlayer(userId: string): Observable<CSGOPlayer> {
+  public getPlayer(userId: string) {
+    if (!this.playerMatch(userId)) {
+      this.checkPlayerCache(userId);
+    }
+    if (!this.playerMatch(userId)) {
+      this.checkSearchCacheForPlayer(userId);
+    }
+    if (!this.playerMatch(userId)) {
+      this.getPlayerFromServer(userId).subscribe(player => this._currentPlayer.next(player));
+    }
+    return this._currentPlayer;
+  }
+
+  private playerMatch(userId: string) {
+    return this._currentPlayer.value &&
+      (this._currentPlayer.value.steamUser.customURL === userId ||  this._currentPlayer.value.steamUser.steamID64 === userId);
+  }
+
+  public getPlayerFromServer(userId: string) {
     return this.http.get<CSGOPlayer>(`${this._apiEndpoint}/users/user?userid=${userId}`).pipe(
       map(response => {
         if (response.userStatsException) {

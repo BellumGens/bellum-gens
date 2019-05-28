@@ -13,6 +13,7 @@ import { CSGOTeam } from '../../models/csgoteam';
 import { MapPool } from '../../models/csgomaps';
 import { ALL_ROLES } from '../../models/playerrole';
 import { BaseComponent } from '../../base/base.component';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-player-details',
@@ -34,7 +35,8 @@ export class PlayerDetailsComponent extends BaseComponent {
 
   constructor(private authManager: LoginService,
               private apiService: BellumgensApiService,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private title: Title) {
     super();
     this.subs.push(this.authManager.applicationUser.subscribe((data: ApplicationUser) => {
       this.authUser = data;
@@ -42,10 +44,13 @@ export class PlayerDetailsComponent extends BaseComponent {
     this.subs.push(this.activatedRoute.params.subscribe(params => {
       const userid = params['userid'];
       this.newUser = params['newuser'];
-      if (userid !== '0') {
+      if (userid) {
         this.apiService.getPlayer(userid).subscribe(
-          data => {
-            this.player = data;
+          player => {
+            if (player) {
+              this.player = player;
+              this.title.setTitle('CS:GO Player: ' + player.steamUser.steamID);
+            }
           }
         );
       }

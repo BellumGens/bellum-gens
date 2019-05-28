@@ -3,6 +3,7 @@ import { LoginService } from '../services/login.service';
 import { ApplicationUser } from '../models/applicationuser';
 import { Router } from '@angular/router';
 import { BaseComponent } from '../base/base.component';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-home',
@@ -12,8 +13,9 @@ import { BaseComponent } from '../base/base.component';
 export class HomeComponent extends BaseComponent {
   authUser: ApplicationUser;
 
-  constructor(private authManager: LoginService, private router: Router) {
+  constructor(private authManager: LoginService, private router: Router, private title: Title) {
     super();
+    this.title.setTitle('Bellum Gens: CS:GO team management');
     this.subs.push(this.authManager.applicationUser.subscribe(data => this.authUser = data));
   }
 
