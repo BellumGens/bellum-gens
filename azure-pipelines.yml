@@ -22,10 +22,10 @@ steps:
   displayName: run lint
 
 - script: npm run test:prod
-  displayName: test
+  displayName: run test
 
 - script: npm run build:app-shell
-  displayName: 'build'
+  displayName: build app shell
 
 # Publish Build Artifacts to Azure Pipelines
 - task: PublishBuildArtifacts@1
