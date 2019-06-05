@@ -15,26 +15,26 @@
           <igx-radio [(ngModel)]="userOverlap" name="userOverlap" [value]="1">Team practice</igx-radio>
         </igx-radio-group>
       </div>
-
-      <button type="button" *ngIf="userOverlap" igxButton="flat" igxRipple [igxToggleAction]="teamSelect">
-        {{teamName}}
-        <igx-icon fontSet="material" class="drop-down-arrow">arrow_drop_down</igx-icon>
-      </button>
-      <igx-drop-down (onSelection)="selectTeam($event)" #teamSelect>
-        <igx-drop-down-item class="team-invites" [value]="team" *ngFor="let team of authUser?.teamAdmin">
+      <igx-select *ngIf="userOverlap" name="teamOverlap" [(ngModel)]="searchModel.teamId" id="team-select">
+        <label for="team-select" igxLabel>Select team</label>
+        <igx-select-item *ngFor="let team of authUser?.teamAdmin"
+                         [value]="team.TeamId">       
           <igx-avatar [src]="team.TeamAvatar" [initials]="team.TeamName" roundShape="true">
           </igx-avatar>
           <span class="title margin-left">
             {{ team.TeamName }}
           </span>
-        </igx-drop-down-item>
-      </igx-drop-down>
+        </igx-select-item>
+      </igx-select>
     </div>
 
     <div class="slider-holder" *ngIf="authUser">
       <label for="overlap">Minimum overlap of</label>
-      <igx-slider #overlap name="scheduleOverlap" [minValue]="0" [maxValue]="60" [(ngModel)]="searchModel.scheduleOverlap">
-  
+      <igx-slider #overlap
+                  name="scheduleOverlap"
+                  [minValue]="0"
+                  [maxValue]="60"
+                  [(ngModel)]="searchModel.scheduleOverlap">
       </igx-slider>
       <label>Hours availability</label>
     </div>

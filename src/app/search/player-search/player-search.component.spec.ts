@@ -11,13 +11,13 @@ import { IgxRadioModule,
   IgxAvatarModule,
   IgxIconModule,
   IgxToggleModule,
-  IgxDropDownModule,
   IgxTabsModule,
   IgxSwitchModule,
   IgxInputGroupModule,
   IgxProgressBarModule,
   IgxDividerModule,
-  IgxButtonModule} from 'igniteui-angular';
+  IgxButtonModule,
+  IgxSelectModule} from 'igniteui-angular';
 import { LoginComponent } from 'src/app/login/login.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { UserPreferencesComponent } from 'src/app/player-section/user-preferences/user-preferences.component';
@@ -43,7 +43,7 @@ describe('PlayerSearchComponent', () => {
         IgxAvatarModule,
         IgxIconModule,
         IgxToggleModule,
-        IgxDropDownModule,
+        IgxSelectModule,
         IgxTabsModule,
         IgxSwitchModule,
         IgxInputGroupModule,
