@@ -38,11 +38,6 @@ export class PlayerSearchComponent {
     this.router.navigate(['search/players', this.searchQuery]);
   }
 
-  public selectTeam(args: ISelectionEventArgs) {
-    this.teamName = args.newSelection.value.TeamName;
-    this.searchModel.teamId = args.newSelection.value.TeamId;
-  }
-
   private get searchQuery() {
     return `role=${this.searchModel.role}&overlap=${this.searchModel.scheduleOverlap}&teamid=${this.searchModel.teamId}`;
   }
