@@ -17,7 +17,8 @@ import { IgxRadioModule,
   IgxProgressBarModule,
   IgxDividerModule,
   IgxButtonModule,
-  IgxSelectModule} from 'igniteui-angular';
+  IgxSelectModule,
+  IgxDropDownModule} from 'igniteui-angular';
 import { LoginComponent } from 'src/app/login/login.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { UserPreferencesComponent } from 'src/app/player-section/user-preferences/user-preferences.component';
@@ -44,6 +45,7 @@ describe('PlayerSearchComponent', () => {
         IgxIconModule,
         IgxToggleModule,
         IgxSelectModule,
+        IgxDropDownModule,
         IgxTabsModule,
         IgxSwitchModule,
         IgxInputGroupModule,
