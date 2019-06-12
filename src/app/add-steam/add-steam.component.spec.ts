@@ -4,6 +4,7 @@ import { AddSteamComponent } from './add-steam.component';
 import { IgxIconModule, IgxButtonModule, IgxDividerModule } from 'igniteui-angular';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('AddSteamComponent', () => {
   let component: AddSteamComponent;
@@ -13,6 +14,7 @@ describe('AddSteamComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
+        HttpClientTestingModule,
         ServiceWorkerModule.register('', {enabled: false}),
         IgxIconModule,
         IgxDividerModule,
