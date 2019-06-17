@@ -61,7 +61,10 @@
         <div class="horizontal-center" *ngIf="user.SteamUser?.steamID64 !== adminId">
           <igx-avatar [src]="user.SteamUser.avatarIcon" [initials]="user.SteamUser.steamID" roundShape="true">
           </igx-avatar>
-          <igx-avatar [src]="user.SteamUser.country | playerCountry" [roundShape]="true" [title]="user.SteamUser.country" class="country-badge-small"></igx-avatar>
+          <igx-avatar *ngIf="user.SteamUser.country"
+                      [src]="user.SteamUser.country | playerCountry"
+                      [roundShape]="true" [title]="user.SteamUser.country"
+                      class="country-badge-small"></igx-avatar>
           <div class="horizontal-info__left">
             <span class="title">
               <a [routerLink]="['/players', user.SteamUser.customURL || user.SteamUser.steamID64]">
