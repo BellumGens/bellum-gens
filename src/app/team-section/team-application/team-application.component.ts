@@ -24,7 +24,7 @@ export class TeamApplicationComponent extends BaseComponent {
     UserInfo: null
   };
 
-  @ViewChild(IgxDialogComponent) public dialog: IgxDialogComponent;
+  @ViewChild(IgxDialogComponent, { static: true }) public dialog: IgxDialogComponent;
 
   constructor(private activatedRoute: ActivatedRoute, private apiService: BellumgensApiService) {
     super();

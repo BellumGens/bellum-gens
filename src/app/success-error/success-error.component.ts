@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IgxSnackbarComponent } from 'igniteui-angular';
 import { BellumgensApiService } from '../services/bellumgens-api.service';
 import { BaseComponent } from '../base/base.component';
@@ -9,9 +9,9 @@ import { BaseComponent } from '../base/base.component';
   styleUrls: ['./success-error.component.css']
 })
 export class SuccessErrorComponent extends BaseComponent {
-  @ViewChild('error') public error: IgxSnackbarComponent;
-  @ViewChild('success') public success: IgxSnackbarComponent;
-  @ViewChild('message') public message: IgxSnackbarComponent;
+  @ViewChild('error', { static: true }) public error: IgxSnackbarComponent;
+  @ViewChild('success', { static: true }) public success: IgxSnackbarComponent;
+  @ViewChild('message', { static: true }) public message: IgxSnackbarComponent;
 
   public successMsg = 'Success...';
   public errorMsg = 'Error has occurred...';

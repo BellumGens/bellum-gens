@@ -35,9 +35,9 @@ export class AppComponent extends BaseComponent implements OnInit {
     positionStrategy: new AutoPositionStrategy(this.positionSettings)
   };
 
-  @ViewChild('quickSearch') public quickSearchDropDown: IgxDropDownComponent;
-  @ViewChild('searchGroup') public searchGroup: IgxInputGroupComponent;
-  @ViewChild('searchInput') public searchInput: ElementRef;
+  @ViewChild('quickSearch', { static: true }) public quickSearchDropDown: IgxDropDownComponent;
+  @ViewChild('searchGroup', { static: true }) public searchGroup: IgxInputGroupComponent;
+  @ViewChild('searchInput', { static: true }) public searchInput: ElementRef;
 
   private unreadPipe = new UnreadNotificationsPipe();
 

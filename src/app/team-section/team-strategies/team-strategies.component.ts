@@ -36,7 +36,7 @@ export class TeamStrategiesComponent extends BaseComponent {
   private _youtubeRegEx = /(youtu\.be\/|youtube\.com\/(watch\?(.*&)?v=|(embed|v)\/))([^\?&"'>]+)/;
   private _twitchRegEx = /(twitch\.tv\/)(videos\/|\?[^\?"'>]+video\=v)([^\?&"'>]+)/;
 
-  @ViewChild('newStrat') public dialog: IgxDialogComponent;
+  @ViewChild('newStrat', { static: true }) public dialog: IgxDialogComponent;
 
   constructor(private activatedRoute: ActivatedRoute,
               private router: Router,

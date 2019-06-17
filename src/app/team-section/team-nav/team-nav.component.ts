@@ -20,7 +20,7 @@ export class TeamNavComponent {
   @Input()
   public authUser: ApplicationUser;
 
-  @ViewChild(IgxDialogComponent) public createTeam: IgxDialogComponent;
+  @ViewChild(IgxDialogComponent, { static: false }) public createTeam: IgxDialogComponent;
 
   constructor(private apiService: BellumgensApiService,
               private router: Router) {
