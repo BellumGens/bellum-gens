@@ -17,7 +17,7 @@ export class ConfirmComponent {
   @Output()
   public cancel = new EventEmitter<IDialogEventArgs>();
 
-  @ViewChild(IgxDialogComponent) dialog: IgxDialogComponent;
+  @ViewChild(IgxDialogComponent, { static: true }) dialog: IgxDialogComponent;
 
   private confirmEntity: any;
 

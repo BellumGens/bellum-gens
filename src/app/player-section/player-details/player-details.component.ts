@@ -30,8 +30,8 @@ export class PlayerDetailsComponent extends BaseComponent {
   public roles = ALL_ROLES;
   public viewAll = false;
 
-  @ViewChild('primaryRole') public primaryRole: IgxDropDownComponent;
-  @ViewChild('secondaryRole') public secondaryRole: IgxDropDownComponent;
+  @ViewChild('primaryRole', { static: false }) public primaryRole: IgxDropDownComponent;
+  @ViewChild('secondaryRole', { static: false }) public secondaryRole: IgxDropDownComponent;
 
   constructor(private authManager: LoginService,
               private apiService: BellumgensApiService,

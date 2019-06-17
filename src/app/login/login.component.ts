@@ -61,7 +61,7 @@ export class LoginComponent extends BaseComponent {
     positionStrategy: new ConnectedPositioningStrategy(this.positionSettings)
   };
 
-  @ViewChild(IgxDialogComponent) public dialog: IgxDialogComponent;
+  @ViewChild(IgxDialogComponent, { static: true }) public dialog: IgxDialogComponent;
 
   constructor(private authManager: LoginService,
               private apiService: BellumgensApiService) {
