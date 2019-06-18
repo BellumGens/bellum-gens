@@ -15,11 +15,11 @@ steps:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
 
-- script: sudo npm i -g @angular/cli
-  displayName: install @angular/cli
-
 - script: npm install
   displayName: npm install
+
+# - script: sudo npm i -g @angular/cli
+#   displayName: install @angular/cli
   
 - script: npm run lint
   displayName: run lint
