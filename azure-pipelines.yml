@@ -15,6 +15,9 @@ steps:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
 
+- script: sudo npm i -g @angular/cli
+  displayName: install @angular/cli
+
 - script: npm install
   displayName: npm install
   
@@ -24,7 +27,7 @@ steps:
 - script: npm run test:prod
   displayName: run test
 
-- script: npm run build:app-shell
+- script: ng run bellum-gens:app-shell:production
   displayName: build app shell
 
 # Publish Build Artifacts to Azure Pipelines

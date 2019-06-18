@@ -131,7 +131,7 @@
           "options": {
             "browserTarget": "bellum-gens:build",
             "serverTarget": "bellum-gens:server",
-            "route": "app-shell-path"
+            "route": "home"
           },
           "configurations": {
             "production": {
