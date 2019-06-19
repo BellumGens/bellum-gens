@@ -1,70 +1,61 @@
-<div class="horizontal-center">
+<div class="horizontal-center height-100">
   <form class="team-info-column" #teamInfo="ngForm" (ngSubmit)="updateTeamInfo()">
-    <igx-list>
-      <igx-list-item [isHeader]="true">Team Info</igx-list-item>
-      <igx-list-item>
-        <igx-input-group class="team-info-input">
-          <label for="teamName" igxLabel>Name</label>
-          <input #teamName igxInput id="teamName" name="teamName" minlength="2" required [(ngModel)]="team.TeamName" />
-          <igx-suffix *ngIf="teamName.value.length > 0" (click)="teamName.value = null">
-            <igx-icon>clear</igx-icon>
-          </igx-suffix>
-        </igx-input-group>
-      </igx-list-item>
-      <igx-list-item>
-        <igx-input-group class="team-info-input">
-          <label for="teamAvatar" igxLabel>Avatar</label>
-          <input #teamAvatar igxInput id="teamAvatar" name="teamAvatar" [(ngModel)]="team.TeamAvatar" />
-          <igx-suffix *ngIf="teamAvatar.value.length > 0" (click)="teamAvatar.value = null">
-              <igx-icon>clear</igx-icon>
-          </igx-suffix>
-        </igx-input-group>
-      </igx-list-item>
-      <igx-list-item>
-        <igx-input-group class="team-info-input">
-          <label for="teamDescription" igxLabel>Description</label>
-          <textarea #teamDescription igxInput id="teamDescription" name="teamDescription" minlength="2" required [(ngModel)]="team.Description"></textarea>
-          <igx-suffix *ngIf="teamDescription.value.length > 0" (click)="teamDescription.value = null">
-              <igx-icon>clear</igx-icon>
-          </igx-suffix>
-        </igx-input-group>
-      </igx-list-item>
-      <igx-list-item>
-        <igx-input-group class="team-info-input">
-          <label for="teamDiscord" igxLabel>Discord</label>
-          <input #teamDiscord igxInput id="teamDiscord" name="teamDiscord" [(ngModel)]="team.Discord" />
-          <igx-suffix *ngIf="teamDiscord.value.length > 0" (click)="teamDiscord.value = null">
-              <igx-icon>clear</igx-icon>
-          </igx-suffix>
-        </igx-input-group>
-      </igx-list-item>
-      <igx-list-item>
-        <div class="team-info-input horizontal-center">
-          <label for="teamVisibility">Show team in searches</label>
-          <igx-switch class="horizontal-info__right" #teamVisibility id="teamVisibility" name="teamVisibility" [(ngModel)]="team.Visible"></igx-switch>
-        </div>
-      </igx-list-item>
-      <igx-list-item>
-        <button igxButton="raised" igxRipple class="submit-button team-info-input"
-                [disabled]="!teamInfo.touched || !teamInfo.valueChanges || teamInfo.invalid">
-          Update Team Info
-        </button>
-      </igx-list-item>
-    </igx-list>
+    <span>Team Info</span>
+    <igx-input-group class="team-info-input">
+      <label for="teamName" igxLabel>Name</label>
+      <input #teamName igxInput id="teamName" name="teamName" minlength="2" required [(ngModel)]="team.TeamName" />
+      <igx-suffix *ngIf="teamName.value.length > 0" (click)="teamName.value = null">
+        <igx-icon>clear</igx-icon>
+      </igx-suffix>
+    </igx-input-group>
+
+    <igx-input-group class="team-info-input">
+      <label for="teamAvatar" igxLabel>Avatar</label>
+      <input #teamAvatar igxInput id="teamAvatar" name="teamAvatar" [(ngModel)]="team.TeamAvatar" />
+      <igx-suffix *ngIf="teamAvatar.value.length > 0" (click)="teamAvatar.value = null">
+          <igx-icon>clear</igx-icon>
+      </igx-suffix>
+    </igx-input-group>
+
+    <igx-input-group class="team-info-input">
+      <label for="teamDescription" igxLabel>Description</label>
+      <textarea #teamDescription igxInput id="teamDescription" name="teamDescription" minlength="2" required [(ngModel)]="team.Description"></textarea>
+      <igx-suffix *ngIf="teamDescription.value.length > 0" (click)="teamDescription.value = null">
+          <igx-icon>clear</igx-icon>
+      </igx-suffix>
+    </igx-input-group>
+
+    <igx-input-group class="team-info-input">
+      <label for="teamDiscord" igxLabel>Discord</label>
+      <input #teamDiscord igxInput id="teamDiscord" name="teamDiscord" [(ngModel)]="team.Discord" />
+      <igx-suffix *ngIf="teamDiscord.value.length > 0" (click)="teamDiscord.value = null">
+          <igx-icon>clear</igx-icon>
+      </igx-suffix>
+    </igx-input-group>
+
+    <div class="team-info-input horizontal-center">
+      <label for="teamVisibility">Show team in searches</label>
+      <igx-switch class="horizontal-info__right" #teamVisibility id="teamVisibility" name="teamVisibility" [(ngModel)]="team.Visible"></igx-switch>
+    </div>
+
+    <button igxButton="raised" igxRipple class="submit-button team-info-input"
+            [disabled]="!teamInfo.touched || !teamInfo.valueChanges || teamInfo.invalid">
+      Update Team Info
+    </button>
   </form>
   <div class="team-info-column">
+    <span>Team Members</span>
     <igx-list>
-      <igx-list-item [isHeader]="true">
-        Team Members
-      </igx-list-item>
       <igx-list-item *ngFor="let user of team.Members; let i = index">
         <div class="horizontal-center" *ngIf="user.SteamUser?.steamID64 !== adminId">
           <igx-avatar [src]="user.SteamUser.avatarIcon" [initials]="user.SteamUser.steamID" roundShape="true">
           </igx-avatar>
           <igx-avatar *ngIf="user.SteamUser.country"
                       [src]="user.SteamUser.country | playerCountry"
-                      [roundShape]="true" [title]="user.SteamUser.country"
-                      class="country-badge-small"></igx-avatar>
+                      [roundShape]="true"
+                      [title]="user.SteamUser.country"
+                      class="country-badge-small">
+          </igx-avatar>
           <div class="horizontal-info__left">
             <span class="title">
               <a [routerLink]="['/players', user.SteamUser.customURL || user.SteamUser.steamID64]">
@@ -99,8 +90,9 @@
     </igx-list>
   </div>
   <div class="team-info-column" *ngIf="team.SteamGroup">
+    <span>Steam Group Members [not part of the team]</span>
     <igx-list>
-      <igx-list-item [isHeader]="true">{{ team.SteamGroup.groupName }} steam group members [not part of the team]</igx-list-item>
+      <igx-list-item [isHeader]="true"> </igx-list-item>
       <igx-list-item *ngFor="let member of steamMembers | excludeMembers:team.Members">
         <div class="horizontal-center">
           <igx-avatar [src]="member.avatar" [initials]="member.personaname" roundShape="true">
