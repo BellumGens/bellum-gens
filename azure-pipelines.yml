@@ -17,9 +17,6 @@ steps:
 
 - script: npm install
   displayName: npm install
-
-- script: sudo npm i -g @angular/cli
-  displayName: install @angular/cli
   
 - script: npm run lint
   displayName: run lint
@@ -27,7 +24,8 @@ steps:
 - script: npm run test:prod
   displayName: run test
 
-- script: ng run bellum-gens:app-shell:production
+- script: npm run build:app-shell
+  continueOnError: true
   displayName: build app shell
 
 # Publish Build Artifacts to Azure Pipelines
