@@ -47,6 +47,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { UserPreferencesComponent } from './player-section/user-preferences/user-preferences.component';
 import { NotificationStatePipe } from './pipes/notification-state.pipe';
+import { PlayerCountryPipe } from './pipes/player-country.pipe';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -105,7 +106,8 @@ describe('AppComponent', () => {
         SortApplicationsPipe,
         SortNotificationsPipe,
         UserPreferencesComponent,
-        NotificationStatePipe
+        NotificationStatePipe,
+        PlayerCountryPipe
       ],
     }).compileComponents();
   }));
