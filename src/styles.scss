@@ -69,13 +69,13 @@ $card-theme: igx-card-theme($background: $background-gradient-lighter,
 @include igx-css-vars($card-theme);
 /* END Card */
 
-/* Card */
+/* List */
 $list-theme: igx-list-theme($background: transparent,
                             $header-background: transparent,
                             $item-background: transparent,
                             $item-background-active: rgba(0, 0, 0, 0.11));
 @include igx-css-vars($list-theme);
-/* END Card */
+/* END List */
 
 /* Input Group */
 $input-group-theme: igx-input-group-theme($search-background: transparent, $idle-text-color: white, $filled-text-color: white, $focused-text-color: white, $placeholder-color: #999);
@@ -182,6 +182,10 @@ igx-tab-item igx-icon {
   + .list-container {
     margin-left: 16px;
   }
+}
+
+.igx-list__item-thumbnail {
+  align-self: inherit;
 }
 
 /* Team and Player Details */
@@ -420,6 +424,7 @@ button igx-icon {
   min-width: 24px;
   max-width: 24px;
   height: 24px;
+  margin-right: 8px;
   background-color: transparent;
 }
 

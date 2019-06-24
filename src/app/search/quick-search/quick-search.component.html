@@ -10,32 +10,41 @@
     </ng-template>
     <igx-list-item [isHeader]="true">Players</igx-list-item>
     <igx-list-item *ngIf="!searchResult.Players.length">No matching players...</igx-list-item>
-    <igx-list-item #item *ngFor="let user of searchResult.Players | reduceQuickSearchResult">
-      <div class="horizontal-center">
-        <igx-avatar [src]="user.steamUser.avatarIcon" [initials]="user.steamUser.steamID" roundShape="true">
-        </igx-avatar>
-        <igx-avatar [src]="'assets/country-flags/svg/' + user.steamUser.country.toLowerCase() + '.svg'" [roundShape]="true" [title]="user.steamUser.country" class="country-badge-small"></igx-avatar>
-        <div class="horizontal-info__left">
-          <span class="title">
-            <a [routerLink]="['/players', user.steamUser.customURL || user.steamUser.steamID64]">
-              {{ user.steamUser.steamID }}
-              <!-- <igx-avatar [src]="'assets/csgo-ranks/icons/skillgroup14.png'" class="skill-badge" [roundShape]="true"></igx-avatar> -->
-            </a>
-          </span>
-          <span class="subtitle">{{ user.steamUser.realname }}</span>
-        </div>
-        
-        <div class="horizontal-info__right--column">
+    <igx-list-item #item
+                  *ngFor="let user of searchResult.Players | reduceQuickSearchResult"
+                  [routerLink]="['/players', user.steamUser.customURL || user.steamUser.steamID64]"
+                  class="navigatable">
+      <igx-avatar igxListThumbnail [src]="user.steamUser?.avatarIcon" [initials]="user.steamUser?.steamID" roundShape="true">
+      </igx-avatar>
+      <igx-avatar *ngIf="user.steamUser?.country"
+                  [src]="user.steamUser?.country | playerCountry"
+                  [roundShape]="true"
+                  [title]="user.steamUser?.country"
+                  class="country-badge-small">
+      </igx-avatar>
+  
+      <h2 igxListLineTitle>
+        <a>
+          {{ user.steamUser.steamID }}
+        </a>
+      </h2>
+      <h4 igxListLineSubTitle>{{ user.steamUser?.realname }}</h4>
+    
+      <div igxListAction class="horizontal-info__right--column" *ngIf="!user.userStatsException else private">
           <div class="horizontal-center">
-            <igx-circular-bar class="icon-avatar" [value]="user.userStats.killDeathRatio" [max]="2" [animate]="true" [textVisibility]="false" title="KDR"></igx-circular-bar>
-            <span class="title margin-left player-summary-stat">{{ user.userStats.killDeathRatio }}</span>
+            <igx-circular-bar class="icon-avatar" [value]="user.userStats?.killDeathRatio" [max]="2" [animate]="true" [textVisibility]="false" title="KDR"></igx-circular-bar>
+            <span>{{ user.userStats?.killDeathRatio }}</span>
           </div>
+    
           <div class="horizontal-center">
             <igx-icon fontSet="weapon-icons" name="headshot" class="icon-avatar"></igx-icon>
-            <span class="title margin-left player-summary-stat">{{ user.userStats.headshotPercentage | number:'1.2' }}%</span>
+            <span>{{ user.userStats?.headshotPercentage | number:'1.2' }}%</span>
           </div>
-        </div>
       </div>
+
+      <ng-template #private>
+        <span>Private</span>
+      </ng-template>
     </igx-list-item>
     <igx-list-item *ngIf="searchResult.Players.length > 3">
       <button igxButton="flat" igxRipple class="submit-button" [routerLink]="['/search/players', 'name=' + term]">View more players...</button>
@@ -52,21 +61,15 @@
     </ng-template>
     <igx-list-item [isHeader]="true">Teams</igx-list-item>
     <igx-list-item *ngIf="!searchResult.Teams.length">No matching teams...</igx-list-item>
-    <igx-list-item *ngFor="let team of searchResult.Teams | reduceQuickSearchResult">
-      <div class="horizontal-center">
-        <igx-avatar [src]="team.TeamAvatar" [initials]="team.TeamName" roundShape="true">
-        </igx-avatar>
-        <div class="horizontal-info__left">
-          <span class="title">
-            <a [routerLink]="['/team', team.CustomURL]">
-              {{ team.TeamName }}
-            </a>
-          </span>
-        </div>
-        
-        <div class="horizontal-info__right">
-          {{ team.Members.length }} Members
-        </div>
+    <igx-list-item *ngFor="let team of searchResult.Teams | reduceQuickSearchResult" class="navigatable" [routerLink]="['/team', team.CustomUrl]">
+      <igx-avatar igxListThumbnail [src]="team.TeamAvatar" [initials]="team.TeamName" roundShape="true">
+      </igx-avatar>
+      <h2 igxListLineTitle>
+        <a>{{ team.TeamName }}</a>
+      </h2>
+    
+      <div igxListAction>
+        {{ team.Members.length }} Members
       </div>
     </igx-list-item>
     <igx-list-item *ngIf="searchResult.Teams.length > 3">

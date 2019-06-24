@@ -71,6 +71,7 @@
                 <igx-switch [id]="'admin_switch_' + i"
                             [aria-label]="user.SteamUser.steamID + ' is admin'"
                             [(ngModel)]="user.IsAdmin"
+                            [disabled]="user.SteamUser?.steamID64 === adminId"
                             (ngModelChange)="adminStatusUpdated(user)">
                 </igx-switch>
               </div>
@@ -79,7 +80,7 @@
                 <label [for]="'editor_switch_' + i" class="title margins">Editor</label>
                 <igx-switch [id]="'editor_switch_' + i"
                             [aria-label]="user.SteamUser.steamID + ' can add and edit strategies'"
-                            [disabled]="user.IsAdmin"
+                            [disabled]="user.IsAdmin || user.SteamUser?.steamID64 === adminId"
                             [(ngModel)]="user.IsEditor"
                             (ngModelChange)="editorStatusUpdated(user)">
                 </igx-switch>
