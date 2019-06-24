@@ -143,17 +143,13 @@
           <h4>Weapons</h4>
           <igx-list *ngIf="!player.userStatsException">
             <igx-list-item *ngFor="let weapon of player.userStats.weapons | sortWeapons">
-              <div class="horizontal-center">
-                <igx-icon class="weapon-image-small" fontSet="weapon-icons" [name]="weapon.name"></igx-icon>
-                <div class="horizontal-info__left">
-                  <span class="highlight">
-                    {{ weapon.name }}
-                  </span>
-                </div>
-              
-                <div class="horizontal-info__right">
-                  {{ weapon.kills }} kills
-                </div>
+              <igx-icon igxListThumbnail class="weapon-image-small" fontSet="weapon-icons" [name]="weapon.name"></igx-icon>
+              <span igxListLineTitle>
+                <a>{{ weapon.name }}</a>
+              </span>
+            
+              <div igxListAction>
+                {{ weapon.kills }} kills
               </div>
             </igx-list-item>
           </igx-list>

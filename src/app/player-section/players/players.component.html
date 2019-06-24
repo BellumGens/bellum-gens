@@ -8,8 +8,7 @@
     </div>
   </ng-template>
   <igx-list-item [isHeader]="true">Newest Players</igx-list-item>
-  <igx-list-item #item
-                *ngFor="let user of activeUsers"
+  <igx-list-item *ngFor="let user of activeUsers"
                 class="navigatable"
                 [routerLink]="['/players', user.steamUser.customURL || user.steamUser.steamID64]">
     <igx-avatar igxListThumbnail [src]="user.steamUser?.avatarIcon" [initials]="user.steamUser?.steamID" roundShape="true">
