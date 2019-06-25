@@ -4,7 +4,7 @@
     <igx-input-group class="team-info-input">
       <label for="teamName" igxLabel>Name</label>
       <input #teamName igxInput id="teamName" name="teamName" minlength="2" required [(ngModel)]="team.TeamName" />
-      <igx-suffix *ngIf="teamName.value.length > 0" (click)="teamName.value = null">
+      <igx-suffix *ngIf="teamName.value.length > 0" (click)="team.TeamName = null">
         <igx-icon>clear</igx-icon>
       </igx-suffix>
     </igx-input-group>
@@ -12,7 +12,7 @@
     <igx-input-group class="team-info-input">
       <label for="teamAvatar" igxLabel>Avatar</label>
       <input #teamAvatar igxInput id="teamAvatar" name="teamAvatar" [(ngModel)]="team.TeamAvatar" />
-      <igx-suffix *ngIf="teamAvatar.value.length > 0" (click)="teamAvatar.value = null">
+      <igx-suffix *ngIf="teamAvatar.value.length > 0" (click)="team.TeamAvatar = null">
           <igx-icon>clear</igx-icon>
       </igx-suffix>
     </igx-input-group>
@@ -20,7 +20,7 @@
     <igx-input-group class="team-info-input">
       <label for="teamDescription" igxLabel>Description</label>
       <textarea #teamDescription igxInput id="teamDescription" name="teamDescription" minlength="2" required [(ngModel)]="team.Description"></textarea>
-      <igx-suffix *ngIf="teamDescription.value.length > 0" (click)="teamDescription.value = null">
+      <igx-suffix *ngIf="teamDescription.value.length > 0" (click)="team.Description = null">
           <igx-icon>clear</igx-icon>
       </igx-suffix>
     </igx-input-group>
@@ -28,7 +28,7 @@
     <igx-input-group class="team-info-input">
       <label for="teamDiscord" igxLabel>Discord</label>
       <input #teamDiscord igxInput id="teamDiscord" name="teamDiscord" [(ngModel)]="team.Discord" />
-      <igx-suffix *ngIf="teamDiscord.value.length > 0" (click)="teamDiscord.value = null">
+      <igx-suffix *ngIf="teamDiscord.value.length > 0" (click)="team.Discord = null">
           <igx-icon>clear</igx-icon>
       </igx-suffix>
     </igx-input-group>

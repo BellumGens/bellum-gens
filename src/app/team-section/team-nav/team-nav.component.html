@@ -24,17 +24,17 @@
 <igx-dialog #createTeam closeOnOutsideSelect="true" *ngIf="authUser">
   <div class="create-team">
     <span *ngIf="authUser.steamUser.groups.length">Import from Steam Group</span>
+    <igx-input-group type="search">
+      <igx-prefix>
+          <igx-icon>search</igx-icon>
+      </igx-prefix>
+      <label for="searchGroups" igxLabel>Search Groups</label>
+      <input #search igxInput id="searchGroups" [(ngModel)]="searchGroups">
+      <igx-suffix *ngIf="search.value.length > 0" (click)="searchGroups = null">
+          <igx-icon>clear</igx-icon>
+      </igx-suffix>
+    </igx-input-group>
     <igx-list>
-      <igx-input-group type="search">
-        <igx-prefix>
-            <igx-icon>search</igx-icon>
-        </igx-prefix>
-        <label for="searchGroups" igxLabel>Search Groups</label>
-        <input #search igxInput id="searchGroups" [(ngModel)]="searchGroups">
-        <igx-suffix *ngIf="search.value.length > 0" (click)="searchGroups = null">
-            <igx-icon>clear</igx-icon>
-        </igx-suffix>
-      </igx-input-group>
       <igx-list-item *ngFor="let group of authUser.steamUser.groups | groupsFilter:searchGroups" (click)="createFromSteam(group)">
         <igx-avatar igxListThumbnail [src]="group.avatarFull" [initials]="group.groupName" roundShape="true">
         </igx-avatar>
@@ -43,7 +43,7 @@
         </div>
       </igx-list-item>
     </igx-list>
-      <span>Register with form</span>
+    <span>Register with form</span>
     <form #teamRegistration="ngForm" (ngSubmit)="createFromForm()">
       <igx-input-group>
         <label igxLabel for="teamName">Team name</label>

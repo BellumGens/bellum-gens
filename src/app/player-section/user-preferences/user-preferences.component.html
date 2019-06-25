@@ -21,7 +21,7 @@
     <igx-input-group>
       <label for="userEmail" igxLabel>Email address</label>
       <input #userEmail igxInput id="userEmail" type="email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="userEmail" [(ngModel)]="preferences.email" />
-      <igx-suffix *ngIf="userEmail.value.length > 0" (click)="userEmail.value = null">
+      <igx-suffix *ngIf="userEmail.value.length > 0" (click)="preferences.email = null">
         <igx-icon>clear</igx-icon>
       </igx-suffix>
     </igx-input-group>

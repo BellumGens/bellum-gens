@@ -30,7 +30,7 @@
       </h2>
       <h4 igxListLineSubTitle>{{ user.steamUser?.realname }}</h4>
     
-      <div igxListAction class="horizontal-info__right--column" *ngIf="!user.userStatsException else private">
+      <div igxListAction *ngIf="!user.userStatsException else private">
           <div class="horizontal-center">
             <igx-circular-bar class="icon-avatar" [value]="user.userStats?.killDeathRatio" [max]="2" [animate]="true" [textVisibility]="false" title="KDR"></igx-circular-bar>
             <span>{{ user.userStats?.killDeathRatio }}</span>

@@ -10,20 +10,18 @@
     </igx-select>
     <div class="editor-elements-section">
         <div>Layers</div>
-        <igx-list [displayDensity]="'compact'">
-          <igx-list-item *ngFor="let layer of layers">
-            <div class="layer-info">
-              <igx-checkbox class="layer-selected" [disabled]="!layer.movable" (change)="deselectBrush()" [(ngModel)]="layer.selected"></igx-checkbox>
-              <igx-input-group [ngClass]="layer.hidden ? 'hidden-layer' : ''" [displayDensity]="'compact'">
-                <igx-prefix>
-                  <igx-icon (click)="layer.hidden = !layer.hidden">{{ layer.hidden ? 'visibility' : 'visibility_off'}}</igx-icon>
-                </igx-prefix>
-                <input igxInput [(ngModel)]="layer.name">
-                <igx-suffix>
-                  <igx-icon (click)="confirm.open(layer)">clear</igx-icon>
-                </igx-suffix>
-              </igx-input-group>
-            </div>
+        <igx-list [displayDensity]="'compact'" class="layer-list">
+          <igx-list-item *ngFor="let layer of layers" class="layer-info">
+            <igx-checkbox igxListThumbnail class="layer-selected" [disabled]="!layer.movable" (change)="deselectBrush()" [(ngModel)]="layer.selected"></igx-checkbox>
+            <igx-input-group igxListLine [ngClass]="layer.hidden ? 'hidden-layer' : ''" [displayDensity]="'compact'">
+              <igx-prefix>
+                <igx-icon (click)="layer.hidden = !layer.hidden">{{ layer.hidden ? 'visibility' : 'visibility_off'}}</igx-icon>
+              </igx-prefix>
+              <input igxInput [(ngModel)]="layer.name">
+              <igx-suffix>
+                <igx-icon (click)="confirm.open(layer)">clear</igx-icon>
+              </igx-suffix>
+            </igx-input-group>
           </igx-list-item>
         </igx-list>
       </div>
