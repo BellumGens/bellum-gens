@@ -54,7 +54,7 @@ export class StrategyEditorComponent extends BaseComponent implements OnInit {
 
   private editor: StrategyEditor;
 
-  @ViewChild('board') public canvas: ElementRef;
+  @ViewChild('board', { static: true }) public canvas: ElementRef;
 
   constructor(private apiService: BellumgensApiService, private route: ActivatedRoute) {
     super();

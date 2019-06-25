@@ -15,7 +15,6 @@
 }
 
 .igx-chip__subtext {
-  display: inline-block;
   min-width: 10ch;
   font-size: 0.74rem;
   font-weight: 200;

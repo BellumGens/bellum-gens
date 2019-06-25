@@ -1,6 +1,8 @@
 .new-strategy {
-  padding: 4px;
-  min-width: 560px
+  display: flex;
+  flex-flow: column;
+  padding: 12px;
+  min-width: 380px;
 }
 
 .video-frame {
@@ -26,6 +28,10 @@
 .column-wrapper {
   display: flex;
   align-items: center;
+}
+
+.space-out {
+  margin-top: 8px;
 }
 
 .separate {

@@ -8,38 +8,39 @@
     </div>
   </ng-template>
   <igx-list-item [isHeader]="true">Newest Players</igx-list-item>
-  <igx-list-item #item *ngFor="let user of activeUsers" class="navigatable" [routerLink]="['/players', user.steamUser.customURL || user.steamUser.steamID64]">
-    <div class="horizontal-center">
-      <igx-avatar [src]="user.steamUser?.avatarIcon" [initials]="user.steamUser?.steamID" roundShape="true">
-      </igx-avatar>
-      <igx-avatar *ngIf="user.steamUser?.country"
-                  [src]="user.steamUser?.country | playerCountry"
-                  [roundShape]="true"
-                  [title]="user.steamUser?.country"
-                  class="country-badge-small">
-      </igx-avatar>
-      <div class="horizontal-info__left">
-        <span class="title highlight">
-          {{ user.steamUser?.steamID }}
-        </span>
-        <span class="subtitle">{{ user.steamUser?.realname }}</span>
-      </div>
-    
-      <div class="horizontal-info__right--column" *ngIf="!user.userStatsException">
-          <div class="horizontal-center">
-            <igx-circular-bar class="icon-avatar" [value]="user.userStats?.killDeathRatio" [max]="2" [animate]="true" [textVisibility]="false" title="KDR"></igx-circular-bar>
-            <span class="title margin-left player-summary-stat">{{ user.userStats?.killDeathRatio }}</span>
-          </div>
-    
-          <div class="horizontal-center">
-            <igx-icon fontSet="weapon-icons" name="headshot" class="icon-avatar"></igx-icon>
-            <span class="title margin-left player-summary-stat">{{ user.userStats?.headshotPercentage | number:'1.2' }}%</span>
-          </div>
-      </div>
+  <igx-list-item *ngFor="let user of activeUsers"
+                class="navigatable"
+                [routerLink]="['/players', user.steamUser.customURL || user.steamUser.steamID64]">
+    <igx-avatar igxListThumbnail [src]="user.steamUser?.avatarIcon" [initials]="user.steamUser?.steamID" roundShape="true">
+    </igx-avatar>
+    <igx-avatar *ngIf="user.steamUser?.country"
+                [src]="user.steamUser?.country | playerCountry"
+                [roundShape]="true"
+                [title]="user.steamUser?.country"
+                class="country-badge-small">
+    </igx-avatar>
 
-      <div class="horizontal-info__right--column" *ngIf="user.userStatsException">
-        <span class="title">Private</span>
-      </div>
+    <h2 igxListLineTitle>
+      <a>
+        {{ user.steamUser.steamID }}
+      </a>
+    </h2>
+    <h4 igxListLineSubTitle>{{ user.steamUser?.realname }}</h4>
+  
+    <div igxListAction *ngIf="!user.userStatsException else private">
+        <div class="horizontal-center">
+          <igx-circular-bar class="icon-avatar" [value]="user.userStats?.killDeathRatio" [max]="2" [animate]="true" [textVisibility]="false" title="KDR"></igx-circular-bar>
+          <span>{{ user.userStats?.killDeathRatio }}</span>
+        </div>
+  
+        <div class="horizontal-center">
+          <igx-icon fontSet="weapon-icons" name="headshot" class="icon-avatar"></igx-icon>
+          <span>{{ user.userStats?.headshotPercentage | number:'1.2' }}%</span>
+        </div>
     </div>
+
+    <ng-template #private>
+      <span>Private</span>
+    </ng-template>
   </igx-list-item>
 </igx-list>

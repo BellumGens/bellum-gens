@@ -9,6 +9,7 @@ import { SortNotificationsPipe } from '../pipes/sort-notifications.pipe';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SortApplicationsPipe } from '../pipes/sort-applications.pipe';
 import { NotificationStatePipe } from '../pipes/notification-state.pipe';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('NotificationsComponent', () => {
   let component: NotificationsComponent;
@@ -18,6 +19,7 @@ describe('NotificationsComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
+        HttpClientTestingModule,
         IgxProgressBarModule,
         IgxListModule,
         IgxAvatarModule

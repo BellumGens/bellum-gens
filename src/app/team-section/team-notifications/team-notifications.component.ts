@@ -25,7 +25,7 @@ export class TeamNotificationsComponent implements OnInit {
   @Output()
   changed = new EventEmitter<number>();
 
-  @ViewChild(IgxListComponent) public notifications: IgxListComponent;
+  @ViewChild(IgxListComponent, { static: false }) public notifications: IgxListComponent;
 
   constructor(private apiService: BellumgensApiService) {
   }

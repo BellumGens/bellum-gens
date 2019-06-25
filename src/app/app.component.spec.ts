@@ -23,7 +23,8 @@ import { IgxNavigationDrawerModule,
   IgxRadioModule,
   IgxTabsModule,
   IgxSwitchModule,
-  IgxDividerModule} from 'igniteui-angular';
+  IgxDividerModule,
+  IgxSelectModule} from 'igniteui-angular';
 import { SuccessErrorComponent } from './success-error/success-error.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { TeamNavComponent } from './team-section/team-nav/team-nav.component';
@@ -46,6 +47,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { UserPreferencesComponent } from './player-section/user-preferences/user-preferences.component';
 import { NotificationStatePipe } from './pipes/notification-state.pipe';
+import { PlayerCountryPipe } from './pipes/player-country.pipe';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -82,6 +84,7 @@ describe('AppComponent', () => {
         IgxRadioModule,
         IgxTabsModule,
         IgxDividerModule,
+        IgxSelectModule,
         IgxSwitchModule
       ],
       declarations: [
@@ -103,7 +106,8 @@ describe('AppComponent', () => {
         SortApplicationsPipe,
         SortNotificationsPipe,
         UserPreferencesComponent,
-        NotificationStatePipe
+        NotificationStatePipe,
+        PlayerCountryPipe
       ],
     }).compileComponents();
   }));
