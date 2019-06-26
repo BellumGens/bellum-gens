@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { TeamStrategy, Side } from '../models/csgoteamstrategy';
+import { CSGOStrategy } from '../models/csgoteamstrategy';
 import { MapPool } from '../models/csgomaps';
 
 @Pipe({
@@ -7,7 +7,7 @@ import { MapPool } from '../models/csgomaps';
 })
 export class SideStratsPipe implements PipeTransform {
 
-  transform(strats: TeamStrategy [], maps: MapPool []): TeamStrategy [] {
+  transform(strats: CSGOStrategy [], maps: MapPool []): CSGOStrategy [] {
     return strats && maps && strats.filter(s => maps.find(m => m.Map === s.Map).IsPlayed);
   }
 

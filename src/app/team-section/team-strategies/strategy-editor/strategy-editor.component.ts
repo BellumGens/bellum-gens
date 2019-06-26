@@ -6,7 +6,7 @@ import { BellumgensApiService } from '../../../services/bellumgens-api.service';
 import { ActivatedRoute } from '@angular/router';
 import { IgxDropEventArgs } from 'igniteui-angular';
 import { StratUtilities, EditorBrushColors } from '../../../models/strat-editor/utility';
-import { TeamStrategy } from '../../../models/csgoteamstrategy';
+import { CSGOStrategy } from '../../../models/csgoteamstrategy';
 import { BaseLayer, PointCoordinate, ImageLayer, FreeflowLayer } from '../../../models/strat-editor/editor-layer';
 import { BaseComponent } from '../../../base/base.component';
 import { noop } from 'rxjs';
@@ -19,7 +19,7 @@ import { noop } from 'rxjs';
 export class StrategyEditorComponent extends BaseComponent implements OnInit {
   public maps: ActiveDutyDescriptor [] = ActiveDuty;
   public team: CSGOTeam;
-  public newStrategy: TeamStrategy;
+  public newStrategy: CSGOStrategy;
   public utility = StratUtilities;
   public layers: BaseLayer [];
   public enemies = [1, 1, 1, 1, 1];

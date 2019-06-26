@@ -93,6 +93,7 @@ import { ActiveDutyMapsPipe } from './pipes/active-duty-maps.pipe';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { AddSteamComponent } from './add-steam/add-steam.component';
 import { BaseComponent } from './base/base.component';
+import { StrategiesComponent } from './strategies/strategies.component';
 
 @NgModule({
   declarations: [
@@ -147,7 +148,8 @@ import { BaseComponent } from './base/base.component';
     ActiveDutyMapsPipe,
     UnauthorizedComponent,
     AddSteamComponent,
-    BaseComponent
+    BaseComponent,
+    StrategiesComponent
   ],
   imports: [
     FormsModule,
