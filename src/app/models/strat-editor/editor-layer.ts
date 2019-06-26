@@ -209,6 +209,9 @@ export class FreeflowLayer extends BaseLayer {
   }
 
   public closePath() {
+    if (this._currentPath) {
+      this.optimize();
+    }
     this._currentPath = null;
   }
 
@@ -229,5 +232,30 @@ export class FreeflowLayer extends BaseLayer {
       });
     }
     this.drawFinish.emit(this);
+  }
+
+  private optimize() {
+    const length = this._currentPath.points.length;
+    const newPoints = [];
+    if (length < 2) {
+      return;
+    }
+    let start = this._currentPath.points[0];
+    let slope = (this._currentPath.points[1].x - start.x) / (this._currentPath.points[1].y - start.y),
+        currentSlope, current;
+    newPoints.push(start);
+    for (let i = 1; i < length; i++) {
+      current = this._currentPath.points[i];
+      currentSlope = (current.x - start.x) / (current.y - start.y);
+      if (!isNaN(currentSlope) && currentSlope !== slope) {
+        newPoints.push(current);
+        slope = currentSlope;
+        start = current;
+      }
+      if (i === length - 1) {
+        newPoints.push(current);
+      }
+    }
+    this._currentPath.points = newPoints;
   }
 }
