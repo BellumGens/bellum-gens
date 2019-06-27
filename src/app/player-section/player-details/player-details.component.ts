@@ -38,25 +38,27 @@ export class PlayerDetailsComponent extends BaseComponent {
               private activatedRoute: ActivatedRoute,
               private title: Title) {
     super();
-    this.subs.push(this.authManager.applicationUser.subscribe((data: ApplicationUser) => {
-      this.authUser = data;
-    }));
-    this.subs.push(this.activatedRoute.params.subscribe(params => {
-      const userid = params['userid'];
-      this.newUser = params['newuser'];
-      if (userid) {
-        this.apiService.getPlayer(userid).subscribe(
-          player => {
-            if (player) {
-              this.player = player;
-              if (!player.steamUserException) {
-                this.title.setTitle('CS:GO Player: ' + player.steamUser.steamID);
+    this.subs.push(
+      this.authManager.applicationUser.subscribe((data: ApplicationUser) => {
+        this.authUser = data;
+      }),
+      this.activatedRoute.params.subscribe(params => {
+        const userid = params['userid'];
+        this.newUser = params['newuser'];
+        if (userid) {
+          this.apiService.getPlayer(userid).subscribe(
+            player => {
+              if (player) {
+                this.player = player;
+                if (!player.steamUserException) {
+                  this.title.setTitle('CS:GO Player: ' + player.steamUser.steamID);
+                }
               }
             }
-          }
-        );
-      }
-    }));
+          );
+        }
+      })
+    );
   }
 
   public submitAvailability(args: Availability) {

@@ -66,8 +66,10 @@ export class LoginComponent extends BaseComponent {
   constructor(private authManager: LoginService,
               private apiService: BellumgensApiService) {
     super();
-    this.subs.push(this.apiService.authUserUpdate.subscribe(_ => this.fillCompleteness()));
-    this.subs.push(this.authManager.loginProviders.subscribe(providers => this.loginProviders = providers));
+    this.subs.push(
+      this.apiService.authUserUpdate.subscribe(_ => this.fillCompleteness()),
+      this.authManager.loginProviders.subscribe(providers => this.loginProviders = providers)
+    );
   }
 
   public openLogin() {
