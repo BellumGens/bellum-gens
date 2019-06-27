@@ -5,6 +5,8 @@ import {ngExpressEngine} from '@nguniversal/express-engine';
 // Import module map for lazy loading
 import {provideModuleMap} from '@nguniversal/module-map-ngfactory-loader';
 
+(global as any).XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
+
 import * as express from 'express';
 // import * as proxy from 'express-http-proxy';
 import {join} from 'path';
@@ -38,16 +40,6 @@ app.set('views', DIST_FOLDER);
 app.get('*.*', express.static(DIST_FOLDER, {
   maxAge: '1y'
 }));
-
-
-// Image proxy on /proxy
-// Looks like I don't need this for now.
-// app.get('/proxy/steam/:imageUrl', proxy((req) => {
-//   const imageUrl = decodeURIComponent(req.params.imageUrl);
-//   if (imageUrl.startsWith('https://steamcdn-a.akamaihd.net/steamcommunity/public')) {
-//     return decodeURIComponent(imageUrl);
-//   }
-// }));
 
 // All regular routes use the Universal engine
 app.get('*', (req, res) => {
