@@ -25,7 +25,6 @@ steps:
   displayName: run test
 
 - script: npm run build:ssr
-  continueOnError: true
   displayName: build ssr
 
 # Publish Build Artifacts to Azure Pipelines
