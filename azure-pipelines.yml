@@ -31,7 +31,7 @@ steps:
 # Publish Build Artifacts to Azure Pipelines
 - task: PublishBuildArtifacts@1
   inputs:
-    pathtoPublish: 'dist/browser' 
+    pathtoPublish: 'dist' 
     artifactName: 'dist' 
     publishLocation: 'Container'
     targetPath: 'dist/bellum-gens'
