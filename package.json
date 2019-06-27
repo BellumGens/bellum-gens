@@ -14,8 +14,7 @@
     "compile:server": "webpack --config webpack.server.config.js --progress --colors",
     "serve:ssr": "node dist/server",
     "build:ssr": "npm run build:client-and-server-bundles && npm run compile:server",
-    "build:client-and-server-bundles": "ng build --prod && ng run bellum-gens:server:production",
-    "copyfiles": "copyfiles web.config dist/"
+    "build:client-and-server-bundles": "ng build --prod && ng run bellum-gens:server:production"
   },
   "private": true,
   "dependencies": {
@@ -56,7 +55,6 @@
     "@types/jasminewd2": "~2.0.6",
     "@types/node": "~10.12.18",
     "codelyzer": "~4.5.0",
-    "copyfiles": "^2.1.0",
     "igniteui-cli": "~4.2.0",
     "jasmine-core": "~3.3.0",
     "jasmine-spec-reporter": "~4.2.1",
