@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { CSGOStrategy } from '../models/csgoteamstrategy';
 import { BellumgensApiService } from '../services/bellumgens-api.service';
 import { BaseComponent } from '../base/base.component';
+import { ActiveDuty } from '../models/csgomaps';
 
 @Component({
   selector: 'app-strategies',
@@ -10,6 +11,7 @@ import { BaseComponent } from '../base/base.component';
 })
 export class StrategiesComponent extends BaseComponent {
 
+  public maps = ActiveDuty;
   public strats: CSGOStrategy [];
   public loading = true;
 
