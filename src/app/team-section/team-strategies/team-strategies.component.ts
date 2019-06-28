@@ -1,7 +1,7 @@
 import { Component, ViewChild, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BellumgensApiService } from '../../services/bellumgens-api.service';
-import { TeamStrategy, newEmptyStrategy } from '../../models/csgoteamstrategy';
+import { CSGOStrategy, newEmptyStrategy } from '../../models/csgoteamstrategy';
 import { MapPool, ActiveDutyDescriptor, ActiveDuty } from '../../models/csgomaps';
 import { IgxDialogComponent, IChipSelectEventArgs } from 'igniteui-angular';
 import { SafeResourceUrl } from '@angular/platform-browser';
@@ -14,17 +14,17 @@ import { CSGOTeam } from '../../models/csgoteam';
   styleUrls: ['./team-strategies.component.css']
 })
 export class TeamStrategiesComponent extends BaseComponent {
-  teamStrats: TeamStrategy [];
+  teamStrats: CSGOStrategy [];
   maps: MapPool [];
   mapList: ActiveDutyDescriptor [] = ActiveDuty;
   team: CSGOTeam;
-  newStrategy: TeamStrategy = newEmptyStrategy();
+  newStrategy: CSGOStrategy = newEmptyStrategy();
   sanitizedUrl: SafeResourceUrl;
   videoId: string;
   pipeTrigger = 0;
   changes = false;
   viewAll = false;
-  selectedStrat: TeamStrategy;
+  selectedStrat: CSGOStrategy;
   selectedMap = this.mapList[0];
 
   @Input()
@@ -75,7 +75,7 @@ export class TeamStrategiesComponent extends BaseComponent {
     this.dialog.open();
   }
 
-  public editStrategy(strat: TeamStrategy) {
+  public editStrategy(strat: CSGOStrategy) {
     this.newStrategy = strat;
     this.dialog.open();
   }
@@ -136,7 +136,7 @@ export class TeamStrategiesComponent extends BaseComponent {
     return `https://player.twitch.tv/?autoplay=false&video=v${parts[3]}`;
   }
 
-  public deleteStrat(args: TeamStrategy) {
+  public deleteStrat(args: CSGOStrategy) {
     this.apiService.deleteStrategy(args.Id, args.TeamId).subscribe(
       _ => {
         this.teamStrats.splice(this.teamStrats.indexOf(args), 1);
@@ -151,6 +151,7 @@ export class TeamStrategiesComponent extends BaseComponent {
 
   public createAndRedirect() {
     this.newStrategy.TeamId = this.team.TeamId;
-    this.apiService.submitStrategy(this.newStrategy).subscribe(strat => this.router.navigate(['team', this.team.CustomUrl, strat.Id]));
+    this.apiService.submitStrategy(this.newStrategy)
+      .subscribe(strat => this.router.navigate(['team', this.team.CustomUrl, strat.CustomUrl]));
   }
 }

@@ -9,6 +9,7 @@ import { EmailconfirmComponent } from './emailconfirm/emailconfirm.component';
 import { StrategyEditorComponent } from './team-section/team-strategies/strategy-editor/strategy-editor.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { AddSteamComponent } from './add-steam/add-steam.component';
+import { StrategiesComponent } from './strategies/strategies.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -16,6 +17,7 @@ export const routes: Routes = [
   { path: 'unauthorized', component: UnauthorizedComponent },
   { path: 'emailconfirm', component: EmailconfirmComponent },
   { path: 'addsteam', component: AddSteamComponent },
+  { path: 'strategies', component: StrategiesComponent },
   { path: 'emailconfirm/:error', component: EmailconfirmComponent },
   { path: 'players/:userid', component: PlayerDetailsComponent },
   { path: 'players/:userid/:newuser', component: PlayerDetailsComponent },

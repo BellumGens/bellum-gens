@@ -9,7 +9,7 @@ import { Role } from '../models/playerrole';
 import { MapPool } from '../models/csgomaps';
 import { map, shareReplay, catchError } from 'rxjs/operators';
 import { UserNotification } from '../models/usernotifications';
-import { TeamStrategy } from '../models/csgoteamstrategy';
+import { CSGOStrategy } from '../models/csgoteamstrategy';
 import { SearchResult } from '../models/searchresult';
 import { environment } from '../../environments/environment';
 
@@ -27,6 +27,7 @@ export class BellumgensApiService {
   public authUserUpdate = new EventEmitter<any>();
   public loadingTeams = new ReplaySubject<boolean>(1);
   public loadingPlayers = new ReplaySubject<boolean>(1);
+  public loadingStrategies = new ReplaySubject<boolean>(1);
   public loadingQuickSearch = new ReplaySubject<boolean>(1);
   public loadingSearch = new ReplaySubject<boolean>(1);
   public searchResult = new ReplaySubject<SearchResult>(1);
@@ -35,9 +36,10 @@ export class BellumgensApiService {
   public searchTerm = new ReplaySubject<string>(1);
 
   // Cache
-  private _currentStrategy = new BehaviorSubject<TeamStrategy>(null);
+  private _currentStrategy = new BehaviorSubject<CSGOStrategy>(null);
   private _currentTeam = new BehaviorSubject<CSGOTeam>(null);
   private _players = new BehaviorSubject<CSGOPlayer []>([]);
+  private _strategies = new BehaviorSubject<CSGOStrategy []>([]);
   private _currentPlayer = new BehaviorSubject<CSGOPlayer>(null);
   private _csgoTeams = new BehaviorSubject<CSGOTeam []>([]);
   private _teamApplications = new Map<string, Observable<TeamApplication[]>>();
@@ -57,6 +59,7 @@ export class BellumgensApiService {
         },
         error => {
           this._players.next([]);
+          this.loadingPlayers.next(false);
           this.emitError(error.error.Message);
         }
       );
@@ -75,12 +78,33 @@ export class BellumgensApiService {
         },
         error => {
           this._csgoTeams.next([]);
+          this.loadingTeams.next(false);
           this.emitError(error.error.Message);
         }
       );
     }
 
     return this._csgoTeams;
+  }
+
+  public get strategies() {
+    if (!this._strategies.value.length) {
+      this.loadingStrategies.next(true);
+      this.getStrategies().subscribe(
+        data => {
+          this._strategies.next(data);
+          this.loadingStrategies.next(false);
+        },
+        error => {
+          this.loadingStrategies.next(false);
+          this.emitError(error.error.Message);
+        });
+    }
+    return this._strategies;
+  }
+
+  public getStrategies() {
+    return this.http.get<CSGOStrategy []>(`${this._apiEndpoint}/strategy/strategies`);
   }
 
   public quickSearch(name: string) {
@@ -184,11 +208,11 @@ export class BellumgensApiService {
   }
 
   public getTeamStrat(stratId: string) {
-    return this.http.get<TeamStrategy>(`${this._apiEndpoint}/teams/strat?stratId=${stratId}`, { withCredentials: true });
+    return this.http.get<CSGOStrategy>(`${this._apiEndpoint}/teams/strat?stratId=${stratId}`, { withCredentials: true });
   }
 
   public getTeamStrats(teamId: string) {
-    return this.http.get<TeamStrategy []>(`${this._apiEndpoint}/teams/strats?teamid=${teamId}`, { withCredentials: true });
+    return this.http.get<CSGOStrategy []>(`${this._apiEndpoint}/teams/strats?teamid=${teamId}`, { withCredentials: true });
   }
 
   public getCurrentStrategy(stratId: string) {
@@ -199,9 +223,7 @@ export class BellumgensApiService {
   }
 
   private getPlayers() {
-    return this.http.get<CSGOPlayer []>(`${this._apiEndpoint}/users/users`).pipe(
-      map(response => response)
-    );
+    return this.http.get<CSGOPlayer []>(`${this._apiEndpoint}/users/users`);
   }
 
   private getFilteredPlayers(query: string) {
@@ -510,8 +532,8 @@ export class BellumgensApiService {
     );
   }
 
-  public submitStrategy(strat: TeamStrategy) {
-    return this.http.post<TeamStrategy>(`${this._apiEndpoint}/teams/strategy`, strat, { withCredentials: true }).pipe(
+  public submitStrategy(strat: CSGOStrategy) {
+    return this.http.post<CSGOStrategy>(`${this._apiEndpoint}/teams/strategy`, strat, { withCredentials: true }).pipe(
       map(response => {
         if (response) {
           this._currentStrategy.next(response);

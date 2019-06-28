@@ -1,0 +1,28 @@
+<div class="strat-filter-header">
+  <igx-chips-area>
+    <igx-chip *ngFor="let map of maps | activeDutyMaps" class="maps-chip" [selected]="map.IsPlayed" [selectable]="true">
+      {{ map.Map | mapname }}
+    </igx-chip>
+  </igx-chips-area>
+</div>
+<div class="card-wrapper">
+  <igx-card type="outlined" *ngFor="let strat of strats">
+    <igx-card-header>
+      <h4 class="igx-card-header__title">{{ strat.Title }}</h4>
+    </igx-card-header>
+    <igx-card-media>
+      <img *ngIf="strat.Image" [src]="strat.Image" class="strat-image" />
+    </igx-card-media>
+    <igx-card-content>
+      <p class="igx-card-header__subtitle">{{ strat.Description }}</p>
+    </igx-card-content>
+    <igx-card-actions reverse="true">
+      <button igxButton="flat" igxRipple>
+        <igx-icon title="delete strategy">delete_forever</igx-icon>
+      </button>
+      <button igxButton="icon" igxRipple>
+        <igx-icon title="edit strategy">edit</igx-icon>
+      </button>
+    </igx-card-actions>
+  </igx-card>
+</div>

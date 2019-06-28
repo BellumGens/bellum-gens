@@ -1,6 +1,6 @@
 import { CSGOMap } from './csgomaps';
 
-export interface TeamStrategy {
+export interface CSGOStrategy {
   Id: string;
   TeamId: string;
   Side: Side;
@@ -10,6 +10,9 @@ export interface TeamStrategy {
   Image?: string;
   EditorMetadata?: string;
   Map: CSGOMap;
+  UserId?: string;
+  CustomUrl?: string;
+  Visible?: boolean;
 }
 
 export enum Side {
@@ -17,7 +20,7 @@ export enum Side {
   CTSide
 }
 
-export function newEmptyStrategy(): TeamStrategy {
+export function newEmptyStrategy(): CSGOStrategy {
   return {
     Id: '',
     TeamId: '',
