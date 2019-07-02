@@ -5,7 +5,6 @@ import 'reflect-metadata';
 import { renderModuleFactory } from '@angular/platform-server';
 import { enableProdMode } from '@angular/core';
 
-(global as any).XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 import * as express from 'express';
 import { join } from 'path';
 import { readFileSync } from 'fs';
@@ -16,8 +15,11 @@ import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
 // Faster server renders w/ Prod mode (dev mode never needed)
 enableProdMode();
 
+const compression = require('compression');
+
 // Express server
 const app = express();
+app.use(compression());
 
 const PORT = process.env.PORT || 4000;
 const DIST_FOLDER = join(process.cwd(), 'dist');
