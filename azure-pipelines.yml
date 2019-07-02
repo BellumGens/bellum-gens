@@ -24,8 +24,8 @@ steps:
 - script: npm run test:prod
   displayName: run test
 
-- script: npm run build:ssr
-  displayName: build ssr
+- script: npm run build:prerender
+  displayName: build prerender
 
 - task: ShellScript@2
   inputs:
