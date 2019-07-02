@@ -10,10 +10,12 @@ import { StrategyEditorComponent } from './team-section/team-strategies/strategy
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { AddSteamComponent } from './add-steam/add-steam.component';
 import { StrategiesComponent } from './strategies/strategies.component';
+import { AppShellComponent } from './app-shell/app-shell.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
+  { path: 'app-shell', component: AppShellComponent },
   { path: 'unauthorized', component: UnauthorizedComponent },
   { path: 'emailconfirm', component: EmailconfirmComponent },
   { path: 'addsteam', component: AddSteamComponent },

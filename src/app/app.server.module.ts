@@ -9,8 +9,8 @@ import { IgxProgressBarModule } from 'igniteui-angular';
 import { ModuleMapLoaderModule } from '@nguniversal/module-map-ngfactory-loader';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: AppShellComponent }
+  { path: '', redirectTo: '/app-shell', pathMatch: 'full' },
+  { path: 'app-shell', component: AppShellComponent }
 ];
 
 @NgModule({
