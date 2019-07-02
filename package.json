@@ -14,7 +14,8 @@
     "compile:server": "webpack --config webpack.server.config.js --progress --colors",
     "serve:ssr": "node dist/server",
     "build:ssr": "npm run build:client-and-server-bundles && npm run compile:server",
-    "build:client-and-server-bundles": "ng build --prod && ng run bellum-gens:server:production"
+    "build:client-and-server-bundles": "ng build --prod && ng run bellum-gens:server:production",
+    "build:prerender": "npm run build:ssr && node dist/prerender"
   },
   "private": true,
   "dependencies": {
@@ -42,6 +43,7 @@
     "rxjs": "^6.5.2",
     "tslib": "^1.9.0",
     "web-animations-js": "^2.3.2",
+    "xmlhttprequest": "^1.8.0",
     "zone.js": "^0.9.1"
   },
   "devDependencies": {
@@ -67,8 +69,6 @@
     "ts-node": "~8.0.2",
     "tslint": "^5.12.1",
     "typescript": "3.4.5",
-    "webpack-cli": "^3.1.0",
-    "webpack-node-externals": "^1.7.2",
-    "xmlhttprequest-ts": "^1.0.1"
+    "webpack-cli": "^3.1.0"
   }
 }

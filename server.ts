@@ -15,6 +15,8 @@ import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
 // Faster server renders w/ Prod mode (dev mode never needed)
 enableProdMode();
 
+(global as any).XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
+
 const compression = require('compression');
 
 // Express server
