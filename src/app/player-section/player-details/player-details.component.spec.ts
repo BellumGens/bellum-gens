@@ -35,6 +35,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { UserPreferencesComponent } from '../user-preferences/user-preferences.component';
 import { ConfirmComponent } from 'src/app/confirm/confirm.component';
 import { ActiveDutyMapsPipe } from 'src/app/pipes/active-duty-maps.pipe';
+import { AppShellComponent } from 'src/app/app-shell/app-shell.component';
 
 describe('PlayerDetailsComponent', () => {
   let component: PlayerDetailsComponent;
@@ -46,6 +47,7 @@ describe('PlayerDetailsComponent', () => {
         PlayerDetailsComponent,
         LoginComponent,
         AvailabilityComponent,
+        AppShellComponent,
         MapPoolComponent,
         SteamCustomUrlPipe,
         PlayerCountryPipe,

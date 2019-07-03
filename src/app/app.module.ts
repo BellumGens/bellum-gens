@@ -94,6 +94,7 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { AddSteamComponent } from './add-steam/add-steam.component';
 import { BaseComponent } from './base/base.component';
 import { StrategiesComponent } from './strategies/strategies.component';
+import { AppShellComponent } from './app-shell/app-shell.component';
 
 @NgModule({
   declarations: [
@@ -149,6 +150,7 @@ import { StrategiesComponent } from './strategies/strategies.component';
     UnauthorizedComponent,
     AddSteamComponent,
     BaseComponent,
+    AppShellComponent,
     StrategiesComponent
   ],
   imports: [

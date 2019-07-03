@@ -1,6 +1,5 @@
-<div *ngIf="loading" class="loading-overview">
-  <igx-circular-bar class="loading-user-data" [indeterminate]="true"></igx-circular-bar>
-</div>
+<app-app-shell *ngIf="loading">
+</app-app-shell>
 
 <div class="margin-bottom">
   <h4 class="igx-card-header__title margin-bottom">Found <span class="highlight">{{teams?.length }}</span> results for teams{{ query | queryParsed }}</h4>
