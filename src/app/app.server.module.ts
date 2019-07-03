@@ -22,7 +22,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes)
   ],
   bootstrap: [AppComponent],
-  declarations: [AppShellComponent],
+  declarations: [],
 })
 export class AppServerModule {
   constructor() {
