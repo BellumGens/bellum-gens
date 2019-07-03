@@ -1,7 +1,8 @@
 <div class="strat-filter-header">
+  <span class="igx-card-header__title">Filters:</span>
   <igx-chips-area>
-    <igx-chip *ngFor="let map of maps | activeDutyMaps" class="maps-chip" [selected]="map.IsPlayed" [selectable]="true">
-      {{ map.Map | mapname }}
+    <igx-chip *ngFor="let map of maps" class="maps-chip" [selected]="true" [selectable]="true">
+      {{ map.map }}
     </igx-chip>
   </igx-chips-area>
 </div>

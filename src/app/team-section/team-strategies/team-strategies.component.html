@@ -9,7 +9,7 @@
   </div>
   <div class="strat-filter-header">
     <igx-chips-area>
-      <igx-chip class="maps-chip" [selected]="map.IsPlayed" [selectable]="true" (onSelection)="changeMaps($event, map)" *ngFor="let map of maps | activeDutyMaps:viewAll">
+      <igx-chip [selected]="map.IsPlayed" [selectable]="true" (onSelection)="changeMaps($event, map)" *ngFor="let map of maps | activeDutyMaps:viewAll">
         {{ map.Map | mapname }}
       </igx-chip>
     </igx-chips-area>

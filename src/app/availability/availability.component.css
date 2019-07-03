@@ -9,13 +9,13 @@
 
 .igx-chip__text {
   display: inline-block;
-  min-width: 11ch;
+  min-width: 10ch;
   font-size: 0.85rem;
   font-weight: 600;
 }
 
 .igx-chip__subtext {
-  min-width: 10ch;
+  min-width: 11ch;
   font-size: 0.74rem;
   font-weight: 200;
   margin-left: 4px;
