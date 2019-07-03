@@ -37,6 +37,11 @@
   height: 52px;
   min-width: 52px;
 }
+
+.stats-progress {
+  width: auto;
+  height: auto;
+}
 /* END User Profile */
 
 /* User Overview */

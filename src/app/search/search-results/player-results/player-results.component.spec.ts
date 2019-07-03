@@ -7,6 +7,7 @@ import { WeekdayPipe } from 'src/app/pipes/weekday.pipe';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { QueryParsedPipe } from 'src/app/pipes/query-parsed.pipe';
+import { AppShellComponent } from 'src/app/app-shell/app-shell.component';
 
 describe('PlayerResultsComponent', () => {
   let component: PlayerResultsComponent;
@@ -25,6 +26,7 @@ describe('PlayerResultsComponent', () => {
       ],
       declarations: [
         PlayerResultsComponent,
+        AppShellComponent,
         DaysAvailablePipe,
         WeekdayPipe,
         QueryParsedPipe

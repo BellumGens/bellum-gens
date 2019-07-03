@@ -8,6 +8,7 @@ import { OpenPositionsPipe } from 'src/app/pipes/open-positions.pipe';
 import { WeekdayPipe } from 'src/app/pipes/weekday.pipe';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { QueryParsedPipe } from 'src/app/pipes/query-parsed.pipe';
+import { AppShellComponent } from 'src/app/app-shell/app-shell.component';
 
 describe('TeamResultsComponent', () => {
   let component: TeamResultsComponent;
@@ -25,6 +26,7 @@ describe('TeamResultsComponent', () => {
       ],
       declarations: [
         TeamResultsComponent,
+        AppShellComponent,
         DaysAvailablePipe,
         OpenPositionsPipe,
         WeekdayPipe,
