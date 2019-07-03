@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CSGOStrategy } from '../models/csgoteamstrategy';
+import { CSGOStrategy } from '../models/csgostrategy';
 import { BellumgensApiService } from '../services/bellumgens-api.service';
 import { BaseComponent } from '../base/base.component';
 import { ActiveDuty } from '../models/csgomaps';

@@ -9,7 +9,7 @@ import { Role } from '../models/playerrole';
 import { MapPool } from '../models/csgomaps';
 import { map, shareReplay, catchError } from 'rxjs/operators';
 import { UserNotification } from '../models/usernotifications';
-import { CSGOStrategy } from '../models/csgoteamstrategy';
+import { CSGOStrategy } from '../models/csgostrategy';
 import { SearchResult } from '../models/searchresult';
 import { environment } from '../../environments/environment';
 

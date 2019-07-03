@@ -6,7 +6,7 @@ import { BellumgensApiService } from '../../../services/bellumgens-api.service';
 import { ActivatedRoute } from '@angular/router';
 import { IgxDropEventArgs } from 'igniteui-angular';
 import { StratUtilities, EditorBrushColors } from '../../../models/strat-editor/utility';
-import { CSGOStrategy } from '../../../models/csgoteamstrategy';
+import { CSGOStrategy } from '../../../models/csgostrategy';
 import { BaseLayer, PointCoordinate, ImageLayer, FreeflowLayer } from '../../../models/strat-editor/editor-layer';
 import { BaseComponent } from '../../../base/base.component';
 import { noop } from 'rxjs';

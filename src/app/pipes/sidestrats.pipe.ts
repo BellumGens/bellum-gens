@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { CSGOStrategy } from '../models/csgoteamstrategy';
+import { CSGOStrategy } from '../models/csgostrategy';
 import { MapPool } from '../models/csgomaps';
 
 @Pipe({

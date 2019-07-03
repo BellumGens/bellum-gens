@@ -1,7 +1,7 @@
 import { Component, ViewChild, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BellumgensApiService } from '../../services/bellumgens-api.service';
-import { CSGOStrategy, newEmptyStrategy } from '../../models/csgoteamstrategy';
+import { CSGOStrategy, newEmptyStrategy } from '../../models/csgostrategy';
 import { MapPool, ActiveDutyDescriptor, ActiveDuty } from '../../models/csgomaps';
 import { IgxDialogComponent, IChipSelectEventArgs } from 'igniteui-angular';
 import { SafeResourceUrl } from '@angular/platform-browser';
