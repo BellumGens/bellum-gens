@@ -95,6 +95,8 @@ import { AddSteamComponent } from './add-steam/add-steam.component';
 import { BaseComponent } from './base/base.component';
 import { StrategiesComponent } from './strategies/strategies.component';
 import { AppShellComponent } from './app-shell/app-shell.component';
+import { IsVideoPipe } from './pipes/is-video.pipe';
+import { TruncateTextPipe } from './pipes/truncate-text.pipe';
 
 @NgModule({
   declarations: [
@@ -151,7 +153,9 @@ import { AppShellComponent } from './app-shell/app-shell.component';
     AddSteamComponent,
     BaseComponent,
     AppShellComponent,
-    StrategiesComponent
+    StrategiesComponent,
+    IsVideoPipe,
+    TruncateTextPipe
   ],
   imports: [
     FormsModule,

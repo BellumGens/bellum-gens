@@ -1,0 +1,15 @@
+.strat-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 50ch;
+}
+
+.strategy-card {
+  height: fit-content;
+}
+
+.strat-image {
+  cursor: zoom-in;
+  max-height: 150px;
+}

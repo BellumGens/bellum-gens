@@ -7,15 +7,16 @@
   </igx-chips-area>
 </div>
 <div class="card-wrapper">
-  <igx-card type="outlined" *ngFor="let strat of strats">
+  <igx-card type="outlined" class="strategy-card" *ngFor="let strat of strats">
     <igx-card-header>
-      <h4 class="igx-card-header__title">{{ strat.Title }}</h4>
+      <h4 class="igx-card-header__title strat-title" [title]="strat.Title">{{ strat.Title }}</h4>
     </igx-card-header>
     <igx-card-media>
+      <iframe class="video-frame" *ngIf="strat.Url | isVideo" [src]="strat.Url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       <img *ngIf="strat.Image" [src]="strat.Image" class="strat-image" />
     </igx-card-media>
     <igx-card-content>
-      <p class="igx-card-header__subtitle">{{ strat.Description }}</p>
+      <p class="igx-card-header__subtitle">{{ strat.Description | truncateText:130 }}</p>
     </igx-card-content>
     <igx-card-actions reverse="true">
       <button igxButton="flat" igxRipple>
