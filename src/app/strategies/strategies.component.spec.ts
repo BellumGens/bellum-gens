@@ -5,6 +5,9 @@ import { IgxChipsModule, IgxCardModule, IgxButtonModule, IgxIconModule } from 'i
 import { MapnamePipe } from '../pipes/mapname.pipe';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ActiveDutyMapsPipe } from '../pipes/active-duty-maps.pipe';
+import { IsVideoPipe } from '../pipes/is-video.pipe';
+import { TruncateTextPipe } from '../pipes/truncate-text.pipe';
+import { SafeVideoLinkPipe } from '../pipes/safe-video-link.pipe';
 
 describe('StrategiesComponent', () => {
   let component: StrategiesComponent;
@@ -22,7 +25,10 @@ describe('StrategiesComponent', () => {
       declarations: [
         StrategiesComponent,
         MapnamePipe,
-        ActiveDutyMapsPipe
+        ActiveDutyMapsPipe,
+        IsVideoPipe,
+        TruncateTextPipe,
+        SafeVideoLinkPipe
       ]
     })
     .compileComponents();
