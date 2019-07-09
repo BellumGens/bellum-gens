@@ -48,7 +48,8 @@ describe('TeamStrategiesComponent', () => {
         IgxSelectModule,
         IgxDialogModule,
         IgxCheckboxModule,
-        IgxChipsModule
+        IgxChipsModule,
+        IgxTimePickerModule
       ],
       declarations: [
         TeamStrategiesComponent,
