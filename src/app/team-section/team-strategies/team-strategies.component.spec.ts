@@ -26,6 +26,7 @@ import { AvailabilityComponent } from 'src/app/availability/availability.compone
 import { WeekdayPipe } from 'src/app/pipes/weekday.pipe';
 import { ActiveDutyMapsPipe } from 'src/app/pipes/active-duty-maps.pipe';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { TruncateTextPipe } from 'src/app/pipes/truncate-text.pipe';
 
 describe('TeamStrategiesComponent', () => {
   let component: TeamStrategiesComponent;
@@ -61,7 +62,8 @@ describe('TeamStrategiesComponent', () => {
         SideStratsPipe,
         MapimagePipe,
         WeekdayPipe,
-        ActiveDutyMapsPipe
+        ActiveDutyMapsPipe,
+        TruncateTextPipe
       ]
     })
     .compileComponents();

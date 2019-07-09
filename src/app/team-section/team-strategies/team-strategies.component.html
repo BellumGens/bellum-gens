@@ -1,11 +1,7 @@
 <div class="card-with-margins">
   <div class="strat-filter-header">
-    <div><h4>Maps</h4></div>
-    <div>
-      <button class="navigation-item" *ngIf="changes && isAdmin" igxButton="outlined" igxRipple (click)="saveMaps($event)">Save current maps</button>
-      <button class="navigation-item" *ngIf="isEditor" igxButton="outlined" igxRipple (click)="openNewStrategy($event)">Add new strategy</button>
-      <button class="navigation-item" igxButton="outlined" igxRipple (click)="viewAll = !viewAll; $event.stopPropagation();">{{viewAll ? 'View Active Duty' : 'View All'}}</button>
-    </div>
+    <span class="igx-card-header__title">Showing {{viewAll ? 'all maps' : 'active duty maps'}}:</span>
+    <button class="navigation-item" igxButton="outlined" igxRipple (click)="newStrat.open()">Create new strategy</button>
   </div>
   <div class="strat-filter-header">
     <igx-chips-area>
@@ -13,20 +9,26 @@
         {{ map.Map | mapname }}
       </igx-chip>
     </igx-chips-area>
+    <button class="navigation-item" igxButton="outlined" igxRipple (click)="viewAll = !viewAll">{{viewAll ? 'View Active Duty' : 'View All'}}</button>
   </div>
   <div class="card-wrapper">
-    <igx-card type="outlined" *ngFor="let strat of teamStrats | activeDutyMaps:viewAll:pipeTrigger | sidestrats:maps">
+    <igx-card type="outlined" *ngFor="let strat of strats | activeDutyMaps:viewAll:pipeTrigger | sidestrats:maps">
       <igx-card-header>
-        <h4 class="igx-card-header__title">{{ strat.Title }}</h4>
+        <h4 class="igx-card-header__title strat-title" [title]="strat.Title">{{ strat.Title }}</h4>
       </igx-card-header>
+
       <igx-card-media>
-        <iframe class="video-frame" *ngIf="isVideo(strat.Url)" [src]="strat.Url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <img *ngIf="strat.Image" [src]="strat.Image" class="strat-image" (click)="selectedStrat = strat; previewStrat.open()" />
+        <iframe class="video-frame" *ngIf="strat.Url | isVideo" [src]="strat.Url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <img *ngIf="strat.Image" [src]="strat.Image" class="strat-image" />
       </igx-card-media>
+
       <igx-card-content>
-        <p class="igx-card-header__subtitle">{{ strat.Description }}</p>
+        <p class="igx-card-header__subtitle">{{ strat.Description | truncateText:130 }}</p>
       </igx-card-content>
-      <igx-card-actions *ngIf="isEditor" reverse="true">
+      <igx-card-actions *ngIf="isEditor else voteButtons" reverse="true">
+        <span class="horizontal-center">comments
+          <igx-badge [value]="strat.Comments?.length" type="info"></igx-badge>
+        </span>
         <button igxButton="flat" igxRipple (click)="confirm.open(strat)">
           <igx-icon title="delete strategy">delete_forever</igx-icon>
           Delete
@@ -36,8 +38,26 @@
           Edit
         </button>
       </igx-card-actions>
+
+      <ng-template #voteButtons>
+        <igx-card-actions reverse="true">
+          <span class="horizontal-center">comments
+            <igx-badge [value]="strat.Comments?.length" type="info"></igx-badge>
+          </span>
+          <button igxButton="flat" igxRipple>
+            <igx-icon title="vote up">thumb_up</igx-icon>
+            <span *ngIf="strat.Votes">{{ strat.Votes }}</span>
+          </button>
+          <button igxButton="flat" igxRipple>
+            <igx-icon title="vote down">thumb_down</igx-icon>
+            <span *ngIf="strat.Votes">{{ strat.Votes }}</span>
+          </button>
+        </igx-card-actions>
+      </ng-template>
+
     </igx-card>
-    <igx-card *ngIf="!(teamStrats | activeDutyMaps:viewAll:pipeTrigger | sidestrats:maps)?.length">
+
+    <igx-card *ngIf="!(strats | activeDutyMaps:viewAll:pipeTrigger | sidestrats:maps)?.length">
         <igx-card-header class="empty-strategy">
           <h4 class="igx-card-header__title">No strategies found</h4>
         </igx-card-header>
@@ -85,6 +105,8 @@
     <igx-radio name="strategySide" [(ngModel)]="newStrategy.Side" [value]="1">
       CT-Side
     </igx-radio>
+
+    <igx-checkbox [(ngModel)]="newStrategy.Visible">Private</igx-checkbox>
 
     <igx-select id="mapSelector" class="space-out" name="mapSelector" [(ngModel)]="newStrategy.Map">
       <label for="mapSelector" igxLabel>Map</label>
