@@ -37,7 +37,7 @@ export enum VoteDirection {
   Down
 }
 
-export function newEmptyStrategy(): CSGOStrategy {
+export function newEmptyStrategy(visible = false): CSGOStrategy {
   return {
     Id: '',
     TeamId: '',
@@ -45,6 +45,7 @@ export function newEmptyStrategy(): CSGOStrategy {
     Title: '',
     Description: '',
     Url: '',
+    Visible: visible,
     Map: CSGOMap.Dust2
   };
 }

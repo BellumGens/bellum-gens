@@ -58,6 +58,7 @@ export class TeamStrategiesComponent extends BaseComponent {
           this.apiService.loadingStrategies.subscribe(loading => this.loading = loading),
           this.apiService.strategies.subscribe(strats => this.strats = strats);
           this.title.setTitle('CS:GO Strategies: find or create ');
+          this.newStrategy.Visible = true;
         }
       }),
       this.authManager.applicationUser.subscribe(user => this.authUser = user)
@@ -145,7 +146,7 @@ export class TeamStrategiesComponent extends BaseComponent {
   }
 
   public resetStrategy() {
-    this.newStrategy = newEmptyStrategy();
+    this.newStrategy = newEmptyStrategy(!this.team);
   }
 
   public createAndRedirect() {
