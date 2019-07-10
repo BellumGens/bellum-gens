@@ -30,6 +30,7 @@ import { ActiveDutyMapsPipe } from 'src/app/pipes/active-duty-maps.pipe';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TruncateTextPipe } from 'src/app/pipes/truncate-text.pipe';
 import { IsVideoPipe } from 'src/app/pipes/is-video.pipe';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 describe('TeamStrategiesComponent', () => {
   let component: TeamStrategiesComponent;
@@ -42,6 +43,7 @@ describe('TeamStrategiesComponent', () => {
         RouterTestingModule,
         NoopAnimationsModule,
         HttpClientTestingModule,
+        ServiceWorkerModule.register('', {enabled: false}),
         IgxIconModule,
         IgxAvatarModule,
         IgxCardModule,
