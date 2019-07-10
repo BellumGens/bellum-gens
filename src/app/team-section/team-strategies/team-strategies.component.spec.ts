@@ -12,7 +12,9 @@ import { IgxIconModule,
   IgxChipsModule,
   IgxTimePickerModule,
   IgxSelectModule,
-  IgxAvatarModule} from 'igniteui-angular';
+  IgxAvatarModule,
+  IgxBadgeModule,
+  IgxSwitchModule} from 'igniteui-angular';
 import { MapPoolComponent } from 'src/app/map-pool/map-pool.component';
 import { SafeVideoLinkPipe } from 'src/app/pipes/safe-video-link.pipe';
 import { FormsModule } from '@angular/forms';
@@ -27,6 +29,7 @@ import { WeekdayPipe } from 'src/app/pipes/weekday.pipe';
 import { ActiveDutyMapsPipe } from 'src/app/pipes/active-duty-maps.pipe';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TruncateTextPipe } from 'src/app/pipes/truncate-text.pipe';
+import { IsVideoPipe } from 'src/app/pipes/is-video.pipe';
 
 describe('TeamStrategiesComponent', () => {
   let component: TeamStrategiesComponent;
@@ -50,7 +53,9 @@ describe('TeamStrategiesComponent', () => {
         IgxDialogModule,
         IgxCheckboxModule,
         IgxChipsModule,
-        IgxTimePickerModule
+        IgxTimePickerModule,
+        IgxBadgeModule,
+        IgxSwitchModule
       ],
       declarations: [
         TeamStrategiesComponent,
@@ -63,7 +68,8 @@ describe('TeamStrategiesComponent', () => {
         MapimagePipe,
         WeekdayPipe,
         ActiveDutyMapsPipe,
-        TruncateTextPipe
+        TruncateTextPipe,
+        IsVideoPipe
       ]
     })
     .compileComponents();

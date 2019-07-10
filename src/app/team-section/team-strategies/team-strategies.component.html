@@ -99,14 +99,18 @@
       </igx-suffix>
     </igx-input-group>
 
-    <igx-radio class="space-out" name="strategySide" [(ngModel)]="newStrategy.Side" [value]="0">
-      T-Side
-    </igx-radio>
-    <igx-radio name="strategySide" [(ngModel)]="newStrategy.Side" [value]="1">
-      CT-Side
-    </igx-radio>
+    <div class="horizontal-center space-between space-out">
+      <igx-radio-group>
+        <igx-radio name="strategySide" [(ngModel)]="newStrategy.Side" [value]="0">
+          T-Side
+        </igx-radio>
+        <igx-radio name="strategySide" [(ngModel)]="newStrategy.Side" [value]="1">
+          CT-Side
+        </igx-radio>
+      </igx-radio-group>
 
-    <igx-checkbox [(ngModel)]="newStrategy.Visible">Private</igx-checkbox>
+      <igx-switch name="strategyPublic" [(ngModel)]="newStrategy.Visible">Public</igx-switch>
+    </div>
 
     <igx-select id="mapSelector" class="space-out" name="mapSelector" [(ngModel)]="newStrategy.Map">
       <label for="mapSelector" igxLabel>Map</label>

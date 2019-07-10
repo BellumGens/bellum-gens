@@ -30,10 +30,12 @@
 
     <div class="slider-holder" *ngIf="authUser">
       <label for="overlap">Minimum overlap of</label>
-      <igx-slider #overlap
-                  name="scheduleOverlap"
+      <igx-slider name="scheduleOverlap"
+                  id="overlap"
+                  class="slider"
+                  [step]="5"
                   [minValue]="0"
-                  [maxValue]="60"
+                  [maxValue]="40"
                   [(ngModel)]="searchModel.scheduleOverlap">
       </igx-slider>
       <label>Hours availability</label>

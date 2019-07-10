@@ -16,7 +16,8 @@ import { IgxAvatarModule,
   IgxTimePickerModule,
   IgxCheckboxModule,
   IgxRippleModule,
-  IgxSelectModule} from 'igniteui-angular';
+  IgxSelectModule,
+  IgxBadgeModule} from 'igniteui-angular';
 import { TeamDetailsComponent } from '../team-details/team-details.component';
 import { TeamStrategiesComponent } from '../team-strategies/team-strategies.component';
 import { TeamApplicationComponent } from '../team-application/team-application.component';
@@ -37,6 +38,8 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { ExcludeMembersPipe } from 'src/app/pipes/exclude-members.pipe';
 import { ActiveDutyMapsPipe } from 'src/app/pipes/active-duty-maps.pipe';
+import { IsVideoPipe } from 'src/app/pipes/is-video.pipe';
+import { TruncateTextPipe } from 'src/app/pipes/truncate-text.pipe';
 
 describe('TeamOverviewComponent', () => {
   let component: TeamOverviewComponent;
@@ -65,7 +68,8 @@ describe('TeamOverviewComponent', () => {
         IgxChipsModule,
         IgxTimePickerModule,
         IgxCheckboxModule,
-        IgxRippleModule
+        IgxRippleModule,
+        IgxBadgeModule
       ],
       declarations: [
         TeamOverviewComponent,
@@ -83,7 +87,9 @@ describe('TeamOverviewComponent', () => {
         WeekdayPipe,
         MapimagePipe,
         ExcludeMembersPipe,
-        ActiveDutyMapsPipe
+        ActiveDutyMapsPipe,
+        IsVideoPipe,
+        TruncateTextPipe
       ]
     })
     .compileComponents();
