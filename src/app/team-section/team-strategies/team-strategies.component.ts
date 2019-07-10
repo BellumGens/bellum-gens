@@ -137,7 +137,7 @@ export class TeamStrategiesComponent extends BaseComponent {
   }
 
   public deleteStrat(args: CSGOStrategy) {
-    this.apiService.deleteStrategy(args.Id, args.TeamId).subscribe(
+    this.apiService.deleteStrategy(args.Id).subscribe(
       _ => {
         this.strats.splice(this.strats.indexOf(args), 1);
         this.pipeTrigger++;

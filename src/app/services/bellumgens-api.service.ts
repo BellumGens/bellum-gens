@@ -208,11 +208,11 @@ export class BellumgensApiService {
   }
 
   public getTeamStrat(stratId: string) {
-    return this.http.get<CSGOStrategy>(`${this._apiEndpoint}/teams/strat?stratId=${stratId}`, { withCredentials: true });
+    return this.http.get<CSGOStrategy>(`${this._apiEndpoint}/strategy/strat?stratId=${stratId}`, { withCredentials: true });
   }
 
   public getTeamStrats(teamId: string) {
-    return this.http.get<CSGOStrategy []>(`${this._apiEndpoint}/teams/strats?teamid=${teamId}`, { withCredentials: true });
+    return this.http.get<CSGOStrategy []>(`${this._apiEndpoint}/strategy/teamstrats?teamid=${teamId}`, { withCredentials: true });
   }
 
   public getCurrentStrategy(stratId: string) {
@@ -533,7 +533,7 @@ export class BellumgensApiService {
   }
 
   public submitStrategy(strat: CSGOStrategy) {
-    return this.http.post<CSGOStrategy>(`${this._apiEndpoint}/teams/strategy`, strat, { withCredentials: true }).pipe(
+    return this.http.post<CSGOStrategy>(`${this._apiEndpoint}/strategy/strategy`, strat, { withCredentials: true }).pipe(
       map(response => {
         if (response) {
           this._currentStrategy.next(response);
@@ -548,8 +548,8 @@ export class BellumgensApiService {
     );
   }
 
-  public deleteStrategy(id: string, teamid: string): Observable<any> {
-    return this.http.delete(`${this._apiEndpoint}/teams/strategy?id=${id}&teamid=${teamid}`, { withCredentials: true }).pipe(
+  public deleteStrategy(id: string): Observable<any> {
+    return this.http.delete(`${this._apiEndpoint}/strategy/strat?id=${id}`, { withCredentials: true }).pipe(
       map(response => {
         if (response) {
           this.emitSuccess('Strategy successfully deleted!');
