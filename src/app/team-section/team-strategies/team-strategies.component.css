@@ -2,7 +2,7 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 50ch;
+  max-width: 24ch;
 }
 
 .strategy-card {

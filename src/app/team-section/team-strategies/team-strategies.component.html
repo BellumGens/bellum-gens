@@ -15,6 +15,7 @@
     <igx-card type="outlined" *ngFor="let strat of strats | activeDutyMaps:viewAll:pipeTrigger | sidestrats:maps">
       <igx-card-header>
         <h4 class="igx-card-header__title strat-title" [title]="strat.Title">{{ strat.Title }}</h4>
+        <igx-icon class="navigatable" [igxToggleAction]="useractions">more_vert</igx-icon>
       </igx-card-header>
 
       <igx-card-media>
@@ -25,35 +26,20 @@
       <igx-card-content>
         <p class="igx-card-header__subtitle">{{ strat.Description | truncateText:130 }}</p>
       </igx-card-content>
-      <igx-card-actions *ngIf="isEditor else voteButtons" reverse="true">
+      
+      <igx-card-actions reverse="true">
         <span class="horizontal-center">comments
           <igx-badge [value]="strat.Comments?.length" type="info"></igx-badge>
         </span>
-        <button igxButton="flat" igxRipple (click)="confirm.open(strat)">
-          <igx-icon title="delete strategy">delete_forever</igx-icon>
-          Delete
+        <button igxButton="flat" igxRipple>
+          <igx-icon title="vote up">thumb_up</igx-icon>
+          <span *ngIf="strat.Votes">{{ strat.Votes }}</span>
         </button>
-        <button igxButton="raised" igxRipple (click)="editStrategy(strat)">
-          <igx-icon title="edit strategy">edit</igx-icon>
-          Edit
+        <button igxButton="flat" igxRipple>
+          <igx-icon title="vote down">thumb_down</igx-icon>
+          <span *ngIf="strat.Votes">{{ strat.Votes }}</span>
         </button>
       </igx-card-actions>
-
-      <ng-template #voteButtons>
-        <igx-card-actions reverse="true">
-          <span class="horizontal-center">comments
-            <igx-badge [value]="strat.Comments?.length" type="info"></igx-badge>
-          </span>
-          <button igxButton="flat" igxRipple>
-            <igx-icon title="vote up">thumb_up</igx-icon>
-            <span *ngIf="strat.Votes">{{ strat.Votes }}</span>
-          </button>
-          <button igxButton="flat" igxRipple>
-            <igx-icon title="vote down">thumb_down</igx-icon>
-            <span *ngIf="strat.Votes">{{ strat.Votes }}</span>
-          </button>
-        </igx-card-actions>
-      </ng-template>
 
     </igx-card>
 
@@ -73,6 +59,17 @@
     </igx-card>
   </div>
 </div>
+
+<igx-drop-down #useractions>
+  <igx-drop-down-item igxRipple (click)="editStrategy(strat)">
+    <igx-icon title="edit strategy">edit</igx-icon>
+    <span class="title margin-left">Edit</span>
+  </igx-drop-down-item>
+  <igx-drop-down-item igxRipple (click)="confirm.open(strat)">
+    <igx-icon title="delete strategy">delete_forever</igx-icon>
+    <span class="title margin-left">Delete</span>
+  </igx-drop-down-item>
+</igx-drop-down>
 
 <igx-dialog #previewStrat closeOnOutsideSelect="true" [title]="selectedStrat?.Title" (onClose)="selectedStrat = null">
   <img *ngIf="selectedStrat" [src]="selectedStrat.Image" />
