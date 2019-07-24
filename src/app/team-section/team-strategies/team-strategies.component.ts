@@ -3,7 +3,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BellumgensApiService } from '../../services/bellumgens-api.service';
 import { CSGOStrategy, newEmptyStrategy } from '../../models/csgostrategy';
 import { MapPool, ActiveDutyDescriptor, ActiveDuty, AllMaps } from '../../models/csgomaps';
-import { IgxDialogComponent, IChipSelectEventArgs } from 'igniteui-angular';
+import { IgxDialogComponent,
+  IChipSelectEventArgs,
+  PositionSettings,
+  AutoPositionStrategy,
+  HorizontalAlignment,
+  OverlaySettings } from 'igniteui-angular';
 import { SafeResourceUrl, Title } from '@angular/platform-browser';
 import { BaseComponent } from '../../base/base.component';
 import { CSGOTeam } from '../../models/csgoteam';
@@ -31,6 +36,15 @@ export class TeamStrategiesComponent extends BaseComponent {
   selectedStrat: CSGOStrategy;
   selectedMap = this.mapList[0];
   loading = false;
+
+  public positionSettings: PositionSettings = {
+    horizontalDirection: HorizontalAlignment.Left,
+    horizontalStartPoint: HorizontalAlignment.Right
+  };
+
+  public overlaySettings: OverlaySettings = {
+    positionStrategy: new AutoPositionStrategy(this.positionSettings)
+  };
 
   @Input()
   isAdmin = false;
