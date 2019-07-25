@@ -179,6 +179,6 @@ export class TeamStrategiesComponent extends BaseComponent {
   }
 
   public voteStrat(strat: CSGOStrategy, direction: VoteDirection) {
-    this.apiService.submitStratVote(strat, direction).subscribe(_ => this.pipeTrigger++);
+    this.apiService.submitStratVote(strat, direction, this.authUser.id).subscribe(_ => this.pipeTrigger++);
   }
 }

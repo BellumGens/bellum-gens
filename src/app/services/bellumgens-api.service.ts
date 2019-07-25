@@ -548,15 +548,24 @@ export class BellumgensApiService {
     );
   }
 
-  public submitStratVote(strat: CSGOStrategy, direction: VoteDirection) {
+  public submitStratVote(strat: CSGOStrategy, direction: VoteDirection, userId: string) {
     return this.http.post<StrategyVote>(`${this._apiEndpoint}/strategy/vote`,
                           { id: strat.Id, direction: direction },
                           { withCredentials: true }).pipe(
       map(response => {
+        const vote = strat.Votes.find(v => v.UserId === userId);
         if (response) {
           this.emitSuccess('Vote submitted successfully!');
+          if (vote) {
+            vote.Vote = response.Vote;
+          } else {
+            strat.Votes.push(response);
+          }
+        } else {
+          this.emitSuccess('Vote removed successfully!');
+          strat.Votes.splice(strat.Votes.indexOf(vote), 1);
         }
-        return strat.Votes.push(response);
+        return response;
       }),
       catchError(error => {
         this.emitError(error.error.Message);
