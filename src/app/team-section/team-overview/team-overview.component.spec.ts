@@ -17,7 +17,8 @@ import { IgxAvatarModule,
   IgxCheckboxModule,
   IgxRippleModule,
   IgxSelectModule,
-  IgxBadgeModule} from 'igniteui-angular';
+  IgxBadgeModule,
+  IgxDropDownModule} from 'igniteui-angular';
 import { TeamDetailsComponent } from '../team-details/team-details.component';
 import { TeamStrategiesComponent } from '../team-strategies/team-strategies.component';
 import { TeamApplicationComponent } from '../team-application/team-application.component';
@@ -69,7 +70,8 @@ describe('TeamOverviewComponent', () => {
         IgxTimePickerModule,
         IgxCheckboxModule,
         IgxRippleModule,
-        IgxBadgeModule
+        IgxBadgeModule,
+        IgxDropDownModule
       ],
       declarations: [
         TeamOverviewComponent,

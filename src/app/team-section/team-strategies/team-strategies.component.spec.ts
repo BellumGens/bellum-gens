@@ -14,7 +14,8 @@ import { IgxIconModule,
   IgxSelectModule,
   IgxAvatarModule,
   IgxBadgeModule,
-  IgxSwitchModule} from 'igniteui-angular';
+  IgxSwitchModule,
+  IgxDropDownModule} from 'igniteui-angular';
 import { MapPoolComponent } from 'src/app/map-pool/map-pool.component';
 import { SafeVideoLinkPipe } from 'src/app/pipes/safe-video-link.pipe';
 import { FormsModule } from '@angular/forms';
@@ -57,7 +58,8 @@ describe('TeamStrategiesComponent', () => {
         IgxChipsModule,
         IgxTimePickerModule,
         IgxBadgeModule,
-        IgxSwitchModule
+        IgxSwitchModule,
+        IgxDropDownModule
       ],
       declarations: [
         TeamStrategiesComponent,
