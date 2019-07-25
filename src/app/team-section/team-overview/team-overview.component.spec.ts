@@ -41,6 +41,7 @@ import { ExcludeMembersPipe } from 'src/app/pipes/exclude-members.pipe';
 import { ActiveDutyMapsPipe } from 'src/app/pipes/active-duty-maps.pipe';
 import { IsVideoPipe } from 'src/app/pipes/is-video.pipe';
 import { TruncateTextPipe } from 'src/app/pipes/truncate-text.pipe';
+import { VotesPipe } from 'src/app/pipes/votes.pipe';
 
 describe('TeamOverviewComponent', () => {
   let component: TeamOverviewComponent;
@@ -91,7 +92,8 @@ describe('TeamOverviewComponent', () => {
         ExcludeMembersPipe,
         ActiveDutyMapsPipe,
         IsVideoPipe,
-        TruncateTextPipe
+        TruncateTextPipe,
+        VotesPipe
       ]
     })
     .compileComponents();
