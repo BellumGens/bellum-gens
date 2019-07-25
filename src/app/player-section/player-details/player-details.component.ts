@@ -22,7 +22,6 @@ import { Title } from '@angular/platform-browser';
   encapsulation: ViewEncapsulation.None,
 })
 export class PlayerDetailsComponent extends BaseComponent {
-
   public authUser: ApplicationUser;
   public teamsAdmin: CSGOTeam [];
   public player: CSGOPlayer;

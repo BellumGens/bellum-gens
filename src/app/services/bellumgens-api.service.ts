@@ -586,7 +586,10 @@ export class BellumgensApiService {
       this.checkSearchCacheForPlayer(userId);
     }
     if (!this.playerMatch(userId)) {
-      this.getPlayerFromServer(userId).subscribe(player => this._currentPlayer.next(player));
+      this.getPlayerFromServer(userId).subscribe(
+        player => this._currentPlayer.next(player),
+        _ => this._currentPlayer.next(null)
+      );
     }
     return this._currentPlayer;
   }
