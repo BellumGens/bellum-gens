@@ -621,7 +621,7 @@ export class BellumgensApiService {
   }
 
   private playerMatch(userId: string) {
-    return this._currentPlayer.value &&
+    return this._currentPlayer.value && this._currentPlayer.value.steamUser &&
       (this._currentPlayer.value.steamUser.customURL === userId ||  this._currentPlayer.value.steamUser.steamID64 === userId);
   }
 
