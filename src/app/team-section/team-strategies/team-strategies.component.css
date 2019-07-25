@@ -50,3 +50,11 @@
   min-height: 200px;
   justify-content: space-evenly;
 }
+
+.smaller-subtitle {
+  font-size: 0.65rem;
+}
+
+.votes-badge {
+  position: relative;
+}

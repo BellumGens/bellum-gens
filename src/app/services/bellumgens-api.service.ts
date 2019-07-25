@@ -9,7 +9,7 @@ import { Role } from '../models/playerrole';
 import { MapPool } from '../models/csgomaps';
 import { map, shareReplay, catchError } from 'rxjs/operators';
 import { UserNotification } from '../models/usernotifications';
-import { CSGOStrategy } from '../models/csgostrategy';
+import { CSGOStrategy, VoteDirection, StrategyVote } from '../models/csgostrategy';
 import { SearchResult } from '../models/searchresult';
 import { environment } from '../../environments/environment';
 
@@ -540,6 +540,23 @@ export class BellumgensApiService {
           this.emitSuccess('Strategy saved!');
         }
         return response;
+      }),
+      catchError(error => {
+        this.emitError(error.error.Message);
+        return throwError(error);
+      })
+    );
+  }
+
+  public submitStratVote(strat: CSGOStrategy, direction: VoteDirection) {
+    return this.http.post<StrategyVote>(`${this._apiEndpoint}/strategy/vote`,
+                          { id: strat.Id, direction: direction },
+                          { withCredentials: true }).pipe(
+      map(response => {
+        if (response) {
+          this.emitSuccess('Vote submitted successfully!');
+        }
+        return strat.Votes.push(response);
       }),
       catchError(error => {
         this.emitError(error.error.Message);

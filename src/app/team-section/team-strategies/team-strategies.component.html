@@ -16,6 +16,7 @@
       <igx-card-header>
         <h2 igxCardHeaderTitle class="strat-title" [title]="strat.Title">{{ strat.Title }}</h2>
         <h4 igxCardHeaderSubtitle>Author: <a [routerLink]="['/players', strat.UserId]">{{ strat.Owner }}</a></h4>
+        <h6 igxCardHeaderSubtitle class="smaller-subtitle">Last Edited: {{ strat.LastUpdated | date }}</h6>
         <igx-icon class="navigatable" [igxToggleAction]="useractions" [overlaySettings]="overlaySettings">more_vert</igx-icon>
       </igx-card-header>
 
@@ -29,17 +30,21 @@
       </igx-card-content>
       
       <igx-card-actions reverse="true">
-        <span class="horizontal-center">
-          comments
+        <span class="horizontal-center navigatable">
           <igx-badge [value]="strat.Comments?.length" type="info"></igx-badge>
+          Comments
         </span>
-        <button igxButton="flat" igxRipple>
+        <button igxButton="outlined" igxRipple (click)="voteStrat(strat, 0)">
           <igx-icon title="vote up">thumb_up</igx-icon>
-          <span *ngIf="strat.Votes">{{ strat.Votes }}</span>
+          <span *ngIf="strat.Votes | votes:0:pipeTrigger">
+            {{strat.Votes | votes:0:pipeTrigger}}
+          </span>
         </button>
-        <button igxButton="flat" igxRipple>
+        <button igxButton="outlined" igxRipple (click)="voteStrat(strat, 1)">
           <igx-icon title="vote down">thumb_down</igx-icon>
-          <span *ngIf="strat.Votes">{{ strat.Votes }}</span>
+          <span *ngIf="strat.Votes | votes:1:pipeTrigger">
+            {{strat.Votes | votes:1:pipeTrigger}}
+          </span>
         </button>
       </igx-card-actions>
 

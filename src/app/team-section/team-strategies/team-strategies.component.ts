@@ -1,7 +1,7 @@
 import { Component, ViewChild, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BellumgensApiService } from '../../services/bellumgens-api.service';
-import { CSGOStrategy, newEmptyStrategy } from '../../models/csgostrategy';
+import { CSGOStrategy, newEmptyStrategy, VoteDirection } from '../../models/csgostrategy';
 import { MapPool, ActiveDutyDescriptor, ActiveDuty, AllMaps } from '../../models/csgomaps';
 import { IgxDialogComponent,
   IChipSelectEventArgs,
@@ -176,5 +176,9 @@ export class TeamStrategiesComponent extends BaseComponent {
       route.push(strat.CustomUrl);
       this.router.navigate(route);
     });
+  }
+
+  public voteStrat(strat: CSGOStrategy, direction: VoteDirection) {
+    this.apiService.submitStratVote(strat, direction).subscribe(_ => this.pipeTrigger++);
   }
 }

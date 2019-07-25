@@ -96,6 +96,7 @@ import { BaseComponent } from './base/base.component';
 import { AppShellComponent } from './app-shell/app-shell.component';
 import { IsVideoPipe } from './pipes/is-video.pipe';
 import { TruncateTextPipe } from './pipes/truncate-text.pipe';
+import { VotesPipe } from './pipes/votes.pipe';
 
 @NgModule({
   declarations: [
@@ -153,7 +154,8 @@ import { TruncateTextPipe } from './pipes/truncate-text.pipe';
     BaseComponent,
     AppShellComponent,
     IsVideoPipe,
-    TruncateTextPipe
+    TruncateTextPipe,
+    VotesPipe
   ],
   imports: [
     FormsModule,

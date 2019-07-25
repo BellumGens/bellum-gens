@@ -8,6 +8,7 @@ export interface CSGOStrategy {
   Description: string;
   Url: string;
   Map: CSGOMap;
+  LastUpdated?: Date;
   Owner?: string;
   Image?: string;
   EditorMetadata?: string;
