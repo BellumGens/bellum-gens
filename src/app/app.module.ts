@@ -97,6 +97,7 @@ import { AppShellComponent } from './app-shell/app-shell.component';
 import { IsVideoPipe } from './pipes/is-video.pipe';
 import { TruncateTextPipe } from './pipes/truncate-text.pipe';
 import { VotesPipe } from './pipes/votes.pipe';
+import { StrategyDetailsComponent } from './team-section/team-strategies/strategy-details/strategy-details.component';
 
 @NgModule({
   declarations: [
@@ -155,7 +156,8 @@ import { VotesPipe } from './pipes/votes.pipe';
     AppShellComponent,
     IsVideoPipe,
     TruncateTextPipe,
-    VotesPipe
+    VotesPipe,
+    StrategyDetailsComponent
   ],
   imports: [
     FormsModule,

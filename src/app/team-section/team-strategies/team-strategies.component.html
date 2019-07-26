@@ -14,13 +14,16 @@
   <div class="card-wrapper">
     <igx-card type="outlined" *ngFor="let strat of strats | activeDutyMaps:viewAll:pipeTrigger | sidestrats:maps">
       <igx-card-header>
-        <h2 igxCardHeaderTitle class="strat-title" [title]="strat.Title">{{ strat.Title }}</h2>
+        <h2 igxCardHeaderTitle
+            class="strat-title navigatable"
+            [title]="strat.Title"
+            [routerLink]="['/strategies', 'details', strat.CustomUrl]">{{ strat.Title }}</h2>
         <h4 igxCardHeaderSubtitle>Author: <a [routerLink]="['/players', strat.UserId]">{{ strat.Owner }}</a></h4>
         <h6 igxCardHeaderSubtitle class="smaller-subtitle">Last Edited: {{ strat.LastUpdated | date }}</h6>
         <igx-icon class="navigatable" [igxToggleAction]="useractions" [overlaySettings]="overlaySettings">more_vert</igx-icon>
       </igx-card-header>
 
-      <igx-card-media>
+      <igx-card-media [routerLink]="['/strategies', 'details', strat.CustomUrl]">
         <iframe class="video-frame" *ngIf="strat.Url | isVideo" [src]="strat.Url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         <img *ngIf="strat.Image" [src]="strat.Image" class="strat-image" />
       </igx-card-media>
@@ -30,7 +33,7 @@
       </igx-card-content>
       
       <igx-card-actions reverse="true">
-        <span class="horizontal-center navigatable">
+        <span class="horizontal-center navigatable" [routerLink]="['/strategies', 'details', strat.CustomUrl]">
           <igx-badge [value]="strat.Comments?.length" type="info"></igx-badge>
           Comments
         </span>
