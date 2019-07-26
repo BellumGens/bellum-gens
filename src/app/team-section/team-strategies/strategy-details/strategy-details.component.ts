@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { BaseComponent } from 'src/app/base/base.component';
-import { BellumgensApiService } from 'src/app/services/bellumgens-api.service';
+import { BaseComponent } from '../../../base/base.component';
+import { BellumgensApiService } from '../../../services/bellumgens-api.service';
 import { ActivatedRoute } from '@angular/router';
-import { CSGOStrategy } from 'src/app/models/csgostrategy';
+import { CSGOStrategy } from '../../../models/csgostrategy';
 
 @Component({
   selector: 'app-strategy-details',
