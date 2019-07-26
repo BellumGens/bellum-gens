@@ -14,7 +14,7 @@ export class StrategyDetailsComponent extends BaseComponent {
   public strat: CSGOStrategy;
 
   constructor(private apiService: BellumgensApiService,
-    private route: ActivatedRoute) {
+              private route: ActivatedRoute) {
     super();
     this.subs.push(
       this.route.params.subscribe(params => {

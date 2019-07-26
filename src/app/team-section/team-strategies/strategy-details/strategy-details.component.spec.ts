@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { StrategyDetailsComponent } from './strategy-details.component';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('StrategyDetailsComponent', () => {
   let component: StrategyDetailsComponent;
@@ -8,6 +10,10 @@ describe('StrategyDetailsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [
+        RouterTestingModule,
+        HttpClientTestingModule
+      ],
       declarations: [ StrategyDetailsComponent ]
     })
     .compileComponents();
