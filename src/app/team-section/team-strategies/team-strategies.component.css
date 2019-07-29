@@ -51,10 +51,6 @@
   justify-content: space-evenly;
 }
 
-.smaller-subtitle {
+.card-smaller-subtitle {
   font-size: 0.65rem;
-}
-
-.votes-badge {
-  position: relative;
 }

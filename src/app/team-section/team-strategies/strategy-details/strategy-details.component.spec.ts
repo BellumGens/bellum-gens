@@ -3,6 +3,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { StrategyDetailsComponent } from './strategy-details.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { IgxCardModule } from 'igniteui-angular';
 
 describe('StrategyDetailsComponent', () => {
   let component: StrategyDetailsComponent;
@@ -12,7 +14,9 @@ describe('StrategyDetailsComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        ServiceWorkerModule.register('', {enabled: false}),
+        IgxCardModule
       ],
       declarations: [ StrategyDetailsComponent ]
     })

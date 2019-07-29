@@ -1,0 +1,11 @@
+.card-smaller-subtitle {
+  font-size: 0.65rem;
+}
+
+.list-container.comments-container {
+  height: calc(100% - 200px);
+}
+
+.strategy-details {
+  height: 100%;
+}

@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { BaseComponent } from '../../../base/base.component';
 import { BellumgensApiService } from '../../../services/bellumgens-api.service';
 import { ActivatedRoute } from '@angular/router';
-import { CSGOStrategy } from '../../../models/csgostrategy';
+import { CSGOStrategy, VoteDirection, newEmptyComment } from '../../../models/csgostrategy';
+import { LoginService } from '../../../services/login.service';
+import { ApplicationUser } from '../../../models/applicationuser';
 
 @Component({
   selector: 'app-strategy-details',
@@ -12,8 +14,12 @@ import { CSGOStrategy } from '../../../models/csgostrategy';
 export class StrategyDetailsComponent extends BaseComponent {
 
   public strat: CSGOStrategy;
+  public authUser: ApplicationUser;
+  public pipeTrigger = 0;
+  public newComment = newEmptyComment();
 
   constructor(private apiService: BellumgensApiService,
+              private authManager: LoginService,
               private route: ActivatedRoute) {
     super();
     this.subs.push(
@@ -26,8 +32,15 @@ export class StrategyDetailsComponent extends BaseComponent {
             }
           });
         }
+      }),
+      this.authManager.applicationUser.subscribe(user => {
+        this.authUser = user;
+        this.newComment.UserId = user.id;
       })
     );
   }
 
+  public voteStrat(strat: CSGOStrategy, direction: VoteDirection) {
+    this.apiService.submitStratVote(strat, direction, this.authUser.id).subscribe(_ => this.pipeTrigger++);
+  }
 }

@@ -19,7 +19,7 @@
             [title]="strat.Title"
             [routerLink]="['/strategies', 'details', strat.CustomUrl]">{{ strat.Title }}</h2>
         <h4 igxCardHeaderSubtitle>Author: <a [routerLink]="['/players', strat.UserId]">{{ strat.Owner }}</a></h4>
-        <h6 igxCardHeaderSubtitle class="smaller-subtitle">Last Edited: {{ strat.LastUpdated | date }}</h6>
+        <h6 igxCardHeaderSubtitle class="card-smaller-subtitle">Last Edit: {{ strat.LastUpdated | date }}</h6>
         <igx-icon class="navigatable" [igxToggleAction]="useractions" [overlaySettings]="overlaySettings">more_vert</igx-icon>
       </igx-card-header>
 
@@ -37,13 +37,13 @@
           <igx-badge [value]="strat.Comments?.length" type="info"></igx-badge>
           Comments
         </span>
-        <button igxButton="outlined" igxRipple (click)="voteStrat(strat, 0)">
+        <button igxButton="flat" igxRipple (click)="voteStrat(strat, 0)">
           <igx-icon title="vote up">thumb_up</igx-icon>
           <span *ngIf="strat.Votes | votes:0:pipeTrigger">
             {{strat.Votes | votes:0:pipeTrigger}}
           </span>
         </button>
-        <button igxButton="outlined" igxRipple (click)="voteStrat(strat, 1)">
+        <button igxButton="flat" igxRipple (click)="voteStrat(strat, 1)">
           <igx-icon title="vote down">thumb_down</igx-icon>
           <span *ngIf="strat.Votes | votes:1:pipeTrigger">
             {{strat.Votes | votes:1:pipeTrigger}}
@@ -80,10 +80,6 @@
     </igx-card>
   </div>
 </div>
-
-<igx-dialog #previewStrat closeOnOutsideSelect="true" [title]="selectedStrat?.Title" (onClose)="selectedStrat = null">
-  <img *ngIf="selectedStrat" [src]="selectedStrat.Image" />
-</igx-dialog>
 
 <!-- New strategy dialog-->
 <igx-dialog #newStrat closeOnOutsideSelect="true" (onClose)="resetStrategy()">

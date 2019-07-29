@@ -25,8 +25,12 @@ export interface StrategyVote {
 }
 
 export interface StrategyComment {
+  Id?: string;
   Comment: string;
-  Published: Date;
+  Published?: Date;
+  UserId: string;
+  UserName?: string;
+  UserAvatar?: string;
 }
 
 export enum Side {
@@ -49,5 +53,12 @@ export function newEmptyStrategy(visible = false): CSGOStrategy {
     Url: '',
     Visible: visible,
     Map: CSGOMap.Dust2
+  };
+}
+
+export function newEmptyComment(): StrategyComment {
+  return {
+    UserId: null,
+    Comment: null
   };
 }
