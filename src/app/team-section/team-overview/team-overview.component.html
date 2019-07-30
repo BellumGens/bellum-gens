@@ -16,16 +16,27 @@
     </div>
   </div>
   <igx-tabs>
-    <igx-tab-item label="Team Details" icon="people_outline"
-                  routerLink="details"
+    <igx-tab-item routerLink="details"
                   routerLinkActive #rla1="routerLinkActive"
                   [isSelected]="rla1.isActive">
+      <ng-template igxTab>
+        <div class="horizontal-center">
+          <igx-icon>people_outline</igx-icon>
+          <div class="igx-tabs__item-label">Details</div>
+        </div> 	
+      </ng-template>
     </igx-tab-item>
 
-    <igx-tab-item *ngIf="userIsMember" label="Team Strats" icon="playlist_add_check"
+    <igx-tab-item *ngIf="userIsMember"
                   routerLink="strategies"
                   routerLinkActive #rla2="routerLinkActive"
                   [isSelected]="rla2.isActive">
+      <ng-template igxTab>
+        <div class="horizontal-center">
+          <igx-icon>playlist_add_check</igx-icon>
+          <div class="igx-tabs__item-label">Strategies</div>
+        </div> 	
+      </ng-template>
     </igx-tab-item>
 
     <!-- <igx-tabs-group [disabled]="true">
@@ -37,10 +48,16 @@
         </ng-template>
     </igx-tabs-group> -->
 
-    <igx-tab-item *ngIf="userIsAdmin" label="Preferences" icon="settings"
+    <igx-tab-item *ngIf="userIsAdmin"
                   routerLink="preferences"
                   routerLinkActive #rla3="routerLinkActive"
                   [isSelected]="rla3.isActive">
+      <ng-template igxTab>
+        <div class="horizontal-center">
+          <igx-icon>settings</igx-icon>
+          <div class="igx-tabs__item-label">Preferences</div>
+        </div> 	
+      </ng-template>
     </igx-tab-item>
   </igx-tabs>
   <router-outlet></router-outlet>
