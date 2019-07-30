@@ -1,4 +1,6 @@
-<div class="card-with-margins">
+<app-app-shell *ngIf="loading"></app-app-shell>
+
+<div class="card-with-margins" *ngIf="!loading">
   <div class="strat-filter-header">
     <span class="igx-card-header__title">Showing {{viewAll ? 'all maps' : 'active duty maps'}}:</span>
     <button class="navigation-item" igxButton="outlined" igxRipple (click)="newStrat.open()">Create new strategy</button>
@@ -18,14 +20,14 @@
             class="strat-title navigatable"
             [title]="strat.Title"
             [routerLink]="['/strategies', 'details', strat.CustomUrl]">{{ strat.Title }}</h2>
-        <h4 igxCardHeaderSubtitle>Author: <a [routerLink]="['/players', strat.UserId]">{{ strat.Owner }}</a></h4>
+        <h4 igxCardHeaderSubtitle>Author: <a *ngIf="strat.Owner" [routerLink]="['/players', strat.UserId]">{{ strat.Owner }}</a></h4>
         <h6 igxCardHeaderSubtitle class="card-smaller-subtitle">Last Edit: {{ strat.LastUpdated | date }}</h6>
         <igx-icon class="navigatable" [igxToggleAction]="useractions" [overlaySettings]="overlaySettings">more_vert</igx-icon>
       </igx-card-header>
 
-      <igx-card-media [routerLink]="['/strategies', 'details', strat.CustomUrl]">
+      <igx-card-media>
         <iframe class="video-frame" *ngIf="strat.Url | isVideo" [src]="strat.Url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <img *ngIf="strat.Image" [src]="strat.Image" class="strat-image" />
+        <img *ngIf="strat.Image" [src]="strat.Image" class="strat-image" [routerLink]="['/strategies', 'details', strat.CustomUrl]" />
       </igx-card-media>
 
       <igx-card-content>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { BaseComponent } from '../../../base/base.component';
 import { BellumgensApiService } from '../../../services/bellumgens-api.service';
 import { ActivatedRoute } from '@angular/router';
@@ -17,6 +17,7 @@ export class StrategyDetailsComponent extends BaseComponent {
   public authUser: ApplicationUser;
   public pipeTrigger = 0;
   public newComment = newEmptyComment();
+  public horizontal = window.matchMedia('(min-width: 768px)').matches;
 
   constructor(private apiService: BellumgensApiService,
               private authManager: LoginService,
@@ -38,6 +39,11 @@ export class StrategyDetailsComponent extends BaseComponent {
         this.newComment.UserId = user.id;
       })
     );
+  }
+
+  @HostListener('window:resize')
+  public resize() {
+    this.horizontal = window.matchMedia('(min-width: 768px)').matches;
   }
 
   public voteStrat(strat: CSGOStrategy, direction: VoteDirection) {

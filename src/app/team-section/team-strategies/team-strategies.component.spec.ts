@@ -33,6 +33,7 @@ import { TruncateTextPipe } from 'src/app/pipes/truncate-text.pipe';
 import { IsVideoPipe } from 'src/app/pipes/is-video.pipe';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { VotesPipe } from 'src/app/pipes/votes.pipe';
+import { AppShellComponent } from 'src/app/app-shell/app-shell.component';
 
 describe('TeamStrategiesComponent', () => {
   let component: TeamStrategiesComponent;
@@ -64,6 +65,7 @@ describe('TeamStrategiesComponent', () => {
       ],
       declarations: [
         TeamStrategiesComponent,
+        AppShellComponent,
         MapPoolComponent,
         ConfirmComponent,
         AvailabilityComponent,

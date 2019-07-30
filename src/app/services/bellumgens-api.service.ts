@@ -216,7 +216,7 @@ export class BellumgensApiService {
   }
 
   public getCurrentStrategy(stratId: string) {
-    if (!this._currentStrategy.value) {
+    if (!this._currentStrategy.value || this._currentStrategy.value.Id !== stratId) {
       this.getTeamStrat(stratId).subscribe(strat => this._currentStrategy.next(strat));
     }
     return this._currentStrategy;

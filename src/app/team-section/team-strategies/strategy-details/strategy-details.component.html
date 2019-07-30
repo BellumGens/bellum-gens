@@ -1,11 +1,20 @@
-<igx-card *ngIf="strat" class="strategy-details" type="outlined" [horizontal]="true">
+<app-app-shell *ngIf="!strat"></app-app-shell>
+
+<igx-card *ngIf="strat" class="strategy-details" type="outlined" [horizontal]="horizontal">
 
   <div igxLayout igxLayoutDir="column" igxFlex igxFlexGrow="1">
+    <igx-card-media *ngIf="strat.Url | isVideo else imageContent" height="100%">
+      <iframe [src]="strat.Url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </igx-card-media>
+
     <igx-card-header>
       <h1 igxCardHeaderTitle>{{ strat.Title }}</h1>
       <h3 igxCardHeaderSubtitle>{{ strat.Description }}</h3>
-      <h5 igxCardHeaderSubtitle class="card-smaller-subtitle">Last Edit: {{ strat.LastUpdated | date }}</h5>
-      
+      <h5 igxCardHeaderSubtitle class="card-smaller-subtitle">
+        <span *ngIf="strat.UserId">Author: <a [routerLink]="['/players', strat.UserId]">{{ strat.Owner }}</a></span> 
+        Last Edit: {{ strat.LastUpdated | date }}
+      </h5>
+
       <button igxButton="flat" igxRipple (click)="voteStrat(strat, 0)">
         <igx-icon title="vote up">thumb_up</igx-icon>
         <span *ngIf="strat.Votes | votes:0:pipeTrigger">
@@ -20,13 +29,14 @@
       </button>
     </igx-card-header>
 
-    <igx-card-media>
-      <iframe class="video-frame" *ngIf="strat.Url | isVideo" [src]="strat.Url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      <img *ngIf="strat.Image" [src]="strat.Image" class="strat-image" />
-    </igx-card-media>
+    <ng-template #imageContent>
+      <igx-card-media class="strategy-image-container">
+        <img *ngIf="strat.Image" [src]="strat.Image" [alt]="strat.Title" />
+      </igx-card-media>
+    </ng-template>
   </div>
 
-  <igx-divider [vertical]="true"></igx-divider>
+  <igx-divider [vertical]="horizontal"></igx-divider>
 
   <igx-card-actions layout="justify">
     <igx-list class="list-container comments-container">
