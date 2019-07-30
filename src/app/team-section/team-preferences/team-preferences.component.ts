@@ -2,35 +2,41 @@ import { Component, Input } from '@angular/core';
 import { BellumgensApiService } from '../../services/bellumgens-api.service';
 import { CSGOTeam, TeamMember } from '../../models/csgoteam';
 import { SteamUserSummary } from '../../models/steamuser';
+import { BaseComponent } from 'src/app/base/base.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-team-preferences',
   templateUrl: './team-preferences.component.html',
   styleUrls: ['./team-preferences.component.css']
 })
-export class TeamPreferencesComponent {
-  private _team: CSGOTeam;
-
+export class TeamPreferencesComponent extends BaseComponent {
+  public team: CSGOTeam;
   public steamMembers: SteamUserSummary [];
-
-  @Input()
-  public set team(team: CSGOTeam) {
-    if (team) {
-      this._team = team;
-      if (team.SteamGroup) {
-        this.apiService.getSteamMembers(team.SteamGroup.members).subscribe(data => this.steamMembers = data);
-      }
-    }
-  }
-
-  public get team() {
-    return this._team;
-  }
 
   @Input()
   adminId: string;
 
-  constructor(private apiService: BellumgensApiService) { }
+  constructor(private apiService: BellumgensApiService,
+              private activatedRoute: ActivatedRoute) {
+    super();
+    this.subs.push(
+      this.activatedRoute.parent.params.subscribe(params => {
+        const teamId = params['teamid'];
+
+        if (teamId) {
+          this.apiService.getTeam(teamId).subscribe(team => {
+            if (team) {
+              this.team = team;
+              if (team.SteamGroup) {
+                this.subs.push(this.apiService.getSteamMembers(team.SteamGroup.members).subscribe(data => this.steamMembers = data));
+              }
+            }
+          });
+        }
+      })
+    );
+  }
 
   public updateTeamInfo() {
     this.apiService.updateTeam(this.team).subscribe();

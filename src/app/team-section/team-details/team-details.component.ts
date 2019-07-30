@@ -4,42 +4,21 @@ import { PlaystyleRole, RoleSlot } from '../../models/playerrole';
 import { TeamMember, CSGOTeam, TEAM_PLACEHOLDER } from '../../models/csgoteam';
 import { BellumgensApiService } from '../../services/bellumgens-api.service';
 import { Availability } from '../../models/playeravailability';
+import { ActivatedRoute } from '@angular/router';
+import { BaseComponent } from 'src/app/base/base.component';
+import { LoginService } from 'src/app/services/login.service';
+import { ApplicationUser } from 'src/app/models/applicationuser';
 
 @Component({
   selector: 'app-team-details',
   templateUrl: './team-details.component.html',
   styleUrls: ['./team-details.component.css']
 })
-export class TeamDetailsComponent {
-  private _team = TEAM_PLACEHOLDER;
-
-  public get team(): CSGOTeam {
-    return this._team;
-  }
-
-  @Input()
-  public set team(team: CSGOTeam) {
-    if (team) {
-      if (this._team.TeamId !== team.TeamId) {
-        this._team = team;
-        this.roleSlots.forEach((role) => {
-          const member = this._team.Members.find(m => m.Role === role.role);
-          if (member) {
-            role.user = member;
-          } else {
-            role.user = null;
-          }
-        });
-        this.activeMembers = this._team.Members.filter(m => m.IsActive && m.Role === PlaystyleRole.NotSet);
-        this.inactiveMembers = this._team.Members.filter(m => !m.IsActive);
-      }
-    }
-  }
+export class TeamDetailsComponent extends BaseComponent {
   public activeMembers: TeamMember [];
   public inactiveMembers: TeamMember [];
-
-  @Input()
-  public userId: string;
+  public authUser: ApplicationUser;
+  public team = TEAM_PLACEHOLDER;
 
   @Input()
   public isAdmin = false;
@@ -54,7 +33,37 @@ export class TeamDetailsComponent {
 
   @ViewChildren(IgxAvatarComponent, { read: ElementRef }) public emptyRoles: QueryList<ElementRef>;
 
-  constructor(private apiService: BellumgensApiService) { }
+  constructor(private apiService: BellumgensApiService,
+              private authManager: LoginService,
+              private activatedRoute: ActivatedRoute) {
+    super();
+    this.subs.push(
+      this.authManager.applicationUser.subscribe((data: ApplicationUser) => {
+        this.authUser = data;
+      }),
+      this.activatedRoute.parent.params.subscribe(params => {
+        const teamId = params['teamid'];
+
+        if (teamId) {
+          this.apiService.getTeam(teamId).subscribe(team => {
+            if (team) {
+              this.team = team;
+              this.roleSlots.forEach((role) => {
+                const member = this.team.Members.find(m => m.Role === role.role);
+                if (member) {
+                  role.user = member;
+                } else {
+                  role.user = null;
+                }
+              });
+              this.activeMembers = this.team.Members.filter(m => m.IsActive && m.Role === PlaystyleRole.NotSet);
+              this.inactiveMembers = this.team.Members.filter(m => !m.IsActive);
+            }
+          });
+        }
+      })
+    );
+  }
 
   public removeFromRole(role: RoleSlot) {
     const user = role.user;

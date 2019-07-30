@@ -10,31 +10,23 @@
       <app-team-application [authUser]="authUser"></app-team-application>
     </div>
     <div *ngIf="userIsMember && team?.Discord" class="horizontal-info__right">
-      <a [href]="team.Discord" target="_blank" rel="noopener"><igx-icon class="discord-icon" fontSet="login-icons" name="discord"></igx-icon></a>
+      <a [href]="team.Discord" target="_blank" rel="noopener">
+        <igx-icon class="discord-icon" fontSet="login-icons" name="discord"></igx-icon>
+      </a>
     </div>
   </div>
   <igx-tabs>
-    <igx-tabs-group>
-      <ng-template igxTab>
-        <div class="horizontal-center">
-          <igx-icon>people_outline</igx-icon>
-          <div class="igx-tabs__item-label">Team Details</div>
-        </div> 
-      </ng-template>
+    <igx-tab-item label="Team Details" icon="people_outline"
+                  routerLink="details"
+                  routerLinkActive #rla1="routerLinkActive"
+                  [isSelected]="rla1.isActive">
+    </igx-tab-item>
 
-      <app-team-details [team]="team" [userId]="authUser?.steamUser?.steamID64" [isAdmin]="userIsAdmin"></app-team-details>
-    </igx-tabs-group>
-
-    <igx-tabs-group *ngIf="userIsMember">
-      <ng-template igxTab>
-        <div class="horizontal-center">
-          <igx-icon>playlist_add_check</igx-icon>
-          <div class="igx-tabs__item-label">Team Strats</div>
-        </div> 
-      </ng-template>
-
-      <app-team-strategies [isAdmin]="userIsAdmin" [isEditor]="userIsEditor"></app-team-strategies>
-    </igx-tabs-group>
+    <igx-tab-item *ngIf="userIsMember" label="Team Strats" icon="playlist_add_check"
+                  routerLink="strategies"
+                  routerLinkActive #rla2="routerLinkActive"
+                  [isSelected]="rla2.isActive">
+    </igx-tab-item>
 
     <!-- <igx-tabs-group [disabled]="true">
         <ng-template igxTab>
@@ -45,15 +37,11 @@
         </ng-template>
     </igx-tabs-group> -->
 
-    <igx-tabs-group *ngIf="userIsAdmin">
-      <ng-template igxTab>
-        <div class="horizontal-center">
-          <igx-icon>settings</igx-icon>
-          <div class="igx-tabs__item-label">Preferences</div>
-        </div> 
-      </ng-template>
-      
-      <app-team-preferences [team]="team" [adminId]="authUser.id"></app-team-preferences>
-    </igx-tabs-group>
+    <igx-tab-item *ngIf="userIsAdmin" label="Preferences" icon="settings"
+                  routerLink="preferences"
+                  routerLinkActive #rla3="routerLinkActive"
+                  [isSelected]="rla3.isActive">
+    </igx-tab-item>
   </igx-tabs>
+  <router-outlet></router-outlet>
 </div>

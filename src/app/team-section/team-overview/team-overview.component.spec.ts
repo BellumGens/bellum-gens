@@ -58,42 +58,12 @@ describe('TeamOverviewComponent', () => {
         IgxAvatarModule,
         IgxIconModule,
         IgxTabsModule,
-        IgxCardModule,
-        IgxDragDropModule,
-        IgxListModule,
         IgxInputGroupModule,
-        IgxRadioModule,
-        IgxToggleModule,
-        IgxSelectModule,
-        IgxDialogModule,
-        IgxSwitchModule,
-        IgxChipsModule,
-        IgxTimePickerModule,
-        IgxCheckboxModule,
-        IgxRippleModule,
-        IgxBadgeModule,
-        IgxDropDownModule
+        IgxDialogModule
       ],
       declarations: [
         TeamOverviewComponent,
-        TeamDetailsComponent,
-        TeamStrategiesComponent,
-        TeamApplicationComponent,
-        TeamPreferencesComponent,
-        AvailabilityComponent,
-        ConfirmComponent,
-        MapPoolComponent,
-        PlayerCountryPipe,
-        SideStratsPipe,
-        SafeVideoLinkPipe,
-        MapnamePipe,
-        WeekdayPipe,
-        MapimagePipe,
-        ExcludeMembersPipe,
-        ActiveDutyMapsPipe,
-        IsVideoPipe,
-        TruncateTextPipe,
-        VotesPipe
+        TeamApplicationComponent
       ]
     })
     .compileComponents();

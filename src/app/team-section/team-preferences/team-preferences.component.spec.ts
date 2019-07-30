@@ -9,6 +9,9 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TEAM_PLACEHOLDER } from 'src/app/models/csgoteam';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ExcludeMembersPipe } from 'src/app/pipes/exclude-members.pipe';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 
 describe('TeamPreferencesComponent', () => {
   let component: TeamPreferencesComponent;
@@ -21,6 +24,7 @@ describe('TeamPreferencesComponent', () => {
         RouterTestingModule,
         NoopAnimationsModule,
         HttpClientTestingModule,
+        ServiceWorkerModule.register('', {enabled: false}),
         IgxListModule,
         IgxIconModule,
         IgxSwitchModule,
@@ -32,6 +36,16 @@ describe('TeamPreferencesComponent', () => {
         TeamPreferencesComponent,
         PlayerCountryPipe,
         ExcludeMembersPipe
+      ],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            parent: {
+              params: new Observable()
+            }
+          }
+        }
       ]
     })
     .compileComponents();

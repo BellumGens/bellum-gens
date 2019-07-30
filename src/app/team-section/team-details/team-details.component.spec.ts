@@ -15,6 +15,9 @@ import { PlayerCountryPipe } from 'src/app/pipes/player-country.pipe';
 import { WeekdayPipe } from 'src/app/pipes/weekday.pipe';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 
 describe('TeamDetailsComponent', () => {
   let component: TeamDetailsComponent;
@@ -26,6 +29,7 @@ describe('TeamDetailsComponent', () => {
         RouterTestingModule,
         NoopAnimationsModule,
         HttpClientTestingModule,
+        ServiceWorkerModule.register('', {enabled: false}),
         IgxAvatarModule,
         IgxCardModule,
         IgxDragDropModule,
@@ -40,6 +44,16 @@ describe('TeamDetailsComponent', () => {
         ConfirmComponent,
         PlayerCountryPipe,
         WeekdayPipe
+      ],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            parent: {
+              params: new Observable()
+            }
+          }
+        }
       ]
     })
     .compileComponents();

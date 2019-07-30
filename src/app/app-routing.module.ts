@@ -12,6 +12,8 @@ import { AddSteamComponent } from './add-steam/add-steam.component';
 import { AppShellComponent } from './app-shell/app-shell.component';
 import { TeamStrategiesComponent } from './team-section/team-strategies/team-strategies.component';
 import { StrategyDetailsComponent } from './team-section/team-strategies/strategy-details/strategy-details.component';
+import { TeamDetailsComponent } from './team-section/team-details/team-details.component';
+import { TeamPreferencesComponent } from './team-section/team-preferences/team-preferences.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -26,7 +28,12 @@ export const routes: Routes = [
   { path: 'emailconfirm/:error', component: EmailconfirmComponent },
   { path: 'players/:userid', component: PlayerDetailsComponent },
   { path: 'players/:userid/:newuser', component: PlayerDetailsComponent },
-  { path: 'team/:teamid', component: TeamOverviewComponent },
+  { path: 'team/:teamid', component: TeamOverviewComponent, children: [
+    { path: '', redirectTo: 'details', pathMatch: 'full' },
+    { path: 'details', component: TeamDetailsComponent },
+    { path: 'strategies', component: TeamStrategiesComponent },
+    { path: 'preferences', component: TeamPreferencesComponent }
+  ] },
   { path: 'team/:teamid/:stratid', component: StrategyEditorComponent },
   { path: 'search/teams/:query', component: TeamResultsComponent },
   { path: 'search/players/:query', component: PlayerResultsComponent },

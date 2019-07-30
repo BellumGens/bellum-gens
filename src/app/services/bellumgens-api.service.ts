@@ -20,6 +20,19 @@ const CACHE_SIZE = 1;
 })
 export class BellumgensApiService {
   private _apiEndpoint = environment.apiEndpoint;
+  private _teamReqInProgress = false;
+
+  // Cache
+  private _currentStrategy = new BehaviorSubject<CSGOStrategy>(null);
+  private _currentTeam = new BehaviorSubject<CSGOTeam>(null);
+  private _players = new BehaviorSubject<CSGOPlayer []>([]);
+  private _strategies = new BehaviorSubject<CSGOStrategy []>([]);
+  private _currentPlayer = new BehaviorSubject<CSGOPlayer>(null);
+  private _csgoTeams = new BehaviorSubject<CSGOTeam []>([]);
+  private _teamApplications = new Map<string, Observable<TeamApplication[]>>();
+  private _searchResultCache: Map<string, SearchResult> = new Map();
+  private _playerSearchCache: Map<string, CSGOPlayer []> = new Map();
+  private _teamSearchCache: Map<string, CSGOTeam []> = new Map();
 
   public success = new EventEmitter<string>();
   public error = new EventEmitter<string>();
@@ -34,18 +47,6 @@ export class BellumgensApiService {
   public playerSearchResult = new ReplaySubject<CSGOPlayer []>(1);
   public teamSearchResult = new ReplaySubject<CSGOTeam []>(1);
   public searchTerm = new ReplaySubject<string>(1);
-
-  // Cache
-  private _currentStrategy = new BehaviorSubject<CSGOStrategy>(null);
-  private _currentTeam = new BehaviorSubject<CSGOTeam>(null);
-  private _players = new BehaviorSubject<CSGOPlayer []>([]);
-  private _strategies = new BehaviorSubject<CSGOStrategy []>([]);
-  private _currentPlayer = new BehaviorSubject<CSGOPlayer>(null);
-  private _csgoTeams = new BehaviorSubject<CSGOTeam []>([]);
-  private _teamApplications = new Map<string, Observable<TeamApplication[]>>();
-  private _searchResultCache: Map<string, SearchResult> = new Map();
-  private _playerSearchCache: Map<string, CSGOPlayer []> = new Map();
-  private _teamSearchCache: Map<string, CSGOTeam []> = new Map();
 
   constructor(private http: HttpClient) { }
 
@@ -251,14 +252,21 @@ export class BellumgensApiService {
   }
 
   public getTeam(teamId: string) {
-    if (!this._currentTeam.value || (this._currentTeam.value.TeamId !== teamId &&  this._currentTeam.value.CustomUrl !== teamId)) {
-      this.checkTeamCache(teamId);
-    }
-    if (!this._currentTeam.value || (this._currentTeam.value.TeamId !== teamId &&  this._currentTeam.value.CustomUrl !== teamId)) {
-      this.checkSearchCacheForTeam(teamId);
-    }
-    if (!this._currentTeam.value || (this._currentTeam.value.TeamId !== teamId &&  this._currentTeam.value.CustomUrl !== teamId)) {
-      this.getTeamFromServer(teamId).subscribe(team => this._currentTeam.next(team));
+    if (!this._teamReqInProgress) {
+      if (!this._currentTeam.value || (this._currentTeam.value.TeamId !== teamId &&  this._currentTeam.value.CustomUrl !== teamId)) {
+        this.checkTeamCache(teamId);
+      }
+      if (!this._currentTeam.value || (this._currentTeam.value.TeamId !== teamId &&  this._currentTeam.value.CustomUrl !== teamId)) {
+        this.checkSearchCacheForTeam(teamId);
+      }
+      if (!this._currentTeam.value ||
+            (this._currentTeam.value.TeamId !== teamId &&  this._currentTeam.value.CustomUrl !== teamId)) {
+        this._teamReqInProgress = true;
+        this.getTeamFromServer(teamId).subscribe(team => {
+          this._currentTeam.next(team);
+          this._teamReqInProgress = false;
+        });
+      }
     }
     return this._currentTeam;
   }
