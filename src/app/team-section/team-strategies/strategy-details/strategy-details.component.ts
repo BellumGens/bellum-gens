@@ -30,6 +30,7 @@ export class StrategyDetailsComponent extends BaseComponent {
           this.apiService.getCurrentStrategy(stratid).subscribe(strat => {
             if (strat) {
               this.strat = strat;
+              this.newComment.StratId = strat.Id;
             }
           });
         }
@@ -48,5 +49,9 @@ export class StrategyDetailsComponent extends BaseComponent {
 
   public voteStrat(strat: CSGOStrategy, direction: VoteDirection) {
     this.apiService.submitStratVote(strat, direction, this.authUser.id).subscribe(_ => this.pipeTrigger++);
+  }
+
+  public submitComment() {
+    this.apiService.submitStratComment(this.newComment, this.strat).subscribe();
   }
 }

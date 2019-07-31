@@ -9,3 +9,7 @@
 .strategy-details {
   height: 100%;
 }
+
+.comment-input {
+  width: 260px;
+}

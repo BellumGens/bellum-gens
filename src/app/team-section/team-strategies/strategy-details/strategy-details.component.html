@@ -51,10 +51,15 @@
     
     <div class="horizontal">
       <igx-avatar [src]="authUser?.steamUser.avatarIcon" [roundShape]="true"></igx-avatar>
-      <igx-input-group type="box">
-        <label for="comment" igxLabel>Write comment...</label>
-        <textarea [disabled]="!authUser" igxInput [(ngModel)]="newComment.Comment"></textarea>
-      </igx-input-group>
+      <form #strategyForm="ngForm" (ngSubmit)="submitComment()">
+        <igx-input-group type="box" class="comment-input">
+          <label for="comment" igxLabel>Write your comment...</label>
+          <textarea [disabled]="!authUser" id="comment" name="comment" required igxInput [(ngModel)]="newComment.Comment"></textarea>
+          <button igxSuffix igxButton="fab" igxButtonColor="white" igxButtonBackground="rgba(0, 0, 0, 0)">
+            <igx-icon>send</igx-icon>
+          </button>
+        </igx-input-group>
+      </form>
     </div>
   </igx-card-actions>
 

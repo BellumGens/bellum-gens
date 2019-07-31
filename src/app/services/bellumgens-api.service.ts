@@ -9,7 +9,7 @@ import { Role } from '../models/playerrole';
 import { MapPool } from '../models/csgomaps';
 import { map, shareReplay, catchError } from 'rxjs/operators';
 import { UserNotification } from '../models/usernotifications';
-import { CSGOStrategy, VoteDirection, StrategyVote } from '../models/csgostrategy';
+import { CSGOStrategy, VoteDirection, StrategyVote, StrategyComment } from '../models/csgostrategy';
 import { SearchResult } from '../models/searchresult';
 import { environment } from '../../environments/environment';
 
@@ -572,6 +572,24 @@ export class BellumgensApiService {
         } else {
           this.emitSuccess('Vote removed successfully!');
           strat.Votes.splice(strat.Votes.indexOf(vote), 1);
+        }
+        return response;
+      }),
+      catchError(error => {
+        this.emitError(error.error.Message);
+        return throwError(error);
+      })
+    );
+  }
+
+  public submitStratComment(comment: StrategyComment, strat: CSGOStrategy) {
+    return this.http.post<StrategyComment>(`${this._apiEndpoint}/strategy/comment`,
+                          comment,
+                          { withCredentials: true }).pipe(
+      map(response => {
+        if (response) {
+          this.emitSuccess('Comment submitted successfully!');
+          strat.Comments.push(response);
         }
         return response;
       }),

@@ -26,6 +26,7 @@ export interface StrategyVote {
 
 export interface StrategyComment {
   Id?: string;
+  StratId?: string;
   Comment: string;
   Published?: Date;
   UserId: string;
