@@ -11,7 +11,7 @@
       <h1 igxCardHeaderTitle>{{ strat.Title }}</h1>
       <h3 igxCardHeaderSubtitle>{{ strat.Description }}</h3>
       <h5 igxCardHeaderSubtitle class="card-smaller-subtitle">
-        <span *ngIf="strat.UserId">Author: <a [routerLink]="['/players', strat.UserId]">{{ strat.Owner }}</a></span> 
+        <span *ngIf="strat.UserId">Author: <a [routerLink]="['/players', strat.UserId]">{{ strat.Owner }}</a></span>
         Last Edit: {{ strat.LastUpdated | date }}
       </h5>
 
@@ -48,14 +48,14 @@
         <h3 igxListLineTitle>{{ comment.Comment }}</h3>
       </igx-list-item>
     </igx-list>
-    
+
     <div class="horizontal">
       <igx-avatar [src]="authUser?.steamUser.avatarIcon" [roundShape]="true"></igx-avatar>
       <form #strategyForm="ngForm" (ngSubmit)="submitComment()">
         <igx-input-group type="box" class="comment-input">
           <label for="comment" igxLabel>Write your comment...</label>
-          <textarea [disabled]="!authUser" id="comment" name="comment" required igxInput [(ngModel)]="newComment.Comment"></textarea>
-          <button igxSuffix igxButton="fab" igxButtonColor="white" igxButtonBackground="rgba(0, 0, 0, 0)">
+          <textarea [disabled]="!authUser" #commentBox id="comment" name="comment" igxInput [(ngModel)]="newComment.Comment"></textarea>
+          <button igxSuffix igxButton="fab" igxButtonColor="white" igxButtonBackground="rgba(0, 0, 0, 0)" [disabled]="!newComment.Comment">
             <igx-icon>send</igx-icon>
           </button>
         </igx-input-group>

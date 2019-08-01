@@ -19,6 +19,7 @@ export class StrategyDetailsComponent extends BaseComponent {
   public newComment = newEmptyComment();
   public horizontal = window.matchMedia('(min-width: 768px)').matches;
 
+
   constructor(private apiService: BellumgensApiService,
               private authManager: LoginService,
               private route: ActivatedRoute) {
@@ -52,6 +53,6 @@ export class StrategyDetailsComponent extends BaseComponent {
   }
 
   public submitComment() {
-    this.apiService.submitStratComment(this.newComment, this.strat).subscribe();
+    this.apiService.submitStratComment(this.newComment, this.strat).subscribe(_ => this.newComment.Comment = null);
   }
 }

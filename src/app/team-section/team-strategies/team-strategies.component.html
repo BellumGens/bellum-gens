@@ -33,7 +33,7 @@
       <igx-card-content>
         <p class="igx-card-header__subtitle">{{ strat.Description | truncateText:130 }}</p>
       </igx-card-content>
-      
+
       <igx-card-actions reverse="true">
         <span class="horizontal-center navigatable" [routerLink]="['/strategies', 'details', strat.CustomUrl]">
           <igx-badge [value]="strat.Comments?.length" type="info"></igx-badge>
@@ -94,7 +94,7 @@
           <igx-icon>clear</igx-icon>
       </igx-suffix>
     </igx-input-group>
-        
+
     <igx-input-group class="space-out">
       <label for="strategyDescription" igxLabel>Description</label>
       <textarea #strategyDescription id="strategyDescription" name="strategyDescription" igxInput minlength="2" required [(ngModel)]="newStrategy.Description">
