@@ -1,13 +1,13 @@
 import { Component, ViewChildren, QueryList, ElementRef, Input } from '@angular/core';
 import { IgxDropEventArgs, IgxAvatarComponent } from 'igniteui-angular';
 import { PlaystyleRole, RoleSlot } from '../../models/playerrole';
-import { TeamMember, CSGOTeam, TEAM_PLACEHOLDER } from '../../models/csgoteam';
+import { TeamMember, TEAM_PLACEHOLDER } from '../../models/csgoteam';
 import { BellumgensApiService } from '../../services/bellumgens-api.service';
 import { Availability } from '../../models/playeravailability';
 import { ActivatedRoute } from '@angular/router';
-import { BaseComponent } from 'src/app/base/base.component';
-import { LoginService } from 'src/app/services/login.service';
-import { ApplicationUser } from 'src/app/models/applicationuser';
+import { BaseComponent } from '../../base/base.component';
+import { LoginService } from '../../services/login.service';
+import { ApplicationUser } from '../../models/applicationuser';
 
 @Component({
   selector: 'app-team-details',
