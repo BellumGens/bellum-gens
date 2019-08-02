@@ -55,7 +55,10 @@
         <igx-input-group type="box" class="comment-input">
           <label for="comment" igxLabel>Write your comment...</label>
           <textarea [disabled]="!authUser" #commentBox id="comment" name="comment" igxInput [(ngModel)]="newComment.Comment"></textarea>
-          <button igxSuffix igxButton="fab" igxButtonColor="white" igxButtonBackground="rgba(0, 0, 0, 0)" [disabled]="!newComment.Comment">
+          <button igxSuffix
+                  igxButton="fab"
+                  [ngClass]="strat.Votes | hasVoted:1:authUser:pipeTrigger"
+                  [disabled]="!newComment.Comment">
             <igx-icon>send</igx-icon>
           </button>
         </igx-input-group>

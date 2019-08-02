@@ -35,6 +35,7 @@ import { IsVideoPipe } from 'src/app/pipes/is-video.pipe';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { VotesPipe } from 'src/app/pipes/votes.pipe';
 import { AppShellComponent } from 'src/app/app-shell/app-shell.component';
+import { HasVotedPipe } from 'src/app/pipes/has-voted.pipe';
 
 describe('TeamStrategiesComponent', () => {
   let component: TeamStrategiesComponent;
@@ -79,7 +80,8 @@ describe('TeamStrategiesComponent', () => {
         ActiveDutyMapsPipe,
         TruncateTextPipe,
         IsVideoPipe,
-        VotesPipe
+        VotesPipe,
+        HasVotedPipe
       ]
     })
     .compileComponents();

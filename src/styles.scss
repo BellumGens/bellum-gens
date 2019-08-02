@@ -82,7 +82,11 @@ $list-theme: igx-list-theme($background: transparent,
 /* END List */
 
 /* Input Group */
-$input-group-theme: igx-input-group-theme($search-background: transparent, $idle-text-color: white, $filled-text-color: white, $focused-text-color: white, $placeholder-color: #999);
+$input-group-theme: igx-input-group-theme($search-background: transparent,
+                                          $idle-text-color: white,
+                                          $filled-text-color: white,
+                                          $focused-text-color: white,
+                                          $placeholder-color: #999);
 @include igx-css-vars($input-group-theme);
 /* END Input Group */
 
@@ -115,6 +119,16 @@ $dialog-theme: igx-dialog-theme($background: $background);
 $snackbar-theme: igx-snackbar-theme($background: $banner-background, $border-radius: 24px);
 @include igx-css-vars($snackbar-theme);
 /* END Snackbar */
+
+/* Button */
+$button-theme: igx-button-theme($fab-resting-shadow: none,
+                                $fab-hover-shadow: none,
+                                $fab-focus-shadow: none,
+                                $fab-text-color: $primary,
+                                $fab-hover-text-color: $secondary,
+                                $fab-background: transparent);
+@include igx-css-vars($button-theme);
+/* END Button */
 
 /* Badge */
 .igx-badge__circle--info {
@@ -374,7 +388,7 @@ a {
   margin: 0px 4px;
 }
 
-.igx-input-group__textarea, 
+.igx-input-group__textarea,
 textarea {
   resize: none;
   min-height: 128px;
@@ -403,6 +417,11 @@ textarea {
 
 button igx-icon {
   margin-right: 4px;
+}
+
+.user-has-voted,
+.user-has-voted:focus {
+  color: blue;
 }
 
 .search-result {
@@ -475,7 +494,7 @@ button igx-icon {
   .bellum-gens-navbar .igx-navbar__title {
     display: none;
   }
-  
+
   .left-details-container {
     width: 100%;
   }

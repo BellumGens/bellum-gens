@@ -98,6 +98,7 @@ import { IsVideoPipe } from './pipes/is-video.pipe';
 import { TruncateTextPipe } from './pipes/truncate-text.pipe';
 import { VotesPipe } from './pipes/votes.pipe';
 import { StrategyDetailsComponent } from './team-section/team-strategies/strategy-details/strategy-details.component';
+import { HasVotedPipe } from './pipes/has-voted.pipe';
 
 @NgModule({
   declarations: [
@@ -157,7 +158,8 @@ import { StrategyDetailsComponent } from './team-section/team-strategies/strateg
     IsVideoPipe,
     TruncateTextPipe,
     VotesPipe,
-    StrategyDetailsComponent
+    StrategyDetailsComponent,
+    HasVotedPipe
   ],
   imports: [
     FormsModule,

@@ -16,6 +16,7 @@ import { IsVideoPipe } from 'src/app/pipes/is-video.pipe';
 import { SafeVideoLinkPipe } from 'src/app/pipes/safe-video-link.pipe';
 import { FormsModule } from '@angular/forms';
 import { AppShellComponent } from 'src/app/app-shell/app-shell.component';
+import { HasVotedPipe } from 'src/app/pipes/has-voted.pipe';
 
 describe('StrategyDetailsComponent', () => {
   let component: StrategyDetailsComponent;
@@ -41,7 +42,8 @@ describe('StrategyDetailsComponent', () => {
         AppShellComponent,
         VotesPipe,
         IsVideoPipe,
-        SafeVideoLinkPipe
+        SafeVideoLinkPipe,
+        HasVotedPipe
       ]
     })
     .compileComponents();
