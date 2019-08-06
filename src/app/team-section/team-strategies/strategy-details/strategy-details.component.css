@@ -13,3 +13,8 @@
 .comment-input {
   width: 260px;
 }
+
+.strategy-details igx-card-media > * {
+  background-color: #000;
+  object-fit: contain;
+}

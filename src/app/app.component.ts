@@ -14,6 +14,7 @@ import { fromEvent } from 'rxjs';
 import { map, debounceTime } from 'rxjs/operators';
 import { UnreadNotificationsPipe } from './pipes/unread-notifications.pipe';
 import { BaseComponent } from './base/base.component';
+import { GlobalOverlaySettings } from './models/misc';
 
 @Component({
   selector: 'app-root',
@@ -26,14 +27,7 @@ export class AppComponent extends BaseComponent implements OnInit {
   public searchResult: SearchResult;
   public unreadNotifications = 0;
 
-  public positionSettings: PositionSettings = {
-    horizontalDirection: HorizontalAlignment.Left,
-    horizontalStartPoint: HorizontalAlignment.Right
-  };
-
-  public overlaySettings: OverlaySettings = {
-    positionStrategy: new AutoPositionStrategy(this.positionSettings)
-  };
+  public overlaySettings = GlobalOverlaySettings;
 
   @ViewChild('quickSearch', { static: true }) public quickSearchDropDown: IgxDropDownComponent;
   @ViewChild('searchGroup', { static: true }) public searchGroup: IgxInputGroupComponent;

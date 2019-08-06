@@ -2,9 +2,10 @@ import { Component, HostListener } from '@angular/core';
 import { BaseComponent } from '../../../base/base.component';
 import { BellumgensApiService } from '../../../services/bellumgens-api.service';
 import { ActivatedRoute } from '@angular/router';
-import { CSGOStrategy, VoteDirection, newEmptyComment } from '../../../models/csgostrategy';
+import { CSGOStrategy, VoteDirection, newEmptyComment, StrategyComment } from '../../../models/csgostrategy';
 import { LoginService } from '../../../services/login.service';
 import { ApplicationUser } from '../../../models/applicationuser';
+import { GlobalOverlaySettings } from 'src/app/models/misc';
 
 @Component({
   selector: 'app-strategy-details',
@@ -18,6 +19,7 @@ export class StrategyDetailsComponent extends BaseComponent {
   public pipeTrigger = 0;
   public newComment = newEmptyComment();
   public horizontal = window.matchMedia('(min-width: 768px)').matches;
+  public overlaySettings = GlobalOverlaySettings;
 
 
   constructor(private apiService: BellumgensApiService,
@@ -54,5 +56,13 @@ export class StrategyDetailsComponent extends BaseComponent {
 
   public submitComment() {
     this.apiService.submitStratComment(this.newComment, this.strat).subscribe(_ => this.newComment.Comment = null);
+  }
+
+  public editComment(comment: StrategyComment) {
+    this.newComment = comment;
+  }
+
+  public deleteComment(comment: StrategyComment) {
+
   }
 }
