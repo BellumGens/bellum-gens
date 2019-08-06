@@ -51,7 +51,8 @@
       </igx-list-item>
       <igx-list-item *ngFor="let comment of strat.Comments">
         <igx-avatar igxListThumbnail [src]="comment.UserAvatar" [roundShape]="true"></igx-avatar>
-        <h3 igxListLineTitle>{{ comment.Comment }}</h3>
+        <h3 [ngClass]="comment._inEdit ? 'comment-editing' : ''" igxListLineTitle>{{ comment.Comment }}</h3>
+        <h5 igxListLineSubTitle>{{ comment.Published | date }}</h5>
         <igx-icon igxListActions class="navigatable" [igxToggleAction]="useractions" [overlaySettings]="overlaySettings">more_vert</igx-icon>
 
         <igx-drop-down #useractions (onSelection)="$event.cancel = true; useractions.close()">
@@ -59,7 +60,7 @@
             <igx-icon title="edit strategy">edit</igx-icon>
             <span class="title margin-left">Edit</span>
           </igx-drop-down-item>
-          <igx-drop-down-item (click)="confirm.open(strat)">
+          <igx-drop-down-item (click)="confirm.open(comment)">
             <igx-icon title="delete strategy">delete_forever</igx-icon>
             <span class="title margin-left">Delete</span>
           </igx-drop-down-item>
@@ -88,6 +89,6 @@
 
 <!-- Confirm -->
 <app-confirm #confirm title="Are you sure?" (ok)="deleteComment($event)">
-  Pressing OK will permanently remove this strategy...
+  Pressing OK will permanently remove your comment...
 </app-confirm>
 <!-- END Confirm -->

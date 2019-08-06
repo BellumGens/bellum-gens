@@ -32,6 +32,7 @@ export interface StrategyComment {
   UserId: string;
   UserName?: string;
   UserAvatar?: string;
+  _inEdit?: boolean;
 }
 
 export enum Side {

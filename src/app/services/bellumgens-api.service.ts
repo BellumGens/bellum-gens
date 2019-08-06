@@ -588,8 +588,31 @@ export class BellumgensApiService {
                           { withCredentials: true }).pipe(
       map(response => {
         if (response) {
+          const existing = strat.Comments.find(c => c.Id === response.Id);
+          if (existing) {
+            existing.Comment = response.Comment;
+            this.emitSuccess('Comment edited successfully!');
+          } else {
+            strat.Comments.push(response);
+            this.emitSuccess('Comment submitted successfully!');
+          }
+        }
+        return response;
+      }),
+      catchError(error => {
+        this.emitError(error.error.Message);
+        return throwError(error);
+      })
+    );
+  }
+
+  public deleteStratComment(comment: StrategyComment, strat: CSGOStrategy) {
+    return this.http.delete<StrategyComment>(`${this._apiEndpoint}/strategy/comment?id=${comment.Id}`,
+                          { withCredentials: true }).pipe(
+      map(response => {
+        if (response) {
           this.emitSuccess('Comment submitted successfully!');
-          strat.Comments.push(response);
+          strat.Comments.splice(strat.Comments.indexOf(comment), 1);
         }
         return response;
       }),

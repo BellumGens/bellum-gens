@@ -18,3 +18,7 @@
   background-color: #000;
   object-fit: contain;
 }
+
+.comment-editing {
+  opacity: 0.35;
+}

@@ -55,14 +55,19 @@ export class StrategyDetailsComponent extends BaseComponent {
   }
 
   public submitComment() {
-    this.apiService.submitStratComment(this.newComment, this.strat).subscribe(_ => this.newComment.Comment = null);
+    this.newComment._inEdit = false;
+    this.apiService.submitStratComment(this.newComment, this.strat).subscribe(_ => {
+      this.newComment = newEmptyComment();
+    });
   }
 
   public editComment(comment: StrategyComment) {
     this.newComment = comment;
+    this.newComment._inEdit = true;
+    this.pipeTrigger++;
   }
 
   public deleteComment(comment: StrategyComment) {
-
+    this.apiService.deleteStratComment(comment, this.strat).subscribe(_ => this.pipeTrigger++);
   }
 }
