@@ -10,7 +10,7 @@ import { CSGOTeam } from '../../models/csgoteam';
 import { IsVideoPipe } from '../../pipes/is-video.pipe';
 import { LoginService } from '../../services/login.service';
 import { ApplicationUser } from '../../models/applicationuser';
-import { GlobalOverlaySettings } from 'src/app/models/misc';
+import { GlobalOverlaySettings } from '../../models/misc';
 
 @Component({
   selector: 'app-team-strategies',

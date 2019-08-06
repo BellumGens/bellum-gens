@@ -5,7 +5,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CSGOStrategy, VoteDirection, newEmptyComment, StrategyComment } from '../../../models/csgostrategy';
 import { LoginService } from '../../../services/login.service';
 import { ApplicationUser } from '../../../models/applicationuser';
-import { GlobalOverlaySettings } from 'src/app/models/misc';
+import { GlobalOverlaySettings } from '../../../models/misc';
 
 @Component({
   selector: 'app-strategy-details',
