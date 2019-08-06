@@ -41,7 +41,6 @@
         </span>
         <button igxButton="fab"
                 [ngClass]="strat.Votes | hasVoted:0:authUser:pipeTrigger"
-                [displayDensity]="'compact'"
                 igxRipple
                 (click)="voteStrat(strat, 0)">
           <igx-icon title="vote up">thumb_up</igx-icon>
@@ -51,7 +50,6 @@
         </button>
         <button igxButton="fab"
                 [ngClass]="strat.Votes | hasVoted:1:authUser:pipeTrigger"
-                [displayDensity]="'compact'"
                 igxRipple
                 (click)="voteStrat(strat, 1)">
           <igx-icon title="vote down">thumb_down</igx-icon>

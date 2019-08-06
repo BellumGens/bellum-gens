@@ -36,6 +36,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { VotesPipe } from 'src/app/pipes/votes.pipe';
 import { AppShellComponent } from 'src/app/app-shell/app-shell.component';
 import { HasVotedPipe } from 'src/app/pipes/has-voted.pipe';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
 
 describe('TeamStrategiesComponent', () => {
   let component: TeamStrategiesComponent;
@@ -82,6 +84,16 @@ describe('TeamStrategiesComponent', () => {
         IsVideoPipe,
         VotesPipe,
         HasVotedPipe
+      ],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            parent: {
+              params: new Observable()
+            }
+          }
+        }
       ]
     })
     .compileComponents();

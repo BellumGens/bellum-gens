@@ -15,13 +15,19 @@
         Last Edit: {{ strat.LastUpdated | date }}
       </h5>
 
-      <button igxButton="flat" igxRipple (click)="voteStrat(strat, 0)">
+      <button igxButton="fab"
+              [ngClass]="strat.Votes | hasVoted:0:authUser:pipeTrigger"
+              igxRipple
+              (click)="voteStrat(strat, 0)">
         <igx-icon title="vote up">thumb_up</igx-icon>
         <span *ngIf="strat.Votes | votes:0:pipeTrigger">
           {{strat.Votes | votes:0:pipeTrigger}}
         </span>
       </button>
-      <button igxButton="flat" igxRipple (click)="voteStrat(strat, 1)">
+      <button igxButton="fab"
+              [ngClass]="strat.Votes | hasVoted:1:authUser:pipeTrigger"
+              igxRipple
+              (click)="voteStrat(strat, 1)">
         <igx-icon title="vote down">thumb_down</igx-icon>
         <span *ngIf="strat.Votes | votes:1:pipeTrigger">
           {{strat.Votes | votes:1:pipeTrigger}}
