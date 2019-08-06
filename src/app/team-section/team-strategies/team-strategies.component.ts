@@ -50,7 +50,7 @@ export class TeamStrategiesComponent extends BaseComponent {
               private title: Title) {
     super();
     this.subs.push(
-      this.activatedRoute.params.subscribe(params => {
+      this.activatedRoute.parent.params.subscribe(params => {
         const teamId = params['teamid'];
 
         if (teamId) {
