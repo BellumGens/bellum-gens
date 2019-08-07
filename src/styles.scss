@@ -461,6 +461,49 @@ button igx-icon {
 }
 /* END SEARCH */
 
+/* Strategies */
+.video-frame {
+  width: 560px;
+  height: 315px;
+}
+
+.empty-strategy.empty-strategy-content {
+  min-height: 200px;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.strat-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 24ch;
+}
+
+.strategy-card {
+  height: fit-content;
+}
+
+.strat-image {
+  cursor: zoom-in;
+  max-height: 315px;
+}
+
+.strat-filter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0 0 16px;
+}
+
+.card-smaller-subtitle {
+  font-size: 0.65rem;
+}
+
+/* END Strategies */
+
 .color-success {
   color: var(--igx-input-group-success-secondary-color);
 }

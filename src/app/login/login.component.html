@@ -28,7 +28,7 @@
             <div class="horizontal-center">
               <igx-icon>person</igx-icon>
               <div class="igx-tabs__item-label">User Profile</div>
-            </div> 
+            </div>
           </ng-template>
           <div class="center-items profile-view">
             <igx-avatar [src]="authUser.steamUser.avatarFull" [initials]="authUser.steamUser.steamID" roundShape="true" [size]="'large'">
@@ -55,17 +55,19 @@
               <span>Preferred maps</span>
             </div>
           </div>
+
+          <button class="submit-button" igxButton="outlined" igxRipple routerLink="/user/strategies"><igx-icon>playlist_add_check</igx-icon>my strategies</button>
           <button class="submit-button" igxButton="outlined" igxRipple (click)="logout()"><igx-icon>exit_to_app</igx-icon>logout</button>
         </igx-tabs-group>
-  
+
         <igx-tabs-group class="profile-content">
           <ng-template igxTab>
             <div class="horizontal-center">
               <igx-icon>settings</igx-icon>
               <div class="igx-tabs__item-label">Preferences</div>
-            </div> 
+            </div>
           </ng-template>
-  
+
           <app-user-preferences class="preferences-divider"></app-user-preferences>
         </igx-tabs-group>
       </igx-tabs>

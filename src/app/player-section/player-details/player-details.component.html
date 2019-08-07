@@ -23,7 +23,7 @@
     <div class="player-stats__container">
       <div class="player-overview-container">
         <h4>Overview</h4>
-        
+
         <div *ngIf="player.registered && !playerIsUser">
           <!-- <button igxButton="raised" [disabled]="true">Send message <igx-icon>mail</igx-icon></button> -->
           <button *ngIf="authUser?.teamAdmin.length > 0" igxButton="flat" igxRipple class="title margin-left" [igxToggleAction]="teamInvite">
@@ -132,11 +132,11 @@
               <igx-select-item *ngFor="let role of roles" [value]="role.Id">{{ role.Name }}</igx-select-item>
             </igx-select>
           </div>
-          
+
           <!-- END Playstyle Roles -->
       </div>
       <!-- END Availability -->
-      
+
       <div class="player-detail-stats-maps-container">
         <div>
           <h4>Weapons</h4>
@@ -146,7 +146,7 @@
               <span igxListLineTitle>
                 <a>{{ weapon.name }}</a>
               </span>
-            
+
               <div igxListAction>
                 {{ weapon.kills }} kills
               </div>
@@ -169,6 +169,6 @@
         </igx-card>
         <!-- END Map Pool -->
       </div>
-        
+
   </div>
 </div>

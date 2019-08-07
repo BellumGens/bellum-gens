@@ -38,6 +38,7 @@ import { AppShellComponent } from 'src/app/app-shell/app-shell.component';
 import { HasVotedPipe } from 'src/app/pipes/has-voted.pipe';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { NewStrategyComponent } from './new-strategy/new-strategy.component';
 
 describe('TeamStrategiesComponent', () => {
   let component: TeamStrategiesComponent;
@@ -54,7 +55,6 @@ describe('TeamStrategiesComponent', () => {
         IgxIconModule,
         IgxAvatarModule,
         IgxCardModule,
-        IgxListModule,
         IgxInputGroupModule,
         IgxRadioModule,
         IgxToggleModule,
@@ -73,7 +73,7 @@ describe('TeamStrategiesComponent', () => {
         AppShellComponent,
         MapPoolComponent,
         ConfirmComponent,
-        AvailabilityComponent,
+        NewStrategyComponent,
         SafeVideoLinkPipe,
         MapnamePipe,
         SideStratsPipe,

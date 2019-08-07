@@ -108,6 +108,10 @@ export class BellumgensApiService {
     return this.http.get<CSGOStrategy []>(`${this._apiEndpoint}/strategy/strategies`);
   }
 
+  public getUserStrategies(userId: string) {
+    return this.http.get<CSGOStrategy []>(`${this._apiEndpoint}/strategy/userstrats?userid=${userId}`, { withCredentials: true });
+  }
+
   public quickSearch(name: string) {
     this.searchTerm.next(name);
     if (this._searchResultCache.has(name)) {

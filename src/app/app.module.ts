@@ -99,6 +99,8 @@ import { TruncateTextPipe } from './pipes/truncate-text.pipe';
 import { VotesPipe } from './pipes/votes.pipe';
 import { StrategyDetailsComponent } from './team-section/team-strategies/strategy-details/strategy-details.component';
 import { HasVotedPipe } from './pipes/has-voted.pipe';
+import { UserStrategiesComponent } from './player-section/user-strategies/user-strategies.component';
+import { NewStrategyComponent } from './team-section/team-strategies/new-strategy/new-strategy.component';
 
 @NgModule({
   declarations: [
@@ -159,7 +161,9 @@ import { HasVotedPipe } from './pipes/has-voted.pipe';
     TruncateTextPipe,
     VotesPipe,
     StrategyDetailsComponent,
-    HasVotedPipe
+    HasVotedPipe,
+    UserStrategiesComponent,
+    NewStrategyComponent
   ],
   imports: [
     FormsModule,

@@ -1,0 +1,54 @@
+<div class="card-wrapper">
+  <igx-card type="outlined" class="strategy-card">
+      <igx-card-header class="empty-strategy">
+        <h4 class="igx-card-header__title">Add a new strategy?</h4>
+      </igx-card-header>
+      <igx-card-content class="empty-strategy empty-strategy-content">
+          <igx-avatar icon="add"
+                      class="navigatable"
+                      roundShape="true"
+                      [size]="'large'"
+                      (click)="newStrategy.open()">
+          </igx-avatar>
+          <p class="highlight navigatable" (click)="newStrategy.open()">Create strategy</p>
+      </igx-card-content>
+  </igx-card>
+
+  <igx-card type="outlined" *ngFor="let strat of strats">
+    <igx-card-header>
+      <h2 igxCardHeaderTitle
+          class="strat-title navigatable"
+          [title]="strat.Title"
+          [routerLink]="['/strategies', 'details', strat.CustomUrl]">{{ strat.Title }}</h2>
+      <h4 igxCardHeaderSubtitle>Visibility: {{ strat.Visible ? 'Public' : 'Private'}}</h4>
+      <h6 igxCardHeaderSubtitle class="card-smaller-subtitle">Last Edit: {{ strat.LastUpdated | date }}</h6>
+    </igx-card-header>
+
+    <igx-card-media>
+      <iframe class="video-frame" *ngIf="strat.Url | isVideo" [src]="strat.Url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <img *ngIf="strat.Image" [src]="strat.Image" class="strat-image" [routerLink]="['/strategies', 'details', strat.CustomUrl]" />
+    </igx-card-media>
+
+    <igx-card-content>
+      <p class="igx-card-header__subtitle">{{ strat.Description | truncateText:130 }}</p>
+    </igx-card-content>
+
+    <igx-card-actions reverse="true">
+      <span class="horizontal-center navigatable" [routerLink]="['/strategies', 'details', strat.CustomUrl]">
+        <igx-badge [value]="strat.Comments?.length" type="info"></igx-badge>
+        Comments
+      </span>
+    </igx-card-actions>
+
+  </igx-card>
+</div>
+
+<app-new-strategy #newStrategy
+                  [authUser]="authUser">
+</app-new-strategy>
+
+<!-- Confirm -->
+<app-confirm #confirm title="Are you sure?" (ok)="deleteStrat($event)">
+  Pressing OK will permanently remove this strategy...
+</app-confirm>
+<!-- END Confirm -->

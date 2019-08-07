@@ -14,6 +14,7 @@ import { TeamStrategiesComponent } from './team-section/team-strategies/team-str
 import { StrategyDetailsComponent } from './team-section/team-strategies/strategy-details/strategy-details.component';
 import { TeamDetailsComponent } from './team-section/team-details/team-details.component';
 import { TeamPreferencesComponent } from './team-section/team-preferences/team-preferences.component';
+import { UserStrategiesComponent } from './player-section/user-strategies/user-strategies.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -22,6 +23,7 @@ export const routes: Routes = [
   { path: 'unauthorized', component: UnauthorizedComponent },
   { path: 'emailconfirm', component: EmailconfirmComponent },
   { path: 'addsteam', component: AddSteamComponent },
+  { path: 'user/strategies', component: UserStrategiesComponent },
   { path: 'strategies', component: TeamStrategiesComponent },
   { path: 'strategies/edit/:stratid', component: StrategyEditorComponent },
   { path: 'strategies/details/:stratid', component: StrategyDetailsComponent },
