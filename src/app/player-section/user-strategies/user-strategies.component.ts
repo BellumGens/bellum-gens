@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
-import { ApplicationUser } from 'src/app/models/applicationuser';
-import { LoginService } from 'src/app/services/login.service';
-import { BellumgensApiService } from 'src/app/services/bellumgens-api.service';
-import { BaseComponent } from 'src/app/base/base.component';
-import { CSGOStrategy } from 'src/app/models/csgostrategy';
+import { Component } from '@angular/core';
+import { ApplicationUser } from '../../models/applicationuser';
+import { LoginService } from '../../services/login.service';
+import { BellumgensApiService } from '../../services/bellumgens-api.service';
+import { BaseComponent } from '../../base/base.component';
+import { CSGOStrategy } from '../../models/csgostrategy';
 
 @Component({
   selector: 'app-user-strategies',
