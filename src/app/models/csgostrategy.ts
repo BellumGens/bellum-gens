@@ -26,7 +26,7 @@ export interface StrategyVote {
 
 export interface StrategyComment {
   Id?: string;
-  StratId?: string;
+  StratId: string;
   Comment: string;
   Published?: Date;
   UserId: string;
@@ -58,9 +58,10 @@ export function newEmptyStrategy(visible = false): CSGOStrategy {
   };
 }
 
-export function newEmptyComment(): StrategyComment {
+export function newEmptyComment(userId: string = null, stratId: string = null): StrategyComment {
   return {
-    UserId: null,
+    UserId: userId,
+    StratId: stratId,
     Comment: null
   };
 }

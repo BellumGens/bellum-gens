@@ -57,7 +57,7 @@ export class StrategyDetailsComponent extends BaseComponent {
   public submitComment() {
     this.newComment._inEdit = false;
     this.apiService.submitStratComment(this.newComment, this.strat).subscribe(_ => {
-      this.newComment = newEmptyComment();
+      this.newComment = newEmptyComment(this.authUser.id, this.strat.Id);
     });
   }
 
