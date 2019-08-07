@@ -1,0 +1,24 @@
+.card-smaller-subtitle {
+  font-size: 0.65rem;
+}
+
+.list-container.comments-container {
+  height: calc(100% - 200px);
+}
+
+.strategy-details {
+  height: 100%;
+}
+
+.comment-input {
+  width: 260px;
+}
+
+.strategy-details igx-card-media > * {
+  background-color: #000;
+  object-fit: contain;
+}
+
+.comment-editing {
+  opacity: 0.35;
+}

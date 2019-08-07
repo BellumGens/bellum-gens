@@ -14,9 +14,9 @@ export interface CSGOStats {
 
 export interface CSGOPlayer {
   steamUser: SteamUser;
-  steamUserException: string;
+  steamUserException: boolean;
   userStats: CSGOStats;
-  userStatsException: string;
+  userStatsException: boolean;
   registered: boolean;
   availability: Availability [];
   primaryRole: PlaystyleRole;

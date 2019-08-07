@@ -1,8 +1,8 @@
 export interface MapPool {
   Map: CSGOMap;
   IsPlayed: boolean;
-  UserId: string;
-  TeamId: string;
+  UserId?: string;
+  TeamId?: string;
 }
 
 export interface ActiveDutyDescriptor {
@@ -25,6 +25,45 @@ export enum CSGOMap {
   Vertigo,
   Cobblestone
 }
+
+export const AllMaps: MapPool [] = [
+  {
+    Map: CSGOMap.Cache,
+    IsPlayed: true
+  },
+  {
+    Map: CSGOMap.Dust2,
+    IsPlayed: true
+  },
+  {
+    Map: CSGOMap.Inferno,
+    IsPlayed: true
+  },
+  {
+    Map: CSGOMap.Mirage,
+    IsPlayed: true
+  },
+  {
+    Map: CSGOMap.Nuke,
+    IsPlayed: true
+  },
+  {
+    Map: CSGOMap.Overpass,
+    IsPlayed: true
+  },
+  {
+    Map: CSGOMap.Train,
+    IsPlayed: true
+  },
+  {
+    Map: CSGOMap.Vertigo,
+    IsPlayed: true
+  },
+  {
+    Map: CSGOMap.Cobblestone,
+    IsPlayed: true
+  }
+];
 
 export const ActiveDuty: ActiveDutyDescriptor [] = [{
     id: CSGOMap.Cache,

@@ -26,10 +26,12 @@
         </igx-list>
       </div>
   </div>
+  
   <canvas #board igxDrop
           class="drawing-board"
           (onDrop)="surfaceDrop($event)"
           (pointerdown)="canvasPointerDown($event)"></canvas>
+
   <div class="editor-elements">
     <div class="editor-elements-section">
       <div>Team</div>

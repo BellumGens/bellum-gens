@@ -1,119 +1,84 @@
-<div class="card-with-margins">
+<app-app-shell *ngIf="loading"></app-app-shell>
+
+<div class="card-with-margins" *ngIf="!loading">
   <div class="strat-filter-header">
-    <div><h4>Maps</h4></div>
-    <div>
-      <button class="navigation-item" *ngIf="changes && isAdmin" igxButton="outlined" igxRipple (click)="saveMaps($event)">Save current maps</button>
-      <button class="navigation-item" *ngIf="isEditor" igxButton="outlined" igxRipple (click)="openNewStrategy($event)">Add new strategy</button>
-      <button class="navigation-item" igxButton="outlined" igxRipple (click)="viewAll = !viewAll; $event.stopPropagation();">{{viewAll ? 'View Active Duty' : 'View All'}}</button>
-    </div>
+    <span class="igx-card-header__title">Showing {{viewAll ? 'all maps' : 'active duty maps'}}:</span>
+    <button class="navigation-item" igxButton="outlined" igxRipple (click)="newStrategy.open()">Create new strategy</button>
   </div>
   <div class="strat-filter-header">
     <igx-chips-area>
-      <igx-chip class="maps-chip" [selected]="map.IsPlayed" [selectable]="true" (onSelection)="changeMaps($event, map)" *ngFor="let map of maps | activeDutyMaps:viewAll">
+      <igx-chip [selected]="map.IsPlayed" [selectable]="true" (onSelection)="changeMaps($event, map)" *ngFor="let map of maps | activeDutyMaps:viewAll">
         {{ map.Map | mapname }}
       </igx-chip>
     </igx-chips-area>
+    <button class="navigation-item" igxButton="outlined" igxRipple (click)="viewAll = !viewAll">{{viewAll ? 'View Active Duty' : 'View All'}}</button>
   </div>
   <div class="card-wrapper">
-    <igx-card type="outlined" *ngFor="let strat of teamStrats | activeDutyMaps:viewAll:pipeTrigger | sidestrats:maps">
+    <igx-card type="outlined" *ngFor="let strat of strats | activeDutyMaps:viewAll:pipeTrigger | sidestrats:maps">
       <igx-card-header>
-        <h4 class="igx-card-header__title">{{ strat.Title }}</h4>
+        <h2 igxCardHeaderTitle
+            class="strat-title navigatable"
+            [title]="strat.Title"
+            [routerLink]="['/strategies', 'details', strat.CustomUrl]">{{ strat.Title }}</h2>
+        <h4 igxCardHeaderSubtitle>Author: <a *ngIf="strat.Owner" [routerLink]="['/players', strat.UserId]">{{ strat.Owner }}</a></h4>
+        <h6 igxCardHeaderSubtitle class="card-smaller-subtitle">Last Edit: {{ strat.LastUpdated | date }}</h6>
+        <igx-icon class="navigatable" [igxToggleAction]="useractions" [overlaySettings]="overlaySettings">more_vert</igx-icon>
       </igx-card-header>
+
       <igx-card-media>
-        <iframe class="video-frame" *ngIf="isVideo(strat.Url)" [src]="strat.Url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <img *ngIf="strat.Image" [src]="strat.Image" class="strat-image" (click)="selectedStrat = strat; previewStrat.open()" />
+        <iframe class="video-frame" *ngIf="strat.Url | isVideo" [src]="strat.Url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <img *ngIf="strat.Image" [src]="strat.Image" class="strat-image" [routerLink]="['/strategies', 'details', strat.CustomUrl]" />
       </igx-card-media>
+
       <igx-card-content>
-        <p class="igx-card-header__subtitle">{{ strat.Description }}</p>
+        <p class="igx-card-header__subtitle">{{ strat.Description | truncateText:130 }}</p>
       </igx-card-content>
-      <igx-card-actions *ngIf="isEditor" reverse="true">
-        <button igxButton="flat" igxRipple (click)="confirm.open(strat)">
-          <igx-icon title="delete strategy">delete_forever</igx-icon>
-          Delete
+
+      <igx-card-actions reverse="true">
+        <span class="horizontal-center navigatable" [routerLink]="['/strategies', 'details', strat.CustomUrl]">
+          <igx-badge [value]="strat.Comments?.length" type="info"></igx-badge>
+          Comments
+        </span>
+        <button igxButton="fab"
+                [ngClass]="strat.Votes | hasVoted:0:authUser:pipeTrigger"
+                igxRipple
+                (click)="voteStrat(strat, 0)">
+          <igx-icon title="vote up">thumb_up</igx-icon>
+          <span *ngIf="strat.Votes | votes:0:pipeTrigger">
+            {{strat.Votes | votes:0:pipeTrigger}}
+          </span>
         </button>
-        <button igxButton="raised" igxRipple (click)="editStrategy(strat)">
-          <igx-icon title="edit strategy">edit</igx-icon>
-          Edit
+        <button igxButton="fab"
+                [ngClass]="strat.Votes | hasVoted:1:authUser:pipeTrigger"
+                igxRipple
+                (click)="voteStrat(strat, 1)">
+          <igx-icon title="vote down">thumb_down</igx-icon>
+          <span *ngIf="strat.Votes | votes:1:pipeTrigger">
+            {{strat.Votes | votes:1:pipeTrigger}}
+          </span>
         </button>
       </igx-card-actions>
-    </igx-card>
-    <igx-card *ngIf="!(teamStrats | activeDutyMaps:viewAll:pipeTrigger | sidestrats:maps)?.length">
-        <igx-card-header class="empty-strategy">
-          <h4 class="igx-card-header__title">No strategies found</h4>
-        </igx-card-header>
-        <igx-card-content *ngIf="isEditor" class="empty-strategy empty-strategy-content">
-            <igx-avatar icon="add"
-                        class="navigatable"
-                        roundShape="true"
-                        [size]="'large'"
-                        (click)="openNewStrategy($event)">
-            </igx-avatar>
-            <p class="highlight navigatable" (click)="openNewStrategy($event)">Create strategy</p>
-        </igx-card-content>
+
+      <igx-drop-down #useractions (onSelection)="$event.cancel = true; useractions.close()">
+        <igx-drop-down-item (click)="newStrategy.open(strat)">
+          <igx-icon title="edit strategy">edit</igx-icon>
+          <span class="title margin-left">Edit</span>
+        </igx-drop-down-item>
+        <igx-drop-down-item (click)="confirm.open(strat)">
+          <igx-icon title="delete strategy">delete_forever</igx-icon>
+          <span class="title margin-left">Delete</span>
+        </igx-drop-down-item>
+      </igx-drop-down>
+
     </igx-card>
   </div>
 </div>
 
-<igx-dialog #previewStrat closeOnOutsideSelect="true" [title]="selectedStrat?.Title" (onClose)="selectedStrat = null">
-  <img *ngIf="selectedStrat" [src]="selectedStrat.Image" />
-</igx-dialog>
-
-<!-- New strategy dialog-->
-<igx-dialog #newStrat closeOnOutsideSelect="true" (onClose)="resetStrategy()">
-  <form #strategyForm="ngForm" (ngSubmit)="submitStrategy()" class="new-strategy">
-    <span>Add a new team strategy</span>
-    <igx-input-group>
-      <label for="strategyName" igxLabel>Title</label>
-      <input #strategyName name="strategyName" id="strategyName" igxInput minlength="2" required [(ngModel)]="newStrategy.Title">
-      <igx-suffix *ngIf="strategyName.value.length > 0" (click)="newStrategy.Title = null">
-          <igx-icon>clear</igx-icon>
-      </igx-suffix>
-    </igx-input-group>
-        
-    <igx-input-group class="space-out">
-      <label for="strategyDescription" igxLabel>Description</label>
-      <textarea #strategyDescription id="strategyDescription" name="strategyDescription" igxInput minlength="2" required [(ngModel)]="newStrategy.Description">
-      </textarea>
-      <igx-suffix *ngIf="strategyDescription.value.length > 0" (click)="newStrategy.Description = null">
-          <igx-icon>clear</igx-icon>
-      </igx-suffix>
-    </igx-input-group>
-
-    <igx-radio class="space-out" name="strategySide" [(ngModel)]="newStrategy.Side" [value]="0">
-      T-Side
-    </igx-radio>
-    <igx-radio name="strategySide" [(ngModel)]="newStrategy.Side" [value]="1">
-      CT-Side
-    </igx-radio>
-
-    <igx-select id="mapSelector" class="space-out" name="mapSelector" [(ngModel)]="newStrategy.Map">
-      <label for="mapSelector" igxLabel>Map</label>
-      <igx-select-item *ngFor="let map of mapList" (click)="selectedMap = map" [value]="map.id">
-        {{ map.map }}
-      </igx-select-item>
-    </igx-select>
-
-    <div class="column-wrapper space-out">
-      <igx-input-group>
-        <igx-prefix>
-          <igx-icon>link</igx-icon>
-        </igx-prefix>
-        <label for="strategyUrl" igxLabel>Link to a video/resource</label>
-        <input #strategyUrl name="strategyUrl" id="strategyUrl" igxInput placeholder="Link to a video/resource" pattern="^(?:http(s)?:\/\/)[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$" [(ngModel)]="newStrategy.Url">
-        <igx-suffix *ngIf="strategyUrl.value.length > 0" (click)="newStrategy.Url = null">
-            <igx-icon>clear</igx-icon>
-        </igx-suffix>
-      </igx-input-group>
-      <span class="separate">OR</span>
-      <button type="button" igxButton="outlined" class="strat-editor-button" [disabled]="selectedMap.disabled || strategyForm.invalid" (click)="createAndRedirect()">Go to Strat Editor</button>
-    </div>
-
-    <iframe *ngIf="getVideoEmbedLink()" class="video-frame space-out" [src]="newStrategy.Url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-
-    <button igxButton="outlined" igxRipple [disabled]="strategyForm.invalid" class="submit-button space-out">Submit</button>
-  </form>
-</igx-dialog>
-<!-- END New strategy dialog -->
+<app-new-strategy #newStrategy
+                  (strategyAdded)="onStrategyAdded($event)"
+                  [team]="team"
+                  [authUser]="authUser">
+</app-new-strategy>
 
 <!-- Confirm -->
 <app-confirm #confirm title="Are you sure?" (ok)="deleteStrat($event)">

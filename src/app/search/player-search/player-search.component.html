@@ -18,7 +18,7 @@
       <igx-select *ngIf="userOverlap" name="teamOverlap" [(ngModel)]="searchModel.teamId" id="team-select">
         <label for="team-select" igxLabel>Select team</label>
         <igx-select-item *ngFor="let team of authUser?.teamAdmin"
-                         [value]="team.TeamId">       
+                         [value]="team.TeamId">
           <igx-avatar [src]="team.TeamAvatar" [initials]="team.TeamName" roundShape="true">
           </igx-avatar>
           <span class="title margin-left">
@@ -30,10 +30,12 @@
 
     <div class="slider-holder" *ngIf="authUser">
       <label for="overlap">Minimum overlap of</label>
-      <igx-slider #overlap
-                  name="scheduleOverlap"
+      <igx-slider name="scheduleOverlap"
+                  id="overlap"
+                  class="slider"
+                  [step]="5"
                   [minValue]="0"
-                  [maxValue]="60"
+                  [maxValue]="40"
                   [(ngModel)]="searchModel.scheduleOverlap">
       </igx-slider>
       <label>Hours availability</label>

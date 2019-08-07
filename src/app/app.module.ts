@@ -93,8 +93,14 @@ import { ActiveDutyMapsPipe } from './pipes/active-duty-maps.pipe';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { AddSteamComponent } from './add-steam/add-steam.component';
 import { BaseComponent } from './base/base.component';
-import { StrategiesComponent } from './strategies/strategies.component';
 import { AppShellComponent } from './app-shell/app-shell.component';
+import { IsVideoPipe } from './pipes/is-video.pipe';
+import { TruncateTextPipe } from './pipes/truncate-text.pipe';
+import { VotesPipe } from './pipes/votes.pipe';
+import { StrategyDetailsComponent } from './team-section/team-strategies/strategy-details/strategy-details.component';
+import { HasVotedPipe } from './pipes/has-voted.pipe';
+import { UserStrategiesComponent } from './player-section/user-strategies/user-strategies.component';
+import { NewStrategyComponent } from './team-section/team-strategies/new-strategy/new-strategy.component';
 
 @NgModule({
   declarations: [
@@ -151,7 +157,13 @@ import { AppShellComponent } from './app-shell/app-shell.component';
     AddSteamComponent,
     BaseComponent,
     AppShellComponent,
-    StrategiesComponent
+    IsVideoPipe,
+    TruncateTextPipe,
+    VotesPipe,
+    StrategyDetailsComponent,
+    HasVotedPipe,
+    UserStrategiesComponent,
+    NewStrategyComponent
   ],
   imports: [
     FormsModule,

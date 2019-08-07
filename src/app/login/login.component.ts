@@ -1,17 +1,12 @@
 import { Component, ViewChild, Input } from '@angular/core';
-import { IgxDialogComponent,
-  PositionSettings,
-  HorizontalAlignment,
-  OverlaySettings,
-  ConnectedPositioningStrategy,
-  IgxProgressType } from 'igniteui-angular';
+import { IgxDialogComponent, IgxProgressType } from 'igniteui-angular';
 import { LoginService } from '../services/login.service';
 import { ApplicationUser } from '../models/applicationuser';
 import { PlaystyleRole } from '../models/playerrole';
 import { BellumgensApiService } from '../services/bellumgens-api.service';
 import { LoginProvider } from '../models/login-provider';
 import { BaseComponent } from '../base/base.component';
-import { LOGIN_ASSETS } from '../models/misc';
+import { LOGIN_ASSETS, GlobalOverlaySettings } from '../models/misc';
 
 export interface ProfileCompleteness {
   availability: boolean;
@@ -52,14 +47,7 @@ export class LoginComponent extends BaseComponent {
 
   public profileCompleteness: ProfileCompleteness;
 
-  public positionSettings: PositionSettings = {
-    horizontalDirection: HorizontalAlignment.Left,
-    horizontalStartPoint: HorizontalAlignment.Right
-  };
-
-  public overlaySettings: OverlaySettings = {
-    positionStrategy: new ConnectedPositioningStrategy(this.positionSettings)
-  };
+  public overlaySettings = GlobalOverlaySettings;
 
   @ViewChild(IgxDialogComponent, { static: true }) public dialog: IgxDialogComponent;
 

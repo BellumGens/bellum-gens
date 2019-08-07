@@ -13,8 +13,12 @@ $primary: white !default;
 $secondary: #FF0A3A !default;
 $background: #192053;
 $banner-background: #2C3D93;
-$background-gradient: linear-gradient(to right, #192053, #04081D);
+$background-gradient: linear-gradient(to right, $background, #04081D);
 $background-gradient-lighter: linear-gradient(135deg, rgba(47,57,120,1) 0%, rgba(16,25,63,1) 100%);
+
+:root {
+  --app-secondary-color: #FF0A3A;
+}
 
 $app-palette: igx-palette($primary, $secondary);
 
@@ -78,7 +82,11 @@ $list-theme: igx-list-theme($background: transparent,
 /* END List */
 
 /* Input Group */
-$input-group-theme: igx-input-group-theme($search-background: transparent, $idle-text-color: white, $filled-text-color: white, $focused-text-color: white, $placeholder-color: #999);
+$input-group-theme: igx-input-group-theme($search-background: transparent,
+                                          $idle-text-color: white,
+                                          $filled-text-color: white,
+                                          $focused-text-color: white,
+                                          $placeholder-color: #999);
 @include igx-css-vars($input-group-theme);
 /* END Input Group */
 
@@ -111,6 +119,16 @@ $dialog-theme: igx-dialog-theme($background: $background);
 $snackbar-theme: igx-snackbar-theme($background: $banner-background, $border-radius: 24px);
 @include igx-css-vars($snackbar-theme);
 /* END Snackbar */
+
+/* Button */
+$button-theme: igx-button-theme($fab-resting-shadow: none,
+                                $fab-hover-shadow: none,
+                                $fab-focus-shadow: none,
+                                $fab-text-color: $primary,
+                                $fab-hover-text-color: $secondary,
+                                $fab-background: transparent);
+@include igx-css-vars($button-theme);
+/* END Button */
 
 /* Badge */
 .igx-badge__circle--info {
@@ -148,6 +166,7 @@ igx-icon {
   user-select: none;
 }
 
+igx-card-actions igx-badge,
 igx-tab-item igx-icon {
   margin-right: 8px;
 }
@@ -167,7 +186,7 @@ igx-tab-item igx-icon {
 
 /* END ICONS */
 
-.igx-card-header__title {
+.igx-typography {
   color: var(--igx-card-header-text-color);
 }
 
@@ -349,7 +368,7 @@ a {
 }
 
 .igx-chip {
-  margin: 4px 0;
+  margin: 4px 4px 4px 0;
 }
 
 .notification-disabled {
@@ -369,7 +388,7 @@ a {
   margin: 0px 4px;
 }
 
-.igx-input-group__textarea, 
+.igx-input-group__textarea,
 textarea {
   resize: none;
   min-height: 128px;
@@ -398,6 +417,12 @@ textarea {
 
 button igx-icon {
   margin-right: 4px;
+}
+
+.user-has-voted,
+.user-has-voted:focus {
+  color: #5B86FF;
+  font-weight: 800;
 }
 
 .search-result {
@@ -432,9 +457,52 @@ button igx-icon {
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   grid-column-gap: 16px;
   grid-row-gap: 16px;
-  padding-top: 8px;
+  padding-top: 12px;
 }
 /* END SEARCH */
+
+/* Strategies */
+.video-frame {
+  width: 560px;
+  height: 315px;
+}
+
+.empty-strategy.empty-strategy-content {
+  min-height: 200px;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.strat-title {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 24ch;
+}
+
+.strategy-card {
+  height: fit-content;
+}
+
+.strat-image {
+  cursor: zoom-in;
+  max-height: 315px;
+}
+
+.strat-filter-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0 0 16px;
+}
+
+.card-smaller-subtitle {
+  font-size: 0.65rem;
+}
+
+/* END Strategies */
 
 .color-success {
   color: var(--igx-input-group-success-secondary-color);
@@ -470,7 +538,7 @@ button igx-icon {
   .bellum-gens-navbar .igx-navbar__title {
     display: none;
   }
-  
+
   .left-details-container {
     width: 100%;
   }

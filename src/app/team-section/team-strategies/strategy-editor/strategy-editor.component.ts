@@ -1,12 +1,12 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 import { ActiveDutyDescriptor, ActiveDuty, CSGOMap } from '../../../models/csgomaps';
 import { StrategyEditor } from '../../../models/strat-editor/strategy-editor';
 import { CSGOTeam } from '../../../models/csgoteam';
 import { BellumgensApiService } from '../../../services/bellumgens-api.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router, NavigationStart } from '@angular/router';
 import { IgxDropEventArgs } from 'igniteui-angular';
 import { StratUtilities, EditorBrushColors } from '../../../models/strat-editor/utility';
-import { CSGOStrategy } from '../../../models/csgoteamstrategy';
+import { CSGOStrategy } from '../../../models/csgostrategy';
 import { BaseLayer, PointCoordinate, ImageLayer, FreeflowLayer } from '../../../models/strat-editor/editor-layer';
 import { BaseComponent } from '../../../base/base.component';
 import { noop } from 'rxjs';
@@ -56,7 +56,9 @@ export class StrategyEditorComponent extends BaseComponent implements OnInit {
 
   @ViewChild('board', { static: true }) public canvas: ElementRef;
 
-  constructor(private apiService: BellumgensApiService, private route: ActivatedRoute) {
+  constructor(private apiService: BellumgensApiService,
+              private route: ActivatedRoute,
+              private router: Router) {
     super();
   }
 
@@ -65,24 +67,31 @@ export class StrategyEditorComponent extends BaseComponent implements OnInit {
     this.canvas.nativeElement.height = this.canvas.nativeElement.clientHeight;
     this.editor = new StrategyEditor(this.canvas, parseInt(this.canvas.nativeElement.clientHeight, 10) / 1024);
     this.layers = this.editor.layers;
-    this.subs.push(this.route.params.subscribe(params => {
-      const teamId = params['teamid'];
-      if (teamId) {
-        this.apiService.getTeam(teamId).subscribe(team => this.team = team);
-      }
-      const stratid = params['stratid'];
-      if (stratid) {
-        this.apiService.getCurrentStrategy(stratid).subscribe(strat => {
-          if (strat) {
-            this.newStrategy = strat;
-            if (strat.EditorMetadata) {
-              this.editor.restore(strat.EditorMetadata);
+    this.subs.push(
+      this.route.params.subscribe(params => {
+        const teamId = params['teamid'];
+        if (teamId) {
+          this.apiService.getTeam(teamId).subscribe(team => this.team = team);
+        }
+        const stratid = params['stratid'];
+        if (stratid) {
+          this.apiService.getCurrentStrategy(stratid).subscribe(strat => {
+            if (strat) {
+              this.newStrategy = strat;
+              if (strat.EditorMetadata) {
+                this.editor.restore(strat.EditorMetadata);
+              }
+              this.map = this.maps.find(m => m.id === strat.Map);
             }
-            this.map = this.maps.find(m => m.id === strat.Map);
-          }
-        });
-      }
-    }));
+          });
+        }
+      }),
+      this.router.events.subscribe(e => {
+        if (e instanceof NavigationStart) {
+          this.beforeUnload();
+        }
+      })
+    );
   }
 
   public changeMap(map: CSGOMap) {
@@ -181,5 +190,11 @@ export class StrategyEditorComponent extends BaseComponent implements OnInit {
     color.selected = true;
     this.selectedColor = color;
     this._drawLayer = null;
+  }
+
+  @HostListener('window:beforeunload')
+  public beforeUnload() {
+    this.saveStrat();
+    return 'Saving your work...';
   }
 }

@@ -25,22 +25,23 @@ export class TeamOverviewComponent extends BaseComponent {
               private authManager: LoginService,
               private title: Title) {
     super();
-    this.subs.push(this.authManager.applicationUser.subscribe((data: ApplicationUser) => {
-      this.authUser = data;
-    }));
+    this.subs.push(
+      this.authManager.applicationUser.subscribe((data: ApplicationUser) => {
+        this.authUser = data;
+      }),
+      this.activatedRoute.params.subscribe(params => {
+        const teamId = params['teamid'];
 
-    this.subs.push(this.activatedRoute.params.subscribe(params => {
-      const teamId = params['teamid'];
-
-      if (teamId) {
-        this.apiService.getTeam(teamId).subscribe(team => {
-          if (team) {
-            this.team = team;
-            this.title.setTitle('CS:GO Team: ' + team.TeamName);
-          }
-        });
-      }
-    }));
+        if (teamId) {
+          this.apiService.getTeam(teamId).subscribe(team => {
+            if (team) {
+              this.team = team;
+              this.title.setTitle('CS:GO Team: ' + team.TeamName);
+            }
+          });
+        }
+      })
+    );
   }
 
   public get userIsMember() {

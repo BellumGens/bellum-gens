@@ -128,6 +128,8 @@ export class LoginService {
           this.router.navigate(['team', action.notification.data]);
         } else if (action.action === NotificationActions.ViewUser) {
           this.router.navigate(['players', action.notification.data]);
+        } else if (action.action === NotificationActions.ViewStrategy) {
+          this.router.navigate(['strategies', 'details', action.notification.data]);
         }
       });
     })

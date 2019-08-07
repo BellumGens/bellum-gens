@@ -1,4 +1,4 @@
-<div class="overview-container overview-container-paddings">
+<div *ngIf="team" class="overview-container overview-container-paddings">
   <div class="left-details-container">
     <h4>Practice</h4>
     <app-availability [availability]="team.PracticeSchedule" (availabilityChanged)="changeSchedule($event)" [editable]="isAdmin"></app-availability>

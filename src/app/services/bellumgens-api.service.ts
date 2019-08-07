@@ -9,7 +9,7 @@ import { Role } from '../models/playerrole';
 import { MapPool } from '../models/csgomaps';
 import { map, shareReplay, catchError } from 'rxjs/operators';
 import { UserNotification } from '../models/usernotifications';
-import { CSGOStrategy } from '../models/csgoteamstrategy';
+import { CSGOStrategy, VoteDirection, StrategyVote, StrategyComment } from '../models/csgostrategy';
 import { SearchResult } from '../models/searchresult';
 import { environment } from '../../environments/environment';
 
@@ -20,6 +20,19 @@ const CACHE_SIZE = 1;
 })
 export class BellumgensApiService {
   private _apiEndpoint = environment.apiEndpoint;
+  private _teamReqInProgress = false;
+
+  // Cache
+  private _currentStrategy = new BehaviorSubject<CSGOStrategy>(null);
+  private _currentTeam = new BehaviorSubject<CSGOTeam>(null);
+  private _players = new BehaviorSubject<CSGOPlayer []>([]);
+  private _strategies = new BehaviorSubject<CSGOStrategy []>([]);
+  private _currentPlayer = new BehaviorSubject<CSGOPlayer>(null);
+  private _csgoTeams = new BehaviorSubject<CSGOTeam []>([]);
+  private _teamApplications = new Map<string, Observable<TeamApplication[]>>();
+  private _searchResultCache: Map<string, SearchResult> = new Map();
+  private _playerSearchCache: Map<string, CSGOPlayer []> = new Map();
+  private _teamSearchCache: Map<string, CSGOTeam []> = new Map();
 
   public success = new EventEmitter<string>();
   public error = new EventEmitter<string>();
@@ -34,18 +47,6 @@ export class BellumgensApiService {
   public playerSearchResult = new ReplaySubject<CSGOPlayer []>(1);
   public teamSearchResult = new ReplaySubject<CSGOTeam []>(1);
   public searchTerm = new ReplaySubject<string>(1);
-
-  // Cache
-  private _currentStrategy = new BehaviorSubject<CSGOStrategy>(null);
-  private _currentTeam = new BehaviorSubject<CSGOTeam>(null);
-  private _players = new BehaviorSubject<CSGOPlayer []>([]);
-  private _strategies = new BehaviorSubject<CSGOStrategy []>([]);
-  private _currentPlayer = new BehaviorSubject<CSGOPlayer>(null);
-  private _csgoTeams = new BehaviorSubject<CSGOTeam []>([]);
-  private _teamApplications = new Map<string, Observable<TeamApplication[]>>();
-  private _searchResultCache: Map<string, SearchResult> = new Map();
-  private _playerSearchCache: Map<string, CSGOPlayer []> = new Map();
-  private _teamSearchCache: Map<string, CSGOTeam []> = new Map();
 
   constructor(private http: HttpClient) { }
 
@@ -105,6 +106,10 @@ export class BellumgensApiService {
 
   public getStrategies() {
     return this.http.get<CSGOStrategy []>(`${this._apiEndpoint}/strategy/strategies`);
+  }
+
+  public getUserStrategies(userId: string) {
+    return this.http.get<CSGOStrategy []>(`${this._apiEndpoint}/strategy/userstrats?userid=${userId}`, { withCredentials: true });
   }
 
   public quickSearch(name: string) {
@@ -208,15 +213,15 @@ export class BellumgensApiService {
   }
 
   public getTeamStrat(stratId: string) {
-    return this.http.get<CSGOStrategy>(`${this._apiEndpoint}/teams/strat?stratId=${stratId}`, { withCredentials: true });
+    return this.http.get<CSGOStrategy>(`${this._apiEndpoint}/strategy/strat?stratId=${stratId}`, { withCredentials: true });
   }
 
   public getTeamStrats(teamId: string) {
-    return this.http.get<CSGOStrategy []>(`${this._apiEndpoint}/teams/strats?teamid=${teamId}`, { withCredentials: true });
+    return this.http.get<CSGOStrategy []>(`${this._apiEndpoint}/strategy/teamstrats?teamid=${teamId}`, { withCredentials: true });
   }
 
   public getCurrentStrategy(stratId: string) {
-    if (!this._currentStrategy.value) {
+    if (!this._currentStrategy.value || this._currentStrategy.value.Id !== stratId) {
       this.getTeamStrat(stratId).subscribe(strat => this._currentStrategy.next(strat));
     }
     return this._currentStrategy;
@@ -251,14 +256,21 @@ export class BellumgensApiService {
   }
 
   public getTeam(teamId: string) {
-    if (!this._currentTeam.value || (this._currentTeam.value.TeamId !== teamId &&  this._currentTeam.value.CustomUrl !== teamId)) {
-      this.checkTeamCache(teamId);
-    }
-    if (!this._currentTeam.value || (this._currentTeam.value.TeamId !== teamId &&  this._currentTeam.value.CustomUrl !== teamId)) {
-      this.checkSearchCacheForTeam(teamId);
-    }
-    if (!this._currentTeam.value || (this._currentTeam.value.TeamId !== teamId &&  this._currentTeam.value.CustomUrl !== teamId)) {
-      this.getTeamFromServer(teamId).subscribe(team => this._currentTeam.next(team));
+    if (!this._teamReqInProgress) {
+      if (!this._currentTeam.value || (this._currentTeam.value.TeamId !== teamId &&  this._currentTeam.value.CustomUrl !== teamId)) {
+        this.checkTeamCache(teamId);
+      }
+      if (!this._currentTeam.value || (this._currentTeam.value.TeamId !== teamId &&  this._currentTeam.value.CustomUrl !== teamId)) {
+        this.checkSearchCacheForTeam(teamId);
+      }
+      if (!this._currentTeam.value ||
+            (this._currentTeam.value.TeamId !== teamId &&  this._currentTeam.value.CustomUrl !== teamId)) {
+        this._teamReqInProgress = true;
+        this.getTeamFromServer(teamId).subscribe(team => {
+          this._currentTeam.next(team);
+          this._teamReqInProgress = false;
+        });
+      }
     }
     return this._currentTeam;
   }
@@ -533,7 +545,7 @@ export class BellumgensApiService {
   }
 
   public submitStrategy(strat: CSGOStrategy) {
-    return this.http.post<CSGOStrategy>(`${this._apiEndpoint}/teams/strategy`, strat, { withCredentials: true }).pipe(
+    return this.http.post<CSGOStrategy>(`${this._apiEndpoint}/strategy/strategy`, strat, { withCredentials: true }).pipe(
       map(response => {
         if (response) {
           this._currentStrategy.next(response);
@@ -548,8 +560,75 @@ export class BellumgensApiService {
     );
   }
 
-  public deleteStrategy(id: string, teamid: string): Observable<any> {
-    return this.http.delete(`${this._apiEndpoint}/teams/strategy?id=${id}&teamid=${teamid}`, { withCredentials: true }).pipe(
+  public submitStratVote(strat: CSGOStrategy, direction: VoteDirection, userId: string) {
+    return this.http.post<StrategyVote>(`${this._apiEndpoint}/strategy/vote`,
+                          { id: strat.Id, direction: direction },
+                          { withCredentials: true }).pipe(
+      map(response => {
+        const vote = strat.Votes.find(v => v.UserId === userId);
+        if (response) {
+          this.emitSuccess('Vote submitted successfully!');
+          if (vote) {
+            vote.Vote = response.Vote;
+          } else {
+            strat.Votes.push(response);
+          }
+        } else {
+          this.emitSuccess('Vote removed successfully!');
+          strat.Votes.splice(strat.Votes.indexOf(vote), 1);
+        }
+        return response;
+      }),
+      catchError(error => {
+        this.emitError(error.error.Message);
+        return throwError(error);
+      })
+    );
+  }
+
+  public submitStratComment(comment: StrategyComment, strat: CSGOStrategy) {
+    return this.http.post<StrategyComment>(`${this._apiEndpoint}/strategy/comment`,
+                          comment,
+                          { withCredentials: true }).pipe(
+      map(response => {
+        if (response) {
+          const existing = strat.Comments.find(c => c.Id === response.Id);
+          if (existing) {
+            existing.Comment = response.Comment;
+            this.emitSuccess('Comment edited successfully!');
+          } else {
+            strat.Comments.push(response);
+            this.emitSuccess('Comment submitted successfully!');
+          }
+        }
+        return response;
+      }),
+      catchError(error => {
+        this.emitError(error.error.Message);
+        return throwError(error);
+      })
+    );
+  }
+
+  public deleteStratComment(comment: StrategyComment, strat: CSGOStrategy) {
+    return this.http.delete<StrategyComment>(`${this._apiEndpoint}/strategy/comment?id=${comment.Id}`,
+                          { withCredentials: true }).pipe(
+      map(response => {
+        if (response) {
+          this.emitSuccess('Comment submitted successfully!');
+          strat.Comments.splice(strat.Comments.indexOf(comment), 1);
+        }
+        return response;
+      }),
+      catchError(error => {
+        this.emitError(error.error.Message);
+        return throwError(error);
+      })
+    );
+  }
+
+  public deleteStrategy(id: string): Observable<any> {
+    return this.http.delete(`${this._apiEndpoint}/strategy/strat?id=${id}`, { withCredentials: true }).pipe(
       map(response => {
         if (response) {
           this.emitSuccess('Strategy successfully deleted!');
@@ -586,13 +665,16 @@ export class BellumgensApiService {
       this.checkSearchCacheForPlayer(userId);
     }
     if (!this.playerMatch(userId)) {
-      this.getPlayerFromServer(userId).subscribe(player => this._currentPlayer.next(player));
+      this.getPlayerFromServer(userId).subscribe(
+        player => this._currentPlayer.next(player),
+        _ => this._currentPlayer.next(null)
+      );
     }
     return this._currentPlayer;
   }
 
   private playerMatch(userId: string) {
-    return this._currentPlayer.value &&
+    return this._currentPlayer.value && this._currentPlayer.value.steamUser &&
       (this._currentPlayer.value.steamUser.customURL === userId ||  this._currentPlayer.value.steamUser.steamID64 === userId);
   }
 

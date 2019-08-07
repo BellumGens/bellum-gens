@@ -25,5 +25,6 @@ export enum NotificationState {
 
 export enum NotificationActions {
   ViewTeam = 'viewteam',
-  ViewUser = 'viewuser'
+  ViewUser = 'viewuser',
+  ViewStrategy = 'viewstrategy'
 }

@@ -14,6 +14,9 @@
           <igx-icon>clear</igx-icon>
         </igx-suffix>
       </igx-input-group>
+      <div class="action-button-container" title="Strategies feed" routerLink="strategies">
+        <igx-icon>playlist_add_check</igx-icon>
+      </div>
       <div class="action-button-container" [igxToggleAction]="myTeam" [overlaySettings]="overlaySettings" *ngIf="authUser">
         <igx-icon>people</igx-icon>
         <igx-badge class="notifications-badge" *ngIf="authUser.teams?.length > 0" [value]="authUser.teams?.length" type="info"></igx-badge>

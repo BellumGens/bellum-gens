@@ -12,7 +12,11 @@ import { IgxIconModule,
   IgxChipsModule,
   IgxTimePickerModule,
   IgxSelectModule,
-  IgxAvatarModule} from 'igniteui-angular';
+  IgxAvatarModule,
+  IgxBadgeModule,
+  IgxSwitchModule,
+  IgxDropDownModule,
+  IgxProgressBarModule} from 'igniteui-angular';
 import { MapPoolComponent } from 'src/app/map-pool/map-pool.component';
 import { SafeVideoLinkPipe } from 'src/app/pipes/safe-video-link.pipe';
 import { FormsModule } from '@angular/forms';
@@ -26,6 +30,15 @@ import { AvailabilityComponent } from 'src/app/availability/availability.compone
 import { WeekdayPipe } from 'src/app/pipes/weekday.pipe';
 import { ActiveDutyMapsPipe } from 'src/app/pipes/active-duty-maps.pipe';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { TruncateTextPipe } from 'src/app/pipes/truncate-text.pipe';
+import { IsVideoPipe } from 'src/app/pipes/is-video.pipe';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { VotesPipe } from 'src/app/pipes/votes.pipe';
+import { AppShellComponent } from 'src/app/app-shell/app-shell.component';
+import { HasVotedPipe } from 'src/app/pipes/has-voted.pipe';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { NewStrategyComponent } from './new-strategy/new-strategy.component';
 
 describe('TeamStrategiesComponent', () => {
   let component: TeamStrategiesComponent;
@@ -38,10 +51,10 @@ describe('TeamStrategiesComponent', () => {
         RouterTestingModule,
         NoopAnimationsModule,
         HttpClientTestingModule,
+        ServiceWorkerModule.register('', {enabled: false}),
         IgxIconModule,
         IgxAvatarModule,
         IgxCardModule,
-        IgxListModule,
         IgxInputGroupModule,
         IgxRadioModule,
         IgxToggleModule,
@@ -49,19 +62,38 @@ describe('TeamStrategiesComponent', () => {
         IgxDialogModule,
         IgxCheckboxModule,
         IgxChipsModule,
-        IgxTimePickerModule
+        IgxTimePickerModule,
+        IgxBadgeModule,
+        IgxSwitchModule,
+        IgxDropDownModule,
+        IgxProgressBarModule
       ],
       declarations: [
         TeamStrategiesComponent,
+        AppShellComponent,
         MapPoolComponent,
         ConfirmComponent,
-        AvailabilityComponent,
+        NewStrategyComponent,
         SafeVideoLinkPipe,
         MapnamePipe,
         SideStratsPipe,
         MapimagePipe,
         WeekdayPipe,
-        ActiveDutyMapsPipe
+        ActiveDutyMapsPipe,
+        TruncateTextPipe,
+        IsVideoPipe,
+        VotesPipe,
+        HasVotedPipe
+      ],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            parent: {
+              params: new Observable()
+            }
+          }
+        }
       ]
     })
     .compileComponents();
