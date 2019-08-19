@@ -63,15 +63,3 @@
 .completeness-item span {
   font-size: 0.9rem;
 }
-
-.login-buttons {
-  display: flex;
-  flex-flow: column;
-  justify-content: center;
-  align-items: center;
-  padding: 12px 24px 24px 24px;
-}
-
-.login-buttons button:not(:first-child) {
-  margin-top: 8px;
-}

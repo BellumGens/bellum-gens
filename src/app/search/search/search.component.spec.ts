@@ -40,27 +40,17 @@ describe('SearchComponent', () => {
         IgxRippleModule,
         IgxRadioModule,
         IgxIconModule,
-        IgxToggleModule,
-        IgxDropDownModule,
         IgxAvatarModule,
         IgxSliderModule,
-        IgxDialogModule,
         IgxRippleModule,
-        IgxTabsModule,
         IgxInputGroupModule,
-        IgxSwitchModule,
-        IgxDividerModule,
         IgxButtonModule,
-        IgxSelectModule,
-        IgxProgressBarModule
+        IgxSelectModule
       ],
       declarations: [
         SearchComponent,
         PlayerSearchComponent,
-        TeamSearchComponent,
-        LoginComponent,
-        UserPreferencesComponent,
-        ConfirmComponent
+        TeamSearchComponent
       ]
     })
     .compileComponents();

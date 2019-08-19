@@ -1,12 +1,11 @@
-import { Component, ViewChild, Input } from '@angular/core';
-import { IgxDialogComponent, IgxProgressType } from 'igniteui-angular';
+import { Component, Input } from '@angular/core';
+import { IgxProgressType } from 'igniteui-angular';
 import { LoginService } from '../services/login.service';
 import { ApplicationUser } from '../models/applicationuser';
 import { PlaystyleRole } from '../models/playerrole';
 import { BellumgensApiService } from '../services/bellumgens-api.service';
-import { LoginProvider } from '../models/login-provider';
 import { BaseComponent } from '../base/base.component';
-import { LOGIN_ASSETS, GlobalOverlaySettings } from '../models/misc';
+import { GlobalOverlaySettings } from '../models/misc';
 
 export interface ProfileCompleteness {
   availability: boolean;
@@ -29,10 +28,6 @@ export interface ProfileCompleteness {
 export class LoginComponent extends BaseComponent {
   private _authUser: ApplicationUser;
 
-  public loginProviders: LoginProvider [];
-
-  public loginColors = LOGIN_ASSETS;
-
   @Input()
   public set authUser(user: ApplicationUser) {
     this._authUser = user;
@@ -49,23 +44,12 @@ export class LoginComponent extends BaseComponent {
 
   public overlaySettings = GlobalOverlaySettings;
 
-  @ViewChild(IgxDialogComponent, { static: true }) public dialog: IgxDialogComponent;
-
   constructor(private authManager: LoginService,
               private apiService: BellumgensApiService) {
     super();
     this.subs.push(
-      this.apiService.authUserUpdate.subscribe(_ => this.fillCompleteness()),
-      this.authManager.loginProviders.subscribe(providers => this.loginProviders = providers)
+      this.apiService.authUserUpdate.subscribe(_ => this.fillCompleteness())
     );
-  }
-
-  public openLogin() {
-    this.dialog.open();
-  }
-
-  public login(provider: string) {
-    this.authManager.login(provider);
   }
 
   public logout() {
