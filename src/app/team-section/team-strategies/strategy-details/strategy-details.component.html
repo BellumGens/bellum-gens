@@ -1,4 +1,5 @@
 <app-app-shell *ngIf="!strat"></app-app-shell>
+<app-login-dialog #loginDialog></app-login-dialog>
 
 <igx-card *ngIf="strat" class="strategy-details" type="outlined" [horizontal]="horizontal">
 
@@ -72,7 +73,7 @@
       <igx-avatar [src]="authUser?.steamUser.avatarIcon" [roundShape]="true"></igx-avatar>
       <form #strategyForm="ngForm" (ngSubmit)="submitComment()" class="comment-input">
         <igx-input-group type="box">
-          <label for="comment" igxLabel>Write your comment...</label>
+          <label for="comment" igxLabel>Leave a comment...</label>
           <textarea [disabled]="!authUser" #commentBox id="comment" name="comment" igxInput [(ngModel)]="newComment.Comment"></textarea>
           <button igxSuffix
                   igxButton="fab"

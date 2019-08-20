@@ -14,6 +14,8 @@ export class LoginDialogComponent extends BaseComponent {
   public loginProviders: LoginProvider [];
   public loginColors = LOGIN_ASSETS;
 
+  public title = 'Choose login provider';
+
   @ViewChild(IgxDialogComponent, { static: true })
   public dialog: IgxDialogComponent;
 
@@ -24,7 +26,10 @@ export class LoginDialogComponent extends BaseComponent {
     );
   }
 
-  public openLogin() {
+  public openLogin(title?: string) {
+    if (title) {
+      this.title = title;
+    }
     this.dialog.open();
   }
 

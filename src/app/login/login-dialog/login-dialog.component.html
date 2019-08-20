@@ -1,4 +1,4 @@
-<igx-dialog closeOnOutsideSelect="true" title="Choose login provider">
+<igx-dialog closeOnOutsideSelect="true" [title]="title">
   <div class="login-buttons">
     <button *ngFor="let provider of loginProviders"
             igxButton="raised"

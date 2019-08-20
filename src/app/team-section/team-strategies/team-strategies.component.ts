@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BellumgensApiService } from '../../services/bellumgens-api.service';
 import { CSGOStrategy, VoteDirection } from '../../models/csgostrategy';
@@ -10,6 +10,7 @@ import { CSGOTeam } from '../../models/csgoteam';
 import { LoginService } from '../../services/login.service';
 import { ApplicationUser } from '../../models/applicationuser';
 import { GlobalOverlaySettings } from '../../models/misc';
+import { LoginDialogComponent } from '../../login/login-dialog/login-dialog.component';
 
 @Component({
   selector: 'app-team-strategies',
@@ -17,18 +18,21 @@ import { GlobalOverlaySettings } from '../../models/misc';
   styleUrls: ['./team-strategies.component.css']
 })
 export class TeamStrategiesComponent extends BaseComponent {
-  strats: CSGOStrategy [];
-  maps: MapPool [] = AllMaps;
-  team: CSGOTeam;
-  authUser: ApplicationUser;
-  sanitizedUrl: SafeResourceUrl;
-  pipeTrigger = 0;
-  changes = false;
-  viewAll = false;
-  selectedStrat: CSGOStrategy;
-  loading = false;
+  public strats: CSGOStrategy [];
+  public maps: MapPool [] = AllMaps;
+  public team: CSGOTeam;
+  public authUser: ApplicationUser;
+  public sanitizedUrl: SafeResourceUrl;
+  public pipeTrigger = 0;
+  public changes = false;
+  public viewAll = false;
+  public selectedStrat: CSGOStrategy;
+  public loading = false;
 
   public overlaySettings = GlobalOverlaySettings;
+
+  @ViewChild(LoginDialogComponent, {static: true})
+  public loginDialog: LoginDialogComponent;
 
   @Input()
   isAdmin = false;
@@ -91,6 +95,10 @@ export class TeamStrategiesComponent extends BaseComponent {
   }
 
   public voteStrat(strat: CSGOStrategy, direction: VoteDirection) {
-    this.apiService.submitStratVote(strat, direction, this.authUser.id).subscribe(_ => this.pipeTrigger++);
+    if (!this.authUser) {
+      this.loginDialog.openLogin('You need to login first');
+    } else {
+      this.apiService.submitStratVote(strat, direction, this.authUser.id).subscribe(_ => this.pipeTrigger++);
+    }
   }
 }
