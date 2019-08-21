@@ -19,8 +19,4 @@ export class HomeComponent extends BaseComponent {
     this.subs.push(this.authManager.applicationUser.subscribe(data => this.authUser = data));
   }
 
-  public viewStats(id: string) {
-    this.router.navigate(['/players', id]);
-  }
-
 }

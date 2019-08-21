@@ -57,11 +57,24 @@ export class TeamStrategiesComponent extends BaseComponent {
           this.apiService.getTeamStrats(teamId).subscribe(strats => this.strats = strats);
           this.apiService.getTeamMapPool(teamId).subscribe(maps => this.maps = maps);
         } else {
-          this.apiService.loadingStrategies.subscribe(loading => this.loading = loading),
-          this.apiService.strategies.subscribe(strats => this.strats = strats);
-          this.apiService.hasMoreStrats.subscribe(hasMore => this.hasMore = hasMore);
-          this.title.setTitle('CS:GO Strategies: find or create ');
+          this.subs.push(
+            this.activatedRoute.params.subscribe(param => {
+              const query = param['query'];
+
+              if (query) {
+                this.apiService.searchStrategies(query);
+                this.apiService.loadingSearch.subscribe(loading => this.loading = loading);
+                this.apiService.strategySearchResult.subscribe(strats => this.strats = strats);
+              } else {
+                this.apiService.loadingStrategies.subscribe(loading => this.loading = loading),
+                this.apiService.strategies.subscribe(strats => this.strats = strats);
+                this.apiService.hasMoreStrats.subscribe(hasMore => this.hasMore = hasMore);
+              }
+            })
+          );
         }
+
+        this.title.setTitle('CS:GO Strategies: find or create ');
       }),
       this.authManager.applicationUser.subscribe(user => this.authUser = user)
     );

@@ -9,13 +9,18 @@ import { BaseComponent } from '../../base/base.component';
   styleUrls: ['./quick-search.component.css']
 })
 export class QuickSearchComponent extends BaseComponent {
-  public searchResult: SearchResult = {Players: [], Teams: []};
+  public searchResult: SearchResult = {Players: [], Teams: [], Strategies: []};
   public loading = false;
   public term = '';
 
   constructor(private apiService: BellumgensApiService) {
     super();
-    this.subs.push(this.apiService.searchResult.subscribe(data => this.searchResult = data));
+    this.subs.push(this.apiService.searchResult.subscribe(data => {
+      if (data.Players.length === 1 && data.Players[0].steamUserException) {
+        data.Players = [];
+      }
+      this.searchResult = data;
+    }));
     this.subs.push(this.apiService.loadingQuickSearch.subscribe(data => this.loading = data));
     this.subs.push(this.apiService.searchTerm.subscribe(term => this.term = term));
   }
