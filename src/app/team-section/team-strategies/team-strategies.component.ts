@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BellumgensApiService } from '../../services/bellumgens-api.service';
 import { CSGOStrategy, VoteDirection } from '../../models/csgostrategy';
@@ -9,7 +9,8 @@ import { BaseComponent } from '../../base/base.component';
 import { CSGOTeam } from '../../models/csgoteam';
 import { LoginService } from '../../services/login.service';
 import { ApplicationUser } from '../../models/applicationuser';
-import { GlobalOverlaySettings } from '../../models/misc';
+import { GlobalOverlaySettings, StratOrder, StratOrderBy } from '../../models/misc';
+import { LoginDialogComponent } from '../../login/login-dialog/login-dialog.component';
 
 @Component({
   selector: 'app-team-strategies',
@@ -17,18 +18,24 @@ import { GlobalOverlaySettings } from '../../models/misc';
   styleUrls: ['./team-strategies.component.css']
 })
 export class TeamStrategiesComponent extends BaseComponent {
-  strats: CSGOStrategy [];
-  maps: MapPool [] = AllMaps;
-  team: CSGOTeam;
-  authUser: ApplicationUser;
-  sanitizedUrl: SafeResourceUrl;
-  pipeTrigger = 0;
-  changes = false;
-  viewAll = false;
-  selectedStrat: CSGOStrategy;
-  loading = false;
+  public strats: CSGOStrategy [];
+  public maps: MapPool [] = AllMaps;
+  public team: CSGOTeam;
+  public authUser: ApplicationUser;
+  public sanitizedUrl: SafeResourceUrl;
+  public pipeTrigger = 0;
+  public viewAll = false;
+  public selectedStrat: CSGOStrategy;
+  public loading = false;
+  public hasMore = false;
+  public page = 0;
+  public order = StratOrderBy.TopVoted;
 
   public overlaySettings = GlobalOverlaySettings;
+  public stratOrder = StratOrder;
+
+  @ViewChild(LoginDialogComponent, {static: true})
+  public loginDialog: LoginDialogComponent;
 
   @Input()
   isAdmin = false;
@@ -50,10 +57,24 @@ export class TeamStrategiesComponent extends BaseComponent {
           this.apiService.getTeamStrats(teamId).subscribe(strats => this.strats = strats);
           this.apiService.getTeamMapPool(teamId).subscribe(maps => this.maps = maps);
         } else {
-          this.apiService.loadingStrategies.subscribe(loading => this.loading = loading),
-          this.apiService.strategies.subscribe(strats => this.strats = strats);
-          this.title.setTitle('CS:GO Strategies: find or create ');
+          this.subs.push(
+            this.activatedRoute.params.subscribe(param => {
+              const query = param['query'];
+
+              if (query) {
+                this.apiService.searchStrategies(query);
+                this.apiService.loadingSearch.subscribe(loading => this.loading = loading);
+                this.apiService.strategySearchResult.subscribe(strats => this.strats = strats);
+              } else {
+                this.apiService.loadingStrategies.subscribe(loading => this.loading = loading),
+                this.apiService.strategies.subscribe(strats => this.strats = strats);
+                this.apiService.hasMoreStrats.subscribe(hasMore => this.hasMore = hasMore);
+              }
+            })
+          );
         }
+
+        this.title.setTitle('CS:GO Strategies: find or create ');
       }),
       this.authManager.applicationUser.subscribe(user => this.authUser = user)
     );
@@ -62,18 +83,13 @@ export class TeamStrategiesComponent extends BaseComponent {
   public changeMaps(event: IChipSelectEventArgs, args: MapPool) {
     if (event.originalEvent) {
       this.maps.find(m => m.Map === args.Map).IsPlayed = event.selected;
-      this.changes = true;
       this.pipeTrigger++;
     }
   }
 
   public saveMaps(event: Event) {
     event.stopPropagation();
-    this.apiService.setTeamMapPool(this.maps).subscribe(
-      _ => {
-        this.changes = false;
-      }
-    );
+    this.apiService.setTeamMapPool(this.maps).subscribe();
   }
 
   public deleteStrat(args: CSGOStrategy) {
@@ -90,7 +106,15 @@ export class TeamStrategiesComponent extends BaseComponent {
     this.pipeTrigger++;
   }
 
+  public loadMore() {
+    this.apiService.loadStrategiesPage(++this.page);
+  }
+
   public voteStrat(strat: CSGOStrategy, direction: VoteDirection) {
-    this.apiService.submitStratVote(strat, direction, this.authUser.id).subscribe(_ => this.pipeTrigger++);
+    if (!this.authUser) {
+      this.loginDialog.openLogin('You need to login first');
+    } else {
+      this.apiService.submitStratVote(strat, direction, this.authUser.id).subscribe(_ => this.pipeTrigger++);
+    }
   }
 }

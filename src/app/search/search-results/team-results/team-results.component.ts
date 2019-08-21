@@ -16,13 +16,15 @@ export class TeamResultsComponent extends BaseComponent {
 
   constructor(private route: ActivatedRoute, private apiService: BellumgensApiService) {
     super();
-    this.subs.push(this.route.params.subscribe(params => {
-      if (params.query) {
-        this.query = params.query;
-        this.apiService.searchTeams(params.query);
-      }
-    }));
-    this.subs.push(this.apiService.loadingSearch.subscribe(loading => this.loading = loading));
-    this.subs.push(this.apiService.teamSearchResult.subscribe(players => this.teams = players));
+    this.subs.push(
+      this.route.params.subscribe(params => {
+        if (params.query) {
+          this.query = params.query;
+          this.apiService.searchTeams(params.query);
+        }
+      }),
+      this.apiService.loadingSearch.subscribe(loading => this.loading = loading),
+      this.apiService.teamSearchResult.subscribe(players => this.teams = players)
+    );
   }
 }

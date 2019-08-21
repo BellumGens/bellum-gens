@@ -22,20 +22,20 @@
                   [title]="user.steamUser?.country"
                   class="country-badge-small">
       </igx-avatar>
-  
+
       <h2 igxListLineTitle>
         <a>
           {{ user.steamUser.steamID }}
         </a>
       </h2>
       <h4 igxListLineSubTitle>{{ user.steamUser?.realname }}</h4>
-    
+
       <div igxListAction *ngIf="!user.userStatsException else private">
           <div class="horizontal-center">
             <igx-circular-bar class="icon-avatar" [value]="user.userStats?.killDeathRatio" [max]="2" [animate]="true" [textVisibility]="false" title="KDR"></igx-circular-bar>
             <span>{{ user.userStats?.killDeathRatio }}</span>
           </div>
-    
+
           <div class="horizontal-center">
             <igx-icon fontSet="weapon-icons" name="headshot" class="icon-avatar"></igx-icon>
             <span>{{ user.userStats?.headshotPercentage | number:'1.2' }}%</span>
@@ -67,13 +67,35 @@
       <h2 igxListLineTitle>
         <a>{{ team.TeamName }}</a>
       </h2>
-    
+
       <div igxListAction>
         {{ team.Members.length }} Members
       </div>
     </igx-list-item>
     <igx-list-item *ngIf="searchResult.Teams.length > 3">
       <button igxButton="flat" igxRipple class="submit-button" [routerLink]="['/search/teams', 'name=' + term]">View more teams...</button>
+    </igx-list-item>
+  </igx-list>
+  <igx-list [isLoading]="loading">
+    <ng-template igxDataLoading>
+      <div class="center-message">
+        <span>Loading strategies...</span>
+        <div class="loading-indicator">
+          <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
+        </div>
+      </div>
+    </ng-template>
+    <igx-list-item [isHeader]="true">Strategies</igx-list-item>
+    <igx-list-item *ngIf="!searchResult.Strategies.length">No matching strategies...</igx-list-item>
+    <igx-list-item *ngFor="let strat of searchResult.Strategies | reduceQuickSearchResult" class="navigatable" [routerLink]="['/team', strat.CustomUrl]">
+      <igx-avatar igxListThumbnail [src]="strat.Image" [initials]="strat.title">
+      </igx-avatar>
+      <h2 igxListLineTitle>
+        <a>{{ strat.Title }}</a>
+      </h2>
+    </igx-list-item>
+    <igx-list-item *ngIf="searchResult.Strategies.length > 3">
+      <button igxButton="flat" igxRipple class="submit-button" [routerLink]="['/strategies', 'name=' + term]">View more strategies...</button>
     </igx-list-item>
   </igx-list>
 </div>

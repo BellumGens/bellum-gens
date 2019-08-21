@@ -1,4 +1,4 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, ViewChild } from '@angular/core';
 import { BaseComponent } from '../../../base/base.component';
 import { BellumgensApiService } from '../../../services/bellumgens-api.service';
 import { ActivatedRoute } from '@angular/router';
@@ -6,6 +6,7 @@ import { CSGOStrategy, VoteDirection, newEmptyComment, StrategyComment } from '.
 import { LoginService } from '../../../services/login.service';
 import { ApplicationUser } from '../../../models/applicationuser';
 import { GlobalOverlaySettings } from '../../../models/misc';
+import { LoginDialogComponent } from '../../../login/login-dialog/login-dialog.component';
 
 @Component({
   selector: 'app-strategy-details',
@@ -21,6 +22,8 @@ export class StrategyDetailsComponent extends BaseComponent {
   public horizontal = window.matchMedia('(min-width: 768px)').matches;
   public overlaySettings = GlobalOverlaySettings;
 
+  @ViewChild(LoginDialogComponent, {static: true})
+  public loginDialog: LoginDialogComponent;
 
   constructor(private apiService: BellumgensApiService,
               private authManager: LoginService,
@@ -51,7 +54,11 @@ export class StrategyDetailsComponent extends BaseComponent {
   }
 
   public voteStrat(strat: CSGOStrategy, direction: VoteDirection) {
-    this.apiService.submitStratVote(strat, direction, this.authUser.id).subscribe(_ => this.pipeTrigger++);
+    if (!this.authUser) {
+      this.loginDialog.openLogin('You need to login first');
+    } else {
+      this.apiService.submitStratVote(strat, direction, this.authUser.id).subscribe(_ => this.pipeTrigger++);
+    }
   }
 
   public submitComment() {

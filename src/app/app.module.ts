@@ -101,6 +101,8 @@ import { StrategyDetailsComponent } from './team-section/team-strategies/strateg
 import { HasVotedPipe } from './pipes/has-voted.pipe';
 import { UserStrategiesComponent } from './player-section/user-strategies/user-strategies.component';
 import { NewStrategyComponent } from './team-section/team-strategies/new-strategy/new-strategy.component';
+import { LoginDialogComponent } from './login/login-dialog/login-dialog.component';
+import { IsStratOwnerPipe } from './pipes/is-strat-owner.pipe';
 
 @NgModule({
   declarations: [
@@ -163,7 +165,9 @@ import { NewStrategyComponent } from './team-section/team-strategies/new-strateg
     StrategyDetailsComponent,
     HasVotedPipe,
     UserStrategiesComponent,
-    NewStrategyComponent
+    NewStrategyComponent,
+    LoginDialogComponent,
+    IsStratOwnerPipe
   ],
   imports: [
     FormsModule,

@@ -14,6 +14,7 @@ import { SearchResult } from '../models/searchresult';
 import { environment } from '../../environments/environment';
 
 const CACHE_SIZE = 1;
+const PAGE_SIZE = 25;
 
 @Injectable({
   providedIn: 'root'
@@ -33,11 +34,13 @@ export class BellumgensApiService {
   private _searchResultCache: Map<string, SearchResult> = new Map();
   private _playerSearchCache: Map<string, CSGOPlayer []> = new Map();
   private _teamSearchCache: Map<string, CSGOTeam []> = new Map();
+  private _strategySearchCache: Map<string, CSGOStrategy []> = new Map();
 
   public success = new EventEmitter<string>();
   public error = new EventEmitter<string>();
   public message = new EventEmitter<string>();
   public authUserUpdate = new EventEmitter<any>();
+  public hasMoreStrats = new ReplaySubject<boolean>(1);
   public loadingTeams = new ReplaySubject<boolean>(1);
   public loadingPlayers = new ReplaySubject<boolean>(1);
   public loadingStrategies = new ReplaySubject<boolean>(1);
@@ -46,6 +49,7 @@ export class BellumgensApiService {
   public searchResult = new ReplaySubject<SearchResult>(1);
   public playerSearchResult = new ReplaySubject<CSGOPlayer []>(1);
   public teamSearchResult = new ReplaySubject<CSGOTeam []>(1);
+  public strategySearchResult = new ReplaySubject<CSGOStrategy []>(1);
   public searchTerm = new ReplaySubject<string>(1);
 
   constructor(private http: HttpClient) { }
@@ -95,6 +99,7 @@ export class BellumgensApiService {
         data => {
           this._strategies.next(data);
           this.loadingStrategies.next(false);
+          this.hasMoreStrats.next(data.length === PAGE_SIZE);
         },
         error => {
           this.loadingStrategies.next(false);
@@ -104,8 +109,32 @@ export class BellumgensApiService {
     return this._strategies;
   }
 
-  public getStrategies() {
-    return this.http.get<CSGOStrategy []>(`${this._apiEndpoint}/strategy/strategies`);
+  private getStrategies(page: number = 0) {
+    return this.http.get<CSGOStrategy []>(`${this._apiEndpoint}/strategy/strategies?page=${page}`);
+  }
+
+  private getFilteredStrategies(query: string) {
+    return this.http.get<CSGOStrategy []>(`${this._apiEndpoint}/search/strategies?${query}`).pipe(
+      map(response => response),
+      catchError(error => {
+        this.emitError(error.error.Message);
+        return throwError(error);
+      })
+    );
+  }
+
+  public loadStrategiesPage(page: number) {
+    this.getStrategies(page).subscribe(
+      data => {
+        this._strategies.next(this._strategies.value.concat(data));
+        this.loadingStrategies.next(false);
+        this.hasMoreStrats.next(data.length === PAGE_SIZE);
+      },
+      error => {
+        this.loadingStrategies.next(false);
+        this.emitError(error.error.Message);
+      }
+    );
   }
 
   public getUserStrategies(userId: string) {
@@ -180,6 +209,32 @@ export class BellumgensApiService {
           players => {
             this._playerSearchCache.set(query, players);
             this.playerSearchResult.next(players);
+            this.loadingSearch.next(false);
+          },
+          error => {
+            this.emitError(error.error.Message);
+          }
+        );
+      }
+    }
+  }
+
+  public searchStrategies(query: string) {
+    if (this._strategySearchCache.has(query)) {
+      this.strategySearchResult.next(this._strategySearchCache.get(query));
+    } else {
+      if (query.startsWith('name')) {
+        const val = query.split('=')[1];
+        if (this._searchResultCache.has(val)) {
+          this.strategySearchResult.next(this._searchResultCache.get(val).Strategies);
+        }
+      } else {
+        this.strategySearchResult.next([]);
+        this.loadingSearch.next(true);
+        this.getFilteredStrategies(query).subscribe(
+          strategies => {
+            this._strategySearchCache.set(query, strategies);
+            this.strategySearchResult.next(strategies);
             this.loadingSearch.next(false);
           },
           error => {
@@ -325,7 +380,7 @@ export class BellumgensApiService {
     let found = false;
     this._searchResultCache.forEach((result) => {
       result.Players.forEach((player) => {
-        if (!found) {
+        if (!found && !player.steamUserException) {
           if (player.steamUser.customURL === userId || player.steamUser.steamID64 === userId) {
             this._currentPlayer.next(player);
             found = true;

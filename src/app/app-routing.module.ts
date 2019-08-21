@@ -25,6 +25,7 @@ export const routes: Routes = [
   { path: 'addsteam', component: AddSteamComponent },
   { path: 'user/strategies', component: UserStrategiesComponent },
   { path: 'strategies', component: TeamStrategiesComponent },
+  { path: 'strategies/:query', component: TeamStrategiesComponent },
   { path: 'strategies/edit/:stratid', component: StrategyEditorComponent },
   { path: 'strategies/details/:stratid', component: StrategyDetailsComponent },
   { path: 'emailconfirm/:error', component: EmailconfirmComponent },

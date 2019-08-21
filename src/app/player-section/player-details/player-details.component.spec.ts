@@ -20,7 +20,6 @@ import { IgxProgressBarModule,
   IgxButtonModule} from 'igniteui-angular';
 import { SteamCustomUrlPipe } from 'src/app/pipes/steam-custom-url.pipe';
 import { PlayerCountryPipe } from 'src/app/pipes/player-country.pipe';
-import { LoginComponent } from 'src/app/login/login.component';
 import { AvailabilityComponent } from 'src/app/availability/availability.component';
 import { TopWeaponAltPipe } from 'src/app/pipes/top-weapon-alt.pipe';
 import { MapPoolComponent } from 'src/app/map-pool/map-pool.component';
@@ -36,6 +35,8 @@ import { UserPreferencesComponent } from '../user-preferences/user-preferences.c
 import { ConfirmComponent } from 'src/app/confirm/confirm.component';
 import { ActiveDutyMapsPipe } from 'src/app/pipes/active-duty-maps.pipe';
 import { AppShellComponent } from 'src/app/app-shell/app-shell.component';
+import { LoginDialogComponent } from 'src/app/login/login-dialog/login-dialog.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('PlayerDetailsComponent', () => {
   let component: PlayerDetailsComponent;
@@ -45,7 +46,7 @@ describe('PlayerDetailsComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         PlayerDetailsComponent,
-        LoginComponent,
+        LoginDialogComponent,
         AvailabilityComponent,
         AppShellComponent,
         MapPoolComponent,
@@ -56,13 +57,12 @@ describe('PlayerDetailsComponent', () => {
         MapnamePipe,
         MapimagePipe,
         SortWeaponsPipe,
-        UserPreferencesComponent,
-        ConfirmComponent,
         ActiveDutyMapsPipe
       ],
       imports: [
         HttpClientTestingModule,
         RouterTestingModule,
+        NoopAnimationsModule,
         FormsModule,
         ServiceWorkerModule.register('', {enabled: false}),
         IgxProgressBarModule,

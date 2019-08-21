@@ -20,6 +20,7 @@ import { UserPreferencesComponent } from '../player-section/user-preferences/use
 import { FormsModule } from '@angular/forms';
 import { ConfirmComponent } from '../confirm/confirm.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { LoginDialogComponent } from './login-dialog/login-dialog.component';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -46,7 +47,12 @@ describe('LoginComponent', () => {
         IgxButtonModule,
         IgxProgressBarModule
       ],
-      declarations: [ LoginComponent, UserPreferencesComponent, ConfirmComponent ]
+      declarations: [
+        LoginComponent,
+        LoginDialogComponent,
+        UserPreferencesComponent,
+        ConfirmComponent
+      ]
     })
     .compileComponents();
   }));

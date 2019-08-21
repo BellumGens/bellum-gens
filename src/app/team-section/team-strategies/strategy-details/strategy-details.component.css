@@ -3,6 +3,7 @@
 }
 
 .list-container.comments-container {
+  width: 320px;
   height: calc(100% - 200px);
 }
 
@@ -11,7 +12,8 @@
 }
 
 .comment-input {
-  width: 260px;
+  margin-left: 8px;
+  width: auto;
 }
 
 .strategy-details igx-card-media > * {
@@ -21,4 +23,25 @@
 
 .comment-editing {
   opacity: 0.35;
+}
+
+@media screen and (max-width: 768px) {
+
+  .strategy-details {
+    height: auto;
+  }
+
+  .list-container.comments-container {
+    width: 100%;
+  }
+
+  .comment-input {
+    margin-left: 16px;
+    width: calc(100% - 64px);
+  }
+
+  .comment-box {
+    width: 100%;
+    padding: 12px 16px;
+  }
 }

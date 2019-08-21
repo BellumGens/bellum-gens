@@ -48,6 +48,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { UserPreferencesComponent } from './player-section/user-preferences/user-preferences.component';
 import { NotificationStatePipe } from './pipes/notification-state.pipe';
 import { PlayerCountryPipe } from './pipes/player-country.pipe';
+import { LoginDialogComponent } from './login/login-dialog/login-dialog.component';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -93,6 +94,7 @@ describe('AppComponent', () => {
         NotificationsComponent,
         TeamNavComponent,
         LoginComponent,
+        LoginDialogComponent,
         QuickSearchComponent,
         SearchComponent,
         TeamNotificationsComponent,

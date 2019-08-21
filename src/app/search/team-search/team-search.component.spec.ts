@@ -38,24 +38,14 @@ describe('TeamSearchComponent', () => {
         ServiceWorkerModule.register('', {enabled: false}),
         IgxRadioModule,
         IgxSliderModule,
-        IgxDialogModule,
         IgxRippleModule,
         IgxAvatarModule,
         IgxIconModule,
-        IgxToggleModule,
-        IgxDropDownModule,
-        IgxTabsModule,
         IgxInputGroupModule,
-        IgxSwitchModule,
-        IgxDividerModule,
-        IgxButtonModule,
-        IgxProgressBarModule
+        IgxButtonModule
       ],
       declarations: [
-        TeamSearchComponent,
-        LoginComponent,
-        UserPreferencesComponent,
-        ConfirmComponent
+        TeamSearchComponent
       ]
     })
     .compileComponents();

@@ -39,25 +39,15 @@ describe('PlayerSearchComponent', () => {
         ServiceWorkerModule.register('', {enabled: false}),
         IgxRadioModule,
         IgxSliderModule,
-        IgxDialogModule,
         IgxRippleModule,
         IgxAvatarModule,
         IgxIconModule,
-        IgxToggleModule,
         IgxSelectModule,
-        IgxDropDownModule,
-        IgxTabsModule,
-        IgxSwitchModule,
         IgxInputGroupModule,
-        IgxDividerModule,
-        IgxButtonModule,
-        IgxProgressBarModule
+        IgxButtonModule
       ],
       declarations: [
-        PlayerSearchComponent,
-        LoginComponent,
-        UserPreferencesComponent,
-        ConfirmComponent
+        PlayerSearchComponent
       ]
     })
     .compileComponents();

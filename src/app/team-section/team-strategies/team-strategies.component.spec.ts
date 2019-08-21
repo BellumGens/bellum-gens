@@ -3,7 +3,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { TeamStrategiesComponent } from './team-strategies.component';
 import { IgxIconModule,
   IgxCardModule,
-  IgxListModule,
   IgxInputGroupModule,
   IgxRadioModule,
   IgxDialogModule,
@@ -16,7 +15,9 @@ import { IgxIconModule,
   IgxBadgeModule,
   IgxSwitchModule,
   IgxDropDownModule,
-  IgxProgressBarModule} from 'igniteui-angular';
+  IgxProgressBarModule,
+  IgxButtonModule,
+  IgxDividerModule} from 'igniteui-angular';
 import { MapPoolComponent } from 'src/app/map-pool/map-pool.component';
 import { SafeVideoLinkPipe } from 'src/app/pipes/safe-video-link.pipe';
 import { FormsModule } from '@angular/forms';
@@ -26,7 +27,6 @@ import { ConfirmComponent } from 'src/app/confirm/confirm.component';
 import { MapimagePipe } from 'src/app/pipes/mapimage.pipe';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { AvailabilityComponent } from 'src/app/availability/availability.component';
 import { WeekdayPipe } from 'src/app/pipes/weekday.pipe';
 import { ActiveDutyMapsPipe } from 'src/app/pipes/active-duty-maps.pipe';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -39,6 +39,8 @@ import { HasVotedPipe } from 'src/app/pipes/has-voted.pipe';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { NewStrategyComponent } from './new-strategy/new-strategy.component';
+import { LoginDialogComponent } from 'src/app/login/login-dialog/login-dialog.component';
+import { IsStratOwnerPipe } from 'src/app/pipes/is-strat-owner.pipe';
 
 describe('TeamStrategiesComponent', () => {
   let component: TeamStrategiesComponent;
@@ -66,7 +68,9 @@ describe('TeamStrategiesComponent', () => {
         IgxBadgeModule,
         IgxSwitchModule,
         IgxDropDownModule,
-        IgxProgressBarModule
+        IgxProgressBarModule,
+        IgxButtonModule,
+        IgxDividerModule
       ],
       declarations: [
         TeamStrategiesComponent,
@@ -74,6 +78,7 @@ describe('TeamStrategiesComponent', () => {
         MapPoolComponent,
         ConfirmComponent,
         NewStrategyComponent,
+        LoginDialogComponent,
         SafeVideoLinkPipe,
         MapnamePipe,
         SideStratsPipe,
@@ -83,7 +88,8 @@ describe('TeamStrategiesComponent', () => {
         TruncateTextPipe,
         IsVideoPipe,
         VotesPipe,
-        HasVotedPipe
+        HasVotedPipe,
+        IsStratOwnerPipe
       ],
       providers: [
         {

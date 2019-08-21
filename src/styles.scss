@@ -243,7 +243,7 @@ igx-tab-item igx-icon {
   justify-content: center;
   color: #999;
   font-size: 24px;
-  min-height: 320px;
+  min-height: 120px;
 }
 
 /* Loading */
@@ -496,6 +496,10 @@ button igx-icon {
   justify-content: space-between;
   align-items: center;
   padding: 8px 0 0 16px;
+}
+
+.map-filter {
+  width: auto;
 }
 
 .card-smaller-subtitle {
