@@ -9,7 +9,6 @@ import { StratUtilities, EditorBrushColors } from '../../../models/strat-editor/
 import { CSGOStrategy } from '../../../models/csgostrategy';
 import { BaseLayer, PointCoordinate, ImageLayer, FreeflowLayer } from '../../../models/strat-editor/editor-layer';
 import { BaseComponent } from '../../../base/base.component';
-import { noop } from 'rxjs';
 
 @Component({
   selector: 'app-strategy-editor',
@@ -22,6 +21,8 @@ export class StrategyEditorComponent extends BaseComponent implements OnInit {
   public newStrategy: CSGOStrategy;
   public utility = StratUtilities;
   public layers: BaseLayer [];
+  public ts = [1, 1, 1, 1, 1];
+  public cts = [1, 1, 1, 1, 1];
   public enemies = [1, 1, 1, 1, 1];
   public brushSelected = false;
   public colors = Object.assign([], EditorBrushColors);
@@ -112,6 +113,10 @@ export class StrategyEditorComponent extends BaseComponent implements OnInit {
 
     if (args.drag.data.removeEnemy && this.enemies.length > 1) {
       this.enemies.splice(0, 1);
+    } else if (args.drag.data.removeCT && this.cts.length > 1) {
+      this.cts.splice(0, 1);
+    } else if (args.drag.data.removeT && this.ts.length > 1) {
+      this.ts.splice(0, 1);
     }
   }
 
@@ -126,9 +131,8 @@ export class StrategyEditorComponent extends BaseComponent implements OnInit {
     this.newStrategy.Image = this.canvas.nativeElement.toDataURL('image/png');
     this.newStrategy.EditorMetadata = this.editor.save();
     this.apiService.submitStrategy(this.newStrategy).subscribe(
-      _ => noop,
-      _ => noop,
-      () => this.saveInProgress = false
+      _ => this.saveInProgress = false,
+      _ => this.saveInProgress = false
     );
   }
 

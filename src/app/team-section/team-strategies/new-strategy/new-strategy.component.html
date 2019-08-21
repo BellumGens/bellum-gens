@@ -51,7 +51,7 @@
         </igx-suffix>
       </igx-input-group>
       <span class="separate">OR</span>
-      <button type="button" igxButton="outlined" class="strat-editor-button" [disabled]="selectedMap.disabled || strategyForm.invalid" (click)="createAndRedirect()">Go to Strat Editor</button>
+      <button type="button" igxButton="outlined" class="strat-editor-button" [disabled]="strategyForm.invalid" (click)="createAndRedirect()">Go to Strat Editor</button>
     </div>
 
     <iframe *ngIf="getVideoEmbedLink()" class="video-frame space-out" [src]="newStrategy.Url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>

@@ -4,7 +4,7 @@
   <div class="editor-elements">
     <igx-select *ngIf="newStrategy" class="editor-elements-section" id="mapSelector" name="mapSelector" [(ngModel)]="newStrategy.Map" (ngModelChange)="changeMap($event)">
       <label for="mapSelector" igxLabel>Map</label>
-      <igx-select-item *ngFor="let map of maps" [disabled]="map.disabled" [value]="map.id">
+      <igx-select-item *ngFor="let map of maps" [value]="map.id">
         {{ map.map }}
       </igx-select-item>
     </igx-select>
@@ -26,14 +26,14 @@
         </igx-list>
       </div>
   </div>
-  
+
   <canvas #board igxDrop
           class="drawing-board"
           (onDrop)="surfaceDrop($event)"
           (pointerdown)="canvasPointerDown($event)"></canvas>
 
   <div class="editor-elements">
-    <div class="editor-elements-section">
+    <div *ngIf="team" class="editor-elements-section">
       <div>Team</div>
       <igx-avatar *ngFor="let member of team?.Members"
                   [src]="member.SteamUser.avatarIcon"
@@ -45,13 +45,32 @@
       </igx-avatar>
     </div>
     <div class="editor-elements-section">
-      <div>Enemy Team</div>
-      <igx-avatar class="editor-element-icon"
-                  *ngFor="let i of enemies"
-                  roundShape="true"
-                  src="/assets/editor/ct-t-pin.png"
-                  (dragStart)="deselectBrush()"
-                  [igxDrag]="{ src: '/assets/editor/ct-t-pin.png', width: 24, height: 24, removeEnemy: true }"></igx-avatar>
+      <div>Player Tokens</div>
+      <div class="horizontal">
+        <igx-avatar *ngFor="let i of ts"
+                    src="/assets/editor/t-pin.png"
+                    [igxDrag]="{ src: '/assets/editor/t-pin.png', width: 24, height: 24, removeT: true }"
+                    (dragStart)="deselectBrush()"
+                    class="editor-element-icon"
+                    roundShape="true">
+        </igx-avatar>
+      </div>
+      <div class="horizontal">
+        <igx-avatar *ngFor="let i of cts"
+                    roundShape="true"
+                    src="/assets/editor/ct-pin.png"
+                    (dragStart)="deselectBrush()"
+                    class="editor-element-icon"
+                    [igxDrag]="{ src: '/assets/editor/ct-pin.png', width: 24, height: 24, removeCT: true }"></igx-avatar>
+      </div>
+      <div class="horizontal">
+        <igx-avatar *ngFor="let i of enemies"
+                    roundShape="true"
+                    src="/assets/editor/ct-t-pin.png"
+                    (dragStart)="deselectBrush()"
+                    class="editor-element-icon"
+                    [igxDrag]="{ src: '/assets/editor/ct-t-pin.png', width: 24, height: 24, removeEnemy: true }"></igx-avatar>
+      </div>
     </div>
     <div class="editor-elements-section">
       <div>Utility</div>
@@ -88,7 +107,7 @@
     <div class="editor-credits">
       <div class="horizontal">
         Radars taken from
-        <a class="horizontal navigatable" href="http://simpleradar.com/" target="_blank" rel="noopener"> 
+        <a class="horizontal navigatable" href="http://simpleradar.com/" target="_blank" rel="noopener">
           &nbsp;simple radar&nbsp;
           <igx-icon fontSet="login-icons" name="SimpleRadar"></igx-icon>
         </a>
