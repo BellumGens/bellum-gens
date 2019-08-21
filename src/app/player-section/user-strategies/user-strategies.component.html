@@ -38,6 +38,18 @@
         <igx-badge [value]="strat.Comments?.length" type="info"></igx-badge>
         Comments
       </span>
+
+      <button igxButton="fab"
+              igxRipple
+              (click)="newStrategy.open(strat)">
+        <igx-icon title="Edit">edit</igx-icon>
+      </button>
+      <button igxButton="fab"
+              igxRipple
+              title="Delete"
+              (click)="confirm.open(strat)">
+        <igx-icon title="Delete">delete_forever</igx-icon>
+      </button>
     </igx-card-actions>
 
   </igx-card>

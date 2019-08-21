@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { ActiveDutyDescriptor, ActiveDuty, CSGOMap } from '../../../models/csgomaps';
 import { StrategyEditor } from '../../../models/strat-editor/strategy-editor';
 import { CSGOTeam } from '../../../models/csgoteam';
 import { BellumgensApiService } from '../../../services/bellumgens-api.service';
-import { ActivatedRoute, Router, NavigationStart } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { IgxDropEventArgs } from 'igniteui-angular';
 import { StratUtilities, EditorBrushColors } from '../../../models/strat-editor/utility';
 import { CSGOStrategy } from '../../../models/csgostrategy';
@@ -15,7 +15,7 @@ import { BaseComponent } from '../../../base/base.component';
   templateUrl: './strategy-editor.component.html',
   styleUrls: ['./strategy-editor.component.css']
 })
-export class StrategyEditorComponent extends BaseComponent implements OnInit {
+export class StrategyEditorComponent extends BaseComponent implements OnInit, OnDestroy {
   public maps: ActiveDutyDescriptor [] = ActiveDuty;
   public team: CSGOTeam;
   public newStrategy: CSGOStrategy;
@@ -36,6 +36,8 @@ export class StrategyEditorComponent extends BaseComponent implements OnInit {
     y: 0
   };
   private _drawLayer: FreeflowLayer;
+  private changes = false;
+  private intervalId;
 
   public get map() {
     return this._activeMap;
@@ -58,8 +60,7 @@ export class StrategyEditorComponent extends BaseComponent implements OnInit {
   @ViewChild('board', { static: true }) public canvas: ElementRef;
 
   constructor(private apiService: BellumgensApiService,
-              private route: ActivatedRoute,
-              private router: Router) {
+              private route: ActivatedRoute) {
     super();
   }
 
@@ -86,17 +87,20 @@ export class StrategyEditorComponent extends BaseComponent implements OnInit {
             }
           });
         }
-      }),
-      this.router.events.subscribe(e => {
-        if (e instanceof NavigationStart) {
-          this.beforeUnload();
-        }
       })
     );
+    this.intervalId = setInterval(this.saveStrat.bind(this), 60000);
+  }
+
+  ngOnDestroy() {
+    super.ngOnDestroy();
+    this.saveStrat();
+    clearInterval(this.intervalId);
   }
 
   public changeMap(map: CSGOMap) {
     this.map = this.maps.find(m => m.id === map);
+    this.changes = true;
   }
 
   public surfaceDrop(args: IgxDropEventArgs) {
@@ -118,22 +122,27 @@ export class StrategyEditorComponent extends BaseComponent implements OnInit {
     } else if (args.drag.data.removeT && this.ts.length > 1) {
       this.ts.splice(0, 1);
     }
+    this.changes = true;
   }
 
   public deleteLayer(layer: BaseLayer) {
     this.editor.removeLayer(layer);
+    this.changes = true;
   }
 
   public saveStrat() {
-    this.saveInProgress = true;
-    this.editor.deselectAll();
-    this.deselectBrush();
-    this.newStrategy.Image = this.canvas.nativeElement.toDataURL('image/png');
-    this.newStrategy.EditorMetadata = this.editor.save();
-    this.apiService.submitStrategy(this.newStrategy).subscribe(
-      _ => this.saveInProgress = false,
-      _ => this.saveInProgress = false
-    );
+    if (this.changes) {
+      this.saveInProgress = true;
+      this.editor.deselectAll();
+      this.deselectBrush();
+      this.newStrategy.Image = this.canvas.nativeElement.toDataURL('image/png');
+      this.newStrategy.EditorMetadata = this.editor.save();
+      this.apiService.submitStrategy(this.newStrategy).subscribe(
+        _ => this.saveInProgress = false,
+        _ => this.saveInProgress = false
+      );
+      this.changes = false;
+    }
   }
 
   public canvasPointerDown(event: PointerEvent) {
@@ -177,6 +186,7 @@ export class StrategyEditorComponent extends BaseComponent implements OnInit {
     if (this._drawLayer) {
       this._drawLayer.closePath();
     }
+    this.changes = true;
   }
 
   public selectBrush() {
@@ -194,11 +204,5 @@ export class StrategyEditorComponent extends BaseComponent implements OnInit {
     color.selected = true;
     this.selectedColor = color;
     this._drawLayer = null;
-  }
-
-  @HostListener('window:beforeunload')
-  public beforeUnload() {
-    this.saveStrat();
-    return 'Saving your work...';
   }
 }
