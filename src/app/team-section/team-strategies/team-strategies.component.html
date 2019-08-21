@@ -4,12 +4,20 @@
 <div class="card-with-margins" *ngIf="!loading">
   <div class="strat-filter-header">
     <span class="igx-card-header__title">Showing {{viewAll ? 'all maps' : 'active duty maps'}}:</span>
-    <button class="navigation-item" igxButton="outlined" igxRipple (click)="newStrategy.open()">Create new strategy</button>
+    <button class="navigation-item"
+            igxButton="outlined"
+            igxRipple
+            (click)="authUser ? newStrategy.open() : loginDialog.openLogin('You need to login first')">
+      Create new strategy
+    </button>
   </div>
   <div class="strat-filter-header">
     <div class="horizontal-center">
       <igx-chips-area class="map-filter">
-        <igx-chip [selected]="map.IsPlayed" [selectable]="true" (onSelection)="changeMaps($event, map)" *ngFor="let map of maps | activeDutyMaps:viewAll">
+        <igx-chip *ngFor="let map of maps | activeDutyMaps:viewAll"
+                  [selected]="map.IsPlayed"
+                  [selectable]="true"
+                  (onSelection)="changeMaps($event, map)">
           {{ map.Map | mapname }}
         </igx-chip>
       </igx-chips-area>
