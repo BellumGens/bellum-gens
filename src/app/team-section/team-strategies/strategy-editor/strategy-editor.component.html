@@ -1,7 +1,7 @@
 <div class="strat-editor-host"
     (pointermove)="canvasPointerMove($event)"
     (pointerup)="canvasPointerUp()">
-  <div class="editor-elements">
+  <div class="editor-elements list-container">
     <igx-select *ngIf="newStrategy" class="editor-elements-section" id="mapSelector" name="mapSelector" [(ngModel)]="newStrategy.Map" (ngModelChange)="changeMap($event)">
       <label for="mapSelector" igxLabel>Map</label>
       <igx-select-item *ngFor="let map of maps" [value]="map.id">
