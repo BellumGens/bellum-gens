@@ -10,9 +10,9 @@ export class SideStratsPipe implements PipeTransform {
 
   transform(strats: CSGOStrategy [], maps: MapPool [], order: StratOrderBy): CSGOStrategy [] {
     let filtered = strats && maps && strats.filter(s => maps.find(m => m.Map === s.Map).IsPlayed);
-    if (order === StratOrderBy.MostRecent) {
+    if (filtered && order === StratOrderBy.MostRecent) {
       filtered = filtered.sort((a, b) => a.LastUpdated === b.LastUpdated ? 0 : a.LastUpdated < b.LastUpdated ? 1 : -1);
-    } else if (order === StratOrderBy.TopVoted) {
+    } else if (filtered && order === StratOrderBy.TopVoted) {
       filtered = filtered.sort((a, b) => {
         let av = 0, bv = 0;
         a.Votes.forEach(v => v.Vote === VoteDirection.Up ? av++ : av--);
