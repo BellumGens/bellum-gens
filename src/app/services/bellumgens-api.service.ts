@@ -14,6 +14,7 @@ import { SearchResult } from '../models/searchresult';
 import { environment } from '../../environments/environment';
 
 const CACHE_SIZE = 1;
+const PAGE_SIZE = 25;
 
 @Injectable({
   providedIn: 'root'
@@ -38,6 +39,7 @@ export class BellumgensApiService {
   public error = new EventEmitter<string>();
   public message = new EventEmitter<string>();
   public authUserUpdate = new EventEmitter<any>();
+  public hasMoreStrats = new ReplaySubject<boolean>(1);
   public loadingTeams = new ReplaySubject<boolean>(1);
   public loadingPlayers = new ReplaySubject<boolean>(1);
   public loadingStrategies = new ReplaySubject<boolean>(1);
@@ -95,6 +97,7 @@ export class BellumgensApiService {
         data => {
           this._strategies.next(data);
           this.loadingStrategies.next(false);
+          this.hasMoreStrats.next(data.length === PAGE_SIZE);
         },
         error => {
           this.loadingStrategies.next(false);
@@ -104,8 +107,22 @@ export class BellumgensApiService {
     return this._strategies;
   }
 
-  public getStrategies() {
-    return this.http.get<CSGOStrategy []>(`${this._apiEndpoint}/strategy/strategies`);
+  public getStrategies(page: number = 0) {
+    return this.http.get<CSGOStrategy []>(`${this._apiEndpoint}/strategy/strategies?page=${page}`);
+  }
+
+  public loadStrategiesPage(page: number) {
+    this.getStrategies(page).subscribe(
+      data => {
+        this._strategies.next(this._strategies.value.concat(data));
+        this.loadingStrategies.next(false);
+        this.hasMoreStrats.next(data.length === PAGE_SIZE);
+      },
+      error => {
+        this.loadingStrategies.next(false);
+        this.emitError(error.error.Message);
+      }
+    );
   }
 
   public getUserStrategies(userId: string) {

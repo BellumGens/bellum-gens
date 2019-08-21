@@ -9,7 +9,7 @@ import { BaseComponent } from '../../base/base.component';
 import { CSGOTeam } from '../../models/csgoteam';
 import { LoginService } from '../../services/login.service';
 import { ApplicationUser } from '../../models/applicationuser';
-import { GlobalOverlaySettings } from '../../models/misc';
+import { GlobalOverlaySettings, StratOrder, StratOrderBy } from '../../models/misc';
 import { LoginDialogComponent } from '../../login/login-dialog/login-dialog.component';
 
 @Component({
@@ -24,12 +24,15 @@ export class TeamStrategiesComponent extends BaseComponent {
   public authUser: ApplicationUser;
   public sanitizedUrl: SafeResourceUrl;
   public pipeTrigger = 0;
-  public changes = false;
   public viewAll = false;
   public selectedStrat: CSGOStrategy;
   public loading = false;
+  public hasMore = false;
+  public page = 0;
+  public order = StratOrderBy.TopVoted;
 
   public overlaySettings = GlobalOverlaySettings;
+  public stratOrder = StratOrder;
 
   @ViewChild(LoginDialogComponent, {static: true})
   public loginDialog: LoginDialogComponent;
@@ -56,6 +59,7 @@ export class TeamStrategiesComponent extends BaseComponent {
         } else {
           this.apiService.loadingStrategies.subscribe(loading => this.loading = loading),
           this.apiService.strategies.subscribe(strats => this.strats = strats);
+          this.apiService.hasMoreStrats.subscribe(hasMore => this.hasMore = hasMore);
           this.title.setTitle('CS:GO Strategies: find or create ');
         }
       }),
@@ -66,18 +70,13 @@ export class TeamStrategiesComponent extends BaseComponent {
   public changeMaps(event: IChipSelectEventArgs, args: MapPool) {
     if (event.originalEvent) {
       this.maps.find(m => m.Map === args.Map).IsPlayed = event.selected;
-      this.changes = true;
       this.pipeTrigger++;
     }
   }
 
   public saveMaps(event: Event) {
     event.stopPropagation();
-    this.apiService.setTeamMapPool(this.maps).subscribe(
-      _ => {
-        this.changes = false;
-      }
-    );
+    this.apiService.setTeamMapPool(this.maps).subscribe();
   }
 
   public deleteStrat(args: CSGOStrategy) {
@@ -92,6 +91,10 @@ export class TeamStrategiesComponent extends BaseComponent {
   public onStrategyAdded(strat: CSGOStrategy) {
     this.strats.push(strat);
     this.pipeTrigger++;
+  }
+
+  public loadMore() {
+    this.apiService.loadStrategiesPage(++this.page);
   }
 
   public voteStrat(strat: CSGOStrategy, direction: VoteDirection) {

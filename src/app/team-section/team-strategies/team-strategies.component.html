@@ -7,11 +7,19 @@
     <button class="navigation-item" igxButton="outlined" igxRipple (click)="newStrategy.open()">Create new strategy</button>
   </div>
   <div class="strat-filter-header">
-    <igx-chips-area>
-      <igx-chip [selected]="map.IsPlayed" [selectable]="true" (onSelection)="changeMaps($event, map)" *ngFor="let map of maps | activeDutyMaps:viewAll">
-        {{ map.Map | mapname }}
-      </igx-chip>
-    </igx-chips-area>
+    <div class="horizontal-center">
+      <igx-chips-area class="map-filter">
+        <igx-chip [selected]="map.IsPlayed" [selectable]="true" (onSelection)="changeMaps($event, map)" *ngFor="let map of maps | activeDutyMaps:viewAll">
+          {{ map.Map | mapname }}
+        </igx-chip>
+      </igx-chips-area>
+      <igx-select [(ngModel)]="order" class="order-by">
+        <label igxLabel>Order By</label>
+        <igx-select-item *ngFor="let cond of stratOrder" [value]="cond.order">
+          {{ cond.display }}
+        </igx-select-item>
+      </igx-select>
+    </div>
     <button class="navigation-item" igxButton="outlined" igxRipple (click)="viewAll = !viewAll">{{viewAll ? 'View Active Duty' : 'View All'}}</button>
   </div>
   <div class="card-wrapper">
@@ -75,6 +83,20 @@
         </igx-drop-down-item>
       </igx-drop-down>
 
+    </igx-card>
+
+    <igx-card type="outlined" class="strategy-card" *ngIf="hasMore">
+      <igx-card-header class="empty-strategy">
+        <h4 class="igx-card-header__title">Load More...</h4>
+      </igx-card-header>
+      <igx-card-content class="empty-strategy empty-strategy-content">
+          <igx-avatar icon="sync"
+                      class="navigatable"
+                      roundShape="true"
+                      [size]="'large'"
+                      (click)="loadMore()">
+          </igx-avatar>
+      </igx-card-content>
     </igx-card>
   </div>
 </div>
