@@ -23,7 +23,7 @@
     <button class="navigation-item" igxButton="outlined" igxRipple (click)="viewAll = !viewAll">{{viewAll ? 'View Active Duty' : 'View All'}}</button>
   </div>
   <div class="card-wrapper">
-    <igx-card type="outlined" *ngFor="let strat of strats | activeDutyMaps:viewAll:pipeTrigger | sidestrats:maps">
+    <igx-card type="outlined" *ngFor="let strat of strats | activeDutyMaps:viewAll:pipeTrigger | sidestrats:maps:order">
       <igx-card-header>
         <h2 igxCardHeaderTitle
             class="strat-title navigatable"
