@@ -30,14 +30,15 @@
   <canvas #board igxDrop
           class="drawing-board"
           (onDrop)="surfaceDrop($event)"
-          (pointerdown)="canvasPointerDown($event)"></canvas>
+          (pointerdown)="canvasPointerDown($event)"
+          (click)="trySelectLayer($event)"></canvas>
 
   <div class="editor-elements">
     <div *ngIf="team" class="editor-elements-section">
       <div>Team</div>
       <igx-avatar *ngFor="let member of team?.Members"
                   [src]="member.SteamUser.avatarIcon"
-                  [igxDrag]="{ src: member.SteamUser.avatarIcon, circle: true, width: 24, height: 24 }"
+                  [igxDrag]="{ src: member.SteamUser.avatarIcon, circle: true, width: 24, height: 24, name: member.SteamUser.steamID }"
                   (dragStart)="deselectBrush()"
                   class="editor-element-icon"
                   [title]="member.SteamUser.steamID"
@@ -49,7 +50,7 @@
       <div class="horizontal">
         <igx-avatar *ngFor="let i of ts"
                     src="/assets/editor/t-pin.png"
-                    [igxDrag]="{ src: '/assets/editor/t-pin.png', width: 24, height: 24, removeT: true }"
+                    [igxDrag]="{ src: '/assets/editor/t-pin.png', width: 24, height: 24, removeT: true, name: 't' }"
                     (dragStart)="deselectBrush()"
                     class="editor-element-icon"
                     roundShape="true">
@@ -61,7 +62,7 @@
                     src="/assets/editor/ct-pin.png"
                     (dragStart)="deselectBrush()"
                     class="editor-element-icon"
-                    [igxDrag]="{ src: '/assets/editor/ct-pin.png', width: 24, height: 24, removeCT: true }"></igx-avatar>
+                    [igxDrag]="{ src: '/assets/editor/ct-pin.png', width: 24, height: 24, removeCT: true, name: 'ct' }"></igx-avatar>
       </div>
       <div class="horizontal">
         <igx-avatar *ngFor="let i of enemies"
@@ -69,7 +70,7 @@
                     src="/assets/editor/ct-t-pin.png"
                     (dragStart)="deselectBrush()"
                     class="editor-element-icon"
-                    [igxDrag]="{ src: '/assets/editor/ct-t-pin.png', width: 24, height: 24, removeEnemy: true }"></igx-avatar>
+                    [igxDrag]="{ src: '/assets/editor/ct-t-pin.png', width: 24, height: 24, removeEnemy: true, name: 'enemy' }"></igx-avatar>
       </div>
     </div>
     <div class="editor-elements-section">
@@ -80,7 +81,7 @@
                 [title]="util.name"
                 class="editor-element-icon"
                 (dragStart)="deselectBrush()"
-                [igxDrag]="{ src: util.svg, circle: false, width: util.width, height: util.height }">
+                [igxDrag]="{ src: util.svg, circle: false, width: util.width, height: util.height, name: util.name }">
       </igx-icon>
     </div>
     <div class="editor-elements-section">
@@ -96,7 +97,7 @@
       </igx-buttongroup>
     </div>
     <div class="editor-elements-section">
-      <button igxButton="raised" igxRipple (click)="saveStrat()" [disabled]="saveInProgress">
+      <button igxButton="raised" igxRipple class="submit-button" (click)="saveStrat()" [disabled]="!changes || saveInProgress">
         <igx-circular-bar *ngIf="saveInProgress"
                           [indeterminate]="true"
                           class="loading-indicator-small">

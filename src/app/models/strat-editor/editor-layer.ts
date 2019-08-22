@@ -41,6 +41,7 @@ export abstract class BaseLayer {
   public selectedBorderColor = '#939393';
   public selectedBorderWidth = 1;
   public movable: boolean;
+  public selectable = true;
   public type: EditorLayerType;
 
   public name: string;
@@ -68,8 +69,10 @@ export abstract class BaseLayer {
   }
 
   public set selected(selected: boolean) {
-    this._selected = selected;
-    this.layerSelect.emit({layer: this, selected: selected});
+    if (this.selectable && this.selected !== selected) {
+      this._selected = selected;
+      this.layerSelect.emit({layer: this, selected: selected});
+    }
   }
 
   public constructor(name: string, displayRatio = 1, meta?: EditorLayer) {
@@ -85,6 +88,16 @@ export abstract class BaseLayer {
       this.x = Math.round(this.x * (this.displayRatio / this._originalDR));
       this.y = Math.round(this.y * (this.displayRatio / this._originalDR));
     }
+  }
+
+  public trySelect(coords: PointCoordinate): boolean {
+    if (this.selectable) {
+      if (coords.x >= this.x && coords.x <= this.x + this.width && coords.y >= this.y && coords.y <= this.y + this.height) {
+        this.selected = true;
+        return true;
+      }
+    }
+    return false;
   }
 
   public abstract draw();
@@ -178,6 +191,7 @@ export class FreeflowLayer extends BaseLayer {
 
   public paths: FreeflowPath [];
   public color = 'red';
+  public selectable = false;
 
   private _currentPath: FreeflowPath;
 

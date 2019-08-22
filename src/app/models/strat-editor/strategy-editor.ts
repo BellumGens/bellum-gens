@@ -56,6 +56,14 @@ export class StrategyEditor {
     }
   }
 
+  public trySelectLayer(coords: PointCoordinate) {
+    for (let i = this.layers.length - 1; i > 0; i--) {
+      if (this.layers[i].trySelect(coords)) {
+        break;
+      }
+    }
+  }
+
   public moveSelected(coords: PointCoordinate) {
     if (this._selectedLayer && this._selectedLayer.movable) {
       this._selectedLayer.x += coords.x;

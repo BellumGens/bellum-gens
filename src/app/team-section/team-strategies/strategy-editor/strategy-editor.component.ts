@@ -46,7 +46,7 @@ export class StrategyEditorComponent extends BaseComponent implements OnInit, On
   public set map(map: ActiveDutyDescriptor) {
     this._activeMap = map;
     if (!this.layers.length || (<ImageLayer>this.layers[0]).src !== map.radar[0]) {
-      const layer = this.editor.createImageLayer();
+      const layer = this.editor.createImageLayer('Map Radar');
       layer.src = this._activeMap.radar[0];
       layer.width = 1024;
       layer.height = 1024;
@@ -89,7 +89,7 @@ export class StrategyEditorComponent extends BaseComponent implements OnInit, On
         }
       })
     );
-    this.intervalId = setInterval(this.saveStrat.bind(this), 60000);
+    this.intervalId = setInterval(this.saveStrat.bind(this), 300000);
   }
 
   ngOnDestroy() {
@@ -105,7 +105,7 @@ export class StrategyEditorComponent extends BaseComponent implements OnInit, On
 
   public surfaceDrop(args: IgxDropEventArgs) {
     args.cancel = true;
-    const layer = this.editor.createImageLayer();
+    const layer = this.editor.createImageLayer(args.drag.data.name);
     layer.src = args.drag.data.src;
     layer.width = args.drag.data.width;
     layer.height = args.drag.data.height;
@@ -185,8 +185,12 @@ export class StrategyEditorComponent extends BaseComponent implements OnInit, On
     this._coordinates.y = 0;
     if (this._drawLayer) {
       this._drawLayer.closePath();
+      this.changes = true;
     }
-    this.changes = true;
+  }
+
+  public trySelectLayer(event: PointerEvent) {
+    this.editor.trySelectLayer({ x: event.offsetX, y: event.offsetY });
   }
 
   public selectBrush() {
