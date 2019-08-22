@@ -11,6 +11,7 @@ import { LoginService } from '../../services/login.service';
 import { ApplicationUser } from '../../models/applicationuser';
 import { GlobalOverlaySettings, StratOrder, StratOrderBy } from '../../models/misc';
 import { LoginDialogComponent } from '../../login/login-dialog/login-dialog.component';
+import { SocialMediaService } from '../../services/social-media.service';
 
 @Component({
   selector: 'app-team-strategies',
@@ -46,6 +47,7 @@ export class TeamStrategiesComponent extends BaseComponent {
   constructor(private activatedRoute: ActivatedRoute,
               private apiService: BellumgensApiService,
               private authManager: LoginService,
+              private socialMedia: SocialMediaService,
               private title: Title) {
     super();
     this.subs.push(
@@ -99,6 +101,10 @@ export class TeamStrategiesComponent extends BaseComponent {
         this.pipeTrigger++;
       }
     );
+  }
+
+  public shareOnTwitter(strat: CSGOStrategy) {
+    this.socialMedia.shareOnTwitter(strat);
   }
 
   public onStrategyAdded(strat: CSGOStrategy) {

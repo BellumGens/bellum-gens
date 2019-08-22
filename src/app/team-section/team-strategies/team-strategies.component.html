@@ -77,16 +77,16 @@
       </igx-card-actions>
 
       <igx-drop-down #useractions (onSelection)="$event.cancel = true; useractions.close()">
-        <igx-drop-down-item>
-          <igx-icon title="delete strategy">share</igx-icon>
+        <igx-drop-down-item (click)="shareOnTwitter(strat)">
+          <igx-icon fontSet="login-icons" name="Twitter" title="Share Strategy"></igx-icon>
           <span class="title margin-left">Share</span>
         </igx-drop-down-item>
         <igx-drop-down-item *ngIf="authUser | isStratOwner:strat" (click)="newStrategy.open(strat)">
-          <igx-icon title="edit strategy">edit</igx-icon>
+          <igx-icon title="Edit Strategy">edit</igx-icon>
           <span class="title margin-left">Edit</span>
         </igx-drop-down-item>
         <igx-drop-down-item *ngIf="authUser | isStratOwner:strat" (click)="confirm.open(strat)">
-          <igx-icon title="delete strategy">delete_forever</igx-icon>
+          <igx-icon title="Delete Strategy">delete_forever</igx-icon>
           <span class="title margin-left">Delete</span>
         </igx-drop-down-item>
       </igx-drop-down>

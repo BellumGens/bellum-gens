@@ -28,6 +28,7 @@ export class StrategyEditorComponent extends BaseComponent implements OnInit, On
   public colors = Object.assign([], EditorBrushColors);
   public selectedColor = this.colors[0];
   public saveInProgress = false;
+  public changes = false;
 
   private _activeMap: ActiveDutyDescriptor;
   private _drag = false;
@@ -36,7 +37,6 @@ export class StrategyEditorComponent extends BaseComponent implements OnInit, On
     y: 0
   };
   private _drawLayer: FreeflowLayer;
-  private changes = false;
   private intervalId;
 
   public get map() {

@@ -7,6 +7,7 @@ import { LoginService } from '../../../services/login.service';
 import { ApplicationUser } from '../../../models/applicationuser';
 import { GlobalOverlaySettings } from '../../../models/misc';
 import { LoginDialogComponent } from '../../../login/login-dialog/login-dialog.component';
+import { SocialMediaService } from '../../../services/social-media.service';
 
 @Component({
   selector: 'app-strategy-details',
@@ -27,6 +28,7 @@ export class StrategyDetailsComponent extends BaseComponent {
 
   constructor(private apiService: BellumgensApiService,
               private authManager: LoginService,
+              private socialMedia: SocialMediaService,
               private route: ActivatedRoute) {
     super();
     this.subs.push(
@@ -76,5 +78,9 @@ export class StrategyDetailsComponent extends BaseComponent {
 
   public deleteComment(comment: StrategyComment) {
     this.apiService.deleteStratComment(comment, this.strat).subscribe(_ => this.pipeTrigger++);
+  }
+
+  public shareOnTwitter(strat: CSGOStrategy) {
+    this.socialMedia.shareOnTwitter(strat);
   }
 }
