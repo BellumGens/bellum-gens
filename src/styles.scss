@@ -47,7 +47,8 @@ $include: (igx-avatar,
            igx-slider,
            igx-switch,
            igx-divider,
-           igx-banner);
+           igx-banner,
+           igx-carousel);
 
 @include igx-dark-theme(
     $palette: $app-palette,

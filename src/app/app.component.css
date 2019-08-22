@@ -6,12 +6,12 @@
 .main-content-wrapper {
   height: 100%;
   display: flex;
-  padding: 16px;
   flex-basis: row nowrap;
 }
 
 .content {
   height: 100%;
+  width: 100%;
 }
 
 .action-button-container {
@@ -54,15 +54,15 @@
     display: none;
   }
 
-  .content {
+  /* .content {
     width: 100%;
     justify-content: flex-start;
-  }
+  } */
 }
 
-@media only screen and (min-width: 1601px) {
+/* @media only screen and (min-width: 1601px) {
   .content {
     width: calc(100% - 350px);
     justify-content: flex-start;
   }
-}
+} */

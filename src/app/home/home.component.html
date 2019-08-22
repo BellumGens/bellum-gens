@@ -1,3 +1,32 @@
+<app-login-dialog #loginDialog></app-login-dialog>
+
+<igx-carousel>
+  <igx-slide>
+    <div class="home-page-slide slide1">
+      <div class="slide-info">
+        <h1>Design and Share CS:GO Strategies</h1>
+        <p>The only online CS:GO strategy editor freely available to everyone!</p>
+        <button igxButton="raised" routerLink="/strategies">Browse Strategies</button>
+      </div>
+    </div>
+  </igx-slide>
+  <igx-slide>
+    <div class="home-page-slide slide2">
+      <div class="slide-info">
+        <h1>CS:GO Player and Team Profiles</h1>
+        <p>Build your player profile, with availability, preferred roles and map pool. Create and manage your team and find suitable teammates!</p>
+        <button igxButton="raised" (click)="loginDialog.openLogin()">Sign-up Now</button>
+        <button igxButton="raised" (click)="loginDialog.openLogin()">Sign-up Now</button>
+      </div>
+    </div>
+  </igx-slide>
+  <igx-slide>
+    <div class="home-page-slide slide3">
+      <iframe src="https://player.twitch.tv/?channel=starladder_cs_en" frameborder="0" allowfullscreen="true" scrolling="no"></iframe>
+    </div>
+  </igx-slide>
+</igx-carousel>
+
 <div class="major-stream-row">
   <app-players class="list-container"></app-players>
   <app-teams class="list-container"></app-teams>

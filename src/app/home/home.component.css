@@ -16,6 +16,52 @@
   height: fit-content;
 }
 
+.home-page-slide {
+  display: flex;
+  width: 100%;
+  height: 450px;
+  align-items: center;
+}
+
+.home-page-slide > iframe {
+  height: 100%;
+  width: 100%;
+}
+
+.slide-info {
+  width: 80%;
+  min-width: 420px;
+  padding: 16px;
+  vertical-align: middle;
+  margin: auto;
+}
+
+.slide-info h1 {
+  font-size: 3rem;
+  margin: 0;
+}
+
+.slide1 {
+  background-image: url('/assets/wallpapers/csgo_wallpaper_nologo.jpg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-position-y: -100px;
+}
+
+.slide2 {
+  background-image: url('/assets/wallpapers/csgo_wallpaper1.jpg');
+  background-color: rgba(0, 0, 0, 0.9);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-position-y: -280px;
+}
+
+.home-page-slide2 {
+  width: 100%;
+  height: 350px;
+  background-color: red;
+}
+
 @media only screen and (max-width: 680px) {
   .list-container {
     flex: 1 1 100%;
