@@ -95,6 +95,11 @@
 }
 
 @media only screen and (max-width: 1280px) {
+  .content-container {
+    grid-template-columns: minmax(400px, 1fr);
+    width: 100%;
+  }
+
   .slide1 {
     background-size: auto;
     background-repeat: no-repeat;
@@ -102,6 +107,7 @@
     background-position-y: -100px;
   }
 
+  .slide-info h1,
   .content-container h1 {
     font-size: 1.55rem;
     margin: 0;
