@@ -222,7 +222,9 @@ igx-tab-item igx-icon {
 }
 
 .overview-container-card {
-  padding: 8px 0 8px 0;
+  width: 80%;
+  margin: auto;
+  padding: 24px 0 0 0;
   color: white;
 }
 
@@ -454,11 +456,13 @@ button igx-icon {
 }
 
 .card-wrapper {
+  width: 80%;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   grid-column-gap: 16px;
   grid-row-gap: 16px;
   padding-top: 12px;
+  margin: auto;
 }
 /* END SEARCH */
 
@@ -494,9 +498,11 @@ button igx-icon {
 
 .strat-filter-header {
   display: flex;
+  width: 80%;
+  margin: auto;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 0 0 16px;
+  padding-top: 16px;
 }
 
 .map-filter {
@@ -526,9 +532,13 @@ button igx-icon {
   margin-left: 8px;
 }
 
-@media only screen and (max-width: 680px) {
-  .list-container .horizontal-info__left {
-    max-width: 100%;
+@media only screen and (max-width: 1280px) {
+  .overview-container-card,
+  .card-wrapper,
+  .strat-filter-header {
+    width: 100%;
+    padding-left: 8px;
+    padding-right: 8px;
   }
 }
 
