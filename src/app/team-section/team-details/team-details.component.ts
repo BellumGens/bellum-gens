@@ -15,13 +15,21 @@ import { ApplicationUser } from '../../models/applicationuser';
   styleUrls: ['./team-details.component.css']
 })
 export class TeamDetailsComponent extends BaseComponent {
+  private _isAdmin = null;
   public activeMembers: TeamMember [];
   public inactiveMembers: TeamMember [];
   public authUser: ApplicationUser;
   public team = TEAM_PLACEHOLDER;
 
-  @Input()
-  public isAdmin = false;
+  public get isAdmin() {
+    if (this._isAdmin !== null) {
+      return this._isAdmin;
+    }
+    if (this.authUser && this.team && this.team.Members) {
+      this._isAdmin = this.team.Members.filter(m => m.IsAdmin && m.UserId === this.authUser.id).length > 0;
+    }
+    return this._isAdmin;
+  }
 
   public roleSlots: RoleSlot [] = [
     { roleName: 'IGL', role: PlaystyleRole.IGL, user: null },

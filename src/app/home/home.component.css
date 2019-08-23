@@ -1,19 +1,52 @@
-.major-stream-row {
+.content-container {
+  display: grid;
+  grid-template-columns: minmax(45%, 1fr) minmax(45%, 1fr);
+  grid-column-gap: 24px;
+  grid-row-gap: 24px;
+  width: 1280px;
+  min-width: 420px;
+  padding: 16px;
+  margin: auto;
+}
+
+.content-container-column {
   display: flex;
-  flex: 1 1 100%;
-  flex-flow: row wrap;
-  padding-bottom: 16px;
+  flex-flow: column;
+  justify-content: space-evenly;
+}
+
+.content-container-row {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 300px;
+}
+
+  .content-container-row igx-divider {
+    width: 100%;
+  }
+
+  .content-container-column p {
+    margin: 0;
+  }
+
+.left-column {
+  text-align: right;
+  align-items: flex-end;
 }
 
 .social-media-icon {
   margin-left: 4px;
 }
 
-.middle-card {
-  display: flex;
-  flex: 1 1 320px;
-  margin-left: 16px;
-  height: fit-content;
+.space-out-button {
+  margin-left: 12px;
+}
+
+.nav-button {
+  width: 250px;
 }
 
 .home-page-slide {
@@ -36,9 +69,22 @@
   margin: auto;
 }
 
-.slide-info h1 {
+.slide-info h1,
+.content-container h1 {
   font-size: 3rem;
   margin: 0;
+}
+
+.slide-info h4,
+.content-container h4 {
+  font-size: 1.75rem;
+  margin: 0;
+}
+
+.slide-info p,
+.content-container p {
+  font-size: 1rem;
+  margin: 0 0 16px 0;
 }
 
 .slide1 {
@@ -48,43 +94,24 @@
   background-position-y: -100px;
 }
 
-.slide2 {
-  background-image: url('/assets/wallpapers/csgo_wallpaper1.jpg');
-  background-color: rgba(0, 0, 0, 0.9);
-  background-repeat: no-repeat;
-  background-size: 100%;
-  background-position-y: -280px;
-}
+@media only screen and (max-width: 1280px) {
+  .slide1 {
+    background-size: auto;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: -100px;
+  }
 
-.home-page-slide2 {
-  width: 100%;
-  height: 350px;
-  background-color: red;
-}
+  .content-container h1 {
+    font-size: 1.55rem;
+    margin: 0;
+  }
 
-@media only screen and (max-width: 680px) {
-  .list-container {
-    flex: 1 1 100%;
+  .content-container p {
+    font-size: 0.85rem;
+  }
+
+  .major-stream-row {
     width: 100%;
-    margin-left: 0;
-    margin-bottom: 8px;
-  }
-
-  .middle-card {
-    flex: 1 1 100%;
-    margin: 0;
-  }
-}
-
-@media only screen and (min-width: 681px) and (max-width: 1020px) {
-  .list-container {
-    flex: 1 1 45%;
-    width: 50%;
-    margin-bottom: 8px;
-  }
-
-  .middle-card {
-    flex: 1 1 100%;
-    margin: 0;
   }
 }
