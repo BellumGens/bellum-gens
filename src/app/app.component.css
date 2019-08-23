@@ -6,12 +6,12 @@
 .main-content-wrapper {
   height: 100%;
   display: flex;
-  padding: 16px;
   flex-basis: row nowrap;
 }
 
 .content {
   height: 100%;
+  width: 100%;
 }
 
 .action-button-container {
@@ -30,13 +30,20 @@
   width: 256px;
 }
 
-.discord-container {
-  height: 100%;
-  margin-left: 16px;
+.footer {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  padding: 24px 36px 0 36px;
 }
 
-.discord-container > iframe {
-  height: 100%;
+.footer igx-divider {
+  width: 100%;
+}
+
+.footer-row {
+  display: flex;
+  align-self: center;
 }
 
 @media only screen and (max-width: 720px) {
@@ -45,24 +52,9 @@
   }
 }
 
-@media only screen and (max-width: 1600px) {
-  .main-content-wrapper {
-    padding: 8px;
-  }
-
-  .discord-container {
-    display: none;
-  }
-
-  .content {
-    width: 100%;
-    justify-content: flex-start;
-  }
-}
-
-@media only screen and (min-width: 1601px) {
+/* @media only screen and (min-width: 1601px) {
   .content {
     width: calc(100% - 350px);
     justify-content: flex-start;
   }
-}
+} */

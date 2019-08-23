@@ -37,7 +37,8 @@ import { IgxNavbarModule,
   IgxSliderModule,
   IgxSwitchModule,
   IgxSelectModule,
-  IgxDividerModule} from 'igniteui-angular';
+  IgxDividerModule,
+  IgxCarouselModule} from 'igniteui-angular';
 import { PlayersComponent } from './player-section/players/players.component';
 import { PlayerDetailsComponent } from './player-section/player-details/player-details.component';
 import { LoginService } from './services/login.service';
@@ -205,6 +206,7 @@ import { IsStratOwnerPipe } from './pipes/is-strat-owner.pipe';
     IgxSwitchModule,
     IgxSelectModule,
     IgxDividerModule,
+    IgxCarouselModule,
     RouterModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
