@@ -10,6 +10,10 @@ export class SocialMediaService {
 
   constructor() { }
 
+  public tweetWithText(text: string) {
+    window.location.href = `${this._twitterShare}${text}`;
+  }
+
   public shareOnTwitter(strat: CSGOStrategy) {
     window.location.href = `${this._twitterShare}${this.stratTextForTwitter(strat)}`;
   }
