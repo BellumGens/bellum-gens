@@ -37,10 +37,6 @@
   align-items: flex-end;
 }
 
-.social-media-icon {
-  margin-left: 4px;
-}
-
 .space-out-button {
   margin-left: 12px;
 }
@@ -54,11 +50,6 @@
   width: 100%;
   height: 450px;
   align-items: center;
-}
-
-.home-page-slide > iframe {
-  height: 100%;
-  width: 100%;
 }
 
 .slide-info {

@@ -44,6 +44,11 @@
 .footer-row {
   display: flex;
   align-self: center;
+  align-items: center;
+}
+
+.social-media-icon {
+  margin-left: 4px;
 }
 
 @media only screen and (max-width: 720px) {
