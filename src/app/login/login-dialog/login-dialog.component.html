@@ -2,7 +2,7 @@
   <div class="login-buttons">
     <button *ngFor="let provider of loginProviders"
             igxButton="raised"
-            class="submit-button navigatable"
+            class="login-button navigatable"
             [igxButtonBackground]="loginColors[provider.Name]"
             igxButtonColor="#fff"
             (click)="login(provider.Name)">
