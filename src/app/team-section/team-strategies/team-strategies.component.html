@@ -1,6 +1,3 @@
-<app-app-shell *ngIf="loading"></app-app-shell>
-<app-login-dialog #loginDialog></app-login-dialog>
-
 <div class="strat-filter-header">
   <span class="igx-card-header__title">Showing {{viewAll ? 'all maps' : 'active duty maps'}}:</span>
   <button class="navigation-item"
@@ -29,6 +26,10 @@
   </div>
   <button class="navigation-item" igxButton="outlined" igxRipple (click)="viewAll = !viewAll">{{viewAll ? 'View Active Duty' : 'View All'}}</button>
 </div>
+
+<app-app-shell *ngIf="loading"></app-app-shell>
+<app-login-dialog #loginDialog></app-login-dialog>
+
 <div class="card-wrapper">
   <igx-card type="outlined" *ngFor="let strat of strats | activeDutyMaps:viewAll:pipeTrigger | sidestrats:maps:order">
     <igx-card-header>
@@ -80,7 +81,7 @@
         <igx-icon fontSet="login-icons" name="Twitter" title="Share Strategy"></igx-icon>
         <span class="title margin-left">Share</span>
       </igx-drop-down-item>
-      <igx-drop-down-item *ngIf="authUser | isStratOwner:strat" (click)="newStrategy.open(strat)">
+      <igx-drop-down-item *ngIf="authUser | isStratOwner:strat" (click)="newStrategy.open(strat, 'Edit strategy')">
         <igx-icon title="Edit Strategy">edit</igx-icon>
         <span class="title margin-left">Edit</span>
       </igx-drop-down-item>

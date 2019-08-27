@@ -1,7 +1,7 @@
 <!-- New strategy dialog-->
 <igx-dialog #newStrat closeOnOutsideSelect="true" (onClose)="resetStrategy()">
   <form #strategyForm="ngForm" (ngSubmit)="submitStrategy()" class="new-strategy">
-    <span>Add a new team strategy</span>
+    <span>{{ title }}</span>
     <igx-input-group>
       <label for="strategyName" igxLabel>Title</label>
       <input #strategyName name="strategyName" id="strategyName" igxInput minlength="2" required [(ngModel)]="newStrategy.Title">

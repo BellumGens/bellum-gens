@@ -14,10 +14,13 @@ import { ActiveDutyDescriptor, ActiveDuty } from '../../../models/csgomaps';
   styleUrls: ['./new-strategy.component.css']
 })
 export class NewStrategyComponent implements OnInit {
+  private _defaultTitle = 'Add a new team strategy';
+
   public newStrategy: CSGOStrategy = newEmptyStrategy();
   public videoId: string;
   public mapList: ActiveDutyDescriptor [] = ActiveDuty;
   public selectedMap = this.mapList[0];
+  public title = 'Add a new team strategy';
 
   @ViewChild('newStrat', { static: true }) public dialog: IgxDialogComponent;
 
@@ -37,11 +40,17 @@ export class NewStrategyComponent implements OnInit {
   ngOnInit() {
   }
 
-  public open(strat?: CSGOStrategy) {
+  public open(strat?: CSGOStrategy, title?: string) {
     if (strat) {
       this.newStrategy = strat;
     } else if (!this.team) {
       this.newStrategy.Visible = true;
+    }
+
+    if (title) {
+      this.title = title;
+    } else {
+      this.title = this._defaultTitle;
     }
     this.dialog.open();
   }
