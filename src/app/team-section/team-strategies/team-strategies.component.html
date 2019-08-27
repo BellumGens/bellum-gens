@@ -80,7 +80,7 @@
         <igx-icon fontSet="login-icons" name="Twitter" title="Share Strategy"></igx-icon>
         <span class="title margin-left">Share</span>
       </igx-drop-down-item>
-      <igx-drop-down-item *ngIf="authUser | isStratOwner:strat" (click)="newStrategy.open(strat)">
+      <igx-drop-down-item *ngIf="authUser | isStratOwner:strat" (click)="newStrategy.open(strat, 'Edit strategy')">
         <igx-icon title="Edit Strategy">edit</igx-icon>
         <span class="title margin-left">Edit</span>
       </igx-drop-down-item>
