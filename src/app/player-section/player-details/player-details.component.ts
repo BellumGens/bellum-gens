@@ -4,7 +4,8 @@ import { ActivatedRoute } from '../../../../node_modules/@angular/router';
 import { BellumgensApiService } from '../../services/bellumgens-api.service';
 import {
   IgxDropDownComponent,
-  ISelectionEventArgs
+  ISelectionEventArgs,
+  IgxIconService
 } from '../../../../node_modules/igniteui-angular';
 import { CSGOPlayer } from '../../models/csgoplayer';
 import { Availability } from '../../models/playeravailability';
@@ -35,6 +36,7 @@ export class PlayerDetailsComponent extends BaseComponent {
   constructor(private authManager: LoginService,
               private apiService: BellumgensApiService,
               private activatedRoute: ActivatedRoute,
+              private iconService: IgxIconService,
               private title: Title) {
     super();
     this.subs.push(
@@ -58,6 +60,7 @@ export class PlayerDetailsComponent extends BaseComponent {
         }
       })
     );
+    this.loadSvgs();
   }
 
   public submitAvailability(args: Availability) {
@@ -92,5 +95,45 @@ export class PlayerDetailsComponent extends BaseComponent {
 
   public inviteToTeam(args: ISelectionEventArgs) {
     this.apiService.inviteToTeam(this.player.steamUser, args.newSelection.value).subscribe();
+  }
+
+  private loadSvgs() {
+    this.iconService.addSvgIcon('ak47', '/assets/weapon-icons/svg_normal/weapon_ak47.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('awp', '/assets/weapon-icons/svg_normal/weapon_awp.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('aug', '/assets/weapon-icons/svg_normal/weapon_aug.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('bizon', '/assets/weapon-icons/svg_normal/weapon_bizon.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('deagle', '/assets/weapon-icons/svg_normal/weapon_deagle.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('famas', '/assets/weapon-icons/svg_normal/weapon_famas.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('fiveseven', '/assets/weapon-icons/svg_normal/weapon_fiveseven.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('g3sg1', '/assets/weapon-icons/svg_normal/weapon_g3sg1.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('galilar', '/assets/weapon-icons/svg_normal/weapon_galilar.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('glock', '/assets/weapon-icons/svg_normal/weapon_glock.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('m4a1', '/assets/weapon-icons/svg_normal/weapon_m4a1.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('m4a1_silencer', '/assets/weapon-icons/svg_normal/weapon_m4a1_silencer.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('hkp2000', '/assets/weapon-icons/svg_normal/weapon_usp_silencer.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('sg556', '/assets/weapon-icons/svg_normal/weapon_sg556.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('p90', '/assets/weapon-icons/svg_normal/weapon_p90.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('ump45', '/assets/weapon-icons/svg_normal/weapon_ump45.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('tec9', '/assets/weapon-icons/svg_normal/weapon_tec9.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('p250', '/assets/weapon-icons/svg_normal/weapon_p250.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('mac10', '/assets/weapon-icons/svg_normal/weapon_mac10.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('mp7', '/assets/weapon-icons/svg_normal/weapon_mp7.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('mp9', '/assets/weapon-icons/svg_normal/weapon_mp9.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('ssg08', '/assets/weapon-icons/svg_normal/weapon_ssg08.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('xm1014', '/assets/weapon-icons/svg_normal/weapon_xm1014.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('hegrenade', '/assets/weapon-icons/svg_normal/weapon_hegrenade.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('scar20', '/assets/weapon-icons/svg_normal/weapon_scar20.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('negev', '/assets/weapon-icons/svg_normal/weapon_negev.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('knife', '/assets/weapon-icons/svg_normal/weapon_knife.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('molotov', '/assets/weapon-icons/svg_normal/weapon_molotov.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('nova', '/assets/weapon-icons/svg_normal/weapon_nova.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('mag7', '/assets/weapon-icons/svg_normal/weapon_mag7.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('m249', '/assets/weapon-icons/svg_normal/weapon_m249.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('elite', '/assets/weapon-icons/svg_normal/weapon_elite.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('sawedoff', '/assets/weapon-icons/svg_normal/weapon_sawedoff.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('taser', '/assets/weapon-icons/svg_normal/weapon_taser.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('flashbang', '/assets/weapon-icons/svg_normal/weapon_flashbang.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('smoke', '/assets/weapon-icons/svg_normal/weapon_smokegrenade.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('c4', '/assets/weapon-icons/svg_normal/weapon_c4.svg', 'weapon-icons');
   }
 }

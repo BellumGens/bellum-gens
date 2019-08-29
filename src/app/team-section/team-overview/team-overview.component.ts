@@ -6,6 +6,7 @@ import { BellumgensApiService } from '../../services/bellumgens-api.service';
 import { LoginService } from '../../services/login.service';
 import { BaseComponent } from '../../base/base.component';
 import { Title } from '@angular/platform-browser';
+import { IgxIconService } from 'igniteui-angular';
 
 @Component({
   selector: 'app-team-overview',
@@ -23,6 +24,7 @@ export class TeamOverviewComponent extends BaseComponent {
   constructor(private activatedRoute: ActivatedRoute,
               private apiService: BellumgensApiService,
               private authManager: LoginService,
+              private iconService: IgxIconService,
               private title: Title) {
     super();
     this.subs.push(
@@ -42,6 +44,7 @@ export class TeamOverviewComponent extends BaseComponent {
         }
       })
     );
+    this.loadSvgs();
   }
 
   public get userIsMember() {
@@ -72,6 +75,10 @@ export class TeamOverviewComponent extends BaseComponent {
       this._isEditor = this.team.Members.filter(m => m.IsEditor && m.UserId === this.authUser.id).length > 0;
     }
     return this._isEditor;
+  }
+
+  private loadSvgs() {
+    this.iconService.addSvgIcon('discord', '/assets/login/discord.svg', 'login-icons');
   }
 
 }

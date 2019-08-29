@@ -4,7 +4,7 @@ import { StrategyEditor } from '../../../models/strat-editor/strategy-editor';
 import { CSGOTeam } from '../../../models/csgoteam';
 import { BellumgensApiService } from '../../../services/bellumgens-api.service';
 import { ActivatedRoute } from '@angular/router';
-import { IgxDropEventArgs } from 'igniteui-angular';
+import { IgxDropEventArgs, IgxIconService } from 'igniteui-angular';
 import { StratUtilities, EditorBrushColors } from '../../../models/strat-editor/utility';
 import { CSGOStrategy } from '../../../models/csgostrategy';
 import { BaseLayer, PointCoordinate, ImageLayer, FreeflowLayer } from '../../../models/strat-editor/editor-layer';
@@ -60,8 +60,10 @@ export class StrategyEditorComponent extends BaseComponent implements OnInit, On
   @ViewChild('board', { static: true }) public canvas: ElementRef;
 
   constructor(private apiService: BellumgensApiService,
+              private iconService: IgxIconService,
               private route: ActivatedRoute) {
     super();
+    this.loadSvgs();
   }
 
   ngOnInit() {
@@ -208,5 +210,14 @@ export class StrategyEditorComponent extends BaseComponent implements OnInit, On
     color.selected = true;
     this.selectedColor = color;
     this._drawLayer = null;
+  }
+
+  private loadSvgs() {
+    this.iconService.addSvgIcon('SimpleRadar', '/assets/simple_radar.svg', 'login-icons');
+    this.iconService.addSvgIcon('flashbang', '/assets/weapon-icons/svg_normal/weapon_flashbang.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('smoke', '/assets/weapon-icons/svg_normal/weapon_smokegrenade.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('c4', '/assets/weapon-icons/svg_normal/weapon_c4.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('molotov', '/assets/weapon-icons/svg_normal/weapon_molotov.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('hegrenade', '/assets/weapon-icons/svg_normal/weapon_hegrenade.svg', 'weapon-icons');
   }
 }

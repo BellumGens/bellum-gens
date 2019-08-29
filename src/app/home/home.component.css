@@ -4,7 +4,7 @@
   grid-column-gap: 24px;
   grid-row-gap: 24px;
   width: 1280px;
-  min-width: 420px;
+  min-width: 380px;
   padding: 16px;
   margin: auto;
 }
@@ -61,7 +61,7 @@
 
 .slide-info {
   width: 80%;
-  min-width: 420px;
+  min-width: 380px;
   padding: 16px;
   vertical-align: middle;
   margin: auto;
@@ -94,7 +94,7 @@
 
 @media only screen and (max-width: 1280px) {
   .content-container {
-    grid-template-columns: minmax(400px, 1fr);
+    grid-template-columns: minmax(380px, 1fr);
     width: 100%;
   }
 
