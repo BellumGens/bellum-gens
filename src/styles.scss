@@ -464,6 +464,12 @@ button igx-icon {
   padding-top: 12px;
   margin: auto;
 }
+
+.search-result-summary {
+  width: 80%;
+  padding-top: 12px;
+  margin: auto;
+}
 /* END SEARCH */
 
 /* Strategies */
@@ -535,6 +541,7 @@ button igx-icon {
 @media only screen and (max-width: 1280px) {
   .overview-container-card,
   .card-wrapper,
+  .search-result-summary,
   .strat-filter-header {
     width: 100%;
     padding-left: 8px;

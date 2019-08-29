@@ -4,6 +4,7 @@ import { BellumgensApiService } from '../../../services/bellumgens-api.service';
 import { CSGOPlayer } from '../../../models/csgoplayer';
 import { ALL_ROLES } from '../../../models/playerrole';
 import { BaseComponent } from '../../../base/base.component';
+import { IgxIconService } from 'igniteui-angular';
 
 @Component({
   selector: 'app-player-results',
@@ -16,7 +17,7 @@ export class PlayerResultsComponent extends BaseComponent {
   public roles = ALL_ROLES;
   public query: string;
 
-  constructor(private route: ActivatedRoute, private apiService: BellumgensApiService) {
+  constructor(private route: ActivatedRoute, private apiService: BellumgensApiService, private iconService: IgxIconService) {
     super();
     this.subs.push(
       this.route.params.subscribe(params => {
@@ -28,6 +29,7 @@ export class PlayerResultsComponent extends BaseComponent {
       this.apiService.loadingSearch.subscribe(loading => this.loading = loading),
       this.apiService.playerSearchResult.subscribe(players => this.players = players)
     );
+    this.iconService.addSvgIcon('headshot', '/assets/headshot24x24.svg', 'weapon-icons');
   }
 
 }
