@@ -11,7 +11,6 @@
   height: 100%;
   min-width: 412px;
   display: flex;
-  flex-basis: row nowrap;
 }
 
 .content {
@@ -50,6 +49,14 @@
   display: flex;
   align-self: center;
   align-items: center;
+}
+
+.footer-row > p {
+  margin: 8px 4px;
+}
+
+.footer-row > a {
+  height: 24px;
 }
 
 .social-media-icon {
