@@ -1,0 +1,58 @@
+:host {
+  --igx-button-raised-border-radius: 0;
+}
+
+.home-page-slide {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 24px;
+}
+
+.slide {
+  width: 48%;
+  height: 450px;
+  border-radius: 24px;
+}
+
+.slide.slide1 {
+  background-image: url('/assets/wallpapers/CSGO_BG.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.slide.slide2 {
+  background-image: url('/assets/wallpapers/SC2_BG.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+
+.slide-info {
+  max-width: 680px;
+  min-width: 380px;
+  padding: 52px;
+  vertical-align: middle;
+  margin: auto;
+}
+
+.slide-info h1,
+.content-container h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.slide-info h4,
+.content-container h4 {
+  font-size: 1.75rem;
+  margin: 0;
+}
+
+.slide-info p,
+.content-container p {
+  font-size: 1rem;
+  margin: 0 0 16px 0;
+}
