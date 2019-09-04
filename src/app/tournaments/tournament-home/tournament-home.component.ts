@@ -11,6 +11,7 @@ import { Title } from '@angular/platform-browser';
 })
 export class TournamentHomeComponent implements OnInit {
   public authUser: ApplicationUser;
+  public userEmail: string = null;
 
   constructor(private authManager: LoginService,
               private apiService: BellumgensApiService,
@@ -20,5 +21,4 @@ export class TournamentHomeComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }

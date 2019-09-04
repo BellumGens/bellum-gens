@@ -1,5 +1,6 @@
 :host {
   --igx-button-raised-border-radius: 0;
+  --igx-button-outlined-text-color: white;
 }
 
 .content-container {
@@ -87,6 +88,10 @@
   justify-content: space-evenly;
 }
 
+.content-container-column.justify-start {
+  justify-content: flex-start;
+}
+
 .left-column {
   text-align: right;
   align-items: flex-end;
@@ -99,10 +104,10 @@
   border-radius: 20px;
 }
 
-// .registration-form {
-//   display: none;
-// }
-
 .registration-form-input {
   min-width: 380px;
+}
+
+.submit-email {
+  margin: 0 8px;
 }

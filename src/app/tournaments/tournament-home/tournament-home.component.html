@@ -3,32 +3,38 @@
     <div class="slide-info">
       <h1>CS:GO Championship</h1>
       <p>Първото издание на Esports Business League ще се проведе есента на 2019. До 16 отбора ще се състезават в CS:GO лига, всеки срещу всеки и ще събират точки за участие в LAN финалите.</p>
-      <button igxButton="raised" igxButtonColor="#fff" routerLink="/strategies">Записване от 1 Октомври 2019</button>
+      <button igxButton="raised" igxButtonColor="#fff" disabled="true">Записване от 1 Октомври 2019</button>
     </div>
   </div>
   <div class="slide slide2">
     <div class="slide-info">
       <h1>StarCraft II Championship</h1>
       <p>Първото издание на Esports Business League ще се проведе есента на 2019. До 32 състезателя ще премерят сили в StarCraft II лига, всеки срещу всеки и ще събират точки за участие в LAN финалите.</p>
-      <button igxButton="raised" igxButtonColor="#fff" routerLink="/strategies">Записване от 1 Октомври 2019</button>
+      <button igxButton="raised" igxButtonColor="#fff" disabled="true">Записване от 1 Октомври 2019</button>
     </div>
   </div>
 </div>
 
 <div class="content-container">
-  <div class="content-container-row registration-form">
+  <form #email="ngForm" class="content-container-row registration-form">
     <igx-divider></igx-divider>
     <h4>Регистрацията ще бъде отворена на 1ви Октомври, 2019.</h4>
     <p>Ако искате да получавате известия от нас, моля оставете вашият имейл адрес!</p>
-    <igx-input-group class="registration-form-input" type="border">
-      <label igxLabel for="email">Email</label>
-      <igx-prefix>
-        <igx-icon>email</igx-icon>
-      </igx-prefix>
-      <input type="email" id="email" name="email" igxInput pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" />
-    </igx-input-group>
+    <div class="horizontal">
+      <igx-input-group class="registration-form-input" type="border">
+        <label igxLabel for="email">Email</label>
+        <igx-prefix>
+          <igx-icon>email</igx-icon>
+        </igx-prefix>
+        <input type="email" id="email" #userMail name="email" igxInput pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="userEmail" />
+        <igx-suffix *ngIf="userMail.value" (click)="userEmail = null">
+          <igx-icon>clear</igx-icon>
+        </igx-suffix>
+      </igx-input-group>
+      <button igxButton="outlined" class="submit-email">Submit</button>
+    </div>
     <igx-divider></igx-divider>
-  </div>
+  </form>
 
   <div class="content-container-column left-column">
     <img src="/assets/wallpapers/strat-editor.png" class="preview-image" alt="Strategy Editor" />
@@ -50,23 +56,19 @@
 
   <div class="content-container-row">
     <igx-divider></igx-divider>
-    <h4>Награди!!!</h4>
+    <h4>Награди</h4>
     <igx-divider></igx-divider>
   </div>
 
-  <div class="content-container-column left-column">
-    <img src="/assets/wallpapers/csgo-global-elite.png" class="preview-image" alt="ESL One Cologne 2020 Global Elite Pass (5 man)" />
-  </div>
-  <div class="content-container-column">
+  <div class="content-container-column justify-start">
     <h4>CS:GO Лига</h4>
     <p>Отборът победител в CS:GO лигата ще получи Global Elite Pass за ESL One Cologne 2020.</p>
+    <img src="/assets/wallpapers/csgo-global-elite.png" alt="ESL One Cologne 2020 Global Elite Pass (5 man)" />
   </div>
 
-  <div class="content-container-column left-column">
+  <div class="content-container-column justify-start">
     <h4>StarCraft II Лига</h4>
-    <p>Победителят в StarCraft II лигата ще получи билет за BlizCon 2020.</p>
-  </div>
-  <div class="content-container-column">
-    <img src="/assets/wallpapers/blizcon-logo.jpg" class="preview-image" alt="BlizCon 2020 Ticket" />
+    <p>Победителят в StarCraft II лигата ще получи най-високият клас билет за BlizCon 2020.</p>
+    <img src="/assets/wallpapers/blizcon-logo.jpg" alt="BlizCon 2020 Ticket" />
   </div>
 </div>
