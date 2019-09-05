@@ -17,25 +17,28 @@ steps:
 
 - script: npm install
   displayName: npm install
-  
+
 - script: npm run lint
   displayName: run lint
 
 - script: npm run test:prod
   displayName: run test
 
-- script: npm run build:prerender
-  displayName: build prerender
+# - script: npm run build:prerender
+#   displayName: build prerender
 
-# - task: ShellScript@2
-#   inputs:
-#     scriptPath: 'predeploy.sh'
+- script: npm run build:ssr
+  displayName: build ssr
+
+- task: ShellScript@2
+  inputs:
+    scriptPath: 'predeploy.sh'
 
 # Publish Build Artifacts to Azure Pipelines
 - task: PublishBuildArtifacts@1
   inputs:
-    pathtoPublish: 'dist/browser' 
-    artifactName: 'dist' 
+    pathtoPublish: 'dist'
+    artifactName: 'dist'
     publishLocation: 'Container'
     targetPath: 'dist/bellum-gens'
     #parallel: false # Optional
