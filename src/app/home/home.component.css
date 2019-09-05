@@ -82,7 +82,7 @@
 .slide-info p,
 .content-container p {
   font-size: 1rem;
-  margin: 0 0 16px 0;
+  margin: 16px 0 16px 0;
 }
 
 .slide1 {
@@ -109,6 +109,7 @@
   .content-container h1 {
     font-size: 1.55rem;
     margin: 0;
+    line-height: 2rem;
   }
 
   .content-container p {

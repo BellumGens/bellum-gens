@@ -5,7 +5,7 @@
     <h1>Design and Share CS:GO Strategies</h1>
     <p>The only online CS:GO strategy editor freely available to everyone! Discuss public strategies with everyone and build private strategies for your team only.</p>
     <button igxButton="raised" igxButtonColor="#fff" routerLink="/strategies">Browse Strategies</button>
-    <button igxButton="outlined" igxButtonColor="#fff" *ngIf="!authUser" class="space-out-button">Sign-up Now</button>
+    <button igxButton="outlined" igxButtonColor="#fff" *ngIf="!authUser" (click)="loginDialog.openLogin()" class="space-out-button">Sign-up Now</button>
   </div>
 </div>
 

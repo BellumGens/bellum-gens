@@ -103,6 +103,7 @@ import { UserStrategiesComponent } from './player-section/user-strategies/user-s
 import { NewStrategyComponent } from './team-section/team-strategies/new-strategy/new-strategy.component';
 import { LoginDialogComponent } from './login/login-dialog/login-dialog.component';
 import { IsStratOwnerPipe } from './pipes/is-strat-owner.pipe';
+import { TournamentHomeComponent } from './tournaments/tournament-home/tournament-home.component';
 
 @NgModule({
   declarations: [
@@ -167,7 +168,8 @@ import { IsStratOwnerPipe } from './pipes/is-strat-owner.pipe';
     UserStrategiesComponent,
     NewStrategyComponent,
     LoginDialogComponent,
-    IsStratOwnerPipe
+    IsStratOwnerPipe,
+    TournamentHomeComponent
   ],
   imports: [
     FormsModule,

@@ -1,0 +1,113 @@
+:host {
+  --igx-button-raised-border-radius: 0;
+  --igx-button-outlined-text-color: white;
+}
+
+.content-container {
+  display: grid;
+  grid-template-columns: minmax(45%, 1fr) minmax(45%, 1fr);
+  grid-column-gap: 24px;
+  grid-row-gap: 24px;
+  width: 1280px;
+  min-width: 380px;
+  padding: 16px;
+  margin: auto;
+}
+
+.home-page-slide {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 24px;
+}
+
+.slide {
+  width: 48%;
+  height: 450px;
+  border-radius: 24px;
+}
+
+.slide.slide1 {
+  background-image: url('/assets/wallpapers/CSGO_BG.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.slide.slide2 {
+  background-image: url('/assets/wallpapers/SC2_BG.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+
+.slide-info {
+  max-width: 680px;
+  min-width: 380px;
+  padding: 52px;
+  vertical-align: middle;
+  margin: auto;
+}
+
+.slide-info h1,
+.content-container h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.slide-info h4,
+.content-container h4 {
+  font-size: 1.75rem;
+  margin: 0;
+}
+
+.slide-info p,
+.content-container p {
+  font-size: 1rem;
+  margin: 0 0 16px 0;
+}
+
+.content-container-row {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: space-evenly;
+  min-height: 210px;
+}
+
+  .content-container-row igx-divider {
+    width: 100%;
+  }
+
+.content-container-column {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-evenly;
+}
+
+.content-container-column.justify-start {
+  justify-content: flex-start;
+}
+
+.left-column {
+  text-align: right;
+  align-items: flex-end;
+}
+
+.preview-image {
+  -webkit-box-shadow: 0px 24px 48px -12px rgba(4,8,29,0.45);
+  -moz-box-shadow: 0px 24px 48px -12px rgba(4,8,29,0.45);
+  box-shadow: 0px 24px 48px -12px rgba(4,8,29,0.45);
+  border-radius: 20px;
+}
+
+.registration-form-input {
+  min-width: 380px;
+}
+
+.submit-email {
+  margin: 0 8px;
+}
