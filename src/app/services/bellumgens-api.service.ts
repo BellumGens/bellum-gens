@@ -841,4 +841,19 @@ export class BellumgensApiService {
       })
     );
   }
+
+  public addSubscriber(email: string) {
+    return this.http.get(`${this._apiEndpoint}/account/subscribe?email=${email}`).pipe(
+      map(response => {
+        if (response) {
+          this.emitSuccess(response.toString());
+        }
+        return response;
+      }),
+      catchError(error => {
+        this.emitError(error.error.Message);
+        return throwError(error);
+      })
+    )
+  }
 }

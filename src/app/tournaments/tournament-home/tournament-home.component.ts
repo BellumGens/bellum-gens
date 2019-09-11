@@ -23,4 +23,10 @@ export class TournamentHomeComponent extends BaseComponent {
       this.authManager.applicationUser.subscribe(user => this.authUser = user)
     );
   }
+
+  public subscribe() {
+    if (this.userEmail) {
+      this.apiService.addSubscriber(this.userEmail).subscribe();
+    }
+  }
 }

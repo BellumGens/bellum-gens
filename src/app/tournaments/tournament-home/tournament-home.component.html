@@ -16,13 +16,13 @@
 </div>
 
 <div class="content-container">
-  <form #email="ngForm" class="content-container-row registration-form">
+  <form #email="ngForm" class="content-container-row registration-form" (ngSubmit)="subscribe()">
     <igx-divider></igx-divider>
     <h4>Регистрацията ще бъде отворена на 1ви Октомври, 2019.</h4>
     <p>Ако искате да получавате известия от нас, моля оставете вашият имейл адрес!</p>
     <div class="horizontal">
       <igx-input-group class="registration-form-input" type="border">
-        <label igxLabel for="email">Email</label>
+        <label igxLabel for="email">Имейл адрес</label>
         <igx-prefix>
           <igx-icon>email</igx-icon>
         </igx-prefix>
@@ -31,7 +31,7 @@
           <igx-icon>clear</igx-icon>
         </igx-suffix>
       </igx-input-group>
-      <button igxButton="outlined" class="submit-email">Submit</button>
+      <button igxButton="outlined" class="submit-email">Запиши се</button>
     </div>
     <igx-divider></igx-divider>
   </form>
