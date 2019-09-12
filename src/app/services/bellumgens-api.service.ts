@@ -854,6 +854,6 @@ export class BellumgensApiService {
         this.emitError(error.error.Message);
         return throwError(error);
       })
-    )
+    );
   }
 }
