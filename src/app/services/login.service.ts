@@ -8,7 +8,7 @@ import { environment } from '../../environments/environment';
 import { SwPush } from '@angular/service-worker';
 import { NotificationActions, PushNotificationWrapper } from '../models/usernotifications';
 import { Router } from '@angular/router';
-import { BellumgensApiService } from './bellumgens-api.service';
+import { CommunicationService } from './communication.service';
 
 const CACHE_SIZE = 1;
 
@@ -28,7 +28,7 @@ export class LoginService {
   constructor(private http: HttpClient,
               private swPush: SwPush,
               private router: Router,
-              private apiService: BellumgensApiService) { }
+              private commService: CommunicationService) { }
 
   public addPushSubscriber(sub: PushSubscription) {
     return this.http.post(`${this._apiBase}/push/subscribe`, sub, { withCredentials: true });
@@ -84,12 +84,12 @@ export class LoginService {
           if (response.newEmail) {
             message += ` A confirmation link as been sent to ${response.email}.`;
           }
-          this.apiService.emitSuccess(message);
+          this.commService.emitSuccess(message);
         }
         return response;
       }),
       catchError(error => {
-        this.apiService.emitError(error.error.Message);
+        this.commService.emitError(error.error.Message);
         return throwError(error);
       })
     );
@@ -100,12 +100,12 @@ export class LoginService {
       map(response => {
         if (response) {
           this._applicationUser.next(null);
-          this.apiService.emitSuccess(`Account deleted!`);
+          this.commService.emitSuccess(`Account deleted!`);
         }
         return response;
       }),
       catchError(error => {
-        this.apiService.emitError(error.error.Message);
+        this.commService.emitError(error.error.Message);
         return throwError(error);
       })
     );
@@ -118,7 +118,7 @@ export class LoginService {
     .then(sub => {
       this.addPushSubscriber(sub).subscribe();
       this.swPush.messages.subscribe(message => {
-        this.apiService.emitMessage((<PushNotificationWrapper>message).notification.title);
+        this.commService.emitMessage((<PushNotificationWrapper>message).notification.title);
 
         // Update the app user with new notifications and teams
         this.getSteamUser().subscribe(user => this._applicationUser.next(user));
