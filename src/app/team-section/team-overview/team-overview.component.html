@@ -7,7 +7,7 @@
       <h3 class="igx-card-header__subtitle">{{ team?.Description }}</h3>
     </div>
     <div *ngIf="!userIsMember && team?.TeamId" class="horizontal-info__right">
-      <app-team-application [authUser]="authUser"></app-team-application>
+      <app-team-application [authUser]="authUser" [team]="team"></app-team-application>
     </div>
     <div *ngIf="userIsMember && team?.Discord" class="horizontal-info__right">
       <a [href]="team.Discord" target="_blank" rel="noopener">
@@ -23,7 +23,7 @@
         <div class="horizontal-center">
           <igx-icon>people_outline</igx-icon>
           <div class="igx-tabs__item-label">Details</div>
-        </div> 	
+        </div>
       </ng-template>
     </igx-tab-item>
 
@@ -35,7 +35,7 @@
         <div class="horizontal-center">
           <igx-icon>playlist_add_check</igx-icon>
           <div class="igx-tabs__item-label">Strategies</div>
-        </div> 	
+        </div>
       </ng-template>
     </igx-tab-item>
 
@@ -44,7 +44,7 @@
           <div class="horizontal-center">
             <igx-icon>date_range</igx-icon>
             <div class="igx-tabs__item-label">Team Calendar (Coming Soon)</div>
-          </div> 
+          </div>
         </ng-template>
     </igx-tabs-group> -->
 
@@ -56,7 +56,7 @@
         <div class="horizontal-center">
           <igx-icon>settings</igx-icon>
           <div class="igx-tabs__item-label">Preferences</div>
-        </div> 	
+        </div>
       </ng-template>
     </igx-tab-item>
   </igx-tabs>
