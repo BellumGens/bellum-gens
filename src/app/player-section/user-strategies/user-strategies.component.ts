@@ -5,6 +5,7 @@ import { BellumgensApiService } from '../../services/bellumgens-api.service';
 import { BaseComponent } from '../../base/base.component';
 import { CSGOStrategy } from '../../models/csgostrategy';
 import { SocialMediaService } from '../../services/social-media.service';
+import { CommunicationService } from '../../services/communication.service';
 
 @Component({
   selector: 'app-user-strategies',
@@ -17,6 +18,7 @@ export class UserStrategiesComponent extends BaseComponent {
 
   constructor(private authManager: LoginService,
               private socialMedia: SocialMediaService,
+              private commService: CommunicationService,
               private apiService: BellumgensApiService) {
     super();
     this.subs.push(
@@ -24,7 +26,7 @@ export class UserStrategiesComponent extends BaseComponent {
         this.authUser = user;
         this.apiService.getUserStrategies(user.id).subscribe(
           strats => this.strats = strats,
-          error => this.apiService.emitError(error.error.Message)
+          error => this.commService.emitError(error.error.Message)
         );
       })
     );

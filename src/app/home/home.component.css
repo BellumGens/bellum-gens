@@ -112,11 +112,8 @@
     line-height: 2rem;
   }
 
+  .slide-info p,
   .content-container p {
     font-size: 0.85rem;
-  }
-
-  .major-stream-row {
-    width: 100%;
   }
 }

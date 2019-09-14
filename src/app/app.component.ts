@@ -15,6 +15,7 @@ import { map, debounceTime } from 'rxjs/operators';
 import { UnreadNotificationsPipe } from './pipes/unread-notifications.pipe';
 import { BaseComponent } from './base/base.component';
 import { GlobalOverlaySettings } from './models/misc';
+import { CommunicationService } from './services/communication.service';
 
 @Component({
   selector: 'app-root',
@@ -22,7 +23,7 @@ import { GlobalOverlaySettings } from './models/misc';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent extends BaseComponent implements OnInit {
-  public title: string;
+  public title = 'Bellum Gens';
   public authUser: ApplicationUser;
   public searchResult: SearchResult;
   public unreadNotifications = 0;
@@ -36,8 +37,12 @@ export class AppComponent extends BaseComponent implements OnInit {
   private unreadPipe = new UnreadNotificationsPipe();
 
   constructor(private authManager: LoginService,
-              private apiService: BellumgensApiService) {
+              private apiService: BellumgensApiService,
+              private commService: CommunicationService) {
     super();
+    this.subs.push(
+      this.commService.headerTitle.subscribe(title => this.title = title)
+    );
   }
 
   public ngOnInit(): void {

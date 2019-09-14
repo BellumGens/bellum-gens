@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { IgxSnackbarComponent } from 'igniteui-angular';
-import { BellumgensApiService } from '../services/bellumgens-api.service';
 import { BaseComponent } from '../base/base.component';
+import { CommunicationService } from '../services/communication.service';
 
 @Component({
   selector: 'app-success-error',
@@ -17,11 +17,11 @@ export class SuccessErrorComponent extends BaseComponent {
   public errorMsg = 'Error has occurred...';
   public notificationMsg = '';
 
-  constructor(private apiService: BellumgensApiService) {
+  constructor(private commService: CommunicationService) {
     super();
-    this.subs.push(this.apiService.error.subscribe(message => this.showError(message)));
-    this.subs.push(this.apiService.success.subscribe(message => this.showSuccess(message)));
-    this.subs.push(this.apiService.message.subscribe(message => this.showMessage(message)));
+    this.subs.push(this.commService.error.subscribe(message => this.showError(message)));
+    this.subs.push(this.commService.success.subscribe(message => this.showSuccess(message)));
+    this.subs.push(this.commService.message.subscribe(message => this.showMessage(message)));
   }
 
   public showSuccess(msg?: string) {
