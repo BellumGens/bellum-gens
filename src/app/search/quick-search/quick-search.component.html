@@ -12,7 +12,7 @@
     <igx-list-item *ngIf="!searchResult.Players.length"><span igxListLine>No matching players...</span></igx-list-item>
     <igx-list-item #item
                   *ngFor="let user of searchResult.Players | reduceQuickSearchResult"
-                  [routerLink]="['/players', user.steamUser.customURL || user.steamUser.steamID64]"
+                  [routerLink]="['/players', user.steamUser?.customURL || user.steamUser?.steamID64]"
                   class="navigatable">
       <igx-avatar igxListThumbnail [src]="user.steamUser?.avatarIcon" [initials]="user.steamUser?.steamID" roundShape="true">
       </igx-avatar>
@@ -25,7 +25,7 @@
 
       <h2 igxListLineTitle>
         <a>
-          {{ user.steamUser.steamID }}
+          {{ user.steamUser?.steamID }}
         </a>
       </h2>
       <h4 igxListLineSubTitle>{{ user.steamUser?.realname }}</h4>
