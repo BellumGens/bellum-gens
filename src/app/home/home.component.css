@@ -100,7 +100,6 @@
 
   .slide1 {
     background-size: auto;
-    background-repeat: no-repeat;
     background-position: center;
     background-position-y: -100px;
   }
@@ -115,5 +114,21 @@
   .slide-info p,
   .content-container p {
     font-size: 0.85rem;
+  }
+}
+
+@media only screen and (min-width: 1281px) and (max-width: 1500px) {
+  .slide1 {
+    background-position-y: 0px;
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  .home-page-slide {
+    height: 550px;
+  }
+
+  .slide1 {
+    background-position-y: -150px;
   }
 }
