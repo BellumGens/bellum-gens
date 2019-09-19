@@ -1,13 +1,27 @@
 <app-login-dialog #loginDialog></app-login-dialog>
 
-<div class="home-page-slide slide1">
-  <div class="slide-info">
-    <h1>Design and Share CS:GO Strategies</h1>
-    <p>The only online CS:GO strategy editor freely available to everyone! Discuss public strategies with everyone and build private strategies for your team only.</p>
-    <button igxButton="raised" igxButtonColor="#fff" routerLink="/strategies">Browse Strategies</button>
-    <button igxButton="outlined" igxButtonColor="#fff" *ngIf="!authUser" (click)="loginDialog.openLogin()" class="space-out-button">Sign-up Now</button>
-  </div>
-</div>
+<igx-carousel [loop]="true" [interval]="7000" [navigation]="true">
+  <igx-slide>
+    <div class="home-page-slide slide2">
+      <div class="slide-info">
+        <h1>Esports Business League - Bulgaria</h1>
+        <p>First season of the Esports Business League competition in Bulgaria will be opened for registration soon.</p>
+        <button igxButton="raised" igxButtonColor="#fff" routerLink="/tournament-signup">Learn More</button>
+      </div>
+    </div>
+  </igx-slide>
+
+  <igx-slide>
+    <div class="home-page-slide slide1">
+      <div class="slide-info">
+        <h1>Design and Share CS:GO Strategies</h1>
+        <p>The only online CS:GO strategy editor freely available to everyone! Discuss public strategies with everyone and build private strategies for your team only.</p>
+        <button igxButton="raised" igxButtonColor="#fff" routerLink="/strategies">Browse Strategies</button>
+        <button igxButton="outlined" igxButtonColor="#fff" *ngIf="!authUser" (click)="loginDialog.openLogin()" class="space-out-button">Sign-up Now</button>
+      </div>
+    </div>
+  </igx-slide>
+</igx-carousel>
 
 <div class="content-container">
   <div class="content-container-column left-column">
