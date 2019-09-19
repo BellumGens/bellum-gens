@@ -6,7 +6,7 @@
 .content-container {
   display: grid;
   grid-template-columns: minmax(45%, 1fr) minmax(45%, 1fr);
-  grid-column-gap: 24px;
+  grid-column-gap: 48px;
   grid-row-gap: 24px;
   width: 1280px;
   min-width: 380px;
@@ -15,16 +15,13 @@
 }
 
 .home-page-slide {
-  display: flex;
-  flex-wrap: wrap;
-  width: 100%;
-  align-items: center;
-  justify-content: space-evenly;
-  padding: 24px;
+  display: grid;
+  grid-template-columns: minmax(45%, 1fr) minmax(45%, 1fr);
+  grid-column-gap: 48px;
+  padding: 48px 48px 12px 48px;
 }
 
 .slide {
-  width: 48%;
   height: 450px;
   border-radius: 24px;
 }
@@ -36,11 +33,10 @@
 }
 
 .slide.slide2 {
-  background-image: url('/assets/wallpapers/SC2_BG.jpg');
+  background-image: url('/assets/wallpapers/SC2_BG_2.png');
   background-size: cover;
   background-repeat: no-repeat;
 }
-
 
 .slide-info {
   max-width: 680px;
@@ -112,14 +108,18 @@
   margin: 0 8px;
 }
 
-.column-logo {
-  padding: 24px;
-  width: 100%;
-  height: 100%;
-  font-size: 20rem;
+.content-container-column ul {
+  padding-inline-start: 40px;
+  list-style: disc;
 }
 
 @media only screen and (max-width: 1280px) {
+  .home-page-slide {
+    grid-template-columns: minmax(380px, 1fr);
+    grid-row-gap: 16px;
+    padding: 16px 16px 12px 16px;
+  }
+
   .content-container {
     grid-template-columns: minmax(380px, 1fr);
     width: 100%;

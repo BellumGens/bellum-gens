@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { LoginService } from '../services/login.service';
 import { ApplicationUser } from '../models/applicationuser';
 import { BaseComponent } from '../base/base.component';
@@ -12,7 +12,8 @@ import { CommunicationService } from '../services/communication.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent extends BaseComponent {
-  authUser: ApplicationUser;
+  public authUser: ApplicationUser;
+  public navigation = window.matchMedia('(min-width: 768px)').matches;
 
   constructor(private authManager: LoginService,
               private commService: CommunicationService,
@@ -28,7 +29,12 @@ export class HomeComponent extends BaseComponent {
   }
 
   public tweet() {
-    this.socialMedia.tweetWithText('Hey @BellumGens');
+    this.socialMedia.tweetWithText('Hey @BellumGens...');
+  }
+
+  @HostListener('window:resize')
+  public resize() {
+    this.navigation = window.matchMedia('(min-width: 768px)').matches;
   }
 
 }

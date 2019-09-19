@@ -7,7 +7,8 @@ import { IgxInputGroupModule,
   IgxProgressBarModule,
   IgxDividerModule,
   IgxButtonModule,
-  IgxDialogModule} from 'igniteui-angular';
+  IgxDialogModule,
+  IgxCarouselModule} from 'igniteui-angular';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -31,6 +32,7 @@ describe('HomeComponent', () => {
         IgxDividerModule,
         IgxProgressBarModule,
         IgxButtonModule,
+        IgxCarouselModule,
         IgxDialogModule
       ],
       declarations: [
