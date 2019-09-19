@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import { ApplicationUser } from '../../models/applicationuser';
 import { BellumgensApiService } from '../../services/bellumgens-api.service';
@@ -14,6 +14,8 @@ import { CommunicationService } from '../../services/communication.service';
 export class TournamentHomeComponent extends BaseComponent {
   public authUser: ApplicationUser;
   public userEmail: string = null;
+  public headerTitle = 'Esports Business League';
+  public headerTitleShort = 'EBL';
 
   constructor(private authManager: LoginService,
               private apiService: BellumgensApiService,
@@ -23,7 +25,7 @@ export class TournamentHomeComponent extends BaseComponent {
     super();
     this.title.setTitle('Esports Business League: Sign-up');
     this.meta.updateTag({ name: 'description', content: 'Esports competition in business | Esports бизнес лига записване'});
-    this.commService.title = 'Esports Business League';
+    this.commService.title = window.matchMedia('(min-width: 768px)').matches ? this.headerTitle : this.headerTitleShort;
     this.subs.push(
       this.authManager.applicationUser.subscribe(user => this.authUser = user)
     );
@@ -33,5 +35,10 @@ export class TournamentHomeComponent extends BaseComponent {
     if (this.userEmail) {
       this.apiService.addSubscriber(this.userEmail).subscribe();
     }
+  }
+
+  @HostListener('window:resize')
+  public resize() {
+    this.commService.title = window.matchMedia('(min-width: 768px)').matches ? this.headerTitle : this.headerTitleShort;
   }
 }

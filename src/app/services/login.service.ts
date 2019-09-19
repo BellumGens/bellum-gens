@@ -51,8 +51,8 @@ export class LoginService {
         user => {
           if (user) {
             this._applicationUser.next(user);
-            this.initSw();
           }
+          this.initSw();
         }
       );
     }
