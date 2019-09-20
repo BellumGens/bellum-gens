@@ -1,6 +1,6 @@
 <app-login-dialog #loginDialog></app-login-dialog>
 
-<igx-carousel [loop]="true" [interval]="7000" [navigation]="navigation">
+<igx-carousel [loop]="true" [interval]="10000" [navigation]="navigation">
   <igx-slide>
     <div class="home-page-slide slide2">
       <div class="slide-info">
@@ -18,6 +18,19 @@
         <p>The only online CS:GO strategy editor freely available to everyone! Discuss public strategies with everyone and build private strategies for your team only.</p>
         <button igxButton="raised" igxButtonColor="#fff" routerLink="/strategies">Browse Strategies</button>
         <button igxButton="outlined" igxButtonColor="#fff" *ngIf="!authUser" (click)="loginDialog.openLogin()" class="space-out-button">Sign-up Now</button>
+      </div>
+    </div>
+  </igx-slide>
+
+  <igx-slide>
+    <div class="home-page-slide slide3">
+      <div class="slide-info">
+        <h1>Manage your CS:GO Team</h1>
+        <p>Recruit your team and manage your team member roles, team strategies, practice times and more....</p>
+        <button igxButton="raised" igxButtonColor="#fff" *ngIf="!authUser else loggedIn" (click)="loginDialog.openLogin()" class="space-out-button">Sign-up Now</button>
+        <ng-template #loggedIn>
+          <button igxButton="raised" igxButtonColor="#fff" (click)="openTeams()" class="space-out-button">Team Section</button>
+        </ng-template>
       </div>
     </div>
   </igx-slide>
