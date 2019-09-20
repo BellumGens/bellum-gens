@@ -6,7 +6,7 @@ import { PositionSettings,
   IgxDropDownComponent,
   IgxInputGroupComponent,
   AutoPositionStrategy,
-  IgxSnackbarComponent} from 'igniteui-angular';
+  IgxBannerComponent} from 'igniteui-angular';
 import { LoginService } from './services/login.service';
 import { ApplicationUser } from './models/applicationuser';
 import { BellumgensApiService } from './services/bellumgens-api.service';
@@ -32,9 +32,10 @@ export class AppComponent extends BaseComponent implements OnInit {
   public overlaySettings = GlobalOverlaySettings;
 
   @ViewChild('quickSearch', { static: true }) public quickSearchDropDown: IgxDropDownComponent;
+  @ViewChild('myTeam', { static: true }) public teamDropDown: IgxDropDownComponent;
   @ViewChild('searchGroup', { static: true }) public searchGroup: IgxInputGroupComponent;
   @ViewChild('searchInput', { static: true }) public searchInput: ElementRef;
-  @ViewChild(IgxSnackbarComponent, { static: true }) public snackbar: IgxSnackbarComponent;
+  @ViewChild('cookiesBanner', { static: true }) public banner: IgxBannerComponent;
 
   private unreadPipe = new UnreadNotificationsPipe();
 
@@ -43,7 +44,8 @@ export class AppComponent extends BaseComponent implements OnInit {
               private commService: CommunicationService) {
     super();
     this.subs.push(
-      this.commService.headerTitle.subscribe(title => this.title = title)
+      this.commService.headerTitle.subscribe(title => this.title = title),
+      this.commService.openTeams.subscribe(_ => this.teamDropDown.open())
     );
   }
 
@@ -53,13 +55,13 @@ export class AppComponent extends BaseComponent implements OnInit {
       this.unreadNotifications += this.unreadPipe.transform(data.notifications);
     }));
     if (!window.localStorage.getItem('cookiesAccepted')) {
-      this.snackbar.isVisible = true;
+      this.banner.open();
     }
     this.initQuickSearch();
   }
 
   public acceptCookies() {
-    this.snackbar.hide();
+    this.banner.close();
     window.localStorage.setItem('cookiesAccepted', 'true');
   }
 

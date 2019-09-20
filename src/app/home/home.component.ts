@@ -32,6 +32,10 @@ export class HomeComponent extends BaseComponent {
     this.socialMedia.tweetWithText('Hey @BellumGens...');
   }
 
+  public openTeams() {
+    this.commService.emitOpenTeams();
+  }
+
   @HostListener('window:resize')
   public resize() {
     this.navigation = window.matchMedia('(min-width: 768px)').matches;
