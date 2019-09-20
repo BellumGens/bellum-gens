@@ -5,7 +5,8 @@ import { PositionSettings,
   OverlaySettings,
   IgxDropDownComponent,
   IgxInputGroupComponent,
-  AutoPositionStrategy} from 'igniteui-angular';
+  AutoPositionStrategy,
+  IgxSnackbarComponent} from 'igniteui-angular';
 import { LoginService } from './services/login.service';
 import { ApplicationUser } from './models/applicationuser';
 import { BellumgensApiService } from './services/bellumgens-api.service';
@@ -33,6 +34,7 @@ export class AppComponent extends BaseComponent implements OnInit {
   @ViewChild('quickSearch', { static: true }) public quickSearchDropDown: IgxDropDownComponent;
   @ViewChild('searchGroup', { static: true }) public searchGroup: IgxInputGroupComponent;
   @ViewChild('searchInput', { static: true }) public searchInput: ElementRef;
+  @ViewChild(IgxSnackbarComponent, { static: true }) public snackbar: IgxSnackbarComponent;
 
   private unreadPipe = new UnreadNotificationsPipe();
 
@@ -50,8 +52,15 @@ export class AppComponent extends BaseComponent implements OnInit {
       this.authUser = data;
       this.unreadNotifications += this.unreadPipe.transform(data.notifications);
     }));
-
+    if (!window.localStorage.getItem('cookiesAccepted')) {
+      this.snackbar.isVisible = true;
+    }
     this.initQuickSearch();
+  }
+
+  public acceptCookies() {
+    this.snackbar.hide();
+    window.localStorage.setItem('cookiesAccepted', 'true');
   }
 
   private initQuickSearch() {

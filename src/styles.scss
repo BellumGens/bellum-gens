@@ -173,6 +173,16 @@ igx-tab-item igx-icon {
   margin-right: 8px;
 }
 
+igx-snackbar {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  z-index: 10000;
+}
+
 .igx-typography .igx-tabs__item-label {
   letter-spacing: 0.07rem;
 }

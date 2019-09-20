@@ -51,6 +51,9 @@
       <div class="content">
         <router-outlet></router-outlet>
 
+        <igx-snackbar #snackbar [autoHide]="false" actionText="I Understand" (onAction)="acceptCookies()">
+          <div class="snackbar-msg">This site uses cookies. <a href="https://www.cookiesandyou.com/" target="_blank">what are cookies?</a></div>
+        </igx-snackbar>
         <footer class="footer">
           <igx-divider></igx-divider>
           <div class="footer-row">
