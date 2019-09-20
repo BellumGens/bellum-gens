@@ -110,9 +110,12 @@
     width: 100%;
   }
 
-  .slide1 {
-    background-size: auto;
+  .slide1, .slide2, .slide3 {
     background-position: center;
+  }
+
+  .slide2 {
+    background-size: auto;
     background-position-y: -100px;
   }
 
@@ -136,10 +139,6 @@
 }
 
 @media only screen and (min-width: 2000px) {
-  .home-page-slide {
-    height: 550px;
-  }
-
   .slide1 {
     background-position-y: -150px;
   }
