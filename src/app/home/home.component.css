@@ -86,23 +86,22 @@
 }
 
 .slide1 {
+  background-image: url('/assets/wallpapers/carousel_image_2.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.slide2 {
   background-image: url('/assets/wallpapers/csgo_wallpaper_nologo.jpg');
   background-size: cover;
   background-repeat: no-repeat;
   background-position-y: -100px;
 }
 
-.slide2 {
-  background-image: url('/assets/wallpapers/LandingPage_image_1.png');
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
 .slide3 {
-  background-image: url('/assets/wallpapers/csgo_wallpaper1.jpg');
+  background-image: url('/assets/wallpapers/carousel_image_1.png');
   background-size: cover;
   background-repeat: no-repeat;
-  background-position-y: -220px;
 }
 
 @media only screen and (max-width: 1280px) {
