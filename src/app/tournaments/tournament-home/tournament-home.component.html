@@ -31,7 +31,7 @@
           <igx-icon>clear</igx-icon>
         </igx-suffix>
       </igx-input-group>
-      <button igxButton="outlined" class="submit-email">Запиши се</button>
+      <button igxButton="outlined" class="submit-email" [disabled]="email.invalid || !userEmail">Запиши се</button>
     </div>
     <igx-divider></igx-divider>
   </form>

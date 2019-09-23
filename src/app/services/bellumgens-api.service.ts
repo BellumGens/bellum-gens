@@ -829,7 +829,7 @@ export class BellumgensApiService {
   }
 
   public addSubscriber(email: string) {
-    return this.http.get(`${this._apiEndpoint}/account/subscribe?email=${email}`).pipe(
+    return this.http.post(`${this._apiEndpoint}/account/subscribe`, { Email: email }).pipe(
       map(response => {
         if (response) {
           this.commService.emitSuccess(response.toString());
