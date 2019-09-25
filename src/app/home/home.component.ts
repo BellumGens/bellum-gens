@@ -13,7 +13,7 @@ import { CommunicationService } from '../services/communication.service';
 })
 export class HomeComponent extends BaseComponent {
   public authUser: ApplicationUser;
-  public navigation = window.matchMedia('(min-width: 768px)').matches;
+  public navigation = window ? window.matchMedia('(min-width: 768px)').matches : true;
 
   constructor(private authManager: LoginService,
               private commService: CommunicationService,

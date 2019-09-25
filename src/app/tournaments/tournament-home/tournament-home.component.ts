@@ -27,7 +27,11 @@ export class TournamentHomeComponent extends BaseComponent {
     this.meta.updateTag({ name: 'description', content: 'Esports competition in business | Esports бизнес лига записване'});
     this.meta.updateTag({ name: 'twitter:title', content: 'Esports Business League | Esports бизнес лига'});
     this.meta.updateTag({ name: 'twitter:description', content: 'Esports competition in business | Esports бизнес лига записване'});
-    this.commService.title = window.matchMedia('(min-width: 768px)').matches ? this.headerTitle : this.headerTitleShort;
+    if (window) {
+      this.commService.title = window.matchMedia('(min-width: 768px)').matches ? this.headerTitle : this.headerTitleShort;
+    } else {
+      this.commService.title = this.headerTitle;
+    }
     this.subs.push(
       this.authManager.applicationUser.subscribe(user => this.authUser = user)
     );

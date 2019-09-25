@@ -5,7 +5,7 @@
 // Load zone.js for the server.
 import 'zone.js/dist/zone-node';
 import 'reflect-metadata';
-import {readFileSync, writeFileSync, existsSync, mkdirSync} from 'fs';
+import {readFileSync, writeFileSync} from 'fs';
 import {join} from 'path';
 
 import {enableProdMode} from '@angular/core';

@@ -20,7 +20,7 @@ export class StrategyDetailsComponent extends BaseComponent {
   public authUser: ApplicationUser;
   public pipeTrigger = 0;
   public newComment = newEmptyComment();
-  public horizontal = window.matchMedia('(min-width: 768px)').matches;
+  public horizontal = window ? window.matchMedia('(min-width: 768px)').matches : true;
   public overlaySettings = GlobalOverlaySettings;
 
   @ViewChild(LoginDialogComponent, {static: true})

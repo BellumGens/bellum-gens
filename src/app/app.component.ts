@@ -54,7 +54,7 @@ export class AppComponent extends BaseComponent implements OnInit {
       this.authUser = data;
       this.unreadNotifications += this.unreadPipe.transform(data.notifications);
     }));
-    if (!window.localStorage.getItem('cookiesAccepted')) {
+    if (window && !window.localStorage.getItem('cookiesAccepted')) {
       this.banner.open();
     }
     this.initQuickSearch();
