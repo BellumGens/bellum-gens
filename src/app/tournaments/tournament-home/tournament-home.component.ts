@@ -25,6 +25,8 @@ export class TournamentHomeComponent extends BaseComponent {
     super();
     this.title.setTitle('Esports Business League: Sign-up');
     this.meta.updateTag({ name: 'description', content: 'Esports competition in business | Esports бизнес лига записване'});
+    this.meta.updateTag({ name: 'twitter:title', content: 'Esports Business League | Esports бизнес лига'});
+    this.meta.updateTag({ name: 'twitter:description', content: 'Esports competition in business | Esports бизнес лига записване'});
     this.commService.title = window.matchMedia('(min-width: 768px)').matches ? this.headerTitle : this.headerTitleShort;
     this.subs.push(
       this.authManager.applicationUser.subscribe(user => this.authUser = user)

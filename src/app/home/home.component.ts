@@ -23,7 +23,10 @@ export class HomeComponent extends BaseComponent {
     super();
     this.title.setTitle('Bellum Gens: CS:GO team management');
     this.meta.updateTag({ name: 'description',
-      content: 'CSGO Strategy editor | CSGO team finding and management | Bellum Gens: Looking for Group'});
+      content: 'CSGO Strategy editor | CSGO team finding and management | Bellum Gens: Looking for Group | Esports Business League'});
+    this.meta.updateTag({ name: 'twitter:title', content: 'CS:GO Strategy editor & community for team search and management.'});
+    this.meta.updateTag({ name: 'twitter:description',
+      content: 'CS:GO Strategy editor & strategy sharing with the community. CS:GO team management platform.'});
     this.commService.title = 'Bellum Gens';
     this.subs.push(this.authManager.applicationUser.subscribe(data => this.authUser = data));
   }
