@@ -87,6 +87,7 @@
 
 .slide1 {
   background-image: url('/assets/wallpapers/carousel_image_2.webp');
+  background-position: center;
 }
 
 .slide2 {
@@ -96,10 +97,10 @@
 
 .slide3 {
   background-image: url('/assets/wallpapers/carousel_image_1.webp');
+  background-position: center;
 }
 
 .slide1, .slide2, .slide3 {
-  background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -112,6 +113,7 @@
 
   .slide2 {
     background-size: auto;
+    background-position: center;
     background-position-y: -100px;
   }
 
