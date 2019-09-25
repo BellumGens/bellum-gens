@@ -147,3 +147,10 @@
     width: auto;
   }
 }
+
+@media only screen and (max-width: 550px) {
+  .submit-email {
+    height: 48px;
+    margin: 8px auto;
+  }
+}
