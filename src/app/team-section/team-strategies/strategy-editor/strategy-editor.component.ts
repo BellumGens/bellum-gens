@@ -4,7 +4,7 @@ import { StrategyEditor } from '../../../models/strat-editor/strategy-editor';
 import { CSGOTeam } from '../../../models/csgoteam';
 import { BellumgensApiService } from '../../../services/bellumgens-api.service';
 import { ActivatedRoute } from '@angular/router';
-import { IgxDropEventArgs, IgxIconService } from 'igniteui-angular';
+import { IDropDroppedEventArgs, IgxIconService } from 'igniteui-angular';
 import { StratUtilities, EditorBrushColors } from '../../../models/strat-editor/utility';
 import { CSGOStrategy } from '../../../models/csgostrategy';
 import { BaseLayer, PointCoordinate, ImageLayer, FreeflowLayer } from '../../../models/strat-editor/editor-layer';
@@ -105,7 +105,7 @@ export class StrategyEditorComponent extends BaseComponent implements OnInit, On
     this.changes = true;
   }
 
-  public surfaceDrop(args: IgxDropEventArgs) {
+  public surfaceDrop(args: IDropDroppedEventArgs) {
     args.cancel = true;
     const layer = this.editor.createImageLayer(args.drag.data.name);
     layer.src = args.drag.data.src;

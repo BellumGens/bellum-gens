@@ -1,5 +1,5 @@
 import { Component, ViewChildren, QueryList, ElementRef, Input } from '@angular/core';
-import { IgxDropEventArgs, IgxAvatarComponent } from 'igniteui-angular';
+import { IDropDroppedEventArgs, IgxAvatarComponent } from 'igniteui-angular';
 import { PlaystyleRole, RoleSlot } from '../../models/playerrole';
 import { TeamMember, TEAM_PLACEHOLDER } from '../../models/csgoteam';
 import { BellumgensApiService } from '../../services/bellumgens-api.service';
@@ -85,7 +85,7 @@ export class TeamDetailsComponent extends BaseComponent {
     this.apiService.removeTeamMember(user).subscribe();
   }
 
-  public assignToRole(args: IgxDropEventArgs, role: RoleSlot) {
+  public assignToRole(args: IDropDroppedEventArgs, role: RoleSlot) {
     const user = args.drag.data;
     user.Role = role.role;
     role.user = user;
