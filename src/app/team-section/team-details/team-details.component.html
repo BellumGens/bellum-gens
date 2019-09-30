@@ -44,7 +44,7 @@
                         roundShape="true"
                         size="large"
                         igxDrop
-                        (onDrop)="assignToRole($event, role)">
+                        (dropped)="assignToRole($event, role)">
             </igx-avatar>
             <div>
               <span *ngIf="role.user" class="title">

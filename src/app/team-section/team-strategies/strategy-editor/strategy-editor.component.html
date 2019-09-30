@@ -29,7 +29,7 @@
 
   <canvas #board igxDrop
           class="drawing-board"
-          (onDrop)="surfaceDrop($event)"
+          (dropped)="surfaceDrop($event)"
           (pointerdown)="canvasPointerDown($event)"
           (click)="trySelectLayer($event)"></canvas>
 

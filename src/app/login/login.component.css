@@ -63,3 +63,7 @@
 .completeness-item span {
   font-size: 0.9rem;
 }
+
+.profile-button {
+  --igx-button-flat-icon-color: white;
+}
