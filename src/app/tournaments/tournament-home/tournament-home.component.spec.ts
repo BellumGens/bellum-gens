@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TournamentHomeComponent } from './tournament-home.component';
 import { FormsModule } from '@angular/forms';
-import { IgxIconModule, IgxDividerModule, IgxInputGroupModule } from 'igniteui-angular';
+import { IgxIconModule, IgxDividerModule, IgxInputGroupModule, IgxSelectModule } from 'igniteui-angular';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -20,7 +20,8 @@ describe('TournamentHomeComponent', () => {
         ServiceWorkerModule.register('', {enabled: false}),
         IgxIconModule,
         IgxDividerModule,
-        IgxInputGroupModule
+        IgxInputGroupModule,
+        IgxSelectModule
       ],
       declarations: [ TournamentHomeComponent ]
     })

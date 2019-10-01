@@ -224,7 +224,8 @@ export class AppModule {
     this.iconService.addSvgIcon('Twitch', '/assets/login/Glitch_White_RGB.svg', 'login-icons');
     this.iconService.addSvgIcon('TwitchFull', '/assets/login/Combo_White_RGB.svg', 'login-icons');
     this.iconService.addSvgIcon('Steam', '/assets/login/steam-logo-white.svg', 'login-icons');
-    this.iconService.addSvgIcon('Facebook', '/assets/fb.svg', 'login-icons');
-    this.iconService.addSvgIcon('Twitter', '/assets/twitter.svg', 'login-icons');
+    this.iconService.addSvgIcon('Facebook', '/assets/login/fb.svg', 'login-icons');
+    this.iconService.addSvgIcon('Twitter', '/assets/login/twitter.svg', 'login-icons');
+    this.iconService.addSvgIcon('BattleNet', '/assets/login/battle-net.svg', 'login-icons');
   }
 }

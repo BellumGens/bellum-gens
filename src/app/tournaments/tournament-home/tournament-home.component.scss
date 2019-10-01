@@ -59,6 +59,10 @@
   margin: 0;
 }
 
+.content-container .registration-title {
+  margin-top: 8px;
+}
+
 .slide-info p,
 .content-container p {
   font-size: 1rem;
@@ -102,15 +106,30 @@
 
 .registration-form-input {
   min-width: 380px;
-}
-
-.submit-email {
-  margin: 0 8px;
+  margin: 4px 0;
 }
 
 .content-container-column ul {
   padding-inline-start: 40px;
   list-style: disc;
+}
+
+.application-details {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  height: 0;
+  overflow: hidden;
+}
+
+.application-details-show {
+  height: 238px;
+  transition: height 1s .4s;
+}
+
+.submit-email {
+  height: 48px;
+  margin: 8px auto;
 }
 
 @media only screen and (max-width: 1280px) {
@@ -145,12 +164,5 @@
 @media only screen and (max-width: 1024px) {
   .slide {
     width: auto;
-  }
-}
-
-@media only screen and (max-width: 550px) {
-  .submit-email {
-    height: 48px;
-    margin: 8px auto;
   }
 }

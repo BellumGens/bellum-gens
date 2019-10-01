@@ -1,10 +1,11 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, ViewChild, ElementRef } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import { ApplicationUser } from '../../models/applicationuser';
 import { BellumgensApiService } from '../../services/bellumgens-api.service';
 import { Title, Meta } from '@angular/platform-browser';
 import { BaseComponent } from '../../base/base.component';
 import { CommunicationService } from '../../services/communication.service';
+import { Game, getEmptyNewApplication } from '../../models/tournament';
 
 @Component({
   selector: 'app-tournament-home',
@@ -16,6 +17,15 @@ export class TournamentHomeComponent extends BaseComponent {
   public userEmail: string = null;
   public headerTitle = 'Esports Business League';
   public headerTitleShort = 'EBL';
+  public application = getEmptyNewApplication();
+  public games = [
+    { name: 'Counter Strike: Global Offensive', id: Game.CSGO },
+    { name: 'StarCraft II', id: Game.StarCraft2 }
+  ];
+  public gameEnum = Game;
+
+  @ViewChild('appDetails', { static: true })
+  public appDetails: ElementRef;
 
   constructor(private authManager: LoginService,
               private apiService: BellumgensApiService,
@@ -40,6 +50,18 @@ export class TournamentHomeComponent extends BaseComponent {
   public subscribe() {
     if (this.userEmail) {
       this.apiService.addSubscriber(this.userEmail).subscribe();
+    }
+  }
+
+  public selectGame(game: Game) {
+    this.application.Game = game;
+    window.scroll({ top: 500, behavior: 'smooth' });
+    this.showDetails();
+  }
+
+  public showDetails() {
+    if (this.application.Game !== null) {
+      this.appDetails.nativeElement.classList.add('application-details-show');
     }
   }
 

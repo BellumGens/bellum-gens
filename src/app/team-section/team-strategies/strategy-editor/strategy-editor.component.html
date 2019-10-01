@@ -17,7 +17,7 @@
               <igx-prefix>
                 <igx-icon (click)="layer.hidden = !layer.hidden">{{ layer.hidden ? 'visibility' : 'visibility_off'}}</igx-icon>
               </igx-prefix>
-              <input igxInput [(ngModel)]="layer.name">
+              <input igxInput [(ngModel)]="layer.name" />
               <igx-suffix>
                 <igx-icon (click)="confirm.open(layer)">clear</igx-icon>
               </igx-suffix>
