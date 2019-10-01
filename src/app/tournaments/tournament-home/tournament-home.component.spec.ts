@@ -6,6 +6,7 @@ import { IgxIconModule, IgxDividerModule, IgxInputGroupModule, IgxSelectModule }
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { RouterTestingModule } from '@angular/router/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('TournamentHomeComponent', () => {
   let component: TournamentHomeComponent;
@@ -17,6 +18,7 @@ describe('TournamentHomeComponent', () => {
         FormsModule,
         HttpClientTestingModule,
         RouterTestingModule,
+        NoopAnimationsModule,
         ServiceWorkerModule.register('', {enabled: false}),
         IgxIconModule,
         IgxDividerModule,
