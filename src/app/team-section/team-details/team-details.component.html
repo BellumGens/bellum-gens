@@ -78,8 +78,8 @@
                           (dragStart)="roleDragging($event)"
                           (dragEnd)="roleDraggingEnd()">
               </igx-avatar>
-              <igx-avatar *ngIf="isAdmin && userId !== user.SteamUser.steamID64"
-                          icon='clear'
+              <igx-avatar *ngIf="isAdmin && authUser.id !== user.SteamUser.steamID64"
+                          icon="clear"
                           [roundShape]="true"
                           class="country-badge-medium navigatable"
                           title="Remove from team"
@@ -98,7 +98,7 @@
         </div>
       </igx-card-content>
     </igx-card>
-      
+
     <igx-card type="outlined">
       <igx-card-header>
         <h3 class="igx-card-header__title">Inactive</h3>
@@ -112,8 +112,8 @@
                           roundShape="true"
                           [size]="'large'">
               </igx-avatar>
-              <igx-avatar *ngIf="isAdmin && userId !== user.SteamUser.steamID64"
-                          icon='clear'
+              <igx-avatar *ngIf="isAdmin && authUser.id !== user.SteamUser.steamID64"
+                          icon="clear"
                           [roundShape]="true"
                           class="country-badge"
                           title="Remove from team"

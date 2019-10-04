@@ -49,6 +49,7 @@ import { UserPreferencesComponent } from './player-section/user-preferences/user
 import { NotificationStatePipe } from './pipes/notification-state.pipe';
 import { PlayerCountryPipe } from './pipes/player-country.pipe';
 import { LoginDialogComponent } from './login/login-dialog/login-dialog.component';
+import { TeamNewComponent } from './team-section/team-new/team-new.component';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -109,7 +110,8 @@ describe('AppComponent', () => {
         SortNotificationsPipe,
         UserPreferencesComponent,
         NotificationStatePipe,
-        PlayerCountryPipe
+        PlayerCountryPipe,
+        TeamNewComponent
       ],
     }).compileComponents();
   }));

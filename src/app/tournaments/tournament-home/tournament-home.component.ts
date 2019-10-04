@@ -1,11 +1,12 @@
 import { Component, HostListener, ViewChild, ElementRef } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import { ApplicationUser } from '../../models/applicationuser';
-import { BellumgensApiService } from '../../services/bellumgens-api.service';
 import { Title, Meta } from '@angular/platform-browser';
 import { BaseComponent } from '../../base/base.component';
 import { CommunicationService } from '../../services/communication.service';
 import { Game, getEmptyNewApplication } from '../../models/tournament';
+import { ApiTournamentsService } from '../../services/bellumgens-api.tournaments.service';
+import { LoginDialogComponent } from '../../login/login-dialog/login-dialog.component';
 
 @Component({
   selector: 'app-tournament-home',
@@ -18,6 +19,7 @@ export class TournamentHomeComponent extends BaseComponent {
   public headerTitle = 'Esports Business League';
   public headerTitleShort = 'EBL';
   public application = getEmptyNewApplication();
+  public companies: string [];
   public games = [
     { name: 'Counter Strike: Global Offensive', id: Game.CSGO },
     { name: 'StarCraft II', id: Game.StarCraft2 }
@@ -27,8 +29,11 @@ export class TournamentHomeComponent extends BaseComponent {
   @ViewChild('appDetails', { static: true })
   public appDetails: ElementRef;
 
+  @ViewChild('loginDialog', { static: true })
+  public loginDialog: LoginDialogComponent;
+
   constructor(private authManager: LoginService,
-              private apiService: BellumgensApiService,
+              private apiService: ApiTournamentsService,
               private commService: CommunicationService,
               private title: Title,
               private meta: Meta) {
@@ -43,7 +48,8 @@ export class TournamentHomeComponent extends BaseComponent {
       this.commService.title = this.headerTitle;
     }
     this.subs.push(
-      this.authManager.applicationUser.subscribe(user => this.authUser = user)
+      this.authManager.applicationUser.subscribe(user => this.authUser = user),
+      this.apiService.companies.subscribe(data => this.companies = data)
     );
   }
 
@@ -54,9 +60,13 @@ export class TournamentHomeComponent extends BaseComponent {
   }
 
   public selectGame(game: Game) {
-    this.application.Game = game;
-    window.scroll({ top: 500, behavior: 'smooth' });
-    this.showDetails();
+    if (!this.authUser) {
+      this.loginDialog.openLogin('You need to login first');
+    } else {
+      this.application.Game = game;
+      window.scroll({ top: 500, behavior: 'smooth' });
+      this.showDetails();
+    }
   }
 
   public showDetails() {

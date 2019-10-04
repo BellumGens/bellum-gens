@@ -132,6 +132,16 @@
   margin: 8px auto;
 }
 
+.team-name {
+  padding: 0 8px;
+}
+
+.team-avatar {
+  width: 32px;
+  min-width: 32px;
+  height: 32px;
+}
+
 @media only screen and (max-width: 1280px) {
   .home-page-slide {
     grid-template-columns: minmax(380px, 1fr);

@@ -5,9 +5,13 @@ export interface TournamentApplication {
   CompanyId?: string;
   Game: Game;
   TeamId?: string;
-  Team?: CSGOTeam;
   Email: string;
   BattleNetId?: string;
+}
+
+export interface Company {
+  Name: string;
+  Website: string;
 }
 
 export enum Game {
