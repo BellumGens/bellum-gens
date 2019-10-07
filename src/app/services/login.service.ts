@@ -64,7 +64,7 @@ export class LoginService {
     this.loginProviders.subscribe((data: LoginProvider []) =>
       data.forEach((item: LoginProvider) => {
         if (item.Name === provider) {
-          window.location.href = this._rootApiEndpoint + item.Url;
+          window.location.href = this._rootApiEndpoint + item.Url + '&returnUrl=' + this.getReturnUrl();
         }
       })
     );
@@ -144,5 +144,10 @@ export class LoginService {
     return this.http.get<LoginProvider []>(this._apiEndpoint + '/ExternalLogins?returnUrl=%2F&generateState=true').pipe(
       map(response => response)
     );
+  }
+
+  private getReturnUrl() {
+    // the snapshot.url always starts with / which should be removed from the param
+    return this.router.routerState.snapshot.url.substring(1);
   }
 }
