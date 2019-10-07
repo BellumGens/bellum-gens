@@ -1,7 +1,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TeamNavComponent } from './team-nav.component';
-import { IgxAvatarModule, IgxCardModule, IgxListModule, IgxInputGroupModule, IgxIconModule, IgxDialogModule, IgxProgressBarModule } from 'igniteui-angular';
+import { IgxAvatarModule,
+  IgxCardModule,
+  IgxListModule,
+  IgxInputGroupModule,
+  IgxIconModule,
+  IgxDialogModule,
+  IgxProgressBarModule } from 'igniteui-angular';
 import { FormsModule } from '@angular/forms';
 import { ConfirmComponent } from 'src/app/confirm/confirm.component';
 import { RouterTestingModule } from '@angular/router/testing';
