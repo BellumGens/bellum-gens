@@ -1,6 +1,6 @@
 import { Component, ViewChild, Input } from '@angular/core';
 import { ApplicationUser } from '../../models/applicationuser';
-import { BellumgensApiService } from 'src/app/services/bellumgens-api.service';
+import { BellumgensApiService } from '../../services/bellumgens-api.service';
 import { IgxDialogComponent } from 'igniteui-angular';
 import { Router } from '@angular/router';
 import { SteamGroup } from '../../models/steamuser';
