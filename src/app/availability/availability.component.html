@@ -3,10 +3,10 @@
             [selectable]="editable"
             [removable]="editable && weekday.Available"
             [selected]="weekday.Available"
-            (onSelection)="daySelected($event)"
+            (onClick)="daySelected($event)"
             (onRemove)="dayDeselected($event)">
-      <span class='igx-chip__text'>{{ weekday.Day | weekday }}</span>
-      <span class='igx-chip__subtext' *ngIf="weekday.Available">{{ weekday.From | date:'H:mm' }}-{{ weekday.To | date:'H:mm' }}</span>
+      <span class="igx-chip__text">{{ weekday.Day | weekday }}</span>
+      <span class="igx-chip__subtext" *ngIf="weekday.Available">{{ weekday.From | date:'H:mm' }}-{{ weekday.To | date:'H:mm' }}</span>
   </igx-chip>
 </igx-chips-area>
 
@@ -15,10 +15,10 @@
     <h5>Available times for <span class="highlight" [textContent]="selectedDay ? (selectedDay.Day | weekday) : ''"></span>:</h5>
     <div class="availability-time">
       <igx-time-picker #from class="time-picker" [value]="selectedDay.From" [itemsDelta]="{hours: 1, minutes: 15}">
-        
+
       </igx-time-picker>
       <igx-time-picker #to class="time-picker" [value]="selectedDay.To" [itemsDelta]="{hours: 1, minutes: 15}">
-        
+
       </igx-time-picker>
     </div>
   </div>
