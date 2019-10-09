@@ -122,8 +122,12 @@
 }
 
 .application-details-show {
-  height: 238px;
+  height: 286px;
   transition: height 1s .4s;
+}
+
+.accept-terms-checkbox {
+  margin: 12px;
 }
 
 .submit-registration {

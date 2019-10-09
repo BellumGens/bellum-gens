@@ -43,9 +43,6 @@ export class ApiTournamentsService {
   public leagueRegistration(application: TournamentApplication) {
     return this.http.post<TournamentApplication>(`${this._apiEndpoint}/tournament/register`, application, { withCredentials: true }).pipe(
       map(response => {
-        if (response) {
-          this.commService.emitSuccess('Registration successful!');
-        }
         return response;
       }),
       catchError(error => {

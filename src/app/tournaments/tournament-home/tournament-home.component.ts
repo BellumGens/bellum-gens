@@ -7,6 +7,7 @@ import { CommunicationService } from '../../services/communication.service';
 import { Game, getEmptyNewApplication } from '../../models/tournament';
 import { ApiTournamentsService } from '../../services/bellumgens-api.tournaments.service';
 import { LoginDialogComponent } from '../../login/login-dialog/login-dialog.component';
+import { IgxDialogComponent } from 'igniteui-angular';
 
 @Component({
   selector: 'app-tournament-home',
@@ -25,12 +26,16 @@ export class TournamentHomeComponent extends BaseComponent {
     { name: 'StarCraft II', id: Game.StarCraft2 }
   ];
   public gameEnum = Game;
+  public bankaccountinfo: string;
 
   @ViewChild('appDetails', { static: true })
   public appDetails: ElementRef;
 
   @ViewChild('loginDialog', { static: true })
   public loginDialog: LoginDialogComponent;
+
+  @ViewChild('successMsg', { static: true })
+  public successDialog: IgxDialogComponent;
 
   constructor(private authManager: LoginService,
               private apiService: ApiTournamentsService,
@@ -60,7 +65,9 @@ export class TournamentHomeComponent extends BaseComponent {
   }
 
   public leagueRegistration() {
-    this.apiService.leagueRegistration(this.application).subscribe();
+    this.apiService.leagueRegistration(this.application).subscribe(application => {
+      this.application = application;
+    });
   }
 
   public selectGame(game: Game) {
@@ -68,7 +75,8 @@ export class TournamentHomeComponent extends BaseComponent {
       this.loginDialog.openLogin('You need to login first');
     } else {
       this.application.Game = game;
-      window.scroll({ top: 500, behavior: 'smooth' });
+      const element = document.getElementById('registration');
+      element.scrollIntoView({ behavior: 'smooth' });
       this.showDetails();
     }
   }
@@ -77,6 +85,12 @@ export class TournamentHomeComponent extends BaseComponent {
     if (this.application.Game !== null) {
       this.appDetails.nativeElement.classList.add('application-details-show');
     }
+  }
+
+  public scrollToTerms(event: MouseEvent) {
+    const element = document.getElementById('terms');
+    element.scrollIntoView({ behavior: 'smooth' });
+    event.stopPropagation();
   }
 
   @HostListener('window:resize')

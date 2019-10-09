@@ -22,7 +22,7 @@
   <form #tapplication="ngForm" class="content-container-row registration-form" (ngSubmit)="leagueRegistration()">
 
     <igx-divider></igx-divider>
-    <h4 class="registration-title">Регистрация</h4>
+    <h4 id="registration" class="registration-title">Регистрация</h4>
 
     <igx-select name="game" required class="registration-form-input" [(ngModel)]="application.Game" (ngModelChange)="showDetails()">
       <label igxLabel>Изберете лига (игра)</label>
@@ -85,12 +85,13 @@
         </igx-drop-down-item>
       </igx-drop-down>
 
-      <div class="registration-form-input">
-        <igx-checkbox required id="accept" name="accept"></igx-checkbox>
-        <label for="accept">Приемам условията за записване.</label>
+      <div class="horizontal-center">
+        <igx-checkbox #termsAccepted id="accept" name="accept" class="accept-terms-checkbox">
+          <label for="accept">Приемам <span class="highlight navigatable" (click)="scrollToTerms($event)">условията за записване</span>.</label>
+        </igx-checkbox>
       </div>
 
-      <button igxButton="outlined" class="submit-registration" [disabled]="tapplication.invalid">Регистрирай ме</button>
+      <button igxButton="outlined" class="submit-registration" [disabled]="tapplication.invalid || !termsAccepted.checked">Регистрирай ме</button>
     </div>
     <igx-divider></igx-divider>
   </form>
@@ -104,7 +105,7 @@
   </div>
 
   <div class="content-container-column left-column">
-    <h4>Условия за записване</h4>
+    <h4 id="terms">Условия за записване</h4>
     <p>Единственото условие за участие е всички членове на отбора да бъдат текущи сложители на работното място към което е асоцииран отбора. Същото условие важи и за индивидуалните състезатели (StarCraft II). При записване ще се изисква да се предостави информация за това коя е компанията която отбора/индивидуалния състезател представлява.</p>
     <p>Записването ще бъде отворено до изтичане на крайния срок, или достигане на максималния брой отбори (16 CS:GO), или индивидуални състезатели (32 StarCraft II). Приключването на регистрацията изисква и заплащането на входна такса - 300лв. с вкл. ДДС на отбор или 60лв. с вкл. ДДС на индивидуален състезател.</p>
     <p>Всички учасници ще получат ексклузивно Esports Business League jersey!</p>
@@ -184,3 +185,11 @@
     </form>
   </div>
 </div>
+
+<igx-dialog title="Регистрацията ви е получена!" #successMsg>
+  <div>
+    <p>Вашата регистрация ще бъде потвърдена след като преведете таксата за участие (60лв. с ДДС за лигата по StarCraft II, или 300лв. с ДДС за лигата по CS:GO).</p>
+    <p>Банковата ни сметка е {{ bankaccountinfo }}. Моля при превода да сложите в основанието уникалния код, който сме генерирали за вашата регистрация: <span class="highlight">{{application.Hash}}</span>. Можете да намерите кога и през вашият профил.</p>
+    <p>Ако ви е нужна фактура, моля да се свържете с нас на <a href="mailto:info@eb-league.com">info@eb-league.com</a>!</p>
+  </div>
+</igx-dialog>

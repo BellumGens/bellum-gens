@@ -12,7 +12,8 @@ import { IgxIconModule,
   IgxDropDownModule,
   IgxButtonModule,
   IgxListModule,
-  IgxProgressBarModule} from 'igniteui-angular';
+  IgxProgressBarModule,
+  IgxCheckboxModule} from 'igniteui-angular';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -44,7 +45,8 @@ describe('TournamentHomeComponent', () => {
         IgxDropDownModule,
         IgxButtonModule,
         IgxListModule,
-        IgxProgressBarModule
+        IgxProgressBarModule,
+        IgxCheckboxModule
       ],
       declarations: [
         TournamentHomeComponent,
