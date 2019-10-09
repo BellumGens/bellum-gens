@@ -7,6 +7,8 @@ export interface TournamentApplication {
   TeamId?: string;
   Email: string;
   BattleNetId?: string;
+  Hash?: string;
+  DateSubmitted?: Date;
 }
 
 export interface Company {

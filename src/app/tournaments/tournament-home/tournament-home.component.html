@@ -19,7 +19,7 @@
 <app-team-new #newTeam [authUser]="authUser"></app-team-new>
 
 <div class="content-container">
-  <form #tapplication="ngForm" class="content-container-row registration-form" (ngSubmit)="subscribe()">
+  <form #tapplication="ngForm" class="content-container-row registration-form" (ngSubmit)="leagueRegistration()">
 
     <igx-divider></igx-divider>
     <h4 class="registration-title">Регистрация</h4>
@@ -33,7 +33,7 @@
 
     <div #appDetails class="application-details">
 
-      <igx-input-group class="registration-form-input" >
+      <igx-input-group class="registration-form-input">
         <label igxLabel for="email">Имейл адрес</label>
         <igx-prefix>
           <igx-icon>email</igx-icon>
@@ -49,7 +49,7 @@
         <igx-prefix>
           <igx-icon>people</igx-icon>
         </igx-prefix>
-        <igx-select-item *ngFor="let team of authUser.teams" [value]="team.TeamId">
+        <igx-select-item *ngFor="let team of authUser?.teams" [value]="team.TeamId">
           <igx-avatar [src]="team.TeamAvatar" [initials]="team.TeamName" class="team-avatar" roundShape="true"></igx-avatar>
           <p class="team-name">{{ team.TeamName }}</p>
         </igx-select-item>
@@ -85,7 +85,12 @@
         </igx-drop-down-item>
       </igx-drop-down>
 
-      <button igxButton="outlined" class="submit-email" [disabled]="tapplication.invalid">Регистрирай ме</button>
+      <div class="registration-form-input">
+        <igx-checkbox required id="accept" name="accept"></igx-checkbox>
+        <label for="accept">Приемам условията за записване.</label>
+      </div>
+
+      <button igxButton="outlined" class="submit-registration" [disabled]="tapplication.invalid">Регистрирай ме</button>
     </div>
     <igx-divider></igx-divider>
   </form>
@@ -159,5 +164,23 @@
     <h2>Контакти</h2>
     <p>Изпращайте ни въпроси на <a href="mailto:info@eb-league.com">info@eb-league.com</a></p>
     <p>Или в социалните мрежи <a href="https://www.facebook.com/esportsbleague/" target="_blank" rel="noopener">facebook</a>, <a href="https://twitter.com/EsportBLeague" target="_blank" rel="noopener">twitter</a></p>
+
+    <form #subscription="ngForm" class="content-container-row registration-form" (ngSubmit)="subscribe()">
+      <p>Ако искате да получавате известия от нас, моля оставете вашият имейл адрес!</p>
+      <div class="horizontal">
+        <igx-input-group type="border" class="subscription-form-input">
+          <label igxLabel for="subemail">Имейл адрес</label>
+          <igx-prefix>
+            <igx-icon>email</igx-icon>
+          </igx-prefix>
+          <input type="email" id="subemail" #subMail name="subemail" igxInput pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="userEmail" />
+          <igx-suffix *ngIf="subMail.value" (click)="userEmail = null">
+            <igx-icon>clear</igx-icon>
+          </igx-suffix>
+        </igx-input-group>
+
+        <button igxButton="outlined" class="submit-email" [disabled]="subscription.invalid || !userEmail">Запиши се</button>
+      </div>
+    </form>
   </div>
 </div>

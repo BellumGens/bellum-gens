@@ -59,6 +59,10 @@ export class TournamentHomeComponent extends BaseComponent {
     }
   }
 
+  public leagueRegistration() {
+    this.apiService.leagueRegistration(this.application).subscribe();
+  }
+
   public selectGame(game: Game) {
     if (!this.authUser) {
       this.loginDialog.openLogin('You need to login first');

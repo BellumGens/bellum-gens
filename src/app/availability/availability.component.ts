@@ -43,15 +43,13 @@ export class AvailabilityComponent {
   constructor(private _cdr: ChangeDetectorRef) { }
 
   public daySelected(args: IChipClickEventArgs) {
-    if (this.chips) {
-      const index = this.chips.chipsList.toArray().indexOf(args.owner);
-      this.selectedDay = this.availability[index];
-      this.dialog.open();
+    const index = this.chips.chipsList.toArray().indexOf(args.owner);
+    this.selectedDay = this.availability[index];
+    this.dialog.open();
 
-      args.owner.selected = true;
-      args.cancel = true;
-      this.selectedChip = args.owner;
-    }
+    args.owner.selected = true;
+    args.cancel = true;
+    this.selectedChip = args.owner;
   }
 
   public dayDeselected(args: IChipSelectEventArgs) {

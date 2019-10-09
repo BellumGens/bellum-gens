@@ -4,6 +4,7 @@ import { CommunicationService } from './communication.service';
 import { BehaviorSubject, throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { map, catchError } from 'rxjs/operators';
+import { TournamentApplication } from '../models/tournament';
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,21 @@ export class ApiTournamentsService {
       map(response => {
         if (response) {
           this.commService.emitSuccess(response.toString());
+        }
+        return response;
+      }),
+      catchError(error => {
+        this.commService.emitError(error.error.Message);
+        return throwError(error);
+      })
+    );
+  }
+
+  public leagueRegistration(application: TournamentApplication) {
+    return this.http.post<TournamentApplication>(`${this._apiEndpoint}/tournament/register`, application, { withCredentials: true }).pipe(
+      map(response => {
+        if (response) {
+          this.commService.emitSuccess('Registration successful!');
         }
         return response;
       }),
