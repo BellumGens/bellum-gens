@@ -67,6 +67,7 @@ export class TournamentHomeComponent extends BaseComponent {
   public leagueRegistration() {
     this.apiService.leagueRegistration(this.application).subscribe(application => {
       this.application = application;
+      this.successDialog.open();
     });
   }
 

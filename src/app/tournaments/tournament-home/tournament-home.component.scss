@@ -149,6 +149,11 @@
   height: 32px;
 }
 
+.success-dialog-content {
+  width: 550px;
+  padding: 16px;
+}
+
 @media only screen and (max-width: 1280px) {
   .home-page-slide {
     grid-template-columns: minmax(380px, 1fr);
@@ -188,5 +193,9 @@
   .submit-email {
     height: 48px;
     margin: 8px auto;
+  }
+
+  .success-dialog-content {
+    width: 380px;
   }
 }
