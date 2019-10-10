@@ -191,7 +191,14 @@
 <igx-dialog title="Регистрацията ви е получена!" [closeOnOutsideSelect]="true" #successMsg>
   <div class="success-dialog-content">
     <p>Вашата регистрация ще бъде потвърдена след като преведете таксата за участие (60лв. с ДДС за лигата по StarCraft II, или 300лв. с ДДС за лигата по CS:GO).</p>
-    <p>Банковата ни сметка е {{ bankaccountinfo }}. Моля при превода да сложите в основанието уникалния код, който сме генерирали за вашата регистрация: <span class="highlight">{{ application.Hash }}</span>. Можете да намерите кода и през вашият профил.</p>
+    <p>Банковата ни сметка е</p>
+    <ul>
+      <li>Име на Банката: <span class="highlight">{{ bankaccountinfo.bank }}</span></li>
+      <li>Титуляр: <span class="highlight">{{ bankaccountinfo.name }}</span></li>
+      <li>Сметка: <span class="highlight">{{ bankaccountinfo.account }}</span></li>
+      <li>BIC: <span class="highlight">{{ bankaccountinfo.bic }}</span></li>
+    </ul>
+    <p>Моля при превода да сложите в основанието уникалния код, който сме генерирали за вашата регистрация: <span class="highlight">{{ application.Hash }}</span>. Можете да намерите кода и през вашият профил.</p>
     <p>Ако ви е нужна фактура, моля да се свържете с нас на <a href="mailto:info@eb-league.com">info@eb-league.com</a>!</p>
   </div>
 </igx-dialog>

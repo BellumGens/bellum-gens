@@ -4,7 +4,7 @@ import { ApplicationUser } from '../../models/applicationuser';
 import { Title, Meta } from '@angular/platform-browser';
 import { BaseComponent } from '../../base/base.component';
 import { CommunicationService } from '../../services/communication.service';
-import { Game, getEmptyNewApplication } from '../../models/tournament';
+import { Game, getEmptyNewApplication, GAMES } from '../../models/tournament';
 import { ApiTournamentsService } from '../../services/bellumgens-api.tournaments.service';
 import { LoginDialogComponent } from '../../login/login-dialog/login-dialog.component';
 import { IgxDialogComponent } from 'igniteui-angular';
@@ -21,12 +21,14 @@ export class TournamentHomeComponent extends BaseComponent {
   public headerTitleShort = 'EBL';
   public application = getEmptyNewApplication();
   public companies: string [];
-  public games = [
-    { name: 'Counter Strike: Global Offensive', id: Game.CSGO },
-    { name: 'StarCraft II', id: Game.StarCraft2 }
-  ];
+  public games = GAMES;
   public gameEnum = Game;
-  public bankaccountinfo: string;
+  public bankaccountinfo = {
+    bank: 'ОББ',
+    name: 'Белум Генс',
+    bic: 'UBBSBGSF',
+    account: 'BG90UBBS80021087375040'
+  };
 
   @ViewChild('appDetails', { static: true })
   public appDetails: ElementRef;

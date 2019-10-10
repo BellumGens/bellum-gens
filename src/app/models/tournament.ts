@@ -9,6 +9,7 @@ export interface TournamentApplication {
   BattleNetId?: string;
   Hash?: string;
   DateSubmitted?: Date;
+  State?: TournamentApplicationState;
 }
 
 export interface Company {
@@ -21,6 +22,11 @@ export enum Game {
   StarCraft2
 }
 
+export enum TournamentApplicationState {
+  Pending,
+  Confirmed
+}
+
 export function getEmptyNewApplication(): TournamentApplication {
   return {
     Game: null,
@@ -28,3 +34,7 @@ export function getEmptyNewApplication(): TournamentApplication {
   };
 }
 
+export const GAMES = [
+  { name: 'Counter Strike: Global Offensive', id: Game.CSGO },
+  { name: 'StarCraft II', id: Game.StarCraft2 }
+];

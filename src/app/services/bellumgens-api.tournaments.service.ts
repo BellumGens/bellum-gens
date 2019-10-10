@@ -12,17 +12,27 @@ import { TournamentApplication } from '../models/tournament';
 export class ApiTournamentsService {
   private _apiEndpoint = environment.apiEndpoint;
 
-  private _companies = new BehaviorSubject<string []>([]);
+  private _companies = new BehaviorSubject<string []>(null);
+  private _registrations = new BehaviorSubject<TournamentApplication []>(null);
 
   constructor(private http: HttpClient, private commService: CommunicationService) { }
 
   public get companies() {
-    if (!this._companies.value || !this._companies.value.length) {
+    if (!this._companies.value) {
       this.getCompanies().subscribe(data => {
         this._companies.next(data);
       });
     }
     return this._companies;
+  }
+
+  public get registrations() {
+    if (!this._registrations.value) {
+      this.getRegistrations().subscribe(data => {
+        this._registrations.next(data);
+      });
+    }
+    return this._registrations;
   }
 
   public addSubscriber(email: string) {
@@ -50,6 +60,10 @@ export class ApiTournamentsService {
         return throwError(error);
       })
     );
+  }
+
+  private getRegistrations() {
+    return this.http.get<TournamentApplication []>(`${this._apiEndpoint}/tournament/registrations`, { withCredentials: true});
   }
 
   private getCompanies() {
