@@ -1,8 +1,3 @@
-:host {
-  --igx-button-raised-border-radius: 0;
-  --igx-button-outlined-text-color: white;
-}
-
 .content-container {
   display: grid;
   grid-template-columns: minmax(45%, 1fr) minmax(45%, 1fr);
@@ -59,6 +54,10 @@
   margin: 0;
 }
 
+.content-container .registration-title {
+  margin-top: 8px;
+}
+
 .slide-info p,
 .content-container p {
   font-size: 1rem;
@@ -102,15 +101,57 @@
 
 .registration-form-input {
   min-width: 380px;
+  margin: 4px 0;
+}
+
+.subscription-form-input {
+  min-width: 380px;
+}
+
+.content-container-column ul {
+  padding-inline-start: 40px;
+  list-style: disc;
+}
+
+.application-details {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  height: 0;
+  overflow: hidden;
+}
+
+.application-details-show {
+  height: 286px;
+  transition: height 1s .4s;
+}
+
+.accept-terms-checkbox {
+  margin: 12px;
+}
+
+.submit-registration {
+  height: 48px;
+  margin: 8px auto;
 }
 
 .submit-email {
   margin: 0 8px;
 }
 
-.content-container-column ul {
-  padding-inline-start: 40px;
-  list-style: disc;
+.team-name {
+  padding: 0 8px;
+}
+
+.team-avatar {
+  width: 32px;
+  min-width: 32px;
+  height: 32px;
+}
+
+.success-dialog-content {
+  width: 550px;
+  padding: 16px;
 }
 
 @media only screen and (max-width: 1280px) {
@@ -152,5 +193,9 @@
   .submit-email {
     height: 48px;
     margin: 8px auto;
+  }
+
+  .success-dialog-content {
+    width: 380px;
   }
 }

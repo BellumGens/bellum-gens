@@ -3,35 +3,95 @@
     <div class="slide-info">
       <h1>CS:GO League</h1>
       <p>Първото издание на Esports Business League ще се проведе пролетта на 2020. До 16 отбора ще премерят сили в CS:GO лига, всеки срещу всеки и ще събират точки за участие в LAN финалите.</p>
-      <button igxButton="raised" igxButtonColor="#fff" disabled="true">Записване от 15 Октомври 2019</button>
+      <button igxButton="raised" igxButtonColor="#fff" (click)="selectGame(gameEnum.CSGO)">Записване за CS:GO лига</button>
     </div>
   </div>
   <div class="slide slide2">
     <div class="slide-info">
       <h1>StarCraft II League</h1>
       <p>Първото издание на Esports Business League ще се проведе пролетта на 2020. До 32 състезателя ще премерят сили в StarCraft II лига, всеки срещу всеки и ще събират точки за участие в LAN финалите.</p>
-      <button igxButton="raised" igxButtonColor="#fff" disabled="true">Записване от 15 Октомври 2019</button>
+      <button igxButton="raised" igxButtonColor="#fff" (click)="selectGame(gameEnum.StarCraft2)">Записване за StarCraft II лига</button>
     </div>
   </div>
 </div>
 
+<app-login-dialog #loginDialog></app-login-dialog>
+<app-team-new #newTeam [authUser]="authUser"></app-team-new>
+
 <div class="content-container">
-  <form #email="ngForm" class="content-container-row registration-form" (ngSubmit)="subscribe()">
+  <form #tapplication="ngForm" class="content-container-row registration-form" (ngSubmit)="leagueRegistration()">
+
     <igx-divider></igx-divider>
-    <h4>Регистрацията ще бъде отворена на 15ти Октомври, 2019.</h4>
-    <p>Ако искате да получавате известия от нас, моля оставете вашият имейл адрес!</p>
-    <div class="horizontal">
-      <igx-input-group class="registration-form-input" type="border">
+    <h4 id="registration" class="registration-title">Регистрация</h4>
+
+    <igx-select name="game" required class="registration-form-input" [(ngModel)]="application.Game" (ngModelChange)="showDetails()">
+      <label igxLabel>Изберете лига (игра)</label>
+      <igx-select-item *ngFor="let game of games" [value]="game.id">
+        {{ game.name }}
+      </igx-select-item>
+    </igx-select>
+
+    <div #appDetails class="application-details">
+
+      <igx-input-group class="registration-form-input">
         <label igxLabel for="email">Имейл адрес</label>
         <igx-prefix>
           <igx-icon>email</igx-icon>
         </igx-prefix>
-        <input type="email" id="email" #userMail name="email" igxInput pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="userEmail" />
-        <igx-suffix *ngIf="userMail.value" (click)="userEmail = null">
+        <input type="email" id="email" #userMail name="email" required igxInput pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="application.Email" />
+        <igx-suffix *ngIf="userMail.value" (click)="application.Email = null">
           <igx-icon>clear</igx-icon>
         </igx-suffix>
       </igx-input-group>
-      <button igxButton="outlined" class="submit-email" [disabled]="email.invalid || !userEmail">Запиши се</button>
+
+      <igx-select id="team" #team name="team" required [(ngModel)]="application.TeamId" class="registration-form-input" *ngIf="application.Game === gameEnum.CSGO" >
+        <label igxLabel for="email">Изберете своя отбор</label>
+        <igx-prefix>
+          <igx-icon>people</igx-icon>
+        </igx-prefix>
+        <igx-select-item *ngFor="let team of authUser?.teams" [value]="team.TeamId">
+          <igx-avatar [src]="team.TeamAvatar" [initials]="team.TeamName" class="team-avatar" roundShape="true"></igx-avatar>
+          <p class="team-name">{{ team.TeamName }}</p>
+        </igx-select-item>
+        <igx-select-item (click)="newTeam.open(false)">
+          Създай нов отбор...
+        </igx-select-item>
+      </igx-select>
+
+      <igx-input-group class="registration-form-input" *ngIf="application.Game === gameEnum.StarCraft2" >
+        <label igxLabel for="email">Battle tag</label>
+        <igx-prefix>
+          <igx-icon fontSet="login-icons" name="BattleNet"></igx-icon>
+        </igx-prefix>
+        <input id="battletag" #battletag name="battletag" required igxInput pattern="^[a-z0-9._%+-]+#[0-9]{4}$" [(ngModel)]="application.BattleNetId" />
+        <igx-suffix *ngIf="battletag.value" (click)="application.BattleNetId = null">
+          <igx-icon>clear</igx-icon>
+        </igx-suffix>
+      </igx-input-group>
+
+      <igx-input-group class="registration-form-input">
+        <label igxLabel for="company">Компания</label>
+        <igx-prefix>
+          <igx-icon>work</igx-icon>
+        </igx-prefix>
+        <input id="company" #company name="company" igxInput [igxAutocomplete]="companiesDD" [(ngModel)]="application.CompanyId" required />
+        <igx-suffix *ngIf="company.value" (click)="application.CompanyId = null">
+          <igx-icon>clear</igx-icon>
+        </igx-suffix>
+      </igx-input-group>
+      <igx-drop-down #companiesDD maxHeight="320px">
+        <igx-drop-down-item *ngFor="let company of companies | startsWith:application.CompanyId" [value]="company">
+          {{ company }}
+        </igx-drop-down-item>
+      </igx-drop-down>
+
+      <div class="horizontal-center">
+        <igx-checkbox #termsAccepted id="accept" name="accept" class="accept-terms-checkbox">
+          <label for="accept">Приемам <span class="highlight navigatable" (click)="scrollToTerms($event)">условията за записване</span>.</label>
+        </igx-checkbox>
+      </div>
+
+      <button igxButton="outlined" class="submit-registration" [disabled]="tapplication.invalid || !termsAccepted.checked">Регистрирай ме</button>
     </div>
     <igx-divider></igx-divider>
   </form>
@@ -42,13 +102,15 @@
   <div class="content-container-column">
     <h4>Какво е Esports Business League?</h4>
     <p>Esports Business League предоставя арена за аматьорска състезание между отбори сформирани на работното място. Първият сезон на лигата ще се проведе в рамките на 8 седмици, като всяка седмица ще се провеждат по 2 срещи, след работно време в делнични дни (без петък). Лигата ще приключи с LAN финали до които ще достигнат отборите и играчите с най-много събрани точки през сезона. Всички срещи от лигата ще бъдат излъчвани и коментирани на живо по <a href="https://www.twitch.tv/" target="_blank" rel="noopener">twitch.tv</a>.</p>
+    <h4>Кога?</h4>
+    <p>Провеждането на първи сезон на лигата ще започне от Януари 2020.</p>
   </div>
 
   <div class="content-container-column left-column">
-    <h4>Условия за записване</h4>
-    <p>Единственото условие за участие е всички членове на отбора да бъдат текущи служители на работното място към което е асоцииран отбора. Същото условие важи и за индивидуалните състезатели (StarCraft II). При записване ще се изисква да се предостави информация за това коя е компанията която отбора/индивидуалния състезател представлява.</p>
-    <p>Записването ще бъде отворено до изтичане на крайния срок, или достигане на максималния брой отбори (16 CS:GO), или индивидуални състезатели (32 StarCraft II). Приключването на регистрацията изисква и заплащането на входна такса - 300лв. с вкл. ДДС на отбор или 60лв. с вкл. ДДС на индивидуален състезател.</p>
-    <p>Всички учасници ще получат ексклузивно Esports Business League jersey!</p>
+    <h4 id="terms">Условия за записване</h4>
+    <p>Единственото условие за участие е всички членове на отбора да бъдат текущи служители на работното място към което е асоцииран отбора. Отборът може да има резерви, които трябва да отговарят на същото условие, но могат да бъдат добавяни и след регистрацията. Индивидуалните състезатели (StarCraft II) трябва да бъдат активно заети към работното място, с което се асоциират в регистрацията. При записване ще се изисква да се предостави информация за това коя е компанията която отбора/индивидуалния състезател представлява.</p>
+    <p>Записването ще бъде отворено до изтичане на крайния срок, или достигане на максималния брой отбори (16 CS:GO), или индивидуални състезатели (32 StarCraft II). Приключването на регистрацията изисква и заплащането на входна такса - 300лв. с вкл. ДДС на отбор или 60лв. с вкл. ДДС на индивидуален състезател. Заплащането на таксата става по банков път след регистрацията.</p>
+    <p>Всеки отбор ще получи като подарък 5 ексклузивни Esports Business League jersey. Всеки индивидуален състезател също ще получи като подарък jersey.</p>
   </div>
   <div class="content-container-column">
     <img src="/assets/wallpapers/LandingPage_image_2.webp" class="preview-image" alt="Terms and Conditions" />
@@ -105,5 +167,38 @@
     <h2>Контакти</h2>
     <p>Изпращайте ни въпроси на <a href="mailto:info@eb-league.com">info@eb-league.com</a></p>
     <p>Или в социалните мрежи <a href="https://www.facebook.com/esportsbleague/" target="_blank" rel="noopener">facebook</a>, <a href="https://twitter.com/EsportBLeague" target="_blank" rel="noopener">twitter</a></p>
+
+    <form #subscription="ngForm" class="content-container-row registration-form" (ngSubmit)="subscribe()">
+      <p>Ако искате да получавате известия от нас, моля оставете вашият имейл адрес!</p>
+      <div class="horizontal">
+        <igx-input-group type="border" class="subscription-form-input">
+          <label igxLabel for="subemail">Имейл адрес</label>
+          <igx-prefix>
+            <igx-icon>email</igx-icon>
+          </igx-prefix>
+          <input type="email" id="subemail" #subMail name="subemail" igxInput pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="userEmail" />
+          <igx-suffix *ngIf="subMail.value" (click)="userEmail = null">
+            <igx-icon>clear</igx-icon>
+          </igx-suffix>
+        </igx-input-group>
+
+        <button igxButton="outlined" class="submit-email" [disabled]="subscription.invalid || !userEmail">Запиши се</button>
+      </div>
+    </form>
   </div>
 </div>
+
+<igx-dialog title="Регистрацията ви е получена!" [closeOnOutsideSelect]="true" #successMsg>
+  <div class="success-dialog-content">
+    <p>Вашата регистрация ще бъде потвърдена след като преведете таксата за участие (60лв. с ДДС за лигата по StarCraft II, или 300лв. с ДДС за лигата по CS:GO).</p>
+    <p>Банковата ни сметка е</p>
+    <ul>
+      <li>Име на Банката: <span class="highlight">{{ bankaccountinfo.bank }}</span></li>
+      <li>Титуляр: <span class="highlight">{{ bankaccountinfo.name }}</span></li>
+      <li>Сметка: <span class="highlight">{{ bankaccountinfo.account }}</span></li>
+      <li>BIC: <span class="highlight">{{ bankaccountinfo.bic }}</span></li>
+    </ul>
+    <p>Моля при превода да сложите в основанието уникалния код, който сме генерирали за вашата регистрация: <span class="highlight">{{ application.Hash }}</span>. Можете да намерите кода и през вашият профил.</p>
+    <p>Ако ви е нужна фактура, моля да се свържете с нас на <a href="mailto:info@eb-league.com">info@eb-league.com</a>!</p>
+  </div>
+</igx-dialog>

@@ -2,10 +2,26 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TournamentHomeComponent } from './tournament-home.component';
 import { FormsModule } from '@angular/forms';
-import { IgxIconModule, IgxDividerModule, IgxInputGroupModule } from 'igniteui-angular';
+import { IgxIconModule,
+  IgxDividerModule,
+  IgxInputGroupModule,
+  IgxSelectModule,
+  IgxDialogModule,
+  IgxAvatarModule,
+  IgxAutocompleteModule,
+  IgxDropDownModule,
+  IgxButtonModule,
+  IgxListModule,
+  IgxProgressBarModule,
+  IgxCheckboxModule} from 'igniteui-angular';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { RouterTestingModule } from '@angular/router/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginDialogComponent } from 'src/app/login/login-dialog/login-dialog.component';
+import { TeamNewComponent } from 'src/app/team-section/team-new/team-new.component';
+import { StartsWithPipe } from 'src/app/pipes/starts-with.pipe';
+import { GroupsFilterPipe } from 'src/app/pipes/groups-filter.pipe';
 
 describe('TournamentHomeComponent', () => {
   let component: TournamentHomeComponent;
@@ -17,12 +33,28 @@ describe('TournamentHomeComponent', () => {
         FormsModule,
         HttpClientTestingModule,
         RouterTestingModule,
+        NoopAnimationsModule,
         ServiceWorkerModule.register('', {enabled: false}),
         IgxIconModule,
         IgxDividerModule,
-        IgxInputGroupModule
+        IgxInputGroupModule,
+        IgxSelectModule,
+        IgxDialogModule,
+        IgxAvatarModule,
+        IgxAutocompleteModule,
+        IgxDropDownModule,
+        IgxButtonModule,
+        IgxListModule,
+        IgxProgressBarModule,
+        IgxCheckboxModule
       ],
-      declarations: [ TournamentHomeComponent ]
+      declarations: [
+        TournamentHomeComponent,
+        LoginDialogComponent,
+        TeamNewComponent,
+        StartsWithPipe,
+        GroupsFilterPipe
+      ]
     })
     .compileComponents();
   }));

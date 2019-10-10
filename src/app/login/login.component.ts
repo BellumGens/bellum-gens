@@ -6,6 +6,8 @@ import { PlaystyleRole } from '../models/playerrole';
 import { BellumgensApiService } from '../services/bellumgens-api.service';
 import { BaseComponent } from '../base/base.component';
 import { GlobalOverlaySettings } from '../models/misc';
+import { TournamentApplication, GAMES } from '../models/tournament';
+import { ApiTournamentsService } from '../services/bellumgens-api.tournaments.service';
 
 export interface ProfileCompleteness {
   availability: boolean;
@@ -27,11 +29,14 @@ export interface ProfileCompleteness {
 })
 export class LoginComponent extends BaseComponent {
   private _authUser: ApplicationUser;
+  public registrations: TournamentApplication [];
+  public games = GAMES;
 
   @Input()
   public set authUser(user: ApplicationUser) {
     this._authUser = user;
     if (user) {
+      this.tournamentService.registrations.subscribe(data => this.registrations = data);
       this.fillCompleteness();
     }
   }
@@ -45,6 +50,7 @@ export class LoginComponent extends BaseComponent {
   public overlaySettings = GlobalOverlaySettings;
 
   constructor(private authManager: LoginService,
+              private tournamentService: ApiTournamentsService,
               private apiService: BellumgensApiService) {
     super();
     this.subs.push(
