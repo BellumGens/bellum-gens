@@ -64,7 +64,7 @@ export class LoginService {
     this.loginProviders.subscribe((data: LoginProvider []) =>
       data.forEach((item: LoginProvider) => {
         if (item.Name === provider) {
-          window.location.href = this._rootApiEndpoint + item.Url;
+          window.location.href = this._rootApiEndpoint + item.Url + '&returnUrl=' + window.location.href;
         }
       })
     );
