@@ -38,7 +38,8 @@ import { IgxNavbarModule,
   IgxSwitchModule,
   IgxSelectModule,
   IgxDividerModule,
-  IgxCarouselModule} from 'igniteui-angular';
+  IgxCarouselModule,
+  IgxAutocompleteModule} from 'igniteui-angular';
 import { PlayersComponent } from './player-section/players/players.component';
 import { PlayerDetailsComponent } from './player-section/player-details/player-details.component';
 import { LoginService } from './services/login.service';
@@ -105,6 +106,9 @@ import { NewStrategyComponent } from './team-section/team-strategies/new-strateg
 import { LoginDialogComponent } from './login/login-dialog/login-dialog.component';
 import { IsStratOwnerPipe } from './pipes/is-strat-owner.pipe';
 import { TournamentHomeComponent } from './tournaments/tournament-home/tournament-home.component';
+import { ApiTournamentsService } from './services/bellumgens-api.tournaments.service';
+import { StartsWithPipe } from './pipes/starts-with.pipe';
+import { TeamNewComponent } from './team-section/team-new/team-new.component';
 
 @NgModule({
   declarations: [
@@ -170,7 +174,9 @@ import { TournamentHomeComponent } from './tournaments/tournament-home/tournamen
     NewStrategyComponent,
     LoginDialogComponent,
     IsStratOwnerPipe,
-    TournamentHomeComponent
+    TournamentHomeComponent,
+    StartsWithPipe,
+    TeamNewComponent
   ],
   imports: [
     FormsModule,
@@ -209,12 +215,14 @@ import { TournamentHomeComponent } from './tournaments/tournament-home/tournamen
     IgxSelectModule,
     IgxDividerModule,
     IgxCarouselModule,
+    IgxAutocompleteModule,
     RouterModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
     LoginService,
     BellumgensApiService,
+    ApiTournamentsService,
     IgxIconService
   ],
   bootstrap: [AppComponent]
@@ -224,7 +232,8 @@ export class AppModule {
     this.iconService.addSvgIcon('Twitch', '/assets/login/Glitch_White_RGB.svg', 'login-icons');
     this.iconService.addSvgIcon('TwitchFull', '/assets/login/Combo_White_RGB.svg', 'login-icons');
     this.iconService.addSvgIcon('Steam', '/assets/login/steam-logo-white.svg', 'login-icons');
-    this.iconService.addSvgIcon('Facebook', '/assets/fb.svg', 'login-icons');
-    this.iconService.addSvgIcon('Twitter', '/assets/twitter.svg', 'login-icons');
+    this.iconService.addSvgIcon('Facebook', '/assets/login/fb.svg', 'login-icons');
+    this.iconService.addSvgIcon('Twitter', '/assets/login/twitter.svg', 'login-icons');
+    this.iconService.addSvgIcon('BattleNet', '/assets/login/battle-net.svg', 'login-icons');
   }
 }

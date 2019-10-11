@@ -4,7 +4,8 @@ import { IgxTimePickerComponent,
   IChipSelectEventArgs,
   IgxChipsAreaComponent,
   IgxDialogComponent,
-  IgxChipComponent} from 'igniteui-angular';
+  IgxChipComponent,
+  IChipClickEventArgs} from 'igniteui-angular';
 
 @Component({
   selector: 'app-availability',
@@ -41,23 +42,20 @@ export class AvailabilityComponent {
 
   constructor(private _cdr: ChangeDetectorRef) { }
 
-  public daySelected(args: IChipSelectEventArgs) {
-    if (this.chips && args.originalEvent) {
-      const index = this.chips.chipsList.toArray().indexOf(args.owner);
-      this.selectedDay = this.availability[index];
-      this.dialog.open();
+  public daySelected(args: IChipClickEventArgs) {
+    const index = this.chips.chipsList.toArray().indexOf(args.owner);
+    this.selectedDay = this.availability[index];
+    this.dialog.open();
 
-      if (!args.selected) {
-        args.cancel = true;
-      } else {
-        this.selectedChip = args.owner;
-      }
-    }
+    args.owner.selected = true;
+    args.cancel = true;
+    this.selectedChip = args.owner;
   }
 
   public dayDeselected(args: IChipSelectEventArgs) {
     const index = this.chips.chipsList.toArray().indexOf(args.owner);
     const availability = this.availability[index];
+    (args.originalEvent as PointerEvent).stopPropagation();
     availability.Available = false;
     this.availabilityChanged.emit(availability);
     this._cdr.detectChanges();
@@ -72,9 +70,6 @@ export class AvailabilityComponent {
   }
 
   public availabilityCancel() {
-    if (this.selectedChip) {
-      this.selectedChip.selected = false;
-    }
     this.dialog.close();
   }
 }

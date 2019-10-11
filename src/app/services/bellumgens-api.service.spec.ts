@@ -1,4 +1,4 @@
-import { TestBed, inject } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 
 import { BellumgensApiService } from './bellumgens-api.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -6,12 +6,12 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 describe('BellumgensApiService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ HttpClientTestingModule ],
-      providers: [BellumgensApiService]
+      imports: [ HttpClientTestingModule ]
     });
   });
 
-  it('should be created', inject([BellumgensApiService], (service: BellumgensApiService) => {
+  it('should be created', () => {
+    const service: BellumgensApiService = TestBed.get(BellumgensApiService);
     expect(service).toBeTruthy();
-  }));
+  });
 });
