@@ -12,8 +12,10 @@
       <igx-tabs [tabsType]="'fixed'">
         <igx-tabs-group class="profile-content">
           <ng-template igxTab>
+            <div class="horizontal">
               <igx-icon>person</igx-icon>
               <div class="igx-tabs__item-label">Profile</div>
+            </div>
           </ng-template>
           <div class="center-items profile-view">
             <igx-avatar [src]="authUser.steamUser.avatarFull" [initials]="authUser.steamUser.steamID" roundShape="true" [size]="'large'">
@@ -45,27 +47,12 @@
           <button class="submit-button" igxButton="outlined" igxRipple (click)="logout()"><igx-icon>exit_to_app</igx-icon>logout</button>
         </igx-tabs-group>
 
-        <igx-tabs-group *ngIf="registrations && registrations.length" class="profile-content">
-          <ng-template igxTab>
-            <igx-icon>archive</igx-icon>
-            <div class="igx-tabs__item-label">EBL</div>
-          </ng-template>
-
-          <igx-list>
-            <igx-list-item *ngFor="let registration of registrations">
-              <h2 igxListLineTitle>Registration for {{ registration.Game ? 'StarCraft II' : 'CS:GO' }}</h2>
-              <h4 igxListLineSubTitle>Confirmation code <span class="highlight">{{registration.Hash}}</span></h4>
-              <div igxListAction>
-                {{ registration.State ? 'Confirmed' : 'Pending' }}
-              </div>
-            </igx-list-item>
-          </igx-list>
-        </igx-tabs-group>
-
         <igx-tabs-group class="profile-content">
           <ng-template igxTab>
-            <igx-icon>settings</igx-icon>
-            <div class="igx-tabs__item-label">Settings</div>
+            <div class="horizontal">
+              <igx-icon>settings</igx-icon>
+              <div class="igx-tabs__item-label">Settings</div>
+            </div>
           </ng-template>
 
           <app-user-preferences class="preferences-divider"></app-user-preferences>
