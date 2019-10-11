@@ -69,14 +69,14 @@ export class TournamentHomeComponent extends BaseComponent {
   public leagueRegistration() {
     this.apiService.leagueRegistration(this.application).subscribe(application => {
       this.application = application;
-      this.apiService.updateRegistrations(application);
+      this.apiService.updateRegistrations();
       this.successDialog.open();
     });
   }
 
   public selectGame(game: Game) {
     if (!this.authUser) {
-      this.loginDialog.openLogin('You need to login first');
+      this.loginDialog.openLogin('Трябва първо да влезете с профила си');
     } else {
       this.application.Game = game;
       const element = document.getElementById('registration');

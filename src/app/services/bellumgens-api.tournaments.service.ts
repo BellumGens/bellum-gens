@@ -62,13 +62,10 @@ export class ApiTournamentsService {
     );
   }
 
-  public updateRegistrations(application: TournamentApplication) {
-    if (this._registrations.value) {
-      const current = this._registrations.value;
-      current.push(application);
-      this._registrations.next(current);
-    }
-    this._registrations.next([application]);
+  public updateRegistrations() {
+    this.getRegistrations().subscribe(data => {
+      this._registrations.next(data);
+    });
   }
 
   private getRegistrations() {
