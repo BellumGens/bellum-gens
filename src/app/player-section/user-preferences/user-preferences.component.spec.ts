@@ -8,7 +8,8 @@ import { IgxInputGroupModule,
   IgxDialogModule,
   IgxRippleModule,
   IgxDividerModule,
-  IgxButtonModule } from 'igniteui-angular';
+  IgxButtonModule,
+  IgxListModule} from 'igniteui-angular';
 import { ConfirmComponent } from 'src/app/confirm/confirm.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -34,7 +35,8 @@ describe('UserPreferencesComponent', () => {
         IgxDividerModule,
         IgxButtonModule,
         IgxDividerModule,
-        IgxRippleModule
+        IgxRippleModule,
+        IgxListModule
       ],
       declarations: [ UserPreferencesComponent, ConfirmComponent ]
     })

@@ -29,14 +29,11 @@ export interface ProfileCompleteness {
 })
 export class LoginComponent extends BaseComponent {
   private _authUser: ApplicationUser;
-  public registrations: TournamentApplication [];
-  public games = GAMES;
 
   @Input()
   public set authUser(user: ApplicationUser) {
     this._authUser = user;
     if (user) {
-      this.tournamentService.registrations.subscribe(data => this.registrations = data);
       this.fillCompleteness();
     }
   }
@@ -50,7 +47,6 @@ export class LoginComponent extends BaseComponent {
   public overlaySettings = GlobalOverlaySettings;
 
   constructor(private authManager: LoginService,
-              private tournamentService: ApiTournamentsService,
               private apiService: BellumgensApiService) {
     super();
     this.subs.push(

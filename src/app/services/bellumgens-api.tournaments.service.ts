@@ -62,6 +62,12 @@ export class ApiTournamentsService {
     );
   }
 
+  public updateRegistrations() {
+    this.getRegistrations().subscribe(data => {
+      this._registrations.next(data);
+    });
+  }
+
   private getRegistrations() {
     return this.http.get<TournamentApplication []>(`${this._apiEndpoint}/tournament/registrations`, { withCredentials: true});
   }
