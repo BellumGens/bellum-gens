@@ -16,6 +16,7 @@ import { IgxDialogComponent } from 'igniteui-angular';
 })
 export class TournamentHomeComponent extends BaseComponent {
   public authUser: ApplicationUser;
+  public userCheck = false;
   public userEmail: string = null;
   public headerTitle = 'Esports Business League';
   public headerTitleShort = 'EBL';
@@ -56,6 +57,7 @@ export class TournamentHomeComponent extends BaseComponent {
     }
     this.subs.push(
       this.authManager.applicationUser.subscribe(user => this.authUser = user),
+      this.authManager.userCheckInProgress.subscribe(value => this.userCheck = value),
       this.apiService.companies.subscribe(data => this.companies = data)
     );
   }
