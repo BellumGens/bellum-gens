@@ -24,8 +24,8 @@
     <igx-divider></igx-divider>
     <h4 id="registration" class="registration-title">Регистрация</h4>
 
-    <igx-select name="game" required class="registration-form-input" [(ngModel)]="application.Game" (ngModelChange)="showDetails()">
-      <label igxLabel>Изберете лига (игра)</label>
+    <igx-select name="game" required [disabled]="!authUser" class="registration-form-input" [(ngModel)]="application.Game" (ngModelChange)="showDetails()">
+      <label igxLabel>{{ authUser ? 'Изберете лига (игра)' : 'Първо трябва да влезете в акаунта си'}}</label>
       <igx-select-item *ngFor="let game of games" [value]="game.id">
         {{ game.name }}
       </igx-select-item>
