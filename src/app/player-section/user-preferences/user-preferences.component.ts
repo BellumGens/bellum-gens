@@ -27,12 +27,14 @@ export class UserPreferencesComponent extends BaseComponent {
     super();
     this.subs.push(
       this.authManager.applicationUser.subscribe(user => {
-        this.preferences = {
-          email: user.email,
-          searchVisible: user.searchVisible
-        };
+        if (user) {
+          this.preferences = {
+            email: user.email,
+            searchVisible: user.searchVisible
+          };
+          this.subs.push(this.apiService.registrations.subscribe(data => this.registrations = data));
+        }
         this.authUser = user;
-        this.subs.push(this.apiService.registrations.subscribe(data => this.registrations = data));
       }),
       this.authManager.loginProviders.subscribe(providers => this.providers = providers)
     );

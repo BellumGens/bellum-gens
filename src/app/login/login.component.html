@@ -1,6 +1,9 @@
 <app-login-dialog #loginDialog></app-login-dialog>
 
-<button igxButton="raised" igxRipple *ngIf="!authUser" (click)="loginDialog.openLogin()">Login</button>
+<button igxButton="raised" igxRipple *ngIf="!authUser && !userCheck" (click)="loginDialog.openLogin()">Login</button>
+
+<igx-circular-bar *ngIf="userCheck" [indeterminate]="true"></igx-circular-bar>
+
 <div *ngIf="authUser">
   <button class="profile-button" #profileButton igxButton="flat" igxRipple [igxToggleAction]="userProfile" [overlaySettings]="overlaySettings">
     <igx-avatar [src]="authUser.steamUser.avatarMedium" [initials]="authUser.steamUser.steamID" roundShape="true">

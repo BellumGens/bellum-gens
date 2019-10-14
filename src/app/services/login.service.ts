@@ -22,6 +22,7 @@ export class LoginService {
 
   private _applicationUser: ReplaySubject<ApplicationUser>;
   private _loginProviders: Observable<LoginProvider []>;
+  public userCheckInProgress = new ReplaySubject<boolean>(1);
   public error: any;
   public callMade = false;
 
@@ -46,6 +47,7 @@ export class LoginService {
 
   public get applicationUser() {
     if (!this._applicationUser) {
+      this.userCheckInProgress.next(true);
       this._applicationUser = new ReplaySubject<ApplicationUser>(1);
       this.getSteamUser().subscribe(
         user => {
@@ -53,6 +55,7 @@ export class LoginService {
             this._applicationUser.next(user);
             this.initSw();
           }
+          this.userCheckInProgress.next(false);
         }
       );
     }

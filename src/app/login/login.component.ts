@@ -30,6 +30,10 @@ export interface ProfileCompleteness {
 export class LoginComponent extends BaseComponent {
   private _authUser: ApplicationUser;
 
+  public profileCompleteness: ProfileCompleteness;
+  public overlaySettings = GlobalOverlaySettings;
+  public userCheck = false;
+
   @Input()
   public set authUser(user: ApplicationUser) {
     this._authUser = user;
@@ -42,14 +46,11 @@ export class LoginComponent extends BaseComponent {
     return this._authUser;
   }
 
-  public profileCompleteness: ProfileCompleteness;
-
-  public overlaySettings = GlobalOverlaySettings;
-
   constructor(private authManager: LoginService,
               private apiService: BellumgensApiService) {
     super();
     this.subs.push(
+      this.authManager.userCheckInProgress.subscribe(value => this.userCheck = value),
       this.apiService.authUserUpdate.subscribe(_ => this.fillCompleteness())
     );
   }
