@@ -68,6 +68,21 @@ export class ApiTournamentsService {
     });
   }
 
+  public deleteRegistration(id: string) {
+    return this.http.delete(`${this._apiEndpoint}/tournament/delete?id=${id}`, { withCredentials: true }).pipe(
+      map(response => {
+        if (response) {
+          this.commService.emitSuccess('Tournament application deleted successfully!');
+        }
+        return response;
+      }),
+      catchError(error => {
+        this.commService.emitError(error.error.Message);
+        return throwError(error);
+      })
+    );
+  }
+
   private getRegistrations() {
     return this.http.get<TournamentApplication []>(`${this._apiEndpoint}/tournament/registrations`, { withCredentials: true});
   }
