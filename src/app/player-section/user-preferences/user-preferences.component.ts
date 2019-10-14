@@ -52,6 +52,13 @@ export class UserPreferencesComponent extends BaseComponent {
     this.authManager.deleteAccount(this.authUser.id).subscribe();
   }
 
+  public deleteRegistration(registration: TournamentApplication) {
+    this.apiService.deleteRegistration(registration.Id).subscribe(id => {
+      this.registrations.splice(this.registrations.indexOf(registration), 1);
+    });
+  }
+
+
   public disableLogin(provider: string) {
     return this.authUser ? this.authUser.externalLogins.includes(provider) : false;
   }

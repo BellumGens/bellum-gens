@@ -1,6 +1,7 @@
 import { CSGOTeam } from './csgoteam';
 
 export interface TournamentApplication {
+  Id?: string;
   UserId?: string;
   CompanyId?: string;
   Game: Game;
