@@ -91,7 +91,7 @@
         </igx-checkbox>
       </div>
 
-      <button igxButton="outlined" class="submit-registration" [disabled]="tapplication.invalid || !termsAccepted.checked">Регистрирай ме</button>
+      <button igxButton="outlined" class="submit-registration" [disabled]="tapplication.invalid || !termsAccepted.checked || inProgress">Регистрирай ме</button>
     </div>
     <igx-divider></igx-divider>
   </form>

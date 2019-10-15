@@ -8,6 +8,7 @@ import { Game, getEmptyNewApplication, GAMES } from '../../models/tournament';
 import { ApiTournamentsService } from '../../services/bellumgens-api.tournaments.service';
 import { LoginDialogComponent } from '../../login/login-dialog/login-dialog.component';
 import { IgxDialogComponent } from 'igniteui-angular';
+import { noop } from 'rxjs';
 
 @Component({
   selector: 'app-tournament-home',
@@ -30,6 +31,7 @@ export class TournamentHomeComponent extends BaseComponent {
     bic: 'UBBSBGSF',
     account: 'BG90UBBS80021087375040'
   };
+  public inProgress = false;
 
   @ViewChild('appDetails', { static: true })
   public appDetails: ElementRef;
@@ -69,11 +71,14 @@ export class TournamentHomeComponent extends BaseComponent {
   }
 
   public leagueRegistration() {
+    this.inProgress = true;
     this.apiService.leagueRegistration(this.application).subscribe(application => {
       this.application = application;
       this.apiService.updateRegistrations();
       this.successDialog.open();
-    });
+    },
+    _ => noop,
+    () => this.inProgress = false);
   }
 
   public selectGame(game: Game) {
