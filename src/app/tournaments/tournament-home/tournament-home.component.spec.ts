@@ -22,6 +22,7 @@ import { LoginDialogComponent } from 'src/app/login/login-dialog/login-dialog.co
 import { TeamNewComponent } from 'src/app/team-section/team-new/team-new.component';
 import { StartsWithPipe } from 'src/app/pipes/starts-with.pipe';
 import { GroupsFilterPipe } from 'src/app/pipes/groups-filter.pipe';
+import { GetRegCountPipe } from 'src/app/pipes/get-reg-count.pipe';
 
 describe('TournamentHomeComponent', () => {
   let component: TournamentHomeComponent;
@@ -53,7 +54,8 @@ describe('TournamentHomeComponent', () => {
         LoginDialogComponent,
         TeamNewComponent,
         StartsWithPipe,
-        GroupsFilterPipe
+        GroupsFilterPipe,
+        GetRegCountPipe
       ]
     })
     .compileComponents();
