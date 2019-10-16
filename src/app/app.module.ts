@@ -109,6 +109,7 @@ import { TournamentHomeComponent } from './tournaments/tournament-home/tournamen
 import { ApiTournamentsService } from './services/bellumgens-api.tournaments.service';
 import { StartsWithPipe } from './pipes/starts-with.pipe';
 import { TeamNewComponent } from './team-section/team-new/team-new.component';
+import { GetRegCountPipe } from './pipes/get-reg-count.pipe';
 
 @NgModule({
   declarations: [
@@ -176,7 +177,8 @@ import { TeamNewComponent } from './team-section/team-new/team-new.component';
     IsStratOwnerPipe,
     TournamentHomeComponent,
     StartsWithPipe,
-    TeamNewComponent
+    TeamNewComponent,
+    GetRegCountPipe
   ],
   imports: [
     FormsModule,
