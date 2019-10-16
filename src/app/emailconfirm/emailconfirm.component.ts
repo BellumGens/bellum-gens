@@ -13,8 +13,10 @@ export class EmailconfirmComponent extends BaseComponent {
   constructor(private route: ActivatedRoute) {
     super();
     this.subs.push(this.route.params.subscribe(params => {
-      if (params['error']) {
+      if (params['error'] === 'error') {
         this.message = ':( Error confirming your email address!';
+      } else if (params['error'] === 'unsubscribed') {
+        this.message = 'You\'ve been unsubscribed successfully!';
       }
     }));
   }

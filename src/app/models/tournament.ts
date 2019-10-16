@@ -1,5 +1,3 @@
-import { CSGOTeam } from './csgoteam';
-
 export interface TournamentApplication {
   Id?: string;
   UserId?: string;
@@ -16,6 +14,11 @@ export interface TournamentApplication {
 export interface Company {
   Name: string;
   Website: string;
+}
+
+export interface RegistrationsCount {
+  game: Game;
+  count: number;
 }
 
 export enum Game {

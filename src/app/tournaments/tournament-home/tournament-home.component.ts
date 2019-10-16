@@ -4,7 +4,7 @@ import { ApplicationUser } from '../../models/applicationuser';
 import { Title, Meta } from '@angular/platform-browser';
 import { BaseComponent } from '../../base/base.component';
 import { CommunicationService } from '../../services/communication.service';
-import { Game, getEmptyNewApplication, GAMES } from '../../models/tournament';
+import { Game, getEmptyNewApplication, GAMES, RegistrationsCount } from '../../models/tournament';
 import { ApiTournamentsService } from '../../services/bellumgens-api.tournaments.service';
 import { LoginDialogComponent } from '../../login/login-dialog/login-dialog.component';
 import { IgxDialogComponent } from 'igniteui-angular';
@@ -32,6 +32,8 @@ export class TournamentHomeComponent extends BaseComponent {
     account: 'BG90UBBS80021087375040'
   };
   public inProgress = false;
+  public registrations: RegistrationsCount [];
+  public pipeTrigger = 0;
 
   @ViewChild('appDetails', { static: true })
   public appDetails: ElementRef;
@@ -60,7 +62,8 @@ export class TournamentHomeComponent extends BaseComponent {
     this.subs.push(
       this.authManager.applicationUser.subscribe(user => this.authUser = user),
       this.authManager.userCheckInProgress.subscribe(value => this.userCheck = value),
-      this.apiService.companies.subscribe(data => this.companies = data)
+      this.apiService.companies.subscribe(data => this.companies = data),
+      this.apiService.registrationsCount.subscribe(data => this.registrations = data)
     );
   }
 
@@ -74,6 +77,10 @@ export class TournamentHomeComponent extends BaseComponent {
     this.inProgress = true;
     this.apiService.leagueRegistration(this.application).subscribe(application => {
       this.application = application;
+      if (this.registrations) {
+        this.registrations.find(r => r.game === application.Game).count++;
+        this.pipeTrigger++;
+      }
       this.apiService.updateRegistrations();
       this.successDialog.open();
     },

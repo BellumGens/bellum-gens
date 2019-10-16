@@ -183,6 +183,10 @@ igx-snackbar {
   z-index: 10000;
 }
 
+.igx-linear-bar__base {
+  height: 12px;
+}
+
 .igx-typography .igx-tabs__item-label {
   letter-spacing: 0.07rem;
 }

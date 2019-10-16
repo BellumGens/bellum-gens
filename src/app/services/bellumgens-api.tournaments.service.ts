@@ -4,7 +4,7 @@ import { CommunicationService } from './communication.service';
 import { BehaviorSubject, throwError } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { map, catchError } from 'rxjs/operators';
-import { TournamentApplication } from '../models/tournament';
+import { TournamentApplication, RegistrationsCount } from '../models/tournament';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +14,7 @@ export class ApiTournamentsService {
 
   private _companies = new BehaviorSubject<string []>(null);
   private _registrations = new BehaviorSubject<TournamentApplication []>(null);
+  private _registrationsCount = new BehaviorSubject<RegistrationsCount []>(null);
 
   constructor(private http: HttpClient, private commService: CommunicationService) { }
 
@@ -33,6 +34,15 @@ export class ApiTournamentsService {
       });
     }
     return this._registrations;
+  }
+
+  public get registrationsCount() {
+    if (!this._registrationsCount.value) {
+      this.getRegistrationsCount().subscribe(data => {
+        this._registrationsCount.next(data);
+      });
+    }
+    return this._registrationsCount;
   }
 
   public addSubscriber(email: string) {
@@ -85,6 +95,10 @@ export class ApiTournamentsService {
 
   private getRegistrations() {
     return this.http.get<TournamentApplication []>(`${this._apiEndpoint}/tournament/registrations`, { withCredentials: true});
+  }
+
+  private getRegistrationsCount() {
+    return this.http.get<RegistrationsCount []>(`${this._apiEndpoint}/tournament/regcount`);
   }
 
   private getCompanies() {
