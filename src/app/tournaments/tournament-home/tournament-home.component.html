@@ -46,7 +46,7 @@
         <igx-prefix>
           <igx-icon>email</igx-icon>
         </igx-prefix>
-        <input type="email" id="email" #userMail name="email" required igxInput pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="application.Email" />
+        <input type="email" id="email" #userMail name="email" required igxInput pattern="^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="application.Email" />
         <igx-suffix *ngIf="userMail.value" (click)="application.Email = null">
           <igx-icon>clear</igx-icon>
         </igx-suffix>
@@ -71,7 +71,7 @@
         <igx-prefix>
           <igx-icon fontSet="login-icons" name="BattleNet"></igx-icon>
         </igx-prefix>
-        <input id="battletag" #battletag name="battletag" required igxInput pattern="^[a-z0-9._%+-]+#[0-9]{4}$" [(ngModel)]="application.BattleNetId" />
+        <input id="battletag" #battletag name="battletag" required igxInput pattern="^[a-zA-Z0-9._%+-]+#[0-9]{4}$" [(ngModel)]="application.BattleNetId" />
         <igx-suffix *ngIf="battletag.value" (click)="application.BattleNetId = null">
           <igx-icon>clear</igx-icon>
         </igx-suffix>
@@ -188,7 +188,7 @@
           <igx-prefix>
             <igx-icon>email</igx-icon>
           </igx-prefix>
-          <input type="email" id="subemail" #subMail name="subemail" igxInput pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="userEmail" />
+          <input type="email" id="subemail" #subMail name="subemail" igxInput pattern="^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="userEmail" />
           <igx-suffix *ngIf="subMail.value" (click)="userEmail = null">
             <igx-icon>clear</igx-icon>
           </igx-suffix>
