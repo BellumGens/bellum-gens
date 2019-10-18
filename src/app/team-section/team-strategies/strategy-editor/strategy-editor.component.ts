@@ -178,6 +178,7 @@ export class StrategyEditorComponent extends BaseComponent implements OnInit, On
         this._coordinates.x = offsetX;
         this._coordinates.y = offsetY;
       }
+      this.changes = true;
     }
   }
 

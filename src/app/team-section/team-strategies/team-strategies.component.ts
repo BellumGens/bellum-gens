@@ -19,6 +19,8 @@ import { SocialMediaService } from '../../services/social-media.service';
   styleUrls: ['./team-strategies.component.css']
 })
 export class TeamStrategiesComponent extends BaseComponent {
+  private _isEditor = null;
+
   public strats: CSGOStrategy [];
   public maps: MapPool [] = AllMaps;
   public team: CSGOTeam;
@@ -37,12 +39,6 @@ export class TeamStrategiesComponent extends BaseComponent {
 
   @ViewChild(LoginDialogComponent, {static: true})
   public loginDialog: LoginDialogComponent;
-
-  @Input()
-  isAdmin = false;
-
-  @Input()
-  isEditor = false;
 
   constructor(private activatedRoute: ActivatedRoute,
               private apiService: BellumgensApiService,
@@ -122,5 +118,15 @@ export class TeamStrategiesComponent extends BaseComponent {
     } else {
       this.apiService.submitStratVote(strat, direction, this.authUser.id).subscribe(_ => this.pipeTrigger++);
     }
+  }
+
+  public get isEditor() {
+    if (this._isEditor !== null) {
+      return this._isEditor;
+    }
+    if (this.authUser && this.team && this.team.Members) {
+      this._isEditor = this.team.Members.filter(m => (m.IsEditor || m.IsAdmin) && m.UserId === this.authUser.id).length > 0;
+    }
+    return this._isEditor;
   }
 }
