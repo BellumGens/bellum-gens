@@ -77,9 +77,6 @@ export class NewStrategyComponent implements OnInit {
       this.newStrategy.TeamId = this.team.TeamId;
       route = ['team', this.team.CustomUrl];
     }
-    if (this.authUser) {
-      this.newStrategy.UserId = this.authUser.id;
-    }
     this.apiService.submitStrategy(this.newStrategy).subscribe(strat => {
       route.push(strat.CustomUrl);
       this.router.navigate(route);
