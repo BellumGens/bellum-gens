@@ -8,7 +8,6 @@ import { Game, getEmptyNewApplication, GAMES, RegistrationsCount } from '../../m
 import { ApiTournamentsService } from '../../services/bellumgens-api.tournaments.service';
 import { LoginDialogComponent } from '../../login/login-dialog/login-dialog.component';
 import { IgxDialogComponent } from 'igniteui-angular';
-import { noop } from 'rxjs';
 
 @Component({
   selector: 'app-tournament-home',
@@ -76,6 +75,7 @@ export class TournamentHomeComponent extends BaseComponent {
   public leagueRegistration() {
     this.inProgress = true;
     this.apiService.leagueRegistration(this.application).subscribe(application => {
+      this.inProgress = false;
       this.application = application;
       if (this.registrations) {
         this.registrations.find(r => r.game === application.Game).count++;
@@ -84,8 +84,7 @@ export class TournamentHomeComponent extends BaseComponent {
       this.apiService.updateRegistrations();
       this.successDialog.open();
     },
-    _ => noop,
-    () => this.inProgress = false);
+    _ => this.inProgress = false);
   }
 
   public selectGame(game: Game) {

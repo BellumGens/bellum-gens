@@ -30,26 +30,32 @@ export class TeamNewComponent {
   }
 
   public createFromSteam(group: SteamGroup) {
+    this.inProgress = true;
     this.apiService.registerSteamGroup(group).subscribe(
       team => {
+        this.inProgress = false;
         this.createTeam.close();
         this.authUser.teams.push(team);
         if (this.navigateOnCreate) {
           this.router.navigate(['/team', team.CustomUrl]);
         }
-      }
+      },
+      _ => this.inProgress = false
     );
   }
 
   public createFromForm() {
+    this.inProgress = true;
     this.apiService.registerTeam(this.newTeam).subscribe(
       team => {
+        this.inProgress = false;
         this.createTeam.close();
         this.authUser.teams.push(team);
         if (this.navigateOnCreate) {
           this.router.navigate(['/team', team.CustomUrl]);
         }
-      }
+      },
+      _ => this.inProgress = false
     );
   }
 
