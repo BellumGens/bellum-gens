@@ -86,6 +86,7 @@
         <igx-suffix *ngIf="company.value" (click)="application.CompanyId = null">
           <igx-icon>clear</igx-icon>
         </igx-suffix>
+        <igx-hint>*Тази информация няма да бъде видима никъде...</igx-hint>
       </igx-input-group>
       <igx-drop-down #companiesDD maxHeight="320px">
         <igx-drop-down-item *ngFor="let company of companies | startsWith:application.CompanyId" [value]="company">
