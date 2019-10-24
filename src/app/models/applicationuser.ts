@@ -7,7 +7,12 @@ import { MapPool } from './csgomaps';
 
 export interface ApplicationUser {
   id: string;
-  steamUser: SteamUser;
+  avatarIcon: string;
+  avatarMedium: string;
+  avatarFull: string;
+  username: string;
+  realname: string;
+  customURL: string;
   teams: CSGOTeam [];
   teamAdmin: CSGOTeam [];
   notifications: UserNotification [];

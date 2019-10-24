@@ -6,7 +6,7 @@
 
 <div *ngIf="authUser">
   <button class="profile-button" #profileButton igxButton="flat" igxRipple [igxToggleAction]="userProfile" [overlaySettings]="overlaySettings">
-    <igx-avatar [src]="authUser.steamUser.avatarMedium" [initials]="authUser.steamUser.steamID" roundShape="true">
+    <igx-avatar [src]="authUser.avatarFull" [initials]="authUser.username" roundShape="true">
     </igx-avatar>
     <igx-icon class="drop-down-arrow">arrow_drop_down</igx-icon>
   </button>
@@ -21,10 +21,10 @@
             </div>
           </ng-template>
           <div class="center-items profile-view">
-            <igx-avatar [src]="authUser.steamUser.avatarFull" [initials]="authUser.steamUser.steamID" roundShape="true" [size]="'large'">
+            <igx-avatar [src]="authUser.avatarMedium" [initials]="authUser.username" roundShape="true" [size]="'large'">
             </igx-avatar>
-            <h1 class="igx-card-header__title highlight navigatable profile-username" [routerLink]="['/players', authUser.id]">{{ authUser.steamUser.steamID }}</h1>
-            <h4 class="igx-card-header__subtitle">{{ authUser.steamUser.realname }}</h4>
+            <h1 class="igx-card-header__title highlight navigatable profile-username" [routerLink]="['/players', authUser.id]">{{ authUser.username }}</h1>
+            <h4 class="igx-card-header__subtitle">{{ authUser.realname }}</h4>
           </div>
           <div *ngIf="authUser" class="profile-completeness">
             <igx-linear-bar [type]="profileCompleteness.progressType"

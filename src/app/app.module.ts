@@ -40,12 +40,10 @@ import { IgxNavbarModule,
   IgxDividerModule,
   IgxCarouselModule,
   IgxAutocompleteModule} from 'igniteui-angular';
-import { PlayersComponent } from './player-section/players/players.component';
 import { PlayerDetailsComponent } from './player-section/player-details/player-details.component';
 import { LoginService } from './services/login.service';
 import { BellumgensApiService } from './services/bellumgens-api.service';
 import { HomeComponent } from './home/home.component';
-import { TeamsComponent } from './team-section/teams/teams.component';
 import { GroupsFilterPipe } from './pipes/groups-filter.pipe';
 import { WeekdayPipe } from './pipes/weekday.pipe';
 import { MapnamePipe } from './pipes/mapname.pipe';
@@ -114,10 +112,8 @@ import { GetRegCountPipe } from './pipes/get-reg-count.pipe';
 @NgModule({
   declarations: [
     AppComponent,
-    PlayersComponent,
     PlayerDetailsComponent,
     HomeComponent,
-    TeamsComponent,
     GroupsFilterPipe,
     WeekdayPipe,
     MapnamePipe,

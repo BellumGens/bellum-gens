@@ -442,7 +442,7 @@ export class BellumgensApiService {
     return this.http.put<TeamMember>(`${this._apiEndpoint}/teams/member`, teamMember, { withCredentials: true }).pipe(
       map(response => {
         if (response) {
-          this.commService.emitSuccess(`${teamMember.SteamUser.steamID} updated successfully!`);
+          this.commService.emitSuccess(`${teamMember.Username} updated successfully!`);
         }
         return response;
       }),
@@ -458,7 +458,7 @@ export class BellumgensApiService {
       { withCredentials: true }).pipe(
         map(response => {
           if (response) {
-            this.commService.emitSuccess(`${teamMember.SteamUser.steamID} removed from team!`);
+            this.commService.emitSuccess(`${teamMember.Username} removed from team!`);
           }
           return response;
         }),

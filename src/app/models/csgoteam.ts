@@ -23,7 +23,11 @@ export interface TeamMember {
   IsAdmin: boolean;
   IsEditor: boolean;
   Role: PlaystyleRole;
-  SteamUser: SteamUser;
+  Username: string;
+  AvatarMedium: string;
+  AvatarFull: string;
+  CustomUrl: string;
+  Country: string;
 }
 
 export interface TeamApplication {
