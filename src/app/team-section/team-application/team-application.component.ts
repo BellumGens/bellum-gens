@@ -22,8 +22,7 @@ export class TeamApplicationComponent {
     ApplicantId: '',
     State: NotificationState.NotSeen,
     Sent: '',
-    Message: '',
-    UserInfo: null
+    Message: ''
   };
 
   @ViewChild(IgxDialogComponent, { static: true }) public dialog: IgxDialogComponent;

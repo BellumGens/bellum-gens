@@ -540,7 +540,7 @@ export class BellumgensApiService {
     return this.http.put<TeamApplication>(`${this._apiEndpoint}/teams/approveapplication`, application, { withCredentials: true }).pipe(
       map(response => {
         if (response) {
-          this.commService.emitSuccess(`${application.UserInfo.steamID} is now part of your team!`);
+          this.commService.emitSuccess(`${application.UserName} is now part of your team!`);
         }
         return response;
       }),
@@ -555,7 +555,7 @@ export class BellumgensApiService {
     return this.http.put<TeamApplication>(`${this._apiEndpoint}/teams/rejectapplication`, application, { withCredentials: true }).pipe(
       map(response => {
         if (response) {
-          this.commService.emitSuccess(`${application.UserInfo.steamID} application has been rejected!`);
+          this.commService.emitSuccess(`${application.UserName} application has been rejected!`);
         }
         return response;
       }),

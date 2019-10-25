@@ -11,7 +11,7 @@ export class GroupsFilterPipe implements PipeTransform {
     if (searchValue) {
       filtered = filtered.filter(g => g.groupName && g.groupName.toLowerCase().includes(searchValue.toLowerCase()));
     }
-    return filtered.slice(0, 3);
+    return filtered ? filtered.slice(0, 3) : filtered;
   }
 
 }
