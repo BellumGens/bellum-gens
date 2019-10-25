@@ -5,15 +5,18 @@ import { IgxDialogComponent } from 'igniteui-angular';
 import { Router } from '@angular/router';
 import { SteamGroup } from '../../models/steamuser';
 import { getEmptyNewTeam } from '../../models/csgoteam';
+import { CSGOPlayer } from '../../models/csgoplayer';
+import { BaseComponent } from '../../base/base.component';
 
 @Component({
   selector: 'app-team-new',
   templateUrl: './team-new.component.html',
   styleUrls: ['./team-new.component.scss']
 })
-export class TeamNewComponent {
+export class TeamNewComponent extends BaseComponent {
   @Input()
   public authUser: ApplicationUser;
+  public player: CSGOPlayer;
   public searchGroups: string;
   public newTeam = getEmptyNewTeam();
   public navigateOnCreate = true;
@@ -22,10 +25,12 @@ export class TeamNewComponent {
   @ViewChild(IgxDialogComponent, { static: false }) public createTeam: IgxDialogComponent;
 
   constructor(private apiService: BellumgensApiService, private router: Router) {
+    super();
   }
 
   public open(navigate = true) {
     this.navigateOnCreate = navigate;
+    this.subs.push(this.apiService.getPlayer(this.authUser.id).subscribe(player => this.player = player));
     this.createTeam.open();
   }
 

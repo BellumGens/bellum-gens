@@ -1,5 +1,5 @@
 import { PlaystyleRole } from './playerrole';
-import { SteamUser, SteamGroup } from './steamuser';
+import { SteamGroup } from './steamuser';
 import { NotificationState } from './usernotifications';
 import { Availability } from './playeravailability';
 
@@ -23,7 +23,13 @@ export interface TeamMember {
   IsAdmin: boolean;
   IsEditor: boolean;
   Role: PlaystyleRole;
-  SteamUser: SteamUser;
+  Username: string;
+  AvatarIcon: string;
+  AvatarMedium: string;
+  AvatarFull: string;
+  CustomUrl: string;
+  Country: string;
+  RealName: string;
 }
 
 export interface TeamApplication {
@@ -32,7 +38,8 @@ export interface TeamApplication {
   TeamId: string;
   Message: string;
   Sent: string;
-  UserInfo: SteamUser;
+  UserName?: string;
+  AvatarIcon?: string;
 }
 
 export interface TeamSearch {

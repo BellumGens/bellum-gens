@@ -47,37 +47,37 @@
     <span>Team Members</span>
     <igx-list>
       <igx-list-item *ngFor="let user of team.Members; let i = index">
-        <igx-avatar igxListThumbnail [src]="user.SteamUser.avatarIcon" [initials]="user.SteamUser.steamID" roundShape="true">
+        <igx-avatar igxListThumbnail [src]="user.AvatarIcon" [initials]="user.Username" roundShape="true">
         </igx-avatar>
-        <igx-avatar *ngIf="user.SteamUser.country"
-                    [src]="user.SteamUser.country | playerCountry"
+        <igx-avatar *ngIf="user.Country"
+                    [src]="user.Country | playerCountry"
                     [roundShape]="true"
-                    [title]="user.SteamUser.country"
+                    [title]="user.Country"
                     class="country-badge-small">
         </igx-avatar>
         <h2 igxListLineTitle>
-          <a [routerLink]="['/players', user.SteamUser.customURL || user.SteamUser.steamID64]">
-            {{ user.SteamUser.steamID }}
+          <a [routerLink]="['/players', user.CustomUrl || user.UserId]">
+            {{ user.Username }}
           </a>
         </h2>
-        <h4 igxListLineSubTitle>{{ user.SteamUser.realname }}</h4>
-      
+        <h4 igxListLineSubTitle>{{ user.RealName }}</h4>
+
         <div igxListAction>
             <div class="horizontal-center space-between">
               <label [for]="'admin_switch_' + i" class="switch-label">Admin</label>
               <igx-switch [id]="'admin_switch_' + i"
-                          [aria-label]="user.SteamUser.steamID + ' is admin'"
+                          [aria-label]="user.Username + ' is admin'"
                           [(ngModel)]="user.IsAdmin"
-                          [disabled]="user.SteamUser?.steamID64 === adminId"
+                          [disabled]="user.UserId === adminId"
                           (ngModelChange)="adminStatusUpdated(user)">
               </igx-switch>
             </div>
-      
+
             <div class="horizontal-center space-between">
               <label [for]="'editor_switch_' + i" class="switch-label">Editor</label>
               <igx-switch [id]="'editor_switch_' + i"
-                          [aria-label]="user.SteamUser.steamID + ' can add and edit strategies'"
-                          [disabled]="user.IsAdmin || user.SteamUser?.steamID64 === adminId"
+                          [aria-label]="user.Username + ' can add and edit strategies'"
+                          [disabled]="user.IsAdmin || user.UserId === adminId"
                           [(ngModel)]="user.IsEditor"
                           (ngModelChange)="editorStatusUpdated(user)">
               </igx-switch>

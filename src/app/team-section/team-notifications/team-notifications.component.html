@@ -1,10 +1,10 @@
 <igx-list *ngIf="applications?.length">
   <igx-list-item [isHeader]="true">Notifications for {{ team.TeamName }}</igx-list-item>
   <igx-list-item *ngFor="let notification of applications | sortApplications:pipeTrigger" [class]="notificationClass[notification.State]">
-      <igx-avatar igxListThumbnail [src]="notification.UserInfo.avatarFull" [initials]="notification.UserInfo.steamID" roundShape="true">
+      <igx-avatar igxListThumbnail [src]="notification.AvatarIcon" [initials]="notification.UserName" roundShape="true">
       </igx-avatar>
       <h3 igxListLineSubTitle>
-        <a [routerLink]="['players', notification.ApplicantId]">{{ notification.UserInfo.steamID }}</a> has applied to join your team!
+        <a [routerLink]="['players', notification.ApplicantId]">{{ notification.UserName }}</a> has applied to join your team!
       </h3>
       <span igxListLineSubTitle>Application: {{ notification.Message }}</span>
       <span igxListLineSubTitle>{{ notification.Sent | date }}</span>

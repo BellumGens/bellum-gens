@@ -442,7 +442,7 @@ export class BellumgensApiService {
     return this.http.put<TeamMember>(`${this._apiEndpoint}/teams/member`, teamMember, { withCredentials: true }).pipe(
       map(response => {
         if (response) {
-          this.commService.emitSuccess(`${teamMember.SteamUser.steamID} updated successfully!`);
+          this.commService.emitSuccess(`${teamMember.Username} updated successfully!`);
         }
         return response;
       }),
@@ -458,7 +458,7 @@ export class BellumgensApiService {
       { withCredentials: true }).pipe(
         map(response => {
           if (response) {
-            this.commService.emitSuccess(`${teamMember.SteamUser.steamID} removed from team!`);
+            this.commService.emitSuccess(`${teamMember.Username} removed from team!`);
           }
           return response;
         }),
@@ -540,7 +540,7 @@ export class BellumgensApiService {
     return this.http.put<TeamApplication>(`${this._apiEndpoint}/teams/approveapplication`, application, { withCredentials: true }).pipe(
       map(response => {
         if (response) {
-          this.commService.emitSuccess(`${application.UserInfo.steamID} is now part of your team!`);
+          this.commService.emitSuccess(`${application.UserName} is now part of your team!`);
         }
         return response;
       }),
@@ -555,7 +555,7 @@ export class BellumgensApiService {
     return this.http.put<TeamApplication>(`${this._apiEndpoint}/teams/rejectapplication`, application, { withCredentials: true }).pipe(
       map(response => {
         if (response) {
-          this.commService.emitSuccess(`${application.UserInfo.steamID} application has been rejected!`);
+          this.commService.emitSuccess(`${application.UserName} application has been rejected!`);
         }
         return response;
       }),

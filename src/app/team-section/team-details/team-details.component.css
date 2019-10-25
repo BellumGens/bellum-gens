@@ -25,7 +25,6 @@
 .member-slot {
   display: flex;
   flex: 1 1 20%;
-  min-width: 200px;
 	flex-flow: column;
   align-items: center;
   padding: 16px;

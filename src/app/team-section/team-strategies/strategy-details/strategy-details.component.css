@@ -8,7 +8,10 @@
 }
 
 .strategy-details {
-  height: 100%;
+  width: 80%;
+  height: calc(100% - 72px);
+  margin: auto;
+  margin-top: 16px;
 }
 
 .comment-input {
@@ -28,7 +31,9 @@
 @media screen and (max-width: 768px) {
 
   .strategy-details {
+    width: auto;
     height: auto;
+    margin: 16px;
   }
 
   .list-container.comments-container {

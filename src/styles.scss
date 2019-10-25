@@ -243,6 +243,11 @@ igx-snackbar {
   color: white;
 }
 
+.overview-container-card .card-wrapper,
+.overview-container-card .strat-filter-header {
+  width: 100%;
+}
+
 .overview-container {
   display: flex;
   flex: 0 0 100%;
@@ -564,19 +569,18 @@ button igx-icon {
   }
 }
 
-@media only screen and (max-width: 720px) {
+@media only screen and (max-width: 915px) {
   .overview-container,
   .horizontal-space-between {
     flex-wrap: wrap;
+  }
+  .left-details-container {
+    width: 100%;
   }
 }
 
 @media only screen and (max-width: 550px) {
   .bellum-gens-navbar .igx-navbar__title {
     display: none;
-  }
-
-  .left-details-container {
-    width: 100%;
   }
 }
