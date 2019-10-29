@@ -13,6 +13,7 @@ import { CSGOStrategy, VoteDirection, StrategyVote, StrategyComment } from '../m
 import { SearchResult } from '../models/searchresult';
 import { environment } from '../../environments/environment';
 import { CommunicationService } from './communication.service';
+import { ApplicationUser } from '../models/applicationuser';
 
 const CACHE_SIZE = 1;
 const PAGE_SIZE = 25;
@@ -33,7 +34,7 @@ export class BellumgensApiService {
   private _csgoTeams = new BehaviorSubject<CSGOTeam []>([]);
   private _teamApplications = new Map<string, Observable<TeamApplication[]>>();
   private _searchResultCache: Map<string, SearchResult> = new Map();
-  private _playerSearchCache: Map<string, CSGOPlayer []> = new Map();
+  private _playerSearchCache: Map<string, ApplicationUser []> = new Map();
   private _teamSearchCache: Map<string, CSGOTeam []> = new Map();
   private _strategySearchCache: Map<string, CSGOStrategy []> = new Map();
 
@@ -45,7 +46,7 @@ export class BellumgensApiService {
   public loadingQuickSearch = new ReplaySubject<boolean>(1);
   public loadingSearch = new ReplaySubject<boolean>(1);
   public searchResult = new ReplaySubject<SearchResult>(1);
-  public playerSearchResult = new ReplaySubject<CSGOPlayer []>(1);
+  public playerSearchResult = new ReplaySubject<ApplicationUser []>(1);
   public teamSearchResult = new ReplaySubject<CSGOTeam []>(1);
   public strategySearchResult = new ReplaySubject<CSGOStrategy []>(1);
   public searchTerm = new ReplaySubject<string>(1);
@@ -273,7 +274,7 @@ export class BellumgensApiService {
   }
 
   private getFilteredPlayers(query: string) {
-    return this.http.get<CSGOPlayer []>(`${this._apiEndpoint}/search/players?${query}`, { withCredentials: true }).pipe(
+    return this.http.get<ApplicationUser []>(`${this._apiEndpoint}/search/players?${query}`, { withCredentials: true }).pipe(
       map(response => response),
       catchError(error => {
         this.commService.emitError(error.error.Message);
@@ -326,16 +327,6 @@ export class BellumgensApiService {
     }
   }
 
-  private checkPlayerCache(userId) {
-    const players = this._players.value;
-    for (const player of players) {
-      if (player.steamUser.customURL === userId || player.steamUser.steamID64 === userId) {
-        this._currentPlayer.next(player);
-        break;
-      }
-    }
-  }
-
   private checkSearchCacheForTeam(teamId) {
     let found = false;
     this._searchResultCache.forEach((result) => {
@@ -359,33 +350,6 @@ export class BellumgensApiService {
           }
         });
       });
-    }
-  }
-
-  private checkSearchCacheForPlayer(userId) {
-    let found = false;
-    this._searchResultCache.forEach((result) => {
-      result.Players.forEach((player) => {
-        if (!found && !player.steamUserException) {
-          if (player.steamUser.customURL === userId || player.steamUser.steamID64 === userId) {
-            this._currentPlayer.next(player);
-            found = true;
-          }
-        }
-      });
-    });
-    if (!found) {
-      this._playerSearchCache.forEach((result) => {
-        result.forEach((player) => {
-          if (!found) {
-            if (player.steamUser.customURL === userId || player.steamUser.steamID64 === userId) {
-              this._currentPlayer.next(player);
-              found = true;
-            }
-          }
-        });
-      });
-
     }
   }
 
@@ -699,12 +663,6 @@ export class BellumgensApiService {
   }
 
   public getPlayer(userId: string) {
-    if (!this.playerMatch(userId)) {
-      this.checkPlayerCache(userId);
-    }
-    if (!this.playerMatch(userId)) {
-      this.checkSearchCacheForPlayer(userId);
-    }
     if (!this.playerMatch(userId)) {
       this.getPlayerFromServer(userId).subscribe(
         player => this._currentPlayer.next(player),

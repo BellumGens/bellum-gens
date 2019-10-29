@@ -1,4 +1,3 @@
-import { SteamUser } from './steamuser';
 import { CSGOTeam } from './csgoteam';
 import { UserNotification } from './usernotifications';
 import { Availability } from './playeravailability';
@@ -13,6 +12,10 @@ export interface ApplicationUser {
   username: string;
   realname: string;
   customURL: string;
+  steamPrivate: boolean;
+  headshotPercentage: number;
+  killDeathRatio: number;
+  accuracy: number;
   teams: CSGOTeam [];
   teamAdmin: CSGOTeam [];
   notifications: UserNotification [];

@@ -5,27 +5,27 @@
   <h4 class="igx-card-header__title">Found <span class="highlight">{{players?.length }}</span> results for players{{ query | queryParsed:true }}</h4>
 </div>
 <div *ngIf="!loading" class="card-wrapper">
-  <igx-card *ngFor="let player of players" class="navigatable" [routerLink]="['/players', player.steamUser.customURL || player.steamUser.steamID64]">
+  <igx-card *ngFor="let player of players" class="navigatable" [routerLink]="['/players', player.customURL || player.id]">
     <igx-card-header>
       <div class="horizontal-center">
-        <igx-avatar [src]="player.steamUser.avatarMedium" [size]="'medium'" [initials]="player.steamUser.steamID" roundShape="true"></igx-avatar>
+        <igx-avatar [src]="player.avatarMedium" [size]="'medium'" [initials]="player.username" roundShape="true"></igx-avatar>
         <div class="igx-card-header__tgroup title margin-left">
-          <h3 class="igx-card-header__title highlight">{{ player.steamUser.steamID }}</h3>
-          <h5 class="igx-card-header__subtitle">{{ player.steamUser.realname }}</h5>
+          <h3 class="igx-card-header__title highlight">{{ player.username }}</h3>
+          <h5 class="igx-card-header__subtitle">{{ player.realname }}</h5>
         </div>
 
-        <div class="horizontal-info__right--column" *ngIf="!player.userStatsException">
+        <div class="horizontal-info__right--column" *ngIf="!player.steamPrivate">
           <div class="horizontal-center">
-            <igx-circular-bar class="icon-avatar" [value]="player.userStats.killDeathRatio" [max]="2" [animate]="true" [textVisibility]="false" title="KDR"></igx-circular-bar>
-            <span class="title margin-left player-summary-stat">{{ player.userStats.killDeathRatio }}</span>
+            <igx-circular-bar class="icon-avatar" [value]="player.killDeathRatio" [max]="2" [animate]="true" [textVisibility]="false" title="KDR"></igx-circular-bar>
+            <span class="title margin-left player-summary-stat">{{ player.killDeathRatio }}</span>
           </div>
           <div class="horizontal-center">
             <igx-icon fontSet="weapon-icons" name="headshot" class="icon-avatar"></igx-icon>
-            <span class="title margin-left player-summary-stat">{{ player.userStats.headshotPercentage | number:'1.2' }}%</span>
+            <span class="title margin-left player-summary-stat">{{ player.headshotPercentage | number:'1.2' }}%</span>
           </div>
         </div>
 
-        <div class="horizontal-info__right" *ngIf="player.userStatsException">
+        <div class="horizontal-info__right" *ngIf="player.steamPrivate">
           <span class="title">Private</span>
         </div>
       </div>

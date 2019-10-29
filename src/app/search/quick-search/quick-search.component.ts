@@ -10,7 +10,7 @@ import { IgxIconService } from 'igniteui-angular';
   styleUrls: ['./quick-search.component.css']
 })
 export class QuickSearchComponent extends BaseComponent {
-  public searchResult: SearchResult = {Players: [], Teams: [], Strategies: []};
+  public searchResult: SearchResult = {SteamUser: null, Players: [], Teams: [], Strategies: []};
   public loading = false;
   public term = '';
 
@@ -18,13 +18,10 @@ export class QuickSearchComponent extends BaseComponent {
     super();
     this.subs.push(
       this.apiService.searchResult.subscribe(data => {
-        if (data.Players.length === 1 && data.Players[0].steamUserException) {
-          data.Players = [];
-        }
         this.searchResult = data;
-      })),
+      }),
       this.apiService.loadingQuickSearch.subscribe(data => this.loading = data),
-      this.subs.push(this.apiService.searchTerm.subscribe(term => this.term = term)
+      this.apiService.searchTerm.subscribe(term => this.term = term)
     );
     this.iconService.addSvgIcon('headshot', '/assets/headshot24x24.svg', 'weapon-icons');
   }
