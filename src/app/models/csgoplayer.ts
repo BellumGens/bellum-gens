@@ -1,13 +1,14 @@
 import { Availability } from './playeravailability';
 import { SteamUser } from './steamuser';
 import { CSGOTeam } from './csgoteam';
-import { PlaystyleRole, Role } from './playerrole';
+import { PlaystyleRole } from './playerrole';
 import { MapPool } from './csgomaps';
 
 export interface CSGOStats {
   headshotPercentage: number;
   killDeathRatio: number;
   accuracy: number;
+  private: boolean;
   favouriteWeapon: WeaponDescriptor;
   weapons: WeaponDescriptor [];
 }

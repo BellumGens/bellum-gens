@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BellumgensApiService } from '../../../services/bellumgens-api.service';
-import { CSGOPlayer } from '../../../models/csgoplayer';
 import { ALL_ROLES } from '../../../models/playerrole';
 import { BaseComponent } from '../../../base/base.component';
 import { IgxIconService } from 'igniteui-angular';
+import { ApplicationUser } from '../../../models/applicationuser';
 
 @Component({
   selector: 'app-player-results',
@@ -12,7 +12,7 @@ import { IgxIconService } from 'igniteui-angular';
   styleUrls: ['./player-results.component.css']
 })
 export class PlayerResultsComponent extends BaseComponent {
-  public players: CSGOPlayer [];
+  public players: ApplicationUser [];
   public loading = false;
   public roles = ALL_ROLES;
   public query: string;

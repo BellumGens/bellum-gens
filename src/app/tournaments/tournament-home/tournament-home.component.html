@@ -57,7 +57,7 @@
         <igx-prefix>
           <igx-icon>people</igx-icon>
         </igx-prefix>
-        <igx-select-item *ngFor="let team of authUser?.teams" [value]="team.TeamId">
+        <igx-select-item *ngFor="let team of authUser?.teams" [value]="team.TeamId" [text]="team.TeamName">
           <igx-avatar [src]="team.TeamAvatar" [initials]="team.TeamName" class="team-avatar" roundShape="true"></igx-avatar>
           <p class="team-name">{{ team.TeamName }}</p>
         </igx-select-item>
