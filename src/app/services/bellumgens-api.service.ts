@@ -672,6 +672,10 @@ export class BellumgensApiService {
     return this._currentPlayer;
   }
 
+  public getPlayerGroups(userId: string) {
+    return this.http.get<SteamGroup []>(`${this._apiEndpoint}/users/usergroups?userid=${userId}`);
+  }
+
   private playerMatch(userId: string) {
     return this._currentPlayer.value && this._currentPlayer.value.steamUser &&
       (this._currentPlayer.value.steamUser.customURL === userId ||  this._currentPlayer.value.steamUser.steamID64 === userId);

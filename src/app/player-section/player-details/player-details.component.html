@@ -123,14 +123,14 @@
           <div class="horizontal-center">
             <igx-select id="primary-role" [disabled]="!playerIsUser" [ngModel]="player.primaryRole" (ngModelChange)="selectPrimary($event)">
               <label for="primary-role" igxLabel>Primary</label>
-              <igx-select-item *ngFor="let role of roles" [value]="role.Id">{{ role.Name }}</igx-select-item>
+              <igx-select-item *ngFor="let role of roles" [disabled]="role.Id === player.secondaryRole" [value]="role.Id">{{ role.Name }}</igx-select-item>
             </igx-select>
           </div>
 
           <div class="horizontal-center">
             <igx-select id="secondary-role" [disabled]="!playerIsUser" [ngModel]="player.secondaryRole" (ngModelChange)="selectSecondary($event)">
               <label for="secondary-role" igxLabel>Secondary</label>
-              <igx-select-item *ngFor="let role of roles" [value]="role.Id">{{ role.Name }}</igx-select-item>
+              <igx-select-item *ngFor="let role of roles" [disabled]="role.Id === player.primaryRole" [value]="role.Id">{{ role.Name }}</igx-select-item>
             </igx-select>
           </div>
 
