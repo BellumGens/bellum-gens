@@ -1,6 +1,6 @@
 <igx-dialog #createTeam closeOnOutsideSelect="true" *ngIf="authUser">
   <div class="create-team">
-    <span *ngIf="player?.steamUser.groups.length">Import from Steam Group</span>
+    <span *ngIf="groups?.length">Import from Steam Group</span>
     <igx-input-group type="search">
       <igx-prefix>
           <igx-icon>search</igx-icon>
@@ -12,7 +12,7 @@
       </igx-suffix>
     </igx-input-group>
     <igx-list>
-      <igx-list-item *ngFor="let group of player?.steamUser.groups | groupsFilter:searchGroups" (click)="createFromSteam(group)">
+      <igx-list-item *ngFor="let group of groups | groupsFilter:searchGroups" (click)="createFromSteam(group)">
         <igx-avatar igxListThumbnail [src]="group.avatarFull" [initials]="group.groupName" roundShape="true">
         </igx-avatar>
         <div igxListLineTitle>
