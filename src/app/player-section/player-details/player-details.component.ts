@@ -29,6 +29,7 @@ export class PlayerDetailsComponent extends BaseComponent {
   public newUser = false;
   public roles = ALL_ROLES;
   public viewAll = false;
+  public loading = false;
 
   @ViewChild('primaryRole', { static: false }) public primaryRole: IgxDropDownComponent;
   @ViewChild('secondaryRole', { static: false }) public secondaryRole: IgxDropDownComponent;
@@ -47,15 +48,17 @@ export class PlayerDetailsComponent extends BaseComponent {
         const userid = params['userid'];
         this.newUser = params['newuser'];
         if (userid) {
-          this.apiService.getPlayer(userid).subscribe(
-            player => {
-              if (player) {
-                this.player = player;
-                if (!player.steamUserException) {
-                  this.title.setTitle('CS:GO Player: ' + player.steamUser.steamID);
+          this.subs.push(this.apiService.getPlayer(userid).subscribe(
+              player => {
+                if (player) {
+                  this.player = player;
+                  if (!player.steamUserException) {
+                    this.title.setTitle('CS:GO Player: ' + player.steamUser.steamID);
+                  }
                 }
               }
-            }
+            ),
+            this.apiService.loadingPlayer.subscribe(loading => this.loading = loading)
           );
         }
       })

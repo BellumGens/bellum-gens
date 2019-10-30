@@ -39,17 +39,18 @@ export class BellumgensApiService {
   private _strategySearchCache: Map<string, CSGOStrategy []> = new Map();
 
   public authUserUpdate = new EventEmitter<any>();
-  public hasMoreStrats = new ReplaySubject<boolean>(1);
-  public loadingTeams = new ReplaySubject<boolean>(1);
-  public loadingPlayers = new ReplaySubject<boolean>(1);
-  public loadingStrategies = new ReplaySubject<boolean>(1);
-  public loadingQuickSearch = new ReplaySubject<boolean>(1);
-  public loadingSearch = new ReplaySubject<boolean>(1);
-  public searchResult = new ReplaySubject<SearchResult>(1);
-  public playerSearchResult = new ReplaySubject<ApplicationUser []>(1);
-  public teamSearchResult = new ReplaySubject<CSGOTeam []>(1);
-  public strategySearchResult = new ReplaySubject<CSGOStrategy []>(1);
-  public searchTerm = new ReplaySubject<string>(1);
+  public hasMoreStrats = new ReplaySubject<boolean>(CACHE_SIZE);
+  public loadingTeams = new ReplaySubject<boolean>(CACHE_SIZE);
+  public loadingPlayers = new ReplaySubject<boolean>(CACHE_SIZE);
+  public loadingStrategies = new ReplaySubject<boolean>(CACHE_SIZE);
+  public loadingQuickSearch = new ReplaySubject<boolean>(CACHE_SIZE);
+  public loadingSearch = new ReplaySubject<boolean>(CACHE_SIZE);
+  public searchResult = new ReplaySubject<SearchResult>(CACHE_SIZE);
+  public playerSearchResult = new ReplaySubject<ApplicationUser []>(CACHE_SIZE);
+  public teamSearchResult = new ReplaySubject<CSGOTeam []>(CACHE_SIZE);
+  public strategySearchResult = new ReplaySubject<CSGOStrategy []>(CACHE_SIZE);
+  public searchTerm = new ReplaySubject<string>(CACHE_SIZE);
+  public loadingPlayer = new ReplaySubject<boolean>(CACHE_SIZE);
 
   constructor(private http: HttpClient, private commService: CommunicationService) { }
 
@@ -664,9 +665,16 @@ export class BellumgensApiService {
 
   public getPlayer(userId: string) {
     if (!this.playerMatch(userId)) {
+      this.loadingPlayer.next(true);
       this.getPlayerFromServer(userId).subscribe(
-        player => this._currentPlayer.next(player),
-        _ => this._currentPlayer.next(null)
+        player => {
+          this._currentPlayer.next(player);
+          this.loadingPlayer.next(false);
+        },
+        _ => {
+          this._currentPlayer.next(null);
+          this.loadingPlayer.next(false);
+        }
       );
     }
     return this._currentPlayer;
