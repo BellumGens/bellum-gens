@@ -108,6 +108,7 @@ import { ApiTournamentsService } from './services/bellumgens-api.tournaments.ser
 import { StartsWithPipe } from './pipes/starts-with.pipe';
 import { TeamNewComponent } from './team-section/team-new/team-new.component';
 import { GetRegCountPipe } from './pipes/get-reg-count.pipe';
+import { TournamentFormatComponent } from './tournaments/tournament-format/tournament-format.component';
 
 @NgModule({
   declarations: [
@@ -174,7 +175,8 @@ import { GetRegCountPipe } from './pipes/get-reg-count.pipe';
     TournamentHomeComponent,
     StartsWithPipe,
     TeamNewComponent,
-    GetRegCountPipe
+    GetRegCountPipe,
+    TournamentFormatComponent
   ],
   imports: [
     FormsModule,
