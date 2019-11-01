@@ -37,11 +37,11 @@
     <div *ngIf="team" class="editor-elements-section">
       <div>Team</div>
       <igx-avatar *ngFor="let member of team?.Members"
-                  [src]="member.SteamUser.avatarIcon"
-                  [igxDrag]="{ src: member.SteamUser.avatarIcon, circle: true, width: 24, height: 24, name: member.SteamUser.steamID }"
+                  [src]="member.AvatarIcon"
+                  [igxDrag]="{ src: member.AvatarIcon, circle: true, width: 24, height: 24, name: member.Username }"
                   (dragStart)="deselectBrush()"
                   class="editor-element-icon"
-                  [title]="member.SteamUser.steamID"
+                  [title]="member.Username"
                   roundShape="true">
       </igx-avatar>
     </div>
@@ -98,11 +98,7 @@
     </div>
     <div class="editor-elements-section">
       <button igxButton="raised" igxRipple class="submit-button" (click)="saveStrat()" [disabled]="!changes || saveInProgress">
-        <igx-circular-bar *ngIf="saveInProgress"
-                          [indeterminate]="true"
-                          class="loading-indicator-small">
-        </igx-circular-bar>
-        {{ saveInProgress ? 'Saving' : 'Save' }}
+        {{ saveInProgress ? 'Saving...' : 'Save' }}
       </button>
     </div>
     <div class="editor-credits">

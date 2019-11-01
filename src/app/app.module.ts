@@ -3,7 +3,6 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -216,7 +215,6 @@ import { TournamentFormatComponent } from './tournaments/tournament-format/tourn
     IgxDividerModule,
     IgxCarouselModule,
     IgxAutocompleteModule,
-    RouterModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
