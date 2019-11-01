@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TournamentFormatComponent } from './tournament-format.component';
+import { IgxDividerModule } from 'igniteui-angular';
 
 describe('TournamentFormatComponent', () => {
   let component: TournamentFormatComponent;
@@ -8,6 +9,7 @@ describe('TournamentFormatComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ IgxDividerModule ],
       declarations: [ TournamentFormatComponent ]
     })
     .compileComponents();

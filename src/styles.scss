@@ -603,6 +603,33 @@ button igx-icon {
   margin: 16px 0 16px 0;
 }
 
+.slide-info-column {
+  max-width: 680px;
+  min-width: 380px;
+  padding: 52px;
+  vertical-align: middle;
+  margin: auto;
+}
+
+.slide-info-column h1,
+.content-container h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.slide-info-column h4,
+.content-container h4 {
+  font-size: 1.75rem;
+  margin: 0;
+}
+
+.slide-info-column p,
+.content-container p {
+  font-size: 1rem;
+  margin: 0 0 16px 0;
+}
+
 .slide1 {
   background-image: url('/assets/wallpapers/slide-image-4.webp');
   background-position: center;
@@ -632,12 +659,13 @@ button igx-icon {
   justify-content: space-evenly;
 }
 
-  .content-container-column.justify-start {
-    justify-content: flex-start;
-  }
-
   .content-container-column p {
     margin: 0;
+  }
+
+  .content-container-column ul {
+    padding-inline-start: 40px;
+    list-style: disc;
   }
 
 .left-column {

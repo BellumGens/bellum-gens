@@ -23,35 +23,10 @@
   background-repeat: no-repeat;
 }
 
-.slide-info {
-  max-width: 680px;
-  min-width: 380px;
-  padding: 52px;
-  vertical-align: middle;
-  margin: auto;
-}
 
-.slide-info h1,
-.content-container h1 {
-  font-size: 2rem;
-  font-weight: 800;
-  margin: 0;
-}
-
-.slide-info h4,
-.content-container h4 {
-  font-size: 1.75rem;
-  margin: 0;
-}
 
 .content-container .registration-title {
   margin-top: 8px;
-}
-
-.slide-info p,
-.content-container p {
-  font-size: 1rem;
-  margin: 0 0 16px 0;
 }
 
 .preview-image {
@@ -69,11 +44,6 @@
 
 .subscription-form-input {
   min-width: 380px;
-}
-
-.content-container-column ul {
-  padding-inline-start: 40px;
-  list-style: disc;
 }
 
 .application-details {
