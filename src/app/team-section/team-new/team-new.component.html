@@ -61,11 +61,7 @@
       </igx-input-group>
 
       <button igxButton igxRipple [disabled]="!teamRegistration.touched || teamRegistration.invalid || inProgress" class="submit-button">
-          <igx-circular-bar *ngIf="inProgress"
-            [indeterminate]="true"
-            class="loading-indicator-small">
-          </igx-circular-bar>
-          {{ inProgress ? 'Registering...' : 'Register' }}
+        {{ inProgress ? 'Registering...' : 'Register' }}
       </button>
     </form>
   </div>

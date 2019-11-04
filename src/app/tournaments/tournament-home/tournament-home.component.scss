@@ -1,21 +1,3 @@
-.content-container {
-  display: grid;
-  grid-template-columns: minmax(45%, 1fr) minmax(45%, 1fr);
-  grid-column-gap: 48px;
-  grid-row-gap: 24px;
-  width: 1280px;
-  min-width: 380px;
-  padding: 16px;
-  margin: auto;
-}
-
-.home-page-slide {
-  display: grid;
-  grid-template-columns: minmax(45%, 1fr) minmax(45%, 1fr);
-  grid-column-gap: 48px;
-  padding: 48px 48px 12px 48px;
-}
-
 .slide {
   height: 450px;
   border-radius: 24px;
@@ -33,63 +15,8 @@
   background-repeat: no-repeat;
 }
 
-.slide-info {
-  max-width: 680px;
-  min-width: 380px;
-  padding: 52px;
-  vertical-align: middle;
-  margin: auto;
-}
-
-.slide-info h1,
-.content-container h1 {
-  font-size: 2rem;
-  font-weight: 800;
-  margin: 0;
-}
-
-.slide-info h4,
-.content-container h4 {
-  font-size: 1.75rem;
-  margin: 0;
-}
-
 .content-container .registration-title {
   margin-top: 8px;
-}
-
-.slide-info p,
-.content-container p {
-  font-size: 1rem;
-  margin: 0 0 16px 0;
-}
-
-.content-container-row {
-  grid-column: 1 / -1;
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  justify-content: space-evenly;
-  min-height: 210px;
-}
-
-  .content-container-row igx-divider {
-    width: 100%;
-  }
-
-.content-container-column {
-  display: flex;
-  flex-flow: column;
-  justify-content: space-evenly;
-}
-
-.content-container-column.justify-start {
-  justify-content: flex-start;
-}
-
-.left-column {
-  text-align: right;
-  align-items: flex-end;
 }
 
 .preview-image {
@@ -107,11 +34,6 @@
 
 .subscription-form-input {
   min-width: 380px;
-}
-
-.content-container-column ul {
-  padding-inline-start: 40px;
-  list-style: disc;
 }
 
 .application-details {
@@ -153,41 +75,6 @@
 .success-dialog-content {
   width: 550px;
   padding: 16px;
-}
-
-@media only screen and (max-width: 1280px) {
-  .home-page-slide {
-    grid-template-columns: minmax(380px, 1fr);
-    grid-row-gap: 16px;
-    padding: 16px 16px 12px 16px;
-  }
-
-  .content-container {
-    grid-template-columns: minmax(380px, 1fr);
-    width: 100%;
-  }
-
-  .slide {
-    height: auto;
-  }
-
-  .slide-info h1,
-  .content-container h1 {
-    font-size: 1.55rem;
-    margin: 0;
-    line-height: 2rem;
-  }
-
-  .slide-info p,
-  .content-container p {
-    font-size: 0.85rem;
-  }
-}
-
-@media only screen and (max-width: 1024px) {
-  .slide {
-    width: auto;
-  }
 }
 
 @media only screen and (max-width: 550px) {

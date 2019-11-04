@@ -1,19 +1,22 @@
-<div class="home-page-slide">
+<div class="home-page-slide-columns">
   <div class="slide slide1">
-    <div class="slide-info">
+    <div class="slide-info-column">
       <h1>CS:GO League</h1>
-      <p>Регистрацията за първия сезон на Esports Business League е отворена! Първото издание на Esports Business League ще се проведе пролетта на 2020. До 16 отбора ще премерят сили в CS:GO лига, всеки срещу всеки и ще събират точки за участие в LAN финалите.</p>
+      <p>Регистрацията за първия сезон на Esports Business League е отворена! Първото издание на Esports Business League ще се проведе пролетта на 2020.</p>
       <igx-linear-bar [max]="16"
                       [value]="registrations | getRegCount:gameEnum.CSGO:pipeTrigger"
                       [text]="(registrations | getRegCount:gameEnum.CSGO:pipeTrigger) + ' / 16 записани до момента'"
                       type="success"></igx-linear-bar>
-      <button igxButton="raised" igxButtonColor="#fff" [disabled]="userCheck" (click)="selectGame(gameEnum.CSGO)">Записване за CS:GO лига</button>
+      <button igxButton="raised"
+              igxButtonColor="#fff"
+              [disabled]="userCheck"
+              (click)="selectGame(gameEnum.CSGO)">Записване за CS:GO лига</button>
     </div>
   </div>
   <div class="slide slide2">
-    <div class="slide-info">
+    <div class="slide-info-column">
       <h1>StarCraft II League</h1>
-      <p>Регистрацията за първия сезон на Esports Business League е отворена! Първото издание на Esports Business League ще се проведе пролетта на 2020. До 32 състезателя ще премерят сили в StarCraft II лига, всеки срещу всеки и ще събират точки за участие в LAN финалите.</p>
+      <p>Регистрацията за първия сезон на Esports Business League е отворена! Първото издание на Esports Business League ще се проведе пролетта на 2020.</p>
       <igx-linear-bar [max]="32"
                       [value]="registrations | getRegCount:gameEnum.StarCraft2:pipeTrigger"
                       [text]="(registrations | getRegCount:gameEnum.StarCraft2:pipeTrigger) + ' / 32 записани до момента'"
@@ -113,7 +116,8 @@
     <p>Esports Business League предоставя арена за аматьорска състезание между отбори сформирани на работното място. Първият сезон на лигата ще се проведе в рамките на 8 седмици, като всяка седмица ще се провеждат по 2 срещи, след работно време в делнични дни (без петък). Лигата ще приключи с LAN финали до които ще достигнат отборите и играчите с най-много събрани точки през сезона. Всички срещи от лигата ще бъдат излъчвани и коментирани на живо по <a href="https://www.twitch.tv/" target="_blank" rel="noopener">twitch.tv</a>.</p>
     <h4>Кога?</h4>
     <p>Регистрации се приемат между 15ти Октомври, 2019 и 6ти Декември, 2019, или до изчерпване на местата.</p>
-    <p>Провеждането на първи сезон на лигата ще започне от Януари 2020.</p>
+    <p>Провеждането на първи сезон на лигата ще започне на <span class="highlight">27ми Януари, 2020</span>.</p>
+    <p>LAN финалите на първи сезон на лигата ще бъдат на <span class="highlight">4-5ти Април, 2020</span>.</p>
   </div>
 
   <div class="content-container-column left-column">
@@ -132,7 +136,7 @@
     <h2>Формат на Лигата</h2>
   </div>
 
-  <div class="content-container-column justify-start">
+  <div class="content-container-column">
     <h4>CS:GO Лига</h4>
     <ul>
       <li>8 седмици - формат лига</li>
@@ -141,10 +145,11 @@
       <li>Всеки срещу всеки, до изчерпване на противниците</li>
       <li>Всеки отбор събира точки седмично</li>
       <li>LAN финал уикенд между 4те отбора събрали най-много точки</li>
+      <li>Пълна информация за формата ще намерите <a routerLink="/tournament/format">тук</a></li>
     </ul>
   </div>
 
-  <div class="content-container-column justify-start">
+  <div class="content-container-column">
     <h4>StarCraft II Лига</h4>
     <ul>
       <li>8 седмици - формат лига</li>
@@ -153,6 +158,7 @@
       <li>Всеки срещу всеки, до изчерпване на противниците</li>
       <li>Всеки играч събира точки седмично</li>
       <li>LAN финал уикенд между 8те играча събрали най-много точки</li>
+      <li>Пълна информация за формата ще намерите <a routerLink="/tournament/format">тук</a></li>
     </ul>
   </div>
 

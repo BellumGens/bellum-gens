@@ -3,7 +3,6 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
@@ -108,6 +107,7 @@ import { ApiTournamentsService } from './services/bellumgens-api.tournaments.ser
 import { StartsWithPipe } from './pipes/starts-with.pipe';
 import { TeamNewComponent } from './team-section/team-new/team-new.component';
 import { GetRegCountPipe } from './pipes/get-reg-count.pipe';
+import { TournamentFormatComponent } from './tournaments/tournament-format/tournament-format.component';
 
 @NgModule({
   declarations: [
@@ -174,7 +174,8 @@ import { GetRegCountPipe } from './pipes/get-reg-count.pipe';
     TournamentHomeComponent,
     StartsWithPipe,
     TeamNewComponent,
-    GetRegCountPipe
+    GetRegCountPipe,
+    TournamentFormatComponent
   ],
   imports: [
     FormsModule,
@@ -214,7 +215,6 @@ import { GetRegCountPipe } from './pipes/get-reg-count.pipe';
     IgxDividerModule,
     IgxCarouselModule,
     IgxAutocompleteModule,
-    RouterModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
