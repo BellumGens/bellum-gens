@@ -2,17 +2,17 @@
   <div class="form-row">
     <div>
       <label for="lineup">Players playing as</label>
-      <igx-radio-group id="lineup" class="role-slots">
-        <igx-radio *ngFor="let slot of activeLineup" [(ngModel)]="searchModel.role" name="role" [value]="slot.role">{{ slot.roleName }}</igx-radio>
+      <igx-radio-group class="search-role-group" id="lineup">
+        <igx-radio *ngFor="let slot of activeLineup" [(ngModel)]="searchModel.role" class="search-role" name="role" [value]="slot.role">{{ slot.roleName }}</igx-radio>
       </igx-radio-group>
     </div>
 
     <div *ngIf="authUser && authUser.teamAdmin">
       <label for="availability">A minimum overlap with my</label>
       <div class="search-radio-group">
-        <igx-radio-group id="availability" class="role-slots">
-          <igx-radio [(ngModel)]="userOverlap" name="userOverlap" [value]="0">Availability</igx-radio>
-          <igx-radio [(ngModel)]="userOverlap" name="userOverlap" [value]="1">Team practice</igx-radio>
+        <igx-radio-group class="search-role-group" id="availability">
+          <igx-radio [(ngModel)]="userOverlap" class="search-role" name="userOverlap" [value]="0">Availability</igx-radio>
+          <igx-radio [(ngModel)]="userOverlap" class="search-role" name="userOverlap" [value]="1">Team practice</igx-radio>
         </igx-radio-group>
       </div>
       <igx-select *ngIf="userOverlap" name="teamOverlap" [(ngModel)]="searchModel.teamId" id="team-select">
@@ -41,8 +41,8 @@
       </igx-slider>
       <label>Hours availability</label>
     </div>
+    <button class="submit-button" igxButton="outlined" igxRipple>Search</button>
   </div>
-  <button class="submit-button" igxButton="outlined" igxRipple>Search</button>
 </form>
 <div *ngIf="!authUser">
   <p><b class="highlight">NOTE: </b>Signing in gives you access to more search options!</p>

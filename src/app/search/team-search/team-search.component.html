@@ -2,8 +2,8 @@
   <div class="form-row">
     <div>
       <label for="lineup">Teams looking for</label>
-      <igx-radio-group id="lineup" class="role-slots">
-        <igx-radio *ngFor="let slot of activeLineup" [(ngModel)]="searchModel.role" name="role" [value]="slot.role">{{ slot.roleName }}</igx-radio>
+      <igx-radio-group class="search-role-group" id="lineup">
+        <igx-radio *ngFor="let slot of activeLineup" [(ngModel)]="searchModel.role" name="role" class="search-role" [value]="slot.role">{{ slot.roleName }}</igx-radio>
       </igx-radio-group>
     </div>
 

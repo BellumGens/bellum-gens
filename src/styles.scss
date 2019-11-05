@@ -418,9 +418,14 @@ textarea {
 }
 
 /* SEARCH */
-.role-slots {
+.search-role {
+  margin: 0 4px;
+}
+
+.search-role-group {
+  height: 48px;
+  align-content: center;
   display: flex;
-  flex-flow: column;
 }
 
 .form-row {
