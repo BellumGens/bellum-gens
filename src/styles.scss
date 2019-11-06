@@ -423,9 +423,10 @@ textarea {
 }
 
 .search-role-group {
-  height: 48px;
+  min-height: 48px;
   align-content: center;
   display: flex;
+  flex-wrap: wrap;
 }
 
 .form-row {
@@ -433,14 +434,21 @@ textarea {
   flex: 1 1 100%;
   flex-flow: row wrap;
   justify-content: space-evenly;
+  padding: 8px;
 }
 
 .submit-button {
   width: 100%;
 }
 
+.search-button {
+  margin: auto;
+  display: flex;
+  min-width: 300px;
+}
+
 .slider-holder {
-  min-width: 200px;
+  min-width: 216px;
 }
 
 button igx-icon {
@@ -737,5 +745,14 @@ button igx-icon {
 @media only screen and (max-width: 550px) {
   .bellum-gens-navbar .igx-navbar__title {
     display: none;
+  }
+
+  .slider-holder {
+    min-width: 100%;
+  }
+
+  .form-row {
+    min-height: 330px;
+    justify-content: unset;
   }
 }

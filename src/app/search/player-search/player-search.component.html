@@ -9,7 +9,7 @@
 
     <div *ngIf="authUser && authUser.teamAdmin">
       <label for="availability">A minimum overlap with my</label>
-      <div class="search-radio-group">
+      <div class="search-role-group">
         <igx-radio-group class="search-role-group" id="availability">
           <igx-radio [(ngModel)]="userOverlap" class="search-role" name="userOverlap" [value]="0">Availability</igx-radio>
           <igx-radio [(ngModel)]="userOverlap" class="search-role" name="userOverlap" [value]="1">Team practice</igx-radio>
@@ -41,8 +41,8 @@
       </igx-slider>
       <label>Hours availability</label>
     </div>
-    <button class="submit-button" igxButton="outlined" igxRipple>Search</button>
   </div>
+  <button class="search-button" igxButton="outlined" igxRipple>Search</button>
 </form>
 <div *ngIf="!authUser">
   <p><b class="highlight">NOTE: </b>Signing in gives you access to more search options!</p>
