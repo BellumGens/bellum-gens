@@ -80,7 +80,7 @@
       <igx-avatar [src]="authUser?.avatarIcon" [roundShape]="true"></igx-avatar>
       <form #strategyForm="ngForm" (ngSubmit)="submitComment()" class="comment-input">
         <igx-input-group type="box">
-          <label for="comment" igxLabel>Leave a comment...</label>
+          <label for="comment" igxLabel>{{ !authUser ? 'Login to ' : 'Leave a ' }}comment...</label>
           <textarea [disabled]="!authUser" #commentBox id="comment" name="comment" igxInput [(ngModel)]="newComment.Comment"></textarea>
           <button igxSuffix
                   igxButton="fab"

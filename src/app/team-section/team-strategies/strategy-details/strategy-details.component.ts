@@ -42,6 +42,8 @@ export class StrategyDetailsComponent extends BaseComponent {
             if (strat) {
               this.strat = strat;
               this.newComment.StratId = strat.Id;
+              this.meta.updateTag({ name: 'og:image', content: strat.Image });
+              this.meta.updateTag({ name: 'twitter:image', content: strat.Image });
             }
           });
         }

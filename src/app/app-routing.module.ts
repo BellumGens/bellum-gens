@@ -45,7 +45,10 @@ export const routes: Routes = [
     }
   },
   { path: 'strategies/edit/:stratid', component: StrategyEditorComponent },
-  { path: 'strategies/details/:stratid', component: StrategyDetailsComponent },
+  { path: 'strategies/details/:stratid', component: StrategyDetailsComponent, data: {
+      title: 'Bellum Gens CS:GO Strategy'
+    }
+  },
   { path: 'emailconfirm/:error', component: EmailconfirmComponent },
   { path: 'players/:userid', component: PlayerDetailsComponent },
   { path: 'players/:userid/:newuser', component: PlayerDetailsComponent },
