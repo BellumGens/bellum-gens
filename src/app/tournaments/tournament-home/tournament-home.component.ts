@@ -1,4 +1,4 @@
-import { Component, HostListener, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import { ApplicationUser } from '../../models/applicationuser';
 import { Title, Meta } from '@angular/platform-browser';
