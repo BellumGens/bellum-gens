@@ -51,7 +51,8 @@ describe('TeamDetailsComponent', () => {
           useValue: {
             parent: {
               params: new Observable()
-            }
+            },
+            data: new Observable()
           }
         }
       ]

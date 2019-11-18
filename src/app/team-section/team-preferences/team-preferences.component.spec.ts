@@ -43,7 +43,8 @@ describe('TeamPreferencesComponent', () => {
           useValue: {
             parent: {
               params: new Observable()
-            }
+            },
+            data: new Observable()
           }
         }
       ]

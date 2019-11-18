@@ -97,7 +97,8 @@ describe('TeamStrategiesComponent', () => {
           useValue: {
             parent: {
               params: new Observable()
-            }
+            },
+            data: new Observable()
           }
         }
       ]
