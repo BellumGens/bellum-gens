@@ -4,20 +4,8 @@ import { Injectable, EventEmitter } from '@angular/core';
   providedIn: 'root'
 })
 export class CommunicationService {
-  private _headerTitle = 'Bellum Gens';
-
   constructor() { }
 
-  public get title() {
-    return this._headerTitle;
-  }
-
-  public set title(value: string) {
-    this._headerTitle = value;
-    this.headerTitle.emit(this._headerTitle);
-  }
-
-  public headerTitle = new EventEmitter<string>();
   public success = new EventEmitter<string>();
   public error = new EventEmitter<string>();
   public message = new EventEmitter<string>();

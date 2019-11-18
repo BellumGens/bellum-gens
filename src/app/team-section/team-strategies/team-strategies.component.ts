@@ -1,10 +1,10 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BellumgensApiService } from '../../services/bellumgens-api.service';
 import { CSGOStrategy, VoteDirection } from '../../models/csgostrategy';
 import { MapPool, AllMaps } from '../../models/csgomaps';
 import { IChipSelectEventArgs } from 'igniteui-angular';
-import { SafeResourceUrl, Title } from '@angular/platform-browser';
+import { SafeResourceUrl, Title, Meta } from '@angular/platform-browser';
 import { BaseComponent } from '../../base/base.component';
 import { CSGOTeam } from '../../models/csgoteam';
 import { LoginService } from '../../services/login.service';
@@ -44,8 +44,10 @@ export class TeamStrategiesComponent extends BaseComponent {
               private apiService: BellumgensApiService,
               private authManager: LoginService,
               private socialMedia: SocialMediaService,
-              private title: Title) {
-    super();
+              title: Title,
+              meta: Meta,
+              activeRoute: ActivatedRoute) {
+    super(title, meta, activeRoute);
     this.subs.push(
       this.activatedRoute.parent.params.subscribe(params => {
         const teamId = params['teamid'];
@@ -71,8 +73,6 @@ export class TeamStrategiesComponent extends BaseComponent {
             })
           );
         }
-
-        this.title.setTitle('CS:GO Strategies: find or create ');
       }),
       this.authManager.applicationUser.subscribe(user => this.authUser = user)
     );

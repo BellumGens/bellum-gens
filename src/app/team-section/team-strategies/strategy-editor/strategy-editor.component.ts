@@ -9,6 +9,7 @@ import { StratUtilities, EditorBrushColors } from '../../../models/strat-editor/
 import { CSGOStrategy } from '../../../models/csgostrategy';
 import { BaseLayer, PointCoordinate, ImageLayer, FreeflowLayer } from '../../../models/strat-editor/editor-layer';
 import { BaseComponent } from '../../../base/base.component';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-strategy-editor',
@@ -61,8 +62,10 @@ export class StrategyEditorComponent extends BaseComponent implements OnInit, On
 
   constructor(private apiService: BellumgensApiService,
               private iconService: IgxIconService,
-              private route: ActivatedRoute) {
-    super();
+              private route: ActivatedRoute,
+              title: Title,
+              meta: Meta) {
+    super(title, meta, route);
     this.loadSvgs();
   }
 

@@ -1,4 +1,4 @@
-import { Component, ViewChildren, QueryList, ElementRef, Input } from '@angular/core';
+import { Component, ViewChildren, QueryList, ElementRef } from '@angular/core';
 import { IDropDroppedEventArgs, IgxAvatarComponent } from 'igniteui-angular';
 import { PlaystyleRole, RoleSlot } from '../../models/playerrole';
 import { TeamMember, TEAM_PLACEHOLDER } from '../../models/csgoteam';
@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BaseComponent } from '../../base/base.component';
 import { LoginService } from '../../services/login.service';
 import { ApplicationUser } from '../../models/applicationuser';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-team-details',
@@ -43,13 +44,15 @@ export class TeamDetailsComponent extends BaseComponent {
 
   constructor(private apiService: BellumgensApiService,
               private authManager: LoginService,
-              private activatedRoute: ActivatedRoute) {
-    super();
+              title: Title,
+              meta: Meta,
+              activeRoute: ActivatedRoute) {
+    super(title, meta, activeRoute);
     this.subs.push(
       this.authManager.applicationUser.subscribe((data: ApplicationUser) => {
         this.authUser = data;
       }),
-      this.activatedRoute.parent.params.subscribe(params => {
+      this.activeRoute.parent.params.subscribe(params => {
         const teamId = params['teamid'];
 
         if (teamId) {

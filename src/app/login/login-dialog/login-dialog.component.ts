@@ -2,7 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { LoginProvider } from '../../models/login-provider';
 import { LOGIN_ASSETS } from '../../models/misc';
 import { IgxDialogComponent } from 'igniteui-angular';
-import { BaseComponent } from '../../base/base.component';
 import { LoginService } from '../../services/login.service';
 
 @Component({
@@ -10,7 +9,7 @@ import { LoginService } from '../../services/login.service';
   templateUrl: './login-dialog.component.html',
   styleUrls: ['./login-dialog.component.css']
 })
-export class LoginDialogComponent extends BaseComponent {
+export class LoginDialogComponent {
   public loginProviders: LoginProvider [];
   public loginColors = LOGIN_ASSETS;
 
@@ -20,10 +19,7 @@ export class LoginDialogComponent extends BaseComponent {
   public dialog: IgxDialogComponent;
 
   constructor(private authManager: LoginService) {
-    super();
-    this.subs.push(
-      this.authManager.loginProviders.subscribe(providers => this.loginProviders = providers)
-    );
+    this.authManager.loginProviders.subscribe(providers => this.loginProviders = providers);
   }
 
   public openLogin(title?: string) {

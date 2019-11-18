@@ -12,7 +12,7 @@ import { BaseComponent } from '../../base/base.component';
   templateUrl: './team-new.component.html',
   styleUrls: ['./team-new.component.scss']
 })
-export class TeamNewComponent extends BaseComponent {
+export class TeamNewComponent {
   @Input()
   public authUser: ApplicationUser;
   public groups: SteamGroup [];
@@ -24,12 +24,11 @@ export class TeamNewComponent extends BaseComponent {
   @ViewChild(IgxDialogComponent, { static: false }) public createTeam: IgxDialogComponent;
 
   constructor(private apiService: BellumgensApiService, private router: Router) {
-    super();
   }
 
   public open(navigate = true) {
     this.navigateOnCreate = navigate;
-    this.subs.push(this.apiService.getPlayerGroups(this.authUser.id).subscribe(groups => this.groups = groups));
+    this.apiService.getPlayerGroups(this.authUser.id).subscribe(groups => this.groups = groups);
     this.createTeam.open();
   }
 

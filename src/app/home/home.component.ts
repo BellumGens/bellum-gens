@@ -5,6 +5,7 @@ import { BaseComponent } from '../base/base.component';
 import { Title, Meta } from '@angular/platform-browser';
 import { SocialMediaService } from '../services/social-media.service';
 import { CommunicationService } from '../services/communication.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -16,18 +17,12 @@ export class HomeComponent extends BaseComponent {
   public navigation = window ? window.matchMedia('(min-width: 768px)').matches : true;
 
   constructor(private authManager: LoginService,
+              private socialMedia: SocialMediaService,
               private commService: CommunicationService,
-              private title: Title,
-              private meta: Meta,
-              private socialMedia: SocialMediaService) {
-    super();
-    this.title.setTitle('Bellum Gens: CS:GO team management');
-    this.meta.updateTag({ name: 'description',
-      content: 'CSGO Strategy editor | CSGO team finding and management | Bellum Gens: Looking for Group | Esports Business League'});
-    this.meta.updateTag({ name: 'twitter:title', content: 'CS:GO Strategy editor & community for team search and management.'});
-    this.meta.updateTag({ name: 'twitter:description',
-      content: 'CS:GO Strategy editor & strategy sharing with the community. CS:GO team management platform.'});
-    this.commService.title = 'Bellum Gens';
+              title: Title,
+              meta: Meta,
+              activeRoute: ActivatedRoute) {
+    super(title, meta, activeRoute);
     this.subs.push(this.authManager.applicationUser.subscribe(data => this.authUser = data));
   }
 

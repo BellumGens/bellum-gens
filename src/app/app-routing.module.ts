@@ -24,12 +24,26 @@ export const routes: Routes = [
   { path: 'app-shell', component: AppShellComponent },
   { path: 'unauthorized', component: UnauthorizedComponent },
   { path: 'emailconfirm', component: EmailconfirmComponent },
-  { path: 'tournament-signup', component: TournamentHomeComponent },
+  { path: 'tournament-signup', component: TournamentHomeComponent, data: {
+      title: 'Esports Business League',
+      headerTitle: 'Esports Business League',
+      headerTitleShort: 'EBL',
+      twitterTitle: 'Esports Business League | Esports бизнес лига',
+      description: 'Esports competition in business | Esports бизнес лига записване',
+      twitterDescription: 'Esports competition in business | Esports бизнес лига записване'
+    }
+  },
   { path: 'tournament/format', component: TournamentFormatComponent },
   { path: 'addsteam', component: AddSteamComponent },
   { path: 'user/strategies', component: UserStrategiesComponent },
-  { path: 'strategies', component: TeamStrategiesComponent },
-  { path: 'strategies/:query', component: TeamStrategiesComponent },
+  { path: 'strategies', component: TeamStrategiesComponent, data: {
+      title: 'CS:GO Strategies: find or create'
+    }
+  },
+  { path: 'strategies/:query', component: TeamStrategiesComponent, data: {
+      title: 'CS:GO Strategies: find or create'
+    }
+  },
   { path: 'strategies/edit/:stratid', component: StrategyEditorComponent },
   { path: 'strategies/details/:stratid', component: StrategyDetailsComponent },
   { path: 'emailconfirm/:error', component: EmailconfirmComponent },

@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BellumgensApiService } from '../../../services/bellumgens-api.service';
 import { CSGOTeam } from '../../../models/csgoteam';
 import { BaseComponent } from '../../../base/base.component';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-team-results',
@@ -14,10 +15,13 @@ export class TeamResultsComponent extends BaseComponent {
   public loading = false;
   public query: string;
 
-  constructor(private route: ActivatedRoute, private apiService: BellumgensApiService) {
-    super();
+  constructor(private apiService: BellumgensApiService,
+              title: Title,
+              meta: Meta,
+              activeRoute: ActivatedRoute) {
+    super(title, meta, activeRoute);
     this.subs.push(
-      this.route.params.subscribe(params => {
+      this.activeRoute.params.subscribe(params => {
         if (params.query) {
           this.query = params.query;
           this.apiService.searchTeams(params.query);

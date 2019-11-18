@@ -5,7 +5,7 @@ import { CSGOTeam, TEAM_PLACEHOLDER } from '../../models/csgoteam';
 import { BellumgensApiService } from '../../services/bellumgens-api.service';
 import { LoginService } from '../../services/login.service';
 import { BaseComponent } from '../../base/base.component';
-import { Title } from '@angular/platform-browser';
+import { Title, Meta } from '@angular/platform-browser';
 import { IgxIconService } from 'igniteui-angular';
 
 @Component({
@@ -21,24 +21,25 @@ export class TeamOverviewComponent extends BaseComponent {
   private _isEditor: boolean = null;
   private _isMember: boolean = null;
 
-  constructor(private activatedRoute: ActivatedRoute,
-              private apiService: BellumgensApiService,
+  constructor(private apiService: BellumgensApiService,
               private authManager: LoginService,
               private iconService: IgxIconService,
-              private title: Title) {
-    super();
+              title: Title,
+              meta: Meta,
+              activeRoute: ActivatedRoute) {
+    super(title, meta, activeRoute);
     this.subs.push(
       this.authManager.applicationUser.subscribe((data: ApplicationUser) => {
         this.authUser = data;
       }),
-      this.activatedRoute.params.subscribe(params => {
+      this.activeRoute.params.subscribe(params => {
         const teamId = params['teamid'];
 
         if (teamId) {
           this.apiService.getTeam(teamId).subscribe(team => {
             if (team) {
               this.team = team;
-              this.title.setTitle('CS:GO Team: ' + team.TeamName);
+              this.titleService.setTitle('CS:GO Team: ' + team.TeamName);
             }
           });
         }

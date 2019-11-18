@@ -8,6 +8,7 @@ import { ApplicationUser } from '../../../models/applicationuser';
 import { GlobalOverlaySettings } from '../../../models/misc';
 import { LoginDialogComponent } from '../../../login/login-dialog/login-dialog.component';
 import { SocialMediaService } from '../../../services/social-media.service';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-strategy-details',
@@ -29,10 +30,12 @@ export class StrategyDetailsComponent extends BaseComponent {
   constructor(private apiService: BellumgensApiService,
               private authManager: LoginService,
               private socialMedia: SocialMediaService,
-              private route: ActivatedRoute) {
-    super();
+              title: Title,
+              meta: Meta,
+              activeRoute: ActivatedRoute) {
+    super(title, meta, activeRoute);
     this.subs.push(
-      this.route.params.subscribe(params => {
+      this.activeRoute.params.subscribe(params => {
         const stratid = params['stratid'];
         if (stratid) {
           this.apiService.getCurrentStrategy(stratid).subscribe(strat => {

@@ -4,6 +4,7 @@ import { CSGOTeam, TeamMember } from '../../models/csgoteam';
 import { SteamUserSummary } from '../../models/steamuser';
 import { BaseComponent } from '../../base/base.component';
 import { ActivatedRoute } from '@angular/router';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-team-preferences',
@@ -18,10 +19,12 @@ export class TeamPreferencesComponent extends BaseComponent {
   adminId: string;
 
   constructor(private apiService: BellumgensApiService,
-              private activatedRoute: ActivatedRoute) {
-    super();
+              title: Title,
+              meta: Meta,
+              activeRoute: ActivatedRoute) {
+    super(title, meta, activeRoute);
     this.subs.push(
-      this.activatedRoute.parent.params.subscribe(params => {
+      this.activeRoute.parent.params.subscribe(params => {
         const teamId = params['teamid'];
 
         if (teamId) {

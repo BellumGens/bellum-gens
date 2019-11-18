@@ -5,6 +5,7 @@ import { ALL_ROLES } from '../../../models/playerrole';
 import { BaseComponent } from '../../../base/base.component';
 import { IgxIconService } from 'igniteui-angular';
 import { ApplicationUser } from '../../../models/applicationuser';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-player-results',
@@ -17,10 +18,14 @@ export class PlayerResultsComponent extends BaseComponent {
   public roles = ALL_ROLES;
   public query: string;
 
-  constructor(private route: ActivatedRoute, private apiService: BellumgensApiService, private iconService: IgxIconService) {
-    super();
+  constructor(private apiService: BellumgensApiService,
+              private iconService: IgxIconService,
+              title: Title,
+              meta: Meta,
+              activeRoute: ActivatedRoute) {
+    super(title, meta, activeRoute);
     this.subs.push(
-      this.route.params.subscribe(params => {
+      this.activeRoute.params.subscribe(params => {
         if (params.query) {
           this.query = params.query;
           this.apiService.searchPlayers(params.query);

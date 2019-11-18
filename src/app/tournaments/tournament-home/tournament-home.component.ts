@@ -8,6 +8,7 @@ import { Game, getEmptyNewApplication, GAMES, RegistrationsCount } from '../../m
 import { ApiTournamentsService } from '../../services/bellumgens-api.tournaments.service';
 import { LoginDialogComponent } from '../../login/login-dialog/login-dialog.component';
 import { IgxDialogComponent } from 'igniteui-angular';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-tournament-home',
@@ -46,18 +47,10 @@ export class TournamentHomeComponent extends BaseComponent {
   constructor(private authManager: LoginService,
               private apiService: ApiTournamentsService,
               private commService: CommunicationService,
-              private title: Title,
-              private meta: Meta) {
-    super();
-    this.title.setTitle('Esports Business League: Sign-up');
-    this.meta.updateTag({ name: 'description', content: 'Esports competition in business | Esports бизнес лига записване'});
-    this.meta.updateTag({ name: 'twitter:title', content: 'Esports Business League | Esports бизнес лига'});
-    this.meta.updateTag({ name: 'twitter:description', content: 'Esports competition in business | Esports бизнес лига записване'});
-    if (window) {
-      this.commService.title = window.matchMedia('(min-width: 768px)').matches ? this.headerTitle : this.headerTitleShort;
-    } else {
-      this.commService.title = this.headerTitle;
-    }
+              activeRoute: ActivatedRoute,
+              title: Title,
+              meta: Meta) {
+    super(title, meta, activeRoute);
     this.subs.push(
       this.authManager.applicationUser.subscribe(user => this.authUser = user),
       this.authManager.userCheckInProgress.subscribe(value => this.userCheck = value),
@@ -108,10 +101,5 @@ export class TournamentHomeComponent extends BaseComponent {
     const element = document.getElementById('terms');
     element.scrollIntoView({ behavior: 'smooth' });
     event.stopPropagation();
-  }
-
-  @HostListener('window:resize')
-  public resize() {
-    this.commService.title = window.matchMedia('(min-width: 768px)').matches ? this.headerTitle : this.headerTitleShort;
   }
 }

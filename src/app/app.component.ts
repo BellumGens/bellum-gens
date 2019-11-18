@@ -17,6 +17,8 @@ import { UnreadNotificationsPipe } from './pipes/unread-notifications.pipe';
 import { BaseComponent } from './base/base.component';
 import { GlobalOverlaySettings } from './models/misc';
 import { CommunicationService } from './services/communication.service';
+import { Title, Meta } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -24,7 +26,6 @@ import { CommunicationService } from './services/communication.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent extends BaseComponent implements OnInit {
-  public title = 'Bellum Gens';
   public authUser: ApplicationUser;
   public searchResult: SearchResult;
   public unreadNotifications = 0;
@@ -41,12 +42,12 @@ export class AppComponent extends BaseComponent implements OnInit {
 
   constructor(private authManager: LoginService,
               private apiService: BellumgensApiService,
-              private commService: CommunicationService) {
-    super();
-    this.subs.push(
-      this.commService.headerTitle.subscribe(title => this.title = title),
-      this.commService.openTeams.subscribe(_ => this.teamDropDown.open())
-    );
+              private commService: CommunicationService,
+              title: Title,
+              meta: Meta,
+              activeRoute: ActivatedRoute) {
+    super(title, meta, activeRoute);
+    this.commService.openTeams.subscribe(_ => this.teamDropDown.open());
   }
 
   public ngOnInit(): void {

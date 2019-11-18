@@ -4,10 +4,7 @@ import { LoginService } from '../services/login.service';
 import { ApplicationUser } from '../models/applicationuser';
 import { PlaystyleRole } from '../models/playerrole';
 import { BellumgensApiService } from '../services/bellumgens-api.service';
-import { BaseComponent } from '../base/base.component';
 import { GlobalOverlaySettings } from '../models/misc';
-import { TournamentApplication, GAMES } from '../models/tournament';
-import { ApiTournamentsService } from '../services/bellumgens-api.tournaments.service';
 
 export interface ProfileCompleteness {
   availability: boolean;
@@ -27,7 +24,7 @@ export interface ProfileCompleteness {
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent extends BaseComponent {
+export class LoginComponent {
   private _authUser: ApplicationUser;
 
   public profileCompleteness: ProfileCompleteness;
@@ -48,11 +45,8 @@ export class LoginComponent extends BaseComponent {
 
   constructor(private authManager: LoginService,
               private apiService: BellumgensApiService) {
-    super();
-    this.subs.push(
-      this.authManager.userCheckInProgress.subscribe(value => this.userCheck = value),
-      this.apiService.authUserUpdate.subscribe(_ => this.fillCompleteness())
-    );
+    this.authManager.userCheckInProgress.subscribe(value => this.userCheck = value);
+    this.apiService.authUserUpdate.subscribe(_ => this.fillCompleteness());
   }
 
   public logout() {

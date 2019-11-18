@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { UserPreferences, ApplicationUser } from '../../models/applicationuser';
 import { LoginService } from '../../services/login.service';
 import { LoginProvider } from '../../models/login-provider';
-import { BaseComponent } from '../../base/base.component';
 import { LOGIN_ASSETS } from '../../models/misc';
 import { TournamentApplication } from '../../models/tournament';
 import { ApiTournamentsService } from '../../services/bellumgens-api.tournaments.service';
@@ -12,7 +11,7 @@ import { ApiTournamentsService } from '../../services/bellumgens-api.tournaments
   templateUrl: './user-preferences.component.html',
   styleUrls: ['./user-preferences.component.css']
 })
-export class UserPreferencesComponent extends BaseComponent {
+export class UserPreferencesComponent {
   public preferences: UserPreferences = {
     email: '',
     searchVisible: true
@@ -24,20 +23,17 @@ export class UserPreferencesComponent extends BaseComponent {
   public registrations: TournamentApplication [];
 
   constructor(private authManager: LoginService, private apiService: ApiTournamentsService) {
-    super();
-    this.subs.push(
-      this.authManager.applicationUser.subscribe(user => {
-        if (user) {
-          this.preferences = {
-            email: user.email,
-            searchVisible: user.searchVisible
-          };
-          this.subs.push(this.apiService.registrations.subscribe(data => this.registrations = data));
-        }
-        this.authUser = user;
-      }),
-      this.authManager.loginProviders.subscribe(providers => this.providers = providers)
-    );
+    this.authManager.applicationUser.subscribe(user => {
+      if (user) {
+        this.preferences = {
+          email: user.email,
+          searchVisible: user.searchVisible
+        };
+        this.apiService.registrations.subscribe(data => this.registrations = data);
+      }
+      this.authUser = user;
+    });
+    this.authManager.loginProviders.subscribe(providers => this.providers = providers);
   }
 
   public login(provider: string) {

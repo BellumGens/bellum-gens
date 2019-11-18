@@ -14,7 +14,7 @@ import { CSGOTeam } from '../../models/csgoteam';
 import { MapPool } from '../../models/csgomaps';
 import { ALL_ROLES } from '../../models/playerrole';
 import { BaseComponent } from '../../base/base.component';
-import { Title } from '@angular/platform-browser';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-player-details',
@@ -38,8 +38,10 @@ export class PlayerDetailsComponent extends BaseComponent {
               private apiService: BellumgensApiService,
               private activatedRoute: ActivatedRoute,
               private iconService: IgxIconService,
-              private title: Title) {
-    super();
+              title: Title,
+              meta: Meta,
+              activeRoute: ActivatedRoute) {
+    super(title, meta, activeRoute);
     this.subs.push(
       this.authManager.applicationUser.subscribe((data: ApplicationUser) => {
         this.authUser = data;
@@ -53,7 +55,7 @@ export class PlayerDetailsComponent extends BaseComponent {
                 if (player) {
                   this.player = player;
                   if (!player.steamUserException) {
-                    this.title.setTitle('CS:GO Player: ' + player.steamUser.steamID);
+                    this.titleService.setTitle('CS:GO Player: ' + player.steamUser.steamID);
                   }
                 }
               }
