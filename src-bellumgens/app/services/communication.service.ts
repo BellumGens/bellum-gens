@@ -1,0 +1,29 @@
+import { Injectable, EventEmitter } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class CommunicationService {
+  constructor() { }
+
+  public success = new EventEmitter<string>();
+  public error = new EventEmitter<string>();
+  public message = new EventEmitter<string>();
+  public openTeams = new EventEmitter();
+
+  public emitOpenTeams() {
+    this.openTeams.emit();
+  }
+
+  public emitError(error: string) {
+    this.error.emit(error);
+  }
+
+  public emitSuccess(success: string) {
+    this.success.emit(success);
+  }
+
+  public emitMessage(message: string) {
+    this.message.emit(message);
+  }
+}

@@ -4,7 +4,9 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve -o",
+    "start": "concurrently --kill-others \"npm run start-bellumgens\" \"npm run start-ebleague\"",
+    "start-bellumgens": "ng serve -o",
+    "start-ebleague": "ng serve eb-league --port=4201 -o",
     "build": "ng build --prod",
     "test": "ng test",
     "test:prod": "ng test -- --no-watch --no-progress --browsers=ChromeHeadlessCI",
@@ -55,6 +57,7 @@
     "@types/jasminewd2": "~2.0.6",
     "@types/node": "~10.12.18",
     "codelyzer": "^5.0.1",
+    "concurrently": "^5.0.0",
     "igniteui-cli": "~4.3.1",
     "jasmine-core": "~3.3.0",
     "jasmine-spec-reporter": "~4.2.1",
