@@ -6,6 +6,7 @@ import { Title, Meta } from '@angular/platform-browser';
 import { SocialMediaService } from '../../../src-common/services/social-media.service';
 import { CommunicationService } from '../../../src-common/services/communication.service';
 import { ActivatedRoute } from '@angular/router';
+import { environment } from '../../../src-common/environments/environment';
 
 @Component({
   selector: 'app-home',
@@ -15,6 +16,7 @@ import { ActivatedRoute } from '@angular/router';
 export class HomeComponent extends BaseComponent {
   public authUser: ApplicationUser;
   public navigation = window ? window.matchMedia('(min-width: 768px)').matches : true;
+  public environment = environment;
 
   constructor(private authManager: LoginService,
               private socialMedia: SocialMediaService,
