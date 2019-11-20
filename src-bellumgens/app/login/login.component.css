@@ -32,7 +32,7 @@
   flex-flow: column;
   justify-content: space-between;
   min-height: 515px;
-  padding: 8px;
+  padding: 16px;
 }
 
 .preferences-divider {

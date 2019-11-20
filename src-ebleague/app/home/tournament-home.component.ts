@@ -1,20 +1,17 @@
 import { Component, ViewChild, ElementRef } from '@angular/core';
 import { LoginService } from '../../../src-common/services/login.service';
 import { ApplicationUser } from '../../../src-common/models/applicationuser';
-import { Title, Meta } from '@angular/platform-browser';
-import { BaseComponent } from '../../../src-bellumgens/app/base/base.component';
 import { Game, getEmptyNewApplication, GAMES, RegistrationsCount } from '../../../src-common/models/tournament';
 import { ApiTournamentsService } from '../../../src-common/services/bellumgens-api.tournaments.service';
 import { LoginDialogComponent } from '../../../src-bellumgens/app/login/login-dialog/login-dialog.component';
 import { IgxDialogComponent } from 'igniteui-angular';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-tournament-home',
   templateUrl: './tournament-home.component.html',
   styleUrls: ['./tournament-home.component.scss']
 })
-export class TournamentHomeComponent extends BaseComponent {
+export class TournamentHomeComponent {
   public authUser: ApplicationUser;
   public userCheck = false;
   public userEmail: string = null;
@@ -44,17 +41,11 @@ export class TournamentHomeComponent extends BaseComponent {
   public successDialog: IgxDialogComponent;
 
   constructor(private authManager: LoginService,
-              private apiService: ApiTournamentsService,
-              activeRoute: ActivatedRoute,
-              title: Title,
-              meta: Meta) {
-    super(title, meta, activeRoute);
-    this.subs.push(
-      this.authManager.applicationUser.subscribe(user => this.authUser = user),
-      this.authManager.userCheckInProgress.subscribe(value => this.userCheck = value),
-      this.apiService.companies.subscribe(data => this.companies = data),
-      this.apiService.registrationsCount.subscribe(data => this.registrations = data)
-    );
+              private apiService: ApiTournamentsService) {
+    this.authManager.applicationUser.subscribe(user => this.authUser = user);
+    this.authManager.userCheckInProgress.subscribe(value => this.userCheck = value);
+    this.apiService.companies.subscribe(data => this.companies = data);
+    this.apiService.registrationsCount.subscribe(data => this.registrations = data);
   }
 
   public subscribe() {

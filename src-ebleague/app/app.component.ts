@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 
 import { PositionSettings,
   HorizontalAlignment,
@@ -14,26 +14,25 @@ import { SearchResult } from '../../src-common/models/searchresult';
 import { fromEvent } from 'rxjs';
 import { map, debounceTime } from 'rxjs/operators';
 import { UnreadNotificationsPipe } from '../../src-bellumgens/app/pipes/unread-notifications.pipe';
-import { BaseComponent } from '../../src-bellumgens/app/base/base.component';
 import { GlobalOverlaySettings } from '../../src-common/models/misc';
-import { CommunicationService } from '../../src-common/services/communication.service';
-import { Title, Meta } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { environment } from '../../src-common/environments/environment';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent extends BaseComponent implements OnInit {
+export class AppComponent implements OnInit {
   public authUser: ApplicationUser;
   public searchResult: SearchResult;
-  public unreadNotifications = 0;
+  public title = 'Esports Business League';
+  public environment = environment;
+  private _headerTitle = 'Esports Business League';
+  private _headerTitleShort = 'EBL';
 
   public overlaySettings = GlobalOverlaySettings;
 
   @ViewChild('quickSearch', { static: true }) public quickSearchDropDown: IgxDropDownComponent;
-  @ViewChild('myTeam', { static: true }) public teamDropDown: IgxDropDownComponent;
   @ViewChild('searchGroup', { static: true }) public searchGroup: IgxInputGroupComponent;
   @ViewChild('searchInput', { static: true }) public searchInput: ElementRef;
   @ViewChild('cookiesBanner', { static: true }) public banner: IgxBannerComponent;
@@ -41,20 +40,18 @@ export class AppComponent extends BaseComponent implements OnInit {
   private unreadPipe = new UnreadNotificationsPipe();
 
   constructor(private authManager: LoginService,
-              private apiService: BellumgensApiService,
-              private commService: CommunicationService,
-              title: Title,
-              meta: Meta,
-              activeRoute: ActivatedRoute) {
-    super(title, meta, activeRoute);
-    this.commService.openTeams.subscribe(_ => this.teamDropDown.open());
+              private apiService: BellumgensApiService) {
+    if (window) {
+      this.title = window.matchMedia('(min-width: 768px)').matches ? this._headerTitle : this._headerTitleShort;
+    } else {
+      this.title = this._headerTitle;
+    }
+    this.authManager.applicationUser.subscribe(data => {
+      this.authUser = data;
+    });
   }
 
   public ngOnInit(): void {
-    this.subs.push(this.authManager.applicationUser.subscribe(data => {
-      this.authUser = data;
-      this.unreadNotifications += this.unreadPipe.transform(data.notifications);
-    }));
     if (window && !window.localStorage.getItem('cookiesAccepted')) {
       this.banner.open();
     }
@@ -70,7 +67,7 @@ export class AppComponent extends BaseComponent implements OnInit {
     const input = fromEvent(this.searchInput.nativeElement, 'keyup')
                     .pipe(map<Event, string>(e => (<HTMLInputElement>e.currentTarget).value));
     const debouncedInput = input.pipe(debounceTime(300));
-    this.subs.push(debouncedInput.subscribe(val => {
+    debouncedInput.subscribe(val => {
       if (val.length) {
         const positionSettings: PositionSettings = {
           horizontalDirection: HorizontalAlignment.Left,
@@ -84,10 +81,11 @@ export class AppComponent extends BaseComponent implements OnInit {
         this.quickSearchDropDown.open(overlaySettings);
         this.apiService.quickSearch(val);
       }
-    }));
+    });
   }
 
-  public notificationsLoaded(args: number) {
-    this.unreadNotifications += args;
+  @HostListener('window:resize')
+  public resize() {
+    this.title = window.matchMedia('(min-width: 768px)').matches ? this._headerTitle : this._headerTitleShort;
   }
 }

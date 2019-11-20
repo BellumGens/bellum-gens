@@ -17,8 +17,7 @@ import { TeamPreferencesComponent } from './team-section/team-preferences/team-p
 import { UserStrategiesComponent } from './player-section/user-strategies/user-strategies.component';
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
+  { path: '', component: HomeComponent },
   { path: 'app-shell', component: AppShellComponent },
   { path: 'unauthorized', component: UnauthorizedComponent },
   { path: 'emailconfirm', component: EmailconfirmComponent },

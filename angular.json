@@ -114,8 +114,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "src-bellumgens/environments/environment.ts",
-                  "with": "src-bellumgens/environments/environment.prod.ts"
+                  "replace": "src-common/environments/environment.ts",
+                  "with": "src-common/environments/environment.prod.ts"
                 }
               ],
               "sourceMap": false,
@@ -197,8 +197,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "src-ebleague/environments/environment.ts",
-                  "with": "src-ebleague/environments/environment.prod.ts"
+                  "replace": "src-common/environments/environment.ts",
+                  "with": "src-common/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,

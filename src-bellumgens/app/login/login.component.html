@@ -17,7 +17,7 @@
           <ng-template igxTab>
             <div class="horizontal-center">
               <igx-icon>person</igx-icon>
-              <div class="igx-tabs__item-label">Your Profile</div>
+              <div class="igx-tabs__item-label">Profile</div>
             </div>
           </ng-template>
           <div class="center-items profile-view">
@@ -53,7 +53,7 @@
           </div>
 
           <button class="submit-button" igxButton="outlined" igxRipple routerLink="/user/strategies"><igx-icon>playlist_add_check</igx-icon>my strategies</button>
-          <button class="submit-button" igxButton="outlined" igxRipple (click)="logout()"><igx-icon>exit_to_app</igx-icon>logout</button>
+          <button class="submit-button" igxButton="outlined" igxRipple class="profile-username" (click)="logout()"><igx-icon>exit_to_app</igx-icon>logout</button>
         </igx-tabs-group>
 
         <igx-tabs-group class="profile-content">

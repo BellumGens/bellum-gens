@@ -14,17 +14,9 @@
           <igx-icon>clear</igx-icon>
         </igx-suffix>
       </igx-input-group>
-      <div class="action-button-container" title="Strategies feed" routerLink="strategies">
-        <igx-icon>playlist_add_check</igx-icon>
-      </div>
-      <div class="action-button-container" [igxToggleAction]="myTeam" [overlaySettings]="overlaySettings" *ngIf="authUser">
+      <a class="action-button-container" title="Go to Bellum Gens" [href]="environment.bellumgens">
         <igx-icon>people</igx-icon>
-        <igx-badge class="notifications-badge" *ngIf="authUser.teams?.length > 0" [value]="authUser.teams?.length" type="info"></igx-badge>
-      </div>
-      <div class="action-button-container" [igxToggleAction]="notifications" [overlaySettings]="overlaySettings" *ngIf="authUser">
-        <igx-icon>notifications</igx-icon>
-        <igx-badge class="notifications-badge" *ngIf="unreadNotifications > 0" [value]="unreadNotifications" type="info"></igx-badge>
-      </div>
+      </a>
 
       <app-login [authUser]='authUser'></app-login>
     </igx-navbar>
@@ -40,12 +32,6 @@
 
     <igx-drop-down #quickSearch>
       <app-quick-search></app-quick-search>
-    </igx-drop-down>
-    <igx-drop-down #myTeam>
-      <app-team-nav [authUser]="authUser"></app-team-nav>
-    </igx-drop-down>
-    <igx-drop-down #notifications>
-      <app-notifications [authUser]="authUser" (loaded)="notificationsLoaded($event)"></app-notifications>
     </igx-drop-down>
     <app-success-error></app-success-error>
 

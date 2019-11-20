@@ -119,12 +119,6 @@ $button-theme: igx-button-theme($fab-resting-shadow: none,
 @include igx-css-vars($button-theme);
 /* END Button */
 
-/* Badge */
-.igx-badge__circle--info {
-  background-color: $secondary;
-}
-/* END Badge */
-
 /* Progress Circular */
 $circular-progress-bar-theme: igx-progress-circular-theme($progress-circle-color: $secondary);
 @include igx-css-vars($circular-progress-bar-theme);
@@ -135,103 +129,7 @@ $overlay-theme: igx-overlay-theme($background-color: rgba(35, 51, 132, 0.7));
 @include igx-css-vars($overlay-theme);
 /* END Time Picker */
 
-html, body {
-  height: 100%;
-  min-width: 412px;
-  background-image: $background-gradient;
-}
-
-/* ICONS */
-igx-icon {
-  user-select: none;
-}
-
-igx-card-actions igx-badge,
-igx-tab-item igx-icon {
-  margin-right: 8px;
-}
-
-igx-snackbar {
-  display: flex;
-  justify-content: center;
-  position: fixed;
-  left: 16px;
-  right: 16px;
-  bottom: 16px;
-  z-index: 10000;
-}
-
-.igx-linear-bar__base {
-  height: 12px;
-}
-
-.igx-typography .igx-tabs__item-label {
-  letter-spacing: 0.07rem;
-}
-
-.navigatable {
-  cursor: pointer;
-}
-
-.navigatable:focus,
-.navigatable:active {
-  outline: none;
-}
-
-/* END ICONS */
-
-.igx-typography {
-  color: var(--igx-card-header-text-color);
-}
-
-.content p {
-  margin: 15px;
-}
-
-.list-container {
-  display: flex;
-  flex-flow: column nowrap;
-  width: 320px;
-  + .list-container {
-    margin-left: 16px;
-  }
-}
-
-.igx-list__item-thumbnail {
-  align-self: inherit;
-}
-
-/* Team and Player Details */
-.left-details-container {
-  width: 250px;
-  min-width: 250px;
-  padding-right: 16px;
-}
-
-.right-details-container {
-  display: flex;
-  flex: 1 1 100%;
-  flex-flow: row wrap;
-}
-
-.overview-container-card {
-  width: 80%;
-  margin: auto;
-  padding: 24px 0 0 0;
-  color: white;
-}
-
-.overview-container-card .card-wrapper,
-.overview-container-card .strat-filter-header {
-  width: 100%;
-}
-
-.overview-container {
-  display: flex;
-  flex: 0 0 100%;
-  flex-wrap: nowrap;
-}
-/* END Team and Player Details */
+@import "../src-common/styles.scss";
 
 .igx-overlay {
   color: $primary;
@@ -278,14 +176,6 @@ igx-snackbar {
 
 igx-card-content h4 {
   margin: 24px 0px 0px 8px;
-}
-
-.overview-container-card h4 {
-  margin-top: 0;
-}
-
-.overview-container-card h4.margin-top {
-  margin-top: 1.75rem;
 }
 
 .horizontal {
@@ -688,7 +578,6 @@ button igx-icon {
     width: 100%;
   }
 
-  .overview-container-card,
   .card-wrapper,
   .search-result-summary,
   .strat-filter-header {
@@ -711,7 +600,6 @@ button igx-icon {
 }
 
 @media only screen and (max-width: 915px) {
-  .overview-container,
   .horizontal-space-between {
     flex-wrap: wrap;
   }
@@ -721,10 +609,6 @@ button igx-icon {
 }
 
 @media only screen and (max-width: 550px) {
-  .bellum-gens-navbar .igx-navbar__title {
-    display: none;
-  }
-
   .slider-holder {
     min-width: 100%;
   }

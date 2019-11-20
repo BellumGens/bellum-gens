@@ -1,0 +1,71 @@
+
+html, body {
+  height: 100%;
+  min-width: 412px;
+  background-image: $background-gradient;
+}
+
+/* ICONS */
+igx-icon {
+  user-select: none;
+}
+
+igx-card-actions igx-badge,
+igx-tab-item igx-icon {
+  margin-right: 8px;
+}
+
+igx-snackbar {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  z-index: 10000;
+}
+
+.igx-linear-bar__base {
+  height: 12px;
+}
+
+.igx-typography .igx-tabs__item-label {
+  letter-spacing: 0.07rem;
+}
+
+.navigatable {
+  cursor: pointer;
+}
+
+.navigatable:focus,
+.navigatable:active {
+  outline: none;
+}
+
+/* END ICONS */
+
+/* Badge */
+.igx-badge__circle--info {
+  background-color: $secondary;
+}
+/* END Badge */
+
+/* Typography */
+
+.igx-typography {
+  color: var(--igx-card-header-text-color);
+}
+
+.content p {
+  margin: 15px;
+}
+
+/* END Typography */
+
+/* List */
+
+.igx-list__item-thumbnail {
+  align-self: inherit;
+}
+
+/* END List */
