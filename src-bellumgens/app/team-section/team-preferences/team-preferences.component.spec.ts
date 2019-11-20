@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { PlayerCountryPipe } from 'src-bellumgens/app/pipes/player-country.pipe';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { TEAM_PLACEHOLDER } from 'src-bellumgens/app/models/csgoteam';
+import { TEAM_PLACEHOLDER } from '../../../../src-common/models/csgoteam';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ExcludeMembersPipe } from 'src-bellumgens/app/pipes/exclude-members.pipe';
 import { ServiceWorkerModule } from '@angular/service-worker';
