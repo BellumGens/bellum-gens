@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { RegistrationsCount, Game } from '../models/tournament';
+import { RegistrationsCount, Game } from '../../../src-common/models/tournament';
 
 @Pipe({
   name: 'getRegCount'

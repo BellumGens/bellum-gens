@@ -1,5 +1,5 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
-import { MapPool } from '../models/csgomaps';
+import { MapPool } from '../../../src-common/models/csgomaps';
 
 @Component({
   selector: 'app-map-pool',

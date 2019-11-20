@@ -1,13 +1,13 @@
 import { Component, HostListener, ViewChild } from '@angular/core';
 import { BaseComponent } from '../../../base/base.component';
-import { BellumgensApiService } from '../../../services/bellumgens-api.service';
+import { BellumgensApiService } from '../../../../../src-common/services/bellumgens-api.service';
 import { ActivatedRoute } from '@angular/router';
-import { CSGOStrategy, VoteDirection, newEmptyComment, StrategyComment } from '../../../models/csgostrategy';
-import { LoginService } from '../../../services/login.service';
-import { ApplicationUser } from '../../../models/applicationuser';
-import { GlobalOverlaySettings } from '../../../models/misc';
+import { CSGOStrategy, VoteDirection, newEmptyComment, StrategyComment } from '../../../../../src-common/models/csgostrategy';
+import { LoginService } from '../../../../../src-common/services/login.service';
+import { ApplicationUser } from '../../../../../src-common/models/applicationuser';
+import { GlobalOverlaySettings } from '../../../../../src-common/models/misc';
 import { LoginDialogComponent } from '../../../login/login-dialog/login-dialog.component';
-import { SocialMediaService } from '../../../services/social-media.service';
+import { SocialMediaService } from '../../../../../src-common/services/social-media.service';
 import { Title, Meta } from '@angular/platform-browser';
 
 @Component({

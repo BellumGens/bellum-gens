@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { Availability } from '../models/playeravailability';
+import { Availability } from '../../../src-common/models/playeravailability';
 
 @Pipe({
   name: 'daysAvailable'

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { LoginService } from '../services/login.service';
-import { LOGIN_ASSETS } from '../models/misc';
+import { LoginService } from '../../../src-common/services/login.service';
+import { LOGIN_ASSETS } from '../../../src-common/models/misc';
 
 @Component({
   selector: 'app-add-steam',

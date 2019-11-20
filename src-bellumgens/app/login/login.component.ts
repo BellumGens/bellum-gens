@@ -1,10 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { IgxProgressType } from 'igniteui-angular';
-import { LoginService } from '../services/login.service';
-import { ApplicationUser } from '../models/applicationuser';
-import { PlaystyleRole } from '../models/playerrole';
-import { BellumgensApiService } from '../services/bellumgens-api.service';
-import { GlobalOverlaySettings } from '../models/misc';
+import { LoginService } from '../../../src-common/services/login.service';
+import { ApplicationUser } from '../../../src-common/models/applicationuser';
+import { PlaystyleRole } from '../../../src-common/models/playerrole';
+import { BellumgensApiService } from '../../../src-common/services/bellumgens-api.service';
+import { GlobalOverlaySettings } from '../../../src-common/models/misc';
 
 export interface ProfileCompleteness {
   availability: boolean;

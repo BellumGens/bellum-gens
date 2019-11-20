@@ -1,17 +1,17 @@
 import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BellumgensApiService } from '../../services/bellumgens-api.service';
-import { CSGOStrategy, VoteDirection } from '../../models/csgostrategy';
-import { MapPool, AllMaps } from '../../models/csgomaps';
+import { BellumgensApiService } from '../../../../src-common/services/bellumgens-api.service';
+import { CSGOStrategy, VoteDirection } from '../../../../src-common/models/csgostrategy';
+import { MapPool, AllMaps } from '../../../../src-common/models/csgomaps';
 import { IChipSelectEventArgs } from 'igniteui-angular';
 import { SafeResourceUrl, Title, Meta } from '@angular/platform-browser';
 import { BaseComponent } from '../../base/base.component';
-import { CSGOTeam } from '../../models/csgoteam';
-import { LoginService } from '../../services/login.service';
-import { ApplicationUser } from '../../models/applicationuser';
-import { GlobalOverlaySettings, StratOrder, StratOrderBy } from '../../models/misc';
+import { CSGOTeam } from '../../../../src-common/models/csgoteam';
+import { LoginService } from '../../../../src-common/services/login.service';
+import { ApplicationUser } from '../../../../src-common/models/applicationuser';
+import { GlobalOverlaySettings, StratOrder, StratOrderBy } from '../../../../src-common/models/misc';
 import { LoginDialogComponent } from '../../login/login-dialog/login-dialog.component';
-import { SocialMediaService } from '../../services/social-media.service';
+import { SocialMediaService } from '../../../../src-common/services/social-media.service';
 
 @Component({
   selector: 'app-team-strategies',

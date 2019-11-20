@@ -7,16 +7,16 @@ import { PositionSettings,
   IgxInputGroupComponent,
   AutoPositionStrategy,
   IgxBannerComponent} from 'igniteui-angular';
-import { LoginService } from './services/login.service';
-import { ApplicationUser } from './models/applicationuser';
-import { BellumgensApiService } from './services/bellumgens-api.service';
-import { SearchResult } from './models/searchresult';
+import { LoginService } from '../../src-common/services/login.service';
+import { ApplicationUser } from '../../src-common/models/applicationuser';
+import { BellumgensApiService } from '../../src-common/services/bellumgens-api.service';
+import { SearchResult } from '../../src-common/models/searchresult';
 import { fromEvent } from 'rxjs';
 import { map, debounceTime } from 'rxjs/operators';
 import { UnreadNotificationsPipe } from './pipes/unread-notifications.pipe';
 import { BaseComponent } from './base/base.component';
-import { GlobalOverlaySettings } from './models/misc';
-import { CommunicationService } from './services/communication.service';
+import { GlobalOverlaySettings } from '../../src-common/models/misc';
+import { CommunicationService } from '../../src-common/services/communication.service';
 import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 

@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { UserPreferences, ApplicationUser } from '../../models/applicationuser';
-import { LoginService } from '../../services/login.service';
-import { LoginProvider } from '../../models/login-provider';
-import { LOGIN_ASSETS } from '../../models/misc';
-import { TournamentApplication } from '../../models/tournament';
-import { ApiTournamentsService } from '../../services/bellumgens-api.tournaments.service';
+import { UserPreferences, ApplicationUser } from '../../../../src-common/models/applicationuser';
+import { LoginService } from '../../../../src-common/services/login.service';
+import { LoginProvider } from '../../../../src-common/models/login-provider';
+import { LOGIN_ASSETS } from '../../../../src-common/models/misc';
+import { TournamentApplication } from '../../../../src-common/models/tournament';
+import { ApiTournamentsService } from '../../../../src-common/services/bellumgens-api.tournaments.service';
 
 @Component({
   selector: 'app-user-preferences',

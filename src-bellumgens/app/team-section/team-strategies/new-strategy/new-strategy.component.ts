@@ -1,12 +1,12 @@
 import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';
-import { CSGOStrategy, newEmptyStrategy } from '../../../models/csgostrategy';
-import { BellumgensApiService } from '../../../services/bellumgens-api.service';
-import { CSGOTeam } from '../../../models/csgoteam';
+import { CSGOStrategy, newEmptyStrategy } from '../../../../../src-common/models/csgostrategy';
+import { BellumgensApiService } from '../../../../../src-common/services/bellumgens-api.service';
+import { CSGOTeam } from '../../../../../src-common/models/csgoteam';
 import { IgxDialogComponent } from 'igniteui-angular';
 import { IsVideoPipe } from '../../../pipes/is-video.pipe';
-import { ApplicationUser } from '../../../models/applicationuser';
+import { ApplicationUser } from '../../../../../src-common/models/applicationuser';
 import { Router } from '@angular/router';
-import { ActiveDutyDescriptor, ActiveDuty } from '../../../models/csgomaps';
+import { ActiveDutyDescriptor, ActiveDuty } from '../../../../../src-common/models/csgomaps';
 
 @Component({
   selector: 'app-new-strategy',

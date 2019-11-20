@@ -1,5 +1,5 @@
 import { Component, ViewChild, Input, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
-import { Availability } from '../models/playeravailability';
+import { Availability } from '../../../src-common/models/playeravailability';
 import { IgxTimePickerComponent,
   IChipSelectEventArgs,
   IgxChipsAreaComponent,

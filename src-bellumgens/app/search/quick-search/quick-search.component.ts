@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { BellumgensApiService } from '../../services/bellumgens-api.service';
-import { SearchResult } from '../../models/searchresult';
+import { BellumgensApiService } from '../../../../src-common/services/bellumgens-api.service';
+import { SearchResult } from '../../../../src-common/models/searchresult';
 import { IgxIconService } from 'igniteui-angular';
 
 @Component({

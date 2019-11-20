@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { BellumgensApiService } from '../../services/bellumgens-api.service';
-import { CSGOTeam, TeamMember } from '../../models/csgoteam';
-import { SteamUserSummary } from '../../models/steamuser';
+import { BellumgensApiService } from '../../../../src-common/services/bellumgens-api.service';
+import { CSGOTeam, TeamMember } from '../../../../src-common/models/csgoteam';
+import { SteamUserSummary } from '../../../../src-common/models/steamuser';
 import { BaseComponent } from '../../base/base.component';
 import { ActivatedRoute } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ApplicationUser } from '../../models/applicationuser';
+import { ApplicationUser } from '../../../../src-common/models/applicationuser';
 
 enum SearchType {
   None,

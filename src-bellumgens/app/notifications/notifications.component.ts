@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ApplicationUser } from '../models/applicationuser';
+import { ApplicationUser } from '../../../src-common/models/applicationuser';
 import { UnreadNotificationsPipe } from '../pipes/unread-notifications.pipe';
 
 @Component({

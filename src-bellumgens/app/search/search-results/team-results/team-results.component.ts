@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BellumgensApiService } from '../../../services/bellumgens-api.service';
-import { CSGOTeam } from '../../../models/csgoteam';
+import { BellumgensApiService } from '../../../../../src-common/services/bellumgens-api.service';
+import { CSGOTeam } from '../../../../../src-common/models/csgoteam';
 import { BaseComponent } from '../../../base/base.component';
 import { Title, Meta } from '@angular/platform-browser';
 

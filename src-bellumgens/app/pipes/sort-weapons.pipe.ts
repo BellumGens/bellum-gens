@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { WeaponDescriptor } from '../models/csgoplayer';
+import { WeaponDescriptor } from '../../../src-common/models/csgoplayer';
 
 @Pipe({
   name: 'sortWeapons'

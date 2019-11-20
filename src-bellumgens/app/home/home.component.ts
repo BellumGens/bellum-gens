@@ -1,10 +1,10 @@
 import { Component, HostListener } from '@angular/core';
-import { LoginService } from '../services/login.service';
-import { ApplicationUser } from '../models/applicationuser';
+import { LoginService } from '../../../src-common/services/login.service';
+import { ApplicationUser } from '../../../src-common/models/applicationuser';
 import { BaseComponent } from '../base/base.component';
 import { Title, Meta } from '@angular/platform-browser';
-import { SocialMediaService } from '../services/social-media.service';
-import { CommunicationService } from '../services/communication.service';
+import { SocialMediaService } from '../../../src-common/services/social-media.service';
+import { CommunicationService } from '../../../src-common/services/communication.service';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { StrategyVote, VoteDirection } from '../models/csgostrategy';
+import { StrategyVote, VoteDirection } from '../../../src-common/models/csgostrategy';
 
 @Pipe({
   name: 'votes'

@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { UserNotification } from '../models/usernotifications';
+import { UserNotification } from '../../../src-common/models/usernotifications';
 
 @Pipe({
   name: 'sortNotifications'

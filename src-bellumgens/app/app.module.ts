@@ -40,8 +40,8 @@ import { IgxNavbarModule,
   IgxCarouselModule,
   IgxAutocompleteModule} from 'igniteui-angular';
 import { PlayerDetailsComponent } from './player-section/player-details/player-details.component';
-import { LoginService } from './services/login.service';
-import { BellumgensApiService } from './services/bellumgens-api.service';
+import { LoginService } from '../../src-common/services/login.service';
+import { BellumgensApiService } from '../../src-common/services/bellumgens-api.service';
 import { HomeComponent } from './home/home.component';
 import { GroupsFilterPipe } from './pipes/groups-filter.pipe';
 import { WeekdayPipe } from './pipes/weekday.pipe';
@@ -102,12 +102,10 @@ import { UserStrategiesComponent } from './player-section/user-strategies/user-s
 import { NewStrategyComponent } from './team-section/team-strategies/new-strategy/new-strategy.component';
 import { LoginDialogComponent } from './login/login-dialog/login-dialog.component';
 import { IsStratOwnerPipe } from './pipes/is-strat-owner.pipe';
-import { TournamentHomeComponent } from './tournaments/tournament-home/tournament-home.component';
-import { ApiTournamentsService } from './services/bellumgens-api.tournaments.service';
+import { ApiTournamentsService } from '../../src-common/services/bellumgens-api.tournaments.service';
 import { StartsWithPipe } from './pipes/starts-with.pipe';
 import { TeamNewComponent } from './team-section/team-new/team-new.component';
 import { GetRegCountPipe } from './pipes/get-reg-count.pipe';
-import { TournamentFormatComponent } from './tournaments/tournament-format/tournament-format.component';
 
 @NgModule({
   declarations: [
@@ -171,11 +169,9 @@ import { TournamentFormatComponent } from './tournaments/tournament-format/tourn
     NewStrategyComponent,
     LoginDialogComponent,
     IsStratOwnerPipe,
-    TournamentHomeComponent,
     StartsWithPipe,
     TeamNewComponent,
-    GetRegCountPipe,
-    TournamentFormatComponent
+    GetRegCountPipe
   ],
   imports: [
     FormsModule,

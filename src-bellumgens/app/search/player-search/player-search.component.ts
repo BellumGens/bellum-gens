@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { PLAYER_SEARCH, PlayerSearch } from '../../models/csgoplayer';
-import { PlaystyleRole } from '../../models/playerrole';
-import { ApplicationUser } from '../../models/applicationuser';
+import { PLAYER_SEARCH, PlayerSearch } from '../../../../src-common/models/csgoplayer';
+import { PlaystyleRole } from '../../../../src-common/models/playerrole';
+import { ApplicationUser } from '../../../../src-common/models/applicationuser';
 import { Router } from '@angular/router';
 
 @Component({

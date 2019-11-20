@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { SteamUserSummary } from '../models/steamuser';
-import { TeamMember } from '../models/csgoteam';
+import { SteamUserSummary } from '../../../src-common/models/steamuser';
+import { TeamMember } from '../../../src-common/models/csgoteam';
 
 @Pipe({
   name: 'excludeMembers'

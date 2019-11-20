@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { NotificationState } from '../models/usernotifications';
+import { NotificationState } from '../../../src-common/models/usernotifications';
 
 @Pipe({
   name: 'notificationState'

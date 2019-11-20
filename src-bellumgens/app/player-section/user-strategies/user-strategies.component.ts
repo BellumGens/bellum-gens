@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
-import { ApplicationUser } from '../../models/applicationuser';
-import { LoginService } from '../../services/login.service';
-import { BellumgensApiService } from '../../services/bellumgens-api.service';
-import { CSGOStrategy } from '../../models/csgostrategy';
-import { SocialMediaService } from '../../services/social-media.service';
-import { CommunicationService } from '../../services/communication.service';
+import { ApplicationUser } from '../../../../src-common/models/applicationuser';
+import { LoginService } from '../../../../src-common/services/login.service';
+import { BellumgensApiService } from '../../../../src-common/services/bellumgens-api.service';
+import { CSGOStrategy } from '../../../../src-common/models/csgostrategy';
+import { SocialMediaService } from '../../../../src-common/services/social-media.service';
+import { CommunicationService } from '../../../../src-common/services/communication.service';
 
 @Component({
   selector: 'app-user-strategies',

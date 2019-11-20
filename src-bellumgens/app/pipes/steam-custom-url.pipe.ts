@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { SteamUser } from '../models/steamuser';
+import { SteamUser } from '../../../src-common/models/steamuser';
 
 @Pipe({
   name: 'steamCustomUrl'

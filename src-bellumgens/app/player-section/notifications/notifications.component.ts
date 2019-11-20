@@ -1,8 +1,8 @@
 import { Component, ViewChild, Input, Output, EventEmitter } from '@angular/core';
-import { ApplicationUser } from '../../models/applicationuser';
+import { ApplicationUser } from '../../../../src-common/models/applicationuser';
 import { IgxListComponent } from 'igniteui-angular';
-import { UserNotification, NotificationState } from '../../models/usernotifications';
-import { BellumgensApiService } from '../../services/bellumgens-api.service';
+import { UserNotification, NotificationState } from '../../../../src-common/models/usernotifications';
+import { BellumgensApiService } from '../../../../src-common/services/bellumgens-api.service';
 import { Router } from '@angular/router';
 import { noop } from 'rxjs';
 

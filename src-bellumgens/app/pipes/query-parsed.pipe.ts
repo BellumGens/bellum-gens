@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { ALL_ROLES } from '../models/playerrole';
+import { ALL_ROLES } from '../../../src-common/models/playerrole';
 
 @Pipe({
   name: 'queryParsed'

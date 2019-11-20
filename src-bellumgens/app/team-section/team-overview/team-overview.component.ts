@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ApplicationUser } from '../../models/applicationuser';
-import { CSGOTeam, TEAM_PLACEHOLDER } from '../../models/csgoteam';
-import { BellumgensApiService } from '../../services/bellumgens-api.service';
-import { LoginService } from '../../services/login.service';
+import { ApplicationUser } from '../../../../src-common/models/applicationuser';
+import { CSGOTeam, TEAM_PLACEHOLDER } from '../../../../src-common/models/csgoteam';
+import { BellumgensApiService } from '../../../../src-common/services/bellumgens-api.service';
+import { LoginService } from '../../../../src-common/services/login.service';
 import { BaseComponent } from '../../base/base.component';
 import { Title, Meta } from '@angular/platform-browser';
 import { IgxIconService } from 'igniteui-angular';

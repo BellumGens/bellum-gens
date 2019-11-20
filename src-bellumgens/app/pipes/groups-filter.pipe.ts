@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { SteamGroup } from '../models/steamuser';
+import { SteamGroup } from '../../../src-common/models/steamuser';
 
 @Pipe({
   name: 'groupsFilter'

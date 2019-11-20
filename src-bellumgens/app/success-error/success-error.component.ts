@@ -1,6 +1,6 @@
 import { Component, ViewChild, OnDestroy } from '@angular/core';
 import { IgxSnackbarComponent } from 'igniteui-angular';
-import { CommunicationService } from '../services/communication.service';
+import { CommunicationService } from '../../../src-common/services/communication.service';
 
 @Component({
   selector: 'app-success-error',

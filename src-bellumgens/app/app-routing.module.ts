@@ -15,8 +15,6 @@ import { StrategyDetailsComponent } from './team-section/team-strategies/strateg
 import { TeamDetailsComponent } from './team-section/team-details/team-details.component';
 import { TeamPreferencesComponent } from './team-section/team-preferences/team-preferences.component';
 import { UserStrategiesComponent } from './player-section/user-strategies/user-strategies.component';
-import { TournamentHomeComponent } from './tournaments/tournament-home/tournament-home.component';
-import { TournamentFormatComponent } from './tournaments/tournament-format/tournament-format.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -24,16 +22,6 @@ export const routes: Routes = [
   { path: 'app-shell', component: AppShellComponent },
   { path: 'unauthorized', component: UnauthorizedComponent },
   { path: 'emailconfirm', component: EmailconfirmComponent },
-  { path: 'tournament-signup', component: TournamentHomeComponent, data: {
-      title: 'Esports Business League',
-      headerTitle: 'Esports Business League',
-      headerTitleShort: 'EBL',
-      twitterTitle: 'Esports Business League | Esports бизнес лига',
-      description: 'Esports competition in business | Esports бизнес лига записване',
-      twitterDescription: 'Esports competition in business | Esports бизнес лига записване'
-    }
-  },
-  { path: 'tournament/format', component: TournamentFormatComponent },
   { path: 'addsteam', component: AddSteamComponent },
   { path: 'user/strategies', component: UserStrategiesComponent },
   { path: 'strategies', component: TeamStrategiesComponent, data: {

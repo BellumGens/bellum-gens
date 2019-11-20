@@ -1,18 +1,18 @@
 import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
-import { LoginService } from '../../services/login.service';
+import { LoginService } from '../../../../src-common/services/login.service';
 import { ActivatedRoute } from '../../../../node_modules/@angular/router';
-import { BellumgensApiService } from '../../services/bellumgens-api.service';
+import { BellumgensApiService } from '../../../../src-common/services/bellumgens-api.service';
 import {
   IgxDropDownComponent,
   ISelectionEventArgs,
   IgxIconService
 } from '../../../../node_modules/igniteui-angular';
-import { CSGOPlayer } from '../../models/csgoplayer';
-import { Availability } from '../../models/playeravailability';
-import { ApplicationUser } from '../../models/applicationuser';
-import { CSGOTeam } from '../../models/csgoteam';
-import { MapPool } from '../../models/csgomaps';
-import { ALL_ROLES } from '../../models/playerrole';
+import { CSGOPlayer } from '../../../../src-common/models/csgoplayer';
+import { Availability } from '../../../../src-common/models/playeravailability';
+import { ApplicationUser } from '../../../../src-common/models/applicationuser';
+import { CSGOTeam } from '../../../../src-common/models/csgoteam';
+import { MapPool } from '../../../../src-common/models/csgomaps';
+import { ALL_ROLES } from '../../../../src-common/models/playerrole';
 import { BaseComponent } from '../../base/base.component';
 import { Title, Meta } from '@angular/platform-browser';
 

@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BellumgensApiService } from '../../../services/bellumgens-api.service';
-import { ALL_ROLES } from '../../../models/playerrole';
+import { BellumgensApiService } from '../../../../../src-common/services/bellumgens-api.service';
+import { ALL_ROLES } from '../../../../../src-common/models/playerrole';
 import { BaseComponent } from '../../../base/base.component';
 import { IgxIconService } from 'igniteui-angular';
-import { ApplicationUser } from '../../../models/applicationuser';
+import { ApplicationUser } from '../../../../../src-common/models/applicationuser';
 import { Title, Meta } from '@angular/platform-browser';
 
 @Component({

@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { ApplicationUser } from '../models/applicationuser';
-import { CSGOStrategy } from '../models/csgostrategy';
+import { ApplicationUser } from '../../../src-common/models/applicationuser';
+import { CSGOStrategy } from '../../../src-common/models/csgostrategy';
 
 @Pipe({
   name: 'isStratOwner'

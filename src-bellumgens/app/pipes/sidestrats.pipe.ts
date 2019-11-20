@@ -1,7 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { CSGOStrategy, VoteDirection } from '../models/csgostrategy';
-import { MapPool } from '../models/csgomaps';
-import { StratOrderBy } from '../models/misc';
+import { CSGOStrategy, VoteDirection } from '../../../src-common/models/csgostrategy';
+import { MapPool } from '../../../src-common/models/csgomaps';
+import { StratOrderBy } from '../../../src-common/models/misc';
 
 @Pipe({
   name: 'sidestrats'

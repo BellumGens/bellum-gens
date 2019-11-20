@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { TeamApplication } from '../models/csgoteam';
+import { TeamApplication } from '../../../src-common/models/csgoteam';
 
 @Pipe({
   name: 'sortApplications'
