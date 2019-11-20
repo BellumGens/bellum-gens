@@ -41,4 +41,8 @@ export class HomeComponent extends BaseComponent {
     this.navigation = window.matchMedia('(min-width: 768px)').matches;
   }
 
+  public navigateToEbleague() {
+    window.location.href = this.environment.ebleague;
+  }
+
 }
