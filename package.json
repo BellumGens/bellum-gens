@@ -13,7 +13,7 @@
     "lint": "ng lint",
     "build:app-shell": "ng run bellum-gens:app-shell:production",
     "e2e": "ng e2e",
-    "compile:server": "webpack --config webpack.server.config.js --progress --colors",
+    "compile:server": "webpack --config webpack.bellumgens.server.config.js --progress --colors",
     "serve:ssr": "node dist/server",
     "build:ssr": "npm run build:client-and-server-bundles && npm run compile:server",
     "build:client-and-server-bundles": "ng build --prod && ng run bellum-gens:server:production",

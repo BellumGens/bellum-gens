@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/browser",
+            "outputPath": "dist-bellumgens/browser",
             "index": "src-bellumgens/index.html",
             "main": "src-bellumgens/main.ts",
             "polyfills": "src-bellumgens/polyfills.ts",
@@ -36,8 +36,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "src-bellumgens/environments/environment.ts",
-                  "with": "src-bellumgens/environments/environment.prod.ts"
+                  "replace": "src-common/environments/environment.ts",
+                  "with": "src-common/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -106,7 +106,7 @@
         "server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {
-            "outputPath": "dist/server",
+            "outputPath": "dist-bellumgens/server",
             "main": "src-bellumgens/main.server.ts",
             "tsConfig": "src-bellumgens/tsconfig.server.json"
           },
@@ -174,7 +174,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/browser",
+            "outputPath": "dist-ebleague/browser",
             "index": "src-ebleague/index.html",
             "main": "src-ebleague/main.ts",
             "polyfills": "src-ebleague/polyfills.ts",
@@ -267,7 +267,7 @@
         "server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {
-            "outputPath": "dist/server",
+            "outputPath": "dist-ebleague/server",
             "main": "src-ebleague/main.server.ts",
             "tsConfig": "src-ebleague/tsconfig.server.json"
           },
@@ -275,8 +275,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "src-ebleague/environments/environment.ts",
-                  "with": "src-ebleague/environments/environment.prod.ts"
+                  "replace": "src-common/environments/environment.ts",
+                  "with": "src-common/environments/environment.prod.ts"
                 }
               ],
               "sourceMap": false,
