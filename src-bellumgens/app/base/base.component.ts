@@ -1,7 +1,8 @@
-import { Component, OnDestroy, HostListener } from '@angular/core';
+import { Component, OnDestroy, HostListener, PLATFORM_ID } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute, Data } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-base',
@@ -31,7 +32,7 @@ export class BaseComponent implements OnDestroy {
       this.meta.updateTag({ name: 'twitter:description', content: this.data.twitterDescription || this._twitterDescription});
       this.meta.updateTag({ name: 'og:image', content: this.data.image || this._image });
       this.meta.updateTag({ name: 'twitter:image', content: this.data.image || this._image });
-      if (window) {
+      if (isPlatformBrowser(PLATFORM_ID)) {
         this.title = window.matchMedia('(min-width: 768px)').matches ?
                                 this.data.headerTitle || this._headerTitle :
                                 this.data.headerTitleShort || this._headerTitleShort;

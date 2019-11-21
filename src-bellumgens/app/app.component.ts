@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, PLATFORM_ID } from '@angular/core';
 
 import { PositionSettings,
   HorizontalAlignment,
@@ -19,6 +19,7 @@ import { GlobalOverlaySettings } from '../../src-common/models/misc';
 import { CommunicationService } from '../../src-common/services/communication.service';
 import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -55,7 +56,7 @@ export class AppComponent extends BaseComponent implements OnInit {
       this.authUser = data;
       this.unreadNotifications += this.unreadPipe.transform(data.notifications);
     }));
-    if (window && !window.localStorage.getItem('cookiesAccepted')) {
+    if (isPlatformBrowser(PLATFORM_ID) && !window.localStorage.getItem('cookiesAccepted')) {
       this.banner.open();
     }
     this.initQuickSearch();

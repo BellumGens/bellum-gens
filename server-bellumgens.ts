@@ -37,7 +37,14 @@ const window = domino.createWindow(template);
 (global as any).HTMLElement = window.HTMLElement;
 
 (global as any).XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
-(global as any).window = undefined;
+(global as any).HTMLElement.prototype.getBoundingClientRect = () => {
+  return {
+    left: '',
+    right: '',
+    top: '',
+    bottom: ''
+  };
+};
 
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
 const {AppServerModuleNgFactory, LAZY_MODULE_MAP} = require('./dist/bellumgens/server/main');

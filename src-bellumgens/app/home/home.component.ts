@@ -1,31 +1,25 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, PLATFORM_ID } from '@angular/core';
 import { LoginService } from '../../../src-common/services/login.service';
 import { ApplicationUser } from '../../../src-common/models/applicationuser';
-import { BaseComponent } from '../base/base.component';
-import { Title, Meta } from '@angular/platform-browser';
 import { SocialMediaService } from '../../../src-common/services/social-media.service';
 import { CommunicationService } from '../../../src-common/services/communication.service';
-import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../../src-common/environments/environment';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent extends BaseComponent {
+export class HomeComponent {
   public authUser: ApplicationUser;
-  public navigation = window ? window.matchMedia('(min-width: 768px)').matches : true;
+  public navigation = isPlatformBrowser(PLATFORM_ID) ? window.matchMedia('(min-width: 768px)').matches : true;
   public environment = environment;
 
   constructor(private authManager: LoginService,
               private socialMedia: SocialMediaService,
-              private commService: CommunicationService,
-              title: Title,
-              meta: Meta,
-              activeRoute: ActivatedRoute) {
-    super(title, meta, activeRoute);
-    this.subs.push(this.authManager.applicationUser.subscribe(data => this.authUser = data));
+              private commService: CommunicationService) {
+    this.authManager.applicationUser.subscribe(data => this.authUser = data);
   }
 
   public tweet() {

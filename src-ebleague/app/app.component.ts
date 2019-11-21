@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, HostListener, PLATFORM_ID } from '@angular/core';
 
 import { PositionSettings,
   HorizontalAlignment,
@@ -15,6 +15,7 @@ import { fromEvent } from 'rxjs';
 import { map, debounceTime } from 'rxjs/operators';
 import { GlobalOverlaySettings } from '../../src-common/models/misc';
 import { environment } from '../../src-common/environments/environment';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -38,7 +39,7 @@ export class AppComponent implements OnInit {
 
   constructor(private authManager: LoginService,
               private apiService: BellumgensApiService) {
-    if (window) {
+    if (isPlatformBrowser(PLATFORM_ID)) {
       this.title = window.matchMedia('(min-width: 768px)').matches ? this._headerTitle : this._headerTitleShort;
     } else {
       this.title = this._headerTitle;
@@ -49,7 +50,7 @@ export class AppComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    if (window && !window.localStorage.getItem('cookiesAccepted')) {
+    if (isPlatformBrowser(PLATFORM_ID) && !window.localStorage.getItem('cookiesAccepted')) {
       this.banner.open();
     }
     this.initQuickSearch();
