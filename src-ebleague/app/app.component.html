@@ -2,18 +2,9 @@
   <div igxFlex igxLayout igxLayoutDir="columns" class="top-level-container">
     <igx-navbar class="bellum-gens-navbar" [title]="title">
       <igx-action-icon>
-        <igx-avatar class="navigatable" [src]="'/assets/bg-avatar.webp'" [roundShape]="true" [routerLink]="'/home'"></igx-avatar>
+        <igx-avatar class="navigatable" [src]="'/assets/bg-avatar.webp'" [roundShape]="true" routerLink="/"></igx-avatar>
       </igx-action-icon>
-      <igx-input-group type="search" class="search-group" #searchGroup>
-        <igx-prefix>
-          <igx-icon>search</igx-icon>
-        </igx-prefix>
-        <label igxLabel for="searchInput">Search</label>
-        <input id="searchInput" #searchInput igxInput class="search-input" />
-        <igx-suffix *ngIf="searchInput.value.length > 0" (click)="searchInput.value = ''">
-          <igx-icon>clear</igx-icon>
-        </igx-suffix>
-      </igx-input-group>
+
       <a class="action-button-container" title="Go to Bellum Gens" [href]="environment.bellumgens">
         <igx-icon>people</igx-icon>
       </a>
@@ -30,9 +21,6 @@
       </igx-banner-actions>
     </igx-banner>
 
-    <igx-drop-down #quickSearch>
-      <app-quick-search></app-quick-search>
-    </igx-drop-down>
     <app-success-error></app-success-error>
 
     <div class="main-content-wrapper">

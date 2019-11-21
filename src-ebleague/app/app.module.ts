@@ -41,12 +41,10 @@ import { TeamNewComponent } from '../../src-bellumgens/app/team-section/team-new
 import { TournamentFormatComponent } from './tournaments/tournament-format/tournament-format.component';
 import { LoginDialogComponent } from '../../src-bellumgens/app/login/login-dialog/login-dialog.component';
 import { LoginComponent } from '../../src-bellumgens/app/login/login.component';
-import { QuickSearchComponent } from '../../src-bellumgens/app/search/quick-search/quick-search.component';
 import { GetRegCountPipe } from '../../src-bellumgens/app/pipes/get-reg-count.pipe';
 import { StartsWithPipe } from '../../src-bellumgens/app/pipes/starts-with.pipe';
 import { GroupsFilterPipe } from '../../src-bellumgens/app/pipes/groups-filter.pipe';
 import { UserPreferencesComponent } from '../../src-bellumgens/app/player-section/user-preferences/user-preferences.component';
-import { ReduceQuickSearchResultPipe } from '../../src-bellumgens/app/pipes/reduce-quick-search-result.pipe';
 import { PlayerCountryPipe } from '../../src-bellumgens/app/pipes/player-country.pipe';
 
 @NgModule({
@@ -59,12 +57,10 @@ import { PlayerCountryPipe } from '../../src-bellumgens/app/pipes/player-country
     TournamentFormatComponent,
     LoginComponent,
     LoginDialogComponent,
-    QuickSearchComponent,
     UserPreferencesComponent,
     GetRegCountPipe,
     StartsWithPipe,
     GroupsFilterPipe,
-    ReduceQuickSearchResultPipe,
     PlayerCountryPipe
   ],
   imports: [

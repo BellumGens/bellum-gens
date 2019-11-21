@@ -1,36 +1,20 @@
+$primary: white !default;
+$secondary: #FF0A3A !default;
+$background: #192053;
+$banner-background: #2C3D93;
+$background-gradient: linear-gradient(to right, $background, #04081D);
+$background-gradient-lighter: linear-gradient(135deg, rgba(47,57,120,1) 0%, rgba(16,25,63,1) 100%);
+
+:root {
+  --app-secondary-color: #FF0A3A;
+}
+
+$app-palette: igx-palette($primary, $secondary);
 
 html, body {
   height: 100%;
   min-width: 412px;
   background-image: $background-gradient;
-}
-
-/* ICONS */
-igx-icon {
-  user-select: none;
-}
-
-igx-card-actions igx-badge,
-igx-tab-item igx-icon {
-  margin-right: 8px;
-}
-
-igx-snackbar {
-  display: flex;
-  justify-content: center;
-  position: fixed;
-  left: 16px;
-  right: 16px;
-  bottom: 16px;
-  z-index: 10000;
-}
-
-.igx-linear-bar__base {
-  height: 12px;
-}
-
-.igx-typography .igx-tabs__item-label {
-  letter-spacing: 0.07rem;
 }
 
 .navigatable {
@@ -42,16 +26,7 @@ igx-snackbar {
   outline: none;
 }
 
-/* END ICONS */
-
-/* Badge */
-.igx-badge__circle--info {
-  background-color: $secondary;
-}
-/* END Badge */
-
 /* Typography */
-
 .igx-typography {
   color: var(--igx-card-header-text-color);
 }
@@ -59,13 +34,183 @@ igx-snackbar {
 .content p {
   margin: 15px;
 }
-
 /* END Typography */
 
-/* List */
+/* Loading */
+.loading-overview {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  color: $primary;
+}
+/* END Loading */
 
-.igx-list__item-thumbnail {
-  align-self: inherit;
+.horizontal {
+  display: flex;
+  flex: 0 0 auto;
+  flex-flow: row wrap;
 }
 
-/* END List */
+.horizontal-center {
+  display: flex;
+  flex: 1 1 auto;
+  flex-flow: row wrap;
+  align-items: center;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.center-items {
+  text-align: center;
+}
+
+.horizontal-info__right {
+  display: flex;
+  flex-flow: row nowrap;
+  margin-left: auto;
+}
+
+.title {
+  font-weight: 600;
+}
+
+a {
+  text-decoration: none;
+  color: igx-color($app-palette, secondary);
+}
+
+.margin-bottom {
+  margin-bottom: 16px;
+}
+
+.highlight {
+  color: $secondary;
+  font-weight: 600;
+}
+
+.igx-input-group__textarea,
+textarea {
+  resize: none;
+  min-height: 128px;
+}
+
+.submit-button {
+  width: 100%;
+}
+
+button igx-icon {
+  margin-right: 4px;
+}
+
+.color-success {
+  color: var(--igx-input-group-success-secondary-color);
+}
+
+.color-error {
+  color: var(--igx-input-group-error-secondary-color);
+}
+
+.color-warn {
+  color: var(--igx-input-group-warning-secondary-color);
+}
+
+.login-divider {
+  height: 16px;
+  margin-left: 8px;
+}
+
+.content-container {
+  display: grid;
+  grid-template-columns: minmax(45%, 1fr) minmax(45%, 1fr);
+  grid-column-gap: 48px;
+  grid-row-gap: 24px;
+  width: 1280px;
+  min-width: 380px;
+  padding: 16px;
+  margin: auto;
+}
+
+  .content-container h1 {
+    font-size: 3rem;
+    margin: 0;
+  }
+
+  .content-container h4 {
+    font-size: 1.75rem;
+    margin: 0;
+  }
+
+  .content-container p {
+    font-size: 1rem;
+    margin: 16px 0 16px 0;
+  }
+
+.content-container-row {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: space-evenly;
+  min-height: 210px;
+}
+
+  .content-container-row igx-divider {
+    width: 100%;
+  }
+
+.content-container-column {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-evenly;
+}
+
+  .content-container-column p {
+    margin: 0;
+  }
+
+  .content-container-column ul {
+    padding-inline-start: 40px;
+    list-style: disc;
+  }
+
+.left-column {
+  text-align: right;
+  align-items: flex-end;
+}
+
+.slide1 {
+  background-image: url('/assets/wallpapers/slide-image-4.webp');
+  background-position: center;
+}
+
+.slide1, .slide2, .slide3 {
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+@media only screen and (max-width: 1280px) {
+  .slide {
+    width: auto;
+    height: auto;
+  }
+
+  .content-container {
+    grid-template-columns: minmax(380px, 1fr);
+    width: 100%;
+  }
+
+  .slide-info h1,
+  .content-container h1 {
+    font-size: 1.55rem;
+    margin: 0;
+    line-height: 2rem;
+  }
+
+  .slide-info p,
+  .content-container p {
+    font-size: 0.85rem;
+  }
+}

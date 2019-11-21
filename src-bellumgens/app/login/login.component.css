@@ -50,11 +50,6 @@
   margin-right: 16px;
 }
 
-.profile-completeness,
-.completeness-bar {
-  margin-bottom: 16px;
-}
-
 .completeness-item {
   display: flex;
   padding: 4px;
