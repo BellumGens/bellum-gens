@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist-bellumgens/browser",
+            "outputPath": "dist/bellumgens/browser",
             "index": "src-bellumgens/index.html",
             "main": "src-bellumgens/main.ts",
             "polyfills": "src-bellumgens/polyfills.ts",
@@ -106,7 +106,7 @@
         "server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {
-            "outputPath": "dist-bellumgens/server",
+            "outputPath": "dist/bellumgens/server",
             "main": "src-bellumgens/main.server.ts",
             "tsConfig": "src-bellumgens/tsconfig.server.json"
           },
@@ -174,7 +174,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist-ebleague/browser",
+            "outputPath": "dist/ebleague/browser",
             "index": "src-ebleague/index.html",
             "main": "src-ebleague/main.ts",
             "polyfills": "src-ebleague/polyfills.ts",
@@ -267,7 +267,7 @@
         "server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {
-            "outputPath": "dist-ebleague/server",
+            "outputPath": "dist/ebleague/server",
             "main": "src-ebleague/main.server.ts",
             "tsConfig": "src-ebleague/tsconfig.server.json"
           },

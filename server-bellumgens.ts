@@ -12,10 +12,10 @@ import { readFileSync } from 'fs';
 // Import module map for lazy loading
 import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
 
+const domino = require('domino');
+
 // Faster server renders w/ Prod mode (dev mode never needed)
 enableProdMode();
-
-(global as any).XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 
 const compression = require('compression');
 
@@ -24,13 +24,23 @@ const app = express();
 app.use(compression());
 
 const PORT = process.env.PORT || 4000;
-const DIST_FOLDER = join(process.cwd(), 'dist');
+const DIST_FOLDER = process.cwd();
 
 // Our index.html we'll use as our template
 const template = readFileSync(join(DIST_FOLDER, 'browser', 'index.html')).toString();
 
+const window = domino.createWindow(template);
+
+// Ignite UI browser objects abstractions
+(global as any).window = window;
+(global as any).document = window.document;
+(global as any).HTMLElement = window.HTMLElement;
+
+(global as any).XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
+(global as any).window = undefined;
+
 // * NOTE :: leave this as require() since this file is built Dynamically from webpack
-const {AppServerModuleNgFactory, LAZY_MODULE_MAP} = require('./dist/server/main');
+const {AppServerModuleNgFactory, LAZY_MODULE_MAP} = require('./dist/bellumgens/server/main');
 
 app.engine('html', (_, options, callback) => {
   renderModuleFactory(AppServerModuleNgFactory, {

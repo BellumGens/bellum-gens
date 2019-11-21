@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { Router } from '@angular/router';
 import { CSGOTeam, TeamMember } from '../../../../src-common/models/csgoteam';
 import { ApplicationUser } from '../../../../src-common/models/applicationuser';
 import { BellumgensApiService } from '../../../../src-common/services/bellumgens-api.service';

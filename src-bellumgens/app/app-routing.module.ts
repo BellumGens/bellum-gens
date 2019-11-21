@@ -48,6 +48,8 @@ export const routes: Routes = [
   { path: 'team/:teamid/:stratid', component: StrategyEditorComponent },
   { path: 'search/teams/:query', component: TeamResultsComponent },
   { path: 'search/players/:query', component: PlayerResultsComponent },
+  { path: 'tournament-signup', redirectTo: 'https://eb-league.com' },
+  { path: 'tournament/format', redirectTo: 'https://eb-league.com' },
   { path: '**', component: HomeComponent }
 ];
 

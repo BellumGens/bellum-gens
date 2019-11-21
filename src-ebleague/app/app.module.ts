@@ -40,7 +40,6 @@ import { ApiTournamentsService } from '../../src-common/services/bellumgens-api.
 import { TeamNewComponent } from '../../src-bellumgens/app/team-section/team-new/team-new.component';
 import { TournamentFormatComponent } from './tournaments/tournament-format/tournament-format.component';
 import { LoginDialogComponent } from '../../src-bellumgens/app/login/login-dialog/login-dialog.component';
-import { TeamNavComponent } from '../../src-bellumgens/app/team-section/team-nav/team-nav.component';
 import { LoginComponent } from '../../src-bellumgens/app/login/login.component';
 import { QuickSearchComponent } from '../../src-bellumgens/app/search/quick-search/quick-search.component';
 import { GetRegCountPipe } from '../../src-bellumgens/app/pipes/get-reg-count.pipe';

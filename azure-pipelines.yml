@@ -30,9 +30,9 @@ steps:
 - script: npm run build:ssr
   displayName: build ssr
 
-- task: ShellScript@2
-  inputs:
-    scriptPath: 'predeploy.sh'
+# - task: ShellScript@2
+#   inputs:
+#     scriptPath: 'predeploy.sh'
 
 # Publish Build Artifacts to Azure Pipelines
 - task: PublishBuildArtifacts@1
@@ -41,5 +41,5 @@ steps:
     artifactName: 'dist'
     publishLocation: 'Container'
     targetPath: 'dist/bellum-gens'
-    #parallel: false # Optional
+    parallel: true # Optional
     #parallelCount: # Optional

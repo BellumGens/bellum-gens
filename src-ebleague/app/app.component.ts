@@ -13,7 +13,6 @@ import { BellumgensApiService } from '../../src-common/services/bellumgens-api.s
 import { SearchResult } from '../../src-common/models/searchresult';
 import { fromEvent } from 'rxjs';
 import { map, debounceTime } from 'rxjs/operators';
-import { UnreadNotificationsPipe } from '../../src-bellumgens/app/pipes/unread-notifications.pipe';
 import { GlobalOverlaySettings } from '../../src-common/models/misc';
 import { environment } from '../../src-common/environments/environment';
 
@@ -36,8 +35,6 @@ export class AppComponent implements OnInit {
   @ViewChild('searchGroup', { static: true }) public searchGroup: IgxInputGroupComponent;
   @ViewChild('searchInput', { static: true }) public searchInput: ElementRef;
   @ViewChild('cookiesBanner', { static: true }) public banner: IgxBannerComponent;
-
-  private unreadPipe = new UnreadNotificationsPipe();
 
   constructor(private authManager: LoginService,
               private apiService: BellumgensApiService) {
@@ -86,6 +83,6 @@ export class AppComponent implements OnInit {
 
   @HostListener('window:resize')
   public resize() {
-    this.title = window.matchMedia('(min-width: 768px)').matches ? this._headerTitle : this._headerTitleShort;
+    this.title = window && window.matchMedia('(min-width: 768px)').matches ? this._headerTitle : this._headerTitleShort;
   }
 }

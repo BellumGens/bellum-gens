@@ -7,7 +7,7 @@ module.exports = {
   mode: 'none',
   entry: {
     // This is our Express server for Dynamic universal
-    server: './server-bellumgens.ts'
+    server: './server-ebleague.ts'
   },
   target: 'node',
   resolve: { extensions: ['.ts', '.js'] },
@@ -16,7 +16,7 @@ module.exports = {
   },
   output: {
     // Puts the output at the root of the dist folder
-    path: path.join(__dirname, 'dist/bellumgens'),
+    path: path.join(__dirname, 'dist/ebleague'),
     filename: 'server.js'
   },
   module: {

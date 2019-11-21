@@ -13,7 +13,7 @@ export const routes: Routes = [
       twitterDescription: 'Esports competition in business | Esports бизнес лига записване'
     }
   },
-  { path: 'tournament/format', component: TournamentFormatComponent, data: {
+  { path: 'format', component: TournamentFormatComponent, data: {
       title: 'Esports Business League',
       headerTitle: 'Esports Business League',
       headerTitleShort: 'EBL',
