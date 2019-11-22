@@ -23,7 +23,7 @@
           <div class="center-items profile-view">
             <igx-avatar [src]="authUser.avatarMedium" [initials]="authUser.username" roundShape="true" [size]="'large'">
             </igx-avatar>
-            <h1 class="igx-card-header__title highlight navigatable profile-username" [routerLink]="['/players', authUser.id]">{{ authUser.username }}</h1>
+            <h1 class="igx-card-header__title highlight navigatable profile-username" (click)="navigateToProfile(authUser.id)">{{ authUser.username }}</h1>
             <h4 class="igx-card-header__subtitle">{{ authUser.realname }}</h4>
           </div>
           <div *ngIf="authUser" class="margin-bottom">

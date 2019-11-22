@@ -5,6 +5,8 @@ import { ApplicationUser } from '../../../src-common/models/applicationuser';
 import { PlaystyleRole } from '../../../src-common/models/playerrole';
 import { BellumgensApiService } from '../../../src-common/services/bellumgens-api.service';
 import { GlobalOverlaySettings } from '../../../src-common/models/misc';
+import { environment } from '../../../src-common/environments/environment';
+import { Router } from '@angular/router';
 
 export interface ProfileCompleteness {
   availability: boolean;
@@ -44,13 +46,22 @@ export class LoginComponent {
   }
 
   constructor(private authManager: LoginService,
-              private apiService: BellumgensApiService) {
+              private apiService: BellumgensApiService,
+              private router: Router) {
     this.authManager.userCheckInProgress.subscribe(value => this.userCheck = value);
     this.apiService.authUserUpdate.subscribe(_ => this.fillCompleteness());
   }
 
   public logout() {
     this.authManager.logout();
+  }
+
+  public navigateToProfile(id: string) {
+    if (window.location.href.startsWith(environment.bellumgens)) {
+      this.router.navigate(['/players/', id]);
+    } else {
+      window.location.href = `${environment.bellumgens}/players/${id}`;
+    }
   }
 
   private fillCompleteness() {

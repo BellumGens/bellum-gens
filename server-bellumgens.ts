@@ -11,6 +11,7 @@ import { readFileSync } from 'fs';
 
 // Import module map for lazy loading
 import { provideModuleMap } from '@nguniversal/module-map-ngfactory-loader';
+import { environment } from './src-common/environments/environment.prod';
 
 const domino = require('domino');
 
@@ -68,6 +69,11 @@ app.set('views', join(DIST_FOLDER, 'browser'));
 
 // Server static files from /browser
 app.get('*.*', express.static(join(DIST_FOLDER, 'browser')));
+
+// All eb-league routes should redirect
+app.get('/tournament*', (req, res) => {
+  res.redirect(environment.ebleague);
+});
 
 // All regular routes use the Universal engine
 app.get('*', (req, res) => {
