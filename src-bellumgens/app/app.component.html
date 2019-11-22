@@ -1,0 +1,87 @@
+<div igxLayout>
+  <div igxFlex igxLayout igxLayoutDir="columns" class="top-level-container">
+    <igx-navbar class="bellum-gens-navbar" [title]="title">
+      <igx-action-icon>
+        <igx-avatar class="navigatable" [src]="'/assets/bg-avatar.webp'" [roundShape]="true" routerLink="/"></igx-avatar>
+      </igx-action-icon>
+      <igx-input-group type="search" class="search-group" #searchGroup>
+        <igx-prefix>
+          <igx-icon>search</igx-icon>
+        </igx-prefix>
+        <label igxLabel for="searchInput">Search</label>
+        <input id="searchInput" #searchInput igxInput (focus)="advancedSearch.open()" class="search-input" />
+        <igx-suffix *ngIf="searchInput.value.length > 0" (click)="searchInput.value = ''">
+          <igx-icon>clear</igx-icon>
+        </igx-suffix>
+      </igx-input-group>
+      <div class="action-button-container" title="Strategies feed" routerLink="strategies">
+        <igx-icon>playlist_add_check</igx-icon>
+      </div>
+      <div class="action-button-container" [igxToggleAction]="myTeam" [overlaySettings]="overlaySettings" *ngIf="authUser">
+        <igx-icon>people</igx-icon>
+        <igx-badge class="notifications-badge" *ngIf="authUser.teams?.length > 0" [value]="authUser.teams?.length" type="info"></igx-badge>
+      </div>
+      <div class="action-button-container" [igxToggleAction]="notifications" [overlaySettings]="overlaySettings" *ngIf="authUser">
+        <igx-icon>notifications</igx-icon>
+        <igx-badge class="notifications-badge" *ngIf="unreadNotifications > 0" [value]="unreadNotifications" type="info"></igx-badge>
+      </div>
+
+      <app-login [authUser]='authUser'></app-login>
+    </igx-navbar>
+
+    <igx-banner #cookiesBanner>
+      <igx-icon>settings</igx-icon>
+      This site uses cookies.
+      <igx-banner-actions>
+        <a href="https://www.cookiesandyou.com/" target="_blank" rel="noopener">More Information</a>
+        <button igxButton igxRipple (click)="acceptCookies()">I Understand</button>
+      </igx-banner-actions>
+    </igx-banner>
+
+    <igx-banner #advancedSearch>
+      Advanced search for:
+      <app-search [authUser]="authUser"></app-search>
+      <igx-banner-actions>
+        <button igxButton="flat" igxRipple (click)="advancedSearch.close()">Hide</button>
+      </igx-banner-actions>
+    </igx-banner>
+
+    <igx-drop-down #quickSearch>
+      <app-quick-search></app-quick-search>
+    </igx-drop-down>
+    <igx-drop-down #myTeam>
+      <app-team-nav [authUser]="authUser"></app-team-nav>
+    </igx-drop-down>
+    <igx-drop-down #notifications>
+      <app-notifications [authUser]="authUser" (loaded)="notificationsLoaded($event)"></app-notifications>
+    </igx-drop-down>
+    <app-success-error></app-success-error>
+
+    <div class="main-content-wrapper">
+      <div class="content">
+        <router-outlet></router-outlet>
+
+        <footer class="footer">
+          <igx-divider></igx-divider>
+          <div class="footer-row">
+            <p>
+              We would also appreciate if you follow us on social media.
+            </p>
+            <a href="https://twitter.com/BellumGens" target="_blank" rel="noopener" title="Twitter">
+              <igx-icon fontSet="login-icons" name="Twitter"></igx-icon>
+            </a>
+            <a href="https://www.facebook.com/BellumGens" target="_blank" rel="noopener" class="social-media-icon" title="Facebook">
+              <igx-icon fontSet="login-icons" name="Facebook"></igx-icon>
+            </a>
+            <p>Copyright © Bellum Gens, 2019</p>
+          </div>
+        </footer>
+      </div>
+      <!-- <div class="discord-container">
+        <iframe src="https://discordapp.com/widget?id=314362408783052800&theme=dark" width="350" allowtransparency="true" frameborder="0"></iframe>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+

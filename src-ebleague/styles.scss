@@ -1,0 +1,164 @@
+/* You can add global styles to this file, and also import other style files */
+/* See: https://www.infragistics.com/products/ignite-ui-angular/angular/components/themes.html */
+@import "~igniteui-angular/lib/core/styles/themes/index";
+@import "~minireset.css/minireset";
+
+@include igx-core();
+
+@include igx-typography(
+  $font-family: "'Poppins', sans-serif"
+);
+
+@import "../src-common/styles.scss";
+
+$include: (igx-avatar,
+           igx-navbar,
+           igx-list,
+           igx-ripple,
+           igx-icon,
+           igx-overlay,
+           igx-button,
+           igx-dialog,
+           igx-input-group,
+           igx-drop-down,
+           igx-badge,
+           igx-card,
+           igx-checkbox,
+           igx-tabs,
+           igx-snackbar,
+           igx-circular-bar,
+           igx-linear-bar,
+           igx-switch,
+           igx-divider,
+           igx-banner);
+
+@include igx-dark-theme(
+    $palette: $app-palette,
+    $exclude: map-keys(map-remove($components, $include...),),
+    $legacy-support: false
+);
+
+/* Navbar */
+$navbar-theme: igx-navbar-theme(igx-palette($background, $secondary),
+                                $background: $background-gradient,
+                                $text-color: white,
+                                $shadow: 0px 15px 30px 0px rgba(0,0,0,0.4),
+                                $idle-icon-color: white,
+                                $hover-icon-color: $secondary);
+@include igx-css-vars($navbar-theme);
+/* END Navbar */
+
+/* Card */
+$card-theme: igx-card-theme($background: $background-gradient-lighter,
+                            $header-text-color: rgba(255, 255, 255, 0.87),
+                            $resting-shadow: 0px 15px 30px 0px rgba(0,0,0,0.4),
+                            $hover-shadow: 0px 15px 30px 0px rgba(0,0,0,0.7));
+@include igx-css-vars($card-theme);
+/* END Card */
+
+/* List */
+$list-theme: igx-list-theme($background: transparent,
+                            $header-background: transparent,
+                            $item-background: transparent,
+                            $item-background-active: rgba(0, 0, 0, 0.11));
+@include igx-css-vars($list-theme);
+/* END List */
+
+/* Input Group */
+$input-group-theme: igx-input-group-theme($search-background: transparent,
+                                          $idle-text-color: white,
+                                          $filled-text-color: white,
+                                          $focused-text-color: white,
+                                          $placeholder-color: #999);
+@include igx-css-vars($input-group-theme);
+/* END Input Group */
+
+/* Banner */
+$banner-theme: igx-banner-theme($banner-background: $banner-background);
+@include igx-css-vars($banner-theme);
+/* END Banner */
+
+/* Tabs */
+$tabs-theme: igx-tabs-theme($item-background: $background, $indicator-color: $secondary);
+@include igx-css-vars($tabs-theme);
+/* END Tabs */
+
+/* Drop Down */
+$drop-down-theme: igx-drop-down-theme($background-color: $background);
+@include igx-css-vars($drop-down-theme);
+/* END Drop Down */
+
+/* Dialog */
+$dialog-theme: igx-dialog-theme($background: $background);
+@include igx-css-vars($dialog-theme);
+/* END Dialog */
+
+/* Snackbar */
+$snackbar-theme: igx-snackbar-theme($background: $banner-background, $border-radius: 24px);
+@include igx-css-vars($snackbar-theme);
+/* END Snackbar */
+
+/* Button */
+$button-theme: igx-button-theme($fab-resting-shadow: none,
+                                $fab-hover-shadow: none,
+                                $fab-focus-shadow: none,
+                                $fab-text-color: $primary,
+                                $fab-hover-text-color: $secondary,
+                                $fab-background: transparent);
+@include igx-css-vars($button-theme);
+/* END Button */
+
+/* Progress Circular */
+$circular-progress-bar-theme: igx-progress-circular-theme($progress-circle-color: $secondary);
+@include igx-css-vars($circular-progress-bar-theme);
+/* END Progress Circular */
+
+/* Time Picker */
+$overlay-theme: igx-overlay-theme($background-color: rgba(35, 51, 132, 0.7));
+@include igx-css-vars($overlay-theme);
+/* END Time Picker */
+
+@import "../src-common/styles-overrides.scss";
+
+/* HOME */
+.home-page-slide-columns {
+  display: grid;
+  height: auto;
+  grid-template-columns: minmax(45%, 1fr) minmax(45%, 1fr);
+  grid-column-gap: 48px;
+  padding: 48px 48px 12px 48px;
+}
+
+.slide-info-column {
+  max-width: 680px;
+  min-width: 380px;
+  padding: 52px;
+  vertical-align: middle;
+  margin: auto;
+}
+
+.slide-info-column h1,
+.content-container h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 0;
+}
+
+.slide-info-column h4 {
+  font-size: 1.75rem;
+  margin: 0;
+}
+
+.slide-info-column p {
+  font-size: 1rem;
+  margin: 0 0 16px 0;
+}
+/* END HOME */
+
+@media only screen and (max-width: 1280px) {
+  .home-page-slide-columns {
+    grid-template-columns: minmax(380px, 1fr);
+    grid-row-gap: 16px;
+    padding: 16px 16px 12px 16px;
+  }
+}

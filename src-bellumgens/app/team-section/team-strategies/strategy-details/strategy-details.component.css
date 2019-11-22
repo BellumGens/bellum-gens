@@ -1,0 +1,48 @@
+.list-container.comments-container {
+  width: 320px;
+  height: calc(100% - 200px);
+}
+
+.strategy-details {
+  width: 80%;
+  height: calc(100% - 72px);
+  margin: auto;
+  margin-top: 16px;
+}
+
+.comment-input {
+  margin-left: 8px;
+  width: auto;
+}
+
+.strategy-details igx-card-media > * {
+  background-color: #000;
+  object-fit: contain;
+}
+
+.comment-editing {
+  opacity: 0.35;
+}
+
+@media screen and (max-width: 768px) {
+
+  .strategy-details {
+    width: auto;
+    height: auto;
+    margin: 16px;
+  }
+
+  .list-container.comments-container {
+    width: 100%;
+  }
+
+  .comment-input {
+    margin-left: 16px;
+    width: calc(100% - 64px);
+  }
+
+  .comment-box {
+    width: 100%;
+    padding: 12px 16px;
+  }
+}

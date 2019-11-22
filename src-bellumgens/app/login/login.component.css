@@ -1,0 +1,64 @@
+.steam-login-container {
+  align-content: center;
+}
+
+.drop-down-arrow {
+  margin: 0;
+}
+
+.profile-button {
+  height: 58px;
+}
+
+.profile-button:hover,
+.profile-button:active,
+.profile-button:focus {
+  background-color: transparent;
+}
+
+.profile-view {
+  padding: 40px 0;
+}
+
+.profile-container {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+  min-width: 347px;
+}
+
+.profile-content {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  min-height: 515px;
+  padding: 16px;
+}
+
+.preferences-divider {
+  display: flex;
+  height: 100%;
+  flex-flow: column;
+  justify-content: space-between;
+}
+
+.profile-username {
+  margin-top: 8px;
+}
+
+.completeness-icon {
+  margin-right: 16px;
+}
+
+.completeness-item {
+  display: flex;
+  padding: 4px;
+}
+
+.completeness-item span {
+  font-size: 0.9rem;
+}
+
+.profile-button {
+  --igx-button-flat-icon-color: white;
+}

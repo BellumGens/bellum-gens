@@ -1,0 +1,53 @@
+<div igxLayout>
+  <div igxFlex igxLayout igxLayoutDir="columns" class="top-level-container">
+    <igx-navbar class="bellum-gens-navbar" [title]="title">
+      <igx-action-icon>
+        <igx-avatar class="navigatable" [src]="'/assets/bg-avatar.webp'" [roundShape]="true" routerLink="/"></igx-avatar>
+      </igx-action-icon>
+
+      <a class="action-button-container" title="Go to Bellum Gens" [href]="environment.bellumgens">
+        <igx-icon>people</igx-icon>
+      </a>
+
+      <app-login [authUser]='authUser'></app-login>
+    </igx-navbar>
+
+    <igx-banner #cookiesBanner>
+      <igx-icon>settings</igx-icon>
+      This site uses cookies.
+      <igx-banner-actions>
+        <a href="https://www.cookiesandyou.com/" target="_blank" rel="noopener">More Information</a>
+        <button igxButton igxRipple (click)="acceptCookies()">I Understand</button>
+      </igx-banner-actions>
+    </igx-banner>
+
+    <app-success-error></app-success-error>
+
+    <div class="main-content-wrapper">
+      <div class="content">
+        <router-outlet></router-outlet>
+
+        <footer class="footer">
+          <igx-divider></igx-divider>
+          <div class="footer-row">
+            <p>
+              We would also appreciate if you follow us on social media.
+            </p>
+            <a href="https://twitter.com/BellumGens" target="_blank" rel="noopener" title="Twitter">
+              <igx-icon fontSet="login-icons" name="Twitter"></igx-icon>
+            </a>
+            <a href="https://www.facebook.com/BellumGens" target="_blank" rel="noopener" class="social-media-icon" title="Facebook">
+              <igx-icon fontSet="login-icons" name="Facebook"></igx-icon>
+            </a>
+            <p>Copyright © Bellum Gens, 2019</p>
+          </div>
+        </footer>
+      </div>
+      <!-- <div class="discord-container">
+        <iframe src="https://discordapp.com/widget?id=314362408783052800&theme=dark" width="350" allowtransparency="true" frameborder="0"></iframe>
+      </div> -->
+    </div>
+  </div>
+</div>
+
+

@@ -1,0 +1,72 @@
+<app-login-dialog #loginDialog></app-login-dialog>
+
+<button igxButton="raised" igxRipple *ngIf="!authUser && !userCheck" (click)="loginDialog.openLogin()">Login</button>
+
+<igx-circular-bar *ngIf="userCheck" [indeterminate]="true"></igx-circular-bar>
+
+<div *ngIf="authUser">
+  <button class="profile-button" #profileButton igxButton="flat" igxRipple [igxToggleAction]="userProfile" [overlaySettings]="overlaySettings">
+    <igx-avatar [src]="authUser.avatarFull" [initials]="authUser.username" roundShape="true">
+    </igx-avatar>
+    <igx-icon class="drop-down-arrow">arrow_drop_down</igx-icon>
+  </button>
+  <igx-drop-down #userProfile>
+    <div class="profile-container">
+      <igx-tabs [tabsType]="'fixed'">
+        <igx-tabs-group class="profile-content">
+          <ng-template igxTab>
+            <div class="horizontal-center">
+              <igx-icon>person</igx-icon>
+              <div class="igx-tabs__item-label">Profile</div>
+            </div>
+          </ng-template>
+          <div class="center-items profile-view">
+            <igx-avatar [src]="authUser.avatarMedium" [initials]="authUser.username" roundShape="true" [size]="'large'">
+            </igx-avatar>
+            <h1 class="igx-card-header__title highlight navigatable profile-username" (click)="navigateToProfile(authUser.id)">{{ authUser.username }}</h1>
+            <h4 class="igx-card-header__subtitle">{{ authUser.realname }}</h4>
+          </div>
+          <div *ngIf="authUser" class="margin-bottom">
+            <igx-linear-bar [type]="profileCompleteness.progressType"
+                            class="margin-bottom"
+                            [max]="4"
+                            [value]="profileCompleteness.profileStage"
+                            [text]="'Profile Completeness: ' + profileCompleteness.profileStage + ' / 4'"
+                            [textTop]="true">
+            </igx-linear-bar>
+            <div class="completeness-item">
+              <igx-icon class="completeness-icon" [color]="profileCompleteness.availability ? profileCompleteness.doneColor : profileCompleteness.pendingColor">{{profileCompleteness.availability ? profileCompleteness.doneIcon : profileCompleteness.pendingIcon}}</igx-icon>
+              <span>Availability</span>
+            </div>
+            <div class="completeness-item">
+              <igx-icon class="completeness-icon" [color]="profileCompleteness.primaryRole ? profileCompleteness.doneColor : profileCompleteness.pendingColor">{{profileCompleteness.primaryRole ? profileCompleteness.doneIcon : profileCompleteness.pendingIcon}}</igx-icon>
+              <span>Primary Role</span>
+            </div>
+            <div class="completeness-item">
+              <igx-icon class="completeness-icon" [color]="profileCompleteness.secondaryRole ? profileCompleteness.doneColor : profileCompleteness.pendingColor">{{profileCompleteness.secondaryRole ? profileCompleteness.doneIcon : profileCompleteness.pendingIcon}}</igx-icon>
+              <span>Secondary Role</span>
+            </div>
+            <div class="completeness-item">
+              <igx-icon class="completeness-icon" [color]="profileCompleteness.mapPool ? profileCompleteness.doneColor : profileCompleteness.pendingColor">{{profileCompleteness.mapPool ? profileCompleteness.doneIcon : profileCompleteness.pendingIcon}}</igx-icon>
+              <span>Preferred maps</span>
+            </div>
+          </div>
+
+          <button class="submit-button" igxButton="outlined" igxRipple routerLink="/user/strategies"><igx-icon>playlist_add_check</igx-icon>my strategies</button>
+          <button class="submit-button" igxButton="outlined" igxRipple class="profile-username" (click)="logout()"><igx-icon>exit_to_app</igx-icon>logout</button>
+        </igx-tabs-group>
+
+        <igx-tabs-group class="profile-content">
+          <ng-template igxTab>
+            <div class="horizontal-center">
+              <igx-icon>settings</igx-icon>
+              <div class="igx-tabs__item-label">Settings</div>
+            </div>
+          </ng-template>
+
+          <app-user-preferences class="preferences-divider"></app-user-preferences>
+        </igx-tabs-group>
+      </igx-tabs>
+    </div>
+  </igx-drop-down>
+</div>

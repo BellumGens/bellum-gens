@@ -1,0 +1,65 @@
+/* ICONS */
+igx-icon {
+  user-select: none;
+}
+
+igx-card-actions igx-badge,
+igx-tab-item igx-icon {
+  margin-right: 8px;
+}
+/* END ICONS */
+
+/* SNACKBAR */
+igx-snackbar {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  z-index: 10000;
+}
+/* END SNACKBAR */
+
+igx-card-content h4 {
+  margin: 24px 0px 0px 8px;
+}
+
+.igx-linear-bar__base {
+  height: 12px;
+}
+
+.igx-typography .igx-tabs__item-label {
+  letter-spacing: 0.07rem;
+}
+
+
+/* Overlay */
+.igx-overlay {
+  color: $primary;
+}
+/* END Overlay */
+
+/* Badge */
+.igx-badge__circle--info {
+  background-color: $secondary;
+}
+/* END Badge */
+
+/* List */
+.igx-list__item-thumbnail {
+  align-self: inherit;
+}
+/* END List */
+
+.color-success {
+  color: var(--igx-input-group-success-secondary-color);
+}
+
+.color-error {
+  color: var(--igx-input-group-error-secondary-color);
+}
+
+.color-warn {
+  color: var(--igx-input-group-warning-secondary-color);
+}

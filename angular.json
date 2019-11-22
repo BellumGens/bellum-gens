@@ -5,7 +5,7 @@
   "projects": {
     "bellum-gens": {
       "root": "",
-      "sourceRoot": "src",
+      "sourceRoot": "src-bellumgens",
       "projectType": "application",
       "prefix": "app",
       "schematics": {},
@@ -13,20 +13,20 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/browser",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.app.json",
+            "outputPath": "dist/bellumgens/browser",
+            "index": "src-bellumgens/index.html",
+            "main": "src-bellumgens/main.ts",
+            "polyfills": "src-bellumgens/polyfills.ts",
+            "tsConfig": "src-bellumgens/tsconfig.app.json",
             "assets": [
-              "src/favicon.ico",
-              "src/assets",
-              "src/web.config",
-              "src/robots.txt",
-              "src/manifest.json"
+              "src-bellumgens/favicon.ico",
+              "src-bellumgens/assets",
+              "src-bellumgens/web.config",
+              "src-bellumgens/robots.txt",
+              "src-bellumgens/manifest.json"
             ],
             "styles": [
-              "src/styles.scss"
+              "src-bellumgens/styles.scss"
             ],
             "scripts": [
               "./node_modules/hammerjs/hammer.min.js"
@@ -36,8 +36,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "src-common/environments/environment.ts",
+                  "with": "src-common/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -50,7 +50,7 @@
               "vendorChunk": false,
               "buildOptimizer": true,
               "serviceWorker": true,
-              "ngswConfigPath": "src/ngsw-config.json"
+              "ngswConfigPath": "src-bellumgens/ngsw-config.json"
             }
           }
         },
@@ -74,20 +74,20 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
-            "tsConfig": "src/tsconfig.spec.json",
-            "karmaConfig": "src/karma.conf.js",
+            "main": "src-bellumgens/test.ts",
+            "polyfills": "src-bellumgens/polyfills.ts",
+            "tsConfig": "src-bellumgens/tsconfig.spec.json",
+            "karmaConfig": "src-bellumgens/karma.conf.js",
             "styles": [
-              "src/styles.scss"
+              "src-bellumgens/styles.scss"
             ],
             "scripts": [
               "./node_modules/hammerjs/hammer.min.js"
             ],
             "assets": [
-              "src/favicon.ico",
-              "src/assets",
-              "src/manifest.json"
+              "src-bellumgens/favicon.ico",
+              "src-bellumgens/assets",
+              "src-bellumgens/manifest.json"
             ]
           }
         },
@@ -95,8 +95,8 @@
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "src/tsconfig.app.json",
-              "src/tsconfig.spec.json"
+              "src-bellumgens/tsconfig.app.json",
+              "src-bellumgens/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
@@ -106,16 +106,16 @@
         "server": {
           "builder": "@angular-devkit/build-angular:server",
           "options": {
-            "outputPath": "dist/server",
-            "main": "src/main.server.ts",
-            "tsConfig": "src/tsconfig.server.json"
+            "outputPath": "dist/bellumgens/server",
+            "main": "src-bellumgens/main.server.ts",
+            "tsConfig": "src-bellumgens/tsconfig.server.json"
           },
           "configurations": {
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
+                  "replace": "src-common/environments/environment.ts",
+                  "with": "src-common/environments/environment.prod.ts"
                 }
               ],
               "sourceMap": false,
@@ -160,6 +160,145 @@
             "exclude": [
               "**/node_modules/**"
             ]
+          }
+        }
+      }
+    },
+    "eb-league": {
+      "root": "",
+      "sourceRoot": "src-ebleague",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/ebleague/browser",
+            "index": "src-ebleague/index.html",
+            "main": "src-ebleague/main.ts",
+            "polyfills": "src-ebleague/polyfills.ts",
+            "tsConfig": "src-ebleague/tsconfig.app.json",
+            "assets": [
+              "src-ebleague/favicon.ico",
+              "src-ebleague/assets",
+              "src-ebleague/web.config",
+              "src-ebleague/robots.txt",
+              "src-ebleague/manifest.json"
+            ],
+            "styles": [
+              "src-ebleague/styles.scss"
+            ],
+            "scripts": [
+              "./node_modules/hammerjs/hammer.min.js"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src-common/environments/environment.ts",
+                  "with": "src-common/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "serviceWorker": true,
+              "ngswConfigPath": "src-ebleague/ngsw-config.json"
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "eb-league:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "eb-league:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "eb-league:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src-ebleague/test.ts",
+            "polyfills": "src-ebleague/polyfills.ts",
+            "tsConfig": "src-ebleague/tsconfig.spec.json",
+            "karmaConfig": "src-ebleague/karma.conf.js",
+            "styles": [
+              "src-ebleague/styles.scss"
+            ],
+            "scripts": [
+              "./node_modules/hammerjs/hammer.min.js"
+            ],
+            "assets": [
+              "src-ebleague/favicon.ico",
+              "src-ebleague/assets",
+              "src-ebleague/manifest.json"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "src-ebleague/tsconfig.app.json",
+              "src-ebleague/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/ebleague/server",
+            "main": "src-ebleague/main.server.ts",
+            "tsConfig": "src-ebleague/tsconfig.server.json"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src-common/environments/environment.ts",
+                  "with": "src-common/environments/environment.prod.ts"
+                }
+              ],
+              "sourceMap": false,
+              "optimization": {
+                "scripts": false,
+                "styles": true
+              }
+            }
+          }
+        },
+        "app-shell": {
+          "builder": "@angular-devkit/build-angular:app-shell",
+          "options": {
+            "browserTarget": "eb-league:build",
+            "serverTarget": "eb-league:server",
+            "route": "home"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "eb-league:build:production",
+              "serverTarget": "eb-league:server:production"
+            }
           }
         }
       }

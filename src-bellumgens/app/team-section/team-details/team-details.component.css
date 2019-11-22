@@ -1,0 +1,69 @@
+.user-in-role {
+  position: relative;
+}
+
+.country-badge-large {
+  position: absolute;
+  top: -6px;
+  left: 56px;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
+  color: #000;
+}
+
+.country-badge-medium {
+  position: absolute;
+  top: -6px;
+  left: 40px;
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  color: #000;
+}
+
+.member-slot {
+  display: flex;
+  flex: 1 1 20%;
+	flex-flow: column;
+  align-items: center;
+  padding: 16px;
+}
+
+.active-inactive-users {
+  display: flex;
+  flex: 0 0 88px;
+	flex-flow: column;
+  align-items: center;
+  padding: 16px;
+}
+
+.horizontal.padding-top {
+  padding-top: 32px;
+}
+
+.empty-role {
+  width: 88px;
+  height: 88px;
+  --igx-avatar-icon-color: #000;
+}
+
+.empty-role-active {
+  --my-color: #3040AA;
+  box-shadow: inset 0 0 0 2px var(--my-color);
+  --igx-avatar-icon-color: var(--my-color);
+  --igx-avatar-icon-background: rgba(0, 0, 0, 0.15);
+}
+
+.right-details-container igx-card {
+  width: 100%;
+  min-width: 100%;
+}
+
+.right-details-container igx-card:not(:first-child) {
+  margin: 16px 0px 0px 0px;
+}
+
+.overview-container-paddings {
+  padding: 16px 0px;
+}

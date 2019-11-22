@@ -1,0 +1,142 @@
+<div *ngIf="team" class="overview-container overview-container-paddings">
+  <div class="left-details-container">
+    <h4>Practice</h4>
+    <app-availability [availability]="team.PracticeSchedule" (availabilityChanged)="changeSchedule($event)" [editable]="isAdmin"></app-availability>
+  </div>
+
+  <div class="right-details-container">
+    <igx-card type="outlined">
+      <igx-card-header>
+        <h3 class="igx-card-header__title">Active lineup</h3>
+      </igx-card-header>
+      <igx-card-content>
+        <div class="horizontal space-between">
+          <div *ngFor="let role of roleSlots" class="member-slot">
+            <div>
+              <span class="title">
+                {{ role.roleName }}
+              </span>
+            </div>
+            <div class="user-in-role" *ngIf="role.user">
+              <igx-avatar *ngIf="role.user"
+                          [src]="role.user.AvatarFull"
+                          [initials]="role.user.Username"
+                          roundShape="true"
+                          [size]="'large'">
+              </igx-avatar>
+              <igx-avatar *ngIf="isAdmin"
+                          icon='clear'
+                          [roundShape]="true"
+                          class="country-badge-large navigatable"
+                          title="Remove from role"
+                          (click)="removeFromRole(role)">
+              </igx-avatar>
+              <igx-avatar *ngIf="!isAdmin && role.user.Country"
+                          [src]="role.user.Country | playerCountry"
+                          [roundShape]="true"
+                          [title]="role.user.Country"
+                          class="country-badge-large">
+              </igx-avatar>
+            </div>
+            <igx-avatar *ngIf="!role.user"
+                        class="empty-role"
+                        icon="add"
+                        roundShape="true"
+                        size="large"
+                        igxDrop
+                        (dropped)="assignToRole($event, role)">
+            </igx-avatar>
+            <div>
+              <span *ngIf="role.user" class="title">
+                <a [routerLink]="['/players', role.user.CustomUrl || role.user.UserId]">
+                  {{ role.user.Username }}
+                </a>
+              </span>
+              <span *ngIf="!role.user" class="title">
+                [ empty ]
+              </span>
+            </div>
+          </div>
+        </div>
+      </igx-card-content>
+    </igx-card>
+
+    <igx-card type="outlined">
+      <igx-card-header>
+        <h3 class="igx-card-header__title">Bench</h3>
+        <h4 class="igx-card-header__subtitle" *ngIf="isAdmin">Drag players to add them to the active lineup</h4>
+      </igx-card-header>
+      <igx-card-content>
+        <div class="horizontal padding-top">
+          <div class="active-inactive-users" *ngFor="let user of activeMembers">
+            <div class="user-in-role">
+              <igx-avatar [src]="user.AvatarMedium"
+                          [initials]="user.Username"
+                          roundShape="true"
+                          [size]="'medium'"
+                          [igxDrag]="user"
+                          (dragStart)="roleDragging($event)"
+                          (dragEnd)="roleDraggingEnd()">
+              </igx-avatar>
+              <igx-avatar *ngIf="isAdmin && authUser.id !== user.UserId"
+                          icon="clear"
+                          [roundShape]="true"
+                          class="country-badge-medium navigatable"
+                          title="Remove from team"
+                          (click)="confirm.open(user)">
+              </igx-avatar>
+            </div>
+            <span class="title">
+              <a [routerLink]="['/players', user.CustomUrl || user.UserId]">
+                {{ user.Username }}
+              </a>
+            </span>
+          </div>
+          <div *ngIf="!activeMembers?.length">
+            Bench is currently empty.
+          </div>
+        </div>
+      </igx-card-content>
+    </igx-card>
+
+    <igx-card type="outlined">
+      <igx-card-header>
+        <h3 class="igx-card-header__title">Inactive</h3>
+      </igx-card-header>
+      <igx-card-content>
+        <div class="horizontal padding-top">
+          <div class="active-inactive-users" *ngFor="let user of inactiveMembers">
+            <div class="user-in-role">
+              <igx-avatar [src]="user.AvatarFull"
+                          [initials]="user.Username"
+                          roundShape="true"
+                          [size]="'large'">
+              </igx-avatar>
+              <igx-avatar *ngIf="isAdmin && authUser.id !== user.UserId"
+                          icon="clear"
+                          [roundShape]="true"
+                          class="country-badge"
+                          title="Remove from team"
+                          (click)="removeFromTeam(user)">
+              </igx-avatar>
+            </div>
+            <span class="title">
+              <a [routerLink]="['/players', user.CustomUrl || user.UserId]">
+                {{ user.Username }}
+              </a>
+            </span>
+          </div>
+          <div *ngIf="!inactiveMembers?.length">
+            No inactive members.
+          </div>
+        </div>
+      </igx-card-content>
+    </igx-card>
+  </div>
+</div>
+
+<!-- Confirm -->
+<app-confirm #confirm title="Are you sure?" (ok)="removeFromTeam($event)">
+  Pressing OK will permanently remove this player from the team...
+</app-confirm>
+<!-- END Confirm -->
