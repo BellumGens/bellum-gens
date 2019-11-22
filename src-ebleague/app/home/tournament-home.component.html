@@ -74,7 +74,7 @@
         <igx-prefix>
           <igx-icon fontSet="login-icons" name="BattleNet"></igx-icon>
         </igx-prefix>
-        <input id="battletag" #battletag name="battletag" required igxInput pattern="^[a-zA-Z0-9._%+-]+#[0-9]{4}$" [(ngModel)]="application.BattleNetId" />
+        <input id="battletag" #battletag name="battletag" required igxInput pattern="^[a-zA-Z0-9._%+-]+#[0-9]{4,6}$" [(ngModel)]="application.BattleNetId" />
         <igx-suffix *ngIf="battletag.value" (click)="application.BattleNetId = null">
           <igx-icon>clear</igx-icon>
         </igx-suffix>
