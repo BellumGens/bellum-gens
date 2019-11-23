@@ -5,21 +5,29 @@ import { SocialMediaService } from '../../../src-common/services/social-media.se
 import { CommunicationService } from '../../../src-common/services/communication.service';
 import { environment } from '../../../src-common/environments/environment';
 import { isPlatformBrowser } from '@angular/common';
+import { BaseComponent } from '../base/base.component';
+import { Title, Meta } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent {
+export class HomeComponent extends BaseComponent {
   public authUser: ApplicationUser;
-  public navigation = isPlatformBrowser(PLATFORM_ID) ? window.matchMedia('(min-width: 768px)').matches : true;
+  public navigation: boolean;
   public environment = environment;
 
   constructor(private authManager: LoginService,
               private socialMedia: SocialMediaService,
-              private commService: CommunicationService) {
+              private commService: CommunicationService,
+              titleService: Title,
+              meta: Meta,
+              activeRoute: ActivatedRoute) {
+    super(titleService, meta, activeRoute);
     this.authManager.applicationUser.subscribe(data => this.authUser = data);
+    this.navigation = isPlatformBrowser(PLATFORM_ID) ? window.matchMedia('(min-width: 768px)').matches : true;
   }
 
   public tweet() {
