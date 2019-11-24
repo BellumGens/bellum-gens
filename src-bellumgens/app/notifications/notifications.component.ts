@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ApplicationUser } from '../../../src-common/models/applicationuser';
 import { UnreadNotificationsPipe } from '../pipes/unread-notifications.pipe';
 
@@ -7,7 +7,7 @@ import { UnreadNotificationsPipe } from '../pipes/unread-notifications.pipe';
   templateUrl: './notifications.component.html',
   styleUrls: ['./notifications.component.css']
 })
-export class NotificationsComponent implements OnInit {
+export class NotificationsComponent {
 
   @Input()
   public authUser: ApplicationUser;
@@ -18,9 +18,6 @@ export class NotificationsComponent implements OnInit {
   private unreadPipe = new UnreadNotificationsPipe();
 
   constructor() { }
-
-  ngOnInit() {
-  }
 
   public aggregate(args: any[]) {
     const unread = this.unreadPipe.transform(args);

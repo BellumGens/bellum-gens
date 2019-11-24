@@ -9,7 +9,7 @@ import { IgxIconService } from 'igniteui-angular';
   styleUrls: ['./quick-search.component.css']
 })
 export class QuickSearchComponent {
-  public searchResult: SearchResult = {SteamUser: null, Players: [], Teams: [], Strategies: []};
+  public searchResult: SearchResult = { SteamUser: null, Players: [], Teams: [], Strategies: [] };
   public loading = false;
   public term = '';
 

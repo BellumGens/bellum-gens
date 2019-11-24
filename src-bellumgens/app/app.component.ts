@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, PLATFORM_ID, HostListener } from '@angular/core';
 
 import { PositionSettings,
   HorizontalAlignment,
@@ -14,11 +14,8 @@ import { SearchResult } from '../../src-common/models/searchresult';
 import { fromEvent } from 'rxjs';
 import { map, debounceTime } from 'rxjs/operators';
 import { UnreadNotificationsPipe } from './pipes/unread-notifications.pipe';
-import { BaseComponent } from './base/base.component';
 import { GlobalOverlaySettings } from '../../src-common/models/misc';
 import { CommunicationService } from '../../src-common/services/communication.service';
-import { Title, Meta } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 
 @Component({
@@ -26,10 +23,13 @@ import { isPlatformBrowser } from '@angular/common';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent extends BaseComponent implements OnInit {
+export class AppComponent implements OnInit {
   public authUser: ApplicationUser;
   public searchResult: SearchResult;
   public unreadNotifications = 0;
+  private _headerTitle = 'Bellum Gens';
+  private _headerTitleShort = '';
+  public title: string;
 
   public overlaySettings = GlobalOverlaySettings;
 
@@ -43,23 +43,26 @@ export class AppComponent extends BaseComponent implements OnInit {
 
   constructor(private authManager: LoginService,
               private apiService: BellumgensApiService,
-              private commService: CommunicationService,
-              title: Title,
-              meta: Meta,
-              activeRoute: ActivatedRoute) {
-    super(title, meta, activeRoute);
+              private commService: CommunicationService) {
     this.commService.openTeams.subscribe(_ => this.teamDropDown.open());
+    if (isPlatformBrowser(PLATFORM_ID)) {
+      this.title = window.matchMedia('(min-width: 768px)').matches ? this._headerTitle : this._headerTitleShort;
+    } else {
+      this.title = this._headerTitle;
+    }
+    this.authManager.applicationUser.subscribe(data => {
+      this.authUser = data;
+      this.unreadNotifications += this.unreadPipe.transform(data.notifications);
+    });
   }
 
   public ngOnInit(): void {
-    this.subs.push(this.authManager.applicationUser.subscribe(data => {
-      this.authUser = data;
-      this.unreadNotifications += this.unreadPipe.transform(data.notifications);
-    }));
-    if (isPlatformBrowser(PLATFORM_ID) && !window.localStorage.getItem('cookiesAccepted')) {
-      this.banner.open();
+    if (isPlatformBrowser(PLATFORM_ID)) {
+      if (!window.localStorage.getItem('cookiesAccepted')) {
+        this.banner.open();
+      }
+      this.initQuickSearch();
     }
-    this.initQuickSearch();
   }
 
   public acceptCookies() {
@@ -71,7 +74,7 @@ export class AppComponent extends BaseComponent implements OnInit {
     const input = fromEvent(this.searchInput.nativeElement, 'keyup')
                     .pipe(map<Event, string>(e => (<HTMLInputElement>e.currentTarget).value));
     const debouncedInput = input.pipe(debounceTime(300));
-    this.subs.push(debouncedInput.subscribe(val => {
+    debouncedInput.subscribe(val => {
       if (val.length) {
         const positionSettings: PositionSettings = {
           horizontalDirection: HorizontalAlignment.Left,
@@ -85,10 +88,15 @@ export class AppComponent extends BaseComponent implements OnInit {
         this.quickSearchDropDown.open(overlaySettings);
         this.apiService.quickSearch(val);
       }
-    }));
+    });
   }
 
   public notificationsLoaded(args: number) {
     this.unreadNotifications += args;
+  }
+
+  @HostListener('window:resize')
+  public resize() {
+    this.title = window.matchMedia('(min-width: 768px)').matches ? this._headerTitle : this._headerTitleShort;
   }
 }

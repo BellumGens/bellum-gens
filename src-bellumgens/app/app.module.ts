@@ -105,6 +105,8 @@ import { ApiTournamentsService } from '../../src-common/services/bellumgens-api.
 import { StartsWithPipe } from './pipes/starts-with.pipe';
 import { TeamNewComponent } from './team-section/team-new/team-new.component';
 import { GetRegCountPipe } from './pipes/get-reg-count.pipe';
+import { CommunicationService } from '../../src-common/services/communication.service';
+import { SocialMediaService } from '../../src-common/services/social-media.service';
 
 @NgModule({
   declarations: [
@@ -215,6 +217,8 @@ import { GetRegCountPipe } from './pipes/get-reg-count.pipe';
     LoginService,
     BellumgensApiService,
     ApiTournamentsService,
+    CommunicationService,
+    SocialMediaService,
     IgxIconService
   ],
   bootstrap: [AppComponent]

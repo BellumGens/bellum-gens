@@ -2,7 +2,6 @@ import { Component, OnInit, ViewChild, Input, Output, EventEmitter } from '@angu
 import { IgxListComponent } from 'igniteui-angular';
 import { TeamApplication, CSGOTeam } from '../../../../src-common/models/csgoteam';
 import { BellumgensApiService } from '../../../../src-common/services/bellumgens-api.service';
-import { noop } from 'rxjs';
 
 @Component({
   selector: 'app-team-notifications',
@@ -27,8 +26,7 @@ export class TeamNotificationsComponent implements OnInit {
 
   @ViewChild(IgxListComponent, { static: false }) public notifications: IgxListComponent;
 
-  constructor(private apiService: BellumgensApiService) {
-  }
+  constructor(private apiService: BellumgensApiService) { }
 
   ngOnInit() {
     if (this.team) {
@@ -42,24 +40,28 @@ export class TeamNotificationsComponent implements OnInit {
   public approveApplication(application: TeamApplication) {
     this.actionText = 'Approving...';
     this.actionInProgress = true;
-    this.apiService.approveApplication(application).subscribe(data => {
-      application = data;
-      this.pipeTrigger++;
-      this.changed.emit(-1);
-    },
-    _ => noop,
-    () => this.actionInProgress = false);
+    this.apiService.approveApplication(application).subscribe(
+      data => {
+        application = data;
+        this.pipeTrigger++;
+        this.changed.emit(-1);
+        this.actionInProgress = false;
+      },
+      _ => this.actionInProgress = false
+    );
   }
 
   public rejectApplication(application: TeamApplication) {
     this.actionText = 'Rejecting...';
     this.actionInProgress = true;
-    this.apiService.rejectApplication(application).subscribe(data => {
-      application = data;
-      this.pipeTrigger++;
-      this.changed.emit(-1);
-    },
-    _ => noop,
-    () => this.actionInProgress = false);
+    this.apiService.rejectApplication(application).subscribe(
+      data => {
+        application = data;
+        this.pipeTrigger++;
+        this.changed.emit(-1);
+        this.actionInProgress = false;
+      },
+      _ => this.actionInProgress = false
+    );
   }
 }

@@ -4,7 +4,6 @@ import { IgxListComponent } from 'igniteui-angular';
 import { UserNotification, NotificationState } from '../../../../src-common/models/usernotifications';
 import { BellumgensApiService } from '../../../../src-common/services/bellumgens-api.service';
 import { Router } from '@angular/router';
-import { noop } from 'rxjs';
 
 @Component({
   selector: 'app-player-notifications',
@@ -28,8 +27,7 @@ export class PlayerNotificationsComponent {
 
   @ViewChild(IgxListComponent, { static: false }) public notifications: IgxListComponent;
 
-  constructor(private apiService: BellumgensApiService,
-              private router: Router) { }
+  constructor(private apiService: BellumgensApiService, private router: Router) { }
 
   public acceptInvitation(notification: UserNotification) {
     this.actionText = 'Accepting...';
@@ -40,9 +38,9 @@ export class PlayerNotificationsComponent {
         this.pipeTrigger++;
         this.router.navigate(['team', notification.TeamInfo.CustomUrl]);
         this.changed.emit(-1);
+        this.actionInProgress = false;
       },
-      _ => noop,
-      () => this.actionInProgress = false
+      _ => this.actionInProgress = false
     );
   }
 
@@ -54,9 +52,9 @@ export class PlayerNotificationsComponent {
         notification.State = NotificationState.Rejected;
         this.pipeTrigger++;
         this.changed.emit(-1);
+        this.actionInProgress = false;
       },
-      _ => noop,
-      () => this.actionInProgress = false
+      _ => this.actionInProgress = false
     );
   }
 

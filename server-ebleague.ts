@@ -68,7 +68,7 @@ app.set('view engine', 'html');
 app.set('views', join(DIST_FOLDER, 'browser'));
 
 // Server static files from /browser
-app.get('*.*', express.static(join(DIST_FOLDER, 'browser')));
+app.get('*.*', express.static(join(DIST_FOLDER, 'browser'), { maxAge: '1y' }));
 
 // All bellumgens routes should redirect
 app.get('/players/*', (req, res) => {
