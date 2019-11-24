@@ -410,28 +410,19 @@ $overlay-theme: igx-overlay-theme($background-color: rgba(35, 51, 132, 0.7));
   margin: auto;
 }
 
-.slide-info h1,
-.content-container h1 {
+.slide-info h1 {
   font-size: 3rem;
   margin: 0;
 }
 
-.slide-info h4,
-.content-container h4 {
+.slide-info h4 {
   font-size: 1.75rem;
   margin: 0;
 }
 
-.slide-info p,
-.content-container p {
+.slide-info p {
   font-size: 1rem;
   margin: 16px 0 16px 0;
-}
-
-.content-container h1 {
-  font-size: 2rem;
-  font-weight: 800;
-  margin: 0;
 }
 /* END HOME */
 
@@ -443,6 +434,11 @@ $overlay-theme: igx-overlay-theme($background-color: rgba(35, 51, 132, 0.7));
     width: 100%;
     padding-left: 8px;
     padding-right: 8px;
+  }
+
+  .slide-info h1 {
+    font-size: 1.75rem;
+    margin: 0;
   }
 }
 
