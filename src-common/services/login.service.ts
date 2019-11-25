@@ -56,7 +56,8 @@ export class LoginService {
             this.initSw();
           }
           this.userCheckInProgress.next(false);
-        }
+        },
+        _ => this.userCheckInProgress.next(false)
       );
     }
 

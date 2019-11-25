@@ -1,7 +1,7 @@
 <app-app-shell *ngIf="loading">
 </app-app-shell>
 
-<div class="search-result-summary margin-bottom">
+<div *ngIf="!loading" class="search-result-summary margin-bottom">
   <h4 class="igx-card-header__title">Found <span class="highlight">{{players?.length }}</span> results for players{{ query | queryParsed:true }}</h4>
 </div>
 <div *ngIf="!loading" class="card-wrapper">
