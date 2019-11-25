@@ -2,12 +2,16 @@
   <div igxFlex igxLayout igxLayoutDir="columns" class="top-level-container">
     <igx-navbar class="bellum-gens-navbar" [title]="title">
       <igx-action-icon>
-        <igx-avatar class="navigatable" [src]="'/assets/bg-avatar.webp'" [roundShape]="true" routerLink="/"></igx-avatar>
+        <igx-avatar class="navigatable" [src]="'/assets/eb-league-temporary.webp'" [roundShape]="true" routerLink="/"></igx-avatar>
       </igx-action-icon>
 
-      <a class="action-button-container" title="Go to Bellum Gens" [href]="environment.bellumgens">
-        <igx-icon>people</igx-icon>
-      </a>
+
+      <igx-avatar class="navigatable"
+                  [src]="'/assets/bg-avatar.webp'"
+                  [roundShape]="true"
+                  title="Go to Bellum Gens"
+                  (click)="navigateToBG()">
+      </igx-avatar>
 
       <app-login [authUser]='authUser'></app-login>
     </igx-navbar>
