@@ -1,4 +1,4 @@
-# Bellum Gens: Looking for Group  
+# Bellum Gens: Looking for Group & Esports Business League (EB-League)
 [![Build Status](https://dev.azure.com/BellumGens/Bellum%20Gens/_apis/build/status/BellumGens.bellum-gens?branchName=master)](https://dev.azure.com/BellumGens/Bellum%20Gens/_build/latest?definitionId=2&branchName=master)
 [![Build Status](https://travis-ci.org/BellumGens/bellum-gens.svg?branch=master)](https://travis-ci.org/BellumGens/bellum-gens)
 
@@ -11,6 +11,11 @@ Run `ig start` to build the application, start a web server and open the applica
 ## Build
 
 Run `ig build` to build the application into an output directory.
+
+To build both apps, you need to install all packages and run `npm run build`.  
+To start both app, you need to run `ig start`.  
+To SSR build both apps, you need to run `npm run build:ssr`.  
+To start the SSR built apps, you need to run `npm run serve:ssr`. 
 
 ## Step by step mode
 

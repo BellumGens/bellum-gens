@@ -165,6 +165,11 @@ button igx-icon {
     list-style: disc;
   }
 
+  .content-container-column img {
+    width: auto;
+    margin: 8px auto;
+  }
+
 .left-column {
   text-align: right;
   align-items: flex-end;

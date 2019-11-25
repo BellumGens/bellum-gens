@@ -42,6 +42,10 @@ export class AppComponent implements OnInit {
     window.localStorage.setItem('cookiesAccepted', 'true');
   }
 
+  public navigateToBG() {
+    window.location.href = this.environment.bellumgens;
+  }
+
   @HostListener('window:resize')
   public resize() {
     this.title = window && window.matchMedia('(min-width: 768px)').matches ? this._headerTitle : this._headerTitleShort;
