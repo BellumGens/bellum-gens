@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, PLATFORM_ID, HostListener } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, PLATFORM_ID, HostListener, Inject } from '@angular/core';
 
 import { PositionSettings,
   HorizontalAlignment,
@@ -40,12 +40,15 @@ export class AppComponent implements OnInit {
   @ViewChild('cookiesBanner', { static: true }) public banner: IgxBannerComponent;
 
   private unreadPipe = new UnreadNotificationsPipe();
+  private isBrowser: boolean;
 
-  constructor(private authManager: LoginService,
+  constructor(@Inject(PLATFORM_ID) platformId: Object,
+              private authManager: LoginService,
               private apiService: BellumgensApiService,
               private commService: CommunicationService) {
+    this.isBrowser = isPlatformBrowser(platformId);
     this.commService.openTeams.subscribe(_ => this.teamDropDown.open());
-    if (isPlatformBrowser(PLATFORM_ID)) {
+    if (this.isBrowser) {
       this.title = window.matchMedia('(min-width: 768px)').matches ? this._headerTitle : this._headerTitleShort;
     } else {
       this.title = this._headerTitle;
@@ -57,7 +60,7 @@ export class AppComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    if (isPlatformBrowser(PLATFORM_ID)) {
+    if (this.isBrowser) {
       if (!window.localStorage.getItem('cookiesAccepted')) {
         this.banner.open();
       }

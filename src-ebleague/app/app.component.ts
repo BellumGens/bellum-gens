@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, HostListener, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, ViewChild, HostListener, PLATFORM_ID, Inject } from '@angular/core';
 
 import { IgxBannerComponent} from 'igniteui-angular';
 import { LoginService } from '../../src-common/services/login.service';
@@ -17,11 +17,13 @@ export class AppComponent implements OnInit {
   public environment = environment;
   private _headerTitle = 'Esports Business League';
   private _headerTitleShort = 'EBL';
+  private isBrowser: boolean;
 
   @ViewChild('cookiesBanner', { static: true }) public banner: IgxBannerComponent;
 
-  constructor(private authManager: LoginService) {
-    if (isPlatformBrowser(PLATFORM_ID)) {
+  constructor(@Inject(PLATFORM_ID) platformId: Object, private authManager: LoginService) {
+    this.isBrowser = isPlatformBrowser(platformId);
+    if (this.isBrowser) {
       this.title = window.matchMedia('(min-width: 768px)').matches ? this._headerTitle : this._headerTitleShort;
     } else {
       this.title = this._headerTitle;
@@ -32,7 +34,7 @@ export class AppComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    if (isPlatformBrowser(PLATFORM_ID) && !window.localStorage.getItem('cookiesAccepted')) {
+    if (this.isBrowser && !window.localStorage.getItem('cookiesAccepted')) {
       this.banner.open();
     }
   }
