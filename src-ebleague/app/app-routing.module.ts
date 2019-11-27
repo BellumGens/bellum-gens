@@ -6,8 +6,6 @@ import { TournamentFormatComponent } from './tournaments/tournament-format/tourn
 export const routes: Routes = [
   { path: '', component: TournamentHomeComponent, data: {
       title: 'Esports Business League',
-      headerTitle: 'Esports Business League',
-      headerTitleShort: 'EBL',
       twitterTitle: 'Esports Business League | Esports бизнес лига',
       description: 'Esports competition in business | Esports бизнес лига записване',
       twitterDescription: 'Esports competition in business | Esports бизнес лига записване'
@@ -15,8 +13,6 @@ export const routes: Routes = [
   },
   { path: 'format', component: TournamentFormatComponent, data: {
       title: 'Esports Business League',
-      headerTitle: 'Esports Business League',
-      headerTitleShort: 'EBL',
       twitterTitle: 'Esports Business League | Esports бизнес лига',
       description: 'Esports competition in business | Esports бизнес лига записване',
       twitterDescription: 'Esports competition in business | Esports бизнес лига записване'

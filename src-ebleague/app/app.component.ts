@@ -16,7 +16,7 @@ export class AppComponent implements OnInit {
   public title = 'Esports Business League';
   public environment = environment;
   private _headerTitle = 'Esports Business League';
-  private _headerTitleShort = 'EBL';
+  private _headerTitleShort = 'EB-League';
   private isBrowser: boolean;
 
   @ViewChild('cookiesBanner', { static: true }) public banner: IgxBannerComponent;
