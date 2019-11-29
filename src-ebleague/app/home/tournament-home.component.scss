@@ -59,6 +59,7 @@
 }
 
 .submit-email {
+  height: 50px;
   margin: 0 8px;
 }
 
@@ -75,6 +76,14 @@
 .success-dialog-content {
   width: 550px;
   padding: 16px;
+}
+
+.contacts {
+  display: flex;
+  min-width: 128px;
+  align-content: center;
+  justify-content: space-evenly;
+  margin-top: 16px;
 }
 
 @media only screen and (max-width: 550px) {

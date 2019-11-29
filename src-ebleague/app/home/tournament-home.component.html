@@ -190,11 +190,7 @@
   <div class="content-container-row">
     <igx-divider></igx-divider>
     <h2>Контакти</h2>
-    <p>Изпращайте ни въпроси на <a href="mailto:info@eb-league.com">info@eb-league.com</a></p>
-    <p>Или в социалните мрежи <a href="https://www.facebook.com/esportsbleague/" target="_blank" rel="noopener">facebook</a>, <a href="https://twitter.com/EsportBLeague" target="_blank" rel="noopener">twitter</a></p>
-
-    <form #subscription="ngForm" class="content-container-row registration-form" (ngSubmit)="subscribe()">
-      <p>Ако искате да получавате известия от нас, моля оставете вашия имейл адрес!</p>
+    <form #subscription="ngForm" (ngSubmit)="subscribe()">
       <div class="horizontal">
         <igx-input-group type="border" class="subscription-form-input">
           <label igxLabel for="subemail">Имейл адрес</label>
@@ -205,11 +201,27 @@
           <igx-suffix *ngIf="subMail.value" (click)="userEmail = null">
             <igx-icon>clear</igx-icon>
           </igx-suffix>
+          <igx-hint>Оставете имейла си за да получавате известия от нас!</igx-hint>
         </igx-input-group>
 
         <button igxButton="outlined" class="submit-email" [disabled]="subscription.invalid || !userEmail">Запиши се</button>
       </div>
     </form>
+
+    <div class="contacts">
+      <a href="mailto:info@eb-league.com" title="Имейл" style="color: white">
+        <igx-icon>email</igx-icon>
+      </a>
+      <a href="https://www.facebook.com/esportsbleague/" title="Facebook" target="_blank" rel="noopener">
+        <igx-icon fontSet="login-icons" name="Facebook"></igx-icon>
+      </a>
+      <a href="https://twitter.com/EsportBLeague" title="Twitter" target="_blank" rel="noopener">
+        <igx-icon fontSet="login-icons" name="Twitter"></igx-icon>
+      </a>
+      <a href="https://discord.gg/bnTcpa9" title="Discord" target="_blank" rel="noopener">
+        <igx-icon class="discord-icon" fontSet="login-icons" name="Discord"></igx-icon>
+      </a>
+    </div>
   </div>
 </div>
 
