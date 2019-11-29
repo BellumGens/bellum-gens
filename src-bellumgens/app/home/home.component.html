@@ -6,7 +6,7 @@
       <div class="slide-info">
         <h1>Esports Business League - Bulgaria</h1>
         <p>First season of the Esports Business League competition in Bulgaria will be opened for registration soon.</p>
-        <button igxButton="raised" igxButtonColor="#fff" (click)="navigateToEbleague()">Learn More</button>
+        <button igxButton="raised" (click)="navigateToEbleague()">Learn More</button>
       </div>
     </div>
   </igx-slide>
@@ -16,7 +16,7 @@
       <div class="slide-info">
         <h1>Design and Share CS:GO Strategies</h1>
         <p>The only online CS:GO strategy editor freely available to everyone! Discuss public strategies with everyone and build private strategies for your team only.</p>
-        <button igxButton="raised" igxButtonColor="#fff" routerLink="/strategies">Browse Strategies</button>
+        <button igxButton="raised" routerLink="/strategies">Browse Strategies</button>
         <button igxButton="outlined" igxButtonColor="#fff" *ngIf="!authUser" (click)="loginDialog.openLogin()" class="space-out-button">Sign-up Now</button>
       </div>
     </div>
@@ -27,9 +27,9 @@
       <div class="slide-info">
         <h1>Manage your CS:GO Team</h1>
         <p>Recruit your team and manage your team member roles, team strategies, practice times and more....</p>
-        <button igxButton="raised" igxButtonColor="#fff" *ngIf="!authUser else loggedIn" (click)="loginDialog.openLogin()" class="space-out-button">Sign-up Now</button>
+        <button igxButton="raised" *ngIf="!authUser else loggedIn" (click)="loginDialog.openLogin()" class="space-out-button">Sign-up Now</button>
         <ng-template #loggedIn>
-          <button igxButton="raised" igxButtonColor="#fff" (click)="openTeams()" class="space-out-button">Team Section</button>
+          <button igxButton="raised" (click)="openTeams()" class="space-out-button">Team Section</button>
         </ng-template>
       </div>
     </div>
@@ -43,7 +43,7 @@
   <div class="content-container-column">
     <h4>CS:GO Strategy Editor</h4>
     <p>Bellum Gens provides an in-browser CS:GO strategy editor, with all maps available. You can pick a map and draw strategies on the map radar, then share with the community for discussions, or make it private and share it with your team only.</p>
-    <button igxButton="raised" igxButtonColor="#fff" routerLink="/strategies" class="nav-button">Browse Strategies</button>
+    <button igxButton="raised" routerLink="/strategies" class="nav-button">Browse Strategies</button>
   </div>
 
   <div class="content-container-row">
@@ -63,7 +63,7 @@
   <div class="content-container-column left-column">
     <h4>Bellum Gens enables your CS:GO Team</h4>
     <p>Bellum Gens is a CS:GO team finding and team management application, which allows players to look for teams matching their skill and availability, and team owners to manage their teams' roster and general organization. Because CS:GO is a team game!</p>
-    <button igxButton="raised" igxButtonColor="#fff" (click)="loginDialog.openLogin('Sign-up to access the team section in the header!')" class="nav-button">Register your Team</button>
+    <button igxButton="raised" (click)="loginDialog.openLogin('Sign-up to access the team section in the header!')" class="nav-button">Register your Team</button>
   </div>
 
   <div class="content-container-column left-column">

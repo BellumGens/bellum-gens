@@ -8,7 +8,6 @@
                       [text]="(registrations | getRegCount:gameEnum.CSGO:pipeTrigger) + ' / 16 записани до момента'"
                       type="success"></igx-linear-bar>
       <button igxButton="raised"
-              igxButtonColor="#fff"
               [disabled]="userCheck"
               (click)="selectGame(gameEnum.CSGO)">Записване за CS:GO лига</button>
     </div>
@@ -21,7 +20,7 @@
                       [value]="registrations | getRegCount:gameEnum.StarCraft2:pipeTrigger"
                       [text]="(registrations | getRegCount:gameEnum.StarCraft2:pipeTrigger) + ' / 32 записани до момента'"
                       type="success"></igx-linear-bar>
-      <button igxButton="raised" igxButtonColor="#fff" [disabled]="userCheck" (click)="selectGame(gameEnum.StarCraft2)">Записване за StarCraft II лига</button>
+      <button igxButton="raised" [disabled]="userCheck" (click)="selectGame(gameEnum.StarCraft2)">Записване за StarCraft II лига</button>
     </div>
   </div>
 </div>

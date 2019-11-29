@@ -9,6 +9,7 @@
   $font-family: "'Poppins', sans-serif"
 );
 
+@import "style-vars.scss";
 @import "../src-common/styles.scss";
 
 $include: (igx-avatar,
