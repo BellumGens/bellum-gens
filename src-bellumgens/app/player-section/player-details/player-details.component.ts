@@ -19,7 +19,7 @@ import { Title, Meta } from '@angular/platform-browser';
 @Component({
   selector: 'app-player-details',
   templateUrl: './player-details.component.html',
-  styleUrls: ['./player-details.component.css'],
+  styleUrls: ['./player-details.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
 export class PlayerDetailsComponent extends BaseComponent {

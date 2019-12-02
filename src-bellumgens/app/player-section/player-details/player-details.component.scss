@@ -1,3 +1,5 @@
+// @import "../../../style-vars.scss";
+
 .player-roles__container {
   display: flex;
   flex-flow: column;
@@ -41,6 +43,7 @@
 .stats-progress {
   width: auto;
   height: auto;
+  // --igx-circular-bar-progress-circle-color: linear-gradient(to right, $progress-success, $secondary);
 }
 /* END User Profile */
 
