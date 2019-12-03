@@ -1,28 +1,10 @@
-.map-column {
-  display: flex;
-  flex: 1 1 25%;
-  margin: 8px;
-  min-width: 220px;
-  max-width: calc(33% - 16px);
-}
-
 .map-wrapper {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.map-image {
-  height: 146px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-column-gap: 16px;
+  grid-row-gap: 16px;
 }
 
 .map-inactive {
   opacity: 0.5;
-}
-
-@media only screen and (max-width: 512px) {
-  .map-column {
-    flex: 1 0 100%;
-    max-width: 100%;
-    margin: 0 0 8px 0;
-  }
 }

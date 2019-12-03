@@ -52,11 +52,9 @@ export class PlayerDetailsComponent extends BaseComponent {
         if (userid) {
           this.subs.push(this.apiService.getPlayer(userid).subscribe(
               player => {
-                if (player) {
-                  this.player = player;
-                  if (!player.steamUserException) {
-                    this.titleService.setTitle('CS:GO Player: ' + player.steamUser.steamID);
-                  }
+                this.player = player;
+                if (player && !player.steamUserException) {
+                  this.titleService.setTitle('CS:GO Player: ' + player.steamUser.steamID);
                 }
               }
             ),

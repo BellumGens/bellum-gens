@@ -1,10 +1,4 @@
 // @import "../../../style-vars.scss";
-
-.player-roles__container {
-  display: flex;
-  flex-flow: column;
-}
-
 .team-invites {
   height: 56px;
   padding: 8px;
@@ -27,10 +21,6 @@
   outline: none;
 }
 
-.igx-card-header__title {
-  margin-top: 16px;
-}
-
 .country-badge-large {
   position: relative;
   top: -63px;
@@ -49,46 +39,12 @@
 
 /* User Overview */
 
-.player-overview-container {
-  display: flex;
-  flex: 1 1 100%;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  margin-bottom: 16px;
-}
-
-.player-stats__container {
-  width: 100%;
-}
-
-.player-detail-stats-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  grid-column-gap: 16px;
-  grid-row-gap: 16px;
-  padding-bottom: 16px;
-}
-
-.player-detail-stats-maps-container {
-  display: grid;
-  grid-template-columns: 320px 4fr;
-  grid-column-gap: 16px;
-  grid-row-gap: 16px;
-  padding-bottom: 16px;
-}
-
 .player-detail__stats {
   border: 1px solid var(--igx-card-outline-color);
 }
 
 .player-detail__stats .igx-circular-bar__text {
   font-size: 1.55rem;
-}
-
-.player-detail-stats-loading {
-  display: flex;
-  flex: 1 1 100%;
-  align-items: center;
 }
 
 .weapon-image {
@@ -100,14 +56,18 @@
   height: 60px;
   width: 100px;
 }
-/* END User Overview */
 
-.map-pool-header {
-  justify-content: space-between;
+.override-padding {
+  padding: 0;
 }
 
-@media only screen and (max-width: 620px) {
-  .player-detail-stats-maps-container {
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+.card-title-no-grow {
+  flex-grow: 0;
+}
+/* END User Overview */
+
+@media only screen and (min-width: 1900px) {
+  .player-detail__stats.map-pool {
+    grid-column: 3 / 7
   }
 }
