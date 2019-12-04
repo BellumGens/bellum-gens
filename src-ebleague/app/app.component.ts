@@ -13,21 +13,13 @@ import { isPlatformBrowser } from '@angular/common';
 })
 export class AppComponent implements OnInit {
   public authUser: ApplicationUser;
-  public title = 'Esports Business League';
   public environment = environment;
-  private _headerTitle = 'Esports Business League';
-  private _headerTitleShort = 'EB-League';
   private isBrowser: boolean;
 
   @ViewChild('cookiesBanner', { static: true }) public banner: IgxBannerComponent;
 
   constructor(@Inject(PLATFORM_ID) platformId: Object, private authManager: LoginService) {
     this.isBrowser = isPlatformBrowser(platformId);
-    if (this.isBrowser) {
-      this.title = window.matchMedia('(min-width: 768px)').matches ? this._headerTitle : this._headerTitleShort;
-    } else {
-      this.title = this._headerTitle;
-    }
     this.authManager.applicationUser.subscribe(data => {
       this.authUser = data;
     });
@@ -46,10 +38,5 @@ export class AppComponent implements OnInit {
 
   public navigateToBG() {
     window.location.href = this.environment.bellumgens;
-  }
-
-  @HostListener('window:resize')
-  public resize() {
-    this.title = window && window.matchMedia('(min-width: 768px)').matches ? this._headerTitle : this._headerTitleShort;
   }
 }

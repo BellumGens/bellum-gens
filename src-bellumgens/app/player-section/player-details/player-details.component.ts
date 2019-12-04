@@ -19,7 +19,7 @@ import { Title, Meta } from '@angular/platform-browser';
 @Component({
   selector: 'app-player-details',
   templateUrl: './player-details.component.html',
-  styleUrls: ['./player-details.component.css'],
+  styleUrls: ['./player-details.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
 export class PlayerDetailsComponent extends BaseComponent {
@@ -52,11 +52,9 @@ export class PlayerDetailsComponent extends BaseComponent {
         if (userid) {
           this.subs.push(this.apiService.getPlayer(userid).subscribe(
               player => {
-                if (player) {
-                  this.player = player;
-                  if (!player.steamUserException) {
-                    this.titleService.setTitle('CS:GO Player: ' + player.steamUser.steamID);
-                  }
+                this.player = player;
+                if (player && !player.steamUserException) {
+                  this.titleService.setTitle('CS:GO Player: ' + player.steamUser.steamID);
                 }
               }
             ),

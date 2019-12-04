@@ -3,173 +3,156 @@
 
 <app-login-dialog #loginDialog></app-login-dialog>
 
-<div class="loading-overview" *ngIf="player?.steamUserException">
+<div class="loading-overview" *ngIf="!player || player?.steamUserException">
   <h1>Player not found...</h1>
 </div>
 
-<div *ngIf="player" class="overview-container-card">
+<div class="search-result-summary">
   <div *ngIf="newUser">
     <h4>Welcome <span class="highlight">{{ player.steamUser.steamID }}</span>!</h4>
     <p>Now it's time to complete your profile! Fill in your <span class="highlight">preferred playstyle</span>, you <span class="highlight">availability</span> and your <span class="highlight">preferred map pool</span>.</p>
   </div>
 
-  <div class="overview-container" *ngIf="!player.steamUserException">
-    <div class="left-details-container">
-      <igx-avatar [src]="player?.steamUser?.avatarFull" [initials]="player?.steamUser?.steamID" class="player-avatar">
-      </igx-avatar>
-      <igx-avatar *ngIf="player?.steamUser?.country" [src]="player?.steamUser?.country | playerCountry" [roundShape]="true" [title]="player?.steamUser?.country" class="country-badge-large"></igx-avatar>
-      <h1 class="igx-card-header__title"><a [href]="player?.steamUser | steamCustomUrl" target="_blank" rel="noopener">{{ player?.steamUser?.steamID }}</a></h1>
-      <h4 class="igx-card-header__subtitle">{{ player?.steamUser?.realname }}</h4>
-    </div>
-
-    <div class="player-stats__container">
-      <div class="player-overview-container">
-        <h4>Overview</h4>
-
-        <div *ngIf="player.registered && !playerIsUser">
-          <!-- <button igxButton="raised" [disabled]="true">Send message <igx-icon>mail</igx-icon></button> -->
-          <button *ngIf="authUser?.teamAdmin.length > 0" igxButton="flat" igxRipple class="title margin-left" [igxToggleAction]="teamInvite">
-            Invite to team
-            <igx-icon>arrow_drop_down</igx-icon>
-          </button>
-          <igx-drop-down (onSelection)="inviteToTeam($event)" #teamInvite>
-            <igx-drop-down-item class="team-invites" [value]="team" *ngFor="let team of authUser?.teamAdmin">
-              <igx-avatar [src]="team.TeamAvatar" [initials]="team.TeamName" roundShape="true">
-              </igx-avatar>
-              <span class="title margin-left">
-                {{ team.TeamName }}
-              </span>
-            </igx-drop-down-item>
-          </igx-drop-down>
-        </div>
-
-        <div *ngIf="!player.registered">
-          This player is not registered! If you own the profile then <a (click)="loginDialog.openLogin()" class="navigatable">register</a> to complete it.
-        </div>
-      </div>
-
-      <div *ngIf="player?.userStats" class="player-detail-stats-container">
-        <igx-card class="player-detail__stats">
-          <igx-card-header>
-            <h4 class="igx-card-header__title">KDR</h4>
-          </igx-card-header>
-          <igx-card-content class="center-items">
-            <igx-circular-bar class="stats-progress" [value]="player.userStats.killDeathRatio" [max]="2" [animate]="true" title="KDR" [text]="player.userStats.killDeathRatio"></igx-circular-bar>
-          </igx-card-content>
-        </igx-card>
-
-        <igx-card class="player-detail__stats">
-          <igx-card-header>
-            <h4 class="igx-card-header__title">Headshots</h4>
-          </igx-card-header>
-          <igx-card-content class="center-items">
-            <igx-circular-bar class="stats-progress" [value]="player.userStats.headshotPercentage" [max]="100" [animate]="true" title="Headshot Percentage" [text]="player.userStats.headshotPercentage + '%'"></igx-circular-bar>
-          </igx-card-content>
-        </igx-card>
-
-        <igx-card class="player-detail__stats">
-          <igx-card-header>
-            <h4 class="igx-card-header__title">Accuracy</h4>
-          </igx-card-header>
-          <igx-card-content class="center-items">
-            <igx-circular-bar class="stats-progress" [value]="player.userStats.accuracy" [max]="100" [animate]="true" [text]="player.userStats.accuracy + '%'"></igx-circular-bar>
-          </igx-card-content>
-        </igx-card>
-
-        <igx-card class="player-detail__stats">
-          <igx-card-header>
-            <h4 class="igx-card-header__title">Top weapon</h4>
-          </igx-card-header>
-          <igx-card-content class="center-items">
-            <div>
-              <igx-icon class="weapon-image" fontSet="weapon-icons" [name]="player.userStats.favouriteWeapon?.name"
-                [title]="player?.userStats?.favouriteWeapon | topWeaponAlt">
-              </igx-icon>
-            </div>
-            <div>
-              <h5>{{ player?.userStats?.favouriteWeapon?.name }}</h5>
-            </div>
-          </igx-card-content>
-        </igx-card>
-
-        <igx-card class="player-detail__stats" *ngIf="player.registered">
-          <igx-card-header>
-            <h4 class="igx-card-header__title">Teams</h4>
-          </igx-card-header>
-          <igx-card-content>
-            <igx-avatar class="team-avatar-link" *ngFor="let team of player?.teams" [initials]="team.TeamName" [src]="team.TeamAvatar" [title]="team.TeamName" [routerLink]="['/team', team.CustomUrl]" roundShape="true" [size]="'large'">
-            </igx-avatar>
-            <h4 *ngIf="!player?.teams.length">Not a member of a team yet.</h4>
-          </igx-card-content>
-        </igx-card>
-      </div>
-
-      <div *ngIf="player.userStatsException" class="player-stats__container">
-        <h4>Steam account is private.</h4>
-        <p>If this is your account, you need to change the privacy level of your account, so we can access game stats from Steam.</p>
-        <p>To do this go to <span class="highlight">Steam Profile --> Edit Profile --> Privacy Settings --> Set: 'My profile: Public' and 'Game details: public'</span></p>
-      </div>
-    </div>
+  <div *ngIf="player?.registered && !playerIsUser">
+    <!-- <button igxButton="raised" [disabled]="true">Send message <igx-icon>mail</igx-icon></button> -->
+    <button *ngIf="authUser?.teamAdmin.length > 0" igxButton="flat" igxRipple class="title margin-left" [igxToggleAction]="teamInvite">
+      Invite to team
+      <igx-icon>arrow_drop_down</igx-icon>
+    </button>
+    <igx-drop-down (onSelection)="inviteToTeam($event)" #teamInvite>
+      <igx-drop-down-item class="team-invites" [value]="team" *ngFor="let team of authUser?.teamAdmin">
+        <igx-avatar [src]="team.TeamAvatar" [initials]="team.TeamName" roundShape="true">
+        </igx-avatar>
+        <span class="title margin-left">
+          {{ team.TeamName }}
+        </span>
+      </igx-drop-down-item>
+    </igx-drop-down>
   </div>
 
-  <div class="overview-container" *ngIf="player.registered">
-      <!-- Availability -->
-      <div class="left-details-container">
-          <h4>Availability</h4>
-          <app-availability [availability]="player?.availability" (availabilityChanged)="submitAvailability($event)" [editable]="playerIsUser"></app-availability>
-
-          <!-- Playstyle Roles -->
-          <h4 class="margin-top">Playstyle</h4>
-          <div class="horizontal-center">
-            <igx-select id="primary-role" [disabled]="!playerIsUser" [ngModel]="player.primaryRole" (ngModelChange)="selectPrimary($event)">
-              <label for="primary-role" igxLabel>Primary</label>
-              <igx-select-item *ngFor="let role of roles" [disabled]="role.Id === player.secondaryRole" [value]="role.Id">{{ role.Name }}</igx-select-item>
-            </igx-select>
-          </div>
-
-          <div class="horizontal-center">
-            <igx-select id="secondary-role" [disabled]="!playerIsUser" [ngModel]="player.secondaryRole" (ngModelChange)="selectSecondary($event)">
-              <label for="secondary-role" igxLabel>Secondary</label>
-              <igx-select-item *ngFor="let role of roles" [disabled]="role.Id === player.primaryRole" [value]="role.Id">{{ role.Name }}</igx-select-item>
-            </igx-select>
-          </div>
-
-          <!-- END Playstyle Roles -->
-      </div>
-      <!-- END Availability -->
-
-      <div class="player-detail-stats-maps-container">
-        <div>
-          <h4>Weapons</h4>
-          <igx-list *ngIf="!player.userStatsException">
-            <igx-list-item *ngFor="let weapon of player.userStats.weapons | sortWeapons">
-              <igx-icon igxListThumbnail class="weapon-image-small" fontSet="weapon-icons" [name]="weapon.name"></igx-icon>
-              <span igxListLineTitle>
-                <a>{{ weapon.name }}</a>
-              </span>
-
-              <div igxListAction>
-                {{ weapon.kills }} kills
-              </div>
-            </igx-list-item>
-          </igx-list>
-        </div>
-
-        <!-- Map Pool -->
-        <igx-card class="player-detail__stats">
-          <igx-card-header class="map-pool-header">
-            <div><h4 class="igx-card-header__title">{{ viewAll ? 'All' : 'Active Duty' }} Maps</h4></div>
-            <button igxButton="flat" igxRipple (click)="viewAll = !viewAll">{{viewAll ? 'View Active Duty' : 'View All'}}</button>
-          </igx-card-header>
-          <igx-card-content>
-            <app-map-pool [readOnly]="!playerIsUser"
-                          [viewAll]="viewAll"
-                          [mapPool]="player?.mapPool"
-                          (update)="mapChange($event)"></app-map-pool>
-          </igx-card-content>
-        </igx-card>
-        <!-- END Map Pool -->
-      </div>
-
+  <div *ngIf="player && !player?.registered">
+    This player is not registered! If you own the profile then <a (click)="loginDialog.openLogin()" class="navigatable">register</a> to complete it.
   </div>
+
+  <div *ngIf="player?.userStatsException">
+    <h4>Steam account is private.</h4>
+    <p>If this is your account, you need to change the privacy level of your account, so we can access game stats from Steam.</p>
+    <p>To do this go to <span class="highlight">Steam Profile --> Edit Profile --> Privacy Settings --> Set: 'My profile: Public' and 'Game details: public'</span></p>
+  </div>
+</div>
+
+<div *ngIf="player" class="card-wrapper">
+  <div>
+    <igx-avatar [src]="player.steamUser?.avatarFull" [initials]="player.steamUser?.steamID" class="player-avatar">
+    </igx-avatar>
+    <igx-avatar *ngIf="player.steamUser?.country" [src]="player.steamUser?.country | playerCountry" [roundShape]="true" [title]="player.steamUser?.country" class="country-badge-large"></igx-avatar>
+    <h1 class="igx-card-header__title"><a [href]="player.steamUser | steamCustomUrl" target="_blank" rel="noopener">{{ player.steamUser?.steamID }}</a></h1>
+    <h4 class="igx-card-header__subtitle">{{ player.steamUser?.realname }}</h4>
+    <igx-avatar class="team-avatar-link" *ngFor="let team of player?.teams" [initials]="team.TeamName" [src]="team.TeamAvatar" [title]="team.TeamName" [routerLink]="['/team', team.CustomUrl]" roundShape="true" [size]="'small'">
+    </igx-avatar>
+    <h4 class="igx-card-header__subtitle" *ngIf="!player.teams?.length">Not a member of any teams yet.</h4>
+  </div>
+
+  <igx-card *ngIf="!player.userStatsException" class="player-detail__stats">
+    <igx-card-header>
+      <h4 class="igx-card-header__title">KDR</h4>
+    </igx-card-header>
+    <igx-card-content class="center-items">
+      <igx-circular-bar class="stats-progress" [value]="player.userStats.killDeathRatio" [max]="2" [animate]="true" title="KDR" [text]="player.userStats.killDeathRatio"></igx-circular-bar>
+    </igx-card-content>
+  </igx-card>
+
+  <igx-card *ngIf="!player.userStatsException" class="player-detail__stats">
+    <igx-card-header>
+      <h4 class="igx-card-header__title">Headshots</h4>
+    </igx-card-header>
+    <igx-card-content class="center-items">
+      <igx-circular-bar class="stats-progress" [value]="player.userStats.headshotPercentage" [max]="100" [animate]="true" title="Headshot Percentage" [text]="player.userStats.headshotPercentage + '%'"></igx-circular-bar>
+    </igx-card-content>
+  </igx-card>
+
+  <igx-card *ngIf="!player.userStatsException" class="player-detail__stats">
+    <igx-card-header>
+      <h4 class="igx-card-header__title">Accuracy</h4>
+    </igx-card-header>
+    <igx-card-content class="center-items">
+      <igx-circular-bar class="stats-progress" [value]="player.userStats.accuracy" [max]="100" [animate]="true" [text]="player.userStats.accuracy + '%'"></igx-circular-bar>
+    </igx-card-content>
+  </igx-card>
+
+  <igx-card *ngIf="!player.userStatsException" class="player-detail__stats">
+    <igx-card-header>
+      <h4 igxCardHeaderTitle>Top weapon</h4>
+    </igx-card-header>
+    <igx-card-content class="center-items">
+      <div>
+        <igx-icon class="weapon-image" fontSet="weapon-icons" [name]="player.userStats.favouriteWeapon?.name"
+          [title]="player.userStats.favouriteWeapon | topWeaponAlt">
+        </igx-icon>
+      </div>
+      <div>
+        <h5>{{ player.userStats.favouriteWeapon?.name }}</h5>
+      </div>
+    </igx-card-content>
+  </igx-card>
+
+  <igx-card *ngIf="!player.userStatsException" class="player-detail__stats">
+    <igx-card-header>
+      <h4 igxCardHeaderTitle>Playstyle</h4>
+    </igx-card-header>
+    <igx-card-content>
+      <igx-select id="primary-role" [disabled]="!playerIsUser" [ngModel]="player.primaryRole" (ngModelChange)="selectPrimary($event)">
+        <label for="primary-role" igxLabel>Primary Role</label>
+        <igx-select-item *ngFor="let role of roles" [disabled]="role.Id === player.secondaryRole" [value]="role.Id">{{ role.Name }}</igx-select-item>
+      </igx-select>
+      <igx-select id="secondary-role" [disabled]="!playerIsUser" [ngModel]="player.secondaryRole" (ngModelChange)="selectSecondary($event)">
+        <label for="secondary-role" igxLabel>Secondary Role</label>
+        <igx-select-item *ngFor="let role of roles" [disabled]="role.Id === player.primaryRole" [value]="role.Id">{{ role.Name }}</igx-select-item>
+      </igx-select>
+    </igx-card-content>
+  </igx-card>
+
+  <igx-card *ngIf="!player.userStatsException" class="player-detail__stats">
+    <igx-card-header class="card-title-no-grow">
+      <h4 igxCardHeaderTitle>Availability</h4>
+    </igx-card-header>
+    <igx-card-content>
+      <app-availability [availability]="player?.availability" (availabilityChanged)="submitAvailability($event)" [editable]="playerIsUser"></app-availability>
+    </igx-card-content>
+  </igx-card>
+
+  <igx-card *ngIf="!player.userStatsException" class="player-detail__stats">
+    <igx-card-header class="card-title-no-grow">
+      <h4 igxCardHeaderTitle>Weapons</h4>
+    </igx-card-header>
+    <igx-card-content class="override-padding">
+      <igx-list *ngIf="!player.userStatsException">
+        <igx-list-item *ngFor="let weapon of player.userStats.weapons | sortWeapons">
+          <igx-icon igxListThumbnail class="weapon-image-small" fontSet="weapon-icons" [name]="weapon.name"></igx-icon>
+          <span igxListLineTitle>
+            <a>{{ weapon.name }}</a>
+          </span>
+
+          <div igxListAction>
+            {{ weapon.kills }} kills
+          </div>
+        </igx-list-item>
+      </igx-list>
+    </igx-card-content>
+  </igx-card>
+
+  <!-- Map Pool -->
+  <igx-card *ngIf="!player.userStatsException" class="player-detail__stats map-pool">
+    <igx-card-header>
+      <h4 igxCardHeaderTitle>{{ viewAll ? 'All' : 'Active Duty' }} Maps</h4>
+      <button igxButton="flat" igxRipple (click)="viewAll = !viewAll">{{viewAll ? 'View Active Duty' : 'View All'}}</button>
+    </igx-card-header>
+    <igx-card-content>
+      <app-map-pool [readOnly]="!playerIsUser"
+                    [viewAll]="viewAll"
+                    [mapPool]="player.mapPool"
+                    (update)="mapChange($event)"></app-map-pool>
+    </igx-card-content>
+  </igx-card>
+  <!-- END Map Pool -->
 </div>
