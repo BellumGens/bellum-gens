@@ -8,17 +8,26 @@ export const routes: Routes = [
       title: 'Esports Business League',
       twitterTitle: 'Esports Business League | Esports бизнес лига',
       description: 'Esports Бизнес Лигата е аматьорско състезание за работещи геймъри по CS:GO и StarCraft II',
-      twitterDescription: 'Esports Бизнес Лигата е аматьорско състезание за работещи геймъри по CS:GO и StarCraft II'
+      twitterDescription: 'Esports Бизнес Лигата е аматьорско състезание за работещи геймъри по CS:GO и StarCraft II',
+      image: '/assets/eb-league-logo-sm.png'
     }
   },
   { path: 'format', component: TournamentFormatComponent, data: {
       title: 'Esports Business League - Format',
       twitterTitle: 'Esports бизнес лига - формат',
       description: 'Esports Бизнес Лигата е аматьорско състезание за работещи геймъри по CS:GO и StarCraft II',
-      twitterDescription: 'Esports Бизнес Лигата е аматьорско състезание за работещи геймъри по CS:GO и StarCraft II'
+      twitterDescription: 'Esports Бизнес Лигата е аматьорско състезание за работещи геймъри по CS:GO и StarCraft II',
+      image: '/assets/eb-league-logo-sm.png'
     }
   },
-  { path: '**', component: TournamentHomeComponent }
+  { path: '**', component: TournamentHomeComponent, data: {
+      title: 'Esports Business League',
+      twitterTitle: 'Esports Business League | Esports бизнес лига',
+      description: 'Esports Бизнес Лигата е аматьорско състезание за работещи геймъри по CS:GO и StarCraft II',
+      twitterDescription: 'Esports Бизнес Лигата е аматьорско състезание за работещи геймъри по CS:GO и StarCraft II',
+      image: '/assets/eb-league-logo-sm.png'
+    }
+  }
 ];
 
 @NgModule({
