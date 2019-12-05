@@ -1,10 +1,15 @@
 // @import "../../../style-vars.scss";
+
 .team-invites {
   height: 56px;
   padding: 8px;
 }
 
 /* User Profile */
+.card-wrapper.profile-view-layout {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
 .player-avatar {
   width: 144px;
   height: 144px;
@@ -54,11 +59,7 @@
 
 .weapon-image-small {
   height: 60px;
-  width: 100px;
-}
-
-.override-padding {
-  padding: 0;
+  width: 60px;
 }
 
 .card-title-no-grow {
@@ -66,8 +67,15 @@
 }
 /* END User Overview */
 
-@media only screen and (min-width: 1900px) {
+@media only screen and (min-width: 1660px) {
   .player-detail__stats.map-pool {
-    grid-column: 3 / 6
+    grid-column: 3 / -1;
   }
 }
+
+@media only screen and (min-width: 1992px) {
+  .player-detail__stats.map-pool {
+    grid-column: 2 / -1;
+  }
+}
+
