@@ -63,6 +63,15 @@ $list-theme: igx-list-theme($background: transparent,
 @include igx-css-vars($list-theme);
 /* END List */
 
+/* Input Group */
+$input-group-theme: igx-input-group-theme($search-background: transparent,
+                                          $idle-text-color: white,
+                                          $filled-text-color: white,
+                                          $focused-text-color: white,
+                                          $placeholder-color: #999);
+@include igx-css-vars($input-group-theme);
+/* END Input Group */
+
 /* Banner */
 $banner-theme: igx-banner-theme($banner-background: $banner-background);
 @include igx-css-vars($banner-theme);
