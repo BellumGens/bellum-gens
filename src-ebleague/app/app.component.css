@@ -3,6 +3,10 @@
   height: 100%;
 }
 
+.bellum-gens-navbar img:focus {
+  outline: none;
+}
+
 .top-level-container {
   min-width: 412px;
 }
