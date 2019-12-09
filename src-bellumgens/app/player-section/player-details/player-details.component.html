@@ -13,23 +13,6 @@
     <p>Now it's time to complete your profile! Fill in your <span class="highlight">preferred playstyle</span>, you <span class="highlight">availability</span> and your <span class="highlight">preferred map pool</span>.</p>
   </div>
 
-  <div *ngIf="player?.registered && !playerIsUser">
-    <!-- <button igxButton="raised" [disabled]="true">Send message <igx-icon>mail</igx-icon></button> -->
-    <button *ngIf="authUser?.teamAdmin.length > 0" igxButton="flat" igxRipple class="title margin-left" [igxToggleAction]="teamInvite">
-      Invite to team
-      <igx-icon>arrow_drop_down</igx-icon>
-    </button>
-    <igx-drop-down (onSelection)="inviteToTeam($event)" #teamInvite>
-      <igx-drop-down-item class="team-invites" [value]="team" *ngFor="let team of authUser?.teamAdmin">
-        <igx-avatar [src]="team.TeamAvatar" [initials]="team.TeamName" roundShape="true">
-        </igx-avatar>
-        <span class="title margin-left">
-          {{ team.TeamName }}
-        </span>
-      </igx-drop-down-item>
-    </igx-drop-down>
-  </div>
-
   <div *ngIf="player && !player?.registered">
     This player is not registered! If you own the profile then <a (click)="loginDialog.openLogin()" class="navigatable">register</a> to complete it.
   </div>
@@ -43,20 +26,42 @@
 
 <div *ngIf="player" class="card-wrapper profile-view-layout">
   <div>
-    <igx-avatar [src]="player.steamUser?.avatarFull" [initials]="player.steamUser?.steamID" class="player-avatar">
-    </igx-avatar>
-    <igx-avatar *ngIf="player.steamUser?.country" [src]="player.steamUser?.country | playerCountry" [roundShape]="true" [title]="player.steamUser?.country" class="country-badge-large"></igx-avatar>
+    <div>
+      <igx-avatar [src]="player.steamUser?.avatarFull" [initials]="player.steamUser?.steamID" class="player-avatar">
+      </igx-avatar>
+      <igx-avatar *ngIf="player.steamUser?.country" [src]="player.steamUser?.country | playerCountry" [roundShape]="true" [title]="player.steamUser?.country" class="country-badge-large"></igx-avatar>
+
+      <!-- <button igxButton="raised" [disabled]="true">Send message <igx-icon>mail</igx-icon></button> -->
+      <button *ngIf="player?.registered && !playerIsUser && authUser?.teamAdmin.length > 0"
+              igxButton="fab"
+              igxRipple
+              title="Invite to team"
+              class="invite-button"
+              [igxToggleAction]="teamInvite">
+        <igx-icon>people</igx-icon>
+        <igx-icon>arrow_drop_down</igx-icon>
+      </button>
+      <igx-drop-down (onSelection)="inviteToTeam($event)" #teamInvite>
+        <igx-drop-down-item class="team-invites" [value]="team" *ngFor="let team of authUser?.teamAdmin">
+          <igx-avatar [src]="team.TeamAvatar" [initials]="team.TeamName" roundShape="true">
+          </igx-avatar>
+          <span class="title margin-left">
+            {{ team.TeamName }}
+          </span>
+        </igx-drop-down-item>
+      </igx-drop-down>
+    </div>
     <h1 class="igx-card-header__title"><a [href]="player.steamUser | steamCustomUrl" target="_blank" rel="noopener">{{ player.steamUser?.steamID }}</a></h1>
     <h4 class="igx-card-header__subtitle">{{ player.steamUser?.realname }}</h4>
     <igx-avatar class="team-avatar-link" *ngFor="let team of player?.teams" [initials]="team.TeamName" [src]="team.TeamAvatar" [title]="team.TeamName" [routerLink]="['/team', team.CustomUrl]" roundShape="true" [size]="'small'">
     </igx-avatar>
     <h4 class="igx-card-header__subtitle" *ngIf="!player.teams?.length">Not a member of any teams yet.</h4>
 
-    <igx-select id="primary-role" [disabled]="!playerIsUser" [ngModel]="player.primaryRole" (ngModelChange)="selectPrimary($event)">
+    <igx-select id="primary-role" *ngIf="!player.userStatsException" [disabled]="!playerIsUser" [ngModel]="player.primaryRole" (ngModelChange)="selectPrimary($event)">
       <label for="primary-role" igxLabel>Primary Role</label>
       <igx-select-item *ngFor="let role of roles" [disabled]="role.Id === player.secondaryRole" [value]="role.Id">{{ role.Name }}</igx-select-item>
     </igx-select>
-    <igx-select id="secondary-role" [disabled]="!playerIsUser" [ngModel]="player.secondaryRole" (ngModelChange)="selectSecondary($event)">
+    <igx-select id="secondary-role" *ngIf="!player.userStatsException" [disabled]="!playerIsUser" [ngModel]="player.secondaryRole" (ngModelChange)="selectSecondary($event)">
       <label for="secondary-role" igxLabel>Secondary Role</label>
       <igx-select-item *ngFor="let role of roles" [disabled]="role.Id === player.primaryRole" [value]="role.Id">{{ role.Name }}</igx-select-item>
     </igx-select>
