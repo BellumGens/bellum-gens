@@ -9,6 +9,7 @@ import { GlobalOverlaySettings } from '../../../../../src-common/models/misc';
 import { LoginDialogComponent } from '../../../login/login-dialog/login-dialog.component';
 import { SocialMediaService } from '../../../../../src-common/services/social-media.service';
 import { Title, Meta } from '@angular/platform-browser';
+import { environment } from '../../../../../src-common/environments/environment.prod';
 
 @Component({
   selector: 'app-strategy-details',
@@ -38,12 +39,12 @@ export class StrategyDetailsComponent extends BaseComponent {
       this.activeRoute.params.subscribe(params => {
         const stratid = params['stratid'];
         if (stratid) {
+          this.meta.updateTag({ name: 'og:image', content: `${environment.rootApiEndpoint}/Content/Strats/${stratid}.png` });
+          this.meta.updateTag({ name: 'twitter:image', content: `${environment.rootApiEndpoint}/Content/Strats/${stratid}.png` });
           this.apiService.getCurrentStrategy(stratid).subscribe(strat => {
             if (strat) {
               this.strat = strat;
               this.newComment.StratId = strat.Id;
-              this.meta.updateTag({ name: 'og:image', content: strat.Image });
-              this.meta.updateTag({ name: 'twitter:image', content: strat.Image });
             }
           });
         }
