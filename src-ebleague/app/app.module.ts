@@ -46,6 +46,8 @@ import { StartsWithPipe } from '../../src-bellumgens/app/pipes/starts-with.pipe'
 import { GroupsFilterPipe } from '../../src-bellumgens/app/pipes/groups-filter.pipe';
 import { UserPreferencesComponent } from '../../src-bellumgens/app/player-section/user-preferences/user-preferences.component';
 import { PlayerCountryPipe } from '../../src-bellumgens/app/pipes/player-country.pipe';
+import { TournamentCsgoComponent } from './tournaments/tournament-csgo/tournament-csgo.component';
+import { TournamentSc2Component } from './tournaments/tournament-sc2/tournament-sc2.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +63,9 @@ import { PlayerCountryPipe } from '../../src-bellumgens/app/pipes/player-country
     GetRegCountPipe,
     StartsWithPipe,
     GroupsFilterPipe,
-    PlayerCountryPipe
+    PlayerCountryPipe,
+    TournamentCsgoComponent,
+    TournamentSc2Component
   ],
   imports: [
     FormsModule,
