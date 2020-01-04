@@ -5,7 +5,7 @@ import { BaseComponent } from '../../../../src-bellumgens/app/base/base.componen
 import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { LoginService } from '../../../../src-common/services/login.service';
-import { ApplicationUser } from 'src-common/models/applicationuser';
+import { ApplicationUser } from '../../../../src-common/models/applicationuser';
 
 @Component({
   selector: 'app-tournament-csgo',
