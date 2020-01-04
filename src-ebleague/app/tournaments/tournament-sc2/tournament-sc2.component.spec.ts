@@ -5,6 +5,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { IgxAvatarModule, IgxCardModule } from 'igniteui-angular';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('TournamentSc2Component', () => {
   let component: TournamentSc2Component;
@@ -15,6 +16,7 @@ describe('TournamentSc2Component', () => {
       declarations: [ TournamentSc2Component ],
       imports: [
         HttpClientTestingModule,
+        RouterTestingModule,
         NoopAnimationsModule,
         ServiceWorkerModule.register('', {enabled: false}),
         IgxAvatarModule,
