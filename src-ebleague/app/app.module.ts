@@ -48,10 +48,12 @@ import { UserPreferencesComponent } from '../../src-bellumgens/app/player-sectio
 import { PlayerCountryPipe } from '../../src-bellumgens/app/pipes/player-country.pipe';
 import { TournamentCsgoComponent } from './tournaments/tournament-csgo/tournament-csgo.component';
 import { TournamentSc2Component } from './tournaments/tournament-sc2/tournament-sc2.component';
+import { BaseComponent } from '../../src-bellumgens/app/base/base.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    BaseComponent,
     SuccessErrorComponent,
     ConfirmComponent,
     TournamentHomeComponent,
