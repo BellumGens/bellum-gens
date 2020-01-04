@@ -153,6 +153,14 @@ $overlay-theme: igx-overlay-theme($background-color: rgba(35, 51, 132, 0.7));
 }
 /* END HOME */
 
+/* Registrations */
+.registration-slot {
+  display: flex;
+  flex-flow: column;
+  padding: 4px 12px;
+}
+/* END Registrations */
+
 @media only screen and (max-width: 1280px) {
   .home-page-slide-columns {
     grid-template-columns: minmax(380px, 1fr);

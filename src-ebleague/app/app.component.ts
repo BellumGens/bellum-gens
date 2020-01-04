@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, HostListener, PLATFORM_ID, Inject } from '@angular/core';
+import { Component, OnInit, ViewChild, PLATFORM_ID, Inject } from '@angular/core';
 
 import { IgxBannerComponent} from 'igniteui-angular';
 import { LoginService } from '../../src-common/services/login.service';

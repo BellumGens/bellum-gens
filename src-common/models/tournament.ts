@@ -1,3 +1,5 @@
+import { CSGOTeam } from './csgoteam';
+
 export interface TournamentApplication {
   Id?: string;
   UserId?: string;
@@ -9,6 +11,12 @@ export interface TournamentApplication {
   Hash?: string;
   DateSubmitted?: Date;
   State?: TournamentApplicationState;
+}
+
+export interface TournamentCSGORegistrations {
+  UserId: string;
+  Team: CSGOTeam;
+  State: TournamentApplicationState;
 }
 
 export interface Company {

@@ -38,14 +38,7 @@ export const routes: Routes = [
       image: '/assets/eb-league-logo-sm.png'
     }
   },
-  { path: '**', component: TournamentHomeComponent, data: {
-      title: 'Esports Business League',
-      twitterTitle: 'Esports Business League | Бизнес лига по електронни спортове',
-      description: 'Esports Бизнес Лигата е аматьорско състезание за работещи геймъри по CS:GO и StarCraft II',
-      twitterDescription: 'Esports Бизнес Лигата е аматьорско състезание за работещи геймъри по CS:GO и StarCraft II',
-      image: '/assets/eb-league-logo-sm.png'
-    }
-  }
+  { path: '**', component: TournamentHomeComponent }
 ];
 
 @NgModule({

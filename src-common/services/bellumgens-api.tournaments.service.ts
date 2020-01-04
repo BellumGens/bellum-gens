@@ -4,7 +4,7 @@ import { CommunicationService } from './communication.service';
 import { BehaviorSubject, throwError } from 'rxjs';
 import { environment } from '../environments/environment';
 import { map, catchError } from 'rxjs/operators';
-import { TournamentApplication, RegistrationsCount } from '../models/tournament';
+import { TournamentApplication, RegistrationsCount, TournamentCSGORegistrations } from '../models/tournament';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +14,7 @@ export class ApiTournamentsService {
 
   private _companies = new BehaviorSubject<string []>(null);
   private _registrations = new BehaviorSubject<TournamentApplication []>(null);
+  private _csgoRegistrations = new BehaviorSubject<TournamentCSGORegistrations []>(null);
   private _registrationsCount = new BehaviorSubject<RegistrationsCount []>(null);
 
   constructor(private http: HttpClient, private commService: CommunicationService) { }
@@ -43,6 +44,15 @@ export class ApiTournamentsService {
       });
     }
     return this._registrationsCount;
+  }
+
+  public get csgoRegistrations() {
+    if (!this._csgoRegistrations.value) {
+      this.getCSGORegistrations().subscribe(data => {
+        this._csgoRegistrations.next(data);
+      });
+    }
+    return this._csgoRegistrations;
   }
 
   public addSubscriber(email: string) {
@@ -99,6 +109,10 @@ export class ApiTournamentsService {
 
   private getRegistrationsCount() {
     return this.http.get<RegistrationsCount []>(`${this._apiEndpoint}/tournament/regcount`);
+  }
+
+  private getCSGORegistrations() {
+    return this.http.get<TournamentCSGORegistrations []>(`${this._apiEndpoint}/tournament/csgoregs`);
   }
 
   private getCompanies() {

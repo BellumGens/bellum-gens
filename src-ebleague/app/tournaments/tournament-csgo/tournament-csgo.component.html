@@ -2,11 +2,17 @@
   <igx-card type="outlined">
     <igx-card-header>
       <igx-avatar igxCardThumbnail [roundShape]="true" src="/assets/wallpapers/csgo-watermark.webp"></igx-avatar>
-      <h1 igxCardHeaderTitle>Участници</h1>
+      <h1 igxCardHeaderTitle>Участници - CS:GO Лига</h1>
+      <a href="https://www.twitch.tv/ebleague_a" target="_blank" rel="noopener">Канал на лигата в Twitch</a>
     </igx-card-header>
     <igx-card-content>
       <div class="horizontal-center">
+        <div *ngFor="let registration of registrations" class="registration-slot">
+          <igx-avatar [src]="registration.Team.TeamAvatar" [initials]="registration.Team.TeamName" size="large" roundShape="true">
+          </igx-avatar>
 
+          <a [href]="'https://bellumgens.com/team/' + registration.Team.CustomUrl" target="_blank">{{ registration.Team.TeamName }}</a>
+        </div>
       </div>
     </igx-card-content>
   </igx-card>
