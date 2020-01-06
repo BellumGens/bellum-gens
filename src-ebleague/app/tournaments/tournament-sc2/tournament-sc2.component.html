@@ -6,7 +6,7 @@
       <a href="https://www.twitch.tv/ebleague_b" target="_blank" rel="noopener">Канал на лигата в Twitch</a>
     </igx-card-header>
     <igx-card-content>
-      <div class="horizontal-center">
+      <div class="horizontal-center registration-container">
         <div *ngFor="let registration of registrations" class="registration-slot">
           <igx-avatar [src]="registration.User.avatarFull" [initials]="registration.User.username" size="large" roundShape="true">
           </igx-avatar>
@@ -18,6 +18,51 @@
           </igx-badge>
 
           <a [href]="environment.bellumgens + '/players/' + registration.User.customURL" target="_blank">{{ registration.BattleTag }}</a>
+        </div>
+      </div>
+      <div class="content-container four-column">
+        <div>
+          <h3 class="igx-card-header__title">Група А</h3>
+          <igx-list>
+            <ng-template igxEmptyList>
+              <div class="empty-group-list">
+                Отборите ще бъдат изтеглени след краят на регистрацията (13ти януари 2020)
+              </div>
+            </ng-template>
+          </igx-list>
+        </div>
+
+        <div>
+          <h3 class="igx-card-header__title">Група Б</h3>
+          <igx-list>
+            <ng-template igxEmptyList>
+              <div class="empty-group-list">
+                Отборите ще бъдат изтеглени след краят на регистрацията (13ти януари 2020)
+              </div>
+            </ng-template>
+          </igx-list>
+        </div>
+
+        <div>
+          <h3 class="igx-card-header__title">Група В</h3>
+          <igx-list>
+            <ng-template igxEmptyList>
+              <div class="empty-group-list">
+                Отборите ще бъдат изтеглени след краят на регистрацията (13ти януари 2020)
+              </div>
+            </ng-template>
+          </igx-list>
+        </div>
+
+        <div>
+          <h3 class="igx-card-header__title">Група Г</h3>
+          <igx-list>
+            <ng-template igxEmptyList>
+              <div class="empty-group-list">
+                Отборите ще бъдат изтеглени след краят на регистрацията (13ти януари 2020)
+              </div>
+            </ng-template>
+          </igx-list>
         </div>
       </div>
     </igx-card-content>
