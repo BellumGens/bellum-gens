@@ -17,7 +17,7 @@
                      class="registration-badge-style">
           </igx-badge>
 
-          <a [href]="environment.bellumgens + '/players/' + registration.User.customURL || registration.User.id" target="_blank">{{ registration.BattleTag }}</a>
+          <a [href]="environment.bellumgens + '/players/' + (registration.User.customURL || registration.UserId)" target="_blank">{{ registration.BattleTag }}</a>
         </div>
       </div>
       <div class="content-container four-column">
