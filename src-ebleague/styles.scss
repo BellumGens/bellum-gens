@@ -155,9 +155,16 @@ $overlay-theme: igx-overlay-theme($background-color: rgba(35, 51, 132, 0.7));
 
 /* Registrations */
 .registration-slot {
+  position: relative;
   display: flex;
   flex-flow: column;
+  align-items: center;
   padding: 4px 12px;
+}
+
+.registration-badge-style {
+  position: absolute;
+  left: 80px;
 }
 /* END Registrations */
 

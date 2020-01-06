@@ -4,7 +4,7 @@ import { CommunicationService } from './communication.service';
 import { BehaviorSubject, throwError } from 'rxjs';
 import { environment } from '../environments/environment';
 import { map, catchError } from 'rxjs/operators';
-import { TournamentApplication, RegistrationsCount, TournamentCSGORegistrations } from '../models/tournament';
+import { TournamentApplication, RegistrationsCount, TournamentCSGORegistration, TournamentSC2Registration } from '../models/tournament';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,8 @@ export class ApiTournamentsService {
 
   private _companies = new BehaviorSubject<string []>(null);
   private _registrations = new BehaviorSubject<TournamentApplication []>(null);
-  private _csgoRegistrations = new BehaviorSubject<TournamentCSGORegistrations []>(null);
+  private _csgoRegistrations = new BehaviorSubject<TournamentCSGORegistration []>(null);
+  private _sc2Registrations = new BehaviorSubject<TournamentSC2Registration []>(null);
   private _registrationsCount = new BehaviorSubject<RegistrationsCount []>(null);
 
   constructor(private http: HttpClient, private commService: CommunicationService) { }
@@ -53,6 +54,15 @@ export class ApiTournamentsService {
       });
     }
     return this._csgoRegistrations;
+  }
+
+  public get sc2Registrations() {
+    if (!this._sc2Registrations.value) {
+      this.getSC2Registrations().subscribe(data => {
+        this._sc2Registrations.next(data);
+      });
+    }
+    return this._sc2Registrations;
   }
 
   public addSubscriber(email: string) {
@@ -112,7 +122,11 @@ export class ApiTournamentsService {
   }
 
   private getCSGORegistrations() {
-    return this.http.get<TournamentCSGORegistrations []>(`${this._apiEndpoint}/tournament/csgoregs`);
+    return this.http.get<TournamentCSGORegistration []>(`${this._apiEndpoint}/tournament/csgoregs`);
+  }
+
+  private getSC2Registrations() {
+    return this.http.get<TournamentSC2Registration []>(`${this._apiEndpoint}/tournament/sc2regs`);
   }
 
   private getCompanies() {

@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
-import { TournamentCSGORegistrations } from '../../../../src-common/models/tournament';
+import { TournamentCSGORegistration } from '../../../../src-common/models/tournament';
 import { ApiTournamentsService } from '../../../../src-common/services/bellumgens-api.tournaments.service';
 import { BaseComponent } from '../../../../src-bellumgens/app/base/base.component';
 import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { LoginService } from '../../../../src-common/services/login.service';
 import { ApplicationUser } from '../../../../src-common/models/applicationuser';
+import { environment } from '../../../../src-common/environments/environment';
 
 @Component({
   selector: 'app-tournament-csgo',
@@ -13,8 +14,9 @@ import { ApplicationUser } from '../../../../src-common/models/applicationuser';
   styleUrls: ['./tournament-csgo.component.scss']
 })
 export class TournamentCsgoComponent extends BaseComponent {
-  public registrations: TournamentCSGORegistrations [];
+  public registrations: TournamentCSGORegistration [];
   public authUser: ApplicationUser;
+  public environment = environment;
 
   constructor(private apiService: ApiTournamentsService,
               private loginService: LoginService,

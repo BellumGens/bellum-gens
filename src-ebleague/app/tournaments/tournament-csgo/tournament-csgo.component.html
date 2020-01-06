@@ -10,8 +10,14 @@
         <div *ngFor="let registration of registrations" class="registration-slot">
           <igx-avatar [src]="registration.Team.TeamAvatar" [initials]="registration.Team.TeamName" size="large" roundShape="true">
           </igx-avatar>
+          <igx-badge *ngIf="registration.UserId === authUser?.id && registration.State === 0"
+                     type="warning"
+                     icon="priority_high"
+                     title="Вашата регистрация все още не е потвърдена! За да потвърдим регистрацията трябва да платите таксата за участие!"
+                     class="registration-badge-style">
+          </igx-badge>
 
-          <a [href]="'https://bellumgens.com/team/' + registration.Team.CustomUrl" target="_blank">{{ registration.Team.TeamName }}</a>
+          <a [href]="environment.bellumgens + '/team/' + registration.Team.CustomUrl" target="_blank">{{ registration.Team.TeamName }}</a>
         </div>
       </div>
     </igx-card-content>
