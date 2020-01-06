@@ -1,7 +1,7 @@
 <div class="home-page-slide-columns">
   <div class="slide slide1">
     <div class="slide-info-column">
-      <h1>CS:GO League</h1>
+      <h1><a routerLink="/csgo">CS:GO League</a></h1>
       <p>Регистрацията за първия сезон на Esports Business League е отворена! Първото издание на Esports Business League ще започне с онлайн фаза на 27ми януари 2020.</p>
       <igx-linear-bar [max]="16"
                       [value]="registrations | getRegCount:gameEnum.CSGO:pipeTrigger"
@@ -14,7 +14,7 @@
   </div>
   <div class="slide slide2">
     <div class="slide-info-column">
-      <h1>StarCraft II League</h1>
+      <h1><a routerLink="/sc2">StarCraft II League</a></h1>
       <p>Регистрацията за първия сезон на Esports Business League е отворена! Първото издание на Esports Business League ще започне с онлайн фаза на 27ми януари 2020.</p>
       <igx-linear-bar [max]="32"
                       [value]="registrations | getRegCount:gameEnum.StarCraft2:pipeTrigger"
@@ -112,7 +112,9 @@
   </div>
   <div class="content-container-column">
     <h4>Какво е Esports Business League?</h4>
-    <p>Esports Business League предоставя арена за аматьорско състезание между отбори сформирани на работното място. Първият сезон на лигата ще се проведе в рамките на 8 седмици. Срещите се провеждат след работно време от понеделник до четвъртък включително. Лигата ще приключи с LAN финали до които ще достигнат отборите и играчите с най-много събрани точки през сезона. Всички срещи от лигата ще бъдат излъчвани и коментирани на живо по <a href="https://www.twitch.tv/" target="_blank" rel="noopener">twitch.tv</a>.</p>
+    <p>Esports Business League предоставя арена за аматьорско състезание между отбори сформирани на работното място. Първият сезон на лигата ще се проведе в рамките на 8 седмици. Срещите се провеждат след работно време от понеделник до четвъртък включително. Лигата ще приключи с LAN финали до които ще достигнат отборите и играчите с най-много събрани точки през сезона. Всички срещи от лигата ще бъдат излъчвани и коментирани на живо през нашите канали.</p>
+    <a href="https://www.twitch.tv/ebleague_a" target="_blank" rel="noopener">Twitch EB-League A</a>
+    <a href="https://www.twitch.tv/ebleague_b" target="_blank" rel="noopener">Twitch EB-League B</a>
     <h4>Кога?</h4>
     <p>Регистрации се приемат в периода 15ти Октомври, 2019 - 13ти Януари, 2020, или до изчерпване на местата.</p>
     <p>Провеждането на първи сезон на лигата ще започне на <span class="highlight">27ми Януари, 2020</span>.</p>
@@ -192,6 +194,14 @@
     <div class="horizontal-center">
       <a href="https://www.isobar.com/bg/en/" target="_blank" rel="nofollow">
         <igx-icon fontSet="partners" name="isobar" title="Isobar solves complex business challenges through digital marketing and technology. #1 Digital agency in Bulgaria with 200+ ecommerce experts, growing for 12+ years." class="platinum-partner"></igx-icon>
+      </a>
+    </div>
+    <div class="horizontal-center">
+      <a href="http://bprogaming.com/" title="BPro e първата професионална клубна организация по електронни спортове в България. През последните 4 години BPro са изградили множество състезатели, отбори и инфраструктура" target="_blank" rel="nofollow">
+        <img src="/assets/partners/bpro.png" alt="BPro e първата професионална клубна организация по електронни спортове в България. През последните 4 години BPro са изградили множество състезатели, отбори и инфраструктура" class="logistical-partner" />
+      </a>
+      <a href="https://www.facebook.com/BSLesports/" title="BSL организират първата по рода си лига по StarCraft II в България и допринасят за развитието на талантите ни в този #esport! Всички StarCraft 2 игри от Esports Business League ще бъдат коментирани от тях!" target="_blank" rel="nofollow">
+        <img src="/assets/partners/bsl.png" alt="Те организират първата по рода си лига по StarCraft II в България и допринасят за развитието на талантите ни в този #esport! Всички StarCraft 2 игри от Esports Business League ще бъдат коментирани от тях!" class="logistical-partner" />
       </a>
     </div>
   </div>
