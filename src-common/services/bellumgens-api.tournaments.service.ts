@@ -18,6 +18,9 @@ export class ApiTournamentsService {
   private _sc2Registrations = new BehaviorSubject<TournamentSC2Registration []>(null);
   private _registrationsCount = new BehaviorSubject<RegistrationsCount []>(null);
 
+  public loadingCSGORegistrations = new BehaviorSubject<boolean>(false);
+  public loadingSC2Registrations = new BehaviorSubject<boolean>(false);
+
   constructor(private http: HttpClient, private commService: CommunicationService) { }
 
   public get companies() {
@@ -49,18 +52,26 @@ export class ApiTournamentsService {
 
   public get csgoRegistrations() {
     if (!this._csgoRegistrations.value) {
+      this.loadingCSGORegistrations.next(true);
       this.getCSGORegistrations().subscribe(data => {
-        this._csgoRegistrations.next(data);
-      });
+          this._csgoRegistrations.next(data);
+          this.loadingCSGORegistrations.next(false);
+        },
+        _ => this.loadingCSGORegistrations.next(false)
+      );
     }
     return this._csgoRegistrations;
   }
 
   public get sc2Registrations() {
     if (!this._sc2Registrations.value) {
+      this.loadingSC2Registrations.next(true);
       this.getSC2Registrations().subscribe(data => {
-        this._sc2Registrations.next(data);
-      });
+          this._sc2Registrations.next(data);
+          this.loadingSC2Registrations.next(false);
+        },
+        _ => this.loadingSC2Registrations.next(false)
+      );
     }
     return this._sc2Registrations;
   }

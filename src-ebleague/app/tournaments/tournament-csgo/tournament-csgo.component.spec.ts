@@ -4,7 +4,7 @@ import { TournamentCsgoComponent } from './tournament-csgo.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { IgxAvatarModule, IgxCardModule, IgxBadgeModule, IgxListModule } from 'igniteui-angular';
+import { IgxAvatarModule, IgxCardModule, IgxBadgeModule, IgxListModule, IgxProgressBarModule } from 'igniteui-angular';
 import { RouterTestingModule } from '@angular/router/testing';
 
 describe('TournamentCsgoComponent', () => {
@@ -22,6 +22,7 @@ describe('TournamentCsgoComponent', () => {
         IgxAvatarModule,
         IgxCardModule,
         IgxBadgeModule,
+        IgxProgressBarModule,
         IgxListModule
       ]
     })

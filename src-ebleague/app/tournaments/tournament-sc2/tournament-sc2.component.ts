@@ -15,6 +15,7 @@ import { environment } from '../../../../src-common/environments/environment';
 })
 export class TournamentSc2Component extends BaseComponent {
   public registrations: TournamentSC2Registration [];
+  public loading = false;
   public authUser: ApplicationUser;
   public environment = environment;
 
@@ -26,6 +27,7 @@ export class TournamentSc2Component extends BaseComponent {
     super(title, meta, route);
     this.subs.push(
       this.apiService.sc2Registrations.subscribe(data => this.registrations = data),
+      this.apiService.loadingSC2Registrations.subscribe(data => this.loading = data),
       this.loginService.applicationUser.subscribe(user => this.authUser = user)
     );
   }
