@@ -15,6 +15,7 @@ import { environment } from '../../../../src-common/environments/environment';
 })
 export class TournamentCsgoComponent extends BaseComponent {
   public registrations: TournamentCSGORegistration [];
+  public loading = false;
   public authUser: ApplicationUser;
   public environment = environment;
 
@@ -26,6 +27,7 @@ export class TournamentCsgoComponent extends BaseComponent {
     super(title, meta, route);
     this.subs.push(
       this.apiService.csgoRegistrations.subscribe(data => this.registrations = data),
+      this.apiService.loadingCSGORegistrations.subscribe(data => this.loading = data),
       this.loginService.applicationUser.subscribe(user => this.authUser = user)
     );
   }
