@@ -6,8 +6,8 @@
       <a href="https://www.twitch.tv/ebleague_b" target="_blank" rel="noopener">Канал на лигата в Twitch</a>
     </igx-card-header>
     <igx-card-content>
-      <igx-circular-bar *ngIf="loading" [indeterminate]="true"></igx-circular-bar>
       <div class="horizontal-center registration-container">
+        <igx-circular-bar *ngIf="loading" [indeterminate]="true"></igx-circular-bar>
         <div *ngFor="let registration of registrations" class="registration-slot">
           <igx-avatar [src]="registration.User.avatarFull" [initials]="registration.User.username" size="large" roundShape="true">
           </igx-avatar>
