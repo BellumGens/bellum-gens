@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, ReplaySubject, throwError } from 'rxjs';
+import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { LoginProvider } from '../models/login-provider';
 import { ApplicationUser, UserPreferences } from '../models/applicationuser';
 import { map, shareReplay, catchError } from 'rxjs/operators';
@@ -20,9 +20,10 @@ export class LoginService {
   private _apiBase = environment.apiEndpoint;
   private _rootApiEndpoint = environment.rootApiEndpoint;
 
-  private _applicationUser: ReplaySubject<ApplicationUser>;
+  private _applicationUser = new BehaviorSubject<ApplicationUser>(null);
   private _loginProviders: Observable<LoginProvider []>;
-  public userCheckInProgress = new ReplaySubject<boolean>(1);
+  private _userIsAppAdmin: BehaviorSubject<boolean>;
+  public userCheckInProgress = new BehaviorSubject<boolean>(false);
   public error: any;
   public callMade = false;
 
@@ -46,9 +47,8 @@ export class LoginService {
   }
 
   public get applicationUser() {
-    if (!this._applicationUser) {
+    if (!this._applicationUser.value) {
       this.userCheckInProgress.next(true);
-      this._applicationUser = new ReplaySubject<ApplicationUser>(1);
       this.getSteamUser().subscribe(
         user => {
           if (user) {
@@ -62,6 +62,15 @@ export class LoginService {
     }
 
     return this._applicationUser;
+  }
+
+  public get userIsAppAdmin() {
+    if (!this._userIsAppAdmin) {
+      this.getUserIsAppAdmin().subscribe(data => {
+        this._userIsAppAdmin = new BehaviorSubject(data);
+      });
+    }
+    return this._userIsAppAdmin;
   }
 
   public login(provider: string) {
@@ -142,6 +151,10 @@ export class LoginService {
 
   private getSteamUser() {
     return this.http.get<ApplicationUser>(this._apiEndpoint + '/userinfo', { withCredentials: true });
+  }
+
+  private getUserIsAppAdmin() {
+    return this.http.get<boolean>(this._apiEndpoint + '/admin/appadmin', { withCredentials: true });
   }
 
   private getLoginProviders() {

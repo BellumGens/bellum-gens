@@ -15,8 +15,6 @@ export class TournamentHomeComponent {
   public authUser: ApplicationUser;
   public userCheck = false;
   public userEmail: string = null;
-  public headerTitle = 'Esports Business League';
-  public headerTitleShort = 'EB-League';
   public application = getEmptyNewApplication();
   public companies: string [];
   public games = GAMES;

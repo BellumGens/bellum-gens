@@ -49,6 +49,7 @@ import { PlayerCountryPipe } from '../../src-bellumgens/app/pipes/player-country
 import { TournamentCsgoComponent } from './tournaments/tournament-csgo/tournament-csgo.component';
 import { TournamentSc2Component } from './tournaments/tournament-sc2/tournament-sc2.component';
 import { BaseComponent } from '../../src-bellumgens/app/base/base.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,8 @@ import { BaseComponent } from '../../src-bellumgens/app/base/base.component';
     GroupsFilterPipe,
     PlayerCountryPipe,
     TournamentCsgoComponent,
-    TournamentSc2Component
+    TournamentSc2Component,
+    AdminComponent
   ],
   imports: [
     FormsModule,
