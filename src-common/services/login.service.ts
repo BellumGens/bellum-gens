@@ -22,7 +22,6 @@ export class LoginService {
 
   private _applicationUser = new BehaviorSubject<ApplicationUser>(null);
   private _loginProviders: Observable<LoginProvider []>;
-  private _userIsAppAdmin: BehaviorSubject<boolean>;
   public userCheckInProgress = new BehaviorSubject<boolean>(false);
   public error: any;
   public callMade = false;
@@ -64,13 +63,8 @@ export class LoginService {
     return this._applicationUser;
   }
 
-  public get userIsAppAdmin() {
-    if (!this._userIsAppAdmin) {
-      this.getUserIsAppAdmin().subscribe(data => {
-        this._userIsAppAdmin = new BehaviorSubject(data);
-      });
-    }
-    return this._userIsAppAdmin;
+  public getUserIsAppAdmin() {
+    return this.http.get<boolean>(this._apiBase + '/admin/appadmin', { withCredentials: true });
   }
 
   public login(provider: string) {
@@ -151,10 +145,6 @@ export class LoginService {
 
   private getSteamUser() {
     return this.http.get<ApplicationUser>(this._apiEndpoint + '/userinfo', { withCredentials: true });
-  }
-
-  private getUserIsAppAdmin() {
-    return this.http.get<boolean>(this._apiEndpoint + '/admin/appadmin', { withCredentials: true });
   }
 
   private getLoginProviders() {

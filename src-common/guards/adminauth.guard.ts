@@ -7,7 +7,7 @@ import { LoginService } from '../services/login.service';
   providedIn: 'root'
 })
 export class AdminAuthGuard implements CanActivate {
-  constructor(private authService: LoginService, private router: Router) {}
+  constructor(private authService: LoginService) {}
 
   canActivate(
     next: ActivatedRouteSnapshot,
@@ -16,7 +16,6 @@ export class AdminAuthGuard implements CanActivate {
   }
 
   isAppAdmin() {
-    this.router.navigate(['/']);
-    return false;
+    return this.authService.getUserIsAppAdmin();
   }
 }
