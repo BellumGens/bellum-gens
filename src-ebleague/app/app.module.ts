@@ -28,7 +28,8 @@ import { IgxNavbarModule,
   IgxSwitchModule,
   IgxSelectModule,
   IgxDividerModule,
-  IgxAutocompleteModule} from 'igniteui-angular';
+  IgxAutocompleteModule,
+  IgxChipsModule} from 'igniteui-angular';
 import { LoginService } from '../../src-common/services/login.service';
 import { BellumgensApiService } from '../../src-common/services/bellumgens-api.service';
 import { SuccessErrorComponent } from '../../src-bellumgens/app/success-error/success-error.component';
@@ -99,6 +100,7 @@ import { AdminComponent } from './admin/admin.component';
     IgxSelectModule,
     IgxDividerModule,
     IgxAutocompleteModule,
+    IgxChipsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [

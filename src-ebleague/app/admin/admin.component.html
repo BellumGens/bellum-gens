@@ -1,1 +1,34 @@
 <p>admin works!</p>
+
+<div class="content-container">
+  <igx-chips-area>
+    Roles
+    <igx-chip *ngFor="let role of roles">{{role}}</igx-chip>
+    <igx-chip *ngIf="!roles">No Roles Defined</igx-chip>
+  </igx-chips-area>
+
+  <div>
+    <igx-input-group>
+      <label igxLabel>New role</label>
+      <input type="text" #roleinput igxInput />
+    </igx-input-group>
+    <button igxButton (click)="submitRole(roleinput.value)">Submit</button>
+  </div>
+</div>
+
+<div class="content-container">
+  <igx-list>
+    <igx-list-item *ngFor="let user of users">
+      <igx-avatar igxListThumbnail [src]="user.avatarMedium"></igx-avatar>
+      <h2 igxListLineTitle>{{user.username}}</h2>
+
+
+      <igx-chips-area>
+        <igx-chip *ngIf="!user.Roles.length" (onClick)="addAdmin(user.id)">
+          <igx-icon igxPrefit>add</igx-icon>
+          <span>admin</span>
+        </igx-chip>
+      </igx-chips-area>
+    </igx-list-item>
+  </igx-list>
+</div>

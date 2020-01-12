@@ -64,14 +64,30 @@ export class LoginService {
   }
 
   public getUserIsAppAdmin() {
-    return this.http.get<boolean>(this._apiBase + '/admin/appadmin', { withCredentials: true });
+    return this.http.get<boolean>(`${this._apiBase}/admin/appadmin`, { withCredentials: true });
+  }
+
+  public getUsers() {
+    return this.http.get<ApplicationUser []>(`${this._apiBase}/admin/users`, { withCredentials: true });
+  }
+
+  public getUserRoles() {
+    return this.http.get<string []>(`${this._apiBase}/admin/roles`, { withCredentials: true });
+  }
+
+  public submitRole(role: string) {
+    return this.http.get<string>(`${this._apiBase}/admin/createrole?rolename=${role}`, { withCredentials: true });
+  }
+
+  public addUserToRole(userId: string, role: string) {
+    return this.http.get<string>(`${this._apiBase}/admin/adduserrole?userid=${userId}&role=${role}`, { withCredentials: true });
   }
 
   public login(provider: string) {
     this.loginProviders.subscribe((data: LoginProvider []) =>
       data.forEach((item: LoginProvider) => {
         if (item.Name === provider) {
-          window.location.href = this._rootApiEndpoint + item.Url + '&returnUrl=' + window.location.href;
+          window.location.href = `${this._rootApiEndpoint}${item.Url}&returnUrl=${window.location.href}`;
         }
       })
     );
