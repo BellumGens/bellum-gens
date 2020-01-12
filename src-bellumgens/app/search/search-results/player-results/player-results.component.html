@@ -7,27 +7,23 @@
 <div *ngIf="!loading" class="card-wrapper">
   <igx-card *ngFor="let player of players" class="navigatable" [routerLink]="['/players', player.customURL || player.id]">
     <igx-card-header>
-      <div class="horizontal-center">
-        <igx-avatar [src]="player.avatarMedium" [size]="'medium'" [initials]="player.username" roundShape="true"></igx-avatar>
-        <div class="igx-card-header__tgroup title margin-left">
-          <h3 class="igx-card-header__title highlight">{{ player.username }}</h3>
-          <h5 class="igx-card-header__subtitle">{{ player.realname }}</h5>
-        </div>
+      <igx-avatar igxCardThumbnail [src]="player.avatarMedium" [size]="'medium'" [initials]="player.username" roundShape="true"></igx-avatar>
+      <h3 igxCardHeaderTitle class="highlight">{{ player.username }}</h3>
+      <h5 igxCardHeaderSubtitle>{{ player.realname }}</h5>
 
-        <div class="horizontal-info__right--column" *ngIf="!player.steamPrivate">
-          <div class="horizontal-center">
-            <igx-circular-bar class="icon-avatar" [value]="player.killDeathRatio" [max]="2" [animate]="true" [textVisibility]="false" title="KDR"></igx-circular-bar>
-            <span class="title margin-left player-summary-stat">{{ player.killDeathRatio }}</span>
-          </div>
-          <div class="horizontal-center">
-            <igx-icon fontSet="weapon-icons" name="headshot" class="icon-avatar"></igx-icon>
-            <span class="title margin-left player-summary-stat">{{ player.headshotPercentage | number:'1.2' }}%</span>
-          </div>
+      <div *ngIf="!player.steamPrivate">
+        <div class="horizontal-center">
+          <igx-circular-bar class="icon-avatar" [value]="player.killDeathRatio" [max]="2" [animate]="true" [textVisibility]="false" title="KDR"></igx-circular-bar>
+          <span class="title margin-left player-summary-stat">{{ player.killDeathRatio }}</span>
         </div>
+        <div class="horizontal-center">
+          <igx-icon fontSet="weapon-icons" name="headshot" class="icon-avatar"></igx-icon>
+          <span class="title margin-left player-summary-stat">{{ player.headshotPercentage | number:'1.2' }}%</span>
+        </div>
+      </div>
 
-        <div class="horizontal-info__right" *ngIf="player.steamPrivate">
-          <span class="title">Private</span>
-        </div>
+      <div class="horizontal-info__right" *ngIf="player.steamPrivate">
+        <span class="title">Private</span>
       </div>
     </igx-card-header>
     <igx-card-content>
