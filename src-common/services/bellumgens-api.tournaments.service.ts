@@ -4,7 +4,7 @@ import { CommunicationService } from './communication.service';
 import { BehaviorSubject, throwError } from 'rxjs';
 import { environment } from '../environments/environment';
 import { map, catchError } from 'rxjs/operators';
-import { TournamentApplication, RegistrationsCount } from '../models/tournament';
+import { TournamentApplication, RegistrationsCount, TournamentCSGORegistration, TournamentSC2Registration } from '../models/tournament';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,12 @@ export class ApiTournamentsService {
 
   private _companies = new BehaviorSubject<string []>(null);
   private _registrations = new BehaviorSubject<TournamentApplication []>(null);
+  private _csgoRegistrations = new BehaviorSubject<TournamentCSGORegistration []>(null);
+  private _sc2Registrations = new BehaviorSubject<TournamentSC2Registration []>(null);
   private _registrationsCount = new BehaviorSubject<RegistrationsCount []>(null);
+
+  public loadingCSGORegistrations = new BehaviorSubject<boolean>(false);
+  public loadingSC2Registrations = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient, private commService: CommunicationService) { }
 
@@ -43,6 +48,32 @@ export class ApiTournamentsService {
       });
     }
     return this._registrationsCount;
+  }
+
+  public get csgoRegistrations() {
+    if (!this._csgoRegistrations.value) {
+      this.loadingCSGORegistrations.next(true);
+      this.getCSGORegistrations().subscribe(data => {
+          this._csgoRegistrations.next(data);
+          this.loadingCSGORegistrations.next(false);
+        },
+        _ => this.loadingCSGORegistrations.next(false)
+      );
+    }
+    return this._csgoRegistrations;
+  }
+
+  public get sc2Registrations() {
+    if (!this._sc2Registrations.value) {
+      this.loadingSC2Registrations.next(true);
+      this.getSC2Registrations().subscribe(data => {
+          this._sc2Registrations.next(data);
+          this.loadingSC2Registrations.next(false);
+        },
+        _ => this.loadingSC2Registrations.next(false)
+      );
+    }
+    return this._sc2Registrations;
   }
 
   public addSubscriber(email: string) {
@@ -99,6 +130,14 @@ export class ApiTournamentsService {
 
   private getRegistrationsCount() {
     return this.http.get<RegistrationsCount []>(`${this._apiEndpoint}/tournament/regcount`);
+  }
+
+  private getCSGORegistrations() {
+    return this.http.get<TournamentCSGORegistration []>(`${this._apiEndpoint}/tournament/csgoregs`);
+  }
+
+  private getSC2Registrations() {
+    return this.http.get<TournamentSC2Registration []>(`${this._apiEndpoint}/tournament/sc2regs`);
   }
 
   private getCompanies() {

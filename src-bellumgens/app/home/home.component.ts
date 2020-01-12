@@ -1,4 +1,4 @@
-import { Component, HostListener, PLATFORM_ID, ViewChild, OnInit, Inject } from '@angular/core';
+import { Component, HostListener, PLATFORM_ID, ViewChild, Inject } from '@angular/core';
 import { LoginService } from '../../../src-common/services/login.service';
 import { ApplicationUser } from '../../../src-common/models/applicationuser';
 import { SocialMediaService } from '../../../src-common/services/social-media.service';
@@ -15,7 +15,7 @@ import { IgxCarouselComponent } from 'igniteui-angular';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css']
 })
-export class HomeComponent extends BaseComponent implements OnInit {
+export class HomeComponent extends BaseComponent {
   public authUser: ApplicationUser;
   public navigation = true;
   public environment = environment;
@@ -36,12 +36,6 @@ export class HomeComponent extends BaseComponent implements OnInit {
     this.isBrowser = isPlatformBrowser(platformId);
     this.navigation = this.isBrowser ? window.matchMedia('(min-width: 768px)').matches : true;
     this.authManager.applicationUser.subscribe(data => this.authUser = data);
-  }
-
-  public ngOnInit() {
-    if (this.isBrowser) {
-      this.carousel.interval = 10000;
-    }
   }
 
   public tweet() {

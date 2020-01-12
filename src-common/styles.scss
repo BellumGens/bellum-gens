@@ -178,7 +178,38 @@ button igx-icon {
   background-repeat: no-repeat;
 }
 
+
+
+.overview-container-card {
+  width: 80%;
+  margin: auto;
+  padding: 24px 0 0 0;
+  color: white;
+}
+
+  .overview-container-card .card-wrapper,
+  .overview-container-card .strat-filter-header {
+    width: 100%;
+  }
+
+  .overview-container-card h4 {
+    margin-top: 0;
+  }
+
+  .overview-container-card h4.margin-top {
+    margin-top: 1.75rem;
+  }
+
 @media only screen and (max-width: 1280px) {
+  .overview-container-card,
+  .card-wrapper,
+  .search-result-summary,
+  .strat-filter-header {
+    width: 100%;
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
   .slide {
     width: auto;
     height: auto;

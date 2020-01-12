@@ -1,0 +1,49 @@
+<div class="overview-container-card">
+  <igx-card type="outlined">
+    <igx-card-header>
+      <igx-avatar igxCardThumbnail [roundShape]="true" src="/assets/wallpapers/csgo-watermark.webp"></igx-avatar>
+      <h1 igxCardHeaderTitle>Участници - CS:GO Лига</h1>
+      <a href="https://www.twitch.tv/ebleague_a" target="_blank" rel="noopener">Канал на лигата в Twitch</a>
+    </igx-card-header>
+    <igx-card-content>
+      <div class="horizontal-center registration-container">
+        <igx-circular-bar *ngIf="loading" [indeterminate]="true"></igx-circular-bar>
+        <div *ngFor="let registration of registrations" class="registration-slot">
+          <igx-avatar [src]="registration.Team.TeamAvatar" [initials]="registration.Team.TeamName" size="large" roundShape="true">
+          </igx-avatar>
+          <igx-badge *ngIf="registration.UserId === authUser?.id && registration.State === 0"
+                     type="warning"
+                     icon="priority_high"
+                     title="Вашата регистрация все още не е потвърдена! За да потвърдим регистрацията трябва да платите таксата за участие!"
+                     class="registration-badge-style">
+          </igx-badge>
+
+          <a [href]="environment.bellumgens + '/team/' + registration.Team.CustomUrl" target="_blank">{{ registration.Team.TeamName }}</a>
+        </div>
+      </div>
+      <div class="content-container two-column">
+        <div>
+          <h3 class="igx-card-header__title">Група А</h3>
+          <igx-list>
+            <ng-template igxEmptyList>
+              <div class="empty-group-list">
+                Групите ще бъдат изтеглени след краят на регистрацията (13ти януари 2020)
+              </div>
+            </ng-template>
+          </igx-list>
+        </div>
+
+        <div>
+          <h3 class="igx-card-header__title">Група Б</h3>
+          <igx-list>
+            <ng-template igxEmptyList>
+              <div class="empty-group-list">
+                Групите ще бъдат изтеглени след краят на регистрацията (13ти януари 2020)
+              </div>
+            </ng-template>
+          </igx-list>
+        </div>
+      </div>
+    </igx-card-content>
+  </igx-card>
+</div>
