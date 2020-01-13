@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { LoginService } from '../../../src-common/services/login.service';
-import { ApplicationUser } from 'src-common/models/applicationuser';
+import { ApplicationUser } from '../../../src-common/models/applicationuser';
 
 @Component({
   selector: 'app-admin',
