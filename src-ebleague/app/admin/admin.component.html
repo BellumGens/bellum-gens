@@ -1,5 +1,3 @@
-<p>admin works!</p>
-
 <div class="content-container">
   <igx-chips-area>
     Roles
@@ -27,6 +25,11 @@
         <igx-chip *ngIf="!user.Roles.length" (onClick)="addAdmin(user.id)">
           <igx-icon igxPrefit>add</igx-icon>
           <span>admin</span>
+        </igx-chip>
+
+        <igx-chip *ngIf="!user.Roles.length" (onClick)="addEventAdmin(user.id)">
+          <igx-icon igxPrefit>add</igx-icon>
+          <span>event-admin</span>
         </igx-chip>
       </igx-chips-area>
     </igx-list-item>

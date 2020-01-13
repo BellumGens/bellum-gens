@@ -25,4 +25,8 @@ export class AdminComponent {
   public addAdmin(userId: string) {
     this.authService.addUserToRole(userId, 'admin').subscribe(_ => this.authService.getUsers().subscribe(data => this.users = data));
   }
+
+  public addEventAdmin(userId: string) {
+    this.authService.addUserToRole(userId, 'event-admin').subscribe(_ => this.authService.getUsers().subscribe(data => this.users = data));
+  }
 }

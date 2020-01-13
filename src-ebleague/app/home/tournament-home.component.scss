@@ -15,10 +15,6 @@
   background-repeat: no-repeat;
 }
 
-.content-container .registration-title {
-  margin-top: 8px;
-}
-
 .preview-image {
   -webkit-box-shadow: 0px 24px 48px -12px rgba(4,8,29,0.45);
   -moz-box-shadow: 0px 24px 48px -12px rgba(4,8,29,0.45);
@@ -26,56 +22,13 @@
   border-radius: 20px;
 }
 
-.registration-form-input {
-  min-width: 380px;
-  width: 380px;
-  margin: 4px 0;
-}
-
 .subscription-form-input {
   min-width: 380px;
-}
-
-.application-details {
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  height: 0;
-  overflow: hidden;
-}
-
-.application-details-show {
-  height: 308px;
-  transition: height 1s .4s;
-}
-
-.accept-terms-checkbox {
-  margin: 12px;
-}
-
-.submit-registration {
-  height: 48px;
-  margin: 8px auto;
 }
 
 .submit-email {
   height: 50px;
   margin: 0 8px;
-}
-
-.team-name {
-  padding: 0 8px;
-}
-
-.team-avatar {
-  width: 32px;
-  min-width: 32px;
-  height: 32px;
-}
-
-.success-dialog-content {
-  width: 550px;
-  padding: 16px;
 }
 
 .contacts {

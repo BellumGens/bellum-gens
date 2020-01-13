@@ -51,6 +51,7 @@ import { TournamentCsgoComponent } from './tournaments/tournament-csgo/tournamen
 import { TournamentSc2Component } from './tournaments/tournament-sc2/tournament-sc2.component';
 import { BaseComponent } from '../../src-bellumgens/app/base/base.component';
 import { AdminComponent } from './admin/admin.component';
+import { TournamentRegistrationComponent } from './tournaments/tournament-registration/tournament-registration.component';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { AdminComponent } from './admin/admin.component';
     PlayerCountryPipe,
     TournamentCsgoComponent,
     TournamentSc2Component,
-    AdminComponent
+    AdminComponent,
+    TournamentRegistrationComponent
   ],
   imports: [
     FormsModule,
