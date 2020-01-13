@@ -1,6 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AdminComponent } from './admin.component';
+import { IgxChipsModule, IgxInputGroupModule, IgxListModule, IgxButtonModule, IgxAvatarModule, IgxIconModule } from 'igniteui-angular';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('AdminComponent', () => {
   let component: AdminComponent;
@@ -8,7 +12,20 @@ describe('AdminComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AdminComponent ]
+      declarations: [
+        AdminComponent
+      ],
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule,
+        ServiceWorkerModule.register('', {enabled: false}),
+        IgxChipsModule,
+        IgxInputGroupModule,
+        IgxListModule,
+        IgxButtonModule,
+        IgxAvatarModule,
+        IgxIconModule
+      ]
     })
     .compileComponents();
   }));

@@ -52,9 +52,9 @@ describe('TournamentHomeComponent', () => {
       declarations: [
         TournamentHomeComponent,
         LoginDialogComponent,
-        TeamNewComponent,
-        StartsWithPipe,
-        GroupsFilterPipe,
+        // TeamNewComponent,
+        // StartsWithPipe,
+        // GroupsFilterPipe,
         GetRegCountPipe
       ]
     })

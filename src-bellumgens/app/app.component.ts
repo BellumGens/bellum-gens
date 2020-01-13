@@ -53,9 +53,11 @@ export class AppComponent implements OnInit {
     } else {
       this.title = this._headerTitle;
     }
-    this.authManager.applicationUser.subscribe(data => {
-      this.authUser = data;
-      this.unreadNotifications += this.unreadPipe.transform(data.notifications);
+    this.authManager.applicationUser.subscribe(user => {
+      this.authUser = user;
+      if (user) {
+        this.unreadNotifications += this.unreadPipe.transform(user.notifications);
+      }
     });
   }
 
