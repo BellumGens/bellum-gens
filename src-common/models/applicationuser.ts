@@ -26,6 +26,7 @@ export interface ApplicationUser {
   secondaryRole: PlaystyleRole;
   mapPool: MapPool [];
   externalLogins: string [];
+  Roles: string [];
 }
 
 export interface UserPreferences {

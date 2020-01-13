@@ -21,10 +21,12 @@ export class UserStrategiesComponent {
               private apiService: BellumgensApiService) {
     this.authManager.applicationUser.subscribe(user => {
       this.authUser = user;
-      this.apiService.getUserStrategies(user.id).subscribe(
-        strats => this.strats = strats,
-        error => this.commService.emitError(error.error.Message)
-      );
+      if (user) {
+        this.apiService.getUserStrategies(user.id).subscribe(
+          strats => this.strats = strats,
+          error => this.commService.emitError(error.error.Message)
+        );
+      }
     });
   }
 

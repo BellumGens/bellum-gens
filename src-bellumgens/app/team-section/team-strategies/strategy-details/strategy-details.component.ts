@@ -51,7 +51,9 @@ export class StrategyDetailsComponent extends BaseComponent {
       }),
       this.authManager.applicationUser.subscribe(user => {
         this.authUser = user;
-        this.newComment.UserId = user.id;
+        if (user) {
+          this.newComment.UserId = user.id;
+        }
       })
     );
   }

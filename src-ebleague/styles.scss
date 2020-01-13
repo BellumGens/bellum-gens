@@ -31,6 +31,7 @@ $include: (igx-avatar,
            igx-linear-bar,
            igx-switch,
            igx-divider,
+           igx-chip,
            igx-banner);
 
 @include igx-dark-theme(
@@ -164,11 +165,12 @@ $overlay-theme: igx-overlay-theme($background-color: rgba(35, 51, 132, 0.7));
   flex-flow: column;
   align-items: center;
   padding: 4px 12px;
+  width: 165px;
 }
 
 .registration-badge-style {
   position: absolute;
-  left: 80px;
+  left: 104px;
 }
 
 .empty-group-list {

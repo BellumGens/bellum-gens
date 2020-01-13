@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, ReplaySubject, throwError } from 'rxjs';
+import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { LoginProvider } from '../models/login-provider';
 import { ApplicationUser, UserPreferences } from '../models/applicationuser';
 import { map, shareReplay, catchError } from 'rxjs/operators';
@@ -20,9 +20,9 @@ export class LoginService {
   private _apiBase = environment.apiEndpoint;
   private _rootApiEndpoint = environment.rootApiEndpoint;
 
-  private _applicationUser: ReplaySubject<ApplicationUser>;
+  private _applicationUser = new BehaviorSubject<ApplicationUser>(null);
   private _loginProviders: Observable<LoginProvider []>;
-  public userCheckInProgress = new ReplaySubject<boolean>(1);
+  public userCheckInProgress = new BehaviorSubject<boolean>(false);
   public error: any;
   public callMade = false;
 
@@ -46,9 +46,8 @@ export class LoginService {
   }
 
   public get applicationUser() {
-    if (!this._applicationUser) {
+    if (!this._applicationUser.value) {
       this.userCheckInProgress.next(true);
-      this._applicationUser = new ReplaySubject<ApplicationUser>(1);
       this.getSteamUser().subscribe(
         user => {
           if (user) {
@@ -64,11 +63,31 @@ export class LoginService {
     return this._applicationUser;
   }
 
+  public getUserIsAppAdmin() {
+    return this.http.get<boolean>(`${this._apiBase}/admin/appadmin`, { withCredentials: true });
+  }
+
+  public getUsers() {
+    return this.http.get<ApplicationUser []>(`${this._apiBase}/admin/users`, { withCredentials: true });
+  }
+
+  public getUserRoles() {
+    return this.http.get<string []>(`${this._apiBase}/admin/roles`, { withCredentials: true });
+  }
+
+  public submitRole(role: string) {
+    return this.http.get<string>(`${this._apiBase}/admin/createrole?rolename=${role}`, { withCredentials: true });
+  }
+
+  public addUserToRole(userId: string, role: string) {
+    return this.http.get<string>(`${this._apiBase}/admin/adduserrole?userid=${userId}&role=${role}`, { withCredentials: true });
+  }
+
   public login(provider: string) {
     this.loginProviders.subscribe((data: LoginProvider []) =>
       data.forEach((item: LoginProvider) => {
         if (item.Name === provider) {
-          window.location.href = this._rootApiEndpoint + item.Url + '&returnUrl=' + window.location.href;
+          window.location.href = `${this._rootApiEndpoint}${item.Url}&returnUrl=${window.location.href}`;
         }
       })
     );

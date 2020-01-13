@@ -1,0 +1,94 @@
+<form #tapplication="ngForm" (ngSubmit)="leagueRegistration()">
+
+  <igx-divider></igx-divider>
+  <h4 id="registration" class="registration-title">[ЗАТВОРЕНА] Регистрация</h4>
+
+  <igx-select name="game" required [disabled]="!authUser" class="registration-form-input" [(ngModel)]="application.Game" (ngModelChange)="showDetails()">
+    <label igxLabel>{{ authUser ? 'Изберете лига (игра)' : 'Първо трябва да влезете в акаунта си'}}</label>
+    <igx-select-item *ngFor="let game of games" [value]="game.id">
+      {{ game.name }}
+    </igx-select-item>
+  </igx-select>
+
+  <div #appDetails class="application-details">
+
+    <igx-input-group class="registration-form-input">
+      <label igxLabel for="email">Имейл адрес</label>
+      <igx-prefix>
+        <igx-icon>email</igx-icon>
+      </igx-prefix>
+      <input type="email" id="email" #userMail name="email" required igxInput pattern="^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="application.Email" />
+      <igx-suffix *ngIf="userMail.value" (click)="application.Email = null">
+        <igx-icon>clear</igx-icon>
+      </igx-suffix>
+    </igx-input-group>
+
+    <igx-select id="team" #team name="team" required [(ngModel)]="application.TeamId" class="registration-form-input" *ngIf="application.Game === gameEnum.CSGO" >
+      <label igxLabel for="email">Изберете своя отбор</label>
+      <igx-prefix>
+        <igx-icon>people</igx-icon>
+      </igx-prefix>
+      <igx-select-item *ngFor="let team of authUser?.teams" [value]="team.TeamId" [text]="team.TeamName">
+        <igx-avatar [src]="team.TeamAvatar" [initials]="team.TeamName" class="team-avatar" roundShape="true"></igx-avatar>
+        <p class="team-name">{{ team.TeamName }}</p>
+      </igx-select-item>
+      <igx-select-item (click)="newTeam.open(false)">
+        Създай нов отбор...
+      </igx-select-item>
+    </igx-select>
+
+    <igx-input-group class="registration-form-input" *ngIf="application.Game === gameEnum.StarCraft2" >
+      <label igxLabel for="email">Battle tag</label>
+      <igx-prefix>
+        <igx-icon fontSet="login-icons" name="BattleNet"></igx-icon>
+      </igx-prefix>
+      <input id="battletag" #battletag name="battletag" required igxInput pattern="^[a-zA-Z0-9._%+-]+#[0-9]{4,6}$" [(ngModel)]="application.BattleNetId" />
+      <igx-suffix *ngIf="battletag.value" (click)="application.BattleNetId = null">
+        <igx-icon>clear</igx-icon>
+      </igx-suffix>
+    </igx-input-group>
+
+    <igx-input-group class="registration-form-input">
+      <label igxLabel for="company">Компания</label>
+      <igx-prefix>
+        <igx-icon>work</igx-icon>
+      </igx-prefix>
+      <input id="company" #company name="company" igxInput [igxAutocomplete]="companiesDD" [(ngModel)]="application.CompanyId" required />
+      <igx-suffix *ngIf="company.value" (click)="application.CompanyId = null">
+        <igx-icon>clear</igx-icon>
+      </igx-suffix>
+      <igx-hint>*Тази информация няма да бъде видима никъде...</igx-hint>
+    </igx-input-group>
+    <igx-drop-down #companiesDD maxHeight="320px">
+      <igx-drop-down-item *ngFor="let company of companies | startsWith:application.CompanyId" [value]="company">
+        {{ company }}
+      </igx-drop-down-item>
+    </igx-drop-down>
+
+    <div class="horizontal-center">
+      <igx-checkbox #termsAccepted id="accept" name="accept" class="accept-terms-checkbox">
+        <label for="accept">Приемам <span class="highlight navigatable" (click)="scrollToTerms($event)">условията за записване</span>.</label>
+      </igx-checkbox>
+    </div>
+
+    <button igxButton="outlined" class="submit-registration" [disabled]="tapplication.invalid || !termsAccepted.checked || inProgress">Регистрирай ме</button>
+  </div>
+  <igx-divider></igx-divider>
+</form>
+
+<igx-dialog title="Регистрацията ви е получена!" [closeOnOutsideSelect]="true" #successMsg>
+  <div class="success-dialog-content">
+    <p>Вашата регистрация ще бъде потвърдена след като преведете таксата за участие (60лв. с ДДС за лигата по StarCraft II, или 300лв. с ДДС за лигата по CS:GO).</p>
+    <p>Банковата ни сметка е</p>
+    <ul>
+      <li>Име на Банката: <span class="highlight">{{ bankaccountinfo.bank }}</span></li>
+      <li>Титуляр: <span class="highlight">{{ bankaccountinfo.name }}</span></li>
+      <li>Сметка: <span class="highlight">{{ bankaccountinfo.account }}</span></li>
+      <li>BIC: <span class="highlight">{{ bankaccountinfo.bic }}</span></li>
+    </ul>
+    <p>Моля при превода да сложите в основанието уникалния код, който сме генерирали за вашата регистрация: <span class="highlight">{{ application.Hash }}</span>. Можете да намерите кода и през вашият профил.</p>
+    <p>Ако ви е нужна фактура, моля да се свържете с нас на <a href="mailto:info@eb-league.com">info@eb-league.com</a>!</p>
+  </div>
+</igx-dialog>
+
+<app-team-new #newTeam [authUser]="authUser"></app-team-new>
