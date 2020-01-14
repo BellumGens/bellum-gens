@@ -1,4 +1,4 @@
-<div class="content-container">
+<div class="content-container three-column">
   <igx-chips-area>
     Roles
     <igx-chip *ngFor="let role of roles">{{role}}</igx-chip>
@@ -12,9 +12,7 @@
     </igx-input-group>
     <button igxButton (click)="submitRole(roleinput.value)">Submit</button>
   </div>
-</div>
 
-<div class="content-container">
   <igx-list class="players-list">
     <igx-list-item *ngFor="let user of users">
       <igx-avatar igxListThumbnail [src]="user.avatarMedium"></igx-avatar>
@@ -34,4 +32,19 @@
       </igx-chips-area>
     </igx-list-item>
   </igx-list>
+</div>
+
+<div class="content-container">
+  <div>
+    <a *ngFor="let league of tournaments">{{league.Name}}</a>
+    <span *ngIf="!tournaments || !tournaments.length">No tournaments</span>
+  </div>
+
+  <div>
+    <igx-input-group>
+      <label igxLabel>New tournament</label>
+      <input type="text" #roleinput igxInput />
+    </igx-input-group>
+    <button igxButton (click)="submitRole(roleinput.value)">Submit</button>
+  </div>
 </div>

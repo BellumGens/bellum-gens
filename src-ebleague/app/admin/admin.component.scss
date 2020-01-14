@@ -1,3 +1,10 @@
 .players-list {
   max-height: 1080px;
 }
+
+@media only screen and (min-width: 1280px) {
+  .content-container.three-column {
+    width: 100%;
+    grid-template-columns: minmax(32%, 1fr) minmax(32%, 1fr) minmax(32%, 1fr);
+  }
+}
