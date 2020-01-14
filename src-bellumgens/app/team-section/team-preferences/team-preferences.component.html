@@ -1,4 +1,4 @@
-<div class="horizontal-center height-100">
+<div class="horizontal-center" *ngIf="team">
   <form class="team-info-column" #teamInfo="ngForm" (ngSubmit)="updateTeamInfo()">
     <span>Team Info</span>
     <igx-input-group class="team-info-input">
@@ -68,7 +68,7 @@
               <igx-switch [id]="'admin_switch_' + i"
                           [aria-label]="user.Username + ' is admin'"
                           [(ngModel)]="user.IsAdmin"
-                          [disabled]="user.UserId === authUser.id"
+                          [disabled]="user.UserId === authUser?.id"
                           (ngModelChange)="adminStatusUpdated(user)">
               </igx-switch>
             </div>
@@ -77,7 +77,7 @@
               <label [for]="'editor_switch_' + i" class="switch-label">Editor</label>
               <igx-switch [id]="'editor_switch_' + i"
                           [aria-label]="user.Username + ' can add and edit strategies'"
-                          [disabled]="user.IsAdmin || user.UserId === authUser.id"
+                          [disabled]="user.IsAdmin || user.UserId === authUser?.id"
                           [(ngModel)]="user.IsEditor"
                           (ngModelChange)="editorStatusUpdated(user)">
               </igx-switch>

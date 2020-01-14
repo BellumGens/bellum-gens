@@ -15,6 +15,7 @@ import { StrategyDetailsComponent } from './team-section/team-strategies/strateg
 import { TeamDetailsComponent } from './team-section/team-details/team-details.component';
 import { TeamPreferencesComponent } from './team-section/team-preferences/team-preferences.component';
 import { UserStrategiesComponent } from './player-section/user-strategies/user-strategies.component';
+import { TeamadminGuard } from '../../src-common/guards/teamadmin.guard';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -43,7 +44,7 @@ export const routes: Routes = [
     { path: '', redirectTo: 'details', pathMatch: 'full' },
     { path: 'details', component: TeamDetailsComponent },
     { path: 'strategies', component: TeamStrategiesComponent },
-    { path: 'preferences', component: TeamPreferencesComponent }
+    { path: 'preferences', component: TeamPreferencesComponent, canActivate: [ TeamadminGuard ] }
   ] },
   { path: 'team/:teamid/:stratid', component: StrategyEditorComponent },
   { path: 'search/teams/:query', component: TeamResultsComponent },
