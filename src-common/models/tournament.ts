@@ -1,6 +1,13 @@
 import { CSGOTeam } from './csgoteam';
 import { ApplicationUser } from './applicationuser';
 
+export interface Tournament {
+  ID: string;
+  Name: string;
+  StartDate: Date;
+  EndDate: Date;
+}
+
 export interface TournamentApplication {
   Id?: string;
   UserId?: string;
