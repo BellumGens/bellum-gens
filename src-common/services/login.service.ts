@@ -67,6 +67,10 @@ export class LoginService {
     return this.http.get<boolean>(`${this._apiBase}/admin/appadmin`, { withCredentials: true });
   }
 
+  public getUserIsTeamAdmin(teamid: string) {
+    return this.http.get<boolean>(`${this._apiBase}/teams/teamadmin?teamid=${teamid}`, { withCredentials: true });
+  }
+
   public getUsers() {
     return this.http.get<ApplicationUser []>(`${this._apiBase}/admin/users`, { withCredentials: true });
   }
