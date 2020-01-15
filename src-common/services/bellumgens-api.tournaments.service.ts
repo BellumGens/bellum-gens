@@ -8,7 +8,9 @@ import { TournamentApplication,
   RegistrationsCount,
   TournamentCSGORegistration,
   TournamentSC2Registration,
-  Tournament } from '../models/tournament';
+  Tournament,
+  TournamentCSGOGroup,
+  TournamentSC2Group} from '../models/tournament';
 
 @Injectable({
   providedIn: 'root'
@@ -161,6 +163,14 @@ export class ApiTournamentsService {
         return throwError(error);
       })
     );
+  }
+
+  public getCSGOGroups() {
+    return this.http.get<TournamentCSGOGroup []>(`${this._apiEndpoint}/tournament/csgogroups`, { withCredentials: true});
+  }
+
+  public getSC2Groups() {
+    return this.http.get<TournamentSC2Group []>(`${this._apiEndpoint}/tournament/sc2groups`, { withCredentials: true});
   }
 
   private getRegistrations() {

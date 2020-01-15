@@ -34,6 +34,22 @@ export interface TournamentSC2Registration {
   State: TournamentApplicationState;
 }
 
+export interface TournamentCSGOGroup {
+  Id?: string;
+  Name: string;
+  TournamentId?: string;
+  Participants?: TournamentApplication [];
+  Matches?: any [];
+}
+
+export interface TournamentSC2Group {
+  Id?: string;
+  Name: string;
+  TournamentId?: string;
+  Participants?: TournamentApplication [];
+  Matches?: any [];
+}
+
 export interface Company {
   Name: string;
   Website: string;
@@ -62,6 +78,10 @@ export function getEmptyNewApplication(): TournamentApplication {
 }
 
 export function getEmptyNewTournament(): Tournament {
+  return { Name: null };
+}
+
+export function getEmptyNewCSGOGroup(): TournamentCSGOGroup {
   return { Name: null };
 }
 

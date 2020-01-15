@@ -4,8 +4,6 @@ import { TournamentHomeComponent } from './home/tournament-home.component';
 import { TournamentFormatComponent } from './tournaments/tournament-format/tournament-format.component';
 import { TournamentCsgoComponent } from './tournaments/tournament-csgo/tournament-csgo.component';
 import { TournamentSc2Component } from './tournaments/tournament-sc2/tournament-sc2.component';
-import { AdminAuthGuard } from '../../src-common/guards/adminauth.guard';
-import { AdminComponent } from './admin/admin.component';
 
 export const routes: Routes = [
   { path: '', component: TournamentHomeComponent },
@@ -26,7 +24,7 @@ export const routes: Routes = [
       image: '/assets/eb-league-logo-sm.png'
     }
   },
-  { path: 'admin', canActivate: [ AdminAuthGuard ], loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
+  { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
   { path: '**', component: TournamentHomeComponent }
 ];
 

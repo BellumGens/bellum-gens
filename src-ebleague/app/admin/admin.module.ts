@@ -9,12 +9,16 @@ import { IgxChipsModule,
   IgxIconModule,
   IgxAvatarModule,
   IgxDatePickerModule,
-  IgxButtonModule} from 'igniteui-angular';
+  IgxButtonModule,
+  IgxCardModule,
+  IgxProgressBarModule,
+  IgxBadgeModule} from 'igniteui-angular';
 import { FormsModule } from '@angular/forms';
+import { AdminCsgoComponent } from './admin-csgo/admin-csgo.component';
 
 
 @NgModule({
-  declarations: [AdminComponent],
+  declarations: [AdminComponent, AdminCsgoComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
@@ -25,7 +29,10 @@ import { FormsModule } from '@angular/forms';
     IgxIconModule,
     IgxAvatarModule,
     IgxDatePickerModule,
-    IgxButtonModule
+    IgxButtonModule,
+    IgxCardModule,
+    IgxProgressBarModule,
+    IgxBadgeModule
   ]
 })
 export class AdminModule { }

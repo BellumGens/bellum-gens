@@ -187,6 +187,16 @@ button igx-icon {
   color: white;
 }
 
+.card-wrapper {
+  width: 80%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  grid-column-gap: 16px;
+  grid-row-gap: 16px;
+  padding-top: 12px;
+  margin: auto;
+}
+
   .overview-container-card .card-wrapper,
   .overview-container-card .strat-filter-header {
     width: 100%;

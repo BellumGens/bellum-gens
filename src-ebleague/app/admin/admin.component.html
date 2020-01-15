@@ -20,14 +20,19 @@
 
 
       <igx-chips-area>
-        <igx-chip *ngIf="!user.Roles.length" (onClick)="addAdmin(user.id)">
+        <igx-chip (onClick)="addAdmin(user.id)">
           <igx-icon igxPrefit>add</igx-icon>
           <span>admin</span>
         </igx-chip>
 
-        <igx-chip *ngIf="!user.Roles.length" (onClick)="addEventAdmin(user.id)">
+        <igx-chip (onClick)="addEventAdmin(user.id)">
           <igx-icon igxPrefit>add</igx-icon>
           <span>event-admin</span>
+        </igx-chip>
+
+        <igx-chip *ngIf="user.Roles.length">
+          <igx-icon igxPrefit>remove</igx-icon>
+          <span>admin</span>
         </igx-chip>
       </igx-chips-area>
     </igx-list-item>

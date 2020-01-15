@@ -88,7 +88,7 @@ export class LoginService {
   }
 
   public addUserToRole(userId: string, role: string) {
-    return this.http.get<string>(`${this._apiBase}/admin/adduserrole?userid=${userId}&role=${role}`, { withCredentials: true });
+    return this.http.put<string>(`${this._apiBase}/admin/adduserrole?userid=${userId}&role=${role}`, role, { withCredentials: true });
   }
 
   public login(provider: string) {
