@@ -22,7 +22,7 @@ export class AdminCsgoComponent {
     this.apiService.getCSGOGroups().subscribe(data => this.groups = data);
   }
 
-  public submitGroup() {
-    // create group
+  public submitGroup(group: TournamentCSGOGroup) {
+    this.apiService.submitCSGOGroup(group).subscribe();
   }
 }

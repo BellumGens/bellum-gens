@@ -169,6 +169,11 @@ export class ApiTournamentsService {
     return this.http.get<TournamentCSGOGroup []>(`${this._apiEndpoint}/tournament/csgogroups`, { withCredentials: true});
   }
 
+  public submitCSGOGroup(group: TournamentCSGOGroup) {
+    return this.http.put<TournamentCSGOGroup>(`${this._apiEndpoint}/tournament/csgogroup?id=${group.Id || null}`,
+            group, { withCredentials: true});
+  }
+
   public getSC2Groups() {
     return this.http.get<TournamentSC2Group []>(`${this._apiEndpoint}/tournament/sc2groups`, { withCredentials: true});
   }

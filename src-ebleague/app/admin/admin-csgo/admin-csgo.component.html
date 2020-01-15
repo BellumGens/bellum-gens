@@ -22,6 +22,32 @@
         </div>
       </div>
       <div class="card-wrapper">
+        <igx-card *ngFor="let group of groups">
+          <igx-card-header>
+            <igx-avatar igxCardThumbnail [roundShape]="true" src="/assets/wallpapers/csgo-watermark.webp"></igx-avatar>
+            <h1 *ngIf="!group.inEdit" igxCardHeaderTitle>{{group.Name}}</h1>
+            <igx-input-group *ngIf="group.inEdit" igxCardHeaderTitle>
+              <label igxLabel for="groupName">Име на групата</label>
+              <input type="text" id="groupName" name="groupName" #groupName igxInput required [(ngModel)]="group.Name" />
+              <igx-suffix *ngIf="groupName.value" (click)="group.Name = null">
+                <igx-icon>clear</igx-icon>
+              </igx-suffix>
+            </igx-input-group>
+
+            <igx-icon class="navigatable" *ngIf="!group.inEdit" (click)="group.inEdit = true">edit</igx-icon>
+            <igx-icon class="navigatable" *ngIf="group.inEdit" (click)="group.inEdit = false">cancel</igx-icon>
+            <igx-icon class="navigatable" *ngIf="group.inEdit" (click)="submitGroup(group)">done</igx-icon>
+          </igx-card-header>
+
+          <igx-card-content>
+            <igx-list>
+              <igx-list-item *ngFor="let participant of group.Participants">
+                {{ participant.Email }}
+              </igx-list-item>
+            </igx-list>
+          </igx-card-content>
+        </igx-card>
+
         <igx-card class="new-group-card">
           <igx-card-header>
             <igx-avatar igxCardThumbnail [roundShape]="true" src="/assets/wallpapers/csgo-watermark.webp"></igx-avatar>
@@ -40,7 +66,7 @@
             <igx-icon *ngIf="!inEdit" class="navigatable" (click)="inEdit = true">add_circle_outline</igx-icon>
 
             <button type="button" *ngIf="inEdit" igxButton (click)="inEdit = false">Cancel</button>
-            <button type="button" *ngIf="inEdit" igxButton (click)="submitGroup()">Submit</button>
+            <button type="button" *ngIf="inEdit" igxButton (click)="submitGroup(newGroup)">Submit</button>
           </igx-card-content>
         </igx-card>
       </div>

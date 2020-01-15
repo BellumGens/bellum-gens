@@ -40,6 +40,7 @@ export interface TournamentCSGOGroup {
   TournamentId?: string;
   Participants?: TournamentApplication [];
   Matches?: any [];
+  inEdit?: boolean;
 }
 
 export interface TournamentSC2Group {
@@ -48,6 +49,7 @@ export interface TournamentSC2Group {
   TournamentId?: string;
   Participants?: TournamentApplication [];
   Matches?: any [];
+  inEdit?: boolean;
 }
 
 export interface Company {
@@ -82,7 +84,7 @@ export function getEmptyNewTournament(): Tournament {
 }
 
 export function getEmptyNewCSGOGroup(): TournamentCSGOGroup {
-  return { Name: null };
+  return { Name: null, inEdit: false };
 }
 
 export const GAMES = [
