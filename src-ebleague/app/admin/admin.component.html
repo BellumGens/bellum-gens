@@ -36,15 +36,29 @@
 
 <div class="content-container">
   <div>
-    <a *ngFor="let league of tournaments">{{league.Name}}</a>
+    <a *ngFor="let league of tournaments">{{league.Name}}: {{league.StartDate | date}} - {{league.EndDate | date}}
+      <button igxButton (click)="addAllApplications(league.ID)">Assign Applications</button>
+    </a>
     <span *ngIf="!tournaments || !tournaments.length">No tournaments</span>
   </div>
 
-  <div>
+  <form #leagueForm="ngForm" (ngSubmit)="createTournament()">
     <igx-input-group>
-      <label igxLabel>New tournament</label>
-      <input type="text" #roleinput igxInput />
+      <label igxLabel for="tournamentName">Tournament name</label>
+      <input type="text" id="tournamentName" name="tournamentName" #tournamentName igxInput required [(ngModel)]="tournament.Name" />
+      <igx-suffix *ngIf="tournamentName.value" (click)="tournament.Name = null">
+        <igx-icon>clear</igx-icon>
+      </igx-suffix>
     </igx-input-group>
-    <button igxButton (click)="submitRole(roleinput.value)">Submit</button>
-  </div>
+
+    <igx-date-picker label="Start Date" name="startDate" required [(ngModel)]="tournament.StartDate">
+
+    </igx-date-picker>
+
+    <igx-date-picker label="End Date" name="endDate" required [(ngModel)]="tournament.EndDate">
+
+    </igx-date-picker>
+
+    <button igxButton [disabled]="!leagueForm.valid || !leagueForm.touched">Submit</button>
+  </form>
 </div>

@@ -28,8 +28,7 @@ import { IgxNavbarModule,
   IgxSwitchModule,
   IgxSelectModule,
   IgxDividerModule,
-  IgxAutocompleteModule,
-  IgxChipsModule} from 'igniteui-angular';
+  IgxAutocompleteModule} from 'igniteui-angular';
 import { LoginService } from '../../src-common/services/login.service';
 import { BellumgensApiService } from '../../src-common/services/bellumgens-api.service';
 import { SuccessErrorComponent } from '../../src-bellumgens/app/success-error/success-error.component';
@@ -50,7 +49,6 @@ import { PlayerCountryPipe } from '../../src-bellumgens/app/pipes/player-country
 import { TournamentCsgoComponent } from './tournaments/tournament-csgo/tournament-csgo.component';
 import { TournamentSc2Component } from './tournaments/tournament-sc2/tournament-sc2.component';
 import { BaseComponent } from '../../src-bellumgens/app/base/base.component';
-import { AdminComponent } from './admin/admin.component';
 import { TournamentRegistrationComponent } from './tournaments/tournament-registration/tournament-registration.component';
 
 @NgModule({
@@ -71,7 +69,6 @@ import { TournamentRegistrationComponent } from './tournaments/tournament-regist
     PlayerCountryPipe,
     TournamentCsgoComponent,
     TournamentSc2Component,
-    AdminComponent,
     TournamentRegistrationComponent
   ],
   imports: [
@@ -102,7 +99,6 @@ import { TournamentRegistrationComponent } from './tournaments/tournament-regist
     IgxSelectModule,
     IgxDividerModule,
     IgxAutocompleteModule,
-    IgxChipsModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [

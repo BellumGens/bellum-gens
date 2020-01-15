@@ -26,7 +26,7 @@ export const routes: Routes = [
       image: '/assets/eb-league-logo-sm.png'
     }
   },
-  { path: 'admin', component: AdminComponent, canActivate: [ AdminAuthGuard ] },
+  { path: 'admin', canActivate: [ AdminAuthGuard ], loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
   { path: '**', component: TournamentHomeComponent }
 ];
 

@@ -2,10 +2,10 @@ import { CSGOTeam } from './csgoteam';
 import { ApplicationUser } from './applicationuser';
 
 export interface Tournament {
-  ID: string;
+  ID?: string;
   Name: string;
-  StartDate: Date;
-  EndDate: Date;
+  StartDate?: Date;
+  EndDate?: Date;
 }
 
 export interface TournamentApplication {
@@ -59,6 +59,10 @@ export function getEmptyNewApplication(): TournamentApplication {
     Game: null,
     Email: ''
   };
+}
+
+export function getEmptyNewTournament(): Tournament {
+  return { Name: null };
 }
 
 export const GAMES = [
