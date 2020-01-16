@@ -21,20 +21,23 @@ export interface TournamentApplication {
   State?: TournamentApplicationState;
 }
 
-export interface TournamentCSGORegistration {
+export interface TournamentRegistration {
   UserId: string;
-  Team: CSGOTeam;
   State: TournamentApplicationState;
-}
-
-export interface TournamentSC2Registration {
-  UserId: string;
-  BattleTag: string;
   User: ApplicationUser;
-  State: TournamentApplicationState;
 }
 
-export interface TournamentCSGOGroup {
+export interface TournamentCSGORegistration extends TournamentRegistration {
+  Team: CSGOTeam;
+  TournamentCSGOGroupId: string;
+}
+
+export interface TournamentSC2Registration extends TournamentRegistration {
+  BattleTag: string;
+  TournamentSC2GroupId: string;
+}
+
+export interface TournamentGroup {
   Id?: string;
   Name: string;
   TournamentId?: string;
@@ -43,13 +46,12 @@ export interface TournamentCSGOGroup {
   inEdit?: boolean;
 }
 
-export interface TournamentSC2Group {
-  Id?: string;
-  Name: string;
-  TournamentId?: string;
-  Participants?: TournamentApplication [];
+export interface TournamentCSGOGroup extends TournamentGroup {
   Matches?: any [];
-  inEdit?: boolean;
+}
+
+export interface TournamentSC2Group extends TournamentGroup {
+  Matches?: any [];
 }
 
 export interface Company {

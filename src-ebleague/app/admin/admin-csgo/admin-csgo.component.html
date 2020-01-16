@@ -8,12 +8,12 @@
     <igx-card-content>
       <div class="horizontal-center registration-container">
         <igx-circular-bar *ngIf="loading" [indeterminate]="true"></igx-circular-bar>
-        <div *ngFor="let registration of registrations" class="registration-slot">
+        <div *ngFor="let registration of noGroupParticipants" class="registration-slot">
           <igx-avatar [src]="registration.Team.TeamAvatar"
                       [initials]="registration.Team.TeamName"
                       size="large"
                       roundShape="true"
-                      igxDrag="registration">
+                      [igxDrag]="registration">
           </igx-avatar>
           <igx-badge *ngIf="registration.State === 0"
                      type="warning"
@@ -46,7 +46,7 @@
           </igx-card-header>
 
           <igx-card-content>
-            <igx-list igxDrop>
+            <igx-list igxDrop (dropped)="addToGroup($event, group)">
               <igx-list-item *ngFor="let participant of group.Participants">
                 {{ participant.Email }}
               </igx-list-item>

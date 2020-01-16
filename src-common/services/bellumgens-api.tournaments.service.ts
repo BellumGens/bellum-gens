@@ -10,7 +10,8 @@ import { TournamentApplication,
   TournamentSC2Registration,
   Tournament,
   TournamentCSGOGroup,
-  TournamentSC2Group} from '../models/tournament';
+  TournamentSC2Group,
+  TournamentRegistration} from '../models/tournament';
 
 @Injectable({
   providedIn: 'root'
@@ -171,11 +172,52 @@ export class ApiTournamentsService {
 
   public submitCSGOGroup(group: TournamentCSGOGroup) {
     return this.http.put<TournamentCSGOGroup>(`${this._apiEndpoint}/tournament/csgogroup?id=${group.Id || null}`,
-            group, { withCredentials: true});
+      group, { withCredentials: true}).pipe(
+        map(response => {
+          if (response) {
+            this.commService.emitSuccess('Tournament CS:GO group updated successfully!');
+          }
+          return response;
+        }),
+        catchError(error => {
+          this.commService.emitError(error.error.Message);
+          return throwError(error);
+        })
+      );
   }
 
   public deleteCSGOGroup(id: string) {
     return this.http.delete<TournamentCSGOGroup>(`${this._apiEndpoint}/tournament/csgogroup?id=${id}`, { withCredentials: true});
+  }
+
+  public addParticipantToGroup(participant: TournamentRegistration, groupid: string) {
+    return this.http.put(`${this._apiEndpoint}/tournament/participanttogroup?id=${groupid}`, participant, { withCredentials: true }).pipe(
+      map(response => {
+        if (response) {
+          this.commService.emitSuccess('Tournament participant added to group successfully!');
+        }
+        return response;
+      }),
+      catchError(error => {
+        this.commService.emitError(error.error.Message);
+        return throwError(error);
+      })
+    );
+  }
+
+  public removeParticipantFromGroup(participantid: string) {
+    return this.http.delete(`${this._apiEndpoint}/tournament/participanttogroup?id=${participantid}`, { withCredentials: true }).pipe(
+      map(response => {
+        if (response) {
+          this.commService.emitSuccess('Tournament participant deleted from group successfully!');
+        }
+        return response;
+      }),
+      catchError(error => {
+        this.commService.emitError(error.error.Message);
+        return throwError(error);
+      })
+    );
   }
 
   public getSC2Groups() {
