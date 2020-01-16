@@ -106,7 +106,7 @@ import { TeamNewComponent } from './team-section/team-new/team-new.component';
 import { GetRegCountPipe } from './pipes/get-reg-count.pipe';
 import { CommunicationService } from '../../src-common/services/communication.service';
 import { SocialMediaService } from '../../src-common/services/social-media.service';
-import { BellumGensModule } from 'src-common/components/components.module';
+import { BellumGensModule } from '../../src-common/components/components.module';
 
 @NgModule({
   declarations: [

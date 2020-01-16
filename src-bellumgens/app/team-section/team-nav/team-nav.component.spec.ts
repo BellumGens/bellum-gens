@@ -9,12 +9,12 @@ import { IgxAvatarModule,
   IgxDialogModule,
   IgxProgressBarModule } from 'igniteui-angular';
 import { FormsModule } from '@angular/forms';
-import { ConfirmComponent } from 'src-bellumgens/app/confirm/confirm.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { GroupsFilterPipe } from 'src-bellumgens/app/pipes/groups-filter.pipe';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TeamNewComponent } from '../team-new/team-new.component';
+import { BellumGensModule } from 'src-common/components/components.module';
 
 describe('TeamNavComponent', () => {
   let component: TeamNavComponent;
@@ -33,11 +33,11 @@ describe('TeamNavComponent', () => {
         IgxListModule,
         IgxInputGroupModule,
         IgxDialogModule,
-        IgxProgressBarModule
+        IgxProgressBarModule,
+        BellumGensModule
       ],
       declarations: [
         TeamNavComponent,
-        ConfirmComponent,
         GroupsFilterPipe,
         TeamNewComponent
       ]

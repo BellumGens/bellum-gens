@@ -34,7 +34,6 @@ import { SearchComponent } from './search/search/search.component';
 import { TeamNotificationsComponent } from './team-section/team-notifications/team-notifications.component';
 import { PlayerNotificationsComponent } from './player-section/notifications/notifications.component';
 import { FormsModule } from '@angular/forms';
-import { ConfirmComponent } from './confirm/confirm.component';
 import { GroupsFilterPipe } from './pipes/groups-filter.pipe';
 import { ReduceQuickSearchResultPipe } from './pipes/reduce-quick-search-result.pipe';
 import { PlayerSearchComponent } from './search/player-search/player-search.component';
@@ -50,6 +49,7 @@ import { NotificationStatePipe } from './pipes/notification-state.pipe';
 import { PlayerCountryPipe } from './pipes/player-country.pipe';
 import { LoginDialogComponent } from './login/login-dialog/login-dialog.component';
 import { TeamNewComponent } from './team-section/team-new/team-new.component';
+import { BellumGensModule } from 'src-common/components/components.module';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -87,7 +87,8 @@ describe('AppComponent', () => {
         IgxTabsModule,
         IgxDividerModule,
         IgxSelectModule,
-        IgxSwitchModule
+        IgxSwitchModule,
+        BellumGensModule
       ],
       declarations: [
         AppComponent,
@@ -100,7 +101,6 @@ describe('AppComponent', () => {
         SearchComponent,
         TeamNotificationsComponent,
         PlayerNotificationsComponent,
-        ConfirmComponent,
         PlayerSearchComponent,
         TeamSearchComponent,
         GroupsFilterPipe,

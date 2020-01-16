@@ -30,7 +30,6 @@ import { TeamNavComponent } from '../../src-bellumgens/app/team-section/team-nav
 import { LoginComponent } from '../../src-bellumgens/app/login/login.component';
 import { QuickSearchComponent } from '../../src-bellumgens/app/search/quick-search/quick-search.component';
 import { FormsModule } from '@angular/forms';
-import { ConfirmComponent } from '../../src-bellumgens/app/confirm/confirm.component';
 import { GroupsFilterPipe } from '../../src-bellumgens/app/pipes/groups-filter.pipe';
 import { ReduceQuickSearchResultPipe } from '../../src-bellumgens/app/pipes/reduce-quick-search-result.pipe';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -40,6 +39,7 @@ import { UserPreferencesComponent } from '../../src-bellumgens/app/player-sectio
 import { PlayerCountryPipe } from '../../src-bellumgens/app/pipes/player-country.pipe';
 import { LoginDialogComponent } from '../../src-bellumgens/app/login/login-dialog/login-dialog.component';
 import { TeamNewComponent } from '../../src-bellumgens/app/team-section/team-new/team-new.component';
+import { BellumGensModule } from 'src-common/components/components.module';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -77,7 +77,8 @@ describe('AppComponent', () => {
         IgxTabsModule,
         IgxDividerModule,
         IgxSelectModule,
-        IgxSwitchModule
+        IgxSwitchModule,
+        BellumGensModule
       ],
       declarations: [
         AppComponent,
@@ -86,7 +87,6 @@ describe('AppComponent', () => {
         LoginComponent,
         LoginDialogComponent,
         QuickSearchComponent,
-        ConfirmComponent,
         GroupsFilterPipe,
         ReduceQuickSearchResultPipe,
         UserPreferencesComponent,

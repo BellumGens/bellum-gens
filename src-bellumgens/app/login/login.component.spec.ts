@@ -19,9 +19,9 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { UserPreferencesComponent } from '../player-section/user-preferences/user-preferences.component';
 import { FormsModule } from '@angular/forms';
-import { ConfirmComponent } from '../confirm/confirm.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { LoginDialogComponent } from './login-dialog/login-dialog.component';
+import { BellumGensModule } from 'src-common/components/components.module';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -47,13 +47,13 @@ describe('LoginComponent', () => {
         IgxDividerModule,
         IgxButtonModule,
         IgxProgressBarModule,
-        IgxListModule
+        IgxListModule,
+        BellumGensModule
       ],
       declarations: [
         LoginComponent,
         LoginDialogComponent,
-        UserPreferencesComponent,
-        ConfirmComponent
+        UserPreferencesComponent
       ]
     })
     .compileComponents();

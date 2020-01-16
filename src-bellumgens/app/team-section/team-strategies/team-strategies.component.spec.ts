@@ -23,7 +23,6 @@ import { SafeVideoLinkPipe } from 'src-bellumgens/app/pipes/safe-video-link.pipe
 import { FormsModule } from '@angular/forms';
 import { MapnamePipe } from 'src-bellumgens/app/pipes/mapname.pipe';
 import { SideStratsPipe } from 'src-bellumgens/app/pipes/sidestrats.pipe';
-import { ConfirmComponent } from 'src-bellumgens/app/confirm/confirm.component';
 import { MapimagePipe } from 'src-bellumgens/app/pipes/mapimage.pipe';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -41,6 +40,7 @@ import { Observable } from 'rxjs';
 import { NewStrategyComponent } from './new-strategy/new-strategy.component';
 import { LoginDialogComponent } from 'src-bellumgens/app/login/login-dialog/login-dialog.component';
 import { IsStratOwnerPipe } from 'src-bellumgens/app/pipes/is-strat-owner.pipe';
+import { BellumGensModule } from 'src-common/components/components.module';
 
 describe('TeamStrategiesComponent', () => {
   let component: TeamStrategiesComponent;
@@ -70,13 +70,13 @@ describe('TeamStrategiesComponent', () => {
         IgxDropDownModule,
         IgxProgressBarModule,
         IgxButtonModule,
-        IgxDividerModule
+        IgxDividerModule,
+        BellumGensModule
       ],
       declarations: [
         TeamStrategiesComponent,
         AppShellComponent,
         MapPoolComponent,
-        ConfirmComponent,
         NewStrategyComponent,
         LoginDialogComponent,
         SafeVideoLinkPipe,

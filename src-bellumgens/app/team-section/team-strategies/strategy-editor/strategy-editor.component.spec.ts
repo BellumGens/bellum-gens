@@ -12,11 +12,11 @@ import { IgxIconModule,
   IgxButtonGroupModule,
   IgxButtonModule,
   IgxProgressBarModule} from 'igniteui-angular';
-import { ConfirmComponent } from 'src-bellumgens/app/confirm/confirm.component';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { BellumGensModule } from 'src-common/components/components.module';
 
 describe('StrategyEditorComponent', () => {
   let component: StrategyEditorComponent;
@@ -39,9 +39,10 @@ describe('StrategyEditorComponent', () => {
         IgxSelectModule,
         IgxButtonGroupModule,
         IgxButtonModule,
-        IgxProgressBarModule
+        IgxProgressBarModule,
+        BellumGensModule
       ],
-      declarations: [ StrategyEditorComponent, ConfirmComponent ]
+      declarations: [ StrategyEditorComponent ]
     })
     .compileComponents();
   }));
