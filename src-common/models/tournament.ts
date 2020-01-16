@@ -90,6 +90,10 @@ export function getEmptyNewCSGOGroup(): TournamentCSGOGroup {
   return { Name: null, inEdit: false };
 }
 
+export function getEmptyNewSC2Group(): TournamentCSGOGroup {
+  return { Name: null, inEdit: false };
+}
+
 export const GAMES = [
   { name: 'Counter Strike: Global Offensive', id: Game.CSGO },
   { name: 'StarCraft II', id: Game.StarCraft2 }

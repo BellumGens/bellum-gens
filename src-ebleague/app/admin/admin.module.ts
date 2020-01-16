@@ -17,10 +17,11 @@ import { IgxChipsModule,
 import { FormsModule } from '@angular/forms';
 import { AdminCsgoComponent } from './admin-csgo/admin-csgo.component';
 import { BellumGensModule } from '../../../src-common/components/components.module';
+import { AdminSc2Component } from './admin-sc2/admin-sc2.component';
 
 
 @NgModule({
-  declarations: [AdminComponent, AdminCsgoComponent],
+  declarations: [AdminComponent, AdminCsgoComponent, AdminSc2Component],
   imports: [
     CommonModule,
     AdminRoutingModule,
