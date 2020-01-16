@@ -48,7 +48,11 @@
           <igx-card-content>
             <igx-list igxDrop (dropped)="addToGroup($event, group)">
               <igx-list-item *ngFor="let participant of group.Participants">
-                {{ participant.Email }}
+                <igx-avatar igxListThumbnail [src]="participant.Team.TeamAvatar" roundShape="true"></igx-avatar>
+
+                <h1 igxListLineTitle>{{ participant.Team.TeamName }}</h1>
+
+                <igx-icon class="navigatable" title="Премахни от групата" (click)="removeFromGroup(participant, group)">delete</igx-icon>
               </igx-list-item>
             </igx-list>
           </igx-card-content>

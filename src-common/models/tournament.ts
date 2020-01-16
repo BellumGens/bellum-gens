@@ -22,13 +22,14 @@ export interface TournamentApplication {
 }
 
 export interface TournamentRegistration {
+  Id: string;
   UserId: string;
   State: TournamentApplicationState;
   User: ApplicationUser;
+  Team: CSGOTeam;
 }
 
 export interface TournamentCSGORegistration extends TournamentRegistration {
-  Team: CSGOTeam;
   TournamentCSGOGroupId: string;
 }
 
@@ -41,7 +42,7 @@ export interface TournamentGroup {
   Id?: string;
   Name: string;
   TournamentId?: string;
-  Participants?: TournamentApplication [];
+  Participants?: TournamentRegistration [];
   Matches?: any [];
   inEdit?: boolean;
 }

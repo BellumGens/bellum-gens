@@ -1,6 +1,16 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AdminCsgoComponent } from './admin-csgo.component';
+import { BellumGensModule } from 'src-common/components/components.module';
+import { IgxListModule,
+  IgxIconModule,
+  IgxInputGroupModule,
+  IgxAvatarModule,
+  IgxBadgeModule,
+  IgxCardModule,
+  IgxButtonModule,
+  IgxDragDropModule,
+  IgxProgressBarModule} from 'igniteui-angular';
 
 describe('AdminCsgoComponent', () => {
   let component: AdminCsgoComponent;
@@ -8,7 +18,19 @@ describe('AdminCsgoComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AdminCsgoComponent ]
+      declarations: [ AdminCsgoComponent ],
+      imports: [
+        BellumGensModule,
+        IgxListModule,
+        IgxIconModule,
+        IgxInputGroupModule,
+        IgxAvatarModule,
+        IgxBadgeModule,
+        IgxCardModule,
+        IgxButtonModule,
+        IgxDragDropModule,
+        IgxProgressBarModule
+      ]
     })
     .compileComponents();
   }));

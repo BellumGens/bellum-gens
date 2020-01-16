@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { TournamentCSGORegistration,
   getEmptyNewCSGOGroup,
-  TournamentGroup } from '../../../../src-common/models/tournament';
+  TournamentGroup,
+  TournamentRegistration} from '../../../../src-common/models/tournament';
 import { ApiTournamentsService } from '../../../../src-common/services/bellumgens-api.tournaments.service';
 import { environment } from '../../../../src-common/environments/environment';
 import { IDropDroppedEventArgs } from 'igniteui-angular';
@@ -12,8 +13,8 @@ import { IDropDroppedEventArgs } from 'igniteui-angular';
   styleUrls: ['./admin-csgo.component.scss']
 })
 export class AdminCsgoComponent {
-  public registrations: TournamentCSGORegistration [];
-  public noGroupParticipants: TournamentCSGORegistration [];
+  public registrations: TournamentRegistration [];
+  public noGroupParticipants: TournamentRegistration [];
   public groups: TournamentGroup [];
   public loading = false;
   public environment = environment;
@@ -40,7 +41,10 @@ export class AdminCsgoComponent {
   }
 
   public deleteGroup(id: string) {
-    this.apiService.deleteCSGOGroup(id).subscribe(_ => this.groups.splice(this.groups.indexOf(this.groups.find(g => g.Id === id)), 1));
+    const group = this.groups.find(g => g.Id === id);
+    group.Participants.forEach(p => this.noGroupParticipants.push(p));
+    this.apiService.deleteCSGOGroup(id).subscribe(_ => this.groups.splice(this.groups.indexOf(group), 1));
+
   }
 
   public addToGroup(event: IDropDroppedEventArgs, group: TournamentGroup) {
@@ -52,5 +56,12 @@ export class AdminCsgoComponent {
       event.dragData.TournamentCSGOGroupId = group.Id;
       this.noGroupParticipants.splice(this.noGroupParticipants.indexOf(event.dragData), 1);
     }
+  }
+
+  public removeFromGroup(participant: TournamentCSGORegistration, group: TournamentGroup) {
+    this.apiService.removeParticipantFromGroup(participant.Id).subscribe();
+    group.Participants.splice(group.Participants.indexOf(participant), 1);
+    participant.TournamentCSGOGroupId = null;
+    this.noGroupParticipants.push(participant);
   }
 }
