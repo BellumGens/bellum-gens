@@ -23,6 +23,6 @@
 
 <app-team-new #createTeam [authUser]="authUser"></app-team-new>
 
-<app-confirm #confirm title="Are you sure?" (ok)="abandonTeam($event)">
+<bg-confirm #confirm title="Are you sure?" (ok)="abandonTeam($event)">
   You will leave this team permanently. If you own the team and are the only team member, then the team will also be deleted...
-</app-confirm>
+</bg-confirm>

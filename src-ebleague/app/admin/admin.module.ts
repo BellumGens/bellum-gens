@@ -12,9 +12,11 @@ import { IgxChipsModule,
   IgxButtonModule,
   IgxCardModule,
   IgxProgressBarModule,
-  IgxBadgeModule} from 'igniteui-angular';
+  IgxBadgeModule,
+  IgxDragDropModule} from 'igniteui-angular';
 import { FormsModule } from '@angular/forms';
 import { AdminCsgoComponent } from './admin-csgo/admin-csgo.component';
+import { BellumGensModule } from '../../../src-common/components/components.module';
 
 
 @NgModule({
@@ -32,7 +34,9 @@ import { AdminCsgoComponent } from './admin-csgo/admin-csgo.component';
     IgxButtonModule,
     IgxCardModule,
     IgxProgressBarModule,
-    IgxBadgeModule
+    IgxBadgeModule,
+    BellumGensModule,
+    IgxDragDropModule
   ]
 })
 export class AdminModule { }

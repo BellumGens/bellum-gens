@@ -2,7 +2,7 @@ import { Component, Input, EventEmitter, Output, ViewChild } from '@angular/core
 import { IDialogEventArgs, IgxDialogComponent } from 'igniteui-angular';
 
 @Component({
-  selector: 'app-confirm',
+  selector: 'bg-confirm',
   templateUrl: './confirm.component.html',
   styleUrls: ['./confirm.component.css']
 })

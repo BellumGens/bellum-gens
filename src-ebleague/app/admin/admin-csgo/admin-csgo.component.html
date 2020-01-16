@@ -9,7 +9,11 @@
       <div class="horizontal-center registration-container">
         <igx-circular-bar *ngIf="loading" [indeterminate]="true"></igx-circular-bar>
         <div *ngFor="let registration of registrations" class="registration-slot">
-          <igx-avatar [src]="registration.Team.TeamAvatar" [initials]="registration.Team.TeamName" size="large" roundShape="true">
+          <igx-avatar [src]="registration.Team.TeamAvatar"
+                      [initials]="registration.Team.TeamName"
+                      size="large"
+                      roundShape="true"
+                      igxDrag="registration">
           </igx-avatar>
           <igx-badge *ngIf="registration.State === 0"
                      type="warning"
@@ -34,13 +38,15 @@
               </igx-suffix>
             </igx-input-group>
 
-            <igx-icon class="navigatable" *ngIf="!group.inEdit" (click)="group.inEdit = true">edit</igx-icon>
+            <igx-icon class="navigatable" title="Редактирай групата" *ngIf="!group.inEdit" (click)="group.inEdit = true">edit</igx-icon>
+            <igx-icon class="navigatable" title="Изтрий групата" *ngIf="!group.inEdit" (click)="confirm.open(group.Id)">delete</igx-icon>
+
             <igx-icon class="navigatable" *ngIf="group.inEdit" (click)="group.inEdit = false">cancel</igx-icon>
             <igx-icon class="navigatable" *ngIf="group.inEdit" (click)="submitGroup(group)">done</igx-icon>
           </igx-card-header>
 
           <igx-card-content>
-            <igx-list>
+            <igx-list igxDrop>
               <igx-list-item *ngFor="let participant of group.Participants">
                 {{ participant.Email }}
               </igx-list-item>
@@ -51,9 +57,9 @@
         <igx-card class="new-group-card">
           <igx-card-header>
             <igx-avatar igxCardThumbnail [roundShape]="true" src="/assets/wallpapers/csgo-watermark.webp"></igx-avatar>
-            <h1 *ngIf="!inEdit" igxCardHeaderTitle>Нова група</h1>
+            <h1 *ngIf="!newGroup.inEdit" igxCardHeaderTitle>Нова група</h1>
 
-            <igx-input-group *ngIf="inEdit" igxCardHeaderTitle>
+            <igx-input-group *ngIf="newGroup.inEdit" igxCardHeaderTitle>
               <label igxLabel for="groupName">Име на групата</label>
               <input type="text" id="groupName" name="groupName" #groupName igxInput required [(ngModel)]="newGroup.Name" />
               <igx-suffix *ngIf="groupName.value" (click)="newGroup.Name = null">
@@ -63,13 +69,17 @@
           </igx-card-header>
 
           <igx-card-content class="new-group-body">
-            <igx-icon *ngIf="!inEdit" class="navigatable" (click)="inEdit = true">add_circle_outline</igx-icon>
+            <igx-icon *ngIf="!newGroup.inEdit" class="navigatable" (click)="newGroup.inEdit = true">add_circle_outline</igx-icon>
 
-            <button type="button" *ngIf="inEdit" igxButton (click)="inEdit = false">Cancel</button>
-            <button type="button" *ngIf="inEdit" igxButton (click)="submitGroup(newGroup)">Submit</button>
+            <button type="button" *ngIf="newGroup.inEdit" igxButton (click)="newGroup.inEdit = false">Cancel</button>
+            <button type="button" *ngIf="newGroup.inEdit" igxButton (click)="submitGroup(newGroup)">Submit</button>
           </igx-card-content>
         </igx-card>
       </div>
     </igx-card-content>
   </igx-card>
 </div>
+
+<bg-confirm #confirm title="Сигурни ли сте?" (ok)="deleteGroup($event)">
+  Това ще изтрие групата перманентно... Отборите ще трябва да се разпределят в нови групи.
+</bg-confirm>

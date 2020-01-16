@@ -55,10 +55,10 @@
 </button>
 
 <!-- Confirm -->
-<app-confirm #confirm title="Are you sure?" (ok)="deleteAccount()">
+<bg-confirm #confirm title="Are you sure?" (ok)="deleteAccount()">
   Pressing OK will delete your user account permanently...
-</app-confirm>
-<app-confirm #confirmReg title="Are you sure?" (ok)="deleteRegistration($event)">
+</bg-confirm>
+<bg-confirm #confirmReg title="Are you sure?" (ok)="deleteRegistration($event)">
   Pressing OK will delete your tournament registration permanently...
-</app-confirm>
+</bg-confirm>
 <!-- END Confirm -->

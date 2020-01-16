@@ -13,7 +13,6 @@ export class AdminCsgoComponent {
   public groups: TournamentCSGOGroup [];
   public loading = false;
   public environment = environment;
-  public inEdit = false;
   public newGroup = getEmptyNewCSGOGroup();
 
   constructor(private apiService: ApiTournamentsService) {
@@ -23,6 +22,15 @@ export class AdminCsgoComponent {
   }
 
   public submitGroup(group: TournamentCSGOGroup) {
-    this.apiService.submitCSGOGroup(group).subscribe();
+    group.inEdit = false;
+    this.apiService.submitCSGOGroup(group).subscribe(data => {
+      if (!this.groups.find(g => g.Id === data.Id)) {
+        this.groups.push(data);
+      }
+    });
+  }
+
+  public deleteGroup(id: string) {
+    this.apiService.deleteCSGOGroup(id).subscribe(_ => this.groups.splice(this.groups.indexOf(this.groups.find(g => g.Id === id)), 1));
   }
 }

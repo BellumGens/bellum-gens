@@ -174,6 +174,10 @@ export class ApiTournamentsService {
             group, { withCredentials: true});
   }
 
+  public deleteCSGOGroup(id: string) {
+    return this.http.delete<TournamentCSGOGroup>(`${this._apiEndpoint}/tournament/csgogroup?id=${id}`, { withCredentials: true});
+  }
+
   public getSC2Groups() {
     return this.http.get<TournamentSC2Group []>(`${this._apiEndpoint}/tournament/sc2groups`, { withCredentials: true});
   }

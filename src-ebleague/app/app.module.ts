@@ -32,7 +32,6 @@ import { IgxNavbarModule,
 import { LoginService } from '../../src-common/services/login.service';
 import { BellumgensApiService } from '../../src-common/services/bellumgens-api.service';
 import { SuccessErrorComponent } from '../../src-bellumgens/app/success-error/success-error.component';
-import { ConfirmComponent } from '../../src-bellumgens/app/confirm/confirm.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../../src-common/environments/environment';
 import { TournamentHomeComponent } from './home/tournament-home.component';
@@ -50,13 +49,13 @@ import { TournamentCsgoComponent } from './tournaments/tournament-csgo/tournamen
 import { TournamentSc2Component } from './tournaments/tournament-sc2/tournament-sc2.component';
 import { BaseComponent } from '../../src-bellumgens/app/base/base.component';
 import { TournamentRegistrationComponent } from './tournaments/tournament-registration/tournament-registration.component';
+import { BellumGensModule } from '../../src-common/components/components.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     BaseComponent,
     SuccessErrorComponent,
-    ConfirmComponent,
     TournamentHomeComponent,
     TeamNewComponent,
     TournamentFormatComponent,
@@ -99,6 +98,7 @@ import { TournamentRegistrationComponent } from './tournaments/tournament-regist
     IgxSelectModule,
     IgxDividerModule,
     IgxAutocompleteModule,
+    BellumGensModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [
