@@ -1,7 +1,7 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../out-tsc/app-bellumgens",
+    "outDir": "../out-tsc/app-common",
     "types": []
   },
   "exclude": [

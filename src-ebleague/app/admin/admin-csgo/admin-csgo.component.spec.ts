@@ -11,6 +11,9 @@ import { IgxListModule,
   IgxButtonModule,
   IgxDragDropModule,
   IgxProgressBarModule} from 'igniteui-angular';
+import { FormsModule } from '@angular/forms';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('AdminCsgoComponent', () => {
   let component: AdminCsgoComponent;
@@ -20,6 +23,9 @@ describe('AdminCsgoComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ AdminCsgoComponent ],
       imports: [
+        FormsModule,
+        HttpClientTestingModule,
+        NoopAnimationsModule,
         BellumGensModule,
         IgxListModule,
         IgxIconModule,

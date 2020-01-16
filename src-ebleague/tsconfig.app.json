@@ -1,11 +1,10 @@
 {
   "extends": "../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../out-tsc/app-bellumgens",
+    "outDir": "../out-tsc/app-ebleague",
     "types": []
   },
   "exclude": [
-    "src-bellumgens/test.ts",
     "**/*.spec.ts"
   ]
 }
