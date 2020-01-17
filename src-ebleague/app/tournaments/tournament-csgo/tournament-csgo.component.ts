@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TournamentRegistration } from '../../../../src-common/models/tournament';
+import { TournamentRegistration, TournamentGroup } from '../../../../src-common/models/tournament';
 import { ApiTournamentsService } from '../../../../src-common/services/bellumgens-api.tournaments.service';
 import { BaseComponent } from '../../../../src-bellumgens/app/base/base.component';
 import { Title, Meta } from '@angular/platform-browser';
@@ -15,6 +15,7 @@ import { environment } from '../../../../src-common/environments/environment';
 })
 export class TournamentCsgoComponent extends BaseComponent {
   public registrations: TournamentRegistration [];
+  public groups: TournamentGroup [];
   public loading = false;
   public authUser: ApplicationUser;
   public environment = environment;
@@ -30,6 +31,7 @@ export class TournamentCsgoComponent extends BaseComponent {
       this.apiService.loadingCSGORegistrations.subscribe(data => this.loading = data),
       this.loginService.applicationUser.subscribe(user => this.authUser = user)
     );
+    this.apiService.getCSGOGroups().subscribe(data => this.groups = data);
   }
 
 }

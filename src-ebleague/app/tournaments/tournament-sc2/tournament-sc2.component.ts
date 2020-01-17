@@ -5,7 +5,7 @@ import { ApiTournamentsService } from '../../../../src-common/services/bellumgen
 import { LoginService } from '../../../../src-common/services/login.service';
 import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { TournamentRegistration } from '../../../../src-common/models/tournament';
+import { TournamentRegistration, TournamentGroup } from '../../../../src-common/models/tournament';
 import { environment } from '../../../../src-common/environments/environment';
 
 @Component({
@@ -15,6 +15,7 @@ import { environment } from '../../../../src-common/environments/environment';
 })
 export class TournamentSc2Component extends BaseComponent {
   public registrations: TournamentRegistration [];
+  public groups: TournamentGroup [];
   public loading = false;
   public authUser: ApplicationUser;
   public environment = environment;
@@ -30,6 +31,7 @@ export class TournamentSc2Component extends BaseComponent {
       this.apiService.loadingSC2Registrations.subscribe(data => this.loading = data),
       this.loginService.applicationUser.subscribe(user => this.authUser = user)
     );
+    this.apiService.getSC2Groups().subscribe(data => this.groups = data);
   }
 
 }
