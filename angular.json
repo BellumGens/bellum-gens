@@ -302,6 +302,27 @@
           }
         }
       }
+    },
+    "common": {
+      "root": "",
+      "sourceRoot": "src-common",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {},
+      "architect": {
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "src-common/tsconfig.app.json",
+              "src-common/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
   "defaultProject": "bellum-gens"
