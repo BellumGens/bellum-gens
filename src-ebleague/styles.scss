@@ -32,6 +32,8 @@ $include: (igx-avatar,
            igx-switch,
            igx-divider,
            igx-chip,
+           igx-date-picker,
+           igx-calendar,
            igx-banner);
 
 @include igx-dark-theme(
@@ -179,6 +181,48 @@ $overlay-theme: igx-overlay-theme($background-color: rgba(35, 51, 132, 0.7));
   align-items: center;
 }
 /* END Registrations */
+
+/* Admin */
+.new-group-card {
+  border: 1px dashed #aaa;
+}
+
+.new-group-card:hover {
+  border: 1px dashed #fff;
+}
+
+.new-group-body {
+  min-height: 350px;
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.new-group-body igx-icon {
+  width: 120px;
+  height: 120px;
+  font-size: 90pt;
+}
+
+.group-list {
+  min-height: 350px;
+}
+
+.new-group-body igx-icon:hover {
+  color: #fff;
+}
+
+.action-icon-button {
+  margin: 0 4px;
+}
+
+.action-buttons {
+  display: flex;
+  align-items: center;
+  padding-right: 4px;
+}
+/* END Admin */
 
 @media only screen and (max-width: 1280px) {
   .home-page-slide-columns {

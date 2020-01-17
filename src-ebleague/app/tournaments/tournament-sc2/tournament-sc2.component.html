@@ -21,50 +21,29 @@
           <a [href]="environment.bellumgens + '/players/' + (registration.User.customURL || registration.UserId)" target="_blank">{{ registration.BattleTag }}</a>
         </div>
       </div>
-      <div class="content-container four-column">
-        <div>
-          <h3 class="igx-card-header__title">Група А</h3>
-          <igx-list>
-            <ng-template igxEmptyList>
-              <div class="empty-group-list">
-                Групите ще бъдат изтеглени след краят на регистрацията (13ти януари 2020)
-              </div>
-            </ng-template>
-          </igx-list>
-        </div>
+      <div class="card-wrapper">
+        <igx-card *ngFor="let group of groups">
+          <igx-card-header>
+            <igx-avatar igxCardThumbnail [roundShape]="true" src="/assets/wallpapers/sc2-watermark.webp"></igx-avatar>
+            <h1 igxCardHeaderTitle>{{group.Name}}</h1>
+          </igx-card-header>
 
-        <div>
-          <h3 class="igx-card-header__title">Група Б</h3>
-          <igx-list>
-            <ng-template igxEmptyList>
-              <div class="empty-group-list">
-                Групите ще бъдат изтеглени след краят на регистрацията (13ти януари 2020)
-              </div>
-            </ng-template>
-          </igx-list>
-        </div>
+          <igx-card-content>
+            <igx-list class="group-list">
+              <igx-list-item *ngFor="let participant of group.Participants">
+                <igx-avatar igxListThumbnail [src]="participant.User.avatarMedium" roundShape="true"></igx-avatar>
+                <a igxListLineTitle [href]="environment.bellumgens + '/players/' + (participant.User.customURL || participant.UserId)" target="_blank">
+                  {{ participant.User.username }}
+                </a>
+                <span igxListLineTitle>
+                  {{ participant.BattleTag }}
+                </span>
 
-        <div>
-          <h3 class="igx-card-header__title">Група В</h3>
-          <igx-list>
-            <ng-template igxEmptyList>
-              <div class="empty-group-list">
-                Групите ще бъдат изтеглени след краят на регистрацията (13ти януари 2020)
-              </div>
-            </ng-template>
-          </igx-list>
-        </div>
-
-        <div>
-          <h3 class="igx-card-header__title">Група Г</h3>
-          <igx-list>
-            <ng-template igxEmptyList>
-              <div class="empty-group-list">
-                Групите ще бъдат изтеглени след краят на регистрацията (13ти януари 2020)
-              </div>
-            </ng-template>
-          </igx-list>
-        </div>
+                <span igxListAction>0 точки</span>
+              </igx-list-item>
+            </igx-list>
+          </igx-card-content>
+        </igx-card>
       </div>
     </igx-card-content>
   </igx-card>

@@ -4,7 +4,12 @@ import { CommunicationService } from './communication.service';
 import { BehaviorSubject, throwError } from 'rxjs';
 import { environment } from '../environments/environment';
 import { map, catchError } from 'rxjs/operators';
-import { TournamentApplication, RegistrationsCount, TournamentCSGORegistration, TournamentSC2Registration } from '../models/tournament';
+import { TournamentApplication,
+  RegistrationsCount,
+  Tournament,
+  TournamentCSGOGroup,
+  TournamentSC2Group,
+  TournamentRegistration} from '../models/tournament';
 
 @Injectable({
   providedIn: 'root'
@@ -12,16 +17,27 @@ import { TournamentApplication, RegistrationsCount, TournamentCSGORegistration, 
 export class ApiTournamentsService {
   private _apiEndpoint = environment.apiEndpoint;
 
+  private _tournaments = new BehaviorSubject<Tournament []>(null);
   private _companies = new BehaviorSubject<string []>(null);
   private _registrations = new BehaviorSubject<TournamentApplication []>(null);
-  private _csgoRegistrations = new BehaviorSubject<TournamentCSGORegistration []>(null);
-  private _sc2Registrations = new BehaviorSubject<TournamentSC2Registration []>(null);
+  private _csgoRegistrations = new BehaviorSubject<TournamentRegistration []>(null);
+  private _sc2Registrations = new BehaviorSubject<TournamentRegistration []>(null);
   private _registrationsCount = new BehaviorSubject<RegistrationsCount []>(null);
 
   public loadingCSGORegistrations = new BehaviorSubject<boolean>(false);
   public loadingSC2Registrations = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient, private commService: CommunicationService) { }
+
+  public get tournaments() {
+    if (!this._tournaments.value) {
+      this.getTournaments().subscribe(data => {
+        this._tournaments.next(data);
+      });
+    }
+    return this._tournaments;
+  }
+
 
   public get companies() {
     if (!this._companies.value) {
@@ -103,6 +119,30 @@ export class ApiTournamentsService {
     );
   }
 
+  public createTournament(tournament: Tournament) {
+    return this.http.post<Tournament>(`${this._apiEndpoint}/tournament/create`, tournament, { withCredentials: true }).pipe(
+      map(response => {
+        return response;
+      }),
+      catchError(error => {
+        this.commService.emitError(error.error.Message);
+        return throwError(error);
+      })
+    );
+  }
+
+  public addTournamentApplications(id: string) {
+    return this.http.put<Tournament>(`${this._apiEndpoint}/tournament/addapplications?id=${id}`, id, { withCredentials: true }).pipe(
+      map(response => {
+        return response;
+      }),
+      catchError(error => {
+        this.commService.emitError(error.error.Message);
+        return throwError(error);
+      })
+    );
+  }
+
   public updateRegistrations() {
     this.getRegistrations().subscribe(data => {
       this._registrations.next(data);
@@ -124,6 +164,80 @@ export class ApiTournamentsService {
     );
   }
 
+  public getCSGOGroups() {
+    return this.http.get<TournamentCSGOGroup []>(`${this._apiEndpoint}/tournament/csgogroups`, { withCredentials: true});
+  }
+
+  public submitCSGOGroup(group: TournamentCSGOGroup) {
+    return this.http.put<TournamentCSGOGroup>(`${this._apiEndpoint}/tournament/csgogroup?id=${group.Id || null}`,
+      group, { withCredentials: true}).pipe(
+        map(response => {
+          if (response) {
+            this.commService.emitSuccess('Tournament CS:GO group updated successfully!');
+          }
+          return response;
+        }),
+        catchError(error => {
+          this.commService.emitError(error.error.Message);
+          return throwError(error);
+        })
+      );
+  }
+
+  public deleteGroup(id: string) {
+    return this.http.delete<TournamentCSGOGroup>(`${this._apiEndpoint}/tournament/group?id=${id}`, { withCredentials: true});
+  }
+
+  public addParticipantToGroup(participant: TournamentRegistration, groupid: string) {
+    return this.http.put(`${this._apiEndpoint}/tournament/participanttogroup?id=${groupid}`, participant, { withCredentials: true }).pipe(
+      map(response => {
+        if (response) {
+          this.commService.emitSuccess('Tournament participant added to group successfully!');
+        }
+        return response;
+      }),
+      catchError(error => {
+        this.commService.emitError(error.error.Message);
+        return throwError(error);
+      })
+    );
+  }
+
+  public removeParticipantFromGroup(participantid: string) {
+    return this.http.delete(`${this._apiEndpoint}/tournament/participanttogroup?id=${participantid}`, { withCredentials: true }).pipe(
+      map(response => {
+        if (response) {
+          this.commService.emitSuccess('Tournament participant deleted from group successfully!');
+        }
+        return response;
+      }),
+      catchError(error => {
+        this.commService.emitError(error.error.Message);
+        return throwError(error);
+      })
+    );
+  }
+
+  public getSC2Groups() {
+    return this.http.get<TournamentSC2Group []>(`${this._apiEndpoint}/tournament/sc2groups`, { withCredentials: true});
+  }
+
+  public submitSC2Group(group: TournamentSC2Group) {
+    return this.http.put<TournamentSC2Group>(`${this._apiEndpoint}/tournament/sc2group?id=${group.Id || null}`,
+      group, { withCredentials: true}).pipe(
+        map(response => {
+          if (response) {
+            this.commService.emitSuccess('Tournament CS:GO group updated successfully!');
+          }
+          return response;
+        }),
+        catchError(error => {
+          this.commService.emitError(error.error.Message);
+          return throwError(error);
+        })
+      );
+  }
+
   private getRegistrations() {
     return this.http.get<TournamentApplication []>(`${this._apiEndpoint}/tournament/registrations`, { withCredentials: true});
   }
@@ -133,14 +247,18 @@ export class ApiTournamentsService {
   }
 
   private getCSGORegistrations() {
-    return this.http.get<TournamentCSGORegistration []>(`${this._apiEndpoint}/tournament/csgoregs`);
+    return this.http.get<TournamentRegistration []>(`${this._apiEndpoint}/tournament/csgoregs`);
   }
 
   private getSC2Registrations() {
-    return this.http.get<TournamentSC2Registration []>(`${this._apiEndpoint}/tournament/sc2regs`);
+    return this.http.get<TournamentRegistration []>(`${this._apiEndpoint}/tournament/sc2regs`);
   }
 
   private getCompanies() {
     return this.http.get<string []>(`${this._apiEndpoint}/companies`);
+  }
+
+  private getTournaments() {
+    return this.http.get<Tournament []>(`${this._apiEndpoint}/tournament/leagues`);
   }
 }

@@ -31,8 +31,6 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { SortWeaponsPipe } from 'src-bellumgens/app/pipes/sort-weapons.pipe';
 import { FormsModule } from '@angular/forms';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { UserPreferencesComponent } from '../user-preferences/user-preferences.component';
-import { ConfirmComponent } from 'src-bellumgens/app/confirm/confirm.component';
 import { ActiveDutyMapsPipe } from 'src-bellumgens/app/pipes/active-duty-maps.pipe';
 import { AppShellComponent } from 'src-bellumgens/app/app-shell/app-shell.component';
 import { LoginDialogComponent } from 'src-bellumgens/app/login/login-dialog/login-dialog.component';

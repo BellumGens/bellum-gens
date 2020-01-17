@@ -21,11 +21,11 @@ import { IgxIconModule,
   IgxDropDownModule,
   IgxProgressBarModule } from 'igniteui-angular';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { ConfirmComponent } from 'src-bellumgens/app/confirm/confirm.component';
 import { SafeVideoLinkPipe } from 'src-bellumgens/app/pipes/safe-video-link.pipe';
 import { TruncateTextPipe } from 'src-bellumgens/app/pipes/truncate-text.pipe';
 import { IsVideoPipe } from 'src-bellumgens/app/pipes/is-video.pipe';
 import { NewStrategyComponent } from 'src-bellumgens/app/team-section/team-strategies/new-strategy/new-strategy.component';
+import { BellumGensModule } from 'src-common/components/components.module';
 
 describe('UserStrategiesComponent', () => {
   let component: UserStrategiesComponent;
@@ -53,12 +53,12 @@ describe('UserStrategiesComponent', () => {
         IgxBadgeModule,
         IgxSwitchModule,
         IgxDropDownModule,
-        IgxProgressBarModule
+        IgxProgressBarModule,
+        BellumGensModule
       ],
       declarations: [
         UserStrategiesComponent,
         NewStrategyComponent,
-        ConfirmComponent,
         SafeVideoLinkPipe,
         TruncateTextPipe,
         IsVideoPipe

@@ -10,7 +10,6 @@ import { IgxAvatarModule,
   IgxDialogModule,
   IgxRippleModule } from 'igniteui-angular';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ConfirmComponent } from 'src-bellumgens/app/confirm/confirm.component';
 import { PlayerCountryPipe } from 'src-bellumgens/app/pipes/player-country.pipe';
 import { WeekdayPipe } from 'src-bellumgens/app/pipes/weekday.pipe';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,6 +17,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { BellumGensModule } from 'src-common/components/components.module';
 
 describe('TeamDetailsComponent', () => {
   let component: TeamDetailsComponent;
@@ -36,12 +36,12 @@ describe('TeamDetailsComponent', () => {
         IgxChipsModule,
         IgxTimePickerModule,
         IgxDialogModule,
-        IgxRippleModule
+        IgxRippleModule,
+        BellumGensModule
       ],
       declarations: [
         TeamDetailsComponent,
         AvailabilityComponent,
-        ConfirmComponent,
         PlayerCountryPipe,
         WeekdayPipe
       ],

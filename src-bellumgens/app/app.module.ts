@@ -73,7 +73,6 @@ import { QuickSearchComponent } from './search/quick-search/quick-search.compone
 import { ReduceQuickSearchResultPipe } from './pipes/reduce-quick-search-result.pipe';
 import { TeamResultsComponent } from './search/search-results/team-results/team-results.component';
 import { PlayerResultsComponent } from './search/search-results/player-results/player-results.component';
-import { ConfirmComponent } from './confirm/confirm.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { DaysAvailablePipe } from './pipes/days-available.pipe';
 import { OpenPositionsPipe } from './pipes/open-positions.pipe';
@@ -107,6 +106,7 @@ import { TeamNewComponent } from './team-section/team-new/team-new.component';
 import { GetRegCountPipe } from './pipes/get-reg-count.pipe';
 import { CommunicationService } from '../../src-common/services/communication.service';
 import { SocialMediaService } from '../../src-common/services/social-media.service';
+import { BellumGensModule } from '../../src-common/components/components.module';
 
 @NgModule({
   declarations: [
@@ -144,7 +144,6 @@ import { SocialMediaService } from '../../src-common/services/social-media.servi
     ReduceQuickSearchResultPipe,
     TeamResultsComponent,
     PlayerResultsComponent,
-    ConfirmComponent,
     NotificationsComponent,
     DaysAvailablePipe,
     TeamPreferencesComponent,
@@ -211,6 +210,7 @@ import { SocialMediaService } from '../../src-common/services/social-media.servi
     IgxDividerModule,
     IgxCarouselModule,
     IgxAutocompleteModule,
+    BellumGensModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [

@@ -1,4 +1,4 @@
-<div class="content-container">
+<div class="content-container three-column">
   <igx-chips-area>
     Roles
     <igx-chip *ngFor="let role of roles">{{role}}</igx-chip>
@@ -12,26 +12,58 @@
     </igx-input-group>
     <button igxButton (click)="submitRole(roleinput.value)">Submit</button>
   </div>
-</div>
 
-<div class="content-container">
-  <igx-list>
+  <igx-list class="players-list">
     <igx-list-item *ngFor="let user of users">
       <igx-avatar igxListThumbnail [src]="user.avatarMedium"></igx-avatar>
       <h2 igxListLineTitle>{{user.username}}</h2>
 
 
       <igx-chips-area>
-        <igx-chip *ngIf="!user.Roles.length" (onClick)="addAdmin(user.id)">
+        <igx-chip (onClick)="addAdmin(user.id)">
           <igx-icon igxPrefit>add</igx-icon>
           <span>admin</span>
         </igx-chip>
 
-        <igx-chip *ngIf="!user.Roles.length" (onClick)="addEventAdmin(user.id)">
+        <igx-chip (onClick)="addEventAdmin(user.id)">
           <igx-icon igxPrefit>add</igx-icon>
           <span>event-admin</span>
+        </igx-chip>
+
+        <igx-chip *ngIf="user.Roles.length">
+          <igx-icon igxPrefit>remove</igx-icon>
+          <span>admin</span>
         </igx-chip>
       </igx-chips-area>
     </igx-list-item>
   </igx-list>
+</div>
+
+<div class="content-container">
+  <div>
+    <a *ngFor="let league of tournaments">{{league.Name}}: {{league.StartDate | date}} - {{league.EndDate | date}}
+      <button igxButton (click)="addAllApplications(league.ID)">Assign Applications</button>
+    </a>
+    <span *ngIf="!tournaments || !tournaments.length">No tournaments</span>
+  </div>
+
+  <form #leagueForm="ngForm" (ngSubmit)="createTournament()">
+    <igx-input-group>
+      <label igxLabel for="tournamentName">Tournament name</label>
+      <input type="text" id="tournamentName" name="tournamentName" #tournamentName igxInput required [(ngModel)]="tournament.Name" />
+      <igx-suffix *ngIf="tournamentName.value" (click)="tournament.Name = null">
+        <igx-icon>clear</igx-icon>
+      </igx-suffix>
+    </igx-input-group>
+
+    <igx-date-picker label="Start Date" name="startDate" required [(ngModel)]="tournament.StartDate">
+
+    </igx-date-picker>
+
+    <igx-date-picker label="End Date" name="endDate" required [(ngModel)]="tournament.EndDate">
+
+    </igx-date-picker>
+
+    <button igxButton [disabled]="!leagueForm.valid || !leagueForm.touched">Submit</button>
+  </form>
 </div>

@@ -6,16 +6,16 @@ import { LoginService } from '../services/login.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AdminAuthGuard implements CanActivate {
+export class EventAdminGuard implements CanActivate {
   constructor(private authService: LoginService) {}
 
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return this.isAppAdmin();
+    return this.isEventAdmin();
   }
 
-  isAppAdmin() {
-    return this.authService.getUserIsAppAdmin();
+  isEventAdmin() {
+    return this.authService.getUserIsTournamentAdmin();
   }
 }

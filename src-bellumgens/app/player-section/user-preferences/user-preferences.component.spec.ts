@@ -10,11 +10,11 @@ import { IgxInputGroupModule,
   IgxDividerModule,
   IgxButtonModule,
   IgxListModule} from 'igniteui-angular';
-import { ConfirmComponent } from 'src-bellumgens/app/confirm/confirm.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { BellumGensModule } from 'src-common/components/components.module';
 
 describe('UserPreferencesComponent', () => {
   let component: UserPreferencesComponent;
@@ -36,9 +36,10 @@ describe('UserPreferencesComponent', () => {
         IgxButtonModule,
         IgxDividerModule,
         IgxRippleModule,
-        IgxListModule
+        IgxListModule,
+        BellumGensModule
       ],
-      declarations: [ UserPreferencesComponent, ConfirmComponent ]
+      declarations: [ UserPreferencesComponent ]
     })
     .compileComponents();
   }));

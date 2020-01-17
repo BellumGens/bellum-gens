@@ -24,8 +24,14 @@
   margin: 8px auto;
 }
 
+.form-wrapper {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
+
 .registration-form-input {
-  min-width: 380px;
+  width: 380px;
   margin: 4px 0;
 }
 

@@ -67,6 +67,10 @@ export class LoginService {
     return this.http.get<boolean>(`${this._apiBase}/admin/appadmin`, { withCredentials: true });
   }
 
+  public getUserIsTournamentAdmin() {
+    return this.http.get<boolean>(`${this._apiBase}/admin/tournamentadmin`, { withCredentials: true });
+  }
+
   public getUserIsTeamAdmin(teamid: string) {
     return this.http.get<boolean>(`${this._apiBase}/teams/teamadmin?teamid=${teamid}`, { withCredentials: true });
   }
@@ -80,11 +84,11 @@ export class LoginService {
   }
 
   public submitRole(role: string) {
-    return this.http.get<string>(`${this._apiBase}/admin/createrole?rolename=${role}`, { withCredentials: true });
+    return this.http.put<string>(`${this._apiBase}/admin/createrole?rolename=${role}`, { withCredentials: true });
   }
 
   public addUserToRole(userId: string, role: string) {
-    return this.http.get<string>(`${this._apiBase}/admin/adduserrole?userid=${userId}&role=${role}`, { withCredentials: true });
+    return this.http.put<string>(`${this._apiBase}/admin/adduserrole?userid=${userId}&role=${role}`, role, { withCredentials: true });
   }
 
   public login(provider: string) {

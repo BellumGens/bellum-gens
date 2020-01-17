@@ -1,10 +1,18 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AdminComponent } from './admin.component';
-import { IgxChipsModule, IgxInputGroupModule, IgxListModule, IgxButtonModule, IgxAvatarModule, IgxIconModule } from 'igniteui-angular';
+import { IgxChipsModule,
+  IgxInputGroupModule,
+  IgxListModule,
+  IgxButtonModule,
+  IgxAvatarModule,
+  IgxIconModule,
+  IgxDatePickerModule } from 'igniteui-angular';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { RouterTestingModule } from '@angular/router/testing';
+import { FormsModule } from '@angular/forms';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('AdminComponent', () => {
   let component: AdminComponent;
@@ -16,7 +24,9 @@ describe('AdminComponent', () => {
         AdminComponent
       ],
       imports: [
+        FormsModule,
         HttpClientTestingModule,
+        NoopAnimationsModule,
         RouterTestingModule,
         ServiceWorkerModule.register('', {enabled: false}),
         IgxChipsModule,
@@ -24,7 +34,8 @@ describe('AdminComponent', () => {
         IgxListModule,
         IgxButtonModule,
         IgxAvatarModule,
-        IgxIconModule
+        IgxIconModule,
+        IgxDatePickerModule
       ]
     })
     .compileComponents();

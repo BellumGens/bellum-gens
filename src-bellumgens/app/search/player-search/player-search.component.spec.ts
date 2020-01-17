@@ -6,23 +6,13 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { IgxRadioModule,
   IgxSliderModule,
-  IgxDialogModule,
   IgxRippleModule,
   IgxAvatarModule,
   IgxIconModule,
-  IgxToggleModule,
-  IgxTabsModule,
-  IgxSwitchModule,
   IgxInputGroupModule,
-  IgxProgressBarModule,
-  IgxDividerModule,
   IgxButtonModule,
-  IgxSelectModule,
-  IgxDropDownModule} from 'igniteui-angular';
-import { LoginComponent } from 'src-bellumgens/app/login/login.component';
+  IgxSelectModule} from 'igniteui-angular';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { UserPreferencesComponent } from 'src-bellumgens/app/player-section/user-preferences/user-preferences.component';
-import { ConfirmComponent } from 'src-bellumgens/app/confirm/confirm.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('PlayerSearchComponent', () => {
