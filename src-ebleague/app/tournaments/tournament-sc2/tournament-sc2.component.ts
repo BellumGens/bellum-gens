@@ -5,7 +5,7 @@ import { ApiTournamentsService } from '../../../../src-common/services/bellumgen
 import { LoginService } from '../../../../src-common/services/login.service';
 import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { TournamentSC2Registration } from '../../../../src-common/models/tournament';
+import { TournamentRegistration } from '../../../../src-common/models/tournament';
 import { environment } from '../../../../src-common/environments/environment';
 
 @Component({
@@ -14,7 +14,7 @@ import { environment } from '../../../../src-common/environments/environment';
   styleUrls: ['./tournament-sc2.component.scss']
 })
 export class TournamentSc2Component extends BaseComponent {
-  public registrations: TournamentSC2Registration [];
+  public registrations: TournamentRegistration [];
   public loading = false;
   public authUser: ApplicationUser;
   public environment = environment;

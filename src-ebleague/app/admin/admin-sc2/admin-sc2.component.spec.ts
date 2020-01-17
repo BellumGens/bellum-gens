@@ -14,6 +14,7 @@ import { IgxListModule,
 import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { NotInGroupPipe } from 'src-ebleague/app/pipes/not-in-group.pipe';
 
 describe('AdminSc2Component', () => {
   let component: AdminSc2Component;
@@ -21,7 +22,7 @@ describe('AdminSc2Component', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AdminSc2Component ],
+      declarations: [ AdminSc2Component, NotInGroupPipe ],
       imports: [
         FormsModule,
         HttpClientTestingModule,

@@ -8,7 +8,7 @@
     <igx-card-content>
       <div class="horizontal-center registration-container">
         <igx-circular-bar *ngIf="loading" [indeterminate]="true"></igx-circular-bar>
-        <div *ngFor="let registration of noGroupParticipants" class="registration-slot">
+        <div *ngFor="let registration of registrations | notInGroup:'TournamentCSGOGroupId':pipeTrigger" class="registration-slot">
           <igx-avatar [src]="registration.Team.TeamAvatar"
                       [initials]="registration.Team.TeamName"
                       size="large"
@@ -38,19 +38,25 @@
               </igx-suffix>
             </igx-input-group>
 
-            <igx-icon class="navigatable" title="Редактирай групата" *ngIf="!group.inEdit" (click)="group.inEdit = true">edit</igx-icon>
-            <igx-icon class="navigatable" title="Изтрий групата" *ngIf="!group.inEdit" (click)="confirm.open(group.Id)">delete</igx-icon>
+            <div class="action-buttons">
+              <igx-icon class="navigatable action-icon-button" title="Редактирай групата" *ngIf="!group.inEdit" (click)="group.inEdit = true">edit</igx-icon>
+              <igx-icon class="navigatable action-icon-button" title="Изтрий групата" *ngIf="!group.inEdit" (click)="confirm.open(group.Id)">delete</igx-icon>
 
-            <igx-icon class="navigatable" *ngIf="group.inEdit" (click)="group.inEdit = false">cancel</igx-icon>
-            <igx-icon class="navigatable" *ngIf="group.inEdit" (click)="submitGroup(group)">done</igx-icon>
+              <igx-icon class="navigatable action-icon-button" *ngIf="group.inEdit" (click)="group.inEdit = false">cancel</igx-icon>
+              <igx-icon class="navigatable action-icon-button" *ngIf="group.inEdit" (click)="submitGroup(group)">done</igx-icon>
+            </div>
           </igx-card-header>
 
           <igx-card-content>
-            <igx-list igxDrop (dropped)="addToGroup($event, group)">
+            <igx-list class="group-list" igxDrop (dropped)="addToGroup($event, group)">
               <igx-list-item *ngFor="let participant of group.Participants">
-                <igx-avatar igxListThumbnail [src]="participant.Team.TeamAvatar" roundShape="true"></igx-avatar>
+                <igx-avatar igxListThumbnail [src]="participant.Team.TeamAvatar" [initials]="participant.Team.TeamName" roundShape="true"></igx-avatar>
 
-                <h1 igxListLineTitle>{{ participant.Team.TeamName }}</h1>
+                <a [href]="environment.bellumgens + '/team/' + participant.Team.CustomUrl"
+                   igxListLineTitle
+                   target="_blank">
+                  {{ participant.Team.TeamName }}
+                </a>
 
                 <igx-icon class="navigatable" title="Премахни от групата" (click)="removeFromGroup(participant, group)">delete</igx-icon>
               </igx-list-item>

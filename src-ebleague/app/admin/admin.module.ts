@@ -18,10 +18,11 @@ import { FormsModule } from '@angular/forms';
 import { AdminCsgoComponent } from './admin-csgo/admin-csgo.component';
 import { BellumGensModule } from '../../../src-common/components/components.module';
 import { AdminSc2Component } from './admin-sc2/admin-sc2.component';
+import { NotInGroupPipe } from '../pipes/not-in-group.pipe';
 
 
 @NgModule({
-  declarations: [AdminComponent, AdminCsgoComponent, AdminSc2Component],
+  declarations: [AdminComponent, AdminCsgoComponent, AdminSc2Component, NotInGroupPipe],
   imports: [
     CommonModule,
     AdminRoutingModule,

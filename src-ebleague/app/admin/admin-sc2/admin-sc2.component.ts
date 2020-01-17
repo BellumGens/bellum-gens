@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { TournamentCSGORegistration,
-  TournamentGroup,
+import { TournamentGroup,
   TournamentRegistration,
   getEmptyNewSC2Group} from '../../../../src-common/models/tournament';
 import { ApiTournamentsService } from '../../../../src-common/services/bellumgens-api.tournaments.service';
@@ -14,17 +13,16 @@ import { IDropDroppedEventArgs } from 'igniteui-angular';
 })
 export class AdminSc2Component {
   public registrations: TournamentRegistration [];
-  public noGroupParticipants: TournamentRegistration [];
   public groups: TournamentGroup [];
   public loading = false;
   public environment = environment;
   public newGroup = getEmptyNewSC2Group();
+  public pipeTrigger = 0;
 
   constructor(private apiService: ApiTournamentsService) {
     this.apiService.sc2Registrations.subscribe(data => {
       if (data) {
         this.registrations = data;
-        this.noGroupParticipants = data.filter(r => !r.TournamentSC2GroupId);
       }
     });
     this.apiService.loadingSC2Registrations.subscribe(data => this.loading = data);
@@ -33,7 +31,7 @@ export class AdminSc2Component {
 
   public submitGroup(group: TournamentGroup) {
     group.inEdit = false;
-    this.apiService.submitCSGOGroup(group).subscribe(data => {
+    this.apiService.submitSC2Group(group).subscribe(data => {
       if (!this.groups.find(g => g.Id === data.Id)) {
         this.groups.push(data);
       }
@@ -42,9 +40,9 @@ export class AdminSc2Component {
 
   public deleteGroup(id: string) {
     const group = this.groups.find(g => g.Id === id);
-    group.Participants.forEach(p => this.noGroupParticipants.push(p));
-    this.apiService.deleteCSGOGroup(id).subscribe(_ => this.groups.splice(this.groups.indexOf(group), 1));
-
+    this.apiService.deleteGroup(id).subscribe(_ => this.groups.splice(this.groups.indexOf(group), 1));
+    this.registrations.filter(r => r.TournamentSC2GroupId === id).forEach(r => r.TournamentSC2GroupId = null);
+    this.pipeTrigger++;
   }
 
   public addToGroup(event: IDropDroppedEventArgs, group: TournamentGroup) {
@@ -53,15 +51,15 @@ export class AdminSc2Component {
       group.Participants = [ event.dragData ];
     } else {
       group.Participants.push(event.dragData);
-      event.dragData.TournamentCSGOGroupId = group.Id;
-      this.noGroupParticipants.splice(this.noGroupParticipants.indexOf(event.dragData), 1);
     }
+    event.dragData.TournamentSC2GroupId = group.Id;
+    this.pipeTrigger++;
   }
 
-  public removeFromGroup(participant: TournamentCSGORegistration, group: TournamentGroup) {
+  public removeFromGroup(participant: TournamentRegistration, group: TournamentGroup) {
     this.apiService.removeParticipantFromGroup(participant.Id).subscribe();
     group.Participants.splice(group.Participants.indexOf(participant), 1);
-    participant.TournamentCSGOGroupId = null;
-    this.noGroupParticipants.push(participant);
+    this.registrations.find(r => r.Id === participant.Id).TournamentSC2GroupId = null;
+    this.pipeTrigger++;
   }
 }

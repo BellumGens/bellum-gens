@@ -27,14 +27,8 @@ export interface TournamentRegistration {
   State: TournamentApplicationState;
   User: ApplicationUser;
   Team: CSGOTeam;
-}
-
-export interface TournamentCSGORegistration extends TournamentRegistration {
-  TournamentCSGOGroupId: string;
-}
-
-export interface TournamentSC2Registration extends TournamentRegistration {
   BattleTag: string;
+  TournamentCSGOGroupId: string;
   TournamentSC2GroupId: string;
 }
 
