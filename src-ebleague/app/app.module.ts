@@ -117,5 +117,6 @@ export class AppModule {
     this.iconService.addSvgIcon('BattleNet', '/assets/login/battle-net.svg', 'login-icons');
     this.iconService.addSvgIcon('Discord', '/assets/login/Discord-Logo-White.svg', 'login-icons');
     this.iconService.addSvgIcon('isobar', '/assets/partners/isobar.svg', 'partners');
+    this.iconService.addSvgIcon('vmware', '/assets/partners/vmware.svg', 'partners');
   }
 }
