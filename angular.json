@@ -310,32 +310,12 @@
       "prefix": "app",
       "schematics": {},
       "architect": {
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "src-ebleague/test.ts",
-            "polyfills": "src-ebleague/polyfills.ts",
-            "tsConfig": "src-ebleague/tsconfig.spec.json",
-            "karmaConfig": "src-ebleague/karma.conf.js",
-            "styles": [
-              "src-ebleague/styles.scss"
-            ],
-            "scripts": [
-              "./node_modules/hammerjs/hammer.min.js"
-            ],
-            "assets": [
-              "src-ebleague/favicon.ico",
-              "src-ebleague/assets",
-              "src-ebleague/manifest.json"
-            ]
-          }
-        },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {
             "tsConfig": [
-              "src-ebleague/tsconfig.app.json",
-              "src-ebleague/tsconfig.spec.json"
+              "src-common/tsconfig.app.json",
+              "src-common/tsconfig.spec.json"
             ],
             "exclude": [
               "**/node_modules/**"
