@@ -28,7 +28,7 @@
             <h1 igxCardHeaderTitle>{{group.Name}}</h1>
           </igx-card-header>
 
-          <igx-card-content>
+          <igx-card-content class="group-card-content">
             <igx-list class="group-list">
               <igx-list-item *ngFor="let participant of group.Participants">
                 <igx-avatar igxListThumbnail [src]="participant.Team.TeamAvatar" [initials]="participant.Team.TeamName" roundShape="true"></igx-avatar>

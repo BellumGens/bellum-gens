@@ -213,6 +213,10 @@ $overlay-theme: igx-overlay-theme($background-color: rgba(35, 51, 132, 0.7));
   color: #fff;
 }
 
+.group-card-content {
+  padding: 0;
+}
+
 .action-icon-button {
   margin: 0 4px;
 }
