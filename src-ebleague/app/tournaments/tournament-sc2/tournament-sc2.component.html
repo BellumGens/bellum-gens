@@ -9,7 +9,7 @@
       <div class="horizontal-center registration-container">
         <igx-circular-bar *ngIf="loading" [indeterminate]="true"></igx-circular-bar>
         <div *ngFor="let registration of registrations" class="registration-slot">
-          <igx-avatar [src]="registration.User.avatarFull" [initials]="registration.User.username" size="large" roundShape="true">
+          <igx-avatar [src]="registration.User.avatarFull" [initials]="registration.User.username" size="medium" roundShape="true">
           </igx-avatar>
           <igx-badge *ngIf="registration.UserId === authUser?.id && registration.State === 0"
                      type="warning"

@@ -11,7 +11,7 @@
         <div *ngFor="let registration of registrations | notInGroup:'TournamentSC2GroupId':pipeTrigger" class="registration-slot">
           <igx-avatar [src]="registration.User.avatarFull"
                       [initials]="registration.User.username"
-                      size="large"
+                      size="medium"
                       roundShape="true"
                       [igxDrag]="registration">
           </igx-avatar>
