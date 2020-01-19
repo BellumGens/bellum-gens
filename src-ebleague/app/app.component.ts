@@ -35,8 +35,4 @@ export class AppComponent implements OnInit {
     this.banner.close();
     window.localStorage.setItem('cookiesAccepted', 'true');
   }
-
-  public navigateToBG() {
-    window.location.href = this.environment.bellumgens;
-  }
 }

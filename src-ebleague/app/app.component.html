@@ -23,13 +23,13 @@
           <igx-icon>people</igx-icon>
           Нашият екип
         </span>
-        <span igxDrawerItem igxRipple (click)="navigateToBG()">
+        <a igxDrawerItem igxRipple [href]="environment.bellumgens" target="_blank">
           <igx-avatar [src]="'/assets/bg-avatar.webp'"
                 [roundShape]="true"
                 title="Управление на отбори и стратегии">
           </igx-avatar>
-          https://bellumgens.com
-        </span>
+          Bellum Gens
+        </a>
       </nav>
     </ng-template>
   </igx-nav-drawer>
