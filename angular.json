@@ -306,10 +306,19 @@
     "common": {
       "root": "",
       "sourceRoot": "src-common",
-      "projectType": "application",
-      "prefix": "app",
+      "projectType": "library",
+      "prefix": "bg",
       "schematics": {},
       "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "src-common/test.ts",
+            "polyfills": "src-common/polyfills.ts",
+            "tsConfig": "src-common/tsconfig.spec.json",
+            "karmaConfig": "src-common/karma.conf.js"
+          }
+        },
         "lint": {
           "builder": "@angular-devkit/build-angular:tslint",
           "options": {

@@ -34,6 +34,7 @@ $include: (igx-avatar,
            igx-chip,
            igx-date-picker,
            igx-calendar,
+           igx-nav-drawer,
            igx-banner);
 
 @include igx-dark-theme(
@@ -49,6 +50,16 @@ $navbar-theme: igx-navbar-theme(igx-palette($background, $secondary),
                                 $hover-icon-color: $secondary);
 @include igx-css-vars($navbar-theme);
 /* END Navbar */
+
+/* Nav Drawer */
+$navdrawer-theme: igx-navdrawer-theme(igx-palette($background, $secondary),
+                                $background: $background-gradient,
+                                $item-active-text-color: $secondary,
+                                $item-active-icon-color: $secondary,
+                                $item-hover-text-color: $secondary,
+                                $item-hover-icon-color: $secondary);
+@include igx-css-vars($navdrawer-theme);
+/* END Nav Drawer */
 
 /* Card */
 $card-theme: igx-card-theme($background: $background-gradient-lighter,
@@ -121,6 +132,10 @@ $overlay-theme: igx-overlay-theme($background-color: rgba(35, 51, 132, 0.7));
 /* END Time Picker */
 
 @import "../src-common/styles-overrides.scss";
+
+:root {
+  --igx-avatar-initials-background: transparent;
+}
 
 /* HOME */
 .home-page-slide-columns {

@@ -1,20 +1,45 @@
 <div igxLayout>
+  <igx-nav-drawer id="navigation" #drawer>
+    <ng-template igxDrawer>
+      <nav>
+        <span igxDrawerItem [isHeader]="true">Esports Business League</span>
+        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournament/csgo">
+          <igx-avatar [src]="'/assets/wallpapers/csgo-watermark.webp'"
+                [roundShape]="true">
+          </igx-avatar>
+          Лига по CS:GO
+        </span>
+        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournament/sc2">
+          <igx-avatar [src]="'/assets/wallpapers/sc2.webp'"
+                [roundShape]="true">
+          </igx-avatar>
+          Лига по StarCraft II
+        </span>
+        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournament/format">
+          <igx-icon>playlist_add_check</igx-icon>
+          Формат на лигата
+        </span>
+        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournament/crew">
+          <igx-icon>people</igx-icon>
+          Нашият екип
+        </span>
+        <span igxDrawerItem igxRipple (click)="navigateToBG()">
+          <igx-avatar [src]="'/assets/bg-avatar.webp'"
+                [roundShape]="true"
+                title="Управление на отбори и стратегии">
+          </igx-avatar>
+          https://bellumgens.com
+        </span>
+      </nav>
+    </ng-template>
+  </igx-nav-drawer>
+
   <div igxFlex igxLayout igxLayoutDir="columns" class="top-level-container">
     <igx-navbar class="bellum-gens-navbar">
       <igx-action-icon>
+        <igx-icon class="drawer-action" (click)="drawer.toggle()">menu</igx-icon>
         <img [src]="'/assets/eb-league-logo-blue.webp'" class="navigatable" alt="Esports Business League" routerLink="/" />
       </igx-action-icon>
-
-      <igx-avatar class="navigatable"
-                  [src]="'/assets/bg-avatar.webp'"
-                  [roundShape]="true"
-                  title="Go to Bellum Gens"
-                  (click)="navigateToBG()">
-      </igx-avatar>
-
-      <div class="action-button-container" title="Формат на лигата" routerLink="format">
-        <igx-icon>playlist_add_check</igx-icon>
-      </div>
 
       <bg-login [authUser]="authUser"></bg-login>
     </igx-navbar>
@@ -56,5 +81,3 @@
     </div>
   </div>
 </div>
-
-

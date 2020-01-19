@@ -26,6 +26,7 @@ import { TeamNewComponent } from '../../../src-bellumgens/app/team-section/team-
 import { StartsWithPipe } from '../../../src-bellumgens/app/pipes/starts-with.pipe';
 import { GroupsFilterPipe } from '../../../src-bellumgens/app/pipes/groups-filter.pipe';
 import { BaseComponent } from '../../../src-bellumgens/app/base/base.component';
+import { ProductionCrewComponent } from './production-crew/production-crew.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { BaseComponent } from '../../../src-bellumgens/app/base/base.component';
     TournamentRegistrationComponent,
     TournamentCsgoComponent,
     TournamentSc2Component,
+    ProductionCrewComponent,
     TeamNewComponent,
     StartsWithPipe,
     GroupsFilterPipe,

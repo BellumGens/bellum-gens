@@ -1,0 +1,11 @@
+:host {
+  @media screen and (min-width: 1280px) {
+    .card-wrapper {
+      grid-template-columns: repeat(auto-fill, minmax(460px, 1fr));
+    }
+  }
+
+  igx-card {
+    height: fit-content;
+  }
+}
