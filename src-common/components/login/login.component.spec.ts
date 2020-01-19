@@ -21,7 +21,7 @@ import { UserPreferencesComponent } from '../user-preferences/user-preferences.c
 import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { LoginDialogComponent } from './login-dialog/login-dialog.component';
-import { BellumGensModule } from 'src-common/components/components.module';
+import { ConfirmComponent } from '../confirm/confirm.component';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -47,13 +47,13 @@ describe('LoginComponent', () => {
         IgxDividerModule,
         IgxButtonModule,
         IgxProgressBarModule,
-        IgxListModule,
-        BellumGensModule
+        IgxListModule
       ],
       declarations: [
         LoginComponent,
         LoginDialogComponent,
-        UserPreferencesComponent
+        UserPreferencesComponent,
+        ConfirmComponent
       ]
     })
     .compileComponents();
