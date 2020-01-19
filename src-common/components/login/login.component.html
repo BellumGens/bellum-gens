@@ -1,4 +1,4 @@
-<app-login-dialog #loginDialog></app-login-dialog>
+<bg-login-dialog #loginDialog></bg-login-dialog>
 
 <button igxButton="raised" igxRipple *ngIf="!authUser && !userCheck" (click)="loginDialog.openLogin()">Login</button>
 
@@ -64,7 +64,7 @@
             </div>
           </ng-template>
 
-          <app-user-preferences class="preferences-divider"></app-user-preferences>
+          <bg-user-preferences class="preferences-divider"></bg-user-preferences>
         </igx-tabs-group>
       </igx-tabs>
     </div>

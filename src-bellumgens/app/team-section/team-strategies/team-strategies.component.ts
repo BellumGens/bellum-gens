@@ -10,7 +10,7 @@ import { CSGOTeam } from '../../../../src-common/models/csgoteam';
 import { LoginService } from '../../../../src-common/services/login.service';
 import { ApplicationUser } from '../../../../src-common/models/applicationuser';
 import { GlobalOverlaySettings, StratOrder, StratOrderBy } from '../../../../src-common/models/misc';
-import { LoginDialogComponent } from '../../login/login-dialog/login-dialog.component';
+import { LoginDialogComponent } from '../../../../src-common/components/login/login-dialog/login-dialog.component';
 import { SocialMediaService } from '../../../../src-common/services/social-media.service';
 
 @Component({

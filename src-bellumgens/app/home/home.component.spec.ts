@@ -12,8 +12,8 @@ import { IgxInputGroupModule,
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { LoginDialogComponent } from '../login/login-dialog/login-dialog.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BellumGensModule } from 'src-common/components/components.module';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -33,11 +33,11 @@ describe('HomeComponent', () => {
         IgxProgressBarModule,
         IgxButtonModule,
         IgxCarouselModule,
-        IgxDialogModule
+        IgxDialogModule,
+        BellumGensModule
       ],
       declarations: [
-        HomeComponent,
-        LoginDialogComponent
+        HomeComponent
       ]
     })
     .compileComponents();
