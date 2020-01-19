@@ -75,6 +75,7 @@ describe('AppComponent', () => {
         IgxDividerModule,
         IgxSelectModule,
         IgxSwitchModule,
+        IgxNavigationDrawerModule,
         BellumGensModule
       ],
       declarations: [

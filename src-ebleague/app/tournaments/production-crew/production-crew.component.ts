@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BaseComponent } from 'src-bellumgens/app/base/base.component';
+import { BaseComponent } from '../../../../src-bellumgens/app/base/base.component';
 import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { CREW_MEMBERS } from '../../../../src-common/models/misc';
