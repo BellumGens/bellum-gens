@@ -28,7 +28,8 @@ import { IgxNavbarModule,
   IgxSwitchModule,
   IgxSelectModule,
   IgxDividerModule,
-  IgxAutocompleteModule} from 'igniteui-angular';
+  IgxAutocompleteModule,
+  IgxNavigationDrawerModule} from 'igniteui-angular';
 import { LoginService } from '../../src-common/services/login.service';
 import { BellumgensApiService } from '../../src-common/services/bellumgens-api.service';
 import { SuccessErrorComponent } from '../../src-bellumgens/app/success-error/success-error.component';
@@ -50,6 +51,7 @@ import { TournamentSc2Component } from './tournaments/tournament-sc2/tournament-
 import { BaseComponent } from '../../src-bellumgens/app/base/base.component';
 import { TournamentRegistrationComponent } from './tournaments/tournament-registration/tournament-registration.component';
 import { BellumGensModule } from '../../src-common/components/components.module';
+import { ProductionCrewComponent } from './tournaments/production-crew/production-crew.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +70,8 @@ import { BellumGensModule } from '../../src-common/components/components.module'
     PlayerCountryPipe,
     TournamentCsgoComponent,
     TournamentSc2Component,
-    TournamentRegistrationComponent
+    TournamentRegistrationComponent,
+    ProductionCrewComponent
   ],
   imports: [
     FormsModule,
@@ -98,6 +101,7 @@ import { BellumGensModule } from '../../src-common/components/components.module'
     IgxSelectModule,
     IgxDividerModule,
     IgxAutocompleteModule,
+    IgxNavigationDrawerModule,
     BellumGensModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
