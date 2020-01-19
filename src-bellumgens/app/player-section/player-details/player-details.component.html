@@ -1,7 +1,7 @@
 <app-app-shell *ngIf="loading">
 </app-app-shell>
 
-<app-login-dialog #loginDialog></app-login-dialog>
+<bg-login-dialog #loginDialog></bg-login-dialog>
 
 <div class="loading-overview" *ngIf="!player || player?.steamUserException">
   <h1>Player not found...</h1>

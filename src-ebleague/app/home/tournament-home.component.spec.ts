@@ -18,11 +18,8 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginDialogComponent } from 'src-bellumgens/app/login/login-dialog/login-dialog.component';
-import { TeamNewComponent } from 'src-bellumgens/app/team-section/team-new/team-new.component';
-import { StartsWithPipe } from 'src-bellumgens/app/pipes/starts-with.pipe';
-import { GroupsFilterPipe } from 'src-bellumgens/app/pipes/groups-filter.pipe';
 import { GetRegCountPipe } from 'src-bellumgens/app/pipes/get-reg-count.pipe';
+import { BellumGensModule } from 'src-common/components/components.module';
 
 describe('TournamentHomeComponent', () => {
   let component: TournamentHomeComponent;
@@ -47,11 +44,11 @@ describe('TournamentHomeComponent', () => {
         IgxButtonModule,
         IgxListModule,
         IgxProgressBarModule,
-        IgxCheckboxModule
+        IgxCheckboxModule,
+        BellumGensModule
       ],
       declarations: [
         TournamentHomeComponent,
-        LoginDialogComponent,
         // TeamNewComponent,
         // StartsWithPipe,
         // GroupsFilterPipe,

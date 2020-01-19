@@ -6,7 +6,7 @@ import { CSGOStrategy, VoteDirection, newEmptyComment, StrategyComment } from '.
 import { LoginService } from '../../../../../src-common/services/login.service';
 import { ApplicationUser } from '../../../../../src-common/models/applicationuser';
 import { GlobalOverlaySettings } from '../../../../../src-common/models/misc';
-import { LoginDialogComponent } from '../../../login/login-dialog/login-dialog.component';
+import { LoginDialogComponent } from '../../../../../src-common/components/login/login-dialog/login-dialog.component';
 import { SocialMediaService } from '../../../../../src-common/services/social-media.service';
 import { Title, Meta } from '@angular/platform-browser';
 import { environment } from '../../../../../src-common/environments/environment.prod';

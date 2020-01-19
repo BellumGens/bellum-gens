@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
 import { IgxProgressType } from 'igniteui-angular';
-import { LoginService } from '../../../src-common/services/login.service';
-import { ApplicationUser } from '../../../src-common/models/applicationuser';
-import { PlaystyleRole } from '../../../src-common/models/playerrole';
-import { BellumgensApiService } from '../../../src-common/services/bellumgens-api.service';
-import { GlobalOverlaySettings } from '../../../src-common/models/misc';
-import { environment } from '../../../src-common/environments/environment';
+import { LoginService } from '../../services/login.service';
+import { ApplicationUser } from '../../models/applicationuser';
+import { PlaystyleRole } from '../../models/playerrole';
+import { BellumgensApiService } from '../../services/bellumgens-api.service';
+import { GlobalOverlaySettings } from '../../models/misc';
+import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
 
 export interface ProfileCompleteness {
@@ -22,7 +22,7 @@ export interface ProfileCompleteness {
 }
 
 @Component({
-  selector: 'app-login',
+  selector: 'bg-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })

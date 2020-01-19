@@ -22,7 +22,6 @@ import { FormsModule } from '@angular/forms';
 import { AppShellComponent } from 'src-bellumgens/app/app-shell/app-shell.component';
 import { HasVotedPipe } from 'src-bellumgens/app/pipes/has-voted.pipe';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { LoginDialogComponent } from 'src-bellumgens/app/login/login-dialog/login-dialog.component';
 import { BellumGensModule } from 'src-common/components/components.module';
 
 describe('StrategyDetailsComponent', () => {
@@ -52,7 +51,6 @@ describe('StrategyDetailsComponent', () => {
       ],
       declarations: [
         StrategyDetailsComponent,
-        LoginDialogComponent,
         AppShellComponent,
         VotesPipe,
         IsVideoPipe,

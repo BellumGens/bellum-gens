@@ -28,7 +28,7 @@
 </div>
 
 <app-app-shell *ngIf="loading"></app-app-shell>
-<app-login-dialog #loginDialog></app-login-dialog>
+<bg-login-dialog #loginDialog></bg-login-dialog>
 
 <div class="card-wrapper">
   <igx-card type="outlined" *ngFor="let strat of strats | activeDutyMaps:viewAll:pipeTrigger | sidestrats:maps:order">

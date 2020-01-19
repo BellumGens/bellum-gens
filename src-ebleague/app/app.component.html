@@ -3,19 +3,19 @@
     <ng-template igxDrawer>
       <nav>
         <span igxDrawerItem [isHeader]="true">Esports Business League</span>
-        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="csgo">
+        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournament/csgo">
           <igx-icon>people</igx-icon>
           Лига по CS:GO
         </span>
-        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="sc2">
+        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournament/sc2">
           <igx-icon>people</igx-icon>
           Лига по StarCraft II
         </span>
-        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="format">
+        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournament/format">
           <igx-icon>playlist_add_check</igx-icon>
           Формат на лигата
         </span>
-        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="crew">
+        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournament/crew">
           <igx-icon>people</igx-icon>
           Нашият екип
         </span>
@@ -37,7 +37,7 @@
         <img [src]="'/assets/eb-league-logo-blue.webp'" class="navigatable" alt="Esports Business League" routerLink="/" />
       </igx-action-icon>
 
-      <app-login [authUser]="authUser"></app-login>
+      <bg-login [authUser]="authUser"></bg-login>
     </igx-navbar>
 
     <igx-banner #cookiesBanner>

@@ -47,7 +47,6 @@ import { WeekdayPipe } from './pipes/weekday.pipe';
 import { MapnamePipe } from './pipes/mapname.pipe';
 import { MapimagePipe } from './pipes/mapimage.pipe';
 import { TeamDetailsComponent } from './team-section/team-details/team-details.component';
-import { LoginComponent } from './login/login.component';
 import { UnreadNotificationsPipe } from './pipes/unread-notifications.pipe';
 import { PlayerNotificationsComponent } from './player-section/notifications/notifications.component';
 import { SortNotificationsPipe } from './pipes/sort-notifications.pipe';
@@ -81,7 +80,6 @@ import { SortWeaponsPipe } from './pipes/sort-weapons.pipe';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../../src-common/environments/environment';
 import { ExcludeMembersPipe } from './pipes/exclude-members.pipe';
-import { UserPreferencesComponent } from './player-section/user-preferences/user-preferences.component';
 import { NotificationStatePipe } from './pipes/notification-state.pipe';
 import { EmailconfirmComponent } from './emailconfirm/emailconfirm.component';
 import { QueryParsedPipe } from './pipes/query-parsed.pipe';
@@ -98,7 +96,6 @@ import { StrategyDetailsComponent } from './team-section/team-strategies/strateg
 import { HasVotedPipe } from './pipes/has-voted.pipe';
 import { UserStrategiesComponent } from './player-section/user-strategies/user-strategies.component';
 import { NewStrategyComponent } from './team-section/team-strategies/new-strategy/new-strategy.component';
-import { LoginDialogComponent } from './login/login-dialog/login-dialog.component';
 import { IsStratOwnerPipe } from './pipes/is-strat-owner.pipe';
 import { ApiTournamentsService } from '../../src-common/services/bellumgens-api.tournaments.service';
 import { StartsWithPipe } from './pipes/starts-with.pipe';
@@ -118,7 +115,6 @@ import { BellumGensModule } from '../../src-common/components/components.module'
     MapnamePipe,
     MapimagePipe,
     TeamDetailsComponent,
-    LoginComponent,
     UnreadNotificationsPipe,
     PlayerNotificationsComponent,
     SortNotificationsPipe,
@@ -150,7 +146,6 @@ import { BellumGensModule } from '../../src-common/components/components.module'
     OpenPositionsPipe,
     SortWeaponsPipe,
     ExcludeMembersPipe,
-    UserPreferencesComponent,
     NotificationStatePipe,
     EmailconfirmComponent,
     QueryParsedPipe,
@@ -167,7 +162,6 @@ import { BellumGensModule } from '../../src-common/components/components.module'
     HasVotedPipe,
     UserStrategiesComponent,
     NewStrategyComponent,
-    LoginDialogComponent,
     IsStratOwnerPipe,
     StartsWithPipe,
     TeamNewComponent,
