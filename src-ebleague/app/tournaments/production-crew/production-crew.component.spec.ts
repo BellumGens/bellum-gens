@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProductionCrewComponent } from './production-crew.component';
+import { IgxCardModule } from 'igniteui-angular';
 
 describe('ProductionCrewComponent', () => {
   let component: ProductionCrewComponent;
@@ -8,7 +9,10 @@ describe('ProductionCrewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProductionCrewComponent ]
+      declarations: [ ProductionCrewComponent ],
+      imports: [
+        IgxCardModule
+      ]
     })
     .compileComponents();
   }));
