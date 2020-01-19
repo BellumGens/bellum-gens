@@ -1,4 +1,29 @@
 <div class="card-wrapper">
   <igx-card *ngFor="let member of crewMembers">
+    <igx-card-header>
+      <h1 igxCardHeaderTitle>{{ member.name }}</h1>
+      <h2 igxCardHeaderSubtitle>{{ member.position }}</h2>
+      <h3 igxCardHeaderSubtitle>Родно място: {{ member.birthplace }}</h3>
+    </igx-card-header>
+    <igx-card-media>
+      <img [src]="member.image" [alt]="member.name" />
+    </igx-card-media>
+    <igx-card-content>
+      <p>{{member.description}}</p>
+    </igx-card-content>
+    <igx-card-actions [reverse]="true">
+      <a igxButton *ngIf="member.facebook" [href]="member.facebook" target="_blank" rel="noopener">
+        <igx-icon fontSet="login-icons" name="Facebook"></igx-icon>
+        Facebook
+      </a>
+      <a igxButton *ngIf="member.instagram" [href]="member.instagram" target="_blank" rel="noopener">
+        <igx-icon fontSet="login-icons" name="Instagram"></igx-icon>
+        Instagram
+      </a>
+      <a igxButton *ngIf="member.twitter" [href]="member.twitter" target="_blank" rel="noopener">
+        <igx-icon fontSet="login-icons" name="Twitter"></igx-icon>
+        Twitter
+      </a>
+    </igx-card-actions>
   </igx-card>
 </div>

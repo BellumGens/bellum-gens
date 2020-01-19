@@ -70,6 +70,7 @@ export class AppModule {
     this.iconService.addSvgIcon('Steam', '/assets/login/steam-logo-white.svg', 'login-icons');
     this.iconService.addSvgIcon('Facebook', '/assets/login/fb.svg', 'login-icons');
     this.iconService.addSvgIcon('Twitter', '/assets/login/twitter.svg', 'login-icons');
+    this.iconService.addSvgIcon('Instagram', '/assets/login/instagram.svg', 'login-icons');
     this.iconService.addSvgIcon('BattleNet', '/assets/login/battle-net.svg', 'login-icons');
     this.iconService.addSvgIcon('Discord', '/assets/login/Discord-Logo-White.svg', 'login-icons');
     this.iconService.addSvgIcon('isobar', '/assets/partners/isobar.svg', 'partners');

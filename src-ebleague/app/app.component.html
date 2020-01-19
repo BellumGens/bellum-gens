@@ -4,11 +4,15 @@
       <nav>
         <span igxDrawerItem [isHeader]="true">Esports Business League</span>
         <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournament/csgo">
-          <igx-icon>people</igx-icon>
+          <igx-avatar [src]="'/assets/wallpapers/csgo-watermark.webp'"
+                [roundShape]="true">
+          </igx-avatar>
           Лига по CS:GO
         </span>
         <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournament/sc2">
-          <igx-icon>people</igx-icon>
+          <igx-avatar [src]="'/assets/wallpapers/sc2.webp'"
+                [roundShape]="true">
+          </igx-avatar>
           Лига по StarCraft II
         </span>
         <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournament/format">

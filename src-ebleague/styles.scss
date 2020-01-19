@@ -133,6 +133,10 @@ $overlay-theme: igx-overlay-theme($background-color: rgba(35, 51, 132, 0.7));
 
 @import "../src-common/styles-overrides.scss";
 
+:root {
+  --igx-avatar-initials-background: transparent;
+}
+
 /* HOME */
 .home-page-slide-columns {
   display: grid;
@@ -164,17 +168,6 @@ $overlay-theme: igx-overlay-theme($background-color: rgba(35, 51, 132, 0.7));
 .slide-info-column p {
   font-size: 1rem;
   margin: 0 0 16px 0;
-}
-
-.igx-nav-drawer__item > igx-icon,
-.igx-nav-drawer__item > igx-avatar {
-  margin-right: 8px;
-}
-
-.igx-nav-drawer__item > igx-avatar {
-  width: 24px;
-  height: 24px;
-  min-width: 24px;
 }
 /* END HOME */
 
