@@ -38,7 +38,6 @@ import { HasVotedPipe } from 'src-bellumgens/app/pipes/has-voted.pipe';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { NewStrategyComponent } from './new-strategy/new-strategy.component';
-import { LoginDialogComponent } from 'src-bellumgens/app/login/login-dialog/login-dialog.component';
 import { IsStratOwnerPipe } from 'src-bellumgens/app/pipes/is-strat-owner.pipe';
 import { BellumGensModule } from 'src-common/components/components.module';
 
@@ -78,7 +77,6 @@ describe('TeamStrategiesComponent', () => {
         AppShellComponent,
         MapPoolComponent,
         NewStrategyComponent,
-        LoginDialogComponent,
         SafeVideoLinkPipe,
         MapnamePipe,
         SideStratsPipe,

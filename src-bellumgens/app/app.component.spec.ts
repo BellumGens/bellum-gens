@@ -28,7 +28,6 @@ import { IgxNavigationDrawerModule,
 import { SuccessErrorComponent } from './success-error/success-error.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { TeamNavComponent } from './team-section/team-nav/team-nav.component';
-import { LoginComponent } from './login/login.component';
 import { QuickSearchComponent } from './search/quick-search/quick-search.component';
 import { SearchComponent } from './search/search/search.component';
 import { TeamNotificationsComponent } from './team-section/team-notifications/team-notifications.component';
@@ -44,10 +43,8 @@ import { SortApplicationsPipe } from './pipes/sort-applications.pipe';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { UserPreferencesComponent } from './player-section/user-preferences/user-preferences.component';
 import { NotificationStatePipe } from './pipes/notification-state.pipe';
 import { PlayerCountryPipe } from './pipes/player-country.pipe';
-import { LoginDialogComponent } from './login/login-dialog/login-dialog.component';
 import { TeamNewComponent } from './team-section/team-new/team-new.component';
 import { BellumGensModule } from 'src-common/components/components.module';
 
@@ -95,8 +92,6 @@ describe('AppComponent', () => {
         SuccessErrorComponent,
         NotificationsComponent,
         TeamNavComponent,
-        LoginComponent,
-        LoginDialogComponent,
         QuickSearchComponent,
         SearchComponent,
         TeamNotificationsComponent,
@@ -108,7 +103,6 @@ describe('AppComponent', () => {
         DisabledNotificationsPipe,
         SortApplicationsPipe,
         SortNotificationsPipe,
-        UserPreferencesComponent,
         NotificationStatePipe,
         PlayerCountryPipe,
         TeamNewComponent

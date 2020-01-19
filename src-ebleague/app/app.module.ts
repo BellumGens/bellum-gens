@@ -9,26 +9,15 @@ import { AppComponent } from './app.component';
 import { IgxNavbarModule,
   IgxLayoutModule,
   IgxRippleModule,
-  IgxAvatarModule,
-  IgxListModule,
   IgxIconModule,
   IgxInputGroupModule,
-  IgxDialogModule,
   IgxButtonModule,
   IgxProgressBarModule,
-  IgxBadgeModule,
-  IgxCardModule,
-  IgxDropDownModule,
-  IgxCheckboxModule,
-  IgxToggleModule,
-  IgxTabsModule,
   IgxSnackbarModule,
   IgxBannerModule,
   IgxIconService,
-  IgxSwitchModule,
-  IgxSelectModule,
   IgxDividerModule,
-  IgxAutocompleteModule} from 'igniteui-angular';
+  IgxAvatarModule} from 'igniteui-angular';
 import { LoginService } from '../../src-common/services/login.service';
 import { BellumgensApiService } from '../../src-common/services/bellumgens-api.service';
 import { SuccessErrorComponent } from '../../src-bellumgens/app/success-error/success-error.component';
@@ -36,39 +25,15 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../../src-common/environments/environment';
 import { TournamentHomeComponent } from './home/tournament-home.component';
 import { ApiTournamentsService } from '../../src-common/services/bellumgens-api.tournaments.service';
-import { TeamNewComponent } from '../../src-bellumgens/app/team-section/team-new/team-new.component';
-import { TournamentFormatComponent } from './tournaments/tournament-format/tournament-format.component';
-import { LoginDialogComponent } from '../../src-bellumgens/app/login/login-dialog/login-dialog.component';
-import { LoginComponent } from '../../src-bellumgens/app/login/login.component';
 import { GetRegCountPipe } from '../../src-bellumgens/app/pipes/get-reg-count.pipe';
-import { StartsWithPipe } from '../../src-bellumgens/app/pipes/starts-with.pipe';
-import { GroupsFilterPipe } from '../../src-bellumgens/app/pipes/groups-filter.pipe';
-import { UserPreferencesComponent } from '../../src-bellumgens/app/player-section/user-preferences/user-preferences.component';
-import { PlayerCountryPipe } from '../../src-bellumgens/app/pipes/player-country.pipe';
-import { TournamentCsgoComponent } from './tournaments/tournament-csgo/tournament-csgo.component';
-import { TournamentSc2Component } from './tournaments/tournament-sc2/tournament-sc2.component';
-import { BaseComponent } from '../../src-bellumgens/app/base/base.component';
-import { TournamentRegistrationComponent } from './tournaments/tournament-registration/tournament-registration.component';
 import { BellumGensModule } from '../../src-common/components/components.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BaseComponent,
     SuccessErrorComponent,
     TournamentHomeComponent,
-    TeamNewComponent,
-    TournamentFormatComponent,
-    LoginComponent,
-    LoginDialogComponent,
-    UserPreferencesComponent,
-    GetRegCountPipe,
-    StartsWithPipe,
-    GroupsFilterPipe,
-    PlayerCountryPipe,
-    TournamentCsgoComponent,
-    TournamentSc2Component,
-    TournamentRegistrationComponent
+    GetRegCountPipe
   ],
   imports: [
     FormsModule,
@@ -76,28 +41,17 @@ import { BellumGensModule } from '../../src-common/components/components.module'
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     AppRoutingModule,
-    IgxAvatarModule,
     IgxNavbarModule,
     IgxLayoutModule,
     IgxRippleModule,
-    IgxListModule,
     IgxIconModule,
-    IgxDialogModule,
     IgxInputGroupModule,
-    IgxTabsModule,
     IgxButtonModule,
-    IgxToggleModule,
-    IgxBadgeModule,
-    IgxCardModule,
-    IgxDropDownModule,
-    IgxCheckboxModule,
     IgxSnackbarModule,
     IgxBannerModule,
     IgxProgressBarModule,
-    IgxSwitchModule,
-    IgxSelectModule,
     IgxDividerModule,
-    IgxAutocompleteModule,
+    IgxAvatarModule,
     BellumGensModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],

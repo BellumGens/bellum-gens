@@ -33,8 +33,8 @@ import { FormsModule } from '@angular/forms';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { ActiveDutyMapsPipe } from 'src-bellumgens/app/pipes/active-duty-maps.pipe';
 import { AppShellComponent } from 'src-bellumgens/app/app-shell/app-shell.component';
-import { LoginDialogComponent } from 'src-bellumgens/app/login/login-dialog/login-dialog.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BellumGensModule } from 'src-common/components/components.module';
 
 describe('PlayerDetailsComponent', () => {
   let component: PlayerDetailsComponent;
@@ -44,7 +44,6 @@ describe('PlayerDetailsComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         PlayerDetailsComponent,
-        LoginDialogComponent,
         AvailabilityComponent,
         AppShellComponent,
         MapPoolComponent,
@@ -79,7 +78,8 @@ describe('PlayerDetailsComponent', () => {
         IgxSwitchModule,
         IgxDividerModule,
         IgxButtonModule,
-        IgxInputGroupModule
+        IgxInputGroupModule,
+        BellumGensModule
       ]
     }).compileComponents();
   }));

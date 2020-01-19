@@ -1,11 +1,11 @@
 import { Component, ViewChild } from '@angular/core';
-import { LoginProvider } from '../../../../src-common/models/login-provider';
-import { LOGIN_ASSETS } from '../../../../src-common/models/misc';
+import { LoginProvider } from '../../../models/login-provider';
+import { LOGIN_ASSETS } from '../../../models/misc';
 import { IgxDialogComponent } from 'igniteui-angular';
-import { LoginService } from '../../../../src-common/services/login.service';
+import { LoginService } from '../../../services/login.service';
 
 @Component({
-  selector: 'app-login-dialog',
+  selector: 'bg-login-dialog',
   templateUrl: './login-dialog.component.html',
   styleUrls: ['./login-dialog.component.css']
 })

@@ -17,7 +17,7 @@ import { IgxAvatarModule,
   IgxListModule} from 'igniteui-angular';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { UserPreferencesComponent } from '../player-section/user-preferences/user-preferences.component';
+import { UserPreferencesComponent } from '../user-preferences/user-preferences.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { LoginDialogComponent } from './login-dialog/login-dialog.component';
