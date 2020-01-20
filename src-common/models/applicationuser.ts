@@ -4,6 +4,13 @@ import { Availability } from './playeravailability';
 import { PlaystyleRole } from './playerrole';
 import { MapPool } from './csgomaps';
 
+export interface AppUserSummary {
+  Id: string;
+  AvatarMedium: string;
+  UserName: string;
+  Roles: [];
+}
+
 export interface ApplicationUser {
   id: string;
   avatarIcon: string;
