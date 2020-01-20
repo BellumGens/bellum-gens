@@ -15,17 +15,17 @@
 
   <igx-list class="players-list">
     <igx-list-item *ngFor="let user of users">
-      <igx-avatar igxListThumbnail [src]="user.avatarMedium"></igx-avatar>
-      <h2 igxListLineTitle>{{user.username}}</h2>
+      <igx-avatar igxListThumbnail [src]="user.AvatarMedium"></igx-avatar>
+      <h2 igxListLineTitle>{{user.UserName}}</h2>
 
 
       <igx-chips-area>
-        <igx-chip (onClick)="addAdmin(user.id)">
+        <igx-chip (onClick)="addAdmin(user.Id)">
           <igx-icon igxPrefit>add</igx-icon>
           <span>admin</span>
         </igx-chip>
 
-        <igx-chip (onClick)="addEventAdmin(user.id)">
+        <igx-chip (onClick)="addEventAdmin(user.Id)">
           <igx-icon igxPrefit>add</igx-icon>
           <span>event-admin</span>
         </igx-chip>
