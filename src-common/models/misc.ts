@@ -64,7 +64,7 @@ export const CREW_MEMBERS = [
     position: 'StarCraft II кастър',
     // tslint:disable-next-line:max-line-length
     description: 'Създател на първата по рода си лига по StarCraft в България - Българската СтарКрафт Лига. Коментатор и страстен StarCraft II играч.',
-    image: '/assets/crew/exalted.jpg',
+    image: '/assets/crew/exalted.webp',
     twitter: 'https://twitter.com/BSLesports',
     facebook: 'https://www.facebook.com/BSLesports/',
     instagram: 'https://www.instagram.com/bsl_esports/'
