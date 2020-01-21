@@ -53,20 +53,20 @@ export const CREW_MEMBERS = [
     position: 'StarCraft II кастър',
     // tslint:disable-next-line:max-line-length
     description: 'Най-много участия в Български LAN турнири по StarCraft 2 в последните 6 години. Единственият българин, класирал се за "premier" ниво турнир в последните 6 години (Top48 на WESG 2018). Играе Zerg. Играч и коментатор на Българската СтарКрафт Лига.',
-    image: '/assets/crew/exalted.jpg',
+    image: '/assets/crew/msrm.webp',
     twitter: 'https://twitter.com/The_msrm',
     facebook: '',
     instagram: ''
   },
   {
     name: 'Лъчезар "exalted" Каменов',
-    birthplace: 'Перник',
+    birthplace: 'София',
     position: 'StarCraft II кастър',
     // tslint:disable-next-line:max-line-length
     description: 'Създател на първата по рода си лига по StarCraft в България - Българската СтарКрафт Лига. Коментатор и страстен StarCraft II играч.',
-    image: '/assets/crew/msrm.convertToSmallerFormat',
+    image: '/assets/crew/exalted.jpg',
     twitter: 'https://twitter.com/BSLesports',
     facebook: 'https://www.facebook.com/BSLesports/',
-    instagram: ''
+    instagram: 'https://www.instagram.com/bsl_esports/'
   }
 ];
