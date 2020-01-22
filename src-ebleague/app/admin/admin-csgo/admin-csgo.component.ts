@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { getEmptyNewCSGOGroup,
   TournamentGroup,
-  TournamentRegistration} from '../../../../src-common/models/tournament';
+  TournamentRegistration } from '../../../../src-common/models/tournament';
 import { ApiTournamentsService } from '../../../../src-common/services/bellumgens-api.tournaments.service';
 import { environment } from '../../../../src-common/environments/environment';
 import { IDropDroppedEventArgs } from 'igniteui-angular';
+import { WEEKLY_SCHEDULE } from '../../../../src-common/models/tournament-schedule';
 
 @Component({
   selector: 'app-admin-csgo',
@@ -18,6 +19,7 @@ export class AdminCsgoComponent {
   public environment = environment;
   public newGroup = getEmptyNewCSGOGroup();
   public pipeTrigger = 0;
+  public schedule = WEEKLY_SCHEDULE;
 
   constructor(private apiService: ApiTournamentsService) {
     this.apiService.csgoRegistrations.subscribe(data => {

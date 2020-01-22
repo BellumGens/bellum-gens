@@ -1,5 +1,6 @@
 import { CSGOTeam } from './csgoteam';
 import { ApplicationUser } from './applicationuser';
+import { CSGOMap } from './csgomaps';
 
 export interface Tournament {
   ID?: string;
@@ -41,8 +42,24 @@ export interface TournamentGroup {
   inEdit?: boolean;
 }
 
+export interface TournamentMatch {
+  Id?: string;
+  DemoLink?: string;
+  VideoLink?: string;
+  StartTime?: Date;
+  EndTime?: Date;
+}
+
+export interface TournamentCSGOMatch extends TournamentMatch {
+  TeamId1?: string;
+  TeamId2?: string;
+  Maps?: CSGOMap [];
+  Team1?: CSGOTeam;
+  Team2?: CSGOTeam;
+}
+
 export interface TournamentCSGOGroup extends TournamentGroup {
-  Matches?: any [];
+  Matches?: TournamentCSGOMatch [];
 }
 
 export interface TournamentSC2Group extends TournamentGroup {

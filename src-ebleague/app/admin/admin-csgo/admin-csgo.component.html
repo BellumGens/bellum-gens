@@ -97,7 +97,26 @@
 
     <igx-card-content>
       <igx-tabs>
-        <igx-tabs-group></igx-tabs-group>
+        <igx-tabs-group class="card-wrapper" *ngFor="let week of schedule">
+          <ng-template igxTab>
+            <div class="horizontal-center">
+              <igx-icon>calendar_today</igx-icon>
+              <div class="igx-tabs__item-label">{{week.name}}</div>
+            </div>
+            <div>{{week.start | date}} - {{week.end | date}}</div>
+          </ng-template>
+
+          <igx-card class="card-wrapper" *ngFor="let day of week.days">
+            <igx-card-header>
+              <h1 igxCardHeaderTitle>{{day.day | date}}</h1>
+            </igx-card-header>
+            <igx-card-content *ngFor="let slot of day.slots">
+              <div class="horizontal-center">
+                {{slot.start | date:'shortTime'}}
+              </div>
+            </igx-card-content>
+          </igx-card>
+        </igx-tabs-group>
       </igx-tabs>
     </igx-card-content>
   </igx-card>
