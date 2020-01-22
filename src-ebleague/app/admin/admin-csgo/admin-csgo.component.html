@@ -88,6 +88,19 @@
       </div>
     </igx-card-content>
   </igx-card>
+
+  <igx-card>
+    <igx-card-header>
+      <igx-avatar igxCardThumbnail [roundShape]="true" src="/assets/wallpapers/csgo-watermark.webp"></igx-avatar>
+      <h1 igxCardHeaderTitle>График на срещите</h1>
+    </igx-card-header>
+
+    <igx-card-content>
+      <igx-tabs>
+        <igx-tabs-group></igx-tabs-group>
+      </igx-tabs>
+    </igx-card-content>
+  </igx-card>
 </div>
 
 <bg-confirm #confirm title="Сигурни ли сте?" (ok)="deleteGroup($event)">

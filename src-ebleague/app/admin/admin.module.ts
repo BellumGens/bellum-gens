@@ -13,7 +13,8 @@ import { IgxChipsModule,
   IgxCardModule,
   IgxProgressBarModule,
   IgxBadgeModule,
-  IgxDragDropModule} from 'igniteui-angular';
+  IgxDragDropModule,
+  IgxTabsModule} from 'igniteui-angular';
 import { FormsModule } from '@angular/forms';
 import { AdminCsgoComponent } from './admin-csgo/admin-csgo.component';
 import { BellumGensModule } from '../../../src-common/components/components.module';
@@ -38,7 +39,8 @@ import { NotInGroupPipe } from '../pipes/not-in-group.pipe';
     IgxProgressBarModule,
     IgxBadgeModule,
     BellumGensModule,
-    IgxDragDropModule
+    IgxDragDropModule,
+    IgxTabsModule
   ]
 })
 export class AdminModule { }
