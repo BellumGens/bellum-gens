@@ -97,7 +97,14 @@
 
     <igx-card-content>
       <igx-tabs>
-        <igx-tabs-group></igx-tabs-group>
+        <igx-tabs-group *ngFor="let week of schedule">
+          <ng-template igxTab>
+            <div class="horizontal-center">
+              <igx-icon>calendar</igx-icon>
+              <div class="igx-tabs__item-label">{{week.name}} | {{week.start | date}} - {{week.end | date}}</div>
+            </div>
+          </ng-template>
+        </igx-tabs-group>
       </igx-tabs>
     </igx-card-content>
   </igx-card>

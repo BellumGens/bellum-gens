@@ -52,7 +52,7 @@ export const CREW_MEMBERS = [
     birthplace: 'Банско',
     position: 'CS:GO server admin',
     // tslint:disable-next-line:max-line-length
-    description: 'Студент в Пловдивски Унивеситет “Паисий Хилендарски” и мениджър в BProGaming. Запознат е със света на гейминга от 15 години. Отделя повече време последните 5 години и гледа на заниманието с игри, като на всеки друг спорт.',
+    description: 'Атанас е студент и мениджър в BProGaming. Ангажиран е със света на гейминга от 15 години. Отделя повече време последните 5 години и гледа на заниманието с игри, като на всеки друг спорт.',
     image: '/assets/crew/fury.webp',
     twitter: 'https://twitter.com/BProFURY',
     facebook: '',
