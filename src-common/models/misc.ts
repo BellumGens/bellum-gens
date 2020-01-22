@@ -74,7 +74,7 @@ export const CREW_MEMBERS = [
     birthplace: 'София',
     position: 'StarCraft II кастър',
     // tslint:disable-next-line:max-line-length
-    description: 'Създател на първата по рода си лига по StarCraft в България - Българската СтарКрафт Лига. Коментатор и страстен StarCraft II играч.',
+    description: 'Лъчезар Димитров Каменов, на 26 години, е създател на първата по рода си лига по StarCraft в България - Българската СтарКрафт Лига. Освен страстен привърженик на електронните спортове, той е и активен участник в развитието на индустрията в България, амбициран да предостави най-добрите условия, на които да се наслаждават и играчи, и фенове.',
     image: '/assets/crew/exalted.webp',
     twitter: 'https://twitter.com/BSLesports',
     facebook: 'https://www.facebook.com/BSLesports/',
