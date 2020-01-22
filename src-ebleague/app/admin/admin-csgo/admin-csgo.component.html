@@ -112,7 +112,11 @@
             </igx-card-header>
             <igx-card-content *ngFor="let slot of day.slots">
               <div class="horizontal-center">
-                {{slot.start | date:'shortTime'}}
+                <span>{{slot.start | date:'shortTime'}}</span>
+                <div *ngIf="slot.match">
+                  Match
+                </div>
+                <button *ngIf="!slot.match" igxButton (click)="addMatchForm(slot)">Add Match</button>
               </div>
             </igx-card-content>
           </igx-card>

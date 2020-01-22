@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
-import { getEmptyNewCSGOGroup,
+import { getEmptyNewGroup,
   TournamentGroup,
-  TournamentRegistration } from '../../../../src-common/models/tournament';
+  TournamentRegistration,
+  TournamentCSGOMatch,
+  getEmptyNewMatch} from '../../../../src-common/models/tournament';
 import { ApiTournamentsService } from '../../../../src-common/services/bellumgens-api.tournaments.service';
 import { environment } from '../../../../src-common/environments/environment';
 import { IDropDroppedEventArgs } from 'igniteui-angular';
-import { WEEKLY_SCHEDULE } from '../../../../src-common/models/tournament-schedule';
+import { WEEKLY_CSGO_SCHEDULE } from '../../../../src-common/models/tournament-schedule';
 
 @Component({
   selector: 'app-admin-csgo',
@@ -17,9 +19,10 @@ export class AdminCsgoComponent {
   public groups: TournamentGroup [];
   public loading = false;
   public environment = environment;
-  public newGroup = getEmptyNewCSGOGroup();
+  public newGroup = getEmptyNewGroup();
   public pipeTrigger = 0;
-  public schedule = WEEKLY_SCHEDULE;
+  public schedule = WEEKLY_CSGO_SCHEDULE;
+  public matchInEdit: TournamentCSGOMatch;
 
   constructor(private apiService: ApiTournamentsService) {
     this.apiService.csgoRegistrations.subscribe(data => {
@@ -63,5 +66,10 @@ export class AdminCsgoComponent {
     group.Participants.splice(group.Participants.indexOf(participant), 1);
     this.registrations.find(r => r.Id === participant.Id).TournamentCSGOGroupId = null;
     this.pipeTrigger++;
+  }
+
+  public addMatchForm(slot) {
+    slot.match = getEmptyNewMatch(slot.start);
+    slot.inEdit = true;
   }
 }

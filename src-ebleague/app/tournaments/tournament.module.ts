@@ -18,7 +18,6 @@ import { IgxDividerModule,
   IgxCheckboxModule,
   IgxProgressBarModule,
   IgxBadgeModule} from 'igniteui-angular';
-import { TournamentRegistrationComponent } from './tournament-registration/tournament-registration.component';
 import { TournamentCsgoComponent } from './tournament-csgo/tournament-csgo.component';
 import { TournamentSc2Component } from './tournament-sc2/tournament-sc2.component';
 import { FormsModule } from '@angular/forms';
@@ -33,7 +32,6 @@ import { ProductionCrewComponent } from './production-crew/production-crew.compo
   declarations: [
     TournamentComponent,
     TournamentFormatComponent,
-    TournamentRegistrationComponent,
     TournamentCsgoComponent,
     TournamentSc2Component,
     ProductionCrewComponent,

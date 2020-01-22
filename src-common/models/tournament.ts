@@ -97,12 +97,12 @@ export function getEmptyNewTournament(): Tournament {
   return { Name: null };
 }
 
-export function getEmptyNewCSGOGroup(): TournamentCSGOGroup {
+export function getEmptyNewGroup(): TournamentGroup {
   return { Name: null, inEdit: false };
 }
 
-export function getEmptyNewSC2Group(): TournamentCSGOGroup {
-  return { Name: null, inEdit: false };
+export function getEmptyNewMatch(start: Date): TournamentMatch {
+  return { StartTime: start };
 }
 
 export const GAMES = [
