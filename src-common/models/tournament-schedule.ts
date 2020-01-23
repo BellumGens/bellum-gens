@@ -1,6 +1,24 @@
+import { TournamentMatch } from './tournament';
 
+export interface MatchSchedule {
+  name: string;
+  start: Date;
+  end: Date;
+  days: MatchScheduleDay [];
+}
 
-export const WEEKLY_SCHEDULE = [
+export interface MatchScheduleDay {
+  day: Date;
+  slots: MatchScheduleSlot [];
+}
+
+export interface MatchScheduleSlot {
+  start: Date;
+  match: TournamentMatch;
+  inEdit?: boolean;
+}
+
+export const WEEKLY_CSGO_SCHEDULE: MatchSchedule [] = [
   { name: 'Седмица 1', start: new Date(2020, 0, 27), end: new Date(2020, 0, 30),
     days: [
       {
@@ -193,34 +211,34 @@ export const WEEKLY_SCHEDULE = [
       }
     ]
   },
-  { name: 'Седмица 7', start: new Date(2020, 2, 2), end: new Date(2020, 2, 5),
+  { name: 'Седмица 7', start: new Date(2020, 2, 9), end: new Date(2020, 2, 12),
     days: [
       {
-        day: new Date(2020, 2, 2),
+        day: new Date(2020, 2, 9),
         slots: [
-          { start: new Date(2020, 2, 2, 19, 30, 0), match: null },
-          { start: new Date(2020, 2, 2, 21, 30, 0), match: null },
+          { start: new Date(2020, 2, 9, 19, 30, 0), match: null },
+          { start: new Date(2020, 2, 9, 21, 30, 0), match: null },
         ]
       },
       {
-        day: new Date(2020, 2, 3),
+        day: new Date(2020, 2, 10),
         slots: [
-          { start: new Date(2020, 2, 3, 19, 30, 0), match: null },
-          { start: new Date(2020, 2, 3, 21, 30, 0), match: null }
+          { start: new Date(2020, 2, 10, 19, 30, 0), match: null },
+          { start: new Date(2020, 2, 10, 21, 30, 0), match: null }
         ]
       },
       {
-        day: new Date(2020, 2, 4),
+        day: new Date(2020, 2, 11),
         slots: [
-          { start: new Date(2020, 2, 4, 19, 30, 0), match: null },
-          { start: new Date(2020, 2, 4, 21, 30, 0), match: null }
+          { start: new Date(2020, 2, 11, 19, 30, 0), match: null },
+          { start: new Date(2020, 2, 11, 21, 30, 0), match: null }
         ]
       },
       {
-        day: new Date(2020, 2, 5),
+        day: new Date(2020, 2, 12),
         slots: [
-          { start: new Date(2020, 2, 5, 19, 30, 0), match: null },
-          { start: new Date(2020, 2, 5, 21, 30, 0), match: null }
+          { start: new Date(2020, 2, 12, 19, 30, 0), match: null },
+          { start: new Date(2020, 2, 12, 21, 30, 0), match: null }
         ]
       }
     ]

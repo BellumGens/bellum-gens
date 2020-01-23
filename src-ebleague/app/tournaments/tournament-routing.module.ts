@@ -5,7 +5,6 @@ import { TournamentComponent } from './tournament.component';
 import { TournamentFormatComponent } from './tournament-format/tournament-format.component';
 import { TournamentCsgoComponent } from './tournament-csgo/tournament-csgo.component';
 import { TournamentSc2Component } from './tournament-sc2/tournament-sc2.component';
-import { TournamentRegistrationComponent } from './tournament-registration/tournament-registration.component';
 import { ProductionCrewComponent } from './production-crew/production-crew.component';
 
 const routes: Routes = [

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { TournamentGroup,
   TournamentRegistration,
-  getEmptyNewSC2Group} from '../../../../src-common/models/tournament';
+  getEmptyNewGroup} from '../../../../src-common/models/tournament';
 import { ApiTournamentsService } from '../../../../src-common/services/bellumgens-api.tournaments.service';
 import { environment } from '../../../../src-common/environments/environment';
 import { IDropDroppedEventArgs } from 'igniteui-angular';
@@ -16,7 +16,7 @@ export class AdminSc2Component {
   public groups: TournamentGroup [];
   public loading = false;
   public environment = environment;
-  public newGroup = getEmptyNewSC2Group();
+  public newGroup = getEmptyNewGroup();
   public pipeTrigger = 0;
 
   constructor(private apiService: ApiTournamentsService) {

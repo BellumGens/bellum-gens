@@ -18,7 +18,6 @@ import { IgxDividerModule,
   IgxCheckboxModule,
   IgxProgressBarModule,
   IgxBadgeModule} from 'igniteui-angular';
-import { TournamentRegistrationComponent } from './tournament-registration/tournament-registration.component';
 import { TournamentCsgoComponent } from './tournament-csgo/tournament-csgo.component';
 import { TournamentSc2Component } from './tournament-sc2/tournament-sc2.component';
 import { FormsModule } from '@angular/forms';
@@ -27,15 +26,16 @@ import { StartsWithPipe } from '../../../src-bellumgens/app/pipes/starts-with.pi
 import { GroupsFilterPipe } from '../../../src-bellumgens/app/pipes/groups-filter.pipe';
 import { BaseComponent } from '../../../src-bellumgens/app/base/base.component';
 import { ProductionCrewComponent } from './production-crew/production-crew.component';
+import { TournamentRegistrationComponent } from './tournament-registration/tournament-registration.component';
 
 
 @NgModule({
   declarations: [
     TournamentComponent,
     TournamentFormatComponent,
-    TournamentRegistrationComponent,
     TournamentCsgoComponent,
     TournamentSc2Component,
+    TournamentRegistrationComponent,
     ProductionCrewComponent,
     TeamNewComponent,
     StartsWithPipe,
