@@ -25,7 +25,6 @@ import { IgxNavigationDrawerModule,
   IgxSwitchModule,
   IgxDividerModule,
   IgxSelectModule} from 'igniteui-angular';
-import { SuccessErrorComponent } from './success-error/success-error.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { TeamNavComponent } from './team-section/team-nav/team-nav.component';
 import { QuickSearchComponent } from './search/quick-search/quick-search.component';
@@ -89,7 +88,6 @@ describe('AppComponent', () => {
       ],
       declarations: [
         AppComponent,
-        SuccessErrorComponent,
         NotificationsComponent,
         TeamNavComponent,
         QuickSearchComponent,
