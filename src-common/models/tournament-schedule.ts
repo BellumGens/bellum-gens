@@ -1,24 +1,24 @@
-import { TournamentMatch } from './tournament';
+import { TournamentCSGOMatch } from './tournament';
 
-export interface MatchSchedule {
+export interface CSGOMatchSchedule {
   name: string;
   start: Date;
   end: Date;
-  days: MatchScheduleDay [];
+  days: CSGOMatchScheduleDay [];
 }
 
-export interface MatchScheduleDay {
+export interface CSGOMatchScheduleDay {
   day: Date;
-  slots: MatchScheduleSlot [];
+  slots: CSGOMatchScheduleSlot [];
 }
 
-export interface MatchScheduleSlot {
+export interface CSGOMatchScheduleSlot {
   start: Date;
-  match: TournamentMatch;
+  match: TournamentCSGOMatch;
   inEdit?: boolean;
 }
 
-export const WEEKLY_CSGO_SCHEDULE: MatchSchedule [] = [
+export const WEEKLY_CSGO_SCHEDULE: CSGOMatchSchedule [] = [
   { name: 'Седмица 1', start: new Date(2020, 0, 27), end: new Date(2020, 0, 30),
     days: [
       {

@@ -143,6 +143,7 @@ $overlay-theme: igx-overlay-theme($background-color: rgba(35, 51, 132, 0.7));
   height: auto;
   grid-template-columns: minmax(45%, 1fr) minmax(45%, 1fr);
   grid-column-gap: 48px;
+  grid-row-gap: 16px;
   padding: 48px 48px 12px 48px;
 }
 
@@ -258,7 +259,6 @@ $overlay-theme: igx-overlay-theme($background-color: rgba(35, 51, 132, 0.7));
 @media only screen and (max-width: 1280px) {
   .home-page-slide-columns {
     grid-template-columns: minmax(380px, 1fr);
-    grid-row-gap: 16px;
     padding: 16px 16px 12px 16px;
   }
 }
