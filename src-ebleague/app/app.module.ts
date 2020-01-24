@@ -13,7 +13,6 @@ import { IgxNavbarModule,
   IgxInputGroupModule,
   IgxButtonModule,
   IgxProgressBarModule,
-  IgxSnackbarModule,
   IgxBannerModule,
   IgxIconService,
   IgxDividerModule,
@@ -21,7 +20,6 @@ import { IgxNavbarModule,
   IgxNavigationDrawerModule} from 'igniteui-angular';
 import { LoginService } from '../../src-common/services/login.service';
 import { BellumgensApiService } from '../../src-common/services/bellumgens-api.service';
-import { SuccessErrorComponent } from '../../src-bellumgens/app/success-error/success-error.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../../src-common/environments/environment';
 import { TournamentHomeComponent } from './home/tournament-home.component';
@@ -32,7 +30,6 @@ import { BellumGensModule } from '../../src-common/components/components.module'
 @NgModule({
   declarations: [
     AppComponent,
-    SuccessErrorComponent,
     TournamentHomeComponent,
     GetRegCountPipe
   ],
@@ -48,7 +45,6 @@ import { BellumGensModule } from '../../src-common/components/components.module'
     IgxIconModule,
     IgxInputGroupModule,
     IgxButtonModule,
-    IgxSnackbarModule,
     IgxBannerModule,
     IgxProgressBarModule,
     IgxDividerModule,

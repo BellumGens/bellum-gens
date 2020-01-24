@@ -7,7 +7,7 @@
                       [value]="registrations | getRegCount:gameEnum.CSGO"
                       [text]="(registrations | getRegCount:gameEnum.CSGO) + ' / 16 записани'"
                       type="success"></igx-linear-bar>
-      <button igxButton="raised" routerLink="/csgo">Участници - CS:GO лига</button>
+      <button igxButton="raised" routerLink="/csgo">Отиди до CS:GO лига</button>
     </div>
   </div>
   <div class="slide slide2">
@@ -18,7 +18,7 @@
                       [value]="registrations | getRegCount:gameEnum.StarCraft2"
                       [text]="(registrations | getRegCount:gameEnum.StarCraft2) + ' / 32 записани'"
                       type="success"></igx-linear-bar>
-      <button igxButton="raised" routerLink="/sc2">Участници - StarCraft II лига</button>
+      <button igxButton="raised" routerLink="/sc2">Отиди до StarCraft II лига</button>
     </div>
   </div>
 </div>
@@ -111,7 +111,7 @@
 
   <div class="content-container-row">
     <igx-divider></igx-divider>
-    <h2>Партньорства</h2>
+    <h2 id="partners">Партньорства</h2>
     <div class="horizontal-center">
       <a href="https://www.isobar.com/bg/en/" target="_blank" rel="nofollow">
         <igx-icon fontSet="partners" name="isobar" title="Isobar solves complex business challenges through digital marketing and technology. #1 Digital agency in Bulgaria with 200+ ecommerce experts, growing for 12+ years." class="platinum-partner"></igx-icon>

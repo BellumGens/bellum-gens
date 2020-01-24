@@ -22,7 +22,6 @@ export class AdminCsgoComponent {
   public newGroup = getEmptyNewGroup();
   public pipeTrigger = 0;
   public schedule = WEEKLY_CSGO_SCHEDULE;
-  public matchInEdit: TournamentCSGOMatch;
 
   constructor(private apiService: ApiTournamentsService) {
     this.apiService.csgoRegistrations.subscribe(data => {

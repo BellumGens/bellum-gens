@@ -11,7 +11,8 @@ import { IgxListModule,
   IgxButtonModule,
   IgxDragDropModule,
   IgxProgressBarModule,
-  IgxTabsModule} from 'igniteui-angular';
+  IgxTabsModule,
+  IgxSelectModule} from 'igniteui-angular';
 import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -38,6 +39,7 @@ describe('AdminCsgoComponent', () => {
         IgxButtonModule,
         IgxDragDropModule,
         IgxProgressBarModule,
+        IgxSelectModule,
         IgxTabsModule
       ]
     })

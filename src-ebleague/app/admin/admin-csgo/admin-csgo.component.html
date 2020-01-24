@@ -89,41 +89,56 @@
     </igx-card-content>
   </igx-card>
 
-  <igx-card>
-    <igx-card-header>
-      <igx-avatar igxCardThumbnail [roundShape]="true" src="/assets/wallpapers/csgo-watermark.webp"></igx-avatar>
-      <h1 igxCardHeaderTitle>График на срещите</h1>
-    </igx-card-header>
+  <igx-tabs>
+    <igx-tabs-group class="home-page-slide-columns" *ngFor="let week of schedule">
+      <ng-template igxTab>
+        <div class="horizontal-center">
+          <igx-icon>calendar_today</igx-icon>
+          <div class="igx-tabs__item-label">{{week.name}}</div>
+        </div>
+        <div>{{week.start | date}} - {{week.end | date}}</div>
+      </ng-template>
 
-    <igx-card-content>
-      <igx-tabs>
-        <igx-tabs-group class="card-wrapper" *ngFor="let week of schedule">
-          <ng-template igxTab>
-            <div class="horizontal-center">
-              <igx-icon>calendar_today</igx-icon>
-              <div class="igx-tabs__item-label">{{week.name}}</div>
+      <igx-card *ngFor="let day of week.days">
+        <igx-card-header>
+          <h1 igxCardHeaderTitle>{{day.day | date}}</h1>
+        </igx-card-header>
+        <igx-card-content *ngFor="let slot of day.slots">
+          <div *ngIf="!slot.inEdit" class="horizontal-center">
+            <span>{{slot.start | date:'shortTime'}}</span>
+            <div *ngIf="slot.match">
+              Match
             </div>
-            <div>{{week.start | date}} - {{week.end | date}}</div>
-          </ng-template>
+            <button *ngIf="!slot.match" igxButton (click)="addMatchForm(slot)">Add Match</button>
+          </div>
 
-          <igx-card class="card-wrapper" *ngFor="let day of week.days">
-            <igx-card-header>
-              <h1 igxCardHeaderTitle>{{day.day | date}}</h1>
-            </igx-card-header>
-            <igx-card-content *ngFor="let slot of day.slots">
-              <div class="horizontal-center">
-                <span>{{slot.start | date:'shortTime'}}</span>
-                <div *ngIf="slot.match">
-                  Match
-                </div>
-                <button *ngIf="!slot.match" igxButton (click)="addMatchForm(slot)">Add Match</button>
-              </div>
-            </igx-card-content>
-          </igx-card>
-        </igx-tabs-group>
-      </igx-tabs>
-    </igx-card-content>
-  </igx-card>
+          <div *ngIf="slot.inEdit" class="horizontal-center">
+            <igx-select [(ngModel)]="slot.match.TeamId1">
+              <label igxLabel>Team 1</label>
+              <igx-select-item *ngFor="let registration of registrations"
+                                [value]="registration.Team.TeamId"
+                                [text]="registration.Team.TeamName">
+                <igx-avatar [src]="registration.Team.TeamAvatar" [initials]="registration.Team.TeamName"></igx-avatar>
+                {{ registration.Team.TeamName }}
+              </igx-select-item>
+            </igx-select>
+
+            vs.
+
+            <igx-select [(ngModel)]="slot.match.TeamId2">
+              <label igxLabel>Team 1</label>
+              <igx-select-item *ngFor="let registration of registrations"
+                                [value]="registration.Team.TeamId"
+                                [text]="registration.Team.TeamName">
+                <igx-avatar [src]="registration.Team.TeamAvatar" [initials]="registration.Team.TeamName"></igx-avatar>
+                {{ registration.Team.TeamName }}
+              </igx-select-item>
+            </igx-select>
+          </div>
+        </igx-card-content>
+      </igx-card>
+    </igx-tabs-group>
+  </igx-tabs>
 </div>
 
 <bg-confirm #confirm title="Сигурни ли сте?" (ok)="deleteGroup($event)">
