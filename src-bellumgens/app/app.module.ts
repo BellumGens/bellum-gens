@@ -51,7 +51,6 @@ import { UnreadNotificationsPipe } from './pipes/unread-notifications.pipe';
 import { PlayerNotificationsComponent } from './player-section/notifications/notifications.component';
 import { SortNotificationsPipe } from './pipes/sort-notifications.pipe';
 import { DisabledNotificationsPipe } from './pipes/disabled-notifications.pipe';
-import { SuccessErrorComponent } from './success-error/success-error.component';
 import { TeamStrategiesComponent } from './team-section/team-strategies/team-strategies.component';
 import { TeamApplicationComponent } from './team-section/team-application/team-application.component';
 import { TeamOverviewComponent } from './team-section/team-overview/team-overview.component';
@@ -119,7 +118,6 @@ import { BellumGensModule } from '../../src-common/components/components.module'
     PlayerNotificationsComponent,
     SortNotificationsPipe,
     DisabledNotificationsPipe,
-    SuccessErrorComponent,
     TeamStrategiesComponent,
     TeamApplicationComponent,
     TeamOverviewComponent,
@@ -194,7 +192,6 @@ import { BellumGensModule } from '../../src-common/components/components.module'
     IgxCalendarModule,
     IgxExpansionPanelModule,
     IgxRadioModule,
-    IgxSnackbarModule,
     IgxBannerModule,
     IgxButtonGroupModule,
     IgxSliderModule,

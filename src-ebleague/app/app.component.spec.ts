@@ -6,36 +6,18 @@ import { IgxNavigationDrawerModule,
   IgxLayoutModule,
   IgxRippleModule,
   IgxIconModule,
-  IgxDropDownModule,
   IgxInputGroupModule,
-  IgxToggleModule,
-  IgxBadgeModule,
   IgxBannerModule,
   IgxButtonModule,
-  IgxSnackbarModule,
   IgxAvatarModule,
-  IgxCardModule,
-  IgxListModule,
-  IgxDialogModule,
   IgxProgressBarModule,
   IgxButtonGroupModule,
   IgxSliderModule,
-  IgxRadioModule,
-  IgxTabsModule,
-  IgxSwitchModule,
-  IgxDividerModule,
-  IgxSelectModule} from 'igniteui-angular';
-import { SuccessErrorComponent } from '../../src-bellumgens/app/success-error/success-error.component';
-import { TeamNavComponent } from '../../src-bellumgens/app/team-section/team-nav/team-nav.component';
-import { QuickSearchComponent } from '../../src-bellumgens/app/search/quick-search/quick-search.component';
+  IgxDividerModule} from 'igniteui-angular';
 import { FormsModule } from '@angular/forms';
-import { GroupsFilterPipe } from '../../src-bellumgens/app/pipes/groups-filter.pipe';
-import { ReduceQuickSearchResultPipe } from '../../src-bellumgens/app/pipes/reduce-quick-search-result.pipe';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { PlayerCountryPipe } from '../../src-bellumgens/app/pipes/player-country.pipe';
-import { TeamNewComponent } from '../../src-bellumgens/app/team-section/team-new/team-new.component';
 import { BellumGensModule } from 'src-common/components/components.module';
 
 describe('AppComponent', () => {
@@ -54,39 +36,20 @@ describe('AppComponent', () => {
         IgxNavbarModule,
         IgxLayoutModule,
         IgxIconModule,
-        IgxToggleModule,
-        IgxDropDownModule,
         IgxInputGroupModule,
-        IgxBadgeModule,
         IgxBannerModule,
         IgxButtonModule,
         IgxNavbarModule,
-        IgxSnackbarModule,
         IgxAvatarModule,
-        IgxCardModule,
-        IgxListModule,
-        IgxDialogModule,
         IgxRippleModule,
         IgxProgressBarModule,
         IgxButtonGroupModule,
         IgxSliderModule,
-        IgxRadioModule,
-        IgxTabsModule,
         IgxDividerModule,
-        IgxSelectModule,
-        IgxSwitchModule,
-        IgxNavigationDrawerModule,
         BellumGensModule
       ],
       declarations: [
-        AppComponent,
-        SuccessErrorComponent,
-        TeamNavComponent,
-        QuickSearchComponent,
-        GroupsFilterPipe,
-        ReduceQuickSearchResultPipe,
-        PlayerCountryPipe,
-        TeamNewComponent
+        AppComponent
       ],
     }).compileComponents();
   }));

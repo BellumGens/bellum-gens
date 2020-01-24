@@ -1,9 +1,9 @@
 import { Component, ViewChild, OnDestroy } from '@angular/core';
 import { IgxSnackbarComponent } from 'igniteui-angular';
-import { CommunicationService } from '../../../src-common/services/communication.service';
+import { CommunicationService } from '../../services/communication.service';
 
 @Component({
-  selector: 'app-success-error',
+  selector: 'bg-success-error',
   templateUrl: './success-error.component.html',
   styleUrls: ['./success-error.component.css']
 })

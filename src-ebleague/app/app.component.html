@@ -1,5 +1,5 @@
 <div igxLayout>
-  <igx-nav-drawer id="navigation" #drawer>
+  <igx-nav-drawer style="height: auto!important" id="navigation" #drawer>
     <ng-template igxDrawer>
       <nav>
         <span igxDrawerItem [isHeader]="true">Esports Business League</span>
@@ -18,6 +18,10 @@
         <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournament/format">
           <igx-icon>playlist_add_check</igx-icon>
           Формат на лигата
+        </span>
+        <span igxDrawerItem igxRipple routerLink="/" fragment="partners">
+          <igx-icon>people_alt</igx-icon>
+          Нашите партньори
         </span>
         <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournament/crew">
           <igx-icon>people</igx-icon>
@@ -84,7 +88,7 @@
       </igx-banner-actions>
     </igx-banner>
 
-    <app-success-error></app-success-error>
+    <bg-success-error></bg-success-error>
 
     <div class="main-content-wrapper">
       <div class="content">

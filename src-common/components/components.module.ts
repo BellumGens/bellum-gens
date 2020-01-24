@@ -11,25 +11,29 @@ import { IgxDialogModule,
   IgxDividerModule,
   IgxSwitchModule,
   IgxListModule,
-  IgxInputGroupModule} from 'igniteui-angular';
+  IgxInputGroupModule,
+  IgxSnackbarModule} from 'igniteui-angular';
 import { LoginComponent } from './login/login.component';
 import { LoginDialogComponent } from './login/login-dialog/login-dialog.component';
 import { CommonModule } from '@angular/common';
 import { UserPreferencesComponent } from './user-preferences/user-preferences.component';
 import { FormsModule } from '@angular/forms';
+import { SuccessErrorComponent } from './success-error/success-error.component';
 
 @NgModule({
   declarations: [
     ConfirmComponent,
     LoginDialogComponent,
     LoginComponent,
-    UserPreferencesComponent
+    UserPreferencesComponent,
+    SuccessErrorComponent
   ],
   exports: [
     ConfirmComponent,
     LoginDialogComponent,
     LoginComponent,
-    UserPreferencesComponent
+    UserPreferencesComponent,
+    SuccessErrorComponent
   ],
   imports: [
     CommonModule,
@@ -45,7 +49,8 @@ import { FormsModule } from '@angular/forms';
     IgxDividerModule,
     IgxSwitchModule,
     IgxListModule,
-    IgxInputGroupModule
+    IgxInputGroupModule,
+    IgxSnackbarModule
   ]
 })
 export class BellumGensModule {}
