@@ -15,7 +15,7 @@
       </a>
     </div>
   </div>
-  <igx-tabs>
+  <igx-tabs *ngIf="isBrowser">
     <igx-tab-item routerLink="details"
                   routerLinkActive #rla1="routerLinkActive"
                   [isSelected]="rla1.isActive">
