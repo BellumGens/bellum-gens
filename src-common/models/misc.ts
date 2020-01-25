@@ -59,6 +59,17 @@ export const CREW_MEMBERS = [
     instagram: ''
   },
   {
+    name: 'Петрослав "myth" Белчев',
+    birthplace: 'Велико Търново',
+    position: 'Motion graphics и видео едитор',
+    // tslint:disable-next-line:max-line-length
+    description: 'Петрослав или по-познат като Myth в гейминг средите е едно от разпознаваемите лица в родната сцена с над 14 годишен опит в сферата на видео монтажа. В портфолиото му стоят проекти от периода му в iNNERFIRE, SK GAMING, както и AFKtv и Gplay TV с които е  организирал едни от най-големите гейм събития правени в България.',
+    image: '/assets/crew/myth.webp',
+    twitter: 'https://twitter.com/mythvt',
+    facebook: 'https://www.facebook.com/mythfilms/',
+    instagram: 'https://www.instagram.com/mythvt/'
+  },
+  {
     name: 'Михаил "msrm" Михайлов',
     birthplace: 'Перник',
     position: 'StarCraft II кастър',
