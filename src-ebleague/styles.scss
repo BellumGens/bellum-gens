@@ -247,6 +247,10 @@ html {
   margin: 0 4px;
 }
 
+.action-icon-button:hover {
+  color: $secondary;
+}
+
 .action-buttons {
   display: flex;
   align-items: center;

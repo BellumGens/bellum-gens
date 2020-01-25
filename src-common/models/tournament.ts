@@ -1,6 +1,5 @@
 import { CSGOTeam } from './csgoteam';
 import { ApplicationUser } from './applicationuser';
-import { CSGOMap } from './csgomaps';
 
 export interface Tournament {
   ID?: string;
@@ -42,24 +41,8 @@ export interface TournamentGroup {
   inEdit?: boolean;
 }
 
-export interface TournamentMatch {
-  Id?: string;
-  DemoLink?: string;
-  VideoLink?: string;
-  StartTime?: Date;
-  EndTime?: Date;
-}
-
-export interface TournamentCSGOMatch extends TournamentMatch {
-  TeamId1?: string;
-  TeamId2?: string;
-  Maps?: CSGOMap [];
-  Team1?: CSGOTeam;
-  Team2?: CSGOTeam;
-}
-
 export interface TournamentCSGOGroup extends TournamentGroup {
-  Matches?: TournamentCSGOMatch [];
+  Matches?: any [];
 }
 
 export interface TournamentSC2Group extends TournamentGroup {
@@ -99,10 +82,6 @@ export function getEmptyNewTournament(): Tournament {
 
 export function getEmptyNewGroup(): TournamentGroup {
   return { Name: null, inEdit: false };
-}
-
-export function getEmptyNewMatch(start: Date): TournamentMatch {
-  return { StartTime: start };
 }
 
 export const GAMES = [

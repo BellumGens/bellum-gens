@@ -1,4 +1,4 @@
-import { TournamentCSGOMatch } from './tournament';
+import { CSGOTeam } from './csgoteam';
 
 export interface CSGOMatchSchedule {
   name: string;
@@ -18,35 +18,56 @@ export interface CSGOMatchScheduleSlot {
   inEdit?: boolean;
 }
 
+export interface TournamentMatch {
+  Id?: string;
+  DemoLink?: string;
+  VideoLink?: string;
+  StartTime?: Date;
+  EndTime?: Date;
+}
+
+export interface TournamentCSGOMatch extends TournamentMatch {
+  Team1Id?: string;
+  Team2Id?: string;
+  Maps?: any [];
+  Team1?: CSGOTeam;
+  Team2?: CSGOTeam;
+  GroupId?: string;
+}
+
+export function getEmptyNewMatch(start: Date): TournamentMatch {
+  return { StartTime: start };
+}
+
 export const WEEKLY_CSGO_SCHEDULE: CSGOMatchSchedule [] = [
   { name: 'Седмица 1', start: new Date(2020, 0, 27), end: new Date(2020, 0, 30),
     days: [
       {
         day: new Date(2020, 0, 27),
         slots: [
-          { start: new Date(2020, 0, 27, 19, 30, 0), match: null },
-          { start: new Date(2020, 0, 27, 21, 30, 0), match: null },
+          { start: new Date(2020, 0, 27, 19, 30, 0), match: getEmptyNewMatch(new Date(2020, 0, 27, 19, 30, 0)) },
+          { start: new Date(2020, 0, 27, 21, 30, 0), match: getEmptyNewMatch(new Date(2020, 0, 27, 21, 30, 0)) },
         ]
       },
       {
         day: new Date(2020, 0, 28),
         slots: [
-          { start: new Date(2020, 0, 28, 19, 30, 0), match: null },
-          { start: new Date(2020, 0, 28, 21, 30, 0), match: null }
+          { start: new Date(2020, 0, 28, 19, 30, 0), match: getEmptyNewMatch(new Date(2020, 0, 28, 19, 30, 0)) },
+          { start: new Date(2020, 0, 28, 21, 30, 0), match: getEmptyNewMatch(new Date(2020, 0, 28, 21, 30, 0)) }
         ]
       },
       {
         day: new Date(2020, 0, 29),
         slots: [
-          { start: new Date(2020, 0, 29, 19, 30, 0), match: null },
-          { start: new Date(2020, 0, 29, 21, 30, 0), match: null }
+          { start: new Date(2020, 0, 29, 19, 30, 0), match: getEmptyNewMatch(new Date(2020, 0, 29, 19, 30, 0)) },
+          { start: new Date(2020, 0, 29, 21, 30, 0), match: getEmptyNewMatch(new Date(2020, 0, 29, 21, 30, 0)) }
         ]
       },
       {
         day: new Date(2020, 0, 30),
         slots: [
-          { start: new Date(2020, 0, 30, 19, 30, 0), match: null },
-          { start: new Date(2020, 0, 30, 21, 30, 0), match: null }
+          { start: new Date(2020, 0, 30, 19, 30, 0), match: getEmptyNewMatch(new Date(2020, 0, 30, 19, 30, 0)) },
+          { start: new Date(2020, 0, 30, 21, 30, 0), match: getEmptyNewMatch(new Date(2020, 0, 30, 21, 30, 0)) }
         ]
       }
     ]
@@ -56,29 +77,29 @@ export const WEEKLY_CSGO_SCHEDULE: CSGOMatchSchedule [] = [
       {
         day: new Date(2020, 1, 3),
         slots: [
-          { start: new Date(2020, 1, 3, 19, 30, 0), match: null },
-          { start: new Date(2020, 1, 3, 21, 30, 0), match: null },
+          { start: new Date(2020, 1, 3, 19, 30, 0), match: getEmptyNewMatch(new Date(2020, 1, 3, 19, 30, 0)) },
+          { start: new Date(2020, 1, 3, 21, 30, 0), match: getEmptyNewMatch(new Date(2020, 1, 3, 21, 30, 0)) },
         ]
       },
       {
         day: new Date(2020, 1, 4),
         slots: [
-          { start: new Date(2020, 1, 4, 19, 30, 0), match: null },
-          { start: new Date(2020, 1, 4, 21, 30, 0), match: null }
+          { start: new Date(2020, 1, 4, 19, 30, 0), match: getEmptyNewMatch(new Date(2020, 1, 4, 19, 30, 0)) },
+          { start: new Date(2020, 1, 4, 21, 30, 0), match: getEmptyNewMatch(new Date(2020, 1, 4, 21, 30, 0)) }
         ]
       },
       {
         day: new Date(2020, 1, 5),
         slots: [
-          { start: new Date(2020, 1, 5, 19, 30, 0), match: null },
-          { start: new Date(2020, 1, 5, 21, 30, 0), match: null }
+          { start: new Date(2020, 1, 5, 19, 30, 0), match: getEmptyNewMatch(new Date(2020, 1, 5, 19, 30, 0)) },
+          { start: new Date(2020, 1, 5, 21, 30, 0), match: getEmptyNewMatch(new Date(2020, 1, 5, 21, 30, 0)) }
         ]
       },
       {
         day: new Date(2020, 1, 6),
         slots: [
-          { start: new Date(2020, 1, 6, 19, 30, 0), match: null },
-          { start: new Date(2020, 1, 6, 21, 30, 0), match: null }
+          { start: new Date(2020, 1, 6, 19, 30, 0), match: getEmptyNewMatch(new Date(2020, 1, 6, 19, 30, 0)) },
+          { start: new Date(2020, 1, 6, 21, 30, 0), match: getEmptyNewMatch(new Date(2020, 1, 6, 21, 30, 0)) }
         ]
       }
     ]
@@ -88,29 +109,29 @@ export const WEEKLY_CSGO_SCHEDULE: CSGOMatchSchedule [] = [
       {
         day: new Date(2020, 1, 10),
         slots: [
-          { start: new Date(2020, 1, 10, 19, 30, 0), match: null },
-          { start: new Date(2020, 1, 10, 21, 30, 0), match: null },
+          { start: new Date(2020, 1, 10, 19, 30, 0), match: getEmptyNewMatch(new Date(2020, 1, 10, 19, 30, 0)) },
+          { start: new Date(2020, 1, 10, 21, 30, 0), match: getEmptyNewMatch(new Date(2020, 1, 10, 21, 30, 0)) },
         ]
       },
       {
         day: new Date(2020, 1, 11),
         slots: [
-          { start: new Date(2020, 1, 11, 19, 30, 0), match: null },
-          { start: new Date(2020, 1, 11, 21, 30, 0), match: null }
+          { start: new Date(2020, 1, 11, 19, 30, 0), match: getEmptyNewMatch(new Date(2020, 1, 11, 19, 30, 0)) },
+          { start: new Date(2020, 1, 11, 21, 30, 0), match: getEmptyNewMatch(new Date(2020, 1, 11, 21, 30, 0)) }
         ]
       },
       {
         day: new Date(2020, 1, 12),
         slots: [
-          { start: new Date(2020, 1, 12, 19, 30, 0), match: null },
-          { start: new Date(2020, 1, 12, 21, 30, 0), match: null }
+          { start: new Date(2020, 1, 12, 19, 30, 0), match: getEmptyNewMatch(new Date(2020, 1, 12, 19, 30, 0)) },
+          { start: new Date(2020, 1, 12, 21, 30, 0), match: getEmptyNewMatch(new Date(2020, 1, 12, 21, 30, 0)) }
         ]
       },
       {
         day: new Date(2020, 1, 13),
         slots: [
-          { start: new Date(2020, 1, 13, 19, 30, 0), match: null },
-          { start: new Date(2020, 1, 13, 21, 30, 0), match: null }
+          { start: new Date(2020, 1, 13, 19, 30, 0), match: getEmptyNewMatch(new Date(2020, 1, 13, 19, 30, 0)) },
+          { start: new Date(2020, 1, 13, 21, 30, 0), match: getEmptyNewMatch(new Date(2020, 1, 13, 21, 30, 0)) }
         ]
       }
     ]
@@ -120,29 +141,29 @@ export const WEEKLY_CSGO_SCHEDULE: CSGOMatchSchedule [] = [
       {
         day: new Date(2020, 1, 17),
         slots: [
-          { start: new Date(2020, 1, 17, 19, 30, 0), match: null },
-          { start: new Date(2020, 1, 17, 21, 30, 0), match: null },
+          { start: new Date(2020, 1, 17, 19, 30, 0), match: getEmptyNewMatch(new Date(2020, 1, 17, 19, 30, 0)) },
+          { start: new Date(2020, 1, 17, 21, 30, 0), match: getEmptyNewMatch(new Date(2020, 1, 17, 21, 30, 0)) },
         ]
       },
       {
         day: new Date(2020, 1, 18),
         slots: [
-          { start: new Date(2020, 1, 18, 19, 30, 0), match: null },
-          { start: new Date(2020, 1, 18, 21, 30, 0), match: null }
+          { start: new Date(2020, 1, 18, 19, 30, 0), match: getEmptyNewMatch(new Date(2020, 1, 18, 19, 30, 0)) },
+          { start: new Date(2020, 1, 18, 21, 30, 0), match: getEmptyNewMatch(new Date(2020, 1, 18, 21, 30, 0)) }
         ]
       },
       {
         day: new Date(2020, 1, 19),
         slots: [
-          { start: new Date(2020, 1, 19, 19, 30, 0), match: null },
-          { start: new Date(2020, 1, 19, 21, 30, 0), match: null }
+          { start: new Date(2020, 1, 19, 19, 30, 0), match: getEmptyNewMatch(new Date(2020, 1, 19, 19, 30, 0)) },
+          { start: new Date(2020, 1, 19, 21, 30, 0), match: getEmptyNewMatch(new Date(2020, 1, 19, 21, 30, 0)) }
         ]
       },
       {
         day: new Date(2020, 1, 20),
         slots: [
-          { start: new Date(2020, 1, 20, 19, 30, 0), match: null },
-          { start: new Date(2020, 1, 20, 21, 30, 0), match: null }
+          { start: new Date(2020, 1, 20, 19, 30, 0), match: getEmptyNewMatch(new Date(2020, 1, 20, 19, 30, 0)) },
+          { start: new Date(2020, 1, 20, 21, 30, 0), match: getEmptyNewMatch(new Date(2020, 1, 20, 21, 30, 0)) }
         ]
       }
     ]
@@ -152,29 +173,29 @@ export const WEEKLY_CSGO_SCHEDULE: CSGOMatchSchedule [] = [
       {
         day: new Date(2020, 1, 24),
         slots: [
-          { start: new Date(2020, 1, 24, 19, 30, 0), match: null },
-          { start: new Date(2020, 1, 24, 21, 30, 0), match: null },
+          { start: new Date(2020, 1, 24, 19, 30, 0), match: getEmptyNewMatch(new Date(2020, 1, 24, 19, 30, 0)) },
+          { start: new Date(2020, 1, 24, 21, 30, 0), match: getEmptyNewMatch(new Date(2020, 1, 24, 21, 30, 0)) },
         ]
       },
       {
         day: new Date(2020, 1, 25),
         slots: [
-          { start: new Date(2020, 1, 25, 19, 30, 0), match: null },
-          { start: new Date(2020, 1, 25, 21, 30, 0), match: null }
+          { start: new Date(2020, 1, 25, 19, 30, 0), match: getEmptyNewMatch(new Date(2020, 1, 25, 19, 30, 0)) },
+          { start: new Date(2020, 1, 25, 21, 30, 0), match: getEmptyNewMatch(new Date(2020, 1, 25, 21, 30, 0)) }
         ]
       },
       {
         day: new Date(2020, 1, 26),
         slots: [
-          { start: new Date(2020, 1, 26, 19, 30, 0), match: null },
-          { start: new Date(2020, 1, 26, 21, 30, 0), match: null }
+          { start: new Date(2020, 1, 26, 19, 30, 0), match: getEmptyNewMatch(new Date(2020, 1, 26, 19, 30, 0)) },
+          { start: new Date(2020, 1, 26, 21, 30, 0), match: getEmptyNewMatch(new Date(2020, 1, 26, 21, 30, 0)) }
         ]
       },
       {
         day: new Date(2020, 1, 27),
         slots: [
-          { start: new Date(2020, 1, 27, 19, 30, 0), match: null },
-          { start: new Date(2020, 1, 27, 21, 30, 0), match: null }
+          { start: new Date(2020, 1, 27, 19, 30, 0), match: getEmptyNewMatch(new Date(2020, 1, 27, 19, 30, 0)) },
+          { start: new Date(2020, 1, 27, 21, 30, 0), match: getEmptyNewMatch(new Date(2020, 1, 27, 21, 30, 0)) }
         ]
       }
     ]
@@ -184,29 +205,29 @@ export const WEEKLY_CSGO_SCHEDULE: CSGOMatchSchedule [] = [
       {
         day: new Date(2020, 2, 2),
         slots: [
-          { start: new Date(2020, 2, 2, 19, 30, 0), match: null },
-          { start: new Date(2020, 2, 2, 21, 30, 0), match: null },
+          { start: new Date(2020, 2, 2, 19, 30, 0), match: getEmptyNewMatch(new Date(2020, 2, 2, 19, 30, 0)) },
+          { start: new Date(2020, 2, 2, 21, 30, 0), match: getEmptyNewMatch(new Date(2020, 2, 2, 21, 30, 0)) },
         ]
       },
       {
         day: new Date(2020, 2, 3),
         slots: [
-          { start: new Date(2020, 2, 3, 19, 30, 0), match: null },
-          { start: new Date(2020, 2, 3, 21, 30, 0), match: null }
+          { start: new Date(2020, 2, 3, 19, 30, 0), match: getEmptyNewMatch(new Date(2020, 2, 3, 19, 30, 0)) },
+          { start: new Date(2020, 2, 3, 21, 30, 0), match: getEmptyNewMatch(new Date(2020, 2, 3, 21, 30, 0)) }
         ]
       },
       {
         day: new Date(2020, 2, 4),
         slots: [
-          { start: new Date(2020, 2, 4, 19, 30, 0), match: null },
-          { start: new Date(2020, 2, 4, 21, 30, 0), match: null }
+          { start: new Date(2020, 2, 4, 19, 30, 0), match: getEmptyNewMatch(new Date(2020, 2, 4, 19, 30, 0)) },
+          { start: new Date(2020, 2, 4, 21, 30, 0), match: getEmptyNewMatch(new Date(2020, 2, 4, 21, 30, 0)) }
         ]
       },
       {
         day: new Date(2020, 2, 5),
         slots: [
-          { start: new Date(2020, 2, 5, 19, 30, 0), match: null },
-          { start: new Date(2020, 2, 5, 21, 30, 0), match: null }
+          { start: new Date(2020, 2, 5, 19, 30, 0), match: getEmptyNewMatch(new Date(2020, 2, 5, 19, 30, 0)) },
+          { start: new Date(2020, 2, 5, 21, 30, 0), match: getEmptyNewMatch(new Date(2020, 2, 5, 21, 30, 0)) }
         ]
       }
     ]
@@ -216,29 +237,29 @@ export const WEEKLY_CSGO_SCHEDULE: CSGOMatchSchedule [] = [
       {
         day: new Date(2020, 2, 9),
         slots: [
-          { start: new Date(2020, 2, 9, 19, 30, 0), match: null },
-          { start: new Date(2020, 2, 9, 21, 30, 0), match: null },
+          { start: new Date(2020, 2, 9, 19, 30, 0), match: getEmptyNewMatch(new Date(2020, 2, 9, 19, 30, 0)) },
+          { start: new Date(2020, 2, 9, 21, 30, 0), match: getEmptyNewMatch(new Date(2020, 2, 9, 21, 30, 0)) },
         ]
       },
       {
         day: new Date(2020, 2, 10),
         slots: [
-          { start: new Date(2020, 2, 10, 19, 30, 0), match: null },
-          { start: new Date(2020, 2, 10, 21, 30, 0), match: null }
+          { start: new Date(2020, 2, 10, 19, 30, 0), match: getEmptyNewMatch(new Date(2020, 2, 10, 19, 30, 0)) },
+          { start: new Date(2020, 2, 10, 21, 30, 0), match: getEmptyNewMatch(new Date(2020, 2, 10, 21, 30, 0)) }
         ]
       },
       {
         day: new Date(2020, 2, 11),
         slots: [
-          { start: new Date(2020, 2, 11, 19, 30, 0), match: null },
-          { start: new Date(2020, 2, 11, 21, 30, 0), match: null }
+          { start: new Date(2020, 2, 11, 19, 30, 0), match: getEmptyNewMatch(new Date(2020, 2, 11, 19, 30, 0)) },
+          { start: new Date(2020, 2, 11, 21, 30, 0), match: getEmptyNewMatch(new Date(2020, 2, 11, 21, 30, 0)) }
         ]
       },
       {
         day: new Date(2020, 2, 12),
         slots: [
-          { start: new Date(2020, 2, 12, 19, 30, 0), match: null },
-          { start: new Date(2020, 2, 12, 21, 30, 0), match: null }
+          { start: new Date(2020, 2, 12, 19, 30, 0), match: getEmptyNewMatch(new Date(2020, 2, 12, 19, 30, 0)) },
+          { start: new Date(2020, 2, 12, 21, 30, 0), match: getEmptyNewMatch(new Date(2020, 2, 12, 21, 30, 0)) }
         ]
       }
     ]
