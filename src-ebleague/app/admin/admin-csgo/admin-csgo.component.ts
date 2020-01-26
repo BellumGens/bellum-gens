@@ -88,7 +88,7 @@ export class AdminCsgoComponent {
       const reg = this.registrations.find(r =>
         r.Team.TeamId === (<TournamentCSGOMatch>match).Team1Id || r.Team.TeamId === (<TournamentCSGOMatch>match).Team2Id);
       match.GroupId = reg.TournamentCSGOGroupId;
-      this.apiService.submitMatch(match).subscribe(data => slot.match = data);
+      this.apiService.submitCSGOMatch(match).subscribe(data => slot.match = data);
       slot.inEdit = false;
     }
   }

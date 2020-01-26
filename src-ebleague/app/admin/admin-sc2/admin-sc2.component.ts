@@ -31,7 +31,7 @@ export class AdminSc2Component {
     });
     this.apiService.loadingSC2Registrations.subscribe(data => this.loading = data);
     this.apiService.getSC2Groups().subscribe(data => this.groups = data);
-    this.apiService.getCSGOMatches().subscribe(data => {
+    this.apiService.getSC2Matches().subscribe(data => {
       this.matches = data;
       if (this.matches) {
         this.schedule.forEach(week => {
@@ -86,9 +86,9 @@ export class AdminSc2Component {
     const match = slot.match;
     if ((<TournamentSC2Match>match).Player1Id && (<TournamentSC2Match>match).Player2Id) {
       const reg = this.registrations.find(r =>
-        r.Team.TeamId === (<TournamentSC2Match>match).Player1Id || r.Team.TeamId === (<TournamentSC2Match>match).Player2Id);
+        r.UserId === (<TournamentSC2Match>match).Player1Id || r.UserId === (<TournamentSC2Match>match).Player2Id);
       match.GroupId = reg.TournamentCSGOGroupId;
-      this.apiService.submitMatch(match).subscribe(data => slot.match = data);
+      this.apiService.submitSC2Match(match).subscribe(data => slot.match = data);
       slot.inEdit = false;
     }
   }

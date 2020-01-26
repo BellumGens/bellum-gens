@@ -10,7 +10,7 @@ import { TournamentApplication,
   TournamentCSGOGroup,
   TournamentSC2Group,
   TournamentRegistration } from '../models/tournament';
-import { TournamentCSGOMatch } from '../models/tournament-schedule';
+import { TournamentCSGOMatch, TournamentSC2Match } from '../models/tournament-schedule';
 
 @Injectable({
   providedIn: 'root'
@@ -243,12 +243,32 @@ export class ApiTournamentsService {
     return this.http.get<TournamentCSGOMatch []>(`${this._apiEndpoint}/tournament/csgomatches`, { withCredentials: true});
   }
 
-  public submitMatch(match: TournamentCSGOMatch) {
+  public getSC2Matches() {
+    return this.http.get<TournamentSC2Match []>(`${this._apiEndpoint}/tournament/sc2matches`, { withCredentials: true});
+  }
+
+  public submitCSGOMatch(match: TournamentCSGOMatch) {
     return this.http.put<TournamentCSGOMatch>(`${this._apiEndpoint}/tournament/csgomatch?id=${match.Id || null}`,
       match, { withCredentials: true}).pipe(
         map(response => {
           if (response) {
             this.commService.emitSuccess('Tournament CS:GO match updated successfully!');
+          }
+          return response;
+        }),
+        catchError(error => {
+          this.commService.emitError(error.error.Message);
+          return throwError(error);
+        })
+      );
+  }
+
+  public submitSC2Match(match: TournamentSC2Match) {
+    return this.http.put<TournamentSC2Match>(`${this._apiEndpoint}/tournament/sc2match?id=${match.Id || null}`,
+      match, { withCredentials: true}).pipe(
+        map(response => {
+          if (response) {
+            this.commService.emitSuccess('Tournament StarCraft II match updated successfully!');
           }
           return response;
         }),
