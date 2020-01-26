@@ -5,6 +5,8 @@ import { TournamentGroup,
 import { ApiTournamentsService } from '../../../../src-common/services/bellumgens-api.tournaments.service';
 import { environment } from '../../../../src-common/environments/environment';
 import { IDropDroppedEventArgs } from 'igniteui-angular';
+import { TournamentSC2Match, MatchScheduleSlot } from '../../../../src-common/models/tournament-schedule';
+import { WEEKLY_SC2_SCHEDULE } from '../../../../src-common/models/sc2schedule';
 
 @Component({
   selector: 'app-admin-sc2',
@@ -14,10 +16,12 @@ import { IDropDroppedEventArgs } from 'igniteui-angular';
 export class AdminSc2Component {
   public registrations: TournamentRegistration [];
   public groups: TournamentGroup [];
+  public matches: TournamentSC2Match [];
   public loading = false;
   public environment = environment;
   public newGroup = getEmptyNewGroup();
   public pipeTrigger = 0;
+  public schedule = WEEKLY_SC2_SCHEDULE;
 
   constructor(private apiService: ApiTournamentsService) {
     this.apiService.sc2Registrations.subscribe(data => {
@@ -27,6 +31,21 @@ export class AdminSc2Component {
     });
     this.apiService.loadingSC2Registrations.subscribe(data => this.loading = data);
     this.apiService.getSC2Groups().subscribe(data => this.groups = data);
+    this.apiService.getCSGOMatches().subscribe(data => {
+      this.matches = data;
+      if (this.matches) {
+        this.schedule.forEach(week => {
+          week.days.forEach(day => {
+            day.slots.forEach(s => {
+              const match = this.matches.find(m => new Date(m.StartTime).getTime() === s.start.getTime());
+              if (match) {
+                s.match = match;
+              }
+            });
+          });
+        });
+      }
+    });
   }
 
   public submitGroup(group: TournamentGroup) {
@@ -61,5 +80,16 @@ export class AdminSc2Component {
     group.Participants.splice(group.Participants.indexOf(participant), 1);
     this.registrations.find(r => r.Id === participant.Id).TournamentSC2GroupId = null;
     this.pipeTrigger++;
+  }
+
+  public submitMatch(slot: MatchScheduleSlot) {
+    const match = slot.match;
+    if ((<TournamentSC2Match>match).Player1Id && (<TournamentSC2Match>match).Player2Id) {
+      const reg = this.registrations.find(r =>
+        r.Team.TeamId === (<TournamentSC2Match>match).Player1Id || r.Team.TeamId === (<TournamentSC2Match>match).Player2Id);
+      match.GroupId = reg.TournamentCSGOGroupId;
+      this.apiService.submitMatch(match).subscribe(data => slot.match = data);
+      slot.inEdit = false;
+    }
   }
 }

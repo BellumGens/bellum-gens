@@ -1,4 +1,58 @@
 <div class="overview-container-card">
+  <igx-tabs>
+    <igx-tabs-group class="home-page-slide-columns" *ngFor="let week of schedule">
+      <ng-template igxTab>
+        <div class="horizontal-center">
+          <igx-icon>calendar_today</igx-icon>
+          <div class="igx-tabs__item-label">{{week.name}}</div>
+        </div>
+        <div>{{week.start | date}} - {{week.end | date}}</div>
+      </ng-template>
+
+      <igx-card *ngFor="let day of week.days">
+        <igx-card-header>
+          <h1 igxCardHeaderTitle>{{day.day | date}}</h1>
+        </igx-card-header>
+        <igx-card-content *ngFor="let slot of day.slots">
+          <div class="horizontal-center space-between">
+            <span>{{slot.start | date:'shortTime'}}</span>
+
+            <igx-select [(ngModel)]="slot.match.Player1Id">
+              <label igxLabel>Player 1</label>
+              <igx-select-item *ngFor="let registration of registrations"
+                                [disabled]="!slot.inEdit"
+                                [value]="registration.UserId"
+                                [text]="registration.BattleTag">
+                <igx-avatar [src]="registration.User.avatarMedium" [initials]="registration.BattleTag"></igx-avatar>
+                {{ registration.BattleTag }}
+              </igx-select-item>
+            </igx-select>
+
+            vs.
+
+            <igx-select [(ngModel)]="slot.match.Player2Id">
+              <label igxLabel>Player 2</label>
+              <igx-select-item *ngFor="let registration of registrations"
+                                [disabled]="!slot.inEdit"
+                                [value]="registration.UserId"
+                                [text]="registration.BattleTag">
+                <igx-avatar [src]="registration.User.avatarMedium" [initials]="registration.BattleTag"></igx-avatar>
+                {{ registration.BattleTag }}
+              </igx-select-item>
+            </igx-select>
+
+            <button *ngIf="!slot.inEdit" igxButton (click)="slot.inEdit = true">Edit Match</button>
+
+            <div *ngIf="slot.inEdit">
+              <igx-icon class="navigatable action-icon-button" (click)="submitMatch(slot)">done</igx-icon>
+              <igx-icon *ngIf="slot.inEdit" class="navigatable action-icon-button" (click)="slot.inEdit = false">cancel</igx-icon>
+            </div>
+          </div>
+        </igx-card-content>
+      </igx-card>
+    </igx-tabs-group>
+  </igx-tabs>
+
   <igx-card type="outlined">
     <igx-card-header>
       <igx-avatar igxCardThumbnail [roundShape]="true" src="/assets/wallpapers/sc2-watermark.webp"></igx-avatar>

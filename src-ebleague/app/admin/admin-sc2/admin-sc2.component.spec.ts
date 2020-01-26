@@ -10,7 +10,9 @@ import { IgxListModule,
   IgxCardModule,
   IgxButtonModule,
   IgxDragDropModule,
-  IgxProgressBarModule} from 'igniteui-angular';
+  IgxProgressBarModule,
+  IgxSelectModule,
+  IgxTabsModule} from 'igniteui-angular';
 import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -36,7 +38,9 @@ describe('AdminSc2Component', () => {
         IgxCardModule,
         IgxButtonModule,
         IgxDragDropModule,
-        IgxProgressBarModule
+        IgxProgressBarModule,
+        IgxSelectModule,
+        IgxTabsModule
       ]
     })
     .compileComponents();
