@@ -16,12 +16,13 @@
         </igx-card-header>
         <igx-card-content *ngFor="let slot of day.slots">
           <div class="horizontal-center space-between">
-            <span>{{slot.start | date:'shortTime'}}</span>
+            <igx-time-picker [disabled]="!slot.inEdit" [(ngModel)]="slot.start">
 
-            <igx-select [(ngModel)]="slot.match.Team1Id">
+            </igx-time-picker>
+
+            <igx-select [(ngModel)]="slot.match.Team1Id" [disabled]="!slot.inEdit">
               <label igxLabel>Team 1</label>
               <igx-select-item *ngFor="let registration of registrations"
-                                [disabled]="!slot.inEdit"
                                 [value]="registration.Team.TeamId"
                                 [text]="registration.Team.TeamName">
                 <igx-avatar [src]="registration.Team.TeamAvatar" [initials]="registration.Team.TeamName"></igx-avatar>
@@ -31,10 +32,9 @@
 
             vs.
 
-            <igx-select [(ngModel)]="slot.match.Team2Id">
+            <igx-select [(ngModel)]="slot.match.Team2Id" [disabled]="!slot.inEdit">
               <label igxLabel>Team 2</label>
               <igx-select-item *ngFor="let registration of registrations"
-                                [disabled]="!slot.inEdit"
                                 [value]="registration.Team.TeamId"
                                 [text]="registration.Team.TeamName">
                 <igx-avatar [src]="registration.Team.TeamAvatar" [initials]="registration.Team.TeamName"></igx-avatar>
