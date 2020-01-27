@@ -1,24 +1,26 @@
 <div class="home-page-slide-columns">
   <div class="slide slide1">
     <div class="slide-info-column">
-      <h1><a routerLink="/csgo">CS:GO League</a></h1>
-      <p>Регистрациите за първия сезон на Esports Business League проключиха! Първото издание на Esports Business League започва с онлайн фаза на 27ми януари 2020.</p>
+      <!-- <h1><a routerLink="/csgo">CS:GO League</a></h1> -->
+      <iframe src="https://player.twitch.tv/?channel=ebleague_a" frameborder="0" allowfullscreen="true" scrolling="no" class="twitch-stream"></iframe>
+      <!-- <p>Регистрациите за първия сезон на Esports Business League проключиха! Първото издание на Esports Business League започва с онлайн фаза на 27ми януари 2020.</p>
       <igx-linear-bar [max]="16"
                       [value]="registrations | getRegCount:gameEnum.CSGO"
                       [text]="(registrations | getRegCount:gameEnum.CSGO) + ' / 16 записани'"
                       type="success"></igx-linear-bar>
-      <button igxButton="raised" routerLink="/csgo">Отиди до CS:GO лига</button>
+      <button igxButton="raised" routerLink="/csgo">Отиди до CS:GO лига</button> -->
     </div>
   </div>
   <div class="slide slide2">
     <div class="slide-info-column">
-      <h1><a routerLink="/sc2">StarCraft II League</a></h1>
-      <p>Регистрациите за първия сезон на Esports Business League проключиха! Първото издание на Esports Business League започва с онлайн фаза на 27ми януари 2020.</p>
+      <!-- <h1><a routerLink="/sc2">StarCraft II League</a></h1> -->
+      <iframe src="https://player.twitch.tv/?channel=ebleague_b" frameborder="0" allowfullscreen="true" scrolling="no" class="twitch-stream"></iframe>
+      <!-- <p>Регистрациите за първия сезон на Esports Business League проключиха! Първото издание на Esports Business League започва с онлайн фаза на 27ми януари 2020.</p>
       <igx-linear-bar [max]="32"
                       [value]="registrations | getRegCount:gameEnum.StarCraft2"
                       [text]="(registrations | getRegCount:gameEnum.StarCraft2) + ' / 32 записани'"
                       type="success"></igx-linear-bar>
-      <button igxButton="raised" routerLink="/sc2">Отиди до StarCraft II лига</button>
+      <button igxButton="raised" routerLink="/sc2">Отиди до StarCraft II лига</button> -->
     </div>
   </div>
 </div>
@@ -94,19 +96,19 @@
   <div class="content-container-column justify-start">
     <h4>CS:GO Лига</h4>
     <p>Отборите финалисти в лигата по CS:GO ще се състезават за награди на обща стойност €8000.</p>
-    <p>За отборът победител в CS:GO лигата ще закупим Global Elite Pass за ESL One Cologne 2020, ако до приключване на регистрацията pass-овете не са изчерпани. Ако са изчерпани, тогава ще предоставим друга награда на еквивалентна стойност.</p>
-    <p>За отборът, класирал се втори, ще има награда на стойност €2000.</p>
+    <p>Отборът победител в CS:GO лигата ще получи награда на стойност €4000.</p>
+    <p>Отборът, класирал се втори, ще получи награда на стойност €2000.</p>
     <p>Остатъкът от наградния фонд ще бъде разпределен между останалите участници във финалите.</p>
-    <img src="/assets/wallpapers/Global_elite_experience.webp" alt="ESL One Cologne 2020 Global Elite Pass (5 man)" />
+    <!-- <img src="/assets/wallpapers/Global_elite_experience.webp" alt="ESL One Cologne 2020 Global Elite Pass (5 man)" /> -->
   </div>
 
   <div class="content-container-column justify-start">
     <h4>StarCraft II Лига</h4>
     <p>Финалистите в лигата по StarCraft II ще се състезават за награди на обща стойност €2000.</p>
-    <p>За победителят в StarCraft II лигата ще закупим най-високия клас билет за BlizzCon 2020. Ако победителят няма възможност да пътува, тогава ще предоставим друга награда на еквивалентна стойност.</p>
-    <p>За състезателя, класирал се втори, ще има стандартен билет за BlizzCon, или друга награда на еквивалентна стойност.</p>
+    <p>Победителят в StarCraft II лигата ще получи награда на стойност €1000.</p>
+    <p>Състезателят, класирал се втори, ще получи награда на стойност €500.</p>
     <p>Остатъкът от наградния фонд ще бъде разпределен между останалите участници във финалите.</p>
-    <img src="/assets/wallpapers/blizz_con.webp" alt="BlizCon 2020 Ticket" />
+    <!-- <img src="/assets/wallpapers/blizz_con.webp" alt="BlizCon 2020 Ticket" /> -->
   </div>
 
   <div class="content-container-row">

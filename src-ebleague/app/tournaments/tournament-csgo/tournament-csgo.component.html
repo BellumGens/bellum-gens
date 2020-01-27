@@ -5,6 +5,9 @@
       <h1 igxCardHeaderTitle>CS:GO Лига</h1>
       <a href="https://www.twitch.tv/ebleague_a" target="_blank" rel="noopener">Канал на лигата в Twitch</a>
     </igx-card-header>
+    <igx-card-media class="twitch-holder">
+      <iframe src="https://player.twitch.tv/?channel=ebleague_a" frameborder="0" allowfullscreen="true" scrolling="no" class="twitch-stream"></iframe>
+    </igx-card-media>
     <igx-card-content>
       <div class="horizontal-center registration-container">
         <igx-circular-bar *ngIf="loading" [indeterminate]="true"></igx-circular-bar>
