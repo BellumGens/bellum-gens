@@ -32,6 +32,8 @@ export interface TournamentMatch {
 export interface TournamentCSGOMatch extends TournamentMatch {
   Team1Id?: string;
   Team2Id?: string;
+  Team1Points?: number;
+  Team2Points?: number;
   Team1?: CSGOTeam;
   Team2?: CSGOTeam;
 }
@@ -39,6 +41,8 @@ export interface TournamentCSGOMatch extends TournamentMatch {
 export interface TournamentSC2Match extends TournamentMatch {
   Player1Id?: string;
   Player2Id?: string;
+  Player1Points?: number;
+  Player2Points?: number;
   Player1?: AppUserSummary;
   Player2?: AppUserSummary;
 }

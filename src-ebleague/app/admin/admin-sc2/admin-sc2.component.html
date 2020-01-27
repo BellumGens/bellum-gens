@@ -15,12 +15,12 @@
         </igx-card-header>
         <igx-card-content *ngFor="let slot of day.slots">
           <div class="horizontal-center space-between">
-            <igx-time-picker [disabled]="!slot.inEdit" [(ngModel)]="slot.start">
+            <igx-time-picker class="slot-timepicker" [disabled]="!slot.inEdit" [(ngModel)]="slot.start">
 
             </igx-time-picker>
 
-            <igx-select [(ngModel)]="slot.match.Player1Id" [disabled]="!slot.inEdit">
-              <label igxLabel>Player 1</label>
+            <igx-select class="slot-select" [(ngModel)]="slot.match.Player1Id" [disabled]="!slot.inEdit">
+              <label igxLabel>Играч 1</label>
               <igx-select-item *ngFor="let registration of registrations"
                                 [value]="registration.UserId"
                                 [text]="registration.BattleTag">
@@ -31,8 +31,8 @@
 
             vs.
 
-            <igx-select [(ngModel)]="slot.match.Player2Id" [disabled]="!slot.inEdit">
-              <label igxLabel>Player 2</label>
+            <igx-select class="slot-select" [(ngModel)]="slot.match.Player2Id" [disabled]="!slot.inEdit">
+              <label igxLabel>Играч 2</label>
               <igx-select-item *ngFor="let registration of registrations"
                                 [value]="registration.UserId"
                                 [text]="registration.BattleTag">
@@ -47,6 +47,20 @@
               <igx-icon class="navigatable action-icon-button" (click)="submitMatch(slot)">done</igx-icon>
               <igx-icon *ngIf="slot.inEdit" class="navigatable action-icon-button" (click)="slot.inEdit = false">cancel</igx-icon>
             </div>
+          </div>
+
+          <div *ngIf="slot.match.Player1Id && slot.match.Player2Id" class="horizontal-center space-evenly">
+            <span>Резултат</span>
+
+            <igx-input-group>
+              <label igxLabel>Карти играч 1</label>
+              <input type="number" igxInput [disabled]="!slot.inEdit" [(ngModel)]="slot.match.Player1Points" />
+            </igx-input-group>
+            :
+            <igx-input-group>
+              <label igxLabel>Карти играч 2</label>
+              <input type="number" igxInput [disabled]="!slot.inEdit" [(ngModel)]="slot.match.Player2Points" />
+            </igx-input-group>
           </div>
         </igx-card-content>
       </igx-card>
