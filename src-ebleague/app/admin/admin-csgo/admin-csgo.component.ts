@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { getEmptyNewGroup,
   TournamentGroup,
-  TournamentRegistration,
-  TournamentCSGOMatch,
-  getEmptyNewMatch} from '../../../../src-common/models/tournament';
+  TournamentRegistration } from '../../../../src-common/models/tournament';
 import { ApiTournamentsService } from '../../../../src-common/services/bellumgens-api.tournaments.service';
 import { environment } from '../../../../src-common/environments/environment';
 import { IDropDroppedEventArgs } from 'igniteui-angular';
-import { WEEKLY_CSGO_SCHEDULE } from '../../../../src-common/models/tournament-schedule';
+import { TournamentCSGOMatch, MatchScheduleSlot } from '../../../../src-common/models/tournament-schedule';
+import { WEEKLY_CSGO_SCHEDULE } from '../../../../src-common/models/csgoschedule';
 
 @Component({
   selector: 'app-admin-csgo',
@@ -17,6 +16,7 @@ import { WEEKLY_CSGO_SCHEDULE } from '../../../../src-common/models/tournament-s
 export class AdminCsgoComponent {
   public registrations: TournamentRegistration [];
   public groups: TournamentGroup [];
+  public matches: TournamentCSGOMatch [];
   public loading = false;
   public environment = environment;
   public newGroup = getEmptyNewGroup();
@@ -31,6 +31,21 @@ export class AdminCsgoComponent {
     });
     this.apiService.loadingCSGORegistrations.subscribe(data => this.loading = data);
     this.apiService.getCSGOGroups().subscribe(data => this.groups = data);
+    this.apiService.getCSGOMatches().subscribe(data => {
+      this.matches = data;
+      if (this.matches) {
+        this.schedule.forEach(week => {
+          week.days.forEach(day => {
+            day.slots.forEach(s => {
+              const match = this.matches.find(m => new Date(m.StartTime).getTime() === s.start.getTime());
+              if (match) {
+                s.match = match;
+              }
+            });
+          });
+        });
+      }
+    });
   }
 
   public submitGroup(group: TournamentGroup) {
@@ -67,8 +82,14 @@ export class AdminCsgoComponent {
     this.pipeTrigger++;
   }
 
-  public addMatchForm(slot) {
-    slot.match = getEmptyNewMatch(slot.start);
-    slot.inEdit = true;
+  public submitMatch(slot: MatchScheduleSlot) {
+    const match = slot.match;
+    if ((<TournamentCSGOMatch>match).Team1Id && (<TournamentCSGOMatch>match).Team2Id) {
+      const reg = this.registrations.find(r =>
+        r.Team.TeamId === (<TournamentCSGOMatch>match).Team1Id || r.Team.TeamId === (<TournamentCSGOMatch>match).Team2Id);
+      match.GroupId = reg.TournamentCSGOGroupId;
+      this.apiService.submitCSGOMatch(match).subscribe(data => slot.match = data);
+      slot.inEdit = false;
+    }
   }
 }

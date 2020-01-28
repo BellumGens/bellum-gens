@@ -256,10 +256,22 @@ html {
   margin: 0 4px;
 }
 
+.action-icon-button:hover {
+  color: $secondary;
+}
+
 .action-buttons {
   display: flex;
   align-items: center;
   padding-right: 4px;
+}
+
+.slot-timepicker {
+  width: 120px;
+}
+
+.slot-select {
+  width: 200px;
 }
 /* END Admin */
 
