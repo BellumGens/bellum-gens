@@ -24,6 +24,7 @@ export interface TournamentApplication {
 export interface TournamentRegistration {
   Id: string;
   UserId: string;
+  TeamId: string;
   State: TournamentApplicationState;
   User: ApplicationUser;
   Team: CSGOTeam;

@@ -3,9 +3,6 @@
 }
 
 .application-details {
-  display: flex;
-  flex-flow: column;
-  align-items: center;
   height: 0;
   overflow: hidden;
 }
@@ -22,12 +19,6 @@
 .submit-registration {
   height: 48px;
   margin: 8px auto;
-}
-
-.form-wrapper {
-  display: flex;
-  flex-flow: column;
-  align-items: center;
 }
 
 .registration-form-input {

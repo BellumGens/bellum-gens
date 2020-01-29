@@ -6,7 +6,7 @@ import { ApiTournamentsService } from '../../../../src-common/services/bellumgen
 import { environment } from '../../../../src-common/environments/environment';
 import { IDropDroppedEventArgs } from 'igniteui-angular';
 import { TournamentCSGOMatch, MatchScheduleSlot } from '../../../../src-common/models/tournament-schedule';
-import { WEEKLY_CSGO_SCHEDULE } from '../../../../src-common/models/csgoschedule';
+import { WEEKLY_SCHEDULE } from '../../../../src-common/models/schedule-slots';
 
 @Component({
   selector: 'app-admin-csgo',
@@ -21,7 +21,7 @@ export class AdminCsgoComponent {
   public environment = environment;
   public newGroup = getEmptyNewGroup();
   public pipeTrigger = 0;
-  public schedule = WEEKLY_CSGO_SCHEDULE;
+  public schedule = WEEKLY_SCHEDULE;
 
   constructor(private apiService: ApiTournamentsService) {
     this.apiService.csgoRegistrations.subscribe(data => {
@@ -86,7 +86,7 @@ export class AdminCsgoComponent {
     const match = slot.match;
     if ((<TournamentCSGOMatch>match).Team1Id && (<TournamentCSGOMatch>match).Team2Id) {
       const reg = this.registrations.find(r =>
-        r.Team.TeamId === (<TournamentCSGOMatch>match).Team1Id || r.Team.TeamId === (<TournamentCSGOMatch>match).Team2Id);
+        r.TeamId === (<TournamentCSGOMatch>match).Team1Id || r.TeamId === (<TournamentCSGOMatch>match).Team2Id);
       match.GroupId = reg.TournamentCSGOGroupId;
       this.apiService.submitCSGOMatch(match).subscribe(data => slot.match = data);
       slot.inEdit = false;
