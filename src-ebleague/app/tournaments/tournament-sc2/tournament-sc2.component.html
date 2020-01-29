@@ -33,7 +33,7 @@
 
           <igx-card-content class="group-card-content">
             <igx-list class="group-list">
-              <igx-list-item *ngFor="let participant of group.Participants">
+              <igx-list-item *ngFor="let participant of group.Participants  | sortByPoints:'PlayerPoints'">
                 <igx-avatar igxListThumbnail [src]="participant.User.avatarMedium" roundShape="true"></igx-avatar>
                 <a igxListLineTitle [href]="environment.bellumgens + '/players/' + (participant.User.customURL || participant.UserId)" target="_blank">
                   {{ participant.User.username }}
