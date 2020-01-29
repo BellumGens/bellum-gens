@@ -49,14 +49,14 @@ export const CREW_MEMBERS = [
   },
   {
     name: 'Теодор "Tedd" Борисов',
-    birthplace: 'Пловдив',
+    birthplace: 'София',
     position: 'CS:GO кастър',
     // tslint:disable-next-line:max-line-length
     description: 'Теодор "Tedd" Борисов е ученик и стриймър, който се занимава активно с Counter-Strike от 2016 година, като през 2019 за първи път се докосва до големи турнири от първо лице, като коментира IEM Katowice Major 2019 и ESL Pro League S8, на български език.',
     image: '/assets/crew/tedcs.webp',
-    twitter: 'https://twitter.com/Mighty_Lop',
-    facebook: '',
-    instagram: ''
+    twitter: 'https://twitter.com/teddcs',
+    facebook: 'https://facebook.com/teddxd',
+    instagram: 'https://instagram.com/teodorb1'
   },
   {
     name: 'Атанас "fury" Попов',

@@ -1,5 +1,4 @@
 <div class="overview-container-card">
-
   <igx-tabs>
     <igx-tabs-group class="home-page-slide-columns" *ngFor="let week of schedule">
       <ng-template igxTab>
@@ -14,53 +13,65 @@
         <igx-card-header>
           <h1 igxCardHeaderTitle>{{day.day | date}}</h1>
         </igx-card-header>
-        <igx-card-content *ngFor="let slot of day.slots">
-          <div class="horizontal-center space-between">
-            <igx-time-picker class="slot-timepicker" [disabled]="!slot.inEdit" [(ngModel)]="slot.start">
+        <igx-card-content>
+          <div class="space-out" *ngFor="let slot of day.slots">
+            <div class="horizontal-center space-between">
+              <igx-time-picker class="slot-timepicker" [disabled]="!slot.inEdit" [(ngModel)]="slot.start">
 
-            </igx-time-picker>
+              </igx-time-picker>
 
-            <igx-select class="slot-select" [(ngModel)]="slot.match.Team1Id" [disabled]="!slot.inEdit">
-              <label igxLabel>Team 1</label>
-              <igx-select-item *ngFor="let registration of registrations"
-                                [value]="registration.Team.TeamId"
-                                [text]="registration.Team.TeamName">
-                <igx-avatar [src]="registration.Team.TeamAvatar" [initials]="registration.Team.TeamName"></igx-avatar>
-                {{ registration.Team.TeamName }}
-              </igx-select-item>
-            </igx-select>
+              <igx-select class="slot-select" [(ngModel)]="slot.match.Team1Id" [disabled]="!slot.inEdit">
+                <label igxLabel>Отбор 1</label>
+                <igx-select-item *ngFor="let registration of registrations"
+                                  [value]="registration.TeamId"
+                                  [text]="registration.Team.TeamName">
+                  <igx-avatar [src]="registration.Team.TeamAvatar" [initials]="registration.Team.TeamName"></igx-avatar>
+                  {{ registration.Team.TeamName }}
+                </igx-select-item>
+              </igx-select>
 
-            vs.
+              vs.
 
-            <igx-select class="slot-select" [(ngModel)]="slot.match.Team2Id" [disabled]="!slot.inEdit">
-              <label igxLabel>Team 2</label>
-              <igx-select-item *ngFor="let registration of registrations"
-                                [value]="registration.Team.TeamId"
-                                [text]="registration.Team.TeamName">
-                <igx-avatar [src]="registration.Team.TeamAvatar" [initials]="registration.Team.TeamName"></igx-avatar>
-                {{ registration.Team.TeamName }}
-              </igx-select-item>
-            </igx-select>
+              <igx-select class="slot-select" [(ngModel)]="slot.match.Team2Id" [disabled]="!slot.inEdit">
+                <label igxLabel>Отбор 2</label>
+                <igx-select-item *ngFor="let registration of registrations"
+                                  [value]="registration.TeamId"
+                                  [text]="registration.Team.TeamName">
+                  <igx-avatar [src]="registration.Team.TeamAvatar" [initials]="registration.Team.TeamName"></igx-avatar>
+                  {{ registration.Team.TeamName }}
+                </igx-select-item>
+              </igx-select>
 
-            <button *ngIf="!slot.inEdit" igxButton (click)="slot.inEdit = true">Edit</button>
+              <button *ngIf="!slot.inEdit" igxButton (click)="slot.inEdit = true">Edit</button>
 
-            <div *ngIf="slot.inEdit">
-              <igx-icon class="navigatable action-icon-button" (click)="submitMatch(slot)">done</igx-icon>
-              <igx-icon *ngIf="slot.inEdit" class="navigatable action-icon-button" (click)="slot.inEdit = false">cancel</igx-icon>
+              <div *ngIf="slot.inEdit">
+                <igx-icon class="navigatable action-icon-button" (click)="submitMatch(slot)">done</igx-icon>
+                <igx-icon *ngIf="slot.inEdit" class="navigatable action-icon-button" (click)="slot.inEdit = false">cancel</igx-icon>
+              </div>
             </div>
-          </div>
 
-          <div *ngIf="slot.match.Team1Id && slot.match.Team2Id" class="horizontal-center space-evenly">
-            <span>Резултат</span>
+            <div *ngIf="slot.match.Team1Id && slot.match.Team2Id" class="horizontal-center space-evenly">
+              <span>Резултат</span>
 
-            <igx-input-group>
-              <label igxLabel>Рундове отбор 1</label>
-              <input type="number" [disabled]="!slot.inEdit" [(ngModel)]="slot.match.Team1Points" />
+              <igx-input-group>
+                <label igxLabel>Точки отбор 1</label>
+                <input type="number" igxInput [disabled]="!slot.inEdit" [(ngModel)]="slot.match.Team1Points" />
+              </igx-input-group>
+              :
+              <igx-input-group>
+                <label igxLabel>Точки отбор 2</label>
+                <input type="number" igxInput [disabled]="!slot.inEdit" [(ngModel)]="slot.match.Team2Points" />
+              </igx-input-group>
+            </div>
+
+            <igx-input-group *ngIf="slot.match.Team1Id && slot.match.Team2Id">
+              <label igxLabel>Видео Линк</label>
+              <input igxInput [disabled]="!slot.inEdit" [(ngModel)]="slot.match.VideoLink" />
             </igx-input-group>
-            :
-            <igx-input-group>
-              <label igxLabel>Рундове отбор 2</label>
-              <input type="number" [disabled]="!slot.inEdit" [(ngModel)]="slot.match.Team2Points" />
+
+            <igx-input-group *ngIf="slot.match.Team1Id && slot.match.Team2Id">
+              <label igxLabel>Demo Линк</label>
+              <input igxInput [disabled]="!slot.inEdit" [(ngModel)]="slot.match.DemoLink" />
             </igx-input-group>
           </div>
         </igx-card-content>

@@ -16,7 +16,7 @@ import { IgxChipsModule,
   IgxDragDropModule,
   IgxTabsModule,
   IgxSelectModule,
-  IgxTimePickerModule} from 'igniteui-angular';
+  IgxTimePickerModule } from 'igniteui-angular';
 import { FormsModule } from '@angular/forms';
 import { AdminCsgoComponent } from './admin-csgo/admin-csgo.component';
 import { BellumGensModule } from '../../../src-common/components/components.module';
