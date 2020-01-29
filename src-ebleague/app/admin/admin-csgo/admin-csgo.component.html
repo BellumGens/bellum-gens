@@ -55,12 +55,12 @@
 
             <igx-input-group>
               <label igxLabel>Рундове отбор 1</label>
-              <input type="number" [disabled]="!slot.inEdit" [(ngModel)]="slot.match.Team1Points" />
+              <input type="number" igxInput [disabled]="!slot.inEdit" [(ngModel)]="slot.match.Team1Points" />
             </igx-input-group>
             :
             <igx-input-group>
               <label igxLabel>Рундове отбор 2</label>
-              <input type="number" [disabled]="!slot.inEdit" [(ngModel)]="slot.match.Team2Points" />
+              <input type="number" igxInput [disabled]="!slot.inEdit" [(ngModel)]="slot.match.Team2Points" />
             </igx-input-group>
           </div>
         </igx-card-content>

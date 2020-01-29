@@ -87,7 +87,7 @@ export class AdminSc2Component {
     if ((<TournamentSC2Match>match).Player1Id && (<TournamentSC2Match>match).Player2Id) {
       const reg = this.registrations.find(r =>
         r.UserId === (<TournamentSC2Match>match).Player1Id || r.UserId === (<TournamentSC2Match>match).Player2Id);
-      match.GroupId = reg.TournamentCSGOGroupId;
+      match.GroupId = reg.TournamentSC2GroupId;
       this.apiService.submitSC2Match(match).subscribe(data => slot.match = data);
       slot.inEdit = false;
     }
