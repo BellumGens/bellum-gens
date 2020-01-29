@@ -6,6 +6,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { IgxAvatarModule, IgxCardModule, IgxBadgeModule, IgxListModule, IgxProgressBarModule } from 'igniteui-angular';
 import { RouterTestingModule } from '@angular/router/testing';
+import { SortByPointsPipe } from 'src-ebleague/app/pipes/sort-by-points.pipe';
 
 describe('TournamentSc2Component', () => {
   let component: TournamentSc2Component;
@@ -13,7 +14,10 @@ describe('TournamentSc2Component', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TournamentSc2Component ],
+      declarations: [
+        TournamentSc2Component,
+        SortByPointsPipe
+      ],
       imports: [
         HttpClientTestingModule,
         RouterTestingModule,
