@@ -64,6 +64,14 @@ export class LoginComponent {
     }
   }
 
+  public navigateToStrategies() {
+    if (window.location.href.startsWith(environment.bellumgens)) {
+      this.router.navigate(['/user/strategies']);
+    } else {
+      window.location.href = `${environment.bellumgens}/user/strategies`;
+    }
+  }
+
   private fillCompleteness() {
     this.profileCompleteness = {
       availability: false,
