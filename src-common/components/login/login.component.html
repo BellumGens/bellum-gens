@@ -52,7 +52,7 @@
             </div>
           </div>
 
-          <button class="submit-button" igxButton="outlined" igxRipple routerLink="/user/strategies"><igx-icon>playlist_add_check</igx-icon>my strategies</button>
+          <button class="submit-button" igxButton="outlined" igxRipple (click)="navigateToStrategies(authUser.id)"><igx-icon>playlist_add_check</igx-icon>my strategies</button>
           <button class="submit-button" igxButton="outlined" igxRipple class="profile-username" (click)="logout()"><igx-icon>exit_to_app</igx-icon>logout</button>
         </igx-tabs-group>
 
