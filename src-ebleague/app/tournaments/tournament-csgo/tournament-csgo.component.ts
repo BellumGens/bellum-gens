@@ -19,6 +19,8 @@ export class TournamentCsgoComponent extends BaseComponent {
   public loading = false;
   public authUser: ApplicationUser;
   public environment = environment;
+  public scheduleWeek = '/assets/calendar/csgo-week2.webp';
+  public scheduleAlt = 'График CS:GO Лига, Седмица 2';
 
   constructor(private apiService: ApiTournamentsService,
               private loginService: LoginService,
@@ -26,6 +28,8 @@ export class TournamentCsgoComponent extends BaseComponent {
               meta: Meta,
               route: ActivatedRoute) {
     super(title, meta, route);
+    this.meta.updateTag({ name: 'og:image', content: this.scheduleWeek });
+    this.meta.updateTag({ name: 'twitter:image', content: this.scheduleWeek });
     this.subs.push(
       this.apiService.csgoRegistrations.subscribe(data => this.registrations = data),
       this.apiService.loadingCSGORegistrations.subscribe(data => this.loading = data),
