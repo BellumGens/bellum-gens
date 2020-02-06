@@ -1,4 +1,4 @@
-import { Component, PLATFORM_ID, Inject } from '@angular/core';
+import { Component} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ApplicationUser } from '../../../../src-common/models/applicationuser';
 import { CSGOTeam, TEAM_PLACEHOLDER } from '../../../../src-common/models/csgoteam';
@@ -7,7 +7,6 @@ import { LoginService } from '../../../../src-common/services/login.service';
 import { BaseComponent } from '../../base/base.component';
 import { Title, Meta } from '@angular/platform-browser';
 import { IgxIconService } from 'igniteui-angular';
-import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-team-overview',
@@ -17,21 +16,18 @@ import { isPlatformBrowser } from '@angular/common';
 export class TeamOverviewComponent extends BaseComponent {
   authUser: ApplicationUser;
   team: CSGOTeam = TEAM_PLACEHOLDER;
-  isBrowser: boolean;
 
   private _isAdmin: boolean = null;
   private _isEditor: boolean = null;
   private _isMember: boolean = null;
 
-  constructor(@Inject(PLATFORM_ID) platformId: Object,
-              private apiService: BellumgensApiService,
+  constructor(private apiService: BellumgensApiService,
               private authManager: LoginService,
               private iconService: IgxIconService,
               title: Title,
               meta: Meta,
               activeRoute: ActivatedRoute) {
     super(title, meta, activeRoute);
-    this.isBrowser = isPlatformBrowser(platformId);
     this.subs.push(
       this.authManager.applicationUser.subscribe((data: ApplicationUser) => {
         this.authUser = data;
