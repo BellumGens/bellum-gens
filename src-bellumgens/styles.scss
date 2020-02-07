@@ -38,6 +38,7 @@ $include: (igx-avatar,
            igx-switch,
            igx-divider,
            igx-carousel,
+           //igx-nav-drawer,
            igx-banner);
 
 @include igx-dark-theme(
@@ -56,6 +57,11 @@ $navbar-theme: igx-navbar-theme(igx-palette($background, $secondary),
 @include igx-css-vars($navbar-theme);
 /* END Navbar */
 
+/* Avatar */
+$avatar-theme: igx-avatar-theme($initials-background: transparent);
+@include igx-css-vars($avatar-theme);
+/* END Avatar */
+
 /* Card */
 $card-theme: igx-card-theme($background: $background-gradient-lighter,
                             $header-text-color: rgba(255, 255, 255, 0.87),
@@ -71,6 +77,16 @@ $list-theme: igx-list-theme($background: transparent,
                             $item-background-active: rgba(0, 0, 0, 0.11));
 @include igx-css-vars($list-theme);
 /* END List */
+
+/* Nav Drawer */
+// $navdrawer-theme: igx-navdrawer-theme(igx-palette($background, $secondary),
+//                                 $background: $background-gradient,
+//                                 $item-active-text-color: $secondary,
+//                                 $item-active-icon-color: $secondary,
+//                                 $item-hover-text-color: $secondary,
+//                                 $item-hover-icon-color: $secondary);
+// @include igx-css-vars($navdrawer-theme);
+/* END Nav Drawer */
 
 /* Input Group */
 $input-group-theme: igx-input-group-theme($search-background: transparent,

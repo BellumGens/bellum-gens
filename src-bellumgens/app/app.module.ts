@@ -28,7 +28,6 @@ import { IgxNavbarModule,
   IgxCalendarModule,
   IgxExpansionPanelModule,
   IgxRadioModule,
-  IgxSnackbarModule,
   IgxBannerModule,
   IgxButtonGroupModule,
   IgxIconService,
@@ -37,7 +36,8 @@ import { IgxNavbarModule,
   IgxSelectModule,
   IgxDividerModule,
   IgxCarouselModule,
-  IgxAutocompleteModule} from 'igniteui-angular';
+  IgxAutocompleteModule,
+  IgxNavigationDrawerModule} from 'igniteui-angular';
 import { PlayerDetailsComponent } from './player-section/player-details/player-details.component';
 import { LoginService } from '../../src-common/services/login.service';
 import { BellumgensApiService } from '../../src-common/services/bellumgens-api.service';
@@ -201,6 +201,7 @@ import { BellumGensModule } from '../../src-common/components/components.module'
     IgxDividerModule,
     IgxCarouselModule,
     IgxAutocompleteModule,
+    // IgxNavigationDrawerModule,
     BellumGensModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],

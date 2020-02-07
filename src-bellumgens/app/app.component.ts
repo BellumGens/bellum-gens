@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, PLATFORM_ID, HostListener, Inject } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 import { PositionSettings,
   HorizontalAlignment,
@@ -16,7 +16,7 @@ import { map, debounceTime } from 'rxjs/operators';
 import { UnreadNotificationsPipe } from './pipes/unread-notifications.pipe';
 import { GlobalOverlaySettings } from '../../src-common/models/misc';
 import { CommunicationService } from '../../src-common/services/communication.service';
-import { isPlatformBrowser } from '@angular/common';
+import { environment } from '../../src-common/environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -27,9 +27,8 @@ export class AppComponent implements OnInit {
   public authUser: ApplicationUser;
   public searchResult: SearchResult;
   public unreadNotifications = 0;
-  private _headerTitle = 'Bellum Gens';
-  private _headerTitleShort = '';
-  public title: string;
+  public title = 'Bellum Gens';
+  public environment = environment;
 
   public overlaySettings = GlobalOverlaySettings;
 
@@ -42,17 +41,10 @@ export class AppComponent implements OnInit {
   private unreadPipe = new UnreadNotificationsPipe();
   private isBrowser: boolean;
 
-  constructor(@Inject(PLATFORM_ID) platformId: Object,
-              private authManager: LoginService,
+  constructor(private authManager: LoginService,
               private apiService: BellumgensApiService,
               private commService: CommunicationService) {
-    this.isBrowser = isPlatformBrowser(platformId);
     this.commService.openTeams.subscribe(_ => this.teamDropDown.open());
-    if (this.isBrowser) {
-      this.title = window.matchMedia('(min-width: 768px)').matches ? this._headerTitle : this._headerTitleShort;
-    } else {
-      this.title = this._headerTitle;
-    }
     this.authManager.applicationUser.subscribe(user => {
       this.authUser = user;
       if (user) {
@@ -98,10 +90,5 @@ export class AppComponent implements OnInit {
 
   public notificationsLoaded(args: number) {
     this.unreadNotifications += args;
-  }
-
-  @HostListener('window:resize')
-  public resize() {
-    this.title = window.matchMedia('(min-width: 768px)').matches ? this._headerTitle : this._headerTitleShort;
   }
 }

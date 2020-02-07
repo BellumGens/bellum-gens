@@ -69,6 +69,11 @@ $card-theme: igx-card-theme($background: $background-gradient-lighter,
 @include igx-css-vars($card-theme);
 /* END Card */
 
+/* Avatar */
+$avatar-theme: igx-avatar-theme($initials-background: transparent);
+@include igx-css-vars($avatar-theme);
+/* END Avatar */
+
 /* List */
 $list-theme: igx-list-theme($background: transparent,
                             $header-background: transparent,
@@ -132,10 +137,6 @@ $overlay-theme: igx-overlay-theme($background-color: rgba(35, 51, 132, 0.7));
 /* END Time Picker */
 
 @import "../src-common/styles-overrides.scss";
-
-:root {
-  --igx-avatar-initials-background: transparent;
-}
 
 html {
   height: auto;
