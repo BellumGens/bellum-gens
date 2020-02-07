@@ -201,7 +201,7 @@ import { BellumGensModule } from '../../src-common/components/components.module'
     IgxDividerModule,
     IgxCarouselModule,
     IgxAutocompleteModule,
-    IgxNavigationDrawerModule,
+    // IgxNavigationDrawerModule,
     BellumGensModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],

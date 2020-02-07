@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, PLATFORM_ID, HostListener, Inject } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 import { PositionSettings,
   HorizontalAlignment,
@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
   public authUser: ApplicationUser;
   public searchResult: SearchResult;
   public unreadNotifications = 0;
-  public title: string;
+  public title = 'Bellum Gens';
   public environment = environment;
 
   public overlaySettings = GlobalOverlaySettings;
@@ -41,8 +41,7 @@ export class AppComponent implements OnInit {
   private unreadPipe = new UnreadNotificationsPipe();
   private isBrowser: boolean;
 
-  constructor(@Inject(PLATFORM_ID) platformId: Object,
-              private authManager: LoginService,
+  constructor(private authManager: LoginService,
               private apiService: BellumgensApiService,
               private commService: CommunicationService) {
     this.commService.openTeams.subscribe(_ => this.teamDropDown.open());
