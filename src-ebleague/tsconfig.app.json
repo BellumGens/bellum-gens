@@ -4,7 +4,8 @@
     "outDir": "../out-tsc/app-ebleague",
     "types": []
   },
-  "exclude": [
-    "**/*.spec.ts"
+  "files": [
+    "main.ts",
+    "polyfills.ts"
   ]
 }
