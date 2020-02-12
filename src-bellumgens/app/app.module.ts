@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, HammerModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
@@ -36,8 +36,7 @@ import { IgxNavbarModule,
   IgxSelectModule,
   IgxDividerModule,
   IgxCarouselModule,
-  IgxAutocompleteModule,
-  IgxNavigationDrawerModule} from 'igniteui-angular';
+  IgxAutocompleteModule } from 'igniteui-angular';
 import { PlayerDetailsComponent } from './player-section/player-details/player-details.component';
 import { LoginService } from '../../src-common/services/login.service';
 import { BellumgensApiService } from '../../src-common/services/bellumgens-api.service';
@@ -203,7 +202,8 @@ import { BellumGensModule } from '../../src-common/components/components.module'
     IgxAutocompleteModule,
     // IgxNavigationDrawerModule,
     BellumGensModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    HammerModule
   ],
   providers: [
     LoginService,
