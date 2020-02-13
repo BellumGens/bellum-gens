@@ -113,7 +113,7 @@
           "builder": "@angular-devkit/build-angular:server",
           "options": {
             "outputPath": "dist/bellumgens/server",
-            "main": "src-bellumgens/main.server.ts",
+            "main": "server-bellumgens.ts",
             "tsConfig": "src-bellumgens/tsconfig.server.json"
           },
           "configurations": {
@@ -129,18 +129,30 @@
             }
           }
         },
-        "app-shell": {
-          "builder": "@angular-devkit/build-angular:app-shell",
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
           "options": {
-            "browserTarget": "bellum-gens:build",
-            "serverTarget": "bellum-gens:server",
-            "route": "home"
+            "browserTarget": "ssrrouting:build",
+            "serverTarget": "ssrrouting:server"
           },
           "configurations": {
             "production": {
-              "browserTarget": "bellum-gens:build:production",
-              "serverTarget": "bellum-gens:server:production"
+              "browserTarget": "ssrrouting:build:production",
+              "serverTarget": "ssrrouting:server:production"
             }
+          }
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "browserTarget": "ssrrouting:build:production",
+            "serverTarget": "ssrrouting:server:production",
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {}
           }
         }
       }
@@ -277,7 +289,7 @@
           "builder": "@angular-devkit/build-angular:server",
           "options": {
             "outputPath": "dist/ebleague/server",
-            "main": "src-ebleague/main.server.ts",
+            "main": "server-ebleague.ts",
             "tsConfig": "src-ebleague/tsconfig.server.json"
           },
           "configurations": {
@@ -293,18 +305,30 @@
             }
           }
         },
-        "app-shell": {
-          "builder": "@angular-devkit/build-angular:app-shell",
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
           "options": {
-            "browserTarget": "eb-league:build",
-            "serverTarget": "eb-league:server",
-            "route": "home"
+            "browserTarget": "ssrrouting:build",
+            "serverTarget": "ssrrouting:server"
           },
           "configurations": {
             "production": {
-              "browserTarget": "eb-league:build:production",
-              "serverTarget": "eb-league:server:production"
+              "browserTarget": "ssrrouting:build:production",
+              "serverTarget": "ssrrouting:server:production"
             }
+          }
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "browserTarget": "ssrrouting:build:production",
+            "serverTarget": "ssrrouting:server:production",
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {}
           }
         }
       }
@@ -340,5 +364,8 @@
       }
     }
   },
-  "defaultProject": "bellum-gens"
+  "defaultProject": "bellum-gens",
+  "cli": {
+    "analytics": false
+  }
 }

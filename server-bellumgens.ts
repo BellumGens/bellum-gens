@@ -4,7 +4,7 @@ import { ngExpressEngine } from '@nguniversal/express-engine';
 import * as express from 'express';
 import { join } from 'path';
 
-import { AppServerModule } from './src-ebleague/main.server';
+import { AppServerModule } from './src-bellumgens/main.server';
 import { APP_BASE_HREF } from '@angular/common';
 import { existsSync, readFileSync } from 'fs';
 import { environment } from './src-common/environments/environment';
@@ -58,9 +58,9 @@ export function app() {
     res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
   });
 
-  // All bellumgens routes should redirect
-  server.get('/players/*', (req, res) => {
-    res.redirect(environment.bellumgens + req.originalUrl);
+  // All eb-league routes should redirect
+  server.get('/tournament*', (req, res) => {
+    res.redirect(environment.ebleague);
   });
 
   return server;
@@ -86,4 +86,4 @@ if (moduleFilename === __filename || moduleFilename.includes('iisnode')) {
   run();
 }
 
-export * from './src-ebleague/main.server';
+export * from './src-bellumgens/main.server';
