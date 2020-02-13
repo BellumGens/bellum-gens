@@ -13,6 +13,10 @@
   width: 250px;
 }
 
+.carousel {
+  height: 450px;
+}
+
 .slide2 {
   background-image: url('/assets/wallpapers/csgo_wallpaper_nologo.webp');
   background-position-y: -100px;
