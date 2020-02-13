@@ -132,21 +132,21 @@
         "serve-ssr": {
           "builder": "@nguniversal/builders:ssr-dev-server",
           "options": {
-            "browserTarget": "ssrrouting:build",
-            "serverTarget": "ssrrouting:server"
+            "browserTarget": "bellum-gens:build",
+            "serverTarget": "bellum-gens:server"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ssrrouting:build:production",
-              "serverTarget": "ssrrouting:server:production"
+              "browserTarget": "bellum-gens:build:production",
+              "serverTarget": "bellum-gens:server:production"
             }
           }
         },
         "prerender": {
           "builder": "@nguniversal/builders:prerender",
           "options": {
-            "browserTarget": "ssrrouting:build:production",
-            "serverTarget": "ssrrouting:server:production",
+            "browserTarget": "bellum-gens:build:production",
+            "serverTarget": "bellum-gens:server:production",
             "routes": [
               "/"
             ]
@@ -308,21 +308,21 @@
         "serve-ssr": {
           "builder": "@nguniversal/builders:ssr-dev-server",
           "options": {
-            "browserTarget": "ssrrouting:build",
-            "serverTarget": "ssrrouting:server"
+            "browserTarget": "eb-league:build",
+            "serverTarget": "eb-league:server"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ssrrouting:build:production",
-              "serverTarget": "ssrrouting:server:production"
+              "browserTarget": "eb-league:build:production",
+              "serverTarget": "eb-league:server:production"
             }
           }
         },
         "prerender": {
           "builder": "@nguniversal/builders:prerender",
           "options": {
-            "browserTarget": "ssrrouting:build:production",
-            "serverTarget": "ssrrouting:server:production",
+            "browserTarget": "eb-league:build:production",
+            "serverTarget": "eb-league:server:production",
             "routes": [
               "/"
             ]
