@@ -39,7 +39,6 @@ export class AppComponent implements OnInit {
   @ViewChild('cookiesBanner', { static: true }) public banner: IgxBannerComponent;
 
   private unreadPipe = new UnreadNotificationsPipe();
-  private isBrowser: boolean;
 
   constructor(private authManager: LoginService,
               private apiService: BellumgensApiService,
@@ -54,12 +53,10 @@ export class AppComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    if (this.isBrowser) {
-      if (!window.localStorage.getItem('cookiesAccepted')) {
-        this.banner.open();
-      }
-      this.initQuickSearch();
+    if (!window.localStorage.getItem('cookiesAccepted')) {
+      this.banner.open();
     }
+    this.initQuickSearch();
   }
 
   public acceptCookies() {
