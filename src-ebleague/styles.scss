@@ -138,10 +138,6 @@ $overlay-theme: igx-overlay-theme($background-color: rgba(35, 51, 132, 0.7));
 
 @import "../src-common/styles-overrides.scss";
 
-html {
-  height: auto;
-}
-
 /* HOME */
 .home-page-slide-columns {
   display: grid;

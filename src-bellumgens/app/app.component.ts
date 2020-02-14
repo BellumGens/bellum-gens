@@ -27,7 +27,6 @@ export class AppComponent implements OnInit {
   public authUser: ApplicationUser;
   public searchResult: SearchResult;
   public unreadNotifications = 0;
-  public title = 'Bellum Gens';
   public environment = environment;
 
   public overlaySettings = GlobalOverlaySettings;

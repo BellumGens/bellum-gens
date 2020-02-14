@@ -38,7 +38,7 @@ $include: (igx-avatar,
            igx-switch,
            igx-divider,
            igx-carousel,
-           //igx-nav-drawer,
+           igx-nav-drawer,
            igx-banner);
 
 @include igx-dark-theme(
@@ -79,13 +79,13 @@ $list-theme: igx-list-theme($background: transparent,
 /* END List */
 
 /* Nav Drawer */
-// $navdrawer-theme: igx-navdrawer-theme(igx-palette($background, $secondary),
-//                                 $background: $background-gradient,
-//                                 $item-active-text-color: $secondary,
-//                                 $item-active-icon-color: $secondary,
-//                                 $item-hover-text-color: $secondary,
-//                                 $item-hover-icon-color: $secondary);
-// @include igx-css-vars($navdrawer-theme);
+$navdrawer-theme: igx-navdrawer-theme(igx-palette($background, $secondary),
+                                $background: $background-gradient,
+                                $item-active-text-color: $secondary,
+                                $item-active-icon-color: $secondary,
+                                $item-hover-text-color: $secondary,
+                                $item-hover-icon-color: $secondary);
+@include igx-css-vars($navdrawer-theme);
 /* END Nav Drawer */
 
 /* Input Group */
