@@ -36,7 +36,8 @@ import { IgxNavbarModule,
   IgxSelectModule,
   IgxDividerModule,
   IgxCarouselModule,
-  IgxAutocompleteModule } from 'igniteui-angular';
+  IgxAutocompleteModule,
+  IgxNavigationDrawerModule} from 'igniteui-angular';
 import { PlayerDetailsComponent } from './player-section/player-details/player-details.component';
 import { LoginService } from '../../src-common/services/login.service';
 import { BellumgensApiService } from '../../src-common/services/bellumgens-api.service';
@@ -200,7 +201,7 @@ import { BellumGensModule } from '../../src-common/components/components.module'
     IgxDividerModule,
     IgxCarouselModule,
     IgxAutocompleteModule,
-    // IgxNavigationDrawerModule,
+    IgxNavigationDrawerModule,
     BellumGensModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     HammerModule
@@ -222,5 +223,10 @@ export class AppModule {
     this.iconService.addSvgIcon('Steam', '/assets/login/steam-logo-white.svg', 'login-icons');
     this.iconService.addSvgIcon('Facebook', '/assets/login/fb.svg', 'login-icons');
     this.iconService.addSvgIcon('Twitter', '/assets/login/twitter.svg', 'login-icons');
+    this.iconService.addSvgIcon('Discord', '/assets/login/Discord-Logo-White.svg', 'login-icons');
+    this.iconService.addSvgIcon('isobar', '/assets/partners/isobar.svg', 'partners');
+    this.iconService.addSvgIcon('vmware', '/assets/partners/vmware.svg', 'partners');
+    this.iconService.addSvgIcon('telus', '/assets/partners/telus.svg', 'partners');
+    this.iconService.addSvgIcon('modis', '/assets/partners/modis.svg', 'partners');
   }
 }

@@ -17,6 +17,24 @@
   height: 450px;
 }
 
+.partner {
+  margin: 16px;
+}
+
+.platinum {
+  width: 380px;
+  height: 300px;
+}
+
+.gold {
+  width: 220px;
+  height: 150px;
+}
+
+.logistics {
+  width: 150px;
+}
+
 .slide2 {
   background-image: url('/assets/wallpapers/csgo_wallpaper_nologo.webp');
   background-position-y: -100px;

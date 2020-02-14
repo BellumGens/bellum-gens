@@ -4,9 +4,9 @@
 
 $app-palette: igx-palette($primary, $secondary);
 
-html, body {
+body {
   height: 100%;
-  min-width: 412px;
+  min-width: 380px;
   background-image: $background-gradient;
 }
 

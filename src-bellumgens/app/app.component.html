@@ -1,38 +1,25 @@
 <div igxLayout>
-  <!-- <igx-nav-drawer style="height: auto!important" [pinThreshold]="1600" id="navigation" #drawer>
+  <igx-nav-drawer style="height: auto!important" [pinThreshold]="1600" id="navigation" #drawer>
     <ng-template igxDrawer>
       <nav>
         <span igxDrawerItem [isHeader]="true">Bellum Gens</span>
-        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournament/csgo">
-          <igx-avatar [src]="'/assets/wallpapers/csgo-watermark.webp'"
-                [roundShape]="true">
-          </igx-avatar>
-          Лига по CS:GO
-        </span>
-        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournament/sc2">
-          <igx-avatar [src]="'/assets/wallpapers/sc2.webp'"
-                [roundShape]="true">
-          </igx-avatar>
-          Лига по StarCraft II
-        </span>
-        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournament/format">
+        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="strategies">
           <igx-icon>playlist_add_check</igx-icon>
-          Формат на лигата
+          Strategies feed
         </span>
         <span igxDrawerItem igxRipple routerLink="/" fragment="partners">
           <igx-icon>people_alt</igx-icon>
-          Нашите партньори
+          Partners
         </span>
-        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournament/crew">
-          <igx-icon>people</igx-icon>
-          Нашият екип
+        <span igxDrawerItem igxRipple routerLink="/" fragment="aboutus">
+          <igx-icon>chat</igx-icon>
+          Contacts
         </span>
         <a igxDrawerItem igxRipple [href]="environment.ebleague" target="_blank">
-          <igx-avatar [src]="'/assets/bg-avatar.webp'"
-                [roundShape]="true"
-                title="Управление на отбори и стратегии">
+          <igx-avatar [src]="'/assets/eb-league-logo.png'"
+                [roundShape]="true">
           </igx-avatar>
-          Bellum Gens
+          Esports Business League
         </a>
       </nav>
     </ng-template>
@@ -40,32 +27,14 @@
     <ng-template igxDrawerMini *ngIf="drawer.pin">
       <nav>
         <span igxDrawerItem [isHeader]="true">&nbsp;</span>
-        <span igxDrawerItem
-              igxRipple
-              routerLinkActive="igx-nav-drawer__item--active"
-              routerLink="tournament/csgo"
-              title="Лига по CS:GO">
-          <igx-avatar [src]="'/assets/wallpapers/csgo-watermark.webp'"
-                [roundShape]="true">
-          </igx-avatar>
-        </span>
-        <span igxDrawerItem
-              igxRipple
-              routerLinkActive="igx-nav-drawer__item--active"
-              routerLink="tournament/sc2"
-              title="Лига по StarCraft II">
-          <igx-avatar [src]="'/assets/wallpapers/sc2.webp'"
-                [roundShape]="true">
-          </igx-avatar>
-        </span>
         <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="strategies" title="Strategies Feed">
           <igx-icon >playlist_add_check</igx-icon>
         </span>
         <span igxDrawerItem igxRipple routerLink="/" fragment="partners" title="Нашите партньори">
           <igx-icon>people_alt</igx-icon>
         </span>
-        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournament/crew" title="Нашият екип">
-          <igx-icon>people</igx-icon>
+        <span igxDrawerItem igxRipple routerLink="/" fragment="aboutus" title="Контакти">
+          <igx-icon>chat</igx-icon>
         </span>
         <a igxDrawerItem igxRipple [href]="environment.ebleague" target="_blank" title="Esports Business League">
           <igx-avatar [src]="'/assets/eb-league-logo.png'"
@@ -74,12 +43,12 @@
         </a>
       </nav>
     </ng-template>
-  </igx-nav-drawer> -->
+  </igx-nav-drawer>
 
   <div igxFlex igxLayout igxLayoutDir="columns" class="top-level-container">
-    <igx-navbar class="bellum-gens-navbar" [title]="title">
+    <igx-navbar class="bellum-gens-navbar">
       <igx-action-icon>
-        <!-- <igx-icon class="drawer-action" (click)="drawer.toggle()">menu</igx-icon> -->
+        <igx-icon class="drawer-action" (click)="drawer.toggle()">menu</igx-icon>
         <igx-avatar class="navigatable" [src]="'/assets/bg-avatar.webp'" [roundShape]="true" routerLink="/"></igx-avatar>
       </igx-action-icon>
       <igx-input-group type="search" class="search-group" #searchGroup>
@@ -92,9 +61,6 @@
           <igx-icon>clear</igx-icon>
         </igx-suffix>
       </igx-input-group>
-      <div class="action-button-container" title="Strategies feed" routerLink="strategies">
-        <igx-icon>playlist_add_check</igx-icon>
-      </div>
       <div class="action-button-container" [igxToggleAction]="myTeam" [overlaySettings]="overlaySettings" *ngIf="authUser">
         <igx-icon>people</igx-icon>
         <igx-badge class="notifications-badge" *ngIf="authUser.teams?.length > 0" [value]="authUser.teams?.length" type="info"></igx-badge>

@@ -70,9 +70,9 @@ export class StrategyEditorComponent extends BaseComponent implements OnInit, On
   }
 
   ngOnInit() {
-    this.canvas.nativeElement.width = this.canvas.nativeElement.clientHeight;
-    this.canvas.nativeElement.height = this.canvas.nativeElement.clientHeight;
-    this.editor = new StrategyEditor(this.canvas, parseInt(this.canvas.nativeElement.clientHeight, 10) / 1024);
+    this.canvas.nativeElement.width = window.innerHeight - 140;
+    this.canvas.nativeElement.height = window.innerHeight - 140;
+    this.editor = new StrategyEditor(this.canvas, (window.innerHeight - 140) / 1024);
     this.layers = this.editor.layers;
     this.subs.push(
       this.route.params.subscribe(params => {
