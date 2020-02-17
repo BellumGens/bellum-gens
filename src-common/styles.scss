@@ -24,6 +24,11 @@ body {
   color: var(--igx-card-header-text-color);
 }
 
+.content {
+  height: 100%;
+  width: 100%;
+}
+
 .content p {
   margin: 15px;
 }
@@ -50,6 +55,7 @@ body {
   flex: 1 1 auto;
   flex-flow: row wrap;
   align-items: center;
+  justify-content: center;
 }
 
 .space-between {
@@ -229,7 +235,7 @@ a > igx-icon {
   }
 
   .content-container {
-    grid-template-columns: minmax(380px, 1fr);
+    grid-template-columns: minmax(348px, 1fr);
     width: 100%;
   }
 

@@ -2,7 +2,7 @@
   display: flex;
   flex-flow: column;
   padding: 12px;
-  min-width: 420px;
+  min-width: 380px;
 }
 
 .column-wrapper {

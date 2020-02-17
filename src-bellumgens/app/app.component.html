@@ -3,6 +3,16 @@
     <ng-template igxDrawer>
       <nav>
         <span igxDrawerItem [isHeader]="true">Bellum Gens</span>
+        <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="myteams">
+          <igx-icon>people</igx-icon>
+          <igx-badge class="notifications-badge" *ngIf="authUser.teams?.length > 0" [value]="authUser.teams?.length" type="info"></igx-badge>
+          My teams
+        </span>
+        <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="myteams">
+          <igx-icon>notifications</igx-icon>
+          <igx-badge class="notifications-badge" *ngIf="unreadNotifications > 0" [value]="unreadNotifications" type="info"></igx-badge>
+          Notifications
+        </span>
         <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="strategies">
           <igx-icon>playlist_add_check</igx-icon>
           Strategies feed
@@ -27,13 +37,21 @@
     <ng-template igxDrawerMini *ngIf="drawer.pin">
       <nav>
         <span igxDrawerItem [isHeader]="true">&nbsp;</span>
-        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="strategies" title="Strategies Feed">
-          <igx-icon >playlist_add_check</igx-icon>
+        <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="myteams" title="My Teams">
+          <igx-icon>people</igx-icon>
+          <igx-badge class="notifications-badge" *ngIf="authUser.teams?.length > 0" [value]="authUser.teams?.length" type="info"></igx-badge>
         </span>
-        <span igxDrawerItem igxRipple routerLink="/" fragment="partners" title="Нашите партньори">
+        <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="notifications" title="Notifications">
+          <igx-icon>notifications</igx-icon>
+          <igx-badge class="notifications-badge" *ngIf="unreadNotifications > 0" [value]="unreadNotifications" type="info"></igx-badge>
+        </span>
+        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="strategies" title="Strategies feed">
+          <igx-icon>playlist_add_check</igx-icon>
+        </span>
+        <span igxDrawerItem igxRipple routerLink="/" fragment="partners" title="Partners">
           <igx-icon>people_alt</igx-icon>
         </span>
-        <span igxDrawerItem igxRipple routerLink="/" fragment="aboutus" title="Контакти">
+        <span igxDrawerItem igxRipple routerLink="/" fragment="aboutus" title="About us">
           <igx-icon>chat</igx-icon>
         </span>
         <a igxDrawerItem igxRipple [href]="environment.ebleague" target="_blank" title="Esports Business League">
@@ -61,14 +79,14 @@
           <igx-icon>clear</igx-icon>
         </igx-suffix>
       </igx-input-group>
-      <div class="action-button-container" [igxToggleAction]="myTeam" [overlaySettings]="overlaySettings" *ngIf="authUser">
+      <!-- <div class="action-button-container" [igxToggleAction]="myTeam" [overlaySettings]="overlaySettings" *ngIf="authUser">
         <igx-icon>people</igx-icon>
         <igx-badge class="notifications-badge" *ngIf="authUser.teams?.length > 0" [value]="authUser.teams?.length" type="info"></igx-badge>
-      </div>
-      <div class="action-button-container" [igxToggleAction]="notifications" [overlaySettings]="overlaySettings" *ngIf="authUser">
+      </div> -->
+      <!-- <div class="action-button-container" [igxToggleAction]="notifications" [overlaySettings]="overlaySettings" *ngIf="authUser">
         <igx-icon>notifications</igx-icon>
         <igx-badge class="notifications-badge" *ngIf="unreadNotifications > 0" [value]="unreadNotifications" type="info"></igx-badge>
-      </div>
+      </div> -->
 
       <bg-login [authUser]='authUser'></bg-login>
     </igx-navbar>
@@ -93,12 +111,12 @@
     <igx-drop-down #quickSearch>
       <app-quick-search></app-quick-search>
     </igx-drop-down>
-    <igx-drop-down #myTeam>
+    <!-- <igx-drop-down #myTeam>
       <app-team-nav [authUser]="authUser"></app-team-nav>
-    </igx-drop-down>
-    <igx-drop-down #notifications>
+    </igx-drop-down> -->
+    <!-- <igx-drop-down #notifications>
       <app-notifications [authUser]="authUser" (loaded)="notificationsLoaded($event)"></app-notifications>
-    </igx-drop-down>
+    </igx-drop-down> -->
     <bg-success-error></bg-success-error>
 
     <div class="main-content-wrapper">
