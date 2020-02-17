@@ -14,6 +14,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BellumGensModule } from 'src-common/components/components.module';
+import { FormsModule } from '@angular/forms';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -22,6 +23,7 @@ describe('HomeComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        FormsModule,
         HttpClientTestingModule,
         NoopAnimationsModule,
         RouterTestingModule,
