@@ -1,22 +1,19 @@
-
-<div class="team-nav-container">
+<div class="card-wrapper">
   <p *ngIf="!authUser">You need to login to view your teams.</p>
   <p *ngIf="authUser && !authUser.teams.length">You are not part of any teams.</p>
-  <button *ngIf="authUser" class="submit-button" igxButton="outlined" igxRipple (click)="createTeam.open()">Create New Team</button>
+  <button *ngIf="authUser" class="submit-button" igxButton="outlined" igxRipple (click)="createTeam.open()"><igx-icon>add_circle_outline</igx-icon> Create New Team</button>
 
-  <igx-card class="card-margins" *ngFor="let team of authUser?.teams">
+  <igx-card class="team-card" *ngFor="let team of authUser?.teams">
     <igx-card-header>
-      <igx-avatar [src]="team.TeamAvatar" [initials]="team.TeamName" roundShape="true"></igx-avatar>
-      <div class="igx-card-header__tgroup">
-        <h3 class="igx-card-header__title--small">{{ team.TeamName }}</h3>
-        <h5 class="igx-card-header__subtitle team-description">{{ team.Description }}</h5>
-      </div>
+      <igx-avatar igxCardThumbnail [src]="team.TeamAvatar" [initials]="team.TeamName" roundShape="true"></igx-avatar>
+      <h3 igxCardHeaderTitle>{{ team.TeamName }}</h3>
     </igx-card-header>
+    <igx-card-content>
+      <p>{{ team.Description }}</p>
+    </igx-card-content>
     <igx-card-actions>
-      <div class="igx-card-actions__bgroup">
-        <button igxButton igxRipple [routerLink]="['/team', team.CustomUrl]">Team Details</button>
-        <button igxButton igxRipple (click)="confirm.open(team)">Abandon Team</button>
-      </div>
+      <button igxButton="outlined" igxRipple [routerLink]="['/team', team.CustomUrl]"><igx-icon>visibility</igx-icon>Team Details</button>
+      <button igxButton="outlined" igxRipple (click)="confirm.open(team)"><igx-icon>delete_forever</igx-icon> Abandon Team</button>
     </igx-card-actions>
   </igx-card>
 </div>

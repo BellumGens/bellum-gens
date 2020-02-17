@@ -8,18 +8,13 @@
 }
 
 .top-level-container {
-  min-width: 412px;
+  min-width: 380px;
 }
 
 .main-content-wrapper {
   height: 100%;
-  min-width: 412px;
+  min-width: 380px;
   display: flex;
-}
-
-.content {
-  height: 100%;
-  width: 100%;
 }
 
 .action-button-container {

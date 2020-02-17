@@ -108,6 +108,24 @@
 
     <h4>Contacts</h4>
 
+    <form #subscription="ngForm" (ngSubmit)="subscribe()">
+      <div class="horizontal">
+        <igx-input-group type="border" class="subscription-form-input">
+          <label igxLabel for="subemail">Email</label>
+          <igx-prefix>
+            <igx-icon>email</igx-icon>
+          </igx-prefix>
+          <input type="email" id="subemail" #subMail name="subemail" igxInput pattern="^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="userEmail" />
+          <igx-suffix *ngIf="subMail.value" (click)="userEmail = null">
+            <igx-icon>clear</igx-icon>
+          </igx-suffix>
+          <igx-hint>Subscribe to our newsletter.</igx-hint>
+        </igx-input-group>
+
+        <button igxButton="outlined" class="submit-email" [disabled]="subscription.invalid || !userEmail">Subscribe</button>
+      </div>
+    </form>
+
     <div class="contacts">
       <a href="mailto:info@eb-league.com" title="Имейл" style="color: white">
         <igx-icon>email</igx-icon>

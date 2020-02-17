@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ApplicationUser } from '../../../src-common/models/applicationuser';
 import { UnreadNotificationsPipe } from '../pipes/unread-notifications.pipe';
+import { LoginService } from '../../../src-common/services/login.service';
 
 @Component({
   selector: 'app-notifications',
@@ -8,8 +9,6 @@ import { UnreadNotificationsPipe } from '../pipes/unread-notifications.pipe';
   styleUrls: ['./notifications.component.css']
 })
 export class NotificationsComponent {
-
-  @Input()
   public authUser: ApplicationUser;
 
   @Output()
@@ -17,7 +16,9 @@ export class NotificationsComponent {
 
   private unreadPipe = new UnreadNotificationsPipe();
 
-  constructor() { }
+  constructor(private authService: LoginService) {
+    this.authService.applicationUser.subscribe(user => this.authUser = user);
+  }
 
   public aggregate(args: any[]) {
     const unread = this.unreadPipe.transform(args);
