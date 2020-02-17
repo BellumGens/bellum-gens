@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { ApplicationUser } from '../../../src-common/models/applicationuser';
 import { UnreadNotificationsPipe } from '../pipes/unread-notifications.pipe';
 import { LoginService } from '../../../src-common/services/login.service';

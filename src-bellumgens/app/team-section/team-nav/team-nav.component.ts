@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CSGOTeam, TeamMember } from '../../../../src-common/models/csgoteam';
 import { ApplicationUser } from '../../../../src-common/models/applicationuser';
 import { BellumgensApiService } from '../../../../src-common/services/bellumgens-api.service';
-import { LoginService } from 'src-common/services/login.service';
+import { LoginService } from '../../../../src-common/services/login.service';
 
 @Component({
   selector: 'app-team-nav',
