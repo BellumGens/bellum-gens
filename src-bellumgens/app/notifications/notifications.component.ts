@@ -6,7 +6,7 @@ import { LoginService } from '../../../src-common/services/login.service';
 @Component({
   selector: 'app-notifications',
   templateUrl: './notifications.component.html',
-  styleUrls: ['./notifications.component.css']
+  styleUrls: ['./notifications.component.scss']
 })
 export class NotificationsComponent {
   public authUser: ApplicationUser;
