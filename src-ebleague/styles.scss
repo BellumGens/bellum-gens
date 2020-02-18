@@ -173,7 +173,7 @@ $overlay-theme: igx-overlay-theme($background-color: rgba(35, 51, 132, 0.7));
 }
 
 .twitch-stream {
-  width: auto;
+  width: 680px;
   height: 400px;
 }
 
@@ -292,5 +292,10 @@ $overlay-theme: igx-overlay-theme($background-color: rgba(35, 51, 132, 0.7));
   .home-page-slide-columns {
     grid-template-columns: minmax(348px, 1fr);
     padding: 16px 16px 12px 16px;
+  }
+
+  .twitch-stream {
+    width: auto;
+    height: 400px;
   }
 }
