@@ -61,7 +61,7 @@
     "@types/node": "^12.11.1",
     "codelyzer": "^5.1.2",
     "concurrently": "^5.0.0",
-    "igniteui-cli": "~5.0.0",
+    "igniteui-cli": "~5.0.1",
     "jasmine-core": "~3.3.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "^4.1.0",
