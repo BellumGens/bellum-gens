@@ -133,12 +133,10 @@ a > igx-icon {
 
   .content-container h4 {
     font-size: 1.75rem;
-    margin: 0;
   }
 
   .content-container p {
     font-size: 1rem;
-    margin: 16px 0 16px 0;
   }
 
 .content-container-row {
@@ -147,7 +145,6 @@ a > igx-icon {
   flex-flow: column;
   align-items: center;
   justify-content: space-evenly;
-  min-height: 210px;
 }
 
 .content-container-column {
