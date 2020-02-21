@@ -15,6 +15,10 @@
           </igx-avatar>
           Лига по StarCraft II
         </span>
+        <span igxDrawerItem igxRipple routerLink="/" fragment="finals">
+          <igx-icon>map</igx-icon>
+          Финали и билети
+        </span>
         <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournament/format">
           <igx-icon>playlist_add_check</igx-icon>
           Формат на лигата
@@ -57,6 +61,9 @@
           <igx-avatar [src]="'/assets/wallpapers/sc2.webp'"
                 [roundShape]="true">
           </igx-avatar>
+        </span>
+        <span igxDrawerItem igxRipple routerLink="/" fragment="finals" title="Финали и билети">
+          <igx-icon>map</igx-icon>
         </span>
         <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournament/format" title="Формат на лигата">
           <igx-icon >playlist_add_check</igx-icon>
