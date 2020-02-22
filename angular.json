@@ -13,6 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "dist/bellumgens/browser",
             "index": "src-bellumgens/index.html",
             "main": "src-bellumgens/main.ts",
@@ -34,6 +35,12 @@
           },
           "configurations": {
             "production": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
               "fileReplacements": [
                 {
                   "replace": "src-common/environments/environment.ts",
@@ -45,7 +52,6 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -107,7 +113,7 @@
           "builder": "@angular-devkit/build-angular:server",
           "options": {
             "outputPath": "dist/bellumgens/server",
-            "main": "src-bellumgens/main.server.ts",
+            "main": "server-bellumgens.ts",
             "tsConfig": "src-bellumgens/tsconfig.server.json"
           },
           "configurations": {
@@ -119,25 +125,34 @@
                 }
               ],
               "sourceMap": false,
-              "optimization": {
-                "scripts": false,
-                "styles": true
-              }
+              "optimization": true
             }
           }
         },
-        "app-shell": {
-          "builder": "@angular-devkit/build-angular:app-shell",
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
           "options": {
             "browserTarget": "bellum-gens:build",
-            "serverTarget": "bellum-gens:server",
-            "route": "home"
+            "serverTarget": "bellum-gens:server"
           },
           "configurations": {
             "production": {
               "browserTarget": "bellum-gens:build:production",
               "serverTarget": "bellum-gens:server:production"
             }
+          }
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "browserTarget": "bellum-gens:build:production",
+            "serverTarget": "bellum-gens:server:production",
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {}
           }
         }
       }
@@ -174,6 +189,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "aot": true,
             "outputPath": "dist/ebleague/browser",
             "index": "src-ebleague/index.html",
             "main": "src-ebleague/main.ts",
@@ -195,6 +211,12 @@
           },
           "configurations": {
             "production": {
+              "budgets": [
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb"
+                }
+              ],
               "fileReplacements": [
                 {
                   "replace": "src-common/environments/environment.ts",
@@ -206,7 +228,6 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -268,7 +289,7 @@
           "builder": "@angular-devkit/build-angular:server",
           "options": {
             "outputPath": "dist/ebleague/server",
-            "main": "src-ebleague/main.server.ts",
+            "main": "server-ebleague.ts",
             "tsConfig": "src-ebleague/tsconfig.server.json"
           },
           "configurations": {
@@ -280,25 +301,34 @@
                 }
               ],
               "sourceMap": false,
-              "optimization": {
-                "scripts": false,
-                "styles": true
-              }
+              "optimization": true
             }
           }
         },
-        "app-shell": {
-          "builder": "@angular-devkit/build-angular:app-shell",
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
           "options": {
             "browserTarget": "eb-league:build",
-            "serverTarget": "eb-league:server",
-            "route": "home"
+            "serverTarget": "eb-league:server"
           },
           "configurations": {
             "production": {
               "browserTarget": "eb-league:build:production",
               "serverTarget": "eb-league:server:production"
             }
+          }
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "browserTarget": "eb-league:build:production",
+            "serverTarget": "eb-league:server:production",
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {}
           }
         }
       }
@@ -334,5 +364,8 @@
       }
     }
   },
-  "defaultProject": "bellum-gens"
+  "defaultProject": "bellum-gens",
+  "cli": {
+    "analytics": false
+  }
 }

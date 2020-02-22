@@ -1,6 +1,6 @@
 <bg-login-dialog #loginDialog></bg-login-dialog>
 
-<igx-carousel #carousel [loop]="true" [interval]="10000" [navigation]="navigation">
+<igx-carousel #carousel class="carousel" [loop]="true" [interval]="10000" [navigation]="navigation">
   <igx-slide>
     <div class="home-page-slide slide1">
       <div class="slide-info">
@@ -68,5 +68,77 @@
 
   <div class="content-container-column left-column">
     <img src="/assets/wallpapers/team-page.webp" class="preview-image" alt="CS:GO Team Overview" />
+  </div>
+
+  <div class="content-container-row">
+    <igx-divider></igx-divider>
+    <h4 id="partners">Partners</h4>
+    <div class="horizontal-center">
+      <a href="https://www.isobar.com/bg/en/" target="_blank" rel="nofollow">
+        <igx-icon fontSet="partners" name="isobar" title="Isobar solves complex business challenges through digital marketing and technology. #1 Digital agency in Bulgaria with 200+ ecommerce experts, growing for 12+ years." class="partner platinum"></igx-icon>
+      </a>
+      <a href="https://www.vmware.com/" target="_blank" rel="nofollow">
+        <igx-icon fontSet="partners" name="vmware" title="VMware is a global leader in cloud infrastructure and business mobility. The company helps customers realize possibilities by accelerating their digital transformation journeys. Over the range of 12 years VMware Bulgaria has transformed from a purely R&D facility to a multifunctional hub with product, revenue generating professional services and business operations teams and is now one of the three core strategic sites for VMware globally." class="partner platinum"></igx-icon>
+      </a>
+      <a href="https://telusinternational.avature.net/careers/SearchJobsBulgaria?3_53_3=5183" target="_blank" rel="nofollow">
+        <igx-icon fontSet="partners" name="telus" title="TELUS International Europe is the biggest employer in the BPO sector in Bulgaria, with a team of over 3000 people in Sofia and Plovdiv, and serves clients in over 40 languages." class="partner platinum"></igx-icon>
+      </a>
+    </div>
+    <div class="horizontal-center">
+      <a href="https://www.modis.com/en-bg/" target="_blank" rel="nofollow">
+        <igx-icon fontSet="partners" name="modis" title="Modis is a global leader in professional solutions for IT, Engineering and Life Sciences. With more than 20 years of experience the company has established office locations in Europe, North America, Asia and Australia." class="partner gold"></igx-icon>
+      </a>
+    </div>
+    <div class="horizontal-center">
+      <a href="http://bprogaming.com/" title="BPro e първата професионална клубна организация по електронни спортове в България. През последните 4 години BPro са изградили множество състезатели, отбори и инфраструктура" target="_blank" rel="nofollow">
+        <img src="/assets/partners/bpro.webp" alt="BPro e първата професионална клубна организация по електронни спортове в България. През последните 4 години BPro са изградили множество състезатели, отбори и инфраструктура" class="partner logistics" />
+      </a>
+      <a href="https://www.facebook.com/BSLesports/" title="BSL организират първата по рода си лига по StarCraft II в България и допринасят за развитието на талантите ни в този #esport! Всички StarCraft 2 игри от Esports Business League ще бъдат коментирани от тях!" target="_blank" rel="nofollow">
+        <img src="/assets/partners/bsl.webp" alt="Те организират първата по рода си лига по StarCraft II в България и допринасят за развитието на талантите ни в този #esport! Всички StarCraft 2 игри от Esports Business League ще бъдат коментирани от тях!" class="partner logistics" />
+      </a>
+    </div>
+  </div>
+
+  <div class="content-container-row">
+    <igx-divider></igx-divider>
+    <h4 id="aboutus">About us</h4>
+    <p>
+      Bellum Gens is founded by two passionate about gaming friends. Bellum Gens is an esports organization focused on the development and popularization of esports in Bulgaria.
+    </p>
+
+    <h4>Contacts</h4>
+
+    <form #subscription="ngForm" (ngSubmit)="subscribe()">
+      <div class="horizontal">
+        <igx-input-group type="border" class="subscription-form-input">
+          <label igxLabel for="subemail">Email</label>
+          <igx-prefix>
+            <igx-icon>email</igx-icon>
+          </igx-prefix>
+          <input type="email" id="subemail" #subMail name="subemail" igxInput pattern="^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="userEmail" />
+          <igx-suffix *ngIf="subMail.value" (click)="userEmail = null">
+            <igx-icon>clear</igx-icon>
+          </igx-suffix>
+          <igx-hint>Subscribe to our newsletter.</igx-hint>
+        </igx-input-group>
+
+        <button igxButton="outlined" class="submit-email" [disabled]="subscription.invalid || !userEmail">Subscribe</button>
+      </div>
+    </form>
+
+    <div class="contacts">
+      <a href="mailto:info@eb-league.com" title="Имейл" style="color: white">
+        <igx-icon>email</igx-icon>
+      </a>
+      <a href="https://www.facebook.com/esportsbleague/" title="Facebook" target="_blank" rel="noopener">
+        <igx-icon fontSet="login-icons" name="Facebook"></igx-icon>
+      </a>
+      <a href="https://twitter.com/EsportBLeague" title="Twitter" target="_blank" rel="noopener">
+        <igx-icon fontSet="login-icons" name="Twitter"></igx-icon>
+      </a>
+      <a href="https://discord.gg/bnTcpa9" title="Discord" target="_blank" rel="noopener">
+        <igx-icon class="discord-icon" fontSet="login-icons" name="Discord"></igx-icon>
+      </a>
+    </div>
   </div>
 </div>

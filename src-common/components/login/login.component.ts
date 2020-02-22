@@ -101,7 +101,7 @@ export class LoginComponent {
       this.profileCompleteness.mapPool = true;
       this.profileCompleteness.profileStage++;
     }
-    this.profileCompleteness.progressType = this.profileCompleteness.profileStage <= 1 ? IgxProgressType.DANGER :
+    this.profileCompleteness.progressType = this.profileCompleteness.profileStage <= 1 ? IgxProgressType.ERROR :
                                             this.profileCompleteness.profileStage >= 4 ? IgxProgressType.SUCCESS :
                                             IgxProgressType.WARNING;
   }

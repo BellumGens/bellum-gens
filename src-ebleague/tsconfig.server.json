@@ -1,10 +1,15 @@
 {
   "extends": "./tsconfig.app.json",
   "compilerOptions": {
+    "module": "commonjs",
     "outDir": "../out-tsc/app-server-bellumgens",
     "baseUrl": "."
   },
   "angularCompilerOptions": {
     "entryModule": "app/app.server.module#AppServerModule"
-  }
+  },
+  "files": [
+    "main.server.ts",
+    "../server-ebleague.ts"
+  ]
 }

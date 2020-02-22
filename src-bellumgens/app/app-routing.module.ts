@@ -16,6 +16,8 @@ import { TeamDetailsComponent } from './team-section/team-details/team-details.c
 import { TeamPreferencesComponent } from './team-section/team-preferences/team-preferences.component';
 import { UserStrategiesComponent } from './player-section/user-strategies/user-strategies.component';
 import { TeamadminGuard } from '../../src-common/guards/teamadmin.guard';
+import { TeamNavComponent } from './team-section/team-nav/team-nav.component';
+import { NotificationsComponent } from './notifications/notifications.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -46,6 +48,8 @@ export const routes: Routes = [
     { path: 'strategies', component: TeamStrategiesComponent },
     { path: 'preferences', component: TeamPreferencesComponent, canActivate: [ TeamadminGuard ] }
   ] },
+  { path: 'myteams', component: TeamNavComponent },
+  { path: 'notifications', component: NotificationsComponent },
   { path: 'team/:teamid/:stratid', component: StrategyEditorComponent },
   { path: 'search/teams/:query', component: TeamResultsComponent },
   { path: 'search/players/:query', component: PlayerResultsComponent },
@@ -53,7 +57,7 @@ export const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled'})],
+  imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled', anchorScrolling: 'enabled', initialNavigation: 'enabled'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule {

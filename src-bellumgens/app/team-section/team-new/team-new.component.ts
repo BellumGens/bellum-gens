@@ -20,7 +20,7 @@ export class TeamNewComponent {
   public navigateOnCreate = true;
   public inProgress = false;
 
-  @ViewChild(IgxDialogComponent, { static: false }) public createTeam: IgxDialogComponent;
+  @ViewChild(IgxDialogComponent) public createTeam: IgxDialogComponent;
 
   constructor(private apiService: BellumgensApiService, private router: Router) {
   }

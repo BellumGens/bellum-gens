@@ -25,7 +25,7 @@ export class PlayerNotificationsComponent {
   @Output()
   public changed = new EventEmitter<number>();
 
-  @ViewChild(IgxListComponent, { static: false }) public notifications: IgxListComponent;
+  @ViewChild(IgxListComponent) public notifications: IgxListComponent;
 
   constructor(private apiService: BellumgensApiService, private router: Router) { }
 

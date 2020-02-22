@@ -1,5 +1,5 @@
 <div igxLayout>
-  <igx-nav-drawer style="height: auto!important" [pinThreshold]="1600" id="navigation" #drawer>
+  <igx-nav-drawer style="height: auto" [pinThreshold]="1600" id="navigation" #drawer>
     <ng-template igxDrawer>
       <nav>
         <span igxDrawerItem [isHeader]="true">Esports Business League</span>
@@ -15,6 +15,10 @@
           </igx-avatar>
           Лига по StarCraft II
         </span>
+        <span igxDrawerItem igxRipple routerLink="/" fragment="finals">
+          <igx-icon>map</igx-icon>
+          Финали и билети
+        </span>
         <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournament/format">
           <igx-icon>playlist_add_check</igx-icon>
           Формат на лигата
@@ -26,6 +30,10 @@
         <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournament/crew">
           <igx-icon>people</igx-icon>
           Нашият екип
+        </span>
+        <span igxDrawerItem igxRipple routerLink="/" fragment="aboutus">
+          <igx-icon>chat</igx-icon>
+          Контакти
         </span>
         <a igxDrawerItem igxRipple [href]="environment.bellumgens" target="_blank">
           <igx-avatar [src]="'/assets/bg-avatar.webp'"
@@ -58,6 +66,9 @@
                 [roundShape]="true">
           </igx-avatar>
         </span>
+        <span igxDrawerItem igxRipple routerLink="/" fragment="finals" title="Финали и билети">
+          <igx-icon>map</igx-icon>
+        </span>
         <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournament/format" title="Формат на лигата">
           <igx-icon >playlist_add_check</igx-icon>
         </span>
@@ -66,6 +77,9 @@
         </span>
         <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournament/crew" title="Нашият екип">
           <igx-icon>people</igx-icon>
+        </span>
+        <span igxDrawerItem igxRipple routerLink="/" fragment="aboutus" title="Контакти">
+          <igx-icon>chat</igx-icon>
         </span>
         <a igxDrawerItem igxRipple [href]="environment.bellumgens" target="_blank" title="Bellum Gens: Управление на отбори и стратегии">
           <igx-avatar [src]="'/assets/bg-avatar.webp'"
@@ -104,16 +118,13 @@
         <footer class="footer">
           <igx-divider></igx-divider>
           <div class="footer-row">
-            <p>
-              We would also appreciate if you follow us on social media.
-            </p>
-            <a href="https://twitter.com/EsportBLeague" target="_blank" rel="noopener" title="Twitter">
+            <p>Copyright © Bellum Gens, 2019-2020</p>
+            <a href="https://twitter.com/BellumGens" target="_blank" rel="noopener" title="Twitter">
               <igx-icon fontSet="login-icons" name="Twitter"></igx-icon>
             </a>
-            <a href="https://www.facebook.com/esportsbleague" target="_blank" rel="noopener" class="social-media-icon" title="Facebook">
+            <a href="https://www.facebook.com/BellumGens" target="_blank" rel="noopener" class="social-media-icon" title="Facebook">
               <igx-icon fontSet="login-icons" name="Facebook"></igx-icon>
             </a>
-            <p>Copyright © Bellum Gens, 2019-2020</p>
           </div>
         </footer>
       </div>

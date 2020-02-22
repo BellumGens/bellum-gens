@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, HammerModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
@@ -51,7 +51,8 @@ import { BellumGensModule } from '../../src-common/components/components.module'
     IgxAvatarModule,
     IgxNavigationDrawerModule,
     BellumGensModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+    HammerModule
   ],
   providers: [
     LoginService,

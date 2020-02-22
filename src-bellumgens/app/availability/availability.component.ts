@@ -33,8 +33,8 @@ export class AvailabilityComponent {
   @Output()
   public availabilityChanged = new EventEmitter<Availability>();
 
-  @ViewChild('from', { static: false }) public from: IgxTimePickerComponent;
-  @ViewChild('to', { static: false }) public to: IgxTimePickerComponent;
+  @ViewChild('from') public from: IgxTimePickerComponent;
+  @ViewChild('to') public to: IgxTimePickerComponent;
   @ViewChild(IgxChipsAreaComponent, { static: true }) public chips: IgxChipsAreaComponent;
   @ViewChild(IgxDialogComponent, { static: true }) public dialog: IgxDialogComponent;
 

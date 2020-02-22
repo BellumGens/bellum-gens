@@ -10,6 +10,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { SortApplicationsPipe } from '../pipes/sort-applications.pipe';
 import { NotificationStatePipe } from '../pipes/notification-state.pipe';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 describe('NotificationsComponent', () => {
   let component: NotificationsComponent;
@@ -20,6 +21,7 @@ describe('NotificationsComponent', () => {
       imports: [
         RouterTestingModule,
         HttpClientTestingModule,
+        ServiceWorkerModule.register('', {enabled: false}),
         IgxProgressBarModule,
         IgxListModule,
         IgxAvatarModule

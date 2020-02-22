@@ -1,3 +1,9 @@
+:host {
+  iframe {
+    border-radius: 20px;
+  }
+}
+
 .slide {
   height: 450px;
   border-radius: 24px;
@@ -15,15 +21,8 @@
   background-repeat: no-repeat;
 }
 
-.preview-image {
-  -webkit-box-shadow: 0px 24px 48px -12px rgba(4,8,29,0.45);
-  -moz-box-shadow: 0px 24px 48px -12px rgba(4,8,29,0.45);
-  box-shadow: 0px 24px 48px -12px rgba(4,8,29,0.45);
-  border-radius: 20px;
-}
-
 .subscription-form-input {
-  min-width: 380px;
+  min-width: 348px;
 }
 
 .submit-email {
@@ -61,6 +60,11 @@
   padding: 25px;
 }
 
+.tickets-frame {
+  width: 100%;
+  height: 723px;
+}
+
 @media only screen and (max-width: 550px) {
   .submit-email {
     height: 48px;
@@ -69,5 +73,10 @@
 
   .success-dialog-content {
     width: 380px;
+  }
+
+  .platinum {
+    width: 348px;
+    height: 200px;
   }
 }

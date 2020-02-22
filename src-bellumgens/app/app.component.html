@@ -1,38 +1,35 @@
 <div igxLayout>
-  <!-- <igx-nav-drawer style="height: auto!important" [pinThreshold]="1600" id="navigation" #drawer>
+  <igx-nav-drawer style="height: auto" [pinThreshold]="1600" id="navigation" #drawer>
     <ng-template igxDrawer>
       <nav>
         <span igxDrawerItem [isHeader]="true">Bellum Gens</span>
-        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournament/csgo">
-          <igx-avatar [src]="'/assets/wallpapers/csgo-watermark.webp'"
-                [roundShape]="true">
-          </igx-avatar>
-          Лига по CS:GO
+        <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="myteams">
+          <igx-icon>people</igx-icon>
+          <igx-badge class="notifications-badge" *ngIf="authUser.teams?.length > 0" [value]="authUser.teams?.length" type="info"></igx-badge>
+          My teams
         </span>
-        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournament/sc2">
-          <igx-avatar [src]="'/assets/wallpapers/sc2.webp'"
-                [roundShape]="true">
-          </igx-avatar>
-          Лига по StarCraft II
+        <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="myteams">
+          <igx-icon>notifications</igx-icon>
+          <igx-badge class="notifications-badge" *ngIf="unreadNotifications > 0" [value]="unreadNotifications" type="info"></igx-badge>
+          Notifications
         </span>
-        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournament/format">
+        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="strategies">
           <igx-icon>playlist_add_check</igx-icon>
-          Формат на лигата
+          Strategies feed
         </span>
         <span igxDrawerItem igxRipple routerLink="/" fragment="partners">
           <igx-icon>people_alt</igx-icon>
-          Нашите партньори
+          Partners
         </span>
-        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournament/crew">
-          <igx-icon>people</igx-icon>
-          Нашият екип
+        <span igxDrawerItem igxRipple routerLink="/" fragment="aboutus">
+          <igx-icon>chat</igx-icon>
+          Contacts
         </span>
         <a igxDrawerItem igxRipple [href]="environment.ebleague" target="_blank">
-          <igx-avatar [src]="'/assets/bg-avatar.webp'"
-                [roundShape]="true"
-                title="Управление на отбори и стратегии">
+          <igx-avatar [src]="'/assets/eb-league-logo.png'"
+                [roundShape]="true">
           </igx-avatar>
-          Bellum Gens
+          Esports Business League
         </a>
       </nav>
     </ng-template>
@@ -40,32 +37,22 @@
     <ng-template igxDrawerMini *ngIf="drawer.pin">
       <nav>
         <span igxDrawerItem [isHeader]="true">&nbsp;</span>
-        <span igxDrawerItem
-              igxRipple
-              routerLinkActive="igx-nav-drawer__item--active"
-              routerLink="tournament/csgo"
-              title="Лига по CS:GO">
-          <igx-avatar [src]="'/assets/wallpapers/csgo-watermark.webp'"
-                [roundShape]="true">
-          </igx-avatar>
+        <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="myteams" title="My Teams">
+          <igx-icon>people</igx-icon>
+          <igx-badge class="notifications-badge" *ngIf="authUser.teams?.length > 0" [value]="authUser.teams?.length" type="info"></igx-badge>
         </span>
-        <span igxDrawerItem
-              igxRipple
-              routerLinkActive="igx-nav-drawer__item--active"
-              routerLink="tournament/sc2"
-              title="Лига по StarCraft II">
-          <igx-avatar [src]="'/assets/wallpapers/sc2.webp'"
-                [roundShape]="true">
-          </igx-avatar>
+        <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="notifications" title="Notifications">
+          <igx-icon>notifications</igx-icon>
+          <igx-badge class="notifications-badge" *ngIf="unreadNotifications > 0" [value]="unreadNotifications" type="info"></igx-badge>
         </span>
-        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="strategies" title="Strategies Feed">
-          <igx-icon >playlist_add_check</igx-icon>
+        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="strategies" title="Strategies feed">
+          <igx-icon>playlist_add_check</igx-icon>
         </span>
-        <span igxDrawerItem igxRipple routerLink="/" fragment="partners" title="Нашите партньори">
+        <span igxDrawerItem igxRipple routerLink="/" fragment="partners" title="Partners">
           <igx-icon>people_alt</igx-icon>
         </span>
-        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournament/crew" title="Нашият екип">
-          <igx-icon>people</igx-icon>
+        <span igxDrawerItem igxRipple routerLink="/" fragment="aboutus" title="About us">
+          <igx-icon>chat</igx-icon>
         </span>
         <a igxDrawerItem igxRipple [href]="environment.ebleague" target="_blank" title="Esports Business League">
           <igx-avatar [src]="'/assets/eb-league-logo.png'"
@@ -74,12 +61,12 @@
         </a>
       </nav>
     </ng-template>
-  </igx-nav-drawer> -->
+  </igx-nav-drawer>
 
   <div igxFlex igxLayout igxLayoutDir="columns" class="top-level-container">
-    <igx-navbar class="bellum-gens-navbar" [title]="title">
+    <igx-navbar class="bellum-gens-navbar">
       <igx-action-icon>
-        <!-- <igx-icon class="drawer-action" (click)="drawer.toggle()">menu</igx-icon> -->
+        <igx-icon class="drawer-action" (click)="drawer.toggle()">menu</igx-icon>
         <igx-avatar class="navigatable" [src]="'/assets/bg-avatar.webp'" [roundShape]="true" routerLink="/"></igx-avatar>
       </igx-action-icon>
       <igx-input-group type="search" class="search-group" #searchGroup>
@@ -92,17 +79,14 @@
           <igx-icon>clear</igx-icon>
         </igx-suffix>
       </igx-input-group>
-      <div class="action-button-container" title="Strategies feed" routerLink="strategies">
-        <igx-icon>playlist_add_check</igx-icon>
-      </div>
-      <div class="action-button-container" [igxToggleAction]="myTeam" [overlaySettings]="overlaySettings" *ngIf="authUser">
+      <!-- <div class="action-button-container" [igxToggleAction]="myTeam" [overlaySettings]="overlaySettings" *ngIf="authUser">
         <igx-icon>people</igx-icon>
         <igx-badge class="notifications-badge" *ngIf="authUser.teams?.length > 0" [value]="authUser.teams?.length" type="info"></igx-badge>
-      </div>
-      <div class="action-button-container" [igxToggleAction]="notifications" [overlaySettings]="overlaySettings" *ngIf="authUser">
+      </div> -->
+      <!-- <div class="action-button-container" [igxToggleAction]="notifications" [overlaySettings]="overlaySettings" *ngIf="authUser">
         <igx-icon>notifications</igx-icon>
         <igx-badge class="notifications-badge" *ngIf="unreadNotifications > 0" [value]="unreadNotifications" type="info"></igx-badge>
-      </div>
+      </div> -->
 
       <bg-login [authUser]='authUser'></bg-login>
     </igx-navbar>
@@ -127,12 +111,12 @@
     <igx-drop-down #quickSearch>
       <app-quick-search></app-quick-search>
     </igx-drop-down>
-    <igx-drop-down #myTeam>
+    <!-- <igx-drop-down #myTeam>
       <app-team-nav [authUser]="authUser"></app-team-nav>
-    </igx-drop-down>
-    <igx-drop-down #notifications>
+    </igx-drop-down> -->
+    <!-- <igx-drop-down #notifications>
       <app-notifications [authUser]="authUser" (loaded)="notificationsLoaded($event)"></app-notifications>
-    </igx-drop-down>
+    </igx-drop-down> -->
     <bg-success-error></bg-success-error>
 
     <div class="main-content-wrapper">
@@ -142,16 +126,13 @@
         <footer class="footer">
           <igx-divider></igx-divider>
           <div class="footer-row">
-            <p>
-              We would also appreciate if you follow us on social media.
-            </p>
+            <p>Copyright © Bellum Gens, 2019-2020</p>
             <a href="https://twitter.com/BellumGens" target="_blank" rel="noopener" title="Twitter">
               <igx-icon fontSet="login-icons" name="Twitter"></igx-icon>
             </a>
             <a href="https://www.facebook.com/BellumGens" target="_blank" rel="noopener" class="social-media-icon" title="Facebook">
               <igx-icon fontSet="login-icons" name="Facebook"></igx-icon>
             </a>
-            <p>Copyright © Bellum Gens, 2019-2020</p>
           </div>
         </footer>
       </div>

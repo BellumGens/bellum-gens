@@ -4,9 +4,9 @@
 
 $app-palette: igx-palette($primary, $secondary);
 
-html, body {
-  height: 100%;
-  min-width: 412px;
+body {
+  min-height: 100%;
+  min-width: 380px;
   background-image: $background-gradient;
 }
 
@@ -22,6 +22,11 @@ html, body {
 /* Typography */
 .igx-typography {
   color: var(--igx-card-header-text-color);
+}
+
+.content {
+  height: 100%;
+  width: 100%;
 }
 
 .content p {
@@ -50,6 +55,7 @@ html, body {
   flex: 1 1 auto;
   flex-flow: row wrap;
   align-items: center;
+  justify-content: center;
 }
 
 .space-between {
@@ -127,12 +133,10 @@ a > igx-icon {
 
   .content-container h4 {
     font-size: 1.75rem;
-    margin: 0;
   }
 
   .content-container p {
     font-size: 1rem;
-    margin: 16px 0 16px 0;
   }
 
 .content-container-row {
@@ -141,7 +145,6 @@ a > igx-icon {
   flex-flow: column;
   align-items: center;
   justify-content: space-evenly;
-  min-height: 210px;
 }
 
 .content-container-column {
@@ -213,6 +216,76 @@ a > igx-icon {
     margin-top: 1.75rem;
   }
 
+
+.top-level-container {
+  min-width: 380px;
+}
+
+.main-content-wrapper {
+  height: 100%;
+  min-width: 380px;
+  display: flex;
+}
+
+.action-button-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.notifications-badge {
+  position: absolute;
+  top: 0;
+  left: 22px;
+}
+
+.footer {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  padding: 12px 36px 0 36px;
+}
+
+.footer-row {
+  display: flex;
+  align-self: center;
+  align-items: center;
+}
+
+.footer-row > p {
+  margin: 8px 4px;
+  font-size: 0.65rem;
+}
+
+.footer-row > a {
+  height: 24px;
+}
+
+.social-media-icon {
+  margin-left: 4px;
+}
+
+.search-group {
+  width: 256px;
+}
+
+.preview-image {
+  -webkit-box-shadow: 0px 24px 48px -12px rgba(4,8,29,0.45);
+  -moz-box-shadow: 0px 24px 48px -12px rgba(4,8,29,0.45);
+  box-shadow: 0px 24px 48px -12px rgba(4,8,29,0.45);
+  border-radius: 20px;
+}
+
+@media only screen and (max-width: 720px) {
+  .search-group {
+    width: auto;
+  }
+
+  .footer {
+    padding: 12px 12px 0 12px;
+  }
+}
+
 @media only screen and (max-width: 1280px) {
   .overview-container-card,
   .card-wrapper,
@@ -229,7 +302,7 @@ a > igx-icon {
   }
 
   .content-container {
-    grid-template-columns: minmax(380px, 1fr);
+    grid-template-columns: minmax(348px, 1fr);
     width: 100%;
   }
 
