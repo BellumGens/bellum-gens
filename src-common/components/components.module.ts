@@ -1,5 +1,8 @@
-import { ConfirmComponent } from './confirm/confirm.component';
 import { NgModule } from '@angular/core';
+import { LoginComponent } from './login/login.component';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
 import { IgxDialogModule,
   IgxButtonModule,
   IgxProgressBarModule,
@@ -13,12 +16,12 @@ import { IgxDialogModule,
   IgxListModule,
   IgxInputGroupModule,
   IgxSnackbarModule} from 'igniteui-angular';
-import { LoginComponent } from './login/login.component';
-import { LoginDialogComponent } from './login/login-dialog/login-dialog.component';
-import { CommonModule } from '@angular/common';
-import { UserPreferencesComponent } from './user-preferences/user-preferences.component';
-import { FormsModule } from '@angular/forms';
+
 import { SuccessErrorComponent } from './success-error/success-error.component';
+import { ConfirmComponent } from './confirm/confirm.component';
+import { UserPreferencesComponent } from './user-preferences/user-preferences.component';
+import { LoginDialogComponent } from './login/login-dialog/login-dialog.component';
+
 
 @NgModule({
   declarations: [

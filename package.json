@@ -4,6 +4,7 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
+    "postinstall": "ngcc",
     "start": "concurrently --kill-others \"npm run start-bellumgens\" \"npm run start-ebleague\"",
     "start-bellumgens": "ng serve -o",
     "start-ebleague": "ng serve eb-league --port=4201 -o",
@@ -15,6 +16,8 @@
     "e2e": "ng e2e",
     "compile:server": "webpack --config webpack.bellumgens.server.config.js --progress --colors && webpack --config webpack.ebleague.server.config.js --progress --colors",
     "serve:ssr": "concurrently --kill-others \"npm run serve:ssr:bellumgens\" \"npm run serve:ssr:ebleague\"",
+    "dev:ssr:bellumgens": "ng run bellum-gens:serve-ssr",
+    "dev:ssr:ebleague": "ng run eb-league:serve-ssr",
     "serve:ssr:bellumgens": "cd dist/bellumgens && node server/main.js",
     "serve:ssr:ebleague": "cd dist/ebleague && node server/main.js",
     "build:ssr": "npm run build:client-and-server-bundles && npm run compile:server",
