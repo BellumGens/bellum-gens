@@ -1,3 +1,4 @@
+import 'core-js/es7/reflect';
 import 'zone.js/dist/zone-node';
 
 import { ngExpressEngine } from '@nguniversal/express-engine';
