@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-  - "10.15.3"
+  - "12.16.0"
 script:
   - npm run lint
   - npm run test:prod
