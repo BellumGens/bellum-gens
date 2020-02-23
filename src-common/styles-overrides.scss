@@ -8,6 +8,10 @@ igx-tab-item igx-icon {
   margin-right: 8px;
 }
 
+.igx-nav-drawer__aside--pinned {
+  position: fixed;
+}
+
 .igx-nav-drawer__item > igx-icon,
 .igx-nav-drawer__item > igx-avatar {
   margin-right: 8px;
