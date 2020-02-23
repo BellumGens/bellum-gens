@@ -1,9 +1,6 @@
 :host {
-  .card-wrapper {
-    min-height: 824px;
-  }
-
   .team-card {
     min-height: 300px;
+    height: fit-content;
   }
 }
