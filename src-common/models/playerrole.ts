@@ -30,7 +30,7 @@ export const ALL_ROLES: Role [] = [{
     Name: 'Awper'
   }, {
     Id: PlaystyleRole.EntryFragger,
-    Name: 'Entry Fragger'
+    Name: 'Entry'
   }, {
     Id: PlaystyleRole.Support,
     Name: 'Support'
