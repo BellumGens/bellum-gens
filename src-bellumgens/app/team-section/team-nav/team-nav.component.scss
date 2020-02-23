@@ -3,4 +3,12 @@
     min-height: 300px;
     height: fit-content;
   }
+
+  .submit-button {
+    height: fit-content;
+  }
+
+  .card-wrapper {
+    height: calc(100% - 64px);
+  }
 }
