@@ -20,7 +20,7 @@
     "dev:ssr:ebleague": "ng run eb-league:serve-ssr",
     "serve:ssr:bellumgens": "cd dist/bellumgens && node server/main.js",
     "serve:ssr:ebleague": "cd dist/ebleague && node server/main.js",
-    "build:ssr": "npm run build:client-and-server-bundles && npm run compile:server",
+    "build:ssr": "npm run build:client-and-server-bundles",
     "build:client-and-server-bundles": "npm run build && ng run bellum-gens:server:production && ng run eb-league:server:production",
     "build:prerender": "npm run build:ssr && node dist/prerender"
   },

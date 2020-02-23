@@ -1,6 +1,5 @@
-import { Component, ViewChild, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ApplicationUser } from '../../../../src-common/models/applicationuser';
-import { IgxListComponent } from 'igniteui-angular';
 import { UserNotification, NotificationState } from '../../../../src-common/models/usernotifications';
 import { BellumgensApiService } from '../../../../src-common/services/bellumgens-api.service';
 import { Router } from '@angular/router';
@@ -24,8 +23,6 @@ export class PlayerNotificationsComponent {
 
   @Output()
   public changed = new EventEmitter<number>();
-
-  @ViewChild(IgxListComponent) public notifications: IgxListComponent;
 
   constructor(private apiService: BellumgensApiService, private router: Router) { }
 
