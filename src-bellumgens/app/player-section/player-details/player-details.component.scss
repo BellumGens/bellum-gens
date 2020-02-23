@@ -1,4 +1,8 @@
-// @import "../../../style-vars.scss";
+:host {
+  .card-wrapper {
+    min-height: calc(100% - 64px);
+  }
+}
 
 .team-invites {
   height: 56px;
@@ -50,11 +54,12 @@
 
 .player-detail__stats {
   border: 1px solid var(--igx-card-outline-color);
+  height: fit-content;
 }
 
-.player-detail__stats .igx-circular-bar__text {
-  font-size: 1.55rem;
-}
+  .player-detail__stats .igx-circular-bar__text {
+    font-size: 1.55rem;
+  }
 
 .weapon-image {
   height: 100%;

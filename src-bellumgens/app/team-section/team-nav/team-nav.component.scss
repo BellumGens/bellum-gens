@@ -9,6 +9,6 @@
   }
 
   .card-wrapper {
-    height: calc(100% - 64px);
+    min-height: calc(100% - 64px);
   }
 }
