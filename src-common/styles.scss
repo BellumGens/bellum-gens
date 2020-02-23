@@ -276,6 +276,27 @@ a > igx-icon {
   border-radius: 20px;
 }
 
+.subscription-form-input {
+  min-width: 348px;
+}
+
+.submit-email {
+  height: 50px;
+  margin: 0 8px;
+}
+
+.contacts {
+  display: flex;
+  min-width: 128px;
+  align-content: center;
+  justify-content: space-evenly;
+  margin-top: 16px;
+}
+
+.partner {
+  margin: 16px;
+}
+
 @media only screen and (max-width: 720px) {
   .search-group {
     width: auto;
@@ -283,6 +304,20 @@ a > igx-icon {
 
   .footer {
     padding: 12px 12px 0 12px;
+  }
+
+  .submit-email {
+    height: 48px;
+    margin: 8px auto;
+  }
+
+  .success-dialog-content {
+    width: 380px;
+  }
+
+  .platinum {
+    width: 348px;
+    height: 200px;
   }
 }
 

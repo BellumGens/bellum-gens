@@ -21,27 +21,6 @@
   background-repeat: no-repeat;
 }
 
-.subscription-form-input {
-  min-width: 348px;
-}
-
-.submit-email {
-  height: 50px;
-  margin: 0 8px;
-}
-
-.contacts {
-  display: flex;
-  min-width: 128px;
-  align-content: center;
-  justify-content: space-evenly;
-  margin-top: 16px;
-}
-
-.partner {
-  margin: 16px;
-}
-
 .platinum {
   width: 380px;
   height: 300px;
@@ -66,15 +45,6 @@
 }
 
 @media only screen and (max-width: 550px) {
-  .submit-email {
-    height: 48px;
-    margin: 8px auto;
-  }
-
-  .success-dialog-content {
-    width: 380px;
-  }
-
   .platinum {
     width: 348px;
     height: 200px;

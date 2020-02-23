@@ -10,25 +10,14 @@
   height: 450px;
 }
 
-.subscription-form-input {
-  min-width: 360px;
+.slide2 {
+  background-image: url('/assets/wallpapers/csgo_wallpaper_nologo.webp');
+  background-position-y: -100px;
 }
 
-.submit-email {
-  height: 50px;
-  margin: 0 8px;
-}
-
-.contacts {
-  display: flex;
-  min-width: 128px;
-  align-content: center;
-  justify-content: space-evenly;
-  margin-top: 16px;
-}
-
-.partner {
-  margin: 16px;
+.slide3 {
+  background-image: url('/assets/wallpapers/carousel_image_1.webp');
+  background-position: center;
 }
 
 .platinum {
@@ -45,14 +34,15 @@
   width: 150px;
 }
 
-.slide2 {
-  background-image: url('/assets/wallpapers/csgo_wallpaper_nologo.webp');
-  background-position-y: -100px;
+.min-height-row {
+  min-height: 210px;
 }
 
-.slide3 {
-  background-image: url('/assets/wallpapers/carousel_image_1.webp');
-  background-position: center;
+@media only screen and (max-width: 550px) {
+  .platinum {
+    width: 348px;
+    height: 200px;
+  }
 }
 
 @media only screen and (max-width: 1280px) {
@@ -72,21 +62,5 @@
 @media only screen and (min-width: 2000px) {
   .slide2, .slide3 {
     background-position-y: -150px;
-  }
-}
-
-@media only screen and (max-width: 550px) {
-  .submit-email {
-    height: 48px;
-    margin: 8px auto;
-  }
-
-  .success-dialog-content {
-    width: 380px;
-  }
-
-  .platinum {
-    width: 348px;
-    height: 200px;
   }
 }
