@@ -23,7 +23,7 @@
 
 .platinum {
   width: 380px;
-  height: 300px;
+  height: 200px;
 }
 
 .gold {
@@ -42,7 +42,7 @@
 @media only screen and (max-width: 550px) {
   .platinum {
     width: 348px;
-    height: 200px;
+    height: 150px;
   }
 }
 
