@@ -16,7 +16,7 @@ import { SocialMediaService } from '../../../../src-common/services/social-media
 @Component({
   selector: 'app-team-strategies',
   templateUrl: './team-strategies.component.html',
-  styleUrls: ['./team-strategies.component.css']
+  styleUrls: ['./team-strategies.component.scss']
 })
 export class TeamStrategiesComponent extends BaseComponent {
   private _isEditor = null;

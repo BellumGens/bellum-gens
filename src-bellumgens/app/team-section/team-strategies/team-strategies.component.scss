@@ -1,0 +1,15 @@
+:host {
+  .card-wrapper {
+    min-height: calc(100% - 204px);
+  }
+
+  .card-wrapper > igx-card {
+    min-height: 581px;
+    height: fit-content;
+  }
+}
+
+.order-by {
+  height: 64px;
+  margin: 4px;
+}
