@@ -1,4 +1,4 @@
-export interface MapPool {
+export interface CSGOMapPool {
   Map: CSGOMap;
   IsPlayed: boolean;
   UserId?: string;
@@ -25,7 +25,7 @@ export enum CSGOMap {
   Cobblestone
 }
 
-export const AllMaps: MapPool [] = [
+export const AllCSGOMaps: CSGOMapPool [] = [
   {
     Map: CSGOMap.Cache,
     IsPlayed: true

@@ -11,7 +11,7 @@ import { CSGOPlayer } from '../../../../src-common/models/csgoplayer';
 import { Availability } from '../../../../src-common/models/playeravailability';
 import { ApplicationUser } from '../../../../src-common/models/applicationuser';
 import { CSGOTeam } from '../../../../src-common/models/csgoteam';
-import { MapPool } from '../../../../src-common/models/csgomaps';
+import { CSGOMapPool } from '../../../../src-common/models/csgomaps';
 import { ALL_ROLES } from '../../../../src-common/models/playerrole';
 import { BaseComponent } from '../../base/base.component';
 import { Title, Meta } from '@angular/platform-browser';
@@ -91,7 +91,7 @@ export class PlayerDetailsComponent extends BaseComponent {
     }
   }
 
-  public mapChange(args: MapPool) {
+  public mapChange(args: CSGOMapPool) {
     this.authUser.mapPool.find(m => m.Map === args.Map).IsPlayed = args.IsPlayed;
     this.apiService.setMapPool(args).subscribe();
   }

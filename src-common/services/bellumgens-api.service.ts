@@ -6,7 +6,7 @@ import { CSGOTeam, TeamMember, TeamApplication } from '../models/csgoteam';
 import { CSGOPlayer } from '../models/csgoplayer';
 import { Availability } from '../models/playeravailability';
 import { Role } from '../models/playerrole';
-import { MapPool } from '../models/csgomaps';
+import { CSGOMapPool } from '../models/csgomaps';
 import { map, shareReplay, catchError } from 'rxjs/operators';
 import { UserNotification } from '../models/usernotifications';
 import { CSGOStrategy, VoteDirection, StrategyVote, StrategyComment } from '../models/csgostrategy';
@@ -531,11 +531,11 @@ export class BellumgensApiService {
     );
   }
 
-  public getTeamMapPool(teamId: string): Observable<MapPool []> {
-    return this.http.get<MapPool []>(`${this._apiEndpoint}/teams/mapPool?teamId=${teamId}`, { withCredentials: true });
+  public getTeamMapPool(teamId: string): Observable<CSGOMapPool []> {
+    return this.http.get<CSGOMapPool []>(`${this._apiEndpoint}/teams/mapPool?teamId=${teamId}`, { withCredentials: true });
   }
 
-  public setTeamMapPool(mapstatus: MapPool []): Observable<any> {
+  public setTeamMapPool(mapstatus: CSGOMapPool []): Observable<any> {
     return this.http.put(`${this._apiEndpoint}/teams/mapPool`, mapstatus, { withCredentials: true }).pipe(
       map(response => {
         if (response) {
@@ -752,7 +752,7 @@ export class BellumgensApiService {
     );
   }
 
-  public setMapPool(mapstatus: MapPool): Observable<any> {
+  public setMapPool(mapstatus: CSGOMapPool): Observable<any> {
     return this.http.put(`${this._apiEndpoint}/users/mapPool`, mapstatus, { withCredentials: true }).pipe(
       map(response => {
         if (response) {

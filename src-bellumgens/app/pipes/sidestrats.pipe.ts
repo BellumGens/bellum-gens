@@ -1,6 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { CSGOStrategy, VoteDirection } from '../../../src-common/models/csgostrategy';
-import { MapPool } from '../../../src-common/models/csgomaps';
+import { CSGOMapPool } from '../../../src-common/models/csgomaps';
 import { StratOrderBy } from '../../../src-common/models/misc';
 
 @Pipe({
@@ -8,7 +8,7 @@ import { StratOrderBy } from '../../../src-common/models/misc';
 })
 export class SideStratsPipe implements PipeTransform {
 
-  transform(strats: CSGOStrategy [], maps: MapPool [], order: StratOrderBy): CSGOStrategy [] {
+  transform(strats: CSGOStrategy [], maps: CSGOMapPool [], order: StratOrderBy): CSGOStrategy [] {
     let filtered = strats && maps && strats.filter(s => maps.find(m => m.Map === s.Map).IsPlayed);
     if (filtered && order === StratOrderBy.MostRecent) {
       filtered = filtered.sort((a, b) => a.LastUpdated === b.LastUpdated ? 0 : a.LastUpdated < b.LastUpdated ? 1 : -1);

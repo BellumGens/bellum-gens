@@ -64,6 +64,26 @@
               </igx-input-group>
             </div>
 
+            <div *ngIf="slot.match.Team1Id && slot.match.Team2Id" class="horizontal-center space-evenly">
+
+              <igx-select id="mapSelector" class="space-out" name="mapSelector" [(ngModel)]="slot.match">
+                <label for="mapSelector" igxLabel>Карта</label>
+                <igx-select-item *ngFor="let map of mapList" [value]="map.id">
+                  {{ map.map }}
+                </igx-select-item>
+              </igx-select>
+
+              <igx-input-group>
+                <label igxLabel>Рундове отбор 1</label>
+                <input type="number" igxInput [disabled]="!slot.inEdit" [(ngModel)]="slot.match.Team1Points" />
+              </igx-input-group>
+              :
+              <igx-input-group>
+                <label igxLabel>Рундове отбор 2</label>
+                <input type="number" igxInput [disabled]="!slot.inEdit" [(ngModel)]="slot.match.Team2Points" />
+              </igx-input-group>
+            </div>
+
             <igx-input-group *ngIf="slot.match.Team1Id && slot.match.Team2Id">
               <label igxLabel>Видео Линк</label>
               <input igxInput [disabled]="!slot.inEdit" [(ngModel)]="slot.match.VideoLink" />

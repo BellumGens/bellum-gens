@@ -199,6 +199,7 @@ a > igx-icon {
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   grid-column-gap: 16px;
   grid-row-gap: 16px;
+  grid-auto-rows: max-content;
   padding-top: 12px;
   margin: auto;
 }

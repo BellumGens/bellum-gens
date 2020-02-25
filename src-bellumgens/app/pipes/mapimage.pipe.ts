@@ -1,12 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { ActiveDuty, MapPool } from '../../../src-common/models/csgomaps';
+import { ActiveDuty, CSGOMapPool } from '../../../src-common/models/csgomaps';
 
 @Pipe({
   name: 'mapimage'
 })
 export class MapimagePipe implements PipeTransform {
 
-  transform(map: MapPool): string {
+  transform(map: CSGOMapPool): string {
     return ActiveDuty.find(m => m.id === map.Map).image;
   }
 
