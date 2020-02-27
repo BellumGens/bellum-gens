@@ -31,7 +31,7 @@
   </div>
   <button igxButton="outlined"
           igxRipple class="submit-button space-out"
-          [disabled]="!userPreferences.touched || !userPreferences.valueChanges || userPreferences.invalid">
+          [disabled]="!userPreferences.touched || !userPreferences.valueChanges || userPreferences.invalid || submitInProgress">
     Update User Preferences
   </button>
 </form>
