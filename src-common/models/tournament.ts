@@ -4,6 +4,8 @@ import { ApplicationUser } from './applicationuser';
 export interface Tournament {
   ID?: string;
   Name: string;
+  Description?: string;
+  Logo?: string;
   StartDate?: Date;
   EndDate?: Date;
 }

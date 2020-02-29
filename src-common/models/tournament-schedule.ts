@@ -1,5 +1,6 @@
 import { CSGOTeam } from './csgoteam';
 import { AppUserSummary } from './applicationuser';
+import { CSGOMap } from './csgomaps';
 
 export interface MatchSchedule {
   name: string;
@@ -47,6 +48,21 @@ export interface TournamentSC2Match extends TournamentMatch {
   Player2?: AppUserSummary;
 }
 
+export interface TournamentCSGOMatchMap {
+  Id?: string;
+  Map?: CSGOMap;
+  CSGOMatchId?: string;
+  TeamPickId?: string;
+  TeamBanId?: string;
+  Team1Score?: number;
+  Team2Score?: number;
+}
+
 export function getEmptyNewMatch(start: Date): TournamentMatch {
   return { StartTime: start };
 }
+
+export function getEmptyNewCSGOMap(matchId?: string): TournamentCSGOMatchMap {
+  return { CSGOMatchId: matchId };
+}
+
