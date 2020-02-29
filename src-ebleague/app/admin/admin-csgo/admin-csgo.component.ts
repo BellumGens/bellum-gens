@@ -7,7 +7,7 @@ import { environment } from '../../../../src-common/environments/environment';
 import { IDropDroppedEventArgs } from 'igniteui-angular';
 import { TournamentCSGOMatch, MatchScheduleSlot, TournamentCSGOMatchMap } from '../../../../src-common/models/tournament-schedule';
 import { WEEKLY_SCHEDULE } from '../../../../src-common/models/schedule-slots';
-import { ActiveDutyDescriptor, ActiveDuty } from '../../../../src-common/models/csgomaps';
+import { CSGOActiveDutyDescriptor, ActiveDuty } from '../../../../src-common/models/csgomaps';
 
 @Component({
   selector: 'app-admin-csgo',
@@ -23,7 +23,7 @@ export class AdminCsgoComponent {
   public newGroup = getEmptyNewGroup();
   public pipeTrigger = 0;
   public schedule = WEEKLY_SCHEDULE;
-  public mapList: ActiveDutyDescriptor [] = ActiveDuty;
+  public mapList: CSGOActiveDutyDescriptor [] = ActiveDuty;
 
   constructor(private apiService: ApiTournamentsService) {
     this.apiService.csgoRegistrations.subscribe(data => {

@@ -6,7 +6,7 @@ import { IgxDialogComponent } from 'igniteui-angular';
 import { IsVideoPipe } from '../../../pipes/is-video.pipe';
 import { ApplicationUser } from '../../../../../src-common/models/applicationuser';
 import { Router } from '@angular/router';
-import { ActiveDutyDescriptor, ActiveDuty } from '../../../../../src-common/models/csgomaps';
+import { CSGOActiveDutyDescriptor, ActiveDuty } from '../../../../../src-common/models/csgomaps';
 
 @Component({
   selector: 'app-new-strategy',
@@ -18,7 +18,7 @@ export class NewStrategyComponent implements OnInit {
 
   public newStrategy: CSGOStrategy = newEmptyStrategy();
   public videoId: string;
-  public mapList: ActiveDutyDescriptor [] = ActiveDuty;
+  public mapList: CSGOActiveDutyDescriptor [] = ActiveDuty;
   public selectedMap = this.mapList[0];
   public title = 'Add a new team strategy';
 

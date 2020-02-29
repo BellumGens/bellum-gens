@@ -5,7 +5,7 @@ export interface CSGOMapPool {
   TeamId?: string;
 }
 
-export interface ActiveDutyDescriptor {
+export interface CSGOActiveDutyDescriptor {
   id: CSGOMap;
   map: string;
   image: string;
@@ -64,7 +64,7 @@ export const AllCSGOMaps: CSGOMapPool [] = [
   }
 ];
 
-export const ActiveDuty: ActiveDutyDescriptor [] = [{
+export const ActiveDuty: CSGOActiveDutyDescriptor [] = [{
     id: CSGOMap.Cache,
     map: 'Cache',
     image: 'assets/csgo_maps/de_cache.jpg',
