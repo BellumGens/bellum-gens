@@ -7,7 +7,20 @@
   min-width: 348px;
 }
 
+.match-summary {
+  display: grid;
+  grid-template-columns: 75px minmax(100px, 1fr) 50px minmax(100px, 1fr);
+  grid-column-gap: 16px;
+  padding: 8px 0;
+  align-items: center;
+}
+
+.results-button {
+  grid-column: 1 / -1;
+  align-items: center;
+}
+
 .team-name {
   font-size: 0.75rem;
-  padding: 0 4px;
+  padding: 0 8px;
 }
