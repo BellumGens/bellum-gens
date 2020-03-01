@@ -76,8 +76,11 @@
 
               <igx-select id="mapWinner" class="space-out" name="mapWinner" [disabled]="!slot.inEdit" [(ngModel)]="map.WinnerId">
                 <label for="mapSelector" igxLabel>Победител</label>
-                <igx-select-item *ngFor="let map of mapList" [value]="map.id">
-                  {{ map.map }}
+                <igx-select-item *ngFor="let registration of registrations | getPlayers:slot.match.Player1Id:slot.match.Player2Id"
+                                  [value]="registration.UserId"
+                                  [text]="registration.BattleTag">
+                  <igx-avatar [src]="registration.User.avatarMedium" [initials]="registration.BattleTag"></igx-avatar>
+                  {{ registration.BattleTag }}
                 </igx-select-item>
               </igx-select>
 
@@ -87,7 +90,7 @@
               </div>
             </div>
 
-            <button *ngIf="slot.match.Id && slot.inEdit" igxButton (click)="slot.match.Maps.push({ CSGOMatchId: slot.match.Id })"><igx-icon>add_circle_outline</igx-icon>Добави Карта за Мача</button>
+            <button *ngIf="slot.match.Id && slot.inEdit" igxButton (click)="slot.match.Maps.push({ SC2MatchId: slot.match.Id })"><igx-icon>add_circle_outline</igx-icon>Добави Карта за Мача</button>
 
             <igx-input-group *ngIf="slot.match.Player1Id && slot.match.Player2Id">
               <label igxLabel>Видео Линк</label>

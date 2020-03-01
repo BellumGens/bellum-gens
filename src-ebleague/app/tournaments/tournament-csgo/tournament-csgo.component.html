@@ -5,14 +5,15 @@
       <h1 igxCardHeaderTitle>CS:GO Лига</h1>
       <a href="https://www.twitch.tv/ebleague_a" target="_blank" rel="noopener">Канал на лигата в Twitch</a>
     </igx-card-header>
-    <igx-card-media class="twitch-holder">
-      <iframe src="https://player.twitch.tv/?channel=ebleague_a" frameborder="0" allowfullscreen="true" scrolling="no" class="twitch-stream"></iframe>
-    </igx-card-media>
     <igx-card-content>
       <div class="horizontal-center registration-container">
         <igx-circular-bar *ngIf="loading" [indeterminate]="true"></igx-circular-bar>
         <div *ngFor="let registration of registrations" class="registration-slot">
-          <igx-avatar [src]="registration.Team.TeamAvatar" [initials]="registration.Team.TeamName" size="medium" roundShape="true">
+          <igx-avatar [src]="registration.Team.TeamAvatar"
+                      [initials]="registration.Team.TeamName"
+                      [title]="registration.Company"
+                      size="medium"
+                      roundShape="true">
           </igx-avatar>
           <igx-badge *ngIf="registration.UserId === authUser?.id && registration.State === 0"
                      type="warning"
@@ -34,7 +35,13 @@
           <igx-card-content class="group-card-content">
             <igx-list class="group-list">
               <igx-list-item *ngFor="let participant of group.Participants | sortByPoints:'TeamPoints'">
-                <igx-avatar igxListThumbnail [src]="participant.Team.TeamAvatar" [initials]="participant.Team.TeamName" roundShape="true"></igx-avatar>
+
+                <igx-avatar igxListThumbnail
+                            [src]="participant.Team.TeamAvatar"
+                            [initials]="participant.Team.TeamName"
+                            [title]="participant.Company"
+                            roundShape="true">
+                </igx-avatar>
 
                 <a [href]="environment.bellumgens + '/team/' + participant.Team.CustomUrl"
                    igxListLineTitle

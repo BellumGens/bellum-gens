@@ -30,6 +30,7 @@ export interface TournamentRegistration {
   State: TournamentApplicationState;
   User: ApplicationUser;
   Team: CSGOTeam;
+  Company: string;
   PlayerPoints: number;
   TeamPoints: number;
   BattleTag: string;

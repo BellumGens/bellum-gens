@@ -17,7 +17,7 @@ export interface MatchScheduleDay {
 
 export interface MatchScheduleSlot {
   start: Date;
-  match: TournamentCSGOMatch | TournamentSC2Match;
+  match: TournamentCSGOMatch & TournamentSC2Match;
   inEdit?: boolean;
 }
 
