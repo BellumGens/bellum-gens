@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TournamentHomeComponent } from './tournament-home.component';
+import { TournamentHomeComponent } from './home.component';
 import { FormsModule } from '@angular/forms';
 import { IgxIconModule,
   IgxDividerModule,
@@ -49,9 +49,6 @@ describe('TournamentHomeComponent', () => {
       ],
       declarations: [
         TournamentHomeComponent,
-        // TeamNewComponent,
-        // StartsWithPipe,
-        // GroupsFilterPipe,
         GetRegCountPipe
       ]
     })

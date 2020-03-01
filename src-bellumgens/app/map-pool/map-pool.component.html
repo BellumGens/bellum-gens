@@ -1,7 +1,7 @@
 <div class="map-wrapper">
   <igx-card *ngFor="let map of mapPool | activeDutyMaps:viewAll" [horizontal]="false" [ngClass]="map.IsPlayed ? 'map-column' : 'map-column map-inactive'">
     <igx-card-media>
-      <img [src]="map | mapimage" [alt]="map.Map | mapname" />
+      <img [src]="map.Map | mapimage" [alt]="map.Map | mapname" />
     </igx-card-media>
     <igx-card-actions>
       <label>{{ map.Map | mapname }}</label>

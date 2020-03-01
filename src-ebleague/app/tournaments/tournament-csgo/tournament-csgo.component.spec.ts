@@ -8,6 +8,8 @@ import { IgxAvatarModule, IgxCardModule, IgxBadgeModule, IgxListModule, IgxProgr
 import { RouterTestingModule } from '@angular/router/testing';
 import { SortByPointsPipe } from 'src-ebleague/app/pipes/sort-by-points.pipe';
 import { CSGOTournamentScheduleComponent } from '../tournament-schedule/csgo/tournament-schedule.component';
+import { MapnamePipe } from 'src-bellumgens/app/pipes/mapname.pipe';
+import { MapimagePipe } from 'src-bellumgens/app/pipes/mapimage.pipe';
 
 describe('TournamentCsgoComponent', () => {
   let component: TournamentCsgoComponent;
@@ -18,7 +20,9 @@ describe('TournamentCsgoComponent', () => {
       declarations: [
         TournamentCsgoComponent,
         CSGOTournamentScheduleComponent,
-        SortByPointsPipe
+        SortByPointsPipe,
+        MapnamePipe,
+        MapimagePipe
       ],
       imports: [
         HttpClientTestingModule,

@@ -1,7 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CSGOTournamentScheduleComponent } from './tournament-schedule.component';
-import { IgxCalendarModule } from 'igniteui-angular';
+import { IgxCalendarModule, IgxAvatarModule } from 'igniteui-angular';
+import { MapnamePipe } from 'src-bellumgens/app/pipes/mapname.pipe';
+import { MapimagePipe } from 'src-bellumgens/app/pipes/mapimage.pipe';
 
 describe('CSGOTournamentScheduleComponent', () => {
   let component: CSGOTournamentScheduleComponent;
@@ -9,9 +11,10 @@ describe('CSGOTournamentScheduleComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CSGOTournamentScheduleComponent ],
+      declarations: [ CSGOTournamentScheduleComponent, MapnamePipe, MapimagePipe ],
       imports: [
-        IgxCalendarModule
+        IgxCalendarModule,
+        IgxAvatarModule
       ]
     })
     .compileComponents();
