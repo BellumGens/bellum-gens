@@ -9,17 +9,17 @@
     <span *ngIf="!selectedMatches.length">На тази дата няма срещи</span>
 
     <div class="match-summary" *ngFor="let match of selectedMatches">
-      <span>{{ match.StartTime | date:'shortTime' }}</span>
+      <div class="match-time">{{ match.StartTime | date:'shortTime' }}</div>
 
       <div>
-        <igx-avatar [src]="match.Team1.TeamAvatar" [initials]="match.Team1.TeamName"></igx-avatar>
+        <igx-avatar [src]="match.Team1.TeamAvatar" [initials]="match.Team1.TeamName" roundShape="true"></igx-avatar>
         <span class="team-name">{{ match.Team1.TeamName }}</span>
       </div>
 
       <span class="team-name">vs.</span>
 
       <div>
-        <igx-avatar [src]="match.Team2.TeamAvatar" [initials]="match.Team2.TeamName"></igx-avatar>
+        <igx-avatar [src]="match.Team2.TeamAvatar" [initials]="match.Team2.TeamName" roundShape="true"></igx-avatar>
         <span class="team-name">{{ match.Team2.TeamName }}</span>
       </div>
 

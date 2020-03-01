@@ -9,9 +9,9 @@
 
 .match-summary {
   display: grid;
-  grid-template-columns: 75px minmax(100px, 1fr) 50px minmax(100px, 1fr);
+  grid-template-columns: 75px minmax(100px, 1fr) 48px minmax(100px, 1fr);
   grid-column-gap: 16px;
-  padding: 8px 0;
+  padding: 16px 0;
   align-items: center;
 }
 
@@ -23,4 +23,21 @@
 .team-name {
   font-size: 0.75rem;
   padding: 0 8px;
+}
+
+
+
+@media only screen and (max-width: 550px) {
+  .match-time {
+    grid-column: 1 / -1;
+    text-align: center;
+  }
+
+  .match-summary {
+    grid-template-columns: minmax(150px, 1fr) 48px minmax(150px, 1fr);
+  }
+
+  .match-details {
+    padding: 0;
+  }
 }
