@@ -9,7 +9,6 @@ import { Title, Meta } from '@angular/platform-browser';
 import { IgxIconService } from 'igniteui-angular';
 
 @Component({
-  selector: 'app-team-overview',
   templateUrl: './team-overview.component.html',
   styleUrls: ['./team-overview.component.css']
 })

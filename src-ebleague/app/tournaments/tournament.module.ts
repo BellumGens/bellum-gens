@@ -28,6 +28,7 @@ import { BaseComponent } from '../../../src-bellumgens/app/base/base.component';
 import { ProductionCrewComponent } from './production-crew/production-crew.component';
 import { TournamentRegistrationComponent } from './tournament-registration/tournament-registration.component';
 import { SortByPointsPipe } from '../pipes/sort-by-points.pipe';
+import { TournamentScheduleComponent } from './tournament-schedule/tournament-schedule.component';
 
 
 @NgModule({
@@ -39,6 +40,7 @@ import { SortByPointsPipe } from '../pipes/sort-by-points.pipe';
     TournamentRegistrationComponent,
     ProductionCrewComponent,
     TeamNewComponent,
+    TournamentScheduleComponent,
     StartsWithPipe,
     GroupsFilterPipe,
     BaseComponent,

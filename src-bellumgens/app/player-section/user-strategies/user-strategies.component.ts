@@ -7,7 +7,6 @@ import { SocialMediaService } from '../../../../src-common/services/social-media
 import { CommunicationService } from '../../../../src-common/services/communication.service';
 
 @Component({
-  selector: 'app-user-strategies',
   templateUrl: './user-strategies.component.html',
   styleUrls: ['./user-strategies.component.css']
 })
