@@ -4,21 +4,24 @@ import { Availability } from './playeravailability';
 import { PlaystyleRole } from './playerrole';
 import { CSGOMapPool } from './csgomaps';
 
-export interface AppUserSummary {
+export interface AdminAppUserSummary {
   Id: string;
   AvatarMedium: string;
   UserName: string;
   Roles: [];
 }
 
-export interface ApplicationUser {
+export interface AppUserSummary {
   id: string;
-  avatarIcon: string;
-  avatarMedium: string;
-  avatarFull: string;
   username: string;
-  realname: string;
+  avatarMedium: string;
   customURL: string;
+}
+
+export interface ApplicationUser extends AppUserSummary {
+  avatarIcon: string;
+  avatarFull: string;
+  realname: string;
   steamPrivate: boolean;
   headshotPercentage: number;
   killDeathRatio: number;

@@ -19,8 +19,7 @@ export class TournamentSc2Component extends BaseComponent {
   public loading = false;
   public authUser: ApplicationUser;
   public environment = environment;
-  public scheduleWeek = '/assets/calendar/sc2-week4.webp';
-  public scheduleAlt = 'График StarCraft II Лига, Седмица 4';
+  public scheduleWeek = '/assets/calendar/sc2-week5.png';
 
   constructor(private apiService: ApiTournamentsService,
               private loginService: LoginService,

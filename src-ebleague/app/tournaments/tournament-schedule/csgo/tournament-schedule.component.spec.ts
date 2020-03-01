@@ -4,6 +4,7 @@ import { CSGOTournamentScheduleComponent } from './tournament-schedule.component
 import { IgxCalendarModule, IgxAvatarModule } from 'igniteui-angular';
 import { MapnamePipe } from 'src-bellumgens/app/pipes/mapname.pipe';
 import { MapimagePipe } from 'src-bellumgens/app/pipes/mapimage.pipe';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('CSGOTournamentScheduleComponent', () => {
   let component: CSGOTournamentScheduleComponent;
@@ -13,6 +14,7 @@ describe('CSGOTournamentScheduleComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ CSGOTournamentScheduleComponent, MapnamePipe, MapimagePipe ],
       imports: [
+        HttpClientTestingModule,
         IgxCalendarModule,
         IgxAvatarModule
       ]

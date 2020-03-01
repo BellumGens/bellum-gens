@@ -1,9 +1,9 @@
-.content-container.two-column {
-  width: 100%;
+:host {
+  .registration-slot {
+    width: 112px;
+  }
 }
 
-.participants-container {
-  display: flex;
-  flex: 1 1;
-  flex-flow: row wrap;
+.content-container.two-column {
+  width: 100%;
 }

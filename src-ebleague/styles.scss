@@ -197,7 +197,6 @@ $calendar-theme: igx-calendar-theme($content-background: $background,
   flex-flow: column;
   align-items: center;
   padding: 4px 12px;
-  width: 120px;
   min-height: 125px;
   word-break: break-all;
 }
@@ -280,6 +279,13 @@ $calendar-theme: igx-calendar-theme($content-background: $background,
 .card-wrapper.igx-tabs__group {
   display: grid;
 }
+
+.participants-container {
+  display: flex;
+  flex: 1 1;
+  flex-flow: row wrap;
+}
+
 /* END SCHEDULE */
 
 .form-wrapper {

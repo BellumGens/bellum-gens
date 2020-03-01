@@ -6,7 +6,7 @@
   <div class="match-details">
     <h5>График за {{ today | date }}</h5>
 
-    <span *ngIf="!selectedMatches.length">На тази дата няма срещи</span>
+    <span *ngIf="!selectedMatches.length">Няма намерени срещи...</span>
 
     <div class="match-score match-summary" *ngFor="let match of selectedMatches">
       <div class="match-time">{{ match.StartTime | date:'shortTime' }}</div>
@@ -22,8 +22,6 @@
         <igx-avatar [src]="match.Team2.TeamAvatar" [initials]="match.Team2.TeamName" roundShape="true"></igx-avatar>
         <span class="match-text-content team-name">{{ match.Team2.TeamName }}</span>
       </div>
-
-      <!-- <button igxButton="flat" class="results-button" *ngIf="match.Maps.length">Резултати <igx-icon>expand_more</igx-icon></button> -->
 
       <div class="results-button match-score" *ngFor="let map of match.Maps">
 

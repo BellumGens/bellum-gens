@@ -16,7 +16,7 @@ export class SC2TournamentScheduleComponent {
   public today = new Date();
 
   constructor(private apiService: ApiTournamentsService) {
-    this.apiService.getCSGOMatches().subscribe(data => {
+    this.apiService.getSC2Matches().subscribe(data => {
       this.sc2matches = data;
       this.selectedMatches = this.sc2matches.filter(m => SameDay(new Date(m.StartTime), this.today));
       data.forEach(match => {

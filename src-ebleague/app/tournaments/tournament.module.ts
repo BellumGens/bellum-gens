@@ -32,6 +32,7 @@ import { SortByPointsPipe } from '../pipes/sort-by-points.pipe';
 import { CSGOTournamentScheduleComponent } from './tournament-schedule/csgo/tournament-schedule.component';
 import { MapnamePipe } from '../../../src-bellumgens/app/pipes/mapname.pipe';
 import { MapimagePipe } from '../../../src-bellumgens/app/pipes/mapimage.pipe';
+import { SC2TournamentScheduleComponent } from './tournament-schedule/sc2/tournament-schedule.component';
 
 
 @NgModule({
@@ -44,6 +45,7 @@ import { MapimagePipe } from '../../../src-bellumgens/app/pipes/mapimage.pipe';
     ProductionCrewComponent,
     TeamNewComponent,
     CSGOTournamentScheduleComponent,
+    SC2TournamentScheduleComponent,
     StartsWithPipe,
     GroupsFilterPipe,
     BaseComponent,

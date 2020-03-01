@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SC2TournamentScheduleComponent } from './tournament-schedule.component';
 import { IgxCalendarModule } from 'igniteui-angular';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('SC2TournamentScheduleComponent', () => {
   let component: SC2TournamentScheduleComponent;
@@ -11,6 +12,7 @@ describe('SC2TournamentScheduleComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ SC2TournamentScheduleComponent ],
       imports: [
+        HttpClientTestingModule,
         IgxCalendarModule
       ]
     })
