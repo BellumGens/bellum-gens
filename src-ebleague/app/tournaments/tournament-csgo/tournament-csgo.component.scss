@@ -1,3 +1,9 @@
 .content-container.two-column {
   width: 100%;
 }
+
+.participants-container {
+  display: flex;
+  flex: 1 1;
+  flex-flow: row wrap;
+}

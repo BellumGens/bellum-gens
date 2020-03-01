@@ -4,7 +4,6 @@ import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute, Data } from '@angular/router';
 
 @Component({
-  selector: 'app-base',
   template: ``,
   styleUrls: ['./base.component.css']
 })

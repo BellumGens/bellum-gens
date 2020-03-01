@@ -17,7 +17,8 @@ import { IgxDividerModule,
   IgxDropDownModule,
   IgxCheckboxModule,
   IgxProgressBarModule,
-  IgxBadgeModule} from 'igniteui-angular';
+  IgxBadgeModule,
+  IgxCalendarModule} from 'igniteui-angular';
 import { TournamentCsgoComponent } from './tournament-csgo/tournament-csgo.component';
 import { TournamentSc2Component } from './tournament-sc2/tournament-sc2.component';
 import { FormsModule } from '@angular/forms';
@@ -28,7 +29,7 @@ import { BaseComponent } from '../../../src-bellumgens/app/base/base.component';
 import { ProductionCrewComponent } from './production-crew/production-crew.component';
 import { TournamentRegistrationComponent } from './tournament-registration/tournament-registration.component';
 import { SortByPointsPipe } from '../pipes/sort-by-points.pipe';
-import { TournamentScheduleComponent } from './tournament-schedule/tournament-schedule.component';
+import { CSGOTournamentScheduleComponent } from './tournament-schedule/csgo/tournament-schedule.component';
 
 
 @NgModule({
@@ -40,7 +41,7 @@ import { TournamentScheduleComponent } from './tournament-schedule/tournament-sc
     TournamentRegistrationComponent,
     ProductionCrewComponent,
     TeamNewComponent,
-    TournamentScheduleComponent,
+    CSGOTournamentScheduleComponent,
     StartsWithPipe,
     GroupsFilterPipe,
     BaseComponent,
@@ -63,7 +64,8 @@ import { TournamentScheduleComponent } from './tournament-schedule/tournament-sc
     IgxDropDownModule,
     IgxCheckboxModule,
     IgxProgressBarModule,
-    IgxBadgeModule
+    IgxBadgeModule,
+    IgxCalendarModule
   ]
 })
 export class TournamentModule { }

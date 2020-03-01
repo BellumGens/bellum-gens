@@ -1,0 +1,32 @@
+<div class="horizontal">
+  <igx-calendar class="schedule-calendar" (onSelection)="daySelected($event)" [specialDates]="datesWithMatches">
+
+  </igx-calendar>
+
+  <div class="match-details">
+    <h5>График за {{ today | date }}</h5>
+
+    <span *ngIf="!selectedMatches.length">На тази дата няма срещи</span>
+    
+    <div class="space-out" *ngFor="let match of selectedMatches">
+      <div class="horizontal-center space-between">
+        <span>{{ match.StartTime | date:'shortTime' }}</span>
+
+        <div>
+          <igx-avatar [src]="match.Team1.TeamAvatar" [initials]="match.Team1.TeamName"></igx-avatar>
+          <span class="team-name">{{ match.Team1.TeamName }}</span>
+        </div>
+
+        <span class="team-name">vs.</span>
+        
+        <div>
+          <igx-avatar [src]="match.Team2.TeamAvatar" [initials]="match.Team2.TeamName"></igx-avatar>
+          <span class="team-name">{{ match.Team2.TeamName }}</span>
+        </div>
+      </div>
+      <button igxButton="flat" *ngIf="match.Maps.length">Резултати <igx-icon>expand_more</igx-icon></button>
+    </div>
+  </div>
+
+  <ng-content></ng-content>
+</div>

@@ -131,10 +131,16 @@ $circular-progress-bar-theme: igx-progress-circular-theme($progress-circle-color
 @include igx-css-vars($circular-progress-bar-theme);
 /* END Progress Circular */
 
-/* Time Picker */
+/* Overlay */
 $overlay-theme: igx-overlay-theme($background-color: rgba(35, 51, 132, 0.7));
 @include igx-css-vars($overlay-theme);
-/* END Time Picker */
+/* END Overlay */
+
+/* Calendar */
+$calendar-theme: igx-calendar-theme($content-background: $background,
+                                    $picker-background-color: $background);
+@include igx-css-vars($calendar-theme);
+/* END Calendar */
 
 @import "../src-common/styles-overrides.scss";
 

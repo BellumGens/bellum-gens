@@ -4,9 +4,10 @@ import { TournamentCsgoComponent } from './tournament-csgo.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { IgxAvatarModule, IgxCardModule, IgxBadgeModule, IgxListModule, IgxProgressBarModule } from 'igniteui-angular';
+import { IgxAvatarModule, IgxCardModule, IgxBadgeModule, IgxListModule, IgxProgressBarModule, IgxCalendarModule } from 'igniteui-angular';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SortByPointsPipe } from 'src-ebleague/app/pipes/sort-by-points.pipe';
+import { CSGOTournamentScheduleComponent } from '../tournament-schedule/csgo/tournament-schedule.component';
 
 describe('TournamentCsgoComponent', () => {
   let component: TournamentCsgoComponent;
@@ -16,6 +17,7 @@ describe('TournamentCsgoComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         TournamentCsgoComponent,
+        CSGOTournamentScheduleComponent,
         SortByPointsPipe
       ],
       imports: [
@@ -27,7 +29,8 @@ describe('TournamentCsgoComponent', () => {
         IgxCardModule,
         IgxBadgeModule,
         IgxProgressBarModule,
-        IgxListModule
+        IgxListModule,
+        IgxCalendarModule
       ]
     })
     .compileComponents();
