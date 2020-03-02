@@ -67,15 +67,15 @@
             <div *ngFor="let map of slot.match.Maps" class="horizontal-center space-evenly">
               <span>Мач</span>
 
-              <igx-select id="mapSelector" class="space-out" name="mapSelector" [disabled]="!slot.inEdit" [(ngModel)]="map.Map">
-                <label for="mapSelector" igxLabel>Карта</label>
+              <igx-select class="space-out" [disabled]="!slot.inEdit" [(ngModel)]="map.Map">
+                <label igxLabel>Карта</label>
                 <igx-select-item *ngFor="let map of mapList" [value]="map.id">
                   {{ map.map }}
                 </igx-select-item>
               </igx-select>
 
-              <igx-select id="mapWinner" class="space-out" name="mapWinner" [disabled]="!slot.inEdit" [(ngModel)]="map.WinnerId">
-                <label for="mapSelector" igxLabel>Победител</label>
+              <igx-select class="space-out" [disabled]="!slot.inEdit" [(ngModel)]="map.WinnerId">
+                <label igxLabel>Победител</label>
                 <igx-select-item *ngFor="let registration of registrations | getPlayers:slot.match.Player1Id:slot.match.Player2Id"
                                   [value]="registration.UserId"
                                   [text]="registration.BattleTag">
