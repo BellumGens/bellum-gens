@@ -11,9 +11,9 @@
     <div class="match-score match-summary" *ngFor="let match of selectedMatches">
       <div class="match-time">{{ match.StartTime | date:'shortTime' }}</div>
 
-      <div>
-        <igx-avatar [src]="match.Team1.TeamAvatar" [initials]="match.Team1.TeamName" roundShape="true"></igx-avatar>
+      <div class="align-right">
         <span class="match-text-content team-name">{{ match.Team1.TeamName }}</span>
+        <igx-avatar [src]="match.Team1.TeamAvatar" [initials]="match.Team1.TeamName" roundShape="true"></igx-avatar>
       </div>
 
       <span class="match-text-content team-name align-center">vs.</span>
@@ -27,13 +27,13 @@
 
         <igx-avatar [src]="map.Map | mapimage" [initials]="map.Map | mapname" [title]="map.Map | mapname"></igx-avatar>
 
-        <div class="match-text-content align-right">
+        <div class="match-result-content align-right">
           {{ map.Team1Score }}
         </div>
 
         <div class="match-text-content align-center">:</div>
 
-        <div class="match-text-content">
+        <div class="match-result-content">
           {{ map.Team2Score }}
         </div>
       </div>

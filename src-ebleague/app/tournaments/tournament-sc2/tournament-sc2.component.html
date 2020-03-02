@@ -7,24 +7,23 @@
     </igx-card-header>
     <igx-card-content>
       <app-sc2-tournament-schedule>
-      </app-sc2-tournament-schedule>
+        <div class="participants-container">
+          <h5 style="width: 100%">Участници</h5>
+          <igx-circular-bar *ngIf="loading" [indeterminate]="true"></igx-circular-bar>
+          <div *ngFor="let registration of registrations" class="registration-slot">
+            <igx-avatar [src]="registration.User.avatarMedium" [initials]="registration.User.username" size="medium" roundShape="true">
+            </igx-avatar>
+            <igx-badge *ngIf="registration.UserId === authUser?.id && registration.State === 0"
+                       type="warning"
+                       icon="priority_high"
+                       title="Вашата регистрация все още не е потвърдена! За да потвърдим регистрацията трябва да платите таксата за участие!"
+                       class="registration-badge-style">
+            </igx-badge>
 
-      <div class="participants-container">
-        <h5 style="width: 100%">Участници</h5>
-        <igx-circular-bar *ngIf="loading" [indeterminate]="true"></igx-circular-bar>
-        <div *ngFor="let registration of registrations" class="registration-slot">
-          <igx-avatar [src]="registration.User.avatarMedium" [initials]="registration.User.username" size="medium" roundShape="true">
-          </igx-avatar>
-          <igx-badge *ngIf="registration.UserId === authUser?.id && registration.State === 0"
-                     type="warning"
-                     icon="priority_high"
-                     title="Вашата регистрация все още не е потвърдена! За да потвърдим регистрацията трябва да платите таксата за участие!"
-                     class="registration-badge-style">
-          </igx-badge>
-
-          <a [href]="environment.bellumgens + '/players/' + (registration.User.customURL || registration.UserId)" target="_blank">{{ registration.BattleTag }}</a>
+            <a [href]="environment.bellumgens + '/players/' + (registration.User.customURL || registration.UserId)" target="_blank">{{ registration.BattleTag }}</a>
+          </div>
         </div>
-      </div>
+      </app-sc2-tournament-schedule>
 
       <div class="card-wrapper">
         <igx-card *ngFor="let group of groups">
