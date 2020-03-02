@@ -21,7 +21,7 @@ import { IgxIconModule,
 import { MapPoolComponent } from 'src-bellumgens/app/map-pool/map-pool.component';
 import { SafeVideoLinkPipe } from 'src-bellumgens/app/pipes/safe-video-link.pipe';
 import { FormsModule } from '@angular/forms';
-import { MapnamePipe } from 'src-bellumgens/app/pipes/mapname.pipe';
+import { CSGOMapnamePipe } from 'src-bellumgens/app/pipes/mapname.pipe';
 import { SideStratsPipe } from 'src-bellumgens/app/pipes/sidestrats.pipe';
 import { MapimagePipe } from 'src-bellumgens/app/pipes/mapimage.pipe';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -78,7 +78,7 @@ describe('TeamStrategiesComponent', () => {
         MapPoolComponent,
         NewStrategyComponent,
         SafeVideoLinkPipe,
-        MapnamePipe,
+        CSGOMapnamePipe,
         SideStratsPipe,
         MapimagePipe,
         WeekdayPipe,

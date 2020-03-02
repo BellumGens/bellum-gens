@@ -44,7 +44,7 @@ import { BellumgensApiService } from '../../src-common/services/bellumgens-api.s
 import { HomeComponent } from './home/home.component';
 import { GroupsFilterPipe } from './pipes/groups-filter.pipe';
 import { WeekdayPipe } from './pipes/weekday.pipe';
-import { MapnamePipe } from './pipes/mapname.pipe';
+import { CSGOMapnamePipe } from './pipes/mapname.pipe';
 import { MapimagePipe } from './pipes/mapimage.pipe';
 import { TeamDetailsComponent } from './team-section/team-details/team-details.component';
 import { UnreadNotificationsPipe } from './pipes/unread-notifications.pipe';
@@ -111,7 +111,7 @@ import { BellumGensModule } from '../../src-common/components/components.module'
     HomeComponent,
     GroupsFilterPipe,
     WeekdayPipe,
-    MapnamePipe,
+    CSGOMapnamePipe,
     MapimagePipe,
     TeamDetailsComponent,
     UnreadNotificationsPipe,

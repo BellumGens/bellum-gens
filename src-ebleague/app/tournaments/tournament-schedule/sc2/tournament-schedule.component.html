@@ -6,35 +6,34 @@
   <div class="match-details">
     <h5>График за {{ today | date }}</h5>
 
-    <span *ngIf="!selectedMatches.length">Няма намерени срещи...</span>
+    <p *ngIf="!selectedMatches.length">Няма намерени срещи в този ден...</p>
 
     <div class="match-score match-summary" *ngFor="let match of selectedMatches">
       <div class="match-time">{{ match.StartTime | date:'shortTime' }}</div>
 
-      <div>
+      <div class="align-right">
+        <span class="match-text-content team-name">{{ match.Player1.battleNetId }}</span>
         <igx-avatar [src]="match.Player1.avatarMedium" [initials]="match.Player1.username" roundShape="true"></igx-avatar>
-        <span class="match-text-content team-name">{{ match.Player1.username }}</span>
       </div>
 
       <span class="match-text-content team-name align-center">vs.</span>
 
       <div>
         <igx-avatar [src]="match.Player2.avatarMedium" [initials]="match.Player2.username" roundShape="true"></igx-avatar>
-        <span class="match-text-content team-name">{{ match.Player2.username }}</span>
+        <span class="match-text-content team-name">{{ match.Player2.battleNetId }}</span>
       </div>
 
-      <div class="results-button match-score" *ngFor="let map of match.Maps">
-
-        <div class="match-time">{{ map.Map }}</div>
+      <div class="results-container match-score match-winner" *ngFor="let map of match.Maps">
+        <div class="grid-fix"></div>
 
         <div class="match-text-content align-right">
-          {{ map.Team1Score }}
+          <igx-icon *ngIf="map.WinnerId === match.Player1Id">check</igx-icon>
         </div>
 
-        <div class="match-text-content align-center">:</div>
+        <div class="match-text-content align-center">{{ map.Map | sc2MapName }}</div>
 
         <div class="match-text-content">
-          {{ map.Team2Score }}
+          <igx-icon *ngIf="map.WinnerId === match.Player2Id">check</igx-icon>
         </div>
       </div>
 

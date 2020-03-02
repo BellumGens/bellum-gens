@@ -16,6 +16,7 @@ export interface AppUserSummary {
   username: string;
   avatarMedium: string;
   customURL: string;
+  battleNetId: string;
 }
 
 export interface ApplicationUser extends AppUserSummary {

@@ -197,6 +197,7 @@ $calendar-theme: igx-calendar-theme($content-background: $background,
   flex-flow: column;
   align-items: center;
   padding: 4px 12px;
+  flex-basis: 120px;
   min-height: 125px;
   word-break: break-all;
 }
@@ -286,6 +287,56 @@ $calendar-theme: igx-calendar-theme($content-background: $background,
   flex-flow: row wrap;
 }
 
+.schedule-calendar {
+  width: 348px;
+}
+
+.match-details {
+  padding: 0 16px;
+  min-width: 348px;
+}
+
+.match-score {
+  display: grid;
+  grid-template-columns: 75px minmax(100px, 1fr) 48px minmax(100px, 1fr);
+  grid-column-gap: 16px;
+  padding: 8px 0;
+  align-items: center;
+}
+
+.match-winner {
+  grid-template-columns: 75px minmax(50px, 1fr) minmax(148px, 1fr) minmax(50px, 1fr);
+}
+
+.results-container {
+  grid-column: 1 / -1;
+  align-items: center;
+}
+
+.match-time {
+  text-align: center;
+}
+
+.match-text-content {
+  padding: 0 8px;
+}
+
+.match-result-content {
+  padding: 0 15px;
+}
+
+.team-name {
+  font-size: 0.75rem;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-right {
+  text-align: right;
+}
+
 /* END SCHEDULE */
 
 .form-wrapper {
@@ -307,5 +358,27 @@ $calendar-theme: igx-calendar-theme($content-background: $background,
   .twitch-stream {
     width: 100%;
     height: 400px;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .match-time {
+    grid-column: 1 / -1;
+  }
+
+  .match-score {
+    grid-template-columns: 75px minmax(55px, 1fr) 48px minmax(150px, 1fr);
+  }
+
+  .match-summary {
+    grid-template-columns: minmax(130px, 1fr) 48px minmax(130px, 1fr);
+  }
+
+  .match-winner {
+    grid-template-columns: 0px minmax(65px, 1fr) minmax(161px, 1fr) minmax(74px, 1fr);
+  }
+
+  .match-details {
+    padding: 0;
   }
 }

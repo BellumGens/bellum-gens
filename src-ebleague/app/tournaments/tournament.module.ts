@@ -30,9 +30,10 @@ import { ProductionCrewComponent } from './production-crew/production-crew.compo
 import { TournamentRegistrationComponent } from './tournament-registration/tournament-registration.component';
 import { SortByPointsPipe } from '../pipes/sort-by-points.pipe';
 import { CSGOTournamentScheduleComponent } from './tournament-schedule/csgo/tournament-schedule.component';
-import { MapnamePipe } from '../../../src-bellumgens/app/pipes/mapname.pipe';
+import { CSGOMapnamePipe } from '../../../src-bellumgens/app/pipes/mapname.pipe';
 import { MapimagePipe } from '../../../src-bellumgens/app/pipes/mapimage.pipe';
 import { SC2TournamentScheduleComponent } from './tournament-schedule/sc2/tournament-schedule.component';
+import { Sc2MapNamePipe } from '../pipes/sc2-map-name.pipe';
 
 
 @NgModule({
@@ -50,8 +51,9 @@ import { SC2TournamentScheduleComponent } from './tournament-schedule/sc2/tourna
     GroupsFilterPipe,
     BaseComponent,
     SortByPointsPipe,
-    MapnamePipe,
-    MapimagePipe
+    CSGOMapnamePipe,
+    MapimagePipe,
+    Sc2MapNamePipe
   ],
   imports: [
     CommonModule,
