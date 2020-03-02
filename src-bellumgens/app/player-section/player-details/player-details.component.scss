@@ -1,9 +1,3 @@
-:host {
-  .card-wrapper {
-    min-height: calc(100% - 64px);
-  }
-}
-
 .team-invites {
   height: 56px;
   padding: 8px;
@@ -12,6 +6,7 @@
 /* User Profile */
 .card-wrapper.profile-view-layout {
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  min-height: calc(100% - 64px);
 }
 
 .player-avatar {

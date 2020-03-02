@@ -1,11 +1,11 @@
-export interface MapPool {
+export interface CSGOMapPool {
   Map: CSGOMap;
   IsPlayed: boolean;
   UserId?: string;
   TeamId?: string;
 }
 
-export interface ActiveDutyDescriptor {
+export interface CSGOActiveDutyDescriptor {
   id: CSGOMap;
   map: string;
   image: string;
@@ -25,7 +25,7 @@ export enum CSGOMap {
   Cobblestone
 }
 
-export const AllMaps: MapPool [] = [
+export const AllCSGOMaps: CSGOMapPool [] = [
   {
     Map: CSGOMap.Cache,
     IsPlayed: true
@@ -64,7 +64,7 @@ export const AllMaps: MapPool [] = [
   }
 ];
 
-export const ActiveDuty: ActiveDutyDescriptor [] = [{
+export const ActiveDuty: CSGOActiveDutyDescriptor [] = [{
     id: CSGOMap.Cache,
     map: 'Cache',
     image: 'assets/csgo_maps/de_cache.jpg',

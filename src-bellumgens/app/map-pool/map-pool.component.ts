@@ -1,5 +1,5 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
-import { MapPool } from '../../../src-common/models/csgomaps';
+import { CSGOMapPool } from '../../../src-common/models/csgomaps';
 
 @Component({
   selector: 'app-map-pool',
@@ -11,13 +11,13 @@ export class MapPoolComponent {
   public viewAll = false;
 
   @Input()
-  mapPool: MapPool [];
+  mapPool: CSGOMapPool [];
 
   @Input()
   readOnly: boolean;
 
   @Output()
-  update = new EventEmitter<MapPool>();
+  update = new EventEmitter<CSGOMapPool>();
 
   constructor() { }
 

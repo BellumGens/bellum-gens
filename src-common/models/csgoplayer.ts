@@ -2,7 +2,7 @@ import { Availability } from './playeravailability';
 import { SteamUser } from './steamuser';
 import { CSGOTeam } from './csgoteam';
 import { PlaystyleRole } from './playerrole';
-import { MapPool } from './csgomaps';
+import { CSGOMapPool } from './csgomaps';
 
 export interface CSGOStats {
   headshotPercentage: number;
@@ -22,7 +22,7 @@ export interface CSGOPlayer {
   availability: Availability [];
   primaryRole: PlaystyleRole;
   secondaryRole: PlaystyleRole;
-  mapPool: MapPool [];
+  mapPool: CSGOMapPool [];
   teams: CSGOTeam [];
 }
 

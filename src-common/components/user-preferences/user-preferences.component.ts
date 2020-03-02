@@ -21,6 +21,7 @@ export class UserPreferencesComponent {
   public providers: LoginProvider[];
   public authUser: ApplicationUser;
   public registrations: TournamentApplication [];
+  public submitInProgress = false;
 
   constructor(private authManager: LoginService, private apiService: ApiTournamentsService) {
     this.authManager.applicationUser.subscribe(user => {
@@ -41,7 +42,8 @@ export class UserPreferencesComponent {
   }
 
   public submitPreferences() {
-    this.authManager.updateUserPreferences(this.preferences).subscribe();
+    this.submitInProgress = true;
+    this.authManager.updateUserPreferences(this.preferences).subscribe(_ => this.submitInProgress = false);
   }
 
   public deleteAccount() {

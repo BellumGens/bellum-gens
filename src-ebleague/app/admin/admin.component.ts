@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { LoginService } from '../../../src-common/services/login.service';
-import { AppUserSummary } from '../../../src-common/models/applicationuser';
+import { AdminAppUserSummary } from '../../../src-common/models/applicationuser';
 import { ApiTournamentsService } from '../../../src-common/services/bellumgens-api.tournaments.service';
 import { Tournament, getEmptyNewTournament } from '../../../src-common/models/tournament';
 
@@ -11,7 +11,7 @@ import { Tournament, getEmptyNewTournament } from '../../../src-common/models/to
 })
 export class AdminComponent {
   public roles: string [];
-  public users: AppUserSummary [];
+  public users: AdminAppUserSummary [];
   public tournaments: Tournament [];
   public tournament = getEmptyNewTournament();
 

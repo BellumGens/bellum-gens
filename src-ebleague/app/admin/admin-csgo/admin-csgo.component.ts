@@ -5,8 +5,9 @@ import { getEmptyNewGroup,
 import { ApiTournamentsService } from '../../../../src-common/services/bellumgens-api.tournaments.service';
 import { environment } from '../../../../src-common/environments/environment';
 import { IDropDroppedEventArgs } from 'igniteui-angular';
-import { TournamentCSGOMatch, MatchScheduleSlot } from '../../../../src-common/models/tournament-schedule';
+import { TournamentCSGOMatch, MatchScheduleSlot, TournamentCSGOMatchMap } from '../../../../src-common/models/tournament-schedule';
 import { WEEKLY_SCHEDULE } from '../../../../src-common/models/schedule-slots';
+import { CSGOActiveDutyDescriptor, ActiveDuty } from '../../../../src-common/models/csgomaps';
 
 @Component({
   selector: 'app-admin-csgo',
@@ -22,6 +23,7 @@ export class AdminCsgoComponent {
   public newGroup = getEmptyNewGroup();
   public pipeTrigger = 0;
   public schedule = WEEKLY_SCHEDULE;
+  public mapList: CSGOActiveDutyDescriptor [] = ActiveDuty;
 
   constructor(private apiService: ApiTournamentsService) {
     this.apiService.csgoRegistrations.subscribe(data => {
@@ -91,5 +93,15 @@ export class AdminCsgoComponent {
       this.apiService.submitCSGOMatch(match).subscribe(data => slot.match = data);
       slot.inEdit = false;
     }
+  }
+
+  public submitMatchMap(map: TournamentCSGOMatchMap) {
+    this.apiService.submitCSGOMatchMap(map).subscribe(data => map.Id = data.Id);
+  }
+
+  public deleteMatchMap(map: TournamentCSGOMatchMap, maps: TournamentCSGOMatchMap []) {
+    this.apiService.deleteCSGOMatchMap(map.Id).subscribe(_ => {
+      maps.splice(maps.indexOf(map), 1);
+    });
   }
 }

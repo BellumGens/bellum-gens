@@ -22,7 +22,7 @@ import { LoginService } from '../../src-common/services/login.service';
 import { BellumgensApiService } from '../../src-common/services/bellumgens-api.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../../src-common/environments/environment';
-import { TournamentHomeComponent } from './home/tournament-home.component';
+import { TournamentHomeComponent } from './home/home.component';
 import { ApiTournamentsService } from '../../src-common/services/bellumgens-api.tournaments.service';
 import { GetRegCountPipe } from '../../src-bellumgens/app/pipes/get-reg-count.pipe';
 import { BellumGensModule } from '../../src-common/components/components.module';

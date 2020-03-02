@@ -1,0 +1,45 @@
+<div class="horizontal">
+  <igx-calendar class="schedule-calendar" (onSelection)="daySelected($event)" [specialDates]="datesWithMatches">
+
+  </igx-calendar>
+
+  <div class="match-details">
+    <h5>График за {{ today | date }}</h5>
+
+    <p *ngIf="!selectedMatches.length">Няма намерени срещи в този ден...</p>
+
+    <div class="match-score match-summary" *ngFor="let match of selectedMatches">
+      <div class="match-time">{{ match.StartTime | date:'shortTime' }}</div>
+
+      <div class="align-right">
+        <span class="match-text-content team-name">{{ match.Team1.TeamName }}</span>
+        <igx-avatar [src]="match.Team1.TeamAvatar" [initials]="match.Team1.TeamName" roundShape="true"></igx-avatar>
+      </div>
+
+      <span class="match-text-content team-name align-center">vs.</span>
+
+      <div>
+        <igx-avatar [src]="match.Team2.TeamAvatar" [initials]="match.Team2.TeamName" roundShape="true"></igx-avatar>
+        <span class="match-text-content team-name">{{ match.Team2.TeamName }}</span>
+      </div>
+
+      <div class="results-container match-score" *ngFor="let map of match.Maps">
+
+        <igx-avatar [src]="map.Map | mapimage" [initials]="map.Map | csgomapname" [title]="map.Map | csgomapname"></igx-avatar>
+
+        <div class="match-result-content align-right">
+          {{ map.Team1Score }}
+        </div>
+
+        <div class="match-text-content align-center">:</div>
+
+        <div class="match-result-content">
+          {{ map.Team2Score }}
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <ng-content></ng-content>
+</div>

@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MapPoolComponent } from './map-pool.component';
-import { MapnamePipe } from '../pipes/mapname.pipe';
+import { CSGOMapnamePipe } from '../pipes/mapname.pipe';
 import { MapimagePipe } from '../pipes/mapimage.pipe';
 import { IgxCheckboxModule, IgxCardModule } from 'igniteui-angular';
 import { ActiveDutyMapsPipe } from '../pipes/active-duty-maps.pipe';
@@ -19,7 +19,7 @@ describe('MapPoolComponent', () => {
       declarations: [
         MapPoolComponent,
         MapimagePipe,
-        MapnamePipe,
+        CSGOMapnamePipe,
         ActiveDutyMapsPipe
       ]
     })

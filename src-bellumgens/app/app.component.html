@@ -1,5 +1,5 @@
 <div igxLayout>
-  <igx-nav-drawer style="height: auto" [pinThreshold]="1600" id="navigation" #drawer>
+  <igx-nav-drawer style="flex-shrink: 0" [pinThreshold]="1600" id="navigation" #drawer>
     <ng-template igxDrawer>
       <nav>
         <span igxDrawerItem [isHeader]="true">Bellum Gens</span>
@@ -79,14 +79,6 @@
           <igx-icon>clear</igx-icon>
         </igx-suffix>
       </igx-input-group>
-      <!-- <div class="action-button-container" [igxToggleAction]="myTeam" [overlaySettings]="overlaySettings" *ngIf="authUser">
-        <igx-icon>people</igx-icon>
-        <igx-badge class="notifications-badge" *ngIf="authUser.teams?.length > 0" [value]="authUser.teams?.length" type="info"></igx-badge>
-      </div> -->
-      <!-- <div class="action-button-container" [igxToggleAction]="notifications" [overlaySettings]="overlaySettings" *ngIf="authUser">
-        <igx-icon>notifications</igx-icon>
-        <igx-badge class="notifications-badge" *ngIf="unreadNotifications > 0" [value]="unreadNotifications" type="info"></igx-badge>
-      </div> -->
 
       <bg-login [authUser]='authUser'></bg-login>
     </igx-navbar>
@@ -111,12 +103,7 @@
     <igx-drop-down #quickSearch>
       <app-quick-search></app-quick-search>
     </igx-drop-down>
-    <!-- <igx-drop-down #myTeam>
-      <app-team-nav [authUser]="authUser"></app-team-nav>
-    </igx-drop-down> -->
-    <!-- <igx-drop-down #notifications>
-      <app-notifications [authUser]="authUser" (loaded)="notificationsLoaded($event)"></app-notifications>
-    </igx-drop-down> -->
+
     <bg-success-error></bg-success-error>
 
     <div class="main-content-wrapper">
@@ -136,9 +123,6 @@
           </div>
         </footer>
       </div>
-      <!-- <div class="discord-container">
-        <iframe src="https://discordapp.com/widget?id=314362408783052800&theme=dark" width="350" allowtransparency="true" frameborder="0"></iframe>
-      </div> -->
     </div>
   </div>
 </div>

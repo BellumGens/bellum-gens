@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  selector: 'app-emailconfirm',
   templateUrl: './emailconfirm.component.html',
   styleUrls: ['./emailconfirm.component.css']
 })

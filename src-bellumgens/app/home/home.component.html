@@ -27,9 +27,9 @@
       <div class="slide-info">
         <h1>Manage your CS:GO Team</h1>
         <p>Recruit your team and manage your team member roles, team strategies, practice times and more....</p>
-        <button igxButton="raised" *ngIf="!authUser else loggedIn" (click)="loginDialog.openLogin()" class="space-out-button">Sign-up Now</button>
+        <button igxButton="raised" *ngIf="!authUser else loggedIn" (click)="loginDialog.openLogin()">Sign-up Now</button>
         <ng-template #loggedIn>
-          <button igxButton="raised" (click)="openTeams()" class="space-out-button">Team Section</button>
+          <button igxButton="raised" (click)="openTeams()">Team Section</button>
         </ng-template>
       </div>
     </div>

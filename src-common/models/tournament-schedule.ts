@@ -1,5 +1,7 @@
 import { CSGOTeam } from './csgoteam';
 import { AppUserSummary } from './applicationuser';
+import { CSGOMap } from './csgomaps';
+import { SC2Map } from './sc2maps';
 
 export interface MatchSchedule {
   name: string;
@@ -15,7 +17,7 @@ export interface MatchScheduleDay {
 
 export interface MatchScheduleSlot {
   start: Date;
-  match: TournamentCSGOMatch | TournamentSC2Match;
+  match: TournamentCSGOMatch & TournamentSC2Match;
   inEdit?: boolean;
 }
 
@@ -26,7 +28,7 @@ export interface TournamentMatch {
   StartTime?: Date;
   EndTime?: Date;
   GroupId?: string;
-  Maps?: any [];
+  Maps?: TournamentCSGOMatchMap [] | TournamentSC2MatchMap [];
 }
 
 export interface TournamentCSGOMatch extends TournamentMatch {
@@ -47,6 +49,26 @@ export interface TournamentSC2Match extends TournamentMatch {
   Player2?: AppUserSummary;
 }
 
+export interface TournamentCSGOMatchMap {
+  Id?: string;
+  Map?: CSGOMap;
+  CSGOMatchId?: string;
+  TeamPickId?: string;
+  TeamBanId?: string;
+  Team1Score?: number;
+  Team2Score?: number;
+}
+
+export interface TournamentSC2MatchMap {
+  Id?: string;
+  Map?: SC2Map;
+  SC2MatchId?: string;
+  PlayerPickId?: string;
+  PlayerBanId?: string;
+  WinnerId?: string;
+}
+
 export function getEmptyNewMatch(start: Date): TournamentMatch {
   return { StartTime: start };
 }
+

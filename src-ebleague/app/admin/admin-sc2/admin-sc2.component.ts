@@ -5,8 +5,9 @@ import { TournamentGroup,
 import { ApiTournamentsService } from '../../../../src-common/services/bellumgens-api.tournaments.service';
 import { environment } from '../../../../src-common/environments/environment';
 import { IDropDroppedEventArgs } from 'igniteui-angular';
-import { TournamentSC2Match, MatchScheduleSlot } from '../../../../src-common/models/tournament-schedule';
+import { TournamentSC2Match, MatchScheduleSlot, TournamentSC2MatchMap } from '../../../../src-common/models/tournament-schedule';
 import { WEEKLY_SCHEDULE } from '../../../../src-common/models/schedule-slots';
+import { SC2_MAPS, SC2LadderDescriptor } from '../../../../src-common/models/sc2maps';
 
 @Component({
   selector: 'app-admin-sc2',
@@ -22,6 +23,7 @@ export class AdminSc2Component {
   public newGroup = getEmptyNewGroup();
   public pipeTrigger = 0;
   public schedule = WEEKLY_SCHEDULE;
+  public mapList: SC2LadderDescriptor [] = SC2_MAPS;
 
   constructor(private apiService: ApiTournamentsService) {
     this.apiService.sc2Registrations.subscribe(data => {
@@ -91,5 +93,15 @@ export class AdminSc2Component {
       this.apiService.submitSC2Match(match).subscribe(data => slot.match = data);
       slot.inEdit = false;
     }
+  }
+
+  public submitMatchMap(map: TournamentSC2MatchMap) {
+    this.apiService.submitSC2MatchMap(map).subscribe(data => map.Id = data.Id);
+  }
+
+  public deleteMatchMap(map: TournamentSC2MatchMap, maps: TournamentSC2MatchMap []) {
+    this.apiService.deleteSC2MatchMap(map.Id).subscribe(_ => {
+      maps.splice(maps.indexOf(map), 1);
+    });
   }
 }

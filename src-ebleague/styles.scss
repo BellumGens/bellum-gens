@@ -131,10 +131,16 @@ $circular-progress-bar-theme: igx-progress-circular-theme($progress-circle-color
 @include igx-css-vars($circular-progress-bar-theme);
 /* END Progress Circular */
 
-/* Time Picker */
+/* Overlay */
 $overlay-theme: igx-overlay-theme($background-color: rgba(35, 51, 132, 0.7));
 @include igx-css-vars($overlay-theme);
-/* END Time Picker */
+/* END Overlay */
+
+/* Calendar */
+$calendar-theme: igx-calendar-theme($content-background: $background,
+                                    $picker-background-color: $background);
+@include igx-css-vars($calendar-theme);
+/* END Calendar */
 
 @import "../src-common/styles-overrides.scss";
 
@@ -191,7 +197,7 @@ $overlay-theme: igx-overlay-theme($background-color: rgba(35, 51, 132, 0.7));
   flex-flow: column;
   align-items: center;
   padding: 4px 12px;
-  width: 120px;
+  flex-basis: 120px;
   min-height: 125px;
   word-break: break-all;
 }
@@ -274,6 +280,63 @@ $overlay-theme: igx-overlay-theme($background-color: rgba(35, 51, 132, 0.7));
 .card-wrapper.igx-tabs__group {
   display: grid;
 }
+
+.participants-container {
+  display: flex;
+  flex: 1 1;
+  flex-flow: row wrap;
+}
+
+.schedule-calendar {
+  width: 348px;
+}
+
+.match-details {
+  padding: 0 16px;
+  min-width: 348px;
+}
+
+.match-score {
+  display: grid;
+  grid-template-columns: 75px minmax(100px, 1fr) 48px minmax(100px, 1fr);
+  grid-column-gap: 16px;
+  padding: 8px 0;
+  align-items: center;
+}
+
+.match-winner {
+  grid-template-columns: 75px minmax(50px, 1fr) minmax(148px, 1fr) minmax(50px, 1fr);
+}
+
+.results-container {
+  grid-column: 1 / -1;
+  align-items: center;
+}
+
+.match-time {
+  text-align: center;
+}
+
+.match-text-content {
+  padding: 0 8px;
+}
+
+.match-result-content {
+  padding: 0 15px;
+}
+
+.team-name {
+  font-size: 0.75rem;
+}
+
+.align-center {
+  text-align: center;
+}
+
+.align-right {
+  text-align: right;
+}
+
 /* END SCHEDULE */
 
 .form-wrapper {
@@ -295,5 +358,27 @@ $overlay-theme: igx-overlay-theme($background-color: rgba(35, 51, 132, 0.7));
   .twitch-stream {
     width: 100%;
     height: 400px;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .match-time {
+    grid-column: 1 / -1;
+  }
+
+  .match-score {
+    grid-template-columns: 75px minmax(55px, 1fr) 48px minmax(150px, 1fr);
+  }
+
+  .match-summary {
+    grid-template-columns: minmax(130px, 1fr) 48px minmax(130px, 1fr);
+  }
+
+  .match-winner {
+    grid-template-columns: 0px minmax(65px, 1fr) minmax(161px, 1fr) minmax(74px, 1fr);
+  }
+
+  .match-details {
+    padding: 0;
   }
 }

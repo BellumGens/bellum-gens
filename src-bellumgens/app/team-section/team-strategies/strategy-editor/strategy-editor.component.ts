@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
-import { ActiveDutyDescriptor, ActiveDuty, CSGOMap } from '../../../../../src-common/models/csgomaps';
+import { CSGOActiveDutyDescriptor, ActiveDuty, CSGOMap } from '../../../../../src-common/models/csgomaps';
 import { StrategyEditor } from '../../../../../src-common/models/strat-editor/strategy-editor';
 import { CSGOTeam } from '../../../../../src-common/models/csgoteam';
 import { BellumgensApiService } from '../../../../../src-common/services/bellumgens-api.service';
@@ -17,7 +17,7 @@ import { Title, Meta } from '@angular/platform-browser';
   styleUrls: ['./strategy-editor.component.css']
 })
 export class StrategyEditorComponent extends BaseComponent implements OnInit, OnDestroy {
-  public maps: ActiveDutyDescriptor [] = ActiveDuty;
+  public maps: CSGOActiveDutyDescriptor [] = ActiveDuty;
   public team: CSGOTeam;
   public newStrategy: CSGOStrategy;
   public utility = StratUtilities;
@@ -31,7 +31,7 @@ export class StrategyEditorComponent extends BaseComponent implements OnInit, On
   public saveInProgress = false;
   public changes = false;
 
-  private _activeMap: ActiveDutyDescriptor;
+  private _activeMap: CSGOActiveDutyDescriptor;
   private _drag = false;
   private _coordinates: PointCoordinate = {
     x: 0,
@@ -44,7 +44,7 @@ export class StrategyEditorComponent extends BaseComponent implements OnInit, On
     return this._activeMap;
   }
 
-  public set map(map: ActiveDutyDescriptor) {
+  public set map(map: CSGOActiveDutyDescriptor) {
     this._activeMap = map;
     if (!this.layers.length || (<ImageLayer>this.layers[0]).src !== map.radar[0]) {
       const layer = this.editor.createImageLayer('Map Radar');

@@ -1,8 +1,8 @@
-import { MapnamePipe } from './mapname.pipe';
+import { CSGOMapnamePipe } from './mapname.pipe';
 
-describe('MapnamePipe', () => {
+describe('CSGOMapnamePipe', () => {
   it('create an instance', () => {
-    const pipe = new MapnamePipe();
+    const pipe = new CSGOMapnamePipe();
     expect(pipe).toBeTruthy();
   });
 });

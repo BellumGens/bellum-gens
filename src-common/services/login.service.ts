@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { LoginProvider } from '../models/login-provider';
-import { ApplicationUser, UserPreferences, AppUserSummary } from '../models/applicationuser';
+import { ApplicationUser, UserPreferences, AdminAppUserSummary } from '../models/applicationuser';
 import { map, shareReplay, catchError } from 'rxjs/operators';
 import { environment } from '../environments/environment';
 import { SwPush } from '@angular/service-worker';
@@ -76,7 +76,7 @@ export class LoginService {
   }
 
   public getUsers() {
-    return this.http.get<AppUserSummary []>(`${this._apiBase}/admin/users`, { withCredentials: true });
+    return this.http.get<AdminAppUserSummary []>(`${this._apiBase}/admin/users`, { withCredentials: true });
   }
 
   public getUserRoles() {

@@ -4,6 +4,8 @@ import { ApplicationUser } from './applicationuser';
 export interface Tournament {
   ID?: string;
   Name: string;
+  Description?: string;
+  Logo?: string;
   StartDate?: Date;
   EndDate?: Date;
 }
@@ -28,6 +30,7 @@ export interface TournamentRegistration {
   State: TournamentApplicationState;
   User: ApplicationUser;
   Team: CSGOTeam;
+  Company: string;
   PlayerPoints: number;
   TeamPoints: number;
   BattleTag: string;

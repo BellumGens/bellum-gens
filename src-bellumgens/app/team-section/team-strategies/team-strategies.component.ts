@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BellumgensApiService } from '../../../../src-common/services/bellumgens-api.service';
 import { CSGOStrategy, VoteDirection } from '../../../../src-common/models/csgostrategy';
-import { MapPool, AllMaps } from '../../../../src-common/models/csgomaps';
+import { CSGOMapPool, AllCSGOMaps } from '../../../../src-common/models/csgomaps';
 import { IChipSelectEventArgs } from 'igniteui-angular';
 import { SafeResourceUrl, Title, Meta } from '@angular/platform-browser';
 import { BaseComponent } from '../../base/base.component';
@@ -22,7 +22,7 @@ export class TeamStrategiesComponent extends BaseComponent {
   private _isEditor = null;
 
   public strats: CSGOStrategy [];
-  public maps: MapPool [] = AllMaps;
+  public maps: CSGOMapPool [] = AllCSGOMaps;
   public team: CSGOTeam;
   public authUser: ApplicationUser;
   public sanitizedUrl: SafeResourceUrl;
@@ -78,7 +78,7 @@ export class TeamStrategiesComponent extends BaseComponent {
     );
   }
 
-  public changeMaps(event: IChipSelectEventArgs, args: MapPool) {
+  public changeMaps(event: IChipSelectEventArgs, args: CSGOMapPool) {
     if (event.originalEvent) {
       this.maps.find(m => m.Map === args.Map).IsPlayed = event.selected;
       this.pipeTrigger++;

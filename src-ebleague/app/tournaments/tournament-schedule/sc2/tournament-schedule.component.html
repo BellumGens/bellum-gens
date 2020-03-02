@@ -1,0 +1,44 @@
+<div class="horizontal">
+  <igx-calendar class="schedule-calendar" (onSelection)="daySelected($event)" [specialDates]="datesWithMatches">
+
+  </igx-calendar>
+
+  <div class="match-details">
+    <h5>График за {{ today | date }}</h5>
+
+    <p *ngIf="!selectedMatches.length">Няма намерени срещи в този ден...</p>
+
+    <div class="match-score match-summary" *ngFor="let match of selectedMatches">
+      <div class="match-time">{{ match.StartTime | date:'shortTime' }}</div>
+
+      <div class="align-right">
+        <span class="match-text-content team-name">{{ match.Player1.battleNetId }}</span>
+        <igx-avatar [src]="match.Player1.avatarMedium" [initials]="match.Player1.username" roundShape="true"></igx-avatar>
+      </div>
+
+      <span class="match-text-content team-name align-center">vs.</span>
+
+      <div>
+        <igx-avatar [src]="match.Player2.avatarMedium" [initials]="match.Player2.username" roundShape="true"></igx-avatar>
+        <span class="match-text-content team-name">{{ match.Player2.battleNetId }}</span>
+      </div>
+
+      <div class="results-container match-score match-winner" *ngFor="let map of match.Maps">
+        <div class="grid-fix"></div>
+
+        <div class="match-text-content align-right">
+          <igx-icon *ngIf="map.WinnerId === match.Player1Id">check</igx-icon>
+        </div>
+
+        <div class="match-text-content align-center">{{ map.Map | sc2MapName }}</div>
+
+        <div class="match-text-content">
+          <igx-icon *ngIf="map.WinnerId === match.Player2Id">check</igx-icon>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <ng-content></ng-content>
+</div>

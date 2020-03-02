@@ -19,8 +19,7 @@ export class TournamentCsgoComponent extends BaseComponent {
   public loading = false;
   public authUser: ApplicationUser;
   public environment = environment;
-  public scheduleWeek = '/assets/calendar/csgo-week4.webp';
-  public scheduleAlt = 'График CS:GO Лига, Седмица 4';
+  public scheduleWeek = '/assets/calendar/csgo-week5.png';
 
   constructor(private apiService: ApiTournamentsService,
               private loginService: LoginService,
