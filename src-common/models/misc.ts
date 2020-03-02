@@ -30,6 +30,17 @@ export const StratOrder = [
 
 export const CREW_MEMBERS = [
   {
+    name: 'Любомир Жечев',
+    birthplace: 'Търговище',
+    position: 'Водещ на LAN финалите',
+    // tslint:disable-next-line:max-line-length
+    description: 'Любомир Жечев се запалва по компютърните игри, след като в 3 клас бай Иван - собственикът на първия компютърен клуб/гараж в Търговище - го заговаря на прибиране от училище и му пуска безплатно да поиграе Duke Nukem 3D, защото е "приятел с баща му". След този деветдесетарски маркетингов трик Любо започва да се лишава от закуски, за да цъка 1 час на Star Craft, Diablo 2, CS, Dota, NFS, Heroes 3, Half Life и какво ли още не. Понастоящем не играе активно, защото се страхува, че ако пак се пристрасти, никога няма да си намери жена.',
+    image: '/assets/crew/lyubozhechev.webp',
+    twitter: 'https://twitter.com/LyubomirZhechev',
+    facebook: 'https://www.facebook.com/lyubomir.zhechev',
+    instagram: 'https://www.instagram.com/lyubo_zhechev'
+  },
+  {
     name: 'Никола "niku" Гяуров',
     birthplace: 'Пазарджик',
     position: 'CS:GO кастър',
