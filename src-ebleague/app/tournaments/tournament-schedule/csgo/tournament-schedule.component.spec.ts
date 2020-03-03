@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CSGOTournamentScheduleComponent } from './tournament-schedule.component';
-import { IgxCalendarModule, IgxAvatarModule } from 'igniteui-angular';
+import { IgxCalendarModule, IgxAvatarModule, IgxProgressBarModule } from 'igniteui-angular';
 import { CSGOMapnamePipe } from 'src-bellumgens/app/pipes/mapname.pipe';
 import { MapimagePipe } from 'src-bellumgens/app/pipes/mapimage.pipe';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -18,7 +18,8 @@ describe('CSGOTournamentScheduleComponent', () => {
         NoopAnimationsModule,
         HttpClientTestingModule,
         IgxCalendarModule,
-        IgxAvatarModule
+        IgxAvatarModule,
+        IgxProgressBarModule
       ]
     })
     .compileComponents();

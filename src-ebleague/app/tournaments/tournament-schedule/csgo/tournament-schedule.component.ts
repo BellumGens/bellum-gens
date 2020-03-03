@@ -14,9 +14,11 @@ export class CSGOTournamentScheduleComponent {
   public datesWithMatches: DateRangeDescriptor[] = [];
   public selectedMatches: TournamentCSGOMatch [] = [];
   public today = new Date();
+  public loading = false;
 
   constructor(private apiService: ApiTournamentsService) {
-    this.apiService.getCSGOMatches().subscribe(data => {
+    this.apiService.loadingCSGOMatches.subscribe(data => this.loading = data);
+    this.apiService.csgoMatches.subscribe(data => {
       this.csgomatches = data;
       this.selectedMatches = this.csgomatches.filter(m => SameDay(new Date(m.StartTime), this.today));
       data.forEach(match => {

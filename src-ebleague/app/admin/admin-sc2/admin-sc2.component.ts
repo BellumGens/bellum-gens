@@ -33,7 +33,7 @@ export class AdminSc2Component {
     });
     this.apiService.loadingSC2Registrations.subscribe(data => this.loading = data);
     this.apiService.getSC2Groups().subscribe(data => this.groups = data);
-    this.apiService.getSC2Matches().subscribe(data => {
+    this.apiService.sc2Matches.subscribe(data => {
       this.matches = data;
       if (this.matches) {
         this.schedule.forEach(week => {
