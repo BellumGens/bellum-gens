@@ -8,12 +8,8 @@
 <div *ngIf="!loading" class="card-wrapper">
   <igx-card *ngFor="let team of teams" class="navigatable" [routerLink]="['/team', team.CustomUrl]">
     <igx-card-header>
-      <div class="horizontal-center">
-        <igx-avatar [src]="team.TeamAvatar" [initials]="team.TeamName" [size]="'medium'" roundShape="true"></igx-avatar>
-        <div class="igx-card-header__tgroup title margin-left">
-          <h3 class="igx-card-header__title highlight">{{ team.TeamName }}</h3>
-        </div>
-      </div>
+      <igx-avatar igxCardThumbnail [src]="team.TeamAvatar" [initials]="team.TeamName" [size]="'medium'" roundShape="true"></igx-avatar>
+      <h3 igxCardHeaderTitle>{{ team.TeamName }}</h3>
     </igx-card-header>
     <igx-card-content>
       <div>Open positions in the active line-up</div>
