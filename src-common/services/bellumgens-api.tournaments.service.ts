@@ -25,8 +25,13 @@ export class ApiTournamentsService {
   private _sc2Registrations = new BehaviorSubject<TournamentRegistration []>(null);
   private _registrationsCount = new BehaviorSubject<RegistrationsCount []>(null);
 
+  private _csgoMatches = new BehaviorSubject<TournamentCSGOMatch []>(null);
+  private _sc2Matches = new BehaviorSubject<TournamentSC2Match []>(null);
+
   public loadingCSGORegistrations = new BehaviorSubject<boolean>(false);
   public loadingSC2Registrations = new BehaviorSubject<boolean>(false);
+  public loadingCSGOMatches = new BehaviorSubject<boolean>(false);
+  public loadingSC2Matches = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient, private commService: CommunicationService) { }
 
@@ -91,6 +96,32 @@ export class ApiTournamentsService {
       );
     }
     return this._sc2Registrations;
+  }
+
+  public get csgoMatches() {
+    if (!this._csgoMatches.value) {
+      this.loadingCSGOMatches.next(true);
+      this.getCSGOMatches().subscribe(data => {
+          this._csgoMatches.next(data);
+          this.loadingCSGOMatches.next(false);
+        },
+        _ => this.loadingCSGOMatches.next(false)
+      );
+    }
+    return this._csgoMatches;
+  }
+
+  public get sc2Matches() {
+    if (!this._sc2Matches.value) {
+      this.loadingSC2Matches.next(true);
+      this.getSC2Matches().subscribe(data => {
+          this._sc2Matches.next(data);
+          this.loadingSC2Matches.next(false);
+        },
+        _ => this.loadingSC2Matches.next(false)
+      );
+    }
+    return this._sc2Matches;
   }
 
   public addSubscriber(email: string) {

@@ -33,7 +33,7 @@ export class AdminCsgoComponent {
     });
     this.apiService.loadingCSGORegistrations.subscribe(data => this.loading = data);
     this.apiService.getCSGOGroups().subscribe(data => this.groups = data);
-    this.apiService.getCSGOMatches().subscribe(data => {
+    this.apiService.csgoMatches.subscribe(data => {
       this.matches = data;
       if (this.matches) {
         this.schedule.forEach(week => {

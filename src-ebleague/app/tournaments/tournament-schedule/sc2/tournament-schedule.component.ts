@@ -14,14 +14,18 @@ export class SC2TournamentScheduleComponent {
   public datesWithMatches: DateRangeDescriptor[] = [];
   public selectedMatches: TournamentSC2Match [] = [];
   public today = new Date();
+  public loading = false;
 
   constructor(private apiService: ApiTournamentsService) {
-    this.apiService.getSC2Matches().subscribe(data => {
-      this.sc2matches = data;
-      this.selectedMatches = this.sc2matches.filter(m => SameDay(new Date(m.StartTime), this.today));
-      data.forEach(match => {
-        this.datesWithMatches.push({ type: DateRangeType.Specific, dateRange: [ new Date(match.StartTime) ] });
-      });
+    this.apiService.loadingSC2Matches.subscribe(data => this.loading = data);
+    this.apiService.sc2Matches.subscribe(data => {
+      if (data) {
+        this.sc2matches = data;
+        this.selectedMatches = this.sc2matches.filter(m => SameDay(new Date(m.StartTime), this.today));
+        data.forEach(match => {
+          this.datesWithMatches.push({ type: DateRangeType.Specific, dateRange: [ new Date(match.StartTime) ] });
+        });
+      }
     });
   }
 

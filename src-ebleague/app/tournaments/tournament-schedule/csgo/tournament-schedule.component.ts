@@ -14,14 +14,18 @@ export class CSGOTournamentScheduleComponent {
   public datesWithMatches: DateRangeDescriptor[] = [];
   public selectedMatches: TournamentCSGOMatch [] = [];
   public today = new Date();
+  public loading = false;
 
   constructor(private apiService: ApiTournamentsService) {
-    this.apiService.getCSGOMatches().subscribe(data => {
-      this.csgomatches = data;
-      this.selectedMatches = this.csgomatches.filter(m => SameDay(new Date(m.StartTime), this.today));
-      data.forEach(match => {
-        this.datesWithMatches.push({ type: DateRangeType.Specific, dateRange: [ new Date(match.StartTime) ] });
-      });
+    this.apiService.loadingCSGOMatches.subscribe(data => this.loading = data);
+    this.apiService.csgoMatches.subscribe(data => {
+      if (data) {
+        this.csgomatches = data;
+        this.selectedMatches = this.csgomatches.filter(m => SameDay(new Date(m.StartTime), this.today));
+        data.forEach(match => {
+          this.datesWithMatches.push({ type: DateRangeType.Specific, dateRange: [ new Date(match.StartTime) ] });
+        });
+      }
     });
   }
 

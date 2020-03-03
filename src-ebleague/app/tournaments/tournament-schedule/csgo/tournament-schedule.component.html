@@ -6,7 +6,10 @@
   <div class="match-details">
     <h5>График за {{ today | date }}</h5>
 
-    <p *ngIf="!selectedMatches.length">Няма намерени срещи в този ден...</p>
+    <igx-circular-bar *ngIf="loading else emptymatches" [indeterminate]="true"></igx-circular-bar>
+    <ng-template #emptymatches>
+      <p *ngIf="!selectedMatches.length">Няма намерени срещи в този ден...</p>
+    </ng-template>
 
     <div class="match-score match-summary" *ngFor="let match of selectedMatches">
       <div class="match-time">{{ match.StartTime | date:'shortTime' }}</div>
