@@ -19,11 +19,13 @@ export class CSGOTournamentScheduleComponent {
   constructor(private apiService: ApiTournamentsService) {
     this.apiService.loadingCSGOMatches.subscribe(data => this.loading = data);
     this.apiService.csgoMatches.subscribe(data => {
-      this.csgomatches = data;
-      this.selectedMatches = this.csgomatches.filter(m => SameDay(new Date(m.StartTime), this.today));
-      data.forEach(match => {
-        this.datesWithMatches.push({ type: DateRangeType.Specific, dateRange: [ new Date(match.StartTime) ] });
-      });
+      if (data) {
+        this.csgomatches = data;
+        this.selectedMatches = this.csgomatches.filter(m => SameDay(new Date(m.StartTime), this.today));
+        data.forEach(match => {
+          this.datesWithMatches.push({ type: DateRangeType.Specific, dateRange: [ new Date(match.StartTime) ] });
+        });
+      }
     });
   }
 

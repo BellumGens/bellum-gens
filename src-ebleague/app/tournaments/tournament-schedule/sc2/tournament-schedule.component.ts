@@ -19,11 +19,13 @@ export class SC2TournamentScheduleComponent {
   constructor(private apiService: ApiTournamentsService) {
     this.apiService.loadingSC2Matches.subscribe(data => this.loading = data);
     this.apiService.sc2Matches.subscribe(data => {
-      this.sc2matches = data;
-      this.selectedMatches = this.sc2matches.filter(m => SameDay(new Date(m.StartTime), this.today));
-      data.forEach(match => {
-        this.datesWithMatches.push({ type: DateRangeType.Specific, dateRange: [ new Date(match.StartTime) ] });
-      });
+      if (data) {
+        this.sc2matches = data;
+        this.selectedMatches = this.sc2matches.filter(m => SameDay(new Date(m.StartTime), this.today));
+        data.forEach(match => {
+          this.datesWithMatches.push({ type: DateRangeType.Specific, dateRange: [ new Date(match.StartTime) ] });
+        });
+      }
     });
   }
 
