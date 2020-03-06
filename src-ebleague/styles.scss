@@ -283,7 +283,7 @@ $calendar-theme: igx-calendar-theme($content-background: $background,
 
 .participants-container {
   display: flex;
-  flex: 1 1;
+  flex: 1 0 380px;
   flex-flow: row wrap;
 }
 
