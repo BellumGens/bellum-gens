@@ -19,7 +19,7 @@ export class TournamentSc2Component extends BaseComponent {
   public loading = false;
   public authUser: ApplicationUser;
   public environment = environment;
-  public scheduleWeek = '/assets/calendar/sc2-week5.png';
+  public scheduleWeek = '/assets/calendar/sc2-week6.png';
 
   constructor(private apiService: ApiTournamentsService,
               private loginService: LoginService,
