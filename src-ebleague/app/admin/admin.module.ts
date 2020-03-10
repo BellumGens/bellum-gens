@@ -16,7 +16,8 @@ import { IgxChipsModule,
   IgxDragDropModule,
   IgxTabsModule,
   IgxSelectModule,
-  IgxTimePickerModule } from 'igniteui-angular';
+  IgxTimePickerModule,
+  IgxCalendarModule} from 'igniteui-angular';
 import { FormsModule } from '@angular/forms';
 import { AdminCsgoComponent } from './admin-csgo/admin-csgo.component';
 import { BellumGensModule } from '../../../src-common/components/components.module';
@@ -26,7 +27,13 @@ import { GetPlayersPipe } from '../pipes/get-players.pipe';
 
 
 @NgModule({
-  declarations: [AdminComponent, AdminCsgoComponent, AdminSc2Component, NotInGroupPipe, GetPlayersPipe],
+  declarations: [
+    AdminComponent,
+    AdminCsgoComponent,
+    AdminSc2Component,
+    NotInGroupPipe,
+    GetPlayersPipe
+  ],
   imports: [
     CommonModule,
     AdminRoutingModule,
@@ -45,7 +52,8 @@ import { GetPlayersPipe } from '../pipes/get-players.pipe';
     IgxDragDropModule,
     IgxSelectModule,
     IgxTabsModule,
-    IgxTimePickerModule
+    IgxTimePickerModule,
+    IgxCalendarModule
   ]
 })
 export class AdminModule { }

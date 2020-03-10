@@ -1,4 +1,83 @@
 <div class="overview-container-card">
+  <div class="horizontal">
+    <igx-calendar class="schedule-calendar" (onSelection)="selectedDate = $event" [specialDates]="datesWithMatches">
+
+    </igx-calendar>
+
+    <div class="match-details">
+      <h5>График за {{ selectedDate | date }}</h5>
+
+      <igx-circular-bar *ngIf="loading else emptymatches" [indeterminate]="true"></igx-circular-bar>
+      <ng-template #emptymatches>
+        <p *ngIf="!selectedMatches.length">Няма намерени срещи в този ден...</p>
+      </ng-template>
+
+      <div class="match-score match-summary" *ngFor="let match of selectedMatches">
+        <igx-time-picker class="slot-timepicker" [disabled]="!match.inEdit" [(ngModel)]="match.start">
+
+        </igx-time-picker>
+
+        <igx-select class="slot-select" [(ngModel)]="match.Team1Id" [disabled]="!match.inEdit">
+          <label igxLabel>Отбор 1</label>
+          <igx-select-item *ngFor="let registration of registrations"
+                            [value]="registration.TeamId"
+                            [text]="registration.Team.TeamName">
+            <igx-avatar [src]="registration.Team.TeamAvatar" [initials]="registration.Team.TeamName"></igx-avatar>
+            {{ registration.Team.TeamName }}
+          </igx-select-item>
+        </igx-select>
+
+        vs.
+
+        <igx-select class="slot-select" [(ngModel)]="match.Team2Id" [disabled]="!match.inEdit">
+          <label igxLabel>Отбор 2</label>
+          <igx-select-item *ngFor="let registration of registrations"
+                            [value]="registration.TeamId"
+                            [text]="registration.Team.TeamName">
+            <igx-avatar [src]="registration.Team.TeamAvatar" [initials]="registration.Team.TeamName"></igx-avatar>
+            {{ registration.Team.TeamName }}
+          </igx-select-item>
+        </igx-select>
+
+        <button *ngIf="!match.inEdit" igxButton (click)="match.inEdit = true"><igx-icon>edit</igx-icon>Редактирай</button>
+
+        <div *ngIf="match.inEdit">
+          <igx-icon class="navigatable action-icon-button" (click)="submitMatch(match)">done</igx-icon>
+          <igx-icon *ngIf="match.inEdit" class="navigatable action-icon-button" (click)="match.inEdit = false">cancel</igx-icon>
+        </div>
+        <!-- <div class="match-time">{{ match.StartTime | date:'shortTime' }}</div>
+
+        <div class="align-right">
+          <span class="match-text-content team-name">{{ match.Team1.TeamName }}</span>
+          <igx-avatar [src]="match.Team1.TeamAvatar" [initials]="match.Team1.TeamName" roundShape="true"></igx-avatar>
+        </div>
+
+        <span class="match-text-content team-name align-center">vs.</span>
+
+        <div>
+          <igx-avatar [src]="match.Team2.TeamAvatar" [initials]="match.Team2.TeamName" roundShape="true"></igx-avatar>
+          <span class="match-text-content team-name">{{ match.Team2.TeamName }}</span>
+        </div> -->
+
+        <div class="results-container match-score" *ngFor="let map of match.Maps">
+
+          <igx-avatar [src]="map.Map | csgomapimage" [initials]="map.Map | csgomapname" [title]="map.Map | csgomapname"></igx-avatar>
+
+          <div class="match-result-content align-right">
+            {{ map.Team1Score }}
+          </div>
+
+          <div class="match-text-content align-center">:</div>
+
+          <div class="match-result-content">
+            {{ map.Team2Score }}
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
   <igx-tabs>
     <igx-tabs-group class="home-page-slide-columns" *ngFor="let week of schedule">
       <ng-template igxTab>
