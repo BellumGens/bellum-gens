@@ -1,19 +1,21 @@
 <div class="overview-container-card">
   <div class="horizontal">
-    <igx-calendar class="schedule-calendar" (onSelection)="selectedDate = $event" [specialDates]="datesWithMatches">
+    <igx-calendar class="schedule-calendar" (onSelection)="daySelected($event)" [specialDates]="datesWithMatches">
 
     </igx-calendar>
 
     <div class="match-details">
-      <h5>График за {{ selectedDate | date }}</h5>
+      <h5>График за <span class="highlight">{{ selectedDate | date }}</span></h5>
 
-      <igx-circular-bar *ngIf="loading else emptymatches" [indeterminate]="true"></igx-circular-bar>
+      <div *ngIf="loadingMatches else emptymatches" class="loading-overview">
+        <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
+      </div>
       <ng-template #emptymatches>
         <p *ngIf="!selectedMatches.length">Няма намерени срещи в този ден...</p>
       </ng-template>
 
       <div class="match-score match-summary" *ngFor="let match of selectedMatches">
-        <igx-time-picker class="slot-timepicker" [disabled]="!match.inEdit" [(ngModel)]="match.start">
+        <igx-time-picker class="slot-timepicker" [disabled]="!match.inEdit" [itemsDelta]="{hours: 1, minutes: 15}" [(ngModel)]="match.StartTime">
 
         </igx-time-picker>
 
@@ -39,154 +41,55 @@
           </igx-select-item>
         </igx-select>
 
-        <button *ngIf="!match.inEdit" igxButton (click)="match.inEdit = true"><igx-icon>edit</igx-icon>Редактирай</button>
+        <div *ngIf="!match.inEdit">
+          <button igxButton (click)="match.inEdit = true"><igx-icon>edit</igx-icon>Редактирай</button>
+          <button igxButton (click)="deleteMatch(match)"><igx-icon>delete_forever</igx-icon>Изтрий</button>
+        </div>
 
         <div *ngIf="match.inEdit">
           <igx-icon class="navigatable action-icon-button" (click)="submitMatch(match)">done</igx-icon>
           <igx-icon *ngIf="match.inEdit" class="navigatable action-icon-button" (click)="match.inEdit = false">cancel</igx-icon>
         </div>
-        <!-- <div class="match-time">{{ match.StartTime | date:'shortTime' }}</div>
-
-        <div class="align-right">
-          <span class="match-text-content team-name">{{ match.Team1.TeamName }}</span>
-          <igx-avatar [src]="match.Team1.TeamAvatar" [initials]="match.Team1.TeamName" roundShape="true"></igx-avatar>
-        </div>
-
-        <span class="match-text-content team-name align-center">vs.</span>
-
-        <div>
-          <igx-avatar [src]="match.Team2.TeamAvatar" [initials]="match.Team2.TeamName" roundShape="true"></igx-avatar>
-          <span class="match-text-content team-name">{{ match.Team2.TeamName }}</span>
-        </div> -->
 
         <div class="results-container match-score" *ngFor="let map of match.Maps">
 
-          <igx-avatar [src]="map.Map | csgomapimage" [initials]="map.Map | csgomapname" [title]="map.Map | csgomapname"></igx-avatar>
+          <igx-select class="space-out" [disabled]="!match.inEdit" [(ngModel)]="map.Map">
+            <label igxLabel>Карта</label>
+            <igx-select-item *ngFor="let map of mapList" [value]="map.id">
+              {{ map.map }}
+            </igx-select-item>
+          </igx-select>
 
-          <div class="match-result-content align-right">
-            {{ map.Team1Score }}
-          </div>
+          <igx-input-group>
+            <label igxLabel>Рундове отбор 1</label>
+            <input type="number" igxInput [disabled]="!match.inEdit" [(ngModel)]="map.Team1Score" />
+          </igx-input-group>
+          :
+          <igx-input-group>
+            <label igxLabel>Рундове отбор 2</label>
+            <input type="number" igxInput [disabled]="!match.inEdit" [(ngModel)]="map.Team2Score" />
+          </igx-input-group>
 
-          <div class="match-text-content align-center">:</div>
-
-          <div class="match-result-content">
-            {{ map.Team2Score }}
+          <div *ngIf="match.inEdit">
+            <igx-icon class="navigatable action-icon-button" (click)="submitMatchMap(map)">done</igx-icon>
+            <igx-icon *ngIf="map.Id" class="navigatable action-icon-button" (click)="deleteMatchMap(map, match.Maps)">delete_forever</igx-icon>
           </div>
         </div>
+        
+        <button *ngIf="match.Id && match.inEdit"
+                igxButton
+                (click)="match.Maps.push({ CSGOMatchId: match.Id })">
+          <igx-icon>add_circle_outline</igx-icon>Добави Карта за Мача
+        </button>
 
+        <igx-divider class="content-container-row"></igx-divider>
       </div>
+
+      <button igxButton (click)="selectedMatches.push({StartTime: selectedDate, inEdit: true})"><igx-icon>add_circle_outline</igx-icon>Добави нова среща</button>
     </div>
   </div>
 
-  <igx-tabs>
-    <igx-tabs-group class="home-page-slide-columns" *ngFor="let week of schedule">
-      <ng-template igxTab>
-        <div class="horizontal-center">
-          <igx-icon>calendar_today</igx-icon>
-          <div class="igx-tabs__item-label">{{week.name}}</div>
-        </div>
-        <div>{{week.start | date}} - {{week.end | date}}</div>
-      </ng-template>
-
-      <igx-card *ngFor="let day of week.days">
-        <igx-card-header>
-          <h1 igxCardHeaderTitle>{{day.day | date}}</h1>
-        </igx-card-header>
-        <igx-card-content>
-          <div class="space-out" *ngFor="let slot of day.slots">
-            <div class="horizontal-center space-between">
-              <igx-time-picker class="slot-timepicker" [disabled]="!slot.inEdit" [(ngModel)]="slot.start">
-
-              </igx-time-picker>
-
-              <igx-select class="slot-select" [(ngModel)]="slot.match.Team1Id" [disabled]="!slot.inEdit">
-                <label igxLabel>Отбор 1</label>
-                <igx-select-item *ngFor="let registration of registrations"
-                                  [value]="registration.TeamId"
-                                  [text]="registration.Team.TeamName">
-                  <igx-avatar [src]="registration.Team.TeamAvatar" [initials]="registration.Team.TeamName"></igx-avatar>
-                  {{ registration.Team.TeamName }}
-                </igx-select-item>
-              </igx-select>
-
-              vs.
-
-              <igx-select class="slot-select" [(ngModel)]="slot.match.Team2Id" [disabled]="!slot.inEdit">
-                <label igxLabel>Отбор 2</label>
-                <igx-select-item *ngFor="let registration of registrations"
-                                  [value]="registration.TeamId"
-                                  [text]="registration.Team.TeamName">
-                  <igx-avatar [src]="registration.Team.TeamAvatar" [initials]="registration.Team.TeamName"></igx-avatar>
-                  {{ registration.Team.TeamName }}
-                </igx-select-item>
-              </igx-select>
-
-              <button *ngIf="!slot.inEdit" igxButton (click)="slot.inEdit = true"><igx-icon>edit</igx-icon>Редактирай</button>
-
-              <div *ngIf="slot.inEdit">
-                <igx-icon class="navigatable action-icon-button" (click)="submitMatch(slot)">done</igx-icon>
-                <igx-icon *ngIf="slot.inEdit" class="navigatable action-icon-button" (click)="slot.inEdit = false">cancel</igx-icon>
-              </div>
-            </div>
-
-            <div *ngIf="slot.match.Team1Id && slot.match.Team2Id" class="horizontal-center space-evenly">
-              <span>Резултат</span>
-
-              <igx-input-group>
-                <label igxLabel>Точки отбор 1</label>
-                <input type="number" igxInput [disabled]="!slot.inEdit" [(ngModel)]="slot.match.Team1Points" />
-              </igx-input-group>
-              :
-              <igx-input-group>
-                <label igxLabel>Точки отбор 2</label>
-                <input type="number" igxInput [disabled]="!slot.inEdit" [(ngModel)]="slot.match.Team2Points" />
-              </igx-input-group>
-            </div>
-
-            <div *ngFor="let map of slot.match.Maps" class="horizontal-center space-evenly">
-              <span>Мач</span>
-
-              <igx-select class="space-out" [disabled]="!slot.inEdit" [(ngModel)]="map.Map">
-                <label igxLabel>Карта</label>
-                <igx-select-item *ngFor="let map of mapList" [value]="map.id">
-                  {{ map.map }}
-                </igx-select-item>
-              </igx-select>
-
-              <igx-input-group>
-                <label igxLabel>Рундове отбор 1</label>
-                <input type="number" igxInput [disabled]="!slot.inEdit" [(ngModel)]="map.Team1Score" />
-              </igx-input-group>
-              :
-              <igx-input-group>
-                <label igxLabel>Рундове отбор 2</label>
-                <input type="number" igxInput [disabled]="!slot.inEdit" [(ngModel)]="map.Team2Score" />
-              </igx-input-group>
-
-              <div *ngIf="slot.inEdit">
-                <igx-icon class="navigatable action-icon-button" (click)="submitMatchMap(map)">done</igx-icon>
-                <igx-icon *ngIf="map.Id" class="navigatable action-icon-button" (click)="deleteMatchMap(map, slot.match.Maps)">delete_forever</igx-icon>
-              </div>
-            </div>
-
-            <button *ngIf="slot.match.Id && slot.inEdit" igxButton (click)="slot.match.Maps.push({ CSGOMatchId: slot.match.Id })"><igx-icon>add_circle_outline</igx-icon>Добави Карта за Мача</button>
-
-            <igx-input-group *ngIf="slot.match.Team1Id && slot.match.Team2Id">
-              <label igxLabel>Видео Линк</label>
-              <input igxInput [disabled]="!slot.inEdit" [(ngModel)]="slot.match.VideoLink" />
-            </igx-input-group>
-
-            <igx-input-group *ngIf="slot.match.Team1Id && slot.match.Team2Id">
-              <label igxLabel>Demo Линк</label>
-              <input igxInput [disabled]="!slot.inEdit" [(ngModel)]="slot.match.DemoLink" />
-            </igx-input-group>
-          </div>
-        </igx-card-content>
-      </igx-card>
-    </igx-tabs-group>
-  </igx-tabs>
-
-  <igx-card type="outlined">
+  <igx-card class="margin-top" type="outlined">
     <igx-card-header>
       <igx-avatar igxCardThumbnail [roundShape]="true" src="/assets/wallpapers/csgo-watermark.webp"></igx-avatar>
       <h1 igxCardHeaderTitle>Участници - CS:GO Лига</h1>

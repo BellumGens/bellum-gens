@@ -294,6 +294,22 @@ export class ApiTournamentsService {
       );
   }
 
+  public deleteCSGOMatch(match: TournamentCSGOMatch) {
+    return this.http.delete<TournamentCSGOMatch>(`${this._apiEndpoint}/tournament/csgomatch?id=${match.Id}`,
+      { withCredentials: true}).pipe(
+        map(response => {
+          if (response) {
+            this.commService.emitSuccess('Tournament CS:GO match deleted successfully!');
+          }
+          return response;
+        }),
+        catchError(error => {
+          this.commService.emitError(error.error.Message);
+          return throwError(error);
+        })
+      );
+  }
+
   public submitCSGOMatchMap(matchmap: TournamentCSGOMatchMap) {
     return this.http.put<TournamentCSGOMatchMap>(`${this._apiEndpoint}/tournament/csgomatchmap?id=${matchmap.Id || null}`,
       matchmap, { withCredentials: true}).pipe(

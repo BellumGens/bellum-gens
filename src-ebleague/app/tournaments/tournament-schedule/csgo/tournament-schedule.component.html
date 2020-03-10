@@ -4,15 +4,17 @@
   </igx-calendar>
 
   <div class="match-details">
-    <h5>График за {{ today | date }}</h5>
+    <h5>График за <span class="highlight">{{ today | date }}</span></h5>
 
-    <igx-circular-bar *ngIf="loading else emptymatches" [indeterminate]="true"></igx-circular-bar>
+    <div *ngIf="loading else emptymatches" class="loading-overview">
+      <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
+    </div>
     <ng-template #emptymatches>
       <p *ngIf="!selectedMatches.length">Няма намерени срещи в този ден...</p>
     </ng-template>
 
     <div class="match-score match-summary" *ngFor="let match of selectedMatches">
-      <div class="match-time">{{ match.StartTime | date:'shortTime' }}</div>
+      <div class="match-time highlight">{{ match.StartTime | date:'shortTime' }}</div>
 
       <div class="align-right">
         <span class="match-text-content team-name">{{ match.Team1.TeamName }}</span>
@@ -41,6 +43,7 @@
         </div>
       </div>
 
+      <igx-divider class="content-container-row"></igx-divider>
     </div>
   </div>
 
