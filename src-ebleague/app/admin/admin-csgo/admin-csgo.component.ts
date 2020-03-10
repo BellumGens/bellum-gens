@@ -6,9 +6,8 @@ import { ApiTournamentsService } from '../../../../src-common/services/bellumgen
 import { environment } from '../../../../src-common/environments/environment';
 import { IDropDroppedEventArgs, DateRangeDescriptor, DateRangeType } from 'igniteui-angular';
 import { TournamentCSGOMatch, TournamentCSGOMatchMap } from '../../../../src-common/models/tournament-schedule';
-import { WEEKLY_SCHEDULE } from '../../../../src-common/models/schedule-slots';
 import { CSGOActiveDutyDescriptor, ActiveDuty } from '../../../../src-common/models/csgomaps';
-import { SameDay } from 'src-common/models/misc';
+import { SameDay } from '../../../../src-common/models/misc';
 
 @Component({
   selector: 'app-admin-csgo',
@@ -24,7 +23,6 @@ export class AdminCsgoComponent {
   public environment = environment;
   public newGroup = getEmptyNewGroup();
   public pipeTrigger = 0;
-  public schedule = WEEKLY_SCHEDULE;
   public mapList: CSGOActiveDutyDescriptor [] = ActiveDuty;
   public selectedDate = new Date();
   public datesWithMatches: DateRangeDescriptor [] = [];
