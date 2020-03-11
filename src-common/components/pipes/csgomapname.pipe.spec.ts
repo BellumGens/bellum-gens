@@ -1,4 +1,4 @@
-import { CSGOMapnamePipe } from './mapname.pipe';
+import { CSGOMapnamePipe } from './csgomapname.pipe';
 
 describe('CSGOMapnamePipe', () => {
   it('create an instance', () => {

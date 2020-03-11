@@ -2,10 +2,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CSGOTournamentScheduleComponent } from './tournament-schedule.component';
 import { IgxCalendarModule, IgxAvatarModule, IgxProgressBarModule } from 'igniteui-angular';
-import { CSGOMapnamePipe } from 'src-bellumgens/app/pipes/mapname.pipe';
-import { MapimagePipe } from 'src-bellumgens/app/pipes/mapimage.pipe';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BellumGensModule } from 'src-common/components/components.module';
 
 describe('CSGOTournamentScheduleComponent', () => {
   let component: CSGOTournamentScheduleComponent;
@@ -13,13 +12,14 @@ describe('CSGOTournamentScheduleComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CSGOTournamentScheduleComponent, CSGOMapnamePipe, MapimagePipe ],
+      declarations: [ CSGOTournamentScheduleComponent ],
       imports: [
         NoopAnimationsModule,
         HttpClientTestingModule,
         IgxCalendarModule,
         IgxAvatarModule,
-        IgxProgressBarModule
+        IgxProgressBarModule,
+        BellumGensModule
       ]
     })
     .compileComponents();

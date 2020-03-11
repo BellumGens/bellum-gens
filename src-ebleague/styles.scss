@@ -32,6 +32,7 @@ $include: (igx-avatar,
            igx-switch,
            igx-divider,
            igx-chip,
+           igx-time-picker,
            igx-date-picker,
            igx-calendar,
            igx-nav-drawer,
@@ -141,6 +142,11 @@ $calendar-theme: igx-calendar-theme($content-background: $background,
                                     $picker-background-color: $background);
 @include igx-css-vars($calendar-theme);
 /* END Calendar */
+
+/* Time Picker */
+$time-picker-theme: igx-time-picker-theme($background-color: $background);
+@include igx-css-vars($time-picker-theme);
+/* END Time Picker */
 
 @import "../src-common/styles-overrides.scss";
 
@@ -292,13 +298,16 @@ $calendar-theme: igx-calendar-theme($content-background: $background,
 }
 
 .match-details {
+  display: flex;
+  flex: 1 1 348px;
+  flex-flow: column;
+  align-items: center;
   padding: 0 16px;
-  min-width: 348px;
 }
 
 .match-score {
   display: grid;
-  grid-template-columns: 75px minmax(100px, 1fr) 48px minmax(100px, 1fr);
+  grid-template-columns: minmax(100px, 1fr) minmax(150px, 1fr) 48px minmax(150px, 1fr) minmax(150px, 1fr);
   grid-column-gap: 16px;
   padding: 8px 0;
   align-items: center;
@@ -337,6 +346,9 @@ $calendar-theme: igx-calendar-theme($content-background: $background,
   text-align: right;
 }
 
+igx-calendar {
+  height: fit-content;
+}
 /* END SCHEDULE */
 
 .form-wrapper {
@@ -367,7 +379,7 @@ $calendar-theme: igx-calendar-theme($content-background: $background,
   }
 
   .match-score {
-    grid-template-columns: 75px minmax(55px, 1fr) 48px minmax(150px, 1fr);
+    grid-template-columns: 75px minmax(46px, 1fr) 42px minmax(144px, 1fr);
   }
 
   .match-summary {

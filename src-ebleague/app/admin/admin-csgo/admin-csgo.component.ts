@@ -4,10 +4,10 @@ import { getEmptyNewGroup,
   TournamentRegistration } from '../../../../src-common/models/tournament';
 import { ApiTournamentsService } from '../../../../src-common/services/bellumgens-api.tournaments.service';
 import { environment } from '../../../../src-common/environments/environment';
-import { IDropDroppedEventArgs } from 'igniteui-angular';
-import { TournamentCSGOMatch, MatchScheduleSlot, TournamentCSGOMatchMap } from '../../../../src-common/models/tournament-schedule';
-import { WEEKLY_SCHEDULE } from '../../../../src-common/models/schedule-slots';
+import { IDropDroppedEventArgs, DateRangeDescriptor, DateRangeType } from 'igniteui-angular';
+import { TournamentCSGOMatch, TournamentCSGOMatchMap } from '../../../../src-common/models/tournament-schedule';
 import { CSGOActiveDutyDescriptor, ActiveDuty } from '../../../../src-common/models/csgomaps';
+import { SameDay } from '../../../../src-common/models/misc';
 
 @Component({
   selector: 'app-admin-csgo',
@@ -19,11 +19,14 @@ export class AdminCsgoComponent {
   public groups: TournamentGroup [];
   public matches: TournamentCSGOMatch [];
   public loading = false;
+  public loadingMatches = false;
   public environment = environment;
   public newGroup = getEmptyNewGroup();
   public pipeTrigger = 0;
-  public schedule = WEEKLY_SCHEDULE;
   public mapList: CSGOActiveDutyDescriptor [] = ActiveDuty;
+  public selectedDate = new Date();
+  public datesWithMatches: DateRangeDescriptor [] = [];
+  public selectedMatches: TournamentCSGOMatch [] = [];
 
   constructor(private apiService: ApiTournamentsService) {
     this.apiService.csgoRegistrations.subscribe(data => {
@@ -33,18 +36,14 @@ export class AdminCsgoComponent {
     });
     this.apiService.loadingCSGORegistrations.subscribe(data => this.loading = data);
     this.apiService.getCSGOGroups().subscribe(data => this.groups = data);
+    this.apiService.loadingCSGOMatches.subscribe(data => this.loadingMatches = data);
     this.apiService.csgoMatches.subscribe(data => {
-      this.matches = data;
-      if (this.matches) {
-        this.schedule.forEach(week => {
-          week.days.forEach(day => {
-            day.slots.forEach(s => {
-              const match = this.matches.find(m => new Date(m.StartTime).getTime() === s.start.getTime());
-              if (match) {
-                s.match = match;
-              }
-            });
-          });
+      if (data) {
+        this.matches = data;
+        this.matches.forEach(m => m.StartTime = new Date(m.StartTime));
+        this.selectedMatches = this.matches.filter(m => SameDay(m.StartTime, this.selectedDate));
+        this.matches.forEach(match => {
+          this.datesWithMatches.push({ type: DateRangeType.Specific, dateRange: [ match.StartTime ] });
         });
       }
     });
@@ -84,14 +83,28 @@ export class AdminCsgoComponent {
     this.pipeTrigger++;
   }
 
-  public submitMatch(slot: MatchScheduleSlot) {
-    const match = slot.match;
+  public submitMatch(match: TournamentCSGOMatch) {
     if ((<TournamentCSGOMatch>match).Team1Id && (<TournamentCSGOMatch>match).Team2Id) {
       const reg = this.registrations.find(r =>
         r.TeamId === (<TournamentCSGOMatch>match).Team1Id || r.TeamId === (<TournamentCSGOMatch>match).Team2Id);
       match.GroupId = reg.TournamentCSGOGroupId;
-      this.apiService.submitCSGOMatch(match).subscribe(data => slot.match = data);
-      slot.inEdit = false;
+      this.apiService.submitCSGOMatch(match).subscribe(data => {
+        this.matches.push(match);
+        match.Id = data.Id;
+        match.Maps = [];
+        match.inEdit = false;
+      });
+    }
+  }
+
+  public deleteMatch(match) {
+    if (match.Id) {
+      this.apiService.deleteCSGOMatch(match).subscribe(_ => {
+        this.selectedMatches.splice(this.selectedMatches.indexOf(match), 1);
+        this.matches.splice(this.selectedMatches.indexOf(match), 1);
+      });
+    } else {
+      this.selectedMatches.splice(this.selectedMatches.indexOf(match), 1);
     }
   }
 
@@ -103,5 +116,10 @@ export class AdminCsgoComponent {
     this.apiService.deleteCSGOMatchMap(map.Id).subscribe(_ => {
       maps.splice(maps.indexOf(map), 1);
     });
+  }
+
+  public daySelected(date: Date) {
+    this.selectedDate = date;
+    this.selectedMatches = this.matches.filter(m => SameDay(new Date(m.StartTime), this.selectedDate));
   }
 }

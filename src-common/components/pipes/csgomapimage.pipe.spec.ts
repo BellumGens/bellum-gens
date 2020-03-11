@@ -1,8 +1,8 @@
-import { MapimagePipe } from './mapimage.pipe';
+import { CSGOMapimagePipe } from './csgomapimage.pipe';
 
 describe('MapimagePipe', () => {
   it('create an instance', () => {
-    const pipe = new MapimagePipe();
+    const pipe = new CSGOMapimagePipe();
     expect(pipe).toBeTruthy();
   });
 });

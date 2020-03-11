@@ -25,8 +25,6 @@ import { TopWeaponAltPipe } from 'src-bellumgens/app/pipes/top-weapon-alt.pipe';
 import { MapPoolComponent } from 'src-bellumgens/app/map-pool/map-pool.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { WeekdayPipe } from 'src-bellumgens/app/pipes/weekday.pipe';
-import { CSGOMapnamePipe } from 'src-bellumgens/app/pipes/mapname.pipe';
-import { MapimagePipe } from 'src-bellumgens/app/pipes/mapimage.pipe';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { SortWeaponsPipe } from 'src-bellumgens/app/pipes/sort-weapons.pipe';
 import { FormsModule } from '@angular/forms';
@@ -51,8 +49,6 @@ describe('PlayerDetailsComponent', () => {
         PlayerCountryPipe,
         TopWeaponAltPipe,
         WeekdayPipe,
-        CSGOMapnamePipe,
-        MapimagePipe,
         SortWeaponsPipe,
         ActiveDutyMapsPipe
       ],

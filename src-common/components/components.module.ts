@@ -21,6 +21,8 @@ import { SuccessErrorComponent } from './success-error/success-error.component';
 import { ConfirmComponent } from './confirm/confirm.component';
 import { UserPreferencesComponent } from './user-preferences/user-preferences.component';
 import { LoginDialogComponent } from './login/login-dialog/login-dialog.component';
+import { CSGOMapimagePipe } from './pipes/csgomapimage.pipe';
+import { CSGOMapnamePipe } from './pipes/csgomapname.pipe';
 
 
 @NgModule({
@@ -29,14 +31,18 @@ import { LoginDialogComponent } from './login/login-dialog/login-dialog.componen
     LoginDialogComponent,
     LoginComponent,
     UserPreferencesComponent,
-    SuccessErrorComponent
+    SuccessErrorComponent,
+    CSGOMapimagePipe,
+    CSGOMapnamePipe
   ],
   exports: [
     ConfirmComponent,
     LoginDialogComponent,
     LoginComponent,
     UserPreferencesComponent,
-    SuccessErrorComponent
+    SuccessErrorComponent,
+    CSGOMapimagePipe,
+    CSGOMapnamePipe
   ],
   imports: [
     CommonModule,

@@ -1,10 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MapPoolComponent } from './map-pool.component';
-import { CSGOMapnamePipe } from '../pipes/mapname.pipe';
-import { MapimagePipe } from '../pipes/mapimage.pipe';
 import { IgxCheckboxModule, IgxCardModule } from 'igniteui-angular';
 import { ActiveDutyMapsPipe } from '../pipes/active-duty-maps.pipe';
+import { BellumGensModule } from 'src-common/components/components.module';
 
 describe('MapPoolComponent', () => {
   let component: MapPoolComponent;
@@ -14,12 +13,11 @@ describe('MapPoolComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         IgxCheckboxModule,
-        IgxCardModule
+        IgxCardModule,
+        BellumGensModule
       ],
       declarations: [
         MapPoolComponent,
-        MapimagePipe,
-        CSGOMapnamePipe,
         ActiveDutyMapsPipe
       ]
     })

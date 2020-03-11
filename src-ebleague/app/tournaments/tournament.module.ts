@@ -30,9 +30,8 @@ import { ProductionCrewComponent } from './production-crew/production-crew.compo
 import { TournamentRegistrationComponent } from './tournament-registration/tournament-registration.component';
 import { SortByPointsPipe } from '../pipes/sort-by-points.pipe';
 import { CSGOTournamentScheduleComponent } from './tournament-schedule/csgo/tournament-schedule.component';
-import { CSGOMapnamePipe } from '../../../src-bellumgens/app/pipes/mapname.pipe';
-import { MapimagePipe } from '../../../src-bellumgens/app/pipes/mapimage.pipe';
 import { SC2TournamentScheduleComponent } from './tournament-schedule/sc2/tournament-schedule.component';
+import { BellumGensModule } from '../../../src-common/components/components.module';
 import { Sc2MapNamePipe } from '../pipes/sc2-map-name.pipe';
 
 
@@ -51,8 +50,6 @@ import { Sc2MapNamePipe } from '../pipes/sc2-map-name.pipe';
     GroupsFilterPipe,
     BaseComponent,
     SortByPointsPipe,
-    CSGOMapnamePipe,
-    MapimagePipe,
     Sc2MapNamePipe
   ],
   imports: [
@@ -73,7 +70,8 @@ import { Sc2MapNamePipe } from '../pipes/sc2-map-name.pipe';
     IgxCheckboxModule,
     IgxProgressBarModule,
     IgxBadgeModule,
-    IgxCalendarModule
+    IgxCalendarModule,
+    BellumGensModule
   ]
 })
 export class TournamentModule { }

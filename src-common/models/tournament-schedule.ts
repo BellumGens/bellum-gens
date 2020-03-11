@@ -29,6 +29,7 @@ export interface TournamentMatch {
   EndTime?: Date;
   GroupId?: string;
   Maps?: TournamentCSGOMatchMap [] | TournamentSC2MatchMap [];
+  inEdit?: boolean;
 }
 
 export interface TournamentCSGOMatch extends TournamentMatch {
