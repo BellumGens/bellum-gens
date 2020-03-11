@@ -29,14 +29,13 @@
       </div>
 
       <div class="results-container match-score" *ngFor="let map of match.Maps">
-
-        <igx-avatar [src]="map.Map | csgomapimage" [initials]="map.Map | csgomapname" [title]="map.Map | csgomapname"></igx-avatar>
+        <span></span>
 
         <div class="match-result-content align-right">
           {{ map.Team1Score }}
         </div>
 
-        <div class="match-text-content align-center">:</div>
+        <igx-avatar [src]="map.Map | csgomapimage" [initials]="map.Map | csgomapname" [title]="map.Map | csgomapname"></igx-avatar>
 
         <div class="match-result-content">
           {{ map.Team2Score }}

@@ -16,14 +16,14 @@
     <div class="match-score match-summary" *ngFor="let match of selectedMatches">
       <div class="match-time highlight">{{ match.StartTime | date:'shortTime' }}</div>
 
-      <div class="align-right">
+      <div class="align-center">
         <span class="match-text-content team-name">{{ match.Player1.battleNetId }}</span>
         <igx-avatar [src]="match.Player1.avatarMedium" [initials]="match.Player1.username" roundShape="true"></igx-avatar>
       </div>
 
       <span class="match-text-content team-name align-center">vs.</span>
 
-      <div>
+      <div class="align-center">
         <igx-avatar [src]="match.Player2.avatarMedium" [initials]="match.Player2.username" roundShape="true"></igx-avatar>
         <span class="match-text-content team-name">{{ match.Player2.battleNetId }}</span>
       </div>

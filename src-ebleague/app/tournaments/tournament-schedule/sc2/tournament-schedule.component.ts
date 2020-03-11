@@ -11,7 +11,7 @@ import { SameDay } from '../../../../../src-common/models/misc';
 })
 export class SC2TournamentScheduleComponent {
   public sc2matches: TournamentSC2Match [];
-  public datesWithMatches: DateRangeDescriptor[] = [];
+  public datesWithMatches: DateRangeDescriptor [] = [];
   public selectedMatches: TournamentSC2Match [] = [];
   public today = new Date();
   public loading = false;

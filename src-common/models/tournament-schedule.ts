@@ -68,8 +68,3 @@ export interface TournamentSC2MatchMap {
   PlayerBanId?: string;
   WinnerId?: string;
 }
-
-export function getEmptyNewMatch(start: Date): TournamentMatch {
-  return { StartTime: start };
-}
-
