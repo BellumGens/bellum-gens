@@ -51,9 +51,21 @@
           <igx-icon *ngIf="match.inEdit" class="navigatable action-icon-button" (click)="match.inEdit = false">cancel</igx-icon>
         </div>
 
+        <span>Резултат</span>
+
+        <igx-input-group>	
+          <label igxLabel>Точки отбор 1</label>	
+          <input type="number" igxInput [disabled]="!match.inEdit" [(ngModel)]="match.Team1Points" />	
+        </igx-input-group>	
+        :	
+        <igx-input-group>	
+          <label igxLabel>Точки отбор 2</label>	
+          <input type="number" igxInput [disabled]="!match.inEdit" [(ngModel)]="match.Team2Points" />	
+        </igx-input-group>
+
         <div class="results-container match-score" *ngFor="let map of match.Maps">
 
-          <igx-select class="space-out" [disabled]="!match.inEdit" [(ngModel)]="map.Map">
+          <igx-select [disabled]="!match.inEdit" [(ngModel)]="map.Map">
             <label igxLabel>Карта</label>
             <igx-select-item *ngFor="let map of mapList" [value]="map.id">
               {{ map.map }}
@@ -75,17 +87,19 @@
             <igx-icon *ngIf="map.Id" class="navigatable action-icon-button" (click)="deleteMatchMap(map, match.Maps)">delete_forever</igx-icon>
           </div>
         </div>
-        
+
         <button *ngIf="match.Id && match.inEdit"
                 igxButton
                 (click)="match.Maps.push({ CSGOMatchId: match.Id })">
           <igx-icon>add_circle_outline</igx-icon>Добави Карта за Мача
         </button>
 
-        <igx-divider class="content-container-row"></igx-divider>
+        <igx-divider middle="true" inset="20px" class="content-container-row divider"></igx-divider>
       </div>
 
-      <button igxButton (click)="selectedMatches.push({StartTime: selectedDate, inEdit: true})"><igx-icon>add_circle_outline</igx-icon>Добави нова среща</button>
+      <button igxButton (click)="selectedMatches.push({StartTime: selectedDate, inEdit: true})">
+        <igx-icon>add_circle_outline</igx-icon>Добави нова среща
+      </button>
     </div>
   </div>
 

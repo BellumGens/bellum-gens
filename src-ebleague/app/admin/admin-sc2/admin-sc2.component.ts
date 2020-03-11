@@ -4,10 +4,10 @@ import { TournamentGroup,
   getEmptyNewGroup} from '../../../../src-common/models/tournament';
 import { ApiTournamentsService } from '../../../../src-common/services/bellumgens-api.tournaments.service';
 import { environment } from '../../../../src-common/environments/environment';
-import { IDropDroppedEventArgs } from 'igniteui-angular';
-import { TournamentSC2Match, MatchScheduleSlot, TournamentSC2MatchMap } from '../../../../src-common/models/tournament-schedule';
-import { WEEKLY_SCHEDULE } from '../../../../src-common/models/schedule-slots';
+import { IDropDroppedEventArgs, DateRangeDescriptor, DateRangeType } from 'igniteui-angular';
+import { TournamentSC2Match, TournamentSC2MatchMap } from '../../../../src-common/models/tournament-schedule';
 import { SC2_MAPS, SC2LadderDescriptor } from '../../../../src-common/models/sc2maps';
+import { SameDay } from '../../../../src-common/models/misc';
 
 @Component({
   selector: 'app-admin-sc2',
@@ -19,11 +19,14 @@ export class AdminSc2Component {
   public groups: TournamentGroup [];
   public matches: TournamentSC2Match [];
   public loading = false;
+  public loadingMatches = false;
   public environment = environment;
   public newGroup = getEmptyNewGroup();
   public pipeTrigger = 0;
-  public schedule = WEEKLY_SCHEDULE;
   public mapList: SC2LadderDescriptor [] = SC2_MAPS;
+  public selectedDate = new Date();
+  public datesWithMatches: DateRangeDescriptor [] = [];
+  public selectedMatches: TournamentSC2Match [] = [];
 
   constructor(private apiService: ApiTournamentsService) {
     this.apiService.sc2Registrations.subscribe(data => {
@@ -33,18 +36,14 @@ export class AdminSc2Component {
     });
     this.apiService.loadingSC2Registrations.subscribe(data => this.loading = data);
     this.apiService.getSC2Groups().subscribe(data => this.groups = data);
+    this.apiService.loadingSC2Matches.subscribe(data => this.loadingMatches = data);
     this.apiService.sc2Matches.subscribe(data => {
-      this.matches = data;
-      if (this.matches) {
-        this.schedule.forEach(week => {
-          week.days.forEach(day => {
-            day.slots.forEach(s => {
-              const match = this.matches.find(m => new Date(m.StartTime).getTime() === s.start.getTime());
-              if (match) {
-                s.match = match;
-              }
-            });
-          });
+      if (data) {
+        this.matches = data;
+        this.matches.forEach(m => m.StartTime = new Date(m.StartTime));
+        this.selectedMatches = this.matches.filter(m => SameDay(m.StartTime, this.selectedDate));
+        this.matches.forEach(match => {
+          this.datesWithMatches.push({ type: DateRangeType.Specific, dateRange: [ match.StartTime ] });
         });
       }
     });
@@ -84,14 +83,28 @@ export class AdminSc2Component {
     this.pipeTrigger++;
   }
 
-  public submitMatch(slot: MatchScheduleSlot) {
-    const match = slot.match;
+  public submitMatch(match: TournamentSC2Match) {
     if ((<TournamentSC2Match>match).Player1Id && (<TournamentSC2Match>match).Player2Id) {
       const reg = this.registrations.find(r =>
         r.UserId === (<TournamentSC2Match>match).Player1Id || r.UserId === (<TournamentSC2Match>match).Player2Id);
       match.GroupId = reg.TournamentSC2GroupId;
-      this.apiService.submitSC2Match(match).subscribe(data => slot.match = data);
-      slot.inEdit = false;
+      this.apiService.submitSC2Match(match).subscribe(data => {
+        this.matches.push(match);
+        match.Id = data.Id;
+        match.Maps = [];
+        match.inEdit = false;
+      });
+    }
+  }
+
+  public deleteMatch(match) {
+    if (match.Id) {
+      this.apiService.deleteSC2Match(match).subscribe(_ => {
+        this.selectedMatches.splice(this.selectedMatches.indexOf(match), 1);
+        this.matches.splice(this.selectedMatches.indexOf(match), 1);
+      });
+    } else {
+      this.selectedMatches.splice(this.selectedMatches.indexOf(match), 1);
     }
   }
 
@@ -103,5 +116,10 @@ export class AdminSc2Component {
     this.apiService.deleteSC2MatchMap(map.Id).subscribe(_ => {
       maps.splice(maps.indexOf(map), 1);
     });
+  }
+
+  public daySelected(date: Date) {
+    this.selectedDate = date;
+    this.selectedMatches = this.matches.filter(m => SameDay(new Date(m.StartTime), this.selectedDate));
   }
 }

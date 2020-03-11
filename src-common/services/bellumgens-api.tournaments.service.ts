@@ -358,6 +358,22 @@ export class ApiTournamentsService {
       );
   }
 
+  public deleteSC2Match(match: TournamentSC2Match) {
+    return this.http.delete<TournamentSC2Match>(`${this._apiEndpoint}/tournament/sc2match?id=${match.Id}`,
+      { withCredentials: true}).pipe(
+        map(response => {
+          if (response) {
+            this.commService.emitSuccess('Tournament StarCraft II match deleted successfully!');
+          }
+          return response;
+        }),
+        catchError(error => {
+          this.commService.emitError(error.error.Message);
+          return throwError(error);
+        })
+      );
+  }
+
   public submitSC2MatchMap(matchmap: TournamentSC2MatchMap) {
     return this.http.put<TournamentSC2MatchMap>(`${this._apiEndpoint}/tournament/sc2matchmap?id=${matchmap.Id || null}`,
       matchmap, { withCredentials: true}).pipe(
