@@ -11,7 +11,7 @@ describe('BellumgensApiService', () => {
   });
 
   it('should be created', () => {
-    const service: BellumgensApiService = TestBed.get(BellumgensApiService);
+    const service: BellumgensApiService = TestBed.inject(BellumgensApiService);
     expect(service).toBeTruthy();
   });
 });

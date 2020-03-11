@@ -9,7 +9,7 @@ describe('ApiTournamentsService', () => {
   }));
 
   it('should be created', () => {
-    const service: ApiTournamentsService = TestBed.get(ApiTournamentsService);
+    const service: ApiTournamentsService = TestBed.inject(ApiTournamentsService);
     expect(service).toBeTruthy();
   });
 });
