@@ -3,12 +3,12 @@
     <igx-card-header>
       <igx-avatar igxCardThumbnail [roundShape]="true" src="/assets/wallpapers/csgo-watermark.webp"></igx-avatar>
       <h1 igxCardHeaderTitle>CS:GO Лига</h1>
-      <a href="https://www.twitch.tv/ebleague_a" target="_blank" rel="noopener">Канал на лигата в Twitch</a>
+      <p><span class="highlight">ВАЖНО!</span> Финалите на Esports Business League протичат в плейофна фаза с директни елиминации. Всички срещи от финалите ще са във формат BO3. Поради небалансираното разпределение по групите, до четвъртфиналната фаза ще достигнат топ 5 отборите от Група А, както и топ 3 отборите от Група Б. 2 отбора от Група А ще бъдат изтеглени да играят на първият четвъртфинал, а другите 3 ще бъдат сийднати в останалите четвъртфинали и за всеки от тях ще се изтегли по един отбор от Група Б. Повече информация свързана с финалите можете да намерите на <a routerLink="/">заглавната ни станица</a>.</p>
     </igx-card-header>
     <igx-card-content>
       <app-csgo-tournament-schedule>
         <div class="participants-container">
-          <h5 style="width: 100%">Участници</h5>
+          <h4 style="width: 100%">Участници</h4>
           <igx-circular-bar *ngIf="loading" [indeterminate]="true"></igx-circular-bar>
           <div *ngFor="let registration of registrations" class="registration-slot">
             <igx-avatar [src]="registration.Team.TeamAvatar"
@@ -29,6 +29,7 @@
         </div>
       </app-csgo-tournament-schedule>
 
+      <h4>Групи</h4>
       <div class="card-wrapper">
         <igx-card *ngFor="let group of groups">
           <igx-card-header>
