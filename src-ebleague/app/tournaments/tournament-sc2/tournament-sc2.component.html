@@ -3,12 +3,12 @@
     <igx-card-header>
       <igx-avatar igxCardThumbnail [roundShape]="true" src="/assets/wallpapers/sc2-watermark.webp"></igx-avatar>
       <h1 igxCardHeaderTitle>StarCraft II Лига</h1>
-      <a href="https://www.twitch.tv/ebleague_b" target="_blank" rel="noopener">Канал на лигата в Twitch</a>
+      <p><span class="highlight">ВАЖНО!</span> Финалите на Esports Business League протичат в плейофна фаза с директни елиминации. Всички срещи до самият финал ще са във формат BO3. Финалът ще бъде във формат BO5. На финалите ще се играе на актуалният към момента ladder map pool. За финалите се класират 12 играча - топ 3 играчите от всяка група. Играчите с най-много точки от всяка група ще бъдат сийднати във всеки от четирите четвъртфинала. Вторите по точки от всяка група ще играят срещу третите по точки от друга група, за достигане до четирите четвъртфиналите. Срещите ще се определят с жребии. Повече информация свързана с финалите можете да намерите на <a routerLink="/">заглавната ни станица</a>.</p>
     </igx-card-header>
     <igx-card-content>
       <app-sc2-tournament-schedule>
         <div class="participants-container">
-          <h5 style="width: 100%">Участници</h5>
+          <h4 style="width: 100%">Участници</h4>
           <igx-circular-bar *ngIf="loading" [indeterminate]="true"></igx-circular-bar>
           <div *ngFor="let registration of registrations" class="registration-slot">
             <igx-avatar [src]="registration.User.avatarMedium" [initials]="registration.User.username" size="medium" roundShape="true">
@@ -25,6 +25,7 @@
         </div>
       </app-sc2-tournament-schedule>
 
+      <h4>Групи</h4>
       <div class="card-wrapper">
         <igx-card *ngFor="let group of groups">
           <igx-card-header>

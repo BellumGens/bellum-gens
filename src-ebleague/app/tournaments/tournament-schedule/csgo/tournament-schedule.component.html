@@ -4,7 +4,7 @@
   </igx-calendar>
 
   <div class="match-details">
-    <h5>График за <span class="highlight">{{ today | date }}</span></h5>
+    <h4>График за <span class="highlight">{{ today | date }}</span></h4>
 
     <div *ngIf="loading else emptymatches" class="loading-overview">
       <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
