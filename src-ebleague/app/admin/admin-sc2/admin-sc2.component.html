@@ -94,6 +94,8 @@
           </div>
         </div>
 
+        <igx-checkbox *ngIf="!match.Maps || !match.Maps.length" [disabled]="!match.inEdit" [(ngModel)]="match.NoShow">Служебна победа</igx-checkbox>
+
         <button *ngIf="match.Id && match.inEdit"
                 igxButton
                 (click)="match.Maps.push({ SC2MatchId: match.Id })">

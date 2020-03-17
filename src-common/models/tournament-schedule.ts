@@ -27,6 +27,7 @@ export interface TournamentMatch {
   VideoLink?: string;
   StartTime?: Date;
   EndTime?: Date;
+  NoShow?: boolean;
   GroupId?: string;
   Maps?: TournamentCSGOMatchMap [] | TournamentSC2MatchMap [];
   inEdit?: boolean;
