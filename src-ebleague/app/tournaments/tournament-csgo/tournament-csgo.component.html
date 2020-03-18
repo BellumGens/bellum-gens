@@ -30,6 +30,11 @@
       </app-csgo-tournament-schedule>
 
       <h4>Групи</h4>
+
+      <igx-grid *ngFor="let group of groups" [data]="group.Participants">
+
+      </igx-grid>
+
       <div class="card-wrapper">
         <igx-card *ngFor="let group of groups">
           <igx-card-header>
