@@ -41,6 +41,10 @@
           {{ map.Team2Score }}
         </div>
       </div>
+
+      <div class="content-container-row" *ngIf="match.NoShow">
+        Служебна победа.
+      </div>
     </div>
   </div>
 

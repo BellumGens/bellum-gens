@@ -41,6 +41,10 @@
           <igx-icon *ngIf="map.WinnerId === match.Player2Id">check</igx-icon>
         </div>
       </div>
+
+      <div class="content-container-row" *ngIf="match.NoShow">
+        Служебна победа.
+      </div>
     </div>
   </div>
 
