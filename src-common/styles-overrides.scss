@@ -22,6 +22,10 @@ igx-tab-item igx-icon {
   height: 24px;
   min-width: 24px;
 }
+
+igx-grid-cell > igx-avatar {
+  margin-right: 8px;
+}
 /* END ICONS */
 
 /* SNACKBAR */

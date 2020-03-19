@@ -22,9 +22,7 @@
       </igx-avatar>
 
       <h2 igxListLineTitle>
-        <a>
-          {{ searchResult.SteamUser.steamUser.steamID }}
-        </a>
+        {{ searchResult.SteamUser.steamUser.steamID }}
       </h2>
       <h4 igxListLineSubTitle>{{ searchResult.SteamUser.steamUser.realname }}</h4>
 
@@ -59,9 +57,7 @@
       </igx-avatar>
 
       <h2 igxListLineTitle>
-        <a>
-          {{ user.username }}
-        </a>
+        {{ user.username }}
       </h2>
       <h4 igxListLineSubTitle>{{ user.realname }}</h4>
 
@@ -100,7 +96,7 @@
       <igx-avatar igxListThumbnail [src]="team.TeamAvatar" [initials]="team.TeamName" roundShape="true">
       </igx-avatar>
       <h2 igxListLineTitle>
-        <a>{{ team.TeamName }}</a>
+        {{ team.TeamName }}
       </h2>
 
       <div igxListAction>
@@ -126,7 +122,7 @@
       <igx-avatar igxListThumbnail [src]="strat.Image" [initials]="strat.title">
       </igx-avatar>
       <h2 igxListLineTitle>
-        <a>{{ strat.Title }}</a>
+        {{ strat.Title }}
       </h2>
     </igx-list-item>
     <igx-list-item *ngIf="searchResult.Strategies.length > 3">

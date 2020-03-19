@@ -53,14 +53,14 @@
 
         <span>Резултат</span>
 
-        <igx-input-group>	
-          <label igxLabel>Точки отбор 1</label>	
-          <input type="number" igxInput [disabled]="!match.inEdit" [(ngModel)]="match.Team1Points" />	
-        </igx-input-group>	
-        :	
-        <igx-input-group>	
-          <label igxLabel>Точки отбор 2</label>	
-          <input type="number" igxInput [disabled]="!match.inEdit" [(ngModel)]="match.Team2Points" />	
+        <igx-input-group>
+          <label igxLabel>Точки отбор 1</label>
+          <input type="number" igxInput [disabled]="!match.inEdit" [(ngModel)]="match.Team1Points" />
+        </igx-input-group>
+        :
+        <igx-input-group>
+          <label igxLabel>Точки отбор 2</label>
+          <input type="number" igxInput [disabled]="!match.inEdit" [(ngModel)]="match.Team2Points" />
         </igx-input-group>
 
         <div class="results-container match-score" *ngFor="let map of match.Maps">
@@ -87,6 +87,8 @@
             <igx-icon *ngIf="map.Id" class="navigatable action-icon-button" (click)="deleteMatchMap(map, match.Maps)">delete_forever</igx-icon>
           </div>
         </div>
+
+        <igx-checkbox *ngIf="!match.Maps || !match.Maps.length" [disabled]="!match.inEdit" [(ngModel)]="match.NoShow">Служебна победа</igx-checkbox>
 
         <button *ngIf="match.Id && match.inEdit"
                 igxButton

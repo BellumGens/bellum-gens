@@ -89,9 +89,13 @@ export class AdminCsgoComponent {
         r.TeamId === (<TournamentCSGOMatch>match).Team1Id || r.TeamId === (<TournamentCSGOMatch>match).Team2Id);
       match.GroupId = reg.TournamentCSGOGroupId;
       this.apiService.submitCSGOMatch(match).subscribe(data => {
-        this.matches.push(match);
-        match.Id = data.Id;
-        match.Maps = [];
+        if (!match.Id) {
+          this.matches.push(data);
+          match.Id = data.Id;
+        }
+        if (!match.Maps) {
+          match.Maps = [];
+        }
         match.inEdit = false;
       });
     }

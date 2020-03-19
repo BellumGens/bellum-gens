@@ -94,6 +94,8 @@
           </div>
         </div>
 
+        <igx-checkbox *ngIf="!match.Maps || !match.Maps.length" [disabled]="!match.inEdit" [(ngModel)]="match.NoShow">Служебна победа</igx-checkbox>
+
         <button *ngIf="match.Id && match.inEdit"
                 igxButton
                 (click)="match.Maps.push({ SC2MatchId: match.Id })">
@@ -119,7 +121,7 @@
       <div class="horizontal-center registration-container">
         <igx-circular-bar *ngIf="loading" [indeterminate]="true"></igx-circular-bar>
         <div *ngFor="let registration of registrations | notInGroup:'TournamentSC2GroupId':pipeTrigger" class="registration-slot">
-          <igx-avatar [src]="registration.User.avatarFull"
+          <igx-avatar [src]="registration.User.avatarMedium"
                       [initials]="registration.User.username"
                       size="medium"
                       roundShape="true"

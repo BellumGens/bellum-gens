@@ -89,9 +89,13 @@ export class AdminSc2Component {
         r.UserId === (<TournamentSC2Match>match).Player1Id || r.UserId === (<TournamentSC2Match>match).Player2Id);
       match.GroupId = reg.TournamentSC2GroupId;
       this.apiService.submitSC2Match(match).subscribe(data => {
-        this.matches.push(match);
-        match.Id = data.Id;
-        match.Maps = [];
+        if (!match.Id) {
+          this.matches.push(data);
+          match.Id = data.Id;
+        }
+        if (!match.Maps) {
+          match.Maps = [];
+        }
         match.inEdit = false;
       });
     }

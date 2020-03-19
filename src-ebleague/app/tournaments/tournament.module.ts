@@ -18,7 +18,8 @@ import { IgxDividerModule,
   IgxCheckboxModule,
   IgxProgressBarModule,
   IgxBadgeModule,
-  IgxCalendarModule} from 'igniteui-angular';
+  IgxCalendarModule,
+  IgxGridModule} from 'igniteui-angular';
 import { TournamentCsgoComponent } from './tournament-csgo/tournament-csgo.component';
 import { TournamentSc2Component } from './tournament-sc2/tournament-sc2.component';
 import { FormsModule } from '@angular/forms';
@@ -71,6 +72,7 @@ import { Sc2MapNamePipe } from '../pipes/sc2-map-name.pipe';
     IgxProgressBarModule,
     IgxBadgeModule,
     IgxCalendarModule,
+    IgxGridModule,
     BellumGensModule
   ]
 })

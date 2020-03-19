@@ -25,31 +25,43 @@
         </div>
       </app-sc2-tournament-schedule>
 
-      <h4>Групи</h4>
-      <div class="card-wrapper">
-        <igx-card *ngFor="let group of groups">
-          <igx-card-header>
-            <igx-avatar igxCardThumbnail [roundShape]="true" src="/assets/wallpapers/sc2-watermark.webp"></igx-avatar>
-            <h1 igxCardHeaderTitle>{{group.Name}}</h1>
-          </igx-card-header>
-
-          <igx-card-content class="group-card-content">
-            <igx-list class="group-list">
-              <igx-list-item *ngFor="let participant of group.Participants  | sortByPoints:'PlayerPoints'">
-                <igx-avatar igxListThumbnail [src]="participant.User.avatarMedium" roundShape="true"></igx-avatar>
-                <a igxListLineTitle [href]="environment.bellumgens + '/players/' + (participant.User.customURL || participant.UserId)" target="_blank">
-                  {{ participant.User.username }}
-                </a>
-                <span igxListLineTitle>
-                  {{ participant.BattleTag }}
-                </span>
-
-                <span igxListAction>{{ participant.PlayerPoints }} точки</span>
-              </igx-list-item>
-            </igx-list>
-          </igx-card-content>
-        </igx-card>
+      <div class="group-columns">
+        <igx-grid *ngFor="let group of groups"
+                  class="group-grid"
+                  [cellSelection]="'none'"
+                  [data]="group.Participants"
+                  showToolbar="true"
+                  [toolbarTitle]="group.Name">
+  
+          <igx-column field="User" header="Отбор" width="20%">
+            <ng-template igxCell let-value>
+              <igx-avatar igxListThumbnail
+                          [src]="value.avatarMedium"
+                          [initials]="value.username"
+                          roundShape="true">
+              </igx-avatar>
+              <a igxListLineTitle [href]="environment.bellumgens + '/players/' + (value.customURL || value.id)" target="_blank">
+                {{ value.username }}
+              </a>
+            </ng-template>
+          </igx-column>
+  
+          <igx-column field="BattleTag" header="Battle.net Battle Tag" width="20%">
+          </igx-column>
+          <igx-column field="Company" header="Компания" width="20%">
+          </igx-column>
+          <igx-column field="Matches" header="Срещи" width="10%">
+          </igx-column>
+          <igx-column field="Wins" header="Победи" width="10%">
+          </igx-column>
+          <igx-column field="Losses" header="Загуби" width="10%">
+          </igx-column>
+          <igx-column field="PlayerPoints" header="Точки" width="10%">
+          </igx-column>
+  
+        </igx-grid>
       </div>
+
     </igx-card-content>
   </igx-card>
 </div>

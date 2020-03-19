@@ -33,6 +33,11 @@ export interface TournamentRegistration {
   Company: string;
   PlayerPoints: number;
   TeamPoints: number;
+  Wins: number;
+  Losses: number;
+  OTWins: number;
+  OTLosses: number;
+  RoundDifference: Number;
   BattleTag: string;
   TournamentCSGOGroupId: string;
   TournamentSC2GroupId: string;
