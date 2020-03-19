@@ -29,42 +29,45 @@
         </div>
       </app-csgo-tournament-schedule>
 
-      <h4>Групи</h4>
+      <div class="group-columns">
+        <igx-grid *ngFor="let group of groups"
+                  class="group-grid"
+                  [cellSelection]="'none'"
+                  [data]="group.Participants"
+                  showToolbar="true"
+                  [toolbarTitle]="group.Name">
 
-      <igx-grid *ngFor="let group of groups" [autoGenerate]="true" [data]="group.Participants">
+          <igx-column field="Team" header="Отбор" width="20%">
+            <ng-template igxCell let-value>
+              <igx-avatar igxListThumbnail
+                          [src]="value.TeamAvatar"
+                          [initials]="value.TeamName"
+                          roundShape="true">
+              </igx-avatar>
+              <span>{{ value.TeamName }}</span>
+            </ng-template>
+          </igx-column>
 
-      </igx-grid>
+          <igx-column field="Company" header="Компания" width="17%">
+          </igx-column>
+          <igx-column field="Matches" header="Срещи" width="9%">
+          </igx-column>
+          <igx-column field="Wins" header="Победи" width="9%">
+          </igx-column>
+          <igx-column field="OTWins" header="Победи в овъртайм" width="9%">
+          </igx-column>
+          <igx-column field="OTLosses" header="Загуби в овъртайм" width="9%">
+          </igx-column>
+          <igx-column field="Losses" header="Загуби" width="9%">
+          </igx-column>
+          <igx-column field="RoundDifference" header="Рундове +/-" width="9%">
+          </igx-column>
+          <igx-column field="TeamPoints" header="Точки" width="9%">
+          </igx-column>
 
-      <div class="card-wrapper">
-        <igx-card *ngFor="let group of groups">
-          <igx-card-header>
-            <igx-avatar igxCardThumbnail [roundShape]="true" src="/assets/wallpapers/csgo-watermark.webp"></igx-avatar>
-            <h1 igxCardHeaderTitle>{{group.Name}}</h1>
-          </igx-card-header>
-
-          <igx-card-content class="group-card-content">
-            <igx-list class="group-list">
-              <igx-list-item *ngFor="let participant of group.Participants | sortByPoints:'TeamPoints'">
-
-                <igx-avatar igxListThumbnail
-                            [src]="participant.Team.TeamAvatar"
-                            [initials]="participant.Team.TeamName"
-                            [title]="participant.Company"
-                            roundShape="true">
-                </igx-avatar>
-
-                <a [href]="environment.bellumgens + '/team/' + participant.Team.CustomUrl"
-                   igxListLineTitle
-                   target="_blank">
-                  {{ participant.Team.TeamName }}
-                </a>
-
-                <span igxListAction>{{ participant.TeamPoints }} точки</span>
-              </igx-list-item>
-            </igx-list>
-          </igx-card-content>
-        </igx-card>
+        </igx-grid>
       </div>
+
     </igx-card-content>
   </igx-card>
 </div>

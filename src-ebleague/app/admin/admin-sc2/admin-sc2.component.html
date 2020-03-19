@@ -121,7 +121,7 @@
       <div class="horizontal-center registration-container">
         <igx-circular-bar *ngIf="loading" [indeterminate]="true"></igx-circular-bar>
         <div *ngFor="let registration of registrations | notInGroup:'TournamentSC2GroupId':pipeTrigger" class="registration-slot">
-          <igx-avatar [src]="registration.User.avatarFull"
+          <igx-avatar [src]="registration.User.avatarMedium"
                       [initials]="registration.User.username"
                       size="medium"
                       roundShape="true"

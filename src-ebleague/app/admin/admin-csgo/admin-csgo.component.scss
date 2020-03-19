@@ -1,10 +1,4 @@
 :host {
-  .home-page-slide-columns {
-    grid-column-gap: 24px;
-    grid-template-columns: minmax(45%, 1fr) minmax(45%, 1fr);
-    padding: 8px 4px;
-  }
-
   .match-score {
     grid-template-columns: minmax(100px, 1fr) minmax(150px, 1fr) 48px minmax(150px, 1fr) minmax(150px, 1fr);
   }
