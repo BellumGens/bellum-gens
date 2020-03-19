@@ -7,6 +7,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { IgxAvatarModule, IgxCardModule, IgxBadgeModule, IgxListModule, IgxProgressBarModule, IgxGridModule } from 'igniteui-angular';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SortByPointsPipe } from 'src-ebleague/app/pipes/sort-by-points.pipe';
+import { SC2TournamentScheduleComponent } from '../tournament-schedule/sc2/tournament-schedule.component';
 
 describe('TournamentSc2Component', () => {
   let component: TournamentSc2Component;
@@ -16,6 +17,7 @@ describe('TournamentSc2Component', () => {
     TestBed.configureTestingModule({
       declarations: [
         TournamentSc2Component,
+        SC2TournamentScheduleComponent,
         SortByPointsPipe
       ],
       imports: [
