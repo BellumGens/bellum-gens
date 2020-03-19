@@ -95,7 +95,7 @@
     <igx-list-item *ngFor="let team of searchResult.Teams | reduceQuickSearchResult" class="navigatable" [routerLink]="['/team', team.CustomUrl]">
       <igx-avatar igxListThumbnail [src]="team.TeamAvatar" [initials]="team.TeamName" roundShape="true">
       </igx-avatar>
-      <h2 class="highlight navigatable" igxListLineTitle>
+      <h2 igxListLineTitle>
         {{ team.TeamName }}
       </h2>
 
