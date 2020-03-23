@@ -27,6 +27,17 @@
       </ng-template>
     </igx-tab-item>
 
+    <igx-tab-item routerLink="achievements"
+                  routerLinkActive #rla2="routerLinkActive"
+                  [isSelected]="rla2.isActive">
+      <ng-template igxTab>
+        <div class="horizontal-center">
+          <igx-icon>sports_esports</igx-icon>
+          <div class="igx-tabs__item-label">Achievements</div>
+        </div>
+      </ng-template>
+    </igx-tab-item>
+
     <igx-tab-item *ngIf="userIsMember"
                   routerLink="strategies"
                   routerLinkActive #rla2="routerLinkActive"

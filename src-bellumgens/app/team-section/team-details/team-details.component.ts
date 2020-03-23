@@ -16,21 +16,11 @@ import { Title, Meta } from '@angular/platform-browser';
   styleUrls: ['./team-details.component.css']
 })
 export class TeamDetailsComponent extends BaseComponent {
-  private _isAdmin = null;
+  public isAdmin = false;
   public activeMembers: TeamMember [];
   public inactiveMembers: TeamMember [];
   public authUser: ApplicationUser;
   public team = TEAM_PLACEHOLDER;
-
-  public get isAdmin() {
-    if (this._isAdmin !== null) {
-      return this._isAdmin;
-    }
-    if (this.authUser && this.team && this.team.Members) {
-      this._isAdmin = this.team.Members.filter(m => m.IsAdmin && m.UserId === this.authUser.id).length > 0;
-    }
-    return this._isAdmin;
-  }
 
   public roleSlots: RoleSlot [] = [
     { roleName: 'IGL', role: PlaystyleRole.IGL, user: null },
@@ -43,19 +33,21 @@ export class TeamDetailsComponent extends BaseComponent {
   @ViewChildren(IgxAvatarComponent, { read: ElementRef }) public emptyRoles: QueryList<ElementRef>;
 
   constructor(private apiService: BellumgensApiService,
-              private authManager: LoginService,
+              private authService: LoginService,
               title: Title,
               meta: Meta,
               activeRoute: ActivatedRoute) {
     super(title, meta, activeRoute);
+
     this.subs.push(
-      this.authManager.applicationUser.subscribe((data: ApplicationUser) => {
+      this.authService.applicationUser.subscribe((data: ApplicationUser) => {
         this.authUser = data;
       }),
       this.activeRoute.parent.params.subscribe(params => {
         const teamId = params['teamid'];
 
         if (teamId) {
+          this.authService.getUserIsTeamAdmin(teamId).subscribe(admin => this.isAdmin = admin);
           this.apiService.getTeam(teamId).subscribe(team => {
             if (team) {
               this.team = team;
@@ -88,11 +80,24 @@ export class TeamDetailsComponent extends BaseComponent {
     this.apiService.removeTeamMember(user).subscribe();
   }
 
+  public moveToInactive(user: TeamMember) {
+    user.IsActive = false;
+    this.apiService.updateTeamMember(user).subscribe();
+    this.activeMembers.splice(this.activeMembers.indexOf(user), 1);
+    this.inactiveMembers.push(user);
+  }
+
   public assignToRole(args: IDropDroppedEventArgs, role: RoleSlot) {
+    args.drag.data.IsActive = true;
+
     const user = args.drag.data;
     user.Role = role.role;
     role.user = user;
-    this.activeMembers.splice(this.activeMembers.indexOf(args.drag.data), 1);
+    if (this.activeMembers.find(m => m.UserId === args.drag.data.UserId)) {
+      this.activeMembers.splice(this.activeMembers.indexOf(args.drag.data), 1);
+    } else {
+      this.inactiveMembers.splice(this.activeMembers.indexOf(args.drag.data), 1);
+    }
     args.cancel = true;
     this.roleDraggingEnd();
     this.apiService.updateTeamMember(user).subscribe();
