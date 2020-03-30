@@ -46,7 +46,7 @@ export const routes: Routes = [
   { path: 'team/:teamid', component: TeamOverviewComponent, children: [
     { path: '', redirectTo: 'details', pathMatch: 'full' },
     { path: 'details', component: TeamDetailsComponent },
-    { path: 'achievements', component: TeamTournamentsComponent },
+    { path: 'competitions', component: TeamTournamentsComponent },
     { path: 'strategies', component: TeamStrategiesComponent },
     { path: 'preferences', component: TeamPreferencesComponent, canActivate: [ TeamadminGuard ] }
   ] },

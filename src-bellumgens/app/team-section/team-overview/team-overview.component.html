@@ -27,13 +27,13 @@
       </ng-template>
     </igx-tab-item>
 
-    <igx-tab-item routerLink="achievements"
+    <igx-tab-item routerLink="competitions"
                   routerLinkActive #rla2="routerLinkActive"
                   [isSelected]="rla2.isActive">
       <ng-template igxTab>
         <div class="horizontal-center">
           <igx-icon>sports_esports</igx-icon>
-          <div class="igx-tabs__item-label">Achievements</div>
+          <div class="igx-tabs__item-label">Competitions</div>
         </div>
       </ng-template>
     </igx-tab-item>
@@ -49,15 +49,6 @@
         </div>
       </ng-template>
     </igx-tab-item>
-
-    <!-- <igx-tabs-group [disabled]="true">
-        <ng-template igxTab>
-          <div class="horizontal-center">
-            <igx-icon>date_range</igx-icon>
-            <div class="igx-tabs__item-label">Team Calendar (Coming Soon)</div>
-          </div>
-        </ng-template>
-    </igx-tabs-group> -->
 
     <igx-tab-item *ngIf="userIsAdmin"
                   routerLink="preferences"

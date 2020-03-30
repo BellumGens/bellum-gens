@@ -1,15 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { ApiTournamentsService } from '../../../../src-common/services/bellumgens-api.tournaments.service';
 
 @Component({
   selector: 'app-team-tournaments',
   templateUrl: './team-tournaments.component.html',
   styleUrls: ['./team-tournaments.component.scss']
 })
-export class TeamTournamentsComponent implements OnInit {
+export class TeamTournamentsComponent {
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  constructor(private apiService: ApiTournamentsService) { }
 
 }
