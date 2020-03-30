@@ -18,6 +18,7 @@ import { UserStrategiesComponent } from './player-section/user-strategies/user-s
 import { TeamadminGuard } from '../../src-common/guards/teamadmin.guard';
 import { TeamNavComponent } from './team-section/team-nav/team-nav.component';
 import { NotificationsComponent } from './notifications/notifications.component';
+import { TeamTournamentsComponent } from './team-section/team-tournaments/team-tournaments.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -45,6 +46,7 @@ export const routes: Routes = [
   { path: 'team/:teamid', component: TeamOverviewComponent, children: [
     { path: '', redirectTo: 'details', pathMatch: 'full' },
     { path: 'details', component: TeamDetailsComponent },
+    { path: 'competitions', component: TeamTournamentsComponent },
     { path: 'strategies', component: TeamStrategiesComponent },
     { path: 'preferences', component: TeamPreferencesComponent, canActivate: [ TeamadminGuard ] }
   ] },

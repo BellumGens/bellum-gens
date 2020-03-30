@@ -78,12 +78,12 @@
                           (dragStart)="roleDragging($event)"
                           (dragEnd)="roleDraggingEnd()">
               </igx-avatar>
-              <igx-avatar *ngIf="isAdmin && authUser.id !== user.UserId"
+              <igx-avatar *ngIf="isAdmin"
                           icon="clear"
                           [roundShape]="true"
                           class="country-badge-medium navigatable"
-                          title="Remove from team"
-                          (click)="confirm.open(user)">
+                          title="Move to inactive"
+                          (click)="moveToInactive(user)">
               </igx-avatar>
             </div>
             <span class="title">
@@ -107,17 +107,20 @@
         <div class="horizontal padding-top">
           <div class="active-inactive-users" *ngFor="let user of inactiveMembers">
             <div class="user-in-role">
-              <igx-avatar [src]="user.AvatarFull"
+              <igx-avatar [src]="user.AvatarMedium"
                           [initials]="user.Username"
                           roundShape="true"
-                          [size]="'large'">
+                          [size]="'medium'"
+                          [igxDrag]="user"
+                          (dragStart)="roleDragging($event)"
+                          (dragEnd)="roleDraggingEnd()">
               </igx-avatar>
               <igx-avatar *ngIf="isAdmin && authUser.id !== user.UserId"
                           icon="clear"
                           [roundShape]="true"
-                          class="country-badge"
+                          class="country-badge-medium navigatable"
                           title="Remove from team"
-                          (click)="removeFromTeam(user)">
+                          (click)="confirm.open(user)">
               </igx-avatar>
             </div>
             <span class="title">

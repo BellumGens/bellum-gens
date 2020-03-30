@@ -85,9 +85,9 @@ export class AdminSc2Component {
 
   public submitMatch(match: TournamentSC2Match) {
     if ((<TournamentSC2Match>match).Player1Id && (<TournamentSC2Match>match).Player2Id) {
-      const reg = this.registrations.find(r =>
-        r.UserId === (<TournamentSC2Match>match).Player1Id || r.UserId === (<TournamentSC2Match>match).Player2Id);
-      match.GroupId = reg.TournamentSC2GroupId;
+      // const reg = this.registrations.find(r =>
+      //   r.UserId === (<TournamentSC2Match>match).Player1Id || r.UserId === (<TournamentSC2Match>match).Player2Id);
+      // match.GroupId = reg.TournamentSC2GroupId;
       this.apiService.submitSC2Match(match).subscribe(data => {
         if (!match.Id) {
           this.matches.push(data);

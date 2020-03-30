@@ -101,6 +101,7 @@ import { GetRegCountPipe } from './pipes/get-reg-count.pipe';
 import { CommunicationService } from '../../src-common/services/communication.service';
 import { SocialMediaService } from '../../src-common/services/social-media.service';
 import { BellumGensModule } from '../../src-common/components/components.module';
+import { TeamTournamentsComponent } from './team-section/team-tournaments/team-tournaments.component';
 
 @NgModule({
   declarations: [
@@ -159,7 +160,8 @@ import { BellumGensModule } from '../../src-common/components/components.module'
     IsStratOwnerPipe,
     StartsWithPipe,
     TeamNewComponent,
-    GetRegCountPipe
+    GetRegCountPipe,
+    TeamTournamentsComponent
   ],
   imports: [
     FormsModule,

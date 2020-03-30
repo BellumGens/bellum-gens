@@ -85,9 +85,9 @@ export class AdminCsgoComponent {
 
   public submitMatch(match: TournamentCSGOMatch) {
     if ((<TournamentCSGOMatch>match).Team1Id && (<TournamentCSGOMatch>match).Team2Id) {
-      const reg = this.registrations.find(r =>
-        r.TeamId === (<TournamentCSGOMatch>match).Team1Id || r.TeamId === (<TournamentCSGOMatch>match).Team2Id);
-      match.GroupId = reg.TournamentCSGOGroupId;
+      // const reg = this.registrations.find(r =>
+      //   r.TeamId === (<TournamentCSGOMatch>match).Team1Id || r.TeamId === (<TournamentCSGOMatch>match).Team2Id);
+      // match.GroupId = reg.TournamentCSGOGroupId;
       this.apiService.submitCSGOMatch(match).subscribe(data => {
         if (!match.Id) {
           this.matches.push(data);

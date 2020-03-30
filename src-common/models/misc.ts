@@ -30,20 +30,9 @@ export const StratOrder = [
 
 export const CREW_MEMBERS = [
   {
-    name: 'Любомир Жечев',
-    birthplace: 'Търговище',
-    position: 'Водещ на LAN финалите',
-    // tslint:disable-next-line:max-line-length
-    description: 'Любомир Жечев се запалва по компютърните игри, след като в 3 клас бай Иван - собственикът на първия компютърен клуб/гараж в Търговище - го заговаря на прибиране от училище и му пуска безплатно да поиграе Duke Nukem 3D, защото е "приятел с баща му". След този деветдесетарски маркетингов трик Любо започва да се лишава от закуски, за да цъка 1 час на Star Craft, Diablo 2, CS, Dota, NFS, Heroes 3, Half Life и какво ли още не. Понастоящем не играе активно, защото се страхува, че ако пак се пристрасти, никога няма да си намери жена.',
-    image: '/assets/crew/lyubozhechev.webp',
-    twitter: 'https://twitter.com/LyubomirZhechev',
-    facebook: 'https://www.facebook.com/lyubomir.zhechev',
-    instagram: 'https://www.instagram.com/lyubo_zhechev'
-  },
-  {
     name: 'Никола "niku" Гяуров',
     birthplace: 'Пазарджик',
-    position: 'CS:GO кастър',
+    position: 'CS:GO кастър и Desk Host на финалите',
     // tslint:disable-next-line:max-line-length
     description: 'Никола "niku" Гяуров започва да се занимава с Counter-Strike франчайза през 2003-та година, когато е само на 12 години. За жалост електронните спортове по онова време не бяха толкова развити, както са сега, но пък хората са казали, че формата е временна, а класата е вечна. В днешно време той коментира едни от най-големите CS:GO турнири, като IEM Katowice Major 2019, ESL One New York и още много други, на български език.',
     image: '/assets/crew/niku.webp',
