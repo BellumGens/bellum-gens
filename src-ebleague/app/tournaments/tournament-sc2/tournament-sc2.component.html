@@ -27,12 +27,11 @@
 
       <div class="group-columns">
         <igx-grid *ngFor="let group of groups"
-                  class="group-grid"
                   [cellSelection]="'none'"
                   [data]="group.Participants"
                   showToolbar="true"
                   [toolbarTitle]="group.Name">
-  
+
           <igx-column field="User" header="Отбор" width="20%">
             <ng-template igxCell let-value>
               <igx-avatar igxListThumbnail
@@ -45,7 +44,7 @@
               </a>
             </ng-template>
           </igx-column>
-  
+
           <igx-column field="BattleTag" header="Battle.net Battle Tag" width="20%">
           </igx-column>
           <igx-column field="Company" header="Компания" width="20%">
@@ -58,7 +57,7 @@
           </igx-column>
           <igx-column field="PlayerPoints" header="Точки" width="10%">
           </igx-column>
-  
+
         </igx-grid>
       </div>
 

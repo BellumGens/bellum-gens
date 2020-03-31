@@ -1,1 +1,41 @@
-<p>This team has not participated in any competitions.</p>
+<p *ngIf="!tournaments || !tournaments.length">This team has not participated in any competitions.</p>
+
+
+
+<div class="group-columns">
+  <igx-grid *ngFor="let tournament of tournaments"
+            [cellSelection]="'none'"
+            [data]="tournament.CSGOMatches"
+            showToolbar="true"
+            [toolbarTitle]="tournament.Name">
+
+    <igx-column field="Team" header="Отбор" width="20%">
+      <ng-template igxCell let-value>
+        <igx-avatar igxListThumbnail
+                    [src]="value.TeamAvatar"
+                    [initials]="value.TeamName"
+                    roundShape="true">
+        </igx-avatar>
+        <span>{{ value.TeamName }}</span>
+      </ng-template>
+    </igx-column>
+
+    <igx-column field="Company" header="Компания" width="17%">
+    </igx-column>
+    <igx-column field="Matches" header="Срещи" width="9%">
+    </igx-column>
+    <igx-column field="Wins" header="Победи" width="9%">
+    </igx-column>
+    <igx-column field="OTWins" header="OT Победи" title="Победи в добавено време" width="9%">
+    </igx-column>
+    <igx-column field="OTLosses" header="OT Загуби" title="Загуби в добавено време" width="9%">
+    </igx-column>
+    <igx-column field="Losses" header="Загуби" width="9%">
+    </igx-column>
+    <igx-column field="RoundDifference" header="+/- Рундове" width="9%">
+    </igx-column>
+    <igx-column field="TeamPoints" header="Точки" width="9%">
+    </igx-column>
+
+  </igx-grid>
+</div>

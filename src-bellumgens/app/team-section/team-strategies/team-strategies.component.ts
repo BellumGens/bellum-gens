@@ -18,7 +18,7 @@ import { SocialMediaService } from '../../../../src-common/services/social-media
   templateUrl: './team-strategies.component.html',
   styleUrls: ['./team-strategies.component.scss']
 })
-export class TeamStrategiesComponent extends BaseComponent {
+export class TeamStrategiesComponent {
   private _isEditor = null;
 
   public strats: CSGOStrategy [];
@@ -43,39 +43,31 @@ export class TeamStrategiesComponent extends BaseComponent {
   constructor(private activatedRoute: ActivatedRoute,
               private apiService: BellumgensApiService,
               private authManager: LoginService,
-              private socialMedia: SocialMediaService,
-              title: Title,
-              meta: Meta,
-              activeRoute: ActivatedRoute) {
-    super(title, meta, activeRoute);
-    this.subs.push(
-      this.activatedRoute.parent.params.subscribe(params => {
-        const teamId = params['teamid'];
+              private socialMedia: SocialMediaService) {
+    this.activatedRoute.parent.params.subscribe(params => {
+      const teamId = params['teamid'];
 
-        if (teamId) {
-          this.apiService.getTeam(teamId).subscribe(team => this.team = team);
-          this.apiService.getTeamStrats(teamId).subscribe(strats => this.strats = strats);
-          this.apiService.getTeamMapPool(teamId).subscribe(maps => this.maps = maps);
-        } else {
-          this.subs.push(
-            this.activatedRoute.params.subscribe(param => {
-              const query = param['query'];
+      if (teamId) {
+        this.apiService.getTeam(teamId).subscribe(team => this.team = team);
+        this.apiService.getTeamStrats(teamId).subscribe(strats => this.strats = strats);
+        this.apiService.getTeamMapPool(teamId).subscribe(maps => this.maps = maps);
+      } else {
+        this.activatedRoute.params.subscribe(param => {
+          const query = param['query'];
 
-              if (query) {
-                this.apiService.searchStrategies(query);
-                this.apiService.loadingSearch.subscribe(loading => this.loading = loading);
-                this.apiService.strategySearchResult.subscribe(strats => this.strats = strats);
-              } else {
-                this.apiService.loadingStrategies.subscribe(loading => this.loading = loading),
-                this.apiService.strategies.subscribe(strats => this.strats = strats);
-                this.apiService.hasMoreStrats.subscribe(hasMore => this.hasMore = hasMore);
-              }
-            })
-          );
-        }
-      }),
-      this.authManager.applicationUser.subscribe(user => this.authUser = user)
-    );
+          if (query) {
+            this.apiService.searchStrategies(query);
+            this.apiService.loadingSearch.subscribe(loading => this.loading = loading);
+            this.apiService.strategySearchResult.subscribe(strats => this.strats = strats);
+          } else {
+            this.apiService.loadingStrategies.subscribe(loading => this.loading = loading),
+            this.apiService.strategies.subscribe(strats => this.strats = strats);
+            this.apiService.hasMoreStrats.subscribe(hasMore => this.hasMore = hasMore);
+          }
+        });
+      }
+    });
+    this.authManager.applicationUser.subscribe(user => this.authUser = user);
   }
 
   public changeMaps(event: IChipSelectEventArgs, args: CSGOMapPool) {
