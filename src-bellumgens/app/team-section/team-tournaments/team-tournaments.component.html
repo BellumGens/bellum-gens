@@ -9,32 +9,38 @@
             showToolbar="true"
             [toolbarTitle]="tournament.Name">
 
-    <igx-column field="Team" header="Отбор" width="20%">
+    <igx-column field="StartTime" header="Date" width="15%">
       <ng-template igxCell let-value>
-        <igx-avatar igxListThumbnail
-                    [src]="value.TeamAvatar"
-                    [initials]="value.TeamName"
-                    roundShape="true">
-        </igx-avatar>
-        <span>{{ value.TeamName }}</span>
+        {{ value | date }}
       </ng-template>
     </igx-column>
 
-    <igx-column field="Company" header="Компания" width="17%">
+    <igx-column header="Match" width="70%">
+      <ng-template igxCell let-cell="cell">
+        <igx-avatar igxListThumbnail
+                    [src]="cell.rowData.Team1.TeamAvatar"
+                    [initials]="cell.rowData.Team1.TeamName"
+                    roundShape="true">
+        </igx-avatar>
+        <span [class]="cell.rowData.WinnerTeamId === cell.rowData.Team1.TeamId ? 'highlight' : ''">{{ cell.rowData.Team1.TeamName }}</span>
+
+        <span class="vs-divider">vs.</span>
+
+        <igx-avatar igxListThumbnail
+                    [src]="cell.rowData.Team2.TeamAvatar"
+                    [initials]="cell.rowData.Team2.TeamName"
+                    roundShape="true">
+        </igx-avatar>
+        <span [class]="cell.rowData.WinnerTeamId === cell.rowData.Team2.TeamId ? 'highlight' : ''">{{ cell.rowData.Team2.TeamName }}</span>
+      </ng-template>
     </igx-column>
-    <igx-column field="Matches" header="Срещи" width="9%">
-    </igx-column>
-    <igx-column field="Wins" header="Победи" width="9%">
-    </igx-column>
-    <igx-column field="OTWins" header="OT Победи" title="Победи в добавено време" width="9%">
-    </igx-column>
-    <igx-column field="OTLosses" header="OT Загуби" title="Загуби в добавено време" width="9%">
-    </igx-column>
-    <igx-column field="Losses" header="Загуби" width="9%">
-    </igx-column>
-    <igx-column field="RoundDifference" header="+/- Рундове" width="9%">
-    </igx-column>
-    <igx-column field="TeamPoints" header="Точки" width="9%">
+
+    <igx-column field="WinnerTeamId" header="Result" width="15%">
+      <ng-template igxCell let-value>
+        <span [class]="value === emptyGuid ? 'color-warn' : value === team?.TeamId ? 'color-success' : 'color-error'">
+          {{ value === emptyGuid ? 'Pending' : value === team?.TeamId ? 'Win' : 'Loss' }}
+        </span>
+      </ng-template>
     </igx-column>
 
   </igx-grid>

@@ -6,13 +6,17 @@
     padding: 48px 0;
   }
 
-  @media only screen and (min-width: 1921px) {
-    .group-columns {
-      display: grid;
-      grid-template-columns: minmax(45%, 1fr) minmax(45%, 1fr);
-      grid-column-gap: 48px;
-      grid-row-gap: 16px;
-      padding: 48px 0;
-    }
+  .vs-divider {
+    padding: 0 8px;
   }
+
+  // @media only screen and (min-width: 1921px) {
+  //   .group-columns {
+  //     display: grid;
+  //     grid-template-columns: minmax(45%, 1fr) minmax(45%, 1fr);
+  //     grid-column-gap: 48px;
+  //     grid-row-gap: 16px;
+  //     padding: 48px 0;
+  //   }
+  // }
 }
