@@ -22,7 +22,7 @@
                     [initials]="cell.rowData.Team1.TeamName"
                     roundShape="true">
         </igx-avatar>
-        <span [class]="cell.rowData.WinnerTeamId === cell.rowData.Team1.TeamId ? 'highlight' : ''">{{ cell.rowData.Team1.TeamName }}</span>
+        <span [class]="cell.rowData.WinnerTeamId === cell.rowData.Team1.TeamId ? 'highlight team-name' : 'team-name'">{{ cell.rowData.Team1.TeamName }}</span>
 
         <span class="vs-divider">vs.</span>
 
@@ -31,7 +31,7 @@
                     [initials]="cell.rowData.Team2.TeamName"
                     roundShape="true">
         </igx-avatar>
-        <span [class]="cell.rowData.WinnerTeamId === cell.rowData.Team2.TeamId ? 'highlight' : ''">{{ cell.rowData.Team2.TeamName }}</span>
+        <span [class]="cell.rowData.WinnerTeamId === cell.rowData.Team2.TeamId ? 'highlight team-name' : 'team-name'">{{ cell.rowData.Team2.TeamName }}</span>
       </ng-template>
     </igx-column>
 
