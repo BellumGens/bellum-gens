@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Tournament } from '../../../../src-common/models/tournament';
 import { ActivatedRoute } from '@angular/router';
 import { BellumgensApiService } from '../../../../src-common/services/bellumgens-api.service';
-import { CSGOTeam } from 'src-common/models/csgoteam';
+import { CSGOTeam } from '../../../../src-common/models/csgoteam';
 
 @Component({
   selector: 'app-team-tournaments',
