@@ -1,5 +1,6 @@
 import { CSGOTeam } from './csgoteam';
 import { ApplicationUser } from './applicationuser';
+import { TournamentCSGOMatch } from './tournament-schedule';
 
 export interface Tournament {
   ID?: string;
@@ -8,6 +9,7 @@ export interface Tournament {
   Logo?: string;
   StartDate?: Date;
   EndDate?: Date;
+  CSGOMatches?: TournamentCSGOMatch [];
 }
 
 export interface TournamentApplication {

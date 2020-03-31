@@ -14,6 +14,7 @@ import { SearchResult } from '../models/searchresult';
 import { environment } from '../environments/environment';
 import { CommunicationService } from './communication.service';
 import { ApplicationUser } from '../models/applicationuser';
+import { Tournament } from '../models/tournament';
 
 const CACHE_SIZE = 1;
 const PAGE_SIZE = 25;
@@ -548,6 +549,10 @@ export class BellumgensApiService {
         return throwError(error);
       })
     );
+  }
+
+  public getTeamTournaments(teamid: string) {
+    return this.http.get<Tournament []>(`${this._apiEndpoint}/teams/tournaments?teamid=${teamid}`);
   }
 
   public submitStrategy(strat: CSGOStrategy) {

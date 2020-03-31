@@ -1,1 +1,47 @@
-<p>This team has not participated in any competitions.</p>
+<p *ngIf="!tournaments || !tournaments.length">This team has not participated in any competitions.</p>
+
+
+
+<div class="group-columns">
+  <igx-grid *ngFor="let tournament of tournaments"
+            [cellSelection]="'none'"
+            [data]="tournament.CSGOMatches"
+            showToolbar="true"
+            [toolbarTitle]="tournament.Name">
+
+    <igx-column field="StartTime" header="Date" width="15%">
+      <ng-template igxCell let-value>
+        {{ value | date }}
+      </ng-template>
+    </igx-column>
+
+    <igx-column header="Match" width="70%">
+      <ng-template igxCell let-cell="cell">
+        <igx-avatar igxListThumbnail
+                    [src]="cell.rowData.Team1.TeamAvatar"
+                    [initials]="cell.rowData.Team1.TeamName"
+                    roundShape="true">
+        </igx-avatar>
+        <span [class]="cell.rowData.WinnerTeamId === cell.rowData.Team1.TeamId ? 'highlight' : ''">{{ cell.rowData.Team1.TeamName }}</span>
+
+        <span class="vs-divider">vs.</span>
+
+        <igx-avatar igxListThumbnail
+                    [src]="cell.rowData.Team2.TeamAvatar"
+                    [initials]="cell.rowData.Team2.TeamName"
+                    roundShape="true">
+        </igx-avatar>
+        <span [class]="cell.rowData.WinnerTeamId === cell.rowData.Team2.TeamId ? 'highlight' : ''">{{ cell.rowData.Team2.TeamName }}</span>
+      </ng-template>
+    </igx-column>
+
+    <igx-column field="WinnerTeamId" header="Result" width="15%">
+      <ng-template igxCell let-value>
+        <span [class]="value === emptyGuid ? 'color-warn' : value === team?.TeamId ? 'color-success' : 'color-error'">
+          {{ value === emptyGuid ? 'Pending' : value === team?.TeamId ? 'Win' : 'Loss' }}
+        </span>
+      </ng-template>
+    </igx-column>
+
+  </igx-grid>
+</div>

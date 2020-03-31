@@ -37,7 +37,8 @@ import { IgxNavbarModule,
   IgxDividerModule,
   IgxCarouselModule,
   IgxAutocompleteModule,
-  IgxNavigationDrawerModule} from 'igniteui-angular';
+  IgxNavigationDrawerModule,
+  IgxGridModule} from 'igniteui-angular';
 import { PlayerDetailsComponent } from './player-section/player-details/player-details.component';
 import { LoginService } from '../../src-common/services/login.service';
 import { BellumgensApiService } from '../../src-common/services/bellumgens-api.service';
@@ -200,6 +201,7 @@ import { TeamTournamentsComponent } from './team-section/team-tournaments/team-t
     IgxCarouselModule,
     IgxAutocompleteModule,
     IgxNavigationDrawerModule,
+    IgxGridModule,
     BellumGensModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     HammerModule
