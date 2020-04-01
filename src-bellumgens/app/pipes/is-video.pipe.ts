@@ -15,6 +15,16 @@ export class IsVideoPipe implements PipeTransform {
     return this._twitchRegEx.test(url);
   }
 
+  public static getYoutubeEmbedLink(url: string): string {
+    const parts = this._youtubeRegEx.exec(url);
+    return `https://www.youtube.com/embed/${parts[5]}`;
+  }
+
+  public static getTwitchEmbedLink(url: string): string {
+    const parts = this._twitchRegEx.exec(url);
+    return `https://player.twitch.tv/?autoplay=false&video=v${parts[3]}`;
+  }
+
   transform(url: string): any {
     return IsVideoPipe.isYoutube(url) || IsVideoPipe.isTwitch(url);
   }

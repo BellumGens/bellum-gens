@@ -60,7 +60,9 @@ export class NewStrategyComponent implements OnInit {
   }
 
   public submitStrategy() {
-    this.newStrategy.TeamId = this.team.TeamId;
+    if (this.team) {
+      this.newStrategy.TeamId = this.team.TeamId;
+    }
     this.apiService.submitStrategy(this.newStrategy).subscribe(
       strat => {
         if (!this.newStrategy.Id) {
@@ -90,7 +92,7 @@ export class NewStrategyComponent implements OnInit {
         return true;
       }
       this.videoId = parts[5];
-      this.newStrategy.Url = this.getYoutubeEmbedLink(this.newStrategy.Url);
+      this.newStrategy.Url = IsVideoPipe.getYoutubeEmbedLink(this.newStrategy.Url);
       return true;
     } else if (IsVideoPipe.isTwitch(this.newStrategy.Url)) {
       const parts = IsVideoPipe._twitchRegEx.exec(this.newStrategy.Url);
@@ -98,20 +100,10 @@ export class NewStrategyComponent implements OnInit {
         return true;
       }
       this.videoId = parts[3];
-      this.newStrategy.Url = this.getTwitchEmbedLink(this.newStrategy.Url);
+      this.newStrategy.Url = IsVideoPipe.getTwitchEmbedLink(this.newStrategy.Url);
       return true;
     }
     return false;
-  }
-
-  public getYoutubeEmbedLink(url: string): string {
-    const parts = IsVideoPipe._youtubeRegEx.exec(url);
-    return `https://www.youtube.com/embed/${parts[5]}`;
-  }
-
-  public getTwitchEmbedLink(url: string): string {
-    const parts = IsVideoPipe._twitchRegEx.exec(url);
-    return `https://player.twitch.tv/?autoplay=false&video=v${parts[3]}`;
   }
 
 }

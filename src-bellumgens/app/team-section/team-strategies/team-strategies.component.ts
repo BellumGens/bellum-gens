@@ -77,11 +77,6 @@ export class TeamStrategiesComponent {
     }
   }
 
-  public saveMaps(event: Event) {
-    event.stopPropagation();
-    this.apiService.setTeamMapPool(this.maps).subscribe();
-  }
-
   public deleteStrat(args: CSGOStrategy) {
     this.apiService.deleteStrategy(args.Id).subscribe(
       _ => {
