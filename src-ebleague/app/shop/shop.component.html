@@ -11,7 +11,7 @@
 
     <p>Възползвай се от 20% намаление от цената, ако поръчаш по време на финалите на 11 или 12 април. Промоцията е валидна от 10am, 11 април (събота) до 11:59pm 12 април (неделя).</p>
 
-    <h4>Цена 60 лв</h4>
+    <h4>Цена 60 лв.</h4>
     <!-- <h6>Отстъпка -12 лв</h6>
     <h6>Доставка 5 лв</h6>
     <h4>Общо {{promo ? '53 лв' : '65 лв'}}</h4> -->
@@ -21,7 +21,126 @@
     <img src="/assets/wallpapers/jersey.webp" alt="Esports Business League jersey" />
   </div>
 
-  <form class="content-container-row">
-    <h1>Поръчай официалната EB-League тениска!</h1>
+  <form #orderForm="ngForm" (ngSubmit)="placeOrder()" class="content-container-row ">
+    <div class="horizontal">
+      <div class="column-container">
+        <div class="horizontal-center" *ngFor="let jersey of order.jerseys; let i = index">
+          <igx-select type="border" class="order-form-input" name="jerseyCut" [(ngModel)]="jersey.cut">
+            <label igxLabel>Кройка</label>
+            <igx-select-item *ngFor="let cut of cuts" [value]="cut.cut">
+              {{ cut.text }}
+            </igx-select-item>
+          </igx-select>
+
+          <igx-select type="border" class="order-form-input" name="jerseySize" [(ngModel)]="jersey.size">
+            <label igxLabel>Размер</label>
+            <igx-select-item *ngFor="let size of allSizes | filterSizes:jersey.cut" [value]="size.size">
+              {{ size.text }}
+            </igx-select-item>
+          </igx-select>
+
+          <igx-icon *ngIf="order.jerseys.length > 1 " (click)="order.jerseys.splice(i, 1)">clear</igx-icon>
+        </div>
+      </div>
+
+      <div class="horizontal order-summary">
+        <span>Тениски {{order.jerseys.length}} x 60лв. = {{ order.jerseys.length * 60 }} лв.</span>
+        <span *ngIf="promo">20% Отстъпка = {{ (order.jerseys.length * 60) * 0.2 }} лв.</span>
+        <span>Доставка = 5 лв.</span>
+        <igx-divider></igx-divider>
+        <span *ngIf="promo">Общо = {{ (order.jerseys.length * 60) * 0.8 + 5 }} лв.</span>
+        <span *ngIf="!promo">Общо = {{ order.jerseys.length * 60 + 5 }} лв.</span>
+      </div>
+    </div>
+
+    <div class="horizontal floating-button">
+      <button type="button" igxButton="outlined" (click)="order.jerseys.push({ cut: 0, size: 3 })">
+        <igx-icon>add</igx-icon> Добави още една
+      </button>
+    </div>
+
+    <div class="horizontal">
+      <igx-input-group class="order-form-input" type="border">
+        <label igxLabel for="firstName">Име</label>
+        <igx-prefix>
+          <igx-icon>text_fields</igx-icon>
+        </igx-prefix>
+        <input id="orderemail" #firstName name="firstName" igxInput required [(ngModel)]="order.firstName" />
+        <igx-suffix *ngIf="firstName.value" (click)="order.firstName = null">
+          <igx-icon>clear</igx-icon>
+        </igx-suffix>
+      </igx-input-group>
+
+      <igx-input-group class="order-form-input" type="border">
+        <label igxLabel for="lastName">Фамилия</label>
+        <igx-prefix>
+          <igx-icon>text_fields</igx-icon>
+        </igx-prefix>
+        <input id="lastName" #lastName name="lastName" igxInput required [(ngModel)]="order.lastName" />
+        <igx-suffix *ngIf="lastName.value" (click)="order.lastName = null">
+          <igx-icon>clear</igx-icon>
+        </igx-suffix>
+      </igx-input-group>
+
+      <igx-input-group class="order-form-input" type="border">
+        <label igxLabel for="orderemail">Имейл адрес</label>
+        <igx-prefix>
+          <igx-icon>email</igx-icon>
+        </igx-prefix>
+        <input type="email" id="orderemail" #orderEmail name="orderemail" igxInput required pattern="^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="order.email" />
+        <igx-suffix *ngIf="orderEmail.value" (click)="order.email = null">
+          <igx-icon>clear</igx-icon>
+        </igx-suffix>
+      </igx-input-group>
+    </div>
+
+    <div class="horizontal">
+      <igx-input-group class="order-form-input" type="border">
+        <igx-prefix>
+          <igx-icon title="Телефон">phone</igx-icon>
+        </igx-prefix>
+        <igx-prefix>
+          +359
+        </igx-prefix>
+        <input id="orderPhone"
+               #orderPhone
+               class="input-phone-number"
+               name="orderPhone"
+               igxInput
+               [igxMask]="'000 00 00 00'"
+               placeholder="--- -- -- --"
+               [(ngModel)]="order.phoneNumber" />
+        <igx-suffix *ngIf="orderPhone.value" (click)="order.phoneNumber = null">
+          <igx-icon>clear</igx-icon>
+        </igx-suffix>
+      </igx-input-group>
+
+      <igx-input-group class="order-form-input" type="border">
+        <label igxLabel for="orderCity">Град</label>
+        <igx-prefix>
+          <igx-icon>home</igx-icon>
+        </igx-prefix>
+        <input id="orderCity" #orderCity name="orderCity" igxInput required [(ngModel)]="order.city" />
+        <igx-suffix *ngIf="orderCity.value" (click)="order.city = null">
+          <igx-icon>clear</igx-icon>
+        </igx-suffix>
+      </igx-input-group>
+
+      <igx-input-group class="order-form-input" type="border">
+        <label igxLabel for="orderAddress">Адрес</label>
+        <igx-prefix>
+          <igx-icon>home</igx-icon>
+        </igx-prefix>
+        <input id="orderAddress" #orderAddress name="orderAddress" igxInput required [(ngModel)]="order.streetAddress" />
+        <igx-suffix *ngIf="orderAddress.value" (click)="order.streetAddress = null">
+          <igx-icon>clear</igx-icon>
+        </igx-suffix>
+      </igx-input-group>
+    </div>
+
+    <div class="horizontal">
+      <button igxButton="outlined" [disabled]="!orderForm.touched || orderForm.invalid || inProgress">Поръчай</button>
+    </div>
+
   </form>
 </div>

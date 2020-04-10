@@ -20,6 +20,7 @@ export interface JerseyDetails {
 
 export interface JerseyOrder {
   jerseys?: JerseyDetails [];
+  email?: string;
   firstName?: string;
   lastName?: string;
   phoneNumber?: string;

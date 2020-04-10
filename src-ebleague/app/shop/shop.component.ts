@@ -1,14 +1,31 @@
-import { Component, OnInit } from '@angular/core';
-import { newEmptyJerseyOrder } from '../../../src-common/models/jerseyorder';
+import { Component } from '@angular/core';
+import { newEmptyJerseyOrder, JerseyCut, JerseySize } from '../../../src-common/models/jerseyorder';
 
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
-  styleUrls: ['./shop.component.css']
+  styleUrls: ['./shop.component.scss']
 })
-export class ShopComponent implements OnInit {
+export class ShopComponent {
   public order = newEmptyJerseyOrder();
-  public promo = false;
+  public promo = true;
+  public inProgress = false;
+
+  public cuts = [
+    { text: 'Mъжка', cut: JerseyCut.Male },
+    { text: 'Дамска', cut: JerseyCut.Female }
+  ];
+
+  public allSizes = [
+    { text: 'XS', size: JerseySize.S },
+    { text: 'S', size: JerseySize.S },
+    { text: 'M', size: JerseySize.M },
+    { text: 'L', size: JerseySize.L },
+    { text: 'XL', size: JerseySize.XL },
+    { text: 'XXL', size: JerseySize.XXL },
+    { text: 'XXXL', size: JerseySize.XXXL }
+  ];
+
 
   constructor() {
     const now = new Date();
@@ -17,7 +34,7 @@ export class ShopComponent implements OnInit {
     }
   }
 
-  ngOnInit(): void {
+  public placeOrder() {
   }
 
 }
