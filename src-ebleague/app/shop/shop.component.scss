@@ -1,0 +1,26 @@
+:host {
+  .floating-button {
+    margin: 16px;
+  }
+
+  .order-form-input {
+    margin: 8px;
+  }
+
+  .input-phone-number {
+    width: 160px;
+  }
+
+  .order-summary {
+    display: flex;
+    flex-flow: column;
+    width: 270px;
+    margin: 8px;
+    text-align: right;
+  }
+
+  igx-select, button {
+    width: 270px;
+  }
+  
+}

@@ -90,7 +90,8 @@ $input-group-theme: igx-input-group-theme($search-background: transparent,
                                           $idle-text-color: white,
                                           $filled-text-color: white,
                                           $focused-text-color: white,
-                                          $placeholder-color: #999);
+                                          $placeholder-color: #999,
+                                          $label-floated-background: $background);
 @include igx-css-vars($input-group-theme);
 /* END Input Group */
 
