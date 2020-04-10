@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { IgxSelectModule, IgxInputGroupModule, IgxIconModule, IgxButtonModule, IgxMaskModule } from 'igniteui-angular';
 import { FilterSizesPipe } from '../pipes/filter-sizes.pipe';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ShopComponent', () => {
   let component: ShopComponent;
@@ -16,6 +17,7 @@ describe('ShopComponent', () => {
       imports: [
         FormsModule,
         HttpClientTestingModule,
+        RouterTestingModule,
         IgxSelectModule,
         IgxInputGroupModule,
         IgxIconModule,

@@ -19,6 +19,7 @@ export interface JerseyDetails {
 }
 
 export interface JerseyOrder {
+  id?: string;
   jerseys?: JerseyDetails [];
   email?: string;
   firstName?: string;
