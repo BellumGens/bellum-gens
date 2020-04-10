@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { TournamentHomeComponent } from './home/home.component';
+import { RaffleComponent } from './raffle/raffle.component';
 
 export const routes: Routes = [
   { path: '', component: TournamentHomeComponent },
+  { path: 'raffle', component: RaffleComponent },
   { path: 'format', redirectTo: '/tournament/format', pathMatch: 'full' },
   { path: 'csgo', redirectTo: '/tournament/csgo', pathMatch: 'full' },
   { path: 'sc2', redirectTo: '/tournament/sc2', pathMatch: 'full' },
