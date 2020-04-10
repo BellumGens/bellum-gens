@@ -9,6 +9,7 @@ export const routes: Routes = [
   { path: 'sc2', redirectTo: '/tournament/sc2', pathMatch: 'full' },
   { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
   { path: 'tournament', loadChildren: () => import('./tournaments/tournament.module').then(m => m.TournamentModule) },
+  { path: 'shop', loadChildren: () => import('./shop/shop.module').then(m => m.ShopModule) },
   { path: '**', component: TournamentHomeComponent }
 ];
 
