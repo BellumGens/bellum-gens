@@ -5,7 +5,10 @@ export enum SC2Map {
   ZenLE,
   SimulacrumLE,
   NightshadeLE,
-  EternalEmpireLE
+  EternalEmpireLE,
+  GoldenWallLE,
+  PurityAndIndustryLE,
+  EverDreamLE
 }
 
 export interface SC2LadderDescriptor {
@@ -36,5 +39,14 @@ export const SC2_MAPS: SC2LadderDescriptor [] = [{
   }, {
     id: SC2Map.EternalEmpireLE,
     map: 'Eternal Empire LE'
+  }, {
+    id: SC2Map.GoldenWallLE,
+    map: 'Golden Wall LE'
+  }, {
+    id: SC2Map.PurityAndIndustryLE,
+    map: 'Purity and Industry LE'
+  }, {
+    id: SC2Map.EverDreamLE,
+    map: 'Ever Dream LE'
   }
 ];
