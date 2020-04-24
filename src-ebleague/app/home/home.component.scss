@@ -39,10 +39,20 @@
   padding: 25px;
 }
 
-// .tickets-frame {
-//   width: 100%;
-//   height: 750px;
-// }
+.first-place {
+  max-width: 250px;
+  object-fit: contain;
+}
+
+.second-place {
+  max-width: 180px;
+  object-fit: contain;
+}
+
+.third-forth-place {
+  max-width: 130px;
+  object-fit: contain;
+}
 
 @media only screen and (max-width: 550px) {
   .platinum {
