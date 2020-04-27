@@ -45,7 +45,7 @@
     <igx-list-item [isHeader]="true">Players</igx-list-item>
     <igx-list-item *ngIf="!searchResult.Players.length"><span igxListLine>No matching players...</span></igx-list-item>
     <igx-list-item *ngFor="let user of searchResult.Players | reduceQuickSearchResult"
-                  [routerLink]="['/players', user.customUrl || user.id]"
+                  [routerLink]="['/players', user.customURL || user.id]"
                   class="navigatable">
       <igx-avatar igxListThumbnail [src]="user.avatarIcon" [initials]="user.realname" roundShape="true">
       </igx-avatar>
