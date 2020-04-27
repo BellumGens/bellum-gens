@@ -36,18 +36,20 @@
                   showToolbar="true"
                   [toolbarTitle]="group.Name">
 
-          <igx-column field="Team" header="Отбор" width="20%">
+          <igx-column field="Team" header="Отбор" width="22%">
             <ng-template igxCell let-value>
               <igx-avatar igxListThumbnail
                           [src]="value.TeamAvatar"
                           [initials]="value.TeamName"
                           roundShape="true">
               </igx-avatar>
-              <span>{{ value.TeamName }}</span>
+              <a igxListLineTitle [href]="environment.bellumgens + '/team/' + value.CustomUrl" target="_blank">
+                {{ value.TeamName }}
+              </a>
             </ng-template>
           </igx-column>
 
-          <igx-column field="Company" header="Компания" width="17%">
+          <igx-column field="Company" header="Компания" width="15%">
           </igx-column>
           <igx-column field="Matches" header="Срещи" width="9%">
           </igx-column>
@@ -60,6 +62,11 @@
           <igx-column field="Losses" header="Загуби" width="9%">
           </igx-column>
           <igx-column field="RoundDifference" header="+/- Рундове" width="9%">
+            <ng-template igxCell let-value>
+              <span [class]="value > 0 ? 'color-success' : value < 0 ? 'color-error' : ''">
+                {{ value }}
+              </span>
+            </ng-template>
           </igx-column>
           <igx-column field="TeamPoints" header="Точки" width="9%">
           </igx-column>

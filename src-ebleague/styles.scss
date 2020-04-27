@@ -379,6 +379,24 @@ igx-calendar {
   margin-top: 12px;
 }
 
+/* WATERMARKS */
+
+.csgo-watermark {
+  background-image: url('/assets/wallpapers/csgo-watermark.webp');
+}
+
+.sc2-watermark {
+  background-image: url('/assets/wallpapers/sc2-watermark.webp');
+}
+
+.watermark {
+  min-height: 131px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* END WATERMARKS */
+
 @media only screen and (max-width: 1280px) {
   .home-page-slide-columns {
     grid-template-columns: minmax(348px, 1fr);

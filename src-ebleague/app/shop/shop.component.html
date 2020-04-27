@@ -107,7 +107,9 @@
                class="input-phone-number"
                name="orderPhone"
                igxInput
+               required
                [igxMask]="'000 00 00 00'"
+               [igxTextSelection]="true"
                placeholder="--- -- -- --"
                [(ngModel)]="order.phoneNumber" />
         <igx-suffix *ngIf="orderPhone.value" (click)="order.phoneNumber = null">

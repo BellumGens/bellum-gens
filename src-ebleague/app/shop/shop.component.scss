@@ -7,10 +7,6 @@
     margin: 8px;
   }
 
-  .input-phone-number {
-    width: 160px;
-  }
-
   .order-summary {
     display: flex;
     flex-flow: column;
@@ -19,8 +15,8 @@
     text-align: right;
   }
 
-  igx-select, button {
+  igx-select, button, igx-input-group {
     width: 270px;
   }
-  
+
 }

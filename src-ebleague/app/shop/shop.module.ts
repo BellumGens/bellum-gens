@@ -3,7 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import { ShopRoutingModule } from './shop-routing.module';
 import { ShopComponent } from './shop.component';
-import { IgxSelectModule, IgxInputGroupModule, IgxIconModule, IgxButtonModule, IgxMaskModule, IgxDividerModule } from 'igniteui-angular';
+import { IgxSelectModule,
+  IgxInputGroupModule,
+  IgxIconModule,
+  IgxButtonModule,
+  IgxMaskModule,
+  IgxDividerModule,
+  IgxTextSelectionModule } from 'igniteui-angular';
 import { FormsModule } from '@angular/forms';
 import { FilterSizesPipe } from '../pipes/filter-sizes.pipe';
 
@@ -19,7 +25,8 @@ import { FilterSizesPipe } from '../pipes/filter-sizes.pipe';
     IgxIconModule,
     IgxButtonModule,
     IgxMaskModule,
-    IgxDividerModule
+    IgxDividerModule,
+    IgxTextSelectionModule
   ]
 })
 export class ShopModule { }
