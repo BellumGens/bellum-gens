@@ -44,14 +44,34 @@
   object-fit: contain;
 }
 
+.first-place-text {
+  min-height: 223px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3.45rem;
+}
+
 .second-place {
   max-width: 180px;
   object-fit: contain;
 }
 
+.second-place-text {
+  min-height: 201px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.75rem;
+}
+
 .third-forth-place {
   max-width: 130px;
   object-fit: contain;
+}
+
+.third-forth-place-text {
+  font-size: 1.65rem;
 }
 
 @media only screen and (max-width: 550px) {
