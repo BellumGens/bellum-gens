@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 })
 export class ShopComponent {
   public order = newEmptyJerseyOrder();
-  public promo = false;
+  public promo = 0;
   public inProgress = false;
 
   public cuts = [
@@ -30,12 +30,7 @@ export class ShopComponent {
 
 
   constructor(private apiService: ApiShopService,
-              private router: Router) {
-    const now = new Date();
-    if (now > new Date(2020, 3, 11) && now < new Date(2020, 3, 13)) {
-      this.promo = true;
-    }
-  }
+              private router: Router) { }
 
   public placeOrder() {
     this.inProgress = true;
@@ -43,6 +38,14 @@ export class ShopComponent {
       data => this.router.navigate(['order-success']),
       _ => this.inProgress = false
     );
+  }
+
+  public checkForPromo() {
+    this.apiService.checkForPromo(this.order.promocode).subscribe(data => {
+      if (data) {
+        this.promo = data.discount;
+      }
+    });
   }
 
 }

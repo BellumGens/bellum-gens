@@ -27,6 +27,12 @@ export interface JerseyOrder {
   phoneNumber?: string;
   city?: string;
   streetAddress?: string;
+  promocode?: string;
+}
+
+export interface Promo {
+  code: string;
+  discount: number;
 }
 
 export function newEmptyJerseyOrder(): JerseyOrder {

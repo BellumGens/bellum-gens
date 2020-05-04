@@ -7,7 +7,7 @@ $app-palette: igx-palette($primary, $secondary);
 html, body {
   height: 100%;
   min-width: 380px;
-  background-image: $background-gradient;
+  background-color: $background;
 }
 
 .navigatable {
