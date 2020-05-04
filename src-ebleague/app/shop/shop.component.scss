@@ -15,7 +15,13 @@
     text-align: right;
   }
 
+  .order-summary > span {
+    font-size: 1.25rem;
+    margin: 8px;
+  }
+
   igx-select, button, igx-input-group {
+    text-align: left;
     width: 270px;
   }
 

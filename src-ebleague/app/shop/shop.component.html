@@ -43,13 +43,24 @@
         </div>
       </div>
 
-      <div class="horizontal order-summary">
+      <div class="order-summary">
         <span>Тениски {{order.jerseys.length}} x 60лв. = {{ order.jerseys.length * 60 }} лв.</span>
-        <span *ngIf="promo">20% Отстъпка = {{ (order.jerseys.length * 60) * 0.2 }} лв.</span>
+
+        <igx-input-group class="order-form-input" type="border">
+          <label igxLabel for="firstName">Код за отстъпка</label>
+          <igx-prefix>
+            <igx-icon>money_off</igx-icon>
+          </igx-prefix>
+          <input id="promocode" #promocode name="promocode" igxInput (blur)="checkForPromo()" [(ngModel)]="order.promocode" />
+          <igx-suffix *ngIf="promocode.value" (click)="order.promocode = null">
+            <igx-icon>clear</igx-icon>
+          </igx-suffix>
+        </igx-input-group>
+
+        <span *ngIf="promo > 0" class="color-success">{{ promo * 100 }}% Отстъпка = -{{ (order.jerseys.length * 60) * promo }} лв.</span>
         <span>Доставка = 5 лв.</span>
         <igx-divider></igx-divider>
-        <span *ngIf="promo">Общо = {{ (order.jerseys.length * 60) * 0.8 + 5 }} лв.</span>
-        <span *ngIf="!promo">Общо = {{ order.jerseys.length * 60 + 5 }} лв.</span>
+        <span>Общо = {{ (order.jerseys.length * 60) * (1 - promo) + 5 }} лв.</span>
       </div>
     </div>
 
