@@ -25,4 +25,17 @@
     width: 270px;
   }
 
+  @media only screen and (max-width: 550px) {
+
+    igx-select, button, igx-input-group {
+      text-align: left;
+      width: 100%;
+    }
+
+    .order-summary {
+      width: 100%;
+      margin: 0 16px 0 0;
+    }
+  }
+
 }
