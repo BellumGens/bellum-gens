@@ -29,7 +29,7 @@
         <p>Recruit your team and manage your team member roles, team strategies, practice times and more....</p>
         <button igxButton="raised" *ngIf="!authUser else loggedIn" (click)="loginDialog.openLogin()">Sign-up Now</button>
         <ng-template #loggedIn>
-          <button igxButton="raised" (click)="openTeams()">Team Section</button>
+          <button igxButton="raised" routerLink="myteams">Team Section</button>
         </ng-template>
       </div>
     </div>
@@ -63,7 +63,7 @@
   <div class="content-container-column left-column">
     <h4>Bellum Gens enables your CS:GO Team</h4>
     <p>Bellum Gens is a CS:GO team finding and team management application, which allows players to look for teams matching their skill and availability, and team owners to manage their teams' roster and general organization. Because CS:GO is a team game!</p>
-    <button igxButton="raised" (click)="loginDialog.openLogin('Sign-up to access the team section in the header!')" class="nav-button">Register your Team</button>
+    <button igxButton="raised" routerLink="myteams" class="nav-button">Register your Team</button>
   </div>
 
   <div class="content-container-column left-column">
