@@ -50,6 +50,10 @@
           <igx-suffix *ngIf="promocode.value" (click)="order.promocode = null">
             <igx-icon>clear</igx-icon>
           </igx-suffix>
+
+          <igx-hint class="color-error" *ngIf="invalidPromo">
+            Кодът е невалиден...
+          </igx-hint>
         </igx-input-group>
 
         <span *ngIf="promo > 0" class="color-success">{{ promo * 100 }}% Отстъпка = -{{ (order.jerseys.length * 60) * promo }} лв.</span>

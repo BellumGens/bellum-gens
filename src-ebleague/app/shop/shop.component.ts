@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class ShopComponent {
   public order = newEmptyJerseyOrder();
   public promo = 0;
+  public invalidPromo = false;
   public inProgress = false;
 
   public cuts = [
@@ -44,6 +45,10 @@ export class ShopComponent {
     this.apiService.checkForPromo(this.order.promocode).subscribe(data => {
       if (data) {
         this.promo = data.discount;
+        this.invalidPromo = false;
+      } else {
+        this.order.promocode = null;
+        this.invalidPromo = true;
       }
     });
   }
