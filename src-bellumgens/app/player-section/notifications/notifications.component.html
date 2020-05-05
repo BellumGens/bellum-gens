@@ -5,7 +5,7 @@
     <igx-avatar igxListThumbnail [src]="notification.TeamInfo.TeamAvatar" [initials]="notification.TeamInfo.TeamName" roundShape="true">
     </igx-avatar>
     <h3 igxListLineSubTitle>
-      You have been invited to join <a [routerLink]="['team', notification.TeamInfo.CustomUrl]">{{ notification.TeamInfo.TeamName }}</a>
+      You have been invited to join <a [routerLink]="['/team', notification.TeamInfo.CustomUrl]">{{ notification.TeamInfo.TeamName }}</a>
     </h3>
     <span igxListLineSubTitle>{{ notification.Sent | date }}</span>
     <div igxListAction *ngIf="notification.State | disabledNotifications:true else read">
