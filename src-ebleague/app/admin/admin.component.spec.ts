@@ -7,7 +7,8 @@ import { IgxChipsModule,
   IgxButtonModule,
   IgxAvatarModule,
   IgxIconModule,
-  IgxDatePickerModule } from 'igniteui-angular';
+  IgxDatePickerModule,
+  IgxGridModule} from 'igniteui-angular';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -35,7 +36,8 @@ describe('AdminComponent', () => {
         IgxButtonModule,
         IgxAvatarModule,
         IgxIconModule,
-        IgxDatePickerModule
+        IgxDatePickerModule,
+        IgxGridModule
       ]
     })
     .compileComponents();

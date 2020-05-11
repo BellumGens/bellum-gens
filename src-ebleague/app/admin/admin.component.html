@@ -1,11 +1,11 @@
-<div class="content-container three-column">
-  <igx-chips-area>
-    Roles
-    <igx-chip *ngFor="let role of roles">{{role}}</igx-chip>
-    <igx-chip *ngIf="!roles">No Roles Defined</igx-chip>
-  </igx-chips-area>
+<div class="content-container">
 
   <div>
+    <igx-chips-area>
+      Roles
+      <igx-chip *ngFor="let role of roles">{{role}}</igx-chip>
+      <igx-chip *ngIf="!roles">No Roles Defined</igx-chip>
+    </igx-chips-area>
     <igx-input-group>
       <label igxLabel>New role</label>
       <input type="text" #roleinput igxInput />
@@ -37,6 +37,51 @@
       </igx-chips-area>
     </igx-list-item>
   </igx-list>
+</div>
+
+<div class="content-container">
+  <div class="content-container-row">
+    <igx-grid #grid1 [data]="orders" [height]="'300px'" primaryKey="id" (onCellEdit)="editDone($event, grid1)" [cellSelection]="'none'">
+
+      <igx-column field="orderDate" header="Направена на">
+        <ng-template igxCell let-value>
+          {{ value | date }}
+        </ng-template>
+      </igx-column>
+      <igx-column field="email" header="Имейл Адрес">
+      </igx-column>
+      <igx-column field="name" header="Име">
+        <ng-template igxCell let-cell="cell">
+          {{ cell.row.rowData.firstName }} {{ cell.row.rowData.lastName }} 
+        </ng-template>
+      </igx-column>
+      <igx-column field="phoneNumber" header="Телефон">
+        <ng-template igxCell let-value>
+          +359 {{ value }}
+        </ng-template>
+      </igx-column>
+      <igx-column field="address" header="Град">
+        <ng-template igxCell let-cell="cell">
+          {{ cell.row.rowData.city }}, {{ cell.row.rowData.streetAddress }} 
+        </ng-template>
+      </igx-column>
+      <igx-column field="promocode" header="Промо код">
+      </igx-column>
+      <igx-column field="confirmed" [dataType]="'boolean'" [editable]="true" header="Потвърдена">
+      </igx-column>
+      <igx-column field="shipped" [dataType]="'boolean'" [editable]="true" header="Изпратена">
+      </igx-column>
+
+      <ng-template igxGridDetail let-dataItem>
+        <div class="horizontal" *ngFor="let details of dataItem.jerseys">
+          <div>
+            <div>{{details.cut ? 'Дамска' : 'Мъжка'}} Кройка</div>
+            <div>Размер {{details.size}}</div>
+          </div>
+        </div>
+      </ng-template>
+    </igx-grid>
+  </div>
 </div>
 
 <div class="content-container">

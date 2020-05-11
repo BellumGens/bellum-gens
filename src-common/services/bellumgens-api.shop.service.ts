@@ -18,4 +18,12 @@ export class ApiShopService {
   public checkForPromo(code: string) {
     return this.http.get<Promo>(`${this._apiEndpoint}/shop/promo?code=${code}`);
   }
+
+  public getOrders() {
+    return this.http.get<JerseyOrder []>(`${this._apiEndpoint}/shop/orders`, { withCredentials: true });
+  }
+
+  public confirmOrder(order: JerseyOrder) {
+    return this.http.put(`${this._apiEndpoint}/shop/edit?orderId=${order.id}`, order, { withCredentials: true });
+  }
 }
