@@ -28,6 +28,8 @@ export interface JerseyOrder {
   city?: string;
   streetAddress?: string;
   promocode?: string;
+  confirmed?: boolean;
+  shipped?: boolean;
 }
 
 export interface Promo {

@@ -18,4 +18,8 @@ export class ApiShopService {
   public checkForPromo(code: string) {
     return this.http.get<Promo>(`${this._apiEndpoint}/shop/promo?code=${code}`);
   }
+
+  public getOrders() {
+    return this.http.get<JerseyOrder []>(`${this._apiEndpoint}/shop/orders`, { withCredentials: true });
+  }
 }

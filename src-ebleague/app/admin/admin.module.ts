@@ -18,7 +18,8 @@ import { IgxChipsModule,
   IgxTimePickerModule,
   IgxCalendarModule,
   IgxDividerModule,
-  IgxCheckboxModule} from 'igniteui-angular';
+  IgxCheckboxModule,
+  IgxGridModule} from 'igniteui-angular';
 import { FormsModule } from '@angular/forms';
 import { AdminCsgoComponent } from './admin-csgo/admin-csgo.component';
 import { BellumGensModule } from '../../../src-common/components/components.module';
@@ -55,7 +56,8 @@ import { GetPlayersPipe } from '../pipes/get-players.pipe';
     IgxTimePickerModule,
     IgxCalendarModule,
     IgxCheckboxModule,
-    IgxDividerModule
+    IgxDividerModule,
+    IgxGridModule
   ]
 })
 export class AdminModule { }

@@ -3,6 +3,8 @@ import { LoginService } from '../../../src-common/services/login.service';
 import { AdminAppUserSummary } from '../../../src-common/models/applicationuser';
 import { ApiTournamentsService } from '../../../src-common/services/bellumgens-api.tournaments.service';
 import { Tournament, getEmptyNewTournament } from '../../../src-common/models/tournament';
+import { JerseyOrder } from '../../../src-common/models/jerseyorder';
+import { ApiShopService } from '../../../src-common/services/bellumgens-api.shop.service';
 
 @Component({
   selector: 'app-admin',
@@ -14,12 +16,15 @@ export class AdminComponent {
   public users: AdminAppUserSummary [];
   public tournaments: Tournament [];
   public tournament = getEmptyNewTournament();
+  public orders: JerseyOrder [];
 
   constructor(private authService: LoginService,
-              private apiService: ApiTournamentsService) {
+              private apiService: ApiTournamentsService,
+              private shopService: ApiShopService) {
     this.authService.getUserRoles().subscribe(data => this.roles = data);
     this.authService.getUsers().subscribe(data => this.users = data);
     this.apiService.tournaments.subscribe(data => this.tournaments = data);
+    this.shopService.getOrders().subscribe(data => this.orders = data);
   }
 
   public submitRole(role: string) {
