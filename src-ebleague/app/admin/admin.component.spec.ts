@@ -7,7 +7,7 @@ import { IgxChipsModule,
   IgxButtonModule,
   IgxAvatarModule,
   IgxIconModule,
-  IgxDatePickerModule, 
+  IgxDatePickerModule,
   IgxGridModule} from 'igniteui-angular';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
