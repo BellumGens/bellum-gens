@@ -22,4 +22,8 @@ export class ApiShopService {
   public getOrders() {
     return this.http.get<JerseyOrder []>(`${this._apiEndpoint}/shop/orders`, { withCredentials: true });
   }
+
+  public confirmOrder(order: JerseyOrder) {
+    return this.http.put(`${this._apiEndpoint}/shop/edit?orderId=${order.id}`, order, { withCredentials: true });
+  }
 }

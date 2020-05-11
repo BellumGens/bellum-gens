@@ -5,6 +5,7 @@ import { ApiTournamentsService } from '../../../src-common/services/bellumgens-a
 import { Tournament, getEmptyNewTournament } from '../../../src-common/models/tournament';
 import { JerseyOrder } from '../../../src-common/models/jerseyorder';
 import { ApiShopService } from '../../../src-common/services/bellumgens-api.shop.service';
+import { IGridEditEventArgs, IgxGridComponent } from 'igniteui-angular';
 
 @Component({
   selector: 'app-admin',
@@ -47,5 +48,13 @@ export class AdminComponent {
 
   public addAllApplications(id: string) {
     this.apiService.addTournamentApplications(id).subscribe();
+  }
+
+  public editDone(event: IGridEditEventArgs, grid: IgxGridComponent) {
+    const rowData = grid.getRowByKey(event.rowID).rowData;
+    const column = grid.columnList.find(e => e.index === event.cellID.columnID);
+    event.cancel = true;
+    rowData[column.field] = event.newValue;
+    this.shopService.confirmOrder(rowData).subscribe();
   }
 }

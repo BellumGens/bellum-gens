@@ -41,8 +41,13 @@
 
 <div class="content-container">
   <div class="content-container-row">
-    <igx-grid [data]="orders" [height]="'300px'" [cellSelection]="'none'">
+    <igx-grid #grid1 [data]="orders" [height]="'300px'" primaryKey="id" (onCellEdit)="editDone($event, grid1)" [cellSelection]="'none'">
 
+      <igx-column field="orderDate" header="Направена на">
+        <ng-template igxCell let-value>
+          {{ value | date }}
+        </ng-template>
+      </igx-column>
       <igx-column field="email" header="Имейл Адрес">
       </igx-column>
       <igx-column field="name" header="Име">
@@ -62,9 +67,9 @@
       </igx-column>
       <igx-column field="promocode" header="Промо код">
       </igx-column>
-      <igx-column field="confirmed" header="Потвърдена">
+      <igx-column field="confirmed" [dataType]="'boolean'" [editable]="true" header="Потвърдена">
       </igx-column>
-      <igx-column field="shipped" header="Изпратена">
+      <igx-column field="shipped" [dataType]="'boolean'" [editable]="true" header="Изпратена">
       </igx-column>
 
       <ng-template igxGridDetail let-dataItem>
