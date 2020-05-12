@@ -1,5 +1,85 @@
 <div class="content-container">
+  <div>
+    <a *ngFor="let league of tournaments">{{league.Name}}: {{league.StartDate | date}} - {{league.EndDate | date}}
+      <button igxButton (click)="addAllApplications(league.ID)">Assign Applications</button>
+    </a>
+    <span *ngIf="!tournaments || !tournaments.length">No tournaments</span>
+  </div>
 
+  <form #leagueForm="ngForm" (ngSubmit)="createTournament()">
+    <igx-input-group>
+      <label igxLabel for="tournamentName">Tournament name</label>
+      <input type="text" id="tournamentName" name="tournamentName" #tournamentName igxInput required [(ngModel)]="tournament.Name" />
+      <igx-suffix *ngIf="tournamentName.value" (click)="tournament.Name = null">
+        <igx-icon>clear</igx-icon>
+      </igx-suffix>
+    </igx-input-group>
+
+    <igx-date-picker label="Start Date" name="startDate" required [(ngModel)]="tournament.StartDate">
+
+    </igx-date-picker>
+
+    <igx-date-picker label="End Date" name="endDate" required [(ngModel)]="tournament.EndDate">
+
+    </igx-date-picker>
+
+    <button igxButton [disabled]="!leagueForm.valid || !leagueForm.touched">Submit</button>
+  </form>
+</div>
+
+<div class="content-container">
+  <div class="content-container-row">
+    <igx-grid #grid1 [data]="orders" [height]="'600px'" primaryKey="id" (onCellEdit)="editDone($event, grid1)" [cellSelection]="'none'">
+
+      <igx-column field="orderDate" header="Направена на">
+        <ng-template igxCell let-value>
+          {{ value | date }}
+        </ng-template>
+      </igx-column>
+      <igx-column field="email" header="Имейл Адрес">
+      </igx-column>
+      <igx-column field="name" header="Име">
+        <ng-template igxCell let-cell="cell">
+          {{ cell.row.rowData.firstName }} {{ cell.row.rowData.lastName }}
+        </ng-template>
+      </igx-column>
+      <igx-column field="phoneNumber" header="Телефон">
+        <ng-template igxCell let-value>
+          +359 {{ value }}
+        </ng-template>
+      </igx-column>
+      <igx-column field="address" header="Адрес">
+        <ng-template igxCell let-cell="cell">
+          {{ cell.row.rowData.city }}, {{ cell.row.rowData.streetAddress }}
+        </ng-template>
+      </igx-column>
+      <igx-column field="promocode" header="Промо код">
+      </igx-column>
+      <igx-column field="confirmed" [dataType]="'boolean'" [editable]="true" header="Потвърдена">
+        <ng-template igxCell let-value>
+          <igx-icon [class]="value ? 'color-success' : 'color-error'">{{ value ? 'check' : 'close' }}</igx-icon>
+        </ng-template>
+      </igx-column>
+      <igx-column field="shipped" [dataType]="'boolean'" [editable]="true" header="Изпратена">
+        <ng-template igxCell let-value>
+          <igx-icon [class]="value ? 'color-success' : 'color-error'">{{ value ? 'check' : 'close' }}</igx-icon>
+        </ng-template>
+      </igx-column>
+
+      <ng-template igxGridDetail let-dataItem>
+        <div class="horizontal details-container space-evenly">
+          <div class="jersey-details" *ngFor="let details of dataItem.jerseys">
+            <img src="/assets/wallpapers/jersey-small.webp" alt="Esports Business League jersey" />
+            <div>{{details.cut ? 'Дамска' : 'Мъжка'}}</div>
+            <div class="highlight">{{ details.size | sizeName }}</div>
+          </div>
+        </div>
+      </ng-template>
+    </igx-grid>
+  </div>
+</div>
+
+<div class="content-container">
   <div>
     <igx-chips-area>
       Roles
@@ -37,78 +117,4 @@
       </igx-chips-area>
     </igx-list-item>
   </igx-list>
-</div>
-
-<div class="content-container">
-  <div class="content-container-row">
-    <igx-grid #grid1 [data]="orders" [height]="'300px'" primaryKey="id" (onCellEdit)="editDone($event, grid1)" [cellSelection]="'none'">
-
-      <igx-column field="orderDate" header="Направена на">
-        <ng-template igxCell let-value>
-          {{ value | date }}
-        </ng-template>
-      </igx-column>
-      <igx-column field="email" header="Имейл Адрес">
-      </igx-column>
-      <igx-column field="name" header="Име">
-        <ng-template igxCell let-cell="cell">
-          {{ cell.row.rowData.firstName }} {{ cell.row.rowData.lastName }} 
-        </ng-template>
-      </igx-column>
-      <igx-column field="phoneNumber" header="Телефон">
-        <ng-template igxCell let-value>
-          +359 {{ value }}
-        </ng-template>
-      </igx-column>
-      <igx-column field="address" header="Град">
-        <ng-template igxCell let-cell="cell">
-          {{ cell.row.rowData.city }}, {{ cell.row.rowData.streetAddress }} 
-        </ng-template>
-      </igx-column>
-      <igx-column field="promocode" header="Промо код">
-      </igx-column>
-      <igx-column field="confirmed" [dataType]="'boolean'" [editable]="true" header="Потвърдена">
-      </igx-column>
-      <igx-column field="shipped" [dataType]="'boolean'" [editable]="true" header="Изпратена">
-      </igx-column>
-
-      <ng-template igxGridDetail let-dataItem>
-        <div class="horizontal" *ngFor="let details of dataItem.jerseys">
-          <div>
-            <div>{{details.cut ? 'Дамска' : 'Мъжка'}} Кройка</div>
-            <div>Размер {{details.size}}</div>
-          </div>
-        </div>
-      </ng-template>
-    </igx-grid>
-  </div>
-</div>
-
-<div class="content-container">
-  <div>
-    <a *ngFor="let league of tournaments">{{league.Name}}: {{league.StartDate | date}} - {{league.EndDate | date}}
-      <button igxButton (click)="addAllApplications(league.ID)">Assign Applications</button>
-    </a>
-    <span *ngIf="!tournaments || !tournaments.length">No tournaments</span>
-  </div>
-
-  <form #leagueForm="ngForm" (ngSubmit)="createTournament()">
-    <igx-input-group>
-      <label igxLabel for="tournamentName">Tournament name</label>
-      <input type="text" id="tournamentName" name="tournamentName" #tournamentName igxInput required [(ngModel)]="tournament.Name" />
-      <igx-suffix *ngIf="tournamentName.value" (click)="tournament.Name = null">
-        <igx-icon>clear</igx-icon>
-      </igx-suffix>
-    </igx-input-group>
-
-    <igx-date-picker label="Start Date" name="startDate" required [(ngModel)]="tournament.StartDate">
-
-    </igx-date-picker>
-
-    <igx-date-picker label="End Date" name="endDate" required [(ngModel)]="tournament.EndDate">
-
-    </igx-date-picker>
-
-    <button igxButton [disabled]="!leagueForm.valid || !leagueForm.touched">Submit</button>
-  </form>
 </div>
