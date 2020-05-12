@@ -14,6 +14,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { SizeNamePipe } from '../pipes/size-name.pipe';
 
 describe('AdminComponent', () => {
   let component: AdminComponent;
@@ -22,7 +23,8 @@ describe('AdminComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AdminComponent
+        AdminComponent,
+        SizeNamePipe
       ],
       imports: [
         FormsModule,

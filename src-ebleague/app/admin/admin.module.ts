@@ -26,6 +26,7 @@ import { BellumGensModule } from '../../../src-common/components/components.modu
 import { AdminSc2Component } from './admin-sc2/admin-sc2.component';
 import { NotInGroupPipe } from '../pipes/not-in-group.pipe';
 import { GetPlayersPipe } from '../pipes/get-players.pipe';
+import { SizeNamePipe } from '../pipes/size-name.pipe';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { GetPlayersPipe } from '../pipes/get-players.pipe';
     AdminCsgoComponent,
     AdminSc2Component,
     NotInGroupPipe,
-    GetPlayersPipe
+    GetPlayersPipe,
+    SizeNamePipe
   ],
   imports: [
     CommonModule,
