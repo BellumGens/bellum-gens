@@ -163,18 +163,6 @@ export class ApiTournamentsService {
     );
   }
 
-  public addTournamentApplications(id: string) {
-    return this.http.put<Tournament>(`${this._apiEndpoint}/tournament/addapplications?id=${id}`, id, { withCredentials: true }).pipe(
-      map(response => {
-        return response;
-      }),
-      catchError(error => {
-        this.commService.emitError(error.error.Message);
-        return throwError(error);
-      })
-    );
-  }
-
   public updateRegistrations() {
     this.getRegistrations().subscribe(data => {
       this._registrations.next(data);

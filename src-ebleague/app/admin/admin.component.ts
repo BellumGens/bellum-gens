@@ -46,10 +46,6 @@ export class AdminComponent {
     this.apiService.createTournament(this.tournament).subscribe(data => this.tournaments.push(data));
   }
 
-  public addAllApplications(id: string) {
-    this.apiService.addTournamentApplications(id).subscribe();
-  }
-
   public editDone(event: IGridEditEventArgs, grid: IgxGridComponent) {
     const rowData = grid.getRowByKey(event.rowID).rowData;
     const column = grid.columnList.find(e => e.index === event.cellID.columnID);
