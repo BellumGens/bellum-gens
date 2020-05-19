@@ -1,8 +1,9 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Router } from '@angular/router';
+
 import { ApplicationUser } from '../../../../src-common/models/applicationuser';
 import { UserNotification, NotificationState } from '../../../../src-common/models/usernotifications';
 import { BellumgensApiService } from '../../../../src-common/services/bellumgens-api.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-player-notifications',
