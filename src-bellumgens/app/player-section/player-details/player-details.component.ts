@@ -1,12 +1,15 @@
 import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
-import { LoginService } from '../../../../src-common/services/login.service';
-import { ActivatedRoute } from '../../../../node_modules/@angular/router';
-import { BellumgensApiService } from '../../../../src-common/services/bellumgens-api.service';
+import { ActivatedRoute } from '@angular/router';
+import { Title, Meta } from '@angular/platform-browser';
+
 import {
   IgxDropDownComponent,
   ISelectionEventArgs,
   IgxIconService
 } from 'igniteui-angular';
+
+import { LoginService } from '../../../../src-common/services/login.service';
+import { BellumgensApiService } from '../../../../src-common/services/bellumgens-api.service';
 import { CSGOPlayer } from '../../../../src-common/models/csgoplayer';
 import { Availability } from '../../../../src-common/models/playeravailability';
 import { ApplicationUser } from '../../../../src-common/models/applicationuser';
@@ -14,7 +17,6 @@ import { CSGOTeam } from '../../../../src-common/models/csgoteam';
 import { CSGOMapPool } from '../../../../src-common/models/csgomaps';
 import { ALL_ROLES } from '../../../../src-common/models/playerrole';
 import { BaseComponent } from '../../base/base.component';
-import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   templateUrl: './player-details.component.html',
