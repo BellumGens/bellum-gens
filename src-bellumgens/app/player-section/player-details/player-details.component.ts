@@ -6,7 +6,7 @@ import {
   IgxDropDownComponent,
   ISelectionEventArgs,
   IgxIconService
-} from '../../../../node_modules/igniteui-angular';
+} from 'igniteui-angular';
 import { CSGOPlayer } from '../../../../src-common/models/csgoplayer';
 import { Availability } from '../../../../src-common/models/playeravailability';
 import { ApplicationUser } from '../../../../src-common/models/applicationuser';
