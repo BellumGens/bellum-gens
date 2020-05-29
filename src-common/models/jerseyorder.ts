@@ -18,6 +18,12 @@ export interface JerseyDetails {
   size: JerseySize;
 }
 
+export interface JerseySizes {
+  size: JerseySize;
+  text: string;
+  disabled: boolean;
+}
+
 export interface JerseyOrder {
   id?: string;
   jerseys?: JerseyDetails [];
