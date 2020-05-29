@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { newEmptyJerseyOrder, JerseyCut, JerseySize } from '../../../src-common/models/jerseyorder';
+import { newEmptyJerseyOrder, JerseyCut, JerseySize, JerseyDetails, JerseySizes } from '../../../src-common/models/jerseyorder';
 import { ApiShopService } from '../../../src-common/services/bellumgens-api.shop.service';
 import { Router } from '@angular/router';
 
@@ -19,16 +19,15 @@ export class ShopComponent {
     { text: 'Дамска', cut: JerseyCut.Female }
   ];
 
-  public allSizes = [
-    { text: 'XS', size: JerseySize.S },
-    { text: 'S', size: JerseySize.S },
-    { text: 'M', size: JerseySize.M },
-    { text: 'L', size: JerseySize.L },
-    { text: 'XL', size: JerseySize.XL },
-    { text: 'XXL', size: JerseySize.XXL },
-    { text: 'XXXL', size: JerseySize.XXXL }
+  public allSizes: JerseySizes [] = [
+    { text: 'XS', size: JerseySize.S, disabled: false },
+    { text: 'S', size: JerseySize.S, disabled: false },
+    { text: 'M', size: JerseySize.M, disabled: false },
+    { text: 'L', size: JerseySize.L, disabled: false },
+    { text: 'XL', size: JerseySize.XL, disabled: false },
+    { text: 'XXL', size: JerseySize.XXL, disabled: false },
+    { text: 'XXXL', size: JerseySize.XXXL, disabled: false }
   ];
-
 
   constructor(private apiService: ApiShopService,
               private router: Router) { }

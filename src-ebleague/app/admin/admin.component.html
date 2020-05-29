@@ -1,8 +1,6 @@
 <div class="content-container">
   <div>
-    <a *ngFor="let league of tournaments">{{league.Name}}: {{league.StartDate | date}} - {{league.EndDate | date}}
-      <button igxButton (click)="addAllApplications(league.ID)">Assign Applications</button>
-    </a>
+    <a *ngFor="let league of tournaments">{{league.Name}}: {{league.StartDate | date}} - {{league.EndDate | date}}</a>
     <span *ngIf="!tournaments || !tournaments.length">No tournaments</span>
   </div>
 
