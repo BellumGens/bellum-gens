@@ -20,14 +20,14 @@
     <div class="horizontal">
       <div class="column-container">
         <div class="horizontal-center" *ngFor="let jersey of order.jerseys; let i = index">
-          <igx-select type="border" class="order-form-input" name="jerseyCut" [(ngModel)]="jersey.cut">
+          <igx-select [value]="jersey.cut" (onSelection)="selectJerseyCut(jersey, $event)" type="border" class="order-form-input" name="jerseyCut">
             <label igxLabel>Кройка</label>
             <igx-select-item *ngFor="let cut of cuts" [value]="cut.cut">
               {{ cut.text }}
             </igx-select-item>
           </igx-select>
 
-          <igx-select type="border" class="order-form-input" name="jerseySize" [(ngModel)]="jersey.size">
+          <igx-select [value]="jersey.size" (onSelection)="selectJerseySize(jersey, $event)" type="border" class="order-form-input" name="jerseySize">
             <label igxLabel>Размер</label>
             <igx-select-item *ngFor="let size of allSizes | filterSizes:jersey.cut" [value]="size.size">
               {{ size.text }}

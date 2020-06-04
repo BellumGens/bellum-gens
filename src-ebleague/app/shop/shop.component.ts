@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { newEmptyJerseyOrder, JerseyCut, JerseySize, JerseyDetails, JerseySizes } from '../../../src-common/models/jerseyorder';
+import { newEmptyJerseyOrder, JerseyCut, JerseyDetails, JerseySize } from '../../../src-common/models/jerseyorder';
 import { ApiShopService } from '../../../src-common/services/bellumgens-api.shop.service';
 import { Router } from '@angular/router';
+import { ISelectionEventArgs } from 'igniteui-angular';
 
 @Component({
   selector: 'app-shop',
@@ -19,8 +20,8 @@ export class ShopComponent {
     { text: 'Дамска', cut: JerseyCut.Female }
   ];
 
-  public allSizes: JerseySizes [] = [
-    { text: 'XS', size: JerseySize.S, disabled: false },
+  public allSizes: [
+    { text: 'XS', size: JerseySize.XS, disabled: false },
     { text: 'S', size: JerseySize.S, disabled: false },
     { text: 'M', size: JerseySize.M, disabled: false },
     { text: 'L', size: JerseySize.L, disabled: false },
@@ -35,7 +36,7 @@ export class ShopComponent {
   public placeOrder() {
     this.inProgress = true;
     this.apiService.submitOrder(this.order).subscribe(
-      data => this.router.navigate(['order-success']),
+      _ => this.router.navigate(['order-success']),
       _ => this.inProgress = false
     );
   }
@@ -50,6 +51,14 @@ export class ShopComponent {
         this.invalidPromo = true;
       }
     });
+  }
+
+  public selectJerseyCut(jersey: JerseyDetails, event: ISelectionEventArgs) {
+    jersey.cut = event.newSelection.value;
+  }
+
+  public selectJerseySize(jersey: JerseyDetails, event: ISelectionEventArgs) {
+    jersey.size = event.newSelection.value;
   }
 
 }

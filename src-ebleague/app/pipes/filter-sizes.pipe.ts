@@ -7,7 +7,7 @@ import { JerseySize, JerseyCut } from '../../../src-common/models/jerseyorder';
 export class FilterSizesPipe implements PipeTransform {
 
   private femaleSizes = [
-    { text: 'XS', size: JerseySize.S },
+    { text: 'XS', size: JerseySize.XS },
     { text: 'S', size: JerseySize.S },
     { text: 'M', size: JerseySize.M },
     { text: 'L', size: JerseySize.L },
