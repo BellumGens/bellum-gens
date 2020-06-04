@@ -16,7 +16,6 @@ export enum JerseySize {
 export interface JerseyDetails {
   cut: JerseyCut;
   size: JerseySize;
-  allSizes: JerseySizes [];
 }
 
 export interface JerseySizes {
@@ -47,26 +46,6 @@ export interface Promo {
 
 export function newEmptyJerseyOrder(): JerseyOrder {
   return {
-    jerseys: [{ cut: JerseyCut.Male, size: JerseySize.L, allSizes: [
-      { text: 'XS', size: JerseySize.XS, disabled: false },
-      { text: 'S', size: JerseySize.S, disabled: false },
-      { text: 'M', size: JerseySize.M, disabled: false },
-      { text: 'L', size: JerseySize.L, disabled: false },
-      { text: 'XL', size: JerseySize.XL, disabled: false },
-      { text: 'XXL', size: JerseySize.XXL, disabled: false },
-      { text: 'XXXL', size: JerseySize.XXXL, disabled: false }
-    ] }]
+    jerseys: [{ cut: JerseyCut.Male, size: JerseySize.L }]
   };
-}
-
-export function newEmptyJerseyDetails(): JerseyDetails {
-  return { cut: JerseyCut.Male, size: JerseySize.L, allSizes: [
-    { text: 'XS', size: JerseySize.XS, disabled: false },
-    { text: 'S', size: JerseySize.S, disabled: false },
-    { text: 'M', size: JerseySize.M, disabled: false },
-    { text: 'L', size: JerseySize.L, disabled: false },
-    { text: 'XL', size: JerseySize.XL, disabled: false },
-    { text: 'XXL', size: JerseySize.XXL, disabled: false },
-    { text: 'XXXL', size: JerseySize.XXXL, disabled: false }
-  ] };
 }

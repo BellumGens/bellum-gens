@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { newEmptyJerseyOrder, JerseyCut, newEmptyJerseyDetails, JerseyDetails } from '../../../src-common/models/jerseyorder';
+import { newEmptyJerseyOrder, JerseyCut, JerseyDetails, JerseySize } from '../../../src-common/models/jerseyorder';
 import { ApiShopService } from '../../../src-common/services/bellumgens-api.shop.service';
 import { Router } from '@angular/router';
 import { ISelectionEventArgs } from 'igniteui-angular';
@@ -20,7 +20,15 @@ export class ShopComponent {
     { text: 'Дамска', cut: JerseyCut.Female }
   ];
 
-  public newEmptyOrderDetails = newEmptyJerseyDetails;
+  public allSizes: [
+    { text: 'XS', size: JerseySize.XS, disabled: false },
+    { text: 'S', size: JerseySize.S, disabled: false },
+    { text: 'M', size: JerseySize.M, disabled: false },
+    { text: 'L', size: JerseySize.L, disabled: false },
+    { text: 'XL', size: JerseySize.XL, disabled: false },
+    { text: 'XXL', size: JerseySize.XXL, disabled: false },
+    { text: 'XXXL', size: JerseySize.XXXL, disabled: false }
+  ];
 
   constructor(private apiService: ApiShopService,
               private router: Router) { }
@@ -28,7 +36,7 @@ export class ShopComponent {
   public placeOrder() {
     this.inProgress = true;
     this.apiService.submitOrder(this.order).subscribe(
-      data => this.router.navigate(['order-success']),
+      _ => this.router.navigate(['order-success']),
       _ => this.inProgress = false
     );
   }

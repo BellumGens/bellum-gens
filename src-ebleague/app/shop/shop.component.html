@@ -29,7 +29,7 @@
 
           <igx-select [value]="jersey.size" (onSelection)="selectJerseySize(jersey, $event)" type="border" class="order-form-input" name="jerseySize">
             <label igxLabel>Размер</label>
-            <igx-select-item *ngFor="let size of jersey.allSizes | filterSizes:jersey.cut" [disabled]="size.disabled" [value]="size.size">
+            <igx-select-item *ngFor="let size of allSizes | filterSizes:jersey.cut" [value]="size.size">
               {{ size.text }}
             </igx-select-item>
           </igx-select>
@@ -64,7 +64,7 @@
     </div>
 
     <div class="horizontal floating-button">
-      <button type="button" igxButton="outlined" (click)="order.jerseys.push(newEmptyOrderDetails())">
+      <button type="button" igxButton="outlined" (click)="order.jerseys.push({ cut: 0, size: 3 })">
         <igx-icon>add</igx-icon> Добави още една
       </button>
     </div>
