@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BellumgensApiService } from '../../../../../src-common/services/bellumgens-api.service';
 import { ALL_ROLES } from '../../../../../src-common/models/playerrole';
 import { BaseComponent } from '../../../base/base.component';
-import { IgxIconService } from 'igniteui-angular';
+import { IgxIconService } from '@infragistics/igniteui-angular';
 import { ApplicationUser } from '../../../../../src-common/models/applicationuser';
 import { Title, Meta } from '@angular/platform-browser';
 

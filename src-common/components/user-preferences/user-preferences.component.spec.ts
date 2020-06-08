@@ -9,7 +9,7 @@ import { IgxInputGroupModule,
   IgxRippleModule,
   IgxDividerModule,
   IgxButtonModule,
-  IgxListModule} from 'igniteui-angular';
+  IgxListModule} from '@infragistics/igniteui-angular';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';

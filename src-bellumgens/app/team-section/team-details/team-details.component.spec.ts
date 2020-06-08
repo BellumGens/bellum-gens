@@ -8,7 +8,7 @@ import { IgxAvatarModule,
   IgxChipsModule,
   IgxTimePickerModule,
   IgxDialogModule,
-  IgxRippleModule } from 'igniteui-angular';
+  IgxRippleModule } from '@infragistics/igniteui-angular';
 import { RouterTestingModule } from '@angular/router/testing';
 import { PlayerCountryPipe } from 'src-bellumgens/app/pipes/player-country.pipe';
 import { WeekdayPipe } from 'src-bellumgens/app/pipes/weekday.pipe';

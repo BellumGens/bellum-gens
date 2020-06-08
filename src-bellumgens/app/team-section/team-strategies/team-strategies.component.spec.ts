@@ -17,7 +17,7 @@ import { IgxIconModule,
   IgxDropDownModule,
   IgxProgressBarModule,
   IgxButtonModule,
-  IgxDividerModule} from 'igniteui-angular';
+  IgxDividerModule} from '@infragistics/igniteui-angular';
 import { MapPoolComponent } from 'src-bellumgens/app/map-pool/map-pool.component';
 import { SafeVideoLinkPipe } from 'src-bellumgens/app/pipes/safe-video-link.pipe';
 import { FormsModule } from '@angular/forms';

@@ -5,7 +5,7 @@ import { ApiTournamentsService } from '../../../src-common/services/bellumgens-a
 import { Tournament, getEmptyNewTournament } from '../../../src-common/models/tournament';
 import { JerseyOrder } from '../../../src-common/models/jerseyorder';
 import { ApiShopService } from '../../../src-common/services/bellumgens-api.shop.service';
-import { IGridEditEventArgs, IgxGridComponent } from 'igniteui-angular';
+import { IGridEditEventArgs, IgxGridComponent } from '@infragistics/igniteui-angular';
 
 @Component({
   selector: 'app-admin',

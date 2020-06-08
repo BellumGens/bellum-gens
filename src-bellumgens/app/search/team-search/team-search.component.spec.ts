@@ -8,7 +8,7 @@ import { IgxRadioModule,
   IgxAvatarModule,
   IgxIconModule,
   IgxInputGroupModule,
-  IgxButtonModule} from 'igniteui-angular';
+  IgxButtonModule} from '@infragistics/igniteui-angular';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';

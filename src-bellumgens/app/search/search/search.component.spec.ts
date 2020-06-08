@@ -9,7 +9,7 @@ import { IgxButtonGroupModule,
   IgxSliderModule,
   IgxInputGroupModule,
   IgxButtonModule,
-  IgxSelectModule} from 'igniteui-angular';
+  IgxSelectModule} from '@infragistics/igniteui-angular';
 import { PlayerSearchComponent } from '../player-search/player-search.component';
 import { TeamSearchComponent } from '../team-search/team-search.component';
 import { FormsModule } from '@angular/forms';

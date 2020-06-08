@@ -19,7 +19,7 @@ import { IgxDividerModule,
   IgxProgressBarModule,
   IgxBadgeModule,
   IgxCalendarModule,
-  IgxGridModule} from 'igniteui-angular';
+  IgxGridModule} from '@infragistics/igniteui-angular';
 import { TournamentCsgoComponent } from './tournament-csgo/tournament-csgo.component';
 import { TournamentSc2Component } from './tournament-sc2/tournament-sc2.component';
 import { FormsModule } from '@angular/forms';

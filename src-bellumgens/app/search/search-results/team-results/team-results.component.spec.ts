@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TeamResultsComponent } from './team-results.component';
-import { IgxProgressBarModule, IgxCardModule, IgxAvatarModule, IgxChipsModule } from 'igniteui-angular';
+import { IgxProgressBarModule, IgxCardModule, IgxAvatarModule, IgxChipsModule } from '@infragistics/igniteui-angular';
 import { RouterTestingModule } from '@angular/router/testing';
 import { DaysAvailablePipe } from 'src-bellumgens/app/pipes/days-available.pipe';
 import { OpenPositionsPipe } from 'src-bellumgens/app/pipes/open-positions.pipe';

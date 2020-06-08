@@ -14,7 +14,7 @@ import { IgxCardModule,
   IgxDropDownModule,
   IgxToggleModule,
   IgxDialogModule,
-  IgxButtonModule} from 'igniteui-angular';
+  IgxButtonModule} from '@infragistics/igniteui-angular';
 import { VotesPipe } from 'src-bellumgens/app/pipes/votes.pipe';
 import { IsVideoPipe } from 'src-bellumgens/app/pipes/is-video.pipe';
 import { SafeVideoLinkPipe } from 'src-bellumgens/app/pipes/safe-video-link.pipe';

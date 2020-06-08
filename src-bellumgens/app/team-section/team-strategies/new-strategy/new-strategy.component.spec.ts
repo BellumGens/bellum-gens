@@ -8,7 +8,7 @@ import { IgxDialogModule,
   IgxIconModule,
   IgxRadioModule,
   IgxSwitchModule,
-  IgxSelectModule} from 'igniteui-angular';
+  IgxSelectModule} from '@infragistics/igniteui-angular';
 import { SafeVideoLinkPipe } from 'src-bellumgens/app/pipes/safe-video-link.pipe';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';

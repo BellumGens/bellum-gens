@@ -4,7 +4,7 @@ import { StrategyEditor } from '../../../../../src-common/models/strat-editor/st
 import { CSGOTeam } from '../../../../../src-common/models/csgoteam';
 import { BellumgensApiService } from '../../../../../src-common/services/bellumgens-api.service';
 import { ActivatedRoute } from '@angular/router';
-import { IDropDroppedEventArgs, IgxIconService } from 'igniteui-angular';
+import { IDropDroppedEventArgs, IgxIconService } from '@infragistics/igniteui-angular';
 import { StratUtilities, EditorBrushColors } from '../../../../../src-common/models/strat-editor/utility';
 import { CSGOStrategy } from '../../../../../src-common/models/csgostrategy';
 import { BaseLayer, PointCoordinate, ImageLayer, FreeflowLayer } from '../../../../../src-common/models/strat-editor/editor-layer';

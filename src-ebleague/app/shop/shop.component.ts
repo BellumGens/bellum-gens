@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { newEmptyJerseyOrder, JerseyCut, JerseyDetails, JerseySize } from '../../../src-common/models/jerseyorder';
 import { ApiShopService } from '../../../src-common/services/bellumgens-api.shop.service';
 import { Router } from '@angular/router';
-import { ISelectionEventArgs } from 'igniteui-angular';
+import { ISelectionEventArgs } from '@infragistics/igniteui-angular';
 
 @Component({
   selector: 'app-shop',

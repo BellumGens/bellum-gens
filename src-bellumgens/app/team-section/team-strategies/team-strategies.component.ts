@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { BellumgensApiService } from '../../../../src-common/services/bellumgens-api.service';
 import { CSGOStrategy, VoteDirection } from '../../../../src-common/models/csgostrategy';
 import { CSGOMapPool, AllCSGOMaps } from '../../../../src-common/models/csgomaps';
-import { IChipSelectEventArgs } from 'igniteui-angular';
+import { IChipSelectEventArgs } from '@infragistics/igniteui-angular';
 import { SafeResourceUrl, Title, Meta } from '@angular/platform-browser';
 import { BaseComponent } from '../../base/base.component';
 import { CSGOTeam } from '../../../../src-common/models/csgoteam';

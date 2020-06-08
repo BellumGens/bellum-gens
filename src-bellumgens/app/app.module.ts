@@ -38,7 +38,7 @@ import { IgxNavbarModule,
   IgxCarouselModule,
   IgxAutocompleteModule,
   IgxNavigationDrawerModule,
-  IgxGridModule} from 'igniteui-angular';
+  IgxGridModule} from '@infragistics/igniteui-angular';
 import { PlayerDetailsComponent } from './player-section/player-details/player-details.component';
 import { LoginService } from '../../src-common/services/login.service';
 import { BellumgensApiService } from '../../src-common/services/bellumgens-api.service';

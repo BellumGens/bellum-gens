@@ -1,5 +1,5 @@
 import { Component, ViewChildren, QueryList, ElementRef } from '@angular/core';
-import { IDropDroppedEventArgs, IgxAvatarComponent } from 'igniteui-angular';
+import { IDropDroppedEventArgs, IgxAvatarComponent } from '@infragistics/igniteui-angular';
 import { PlaystyleRole, RoleSlot } from '../../../../src-common/models/playerrole';
 import { TeamMember, TEAM_PLACEHOLDER } from '../../../../src-common/models/csgoteam';
 import { BellumgensApiService } from '../../../../src-common/services/bellumgens-api.service';

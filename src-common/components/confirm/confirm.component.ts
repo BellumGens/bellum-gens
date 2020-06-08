@@ -1,5 +1,5 @@
 import { Component, Input, EventEmitter, Output, ViewChild } from '@angular/core';
-import { IDialogEventArgs, IgxDialogComponent } from 'igniteui-angular';
+import { IDialogEventArgs, IgxDialogComponent } from '@infragistics/igniteui-angular';
 
 @Component({
   selector: 'bg-confirm',

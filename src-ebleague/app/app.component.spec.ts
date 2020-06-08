@@ -13,7 +13,7 @@ import { IgxNavigationDrawerModule,
   IgxProgressBarModule,
   IgxButtonGroupModule,
   IgxSliderModule,
-  IgxDividerModule} from 'igniteui-angular';
+  IgxDividerModule} from '@infragistics/igniteui-angular';
 import { FormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';

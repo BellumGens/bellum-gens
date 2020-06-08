@@ -3,7 +3,7 @@ import { getEmptyNewApplication, Game, GAMES } from '../../../../src-common/mode
 import { ApplicationUser } from '../../../../src-common/models/applicationuser';
 import { LoginService } from '../../../../src-common/services/login.service';
 import { ApiTournamentsService } from '../../../../src-common/services/bellumgens-api.tournaments.service';
-import { IgxDialogComponent } from 'igniteui-angular';
+import { IgxDialogComponent } from '@infragistics/igniteui-angular';
 
 @Component({
   selector: 'app-tournament-registration',

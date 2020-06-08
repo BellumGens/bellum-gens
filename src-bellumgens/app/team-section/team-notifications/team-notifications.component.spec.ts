@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TeamNotificationsComponent } from './team-notifications.component';
-import { IgxListModule, IgxAvatarModule } from 'igniteui-angular';
+import { IgxListModule, IgxAvatarModule } from '@infragistics/igniteui-angular';
 import { SortApplicationsPipe } from 'src-bellumgens/app/pipes/sort-applications.pipe';
 import { DisabledNotificationsPipe } from 'src-bellumgens/app/pipes/disabled-notifications.pipe';
 import { RouterTestingModule } from '@angular/router/testing';

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { IgxProgressType } from 'igniteui-angular';
+import { IgxProgressType } from '@infragistics/igniteui-angular';
 import { LoginService } from '../../services/login.service';
 import { ApplicationUser } from '../../models/applicationuser';
 import { PlaystyleRole } from '../../models/playerrole';

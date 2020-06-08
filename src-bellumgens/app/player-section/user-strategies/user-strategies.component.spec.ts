@@ -19,7 +19,7 @@ import { IgxIconModule,
   IgxBadgeModule,
   IgxSwitchModule,
   IgxDropDownModule,
-  IgxProgressBarModule } from 'igniteui-angular';
+  IgxProgressBarModule } from '@infragistics/igniteui-angular';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { SafeVideoLinkPipe } from 'src-bellumgens/app/pipes/safe-video-link.pipe';
 import { TruncateTextPipe } from 'src-bellumgens/app/pipes/truncate-text.pipe';

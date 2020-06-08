@@ -1,7 +1,7 @@
 import { Component, ViewChild, Input } from '@angular/core';
 import { ApplicationUser } from '../../../../src-common/models/applicationuser';
 import { BellumgensApiService } from '../../../../src-common/services/bellumgens-api.service';
-import { IgxDialogComponent } from 'igniteui-angular';
+import { IgxDialogComponent } from '@infragistics/igniteui-angular';
 import { Router } from '@angular/router';
 import { SteamGroup } from '../../../../src-common/models/steamuser';
 import { getEmptyNewTeam } from '../../../../src-common/models/csgoteam';

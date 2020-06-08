@@ -11,7 +11,7 @@ import { IgxRadioModule,
   IgxIconModule,
   IgxInputGroupModule,
   IgxButtonModule,
-  IgxSelectModule} from 'igniteui-angular';
+  IgxSelectModule} from '@infragistics/igniteui-angular';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 

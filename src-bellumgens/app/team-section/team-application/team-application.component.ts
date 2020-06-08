@@ -1,5 +1,5 @@
 import { Component, ViewChild, Input } from '@angular/core';
-import { IgxDialogComponent } from 'igniteui-angular';
+import { IgxDialogComponent } from '@infragistics/igniteui-angular';
 import { ApplicationUser } from '../../../../src-common/models/applicationuser';
 import { TeamApplication, CSGOTeam } from '../../../../src-common/models/csgoteam';
 import { NotificationState } from '../../../../src-common/models/usernotifications';
