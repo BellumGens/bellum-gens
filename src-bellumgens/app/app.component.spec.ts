@@ -24,7 +24,7 @@ import { IgxNavigationDrawerModule,
   IgxTabsModule,
   IgxSwitchModule,
   IgxDividerModule,
-  IgxSelectModule} from 'igniteui-angular';
+  IgxSelectModule} from '@infragistics/igniteui-angular';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { TeamNavComponent } from './team-section/team-nav/team-nav.component';
 import { QuickSearchComponent } from './search/quick-search/quick-search.component';

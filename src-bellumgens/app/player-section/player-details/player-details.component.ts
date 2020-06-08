@@ -6,7 +6,7 @@ import {
   IgxDropDownComponent,
   ISelectionEventArgs,
   IgxIconService
-} from 'igniteui-angular';
+} from '@infragistics/igniteui-angular';
 
 import { LoginService } from '../../../../src-common/services/login.service';
 import { BellumgensApiService } from '../../../../src-common/services/bellumgens-api.service';

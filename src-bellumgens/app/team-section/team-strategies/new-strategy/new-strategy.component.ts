@@ -2,7 +2,7 @@ import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angu
 import { CSGOStrategy, newEmptyStrategy } from '../../../../../src-common/models/csgostrategy';
 import { BellumgensApiService } from '../../../../../src-common/services/bellumgens-api.service';
 import { CSGOTeam } from '../../../../../src-common/models/csgoteam';
-import { IgxDialogComponent } from 'igniteui-angular';
+import { IgxDialogComponent } from '@infragistics/igniteui-angular';
 import { IsVideoPipe } from '../../../pipes/is-video.pipe';
 import { ApplicationUser } from '../../../../../src-common/models/applicationuser';
 import { Router } from '@angular/router';

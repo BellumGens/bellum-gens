@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MapPoolComponent } from './map-pool.component';
-import { IgxCheckboxModule, IgxCardModule } from 'igniteui-angular';
+import { IgxCheckboxModule, IgxCardModule } from '@infragistics/igniteui-angular';
 import { ActiveDutyMapsPipe } from '../pipes/active-duty-maps.pipe';
 import { BellumGensModule } from 'src-common/components/components.module';
 

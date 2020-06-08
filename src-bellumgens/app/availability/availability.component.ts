@@ -5,7 +5,7 @@ import { IgxTimePickerComponent,
   IgxChipsAreaComponent,
   IgxDialogComponent,
   IgxChipComponent,
-  IChipClickEventArgs} from 'igniteui-angular';
+  IChipClickEventArgs} from '@infragistics/igniteui-angular';
 
 @Component({
   selector: 'app-availability',

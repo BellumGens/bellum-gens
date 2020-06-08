@@ -13,7 +13,7 @@ import { IgxIconModule,
   IgxButtonModule,
   IgxListModule,
   IgxProgressBarModule,
-  IgxCheckboxModule} from 'igniteui-angular';
+  IgxCheckboxModule} from '@infragistics/igniteui-angular';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { RouterTestingModule } from '@angular/router/testing';

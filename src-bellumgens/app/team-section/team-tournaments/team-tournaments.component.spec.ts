@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TeamTournamentsComponent } from './team-tournaments.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { IgxGridModule, IgxAvatarModule } from 'igniteui-angular';
+import { IgxGridModule, IgxAvatarModule } from '@infragistics/igniteui-angular';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';

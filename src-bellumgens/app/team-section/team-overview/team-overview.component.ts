@@ -6,7 +6,7 @@ import { BellumgensApiService } from '../../../../src-common/services/bellumgens
 import { LoginService } from '../../../../src-common/services/login.service';
 import { BaseComponent } from '../../base/base.component';
 import { Title, Meta } from '@angular/platform-browser';
-import { IgxIconService } from 'igniteui-angular';
+import { IgxIconService } from '@infragistics/igniteui-angular';
 
 @Component({
   templateUrl: './team-overview.component.html',

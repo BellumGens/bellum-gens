@@ -15,7 +15,7 @@ import { IgxDialogModule,
   IgxSwitchModule,
   IgxListModule,
   IgxInputGroupModule,
-  IgxSnackbarModule} from 'igniteui-angular';
+  IgxSnackbarModule} from '@infragistics/igniteui-angular';
 
 import { SuccessErrorComponent } from './success-error/success-error.component';
 import { ConfirmComponent } from './confirm/confirm.component';

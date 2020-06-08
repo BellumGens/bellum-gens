@@ -17,7 +17,7 @@ import { IgxProgressBarModule,
   IgxSwitchModule,
   IgxInputGroupModule,
   IgxDividerModule,
-  IgxButtonModule} from 'igniteui-angular';
+  IgxButtonModule} from '@infragistics/igniteui-angular';
 import { SteamCustomUrlPipe } from 'src-bellumgens/app/pipes/steam-custom-url.pipe';
 import { PlayerCountryPipe } from 'src-bellumgens/app/pipes/player-country.pipe';
 import { AvailabilityComponent } from 'src-bellumgens/app/availability/availability.component';

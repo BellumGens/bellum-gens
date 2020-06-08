@@ -9,7 +9,7 @@ import { IgxSelectModule,
   IgxButtonModule,
   IgxMaskModule,
   IgxDividerModule,
-  IgxTextSelectionModule } from 'igniteui-angular';
+  IgxTextSelectionModule } from '@infragistics/igniteui-angular';
 import { FormsModule } from '@angular/forms';
 import { FilterSizesPipe } from '../pipes/filter-sizes.pipe';
 

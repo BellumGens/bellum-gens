@@ -4,7 +4,7 @@ import { getEmptyNewGroup,
   TournamentRegistration } from '../../../../src-common/models/tournament';
 import { ApiTournamentsService } from '../../../../src-common/services/bellumgens-api.tournaments.service';
 import { environment } from '../../../../src-common/environments/environment';
-import { IDropDroppedEventArgs, DateRangeDescriptor, DateRangeType } from 'igniteui-angular';
+import { IDropDroppedEventArgs, DateRangeDescriptor, DateRangeType } from '@infragistics/igniteui-angular';
 import { TournamentCSGOMatch, TournamentCSGOMatchMap } from '../../../../src-common/models/tournament-schedule';
 import { CSGOActiveDutyDescriptor, ActiveDuty } from '../../../../src-common/models/csgomaps';
 import { SameDay } from '../../../../src-common/models/misc';

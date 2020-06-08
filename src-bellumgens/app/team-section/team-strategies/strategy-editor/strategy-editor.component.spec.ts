@@ -11,7 +11,7 @@ import { IgxIconModule,
   IgxSelectModule,
   IgxButtonGroupModule,
   IgxButtonModule,
-  IgxProgressBarModule} from 'igniteui-angular';
+  IgxProgressBarModule} from '@infragistics/igniteui-angular';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';

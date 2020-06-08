@@ -17,7 +17,7 @@ import { IgxIconModule,
   IgxButtonModule,
   IgxListModule,
   IgxProgressBarModule,
-  IgxCheckboxModule } from 'igniteui-angular';
+  IgxCheckboxModule } from '@infragistics/igniteui-angular';
 import { StartsWithPipe } from 'src-bellumgens/app/pipes/starts-with.pipe';
 import { TeamNewComponent } from 'src-bellumgens/app/team-section/team-new/team-new.component';
 import { GroupsFilterPipe } from 'src-bellumgens/app/pipes/groups-filter.pipe';

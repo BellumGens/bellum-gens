@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, PLATFORM_ID, Inject } from '@angular/core';
 
-import { IgxBannerComponent, IgxNavigationDrawerComponent} from 'igniteui-angular';
+import { IgxBannerComponent, IgxNavigationDrawerComponent} from '@infragistics/igniteui-angular';
 import { LoginService } from '../../src-common/services/login.service';
 import { ApplicationUser } from '../../src-common/models/applicationuser';
 import { environment } from '../../src-common/environments/environment';

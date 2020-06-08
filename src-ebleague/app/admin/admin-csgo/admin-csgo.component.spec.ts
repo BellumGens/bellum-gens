@@ -16,7 +16,7 @@ import { IgxListModule,
   IgxTimePickerModule,
   IgxCalendarModule,
   IgxDividerModule,
-  IgxCheckboxModule} from 'igniteui-angular';
+  IgxCheckboxModule} from '@infragistics/igniteui-angular';
 import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';

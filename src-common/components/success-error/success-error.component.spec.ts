@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SuccessErrorComponent } from './success-error.component';
-import { IgxSnackbarModule, IgxIconModule } from 'igniteui-angular';
+import { IgxSnackbarModule, IgxIconModule } from '@infragistics/igniteui-angular';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('SuccessErrorComponent', () => {

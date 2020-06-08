@@ -5,7 +5,7 @@ import { IgxAvatarModule,
   IgxIconModule,
   IgxTabsModule,
   IgxInputGroupModule,
-  IgxDialogModule} from 'igniteui-angular';
+  IgxDialogModule} from '@infragistics/igniteui-angular';
 import { TeamApplicationComponent } from '../team-application/team-application.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormsModule } from '@angular/forms';

@@ -6,7 +6,7 @@ import { PositionSettings,
   IgxDropDownComponent,
   IgxInputGroupComponent,
   AutoPositionStrategy,
-  IgxBannerComponent} from 'igniteui-angular';
+  IgxBannerComponent} from '@infragistics/igniteui-angular';
 import { LoginService } from '../../src-common/services/login.service';
 import { ApplicationUser } from '../../src-common/models/applicationuser';
 import { BellumgensApiService } from '../../src-common/services/bellumgens-api.service';

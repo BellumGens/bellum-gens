@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AppShellComponent } from './app-shell.component';
-import { IgxProgressBarModule } from 'igniteui-angular';
+import { IgxProgressBarModule } from '@infragistics/igniteui-angular';
 
 describe('AppShellComponent', () => {
   let component: AppShellComponent;

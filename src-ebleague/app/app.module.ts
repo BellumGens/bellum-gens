@@ -17,7 +17,7 @@ import { IgxNavbarModule,
   IgxIconService,
   IgxDividerModule,
   IgxAvatarModule,
-  IgxNavigationDrawerModule} from 'igniteui-angular';
+  IgxNavigationDrawerModule} from '@infragistics/igniteui-angular';
 import { LoginService } from '../../src-common/services/login.service';
 import { BellumgensApiService } from '../../src-common/services/bellumgens-api.service';
 import { ServiceWorkerModule } from '@angular/service-worker';

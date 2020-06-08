@@ -7,7 +7,7 @@ import { IgxAvatarModule,
   IgxInputGroupModule,
   IgxIconModule,
   IgxDialogModule,
-  IgxProgressBarModule } from 'igniteui-angular';
+  IgxProgressBarModule } from '@infragistics/igniteui-angular';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { GroupsFilterPipe } from 'src-bellumgens/app/pipes/groups-filter.pipe';

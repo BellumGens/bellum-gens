@@ -4,7 +4,7 @@ import { TournamentGroup,
   getEmptyNewGroup} from '../../../../src-common/models/tournament';
 import { ApiTournamentsService } from '../../../../src-common/services/bellumgens-api.tournaments.service';
 import { environment } from '../../../../src-common/environments/environment';
-import { IDropDroppedEventArgs, DateRangeDescriptor, DateRangeType } from 'igniteui-angular';
+import { IDropDroppedEventArgs, DateRangeDescriptor, DateRangeType } from '@infragistics/igniteui-angular';
 import { TournamentSC2Match, TournamentSC2MatchMap } from '../../../../src-common/models/tournament-schedule';
 import { SC2_MAPS, SC2LadderDescriptor } from '../../../../src-common/models/sc2maps';
 import { SameDay } from '../../../../src-common/models/misc';

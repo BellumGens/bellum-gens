@@ -14,7 +14,7 @@ import { IgxAvatarModule,
   IgxProgressBarModule,
   IgxDividerModule,
   IgxButtonModule,
-  IgxListModule} from 'igniteui-angular';
+  IgxListModule} from '@infragistics/igniteui-angular';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { UserPreferencesComponent } from '../user-preferences/user-preferences.component';

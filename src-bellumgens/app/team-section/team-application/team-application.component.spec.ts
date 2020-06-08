@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TeamApplicationComponent } from './team-application.component';
-import { IgxIconModule, IgxInputGroupModule, IgxDialogModule, IgxRippleModule } from 'igniteui-angular';
+import { IgxIconModule, IgxInputGroupModule, IgxDialogModule, IgxRippleModule } from '@infragistics/igniteui-angular';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';

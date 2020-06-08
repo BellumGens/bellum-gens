@@ -1,4 +1,4 @@
-import { PositionSettings, HorizontalAlignment, OverlaySettings, AutoPositionStrategy } from 'igniteui-angular';
+import { PositionSettings, HorizontalAlignment, OverlaySettings, AutoPositionStrategy } from '@infragistics/igniteui-angular';
 
 export const LOGIN_ASSETS = {
   Steam: '#101821',

@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProductionCrewComponent } from './production-crew.component';
-import { IgxCardModule, IgxIconModule, IgxButtonModule } from 'igniteui-angular';
+import { IgxCardModule, IgxIconModule, IgxButtonModule } from '@infragistics/igniteui-angular';
 import { RouterTestingModule } from '@angular/router/testing';
 
 describe('ProductionCrewComponent', () => {

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ApiTournamentsService } from '../../../../../src-common/services/bellumgens-api.tournaments.service';
 import { TournamentSC2Match } from '../../../../../src-common/models/tournament-schedule';
-import { DateRangeDescriptor, DateRangeType } from 'igniteui-angular';
+import { DateRangeDescriptor, DateRangeType } from '@infragistics/igniteui-angular';
 import { SameDay } from '../../../../../src-common/models/misc';
 
 @Component({
