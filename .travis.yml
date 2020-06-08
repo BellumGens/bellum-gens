@@ -1,6 +1,10 @@
 language: node_js
 node_js:
   - "12.16.0"
+before_install:
+- echo "@infragistics:registry=https://packages.infragistics.com/npm/js-licensed/" >> ~/.npmrc
+- echo "//packages.infragistics.com/npm/js-licensed/:_auth=$npm_token" >> ~/.npmrc
+- echo "//packages.infragistics.com/npm/js-licensed/:always-auth=true" >> ~/.npmrc
 script:
   - npm run lint
   - npm run test:prod
