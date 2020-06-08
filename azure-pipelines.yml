@@ -15,6 +15,10 @@ steps:
     versionSpec: '12.x'
   displayName: 'Install Node.js'
 
+- script: npm config set @infragistics:registry $(ig_registry)
+- script: npm config set always-auth true --scope:@infragistics
+- script: npm config set _auth=$(npm_token) --scope:@infragistics
+
 - script: npm ci
   displayName: npm install
 
