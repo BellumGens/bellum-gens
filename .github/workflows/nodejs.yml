@@ -23,13 +23,12 @@ jobs:
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
-        always-auth: true
         node-version: ${{ matrix.node-version }}
-        registry-url: https://packages.infragistics.com/npm/js-licensed/
-        scope: '@infragistics'
+    - run:
+      - echo "@infragistics:registry=https://packages.infragistics.com/npm/js-licensed/" >> ~/.npmrc
+      - echo "//packages.infragistics.com/npm/js-licensed/:_auth=$NPM_TOKEN" >> ~/.npmrc
+      - echo "//packages.infragistics.com/npm/js-licensed/:always-auth=true" >> ~/.npmrc
     - run: npm ci
-      env:
-        NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
     - run: npm run lint
     - run: npm run test:prod
     - run: npm run build:ssr
