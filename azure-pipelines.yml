@@ -10,7 +10,7 @@ pool:
   vmImage: 'Ubuntu-16.04'
 
 variables:
-- group: my-variable-group
+- group: node-variables
 
 steps:
 - task: NodeTool@0
