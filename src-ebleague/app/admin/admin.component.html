@@ -1,5 +1,5 @@
 <div class="content-container">
-  <div>
+  <div class="column-center">
     <a *ngFor="let league of tournaments">{{league.Name}}: {{league.StartDate | date}} - {{league.EndDate | date}}</a>
     <span *ngIf="!tournaments || !tournaments.length">No tournaments</span>
   </div>
@@ -66,7 +66,7 @@
 
       <ng-template igxGridDetail let-dataItem>
         <div class="horizontal details-container space-evenly">
-          <div class="jersey-details" *ngFor="let details of dataItem.jerseys">
+          <div class="column-center" *ngFor="let details of dataItem.jerseys">
             <img src="/assets/wallpapers/jersey-small.webp" alt="Esports Business League jersey" />
             <div>{{details.cut ? 'Дамска' : 'Мъжка'}}</div>
             <div class="highlight">{{ details.size | sizeName }}</div>
