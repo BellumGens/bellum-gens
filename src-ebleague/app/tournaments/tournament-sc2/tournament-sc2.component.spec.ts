@@ -4,7 +4,7 @@ import { TournamentSc2Component } from './tournament-sc2.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { IgxAvatarModule, IgxCardModule, IgxBadgeModule, IgxListModule, IgxProgressBarModule, IgxGridModule } from '@infragistics/igniteui-angular';
+import { IgxAvatarModule, IgxCardModule, IgxBadgeModule, IgxListModule, IgxProgressBarModule, IgxGridModule, IgxCalendarModule } from '@infragistics/igniteui-angular';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SortByPointsPipe } from 'src-ebleague/app/pipes/sort-by-points.pipe';
 import { SC2TournamentScheduleComponent } from '../tournament-schedule/sc2/tournament-schedule.component';
@@ -28,6 +28,7 @@ describe('TournamentSc2Component', () => {
         IgxAvatarModule,
         IgxCardModule,
         IgxBadgeModule,
+        IgxCalendarModule,
         IgxProgressBarModule,
         IgxListModule,
         IgxGridModule
