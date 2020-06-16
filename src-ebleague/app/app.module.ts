@@ -22,7 +22,8 @@ import { IgxNavbarModule,
   IgxDropDownModule,
   IgxCheckboxModule,
   IgxAutocompleteModule,
-  IgxDialogModule
+  IgxDialogModule,
+  IgxListModule
 } from '@infragistics/igniteui-angular';
 import { LoginService } from '../../src-common/services/login.service';
 import { BellumgensApiService } from '../../src-common/services/bellumgens-api.service';
@@ -73,6 +74,7 @@ import { GroupsFilterPipe } from '../../src-bellumgens/app/pipes/groups-filter.p
     IgxCheckboxModule,
     IgxAutocompleteModule,
     IgxDialogModule,
+    IgxListModule,
     BellumGensModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     HammerModule
