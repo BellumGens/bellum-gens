@@ -2,7 +2,7 @@
 
   <igx-divider></igx-divider>
   <div class="form-wrapper">
-    <h4 id="registration" class="registration-title">[ЗАТВОРЕНА] Регистрация</h4>
+    <h4 id="registration" class="registration-title">Регистрация Сезон 2</h4>
 
     <igx-select name="game" required [disabled]="!authUser" class="registration-form-input" [(ngModel)]="application.Game" (ngModelChange)="showDetails()">
       <label igxLabel>{{ authUser ? 'Изберете лига (игра)' : 'Първо трябва да влезете в акаунта си'}}</label>
@@ -77,7 +77,7 @@
   </div>
 </form>
 
-<igx-dialog title="Регистрацията ви е получена!" [closeOnOutsideSelect]="true" #successMsg>
+<!-- <igx-dialog title="Регистрацията ви е получена!" [closeOnOutsideSelect]="true" #successMsg>
   <div class="success-dialog-content">
     <p>Вашата регистрация ще бъде потвърдена след като преведете таксата за участие (60лв. с ДДС за лигата по StarCraft II, или 300лв. с ДДС за лигата по CS:GO).</p>
     <p>Банковата ни сметка е</p>
@@ -90,6 +90,6 @@
     <p>Моля при превода да сложите в основанието уникалния код, който сме генерирали за вашата регистрация: <span class="highlight">{{ application.Hash }}</span>. Можете да намерите кода и през вашият профил.</p>
     <p>Ако ви е нужна фактура, моля да се свържете с нас на <a href="mailto:info@eb-league.com">info@eb-league.com</a>!</p>
   </div>
-</igx-dialog>
+</igx-dialog> -->
 
 <app-team-new #newTeam [authUser]="authUser"></app-team-new>

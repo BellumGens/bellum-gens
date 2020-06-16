@@ -8,7 +8,7 @@
                       [value]="registrations | getRegCount:gameEnum.CSGO"
                       [text]="(registrations | getRegCount:gameEnum.CSGO) + ' / 16 записани'"
                       type="success"></igx-linear-bar>
-      <button igxButton="raised" routerLink="/csgo">Регистрирай се за CS:GO лига</button>
+      <button igxButton="raised" (click)="registration.selectGame(gameEnum.CSGO)">Регистрирай се за CS:GO лига</button>
     </div>
   </div>
   <div class="slide slide2">
@@ -20,7 +20,7 @@
                       [value]="registrations | getRegCount:gameEnum.StarCraft2"
                       [text]="(registrations | getRegCount:gameEnum.StarCraft2) + ' / 32 записани'"
                       type="success"></igx-linear-bar>
-      <button igxButton="raised" routerLink="/sc2">Регистрирай се за StarCraft II лига</button>
+      <button igxButton="raised" (click)="registration.selectGame(gameEnum.StarCraft2)">Регистрирай се за StarCraft II лига</button>
     </div>
   </div>
 </div>
@@ -28,9 +28,9 @@
 <bg-login-dialog #loginDialog></bg-login-dialog>
 
 <div class="content-container">
-  <!-- <app-tournament-registration class="content-container-row"></app-tournament-registration> -->
+  <app-tournament-registration #registration class="content-container-row"></app-tournament-registration>
   <div class="content-container-row">
-    <h2 id="finals">Финали</h2>
+    <h2 id="finals">Финали Сезон 1</h2>
   </div>
 
   <div class="content-container-row">

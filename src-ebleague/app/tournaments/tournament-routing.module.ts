@@ -6,13 +6,11 @@ import { TournamentFormatComponent } from './tournament-format/tournament-format
 import { TournamentCsgoComponent } from './tournament-csgo/tournament-csgo.component';
 import { TournamentSc2Component } from './tournament-sc2/tournament-sc2.component';
 import { ProductionCrewComponent } from './production-crew/production-crew.component';
-import { TournamentRegistrationComponent } from './tournament-registration/tournament-registration.component';
 
 const routes: Routes = [
   { path: '', component: TournamentComponent, redirectTo: 'format' },
   { path: 'format', component: TournamentFormatComponent },
   { path: 'crew', component: ProductionCrewComponent },
-  { path: 'registration', component: TournamentRegistrationComponent },
   { path: 'csgo', component: TournamentCsgoComponent, data: {
       title: 'Esports Business League - CS:GO',
       twitterTitle: 'Esports бизнес лига - CS:GO',

@@ -17,7 +17,13 @@ import { IgxNavbarModule,
   IgxIconService,
   IgxDividerModule,
   IgxAvatarModule,
-  IgxNavigationDrawerModule} from '@infragistics/igniteui-angular';
+  IgxNavigationDrawerModule,
+  IgxSelectModule,
+  IgxDropDownModule,
+  IgxCheckboxModule,
+  IgxAutocompleteModule,
+  IgxDialogModule
+} from '@infragistics/igniteui-angular';
 import { LoginService } from '../../src-common/services/login.service';
 import { BellumgensApiService } from '../../src-common/services/bellumgens-api.service';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -28,6 +34,10 @@ import { GetRegCountPipe } from '../../src-bellumgens/app/pipes/get-reg-count.pi
 import { BellumGensModule } from '../../src-common/components/components.module';
 import { RaffleComponent } from './raffle/raffle.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
+import { TournamentRegistrationComponent } from './tournament-registration/tournament-registration.component';
+import { StartsWithPipe } from '../../src-bellumgens/app/pipes/starts-with.pipe';
+import { TeamNewComponent } from '../../src-bellumgens/app/team-section/team-new/team-new.component';
+import { GroupsFilterPipe } from '../../src-bellumgens/app/pipes/groups-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -35,7 +45,11 @@ import { OrderSuccessComponent } from './order-success/order-success.component';
     TournamentHomeComponent,
     GetRegCountPipe,
     RaffleComponent,
-    OrderSuccessComponent
+    OrderSuccessComponent,
+    TournamentRegistrationComponent,
+    TeamNewComponent,
+    StartsWithPipe,
+    GroupsFilterPipe
   ],
   imports: [
     FormsModule,
@@ -54,6 +68,11 @@ import { OrderSuccessComponent } from './order-success/order-success.component';
     IgxDividerModule,
     IgxAvatarModule,
     IgxNavigationDrawerModule,
+    IgxSelectModule,
+    IgxDropDownModule,
+    IgxCheckboxModule,
+    IgxAutocompleteModule,
+    IgxDialogModule,
     BellumGensModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     HammerModule
