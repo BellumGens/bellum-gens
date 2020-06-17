@@ -2,77 +2,81 @@
   iframe {
     border-radius: 20px;
   }
-}
 
-.slide {
-  height: 450px;
-  border-radius: 24px;
-}
+  .slide {
+    height: 450px;
+    border-radius: 24px;
+  }
 
-.slide.slide1 {
-  background-image: url('/assets/wallpapers/CSGO_BG.webp');
-}
+  .slide.slide1 {
+    background-image: url('/assets/wallpapers/CSGO_BG.webp');
+  }
 
-.slide.slide2 {
-  background-image: url('/assets/wallpapers/SC2_BG_2.webp');
-}
+  .slide.slide2 {
+    background-image: url('/assets/wallpapers/SC2_BG_2.webp');
+  }
 
-.platinum {
-  width: 380px;
-  height: 200px;
-}
-
-.gold {
-  width: 220px;
-  height: 150px;
-}
-
-.logistics {
-  width: 150px;
-}
-
-.slide-info-column {
-  padding: 25px;
-}
-
-.first-place {
-  max-width: 250px;
-  object-fit: contain;
-}
-
-.first-place-text {
-  min-height: 223px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 3.45rem;
-}
-
-.second-place {
-  max-width: 180px;
-  object-fit: contain;
-}
-
-.second-place-text {
-  min-height: 201px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2.75rem;
-}
-
-.third-forth-place {
-  max-width: 130px;
-  object-fit: contain;
-}
-
-.third-forth-place-text {
-  font-size: 1.65rem;
-}
-
-@media only screen and (max-width: 550px) {
   .platinum {
-    width: 348px;
+    width: 380px;
+    height: 200px;
+  }
+
+  .gold {
+    width: 220px;
     height: 150px;
+  }
+
+  .logistics {
+    width: 150px;
+  }
+
+  .slide-info-column {
+    padding: 25px;
+  }
+
+  .first-place {
+    max-width: 250px;
+    object-fit: contain;
+  }
+
+  .first-place-text {
+    min-height: 223px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3.45rem;
+  }
+
+  .second-place {
+    max-width: 180px;
+    object-fit: contain;
+  }
+
+  .second-place-text {
+    min-height: 201px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.75rem;
+  }
+
+  .third-forth-place {
+    max-width: 130px;
+    object-fit: contain;
+  }
+
+  .third-forth-place-text {
+    font-size: 1.65rem;
+  }
+
+  igx-linear-bar {
+    margin-bottom: 12px;
+  }
+
+  @media only screen and (max-width: 550px) {
+    .platinum {
+      width: 348px;
+      height: 150px;
+    }
   }
 }

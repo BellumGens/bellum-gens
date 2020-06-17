@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, Input } from '@angular/core';
 import { getEmptyNewApplication, Game, GAMES } from '../../../src-common/models/tournament';
 import { ApplicationUser } from '../../../src-common/models/applicationuser';
 import { LoginService } from '../../../src-common/services/login.service';
@@ -23,6 +23,9 @@ export class TournamentRegistrationComponent {
   };
   public inProgress = false;
 
+  @Input()
+  public tournamentId: string;
+
   @ViewChild('appDetails', { static: true })
   public appDetails: ElementRef;
 
@@ -34,6 +37,7 @@ export class TournamentRegistrationComponent {
 
   public leagueRegistration() {
     this.inProgress = true;
+    this.application.TournamentId = this.tournamentId;
     this.apiService.leagueRegistration(this.application).subscribe(application => {
       this.inProgress = false;
       this.application = application;

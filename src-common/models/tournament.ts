@@ -17,6 +17,7 @@ export interface TournamentApplication {
   Id?: string;
   UserId?: string;
   CompanyId?: string;
+  TournamentId?: string;
   Game: Game;
   TeamId?: string;
   Email: string;

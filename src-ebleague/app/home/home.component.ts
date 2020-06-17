@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Game, RegistrationsCount } from '../../../src-common/models/tournament';
+import { Game, RegistrationsCount, Tournament } from '../../../src-common/models/tournament';
 import { ApiTournamentsService } from '../../../src-common/services/bellumgens-api.tournaments.service';
 
 @Component({
@@ -10,8 +10,17 @@ export class TournamentHomeComponent {
   public userEmail: string = null;
   public gameEnum = Game;
   public registrations: RegistrationsCount [];
+  public tournament: Tournament;
+  public tournamentId: string;
 
   constructor(private apiService: ApiTournamentsService) {
+    this.apiService.activeTournament.subscribe(data => {
+      if (data) {
+        this.tournament = data;
+        this.tournamentId = data.ID;
+        this.apiService.getRegistrationsCount(data.ID);
+      }
+    });
     this.apiService.registrationsCount.subscribe(data => this.registrations = data);
   }
 
