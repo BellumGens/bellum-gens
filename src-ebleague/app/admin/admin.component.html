@@ -1,6 +1,6 @@
 <div class="content-container">
   <div class="column-center">
-    <a *ngFor="let league of tournaments">{{league.Name}}: {{league.StartDate | date}} - {{league.EndDate | date}}</a>
+    <a *ngFor="let league of tournaments">{{league.Name}}: {{league.StartDate | date}} - {{league.EndDate | date}} <igx-checkbox [(ngModel)]="league.Active" (ngModelChange)="updateTournament(league)">Active</igx-checkbox></a>
     <span *ngIf="!tournaments || !tournaments.length">No tournaments</span>
   </div>
 

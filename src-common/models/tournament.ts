@@ -9,6 +9,7 @@ export interface Tournament {
   Logo?: string;
   StartDate?: Date;
   EndDate?: Date;
+  Active?: boolean;
   CSGOMatches?: TournamentCSGOMatch [];
 }
 

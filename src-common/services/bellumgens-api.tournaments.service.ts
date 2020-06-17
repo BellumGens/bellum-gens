@@ -152,7 +152,7 @@ export class ApiTournamentsService {
   }
 
   public createTournament(tournament: Tournament) {
-    return this.http.post<Tournament>(`${this._apiEndpoint}/tournament/create`, tournament, { withCredentials: true }).pipe(
+    return this.http.put<Tournament>(`${this._apiEndpoint}/tournament/create`, tournament, { withCredentials: true }).pipe(
       map(response => {
         return response;
       }),
