@@ -19,11 +19,11 @@ export class ApiTournamentsService {
   private _apiEndpoint = environment.apiEndpoint;
 
   private _tournaments = new BehaviorSubject<Tournament []>(null);
+  private _activeTournament = new BehaviorSubject<Tournament>(null);
   private _companies = new BehaviorSubject<string []>(null);
   private _registrations = new BehaviorSubject<TournamentApplication []>(null);
   private _csgoRegistrations = new BehaviorSubject<TournamentRegistration []>(null);
   private _sc2Registrations = new BehaviorSubject<TournamentRegistration []>(null);
-  private _registrationsCount = new BehaviorSubject<RegistrationsCount []>(null);
 
   private _csgoMatches = new BehaviorSubject<TournamentCSGOMatch []>(null);
   private _sc2Matches = new BehaviorSubject<TournamentSC2Match []>(null);
@@ -42,6 +42,15 @@ export class ApiTournamentsService {
       });
     }
     return this._tournaments;
+  }
+
+  public get activeTournament() {
+    if (!this._activeTournament.value) {
+      this.getActiveTournament().subscribe(data => {
+        this._activeTournament.next(data);
+      });
+    }
+    return this._activeTournament;
   }
 
 
@@ -63,13 +72,12 @@ export class ApiTournamentsService {
     return this._registrations;
   }
 
-  public get registrationsCount() {
-    if (!this._registrationsCount.value) {
-      this.getRegistrationsCount().subscribe(data => {
-        this._registrationsCount.next(data);
-      });
-    }
-    return this._registrationsCount;
+  public registrationsCount = new BehaviorSubject<RegistrationsCount []>(null);
+
+  public getRegistrationsCount(id: string) {
+    return this.http.get<RegistrationsCount []>(`${this._apiEndpoint}/tournament/regcount?tournamentId=${id}`).subscribe(
+      data => this.registrationsCount.next(data)
+    );
   }
 
   public get csgoRegistrations() {
@@ -152,7 +160,7 @@ export class ApiTournamentsService {
   }
 
   public createTournament(tournament: Tournament) {
-    return this.http.post<Tournament>(`${this._apiEndpoint}/tournament/create`, tournament, { withCredentials: true }).pipe(
+    return this.http.put<Tournament>(`${this._apiEndpoint}/tournament/create`, tournament, { withCredentials: true }).pipe(
       map(response => {
         return response;
       }),
@@ -398,10 +406,6 @@ export class ApiTournamentsService {
     return this.http.get<TournamentApplication []>(`${this._apiEndpoint}/tournament/registrations`, { withCredentials: true});
   }
 
-  private getRegistrationsCount() {
-    return this.http.get<RegistrationsCount []>(`${this._apiEndpoint}/tournament/regcount`);
-  }
-
   private getCSGORegistrations() {
     return this.http.get<TournamentRegistration []>(`${this._apiEndpoint}/tournament/csgoregs`);
   }
@@ -415,6 +419,10 @@ export class ApiTournamentsService {
   }
 
   private getTournaments() {
-    return this.http.get<Tournament []>(`${this._apiEndpoint}/tournament/leagues`);
+    return this.http.get<Tournament []>(`${this._apiEndpoint}/tournament/tournaments`);
+  }
+
+  private getActiveTournament() {
+    return this.http.get<Tournament>(`${this._apiEndpoint}/tournament/activetournament`);
   }
 }

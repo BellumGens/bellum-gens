@@ -18,6 +18,7 @@ export class TournamentCsgoComponent extends BaseComponent {
   public groups: TournamentGroup [];
   public loading = false;
   public authUser: ApplicationUser;
+  public tournamentId: string;
   public environment = environment;
 
   constructor(private apiService: ApiTournamentsService,
@@ -27,6 +28,9 @@ export class TournamentCsgoComponent extends BaseComponent {
               route: ActivatedRoute) {
     super(title, meta, route);
     this.subs.push(
+      this.activeRoute.params.subscribe(params => {
+        this.tournamentId = params['tournamentid'];
+      }),
       this.apiService.csgoRegistrations.subscribe(data => this.registrations = data),
       this.apiService.loadingCSGORegistrations.subscribe(data => this.loading = data),
       this.loginService.applicationUser.subscribe(user => this.authUser = user)

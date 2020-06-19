@@ -20,6 +20,9 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { GetRegCountPipe } from 'src-bellumgens/app/pipes/get-reg-count.pipe';
 import { BellumGensModule } from 'src-common/components/components.module';
+import { TournamentRegistrationComponent } from '../tournament-registration/tournament-registration.component';
+import { StartsWithPipe } from 'src-bellumgens/app/pipes/starts-with.pipe';
+import { TeamNewComponent } from 'src-bellumgens/app/team-section/team-new/team-new.component';
 
 describe('TournamentHomeComponent', () => {
   let component: TournamentHomeComponent;
@@ -49,7 +52,10 @@ describe('TournamentHomeComponent', () => {
       ],
       declarations: [
         TournamentHomeComponent,
-        GetRegCountPipe
+        TournamentRegistrationComponent,
+        TeamNewComponent,
+        GetRegCountPipe,
+        StartsWithPipe
       ]
     })
     .compileComponents();

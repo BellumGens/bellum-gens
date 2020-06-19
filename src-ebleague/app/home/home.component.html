@@ -1,26 +1,30 @@
 <div class="home-page-slide-columns">
   <div class="slide slide1">
     <div class="slide-info-column">
-      <!-- <h1><a routerLink="/csgo">CS:GO League</a></h1> -->
-      <iframe src="https://player.twitch.tv/?channel=ebleague_a" frameborder="0" allowfullscreen="true" scrolling="no" class="twitch-stream"></iframe>
-      <!-- <p>Регистрациите за първия сезон на Esports Business League проключиха! Първото издание на Esports Business League започва с онлайн фаза на 27ми януари 2020.</p>
+      <h1><a routerLink="/csgo">CS:GO League</a></h1>
+      <!-- <iframe src="https://player.twitch.tv/?channel=ebleague_a&parent=eb-league.com" frameborder="0" allowfullscreen="true" scrolling="no" class="twitch-stream"></iframe> -->
+      <p>Регистрациите за Esports Business League Сезон 2 са отворени! Можете да регистрирате своят отбор до 31ви август 2020.</p>
       <igx-linear-bar [max]="16"
                       [value]="registrations | getRegCount:gameEnum.CSGO"
                       [text]="(registrations | getRegCount:gameEnum.CSGO) + ' / 16 записани'"
                       type="success"></igx-linear-bar>
-      <button igxButton="raised" routerLink="/csgo">Отиди до CS:GO лига</button> -->
+      <button igxButton="raised"
+              [disabled]="true"
+              (click)="!authUser ? loginDialog.openLogin() : registration.selectGame(gameEnum.CSGO)">Регистрацията отваря на 22ри юни</button>
     </div>
   </div>
   <div class="slide slide2">
     <div class="slide-info-column">
-      <!-- <h1><a routerLink="/sc2">StarCraft II League</a></h1> -->
-      <iframe src="https://player.twitch.tv/?channel=ebleague_b" frameborder="0" allowfullscreen="true" scrolling="no" class="twitch-stream"></iframe>
-      <!-- <p>Регистрациите за първия сезон на Esports Business League проключиха! Първото издание на Esports Business League започва с онлайн фаза на 27ми януари 2020.</p>
+      <h1><a routerLink="/sc2">StarCraft II League</a></h1>
+      <!-- <iframe src="https://player.twitch.tv/?channel=ebleague_b&parent=eb-league.com" frameborder="0" allowfullscreen="true" scrolling="no" class="twitch-stream"></iframe> -->
+      <p>Регистрациите за Esports Business League Сезон 2 са отворени! Можете да направите своята регистрация до 31ви август 2020.</p>
       <igx-linear-bar [max]="32"
                       [value]="registrations | getRegCount:gameEnum.StarCraft2"
                       [text]="(registrations | getRegCount:gameEnum.StarCraft2) + ' / 32 записани'"
                       type="success"></igx-linear-bar>
-      <button igxButton="raised" routerLink="/sc2">Отиди до StarCraft II лига</button> -->
+      <button igxButton="raised"
+              [disabled]="true"
+              (click)="!authUser ? loginDialog.openLogin() : registration.selectGame(gameEnum.StarCraft2)">Регистрацията отваря на 22ри юни</button>
     </div>
   </div>
 </div>
@@ -28,9 +32,9 @@
 <bg-login-dialog #loginDialog></bg-login-dialog>
 
 <div class="content-container">
-  <!-- <app-tournament-registration class="content-container-row"></app-tournament-registration> -->
+  <app-tournament-registration #registration class="content-container-row" [tournamentId]="tournamentId"></app-tournament-registration>
   <div class="content-container-row">
-    <h2 id="finals">Финали</h2>
+    <h2 id="finals">Финали Сезон 1</h2>
   </div>
 
   <div class="content-container-row">
@@ -92,17 +96,17 @@
 
   <div class="content-container-column">
     <h4>Какво е Esports Business League?</h4>
-    <p>Esports Business League предоставя арена за аматьорско състезание между отбори сформирани на работното място. Първият сезон на лигата ще се проведе в рамките на 8 седмици. Срещите се провеждат след работно време от понеделник до четвъртък включително. Лигата ще приключи с LAN финали до които ще достигнат отборите и играчите с най-много събрани точки през сезона. Всички срещи от лигата ще бъдат излъчвани и коментирани на живо през нашите канали.</p>
+    <p>Esports Business League предоставя арена за аматьорско състезание между отбори сформирани на работното място. Вторият сезон на лигата ще се проведе в рамките на 8 седмици. Срещите се провеждат след работно време от понеделник до четвъртък включително. Лигата ще приключи с финали до които ще достигнат отборите и играчите с най-много събрани точки през сезона. Всички срещи от лигата ще бъдат излъчвани и коментирани на живо през нашите канали.</p>
     <h4>Кога?</h4>
-    <p>Регистрации се приемат в периода 15ти Октомври, 2019 - 13ти Януари, 2020, или до изчерпване на местата.</p>
-    <p>Провеждането на първи сезон на лигата ще започне на <span class="highlight">27ми Януари, 2020</span>.</p>
-    <p>LAN финалите на първи сезон на лигата ще бъдат на <span class="highlight">11-12ти Април, 2020</span>.</p>
+    <p>Регистрации се приемат в периода 22ри Юни, 2020 - 31ви Август, 2020, или до изчерпване на местата.</p>
+    <p>Провеждането на втори сезон на лигата ще започне на <span class="highlight">14ти Септември, 2020</span>.</p>
+    <p>Финалите на втори сезон на лигата ще бъдат на <span class="highlight">7-8ти Ноември, 2020</span>.</p>
   </div>
 
   <div class="content-container-column left-column">
     <h4 id="terms">Условия за записване</h4>
-    <p>Условията за участие са, че всички членове на отбора трябва да бъдат текущи служители на работното място към което е асоцииран отбора и не трябва да имат ангажименти като играчи в професионални Esports организации. Отборът може да има резерви, които трябва да отговарят на същото условие, но могат да бъдат добавяни и след регистрацията. Индивидуалните състезатели (StarCraft II) трябва да бъдат активно заети към работното място, с което се асоциират в регистрацията. При записване ще се изисква да се предостави информация за това коя е компанията която отбора/индивидуалния състезател представлява.</p>
-    <p>Записването ще бъде отворено до изтичане на крайния срок, 13ти Януари, 2020, или достигане на максималния брой отбори (16 CS:GO), или индивидуални състезатели (32 StarCraft II). Приключването на регистрацията изисква и заплащането на входна такса - 300лв. с вкл. ДДС на отбор или 60лв. с вкл. ДДС на индивидуален състезател. Заплащането на таксата става по банков път след регистрацията.</p>
+    <p>Условията за участие са, че всички членове на отбора трябва да бъдат <span class="highlight">текущи служители на работното място към което е асоцииран отбора и не трябва да имат ангажименти като играчи в професионални Esports организации, или да са участвали като играчи в професионални срещи в рамките на последните 24 месеца</span>. Отборът може да има резерви, които трябва да отговарят на същото условие, но могат да бъдат добавяни и след регистрацията. Индивидуалните състезатели (StarCraft II) трябва да бъдат <span class="highlight">текущи служители на работното място, с което се асоциират в регистрацията</span>. При записване ще се изисква да се предостави информация за това коя е компанията която отбора/индивидуалния състезател представлява.</p>
+    <p>Записването ще бъде отворено до изтичане на крайния срок, 31ви Август, 2020, или достигане на максималния брой отбори (16 CS:GO), или индивидуални състезатели (32 StarCraft II). Приключването на регистрацията изисква и заплащането на входна такса - 300лв. с вкл. ДДС на отбор или 60лв. с вкл. ДДС на индивидуален състезател. Заплащането на таксата става по банков път след регистрацията.</p>
     <p>Всеки отбор ще получи като подарък 5 ексклузивни Esports Business League jersey. Всеки индивидуален състезател също ще получи като подарък jersey.</p>
   </div>
   <div class="content-container-column">
@@ -135,7 +139,7 @@
       <li>Всяка среща е best-of-one с overtime</li>
       <li>Всеки срещу всеки, до изчерпване на противниците</li>
       <li>Всеки отбор събира точки седмично</li>
-      <li>LAN финал уикенд между 4те отбора събрали най-много точки в групите</li>
+      <li>Финал уикенд между 8те отбора събрали най-много точки в групите</li>
       <li>Пълна информация за формата ще намерите <a routerLink="/format">тук</a></li>
     </ul>
   </div>
@@ -149,7 +153,7 @@
       <li>Всяка среща е best-of-three</li>
       <li>Всеки срещу всеки, до изчерпване на противниците</li>
       <li>Всеки играч събира точки седмично</li>
-      <li>LAN финал уикенд между 8те играча събрали най-много точки в групите</li>
+      <li>Финал уикенд между 8те играча събрали най-много точки в групите</li>
       <li>Пълна информация за формата ще намерите <a routerLink="/format">тук</a></li>
     </ul>
   </div>

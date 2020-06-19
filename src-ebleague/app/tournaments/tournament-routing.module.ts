@@ -6,14 +6,13 @@ import { TournamentFormatComponent } from './tournament-format/tournament-format
 import { TournamentCsgoComponent } from './tournament-csgo/tournament-csgo.component';
 import { TournamentSc2Component } from './tournament-sc2/tournament-sc2.component';
 import { ProductionCrewComponent } from './production-crew/production-crew.component';
-import { TournamentRegistrationComponent } from './tournament-registration/tournament-registration.component';
 
 const routes: Routes = [
   { path: '', component: TournamentComponent, redirectTo: 'format' },
   { path: 'format', component: TournamentFormatComponent },
   { path: 'crew', component: ProductionCrewComponent },
-  { path: 'registration', component: TournamentRegistrationComponent },
-  { path: 'csgo', component: TournamentCsgoComponent, data: {
+  { path: 'csgo', redirectTo: 'csgo/', pathMatch: 'full' },
+  { path: 'csgo/:tournamentid', component: TournamentCsgoComponent, data: {
       title: 'Esports Business League - CS:GO',
       twitterTitle: 'Esports бизнес лига - CS:GO',
       description: 'Esports Бизнес Лигата е аматьорско състезание за работещи геймъри по CS:GO и StarCraft II',
@@ -21,7 +20,8 @@ const routes: Routes = [
       image: '/assets/eb-league-logo-sm.png'
     }
   },
-  { path: 'sc2', component: TournamentSc2Component, data: {
+  { path: 'sc2', redirectTo: 'sc2/', pathMatch: 'full' },
+  { path: 'sc2/:tournamentid', component: TournamentSc2Component, data: {
       title: 'Esports Business League - StarCraft II',
       twitterTitle: 'Esports бизнес лига - StarCraft II',
       description: 'Esports Бизнес Лигата е аматьорско състезание за работещи геймъри по CS:GO и StarCraft II',

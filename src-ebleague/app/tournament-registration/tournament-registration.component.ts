@@ -1,9 +1,8 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
-import { getEmptyNewApplication, Game, GAMES } from '../../../../src-common/models/tournament';
-import { ApplicationUser } from '../../../../src-common/models/applicationuser';
-import { LoginService } from '../../../../src-common/services/login.service';
-import { ApiTournamentsService } from '../../../../src-common/services/bellumgens-api.tournaments.service';
-import { IgxDialogComponent } from '@infragistics/igniteui-angular';
+import { Component, ViewChild, ElementRef, Input } from '@angular/core';
+import { getEmptyNewApplication, Game, GAMES } from '../../../src-common/models/tournament';
+import { ApplicationUser } from '../../../src-common/models/applicationuser';
+import { LoginService } from '../../../src-common/services/login.service';
+import { ApiTournamentsService } from '../../../src-common/services/bellumgens-api.tournaments.service';
 
 @Component({
   selector: 'app-tournament-registration',
@@ -24,11 +23,11 @@ export class TournamentRegistrationComponent {
   };
   public inProgress = false;
 
+  @Input()
+  public tournamentId: string;
+
   @ViewChild('appDetails', { static: true })
   public appDetails: ElementRef;
-
-  @ViewChild('successMsg', { static: true })
-  public successDialog: IgxDialogComponent;
 
   constructor(private authManager: LoginService,
               private apiService: ApiTournamentsService) {
@@ -38,11 +37,12 @@ export class TournamentRegistrationComponent {
 
   public leagueRegistration() {
     this.inProgress = true;
+    this.application.TournamentId = this.tournamentId;
     this.apiService.leagueRegistration(this.application).subscribe(application => {
       this.inProgress = false;
       this.application = application;
       this.apiService.updateRegistrations();
-      this.successDialog.open();
+      // this.successDialog.open();
     },
     _ => this.inProgress = false);
   }

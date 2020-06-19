@@ -172,14 +172,14 @@ a > igx-icon {
   align-items: flex-end;
 }
 
-.slide1 {
-  background-image: url('/assets/wallpapers/slide-image-4.webp');
+.slide {
+  background-size: cover;
+  background-repeat: no-repeat;
   background-position: center;
 }
 
-.slide1, .slide2, .slide3 {
-  background-size: cover;
-  background-repeat: no-repeat;
+.slide1 {
+  background-image: url('/assets/wallpapers/slide-image-4.webp');
 }
 
 .drawer-action {
