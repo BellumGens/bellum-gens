@@ -419,7 +419,7 @@ export class ApiTournamentsService {
   }
 
   private getTournaments() {
-    return this.http.get<Tournament []>(`${this._apiEndpoint}/tournament/leagues`);
+    return this.http.get<Tournament []>(`${this._apiEndpoint}/tournament/tournaments`);
   }
 
   private getActiveTournament() {
