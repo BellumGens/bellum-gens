@@ -20,7 +20,7 @@ const routes: Routes = [
       image: '/assets/eb-league-logo-sm.png'
     }
   },
-  { path: 'sc2', redirectTo: 'sc2', pathMatch: 'full' },
+  { path: 'sc2', redirectTo: 'sc2/', pathMatch: 'full' },
   { path: 'sc2/:tournamentid', component: TournamentSc2Component, data: {
       title: 'Esports Business League - StarCraft II',
       twitterTitle: 'Esports бизнес лига - StarCraft II',

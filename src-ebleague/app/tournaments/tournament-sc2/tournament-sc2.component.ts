@@ -18,6 +18,7 @@ export class TournamentSc2Component extends BaseComponent {
   public groups: TournamentGroup [];
   public loading = false;
   public authUser: ApplicationUser;
+  public tournamentId: string;
   public environment = environment;
 
   constructor(private apiService: ApiTournamentsService,
@@ -27,6 +28,9 @@ export class TournamentSc2Component extends BaseComponent {
               route: ActivatedRoute) {
     super(title, meta, route);
     this.subs.push(
+      this.activeRoute.params.subscribe(params => {
+        this.tournamentId = params['tournamentid'];
+      }),
       this.apiService.sc2Registrations.subscribe(data => this.registrations = data),
       this.apiService.loadingSC2Registrations.subscribe(data => this.loading = data),
       this.loginService.applicationUser.subscribe(user => this.authUser = user)
