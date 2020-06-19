@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { Game, RegistrationsCount, Tournament } from '../../../src-common/models/tournament';
 import { ApiTournamentsService } from '../../../src-common/services/bellumgens-api.tournaments.service';
+import { LoginService } from '../../../src-common/services/login.service';
+import { ApplicationUser } from '../../../src-common/models/applicationuser';
 
 @Component({
   templateUrl: './home.component.html',
@@ -12,8 +14,10 @@ export class TournamentHomeComponent {
   public registrations: RegistrationsCount [];
   public tournament: Tournament;
   public tournamentId: string;
+  public authUser: ApplicationUser;
 
-  constructor(private apiService: ApiTournamentsService) {
+  constructor(private apiService: ApiTournamentsService,
+              private authManager: LoginService) {
     this.apiService.activeTournament.subscribe(data => {
       if (data) {
         this.tournament = data;
