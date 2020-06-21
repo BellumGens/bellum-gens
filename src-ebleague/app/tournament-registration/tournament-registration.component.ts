@@ -38,8 +38,6 @@ export class TournamentRegistrationComponent {
       this.inProgress = false;
       this.application = application;
       this.apiService.updateRegistrations();
-      // const route = this.router.config.find(r => r.path === 'registration-success');
-      // route.data = { application: application };
       this.router.navigate(['/registration-success'], { state: application });
     },
     _ => this.inProgress = false);

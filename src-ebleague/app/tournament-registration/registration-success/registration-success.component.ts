@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { TournamentApplication } from 'src-common/models/tournament';
+import { TournamentApplication } from '../../../../src-common/models/tournament';
 
 @Component({
   selector: 'app-registration-success',
