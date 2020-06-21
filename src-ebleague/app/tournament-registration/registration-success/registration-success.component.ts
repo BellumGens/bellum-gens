@@ -18,7 +18,10 @@ export class RegistrationSuccessComponent {
   public application: TournamentApplication;
 
   constructor(private router: Router) {
-    this.application = this.router.getCurrentNavigation().extras.state as TournamentApplication;
+    const nav = this.router.getCurrentNavigation();
+    if (nav) {
+      this.application = nav.extras.state as TournamentApplication;
+    }
   }
 
 }
