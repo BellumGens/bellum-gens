@@ -39,6 +39,7 @@ import { TournamentRegistrationComponent } from './tournament-registration/tourn
 import { StartsWithPipe } from '../../src-bellumgens/app/pipes/starts-with.pipe';
 import { TeamNewComponent } from '../../src-bellumgens/app/team-section/team-new/team-new.component';
 import { GroupsFilterPipe } from '../../src-bellumgens/app/pipes/groups-filter.pipe';
+import { RegistrationSuccessComponent } from './tournament-registration/registration-success/registration-success.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { GroupsFilterPipe } from '../../src-bellumgens/app/pipes/groups-filter.p
     TournamentRegistrationComponent,
     TeamNewComponent,
     StartsWithPipe,
-    GroupsFilterPipe
+    GroupsFilterPipe,
+    RegistrationSuccessComponent
   ],
   imports: [
     FormsModule,
