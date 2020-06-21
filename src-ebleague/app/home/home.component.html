@@ -9,7 +9,7 @@
                       [text]="(registrations | getRegCount:gameEnum.CSGO) + ' / 16 записани'"
                       type="success"></igx-linear-bar>
       <button igxButton="raised"
-              (click)="!authUser ? loginDialog.openLogin() : registration.selectGame(gameEnum.CSGO)">Регистрирай се за CS:GO лига</button>
+              (click)="!authUser ? loginDialog.openLogin('Първо влезте или се регистрирайте...') : registration.selectGame(gameEnum.CSGO)">Регистрирай се за CS:GO лига</button>
     </div>
   </div>
   <div class="slide slide2">
@@ -22,7 +22,7 @@
                       [text]="(registrations | getRegCount:gameEnum.StarCraft2) + ' / 32 записани'"
                       type="success"></igx-linear-bar>
       <button igxButton="raised"
-              (click)="!authUser ? loginDialog.openLogin() : registration.selectGame(gameEnum.StarCraft2)">Регистрирай се за StarCraft II лига</button>
+              (click)="!authUser ? loginDialog.openLogin('Първо влезте или се регистрирайте...') : registration.selectGame(gameEnum.StarCraft2)">Регистрирай се за StarCraft II лига</button>
     </div>
   </div>
 </div>
