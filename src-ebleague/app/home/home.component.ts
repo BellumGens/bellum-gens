@@ -26,6 +26,7 @@ export class TournamentHomeComponent {
       }
     });
     this.apiService.registrationsCount.subscribe(data => this.registrations = data);
+    this.authManager.applicationUser.subscribe(user => this.authUser = user);
   }
 
   public subscribe() {

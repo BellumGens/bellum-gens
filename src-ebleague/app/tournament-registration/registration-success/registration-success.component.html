@@ -1,0 +1,14 @@
+<div class="loading-overview">
+  <h4 class="color-success">Регистрацията ви е получена успешно!</h4>
+  <p>Вашата регистрация ще бъде потвърдена след като преведете таксата за участие (60лв. с ДДС за лигата по StarCraft II, или 300лв. с ДДС за лигата по CS:GO).</p>
+  <p>Регистрацията ви ще бъде показана като потвърдена в рамките на 2 работни дни след превод на таксата за участие по нашата банкова сметка:</p>
+  <ul>
+    <li>Име на Банката: <span class="highlight">{{ bankaccountinfo.bank }}</span></li>
+    <li>Титуляр: <span class="highlight">{{ bankaccountinfo.name }}</span></li>
+    <li>Сметка: <span class="highlight">{{ bankaccountinfo.account }}</span></li>
+    <li>BIC: <span class="highlight">{{ bankaccountinfo.bic }}</span></li>
+  </ul>
+  <p>Моля при превода да сложите в основанието уникалния код, който сме генерирали за вашата регистрация: <span class="highlight">{{ application?.Hash }}</span>. Можете да намерите кода и през вашият профил.</p>
+  <p>Изпратили сме и имейл на посоченият от вас адрес (<span class="highlight">{{application?.Email}}</span>) с тези детайли.</p>
+  <p>Ако ви е нужна фактура, моля да се свържете с нас на <a href="mailto:info@eb-league.com">info@eb-league.com</a>!</p>
+</div>

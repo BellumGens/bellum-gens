@@ -3,6 +3,7 @@ import { getEmptyNewApplication, Game, GAMES } from '../../../src-common/models/
 import { ApplicationUser } from '../../../src-common/models/applicationuser';
 import { LoginService } from '../../../src-common/services/login.service';
 import { ApiTournamentsService } from '../../../src-common/services/bellumgens-api.tournaments.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tournament-registration',
@@ -15,12 +16,6 @@ export class TournamentRegistrationComponent {
   public companies: string [];
   public games = GAMES;
   public gameEnum = Game;
-  public bankaccountinfo = {
-    bank: 'ОББ',
-    name: 'Белум Генс',
-    bic: 'UBBSBGSF',
-    account: 'BG90UBBS80021087375040'
-  };
   public inProgress = false;
 
   @Input()
@@ -30,7 +25,8 @@ export class TournamentRegistrationComponent {
   public appDetails: ElementRef;
 
   constructor(private authManager: LoginService,
-              private apiService: ApiTournamentsService) {
+              private apiService: ApiTournamentsService,
+              private router: Router) {
     this.authManager.applicationUser.subscribe(user => this.authUser = user);
     this.apiService.companies.subscribe(data => this.companies = data);
   }
@@ -42,7 +38,9 @@ export class TournamentRegistrationComponent {
       this.inProgress = false;
       this.application = application;
       this.apiService.updateRegistrations();
-      // this.successDialog.open();
+      // const route = this.router.config.find(r => r.path === 'registration-success');
+      // route.data = { application: application };
+      this.router.navigate(['/registration-success'], { state: application });
     },
     _ => this.inProgress = false);
   }
