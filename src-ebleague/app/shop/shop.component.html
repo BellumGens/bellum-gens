@@ -9,7 +9,7 @@
 
     <p>Направена от 100% дишащ полиестер, с висококачествен печат, тениската е налична в лимитирана серия. Идеална е както за продължителни гейминг сесии, така и за спорт на открито! Серията в продажба е само 300 бройки. Имаме налични както мъжки, така и адаптирани дамски модели. Поръчките се извършват единствено с наложен платеж при доставка по куриер, до изчерпване на количествата.</p>
 
-    <h4>Цена 60 лв.</h4>
+    <h4>Цена <del>60лв.</del>&nbsp;<span class="highlight">40лв.</span></h4>
   </div>
 
   <div class="content-container-column">
@@ -39,7 +39,7 @@
       </div>
 
       <div class="order-summary">
-        <span>Тениски {{order.jerseys.length}} x 60лв. = {{ order.jerseys.length * 60 }} лв.</span>
+        <span>Тениски {{order.jerseys.length}} x {{basePrice}}лв. = {{ order.jerseys.length * basePrice }} лв.</span>
 
         <igx-input-group class="order-form-input" type="border">
           <label igxLabel for="firstName">Код за отстъпка</label>
@@ -56,10 +56,10 @@
           </igx-hint>
         </igx-input-group>
 
-        <span *ngIf="promo > 0" class="color-success">{{ promo * 100 }}% Отстъпка = -{{ (order.jerseys.length * 60) * promo }} лв.</span>
+        <span *ngIf="promo > 0" class="color-success">{{ promo * 100 }}% Отстъпка = -{{ (order.jerseys.length * basePrice) * promo }} лв.</span>
         <span>Доставка = 5 лв.</span>
         <igx-divider></igx-divider>
-        <span>Общо = {{ (order.jerseys.length * 60) * (1 - promo) + 5 }} лв.</span>
+        <span>Общо = {{ (order.jerseys.length * basePrice) * (1 - promo) + 5 }} лв.</span>
       </div>
     </div>
 
