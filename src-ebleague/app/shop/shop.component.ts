@@ -14,6 +14,7 @@ export class ShopComponent {
   public promo = 0;
   public invalidPromo = false;
   public inProgress = false;
+  public basePrice = 40;
 
   public cuts = [
     { text: 'Mъжка', cut: JerseyCut.Male },
