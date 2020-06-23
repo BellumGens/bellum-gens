@@ -22,6 +22,7 @@ export class ApiTournamentsService {
   private _activeTournament = new BehaviorSubject<Tournament>(null);
   private _companies = new BehaviorSubject<string []>(null);
   private _registrations = new BehaviorSubject<TournamentApplication []>(null);
+  private _allRegistrations = new BehaviorSubject<TournamentApplication []>(null);
   private _csgoRegistrations = new BehaviorSubject<TournamentRegistration []>(null);
   private _sc2Registrations = new BehaviorSubject<TournamentRegistration []>(null);
 
@@ -70,6 +71,15 @@ export class ApiTournamentsService {
       });
     }
     return this._registrations;
+  }
+
+  public get allRegistrations() {
+    if (!this._allRegistrations.value) {
+      this.getAllRegistrations().subscribe(data => {
+        this._allRegistrations.next(data);
+      });
+    }
+    return this._allRegistrations;
   }
 
   public registrationsCount = new BehaviorSubject<RegistrationsCount []>(null);
@@ -175,6 +185,21 @@ export class ApiTournamentsService {
     this.getRegistrations().subscribe(data => {
       this._registrations.next(data);
     });
+  }
+
+  public confirmRegistration(reg: TournamentApplication) {
+    return this.http.put(`${this._apiEndpoint}/tournament/confirm?id=${reg.Id}`, reg, { withCredentials: true }).pipe(
+      map(response => {
+        if (response) {
+          this.commService.emitSuccess('Tournament application updated successfully!');
+        }
+        return response;
+      }),
+      catchError(error => {
+        this.commService.emitError(error.error.Message);
+        return throwError(error);
+      })
+    );
   }
 
   public deleteRegistration(id: string) {
@@ -404,6 +429,10 @@ export class ApiTournamentsService {
 
   private getRegistrations() {
     return this.http.get<TournamentApplication []>(`${this._apiEndpoint}/tournament/registrations`, { withCredentials: true});
+  }
+
+  private getAllRegistrations() {
+    return this.http.get<TournamentApplication []>(`${this._apiEndpoint}/tournament/allregistrations`, { withCredentials: true});
   }
 
   private getCSGORegistrations() {

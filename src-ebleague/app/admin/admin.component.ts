@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { LoginService } from '../../../src-common/services/login.service';
 import { AdminAppUserSummary } from '../../../src-common/models/applicationuser';
 import { ApiTournamentsService } from '../../../src-common/services/bellumgens-api.tournaments.service';
-import { Tournament, getEmptyNewTournament } from '../../../src-common/models/tournament';
+import { Tournament, getEmptyNewTournament, TournamentApplication } from '../../../src-common/models/tournament';
 import { JerseyOrder } from '../../../src-common/models/jerseyorder';
 import { ApiShopService } from '../../../src-common/services/bellumgens-api.shop.service';
 import { IGridEditEventArgs, IgxGridComponent } from '@infragistics/igniteui-angular';
@@ -18,6 +18,7 @@ export class AdminComponent {
   public tournaments: Tournament [];
   public tournament = getEmptyNewTournament();
   public orders: JerseyOrder [];
+  public registrations: TournamentApplication [];
 
   constructor(private authService: LoginService,
               private apiService: ApiTournamentsService,
@@ -26,6 +27,7 @@ export class AdminComponent {
     this.authService.getUsers().subscribe(data => this.users = data);
     this.apiService.tournaments.subscribe(data => this.tournaments = data);
     this.shopService.getOrders().subscribe(data => this.orders = data);
+    this.apiService.allRegistrations.subscribe(data => this.registrations = data);
   }
 
   public submitRole(role: string) {
@@ -56,5 +58,13 @@ export class AdminComponent {
     event.cancel = true;
     rowData[column.field] = event.newValue;
     this.shopService.confirmOrder(rowData).subscribe();
+  }
+
+  public confirmRegistration(event: IGridEditEventArgs, grid: IgxGridComponent) {
+    const rowData: TournamentApplication = grid.getRowByKey(event.rowID).rowData;
+    const column = grid.columnList.find(e => e.index === event.cellID.columnID);
+    event.cancel = true;
+    rowData[column.field] = event.newValue;
+    this.apiService.confirmRegistration(rowData).subscribe();
   }
 }
