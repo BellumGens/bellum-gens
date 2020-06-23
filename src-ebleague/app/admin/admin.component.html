@@ -27,7 +27,35 @@
 
 <div class="content-container">
   <div class="content-container-row">
-    <igx-grid #grid1 [data]="orders" [height]="'600px'" primaryKey="id" (onCellEdit)="editDone($event, grid1)" [cellSelection]="'none'">
+    <igx-grid #grid1 [data]="registrations" [height]="'350px'" primaryKey="id" (onCellEdit)="confirmRegistration($event, grid1)" [cellSelection]="'none'">
+
+      <igx-column field="Email" header="Имейл Адрес">
+      </igx-column>
+      <igx-column field="CompanyId" header="Компания">
+      </igx-column>
+      <igx-column field="DateSubmitted" [dataType]="'date'" header="Направена на">
+        <ng-template igxCell let-value>
+          {{ value | date }}
+        </ng-template>
+      </igx-column>
+      <igx-column field="Game" header="Лига">
+        <ng-template igxCell let-value>
+          {{ value ? 'StarCraft II' : 'CS:GO' }}
+        </ng-template>
+      </igx-column>
+      <igx-column field="Hash" header="Код">
+      </igx-column>
+      <igx-column field="State" [editable]="true" [dataType]="'boolean'" header="Потвърдена">
+        <ng-template igxCell let-value>
+          <igx-icon [class]="value ? 'color-success' : 'color-error'">{{ value ? 'check' : 'close' }}</igx-icon>
+        </ng-template>
+      </igx-column>
+
+    </igx-grid>
+  </div>
+
+  <div class="content-container-row">
+    <igx-grid #grid1 [data]="orders" [height]="'350px'" primaryKey="id" (onCellEdit)="editDone($event, grid1)" [cellSelection]="'none'">
 
       <igx-column field="orderDate" header="Направена на">
         <ng-template igxCell let-value>
