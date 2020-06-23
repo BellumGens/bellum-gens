@@ -298,6 +298,14 @@ a > igx-icon {
   margin: 16px;
 }
 
+.grid-vs-divider {
+  padding: 0 8px;
+}
+
+.grid-team-name {
+  width: 150px;
+}
+
 @media only screen and (max-width: 720px) {
   .search-group {
     width: auto;

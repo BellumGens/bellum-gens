@@ -1,52 +1,57 @@
-<div class="horizontal">
-  <igx-calendar class="schedule-calendar" (onSelection)="daySelected($event)" [specialDates]="datesWithMatches">
+<div class="match-layout">
+  <igx-calendar (onSelection)="daySelected($event)" [specialDates]="datesWithMatches">
 
   </igx-calendar>
 
-  <div class="match-details">
-    <h4>График за <span class="highlight">{{ today | date }}</span></h4>
+  <igx-grid [cellSelection]="'none'"
+            [data]="selectedMatches"
+            showToolbar="true"
+            emptyGridMessage="Няма намерени срещи в този ден..."
+            [isLoading]="loading"
+            [toolbarTitle]="'Срещи за ' + (today | date)">
 
-    <div *ngIf="loading else emptymatches" class="loading-overview">
-      <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
-    </div>
-    <ng-template #emptymatches>
-      <p *ngIf="!selectedMatches.length">Няма намерени срещи в този ден...</p>
-    </ng-template>
+    <igx-column field="StartTime" width="100px" header="Начало">
+      <ng-template igxCell let-value>
+        {{ value | date:'shortTime' }}
+      </ng-template>
+    </igx-column>
 
-    <div class="match-score match-summary" *ngFor="let match of selectedMatches">
-      <div class="match-time highlight">{{ match.StartTime | date:'shortTime' }}</div>
+    <igx-column field="Teams" header="Среща">
 
-      <div class="align-right">
-        <span class="match-text-content team-name">{{ match.Team1.TeamName }}</span>
-        <igx-avatar [src]="match.Team1.TeamAvatar" [initials]="match.Team1.TeamName" roundShape="true"></igx-avatar>
-      </div>
+      <ng-template igxCell let-cell="cell">
+        <igx-avatar igxListThumbnail
+                    [src]="cell.rowData.Team1.TeamAvatar"
+                    [initials]="cell.rowData.Team1.TeamName"
+                    roundShape="true">
+        </igx-avatar>
+        <a [href]="environment.bellumgens + '/team/' + cell.rowData.Team1.CustomUrl"
+          [class]="cell.rowData.WinnerTeamId === cell.rowData.Team1.TeamId ? 'highlight grid-team-name' : 'grid-team-name'">
+          {{ cell.rowData.Team1.TeamName }}
+        </a>
 
-      <span class="match-text-content team-name align-center">vs.</span>
+        <span class="grid-vs-divider">vs.</span>
 
-      <div>
-        <igx-avatar [src]="match.Team2.TeamAvatar" [initials]="match.Team2.TeamName" roundShape="true"></igx-avatar>
-        <span class="match-text-content team-name">{{ match.Team2.TeamName }}</span>
-      </div>
+        <igx-avatar igxListThumbnail
+                    [src]="cell.rowData.Team2.TeamAvatar"
+                    [initials]="cell.rowData.Team2.TeamName"
+                    roundShape="true">
+        </igx-avatar>
+        <a [href]="environment.bellumgens + '/team/' + cell.rowData.Team2.CustomUrl" [class]="cell.rowData.WinnerTeamId === cell.rowData.Team2.TeamId ? 'highlight grid-team-name' : 'grid-team-name'">{{ cell.rowData.Team2.TeamName }}</a>
+      </ng-template>
+    </igx-column>
 
-      <div class="results-container match-score" *ngFor="let map of match.Maps">
-        <span></span>
-
-        <div class="match-result-content align-right">
+    <ng-template igxGridDetail let-dataItem>
+      <div class="horizontal-center" *ngFor="let map of dataItem.Maps">
+        <div class="score-container">
           {{ map.Team1Score }}
         </div>
 
         <igx-avatar [src]="map.Map | csgomapimage" [initials]="map.Map | csgomapname" [title]="map.Map | csgomapname"></igx-avatar>
 
-        <div class="match-result-content">
+        <div class="score-container">
           {{ map.Team2Score }}
         </div>
       </div>
-
-      <div class="content-container-row" *ngIf="match.NoShow">
-        Служебна победа.
-      </div>
-    </div>
-  </div>
-
-  <ng-content></ng-content>
+    </ng-template>
+  </igx-grid>
 </div>

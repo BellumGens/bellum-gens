@@ -308,61 +308,19 @@ $grid-toolbar-theme: igx-grid-toolbar-theme($background-color: $background);
   flex-flow: row wrap;
 }
 
-.schedule-calendar {
-  width: 348px;
-}
-
-.match-details {
-  display: flex;
-  flex: 1 1 348px;
-  flex-flow: column;
-  align-items: center;
-  padding: 0 16px;
-}
-
-.match-score {
-  display: grid;
-  grid-template-columns: minmax(100px, 1fr) minmax(250px, 1fr) 40px minmax(250px, 1fr) minmax(150px, 1fr);
-  grid-column-gap: 16px;
-  padding: 8px 0;
-  align-items: center;
-}
-
-.match-winner {
-  grid-template-columns: 0px minmax(50px, 1fr) minmax(148px, 1fr) minmax(50px, 1fr);
-}
-
-.results-container {
-  grid-column: 1 / -1;
-  align-items: center;
-}
-
-.match-time {
-  text-align: center;
-}
-
-.match-text-content {
-  padding: 0 8px;
-}
-
-.match-result-content {
-  padding: 0 15px;
-}
-
-.team-name {
-  font-size: 0.80rem;
-}
-
-.align-center {
-  text-align: center;
-}
-
-.align-right {
-  text-align: right;
-}
-
 igx-calendar {
   height: fit-content;
+}
+
+.match-layout {
+  display: grid;
+  grid-template-columns: 348px minmax(348px, 1fr);
+  column-gap: 16px;
+  row-gap: 16px;
+}
+
+.score-container {
+  margin: 0 16px;
 }
 /* END SCHEDULE */
 
