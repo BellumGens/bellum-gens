@@ -10,7 +10,7 @@
             [isLoading]="loading"
             [toolbarTitle]="'Срещи за ' + (today | date)">
 
-    <igx-column field="StartTime" width="100px" header="Начало">
+    <igx-column field="StartTime" width="130px" header="Начало">
       <ng-template igxCell let-value>
         {{ value | date:'shortTime' }}
       </ng-template>
@@ -58,6 +58,10 @@
 
       <div class="horizontal-center" *ngIf="dataItem.NoShow">
         Служебна победа.
+      </div>
+
+      <div class="horizontal-center" *ngIf="!dataItem.Maps.length && !dataItem.NoShow">
+        Срещата предстои да се играе или няма записани резултати за тази среща...
       </div>
     </ng-template>
   </igx-grid>
