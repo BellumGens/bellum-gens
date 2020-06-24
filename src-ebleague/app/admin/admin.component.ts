@@ -61,10 +61,10 @@ export class AdminComponent {
   }
 
   public confirmRegistration(event: IGridEditEventArgs, grid: IgxGridComponent) {
-    const rowData: TournamentApplication = grid.getRowByKey(event.rowID).rowData;
+    const rowData = grid.getRowByKey(event.rowID).rowData;
     const column = grid.columnList.find(e => e.index === event.cellID.columnID);
     event.cancel = true;
-    rowData[column.field] = event.newValue;
+    rowData[column.field] = event.newValue ? 1 : 0;
     this.apiService.confirmRegistration(rowData).subscribe();
   }
 }

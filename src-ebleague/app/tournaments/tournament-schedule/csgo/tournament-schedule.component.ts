@@ -3,6 +3,7 @@ import { ApiTournamentsService } from '../../../../../src-common/services/bellum
 import { TournamentCSGOMatch } from '../../../../../src-common/models/tournament-schedule';
 import { DateRangeDescriptor, DateRangeType } from '@infragistics/igniteui-angular';
 import { SameDay } from '../../../../../src-common/models/misc';
+import { environment } from '../../../../../src-common/environments/environment';
 
 @Component({
   selector: 'app-csgo-tournament-schedule',
@@ -15,6 +16,7 @@ export class CSGOTournamentScheduleComponent {
   public selectedMatches: TournamentCSGOMatch [] = [];
   public today = new Date();
   public loading = false;
+  public environment = environment;
 
   constructor(private apiService: ApiTournamentsService) {
     this.apiService.loadingCSGOMatches.subscribe(data => this.loading = data);

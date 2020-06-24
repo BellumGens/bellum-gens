@@ -6,23 +6,25 @@
       <p><span class="highlight">ВАЖНО!</span> Групите за сезон 2 ще бъдат изтеглени седмицата на 1ви Септември.</p>
     </igx-card-header>
     <igx-card-content>
-      <app-sc2-tournament-schedule>
-        <div class="participants-container">
-          <h4 style="width: 100%">Участници</h4>
-          <igx-circular-bar *ngIf="loading" [indeterminate]="true"></igx-circular-bar>
-          <div *ngFor="let registration of registrations" class="registration-slot">
-            <igx-avatar [src]="registration.User.avatarMedium" [initials]="registration.User.username" size="medium" roundShape="true">
-            </igx-avatar>
-            <igx-badge *ngIf="registration.UserId === authUser?.id && registration.State === 0"
-                       type="warning"
-                       icon="priority_high"
-                       title="Вашата регистрация все още не е потвърдена! За да потвърдим регистрацията трябва да платите таксата за участие!"
-                       class="registration-badge-style">
-            </igx-badge>
+      <div class="participants-container">
+        <h4 style="width: 100%">Участници</h4>
+        <igx-circular-bar *ngIf="loading" [indeterminate]="true"></igx-circular-bar>
+        <div *ngFor="let registration of registrations" class="registration-slot">
+          <igx-avatar [src]="registration.User.avatarMedium" [initials]="registration.User.username" size="medium" roundShape="true">
+          </igx-avatar>
+          <igx-badge *ngIf="registration.UserId === authUser?.id && registration.State === 0"
+                     type="warning"
+                     icon="priority_high"
+                     title="Вашата регистрация все още не е потвърдена! За да потвърдим регистрацията трябва да платите таксата за участие!"
+                     class="registration-badge-style">
+          </igx-badge>
 
-            <a [href]="environment.bellumgens + '/players/' + (registration.User.customURL || registration.UserId)" target="_blank">{{ registration.BattleTag }}</a>
-          </div>
+          <a [href]="environment.bellumgens + '/players/' + (registration.User.customURL || registration.UserId)" target="_blank">{{ registration.BattleTag }}</a>
         </div>
+      </div>
+
+      <h4 style="width: 100%">График</h4>
+      <app-sc2-tournament-schedule>
       </app-sc2-tournament-schedule>
 
       <div class="group-columns">
