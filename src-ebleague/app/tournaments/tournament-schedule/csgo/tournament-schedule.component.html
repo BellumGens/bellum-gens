@@ -25,7 +25,7 @@
                     roundShape="true">
         </igx-avatar>
         <a [href]="environment.bellumgens + '/team/' + cell.rowData.Team1.CustomUrl"
-          [class]="cell.rowData.WinnerTeamId === cell.rowData.Team1.TeamId ? 'highlight grid-team-name' : 'grid-team-name'">
+           [class]="cell.rowData.WinnerTeamId === cell.rowData.Team1.TeamId ? 'highlight grid-team-name' : 'grid-team-name'">
           {{ cell.rowData.Team1.TeamName }}
         </a>
 
@@ -36,7 +36,10 @@
                     [initials]="cell.rowData.Team2.TeamName"
                     roundShape="true">
         </igx-avatar>
-        <a [href]="environment.bellumgens + '/team/' + cell.rowData.Team2.CustomUrl" [class]="cell.rowData.WinnerTeamId === cell.rowData.Team2.TeamId ? 'highlight grid-team-name' : 'grid-team-name'">{{ cell.rowData.Team2.TeamName }}</a>
+        <a [href]="environment.bellumgens + '/team/' + cell.rowData.Team2.CustomUrl"
+           [class]="cell.rowData.WinnerTeamId === cell.rowData.Team2.TeamId ? 'highlight grid-team-name' : 'grid-team-name'">
+          {{ cell.rowData.Team2.TeamName }}
+        </a>
       </ng-template>
     </igx-column>
 
@@ -51,6 +54,10 @@
         <div class="score-container">
           {{ map.Team2Score }}
         </div>
+      </div>
+
+      <div class="horizontal-center" *ngIf="dataItem.NoShow">
+        Служебна победа.
       </div>
     </ng-template>
   </igx-grid>
