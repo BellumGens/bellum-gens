@@ -37,7 +37,7 @@
     "@angular/platform-server": "10.0.0",
     "@angular/router": "10.0.0",
     "@angular/service-worker": "10.0.0",
-    "@infragistics/igniteui-angular": "9.1.2",
+    "@infragistics/igniteui-angular": "10.0.0-rc.0",
     "@nguniversal/builders": "10.0.0",
     "@nguniversal/express-engine": "10.0.0",
     "@types/express": "^4.17.2",
