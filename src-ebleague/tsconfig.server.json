@@ -1,10 +1,10 @@
 {
   "extends": "./tsconfig.app.json",
   "compilerOptions": {
-    "module": "commonjs",
     "outDir": "../out-tsc/app-server-bellumgens",
-    "baseUrl": "."
-  },
+    "baseUrl": ".",
+    "target": "es2016"
+},
   "angularCompilerOptions": {
     "entryModule": "app/app.server.module#AppServerModule"
   },
