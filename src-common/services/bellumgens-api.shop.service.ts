@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { environment } from '../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { JerseyOrder, Promo } from '../models/jerseyorder';
+import { map, catchError } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+import { CommunicationService } from './communication.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +12,7 @@ import { JerseyOrder, Promo } from '../models/jerseyorder';
 export class ApiShopService {
   private _apiEndpoint = environment.apiEndpoint;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private commService: CommunicationService) { }
 
   public submitOrder(order: JerseyOrder) {
     return this.http.post<JerseyOrder>(`${this._apiEndpoint}/shop/order`, order);
@@ -24,6 +27,17 @@ export class ApiShopService {
   }
 
   public confirmOrder(order: JerseyOrder) {
-    return this.http.put(`${this._apiEndpoint}/shop/edit?orderId=${order.id}`, order, { withCredentials: true });
+    return this.http.put(`${this._apiEndpoint}/shop/edit?orderId=${order.id}`, order, { withCredentials: true }).pipe(
+      map(response => {
+        if (response) {
+          this.commService.emitSuccess('Tournament application updated successfully!');
+        }
+        return response;
+      }),
+      catchError(error => {
+        this.commService.emitError(error.error.Message);
+        return throwError(error);
+      })
+    );
   }
 }

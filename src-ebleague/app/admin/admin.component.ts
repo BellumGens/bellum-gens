@@ -52,19 +52,15 @@ export class AdminComponent {
     this.apiService.createTournament(tournament).subscribe();
   }
 
-  public editDone(event: IGridEditEventArgs, grid: IgxGridComponent) {
-    const rowData = grid.getRowByKey(event.rowID).rowData;
-    const column = grid.columnList.find(e => e.index === event.cellID.columnID);
-    event.cancel = true;
-    rowData[column.field] = event.newValue;
+  public editDone(event: IGridEditEventArgs) {
+    const rowData = event.rowData;
+    rowData[event.column.field] = event.newValue;
     this.shopService.confirmOrder(rowData).subscribe();
   }
 
-  public confirmRegistration(event: IGridEditEventArgs, grid: IgxGridComponent) {
-    const rowData = grid.getRowByKey(event.rowID).rowData;
-    const column = grid.columnList.find(e => e.index === event.cellID.columnID);
-    event.cancel = true;
-    rowData[column.field] = event.newValue ? 1 : 0;
+  public confirmRegistration(event: IGridEditEventArgs) {
+    const rowData = event.rowData;
+    rowData[event.column.field] = event.newValue ? 1 : 0;
     this.apiService.confirmRegistration(rowData).subscribe();
   }
 }

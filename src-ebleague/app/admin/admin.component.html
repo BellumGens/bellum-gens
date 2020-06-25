@@ -27,7 +27,7 @@
 
 <div class="content-container">
   <div class="content-container-row">
-    <igx-grid #grid1 [data]="registrations" [height]="'450px'" primaryKey="Id" (onCellEdit)="confirmRegistration($event, grid1)" [cellSelection]="'none'">
+    <igx-grid #grid1 [data]="registrations" [height]="'450px'" primaryKey="Id" (onCellEdit)="confirmRegistration($event)" [cellSelection]="'none'">
 
       <igx-column field="Email" header="Имейл Адрес">
       </igx-column>
@@ -55,7 +55,7 @@
   </div>
 
   <div class="content-container-row">
-    <igx-grid #grid1 [data]="orders" [height]="'450px'" primaryKey="id" (onCellEdit)="editDone($event, grid1)" [cellSelection]="'none'">
+    <igx-grid #grid1 [data]="orders" [height]="'450px'" primaryKey="id" (onCellEdit)="editDone($event)" [cellSelection]="'none'">
 
       <igx-column field="orderDate" header="Направена на">
         <ng-template igxCell let-value>
