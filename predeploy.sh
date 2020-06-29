@@ -3,7 +3,7 @@ for filename in *; do
   mv "${filename}" "../${filename}"
 done
 
-cd dist/ebleague/server
+cd ../../ebleague/server
 for filename in *; do
   mv "${filename}" "../${filename}"
 done
