@@ -63,6 +63,12 @@
           Срещата предстои да се играе или няма записани резултати за тази среща...
         </div>
       </ng-template>
+
+      <ng-template igxToolbarCustomContent let-grid="grid">
+        <button igxButton (click)="selectedMatches.push({StartTime: selectedDate, inEdit: true})">
+          <igx-icon>add_circle_outline</igx-icon>Добави нова среща
+        </button>
+      </ng-template>
     </igx-grid>
   </div>
 
