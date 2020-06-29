@@ -1,9 +1,18 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
-import { IgxChipsModule,
+import { AdminCsgoComponent } from './admin-csgo/admin-csgo.component';
+import { BellumGensModule } from '../../../src-common/components/components.module';
+import { AdminSc2Component } from './admin-sc2/admin-sc2.component';
+import { NotInGroupPipe } from '../pipes/not-in-group.pipe';
+import { GetPlayersPipe } from '../pipes/get-players.pipe';
+import { SizeNamePipe } from '../pipes/size-name.pipe';
+
+import {
+  IgxChipsModule,
   IgxInputGroupModule,
   IgxListModule,
   IgxIconModule,
@@ -19,14 +28,8 @@ import { IgxChipsModule,
   IgxCalendarModule,
   IgxDividerModule,
   IgxCheckboxModule,
-  IgxGridModule} from '@infragistics/igniteui-angular';
-import { FormsModule } from '@angular/forms';
-import { AdminCsgoComponent } from './admin-csgo/admin-csgo.component';
-import { BellumGensModule } from '../../../src-common/components/components.module';
-import { AdminSc2Component } from './admin-sc2/admin-sc2.component';
-import { NotInGroupPipe } from '../pipes/not-in-group.pipe';
-import { GetPlayersPipe } from '../pipes/get-players.pipe';
-import { SizeNamePipe } from '../pipes/size-name.pipe';
+  IgxGridModule
+} from '@infragistics/igniteui-angular';
 
 
 @NgModule({

@@ -26,7 +26,10 @@ describe('AdminSc2Component', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AdminSc2Component, NotInGroupPipe ],
+      declarations: [
+        AdminSc2Component,
+        NotInGroupPipe
+      ],
       imports: [
         FormsModule,
         HttpClientTestingModule,

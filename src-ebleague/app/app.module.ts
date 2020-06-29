@@ -3,10 +3,26 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { ServiceWorkerModule } from '@angular/service-worker';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { LoginService } from '../../src-common/services/login.service';
+import { BellumgensApiService } from '../../src-common/services/bellumgens-api.service';
+import { environment } from '../../src-common/environments/environment';
+import { TournamentHomeComponent } from './home/home.component';
+import { ApiTournamentsService } from '../../src-common/services/bellumgens-api.tournaments.service';
+import { GetRegCountPipe } from '../../src-bellumgens/app/pipes/get-reg-count.pipe';
+import { BellumGensModule } from '../../src-common/components/components.module';
+import { RaffleComponent } from './raffle/raffle.component';
+import { TournamentRegistrationComponent } from './tournament-registration/tournament-registration.component';
+import { StartsWithPipe } from '../../src-bellumgens/app/pipes/starts-with.pipe';
+import { TeamNewComponent } from '../../src-bellumgens/app/team-section/team-new/team-new.component';
+import { GroupsFilterPipe } from '../../src-bellumgens/app/pipes/groups-filter.pipe';
+import { RegistrationSuccessComponent } from './tournament-registration/registration-success/registration-success.component';
 
-import { IgxNavbarModule,
+import {
+  IgxNavbarModule,
   IgxLayoutModule,
   IgxRippleModule,
   IgxIconModule,
@@ -25,20 +41,6 @@ import { IgxNavbarModule,
   IgxDialogModule,
   IgxListModule
 } from '@infragistics/igniteui-angular';
-import { LoginService } from '../../src-common/services/login.service';
-import { BellumgensApiService } from '../../src-common/services/bellumgens-api.service';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { environment } from '../../src-common/environments/environment';
-import { TournamentHomeComponent } from './home/home.component';
-import { ApiTournamentsService } from '../../src-common/services/bellumgens-api.tournaments.service';
-import { GetRegCountPipe } from '../../src-bellumgens/app/pipes/get-reg-count.pipe';
-import { BellumGensModule } from '../../src-common/components/components.module';
-import { RaffleComponent } from './raffle/raffle.component';
-import { TournamentRegistrationComponent } from './tournament-registration/tournament-registration.component';
-import { StartsWithPipe } from '../../src-bellumgens/app/pipes/starts-with.pipe';
-import { TeamNewComponent } from '../../src-bellumgens/app/team-section/team-new/team-new.component';
-import { GroupsFilterPipe } from '../../src-bellumgens/app/pipes/groups-filter.pipe';
-import { RegistrationSuccessComponent } from './tournament-registration/registration-success/registration-success.component';
 
 @NgModule({
   declarations: [

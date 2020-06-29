@@ -23,6 +23,7 @@ import { UserPreferencesComponent } from './user-preferences/user-preferences.co
 import { LoginDialogComponent } from './login/login-dialog/login-dialog.component';
 import { CSGOMapimagePipe } from './pipes/csgomapimage.pipe';
 import { CSGOMapnamePipe } from './pipes/csgomapname.pipe';
+import { Sc2MapNamePipe } from './pipes/sc2-map-name.pipe';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { CSGOMapnamePipe } from './pipes/csgomapname.pipe';
     UserPreferencesComponent,
     SuccessErrorComponent,
     CSGOMapimagePipe,
-    CSGOMapnamePipe
+    CSGOMapnamePipe,
+    Sc2MapNamePipe
   ],
   exports: [
     ConfirmComponent,
@@ -42,7 +44,8 @@ import { CSGOMapnamePipe } from './pipes/csgomapname.pipe';
     UserPreferencesComponent,
     SuccessErrorComponent,
     CSGOMapimagePipe,
-    CSGOMapnamePipe
+    CSGOMapnamePipe,
+    Sc2MapNamePipe
   ],
   imports: [
     CommonModule,
