@@ -3,7 +3,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { SC2TournamentScheduleComponent } from './tournament-schedule.component';
 import { IgxCalendarModule, IgxAvatarModule, IgxIconModule, IgxProgressBarModule } from '@infragistics/igniteui-angular';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { Sc2MapNamePipe } from '../../../pipes/sc2-map-name.pipe';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('SC2TournamentScheduleComponent', () => {
@@ -12,7 +11,9 @@ describe('SC2TournamentScheduleComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SC2TournamentScheduleComponent, Sc2MapNamePipe ],
+      declarations: [
+        SC2TournamentScheduleComponent
+      ],
       imports: [
         NoopAnimationsModule,
         HttpClientTestingModule,
