@@ -1,15 +1,17 @@
 import { Component } from '@angular/core';
 import { newEmptyJerseyOrder, JerseyCut, JerseyDetails, JerseySize } from '../../../src-common/models/jerseyorder';
 import { ApiShopService } from '../../../src-common/services/bellumgens-api.shop.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ISelectionEventArgs } from '@infragistics/igniteui-angular';
+import { BaseComponent } from '../../../src-bellumgens/app/base/base.component';
+import { Title, Meta } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
   styleUrls: ['./shop.component.scss']
 })
-export class ShopComponent {
+export class ShopComponent extends BaseComponent {
   public order = newEmptyJerseyOrder();
   public promo = 0;
   public invalidPromo = false;
@@ -32,12 +34,17 @@ export class ShopComponent {
   ];
 
   constructor(private apiService: ApiShopService,
-              private router: Router) { }
+              private router: Router,
+              title: Title,
+              meta: Meta,
+              route: ActivatedRoute) {
+    super(title, meta, route);
+  }
 
   public placeOrder() {
     this.inProgress = true;
     this.apiService.submitOrder(this.order).subscribe(
-      _ => this.router.navigate(['order-success']),
+      _ => this.router.navigate(['shop', 'order-success']),
       _ => this.inProgress = false
     );
   }

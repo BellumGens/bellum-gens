@@ -34,7 +34,6 @@ import { ApiTournamentsService } from '../../src-common/services/bellumgens-api.
 import { GetRegCountPipe } from '../../src-bellumgens/app/pipes/get-reg-count.pipe';
 import { BellumGensModule } from '../../src-common/components/components.module';
 import { RaffleComponent } from './raffle/raffle.component';
-import { OrderSuccessComponent } from './order-success/order-success.component';
 import { TournamentRegistrationComponent } from './tournament-registration/tournament-registration.component';
 import { StartsWithPipe } from '../../src-bellumgens/app/pipes/starts-with.pipe';
 import { TeamNewComponent } from '../../src-bellumgens/app/team-section/team-new/team-new.component';
@@ -47,7 +46,6 @@ import { RegistrationSuccessComponent } from './tournament-registration/registra
     TournamentHomeComponent,
     GetRegCountPipe,
     RaffleComponent,
-    OrderSuccessComponent,
     TournamentRegistrationComponent,
     TeamNewComponent,
     StartsWithPipe,
