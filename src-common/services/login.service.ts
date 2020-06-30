@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { LoginProvider } from '../models/login-provider';
+import { Promo } from '../models/jerseyorder';
 import { ApplicationUser, UserPreferences, AdminAppUserSummary } from '../models/applicationuser';
 import { map, shareReplay, catchError } from 'rxjs/operators';
 import { environment } from '../environments/environment';
@@ -81,6 +82,10 @@ export class LoginService {
 
   public getUserRoles() {
     return this.http.get<string []>(`${this._apiBase}/admin/roles`, { withCredentials: true });
+  }
+
+  public getPromoCodes() {
+    return this.http.get<Promo []>(`${this._apiBase}/admin/promos`, { withCredentials: true });
   }
 
   public submitRole(role: string) {

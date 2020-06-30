@@ -42,6 +42,7 @@ export interface JerseyOrder {
 export interface Promo {
   code: string;
   discount: number;
+  expiration: Date;
 }
 
 export function newEmptyJerseyOrder(): JerseyOrder {

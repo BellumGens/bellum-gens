@@ -3,9 +3,9 @@ import { LoginService } from '../../../src-common/services/login.service';
 import { AdminAppUserSummary } from '../../../src-common/models/applicationuser';
 import { ApiTournamentsService } from '../../../src-common/services/bellumgens-api.tournaments.service';
 import { Tournament, getEmptyNewTournament, TournamentApplication } from '../../../src-common/models/tournament';
-import { JerseyOrder } from '../../../src-common/models/jerseyorder';
+import { JerseyOrder, Promo } from '../../../src-common/models/jerseyorder';
 import { ApiShopService } from '../../../src-common/services/bellumgens-api.shop.service';
-import { IGridEditEventArgs, IgxGridComponent } from '@infragistics/igniteui-angular';
+import { IGridEditEventArgs } from '@infragistics/igniteui-angular';
 
 @Component({
   selector: 'app-admin',
@@ -19,12 +19,14 @@ export class AdminComponent {
   public tournament = getEmptyNewTournament();
   public orders: JerseyOrder [];
   public registrations: TournamentApplication [];
+  public promos: Promo [];
 
   constructor(private authService: LoginService,
               private apiService: ApiTournamentsService,
               private shopService: ApiShopService) {
     this.authService.getUserRoles().subscribe(data => this.roles = data);
     this.authService.getUsers().subscribe(data => this.users = data);
+    this.authService.getPromoCodes().subscribe(data => this.promos = data);
     this.apiService.tournaments.subscribe(data => this.tournaments = data);
     this.shopService.getOrders().subscribe(data => this.orders = data);
     this.apiService.allRegistrations.subscribe(data => this.registrations = data);
