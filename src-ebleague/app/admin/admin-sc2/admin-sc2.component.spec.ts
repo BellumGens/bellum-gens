@@ -14,7 +14,8 @@ import { IgxListModule,
   IgxSelectModule,
   IgxTimePickerModule,
   IgxCalendarModule,
-  IgxCheckboxModule} from '@infragistics/igniteui-angular';
+  IgxCheckboxModule,
+  IgxGridModule} from '@infragistics/igniteui-angular';
 import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -47,7 +48,8 @@ describe('AdminSc2Component', () => {
         IgxSelectModule,
         IgxTimePickerModule,
         IgxCheckboxModule,
-        IgxCalendarModule
+        IgxCalendarModule,
+        IgxGridModule
       ]
     })
     .compileComponents();
