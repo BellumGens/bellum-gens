@@ -147,6 +147,10 @@ export class LoginService {
     );
   }
 
+  public checkUsername(username: string) {
+    return this.http.get<boolean>(`${this._apiEndpoint}/username?username=${username}`);
+  }
+
   private initSw() {
     this.swPush.requestSubscription({
       serverPublicKey: environment.VAPID_PUBLIC_KEY

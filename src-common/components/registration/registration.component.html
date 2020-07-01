@@ -1,0 +1,28 @@
+<form #userRegistration="ngForm" (ngSubmit)="submitRegistration()">
+  <igx-input-group type="border">
+    <label for="username" igxLabel>Username</label>
+    <input #userName igxInput id="username" required name="username" [(ngModel)]="userAccount.username" />
+    <igx-hint class="color-error" *ngIf="inUse">
+      Username already taken...
+    </igx-hint>
+  </igx-input-group>
+
+  <igx-input-group type="border">
+    <label for="password" igxLabel>Password</label>
+    <input #password igxInput type="password" required id="password" name="password" [(ngModel)]="userAccount.password" />
+  </igx-input-group>
+
+  <igx-input-group type="border">
+    <label for="repeatPassword" igxLabel>Repeat Password</label>
+    <input #repeatPassword igxInput type="password" required id="repeatPassword" name="repeatPassword" />
+    <igx-hint class="color-error" *ngIf="userRegistration.touched && repeatPassword.value !== userAccount.password">
+      Doesn't match...
+    </igx-hint>
+  </igx-input-group>
+
+  <button igxButton="outlined"
+          class="submit-button space-out"
+          [disabled]="!userRegistration.touched || !userRegistration.valueChanges || userRegistration.invalid || submitInProgress">
+          Submit
+  </button>
+</form>
