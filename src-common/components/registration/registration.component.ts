@@ -10,7 +10,7 @@ import { map, debounceTime } from 'rxjs/operators';
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
-  public userAccount: UserLogin = { username: '', password: '' };
+  public userAccount: UserLogin = { username: '', password: '', email: '' };
   public inUse = false;
   public submitInProgress = false;
 

@@ -8,6 +8,14 @@
   </igx-input-group>
 
   <igx-input-group type="border">
+    <label igxLabel for="email">Email</label>
+    <igx-prefix>
+      <igx-icon>email</igx-icon>
+    </igx-prefix>
+    <input type="email" id="email" #orderEmail name="email" igxInput required pattern="^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="userAccount.email" />
+  </igx-input-group>
+
+  <igx-input-group type="border">
     <label for="password" igxLabel>Password</label>
     <input #password igxInput type="password" required id="password" name="password" [(ngModel)]="userAccount.password" />
   </igx-input-group>
