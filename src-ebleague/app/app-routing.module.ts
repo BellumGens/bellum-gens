@@ -3,10 +3,12 @@ import { Routes, RouterModule } from '@angular/router';
 import { TournamentHomeComponent } from './home/home.component';
 import { RaffleComponent } from './raffle/raffle.component';
 import { RegistrationSuccessComponent } from './tournament-registration/registration-success/registration-success.component';
+import { RegistrationComponent } from '../../src-common/components/registration/registration.component';
 
 export const routes: Routes = [
   { path: '', component: TournamentHomeComponent },
   { path: 'raffle', component: RaffleComponent },
+  { path: 'register', component: RegistrationComponent },
   { path: 'registration-success', component: RegistrationSuccessComponent },
   { path: 'format', redirectTo: '/tournament/format', pathMatch: 'full' },
   { path: 'csgo', redirectTo: '/tournament/csgo/', pathMatch: 'full' },

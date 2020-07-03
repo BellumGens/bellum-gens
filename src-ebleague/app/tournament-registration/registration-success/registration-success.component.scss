@@ -2,24 +2,9 @@
   .loading-overview {
     flex-flow: column;
     align-items: initial;
-    width: 60%;
-    margin: auto;
-    padding: 0 16px;
   }
 
   .loading-overview > ul {
     margin: auto;
-  }
-
-  @media screen and (max-width: 1280px) {
-    .loading-overview {
-      width: 80%;
-    }
-  }
-
-  @media screen and (max-width: 800px) {
-    .loading-overview {
-      width: 100%;
-    }
   }
 }
