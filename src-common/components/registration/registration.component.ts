@@ -3,6 +3,7 @@ import { LoginService } from '../../services/login.service';
 import { UserLogin } from '../../models/userlogin';
 import { fromEvent } from 'rxjs';
 import { map, debounceTime } from 'rxjs/operators';
+import { ApplicationUser } from '../../models/applicationuser';
 
 @Component({
   selector: 'bg-registration',
@@ -10,13 +11,22 @@ import { map, debounceTime } from 'rxjs/operators';
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
-  public userAccount: UserLogin = { username: '', password: '', email: '' };
+  public userAccount: UserLogin = { username: '', password: '', confirmPassword: '', email: '' };
   public inUse = false;
   public submitInProgress = false;
+  public authUser: ApplicationUser;
 
   @ViewChild('userName', { static: true }) public usernameInput: ElementRef;
 
-  constructor(private authManager: LoginService) { }
+  constructor(private authManager: LoginService) {
+    this.authManager.applicationUser.subscribe(user => {
+      this.authUser = user;
+      if (user && user.email) {
+        this.userAccount.email = user.email;
+        this.userAccount.username = user.username;
+      }
+    });
+  }
 
   public ngOnInit() {
     this.initUsernameCheck();
@@ -31,7 +41,11 @@ export class RegistrationComponent implements OnInit {
                     .pipe(map<Event, string>(e => (<HTMLInputElement>e.currentTarget).value));
     const debouncedInput = input.pipe(debounceTime(300));
     debouncedInput.subscribe(val => {
-      this.authManager.checkUsername(val).subscribe(data => this.inUse = data);
+      this.authManager.checkUsername(val).subscribe(data => {
+        if (this.authUser && this.userAccount.username !== this.authUser.username) {
+          this.inUse = data;
+        }
+      });
     });
   }
 }

@@ -40,6 +40,9 @@ html, body {
   min-height: calc(100% - 64px);
   justify-content: center;
   align-items: center;
+  width: 60%;
+  margin: auto;
+  padding: 0 16px;
   color: $primary;
 }
 /* END Loading */
@@ -328,6 +331,10 @@ a > igx-icon {
     width: 348px;
     height: 200px;
   }
+
+  .loading-overview {
+    width: 100%;
+  }
 }
 
 @media only screen and (max-width: 1280px) {
@@ -360,6 +367,10 @@ a > igx-icon {
   .slide-info p,
   .content-container p {
     font-size: 0.85rem;
+  }
+
+  .loading-overview {
+    width: 80%;
   }
 }
 
