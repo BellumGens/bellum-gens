@@ -47,6 +47,7 @@
              name="strategyUrl"
              id="strategyUrl"
              igxInput
+             type="url"
              pattern="^(?:http(s)?:\/\/)[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$"
              [(ngModel)]="newStrategy.Url" />
       <igx-suffix *ngIf="strategyUrl.value.length > 0" (click)="newStrategy.Url = null">

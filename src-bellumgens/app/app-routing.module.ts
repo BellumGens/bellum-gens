@@ -19,10 +19,12 @@ import { TeamadminGuard } from '../../src-common/guards/teamadmin.guard';
 import { TeamNavComponent } from './team-section/team-nav/team-nav.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { TeamTournamentsComponent } from './team-section/team-tournaments/team-tournaments.component';
+import { RegistrationComponent } from '../../src-common/components/registration/registration.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'app-shell', component: AppShellComponent },
+  { path: 'register', component: RegistrationComponent },
   { path: 'unauthorized', component: UnauthorizedComponent },
   { path: 'emailconfirm', component: EmailconfirmComponent },
   { path: 'addsteam', component: AddSteamComponent },

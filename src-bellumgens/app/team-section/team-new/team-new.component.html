@@ -53,7 +53,9 @@
         <label igxLabel for="teamAvatar">Team Avatar URL</label>
         <input #teamAvatar
                 igxInput
+                type="url"
                 id="teamAvatar"
+                pattern="^(?:http(s)?:\/\/)[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$"
                 name="teamAvatar" [(ngModel)]="newTeam.TeamAvatar">
         <igx-suffix *ngIf="teamAvatar.value.length > 0" (click)="newTeam.TeamAvatar = null">
             <igx-icon>clear</igx-icon>
