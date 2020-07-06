@@ -1,9 +1,10 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { LoginService } from '../../services/login.service';
-import { UserLogin } from '../../models/userlogin';
+import { UserRegistration } from '../../models/userlogin';
 import { fromEvent } from 'rxjs';
 import { map, debounceTime } from 'rxjs/operators';
 import { ApplicationUser } from '../../models/applicationuser';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'bg-registration',
@@ -11,14 +12,14 @@ import { ApplicationUser } from '../../models/applicationuser';
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
-  public userAccount: UserLogin = { username: '', password: '', confirmPassword: '', email: '' };
+  public userAccount: UserRegistration = { username: '', password: '', confirmPassword: '', email: '' };
   public inUse = false;
   public submitInProgress = false;
   public authUser: ApplicationUser;
 
   @ViewChild('userName', { static: true }) public usernameInput: ElementRef;
 
-  constructor(private authManager: LoginService) {
+  constructor(private authManager: LoginService, private router: Router) {
     this.authManager.applicationUser.subscribe(user => {
       this.authUser = user;
       if (user && user.email) {
@@ -33,7 +34,9 @@ export class RegistrationComponent implements OnInit {
   }
 
   public submitRegistration() {
-
+    this.authManager.submitRegistration(this.userAccount).subscribe(_ => {
+      this.router.navigate(['/']);
+    });
   }
 
   private initUsernameCheck() {

@@ -1,5 +1,31 @@
 <igx-dialog closeOnOutsideSelect="true" [title]="title">
+  <form class="login-buttons" #userRegistration="ngForm" (ngSubmit)="loginWithForm()">
+    <igx-input-group class="login-button" type="border">
+      <label for="username" igxLabel>Username</label>
+      <igx-prefix>
+        <igx-icon>person</igx-icon>
+      </igx-prefix>
+      <input #userName igxInput id="username" required name="username" [(ngModel)]="logininfo.username" />
+    </igx-input-group>
+
+    <igx-input-group class="login-button" type="border">
+      <label for="passwordField" igxLabel>Password</label>
+      <input #passwordField igxInput type="password" required id="passwordField" name="passwordField" [(ngModel)]="logininfo.password" />
+    </igx-input-group>
+
+    <igx-checkbox [(ngModel)]="logininfo.rememberMe">
+      Remember me
+    </igx-checkbox>
+
+    <button igxButton="outlined"
+            class="submit-button space-out"
+            [disabled]="!userRegistration.touched || !userRegistration.valueChanges || userRegistration.invalid || submitInProgress">
+      Login
+    </button>
+  </form>
+
   <div class="login-buttons">
+    <h6>External Providers</h6>
     <button *ngFor="let provider of loginProviders"
             igxButton="raised"
             class="login-button navigatable"

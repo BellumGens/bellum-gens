@@ -10,6 +10,7 @@ import { SwPush } from '@angular/service-worker';
 import { NotificationActions, PushNotificationWrapper } from '../models/usernotifications';
 import { Router } from '@angular/router';
 import { CommunicationService } from './communication.service';
+import { UserRegistration, UserLogin } from '../models/userlogin';
 
 const CACHE_SIZE = 1;
 
@@ -106,6 +107,12 @@ export class LoginService {
     );
   }
 
+  public loginWithForm(logininfo: UserLogin) {
+    this.http.post<ApplicationUser>(`${this._apiEndpoint}/login`, logininfo, { withCredentials: true }).subscribe(
+      user => this._applicationUser.next(user)
+    );
+  }
+
   public logout() {
     this.http.post(`${this._apiEndpoint}/logout`, null, { withCredentials: true }).subscribe(
       _ => this._applicationUser.next(null)
@@ -122,6 +129,19 @@ export class LoginService {
           }
           this.commService.emitSuccess(message);
         }
+        return response;
+      }),
+      catchError(error => {
+        this.commService.emitError(error.error.Message);
+        return throwError(error);
+      })
+    );
+  }
+
+  public submitRegistration(userAccount: UserRegistration) {
+    return this.http.post<UserRegistration>(`${this._apiEndpoint}/setpassword`, userAccount, { withCredentials: true}).pipe(
+      map(response => {
+        this.commService.emitSuccess('User registration completed successfully!');
         return response;
       }),
       catchError(error => {

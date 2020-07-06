@@ -309,6 +309,11 @@ a > igx-icon {
   width: 150px;
 }
 
+.registration-form {
+  display: grid;
+  row-gap: 24px;
+}
+
 @media only screen and (max-width: 720px) {
   .search-group {
     width: auto;

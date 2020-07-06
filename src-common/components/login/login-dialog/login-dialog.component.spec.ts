@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoginDialogComponent } from './login-dialog.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { IgxDialogModule, IgxButtonModule, IgxIconModule, IgxDividerModule } from '@infragistics/igniteui-angular';
+import { IgxDialogModule, IgxButtonModule, IgxIconModule, IgxDividerModule, IgxCheckboxModule } from '@infragistics/igniteui-angular';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -22,7 +22,8 @@ describe('LoginDialogComponent', () => {
         IgxDialogModule,
         IgxButtonModule,
         IgxIconModule,
-        IgxDividerModule
+        IgxDividerModule,
+        IgxCheckboxModule
       ]
     })
     .compileComponents();

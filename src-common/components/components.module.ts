@@ -16,7 +16,8 @@ import {
   IgxSwitchModule,
   IgxListModule,
   IgxInputGroupModule,
-  IgxSnackbarModule
+  IgxSnackbarModule,
+  IgxCheckboxModule
 } from '@infragistics/igniteui-angular';
 
 import { SuccessErrorComponent } from './success-error/success-error.component';
@@ -67,7 +68,8 @@ import { Sc2MapNamePipe } from './pipes/sc2-map-name.pipe';
     IgxSwitchModule,
     IgxListModule,
     IgxInputGroupModule,
-    IgxSnackbarModule
+    IgxSnackbarModule,
+    IgxCheckboxModule
   ]
 })
 export class BellumGensModule {}

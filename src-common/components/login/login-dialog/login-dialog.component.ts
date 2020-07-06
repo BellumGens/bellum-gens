@@ -3,15 +3,22 @@ import { LoginProvider } from '../../../models/login-provider';
 import { LOGIN_ASSETS } from '../../../models/misc';
 import { IgxDialogComponent } from '@infragistics/igniteui-angular';
 import { LoginService } from '../../../services/login.service';
+import { UserLogin } from '../../../models/userlogin';
 
 @Component({
   selector: 'bg-login-dialog',
   templateUrl: './login-dialog.component.html',
-  styleUrls: ['./login-dialog.component.css']
+  styleUrls: ['./login-dialog.component.scss']
 })
 export class LoginDialogComponent {
   public loginProviders: LoginProvider [];
   public loginColors = LOGIN_ASSETS;
+  public logininfo: UserLogin = {
+    username: '',
+    password: '',
+    rememberMe: false
+  };
+  public submitInProgress = false;
 
   public title = 'Choose login provider';
 
@@ -33,4 +40,7 @@ export class LoginDialogComponent {
     this.authManager.login(provider);
   }
 
+  public loginWithForm() {
+    this.authManager.loginWithForm(this.logininfo);
+  }
 }

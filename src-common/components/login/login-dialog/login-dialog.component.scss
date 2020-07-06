@@ -1,9 +1,8 @@
 .login-buttons {
-  display: flex;
-  flex-flow: column;
+  display: grid;
+  row-gap: 24px;
   justify-content: center;
-  align-items: center;
-  padding: 12px 24px 24px 24px;
+  padding: 12px;
 }
 
 .login-buttons button:not(:first-child) {
