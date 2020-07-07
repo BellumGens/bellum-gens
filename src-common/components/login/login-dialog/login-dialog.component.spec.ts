@@ -6,6 +6,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { IgxDialogModule, IgxButtonModule, IgxIconModule, IgxDividerModule, IgxCheckboxModule } from '@infragistics/igniteui-angular';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
 
 describe('LoginDialogComponent', () => {
   let component: LoginDialogComponent;
@@ -15,6 +16,7 @@ describe('LoginDialogComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ LoginDialogComponent ],
       imports: [
+        FormsModule,
         HttpClientTestingModule,
         RouterTestingModule,
         NoopAnimationsModule,
