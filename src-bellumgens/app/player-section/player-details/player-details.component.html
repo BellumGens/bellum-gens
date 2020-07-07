@@ -57,11 +57,21 @@
     </igx-avatar>
     <h4 class="igx-card-header__subtitle" *ngIf="!player.teams?.length">Not a member of any teams yet.</h4>
 
-    <igx-select id="primary-role" *ngIf="!player.userStatsException" [disabled]="!playerIsUser" [ngModel]="player.primaryRole" (ngModelChange)="selectPrimary($event)">
+    <igx-select *ngIf="!player.userStatsException"
+                id="primary-role"
+                name="primary-role"
+                [disabled]="!playerIsUser"
+                [ngModel]="player.primaryRole"
+                (ngModelChange)="selectPrimary($event)">
       <label for="primary-role" igxLabel>Primary Role</label>
       <igx-select-item *ngFor="let role of roles" [disabled]="role.Id === player.secondaryRole" [value]="role.Id">{{ role.Name }}</igx-select-item>
     </igx-select>
-    <igx-select id="secondary-role" *ngIf="!player.userStatsException" [disabled]="!playerIsUser" [ngModel]="player.secondaryRole" (ngModelChange)="selectSecondary($event)">
+    <igx-select *ngIf="!player.userStatsException"
+                id="secondary-role"
+                name="secondary-role"
+                [disabled]="!playerIsUser"
+                [ngModel]="player.secondaryRole"
+                (ngModelChange)="selectSecondary($event)">
       <label for="secondary-role" igxLabel>Secondary Role</label>
       <igx-select-item *ngFor="let role of roles" [disabled]="role.Id === player.primaryRole" [value]="role.Id">{{ role.Name }}</igx-select-item>
     </igx-select>

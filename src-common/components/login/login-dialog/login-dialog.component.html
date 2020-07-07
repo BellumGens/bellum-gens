@@ -1,5 +1,5 @@
 <igx-dialog closeOnOutsideSelect="true" [title]="title">
-  <form class="login-buttons" #userRegistration="ngForm" (ngSubmit)="loginWithForm()">
+  <form class="login-buttons" #userLogin="ngForm" (ngSubmit)="loginWithForm()">
     <igx-input-group class="login-button" type="border">
       <label for="username" igxLabel>Username</label>
       <igx-prefix>
@@ -19,7 +19,7 @@
 
     <button igxButton="outlined"
             class="submit-button space-out"
-            [disabled]="!userRegistration.touched || !userRegistration.valueChanges || userRegistration.invalid || submitInProgress">
+            [disabled]="!userLogin.touched || !userLogin.valueChanges || userLogin.invalid || submitInProgress">
       Login
     </button>
   </form>
