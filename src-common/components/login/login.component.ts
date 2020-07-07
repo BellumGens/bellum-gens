@@ -53,7 +53,7 @@ export class LoginComponent {
   }
 
   public logout() {
-    this.authManager.logout();
+    this.authManager.logout().subscribe();
   }
 
   public navigateToProfile(id: string) {

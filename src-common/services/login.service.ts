@@ -108,14 +108,34 @@ export class LoginService {
   }
 
   public loginWithForm(logininfo: UserLogin) {
-    this.http.post<ApplicationUser>(`${this._apiEndpoint}/login?returnUrl=${window.location.href}`, logininfo).subscribe(
-      user => this._applicationUser.next(user)
+    return this.http.post<ApplicationUser>(`${this._apiEndpoint}/login`, logininfo, { withCredentials: true }).pipe(
+      map(response => {
+        if (response) {
+          this.commService.emitSuccess('Logged in successfully!');
+          this._applicationUser.next(response);
+        }
+        return response;
+      }),
+      catchError(error => {
+        this.commService.emitError(error.error.Message);
+        return throwError(error);
+      })
     );
   }
 
   public logout() {
-    this.http.post(`${this._apiEndpoint}/logout`, null, { withCredentials: true }).subscribe(
-      _ => this._applicationUser.next(null)
+    return this.http.post(`${this._apiEndpoint}/logout`, null, { withCredentials: true }).pipe(
+      map(response => {
+        if (response) {
+          this.commService.emitSuccess('Logged out successfully!');
+          this._applicationUser.next(null);
+        }
+        return response;
+      }),
+      catchError(error => {
+        this.commService.emitError(error.error.Message);
+        return throwError(error);
+      })
     );
   }
 
