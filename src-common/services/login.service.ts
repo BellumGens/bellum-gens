@@ -108,7 +108,7 @@ export class LoginService {
   }
 
   public loginWithForm(logininfo: UserLogin) {
-    this.http.post<ApplicationUser>(`${this._apiEndpoint}/login`, logininfo, { withCredentials: true }).subscribe(
+    this.http.post<ApplicationUser>(`${this._apiEndpoint}/login?returnUrl=${window.location.href}`, logininfo).subscribe(
       user => this._applicationUser.next(user)
     );
   }
