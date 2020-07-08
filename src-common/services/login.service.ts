@@ -48,7 +48,7 @@ export class LoginService {
   }
 
   public get applicationUser() {
-    if (!this._applicationUser.value) {
+    if (!this._applicationUser.value && !this.userCheckInProgress.value) {
       this.userCheckInProgress.next(true);
       this.getSteamUser().subscribe(
         user => {
