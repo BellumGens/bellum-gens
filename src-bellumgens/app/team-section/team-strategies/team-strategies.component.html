@@ -3,7 +3,7 @@
   <button class="navigation-item"
           igxButton="outlined"
           igxRipple
-          (click)="authUser ? newStrategy.open() : loginDialog.openLogin('You need to login first')">
+          (click)="authUser ? newStrategy.open() : openLogin('You need to login first')">
     Create new strategy
   </button>
 </div>
@@ -28,7 +28,6 @@
 </div>
 
 <app-app-shell *ngIf="loading"></app-app-shell>
-<bg-login-dialog #loginDialog></bg-login-dialog>
 
 <div class="card-wrapper">
   <igx-card type="outlined" *ngFor="let strat of strats | activeDutyMaps:viewAll:pipeTrigger | sidestrats:maps:order">

@@ -1,16 +1,14 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BellumgensApiService } from '../../../../src-common/services/bellumgens-api.service';
 import { CSGOStrategy, VoteDirection } from '../../../../src-common/models/csgostrategy';
 import { CSGOMapPool, AllCSGOMaps } from '../../../../src-common/models/csgomaps';
 import { IChipSelectEventArgs } from '@infragistics/igniteui-angular';
-import { SafeResourceUrl, Title, Meta } from '@angular/platform-browser';
-import { BaseComponent } from '../../base/base.component';
+import { SafeResourceUrl } from '@angular/platform-browser';
 import { CSGOTeam } from '../../../../src-common/models/csgoteam';
 import { LoginService } from '../../../../src-common/services/login.service';
 import { ApplicationUser } from '../../../../src-common/models/applicationuser';
 import { GlobalOverlaySettings, StratOrder, StratOrderBy } from '../../../../src-common/models/misc';
-import { LoginDialogComponent } from '../../../../src-common/components/login/login-dialog/login-dialog.component';
 import { SocialMediaService } from '../../../../src-common/services/social-media.service';
 
 @Component({
@@ -36,9 +34,6 @@ export class TeamStrategiesComponent {
 
   public overlaySettings = GlobalOverlaySettings;
   public stratOrder = StratOrder;
-
-  @ViewChild(LoginDialogComponent, {static: true})
-  public loginDialog: LoginDialogComponent;
 
   constructor(private activatedRoute: ActivatedRoute,
               private apiService: BellumgensApiService,
@@ -68,6 +63,10 @@ export class TeamStrategiesComponent {
       }
     });
     this.authManager.applicationUser.subscribe(user => this.authUser = user);
+  }
+
+  public openLogin(title?: string) {
+    this.authManager.emitOpenLogin(title);
   }
 
   public changeMaps(event: IChipSelectEventArgs, args: CSGOMapPool) {
@@ -101,7 +100,7 @@ export class TeamStrategiesComponent {
 
   public voteStrat(strat: CSGOStrategy, direction: VoteDirection) {
     if (!this.authUser) {
-      this.loginDialog.openLogin('You need to login first');
+      this.openLogin('You need to login first');
     } else {
       this.apiService.submitStratVote(strat, direction, this.authUser.id).subscribe(_ => this.pipeTrigger++);
     }

@@ -9,11 +9,6 @@ export class CommunicationService {
   public success = new EventEmitter<string>();
   public error = new EventEmitter<string>();
   public message = new EventEmitter<string>();
-  public openTeams = new EventEmitter();
-
-  public emitOpenTeams() {
-    this.openTeams.emit();
-  }
 
   public emitError(error: string) {
     this.error.emit(error);

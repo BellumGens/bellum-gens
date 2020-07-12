@@ -15,7 +15,6 @@ import { fromEvent } from 'rxjs';
 import { map, debounceTime } from 'rxjs/operators';
 import { UnreadNotificationsPipe } from './pipes/unread-notifications.pipe';
 import { GlobalOverlaySettings } from '../../src-common/models/misc';
-import { CommunicationService } from '../../src-common/services/communication.service';
 import { environment } from '../../src-common/environments/environment';
 
 @Component({
@@ -40,9 +39,7 @@ export class AppComponent implements OnInit {
   private unreadPipe = new UnreadNotificationsPipe();
 
   constructor(private authManager: LoginService,
-              private apiService: BellumgensApiService,
-              private commService: CommunicationService) {
-    this.commService.openTeams.subscribe(_ => this.teamDropDown.open());
+              private apiService: BellumgensApiService) {
     this.authManager.applicationUser.subscribe(user => {
       this.authUser = user;
       if (user) {

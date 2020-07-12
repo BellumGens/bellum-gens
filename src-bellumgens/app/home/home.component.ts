@@ -2,7 +2,6 @@ import { Component, HostListener, ViewChild } from '@angular/core';
 import { LoginService } from '../../../src-common/services/login.service';
 import { ApplicationUser } from '../../../src-common/models/applicationuser';
 import { SocialMediaService } from '../../../src-common/services/social-media.service';
-import { CommunicationService } from '../../../src-common/services/communication.service';
 import { environment } from '../../../src-common/environments/environment';
 import { BaseComponent } from '../base/base.component';
 import { Title, Meta } from '@angular/platform-browser';
@@ -27,7 +26,6 @@ export class HomeComponent extends BaseComponent {
   constructor(private authManager: LoginService,
               private apiService: ApiTournamentsService,
               private socialMedia: SocialMediaService,
-              private commService: CommunicationService,
               titleService: Title,
               meta: Meta,
               activeRoute: ActivatedRoute) {
@@ -46,10 +44,6 @@ export class HomeComponent extends BaseComponent {
     this.socialMedia.tweetWithText('Hey @BellumGens...');
   }
 
-  public openTeams() {
-    this.commService.emitOpenTeams();
-  }
-
   @HostListener('window:resize')
   public resize() {
     this.navigation = window.matchMedia('(min-width: 768px)').matches;
@@ -57,6 +51,10 @@ export class HomeComponent extends BaseComponent {
 
   public navigateToEbleague() {
     window.location.href = this.environment.ebleague;
+  }
+
+  public openLogin() {
+    this.authManager.emitOpenLogin();
   }
 
 }

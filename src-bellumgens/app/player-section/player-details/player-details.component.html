@@ -1,8 +1,6 @@
 <app-app-shell *ngIf="loading">
 </app-app-shell>
 
-<bg-login-dialog #loginDialog></bg-login-dialog>
-
 <div class="loading-overview" *ngIf="!player || player?.steamUserException">
   <h1>Player not found...</h1>
 </div>
@@ -14,7 +12,7 @@
   </div>
 
   <div *ngIf="player && !player?.registered">
-    This player is not registered! If you own the profile then <a (click)="loginDialog.openLogin()" class="navigatable">register</a> to complete it.
+    This player is not registered! If you own the profile then <a (click)="openLogin()" class="navigatable">register</a> to complete it.
   </div>
 
   <div *ngIf="player?.userStatsException">

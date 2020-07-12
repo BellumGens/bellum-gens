@@ -4,6 +4,7 @@ import { LOGIN_ASSETS } from '../../../models/misc';
 import { IgxDialogComponent } from '@infragistics/igniteui-angular';
 import { LoginService } from '../../../services/login.service';
 import { UserLogin } from '../../../models/userlogin';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'bg-login-dialog',
@@ -25,7 +26,7 @@ export class LoginDialogComponent {
   @ViewChild(IgxDialogComponent, { static: true })
   public dialog: IgxDialogComponent;
 
-  constructor(private authManager: LoginService) {
+  constructor(private authManager: LoginService, private router: Router) {
     this.authManager.loginProviders.subscribe(providers => this.loginProviders = providers);
   }
 
@@ -34,6 +35,11 @@ export class LoginDialogComponent {
       this.title = title;
     }
     this.dialog.open();
+  }
+
+  public openRegistration() {
+    this.router.navigate(['register']);
+    this.dialog.close();
   }
 
   public login(provider: string) {

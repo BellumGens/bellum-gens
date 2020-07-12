@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { LoginProvider } from '../models/login-provider';
@@ -27,11 +27,16 @@ export class LoginService {
   public userCheckInProgress = new BehaviorSubject<boolean>(false);
   public error: any;
   public callMade = false;
+  public openLogin = new EventEmitter<string>();
 
   constructor(private http: HttpClient,
               private swPush: SwPush,
               private router: Router,
               private commService: CommunicationService) { }
+
+  public emitOpenLogin(title?: string) {
+    this.openLogin.emit(title);
+  }
 
   public addPushSubscriber(sub: PushSubscription) {
     return this.http.post(`${this._apiBase}/push/subscribe`, sub, { withCredentials: true });
@@ -126,10 +131,8 @@ export class LoginService {
   public logout() {
     return this.http.post(`${this._apiEndpoint}/logout`, null, { withCredentials: true }).pipe(
       map(response => {
-        if (response) {
-          this.commService.emitSuccess('Logged out successfully!');
-          this._applicationUser.next(null);
-        }
+        this.commService.emitSuccess('Logged out successfully!');
+        this._applicationUser.next(null);
         return response;
       }),
       catchError(error => {
