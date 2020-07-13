@@ -17,7 +17,7 @@ export class RegistrationComponent implements OnInit {
   public submitInProgress = false;
   public authUser: ApplicationUser;
 
-  @ViewChild('userName', { static: true }) public usernameInput: ElementRef;
+  @ViewChild('regusername', { static: true }) public usernameInput: ElementRef;
 
   constructor(private authManager: LoginService, private router: Router) {
     this.authManager.applicationUser.subscribe(user => {
@@ -45,9 +45,10 @@ export class RegistrationComponent implements OnInit {
     const debouncedInput = input.pipe(debounceTime(300));
     debouncedInput.subscribe(val => {
       this.authManager.checkUsername(val).subscribe(data => {
-        if (this.authUser && this.userAccount.username !== this.authUser.username) {
-          this.inUse = data;
+        if (this.authUser && this.userAccount.username === this.authUser.username) {
+          return;
         }
+        this.inUse = data;
       });
     });
   }

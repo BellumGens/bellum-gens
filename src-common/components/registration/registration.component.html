@@ -2,11 +2,11 @@
   <form class="registration-form" #userRegistration="ngForm" (ngSubmit)="submitRegistration()">
     <h4>Setup your account</h4>
     <igx-input-group type="border">
-      <label for="username" igxLabel>Username</label>
+      <label for="regusername" igxLabel>Username</label>
       <igx-prefix>
         <igx-icon>person</igx-icon>
       </igx-prefix>
-      <input #userName igxInput id="username" required name="username" [(ngModel)]="userAccount.username" />
+      <input #regusername igxInput id="regusername" required name="regusername" [(ngModel)]="userAccount.username" />
       <igx-hint class="color-error" *ngIf="inUse">
         Username already taken...
       </igx-hint>
