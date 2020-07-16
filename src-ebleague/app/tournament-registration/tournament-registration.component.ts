@@ -27,7 +27,12 @@ export class TournamentRegistrationComponent {
   constructor(private authManager: LoginService,
               private apiService: ApiTournamentsService,
               private router: Router) {
-    this.authManager.applicationUser.subscribe(user => this.authUser = user);
+    this.authManager.applicationUser.subscribe(user => {
+      if (user) {
+        this.authUser = user;
+        this.application.Email = user.email;
+      }
+    });
     this.apiService.companies.subscribe(data => this.companies = data);
   }
 
