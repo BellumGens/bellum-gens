@@ -25,6 +25,7 @@ import { ConfirmComponent } from './confirm/confirm.component';
 import { UserPreferencesComponent } from './user-preferences/user-preferences.component';
 import { LoginDialogComponent } from './login/login-dialog/login-dialog.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { CSGOMapimagePipe } from './pipes/csgomapimage.pipe';
 import { CSGOMapnamePipe } from './pipes/csgomapname.pipe';
 import { Sc2MapNamePipe } from './pipes/sc2-map-name.pipe';
@@ -38,6 +39,7 @@ import { Sc2MapNamePipe } from './pipes/sc2-map-name.pipe';
     UserPreferencesComponent,
     SuccessErrorComponent,
     RegistrationComponent,
+    UnauthorizedComponent,
     CSGOMapimagePipe,
     CSGOMapnamePipe,
     Sc2MapNamePipe
@@ -49,6 +51,7 @@ import { Sc2MapNamePipe } from './pipes/sc2-map-name.pipe';
     UserPreferencesComponent,
     SuccessErrorComponent,
     RegistrationComponent,
+    UnauthorizedComponent,
     CSGOMapimagePipe,
     CSGOMapnamePipe,
     Sc2MapNamePipe

@@ -1,18 +1,16 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError, BehaviorSubject } from 'rxjs';
+import { throwError, BehaviorSubject } from 'rxjs';
 import { LoginProvider } from '../models/login-provider';
 import { Promo } from '../models/jerseyorder';
 import { ApplicationUser, UserPreferences, AdminAppUserSummary } from '../models/applicationuser';
-import { map, shareReplay, catchError } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 import { environment } from '../environments/environment';
 import { SwPush } from '@angular/service-worker';
 import { NotificationActions, PushNotificationWrapper } from '../models/usernotifications';
 import { Router } from '@angular/router';
 import { CommunicationService } from './communication.service';
 import { UserRegistration, UserLogin } from '../models/userlogin';
-
-const CACHE_SIZE = 1;
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +21,8 @@ export class LoginService {
   private _rootApiEndpoint = environment.rootApiEndpoint;
 
   private _applicationUser = new BehaviorSubject<ApplicationUser>(null);
-  private _loginProviders: Observable<LoginProvider []>;
+  private _loginProviders = new BehaviorSubject<LoginProvider []>(null);
+  private _addLoginProviders = new BehaviorSubject<LoginProvider []>(null);
   public userCheckInProgress = new BehaviorSubject<boolean>(false);
   public error: any;
   public callMade = false;
@@ -43,13 +42,19 @@ export class LoginService {
   }
 
   public get loginProviders() {
-    if (!this._loginProviders) {
-      this._loginProviders = this.getLoginProviders().pipe(
-        shareReplay(CACHE_SIZE)
-      );
+    if (!this._loginProviders.value) {
+      this.getLoginProviders().subscribe(providers => this._loginProviders.next(providers));
     }
 
     return this._loginProviders;
+  }
+
+  public get addLoginProviders() {
+    if (!this._addLoginProviders.value) {
+      this.getAddLoginProviders().subscribe(providers => this._addLoginProviders.next(providers));
+    }
+
+    return this._addLoginProviders;
   }
 
   public get applicationUser() {
@@ -104,6 +109,16 @@ export class LoginService {
 
   public login(provider: string) {
     this.loginProviders.subscribe((data: LoginProvider []) =>
+      data.forEach((item: LoginProvider) => {
+        if (item.Name === provider) {
+          window.location.href = `${this._rootApiEndpoint}${item.Url}&returnUrl=${window.location.href}`;
+        }
+      })
+    );
+  }
+
+  public addlogin(provider: string) {
+    this.addLoginProviders.subscribe((data: LoginProvider []) =>
       data.forEach((item: LoginProvider) => {
         if (item.Name === provider) {
           window.location.href = `${this._rootApiEndpoint}${item.Url}&returnUrl=${window.location.href}`;
@@ -225,6 +240,12 @@ export class LoginService {
 
   private getLoginProviders() {
     return this.http.get<LoginProvider []>(this._apiEndpoint + '/ExternalLogins?returnUrl=%2F&generateState=true').pipe(
+      map(response => response)
+    );
+  }
+
+  private getAddLoginProviders() {
+    return this.http.get<LoginProvider []>(this._apiEndpoint + '/AddExternalLogins?returnUrl=%2F&generateState=true').pipe(
       map(response => response)
     );
   }

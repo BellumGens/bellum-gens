@@ -31,14 +31,14 @@ export class UserPreferencesComponent {
           searchVisible: user.searchVisible
         };
         this.apiService.registrations.subscribe(data => this.registrations = data);
+        this.authUser = user;
       }
-      this.authUser = user;
     });
-    this.authManager.loginProviders.subscribe(providers => this.providers = providers);
+    this.authManager.addLoginProviders.subscribe(providers => this.providers = providers);
   }
 
   public login(provider: string) {
-    this.authManager.login(provider);
+    this.authManager.addlogin(provider);
   }
 
   public submitPreferences() {
