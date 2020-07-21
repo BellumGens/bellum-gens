@@ -11,6 +11,7 @@ import { NotificationActions, PushNotificationWrapper } from '../models/usernoti
 import { Router } from '@angular/router';
 import { CommunicationService } from './communication.service';
 import { UserRegistration, UserLogin } from '../models/userlogin';
+import { TournamentApplication } from '../models/tournament';
 
 @Injectable({
   providedIn: 'root'
@@ -21,11 +22,11 @@ export class LoginService {
   private _rootApiEndpoint = environment.rootApiEndpoint;
 
   private _applicationUser = new BehaviorSubject<ApplicationUser>(null);
-  private _loginProviders = new BehaviorSubject<LoginProvider []>(null);
-  private _addLoginProviders = new BehaviorSubject<LoginProvider []>(null);
+  private _registrations = new BehaviorSubject<TournamentApplication []>(null);
   public userCheckInProgress = new BehaviorSubject<boolean>(false);
   public error: any;
   public callMade = false;
+
   public openLogin = new EventEmitter<string>();
 
   constructor(private http: HttpClient,
@@ -42,19 +43,25 @@ export class LoginService {
   }
 
   public get loginProviders() {
-    if (!this._loginProviders.value) {
-      this.getLoginProviders().subscribe(providers => this._loginProviders.next(providers));
-    }
-
-    return this._loginProviders;
+    return this.http.get<LoginProvider []>(`${this._apiEndpoint}/ExternalLogins?returnUrl=%2F`);
   }
 
   public get addLoginProviders() {
-    if (!this._addLoginProviders.value) {
-      this.getAddLoginProviders().subscribe(providers => this._addLoginProviders.next(providers));
-    }
+    // tslint:disable-next-line:max-line-length
+    return this.http.get<LoginProvider []>(`${this._apiEndpoint}/ExternalLogins?returnUrl=%2F&routeName=AddExternalLogin`);
+  }
 
-    return this._addLoginProviders;
+  public get tournamentRegistrations() {
+    if (!this._registrations.value) {
+      this.getRegistrations();
+    }
+    return this._registrations;
+  }
+
+  public getRegistrations() {
+    this.http.get<TournamentApplication []>(`${this._apiEndpoint}/tournament/registrations`, { withCredentials: true}).subscribe(data => {
+      this._registrations.next(data);
+    });
   }
 
   public get applicationUser() {
@@ -107,24 +114,8 @@ export class LoginService {
     return this.http.put<string>(`${this._apiBase}/admin/adduserrole?userid=${userId}&role=${role}`, role, { withCredentials: true });
   }
 
-  public login(provider: string) {
-    this.loginProviders.subscribe((data: LoginProvider []) =>
-      data.forEach((item: LoginProvider) => {
-        if (item.Name === provider) {
-          window.location.href = `${this._rootApiEndpoint}${item.Url}&returnUrl=${window.location.href}`;
-        }
-      })
-    );
-  }
-
-  public addlogin(provider: string) {
-    this.addLoginProviders.subscribe((data: LoginProvider []) =>
-      data.forEach((item: LoginProvider) => {
-        if (item.Name === provider) {
-          window.location.href = `${this._rootApiEndpoint}${item.Url}&returnUrl=${window.location.href}`;
-        }
-      })
-    );
+  public login(provider: LoginProvider) {
+    window.location.href = `${this._rootApiEndpoint}${provider.Url}&returnUrl=${window.location.href}`;
   }
 
   public loginWithForm(logininfo: UserLogin) {
@@ -133,6 +124,7 @@ export class LoginService {
         if (response) {
           this.commService.emitSuccess('Logged in successfully!');
           this._applicationUser.next(response);
+          this.getRegistrations();
         }
         return response;
       }),
@@ -235,18 +227,6 @@ export class LoginService {
   }
 
   private getSteamUser() {
-    return this.http.get<ApplicationUser>(this._apiEndpoint + '/userinfo', { withCredentials: true });
-  }
-
-  private getLoginProviders() {
-    return this.http.get<LoginProvider []>(this._apiEndpoint + '/ExternalLogins?returnUrl=%2F&generateState=true').pipe(
-      map(response => response)
-    );
-  }
-
-  private getAddLoginProviders() {
-    return this.http.get<LoginProvider []>(this._apiEndpoint + '/AddExternalLogins?returnUrl=%2F&generateState=true').pipe(
-      map(response => response)
-    );
+    return this.http.get<ApplicationUser>(`${this._apiEndpoint}/userinfo`, { withCredentials: true });
   }
 }

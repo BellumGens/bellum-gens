@@ -6,11 +6,11 @@
           class="submit-button navigatable"
           [igxButtonBackground]="loginColors[provider.Name]"
           igxButtonColor="#fff"
-          (click)="login(provider.Name)"
+          (click)="login(provider)"
           [disabled]="disableLogin(provider.Name)">
     <igx-icon fontSet="login-icons" [name]="provider.Name"></igx-icon>
     <igx-divider [vertical]="true" [inset]="'0 0 0 8px'" [ngClass]="'login-divider'"></igx-divider>
-    <span class="submit-button">Add {{ provider.Name }}</span>
+    <span class="submit-button">{{ disableLogin(provider.Name) ? provider.Name : 'Add ' + provider.Name }}</span>
     <igx-icon class="color-success">{{ disableLogin(provider.Name) ? 'done' : '' }}</igx-icon>
   </button>
 </div>

@@ -83,7 +83,6 @@ import { EmailconfirmComponent } from './emailconfirm/emailconfirm.component';
 import { QueryParsedPipe } from './pipes/query-parsed.pipe';
 import { StrategyEditorComponent } from './team-section/team-strategies/strategy-editor/strategy-editor.component';
 import { ActiveDutyMapsPipe } from './pipes/active-duty-maps.pipe';
-import { AddSteamComponent } from './add-steam/add-steam.component';
 import { BaseComponent } from './base/base.component';
 import { AppShellComponent } from './app-shell/app-shell.component';
 import { IsVideoPipe } from './pipes/is-video.pipe';
@@ -146,7 +145,6 @@ import { TeamTournamentsComponent } from './team-section/team-tournaments/team-t
     QueryParsedPipe,
     StrategyEditorComponent,
     ActiveDutyMapsPipe,
-    AddSteamComponent,
     BaseComponent,
     AppShellComponent,
     IsVideoPipe,

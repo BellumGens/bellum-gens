@@ -30,15 +30,15 @@ export class UserPreferencesComponent {
           email: user.email,
           searchVisible: user.searchVisible
         };
-        this.apiService.registrations.subscribe(data => this.registrations = data);
+        this.authManager.tournamentRegistrations.subscribe(data => this.registrations = data);
         this.authUser = user;
       }
     });
     this.authManager.addLoginProviders.subscribe(providers => this.providers = providers);
   }
 
-  public login(provider: string) {
-    this.authManager.addlogin(provider);
+  public login(provider: LoginProvider) {
+    this.authManager.login(provider);
   }
 
   public submitPreferences() {
@@ -55,7 +55,6 @@ export class UserPreferencesComponent {
       this.registrations.splice(this.registrations.indexOf(registration), 1);
     });
   }
-
 
   public disableLogin(provider: string) {
     return this.authUser ? this.authUser.externalLogins.includes(provider) : false;

@@ -12,8 +12,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./login-dialog.component.scss']
 })
 export class LoginDialogComponent {
-  public loginProviders: LoginProvider [];
-  public loginColors = LOGIN_ASSETS;
   public logininfo: UserLogin = {
     username: '',
     password: '',
@@ -27,7 +25,6 @@ export class LoginDialogComponent {
   public dialog: IgxDialogComponent;
 
   constructor(private authManager: LoginService, private router: Router) {
-    this.authManager.loginProviders.subscribe(providers => this.loginProviders = providers);
   }
 
   public openLogin(title?: string) {
@@ -40,10 +37,6 @@ export class LoginDialogComponent {
   public openRegistration() {
     this.router.navigate(['register']);
     this.dialog.close();
-  }
-
-  public login(provider: string) {
-    this.authManager.login(provider);
   }
 
   public loginWithForm() {

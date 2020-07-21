@@ -24,8 +24,10 @@ import { SuccessErrorComponent } from './success-error/success-error.component';
 import { ConfirmComponent } from './confirm/confirm.component';
 import { UserPreferencesComponent } from './user-preferences/user-preferences.component';
 import { LoginDialogComponent } from './login/login-dialog/login-dialog.component';
+import { LoginButtonsComponent } from './login/login-buttons/login-buttons.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
+import { AddSteamComponent } from './add-steam/add-steam.component';
 import { CSGOMapimagePipe } from './pipes/csgomapimage.pipe';
 import { CSGOMapnamePipe } from './pipes/csgomapname.pipe';
 import { Sc2MapNamePipe } from './pipes/sc2-map-name.pipe';
@@ -35,11 +37,13 @@ import { Sc2MapNamePipe } from './pipes/sc2-map-name.pipe';
   declarations: [
     ConfirmComponent,
     LoginDialogComponent,
+    LoginButtonsComponent,
     LoginComponent,
     UserPreferencesComponent,
     SuccessErrorComponent,
     RegistrationComponent,
     UnauthorizedComponent,
+    AddSteamComponent,
     CSGOMapimagePipe,
     CSGOMapnamePipe,
     Sc2MapNamePipe
@@ -47,11 +51,13 @@ import { Sc2MapNamePipe } from './pipes/sc2-map-name.pipe';
   exports: [
     ConfirmComponent,
     LoginDialogComponent,
+    LoginButtonsComponent,
     LoginComponent,
     UserPreferencesComponent,
     SuccessErrorComponent,
     RegistrationComponent,
     UnauthorizedComponent,
+    AddSteamComponent,
     CSGOMapimagePipe,
     CSGOMapnamePipe,
     Sc2MapNamePipe

@@ -42,7 +42,6 @@ export class TournamentRegistrationComponent {
     this.apiService.leagueRegistration(this.application).subscribe(application => {
       this.inProgress = false;
       this.application = application;
-      this.apiService.updateRegistrations();
       this.router.navigate(['/registration-success'], { state: application });
     },
     _ => this.inProgress = false);

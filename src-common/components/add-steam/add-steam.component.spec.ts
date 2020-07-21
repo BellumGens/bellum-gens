@@ -5,6 +5,7 @@ import { IgxIconModule, IgxButtonModule, IgxDividerModule } from '@infragistics/
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { LoginButtonsComponent } from '../login/login-buttons/login-buttons.component';
 
 describe('AddSteamComponent', () => {
   let component: AddSteamComponent;
@@ -20,7 +21,7 @@ describe('AddSteamComponent', () => {
         IgxDividerModule,
         IgxButtonModule
       ],
-      declarations: [ AddSteamComponent ]
+      declarations: [ AddSteamComponent, LoginButtonsComponent ]
     })
     .compileComponents();
   }));

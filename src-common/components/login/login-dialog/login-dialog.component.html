@@ -26,17 +26,5 @@
     <label class="register-link navigatable" (click)="openRegistration()">Don't have an account?</label>
   </form>
 
-  <div class="login-buttons">
-    <h6>External Providers</h6>
-    <button *ngFor="let provider of loginProviders"
-            igxButton="raised"
-            class="login-button navigatable"
-            [igxButtonBackground]="loginColors[provider.Name]"
-            igxButtonColor="#fff"
-            (click)="login(provider.Name)">
-      <igx-icon fontSet="login-icons" [name]="provider.Name"></igx-icon>
-      <igx-divider [vertical]="true" [inset]="'0 0 0 8px'" [ngClass]="'login-divider'"></igx-divider>
-      <span class="submit-button">{{ provider.Name }}</span>
-    </button>
-  </div>
+  <bg-login-buttons></bg-login-buttons>
 </igx-dialog>

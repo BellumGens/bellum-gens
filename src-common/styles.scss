@@ -309,6 +309,21 @@ a > igx-icon {
   width: 150px;
 }
 
+.login-buttons {
+  display: grid;
+  row-gap: 24px;
+  justify-content: center;
+  padding: 12px;
+}
+
+.login-buttons button:not(:first-child) {
+  margin-top: 8px;
+}
+
+.login-button {
+  width: 250px;
+}
+
 .registration-form {
   display: grid;
   row-gap: 24px;

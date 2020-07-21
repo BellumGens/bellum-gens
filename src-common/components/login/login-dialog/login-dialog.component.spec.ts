@@ -7,6 +7,7 @@ import { IgxDialogModule, IgxButtonModule, IgxIconModule, IgxDividerModule, IgxC
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
+import { LoginButtonsComponent } from '../login-buttons/login-buttons.component';
 
 describe('LoginDialogComponent', () => {
   let component: LoginDialogComponent;
@@ -14,7 +15,7 @@ describe('LoginDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginDialogComponent ],
+      declarations: [ LoginDialogComponent, LoginButtonsComponent ],
       imports: [
         FormsModule,
         HttpClientTestingModule,
