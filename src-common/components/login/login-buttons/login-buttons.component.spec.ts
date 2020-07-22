@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoginButtonsComponent } from './login-buttons.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { IgxButtonModule, IgxIconModule, IgxDividerModule } from '@infragistics/igniteui-angular';
 
 describe('LoginButtonsComponent', () => {
   let component: LoginButtonsComponent;
@@ -8,7 +11,14 @@ describe('LoginButtonsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginButtonsComponent ]
+      declarations: [ LoginButtonsComponent ],
+      imports: [
+        HttpClientTestingModule,
+        ServiceWorkerModule.register('', {enabled: false}),
+        IgxButtonModule,
+        IgxIconModule,
+        IgxDividerModule
+      ]
     })
     .compileComponents();
   }));

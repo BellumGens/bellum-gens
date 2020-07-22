@@ -1,3 +1,18 @@
 .register-link {
   font-size: 0.75rem;
 }
+
+.igx-input-group__input {
+  border-top-color: #192053;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active  {
+  -webkit-box-shadow: 0 0 0 40px #192053 inset !important;
+}
+
+input:-webkit-autofill {
+  -webkit-text-fill-color: white !important;
+}

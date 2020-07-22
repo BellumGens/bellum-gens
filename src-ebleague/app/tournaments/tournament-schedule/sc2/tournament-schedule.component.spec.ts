@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SC2TournamentScheduleComponent } from './tournament-schedule.component';
-import { IgxCalendarModule, IgxAvatarModule, IgxIconModule, IgxProgressBarModule } from '@infragistics/igniteui-angular';
+import { IgxCalendarModule, IgxAvatarModule, IgxIconModule, IgxProgressBarModule, IgxGridModule } from '@infragistics/igniteui-angular';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -20,6 +20,7 @@ describe('SC2TournamentScheduleComponent', () => {
         IgxCalendarModule,
         IgxAvatarModule,
         IgxIconModule,
+        IgxGridModule,
         IgxProgressBarModule
       ]
     })
