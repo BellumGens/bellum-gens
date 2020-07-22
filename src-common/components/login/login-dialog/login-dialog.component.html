@@ -17,13 +17,13 @@
       Remember me
     </igx-checkbox>
 
+    <label class="register-link navigatable" (click)="openRegistration()">Don't have an account?</label>
+
     <button igxButton="outlined"
             class="submit-button space-out"
             [disabled]="!userLogin.touched || !userLogin.valueChanges || userLogin.invalid || submitInProgress">
       Login
     </button>
-
-    <label class="register-link navigatable" (click)="openRegistration()">Don't have an account?</label>
   </form>
 
   <bg-login-buttons></bg-login-buttons>
