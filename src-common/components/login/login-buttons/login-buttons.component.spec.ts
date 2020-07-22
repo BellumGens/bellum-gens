@@ -4,6 +4,7 @@ import { LoginButtonsComponent } from './login-buttons.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { IgxButtonModule, IgxIconModule, IgxDividerModule } from '@infragistics/igniteui-angular';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('LoginButtonsComponent', () => {
   let component: LoginButtonsComponent;
@@ -14,6 +15,7 @@ describe('LoginButtonsComponent', () => {
       declarations: [ LoginButtonsComponent ],
       imports: [
         HttpClientTestingModule,
+        RouterTestingModule,
         ServiceWorkerModule.register('', {enabled: false}),
         IgxButtonModule,
         IgxIconModule,

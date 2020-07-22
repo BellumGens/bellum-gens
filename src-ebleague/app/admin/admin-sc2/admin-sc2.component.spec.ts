@@ -2,7 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AdminSc2Component } from './admin-sc2.component';
 import { BellumGensModule } from 'src-common/components/components.module';
-import { IgxListModule,
+import {
+  IgxListModule,
   IgxIconModule,
   IgxInputGroupModule,
   IgxAvatarModule,
@@ -15,7 +16,8 @@ import { IgxListModule,
   IgxTimePickerModule,
   IgxCalendarModule,
   IgxCheckboxModule,
-  IgxGridModule} from '@infragistics/igniteui-angular';
+  IgxGridModule
+} from '@infragistics/igniteui-angular';
 import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
