@@ -19,15 +19,14 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { TeamTournamentsComponent } from './team-section/team-tournaments/team-tournaments.component';
 import { RegistrationComponent } from '../../src-common/components/registration/registration.component';
 import { UnauthorizedComponent } from '../../src-common/components/unauthorized/unauthorized.component';
-import { AddSteamComponent } from '../../src-common/components/add-steam/add-steam.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'app-shell', component: AppShellComponent },
   { path: 'register', component: RegistrationComponent },
-  { path: 'unauthorized', component: UnauthorizedComponent },
+  { path: 'unauthorized', redirectTo: 'unauthorized/', pathMatch: 'full' },
+  { path: 'unauthorized/:message', component: UnauthorizedComponent },
   { path: 'emailconfirm', component: EmailconfirmComponent },
-  { path: 'addsteam', component: AddSteamComponent },
   { path: 'user/strategies', component: UserStrategiesComponent },
   { path: 'strategies', component: TeamStrategiesComponent, data: {
       title: 'CS:GO Strategies: find or create'

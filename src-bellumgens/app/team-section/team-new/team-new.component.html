@@ -1,6 +1,6 @@
 <igx-dialog #createTeam closeOnOutsideSelect="true" *ngIf="authUser">
   <div class="create-team">
-    <span *ngIf="groups?.length">Import from Steam Group</span>
+    <span class="highlight">Import from Steam Group</span>
     <igx-input-group type="search">
       <igx-prefix>
           <igx-icon>search</igx-icon>
@@ -12,6 +12,9 @@
       </igx-suffix>
     </igx-input-group>
     <igx-list>
+      <ng-template igxEmptyList>
+        <p>No Steam groups found...</p>
+      </ng-template>
       <igx-list-item *ngFor="let group of groups | groupsFilter:searchGroups" (click)="createFromSteam(group)">
         <igx-avatar igxListThumbnail [src]="group.avatarFull" [initials]="group.groupName" roundShape="true">
         </igx-avatar>
@@ -20,10 +23,13 @@
         </div>
       </igx-list-item>
     </igx-list>
-    <span>Register with form</span>
+    <span class="highlight">Register with form</span>
     <form #teamRegistration="ngForm" (ngSubmit)="createFromForm()">
       <igx-input-group>
         <label igxLabel for="teamName">Team name</label>
+        <igx-prefix>
+          <igx-icon>text_fields</igx-icon>
+        </igx-prefix>
         <input #teamName
                 id="teamName"
                 igxInput
@@ -34,12 +40,17 @@
       </igx-input-group>
 
       <igx-input-group>
-        <label igxLabel for="teamDescripton">Team description</label>
+        <label igxLabel for="teamDescripton">Team motto</label>
+        <igx-prefix>
+          <igx-icon>text_fields</igx-icon>
+        </igx-prefix>
         <textarea #teamDescripton
                   name="teamDescripton"
                   id="teamDescripton"
                   igxInput
-                  placeholder="Add a team motto or recruitment information" minlength="2" required [(ngModel)]="newTeam.Description">
+                  minlength="2"
+                  required
+                  [(ngModel)]="newTeam.Description">
         </textarea>
         <igx-suffix *ngIf="teamDescripton.value.length > 0" (click)="newTeam.Description = null">
             <igx-icon>clear</igx-icon>

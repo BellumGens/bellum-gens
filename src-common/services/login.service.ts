@@ -59,7 +59,7 @@ export class LoginService {
   }
 
   public getRegistrations() {
-    this.http.get<TournamentApplication []>(`${this._apiEndpoint}/tournament/registrations`, { withCredentials: true}).subscribe(data => {
+    this.http.get<TournamentApplication []>(`${this._apiBase}/tournament/registrations`, { withCredentials: true}).subscribe(data => {
       this._registrations.next(data);
     });
   }

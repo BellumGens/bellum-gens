@@ -27,7 +27,6 @@ import { LoginDialogComponent } from './login/login-dialog/login-dialog.componen
 import { LoginButtonsComponent } from './login/login-buttons/login-buttons.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
-import { AddSteamComponent } from './add-steam/add-steam.component';
 import { CSGOMapimagePipe } from './pipes/csgomapimage.pipe';
 import { CSGOMapnamePipe } from './pipes/csgomapname.pipe';
 import { Sc2MapNamePipe } from './pipes/sc2-map-name.pipe';
@@ -43,7 +42,6 @@ import { Sc2MapNamePipe } from './pipes/sc2-map-name.pipe';
     SuccessErrorComponent,
     RegistrationComponent,
     UnauthorizedComponent,
-    AddSteamComponent,
     CSGOMapimagePipe,
     CSGOMapnamePipe,
     Sc2MapNamePipe
@@ -57,7 +55,6 @@ import { Sc2MapNamePipe } from './pipes/sc2-map-name.pipe';
     SuccessErrorComponent,
     RegistrationComponent,
     UnauthorizedComponent,
-    AddSteamComponent,
     CSGOMapimagePipe,
     CSGOMapnamePipe,
     Sc2MapNamePipe

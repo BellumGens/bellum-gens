@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'bg-unauthorized',
@@ -6,7 +7,15 @@ import { Component } from '@angular/core';
   styleUrls: ['./unauthorized.component.css']
 })
 export class UnauthorizedComponent {
+  public message = 'Unauthorized :(';
 
-  constructor() { }
+  constructor(private activatedRoute: ActivatedRoute) {
+    this.activatedRoute.params.subscribe(params => {
+      const message = params['message'];
+      if (message) {
+        this.message = message;
+      }
+    });
+  }
 
 }
