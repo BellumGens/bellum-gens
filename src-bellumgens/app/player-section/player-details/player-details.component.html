@@ -2,7 +2,7 @@
 </app-app-shell>
 
 <div class="loading-overview" *ngIf="!player || player?.steamUserException">
-  <h1>Player not found...</h1>
+  <h4 class="highlight">Steam CS:GO player profile not found...</h4>
 </div>
 
 <div class="search-result-summary">
@@ -11,7 +11,7 @@
     <p>Now it's time to complete your profile! Fill in your <span class="highlight">preferred playstyle</span>, you <span class="highlight">availability</span> and your <span class="highlight">preferred map pool</span>.</p>
   </div>
 
-  <div *ngIf="player && !player?.registered">
+  <div *ngIf="player && !player.steamUserException && !player?.registered">
     This player is not registered! If you own the profile then <a (click)="openLogin()" class="navigatable">register</a> to complete it.
   </div>
 
@@ -22,7 +22,7 @@
   </div>
 </div>
 
-<div *ngIf="player" class="card-wrapper profile-view-layout">
+<div *ngIf="player && !player.steamUserException" class="card-wrapper profile-view-layout">
   <div>
     <div>
       <igx-avatar [src]="player.steamUser?.avatarFull" [initials]="player.steamUser?.steamID" class="player-avatar">
