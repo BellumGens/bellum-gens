@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { IgxProgressType } from '@infragistics/igniteui-angular';
+import { Component, Input, ViewChild } from '@angular/core';
+import { IgxProgressType, IgxDropDownComponent } from '@infragistics/igniteui-angular';
 import { LoginService } from '../../services/login.service';
 import { ApplicationUser } from '../../models/applicationuser';
 import { PlaystyleRole } from '../../models/playerrole';
@@ -7,6 +7,7 @@ import { BellumgensApiService } from '../../services/bellumgens-api.service';
 import { GlobalOverlaySettings } from '../../models/misc';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
+import { LoginDialogComponent } from './login-dialog/login-dialog.component';
 
 export interface ProfileCompleteness {
   availability: boolean;
@@ -33,6 +34,12 @@ export class LoginComponent {
   public overlaySettings = GlobalOverlaySettings;
   public userCheck = false;
 
+  @ViewChild(LoginDialogComponent, { static: true })
+  public dialog: LoginDialogComponent;
+
+  @ViewChild(IgxDropDownComponent, { static: false })
+  public userProfile: IgxDropDownComponent;
+
   @Input()
   public set authUser(user: ApplicationUser) {
     this._authUser = user;
@@ -49,11 +56,16 @@ export class LoginComponent {
               private apiService: BellumgensApiService,
               private router: Router) {
     this.authManager.userCheckInProgress.subscribe(value => this.userCheck = value);
+    this.authManager.openLogin.subscribe(value => this.openLogin(value));
     this.apiService.authUserUpdate.subscribe(_ => this.fillCompleteness());
   }
 
+  public openLogin(title?: string) {
+    this.dialog.openLogin(title);
+  }
+
   public logout() {
-    this.authManager.logout();
+    this.authManager.logout().subscribe(_ => this.userProfile.close());
   }
 
   public navigateToProfile(id: string) {

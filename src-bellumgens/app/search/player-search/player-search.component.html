@@ -15,7 +15,7 @@
           <igx-radio [(ngModel)]="userOverlap" class="search-role" name="userOverlap" [value]="1">Team practice</igx-radio>
         </igx-radio-group>
       </div>
-      <igx-select *ngIf="userOverlap" name="teamOverlap" [(ngModel)]="searchModel.teamId" id="team-select">
+      <igx-select *ngIf="userOverlap" name="teamOverlap" [(ngModel)]="searchModel.teamId">
         <label for="team-select" igxLabel>Select team</label>
         <igx-select-item *ngFor="let team of authUser?.teamAdmin"
                          [value]="team.TeamId"

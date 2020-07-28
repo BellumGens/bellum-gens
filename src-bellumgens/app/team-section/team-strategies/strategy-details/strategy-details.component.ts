@@ -1,4 +1,4 @@
-import { Component, HostListener, ViewChild } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { BaseComponent } from '../../../base/base.component';
 import { BellumgensApiService } from '../../../../../src-common/services/bellumgens-api.service';
 import { ActivatedRoute } from '@angular/router';
@@ -6,7 +6,6 @@ import { CSGOStrategy, VoteDirection, newEmptyComment, StrategyComment } from '.
 import { LoginService } from '../../../../../src-common/services/login.service';
 import { ApplicationUser } from '../../../../../src-common/models/applicationuser';
 import { GlobalOverlaySettings } from '../../../../../src-common/models/misc';
-import { LoginDialogComponent } from '../../../../../src-common/components/login/login-dialog/login-dialog.component';
 import { SocialMediaService } from '../../../../../src-common/services/social-media.service';
 import { Title, Meta } from '@angular/platform-browser';
 import { environment } from '../../../../../src-common/environments/environment.prod';
@@ -24,9 +23,6 @@ export class StrategyDetailsComponent extends BaseComponent {
   public newComment = newEmptyComment();
   public horizontal = window ? window.matchMedia('(min-width: 768px)').matches : true;
   public overlaySettings = GlobalOverlaySettings;
-
-  @ViewChild(LoginDialogComponent, {static: true})
-  public loginDialog: LoginDialogComponent;
 
   constructor(private apiService: BellumgensApiService,
               private authManager: LoginService,
@@ -58,6 +54,10 @@ export class StrategyDetailsComponent extends BaseComponent {
     );
   }
 
+  public openLogin(title?: string) {
+    this.authManager.emitOpenLogin(title);
+  }
+
   @HostListener('window:resize')
   public resize() {
     this.horizontal = window.matchMedia('(min-width: 768px)').matches;
@@ -65,7 +65,7 @@ export class StrategyDetailsComponent extends BaseComponent {
 
   public voteStrat(strat: CSGOStrategy, direction: VoteDirection) {
     if (!this.authUser) {
-      this.loginDialog.openLogin('You need to login first');
+      this.openLogin('You need to login first');
     } else {
       this.apiService.submitStratVote(strat, direction, this.authUser.id).subscribe(_ => this.pipeTrigger++);
     }

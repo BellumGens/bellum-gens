@@ -13,6 +13,7 @@ export interface AdminAppUserSummary {
 
 export interface AppUserSummary {
   id: string;
+  steamId: string;
   username: string;
   avatarMedium: string;
   customURL: string;
@@ -41,7 +42,5 @@ export interface ApplicationUser extends AppUserSummary {
 }
 
 export interface UserPreferences {
-  email: string;
   searchVisible: boolean;
-  newEmail?: boolean;
 }

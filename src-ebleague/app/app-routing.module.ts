@@ -2,14 +2,17 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { TournamentHomeComponent } from './home/home.component';
 import { RaffleComponent } from './raffle/raffle.component';
-import { OrderSuccessComponent } from './order-success/order-success.component';
 import { RegistrationSuccessComponent } from './tournament-registration/registration-success/registration-success.component';
+import { RegistrationComponent } from '../../src-common/components/registration/registration.component';
+import { UnauthorizedComponent } from '../../src-common/components/unauthorized/unauthorized.component';
 
 export const routes: Routes = [
   { path: '', component: TournamentHomeComponent },
   { path: 'raffle', component: RaffleComponent },
-  { path: 'order-success', component: OrderSuccessComponent },
+  { path: 'register', component: RegistrationComponent },
   { path: 'registration-success', component: RegistrationSuccessComponent },
+  { path: 'unauthorized', redirectTo: 'unauthorized/', pathMatch: 'full' },
+  { path: 'unauthorized/:message', component: UnauthorizedComponent },
   { path: 'format', redirectTo: '/tournament/format', pathMatch: 'full' },
   { path: 'csgo', redirectTo: '/tournament/csgo/', pathMatch: 'full' },
   { path: 'sc2', redirectTo: '/tournament/sc2/', pathMatch: 'full' },

@@ -67,6 +67,10 @@ export class PlayerDetailsComponent extends BaseComponent {
     this.loadSvgs();
   }
 
+  public openLogin() {
+    this.authManager.emitOpenLogin();
+  }
+
   public submitAvailability(args: Availability) {
     this.authUser.availability.find(a => a.Day === args.Day).Available = args.Available;
     this.apiService.setAvailability(args).subscribe();

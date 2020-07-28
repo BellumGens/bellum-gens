@@ -93,8 +93,7 @@ export abstract class BaseLayer {
   public trySelect(coords: PointCoordinate): boolean {
     if (this.selectable) {
       if (coords.x >= this.x && coords.x <= this.x + this.width && coords.y >= this.y && coords.y <= this.y + this.height) {
-        this.selected = true;
-        return true;
+        return this.selected = true;
       }
     }
     return false;

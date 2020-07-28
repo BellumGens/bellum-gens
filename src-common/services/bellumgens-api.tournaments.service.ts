@@ -21,7 +21,6 @@ export class ApiTournamentsService {
   private _tournaments = new BehaviorSubject<Tournament []>(null);
   private _activeTournament = new BehaviorSubject<Tournament>(null);
   private _companies = new BehaviorSubject<string []>(null);
-  private _registrations = new BehaviorSubject<TournamentApplication []>(null);
   private _allRegistrations = new BehaviorSubject<TournamentApplication []>(null);
   private _csgoRegistrations = new BehaviorSubject<TournamentRegistration []>(null);
   private _sc2Registrations = new BehaviorSubject<TournamentRegistration []>(null);
@@ -62,15 +61,6 @@ export class ApiTournamentsService {
       });
     }
     return this._companies;
-  }
-
-  public get registrations() {
-    if (!this._registrations.value) {
-      this.getRegistrations().subscribe(data => {
-        this._registrations.next(data);
-      });
-    }
-    return this._registrations;
   }
 
   public get allRegistrations() {
@@ -179,12 +169,6 @@ export class ApiTournamentsService {
         return throwError(error);
       })
     );
-  }
-
-  public updateRegistrations() {
-    this.getRegistrations().subscribe(data => {
-      this._registrations.next(data);
-    });
   }
 
   public confirmRegistration(reg: TournamentApplication) {
@@ -425,10 +409,6 @@ export class ApiTournamentsService {
           return throwError(error);
         })
       );
-  }
-
-  private getRegistrations() {
-    return this.http.get<TournamentApplication []>(`${this._apiEndpoint}/tournament/registrations`, { withCredentials: true});
   }
 
   private getAllRegistrations() {

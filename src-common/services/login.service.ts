@@ -1,16 +1,17 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, throwError, BehaviorSubject } from 'rxjs';
+import { throwError, BehaviorSubject } from 'rxjs';
 import { LoginProvider } from '../models/login-provider';
+import { Promo } from '../models/jerseyorder';
 import { ApplicationUser, UserPreferences, AdminAppUserSummary } from '../models/applicationuser';
-import { map, shareReplay, catchError } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 import { environment } from '../environments/environment';
 import { SwPush } from '@angular/service-worker';
 import { NotificationActions, PushNotificationWrapper } from '../models/usernotifications';
 import { Router } from '@angular/router';
 import { CommunicationService } from './communication.service';
-
-const CACHE_SIZE = 1;
+import { UserRegistration, UserLogin } from '../models/userlogin';
+import { TournamentApplication } from '../models/tournament';
 
 @Injectable({
   providedIn: 'root'
@@ -21,32 +22,50 @@ export class LoginService {
   private _rootApiEndpoint = environment.rootApiEndpoint;
 
   private _applicationUser = new BehaviorSubject<ApplicationUser>(null);
-  private _loginProviders: Observable<LoginProvider []>;
+  private _registrations = new BehaviorSubject<TournamentApplication []>(null);
   public userCheckInProgress = new BehaviorSubject<boolean>(false);
   public error: any;
   public callMade = false;
+
+  public openLogin = new EventEmitter<string>();
 
   constructor(private http: HttpClient,
               private swPush: SwPush,
               private router: Router,
               private commService: CommunicationService) { }
 
+  public emitOpenLogin(title?: string) {
+    this.openLogin.emit(title);
+  }
+
   public addPushSubscriber(sub: PushSubscription) {
     return this.http.post(`${this._apiBase}/push/subscribe`, sub, { withCredentials: true });
   }
 
   public get loginProviders() {
-    if (!this._loginProviders) {
-      this._loginProviders = this.getLoginProviders().pipe(
-        shareReplay(CACHE_SIZE)
-      );
-    }
+    return this.http.get<LoginProvider []>(`${this._apiEndpoint}/ExternalLogins?returnUrl=%2F`);
+  }
 
-    return this._loginProviders;
+  public get addLoginProviders() {
+    // tslint:disable-next-line:max-line-length
+    return this.http.get<LoginProvider []>(`${this._apiEndpoint}/ExternalLogins?returnUrl=%2F&routeName=AddExternalLogin`);
+  }
+
+  public get tournamentRegistrations() {
+    if (!this._registrations.value) {
+      this.getRegistrations();
+    }
+    return this._registrations;
+  }
+
+  public getRegistrations() {
+    this.http.get<TournamentApplication []>(`${this._apiBase}/tournament/registrations`, { withCredentials: true}).subscribe(data => {
+      this._registrations.next(data);
+    });
   }
 
   public get applicationUser() {
-    if (!this._applicationUser.value) {
+    if (!this._applicationUser.value && !this.userCheckInProgress.value) {
       this.userCheckInProgress.next(true);
       this.getSteamUser().subscribe(
         user => {
@@ -83,6 +102,10 @@ export class LoginService {
     return this.http.get<string []>(`${this._apiBase}/admin/roles`, { withCredentials: true });
   }
 
+  public getPromoCodes() {
+    return this.http.get<Promo []>(`${this._apiBase}/admin/promos`, { withCredentials: true });
+  }
+
   public submitRole(role: string) {
     return this.http.put<string>(`${this._apiBase}/admin/createrole?rolename=${role}`, role, { withCredentials: true });
   }
@@ -91,19 +114,38 @@ export class LoginService {
     return this.http.put<string>(`${this._apiBase}/admin/adduserrole?userid=${userId}&role=${role}`, role, { withCredentials: true });
   }
 
-  public login(provider: string) {
-    this.loginProviders.subscribe((data: LoginProvider []) =>
-      data.forEach((item: LoginProvider) => {
-        if (item.Name === provider) {
-          window.location.href = `${this._rootApiEndpoint}${item.Url}&returnUrl=${window.location.href}`;
+  public login(provider: LoginProvider) {
+    window.location.href = `${this._rootApiEndpoint}${provider.Url}&returnUrl=${window.location.href}`;
+  }
+
+  public loginWithForm(logininfo: UserLogin) {
+    return this.http.post<ApplicationUser>(`${this._apiEndpoint}/login`, logininfo, { withCredentials: true }).pipe(
+      map(response => {
+        if (response) {
+          this.commService.emitSuccess('Logged in successfully!');
+          this._applicationUser.next(response);
+          this.getRegistrations();
         }
+        return response;
+      }),
+      catchError(error => {
+        this.commService.emitError(error.error.Message);
+        return throwError(error);
       })
     );
   }
 
   public logout() {
-    this.http.post(`${this._apiEndpoint}/logout`, null, { withCredentials: true }).subscribe(
-      _ => this._applicationUser.next(null)
+    return this.http.post(`${this._apiEndpoint}/logout`, null, { withCredentials: true }).pipe(
+      map(response => {
+        this.commService.emitSuccess('Logged out successfully!');
+        this._applicationUser.next(null);
+        return response;
+      }),
+      catchError(error => {
+        this.commService.emitError(error.error.Message);
+        return throwError(error);
+      })
     );
   }
 
@@ -111,12 +153,21 @@ export class LoginService {
     return this.http.put<UserPreferences>(`${this._apiEndpoint}/userinfo`, preferences, { withCredentials: true}).pipe(
       map(response => {
         if (response) {
-          let message = 'Preferences updated successfully!';
-          if (response.newEmail) {
-            message += ` A confirmation link as been sent to ${response.email}.`;
-          }
-          this.commService.emitSuccess(message);
+          this.commService.emitSuccess('Preferences updated successfully!');
         }
+        return response;
+      }),
+      catchError(error => {
+        this.commService.emitError(error.error.Message);
+        return throwError(error);
+      })
+    );
+  }
+
+  public submitRegistration(userAccount: UserRegistration) {
+    return this.http.post<UserRegistration>(`${this._apiEndpoint}/setpassword`, userAccount, { withCredentials: true}).pipe(
+      map(response => {
+        this.commService.emitSuccess('User registration completed successfully!');
         return response;
       }),
       catchError(error => {
@@ -140,6 +191,10 @@ export class LoginService {
         return throwError(error);
       })
     );
+  }
+
+  public checkUsername(username: string) {
+    return this.http.get<boolean>(`${this._apiEndpoint}/username?username=${username}`);
   }
 
   private initSw() {
@@ -168,12 +223,6 @@ export class LoginService {
   }
 
   private getSteamUser() {
-    return this.http.get<ApplicationUser>(this._apiEndpoint + '/userinfo', { withCredentials: true });
-  }
-
-  private getLoginProviders() {
-    return this.http.get<LoginProvider []>(this._apiEndpoint + '/ExternalLogins?returnUrl=%2F&generateState=true').pipe(
-      map(response => response)
-    );
+    return this.http.get<ApplicationUser>(`${this._apiEndpoint}/userinfo`, { withCredentials: true });
   }
 }

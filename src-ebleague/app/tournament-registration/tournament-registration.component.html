@@ -9,6 +9,7 @@
       <igx-select-item *ngFor="let game of games" [value]="game.id">
         {{ game.name }}
       </igx-select-item>
+      <igx-hint *ngIf="application.Game === 0 && !authUser.steamId">*Вашият профил няма асоциран Steam акаунт...</igx-hint>
     </igx-select>
   </div>
 
@@ -32,7 +33,7 @@
       </igx-prefix>
       <igx-select-item *ngFor="let team of authUser?.teams" [value]="team.TeamId" [text]="team.TeamName">
         <igx-avatar [src]="team.TeamAvatar" [initials]="team.TeamName" class="team-avatar" roundShape="true"></igx-avatar>
-        <p class="registration-team-name">{{ team.TeamName }}</p>
+        <span class="title margin-left">{{ team.TeamName }}</span>
       </igx-select-item>
       <igx-select-item (click)="newTeam.open(false)">
         Създай нов отбор...
@@ -59,7 +60,7 @@
       <igx-suffix *ngIf="company.value" (click)="application.CompanyId = null">
         <igx-icon>clear</igx-icon>
       </igx-suffix>
-      <igx-hint>*Тази информация няма да бъде видима никъде...</igx-hint>
+      <igx-hint>*Изберете компанията с която ще асоцирате вашето участие...</igx-hint>
     </igx-input-group>
     <igx-drop-down #companiesDD maxHeight="320px">
       <igx-drop-down-item *ngFor="let company of companies | startsWith:application.CompanyId" [value]="company">

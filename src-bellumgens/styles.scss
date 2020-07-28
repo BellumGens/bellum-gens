@@ -92,10 +92,10 @@ $navdrawer-theme: igx-navdrawer-theme(igx-palette($background, $secondary),
 
 /* Input Group */
 $input-group-theme: igx-input-group-theme($search-background: transparent,
-                                          $idle-text-color: white,
+                                          $idle-text-color: rgba(255, 255, 255, 0.75),
                                           $filled-text-color: white,
                                           $focused-text-color: white,
-                                          $placeholder-color: #999);
+                                          $label-floated-background: $background);
 @include igx-css-vars($input-group-theme);
 /* END Input Group */
 
@@ -240,10 +240,6 @@ $grid-toolbar-theme: igx-grid-toolbar-theme($background-color: $background);
   display: flex;
   flex-flow: column;
   margin-left: auto;
-}
-
-.title.margin-left {
-  margin-left: 8px;
 }
 
   .title.margin-left.player-summary-stat {

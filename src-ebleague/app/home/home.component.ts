@@ -29,6 +29,10 @@ export class TournamentHomeComponent {
     this.authManager.applicationUser.subscribe(user => this.authUser = user);
   }
 
+  public openLogin(title?: string) {
+    this.authManager.emitOpenLogin(title);
+  }
+
   public subscribe() {
     if (this.userEmail) {
       this.apiService.addSubscriber(this.userEmail).subscribe();

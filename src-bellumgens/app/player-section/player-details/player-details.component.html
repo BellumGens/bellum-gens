@@ -1,10 +1,8 @@
 <app-app-shell *ngIf="loading">
 </app-app-shell>
 
-<bg-login-dialog #loginDialog></bg-login-dialog>
-
 <div class="loading-overview" *ngIf="!player || player?.steamUserException">
-  <h1>Player not found...</h1>
+  <h4 class="highlight">Steam CS:GO player profile not found...</h4>
 </div>
 
 <div class="search-result-summary">
@@ -13,8 +11,8 @@
     <p>Now it's time to complete your profile! Fill in your <span class="highlight">preferred playstyle</span>, you <span class="highlight">availability</span> and your <span class="highlight">preferred map pool</span>.</p>
   </div>
 
-  <div *ngIf="player && !player?.registered">
-    This player is not registered! If you own the profile then <a (click)="loginDialog.openLogin()" class="navigatable">register</a> to complete it.
+  <div *ngIf="player && !player.steamUserException && !player?.registered">
+    This player is not registered! If you own the profile then <a (click)="openLogin()" class="navigatable">register</a> to complete it.
   </div>
 
   <div *ngIf="player?.userStatsException">
@@ -24,7 +22,7 @@
   </div>
 </div>
 
-<div *ngIf="player" class="card-wrapper profile-view-layout">
+<div *ngIf="player && !player.steamUserException" class="card-wrapper profile-view-layout">
   <div>
     <div>
       <igx-avatar [src]="player.steamUser?.avatarFull" [initials]="player.steamUser?.steamID" class="player-avatar">
@@ -57,11 +55,21 @@
     </igx-avatar>
     <h4 class="igx-card-header__subtitle" *ngIf="!player.teams?.length">Not a member of any teams yet.</h4>
 
-    <igx-select id="primary-role" *ngIf="!player.userStatsException" [disabled]="!playerIsUser" [ngModel]="player.primaryRole" (ngModelChange)="selectPrimary($event)">
+    <igx-select *ngIf="!player.userStatsException"
+                id="primary-role"
+                name="primary-role"
+                [disabled]="!playerIsUser"
+                [ngModel]="player.primaryRole"
+                (ngModelChange)="selectPrimary($event)">
       <label for="primary-role" igxLabel>Primary Role</label>
       <igx-select-item *ngFor="let role of roles" [disabled]="role.Id === player.secondaryRole" [value]="role.Id">{{ role.Name }}</igx-select-item>
     </igx-select>
-    <igx-select id="secondary-role" *ngIf="!player.userStatsException" [disabled]="!playerIsUser" [ngModel]="player.secondaryRole" (ngModelChange)="selectSecondary($event)">
+    <igx-select *ngIf="!player.userStatsException"
+                id="secondary-role"
+                name="secondary-role"
+                [disabled]="!playerIsUser"
+                [ngModel]="player.secondaryRole"
+                (ngModelChange)="selectSecondary($event)">
       <label for="secondary-role" igxLabel>Secondary Role</label>
       <igx-select-item *ngFor="let role of roles" [disabled]="role.Id === player.primaryRole" [value]="role.Id">{{ role.Name }}</igx-select-item>
     </igx-select>

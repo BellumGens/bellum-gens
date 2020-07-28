@@ -28,7 +28,6 @@ describe('UserPreferencesComponent', () => {
         RouterTestingModule,
         NoopAnimationsModule,
         ServiceWorkerModule.register('', {enabled: false}),
-        IgxInputGroupModule,
         IgxSwitchModule,
         IgxIconModule,
         IgxDialogModule,

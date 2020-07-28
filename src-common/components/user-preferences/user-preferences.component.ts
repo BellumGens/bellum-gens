@@ -5,15 +5,15 @@ import { LoginProvider } from '../../models/login-provider';
 import { LOGIN_ASSETS } from '../../models/misc';
 import { TournamentApplication } from '../../models/tournament';
 import { ApiTournamentsService } from '../../services/bellumgens-api.tournaments.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'bg-user-preferences',
   templateUrl: './user-preferences.component.html',
-  styleUrls: ['./user-preferences.component.css']
+  styleUrls: ['./user-preferences.component.scss']
 })
 export class UserPreferencesComponent {
   public preferences: UserPreferences = {
-    email: '',
     searchVisible: true
   };
 
@@ -21,29 +21,26 @@ export class UserPreferencesComponent {
   public providers: LoginProvider[];
   public authUser: ApplicationUser;
   public registrations: TournamentApplication [];
-  public submitInProgress = false;
 
-  constructor(private authManager: LoginService, private apiService: ApiTournamentsService) {
+  constructor(private authManager: LoginService, private apiService: ApiTournamentsService, private router: Router) {
     this.authManager.applicationUser.subscribe(user => {
       if (user) {
         this.preferences = {
-          email: user.email,
           searchVisible: user.searchVisible
         };
-        this.apiService.registrations.subscribe(data => this.registrations = data);
+        this.authManager.tournamentRegistrations.subscribe(data => this.registrations = data);
+        this.authUser = user;
       }
-      this.authUser = user;
     });
-    this.authManager.loginProviders.subscribe(providers => this.providers = providers);
+    this.authManager.addLoginProviders.subscribe(providers => this.providers = providers);
   }
 
-  public login(provider: string) {
+  public login(provider: LoginProvider) {
     this.authManager.login(provider);
   }
 
   public submitPreferences() {
-    this.submitInProgress = true;
-    this.authManager.updateUserPreferences(this.preferences).subscribe(_ => this.submitInProgress = false);
+    this.authManager.updateUserPreferences(this.preferences).subscribe();
   }
 
   public deleteAccount() {
@@ -56,8 +53,11 @@ export class UserPreferencesComponent {
     });
   }
 
-
   public disableLogin(provider: string) {
     return this.authUser ? this.authUser.externalLogins.includes(provider) : false;
+  }
+
+  public openRegistration() {
+    this.router.navigate(['register']);
   }
 }

@@ -2,7 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AdminSc2Component } from './admin-sc2.component';
 import { BellumGensModule } from 'src-common/components/components.module';
-import { IgxListModule,
+import {
+  IgxListModule,
   IgxIconModule,
   IgxInputGroupModule,
   IgxAvatarModule,
@@ -14,7 +15,9 @@ import { IgxListModule,
   IgxSelectModule,
   IgxTimePickerModule,
   IgxCalendarModule,
-  IgxCheckboxModule} from '@infragistics/igniteui-angular';
+  IgxCheckboxModule,
+  IgxGridModule
+} from '@infragistics/igniteui-angular';
 import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -26,7 +29,10 @@ describe('AdminSc2Component', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AdminSc2Component, NotInGroupPipe ],
+      declarations: [
+        AdminSc2Component,
+        NotInGroupPipe
+      ],
       imports: [
         FormsModule,
         HttpClientTestingModule,
@@ -44,7 +50,8 @@ describe('AdminSc2Component', () => {
         IgxSelectModule,
         IgxTimePickerModule,
         IgxCheckboxModule,
-        IgxCalendarModule
+        IgxCalendarModule,
+        IgxGridModule
       ]
     })
     .compileComponents();

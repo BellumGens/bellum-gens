@@ -1,14 +1,31 @@
 <igx-dialog closeOnOutsideSelect="true" [title]="title">
-  <div class="login-buttons">
-    <button *ngFor="let provider of loginProviders"
-            igxButton="raised"
-            class="login-button navigatable"
-            [igxButtonBackground]="loginColors[provider.Name]"
-            igxButtonColor="#fff"
-            (click)="login(provider.Name)">
-      <igx-icon fontSet="login-icons" [name]="provider.Name"></igx-icon>
-      <igx-divider [vertical]="true" [inset]="'0 0 0 8px'" [ngClass]="'login-divider'"></igx-divider>
-      <span class="submit-button">{{ provider.Name }}</span>
+  <bg-login-buttons></bg-login-buttons>
+
+  <form class="login-buttons" #userLogin="ngForm" (ngSubmit)="loginWithForm()">
+    <h6 style="text-align: center;">or login with form</h6>
+    <igx-input-group class="login-button" type="border">
+      <label for="username" igxLabel>Username</label>
+      <igx-prefix>
+        <igx-icon>person</igx-icon>
+      </igx-prefix>
+      <input #userName igxInput id="username" required name="username" [(ngModel)]="logininfo.username" />
+    </igx-input-group>
+
+    <igx-input-group class="login-button" type="border">
+      <label for="passwordField" igxLabel>Password</label>
+      <input #passwordField igxInput type="password" required id="passwordField" name="passwordField" [(ngModel)]="logininfo.password" />
+    </igx-input-group>
+
+    <igx-checkbox id="rememberme" name="rememberme" [(ngModel)]="logininfo.rememberMe">
+      Remember me
+    </igx-checkbox>
+
+    <label class="register-link navigatable" (click)="openRegistration()">Don't have an account?</label>
+
+    <button igxButton="outlined"
+            class="submit-button space-out"
+            [disabled]="!userLogin.touched || !userLogin.valueChanges || userLogin.invalid || submitInProgress">
+      Login
     </button>
-  </div>
+  </form>
 </igx-dialog>

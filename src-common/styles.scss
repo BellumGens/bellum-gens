@@ -40,6 +40,9 @@ html, body {
   min-height: calc(100% - 64px);
   justify-content: center;
   align-items: center;
+  width: 60%;
+  margin: auto;
+  padding: 0 16px;
   color: $primary;
 }
 /* END Loading */
@@ -78,6 +81,10 @@ html, body {
 
 .title {
   font-weight: 600;
+}
+
+.title.margin-left {
+  margin-left: 8px;
 }
 
 a {
@@ -306,6 +313,26 @@ a > igx-icon {
   width: 150px;
 }
 
+.login-buttons {
+  display: grid;
+  row-gap: 24px;
+  justify-content: center;
+  padding: 12px;
+}
+
+.login-buttons button:not(:first-child) {
+  margin-top: 8px;
+}
+
+.login-button {
+  width: 250px;
+}
+
+.registration-form {
+  display: grid;
+  row-gap: 24px;
+}
+
 @media only screen and (max-width: 720px) {
   .search-group {
     width: auto;
@@ -327,6 +354,10 @@ a > igx-icon {
   .platinum {
     width: 348px;
     height: 200px;
+  }
+
+  .loading-overview {
+    width: 100%;
   }
 }
 
@@ -360,6 +391,10 @@ a > igx-icon {
   .slide-info p,
   .content-container p {
     font-size: 0.85rem;
+  }
+
+  .loading-overview {
+    width: 80%;
   }
 }
 

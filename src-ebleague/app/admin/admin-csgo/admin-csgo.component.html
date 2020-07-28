@@ -1,8 +1,80 @@
 <div class="overview-container-card">
-  <div class="horizontal">
-    <igx-calendar class="schedule-calendar" (onSelection)="daySelected($event)" [specialDates]="datesWithMatches">
+  <div class="match-layout">
+    <igx-calendar (onSelection)="daySelected($event)" [specialDates]="datesWithMatches">
 
     </igx-calendar>
+
+    <igx-grid [cellSelection]="'none'"
+              [data]="selectedMatches"
+              showToolbar="true"
+              emptyGridMessage="Няма намерени срещи в този ден..."
+              [isLoading]="loading"
+              [toolbarTitle]="'Срещи за ' + (selectedDate | date)">
+
+      <igx-column field="StartTime" width="130px" header="Начало">
+        <ng-template igxCell let-value>
+          {{ value | date:'shortTime' }}
+        </ng-template>
+      </igx-column>
+
+      <igx-column field="Teams" header="Среща">
+
+        <ng-template igxCell let-cell="cell">
+          <igx-avatar igxListThumbnail
+                      [src]="cell.rowData.Team1.TeamAvatar"
+                      [initials]="cell.rowData.Team1.TeamName"
+                      roundShape="true">
+          </igx-avatar>
+          <a [href]="environment.bellumgens + '/team/' + cell.rowData.Team1.CustomUrl"
+             [class]="cell.rowData.WinnerTeamId === cell.rowData.Team1.TeamId ? 'highlight grid-team-name' : 'grid-team-name'">
+            {{ cell.rowData.Team1.TeamName }}
+          </a>
+
+          <span class="grid-vs-divider">vs.</span>
+
+          <igx-avatar igxListThumbnail
+                      [src]="cell.rowData.Team2.TeamAvatar"
+                      [initials]="cell.rowData.Team2.TeamName"
+                      roundShape="true">
+          </igx-avatar>
+          <a [href]="environment.bellumgens + '/team/' + cell.rowData.Team2.CustomUrl"
+             [class]="cell.rowData.WinnerTeamId === cell.rowData.Team2.TeamId ? 'highlight grid-team-name' : 'grid-team-name'">
+            {{ cell.rowData.Team2.TeamName }}
+          </a>
+        </ng-template>
+      </igx-column>
+
+      <ng-template igxGridDetail let-dataItem>
+        <div class="horizontal-center" *ngFor="let map of dataItem.Maps">
+          <div class="score-container">
+            {{ map.Team1Score }}
+          </div>
+
+          <igx-avatar [src]="map.Map | csgomapimage" [initials]="map.Map | csgomapname" [title]="map.Map | csgomapname"></igx-avatar>
+
+          <div class="score-container">
+            {{ map.Team2Score }}
+          </div>
+        </div>
+
+        <div class="horizontal-center" *ngIf="dataItem.NoShow">
+          Служебна победа.
+        </div>
+
+        <div class="horizontal-center" *ngIf="!dataItem.Maps.length && !dataItem.NoShow">
+          Срещата предстои да се играе или няма записани резултати за тази среща...
+        </div>
+      </ng-template>
+
+      <ng-template igxToolbarCustomContent let-grid="grid">
+        <button igxButton (click)="selectedMatches.push({StartTime: selectedDate, inEdit: true})">
+          <igx-icon>add_circle_outline</igx-icon>Добави нова среща
+        </button>
+      </ng-template>
+    </igx-grid>
+  </div>
+
+  <div class="horizontal">
 
     <div class="match-details">
       <h5>График за <span class="highlight">{{ selectedDate | date }}</span></h5>

@@ -1,32 +1,32 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddSteamComponent } from './add-steam.component';
-import { IgxIconModule, IgxButtonModule, IgxDividerModule } from '@infragistics/igniteui-angular';
-import { ServiceWorkerModule } from '@angular/service-worker';
-import { RouterTestingModule } from '@angular/router/testing';
+import { LoginButtonsComponent } from './login-buttons.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { IgxButtonModule, IgxIconModule, IgxDividerModule } from '@infragistics/igniteui-angular';
+import { RouterTestingModule } from '@angular/router/testing';
 
-describe('AddSteamComponent', () => {
-  let component: AddSteamComponent;
-  let fixture: ComponentFixture<AddSteamComponent>;
+describe('LoginButtonsComponent', () => {
+  let component: LoginButtonsComponent;
+  let fixture: ComponentFixture<LoginButtonsComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      declarations: [ LoginButtonsComponent ],
       imports: [
-        RouterTestingModule,
         HttpClientTestingModule,
+        RouterTestingModule,
         ServiceWorkerModule.register('', {enabled: false}),
+        IgxButtonModule,
         IgxIconModule,
-        IgxDividerModule,
-        IgxButtonModule
-      ],
-      declarations: [ AddSteamComponent ]
+        IgxDividerModule
+      ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddSteamComponent);
+    fixture = TestBed.createComponent(LoginButtonsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

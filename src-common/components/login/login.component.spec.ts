@@ -22,6 +22,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { LoginDialogComponent } from './login-dialog/login-dialog.component';
 import { ConfirmComponent } from '../confirm/confirm.component';
+import { LoginButtonsComponent } from './login-buttons/login-buttons.component';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -52,6 +53,7 @@ describe('LoginComponent', () => {
       declarations: [
         LoginComponent,
         LoginDialogComponent,
+        LoginButtonsComponent,
         UserPreferencesComponent,
         ConfirmComponent
       ]

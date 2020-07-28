@@ -3,9 +3,11 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoginDialogComponent } from './login-dialog.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { IgxDialogModule, IgxButtonModule, IgxIconModule, IgxDividerModule } from '@infragistics/igniteui-angular';
+import { IgxDialogModule, IgxButtonModule, IgxIconModule, IgxDividerModule, IgxCheckboxModule, IgxInputGroupModule } from '@infragistics/igniteui-angular';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule } from '@angular/forms';
+import { LoginButtonsComponent } from '../login-buttons/login-buttons.component';
 
 describe('LoginDialogComponent', () => {
   let component: LoginDialogComponent;
@@ -13,8 +15,9 @@ describe('LoginDialogComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginDialogComponent ],
+      declarations: [ LoginDialogComponent, LoginButtonsComponent ],
       imports: [
+        FormsModule,
         HttpClientTestingModule,
         RouterTestingModule,
         NoopAnimationsModule,
@@ -22,7 +25,9 @@ describe('LoginDialogComponent', () => {
         IgxDialogModule,
         IgxButtonModule,
         IgxIconModule,
-        IgxDividerModule
+        IgxDividerModule,
+        IgxCheckboxModule,
+        IgxInputGroupModule
       ]
     })
     .compileComponents();
