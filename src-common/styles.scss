@@ -83,6 +83,10 @@ html, body {
   font-weight: 600;
 }
 
+.title.margin-left {
+  margin-left: 8px;
+}
+
 a {
   text-decoration: none;
   color: igx-color($app-palette, secondary);

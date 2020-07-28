@@ -33,7 +33,7 @@
       </igx-prefix>
       <igx-select-item *ngFor="let team of authUser?.teams" [value]="team.TeamId" [text]="team.TeamName">
         <igx-avatar [src]="team.TeamAvatar" [initials]="team.TeamName" class="team-avatar" roundShape="true"></igx-avatar>
-        <p class="registration-team-name">{{ team.TeamName }}</p>
+        <span class="title margin-left">{{ team.TeamName }}</span>
       </igx-select-item>
       <igx-select-item (click)="newTeam.open(false)">
         Създай нов отбор...
