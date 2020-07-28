@@ -42,7 +42,5 @@ export interface ApplicationUser extends AppUserSummary {
 }
 
 export interface UserPreferences {
-  email: string;
   searchVisible: boolean;
-  newEmail?: boolean;
 }

@@ -1,6 +1,6 @@
-<h6>Associated Logins</h6>
+<div class="registration-form">
+  <h6>Associated Logins</h6>
 
-<div class="preferences-container">
   <button *ngFor="let provider of providers"
           igxButton="raised"
           class="submit-button navigatable"
@@ -13,46 +13,34 @@
     <span class="submit-button">{{ disableLogin(provider.Name) ? provider.Name : 'Add ' + provider.Name }}</span>
     <igx-icon class="color-success">{{ disableLogin(provider.Name) ? 'done' : '' }}</igx-icon>
   </button>
-</div>
 
-<h6>Additional Preferences</h6>
+  <span class="highlight navigatable" (click)="openRegistration()">Create username and password</span>
 
-<form #userPreferences="ngForm" (ngSubmit)="submitPreferences()" class="preferences-container">
-  <igx-input-group>
-    <label for="userEmail" igxLabel>Email address</label>
-    <input #userEmail igxInput id="userEmail" type="email" pattern="^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" name="userEmail" [(ngModel)]="preferences.email" />
-    <igx-suffix *ngIf="userEmail.value.length > 0" (click)="preferences.email = null">
-      <igx-icon>clear</igx-icon>
-    </igx-suffix>
-  </igx-input-group>
-  <div class="horizontal-center space-out">
+  <h6>Additional Preferences</h6>
+
+  <div class="horizontal-center">
     <label for="userVisibility">Show profile in searches</label>
-    <igx-switch class="horizontal-info__right" #teamVisibility id="userVisibility" name="userVisibility" [(ngModel)]="preferences.searchVisible"></igx-switch>
+    <igx-switch class="horizontal-info__right" #teamVisibility id="userVisibility" name="userVisibility" [(ngModel)]="preferences.searchVisible" (ngModelChange)="submitPreferences()"></igx-switch>
   </div>
-  <button igxButton="outlined"
-          igxRipple class="submit-button space-out"
-          [disabled]="!userPreferences.touched || !userPreferences.valueChanges || userPreferences.invalid || submitInProgress">
-    Update User Preferences
+
+  <h6>Tournament Registration</h6>
+
+  <igx-list>
+    <igx-list-item *ngFor="let registration of registrations">
+      <h2 igxListLineTitle>Registration for {{ registration.Game ? 'StarCraft II' : 'CS:GO' }}</h2>
+      <h4 igxListLineSubTitle>Confirmation code <span class="highlight">{{registration.Hash}}</span></h4>
+      <div class="horizontal-center" igxListAction>
+        <span [ngClass]="{'color-warn': !registration.State, 'color-success': registration.State }">{{ registration.State ? 'Confirmed' : 'Pending' }}</span>
+        <igx-icon *ngIf="!registration.State" (click)="confirmReg.open(registration)" title="Delete this application">delete_forever</igx-icon>
+      </div>
+    </igx-list-item>
+  </igx-list>
+
+  <button igxButton="raised" igxRipple class="submit-button" (click)="confirm.open()">
+    <igx-icon title="delete account">delete_forever</igx-icon>
+    Delete Account Forever
   </button>
-</form>
-
-<h6>Tournament Registration</h6>
-
-<igx-list>
-  <igx-list-item *ngFor="let registration of registrations">
-    <h2 igxListLineTitle>Registration for {{ registration.Game ? 'StarCraft II' : 'CS:GO' }}</h2>
-    <h4 igxListLineSubTitle>Confirmation code <span class="highlight">{{registration.Hash}}</span></h4>
-    <div class="horizontal-center" igxListAction>
-      <span [ngClass]="{'color-warn': !registration.State, 'color-success': registration.State }">{{ registration.State ? 'Confirmed' : 'Pending' }}</span>
-      <igx-icon *ngIf="!registration.State" (click)="confirmReg.open(registration)" title="Delete this application">delete_forever</igx-icon>
-    </div>
-  </igx-list-item>
-</igx-list>
-
-<button igxButton="raised" igxRipple class="submit-button align-bottom" (click)="confirm.open()">
-  <igx-icon title="delete account">delete_forever</igx-icon>
-  Delete Account Forever
-</button>
+</div>
 
 <!-- Confirm -->
 <bg-confirm #confirm title="Are you sure?" (ok)="deleteAccount()">

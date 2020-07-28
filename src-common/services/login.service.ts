@@ -153,11 +153,7 @@ export class LoginService {
     return this.http.put<UserPreferences>(`${this._apiEndpoint}/userinfo`, preferences, { withCredentials: true}).pipe(
       map(response => {
         if (response) {
-          let message = 'Preferences updated successfully!';
-          if (response.newEmail) {
-            message += ` A confirmation link as been sent to ${response.email}.`;
-          }
-          this.commService.emitSuccess(message);
+          this.commService.emitSuccess('Preferences updated successfully!');
         }
         return response;
       }),

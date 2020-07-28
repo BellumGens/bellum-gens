@@ -1,6 +1,4 @@
 import { Component, ViewChild } from '@angular/core';
-import { LoginProvider } from '../../../models/login-provider';
-import { LOGIN_ASSETS } from '../../../models/misc';
 import { IgxDialogComponent } from '@infragistics/igniteui-angular';
 import { LoginService } from '../../../services/login.service';
 import { UserLogin } from '../../../models/userlogin';

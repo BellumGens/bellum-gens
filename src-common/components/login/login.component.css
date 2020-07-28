@@ -35,13 +35,6 @@
   padding: 16px;
 }
 
-.preferences-divider {
-  display: flex;
-  height: 100%;
-  flex-flow: column;
-  justify-content: space-between;
-}
-
 .profile-username {
   margin-top: 8px;
 }
