@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./tournament-format.component.scss']
 })
 export class TournamentFormatComponent {
+  public compStart = '28ми септември 2020';
 
   constructor() { }
 
