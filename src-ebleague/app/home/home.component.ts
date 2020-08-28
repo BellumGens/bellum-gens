@@ -15,6 +15,8 @@ export class TournamentHomeComponent {
   public tournament: Tournament;
   public tournamentId: string;
   public authUser: ApplicationUser;
+  public regDealine = '14ти септември 2020';
+  public compStart = '28ми септември 2020';
 
   constructor(private apiService: ApiTournamentsService,
               private authManager: LoginService) {
