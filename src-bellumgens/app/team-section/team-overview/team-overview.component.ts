@@ -78,7 +78,7 @@ export class TeamOverviewComponent extends BaseComponent {
   }
 
   private loadSvgs() {
-    this.iconService.addSvgIcon('discord', '/assets/login/discord.svg', 'login-icons');
+    this.iconService.addSvgIcon('discord-full-logo', '/assets/login/discord.svg', 'login-icons');
   }
 
 }

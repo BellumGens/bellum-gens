@@ -38,7 +38,10 @@ import { IgxNavbarModule,
   IgxCarouselModule,
   IgxAutocompleteModule,
   IgxNavigationDrawerModule,
-  IgxGridModule} from '@infragistics/igniteui-angular';
+  IgxGridModule
+} from '@infragistics/igniteui-angular';
+import { socialMedia, logos } from '@igniteui/material-icons-extended';
+
 import { PlayerDetailsComponent } from './player-section/player-details/player-details.component';
 import { LoginService } from '../../src-common/services/login.service';
 import { BellumgensApiService } from '../../src-common/services/bellumgens-api.service';
@@ -214,12 +217,10 @@ import { TeamTournamentsComponent } from './team-section/team-tournaments/team-t
 })
 export class AppModule {
   constructor(private iconService: IgxIconService) {
-    // this.iconService.addSvgIcon('Twitch', '/assets/login/Glitch_White_RGB.svg', 'login-icons');
-    // this.iconService.addSvgIcon('TwitchFull', '/assets/login/Combo_White_RGB.svg', 'login-icons');
-    this.iconService.addSvgIcon('Steam', '/assets/login/steam-logo-white.svg', 'login-icons');
-    this.iconService.addSvgIcon('Facebook', '/assets/login/fb.svg', 'login-icons');
-    this.iconService.addSvgIcon('Twitter', '/assets/login/twitter.svg', 'login-icons');
-    this.iconService.addSvgIcon('Discord', '/assets/login/Discord-Logo-White.svg', 'login-icons');
+    const smproviders = ['facebook', 'twitter', 'instagram', 'linkedin'];
+    const complogos = ['discord', 'steam'];
+    complogos.forEach(c => this.iconService.addSvgIconFromText(c, logos.find(s => s.name === c).value, 'login-icons'));
+    smproviders.forEach(p => this.iconService.addSvgIconFromText(p, socialMedia.find(s => s.name === p).value, 'login-icons'));
     this.iconService.addSvgIcon('isobar', '/assets/partners/isobar.svg', 'partners');
     this.iconService.addSvgIcon('vmware', '/assets/partners/vmware.svg', 'partners');
     this.iconService.addSvgIcon('telus', '/assets/partners/telus.svg', 'partners');
