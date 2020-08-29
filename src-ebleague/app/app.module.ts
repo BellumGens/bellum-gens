@@ -41,6 +41,7 @@ import {
   IgxDialogModule,
   IgxListModule
 } from '@infragistics/igniteui-angular';
+import { socialMedia, logos } from '@igniteui/material-icons-extended';
 
 @NgModule({
   declarations: [
@@ -91,12 +92,11 @@ import {
 })
 export class AppModule {
   constructor(private iconService: IgxIconService) {
-    this.iconService.addSvgIcon('Steam', '/assets/login/steam-logo-white.svg', 'login-icons');
-    this.iconService.addSvgIcon('Facebook', '/assets/login/fb.svg', 'login-icons');
-    this.iconService.addSvgIcon('Twitter', '/assets/login/twitter.svg', 'login-icons');
-    this.iconService.addSvgIcon('Instagram', '/assets/login/instagram.svg', 'login-icons');
+    const smproviders = ['facebook', 'twitter', 'instagram', 'linkedin', 'youtube'];
+    const complogos = ['discord', 'steam'];
+    complogos.forEach(c => this.iconService.addSvgIconFromText(c, logos.find(s => s.name === c).value, 'login-icons'));
+    smproviders.forEach(p => this.iconService.addSvgIconFromText(p, socialMedia.find(s => s.name === p).value, 'login-icons'));
     this.iconService.addSvgIcon('BattleNet', '/assets/login/battle-net.svg', 'login-icons');
-    this.iconService.addSvgIcon('Discord', '/assets/login/Discord-Logo-White.svg', 'login-icons');
     this.iconService.addSvgIcon('isobar', '/assets/partners/isobar.svg', 'partners');
     this.iconService.addSvgIcon('vmware', '/assets/partners/vmware.svg', 'partners');
     this.iconService.addSvgIcon('telus', '/assets/partners/telus.svg', 'partners');

@@ -65,10 +65,10 @@
 
   <div igxFlex igxLayout igxLayoutDir="columns" class="top-level-container">
     <igx-navbar class="bellum-gens-navbar">
-      <igx-action-icon>
+      <igx-navbar-action>
         <igx-icon class="drawer-action" (click)="drawer.toggle()">menu</igx-icon>
         <igx-avatar class="navigatable" [src]="'/assets/bg-avatar.webp'" title="Bellum Gens" [roundShape]="true" routerLink="/"></igx-avatar>
-      </igx-action-icon>
+      </igx-navbar-action>
       <igx-input-group type="search" class="search-group" #searchGroup>
         <igx-prefix>
           <igx-icon>search</igx-icon>
@@ -114,17 +114,20 @@
           <igx-divider></igx-divider>
           <div class="footer-row">
             <p>Copyright © Bellum Gens, 2019-2020</p>
-            <a href="mailto:info@eb-league.com" title="Email us" style="color: white">
+            <a href="mailto:info@eb-league.com" title="Email us">
               <igx-icon>email</igx-icon>
             </a>
-            <a href="https://www.facebook.com/esportsbleague/" title="Follow us on Facebook" target="_blank" rel="nofollow">
-              <igx-icon fontSet="login-icons" name="Facebook"></igx-icon>
+            <a href="https://www.facebook.com/bellumgens/" title="Follow us on Facebook" target="_blank" rel="nofollow">
+              <igx-icon fontSet="login-icons" name="facebook"></igx-icon>
             </a>
-            <a href="https://twitter.com/EsportBLeague" title="Follow us on Twitter" target="_blank" rel="nofollow">
-              <igx-icon fontSet="login-icons" name="Twitter"></igx-icon>
+            <a href="https://twitter.com/BellumGens" title="Follow us on Twitter" target="_blank" rel="nofollow">
+              <igx-icon fontSet="login-icons" name="twitter"></igx-icon>
+            </a>
+            <a href="https://www.linkedin.com/company/bellum-gens/" title="Follow us on Linked-in" target="_blank" rel="nofollow">
+              <igx-icon fontSet="login-icons" name="linkedin"></igx-icon>
             </a>
             <a href="https://discord.gg/bnTcpa9" title="Join our Discord server" target="_blank" rel="nofollow">
-              <igx-icon class="discord-icon" fontSet="login-icons" name="Discord"></igx-icon>
+              <igx-icon fontSet="login-icons" name="discord"></igx-icon>
             </a>
           </div>
         </footer>
