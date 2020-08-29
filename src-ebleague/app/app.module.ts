@@ -92,7 +92,7 @@ import { socialMedia, logos } from '@igniteui/material-icons-extended';
 })
 export class AppModule {
   constructor(private iconService: IgxIconService) {
-    const smproviders = ['facebook', 'twitter', 'instagram', 'linkedin'];
+    const smproviders = ['facebook', 'twitter', 'instagram', 'linkedin', 'youtube'];
     const complogos = ['discord', 'steam'];
     complogos.forEach(c => this.iconService.addSvgIconFromText(c, logos.find(s => s.name === c).value, 'login-icons'));
     smproviders.forEach(p => this.iconService.addSvgIconFromText(p, socialMedia.find(s => s.name === p).value, 'login-icons'));
