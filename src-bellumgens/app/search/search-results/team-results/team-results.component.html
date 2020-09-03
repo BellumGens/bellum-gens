@@ -8,7 +8,7 @@
 <div *ngIf="!loading" class="card-wrapper">
   <igx-card *ngFor="let team of teams" class="navigatable" [routerLink]="['/team', team.CustomUrl]">
     <igx-card-header>
-      <igx-avatar igxCardThumbnail [src]="team.TeamAvatar" [initials]="team.TeamName" [size]="'medium'" roundShape="true"></igx-avatar>
+      <igx-avatar igxCardThumbnail [src]="team.TeamAvatar" [initials]="team.TeamName" [size]="'medium'" [roundShape]="true"></igx-avatar>
       <h3 igxCardHeaderTitle>{{ team.TeamName }}</h3>
     </igx-card-header>
     <igx-card-content>

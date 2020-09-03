@@ -10,7 +10,7 @@
         <h4 style="width: 100%">Участници</h4>
         <igx-circular-bar *ngIf="loading" [indeterminate]="true"></igx-circular-bar>
         <div *ngFor="let registration of registrations" class="registration-slot">
-          <igx-avatar [src]="registration.User.avatarMedium" [initials]="registration.User.username" size="medium" roundShape="true">
+          <igx-avatar [src]="registration.User.avatarMedium" [initials]="registration.User.username" size="medium" [roundShape]="true">
           </igx-avatar>
           <igx-badge *ngIf="registration.UserId === authUser?.id && registration.State === 0"
                      type="warning"
@@ -29,9 +29,9 @@
 
       <div class="group-columns">
         <igx-grid *ngFor="let group of groups"
-                  [cellSelection]="'none'"
+                  [cellSelection]="selectionMode"
                   [data]="group.Participants"
-                  showToolbar="true"
+                  [showToolbar]="true"
                   [toolbarTitle]="group.Name">
 
           <igx-column field="User" header="Отбор" width="20%">
@@ -39,7 +39,7 @@
               <igx-avatar igxListThumbnail
                           [src]="value.avatarMedium"
                           [initials]="value.username"
-                          roundShape="true">
+                          [roundShape]="true">
               </igx-avatar>
               <a igxListLineTitle [href]="environment.bellumgens + '/players/' + (value.customURL || value.id)" target="_blank">
                 {{ value.username }}
@@ -51,13 +51,13 @@
           </igx-column>
           <igx-column field="Company" header="Компания" width="20%">
           </igx-column>
-          <igx-column field="Matches" dataType="number" header="Срещи" width="10%">
+          <igx-column field="Matches" [dataType]="gridDataType.Number" header="Срещи" width="10%">
           </igx-column>
-          <igx-column field="Wins" dataType="number" header="Победи" width="10%">
+          <igx-column field="Wins" [dataType]="gridDataType.Number" header="Победи" width="10%">
           </igx-column>
-          <igx-column field="Losses" dataType="number" header="Загуби" width="10%">
+          <igx-column field="Losses" [dataType]="gridDataType.Number" header="Загуби" width="10%">
           </igx-column>
-          <igx-column field="PlayerPoints" dataType="number" header="Точки" width="10%">
+          <igx-column field="PlayerPoints" [dataType]="gridDataType.Number" header="Точки" width="10%">
           </igx-column>
 
         </igx-grid>

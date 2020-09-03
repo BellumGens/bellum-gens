@@ -1,12 +1,12 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { JerseySize, JerseyCut } from '../../../src-common/models/jerseyorder';
+import { JerseySize, JerseyCut, JerseySizes } from '../../../src-common/models/jerseyorder';
 
 @Pipe({
   name: 'filterSizes'
 })
 export class FilterSizesPipe implements PipeTransform {
 
-  private femaleSizes = [
+  private femaleSizes: JerseySizes [] = [
     { text: 'XS', size: JerseySize.XS },
     { text: 'S', size: JerseySize.S },
     { text: 'M', size: JerseySize.M },
@@ -23,7 +23,7 @@ export class FilterSizesPipe implements PipeTransform {
     { text: 'XXXL', size: JerseySize.XXXL }
   ];
 
-  transform(value: object [], cut: JerseyCut): unknown {
+  transform(value: JerseySizes [], cut: JerseyCut): JerseySizes [] {
     if (cut === JerseyCut.Male) {
       return this.maleSizes;
     }

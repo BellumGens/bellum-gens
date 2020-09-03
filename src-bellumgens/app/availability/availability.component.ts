@@ -1,11 +1,11 @@
 import { Component, ViewChild, Input, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { Availability } from '../../../src-common/models/playeravailability';
 import { IgxTimePickerComponent,
-  IChipSelectEventArgs,
   IgxChipsAreaComponent,
   IgxDialogComponent,
   IgxChipComponent,
-  IChipClickEventArgs} from '@infragistics/igniteui-angular';
+  IChipClickEventArgs,
+  IBaseChipEventArgs} from '@infragistics/igniteui-angular';
 
 @Component({
   selector: 'app-availability',
@@ -54,7 +54,7 @@ export class AvailabilityComponent {
     }
   }
 
-  public dayDeselected(args: IChipSelectEventArgs) {
+  public dayDeselected(args: IBaseChipEventArgs) {
     const index = this.chips.chipsList.toArray().indexOf(args.owner);
     const availability = this.availability[index];
     (args.originalEvent as PointerEvent).stopPropagation();

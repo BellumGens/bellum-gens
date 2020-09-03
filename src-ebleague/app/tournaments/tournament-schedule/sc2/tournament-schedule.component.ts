@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ApiTournamentsService } from '../../../../../src-common/services/bellumgens-api.tournaments.service';
 import { TournamentSC2Match } from '../../../../../src-common/models/tournament-schedule';
-import { DateRangeDescriptor, DateRangeType } from '@infragistics/igniteui-angular';
+import { DateRangeDescriptor, DateRangeType, GridSelectionMode } from '@infragistics/igniteui-angular';
 import { SameDay } from '../../../../../src-common/models/misc';
 
 @Component({
@@ -13,15 +13,16 @@ export class SC2TournamentScheduleComponent {
   public sc2matches: TournamentSC2Match [];
   public datesWithMatches: DateRangeDescriptor [] = [];
   public selectedMatches: TournamentSC2Match [] = [];
-  public today = new Date();
+  public today: Date | Date [] = new Date();
   public loading = false;
+  public selectionMode = GridSelectionMode.none;
 
   constructor(private apiService: ApiTournamentsService) {
     this.apiService.loadingSC2Matches.subscribe(data => this.loading = data);
     this.apiService.sc2Matches.subscribe(data => {
       if (data) {
         this.sc2matches = data;
-        this.selectedMatches = this.sc2matches.filter(m => SameDay(new Date(m.StartTime), this.today));
+        this.selectedMatches = this.sc2matches.filter(m => SameDay(new Date(m.StartTime), this.today as Date));
         data.forEach(match => {
           this.datesWithMatches.push({ type: DateRangeType.Specific, dateRange: [ new Date(match.StartTime) ] });
         });
@@ -29,8 +30,8 @@ export class SC2TournamentScheduleComponent {
     });
   }
 
-  public daySelected(date: Date) {
+  public daySelected(date: Date | Date []) {
     this.today = date;
-    this.selectedMatches = this.sc2matches.filter(m => SameDay(new Date(m.StartTime), this.today));
+    this.selectedMatches = this.sc2matches.filter(m => SameDay(new Date(m.StartTime), this.today as Date));
   }
 }

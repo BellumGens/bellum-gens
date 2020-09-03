@@ -4,9 +4,9 @@
 
 <div class="group-columns">
   <igx-grid *ngFor="let tournament of tournaments"
-            [cellSelection]="'none'"
+            [cellSelection]="selectionMode.none"
             [data]="tournament.CSGOMatches"
-            showToolbar="true"
+            [showToolbar]="true"
             [toolbarTitle]="tournament.Name">
 
     <igx-column field="StartTime" header="Date" width="15%">
@@ -20,7 +20,7 @@
         <igx-avatar igxListThumbnail
                     [src]="cell.rowData.Team1.TeamAvatar"
                     [initials]="cell.rowData.Team1.TeamName"
-                    roundShape="true">
+                    [roundShape]="true">
         </igx-avatar>
         <span [class]="cell.rowData.WinnerTeamId === cell.rowData.Team1.TeamId ? 'highlight grid-team-name' : 'grid-team-name'">{{ cell.rowData.Team1.TeamName }}</span>
 
@@ -29,7 +29,7 @@
         <igx-avatar igxListThumbnail
                     [src]="cell.rowData.Team2.TeamAvatar"
                     [initials]="cell.rowData.Team2.TeamName"
-                    roundShape="true">
+                    [roundShape]="true">
         </igx-avatar>
         <span [class]="cell.rowData.WinnerTeamId === cell.rowData.Team2.TeamId ? 'highlight grid-team-name' : 'grid-team-name'">{{ cell.rowData.Team2.TeamName }}</span>
       </ng-template>

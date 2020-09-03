@@ -1,4 +1,4 @@
-<igx-dialog closeOnOutsideSelect="true" [title]="title">
+<igx-dialog [closeOnOutsideSelect]="true" [title]="title">
   <bg-login-buttons></bg-login-buttons>
 
   <form class="login-buttons" #userLogin="ngForm" (ngSubmit)="loginWithForm()">
@@ -8,12 +8,12 @@
       <igx-prefix>
         <igx-icon>person</igx-icon>
       </igx-prefix>
-      <input #userName igxInput id="username" required name="username" [(ngModel)]="logininfo.username" />
+      <input #userName igxInput id="username" [required]="true" name="username" [(ngModel)]="logininfo.username" />
     </igx-input-group>
 
     <igx-input-group class="login-button" type="border">
       <label for="passwordField" igxLabel>Password</label>
-      <input #passwordField igxInput type="password" required id="passwordField" name="passwordField" [(ngModel)]="logininfo.password" />
+      <input #passwordField igxInput type="password" [required]="true" id="passwordField" name="passwordField" [(ngModel)]="logininfo.password" />
     </igx-input-group>
 
     <igx-checkbox id="rememberme" name="rememberme" [(ngModel)]="logininfo.rememberMe">

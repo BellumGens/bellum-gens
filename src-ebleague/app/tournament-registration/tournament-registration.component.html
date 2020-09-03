@@ -4,7 +4,7 @@
   <div class="form-wrapper">
     <h4 id="registration" class="registration-title">Регистрация Сезон 2</h4>
 
-    <igx-select name="game" required [disabled]="!authUser" class="registration-form-input" [(ngModel)]="application.Game" (ngModelChange)="showDetails()">
+    <igx-select name="game" [required]="true" [disabled]="!authUser" class="registration-form-input" [(ngModel)]="application.Game" (ngModelChange)="showDetails()">
       <label igxLabel>{{ authUser ? 'Изберете лига (игра)' : 'Първо трябва да влезете в акаунта си'}}</label>
       <igx-select-item *ngFor="let game of games" [value]="game.id">
         {{ game.name }}
@@ -20,19 +20,19 @@
       <igx-prefix>
         <igx-icon>email</igx-icon>
       </igx-prefix>
-      <input type="email" id="email" #userMail name="email" required igxInput pattern="^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="application.Email" />
+      <input type="email" id="email" #userMail name="email" [required]="true" igxInput pattern="^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="application.Email" />
       <igx-suffix *ngIf="userMail.value" (click)="application.Email = null">
         <igx-icon>clear</igx-icon>
       </igx-suffix>
     </igx-input-group>
 
-    <igx-select id="team" #team name="team" required [(ngModel)]="application.TeamId" class="registration-form-input" *ngIf="application.Game === gameEnum.CSGO" >
+    <igx-select id="team" #team name="team" [required]="true" [(ngModel)]="application.TeamId" class="registration-form-input" *ngIf="application.Game === gameEnum.CSGO" >
       <label igxLabel for="email">Изберете своя отбор</label>
       <igx-prefix>
         <igx-icon>people</igx-icon>
       </igx-prefix>
       <igx-select-item *ngFor="let team of authUser?.teams" [value]="team.TeamId" [text]="team.TeamName">
-        <igx-avatar [src]="team.TeamAvatar" [initials]="team.TeamName" class="team-avatar" roundShape="true"></igx-avatar>
+        <igx-avatar [src]="team.TeamAvatar" [initials]="team.TeamName" class="team-avatar" [roundShape]="true"></igx-avatar>
         <span class="title margin-left">{{ team.TeamName }}</span>
       </igx-select-item>
       <igx-select-item (click)="newTeam.open(false)">
@@ -45,7 +45,7 @@
       <igx-prefix>
         <igx-icon fontSet="login-icons" name="BattleNet"></igx-icon>
       </igx-prefix>
-      <input id="battletag" #battletag name="battletag" required igxInput pattern="^[a-zA-Z0-9._%+-]+#[0-9]{4,6}$" [(ngModel)]="application.BattleNetId" />
+      <input id="battletag" #battletag name="battletag" [required]="true" igxInput pattern="^[a-zA-Z0-9._%+-]+#[0-9]{4,6}$" [(ngModel)]="application.BattleNetId" />
       <igx-suffix *ngIf="battletag.value" (click)="application.BattleNetId = null">
         <igx-icon>clear</igx-icon>
       </igx-suffix>
@@ -56,7 +56,7 @@
       <igx-prefix>
         <igx-icon>work</igx-icon>
       </igx-prefix>
-      <input id="company" #company name="company" igxInput [igxAutocomplete]="companiesDD" [(ngModel)]="application.CompanyId" required />
+      <input id="company" #company name="company" igxInput [igxAutocomplete]="companiesDD" [(ngModel)]="application.CompanyId" [required]="true" />
       <igx-suffix *ngIf="company.value" (click)="application.CompanyId = null">
         <igx-icon>clear</igx-icon>
       </igx-suffix>

@@ -14,7 +14,7 @@
                       [initials]="registration.Team.TeamName"
                       [title]="registration.Company"
                       size="medium"
-                      roundShape="true">
+                      [roundShape]="true">
           </igx-avatar>
           <igx-badge *ngIf="registration.UserId === authUser?.id && registration.State === 0"
                       type="warning"
@@ -33,9 +33,9 @@
 
       <div class="group-columns">
         <igx-grid *ngFor="let group of groups"
-                  [cellSelection]="'none'"
+                  [cellSelection]="selectionMode.none"
                   [data]="group.Participants"
-                  showToolbar="true"
+                  [showToolbar]="true"
                   [toolbarTitle]="group.Name">
 
           <igx-column field="Team" header="Отбор" width="22%">
@@ -43,7 +43,7 @@
               <igx-avatar igxListThumbnail
                           [src]="value.TeamAvatar"
                           [initials]="value.TeamName"
-                          roundShape="true">
+                          [roundShape]="true">
               </igx-avatar>
               <a igxListLineTitle [href]="environment.bellumgens + '/team/' + value.CustomUrl" target="_blank">
                 {{ value.TeamName }}
@@ -53,24 +53,24 @@
 
           <igx-column field="Company" header="Компания" width="15%">
           </igx-column>
-          <igx-column field="Matches" dataType="number" header="Срещи" width="9%">
+          <igx-column field="Matches" [dataType]="gridDataType.Number" header="Срещи" width="9%">
           </igx-column>
-          <igx-column field="Wins" dataType="number" header="Победи" width="9%">
+          <igx-column field="Wins" [dataType]="gridDataType.Number" header="Победи" width="9%">
           </igx-column>
-          <igx-column field="OTWins" dataType="number" header="OT Победи" title="Победи в добавено време" width="9%">
+          <igx-column field="OTWins" [dataType]="gridDataType.Number" header="OT Победи" title="Победи в добавено време" width="9%">
           </igx-column>
-          <igx-column field="OTLosses" dataType="number" header="OT Загуби" title="Загуби в добавено време" width="9%">
+          <igx-column field="OTLosses" [dataType]="gridDataType.Number" header="OT Загуби" title="Загуби в добавено време" width="9%">
           </igx-column>
-          <igx-column field="Losses" dataType="number" header="Загуби" width="9%">
+          <igx-column field="Losses" [dataType]="gridDataType.Number" header="Загуби" width="9%">
           </igx-column>
-          <igx-column field="RoundDifference" dataType="number" header="+/- Рундове" width="9%">
+          <igx-column field="RoundDifference" [dataType]="gridDataType.Number" header="+/- Рундове" width="9%">
             <ng-template igxCell let-value>
               <span [class]="value > 0 ? 'color-success' : value < 0 ? 'color-error' : ''">
                 {{ value }}
               </span>
             </ng-template>
           </igx-column>
-          <igx-column field="TeamPoints" dataType="number" header="Точки" width="9%">
+          <igx-column field="TeamPoints" [dataType]="gridDataType.Number" header="Точки" width="9%">
           </igx-column>
 
         </igx-grid>

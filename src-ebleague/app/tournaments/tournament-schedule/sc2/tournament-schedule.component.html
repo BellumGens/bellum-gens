@@ -3,9 +3,9 @@
 
   </igx-calendar>
 
-  <igx-grid [cellSelection]="'none'"
+  <igx-grid [cellSelection]="selectionMode"
             [data]="selectedMatches"
-            showToolbar="true"
+            [showToolbar]="true"
             emptyGridMessage="Няма намерени срещи в този ден..."
             [isLoading]="loading"
             [toolbarTitle]="'Срещи за ' + (today | date)">
@@ -22,7 +22,7 @@
         <igx-avatar igxListThumbnail
                     [src]="cell.rowData.Player1.avatarMedium"
                     [initials]="cell.rowData.Player1.username"
-                    roundShape="true">
+                    [roundShape]="true">
         </igx-avatar>
         <span [class]="cell.rowData.Player1Points > cell.rowData.Player2Points ? 'highlight grid-team-name' : 'grid-team-name'">
           {{ cell.rowData.Player1.battleNetId }}
@@ -33,7 +33,7 @@
         <igx-avatar
                     [src]="cell.rowData.Player2.avatarMedium"
                     [initials]="cell.rowData.Player2.username"
-                    roundShape="true">
+                    [roundShape]="true">
         </igx-avatar>
         <span [class]="cell.rowData.Player2Points > cell.rowData.Player1Points ? 'highlight grid-team-name' : 'grid-team-name'">
           {{ cell.rowData.Player2.battleNetId }}

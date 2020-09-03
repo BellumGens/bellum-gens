@@ -7,17 +7,17 @@
   <form #leagueForm="ngForm" (ngSubmit)="createTournament()">
     <igx-input-group>
       <label igxLabel for="tournamentName">Tournament name</label>
-      <input type="text" id="tournamentName" name="tournamentName" #tournamentName igxInput required [(ngModel)]="tournament.Name" />
+      <input type="text" id="tournamentName" name="tournamentName" #tournamentName igxInput [required]="true" [(ngModel)]="tournament.Name" />
       <igx-suffix *ngIf="tournamentName.value" (click)="tournament.Name = null">
         <igx-icon>clear</igx-icon>
       </igx-suffix>
     </igx-input-group>
 
-    <igx-date-picker label="Start Date" name="startDate" required [(ngModel)]="tournament.StartDate">
+    <igx-date-picker label="Start Date" name="startDate" [required]="true" [(ngModel)]="tournament.StartDate">
 
     </igx-date-picker>
 
-    <igx-date-picker label="End Date" name="endDate" required [(ngModel)]="tournament.EndDate">
+    <igx-date-picker label="End Date" name="endDate" [required]="true" [(ngModel)]="tournament.EndDate">
 
     </igx-date-picker>
 
@@ -27,13 +27,18 @@
 
 <div class="content-container">
   <div class="content-container-row">
-    <igx-grid #grid1 [data]="registrations" [height]="'450px'" primaryKey="Id" (onCellEdit)="confirmRegistration($event)" [cellSelection]="'none'">
+    <igx-grid #grid1
+              [data]="registrations"
+              [height]="'450px'"
+              primaryKey="Id"
+              (onCellEdit)="confirmRegistration($event)"
+              [cellSelection]="selectionMode.none">
 
       <igx-column field="Email" header="Имейл Адрес">
       </igx-column>
       <igx-column field="CompanyId" header="Компания">
       </igx-column>
-      <igx-column field="DateSubmitted" [dataType]="'date'" header="Направена на">
+      <igx-column field="DateSubmitted" [dataType]="gridDataType.Date" header="Направена на">
         <ng-template igxCell let-value>
           {{ value | date }}
         </ng-template>
@@ -45,7 +50,7 @@
       </igx-column>
       <igx-column field="Hash" header="Код">
       </igx-column>
-      <igx-column field="State" [editable]="true" [dataType]="'boolean'" header="Потвърдена">
+      <igx-column field="State" [editable]="true" [dataType]="gridDataType.Boolean" header="Потвърдена">
         <ng-template igxCell let-value>
           <igx-icon [class]="value ? 'color-success' : 'color-error'">{{ value ? 'check' : 'close' }}</igx-icon>
         </ng-template>
@@ -55,7 +60,7 @@
   </div>
 
   <div class="content-container-row">
-    <igx-grid #grid1 [data]="orders" [height]="'450px'" primaryKey="id" (onCellEdit)="editDone($event)" [cellSelection]="'none'">
+    <igx-grid #grid1 [data]="orders" [height]="'450px'" primaryKey="id" (onCellEdit)="editDone($event)" [cellSelection]="selectionMode.none">
 
       <igx-column field="orderDate" header="Направена на">
         <ng-template igxCell let-value>
@@ -81,12 +86,12 @@
       </igx-column>
       <igx-column field="promocode" header="Промо код">
       </igx-column>
-      <igx-column field="confirmed" [dataType]="'boolean'" [editable]="true" header="Потвърдена">
+      <igx-column field="confirmed" [dataType]="gridDataType.Boolean" [editable]="true" header="Потвърдена">
         <ng-template igxCell let-value>
           <igx-icon [class]="value ? 'color-success' : 'color-error'">{{ value ? 'check' : 'close' }}</igx-icon>
         </ng-template>
       </igx-column>
-      <igx-column field="shipped" [dataType]="'boolean'" [editable]="true" header="Изпратена">
+      <igx-column field="shipped" [dataType]="gridDataType.Boolean" [editable]="true" header="Изпратена">
         <ng-template igxCell let-value>
           <igx-icon [class]="value ? 'color-success' : 'color-error'">{{ value ? 'check' : 'close' }}</igx-icon>
         </ng-template>

@@ -21,7 +21,7 @@
               <igx-avatar *ngIf="role.user"
                           [src]="role.user.AvatarFull"
                           [initials]="role.user.Username"
-                          roundShape="true"
+                          [roundShape]="true"
                           [size]="'large'">
               </igx-avatar>
               <igx-avatar *ngIf="isAdmin"
@@ -41,7 +41,7 @@
             <igx-avatar *ngIf="!role.user"
                         class="empty-role"
                         icon="add"
-                        roundShape="true"
+                        [roundShape]="true"
                         size="large"
                         igxDrop
                         (dropped)="assignToRole($event, role)">
@@ -72,7 +72,7 @@
             <div class="user-in-role">
               <igx-avatar [src]="user.AvatarMedium"
                           [initials]="user.Username"
-                          roundShape="true"
+                          [roundShape]="true"
                           [size]="'medium'"
                           [igxDrag]="user"
                           (dragStart)="roleDragging($event)"
@@ -109,7 +109,7 @@
             <div class="user-in-role">
               <igx-avatar [src]="user.AvatarMedium"
                           [initials]="user.Username"
-                          roundShape="true"
+                          [roundShape]="true"
                           [size]="'medium'"
                           [igxDrag]="user"
                           (dragStart)="roleDragging($event)"

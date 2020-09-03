@@ -50,9 +50,9 @@
       <p class="igx-card-header__subtitle">{{ strat.Description | truncateText:130 }}</p>
     </igx-card-content>
 
-    <igx-card-actions reverse="true">
+    <igx-card-actions [reverse]="true">
       <span class="horizontal-center navigatable" [routerLink]="['/strategies', 'details', strat.CustomUrl]">
-        <igx-badge [value]="strat.Comments?.length" type="info"></igx-badge>
+        <igx-badge [value]="strat.Comments?.length.toString()" type="info"></igx-badge>
         Comments
       </span>
       <button igxButton="fab"
@@ -99,7 +99,7 @@
     <igx-card-content class="empty-strategy empty-strategy-content">
         <igx-avatar icon="sync"
                     class="navigatable"
-                    roundShape="true"
+                    [roundShape]="true"
                     [size]="'large'"
                     (click)="loadMore()">
         </igx-avatar>

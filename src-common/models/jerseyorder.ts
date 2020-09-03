@@ -21,7 +21,6 @@ export interface JerseyDetails {
 export interface JerseySizes {
   size: JerseySize;
   text: string;
-  disabled: boolean;
 }
 
 export interface JerseyOrder {

@@ -20,7 +20,7 @@
         <igx-select-item *ngFor="let team of authUser?.teamAdmin"
                          [value]="team.TeamId"
                          [text]="team.TeamName">
-          <igx-avatar [src]="team.TeamAvatar" [initials]="team.TeamName" roundShape="true">
+          <igx-avatar [src]="team.TeamAvatar" [initials]="team.TeamName" [roundShape]="true">
           </igx-avatar>
           <span class="title margin-left">
             {{ team.TeamName }}
