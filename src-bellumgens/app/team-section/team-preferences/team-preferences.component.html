@@ -3,7 +3,7 @@
     <span>Team Info</span>
     <igx-input-group class="team-info-input">
       <label for="teamName" igxLabel>Name</label>
-      <input #teamName igxInput id="teamName" name="teamName" minlength="2" required [(ngModel)]="team.TeamName" />
+      <input #teamName igxInput id="teamName" name="teamName" minlength="2" [required]="true" [(ngModel)]="team.TeamName" />
       <igx-suffix *ngIf="teamName.value.length > 0" (click)="team.TeamName = null">
         <igx-icon>clear</igx-icon>
       </igx-suffix>
@@ -19,7 +19,7 @@
 
     <igx-input-group class="team-info-input">
       <label for="teamDescription" igxLabel>Description</label>
-      <textarea #teamDescription igxInput id="teamDescription" name="teamDescription" minlength="2" required [(ngModel)]="team.Description"></textarea>
+      <textarea #teamDescription igxInput id="teamDescription" name="teamDescription" minlength="2" [required]="true" [(ngModel)]="team.Description"></textarea>
       <igx-suffix *ngIf="teamDescription.value.length > 0" (click)="team.Description = null">
           <igx-icon>clear</igx-icon>
       </igx-suffix>
@@ -47,7 +47,7 @@
     <span>Team Members</span>
     <igx-list>
       <igx-list-item *ngFor="let user of team.Members; let i = index">
-        <igx-avatar igxListThumbnail [src]="user.AvatarIcon" [initials]="user.Username" roundShape="true">
+        <igx-avatar igxListThumbnail [src]="user.AvatarIcon" [initials]="user.Username" [roundShape]="true">
         </igx-avatar>
         <igx-avatar *ngIf="user.Country"
                     [src]="user.Country | playerCountry"
@@ -90,7 +90,7 @@
     <span>Steam Group Members [not part of the team]</span>
     <igx-list>
       <igx-list-item *ngFor="let member of steamMembers | excludeMembers:team.Members" class="navigatable" [routerLink]="['/players', member.steamid]">
-        <igx-avatar igxListThumbnail [src]="member.avatar" [initials]="member.personaname" roundShape="true">
+        <igx-avatar igxListThumbnail [src]="member.avatar" [initials]="member.personaname" [roundShape]="true">
         </igx-avatar>
         <h2 igxListLineTitle>
           {{ member.personaname }}

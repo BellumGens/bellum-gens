@@ -5,7 +5,7 @@
           [igxButtonBackground]="loginColors[provider.Name]"
           igxButtonColor="#fff"
           (click)="login(provider)">
-    <igx-icon fontSet="login-icons" [name]="provider.Name"></igx-icon>
+    <igx-icon fontSet="login-icons" [name]="provider.Name.toLowerCase()"></igx-icon>
     <igx-divider [vertical]="true" [inset]="'0 0 0 8px'" [ngClass]="'login-divider'"></igx-divider>
     <span class="submit-button">{{ provider.Name }}</span>
   </button>

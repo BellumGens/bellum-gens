@@ -5,7 +5,7 @@ import { ApiTournamentsService } from '../../../src-common/services/bellumgens-a
 import { Tournament, getEmptyNewTournament, TournamentApplication } from '../../../src-common/models/tournament';
 import { JerseyOrder, Promo } from '../../../src-common/models/jerseyorder';
 import { ApiShopService } from '../../../src-common/services/bellumgens-api.shop.service';
-import { IGridEditEventArgs } from '@infragistics/igniteui-angular';
+import { IGridEditEventArgs, GridSelectionMode, DataType } from '@infragistics/igniteui-angular';
 
 @Component({
   selector: 'app-admin',
@@ -20,6 +20,8 @@ export class AdminComponent {
   public orders: JerseyOrder [];
   public registrations: TournamentApplication [];
   public promos: Promo [];
+  public selectionMode = GridSelectionMode;
+  public gridDataType = DataType;
 
   constructor(private authService: LoginService,
               private apiService: ApiTournamentsService,

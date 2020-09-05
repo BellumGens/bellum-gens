@@ -1,4 +1,4 @@
-<igx-dialog #createTeam closeOnOutsideSelect="true" *ngIf="authUser">
+<igx-dialog #createTeam [closeOnOutsideSelect]="true" *ngIf="authUser">
   <div class="create-team">
     <span class="highlight">Import from Steam Group</span>
     <igx-input-group type="search">
@@ -16,7 +16,7 @@
         <p>No Steam groups found...</p>
       </ng-template>
       <igx-list-item *ngFor="let group of groups | groupsFilter:searchGroups" (click)="createFromSteam(group)">
-        <igx-avatar igxListThumbnail [src]="group.avatarFull" [initials]="group.groupName" roundShape="true">
+        <igx-avatar igxListThumbnail [src]="group.avatarFull" [initials]="group.groupName" [roundShape]="true">
         </igx-avatar>
         <div igxListLineTitle>
           {{ group.groupName }}
@@ -33,7 +33,7 @@
         <input #teamName
                 id="teamName"
                 igxInput
-                name="teamName" minlength="2" required [(ngModel)]="newTeam.TeamName">
+                name="teamName" minlength="2" [required]="true" [(ngModel)]="newTeam.TeamName">
         <igx-suffix *ngIf="teamName.value.length > 0" (click)="newTeam.TeamName = null">
             <igx-icon>clear</igx-icon>
         </igx-suffix>
@@ -49,7 +49,7 @@
                   id="teamDescripton"
                   igxInput
                   minlength="2"
-                  required
+                  [required]="true"
                   [(ngModel)]="newTeam.Description">
         </textarea>
         <igx-suffix *ngIf="teamDescripton.value.length > 0" (click)="newTeam.Description = null">

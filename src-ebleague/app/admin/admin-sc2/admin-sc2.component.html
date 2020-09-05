@@ -4,9 +4,9 @@
 
     </igx-calendar>
 
-    <igx-grid [cellSelection]="'none'"
+    <igx-grid [cellSelection]="selectionMode"
               [data]="selectedMatches"
-              showToolbar="true"
+              [showToolbar]="true"
               emptyGridMessage="Няма намерени срещи в този ден..."
               [isLoading]="loading"
               [toolbarTitle]="'Срещи за ' + (selectedDate | date)">
@@ -23,7 +23,7 @@
           <igx-avatar igxListThumbnail
                       [src]="cell.rowData.Player1.avatarMedium"
                       [initials]="cell.rowData.Player1.username"
-                      roundShape="true">
+                      [roundShape]="true">
           </igx-avatar>
           <span [class]="cell.rowData.Player1Points > cell.rowData.Player2Points ? 'highlight grid-team-name' : 'grid-team-name'">
             {{ cell.rowData.Player1.battleNetId }}
@@ -34,7 +34,7 @@
           <igx-avatar
                       [src]="cell.rowData.Player2.avatarMedium"
                       [initials]="cell.rowData.Player2.username"
-                      roundShape="true">
+                      [roundShape]="true">
           </igx-avatar>
           <span [class]="cell.rowData.Player2Points > cell.rowData.Player1Points ? 'highlight grid-team-name' : 'grid-team-name'">
             {{ cell.rowData.Player2.battleNetId }}
@@ -65,7 +65,7 @@
       </ng-template>
 
       <ng-template igxToolbarCustomContent let-grid="grid">
-        <button igxButton (click)="selectedMatches.push({StartTime: selectedDate, inEdit: true})">
+        <button igxButton (click)="addNewMatch()">
           <igx-icon>add_circle_outline</igx-icon>Добави нова среща
         </button>
       </ng-template>
@@ -86,7 +86,7 @@
       <div class="match-score match-summary" *ngFor="let match of selectedMatches">
         <igx-time-picker class="slot-timepicker"
                          [disabled]="!match.inEdit"
-                         [itemsDelta]="{hours: 1, minutes: 15}"
+                         [itemsDelta]="{hours: 1, minutes: 15, seconds: 1}"
                          [(ngModel)]="match.StartTime">
         </igx-time-picker>
 
@@ -173,7 +173,7 @@
         <igx-divider class="content-container-row"></igx-divider>
       </div>
 
-      <button igxButton (click)="selectedMatches.push({StartTime: selectedDate, inEdit: true})">
+      <button igxButton (click)="addNewMatch()">
         <igx-icon>add_circle_outline</igx-icon>Добави нова среща
       </button>
     </div>
@@ -192,7 +192,7 @@
           <igx-avatar [src]="registration.User.avatarMedium"
                       [initials]="registration.User.username"
                       size="medium"
-                      roundShape="true"
+                      [roundShape]="true"
                       [igxDrag]="registration">
           </igx-avatar>
           <igx-badge *ngIf="registration.State === 0"
@@ -212,7 +212,7 @@
             <h1 *ngIf="!group.inEdit" igxCardHeaderTitle>{{group.Name}}</h1>
             <igx-input-group *ngIf="group.inEdit" igxCardHeaderTitle>
               <label igxLabel for="groupName">Име на групата</label>
-              <input type="text" id="groupName" name="groupName" #groupName igxInput required [(ngModel)]="group.Name" />
+              <input type="text" id="groupName" name="groupName" #groupName igxInput [required]="true" [(ngModel)]="group.Name" />
               <igx-suffix *ngIf="groupName.value" (click)="group.Name = null">
                 <igx-icon>clear</igx-icon>
               </igx-suffix>
@@ -230,7 +230,7 @@
           <igx-card-content>
             <igx-list class="group-list" igxDrop (dropped)="addToGroup($event, group)">
               <igx-list-item *ngFor="let participant of group.Participants">
-                <igx-avatar igxListThumbnail [src]="participant.User.avatarMedium" roundShape="true"></igx-avatar>
+                <igx-avatar igxListThumbnail [src]="participant.User.avatarMedium" [roundShape]="true"></igx-avatar>
                 <a igxListLineTitle [href]="environment.bellumgens + '/players/' + (participant.User.customURL || participant.UserId)" target="_blank">
                   {{ participant.User.username }}
                 </a>
@@ -251,7 +251,7 @@
 
             <igx-input-group *ngIf="newGroup.inEdit" igxCardHeaderTitle>
               <label igxLabel for="groupName">Име на групата</label>
-              <input type="text" id="groupName" name="groupName" #groupName igxInput required [(ngModel)]="newGroup.Name" />
+              <input type="text" id="groupName" name="groupName" #groupName igxInput [required]="true" [(ngModel)]="newGroup.Name" />
               <igx-suffix *ngIf="groupName.value" (click)="newGroup.Name = null">
                 <igx-icon>clear</igx-icon>
               </igx-suffix>

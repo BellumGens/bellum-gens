@@ -302,9 +302,7 @@ a > igx-icon {
 }
 
   .contacts igx-icon {
-    width: 64px;
-    height: 64px;
-    font-size: 64px;
+    --igx-icon-size: 64px;
     color: white;
   }
 

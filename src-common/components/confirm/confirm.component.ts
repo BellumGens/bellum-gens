@@ -37,7 +37,7 @@ export class ConfirmComponent {
     this.confirmEntity = null;
   }
 
-  public open(entity) {
+  public open(entity?) {
     this.confirmEntity = entity;
     this.dialog.open();
   }

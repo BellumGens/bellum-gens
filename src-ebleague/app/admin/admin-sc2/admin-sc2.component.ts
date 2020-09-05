@@ -4,8 +4,8 @@ import { TournamentGroup,
   getEmptyNewGroup} from '../../../../src-common/models/tournament';
 import { ApiTournamentsService } from '../../../../src-common/services/bellumgens-api.tournaments.service';
 import { environment } from '../../../../src-common/environments/environment';
-import { IDropDroppedEventArgs, DateRangeDescriptor, DateRangeType } from '@infragistics/igniteui-angular';
-import { TournamentSC2Match, TournamentSC2MatchMap } from '../../../../src-common/models/tournament-schedule';
+import { IDropDroppedEventArgs, DateRangeDescriptor, DateRangeType, GridSelectionMode } from '@infragistics/igniteui-angular';
+import { TournamentSC2Match, TournamentMatchMap } from '../../../../src-common/models/tournament-schedule';
 import { SC2_MAPS, SC2LadderDescriptor } from '../../../../src-common/models/sc2maps';
 import { SameDay } from '../../../../src-common/models/misc';
 
@@ -24,9 +24,10 @@ export class AdminSc2Component {
   public newGroup = getEmptyNewGroup();
   public pipeTrigger = 0;
   public mapList: SC2LadderDescriptor [] = SC2_MAPS;
-  public selectedDate = new Date();
+  public selectedDate: Date | Date [] = new Date();
   public datesWithMatches: DateRangeDescriptor [] = [];
   public selectedMatches: TournamentSC2Match [] = [];
+  public selectionMode = GridSelectionMode.none;
 
   constructor(private apiService: ApiTournamentsService) {
     this.apiService.sc2Registrations.subscribe(data => {
@@ -41,7 +42,7 @@ export class AdminSc2Component {
       if (data) {
         this.matches = data;
         this.matches.forEach(m => m.StartTime = new Date(m.StartTime));
-        this.selectedMatches = this.matches.filter(m => SameDay(m.StartTime, this.selectedDate));
+        this.selectedMatches = this.matches.filter(m => SameDay(m.StartTime, this.selectedDate as Date));
         this.matches.forEach(match => {
           this.datesWithMatches.push({ type: DateRangeType.Specific, dateRange: [ match.StartTime ] });
         });
@@ -112,18 +113,22 @@ export class AdminSc2Component {
     }
   }
 
-  public submitMatchMap(map: TournamentSC2MatchMap) {
+  public addNewMatch() {
+    this.selectedMatches.push({StartTime: this.selectedDate as Date, inEdit: true});
+  }
+
+  public submitMatchMap(map: TournamentMatchMap) {
     this.apiService.submitSC2MatchMap(map).subscribe(data => map.Id = data.Id);
   }
 
-  public deleteMatchMap(map: TournamentSC2MatchMap, maps: TournamentSC2MatchMap []) {
+  public deleteMatchMap(map: TournamentMatchMap, maps: TournamentMatchMap []) {
     this.apiService.deleteSC2MatchMap(map.Id).subscribe(_ => {
       maps.splice(maps.indexOf(map), 1);
     });
   }
 
-  public daySelected(date: Date) {
+  public daySelected(date: Date | Date []) {
     this.selectedDate = date;
-    this.selectedMatches = this.matches.filter(m => SameDay(new Date(m.StartTime), this.selectedDate));
+    this.selectedMatches = this.matches.filter(m => SameDay(new Date(m.StartTime), this.selectedDate as Date));
   }
 }

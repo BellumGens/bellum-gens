@@ -12,7 +12,7 @@
     <igx-list-item *ngIf="searchResult.SteamUser?.steamUser"
                   [routerLink]="['/players', searchResult.SteamUser.steamUser.customURL || searchResult.SteamUser.steamUser.steamID64]"
                   class="navigatable">
-      <igx-avatar igxListThumbnail [src]="searchResult.SteamUser.steamUser.avatarIcon" [initials]="searchResult.SteamUser.steamUser.realname" roundShape="true">
+      <igx-avatar igxListThumbnail [src]="searchResult.SteamUser.steamUser.avatarIcon" [initials]="searchResult.SteamUser.steamUser.realname" [roundShape]="true">
       </igx-avatar>
       <igx-avatar *ngIf="searchResult.SteamUser.steamUser.country"
                   [src]="searchResult.SteamUser.steamUser.country | playerCountry"
@@ -47,7 +47,7 @@
     <igx-list-item *ngFor="let user of searchResult.Players | reduceQuickSearchResult"
                   [routerLink]="['/players', user.customURL || user.id]"
                   class="navigatable">
-      <igx-avatar igxListThumbnail [src]="user.avatarIcon" [initials]="user.realname" roundShape="true">
+      <igx-avatar igxListThumbnail [src]="user.avatarIcon" [initials]="user.realname" [roundShape]="true">
       </igx-avatar>
       <igx-avatar *ngIf="user.country"
                   [src]="user.country | playerCountry"
@@ -93,7 +93,7 @@
     <igx-list-item [isHeader]="true">Teams</igx-list-item>
     <igx-list-item *ngIf="!searchResult.Teams.length">No matching teams...</igx-list-item>
     <igx-list-item *ngFor="let team of searchResult.Teams | reduceQuickSearchResult" class="navigatable" [routerLink]="['/team', team.CustomUrl]">
-      <igx-avatar igxListThumbnail [src]="team.TeamAvatar" [initials]="team.TeamName" roundShape="true">
+      <igx-avatar igxListThumbnail [src]="team.TeamAvatar" [initials]="team.TeamName" [roundShape]="true">
       </igx-avatar>
       <h2 igxListLineTitle>
         {{ team.TeamName }}

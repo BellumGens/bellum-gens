@@ -4,8 +4,8 @@ import { getEmptyNewGroup,
   TournamentRegistration } from '../../../../src-common/models/tournament';
 import { ApiTournamentsService } from '../../../../src-common/services/bellumgens-api.tournaments.service';
 import { environment } from '../../../../src-common/environments/environment';
-import { IDropDroppedEventArgs, DateRangeDescriptor, DateRangeType } from '@infragistics/igniteui-angular';
-import { TournamentCSGOMatch, TournamentCSGOMatchMap } from '../../../../src-common/models/tournament-schedule';
+import { IDropDroppedEventArgs, DateRangeDescriptor, DateRangeType, GridSelectionMode } from '@infragistics/igniteui-angular';
+import { TournamentCSGOMatch, TournamentMatchMap } from '../../../../src-common/models/tournament-schedule';
 import { CSGOActiveDutyDescriptor, ActiveDuty } from '../../../../src-common/models/csgomaps';
 import { SameDay } from '../../../../src-common/models/misc';
 
@@ -24,9 +24,10 @@ export class AdminCsgoComponent {
   public newGroup = getEmptyNewGroup();
   public pipeTrigger = 0;
   public mapList: CSGOActiveDutyDescriptor [] = ActiveDuty;
-  public selectedDate = new Date();
+  public selectedDate: Date | Date [] = new Date();
   public datesWithMatches: DateRangeDescriptor [] = [];
   public selectedMatches: TournamentCSGOMatch [] = [];
+  public selectionMode = GridSelectionMode;
 
   constructor(private apiService: ApiTournamentsService) {
     this.apiService.csgoRegistrations.subscribe(data => {
@@ -41,7 +42,7 @@ export class AdminCsgoComponent {
       if (data) {
         this.matches = data;
         this.matches.forEach(m => m.StartTime = new Date(m.StartTime));
-        this.selectedMatches = this.matches.filter(m => SameDay(m.StartTime, this.selectedDate));
+        this.selectedMatches = this.matches.filter(m => SameDay(m.StartTime, this.selectedDate as Date));
         this.matches.forEach(match => {
           this.datesWithMatches.push({ type: DateRangeType.Specific, dateRange: [ match.StartTime ] });
         });
@@ -112,18 +113,22 @@ export class AdminCsgoComponent {
     }
   }
 
-  public submitMatchMap(map: TournamentCSGOMatchMap) {
+  public addNewMatch() {
+    this.selectedMatches.push({StartTime: this.selectedDate as Date, inEdit: true});
+  }
+
+  public submitMatchMap(map: TournamentMatchMap) {
     this.apiService.submitCSGOMatchMap(map).subscribe(data => map.Id = data.Id);
   }
 
-  public deleteMatchMap(map: TournamentCSGOMatchMap, maps: TournamentCSGOMatchMap []) {
+  public deleteMatchMap(map: TournamentMatchMap, maps: TournamentMatchMap []) {
     this.apiService.deleteCSGOMatchMap(map.Id).subscribe(_ => {
       maps.splice(maps.indexOf(map), 1);
     });
   }
 
-  public daySelected(date: Date) {
+  public daySelected(date: Date | Date []) {
     this.selectedDate = date;
-    this.selectedMatches = this.matches.filter(m => SameDay(new Date(m.StartTime), this.selectedDate));
+    this.selectedMatches = this.matches.filter(m => SameDay(new Date(m.StartTime), this.selectedDate as Date));
   }
 }

@@ -75,7 +75,7 @@
         <igx-prefix>
           <igx-icon>text_fields</igx-icon>
         </igx-prefix>
-        <input id="orderemail" #firstName name="firstName" igxInput required [(ngModel)]="order.firstName" />
+        <input id="orderemail" #firstName name="firstName" igxInput [required]="true" [(ngModel)]="order.firstName" />
         <igx-suffix *ngIf="firstName.value" (click)="order.firstName = null">
           <igx-icon>clear</igx-icon>
         </igx-suffix>
@@ -86,7 +86,7 @@
         <igx-prefix>
           <igx-icon>text_fields</igx-icon>
         </igx-prefix>
-        <input id="lastName" #lastName name="lastName" igxInput required [(ngModel)]="order.lastName" />
+        <input id="lastName" #lastName name="lastName" igxInput [required]="true" [(ngModel)]="order.lastName" />
         <igx-suffix *ngIf="lastName.value" (click)="order.lastName = null">
           <igx-icon>clear</igx-icon>
         </igx-suffix>
@@ -97,7 +97,7 @@
         <igx-prefix>
           <igx-icon>email</igx-icon>
         </igx-prefix>
-        <input type="email" id="orderemail" #orderEmail name="orderemail" igxInput required pattern="^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="order.email" />
+        <input type="email" id="orderemail" #orderEmail name="orderemail" igxInput [required]="true" pattern="^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="order.email" />
         <igx-suffix *ngIf="orderEmail.value" (click)="order.email = null">
           <igx-icon>clear</igx-icon>
         </igx-suffix>
@@ -115,7 +115,7 @@
                class="input-phone-number"
                name="orderPhone"
                igxInput
-               required
+               [required]="true"
                [igxMask]="'000 00 00 00'"
                [igxTextSelection]="true"
                placeholder="--- -- -- --"
@@ -130,7 +130,7 @@
         <igx-prefix>
           <igx-icon>home</igx-icon>
         </igx-prefix>
-        <input id="orderCity" #orderCity name="orderCity" igxInput required [(ngModel)]="order.city" />
+        <input id="orderCity" #orderCity name="orderCity" igxInput [required]="true" [(ngModel)]="order.city" />
         <igx-suffix *ngIf="orderCity.value" (click)="order.city = null">
           <igx-icon>clear</igx-icon>
         </igx-suffix>
@@ -141,7 +141,7 @@
         <igx-prefix>
           <igx-icon>home</igx-icon>
         </igx-prefix>
-        <input id="orderAddress" #orderAddress name="orderAddress" igxInput required [(ngModel)]="order.streetAddress" />
+        <input id="orderAddress" #orderAddress name="orderAddress" igxInput [required]="true" [(ngModel)]="order.streetAddress" />
         <igx-suffix *ngIf="orderAddress.value" (click)="order.streetAddress = null">
           <igx-icon>clear</igx-icon>
         </igx-suffix>

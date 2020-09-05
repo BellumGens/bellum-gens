@@ -195,7 +195,7 @@ export class StrategyEditorComponent extends BaseComponent implements OnInit, On
     }
   }
 
-  public trySelectLayer(event: PointerEvent) {
+  public trySelectLayer(event: MouseEvent) {
     this.editor.trySelectLayer({ x: event.offsetX, y: event.offsetY });
   }
 

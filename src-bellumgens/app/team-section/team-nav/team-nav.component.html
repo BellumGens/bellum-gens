@@ -5,7 +5,7 @@
 
   <igx-card class="team-card" *ngFor="let team of authUser?.teams">
     <igx-card-header>
-      <igx-avatar igxCardThumbnail [src]="team.TeamAvatar" [initials]="team.TeamName" roundShape="true"></igx-avatar>
+      <igx-avatar igxCardThumbnail [src]="team.TeamAvatar" [initials]="team.TeamName" [roundShape]="true"></igx-avatar>
       <h3 igxCardHeaderTitle>{{ team.TeamName }}</h3>
     </igx-card-header>
     <igx-card-content>

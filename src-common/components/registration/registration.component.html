@@ -6,7 +6,7 @@
       <igx-prefix>
         <igx-icon>person</igx-icon>
       </igx-prefix>
-      <input #regusername igxInput id="regusername" required name="regusername" [(ngModel)]="userAccount.username" />
+      <input #regusername igxInput id="regusername" [required]="true" name="regusername" [(ngModel)]="userAccount.username" />
       <igx-hint class="color-error" *ngIf="inUse">
         Username already taken...
       </igx-hint>
@@ -17,17 +17,17 @@
       <igx-prefix>
         <igx-icon>email</igx-icon>
       </igx-prefix>
-      <input type="email" id="email" #orderEmail name="email" igxInput required pattern="^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="userAccount.email" />
+      <input type="email" id="email" #orderEmail name="email" igxInput [required]="true" pattern="^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="userAccount.email" />
     </igx-input-group>
 
     <igx-input-group type="border">
       <label for="password" igxLabel>Password</label>
-      <input #password igxInput type="password" required id="password" name="password" [(ngModel)]="userAccount.password" />
+      <input #password igxInput type="password" [required]="true" id="password" name="password" [(ngModel)]="userAccount.password" />
     </igx-input-group>
 
     <igx-input-group type="border">
       <label for="confirmPassword" igxLabel>Confirm Password</label>
-      <input #confirmPassword igxInput type="password" required id="confirmPassword" name="confirmPassword" [(ngModel)]="userAccount.confirmPassword" />
+      <input #confirmPassword igxInput type="password" [required]="true" id="confirmPassword" name="confirmPassword" [(ngModel)]="userAccount.confirmPassword" />
       <igx-hint class="color-error" *ngIf="userRegistration.touched && confirmPassword.value !== userAccount.password">
         Doesn't match...
       </igx-hint>

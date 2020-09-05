@@ -6,7 +6,7 @@
 
 <div *ngIf="authUser">
   <button class="profile-button" #profileButton igxButton="flat" igxRipple [igxToggleAction]="userProfile" [overlaySettings]="overlaySettings">
-    <igx-avatar [src]="authUser.avatarFull" [initials]="authUser.username" roundShape="true">
+    <igx-avatar [src]="authUser.avatarFull" [initials]="authUser.username" [roundShape]="true">
     </igx-avatar>
     <igx-icon class="drop-down-arrow">arrow_drop_down</igx-icon>
   </button>
@@ -21,7 +21,7 @@
             </div>
           </ng-template>
           <div class="center-items profile-view">
-            <igx-avatar [src]="authUser.avatarMedium" [initials]="authUser.username" roundShape="true" [size]="'large'">
+            <igx-avatar [src]="authUser.avatarMedium" [initials]="authUser.username" [roundShape]="true" [size]="'large'">
             </igx-avatar>
             <h1 class="igx-card-header__title highlight navigatable profile-username" (click)="navigateToProfile(authUser.customURL || authUser.id)">{{ authUser.username }}</h1>
             <h4 class="igx-card-header__subtitle">{{ authUser.realname }}</h4>
@@ -52,7 +52,7 @@
             </div>
           </div>
 
-          <button class="submit-button" igxButton="outlined" igxRipple (click)="navigateToStrategies(authUser.id)"><igx-icon>playlist_add_check</igx-icon>my strategies</button>
+          <button class="submit-button" igxButton="outlined" igxRipple (click)="navigateToStrategies()"><igx-icon>playlist_add_check</igx-icon>my strategies</button>
           <button class="submit-button" igxButton="outlined" igxRipple class="profile-username" (click)="logout()"><igx-icon>exit_to_app</igx-icon>logout</button>
         </igx-tabs-group>
 

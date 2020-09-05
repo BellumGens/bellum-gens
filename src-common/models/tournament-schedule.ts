@@ -28,7 +28,6 @@ export interface TournamentMatch {
   StartTime?: Date;
   NoShow?: boolean;
   GroupId?: string;
-  Maps?: TournamentCSGOMatchMap [] | TournamentSC2MatchMap [];
   inEdit?: boolean;
 }
 
@@ -39,6 +38,7 @@ export interface TournamentCSGOMatch extends TournamentMatch {
   Team2Points?: number;
   Team1?: CSGOTeam;
   Team2?: CSGOTeam;
+  Maps?: TournamentCSGOMatchMap [];
 }
 
 export interface TournamentSC2Match extends TournamentMatch {
@@ -48,10 +48,14 @@ export interface TournamentSC2Match extends TournamentMatch {
   Player2Points?: number;
   Player1?: AppUserSummary;
   Player2?: AppUserSummary;
+  Maps?: TournamentSC2MatchMap [];
 }
 
-export interface TournamentCSGOMatchMap {
+export interface TournamentMatchMap {
   Id?: string;
+}
+
+export interface TournamentCSGOMatchMap extends TournamentMatchMap {
   Map?: CSGOMap;
   CSGOMatchId?: string;
   TeamPickId?: string;
@@ -60,8 +64,7 @@ export interface TournamentCSGOMatchMap {
   Team2Score?: number;
 }
 
-export interface TournamentSC2MatchMap {
-  Id?: string;
+export interface TournamentSC2MatchMap extends TournamentMatchMap {
   Map?: SC2Map;
   SC2MatchId?: string;
   PlayerPickId?: string;
