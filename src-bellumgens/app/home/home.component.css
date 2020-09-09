@@ -11,6 +11,10 @@
   height: 450px;
 }
 
+.slide0 {
+  background-image: url('/assets/wallpapers/carousel-bge.webp');
+}
+
 .slide2 {
   background-image: url('/assets/wallpapers/csgo_wallpaper_nologo.webp');
   background-position-y: -100px;
@@ -37,6 +41,11 @@
 
 .min-height-row {
   min-height: 210px;
+}
+
+.event-icon {
+  width: 64px;
+  height: 32px;
 }
 
 @media only screen and (max-width: 550px) {

@@ -31,6 +31,7 @@
               [data]="registrations"
               [height]="'450px'"
               primaryKey="Id"
+              [allowFiltering]="true"
               (onCellEdit)="confirmRegistration($event)"
               [cellSelection]="selectionMode.none">
 
