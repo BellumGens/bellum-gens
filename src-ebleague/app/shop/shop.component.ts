@@ -13,10 +13,11 @@ import { Title, Meta } from '@angular/platform-browser';
 })
 export class ShopComponent extends BaseComponent {
   public order = newEmptyJerseyOrder();
-  public promo = 0;
+  public basePromo = .5;
+  public promo = this.basePromo;
   public invalidPromo = false;
   public inProgress = false;
-  public basePrice = 40;
+  public basePrice = 60;
 
   public cuts = [
     { text: 'Mъжка', cut: JerseyCut.Male },
@@ -52,7 +53,7 @@ export class ShopComponent extends BaseComponent {
   public checkForPromo() {
     this.apiService.checkForPromo(this.order.promocode).subscribe(data => {
       if (data) {
-        this.promo = data.discount;
+        this.promo = this.basePromo + data.discount;
         this.invalidPromo = false;
       } else {
         this.order.promocode = null;
