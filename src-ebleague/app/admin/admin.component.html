@@ -33,6 +33,7 @@
               primaryKey="Id"
               [showToolbar]="true"
               toolbarTitle="Регистрации"
+              [showGroupArea]="true"
               [allowFiltering]="true"
               (onCellEdit)="confirmRegistration($event)"
               [cellSelection]="selectionMode.none">
@@ -46,7 +47,7 @@
           {{ value | date }}
         </ng-template>
       </igx-column>
-      <igx-column field="Game" [sortable]="true" header="Лига">
+      <igx-column field="Game" [groupable]="true" header="Лига">
         <ng-template igxCell let-value>
           {{ value ? 'StarCraft II' : 'CS:GO' }}
         </ng-template>
@@ -58,6 +59,15 @@
           <igx-icon [class]="value ? 'color-success' : 'color-error'">{{ value ? 'check' : 'close' }}</igx-icon>
         </ng-template>
       </igx-column>
+
+      <ng-template igxGroupByRow let-groupRow>
+        <div class="igx-group-label">
+          <igx-icon class="igx-group-label__icon">group_work</igx-icon>
+          <span class="igx-group-label__column-name">{{groupRow.column.header}}:</span>
+          <span class="igx-group-label__text">{{ groupRow.value ? 'StarCraft II' : 'CS:GO' }}</span>
+          <igx-badge [value]="groupRow.records.length" class="igx-group-label__count-badge"></igx-badge>
+        </div>
+      </ng-template>
 
     </igx-grid>
   </div>

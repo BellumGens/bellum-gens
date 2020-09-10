@@ -152,6 +152,9 @@ $time-picker-theme: igx-time-picker-theme($background-color: $background);
 
 /* Grid */
 $grid-theme: igx-grid-theme($content-background: $banner-background,
+                            $drop-area-background: $banner-background,
+                            $ghost-header-background: $banner-background,
+                            $group-row-selected-background: $background,
                             $header-background: $background,
                             $cell-editing-background: $background);
 @include igx-css-vars($grid-theme);
