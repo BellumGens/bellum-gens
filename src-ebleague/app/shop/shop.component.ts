@@ -16,7 +16,7 @@ export class ShopComponent extends BaseComponent {
   public promo = 0;
   public invalidPromo = false;
   public inProgress = false;
-  public basePrice = 40;
+  public basePrice = 30;
 
   public cuts = [
     { text: 'Mъжка', cut: JerseyCut.Male },
