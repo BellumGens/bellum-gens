@@ -42,6 +42,7 @@ import {
   IgxListModule
 } from '@infragistics/igniteui-angular';
 import { socialMedia, logos } from '@igniteui/material-icons-extended';
+import { NewsComponent } from './news/news.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { socialMedia, logos } from '@igniteui/material-icons-extended';
     TeamNewComponent,
     StartsWithPipe,
     GroupsFilterPipe,
-    RegistrationSuccessComponent
+    RegistrationSuccessComponent,
+    NewsComponent
   ],
   imports: [
     FormsModule,
