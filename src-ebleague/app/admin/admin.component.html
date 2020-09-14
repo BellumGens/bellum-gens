@@ -29,8 +29,11 @@
   <div class="content-container-row">
     <igx-grid #grid1
               [data]="registrations"
-              [height]="'450px'"
+              [height]="'550px'"
               primaryKey="Id"
+              [showToolbar]="true"
+              toolbarTitle="Регистрации"
+              [showGroupArea]="true"
               [allowFiltering]="true"
               (onCellEdit)="confirmRegistration($event)"
               [cellSelection]="selectionMode.none">
@@ -39,12 +42,12 @@
       </igx-column>
       <igx-column field="CompanyId" header="Компания">
       </igx-column>
-      <igx-column field="DateSubmitted" [dataType]="gridDataType.Date" header="Направена на">
+      <igx-column field="DateSubmitted" [dataType]="gridDataType.Date" [sortable]="true" header="Направена на">
         <ng-template igxCell let-value>
           {{ value | date }}
         </ng-template>
       </igx-column>
-      <igx-column field="Game" header="Лига">
+      <igx-column field="Game" [groupable]="true" header="Лига">
         <ng-template igxCell let-value>
           {{ value ? 'StarCraft II' : 'CS:GO' }}
         </ng-template>
@@ -57,13 +60,30 @@
         </ng-template>
       </igx-column>
 
+      <ng-template igxGroupByRow let-groupRow>
+        <div class="igx-group-label">
+          <igx-icon class="igx-group-label__icon">group_work</igx-icon>
+          <span class="igx-group-label__column-name">{{groupRow.column.header}}:</span>
+          <span class="igx-group-label__text">{{ groupRow.value ? 'StarCraft II' : 'CS:GO' }}</span>
+          <igx-badge [value]="groupRow.records.length" class="igx-group-label__count-badge"></igx-badge>
+        </div>
+      </ng-template>
+
     </igx-grid>
   </div>
 
   <div class="content-container-row">
-    <igx-grid #grid1 [data]="orders" [height]="'450px'" primaryKey="id" (onCellEdit)="editDone($event)" [cellSelection]="selectionMode.none">
+    <igx-grid #grid1
+              [data]="orders"
+              [height]="'550px'"
+              primaryKey="id"
+              [showToolbar]="true"
+              toolbarTitle="Поръчки"
+              [allowFiltering]="true"
+              (onCellEdit)="editDone($event)"
+              [cellSelection]="selectionMode.none">
 
-      <igx-column field="orderDate" header="Направена на">
+      <igx-column field="orderDate" [dataType]="gridDataType.Date" [sortable]="true" header="Направена на">
         <ng-template igxCell let-value>
           {{ value | date }}
         </ng-template>
