@@ -39,7 +39,8 @@ import {
   IgxCheckboxModule,
   IgxAutocompleteModule,
   IgxDialogModule,
-  IgxListModule
+  IgxListModule,
+  IgxCardModule
 } from '@infragistics/igniteui-angular';
 import { socialMedia, logos } from '@igniteui/material-icons-extended';
 import { NewsComponent } from './news/news.component';
@@ -80,6 +81,7 @@ import { NewsComponent } from './news/news.component';
     IgxAutocompleteModule,
     IgxDialogModule,
     IgxListModule,
+    IgxCardModule,
     BellumGensModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     HammerModule
