@@ -5,11 +5,20 @@ import { RaffleComponent } from './raffle/raffle.component';
 import { RegistrationSuccessComponent } from './tournament-registration/registration-success/registration-success.component';
 import { RegistrationComponent } from '../../src-common/components/registration/registration.component';
 import { UnauthorizedComponent } from '../../src-common/components/unauthorized/unauthorized.component';
+import { NewsComponent } from './news/news.component';
 
 export const routes: Routes = [
   { path: '', component: TournamentHomeComponent },
   { path: 'raffle', component: RaffleComponent },
   { path: 'register', component: RegistrationComponent },
+  { path: 'news', component: NewsComponent, data: {
+      title: 'Esports Business League - News',
+      twitterTitle: 'Esports бизнес лига - Новини',
+      description: 'Esports Бизнес Лигата е аматьорско състезание за работещи геймъри по CS:GO и StarCraft II',
+      twitterDescription: 'Esports Бизнес Лигата е аматьорско състезание за работещи геймъри по CS:GO и StarCraft II',
+      image: '/assets/crew/sugarbunny.jpg'
+    }
+  },
   { path: 'registration-success', component: RegistrationSuccessComponent },
   { path: 'unauthorized', redirectTo: 'unauthorized/', pathMatch: 'full' },
   { path: 'unauthorized/:message', component: UnauthorizedComponent },
