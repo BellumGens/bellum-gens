@@ -2,7 +2,7 @@
 
   <igx-divider></igx-divider>
   <div class="form-wrapper">
-    <h4 id="registration" class="registration-title">Регистрация Сезон 2</h4>
+    <h2 id="registration" class="registration-title">Регистрация Сезон 2</h2>
 
     <igx-select name="game" [required]="true" [disabled]="!authUser" class="registration-form-input" [(ngModel)]="application.Game" (ngModelChange)="showDetails()">
       <label igxLabel>{{ authUser ? 'Изберете лига (игра)' : 'Първо трябва да влезете в акаунта си'}}</label>

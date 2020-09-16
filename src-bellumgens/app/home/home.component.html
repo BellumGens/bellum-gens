@@ -2,9 +2,9 @@
   <igx-slide>
     <div class="slide slide0">
       <div class="slide-info">
-        <h1><igx-icon fontSet="partners" name="bge-white" class="event-icon"></igx-icon>Bellum Gens Elite - Stara Zagora</h1>
+        <h2><igx-icon fontSet="partners" name="bge-white" class="event-icon"></igx-icon>Bellum Gens Elite - Stara Zagora</h2>
         <p>The first professional Bellum Gens CS:GO tournament in going to be held in the city of Stara Zagora!</p>
-        <a href="https://bge-starazagora.com" target="_blank" igxButton="raised">Learn More</a>
+        <a href="https://bge-starazagora.com" target="_blank" rel="noopener" igxButton="raised">Go to BGE-Stara Zagora</a>
       </div>
     </div>
   </igx-slide>
@@ -12,9 +12,9 @@
   <igx-slide>
     <div class="slide slide1">
       <div class="slide-info">
-        <h1><igx-icon fontSet="partners" name="eb-league-white" class="event-icon"></igx-icon>Esports Business League - Bulgaria</h1>
+        <h2><igx-icon fontSet="partners" name="eb-league-white" class="event-icon"></igx-icon>Esports Business League - Bulgaria</h2>
         <p>Esports Business League Season 2 is coming up!</p>
-        <a [href]="environment.ebleague" target="_blank" igxButton="raised">Learn More</a>
+        <a [href]="environment.ebleague" target="_blank" rel="noopener" igxButton="raised">Go to EB-League</a>
       </div>
     </div>
   </igx-slide>
@@ -22,7 +22,7 @@
   <igx-slide>
     <div class="slide slide2">
       <div class="slide-info">
-        <h1>Design and Share CS:GO Strategies</h1>
+        <h2>Design and Share CS:GO Strategies</h2>
         <p>The only online CS:GO strategy editor freely available to everyone! Discuss public strategies with everyone and build private strategies for your team only.</p>
         <button igxButton="raised" routerLink="/strategies">Browse Strategies</button>
         <button igxButton="outlined" igxButtonColor="#fff" *ngIf="!authUser" (click)="openLogin()" class="space-out-button">Sign-up Now</button>
@@ -33,7 +33,7 @@
   <igx-slide>
     <div class="slide slide3">
       <div class="slide-info">
-        <h1>Manage your CS:GO Team</h1>
+        <h2>Manage your CS:GO Team</h2>
         <p>Recruit your team and manage your team member roles, team strategies, practice times and more....</p>
         <button igxButton="raised" *ngIf="!authUser else loggedIn" (click)="openLogin()">Sign-up Now</button>
         <ng-template #loggedIn>
@@ -49,7 +49,7 @@
     <img src="/assets/wallpapers/strat-editor.webp" class="preview-image" alt="Strategy Editor" />
   </div>
   <div class="content-container-column">
-    <h4>CS:GO Strategy Editor</h4>
+    <h3>CS:GO Strategy Editor</h3>
     <p>Bellum Gens provides an in-browser CS:GO strategy editor, with all maps available. You can pick a map and draw strategies on the map radar, then share with the community for discussions, or make it private and share it with your team only.</p>
     <button igxButton="raised" routerLink="/strategies" class="nav-button">Browse Strategies</button>
   </div>
@@ -59,7 +59,7 @@
     <h4>Bellum Gens is fully open source! We appreciate your feedback!</h4>
     <div>
       <button type="button" igxButton="outlined">
-        <a href="https://github.com/BellumGens/bellum-gens/issues" target="_blank" rel="nofollow">Submit an Issue</a>
+        <a href="https://github.com/BellumGens/bellum-gens/issues" target="_blank" rel="noopener">Submit an Issue</a>
       </button>
       <button igxButton="outlined" class="space-out-button" (click)="tweet()">
         Tweet to us
@@ -82,10 +82,10 @@
     <igx-divider></igx-divider>
     <h4 id="partners">Partners</h4>
     <div class="horizontal-center">
-      <a href="https://www.vmware.com/" target="_blank" rel="nofollow" title="VMware is a global leader in cloud infrastructure and business mobility. The company helps customers realize possibilities by accelerating their digital transformation journeys. Over the range of 12 years VMware Bulgaria has transformed from a purely R&D facility to a multifunctional hub with product, revenue generating professional services and business operations teams and is now one of the three core strategic sites for VMware globally.">
+      <a href="https://www.vmware.com/" target="_blank" rel="noopener" title="VMware is a global leader in cloud infrastructure and business mobility. The company helps customers realize possibilities by accelerating their digital transformation journeys. Over the range of 12 years VMware Bulgaria has transformed from a purely R&D facility to a multifunctional hub with product, revenue generating professional services and business operations teams and is now one of the three core strategic sites for VMware globally.">
         <igx-icon fontSet="partners" name="vmware" class="partner gold"></igx-icon>
       </a>
-      <!-- <a href="https://www.modis.com/en-bg/" target="_blank" rel="nofollow">
+      <!-- <a href="https://www.modis.com/en-bg/" target="_blank" rel="noopener">
         <igx-icon fontSet="partners" name="modis" title="Modis is a global leader in professional solutions for IT, Engineering and Life Sciences. With more than 20 years of experience the company has established office locations in Europe, North America, Asia and Australia." class="partner gold"></igx-icon>
       </a> -->
     </div>
@@ -122,16 +122,16 @@
       <a href="mailto:info@eb-league.com" title="Email">
         <igx-icon>email</igx-icon>
       </a>
-      <a href="https://www.facebook.com/bellumgens/" title="Facebook" target="_blank" rel="nofollow">
+      <a href="https://www.facebook.com/bellumgens/" title="Facebook" target="_blank" rel="noopener">
         <igx-icon fontSet="login-icons" name="facebook"></igx-icon>
       </a>
-      <a href="https://twitter.com/BellumGens" title="Twitter" target="_blank" rel="nofollow">
+      <a href="https://twitter.com/BellumGens" title="Twitter" target="_blank" rel="noopener">
         <igx-icon fontSet="login-icons" name="twitter"></igx-icon>
       </a>
-      <a href="https://www.linkedin.com/company/bellum-gens/" title="Follow us on Linked-in" target="_blank" rel="nofollow">
+      <a href="https://www.linkedin.com/company/bellum-gens/" title="Follow us on Linked-in" target="_blank" rel="noopener">
         <igx-icon fontSet="login-icons" name="linkedin"></igx-icon>
       </a>
-      <a href="https://discord.gg/bnTcpa9" title="Discord" target="_blank" rel="nofollow">
+      <a href="https://discord.gg/bnTcpa9" title="Discord" target="_blank" rel="noopener">
         <igx-icon fontSet="login-icons" name="discord"></igx-icon>
       </a>
     </div>
