@@ -402,7 +402,7 @@ $grid-toolbar-theme: igx-grid-toolbar-theme($background-color: $background);
   margin: auto;
 }
 
-.slide-info h1 {
+.slide-info h2 {
   font-size: 3rem;
   font-weight: 800;
   margin: 0;
@@ -420,7 +420,7 @@ $grid-toolbar-theme: igx-grid-toolbar-theme($background-color: $background);
 /* END HOME */
 
 @media only screen and (max-width: 1280px) {
-  .slide-info h1 {
+  .slide-info h2 {
     font-size: 1.75rem;
     margin: 0;
   }
