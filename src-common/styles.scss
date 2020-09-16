@@ -198,6 +198,7 @@ a > igx-icon {
   margin: auto;
   padding: 24px 0 0 0;
   color: white;
+  min-height: calc(100% - 64px);
 }
 
 .card-wrapper {
@@ -256,17 +257,18 @@ a > igx-icon {
 
 .footer-row {
   display: flex;
-  align-self: center;
+  flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
 }
 
 .footer-row > p {
   margin: 8px 4px;
-  font-size: 0.85rem;
 }
 
 .footer-row > a {
-  height: 32px;
+  width: 32px;
+  font-size: 1.7rem;
 }
 
 .social-media-icon {
@@ -298,6 +300,7 @@ a > igx-icon {
   min-width: 128px;
   align-content: center;
   justify-content: space-evenly;
+  flex-wrap: wrap;
   margin-top: 16px;
 }
 
