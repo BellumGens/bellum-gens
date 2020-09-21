@@ -306,8 +306,7 @@ $grid-toolbar-theme: igx-grid-toolbar-theme($background-color: $background);
 
 .participants-container {
   display: flex;
-  flex: 1 0 380px;
-  flex-flow: row wrap;
+  flex-wrap: wrap;
 }
 
 igx-calendar {

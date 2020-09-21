@@ -3,7 +3,7 @@
     <igx-card-header>
       <igx-avatar igxCardThumbnail [roundShape]="true" src="/assets/wallpapers/sc2-watermark.webp"></igx-avatar>
       <h1 igxCardHeaderTitle>StarCraft II Лига</h1>
-      <p><span class="highlight">ВАЖНО!</span> Групите за сезон 2 ще бъдат изтеглени седмицата на 1ви Септември.</p>
+      <h4><a href="https://challonge.com/ebleague_starcraft" target="_blank" rel="noopener">Бракет за сезон 2</a></h4>
     </igx-card-header>
     <igx-card-content>
       <div class="participants-container">
@@ -27,7 +27,7 @@
       <app-sc2-tournament-schedule>
       </app-sc2-tournament-schedule>
 
-      <div class="group-columns">
+      <!-- <div class="group-columns">
         <igx-grid *ngFor="let group of groups"
                   [cellSelection]="selectionMode"
                   [data]="group.Participants"
@@ -61,7 +61,7 @@
           </igx-column>
 
         </igx-grid>
-      </div>
+      </div> -->
 
     </igx-card-content>
   </igx-card>
