@@ -48,9 +48,9 @@
         </ng-template>
       </igx-column>
       <igx-column field="Game" [groupable]="true" header="Лига">
-        <ng-template igxCell let-value>
+        <span *igxCell="let value">
           {{ value ? 'StarCraft II' : 'CS:GO' }}
-        </ng-template>
+        </span>
       </igx-column>
       <igx-column field="Hash" header="Код">
       </igx-column>
