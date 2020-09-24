@@ -43,9 +43,9 @@
       <igx-column field="CompanyId" header="Компания">
       </igx-column>
       <igx-column field="DateSubmitted" [dataType]="gridDataType.Date" [sortable]="true" header="Направена на">
-        <ng-template igxCell let-value>
+        <span *igxCell="let value">
           {{ value | date }}
-        </ng-template>
+        </span>
       </igx-column>
       <igx-column field="Game" [groupable]="true" header="Лига">
         <span *igxCell="let value">
@@ -55,19 +55,15 @@
       <igx-column field="Hash" header="Код">
       </igx-column>
       <igx-column field="State" [editable]="true" [dataType]="gridDataType.Boolean" header="Потвърдена">
-        <ng-template igxCell let-value>
-          <igx-icon [class]="value ? 'color-success' : 'color-error'">{{ value ? 'check' : 'close' }}</igx-icon>
-        </ng-template>
+        <igx-icon *igxCell="let value" [class]="value ? 'color-success' : 'color-error'">{{ value ? 'check' : 'close' }}</igx-icon>
       </igx-column>
 
-      <ng-template igxGroupByRow let-groupRow>
-        <div class="igx-group-label">
-          <igx-icon class="igx-group-label__icon">group_work</igx-icon>
-          <span class="igx-group-label__column-name">{{groupRow.column.header}}:</span>
-          <span class="igx-group-label__text">{{ groupRow.value ? 'StarCraft II' : 'CS:GO' }}</span>
-          <igx-badge [value]="groupRow.records.length" class="igx-group-label__count-badge"></igx-badge>
-        </div>
-      </ng-template>
+      <div *igxGroupByRow="let groupRow" class="igx-group-label">
+        <igx-icon class="igx-group-label__icon">group_work</igx-icon>
+        <span class="igx-group-label__column-name">{{groupRow.column.header}}:</span>
+        <span class="igx-group-label__text">{{ groupRow.value ? 'StarCraft II' : 'CS:GO' }}</span>
+        <igx-badge [value]="groupRow.records.length" class="igx-group-label__count-badge"></igx-badge>
+      </div>
 
     </igx-grid>
   </div>
@@ -84,49 +80,43 @@
               [cellSelection]="selectionMode.none">
 
       <igx-column field="orderDate" [dataType]="gridDataType.Date" [sortable]="true" header="Направена на">
-        <ng-template igxCell let-value>
+        <span *igxCell="let value">
           {{ value | date }}
-        </ng-template>
+        </span>
       </igx-column>
       <igx-column field="email" header="Имейл Адрес">
       </igx-column>
       <igx-column field="name" header="Име">
-        <ng-template igxCell let-cell="cell">
+        <span *igxCell="let cell = cell">
           {{ cell.row.rowData.firstName }} {{ cell.row.rowData.lastName }}
-        </ng-template>
+        </span>
       </igx-column>
       <igx-column field="phoneNumber" header="Телефон">
-        <ng-template igxCell let-value>
+        <span *igxCell="let value">
           +359 {{ value }}
-        </ng-template>
+        </span>
       </igx-column>
       <igx-column field="address" header="Адрес">
-        <ng-template igxCell let-cell="cell">
+        <span *igxCell="let cell = cell">
           {{ cell.row.rowData.city }}, {{ cell.row.rowData.streetAddress }}
-        </ng-template>
+        </span>
       </igx-column>
       <igx-column field="promocode" header="Промо код">
       </igx-column>
       <igx-column field="confirmed" [dataType]="gridDataType.Boolean" [editable]="true" header="Потвърдена">
-        <ng-template igxCell let-value>
-          <igx-icon [class]="value ? 'color-success' : 'color-error'">{{ value ? 'check' : 'close' }}</igx-icon>
-        </ng-template>
+        <igx-icon *igxCell="let value" [class]="value ? 'color-success' : 'color-error'">{{ value ? 'check' : 'close' }}</igx-icon>
       </igx-column>
       <igx-column field="shipped" [dataType]="gridDataType.Boolean" [editable]="true" header="Изпратена">
-        <ng-template igxCell let-value>
-          <igx-icon [class]="value ? 'color-success' : 'color-error'">{{ value ? 'check' : 'close' }}</igx-icon>
-        </ng-template>
+        <igx-icon *igxCell="let value" [class]="value ? 'color-success' : 'color-error'">{{ value ? 'check' : 'close' }}</igx-icon>
       </igx-column>
 
-      <ng-template igxGridDetail let-dataItem>
-        <div class="horizontal details-container space-evenly">
-          <div class="column-center" *ngFor="let details of dataItem.jerseys">
-            <img src="/assets/wallpapers/jersey-small.webp" alt="Esports Business League jersey" />
-            <div>{{details.cut ? 'Дамска' : 'Мъжка'}}</div>
-            <div class="highlight">{{ details.size | sizeName }}</div>
-          </div>
+      <div *igxGridDetail="let dataItem" class="horizontal details-container space-evenly">
+        <div class="column-center" *ngFor="let details of dataItem.jerseys">
+          <img src="/assets/wallpapers/jersey-small.webp" alt="Esports Business League jersey" />
+          <div>{{details.cut ? 'Дамска' : 'Мъжка'}}</div>
+          <div class="highlight">{{ details.size | sizeName }}</div>
         </div>
-      </ng-template>
+      </div>
     </igx-grid>
   </div>
 </div>
