@@ -289,14 +289,6 @@ $grid-toolbar-theme: igx-grid-toolbar-theme($background-color: $background);
   align-items: center;
   padding-right: 4px;
 }
-
-.slot-timepicker {
-  width: 120px;
-}
-
-.slot-select {
-  width: 200px;
-}
 /* END Admin */
 
 /* SCHEDULE */
@@ -319,6 +311,16 @@ igx-calendar {
   column-gap: 16px;
   row-gap: 16px;
 }
+
+.match-details {
+  display: grid;
+  row-gap: 16px;
+  padding: 16px;
+}
+
+ .match-details > * {
+   width: 100%;
+ }
 
 .score-container {
   margin: 0 16px;
@@ -384,9 +386,5 @@ igx-calendar {
 
   .match-winner {
     grid-template-columns: 0px minmax(65px, 1fr) minmax(161px, 1fr) minmax(74px, 1fr);
-  }
-
-  .match-details {
-    padding: 0;
   }
 }

@@ -1,10 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { getEmptyNewGroup,
   TournamentGroup,
   TournamentRegistration } from '../../../../src-common/models/tournament';
 import { ApiTournamentsService } from '../../../../src-common/services/bellumgens-api.tournaments.service';
 import { environment } from '../../../../src-common/environments/environment';
-import { IDropDroppedEventArgs, DateRangeDescriptor, DateRangeType, GridSelectionMode } from '@infragistics/igniteui-angular';
+import { IDropDroppedEventArgs, DateRangeDescriptor, DateRangeType, GridSelectionMode, IgxDialogComponent } from '@infragistics/igniteui-angular';
 import { TournamentCSGOMatch, TournamentMatchMap } from '../../../../src-common/models/tournament-schedule';
 import { CSGOActiveDutyDescriptor, ActiveDuty } from '../../../../src-common/models/csgomaps';
 import { SameDay } from '../../../../src-common/models/misc';
@@ -28,6 +28,10 @@ export class AdminCsgoComponent {
   public datesWithMatches: DateRangeDescriptor [] = [];
   public selectedMatches: TournamentCSGOMatch [] = [];
   public selectionMode = GridSelectionMode;
+  public matchInEdit: TournamentCSGOMatch = { StartTime: this.selectedDate as Date };
+
+  @ViewChild('newMatchDialog')
+  public matchDialog: IgxDialogComponent;
 
   constructor(private apiService: ApiTournamentsService) {
     this.apiService.csgoRegistrations.subscribe(data => {
@@ -89,6 +93,7 @@ export class AdminCsgoComponent {
       // const reg = this.registrations.find(r =>
       //   r.TeamId === (<TournamentCSGOMatch>match).Team1Id || r.TeamId === (<TournamentCSGOMatch>match).Team2Id);
       // match.GroupId = reg.TournamentCSGOGroupId;
+      this.selectedMatches.push(match);
       this.apiService.submitCSGOMatch(match).subscribe(data => {
         if (!match.Id) {
           this.matches.push(data);
@@ -97,8 +102,8 @@ export class AdminCsgoComponent {
         if (!match.Maps) {
           match.Maps = [];
         }
-        match.inEdit = false;
       });
+      this.matchDialog.close();
     }
   }
 
@@ -114,7 +119,8 @@ export class AdminCsgoComponent {
   }
 
   public addNewMatch() {
-    this.selectedMatches.push({StartTime: this.selectedDate as Date, inEdit: true});
+    this.matchInEdit = { StartTime: this.selectedDate as Date };
+    this.matchDialog.open();
   }
 
   public submitMatchMap(map: TournamentMatchMap) {
