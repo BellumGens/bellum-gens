@@ -9,7 +9,10 @@
                       [text]="(registrations | getRegCount:gameEnum.CSGO) + ' / 16 записани'"
                       type="success"></igx-linear-bar>
       <button igxButton="raised"
-              (click)="!authUser ? openLogin('Първо влезте или се регистрирайте...') : registration.selectGame(gameEnum.CSGO)">Регистрирай се за CS:GO</button>
+              [disabled]="true">Регистрациите са затворени</button>
+      <!-- <button igxButton="raised"
+              [disabled]="true"
+              (click)="!authUser ? openLogin('Първо влезте или се регистрирайте...') : registration.selectGame(gameEnum.CSGO)">Регистрирай се за CS:GO</button> -->
     </div>
   </div>
   <div class="slide slide2">
@@ -20,15 +23,27 @@
       <igx-linear-bar [max]="32"
                       [value]="registrations | getRegCount:gameEnum.StarCraft2"
                       [text]="(registrations | getRegCount:gameEnum.StarCraft2) + ' / 32 записани'"
-                      type="success"></igx-linear-bar>
+                      type="success">
+      </igx-linear-bar>
       <button igxButton="raised"
-              (click)="!authUser ? openLogin('Първо влезте или се регистрирайте...') : registration.selectGame(gameEnum.StarCraft2)">Регистрирай се за StarCraft II</button>
+              [disabled]="true">Регистрациите са затворени</button>
+      <!-- <button igxButton="raised"
+              [disabled]="true"
+              (click)="!authUser ? openLogin('Първо влезте или се регистрирайте...') : registration.selectGame(gameEnum.StarCraft2)">Регистрирай се за StarCraft II</button> -->
     </div>
   </div>
 </div>
 
 <div class="content-container">
-  <app-tournament-registration #registration class="content-container-row" [tournamentId]="tournamentId"></app-tournament-registration>
+  <div class="content-container-row">
+    <h2>Сезон 2</h2>
+  </div>
+
+  <div class="content-container-row">
+    <p>Вторият сезон на Esports Business League започва на 28ми септември с два дни CS:GO мачове и още два дни мачове по StarCraft II. Този път двете игри ще бъдат играни в различни дни и ще бъдат излъчвани на един и същи канал: <a href="https://www.twitch.tv/ebleague_a" target="_blank" rel="noopener">https://www.twitch.tv/ebleague_a</a>. В понеделниците и вторниците можете да наблюдавате мачовете от групите по CS:GO в BO3 формат, а сряда и четвъртък ще бъдат дни за StarCraft II, отново в BO3 формат. Сезонът ще завърши с финали на 7-8 ноември.</p>
+  </div>
+
+  <!-- <app-tournament-registration #registration class="content-container-row" [tournamentId]="tournamentId"></app-tournament-registration> -->
   <div class="content-container-row">
     <h2 id="finals">Финали Сезон 1</h2>
   </div>
