@@ -3,8 +3,6 @@
     <igx-card-header>
       <igx-avatar igxCardThumbnail [roundShape]="true" src="/assets/wallpapers/csgo-watermark.webp"></igx-avatar>
       <h1 igxCardHeaderTitle>CS:GO Лига</h1>
-
-      <h4><a href="https://challonge.com/ebleague_csgo" target="_blank" rel="noopener">Бракет за сезон 2</a></h4>
     </igx-card-header>
     <igx-card-content>
       <div class="participants-container">
@@ -28,10 +26,75 @@
         </div>
       </div>
 
-      <h4 style="width: 100%">График</h4>
-      <app-csgo-tournament-schedule>
-      </app-csgo-tournament-schedule>
-      <!-- <div class="group-columns">
+      <igx-grid [cellSelection]="selectionMode.none"
+                [data]="csgomatches"
+                height="550px"
+                [showToolbar]="true"
+                emptyGridMessage="Няма намерени срещи..."
+                [isLoading]="loading"
+                [allowFiltering]="true"
+                toolbarTitle="График с всички CS:GO срещи">
+
+        <igx-column field="StartTime" width="220px" [dataType]="gridDataType.Date" header="Начало">
+          <ng-template igxCell let-value>
+            {{ value | date:'MMM d, y, h:mm a' }}
+          </ng-template>
+        </igx-column>
+
+        <igx-column field="MatchDetails" header="Среща" [filterable]="false">
+          <div *igxCell="let cell = cell">
+            <igx-avatar igxListThumbnail
+                        [src]="cell.rowData.Team1.TeamAvatar"
+                        [initials]="cell.rowData.Team1.TeamName"
+                        [roundShape]="true">
+            </igx-avatar>
+            <a [href]="environment.bellumgens + '/team/' + cell.rowData.Team1.CustomUrl"
+               [class]="cell.rowData.WinnerTeamId === cell.rowData.Team1.TeamId ? 'highlight grid-team-name' : 'grid-team-name'">
+              {{ cell.rowData.Team1.TeamName }}
+            </a>
+
+            <span class="grid-vs-divider">vs.</span>
+
+            <igx-avatar igxListThumbnail
+                        [src]="cell.rowData.Team2.TeamAvatar"
+                        [initials]="cell.rowData.Team2.TeamName"
+                        [roundShape]="true">
+            </igx-avatar>
+            <a [href]="environment.bellumgens + '/team/' + cell.rowData.Team2.CustomUrl"
+               [class]="cell.rowData.WinnerTeamId === cell.rowData.Team2.TeamId ? 'highlight grid-team-name' : 'grid-team-name'">
+              {{ cell.rowData.Team2.TeamName }}
+            </a>
+          </div>
+        </igx-column>
+
+        <ng-template igxGridDetail let-dataItem>
+          <div class="horizontal-center" *ngFor="let map of dataItem.Maps">
+            <div class="score-container">
+              {{ map.Team1Score }}
+            </div>
+
+            <igx-avatar [src]="map.Map | csgomapimage" [initials]="map.Map | csgomapname" [title]="map.Map | csgomapname"></igx-avatar>
+
+            <div class="score-container">
+              {{ map.Team2Score }}
+            </div>
+          </div>
+
+          <div class="horizontal-center" *ngIf="dataItem.NoShow">
+            Служебна победа.
+          </div>
+
+          <div class="horizontal-center" *ngIf="!dataItem.Maps.length && !dataItem.NoShow">
+            Срещата предстои да се играе или няма записани резултати за тази среща...
+          </div>
+        </ng-template>
+
+        <div *igxToolbarCustomContent>
+          <a href="https://challonge.com/ebleague_csgo" target="_blank" rel="noopener">Вижте бракетът за сезон 2 тук</a>
+        </div>
+      </igx-grid>
+
+      <div class="group-columns">
         <igx-grid *ngFor="let group of groups"
                   [cellSelection]="selectionMode.none"
                   [data]="group.Participants"
@@ -39,7 +102,7 @@
                   [toolbarTitle]="group.Name">
 
           <igx-column field="Team" header="Отбор" width="22%">
-            <ng-template igxCell let-value>
+            <div *igxCell="let value">
               <igx-avatar igxListThumbnail
                           [src]="value.TeamAvatar"
                           [initials]="value.TeamName"
@@ -48,7 +111,7 @@
               <a igxListLineTitle [href]="environment.bellumgens + '/team/' + value.CustomUrl" target="_blank">
                 {{ value.TeamName }}
               </a>
-            </ng-template>
+            </div>
           </igx-column>
 
           <igx-column field="Company" header="Компания" width="15%">
@@ -64,17 +127,15 @@
           <igx-column field="Losses" [dataType]="gridDataType.Number" header="Загуби" width="9%">
           </igx-column>
           <igx-column field="RoundDifference" [dataType]="gridDataType.Number" header="+/- Рундове" width="9%">
-            <ng-template igxCell let-value>
-              <span [class]="value > 0 ? 'color-success' : value < 0 ? 'color-error' : ''">
-                {{ value }}
-              </span>
-            </ng-template>
+            <span *igxCell="let value" [class]="value > 0 ? 'color-success' : value < 0 ? 'color-error' : ''">
+              {{ value }}
+            </span>
           </igx-column>
           <igx-column field="TeamPoints" [dataType]="gridDataType.Number" header="Точки" width="9%">
           </igx-column>
 
         </igx-grid>
-      </div> -->
+      </div>
 
     </igx-card-content>
   </igx-card>

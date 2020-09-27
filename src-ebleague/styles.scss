@@ -305,13 +305,6 @@ igx-calendar {
   height: fit-content;
 }
 
-.match-layout {
-  display: grid;
-  grid-template-columns: 348px minmax(348px, 1fr);
-  column-gap: 16px;
-  row-gap: 16px;
-}
-
 .match-details {
   display: grid;
   row-gap: 16px;
@@ -321,6 +314,10 @@ igx-calendar {
  .match-details > * {
    width: 100%;
  }
+
+.match-actions > * {
+  margin: 0 4px;
+}
 
 .score-container {
   margin: 0 16px;
@@ -374,14 +371,6 @@ igx-calendar {
 @media only screen and (max-width: 550px) {
   .match-time {
     grid-column: 1 / -1;
-  }
-
-  .match-score {
-    grid-template-columns: 75px minmax(46px, 1fr) 42px minmax(144px, 1fr);
-  }
-
-  .match-summary {
-    grid-template-columns: minmax(130px, 1fr) 48px minmax(130px, 1fr);
   }
 
   .match-winner {

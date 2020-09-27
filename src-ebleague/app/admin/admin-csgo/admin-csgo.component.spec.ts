@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { AdminCsgoComponent } from './admin-csgo.component';
 import { BellumGensModule } from 'src-common/components/components.module';
@@ -26,7 +26,7 @@ describe('AdminCsgoComponent', () => {
   let component: AdminCsgoComponent;
   let fixture: ComponentFixture<AdminCsgoComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ AdminCsgoComponent, NotInGroupPipe ],
       imports: [

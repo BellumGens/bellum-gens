@@ -3,7 +3,6 @@
     <igx-card-header>
       <igx-avatar igxCardThumbnail [roundShape]="true" src="/assets/wallpapers/sc2-watermark.webp"></igx-avatar>
       <h1 igxCardHeaderTitle>StarCraft II Лига</h1>
-      <h4><a href="https://challonge.com/ebleague_starcraft" target="_blank" rel="noopener">Бракет за сезон 2</a></h4>
     </igx-card-header>
     <igx-card-content>
       <div class="participants-container">
@@ -23,19 +22,81 @@
         </div>
       </div>
 
-      <h4 style="width: 100%">График</h4>
-      <app-sc2-tournament-schedule>
-      </app-sc2-tournament-schedule>
+      <igx-grid [cellSelection]="selectionMode.none"
+                [data]="sc2matches"
+                height="550px"
+                [showToolbar]="true"
+                emptyGridMessage="Няма намерени срещи..."
+                [isLoading]="loading"
+                [allowFiltering]="true"
+                toolbarTitle="График с всички StarCraft II срещи">
 
-      <!-- <div class="group-columns">
+        <igx-column field="StartTime" width="220px" [dataType]="gridDataType.Date" header="Начало">
+          <ng-template igxCell let-value>
+            {{ value | date:'MMM d, y, h:mm a' }}
+          </ng-template>
+        </igx-column>
+
+        <igx-column field="MatchDetails" header="Среща" [filterable]="false">
+          <div *igxCell="let cell = cell">
+            <igx-avatar igxListThumbnail
+                        [src]="cell.rowData.Player1.avatarMedium"
+                        [initials]="cell.rowData.Player1.username"
+                        [roundShape]="true">
+            </igx-avatar>
+            <span [class]="cell.rowData.Player1Points > cell.rowData.Player2Points ? 'highlight grid-team-name' : 'grid-team-name'">
+              {{ cell.rowData.Player1.battleNetId }}
+            </span>
+
+            <span class="grid-vs-divider">vs.</span>
+
+            <igx-avatar
+                        [src]="cell.rowData.Player2.avatarMedium"
+                        [initials]="cell.rowData.Player2.username"
+                        [roundShape]="true">
+            </igx-avatar>
+            <span [class]="cell.rowData.Player2Points > cell.rowData.Player1Points ? 'highlight grid-team-name' : 'grid-team-name'">
+              {{ cell.rowData.Player2.battleNetId }}
+            </span>
+          </div>
+        </igx-column>
+
+        <ng-template igxGridDetail let-dataItem>
+          <div class="horizontal-center" *ngFor="let map of dataItem.Maps">
+            <div class="score-container">
+              <igx-icon *ngIf="map.WinnerId === dataItem.Player1Id">check</igx-icon>
+            </div>
+
+            <div>{{ map.Map | sc2MapName }}</div>
+
+            <div class="score-container">
+              <igx-icon *ngIf="map.WinnerId === dataItem.Player2Id">check</igx-icon>
+            </div>
+          </div>
+
+          <div class="horizontal-center" *ngIf="dataItem.NoShow">
+            Служебна победа.
+          </div>
+
+          <div class="horizontal-center" *ngIf="!dataItem.Maps.length && !dataItem.NoShow">
+            Срещата предстои да се играе или няма записани резултати за тази среща...
+          </div>
+        </ng-template>
+
+        <div *igxToolbarCustomContent>
+          <a href="https://challonge.com/ebleague_starcraft" target="_blank" rel="noopener">Вижте бракетът за сезон 2 тук</a>
+        </div>
+      </igx-grid>
+
+      <div class="group-columns">
         <igx-grid *ngFor="let group of groups"
-                  [cellSelection]="selectionMode"
+                  [cellSelection]="selectionMode.none"
                   [data]="group.Participants"
                   [showToolbar]="true"
                   [toolbarTitle]="group.Name">
 
           <igx-column field="User" header="Отбор" width="20%">
-            <ng-template igxCell let-value>
+            <div *igxCell="let value">
               <igx-avatar igxListThumbnail
                           [src]="value.avatarMedium"
                           [initials]="value.username"
@@ -44,7 +105,7 @@
               <a igxListLineTitle [href]="environment.bellumgens + '/players/' + (value.customURL || value.id)" target="_blank">
                 {{ value.username }}
               </a>
-            </ng-template>
+            </div>
           </igx-column>
 
           <igx-column field="BattleTag" header="Battle.net Battle Tag" width="20%">
@@ -61,7 +122,7 @@
           </igx-column>
 
         </igx-grid>
-      </div> -->
+      </div>
 
     </igx-card-content>
   </igx-card>

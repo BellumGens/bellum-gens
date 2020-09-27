@@ -10,8 +10,6 @@ import { TournamentSc2Component } from './tournament-sc2/tournament-sc2.componen
 import { BaseComponent } from '../../../src-bellumgens/app/base/base.component';
 import { ProductionCrewComponent } from './production-crew/production-crew.component';
 import { SortByPointsPipe } from '../pipes/sort-by-points.pipe';
-import { CSGOTournamentScheduleComponent } from './tournament-schedule/csgo/tournament-schedule.component';
-import { SC2TournamentScheduleComponent } from './tournament-schedule/sc2/tournament-schedule.component';
 import { BellumGensModule } from '../../../src-common/components/components.module';
 
 import {
@@ -35,8 +33,6 @@ import {
     TournamentCsgoComponent,
     TournamentSc2Component,
     ProductionCrewComponent,
-    CSGOTournamentScheduleComponent,
-    SC2TournamentScheduleComponent,
     BaseComponent,
     SortByPointsPipe
   ],

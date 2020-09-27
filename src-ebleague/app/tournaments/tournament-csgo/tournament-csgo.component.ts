@@ -8,6 +8,7 @@ import { LoginService } from '../../../../src-common/services/login.service';
 import { ApplicationUser } from '../../../../src-common/models/applicationuser';
 import { environment } from '../../../../src-common/environments/environment';
 import { DataType, GridSelectionMode } from '@infragistics/igniteui-angular';
+import { TournamentCSGOMatch } from '../../../../src-common/models/tournament-schedule';
 
 @Component({
   selector: 'app-tournament-csgo',
@@ -23,6 +24,7 @@ export class TournamentCsgoComponent extends BaseComponent {
   public environment = environment;
   public selectionMode = GridSelectionMode;
   public gridDataType = DataType;
+  public csgomatches: TournamentCSGOMatch [];
 
   constructor(private apiService: ApiTournamentsService,
               private loginService: LoginService,
@@ -36,7 +38,8 @@ export class TournamentCsgoComponent extends BaseComponent {
       }),
       this.apiService.csgoRegistrations.subscribe(data => this.registrations = data),
       this.apiService.loadingCSGORegistrations.subscribe(data => this.loading = data),
-      this.loginService.applicationUser.subscribe(user => this.authUser = user)
+      this.loginService.applicationUser.subscribe(user => this.authUser = user),
+      this.apiService.csgoMatches.subscribe(data => this.csgomatches = data)
     );
     this.apiService.getCSGOGroups().subscribe(data => this.groups = data);
   }
