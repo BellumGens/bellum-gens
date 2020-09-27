@@ -8,7 +8,14 @@ export enum SC2Map {
   EternalEmpireLE,
   GoldenWallLE,
   PurityAndIndustryLE,
-  EverDreamLE
+  EverDreamLE,
+  SubmarineLE,
+  DeathauraLE,
+  PillarsofGoldLE,
+  OxideLE,
+  LightshadeLE,
+  RomanticideLE,
+  JagannathaLE
 }
 
 export interface SC2LadderDescriptor {
@@ -48,5 +55,26 @@ export const SC2_MAPS: SC2LadderDescriptor [] = [{
   }, {
     id: SC2Map.EverDreamLE,
     map: 'Ever Dream LE'
+  }, {
+    id: SC2Map.SubmarineLE,
+    map: 'Submarine LE'
+  }, {
+    id: SC2Map.DeathauraLE,
+    map: 'Deathaura LE'
+  }, {
+    id: SC2Map.PillarsofGoldLE,
+    map: 'Pillars of Gold LE'
+  }, {
+    id: SC2Map.OxideLE,
+    map: 'Oxide LE'
+  }, {
+    id: SC2Map.LightshadeLE,
+    map: 'Lightshade LE'
+  }, {
+    id: SC2Map.RomanticideLE,
+    map: 'Romanticide LE'
+  }, {
+    id: SC2Map.JagannathaLE,
+    map: 'Jagannatha LE'
   }
 ];
