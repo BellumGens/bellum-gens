@@ -7,8 +7,8 @@ import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { TournamentRegistration, TournamentGroup } from '../../../../src-common/models/tournament';
 import { environment } from '../../../../src-common/environments/environment';
-import { DataType, GridSelectionMode } from '@infragistics/igniteui-angular';
-import { TournamentSC2Match } from 'src-common/models/tournament-schedule';
+import { DataType, FilteringExpressionsTree, FilteringLogic, GridSelectionMode, IgxDateFilteringOperand } from '@infragistics/igniteui-angular';
+import { TournamentSC2Match } from '../../../../src-common/models/tournament-schedule';
 
 @Component({
   selector: 'app-tournament-sc2',
@@ -25,6 +25,7 @@ export class TournamentSc2Component extends BaseComponent {
   public gridDataType = DataType;
   public selectionMode = GridSelectionMode;
   public sc2matches: TournamentSC2Match [];
+  public initialFilter: FilteringExpressionsTree;
 
   constructor(private apiService: ApiTournamentsService,
               private loginService: LoginService,
@@ -39,9 +40,25 @@ export class TournamentSc2Component extends BaseComponent {
       this.apiService.sc2Registrations.subscribe(data => this.registrations = data),
       this.apiService.loadingSC2Registrations.subscribe(data => this.loading = data),
       this.loginService.applicationUser.subscribe(user => this.authUser = user),
-      this.apiService.sc2Matches.subscribe(data => this.sc2matches = data)
+      this.apiService.sc2Matches.subscribe(data => {
+        if (data) {
+          data.forEach(item => item.StartTime = new Date(item.StartTime));
+          this.sc2matches = data;
+        }
+      })
     );
     this.apiService.getSC2Groups().subscribe(data => this.groups = data);
+
+    const gridFilteringExpressionsTree = new FilteringExpressionsTree(FilteringLogic.And);
+    const productFilteringExpressionsTree = new FilteringExpressionsTree(FilteringLogic.And, 'StartTime');
+    const productExpression = {
+        condition: IgxDateFilteringOperand.instance().condition('after'),
+        fieldName: 'StartTime',
+        searchVal: new Date(2020, 8, 27)
+    };
+    productFilteringExpressionsTree.filteringOperands.push(productExpression);
+    gridFilteringExpressionsTree.filteringOperands.push(productFilteringExpressionsTree);
+    this.initialFilter = gridFilteringExpressionsTree;
   }
 
 }

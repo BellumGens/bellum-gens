@@ -29,6 +29,7 @@
                 emptyGridMessage="Няма намерени срещи..."
                 [isLoading]="loading"
                 [allowFiltering]="true"
+                [filteringExpressionsTree]="initialFilter"
                 toolbarTitle="График с всички StarCraft II срещи">
 
         <igx-column field="StartTime" width="220px" [dataType]="gridDataType.Date" header="Начало">
