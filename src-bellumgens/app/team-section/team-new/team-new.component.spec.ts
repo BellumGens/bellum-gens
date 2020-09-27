@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { TeamNewComponent } from './team-new.component';
 import { IgxIconModule,
@@ -17,7 +17,7 @@ describe('TeamNewComponent', () => {
   let component: TeamNewComponent;
   let fixture: ComponentFixture<TeamNewComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         TeamNewComponent,

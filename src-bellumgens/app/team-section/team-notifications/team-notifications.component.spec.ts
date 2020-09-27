@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { TeamNotificationsComponent } from './team-notifications.component';
 import { IgxListModule, IgxAvatarModule } from '@infragistics/igniteui-angular';
@@ -12,7 +12,7 @@ describe('TeamNotificationsComponent', () => {
   let component: TeamNotificationsComponent;
   let fixture: ComponentFixture<TeamNotificationsComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,

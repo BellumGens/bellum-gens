@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { TeamNavComponent } from './team-nav.component';
 import { IgxAvatarModule,
@@ -21,7 +21,7 @@ describe('TeamNavComponent', () => {
   let component: TeamNavComponent;
   let fixture: ComponentFixture<TeamNavComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         FormsModule,

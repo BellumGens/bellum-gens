@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { TeamApplicationComponent } from './team-application.component';
 import { IgxIconModule, IgxInputGroupModule, IgxDialogModule, IgxRippleModule } from '@infragistics/igniteui-angular';
@@ -11,7 +11,7 @@ describe('TeamApplicationComponent', () => {
   let component: TeamApplicationComponent;
   let fixture: ComponentFixture<TeamApplicationComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         FormsModule,
