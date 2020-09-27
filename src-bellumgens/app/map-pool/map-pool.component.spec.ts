@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { MapPoolComponent } from './map-pool.component';
 import { IgxCheckboxModule, IgxCardModule } from '@infragistics/igniteui-angular';
@@ -9,7 +9,7 @@ describe('MapPoolComponent', () => {
   let component: MapPoolComponent;
   let fixture: ComponentFixture<MapPoolComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         IgxCheckboxModule,

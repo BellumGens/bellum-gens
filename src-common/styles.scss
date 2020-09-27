@@ -111,7 +111,7 @@ textarea {
   width: 100%;
 }
 
-button igx-icon,
+button > igx-icon,
 a > igx-icon {
   margin-right: 4px;
 }
@@ -314,7 +314,7 @@ a > igx-icon {
 }
 
 .grid-vs-divider {
-  padding: 0 8px;
+  margin: 0 8px;
 }
 
 .grid-team-name {

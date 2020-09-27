@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { TeamOverviewComponent } from './team-overview.component';
 import { IgxAvatarModule,
@@ -17,7 +17,7 @@ describe('TeamOverviewComponent', () => {
   let component: TeamOverviewComponent;
   let fixture: ComponentFixture<TeamOverviewComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule,

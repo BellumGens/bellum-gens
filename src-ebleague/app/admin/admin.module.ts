@@ -28,7 +28,7 @@ import {
   IgxCalendarModule,
   IgxDividerModule,
   IgxCheckboxModule,
-  IgxGridModule
+  IgxGridModule, IgxDialogModule, IgxActionStripModule
 } from '@infragistics/igniteui-angular';
 
 
@@ -62,6 +62,7 @@ import {
     IgxCalendarModule,
     IgxCheckboxModule,
     IgxDividerModule,
+    IgxDialogModule,
     IgxGridModule
   ]
 })

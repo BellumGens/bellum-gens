@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { TournamentSc2Component } from './tournament-sc2.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -7,17 +7,15 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { IgxAvatarModule, IgxCardModule, IgxBadgeModule, IgxListModule, IgxProgressBarModule, IgxGridModule, IgxCalendarModule } from '@infragistics/igniteui-angular';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SortByPointsPipe } from 'src-ebleague/app/pipes/sort-by-points.pipe';
-import { SC2TournamentScheduleComponent } from '../tournament-schedule/sc2/tournament-schedule.component';
 
 describe('TournamentSc2Component', () => {
   let component: TournamentSc2Component;
   let fixture: ComponentFixture<TournamentSc2Component>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         TournamentSc2Component,
-        SC2TournamentScheduleComponent,
         SortByPointsPipe
       ],
       imports: [

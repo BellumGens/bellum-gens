@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { TeamDetailsComponent } from './team-details.component';
 import { AvailabilityComponent } from 'src-bellumgens/app/availability/availability.component';
@@ -23,7 +23,7 @@ describe('TeamDetailsComponent', () => {
   let component: TeamDetailsComponent;
   let fixture: ComponentFixture<TeamDetailsComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,

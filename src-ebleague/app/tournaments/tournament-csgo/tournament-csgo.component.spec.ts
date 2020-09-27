@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { TournamentCsgoComponent } from './tournament-csgo.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -7,18 +7,16 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { IgxAvatarModule, IgxCardModule, IgxBadgeModule, IgxListModule, IgxProgressBarModule, IgxCalendarModule, IgxGridModule } from '@infragistics/igniteui-angular';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SortByPointsPipe } from 'src-ebleague/app/pipes/sort-by-points.pipe';
-import { CSGOTournamentScheduleComponent } from '../tournament-schedule/csgo/tournament-schedule.component';
 import { BellumGensModule } from 'src-common/components/components.module';
 
 describe('TournamentCsgoComponent', () => {
   let component: TournamentCsgoComponent;
   let fixture: ComponentFixture<TournamentCsgoComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
         TournamentCsgoComponent,
-        CSGOTournamentScheduleComponent,
         SortByPointsPipe
       ],
       imports: [
