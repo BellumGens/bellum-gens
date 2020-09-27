@@ -19,6 +19,7 @@ export class TournamentCsgoComponent extends BaseComponent {
   public registrations: TournamentRegistration [];
   public groups: TournamentGroup [];
   public loading = false;
+  public loadingMatches = false;
   public authUser: ApplicationUser;
   public tournamentId: string;
   public environment = environment;
@@ -40,6 +41,7 @@ export class TournamentCsgoComponent extends BaseComponent {
       this.apiService.csgoRegistrations.subscribe(data => this.registrations = data),
       this.apiService.loadingCSGORegistrations.subscribe(data => this.loading = data),
       this.loginService.applicationUser.subscribe(user => this.authUser = user),
+      this.apiService.loadingCSGOMatches.subscribe(data => this.loadingMatches = data),
       this.apiService.csgoMatches.subscribe(data => {
         if (data) {
           data.forEach(item => item.StartTime = new Date(item.StartTime));

@@ -19,6 +19,7 @@ export class TournamentSc2Component extends BaseComponent {
   public registrations: TournamentRegistration [];
   public groups: TournamentGroup [];
   public loading = false;
+  public loadingMatches = false;
   public authUser: ApplicationUser;
   public tournamentId: string;
   public environment = environment;
@@ -40,6 +41,7 @@ export class TournamentSc2Component extends BaseComponent {
       this.apiService.sc2Registrations.subscribe(data => this.registrations = data),
       this.apiService.loadingSC2Registrations.subscribe(data => this.loading = data),
       this.loginService.applicationUser.subscribe(user => this.authUser = user),
+      this.apiService.loadingSC2Matches.subscribe(data => this.loadingMatches = data),
       this.apiService.sc2Matches.subscribe(data => {
         if (data) {
           data.forEach(item => item.StartTime = new Date(item.StartTime));
