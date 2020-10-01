@@ -15,7 +15,8 @@ export enum SC2Map {
   OxideLE,
   LightshadeLE,
   RomanticideLE,
-  JagannathaLE
+  JagannathaLE,
+  IceAndChromeLE
 }
 
 export interface SC2LadderDescriptor {
@@ -76,5 +77,8 @@ export const SC2_MAPS: SC2LadderDescriptor [] = [{
   }, {
     id: SC2Map.JagannathaLE,
     map: 'Jagannatha LE'
+  }, {
+    id: SC2Map.IceAndChromeLE,
+    map: 'Ice and Chrome LE'
   }
 ];
