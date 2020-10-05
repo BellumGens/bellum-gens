@@ -4,7 +4,16 @@ import { getEmptyNewGroup,
   TournamentRegistration } from '../../../../src-common/models/tournament';
 import { ApiTournamentsService } from '../../../../src-common/services/bellumgens-api.tournaments.service';
 import { environment } from '../../../../src-common/environments/environment';
-import { IDropDroppedEventArgs, GridSelectionMode, IRowDataEventArgs, IgxGridComponent, IgxDialogComponent } from '@infragistics/igniteui-angular';
+import {
+  IDropDroppedEventArgs,
+  GridSelectionMode,
+  IRowDataEventArgs,
+  IgxGridComponent,
+  IgxDialogComponent,
+  FilteringExpressionsTree,
+  FilteringLogic,
+  IgxDateFilteringOperand
+} from '@infragistics/igniteui-angular';
 import { TournamentCSGOMatch, TournamentMatchMap } from '../../../../src-common/models/tournament-schedule';
 import { CSGOActiveDutyDescriptor, ActiveDuty } from '../../../../src-common/models/csgomaps';
 
@@ -25,6 +34,7 @@ export class AdminCsgoComponent {
   public mapList: CSGOActiveDutyDescriptor [] = ActiveDuty;
   public selectionMode = GridSelectionMode;
   public matchInEdit: TournamentCSGOMatch = { StartTime: new Date() };
+  public initialFilter: FilteringExpressionsTree;
 
   @ViewChild('matchGrid')
   public matchGrid: IgxGridComponent;
@@ -38,7 +48,23 @@ export class AdminCsgoComponent {
     this.apiService.loadingCSGORegistrations.subscribe(data => this.loading = data);
     this.apiService.getCSGOGroups().subscribe(data => this.groups = data);
     this.apiService.loadingCSGOMatches.subscribe(data => this.loadingMatches = data);
-    this.apiService.csgoMatches.subscribe(data => this.matches = data);
+    this.apiService.csgoMatches.subscribe(data => {
+      if (data) {
+        data.forEach(item => item.StartTime = new Date(item.StartTime));
+        this.matches = data;
+      }
+    });
+
+    const gridFilteringExpressionsTree = new FilteringExpressionsTree(FilteringLogic.And);
+    const productFilteringExpressionsTree = new FilteringExpressionsTree(FilteringLogic.And, 'StartTime');
+    const productExpression = {
+        condition: IgxDateFilteringOperand.instance().condition('after'),
+        fieldName: 'StartTime',
+        searchVal: new Date(2020, 8, 27)
+    };
+    productFilteringExpressionsTree.filteringOperands.push(productExpression);
+    gridFilteringExpressionsTree.filteringOperands.push(productFilteringExpressionsTree);
+    this.initialFilter = gridFilteringExpressionsTree;
   }
 
   public submitGroup(group: TournamentGroup) {
