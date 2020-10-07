@@ -2,7 +2,8 @@ import { PositionSettings, HorizontalAlignment, OverlaySettings, AutoPositionStr
 
 export const LOGIN_ASSETS = {
   Steam: '#101821',
-  Twitch: '#6441a5'
+  Twitch: '#6441a5',
+  BattleNet: '#2d6ead'
 };
 
 const positionSettings: PositionSettings = {
