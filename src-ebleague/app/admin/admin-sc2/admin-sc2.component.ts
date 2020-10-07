@@ -48,7 +48,12 @@ export class AdminSc2Component {
     this.apiService.loadingSC2Registrations.subscribe(data => this.loading = data);
     this.apiService.getSC2Groups().subscribe(data => this.groups = data);
     this.apiService.loadingSC2Matches.subscribe(data => this.loadingMatches = data);
-    this.apiService.sc2Matches.subscribe(data => this.matches = data);
+    this.apiService.sc2Matches.subscribe(data => {
+      if (data) {
+        data.forEach(item => item.StartTime = new Date(item.StartTime));
+        this.matches = data;
+      }
+    });
 
     const gridFilteringExpressionsTree = new FilteringExpressionsTree(FilteringLogic.And);
     const productFilteringExpressionsTree = new FilteringExpressionsTree(FilteringLogic.And, 'StartTime');
