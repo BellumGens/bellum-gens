@@ -38,7 +38,7 @@
     "@angular/router": "10.2.0",
     "@angular/service-worker": "10.2.0",
     "@igniteui/material-icons-extended": "^2.4.0",
-    "@infragistics/igniteui-angular": "10.1.10",
+    "@infragistics/igniteui-angular": "10.2.1",
     "@nguniversal/builders": "10.1.0",
     "@nguniversal/express-engine": "10.1.0",
     "@types/express": "^4.17.2",

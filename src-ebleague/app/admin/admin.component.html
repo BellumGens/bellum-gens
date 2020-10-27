@@ -35,7 +35,7 @@
               toolbarTitle="Регистрации"
               [showGroupArea]="true"
               [allowFiltering]="true"
-              (onCellEdit)="confirmRegistration($event)"
+              (cellEdit)="confirmRegistration($event)"
               [cellSelection]="selectionMode.none">
 
       <igx-column field="Email" header="Имейл Адрес">
@@ -76,7 +76,7 @@
               [showToolbar]="true"
               toolbarTitle="Поръчки"
               [allowFiltering]="true"
-              (onCellEdit)="editDone($event)"
+              (cellEdit)="editDone($event)"
               [cellSelection]="selectionMode.none">
 
       <igx-column field="orderDate" [dataType]="gridDataType.Date" [sortable]="true" header="Направена на">
