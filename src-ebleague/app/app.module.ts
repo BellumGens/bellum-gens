@@ -106,5 +106,6 @@ export class AppModule {
     this.iconService.addSvgIcon('telus', '/assets/partners/telus.svg', 'partners');
     this.iconService.addSvgIcon('modis', '/assets/partners/modis.svg', 'partners');
     this.iconService.addSvgIcon('omen', '/assets/partners/omen.svg', 'partners');
+    this.iconService.addSvgIcon('paysafe', '/assets/partners/paysafe.svg', 'partners');
   }
 }
