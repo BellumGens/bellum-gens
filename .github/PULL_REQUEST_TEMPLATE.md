@@ -6,5 +6,6 @@ Closes #
  - [ ] Tests
  - [ ] Refactoring
  - [ ] Minor enhancement
+ - [ ] Content update
 
 ### Additional information
