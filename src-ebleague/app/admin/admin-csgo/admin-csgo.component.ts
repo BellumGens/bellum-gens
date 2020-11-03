@@ -106,6 +106,7 @@ export class AdminCsgoComponent {
       this.apiService.submitCSGOMatch(this.matchInEdit).subscribe(data => {
         if (data) {
           if (!this.matchInEdit.Id) {
+            data.StartTime = new Date(data.StartTime);
             this.matchGrid.addRow(data);
           }
         }

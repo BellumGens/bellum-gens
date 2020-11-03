@@ -106,6 +106,7 @@ export class AdminSc2Component {
       this.apiService.submitSC2Match(this.matchInEdit).subscribe(data => {
         if (data) {
           if (!this.matchInEdit.Id) {
+            data.StartTime = new Date(data.StartTime);
             this.matchGrid.addRow(data);
           }
         }
