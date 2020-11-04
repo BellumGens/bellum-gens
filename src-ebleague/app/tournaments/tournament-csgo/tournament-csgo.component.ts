@@ -56,7 +56,7 @@ export class TournamentCsgoComponent extends BaseComponent {
     const productExpression = {
         condition: IgxDateFilteringOperand.instance().condition('after'),
         fieldName: 'StartTime',
-        searchVal: new Date(2020, 8, 27)
+        searchVal: new Date(2020, 10, 6)
     };
     productFilteringExpressionsTree.filteringOperands.push(productExpression);
     gridFilteringExpressionsTree.filteringOperands.push(productFilteringExpressionsTree);

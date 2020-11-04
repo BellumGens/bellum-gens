@@ -97,10 +97,10 @@ import { NewsComponent } from './news/news.component';
 export class AppModule {
   constructor(private iconService: IgxIconService) {
     const smproviders = ['facebook', 'twitter', 'instagram', 'linkedin', 'youtube'];
-    const complogos = ['discord', 'steam'];
+    const complogos = ['discord', 'steam', 'twitch'];
     complogos.forEach(c => this.iconService.addSvgIconFromText(c, logos.find(s => s.name === c).value, 'login-icons'));
     smproviders.forEach(p => this.iconService.addSvgIconFromText(p, socialMedia.find(s => s.name === p).value, 'login-icons'));
-    this.iconService.addSvgIcon('BattleNet', '/assets/login/battle-net.svg', 'login-icons');
+    this.iconService.addSvgIcon('battlenet', '/assets/login/battle-net.svg', 'login-icons');
     this.iconService.addSvgIcon('isobar', '/assets/partners/isobar.svg', 'partners');
     this.iconService.addSvgIcon('vmware', '/assets/partners/vmware.svg', 'partners');
     this.iconService.addSvgIcon('telus', '/assets/partners/telus.svg', 'partners');

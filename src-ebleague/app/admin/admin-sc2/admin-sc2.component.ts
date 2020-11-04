@@ -60,7 +60,7 @@ export class AdminSc2Component {
     const productExpression = {
         condition: IgxDateFilteringOperand.instance().condition('after'),
         fieldName: 'StartTime',
-        searchVal: new Date(2020, 8, 27)
+        searchVal: new Date(2020, 10, 6)
     };
     productFilteringExpressionsTree.filteringOperands.push(productExpression);
     gridFilteringExpressionsTree.filteringOperands.push(productFilteringExpressionsTree);
@@ -106,6 +106,7 @@ export class AdminSc2Component {
       this.apiService.submitSC2Match(this.matchInEdit).subscribe(data => {
         if (data) {
           if (!this.matchInEdit.Id) {
+            data.StartTime = new Date(data.StartTime);
             this.matchGrid.addRow(data);
           }
         }
