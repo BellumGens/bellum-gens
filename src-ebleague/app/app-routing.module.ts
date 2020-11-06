@@ -9,6 +9,7 @@ import { NewsComponent } from './news/news.component';
 
 export const routes: Routes = [
   { path: '', component: TournamentHomeComponent },
+  { path: 'giveaway', redirectTo: 'raffle', pathMatch: 'full' },
   { path: 'raffle', component: RaffleComponent },
   { path: 'register', component: RegistrationComponent },
   { path: 'news', component: NewsComponent, data: {
