@@ -11,10 +11,16 @@
 
     <igx-input-group class="team-info-input">
       <label for="teamAvatar" igxLabel>Avatar</label>
-      <input #teamAvatar igxInput id="teamAvatar" name="teamAvatar" [(ngModel)]="team.TeamAvatar" />
+      <input #teamAvatar="ngModel" 
+             igxInput
+             id="teamAvatar"
+             name="teamAvatar"
+             pattern="^https?:\/\/(?:[a-z\-]+\.)+[a-z]{2,6}(?:\/[^\/#?]+)+\.(?:jpe?g|png|webp)$"
+             [(ngModel)]="team.TeamAvatar" />
       <igx-suffix *ngIf="teamAvatar.value.length > 0" (click)="team.TeamAvatar = null">
           <igx-icon>clear</igx-icon>
       </igx-suffix>
+      <igx-hint *ngIf="teamAvatar.invalid">You must provide an image url</igx-hint>
     </igx-input-group>
 
     <igx-input-group class="team-info-input">
