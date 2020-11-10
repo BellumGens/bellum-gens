@@ -178,11 +178,11 @@
             (onRightButtonSelect)="submitMatch(); newMatchDialog.close()">
   <div class="match-details">
     <igx-date-picker [(ngModel)]="matchInEdit.StartTime">
-
+      <label igxLabel>Дата</label>
     </igx-date-picker>
 
     <igx-time-picker [itemsDelta]="{hours: 1, minutes: 15, seconds: 1}" [(ngModel)]="matchInEdit.StartTime">
-
+      <label igxLabel>Начало</label>
     </igx-time-picker>
 
     <igx-select [(ngModel)]="matchInEdit.Player1Id">
