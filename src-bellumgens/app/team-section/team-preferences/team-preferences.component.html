@@ -17,7 +17,7 @@
              name="teamAvatar"
              pattern="^https?:\/\/(?:[a-z\-]+\.)+[a-z]{2,6}(?:\/[^\/#?]+)+\.(?:jpe?g|png|webp)$"
              [(ngModel)]="team.TeamAvatar" />
-      <igx-suffix *ngIf="teamAvatar.value.length > 0" (click)="team.TeamAvatar = null">
+      <igx-suffix *ngIf="teamAvatar.model.length > 0" (click)="team.TeamAvatar = null">
           <igx-icon>clear</igx-icon>
       </igx-suffix>
       <igx-hint *ngIf="teamAvatar.invalid">You must provide an image url</igx-hint>
