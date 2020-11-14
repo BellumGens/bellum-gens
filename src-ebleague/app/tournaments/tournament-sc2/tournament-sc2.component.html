@@ -25,12 +25,17 @@
       <igx-grid [cellSelection]="selectionMode.none"
                 [data]="sc2matches"
                 height="550px"
-                [showToolbar]="true"
                 emptyGridMessage="Няма намерени срещи..."
                 [isLoading]="loadingMatches"
                 [allowFiltering]="true"
-                [filteringExpressionsTree]="initialFilter"
-                toolbarTitle="График с всички StarCraft II срещи">
+                [filteringExpressionsTree]="initialFilter">
+
+        <igx-grid-toolbar>
+          <igx-grid-toolbar-title>График с всички StarCraft II срещи</igx-grid-toolbar-title>
+          <igx-grid-toolbar-actions>
+            <a href="https://challonge.com/ebleague_starcraft" target="_blank" rel="noopener">Вижте бракетът за сезон 2 тук</a>
+          </igx-grid-toolbar-actions>
+        </igx-grid-toolbar>
 
         <igx-column field="StartTime" width="220px" [dataType]="gridDataType.Date" header="Начало">
           <ng-template igxCell let-value>
@@ -83,18 +88,16 @@
             Срещата предстои да се играе или няма записани резултати за тази среща...
           </div>
         </ng-template>
-
-        <div *igxToolbarCustomContent>
-          <a href="https://challonge.com/ebleague_starcraft" target="_blank" rel="noopener">Вижте бракетът за сезон 2 тук</a>
-        </div>
       </igx-grid>
 
       <div class="group-columns">
         <igx-grid *ngFor="let group of groups"
                   [cellSelection]="selectionMode.none"
-                  [data]="group.Participants"
-                  [showToolbar]="true"
-                  [toolbarTitle]="group.Name">
+                  [data]="group.Participants">
+
+          <igx-grid-toolbar>
+            <igx-grid-toolbar-title>{{group.Name}}</igx-grid-toolbar-title>
+          </igx-grid-toolbar>
 
           <igx-column field="User" header="Отбор" width="20%">
             <div *igxCell="let value">
