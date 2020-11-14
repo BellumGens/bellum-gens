@@ -31,12 +31,14 @@
               [data]="registrations"
               [height]="'550px'"
               primaryKey="Id"
-              [showToolbar]="true"
-              toolbarTitle="Регистрации"
               [showGroupArea]="true"
               [allowFiltering]="true"
               (cellEdit)="confirmRegistration($event)"
               [cellSelection]="selectionMode.none">
+
+      <igx-grid-toolbar>
+        <igx-grid-toolbar-title>Регистрации</igx-grid-toolbar-title>
+      </igx-grid-toolbar>
 
       <igx-column field="Email" header="Имейл Адрес">
       </igx-column>
@@ -73,11 +75,12 @@
               [data]="orders"
               [height]="'550px'"
               primaryKey="id"
-              [showToolbar]="true"
               toolbarTitle="Поръчки"
               [allowFiltering]="true"
               (cellEdit)="editDone($event)"
               [cellSelection]="selectionMode.none">
+
+      <igx-grid-toolbar></igx-grid-toolbar>
 
       <igx-column field="orderDate" [dataType]="gridDataType.Date" [sortable]="true" header="Направена на">
         <span *igxCell="let value">
