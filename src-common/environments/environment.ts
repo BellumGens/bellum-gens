@@ -9,6 +9,8 @@ export const environment = {
   rootApiEndpoint: 'https://localhost:44394',
   authApiEndpoint: 'https://localhost:44394/api/account',
   apiEndpoint: 'https://localhost:44394/api',
+  distFolderEbleague: 'dist/ebleague/browser',
+  distFolderBellumGens: 'dist/bellumgens/browser',
   VAPID_PUBLIC_KEY: 'BNmXyw15axbl9tOAKz0ybCcfui-w4WiILSO_PRvU2qF0gdB56C0jRieaFSncZnpaulsyl0c3VUsRCyOR4foil50'
 };
 

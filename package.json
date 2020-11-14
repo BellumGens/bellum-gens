@@ -53,6 +53,7 @@
     "tslib": "^2.0.0",
     "web-animations-js": "^2.3.2",
     "xhr2": "^0.2.0",
+    "xmlhttprequest": "^1.8.0",
     "zone.js": "~0.10.3"
   },
   "devDependencies": {
