@@ -19,7 +19,7 @@ const window = domino.createWindow(template);
 (global as any).document = window.document;
 (global as any).HTMLElement = window.HTMLElement;
 
-(global as any).XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
+(global as any).XMLHttpRequest = require('xhr2');
 (global as any).HTMLElement.prototype.getBoundingClientRect = () => {
   return {
     left: '',
