@@ -10,7 +10,7 @@ import { AppComponent } from './app.component';
 
 export class ServerXhr implements XhrFactory {
   build(): XMLHttpRequest {
-    xhr2.prototype._restrictedHeaders.cookie = false;
+    xhr2.prototype._restrictedHeaders = {};
     return new xhr2.XMLHttpRequest();
   }
 }
