@@ -1,4 +1,4 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable, EventEmitter, PLATFORM_ID, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { throwError, BehaviorSubject } from 'rxjs';
 import { LoginProvider } from '../models/login-provider';
@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 import { CommunicationService } from './communication.service';
 import { UserRegistration, UserLogin } from '../models/userlogin';
 import { TournamentApplication } from '../models/tournament';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,8 @@ export class LoginService {
   private _apiBase = environment.apiEndpoint;
   private _rootApiEndpoint = environment.rootApiEndpoint;
 
+  private _isBrowser: boolean;
+
   private _applicationUser = new BehaviorSubject<ApplicationUser>(null);
   private _registrations = new BehaviorSubject<TournamentApplication []>(null);
   public userCheckInProgress = new BehaviorSubject<boolean>(false);
@@ -29,10 +32,13 @@ export class LoginService {
 
   public openLogin = new EventEmitter<string>();
 
-  constructor(private http: HttpClient,
+  constructor(@Inject(PLATFORM_ID) platformId: Object,
+              private http: HttpClient,
               private swPush: SwPush,
               private router: Router,
-              private commService: CommunicationService) { }
+              private commService: CommunicationService) {
+    this._isBrowser = isPlatformBrowser(platformId);
+  }
 
   public emitOpenLogin(title?: string) {
     this.openLogin.emit(title);
@@ -66,17 +72,19 @@ export class LoginService {
 
   public get applicationUser() {
     if (!this._applicationUser.value && !this.userCheckInProgress.value) {
-      this.userCheckInProgress.next(true);
-      this.getSteamUser().subscribe(
-        user => {
-          if (user) {
-            this._applicationUser.next(user);
-            this.initSw();
-          }
-          this.userCheckInProgress.next(false);
-        },
-        _ => this.userCheckInProgress.next(false)
-      );
+      if (this._isBrowser) {
+        this.userCheckInProgress.next(true);
+        this.getSteamUser().subscribe(
+          user => {
+            if (user) {
+              this._applicationUser.next(user);
+              this.initSw();
+            }
+            this.userCheckInProgress.next(false);
+          },
+          _ => this.userCheckInProgress.next(false)
+        );
+      }
     }
 
     return this._applicationUser;
