@@ -1,12 +1,12 @@
 <div class="login-buttons">
-  <button *ngFor="let provider of loginProviders"
+  <button *ngFor="let provider of loginProviders | async"
           igxButton="raised"
           class="login-button navigatable"
-          [igxButtonBackground]="loginColors[provider.Name]"
+          [igxButtonBackground]="loginColors[provider.name]"
           igxButtonColor="#fff"
           (click)="login(provider)">
-    <igx-icon fontSet="login-icons" [name]="provider.Name.toLowerCase()"></igx-icon>
+    <igx-icon fontSet="login-icons" [name]="provider.name.toLowerCase()"></igx-icon>
     <igx-divider [vertical]="true" [inset]="'0 0 0 8px'" [ngClass]="'login-divider'"></igx-divider>
-    <span class="submit-button">{{ provider.Name }}</span>
+    <span class="submit-button">{{ provider.name }}</span>
   </button>
 </div>

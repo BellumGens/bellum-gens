@@ -123,7 +123,7 @@ export class LoginService {
   }
 
   public login(provider: LoginProvider) {
-    window.location.href = `${this._rootApiEndpoint}${provider.Url}&returnUrl=${window.location.href}`;
+    window.location.href = `${provider.url}&returnUrl=${window.location.href}`;
   }
 
   public loginWithForm(logininfo: UserLogin) {

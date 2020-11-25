@@ -3,14 +3,14 @@ import { ApplicationUser } from './applicationuser';
 import { TournamentCSGOMatch } from './tournament-schedule';
 
 export interface Tournament {
-  ID?: string;
-  Name: string;
-  Description?: string;
-  Logo?: string;
-  StartDate?: Date;
-  EndDate?: Date;
-  Active?: boolean;
-  CSGOMatches?: TournamentCSGOMatch [];
+  id?: string;
+  name: string;
+  description?: string;
+  logo?: string;
+  startDate?: Date;
+  endDate?: Date;
+  active?: boolean;
+  csgoMatches?: TournamentCSGOMatch [];
 }
 
 export interface TournamentApplication {
@@ -92,7 +92,7 @@ export function getEmptyNewApplication(): TournamentApplication {
 }
 
 export function getEmptyNewTournament(): Tournament {
-  return { Name: null };
+  return { name: null };
 }
 
 export function getEmptyNewGroup(): TournamentGroup {

@@ -1,23 +1,23 @@
 <div class="content-container">
   <div class="column-center">
-    <a *ngFor="let league of tournaments">{{league.Name}}: {{league.StartDate | date}} - {{league.EndDate | date}} <igx-checkbox [(ngModel)]="league.Active" (ngModelChange)="updateTournament(league)">Active</igx-checkbox></a>
+    <a *ngFor="let league of tournaments">{{league.name}}: {{league.startDate | date}} - {{league.endDate | date}} <igx-checkbox [(ngModel)]="league.active" (ngModelChange)="updateTournament(league)">Active</igx-checkbox></a>
     <span *ngIf="!tournaments || !tournaments.length">No tournaments</span>
   </div>
 
   <form #leagueForm="ngForm" (ngSubmit)="createTournament()">
     <igx-input-group>
       <label igxLabel for="tournamentName">Tournament name</label>
-      <input type="text" id="tournamentName" name="tournamentName" #tournamentName igxInput [required]="true" [(ngModel)]="tournament.Name" />
-      <igx-suffix *ngIf="tournamentName.value" (click)="tournament.Name = null">
+      <input type="text" id="tournamentName" name="tournamentName" #tournamentName igxInput [required]="true" [(ngModel)]="tournament.name" />
+      <igx-suffix *ngIf="tournamentName.value" (click)="tournament.name = null">
         <igx-icon>clear</igx-icon>
       </igx-suffix>
     </igx-input-group>
 
-    <igx-date-picker name="startDate" [required]="true" [(ngModel)]="tournament.StartDate">
+    <igx-date-picker name="startDate" [required]="true" [(ngModel)]="tournament.startDate">
       <label igxLabel>Start Date</label>
     </igx-date-picker>
 
-    <igx-date-picker name="endDate" [required]="true" [(ngModel)]="tournament.EndDate">
+    <igx-date-picker name="endDate" [required]="true" [(ngModel)]="tournament.endDate">
       <label igxLabel>End Date</label>
     </igx-date-picker>
 

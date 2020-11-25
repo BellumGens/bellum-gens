@@ -5,10 +5,10 @@
 <div class="group-columns">
   <igx-grid *ngFor="let tournament of tournaments"
             [cellSelection]="selectionMode.none"
-            [data]="tournament.CSGOMatches">
+            [data]="tournament.csgoMatches">
 
     <igx-grid-toolbar>
-      <igx-grid-toolbar-title>{{tournament.Name}}</igx-grid-toolbar-title>
+      <igx-grid-toolbar-title>{{tournament.name}}</igx-grid-toolbar-title>
     </igx-grid-toolbar>
 
     <igx-column field="StartTime" header="Date" width="15%">
