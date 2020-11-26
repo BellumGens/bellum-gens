@@ -4,16 +4,16 @@ import { NotificationState } from './usernotifications';
 import { Availability } from './playeravailability';
 
 export interface CSGOTeam {
-  TeamId?: string;
-  TeamName: string;
-  TeamAvatar: string;
-  Description: string;
-  Discord?: string;
-  Visible: boolean;
-  CustomUrl?: string;
-  Members?: TeamMember [];
-  PracticeSchedule?: Availability [];
-  SteamGroup?: SteamGroup;
+  teamId?: string;
+  teamName: string;
+  teamAvatar: string;
+  description: string;
+  discord?: string;
+  visible: boolean;
+  customUrl?: string;
+  members?: TeamMember [];
+  practiceSchedule?: Availability [];
+  steamGroup?: SteamGroup;
 }
 
 export interface TeamMember {
@@ -48,22 +48,22 @@ export interface TeamSearch {
 }
 
 export const TEAM_PLACEHOLDER: CSGOTeam = {
-  TeamName: 'Create or view teams',
-  TeamAvatar: '',
-  Description: 'Use the left navigation to create your own team or to view existing teams.',
-  Visible: true,
+  teamName: 'Create or view teams',
+  teamAvatar: '',
+  description: 'Use the left navigation to create your own team or to view existing teams.',
+  visible: true,
 };
 
 export function getEmptyNewTeam(): CSGOTeam {
   return {
-    TeamName: '',
-    TeamAvatar: '',
-    Description: '',
-    Discord: '',
-    Visible: true,
-    TeamId: undefined,
-    PracticeSchedule: [],
-    Members: undefined
+    teamName: '',
+    teamAvatar: '',
+    description: '',
+    discord: '',
+    visible: true,
+    teamId: undefined,
+    practiceSchedule: [],
+    members: undefined
   };
 }
 

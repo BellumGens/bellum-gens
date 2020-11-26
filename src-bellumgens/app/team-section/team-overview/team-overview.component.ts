@@ -38,7 +38,7 @@ export class TeamOverviewComponent extends BaseComponent {
           this.apiService.getTeam(teamId).subscribe(team => {
             if (team) {
               this.team = team;
-              this.titleService.setTitle('CS:GO Team: ' + team.TeamName);
+              this.titleService.setTitle('CS:GO Team: ' + team.teamName);
             }
           });
         }
@@ -51,8 +51,8 @@ export class TeamOverviewComponent extends BaseComponent {
     if (this._isMember !== null) {
       return this._isMember;
     }
-    if (this.authUser && this.team && this.team.Members) {
-      this._isMember = this.team.Members.filter(m => m.UserId === this.authUser.id).length > 0;
+    if (this.authUser && this.team && this.team.members) {
+      this._isMember = this.team.members.filter(m => m.UserId === this.authUser.id).length > 0;
     }
     return this._isMember;
   }
@@ -61,8 +61,8 @@ export class TeamOverviewComponent extends BaseComponent {
     if (this._isAdmin !== null) {
       return this._isAdmin;
     }
-    if (this.authUser && this.team && this.team.Members) {
-      this._isAdmin = this.team.Members.filter(m => m.IsAdmin && m.UserId === this.authUser.id).length > 0;
+    if (this.authUser && this.team && this.team.members) {
+      this._isAdmin = this.team.members.filter(m => m.IsAdmin && m.UserId === this.authUser.id).length > 0;
     }
     return this._isAdmin;
   }
@@ -71,8 +71,8 @@ export class TeamOverviewComponent extends BaseComponent {
     if (this._isEditor !== null) {
       return this._isEditor;
     }
-    if (this.authUser && this.team && this.team.Members) {
-      this._isEditor = this.team.Members.filter(m => m.IsEditor && m.UserId === this.authUser.id).length > 0;
+    if (this.authUser && this.team && this.team.members) {
+      this._isEditor = this.team.members.filter(m => m.IsEditor && m.UserId === this.authUser.id).length > 0;
     }
     return this._isEditor;
   }

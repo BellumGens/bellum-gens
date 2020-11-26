@@ -18,12 +18,12 @@
       <igx-select *ngIf="userOverlap" name="teamOverlap" [(ngModel)]="searchModel.teamId">
         <label for="team-select" igxLabel>Select team</label>
         <igx-select-item *ngFor="let team of authUser?.teamAdmin"
-                         [value]="team.TeamId"
-                         [text]="team.TeamName">
-          <igx-avatar [src]="team.TeamAvatar" [initials]="team.TeamName" [roundShape]="true">
+                         [value]="team.teamId"
+                         [text]="team.teamName">
+          <igx-avatar [src]="team.teamAvatar" [initials]="team.teamName" [roundShape]="true">
           </igx-avatar>
           <span class="title margin-left">
-            {{ team.TeamName }}
+            {{ team.teamName }}
           </span>
         </igx-select-item>
       </igx-select>

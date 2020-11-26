@@ -64,7 +64,7 @@ export class BellumgensApiService {
         },
         error => {
           this.loadingStrategies.next(false);
-          this.commService.emitError(error.error.Message);
+          this.commService.emitError(error.error);
         });
     }
     return this._strategies;
@@ -78,7 +78,7 @@ export class BellumgensApiService {
     return this.http.get<CSGOStrategy []>(`${this._apiEndpoint}/search/strategies?${query}`).pipe(
       map(response => response),
       catchError(error => {
-        this.commService.emitError(error.error.Message);
+        this.commService.emitError(error.error);
         return throwError(error);
       })
     );
@@ -93,7 +93,7 @@ export class BellumgensApiService {
       },
       error => {
         this.loadingStrategies.next(false);
-        this.commService.emitError(error.error.Message);
+        this.commService.emitError(error.error);
       }
     );
   }
@@ -122,7 +122,7 @@ export class BellumgensApiService {
     return this.http.get<SearchResult>(`${this._apiEndpoint}/search/search?name=${name}`).pipe(
       map(response => response),
       catchError(error => {
-        this.commService.emitError(error.error.Message);
+        this.commService.emitError(error.error);
         return throwError(error);
       })
     );
@@ -147,7 +147,7 @@ export class BellumgensApiService {
             this.loadingSearch.next(false);
           },
           error => {
-            this.commService.emitError(error.error.Message);
+            this.commService.emitError(error.error);
           }
         );
       }
@@ -173,7 +173,7 @@ export class BellumgensApiService {
             this.loadingSearch.next(false);
           },
           error => {
-            this.commService.emitError(error.error.Message);
+            this.commService.emitError(error.error);
           }
         );
       }
@@ -199,7 +199,7 @@ export class BellumgensApiService {
             this.loadingSearch.next(false);
           },
           error => {
-            this.commService.emitError(error.error.Message);
+            this.commService.emitError(error.error);
           }
         );
       }
@@ -235,7 +235,7 @@ export class BellumgensApiService {
     return this.http.get<ApplicationUser []>(`${this._apiEndpoint}/search/players?${query}`, { withCredentials: true }).pipe(
       map(response => response),
       catchError(error => {
-        this.commService.emitError(error.error.Message);
+        this.commService.emitError(error.error);
         return throwError(error);
       })
     );
@@ -245,7 +245,7 @@ export class BellumgensApiService {
     return this.http.get<CSGOTeam []>(`${this._apiEndpoint}/search/teams?${query}`, { withCredentials: true }).pipe(
       map(response => response),
       catchError(error => {
-        this.commService.emitError(error.error.Message);
+        this.commService.emitError(error.error);
         return throwError(error);
       })
     );
@@ -253,11 +253,11 @@ export class BellumgensApiService {
 
   public getTeam(teamId: string) {
     if (!this._teamReqInProgress) {
-      if (!this._currentTeam.value || (this._currentTeam.value.TeamId !== teamId &&  this._currentTeam.value.CustomUrl !== teamId)) {
+      if (!this._currentTeam.value || (this._currentTeam.value.teamId !== teamId &&  this._currentTeam.value.customUrl !== teamId)) {
         this.checkSearchCacheForTeam(teamId);
       }
       if (!this._currentTeam.value ||
-            (this._currentTeam.value.TeamId !== teamId &&  this._currentTeam.value.CustomUrl !== teamId)) {
+            (this._currentTeam.value.teamId !== teamId &&  this._currentTeam.value.customUrl !== teamId)) {
         this._teamReqInProgress = true;
         this.getTeamFromServer(teamId).subscribe(team => {
           this._currentTeam.next(team);
@@ -273,7 +273,7 @@ export class BellumgensApiService {
     this._searchResultCache.forEach((result) => {
       result.Teams.forEach((team) => {
         if (!found) {
-          if (team.CustomUrl === teamId || team.TeamId === teamId) {
+          if (team.customUrl === teamId || team.teamId === teamId) {
             this._currentTeam.next(team);
             found = true;
           }
@@ -284,7 +284,7 @@ export class BellumgensApiService {
       this._teamSearchCache.forEach((result) => {
         result.forEach((team) => {
           if (!found) {
-            if (team.CustomUrl === teamId || team.TeamId === teamId) {
+            if (team.customUrl === teamId || team.teamId === teamId) {
               this._currentTeam.next(team);
               found = true;
             }
@@ -307,7 +307,7 @@ export class BellumgensApiService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error.Message);
+        this.commService.emitError(error.error);
         return throwError(error);
       })
     );
@@ -317,12 +317,12 @@ export class BellumgensApiService {
     return this.http.post<CSGOTeam>(`${this._apiEndpoint}/teams/newteam`, team, { withCredentials: true }).pipe(
       map(response => {
         if (response) {
-          this.commService.emitSuccess(`${team.TeamName} registered successfully!`);
+          this.commService.emitSuccess(`${team.teamName} registered successfully!`);
         }
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error.Message);
+        this.commService.emitError(error.error);
         return throwError(error);
       })
     );
@@ -332,12 +332,12 @@ export class BellumgensApiService {
     return this.http.put<CSGOTeam>(`${this._apiEndpoint}/teams/team`, team, { withCredentials: true }).pipe(
       map(response => {
         if (response) {
-          this.commService.emitSuccess(`${team.TeamName} updated successfully!`);
+          this.commService.emitSuccess(`${team.teamName} updated successfully!`);
         }
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error.Message);
+        this.commService.emitError(error.error);
         return throwError(error);
       })
     );
@@ -352,7 +352,7 @@ export class BellumgensApiService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error.Message);
+        this.commService.emitError(error.error);
         return throwError(error);
       })
     );
@@ -368,22 +368,22 @@ export class BellumgensApiService {
           return response;
         }),
         catchError(error => {
-          this.commService.emitError(error.error.Message);
+          this.commService.emitError(error.error);
           return throwError(error);
         })
       );
   }
 
   public abandonTeam(team: CSGOTeam) {
-    return this.http.delete(`${this._apiEndpoint}/teams/abandon?teamId=${team.TeamId}`, { withCredentials: true }).pipe(
+    return this.http.delete(`${this._apiEndpoint}/teams/abandon?teamId=${team.teamId}`, { withCredentials: true }).pipe(
       map(response => {
         if (response) {
-          this.commService.emitSuccess(`You're are no longer part of ${team.TeamName}`);
+          this.commService.emitSuccess(`You're are no longer part of ${team.teamName}`);
         }
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error.Message);
+        this.commService.emitError(error.error);
         return throwError(error);
       })
     );
@@ -396,7 +396,7 @@ export class BellumgensApiService {
           return response;
         }),
         catchError(error => {
-          this.commService.emitError(error.error.Message);
+          this.commService.emitError(error.error);
           return throwError(error);
         })
       );
@@ -404,15 +404,15 @@ export class BellumgensApiService {
 
   public inviteToTeam(steamUser: SteamUser, team: CSGOTeam) {
     return this.http.post(`${this._apiEndpoint}/teams/invite`,
-      { userId: steamUser.steamID64, teamId: team.TeamId }, { withCredentials: true }).pipe(
+      { userId: steamUser.steamID64, teamId: team.teamId }, { withCredentials: true }).pipe(
         map(response => {
           if (response) {
-            this.commService.emitSuccess(`${steamUser.steamID} successfully invited to ${team.TeamName}`);
+            this.commService.emitSuccess(`${steamUser.steamID} successfully invited to ${team.teamName}`);
           }
           return response;
         }),
         catchError(error => {
-          this.commService.emitError(error.error.Message);
+          this.commService.emitError(error.error);
           return throwError(error);
         })
     );
@@ -427,7 +427,7 @@ export class BellumgensApiService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error.Message);
+        this.commService.emitError(error.error);
         return throwError(error);
       })
     );
@@ -446,7 +446,7 @@ export class BellumgensApiService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error.Message);
+        this.commService.emitError(error.error);
         return throwError(error);
       })
     );
@@ -461,7 +461,7 @@ export class BellumgensApiService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error.Message);
+        this.commService.emitError(error.error);
         return throwError(error);
       })
     );
@@ -480,7 +480,7 @@ export class BellumgensApiService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error.Message);
+        this.commService.emitError(error.error);
         return throwError(error);
       })
     );
@@ -500,7 +500,7 @@ export class BellumgensApiService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error.Message);
+        this.commService.emitError(error.error);
         return throwError(error);
       })
     );
@@ -526,7 +526,7 @@ export class BellumgensApiService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error.Message);
+        this.commService.emitError(error.error);
         return throwError(error);
       })
     );
@@ -550,7 +550,7 @@ export class BellumgensApiService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error.Message);
+        this.commService.emitError(error.error);
         return throwError(error);
       })
     );
@@ -567,7 +567,7 @@ export class BellumgensApiService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error.Message);
+        this.commService.emitError(error.error);
         return throwError(error);
       })
     );
@@ -582,7 +582,7 @@ export class BellumgensApiService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error.Message);
+        this.commService.emitError(error.error);
         return throwError(error);
       })
     );
@@ -597,7 +597,7 @@ export class BellumgensApiService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error.Message);
+        this.commService.emitError(error.error);
         return throwError(error);
       })
     );
@@ -630,7 +630,7 @@ export class BellumgensApiService {
   }
 
   public getPlayerFromServer(userId: string) {
-    return this.http.get<CSGOPlayer>(`${this._apiEndpoint}/users/user?userid=${userId}`).pipe(
+    return this.http.get<CSGOPlayer>(`${this._apiEndpoint}/users?userid=${userId}`).pipe(
       map(response => {
         if (response.userStatsException) {
           this.commService.emitError('Account is private!');
@@ -638,7 +638,7 @@ export class BellumgensApiService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error.Message);
+        this.commService.emitError(error.error);
         return throwError(error);
       })
     );
@@ -654,7 +654,7 @@ export class BellumgensApiService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error.Message);
+        this.commService.emitError(error.error);
         return throwError(error);
       })
     );
@@ -670,7 +670,7 @@ export class BellumgensApiService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error.Message);
+        this.commService.emitError(error.error);
         return throwError(error);
       })
     );
@@ -686,7 +686,7 @@ export class BellumgensApiService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error.Message);
+        this.commService.emitError(error.error);
         return throwError(error);
       })
     );
@@ -702,7 +702,7 @@ export class BellumgensApiService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error.Message);
+        this.commService.emitError(error.error);
         return throwError(error);
       })
     );
@@ -717,7 +717,7 @@ export class BellumgensApiService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error.Message);
+        this.commService.emitError(error.error);
         return throwError(error);
       })
     );
@@ -732,7 +732,7 @@ export class BellumgensApiService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error.Message);
+        this.commService.emitError(error.error);
         return throwError(error);
       })
     );

@@ -52,15 +52,15 @@ export class TeamDetailsComponent extends BaseComponent {
             if (team) {
               this.team = team;
               this.roleSlots.forEach((role) => {
-                const member = this.team.Members.find(m => m.Role === role.role);
+                const member = this.team.members.find(m => m.Role === role.role);
                 if (member) {
                   role.user = member;
                 } else {
                   role.user = null;
                 }
               });
-              this.activeMembers = this.team.Members.filter(m => m.IsActive && m.Role === PlaystyleRole.NotSet);
-              this.inactiveMembers = this.team.Members.filter(m => !m.IsActive);
+              this.activeMembers = this.team.members.filter(m => m.IsActive && m.Role === PlaystyleRole.NotSet);
+              this.inactiveMembers = this.team.members.filter(m => !m.IsActive);
             }
           });
         }

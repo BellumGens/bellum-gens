@@ -27,7 +27,7 @@ export class TeamNotificationsComponent implements OnInit {
 
   ngOnInit() {
     if (this.team) {
-      this.apiService.teamApplications(this.team.TeamId).subscribe(data => {
+      this.apiService.teamApplications(this.team.teamId).subscribe(data => {
         this.applications = data;
         this.loaded.emit(data);
       });

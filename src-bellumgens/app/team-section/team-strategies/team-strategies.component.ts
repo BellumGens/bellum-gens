@@ -110,8 +110,8 @@ export class TeamStrategiesComponent {
     if (this._isEditor !== null) {
       return this._isEditor;
     }
-    if (this.authUser && this.team && this.team.Members) {
-      this._isEditor = this.team.Members.filter(m => (m.IsEditor || m.IsAdmin) && m.UserId === this.authUser.id).length > 0;
+    if (this.authUser && this.team && this.team.members) {
+      this._isEditor = this.team.members.filter(m => (m.IsEditor || m.IsAdmin) && m.UserId === this.authUser.id).length > 0;
     }
     return this._isEditor;
   }

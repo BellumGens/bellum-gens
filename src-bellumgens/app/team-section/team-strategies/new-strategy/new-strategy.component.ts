@@ -61,7 +61,7 @@ export class NewStrategyComponent implements OnInit {
 
   public submitStrategy() {
     if (this.team) {
-      this.newStrategy.TeamId = this.team.TeamId;
+      this.newStrategy.TeamId = this.team.teamId;
     }
     this.apiService.submitStrategy(this.newStrategy).subscribe(
       strat => {
@@ -76,8 +76,8 @@ export class NewStrategyComponent implements OnInit {
   public createAndRedirect() {
     let route = ['strategies', 'edit'];
     if (this.team) {
-      this.newStrategy.TeamId = this.team.TeamId;
-      route = ['team', this.team.CustomUrl];
+      this.newStrategy.TeamId = this.team.teamId;
+      route = ['team', this.team.customUrl];
     }
     this.apiService.submitStrategy(this.newStrategy).subscribe(strat => {
       route.push(strat.CustomUrl);

@@ -23,7 +23,7 @@ export class UserStrategiesComponent {
       if (user) {
         this.apiService.getUserStrategies(user.id).subscribe(
           strats => this.strats = strats,
-          error => this.commService.emitError(error.error.Message)
+          error => this.commService.emitError(error.error)
         );
       }
     });

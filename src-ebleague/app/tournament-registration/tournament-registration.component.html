@@ -31,9 +31,9 @@
       <igx-prefix>
         <igx-icon>people</igx-icon>
       </igx-prefix>
-      <igx-select-item *ngFor="let team of authUser?.teams" [value]="team.TeamId" [text]="team.TeamName">
-        <igx-avatar [src]="team.TeamAvatar" [initials]="team.TeamName" class="team-avatar" [roundShape]="true"></igx-avatar>
-        <span class="title margin-left">{{ team.TeamName }}</span>
+      <igx-select-item *ngFor="let team of authUser?.teams" [value]="team.teamId" [text]="team.teamName">
+        <igx-avatar [src]="team.teamAvatar" [initials]="team.teamName" class="team-avatar" [roundShape]="true"></igx-avatar>
+        <span class="title margin-left">{{ team.teamName }}</span>
       </igx-select-item>
       <igx-select-item (click)="newTeam.open(false)">
         Създай нов отбор...

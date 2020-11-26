@@ -34,7 +34,7 @@ export class PlayerNotificationsComponent {
       _ => {
         notification.State = NotificationState.Accepted;
         this.pipeTrigger++;
-        this.router.navigate(['team', notification.TeamInfo.CustomUrl]);
+        this.router.navigate(['team', notification.TeamInfo.customUrl]);
         this.changed.emit(-1);
         this.actionInProgress = false;
       },

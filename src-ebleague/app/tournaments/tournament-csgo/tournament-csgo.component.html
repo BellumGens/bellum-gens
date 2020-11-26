@@ -9,8 +9,8 @@
         <h4 style="width: 100%">Участници</h4>
         <igx-circular-bar *ngIf="loading" [indeterminate]="true"></igx-circular-bar>
         <div *ngFor="let registration of registrations" class="registration-slot">
-          <igx-avatar [src]="registration.Team.TeamAvatar"
-                      [initials]="registration.Team.TeamName"
+          <igx-avatar [src]="registration.Team.teamAvatar"
+                      [initials]="registration.Team.teamName"
                       [title]="registration.Company"
                       size="medium"
                       [roundShape]="true">
@@ -22,7 +22,7 @@
                       class="registration-badge-style">
           </igx-badge>
 
-          <a [href]="environment.bellumgens + '/team/' + registration.Team.CustomUrl" target="_blank">{{ registration.Team.TeamName }}</a>
+          <a [href]="environment.bellumgens + '/team/' + registration.Team.customUrl" target="_blank">{{ registration.Team.teamName }}</a>
         </div>
       </div>
 

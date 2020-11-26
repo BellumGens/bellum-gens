@@ -39,7 +39,7 @@ export class TeamNewComponent {
         this.createTeam.close();
         this.authUser.teams.push(team);
         if (this.navigateOnCreate) {
-          this.router.navigate(['/team', team.CustomUrl]);
+          this.router.navigate(['/team', team.customUrl]);
         }
       },
       _ => this.inProgress = false
@@ -54,7 +54,7 @@ export class TeamNewComponent {
         this.createTeam.close();
         this.authUser.teams.push(team);
         if (this.navigateOnCreate) {
-          this.router.navigate(['/team', team.CustomUrl]);
+          this.router.navigate(['/team', team.customUrl]);
         }
       },
       _ => this.inProgress = false

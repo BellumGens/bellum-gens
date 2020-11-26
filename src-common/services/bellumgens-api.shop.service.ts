@@ -35,7 +35,7 @@ export class ApiShopService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error.Message);
+        this.commService.emitError(error.error);
         return throwError(error);
       })
     );

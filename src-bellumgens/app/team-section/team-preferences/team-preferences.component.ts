@@ -28,8 +28,8 @@ export class TeamPreferencesComponent {
         this.apiService.getTeam(teamId).subscribe(team => {
           if (team) {
             this.team = team;
-            if (team.SteamGroup) {
-              this.apiService.getSteamMembers(team.SteamGroup.members).subscribe(data => this.steamMembers = data);
+            if (team.steamGroup) {
+              this.apiService.getSteamMembers(team.steamGroup.members).subscribe(data => this.steamMembers = data);
             }
           }
         });
