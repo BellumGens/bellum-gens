@@ -35,12 +35,12 @@
   }
 
   .first-place {
-    max-width: 250px;
+    max-width: 130px;
     object-fit: contain;
   }
 
   .first-place-text {
-    min-height: 223px;
+    min-height: 146px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -48,12 +48,12 @@
   }
 
   .second-place {
-    max-width: 180px;
+    max-width: 110px;
     object-fit: contain;
   }
 
   .second-place-text {
-    min-height: 201px;
+    min-height: 126px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -61,12 +61,18 @@
   }
 
   .third-forth-place {
-    max-width: 130px;
+    max-width: 100px;
     object-fit: contain;
   }
 
   .third-forth-place-text {
     font-size: 1.65rem;
+  }
+
+  .winner-wrapper {
+    display: flex;
+    flex-flow: column;
+    margin-left: 16px;
   }
 
   igx-linear-bar {

@@ -15,10 +15,10 @@
     <h5>Available times for <span class="highlight" [textContent]="selectedDay ? (selectedDay.Day | weekday) : ''"></span>:</h5>
     <div class="availability-time">
       <igx-time-picker #from class="time-picker" [value]="selectedDay.From" [itemsDelta]="{hours: 1, minutes: 15, seconds: 1}">
-
+        <label igxLabel>от</label>
       </igx-time-picker>
       <igx-time-picker #to class="time-picker" [value]="selectedDay.To" [itemsDelta]="{hours: 1, minutes: 15, seconds: 1}">
-
+        <label igxLabel>до</label>
       </igx-time-picker>
     </div>
   </div>

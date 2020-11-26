@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
+import { TransferHttpCacheModule } from '@nguniversal/common';
 
 import { IgxNavbarModule,
   IgxLayoutModule,
@@ -42,6 +42,7 @@ import { IgxNavbarModule,
 } from '@infragistics/igniteui-angular';
 import { socialMedia, logos } from '@igniteui/material-icons-extended';
 
+import { AppComponent } from './app.component';
 import { PlayerDetailsComponent } from './player-section/player-details/player-details.component';
 import { LoginService } from '../../src-common/services/login.service';
 import { BellumgensApiService } from '../../src-common/services/bellumgens-api.service';
@@ -169,6 +170,7 @@ import { TeamTournamentsComponent } from './team-section/team-tournaments/team-t
     BrowserModule.withServerTransition({ appId: 'serverApp' }),
     BrowserAnimationsModule,
     AppRoutingModule,
+    TransferHttpCacheModule,
     IgxAvatarModule,
     IgxNavbarModule,
     IgxLayoutModule,

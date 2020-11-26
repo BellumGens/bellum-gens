@@ -13,12 +13,12 @@
       </igx-suffix>
     </igx-input-group>
 
-    <igx-date-picker label="Start Date" name="startDate" [required]="true" [(ngModel)]="tournament.StartDate">
-
+    <igx-date-picker name="startDate" [required]="true" [(ngModel)]="tournament.StartDate">
+      <label igxLabel>Start Date</label>
     </igx-date-picker>
 
-    <igx-date-picker label="End Date" name="endDate" [required]="true" [(ngModel)]="tournament.EndDate">
-
+    <igx-date-picker name="endDate" [required]="true" [(ngModel)]="tournament.EndDate">
+      <label igxLabel>End Date</label>
     </igx-date-picker>
 
     <button igxButton [disabled]="!leagueForm.valid || !leagueForm.touched">Submit</button>
@@ -31,12 +31,14 @@
               [data]="registrations"
               [height]="'550px'"
               primaryKey="Id"
-              [showToolbar]="true"
-              toolbarTitle="Регистрации"
               [showGroupArea]="true"
               [allowFiltering]="true"
               (cellEdit)="confirmRegistration($event)"
               [cellSelection]="selectionMode.none">
+
+      <igx-grid-toolbar>
+        <igx-grid-toolbar-title>Регистрации</igx-grid-toolbar-title>
+      </igx-grid-toolbar>
 
       <igx-column field="Email" header="Имейл Адрес">
       </igx-column>
@@ -73,11 +75,12 @@
               [data]="orders"
               [height]="'550px'"
               primaryKey="id"
-              [showToolbar]="true"
               toolbarTitle="Поръчки"
               [allowFiltering]="true"
               (cellEdit)="editDone($event)"
               [cellSelection]="selectionMode.none">
+
+      <igx-grid-toolbar></igx-grid-toolbar>
 
       <igx-column field="orderDate" [dataType]="gridDataType.Date" [sortable]="true" header="Направена на">
         <span *igxCell="let value">

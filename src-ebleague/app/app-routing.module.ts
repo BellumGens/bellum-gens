@@ -9,6 +9,7 @@ import { NewsComponent } from './news/news.component';
 
 export const routes: Routes = [
   { path: '', component: TournamentHomeComponent },
+  { path: 'giveaway', redirectTo: 'raffle', pathMatch: 'full' },
   { path: 'raffle', component: RaffleComponent },
   { path: 'register', component: RegistrationComponent },
   { path: 'news', component: NewsComponent, data: {
@@ -32,7 +33,10 @@ export const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled', anchorScrolling: 'enabled', initialNavigation: 'enabled'})],
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled',
+                                           anchorScrolling: 'enabled',
+                                           initialNavigation: 'enabled',
+                                           relativeLinkResolution: 'legacy' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule {

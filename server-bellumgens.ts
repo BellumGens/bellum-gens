@@ -1,17 +1,20 @@
 import 'zone.js/dist/zone-node';
 
+import { APP_BASE_HREF } from '@angular/common';
 import { ngExpressEngine } from '@nguniversal/express-engine';
+
 import * as express from 'express';
+import * as xmlhttprequest from 'xmlhttprequest';
 import { join } from 'path';
 
 import { AppServerModule } from './src-bellumgens/main.server';
-import { APP_BASE_HREF } from '@angular/common';
 import { existsSync, readFileSync } from 'fs';
 import { environment } from './src-common/environments/environment';
 
 // HTML polyfills
 const domino = require('domino');
-const template = readFileSync(join(process.cwd(), 'browser', 'index.html')).toString();
+const distFolder = join(process.cwd(), environment.distFolderBellumGens);
+const template = readFileSync(join(distFolder, 'index.html')).toString();
 const window = domino.createWindow(template);
 
 // Ignite UI browser objects abstractions
@@ -19,7 +22,7 @@ const window = domino.createWindow(template);
 (global as any).document = window.document;
 (global as any).HTMLElement = window.HTMLElement;
 
-(global as any).XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
+(global as any).XMLHttpRequest = xmlhttprequest.XMLHttpRequest;
 (global as any).HTMLElement.prototype.getBoundingClientRect = () => {
   return {
     left: '',
@@ -32,7 +35,6 @@ const window = domino.createWindow(template);
 // The Express app is exported so that it can be used by serverless Functions.
 export function app() {
   const server = express();
-  const distFolder = join(process.cwd(), 'browser');
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
 
   const compression = require('compression');

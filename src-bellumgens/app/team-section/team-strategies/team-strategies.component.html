@@ -1,14 +1,17 @@
 <div class="strat-filter-header">
-  <span class="igx-card-header__title">Showing {{viewAll ? 'all maps' : 'active duty maps'}}:</span>
+  <span class="igx-card-header__title">
+    Showing
+    <button class="navigation-item" igxButton="outlined" igxRipple (click)="viewAll = !viewAll">{{viewAll ? 'all maps' : 'active duty maps'}}</button> 
+  </span>
   <button class="navigation-item"
-          igxButton="outlined"
+          igxButton="raised"
           igxRipple
           (click)="authUser ? newStrategy.open() : openLogin('You need to login first')">
     Create new strategy
   </button>
 </div>
 <div class="strat-filter-header">
-  <div class="horizontal-center">
+  <div class="horizontal">
     <igx-chips-area class="map-filter">
       <igx-chip *ngFor="let map of maps | activeDutyMaps:viewAll"
                 [selected]="map.IsPlayed"
@@ -24,12 +27,12 @@
       </igx-select-item>
     </igx-select>
   </div>
-  <button class="navigation-item" igxButton="outlined" igxRipple (click)="viewAll = !viewAll">{{viewAll ? 'View Active Duty' : 'View All'}}</button>
 </div>
 
 <app-app-shell *ngIf="loading"></app-app-shell>
 
 <div class="card-wrapper">
+  <span *ngIf="!loading && !strats?.length" class="igx-card-header__subtitle">No strategies found...</span>
   <igx-card type="outlined" *ngFor="let strat of strats | activeDutyMaps:viewAll:pipeTrigger | sidestrats:maps:order">
     <igx-card-header>
       <h2 igxCardHeaderTitle
