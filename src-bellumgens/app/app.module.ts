@@ -207,14 +207,6 @@ import { TeamTournamentsComponent } from './team-section/team-tournaments/team-t
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     HammerModule
   ],
-  providers: [
-    LoginService,
-    BellumgensApiService,
-    ApiTournamentsService,
-    CommunicationService,
-    SocialMediaService,
-    IgxIconService
-  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

@@ -88,12 +88,6 @@ import { NewsComponent } from './news/news.component';
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     HammerModule
   ],
-  providers: [
-    LoginService,
-    BellumgensApiService,
-    ApiTournamentsService,
-    IgxIconService
-  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

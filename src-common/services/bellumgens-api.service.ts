@@ -102,6 +102,10 @@ export class BellumgensApiService {
     return this.http.get<CSGOStrategy []>(`${this._apiEndpoint}/strategy/userstrats?userid=${userId}`, { withCredentials: true });
   }
 
+  public getUserTeams(userId: string) {
+    return this.http.get<CSGOTeam []>(`${this._apiEndpoint}/users/userteams?userid=${userId}`, { withCredentials: true });
+  }
+
   public quickSearch(name: string) {
     this.searchTerm.next(name);
     if (this._searchResultCache.has(name)) {
