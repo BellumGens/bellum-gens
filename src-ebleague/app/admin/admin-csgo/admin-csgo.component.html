@@ -133,12 +133,12 @@
           <igx-card-content>
             <igx-list class="group-list" igxDrop (dropped)="addToGroup($event, group)">
               <igx-list-item *ngFor="let participant of group.Participants">
-                <igx-avatar igxListThumbnail [src]="participant.Team.TeamAvatar" [initials]="participant.Team.TeamName" [roundShape]="true"></igx-avatar>
+                <igx-avatar igxListThumbnail [src]="participant.Team.teamAvatar" [initials]="participant.Team.teamName" [roundShape]="true"></igx-avatar>
 
-                <a [href]="environment.bellumgens + '/team/' + participant.Team.CustomUrl"
+                <a [href]="environment.bellumgens + '/team/' + participant.Team.customUrl"
                    igxListLineTitle
                    target="_blank">
-                  {{ participant.Team.TeamName }}
+                  {{ participant.Team.teamName }}
                 </a>
 
                 <igx-icon class="navigatable" title="Премахни от групата" (click)="removeFromGroup(participant, group)">delete</igx-icon>
@@ -192,9 +192,9 @@
       <label igxLabel>Отбор 1</label>
       <igx-select-item *ngFor="let registration of registrations"
                         [value]="registration.TeamId"
-                        [text]="registration.Team.TeamName">
-        <igx-avatar [src]="registration.Team.TeamAvatar" [initials]="registration.Team.TeamName"></igx-avatar>
-        {{ registration.Team.TeamName }}
+                        [text]="registration.Team.teamName">
+        <igx-avatar [src]="registration.Team.teamAvatar" [initials]="registration.Team.teamName"></igx-avatar>
+        {{ registration.Team.teamName }}
       </igx-select-item>
     </igx-select>
 
@@ -204,9 +204,9 @@
       <label igxLabel>Отбор 2</label>
       <igx-select-item *ngFor="let registration of registrations"
                         [value]="registration.TeamId"
-                        [text]="registration.Team.TeamName">
-        <igx-avatar [src]="registration.Team.TeamAvatar" [initials]="registration.Team.TeamName"></igx-avatar>
-        {{ registration.Team.TeamName }}
+                        [text]="registration.Team.teamName">
+        <igx-avatar [src]="registration.Team.teamAvatar" [initials]="registration.Team.teamName"></igx-avatar>
+        {{ registration.Team.teamName }}
       </igx-select-item>
     </igx-select>
   </div>
@@ -222,12 +222,12 @@
 
     <div class="horizontal-center">
       <igx-input-group>
-        <label igxLabel>Точки {{ matchInEdit.Team1?.TeamName }}</label>
+        <label igxLabel>Точки {{ matchInEdit.Team1?.teamName }}</label>
         <input type="number" igxInput [(ngModel)]="matchInEdit.Team1Points" />
       </igx-input-group>
       <span class="grid-vs-divider">:</span>
       <igx-input-group>
-        <label igxLabel>Точки {{ matchInEdit.Team2?.TeamName }}</label>
+        <label igxLabel>Точки {{ matchInEdit.Team2?.teamName }}</label>
         <input type="number" igxInput [(ngModel)]="matchInEdit.Team2Points" />
       </igx-input-group>
     </div>
@@ -242,12 +242,12 @@
 
       <div class="horizontal-center">
         <igx-input-group>
-          <label igxLabel>Рундове {{ matchInEdit.Team1.TeamName }}</label>
+          <label igxLabel>Рундове {{ matchInEdit.Team1.teamName }}</label>
           <input type="number" igxInput [(ngModel)]="map.Team1Score" />
         </igx-input-group>
         <span class="grid-vs-divider">:</span>
         <igx-input-group>
-          <label igxLabel>Рундове {{ matchInEdit.Team2.TeamName }}</label>
+          <label igxLabel>Рундове {{ matchInEdit.Team2.teamName }}</label>
           <input type="number" igxInput [(ngModel)]="map.Team2Score" />
         </igx-input-group>
       </div>

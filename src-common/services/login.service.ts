@@ -20,15 +20,10 @@ import { isPlatformBrowser } from '@angular/common';
 export class LoginService {
   private _apiEndpoint = environment.authApiEndpoint;
   private _apiBase = environment.apiEndpoint;
-  private _rootApiEndpoint = environment.rootApiEndpoint;
-
   private _isBrowser: boolean;
-
   private _applicationUser = new BehaviorSubject<ApplicationUser>(null);
   private _registrations = new BehaviorSubject<TournamentApplication []>(null);
   public userCheckInProgress = new BehaviorSubject<boolean>(false);
-  public error: any;
-  public callMade = false;
 
   public openLogin = new EventEmitter<string>();
 
@@ -132,7 +127,7 @@ export class LoginService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error.Message);
+        this.commService.emitError(error.error);
         return throwError(error);
       })
     );
@@ -146,7 +141,7 @@ export class LoginService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error.Message);
+        this.commService.emitError(error.error);
         return throwError(error);
       })
     );
@@ -161,7 +156,7 @@ export class LoginService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error.Message);
+        this.commService.emitError(error.error);
         return throwError(error);
       })
     );
@@ -174,7 +169,7 @@ export class LoginService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error.Message);
+        this.commService.emitError(error.error[""].join(' '));
         return throwError(error);
       })
     );
@@ -190,7 +185,7 @@ export class LoginService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error.Message);
+        this.commService.emitError(error.error);
         return throwError(error);
       })
     );

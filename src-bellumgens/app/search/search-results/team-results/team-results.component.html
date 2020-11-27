@@ -6,24 +6,24 @@
 </div>
 
 <div *ngIf="!loading" class="card-wrapper">
-  <igx-card *ngFor="let team of teams" class="navigatable" [routerLink]="['/team', team.CustomUrl]">
+  <igx-card *ngFor="let team of teams" class="navigatable" [routerLink]="['/team', team.customUrl]">
     <igx-card-header>
-      <igx-avatar igxCardThumbnail [src]="team.TeamAvatar" [initials]="team.TeamName" [size]="'medium'" [roundShape]="true"></igx-avatar>
-      <h3 igxCardHeaderTitle>{{ team.TeamName }}</h3>
+      <igx-avatar igxCardThumbnail [src]="team.teamAvatar" [initials]="team.teamName" [size]="'medium'" [roundShape]="true"></igx-avatar>
+      <h3 igxCardHeaderTitle>{{ team.teamName }}</h3>
     </igx-card-header>
     <igx-card-content>
       <div>Open positions in the active line-up</div>
       <igx-chips-area class="result-chips">
-        <igx-chip *ngFor="let role of team.Members | openPositions"
+        <igx-chip *ngFor="let role of team.members | openPositions"
                   [selectable]="false">
-          <span class='igx-chip__text'>{{ role.roleName }}</span>
+          <span class="igx-chip__text">{{ role.roleName }}</span>
         </igx-chip>
       </igx-chips-area>
       <div>Practice days</div>
       <igx-chips-area class="result-chips">
-        <igx-chip *ngFor="let weekday of team.PracticeSchedule | daysAvailable"
+        <igx-chip *ngFor="let weekday of team.practiceSchedule | daysAvailable"
                   [selectable]="false">
-          <span class='igx-chip__text'>{{ weekday.Day | weekday }}</span>
+          <span class="igx-chip__text">{{ weekday.Day | weekday }}</span>
         </igx-chip>
       </igx-chips-area>
     </igx-card-content>

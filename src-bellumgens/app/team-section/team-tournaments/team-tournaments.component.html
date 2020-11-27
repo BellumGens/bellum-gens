@@ -39,8 +39,8 @@
 
     <igx-column field="WinnerTeamId" header="Result" width="15%">
       <ng-template igxCell let-value>
-        <span [class]="value === emptyGuid ? 'color-warn' : value === team?.TeamId ? 'color-success' : 'color-error'">
-          {{ value === emptyGuid ? 'Pending' : value === team?.TeamId ? 'Win' : 'Loss' }}
+        <span [class]="value === emptyGuid ? 'color-warn' : value === team?.teamId ? 'color-success' : 'color-error'">
+          {{ value === emptyGuid ? 'Pending' : value === team?.teamId ? 'Win' : 'Loss' }}
         </span>
       </ng-template>
     </igx-column>

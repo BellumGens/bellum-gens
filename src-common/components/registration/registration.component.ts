@@ -16,6 +16,7 @@ export class RegistrationComponent implements OnInit {
   public inUse = false;
   public submitInProgress = false;
   public authUser: ApplicationUser;
+  public error = "";
 
   @ViewChild('regusername', { static: true }) public usernameInput: ElementRef;
 
@@ -34,9 +35,10 @@ export class RegistrationComponent implements OnInit {
   }
 
   public submitRegistration() {
-    this.authManager.submitRegistration(this.userAccount).subscribe(_ => {
-      this.router.navigate(['/']);
-    });
+    this.authManager.submitRegistration(this.userAccount).subscribe(
+      _ => this.router.navigate(['/']),
+      error => this.error = error.error[""].join(' ')
+    );
   }
 
   private initUsernameCheck() {

@@ -22,7 +22,20 @@
 
     <igx-input-group type="border">
       <label for="password" igxLabel>Password</label>
-      <input #password igxInput type="password" [required]="true" id="password" name="password" [(ngModel)]="userAccount.password" />
+      <input #password="ngModel"
+             igxInput
+             type="password"
+             [required]="true"
+             pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$"
+             id="password"
+             name="password"
+             [(ngModel)]="userAccount.password" />
+      <igx-hint class="color-error error-hint" *ngIf="error">
+        {{error}}
+      </igx-hint>
+      <igx-hint *ngIf="password.touched && password.invalid" class="error-hint">
+        Must include at least 1 letter, 1 number and 1 special char
+      </igx-hint>
     </igx-input-group>
 
     <igx-input-group type="border">

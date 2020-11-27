@@ -32,7 +32,7 @@ export class TeamApplicationComponent {
   public submitApplication() {
     if (this.authUser) {
       this.application.ApplicantId = this.authUser.id;
-      this.application.TeamId = this.team.TeamId;
+      this.application.TeamId = this.team.teamId;
       this.apiService.submitApplication(this.application).subscribe(_ => this.dialog.close());
     }
   }
