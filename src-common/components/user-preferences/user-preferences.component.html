@@ -31,7 +31,7 @@
       <h4 igxListLineSubTitle>Confirmation code <span class="highlight">{{registration.Hash}}</span></h4>
       <div class="horizontal-center" igxListAction>
         <span [ngClass]="{'color-warn': !registration.State, 'color-success': registration.State }">{{ registration.State ? 'Confirmed' : 'Pending' }}</span>
-        <igx-icon *ngIf="!registration.State" (click)="confirmReg.open(registration)" title="Delete this application">delete_forever</igx-icon>
+        <igx-icon class="navigatable" *ngIf="!registration.State" (click)="confirmReg.open(registration)" title="Delete this application">delete_forever</igx-icon>
       </div>
     </igx-list-item>
   </igx-list>

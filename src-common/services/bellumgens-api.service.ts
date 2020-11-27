@@ -119,7 +119,7 @@ export class BellumgensApiService {
   }
 
   private getQuickSearch(name: string) {
-    return this.http.get<SearchResult>(`${this._apiEndpoint}/search/search?name=${name}`).pipe(
+    return this.http.get<SearchResult>(`${this._apiEndpoint}/search?name=${name}`).pipe(
       map(response => response),
       catchError(error => {
         this.commService.emitError(error.error.Message);
@@ -630,7 +630,7 @@ export class BellumgensApiService {
   }
 
   public getPlayerFromServer(userId: string) {
-    return this.http.get<CSGOPlayer>(`${this._apiEndpoint}/users/user?userid=${userId}`).pipe(
+    return this.http.get<CSGOPlayer>(`${this._apiEndpoint}/users?userid=${userId}`).pipe(
       map(response => {
         if (response.userStatsException) {
           this.commService.emitError('Account is private!');

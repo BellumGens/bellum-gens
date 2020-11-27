@@ -32,7 +32,7 @@ export class UserPreferencesComponent {
         this.authUser = user;
       }
     });
-    this.authManager.addLoginProviders.subscribe(providers => this.providers = providers);
+    this.authManager.loginProviders.subscribe(providers => this.providers = providers);
   }
 
   public login(provider: LoginProvider) {

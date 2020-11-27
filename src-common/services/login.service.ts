@@ -52,11 +52,6 @@ export class LoginService {
     return this.http.get<LoginProvider []>(`${this._apiEndpoint}/ExternalLogins?returnUrl=%2F`);
   }
 
-  public get addLoginProviders() {
-    // tslint:disable-next-line:max-line-length
-    return this.http.get<LoginProvider []>(`${this._apiEndpoint}/ExternalLogins?returnUrl=%2F&routeName=AddExternalLogin`);
-  }
-
   public get tournamentRegistrations() {
     if (!this._registrations.value) {
       this.getRegistrations();
@@ -91,7 +86,7 @@ export class LoginService {
   }
 
   public getUserIsAppAdmin() {
-    return this.http.get<boolean>(`${this._apiBase}/admin/appadmin`, { withCredentials: true });
+    return this.http.get<boolean>(`${this._apiBase}/admin`, { withCredentials: true });
   }
 
   public getUserIsTournamentAdmin() {
