@@ -51,15 +51,17 @@ export class ShopComponent extends BaseComponent {
   }
 
   public checkForPromo() {
-    this.apiService.checkForPromo(this.order.promocode).subscribe(data => {
-      if (data) {
-        this.promo = this.basePromo + data.discount;
-        this.invalidPromo = false;
-      } else {
-        this.order.promocode = null;
-        this.invalidPromo = true;
-      }
-    });
+    if (this.order.promocode) {
+      this.apiService.checkForPromo(this.order.promocode).subscribe(data => {
+        if (data) {
+          this.promo = this.basePromo + data.discount;
+          this.invalidPromo = false;
+        } else {
+          this.order.promocode = null;
+          this.invalidPromo = true;
+        }
+      });
+    }
   }
 
   public selectJerseyCut(jersey: JerseyDetails, event: ISelectionEventArgs) {
