@@ -37,7 +37,7 @@ export class RegistrationComponent implements OnInit {
   public submitRegistration() {
     this.authManager.submitRegistration(this.userAccount).subscribe(
       _ => this.router.navigate(['/']),
-      error => this.error = error.error[""].join(' ')
+      error => this.error = error.error[''].join(' ')
     );
   }
 

@@ -181,7 +181,7 @@ export class LoginService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error[""].join(' '));
+        this.commService.emitError(error.error[''].join(' '));
         return throwError(error);
       })
     );
