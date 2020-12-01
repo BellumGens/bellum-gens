@@ -35,7 +35,7 @@ export class PlayerSearchComponent {
         this.authUser = user;
         this.authManager.teamsAdmin.subscribe(teams => this.teamAdmin = teams);
       }
-    })
+    });
   }
 
   public searchPlayers() {

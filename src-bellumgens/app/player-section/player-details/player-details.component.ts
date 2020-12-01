@@ -84,7 +84,7 @@ export class PlayerDetailsComponent extends BaseComponent {
   }
 
   public submitAvailability(args: Availability) {
-    //this.authUser.availability.find(a => a.Day === args.Day).Available = args.Available;
+    // this.authUser.availability.find(a => a.Day === args.Day).Available = args.Available;
     this.apiService.setAvailability(args).subscribe();
   }
 
@@ -107,7 +107,7 @@ export class PlayerDetailsComponent extends BaseComponent {
   }
 
   public mapChange(args: CSGOMapPool) {
-    //this.authUser.mapPool.find(m => m.Map === args.Map).IsPlayed = args.IsPlayed;
+    // this.authUser.mapPool.find(m => m.Map === args.Map).IsPlayed = args.IsPlayed;
     this.apiService.setMapPool(args).subscribe();
   }
 
