@@ -17,6 +17,7 @@ import { CSGOTeam } from '../../../../src-common/models/csgoteam';
 import { CSGOMapPool } from '../../../../src-common/models/csgomaps';
 import { ALL_ROLES } from '../../../../src-common/models/playerrole';
 import { BaseComponent } from '../../base/base.component';
+import { Observable } from 'rxjs';
 
 @Component({
   templateUrl: './player-details.component.html',
@@ -26,6 +27,9 @@ import { BaseComponent } from '../../base/base.component';
 export class PlayerDetailsComponent extends BaseComponent {
   public authUser: ApplicationUser;
   public teamsAdmin: CSGOTeam [];
+  public userTeams: Observable<CSGOTeam []>;
+  public availability: Availability [];
+  public mapPool: Observable<CSGOMapPool []>;
   public player: CSGOPlayer;
   public newUser = false;
   public roles = ALL_ROLES;
@@ -45,7 +49,10 @@ export class PlayerDetailsComponent extends BaseComponent {
     super(title, meta, activeRoute);
     this.subs.push(
       this.authManager.applicationUser.subscribe((data: ApplicationUser) => {
-        this.authUser = data;
+        if (data) {
+          this.authUser = data;
+          this.authManager.teamsAdmin.subscribe(teams => this.teamsAdmin = teams);
+        }
       }),
       this.activatedRoute.params.subscribe(params => {
         const userid = params['userid'];
@@ -56,6 +63,11 @@ export class PlayerDetailsComponent extends BaseComponent {
                 this.player = player;
                 if (player && !player.steamUserException) {
                   this.titleService.setTitle('CS:GO Player: ' + player.steamUser.steamID);
+                  if (player.registered) {
+                    this.userTeams = this.apiService.getUserTeams(player.id);
+                    this.apiService.getAvailability(player.id).subscribe(data => this.availability = data);
+                    this.mapPool = this.apiService.getMapPool(player.id);
+                  }
                 }
               }
             ),
@@ -72,7 +84,7 @@ export class PlayerDetailsComponent extends BaseComponent {
   }
 
   public submitAvailability(args: Availability) {
-    this.authUser.availability.find(a => a.Day === args.Day).Available = args.Available;
+    //this.authUser.availability.find(a => a.Day === args.Day).Available = args.Available;
     this.apiService.setAvailability(args).subscribe();
   }
 
@@ -83,21 +95,19 @@ export class PlayerDetailsComponent extends BaseComponent {
   public selectPrimary(value: number) {
     if (this.player.primaryRole !== value) {
       this.player.primaryRole = value;
-      this.authUser.primaryRole = value;
-      this.apiService.setPrimaryRole(this.roles.find(r => r.Id === value)).subscribe();
+      this.apiService.setPrimaryRole(this.roles.find(r => r.id === value)).subscribe();
     }
   }
 
   public selectSecondary(value: number) {
     if (this.player.secondaryRole !== value) {
       this.player.secondaryRole = value;
-      this.authUser.secondaryRole = value;
-      this.apiService.setSecondaryRole(this.roles.find(r => r.Id === value)).subscribe();
+      this.apiService.setSecondaryRole(this.roles.find(r => r.id === value)).subscribe();
     }
   }
 
   public mapChange(args: CSGOMapPool) {
-    this.authUser.mapPool.find(m => m.Map === args.Map).IsPlayed = args.IsPlayed;
+    //this.authUser.mapPool.find(m => m.Map === args.Map).IsPlayed = args.IsPlayed;
     this.apiService.setMapPool(args).subscribe();
   }
 

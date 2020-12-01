@@ -5,7 +5,7 @@
         <span igxDrawerItem [isHeader]="true">Bellum Gens</span>
         <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="myteams">
           <igx-icon>people</igx-icon>
-          <igx-badge class="notifications-badge" *ngIf="authUser.teams?.length > 0" [value]="authUser.teams?.length.toString()" type="info"></igx-badge>
+          <igx-badge class="notifications-badge" *ngIf="teams?.length > 0" [value]="teams?.length.toString()" type="info"></igx-badge>
           My teams
         </span>
         <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="notifications">
@@ -39,7 +39,7 @@
         <span igxDrawerItem [isHeader]="true">&nbsp;</span>
         <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="myteams" title="My Teams">
           <igx-icon>people</igx-icon>
-          <igx-badge class="notifications-badge" *ngIf="authUser.teams?.length > 0" [value]="authUser.teams?.length.toString()" type="info"></igx-badge>
+          <igx-badge class="notifications-badge" *ngIf="teams?.length > 0" [value]="teams?.length.toString()" type="info"></igx-badge>
         </span>
         <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="notifications" title="Notifications">
           <igx-icon>notifications</igx-icon>
@@ -94,7 +94,7 @@
 
     <igx-banner #advancedSearch>
       Advanced search for:
-      <app-search [authUser]="authUser"></app-search>
+      <app-search></app-search>
       <igx-banner-actions>
         <button igxButton="flat" igxRipple (click)="advancedSearch.close()">Hide</button>
       </igx-banner-actions>

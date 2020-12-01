@@ -1,8 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { PLAYER_SEARCH, PlayerSearch } from '../../../../src-common/models/csgoplayer';
 import { PlaystyleRole } from '../../../../src-common/models/playerrole';
 import { ApplicationUser } from '../../../../src-common/models/applicationuser';
 import { Router } from '@angular/router';
+import { LoginService } from '../../../../src-common/services/login.service';
+import { CSGOTeam } from '../../../../src-common/models/csgoteam';
 
 @Component({
   selector: 'app-player-search',
@@ -12,8 +14,8 @@ import { Router } from '@angular/router';
 export class PlayerSearchComponent {
   public searchModel: PlayerSearch = PLAYER_SEARCH;
 
-  @Input()
   public authUser: ApplicationUser;
+  public teamAdmin: CSGOTeam [];
 
   public userOverlap = 0;
 
@@ -27,7 +29,14 @@ export class PlayerSearchComponent {
     { roleName: 'Lurker', role: PlaystyleRole.Lurker }
   ];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authManager: LoginService) {
+    this.authManager.applicationUser.subscribe(user => {
+      if (user) {
+        this.authUser = user;
+        this.authManager.teamsAdmin.subscribe(teams => this.teamAdmin = teams);
+      }
+    })
+  }
 
   public searchPlayers() {
     if (!this.userOverlap) {

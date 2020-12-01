@@ -40,7 +40,7 @@ export class StrategyDetailsComponent extends BaseComponent {
           this.apiService.getCurrentStrategy(stratid).subscribe(strat => {
             if (strat) {
               this.strat = strat;
-              this.newComment.StratId = strat.Id;
+              this.newComment.StratId = strat.id;
             }
           });
         }
@@ -74,7 +74,7 @@ export class StrategyDetailsComponent extends BaseComponent {
   public submitComment() {
     this.newComment._inEdit = false;
     this.apiService.submitStratComment(this.newComment, this.strat).subscribe(_ => {
-      this.newComment = newEmptyComment(this.authUser.id, this.strat.Id);
+      this.newComment = newEmptyComment(this.authUser.id, this.strat.id);
     });
   }
 

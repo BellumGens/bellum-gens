@@ -23,7 +23,7 @@
       <igx-chips-area class="result-chips">
         <igx-chip *ngFor="let weekday of team.practiceSchedule | daysAvailable"
                   [selectable]="false">
-          <span class="igx-chip__text">{{ weekday.Day | weekday }}</span>
+          <span class="igx-chip__text">{{ weekday.day | weekday }}</span>
         </igx-chip>
       </igx-chips-area>
     </igx-card-content>

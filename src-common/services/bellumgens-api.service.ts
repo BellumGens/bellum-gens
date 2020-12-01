@@ -1,4 +1,4 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SteamGroup, SteamUser, SteamUserSummary } from '../models/steamuser';
 import { Observable, ReplaySubject, throwError, BehaviorSubject } from 'rxjs';
@@ -13,7 +13,6 @@ import { CSGOStrategy, VoteDirection, StrategyVote, StrategyComment } from '../m
 import { SearchResult } from '../models/searchresult';
 import { environment } from '../environments/environment';
 import { CommunicationService } from './communication.service';
-import { ApplicationUser } from '../models/applicationuser';
 import { Tournament } from '../models/tournament';
 
 const CACHE_SIZE = 1;
@@ -33,11 +32,10 @@ export class BellumgensApiService {
   private _currentPlayer = new BehaviorSubject<CSGOPlayer>(null);
   private _teamApplications = new Map<string, Observable<TeamApplication[]>>();
   private _searchResultCache: Map<string, SearchResult> = new Map();
-  private _playerSearchCache: Map<string, ApplicationUser []> = new Map();
+  private _playerSearchCache: Map<string, CSGOPlayer []> = new Map();
   private _teamSearchCache: Map<string, CSGOTeam []> = new Map();
   private _strategySearchCache: Map<string, CSGOStrategy []> = new Map();
 
-  public authUserUpdate = new EventEmitter<any>();
   public hasMoreStrats = new ReplaySubject<boolean>(CACHE_SIZE);
   public loadingTeams = new ReplaySubject<boolean>(CACHE_SIZE);
   public loadingPlayers = new ReplaySubject<boolean>(CACHE_SIZE);
@@ -45,7 +43,7 @@ export class BellumgensApiService {
   public loadingQuickSearch = new ReplaySubject<boolean>(CACHE_SIZE);
   public loadingSearch = new ReplaySubject<boolean>(CACHE_SIZE);
   public searchResult = new ReplaySubject<SearchResult>(CACHE_SIZE);
-  public playerSearchResult = new ReplaySubject<ApplicationUser []>(CACHE_SIZE);
+  public playerSearchResult = new ReplaySubject<CSGOPlayer []>(CACHE_SIZE);
   public teamSearchResult = new ReplaySubject<CSGOTeam []>(CACHE_SIZE);
   public strategySearchResult = new ReplaySubject<CSGOStrategy []>(CACHE_SIZE);
   public searchTerm = new ReplaySubject<string>(CACHE_SIZE);
@@ -229,14 +227,14 @@ export class BellumgensApiService {
   }
 
   public getCurrentStrategy(stratId: string) {
-    if (!this._currentStrategy.value || this._currentStrategy.value.Id !== stratId) {
+    if (!this._currentStrategy.value || this._currentStrategy.value.id !== stratId) {
       this.getTeamStrat(stratId).subscribe(strat => this._currentStrategy.next(strat));
     }
     return this._currentStrategy;
   }
 
   private getFilteredPlayers(query: string) {
-    return this.http.get<ApplicationUser []>(`${this._apiEndpoint}/search/players?${query}`, { withCredentials: true }).pipe(
+    return this.http.get<CSGOPlayer []>(`${this._apiEndpoint}/search/players?${query}`, { withCredentials: true }).pipe(
       map(response => response),
       catchError(error => {
         this.commService.emitError(error.error);
@@ -512,20 +510,20 @@ export class BellumgensApiService {
 
   public submitStratVote(strat: CSGOStrategy, direction: VoteDirection, userId: string) {
     return this.http.post<StrategyVote>(`${this._apiEndpoint}/strategy/vote`,
-                          { id: strat.Id, direction: direction },
+                          { id: strat.id, direction: direction },
                           { withCredentials: true }).pipe(
       map(response => {
-        const vote = strat.Votes.find(v => v.UserId === userId);
+        const vote = strat.votes.find(v => v.UserId === userId);
         if (response) {
           this.commService.emitSuccess('Vote submitted successfully!');
           if (vote) {
             vote.Vote = response.Vote;
           } else {
-            strat.Votes.push(response);
+            strat.votes.push(response);
           }
         } else {
           this.commService.emitSuccess('Vote removed successfully!');
-          strat.Votes.splice(strat.Votes.indexOf(vote), 1);
+          strat.votes.splice(strat.votes.indexOf(vote), 1);
         }
         return response;
       }),
@@ -542,12 +540,12 @@ export class BellumgensApiService {
                           { withCredentials: true }).pipe(
       map(response => {
         if (response) {
-          const existing = strat.Comments.find(c => c.Id === response.Id);
+          const existing = strat.comments.find(c => c.Id === response.Id);
           if (existing) {
             existing.Comment = response.Comment;
             this.commService.emitSuccess('Comment edited successfully!');
           } else {
-            strat.Comments.push(response);
+            strat.comments.push(response);
             this.commService.emitSuccess('Comment submitted successfully!');
           }
         }
@@ -566,7 +564,7 @@ export class BellumgensApiService {
       map(response => {
         if (response) {
           this.commService.emitSuccess('Comment submitted successfully!');
-          strat.Comments.splice(strat.Comments.indexOf(comment), 1);
+          strat.comments.splice(strat.comments.indexOf(comment), 1);
         }
         return response;
       }),
@@ -648,12 +646,15 @@ export class BellumgensApiService {
     );
   }
 
-  public setAvailability(availability: Availability): Observable<any> {
-    return this.http.put(`${this._apiEndpoint}/users/availability`, availability, { withCredentials: true }).pipe(
+  public getAvailability(userid: string): Observable<Availability []> {
+    return this.http.get<Availability []>(`${this._apiEndpoint}/users/availability?userid=${userid}`);
+  }
+
+  public setAvailability(availability: Availability): Observable<Availability> {
+    return this.http.put<Availability>(`${this._apiEndpoint}/users/availability`, availability, { withCredentials: true }).pipe(
       map(response => {
         if (response) {
           this.commService.emitSuccess('Availability updated!');
-          this.authUserUpdate.emit();
         }
         return response;
       }),
@@ -665,11 +666,10 @@ export class BellumgensApiService {
   }
 
   public setPrimaryRole(role: Role): Observable<any> {
-    return this.http.put(`${this._apiEndpoint}/users/primaryrole`, role, { withCredentials: true }).pipe(
+    return this.http.put(`${this._apiEndpoint}/users/primaryrole?id=${role.id}`, role, { withCredentials: true }).pipe(
       map(response => {
         if (response) {
-          this.commService.emitSuccess(`Primary role set to ${role.Name}`);
-          this.authUserUpdate.emit();
+          this.commService.emitSuccess(`Primary role set to ${role.name}`);
         }
         return response;
       }),
@@ -681,11 +681,10 @@ export class BellumgensApiService {
   }
 
   public setSecondaryRole(role: Role): Observable<any> {
-    return this.http.put(`${this._apiEndpoint}/users/secondaryrole`, role, { withCredentials: true }).pipe(
+    return this.http.put(`${this._apiEndpoint}/users/secondaryrole?id=${role.id}`, role, { withCredentials: true }).pipe(
       map(response => {
         if (response) {
-          this.commService.emitSuccess(`Secondary role set to ${role.Name}`);
-          this.authUserUpdate.emit();
+          this.commService.emitSuccess(`Secondary role set to ${role.name}`);
         }
         return response;
       }),
@@ -696,12 +695,15 @@ export class BellumgensApiService {
     );
   }
 
+  public getMapPool(userid: string): Observable<CSGOMapPool []> {
+    return this.http.get<CSGOMapPool []>(`${this._apiEndpoint}/users/mapPool?userid=${userid}`);
+  }
+
   public setMapPool(mapstatus: CSGOMapPool): Observable<any> {
     return this.http.put(`${this._apiEndpoint}/users/mapPool`, mapstatus, { withCredentials: true }).pipe(
       map(response => {
         if (response) {
           this.commService.emitSuccess('Map pool updated!');
-          this.authUserUpdate.emit();
         }
         return response;
       }),

@@ -1,7 +1,3 @@
-.steam-login-container {
-  align-content: center;
-}
-
 .drop-down-arrow {
   margin: 0;
 }
@@ -22,8 +18,7 @@
 
 .profile-container {
   display: flex;
-  flex-flow: column nowrap;
-  width: 100%;
+  flex-flow: column;
   min-width: 347px;
 }
 
@@ -31,25 +26,12 @@
   display: flex;
   flex-flow: column;
   justify-content: space-between;
-  min-height: 515px;
+  min-height: 315px;
   padding: 16px;
 }
 
 .profile-username {
   margin-top: 8px;
-}
-
-.completeness-icon {
-  margin-right: 16px;
-}
-
-.completeness-item {
-  display: flex;
-  padding: 4px;
-}
-
-.completeness-item span {
-  font-size: 0.9rem;
 }
 
 .profile-button {

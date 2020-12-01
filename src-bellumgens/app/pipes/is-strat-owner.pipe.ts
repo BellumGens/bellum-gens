@@ -9,7 +9,7 @@ export class IsStratOwnerPipe implements PipeTransform {
 
   transform(authUser: ApplicationUser, strat: CSGOStrategy): any {
     if (authUser && strat) {
-      return strat.UserId === authUser.id;
+      return strat.userId === authUser.id;
     }
     return false;
   }

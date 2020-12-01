@@ -1,8 +1,9 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import { PlaystyleRole } from '../../../../src-common/models/playerrole';
 import { TeamSearch, TEAM_SEARCH } from '../../../../src-common/models/csgoteam';
 import { ApplicationUser } from '../../../../src-common/models/applicationuser';
 import { Router } from '@angular/router';
+import { LoginService } from '../../../../src-common/services/login.service';
 
 @Component({
   selector: 'app-team-search',
@@ -12,7 +13,6 @@ import { Router } from '@angular/router';
 export class TeamSearchComponent {
   public searchModel: TeamSearch = TEAM_SEARCH;
 
-  @Input()
   public authUser: ApplicationUser;
 
   public activeLineup = [
@@ -23,7 +23,7 @@ export class TeamSearchComponent {
     { roleName: 'Lurker', role: PlaystyleRole.Lurker }
   ];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authManager: LoginService) { }
 
   public searchTeams() {
     this.router.navigate(['search/teams', this.searchQuery]);

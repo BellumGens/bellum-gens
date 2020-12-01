@@ -1,4 +1,4 @@
-import { Injectable, EventEmitter, PLATFORM_ID, Inject } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { throwError, BehaviorSubject } from 'rxjs';
 import { LoginProvider } from '../models/login-provider';
@@ -7,12 +7,12 @@ import { ApplicationUser, UserPreferences, AdminAppUserSummary } from '../models
 import { map, catchError } from 'rxjs/operators';
 import { environment } from '../environments/environment';
 import { SwPush } from '@angular/service-worker';
-import { NotificationActions, PushNotificationWrapper } from '../models/usernotifications';
+import { NotificationActions, PushNotificationWrapper, UserNotification } from '../models/usernotifications';
 import { Router } from '@angular/router';
 import { CommunicationService } from './communication.service';
 import { UserRegistration, UserLogin } from '../models/userlogin';
 import { TournamentApplication } from '../models/tournament';
-import { isPlatformBrowser } from '@angular/common';
+import { CSGOTeam } from '../models/csgoteam';
 
 @Injectable({
   providedIn: 'root'
@@ -20,19 +20,18 @@ import { isPlatformBrowser } from '@angular/common';
 export class LoginService {
   private _apiEndpoint = environment.authApiEndpoint;
   private _apiBase = environment.apiEndpoint;
-  private _isBrowser: boolean;
   private _applicationUser = new BehaviorSubject<ApplicationUser>(null);
+  private _userNotifications = new BehaviorSubject<UserNotification []>(null);
   private _registrations = new BehaviorSubject<TournamentApplication []>(null);
+  private _teamsAdmin = new BehaviorSubject<CSGOTeam []>(null);
   public userCheckInProgress = new BehaviorSubject<boolean>(false);
 
   public openLogin = new EventEmitter<string>();
 
-  constructor(@Inject(PLATFORM_ID) platformId: Object,
-              private http: HttpClient,
+  constructor(private http: HttpClient,
               private swPush: SwPush,
               private router: Router,
               private commService: CommunicationService) {
-    this._isBrowser = isPlatformBrowser(platformId);
   }
 
   public emitOpenLogin(title?: string) {
@@ -54,6 +53,13 @@ export class LoginService {
     return this._registrations;
   }
 
+  public get teamsAdmin() {
+    if (!this._teamsAdmin.value) {
+      this.getUserTeamsAdmin().subscribe(teams => this.teamsAdmin.next(teams));
+    }
+    return this._teamsAdmin;
+  }
+
   public getRegistrations() {
     this.http.get<TournamentApplication []>(`${this._apiBase}/tournament/registrations`, { withCredentials: true}).subscribe(data => {
       this._registrations.next(data);
@@ -62,22 +68,28 @@ export class LoginService {
 
   public get applicationUser() {
     if (!this._applicationUser.value && !this.userCheckInProgress.value) {
-      if (this._isBrowser) {
-        this.userCheckInProgress.next(true);
-        this.getSteamUser().subscribe(
-          user => {
-            if (user) {
-              this._applicationUser.next(user);
-              this.initSw();
-            }
-            this.userCheckInProgress.next(false);
-          },
-          _ => this.userCheckInProgress.next(false)
-        );
-      }
+      this.userCheckInProgress.next(true);
+      this.getAppUser().subscribe(
+        user => {
+          if (user) {
+            this._applicationUser.next(user);
+            this.initSw();
+          }
+          this.userCheckInProgress.next(false);
+        },
+        _ => this.userCheckInProgress.next(false)
+      );
     }
 
     return this._applicationUser;
+  }
+
+  public get userNotifications() {
+    if (!this._userNotifications.value) {
+      this.getUserNotifications().subscribe(data => this._userNotifications.next(data));
+    }
+
+    return this._userNotifications;
   }
 
   public getUserIsAppAdmin() {
@@ -205,7 +217,7 @@ export class LoginService {
         this.commService.emitMessage((<PushNotificationWrapper>message).notification.title);
 
         // Update the app user with new notifications and teams
-        this.getSteamUser().subscribe(user => this._applicationUser.next(user));
+        this.getAppUser().subscribe(user => this._applicationUser.next(user));
       });
       this.swPush.notificationClicks.subscribe(action => {
         if (action.action === NotificationActions.ViewTeam) {
@@ -220,7 +232,15 @@ export class LoginService {
     .catch(error => console.log(error));
   }
 
-  private getSteamUser() {
-    return this.http.get<ApplicationUser>(`${this._apiEndpoint}/userinfo`, { withCredentials: true });
+  private getAppUser() {
+    return this.http.get<ApplicationUser>(`${this._apiEndpoint}`, { withCredentials: true });
+  }
+
+  private getUserNotifications() {
+    return this.http.get<UserNotification []>(`${this._apiEndpoint}/usernotifications`, { withCredentials: true });
+  }
+
+  private getUserTeamsAdmin() {
+    return this.http.get<CSGOTeam []>(`${this._apiEndpoint}/userteamsadmin`, { withCredentials: true });
   }
 }

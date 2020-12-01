@@ -16,6 +16,7 @@ import { map, debounceTime } from 'rxjs/operators';
 import { UnreadNotificationsPipe } from './pipes/unread-notifications.pipe';
 import { GlobalOverlaySettings } from '../../src-common/models/misc';
 import { environment } from '../../src-common/environments/environment';
+import { CSGOTeam } from '../../src-common/models/csgoteam';
 
 @Component({
   selector: 'app-root',
@@ -24,6 +25,7 @@ import { environment } from '../../src-common/environments/environment';
 })
 export class AppComponent implements OnInit {
   public authUser: ApplicationUser;
+  public teams: CSGOTeam [];
   public searchResult: SearchResult;
   public unreadNotifications = 0;
   public environment = environment;
@@ -41,11 +43,13 @@ export class AppComponent implements OnInit {
   constructor(private authManager: LoginService,
               private apiService: BellumgensApiService) {
     this.authManager.applicationUser.subscribe(user => {
-      this.authUser = user;
-      if (user) {
-        this.unreadNotifications += this.unreadPipe.transform(user.notifications);
+        this.authUser = user;
+        if (user) {
+          this.authManager.userNotifications.subscribe(data => this.unreadNotifications += this.unreadPipe.transform(data));
+          this.apiService.getUserTeams(user.id).subscribe(teams => this.teams = teams);
+        }
       }
-    });
+    );
   }
 
   public ngOnInit(): void {

@@ -1,8 +1,6 @@
-import { Availability } from './playeravailability';
 import { SteamUser } from './steamuser';
-import { CSGOTeam } from './csgoteam';
 import { PlaystyleRole } from './playerrole';
-import { CSGOMapPool } from './csgomaps';
+import { ApplicationUser } from './applicationuser';
 
 export interface CSGOStats {
   headshotPercentage: number;
@@ -13,17 +11,18 @@ export interface CSGOStats {
   weapons: WeaponDescriptor [];
 }
 
-export interface CSGOPlayer {
+export interface CSGOPlayer extends ApplicationUser {
   steamUser: SteamUser;
   steamUserException: boolean;
   userStats: CSGOStats;
   userStatsException: boolean;
   registered: boolean;
-  availability: Availability [];
   primaryRole: PlaystyleRole;
   secondaryRole: PlaystyleRole;
-  mapPool: CSGOMapPool [];
-  teams: CSGOTeam [];
+  headshotPercentage: number;
+  killDeathRatio: number;
+  accuracy: number;
+  steamPrivate: boolean;
 }
 
 export interface WeaponDescriptor {

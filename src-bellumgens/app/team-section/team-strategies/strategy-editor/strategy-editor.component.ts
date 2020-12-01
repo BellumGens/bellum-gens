@@ -85,10 +85,10 @@ export class StrategyEditorComponent extends BaseComponent implements OnInit, On
           this.apiService.getCurrentStrategy(stratid).subscribe(strat => {
             if (strat) {
               this.newStrategy = strat;
-              if (strat.EditorMetadata) {
-                this.editor.restore(strat.EditorMetadata);
+              if (strat.editorMetadata) {
+                this.editor.restore(strat.editorMetadata);
               }
-              this.map = this.maps.find(m => m.id === strat.Map);
+              this.map = this.maps.find(m => m.id === strat.map);
             }
           });
         }
@@ -140,8 +140,8 @@ export class StrategyEditorComponent extends BaseComponent implements OnInit, On
       this.saveInProgress = true;
       this.editor.deselectAll();
       this.deselectBrush();
-      this.newStrategy.Image = this.canvas.nativeElement.toDataURL('image/png');
-      this.newStrategy.EditorMetadata = this.editor.save();
+      this.newStrategy.image = this.canvas.nativeElement.toDataURL('image/png');
+      this.newStrategy.editorMetadata = this.editor.save();
       this.apiService.submitStrategy(this.newStrategy).subscribe(
         _ => this.saveInProgress = false,
         _ => this.saveInProgress = false

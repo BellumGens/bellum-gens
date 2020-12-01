@@ -30,7 +30,7 @@ export class UserStrategiesComponent {
   }
 
   public deleteStrat(args: CSGOStrategy) {
-    this.apiService.deleteStrategy(args.Id).subscribe(
+    this.apiService.deleteStrategy(args.id).subscribe(
       _ => {
         this.strats.splice(this.strats.indexOf(args), 1);
       }

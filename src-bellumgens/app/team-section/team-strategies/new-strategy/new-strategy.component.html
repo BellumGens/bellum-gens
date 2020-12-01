@@ -3,35 +3,35 @@
     <span>{{ title }}</span>
     <igx-input-group>
       <label for="strategyName" igxLabel>Title</label>
-      <input #strategyName name="strategyName" id="strategyName" igxInput minlength="2" [required]="true" [(ngModel)]="newStrategy.Title">
-      <igx-suffix *ngIf="strategyName.value.length > 0" (click)="newStrategy.Title = null">
+      <input #strategyName name="strategyName" id="strategyName" igxInput minlength="2" [required]="true" [(ngModel)]="newStrategy.title">
+      <igx-suffix *ngIf="strategyName.value.length > 0" (click)="newStrategy.title = null">
           <igx-icon>clear</igx-icon>
       </igx-suffix>
     </igx-input-group>
 
     <igx-input-group class="space-out">
       <label for="strategyDescription" igxLabel>Description</label>
-      <textarea #strategyDescription id="strategyDescription" name="strategyDescription" igxInput minlength="2" [required]="true" [(ngModel)]="newStrategy.Description">
+      <textarea #strategyDescription id="strategyDescription" name="strategyDescription" igxInput minlength="2" [required]="true" [(ngModel)]="newStrategy.description">
       </textarea>
-      <igx-suffix *ngIf="strategyDescription.value.length > 0" (click)="newStrategy.Description = null">
+      <igx-suffix *ngIf="strategyDescription.value.length > 0" (click)="newStrategy.description = null">
           <igx-icon>clear</igx-icon>
       </igx-suffix>
     </igx-input-group>
 
     <div class="horizontal-center space-between space-out">
       <igx-radio-group>
-        <igx-radio name="strategySide" [(ngModel)]="newStrategy.Side" [value]="0">
+        <igx-radio name="strategySide" [(ngModel)]="newStrategy.side" [value]="0">
           T-Side
         </igx-radio>
-        <igx-radio name="strategySide" [(ngModel)]="newStrategy.Side" [value]="1">
+        <igx-radio name="strategySide" [(ngModel)]="newStrategy.side" [value]="1">
           CT-Side
         </igx-radio>
       </igx-radio-group>
 
-      <igx-switch name="strategyPublic" [(ngModel)]="newStrategy.Visible">Public</igx-switch>
+      <igx-switch name="strategyPublic" [(ngModel)]="newStrategy.visible">Public</igx-switch>
     </div>
 
-    <igx-select id="mapSelector" class="space-out" name="mapSelector" [(ngModel)]="newStrategy.Map">
+    <igx-select id="mapSelector" class="space-out" name="mapSelector" [(ngModel)]="newStrategy.map">
       <label for="mapSelector" igxLabel>Map</label>
       <igx-select-item *ngFor="let map of mapList" (click)="selectedMap = map" [value]="map.id">
         {{ map.map }}
@@ -49,18 +49,18 @@
              igxInput
              type="url"
              pattern="^(?:http(s)?:\/\/)[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$"
-             [(ngModel)]="newStrategy.Url" />
-      <igx-suffix *ngIf="strategyUrl.value.length > 0" (click)="newStrategy.Url = null">
+             [(ngModel)]="newStrategy.url" />
+      <igx-suffix *ngIf="strategyUrl.value.length > 0" (click)="newStrategy.url = null">
           <igx-icon>clear</igx-icon>
       </igx-suffix>
     </igx-input-group>
 
-    <iframe *ngIf="getVideoEmbedLink()" class="video-frame space-out" [src]="newStrategy.Url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe *ngIf="getVideoEmbedLink()" class="video-frame space-out" [src]="newStrategy.url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
     <div class="column-wrapper space-out">
       <button type="button" igxButton="outlined" class="submit-button" [disabled]="strategyForm.invalid" (click)="createAndRedirect()">Go to Editor</button>
       <span class="separate">OR</span>
-      <button igxButton="outlined" igxRipple [disabled]="strategyForm.invalid || !newStrategy.Url" class="submit-button">Submit</button>
+      <button igxButton="outlined" igxRipple [disabled]="strategyForm.invalid || !newStrategy.url" class="submit-button">Submit</button>
     </div>
   </form>
 </igx-dialog>

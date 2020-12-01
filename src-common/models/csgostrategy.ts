@@ -1,22 +1,22 @@
 import { CSGOMap } from './csgomaps';
 
 export interface CSGOStrategy {
-  Id: string;
-  TeamId: string;
-  Side: Side;
-  Title: string;
-  Description: string;
-  Url: string;
-  Map: CSGOMap;
-  LastUpdated?: Date;
-  Owner?: string;
-  Image?: string;
-  EditorMetadata?: string;
-  Votes?: StrategyVote [];
-  UserId?: string;
-  CustomUrl?: string;
-  Visible?: boolean;
-  Comments?: StrategyComment [];
+  id: string;
+  teamId: string;
+  side: Side;
+  title: string;
+  description: string;
+  url: string;
+  map: CSGOMap;
+  lastUpdated?: Date;
+  owner?: string;
+  image?: string;
+  editorMetadata?: string;
+  votes?: StrategyVote [];
+  userId?: string;
+  customUrl?: string;
+  visible?: boolean;
+  comments?: StrategyComment [];
 }
 
 export interface StrategyVote {
@@ -47,14 +47,14 @@ export enum VoteDirection {
 
 export function newEmptyStrategy(visible = false): CSGOStrategy {
   return {
-    Id: '',
-    TeamId: '',
-    Side: Side.TSide,
-    Title: '',
-    Description: '',
-    Url: '',
-    Visible: visible,
-    Map: CSGOMap.Dust2
+    id: '',
+    teamId: '',
+    side: Side.TSide,
+    title: '',
+    description: '',
+    url: '',
+    visible: visible,
+    map: CSGOMap.Dust2
   };
 }
 

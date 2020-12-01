@@ -4,8 +4,8 @@ import { BellumgensApiService } from '../../../../../src-common/services/bellumg
 import { ALL_ROLES } from '../../../../../src-common/models/playerrole';
 import { BaseComponent } from '../../../base/base.component';
 import { IgxIconService } from '@infragistics/igniteui-angular';
-import { ApplicationUser } from '../../../../../src-common/models/applicationuser';
 import { Title, Meta } from '@angular/platform-browser';
+import { CSGOPlayer } from '../../../../../src-common/models/csgoplayer';
 
 @Component({
   selector: 'app-player-results',
@@ -13,7 +13,7 @@ import { Title, Meta } from '@angular/platform-browser';
   styleUrls: ['./player-results.component.css']
 })
 export class PlayerResultsComponent extends BaseComponent {
-  public players: ApplicationUser [];
+  public players: CSGOPlayer [];
   public loading = false;
   public roles = ALL_ROLES;
   public query: string;

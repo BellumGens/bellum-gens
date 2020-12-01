@@ -1,7 +1,7 @@
 <igx-list *ngIf="authUser">
   <igx-list-item [isHeader]="true">Notifications for {{ authUser.username }}</igx-list-item>
-  <igx-list-item *ngIf="!authUser.notifications?.length"><span igxListLine>No new notifications.</span></igx-list-item>
-  <igx-list-item *ngFor="let notification of authUser.notifications | sortNotifications:pipeTrigger" [class]="notificationClass[notification.State]">
+  <igx-list-item *ngIf="!notifications?.length"><span igxListLine>No new notifications.</span></igx-list-item>
+  <igx-list-item *ngFor="let notification of notifications | sortNotifications:pipeTrigger" [class]="notificationClass[notification.State]">
     <igx-avatar igxListThumbnail [src]="notification.TeamInfo.teamAvatar" [initials]="notification.TeamInfo.teamName" [roundShape]="true">
     </igx-avatar>
     <h3 igxListLineSubTitle>

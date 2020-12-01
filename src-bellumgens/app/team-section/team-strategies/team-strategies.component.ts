@@ -71,13 +71,13 @@ export class TeamStrategiesComponent {
 
   public changeMaps(event: IChipSelectEventArgs, args: CSGOMapPool) {
     if (event.originalEvent) {
-      this.maps.find(m => m.Map === args.Map).IsPlayed = event.selected;
+      this.maps.find(m => m.map === args.map).isPlayed = event.selected;
       this.pipeTrigger++;
     }
   }
 
   public deleteStrat(args: CSGOStrategy) {
-    this.apiService.deleteStrategy(args.Id).subscribe(
+    this.apiService.deleteStrategy(args.id).subscribe(
       _ => {
         this.strats.splice(this.strats.indexOf(args), 1);
         this.pipeTrigger++;

@@ -37,7 +37,6 @@ export class TeamNewComponent {
       team => {
         this.inProgress = false;
         this.createTeam.close();
-        this.authUser.teams.push(team);
         if (this.navigateOnCreate) {
           this.router.navigate(['/team', team.customUrl]);
         }
@@ -52,7 +51,6 @@ export class TeamNewComponent {
       team => {
         this.inProgress = false;
         this.createTeam.close();
-        this.authUser.teams.push(team);
         if (this.navigateOnCreate) {
           this.router.navigate(['/team', team.customUrl]);
         }

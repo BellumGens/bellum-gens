@@ -1,9 +1,8 @@
 <div class="card-wrapper">
   <p *ngIf="!authUser">You need to login to view your teams.</p>
-  <p *ngIf="authUser && !authUser.teams.length">You are not part of any teams.</p>
-  <button *ngIf="authUser" class="submit-button" igxButton="outlined" igxRipple (click)="createTeam.open()"><igx-icon>add_circle_outline</igx-icon> Create New Team</button>
+  <button *ngIf="authUser" class="submit-button" igxButton="outlined" igxRipple (click)="createTeam.open()"><igx-icon>add_circle_outline</igx-icon> Create New CS:GO Team</button>
 
-  <igx-card class="team-card" *ngFor="let team of authUser?.teams">
+  <igx-card class="team-card" *ngFor="let team of teams | async">
     <igx-card-header>
       <igx-avatar igxCardThumbnail [src]="team.teamAvatar" [initials]="team.teamName" [roundShape]="true"></igx-avatar>
       <h3 igxCardHeaderTitle>{{ team.teamName }}</h3>

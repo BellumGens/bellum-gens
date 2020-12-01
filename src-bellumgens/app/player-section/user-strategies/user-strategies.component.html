@@ -18,28 +18,28 @@
     <igx-card-header>
       <h2 igxCardHeaderTitle
           class="strat-title navigatable"
-          [title]="strat.Title"
-          [routerLink]="['/strategies', 'details', strat.CustomUrl]">{{ strat.Title }}</h2>
-      <h4 igxCardHeaderSubtitle>Visibility: {{ strat.Visible ? 'Public' : 'Private'}}</h4>
-      <h6 igxCardHeaderSubtitle class="card-smaller-subtitle">Last Edit: {{ strat.LastUpdated | date }}</h6>
+          [title]="strat.title"
+          [routerLink]="['/strategies', 'details', strat.customUrl]">{{ strat.title }}</h2>
+      <h4 igxCardHeaderSubtitle>Visibility: {{ strat.visible ? 'Public' : 'Private'}}</h4>
+      <h6 igxCardHeaderSubtitle class="card-smaller-subtitle">Last Edit: {{ strat.lastUpdated | date }}</h6>
     </igx-card-header>
 
     <igx-card-media>
-      <iframe class="video-frame" *ngIf="strat.Url | isVideo" [src]="strat.Url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      <img *ngIf="strat.Image" [src]="strat.Image" class="strat-image" [routerLink]="['/strategies', 'details', strat.CustomUrl]" />
+      <iframe class="video-frame" *ngIf="strat.url | isVideo" [src]="strat.url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <img *ngIf="strat.image" [src]="strat.image" class="strat-image" [routerLink]="['/strategies', 'details', strat.customUrl]" />
     </igx-card-media>
 
     <igx-card-content>
-      <p class="igx-card-header__subtitle">{{ strat.Description | truncateText:130 }}</p>
+      <p class="igx-card-header__subtitle">{{ strat.description | truncateText:130 }}</p>
     </igx-card-content>
 
     <igx-card-actions [reverse]="true">
-      <span class="horizontal-center navigatable" [routerLink]="['/strategies', 'details', strat.CustomUrl]">
-        <igx-badge [value]="strat.Comments?.length.toString()" type="info"></igx-badge>
+      <span class="horizontal-center navigatable" [routerLink]="['/strategies', 'details', strat.customUrl]">
+        <igx-badge [value]="strat.comments?.length.toString()" type="info"></igx-badge>
         Comments
       </span>
 
-      <button *ngIf="strat.Visible"
+      <button *ngIf="strat.visible"
               igxButton="fab"
               igxRipple
               (click)="shareOnTwitter(strat)">

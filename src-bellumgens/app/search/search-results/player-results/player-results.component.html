@@ -30,19 +30,19 @@
       <div>Preferred roles</div>
       <igx-chips-area class="result-chips">
         <igx-chip [selectable]="false">
-          <span class='igx-chip__text'>{{ roles[player.primaryRole].Name }}</span>
+          <span class='igx-chip__text'>{{ roles[player.primaryRole].name }}</span>
         </igx-chip>
         <igx-chip [selectable]="false">
-          <span class='igx-chip__text'>{{ roles[player.secondaryRole].Name }}</span>
+          <span class='igx-chip__text'>{{ roles[player.secondaryRole].name }}</span>
         </igx-chip>
       </igx-chips-area>
-      <div>Available</div>
+      <!-- <div>Available</div>
       <igx-chips-area class="result-chips">
         <igx-chip *ngFor="let weekday of player.availability | daysAvailable"
                   [selectable]="false">
-          <span class='igx-chip__text'>{{ weekday.Day | weekday }}</span>
+          <span class='igx-chip__text'>{{ weekday.day | weekday }}</span>
         </igx-chip>
-      </igx-chips-area>
+      </igx-chips-area> -->
     </igx-card-content>
   </igx-card>
 </div>

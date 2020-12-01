@@ -2,7 +2,7 @@
     (pointermove)="canvasPointerMove($event)"
     (pointerup)="canvasPointerUp()">
   <div class="editor-elements list-container">
-    <igx-select *ngIf="newStrategy" class="editor-elements-section" id="mapSelector" name="mapSelector" [(ngModel)]="newStrategy.Map" (ngModelChange)="changeMap($event)">
+    <igx-select *ngIf="newStrategy" class="editor-elements-section" id="mapSelector" name="mapSelector" [(ngModel)]="newStrategy.map" (ngModelChange)="changeMap($event)">
       <label for="mapSelector" igxLabel>Map</label>
       <igx-select-item *ngFor="let map of maps" [value]="map.id">
         {{ map.map }}
