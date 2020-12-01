@@ -45,8 +45,7 @@ $include: (igx-avatar,
 
 @include igx-dark-theme(
     $palette: $app-palette,
-    $exclude: map-keys(map-remove($components, $include...),),
-    $legacy-support: false
+    $exclude: map-keys(map-remove($components, $include...),)
 );
 
 /* Navbar */

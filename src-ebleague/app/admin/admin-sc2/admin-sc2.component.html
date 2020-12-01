@@ -19,7 +19,7 @@
       </igx-grid-toolbar-actions>
     </igx-grid-toolbar>
 
-    <igx-column field="StartTime" width="220px" header="Начало">
+    <igx-column field="StartTime" width="220px" [dataType]="'date'" header="Начало">
       <ng-template igxCell let-value>
         {{ value | date:'MMM d, y, h:mm a' }}
       </ng-template>
