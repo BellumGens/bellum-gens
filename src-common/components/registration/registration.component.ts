@@ -16,7 +16,7 @@ export class RegistrationComponent implements OnInit {
   public inUse = false;
   public submitInProgress = false;
   public authUser: ApplicationUser;
-  public error = "";
+  public error = '';
 
   @ViewChild('regusername', { static: true }) public usernameInput: ElementRef;
 
