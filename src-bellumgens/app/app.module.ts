@@ -205,7 +205,7 @@ import { TeamTournamentsComponent } from './team-section/team-tournaments/team-t
 export class AppModule {
   constructor(private iconService: IgxIconService) {
     const smproviders = ['facebook', 'twitter', 'instagram', 'linkedin'];
-    const complogos = ['discord', 'steam'];
+    const complogos = ['discord', 'steam', 'twitch', 'battlenet'];
     complogos.forEach(c => this.iconService.addSvgIconFromText(c, logos.find(s => s.name === c).value, 'login-icons'));
     smproviders.forEach(p => this.iconService.addSvgIconFromText(p, socialMedia.find(s => s.name === p).value, 'login-icons'));
     this.iconService.addSvgIcon('bge-white', '/assets/login/bge-white.svg', 'partners');

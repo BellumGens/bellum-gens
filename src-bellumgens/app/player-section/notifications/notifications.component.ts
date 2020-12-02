@@ -1,6 +1,6 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginService } from 'src-common/services/login.service';
+import { LoginService } from '../../../../src-common/services/login.service';
 
 import { ApplicationUser } from '../../../../src-common/models/applicationuser';
 import { UserNotification, NotificationState } from '../../../../src-common/models/usernotifications';

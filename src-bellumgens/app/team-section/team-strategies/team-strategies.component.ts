@@ -44,6 +44,7 @@ export class TeamStrategiesComponent {
 
       if (teamId) {
         this.apiService.getTeam(teamId).subscribe(team => this.team = team);
+        this.apiService.loadingStrategies.subscribe(loading => this.loading = loading);
         this.apiService.getTeamStrats(teamId).subscribe(strats => this.strats = strats);
         this.apiService.getTeamMapPool(teamId).subscribe(maps => this.maps = maps);
       } else {
@@ -55,7 +56,7 @@ export class TeamStrategiesComponent {
             this.apiService.loadingSearch.subscribe(loading => this.loading = loading);
             this.apiService.strategySearchResult.subscribe(strats => this.strats = strats);
           } else {
-            this.apiService.loadingStrategies.subscribe(loading => this.loading = loading),
+            this.apiService.loadingStrategies.subscribe(loading => this.loading = loading);
             this.apiService.strategies.subscribe(strats => this.strats = strats);
             this.apiService.hasMoreStrats.subscribe(hasMore => this.hasMore = hasMore);
           }
