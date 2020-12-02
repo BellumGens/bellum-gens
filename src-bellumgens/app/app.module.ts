@@ -44,8 +44,6 @@ import { socialMedia, logos } from '@igniteui/material-icons-extended';
 
 import { AppComponent } from './app.component';
 import { PlayerDetailsComponent } from './player-section/player-details/player-details.component';
-import { LoginService } from '../../src-common/services/login.service';
-import { BellumgensApiService } from '../../src-common/services/bellumgens-api.service';
 import { HomeComponent } from './home/home.component';
 import { GroupsFilterPipe } from './pipes/groups-filter.pipe';
 import { WeekdayPipe } from './pipes/weekday.pipe';
@@ -97,12 +95,8 @@ import { HasVotedPipe } from './pipes/has-voted.pipe';
 import { UserStrategiesComponent } from './player-section/user-strategies/user-strategies.component';
 import { NewStrategyComponent } from './team-section/team-strategies/new-strategy/new-strategy.component';
 import { IsStratOwnerPipe } from './pipes/is-strat-owner.pipe';
-import { ApiTournamentsService } from '../../src-common/services/bellumgens-api.tournaments.service';
 import { StartsWithPipe } from './pipes/starts-with.pipe';
 import { TeamNewComponent } from './team-section/team-new/team-new.component';
-import { GetRegCountPipe } from './pipes/get-reg-count.pipe';
-import { CommunicationService } from '../../src-common/services/communication.service';
-import { SocialMediaService } from '../../src-common/services/social-media.service';
 import { BellumGensModule } from '../../src-common/components/components.module';
 import { TeamTournamentsComponent } from './team-section/team-tournaments/team-tournaments.component';
 
@@ -161,7 +155,6 @@ import { TeamTournamentsComponent } from './team-section/team-tournaments/team-t
     IsStratOwnerPipe,
     StartsWithPipe,
     TeamNewComponent,
-    GetRegCountPipe,
     TeamTournamentsComponent
   ],
   imports: [

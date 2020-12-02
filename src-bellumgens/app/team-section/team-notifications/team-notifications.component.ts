@@ -8,20 +8,20 @@ import { BellumgensApiService } from '../../../../src-common/services/bellumgens
   styleUrls: ['./team-notifications.component.css']
 })
 export class TeamNotificationsComponent implements OnInit {
-  notificationClass = ['', '', 'notification-disabled', 'notification-disabled'];
-  applications: TeamApplication [];
+  public notificationClass = ['', '', 'notification-disabled', 'notification-disabled'];
+  public applications: TeamApplication [];
   public pipeTrigger = 0;
   public actionInProgress = false;
   public actionText = '';
 
   @Input()
-  team: CSGOTeam;
+  public team: CSGOTeam;
 
   @Output()
-  loaded = new EventEmitter<TeamApplication []>();
+  public loaded = new EventEmitter<TeamApplication []>();
 
   @Output()
-  changed = new EventEmitter<number>();
+  public changed = new EventEmitter<number>();
 
   constructor(private apiService: BellumgensApiService) { }
 
