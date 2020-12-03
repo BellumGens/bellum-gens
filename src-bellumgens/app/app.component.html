@@ -13,9 +13,14 @@
           <igx-badge class="notifications-badge" *ngIf="unreadNotifications > 0" [value]="unreadNotifications.toString()" type="info"></igx-badge>
           Notifications
         </span>
+        <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="user/strategies">
+          <igx-icon>person</igx-icon>
+          My Strategies
+        </span>
+        <igx-divider></igx-divider>
         <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="strategies">
           <igx-icon>playlist_add_check</igx-icon>
-          Strategies feed
+          CS:GO Strategies
         </span>
         <span igxDrawerItem igxRipple routerLink="/" fragment="partners">
           <igx-icon>people_alt</igx-icon>
@@ -45,7 +50,11 @@
           <igx-icon>notifications</igx-icon>
           <igx-badge class="notifications-badge" *ngIf="unreadNotifications > 0" [value]="unreadNotifications.toString()" type="info"></igx-badge>
         </span>
-        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="strategies" title="Strategies feed">
+        <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="user/strategies" title="My strategies">
+          <igx-icon>person</igx-icon>
+        </span>
+        <igx-divider></igx-divider>
+        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="strategies" title="CS:GO Strategies">
           <igx-icon>playlist_add_check</igx-icon>
         </span>
         <span igxDrawerItem igxRipple routerLink="/" fragment="partners" title="Partners">
@@ -80,7 +89,7 @@
         </igx-suffix>
       </igx-input-group>
 
-      <bg-login [authUser]='authUser'></bg-login>
+      <bg-login [authUser]="authUser"></bg-login>
     </igx-navbar>
 
     <igx-banner #cookiesBanner>
