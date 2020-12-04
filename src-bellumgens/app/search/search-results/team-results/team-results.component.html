@@ -12,8 +12,8 @@
       <h3 igxCardHeaderTitle>{{ team.teamName }}</h3>
     </igx-card-header>
     <igx-card-content>
-      <div>Open positions in the active line-up</div>
-      <igx-chips-area class="result-chips">
+      <div>{{ team.description }}</div>
+      <!-- <igx-chips-area class="result-chips">
         <igx-chip *ngFor="let role of team.members | openPositions"
                   [selectable]="false">
           <span class="igx-chip__text">{{ role.roleName }}</span>
@@ -25,7 +25,7 @@
                   [selectable]="false">
           <span class="igx-chip__text">{{ weekday.day | weekday }}</span>
         </igx-chip>
-      </igx-chips-area>
+      </igx-chips-area> -->
     </igx-card-content>
   </igx-card>
 </div>

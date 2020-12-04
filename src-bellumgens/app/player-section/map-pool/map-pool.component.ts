@@ -1,6 +1,6 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { Observable } from 'rxjs';
-import { CSGOMapPool } from '../../../src-common/models/csgomaps';
+import { CSGOMapPool } from '../../../../src-common/models/csgomaps';
 
 @Component({
   selector: 'app-map-pool',

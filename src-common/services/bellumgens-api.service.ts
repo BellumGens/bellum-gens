@@ -10,7 +10,6 @@ import { CSGOMapPool } from '../models/csgomaps';
 import { map, shareReplay, catchError } from 'rxjs/operators';
 import { UserNotification } from '../models/usernotifications';
 import { CSGOStrategy, VoteDirection, StrategyVote, StrategyComment } from '../models/csgostrategy';
-import { SearchResult } from '../models/searchresult';
 import { environment } from '../environments/environment';
 import { CommunicationService } from './communication.service';
 import { Tournament } from '../models/tournament';
@@ -31,22 +30,11 @@ export class BellumgensApiService {
   private _strategies = new BehaviorSubject<CSGOStrategy []>([]);
   private _currentPlayer = new BehaviorSubject<CSGOPlayer>(null);
   private _teamApplications = new Map<string, Observable<TeamApplication[]>>();
-  private _searchResultCache: Map<string, SearchResult> = new Map();
-  private _playerSearchCache: Map<string, CSGOPlayer []> = new Map();
-  private _teamSearchCache: Map<string, CSGOTeam []> = new Map();
-  private _strategySearchCache: Map<string, CSGOStrategy []> = new Map();
 
   public hasMoreStrats = new ReplaySubject<boolean>(CACHE_SIZE);
   public loadingTeams = new ReplaySubject<boolean>(CACHE_SIZE);
   public loadingPlayers = new ReplaySubject<boolean>(CACHE_SIZE);
   public loadingStrategies = new ReplaySubject<boolean>(CACHE_SIZE);
-  public loadingQuickSearch = new ReplaySubject<boolean>(CACHE_SIZE);
-  public loadingSearch = new ReplaySubject<boolean>(CACHE_SIZE);
-  public searchResult = new ReplaySubject<SearchResult>(CACHE_SIZE);
-  public playerSearchResult = new ReplaySubject<CSGOPlayer []>(CACHE_SIZE);
-  public teamSearchResult = new ReplaySubject<CSGOTeam []>(CACHE_SIZE);
-  public strategySearchResult = new ReplaySubject<CSGOStrategy []>(CACHE_SIZE);
-  public searchTerm = new ReplaySubject<string>(CACHE_SIZE);
   public loadingPlayer = new ReplaySubject<boolean>(CACHE_SIZE);
 
   constructor(private http: HttpClient, private commService: CommunicationService) { }
@@ -72,16 +60,6 @@ export class BellumgensApiService {
     return this.http.get<CSGOStrategy []>(`${this._apiEndpoint}/strategy/strategies?page=${page}`);
   }
 
-  private getFilteredStrategies(query: string) {
-    return this.http.get<CSGOStrategy []>(`${this._apiEndpoint}/search/strategies?${query}`).pipe(
-      map(response => response),
-      catchError(error => {
-        this.commService.emitError(error.error);
-        return throwError(error);
-      })
-    );
-  }
-
   public loadStrategiesPage(page: number) {
     this.getStrategies(page).subscribe(
       data => {
@@ -102,110 +80,6 @@ export class BellumgensApiService {
 
   public getUserTeams(userId: string) {
     return this.http.get<CSGOTeam []>(`${this._apiEndpoint}/users/userteams?userid=${userId}`, { withCredentials: true });
-  }
-
-  public quickSearch(name: string) {
-    this.searchTerm.next(name);
-    if (this._searchResultCache.has(name)) {
-      this.searchResult.next(this._searchResultCache.get(name));
-    } else {
-      this.loadingQuickSearch.next(true);
-      this.getQuickSearch(name).subscribe(
-        data => {
-          this._searchResultCache.set(name, data);
-          this.searchResult.next(data);
-          this.loadingQuickSearch.next(false);
-        }
-      );
-    }
-  }
-
-  private getQuickSearch(name: string) {
-    return this.http.get<SearchResult>(`${this._apiEndpoint}/search?name=${name}`).pipe(
-      map(response => response),
-      catchError(error => {
-        this.commService.emitError(error.error);
-        return throwError(error);
-      })
-    );
-  }
-
-  public searchTeams(query: string) {
-    if (this._teamSearchCache.has(query)) {
-      this.teamSearchResult.next(this._teamSearchCache.get(query));
-    } else {
-      if (query.startsWith('name')) {
-        const val = query.split('=')[1];
-        if (this._searchResultCache.has(val)) {
-          this.teamSearchResult.next(this._searchResultCache.get(val).Teams);
-        }
-      } else {
-        this.teamSearchResult.next([]);
-        this.loadingSearch.next(true);
-        this.getFilteredTeams(query).subscribe(
-          teams => {
-            this._teamSearchCache.set(query, teams);
-            this.teamSearchResult.next(teams);
-            this.loadingSearch.next(false);
-          },
-          error => {
-            this.commService.emitError(error.error);
-          }
-        );
-      }
-    }
-  }
-
-  public searchPlayers(query: string) {
-    if (this._playerSearchCache.has(query)) {
-      this.playerSearchResult.next(this._playerSearchCache.get(query));
-    } else {
-      if (query.startsWith('name')) {
-        const val = query.split('=')[1];
-        if (this._searchResultCache.has(val)) {
-          this.playerSearchResult.next(this._searchResultCache.get(val).Players);
-        }
-      } else {
-        this.playerSearchResult.next([]);
-        this.loadingSearch.next(true);
-        this.getFilteredPlayers(query).subscribe(
-          players => {
-            this._playerSearchCache.set(query, players);
-            this.playerSearchResult.next(players);
-            this.loadingSearch.next(false);
-          },
-          error => {
-            this.commService.emitError(error.error);
-          }
-        );
-      }
-    }
-  }
-
-  public searchStrategies(query: string) {
-    if (this._strategySearchCache.has(query)) {
-      this.strategySearchResult.next(this._strategySearchCache.get(query));
-    } else {
-      if (query.startsWith('name')) {
-        const val = query.split('=')[1];
-        if (this._searchResultCache.has(val)) {
-          this.strategySearchResult.next(this._searchResultCache.get(val).Strategies);
-        }
-      } else {
-        this.strategySearchResult.next([]);
-        this.loadingSearch.next(true);
-        this.getFilteredStrategies(query).subscribe(
-          strategies => {
-            this._strategySearchCache.set(query, strategies);
-            this.strategySearchResult.next(strategies);
-            this.loadingSearch.next(false);
-          },
-          error => {
-            this.commService.emitError(error.error);
-          }
-        );
-      }
-    }
   }
 
   public teamApplications(teamId: string): Observable<TeamApplication []> {
@@ -233,31 +107,8 @@ export class BellumgensApiService {
     return this._currentStrategy;
   }
 
-  private getFilteredPlayers(query: string) {
-    return this.http.get<CSGOPlayer []>(`${this._apiEndpoint}/search/players?${query}`, { withCredentials: true }).pipe(
-      map(response => response),
-      catchError(error => {
-        this.commService.emitError(error.error);
-        return throwError(error);
-      })
-    );
-  }
-
-  private getFilteredTeams(query: string) {
-    return this.http.get<CSGOTeam []>(`${this._apiEndpoint}/search/teams?${query}`, { withCredentials: true }).pipe(
-      map(response => response),
-      catchError(error => {
-        this.commService.emitError(error.error);
-        return throwError(error);
-      })
-    );
-  }
-
   public getTeam(teamId: string) {
     if (!this._teamReqInProgress) {
-      if (!this._currentTeam.value || (this._currentTeam.value.teamId !== teamId &&  this._currentTeam.value.customUrl !== teamId)) {
-        this.checkSearchCacheForTeam(teamId);
-      }
       if (!this._currentTeam.value ||
             (this._currentTeam.value.teamId !== teamId &&  this._currentTeam.value.customUrl !== teamId)) {
         this._teamReqInProgress = true;
@@ -268,32 +119,6 @@ export class BellumgensApiService {
       }
     }
     return this._currentTeam;
-  }
-
-  private checkSearchCacheForTeam(teamId) {
-    let found = false;
-    this._searchResultCache.forEach((result) => {
-      result.Teams.forEach((team) => {
-        if (!found) {
-          if (team.customUrl === teamId || team.teamId === teamId) {
-            this._currentTeam.next(team);
-            found = true;
-          }
-        }
-      });
-    });
-    if (!found) {
-      this._teamSearchCache.forEach((result) => {
-        result.forEach((team) => {
-          if (!found) {
-            if (team.customUrl === teamId || team.teamId === teamId) {
-              this._currentTeam.next(team);
-              found = true;
-            }
-          }
-        });
-      });
-    }
   }
 
   private getTeamFromServer(teamId: string) {

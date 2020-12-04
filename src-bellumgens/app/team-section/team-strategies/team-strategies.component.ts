@@ -10,6 +10,7 @@ import { LoginService } from '../../../../src-common/services/login.service';
 import { ApplicationUser } from '../../../../src-common/models/applicationuser';
 import { GlobalOverlaySettings, StratOrder, StratOrderBy } from '../../../../src-common/models/misc';
 import { SocialMediaService } from '../../../../src-common/services/social-media.service';
+import { ApiSearchService } from 'src-common/services/bellumgens-api.search.service';
 
 @Component({
   selector: 'app-team-strategies',
@@ -37,6 +38,7 @@ export class TeamStrategiesComponent {
 
   constructor(private activatedRoute: ActivatedRoute,
               private apiService: BellumgensApiService,
+              private searchService: ApiSearchService,
               private authManager: LoginService,
               private socialMedia: SocialMediaService) {
     this.activatedRoute.parent.params.subscribe(params => {
@@ -52,9 +54,9 @@ export class TeamStrategiesComponent {
           const query = param['query'];
 
           if (query) {
-            this.apiService.searchStrategies(query);
-            this.apiService.loadingSearch.subscribe(loading => this.loading = loading);
-            this.apiService.strategySearchResult.subscribe(strats => this.strats = strats);
+            this.searchService.searchStrategies(query);
+            this.searchService.loadingSearch.subscribe(loading => this.loading = loading);
+            this.searchService.strategySearchResult.subscribe(strats => this.strats = strats);
           } else {
             this.apiService.loadingStrategies.subscribe(loading => this.loading = loading);
             this.apiService.strategies.subscribe(strats => this.strats = strats);

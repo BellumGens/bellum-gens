@@ -47,7 +47,14 @@ export class PlayerSearchComponent {
   }
 
   private get searchQuery() {
-    return `role=${this.searchModel.role}&overlap=${this.searchModel.scheduleOverlap}&teamid=${this.searchModel.teamId}`;
+    let query = '';
+    if (this.searchModel.role != null) {
+      query = `role=${this.searchModel.role}&`;
+    }
+    if (this.searchModel.teamId) {
+      query += `teamid=${this.searchModel.teamId}&`;
+    }
+    return `${query}overlap=${this.searchModel.scheduleOverlap}`;
   }
 
 }

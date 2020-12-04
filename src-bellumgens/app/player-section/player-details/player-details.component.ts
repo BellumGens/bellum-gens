@@ -71,7 +71,7 @@ export class PlayerDetailsComponent extends BaseComponent {
                       this.mapPool = this.apiService.getMapPool(player.id);
                     }
                     if (player.userStats) {
-                      let weapons = new SortWeaponsPipe().transform(player.userStats.weapons);
+                      const weapons = new SortWeaponsPipe().transform(player.userStats.weapons);
                       this.loadSvgs(weapons);
                     }
                   }

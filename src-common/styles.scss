@@ -64,6 +64,8 @@ html, body {
   display: flex;
   flex-flow: row nowrap;
   margin-left: auto;
+  align-items: center;
+  justify-content: center;
 }
 
 .title {

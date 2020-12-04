@@ -57,7 +57,7 @@ import { TeamApplicationComponent } from './team-section/team-application/team-a
 import { TeamOverviewComponent } from './team-section/team-overview/team-overview.component';
 import { TeamNotificationsComponent } from './team-section/team-notifications/team-notifications.component';
 import { SortApplicationsPipe } from './pipes/sort-applications.pipe';
-import { MapPoolComponent } from './map-pool/map-pool.component';
+import { MapPoolComponent } from './player-section/map-pool/map-pool.component';
 import { SideStratsPipe } from './pipes/sidestrats.pipe';
 import { AvailabilityComponent } from './availability/availability.component';
 import { SafeVideoLinkPipe } from './pipes/safe-video-link.pipe';

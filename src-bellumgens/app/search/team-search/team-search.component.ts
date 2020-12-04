@@ -30,6 +30,10 @@ export class TeamSearchComponent {
   }
 
   private get searchQuery() {
-    return `role=${this.searchModel.role}&overlap=${this.searchModel.scheduleOverlap}`;
+    let query = '';
+    if (this.searchModel.role != null) {
+      query = `role=${this.searchModel.role}&`;
+    }
+    return `${query}overlap=${this.searchModel.scheduleOverlap}`;
   }
 }

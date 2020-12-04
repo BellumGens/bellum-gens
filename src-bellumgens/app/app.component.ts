@@ -17,6 +17,7 @@ import { UnreadNotificationsPipe } from './pipes/unread-notifications.pipe';
 import { GlobalOverlaySettings } from '../../src-common/models/misc';
 import { environment } from '../../src-common/environments/environment';
 import { CSGOTeam } from '../../src-common/models/csgoteam';
+import { ApiSearchService } from '../../src-common/services/bellumgens-api.search.service';
 
 @Component({
   selector: 'app-root',
@@ -41,7 +42,8 @@ export class AppComponent implements OnInit {
   private unreadPipe = new UnreadNotificationsPipe();
 
   constructor(private authManager: LoginService,
-              private apiService: BellumgensApiService) {
+              private apiService: BellumgensApiService,
+              private searchService: ApiSearchService) {
     this.authManager.applicationUser.subscribe(user => {
         this.authUser = user;
         if (user) {
@@ -80,7 +82,7 @@ export class AppComponent implements OnInit {
           modal: false
         };
         this.quickSearchDropDown.open(overlaySettings);
-        this.apiService.quickSearch(val);
+        this.searchService.quickSearch(val);
       }
     });
   }
