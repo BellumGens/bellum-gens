@@ -219,9 +219,7 @@ export class BellumgensApiService {
   public getSteamMembers(members: string []): Observable<SteamUserSummary []> {
     return this.http.get<SteamUserSummary []>(`${this._apiEndpoint}/teams/steammembers?members=${members}`,
       { withCredentials: true }).pipe(
-        map(response => {
-          return response;
-        }),
+        map(response => response),
         catchError(error => {
           this.commService.emitError(error.error);
           return throwError(error);
@@ -335,7 +333,7 @@ export class BellumgensApiService {
 
   public submitStratVote(strat: CSGOStrategy, direction: VoteDirection, userId: string) {
     return this.http.post<StrategyVote>(`${this._apiEndpoint}/strategy/vote`,
-                          { id: strat.id, direction: direction },
+                          { id: strat.id, direction },
                           { withCredentials: true }).pipe(
       map(response => {
         const vote = strat.votes.find(v => v.UserId === userId);

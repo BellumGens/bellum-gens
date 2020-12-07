@@ -53,7 +53,7 @@ export function newEmptyStrategy(visible = false): CSGOStrategy {
     title: '',
     description: '',
     url: '',
-    visible: visible,
+    visible,
     map: CSGOMap.Dust2
   };
 }

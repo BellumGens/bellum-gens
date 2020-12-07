@@ -149,9 +149,7 @@ export class ApiTournamentsService {
 
   public leagueRegistration(application: TournamentApplication) {
     return this.http.post<TournamentApplication>(`${this._apiEndpoint}/tournament/register`, application, { withCredentials: true }).pipe(
-      map(response => {
-        return response;
-      }),
+      map(response => response),
       catchError(error => {
         this.commService.emitError(error.error);
         return throwError(error);
@@ -161,9 +159,7 @@ export class ApiTournamentsService {
 
   public createTournament(tournament: Tournament) {
     return this.http.put<Tournament>(`${this._apiEndpoint}/tournament/create`, tournament, { withCredentials: true }).pipe(
-      map(response => {
-        return response;
-      }),
+      map(response => response),
       catchError(error => {
         this.commService.emitError(error.error);
         return throwError(error);

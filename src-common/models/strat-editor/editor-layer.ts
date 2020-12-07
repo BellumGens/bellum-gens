@@ -71,7 +71,7 @@ export abstract class BaseLayer {
   public set selected(selected: boolean) {
     if (this.selectable && this.selected !== selected) {
       this._selected = selected;
-      this.layerSelect.emit({layer: this, selected: selected});
+      this.layerSelect.emit({layer: this, selected});
     }
   }
 
@@ -254,8 +254,8 @@ export class FreeflowLayer extends BaseLayer {
       return;
     }
     let start = this._currentPath.points[0];
-    let slope = (this._currentPath.points[1].x - start.x) / (this._currentPath.points[1].y - start.y),
-        currentSlope, current;
+    let slope = (this._currentPath.points[1].x - start.x) / (this._currentPath.points[1].y - start.y);
+        let currentSlope; let current;
     newPoints.push(start);
     for (let i = 1; i < length; i++) {
       current = this._currentPath.points[i];

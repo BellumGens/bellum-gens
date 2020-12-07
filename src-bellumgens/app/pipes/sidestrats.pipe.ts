@@ -14,7 +14,7 @@ export class SideStratsPipe implements PipeTransform {
       filtered = filtered.sort((a, b) => a.lastUpdated === b.lastUpdated ? 0 : a.lastUpdated < b.lastUpdated ? 1 : -1);
     } else if (filtered && order === StratOrderBy.TopVoted) {
       filtered = filtered.sort((a, b) => {
-        let av = 0, bv = 0;
+        let av = 0; let bv = 0;
         if (a.votes) {
           a.votes.forEach(v => v.Vote === VoteDirection.Up ? av++ : av--);
         }

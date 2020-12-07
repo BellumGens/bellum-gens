@@ -25,13 +25,13 @@ export class ShopComponent extends BaseComponent {
   ];
 
   public allSizes: [
-    { text: 'XS', size: JerseySize.XS, disabled: false },
-    { text: 'S', size: JerseySize.S, disabled: false },
-    { text: 'M', size: JerseySize.M, disabled: false },
-    { text: 'L', size: JerseySize.L, disabled: false },
-    { text: 'XL', size: JerseySize.XL, disabled: false },
-    { text: 'XXL', size: JerseySize.XXL, disabled: false },
-    { text: 'XXXL', size: JerseySize.XXXL, disabled: false }
+    { text: 'XS'; size: JerseySize.XS; disabled: false },
+    { text: 'S'; size: JerseySize.S; disabled: false },
+    { text: 'M'; size: JerseySize.M; disabled: false },
+    { text: 'L'; size: JerseySize.L; disabled: false },
+    { text: 'XL'; size: JerseySize.XL; disabled: false },
+    { text: 'XXL'; size: JerseySize.XXL; disabled: false },
+    { text: 'XXXL'; size: JerseySize.XXXL; disabled: false }
   ];
 
   constructor(private apiService: ApiShopService,
