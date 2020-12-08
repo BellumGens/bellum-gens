@@ -27,6 +27,7 @@ export class BellumgensApiService {
   // Cache
   private _currentStrategy = new BehaviorSubject<CSGOStrategy>(null);
   private _currentTeam = new BehaviorSubject<CSGOTeam>(null);
+  private _currentTeamMembers = new BehaviorSubject<TeamMember []>(null);
   private _strategies = new BehaviorSubject<CSGOStrategy []>([]);
   private _currentPlayer = new BehaviorSubject<CSGOPlayer>(null);
   private _teamApplications = new Map<string, Observable<TeamApplication[]>>();
@@ -109,8 +110,7 @@ export class BellumgensApiService {
 
   public getTeam(teamId: string) {
     if (!this._teamReqInProgress) {
-      if (!this._currentTeam.value ||
-            (this._currentTeam.value.teamId !== teamId &&  this._currentTeam.value.customUrl !== teamId)) {
+      if (!this._currentTeam.value || this._currentTeam.value.teamId !== teamId || this._currentTeam.value.customUrl !== teamId) {
         this._teamReqInProgress = true;
         this.getTeamFromServer(teamId).subscribe(team => {
           this._currentTeam.next(team);
@@ -121,8 +121,21 @@ export class BellumgensApiService {
     return this._currentTeam;
   }
 
+  public getTeamMembers(teamId: string) {
+    if (!this._currentTeamMembers.value || this._currentTeam.value.teamId !== teamId || this._currentTeam.value.customUrl !== teamId) {
+      this.getTeamMembersFromServer(teamId).subscribe(members => {
+        this._currentTeamMembers.next(members);
+      });
+    }
+    return this._currentTeamMembers;
+  }
+
   private getTeamFromServer(teamId: string) {
-    return this.http.get<CSGOTeam>(`${this._apiEndpoint}/teams/team?teamid=${teamId}`);
+    return this.http.get<CSGOTeam>(`${this._apiEndpoint}/teams?teamid=${teamId}`);
+  }
+
+  private getTeamMembersFromServer(teamId: string) {
+    return this.http.get<TeamMember []>(`${this._apiEndpoint}/teams/members?teamid=${teamId}`);
   }
 
   public registerSteamGroup(group: SteamGroup) {

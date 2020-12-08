@@ -13,6 +13,7 @@ import { LoginService } from '../../../../src-common/services/login.service';
 })
 export class TeamPreferencesComponent {
   public team: CSGOTeam;
+  public teammembers: TeamMember [];
   public steamMembers: SteamUserSummary [];
 
   public authUser: ApplicationUser;
@@ -28,6 +29,7 @@ export class TeamPreferencesComponent {
         this.apiService.getTeam(teamId).subscribe(team => {
           if (team) {
             this.team = team;
+            this.apiService.getTeamMembers(team.teamId).subscribe(members => this.teammembers = members);
             if (team.steamGroup) {
               this.apiService.getSteamMembers(team.steamGroup.members).subscribe(data => this.steamMembers = data);
             }

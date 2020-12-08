@@ -52,7 +52,7 @@
   <div class="team-info-column">
     <span>Team Members</span>
     <igx-list>
-      <igx-list-item *ngFor="let user of team.members; let i = index">
+      <igx-list-item *ngFor="let user of teammembers; let i = index">
         <igx-avatar igxListThumbnail [src]="user.AvatarIcon" [initials]="user.Username" [roundShape]="true">
         </igx-avatar>
         <igx-avatar *ngIf="user.Country"
@@ -95,7 +95,7 @@
   <div class="team-info-column" *ngIf="team.steamGroup">
     <span>Steam Group Members [not part of the team]</span>
     <igx-list>
-      <igx-list-item *ngFor="let member of steamMembers | excludeMembers:team.members" class="navigatable" [routerLink]="['/players', member.steamid]">
+      <igx-list-item *ngFor="let member of steamMembers | excludeMembers:teammembers" class="navigatable" [routerLink]="['/players', member.steamid]">
         <igx-avatar igxListThumbnail [src]="member.avatar" [initials]="member.personaname" [roundShape]="true">
         </igx-avatar>
         <h2 igxListLineTitle>

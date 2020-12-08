@@ -18,7 +18,7 @@ import { ApiSearchService } from 'src-common/services/bellumgens-api.search.serv
   styleUrls: ['./team-strategies.component.scss']
 })
 export class TeamStrategiesComponent {
-  private _isEditor = null;
+  public isEditor: boolean = null;
 
   public strats: CSGOStrategy [];
   public maps: CSGOMapPool [] = AllCSGOMaps;
@@ -45,10 +45,15 @@ export class TeamStrategiesComponent {
       const teamId = params['teamid'];
 
       if (teamId) {
-        this.apiService.getTeam(teamId).subscribe(team => this.team = team);
-        this.apiService.loadingStrategies.subscribe(loading => this.loading = loading);
-        this.apiService.getTeamStrats(teamId).subscribe(strats => this.strats = strats);
-        this.apiService.getTeamMapPool(teamId).subscribe(maps => this.maps = maps);
+        this.apiService.getTeam(teamId).subscribe(team => {
+          if (team) {
+            this.team = team;
+            this.apiService.loadingStrategies.subscribe(loading => this.loading = loading);
+            this.apiService.getTeamStrats(team.teamId).subscribe(strats => this.strats = strats);
+            this.apiService.getTeamMapPool(team.teamId).subscribe(maps => this.maps = maps);
+            this.authManager.getUserIsTeamEditor(team.teamId).subscribe(data => this.isEditor = data);
+          }
+        });
       } else {
         this.activatedRoute.params.subscribe(param => {
           const query = param['query'];
@@ -107,15 +112,5 @@ export class TeamStrategiesComponent {
     } else {
       this.apiService.submitStratVote(strat, direction, this.authUser.id).subscribe(_ => this.pipeTrigger++);
     }
-  }
-
-  public get isEditor() {
-    if (this._isEditor !== null) {
-      return this._isEditor;
-    }
-    if (this.authUser && this.team && this.team.members) {
-      this._isEditor = this.team.members.filter(m => (m.IsEditor || m.IsAdmin) && m.UserId === this.authUser.id).length > 0;
-    }
-    return this._isEditor;
   }
 }

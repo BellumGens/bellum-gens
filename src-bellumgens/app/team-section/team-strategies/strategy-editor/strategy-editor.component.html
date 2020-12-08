@@ -36,7 +36,7 @@
   <div class="editor-elements">
     <div *ngIf="team" class="editor-elements-section">
       <div>Team</div>
-      <igx-avatar *ngFor="let member of team?.members"
+      <igx-avatar *ngFor="let member of teammembers"
                   [src]="member.AvatarIcon"
                   [igxDrag]="{ src: member.AvatarIcon, circle: true, width: 24, height: 24, name: member.Username }"
                   (dragStart)="deselectBrush()"

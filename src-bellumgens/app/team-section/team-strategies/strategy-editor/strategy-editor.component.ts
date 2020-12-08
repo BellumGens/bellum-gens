@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { CSGOActiveDutyDescriptor, ActiveDuty, CSGOMap } from '../../../../../src-common/models/csgomaps';
 import { StrategyEditor } from '../../../../../src-common/models/strat-editor/strategy-editor';
-import { CSGOTeam } from '../../../../../src-common/models/csgoteam';
+import { CSGOTeam, TeamMember } from '../../../../../src-common/models/csgoteam';
 import { BellumgensApiService } from '../../../../../src-common/services/bellumgens-api.service';
 import { ActivatedRoute } from '@angular/router';
 import { IDropDroppedEventArgs, IgxIconService } from '@infragistics/igniteui-angular';
@@ -19,6 +19,7 @@ import { Title, Meta } from '@angular/platform-browser';
 export class StrategyEditorComponent extends BaseComponent implements OnInit, OnDestroy {
   public maps: CSGOActiveDutyDescriptor [] = ActiveDuty;
   public team: CSGOTeam;
+  public teammembers: TeamMember [];
   public newStrategy: CSGOStrategy;
   public utility = StratUtilities;
   public layers: BaseLayer [];
@@ -78,7 +79,12 @@ export class StrategyEditorComponent extends BaseComponent implements OnInit, On
       this.route.params.subscribe(params => {
         const teamId = params['teamid'];
         if (teamId) {
-          this.apiService.getTeam(teamId).subscribe(team => this.team = team);
+          this.apiService.getTeam(teamId).subscribe(team => {
+            if (team) {
+              this.team = team;
+              this.apiService.getTeamMembers(team.teamId).subscribe(members => this.teammembers = members);
+            }
+          });
         }
         const stratid = params['stratid'];
         if (stratid) {
@@ -217,11 +223,23 @@ export class StrategyEditorComponent extends BaseComponent implements OnInit, On
   }
 
   private loadSvgs() {
-    this.iconService.addSvgIcon('SimpleRadar', '/assets/simple_radar.svg', 'login-icons');
-    this.iconService.addSvgIcon('flashbang', '/assets/weapon-icons/svg_normal/weapon_flashbang.svg', 'weapon-icons');
-    this.iconService.addSvgIcon('smoke', '/assets/weapon-icons/svg_normal/weapon_smokegrenade.svg', 'weapon-icons');
-    this.iconService.addSvgIcon('c4', '/assets/weapon-icons/svg_normal/weapon_c4.svg', 'weapon-icons');
-    this.iconService.addSvgIcon('molotov', '/assets/weapon-icons/svg_normal/weapon_molotov.svg', 'weapon-icons');
-    this.iconService.addSvgIcon('hegrenade', '/assets/weapon-icons/svg_normal/weapon_hegrenade.svg', 'weapon-icons');
+    if (!this.iconService.isSvgIconCached('SimpleRadar', 'login-icons')) {
+      this.iconService.addSvgIcon('SimpleRadar', '/assets/simple_radar.svg', 'login-icons');
+    }
+    if (!this.iconService.isSvgIconCached('flashbang', 'weapon-icons')) {
+      this.iconService.addSvgIcon('flashbang', '/assets/weapon-icons/svg_normal/weapon_flashbang.svg', 'weapon-icons');
+    }
+    if (!this.iconService.isSvgIconCached('smoke', 'weapon-icons')) {
+      this.iconService.addSvgIcon('smoke', '/assets/weapon-icons/svg_normal/weapon_smokegrenade.svg', 'weapon-icons');
+    }
+    if (!this.iconService.isSvgIconCached('c4', 'weapon-icons')) {
+      this.iconService.addSvgIcon('c4', '/assets/weapon-icons/svg_normal/weapon_c4.svg', 'weapon-icons');
+    }
+    if (!this.iconService.isSvgIconCached('molotov', 'weapon-icons')) {
+      this.iconService.addSvgIcon('molotov', '/assets/weapon-icons/svg_normal/weapon_molotov.svg', 'weapon-icons');
+    }
+    if (!this.iconService.isSvgIconCached('hegrenade', 'weapon-icons')) {
+      this.iconService.addSvgIcon('hegrenade', '/assets/weapon-icons/svg_normal/weapon_hegrenade.svg', 'weapon-icons');
+    }
   }
 }

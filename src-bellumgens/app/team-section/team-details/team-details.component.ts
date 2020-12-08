@@ -17,6 +17,7 @@ import { Title, Meta } from '@angular/platform-browser';
 })
 export class TeamDetailsComponent extends BaseComponent {
   public isAdmin = false;
+  public teamMembers: TeamMember [];
   public activeMembers: TeamMember [];
   public inactiveMembers: TeamMember [];
   public authUser: ApplicationUser;
@@ -47,20 +48,26 @@ export class TeamDetailsComponent extends BaseComponent {
         const teamId = params['teamid'];
 
         if (teamId) {
-          this.authService.getUserIsTeamAdmin(teamId).subscribe(admin => this.isAdmin = admin);
           this.apiService.getTeam(teamId).subscribe(team => {
             if (team) {
               this.team = team;
-              this.roleSlots.forEach((role) => {
-                const member = this.team.members.find(m => m.Role === role.role);
-                if (member) {
-                  role.user = member;
-                } else {
-                  role.user = null;
+              this.authService.getUserIsTeamAdmin(team.teamId).subscribe(admin => this.isAdmin = admin);
+
+              this.apiService.getTeamMembers(team.teamId).subscribe(members => {
+                if (members) {
+                  this.teamMembers = members;
+                  this.roleSlots.forEach((role) => {
+                    const member = this.teamMembers.find(m => m.Role === role.role);
+                    if (member) {
+                      role.user = member;
+                    } else {
+                      role.user = null;
+                    }
+                  });
+                  this.activeMembers = this.teamMembers.filter(m => m.IsActive && m.Role === PlaystyleRole.NotSet);
+                  this.inactiveMembers = this.teamMembers.filter(m => !m.IsActive);
                 }
               });
-              this.activeMembers = this.team.members.filter(m => m.IsActive && m.Role === PlaystyleRole.NotSet);
-              this.inactiveMembers = this.team.members.filter(m => !m.IsActive);
             }
           });
         }

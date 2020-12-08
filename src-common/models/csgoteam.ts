@@ -11,7 +11,6 @@ export interface CSGOTeam {
   discord?: string;
   visible: boolean;
   customUrl?: string;
-  members?: TeamMember [];
   practiceSchedule?: Availability [];
   steamGroup?: SteamGroup;
 }
@@ -62,8 +61,7 @@ export function getEmptyNewTeam(): CSGOTeam {
     discord: '',
     visible: true,
     teamId: undefined,
-    practiceSchedule: [],
-    members: undefined
+    practiceSchedule: []
   };
 }
 

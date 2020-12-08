@@ -104,6 +104,14 @@ export class LoginService {
     return this.http.get<boolean>(`${this._apiBase}/teams/teamadmin?teamid=${teamid}`, { withCredentials: true });
   }
 
+  public getUserIsTeamMember(teamid: string) {
+    return this.http.get<boolean>(`${this._apiBase}/teams/teammember?teamid=${teamid}`, { withCredentials: true });
+  }
+
+  public getUserIsTeamEditor(teamid: string) {
+    return this.http.get<boolean>(`${this._apiBase}/teams/teameditor?teamid=${teamid}`, { withCredentials: true });
+  }
+
   public getUsers() {
     return this.http.get<AdminAppUserSummary []>(`${this._apiBase}/admin/users`, { withCredentials: true });
   }
