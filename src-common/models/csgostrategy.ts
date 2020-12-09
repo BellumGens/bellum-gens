@@ -20,18 +20,18 @@ export interface CSGOStrategy {
 }
 
 export interface StrategyVote {
-  Vote: VoteDirection;
-  UserId: string;
+  vote: VoteDirection;
+  userId: string;
 }
 
 export interface StrategyComment {
-  Id?: string;
-  StratId: string;
-  Comment: string;
-  Published?: Date;
-  UserId: string;
-  UserName?: string;
-  UserAvatar?: string;
+  id?: string;
+  stratId: string;
+  comment: string;
+  published?: Date;
+  userId: string;
+  userName?: string;
+  userAvatar?: string;
   _inEdit?: boolean;
 }
 
@@ -60,8 +60,8 @@ export function newEmptyStrategy(visible = false): CSGOStrategy {
 
 export function newEmptyComment(userId: string = null, stratId: string = null): StrategyComment {
   return {
-    UserId: userId,
-    StratId: stratId,
-    Comment: null
+    userId: userId,
+    stratId: stratId,
+    comment: null
   };
 }

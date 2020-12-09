@@ -16,10 +16,10 @@ export class SideStratsPipe implements PipeTransform {
       filtered = filtered.sort((a, b) => {
         let av = 0, bv = 0;
         if (a.votes) {
-          a.votes.forEach(v => v.Vote === VoteDirection.Up ? av++ : av--);
+          a.votes.forEach(v => v.vote === VoteDirection.Up ? av++ : av--);
         }
         if (b.votes) {
-          b.votes.forEach(v => v.Vote === VoteDirection.Up ? bv++ : bv--);
+          b.votes.forEach(v => v.vote === VoteDirection.Up ? bv++ : bv--);
         }
         return av === bv ? 0 : av < bv ? 1 : -1;
       });
