@@ -10,7 +10,7 @@ import { LoginService } from '../../../../src-common/services/login.service';
 import { ApplicationUser } from '../../../../src-common/models/applicationuser';
 import { GlobalOverlaySettings, StratOrder, StratOrderBy } from '../../../../src-common/models/misc';
 import { SocialMediaService } from '../../../../src-common/services/social-media.service';
-import { ApiSearchService } from 'src-common/services/bellumgens-api.search.service';
+import { ApiSearchService } from '../../../../src-common/services/bellumgens-api.search.service';
 
 @Component({
   selector: 'app-team-strategies',
