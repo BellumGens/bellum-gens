@@ -79,7 +79,6 @@ import { TeamPreferencesComponent } from './team-section/team-preferences/team-p
 import { SortWeaponsPipe } from './pipes/sort-weapons.pipe';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../../src-common/environments/environment';
-import { ExcludeMembersPipe } from './pipes/exclude-members.pipe';
 import { NotificationStatePipe } from './pipes/notification-state.pipe';
 import { EmailconfirmComponent } from './emailconfirm/emailconfirm.component';
 import { QueryParsedPipe } from './pipes/query-parsed.pipe';
@@ -137,7 +136,6 @@ import { TeamTournamentsComponent } from './team-section/team-tournaments/team-t
     TeamPreferencesComponent,
     OpenPositionsPipe,
     SortWeaponsPipe,
-    ExcludeMembersPipe,
     NotificationStatePipe,
     EmailconfirmComponent,
     QueryParsedPipe,

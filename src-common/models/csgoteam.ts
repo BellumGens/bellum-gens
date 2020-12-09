@@ -1,7 +1,6 @@
 import { PlaystyleRole } from './playerrole';
 import { SteamGroup } from './steamuser';
 import { NotificationState } from './usernotifications';
-import { Availability } from './playeravailability';
 
 export interface CSGOTeam {
   teamId?: string;
@@ -11,24 +10,24 @@ export interface CSGOTeam {
   discord?: string;
   visible: boolean;
   customUrl?: string;
-  practiceSchedule?: Availability [];
   steamGroup?: SteamGroup;
 }
 
 export interface TeamMember {
-  TeamId: string;
-  UserId: string;
-  IsActive: boolean;
-  IsAdmin: boolean;
-  IsEditor: boolean;
-  Role: PlaystyleRole;
-  Username: string;
-  AvatarIcon: string;
-  AvatarMedium: string;
-  AvatarFull: string;
-  CustomUrl: string;
-  Country: string;
-  RealName: string;
+  teamId: string;
+  userId: string;
+  steamId: string;
+  isActive: boolean;
+  isAdmin: boolean;
+  isEditor: boolean;
+  role: PlaystyleRole;
+  username: string;
+  avatarIcon: string;
+  avatarMedium: string;
+  avatarFull: string;
+  customUrl: string;
+  country: string;
+  realName: string;
 }
 
 export interface TeamApplication {
@@ -60,8 +59,7 @@ export function getEmptyNewTeam(): CSGOTeam {
     description: '',
     discord: '',
     visible: true,
-    teamId: undefined,
-    practiceSchedule: []
+    teamId: undefined
   };
 }
 

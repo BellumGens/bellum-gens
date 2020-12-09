@@ -14,10 +14,10 @@
   <div class="horizontal">
     <igx-chips-area class="map-filter">
       <igx-chip *ngFor="let map of maps | activeDutyMaps:viewAll"
-                [selected]="map.IsPlayed"
+                [selected]="map.isPlayed"
                 [selectable]="true"
                 (onSelection)="changeMaps($event, map)">
-        {{ map.Map | csgomapname }}
+        {{ map.map | csgomapname }}
       </igx-chip>
     </igx-chips-area>
     <igx-select [(ngModel)]="order" class="order-by">

@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { BellumgensApiService } from '../../../../src-common/services/bellumgens-api.service';
 import { CSGOTeam, TeamMember } from '../../../../src-common/models/csgoteam';
-import { SteamUserSummary } from '../../../../src-common/models/steamuser';
 import { ActivatedRoute } from '@angular/router';
 import { ApplicationUser } from '../../../../src-common/models/applicationuser';
 import { LoginService } from '../../../../src-common/services/login.service';
@@ -14,7 +13,6 @@ import { LoginService } from '../../../../src-common/services/login.service';
 export class TeamPreferencesComponent {
   public team: CSGOTeam;
   public teammembers: TeamMember [];
-  public steamMembers: SteamUserSummary [];
 
   public authUser: ApplicationUser;
 
@@ -30,9 +28,6 @@ export class TeamPreferencesComponent {
           if (team) {
             this.team = team;
             this.apiService.getTeamMembers(team.teamId).subscribe(members => this.teammembers = members);
-            if (team.steamGroup) {
-              this.apiService.getSteamMembers(team.steamGroup.members).subscribe(data => this.steamMembers = data);
-            }
           }
         });
       }
@@ -44,8 +39,8 @@ export class TeamPreferencesComponent {
   }
 
   public adminStatusUpdated(user: TeamMember) {
-    if (user.IsAdmin) {
-      user.IsEditor = true;
+    if (user.isAdmin) {
+      user.isEditor = true;
     }
     this.editorStatusUpdated(user);
   }

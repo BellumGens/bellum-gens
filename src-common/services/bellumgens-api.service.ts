@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { SteamGroup, SteamUser, SteamUserSummary } from '../models/steamuser';
+import { SteamGroup, SteamUser } from '../models/steamuser';
 import { Observable, ReplaySubject, throwError, BehaviorSubject } from 'rxjs';
 import { CSGOTeam, TeamMember, TeamApplication } from '../models/csgoteam';
 import { CSGOPlayer } from '../models/csgoplayer';
@@ -28,6 +28,7 @@ export class BellumgensApiService {
   private _currentStrategy = new BehaviorSubject<CSGOStrategy>(null);
   private _currentTeam = new BehaviorSubject<CSGOTeam>(null);
   private _currentTeamMembers = new BehaviorSubject<TeamMember []>(null);
+  private _currentTeamPractice = new BehaviorSubject<Availability []>(null);
   private _strategies = new BehaviorSubject<CSGOStrategy []>([]);
   private _currentPlayer = new BehaviorSubject<CSGOPlayer>(null);
   private _teamApplications = new Map<string, Observable<TeamApplication[]>>();
@@ -130,6 +131,15 @@ export class BellumgensApiService {
     return this._currentTeamMembers;
   }
 
+  public getTeamSchedule(teamId: string) {
+    if (!this._currentTeamPractice.value || this._currentTeam.value.teamId !== teamId || this._currentTeam.value.customUrl !== teamId) {
+      this.getTeamPractice(teamId).subscribe(schedule => {
+        this._currentTeamPractice.next(schedule);
+      });
+    }
+    return this._currentTeamPractice;
+  }
+
   private getTeamFromServer(teamId: string) {
     return this.http.get<CSGOTeam>(`${this._apiEndpoint}/teams?teamid=${teamId}`);
   }
@@ -187,7 +197,7 @@ export class BellumgensApiService {
     return this.http.put<TeamMember>(`${this._apiEndpoint}/teams/member`, teamMember, { withCredentials: true }).pipe(
       map(response => {
         if (response) {
-          this.commService.emitSuccess(`${teamMember.Username} updated successfully!`);
+          this.commService.emitSuccess(`${teamMember.username} updated successfully!`);
         }
         return response;
       }),
@@ -199,11 +209,11 @@ export class BellumgensApiService {
   }
 
   public removeTeamMember(teamMember: TeamMember) {
-    return this.http.delete(`${this._apiEndpoint}/teams/removemember?teamId=${teamMember.TeamId}&userId=${teamMember.UserId}`,
+    return this.http.delete(`${this._apiEndpoint}/teams/removemember?teamId=${teamMember.teamId}&userId=${teamMember.userId}`,
       { withCredentials: true }).pipe(
         map(response => {
           if (response) {
-            this.commService.emitSuccess(`${teamMember.Username} removed from team!`);
+            this.commService.emitSuccess(`${teamMember.username} removed from team!`);
           }
           return response;
         }),
@@ -227,19 +237,6 @@ export class BellumgensApiService {
         return throwError(error);
       })
     );
-  }
-
-  public getSteamMembers(members: string []): Observable<SteamUserSummary []> {
-    return this.http.get<SteamUserSummary []>(`${this._apiEndpoint}/teams/steammembers?members=${members}`,
-      { withCredentials: true }).pipe(
-        map(response => {
-          return response;
-        }),
-        catchError(error => {
-          this.commService.emitError(error.error);
-          return throwError(error);
-        })
-      );
   }
 
   public inviteToTeam(steamUser: SteamUser, team: CSGOTeam) {
@@ -426,6 +423,10 @@ export class BellumgensApiService {
         return throwError(error);
       })
     );
+  }
+
+  public getTeamPractice(teamid: string) {
+    return this.http.get<Availability []>(`${this._apiEndpoint}/teams/availability?teamid=${teamid}`);
   }
 
   public setTeamPractice(day: Availability) {

@@ -1,7 +1,7 @@
 <div *ngIf="team" class="overview-container overview-container-paddings">
   <div class="left-details-container">
     <h4>Practice</h4>
-    <app-availability [availability]="team.practiceSchedule" (availabilityChanged)="changeSchedule($event)" [editable]="isAdmin"></app-availability>
+    <app-availability [availability]="teamPractice" (availabilityChanged)="changeSchedule($event)" [editable]="isAdmin"></app-availability>
   </div>
 
   <div class="right-details-container">
@@ -19,8 +19,8 @@
             </div>
             <div class="user-in-role" *ngIf="role.user">
               <igx-avatar *ngIf="role.user"
-                          [src]="role.user.AvatarFull"
-                          [initials]="role.user.Username"
+                          [src]="role.user.avatarFull"
+                          [initials]="role.user.username"
                           [roundShape]="true"
                           [size]="'large'">
               </igx-avatar>
@@ -31,10 +31,10 @@
                           title="Remove from role"
                           (click)="removeFromRole(role)">
               </igx-avatar>
-              <igx-avatar *ngIf="!isAdmin && role.user.Country"
-                          [src]="role.user.Country | playerCountry"
+              <igx-avatar *ngIf="!isAdmin && role.user.country"
+                          [src]="role.user.country | playerCountry"
                           [roundShape]="true"
-                          [title]="role.user.Country"
+                          [title]="role.user.country"
                           class="country-badge-large">
               </igx-avatar>
             </div>
@@ -48,8 +48,8 @@
             </igx-avatar>
             <div>
               <span *ngIf="role.user" class="title">
-                <a [routerLink]="['/players', role.user.CustomUrl || role.user.UserId]">
-                  {{ role.user.Username }}
+                <a [routerLink]="['/players', role.user.customUrl || role.user.userId]">
+                  {{ role.user.username }}
                 </a>
               </span>
               <span *ngIf="!role.user" class="title">
@@ -70,8 +70,8 @@
         <div class="horizontal padding-top">
           <div class="active-inactive-users" *ngFor="let user of activeMembers">
             <div class="user-in-role">
-              <igx-avatar [src]="user.AvatarMedium"
-                          [initials]="user.Username"
+              <igx-avatar [src]="user.avatarMedium"
+                          [initials]="user.username"
                           [roundShape]="true"
                           [size]="'medium'"
                           [igxDrag]="user"
@@ -87,8 +87,8 @@
               </igx-avatar>
             </div>
             <span class="title">
-              <a [routerLink]="['/players', user.CustomUrl || user.UserId]">
-                {{ user.Username }}
+              <a [routerLink]="['/players', user.customUrl || user.userId]">
+                {{ user.username }}
               </a>
             </span>
           </div>
@@ -107,15 +107,15 @@
         <div class="horizontal padding-top">
           <div class="active-inactive-users" *ngFor="let user of inactiveMembers">
             <div class="user-in-role">
-              <igx-avatar [src]="user.AvatarMedium"
-                          [initials]="user.Username"
+              <igx-avatar [src]="user.avatarMedium"
+                          [initials]="user.username"
                           [roundShape]="true"
                           [size]="'medium'"
                           [igxDrag]="user"
                           (dragStart)="roleDragging($event)"
                           (dragEnd)="roleDraggingEnd()">
               </igx-avatar>
-              <igx-avatar *ngIf="isAdmin && authUser.id !== user.UserId"
+              <igx-avatar *ngIf="isAdmin && authUser.id !== user.userId"
                           icon="clear"
                           [roundShape]="true"
                           class="country-badge-medium navigatable"
@@ -124,8 +124,8 @@
               </igx-avatar>
             </div>
             <span class="title">
-              <a [routerLink]="['/players', user.CustomUrl || user.UserId]">
-                {{ user.Username }}
+              <a [routerLink]="['/players', user.customUrl || user.userId]">
+                {{ user.username }}
               </a>
             </span>
           </div>
