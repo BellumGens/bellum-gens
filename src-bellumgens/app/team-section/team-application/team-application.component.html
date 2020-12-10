@@ -8,8 +8,8 @@
   <div class="application-dialog">
     <igx-input-group type="search" class="search">
       <label for="motivation" igxLabel>Tell us about your motivation to join our team...</label>
-      <textarea igxInput name="motivation" [(ngModel)]="application.Message" [required]="true" class="application-message"></textarea>
-      <igx-suffix *ngIf="application.Message.length > 0" (click)="application.Message = ''">
+      <textarea igxInput name="motivation" [(ngModel)]="application.message" [required]="true" class="application-message"></textarea>
+      <igx-suffix *ngIf="application.message.length > 0" (click)="application.message = ''">
           <igx-icon>clear</igx-icon>
       </igx-suffix>
     </igx-input-group>

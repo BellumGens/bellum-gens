@@ -1,14 +1,14 @@
 <igx-list *ngIf="applications?.length">
   <igx-list-item [isHeader]="true">Notifications for {{ team.teamName }}</igx-list-item>
-  <igx-list-item *ngFor="let notification of applications | sortApplications:pipeTrigger" [class]="notificationClass[notification.State]">
-      <igx-avatar igxListThumbnail [src]="notification.AvatarIcon" [initials]="notification.UserName" [roundShape]="true">
+  <igx-list-item *ngFor="let notification of applications | sortApplications:pipeTrigger" [class]="notificationClass[notification.state]">
+      <igx-avatar igxListThumbnail [src]="notification.avatarIcon" [initials]="notification.userName" [roundShape]="true">
       </igx-avatar>
       <h3 igxListLineSubTitle>
-        <a [routerLink]="['/players', notification.ApplicantId]">{{ notification.UserName }}</a> has applied to join your team!
+        <a [routerLink]="['/players', notification.applicantId]">{{ notification.userName }}</a> has applied to join your team!
       </h3>
-      <span igxListLineSubTitle>Application: {{ notification.Message }}</span>
-      <span igxListLineSubTitle>{{ notification.Sent | date }}</span>
-      <div igxListAction *ngIf="notification.State | disabledNotifications:true else read">
+      <span igxListLineSubTitle>Application: {{ notification.message }}</span>
+      <span igxListLineSubTitle>{{ notification.sent | date }}</span>
+      <div igxListAction *ngIf="notification.state | disabledNotifications:true else read">
         <button igxButton="flat" igxRipple [disabled]="actionInProgress" (click)="approveApplication(notification)">
           {{actionInProgress ? actionText : 'Approve'}}
         </button>
@@ -17,7 +17,7 @@
         </button>
       </div>
       <ng-template #read>
-        <button igxButton="flat" igxRipple [disabled]="true">{{ notification.State | notificationState }}</button>
+        <button igxButton="flat" igxRipple [disabled]="true">{{ notification.state | notificationState }}</button>
       </ng-template>
   </igx-list-item>
 </igx-list>

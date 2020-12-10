@@ -31,13 +31,13 @@ export interface TeamMember {
 }
 
 export interface TeamApplication {
-  State: NotificationState;
-  ApplicantId: string;
-  TeamId: string;
-  Message: string;
-  Sent: string;
-  UserName?: string;
-  AvatarIcon?: string;
+  state: NotificationState;
+  applicantId: string;
+  teamId: string;
+  message: string;
+  sent?: string;
+  userName?: string;
+  avatarIcon?: string;
 }
 
 export interface TeamSearch {

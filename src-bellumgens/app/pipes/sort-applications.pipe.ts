@@ -7,7 +7,7 @@ import { TeamApplication } from '../../../src-common/models/csgoteam';
 export class SortApplicationsPipe implements PipeTransform {
 
   transform(notifications: TeamApplication [], t?: number): TeamApplication [] {
-    return notifications && notifications.sort((x, y) => x.State > y.State ? 1 : 0);
+    return notifications && notifications.sort((x, y) => x.state > y.state ? 1 : 0);
   }
 
 }
