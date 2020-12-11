@@ -83,7 +83,7 @@
 
   <igx-card *ngIf="!player.userStatsException" class="player-detail__stats">
     <igx-card-header>
-      <h4 class="igx-card-header__title">KDR</h4>
+      <h4 igxCardHeaderTitle>KDR</h4>
     </igx-card-header>
     <igx-card-content class="center-items">
       <igx-circular-bar class="stats-progress"
@@ -98,7 +98,7 @@
 
   <igx-card *ngIf="!player.userStatsException" class="player-detail__stats">
     <igx-card-header>
-      <h4 class="igx-card-header__title">Headshots</h4>
+      <h4 igxCardHeaderTitle>Headshots</h4>
     </igx-card-header>
     <igx-card-content class="center-items">
       <igx-circular-bar class="stats-progress" [value]="player.userStats.headshotPercentage" [max]="100" [animate]="true" title="Headshot Percentage" [text]="player.userStats.headshotPercentage + '%'"></igx-circular-bar>
@@ -107,7 +107,7 @@
 
   <igx-card *ngIf="!player.userStatsException" class="player-detail__stats">
     <igx-card-header>
-      <h4 class="igx-card-header__title">Accuracy</h4>
+      <h4 igxCardHeaderTitle>Accuracy</h4>
     </igx-card-header>
     <igx-card-content class="center-items">
       <igx-circular-bar class="stats-progress" [value]="player.userStats.accuracy" [max]="100" [animate]="true" [text]="player.userStats.accuracy + '%'"></igx-circular-bar>

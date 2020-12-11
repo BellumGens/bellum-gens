@@ -8,7 +8,7 @@ import { TournamentSc2Component } from './tournament-sc2/tournament-sc2.componen
 import { ProductionCrewComponent } from './production-crew/production-crew.component';
 
 const routes: Routes = [
-  { path: '', component: TournamentComponent, redirectTo: 'format' },
+  { path: '', component: TournamentComponent },
   { path: 'format', component: TournamentFormatComponent },
   { path: 'crew', component: ProductionCrewComponent },
   { path: 'csgo', redirectTo: 'csgo/', pathMatch: 'full' },
