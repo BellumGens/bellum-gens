@@ -4,7 +4,16 @@ import { TournamentSc2Component } from './tournament-sc2.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { IgxAvatarModule, IgxCardModule, IgxBadgeModule, IgxListModule, IgxProgressBarModule, IgxGridModule, IgxCalendarModule, IgxDividerModule } from '@infragistics/igniteui-angular';
+import {
+  IgxAvatarModule,
+  IgxCardModule,
+  IgxBadgeModule,
+  IgxListModule,
+  IgxProgressBarModule,
+  IgxGridModule,
+  IgxCalendarModule,
+  IgxDividerModule
+} from '@infragistics/igniteui-angular';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SortByPointsPipe } from 'src-ebleague/app/pipes/sort-by-points.pipe';
 
