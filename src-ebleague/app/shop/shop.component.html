@@ -46,8 +46,8 @@
           <igx-prefix>
             <igx-icon>money_off</igx-icon>
           </igx-prefix>
-          <input id="promocode" #promocode name="promocode" igxInput (blur)="checkForPromo()" [(ngModel)]="order.promocode" />
-          <igx-suffix *ngIf="promocode.value" (click)="order.promocode = null">
+          <input id="promocode" #promocode name="promocode" igxInput (blur)="checkForPromo()" [(ngModel)]="order.promoCode" />
+          <igx-suffix *ngIf="promocode.value" (click)="order.promoCode = null">
             <igx-icon>clear</igx-icon>
           </igx-suffix>
 

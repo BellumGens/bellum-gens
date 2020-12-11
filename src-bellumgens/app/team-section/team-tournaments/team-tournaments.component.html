@@ -11,33 +11,30 @@
       <igx-grid-toolbar-title>{{tournament.name}}</igx-grid-toolbar-title>
     </igx-grid-toolbar>
 
-    <igx-column field="StartTime" header="Date" width="15%">
-      <ng-template igxCell let-value>
-        {{ value | date }}
-      </ng-template>
+    <igx-column field="startTime" header="Date" dataType="date" width="15%">
     </igx-column>
 
     <igx-column header="Match" width="70%">
       <ng-template igxCell let-cell="cell">
         <igx-avatar igxListThumbnail
-                    [src]="cell.rowData.Team1.TeamAvatar"
-                    [initials]="cell.rowData.Team1.TeamName"
+                    [src]="cell.rowData.team1.teamAvatar"
+                    [initials]="cell.rowData.team1.teamName"
                     [roundShape]="true">
         </igx-avatar>
-        <span [class]="cell.rowData.WinnerTeamId === cell.rowData.Team1.TeamId ? 'highlight grid-team-name' : 'grid-team-name'">{{ cell.rowData.Team1.TeamName }}</span>
+        <span [class]="cell.rowData.winnerTeamId === cell.rowData.team1.teamId ? 'highlight grid-team-name' : 'grid-team-name'">{{ cell.rowData.team1.teamName }}</span>
 
         <span class="grid-vs-divider">vs.</span>
 
         <igx-avatar igxListThumbnail
-                    [src]="cell.rowData.Team2.TeamAvatar"
-                    [initials]="cell.rowData.Team2.TeamName"
+                    [src]="cell.rowData.team2.teamAvatar"
+                    [initials]="cell.rowData.team2.teamName"
                     [roundShape]="true">
         </igx-avatar>
-        <span [class]="cell.rowData.WinnerTeamId === cell.rowData.Team2.TeamId ? 'highlight grid-team-name' : 'grid-team-name'">{{ cell.rowData.Team2.TeamName }}</span>
+        <span [class]="cell.rowData.winnerTeamId === cell.rowData.team2.teamId ? 'highlight grid-team-name' : 'grid-team-name'">{{ cell.rowData.team2.teamName }}</span>
       </ng-template>
     </igx-column>
 
-    <igx-column field="WinnerTeamId" header="Result" width="15%">
+    <igx-column field="winnerTeamId" header="Result" width="15%">
       <ng-template igxCell let-value>
         <span [class]="value === emptyGuid ? 'color-warn' : value === team?.teamId ? 'color-success' : 'color-error'">
           {{ value === emptyGuid ? 'Pending' : value === team?.teamId ? 'Win' : 'Loss' }}

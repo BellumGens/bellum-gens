@@ -35,7 +35,7 @@ export class TournamentRegistrationComponent {
     this.authManager.applicationUser.subscribe(user => {
       if (user) {
         this.authUser = user;
-        this.application.Email = user.email;
+        this.application.email = user.email;
       }
     });
     this.apiService.companies.subscribe(data => this.companies = data);
@@ -43,7 +43,7 @@ export class TournamentRegistrationComponent {
 
   public leagueRegistration() {
     this.inProgress = true;
-    this.application.TournamentId = this.tournamentId;
+    this.application.tournamentId = this.tournamentId;
     this.apiService.leagueRegistration(this.application).subscribe(application => {
       this.inProgress = false;
       this.application = application;
@@ -54,7 +54,7 @@ export class TournamentRegistrationComponent {
 
   public selectGame(game: Game) {
     if (this.authUser) {
-      this.application.Game = game;
+      this.application.game = game;
       const element = document.getElementById('registration');
       element.scrollIntoView({ behavior: 'smooth' });
       this.showDetails();
@@ -62,12 +62,12 @@ export class TournamentRegistrationComponent {
   }
 
   public showDetails() {
-    if (this.application.Game !== null) {
+    if (this.application.game !== null) {
       this.appDetails.nativeElement.classList.add('application-details-show');
-      if (this.application.Game === Game.CSGO) {
+      if (this.application.game === Game.CSGO) {
         this.userTeams = this.userService.getUserTeams(this.authUser.id);
-      } else if (this.application.Game === Game.StarCraft2) {
-        this.application.BattleNetId = this.authUser.battleNetId;
+      } else if (this.application.game === Game.StarCraft2) {
+        this.application.battleNetId = this.authUser.battleNetId;
       }
     }
   }

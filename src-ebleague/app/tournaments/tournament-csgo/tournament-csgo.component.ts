@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TournamentRegistration, TournamentGroup } from '../../../../src-common/models/tournament';
+import { TournamentParticipant, TournamentGroup } from '../../../../src-common/models/tournament';
 import { ApiTournamentsService } from '../../../../src-common/services/bellumgens-api.tournaments.service';
 import { BaseComponent } from '../../../../src-bellumgens/app/base/base.component';
 import { Title, Meta } from '@angular/platform-browser';
@@ -16,7 +16,7 @@ import { TournamentCSGOMatch } from '../../../../src-common/models/tournament-sc
   styleUrls: ['./tournament-csgo.component.scss']
 })
 export class TournamentCsgoComponent extends BaseComponent {
-  public registrations: TournamentRegistration [];
+  public registrations: TournamentParticipant [];
   public groups: TournamentGroup [];
   public loading = false;
   public loadingMatches = false;
@@ -44,7 +44,7 @@ export class TournamentCsgoComponent extends BaseComponent {
       this.apiService.loadingCSGOMatches.subscribe(data => this.loadingMatches = data),
       this.apiService.csgoMatches.subscribe(data => {
         if (data) {
-          data.forEach(item => item.StartTime = new Date(item.StartTime));
+          data.forEach(item => item.startTime = new Date(item.startTime));
           this.csgomatches = data;
         }
       })

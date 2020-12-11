@@ -30,7 +30,7 @@
     <igx-grid #grid1
               [data]="registrations"
               [height]="'550px'"
-              primaryKey="Id"
+              primaryKey="id"
               [showGroupArea]="true"
               [allowFiltering]="true"
               (cellEdit)="confirmRegistration($event)"
@@ -40,23 +40,23 @@
         <igx-grid-toolbar-title>Регистрации</igx-grid-toolbar-title>
       </igx-grid-toolbar>
 
-      <igx-column field="Email" header="Имейл Адрес">
+      <igx-column field="email" header="Имейл Адрес">
       </igx-column>
-      <igx-column field="CompanyId" header="Компания">
+      <igx-column field="companyId" header="Компания">
       </igx-column>
-      <igx-column field="DateSubmitted" [dataType]="gridDataType.Date" [sortable]="true" header="Направена на">
+      <igx-column field="dateSubmitted" [dataType]="gridDataType.Date" [sortable]="true" header="Направена на">
         <span *igxCell="let value">
           {{ value | date }}
         </span>
       </igx-column>
-      <igx-column field="Game" [groupable]="true" header="Лига">
+      <igx-column field="game" [groupable]="true" header="Лига">
         <span *igxCell="let value">
           {{ value ? 'StarCraft II' : 'CS:GO' }}
         </span>
       </igx-column>
-      <igx-column field="Hash" header="Код">
+      <igx-column field="hash" header="Код">
       </igx-column>
-      <igx-column field="State" [editable]="true" [dataType]="gridDataType.Boolean" header="Потвърдена">
+      <igx-column field="state" [editable]="true" [dataType]="gridDataType.Boolean" header="Потвърдена">
         <igx-icon *igxCell="let value" [class]="value ? 'color-success' : 'color-error'">{{ value ? 'check' : 'close' }}</igx-icon>
       </igx-column>
 
@@ -104,7 +104,7 @@
           {{ cell.row.rowData.city }}, {{ cell.row.rowData.streetAddress }}
         </span>
       </igx-column>
-      <igx-column field="promocode" header="Промо код">
+      <igx-column field="promoCode" header="Промо код">
       </igx-column>
       <igx-column field="confirmed" [dataType]="gridDataType.Boolean" [editable]="true" header="Потвърдена">
         <igx-icon *igxCell="let value" [class]="value ? 'color-success' : 'color-error'">{{ value ? 'check' : 'close' }}</igx-icon>
@@ -140,22 +140,22 @@
 
   <igx-list class="players-list">
     <igx-list-item *ngFor="let user of users">
-      <igx-avatar igxListThumbnail [src]="user.AvatarMedium"></igx-avatar>
-      <h2 igxListLineTitle>{{user.UserName}}</h2>
+      <igx-avatar igxListThumbnail [src]="user.avatarMedium"></igx-avatar>
+      <h2 igxListLineTitle>{{user.userName}}</h2>
 
 
       <igx-chips-area>
-        <igx-chip (onClick)="addAdmin(user.Id)">
+        <igx-chip (onClick)="addAdmin(user.id)">
           <igx-icon igxPrefit>add</igx-icon>
           <span>admin</span>
         </igx-chip>
 
-        <igx-chip (onClick)="addEventAdmin(user.Id)">
+        <igx-chip (onClick)="addEventAdmin(user.id)">
           <igx-icon igxPrefit>add</igx-icon>
           <span>event-admin</span>
         </igx-chip>
 
-        <igx-chip *ngIf="user.Roles.length">
+        <igx-chip *ngIf="user.roles?.length">
           <igx-icon igxPrefit>remove</igx-icon>
           <span>admin</span>
         </igx-chip>

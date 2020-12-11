@@ -51,13 +51,13 @@ export class ShopComponent extends BaseComponent {
   }
 
   public checkForPromo() {
-    if (this.order.promocode) {
-      this.apiService.checkForPromo(this.order.promocode).subscribe(data => {
+    if (this.order.promoCode) {
+      this.apiService.checkForPromo(this.order.promoCode).subscribe(data => {
         if (data) {
           this.promo = this.basePromo + data.discount;
           this.invalidPromo = false;
         } else {
-          this.order.promocode = null;
+          this.order.promoCode = null;
           this.invalidPromo = true;
         }
       });

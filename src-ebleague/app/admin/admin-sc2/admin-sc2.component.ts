@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { TournamentGroup,
-  TournamentRegistration,
+  TournamentParticipant,
   getEmptyNewGroup} from '../../../../src-common/models/tournament';
 import { ApiTournamentsService } from '../../../../src-common/services/bellumgens-api.tournaments.service';
 import { environment } from '../../../../src-common/environments/environment';
@@ -23,7 +23,7 @@ import { SC2_MAPS, SC2LadderDescriptor } from '../../../../src-common/models/sc2
   styleUrls: ['./admin-sc2.component.scss']
 })
 export class AdminSc2Component {
-  public registrations: TournamentRegistration [];
+  public registrations: TournamentParticipant [];
   public groups: TournamentGroup [];
   public matches: TournamentSC2Match [];
   public loading = false;
@@ -33,7 +33,7 @@ export class AdminSc2Component {
   public pipeTrigger = 0;
   public mapList: SC2LadderDescriptor [] = SC2_MAPS;
   public selectionMode = GridSelectionMode;
-  public matchInEdit: TournamentSC2Match = { StartTime: new Date() };
+  public matchInEdit: TournamentSC2Match = { startTime: new Date() };
   public initialFilter: FilteringExpressionsTree;
 
   @ViewChild('matchGrid')
@@ -50,7 +50,7 @@ export class AdminSc2Component {
     this.apiService.loadingSC2Matches.subscribe(data => this.loadingMatches = data);
     this.apiService.sc2Matches.subscribe(data => {
       if (data) {
-        data.forEach(item => item.StartTime = new Date(item.StartTime));
+        data.forEach(item => item.startTime = new Date(item.startTime));
         this.matches = data;
       }
     });
@@ -70,43 +70,43 @@ export class AdminSc2Component {
   public submitGroup(group: TournamentGroup) {
     group.inEdit = false;
     this.apiService.submitSC2Group(group).subscribe(data => {
-      if (!this.groups.find(g => g.Id === data.Id)) {
+      if (!this.groups.find(g => g.id === data.id)) {
         this.groups.push(data);
       }
     });
   }
 
   public deleteGroup(id: string) {
-    const group = this.groups.find(g => g.Id === id);
+    const group = this.groups.find(g => g.id === id);
     this.apiService.deleteGroup(id).subscribe(_ => this.groups.splice(this.groups.indexOf(group), 1));
-    this.registrations.filter(r => r.TournamentSC2GroupId === id).forEach(r => r.TournamentSC2GroupId = null);
+    this.registrations.filter(r => r.tournamentSC2GroupId === id).forEach(r => r.tournamentSC2GroupId = null);
     this.pipeTrigger++;
   }
 
   public addToGroup(event: IDropDroppedEventArgs, group: TournamentGroup) {
-    this.apiService.addParticipantToGroup(event.dragData, group.Id).subscribe();
-    if (!group.Participants) {
-      group.Participants = [ event.dragData ];
+    this.apiService.addParticipantToGroup(event.dragData, group.id).subscribe();
+    if (!group.participants) {
+      group.participants = [ event.dragData ];
     } else {
-      group.Participants.push(event.dragData);
+      group.participants.push(event.dragData);
     }
-    event.dragData.TournamentSC2GroupId = group.Id;
+    event.dragData.TournamentSC2GroupId = group.id;
     this.pipeTrigger++;
   }
 
-  public removeFromGroup(participant: TournamentRegistration, group: TournamentGroup) {
-    this.apiService.removeParticipantFromGroup(participant.Id).subscribe();
-    group.Participants.splice(group.Participants.indexOf(participant), 1);
-    this.registrations.find(r => r.Id === participant.Id).TournamentSC2GroupId = null;
+  public removeFromGroup(participant: TournamentParticipant, group: TournamentGroup) {
+    this.apiService.removeParticipantFromGroup(participant.id).subscribe();
+    group.participants.splice(group.participants.indexOf(participant), 1);
+    this.registrations.find(r => r.id === participant.id).tournamentSC2GroupId = null;
     this.pipeTrigger++;
   }
 
   public submitMatch() {
-    if (this.matchInEdit.Player1Id && this.matchInEdit.Player2Id) {
+    if (this.matchInEdit.player1Id && this.matchInEdit.player2Id) {
       this.apiService.submitSC2Match(this.matchInEdit).subscribe(data => {
         if (data) {
-          if (!this.matchInEdit.Id) {
-            data.StartTime = new Date(data.StartTime);
+          if (!this.matchInEdit.id) {
+            data.startTime = new Date(data.startTime);
             this.matchGrid.addRow(data);
           }
         }
@@ -120,12 +120,12 @@ export class AdminSc2Component {
   }
 
   public addNewMatch() {
-    this.matchInEdit = { StartTime: new Date() };
+    this.matchInEdit = { startTime: new Date() };
   }
 
   public editMatch(match: TournamentSC2Match, dialog: IgxDialogComponent) {
-    if (!(match.StartTime instanceof Date)) {
-      match.StartTime = new Date(match.StartTime);
+    if (!(match.startTime instanceof Date)) {
+      match.startTime = new Date(match.startTime);
     }
     this.matchInEdit = match;
     dialog.open();
@@ -133,11 +133,11 @@ export class AdminSc2Component {
 
   public submitMatchMaps() {
     this.submitMatch();
-    this.matchInEdit.Maps.forEach(map => this.apiService.submitSC2MatchMap(map).subscribe(data => map.Id = data.Id));
+    this.matchInEdit.maps.forEach(map => this.apiService.submitSC2MatchMap(map).subscribe(data => map.id = data.id));
   }
 
   public deleteMatchMap(map: TournamentMatchMap, maps: TournamentMatchMap []) {
-    this.apiService.deleteSC2MatchMap(map.Id).subscribe(_ => {
+    this.apiService.deleteSC2MatchMap(map.id).subscribe(_ => {
       maps.splice(maps.indexOf(map), 1);
     });
   }

@@ -224,7 +224,7 @@ $grid-toolbar-theme: igx-grid-toolbar-theme($background-color: $background);
   word-break: break-all;
 }
 
-.registration-slot > a {
+.registration-slot > a, span {
   font-size: 0.80rem;
 }
 
@@ -298,6 +298,7 @@ $grid-toolbar-theme: igx-grid-toolbar-theme($background-color: $background);
 .participants-container {
   display: flex;
   flex-wrap: wrap;
+  padding: 16px;
 }
 
 igx-calendar {

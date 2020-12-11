@@ -1,8 +1,8 @@
 export interface AdminAppUserSummary {
-  Id: string;
-  AvatarMedium: string;
-  UserName: string;
-  Roles: [];
+  id: string;
+  avatarMedium: string;
+  userName: string;
+  roles: [];
 }
 
 export interface AppUserSummary {

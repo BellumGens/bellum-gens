@@ -48,7 +48,7 @@ export class UserPreferencesComponent {
   }
 
   public deleteRegistration(registration: TournamentApplication) {
-    this.apiService.deleteRegistration(registration.Id).subscribe(id => {
+    this.apiService.deleteRegistration(registration.id).subscribe(id => {
       this.registrations.splice(this.registrations.indexOf(registration), 1);
     });
   }

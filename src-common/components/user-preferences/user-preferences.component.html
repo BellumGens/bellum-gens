@@ -27,11 +27,11 @@
 
   <igx-list>
     <igx-list-item *ngFor="let registration of registrations">
-      <h2 igxListLineTitle>Registration for {{ registration.Game ? 'StarCraft II' : 'CS:GO' }}</h2>
-      <h4 igxListLineSubTitle>Confirmation code <span class="highlight">{{registration.Hash}}</span></h4>
+      <h2 igxListLineTitle>Registration for {{ registration.game ? 'StarCraft II' : 'CS:GO' }}</h2>
+      <h4 igxListLineSubTitle>Confirmation code <span class="highlight">{{registration.hash}}</span></h4>
       <div class="horizontal-center" igxListAction>
-        <span [ngClass]="{'color-warn': !registration.State, 'color-success': registration.State }">{{ registration.State ? 'Confirmed' : 'Pending' }}</span>
-        <igx-icon class="navigatable" *ngIf="!registration.State" (click)="confirmReg.open(registration)" title="Delete this application">delete_forever</igx-icon>
+        <span [ngClass]="{'color-warn': !registration.state, 'color-success': registration.state }">{{ registration.state ? 'Confirmed' : 'Pending' }}</span>
+        <igx-icon class="navigatable" *ngIf="!registration.state" (click)="confirmReg.open(registration)" title="Delete this application">delete_forever</igx-icon>
       </div>
     </igx-list-item>
   </igx-list>
