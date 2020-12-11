@@ -53,25 +53,25 @@
         <igx-column field="matchDetails" header="Среща" [filterable]="false">
           <div *igxCell="let cell = cell">
             <igx-avatar igxListThumbnail
-                        [src]="cell.rowData.Team1.TeamAvatar"
-                        [initials]="cell.rowData.Team1.TeamName"
+                        [src]="cell.rowData.team1.teamAvatar"
+                        [initials]="cell.rowData.team1.teamName"
                         [roundShape]="true">
             </igx-avatar>
-            <a [href]="environment.bellumgens + '/team/' + cell.rowData.Team1.CustomUrl"
-               [class]="cell.rowData.WinnerTeamId === cell.rowData.Team1.TeamId ? 'highlight grid-team-name' : 'grid-team-name'">
-              {{ cell.rowData.Team1.TeamName }}
+            <a [href]="environment.bellumgens + '/team/' + cell.rowData.team1.customUrl"
+               [class]="cell.rowData.winnerTeamId === cell.rowData.team1.teamId ? 'highlight grid-team-name' : 'grid-team-name'">
+              {{ cell.rowData.team1.teamName }}
             </a>
 
             <span class="grid-vs-divider">vs.</span>
 
             <igx-avatar igxListThumbnail
-                        [src]="cell.rowData.Team2.TeamAvatar"
-                        [initials]="cell.rowData.Team2.TeamName"
+                        [src]="cell.rowData.team2.teamAvatar"
+                        [initials]="cell.rowData.team2.teamName"
                         [roundShape]="true">
             </igx-avatar>
-            <a [href]="environment.bellumgens + '/team/' + cell.rowData.Team2.CustomUrl"
-               [class]="cell.rowData.WinnerTeamId === cell.rowData.Team2.TeamId ? 'highlight grid-team-name' : 'grid-team-name'">
-              {{ cell.rowData.Team2.TeamName }}
+            <a [href]="environment.bellumgens + '/team/' + cell.rowData.team2.customUrl"
+               [class]="cell.rowData.winnerTeamId === cell.rowData.team2.teamId ? 'highlight grid-team-name' : 'grid-team-name'">
+              {{ cell.rowData.team2.teamName }}
             </a>
           </div>
         </igx-column>
@@ -111,12 +111,12 @@
           <igx-column field="team" header="Отбор" width="22%">
             <div *igxCell="let value">
               <igx-avatar igxListThumbnail
-                          [src]="value.TeamAvatar"
-                          [initials]="value.TeamName"
+                          [src]="value.teamAvatar"
+                          [initials]="value.teamName"
                           [roundShape]="true">
               </igx-avatar>
-              <a igxListLineTitle [href]="environment.bellumgens + '/team/' + value.CustomUrl" target="_blank">
-                {{ value.TeamName }}
+              <a igxListLineTitle [href]="environment.bellumgens + '/team/' + value.customUrl" target="_blank">
+                {{ value.teamName }}
               </a>
             </div>
           </igx-column>

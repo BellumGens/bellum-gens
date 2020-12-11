@@ -52,10 +52,10 @@ export class TournamentSc2Component extends BaseComponent {
     this.apiService.getSC2Groups().subscribe(data => this.groups = data);
 
     const gridFilteringExpressionsTree = new FilteringExpressionsTree(FilteringLogic.And);
-    const productFilteringExpressionsTree = new FilteringExpressionsTree(FilteringLogic.And, 'StartTime');
+    const productFilteringExpressionsTree = new FilteringExpressionsTree(FilteringLogic.And, 'startTime');
     const productExpression = {
         condition: IgxDateFilteringOperand.instance().condition('after'),
-        fieldName: 'StartTime',
+        fieldName: 'startTime',
         searchVal: new Date(2020, 10, 6)
     };
     productFilteringExpressionsTree.filteringOperands.push(productExpression);
