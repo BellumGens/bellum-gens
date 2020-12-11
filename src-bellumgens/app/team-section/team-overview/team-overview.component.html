@@ -6,7 +6,7 @@
       <h1 class="igx-card-header__title">{{ team?.teamName }}</h1>
       <h3 class="igx-card-header__subtitle">{{ team?.description }}</h3>
     </div>
-    <div *ngIf="team?.teamId" class="horizontal-info__right">
+    <div *ngIf="!isMember && team?.teamId" class="horizontal-info__right">
       <app-team-application [authUser]="authUser" [team]="team"></app-team-application>
     </div>
     <div *ngIf="isMember && team?.discord" class="horizontal-info__right">
