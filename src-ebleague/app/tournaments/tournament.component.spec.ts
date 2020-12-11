@@ -1,4 +1,6 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { IgxCardModule } from '@infragistics/igniteui-angular';
 
 import { TournamentComponent } from './tournament.component';
 
@@ -8,7 +10,11 @@ describe('TournamentComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ TournamentComponent ]
+      declarations: [ TournamentComponent ],
+      imports: [
+        HttpClientTestingModule,
+        IgxCardModule
+      ]
     })
     .compileComponents();
   }));

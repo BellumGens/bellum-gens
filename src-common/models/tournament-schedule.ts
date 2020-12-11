@@ -22,52 +22,52 @@ export interface MatchScheduleSlot {
 }
 
 export interface TournamentMatch {
-  Id?: string;
-  DemoLink?: string;
-  VideoLink?: string;
-  StartTime?: Date;
-  NoShow?: boolean;
-  GroupId?: string;
+  id?: string;
+  demoLink?: string;
+  videoLink?: string;
+  startTime?: Date;
+  noShow?: boolean;
+  groupId?: string;
   inEdit?: boolean;
 }
 
 export interface TournamentCSGOMatch extends TournamentMatch {
-  Team1Id?: string;
-  Team2Id?: string;
-  Team1Points?: number;
-  Team2Points?: number;
-  Team1?: CSGOTeam;
-  Team2?: CSGOTeam;
-  Maps?: TournamentCSGOMatchMap [];
+  team1Id?: string;
+  team2Id?: string;
+  team1Points?: number;
+  team2Points?: number;
+  team1?: CSGOTeam;
+  team2?: CSGOTeam;
+  maps?: TournamentCSGOMatchMap [];
 }
 
 export interface TournamentSC2Match extends TournamentMatch {
-  Player1Id?: string;
-  Player2Id?: string;
-  Player1Points?: number;
-  Player2Points?: number;
-  Player1?: AppUserSummary;
-  Player2?: AppUserSummary;
-  Maps?: TournamentSC2MatchMap [];
+  player1Id?: string;
+  player2Id?: string;
+  player1Points?: number;
+  player2Points?: number;
+  player1?: AppUserSummary;
+  player2?: AppUserSummary;
+  maps?: TournamentSC2MatchMap [];
 }
 
 export interface TournamentMatchMap {
-  Id?: string;
+  id?: string;
 }
 
 export interface TournamentCSGOMatchMap extends TournamentMatchMap {
-  Map?: CSGOMap;
-  CSGOMatchId?: string;
-  TeamPickId?: string;
-  TeamBanId?: string;
-  Team1Score?: number;
-  Team2Score?: number;
+  map?: CSGOMap;
+  csgoMatchId?: string;
+  teamPickId?: string;
+  teamBanId?: string;
+  team1Score?: number;
+  team2Score?: number;
 }
 
 export interface TournamentSC2MatchMap extends TournamentMatchMap {
-  Map?: SC2Map;
-  SC2MatchId?: string;
-  PlayerPickId?: string;
-  PlayerBanId?: string;
-  WinnerId?: string;
+  map?: SC2Map;
+  sc2MatchId?: string;
+  playerPickId?: string;
+  playerBanId?: string;
+  winnerId?: string;
 }

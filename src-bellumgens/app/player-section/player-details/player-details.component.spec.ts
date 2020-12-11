@@ -22,7 +22,6 @@ import { SteamCustomUrlPipe } from 'src-bellumgens/app/pipes/steam-custom-url.pi
 import { PlayerCountryPipe } from 'src-bellumgens/app/pipes/player-country.pipe';
 import { AvailabilityComponent } from 'src-bellumgens/app/availability/availability.component';
 import { TopWeaponAltPipe } from 'src-bellumgens/app/pipes/top-weapon-alt.pipe';
-import { MapPoolComponent } from 'src-bellumgens/app/map-pool/map-pool.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { WeekdayPipe } from 'src-bellumgens/app/pipes/weekday.pipe';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -33,6 +32,7 @@ import { ActiveDutyMapsPipe } from 'src-bellumgens/app/pipes/active-duty-maps.pi
 import { AppShellComponent } from 'src-bellumgens/app/app-shell/app-shell.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BellumGensModule } from 'src-common/components/components.module';
+import { MapPoolComponent } from '../map-pool/map-pool.component';
 
 describe('PlayerDetailsComponent', () => {
   let component: PlayerDetailsComponent;

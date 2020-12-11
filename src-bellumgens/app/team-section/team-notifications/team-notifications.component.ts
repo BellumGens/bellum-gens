@@ -8,26 +8,26 @@ import { BellumgensApiService } from '../../../../src-common/services/bellumgens
   styleUrls: ['./team-notifications.component.css']
 })
 export class TeamNotificationsComponent implements OnInit {
-  notificationClass = ['', '', 'notification-disabled', 'notification-disabled'];
-  applications: TeamApplication [];
+  public notificationClass = ['', '', 'notification-disabled', 'notification-disabled'];
+  public applications: TeamApplication [];
   public pipeTrigger = 0;
   public actionInProgress = false;
   public actionText = '';
 
   @Input()
-  team: CSGOTeam;
+  public team: CSGOTeam;
 
   @Output()
-  loaded = new EventEmitter<TeamApplication []>();
+  public loaded = new EventEmitter<TeamApplication []>();
 
   @Output()
-  changed = new EventEmitter<number>();
+  public changed = new EventEmitter<number>();
 
   constructor(private apiService: BellumgensApiService) { }
 
   ngOnInit() {
     if (this.team) {
-      this.apiService.teamApplications(this.team.TeamId).subscribe(data => {
+      this.apiService.teamApplications(this.team.teamId).subscribe(data => {
         this.applications = data;
         this.loaded.emit(data);
       });

@@ -1,8 +1,8 @@
 export interface CSGOMapPool {
-  Map: CSGOMap;
-  IsPlayed: boolean;
-  UserId?: string;
-  TeamId?: string;
+  map: CSGOMap;
+  isPlayed: boolean;
+  userId?: string;
+  teamId?: string;
 }
 
 export interface CSGOActiveDutyDescriptor {
@@ -27,40 +27,40 @@ export enum CSGOMap {
 
 export const AllCSGOMaps: CSGOMapPool [] = [
   {
-    Map: CSGOMap.Cache,
-    IsPlayed: true
+    map: CSGOMap.Cache,
+    isPlayed: true
   },
   {
-    Map: CSGOMap.Dust2,
-    IsPlayed: true
+    map: CSGOMap.Dust2,
+    isPlayed: true
   },
   {
-    Map: CSGOMap.Inferno,
-    IsPlayed: true
+    map: CSGOMap.Inferno,
+    isPlayed: true
   },
   {
-    Map: CSGOMap.Mirage,
-    IsPlayed: true
+    map: CSGOMap.Mirage,
+    isPlayed: true
   },
   {
-    Map: CSGOMap.Nuke,
-    IsPlayed: true
+    map: CSGOMap.Nuke,
+    isPlayed: true
   },
   {
-    Map: CSGOMap.Overpass,
-    IsPlayed: true
+    map: CSGOMap.Overpass,
+    isPlayed: true
   },
   {
-    Map: CSGOMap.Train,
-    IsPlayed: true
+    map: CSGOMap.Train,
+    isPlayed: true
   },
   {
-    Map: CSGOMap.Vertigo,
-    IsPlayed: true
+    map: CSGOMap.Vertigo,
+    isPlayed: true
   },
   {
-    Map: CSGOMap.Cobblestone,
-    IsPlayed: true
+    map: CSGOMap.Cobblestone,
+    isPlayed: true
   }
 ];
 

@@ -1,6 +1,6 @@
 
 export interface LoginProvider {
-  Name: string;
-  State: string;
-  Url: string;
+  name: string;
+  state: string;
+  url: string;
 }

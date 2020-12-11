@@ -12,14 +12,6 @@ export interface SteamUser {
   groups: SteamGroup [];
 }
 
-export interface SteamUserSummary {
-  steamid: string;
-  avatar: string;
-  avatarmedium: string;
-  avatarfull: string;
-  personaname: string;
-}
-
 export interface SteamGroup {
   isPrimary: boolean;
   groupID64: string;

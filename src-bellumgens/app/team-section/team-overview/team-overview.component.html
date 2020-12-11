@@ -1,16 +1,16 @@
 <div class="overview-container-card">
   <div class="team-details-header">
-    <igx-avatar [initials]="team?.TeamName" [src]="team?.TeamAvatar" [roundShape]="true" [size]="'large'">
+    <igx-avatar [initials]="team?.teamName" [src]="team?.teamAvatar" [roundShape]="true" [size]="'large'">
     </igx-avatar>
     <div class="horizontal-info__left">
-      <h1 class="igx-card-header__title">{{ team?.TeamName }}</h1>
-      <h3 class="igx-card-header__subtitle">{{ team?.Description }}</h3>
+      <h1 class="igx-card-header__title">{{ team?.teamName }}</h1>
+      <h3 class="igx-card-header__subtitle">{{ team?.description }}</h3>
     </div>
-    <div *ngIf="!userIsMember && team?.TeamId" class="horizontal-info__right">
+    <div *ngIf="team?.teamId" class="horizontal-info__right">
       <app-team-application [authUser]="authUser" [team]="team"></app-team-application>
     </div>
-    <div *ngIf="userIsMember && team?.Discord" class="horizontal-info__right">
-      <a [href]="team.Discord" target="_blank" rel="noopener">
+    <div *ngIf="isMember && team?.discord" class="horizontal-info__right">
+      <a [href]="team.discord" target="_blank" rel="noopener">
         <igx-icon class="discord-icon" fontSet="login-icons" name="discord-full-logo"></igx-icon>
       </a>
     </div>
@@ -38,7 +38,7 @@
       </ng-template>
     </igx-tab-item>
 
-    <igx-tab-item *ngIf="userIsMember"
+    <igx-tab-item *ngIf="isMember"
                   routerLink="strategies"
                   routerLinkActive #rla2="routerLinkActive"
                   [isSelected]="rla2.isActive">
@@ -50,7 +50,7 @@
       </ng-template>
     </igx-tab-item>
 
-    <igx-tab-item *ngIf="userIsAdmin"
+    <igx-tab-item *ngIf="isAdmin"
                   routerLink="preferences"
                   routerLinkActive #rla3="routerLinkActive"
                   [isSelected]="rla3.isActive">

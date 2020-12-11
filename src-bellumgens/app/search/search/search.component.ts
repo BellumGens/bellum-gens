@@ -1,5 +1,4 @@
-import { Component, Input } from '@angular/core';
-import { ApplicationUser } from '../../../../src-common/models/applicationuser';
+import { Component } from '@angular/core';
 
 enum SearchType {
   None,
@@ -14,9 +13,6 @@ enum SearchType {
 })
 export class SearchComponent {
   public searchType = SearchType.None;
-
-  @Input()
-  public authUser: ApplicationUser;
 
   constructor() {
   }

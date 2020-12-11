@@ -7,7 +7,7 @@
   <div class="content-container-column left-column">
     <p>Тениската от сезон 1 на Esports Business League, е вече налична!</p>
 
-    <p>Направена от 100% дишащ полиестер, с висококачествен печат, тениската е налична в лимитирана серия. Идеална е както за продължителни гейминг сесии, така и за спорт на открито! Серията в продажба е само 300 бройки. Имаме налични както мъжки, така и адаптирани дамски модели. Поръчките се извършват единствено с наложен платеж при доставка по куриер, до изчерпване на количествата.</p>
+    <p>Направена от 100% дишащ полиестер, с висококачествен печат, тениската е налична в лимитирана серия. Идеална е както за продължителни гейминг сесии, така и за спорт на открито! Серията в продажба е само 300 бройки. Имаме налични както мъжки, така и адаптирани дамски модели. Поръчките се извършват единствено с наложен платеж при доставка по куриер, до изчерпване на количествата. Безплатна доставка за поръчки над 100лв.</p>
 
     <h4>Цена <del>{{basePrice}}лв.</del>&nbsp;<span class="highlight" *ngIf="basePromo">{{ basePrice - basePrice * basePromo }}лв.</span></h4>
   </div>
@@ -46,8 +46,8 @@
           <igx-prefix>
             <igx-icon>money_off</igx-icon>
           </igx-prefix>
-          <input id="promocode" #promocode name="promocode" igxInput (blur)="checkForPromo()" [(ngModel)]="order.promocode" />
-          <igx-suffix *ngIf="promocode.value" (click)="order.promocode = null">
+          <input id="promocode" #promocode name="promocode" igxInput (blur)="checkForPromo()" [(ngModel)]="order.promoCode" />
+          <igx-suffix *ngIf="promocode.value" (click)="order.promoCode = null">
             <igx-icon>clear</igx-icon>
           </igx-suffix>
 
@@ -57,9 +57,9 @@
         </igx-input-group>
 
         <span *ngIf="promo > 0" class="color-success">{{ promo * 100 }}% Отстъпка = -{{ (order.jerseys.length * basePrice) * promo }} лв.</span>
-        <span>Доставка = 5 лв.</span>
+        <span *ngIf="order.jerseys.length * basePrice * promo >= 100">Безплатна доставка</span>
         <igx-divider></igx-divider>
-        <span>Общо = {{ (order.jerseys.length * basePrice) * (1 - promo) + 5 }} лв.</span>
+        <span>Общо = {{ (order.jerseys.length * basePrice) * (1 - promo) }} лв.</span>
       </div>
     </div>
 
@@ -75,7 +75,7 @@
         <igx-prefix>
           <igx-icon>text_fields</igx-icon>
         </igx-prefix>
-        <input id="orderemail" #firstName name="firstName" igxInput [required]="true" [(ngModel)]="order.firstName" />
+        <input id="firstName" #firstName name="firstName" igxInput [required]="true" [(ngModel)]="order.firstName" />
         <igx-suffix *ngIf="firstName.value" (click)="order.firstName = null">
           <igx-icon>clear</igx-icon>
         </igx-suffix>

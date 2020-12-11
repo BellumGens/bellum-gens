@@ -32,7 +32,7 @@ export interface JerseyOrder {
   phoneNumber?: string;
   city?: string;
   streetAddress?: string;
-  promocode?: string;
+  promoCode?: string;
   orderDate?: Date;
   confirmed?: boolean;
   shipped?: boolean;

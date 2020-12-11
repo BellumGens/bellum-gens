@@ -5,7 +5,7 @@ import { ApiTournamentsService } from '../../../../src-common/services/bellumgen
 import { LoginService } from '../../../../src-common/services/login.service';
 import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { TournamentRegistration, TournamentGroup } from '../../../../src-common/models/tournament';
+import { TournamentParticipant, TournamentGroup } from '../../../../src-common/models/tournament';
 import { environment } from '../../../../src-common/environments/environment';
 import { DataType, FilteringExpressionsTree, FilteringLogic, GridSelectionMode, IgxDateFilteringOperand } from '@infragistics/igniteui-angular';
 import { TournamentSC2Match } from '../../../../src-common/models/tournament-schedule';
@@ -16,7 +16,7 @@ import { TournamentSC2Match } from '../../../../src-common/models/tournament-sch
   styleUrls: ['./tournament-sc2.component.scss']
 })
 export class TournamentSc2Component extends BaseComponent {
-  public registrations: TournamentRegistration [];
+  public registrations: TournamentParticipant [];
   public groups: TournamentGroup [];
   public loading = false;
   public loadingMatches = false;
@@ -44,7 +44,7 @@ export class TournamentSc2Component extends BaseComponent {
       this.apiService.loadingSC2Matches.subscribe(data => this.loadingMatches = data),
       this.apiService.sc2Matches.subscribe(data => {
         if (data) {
-          data.forEach(item => item.StartTime = new Date(item.StartTime));
+          data.forEach(item => item.startTime = new Date(item.startTime));
           this.sc2matches = data;
         }
       })
@@ -52,10 +52,10 @@ export class TournamentSc2Component extends BaseComponent {
     this.apiService.getSC2Groups().subscribe(data => this.groups = data);
 
     const gridFilteringExpressionsTree = new FilteringExpressionsTree(FilteringLogic.And);
-    const productFilteringExpressionsTree = new FilteringExpressionsTree(FilteringLogic.And, 'StartTime');
+    const productFilteringExpressionsTree = new FilteringExpressionsTree(FilteringLogic.And, 'startTime');
     const productExpression = {
         condition: IgxDateFilteringOperand.instance().condition('after'),
-        fieldName: 'StartTime',
+        fieldName: 'startTime',
         searchVal: new Date(2020, 10, 6)
     };
     productFilteringExpressionsTree.filteringOperands.push(productExpression);

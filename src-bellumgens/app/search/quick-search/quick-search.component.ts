@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { BellumgensApiService } from '../../../../src-common/services/bellumgens-api.service';
 import { SearchResult } from '../../../../src-common/models/searchresult';
 import { IgxIconService } from '@infragistics/igniteui-angular';
+import { ApiSearchService } from '../../../../src-common/services/bellumgens-api.search.service';
 
 @Component({
   selector: 'app-quick-search',
@@ -9,13 +9,15 @@ import { IgxIconService } from '@infragistics/igniteui-angular';
   styleUrls: ['./quick-search.component.css']
 })
 export class QuickSearchComponent {
-  public searchResult: SearchResult = { SteamUser: null, Players: [], Teams: [], Strategies: [] };
+  public searchResult: SearchResult = { steamUser: null, players: [], teams: [], strategies: [] };
   public loading = false;
   public term = '';
 
-  constructor(private apiService: BellumgensApiService, private iconService: IgxIconService) {
+  constructor(private apiService: ApiSearchService, private iconService: IgxIconService) {
     this.apiService.searchResult.subscribe(data => {
-      this.searchResult = data;
+      if (data) {
+        this.searchResult = data;
+      }
     });
     this.apiService.loadingQuickSearch.subscribe(data => this.loading = data);
     this.apiService.searchTerm.subscribe(term => this.term = term);

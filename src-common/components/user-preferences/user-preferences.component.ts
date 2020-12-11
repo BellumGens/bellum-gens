@@ -32,7 +32,7 @@ export class UserPreferencesComponent {
         this.authUser = user;
       }
     });
-    this.authManager.addLoginProviders.subscribe(providers => this.providers = providers);
+    this.authManager.loginProviders.subscribe(providers => this.providers = providers);
   }
 
   public login(provider: LoginProvider) {
@@ -48,7 +48,7 @@ export class UserPreferencesComponent {
   }
 
   public deleteRegistration(registration: TournamentApplication) {
-    this.apiService.deleteRegistration(registration.Id).subscribe(id => {
+    this.apiService.deleteRegistration(registration.id).subscribe(id => {
       this.registrations.splice(this.registrations.indexOf(registration), 1);
     });
   }

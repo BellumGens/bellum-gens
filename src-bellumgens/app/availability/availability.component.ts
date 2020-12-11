@@ -20,8 +20,8 @@ export class AvailabilityComponent {
 
   public set selectedDay(day: Availability) {
     this._availability = day;
-    this._availability.From = new Date(day.From);
-    this._availability.To = new Date(day.To);
+    this._availability.from = new Date(day.from);
+    this._availability.to = new Date(day.to);
   }
 
   @Input()
@@ -58,15 +58,15 @@ export class AvailabilityComponent {
     const index = this.chips.chipsList.toArray().indexOf(args.owner);
     const availability = this.availability[index];
     (args.originalEvent as PointerEvent).stopPropagation();
-    availability.Available = false;
+    availability.available = false;
     this.availabilityChanged.emit(availability);
     this._cdr.detectChanges();
   }
 
   public availabilityChange() {
-    this.selectedDay.From = this.from.value;
-    this.selectedDay.To = this.to.value;
-    this.selectedDay.Available = true;
+    this.selectedDay.from = this.from.value;
+    this.selectedDay.to = this.to.value;
+    this.selectedDay.available = true;
     this.availabilityChanged.emit(this.selectedDay);
     this.dialog.close();
   }

@@ -23,14 +23,14 @@ export class UserStrategiesComponent {
       if (user) {
         this.apiService.getUserStrategies(user.id).subscribe(
           strats => this.strats = strats,
-          error => this.commService.emitError(error.error.Message)
+          error => this.commService.emitError(error.error)
         );
       }
     });
   }
 
   public deleteStrat(args: CSGOStrategy) {
-    this.apiService.deleteStrategy(args.Id).subscribe(
+    this.apiService.deleteStrategy(args.id).subscribe(
       _ => {
         this.strats.splice(this.strats.indexOf(args), 1);
       }

@@ -17,10 +17,12 @@ import { Title, Meta } from '@angular/platform-browser';
 })
 export class TeamDetailsComponent extends BaseComponent {
   public isAdmin = false;
+  public teamMembers: TeamMember [];
   public activeMembers: TeamMember [];
   public inactiveMembers: TeamMember [];
   public authUser: ApplicationUser;
   public team = TEAM_PLACEHOLDER;
+  public teamPractice: Availability [];
 
   public roleSlots: RoleSlot [] = [
     { roleName: 'IGL', role: PlaystyleRole.IGL, user: null },
@@ -47,20 +49,27 @@ export class TeamDetailsComponent extends BaseComponent {
         const teamId = params['teamid'];
 
         if (teamId) {
-          this.authService.getUserIsTeamAdmin(teamId).subscribe(admin => this.isAdmin = admin);
           this.apiService.getTeam(teamId).subscribe(team => {
             if (team) {
               this.team = team;
-              this.roleSlots.forEach((role) => {
-                const member = this.team.Members.find(m => m.Role === role.role);
-                if (member) {
-                  role.user = member;
-                } else {
-                  role.user = null;
+              this.authService.getUserIsTeamAdmin(team.teamId).subscribe(admin => this.isAdmin = admin);
+
+              this.apiService.getTeamSchedule(team.teamId).subscribe(schedule => this.teamPractice = schedule);
+              this.apiService.getTeamMembers(team.teamId).subscribe(members => {
+                if (members) {
+                  this.teamMembers = members;
+                  this.roleSlots.forEach((role) => {
+                    const member = this.teamMembers.find(m => m.role === role.role);
+                    if (member) {
+                      role.user = member;
+                    } else {
+                      role.user = null;
+                    }
+                  });
+                  this.activeMembers = this.teamMembers.filter(m => m.isActive && m.role === PlaystyleRole.NotSet);
+                  this.inactiveMembers = this.teamMembers.filter(m => !m.isActive);
                 }
               });
-              this.activeMembers = this.team.Members.filter(m => m.IsActive && m.Role === PlaystyleRole.NotSet);
-              this.inactiveMembers = this.team.Members.filter(m => !m.IsActive);
             }
           });
         }
@@ -72,7 +81,7 @@ export class TeamDetailsComponent extends BaseComponent {
     const user = role.user;
     this.activeMembers.push(user);
     role.user = null;
-    user.Role = PlaystyleRole.NotSet;
+    user.role = PlaystyleRole.NotSet;
     this.apiService.updateTeamMember(user).subscribe();
   }
 
@@ -81,7 +90,7 @@ export class TeamDetailsComponent extends BaseComponent {
   }
 
   public moveToInactive(user: TeamMember) {
-    user.IsActive = false;
+    user.isActive = false;
     this.apiService.updateTeamMember(user).subscribe();
     this.activeMembers.splice(this.activeMembers.indexOf(user), 1);
     this.inactiveMembers.push(user);
@@ -93,7 +102,7 @@ export class TeamDetailsComponent extends BaseComponent {
     const user = args.drag.data;
     user.Role = role.role;
     role.user = user;
-    if (this.activeMembers.find(m => m.UserId === args.drag.data.UserId)) {
+    if (this.activeMembers.find(m => m.userId === args.drag.data.UserId)) {
       this.activeMembers.splice(this.activeMembers.indexOf(args.drag.data), 1);
     } else {
       this.inactiveMembers.splice(this.activeMembers.indexOf(args.drag.data), 1);

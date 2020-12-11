@@ -13,7 +13,7 @@ import { environment } from '../../../../../src-common/environments/environment.
 @Component({
   selector: 'app-strategy-details',
   templateUrl: './strategy-details.component.html',
-  styleUrls: ['./strategy-details.component.css']
+  styleUrls: ['./strategy-details.component.scss']
 })
 export class StrategyDetailsComponent extends BaseComponent {
 
@@ -40,7 +40,7 @@ export class StrategyDetailsComponent extends BaseComponent {
           this.apiService.getCurrentStrategy(stratid).subscribe(strat => {
             if (strat) {
               this.strat = strat;
-              this.newComment.StratId = strat.Id;
+              this.newComment.stratId = strat.id;
             }
           });
         }
@@ -48,7 +48,7 @@ export class StrategyDetailsComponent extends BaseComponent {
       this.authManager.applicationUser.subscribe(user => {
         this.authUser = user;
         if (user) {
-          this.newComment.UserId = user.id;
+          this.newComment.userId = user.id;
         }
       })
     );
@@ -74,7 +74,7 @@ export class StrategyDetailsComponent extends BaseComponent {
   public submitComment() {
     this.newComment._inEdit = false;
     this.apiService.submitStratComment(this.newComment, this.strat).subscribe(_ => {
-      this.newComment = newEmptyComment(this.authUser.id, this.strat.Id);
+      this.newComment = newEmptyComment(this.authUser.id, this.strat.id);
     });
   }
 

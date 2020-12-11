@@ -9,7 +9,7 @@ import { TournamentApplication,
   Tournament,
   TournamentCSGOGroup,
   TournamentSC2Group,
-  TournamentRegistration } from '../models/tournament';
+  TournamentParticipant } from '../models/tournament';
 import { TournamentCSGOMatch, TournamentSC2Match, TournamentCSGOMatchMap, TournamentSC2MatchMap } from '../models/tournament-schedule';
 
 @Injectable({
@@ -22,8 +22,8 @@ export class ApiTournamentsService {
   private _activeTournament = new BehaviorSubject<Tournament>(null);
   private _companies = new BehaviorSubject<string []>(null);
   private _allRegistrations = new BehaviorSubject<TournamentApplication []>(null);
-  private _csgoRegistrations = new BehaviorSubject<TournamentRegistration []>(null);
-  private _sc2Registrations = new BehaviorSubject<TournamentRegistration []>(null);
+  private _csgoRegistrations = new BehaviorSubject<TournamentParticipant []>(null);
+  private _sc2Registrations = new BehaviorSubject<TournamentParticipant []>(null);
 
   private _csgoMatches = new BehaviorSubject<TournamentCSGOMatch []>(null);
   private _sc2Matches = new BehaviorSubject<TournamentSC2Match []>(null);
@@ -141,7 +141,7 @@ export class ApiTournamentsService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error.Message);
+        this.commService.emitError(error.error);
         return throwError(error);
       })
     );
@@ -153,7 +153,7 @@ export class ApiTournamentsService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error.Message);
+        this.commService.emitError(error.error);
         return throwError(error);
       })
     );
@@ -165,14 +165,14 @@ export class ApiTournamentsService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error.Message);
+        this.commService.emitError(error.error);
         return throwError(error);
       })
     );
   }
 
   public confirmRegistration(reg: TournamentApplication) {
-    return this.http.put(`${this._apiEndpoint}/tournament/confirm?id=${reg.Id}`, reg, { withCredentials: true }).pipe(
+    return this.http.put(`${this._apiEndpoint}/tournament/confirm?id=${reg.id}`, reg, { withCredentials: true }).pipe(
       map(response => {
         if (response) {
           this.commService.emitSuccess('Tournament application updated successfully!');
@@ -180,7 +180,7 @@ export class ApiTournamentsService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error.Message);
+        this.commService.emitError(error.error);
         return throwError(error);
       })
     );
@@ -195,7 +195,7 @@ export class ApiTournamentsService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error.Message);
+        this.commService.emitError(error.error);
         return throwError(error);
       })
     );
@@ -206,7 +206,7 @@ export class ApiTournamentsService {
   }
 
   public submitCSGOGroup(group: TournamentCSGOGroup) {
-    return this.http.put<TournamentCSGOGroup>(`${this._apiEndpoint}/tournament/csgogroup?id=${group.Id || null}`,
+    return this.http.put<TournamentCSGOGroup>(`${this._apiEndpoint}/tournament/csgogroup?id=${group.id || null}`,
       group, { withCredentials: true}).pipe(
         map(response => {
           if (response) {
@@ -215,7 +215,7 @@ export class ApiTournamentsService {
           return response;
         }),
         catchError(error => {
-          this.commService.emitError(error.error.Message);
+          this.commService.emitError(error.error);
           return throwError(error);
         })
       );
@@ -225,7 +225,7 @@ export class ApiTournamentsService {
     return this.http.delete<TournamentCSGOGroup>(`${this._apiEndpoint}/tournament/group?id=${id}`, { withCredentials: true});
   }
 
-  public addParticipantToGroup(participant: TournamentRegistration, groupid: string) {
+  public addParticipantToGroup(participant: TournamentParticipant, groupid: string) {
     return this.http.put(`${this._apiEndpoint}/tournament/participanttogroup?id=${groupid}`, participant, { withCredentials: true }).pipe(
       map(response => {
         if (response) {
@@ -234,7 +234,7 @@ export class ApiTournamentsService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error.Message);
+        this.commService.emitError(error.error);
         return throwError(error);
       })
     );
@@ -249,7 +249,7 @@ export class ApiTournamentsService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error.Message);
+        this.commService.emitError(error.error);
         return throwError(error);
       })
     );
@@ -260,7 +260,7 @@ export class ApiTournamentsService {
   }
 
   public submitSC2Group(group: TournamentSC2Group) {
-    return this.http.put<TournamentSC2Group>(`${this._apiEndpoint}/tournament/sc2group?id=${group.Id || null}`,
+    return this.http.put<TournamentSC2Group>(`${this._apiEndpoint}/tournament/sc2group?id=${group.id || null}`,
       group, { withCredentials: true}).pipe(
         map(response => {
           if (response) {
@@ -269,7 +269,7 @@ export class ApiTournamentsService {
           return response;
         }),
         catchError(error => {
-          this.commService.emitError(error.error.Message);
+          this.commService.emitError(error.error);
           return throwError(error);
         })
       );
@@ -284,7 +284,7 @@ export class ApiTournamentsService {
   }
 
   public submitCSGOMatch(match: TournamentCSGOMatch) {
-    return this.http.put<TournamentCSGOMatch>(`${this._apiEndpoint}/tournament/csgomatch?id=${match.Id || null}`,
+    return this.http.put<TournamentCSGOMatch>(`${this._apiEndpoint}/tournament/csgomatch?id=${match.id || null}`,
       match, { withCredentials: true}).pipe(
         map(response => {
           if (response) {
@@ -293,14 +293,14 @@ export class ApiTournamentsService {
           return response;
         }),
         catchError(error => {
-          this.commService.emitError(error.error.Message);
+          this.commService.emitError(error.error);
           return throwError(error);
         })
       );
   }
 
   public deleteCSGOMatch(match: TournamentCSGOMatch) {
-    return this.http.delete<TournamentCSGOMatch>(`${this._apiEndpoint}/tournament/csgomatch?id=${match.Id}`,
+    return this.http.delete<TournamentCSGOMatch>(`${this._apiEndpoint}/tournament/csgomatch?id=${match.id}`,
       { withCredentials: true}).pipe(
         map(response => {
           if (response) {
@@ -309,14 +309,14 @@ export class ApiTournamentsService {
           return response;
         }),
         catchError(error => {
-          this.commService.emitError(error.error.Message);
+          this.commService.emitError(error.error);
           return throwError(error);
         })
       );
   }
 
   public submitCSGOMatchMap(matchmap: TournamentCSGOMatchMap) {
-    return this.http.put<TournamentCSGOMatchMap>(`${this._apiEndpoint}/tournament/csgomatchmap?id=${matchmap.Id || null}`,
+    return this.http.put<TournamentCSGOMatchMap>(`${this._apiEndpoint}/tournament/csgomatchmap?id=${matchmap.id || null}`,
       matchmap, { withCredentials: true}).pipe(
         map(response => {
           if (response) {
@@ -325,7 +325,7 @@ export class ApiTournamentsService {
           return response;
         }),
         catchError(error => {
-          this.commService.emitError(error.error.Message);
+          this.commService.emitError(error.error);
           return throwError(error);
         })
       );
@@ -341,14 +341,14 @@ export class ApiTournamentsService {
           return response;
         }),
         catchError(error => {
-          this.commService.emitError(error.error.Message);
+          this.commService.emitError(error.error);
           return throwError(error);
         })
       );
   }
 
   public submitSC2Match(match: TournamentSC2Match) {
-    return this.http.put<TournamentSC2Match>(`${this._apiEndpoint}/tournament/sc2match?id=${match.Id || null}`,
+    return this.http.put<TournamentSC2Match>(`${this._apiEndpoint}/tournament/sc2match?id=${match.id || null}`,
       match, { withCredentials: true}).pipe(
         map(response => {
           if (response) {
@@ -357,14 +357,14 @@ export class ApiTournamentsService {
           return response;
         }),
         catchError(error => {
-          this.commService.emitError(error.error.Message);
+          this.commService.emitError(error.error);
           return throwError(error);
         })
       );
   }
 
   public deleteSC2Match(match: TournamentSC2Match) {
-    return this.http.delete<TournamentSC2Match>(`${this._apiEndpoint}/tournament/sc2match?id=${match.Id}`,
+    return this.http.delete<TournamentSC2Match>(`${this._apiEndpoint}/tournament/sc2match?id=${match.id}`,
       { withCredentials: true}).pipe(
         map(response => {
           if (response) {
@@ -373,14 +373,14 @@ export class ApiTournamentsService {
           return response;
         }),
         catchError(error => {
-          this.commService.emitError(error.error.Message);
+          this.commService.emitError(error.error);
           return throwError(error);
         })
       );
   }
 
   public submitSC2MatchMap(matchmap: TournamentSC2MatchMap) {
-    return this.http.put<TournamentSC2MatchMap>(`${this._apiEndpoint}/tournament/sc2matchmap?id=${matchmap.Id || null}`,
+    return this.http.put<TournamentSC2MatchMap>(`${this._apiEndpoint}/tournament/sc2matchmap?id=${matchmap.id || null}`,
       matchmap, { withCredentials: true}).pipe(
         map(response => {
           if (response) {
@@ -389,7 +389,7 @@ export class ApiTournamentsService {
           return response;
         }),
         catchError(error => {
-          this.commService.emitError(error.error.Message);
+          this.commService.emitError(error.error);
           return throwError(error);
         })
       );
@@ -405,7 +405,7 @@ export class ApiTournamentsService {
           return response;
         }),
         catchError(error => {
-          this.commService.emitError(error.error.Message);
+          this.commService.emitError(error.error);
           return throwError(error);
         })
       );
@@ -416,11 +416,11 @@ export class ApiTournamentsService {
   }
 
   private getCSGORegistrations() {
-    return this.http.get<TournamentRegistration []>(`${this._apiEndpoint}/tournament/csgoregs`);
+    return this.http.get<TournamentParticipant []>(`${this._apiEndpoint}/tournament/csgoregs`);
   }
 
   private getSC2Registrations() {
-    return this.http.get<TournamentRegistration []>(`${this._apiEndpoint}/tournament/sc2regs`);
+    return this.http.get<TournamentParticipant []>(`${this._apiEndpoint}/tournament/sc2regs`);
   }
 
   private getCompanies() {

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { LoginProvider } from '../../../models/login-provider';
 import { LoginService } from '../../../services/login.service';
 import { LOGIN_ASSETS } from '../../../models/misc';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'bg-login-buttons',
@@ -10,10 +11,10 @@ import { LOGIN_ASSETS } from '../../../models/misc';
 })
 export class LoginButtonsComponent {
   public loginColors = LOGIN_ASSETS;
-  public loginProviders: LoginProvider [];
+  public loginProviders: Observable<LoginProvider []>;
 
   constructor(private authManager: LoginService) {
-    this.authManager.loginProviders.subscribe(providers => this.loginProviders = providers);
+    this.loginProviders = this.authManager.loginProviders;
   }
 
   public login(provider: LoginProvider) {

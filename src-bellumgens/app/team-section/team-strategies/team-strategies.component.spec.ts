@@ -18,7 +18,6 @@ import { IgxIconModule,
   IgxProgressBarModule,
   IgxButtonModule,
   IgxDividerModule} from '@infragistics/igniteui-angular';
-import { MapPoolComponent } from 'src-bellumgens/app/map-pool/map-pool.component';
 import { SafeVideoLinkPipe } from 'src-bellumgens/app/pipes/safe-video-link.pipe';
 import { FormsModule } from '@angular/forms';
 import { SideStratsPipe } from 'src-bellumgens/app/pipes/sidestrats.pipe';
@@ -73,7 +72,6 @@ describe('TeamStrategiesComponent', () => {
       declarations: [
         TeamStrategiesComponent,
         AppShellComponent,
-        MapPoolComponent,
         NewStrategyComponent,
         SafeVideoLinkPipe,
         SideStratsPipe,

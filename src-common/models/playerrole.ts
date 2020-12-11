@@ -1,8 +1,8 @@
 import { TeamMember } from './csgoteam';
 
 export interface Role {
-  Id: PlaystyleRole;
-  Name: string;
+  id: PlaystyleRole;
+  name: string;
 }
 export interface RoleSlot {
   roleName: string;
@@ -20,22 +20,22 @@ export enum PlaystyleRole {
 }
 
 export const ALL_ROLES: Role [] = [{
-    Id: PlaystyleRole.NotSet,
-    Name: '---'
+    id: PlaystyleRole.NotSet,
+    name: '---'
   }, {
-    Id: PlaystyleRole.IGL,
-    Name: 'IGL'
+    id: PlaystyleRole.IGL,
+    name: 'IGL'
   }, {
-    Id: PlaystyleRole.Awper,
-    Name: 'Awper'
+    id: PlaystyleRole.Awper,
+    name: 'Awper'
   }, {
-    Id: PlaystyleRole.EntryFragger,
-    Name: 'Entry'
+    id: PlaystyleRole.EntryFragger,
+    name: 'Entry'
   }, {
-    Id: PlaystyleRole.Support,
-    Name: 'Support'
+    id: PlaystyleRole.Support,
+    name: 'Support'
   }, {
-    Id: PlaystyleRole.Lurker,
-    Name: 'Lurker'
+    id: PlaystyleRole.Lurker,
+    name: 'Lurker'
   }
 ];
