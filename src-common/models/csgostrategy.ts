@@ -10,7 +10,7 @@ export interface CSGOStrategy {
   map: CSGOMap;
   lastUpdated?: Date;
   owner?: string;
-  image?: string;
+  stratImage?: string;
   editorMetadata?: string;
   votes?: StrategyVote [];
   userId?: string;
@@ -47,8 +47,8 @@ export enum VoteDirection {
 
 export function newEmptyStrategy(visible = false): CSGOStrategy {
   return {
-    id: '',
-    teamId: '',
+    id: '00000000-0000-0000-0000-000000000000',
+    teamId: null,
     side: Side.TSide,
     title: '',
     description: '',

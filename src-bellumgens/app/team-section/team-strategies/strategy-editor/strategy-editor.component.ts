@@ -146,7 +146,7 @@ export class StrategyEditorComponent extends BaseComponent implements OnInit, On
       this.saveInProgress = true;
       this.editor.deselectAll();
       this.deselectBrush();
-      this.newStrategy.image = this.canvas.nativeElement.toDataURL('image/png');
+      this.newStrategy.stratImage = this.canvas.nativeElement.toDataURL('image/png');
       this.newStrategy.editorMetadata = this.editor.save();
       this.apiService.submitStrategy(this.newStrategy).subscribe(
         _ => this.saveInProgress = false,
