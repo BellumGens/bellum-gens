@@ -219,9 +219,8 @@ $grid-toolbar-theme: igx-grid-toolbar-theme($background-color: $background);
   flex-flow: column;
   align-items: center;
   padding: 4px 12px;
-  flex-basis: 120px;
+  flex-basis: 150px;
   min-height: 125px;
-  word-break: break-all;
 }
 
 .registration-slot > a, span {

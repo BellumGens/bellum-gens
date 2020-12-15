@@ -9,10 +9,7 @@ import {
   GridSelectionMode,
   IRowDataEventArgs,
   IgxGridComponent,
-  IgxDialogComponent,
-  FilteringExpressionsTree,
-  FilteringLogic,
-  IgxDateFilteringOperand
+  IgxDialogComponent
 } from '@infragistics/igniteui-angular';
 import { TournamentCSGOMatch, TournamentMatchMap } from '../../../../src-common/models/tournament-schedule';
 import { CSGOActiveDutyDescriptor, ActiveDuty } from '../../../../src-common/models/csgomaps';
@@ -34,7 +31,6 @@ export class AdminCsgoComponent {
   public mapList: CSGOActiveDutyDescriptor [] = ActiveDuty;
   public selectionMode = GridSelectionMode;
   public matchInEdit: TournamentCSGOMatch = { startTime: new Date() };
-  public initialFilter: FilteringExpressionsTree;
 
   @ViewChild('matchGrid')
   public matchGrid: IgxGridComponent;
@@ -46,25 +42,14 @@ export class AdminCsgoComponent {
       }
     });
     this.apiService.loadingCSGORegistrations.subscribe(data => this.loading = data);
-    this.apiService.getCSGOGroups().subscribe(data => this.groups = data);
+    this.apiService.getCSGOGroups(null).subscribe(data => this.groups = data);
     this.apiService.loadingCSGOMatches.subscribe(data => this.loadingMatches = data);
-    this.apiService.csgoMatches.subscribe(data => {
+    this.apiService.getCsgoMatches(null).subscribe(data => {
       if (data) {
         data.forEach(item => item.startTime = new Date(item.startTime));
         this.matches = data;
       }
     });
-
-    const gridFilteringExpressionsTree = new FilteringExpressionsTree(FilteringLogic.And);
-    const productFilteringExpressionsTree = new FilteringExpressionsTree(FilteringLogic.And, 'StartTime');
-    const productExpression = {
-        condition: IgxDateFilteringOperand.instance().condition('after'),
-        fieldName: 'StartTime',
-        searchVal: new Date(2020, 10, 6)
-    };
-    productFilteringExpressionsTree.filteringOperands.push(productExpression);
-    gridFilteringExpressionsTree.filteringOperands.push(productFilteringExpressionsTree);
-    this.initialFilter = gridFilteringExpressionsTree;
   }
 
   public submitGroup(group: TournamentGroup) {
