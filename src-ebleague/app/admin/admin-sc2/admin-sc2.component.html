@@ -90,20 +90,20 @@
       <div class="horizontal-center registration-container">
         <igx-circular-bar *ngIf="loading" [indeterminate]="true"></igx-circular-bar>
         <div *ngFor="let registration of registrations | notInGroup:'tournamentSC2GroupId':pipeTrigger" class="registration-slot">
-          <igx-avatar [src]="registration.User.avatarMedium"
-                      [initials]="registration.User.username"
+          <igx-avatar [src]="registration.user.avatarMedium"
+                      [initials]="registration.user.username"
                       size="medium"
                       [roundShape]="true"
                       [igxDrag]="registration">
           </igx-avatar>
-          <igx-badge *ngIf="registration.State === 0"
+          <igx-badge *ngIf="registration.state === 0"
                      type="warning"
                      icon="priority_high"
                      title="Тази регистрация още не е потвърдена. Не е платена таксата за участие."
                      class="registration-badge-style">
           </igx-badge>
 
-          <a [href]="environment.bellumgens + '/players/' + (registration.User.customURL || registration.UserId)" target="_blank">{{ registration.BattleTag }}</a>
+          <a [href]="environment.bellumgens + '/players/' + (registration.user.customURL || registration.userId)" target="_blank">{{ registration.battleTag }}</a>
         </div>
       </div>
       <div class="card-wrapper">

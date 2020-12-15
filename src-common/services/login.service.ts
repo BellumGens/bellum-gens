@@ -139,11 +139,9 @@ export class LoginService {
   public loginWithForm(logininfo: UserLogin) {
     return this.http.post<ApplicationUser>(`${this._apiEndpoint}/login`, logininfo, { withCredentials: true }).pipe(
       map(response => {
-        if (response) {
-          this.commService.emitSuccess('Logged in successfully!');
-          this._applicationUser.next(response);
-          this.getRegistrations();
-        }
+        this.commService.emitSuccess('Logged in successfully!');
+        this._applicationUser.next(response);
+        this.getRegistrations();
         return response;
       }),
       catchError(error => {
@@ -170,9 +168,7 @@ export class LoginService {
   public updateUserPreferences(preferences: UserPreferences) {
     return this.http.put<UserPreferences>(`${this._apiEndpoint}/userinfo`, preferences, { withCredentials: true}).pipe(
       map(response => {
-        if (response) {
-          this.commService.emitSuccess('Preferences updated successfully!');
-        }
+        this.commService.emitSuccess('Preferences updated successfully!');
         return response;
       }),
       catchError(error => {
@@ -198,10 +194,8 @@ export class LoginService {
   public deleteAccount(userid: string) {
     return this.http.delete(`${this._apiEndpoint}/delete?userid=${userid}`, { withCredentials: true }).pipe(
       map(response => {
-        if (response) {
-          this._applicationUser.next(null);
-          this.commService.emitSuccess(`Account deleted!`);
-        }
+        this._applicationUser.next(null);
+        this.commService.emitSuccess(`Account deleted!`);
         return response;
       }),
       catchError(error => {

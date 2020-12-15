@@ -34,7 +34,7 @@ export interface TournamentParticipant {
   state: TournamentApplicationState;
   user: ApplicationUser;
   team: CSGOTeam;
-  company: string;
+  companyId: string;
   playerPoints: number;
   teamPoints: number;
   wins: number;

@@ -11,7 +11,7 @@
         <div *ngFor="let registration of registrations" class="registration-slot">
           <igx-avatar [src]="registration.team.teamAvatar"
                       [initials]="registration.team.teamName"
-                      [title]="registration.company"
+                      [title]="registration.companyId"
                       size="medium"
                       [roundShape]="true">
           </igx-avatar>
@@ -24,7 +24,7 @@
 
           <a [href]="environment.bellumgens + '/team/' + registration.team.customUrl" target="_blank">{{ registration.team.teamName }}</a>
 
-          <span>[{{ registration.company }}]</span>
+          <span>[{{ registration.companyId }}]</span>
         </div>
         <igx-divider></igx-divider>
       </div>
@@ -121,7 +121,7 @@
             </div>
           </igx-column>
 
-          <igx-column field="company" header="Компания" width="15%">
+          <igx-column field="companyId" header="Компания" width="15%">
           </igx-column>
           <igx-column field="matches" [dataType]="gridDataType.Number" header="Срещи" width="9%">
           </igx-column>
