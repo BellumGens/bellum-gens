@@ -1,5 +1,6 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
-import { CSGOMapPool } from '../../../src-common/models/csgomaps';
+import { Observable } from 'rxjs';
+import { CSGOMapPool } from '../../../../src-common/models/csgomaps';
 
 @Component({
   selector: 'app-map-pool',
@@ -11,7 +12,7 @@ export class MapPoolComponent {
   public viewAll = false;
 
   @Input()
-  mapPool: CSGOMapPool [];
+  mapPool: Observable<CSGOMapPool []>;
 
   @Input()
   readOnly: boolean;

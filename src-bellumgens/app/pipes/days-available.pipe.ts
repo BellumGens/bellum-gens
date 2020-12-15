@@ -7,7 +7,7 @@ import { Availability } from '../../../src-common/models/playeravailability';
 export class DaysAvailablePipe implements PipeTransform {
 
   transform(available: Availability []): Availability [] {
-    return available ? available.filter(a => a.Available) : available;
+    return available ? available.filter(a => a.available) : available;
   }
 
 }

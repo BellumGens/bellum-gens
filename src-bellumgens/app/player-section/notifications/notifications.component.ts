@@ -1,5 +1,6 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginService } from '../../../../src-common/services/login.service';
 
 import { ApplicationUser } from '../../../../src-common/models/applicationuser';
 import { UserNotification, NotificationState } from '../../../../src-common/models/usernotifications';
@@ -16,8 +17,8 @@ export class PlayerNotificationsComponent {
   public actionInProgress = false;
   public actionText = '';
 
-  @Input()
   public authUser: ApplicationUser;
+  public notifications: UserNotification [];
 
   @Output()
   public loaded = new EventEmitter<UserNotification []>();
@@ -25,7 +26,14 @@ export class PlayerNotificationsComponent {
   @Output()
   public changed = new EventEmitter<number>();
 
-  constructor(private apiService: BellumgensApiService, private router: Router) { }
+  constructor(private apiService: BellumgensApiService, private authManager: LoginService, private router: Router) {
+    this.authManager.applicationUser.subscribe(user => {
+      if (user) {
+        this.authUser = user;
+        this.authManager.userNotifications.subscribe(data => this.notifications = data);
+      }
+    });
+  }
 
   public acceptInvitation(notification: UserNotification) {
     this.actionText = 'Accepting...';
@@ -34,7 +42,7 @@ export class PlayerNotificationsComponent {
       _ => {
         notification.State = NotificationState.Accepted;
         this.pipeTrigger++;
-        this.router.navigate(['team', notification.TeamInfo.CustomUrl]);
+        this.router.navigate(['team', notification.TeamInfo.customUrl]);
         this.changed.emit(-1);
         this.actionInProgress = false;
       },

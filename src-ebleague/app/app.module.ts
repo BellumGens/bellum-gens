@@ -8,12 +8,8 @@ import { TransferHttpCacheModule } from '@nguniversal/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginService } from '../../src-common/services/login.service';
-import { BellumgensApiService } from '../../src-common/services/bellumgens-api.service';
 import { environment } from '../../src-common/environments/environment';
 import { TournamentHomeComponent } from './home/home.component';
-import { ApiTournamentsService } from '../../src-common/services/bellumgens-api.tournaments.service';
-import { GetRegCountPipe } from '../../src-bellumgens/app/pipes/get-reg-count.pipe';
 import { BellumGensModule } from '../../src-common/components/components.module';
 import { RaffleComponent } from './raffle/raffle.component';
 import { TournamentRegistrationComponent } from './tournament-registration/tournament-registration.component';
@@ -21,6 +17,8 @@ import { StartsWithPipe } from '../../src-bellumgens/app/pipes/starts-with.pipe'
 import { TeamNewComponent } from '../../src-bellumgens/app/team-section/team-new/team-new.component';
 import { GroupsFilterPipe } from '../../src-bellumgens/app/pipes/groups-filter.pipe';
 import { RegistrationSuccessComponent } from './tournament-registration/registration-success/registration-success.component';
+import { NewsComponent } from './news/news.component';
+import { GetRegCountPipe } from './pipes/get-reg-count.pipe';
 
 import {
   IgxNavbarModule,
@@ -44,7 +42,6 @@ import {
   IgxCardModule
 } from '@infragistics/igniteui-angular';
 import { socialMedia, logos } from '@igniteui/material-icons-extended';
-import { NewsComponent } from './news/news.component';
 
 @NgModule({
   declarations: [
@@ -88,21 +85,14 @@ import { NewsComponent } from './news/news.component';
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     HammerModule
   ],
-  providers: [
-    LoginService,
-    BellumgensApiService,
-    ApiTournamentsService,
-    IgxIconService
-  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
   constructor(private iconService: IgxIconService) {
     const smproviders = ['facebook', 'twitter', 'instagram', 'linkedin', 'youtube'];
-    const complogos = ['discord', 'steam', 'twitch'];
+    const complogos = ['discord', 'steam', 'twitch', 'battlenet'];
     complogos.forEach(c => this.iconService.addSvgIconFromText(c, logos.find(s => s.name === c).value, 'login-icons'));
     smproviders.forEach(p => this.iconService.addSvgIconFromText(p, socialMedia.find(s => s.name === p).value, 'login-icons'));
-    this.iconService.addSvgIcon('battlenet', '/assets/login/battle-net.svg', 'login-icons');
     this.iconService.addSvgIcon('isobar', '/assets/partners/isobar.svg', 'partners');
     this.iconService.addSvgIcon('vmware', '/assets/partners/vmware.svg', 'partners');
     this.iconService.addSvgIcon('telus', '/assets/partners/telus.svg', 'partners');

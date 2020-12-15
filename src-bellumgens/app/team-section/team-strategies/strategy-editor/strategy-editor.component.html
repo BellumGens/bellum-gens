@@ -2,7 +2,7 @@
     (pointermove)="canvasPointerMove($event)"
     (pointerup)="canvasPointerUp()">
   <div class="editor-elements list-container">
-    <igx-select *ngIf="newStrategy" class="editor-elements-section" id="mapSelector" name="mapSelector" [(ngModel)]="newStrategy.Map" (ngModelChange)="changeMap($event)">
+    <igx-select *ngIf="newStrategy" class="editor-elements-section" id="mapSelector" name="mapSelector" [(ngModel)]="newStrategy.map" (ngModelChange)="changeMap($event)">
       <label for="mapSelector" igxLabel>Map</label>
       <igx-select-item *ngFor="let map of maps" [value]="map.id">
         {{ map.map }}
@@ -36,12 +36,12 @@
   <div class="editor-elements">
     <div *ngIf="team" class="editor-elements-section">
       <div>Team</div>
-      <igx-avatar *ngFor="let member of team?.Members"
-                  [src]="member.AvatarIcon"
-                  [igxDrag]="{ src: member.AvatarIcon, circle: true, width: 24, height: 24, name: member.Username }"
+      <igx-avatar *ngFor="let member of teammembers"
+                  [src]="member.avatarIcon"
+                  [igxDrag]="{ src: member.avatarIcon, circle: true, width: 24, height: 24, name: member.username }"
                   (dragStart)="deselectBrush()"
                   class="editor-element-icon"
-                  [title]="member.Username"
+                  [title]="member.username"
                   [roundShape]="true">
       </igx-avatar>
     </div>

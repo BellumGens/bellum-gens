@@ -3,70 +3,70 @@ import { ApplicationUser } from './applicationuser';
 import { TournamentCSGOMatch } from './tournament-schedule';
 
 export interface Tournament {
-  ID?: string;
-  Name: string;
-  Description?: string;
-  Logo?: string;
-  StartDate?: Date;
-  EndDate?: Date;
-  Active?: boolean;
-  CSGOMatches?: TournamentCSGOMatch [];
+  id?: string;
+  name: string;
+  description?: string;
+  logo?: string;
+  startDate?: Date;
+  endDate?: Date;
+  active?: boolean;
+  csgoMatches?: TournamentCSGOMatch [];
 }
 
 export interface TournamentApplication {
-  Id?: string;
-  UserId?: string;
-  CompanyId?: string;
-  TournamentId?: string;
-  Game: Game;
-  TeamId?: string;
-  Email: string;
-  BattleNetId?: string;
-  Hash?: string;
-  DateSubmitted?: Date;
-  State?: TournamentApplicationState;
+  id?: string;
+  userId?: string;
+  companyId?: string;
+  tournamentId?: string;
+  game: Game;
+  teamId?: string;
+  email: string;
+  battleNetId?: string;
+  hash?: string;
+  dateSubmitted?: Date;
+  state?: TournamentApplicationState;
 }
 
-export interface TournamentRegistration {
-  Id: string;
-  UserId: string;
-  TeamId: string;
-  State: TournamentApplicationState;
-  User: ApplicationUser;
-  Team: CSGOTeam;
-  Company: string;
-  PlayerPoints: number;
-  TeamPoints: number;
-  Wins: number;
-  Losses: number;
-  OTWins: number;
-  OTLosses: number;
-  RoundDifference: Number;
-  BattleTag: string;
-  TournamentCSGOGroupId: string;
-  TournamentSC2GroupId: string;
+export interface TournamentParticipant {
+  id: string;
+  userId: string;
+  teamId: string;
+  state: TournamentApplicationState;
+  user: ApplicationUser;
+  team: CSGOTeam;
+  companyId: string;
+  playerPoints: number;
+  teamPoints: number;
+  wins: number;
+  losses: number;
+  oTWins: number;
+  oTLosses: number;
+  roundDifference: Number;
+  battleTag: string;
+  tournamentCSGOGroupId: string;
+  tournamentSC2GroupId: string;
 }
 
 export interface TournamentGroup {
-  Id?: string;
-  Name: string;
-  TournamentId?: string;
-  Participants?: TournamentRegistration [];
-  Matches?: any [];
+  id?: string;
+  name: string;
+  tournamentId?: string;
+  participants?: TournamentParticipant [];
+  matches?: any [];
   inEdit?: boolean;
 }
 
 export interface TournamentCSGOGroup extends TournamentGroup {
-  Matches?: any [];
+  matches?: any [];
 }
 
 export interface TournamentSC2Group extends TournamentGroup {
-  Matches?: any [];
+  matches?: any [];
 }
 
 export interface Company {
-  Name: string;
-  Website: string;
+  name: string;
+  website: string;
 }
 
 export interface RegistrationsCount {
@@ -86,17 +86,17 @@ export enum TournamentApplicationState {
 
 export function getEmptyNewApplication(): TournamentApplication {
   return {
-    Game: null,
-    Email: ''
+    game: null,
+    email: ''
   };
 }
 
 export function getEmptyNewTournament(): Tournament {
-  return { Name: null };
+  return { name: null };
 }
 
 export function getEmptyNewGroup(): TournamentGroup {
-  return { Name: null, inEdit: false };
+  return { name: null, inEdit: false };
 }
 
 export const GAMES = [

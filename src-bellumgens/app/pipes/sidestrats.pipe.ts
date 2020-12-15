@@ -9,17 +9,17 @@ import { StratOrderBy } from '../../../src-common/models/misc';
 export class SideStratsPipe implements PipeTransform {
 
   transform(strats: CSGOStrategy [], maps: CSGOMapPool [], order: StratOrderBy): CSGOStrategy [] {
-    let filtered = strats && maps && strats.filter(s => maps.find(m => m.Map === s.Map).IsPlayed);
+    let filtered = strats && maps && strats.filter(s => maps.find(m => m.map === s.map).isPlayed);
     if (filtered && order === StratOrderBy.MostRecent) {
-      filtered = filtered.sort((a, b) => a.LastUpdated === b.LastUpdated ? 0 : a.LastUpdated < b.LastUpdated ? 1 : -1);
+      filtered = filtered.sort((a, b) => a.lastUpdated === b.lastUpdated ? 0 : a.lastUpdated < b.lastUpdated ? 1 : -1);
     } else if (filtered && order === StratOrderBy.TopVoted) {
       filtered = filtered.sort((a, b) => {
         let av = 0, bv = 0;
-        if (a.Votes) {
-          a.Votes.forEach(v => v.Vote === VoteDirection.Up ? av++ : av--);
+        if (a.votes) {
+          a.votes.forEach(v => v.vote === VoteDirection.Up ? av++ : av--);
         }
-        if (b.Votes) {
-          b.Votes.forEach(v => v.Vote === VoteDirection.Up ? bv++ : bv--);
+        if (b.votes) {
+          b.votes.forEach(v => v.vote === VoteDirection.Up ? bv++ : bv--);
         }
         return av === bv ? 0 : av < bv ? 1 : -1;
       });

@@ -1,14 +1,15 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { ApplicationUser } from '../../../src-common/models/applicationuser';
 import { UnreadNotificationsPipe } from '../pipes/unread-notifications.pipe';
 import { LoginService } from '../../../src-common/services/login.service';
+import { Observable } from 'rxjs';
+import { CSGOTeam } from '../../../src-common/models/csgoteam';
 
 @Component({
   templateUrl: './notifications.component.html',
   styleUrls: ['./notifications.component.scss']
 })
 export class NotificationsComponent {
-  public authUser: ApplicationUser;
+  public teamAdmin: Observable<CSGOTeam []>;
 
   @Output()
   public loaded = new EventEmitter<number>();
@@ -16,7 +17,11 @@ export class NotificationsComponent {
   private unreadPipe = new UnreadNotificationsPipe();
 
   constructor(private authService: LoginService) {
-    this.authService.applicationUser.subscribe(user => this.authUser = user);
+    this.authService.applicationUser.subscribe(user => {
+      if (user) {
+        this.teamAdmin = this.authService.teamsAdmin;
+      }
+    });
   }
 
   public aggregate(args: any[]) {

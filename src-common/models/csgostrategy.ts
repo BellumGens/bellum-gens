@@ -1,37 +1,37 @@
 import { CSGOMap } from './csgomaps';
 
 export interface CSGOStrategy {
-  Id: string;
-  TeamId: string;
-  Side: Side;
-  Title: string;
-  Description: string;
-  Url: string;
-  Map: CSGOMap;
-  LastUpdated?: Date;
-  Owner?: string;
-  Image?: string;
-  EditorMetadata?: string;
-  Votes?: StrategyVote [];
-  UserId?: string;
-  CustomUrl?: string;
-  Visible?: boolean;
-  Comments?: StrategyComment [];
+  id: string;
+  teamId: string;
+  side: Side;
+  title: string;
+  description: string;
+  url: string;
+  map: CSGOMap;
+  lastUpdated?: Date;
+  owner?: string;
+  stratImage?: string;
+  editorMetadata?: string;
+  votes?: StrategyVote [];
+  userId?: string;
+  customUrl?: string;
+  visible?: boolean;
+  comments?: StrategyComment [];
 }
 
 export interface StrategyVote {
-  Vote: VoteDirection;
-  UserId: string;
+  vote: VoteDirection;
+  userId: string;
 }
 
 export interface StrategyComment {
-  Id?: string;
-  StratId: string;
-  Comment: string;
-  Published?: Date;
-  UserId: string;
-  UserName?: string;
-  UserAvatar?: string;
+  id?: string;
+  stratId: string;
+  comment: string;
+  published?: Date;
+  userId: string;
+  userName?: string;
+  userAvatar?: string;
   _inEdit?: boolean;
 }
 
@@ -47,21 +47,21 @@ export enum VoteDirection {
 
 export function newEmptyStrategy(visible = false): CSGOStrategy {
   return {
-    Id: '',
-    TeamId: '',
-    Side: Side.TSide,
-    Title: '',
-    Description: '',
-    Url: '',
-    Visible: visible,
-    Map: CSGOMap.Dust2
+    id: '00000000-0000-0000-0000-000000000000',
+    teamId: null,
+    side: Side.TSide,
+    title: '',
+    description: '',
+    url: '',
+    visible: visible,
+    map: CSGOMap.Dust2
   };
 }
 
 export function newEmptyComment(userId: string = null, stratId: string = null): StrategyComment {
   return {
-    UserId: userId,
-    StratId: stratId,
-    Comment: null
+    userId: userId,
+    stratId: stratId,
+    comment: null
   };
 }

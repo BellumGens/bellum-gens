@@ -5,21 +5,24 @@
       <h1 igxCardHeaderTitle>StarCraft II Лига</h1>
     </igx-card-header>
     <igx-card-content>
+      <h4>Участници</h4>
       <div class="participants-container">
-        <h4 style="width: 100%">Участници</h4>
         <igx-circular-bar *ngIf="loading" [indeterminate]="true"></igx-circular-bar>
         <div *ngFor="let registration of registrations" class="registration-slot">
-          <igx-avatar [src]="registration.User.avatarMedium" [initials]="registration.User.username" size="medium" [roundShape]="true">
+          <igx-avatar [src]="registration.user.avatarMedium" [initials]="registration.user.username" size="medium" [roundShape]="true">
           </igx-avatar>
-          <igx-badge *ngIf="registration.UserId === authUser?.id && registration.State === 0"
+          <igx-badge *ngIf="registration.userId === authUser?.id && registration.state === 0"
                      type="warning"
                      icon="priority_high"
                      title="Вашата регистрация все още не е потвърдена! За да потвърдим регистрацията трябва да платите таксата за участие!"
                      class="registration-badge-style">
           </igx-badge>
 
-          <a [href]="environment.bellumgens + '/players/' + (registration.User.customURL || registration.UserId)" target="_blank">{{ registration.BattleTag }}</a>
+          <a [href]="environment.bellumgens + '/players/' + (registration.user.customURL || registration.userId)" target="_blank">{{ registration.battleTag }}</a>
+
+          <span>[{{ registration.companyId }}]</span>
         </div>
+        <igx-divider></igx-divider>
       </div>
 
       <igx-grid [cellSelection]="selectionMode.none"
@@ -37,54 +40,54 @@
           </igx-grid-toolbar-actions>
         </igx-grid-toolbar>
 
-        <igx-column field="StartTime" width="220px" [dataType]="gridDataType.Date" header="Начало">
+        <igx-column field="startTime" width="220px" [dataType]="gridDataType.Date" header="Начало">
           <ng-template igxCell let-value>
             {{ value | date:'MMM d, y, h:mm a' }}
           </ng-template>
         </igx-column>
 
-        <igx-column field="MatchDetails" header="Среща" [filterable]="false">
+        <igx-column field="matchDetails" header="Среща" [filterable]="false">
           <div *igxCell="let cell = cell">
             <igx-avatar igxListThumbnail
-                        [src]="cell.rowData.Player1.avatarMedium"
-                        [initials]="cell.rowData.Player1.username"
+                        [src]="cell.rowData.player1.avatarMedium"
+                        [initials]="cell.rowData.player1.username"
                         [roundShape]="true">
             </igx-avatar>
-            <span [class]="cell.rowData.Player1Points > cell.rowData.Player2Points ? 'highlight grid-team-name' : 'grid-team-name'">
-              {{ cell.rowData.Player1.battleNetId }}
+            <span [class]="cell.rowData.player1Points > cell.rowData.player2Points ? 'highlight grid-team-name' : 'grid-team-name'">
+              {{ cell.rowData.player1.battleNetId }}
             </span>
 
             <span class="grid-vs-divider">vs.</span>
 
             <igx-avatar
-                        [src]="cell.rowData.Player2.avatarMedium"
-                        [initials]="cell.rowData.Player2.username"
+                        [src]="cell.rowData.player2.avatarMedium"
+                        [initials]="cell.rowData.player2.username"
                         [roundShape]="true">
             </igx-avatar>
-            <span [class]="cell.rowData.Player2Points > cell.rowData.Player1Points ? 'highlight grid-team-name' : 'grid-team-name'">
-              {{ cell.rowData.Player2.battleNetId }}
+            <span [class]="cell.rowData.player2Points > cell.rowData.player1Points ? 'highlight grid-team-name' : 'grid-team-name'">
+              {{ cell.rowData.player2.battleNetId }}
             </span>
           </div>
         </igx-column>
 
         <ng-template igxGridDetail let-dataItem>
-          <div class="horizontal-center" *ngFor="let map of dataItem.Maps">
+          <div class="horizontal-center" *ngFor="let map of dataItem.maps">
             <div class="score-container">
-              <igx-icon *ngIf="map.WinnerId === dataItem.Player1Id">check</igx-icon>
+              <igx-icon *ngIf="map.winnerId === dataItem.player1Id">check</igx-icon>
             </div>
 
-            <div>{{ map.Map | sc2MapName }}</div>
+            <div>{{ map.map | sc2MapName }}</div>
 
             <div class="score-container">
-              <igx-icon *ngIf="map.WinnerId === dataItem.Player2Id">check</igx-icon>
+              <igx-icon *ngIf="map.winnerId === dataItem.player2Id">check</igx-icon>
             </div>
           </div>
 
-          <div class="horizontal-center" *ngIf="dataItem.NoShow">
+          <div class="horizontal-center" *ngIf="dataItem.noShow">
             Служебна победа.
           </div>
 
-          <div class="horizontal-center" *ngIf="!dataItem.Maps.length && !dataItem.NoShow">
+          <div class="horizontal-center" *ngIf="!dataItem.maps.length && !dataItem.noShow">
             Срещата предстои да се играе или няма записани резултати за тази среща...
           </div>
         </ng-template>
@@ -93,13 +96,13 @@
       <div class="group-columns">
         <igx-grid *ngFor="let group of groups"
                   [cellSelection]="selectionMode.none"
-                  [data]="group.Participants">
+                  [data]="group.participants">
 
           <igx-grid-toolbar>
-            <igx-grid-toolbar-title>{{group.Name}}</igx-grid-toolbar-title>
+            <igx-grid-toolbar-title>{{group.name}}</igx-grid-toolbar-title>
           </igx-grid-toolbar>
 
-          <igx-column field="User" header="Отбор" width="20%">
+          <igx-column field="user" header="Отбор" width="20%">
             <div *igxCell="let value">
               <igx-avatar igxListThumbnail
                           [src]="value.avatarMedium"
@@ -112,17 +115,17 @@
             </div>
           </igx-column>
 
-          <igx-column field="BattleTag" header="Battle.net Battle Tag" width="20%">
+          <igx-column field="battleTag" header="Battle.net Battle Tag" width="20%">
           </igx-column>
-          <igx-column field="Company" header="Компания" width="20%">
+          <igx-column field="companyId" header="Компания" width="20%">
           </igx-column>
-          <igx-column field="Matches" [dataType]="gridDataType.Number" header="Срещи" width="10%">
+          <igx-column field="matches" [dataType]="gridDataType.Number" header="Срещи" width="10%">
           </igx-column>
-          <igx-column field="Wins" [dataType]="gridDataType.Number" header="Победи" width="10%">
+          <igx-column field="wins" [dataType]="gridDataType.Number" header="Победи" width="10%">
           </igx-column>
-          <igx-column field="Losses" [dataType]="gridDataType.Number" header="Загуби" width="10%">
+          <igx-column field="losses" [dataType]="gridDataType.Number" header="Загуби" width="10%">
           </igx-column>
-          <igx-column field="PlayerPoints" [dataType]="gridDataType.Number" header="Точки" width="10%">
+          <igx-column field="playerPoints" [dataType]="gridDataType.Number" header="Точки" width="10%">
           </igx-column>
 
         </igx-grid>

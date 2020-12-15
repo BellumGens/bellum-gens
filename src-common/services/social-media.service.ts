@@ -20,6 +20,6 @@ export class SocialMediaService {
 
   private stratTextForTwitter(strat: CSGOStrategy) {
     // tslint:disable-next-line:max-line-length
-    return `Check out "${strat.Title}" CS:GO strategy by ${strat.Owner} on Bellum Gens https://bellumgens.com/strategies/details/${strat.CustomUrl}`;
+    return `Check out "${strat.title}" CS:GO strategy by ${strat.owner} on Bellum Gens https://bellumgens.com/strategies/details/${strat.customUrl}`;
   }
 }

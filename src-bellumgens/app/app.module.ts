@@ -44,8 +44,6 @@ import { socialMedia, logos } from '@igniteui/material-icons-extended';
 
 import { AppComponent } from './app.component';
 import { PlayerDetailsComponent } from './player-section/player-details/player-details.component';
-import { LoginService } from '../../src-common/services/login.service';
-import { BellumgensApiService } from '../../src-common/services/bellumgens-api.service';
 import { HomeComponent } from './home/home.component';
 import { GroupsFilterPipe } from './pipes/groups-filter.pipe';
 import { WeekdayPipe } from './pipes/weekday.pipe';
@@ -59,7 +57,7 @@ import { TeamApplicationComponent } from './team-section/team-application/team-a
 import { TeamOverviewComponent } from './team-section/team-overview/team-overview.component';
 import { TeamNotificationsComponent } from './team-section/team-notifications/team-notifications.component';
 import { SortApplicationsPipe } from './pipes/sort-applications.pipe';
-import { MapPoolComponent } from './map-pool/map-pool.component';
+import { MapPoolComponent } from './player-section/map-pool/map-pool.component';
 import { SideStratsPipe } from './pipes/sidestrats.pipe';
 import { AvailabilityComponent } from './availability/availability.component';
 import { SafeVideoLinkPipe } from './pipes/safe-video-link.pipe';
@@ -81,7 +79,6 @@ import { TeamPreferencesComponent } from './team-section/team-preferences/team-p
 import { SortWeaponsPipe } from './pipes/sort-weapons.pipe';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../../src-common/environments/environment';
-import { ExcludeMembersPipe } from './pipes/exclude-members.pipe';
 import { NotificationStatePipe } from './pipes/notification-state.pipe';
 import { EmailconfirmComponent } from './emailconfirm/emailconfirm.component';
 import { QueryParsedPipe } from './pipes/query-parsed.pipe';
@@ -97,12 +94,8 @@ import { HasVotedPipe } from './pipes/has-voted.pipe';
 import { UserStrategiesComponent } from './player-section/user-strategies/user-strategies.component';
 import { NewStrategyComponent } from './team-section/team-strategies/new-strategy/new-strategy.component';
 import { IsStratOwnerPipe } from './pipes/is-strat-owner.pipe';
-import { ApiTournamentsService } from '../../src-common/services/bellumgens-api.tournaments.service';
 import { StartsWithPipe } from './pipes/starts-with.pipe';
 import { TeamNewComponent } from './team-section/team-new/team-new.component';
-import { GetRegCountPipe } from './pipes/get-reg-count.pipe';
-import { CommunicationService } from '../../src-common/services/communication.service';
-import { SocialMediaService } from '../../src-common/services/social-media.service';
 import { BellumGensModule } from '../../src-common/components/components.module';
 import { TeamTournamentsComponent } from './team-section/team-tournaments/team-tournaments.component';
 
@@ -143,7 +136,6 @@ import { TeamTournamentsComponent } from './team-section/team-tournaments/team-t
     TeamPreferencesComponent,
     OpenPositionsPipe,
     SortWeaponsPipe,
-    ExcludeMembersPipe,
     NotificationStatePipe,
     EmailconfirmComponent,
     QueryParsedPipe,
@@ -161,7 +153,6 @@ import { TeamTournamentsComponent } from './team-section/team-tournaments/team-t
     IsStratOwnerPipe,
     StartsWithPipe,
     TeamNewComponent,
-    GetRegCountPipe,
     TeamTournamentsComponent
   ],
   imports: [
@@ -207,20 +198,12 @@ import { TeamTournamentsComponent } from './team-section/team-tournaments/team-t
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     HammerModule
   ],
-  providers: [
-    LoginService,
-    BellumgensApiService,
-    ApiTournamentsService,
-    CommunicationService,
-    SocialMediaService,
-    IgxIconService
-  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {
   constructor(private iconService: IgxIconService) {
     const smproviders = ['facebook', 'twitter', 'instagram', 'linkedin'];
-    const complogos = ['discord', 'steam'];
+    const complogos = ['discord', 'steam', 'twitch', 'battlenet'];
     complogos.forEach(c => this.iconService.addSvgIconFromText(c, logos.find(s => s.name === c).value, 'login-icons'));
     smproviders.forEach(p => this.iconService.addSvgIconFromText(p, socialMedia.find(s => s.name === p).value, 'login-icons'));
     this.iconService.addSvgIcon('bge-white', '/assets/login/bge-white.svg', 'partners');

@@ -7,6 +7,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { SortNotificationsPipe } from 'src-bellumgens/app/pipes/sort-notifications.pipe';
 import { NotificationStatePipe } from 'src-bellumgens/app/pipes/notification-state.pipe';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 describe('NotificationsComponent', () => {
   let component: PlayerNotificationsComponent;
@@ -17,6 +18,7 @@ describe('NotificationsComponent', () => {
       imports: [
         RouterTestingModule,
         HttpClientTestingModule,
+        ServiceWorkerModule.register('', {enabled: false}),
         IgxListModule,
         IgxAvatarModule
       ],

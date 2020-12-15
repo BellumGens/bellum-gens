@@ -29,13 +29,11 @@ export class ApiShopService {
   public confirmOrder(order: JerseyOrder) {
     return this.http.put(`${this._apiEndpoint}/shop/edit?orderId=${order.id}`, order, { withCredentials: true }).pipe(
       map(response => {
-        if (response) {
-          this.commService.emitSuccess('Tournament application updated successfully!');
-        }
+        this.commService.emitSuccess('Order confirmed successfully!');
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error.Message);
+        this.commService.emitError(error.error);
         return throwError(error);
       })
     );

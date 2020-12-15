@@ -14,7 +14,7 @@ export class QueryParsedPipe implements PipeTransform {
         parts.forEach(part => {
           const token = part.split('=');
           if (token[0] === 'role' && token[1] !== 'null') {
-            result += ` playing as ${ALL_ROLES.find(r => r.Id.toString() === token[1]).Name}`;
+            result += ` playing as ${ALL_ROLES.find(r => r.id.toString() === token[1]).name}`;
           } else if (token[0] === 'overlap' && token[1] !== '0') {
             result += ` with availability overlap of at least ${token[1]} hours`;
           } else if (token[0] === 'name' && token[1]) {
@@ -30,7 +30,7 @@ export class QueryParsedPipe implements PipeTransform {
         parts.forEach(part => {
           const token = part.split('=');
           if (token[0] === 'role' && token[1] !== 'null') {
-            result += ` looking for ${ALL_ROLES.find(r => r.Id.toString() === token[1]).Name}`;
+            result += ` looking for ${ALL_ROLES.find(r => r.id.toString() === token[1]).name}`;
           } else if (token[0] === 'overlap' && token[1] !== '0') {
             result += ` with availability overlap of at least ${token[1]} hours`;
           } else if (token[0] === 'name' && token[1]) {

@@ -1,1 +1,18 @@
-<p>tournament works!</p>
+<div class="content-container">
+  <igx-card *ngFor="let tournament of tournaments">
+    <igx-card-media>
+      <img [src]="tournament.logo" [alt]="tournament.name" />
+    </igx-card-media>
+    <igx-card-header>
+      <h4 igxCardHeaderTitle>{{tournament.name}}</h4>
+      <span igxCardHeaderSubtitle>{{tournament.startDate | date}} - {{tournament.endDate | date}}</span>
+    </igx-card-header>
+    <igx-card-content>
+      {{tournament.description}}
+      <div class="horizontal-center">
+        <div class="watermark csgo-watermark navigatable" title="CS:GO" [routerLink]="['csgo', tournament.id]"></div>
+        <div class="watermark sc2-watermark navigatable" title="StarCraft II" [routerLink]="['sc2', tournament.id]"></div>
+      </div>
+    </igx-card-content>
+  </igx-card>
+</div>

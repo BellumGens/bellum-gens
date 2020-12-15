@@ -33,8 +33,8 @@
         <input #teamName
                 id="teamName"
                 igxInput
-                name="teamName" minlength="2" [required]="true" [(ngModel)]="newTeam.TeamName">
-        <igx-suffix *ngIf="teamName.value.length > 0" (click)="newTeam.TeamName = null">
+                name="teamName" minlength="2" [required]="true" [(ngModel)]="newTeam.teamName">
+        <igx-suffix *ngIf="teamName.value.length > 0" (click)="newTeam.teamName = null">
             <igx-icon>clear</igx-icon>
         </igx-suffix>
       </igx-input-group>
@@ -50,17 +50,17 @@
                   igxInput
                   minlength="2"
                   [required]="true"
-                  [(ngModel)]="newTeam.Description">
+                  [(ngModel)]="newTeam.description">
         </textarea>
-        <igx-suffix *ngIf="teamDescripton.value.length > 0" (click)="newTeam.Description = null">
+        <igx-suffix *ngIf="teamDescripton.value.length > 0" (click)="newTeam.description = null">
             <igx-icon>clear</igx-icon>
         </igx-suffix>
       </igx-input-group>
 
       <igx-input-group>
         <igx-prefix>
-          <igx-icon *ngIf="!newTeam.TeamAvatar">link</igx-icon>
-          <igx-avatar class="team-preview-avatar" *ngIf="newTeam.TeamAvatar" [src]="newTeam.TeamAvatar" [roundShape]="true" [size]="'small'" initials="NA"></igx-avatar>
+          <igx-icon *ngIf="!newTeam.teamAvatar">link</igx-icon>
+          <igx-avatar class="team-preview-avatar" *ngIf="newTeam.teamAvatar" [src]="newTeam.teamAvatar" [roundShape]="true" [size]="'small'" initials="NA"></igx-avatar>
         </igx-prefix>
         <label igxLabel for="teamAvatar">Team Avatar URL</label>
         <input #teamAvatar="ngModel"
@@ -68,8 +68,8 @@
                 type="url"
                 id="teamAvatar"
                 pattern="^https?:\/\/(?:[a-z\-]+\.)+[a-z]{2,6}(?:\/[^\/#?]+)+\.(?:jpe?g|png|webp)$"
-                name="teamAvatar" [(ngModel)]="newTeam.TeamAvatar">
-        <igx-suffix *ngIf="teamAvatar.value.length > 0" (click)="newTeam.TeamAvatar = null">
+                name="teamAvatar" [(ngModel)]="newTeam.teamAvatar">
+        <igx-suffix *ngIf="teamAvatar.value?.length > 0" (click)="newTeam.teamAvatar = null">
             <igx-icon>clear</igx-icon>
         </igx-suffix>
         <igx-hint *ngIf="teamAvatar.invalid">You must provide an image url</igx-hint>

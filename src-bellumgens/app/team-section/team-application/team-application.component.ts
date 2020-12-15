@@ -18,11 +18,10 @@ export class TeamApplicationComponent {
   public team: CSGOTeam;
 
   public application: TeamApplication = {
-    TeamId: '',
-    ApplicantId: '',
-    State: NotificationState.NotSeen,
-    Sent: '',
-    Message: ''
+    teamId: '',
+    applicantId: '',
+    state: NotificationState.NotSeen,
+    message: ''
   };
 
   @ViewChild(IgxDialogComponent, { static: true }) public dialog: IgxDialogComponent;
@@ -31,8 +30,8 @@ export class TeamApplicationComponent {
 
   public submitApplication() {
     if (this.authUser) {
-      this.application.ApplicantId = this.authUser.id;
-      this.application.TeamId = this.team.TeamId;
+      this.application.applicantId = this.authUser.id;
+      this.application.teamId = this.team.teamId;
       this.apiService.submitApplication(this.application).subscribe(_ => this.dialog.close());
     }
   }

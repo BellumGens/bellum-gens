@@ -23,8 +23,8 @@ export class TournamentHomeComponent {
     this.apiService.activeTournament.subscribe(data => {
       if (data) {
         this.tournament = data;
-        this.tournamentId = data.ID;
-        this.apiService.getRegistrationsCount(data.ID);
+        this.tournamentId = data.id;
+        this.apiService.getRegistrationsCount(data.id);
       }
     });
     this.apiService.registrationsCount.subscribe(data => this.registrations = data);

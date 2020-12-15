@@ -1,8 +1,8 @@
 export interface Availability {
-  Day: DayOfWeek;
-  Available: boolean;
-  From: Date;
-  To: Date;
+  day: DayOfWeek;
+  available: boolean;
+  from: Date;
+  to: Date;
 }
 
 export enum DayOfWeek {

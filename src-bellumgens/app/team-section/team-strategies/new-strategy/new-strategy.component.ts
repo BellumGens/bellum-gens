@@ -44,7 +44,7 @@ export class NewStrategyComponent implements OnInit {
     if (strat) {
       this.newStrategy = strat;
     } else if (!this.team) {
-      this.newStrategy.Visible = true;
+      this.newStrategy.visible = true;
     }
 
     if (title) {
@@ -61,11 +61,11 @@ export class NewStrategyComponent implements OnInit {
 
   public submitStrategy() {
     if (this.team) {
-      this.newStrategy.TeamId = this.team.TeamId;
+      this.newStrategy.teamId = this.team.teamId;
     }
     this.apiService.submitStrategy(this.newStrategy).subscribe(
       strat => {
-        if (!this.newStrategy.Id) {
+        if (!this.newStrategy.id) {
           this.strategyAdded.emit(strat);
         }
         this.dialog.close();
@@ -76,31 +76,31 @@ export class NewStrategyComponent implements OnInit {
   public createAndRedirect() {
     let route = ['strategies', 'edit'];
     if (this.team) {
-      this.newStrategy.TeamId = this.team.TeamId;
-      route = ['team', this.team.CustomUrl];
+      this.newStrategy.teamId = this.team.teamId;
+      route = ['team', this.team.customUrl];
     }
     this.apiService.submitStrategy(this.newStrategy).subscribe(strat => {
-      route.push(strat.CustomUrl);
+      route.push(strat.customUrl);
       this.router.navigate(route);
     });
   }
 
   public getVideoEmbedLink() {
-    if (IsVideoPipe.isYoutube(this.newStrategy.Url)) {
-      const parts = IsVideoPipe._youtubeRegEx.exec(this.newStrategy.Url);
+    if (IsVideoPipe.isYoutube(this.newStrategy.url)) {
+      const parts = IsVideoPipe._youtubeRegEx.exec(this.newStrategy.url);
       if (this.videoId && this.videoId === parts[5]) {
         return true;
       }
       this.videoId = parts[5];
-      this.newStrategy.Url = IsVideoPipe.getYoutubeEmbedLink(this.newStrategy.Url);
+      this.newStrategy.url = IsVideoPipe.getYoutubeEmbedLink(this.newStrategy.url);
       return true;
-    } else if (IsVideoPipe.isTwitch(this.newStrategy.Url)) {
-      const parts = IsVideoPipe._twitchRegEx.exec(this.newStrategy.Url);
+    } else if (IsVideoPipe.isTwitch(this.newStrategy.url)) {
+      const parts = IsVideoPipe._twitchRegEx.exec(this.newStrategy.url);
       if (this.videoId && this.videoId === parts[3]) {
         return true;
       }
       this.videoId = parts[3];
-      this.newStrategy.Url = IsVideoPipe.getTwitchEmbedLink(this.newStrategy.Url);
+      this.newStrategy.url = IsVideoPipe.getTwitchEmbedLink(this.newStrategy.url);
       return true;
     }
     return false;

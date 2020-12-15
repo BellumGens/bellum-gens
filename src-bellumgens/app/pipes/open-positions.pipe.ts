@@ -16,7 +16,7 @@ export class OpenPositionsPipe implements PipeTransform {
       { roleName: 'Lurker', role: PlaystyleRole.Lurker, user: null }
     ];
     roleSlots.forEach(role => {
-      if (members.find(m => m.IsActive && m.Role === role.role)) {
+      if (members.find(m => m.isActive && m.role === role.role)) {
         roleSlots.splice(roleSlots.indexOf(role), 1);
       }
     });

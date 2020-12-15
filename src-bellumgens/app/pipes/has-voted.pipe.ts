@@ -11,7 +11,7 @@ export class HasVotedPipe implements PipeTransform {
   transform(votes: StrategyVote [], direction: VoteDirection, authUser: ApplicationUser, t?: number): string {
     if (votes) {
       if (authUser) {
-        return votes.find(v => v.Vote === direction && v.UserId === authUser.id) ? this.hasVotedClass : '';
+        return votes.find(v => v.vote === direction && v.userId === authUser.id) ? this.hasVotedClass : '';
       }
     }
     return '';

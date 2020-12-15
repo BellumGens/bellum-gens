@@ -10,6 +10,7 @@ import { LoginService } from '../../../../src-common/services/login.service';
 import { ApplicationUser } from '../../../../src-common/models/applicationuser';
 import { GlobalOverlaySettings, StratOrder, StratOrderBy } from '../../../../src-common/models/misc';
 import { SocialMediaService } from '../../../../src-common/services/social-media.service';
+import { ApiSearchService } from '../../../../src-common/services/bellumgens-api.search.service';
 
 @Component({
   selector: 'app-team-strategies',
@@ -17,7 +18,7 @@ import { SocialMediaService } from '../../../../src-common/services/social-media
   styleUrls: ['./team-strategies.component.scss']
 })
 export class TeamStrategiesComponent {
-  private _isEditor = null;
+  public isEditor: boolean = null;
 
   public strats: CSGOStrategy [];
   public maps: CSGOMapPool [] = AllCSGOMaps;
@@ -37,25 +38,32 @@ export class TeamStrategiesComponent {
 
   constructor(private activatedRoute: ActivatedRoute,
               private apiService: BellumgensApiService,
+              private searchService: ApiSearchService,
               private authManager: LoginService,
               private socialMedia: SocialMediaService) {
     this.activatedRoute.parent.params.subscribe(params => {
       const teamId = params['teamid'];
 
       if (teamId) {
-        this.apiService.getTeam(teamId).subscribe(team => this.team = team);
-        this.apiService.getTeamStrats(teamId).subscribe(strats => this.strats = strats);
-        this.apiService.getTeamMapPool(teamId).subscribe(maps => this.maps = maps);
+        this.apiService.getTeam(teamId).subscribe(team => {
+          if (team) {
+            this.team = team;
+            this.apiService.loadingStrategies.subscribe(loading => this.loading = loading);
+            this.apiService.getTeamStrats(team.teamId).subscribe(strats => this.strats = strats);
+            this.apiService.getTeamMapPool(team.teamId).subscribe(maps => this.maps = maps);
+            this.authManager.getUserIsTeamEditor(team.teamId).subscribe(data => this.isEditor = data);
+          }
+        });
       } else {
         this.activatedRoute.params.subscribe(param => {
           const query = param['query'];
 
           if (query) {
-            this.apiService.searchStrategies(query);
-            this.apiService.loadingSearch.subscribe(loading => this.loading = loading);
-            this.apiService.strategySearchResult.subscribe(strats => this.strats = strats);
+            this.searchService.searchStrategies(query);
+            this.searchService.loadingSearch.subscribe(loading => this.loading = loading);
+            this.searchService.strategySearchResult.subscribe(strats => this.strats = strats);
           } else {
-            this.apiService.loadingStrategies.subscribe(loading => this.loading = loading),
+            this.apiService.loadingStrategies.subscribe(loading => this.loading = loading);
             this.apiService.strategies.subscribe(strats => this.strats = strats);
             this.apiService.hasMoreStrats.subscribe(hasMore => this.hasMore = hasMore);
           }
@@ -71,13 +79,13 @@ export class TeamStrategiesComponent {
 
   public changeMaps(event: IChipSelectEventArgs, args: CSGOMapPool) {
     if (event.originalEvent) {
-      this.maps.find(m => m.Map === args.Map).IsPlayed = event.selected;
+      this.maps.find(m => m.map === args.map).isPlayed = event.selected;
       this.pipeTrigger++;
     }
   }
 
   public deleteStrat(args: CSGOStrategy) {
-    this.apiService.deleteStrategy(args.Id).subscribe(
+    this.apiService.deleteStrategy(args.id).subscribe(
       _ => {
         this.strats.splice(this.strats.indexOf(args), 1);
         this.pipeTrigger++;
@@ -104,15 +112,5 @@ export class TeamStrategiesComponent {
     } else {
       this.apiService.submitStratVote(strat, direction, this.authUser.id).subscribe(_ => this.pipeTrigger++);
     }
-  }
-
-  public get isEditor() {
-    if (this._isEditor !== null) {
-      return this._isEditor;
-    }
-    if (this.authUser && this.team && this.team.Members) {
-      this._isEditor = this.team.Members.filter(m => (m.IsEditor || m.IsAdmin) && m.UserId === this.authUser.id).length > 0;
-    }
-    return this._isEditor;
   }
 }

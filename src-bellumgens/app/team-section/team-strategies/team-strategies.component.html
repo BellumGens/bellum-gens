@@ -1,7 +1,7 @@
 <div class="strat-filter-header">
   <span class="igx-card-header__title">
     Showing
-    <button class="navigation-item" igxButton="outlined" igxRipple (click)="viewAll = !viewAll">{{viewAll ? 'all maps' : 'active duty maps'}}</button> 
+    <button class="navigation-item" igxButton="outlined" igxRipple (click)="viewAll = !viewAll">{{viewAll ? 'all maps' : 'active duty maps'}}</button>
   </span>
   <button class="navigation-item"
           igxButton="raised"
@@ -14,10 +14,10 @@
   <div class="horizontal">
     <igx-chips-area class="map-filter">
       <igx-chip *ngFor="let map of maps | activeDutyMaps:viewAll"
-                [selected]="map.IsPlayed"
+                [selected]="map.isPlayed"
                 [selectable]="true"
                 (onSelection)="changeMaps($event, map)">
-        {{ map.Map | csgomapname }}
+        {{ map.map | csgomapname }}
       </igx-chip>
     </igx-chips-area>
     <igx-select [(ngModel)]="order" class="order-by">
@@ -37,43 +37,43 @@
     <igx-card-header>
       <h2 igxCardHeaderTitle
           class="strat-title navigatable"
-          [title]="strat.Title"
-          [routerLink]="['/strategies', 'details', strat.CustomUrl]">{{ strat.Title }}</h2>
-      <h4 igxCardHeaderSubtitle>Author: <a *ngIf="strat.Owner" [routerLink]="['/players', strat.UserId]">{{ strat.Owner }}</a></h4>
-      <h6 igxCardHeaderSubtitle class="card-smaller-subtitle">Last Edit: {{ strat.LastUpdated | date }}</h6>
+          [title]="strat.title"
+          [routerLink]="['/strategies', 'details', strat.customUrl]">{{ strat.title }}</h2>
+      <h4 igxCardHeaderSubtitle>Author: <a *ngIf="strat.owner" [routerLink]="['/players', strat.userId]">{{ strat.owner }}</a></h4>
+      <h6 igxCardHeaderSubtitle class="card-smaller-subtitle">Last Edit: {{ strat.lastUpdated | date }}</h6>
       <igx-icon class="navigatable" [igxToggleAction]="useractions" [overlaySettings]="overlaySettings">more_vert</igx-icon>
     </igx-card-header>
 
     <igx-card-media>
-      <iframe class="video-frame" *ngIf="strat.Url | isVideo" [src]="strat.Url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      <img *ngIf="strat.Image" [src]="strat.Image" class="strat-image" [routerLink]="['/strategies', 'details', strat.CustomUrl]" />
+      <iframe class="video-frame" *ngIf="strat.url | isVideo" [src]="strat.url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <img *ngIf="strat.stratImage" [src]="strat.stratImage" class="strat-image" [routerLink]="['/strategies', 'details', strat.customUrl]" />
     </igx-card-media>
 
     <igx-card-content>
-      <p class="igx-card-header__subtitle">{{ strat.Description | truncateText:130 }}</p>
+      <p class="igx-card-header__subtitle">{{ strat.description | truncateText:130 }}</p>
     </igx-card-content>
 
     <igx-card-actions [reverse]="true">
-      <span class="horizontal-center navigatable" [routerLink]="['/strategies', 'details', strat.CustomUrl]">
-        <igx-badge [value]="strat.Comments?.length.toString()" type="info"></igx-badge>
+      <span class="horizontal-center navigatable" [routerLink]="['/strategies', 'details', strat.customUrl]">
+        <igx-badge [value]="strat.comments?.length.toString()" type="info"></igx-badge>
         Comments
       </span>
       <button igxButton="fab"
-              [ngClass]="strat.Votes | hasVoted:0:authUser:pipeTrigger"
+              [ngClass]="strat.votes | hasVoted:0:authUser:pipeTrigger"
               igxRipple
               (click)="voteStrat(strat, 0)">
         <igx-icon title="vote up">thumb_up</igx-icon>
-        <span *ngIf="strat.Votes | votes:0:pipeTrigger">
-          {{strat.Votes | votes:0:pipeTrigger}}
+        <span *ngIf="strat.votes | votes:0:pipeTrigger">
+          {{strat.votes | votes:0:pipeTrigger}}
         </span>
       </button>
       <button igxButton="fab"
-              [ngClass]="strat.Votes | hasVoted:1:authUser:pipeTrigger"
+              [ngClass]="strat.votes | hasVoted:1:authUser:pipeTrigger"
               igxRipple
               (click)="voteStrat(strat, 1)">
         <igx-icon title="vote down">thumb_down</igx-icon>
-        <span *ngIf="strat.Votes | votes:1:pipeTrigger">
-          {{strat.Votes | votes:1:pipeTrigger}}
+        <span *ngIf="strat.votes | votes:1:pipeTrigger">
+          {{strat.votes | votes:1:pipeTrigger}}
         </span>
       </button>
     </igx-card-actions>
