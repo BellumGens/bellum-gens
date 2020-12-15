@@ -135,9 +135,7 @@ export class ApiTournamentsService {
   public addSubscriber(email: string) {
     return this.http.post(`${this._apiEndpoint}/account/subscribe`, { Email: email }).pipe(
       map(response => {
-        if (response) {
-          this.commService.emitSuccess(response.toString());
-        }
+        this.commService.emitSuccess(response.toString());
         return response;
       }),
       catchError(error => {
@@ -174,9 +172,7 @@ export class ApiTournamentsService {
   public confirmRegistration(reg: TournamentApplication) {
     return this.http.put(`${this._apiEndpoint}/tournament/confirm?id=${reg.id}`, reg, { withCredentials: true }).pipe(
       map(response => {
-        if (response) {
-          this.commService.emitSuccess('Tournament application updated successfully!');
-        }
+        this.commService.emitSuccess('Tournament application updated successfully!');
         return response;
       }),
       catchError(error => {
@@ -189,9 +185,7 @@ export class ApiTournamentsService {
   public deleteRegistration(id: string) {
     return this.http.delete(`${this._apiEndpoint}/tournament/delete?id=${id}`, { withCredentials: true }).pipe(
       map(response => {
-        if (response) {
-          this.commService.emitSuccess('Tournament application deleted successfully!');
-        }
+        this.commService.emitSuccess('Tournament application deleted successfully!');
         return response;
       }),
       catchError(error => {
@@ -206,12 +200,10 @@ export class ApiTournamentsService {
   }
 
   public submitCSGOGroup(group: TournamentCSGOGroup) {
-    return this.http.put<TournamentCSGOGroup>(`${this._apiEndpoint}/tournament/csgogroup?id=${group.id || null}`,
+    return this.http.put<TournamentCSGOGroup>(`${this._apiEndpoint}/tournament/csgogroup${group.id ? '?id=' + group.id : ''}`,
       group, { withCredentials: true}).pipe(
         map(response => {
-          if (response) {
-            this.commService.emitSuccess('Tournament CS:GO group updated successfully!');
-          }
+          this.commService.emitSuccess('Tournament CS:GO group updated successfully!');
           return response;
         }),
         catchError(error => {
@@ -228,9 +220,7 @@ export class ApiTournamentsService {
   public addParticipantToGroup(participant: TournamentParticipant, groupid: string) {
     return this.http.put(`${this._apiEndpoint}/tournament/participanttogroup?id=${groupid}`, participant, { withCredentials: true }).pipe(
       map(response => {
-        if (response) {
-          this.commService.emitSuccess('Tournament participant added to group successfully!');
-        }
+        this.commService.emitSuccess('Tournament participant added to group successfully!');
         return response;
       }),
       catchError(error => {
@@ -243,9 +233,7 @@ export class ApiTournamentsService {
   public removeParticipantFromGroup(participantid: string) {
     return this.http.delete(`${this._apiEndpoint}/tournament/participanttogroup?id=${participantid}`, { withCredentials: true }).pipe(
       map(response => {
-        if (response) {
-          this.commService.emitSuccess('Tournament participant deleted from group successfully!');
-        }
+        this.commService.emitSuccess('Tournament participant deleted from group successfully!');
         return response;
       }),
       catchError(error => {
@@ -260,12 +248,10 @@ export class ApiTournamentsService {
   }
 
   public submitSC2Group(group: TournamentSC2Group) {
-    return this.http.put<TournamentSC2Group>(`${this._apiEndpoint}/tournament/sc2group?id=${group.id || null}`,
+    return this.http.put<TournamentSC2Group>(`${this._apiEndpoint}/tournament/sc2group${group.id ? '?id=' + group.id : ''}`,
       group, { withCredentials: true}).pipe(
         map(response => {
-          if (response) {
-            this.commService.emitSuccess('Tournament CS:GO group updated successfully!');
-          }
+          this.commService.emitSuccess('Tournament CS:GO group updated successfully!');
           return response;
         }),
         catchError(error => {
@@ -287,9 +273,7 @@ export class ApiTournamentsService {
     return this.http.put<TournamentCSGOMatch>(`${this._apiEndpoint}/tournament/csgomatch?id=${match.id || null}`,
       match, { withCredentials: true}).pipe(
         map(response => {
-          if (response) {
-            this.commService.emitSuccess('Tournament CS:GO match updated successfully!');
-          }
+          this.commService.emitSuccess('Tournament CS:GO match updated successfully!');
           return response;
         }),
         catchError(error => {
@@ -303,9 +287,7 @@ export class ApiTournamentsService {
     return this.http.delete<TournamentCSGOMatch>(`${this._apiEndpoint}/tournament/csgomatch?id=${match.id}`,
       { withCredentials: true}).pipe(
         map(response => {
-          if (response) {
-            this.commService.emitSuccess('Tournament CS:GO match deleted successfully!');
-          }
+          this.commService.emitSuccess('Tournament CS:GO match deleted successfully!');
           return response;
         }),
         catchError(error => {
@@ -319,9 +301,7 @@ export class ApiTournamentsService {
     return this.http.put<TournamentCSGOMatchMap>(`${this._apiEndpoint}/tournament/csgomatchmap?id=${matchmap.id || null}`,
       matchmap, { withCredentials: true}).pipe(
         map(response => {
-          if (response) {
-            this.commService.emitSuccess('Tournament CS:GO match map updated successfully!');
-          }
+          this.commService.emitSuccess('Tournament CS:GO match map updated successfully!');
           return response;
         }),
         catchError(error => {
@@ -335,9 +315,7 @@ export class ApiTournamentsService {
     return this.http.delete<TournamentCSGOMatchMap>(`${this._apiEndpoint}/tournament/csgomatchmap?id=${matchmapid}`,
       { withCredentials: true}).pipe(
         map(response => {
-          if (response) {
-            this.commService.emitSuccess('Tournament CS:GO match map deleted successfully!');
-          }
+          this.commService.emitSuccess('Tournament CS:GO match map deleted successfully!');
           return response;
         }),
         catchError(error => {
@@ -351,9 +329,7 @@ export class ApiTournamentsService {
     return this.http.put<TournamentSC2Match>(`${this._apiEndpoint}/tournament/sc2match?id=${match.id || null}`,
       match, { withCredentials: true}).pipe(
         map(response => {
-          if (response) {
-            this.commService.emitSuccess('Tournament StarCraft II match updated successfully!');
-          }
+          this.commService.emitSuccess('Tournament StarCraft II match updated successfully!');
           return response;
         }),
         catchError(error => {
@@ -367,9 +343,7 @@ export class ApiTournamentsService {
     return this.http.delete<TournamentSC2Match>(`${this._apiEndpoint}/tournament/sc2match?id=${match.id}`,
       { withCredentials: true}).pipe(
         map(response => {
-          if (response) {
-            this.commService.emitSuccess('Tournament StarCraft II match deleted successfully!');
-          }
+          this.commService.emitSuccess('Tournament StarCraft II match deleted successfully!');
           return response;
         }),
         catchError(error => {
@@ -383,9 +357,7 @@ export class ApiTournamentsService {
     return this.http.put<TournamentSC2MatchMap>(`${this._apiEndpoint}/tournament/sc2matchmap?id=${matchmap.id || null}`,
       matchmap, { withCredentials: true}).pipe(
         map(response => {
-          if (response) {
-            this.commService.emitSuccess('Tournament CS:GO match map updated successfully!');
-          }
+          this.commService.emitSuccess('Tournament StarCraft II match map updated successfully!');
           return response;
         }),
         catchError(error => {
@@ -399,9 +371,7 @@ export class ApiTournamentsService {
     return this.http.delete<TournamentSC2MatchMap>(`${this._apiEndpoint}/tournament/sc2matchmap?id=${matchmapid}`,
       { withCredentials: true}).pipe(
         map(response => {
-          if (response) {
-            this.commService.emitSuccess('Tournament CS:GO match map deleted successfully!');
-          }
+          this.commService.emitSuccess('Tournament StarCraft II match map deleted successfully!');
           return response;
         }),
         catchError(error => {

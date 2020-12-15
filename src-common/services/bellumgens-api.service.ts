@@ -151,9 +151,7 @@ export class BellumgensApiService {
   public registerSteamGroup(group: SteamGroup) {
     return this.http.post<CSGOTeam>(`${this._apiEndpoint}/teams/team`, group, { withCredentials: true }).pipe(
       map(response => {
-        if (response) {
-          this.commService.emitSuccess(`${group.groupName} registered successfully!`);
-        }
+        this.commService.emitSuccess(`${group.groupName} registered successfully!`);
         return response;
       }),
       catchError(error => {
@@ -166,9 +164,7 @@ export class BellumgensApiService {
   public registerTeam(team: CSGOTeam): Observable<CSGOTeam> {
     return this.http.post<CSGOTeam>(`${this._apiEndpoint}/teams/newteam`, team, { withCredentials: true }).pipe(
       map(response => {
-        if (response) {
-          this.commService.emitSuccess(`${team.teamName} registered successfully!`);
-        }
+        this.commService.emitSuccess(`${team.teamName} registered successfully!`);
         return response;
       }),
       catchError(error => {
@@ -181,9 +177,7 @@ export class BellumgensApiService {
   public updateTeam(team: CSGOTeam): Observable<CSGOTeam> {
     return this.http.put<CSGOTeam>(`${this._apiEndpoint}/teams/team`, team, { withCredentials: true }).pipe(
       map(response => {
-        if (response) {
-          this.commService.emitSuccess(`${team.teamName} updated successfully!`);
-        }
+        this.commService.emitSuccess(`${team.teamName} updated successfully!`);
         return response;
       }),
       catchError(error => {
@@ -196,9 +190,7 @@ export class BellumgensApiService {
   public updateTeamMember(teamMember: TeamMember): Observable<TeamMember> {
     return this.http.put<TeamMember>(`${this._apiEndpoint}/teams/member`, teamMember, { withCredentials: true }).pipe(
       map(response => {
-        if (response) {
-          this.commService.emitSuccess(`${teamMember.username} updated successfully!`);
-        }
+        this.commService.emitSuccess(`${teamMember.username} updated successfully!`);
         return response;
       }),
       catchError(error => {
@@ -212,9 +204,7 @@ export class BellumgensApiService {
     return this.http.delete(`${this._apiEndpoint}/teams/removemember?teamId=${teamMember.teamId}&userId=${teamMember.userId}`,
       { withCredentials: true }).pipe(
         map(response => {
-          if (response) {
-            this.commService.emitSuccess(`${teamMember.username} removed from team!`);
-          }
+          this.commService.emitSuccess(`${teamMember.username} removed from team!`);
           return response;
         }),
         catchError(error => {
@@ -227,9 +217,7 @@ export class BellumgensApiService {
   public abandonTeam(team: CSGOTeam) {
     return this.http.delete(`${this._apiEndpoint}/teams/abandon?teamId=${team.teamId}`, { withCredentials: true }).pipe(
       map(response => {
-        if (response) {
-          this.commService.emitSuccess(`You're are no longer part of ${team.teamName}`);
-        }
+        this.commService.emitSuccess(`You're are no longer part of ${team.teamName}`);
         return response;
       }),
       catchError(error => {
@@ -243,9 +231,7 @@ export class BellumgensApiService {
     return this.http.post(`${this._apiEndpoint}/teams/invite`,
       { userId: steamUser.steamID64, teamId: team.teamId }, { withCredentials: true }).pipe(
         map(response => {
-          if (response) {
-            this.commService.emitSuccess(`${steamUser.steamID} successfully invited to ${team.teamName}`);
-          }
+          this.commService.emitSuccess(`${steamUser.steamID} successfully invited to ${team.teamName}`);
           return response;
         }),
         catchError(error => {
@@ -258,9 +244,7 @@ export class BellumgensApiService {
   public submitApplication(application: TeamApplication) {
     return this.http.post(`${this._apiEndpoint}/teams/apply`, application, { withCredentials: true }).pipe(
       map(response => {
-        if (response) {
-          this.commService.emitSuccess(`Application submitted successfully!`);
-        }
+        this.commService.emitSuccess(`Application submitted successfully!`);
         return response;
       }),
       catchError(error => {
@@ -277,9 +261,7 @@ export class BellumgensApiService {
   public approveApplication(application: TeamApplication): Observable<TeamApplication> {
     return this.http.put<TeamApplication>(`${this._apiEndpoint}/teams/approveapplication`, application, { withCredentials: true }).pipe(
       map(response => {
-        if (response) {
-          this.commService.emitSuccess(`${application.userName} is now part of your team!`);
-        }
+        this.commService.emitSuccess(`${application.userName} is now part of your team!`);
         return response;
       }),
       catchError(error => {
@@ -292,9 +274,7 @@ export class BellumgensApiService {
   public rejectApplication(application: TeamApplication): Observable<TeamApplication> {
     return this.http.put<TeamApplication>(`${this._apiEndpoint}/teams/rejectapplication`, application, { withCredentials: true }).pipe(
       map(response => {
-        if (response) {
-          this.commService.emitSuccess(`${application.userName} application has been rejected!`);
-        }
+        this.commService.emitSuccess(`${application.userName} application has been rejected!`);
         return response;
       }),
       catchError(error => {
@@ -311,9 +291,7 @@ export class BellumgensApiService {
   public setTeamMapPool(mapstatus: CSGOMapPool []): Observable<any> {
     return this.http.put(`${this._apiEndpoint}/teams/mapPool`, mapstatus, { withCredentials: true }).pipe(
       map(response => {
-        if (response) {
-          this.commService.emitSuccess('Map selection saved!');
-        }
+        this.commService.emitSuccess('Map selection saved!');
         return response;
       }),
       catchError(error => {
@@ -330,10 +308,8 @@ export class BellumgensApiService {
   public submitStrategy(strat: CSGOStrategy) {
     return this.http.post<CSGOStrategy>(`${this._apiEndpoint}/strategy/strategy`, strat, { withCredentials: true }).pipe(
       map(response => {
-        if (response) {
-          this._currentStrategy.next(response);
-          this.commService.emitSuccess('Strategy saved!');
-        }
+        this._currentStrategy.next(response);
+        this.commService.emitSuccess('Strategy saved!');
         return response;
       }),
       catchError(error => {
@@ -374,15 +350,13 @@ export class BellumgensApiService {
                           comment,
                           { withCredentials: true }).pipe(
       map(response => {
-        if (response) {
-          const existing = strat.comments.find(c => c.id === response.id);
-          if (existing) {
-            existing.comment = response.comment;
-            this.commService.emitSuccess('Comment edited successfully!');
-          } else {
-            strat.comments.push(response);
-            this.commService.emitSuccess('Comment submitted successfully!');
-          }
+        const existing = strat.comments.find(c => c.id === response.id);
+        if (existing) {
+          existing.comment = response.comment;
+          this.commService.emitSuccess('Comment edited successfully!');
+        } else {
+          strat.comments.push(response);
+          this.commService.emitSuccess('Comment submitted successfully!');
         }
         return response;
       }),
@@ -397,10 +371,8 @@ export class BellumgensApiService {
     return this.http.delete<StrategyComment>(`${this._apiEndpoint}/strategy/comment?id=${comment.id}`,
                           { withCredentials: true }).pipe(
       map(response => {
-        if (response) {
-          this.commService.emitSuccess('Comment submitted successfully!');
-          strat.comments.splice(strat.comments.indexOf(comment), 1);
-        }
+        this.commService.emitSuccess('Comment submitted successfully!');
+        strat.comments.splice(strat.comments.indexOf(comment), 1);
         return response;
       }),
       catchError(error => {
@@ -413,9 +385,7 @@ export class BellumgensApiService {
   public deleteStrategy(id: string): Observable<any> {
     return this.http.delete(`${this._apiEndpoint}/strategy/strat?id=${id}`, { withCredentials: true }).pipe(
       map(response => {
-        if (response) {
-          this.commService.emitSuccess('Strategy successfully deleted!');
-        }
+        this.commService.emitSuccess('Strategy successfully deleted!');
         return response;
       }),
       catchError(error => {
@@ -432,9 +402,7 @@ export class BellumgensApiService {
   public setTeamPractice(day: Availability) {
     return this.http.put(`${this._apiEndpoint}/teams/availability`, day, { withCredentials: true }).pipe(
       map(response => {
-        if (response) {
-          this.commService.emitSuccess('Practice schedule updated!');
-        }
+        this.commService.emitSuccess('Practice schedule updated!');
         return response;
       }),
       catchError(error => {
@@ -492,9 +460,7 @@ export class BellumgensApiService {
   public setAvailability(availability: Availability): Observable<Availability> {
     return this.http.put<Availability>(`${this._apiEndpoint}/users/availability`, availability, { withCredentials: true }).pipe(
       map(response => {
-        if (response) {
-          this.commService.emitSuccess('Availability updated!');
-        }
+        this.commService.emitSuccess('Availability updated!');
         return response;
       }),
       catchError(error => {
@@ -507,9 +473,7 @@ export class BellumgensApiService {
   public setPrimaryRole(role: Role): Observable<any> {
     return this.http.put(`${this._apiEndpoint}/users/primaryrole?id=${role.id}`, role, { withCredentials: true }).pipe(
       map(response => {
-        if (response) {
-          this.commService.emitSuccess(`Primary role set to ${role.name}`);
-        }
+        this.commService.emitSuccess(`Primary role set to ${role.name}`);
         return response;
       }),
       catchError(error => {
@@ -522,9 +486,7 @@ export class BellumgensApiService {
   public setSecondaryRole(role: Role): Observable<any> {
     return this.http.put(`${this._apiEndpoint}/users/secondaryrole?id=${role.id}`, role, { withCredentials: true }).pipe(
       map(response => {
-        if (response) {
-          this.commService.emitSuccess(`Secondary role set to ${role.name}`);
-        }
+        this.commService.emitSuccess(`Secondary role set to ${role.name}`);
         return response;
       }),
       catchError(error => {
@@ -541,9 +503,7 @@ export class BellumgensApiService {
   public setMapPool(mapstatus: CSGOMapPool): Observable<any> {
     return this.http.put(`${this._apiEndpoint}/users/mapPool`, mapstatus, { withCredentials: true }).pipe(
       map(response => {
-        if (response) {
-          this.commService.emitSuccess('Map pool updated!');
-        }
+        this.commService.emitSuccess('Map pool updated!');
         return response;
       }),
       catchError(error => {
@@ -556,9 +516,7 @@ export class BellumgensApiService {
   public acceptInvite(notification: UserNotification) {
     return this.http.put(`${this._apiEndpoint}/users/acceptTeamInvite`, notification, { withCredentials: true }).pipe(
       map(response => {
-        if (response) {
-          this.commService.emitSuccess('Team invite accepted!');
-        }
+        this.commService.emitSuccess('Team invite accepted!');
         return response;
       }),
       catchError(error => {
@@ -571,9 +529,7 @@ export class BellumgensApiService {
   public rejectInvite(notification: UserNotification) {
     return this.http.put(`${this._apiEndpoint}/users/rejectTeamInvite`, notification, { withCredentials: true }).pipe(
       map(response => {
-        if (response) {
-          this.commService.emitSuccess('Team invite rejected!');
-        }
+        this.commService.emitSuccess('Team invite rejected!');
         return response;
       }),
       catchError(error => {

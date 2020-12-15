@@ -20,7 +20,7 @@
 
           <a [href]="environment.bellumgens + '/players/' + (registration.user.customURL || registration.userId)" target="_blank">{{ registration.battleTag }}</a>
 
-          <span>[{{ registration.company }}]</span>
+          <span>[{{ registration.companyId }}]</span>
         </div>
         <igx-divider></igx-divider>
       </div>
@@ -102,7 +102,7 @@
             <igx-grid-toolbar-title>{{group.name}}</igx-grid-toolbar-title>
           </igx-grid-toolbar>
 
-          <igx-column field="User" header="Отбор" width="20%">
+          <igx-column field="user" header="Отбор" width="20%">
             <div *igxCell="let value">
               <igx-avatar igxListThumbnail
                           [src]="value.avatarMedium"
@@ -115,17 +115,17 @@
             </div>
           </igx-column>
 
-          <igx-column field="BattleTag" header="Battle.net Battle Tag" width="20%">
+          <igx-column field="battleTag" header="Battle.net Battle Tag" width="20%">
           </igx-column>
-          <igx-column field="Company" header="Компания" width="20%">
+          <igx-column field="companyId" header="Компания" width="20%">
           </igx-column>
-          <igx-column field="Matches" [dataType]="gridDataType.Number" header="Срещи" width="10%">
+          <igx-column field="matches" [dataType]="gridDataType.Number" header="Срещи" width="10%">
           </igx-column>
-          <igx-column field="Wins" [dataType]="gridDataType.Number" header="Победи" width="10%">
+          <igx-column field="wins" [dataType]="gridDataType.Number" header="Победи" width="10%">
           </igx-column>
-          <igx-column field="Losses" [dataType]="gridDataType.Number" header="Загуби" width="10%">
+          <igx-column field="losses" [dataType]="gridDataType.Number" header="Загуби" width="10%">
           </igx-column>
-          <igx-column field="PlayerPoints" [dataType]="gridDataType.Number" header="Точки" width="10%">
+          <igx-column field="playerPoints" [dataType]="gridDataType.Number" header="Точки" width="10%">
           </igx-column>
 
         </igx-grid>
