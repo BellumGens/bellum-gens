@@ -9,10 +9,9 @@ import { CSGOTeam } from '../../../src-common/models/csgoteam';
   styleUrls: ['./notifications.component.scss']
 })
 export class NotificationsComponent {
-  public teamAdmin: Observable<CSGOTeam []>;
+  @Output() public loaded = new EventEmitter<number>();
 
-  @Output()
-  public loaded = new EventEmitter<number>();
+  public teamAdmin: Observable<CSGOTeam []>;
 
   private unreadPipe = new UnreadNotificationsPipe();
 

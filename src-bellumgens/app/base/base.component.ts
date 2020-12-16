@@ -8,9 +8,11 @@ import { ActivatedRoute, Data } from '@angular/router';
   styleUrls: ['./base.component.css']
 })
 export class BaseComponent implements OnDestroy {
+  protected subs: Subscription [] = [];
+
   private _title = 'Bellum Gens: CS:GO team management';
   private _twitterTitle = 'CS:GO Strategy editor & community for team search and management.';
-  // tslint:disable-next-line:max-line-length
+  // eslint-disable-next-line max-len
   private _description = 'CSGO Strategy editor | CSGO team finding and management | Bellum Gens: Looking for Group | Esports Business League';
   private _twitterDescription = 'CS:GO Strategy editor & strategy sharing with the community. CS:GO team management platform.';
   private _image = '/assets/avatar_BG_blood.png';
@@ -29,8 +31,6 @@ export class BaseComponent implements OnDestroy {
       this.meta.updateTag({ name: 'twitter:image', content: this.data.image || this._image });
     }));
   }
-
-  protected subs: Subscription [] = [];
 
   public ngOnDestroy() {
     this.subs.forEach((sub) => sub.unsubscribe());

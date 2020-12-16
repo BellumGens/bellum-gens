@@ -13,7 +13,18 @@ import { IgxTimePickerComponent,
   styleUrls: ['./availability.component.css']
 })
 export class AvailabilityComponent {
-  selectedChip: IgxChipComponent;
+  @Input() public availability: Availability [];
+
+  @Input() public editable = false;
+
+  @Output() public availabilityChanged = new EventEmitter<Availability>();
+
+  @ViewChild('from') public from: IgxTimePickerComponent;
+  @ViewChild('to') public to: IgxTimePickerComponent;
+  @ViewChild(IgxChipsAreaComponent, { static: true }) public chips: IgxChipsAreaComponent;
+  @ViewChild(IgxDialogComponent, { static: true }) public dialog: IgxDialogComponent;
+
+  public selectedChip: IgxChipComponent;
   public get selectedDay() {
     return this._availability;
   }
@@ -23,20 +34,6 @@ export class AvailabilityComponent {
     this._availability.from = new Date(day.from);
     this._availability.to = new Date(day.to);
   }
-
-  @Input()
-  public availability: Availability [];
-
-  @Input()
-  public editable = false;
-
-  @Output()
-  public availabilityChanged = new EventEmitter<Availability>();
-
-  @ViewChild('from') public from: IgxTimePickerComponent;
-  @ViewChild('to') public to: IgxTimePickerComponent;
-  @ViewChild(IgxChipsAreaComponent, { static: true }) public chips: IgxChipsAreaComponent;
-  @ViewChild(IgxDialogComponent, { static: true }) public dialog: IgxDialogComponent;
 
   private _availability: Availability;
 

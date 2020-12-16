@@ -16,6 +16,8 @@ import { Title, Meta } from '@angular/platform-browser';
   styleUrls: ['./team-details.component.css']
 })
 export class TeamDetailsComponent extends BaseComponent {
+  @ViewChildren(IgxAvatarComponent, { read: ElementRef }) public emptyRoles: QueryList<ElementRef>;
+
   public isAdmin = false;
   public teamMembers: TeamMember [];
   public activeMembers: TeamMember [];
@@ -31,8 +33,6 @@ export class TeamDetailsComponent extends BaseComponent {
     { roleName: 'Support', role: PlaystyleRole.Support, user: null },
     { roleName: 'Lurker', role: PlaystyleRole.Lurker, user: null }
   ];
-
-  @ViewChildren(IgxAvatarComponent, { read: ElementRef }) public emptyRoles: QueryList<ElementRef>;
 
   constructor(private apiService: BellumgensApiService,
               private authService: LoginService,

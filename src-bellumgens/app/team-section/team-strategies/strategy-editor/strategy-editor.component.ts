@@ -16,6 +16,8 @@ import { ApiStrategiesService } from '../../../../../src-common/services/bellumg
   styleUrls: ['./strategy-editor.component.css']
 })
 export class StrategyEditorComponent implements OnInit, OnDestroy {
+  @ViewChild('board', { static: true }) public canvas: ElementRef;
+
   public maps: CSGOActiveDutyDescriptor [] = ActiveDuty;
   public team: CSGOTeam;
   public teammembers: TeamMember [];
@@ -46,7 +48,7 @@ export class StrategyEditorComponent implements OnInit, OnDestroy {
 
   public set map(map: CSGOActiveDutyDescriptor) {
     this._activeMap = map;
-    if (!this.layers.length || (<ImageLayer>this.layers[0]).src !== map.radar[0]) {
+    if (!this.layers.length || (this.layers[0] as ImageLayer).src !== map.radar[0]) {
       const layer = this.editor.createImageLayer('Map Radar');
       layer.src = this._activeMap.radar[0];
       layer.width = 1024;
@@ -57,8 +59,6 @@ export class StrategyEditorComponent implements OnInit, OnDestroy {
   }
 
   private editor: StrategyEditor;
-
-  @ViewChild('board', { static: true }) public canvas: ElementRef;
 
   constructor(private apiService: BellumgensApiService,
               private apiStrategyService: ApiStrategiesService,
