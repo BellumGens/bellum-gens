@@ -41,7 +41,7 @@ export interface TournamentParticipant {
   losses: number;
   oTWins: number;
   oTLosses: number;
-  roundDifference: Number;
+  roundDifference: number;
   battleTag: string;
   tournamentCSGOGroupId: string;
   tournamentSC2GroupId: string;
@@ -84,20 +84,11 @@ export enum TournamentApplicationState {
   Confirmed
 }
 
-export function getEmptyNewApplication(): TournamentApplication {
-  return {
-    game: null,
-    email: ''
-  };
-}
+export const EMPTY_NEW_APPLICATION: TournamentApplication = { game: null, email: '' };
 
-export function getEmptyNewTournament(): Tournament {
-  return { name: null };
-}
+export const EMPTY_NEW_TOURNAMENT: Tournament = { name: null };
 
-export function getEmptyNewGroup(): TournamentGroup {
-  return { name: null, inEdit: false };
-}
+export const EMPTY_NEW_GROUP: TournamentGroup = { name: null, inEdit: false };
 
 export const GAMES = [
   { name: 'Counter Strike: Global Offensive', id: Game.CSGO },

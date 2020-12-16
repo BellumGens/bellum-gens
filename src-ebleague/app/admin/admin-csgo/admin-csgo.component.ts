@@ -1,7 +1,9 @@
-import { Component, ViewChild } from '@angular/core';
-import { getEmptyNewGroup,
+import { Component } from '@angular/core';
+import {
+  EMPTY_NEW_GROUP,
   TournamentGroup,
-  TournamentParticipant } from '../../../../src-common/models/tournament';
+  TournamentParticipant
+} from '../../../../src-common/models/tournament';
 import { ApiTournamentsService } from '../../../../src-common/services/bellumgens-api.tournaments.service';
 import { environment } from '../../../../src-common/environments/environment';
 import {
@@ -26,14 +28,11 @@ export class AdminCsgoComponent {
   public loading = false;
   public loadingMatches = false;
   public environment = environment;
-  public newGroup = getEmptyNewGroup();
+  public newGroup = Object.assign({}, EMPTY_NEW_GROUP);
   public pipeTrigger = 0;
   public mapList: CSGOActiveDutyDescriptor [] = ActiveDuty;
   public selectionMode = GridSelectionMode;
   public matchInEdit: TournamentCSGOMatch = { startTime: new Date() };
-
-  @ViewChild('matchGrid')
-  public matchGrid: IgxGridComponent;
 
   constructor(private apiService: ApiTournamentsService) {
     this.apiService.csgoRegistrations.subscribe(data => {
@@ -86,13 +85,13 @@ export class AdminCsgoComponent {
     this.pipeTrigger++;
   }
 
-  public submitMatch() {
+  public submitMatch(grid: IgxGridComponent) {
     if (this.matchInEdit.team1Id && this.matchInEdit.team2Id) {
       this.apiService.submitCSGOMatch(this.matchInEdit).subscribe(data => {
         if (data) {
           if (!this.matchInEdit.id) {
             data.startTime = new Date(data.startTime);
-            this.matchGrid.addRow(data);
+            grid.addRow(data);
           }
         }
       });
@@ -116,8 +115,8 @@ export class AdminCsgoComponent {
     dialog.open();
   }
 
-  public submitMatchMaps() {
-    this.submitMatch();
+  public submitMatchMaps(grid: IgxGridComponent) {
+    this.submitMatch(grid);
     this.matchInEdit.maps.forEach(map => this.apiService.submitCSGOMatchMap(map).subscribe(data => map.id = data.id));
   }
 

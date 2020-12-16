@@ -44,8 +44,4 @@ export interface Promo {
   expiration: Date;
 }
 
-export function newEmptyJerseyOrder(): JerseyOrder {
-  return {
-    jerseys: [{ cut: JerseyCut.Male, size: JerseySize.L }]
-  };
-}
+export const EMPTY_JERSEY_ORDER: JerseyOrder = { jerseys: [{ cut: JerseyCut.Male, size: JerseySize.L }] };

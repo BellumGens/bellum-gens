@@ -14,7 +14,7 @@ import { SearchResult } from '../../src-common/models/searchresult';
 import { fromEvent } from 'rxjs';
 import { map, debounceTime } from 'rxjs/operators';
 import { UnreadNotificationsPipe } from './pipes/unread-notifications.pipe';
-import { GlobalOverlaySettings } from '../../src-common/models/misc';
+import { GLOBAL_OVERLAY_SETTINGS } from '../../src-common/models/misc';
 import { environment } from '../../src-common/environments/environment';
 import { CSGOTeam } from '../../src-common/models/csgoteam';
 import { ApiSearchService } from '../../src-common/services/bellumgens-api.search.service';
@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
   public unreadNotifications = 0;
   public environment = environment;
 
-  public overlaySettings = GlobalOverlaySettings;
+  public overlaySettings = GLOBAL_OVERLAY_SETTINGS;
 
   @ViewChild('quickSearch', { static: true }) public quickSearchDropDown: IgxDropDownComponent;
   @ViewChild('myTeam', { static: true }) public teamDropDown: IgxDropDownComponent;

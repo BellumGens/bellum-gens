@@ -8,9 +8,10 @@ import { SafeResourceUrl } from '@angular/platform-browser';
 import { CSGOTeam } from '../../../../src-common/models/csgoteam';
 import { LoginService } from '../../../../src-common/services/login.service';
 import { ApplicationUser } from '../../../../src-common/models/applicationuser';
-import { GlobalOverlaySettings, StratOrder, StratOrderBy } from '../../../../src-common/models/misc';
+import { GLOBAL_OVERLAY_SETTINGS, StratOrder, StratOrderBy } from '../../../../src-common/models/misc';
 import { SocialMediaService } from '../../../../src-common/services/social-media.service';
 import { ApiSearchService } from '../../../../src-common/services/bellumgens-api.search.service';
+import { ApiStrategiesService } from '../../../../src-common/services/bellumgens-api.strategies.service';
 
 @Component({
   selector: 'app-team-strategies',
@@ -33,11 +34,12 @@ export class TeamStrategiesComponent {
   public page = 0;
   public order = StratOrderBy.TopVoted;
 
-  public overlaySettings = GlobalOverlaySettings;
+  public overlaySettings = GLOBAL_OVERLAY_SETTINGS;
   public stratOrder = StratOrder;
 
   constructor(private activatedRoute: ActivatedRoute,
               private apiService: BellumgensApiService,
+              private apiStrategyService: ApiStrategiesService,
               private searchService: ApiSearchService,
               private authManager: LoginService,
               private socialMedia: SocialMediaService) {
@@ -48,9 +50,9 @@ export class TeamStrategiesComponent {
         this.apiService.getTeam(teamId).subscribe(team => {
           if (team) {
             this.team = team;
-            this.apiService.loadingStrategies.subscribe(loading => this.loading = loading);
-            this.apiService.getTeamStrats(team.teamId).subscribe(strats => this.strats = strats);
-            this.apiService.getTeamMapPool(team.teamId).subscribe(maps => this.maps = maps);
+            this.apiStrategyService.loadingStrategies.subscribe(loading => this.loading = loading);
+            this.apiStrategyService.getTeamStrats(team.teamId).subscribe(strats => this.strats = strats);
+            this.apiStrategyService.getTeamMapPool(team.teamId).subscribe(maps => this.maps = maps);
             this.authManager.getUserIsTeamEditor(team.teamId).subscribe(data => this.isEditor = data);
           }
         });
@@ -63,9 +65,9 @@ export class TeamStrategiesComponent {
             this.searchService.loadingSearch.subscribe(loading => this.loading = loading);
             this.searchService.strategySearchResult.subscribe(strats => this.strats = strats);
           } else {
-            this.apiService.loadingStrategies.subscribe(loading => this.loading = loading);
-            this.apiService.strategies.subscribe(strats => this.strats = strats);
-            this.apiService.hasMoreStrats.subscribe(hasMore => this.hasMore = hasMore);
+            this.apiStrategyService.loadingStrategies.subscribe(loading => this.loading = loading);
+            this.apiStrategyService.strategies.subscribe(strats => this.strats = strats);
+            this.apiStrategyService.hasMoreStrats.subscribe(hasMore => this.hasMore = hasMore);
           }
         });
       }
@@ -85,7 +87,7 @@ export class TeamStrategiesComponent {
   }
 
   public deleteStrat(args: CSGOStrategy) {
-    this.apiService.deleteStrategy(args.id).subscribe(
+    this.apiStrategyService.deleteStrategy(args.id).subscribe(
       _ => {
         this.strats.splice(this.strats.indexOf(args), 1);
         this.pipeTrigger++;
@@ -103,14 +105,14 @@ export class TeamStrategiesComponent {
   }
 
   public loadMore() {
-    this.apiService.loadStrategiesPage(++this.page);
+    this.apiStrategyService.loadStrategiesPage(++this.page);
   }
 
   public voteStrat(strat: CSGOStrategy, direction: VoteDirection) {
     if (!this.authUser) {
       this.openLogin('You need to login first');
     } else {
-      this.apiService.submitStratVote(strat, direction, this.authUser.id).subscribe(_ => this.pipeTrigger++);
+      this.apiStrategyService.submitStratVote(strat, direction, this.authUser.id).subscribe(_ => this.pipeTrigger++);
     }
   }
 }

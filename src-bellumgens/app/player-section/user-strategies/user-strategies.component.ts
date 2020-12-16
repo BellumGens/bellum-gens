@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { ApplicationUser } from '../../../../src-common/models/applicationuser';
 import { LoginService } from '../../../../src-common/services/login.service';
-import { BellumgensApiService } from '../../../../src-common/services/bellumgens-api.service';
 import { CSGOStrategy } from '../../../../src-common/models/csgostrategy';
 import { SocialMediaService } from '../../../../src-common/services/social-media.service';
 import { CommunicationService } from '../../../../src-common/services/communication.service';
+import { ApiStrategiesService } from '../../../../src-common/services/bellumgens-api.strategies.service';
 
 @Component({
   templateUrl: './user-strategies.component.html',
@@ -17,7 +17,7 @@ export class UserStrategiesComponent {
   constructor(private authManager: LoginService,
               private socialMedia: SocialMediaService,
               private commService: CommunicationService,
-              private apiService: BellumgensApiService) {
+              private apiService: ApiStrategiesService) {
     this.authManager.applicationUser.subscribe(user => {
       this.authUser = user;
       if (user) {

@@ -177,7 +177,7 @@
             leftButtonLabel="Cancel"
             (onLeftButtonSelect)="newMatchDialog.close()"
             rightButtonLabel="Submit"
-            (onRightButtonSelect)="submitMatch(); newMatchDialog.close()">
+            (onRightButtonSelect)="submitMatch(matchGrid); newMatchDialog.close()">
   <div class="match-details">
     <igx-date-picker [(ngModel)]="matchInEdit.startTime">
       <label igxLabel>Дата</label>
@@ -216,7 +216,7 @@
             leftButtonLabel="Cancel"
             (onLeftButtonSelect)="newMatchMapDialog.close()"
             rightButtonLabel="Submit"
-            (onRightButtonSelect)="submitMatchMaps(); newMatchMapDialog.close()">
+            (onRightButtonSelect)="submitMatchMaps(matchGrid); newMatchMapDialog.close()">
   <div class="match-details">
 
     <div class="horizontal-center">

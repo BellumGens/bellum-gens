@@ -13,12 +13,6 @@ import { CommunicationService } from './communication.service';
   providedIn: 'root'
 })
 export class ApiSearchService {
-  private _apiEndpoint = environment.apiEndpoint;
-  private _searchResultCache: Map<string, SearchResult> = new Map();
-  private _playerSearchCache: Map<string, CSGOPlayer []> = new Map();
-  private _teamSearchCache: Map<string, CSGOTeam []> = new Map();
-  private _strategySearchCache: Map<string, CSGOStrategy []> = new Map();
-
   public loadingQuickSearch = new BehaviorSubject<boolean>(false);
   public loadingSearch = new BehaviorSubject<boolean>(false);
   public searchResult = new BehaviorSubject<SearchResult>(null);
@@ -26,6 +20,12 @@ export class ApiSearchService {
   public teamSearchResult = new BehaviorSubject<CSGOTeam []>(null);
   public strategySearchResult = new BehaviorSubject<CSGOStrategy []>(null);
   public searchTerm = new BehaviorSubject<string>(null);
+
+  private _apiEndpoint = environment.apiEndpoint;
+  private _searchResultCache: Map<string, SearchResult> = new Map();
+  private _playerSearchCache: Map<string, CSGOPlayer []> = new Map();
+  private _teamSearchCache: Map<string, CSGOTeam []> = new Map();
+  private _strategySearchCache: Map<string, CSGOStrategy []> = new Map();
 
   constructor(private http: HttpClient, private commService: CommunicationService) { }
 
@@ -43,16 +43,6 @@ export class ApiSearchService {
         }
       );
     }
-  }
-
-  private getQuickSearch(name: string) {
-    return this.http.get<SearchResult>(`${this._apiEndpoint}/search?name=${name}`).pipe(
-      map(response => response),
-      catchError(error => {
-        this.commService.emitError(error.error);
-        return throwError(error);
-      })
-    );
   }
 
   public searchTeams(query: string) {
@@ -131,6 +121,16 @@ export class ApiSearchService {
         );
       }
     }
+  }
+
+  private getQuickSearch(name: string) {
+    return this.http.get<SearchResult>(`${this._apiEndpoint}/search?name=${name}`).pipe(
+      map(response => response),
+      catchError(error => {
+        this.commService.emitError(error.error);
+        return throwError(error);
+      })
+    );
   }
 
   private getFilteredStrategies(query: string) {

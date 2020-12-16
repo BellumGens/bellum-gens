@@ -16,6 +16,12 @@ import { TournamentCSGOMatch, TournamentSC2Match, TournamentCSGOMatchMap, Tourna
   providedIn: 'root'
 })
 export class ApiTournamentsService {
+  public loadingCSGORegistrations = new BehaviorSubject<boolean>(false);
+  public loadingSC2Registrations = new BehaviorSubject<boolean>(false);
+  public loadingCSGOMatches = new BehaviorSubject<boolean>(false);
+  public loadingSC2Matches = new BehaviorSubject<boolean>(false);
+  public registrationsCount = new BehaviorSubject<RegistrationsCount []>(null);
+
   private _apiEndpoint = environment.apiEndpoint;
 
   private _tournaments = new BehaviorSubject<Tournament []>(null);
@@ -24,14 +30,8 @@ export class ApiTournamentsService {
   private _allRegistrations = new BehaviorSubject<TournamentApplication []>(null);
   private _csgoRegistrations = new BehaviorSubject<TournamentParticipant []>(null);
   private _sc2Registrations = new BehaviorSubject<TournamentParticipant []>(null);
-
   private _csgoMatches = new Map<string, BehaviorSubject<TournamentCSGOMatch []>>();
   private _sc2Matches = new Map<string, BehaviorSubject<TournamentSC2Match []>>();
-
-  public loadingCSGORegistrations = new BehaviorSubject<boolean>(false);
-  public loadingSC2Registrations = new BehaviorSubject<boolean>(false);
-  public loadingCSGOMatches = new BehaviorSubject<boolean>(false);
-  public loadingSC2Matches = new BehaviorSubject<boolean>(false);
 
   constructor(private http: HttpClient, private commService: CommunicationService) { }
 
@@ -71,8 +71,6 @@ export class ApiTournamentsService {
     }
     return this._allRegistrations;
   }
-
-  public registrationsCount = new BehaviorSubject<RegistrationsCount []>(null);
 
   public getRegistrationsCount(id: string) {
     return this.http.get<RegistrationsCount []>(`${this._apiEndpoint}/tournament/regcount?tournamentId=${id}`).subscribe(
@@ -135,7 +133,7 @@ export class ApiTournamentsService {
   }
 
   public addSubscriber(email: string) {
-    return this.http.post(`${this._apiEndpoint}/account/subscribe`, { Email: email }).pipe(
+    return this.http.post(`${this._apiEndpoint}/account/subscribe`, { email }).pipe(
       map(response => {
         this.commService.emitSuccess(response.toString());
         return response;
@@ -149,9 +147,6 @@ export class ApiTournamentsService {
 
   public leagueRegistration(application: TournamentApplication) {
     return this.http.post<TournamentApplication>(`${this._apiEndpoint}/tournament/register`, application, { withCredentials: true }).pipe(
-      map(response => {
-        return response;
-      }),
       catchError(error => {
         this.commService.emitError(error.error);
         return throwError(error);
@@ -161,9 +156,6 @@ export class ApiTournamentsService {
 
   public createTournament(tournament: Tournament) {
     return this.http.put<Tournament>(`${this._apiEndpoint}/tournament/create`, tournament, { withCredentials: true }).pipe(
-      map(response => {
-        return response;
-      }),
       catchError(error => {
         this.commService.emitError(error.error);
         return throwError(error);

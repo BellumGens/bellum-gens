@@ -12,7 +12,7 @@ export interface EditorBrushColor {
   selected: boolean;
 }
 
-export const StratUtilities: UtilityDescriptor [] = [
+export const STRAT_UTILITIES: UtilityDescriptor [] = [
   {
     name: 'Flash',
     icon: 'flashbang',
@@ -55,7 +55,7 @@ export const StratUtilities: UtilityDescriptor [] = [
   }
 ];
 
-export const EditorBrushColors: EditorBrushColor [] = [
+export const EDITOR_BRUSH_COLORS: EditorBrushColor [] = [
   { color: '#fff100', selected: true },
   { color: '#5889ff', selected: false },
   { color: '#ff282d', selected: false },

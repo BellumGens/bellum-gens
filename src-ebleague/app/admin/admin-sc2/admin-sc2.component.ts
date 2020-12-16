@@ -1,7 +1,9 @@
-import { Component, ViewChild } from '@angular/core';
-import { TournamentGroup,
+import { Component } from '@angular/core';
+import {
+  TournamentGroup,
   TournamentParticipant,
-  getEmptyNewGroup} from '../../../../src-common/models/tournament';
+  EMPTY_NEW_GROUP
+} from '../../../../src-common/models/tournament';
 import { ApiTournamentsService } from '../../../../src-common/services/bellumgens-api.tournaments.service';
 import { environment } from '../../../../src-common/environments/environment';
 import {
@@ -26,14 +28,11 @@ export class AdminSc2Component {
   public loading = false;
   public loadingMatches = false;
   public environment = environment;
-  public newGroup = getEmptyNewGroup();
+  public newGroup = Object.assign({}, EMPTY_NEW_GROUP);
   public pipeTrigger = 0;
   public mapList: SC2LadderDescriptor [] = SC2_MAPS;
   public selectionMode = GridSelectionMode;
   public matchInEdit: TournamentSC2Match = { startTime: new Date() };
-
-  @ViewChild('matchGrid')
-  public matchGrid: IgxGridComponent;
 
   constructor(private apiService: ApiTournamentsService) {
     this.apiService.sc2Registrations.subscribe(data => {
@@ -86,13 +85,13 @@ export class AdminSc2Component {
     this.pipeTrigger++;
   }
 
-  public submitMatch() {
+  public submitMatch(grid: IgxGridComponent) {
     if (this.matchInEdit.player1Id && this.matchInEdit.player2Id) {
       this.apiService.submitSC2Match(this.matchInEdit).subscribe(data => {
         if (data) {
           if (!this.matchInEdit.id) {
             data.startTime = new Date(data.startTime);
-            this.matchGrid.addRow(data);
+            grid.addRow(data);
           }
         }
       });
@@ -116,8 +115,8 @@ export class AdminSc2Component {
     dialog.open();
   }
 
-  public submitMatchMaps() {
-    this.submitMatch();
+  public submitMatchMaps(grid: IgxGridComponent) {
+    this.submitMatch(grid);
     this.matchInEdit.maps.forEach(map => this.apiService.submitSC2MatchMap(map).subscribe(data => map.id = data.id));
   }
 
