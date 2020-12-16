@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { LoginService } from '../../../src-common/services/login.service';
 import { AdminAppUserSummary } from '../../../src-common/models/applicationuser';
 import { ApiTournamentsService } from '../../../src-common/services/bellumgens-api.tournaments.service';
-import { Tournament, getEmptyNewTournament, TournamentApplication } from '../../../src-common/models/tournament';
+import { Tournament, EMPTY_NEW_TOURNAMENT, TournamentApplication } from '../../../src-common/models/tournament';
 import { JerseyOrder, Promo } from '../../../src-common/models/jerseyorder';
 import { ApiShopService } from '../../../src-common/services/bellumgens-api.shop.service';
 import { IGridEditEventArgs, GridSelectionMode, DataType } from '@infragistics/igniteui-angular';
@@ -16,7 +16,7 @@ export class AdminComponent {
   public roles: string [];
   public users: AdminAppUserSummary [];
   public tournaments: Tournament [];
-  public tournament = getEmptyNewTournament();
+  public tournament = Object.assign({}, EMPTY_NEW_TOURNAMENT);
   public orders: JerseyOrder [];
   public registrations: TournamentApplication [];
   public promos: Promo [];
