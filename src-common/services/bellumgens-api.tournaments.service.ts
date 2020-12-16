@@ -198,7 +198,8 @@ export class ApiTournamentsService {
   }
 
   public getCSGOGroups(id: string) {
-    return this.http.get<TournamentCSGOGroup []>(`${this._apiEndpoint}/tournament/csgogroups${id ? '?tournamentId=' + id : ''}`, { withCredentials: true});
+    return this.http.get<TournamentCSGOGroup []>(`${this._apiEndpoint}/tournament/csgogroups${id ? '?tournamentId=' + id : ''}`,
+                                                { withCredentials: true});
   }
 
   public submitCSGOGroup(group: TournamentCSGOGroup) {
@@ -246,7 +247,8 @@ export class ApiTournamentsService {
   }
 
   public getSC2Groups(id: string) {
-    return this.http.get<TournamentSC2Group []>(`${this._apiEndpoint}/tournament/sc2groups${id ? '?tournamentId=' + id : ''}`, { withCredentials: true});
+    return this.http.get<TournamentSC2Group []>(`${this._apiEndpoint}/tournament/sc2groups${id ? '?tournamentId=' + id : ''}`,
+                                                { withCredentials: true});
   }
 
   public submitSC2Group(group: TournamentSC2Group) {
@@ -264,11 +266,13 @@ export class ApiTournamentsService {
   }
 
   public getCSGOMatches(id: string) {
-    return this.http.get<TournamentCSGOMatch []>(`${this._apiEndpoint}/tournament/csgomatches${id ? '?tournamentId=' + id : ''}`, { withCredentials: true});
+    return this.http.get<TournamentCSGOMatch []>(`${this._apiEndpoint}/tournament/csgomatches${id ? '?tournamentId=' + id : ''}`,
+                                                { withCredentials: true});
   }
 
   public getSC2Matches(id: string) {
-    return this.http.get<TournamentSC2Match []>(`${this._apiEndpoint}/tournament/sc2matches${id ? '?tournamentId=' + id : ''}`, { withCredentials: true});
+    return this.http.get<TournamentSC2Match []>(`${this._apiEndpoint}/tournament/sc2matches${id ? '?tournamentId=' + id : ''}`,
+                                                { withCredentials: true});
   }
 
   public submitCSGOMatch(match: TournamentCSGOMatch) {
