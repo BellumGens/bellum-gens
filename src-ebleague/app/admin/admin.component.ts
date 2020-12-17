@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { LoginService } from '../../../src-common/services/login.service';
-import { AdminAppUserSummary } from '../../../src-common/models/applicationuser';
 import { ApiTournamentsService } from '../../../src-common/services/bellumgens-api.tournaments.service';
 import { Tournament, EMPTY_NEW_TOURNAMENT, TournamentApplication } from '../../../src-common/models/tournament';
 import { JerseyOrder, Promo } from '../../../src-common/models/jerseyorder';
 import { ApiShopService } from '../../../src-common/services/bellumgens-api.shop.service';
 import { IGridEditEventArgs, GridSelectionMode, DataType } from '@infragistics/igniteui-angular';
+import { noop } from 'rxjs';
 
 @Component({
   selector: 'app-admin',
@@ -14,7 +14,7 @@ import { IGridEditEventArgs, GridSelectionMode, DataType } from '@infragistics/i
 })
 export class AdminComponent {
   public roles: string [];
-  public users: AdminAppUserSummary [];
+  // public users: AdminAppUserSummary [];
   public tournaments: Tournament [];
   public tournament = Object.assign({}, EMPTY_NEW_TOURNAMENT);
   public orders: JerseyOrder [];
@@ -27,9 +27,17 @@ export class AdminComponent {
               private apiService: ApiTournamentsService,
               private shopService: ApiShopService) {
     this.authService.getUserRoles().subscribe(data => this.roles = data);
-    this.authService.getUsers().subscribe(data => this.users = data);
+    // this.authService.getUsers().subscribe(data => this.users = data);
     this.authService.getPromoCodes().subscribe(data => this.promos = data);
-    this.apiService.tournaments.subscribe(data => this.tournaments = data);
+    this.apiService.tournaments.subscribe(data => {
+      if (data) {
+        data.forEach(t => {
+          t.startDate = new Date(t.startDate);
+          t.endDate = new Date(t.endDate);
+        });
+        this.tournaments = data;
+      }
+    });
     this.shopService.getOrders().subscribe(data => this.orders = data);
     this.apiService.allRegistrations.subscribe(data => this.registrations = data);
   }
@@ -48,12 +56,8 @@ export class AdminComponent {
     this.authService.addUserToRole(userId, 'event-admin').subscribe(_ => this.authService.getUsers().subscribe(data => this.users = data));
   }
 
-  public createTournament() {
-    this.apiService.createTournament(this.tournament).subscribe(data => this.tournaments.push(data));
-  }
-
-  public updateTournament(tournament: Tournament) {
-    this.apiService.createTournament(tournament).subscribe();
+  public updateTournament(tournament?: Tournament) {
+    this.apiService.createTournament(tournament || this.tournament).subscribe(data => !tournament ? this.tournaments.push(data) : noop());
   }
 
   public editDone(event: IGridEditEventArgs) {

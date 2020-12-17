@@ -3,7 +3,6 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { AdminComponent } from './admin.component';
 import { IgxChipsModule,
   IgxInputGroupModule,
-  IgxListModule,
   IgxButtonModule,
   IgxAvatarModule,
   IgxIconModule,
@@ -34,7 +33,6 @@ describe('AdminComponent', () => {
         ServiceWorkerModule.register('', {enabled: false}),
         IgxChipsModule,
         IgxInputGroupModule,
-        IgxListModule,
         IgxButtonModule,
         IgxAvatarModule,
         IgxIconModule,
