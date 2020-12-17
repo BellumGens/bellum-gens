@@ -159,7 +159,7 @@
     <igx-input-group>
       <label igxLabel for="tournamentDescription">Tournament description</label>
       <textarea type="text" id="tournamentDescription" name="tournamentDescription" #tournamentDescription igxInput [required]="true" [(ngModel)]="tournament.description"></textarea>
-      <igx-suffix *ngIf="tournamentDescription.value" (click)="league.description = null">
+      <igx-suffix *ngIf="tournamentDescription.value" (click)="tournament.description = null">
         <igx-icon>clear</igx-icon>
       </igx-suffix>
     </igx-input-group>
