@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { newEmptyJerseyOrder, JerseyCut, JerseyDetails, JerseySize } from '../../../src-common/models/jerseyorder';
+import { EMPTY_JERSEY_ORDER, JerseyCut, JerseyDetails, JerseySize } from '../../../src-common/models/jerseyorder';
 import { ApiShopService } from '../../../src-common/services/bellumgens-api.shop.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ISelectionEventArgs } from '@infragistics/igniteui-angular';
@@ -12,7 +12,7 @@ import { Title, Meta } from '@angular/platform-browser';
   styleUrls: ['./shop.component.scss']
 })
 export class ShopComponent extends BaseComponent {
-  public order = newEmptyJerseyOrder();
+  public order = Object.assign({}, EMPTY_JERSEY_ORDER);
   public basePromo = .5;
   public promo = this.basePromo;
   public invalidPromo = false;
@@ -25,13 +25,13 @@ export class ShopComponent extends BaseComponent {
   ];
 
   public allSizes: [
-    { text: 'XS', size: JerseySize.XS, disabled: false },
-    { text: 'S', size: JerseySize.S, disabled: false },
-    { text: 'M', size: JerseySize.M, disabled: false },
-    { text: 'L', size: JerseySize.L, disabled: false },
-    { text: 'XL', size: JerseySize.XL, disabled: false },
-    { text: 'XXL', size: JerseySize.XXL, disabled: false },
-    { text: 'XXXL', size: JerseySize.XXXL, disabled: false }
+    { text: 'XS'; size: JerseySize.XS; disabled: false },
+    { text: 'S'; size: JerseySize.S; disabled: false },
+    { text: 'M'; size: JerseySize.M; disabled: false },
+    { text: 'L'; size: JerseySize.L; disabled: false },
+    { text: 'XL'; size: JerseySize.XL; disabled: false },
+    { text: 'XXL'; size: JerseySize.XXL; disabled: false },
+    { text: 'XXXL'; size: JerseySize.XXXL; disabled: false }
   ];
 
   constructor(private apiService: ApiShopService,

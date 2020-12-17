@@ -1,12 +1,12 @@
 import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';
-import { CSGOStrategy, newEmptyStrategy } from '../../../../../src-common/models/csgostrategy';
-import { BellumgensApiService } from '../../../../../src-common/services/bellumgens-api.service';
+import { CSGOStrategy, NEW_EMPTY_STRAT } from '../../../../../src-common/models/csgostrategy';
 import { CSGOTeam } from '../../../../../src-common/models/csgoteam';
 import { IgxDialogComponent } from '@infragistics/igniteui-angular';
 import { IsVideoPipe } from '../../../pipes/is-video.pipe';
 import { ApplicationUser } from '../../../../../src-common/models/applicationuser';
 import { Router } from '@angular/router';
 import { CSGOActiveDutyDescriptor, ActiveDuty } from '../../../../../src-common/models/csgomaps';
+import { ApiStrategiesService } from '../../../../../src-common/services/bellumgens-api.strategies.service';
 
 @Component({
   selector: 'app-new-strategy',
@@ -14,26 +14,23 @@ import { CSGOActiveDutyDescriptor, ActiveDuty } from '../../../../../src-common/
   styleUrls: ['./new-strategy.component.css']
 })
 export class NewStrategyComponent implements OnInit {
-  private _defaultTitle = 'Add a new team strategy';
+  @ViewChild('newStrat', { static: true }) public dialog: IgxDialogComponent;
 
-  public newStrategy: CSGOStrategy = newEmptyStrategy();
+  @Input() public team: CSGOTeam;
+
+  @Input() public authUser: ApplicationUser;
+
+  @Output() public strategyAdded = new EventEmitter<CSGOStrategy>();
+
+  public newStrategy: CSGOStrategy = Object.assign({}, NEW_EMPTY_STRAT);
   public videoId: string;
   public mapList: CSGOActiveDutyDescriptor [] = ActiveDuty;
   public selectedMap = this.mapList[0];
   public title = 'Add a new team strategy';
 
-  @ViewChild('newStrat', { static: true }) public dialog: IgxDialogComponent;
+  private _defaultTitle = 'Add a new team strategy';
 
-  @Input()
-  public team: CSGOTeam;
-
-  @Input()
-  public authUser: ApplicationUser;
-
-  @Output()
-  public strategyAdded = new EventEmitter<CSGOStrategy>();
-
-  constructor(private apiService: BellumgensApiService,
+  constructor(private apiService: ApiStrategiesService,
               private router: Router) {
   }
 
@@ -56,7 +53,9 @@ export class NewStrategyComponent implements OnInit {
   }
 
   public resetStrategy() {
-    this.newStrategy = newEmptyStrategy(!this.team);
+    const strat = Object.assign({}, NEW_EMPTY_STRAT);
+    strat.visible = !this.team;
+    this.newStrategy = strat;
   }
 
   public submitStrategy() {

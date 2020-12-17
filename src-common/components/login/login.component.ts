@@ -2,7 +2,7 @@ import { Component, Input, ViewChild } from '@angular/core';
 import { IgxProgressType, IgxDropDownComponent } from '@infragistics/igniteui-angular';
 import { LoginService } from '../../services/login.service';
 import { ApplicationUser } from '../../models/applicationuser';
-import { GlobalOverlaySettings } from '../../models/misc';
+import { GLOBAL_OVERLAY_SETTINGS } from '../../models/misc';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
 import { LoginDialogComponent } from './login-dialog/login-dialog.component';
@@ -26,10 +26,6 @@ export interface ProfileCompleteness {
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  public profileCompleteness: ProfileCompleteness;
-  public overlaySettings = GlobalOverlaySettings;
-  public userCheck = false;
-
   @ViewChild(LoginDialogComponent, { static: true })
   public dialog: LoginDialogComponent;
 
@@ -38,6 +34,10 @@ export class LoginComponent {
 
   @Input()
   public authUser: ApplicationUser;
+
+  public profileCompleteness: ProfileCompleteness;
+  public overlaySettings = GLOBAL_OVERLAY_SETTINGS;
+  public userCheck = false;
 
   constructor(private authManager: LoginService,
               private router: Router) {

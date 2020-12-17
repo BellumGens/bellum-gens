@@ -1,5 +1,5 @@
 import { Component, ViewChild, ElementRef, Input } from '@angular/core';
-import { getEmptyNewApplication, Game, GAMES } from '../../../src-common/models/tournament';
+import { EMPTY_NEW_APPLICATION, Game, GAMES } from '../../../src-common/models/tournament';
 import { ApplicationUser } from '../../../src-common/models/applicationuser';
 import { LoginService } from '../../../src-common/services/login.service';
 import { ApiTournamentsService } from '../../../src-common/services/bellumgens-api.tournaments.service';
@@ -14,19 +14,19 @@ import { CSGOTeam } from '../../../src-common/models/csgoteam';
   styleUrls: ['./tournament-registration.component.scss']
 })
 export class TournamentRegistrationComponent {
-  public application = getEmptyNewApplication();
+  @Input()
+  public tournamentId: string;
+
+  @ViewChild('appDetails', { static: true })
+  public appDetails: ElementRef;
+
+  public application = Object.assign({}, EMPTY_NEW_APPLICATION);
   public authUser: ApplicationUser;
   public companies: string [];
   public games = GAMES;
   public gameEnum = Game;
   public inProgress = false;
   public userTeams: Observable<CSGOTeam []>;
-
-  @Input()
-  public tournamentId: string;
-
-  @ViewChild('appDetails', { static: true })
-  public appDetails: ElementRef;
 
   constructor(private authManager: LoginService,
               private apiService: ApiTournamentsService,

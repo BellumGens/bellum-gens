@@ -7,7 +7,7 @@ import { UserNotification, NotificationState } from '../../../src-common/models/
 export class UnreadNotificationsPipe implements PipeTransform {
 
   transform(notifications: UserNotification []): number {
-    return notifications ? notifications.filter(n => n.State === NotificationState.NotSeen).length : 0;
+    return notifications ? notifications.filter(n => n.state === NotificationState.NotSeen).length : 0;
   }
 
 }

@@ -5,29 +5,30 @@ import { CSGOTeam, TeamMember } from '../../../../../src-common/models/csgoteam'
 import { BellumgensApiService } from '../../../../../src-common/services/bellumgens-api.service';
 import { ActivatedRoute } from '@angular/router';
 import { IDropDroppedEventArgs, IgxIconService } from '@infragistics/igniteui-angular';
-import { StratUtilities, EditorBrushColors } from '../../../../../src-common/models/strat-editor/utility';
+import { STRAT_UTILITIES, EDITOR_BRUSH_COLORS } from '../../../../../src-common/models/strat-editor/utility';
 import { CSGOStrategy } from '../../../../../src-common/models/csgostrategy';
 import { BaseLayer, PointCoordinate, ImageLayer, FreeflowLayer } from '../../../../../src-common/models/strat-editor/editor-layer';
-import { BaseComponent } from '../../../base/base.component';
-import { Title, Meta } from '@angular/platform-browser';
+import { ApiStrategiesService } from '../../../../../src-common/services/bellumgens-api.strategies.service';
 
 @Component({
   selector: 'app-strategy-editor',
   templateUrl: './strategy-editor.component.html',
   styleUrls: ['./strategy-editor.component.css']
 })
-export class StrategyEditorComponent extends BaseComponent implements OnInit, OnDestroy {
+export class StrategyEditorComponent implements OnInit, OnDestroy {
+  @ViewChild('board', { static: true }) public canvas: ElementRef;
+
   public maps: CSGOActiveDutyDescriptor [] = ActiveDuty;
   public team: CSGOTeam;
   public teammembers: TeamMember [];
   public newStrategy: CSGOStrategy;
-  public utility = StratUtilities;
+  public utility = STRAT_UTILITIES;
   public layers: BaseLayer [];
   public ts = [1, 1, 1, 1, 1];
   public cts = [1, 1, 1, 1, 1];
   public enemies = [1, 1, 1, 1, 1];
   public brushSelected = false;
-  public colors = Object.assign([], EditorBrushColors);
+  public colors = Object.assign([], EDITOR_BRUSH_COLORS);
   public selectedColor = this.colors[0];
   public saveInProgress = false;
   public changes = false;
@@ -47,7 +48,7 @@ export class StrategyEditorComponent extends BaseComponent implements OnInit, On
 
   public set map(map: CSGOActiveDutyDescriptor) {
     this._activeMap = map;
-    if (!this.layers.length || (<ImageLayer>this.layers[0]).src !== map.radar[0]) {
+    if (!this.layers.length || (this.layers[0] as ImageLayer).src !== map.radar[0]) {
       const layer = this.editor.createImageLayer('Map Radar');
       layer.src = this._activeMap.radar[0];
       layer.width = 1024;
@@ -59,14 +60,10 @@ export class StrategyEditorComponent extends BaseComponent implements OnInit, On
 
   private editor: StrategyEditor;
 
-  @ViewChild('board', { static: true }) public canvas: ElementRef;
-
   constructor(private apiService: BellumgensApiService,
+              private apiStrategyService: ApiStrategiesService,
               private iconService: IgxIconService,
-              private route: ActivatedRoute,
-              title: Title,
-              meta: Meta) {
-    super(title, meta, route);
+              private route: ActivatedRoute) {
     this.loadSvgs();
   }
 
@@ -75,36 +72,33 @@ export class StrategyEditorComponent extends BaseComponent implements OnInit, On
     this.canvas.nativeElement.height = window.innerHeight - 140;
     this.editor = new StrategyEditor(this.canvas, (window.innerHeight - 140) / 1024);
     this.layers = this.editor.layers;
-    this.subs.push(
-      this.route.params.subscribe(params => {
-        const teamId = params['teamid'];
-        if (teamId) {
-          this.apiService.getTeam(teamId).subscribe(team => {
-            if (team) {
-              this.team = team;
-              this.apiService.getTeamMembers(team.teamId).subscribe(members => this.teammembers = members);
+    this.route.params.subscribe(params => {
+      const teamId = params['teamid'];
+      if (teamId) {
+        this.apiService.getTeam(teamId).subscribe(team => {
+          if (team) {
+            this.team = team;
+            this.apiService.getTeamMembers(team.teamId).subscribe(members => this.teammembers = members);
+          }
+        });
+      }
+      const stratid = params['stratid'];
+      if (stratid) {
+        this.apiStrategyService.getCurrentStrategy(stratid).subscribe(strat => {
+          if (strat) {
+            this.newStrategy = strat;
+            if (strat.editorMetadata) {
+              this.editor.restore(strat.editorMetadata);
             }
-          });
-        }
-        const stratid = params['stratid'];
-        if (stratid) {
-          this.apiService.getCurrentStrategy(stratid).subscribe(strat => {
-            if (strat) {
-              this.newStrategy = strat;
-              if (strat.editorMetadata) {
-                this.editor.restore(strat.editorMetadata);
-              }
-              this.map = this.maps.find(m => m.id === strat.map);
-            }
-          });
-        }
-      })
-    );
+            this.map = this.maps.find(m => m.id === strat.map);
+          }
+        });
+      }
+    });
     this.intervalId = setInterval(this.saveStrat.bind(this), 300000);
   }
 
   ngOnDestroy() {
-    super.ngOnDestroy();
     this.saveStrat();
     clearInterval(this.intervalId);
   }
@@ -148,7 +142,7 @@ export class StrategyEditorComponent extends BaseComponent implements OnInit, On
       this.deselectBrush();
       this.newStrategy.stratImage = this.canvas.nativeElement.toDataURL('image/png');
       this.newStrategy.editorMetadata = this.editor.save();
-      this.apiService.submitStrategy(this.newStrategy).subscribe(
+      this.apiStrategyService.submitStrategy(this.newStrategy).subscribe(
         _ => this.saveInProgress = false,
         _ => this.saveInProgress = false
       );

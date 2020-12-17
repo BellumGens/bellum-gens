@@ -52,16 +52,14 @@ export const TEAM_PLACEHOLDER: CSGOTeam = {
   visible: true,
 };
 
-export function getEmptyNewTeam(): CSGOTeam {
-  return {
-    teamName: '',
-    teamAvatar: '',
-    description: '',
-    discord: '',
-    visible: true,
-    teamId: undefined
-  };
-}
+export const EMPTY_NEW_TEAM: CSGOTeam = {
+  teamName: '',
+  teamAvatar: '',
+  description: '',
+  discord: '',
+  visible: true,
+  teamId: undefined
+};
 
 export const TEAM_SEARCH: TeamSearch = {
   role: null,

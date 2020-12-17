@@ -12,6 +12,12 @@ import { BellumgensApiService } from '../../../../src-common/services/bellumgens
   styleUrls: ['./notifications.component.css']
 })
 export class PlayerNotificationsComponent {
+  @Output()
+  public loaded = new EventEmitter<UserNotification []>();
+
+  @Output()
+  public changed = new EventEmitter<number>();
+
   public notificationClass = ['', '', 'notification-disabled', 'notification-disabled'];
   public pipeTrigger = 0;
   public actionInProgress = false;
@@ -19,12 +25,6 @@ export class PlayerNotificationsComponent {
 
   public authUser: ApplicationUser;
   public notifications: UserNotification [];
-
-  @Output()
-  public loaded = new EventEmitter<UserNotification []>();
-
-  @Output()
-  public changed = new EventEmitter<number>();
 
   constructor(private apiService: BellumgensApiService, private authManager: LoginService, private router: Router) {
     this.authManager.applicationUser.subscribe(user => {
@@ -40,9 +40,9 @@ export class PlayerNotificationsComponent {
     this.actionInProgress = true;
     this.apiService.acceptInvite(notification).subscribe(
       _ => {
-        notification.State = NotificationState.Accepted;
+        notification.state = NotificationState.Accepted;
         this.pipeTrigger++;
-        this.router.navigate(['team', notification.TeamInfo.customUrl]);
+        this.router.navigate(['team', notification.teamInfo.customUrl]);
         this.changed.emit(-1);
         this.actionInProgress = false;
       },
@@ -55,7 +55,7 @@ export class PlayerNotificationsComponent {
     this.actionInProgress = true;
     this.apiService.rejectInvite(notification).subscribe(
       _ => {
-        notification.State = NotificationState.Rejected;
+        notification.state = NotificationState.Rejected;
         this.pipeTrigger++;
         this.changed.emit(-1);
         this.actionInProgress = false;

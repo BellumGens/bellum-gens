@@ -1,7 +1,9 @@
-import { Component, ViewChild } from '@angular/core';
-import { TournamentGroup,
+import { Component } from '@angular/core';
+import {
+  TournamentGroup,
   TournamentParticipant,
-  getEmptyNewGroup} from '../../../../src-common/models/tournament';
+  EMPTY_NEW_GROUP
+} from '../../../../src-common/models/tournament';
 import { ApiTournamentsService } from '../../../../src-common/services/bellumgens-api.tournaments.service';
 import { environment } from '../../../../src-common/environments/environment';
 import {
@@ -9,10 +11,7 @@ import {
   GridSelectionMode,
   IRowDataEventArgs,
   IgxGridComponent,
-  IgxDialogComponent,
-  FilteringExpressionsTree,
-  FilteringLogic,
-  IgxDateFilteringOperand
+  IgxDialogComponent
 } from '@infragistics/igniteui-angular';
 import { TournamentSC2Match, TournamentMatchMap } from '../../../../src-common/models/tournament-schedule';
 import { SC2_MAPS, SC2LadderDescriptor } from '../../../../src-common/models/sc2maps';
@@ -29,15 +28,11 @@ export class AdminSc2Component {
   public loading = false;
   public loadingMatches = false;
   public environment = environment;
-  public newGroup = getEmptyNewGroup();
+  public newGroup = Object.assign({}, EMPTY_NEW_GROUP);
   public pipeTrigger = 0;
   public mapList: SC2LadderDescriptor [] = SC2_MAPS;
   public selectionMode = GridSelectionMode;
   public matchInEdit: TournamentSC2Match = { startTime: new Date() };
-  public initialFilter: FilteringExpressionsTree;
-
-  @ViewChild('matchGrid')
-  public matchGrid: IgxGridComponent;
 
   constructor(private apiService: ApiTournamentsService) {
     this.apiService.sc2Registrations.subscribe(data => {
@@ -46,25 +41,14 @@ export class AdminSc2Component {
       }
     });
     this.apiService.loadingSC2Registrations.subscribe(data => this.loading = data);
-    this.apiService.getSC2Groups().subscribe(data => this.groups = data);
+    this.apiService.getSC2Groups(null).subscribe(data => this.groups = data);
     this.apiService.loadingSC2Matches.subscribe(data => this.loadingMatches = data);
-    this.apiService.sc2Matches.subscribe(data => {
+    this.apiService.getSc2Matches(null).subscribe(data => {
       if (data) {
         data.forEach(item => item.startTime = new Date(item.startTime));
         this.matches = data;
       }
     });
-
-    const gridFilteringExpressionsTree = new FilteringExpressionsTree(FilteringLogic.And);
-    const productFilteringExpressionsTree = new FilteringExpressionsTree(FilteringLogic.And, 'StartTime');
-    const productExpression = {
-        condition: IgxDateFilteringOperand.instance().condition('after'),
-        fieldName: 'StartTime',
-        searchVal: new Date(2020, 10, 6)
-    };
-    productFilteringExpressionsTree.filteringOperands.push(productExpression);
-    gridFilteringExpressionsTree.filteringOperands.push(productFilteringExpressionsTree);
-    this.initialFilter = gridFilteringExpressionsTree;
   }
 
   public submitGroup(group: TournamentGroup) {
@@ -101,13 +85,13 @@ export class AdminSc2Component {
     this.pipeTrigger++;
   }
 
-  public submitMatch() {
+  public submitMatch(grid: IgxGridComponent) {
     if (this.matchInEdit.player1Id && this.matchInEdit.player2Id) {
       this.apiService.submitSC2Match(this.matchInEdit).subscribe(data => {
         if (data) {
           if (!this.matchInEdit.id) {
             data.startTime = new Date(data.startTime);
-            this.matchGrid.addRow(data);
+            grid.addRow(data);
           }
         }
       });
@@ -131,8 +115,8 @@ export class AdminSc2Component {
     dialog.open();
   }
 
-  public submitMatchMaps() {
-    this.submitMatch();
+  public submitMatchMaps(grid: IgxGridComponent) {
+    this.submitMatch(grid);
     this.matchInEdit.maps.forEach(map => this.apiService.submitSC2MatchMap(map).subscribe(data => map.id = data.id));
   }
 

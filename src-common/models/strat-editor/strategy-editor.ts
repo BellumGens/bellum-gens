@@ -8,6 +8,8 @@ import { BaseLayer,
   FreeflowLayer } from './editor-layer';
 
 export class StrategyEditor {
+  public surfaceName: string;
+
   private _context: any;
   private _layers: BaseLayer[] = [];
   private _width = 1024;
@@ -15,8 +17,6 @@ export class StrategyEditor {
   private _displayRatio: number;
 
   private _selectedLayer: BaseLayer;
-
-  public surfaceName: string;
 
   constructor(private _canvas: ElementRef, displayRatio = 1, name?: string) {
     this._context = this._canvas.nativeElement.getContext('2d');
@@ -98,12 +98,6 @@ export class StrategyEditor {
     this.flip();
   }
 
-  private _addLayer(layer) {
-    layer.layerUpdate.subscribe(_ => this.flip());
-    layer.layerSelect.subscribe(current => this._selectionChanged(current));
-    this._layers.push(layer);
-  }
-
   public insertLayer(index: number, layer: BaseLayer) {
     if (index < this._layers.length) {
       this._insertLayer(layer, index);
@@ -111,12 +105,6 @@ export class StrategyEditor {
     } else {
       this.addLayer(layer);
     }
-  }
-
-  private _insertLayer(layer: BaseLayer, index: number) {
-    layer.layerUpdate.subscribe(_ => this.flip());
-    layer.layerSelect.subscribe(current => this._selectionChanged(current));
-    this._layers.splice(index, 0, layer);
   }
 
   public replaceLayer(index: number, layer: BaseLayer) {
@@ -128,17 +116,37 @@ export class StrategyEditor {
     }
   }
 
+  public removeLayer(layer: BaseLayer) {
+    this._removeLayer(layer);
+    this.flip();
+  }
+
+  public deselectAll() {
+    if (this._selectedLayer) {
+      this._selectedLayer.selected = false;
+      this._selectedLayer = null;
+      this.flip();
+    }
+  }
+
+  private _addLayer(layer) {
+    layer.layerUpdate.subscribe(_ => this.flip());
+    layer.layerSelect.subscribe(current => this._selectionChanged(current));
+    this._layers.push(layer);
+  }
+
+  private _insertLayer(layer: BaseLayer, index: number) {
+    layer.layerUpdate.subscribe(_ => this.flip());
+    layer.layerSelect.subscribe(current => this._selectionChanged(current));
+    this._layers.splice(index, 0, layer);
+  }
+
   private _replaceLayer(index: number, layer: BaseLayer) {
     this._layers[index].layerUpdate.unsubscribe();
     this._layers[index].layerSelect.unsubscribe();
     layer.layerUpdate.subscribe(_ => this.flip());
     layer.layerSelect.subscribe(current => this._selectionChanged(current));
     this._layers.splice(index, 1, layer);
-  }
-
-  public removeLayer(layer: BaseLayer) {
-    this._removeLayer(layer);
-    this.flip();
   }
 
   private _unsubLayer(layer: BaseLayer) {
@@ -149,14 +157,6 @@ export class StrategyEditor {
   private _removeLayer(layer: BaseLayer) {
     this._unsubLayer(layer);
     this._layers.splice(this._layers.indexOf(layer), 1);
-  }
-
-  public deselectAll() {
-    if (this._selectedLayer) {
-      this._selectedLayer.selected = false;
-      this._selectedLayer = null;
-      this.flip();
-    }
   }
 
   private _selectionChanged(args: LayerSelected) {

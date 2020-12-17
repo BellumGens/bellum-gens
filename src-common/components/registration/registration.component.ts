@@ -12,13 +12,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
+  @ViewChild('regusername', { static: true }) public usernameInput: ElementRef;
+
   public userAccount: UserRegistration = { username: '', password: '', confirmPassword: '', email: '' };
   public inUse = false;
   public submitInProgress = false;
   public authUser: ApplicationUser;
   public error = '';
-
-  @ViewChild('regusername', { static: true }) public usernameInput: ElementRef;
 
   constructor(private authManager: LoginService, private router: Router) {
     this.authManager.applicationUser.subscribe(user => {
@@ -43,7 +43,7 @@ export class RegistrationComponent implements OnInit {
 
   private initUsernameCheck() {
     const input = fromEvent(this.usernameInput.nativeElement, 'keyup')
-                    .pipe(map<Event, string>(e => (<HTMLInputElement>e.currentTarget).value));
+                    .pipe(map<Event, string>(e => (e.currentTarget as HTMLInputElement).value));
     const debouncedInput = input.pipe(debounceTime(300));
     debouncedInput.subscribe(val => {
       this.authManager.checkUsername(val).subscribe(data => {
