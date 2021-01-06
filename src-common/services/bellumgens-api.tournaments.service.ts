@@ -156,6 +156,10 @@ export class ApiTournamentsService {
 
   public createTournament(tournament: Tournament) {
     return this.http.put<Tournament>(`${this._apiEndpoint}/tournament/create`, tournament, { withCredentials: true }).pipe(
+      map(response => {
+        this.commService.emitSuccess('Tournament updated successfully!');
+        return response;
+      }),
       catchError(error => {
         this.commService.emitError(error.error);
         return throwError(error);
