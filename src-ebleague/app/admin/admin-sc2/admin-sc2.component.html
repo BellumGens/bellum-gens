@@ -185,7 +185,16 @@
       <label igxLabel>Начало</label>
     </igx-time-picker>
 
-    <igx-select [(ngModel)]="matchInEdit.player1Id">
+    <igx-select [(ngModel)]="matchInEdit.groupId">
+      <label igxLabel>Група</label>
+      <igx-select-item *ngFor="let group of groups"
+                        [value]="group.id">
+        {{ group.name }}
+      </igx-select-item>
+      <igx-hint>*Ако мачът е от групова фаза</igx-hint>
+    </igx-select>
+
+    <igx-select [(ngModel)]="matchInEdit.player1Id" required>
       <label igxLabel>Играч 1</label>
       <igx-select-item *ngFor="let registration of registrations"
                         [value]="registration.userId"
@@ -197,7 +206,7 @@
 
     vs.
 
-    <igx-select [(ngModel)]="matchInEdit.player2Id">
+    <igx-select [(ngModel)]="matchInEdit.player2Id" required>
       <label igxLabel>Играч 2</label>
       <igx-select-item *ngFor="let registration of registrations"
                         [value]="registration.userId"
