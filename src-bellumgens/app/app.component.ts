@@ -14,7 +14,7 @@ import { SearchResult } from '../../src-common/models/searchresult';
 import { fromEvent } from 'rxjs';
 import { map, debounceTime } from 'rxjs/operators';
 import { UnreadNotificationsPipe } from './pipes/unread-notifications.pipe';
-import { GlobalOverlaySettings } from '../../src-common/models/misc';
+import { GLOBAL_OVERLAY_SETTINGS } from '../../src-common/models/misc';
 import { environment } from '../../src-common/environments/environment';
 import { CSGOTeam } from '../../src-common/models/csgoteam';
 import { ApiSearchService } from '../../src-common/services/bellumgens-api.search.service';
@@ -25,19 +25,18 @@ import { ApiSearchService } from '../../src-common/services/bellumgens-api.searc
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  @ViewChild('quickSearch', { static: true }) public quickSearchDropDown: IgxDropDownComponent;
+  @ViewChild('searchGroup', { static: true }) public searchGroup: IgxInputGroupComponent;
+  @ViewChild('searchInput', { static: true }) public searchInput: ElementRef;
+  @ViewChild('cookiesBanner', { static: true }) public banner: IgxBannerComponent;
+
   public authUser: ApplicationUser;
   public teams: CSGOTeam [];
   public searchResult: SearchResult;
   public unreadNotifications = 0;
   public environment = environment;
 
-  public overlaySettings = GlobalOverlaySettings;
-
-  @ViewChild('quickSearch', { static: true }) public quickSearchDropDown: IgxDropDownComponent;
-  @ViewChild('myTeam', { static: true }) public teamDropDown: IgxDropDownComponent;
-  @ViewChild('searchGroup', { static: true }) public searchGroup: IgxInputGroupComponent;
-  @ViewChild('searchInput', { static: true }) public searchInput: ElementRef;
-  @ViewChild('cookiesBanner', { static: true }) public banner: IgxBannerComponent;
+  public overlaySettings = GLOBAL_OVERLAY_SETTINGS;
 
   private unreadPipe = new UnreadNotificationsPipe();
 
@@ -66,9 +65,13 @@ export class AppComponent implements OnInit {
     window.localStorage.setItem('cookiesAccepted', 'true');
   }
 
+  public notificationsLoaded(args: number) {
+    this.unreadNotifications += args;
+  }
+
   private initQuickSearch() {
     const input = fromEvent(this.searchInput.nativeElement, 'keyup')
-                    .pipe(map<Event, string>(e => (<HTMLInputElement>e.currentTarget).value));
+                    .pipe(map<Event, string>(e => (e.currentTarget as HTMLInputElement).value));
     const debouncedInput = input.pipe(debounceTime(300));
     debouncedInput.subscribe(val => {
       if (val.length) {
@@ -85,9 +88,5 @@ export class AppComponent implements OnInit {
         this.searchService.quickSearch(val);
       }
     });
-  }
-
-  public notificationsLoaded(args: number) {
-    this.unreadNotifications += args;
   }
 }

@@ -11,6 +11,8 @@ import { BellumgensApiService } from '../../../../src-common/services/bellumgens
   styleUrls: ['./team-application.component.css']
 })
 export class TeamApplicationComponent {
+  @ViewChild(IgxDialogComponent, { static: true }) public dialog: IgxDialogComponent;
+
   @Input()
   public authUser: ApplicationUser;
 
@@ -23,8 +25,6 @@ export class TeamApplicationComponent {
     state: NotificationState.NotSeen,
     message: ''
   };
-
-  @ViewChild(IgxDialogComponent, { static: true }) public dialog: IgxDialogComponent;
 
   constructor(private apiService: BellumgensApiService) { }
 

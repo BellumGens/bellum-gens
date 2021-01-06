@@ -10,6 +10,9 @@ import { Router } from '@angular/router';
   styleUrls: ['./login-dialog.component.scss']
 })
 export class LoginDialogComponent {
+  @ViewChild(IgxDialogComponent, { static: true })
+  public dialog: IgxDialogComponent;
+
   public logininfo: UserLogin = {
     username: '',
     password: '',
@@ -18,10 +21,6 @@ export class LoginDialogComponent {
   public submitInProgress = false;
 
   public title = 'Choose login provider';
-
-  @ViewChild(IgxDialogComponent, { static: true })
-  public dialog: IgxDialogComponent;
-
   constructor(private authManager: LoginService, private router: Router) {
   }
 

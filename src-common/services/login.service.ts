@@ -18,15 +18,15 @@ import { CSGOTeam } from '../models/csgoteam';
   providedIn: 'root'
 })
 export class LoginService {
+  public userCheckInProgress = new BehaviorSubject<boolean>(false);
+  public openLogin = new EventEmitter<string>();
+
   private _apiEndpoint = environment.authApiEndpoint;
   private _apiBase = environment.apiEndpoint;
   private _applicationUser = new BehaviorSubject<ApplicationUser>(null);
   private _userNotifications = new BehaviorSubject<UserNotification []>(null);
   private _registrations = new BehaviorSubject<TournamentApplication []>(null);
   private _teamsAdmin = new BehaviorSubject<CSGOTeam []>(null);
-  public userCheckInProgress = new BehaviorSubject<boolean>(false);
-
-  public openLogin = new EventEmitter<string>();
 
   constructor(private http: HttpClient,
               private swPush: SwPush,
@@ -215,8 +215,8 @@ export class LoginService {
     })
     .then(sub => {
       this.addPushSubscriber(sub).subscribe();
-      this.swPush.messages.subscribe(message => {
-        this.commService.emitMessage((<PushNotificationWrapper>message).notification.title);
+      this.swPush.messages.subscribe((message: PushNotificationWrapper) => {
+        this.commService.emitMessage(message.notification.title);
 
         // Update the app user with new notifications and teams
         this.getAppUser().subscribe(user => this._applicationUser.next(user));

@@ -2,13 +2,12 @@
   <igx-grid [cellSelection]="selectionMode.none"
             [data]="matches"
             height="550px"
-            [primaryKey]="'Id'"
+            [primaryKey]="'id'"
             (onRowDeleted)="deleteMatch($event)"
             #matchGrid
             emptyGridMessage="Няма намерени срещи..."
             [isLoading]="loading"
-            [allowFiltering]="true"
-            [filteringExpressionsTree]="initialFilter">
+            [allowFiltering]="true">
 
     <igx-grid-toolbar>
       <igx-grid-toolbar-title>Всички CS:GO Срещи</igx-grid-toolbar-title>
@@ -19,13 +18,13 @@
       </igx-grid-toolbar-actions>
     </igx-grid-toolbar>
 
-    <igx-column field="StartTime" width="220px" [dataType]="'date'" header="Начало">
+    <igx-column field="startTime" width="220px" [dataType]="'date'" header="Начало">
       <ng-template igxCell let-value>
         {{ value | date:'MMM d, y, h:mm a' }}
       </ng-template>
     </igx-column>
 
-    <igx-column field="Teams" header="Среща" [filterable]="false">
+    <igx-column field="teams" header="Среща" [filterable]="false">
       <div *igxCell="let cell = cell">
         <igx-avatar igxListThumbnail
                     [src]="cell.rowData.team1.teamAvatar"
@@ -65,7 +64,7 @@
           {{ map.team1Score }}
         </div>
 
-        <igx-avatar [src]="map.Map | csgomapimage" [initials]="map.map | csgomapname" [title]="map.map | csgomapname"></igx-avatar>
+        <igx-avatar [src]="map.map | csgomapimage" [initials]="map.map | csgomapname" [title]="map.map | csgomapname"></igx-avatar>
 
         <div class="score-container">
           {{ map.team2Score }}
@@ -108,6 +107,7 @@
           <a [href]="environment.bellumgens + '/team/' + registration.team.customUrl" target="_blank">{{ registration.team.teamName }}</a>
         </div>
       </div>
+
       <div class="card-wrapper">
         <igx-card *ngFor="let group of groups">
           <igx-card-header>
@@ -178,7 +178,7 @@
             leftButtonLabel="Cancel"
             (onLeftButtonSelect)="newMatchDialog.close()"
             rightButtonLabel="Submit"
-            (onRightButtonSelect)="submitMatch(); newMatchDialog.close()">
+            (onRightButtonSelect)="submitMatch(matchGrid); newMatchDialog.close()">
   <div class="match-details">
     <igx-date-picker [(ngModel)]="matchInEdit.startTime">
       <label igxLabel>Дата</label>
@@ -188,7 +188,16 @@
       <label igxLabel>Начало</label>
     </igx-time-picker>
 
-    <igx-select [(ngModel)]="matchInEdit.team1Id">
+    <igx-select [(ngModel)]="matchInEdit.groupId">
+      <label igxLabel>Група</label>
+      <igx-select-item *ngFor="let group of groups"
+                        [value]="group.id">
+        {{ group.name }}
+      </igx-select-item>
+      <igx-hint>*Ако мачът е от групова фаза</igx-hint>
+    </igx-select>
+
+    <igx-select [(ngModel)]="matchInEdit.team1Id" required>
       <label igxLabel>Отбор 1</label>
       <igx-select-item *ngFor="let registration of registrations"
                         [value]="registration.teamId"
@@ -200,7 +209,7 @@
 
     vs.
 
-    <igx-select [(ngModel)]="matchInEdit.team2Id">
+    <igx-select [(ngModel)]="matchInEdit.team2Id" required>
       <label igxLabel>Отбор 2</label>
       <igx-select-item *ngFor="let registration of registrations"
                         [value]="registration.teamId"
@@ -217,7 +226,7 @@
             leftButtonLabel="Cancel"
             (onLeftButtonSelect)="newMatchMapDialog.close()"
             rightButtonLabel="Submit"
-            (onRightButtonSelect)="submitMatchMaps(); newMatchMapDialog.close()">
+            (onRightButtonSelect)="submitMatchMaps(matchGrid); newMatchMapDialog.close()">
   <div class="match-details">
 
     <div class="horizontal-center">

@@ -15,13 +15,12 @@ import { ApiTournamentsService } from '../../../src-common/services/bellumgens-a
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent extends BaseComponent {
+  @ViewChild(IgxCarouselComponent, { static: true }) public carousel: IgxCarouselComponent;
+
   public authUser: ApplicationUser;
   public navigation = true;
   public environment = environment;
   public userEmail: string = null;
-
-  @ViewChild(IgxCarouselComponent, { static: true })
-  public carousel: IgxCarouselComponent;
 
   constructor(private authManager: LoginService,
               private apiService: ApiTournamentsService,
@@ -34,6 +33,11 @@ export class HomeComponent extends BaseComponent {
     this.authManager.applicationUser.subscribe(data => this.authUser = data);
   }
 
+  @HostListener('window:resize')
+  public resize() {
+    this.navigation = window.matchMedia('(min-width: 768px)').matches;
+  }
+
   public subscribe() {
     if (this.userEmail) {
       this.apiService.addSubscriber(this.userEmail).subscribe();
@@ -42,11 +46,6 @@ export class HomeComponent extends BaseComponent {
 
   public tweet() {
     this.socialMedia.tweetWithText('Hey @BellumGens...');
-  }
-
-  @HostListener('window:resize')
-  public resize() {
-    this.navigation = window.matchMedia('(min-width: 768px)').matches;
   }
 
   public openLogin() {

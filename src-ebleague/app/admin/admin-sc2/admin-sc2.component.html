@@ -7,8 +7,7 @@
             #matchGrid
             emptyGridMessage="Няма намерени срещи..."
             [isLoading]="loading"
-            [allowFiltering]="true"
-            [filteringExpressionsTree]="initialFilter">
+            [allowFiltering]="true">
 
     <igx-grid-toolbar>
       <igx-grid-toolbar-title>Всички StarCraft II Срещи</igx-grid-toolbar-title>
@@ -176,7 +175,7 @@
             leftButtonLabel="Cancel"
             (onLeftButtonSelect)="newMatchDialog.close()"
             rightButtonLabel="Submit"
-            (onRightButtonSelect)="submitMatch(); newMatchDialog.close()">
+            (onRightButtonSelect)="submitMatch(matchGrid); newMatchDialog.close()">
   <div class="match-details">
     <igx-date-picker [(ngModel)]="matchInEdit.startTime">
       <label igxLabel>Дата</label>
@@ -186,7 +185,16 @@
       <label igxLabel>Начало</label>
     </igx-time-picker>
 
-    <igx-select [(ngModel)]="matchInEdit.player1Id">
+    <igx-select [(ngModel)]="matchInEdit.groupId">
+      <label igxLabel>Група</label>
+      <igx-select-item *ngFor="let group of groups"
+                        [value]="group.id">
+        {{ group.name }}
+      </igx-select-item>
+      <igx-hint>*Ако мачът е от групова фаза</igx-hint>
+    </igx-select>
+
+    <igx-select [(ngModel)]="matchInEdit.player1Id" required>
       <label igxLabel>Играч 1</label>
       <igx-select-item *ngFor="let registration of registrations"
                         [value]="registration.userId"
@@ -198,7 +206,7 @@
 
     vs.
 
-    <igx-select [(ngModel)]="matchInEdit.player2Id">
+    <igx-select [(ngModel)]="matchInEdit.player2Id" required>
       <label igxLabel>Играч 2</label>
       <igx-select-item *ngFor="let registration of registrations"
                         [value]="registration.userId"
@@ -215,7 +223,7 @@
             leftButtonLabel="Cancel"
             (onLeftButtonSelect)="newMatchMapDialog.close()"
             rightButtonLabel="Submit"
-            (onRightButtonSelect)="submitMatchMaps(); newMatchMapDialog.close()">
+            (onRightButtonSelect)="submitMatchMaps(matchGrid); newMatchMapDialog.close()">
   <div class="match-details">
 
     <div class="horizontal-center">

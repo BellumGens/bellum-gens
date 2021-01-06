@@ -8,10 +8,10 @@
       <span igxCardHeaderSubtitle>{{tournament.startDate | date}} - {{tournament.endDate | date}}</span>
     </igx-card-header>
     <igx-card-content>
-      {{tournament.description}}
-      <div class="horizontal-center">
-        <div class="watermark csgo-watermark navigatable" title="CS:GO" [routerLink]="['csgo', tournament.id]"></div>
-        <div class="watermark sc2-watermark navigatable" title="StarCraft II" [routerLink]="['sc2', tournament.id]"></div>
+      <p>{{tournament.description}}</p>
+      <div class="horizontal-center margin-top">
+        <img class="navigatable" src="/assets/wallpapers/csgo-logo.webp" alt="CS:GO" [routerLink]="['csgo', tournament.id]" />
+        <img class="navigatable" src="/assets/wallpapers/starcraft2-logo.webp" alt="StarCraft II" [routerLink]="['sc2', tournament.id]" />
       </div>
     </igx-card-content>
   </igx-card>

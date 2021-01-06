@@ -4,7 +4,7 @@ import { BellumgensApiService } from '../../../../src-common/services/bellumgens
 import { IgxDialogComponent } from '@infragistics/igniteui-angular';
 import { Router } from '@angular/router';
 import { SteamGroup } from '../../../../src-common/models/steamuser';
-import { getEmptyNewTeam } from '../../../../src-common/models/csgoteam';
+import { EMPTY_NEW_TEAM } from '../../../../src-common/models/csgoteam';
 
 @Component({
   selector: 'app-team-new',
@@ -12,15 +12,15 @@ import { getEmptyNewTeam } from '../../../../src-common/models/csgoteam';
   styleUrls: ['./team-new.component.scss']
 })
 export class TeamNewComponent {
-  @Input()
-  public authUser: ApplicationUser;
-  public groups: SteamGroup [];
-  public searchGroups: string;
-  public newTeam = getEmptyNewTeam();
-  public navigateOnCreate = true;
-  public inProgress = false;
+  @Input() public authUser: ApplicationUser;
 
   @ViewChild(IgxDialogComponent) public createTeam: IgxDialogComponent;
+
+  public groups: SteamGroup [];
+  public searchGroups: string;
+  public newTeam = Object.assign({}, EMPTY_NEW_TEAM);
+  public navigateOnCreate = true;
+  public inProgress = false;
 
   constructor(private apiService: BellumgensApiService, private router: Router) {
   }

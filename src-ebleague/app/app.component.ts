@@ -5,7 +5,7 @@ import { LoginService } from '../../src-common/services/login.service';
 import { ApplicationUser } from '../../src-common/models/applicationuser';
 import { environment } from '../../src-common/environments/environment';
 import { isPlatformBrowser } from '@angular/common';
-import { Router, NavigationStart, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
 @Component({
@@ -14,14 +14,15 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  @ViewChild('cookiesBanner', { static: true }) public banner: IgxBannerComponent;
+
+  @ViewChild('drawer', { static: true }) public navdrawer: IgxNavigationDrawerComponent;
+
   public authUser: ApplicationUser;
   public environment = environment;
   private isBrowser: boolean;
 
-  @ViewChild('cookiesBanner', { static: true }) public banner: IgxBannerComponent;
-  @ViewChild('drawer', { static: true }) public navdrawer: IgxNavigationDrawerComponent;
-
-  constructor(@Inject(PLATFORM_ID) platformId: Object, private authManager: LoginService, private router: Router) {
+  constructor(@Inject(PLATFORM_ID) platformId, private authManager: LoginService, private router: Router) {
     this.isBrowser = isPlatformBrowser(platformId);
     this.authManager.applicationUser.subscribe(data => {
       this.authUser = data;

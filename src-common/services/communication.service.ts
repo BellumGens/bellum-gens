@@ -4,11 +4,11 @@ import { Injectable, EventEmitter } from '@angular/core';
   providedIn: 'root'
 })
 export class CommunicationService {
-  constructor() { }
-
   public success = new EventEmitter<string>();
   public error = new EventEmitter<string>();
   public message = new EventEmitter<string>();
+
+  constructor() { }
 
   public emitError(error: string) {
     this.error.emit(error);

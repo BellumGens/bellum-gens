@@ -2,10 +2,10 @@ import { CSGOTeam } from './csgoteam';
 import { ApplicationUser } from './applicationuser';
 
 export interface UserNotification {
-  State: NotificationState;
-  TeamInfo: CSGOTeam;
-  InvitingUser: ApplicationUser;
-  Sent: string;
+  state: NotificationState;
+  teamInfo: CSGOTeam;
+  invitingUser: ApplicationUser;
+  sent: string;
 }
 
 export interface PushNotificationWrapper {

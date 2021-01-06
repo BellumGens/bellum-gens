@@ -26,6 +26,9 @@ import { SortWeaponsPipe } from '../../pipes/sort-weapons.pipe';
   encapsulation: ViewEncapsulation.None,
 })
 export class PlayerDetailsComponent extends BaseComponent {
+  @ViewChild('primaryRole') public primaryRole: IgxDropDownComponent;
+  @ViewChild('secondaryRole') public secondaryRole: IgxDropDownComponent;
+
   public authUser: ApplicationUser;
   public teamsAdmin: CSGOTeam [];
   public userTeams: Observable<CSGOTeam []>;
@@ -36,9 +39,6 @@ export class PlayerDetailsComponent extends BaseComponent {
   public roles = ALL_ROLES;
   public viewAll = false;
   public loading = false;
-
-  @ViewChild('primaryRole') public primaryRole: IgxDropDownComponent;
-  @ViewChild('secondaryRole') public secondaryRole: IgxDropDownComponent;
 
   constructor(private authManager: LoginService,
               private apiService: BellumgensApiService,
@@ -114,7 +114,6 @@ export class PlayerDetailsComponent extends BaseComponent {
   }
 
   public mapChange(args: CSGOMapPool) {
-    // this.authUser.mapPool.find(m => m.Map === args.Map).IsPlayed = args.IsPlayed;
     this.apiService.setMapPool(args).subscribe();
   }
 

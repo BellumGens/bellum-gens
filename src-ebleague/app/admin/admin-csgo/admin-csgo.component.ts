@@ -1,7 +1,9 @@
-import { Component, ViewChild } from '@angular/core';
-import { getEmptyNewGroup,
+import { Component } from '@angular/core';
+import {
+  EMPTY_NEW_GROUP,
   TournamentGroup,
-  TournamentParticipant } from '../../../../src-common/models/tournament';
+  TournamentParticipant
+} from '../../../../src-common/models/tournament';
 import { ApiTournamentsService } from '../../../../src-common/services/bellumgens-api.tournaments.service';
 import { environment } from '../../../../src-common/environments/environment';
 import {
@@ -9,10 +11,7 @@ import {
   GridSelectionMode,
   IRowDataEventArgs,
   IgxGridComponent,
-  IgxDialogComponent,
-  FilteringExpressionsTree,
-  FilteringLogic,
-  IgxDateFilteringOperand
+  IgxDialogComponent
 } from '@infragistics/igniteui-angular';
 import { TournamentCSGOMatch, TournamentMatchMap } from '../../../../src-common/models/tournament-schedule';
 import { CSGOActiveDutyDescriptor, ActiveDuty } from '../../../../src-common/models/csgomaps';
@@ -29,15 +28,11 @@ export class AdminCsgoComponent {
   public loading = false;
   public loadingMatches = false;
   public environment = environment;
-  public newGroup = getEmptyNewGroup();
+  public newGroup = Object.assign({}, EMPTY_NEW_GROUP);
   public pipeTrigger = 0;
   public mapList: CSGOActiveDutyDescriptor [] = ActiveDuty;
   public selectionMode = GridSelectionMode;
   public matchInEdit: TournamentCSGOMatch = { startTime: new Date() };
-  public initialFilter: FilteringExpressionsTree;
-
-  @ViewChild('matchGrid')
-  public matchGrid: IgxGridComponent;
 
   constructor(private apiService: ApiTournamentsService) {
     this.apiService.csgoRegistrations.subscribe(data => {
@@ -46,25 +41,14 @@ export class AdminCsgoComponent {
       }
     });
     this.apiService.loadingCSGORegistrations.subscribe(data => this.loading = data);
-    this.apiService.getCSGOGroups().subscribe(data => this.groups = data);
+    this.apiService.getCSGOGroups(null).subscribe(data => this.groups = data);
     this.apiService.loadingCSGOMatches.subscribe(data => this.loadingMatches = data);
-    this.apiService.csgoMatches.subscribe(data => {
+    this.apiService.getCsgoMatches(null).subscribe(data => {
       if (data) {
         data.forEach(item => item.startTime = new Date(item.startTime));
         this.matches = data;
       }
     });
-
-    const gridFilteringExpressionsTree = new FilteringExpressionsTree(FilteringLogic.And);
-    const productFilteringExpressionsTree = new FilteringExpressionsTree(FilteringLogic.And, 'StartTime');
-    const productExpression = {
-        condition: IgxDateFilteringOperand.instance().condition('after'),
-        fieldName: 'StartTime',
-        searchVal: new Date(2020, 10, 6)
-    };
-    productFilteringExpressionsTree.filteringOperands.push(productExpression);
-    gridFilteringExpressionsTree.filteringOperands.push(productFilteringExpressionsTree);
-    this.initialFilter = gridFilteringExpressionsTree;
   }
 
   public submitGroup(group: TournamentGroup) {
@@ -101,13 +85,13 @@ export class AdminCsgoComponent {
     this.pipeTrigger++;
   }
 
-  public submitMatch() {
+  public submitMatch(grid: IgxGridComponent) {
     if (this.matchInEdit.team1Id && this.matchInEdit.team2Id) {
       this.apiService.submitCSGOMatch(this.matchInEdit).subscribe(data => {
         if (data) {
           if (!this.matchInEdit.id) {
             data.startTime = new Date(data.startTime);
-            this.matchGrid.addRow(data);
+            grid.addRow(data);
           }
         }
       });
@@ -131,8 +115,8 @@ export class AdminCsgoComponent {
     dialog.open();
   }
 
-  public submitMatchMaps() {
-    this.submitMatch();
+  public submitMatchMaps(grid: IgxGridComponent) {
+    this.submitMatch(grid);
     this.matchInEdit.maps.forEach(map => this.apiService.submitCSGOMatchMap(map).subscribe(data => map.id = data.id));
   }
 

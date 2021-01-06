@@ -119,6 +119,7 @@ a > igx-icon {
   min-width: 380px;
   padding: 16px;
   margin: auto;
+  min-height: calc(100% - 64px);
 }
 
   .content-container h1 {
