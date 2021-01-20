@@ -1,3 +1,7 @@
+/***************************************************************************************************
+ * Load `$localize` onto the global scope - used if i18n tags appear in Angular templates.
+ */
+import '@angular/localize/init';
 import 'zone.js/dist/zone-node';
 
 import { APP_BASE_HREF } from '@angular/common';
@@ -8,33 +12,17 @@ import * as xmlhttprequest from 'xmlhttprequest';
 import { join } from 'path';
 
 import { AppServerModule } from './src-bellumgens/main.server';
-import { existsSync, readFileSync } from 'fs';
+import { existsSync } from 'fs';
 import { environment } from './src-common/environments/environment';
 
 // HTML polyfills
-const domino = require('domino');
-const distFolder = join(process.cwd(), environment.distFolderBellumGens);
-const template = readFileSync(join(distFolder, 'index.html')).toString();
-const window = domino.createWindow(template);
-
-// Ignite UI browser objects abstractions
-(global as any).window = window;
-(global as any).document = window.document;
-(global as any).HTMLElement = window.HTMLElement;
-
 (global as any).XMLHttpRequest = xmlhttprequest.XMLHttpRequest;
-(global as any).HTMLElement.prototype.getBoundingClientRect = () => {
-  return {
-    left: '',
-    right: '',
-    top: '',
-    bottom: ''
-  };
-};
 
 // The Express app is exported so that it can be used by serverless Functions.
-export function app() {
+export const app = () => {
   const server = express();
+  const distFolder = join(process.cwd(), environment.distFolderBellumGens);
+
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
 
   const compression = require('compression');
@@ -66,9 +54,9 @@ export function app() {
   });
 
   return server;
-}
+};
 
-function run() {
+const run = () => {
   const port = process.env.PORT || 4000;
 
   // Start up the Node server
@@ -76,7 +64,7 @@ function run() {
   server.listen(port, () => {
     console.log(`Node Express server listening on http://localhost:${port}`);
   });
-}
+};
 
 // Webpack will replace 'require' with '__webpack_require__'
 // '__non_webpack_require__' is a proxy to Node 'require'
