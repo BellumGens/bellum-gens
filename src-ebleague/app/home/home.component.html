@@ -1,24 +1,29 @@
-<div class="home-page-slide-columns">
+<div class="home-page-slide-columns slide slide1">
+  <div class="content-container-row overlay-background">
+    <h1 class="highlight">Esports Business League</h1>
+    <p>Пригответе се за Сезон 3 на единствената по рода си лига по електронни спортове на работното място! Регистрациите за всички игри ще бъдат отворени скоро!</p>
+    <button igxButton="raised" routerLink="/" fragment="contacts">Последвайте ни в социалните мрежи</button>
+  </div>
+</div>
+
+<!-- <div class="home-page-slide-columns">
   <div class="slide slide1">
     <div class="slide-info-column">
-      <h1><a routerLink="tournament/csgo/">CS:GO League</a></h1>
-      <!-- <iframe src="https://player.twitch.tv/?channel=ebleague_a&parent=eb-league.com" frameborder="0" allowfullscreen="true" scrolling="no" class="twitch-stream"></iframe> -->
-      <p>Регистрациите за Esports Business League Сезон 2 са отворени! Можете да регистрирате своят отбор до {{regDealine}}.</p>
+      <h1><a routerLink="tournament/csgo/">CS:GO League</a></h1><p>Регистрациите за Esports Business League Сезон 2 са отворени! Можете да регистрирате своят отбор до {{regDealine}}.</p>
       <igx-linear-bar [max]="16"
                       [value]="registrations | getRegCount:gameEnum.CSGO"
                       [text]="(registrations | getRegCount:gameEnum.CSGO) + ' / 16 записани'"
                       type="success"></igx-linear-bar>
       <button igxButton="raised"
               [disabled]="true">Регистрациите са затворени</button>
-      <!-- <button igxButton="raised"
+      <button igxButton="raised"
               [disabled]="true"
-              (click)="!authUser ? openLogin('Първо влезте или се регистрирайте...') : registration.selectGame(gameEnum.CSGO)">Регистрирай се за CS:GO</button> -->
+              (click)="!authUser ? openLogin('Първо влезте или се регистрирайте...') : registration.selectGame(gameEnum.CSGO)">Регистрирай се за CS:GO</button>
     </div>
   </div>
   <div class="slide slide2">
     <div class="slide-info-column">
       <h1><a routerLink="tournament/sc2/">StarCraft II League</a></h1>
-      <!-- <iframe src="https://player.twitch.tv/?channel=ebleague_b&parent=eb-league.com" frameborder="0" allowfullscreen="true" scrolling="no" class="twitch-stream"></iframe> -->
       <p>Регистрациите за Esports Business League Сезон 2 са отворени! Можете да направите своята регистрация до {{regDealine}}.</p>
       <igx-linear-bar [max]="32"
                       [value]="registrations | getRegCount:gameEnum.StarCraft2"
@@ -27,12 +32,12 @@
       </igx-linear-bar>
       <button igxButton="raised"
               [disabled]="true">Регистрациите са затворени</button>
-      <!-- <button igxButton="raised"
+      <button igxButton="raised"
               [disabled]="true"
-              (click)="!authUser ? openLogin('Първо влезте или се регистрирайте...') : registration.selectGame(gameEnum.StarCraft2)">Регистрирай се за StarCraft II</button> -->
+              (click)="!authUser ? openLogin('Първо влезте или се регистрирайте...') : registration.selectGame(gameEnum.StarCraft2)">Регистрирай се за StarCraft II</button>
     </div>
   </div>
-</div>
+</div> -->
 
 <div class="content-container">
   <div class="content-container-row">
@@ -55,7 +60,7 @@
     </div>
 
     <h4>Второ място</h4>
-    
+
     <div class="horizontal-center">
       <img class="second-place" src="/assets/partners/ig.webp" alt="3nIGm4 [Infragistics]" title="3nIGm4 [Infragistics]" />
       <div class="winner-wrapper">
@@ -140,7 +145,7 @@
     <p>Финалите на втори сезон на лигата ще бъдат на <span class="highlight">7-8ти Ноември, 2020</span>.</p>
   </div>
 
-  
+
 
   <div class="content-container-row">
     <igx-divider></igx-divider>
@@ -241,17 +246,17 @@
         <igx-icon fontSet="partners" name="omen" title="All matches at the EB-League finals will be played on OMEN desktop machines and OMEN 240hz monitors!" class="partner platinum"></igx-icon>
       </a>
     </div> -->
-    <div class="horizontal-center">
+    <!-- <div class="horizontal-center">
       <a href="https://www.vmware.com/" target="_blank" rel="noopener" title="VMware is a global leader in cloud infrastructure and business mobility. The company helps customers realize possibilities by accelerating their digital transformation journeys. Over the range of 12 years VMware Bulgaria has transformed from a purely R&D facility to a multifunctional hub with product, revenue generating professional services and business operations teams and is now one of the three core strategic sites for VMware globally.">
         <igx-icon fontSet="partners" name="vmware" class="partner gold"></igx-icon>
       </a>
       <a href="https://careers.paysafe.com/sofiaengineeringteams/" target="_blank" rel="noopener" title="С над 1200 служители, Paysafe е сред най-големите софтуерни компании и желани работодатели в България.">
         <igx-icon fontSet="partners" name="paysafe" class="partner gold"></igx-icon>
       </a>
-      <!-- <a href="https://www.modis.com/en-bg/" target="_blank" rel="noopener">
+      <a href="https://www.modis.com/en-bg/" target="_blank" rel="noopener">
         <igx-icon fontSet="partners" name="modis" title="Modis is a global leader in professional solutions for IT, Engineering and Life Sciences. With more than 20 years of experience the company has established office locations in Europe, North America, Asia and Australia." class="partner gold"></igx-icon>
-      </a> -->
-    </div>
+      </a>
+    </div> -->
     <div class="horizontal-center">
       <a href="http://bprogaming.com/" title="BPro e първата професионална клубна организация по електронни спортове в България. През последните 4 години BPro са изградили множество състезатели, отбори и инфраструктура" target="_blank" rel="noopener">
         <img src="/assets/partners/bpro.webp" alt="BPro e първата професионална клубна организация по електронни спортове в България. През последните 4 години BPro са изградили множество състезатели, отбори и инфраструктура" class="partner logistics" />
@@ -341,7 +346,7 @@
       </div>
     </form>
 
-    <div class="contacts">
+    <div class="contacts" id="contacts">
       <a href="mailto:info@eb-league.com" title="Имейл">
         <igx-icon>email</igx-icon>
       </a>
