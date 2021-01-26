@@ -30,6 +30,12 @@ export const StratOrder = [
   { display: 'Top Voted', order: StratOrderBy.TopVoted }
 ];
 
+export class CompetitionDefaults {
+  public static compStart = new Date(2020, 8, 28);
+  public static compFinals = new Date(2020, 10, 14);
+  public static regDeadline = new Date(2020, 8, 14);
+}
+
 export const CREW_MEMBERS = [
   {
     name: 'Никола "niku" Гяуров',

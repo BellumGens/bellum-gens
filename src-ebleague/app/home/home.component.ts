@@ -3,6 +3,7 @@ import { Game, RegistrationsCount, Tournament } from '../../../src-common/models
 import { ApiTournamentsService } from '../../../src-common/services/bellumgens-api.tournaments.service';
 import { LoginService } from '../../../src-common/services/login.service';
 import { ApplicationUser } from '../../../src-common/models/applicationuser';
+import { CompetitionDefaults } from '../../../src-common/models/misc';
 
 @Component({
   templateUrl: './home.component.html',
@@ -15,8 +16,7 @@ export class TournamentHomeComponent {
   public tournament: Tournament;
   public tournamentId: string;
   public authUser: ApplicationUser;
-  public regDealine = '14ти септември 2020';
-  public compStart = '28ми септември 2020';
+  public dates = CompetitionDefaults;
 
   constructor(private apiService: ApiTournamentsService,
               private authManager: LoginService) {
