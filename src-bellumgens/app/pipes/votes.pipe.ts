@@ -6,7 +6,7 @@ import { StrategyVote, VoteDirection } from '../../../src-common/models/csgostra
 })
 export class VotesPipe implements PipeTransform {
 
-  public transform(votes: StrategyVote [], direction = VoteDirection.Up): number {
+  public transform(votes: StrategyVote [], direction = VoteDirection.Up, t?: number): number {
     return votes && votes.filter(v => v.vote === direction).length;
   }
 
