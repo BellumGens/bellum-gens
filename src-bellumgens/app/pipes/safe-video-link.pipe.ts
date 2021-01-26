@@ -7,7 +7,7 @@ import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 export class SafeVideoLinkPipe implements PipeTransform {
   constructor(private sanitizer: DomSanitizer) {}
 
-  transform(url: string): SafeResourceUrl {
+  public transform(url: string): SafeResourceUrl {
     return this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 

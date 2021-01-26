@@ -66,13 +66,13 @@ export class StrategyDetailsComponent extends BaseComponent {
     if (!this.authUser) {
       this.openLogin('You need to login first');
     } else {
-      this.apiService.submitStratVote(strat, direction, this.authUser.id).subscribe(_ => this.pipeTrigger++);
+      this.apiService.submitStratVote(strat, direction, this.authUser.id).subscribe(() => this.pipeTrigger++);
     }
   }
 
   public submitComment() {
     this.newComment._inEdit = false;
-    this.apiService.submitStratComment(this.newComment, this.strat).subscribe(_ => {
+    this.apiService.submitStratComment(this.newComment, this.strat).subscribe(() => {
       this.newComment = { userId: this.authUser.id, stratId: this.strat.id, comment: null };
     });
   }
@@ -84,7 +84,7 @@ export class StrategyDetailsComponent extends BaseComponent {
   }
 
   public deleteComment(comment: StrategyComment) {
-    this.apiService.deleteStratComment(comment, this.strat).subscribe(_ => this.pipeTrigger++);
+    this.apiService.deleteStratComment(comment, this.strat).subscribe(() => this.pipeTrigger++);
   }
 
   public shareOnTwitter(strat: CSGOStrategy) {

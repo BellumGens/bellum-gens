@@ -37,7 +37,7 @@ export class AppComponent implements OnInit {
     this.router.events.pipe(
       filter(x => x instanceof NavigationEnd)
     )
-    .subscribe(_ => this.navdrawer.close());
+    .subscribe(() => this.navdrawer.close());
   }
 
   public acceptCookies() {

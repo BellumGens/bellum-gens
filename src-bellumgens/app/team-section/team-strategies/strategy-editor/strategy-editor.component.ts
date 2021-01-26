@@ -67,7 +67,7 @@ export class StrategyEditorComponent implements OnInit, OnDestroy {
     this.loadSvgs();
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.canvas.nativeElement.width = window.innerHeight - 140;
     this.canvas.nativeElement.height = window.innerHeight - 140;
     this.editor = new StrategyEditor(this.canvas, (window.innerHeight - 140) / 1024);
@@ -98,7 +98,7 @@ export class StrategyEditorComponent implements OnInit, OnDestroy {
     this.intervalId = setInterval(this.saveStrat.bind(this), 300000);
   }
 
-  ngOnDestroy() {
+  public ngOnDestroy() {
     this.saveStrat();
     clearInterval(this.intervalId);
   }
@@ -143,8 +143,8 @@ export class StrategyEditorComponent implements OnInit, OnDestroy {
       this.newStrategy.stratImage = this.canvas.nativeElement.toDataURL('image/png');
       this.newStrategy.editorMetadata = this.editor.save();
       this.apiStrategyService.submitStrategy(this.newStrategy).subscribe(
-        _ => this.saveInProgress = false,
-        _ => this.saveInProgress = false
+        () => this.saveInProgress = false,
+        () => this.saveInProgress = false
       );
       this.changes = false;
     }

@@ -7,7 +7,7 @@ import { CSGOStrategy } from '../../../src-common/models/csgostrategy';
 })
 export class IsStratOwnerPipe implements PipeTransform {
 
-  transform(authUser: ApplicationUser, strat: CSGOStrategy): any {
+  public transform(authUser: ApplicationUser, strat: CSGOStrategy): any {
     if (authUser && strat) {
       return strat.userId === authUser.id;
     }

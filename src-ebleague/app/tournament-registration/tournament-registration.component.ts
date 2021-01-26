@@ -49,7 +49,7 @@ export class TournamentRegistrationComponent {
       this.application = application;
       this.router.navigate(['/registration-success'], { state: application });
     },
-    _ => this.inProgress = false);
+    () => this.inProgress = false);
   }
 
   public selectGame(game: Game) {

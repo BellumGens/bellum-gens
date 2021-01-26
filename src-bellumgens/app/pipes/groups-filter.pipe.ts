@@ -6,7 +6,7 @@ import { SteamGroup } from '../../../src-common/models/steamuser';
 })
 export class GroupsFilterPipe implements PipeTransform {
 
-  transform(groups: SteamGroup [], searchValue?: string): SteamGroup [] {
+  public transform(groups: SteamGroup [], searchValue?: string): SteamGroup [] {
     let filtered = groups;
     if (searchValue) {
       filtered = filtered.filter(g => g.groupName && g.groupName.toLowerCase().includes(searchValue.toLowerCase()));

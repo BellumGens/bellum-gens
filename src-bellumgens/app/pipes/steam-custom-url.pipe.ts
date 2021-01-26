@@ -6,7 +6,7 @@ import { SteamUser } from '../../../src-common/models/steamuser';
 })
 export class SteamCustomUrlPipe implements PipeTransform {
 
-  transform(user: SteamUser): string {
+  public transform(user: SteamUser): string {
     if (user && user.customURL) {
       return `https://steamcommunity.com/id/${user.customURL}`;
     } else if (user && user.steamID64) {

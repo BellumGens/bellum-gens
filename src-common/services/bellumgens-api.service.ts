@@ -1,27 +1,25 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SteamGroup, SteamUser } from '../models/steamuser';
-import { Observable, ReplaySubject, throwError, BehaviorSubject } from 'rxjs';
+import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { CSGOTeam, TeamMember, TeamApplication } from '../models/csgoteam';
 import { CSGOPlayer } from '../models/csgoplayer';
 import { Availability } from '../models/playeravailability';
 import { Role } from '../models/playerrole';
 import { CSGOMapPool } from '../models/csgomaps';
-import { map, shareReplay, catchError } from 'rxjs/operators';
+import { map, catchError } from 'rxjs/operators';
 import { UserNotification } from '../models/usernotifications';
 import { environment } from '../environments/environment';
 import { CommunicationService } from './communication.service';
 import { Tournament } from '../models/tournament';
 
-const CACHE_SIZE = 1;
-
 @Injectable({
   providedIn: 'root'
 })
 export class BellumgensApiService {
-  public loadingTeams = new ReplaySubject<boolean>(CACHE_SIZE);
-  public loadingPlayers = new ReplaySubject<boolean>(CACHE_SIZE);
-  public loadingPlayer = new ReplaySubject<boolean>(CACHE_SIZE);
+  public loadingTeams = new BehaviorSubject<boolean>(false);
+  public loadingPlayers = new BehaviorSubject<boolean>(false);
+  public loadingPlayer = new BehaviorSubject<boolean>(false);
 
   private _apiEndpoint = environment.apiEndpoint;
   private _teamReqInProgress = false;
@@ -40,13 +38,11 @@ export class BellumgensApiService {
   }
 
   public teamApplications(teamId: string): Observable<TeamApplication []> {
-    if (!this._teamApplications[teamId]) {
-      this._teamApplications[teamId] = this.getTeamApplications(teamId).pipe(
-        shareReplay(CACHE_SIZE)
-      );
+    if (!this._teamApplications.has(teamId)) {
+      this._teamApplications.set(teamId, this.getTeamApplications(teamId));
     }
 
-    return this._teamApplications[teamId];
+    return this._teamApplications.get(teamId);
   }
 
   public getTeam(teamId: string) {
@@ -258,7 +254,7 @@ export class BellumgensApiService {
           this._currentPlayer.next(player);
           this.loadingPlayer.next(false);
         },
-        _ => {
+        () => {
           this._currentPlayer.next(null);
           this.loadingPlayer.next(false);
         }

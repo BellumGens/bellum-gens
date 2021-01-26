@@ -6,7 +6,7 @@ import { RegistrationsCount, Game } from '../../../src-common/models/tournament'
 })
 export class GetRegCountPipe implements PipeTransform {
 
-  transform(regisrations: RegistrationsCount [], game: Game): number {
+  public transform(regisrations: RegistrationsCount [], game: Game): number {
     if (regisrations) {
       return regisrations.find(r => r.game === game).count;
     }

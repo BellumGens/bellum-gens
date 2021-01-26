@@ -8,7 +8,7 @@ import { ApplicationUser } from '../../../src-common/models/applicationuser';
 export class HasVotedPipe implements PipeTransform {
   private hasVotedClass = 'user-has-voted';
 
-  transform(votes: StrategyVote [], direction: VoteDirection, authUser: ApplicationUser, t?: number): string {
+  public transform(votes: StrategyVote [], direction: VoteDirection, authUser: ApplicationUser): string {
     if (votes) {
       if (authUser) {
         return votes.find(v => v.vote === direction && v.userId === authUser.id) ? this.hasVotedClass : '';

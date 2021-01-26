@@ -8,7 +8,7 @@ import { StratOrderBy } from '../../../src-common/models/misc';
 })
 export class SideStratsPipe implements PipeTransform {
 
-  transform(strats: CSGOStrategy [], maps: CSGOMapPool [], order: StratOrderBy): CSGOStrategy [] {
+  public transform(strats: CSGOStrategy [], maps: CSGOMapPool [], order: StratOrderBy): CSGOStrategy [] {
     let filtered = strats && maps && strats.filter(s => maps.find(m => m.map === s.map).isPlayed);
     if (filtered && order === StratOrderBy.MostRecent) {
       filtered = filtered.sort((a, b) => a.lastUpdated === b.lastUpdated ? 0 : a.lastUpdated < b.lastUpdated ? 1 : -1);

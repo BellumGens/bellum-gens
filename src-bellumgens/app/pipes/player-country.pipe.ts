@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class PlayerCountryPipe implements PipeTransform {
 
-  transform(country: string): string {
+  public transform(country: string): string {
     if (!country) {
       return null;
     }

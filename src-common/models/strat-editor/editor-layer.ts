@@ -76,7 +76,7 @@ export abstract class BaseLayer {
     }
   }
 
-  public constructor(name: string, displayRatio = 1, meta?: EditorLayer) {
+  constructor(name: string, displayRatio = 1, meta?: EditorLayer) {
     this.name = name;
     this.x = meta ? meta.x : 0;
     this.y = meta ? meta.y : 0;
@@ -108,7 +108,7 @@ export class ImageLayer extends BaseLayer {
   public image: HTMLImageElement;
   public circle = false;
 
-  public constructor(private _context: any, name: string, displayRatio = 1, meta?: EditorLayer) {
+  constructor(private _context: any, name: string, displayRatio = 1, meta?: EditorLayer) {
     super(name, displayRatio, meta);
     this.src = meta ? meta.src : '';
     this.circle = meta ? meta.circle : false;

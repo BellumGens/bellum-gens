@@ -48,7 +48,7 @@ export class StrategyEditor {
     }
     if (this._layers.length > index) {
       const layer = this._layers[index];
-      const sub = layer.drawFinish.subscribe(_ => {
+      const sub = layer.drawFinish.subscribe(() => {
         this.flip(++index);
         sub.unsubscribe();
       });
@@ -130,13 +130,13 @@ export class StrategyEditor {
   }
 
   private _addLayer(layer) {
-    layer.layerUpdate.subscribe(_ => this.flip());
+    layer.layerUpdate.subscribe(() => this.flip());
     layer.layerSelect.subscribe(current => this._selectionChanged(current));
     this._layers.push(layer);
   }
 
   private _insertLayer(layer: BaseLayer, index: number) {
-    layer.layerUpdate.subscribe(_ => this.flip());
+    layer.layerUpdate.subscribe(() => this.flip());
     layer.layerSelect.subscribe(current => this._selectionChanged(current));
     this._layers.splice(index, 0, layer);
   }
@@ -144,7 +144,7 @@ export class StrategyEditor {
   private _replaceLayer(index: number, layer: BaseLayer) {
     this._layers[index].layerUpdate.unsubscribe();
     this._layers[index].layerSelect.unsubscribe();
-    layer.layerUpdate.subscribe(_ => this.flip());
+    layer.layerUpdate.subscribe(() => this.flip());
     layer.layerSelect.subscribe(current => this._selectionChanged(current));
     this._layers.splice(index, 1, layer);
   }

@@ -7,7 +7,7 @@ import { PlaystyleRole, RoleSlot } from '../../../src-common/models/playerrole';
 })
 export class OpenPositionsPipe implements PipeTransform {
 
-  transform(members: TeamMember []): RoleSlot [] {
+  public transform(members: TeamMember []): RoleSlot [] {
     const roleSlots = [
       { roleName: 'IGL', role: PlaystyleRole.IGL, user: null },
       { roleName: 'Awper', role: PlaystyleRole.Awper, user: null },

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, Input, ViewChild, Output, EventEmitter } from '@angular/core';
 import { CSGOStrategy, NEW_EMPTY_STRAT } from '../../../../../src-common/models/csgostrategy';
 import { CSGOTeam } from '../../../../../src-common/models/csgoteam';
 import { IgxDialogComponent } from '@infragistics/igniteui-angular';
@@ -13,7 +13,7 @@ import { ApiStrategiesService } from '../../../../../src-common/services/bellumg
   templateUrl: './new-strategy.component.html',
   styleUrls: ['./new-strategy.component.css']
 })
-export class NewStrategyComponent implements OnInit {
+export class NewStrategyComponent {
   @ViewChild('newStrat', { static: true }) public dialog: IgxDialogComponent;
 
   @Input() public team: CSGOTeam;
@@ -32,9 +32,6 @@ export class NewStrategyComponent implements OnInit {
 
   constructor(private apiService: ApiStrategiesService,
               private router: Router) {
-  }
-
-  ngOnInit() {
   }
 
   public open(strat?: CSGOStrategy, title?: string) {

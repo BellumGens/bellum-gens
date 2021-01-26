@@ -41,7 +41,7 @@ export class TeamNewComponent {
           this.router.navigate(['/team', team.customUrl]);
         }
       },
-      _ => this.inProgress = false
+      () => this.inProgress = false
     );
   }
 
@@ -55,7 +55,7 @@ export class TeamNewComponent {
           this.router.navigate(['/team', team.customUrl]);
         }
       },
-      _ => this.inProgress = false
+      () => this.inProgress = false
     );
   }
 
