@@ -25,8 +25,8 @@
     "build:client-and-server-bundles": "npm run build && ng run bellum-gens:server:production && ng run eb-league:server:production",
     "build:prerender": "npm run build:ssr && node dist/prerender",
     "i18n": "npm run i18n:bellumgens && npm run i18n:ebleague",
-    "i18n:bellumgens": "ng extract-i18n bellum-gens --outFile src-bellumgens/locale/bellumgens-resources.en.xlf",
-    "i18n:ebleague": "ng extract-i18n eb-league --outFile src-ebleague/locale/ebleague-resources.bg.xlf"
+    "i18n:bellumgens": "ng extract-i18n bellum-gens --out-file src-bellumgens/locale/bellumgens-resources.en.xlf",
+    "i18n:ebleague": "ng extract-i18n eb-league --out-file src-ebleague/locale/ebleague-resources.bg.xlf"
   },
   "private": true,
   "dependencies": {

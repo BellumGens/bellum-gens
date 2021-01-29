@@ -1,8 +1,6 @@
-:root {
-  --app-secondary-color: #FF0A3A;
-}
-
 $app-palette: igx-palette($primary, $secondary);
+
+@include igx-palette-vars($app-palette);
 
 html, body {
   height: 100%;
