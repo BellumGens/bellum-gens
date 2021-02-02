@@ -35,6 +35,11 @@ export class TournamentHomeComponent {
     this.authManager.emitOpenLogin(title);
   }
 
+  public showContacts() {
+    const element = document.getElementById('contacts');
+    element.scrollIntoView({ behavior: 'smooth' });
+  }
+
   public subscribe() {
     if (this.userEmail) {
       this.apiService.addSubscriber(this.userEmail).subscribe();

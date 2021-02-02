@@ -17,31 +17,32 @@
         </span> -->
         <span igxDrawerItem igxRipple routerLink="tournament">
           <igx-icon>emoji_events</igx-icon>
-          Турнири
+          <span i18n>Турнири</span>
         </span>
         <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="shop">
           <igx-icon>shopping_cart</igx-icon>
-          Магазин
+          <span i18n>Магазин</span>
         </span>
         <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournament/format">
           <igx-icon>playlist_add_check</igx-icon>
-          Формат на лигата
+          <span i18n>Формат на лигата</span>
         </span>
         <span igxDrawerItem igxRipple routerLink="/" fragment="partners">
           <igx-icon>people_alt</igx-icon>
-          Нашите партньори
+          <span i18n>Нашите партньори</span>
         </span>
         <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournament/crew">
           <igx-icon>people</igx-icon>
-          Нашият екип
+          <span i18n>Нашият екип</span>
         </span>
         <span igxDrawerItem igxRipple routerLink="/" fragment="aboutus">
           <igx-icon>chat</igx-icon>
-          Контакти
+          <span i18n>Контакти</span>
         </span>
         <a igxDrawerItem igxRipple [href]="environment.bellumgens" target="_blank" rel="noopener">
           <igx-avatar [src]="'/assets/bg-avatar.webp'"
                 [roundShape]="true"
+                i18n-title
                 title="Управление на отбори и стратегии">
           </igx-avatar>
           Bellum Gens
@@ -70,25 +71,25 @@
                 [roundShape]="true">
           </igx-avatar>
         </span> -->
-        <span igxDrawerItem igxRipple routerLink="tournament" title="Турнири">
+        <span igxDrawerItem igxRipple routerLink="tournament" i18n-title title="Турнири">
           <igx-icon>emoji_events</igx-icon>
         </span>
-        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="shop" title="Магазин">
+        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="shop" i18n-title title="Магазин">
           <igx-icon>shopping_cart</igx-icon>
         </span>
-        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournament/format" title="Формат на лигата">
+        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournament/format" i18n-title title="Формат на лигата">
           <igx-icon >playlist_add_check</igx-icon>
         </span>
-        <span igxDrawerItem igxRipple routerLink="/" fragment="partners" title="Нашите партньори">
+        <span igxDrawerItem igxRipple routerLink="/" fragment="partners" i18n-title title="Нашите партньори">
           <igx-icon>people_alt</igx-icon>
         </span>
-        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournament/crew" title="Нашият екип">
+        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournament/crew" i18n-title title="Нашият екип">
           <igx-icon>people</igx-icon>
         </span>
-        <span igxDrawerItem igxRipple routerLink="/" fragment="aboutus" title="Контакти">
+        <span igxDrawerItem igxRipple routerLink="/" fragment="aboutus" i18n-title title="Контакти">
           <igx-icon>chat</igx-icon>
         </span>
-        <a igxDrawerItem igxRipple [href]="environment.bellumgens" target="_blank" rel="noopener" title="Bellum Gens: Управление на отбори и стратегии">
+        <a igxDrawerItem igxRipple [href]="environment.bellumgens" target="_blank" rel="noopener" i18n-title title="Bellum Gens: Управление на отбори и стратегии">
           <igx-avatar [src]="'/assets/bg-avatar.webp'"
                 [roundShape]="true">
           </igx-avatar>
@@ -109,10 +110,10 @@
 
     <igx-banner #cookiesBanner>
       <igx-icon>settings</igx-icon>
-      This site uses cookies.
+      <span i18n>Тази страница използва "бисквитки"</span>
       <igx-banner-actions>
-        <a href="https://www.cookiesandyou.com/" target="_blank" rel="noopener">Cookies and You</a>
-        <button igxButton igxRipple (click)="acceptCookies()">I Understand</button>
+        <a href="https://www.cookiesandyou.com/" target="_blank" rel="noopener" i18n>Научете повече</a>
+        <button igxButton igxRipple (click)="acceptCookies()" i18n>Приемам</button>
       </igx-banner-actions>
     </igx-banner>
 
@@ -129,22 +130,22 @@
             <a href="mailto:info@eb-league.com" title="Email us">
               <igx-icon>email</igx-icon>
             </a>
-            <a href="https://www.facebook.com/esportsbleague/" title="Follow us on Facebook" target="_blank" rel="noopener">
+            <a href="https://www.facebook.com/esportsbleague/" i18n-title title="Харесайте страницата ни във Facebook" target="_blank" rel="noopener">
               <igx-icon fontSet="login-icons" name="facebook"></igx-icon>
             </a>
-            <a href="https://twitter.com/EsportBLeague" title="Follow us on Twitter" target="_blank" rel="noopener">
+            <a href="https://twitter.com/EsportBLeague" i18n-title title="Последвайте ни в Twitter" target="_blank" rel="noopener">
               <igx-icon fontSet="login-icons" name="twitter"></igx-icon>
             </a>
-            <a href="https://www.instagram.com/esportsbleague/" title="Follow us on Instagram" target="_blank" rel="noopener">
+            <a href="https://www.instagram.com/esportsbleague/" i18n-title title="Последвайте ни в Instagram" target="_blank" rel="noopener">
               <igx-icon fontSet="login-icons" name="instagram"></igx-icon>
             </a>
-            <a href="https://www.linkedin.com/company/bellum-gens/" title="Follow us on Linked-in" target="_blank" rel="noopener">
+            <a href="https://www.linkedin.com/company/bellum-gens/" i18n-title title="Последвайте ни в Linked-in" target="_blank" rel="noopener">
               <igx-icon fontSet="login-icons" name="linkedin"></igx-icon>
             </a>
-            <a href="https://www.youtube.com/c/EsportsBusinessLeague" title="Subscript to our Youtube channel" target="_blank" rel="noopener">
+            <a href="https://www.youtube.com/c/EsportsBusinessLeague" i18n-title title="Последвайте Youtube каналът ни" target="_blank" rel="noopener">
               <igx-icon fontSet="login-icons" name="youtube"></igx-icon>
             </a>
-            <a href="https://discord.gg/bnTcpa9" title="Join our Discord server" target="_blank" rel="noopener">
+            <a href="https://discord.gg/bnTcpa9" i18n-title title="Присъединете се към нашият Discord сървър" target="_blank" rel="noopener">
               <igx-icon fontSet="login-icons" name="discord"></igx-icon>
             </a>
           </div>
