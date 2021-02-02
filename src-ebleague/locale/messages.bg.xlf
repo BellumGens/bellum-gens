@@ -201,11 +201,15 @@
           <context context-type="linenumber">48</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="9aa926c07added62fd980befc2255cca8444230f" datatype="html">
-        <source>Шампиони</source>
+      <trans-unit id="30a31e889fdc839b66ab26780258c42a15095a06" datatype="html">
+        <source>Шампион</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
           <context context-type="linenumber">53</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">94</context>
         </context-group>
       </trans-unit>
       <trans-unit id="62128aadacbd3a2ed69ee824d335b65cf99b290d" datatype="html">
@@ -230,13 +234,6 @@
           <context context-type="linenumber">112</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="30a31e889fdc839b66ab26780258c42a15095a06" datatype="html">
-        <source>Шампион</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
-          <context context-type="linenumber">94</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="28951732df57a1367fa615b70721ae6603e7d8b5" datatype="html">
         <source>Какво е Esports Business League?</source>
         <context-group purpose="location">
@@ -244,8 +241,8 @@
           <context context-type="linenumber">133</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="c28356fa35f6abd8a2bf5c1e28b1c90f9245a3de" datatype="html">
-        <source>Esports Business League е събитие с благотворителен характер, което предоставя арена за аматьорско състезание между отбори сформирани на работното място. Третият сезон на лигата ще се проведе в рамките на 4-8 седмици. Срещите се провеждат след работно време от понеделник до четвъртък включително. Лигата ще приключи с финали до които ще достигнат отборите и играчите с най-много събрани точки през сезона. Финалите на лигата ще се проведат в рамките на един уикенд. Всички срещи от лигата ще бъдат излъчвани и коментирани на живо през нашите канали.</source>
+      <trans-unit id="008309c66843cd5ca8edce20a617695a12f791ef" datatype="html">
+        <source>Esports Business League е събитие с благотворителен характер, което предоставя арена за аматьорско състезание между отбори сформирани на работното място. Всеки сезон на лигата се провежда в рамките на 4-8 седмици. Срещите се провеждат след работно време от понеделник до четвъртък включително. Лигата кулминира с финали, до които достигат отборите и играчите с най-много събрани точки през сезона. Финалите на лигата се провеждат в рамките на един уикенд. Всички срещи от лигата биват излъчвани и коментирани на живо през нашите канали.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
           <context context-type="linenumber">141</context>
