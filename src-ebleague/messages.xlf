@@ -315,11 +315,72 @@
           <context context-type="linenumber">214</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7ac1f12c78bc1fe3f4128c3ab34a3b981a2f7e18" datatype="html">
-        <source><x id="START_LIST_ITEM" ctype="x-li" equiv-text="&lt;li&gt;"/>3-7 седмици - формат лига<x id="CLOSE_LIST_ITEM" ctype="x-li" equiv-text="&lt;/li&gt;"/><x id="START_LIST_ITEM" ctype="x-li" equiv-text="&lt;li&gt;"/>2 групи по 8 отбора<x id="CLOSE_LIST_ITEM" ctype="x-li" equiv-text="&lt;/li&gt;"/><x id="START_LIST_ITEM" ctype="x-li" equiv-text="&lt;li&gt;"/>1 среща седмично за всеки отбор<x id="CLOSE_LIST_ITEM" ctype="x-li" equiv-text="&lt;/li&gt;"/><x id="START_LIST_ITEM" ctype="x-li" equiv-text="&lt;li&gt;"/>Всяка среща е best-of-one с overtime<x id="CLOSE_LIST_ITEM" ctype="x-li" equiv-text="&lt;/li&gt;"/><x id="START_LIST_ITEM" ctype="x-li" equiv-text="&lt;li&gt;"/>Всеки срещу всеки, до изчерпване на противниците<x id="CLOSE_LIST_ITEM" ctype="x-li" equiv-text="&lt;/li&gt;"/><x id="START_LIST_ITEM" ctype="x-li" equiv-text="&lt;li&gt;"/>Всеки отбор събира точки седмично<x id="CLOSE_LIST_ITEM" ctype="x-li" equiv-text="&lt;/li&gt;"/><x id="START_LIST_ITEM" ctype="x-li" equiv-text="&lt;li&gt;"/>Финал уикенд между 8те отбора събрали най-много точки в групите<x id="CLOSE_LIST_ITEM" ctype="x-li" equiv-text="&lt;/li&gt;"/><x id="START_LIST_ITEM" ctype="x-li" equiv-text="&lt;li&gt;"/>Пълна информация за формата ще намерите <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/format&quot;&gt;"/>тук<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/><x id="CLOSE_LIST_ITEM" ctype="x-li" equiv-text="&lt;/li&gt;"/></source>
+      <trans-unit id="dd0bc6c3c23b4975ee3b8f1b94cc5f4f5b66d869" datatype="html">
+        <source>3-7 седмици - формат лига</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
-          <context context-type="linenumber">183,190</context>
+          <context context-type="linenumber">183</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">197</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="921c64a285fa57f6578b060ab61e1a1484eb4d1d" datatype="html">
+        <source>2 групи по 8 отбора</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">184</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c7e68b06dd908a8e679e1dfc742c22114dbe1da2" datatype="html">
+        <source>1 среща седмично за всеки отбор</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">185</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="df1e38593e9daa2dd069836047ac5a8f4250aba0" datatype="html">
+        <source>Всяка среща е best-of-one с overtime</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">186</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fc20732138594e9b3666bebe4773061863f6b3cc" datatype="html">
+        <source>Всеки срещу всеки, до изчерпване на противниците</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">187</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">201</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dc420102409c34ccd034750013fb505f999d52b9" datatype="html">
+        <source>Всеки отбор събира точки седмично</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">188</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e488c978fab840b7a4c518a0f3bcba32a128bdda" datatype="html">
+        <source>Финал уикенд между 8те отбора събрали най-много точки в групите</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">189</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b2f6e6a5276675bd31c77fcaeabd8315443e7b3e" datatype="html">
+        <source>Пълна информация за формата ще намерите <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/format&quot;&gt;"/>тук<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">190</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">204</context>
         </context-group>
       </trans-unit>
       <trans-unit id="d2a48fd348c9c1d46db98b1c383b45dabcb68ebe" datatype="html">
@@ -333,11 +394,39 @@
           <context context-type="linenumber">221</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="765ef27073e022e15823af352555d921dae5bd0a" datatype="html">
-        <source><x id="START_LIST_ITEM" ctype="x-li" equiv-text="&lt;li&gt;"/>3-7 седмици - формат лига<x id="CLOSE_LIST_ITEM" ctype="x-li" equiv-text="&lt;/li&gt;"/><x id="START_LIST_ITEM" ctype="x-li" equiv-text="&lt;li&gt;"/>4 групи с по до 8 играча<x id="CLOSE_LIST_ITEM" ctype="x-li" equiv-text="&lt;/li&gt;"/><x id="START_LIST_ITEM" ctype="x-li" equiv-text="&lt;li&gt;"/>1-2 срещи седмично за всеки играч<x id="CLOSE_LIST_ITEM" ctype="x-li" equiv-text="&lt;/li&gt;"/><x id="START_LIST_ITEM" ctype="x-li" equiv-text="&lt;li&gt;"/>Всяка среща е best-of-three<x id="CLOSE_LIST_ITEM" ctype="x-li" equiv-text="&lt;/li&gt;"/><x id="START_LIST_ITEM" ctype="x-li" equiv-text="&lt;li&gt;"/>Всеки срещу всеки, до изчерпване на противниците<x id="CLOSE_LIST_ITEM" ctype="x-li" equiv-text="&lt;/li&gt;"/><x id="START_LIST_ITEM" ctype="x-li" equiv-text="&lt;li&gt;"/>Всеки играч събира точки седмично<x id="CLOSE_LIST_ITEM" ctype="x-li" equiv-text="&lt;/li&gt;"/><x id="START_LIST_ITEM" ctype="x-li" equiv-text="&lt;li&gt;"/>Финал уикенд между 8те играча събрали най-много точки в групите<x id="CLOSE_LIST_ITEM" ctype="x-li" equiv-text="&lt;/li&gt;"/><x id="START_LIST_ITEM" ctype="x-li" equiv-text="&lt;li&gt;"/>Пълна информация за формата ще намерите <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/format&quot;&gt;"/>тук<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/><x id="CLOSE_LIST_ITEM" ctype="x-li" equiv-text="&lt;/li&gt;"/></source>
+      <trans-unit id="fa6e7ea9f3607e3c8f48665ebe8491f74744a582" datatype="html">
+        <source>4 групи с по до 8 играча</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
-          <context context-type="linenumber">197,204</context>
+          <context context-type="linenumber">198</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4bc8777c939d644e6516b964fe19a02240505ad4" datatype="html">
+        <source>1-2 срещи седмично за всеки играч</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">199</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1f25e2a3d17fad9b2c491df49cbb301acfbf93ce" datatype="html">
+        <source>Всяка среща е best-of-three</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">200</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b551d437afce229f172033520db2df64ec65ea42" datatype="html">
+        <source>Всеки играч събира точки седмично</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">202</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0837ff7b01d61a0d3a37b3adbd5c1930f3da0f74" datatype="html">
+        <source>Финал уикенд между 8те играча събрали най-много точки в групите</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">203</context>
         </context-group>
       </trans-unit>
       <trans-unit id="90c10d4bdce3feb00fde7c1b316e69df211e6451" datatype="html">
@@ -437,6 +526,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
           <context context-type="linenumber">329</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">345</context>
         </context-group>
       </trans-unit>
       <trans-unit id="221ce1dc732f0cb715b9b58ce81af515095ade65" datatype="html">
@@ -572,11 +665,32 @@
           <context context-type="linenumber">69</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="89a038d198aa0d6657388a22d99b4cb5c40336a8" datatype="html">
-        <source><x id="START_LIST_ITEM" ctype="x-li" equiv-text="&lt;li&gt;"/>3 точки при победа в редовната игра<x id="CLOSE_LIST_ITEM" ctype="x-li" equiv-text="&lt;/li&gt;"/><x id="START_LIST_ITEM" ctype="x-li" equiv-text="&lt;li&gt;"/>2 точки при победа в продължение<x id="CLOSE_LIST_ITEM" ctype="x-li" equiv-text="&lt;/li&gt;"/><x id="START_LIST_ITEM" ctype="x-li" equiv-text="&lt;li&gt;"/>1 точка при загуба в продължение<x id="CLOSE_LIST_ITEM" ctype="x-li" equiv-text="&lt;/li&gt;"/><x id="START_LIST_ITEM" ctype="x-li" equiv-text="&lt;li&gt;"/>0 точки при загуба в редовната игра<x id="CLOSE_LIST_ITEM" ctype="x-li" equiv-text="&lt;/li&gt;"/></source>
+      <trans-unit id="27a6f37b31573b405739179f1af85ff9df99d2b1" datatype="html">
+        <source>3 точки при победа в редовната игра</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
-          <context context-type="linenumber">71,74</context>
+          <context context-type="linenumber">71</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f36ab10ad8ff80e8125a23611d6a679aeb2ce457" datatype="html">
+        <source>2 точки при победа в продължение</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
+          <context context-type="linenumber">72</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d33b6a19869a43b97531364751cb190fc233e596" datatype="html">
+        <source>1 точка при загуба в продължение</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
+          <context context-type="linenumber">73</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9f16996e155d56227ecf9721bb6d1d80c4664ac8" datatype="html">
+        <source>0 точки при загуба в редовната игра</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
+          <context context-type="linenumber">74</context>
         </context-group>
       </trans-unit>
       <trans-unit id="537ab2a19bda9cc0a2f7910ab49da405f1947c92" datatype="html">
@@ -586,11 +700,32 @@
           <context context-type="linenumber">79</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="c71e8cb5a858dcc1ccf0353f1c2337bba25ea528" datatype="html">
-        <source><x id="START_LIST_ITEM" ctype="x-li" equiv-text="&lt;li&gt;"/>3 точки при победа с 2:0<x id="CLOSE_LIST_ITEM" ctype="x-li" equiv-text="&lt;/li&gt;"/><x id="START_LIST_ITEM" ctype="x-li" equiv-text="&lt;li&gt;"/>2 точки при победа с 2:1<x id="CLOSE_LIST_ITEM" ctype="x-li" equiv-text="&lt;/li&gt;"/><x id="START_LIST_ITEM" ctype="x-li" equiv-text="&lt;li&gt;"/>1 точка при загуба с 1:2<x id="CLOSE_LIST_ITEM" ctype="x-li" equiv-text="&lt;/li&gt;"/><x id="START_LIST_ITEM" ctype="x-li" equiv-text="&lt;li&gt;"/>0 точки при загуба с 0:2<x id="CLOSE_LIST_ITEM" ctype="x-li" equiv-text="&lt;/li&gt;"/></source>
+      <trans-unit id="02fe4577db7079bc95616f989e29a3744d62af5e" datatype="html">
+        <source>3 точки при победа с 2:0</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
-          <context context-type="linenumber">81,84</context>
+          <context context-type="linenumber">81</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e821ece04d0d5bf20febd5ce4d720a8f72a50b95" datatype="html">
+        <source>2 точки при победа с 2:1</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
+          <context context-type="linenumber">82</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="08d102350beb5e4c27621b22be4423c2162bfdd9" datatype="html">
+        <source>1 точка при загуба с 1:2</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
+          <context context-type="linenumber">83</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="09aaf42e379972c564f64f9b678281f46fec66a3" datatype="html">
+        <source>0 точки при загуба с 0:2</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
+          <context context-type="linenumber">84</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1623b4c68192d992bd78deac9c25687dbbbfb25f" datatype="html">
