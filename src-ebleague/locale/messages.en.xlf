@@ -331,6 +331,7 @@
       </trans-unit>
       <trans-unit id="3e75286f6cbbd9e816dc85c4c5bb77a9cf0a31a5" datatype="html">
         <source>Формат на Лигата</source>
+        <source>League format</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
           <context context-type="linenumber">177</context>

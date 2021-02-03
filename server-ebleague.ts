@@ -14,14 +14,15 @@ import { join } from 'path';
 import { AppServerModule } from './src-ebleague/main.server';
 import { existsSync } from 'fs';
 import { environment } from './src-common/environments/environment';
+import { LOCALE_ID } from '@angular/core';
 
 // HTML polyfills
 (global as any).XMLHttpRequest = xmlhttprequest.XMLHttpRequest;
 
 // The Express app is exported so that it can be used by serverless Functions.
-export const app = () => {
+export const app = (lang: string) => {
   const server = express();
-  const distFolder = join(process.cwd(), environment.distFolderEbleague);
+  const distFolder = join(process.cwd(), environment.distFolderEbleague, `${lang}`);
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
 
   const compression = require('compression');
@@ -29,7 +30,7 @@ export const app = () => {
 
   // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
   server.engine('html', ngExpressEngine({
-    bootstrap: AppServerModule,
+    bootstrap: AppServerModule
   }));
 
   server.set('view engine', 'html');
@@ -44,11 +45,11 @@ export const app = () => {
 
   // All regular routes use the Universal engine
   server.get('*', (req, res) => {
-    res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
+    res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }, { provide: LOCALE_ID, useValue: lang }] });
   });
 
   // All bellumgens routes should redirect
-  server.get('/players/*', (req, res) => {
+  server.get('**/players/*', (req, res) => {
     res.redirect(environment.bellumgens + req.originalUrl);
   });
 
@@ -59,7 +60,12 @@ const run = () => {
   const port = process.env.PORT || 4001;
 
   // Start up the Node server
-  const server = app();
+  const appBg = app('bg');
+  const appEn = app('en');
+  const server = express();
+  server.use('/bg', appBg);
+  server.use('/en', appEn);
+  server.use('', appEn);
   server.listen(port, () => {
     console.log(`Node Express server listening on http://localhost:${port}`);
   });

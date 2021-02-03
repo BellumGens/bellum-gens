@@ -196,7 +196,6 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "aot": true,
-            "localize": true,
             "outputPath": "dist/ebleague/browser",
             "index": "src-ebleague/index.html",
             "main": "src-ebleague/main.ts",
@@ -230,6 +229,7 @@
                   "with": "src-common/environments/environment.prod.ts"
                 }
               ],
+              "localize": true,
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
