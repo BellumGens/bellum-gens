@@ -238,6 +238,7 @@
               "vendorChunk": false,
               "buildOptimizer": true,
               "serviceWorker": true,
+              "i18nMissingTranslation": "error",
               "ngswConfigPath": "src-ebleague/ngsw-config.json"
             }
           }
