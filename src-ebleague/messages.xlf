@@ -499,9 +499,6 @@
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
           <context context-type="linenumber">259</context>
         </context-group>
-      </trans-unit>
-      <trans-unit id="a9c13ee19a22a9331083d3f9ba8137059a1e9dfb" datatype="html">
-        <source>Те организират първата по рода си лига по StarCraft II в България и допринасят за развитието на талантите ни в този #esport! Всички StarCraft 2 игри от Esports Business League ще бъдат коментирани от тях!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
           <context context-type="linenumber">260</context>
@@ -537,6 +534,13 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
           <context context-type="linenumber">337</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="40ec9644832d5f46e3089c435f3637d7caab9e13" datatype="html">
+        <source>Получихме вашата поръчка! Очаквайте обаждане от нас за потвърждение!</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/shop/order-success/order-success.component.html</context>
+          <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
       <trans-unit id="c1675c7bbfe4438b4172410a844819ef239722dc" datatype="html">
