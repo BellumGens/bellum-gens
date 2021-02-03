@@ -276,6 +276,7 @@
       </trans-unit>
       <trans-unit id="685b6880b088725c89bee8b572cfdc10ac9bf1f3" datatype="html">
         <source>Кога?</source>
+        <target>When?</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
           <context context-type="linenumber">142</context>
@@ -283,6 +284,7 @@
       </trans-unit>
       <trans-unit id="ae005d96b6fd880f3897a04a14ce17061c45a5df" datatype="html">
         <source>Регистрации се приемат до краен срок за регистрация, или до изчерпване на местата.</source>
+        <target>Registrations are open until reaching the deadline, or until all the available spots have been filled.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
           <context context-type="linenumber">143</context>
@@ -290,6 +292,7 @@
       </trans-unit>
       <trans-unit id="2a55ea031b1257703a74b763da2836afcbba98e1" datatype="html">
         <source>Провеждането на трети сезон на лигата ще започне на <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ dates.compStart }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>.</source>
+        <target>Season 3 of the Esports Business League will begin on <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ dates.compStart }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
           <context context-type="linenumber">144</context>
@@ -297,6 +300,7 @@
       </trans-unit>
       <trans-unit id="77e09fade7745451a2c75853bd943558e866aedd" datatype="html">
         <source>Финалите на трети сезон на лигата ще бъдат на <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ dates.compStart }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>.</source>
+        <target>Esports Business League Season 3 finals will be held <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ dates.compStart }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
           <context context-type="linenumber">145</context>
@@ -304,6 +308,7 @@
       </trans-unit>
       <trans-unit id="ed80f223b22402bdfe39b52023e91820d4afc686" datatype="html">
         <source>Условия за записване</source>
+        <target>Terms and conditions</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
           <context context-type="linenumber">152</context>
@@ -311,6 +316,7 @@
       </trans-unit>
       <trans-unit id="65ce74b791178923f67960e3feea9ceb8c2b12bc" datatype="html">
         <source>Условията за участие са, че всички членове на отбора трябва да бъдат <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>текущи служители на работното място към което е асоцииран отбора и не трябва да имат ангажименти като играчи в професионални Esports организации, или да са участвали като играчи в професионални срещи в рамките на последните 24 месеца<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>. Отборът може да има резерви, които трябва да отговарят на същото условие, но могат да бъдат добавяни и след регистрацията. Индивидуалните състезатели (StarCraft II) трябва да бъдат <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>текущи служители на работното място, с което се асоциират в регистрацията<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>. При записване ще се изисква да се предостави информация за това коя е компанията която отбора/индивидуалния състезател представлява.</source>
+        <target>All team members must be <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>current employees of the company associated with the team registration, should not have any active engagement or affiliation with a professional esports organization, and haven't participated in professional esports matches as players in the past 24 months from the date of registration<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>. The team is allowed to have standins/substitute players and they have to comply with the same conditions as the main players on the team. Substitutes can be added to the team post registration, as long as they comply with the aformentioned conditions. Individual players (StarCraft II) must be <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>current employees of the company associated with their registration<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>. The company represented by the team/individual must be provided at the time of registration.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
           <context context-type="linenumber">156</context>

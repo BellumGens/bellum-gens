@@ -185,11 +185,18 @@
       "projectType": "application",
       "prefix": "app",
       "schematics": {},
+      "i18n": {
+        "sourceLocale": "bg",
+        "locales": {
+          "en": "src-ebleague/locale/messages.en.xlf"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "aot": true,
+            "localize": true,
             "outputPath": "dist/ebleague/browser",
             "index": "src-ebleague/index.html",
             "main": "src-ebleague/main.ts",

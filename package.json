@@ -8,7 +8,7 @@
     "start": "concurrently --kill-others \"npm run start-bellumgens\" \"npm run start-ebleague\"",
     "start-bellumgens": "ng serve -o",
     "start-ebleague": "ng serve eb-league --port=4201 -o",
-    "build": "ng build --prod && ng build eb-league --prod",
+    "build": "ng build bellum-gens --prod && ng build eb-league --prod",
     "build:app-shell": "ng run bellum-gens:app-shell:production",
     "test": "ng test",
     "test:prod": "ng test -- --no-watch --no-progress --browsers=ChromeHeadlessCI",
