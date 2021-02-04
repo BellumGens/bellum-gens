@@ -75,7 +75,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
-          <context context-type="linenumber">325</context>
+          <context context-type="linenumber">323</context>
         </context-group>
       </trans-unit>
       <trans-unit id="c6cda225ef8f5be2d068bb890e206e42273ada92" datatype="html">
@@ -127,7 +127,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
-          <context context-type="linenumber">348</context>
+          <context context-type="linenumber">346</context>
         </context-group>
       </trans-unit>
       <trans-unit id="77ed70d1e50145a06f2cdc2626790e4e819cd341" datatype="html">
@@ -139,7 +139,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
-          <context context-type="linenumber">351</context>
+          <context context-type="linenumber">349</context>
         </context-group>
       </trans-unit>
       <trans-unit id="d97a092c21c9c534a52440e536f5326ff18f832e" datatype="html">
@@ -151,7 +151,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
-          <context context-type="linenumber">354</context>
+          <context context-type="linenumber">352</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2c73b5db9b71f7edeb79b7a94c6b3ee600265959" datatype="html">
@@ -163,7 +163,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
-          <context context-type="linenumber">357</context>
+          <context context-type="linenumber">355</context>
         </context-group>
       </trans-unit>
       <trans-unit id="775056e94760f35808b19291d04a806bb48319a2" datatype="html">
@@ -175,7 +175,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
-          <context context-type="linenumber">360</context>
+          <context context-type="linenumber">358</context>
         </context-group>
       </trans-unit>
       <trans-unit id="c702066bb19d70c0a3397d74079dd87996de057e" datatype="html">
@@ -378,8 +378,8 @@
           <context context-type="linenumber">185</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2e19f28291390e2e453c5e57a936b6de01510d7b" datatype="html">
-        <source>Всяка среща е с формат best-of-one (BO1) с overtime или best-of-tree (BO3)</source>
+      <trans-unit id="b22cc1cd6a6f2b4bac81c460dae1416bd4d75e7e" datatype="html">
+        <source>Всяка среща е с формат best-of-one (BO1) с добавено време или best-of-tree (BO3)</source>
         <target>Matches are in best-of-one (BO1) with overtime or best-of-tree (BO3) format</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
@@ -440,6 +440,7 @@
       </trans-unit>
       <trans-unit id="fa6e7ea9f3607e3c8f48665ebe8491f74744a582" datatype="html">
         <source>4 групи с по до 8 играча</source>
+        <target>4 groups up to 8 players each</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
           <context context-type="linenumber">198</context>
@@ -447,6 +448,7 @@
       </trans-unit>
       <trans-unit id="4bc8777c939d644e6516b964fe19a02240505ad4" datatype="html">
         <source>1-2 срещи седмично за всеки играч</source>
+        <target>1-2 matches per player per week</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
           <context context-type="linenumber">199</context>
@@ -454,6 +456,7 @@
       </trans-unit>
       <trans-unit id="330a6e53d8d4e0ba41f4c44cf862580bc8dfcfa6" datatype="html">
         <source>Всяка среща е с формат best-of-three (BO3)</source>
+        <target>Matches are in best-of-tree (BO3) format</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
           <context context-type="linenumber">200</context>
@@ -461,6 +464,7 @@
       </trans-unit>
       <trans-unit id="b551d437afce229f172033520db2df64ec65ea42" datatype="html">
         <source>Всеки играч събира точки седмично</source>
+        <target>Each player earns points weekly</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
           <context context-type="linenumber">202</context>
@@ -468,6 +472,7 @@
       </trans-unit>
       <trans-unit id="878a03a2a4070a7ed9c41553e43f2ef0b918aa34" datatype="html">
         <source>Финален уикенд с 8те играча събрали най-много точки в групите</source>
+        <target>Finals weekend with the 8 best players from the group stage</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
           <context context-type="linenumber">203</context>
@@ -475,6 +480,7 @@
       </trans-unit>
       <trans-unit id="90c10d4bdce3feb00fde7c1b316e69df211e6451" datatype="html">
         <source>Награди</source>
+        <target>Prizes</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
           <context context-type="linenumber">210</context>
@@ -482,6 +488,7 @@
       </trans-unit>
       <trans-unit id="f33bc7b5c55dd4c08ae036e16f86cd882689df9e" datatype="html">
         <source>Наградният фонд се формира от събраните такси за участие.</source>
+        <target>The prize pool is funded by the registration fees.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
           <context context-type="linenumber">215</context>
@@ -493,6 +500,7 @@
       </trans-unit>
       <trans-unit id="5a2471be4b2308d9df2218ca626c413d7d5f5c5d" datatype="html">
         <source>Отборът победител в CS:GO лигата ще насочи 75% от наградният фонд към своята благотворителна кауза.</source>
+        <target>The winning team in the CS:GO league will appropriate 75% of the prize pool towards their choice of a charitable cause.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
           <context context-type="linenumber">216</context>
@@ -500,6 +508,7 @@
       </trans-unit>
       <trans-unit id="7a314b047656e9fc5d88c30bbf3c9ac734ef5382" datatype="html">
         <source>Отборът, класирал се втори, ще насочи 25% от наградният фонд към своята благотворителна кауза.</source>
+        <target>The team that came second in the CS:GO league will appropriate 25% of the prize pool towards their choice of a charitable cause.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
           <context context-type="linenumber">217</context>
@@ -507,6 +516,7 @@
       </trans-unit>
       <trans-unit id="b9ba3a34c8a2470da285518ef17a960c61281066" datatype="html">
         <source>Победителят в StarCraft II лигата ще насочи 75% от наградният фонд към своята благотворителна кауза.</source>
+        <target>The winner in the StarCraft II league will appropriate 75% of the prize pool towards their choice of a charitable cause.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
           <context context-type="linenumber">223</context>
@@ -514,6 +524,7 @@
       </trans-unit>
       <trans-unit id="a5db882b1aca496543d833ce883be323ca76a217" datatype="html">
         <source>Състезателят, класирал се втори, ще насочи 25% от наградният фонд към своята благотворителна кауза.</source>
+        <target>The player that came second in the StarCraft II league will appropriate 25% of the prize pool towards their choice of a charitable cause.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
           <context context-type="linenumber">224</context>
@@ -521,6 +532,7 @@
       </trans-unit>
       <trans-unit id="5bdf57d99ddc789560655d759cfe15f764c4ee31" datatype="html">
         <source>Партньори</source>
+        <target>Partners</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
           <context context-type="linenumber">229</context>
@@ -528,6 +540,7 @@
       </trans-unit>
       <trans-unit id="81616378d19f3086ed1f1d7d54d204da5456f795" datatype="html">
         <source>BPro e първата професионална клубна организация по електронни спортове в България. През последните 4 години BPro са изградили множество състезатели, отбори и инфраструктура</source>
+        <target>BPro Gaming is the first professional esports club in Bulgaria. During the past 4 years BPro has developed a number of professional players, team and infrastructure.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
           <context context-type="linenumber">256</context>
@@ -539,6 +552,7 @@
       </trans-unit>
       <trans-unit id="2bbcdd2ed46855147409ec153350fb066ca1cda0" datatype="html">
         <source>BSL организират първата по рода си лига по StarCraft II в България и допринасят за развитието на талантите ни в този #esport! Всички StarCraft 2 игри от Esports Business League ще бъдат коментирани от тях!</source>
+        <target>BSL a one of a kind StarCraft II league in Bulgaria and are contributing to the deveopment of Bulgarian talent in this esport! All StarCraft 2 games in the Esports Business League will be casted by the them!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
           <context context-type="linenumber">259</context>
@@ -556,33 +570,37 @@
           <context context-type="linenumber">320</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4791e5326b99a06fde7c7eb824c920b24042039e" datatype="html">
-        <source> Esports Бизнес Лигата се организира от Белум Генс - организация фокусирана върху развитието и популяризирането на esports в България. Белум Генс е основана като аматьорски проект от двама приятели - геймъри. Искаме да направим esports тема, която е разбираема за бизнеса в България и по този начин да подпомогнем развитието на други esports проекти в България - наши, както и външни. За тази цел търсим да си партнираме с всички в България, които са ангажирани с esports, или имат интерес към esports. Пишете ни, ако смятате че имаме пресечни точки! </source>
+      <trans-unit id="3718fa3579c436c49efd1d4cfe169b4ff40ff45b" datatype="html">
+        <source>Esports Бизнес Лигата се организира от Белум Генс - организация фокусирана върху развитието и популяризирането на esports в България. Белум Генс е основана като аматьорски проект от двама приятели - геймъри. Искаме да направим esports тема, която е разбираема за бизнеса в България и по този начин да подпомогнем развитието на други esports проекти в България - наши, както и външни. За тази цел търсим да си партнираме с всички в България, които са ангажирани с esports, или имат интерес към esports. Пишете ни, ако смятате че имаме пресечни точки!</source>
+        <target>Esports Бизнес Лигата се организира от Белум Генс - организация фокусирана върху развитието и популяризирането на esports в България. Белум Генс е основана като аматьорски проект от двама приятели - геймъри. Искаме да направим esports тема, която е разбираема за бизнеса в България и по този начин да подпомогнем развитието на други esports проекти в България - наши, както и външни. За тази цел търсим да си партнираме с всички в България, които са ангажирани с esports, или имат интерес към esports. Пишете ни, ако смятате че имаме пресечни точки!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
-          <context context-type="linenumber">322,323</context>
+          <context context-type="linenumber">321</context>
         </context-group>
       </trans-unit>
       <trans-unit id="e0174d5dfba1f4bc3859db855b37eda8f69750b7" datatype="html">
         <source>Имейл адрес</source>
+        <target>Email</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
-          <context context-type="linenumber">329</context>
+          <context context-type="linenumber">327</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
-          <context context-type="linenumber">345</context>
+          <context context-type="linenumber">343</context>
         </context-group>
       </trans-unit>
       <trans-unit id="221ce1dc732f0cb715b9b58ce81af515095ade65" datatype="html">
         <source>Оставете имейла си за да получавате известия от нас!</source>
+        <target>Get email updates from us!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
-          <context context-type="linenumber">337</context>
+          <context context-type="linenumber">335</context>
         </context-group>
       </trans-unit>
       <trans-unit id="40ec9644832d5f46e3089c435f3637d7caab9e13" datatype="html">
         <source>Получихме вашата поръчка! Очаквайте обаждане от нас за потвърждение!</source>
+        <target>You order has been received! We will call you for additional confirmation!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/shop/order-success/order-success.component.html</context>
           <context context-type="linenumber">2</context>

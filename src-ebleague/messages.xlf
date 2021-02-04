@@ -69,7 +69,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
-          <context context-type="linenumber">325</context>
+          <context context-type="linenumber">323</context>
         </context-group>
       </trans-unit>
       <trans-unit id="c6cda225ef8f5be2d068bb890e206e42273ada92" datatype="html">
@@ -115,7 +115,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
-          <context context-type="linenumber">348</context>
+          <context context-type="linenumber">346</context>
         </context-group>
       </trans-unit>
       <trans-unit id="77ed70d1e50145a06f2cdc2626790e4e819cd341" datatype="html">
@@ -126,7 +126,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
-          <context context-type="linenumber">351</context>
+          <context context-type="linenumber">349</context>
         </context-group>
       </trans-unit>
       <trans-unit id="d97a092c21c9c534a52440e536f5326ff18f832e" datatype="html">
@@ -137,7 +137,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
-          <context context-type="linenumber">354</context>
+          <context context-type="linenumber">352</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2c73b5db9b71f7edeb79b7a94c6b3ee600265959" datatype="html">
@@ -148,7 +148,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
-          <context context-type="linenumber">357</context>
+          <context context-type="linenumber">355</context>
         </context-group>
       </trans-unit>
       <trans-unit id="775056e94760f35808b19291d04a806bb48319a2" datatype="html">
@@ -159,7 +159,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
-          <context context-type="linenumber">360</context>
+          <context context-type="linenumber">358</context>
         </context-group>
       </trans-unit>
       <trans-unit id="c702066bb19d70c0a3397d74079dd87996de057e" datatype="html">
@@ -170,7 +170,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
-          <context context-type="linenumber">363</context>
+          <context context-type="linenumber">361</context>
         </context-group>
       </trans-unit>
       <trans-unit id="b16d0a1343b790282750d3118513251273eb9481" datatype="html">
@@ -511,29 +511,29 @@
           <context context-type="linenumber">320</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4791e5326b99a06fde7c7eb824c920b24042039e" datatype="html">
-        <source> Esports Бизнес Лигата се организира от Белум Генс - организация фокусирана върху развитието и популяризирането на esports в България. Белум Генс е основана като аматьорски проект от двама приятели - геймъри. Искаме да направим esports тема, която е разбираема за бизнеса в България и по този начин да подпомогнем развитието на други esports проекти в България - наши, както и външни. За тази цел търсим да си партнираме с всички в България, които са ангажирани с esports, или имат интерес към esports. Пишете ни, ако смятате че имаме пресечни точки! </source>
+      <trans-unit id="3718fa3579c436c49efd1d4cfe169b4ff40ff45b" datatype="html">
+        <source>Esports Бизнес Лигата се организира от Белум Генс - организация фокусирана върху развитието и популяризирането на esports в България. Белум Генс е основана като аматьорски проект от двама приятели - геймъри. Искаме да направим esports тема, която е разбираема за бизнеса в България и по този начин да подпомогнем развитието на други esports проекти в България - наши, както и външни. За тази цел търсим да си партнираме с всички в България, които са ангажирани с esports, или имат интерес към esports. Пишете ни, ако смятате че имаме пресечни точки!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
-          <context context-type="linenumber">322,323</context>
+          <context context-type="linenumber">321</context>
         </context-group>
       </trans-unit>
       <trans-unit id="e0174d5dfba1f4bc3859db855b37eda8f69750b7" datatype="html">
         <source>Имейл адрес</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
-          <context context-type="linenumber">329</context>
+          <context context-type="linenumber">327</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
-          <context context-type="linenumber">345</context>
+          <context context-type="linenumber">343</context>
         </context-group>
       </trans-unit>
       <trans-unit id="221ce1dc732f0cb715b9b58ce81af515095ade65" datatype="html">
         <source>Оставете имейла си за да получавате известия от нас!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
-          <context context-type="linenumber">337</context>
+          <context context-type="linenumber">335</context>
         </context-group>
       </trans-unit>
       <trans-unit id="40ec9644832d5f46e3089c435f3637d7caab9e13" datatype="html">
