@@ -30,12 +30,6 @@
           <igx-icon>chat</igx-icon>
           Contacts
         </span>
-        <a igxDrawerItem igxRipple [href]="environment.ebleague" target="_blank" rel="noopener">
-          <igx-avatar [src]="'/assets/eb-league-logo.png'"
-                [roundShape]="true">
-          </igx-avatar>
-          Esports Business League
-        </a>
       </nav>
     </ng-template>
 
@@ -63,11 +57,6 @@
         <span igxDrawerItem igxRipple routerLink="/" fragment="aboutus" title="About us">
           <igx-icon>chat</igx-icon>
         </span>
-        <a igxDrawerItem igxRipple [href]="environment.ebleague" target="_blank" rel="noopener" title="Esports Business League">
-          <igx-avatar [src]="'/assets/eb-league-logo.png'"
-                [roundShape]="true">
-          </igx-avatar>
-        </a>
       </nav>
     </ng-template>
   </igx-nav-drawer>
@@ -122,7 +111,10 @@
         <footer class="footer">
           <igx-divider></igx-divider>
           <div class="footer-row">
-            <p>Copyright © Bellum Gens, 2019-2020</p>
+            <p>Copyright © Bellum Gens, 2019-2021</p>
+
+            <igx-divider style="margin: 0 12px; height: 32px;" [vertical]="true"></igx-divider>
+
             <a href="mailto:info@eb-league.com" title="Email us">
               <igx-icon>email</igx-icon>
             </a>

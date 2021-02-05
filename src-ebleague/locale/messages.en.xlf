@@ -11,7 +11,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
-          <context context-type="linenumber">74</context>
+          <context context-type="linenumber">66</context>
         </context-group>
       </trans-unit>
       <trans-unit id="06260e56e8f2ac6919aa54fd400c37479d09a9b0" datatype="html">
@@ -23,7 +23,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
-          <context context-type="linenumber">77</context>
+          <context context-type="linenumber">69</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4c25318f3c7a8fb1a5f708dd8c43f114455abe66" datatype="html">
@@ -35,7 +35,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
-          <context context-type="linenumber">80</context>
+          <context context-type="linenumber">72</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2e4f39a9352cf940af449f78245d9bf4f18be671" datatype="html">
@@ -47,7 +47,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
-          <context context-type="linenumber">83</context>
+          <context context-type="linenumber">75</context>
         </context-group>
       </trans-unit>
       <trans-unit id="fc1a465f7f76a4c9cf06d9425ea26ce8026047a4" datatype="html">
@@ -59,7 +59,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
-          <context context-type="linenumber">86</context>
+          <context context-type="linenumber">78</context>
         </context-group>
       </trans-unit>
       <trans-unit id="13b6e75a8dbbe600c3349b188c8eefb55121db52" datatype="html">
@@ -71,27 +71,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
-          <context context-type="linenumber">89</context>
+          <context context-type="linenumber">81</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
           <context context-type="linenumber">323</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="c6cda225ef8f5be2d068bb890e206e42273ada92" datatype="html">
-        <source>Управление на отбори и стратегии</source>
-		    <target>Team and strategy management</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
-          <context context-type="linenumber">46</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="32b6758133e7e225034db830f7251a42b10d8e4b" datatype="html">
-        <source>Bellum Gens: Управление на отбори и стратегии</source>
-		    <target>Bellum Gens: Team and strategy management</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
-          <context context-type="linenumber">92</context>
         </context-group>
       </trans-unit>
       <trans-unit id="108b1e8b2db709d920a92536ed87ecd0d6eb1dd4" datatype="html">
@@ -99,7 +83,7 @@
 		    <target>This site uses cookies</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
-          <context context-type="linenumber">113</context>
+          <context context-type="linenumber">100</context>
         </context-group>
       </trans-unit>
       <trans-unit id="cce78421018a559ad6a9e9de59a244b96272e431" datatype="html">
@@ -107,7 +91,7 @@
 		    <target>Cookies and You</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
-          <context context-type="linenumber">115</context>
+          <context context-type="linenumber">102</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4fc1645f4bdbdf85a11b1b694fd446295b445bca" datatype="html">
@@ -115,7 +99,7 @@
 		    <target>I Understand</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
-          <context context-type="linenumber">116</context>
+          <context context-type="linenumber">103</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6e064c391fde2f5974ffa2d4e9a10bd9a3807eb4" datatype="html">
@@ -123,7 +107,7 @@
 		    <target>Like us on Facebook</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
-          <context context-type="linenumber">133</context>
+          <context context-type="linenumber">120</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
@@ -135,7 +119,7 @@
 		    <target>Follow us on Twitter</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
-          <context context-type="linenumber">136</context>
+          <context context-type="linenumber">123</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
@@ -147,7 +131,7 @@
 		    <target>Follow us on Instagram</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
-          <context context-type="linenumber">139</context>
+          <context context-type="linenumber">126</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
@@ -159,7 +143,7 @@
 		    <target>Follow us on Linked-in</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
-          <context context-type="linenumber">142</context>
+          <context context-type="linenumber">129</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
@@ -171,7 +155,7 @@
 		    <target>Subscribe to our Youtube channel</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
-          <context context-type="linenumber">145</context>
+          <context context-type="linenumber">132</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
@@ -183,7 +167,7 @@
 		    <target>Join our Discord server</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
-          <context context-type="linenumber">148</context>
+          <context context-type="linenumber">135</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
@@ -378,9 +362,9 @@
           <context context-type="linenumber">185</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="b22cc1cd6a6f2b4bac81c460dae1416bd4d75e7e" datatype="html">
-        <source>Всяка среща е с формат best-of-one (BO1) с добавено време или best-of-tree (BO3)</source>
-        <target>Matches are in best-of-one (BO1) with overtime or best-of-tree (BO3) format</target>
+      <trans-unit id="4578243e4ffaa55c68f026fd3dbd25b91dff7970" datatype="html">
+        <source>Всяка среща е с формат БО1 или БО3</source>
+        <target>Matches are in BO1 or BO3 format</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
           <context context-type="linenumber">186</context>
@@ -388,7 +372,7 @@
       </trans-unit>
       <trans-unit id="fc20732138594e9b3666bebe4773061863f6b3cc" datatype="html">
         <source>Всеки срещу всеки, до изчерпване на противниците</source>
-        <target>Round robbin format</target>
+        <target>Round robin format</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
           <context context-type="linenumber">187</context>
@@ -454,9 +438,9 @@
           <context context-type="linenumber">199</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="330a6e53d8d4e0ba41f4c44cf862580bc8dfcfa6" datatype="html">
-        <source>Всяка среща е с формат best-of-three (BO3)</source>
-        <target>Matches are in best-of-tree (BO3) format</target>
+      <trans-unit id="ab3e0b1015f032aba355c60a62d85a43099cd776" datatype="html">
+        <source>Всяка среща е с формат БО3</source>
+        <target>Matches are in BO3 format</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
           <context context-type="linenumber">200</context>
@@ -608,13 +592,15 @@
       </trans-unit>
       <trans-unit id="c1675c7bbfe4438b4172410a844819ef239722dc" datatype="html">
         <source>Отборите от лигата по <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;title&quot;&gt;"/>CS:GO<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt; "/> ще бъдат разделени в групи по 4-8 отбора.</source>
+        <target>Teams from the <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;title&quot;&gt;"/>CS:GO<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt; "/> league will be separated into groups of 4-8 teams.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
           <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="a719ca290843214cda3b30281bbdc0b5ee95108d" datatype="html">
-        <source>Всеки отбор играе 1-2 срещи седмично срещу друг отбор в групата. В края на лигата 4те най-добри отбора отиват на финали.</source>
+      <trans-unit id="98bea4a1f8784870f591bd75c24c64c3915975dd" datatype="html">
+        <source>Всеки отбор играе 1-2 срещи седмично срещу друг отбор в групата. В края на груповата фаза най-добрирте отбори отиват на финали.</source>
+        <target>Each team plays 1-2 matches a week against other teams from the same group. At the end of the group stage, the best teams of each group go to the finals.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
           <context context-type="linenumber">5</context>
@@ -629,13 +615,15 @@
       </trans-unit>
       <trans-unit id="ff530fcbd07b19e1c0c3d0c0927abf2757873826" datatype="html">
         <source>Играчите от лигата по <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;title&quot;&gt;"/>StarCraft II<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt; "/> ще бъдат разделени в групи по 4-8 играча.</source>
+        <target>Players from the <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;title&quot;&gt;"/>StarCraft II<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt; "/> league will be separated into groups of 4-8 players.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
           <context context-type="linenumber">13</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="371c17372e00893ff48104365ecfef785a44966f" datatype="html">
-        <source>Всеки играч играе 1-2 среща седмично срещу друг играч в групата. В края на лигата 8те най-добри играчи отиват на финали.</source>
+      <trans-unit id="e42141d75f566869a87354e4e8f3f71af092f020" datatype="html">
+        <source>Всеки играч играе 1-2 среща седмично срещу друг играч в групата. В края на груповата фаза най-добрите играчи отиват на финали.</source>
+        <target>Each player plays 1-2 matches a week against other players from the same group. At the end of the group stage, the best players of each group go to the finals.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
           <context context-type="linenumber">14</context>
@@ -718,8 +706,8 @@
           <context context-type="linenumber">60</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="e82323ca86b0facf8e5355440c8ed569202c0892" datatype="html">
-        <source>Точкуване при групи с Round Robbin и BO1</source>
+      <trans-unit id="a390062bca4fea473818c8d595f2c67ee51a816a" datatype="html">
+        <source>Точкуване при групи с Round Robin и BO1</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
           <context context-type="linenumber">65</context>

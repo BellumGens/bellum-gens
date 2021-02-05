@@ -223,7 +223,8 @@ $grid-toolbar-theme: igx-grid-toolbar-theme($background-color: $background);
   min-height: 125px;
 }
 
-.registration-slot > a, span {
+.registration-slot > a,
+.registration-slot > span {
   font-size: 0.80rem;
 }
 

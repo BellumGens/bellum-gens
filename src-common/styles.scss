@@ -117,7 +117,7 @@ a > igx-icon {
   min-width: 380px;
   padding: 16px;
   margin: auto;
-  min-height: calc(100% - 64px);
+  min-height: calc(100% - 57px);
 }
 
   .content-container h1 {
@@ -184,7 +184,7 @@ a > igx-icon {
 /* Loading */
 .loading-overview {
   display: flex;
-  min-height: calc(100% - 64px);
+  min-height: calc(100% - 57px);
   justify-content: center;
   align-items: center;
   width: 60%;
@@ -199,7 +199,7 @@ a > igx-icon {
   margin: auto;
   padding-top: 24px;
   color: white;
-  min-height: calc(100% - 64px);
+  min-height: calc(100% - 57px);
 }
 
 .card-wrapper {
@@ -211,7 +211,7 @@ a > igx-icon {
   grid-auto-rows: max-content;
   padding-top: 12px;
   margin: auto;
-  min-height: calc(100% - 64px);
+  min-height: calc(100% - 57px);
 }
 
   .overview-container-card .card-wrapper,
@@ -250,6 +250,8 @@ a > igx-icon {
   left: 22px;
 }
 
+/* Footer */
+
 .footer {
   width: 100%;
   display: flex;
@@ -272,6 +274,8 @@ a > igx-icon {
   width: 32px;
   font-size: 1.7rem;
 }
+
+/* END Footer */
 
 .social-media-icon {
   margin-left: 4px;

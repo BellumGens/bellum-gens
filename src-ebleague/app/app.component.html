@@ -39,14 +39,6 @@
           <igx-icon>chat</igx-icon>
           <span i18n>Контакти</span>
         </span>
-        <a igxDrawerItem igxRipple [href]="environment.bellumgens" target="_blank" rel="noopener">
-          <igx-avatar [src]="'/assets/bg-avatar.webp'"
-                [roundShape]="true"
-                i18n-title
-                title="Управление на отбори и стратегии">
-          </igx-avatar>
-          Bellum Gens
-        </a>
       </nav>
     </ng-template>
 
@@ -89,11 +81,6 @@
         <span igxDrawerItem igxRipple routerLink="/" fragment="aboutus" i18n-title title="Контакти">
           <igx-icon>chat</igx-icon>
         </span>
-        <a igxDrawerItem igxRipple [href]="environment.bellumgens" target="_blank" rel="noopener" i18n-title title="Bellum Gens: Управление на отбори и стратегии">
-          <igx-avatar [src]="'/assets/bg-avatar.webp'"
-                [roundShape]="true">
-          </igx-avatar>
-        </a>
       </nav>
     </ng-template>
   </igx-nav-drawer>
@@ -126,7 +113,10 @@
         <footer class="footer">
           <igx-divider></igx-divider>
           <div class="footer-row">
-            <p>Copyright © Bellum Gens, 2019-2020</p>
+            <p>Copyright © Bellum Gens, 2019-2021</p>
+
+            <igx-divider style="margin: 0 12px; height: 32px;" [vertical]="true"></igx-divider>
+
             <a href="mailto:info@eb-league.com" title="Email us">
               <igx-icon>email</igx-icon>
             </a>
