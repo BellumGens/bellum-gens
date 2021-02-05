@@ -5,8 +5,8 @@
         <span igxDrawerItem [isHeader]="true">Bellum Gens</span>
         <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="myteams">
           <igx-icon>people</igx-icon>
-          <igx-badge class="notifications-badge" *ngIf="teams?.length > 0" [value]="teams?.length.toString()" type="info"></igx-badge>
           <span>My teams</span>
+          <igx-badge class="notifications-badge" *ngIf="teams?.length > 0" [value]="teams?.length.toString()" type="info"></igx-badge>
         </span>
         <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="notifications">
           <igx-icon>notifications</igx-icon>
