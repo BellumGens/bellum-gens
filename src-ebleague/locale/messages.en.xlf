@@ -107,7 +107,7 @@
 		    <target>Like us on Facebook</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
-          <context context-type="linenumber">120</context>
+          <context context-type="linenumber">123</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
@@ -119,7 +119,7 @@
 		    <target>Follow us on Twitter</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
-          <context context-type="linenumber">123</context>
+          <context context-type="linenumber">126</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
@@ -131,7 +131,7 @@
 		    <target>Follow us on Instagram</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
-          <context context-type="linenumber">126</context>
+          <context context-type="linenumber">129</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
@@ -143,7 +143,7 @@
 		    <target>Follow us on Linked-in</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
-          <context context-type="linenumber">129</context>
+          <context context-type="linenumber">132</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
@@ -155,7 +155,7 @@
 		    <target>Subscribe to our Youtube channel</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
-          <context context-type="linenumber">132</context>
+          <context context-type="linenumber">135</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
@@ -167,7 +167,7 @@
 		    <target>Join our Discord server</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
-          <context context-type="linenumber">135</context>
+          <context context-type="linenumber">138</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
@@ -608,6 +608,7 @@
       </trans-unit>
       <trans-unit id="1cac55db4ce632c75f6a9112149acc6b8bc837a8" datatype="html">
         <source>Към лигата по CS:GO</source>
+        <target>To the CS:GO League</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
           <context context-type="linenumber">8</context>
@@ -631,6 +632,7 @@
       </trans-unit>
       <trans-unit id="84a08c45957644239e1d1b82c241866758648d31" datatype="html">
         <source>Към лигата по StarCraft II</source>
+        <target>To the StarCraft II League</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
           <context context-type="linenumber">17</context>
@@ -638,6 +640,7 @@
       </trans-unit>
       <trans-unit id="d43a0b1d113ca7dbf3f4c1d8cd1870057a8f072b" datatype="html">
         <source>Формат на седмичните срещи</source>
+        <target>Weekly match format</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
           <context context-type="linenumber">24</context>
@@ -645,6 +648,7 @@
       </trans-unit>
       <trans-unit id="5ff369aa9e946abfaf0ee59dc8ba8c345ca217c1" datatype="html">
         <source>Правилник за лигата по CS:GO</source>
+        <target>CS:GO Rulebook</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
           <context context-type="linenumber">25</context>
@@ -652,6 +656,7 @@
       </trans-unit>
       <trans-unit id="215306fd7a34ce9831acef67ac1af72b6238254f" datatype="html">
         <source>Срещите се играят всяка седмица в дните понеделник-четвъртък включително. Срещите са вечер, след работно време и се играят последователно, започвайки от 7:30pm. Всяка среща след първата започва 15 минути след приключване на предишната среща. Седмичният график ще бъде направен преди началото на лигата за всички седмици. Графикът на вашия отбор подлежи на промяна преди започването на лигата, или ако сте успели да се разберете с другите отбори за промяна на графика и имате съгласието им.</source>
+        <target>Срещите се играят всяка седмица в дните понеделник-четвъртък включително. Срещите са вечер, след работно време и се играят последователно, започвайки от 7:30pm. Всяка среща след първата започва 15 минути след приключване на предишната среща. Седмичният график ще бъде направен преди началото на лигата за всички седмици. Графикът на вашия отбор подлежи на промяна преди започването на лигата, или ако сте успели да се разберете с другите отбори за промяна на графика и имате съгласието им.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
           <context context-type="linenumber">29</context>

@@ -97,7 +97,7 @@
         <source>Харесайте страницата ни във Facebook</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
-          <context context-type="linenumber">120</context>
+          <context context-type="linenumber">123</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
@@ -108,7 +108,7 @@
         <source>Последвайте ни в Twitter</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
-          <context context-type="linenumber">123</context>
+          <context context-type="linenumber">126</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
@@ -119,7 +119,7 @@
         <source>Последвайте ни в Instagram</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
-          <context context-type="linenumber">126</context>
+          <context context-type="linenumber">129</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
@@ -130,7 +130,7 @@
         <source>Последвайте ни в Linked-in</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
-          <context context-type="linenumber">129</context>
+          <context context-type="linenumber">132</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
@@ -141,7 +141,7 @@
         <source>Последвайте Youtube каналът ни</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
-          <context context-type="linenumber">132</context>
+          <context context-type="linenumber">135</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
@@ -152,7 +152,7 @@
         <source>Присъединете се към нашият Discord сървър</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
-          <context context-type="linenumber">135</context>
+          <context context-type="linenumber">138</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
