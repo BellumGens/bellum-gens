@@ -670,16 +670,16 @@
           <context context-type="linenumber">35</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="bed95abe5876368f56f0338ffbe8f5704c14c396" datatype="html">
-        <source>Срещите, които отборите играят всяка седмица са формат best-of-one (BO1) или best-of-three (BO3) с вето върху картите в active duty - Mirage, Inferno, Dust2, Train, Overpass, Nuke, Vertigo. Ветото се случва 10-15 минути преди срещата, като в него участват капитаните на двата отбора, кастъра на срещата и админ. Страните, от които започват отборите, се решават с избор от противоположната страна на избиране на картата, или с knife round, като победителите избират страна. Картата се играе до 16 спечелени рунда за единия отбор, със смяна на страните на 15 рунда. Ако до 30 рунда няма победител - резултата е 15-15 - се играят продължения до определяне на победител. Всяко продължение е в 6 рунда, като всеки отбор започва от страната на която е бил преди началото на продължението и на 3 рунда се сменят страни. При резултат 3-3 в продължението се играе ново продължение по същото правило. В началото на продължението всеки играч започва с максималните възможни пари - $16000 - за да може всеки рунд от продължението да е гарантиран gun round.</source>
-        <target>Weekly matches are in best-of-one (BO1) or best-of-three (BO3) format with map veto on the active duty maps.</target>
+      <trans-unit id="67fb3fce5a8a10325bfe3bc5e74e0e8a2af36547" datatype="html">
+        <source>Срещите, които отборите играят всяка седмица са формат best-of-one (BO1) или best-of-three (BO3) с вето върху картите в текущия active duty към започване на лигата. Ветото се случва 10-15 минути преди срещата, като в него участват капитаните на двата отбора и админ. Страните, от които започват отборите, се решават с избор от противоположната страна на избиране на картата, или с knife round, като победителите избират страна. Картата се играе до 16 спечелени рунда за единия отбор, със смяна на страните на 15 рунда. Ако до 30 рунда няма победител - резултата е 15-15 - се играят продължения до определяне на победител. Всяко продължение е в 6 рунда, като всеки отбор започва от страната на която е бил преди началото на продължението и на 3 рунда се сменят страни. При резултат 3-3 в продължението се играе ново продължение по същото правило. В началото на продължението всеки играч започва с максималните възможни пари - $16000 - за да може всеки рунд от продължението да е гарантиран gun round.</source>
+        <target>Weekly matches are in best-of-one (BO1) or best-of-three (BO3) format with map veto on the active duty maps - Mirage, Inferno, Dust2, Train, Overpass, Nuke, Vertigo. The map veto takes place 10-15 minutes prior to the match and is performed by the team captains and an admin.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
           <context context-type="linenumber">39</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="9578e7d372a276c80b71dda25831dee9c7ab9afc" datatype="html">
-        <source>Срещите, които играчите играят всяка седмица са формат best-of-three с вето с по 2 бана и 2 пика от седемте карти в ladder pool - Submarine LE, Deathaura LE, Pillars of Gold LE, Oxide LE, Lightshade LE, Romanticide LE, Jagannatha LE. Ветото се случва 10-15 минути преди срещата, като в него участват двамата играчи, кастъра на срещата и админ. Всяка карта се играе до победа на единия от двамата играчи. Третата карта се играе само при равен резултат от първите 2 карти.</source>
+      <trans-unit id="7b1fdbd2286eec95f1e24c701adeae9b453448fe" datatype="html">
+        <source>Срещите, които играчите играят всяка седмица са формат best-of-three с вето с по 2 бана и 2 пика от седемте карти в текущия ladder pool към започване на лигата. Ветото се случва 10-15 минути преди срещата, като в него участват двамата играчи, кастъра на срещата и админ. Всяка карта се играе до победа на единия от двамата играчи. Третата карта се играе само при равен резултат от първите 2 карти.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
           <context context-type="linenumber">43</context>
@@ -707,8 +707,8 @@
           <context context-type="linenumber">57</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="d2de6d03c8096b80d61539499c3f69562885921b" datatype="html">
-        <source>Всяка среща от лигата прибавя на отбора от 0 до 3 точки към общото класиране. След приключване на всички срещи, първите 2 отбора във всяка група продължават участието си на LAN финал. При еднакви точки се гледа round-difference на отборите с еднакви точки. При еднакъв round-difference се гледа прекия двубой м/у отборите.</source>
+      <trans-unit id="e4b1f839ce355c6098876f59b0915c5fe06d80bc" datatype="html">
+        <source>Всяка среща от груповата фаза на лигата прибавя на отбора от 0 до 3 точки към общото класиране. След приключване на всички срещи, първите 2 отбора във всяка група продължават участието си на LAN финал. При еднакви точки се гледа разликата между общо спечелените и загубени рундове на отборите с еднакви точки. При еднаква разлика между общо спечелените и загубени рундове на отборите се гледа победителя от прекия двубой между отборите.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
           <context context-type="linenumber">61</context>
@@ -744,8 +744,8 @@
           <context context-type="linenumber">66</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="537ab2a19bda9cc0a2f7910ab49da405f1947c92" datatype="html">
-        <source>Всяка среща от лигата прибавя на играча от 0 до 3 точки към общото класиране. След приключване на всички срещи, първите 2 играчи във всяка група продължават участието си на LAN финал. При еднакви точки се гледа прекия сблъсък на играчите. При равенство при прекия сблъсък се играе допълнителна среща м/у играчите с равни точки.</source>
+      <trans-unit id="8e4d7ae2c992340ce39b95a26bcf46c64414ed4b" datatype="html">
+        <source>Всяка среща от груповата фаза на лигата прибавя на играча от 0 до 3 точки към общото класиране. След приключване на всички срещи, първите 2 играчи във всяка група продължават участието си на LAN финал. При еднакви точки се гледа прекия двубой между играчите. При равенство при прекия сблъсък се играе допълнителна среща между играчите с равни точки.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
           <context context-type="linenumber">71</context>
