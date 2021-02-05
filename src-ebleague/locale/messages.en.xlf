@@ -654,9 +654,9 @@
           <context context-type="linenumber">25</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="fd06bfc354d4114c82e6f530f02389011ae89870" datatype="html">
-        <source>Срещите се играят всяка седмица в дните понеделник-четвъртък включително. Срещите са вечер, след работно време и се играят последователно, започвайки от 7:30pm. Всяка среща след първата започва 15 минути след приключване на предишната среща. Седмичният график ще бъде направен преди началото на лигата за всички седмици. Графикът подлежи на промяна преди започването на лигата, или ако сте успели да се разберете с другите участници за промяна на графика и имате съгласието им.</source>
-        <target>Срещите се играят всяка седмица в дните понеделник-четвъртък включително. Срещите са вечер, след работно време и се играят последователно, започвайки от 7:30pm. Всяка среща след първата започва 15 минути след приключване на предишната среща. Седмичният график ще бъде направен преди началото на лигата за всички седмици. Графикът на вашия отбор подлежи на промяна преди започването на лигата, или ако сте успели да се разберете с другите отбори за промяна на графика и имате съгласието им.</target>
+      <trans-unit id="94c7800349a2949d5c454a27c9d996c3326c2596" datatype="html">
+        <source>Срещите се играят всяка седмица в дните понеделник-четвъртък включително. Срещите са вечер, след работно време и се играят последователно, започвайки от 7:30pm. Всяка среща след първата започва 15 минути след приключване на предишната среща. Графикът за груповата фаза ще бъде направен преди началото на лигата. Графикът подлежи на промяна преди започването на лигата, или ако сте успели да се разберете с другите участници за промяна на графика и имате съгласието им.</source>
+        <target>Group stage matches are being played weekly Monday-Thursday. All matches are played sequentially in the evening, after working hours, starting from 7:30pm EET. Each match except the first one starts 15 minutes after the previous match has finished. Weekly schedule for the entire group stage would be available prior to the league start date. The schedule is subject to change, if and only if a participant has managed to reach an agreement with all other affected participants by the change.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
           <context context-type="linenumber">29</context>
@@ -672,7 +672,7 @@
       </trans-unit>
       <trans-unit id="67fb3fce5a8a10325bfe3bc5e74e0e8a2af36547" datatype="html">
         <source>Срещите, които отборите играят всяка седмица са формат best-of-one (BO1) или best-of-three (BO3) с вето върху картите в текущия active duty към започване на лигата. Ветото се случва 10-15 минути преди срещата, като в него участват капитаните на двата отбора и админ. Страните, от които започват отборите, се решават с избор от противоположната страна на избиране на картата, или с knife round, като победителите избират страна. Картата се играе до 16 спечелени рунда за единия отбор, със смяна на страните на 15 рунда. Ако до 30 рунда няма победител - резултата е 15-15 - се играят продължения до определяне на победител. Всяко продължение е в 6 рунда, като всеки отбор започва от страната на която е бил преди началото на продължението и на 3 рунда се сменят страни. При резултат 3-3 в продължението се играе ново продължение по същото правило. В началото на продължението всеки играч започва с максималните възможни пари - $16000 - за да може всеки рунд от продължението да е гарантиран gun round.</source>
-        <target>Weekly matches are in best-of-one (BO1) or best-of-three (BO3) format with map veto on the active duty maps - Mirage, Inferno, Dust2, Train, Overpass, Nuke, Vertigo. The map veto takes place 10-15 minutes prior to the match and is performed by the team captains and an admin.</target>
+        <target>Weekly matches are in best-of-one (BO1) or best-of-three (BO3) format with map veto on the current active duty maps at the start of the league. The map veto takes place 10-15 minutes prior to the match and is performed by the team captains and an admin. Which side teams start on is decided either by the team not picking the map, or with a knife round, the winner of which picks the side. Each map is played until one of the teams wins 16 rounds and teams are switching sides after 15 rounds have been played. If there's no winner after 30 rounds - score is 15-15 - then the match goes into overtime. Each overtime is 6 rounds in length and each team starts on the side the team has been before the start of the overtime. Teams are switching sides in overtime after 3 rounds have been played. If an overtime reaches a score of 3-3, then a new overtime is played. Each player starts an overtime with maximum cash - $16000 - so each round of the overtime is a guaranteed gun round.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
           <context context-type="linenumber">39</context>
@@ -680,6 +680,7 @@
       </trans-unit>
       <trans-unit id="7b1fdbd2286eec95f1e24c701adeae9b453448fe" datatype="html">
         <source>Срещите, които играчите играят всяка седмица са формат best-of-three с вето с по 2 бана и 2 пика от седемте карти в текущия ladder pool към започване на лигата. Ветото се случва 10-15 минути преди срещата, като в него участват двамата играчи, кастъра на срещата и админ. Всяка карта се играе до победа на единия от двамата играчи. Третата карта се играе само при равен резултат от първите 2 карти.</source>
+        <target>Weekly matches are in best-of-three (BO3) format with map veto with 2 bans and 2 picks from the maps in the current ladder pool at the start of the league. The map veto takes place 10-15 minutes prior to the match, and is performed by the players, the match caster and an admin. Each map is played until one of the two players emerges victorious. The 3rd decider map is played only in the case of a 1-1 score.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
           <context context-type="linenumber">43</context>
@@ -695,6 +696,7 @@
       </trans-unit>
       <trans-unit id="8e2ebf654367bc9a219463cd63828b34cfb6de59" datatype="html">
         <source>Участниците се разпределят в групи и се теглят първите срещи. След това всяка от групите има два потока - схема на победителите и схема на загубилите. Всички участници стартират в схемата на победителите и след направена загуба падат в схемата на загубилите. След загуба на участник от схемата на загубилите участникът бива елиминиран от турнира.</source>
+        <target>Tournament participants are being separated into groups and the first opponents are being drawn. Each group has two brackets - winners and losers bracket. All participants start in the winners bracket and after a loss are being moved to the losers bracket. Participants are eliminated after they accumulate a loss in the losers bracket.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
           <context context-type="linenumber">52</context>
@@ -702,6 +704,7 @@
       </trans-unit>
       <trans-unit id="ebf015455bba2167c2a04d67240caef76be1ffb4" datatype="html">
         <source>Точкуване при групи</source>
+        <target>Group points</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
           <context context-type="linenumber">57</context>
@@ -709,6 +712,7 @@
       </trans-unit>
       <trans-unit id="e4b1f839ce355c6098876f59b0915c5fe06d80bc" datatype="html">
         <source>Всяка среща от груповата фаза на лигата прибавя на отбора от 0 до 3 точки към общото класиране. След приключване на всички срещи, първите 2 отбора във всяка група продължават участието си на LAN финал. При еднакви точки се гледа разликата между общо спечелените и загубени рундове на отборите с еднакви точки. При еднаква разлика между общо спечелените и загубени рундове на отборите се гледа победителя от прекия двубой между отборите.</source>
+        <target>Each match in the group stage of the league gives the participants between 0 and 3 points. After all group stage matches have been played, the 2 teams with the most points from each group proceed to the finals. При еднакви точки се гледа разликата между общо спечелените и загубени рундове на отборите с еднакви точки. При еднаква разлика между общо спечелените и загубени рундове на отборите се гледа победителя от прекия двубой между отборите.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
           <context context-type="linenumber">61</context>
