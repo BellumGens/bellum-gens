@@ -654,89 +654,78 @@
           <context context-type="linenumber">25</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="215306fd7a34ce9831acef67ac1af72b6238254f" datatype="html">
-        <source>Срещите се играят всяка седмица в дните понеделник-четвъртък включително. Срещите са вечер, след работно време и се играят последователно, започвайки от 7:30pm. Всяка среща след първата започва 15 минути след приключване на предишната среща. Седмичният график ще бъде направен преди началото на лигата за всички седмици. Графикът на вашия отбор подлежи на промяна преди започването на лигата, или ако сте успели да се разберете с другите отбори за промяна на графика и имате съгласието им.</source>
+      <trans-unit id="fd06bfc354d4114c82e6f530f02389011ae89870" datatype="html">
+        <source>Срещите се играят всяка седмица в дните понеделник-четвъртък включително. Срещите са вечер, след работно време и се играят последователно, започвайки от 7:30pm. Всяка среща след първата започва 15 минути след приключване на предишната среща. Седмичният график ще бъде направен преди началото на лигата за всички седмици. Графикът подлежи на промяна преди започването на лигата, или ако сте успели да се разберете с другите участници за промяна на графика и имате съгласието им.</source>
         <target>Срещите се играят всяка седмица в дните понеделник-четвъртък включително. Срещите са вечер, след работно време и се играят последователно, започвайки от 7:30pm. Всяка среща след първата започва 15 минути след приключване на предишната среща. Седмичният график ще бъде направен преди началото на лигата за всички седмици. Графикът на вашия отбор подлежи на промяна преди започването на лигата, или ако сте успели да се разберете с другите отбори за промяна на графика и имате съгласието им.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
           <context context-type="linenumber">29</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6e98b6807c0da1389eadc57dc5bc98914cd6d199" datatype="html">
-        <source>Срещите се играят всяка седмица в дните понеделник-четвъртък включително. Срещите са вечер, след работно време и се играят последователно, започвайки от 7:30pm. Всяка среща след първата започва 15 минути след приключване на предишната среща. Седмичният график ще бъде направен преди началото на лигата за всички седмици. Графикът на всеки състезател подлежи на промяна преди започването на лигата, или ако сте успели да се разберете с другите играчи за промяна на графика и имате съгласието им.</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
-          <context context-type="linenumber">33</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="5731c14ea14d8a4ad461b07ff153619767f52751" datatype="html">
         <source>Провеждане на самите срещи</source>
+        <target>Match format</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
-          <context context-type="linenumber">39</context>
+          <context context-type="linenumber">35</context>
         </context-group>
       </trans-unit>
       <trans-unit id="bed95abe5876368f56f0338ffbe8f5704c14c396" datatype="html">
         <source>Срещите, които отборите играят всяка седмица са формат best-of-one (BO1) или best-of-three (BO3) с вето върху картите в active duty - Mirage, Inferno, Dust2, Train, Overpass, Nuke, Vertigo. Ветото се случва 10-15 минути преди срещата, като в него участват капитаните на двата отбора, кастъра на срещата и админ. Страните, от които започват отборите, се решават с избор от противоположната страна на избиране на картата, или с knife round, като победителите избират страна. Картата се играе до 16 спечелени рунда за единия отбор, със смяна на страните на 15 рунда. Ако до 30 рунда няма победител - резултата е 15-15 - се играят продължения до определяне на победител. Всяко продължение е в 6 рунда, като всеки отбор започва от страната на която е бил преди началото на продължението и на 3 рунда се сменят страни. При резултат 3-3 в продължението се играе ново продължение по същото правило. В началото на продължението всеки играч започва с максималните възможни пари - $16000 - за да може всеки рунд от продължението да е гарантиран gun round.</source>
+        <target>Weekly matches are in best-of-one (BO1) or best-of-three (BO3) format with map veto on the active duty maps.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
-          <context context-type="linenumber">43</context>
+          <context context-type="linenumber">39</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9578e7d372a276c80b71dda25831dee9c7ab9afc" datatype="html">
         <source>Срещите, които играчите играят всяка седмица са формат best-of-three с вето с по 2 бана и 2 пика от седемте карти в ladder pool - Submarine LE, Deathaura LE, Pillars of Gold LE, Oxide LE, Lightshade LE, Romanticide LE, Jagannatha LE. Ветото се случва 10-15 минути преди срещата, като в него участват двамата играчи, кастъра на срещата и админ. Всяка карта се играе до победа на единия от двамата играчи. Третата карта се играе само при равен резултат от първите 2 карти.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
-          <context context-type="linenumber">47</context>
+          <context context-type="linenumber">43</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="331b51bbab9be6e865bed83461c738580b70e1f3" datatype="html">
-        <source>Формат Double Elimination (Сезон 2)</source>
+      <trans-unit id="84b1571074b5a109674d020a2d6b528406dfacd3" datatype="html">
+        <source>Формат &quot;двойни елиминации&quot;</source>
+        <target>Double elimination format</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8e2ebf654367bc9a219463cd63828b34cfb6de59" datatype="html">
+        <source>Участниците се разпределят в групи и се теглят първите срещи. След това всяка от групите има два потока - схема на победителите и схема на загубилите. Всички участници стартират в схемата на победителите и след направена загуба падат в схемата на загубилите. След загуба на участник от схемата на загубилите участникът бива елиминиран от турнира.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
           <context context-type="linenumber">52</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="e75ab1b8aca7062aad2c73d82267d6d3d7c3541a" datatype="html">
-        <source>Отборите се разпределят в групи и се теглят първите срещи. След това всяка от групите има два потока - winners и losers bracket. Всички отбори стартират в winners bracket и след направена загуба падат в losers bracket. След загуба на отбор от losers bracket отборът бива елиминиран от турнира.</source>
+      <trans-unit id="ebf015455bba2167c2a04d67240caef76be1ffb4" datatype="html">
+        <source>Точкуване при групи</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
-          <context context-type="linenumber">56</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="46352e1f97d535e95169144d735498be2a75a6c2" datatype="html">
-        <source>Играчите се разпределят в групи и се теглят първите срещи. След това всяка от групите има два потока - winners и losers bracket. Всички играчи стартират в winners bracket и след направена загуба падат в losers bracket. След загуба на играч от losers bracket играчът бива елиминиран от турнира.</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
-          <context context-type="linenumber">60</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="a390062bca4fea473818c8d595f2c67ee51a816a" datatype="html">
-        <source>Точкуване при групи с Round Robin и BO1</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
-          <context context-type="linenumber">65</context>
+          <context context-type="linenumber">57</context>
         </context-group>
       </trans-unit>
       <trans-unit id="d2de6d03c8096b80d61539499c3f69562885921b" datatype="html">
         <source>Всяка среща от лигата прибавя на отбора от 0 до 3 точки към общото класиране. След приключване на всички срещи, първите 2 отбора във всяка група продължават участието си на LAN финал. При еднакви точки се гледа round-difference на отборите с еднакви точки. При еднакъв round-difference се гледа прекия двубой м/у отборите.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
-          <context context-type="linenumber">69</context>
+          <context context-type="linenumber">61</context>
         </context-group>
       </trans-unit>
       <trans-unit id="27a6f37b31573b405739179f1af85ff9df99d2b1" datatype="html">
         <source>3 точки при победа в редовната игра</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
-          <context context-type="linenumber">71</context>
+          <context context-type="linenumber">63</context>
         </context-group>
       </trans-unit>
       <trans-unit id="f36ab10ad8ff80e8125a23611d6a679aeb2ce457" datatype="html">
         <source>2 точки при победа в продължение</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
-          <context context-type="linenumber">72</context>
+          <context context-type="linenumber">64</context>
         </context-group>
       </trans-unit>
       <trans-unit id="d33b6a19869a43b97531364751cb190fc233e596" datatype="html">
@@ -744,7 +733,7 @@
         <target>1 point for a loss in overtime</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
-          <context context-type="linenumber">73</context>
+          <context context-type="linenumber">65</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9f16996e155d56227ecf9721bb6d1d80c4664ac8" datatype="html">
@@ -752,14 +741,14 @@
         <target>0 points for a loss within regulation</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
-          <context context-type="linenumber">74</context>
+          <context context-type="linenumber">66</context>
         </context-group>
       </trans-unit>
       <trans-unit id="537ab2a19bda9cc0a2f7910ab49da405f1947c92" datatype="html">
         <source>Всяка среща от лигата прибавя на играча от 0 до 3 точки към общото класиране. След приключване на всички срещи, първите 2 играчи във всяка група продължават участието си на LAN финал. При еднакви точки се гледа прекия сблъсък на играчите. При равенство при прекия сблъсък се играе допълнителна среща м/у играчите с равни точки.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
-          <context context-type="linenumber">79</context>
+          <context context-type="linenumber">71</context>
         </context-group>
       </trans-unit>
       <trans-unit id="02fe4577db7079bc95616f989e29a3744d62af5e" datatype="html">
@@ -767,7 +756,7 @@
         <target>3 points in the case of a 2:0 win</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
-          <context context-type="linenumber">81</context>
+          <context context-type="linenumber">73</context>
         </context-group>
       </trans-unit>
       <trans-unit id="e821ece04d0d5bf20febd5ce4d720a8f72a50b95" datatype="html">
@@ -775,7 +764,7 @@
         <target>2 points in the case of a 2:1 win</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
-          <context context-type="linenumber">82</context>
+          <context context-type="linenumber">74</context>
         </context-group>
       </trans-unit>
       <trans-unit id="08d102350beb5e4c27621b22be4423c2162bfdd9" datatype="html">
@@ -783,7 +772,7 @@
         <target>1 point in the case of a 1:2 loss</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
-          <context context-type="linenumber">83</context>
+          <context context-type="linenumber">75</context>
         </context-group>
       </trans-unit>
       <trans-unit id="09aaf42e379972c564f64f9b678281f46fec66a3" datatype="html">
@@ -791,7 +780,7 @@
         <target>0 points in the case of a 0:2 loss</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
-          <context context-type="linenumber">84</context>
+          <context context-type="linenumber">76</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1623b4c68192d992bd78deac9c25687dbbbfb25f" datatype="html">
@@ -799,14 +788,14 @@
         <target>Performance altering software usage (cheats)</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
-          <context context-type="linenumber">90</context>
+          <context context-type="linenumber">82</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9afb318160fa846900b331415ed209d7d490c300" datatype="html">
         <source>Използване на помощен софтуер от какъвто и да е тип, който може да се класифицира като cheat, е напълно забранено. Всяка среща от лигата ще бъде излъчвана пряко и ще бъде наблюдавана от admin. При съмнение за използване на такъв софтуер, случаят ще бъде разгледан от организаторите и при заключение, че играч в лигата е използвал такъв софтуер, тогава играчът (SC II), или отборът (CS:GO), който играча представлява ще бъде <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>дисквалифициран<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>!!! Esports Бизнес Лигата е аматьорска лига, в която играчите трябва да покажат собствените си възможности, а не възможностите на софтуер, който подпомага играта им. Нашата цел да е предоставим добро преживяване за всички участващи!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
-          <context context-type="linenumber">91</context>
+          <context context-type="linenumber">83</context>
         </context-group>
       </trans-unit>
     </body>
