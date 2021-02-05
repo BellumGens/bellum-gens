@@ -6,29 +6,29 @@
         <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="myteams">
           <igx-icon>people</igx-icon>
           <igx-badge class="notifications-badge" *ngIf="teams?.length > 0" [value]="teams?.length.toString()" type="info"></igx-badge>
-          My teams
+          <span>My teams</span>
         </span>
         <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="notifications">
           <igx-icon>notifications</igx-icon>
           <igx-badge class="notifications-badge" *ngIf="unreadNotifications > 0" [value]="unreadNotifications.toString()" type="info"></igx-badge>
-          Notifications
+          <span>Notifications</span>
         </span>
         <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="user/strategies">
           <igx-icon>person</igx-icon>
-          My Strategies
+          <span>My Strategies</span>
         </span>
         <igx-divider></igx-divider>
         <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="strategies">
           <igx-icon>playlist_add_check</igx-icon>
-          CS:GO Strategies
+          <span>CS:GO Strategies</span>
         </span>
         <span igxDrawerItem igxRipple routerLink="/" fragment="partners">
           <igx-icon>people_alt</igx-icon>
-          Partners
+          <span>Partners</span>
         </span>
         <span igxDrawerItem igxRipple routerLink="/" fragment="aboutus">
           <igx-icon>chat</igx-icon>
-          Contacts
+          <span>Contacts</span>
         </span>
       </nav>
     </ng-template>

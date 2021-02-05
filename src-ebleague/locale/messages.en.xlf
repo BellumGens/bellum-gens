@@ -710,9 +710,9 @@
           <context context-type="linenumber">57</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="e4b1f839ce355c6098876f59b0915c5fe06d80bc" datatype="html">
-        <source>Всяка среща от груповата фаза на лигата прибавя на отбора от 0 до 3 точки към общото класиране. След приключване на всички срещи, първите 2 отбора във всяка група продължават участието си на LAN финал. При еднакви точки се гледа разликата между общо спечелените и загубени рундове на отборите с еднакви точки. При еднаква разлика между общо спечелените и загубени рундове на отборите се гледа победителя от прекия двубой между отборите.</source>
-        <target>Each match in the group stage of the league gives the participants between 0 and 3 points. After all group stage matches have been played, the 2 teams with the most points from each group proceed to the finals. При еднакви точки се гледа разликата между общо спечелените и загубени рундове на отборите с еднакви точки. При еднаква разлика между общо спечелените и загубени рундове на отборите се гледа победителя от прекия двубой между отборите.</target>
+      <trans-unit id="bfb72300893fa27938fe4402fd3ab19c6f934a0a" datatype="html">
+        <source>Всяка среща от груповата фаза на лигата прибавя на отбора от 0 до 3 точки към общото класиране. След приключване на всички срещи, първите 2 отбора във всяка група продължават участието си на финали. При еднакви точки се гледа разликата между общо спечелените и загубени рундове на отборите с еднакви точки. При еднаква разлика между общо спечелените и загубени рундове на отборите се гледа победителя от прекия двубой между отборите.</source>
+        <target>Each match in the group stage of the league gives the teams between 0 and 3 points. After all group stage matches have been played, the 2 teams with the most points from each group proceed to the finals. If two teams have equal points, then round difference is taken into account. In the case of equal points and round difference, the result of the direct duel between the two teams is taken into account.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
           <context context-type="linenumber">61</context>
@@ -720,6 +720,7 @@
       </trans-unit>
       <trans-unit id="27a6f37b31573b405739179f1af85ff9df99d2b1" datatype="html">
         <source>3 точки при победа в редовната игра</source>
+        <target>3 points for a win in regulation</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
           <context context-type="linenumber">63</context>
@@ -727,6 +728,7 @@
       </trans-unit>
       <trans-unit id="f36ab10ad8ff80e8125a23611d6a679aeb2ce457" datatype="html">
         <source>2 точки при победа в продължение</source>
+        <target>2 points for an overtime win</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
           <context context-type="linenumber">64</context>
@@ -748,8 +750,9 @@
           <context context-type="linenumber">66</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8e4d7ae2c992340ce39b95a26bcf46c64414ed4b" datatype="html">
-        <source>Всяка среща от груповата фаза на лигата прибавя на играча от 0 до 3 точки към общото класиране. След приключване на всички срещи, първите 2 играчи във всяка група продължават участието си на LAN финал. При еднакви точки се гледа прекия двубой между играчите. При равенство при прекия сблъсък се играе допълнителна среща между играчите с равни точки.</source>
+      <trans-unit id="7c754c6aa65bb91ef9ec663573430e4f570138bc" datatype="html">
+        <source>Всяка среща от груповата фаза на лигата прибавя на играча от 0 до 3 точки към общото класиране. След приключване на всички срещи, първите 2 играчи във всяка група продължават участието си на финали. При еднакви точки се гледа прекия двубой между играчите. При равенство при прекия сблъсък се играе допълнителна среща между играчите с равни точки.</source>
+        <target>Each match in the group stage of the league gives the participants between 0 and 3 points. After all group stage matches have been played, the 2 players with the most points from each group proceed to the finals. In the case of equal points, the result of the direct duel between the two participants is taken into account.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
           <context context-type="linenumber">71</context>
@@ -789,7 +792,7 @@
       </trans-unit>
       <trans-unit id="1623b4c68192d992bd78deac9c25687dbbbfb25f" datatype="html">
         <source>Използване на помощен софтуер (cheats)</source>
-        <target>Performance altering software usage (cheats)</target>
+        <target>Assistive software usage (cheats)</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
           <context context-type="linenumber">82</context>
@@ -797,6 +800,7 @@
       </trans-unit>
       <trans-unit id="9afb318160fa846900b331415ed209d7d490c300" datatype="html">
         <source>Използване на помощен софтуер от какъвто и да е тип, който може да се класифицира като cheat, е напълно забранено. Всяка среща от лигата ще бъде излъчвана пряко и ще бъде наблюдавана от admin. При съмнение за използване на такъв софтуер, случаят ще бъде разгледан от организаторите и при заключение, че играч в лигата е използвал такъв софтуер, тогава играчът (SC II), или отборът (CS:GO), който играча представлява ще бъде <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>дисквалифициран<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>!!! Esports Бизнес Лигата е аматьорска лига, в която играчите трябва да покажат собствените си възможности, а не възможностите на софтуер, който подпомага играта им. Нашата цел да е предоставим добро преживяване за всички участващи!</source>
+        <target>Usage of assistive software of any kind, which can be classified as a cheat, is strictly forbidden. Each match in the league would be streamed live and would be moderated by an admin. In the case of a suspicion of cheating, the case will be investigated by the admins and if the admins conclude that theres evidence beyond a reasonable doubt for cheating, then the player (StarCraft II), or team (CS:GO), which the player participates in would be <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>disqualified<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>!!! Esports Business League is an amateur event, where players need to show their own abilities, and not the abilities of a software which assists and alters their gameplay. Our goal is to provide the best experience for all participants!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
           <context context-type="linenumber">83</context>
