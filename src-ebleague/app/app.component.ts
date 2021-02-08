@@ -13,9 +13,11 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  @ViewChild('cookiesBanner', { static: true }) public banner: IgxBannerComponent;
+  @ViewChild('cookiesBanner', { static: true })
+  private banner: IgxBannerComponent;
 
-  @ViewChild('drawer', { static: true }) public navdrawer: IgxNavigationDrawerComponent;
+  @ViewChild('drawer', { static: true })
+  private navdrawer: IgxNavigationDrawerComponent;
 
   public authUser: ApplicationUser;
   public environment = environment;
