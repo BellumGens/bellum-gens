@@ -83,7 +83,7 @@
 		    <target>This site uses cookies</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
-          <context context-type="linenumber">100</context>
+          <context context-type="linenumber">101</context>
         </context-group>
       </trans-unit>
       <trans-unit id="cce78421018a559ad6a9e9de59a244b96272e431" datatype="html">
@@ -91,7 +91,7 @@
 		    <target>Cookies and You</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
-          <context context-type="linenumber">102</context>
+          <context context-type="linenumber">103</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4fc1645f4bdbdf85a11b1b694fd446295b445bca" datatype="html">
@@ -99,7 +99,7 @@
 		    <target>I Understand</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
-          <context context-type="linenumber">103</context>
+          <context context-type="linenumber">104</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6e064c391fde2f5974ffa2d4e9a10bd9a3807eb4" datatype="html">
@@ -107,7 +107,7 @@
 		    <target>Like us on Facebook</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
-          <context context-type="linenumber">123</context>
+          <context context-type="linenumber">124</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
@@ -119,7 +119,7 @@
 		    <target>Follow us on Twitter</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
-          <context context-type="linenumber">126</context>
+          <context context-type="linenumber">127</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
@@ -131,7 +131,7 @@
 		    <target>Follow us on Instagram</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
-          <context context-type="linenumber">129</context>
+          <context context-type="linenumber">130</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
@@ -143,7 +143,7 @@
 		    <target>Follow us on Linked-in</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
-          <context context-type="linenumber">132</context>
+          <context context-type="linenumber">133</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
@@ -155,7 +155,7 @@
 		    <target>Subscribe to our Youtube channel</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
-          <context context-type="linenumber">135</context>
+          <context context-type="linenumber">136</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
@@ -167,7 +167,7 @@
 		    <target>Join our Discord server</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
-          <context context-type="linenumber">138</context>
+          <context context-type="linenumber">139</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
