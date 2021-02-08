@@ -1,5 +1,5 @@
 <div class="registration-form">
-  <h6>Associated Logins</h6>
+  <h6 i18n>Associated Logins</h6>
 
   <button *ngFor="let provider of providers"
           igxButton="raised"
@@ -14,21 +14,21 @@
     <igx-icon class="color-success">{{ disableLogin(provider.name) ? 'done' : '' }}</igx-icon>
   </button>
 
-  <span class="highlight navigatable" (click)="openRegistration()">Create username and password</span>
+  <span class="highlight navigatable" (click)="openRegistration()" i18n>Create username and password</span>
 
-  <h6>Additional Preferences</h6>
+  <h6 i18n>Additional Preferences</h6>
 
   <div class="horizontal-center">
-    <label for="userVisibility">Show profile in searches</label>
+    <label for="userVisibility" i18n>Show profile in searches</label>
     <igx-switch class="horizontal-info__right" #teamVisibility id="userVisibility" name="userVisibility" [(ngModel)]="preferences.searchVisible" (ngModelChange)="submitPreferences()"></igx-switch>
   </div>
 
-  <h6>Tournament Registration</h6>
+  <h6 i18n>Tournament Registration</h6>
 
   <igx-list>
     <igx-list-item *ngFor="let registration of registrations">
-      <h2 igxListLineTitle>Registration for {{ registration.game ? 'StarCraft II' : 'CS:GO' }}</h2>
-      <h4 igxListLineSubTitle>Confirmation code <span class="highlight">{{registration.hash}}</span></h4>
+      <h2 igxListLineTitle i18n>Registration for {{ registration.game ? 'StarCraft II' : 'CS:GO' }}</h2>
+      <h4 igxListLineSubTitle i18n>Confirmation code <span class="highlight">{{registration.hash}}</span></h4>
       <div class="horizontal-center" igxListAction>
         <span [ngClass]="{'color-warn': !registration.state, 'color-success': registration.state }">{{ registration.state ? 'Confirmed' : 'Pending' }}</span>
         <igx-icon class="navigatable" *ngIf="!registration.state" (click)="confirmReg.open(registration)" title="Delete this application">delete_forever</igx-icon>
@@ -38,12 +38,12 @@
 
   <button igxButton="raised" igxRipple class="submit-button" (click)="confirm.open()">
     <igx-icon title="delete account">delete_forever</igx-icon>
-    Delete Account Forever
+    <span i18n>Delete Account Forever</span>
   </button>
 </div>
 
 <!-- Confirm -->
-<bg-confirm #confirm title="Are you sure?" (ok)="deleteAccount()">
+<bg-confirm #confirm title="Are you sure?" (ok)="deleteAccount()" i18n>
   Pressing OK will delete your user account permanently...
 </bg-confirm>
 <bg-confirm #confirmReg title="Are you sure?" (ok)="deleteRegistration($event)">

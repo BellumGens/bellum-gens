@@ -22,7 +22,12 @@ import { LOCALE_ID } from '@angular/core';
 // The Express app is exported so that it can be used by serverless Functions.
 export const app = (lang: string) => {
   const server = express();
-  const distFolder = join(process.cwd(), environment.distFolderEbleague, `${lang}`);
+  let distFolder = join(process.cwd(), environment.distFolderEbleague, lang);
+
+  if (!existsSync(distFolder)) {
+    distFolder = join(process.cwd(), environment.distFolderEbleague);
+  }
+
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
 
   const compression = require('compression');
