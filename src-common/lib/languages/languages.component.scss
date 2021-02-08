@@ -1,0 +1,21 @@
+:host {
+  .profile-button:hover,
+  .profile-button:active,
+  .profile-button:focus {
+    background-color: transparent;
+  }
+
+  .profile-button {
+    --igx-button-flat-icon-color: white;
+  }
+
+}
+
+.dd-item-content {
+  display: flex;
+  align-items: center;
+}
+
+.dd-item-content > igx-icon {
+  margin-right: 12px;
+}

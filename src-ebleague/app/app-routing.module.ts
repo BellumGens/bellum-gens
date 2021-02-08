@@ -3,8 +3,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { TournamentHomeComponent } from './home/home.component';
 import { RaffleComponent } from './raffle/raffle.component';
 import { RegistrationSuccessComponent } from './tournament-registration/registration-success/registration-success.component';
-import { RegistrationComponent } from '../../src-common/components/registration/registration.component';
-import { UnauthorizedComponent } from '../../src-common/components/unauthorized/unauthorized.component';
+import { RegistrationComponent } from '../../src-common/lib/registration/registration.component';
+import { UnauthorizedComponent } from '../../src-common/lib/unauthorized/unauthorized.component';
 import { NewsComponent } from './news/news.component';
 
 export const routes: Routes = [

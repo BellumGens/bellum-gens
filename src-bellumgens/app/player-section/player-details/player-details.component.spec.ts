@@ -31,7 +31,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { ActiveDutyMapsPipe } from 'src-bellumgens/app/pipes/active-duty-maps.pipe';
 import { AppShellComponent } from 'src-bellumgens/app/app-shell/app-shell.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { BellumGensModule } from 'src-common/components/components.module';
+import { BellumGensModule } from 'src-common/lib/components.module';
 import { MapPoolComponent } from '../map-pool/map-pool.component';
 
 describe('PlayerDetailsComponent', () => {

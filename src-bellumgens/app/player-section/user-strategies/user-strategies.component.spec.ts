@@ -25,7 +25,7 @@ import { SafeVideoLinkPipe } from 'src-bellumgens/app/pipes/safe-video-link.pipe
 import { TruncateTextPipe } from 'src-bellumgens/app/pipes/truncate-text.pipe';
 import { IsVideoPipe } from 'src-bellumgens/app/pipes/is-video.pipe';
 import { NewStrategyComponent } from 'src-bellumgens/app/team-section/team-strategies/new-strategy/new-strategy.component';
-import { BellumGensModule } from 'src-common/components/components.module';
+import { BellumGensModule } from 'src-common/lib/components.module';
 
 describe('UserStrategiesComponent', () => {
   let component: UserStrategiesComponent;

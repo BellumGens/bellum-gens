@@ -45,7 +45,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { NotificationStatePipe } from './pipes/notification-state.pipe';
 import { PlayerCountryPipe } from './pipes/player-country.pipe';
 import { TeamNewComponent } from './team-section/team-new/team-new.component';
-import { BellumGensModule } from 'src-common/components/components.module';
+import { BellumGensModule } from 'src-common/lib/components.module';
 
 describe('AppComponent', () => {
   let component: AppComponent;

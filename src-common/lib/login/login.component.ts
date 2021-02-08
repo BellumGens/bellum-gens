@@ -23,7 +23,7 @@ export interface ProfileCompleteness {
 @Component({
   selector: 'bg-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
   @ViewChild(LoginDialogComponent, { static: true })

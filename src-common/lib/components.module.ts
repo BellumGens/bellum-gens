@@ -17,7 +17,8 @@ import {
   IgxListModule,
   IgxInputGroupModule,
   IgxSnackbarModule,
-  IgxCheckboxModule
+  IgxCheckboxModule,
+  IgxSelectModule
 } from '@infragistics/igniteui-angular';
 
 import { SuccessErrorComponent } from './success-error/success-error.component';
@@ -30,6 +31,7 @@ import { UnauthorizedComponent } from './unauthorized/unauthorized.component';
 import { CSGOMapimagePipe } from './pipes/csgomapimage.pipe';
 import { CSGOMapnamePipe } from './pipes/csgomapname.pipe';
 import { Sc2MapNamePipe } from './pipes/sc2-map-name.pipe';
+import { LanguagesComponent } from './languages/languages.component';
 
 
 @NgModule({
@@ -42,6 +44,7 @@ import { Sc2MapNamePipe } from './pipes/sc2-map-name.pipe';
     SuccessErrorComponent,
     RegistrationComponent,
     UnauthorizedComponent,
+    LanguagesComponent,
     CSGOMapimagePipe,
     CSGOMapnamePipe,
     Sc2MapNamePipe
@@ -55,6 +58,7 @@ import { Sc2MapNamePipe } from './pipes/sc2-map-name.pipe';
     SuccessErrorComponent,
     RegistrationComponent,
     UnauthorizedComponent,
+    LanguagesComponent,
     CSGOMapimagePipe,
     CSGOMapnamePipe,
     Sc2MapNamePipe
@@ -75,7 +79,8 @@ import { Sc2MapNamePipe } from './pipes/sc2-map-name.pipe';
     IgxListModule,
     IgxInputGroupModule,
     IgxSnackbarModule,
-    IgxCheckboxModule
+    IgxCheckboxModule,
+    IgxSelectModule
   ]
 })
 export class BellumGensModule {}

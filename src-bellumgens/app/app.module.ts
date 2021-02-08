@@ -96,7 +96,7 @@ import { NewStrategyComponent } from './team-section/team-strategies/new-strateg
 import { IsStratOwnerPipe } from './pipes/is-strat-owner.pipe';
 import { StartsWithPipe } from './pipes/starts-with.pipe';
 import { TeamNewComponent } from './team-section/team-new/team-new.component';
-import { BellumGensModule } from '../../src-common/components/components.module';
+import { BellumGensModule } from '../../src-common/lib/components.module';
 import { TeamTournamentsComponent } from './team-section/team-tournaments/team-tournaments.component';
 
 @NgModule({
