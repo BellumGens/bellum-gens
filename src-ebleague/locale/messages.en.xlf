@@ -604,6 +604,7 @@
       </trans-unit>
       <trans-unit id="6f897862e76b5d84b8bb865e1120d7a4084e3c9f" datatype="html">
         <source>Поръчай официалната EB-League тениска!</source>
+        <target>Order the official EB-League jersey!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/shop/shop.component.html</context>
           <context context-type="linenumber">4</context>
@@ -611,6 +612,7 @@
       </trans-unit>
       <trans-unit id="6380d6e1e4cc995f2d194c42faab444c72286c5a" datatype="html">
         <source>Тениската от сезон 1 на Esports Business League, е вече налична!</source>
+        <target>The 2020 Esports Business League jersey is available!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/shop/shop.component.html</context>
           <context context-type="linenumber">8</context>
@@ -618,6 +620,7 @@
       </trans-unit>
       <trans-unit id="b648f0e6e96ed66576c86814f59604eb6fbdfa19" datatype="html">
         <source>Направена от 100% дишащ полиестер, с висококачествен печат, тениската е налична в лимитирана серия. Идеална е както за продължителни гейминг сесии, така и за спорт на открито! Серията в продажба е само 300 бройки. Имаме налични както мъжки, така и адаптирани дамски модели. Поръчките се извършват единствено с наложен платеж при доставка по куриер, до изчерпване на количествата. Безплатна доставка за поръчки над 100лв.</source>
+        <target>Made of 100% sportswear ventilated polyester, with high quality print, the official jersey is available in limited quantity! The jersey is ideal both for extended gaming sessions and sports activities in the open! Only 300 units of the 2020 jersey are being sold. We have both male and female cuts available. All orders are being shipped C.O.D. Free shipment for orders over 100 BGN.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/shop/shop.component.html</context>
           <context context-type="linenumber">10</context>
@@ -625,6 +628,8 @@
       </trans-unit>
       <trans-unit id="8e67da6cd393d6e7ee9a32dba39e4932da1c1257" datatype="html">
         <source>Цена <x id="START_TAG_DEL" ctype="x-del" equiv-text="&lt;del&gt;"/><x id="INTERPOLATION" equiv-text="{{basePrice}}"/>лв.<x id="CLOSE_TAG_DEL" ctype="x-del" equiv-text="&lt;/del&gt;"/> <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot; *ngIf=&quot;basePromo&quot;&gt;"/><x id="INTERPOLATION_1" equiv-text="{{ basePrice - basePrice * basePromo }}"/>лв.<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <target>Price <x id="START_TAG_DEL" ctype="x-del" equiv-text="&lt;del&gt;"/><x id="INTERPOLATION" equiv-text="{{basePrice}}"/>BGN<x id="CLOSE_TAG_DEL" ctype="x-del" equiv-text="&lt;/del&gt;"/> <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot; *ngIf=&quot;basePromo&quot;&gt;"/><x id="INTERPOLATION_1" equiv-text="{{ basePrice - basePrice * basePromo }}"/>BGN<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
+        <context-group purpose="location">
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/shop/shop.component.html</context>
           <context context-type="linenumber">12</context>
@@ -632,6 +637,7 @@
       </trans-unit>
       <trans-unit id="2ed81d2707721922f2865e14c214e9d045b3eb1d" datatype="html">
         <source>Кройка</source>
+        <target>Cut</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/shop/shop.component.html</context>
           <context context-type="linenumber">24</context>
@@ -639,6 +645,7 @@
       </trans-unit>
       <trans-unit id="8609c2ede274711485c4c84a0efe8ba43bc2f4a6" datatype="html">
         <source>Размер</source>
+        <target>Size</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/shop/shop.component.html</context>
           <context context-type="linenumber">31</context>
@@ -646,6 +653,7 @@
       </trans-unit>
       <trans-unit id="8be2933be3bb3cd730d313bfb5eff8ca72b04b8f" datatype="html">
         <source>Тениски <x id="INTERPOLATION" equiv-text="{{order.jerseys.length}}"/> x <x id="INTERPOLATION_1" equiv-text="{{basePrice}}"/>лв. = <x id="INTERPOLATION_2" equiv-text="{{ order.jerseys.length * basePrice }}"/> лв.</source>
+        <target>Jerseys <x id="INTERPOLATION" equiv-text="{{order.jerseys.length}}"/> x <x id="INTERPOLATION_1" equiv-text="{{basePrice}}"/>BGN = <x id="INTERPOLATION_2" equiv-text="{{ order.jerseys.length * basePrice }}"/> BGN</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/shop/shop.component.html</context>
           <context context-type="linenumber">42</context>
@@ -653,6 +661,7 @@
       </trans-unit>
       <trans-unit id="4b105d11b3c61ef55245bc933e132da91d4b7341" datatype="html">
         <source>Код за отстъпка</source>
+        <target>Promo code</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/shop/shop.component.html</context>
           <context context-type="linenumber">45</context>
@@ -660,6 +669,7 @@
       </trans-unit>
       <trans-unit id="e80f53bf7f27dcb3ab817c55e814bf982c10c663" datatype="html">
         <source> Кодът е невалиден... </source>
+        <target>Promo code is invalid...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/shop/shop.component.html</context>
           <context context-type="linenumber">55,56</context>
