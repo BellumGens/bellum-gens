@@ -1,6 +1,9 @@
 <bg-login-dialog #loginDialog></bg-login-dialog>
 
-<button igxButton="raised" igxRipple *ngIf="!authUser && !userCheck" (click)="loginDialog.openLogin()">Login</button>
+<button igxButton="raised" igxRipple *ngIf="!authUser && !userCheck" (click)="loginDialog.openLogin()">
+  <igx-icon>login</igx-icon>
+  <span>login</span>
+</button>
 
 <igx-circular-bar *ngIf="userCheck" [indeterminate]="true"></igx-circular-bar>
 
@@ -28,7 +31,7 @@
           </div>
 
           <button class="submit-button" igxButton="outlined" igxRipple class="profile-username" (click)="logout()">
-            <igx-icon>exit_to_app</igx-icon>
+            <igx-icon>logout</igx-icon>
             <span>logout</span>
           </button>
         </igx-tabs-group>
