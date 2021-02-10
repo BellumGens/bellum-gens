@@ -1220,6 +1220,7 @@
       </trans-unit>
       <trans-unit id="2fe36ba33036dffa07f6720188748fd4c457d23b" datatype="html">
         <source>Участници</source>
+        <target>Participants</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-sc2/tournament-sc2.component.html</context>
           <context context-type="linenumber">8</context>
@@ -1227,6 +1228,7 @@
       </trans-unit>
       <trans-unit id="818a3fb5ca7c79ec24cd32c8320ab4fa7a0ef09e" datatype="html">
         <source>График с всички StarCraft II срещи</source>
+        <target>StarCraft II Schedule</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-sc2/tournament-sc2.component.html</context>
           <context context-type="linenumber">38</context>
