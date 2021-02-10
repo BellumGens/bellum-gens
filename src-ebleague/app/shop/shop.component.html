@@ -51,9 +51,7 @@
             <igx-icon>clear</igx-icon>
           </igx-suffix>
 
-          <igx-hint class="color-error" *ngIf="invalidPromo" i18n>
-            Кодът е невалиден...
-          </igx-hint>
+          <igx-hint class="color-error" *ngIf="invalidPromo" i18n>Кодът е невалиден...</igx-hint>
         </igx-input-group>
 
         <span *ngIf="promo > 0" class="color-success" i18n>{{ promo * 100 }}% Отстъпка = -{{ (order.jerseys.length * basePrice) * promo }} лв.</span>

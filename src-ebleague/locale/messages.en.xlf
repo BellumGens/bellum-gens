@@ -579,7 +579,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/shop/shop.component.html</context>
-          <context context-type="linenumber">97</context>
+          <context context-type="linenumber">95</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournament-registration/tournament-registration.component.html</context>
@@ -667,79 +667,89 @@
           <context context-type="linenumber">45</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="e80f53bf7f27dcb3ab817c55e814bf982c10c663" datatype="html">
-        <source> Кодът е невалиден... </source>
+      <trans-unit id="44f12693e7b9606a9376761c1f935a31cb1368be" datatype="html">
+        <source>Кодът е невалиден...</source>
         <target>Promo code is invalid...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/shop/shop.component.html</context>
-          <context context-type="linenumber">55,56</context>
+          <context context-type="linenumber">54</context>
         </context-group>
       </trans-unit>
       <trans-unit id="503a0aad127ec249a88b9155327e102a07f5361c" datatype="html">
         <source><x id="INTERPOLATION" equiv-text="{{ promo * 100 }}"/>% Отстъпка = -<x id="INTERPOLATION_1" equiv-text="{{ (order.jerseys.length * basePrice) * promo }}"/> лв.</source>
+        <target><x id="INTERPOLATION" equiv-text="{{ promo * 100 }}"/>% off = -<x id="INTERPOLATION_1" equiv-text="{{ (order.jerseys.length * basePrice) * promo }}"/> BGN</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/shop/shop.component.html</context>
-          <context context-type="linenumber">59</context>
+          <context context-type="linenumber">57</context>
         </context-group>
       </trans-unit>
       <trans-unit id="b1e863790c54d3584a041efc3070ce9bcbc895e0" datatype="html">
         <source>Безплатна доставка</source>
+        <target>Free shipping</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/shop/shop.component.html</context>
+          <context context-type="linenumber">58</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2105fb1ea6920ac404211d1263cbadda34d943b7" datatype="html">
+        <source>Общо = <x id="INTERPOLATION" equiv-text="{{ (order.jerseys.length * basePrice) * (1 - promo) }}"/> лв.</source>
+        <target>Total = <x id="INTERPOLATION" equiv-text="{{ (order.jerseys.length * basePrice) * (1 - promo) }}"/> BGN</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/shop/shop.component.html</context>
           <context context-type="linenumber">60</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2105fb1ea6920ac404211d1263cbadda34d943b7" datatype="html">
-        <source>Общо = <x id="INTERPOLATION" equiv-text="{{ (order.jerseys.length * basePrice) * (1 - promo) }}"/> лв.</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src-ebleague/app/shop/shop.component.html</context>
-          <context context-type="linenumber">62</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="5486e0b5b2e36d281036fe632ff439bb8cf1e4ec" datatype="html">
         <source>Добави още една</source>
+        <target>Add one more</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/shop/shop.component.html</context>
-          <context context-type="linenumber">69</context>
+          <context context-type="linenumber">67</context>
         </context-group>
       </trans-unit>
       <trans-unit id="c72a979c706a3220f0a0d70fc5ca0c8c10b90f36" datatype="html">
         <source>Име</source>
+        <target>First name</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/shop/shop.component.html</context>
-          <context context-type="linenumber">75</context>
+          <context context-type="linenumber">73</context>
         </context-group>
       </trans-unit>
       <trans-unit id="021cbdeb678b2eefa6355585288be0e4e014d9cc" datatype="html">
         <source>Фамилия</source>
+        <target>Last name</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/shop/shop.component.html</context>
-          <context context-type="linenumber">86</context>
+          <context context-type="linenumber">84</context>
         </context-group>
       </trans-unit>
       <trans-unit id="fd3ca904e4e0e5100ab170262f84201046863630" datatype="html">
         <source>Град</source>
+        <target>City</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/shop/shop.component.html</context>
-          <context context-type="linenumber">130</context>
+          <context context-type="linenumber">128</context>
         </context-group>
       </trans-unit>
       <trans-unit id="f0b0ae2f05c213f520c298219a8e36a575753fa1" datatype="html">
         <source>Адрес</source>
+        <target>Street</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/shop/shop.component.html</context>
-          <context context-type="linenumber">141</context>
+          <context context-type="linenumber">139</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1ae0a28c63702bf5776084e31b8c683b74590277" datatype="html">
         <source>Поръчай</source>
+        <target>Order</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/shop/shop.component.html</context>
-          <context context-type="linenumber">153</context>
+          <context context-type="linenumber">151</context>
         </context-group>
       </trans-unit>
       <trans-unit id="c78a1e8ff3493c1236faf44338cfa59bd63c78ad" datatype="html">
         <source>Регистрация Сезон 2</source>
+        <target>Registration Season 2</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournament-registration/tournament-registration.component.html</context>
           <context context-type="linenumber">5</context>
@@ -747,6 +757,7 @@
       </trans-unit>
       <trans-unit id="4a8c755b74052333f70d9b2f2b3affe0083ae61e" datatype="html">
         <source>*Вашият профил няма асоциран Steam акаунт...</source>
+        <target>*You've not associated a Steam account...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournament-registration/tournament-registration.component.html</context>
           <context context-type="linenumber">12</context>
@@ -754,6 +765,7 @@
       </trans-unit>
       <trans-unit id="dcdc38376dda8b09915d9c056beb984ee2e4649f" datatype="html">
         <source>Изберете своя отбор</source>
+        <target>Choose your team</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournament-registration/tournament-registration.component.html</context>
           <context context-type="linenumber">30</context>
