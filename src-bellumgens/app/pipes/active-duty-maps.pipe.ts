@@ -7,7 +7,7 @@ import { ActiveDuty } from '../../../src-common/models/csgomaps';
 export class ActiveDutyMapsPipe implements PipeTransform {
   private activeDuty = ActiveDuty;
 
-  public transform(maps: any [], viewAll: boolean = true, t?: number): any [] {
+  public transform(maps: any [], viewAll: boolean = true, _?: number): any [] {
     if (maps && !viewAll) {
       return maps.filter(m => this.activeDuty.find(a => a.id === m.map).active);
     }
