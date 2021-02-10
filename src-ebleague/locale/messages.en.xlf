@@ -897,6 +897,7 @@
       </trans-unit>
       <trans-unit id="f57ecab915e9b2480ee888f8db27071d6e724a53" datatype="html">
         <source>Служебна победа.</source>
+        <target>Walkover</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
           <context context-type="linenumber">93</context>
@@ -908,6 +909,7 @@
       </trans-unit>
       <trans-unit id="40cddacad672ffc9e359837696cfe59b2df389f9" datatype="html">
         <source>Срещата предстои да се играе или няма записани резултати за тази среща...</source>
+        <target>The match has not been played yet, or there's no results on record.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
           <context context-type="linenumber">95</context>
@@ -919,6 +921,7 @@
       </trans-unit>
       <trans-unit id="0d851f6b41e91aecccf19ac2e2a46d070c35f74e" datatype="html">
         <source>Отбор</source>
+        <target>Team</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
           <context context-type="linenumber">108</context>
@@ -930,6 +933,7 @@
       </trans-unit>
       <trans-unit id="3d44f598edec54bd4bc49fd725800975d60642aa" datatype="html">
         <source>Срещи</source>
+        <target>Matches</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
           <context context-type="linenumber">123</context>
@@ -941,6 +945,7 @@
       </trans-unit>
       <trans-unit id="3d691e1cb149db90470b4fbb5419bdcefbcbc920" datatype="html">
         <source>Победи</source>
+        <target>Wins</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
           <context context-type="linenumber">125</context>
@@ -952,6 +957,7 @@
       </trans-unit>
       <trans-unit id="328dc94e163f5774186c6a48e8b1eebe34fa6248" datatype="html">
         <source>OT Победи</source>
+        <target>OT Wins</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
           <context context-type="linenumber">127</context>
@@ -959,6 +965,7 @@
       </trans-unit>
       <trans-unit id="97f5a22a3b5a13159a148a0c8c1466077b8c0783" datatype="html">
         <source>OT Загуби</source>
+        <target>OT Losses</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
           <context context-type="linenumber">129</context>
@@ -966,6 +973,7 @@
       </trans-unit>
       <trans-unit id="7c32a7136b1cbdb7aa0442ab838bf09481ece29f" datatype="html">
         <source>Загуби</source>
+        <target>Losses</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
           <context context-type="linenumber">131</context>
@@ -977,6 +985,7 @@
       </trans-unit>
       <trans-unit id="05f385eaa6a8194346e326045c8b3706a1db4b9d" datatype="html">
         <source>+/- Рундове</source>
+        <target>Round Diff</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
           <context context-type="linenumber">133</context>
@@ -984,6 +993,7 @@
       </trans-unit>
       <trans-unit id="a5b00292516879123a8fef9123c8f7a1d2430453" datatype="html">
         <source>Точки</source>
+        <target>Points</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
           <context context-type="linenumber">138</context>
@@ -1221,13 +1231,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-sc2/tournament-sc2.component.html</context>
           <context context-type="linenumber">38</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="a68b9588bc3745ebc4d61dc931342ccc12791bf5" datatype="html">
-        <source>Battle.net Battle Tag</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-sc2/tournament-sc2.component.html</context>
-          <context context-type="linenumber">115</context>
         </context-group>
       </trans-unit>
     </body>
