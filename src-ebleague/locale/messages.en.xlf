@@ -746,6 +746,78 @@
           <context context-type="linenumber">151</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="194c50a2c717a1a8261d03c28ffe195141b2b7f9" datatype="html">
+        <source>Регистрацията ви е получена успешно!</source>
+        <target>Your registration has been submitted successfully!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournament-registration/registration-success/registration-success.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f326c02656ce8ed740ae787df9f4838c8a7c1b46" datatype="html">
+        <source>Вашата регистрация ще бъде потвърдена след като преведете таксата за участие (60лв. с ДДС за лигата по StarCraft II, или 300лв. с ДДС за лигата по CS:GO).</source>
+        <target>In order to confirm your registration, you need to pay the registration fee (60 BGN for the StarCraft II league, or 300 BGN for the CS:GO league).</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournament-registration/registration-success/registration-success.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="918f6f9240b23faeff04a2d86b64c5cb986b060a" datatype="html">
+        <source>Регистрацията ви ще бъде показана като потвърдена в рамките на 2 работни дни след превод на таксата за участие по нашата банкова сметка:</source>
+        <target>Your registration will be shown as confirmed within 2 work days of the registration fee transfer.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournament-registration/registration-success/registration-success.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3ad7ee978478396d800f8f5933b957e0bd48b0ca" datatype="html">
+        <source>Име на Банката: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>ОББ<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <target>Bank name: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>United Bulgarian Bank<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournament-registration/registration-success/registration-success.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6b176ffe331aaa80bc2a0a95db5597111cbaaac5" datatype="html">
+        <source>Титуляр: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Белум Генс<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <target>Beneficiary: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Bellum Gens<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournament-registration/registration-success/registration-success.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="581d9d8b1098f7cd0182d44c678b4b4384f98616" datatype="html">
+        <source>Сметка: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>BG90UBBS80021087375040<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <target>IBAN: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>BG90UBBS80021087375040<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournament-registration/registration-success/registration-success.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ad2c6bb1543cfb6945ee9ccb149d99c3f94c3f9f" datatype="html">
+        <source>Моля при превода да сложите в основанието уникалния код, който сме генерирали за вашата регистрация: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ application?.hash }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>. Можете да намерите кода и през вашият профил.</source>
+        <target>Please put this uniquely generated registration code into the bank transfer details: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ application?.hash }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>. For future reference, this code can be found through your user profile.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournament-registration/registration-success/registration-success.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d1e24cca38b3c574d216f2d859532e45466cdd85" datatype="html">
+        <source>Изпратили сме и имейл на посоченият от вас адрес (<x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{application?.email}}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>) с тези детайли.</source>
+        <target>We've also emailed these details to the email address you've provided (<x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{application?.email}}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>).</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournament-registration/registration-success/registration-success.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="807a913472abc052edee6563a8e646a81c5d0e11" datatype="html">
+        <source>Ако ви е нужна фактура, моля да се свържете с нас на <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;mailto:info@eb-league.com&quot;&gt;"/>info@eb-league.com<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>!</source>
+        <target>If you need an invoice, please contact us at <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;mailto:info@eb-league.com&quot;&gt;"/>info@eb-league.com<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournament-registration/registration-success/registration-success.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="c78a1e8ff3493c1236faf44338cfa59bd63c78ad" datatype="html">
         <source>Регистрация Сезон 2</source>
         <target>Registration Season 2</target>
