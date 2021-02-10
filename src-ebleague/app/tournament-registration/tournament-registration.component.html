@@ -2,21 +2,21 @@
 
   <igx-divider></igx-divider>
   <div class="form-wrapper">
-    <h2 id="registration" class="registration-title">Регистрация Сезон 2</h2>
+    <h2 id="registration" class="registration-title" i18n>Регистрация Сезон 2</h2>
 
     <igx-select name="game" [required]="true" [disabled]="!authUser" class="registration-form-input" [(ngModel)]="application.game" (ngModelChange)="showDetails()">
       <label igxLabel>{{ authUser ? 'Изберете лига (игра)' : 'Първо трябва да влезете в акаунта си'}}</label>
       <igx-select-item *ngFor="let game of games" [value]="game.id">
         {{ game.name }}
       </igx-select-item>
-      <igx-hint *ngIf="application.game === 0 && !authUser.steamId">*Вашият профил няма асоциран Steam акаунт...</igx-hint>
+      <igx-hint *ngIf="application.game === 0 && !authUser.steamId" i18n>*Вашият профил няма асоциран Steam акаунт...</igx-hint>
     </igx-select>
   </div>
 
   <div #appDetails class="form-wrapper application-details">
 
     <igx-input-group class="registration-form-input">
-      <label igxLabel for="email">Имейл адрес</label>
+      <label igxLabel for="email" i18n>Имейл адрес</label>
       <igx-prefix>
         <igx-icon>email</igx-icon>
       </igx-prefix>
@@ -27,7 +27,7 @@
     </igx-input-group>
 
     <igx-select id="team" #team name="team" [required]="true" [(ngModel)]="application.teamId" class="registration-form-input" *ngIf="application.game === gameEnum.CSGO" >
-      <label igxLabel for="email">Изберете своя отбор</label>
+      <label igxLabel for="email" i18n>Изберете своя отбор</label>
       <igx-prefix>
         <igx-icon>people</igx-icon>
       </igx-prefix>
@@ -35,7 +35,7 @@
         <igx-avatar [src]="team.teamAvatar" [initials]="team.teamName" class="team-avatar" [roundShape]="true"></igx-avatar>
         <span class="title margin-left">{{ team.teamName }}</span>
       </igx-select-item>
-      <igx-select-item (click)="newTeam.open(false)">
+      <igx-select-item (click)="newTeam.open(false)" i18n>
         Създай нов отбор...
       </igx-select-item>
     </igx-select>
@@ -52,7 +52,7 @@
     </igx-input-group>
 
     <igx-input-group class="registration-form-input">
-      <label igxLabel for="company">Компания</label>
+      <label igxLabel for="company" i18n>Компания</label>
       <igx-prefix>
         <igx-icon>work</igx-icon>
       </igx-prefix>
@@ -60,7 +60,7 @@
       <igx-suffix *ngIf="company.value" (click)="application.companyId = null">
         <igx-icon>clear</igx-icon>
       </igx-suffix>
-      <igx-hint>*Изберете компанията с която ще асоцирате вашето участие...</igx-hint>
+      <igx-hint i18n>*Изберете компанията с която ще асоцирате вашето участие...</igx-hint>
     </igx-input-group>
     <igx-drop-down #companiesDD maxHeight="320px">
       <igx-drop-down-item *ngFor="let company of companies | startsWith:application.companyId" [value]="company">
@@ -70,11 +70,11 @@
 
     <div class="horizontal-center">
       <igx-checkbox #termsAccepted id="accept" name="accept" class="accept-terms-checkbox">
-        <label for="accept">Приемам <span class="highlight navigatable" (click)="scrollToTerms($event)">условията за записване</span>.</label>
+        <label for="accept">Приемам <span class="highlight navigatable" (click)="scrollToTerms($event)" i18n>условията за записване</span>.</label>
       </igx-checkbox>
     </div>
 
-    <button igxButton="outlined" class="submit-registration" [disabled]="tapplication.invalid || !termsAccepted.checked || inProgress">Регистрирай ме</button>
+    <button igxButton="outlined" class="submit-registration" [disabled]="tapplication.invalid || !termsAccepted.checked || inProgress" i18n>Регистрирай ме</button>
   </div>
 </form>
 

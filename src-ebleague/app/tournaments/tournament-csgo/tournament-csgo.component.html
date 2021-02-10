@@ -2,10 +2,10 @@
   <igx-card type="outlined">
     <igx-card-header>
       <igx-avatar igxCardThumbnail [roundShape]="true" src="/assets/wallpapers/csgo-watermark.webp"></igx-avatar>
-      <h1 igxCardHeaderTitle>CS:GO Лига</h1>
+      <h1 igxCardHeaderTitle i18n>CS:GO Лига</h1>
     </igx-card-header>
     <igx-card-content>
-      <h4>Отбори</h4>
+      <h4 i18n>Отбори</h4>
       <div class="participants-container">
         <igx-circular-bar *ngIf="loading" [indeterminate]="true"></igx-circular-bar>
         <div *ngFor="let registration of registrations" class="registration-slot">
@@ -18,6 +18,7 @@
           <igx-badge *ngIf="registration.userId === authUser?.id && registration.state === 0"
                       type="warning"
                       icon="priority_high"
+                      i18n-title
                       title="Вашата регистрация все още не е потвърдена! За да потвърдим регистрацията трябва да платите таксата за участие!"
                       class="registration-badge-style">
           </igx-badge>
@@ -32,24 +33,25 @@
       <igx-grid [cellSelection]="selectionMode.none"
                 [data]="csgomatches"
                 height="550px"
+                i18n-emptyGridMessage
                 emptyGridMessage="Няма намерени срещи..."
                 [isLoading]="loadingMatches"
                 [allowFiltering]="true">
 
         <igx-grid-toolbar>
-          <igx-grid-toolbar-title>График с всички CS:GO срещи</igx-grid-toolbar-title>
+          <igx-grid-toolbar-title i18n>График с всички CS:GO срещи</igx-grid-toolbar-title>
           <igx-grid-toolbar-actions>
-            <a href="https://challonge.com/ebleague_csgo" target="_blank" rel="noopener">Вижте бракетът за сезон 2 тук</a>
+            <a href="https://challonge.com/ebleague_csgo" target="_blank" rel="noopener" i18n>Вижте бракетът за сезон 2 тук</a>
           </igx-grid-toolbar-actions>
         </igx-grid-toolbar>
 
-        <igx-column field="startTime" width="220px" [dataType]="gridDataType.Date" header="Начало">
+        <igx-column field="startTime" width="220px" [dataType]="gridDataType.Date" i18n-header header="Начало">
           <ng-template igxCell let-value>
             {{ value | date:'MMM d, y, h:mm a' }}
           </ng-template>
         </igx-column>
 
-        <igx-column field="matchDetails" header="Среща" [filterable]="false">
+        <igx-column field="matchDetails" i18n-header header="Среща" [filterable]="false">
           <div *igxCell="let cell = cell">
             <igx-avatar igxListThumbnail
                         [src]="cell.rowData.team1.teamAvatar"
@@ -88,11 +90,11 @@
             </div>
           </div>
 
-          <div class="horizontal-center" *ngIf="dataItem.noShow">
+          <div class="horizontal-center" *ngIf="dataItem.noShow" i18n>
             Служебна победа.
           </div>
 
-          <div class="horizontal-center" *ngIf="!dataItem.maps.length && !dataItem.noShow">
+          <div class="horizontal-center" *ngIf="!dataItem.maps.length && !dataItem.noShow" i18n>
             Срещата предстои да се играе или няма записани резултати за тази среща...
           </div>
         </ng-template>
@@ -107,7 +109,7 @@
             <igx-grid-toolbar-title>{{group.name}}</igx-grid-toolbar-title>
           </igx-grid-toolbar>
 
-          <igx-column field="team" header="Отбор" width="22%">
+          <igx-column field="team" i18n-header header="Отбор" width="22%">
             <div *igxCell="let value">
               <igx-avatar igxListThumbnail
                           [src]="value.teamAvatar"
@@ -120,24 +122,24 @@
             </div>
           </igx-column>
 
-          <igx-column field="companyId" header="Компания" width="15%">
+          <igx-column field="companyId" i18n-header header="Компания" width="15%">
           </igx-column>
-          <igx-column field="matches" [dataType]="gridDataType.Number" header="Срещи" width="9%">
+          <igx-column field="matches" [dataType]="gridDataType.Number" i18n-header header="Срещи" width="9%">
           </igx-column>
-          <igx-column field="wins" [dataType]="gridDataType.Number" header="Победи" width="9%">
+          <igx-column field="wins" [dataType]="gridDataType.Number" i18n-header header="Победи" width="9%">
           </igx-column>
-          <igx-column field="oTWins" [dataType]="gridDataType.Number" header="OT Победи" title="Победи в добавено време" width="9%">
+          <igx-column field="oTWins" [dataType]="gridDataType.Number" i18n-header header="OT Победи" title="Победи в добавено време" width="9%">
           </igx-column>
-          <igx-column field="oTLosses" [dataType]="gridDataType.Number" header="OT Загуби" title="Загуби в добавено време" width="9%">
+          <igx-column field="oTLosses" [dataType]="gridDataType.Number" i18n-header header="OT Загуби" title="Загуби в добавено време" width="9%">
           </igx-column>
-          <igx-column field="losses" [dataType]="gridDataType.Number" header="Загуби" width="9%">
+          <igx-column field="losses" [dataType]="gridDataType.Number" i18n-header header="Загуби" width="9%">
           </igx-column>
-          <igx-column field="roundDifference" [dataType]="gridDataType.Number" header="+/- Рундове" width="9%">
+          <igx-column field="roundDifference" [dataType]="gridDataType.Number" i18n-header header="+/- Рундове" width="9%">
             <span *igxCell="let value" [class]="value > 0 ? 'color-success' : value < 0 ? 'color-error' : ''">
               {{ value }}
             </span>
           </igx-column>
-          <igx-column field="teamPoints" [dataType]="gridDataType.Number" header="Точки" width="9%">
+          <igx-column field="teamPoints" [dataType]="gridDataType.Number" i18n-header header="Точки" width="9%">
           </igx-column>
 
         </igx-grid>

@@ -1,15 +1,15 @@
 <div class="content-container">
 
   <div class="content-container-row">
-    <h1>Поръчай официалната EB-League тениска!</h1>
+    <h1 i18n>Поръчай официалната EB-League тениска!</h1>
   </div>
 
   <div class="content-container-column left-column">
-    <p>Тениската от сезон 1 на Esports Business League, е вече налична!</p>
+    <p i18n>Тениската от сезон 1 на Esports Business League, е вече налична!</p>
 
-    <p>Направена от 100% дишащ полиестер, с висококачествен печат, тениската е налична в лимитирана серия. Идеална е както за продължителни гейминг сесии, така и за спорт на открито! Серията в продажба е само 300 бройки. Имаме налични както мъжки, така и адаптирани дамски модели. Поръчките се извършват единствено с наложен платеж при доставка по куриер, до изчерпване на количествата. Безплатна доставка за поръчки над 100лв.</p>
+    <p i18n>Направена от 100% дишащ полиестер, с висококачествен печат, тениската е налична в лимитирана серия. Идеална е както за продължителни гейминг сесии, така и за спорт на открито! Серията в продажба е само 300 бройки. Имаме налични както мъжки, така и адаптирани дамски модели. Поръчките се извършват единствено с наложен платеж при доставка по куриер, до изчерпване на количествата. Безплатна доставка за поръчки над 100лв.</p>
 
-    <h4>Цена <del>{{basePrice}}лв.</del>&nbsp;<span class="highlight" *ngIf="basePromo">{{ basePrice - basePrice * basePromo }}лв.</span></h4>
+    <h4 i18n>Цена <del>{{basePrice}}лв.</del>&nbsp;<span class="highlight" *ngIf="basePromo">{{ basePrice - basePrice * basePromo }}лв.</span></h4>
   </div>
 
   <div class="content-container-column">
@@ -21,14 +21,14 @@
       <div class="column-container">
         <div class="horizontal-center" *ngFor="let jersey of order.jerseys; let i = index">
           <igx-select [value]="jersey.cut" (onSelection)="selectJerseyCut(jersey, $event)" type="border" class="order-form-input" name="jerseyCut">
-            <label igxLabel>Кройка</label>
+            <label igxLabel i18n>Кройка</label>
             <igx-select-item *ngFor="let cut of cuts" [value]="cut.cut">
               {{ cut.text }}
             </igx-select-item>
           </igx-select>
 
           <igx-select [value]="jersey.size" (onSelection)="selectJerseySize(jersey, $event)" type="border" class="order-form-input" name="jerseySize">
-            <label igxLabel>Размер</label>
+            <label igxLabel i18n>Размер</label>
             <igx-select-item *ngFor="let size of allSizes | filterSizes:jersey.cut" [value]="size.size">
               {{ size.text }}
             </igx-select-item>
@@ -39,10 +39,10 @@
       </div>
 
       <div class="order-summary">
-        <span>Тениски {{order.jerseys.length}} x {{basePrice}}лв. = {{ order.jerseys.length * basePrice }} лв.</span>
+        <span i18n>Тениски {{order.jerseys.length}} x {{basePrice}}лв. = {{ order.jerseys.length * basePrice }} лв.</span>
 
         <igx-input-group class="order-form-input" type="border">
-          <label igxLabel for="firstName">Код за отстъпка</label>
+          <label igxLabel for="firstName" i18n>Код за отстъпка</label>
           <igx-prefix>
             <igx-icon>money_off</igx-icon>
           </igx-prefix>
@@ -51,27 +51,28 @@
             <igx-icon>clear</igx-icon>
           </igx-suffix>
 
-          <igx-hint class="color-error" *ngIf="invalidPromo">
+          <igx-hint class="color-error" *ngIf="invalidPromo" i18n>
             Кодът е невалиден...
           </igx-hint>
         </igx-input-group>
 
-        <span *ngIf="promo > 0" class="color-success">{{ promo * 100 }}% Отстъпка = -{{ (order.jerseys.length * basePrice) * promo }} лв.</span>
-        <span *ngIf="order.jerseys.length * basePrice * promo >= 100">Безплатна доставка</span>
+        <span *ngIf="promo > 0" class="color-success" i18n>{{ promo * 100 }}% Отстъпка = -{{ (order.jerseys.length * basePrice) * promo }} лв.</span>
+        <span *ngIf="order.jerseys.length * basePrice * promo >= 100" i18n>Безплатна доставка</span>
         <igx-divider></igx-divider>
-        <span>Общо = {{ (order.jerseys.length * basePrice) * (1 - promo) }} лв.</span>
+        <span i18n>Общо = {{ (order.jerseys.length * basePrice) * (1 - promo) }} лв.</span>
       </div>
     </div>
 
     <div class="horizontal floating-button">
       <button type="button" igxButton="outlined" (click)="order.jerseys.push({ cut: 0, size: 3 })">
-        <igx-icon>add</igx-icon> Добави още една
+        <igx-icon>add</igx-icon>
+        <span i18n>Добави още една</span>
       </button>
     </div>
 
     <div class="horizontal">
       <igx-input-group class="order-form-input" type="border">
-        <label igxLabel for="firstName">Име</label>
+        <label igxLabel for="firstName" i18n>Име</label>
         <igx-prefix>
           <igx-icon>text_fields</igx-icon>
         </igx-prefix>
@@ -82,7 +83,7 @@
       </igx-input-group>
 
       <igx-input-group class="order-form-input" type="border">
-        <label igxLabel for="lastName">Фамилия</label>
+        <label igxLabel for="lastName" i18n>Фамилия</label>
         <igx-prefix>
           <igx-icon>text_fields</igx-icon>
         </igx-prefix>
@@ -93,7 +94,7 @@
       </igx-input-group>
 
       <igx-input-group class="order-form-input" type="border">
-        <label igxLabel for="orderemail">Имейл адрес</label>
+        <label igxLabel for="orderemail" i18n>Имейл адрес</label>
         <igx-prefix>
           <igx-icon>email</igx-icon>
         </igx-prefix>
@@ -126,7 +127,7 @@
       </igx-input-group>
 
       <igx-input-group class="order-form-input" type="border">
-        <label igxLabel for="orderCity">Град</label>
+        <label igxLabel for="orderCity" i18n>Град</label>
         <igx-prefix>
           <igx-icon>home</igx-icon>
         </igx-prefix>
@@ -137,7 +138,7 @@
       </igx-input-group>
 
       <igx-input-group class="order-form-input" type="border">
-        <label igxLabel for="orderAddress">Адрес</label>
+        <label igxLabel for="orderAddress" i18n>Адрес</label>
         <igx-prefix>
           <igx-icon>home</igx-icon>
         </igx-prefix>
@@ -149,7 +150,7 @@
     </div>
 
     <div class="horizontal floating-button">
-      <button igxButton="outlined" [disabled]="!orderForm.touched || orderForm.invalid || inProgress">Поръчай</button>
+      <button igxButton="outlined" [disabled]="!orderForm.touched || orderForm.invalid || inProgress" i18n>Поръчай</button>
     </div>
 
   </form>
