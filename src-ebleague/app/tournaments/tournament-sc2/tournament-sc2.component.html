@@ -84,13 +84,9 @@
             </div>
           </div>
 
-          <div class="horizontal-center" *ngIf="dataItem.noShow" i18n>
-            Служебна победа.
-          </div>
+          <div class="horizontal-center" *ngIf="dataItem.noShow" i18n>Служебна победа.</div>
 
-          <div class="horizontal-center" *ngIf="!dataItem.maps.length && !dataItem.noShow" i18n>
-            Срещата предстои да се играе или няма записани резултати за тази среща...
-          </div>
+          <div class="horizontal-center" *ngIf="!dataItem.maps.length && !dataItem.noShow" i18n>Срещата предстои да се играе или няма записани резултати за тази среща...</div>
         </ng-template>
       </igx-grid>
 
@@ -116,7 +112,7 @@
             </div>
           </igx-column>
 
-          <igx-column field="battleTag" i18n-header header="Battle.net Battle Tag" width="20%">
+          <igx-column field="battleTag" header="Battle.net Battle Tag" width="20%">
           </igx-column>
           <igx-column field="companyId" i18n-header header="Компания" width="20%">
           </igx-column>

@@ -90,13 +90,9 @@
             </div>
           </div>
 
-          <div class="horizontal-center" *ngIf="dataItem.noShow" i18n>
-            Служебна победа.
-          </div>
+          <div class="horizontal-center" *ngIf="dataItem.noShow" i18n>Служебна победа.</div>
 
-          <div class="horizontal-center" *ngIf="!dataItem.maps.length && !dataItem.noShow" i18n>
-            Срещата предстои да се играе или няма записани резултати за тази среща...
-          </div>
+          <div class="horizontal-center" *ngIf="!dataItem.maps.length && !dataItem.noShow" i18n>Срещата предстои да се играе или няма записани резултати за тази среща...</div>
         </ng-template>
       </igx-grid>
 
