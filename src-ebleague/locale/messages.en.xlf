@@ -771,18 +771,20 @@
           <context context-type="linenumber">30</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="d9f470451b3d78b7b17cbdb9d4c5c65003fa842a" datatype="html">
-        <source> Създай нов отбор... </source>
+      <trans-unit id="086650a940efdd27fba1390e02a8504f28a94227" datatype="html">
+        <source>Създай нов отбор...</source>
+        <target>Create a new team...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournament-registration/tournament-registration.component.html</context>
-          <context context-type="linenumber">39,40</context>
+          <context context-type="linenumber">38</context>
         </context-group>
       </trans-unit>
       <trans-unit id="d04b1716be569dc78a3d00e78bd6b077b001e095" datatype="html">
         <source>Компания</source>
+        <target>Company</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournament-registration/tournament-registration.component.html</context>
-          <context context-type="linenumber">55</context>
+          <context context-type="linenumber">53</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
@@ -795,27 +797,31 @@
       </trans-unit>
       <trans-unit id="72941eb6d0a48ebd05da3223925e50bacdf3a818" datatype="html">
         <source>*Изберете компанията с която ще асоцирате вашето участие...</source>
+        <target>*Choose the company associated with your participation...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournament-registration/tournament-registration.component.html</context>
-          <context context-type="linenumber">63</context>
+          <context context-type="linenumber">61</context>
         </context-group>
       </trans-unit>
       <trans-unit id="c73fc82703628aa21e948cbd065447f3cddbd16b" datatype="html">
         <source>условията за записване</source>
+        <target>Terms and conditions</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournament-registration/tournament-registration.component.html</context>
-          <context context-type="linenumber">73</context>
+          <context context-type="linenumber">71</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2e609c7a9d8b0a306527d3e4c74e88e32ad128a6" datatype="html">
         <source>Регистрирай ме</source>
+        <target>Register</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournament-registration/tournament-registration.component.html</context>
-          <context context-type="linenumber">77</context>
+          <context context-type="linenumber">75</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ba3860f13d16a167245e39f7f9007ca4ab2a68bd" datatype="html">
         <source>Отбори</source>
+        <target>Teams</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
           <context context-type="linenumber">8</context>
@@ -823,6 +829,7 @@
       </trans-unit>
       <trans-unit id="4e86e8da3d5ab44acd76f33af2c9ee2c5b6155bc" datatype="html">
         <source>Вашата регистрация все още не е потвърдена! За да потвърдим регистрацията трябва да платите таксата за участие!</source>
+        <target>Your registration is still not confirmed! You need to pay the registration fee in order to confirm your participation!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
           <context context-type="linenumber">22</context>
@@ -834,6 +841,7 @@
       </trans-unit>
       <trans-unit id="dbda4c551cd364d4f85c489e795c4db8e7990b9f" datatype="html">
         <source>Няма намерени срещи...</source>
+        <target>No matches found...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
           <context context-type="linenumber">37</context>
@@ -845,6 +853,7 @@
       </trans-unit>
       <trans-unit id="b334d38168990c7b172b931bf997b6f6c5d46551" datatype="html">
         <source>График с всички CS:GO срещи</source>
+        <target>CS:GO Schedule</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
           <context context-type="linenumber">42</context>
@@ -852,6 +861,7 @@
       </trans-unit>
       <trans-unit id="ae712249b56e45671b100704ad08a346a0ded6be" datatype="html">
         <source>Вижте бракетът за сезон 2 тук</source>
+        <target>Season 2 bracket is available here</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
           <context context-type="linenumber">44</context>
@@ -863,6 +873,7 @@
       </trans-unit>
       <trans-unit id="8c8aeb6e7308cb7f2983e9d091d61bdef7024dfa" datatype="html">
         <source>Начало</source>
+        <target>Start time</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
           <context context-type="linenumber">48</context>
@@ -874,6 +885,7 @@
       </trans-unit>
       <trans-unit id="d64a83f2c1ac68dad8b84d991d6ee0aa4a79e9ef" datatype="html">
         <source>Среща</source>
+        <target>Match</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
           <context context-type="linenumber">54</context>

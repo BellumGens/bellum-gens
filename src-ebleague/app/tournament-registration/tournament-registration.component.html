@@ -35,9 +35,7 @@
         <igx-avatar [src]="team.teamAvatar" [initials]="team.teamName" class="team-avatar" [roundShape]="true"></igx-avatar>
         <span class="title margin-left">{{ team.teamName }}</span>
       </igx-select-item>
-      <igx-select-item (click)="newTeam.open(false)" i18n>
-        Създай нов отбор...
-      </igx-select-item>
+      <igx-select-item (click)="newTeam.open(false)" i18n>Създай нов отбор...</igx-select-item>
     </igx-select>
 
     <igx-input-group class="registration-form-input" *ngIf="application.game === gameEnum.StarCraft2" >

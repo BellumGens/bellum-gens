@@ -688,18 +688,18 @@
           <context context-type="linenumber">30</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="d9f470451b3d78b7b17cbdb9d4c5c65003fa842a" datatype="html">
-        <source> Създай нов отбор... </source>
+      <trans-unit id="086650a940efdd27fba1390e02a8504f28a94227" datatype="html">
+        <source>Създай нов отбор...</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournament-registration/tournament-registration.component.html</context>
-          <context context-type="linenumber">39,40</context>
+          <context context-type="linenumber">38</context>
         </context-group>
       </trans-unit>
       <trans-unit id="d04b1716be569dc78a3d00e78bd6b077b001e095" datatype="html">
         <source>Компания</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournament-registration/tournament-registration.component.html</context>
-          <context context-type="linenumber">55</context>
+          <context context-type="linenumber">53</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
@@ -714,21 +714,21 @@
         <source>*Изберете компанията с която ще асоцирате вашето участие...</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournament-registration/tournament-registration.component.html</context>
-          <context context-type="linenumber">63</context>
+          <context context-type="linenumber">61</context>
         </context-group>
       </trans-unit>
       <trans-unit id="c73fc82703628aa21e948cbd065447f3cddbd16b" datatype="html">
         <source>условията за записване</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournament-registration/tournament-registration.component.html</context>
-          <context context-type="linenumber">73</context>
+          <context context-type="linenumber">71</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2e609c7a9d8b0a306527d3e4c74e88e32ad128a6" datatype="html">
         <source>Регистрирай ме</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournament-registration/tournament-registration.component.html</context>
-          <context context-type="linenumber">77</context>
+          <context context-type="linenumber">75</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ba3860f13d16a167245e39f7f9007ca4ab2a68bd" datatype="html">
