@@ -807,8 +807,8 @@
           <context context-type="linenumber">31</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="b7b59cf8138525a7f727b4b0b4d8860489ae8000" datatype="html">
-        <source>Jerseys <x id="INTERPOLATION" equiv-text="{{order.jerseys.length}}"/> x <x id="INTERPOLATION_1" equiv-text="{{basePrice}}"/> BGN = <x id="INTERPOLATION_2" equiv-text="{{ order.jerseys.length * basePrice }}"/> BGN</source>
+      <trans-unit id="52bd3b8dd9c3474f18fe46ea34300a6d3d50a730" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{order.jerseys.length}}"/> x <x id="INTERPOLATION_1" equiv-text="{{basePrice}}"/> BGN = <x id="INTERPOLATION_2" equiv-text="{{ order.jerseys.length * basePrice }}"/> BGN</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/shop/shop.component.html</context>
           <context context-type="linenumber">42</context>
