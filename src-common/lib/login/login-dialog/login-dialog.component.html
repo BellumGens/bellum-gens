@@ -8,12 +8,12 @@
       <igx-prefix>
         <igx-icon>person</igx-icon>
       </igx-prefix>
-      <input #userName igxInput id="username" required name="username" [(ngModel)]="logininfo.username" />
+      <input #userName igxInput id="username" [required]="true" name="username" [(ngModel)]="logininfo.username" />
     </igx-input-group>
 
     <igx-input-group class="login-button" type="border">
       <label for="passwordField" igxLabel i18n>Password</label>
-      <input #passwordField igxInput type="password" required id="passwordField" name="passwordField" [(ngModel)]="logininfo.password" />
+      <input #passwordField igxInput type="password" [required]="true" id="passwordField" name="passwordField" [(ngModel)]="logininfo.password" />
     </igx-input-group>
 
     <igx-checkbox name="rememberme" [(ngModel)]="logininfo.rememberMe" i18n>Remember me</igx-checkbox>
