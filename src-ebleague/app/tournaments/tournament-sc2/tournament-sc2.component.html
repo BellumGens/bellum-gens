@@ -5,7 +5,7 @@
       <h1 igxCardHeaderTitle>StarCraft II Лига</h1>
     </igx-card-header>
     <igx-card-content>
-      <h4>Участници</h4>
+      <h4 i18n>Participants</h4>
       <div class="participants-container">
         <igx-circular-bar *ngIf="loading" [indeterminate]="true"></igx-circular-bar>
         <div *ngFor="let registration of registrations" class="registration-slot">
@@ -14,7 +14,8 @@
           <igx-badge *ngIf="registration.userId === authUser?.id && registration.state === 0"
                      type="warning"
                      icon="priority_high"
-                     title="Вашата регистрация все още не е потвърдена! За да потвърдим регистрацията трябва да платите таксата за участие!"
+                     i18n-title
+                     title="Your registration is still not confirmed! You need to pay the registration fee in order to confirm your participation!"
                      class="registration-badge-style">
           </igx-badge>
 
@@ -28,24 +29,25 @@
       <igx-grid [cellSelection]="selectionMode.none"
                 [data]="sc2matches"
                 height="550px"
-                emptyGridMessage="Няма намерени срещи..."
+                i18n-emptyGridMessage
+                emptyGridMessage="No matches found..."
                 [isLoading]="loadingMatches"
                 [allowFiltering]="true">
 
         <igx-grid-toolbar>
-          <igx-grid-toolbar-title>График с всички StarCraft II срещи</igx-grid-toolbar-title>
+          <igx-grid-toolbar-title i18n>Schedule</igx-grid-toolbar-title>
           <igx-grid-toolbar-actions>
-            <a href="https://challonge.com/ebleague_starcraft" target="_blank" rel="noopener">Вижте бракетът за сезон 2 тук</a>
+            <a href="https://challonge.com/ebleague_starcraft" target="_blank" rel="noopener" i18n>Season 2 bracket is available here</a>
           </igx-grid-toolbar-actions>
         </igx-grid-toolbar>
 
-        <igx-column field="startTime" width="220px" [dataType]="gridDataType.Date" header="Начало">
+        <igx-column field="startTime" width="220px" [dataType]="gridDataType.Date" i18n-header header="Start time">
           <ng-template igxCell let-value>
             {{ value | date:'MMM d, y, h:mm a' }}
           </ng-template>
         </igx-column>
 
-        <igx-column field="matchDetails" header="Среща" [filterable]="false">
+        <igx-column field="matchDetails" i18n-header header="Match" [filterable]="false">
           <div *igxCell="let cell = cell">
             <igx-avatar igxListThumbnail
                         [src]="cell.rowData.player1.avatarMedium"
@@ -82,13 +84,9 @@
             </div>
           </div>
 
-          <div class="horizontal-center" *ngIf="dataItem.noShow">
-            Служебна победа.
-          </div>
+          <div class="horizontal-center" *ngIf="dataItem.noShow" i18n>Walkover.</div>
 
-          <div class="horizontal-center" *ngIf="!dataItem.maps.length && !dataItem.noShow">
-            Срещата предстои да се играе или няма записани резултати за тази среща...
-          </div>
+          <div class="horizontal-center" *ngIf="!dataItem.maps.length && !dataItem.noShow" i18n>The match has not been played yet, or there's no results on record...</div>
         </ng-template>
       </igx-grid>
 
@@ -101,7 +99,7 @@
             <igx-grid-toolbar-title>{{group.name}}</igx-grid-toolbar-title>
           </igx-grid-toolbar>
 
-          <igx-column field="user" header="Отбор" width="20%">
+          <igx-column field="user" i18n-header header="Player" width="20%">
             <div *igxCell="let value">
               <igx-avatar igxListThumbnail
                           [src]="value.avatarMedium"
@@ -116,15 +114,15 @@
 
           <igx-column field="battleTag" header="Battle.net Battle Tag" width="20%">
           </igx-column>
-          <igx-column field="companyId" header="Компания" width="20%">
+          <igx-column field="companyId" i18n-header header="Company" width="20%">
           </igx-column>
-          <igx-column field="matches" [dataType]="gridDataType.Number" header="Срещи" width="10%">
+          <igx-column field="matches" [dataType]="gridDataType.Number" i18n-header header="Matches" width="10%">
           </igx-column>
-          <igx-column field="wins" [dataType]="gridDataType.Number" header="Победи" width="10%">
+          <igx-column field="wins" [dataType]="gridDataType.Number" i18n-header header="Wins" width="10%">
           </igx-column>
-          <igx-column field="losses" [dataType]="gridDataType.Number" header="Загуби" width="10%">
+          <igx-column field="losses" [dataType]="gridDataType.Number" i18n-header header="Losses" width="10%">
           </igx-column>
-          <igx-column field="playerPoints" [dataType]="gridDataType.Number" header="Точки" width="10%">
+          <igx-column field="playerPoints" [dataType]="gridDataType.Number" i18n-header header="Points" width="10%">
           </igx-column>
 
         </igx-grid>

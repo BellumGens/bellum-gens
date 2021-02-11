@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { AdminCsgoComponent } from './admin-csgo.component';
-import { BellumGensModule } from 'src-common/components/components.module';
+import { BellumGensModule } from 'src-common/lib/components.module';
 import { IgxListModule,
   IgxIconModule,
   IgxInputGroupModule,
@@ -14,9 +14,9 @@ import { IgxListModule,
   IgxSelectModule,
   IgxTimePickerModule,
   IgxCalendarModule,
-  IgxDividerModule,
   IgxCheckboxModule,
-  IgxGridModule} from '@infragistics/igniteui-angular';
+  IgxGridModule,
+  IgxDialogModule} from '@infragistics/igniteui-angular';
 import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -47,7 +47,7 @@ describe('AdminCsgoComponent', () => {
         IgxTimePickerModule,
         IgxCalendarModule,
         IgxCheckboxModule,
-        IgxDividerModule,
+        IgxDialogModule,
         IgxGridModule
       ]
     })

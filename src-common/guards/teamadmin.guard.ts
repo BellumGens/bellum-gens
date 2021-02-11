@@ -1,6 +1,5 @@
 import { Injectable, PLATFORM_ID, Inject } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { CanActivate, ActivatedRouteSnapshot } from '@angular/router';
 import { LoginService } from '../services/login.service';
 import { isPlatformBrowser } from '@angular/common';
 
@@ -14,13 +13,12 @@ export class TeamadminGuard implements CanActivate {
     this.isBrowser = isPlatformBrowser(platformId);
   }
 
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+  public canActivate(
+    next: ActivatedRouteSnapshot) {
     return this.isBrowser ? this.isTeamAdmin(next.parent.params.teamid) : true;
   }
 
-  isTeamAdmin(teamid: string) {
+  public isTeamAdmin(teamid: string) {
     return this.authService.getUserIsTeamAdmin(teamid);
   }
 }

@@ -62,7 +62,7 @@ export class AdminSc2Component {
 
   public deleteGroup(id: string) {
     const group = this.groups.find(g => g.id === id);
-    this.apiService.deleteGroup(id).subscribe(_ => this.groups.splice(this.groups.indexOf(group), 1));
+    this.apiService.deleteGroup(id).subscribe(() => this.groups.splice(this.groups.indexOf(group), 1));
     this.registrations.filter(r => r.tournamentSC2GroupId === id).forEach(r => r.tournamentSC2GroupId = null);
     this.pipeTrigger++;
   }
@@ -121,7 +121,7 @@ export class AdminSc2Component {
   }
 
   public deleteMatchMap(map: TournamentMatchMap, maps: TournamentMatchMap []) {
-    this.apiService.deleteSC2MatchMap(map.id).subscribe(_ => {
+    this.apiService.deleteSC2MatchMap(map.id).subscribe(() => {
       maps.splice(maps.indexOf(map), 1);
     });
   }

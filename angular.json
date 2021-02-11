@@ -172,8 +172,8 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
-              "e2e//**/*.ts",
-              "e2e//**/*.html"
+              "e2e/**/*.ts",
+              "e2e/**/*.html"
             ]
           }
         }
@@ -185,6 +185,12 @@
       "projectType": "application",
       "prefix": "app",
       "schematics": {},
+      "i18n": {
+        "sourceLocale": "en",
+        "locales": {
+          "bg": "src-ebleague/locale/messages.bg.xlf"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -223,6 +229,7 @@
                   "with": "src-common/environments/environment.prod.ts"
                 }
               ],
+              "localize": true,
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -231,6 +238,7 @@
               "vendorChunk": false,
               "buildOptimizer": true,
               "serviceWorker": true,
+              "i18nMissingTranslation": "error",
               "ngswConfigPath": "src-ebleague/ngsw-config.json"
             }
           }

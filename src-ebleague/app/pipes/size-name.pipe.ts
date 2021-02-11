@@ -15,7 +15,7 @@ export class SizeNamePipe implements PipeTransform {
     { text: 'XXXL', size: JerseySize.XXXL }
   ];
 
-  transform(size: JerseySize): string {
+  public transform(size: JerseySize): string {
     return this.allSizes.find(s => s.size === size).text;
   }
 

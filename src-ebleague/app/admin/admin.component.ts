@@ -43,9 +43,7 @@ export class AdminComponent {
   }
 
   public submitRole(role: string) {
-    this.authService.submitRole(role).subscribe(_ => {
-      this.authService.getUserRoles().subscribe(roles => this.roles = roles);
-    });
+    this.authService.submitRole(role).subscribe(() => this.authService.getUserRoles().subscribe(roles => this.roles = roles));
   }
 
   public updateTournament(tournament?: Tournament) {

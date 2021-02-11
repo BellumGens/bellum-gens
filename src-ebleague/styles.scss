@@ -173,7 +173,7 @@ $grid-toolbar-theme: igx-grid-toolbar-theme($background-color: $background);
   grid-template-columns: minmax(45%, 1fr) minmax(45%, 1fr);
   grid-column-gap: 48px;
   grid-row-gap: 16px;
-  padding: 48px 48px 12px 48px;
+  padding: 12px 48px;
 }
 
 .slide-info-column {
@@ -188,6 +188,7 @@ $grid-toolbar-theme: igx-grid-toolbar-theme($background-color: $background);
   font-size: 1.75rem;
   font-weight: 800;
   margin: 0;
+  line-height: 5rem;
 }
 
 .slide-info-column h4 {
@@ -223,7 +224,8 @@ $grid-toolbar-theme: igx-grid-toolbar-theme($background-color: $background);
   min-height: 125px;
 }
 
-.registration-slot > a, span {
+.registration-slot > a,
+.registration-slot > span {
   font-size: 0.80rem;
 }
 

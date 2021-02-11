@@ -88,7 +88,7 @@ export class TeamStrategiesComponent {
 
   public deleteStrat(args: CSGOStrategy) {
     this.apiStrategyService.deleteStrategy(args.id).subscribe(
-      _ => {
+      () => {
         this.strats.splice(this.strats.indexOf(args), 1);
         this.pipeTrigger++;
       }
@@ -112,7 +112,7 @@ export class TeamStrategiesComponent {
     if (!this.authUser) {
       this.openLogin('You need to login first');
     } else {
-      this.apiStrategyService.submitStratVote(strat, direction, this.authUser.id).subscribe(_ => this.pipeTrigger++);
+      this.apiStrategyService.submitStratVote(strat, direction, this.authUser.id).subscribe(() => this.pipeTrigger++);
     }
   }
 }

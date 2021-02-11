@@ -45,8 +45,8 @@ export class ShopComponent extends BaseComponent {
   public placeOrder() {
     this.inProgress = true;
     this.apiService.submitOrder(this.order).subscribe(
-      _ => this.router.navigate(['shop', 'order-success']),
-      _ => this.inProgress = false
+      () => this.router.navigate(['shop', 'order-success']),
+      () => this.inProgress = false
     );
   }
 

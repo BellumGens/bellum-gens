@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class ReduceQuickSearchResultPipe implements PipeTransform {
 
-  transform(value: any []): any [] {
+  public transform(value: any []): any [] {
     return value ? value.slice(0, 3) : value;
   }
 

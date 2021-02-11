@@ -6,7 +6,7 @@ import { ALL_ROLES } from '../../../src-common/models/playerrole';
 })
 export class QueryParsedPipe implements PipeTransform {
 
-  transform(query: string, player = false): string {
+  public transform(query: string, player = false): string {
     if (query) {
       let result = '';
       if (player) {

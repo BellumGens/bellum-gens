@@ -6,7 +6,7 @@ import { TournamentParticipant } from '../../../src-common/models/tournament';
 })
 export class GetPlayersPipe implements PipeTransform {
 
-  transform(registrations: TournamentParticipant [], player1id: string, player2id: string): TournamentParticipant [] {
+  public transform(registrations: TournamentParticipant [], player1id: string, player2id: string): TournamentParticipant [] {
     if (registrations) {
       return registrations.filter(r => r.userId === player1id || r.userId === player2id);
     }

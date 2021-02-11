@@ -18,7 +18,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { BellumGensModule } from 'src-common/components/components.module';
+import { BellumGensModule } from 'src-common/lib/components.module';
 import { TournamentRegistrationComponent } from '../tournament-registration/tournament-registration.component';
 import { StartsWithPipe } from 'src-bellumgens/app/pipes/starts-with.pipe';
 import { TeamNewComponent } from 'src-bellumgens/app/team-section/team-new/team-new.component';

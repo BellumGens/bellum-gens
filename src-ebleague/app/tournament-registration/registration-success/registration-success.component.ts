@@ -8,13 +8,6 @@ import { TournamentApplication } from '../../../../src-common/models/tournament'
   styleUrls: ['./registration-success.component.scss']
 })
 export class RegistrationSuccessComponent {
-
-  public bankaccountinfo = {
-    bank: 'ОББ',
-    name: 'Белум Генс',
-    bic: 'UBBSBGSF',
-    account: 'BG90UBBS80021087375040'
-  };
   public application: TournamentApplication;
 
   constructor(private router: Router) {

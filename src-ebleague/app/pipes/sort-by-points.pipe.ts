@@ -6,7 +6,7 @@ import { TournamentParticipant } from '../../../src-common/models/tournament';
 })
 export class SortByPointsPipe implements PipeTransform {
 
-  transform(participants: TournamentParticipant [], key: string): any {
+  public transform(participants: TournamentParticipant [], key: string): any {
     if (participants) {
       return participants.sort((a, b) => a[key] === b[key] ? 0 : a[key] > b[key] ? -1 : 1);
     }

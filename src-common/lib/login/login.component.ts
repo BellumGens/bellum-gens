@@ -23,7 +23,7 @@ export interface ProfileCompleteness {
 @Component({
   selector: 'bg-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
   @ViewChild(LoginDialogComponent, { static: true })
@@ -50,7 +50,7 @@ export class LoginComponent {
   }
 
   public logout() {
-    this.authManager.logout().subscribe(_ => this.userProfile.close());
+    this.authManager.logout().subscribe(() => this.userProfile.close());
   }
 
   public navigateToProfile(id: string) {

@@ -7,7 +7,6 @@ import { IDialogEventArgs, IgxDialogComponent } from '@infragistics/igniteui-ang
   styleUrls: ['./confirm.component.css']
 })
 export class ConfirmComponent {
-
   @Input()
   public title = '';
 
@@ -17,7 +16,8 @@ export class ConfirmComponent {
   @Output()
   public cancel = new EventEmitter<IDialogEventArgs>();
 
-  @ViewChild(IgxDialogComponent, { static: true }) dialog: IgxDialogComponent;
+  @ViewChild(IgxDialogComponent, { static: true })
+  public dialog: IgxDialogComponent;
 
   private confirmEntity: any;
 

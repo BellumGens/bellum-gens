@@ -39,14 +39,14 @@ export class PlayerNotificationsComponent {
     this.actionText = 'Accepting...';
     this.actionInProgress = true;
     this.apiService.acceptInvite(notification).subscribe(
-      _ => {
+      () => {
         notification.state = NotificationState.Accepted;
         this.pipeTrigger++;
         this.router.navigate(['team', notification.teamInfo.customUrl]);
         this.changed.emit(-1);
         this.actionInProgress = false;
       },
-      _ => this.actionInProgress = false
+      () => this.actionInProgress = false
     );
   }
 
@@ -54,13 +54,13 @@ export class PlayerNotificationsComponent {
     this.actionText = 'Rejecting...';
     this.actionInProgress = true;
     this.apiService.rejectInvite(notification).subscribe(
-      _ => {
+      () => {
         notification.state = NotificationState.Rejected;
         this.pipeTrigger++;
         this.changed.emit(-1);
         this.actionInProgress = false;
       },
-      _ => this.actionInProgress = false
+      () => this.actionInProgress = false
     );
   }
 

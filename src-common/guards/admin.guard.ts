@@ -1,6 +1,5 @@
 import { Injectable, PLATFORM_ID, Inject } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree } from '@angular/router';
-import { Observable } from 'rxjs';
+import { CanActivate } from '@angular/router';
 import { LoginService } from '../services/login.service';
 import { isPlatformBrowser } from '@angular/common';
 
@@ -14,13 +13,11 @@ export class AdminGuard implements CanActivate {
     this.isBrowser = isPlatformBrowser(platformId);
   }
 
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+  public canActivate() {
     return this.isBrowser ? this.isAppAdmin() : true;
   }
 
-  isAppAdmin() {
+  public isAppAdmin() {
     return this.authService.getUserIsAppAdmin();
   }
 }

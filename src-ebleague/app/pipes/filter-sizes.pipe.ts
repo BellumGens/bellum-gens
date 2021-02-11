@@ -23,7 +23,7 @@ export class FilterSizesPipe implements PipeTransform {
     { text: 'XXXL', size: JerseySize.XXXL }
   ];
 
-  transform(value: JerseySizes [], cut: JerseyCut): JerseySizes [] {
+  public transform(value: JerseySizes [], cut: JerseyCut): JerseySizes [] {
     if (cut === JerseyCut.Male) {
       return this.maleSizes;
     }

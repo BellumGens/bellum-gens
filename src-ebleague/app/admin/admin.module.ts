@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
 import { AdminCsgoComponent } from './admin-csgo/admin-csgo.component';
-import { BellumGensModule } from '../../../src-common/components/components.module';
+import { BellumGensModule } from '../../../src-common/lib/components.module';
 import { AdminSc2Component } from './admin-sc2/admin-sc2.component';
 import { NotInGroupPipe } from '../pipes/not-in-group.pipe';
 import { GetPlayersPipe } from '../pipes/get-players.pipe';

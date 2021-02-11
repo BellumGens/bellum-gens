@@ -12,13 +12,13 @@ export class MapPoolComponent {
   public viewAll = false;
 
   @Input()
-  mapPool: Observable<CSGOMapPool []>;
+  public mapPool: Observable<CSGOMapPool []>;
 
   @Input()
-  readOnly: boolean;
+  public readOnly: boolean;
 
   @Output()
-  update = new EventEmitter<CSGOMapPool>();
+  public update = new EventEmitter<CSGOMapPool>();
 
   constructor() { }
 

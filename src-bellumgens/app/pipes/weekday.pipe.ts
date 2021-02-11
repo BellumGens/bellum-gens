@@ -5,11 +5,11 @@ import { DayOfWeek } from '../../../src-common/models/playeravailability';
   name: 'weekday'
 })
 export class WeekdayPipe implements PipeTransform {
-  public weekDays = [
+  private weekDays = [
     'Sundays', 'Mondays', 'Tuesdays', 'Wednesdays', 'Thursdays', 'Fridays', 'Saturdays'
   ];
 
-  transform(day: DayOfWeek): string {
+  public transform(day: DayOfWeek): string {
     return this.weekDays[day];
   }
 }

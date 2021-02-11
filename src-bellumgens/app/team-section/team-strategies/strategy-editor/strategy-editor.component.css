@@ -53,7 +53,7 @@
 }
 
 .selected-element {
-  outline: 2px solid var(--app-secondary-color);
+  outline: 2px solid var(--igx-secondary-500);
 }
 
 .editor-elements-section {

@@ -6,7 +6,8 @@ import { NotificationState } from '../../../src-common/models/usernotifications'
 })
 export class NotificationStatePipe implements PipeTransform {
   private stateMap = ['Not seen', 'Seen', 'Rejected', 'Accepted'];
-  transform(value: NotificationState): string {
+
+  public transform(value: NotificationState): string {
     return this.stateMap[value];
   }
 

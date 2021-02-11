@@ -1,3 +1,7 @@
+/***************************************************************************************************
+ * Load `$localize` onto the global scope - used if i18n tags appear in Angular templates.
+ */
+import '@angular/localize/init';
 import 'zone.js/dist/zone-node';
 
 import { APP_BASE_HREF } from '@angular/common';
@@ -8,33 +12,22 @@ import * as xmlhttprequest from 'xmlhttprequest';
 import { join } from 'path';
 
 import { AppServerModule } from './src-ebleague/main.server';
-import { existsSync, readFileSync } from 'fs';
+import { existsSync } from 'fs';
 import { environment } from './src-common/environments/environment';
+import { LOCALE_ID } from '@angular/core';
 
 // HTML polyfills
-const domino = require('domino');
-const distFolder = join(process.cwd(), environment.distFolderEbleague);
-const template = readFileSync(join(distFolder, 'index.html')).toString();
-const window = domino.createWindow(template);
-
-// Ignite UI browser objects abstractions
-(global as any).window = window;
-(global as any).document = window.document;
-(global as any).HTMLElement = window.HTMLElement;
-
 (global as any).XMLHttpRequest = xmlhttprequest.XMLHttpRequest;
-(global as any).HTMLElement.prototype.getBoundingClientRect = () => {
-  return {
-    left: '',
-    right: '',
-    top: '',
-    bottom: ''
-  };
-};
 
 // The Express app is exported so that it can be used by serverless Functions.
-export function app() {
+export const app = (lang: string) => {
   const server = express();
+  let distFolder = join(process.cwd(), environment.distFolderEbleague, lang);
+
+  if (!existsSync(distFolder)) {
+    distFolder = join(process.cwd(), environment.distFolderEbleague);
+  }
+
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
 
   const compression = require('compression');
@@ -42,7 +35,7 @@ export function app() {
 
   // Our Universal express-engine (found @ https://github.com/angular/universal/tree/master/modules/express-engine)
   server.engine('html', ngExpressEngine({
-    bootstrap: AppServerModule,
+    bootstrap: AppServerModule
   }));
 
   server.set('view engine', 'html');
@@ -57,26 +50,31 @@ export function app() {
 
   // All regular routes use the Universal engine
   server.get('*', (req, res) => {
-    res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
+    res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }, { provide: LOCALE_ID, useValue: lang }] });
   });
 
   // All bellumgens routes should redirect
-  server.get('/players/*', (req, res) => {
+  server.get('**/players/*', (req, res) => {
     res.redirect(environment.bellumgens + req.originalUrl);
   });
 
   return server;
-}
+};
 
-function run() {
+const run = () => {
   const port = process.env.PORT || 4001;
 
   // Start up the Node server
-  const server = app();
+  const appBg = app('bg');
+  const appEn = app('en');
+  const server = express();
+  server.use('/bg', appBg);
+  server.use('/en', appEn);
+  server.use('', appEn);
   server.listen(port, () => {
     console.log(`Node Express server listening on http://localhost:${port}`);
   });
-}
+};
 
 // Webpack will replace 'require' with '__webpack_require__'
 // '__non_webpack_require__' is a proxy to Node 'require'

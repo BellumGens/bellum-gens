@@ -22,7 +22,7 @@ import { FormsModule } from '@angular/forms';
 import { AppShellComponent } from 'src-bellumgens/app/app-shell/app-shell.component';
 import { HasVotedPipe } from 'src-bellumgens/app/pipes/has-voted.pipe';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { BellumGensModule } from 'src-common/components/components.module';
+import { BellumGensModule } from 'src-common/lib/components.module';
 
 describe('StrategyDetailsComponent', () => {
   let component: StrategyDetailsComponent;

@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-raffle',
   templateUrl: './raffle.component.html',
   styleUrls: ['./raffle.component.scss']
 })
-export class RaffleComponent implements OnInit {
+export class RaffleComponent {
 
   constructor() { }
-
-  ngOnInit(): void {
-  }
 
 }

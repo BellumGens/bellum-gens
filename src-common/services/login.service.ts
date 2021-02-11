@@ -77,7 +77,7 @@ export class LoginService {
           }
           this.userCheckInProgress.next(false);
         },
-        _ => this.userCheckInProgress.next(false)
+        () => this.userCheckInProgress.next(false)
       );
     }
 

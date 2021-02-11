@@ -85,7 +85,7 @@ export class ApiTournamentsService {
           this._csgoRegistrations.next(data);
           this.loadingCSGORegistrations.next(false);
         },
-        _ => this.loadingCSGORegistrations.next(false)
+        () => this.loadingCSGORegistrations.next(false)
       );
     }
     return this._csgoRegistrations;
@@ -98,7 +98,7 @@ export class ApiTournamentsService {
           this._sc2Registrations.next(data);
           this.loadingSC2Registrations.next(false);
         },
-        _ => this.loadingSC2Registrations.next(false)
+        () => this.loadingSC2Registrations.next(false)
       );
     }
     return this._sc2Registrations;
@@ -112,7 +112,7 @@ export class ApiTournamentsService {
           this._csgoMatches.get(id).next(data);
           this.loadingCSGOMatches.next(false);
         },
-        _ => this.loadingCSGOMatches.next(false)
+        () => this.loadingCSGOMatches.next(false)
       );
     }
     return this._csgoMatches.get(id);
@@ -126,7 +126,7 @@ export class ApiTournamentsService {
           this._sc2Matches.get(id).next(data);
           this.loadingSC2Matches.next(false);
         },
-        _ => this.loadingSC2Matches.next(false)
+        () => this.loadingSC2Matches.next(false)
       );
     }
     return this._sc2Matches.get(id);

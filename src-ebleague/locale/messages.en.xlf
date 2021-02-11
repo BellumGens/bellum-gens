@@ -1,0 +1,1383 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="f968f4a83edfcfda5f3d64ba069fda1a0c2ae30e" datatype="html">
+        <source>or login with form</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/login/login-dialog/login-dialog.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="08c74dc9762957593b91f6eb5d65efdfc975bf48" datatype="html">
+        <source>Username</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/login/login-dialog/login-dialog.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/registration/registration.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c32ef07f8803a223a83ed17024b38e8d82292407" datatype="html">
+        <source>Password</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/login/login-dialog/login-dialog.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/registration/registration.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3eb49d60bd859eb2d9d3a6d380cdf4e0b8252333" datatype="html">
+        <source>Remember me</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/login/login-dialog/login-dialog.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3bb93d5b02f1f29b3940d4608c8289fff5a82220" datatype="html">
+        <source>Don&apos;t have an account?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/login/login-dialog/login-dialog.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="801c464dfaabb8eb2c16f2cc0bf81435030174dd" datatype="html">
+        <source>login</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/login/login-dialog/login-dialog.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/login/login.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="994363f08f9fbfa3b3994ff7b35c6904fdff18d8" datatype="html">
+        <source>Profile</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/login/login.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="25508c929e905ee63d835a33652b4b10683179e4" datatype="html">
+        <source>logout</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/login/login.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="121cc5391cd2a5115bc2b3160379ee5b36cd7716" datatype="html">
+        <source>Settings</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/login/login.component.html</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9a4328a5d7c4336ba01b604e4a5d9445dfd80e41" datatype="html">
+        <source>Setup your account</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/registration/registration.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5de538c0978c2504538817bdb227721b0bdc8ed9" datatype="html">
+        <source>Username already taken...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/registration/registration.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="244aae9346da82b0922506c2d2581373a15641cc" datatype="html">
+        <source>Email</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/registration/registration.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">319</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">335</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/shop/shop.component.html</context>
+          <context context-type="linenumber">95</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournament-registration/tournament-registration.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="598b500b7c3015f487fdae13b770a5eb38430371" datatype="html">
+        <source>Must include at least 1 letter, 1 number and 1 special char</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/registration/registration.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c1b7e6d75ff4285c7636c67e5ef259629b81725b" datatype="html">
+        <source>Confirm Password</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/registration/registration.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cb694325f0b6a38f6921aa4d56381af191bfdd54" datatype="html">
+        <source>Doesn&apos;t match...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/registration/registration.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cfc2f436ec2beffb042e7511a73c89c372e86a6c" datatype="html">
+        <source>Register</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/registration/registration.component.html</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournament-registration/tournament-registration.component.html</context>
+          <context context-type="linenumber">75</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dc996c9abd70bed1d1924bce6e5b75e9c45bbf77" datatype="html">
+        <source>Associated Logins</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="87bb542a1f5c0dc963d29df364c6ac829279eba1" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{ disableLogin(provider.name) ? provider.name : &apos;Add &apos; + provider.name }}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="24ecfa0b4a99d21b20b04950630e656d0519cd17" datatype="html">
+        <source>Create username and password</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9fefbb18689d747e86cb3b60086e5a52f34ef750" datatype="html">
+        <source>Additional Preferences</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cb37a606ee3450afdf67c7a186ef9988f2c4e1f4" datatype="html">
+        <source>Show profile in searches</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="978d2295734e8ddac32d3eaa58593df941de86d5" datatype="html">
+        <source>Tournament Registration</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c31bec609580fc8a8c52bb3058e973a9528adc0a" datatype="html">
+        <source>Registration for <x id="INTERPOLATION" equiv-text="{{ registration.game ? &apos;StarCraft II&apos; : &apos;CS:GO&apos; }}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ccb854cc03b3fea200d7247fa750b15362a6652c" datatype="html">
+        <source>Confirmation code <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{registration.hash}}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6eb9dc94d8419e8058a8046f8016dd5bbd61be31" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{ registration.state ? &apos;Confirmed&apos; : &apos;Pending&apos; }}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="57c5c9697f53670d4668f56554715598b48bb6d0" datatype="html">
+        <source>Delete Account Forever</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c5f3fb880fbd46f6b5ef0cef7ed174c0cd66b51f" datatype="html">
+        <source>Pressing OK will delete your user account permanently...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="079fc56305a2e646ff9ff9259b0a02dcf73d6d0f" datatype="html">
+        <source>Pressing OK will delete your tournament registration permanently...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d8512e2e339ff4f4991934a6f816a78b0bc3c9c4" datatype="html">
+        <source>Tournaments</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
+          <context context-type="linenumber">66</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="72f34b3ac267bb423e47c3bed43123f99239d1da" datatype="html">
+        <source>Shop</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
+          <context context-type="linenumber">69</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="08bc7b2661a5cbd7d4ab5469aa27363017c77fd8" datatype="html">
+        <source>Tournament format</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
+          <context context-type="linenumber">72</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">169</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f039cf53849819a5275796c017e82bffc0cb1417" datatype="html">
+        <source>Our partners</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
+          <context context-type="linenumber">75</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cde78e40c11f60408cdc9c1783e1c7d56a8216de" datatype="html">
+        <source>Our crew</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
+          <context context-type="linenumber">78</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6e8d3b518ff70956197265ede2b55f99b201ab76" datatype="html">
+        <source>Contact us</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
+          <context context-type="linenumber">81</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">315</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1a4ed38e0cd7424f54d101ef06b8c42d6df9629b" datatype="html">
+        <source>This site uses cookies</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
+          <context context-type="linenumber">101</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6867927381f4641f7401b6d3f87e9a30c1d90706" datatype="html">
+        <source>Cookies and You</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
+          <context context-type="linenumber">103</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a86f5f7de4c99cfbf9ffbd8f6cb7aedb85ad8a1b" datatype="html">
+        <source>I Understand</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
+          <context context-type="linenumber">104</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dcc0e3b278e7daf82c57d6742ad35d2b4deff1a5" datatype="html">
+        <source>Like us on Facebook</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
+          <context context-type="linenumber">124</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">338</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e0de906591fddc1e423f4dd7a048ce2a821d058b" datatype="html">
+        <source>Follow us on Twitter</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
+          <context context-type="linenumber">127</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">341</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="58f8107a9c8b48b3f8c02d901dca9b7be5493ece" datatype="html">
+        <source>Follow us on Instagram</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
+          <context context-type="linenumber">130</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">344</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="90d3c623b3043d49a7181a5f0cf8436995fc1f55" datatype="html">
+        <source>Follow us on Linked-in</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
+          <context context-type="linenumber">133</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">347</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ebc7456772797693cfcf805b6be4d0440bf257bc" datatype="html">
+        <source>Subscribe to our Youtube channel</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
+          <context context-type="linenumber">136</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">350</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d9f7419bc922e2da847df3f43c6ecadd5c007e4c" datatype="html">
+        <source>Follow us on Twitch</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
+          <context context-type="linenumber">139</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">353</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="34020763f269641858d4b88c875f5e56f16aa574" datatype="html">
+        <source>Join our Discord server</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
+          <context context-type="linenumber">142</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">356</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="15cbdb55cd9ebaa6d4dfd86276bd2eb0371b1acc" datatype="html">
+        <source>Get ready for Season 3 of the one of a kind esports office league! Starting this season, Esports Business League becomes a charity event, through which participants will be able to choose the charity campaign they wish to support. Registrations will open soon!</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d1a45b44bfdaddbd7649db0b0adea7c677dcd88d" datatype="html">
+        <source>Follow us on social media</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="41c228a78884309e324c165279befa40838c5f00" datatype="html">
+        <source>Season 2</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="075ff675418e68ff971010aa913145c61e8d712f" datatype="html">
+        <source>Esports Business League Season 2 concluded on November 8th with grand finals in both StarCraft II and CS:GO! In the StarCraft II final SuGaRBuNNy [Nuvei] and IlPrincipino [UltraPlay] battled it out in a very compatitive BO5 where all 5 maps were played and the winner was <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://bellumgens.com/players/76561198061226037&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>SuGaRBuNNy [Nuvei]<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt; "/>. This makes him a reigning, defending champion in the StarCraft II category. The CS:GO final was between Plan-B [Modis] and 3nIGm4 [Infragistics]. The team from Modis <x id="START_LINK_1" equiv-text="&lt;a href=&quot;https://bellumgens.com/team/Plan-B/details&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>Plan-B<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt; "/> managed to win both maps. They got a relatively easy win on their map pick and the boys from Plan-B managed to take Infragistics 3nIGm4&apos;s map pick in overtime.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="51bb427f1a96aac0c5efb8b043685040bb693040" datatype="html">
+        <source>Champion</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">94</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cbbf7d1491871edb7c3943c458bb75d184abd71a" datatype="html">
+        <source>Runner-up</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">62</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">101</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="289e477d4080f0efb870d58700b562d81db388a0" datatype="html">
+        <source>3rd-4th Place</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">72</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">108</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dae19bd8aa0566f784bd538ac65bf8688191c63c" datatype="html">
+        <source>What is Esports Business League?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">125</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="423c256533e936c50ebe40cfd93dcc694803db76" datatype="html">
+        <source>Esports Business League is a charity esports event, which provides amateur gamers with an arena for competition between individuals and teams formed at the workplace. Each season of the league is going to be 4-8 weeks in length. Matches take place on week days after working hours Monday-Thursday. The league culminates with finals where the teams and players who have accumulated the most points during the season meet. Finals are being held over one weekend. All league matches are being broadcasted live on our Twitch channels.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">133</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="be8b692a344722e73855bdde9c97418f6584701c" datatype="html">
+        <source>When?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">134</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5de6b994ba946f3af8f6ed2719b90b898ce14f2d" datatype="html">
+        <source>Registrations are open until reaching the deadline, or until all the available spots have been filled.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">135</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ca52fcc4e628a0cd7dff35198a01af27cfdedfc8" datatype="html">
+        <source>Season 3 of the Esports Business League will begin <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ dates.compStart | date }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">136</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e7a40f40bb29e9bcbc15916496a5f5ef609bb79a" datatype="html">
+        <source>Esports Business League Season 3 finals will be held <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ dates.compStart | date }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">137</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f9b310ac6e0921cca5f786ad8a5b82ca27565c36" datatype="html">
+        <source>Terms and conditions</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">144</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b9b2f68bd88e4db6ee84a3dd204916296296048b" datatype="html">
+        <source>All team members must be <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>current employees of the company associated with the team registration, should not have any active engagement or affiliation with a professional esports organization, and haven&apos;t participated in professional esports matches as players in the past 24 months from the date of registration<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>. The team is allowed to have standins/substitute players and they have to comply with the same conditions as the main players on the team. Substitutes can be added to the team post registration, as long as they comply with the aformentioned conditions. Individual players (StarCraft II) must be <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>current employees of the company associated with their registration<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>. The company represented by the team/individual must be provided at the time of registration.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">148</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0085d7b7e1d7b343fef0ace509a7759330447989" datatype="html">
+        <source>Registrations are open until the deadline is reached, <x id="INTERPOLATION" equiv-text="{{ dates.regDeadline }}"/>, or until all open slots have been filled (16 CS:GO teams, 32 StarCraft II players). Successful registration completion requires registration fee payment - 300 BGN (VAT incl.) per team or 60 BGN (VAT incl.) per individual competitor. Registration fee paymant is done with a bank transfer after the registration form has been submitted. <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>All registration fees are being added to the prize pool fund. At the end of the season the prize pool will be donated to a charitable cause chosen by the winners!<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">149</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5c5c272384e38ecffbadb941b07894b615db483d" datatype="html">
+        <source>CS:GO League</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">173</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">206</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dc136fdeb2cb7a29922bcfc8ebfb6b01b8bf2407" datatype="html">
+        <source>3-7 weeks</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">175</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">189</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f9c90557a3cf12b8735bf7b96c58bc8bb2c5b925" datatype="html">
+        <source>2 groups with up to 8 teams each</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">176</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2d6a2df0b27eceea19653212b5de25695124379c" datatype="html">
+        <source>1-2 matches per team per week</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">177</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8d49be6d2a123effa081042bd03e70fc05884aa8" datatype="html">
+        <source>Matches are in BO1 or BO3 format</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">178</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0d124a541e90efeaed34428d17c23e79527bb5db" datatype="html">
+        <source>Round robin format</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">179</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">193</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cf086d39b2854cda3e195f801fd138718f933a4f" datatype="html">
+        <source>Each team earns points weekly</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">180</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="97208ae3eed148cd0c286bba2125cf6fc89ca830" datatype="html">
+        <source>Finals weekend with the 4 best teams from the group stage</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">181</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="672ec878329fb321824cdb60e2f113a171a85c44" datatype="html">
+        <source>Full information about the format can be found <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/format&quot;&gt;"/>here<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">182</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">196</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4ae1b3a4d6f98a5562d504f9f01dc0ef650fc14c" datatype="html">
+        <source>StarCraft II League</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">187</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">213</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2f2c3c5c7bdaaeb2da1ec979e855b134b89e557d" datatype="html">
+        <source>4 groups with up to 8 players each</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">190</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cc8746e6c8a1ea331bc013e09cb263ef2078e64e" datatype="html">
+        <source>1-2 matches per player per week</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">191</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3a89029836194994659121292dfb3573801ec088" datatype="html">
+        <source>Matches are in BO3 format</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">192</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4ceed44f54a9ff44d62403661b3218b52a0d493c" datatype="html">
+        <source>Each player earns points weekly</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">194</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8d2960bd6839e7251108c5e6f5b7cd1ef13d4237" datatype="html">
+        <source>Finals weekend with the 8 best players from the group stage</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">195</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="121b6af284dddb956589ade56596a756aeafe345" datatype="html">
+        <source>Prizes</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">202</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fc71b1813680e2190ea882cad39784c0f2b851b1" datatype="html">
+        <source>The prize pool is funded by the registration fees.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">207</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">214</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="69b59d06567999df73411daa8960bac5b7335421" datatype="html">
+        <source>The winning team in the CS:GO league will appropriate 75% of the prize pool towards their choice of a charitable cause.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">208</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8996242d7910cb7f60ce131e691ac963fd15e5a9" datatype="html">
+        <source>The runner-up team in the CS:GO league will appropriate 25% of the prize pool towards their choice of a charitable cause.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">209</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b3e8f6aee2d6d4a240f6b51570f54d18ec18b2ad" datatype="html">
+        <source>The winner in the StarCraft II league will appropriate 75% of the prize pool towards their choice of a charitable cause.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">215</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6fe6584878c07800a76e292b5613694990fc4b9e" datatype="html">
+        <source>The runner-up in the StarCraft II league will appropriate 25% of the prize pool towards their choice of a charitable cause.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">216</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e85a30628b502c939d1ad9f651309a0356f40af8" datatype="html">
+        <source>Partners</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">221</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="dc31d8a047fda51668747cb7dd377e6b013dec2f" datatype="html">
+        <source>BPro Gaming is the first professional esports club in Bulgaria. During the past 4 years BPro has developed a number of professional players, team and infrastructure.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">248</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">249</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="491d3a722a1e7e5a9d1cd0494869f367cb45dc74" datatype="html">
+        <source>BSL a one of a kind StarCraft II league in Bulgaria and are contributing to the deveopment of Bulgarian talent in this esport! All StarCraft 2 games in the Esports Business League will be casted by the them!</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">251</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">252</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="76f3dbd0b2d8f1d1003fcecfea9cf5b6f145e082" datatype="html">
+        <source>About us</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">312</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0465a5a41eaac3edd3c3d6fb1340ca2e398898e2" datatype="html">
+        <source>Esports Бизнес Лигата is organized by Bellum Gens - organization focused on the development and popularization of esports in Bulgaria and on the Balkans. Bellum Gens was founded as an amateur project by two friends - gamers. We want to make esports a recognizable topic for the business and thus to help the development of all esports project in Bulgaria and on the Balkans.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">313</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4da3fca528dbea95fa4ccad78f26a298e670a527" datatype="html">
+        <source>Get email updates from us!</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">327</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d0336848b0c375a1c25ba369b3481ee383217a4f" datatype="html">
+        <source>Subscribe</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
+          <context context-type="linenumber">330</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3fc5397860798c1bdf7c20b94dd0675fd3d839c3" datatype="html">
+        <source>You order has been received! We will call you for additional confirmation!</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/shop/order-success/order-success.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7cb7c60516c9948de27022a918388a1f4e6414c0" datatype="html">
+        <source>Order the official Esports Business League jersey!</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/shop/shop.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bc69e38080d8277065d434110478866cc5344fcc" datatype="html">
+        <source>The 2020 Esports Business League jersey is available!</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/shop/shop.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e9557e30a952d0a7d7961b4b49aa12e1298e9a2d" datatype="html">
+        <source>Made of 100% sportswear ventilated polyester, with high quality print, the official jersey is available in limited quantity! The jersey is ideal both for extended gaming sessions and sports activities in the open! Only 300 units of the 2020 jersey are being sold. We have both male and female cuts available. All orders are being shipped C.O.D. Free shipment for orders over 100 BGN.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/shop/shop.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9bc4a37a3db8e40eedcfac81688270fce9325d5a" datatype="html">
+        <source>Price <x id="START_TAG_DEL" ctype="x-del" equiv-text="&lt;del&gt;"/><x id="INTERPOLATION" equiv-text="{{basePrice}}"/> BGN<x id="CLOSE_TAG_DEL" ctype="x-del" equiv-text="&lt;/del&gt;"/> <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot; *ngIf=&quot;basePromo&quot;&gt;"/><x id="INTERPOLATION_1" equiv-text="{{ basePrice - basePrice * basePromo }}"/> BGN<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/shop/shop.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="393584cc19f5730acb6ca04a01d7b818e5cda8a4" datatype="html">
+        <source>Cut</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/shop/shop.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7faaaa08f56427999f3be41df1093ce4089bbd75" datatype="html">
+        <source>Size</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/shop/shop.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b7b59cf8138525a7f727b4b0b4d8860489ae8000" datatype="html">
+        <source>Jerseys <x id="INTERPOLATION" equiv-text="{{order.jerseys.length}}"/> x <x id="INTERPOLATION_1" equiv-text="{{basePrice}}"/> BGN = <x id="INTERPOLATION_2" equiv-text="{{ order.jerseys.length * basePrice }}"/> BGN</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/shop/shop.component.html</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="60e677cc69693be93e9b1556757e76cf9d85ab8e" datatype="html">
+        <source>Promo code</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/shop/shop.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="198a7a378033b8dfeae687ab7c58c407ab08ecb2" datatype="html">
+        <source>Promo code is invalid...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/shop/shop.component.html</context>
+          <context context-type="linenumber">54</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="58cad4bb050c29dec024fe48bc4d655aea468ea8" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{ promo * 100 }}"/>% off = -<x id="INTERPOLATION_1" equiv-text="{{ (order.jerseys.length * basePrice) * promo }}"/> BGN</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/shop/shop.component.html</context>
+          <context context-type="linenumber">57</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0b936f51f7cd37e3dc07bc7addd6db0d28efe191" datatype="html">
+        <source>Free shipping</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/shop/shop.component.html</context>
+          <context context-type="linenumber">58</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0ee204489bf2aad869cf725b0ea9795724f83933" datatype="html">
+        <source>Total = <x id="INTERPOLATION" equiv-text="{{ (order.jerseys.length * basePrice) * (1 - promo) }}"/> BGN</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/shop/shop.component.html</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fad52cdd295ded4cd4a111a47aa8aab0f2936c1e" datatype="html">
+        <source>Add one more</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/shop/shop.component.html</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="62b6c66981335ca6eecc36b331103c60f09d1026" datatype="html">
+        <source>First name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/shop/shop.component.html</context>
+          <context context-type="linenumber">73</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6ce3dadf53dda1a1ab0c3167a8ed8dced471b0dc" datatype="html">
+        <source>Last name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/shop/shop.component.html</context>
+          <context context-type="linenumber">84</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5c7012b5a926b32d9e45fefdcc8a1a3cb6f023d0" datatype="html">
+        <source>City</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/shop/shop.component.html</context>
+          <context context-type="linenumber">128</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2150cdcd46580c08f512eaa6d60a1f20877e971d" datatype="html">
+        <source>Street</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/shop/shop.component.html</context>
+          <context context-type="linenumber">139</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5704ec2049d007c5f5fb495a5d8b607e68d58081" datatype="html">
+        <source>Order</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/shop/shop.component.html</context>
+          <context context-type="linenumber">151</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bee8ddbb771e963fa25daf150806bff1bdfb7814" datatype="html">
+        <source>Your registration has been submitted successfully!</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournament-registration/registration-success/registration-success.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6cf8470823961df7bbd06a3e65cf619b7cacea0a" datatype="html">
+        <source>In order to confirm your registration, you need to pay the registration fee (60 BGN for the StarCraft II league, or 300 BGN for the CS:GO league).</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournament-registration/registration-success/registration-success.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d5f4f3e57f45dc04e9c5c8e87fa5ab568f6e04d1" datatype="html">
+        <source>Your registration will be shown as confirmed within 2 work days of the registration fee transfer.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournament-registration/registration-success/registration-success.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="23a34ea2a06d9c5ab6af1a4f2f11ba99daea4694" datatype="html">
+        <source>Bank name: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>United Bulgarian Bank<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournament-registration/registration-success/registration-success.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4c1e64f32023a1a9080a61202f9f2832fbf9af2f" datatype="html">
+        <source>Beneficiary: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Bellum Gens<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournament-registration/registration-success/registration-success.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b16268e34873845c6212fe332738e18d8775d33d" datatype="html">
+        <source>Please put this uniquely generated registration code into the bank transfer details: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ application?.hash }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>. For future reference, this code can be found through your user profile.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournament-registration/registration-success/registration-success.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="bc2da4eeac7deba380de44ba1b5897a3a8473fac" datatype="html">
+        <source>We&apos;ve also emailed these details to the email address you&apos;ve provided (<x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{application?.email}}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>).</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournament-registration/registration-success/registration-success.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="afd2cb44032765f436b7ad6bee0c15b3e61a259f" datatype="html">
+        <source>If you need an invoice, please contact us at <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;mailto:info@eb-league.com&quot;&gt;"/>info@eb-league.com<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>!</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournament-registration/registration-success/registration-success.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7d6573fb998f3a1cf1356623b85850d9d10edaa9" datatype="html">
+        <source>Registration</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournament-registration/tournament-registration.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d21f59c28462fecf7aba3f46ffb3a98589695b08" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{ authUser ? &apos;Choose league (game)&apos; : &apos;You must login first&apos;}}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournament-registration/tournament-registration.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="95a7c44ac38d7193c7fb3890af5187457b90d727" datatype="html">
+        <source>*You&apos;ve not associated a Steam account...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournament-registration/tournament-registration.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7defd12df478f8b5e045437f363408090d2da2bd" datatype="html">
+        <source>Choose your team</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournament-registration/tournament-registration.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ca6bda2b279920903f2c6d7be3466e3f709b93f0" datatype="html">
+        <source>Create a new team...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournament-registration/tournament-registration.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6ef0619a37140118b9e640c6cc36ee4e9fb4372a" datatype="html">
+        <source>Company</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournament-registration/tournament-registration.component.html</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
+          <context context-type="linenumber">121</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-sc2/tournament-sc2.component.html</context>
+          <context context-type="linenumber">117</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5dc4e0bc5382cdf0a2ce277cbd8b1ab2935a085f" datatype="html">
+        <source>*Choose the company associated with your participation...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournament-registration/tournament-registration.component.html</context>
+          <context context-type="linenumber">61</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="29af938a836108222ff6ee073e4975e5c775d0f5" datatype="html">
+        <source>I accept the <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight navigatable&quot; (click)=&quot;scrollToTerms($event)&quot;&gt;"/>terms and conditions<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournament-registration/tournament-registration.component.html</context>
+          <context context-type="linenumber">71</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="303cf04ca5c12a60d676b6a00ceaf852799c1af4" datatype="html">
+        <source>Participants</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-sc2/tournament-sc2.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fd83e101a067144b1c779371f4be63a8689e1a47" datatype="html">
+        <source>Your registration is still not confirmed! You need to pay the registration fee in order to confirm your participation!</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-sc2/tournament-sc2.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3a50defcd8d127842237efed5ae865ff45498127" datatype="html">
+        <source>No matches found...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-sc2/tournament-sc2.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4a4f46a2dcec36bd5c8c371ceee55c2226dec27f" datatype="html">
+        <source>Schedule</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-sc2/tournament-sc2.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="082c2bc199d2f99ad65bb7e1c1f6900d5187c3e9" datatype="html">
+        <source>Season 2 bracket is available here</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-sc2/tournament-sc2.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4c11aad490b2d53fdae30b3807beabf79306752c" datatype="html">
+        <source>Start time</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-sc2/tournament-sc2.component.html</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="180092a6b8a6151a05f4a7552a2fb75fd159dfa8" datatype="html">
+        <source>Match</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
+          <context context-type="linenumber">54</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-sc2/tournament-sc2.component.html</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2ae8772b6d1aa5448f2122f35b385d86a4a71e53" datatype="html">
+        <source>Walkover.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
+          <context context-type="linenumber">93</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-sc2/tournament-sc2.component.html</context>
+          <context context-type="linenumber">87</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3ea810835c71afa8397d72a20b0ee61a6e6e8890" datatype="html">
+        <source>The match has not been played yet, or there&apos;s no results on record...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
+          <context context-type="linenumber">95</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-sc2/tournament-sc2.component.html</context>
+          <context context-type="linenumber">89</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="764a8a101f8ee5a4b98844e93406182fb078507b" datatype="html">
+        <source>Team</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
+          <context context-type="linenumber">108</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="01aa5508abb4473531a18c605c1c41ae4b6074d0" datatype="html">
+        <source>Matches</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
+          <context context-type="linenumber">123</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-sc2/tournament-sc2.component.html</context>
+          <context context-type="linenumber">119</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="45686ae343baa72c68705c904c171fa5e8eb9c11" datatype="html">
+        <source>Wins</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
+          <context context-type="linenumber">125</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-sc2/tournament-sc2.component.html</context>
+          <context context-type="linenumber">121</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5c9c93c899ab1b7c38b2c00ec55c25a5f61aebcf" datatype="html">
+        <source>OT Wins</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
+          <context context-type="linenumber">127</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e195036608a138ad5203e1676229dda802dfc9b4" datatype="html">
+        <source>OT Losses</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
+          <context context-type="linenumber">129</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="06cfbe2aa1970d00c68855aa3e14a537f10a1392" datatype="html">
+        <source>Losses</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
+          <context context-type="linenumber">131</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-sc2/tournament-sc2.component.html</context>
+          <context context-type="linenumber">123</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="de417179d00da40d93f458a41d297cb01c9a11cb" datatype="html">
+        <source>Round Diff</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
+          <context context-type="linenumber">133</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8b4bb9bd0228fff7fc4f4da2a0f8037763ae5bf7" datatype="html">
+        <source>Points</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
+          <context context-type="linenumber">138</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-sc2/tournament-sc2.component.html</context>
+          <context context-type="linenumber">125</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a0fba4a6babc7ad04bbff08a5ee44dad45b85a72" datatype="html">
+        <source>Teams from the <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;title&quot;&gt;"/>CS:GO<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt; "/> league will be separated into groups of 4-8 teams.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a7b59150677b62f19c964bc50d567d714d5adb87" datatype="html">
+        <source>Each team plays 1-2 matches a week against other teams from the same group. At the end of the group stage, the best teams of each group go to the finals.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ae3a403e33e31f35945388c0de4b104dda3164c8" datatype="html">
+        <source>To the CS:GO League</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="abf7d92fb2a7cc52d3d6344983139106618f363d" datatype="html">
+        <source>Players from the <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;title&quot;&gt;"/>StarCraft II<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt; "/> league will be separated into groups of 4-8 players.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="742669c8fdefe77cc76fe5a21e97fbe0647354b4" datatype="html">
+        <source>Each player plays 1-2 matches a week against other players from the same group. At the end of the group stage, the best players of each group go to the finals.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b4377b7657c2504ee064a52d7180e96db5a9643a" datatype="html">
+        <source>To the StarCraft II League</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3dc50b70798bebc19ea2b9836fa38f938d350d60" datatype="html">
+        <source>Weekly match format</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c4ea00c58601dfcbd73bf4c280acff8da883bd69" datatype="html">
+        <source>CS:GO Rulebook</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4bf29176954487bf8368457e22c150a60cae43ff" datatype="html">
+        <source>Group stage matches are being played weekly Monday-Thursday. All matches are played sequentially in the evening, after working hours, starting from 7:30pm EET. Each match except the first one starts 15 minutes after the previous match has finished. Weekly schedule for the entire group stage would be available prior to the league start date. The schedule is subject to change, if and only if a participant has managed to reach an agreement with all other affected participants by the change.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6d196f87e1af6d22483552859264ea8aacc95968" datatype="html">
+        <source>Match rules</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="56f7c2f3863c8bbc9183fff64a004c79003cb76a" datatype="html">
+        <source>Weekly matches are in best-of-one (BO1) or best-of-three (BO3) format with map veto on the current active duty maps at the start of the league. The map veto takes place 10-15 minutes prior to the match and is performed by the team captains and an admin. Which side teams start on is decided either by the team not picking the map, or with a knife round, the winner of which picks the side. Each map is played until one of the teams wins 16 rounds and teams are switching sides after 15 rounds have been played. If there&apos;s no winner after 30 rounds - score is 15-15 - then the match goes into overtime. Each overtime is 6 rounds in length and each team starts on the side the team has been before the start of the overtime. Teams are switching sides in overtime after 3 rounds have been played. If an overtime reaches a score of 3-3, then a new overtime is played. Each player starts an overtime with maximum cash - $16000 - so each round of the overtime is a guaranteed gun round.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="998e3ebcfb484e9e426eced8a56d878c0e662a51" datatype="html">
+        <source>Weekly matches are in best-of-three (BO3) format with map veto with 2 bans and 2 picks from the maps in the current ladder pool at the start of the league. The map veto takes place 10-15 minutes prior to the match, and is performed by the players, the match caster and an admin. Each map is played until one of the two players emerges victorious. The 3rd decider map is played only in the case of a 1-1 score.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c68fc1277557748785bd062ce19be74823ff2ae9" datatype="html">
+        <source>Double elimination format</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6cac133e2ec68048cce0554565ad21b0fdff9f6a" datatype="html">
+        <source>Tournament participants are being separated into groups and the first opponents are being drawn. Each group has two brackets - winners and losers bracket. All participants start in the winners bracket and after a loss are being moved to the losers bracket. Participants are eliminated after they accumulate a loss in the losers bracket.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="32993c39fcfcd9a2c6e3446df085ded528e4e860" datatype="html">
+        <source>Group points</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
+          <context context-type="linenumber">57</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cbd6a29508a576fa8a3ee381e564a9fa1832be9a" datatype="html">
+        <source>Each match in the group stage of the league gives the teams between 0 and 3 points. After all group stage matches have been played, the 2 teams with the most points from each group proceed to the finals. If two teams have equal points, then round difference is taken into account. In the case of equal points and round difference, the result of the direct duel between the two teams is taken into account.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
+          <context context-type="linenumber">61</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="73924788e05b4761c6027619a2eb4fbabac2f2a2" datatype="html">
+        <source>3 points for a win in regulation</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
+          <context context-type="linenumber">63</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="aea97cd9b8787f596f3977552b1dd9626482c861" datatype="html">
+        <source>2 points for a win in overtime</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0f89e365cf9bf4a38bbb7705349519d13edc9a2b" datatype="html">
+        <source>1 point for a loss in overtime</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
+          <context context-type="linenumber">65</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d6860aa92825656a507ee4fcf2606f44fd9e06ff" datatype="html">
+        <source>0 points for a loss in regulation</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
+          <context context-type="linenumber">66</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4c85450a78153a8d19c59976cc96247f5454a748" datatype="html">
+        <source>Each match in the group stage of the league gives the participants between 0 and 3 points. After all group stage matches have been played, the 2 players with the most points from each group proceed to the finals. In the case of equal points, the result of the direct duel between the two participants is taken into account.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
+          <context context-type="linenumber">71</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="61c8aa1caad5047d45f2747170368c339a2eebed" datatype="html">
+        <source>3 points for a 2:0 win</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
+          <context context-type="linenumber">73</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3863334aeb9a7f33aa60d96a3951e79f9f0d88ac" datatype="html">
+        <source>2 points for a 2:1 win</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
+          <context context-type="linenumber">74</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="e2c2b83d19d57e2da67a63aefb2dea66d86442f6" datatype="html">
+        <source>1 point for a 1:2 loss</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
+          <context context-type="linenumber">75</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8122c82153dc1e96266c572a0ebf06cae8eacca6" datatype="html">
+        <source>0 points for a 0:2 loss</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
+          <context context-type="linenumber">76</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4394ea3d1e90d206427f26692fa4af02c1c92149" datatype="html">
+        <source>Assistive software usage (cheats)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
+          <context context-type="linenumber">82</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="42eba25c4ad4a70a9168959b4dfd7fdb01969053" datatype="html">
+        <source>Usage of assistive software of any kind, which can be classified as a cheat, is strictly forbidden. Each match in the league would be streamed live and would be moderated by an admin. In the case of a suspicion of cheating, the case will be investigated by the admins and if the admins conclude that theres evidence beyond a reasonable doubt for cheating, then the player (StarCraft II), or team (CS:GO), which the player participates in would be <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>disqualified<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>!!! Esports Business League is an amateur event, where players need to show their own abilities, and not the abilities of a software which assists and alters their gameplay. Our goal is to provide the best experience for all participants!</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-format/tournament-format.component.html</context>
+          <context context-type="linenumber">83</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="59bdc3dfa4075f92c734588899485db702c8f120" datatype="html">
+        <source>Player</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament-sc2/tournament-sc2.component.html</context>
+          <context context-type="linenumber">102</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

@@ -10,7 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from '../../src-common/environments/environment';
 import { TournamentHomeComponent } from './home/home.component';
-import { BellumGensModule } from '../../src-common/components/components.module';
+import { BellumGensModule } from '../../src-common/lib/components.module';
 import { RaffleComponent } from './raffle/raffle.component';
 import { TournamentRegistrationComponent } from './tournament-registration/tournament-registration.component';
 import { StartsWithPipe } from '../../src-bellumgens/app/pipes/starts-with.pipe';
@@ -99,5 +99,7 @@ export class AppModule {
     this.iconService.addSvgIcon('modis', '/assets/partners/modis.svg', 'partners');
     this.iconService.addSvgIcon('omen', '/assets/partners/omen.svg', 'partners');
     this.iconService.addSvgIcon('paysafe', '/assets/partners/paysafe.svg', 'partners');
+    this.iconService.addSvgIcon('en', '/assets/country-flags/svg/united-kingdom.svg', 'languages');
+    this.iconService.addSvgIcon('bg', '/assets/country-flags/svg/bulgaria.svg', 'languages');
   }
 }

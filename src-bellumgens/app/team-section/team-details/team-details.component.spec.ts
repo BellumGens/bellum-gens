@@ -17,7 +17,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { BellumGensModule } from 'src-common/components/components.module';
+import { BellumGensModule } from 'src-common/lib/components.module';
 
 describe('TeamDetailsComponent', () => {
   let component: TeamDetailsComponent;

@@ -17,8 +17,8 @@ import { TeamadminGuard } from '../../src-common/guards/teamadmin.guard';
 import { TeamNavComponent } from './team-section/team-nav/team-nav.component';
 import { NotificationsComponent } from './notifications/notifications.component';
 import { TeamTournamentsComponent } from './team-section/team-tournaments/team-tournaments.component';
-import { RegistrationComponent } from '../../src-common/components/registration/registration.component';
-import { UnauthorizedComponent } from '../../src-common/components/unauthorized/unauthorized.component';
+import { RegistrationComponent } from '../../src-common/lib/registration/registration.component';
+import { UnauthorizedComponent } from '../../src-common/lib/unauthorized/unauthorized.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },

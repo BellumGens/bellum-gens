@@ -13,9 +13,8 @@ import { IgxIconService } from '@infragistics/igniteui-angular';
   styleUrls: ['./team-overview.component.css']
 })
 export class TeamOverviewComponent extends BaseComponent {
-  authUser: ApplicationUser;
-  team: CSGOTeam = TEAM_PLACEHOLDER;
-
+  public authUser: ApplicationUser;
+  public team: CSGOTeam = TEAM_PLACEHOLDER;
   public isAdmin: boolean = null;
   public isMember: boolean = null;
 

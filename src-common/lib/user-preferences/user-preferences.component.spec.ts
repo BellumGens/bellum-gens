@@ -2,14 +2,15 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { UserPreferencesComponent } from './user-preferences.component';
 import { FormsModule } from '@angular/forms';
-import { IgxInputGroupModule,
+import {
   IgxSwitchModule,
   IgxIconModule,
   IgxDialogModule,
   IgxRippleModule,
   IgxDividerModule,
   IgxButtonModule,
-  IgxListModule} from '@infragistics/igniteui-angular';
+  IgxListModule
+} from '@infragistics/igniteui-angular';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';

@@ -25,7 +25,7 @@ export class IsVideoPipe implements PipeTransform {
     return `https://player.twitch.tv/?autoplay=false&video=v${parts[3]}`;
   }
 
-  transform(url: string): any {
+  public transform(url: string): any {
     return IsVideoPipe.isYoutube(url) || IsVideoPipe.isTwitch(url);
   }
 

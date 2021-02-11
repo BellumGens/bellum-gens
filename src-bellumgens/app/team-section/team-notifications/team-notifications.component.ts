@@ -22,7 +22,7 @@ export class TeamNotificationsComponent implements OnInit {
 
   constructor(private apiService: BellumgensApiService) { }
 
-  ngOnInit() {
+  public ngOnInit() {
     if (this.team) {
       this.apiService.teamApplications(this.team.teamId).subscribe(data => {
         this.applications = data;
@@ -41,7 +41,7 @@ export class TeamNotificationsComponent implements OnInit {
         this.changed.emit(-1);
         this.actionInProgress = false;
       },
-      _ => this.actionInProgress = false
+      () => this.actionInProgress = false
     );
   }
 
@@ -55,7 +55,7 @@ export class TeamNotificationsComponent implements OnInit {
         this.changed.emit(-1);
         this.actionInProgress = false;
       },
-      _ => this.actionInProgress = false
+      () => this.actionInProgress = false
     );
   }
 }

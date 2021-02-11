@@ -1,8 +1,6 @@
-:root {
-  --app-secondary-color: #FF0A3A;
-}
-
 $app-palette: igx-palette($primary, $secondary);
+
+@include igx-palette-vars($app-palette);
 
 html, body {
   height: 100%;
@@ -27,10 +25,6 @@ html, body {
 .content {
   height: 100%;
   width: 100%;
-}
-
-.content p {
-  margin: 15px;
 }
 /* END Typography */
 
@@ -119,7 +113,7 @@ a > igx-icon {
   min-width: 380px;
   padding: 16px;
   margin: auto;
-  min-height: calc(100% - 64px);
+  min-height: calc(100% - 57px);
 }
 
   .content-container h1 {
@@ -186,7 +180,7 @@ a > igx-icon {
 /* Loading */
 .loading-overview {
   display: flex;
-  min-height: calc(100% - 64px);
+  min-height: calc(100% - 57px);
   justify-content: center;
   align-items: center;
   width: 60%;
@@ -201,7 +195,7 @@ a > igx-icon {
   margin: auto;
   padding-top: 24px;
   color: white;
-  min-height: calc(100% - 64px);
+  min-height: calc(100% - 57px);
 }
 
 .card-wrapper {
@@ -213,7 +207,7 @@ a > igx-icon {
   grid-auto-rows: max-content;
   padding-top: 12px;
   margin: auto;
-  min-height: calc(100% - 64px);
+  min-height: calc(100% - 57px);
 }
 
   .overview-container-card .card-wrapper,
@@ -252,6 +246,8 @@ a > igx-icon {
   left: 22px;
 }
 
+/* Footer */
+
 .footer {
   width: 100%;
   display: flex;
@@ -274,6 +270,8 @@ a > igx-icon {
   width: 32px;
   font-size: 1.7rem;
 }
+
+/* END Footer */
 
 .social-media-icon {
   margin-left: 4px;

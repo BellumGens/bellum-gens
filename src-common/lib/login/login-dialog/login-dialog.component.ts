@@ -37,6 +37,6 @@ export class LoginDialogComponent {
   }
 
   public loginWithForm() {
-    this.authManager.loginWithForm(this.logininfo).subscribe(_ => this.dialog.close());
+    this.authManager.loginWithForm(this.logininfo).subscribe(() => this.dialog.close());
   }
 }

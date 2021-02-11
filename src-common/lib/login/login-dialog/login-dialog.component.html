@@ -2,9 +2,9 @@
   <bg-login-buttons></bg-login-buttons>
 
   <form class="login-buttons" #userLogin="ngForm" (ngSubmit)="loginWithForm()">
-    <h6 style="text-align: center;">or login with form</h6>
+    <h6 style="text-align: center;" i18n>or login with form</h6>
     <igx-input-group class="login-button" type="border">
-      <label for="username" igxLabel>Username</label>
+      <label for="username" igxLabel i18n>Username</label>
       <igx-prefix>
         <igx-icon>person</igx-icon>
       </igx-prefix>
@@ -12,20 +12,16 @@
     </igx-input-group>
 
     <igx-input-group class="login-button" type="border">
-      <label for="passwordField" igxLabel>Password</label>
+      <label for="passwordField" igxLabel i18n>Password</label>
       <input #passwordField igxInput type="password" [required]="true" id="passwordField" name="passwordField" [(ngModel)]="logininfo.password" />
     </igx-input-group>
 
-    <igx-checkbox id="rememberme" name="rememberme" [(ngModel)]="logininfo.rememberMe">
-      Remember me
-    </igx-checkbox>
+    <igx-checkbox name="rememberme" [(ngModel)]="logininfo.rememberMe" i18n>Remember me</igx-checkbox>
 
-    <label class="register-link navigatable" (click)="openRegistration()">Don't have an account?</label>
+    <label class="register-link navigatable" (click)="openRegistration()" i18n>Don't have an account?</label>
 
     <button igxButton="outlined"
             class="submit-button space-out"
-            [disabled]="!userLogin.touched || !userLogin.valueChanges || userLogin.invalid || submitInProgress">
-      Login
-    </button>
+            [disabled]="!userLogin.touched || !userLogin.valueChanges || userLogin.invalid || submitInProgress" i18n>login</button>
   </form>
 </igx-dialog>

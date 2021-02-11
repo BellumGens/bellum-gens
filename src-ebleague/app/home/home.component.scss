@@ -22,6 +22,7 @@
 
   .slide h1 {
     margin-bottom: 1rem;
+    line-height: 5rem;
   }
 
   .platinum {
@@ -41,10 +42,6 @@
   .overlay-background {
     background-color: rgba($color: #000, $alpha: 0.25)
   }
-
-  // .slide-info-column {
-  //   padding: 25px;
-  // }
 
   .first-place {
     max-width: 130px;
@@ -96,6 +93,13 @@
     .platinum {
       width: 348px;
       height: 150px;
+    }
+
+    .slide h1 {
+      font-size: 2.8rem;
+      padding: 0 12px;
+      line-height: 4rem;
+      font-weight: 700;
     }
   }
 }

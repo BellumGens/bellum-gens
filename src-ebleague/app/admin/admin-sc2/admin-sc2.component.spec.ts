@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { AdminSc2Component } from './admin-sc2.component';
-import { BellumGensModule } from 'src-common/components/components.module';
+import { BellumGensModule } from 'src-common/lib/components.module';
 import {
   IgxListModule,
   IgxIconModule,
@@ -16,7 +16,8 @@ import {
   IgxTimePickerModule,
   IgxCalendarModule,
   IgxCheckboxModule,
-  IgxGridModule
+  IgxGridModule,
+  IgxDialogModule
 } from '@infragistics/igniteui-angular';
 import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -51,6 +52,7 @@ describe('AdminSc2Component', () => {
         IgxTimePickerModule,
         IgxCheckboxModule,
         IgxCalendarModule,
+        IgxDialogModule,
         IgxGridModule
       ]
     })

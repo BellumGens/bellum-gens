@@ -7,7 +7,7 @@ import { WeaponDescriptor } from '../../../src-common/models/csgoplayer';
 export class SortWeaponsPipe implements PipeTransform {
   private _filter = new Set<string>(['headshot', 'enemy_weapon', 'against_zoomed_sniper', 'enemy_blinded', 'knife_fight']);
 
-  transform(weapons: WeaponDescriptor []): WeaponDescriptor [] {
+  public transform(weapons: WeaponDescriptor []): WeaponDescriptor [] {
     if (!weapons) {
       return null;
     }
