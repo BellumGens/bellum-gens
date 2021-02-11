@@ -244,6 +244,9 @@
               "serviceWorker": true,
               "i18nMissingTranslation": "error",
               "ngswConfigPath": "src-ebleague/ngsw-config.json"
+            },
+            "bg": {
+              "localize": ["bg"]
             }
           }
         },
@@ -255,6 +258,9 @@
           "configurations": {
             "production": {
               "browserTarget": "eb-league:build:production"
+            },
+            "bg": {
+              "browserTarget": "eb-league:build:bg"
             }
           }
         },
