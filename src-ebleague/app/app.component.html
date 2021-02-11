@@ -1,5 +1,5 @@
 <div igxLayout>
-  <igx-nav-drawer style="flex-shrink: 0" [pinThreshold]="1600" id="navigation" #drawer>
+  <igx-nav-drawer [pinThreshold]="1600" id="navigation" #drawer>
     <ng-template igxDrawer>
       <nav>
         <span igxDrawerItem [isHeader]="true">Esports Business League</span>
@@ -17,27 +17,27 @@
         </span> -->
         <span igxDrawerItem igxRipple routerLink="tournament">
           <igx-icon>emoji_events</igx-icon>
-          <span i18n>Турнири</span>
+          <span i18n>Tournaments</span>
         </span>
         <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="shop">
           <igx-icon>shopping_cart</igx-icon>
-          <span i18n>Магазин</span>
+          <span i18n>Shop</span>
         </span>
         <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournament/format">
           <igx-icon>playlist_add_check</igx-icon>
-          <span i18n>Формат на лигата</span>
+          <span i18n>Tournament format</span>
         </span>
         <span igxDrawerItem igxRipple routerLink="/" fragment="partners">
           <igx-icon>people_alt</igx-icon>
-          <span i18n>Нашите партньори</span>
+          <span i18n>Our partners</span>
         </span>
         <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournament/crew">
           <igx-icon>people</igx-icon>
-          <span i18n>Нашият екип</span>
+          <span i18n>Our crew</span>
         </span>
         <span igxDrawerItem igxRipple routerLink="/" fragment="aboutus">
           <igx-icon>chat</igx-icon>
-          <span i18n>Контакти</span>
+          <span i18n>Contact us</span>
         </span>
       </nav>
     </ng-template>
@@ -63,22 +63,22 @@
                 [roundShape]="true">
           </igx-avatar>
         </span> -->
-        <span igxDrawerItem igxRipple routerLink="tournament" i18n-title title="Турнири">
+        <span igxDrawerItem igxRipple routerLink="tournament" i18n-title title="Tournaments">
           <igx-icon>emoji_events</igx-icon>
         </span>
-        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="shop" i18n-title title="Магазин">
+        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="shop" i18n-title title="Shop">
           <igx-icon>shopping_cart</igx-icon>
         </span>
-        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournament/format" i18n-title title="Формат на лигата">
+        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournament/format" i18n-title title="Tournament format">
           <igx-icon >playlist_add_check</igx-icon>
         </span>
-        <span igxDrawerItem igxRipple routerLink="/" fragment="partners" i18n-title title="Нашите партньори">
+        <span igxDrawerItem igxRipple routerLink="/" fragment="partners" i18n-title title="Our partners">
           <igx-icon>people_alt</igx-icon>
         </span>
-        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournament/crew" i18n-title title="Нашият екип">
+        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournament/crew" i18n-title title="Our crew">
           <igx-icon>people</igx-icon>
         </span>
-        <span igxDrawerItem igxRipple routerLink="/" fragment="aboutus" i18n-title title="Контакти">
+        <span igxDrawerItem igxRipple routerLink="/" fragment="aboutus" i18n-title title="Contact us">
           <igx-icon>chat</igx-icon>
         </span>
       </nav>
@@ -98,10 +98,10 @@
 
     <igx-banner #cookiesBanner>
       <igx-icon>settings</igx-icon>
-      <span i18n>Тази страница използва "бисквитки"</span>
+      <span i18n>This site uses cookies</span>
       <igx-banner-actions>
-        <a href="https://www.cookiesandyou.com/" target="_blank" rel="noopener" i18n>Научете повече</a>
-        <button igxButton igxRipple (click)="acceptCookies()" i18n>Приемам</button>
+        <a href="https://www.cookiesandyou.com/" target="_blank" rel="noopener" i18n>Cookies and You</a>
+        <button igxButton igxRipple (click)="acceptCookies()" i18n>I Understand</button>
       </igx-banner-actions>
     </igx-banner>
 
@@ -121,22 +121,25 @@
             <a href="mailto:info@eb-league.com" title="Email us">
               <igx-icon>email</igx-icon>
             </a>
-            <a href="https://www.facebook.com/esportsbleague/" i18n-title title="Харесайте страницата ни във Facebook" target="_blank" rel="noopener">
+            <a href="https://www.facebook.com/esportsbleague/" i18n-title title="Like us on Facebook" target="_blank" rel="noopener">
               <igx-icon fontSet="login-icons" name="facebook"></igx-icon>
             </a>
-            <a href="https://twitter.com/EsportBLeague" i18n-title title="Последвайте ни в Twitter" target="_blank" rel="noopener">
+            <a href="https://twitter.com/EsportBLeague" i18n-title title="Follow us on Twitter" target="_blank" rel="noopener">
               <igx-icon fontSet="login-icons" name="twitter"></igx-icon>
             </a>
-            <a href="https://www.instagram.com/esportsbleague/" i18n-title title="Последвайте ни в Instagram" target="_blank" rel="noopener">
+            <a href="https://www.instagram.com/esportsbleague/" i18n-title title="Follow us on Instagram" target="_blank" rel="noopener">
               <igx-icon fontSet="login-icons" name="instagram"></igx-icon>
             </a>
-            <a href="https://www.linkedin.com/company/bellum-gens/" i18n-title title="Последвайте ни в Linked-in" target="_blank" rel="noopener">
+            <a href="https://www.linkedin.com/company/bellum-gens/" i18n-title title="Follow us on Linked-in" target="_blank" rel="noopener">
               <igx-icon fontSet="login-icons" name="linkedin"></igx-icon>
             </a>
-            <a href="https://www.youtube.com/c/EsportsBusinessLeague" i18n-title title="Последвайте Youtube каналът ни" target="_blank" rel="noopener">
+            <a href="https://www.youtube.com/c/EsportsBusinessLeague" i18n-title title="Subscribe to our Youtube channel" target="_blank" rel="noopener">
               <igx-icon fontSet="login-icons" name="youtube"></igx-icon>
             </a>
-            <a href="https://discord.gg/bnTcpa9" i18n-title title="Присъединете се към нашият Discord сървър" target="_blank" rel="noopener">
+            <a href="https://www.twitch.tv/ebleague_a" i18n-title title="Follow us on Twitch" target="_blank" rel="noopener">
+              <igx-icon fontSet="login-icons" name="twitch"></igx-icon>
+            </a>
+            <a href="https://discord.gg/bnTcpa9" i18n-title title="Join our Discord server" target="_blank" rel="noopener">
               <igx-icon fontSet="login-icons" name="discord"></igx-icon>
             </a>
           </div>

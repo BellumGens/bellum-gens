@@ -186,9 +186,9 @@
       "prefix": "app",
       "schematics": {},
       "i18n": {
-        "sourceLocale": "bg",
+        "sourceLocale": "en",
         "locales": {
-          "en": "src-ebleague/locale/messages.en.xlf"
+          "bg": "src-ebleague/locale/messages.bg.xlf"
         }
       },
       "architect": {
