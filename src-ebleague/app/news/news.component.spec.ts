@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { IgxCardModule } from '@infragistics/igniteui-angular';
+import { IgxCardModule, IgxLayoutModule } from '@infragistics/igniteui-angular';
 
 import { NewsComponent } from './news.component';
 
@@ -13,7 +13,8 @@ describe('NewsComponent', () => {
       declarations: [ NewsComponent ],
       imports: [
         RouterTestingModule,
-        IgxCardModule
+        IgxCardModule,
+        IgxLayoutModule
       ]
     })
     .compileComponents();

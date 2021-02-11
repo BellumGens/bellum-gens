@@ -14,9 +14,9 @@ import { IgxListModule,
   IgxSelectModule,
   IgxTimePickerModule,
   IgxCalendarModule,
-  IgxDividerModule,
   IgxCheckboxModule,
-  IgxGridModule} from '@infragistics/igniteui-angular';
+  IgxGridModule,
+  IgxDialogModule} from '@infragistics/igniteui-angular';
 import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -47,7 +47,7 @@ describe('AdminCsgoComponent', () => {
         IgxTimePickerModule,
         IgxCalendarModule,
         IgxCheckboxModule,
-        IgxDividerModule,
+        IgxDialogModule,
         IgxGridModule
       ]
     })
