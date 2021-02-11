@@ -184,7 +184,11 @@
       "sourceRoot": "src-ebleague",
       "projectType": "application",
       "prefix": "app",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "i18n": {
         "sourceLocale": "en",
         "locales": {
@@ -342,7 +346,11 @@
       "sourceRoot": "src-common",
       "projectType": "library",
       "prefix": "bg",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "architect": {
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
