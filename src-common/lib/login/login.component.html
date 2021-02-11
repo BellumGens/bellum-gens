@@ -2,7 +2,7 @@
 
 <button igxButton="raised" igxRipple *ngIf="!authUser && !userCheck" (click)="loginDialog.openLogin()">
   <igx-icon>login</igx-icon>
-  <span>login</span>
+  <span i18n>login</span>
 </button>
 
 <igx-circular-bar *ngIf="userCheck" [indeterminate]="true"></igx-circular-bar>
@@ -20,7 +20,7 @@
           <ng-template igxTab>
             <div class="horizontal-center">
               <igx-icon>person</igx-icon>
-              <div class="igx-tabs__item-label">Profile</div>
+              <div class="igx-tabs__item-label" i18n>Profile</div>
             </div>
           </ng-template>
           <div class="center-items profile-view">
@@ -32,7 +32,7 @@
 
           <button class="submit-button" igxButton="outlined" igxRipple class="profile-username" (click)="logout()">
             <igx-icon>logout</igx-icon>
-            <span>logout</span>
+            <span i18n>logout</span>
           </button>
         </igx-tabs-group>
 
@@ -40,7 +40,7 @@
           <ng-template igxTab>
             <div class="horizontal-center">
               <igx-icon>settings</igx-icon>
-              <div class="igx-tabs__item-label">Settings</div>
+              <div class="igx-tabs__item-label" i18n>Settings</div>
             </div>
           </ng-template>
 

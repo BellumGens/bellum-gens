@@ -1,19 +1,17 @@
 <div class="loading-overview">
   <form class="registration-form" #userRegistration="ngForm" (ngSubmit)="submitRegistration()">
-    <h4>Setup your account</h4>
+    <h4 i18n>Setup your account</h4>
     <igx-input-group type="border">
-      <label for="regusername" igxLabel>Username</label>
+      <label for="regusername" igxLabel i18n>Username</label>
       <igx-prefix>
         <igx-icon>person</igx-icon>
       </igx-prefix>
       <input #regusername igxInput id="regusername" [required]="true" name="regusername" [(ngModel)]="userAccount.username" />
-      <igx-hint class="color-error" *ngIf="inUse">
-        Username already taken...
-      </igx-hint>
+      <igx-hint class="color-error" *ngIf="inUse" i18n>Username already taken...</igx-hint>
     </igx-input-group>
 
     <igx-input-group type="border">
-      <label igxLabel for="email">Email</label>
+      <label igxLabel for="email" i18n>Email</label>
       <igx-prefix>
         <igx-icon>email</igx-icon>
       </igx-prefix>
@@ -21,7 +19,7 @@
     </igx-input-group>
 
     <igx-input-group type="border">
-      <label for="password" igxLabel>Password</label>
+      <label for="password" igxLabel i18n>Password</label>
       <input #password="ngModel"
              igxInput
              type="password"
@@ -33,23 +31,21 @@
       <igx-hint class="color-error error-hint" *ngIf="error">
         {{error}}
       </igx-hint>
-      <igx-hint *ngIf="password.touched && password.invalid" class="error-hint">
-        Must include at least 1 letter, 1 number and 1 special char
-      </igx-hint>
+      <igx-hint *ngIf="password.touched && password.invalid" class="error-hint" i18n>Must include at least 1 letter, 1 number and 1 special char</igx-hint>
     </igx-input-group>
 
     <igx-input-group type="border">
-      <label for="confirmPassword" igxLabel>Confirm Password</label>
+      <label for="confirmPassword" igxLabel i18n>Confirm Password</label>
       <input #confirmPassword igxInput type="password" [required]="true" id="confirmPassword" name="confirmPassword" [(ngModel)]="userAccount.confirmPassword" />
-      <igx-hint class="color-error" *ngIf="userRegistration.touched && confirmPassword.value !== userAccount.password">
-        Doesn't match...
-      </igx-hint>
+      <igx-hint class="color-error" *ngIf="userRegistration.touched && confirmPassword.value !== userAccount.password" i18n>Doesn't match...</igx-hint>
     </igx-input-group>
 
     <button igxButton="outlined"
             class="submit-button space-out"
-            [disabled]="!userRegistration.touched || !userRegistration.valueChanges || userRegistration.invalid || submitInProgress">
-      Register
-    </button>
+            [disabled]="!userRegistration.touched ||
+                        !userRegistration.valueChanges ||
+                        userRegistration.invalid ||
+                        submitInProgress"
+            i18n>Register</button>
   </form>
 </div>
