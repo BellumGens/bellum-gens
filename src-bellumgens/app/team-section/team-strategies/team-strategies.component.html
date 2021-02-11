@@ -6,9 +6,8 @@
   <button class="navigation-item"
           igxButton="raised"
           igxRipple
-          (click)="authUser ? newStrategy.open() : openLogin('You need to login first')">
-    Create new strategy
-  </button>
+          (click)="authUser ? newStrategy.open() : openLogin('You need to login first')"
+          i18n>Create new strategy</button>
 </div>
 <div class="strat-filter-header">
   <div class="horizontal">
@@ -21,7 +20,7 @@
       </igx-chip>
     </igx-chips-area>
     <igx-select [(ngModel)]="order" class="order-by">
-      <label igxLabel>Order By</label>
+      <label igxLabel i18n>Order By</label>
       <igx-select-item *ngFor="let cond of stratOrder" [value]="cond.order">
         {{ cond.display }}
       </igx-select-item>
@@ -32,15 +31,16 @@
 <app-app-shell *ngIf="loading"></app-app-shell>
 
 <div class="card-wrapper">
-  <span *ngIf="!loading && !strats?.length" class="igx-card-header__subtitle">No strategies found...</span>
+  <span *ngIf="!loading && !strats?.length" class="igx-card-header__subtitle" i18n>No strategies found...</span>
+
   <igx-card type="outlined" *ngFor="let strat of strats | activeDutyMaps:viewAll:pipeTrigger | sidestrats:maps:order">
     <igx-card-header>
       <h2 igxCardHeaderTitle
           class="strat-title navigatable"
           [title]="strat.title"
           [routerLink]="['/strategies', 'details', strat.customUrl]">{{ strat.title }}</h2>
-      <h4 igxCardHeaderSubtitle>Author: <a *ngIf="strat.owner" [routerLink]="['/players', strat.userId]">{{ strat.owner }}</a></h4>
-      <h6 igxCardHeaderSubtitle class="card-smaller-subtitle">Last Edit: {{ strat.lastUpdated | date }}</h6>
+      <h4 igxCardHeaderSubtitle i18n>Author: <a *ngIf="strat.owner" [routerLink]="['/players', strat.userId]">{{ strat.owner }}</a></h4>
+      <h6 igxCardHeaderSubtitle class="card-smaller-subtitle" i18n>Last Edit: {{ strat.lastUpdated | date }}</h6>
       <igx-icon class="navigatable" [igxToggleAction]="useractions" [overlaySettings]="overlaySettings">more_vert</igx-icon>
     </igx-card-header>
 
@@ -56,7 +56,7 @@
     <igx-card-actions [reverse]="true">
       <span class="horizontal-center navigatable" [routerLink]="['/strategies', 'details', strat.customUrl]">
         <igx-badge [value]="strat.comments?.length.toString()" type="info"></igx-badge>
-        Comments
+        <span i18n>Comments</span>
       </span>
       <button igxButton="fab"
               [ngClass]="strat.votes | hasVoted:0:authUser:pipeTrigger"
@@ -82,19 +82,19 @@
       <igx-drop-down-item (click)="shareOnTwitter(strat)">
         <div class="horizontal-center">
           <igx-icon fontSet="login-icons" name="twitter" title="Share Strategy"></igx-icon>
-          <span class="title margin-left">Share</span>
+          <span class="title margin-left" i18n>Share</span>
         </div>
       </igx-drop-down-item>
       <igx-drop-down-item *ngIf="(authUser | isStratOwner:strat) || isEditor" (click)="newStrategy.open(strat, 'Edit strategy')">
         <div class="horizontal-center">
           <igx-icon title="Edit Strategy">edit</igx-icon>
-          <span class="title margin-left">Edit</span>
+          <span class="title margin-left" i18n>Edit</span>
         </div>
       </igx-drop-down-item>
       <igx-drop-down-item *ngIf="(authUser | isStratOwner:strat) || isEditor" (click)="confirm.open(strat)">
         <div class="horizontal-center">
           <igx-icon title="Delete Strategy">delete_forever</igx-icon>
-          <span class="title margin-left">Delete</span>
+          <span class="title margin-left" i18n>Delete</span>
         </div>
       </igx-drop-down-item>
     </igx-drop-down>
@@ -103,7 +103,7 @@
 
   <igx-card type="outlined" class="fit-content-card" *ngIf="hasMore">
     <igx-card-header class="empty-strategy">
-      <h4 class="igx-card-header__title">Load More...</h4>
+      <h4 class="igx-card-header__title" i18n>Load More...</h4>
     </igx-card-header>
     <igx-card-content class="empty-strategy empty-strategy-content">
         <igx-avatar icon="sync"
@@ -124,6 +124,6 @@
 
 <!-- Confirm -->
 <bg-confirm #confirm title="Are you sure?" (ok)="deleteStrat($event)">
-  Pressing OK will permanently remove this strategy...
+  <p i18n>Pressing OK will permanently remove this strategy...</p>
 </bg-confirm>
 <!-- END Confirm -->

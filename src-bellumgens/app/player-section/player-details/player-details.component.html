@@ -2,23 +2,21 @@
 </app-app-shell>
 
 <div class="loading-overview" *ngIf="!player || player?.steamUserException">
-  <h4 class="highlight">Steam CS:GO player profile not found...</h4>
+  <h4 class="highlight" i18n>Steam CS:GO player profile not found...</h4>
 </div>
 
 <div class="search-result-summary">
   <div *ngIf="newUser">
-    <h4>Welcome <span class="highlight">{{ player.steamUser.steamID }}</span>!</h4>
-    <p>Now it's time to complete your profile! Fill in your <span class="highlight">preferred playstyle</span>, you <span class="highlight">availability</span> and your <span class="highlight">preferred map pool</span>.</p>
+    <h4 i18n>Welcome <span class="highlight">{{ player.steamUser.steamID }}</span>!</h4>
+    <p i18n>Now it's time to complete your profile! Fill in your <span class="highlight">preferred playstyle</span>, you <span class="highlight">availability</span> and your <span class="highlight">preferred map pool</span>.</p>
   </div>
 
-  <div *ngIf="player && !player.steamUserException && !player?.registered">
-    This player is not registered! If you own the profile then <a (click)="openLogin()" class="navigatable">register</a> to complete it.
-  </div>
+  <div *ngIf="player && !player.steamUserException && !player?.registered" i18n>This player is not registered! If you own the profile then <a (click)="openLogin()" class="navigatable">register</a> to complete it.</div>
 
   <div *ngIf="player?.userStatsException">
-    <h4>Steam account is private.</h4>
-    <p>If this is your account, you need to change the privacy level of your account, so we can access game stats from Steam.</p>
-    <p>To do this go to <span class="highlight">Steam Profile --> Edit Profile --> Privacy Settings --> Set: 'My profile: Public' and 'Game details: public'</span></p>
+    <h4 i18n>Steam account is private.</h4>
+    <p i18n>If this is your account, you need to change the privacy level of your account, so we can access game stats from Steam.</p>
+    <p i18n>To do this go to <span class="highlight">Steam Profile --> Edit Profile --> Privacy Settings --> Set: 'My profile: Public' and 'Game details: public'</span></p>
   </div>
 </div>
 
@@ -33,6 +31,7 @@
       <button *ngIf="player?.registered && !playerIsUser && teamsAdmin?.length > 0"
               igxButton="fab"
               igxRipple
+              i18n-title
               title="Invite to team"
               class="invite-button"
               [igxToggleAction]="teamInvite">
@@ -67,7 +66,7 @@
                 [disabled]="!playerIsUser"
                 [ngModel]="player.primaryRole"
                 (ngModelChange)="selectPrimary($event)">
-      <label for="primary-role" igxLabel>Primary Role</label>
+      <label for="primary-role" igxLabel i18n>Primary Role</label>
       <igx-select-item *ngFor="let role of roles" [disabled]="role.id === player.secondaryRole" [value]="role.id">{{ role.name }}</igx-select-item>
     </igx-select>
     <igx-select *ngIf="!player.userStatsException"
@@ -76,7 +75,7 @@
                 [disabled]="!playerIsUser"
                 [ngModel]="player.secondaryRole"
                 (ngModelChange)="selectSecondary($event)">
-      <label for="secondary-role" igxLabel>Secondary Role</label>
+      <label for="secondary-role" igxLabel i18n>Secondary Role</label>
       <igx-select-item *ngFor="let role of roles" [disabled]="role.id === player.primaryRole" [value]="role.id">{{ role.name }}</igx-select-item>
     </igx-select>
   </div>
@@ -98,7 +97,7 @@
 
   <igx-card *ngIf="!player.userStatsException" class="player-detail__stats">
     <igx-card-header>
-      <h4 igxCardHeaderTitle>Headshots</h4>
+      <h4 igxCardHeaderTitle>Headshot %</h4>
     </igx-card-header>
     <igx-card-content class="center-items">
       <igx-circular-bar class="stats-progress" [value]="player.userStats.headshotPercentage" [max]="100" [animate]="true" title="Headshot Percentage" [text]="player.userStats.headshotPercentage + '%'"></igx-circular-bar>
@@ -107,7 +106,7 @@
 
   <igx-card *ngIf="!player.userStatsException" class="player-detail__stats">
     <igx-card-header>
-      <h4 igxCardHeaderTitle>Accuracy</h4>
+      <h4 igxCardHeaderTitle i18n>Accuracy</h4>
     </igx-card-header>
     <igx-card-content class="center-items">
       <igx-circular-bar class="stats-progress" [value]="player.userStats.accuracy" [max]="100" [animate]="true" [text]="player.userStats.accuracy + '%'"></igx-circular-bar>
@@ -116,7 +115,7 @@
 
   <igx-card *ngIf="!player.userStatsException" class="player-detail__stats">
     <igx-card-header>
-      <h4 igxCardHeaderTitle>Top weapon</h4>
+      <h4 igxCardHeaderTitle i18n>Top weapon</h4>
     </igx-card-header>
     <igx-card-content class="center-items">
       <div>
@@ -132,7 +131,7 @@
 
   <igx-card *ngIf="!player.userStatsException" class="player-detail__stats">
     <igx-card-header>
-      <h4 igxCardHeaderTitle>Availability</h4>
+      <h4 igxCardHeaderTitle i18n>Availability</h4>
     </igx-card-header>
     <igx-card-content>
       <app-availability [availability]="availability" (availabilityChanged)="submitAvailability($event)" [editable]="playerIsUser"></app-availability>
@@ -141,7 +140,7 @@
 
   <igx-card *ngIf="!player.userStatsException" class="player-detail__stats">
     <igx-card-header>
-      <h4 igxCardHeaderTitle>Weapons</h4>
+      <h4 igxCardHeaderTitle i18n>Weapons</h4>
     </igx-card-header>
     <igx-card-content>
       <igx-list *ngIf="!player.userStatsException" displayDensity="compact">
@@ -151,9 +150,7 @@
             <a>{{ weapon.name }}</a>
           </span>
 
-          <div igxListAction>
-            {{ weapon.kills }} kills
-          </div>
+          <div igxListAction i18n>{{ weapon.kills }} kills</div>
         </igx-list-item>
       </igx-list>
     </igx-card-content>
@@ -162,8 +159,8 @@
   <!-- Map Pool -->
   <igx-card *ngIf="!player.userStatsException" class="player-detail__stats map-pool">
     <igx-card-header>
-      <h4 igxCardHeaderTitle>{{ viewAll ? 'All' : 'Active Duty' }} Maps</h4>
-      <button igxButton="flat" igxRipple (click)="viewAll = !viewAll">{{viewAll ? 'View Active Duty' : 'View All'}}</button>
+      <h4 igxCardHeaderTitle i18n>{{ viewAll ? 'All' : 'Active Duty' }} Maps</h4>
+      <button igxButton="flat" igxRipple (click)="viewAll = !viewAll" i18n>{{viewAll ? 'View Active Duty' : 'View All'}}</button>
     </igx-card-header>
     <igx-card-content>
       <app-map-pool [readOnly]="!playerIsUser"

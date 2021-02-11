@@ -2,13 +2,13 @@
   <igx-list #players [isLoading]="loading">
     <ng-template igxDataLoading>
         <div class="center-message">
-          <span>Loading players...</span>
+          <span i18n>Loading players...</span>
           <div class="loading-indicator">
             <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
           </div>
         </div>
     </ng-template>
-    <igx-list-item *ngIf="searchResult.steamUser?.steamUser" [isHeader]="true">Steam User</igx-list-item>
+    <igx-list-item *ngIf="searchResult.steamUser?.steamUser" [isHeader]="true" i18n>Steam User</igx-list-item>
     <igx-list-item *ngIf="searchResult.steamUser?.steamUser"
                   [routerLink]="['/players', searchResult.steamUser.steamUser.customURL || searchResult.steamUser.steamUser.steamID64]"
                   class="navigatable">
@@ -21,9 +21,7 @@
                   class="country-badge-small">
       </igx-avatar>
 
-      <h2 igxListLineTitle>
-        {{ searchResult.steamUser.steamUser.steamID }}
-      </h2>
+      <h2 igxListLineTitle>{{ searchResult.steamUser.steamUser.steamID }}</h2>
       <h4 igxListLineSubTitle>{{ searchResult.steamUser.steamUser.realname }}</h4>
 
       <div igxListAction *ngIf="!searchResult.steamUser.userStatsException else private">
@@ -39,11 +37,13 @@
       </div>
 
       <ng-template #private>
-        <span>Private</span>
+        <span i18n>Private</span>
       </ng-template>
     </igx-list-item>
-    <igx-list-item [isHeader]="true">Players</igx-list-item>
-    <igx-list-item *ngIf="!searchResult.players.length"><span igxListLine>No matching players...</span></igx-list-item>
+    <igx-list-item [isHeader]="true" i18n>Players</igx-list-item>
+    <igx-list-item *ngIf="!searchResult.players.length">
+      <span igxListLine i18n>No matching players...</span>
+    </igx-list-item>
     <igx-list-item *ngFor="let user of searchResult.players | reduceQuickSearchResult"
                   [routerLink]="['/players', user.customURL || user.id]"
                   class="navigatable">
@@ -56,9 +56,7 @@
                   class="country-badge-small">
       </igx-avatar>
 
-      <h2 igxListLineTitle>
-        {{ user.username }}
-      </h2>
+      <h2 igxListLineTitle>{{ user.username }}</h2>
       <h4 igxListLineSubTitle>{{ user.realname }}</h4>
 
       <div igxListAction *ngIf="!user.steamPrivate else private">
@@ -78,42 +76,44 @@
       </ng-template>
     </igx-list-item>
     <igx-list-item *ngIf="searchResult.players.length > 3">
-      <button igxButton="flat" igxRipple class="submit-button" [routerLink]="['/search/players', 'name=' + term]">View more players...</button>
+      <button igxButton="flat" igxRipple class="submit-button" [routerLink]="['/search/players', 'name=' + term]" i18n>View more players...</button>
     </igx-list-item>
   </igx-list>
   <igx-list [isLoading]="loading">
     <ng-template igxDataLoading>
       <div class="center-message">
-        <span>Loading teams...</span>
+        <span i18n>Loading teams...</span>
         <div class="loading-indicator">
           <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
         </div>
       </div>
     </ng-template>
-    <igx-list-item [isHeader]="true">Teams</igx-list-item>
-    <igx-list-item *ngIf="!searchResult.teams.length">No matching teams...</igx-list-item>
+    <igx-list-item [isHeader]="true" i18n>Teams</igx-list-item>
+    <igx-list-item *ngIf="!searchResult.teams.length">
+      <span igxListLine i18n>No matching teams...</span>
+    </igx-list-item>
     <igx-list-item *ngFor="let team of searchResult.teams | reduceQuickSearchResult" class="navigatable" [routerLink]="['/team', team.CustomUrl]">
       <igx-avatar igxListThumbnail [src]="team.TeamAvatar" [initials]="team.TeamName" [roundShape]="true">
       </igx-avatar>
-      <h2 igxListLineTitle>
-        {{ team.TeamName }}
-      </h2>
+      <h2 igxListLineTitle>{{ team.TeamName }}</h2>
     </igx-list-item>
     <igx-list-item *ngIf="searchResult.teams.length > 3">
-      <button igxButton="flat" igxRipple class="submit-button" [routerLink]="['/search/teams', 'name=' + term]">View more teams...</button>
+      <button igxButton="flat" igxRipple class="submit-button" [routerLink]="['/search/teams', 'name=' + term]" i18n>View more teams...</button>
     </igx-list-item>
   </igx-list>
   <igx-list [isLoading]="loading">
     <ng-template igxDataLoading>
       <div class="center-message">
-        <span>Loading strategies...</span>
+        <span i18n>Loading strategies...</span>
         <div class="loading-indicator">
           <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
         </div>
       </div>
     </ng-template>
-    <igx-list-item [isHeader]="true">Strategies</igx-list-item>
-    <igx-list-item *ngIf="!searchResult.strategies.length">No matching strategies...</igx-list-item>
+    <igx-list-item [isHeader]="true" i18n>Strategies</igx-list-item>
+    <igx-list-item *ngIf="!searchResult.strategies.length">
+      <span igxListLine i18n>No matching strategies...</span>
+    </igx-list-item>
     <igx-list-item *ngFor="let strat of searchResult.strategies | reduceQuickSearchResult" class="navigatable" [routerLink]="['/team', strat.CustomUrl]">
       <igx-avatar igxListThumbnail [src]="strat.Image" [initials]="strat.title">
       </igx-avatar>
@@ -122,7 +122,7 @@
       </h2>
     </igx-list-item>
     <igx-list-item *ngIf="searchResult.strategies.length > 3">
-      <button igxButton="flat" igxRipple class="submit-button" [routerLink]="['/strategies', 'name=' + term]">View more strategies...</button>
+      <button igxButton="flat" igxRipple class="submit-button" [routerLink]="['/strategies', 'name=' + term]" i18n>View more strategies...</button>
     </igx-list-item>
   </igx-list>
 </div>
