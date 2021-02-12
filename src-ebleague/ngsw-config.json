@@ -10,8 +10,7 @@
           "/index.html",
           "/*.css",
           "/*.js",
-          "/*.webp",
-          "/manifest.webmanifest"
+          "/manifest.json"
         ]
       }
     }, {

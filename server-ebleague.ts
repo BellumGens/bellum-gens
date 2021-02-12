@@ -5,6 +5,7 @@ import '@angular/localize/init';
 import 'zone.js/dist/zone-node';
 
 import { APP_BASE_HREF } from '@angular/common';
+import { LOCALE_ID } from '@angular/core';
 import { ngExpressEngine } from '@nguniversal/express-engine';
 
 import * as express from 'express';
@@ -14,7 +15,6 @@ import { join } from 'path';
 import { AppServerModule } from './src-ebleague/main.server';
 import { existsSync } from 'fs';
 import { environment } from './src-common/environments/environment';
-import { LOCALE_ID } from '@angular/core';
 
 // HTML polyfills
 (global as any).XMLHttpRequest = xmlhttprequest.XMLHttpRequest;

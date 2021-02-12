@@ -95,7 +95,7 @@
         <target>Името е заето...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/registration/registration.component.html</context>
-          <context context-type="linenumber">11,12</context>
+          <context context-type="linenumber">10</context>
         </context-group>
       </trans-unit>
       <trans-unit id="244aae9346da82b0922506c2d2581373a15641cc" datatype="html">
@@ -103,7 +103,7 @@
         <target>Имейл адрес</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/registration/registration.component.html</context>
-          <context context-type="linenumber">16</context>
+          <context context-type="linenumber">14</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
@@ -127,7 +127,7 @@
         <target>Трябва да съдържа поне 1 буква, 1 цифра и 1 символ</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/registration/registration.component.html</context>
-          <context context-type="linenumber">36</context>
+          <context context-type="linenumber">34</context>
         </context-group>
       </trans-unit>
       <trans-unit id="c1b7e6d75ff4285c7636c67e5ef259629b81725b" datatype="html">
@@ -135,7 +135,7 @@
         <target>Потвърди паролата</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/registration/registration.component.html</context>
-          <context context-type="linenumber">40</context>
+          <context context-type="linenumber">38</context>
         </context-group>
       </trans-unit>
       <trans-unit id="cb694325f0b6a38f6921aa4d56381af191bfdd54" datatype="html">
@@ -143,7 +143,7 @@
         <target>Няма съвпадение...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/registration/registration.component.html</context>
-          <context context-type="linenumber">42</context>
+          <context context-type="linenumber">40</context>
         </context-group>
       </trans-unit>
       <trans-unit id="cfc2f436ec2beffb042e7511a73c89c372e86a6c" datatype="html">
@@ -151,7 +151,7 @@
         <target>Регистрирай се</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/registration/registration.component.html</context>
-          <context context-type="linenumber">51</context>
+          <context context-type="linenumber">49</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/tournament-registration/tournament-registration.component.html</context>
