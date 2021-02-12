@@ -184,7 +184,11 @@
       "sourceRoot": "src-ebleague",
       "projectType": "application",
       "prefix": "app",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "i18n": {
         "sourceLocale": "en",
         "locales": {
@@ -240,6 +244,9 @@
               "serviceWorker": true,
               "i18nMissingTranslation": "error",
               "ngswConfigPath": "src-ebleague/ngsw-config.json"
+            },
+            "bg": {
+              "localize": ["bg"]
             }
           }
         },
@@ -251,6 +258,9 @@
           "configurations": {
             "production": {
               "browserTarget": "eb-league:build:production"
+            },
+            "bg": {
+              "browserTarget": "eb-league:build:bg"
             }
           }
         },
@@ -342,7 +352,11 @@
       "sourceRoot": "src-common",
       "projectType": "library",
       "prefix": "bg",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
       "architect": {
         "test": {
           "builder": "@angular-devkit/build-angular:karma",

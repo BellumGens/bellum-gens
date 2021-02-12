@@ -208,11 +208,11 @@ export class AppModule {
     smproviders.forEach(p => this.iconService.addSvgIconFromText(p, socialMedia.find(s => s.name === p).value, 'login-icons'));
     this.iconService.addSvgIcon('bge-white', '/assets/login/bge-white.svg', 'partners');
     this.iconService.addSvgIcon('eb-league-white', '/assets/login/eb-league-white.svg', 'partners');
-    this.iconService.addSvgIcon('isobar', '/assets/partners/isobar.svg', 'partners');
-    this.iconService.addSvgIcon('vmware', '/assets/partners/vmware.svg', 'partners');
-    this.iconService.addSvgIcon('telus', '/assets/partners/telus.svg', 'partners');
-    this.iconService.addSvgIcon('modis', '/assets/partners/modis.svg', 'partners');
-    this.iconService.addSvgIcon('omen', '/assets/partners/omen.svg', 'partners');
-    this.iconService.addSvgIcon('paysafe', '/assets/partners/paysafe.svg', 'partners');
+    //this.iconService.addSvgIcon('isobar', '/assets/partners/isobar.svg', 'partners');
+    //this.iconService.addSvgIcon('vmware', '/assets/partners/vmware.svg', 'partners');
+    //this.iconService.addSvgIcon('telus', '/assets/partners/telus.svg', 'partners');
+    //this.iconService.addSvgIcon('modis', '/assets/partners/modis.svg', 'partners');
+    //this.iconService.addSvgIcon('omen', '/assets/partners/omen.svg', 'partners');
+    //this.iconService.addSvgIcon('paysafe', '/assets/partners/paysafe.svg', 'partners');
   }
 }
