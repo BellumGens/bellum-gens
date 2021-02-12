@@ -3,13 +3,13 @@
     (pointerup)="canvasPointerUp()">
   <div class="editor-elements list-container">
     <igx-select *ngIf="newStrategy" class="editor-elements-section" id="mapSelector" name="mapSelector" [(ngModel)]="newStrategy.map" (ngModelChange)="changeMap($event)">
-      <label for="mapSelector" igxLabel>Map</label>
+      <label for="mapSelector" igxLabel i18n>Map</label>
       <igx-select-item *ngFor="let map of maps" [value]="map.id">
         {{ map.map }}
       </igx-select-item>
     </igx-select>
     <div class="editor-elements-section">
-        <div>Layers</div>
+        <div i18n>Layers</div>
         <igx-list [displayDensity]="'compact'" class="layer-list">
           <igx-list-item *ngFor="let layer of layers" class="layer-info">
             <igx-checkbox igxListThumbnail class="layer-selected" [disabled]="!layer.movable" (change)="deselectBrush()" [(ngModel)]="layer.selected"></igx-checkbox>
@@ -35,7 +35,7 @@
 
   <div class="editor-elements">
     <div *ngIf="team" class="editor-elements-section">
-      <div>Team</div>
+      <div i18n>Team</div>
       <igx-avatar *ngFor="let member of teammembers"
                   [src]="member.avatarIcon"
                   [igxDrag]="{ src: member.avatarIcon, circle: true, width: 24, height: 24, name: member.username }"
@@ -46,7 +46,7 @@
       </igx-avatar>
     </div>
     <div class="editor-elements-section">
-      <div>Player Tokens</div>
+      <div i18n>Player Tokens</div>
       <div class="horizontal">
         <igx-avatar *ngFor="let i of ts"
                     src="/assets/editor/t-pin.png"
@@ -74,7 +74,7 @@
       </div>
     </div>
     <div class="editor-elements-section">
-      <div>Utility</div>
+      <div i18n>Utility</div>
       <igx-icon *ngFor="let util of utility"
                 [fontSet]="util.fontSet"
                 [name]="util.icon"
@@ -85,11 +85,11 @@
       </igx-icon>
     </div>
     <div class="editor-elements-section">
-      <div>Freeflow brushes</div>
+      <div i18n>Freeflow brushes</div>
       <igx-icon [ngClass]="brushSelected ? 'editor-freeflow-element selected-element' : 'editor-freeflow-element'" (click)="selectBrush()">brush</igx-icon>
     </div>
     <div *ngIf="brushSelected" class="editor-elements-section">
-      <div>Brush Color</div>
+      <div i18n>Brush Color</div>
       <igx-buttongroup>
         <button igxButton igxRipple *ngFor="let color of colors" [selected]="color.selected" (click)="selectColor(color)">
             <igx-icon [color]="color.color">color_lens</igx-icon>
@@ -97,13 +97,13 @@
       </igx-buttongroup>
     </div>
     <div class="editor-elements-section">
-      <button igxButton="raised" igxRipple class="submit-button" (click)="saveStrat()" [disabled]="!changes || saveInProgress">
+      <button igxButton="raised" igxRipple class="submit-button" (click)="saveStrat()" [disabled]="!changes || saveInProgress" i18n>
         {{ saveInProgress ? 'Saving...' : 'Save' }}
       </button>
     </div>
     <div class="editor-credits">
       <div class="horizontal">
-        Radars taken from
+        <span i18n>Radars taken from</span>
         <a class="horizontal navigatable" href="http://simpleradar.com/" target="_blank" rel="noopener">
           &nbsp;simple radar&nbsp;
           <igx-icon fontSet="login-icons" name="SimpleRadar"></igx-icon>
@@ -114,5 +114,5 @@
 </div>
 
 <bg-confirm #confirm title="Are you sure?" (ok)="deleteLayer($event)">
-  Are you sure you want to remove this layer...
+  <p i18n>Are you sure you want to remove this layer...</p>
 </bg-confirm>

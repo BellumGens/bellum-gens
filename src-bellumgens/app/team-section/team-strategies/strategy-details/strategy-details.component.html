@@ -11,8 +11,8 @@
       <h1 igxCardHeaderTitle>{{ strat.title }}</h1>
       <h3 igxCardHeaderSubtitle>{{ strat.description }}</h3>
       <h5 igxCardHeaderSubtitle class="card-smaller-subtitle">
-        <span *ngIf="strat.userId">Author: <a [routerLink]="['/players', strat.userId]">{{ strat.owner }}</a></span>
-        Last Edit: {{ strat.lastUpdated | date }}
+        <span *ngIf="strat.userId" i18n>Author: <a [routerLink]="['/players', strat.userId]">{{ strat.owner }}</a></span>
+        <span i18n>Last Edit: {{ strat.lastUpdated | date }}</span>
       </h5>
 
       <div>
@@ -54,7 +54,7 @@
   <igx-card-actions layout="justify">
     <igx-list class="list-container comments-container">
       <igx-list-item>
-        Comments
+        <span igxListLine i18n>Comments</span>
       </igx-list-item>
       <igx-list-item *ngFor="let comment of strat.comments">
         <igx-avatar igxListThumbnail [src]="comment.userAvatar" [roundShape]="true"></igx-avatar>
@@ -65,11 +65,11 @@
         <igx-drop-down #useractions (onSelection)="$event.cancel = true; useractions.close()">
           <igx-drop-down-item (click)="editComment(comment)">
             <igx-icon title="edit strategy">edit</igx-icon>
-            <span class="title margin-left">Edit</span>
+            <span class="title margin-left" i18n>Edit</span>
           </igx-drop-down-item>
           <igx-drop-down-item (click)="confirm.open(comment)">
             <igx-icon title="delete strategy">delete_forever</igx-icon>
-            <span class="title margin-left">Delete</span>
+            <span class="title margin-left" i18n>Delete</span>
           </igx-drop-down-item>
         </igx-drop-down>
       </igx-list-item>
@@ -79,7 +79,7 @@
       <igx-avatar [src]="authUser?.avatarIcon" [roundShape]="true"></igx-avatar>
       <form #strategyForm="ngForm" (ngSubmit)="submitComment()" class="comment-input">
         <igx-input-group type="box">
-          <label for="comment" igxLabel>{{ !authUser ? 'Login to ' : 'Leave a ' }}comment...</label>
+          <label for="comment" igxLabel i18n>{{ !authUser ? 'Login to ' : 'Leave a ' }}comment...</label>
           <textarea [disabled]="!authUser" #commentBox id="comment" name="comment" igxInput [(ngModel)]="newComment.comment"></textarea>
           <button igxSuffix
                   igxButton="fab"
@@ -96,6 +96,6 @@
 
 <!-- Confirm -->
 <bg-confirm #confirm title="Are you sure?" (ok)="deleteComment($event)">
-  Pressing OK will permanently remove your comment...
+  <p i18n>Pressing OK will permanently remove your comment...</p>
 </bg-confirm>
 <!-- END Confirm -->
