@@ -748,6 +748,7 @@
       </trans-unit>
       <trans-unit id="0d0d59b95c722d1ddbe60443cbef3d23e326c81e" datatype="html">
         <source>Remove from group</source>
+        <target>Премахни от групата</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin-sc2/admin-sc2.component.html</context>
           <context context-type="linenumber">139</context>
@@ -755,6 +756,7 @@
       </trans-unit>
       <trans-unit id="6998b6c32beab27ebc70c830cddbfbde84fb602e" datatype="html">
         <source>*If the match is during the group stage</source>
+        <target>*Ако мачът е от групова фаза</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin-sc2/admin-sc2.component.html</context>
           <context context-type="linenumber">193</context>
@@ -762,6 +764,7 @@
       </trans-unit>
       <trans-unit id="722c62ca7de5695ca162ce1499caa644ba99c968" datatype="html">
         <source>Player 1</source>
+        <target>Играч 1</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin-sc2/admin-sc2.component.html</context>
           <context context-type="linenumber">197</context>
@@ -769,6 +772,7 @@
       </trans-unit>
       <trans-unit id="8c54dc45cc8f94e5c781f5e147d3b3e8f9880152" datatype="html">
         <source>Player 2</source>
+        <target>Играч 2</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin-sc2/admin-sc2.component.html</context>
           <context context-type="linenumber">209</context>
@@ -776,6 +780,7 @@
       </trans-unit>
       <trans-unit id="c9d9f92279601edafa97bad9bd80b21b54762ace" datatype="html">
         <source>Points <x id="INTERPOLATION" equiv-text="{{ matchInEdit.player1?.battleNetId }}"/></source>
+        <target>Точки <x id="INTERPOLATION" equiv-text="{{ matchInEdit.player1?.battleNetId }}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin-sc2/admin-sc2.component.html</context>
           <context context-type="linenumber">231</context>
@@ -783,6 +788,7 @@
       </trans-unit>
       <trans-unit id="6890e58fcaded8196a7f31043ed47cff4b852685" datatype="html">
         <source>Points <x id="INTERPOLATION" equiv-text="{{ matchInEdit.player2?.battleNetId }}"/></source>
+        <target>Точки <x id="INTERPOLATION" equiv-text="{{ matchInEdit.player2?.battleNetId }}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin-sc2/admin-sc2.component.html</context>
           <context context-type="linenumber">236</context>
@@ -790,6 +796,7 @@
       </trans-unit>
       <trans-unit id="8a6cdaa708ad183bd1f3385294b9beab933b7d70" datatype="html">
         <source>Winner</source>
+        <target>Победител</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin-sc2/admin-sc2.component.html</context>
           <context context-type="linenumber">248</context>
@@ -797,6 +804,7 @@
       </trans-unit>
       <trans-unit id="d2c688dfb973a7fbd80ca4e94ddeb55f63dea9d4" datatype="html">
         <source>Tournament Registrations</source>
+        <target>Регистрации</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
           <context context-type="linenumber">13</context>
@@ -824,6 +832,7 @@
       </trans-unit>
       <trans-unit id="ca1deeb3ef05544341733f17c44abdcfa28de7b5" datatype="html">
         <source>Date Submitted</source>
+        <target>Направена на</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
           <context context-type="linenumber">20</context>
@@ -831,6 +840,7 @@
       </trans-unit>
       <trans-unit id="f23ab2b3c51097510e8bd11be5b0ae5bc43f3447" datatype="html">
         <source>League</source>
+        <target>Лига</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
           <context context-type="linenumber">22</context>
@@ -838,6 +848,7 @@
       </trans-unit>
       <trans-unit id="960cd598cbd85edb0a254ff3e59574d2c5cb888c" datatype="html">
         <source>Hash</source>
+        <target>Код</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
           <context context-type="linenumber">27</context>
@@ -845,6 +856,7 @@
       </trans-unit>
       <trans-unit id="a1daf43d26259bffdd5eb2d405c61583540b113b" datatype="html">
         <source>Confirmed</source>
+        <target>Потвърдена</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
           <context context-type="linenumber">29</context>
@@ -856,6 +868,7 @@
       </trans-unit>
       <trans-unit id="4e7f5f07ae8e67878f35b34bcee10e39300ff41a" datatype="html">
         <source>Orders</source>
+        <target>Поръчки</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
           <context context-type="linenumber">53</context>
@@ -863,6 +876,7 @@
       </trans-unit>
       <trans-unit id="8147001f752fbf48f757011e6b7f88ebf28347df" datatype="html">
         <source>Order date</source>
+        <target>Направена на</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
           <context context-type="linenumber">56</context>
@@ -870,6 +884,7 @@
       </trans-unit>
       <trans-unit id="b760f123248930122fc7e7b6b6bf94e376e959c8" datatype="html">
         <source>Full name</source>
+        <target>Име</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
           <context context-type="linenumber">60</context>
@@ -877,6 +892,7 @@
       </trans-unit>
       <trans-unit id="4748c2d70da707bead55b6602444f7ed3108ffcf" datatype="html">
         <source>Phone #</source>
+        <target>Телефон</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
           <context context-type="linenumber">65</context>
@@ -884,6 +900,7 @@
       </trans-unit>
       <trans-unit id="8a42942fb83e136a7f7825c67e6ddd4013b6669b" datatype="html">
         <source>Full address</source>
+        <target>Адрес</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
           <context context-type="linenumber">70</context>
@@ -903,13 +920,15 @@
       </trans-unit>
       <trans-unit id="625f4c3665e76a3983e6f567007b2a1c967c1e9d" datatype="html">
         <source>Shipped</source>
+        <target>Доставена</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
           <context context-type="linenumber">80</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="28abe6d2703f9f87de4868e5416c8a2e64886e08" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{details.cut ? &apos;Дамска&apos; : &apos;Мъжка&apos;}}"/></source>
+      <trans-unit id="75d2cedd47ece334b9a744b828d3e0a99fb968e6" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{details.cut ? &apos;Female&apos; : &apos;Male&apos;}}"/></source>
+        <target><x id="INTERPOLATION" equiv-text="{{details.cut ? &apos;Дамска&apos; : &apos;Мъжка&apos;}}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
           <context context-type="linenumber">87</context>
@@ -917,6 +936,7 @@
       </trans-unit>
       <trans-unit id="5249494675a08788ec5e34450ca0d5def180fd28" datatype="html">
         <source>Tournaments and Roles</source>
+        <target>Турнири и роли</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
           <context context-type="linenumber">97</context>
@@ -924,6 +944,7 @@
       </trans-unit>
       <trans-unit id="27cb14232a5f816d17263834225e51fe22b7426f" datatype="html">
         <source>Tournament name</source>
+        <target>Име на турнира</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
           <context context-type="linenumber">101</context>
@@ -935,6 +956,7 @@
       </trans-unit>
       <trans-unit id="d9c0446901e6ecf99ae0dff9d63229c9adabe9bf" datatype="html">
         <source>Tournament logo</source>
+        <target>Лого на турнира</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
           <context context-type="linenumber">109</context>
@@ -946,6 +968,7 @@
       </trans-unit>
       <trans-unit id="efef9052a28ad37bb4a063c2092a8bb2e0252d8d" datatype="html">
         <source>Tournament description</source>
+        <target>Описание на турнира</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
           <context context-type="linenumber">117</context>
@@ -957,6 +980,7 @@
       </trans-unit>
       <trans-unit id="f60960faa2cd3e0db11e48688774d05dfa9d715b" datatype="html">
         <source>End date</source>
+        <target>Крайна дата</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
           <context context-type="linenumber">129</context>
@@ -968,6 +992,7 @@
       </trans-unit>
       <trans-unit id="b36e1450940b7f6028d8587568c7d669b53f7a06" datatype="html">
         <source>Active</source>
+        <target>Активен</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
           <context context-type="linenumber">132</context>
@@ -975,6 +1000,7 @@
       </trans-unit>
       <trans-unit id="b14a6a657def8351575e9abf049c9fdd55675950" datatype="html">
         <source>No Roles Defined</source>
+        <target>Няма дефинирани роли</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
           <context context-type="linenumber">177</context>
@@ -982,6 +1008,7 @@
       </trans-unit>
       <trans-unit id="b9b3f11db278e64ed2cf44e46d0790c62f758338" datatype="html">
         <source>New role</source>
+        <target>Нова роля</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
           <context context-type="linenumber">180</context>

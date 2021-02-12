@@ -84,7 +84,7 @@
       <div *igxGridDetail="let dataItem" class="horizontal details-container space-evenly">
         <div class="column-center" *ngFor="let details of dataItem.jerseys">
           <img src="/assets/wallpapers/jersey-small.webp" alt="Esports Business League jersey" />
-          <div i18n>{{details.cut ? 'Дамска' : 'Мъжка'}}</div>
+          <div i18n>{{details.cut ? 'Female' : 'Male'}}</div>
           <div class="highlight">{{ details.size | sizeName }}</div>
         </div>
       </div>
