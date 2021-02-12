@@ -248,7 +248,7 @@
       </trans-unit>
       <trans-unit id="69e9c615849b4a73db4b15885952f4333b741c62" datatype="html">
         <source>Are you sure?</source>
-        <source>Сигурни ли сте?</source>
+        <target>Сигурни ли сте?</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/user-preferences/user-preferences.component.html</context>
           <context context-type="linenumber">46</context>
