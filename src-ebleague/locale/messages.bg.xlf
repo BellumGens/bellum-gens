@@ -4,7 +4,7 @@
     <body>
       <trans-unit id="f968f4a83edfcfda5f3d64ba069fda1a0c2ae30e" datatype="html">
         <source>or login with form</source>
-        <target>или вход с име и парола</target>
+        <target>или влез с име и парола</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/login/login-dialog/login-dialog.component.html</context>
           <context context-type="linenumber">5</context>

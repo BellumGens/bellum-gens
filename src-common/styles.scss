@@ -173,6 +173,10 @@ a > igx-icon {
   background-image: url('/assets/wallpapers/carousel-season2.webp');
 }
 
+.overlay-background {
+  background-color: rgba($color: #000, $alpha: 0.25);
+}
+
 .drawer-action {
   margin-right: 16px;
 }
@@ -300,8 +304,9 @@ a > igx-icon {
 .contacts {
   display: flex;
   min-width: 128px;
+  width: 100%;
   align-content: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
   flex-wrap: wrap;
   margin-top: 16px;
 }
