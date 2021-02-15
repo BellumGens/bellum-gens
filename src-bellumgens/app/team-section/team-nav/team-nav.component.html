@@ -19,6 +19,6 @@
 
 <app-team-new #createTeam [authUser]="authUser"></app-team-new>
 
-<bg-confirm #confirm title="Are you sure?" (ok)="abandonTeam($event)">
-  You will leave this team permanently. If you own the team and are the only team member, then the team will also be deleted...
+<bg-confirm #confirm i18n-title title="Are you sure?" (ok)="abandonTeam($event)">
+  <p i18n>You will leave this team permanently. If you own the team and are the only team member, then the team will also be deleted...</p>
 </bg-confirm>

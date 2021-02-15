@@ -31,9 +31,9 @@ export const StratOrder = [
 ];
 
 export class CompetitionDefaults {
-  public static compStart = new Date(2020, 8, 28);
-  public static compFinals = new Date(2020, 10, 14);
-  public static regDeadline = new Date(2020, 8, 14);
+  public static compStart = new Date(2021, 2, 24);
+  public static compFinals = new Date(2021, 4, 15);
+  public static regDeadline = new Date(2021, 8, 14);
 }
 
 export const CREW_MEMBERS = [

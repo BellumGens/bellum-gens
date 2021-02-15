@@ -43,10 +43,10 @@
 </div>
 
 <!-- Confirm -->
-<bg-confirm #confirm title="Are you sure?" (ok)="deleteAccount()">
+<bg-confirm #confirm i18n-title title="Are you sure?" (ok)="deleteAccount()">
   <p i18n>Pressing OK will delete your user account permanently...</p>
 </bg-confirm>
-<bg-confirm #confirmReg title="Are you sure?" (ok)="deleteRegistration($event)">
+<bg-confirm #confirmReg i18n-title title="Are you sure?" (ok)="deleteRegistration($event)">
   <p i18n>Pressing OK will delete your tournament registration permanently...</p>
 </bg-confirm>
 <!-- END Confirm -->

@@ -1,8 +1,8 @@
 <div class="home-page-slide-columns slide slide1">
-  <div class="content-container-row overlay-background">
-    <h1 class="highlight">Esports Business League</h1>
-    <p i18n>Get ready for Season 3 of the one of a kind esports office league! Starting this season, Esports Business League becomes a charity event, through which participants will be able to choose the charity campaign they wish to support. Registrations will open soon!</p>
-    <button igxButton="raised" (click)="showContacts()" i18n>Follow us on social media</button>
+  <div class="intro-column">
+    <h1 class="highlight">The Ultimate Gaming experience for your company</h1>
+    <p i18n>Covid-19 changed the way teams in your company bond. Esports Business League is a team building charity esports event, where your company team can compete against teams from other companies. Participants in the Esports Business League so far include companies like VMware, DXC, SAP, Experian, TELUS, Modis, HP, Infragistics, Chaos Group and many more!</p>
+    <button igxButton="raised" (click)="showContacts()" i18n>Learn more...</button>
   </div>
 </div>
 
@@ -40,6 +40,9 @@
 </div> -->
 
 <div class="content-container">
+
+  <!-- <app-tournament-registration #registration class="content-container-row" [tournamentId]="tournamentId"></app-tournament-registration> -->
+
   <div class="content-container-row">
     <h2 i18n>Season 2</h2>
   </div>
@@ -93,14 +96,14 @@
     <div class="watermark sc2-watermark"></div>
     <h3 i18n>Champion</h3>
 
-    <div class="winner-wrapper first-place-text">
+    <div class="winner-wrapper">
       <a class="igx-card-header__title" href="https://bellumgens.com/players/76561198061226037" target="_blank" rel="noopener">SuGaRBuNNy</a>
       <span class="igx-card-header__subtitle">Nuvei</span>
     </div>
 
     <h4 i18n>Runner-up</h4>
 
-    <div class="winner-wrapper second-place-text">
+    <div class="winner-wrapper">
       <a class="igx-card-header__title" href="https://bellumgens.com/players/1a86fa91-1bfa-4787-94e6-a206f6893093" target="_blank" rel="noopener">IlPrincipino</a>
       <span class="igx-card-header__subtitle">UltraPlay</span>
     </div>
@@ -112,13 +115,42 @@
         <span class="igx-card-header__subtitle">Рюгис-М</span>
       </div>
 
-      <div class="winner-wrapper third-forth-place-text">
+      <div class="winner-wrapper">
         <a class="igx-card-header__title" href="https://bellumgens.com/players/76561199015442941" target="_blank" rel="noopener">kOliO</a>
       </div>
     </div>
   </div>
 
-  <!-- <app-tournament-registration #registration class="content-container-row" [tournamentId]="tournamentId"></app-tournament-registration> -->
+  <div class="content-container-row">
+    <igx-divider></igx-divider>
+    <h2 i18n id="contacts">Follow us for updates</h2>
+  </div>
+
+  <div class="content-container-row">
+    <div class="contacts">
+      <a href="https://www.facebook.com/esportsbleague/" i18n-title title="Like us on Facebook" target="_blank" rel="noopener">
+        <img src="/assets/social/facebook-150x150.webp" alt="Facebook" />
+      </a>
+      <a href="https://twitter.com/EsportBLeague" i18n-title title="Follow us on Twitter" target="_blank" rel="noopener">
+        <img src="/assets/social/twitter-150x150.webp" alt="Twitter" />
+      </a>
+      <a href="https://www.instagram.com/esportsbleague/" i18n-title title="Follow us on Instagram" target="_blank" rel="noopener">
+        <img src="/assets/social/instagram-150x150.webp" alt="Instagram" />
+      </a>
+      <a href="https://www.linkedin.com/company/bellum-gens/" i18n-title title="Follow us on Linked-in" target="_blank" rel="noopener">
+        <img src="/assets/social/linkedin-150x150.webp" alt="Linked-in" />
+      </a>
+      <a href="https://www.youtube.com/c/EsportsBusinessLeague" i18n-title title="Subscribe to our Youtube channel" target="_blank" rel="noopener">
+        <img src="/assets/social/youtube-150x150.webp" alt="YouTube" />
+      </a>
+      <a href="https://www.twitch.tv/ebleague_a" i18n-title title="Follow us on Twitch" target="_blank" rel="noopener">
+        <img src="/assets/social/twitch-150x150.webp" alt="Twitch" />
+      </a>
+      <a href="https://discord.gg/bnTcpa9" i18n-title title="Join our Discord server" target="_blank" rel="noopener">
+        <img src="/assets/social/discord-150x150.webp" alt="Discord" />
+      </a>
+    </div>
+  </div>
 
   <div class="content-container-row">
     <igx-divider></igx-divider>
@@ -126,12 +158,13 @@
   </div>
 
   <div class="content-container-column left-column">
-    <img src="/assets/wallpapers/finals-csgo.webp" class="preview-image" alt="Esports Business League" />
+    <img src="/assets/wallpapers/cover.webp" class="preview-image" alt="Esports Business League" />
   </div>
 
   <div class="content-container-column">
-    <p i18n>Esports Business League is a charity esports event, which provides amateur gamers with an arena for competition between individuals and teams formed at the workplace. Each season of the league is going to be 4-8 weeks in length. Matches take place on week days after working hours Monday-Thursday. The league culminates with finals where the teams and players who have accumulated the most points during the season meet. Finals are being held over one weekend. All league matches are being broadcasted live on our Twitch channels.</p>
+    <p i18n>Esports Business League is a charity esports event, which provides working gamers with an arena for competition between individuals and teams from different companies. Each season of the league is 4-8 weeks in length. Matches take place on week days after working hours Monday-Thursday. The league culminates with finals where the teams and players who have accumulated the most points during the season meet. All league matches are being broadcasted live on our <a href="https://www.twitch.tv/ebleague_a" i18n-title title="Follow us on Twitch" target="_blank" rel="noopener">Twitch</a> channels.</p>
     <h3 i18n>When?</h3>
+    <p i18n>Get ready for Season 3 of the one of a kind esports office league! Starting this season, Esports Business League becomes a charity event, through which participants will be able to choose the charity campaign they wish to support. Registrations will open soon!</p>
     <p i18n>Registrations are open until reaching the deadline, or until all the available spots have been filled.</p>
     <p i18n>Season 3 of the Esports Business League will begin <span class="highlight">{{ dates.compStart | date }}</span>.</p>
     <p i18n>Esports Business League Season 3 finals will be held <span class="highlight">{{ dates.compStart | date }}</span>.</p>
@@ -145,11 +178,11 @@
   </div>
 
   <div class="content-container-column left-column">
-    <p i18n>All team members must be <span class="highlight">current employees of the company associated with the team registration, should not have any active engagement or affiliation with a professional esports organization, and haven't participated in professional esports matches as players in the past 24 months from the date of registration</span>. The team is allowed to have standins/substitute players and they have to comply with the same conditions as the main players on the team. Substitutes can be added to the team post registration, as long as they comply with the aformentioned conditions. Individual players (StarCraft II) must be <span class="highlight">current employees of the company associated with their registration</span>. The company represented by the team/individual must be provided at the time of registration.</p>
+    <p i18n>All team members must be <span class="highlight">current employees of the company associated with the team registration, should not have any active engagement or affiliation with a professional esports organization, and haven't participated in professional esports matches as players in the past 24 months from the date of registration</span>. The team is allowed to have standins/substitute players and they have to comply with the same conditions as the main players on the team. Substitutes can be added to the team post registration, as long as they comply with the aforementioned conditions. Individual players (StarCraft II) must be <span class="highlight">current employees of the company associated with their registration</span>. The company represented by the team/individual must be provided at the time of registration.</p>
     <p i18n>Registrations are open until the deadline is reached, {{ dates.regDeadline }}, or until all open slots have been filled (16 CS:GO teams, 32 StarCraft II players). Successful registration completion requires registration fee payment - 300 BGN (VAT incl.) per team or 60 BGN (VAT incl.) per individual competitor. Registration fee paymant is done with a bank transfer after the registration form has been submitted. <span class="highlight">All registration fees are being added to the prize pool fund. At the end of the season the prize pool will be donated to a charitable cause chosen by the winners!</span></p>
   </div>
   <div class="content-container-column">
-    <img src="/assets/wallpapers/finals-sc2.webp" class="preview-image" alt="Esports Business League" />
+    <img src="/assets/wallpapers/jersey.webp" alt="Esports Business League" />
   </div>
 
   <!-- <div class="content-container-row">
@@ -330,32 +363,5 @@
         <button igxButton="outlined" class="submit-email" [disabled]="subscription.invalid || !userEmail" i18n>Subscribe</button>
       </div>
     </form>
-
-    <div class="contacts" id="contacts">
-      <a href="mailto:info@eb-league.com" i18n-title title="Email">
-        <igx-icon>email</igx-icon>
-      </a>
-      <a href="https://www.facebook.com/esportsbleague/" i18n-title title="Like us on Facebook" target="_blank" rel="noopener">
-        <igx-icon fontSet="login-icons" name="facebook"></igx-icon>
-      </a>
-      <a href="https://twitter.com/EsportBLeague" i18n-title title="Follow us on Twitter" target="_blank" rel="noopener">
-        <igx-icon fontSet="login-icons" name="twitter"></igx-icon>
-      </a>
-      <a href="https://www.instagram.com/esportsbleague/" i18n-title title="Follow us on Instagram" target="_blank" rel="noopener">
-        <igx-icon fontSet="login-icons" name="instagram"></igx-icon>
-      </a>
-      <a href="https://www.linkedin.com/company/bellum-gens/" i18n-title title="Follow us on Linked-in" target="_blank" rel="noopener">
-        <igx-icon fontSet="login-icons" name="linkedin"></igx-icon>
-      </a>
-      <a href="https://www.youtube.com/c/EsportsBusinessLeague" i18n-title title="Subscribe to our Youtube channel" target="_blank" rel="noopener">
-        <igx-icon fontSet="login-icons" name="youtube"></igx-icon>
-      </a>
-      <a href="https://www.twitch.tv/ebleague_a" i18n-title title="Follow us on Twitch" target="_blank" rel="noopener">
-        <igx-icon fontSet="login-icons" name="twitch"></igx-icon>
-      </a>
-      <a href="https://discord.gg/bnTcpa9" i18n-title title="Join our Discord server" target="_blank" rel="noopener">
-        <igx-icon fontSet="login-icons" name="discord"></igx-icon>
-      </a>
-    </div>
   </div>
 </div>

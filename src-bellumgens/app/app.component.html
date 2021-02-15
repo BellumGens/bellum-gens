@@ -5,30 +5,30 @@
         <span igxDrawerItem [isHeader]="true">Bellum Gens</span>
         <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="myteams">
           <igx-icon>people</igx-icon>
-          <span>My teams</span>
+          <span i18n>My teams</span>
           <igx-badge class="notifications-badge" *ngIf="teams?.length > 0" [value]="teams?.length.toString()" type="info"></igx-badge>
         </span>
         <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="notifications">
           <igx-icon>notifications</igx-icon>
+          <span i18n>Notifications</span>
           <igx-badge class="notifications-badge" *ngIf="unreadNotifications > 0" [value]="unreadNotifications.toString()" type="info"></igx-badge>
-          <span>Notifications</span>
         </span>
         <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="user/strategies">
           <igx-icon>person</igx-icon>
-          <span>My Strategies</span>
+          <span i18n>My Strategies</span>
         </span>
         <igx-divider></igx-divider>
         <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="strategies">
           <igx-icon>playlist_add_check</igx-icon>
-          <span>CS:GO Strategies</span>
+          <span i18n>CS:GO Strategies</span>
         </span>
         <span igxDrawerItem igxRipple routerLink="/" fragment="partners">
           <igx-icon>people_alt</igx-icon>
-          <span>Partners</span>
+          <span i18n>Partners</span>
         </span>
         <span igxDrawerItem igxRipple routerLink="/" fragment="aboutus">
           <igx-icon>chat</igx-icon>
-          <span>Contacts</span>
+          <span i18n>Contacts</span>
         </span>
       </nav>
     </ng-template>
@@ -36,25 +36,25 @@
     <ng-template igxDrawerMini *ngIf="drawer.pin">
       <nav>
         <span igxDrawerItem [isHeader]="true">&nbsp;</span>
-        <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="myteams" title="My Teams">
+        <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="myteams" i18n-title title="My Teams">
           <igx-icon>people</igx-icon>
           <igx-badge class="notifications-badge" *ngIf="teams?.length > 0" [value]="teams?.length.toString()" type="info"></igx-badge>
         </span>
-        <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="notifications" title="Notifications">
+        <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="notifications" i18n-title title="Notifications">
           <igx-icon>notifications</igx-icon>
           <igx-badge class="notifications-badge" *ngIf="unreadNotifications > 0" [value]="unreadNotifications.toString()" type="info"></igx-badge>
         </span>
-        <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="user/strategies" title="My strategies">
+        <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="user/strategies" i18n-title title="My strategies">
           <igx-icon>person</igx-icon>
         </span>
         <igx-divider></igx-divider>
-        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="strategies" title="CS:GO Strategies">
+        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="strategies" i18n-title title="CS:GO Strategies">
           <igx-icon>playlist_add_check</igx-icon>
         </span>
-        <span igxDrawerItem igxRipple routerLink="/" fragment="partners" title="Partners">
+        <span igxDrawerItem igxRipple routerLink="/" fragment="partners" i18n-title title="Partners">
           <igx-icon>people_alt</igx-icon>
         </span>
-        <span igxDrawerItem igxRipple routerLink="/" fragment="aboutus" title="About us">
+        <span igxDrawerItem igxRipple routerLink="/" fragment="aboutus" i18n-title title="About us">
           <igx-icon>chat</igx-icon>
         </span>
       </nav>
@@ -71,30 +71,31 @@
         <igx-prefix>
           <igx-icon>search</igx-icon>
         </igx-prefix>
-        <label igxLabel for="searchInput">Search</label>
+        <label igxLabel for="searchInput" i18n>Search</label>
         <input id="searchInput" #searchInput igxInput (focus)="advancedSearch.open()" class="search-input" />
         <igx-suffix *ngIf="searchInput.value.length > 0" (click)="searchInput.value = ''">
           <igx-icon>clear</igx-icon>
         </igx-suffix>
       </igx-input-group>
 
+      <bg-languages></bg-languages>
       <bg-login [authUser]="authUser"></bg-login>
     </igx-navbar>
 
     <igx-banner #cookiesBanner>
       <igx-icon>settings</igx-icon>
-      This site uses cookies.
+      <span i18n>This site uses cookies.</span>
       <igx-banner-actions>
-        <a href="https://www.cookiesandyou.com/" target="_blank" rel="noopener">Cookies and You</a>
-        <button igxButton igxRipple (click)="acceptCookies()">I Understand</button>
+        <a href="https://www.cookiesandyou.com/" target="_blank" rel="noopener" i18n>Cookies and You</a>
+        <button igxButton igxRipple (click)="acceptCookies()" i18n>I Understand</button>
       </igx-banner-actions>
     </igx-banner>
 
     <igx-banner #advancedSearch>
-      Advanced search for:
+      <span i18n>Advanced search for:</span>
       <app-search></app-search>
       <igx-banner-actions>
-        <button igxButton="flat" igxRipple (click)="advancedSearch.close()">Hide</button>
+        <button igxButton="flat" igxRipple (click)="advancedSearch.close()" i18n>Hide</button>
       </igx-banner-actions>
     </igx-banner>
 
@@ -115,19 +116,19 @@
 
             <igx-divider style="margin: 0 12px; height: 32px;" [vertical]="true"></igx-divider>
 
-            <a href="mailto:info@eb-league.com" title="Email us">
+            <a href="mailto:info@eb-league.com" i18n-title title="Email us">
               <igx-icon>email</igx-icon>
             </a>
-            <a href="https://www.facebook.com/bellumgens/" title="Follow us on Facebook" target="_blank" rel="noopener">
+            <a href="https://www.facebook.com/bellumgens/" i18n-title title="Follow us on Facebook" target="_blank" rel="noopener">
               <igx-icon fontSet="login-icons" name="facebook"></igx-icon>
             </a>
-            <a href="https://twitter.com/BellumGens" title="Follow us on Twitter" target="_blank" rel="noopener">
+            <a href="https://twitter.com/BellumGens" i18n-title title="Follow us on Twitter" target="_blank" rel="noopener">
               <igx-icon fontSet="login-icons" name="twitter"></igx-icon>
             </a>
-            <a href="https://www.linkedin.com/company/bellum-gens/" title="Follow us on Linked-in" target="_blank" rel="noopener">
+            <a href="https://www.linkedin.com/company/bellum-gens/" i18n-title title="Follow us on Linked-in" target="_blank" rel="noopener">
               <igx-icon fontSet="login-icons" name="linkedin"></igx-icon>
             </a>
-            <a href="https://discord.gg/bnTcpa9" title="Join our Discord server" target="_blank" rel="noopener">
+            <a href="https://discord.gg/bnTcpa9" i18n-title title="Join our Discord server" target="_blank" rel="noopener">
               <igx-icon fontSet="login-icons" name="discord"></igx-icon>
             </a>
           </div>

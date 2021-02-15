@@ -1,7 +1,7 @@
 <div class="card-wrapper">
   <igx-card type="outlined" class="fit-content-card">
       <igx-card-header class="empty-strategy">
-        <h4 class="igx-card-header__title">Add a new strategy?</h4>
+        <h4 class="igx-card-header__title" i18n>Add a new strategy?</h4>
       </igx-card-header>
       <igx-card-content class="empty-strategy empty-strategy-content">
           <igx-avatar icon="add"
@@ -10,7 +10,7 @@
                       [size]="'large'"
                       (click)="newStrategy.open()">
           </igx-avatar>
-          <p class="highlight navigatable" (click)="newStrategy.open()">Create strategy</p>
+          <p class="highlight navigatable" (click)="newStrategy.open()" i18n>Create strategy</p>
       </igx-card-content>
   </igx-card>
 
@@ -21,7 +21,7 @@
           [title]="strat.title"
           [routerLink]="['/strategies', 'details', strat.customUrl]">{{ strat.title }}</h2>
       <h4 igxCardHeaderSubtitle>Visibility: {{ strat.visible ? 'Public' : 'Private'}}</h4>
-      <h6 igxCardHeaderSubtitle class="card-smaller-subtitle">Last Edit: {{ strat.lastUpdated | date }}</h6>
+      <h6 igxCardHeaderSubtitle class="card-smaller-subtitle" i18n>Last Edit: {{ strat.lastUpdated | date }}</h6>
     </igx-card-header>
 
     <igx-card-media>
@@ -36,7 +36,7 @@
     <igx-card-actions [reverse]="true">
       <span class="horizontal-center navigatable" [routerLink]="['/strategies', 'details', strat.customUrl]">
         <igx-badge [value]="strat.comments?.length.toString()" type="info"></igx-badge>
-        Comments
+        <span i18n>Comments</span>
       </span>
 
       <button *ngIf="strat.visible"
@@ -52,6 +52,7 @@
       </button>
       <button igxButton="fab"
               igxRipple
+              i18n-title
               title="Delete"
               (click)="confirm.open(strat)">
         <igx-icon title="Delete">delete_forever</igx-icon>
@@ -66,7 +67,7 @@
 </app-new-strategy>
 
 <!-- Confirm -->
-<bg-confirm #confirm title="Are you sure?" (ok)="deleteStrat($event)">
-  Pressing OK will permanently remove this strategy...
+<bg-confirm #confirm i18n-title title="Are you sure?" (ok)="deleteStrat($event)">
+  <p i18n>Pressing OK will permanently remove this strategy...</p>
 </bg-confirm>
 <!-- END Confirm -->

@@ -12,7 +12,7 @@ import { ApiTournamentsService } from '../../../src-common/services/bellumgens-a
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.scss']
 })
 export class HomeComponent extends BaseComponent {
   @ViewChild(IgxCarouselComponent, { static: true }) public carousel: IgxCarouselComponent;

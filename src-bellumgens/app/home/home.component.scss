@@ -1,0 +1,82 @@
+:host {
+  .space-out-button {
+    margin-left: 12px;
+  }
+
+  .nav-button {
+    width: 250px;
+  }
+
+  .carousel {
+    --igx-carousel-button-background: transparent;
+    height: 450px;
+  }
+
+  .slide0 {
+    background-image: url('/assets/wallpapers/carousel-bge.webp');
+  }
+
+  .slide1 {
+    background-image: url('/assets/wallpapers/carousel-season2.webp');
+  }
+
+  .slide2 {
+    background-image: url('/assets/wallpapers/csgo_wallpaper_nologo.webp');
+    background-position-y: -100px;
+  }
+
+  .slide3 {
+    background-image: url('/assets/wallpapers/carousel_image_1.webp');
+    background-position: center;
+  }
+
+  // .platinum {
+  //   width: 380px;
+  //   height: 200px;
+  // }
+
+  // .gold {
+  //   width: 220px;
+  //   height: 150px;
+  // }
+
+  .logistics {
+    width: 150px;
+  }
+
+  .min-height-row {
+    min-height: 210px;
+  }
+
+  .event-icon {
+    width: 64px;
+    height: 32px;
+  }
+
+  @media only screen and (max-width: 550px) {
+    .platinum {
+      width: 348px;
+      height: 150px;
+    }
+  }
+
+  @media only screen and (max-width: 1280px) {
+    .slide2 {
+      background-size: auto;
+      background-position: center;
+      background-position-y: -100px;
+    }
+  }
+
+  @media only screen and (min-width: 1281px) and (max-width: 1500px) {
+    .slide2{
+      background-position-y: 0px;
+    }
+  }
+
+  @media only screen and (min-width: 2000px) {
+    .slide2, .slide3 {
+      background-position-y: -115px;
+    }
+  }
+}

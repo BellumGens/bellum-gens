@@ -5,26 +5,28 @@
             [primaryKey]="'id'"
             (onRowDeleted)="deleteMatch($event)"
             #matchGrid
-            emptyGridMessage="Няма намерени срещи..."
+            i18n-emptyGridMessage
+            emptyGridMessage="No matches found..."
             [isLoading]="loading"
             [allowFiltering]="true">
 
     <igx-grid-toolbar>
-      <igx-grid-toolbar-title>Всички StarCraft II Срещи</igx-grid-toolbar-title>
+      <igx-grid-toolbar-title i18n>All StarCraft II matches</igx-grid-toolbar-title>
       <igx-grid-toolbar-actions>
         <button igxButton="outlined" (click)="addNewMatch(); newMatchDialog.open()">
-          <igx-icon>add_circle_outline</igx-icon>Добави нова среща
+          <igx-icon>add_circle_outline</igx-icon>
+          <span i18n>New match</span>
         </button>
       </igx-grid-toolbar-actions>
     </igx-grid-toolbar>
 
-    <igx-column field="startTime" width="220px" [dataType]="'date'" header="Начало">
+    <igx-column field="startTime" width="220px" [dataType]="'date'" i18n-header header="Start time">
       <ng-template igxCell let-value>
         {{ value | date:'MMM d, y, h:mm a' }}
       </ng-template>
     </igx-column>
 
-    <igx-column field="teams" header="Среща" [filterable]="false">
+    <igx-column field="teams" i18n-header header="Match" [filterable]="false">
       <div *igxCell="let cell = cell">
         <igx-avatar igxListThumbnail
                     [src]="cell.rowData.player1.avatarMedium"
@@ -69,21 +71,17 @@
         </div>
       </div>
 
-      <div class="horizontal-center" *ngIf="dataItem.noShow">
-        Служебна победа.
-      </div>
+      <div class="horizontal-center" *ngIf="dataItem.noShow" i18n-header>Walkover</div>
 
-      <div class="horizontal-center" *ngIf="!dataItem.maps.length && !dataItem.noShow">
-        Срещата предстои да се играе или няма записани резултати за тази среща...
-      </div>
+      <div class="horizontal-center" *ngIf="!dataItem.maps.length && !dataItem.noShow" i18n>The match has not been played yet, or there's no results on record...</div>
     </ng-template>
   </igx-grid>
 
   <igx-card type="outlined" class="margin-top">
     <igx-card-header>
       <igx-avatar igxCardThumbnail [roundShape]="true" src="/assets/wallpapers/sc2-watermark.webp"></igx-avatar>
-      <h1 igxCardHeaderTitle>Участници - StarCraft II Лига</h1>
-      <h2 igxCardHeaderSubtitle>Драг и дроп за да влезат в някоя от групите</h2>
+      <h1 igxCardHeaderTitle i18n>Participants</h1>
+      <h2 igxCardHeaderSubtitle i18n>Drag and drop participants into the groups</h2>
     </igx-card-header>
     <igx-card-content>
       <div class="horizontal-center registration-container">
@@ -98,7 +96,8 @@
           <igx-badge *ngIf="registration.state === 0"
                      type="warning"
                      icon="priority_high"
-                     title="Тази регистрация още не е потвърдена. Не е платена таксата за участие."
+                     i18n-title
+                     title="This registration is still not confirmed! The registration fee has to be paid in order to confirm the registration!"
                      class="registration-badge-style">
           </igx-badge>
 
@@ -111,7 +110,7 @@
             <igx-avatar igxCardThumbnail [roundShape]="true" src="/assets/wallpapers/sc2-watermark.webp"></igx-avatar>
             <h1 *ngIf="!group.inEdit" igxCardHeaderTitle>{{group.name}}</h1>
             <igx-input-group *ngIf="group.inEdit" igxCardHeaderTitle>
-              <label igxLabel for="groupName">Име на групата</label>
+              <label igxLabel for="groupName" i18n>Group name</label>
               <input type="text" id="groupName" name="groupName" #groupName igxInput [required]="true" [(ngModel)]="group.name" />
               <igx-suffix *ngIf="groupName.value" (click)="group.name = null">
                 <igx-icon>clear</igx-icon>
@@ -119,8 +118,8 @@
             </igx-input-group>
 
             <div class="action-buttons">
-              <igx-icon class="navigatable action-icon-button" title="Редактирай групата" *ngIf="!group.inEdit" (click)="group.inEdit = true">edit</igx-icon>
-              <igx-icon class="navigatable action-icon-button" title="Изтрий групата" *ngIf="!group.inEdit" (click)="confirmGroup.open(group.id)">delete</igx-icon>
+              <igx-icon class="navigatable action-icon-button" i18n-title title="Edit" *ngIf="!group.inEdit" (click)="group.inEdit = true">edit</igx-icon>
+              <igx-icon class="navigatable action-icon-button" i18n-title title="Delete" *ngIf="!group.inEdit" (click)="confirmGroup.open(group.id)">delete</igx-icon>
 
               <igx-icon class="navigatable action-icon-button" *ngIf="group.inEdit" (click)="group.inEdit = false">cancel</igx-icon>
               <igx-icon class="navigatable action-icon-button" *ngIf="group.inEdit" (click)="submitGroup(group)">done</igx-icon>
@@ -137,8 +136,7 @@
                 <span igxListLineTitle>
                   {{ participant.battleTag }}
                 </span>
-
-                <igx-icon class="navigatable" title="Премахни от групата" (click)="removeFromGroup(participant, group)">delete</igx-icon>
+                <igx-icon class="navigatable" i18n-title title="Remove from group" (click)="removeFromGroup(participant, group)">delete</igx-icon>
               </igx-list-item>
             </igx-list>
           </igx-card-content>
@@ -147,10 +145,10 @@
         <igx-card class="new-group-card">
           <igx-card-header>
             <igx-avatar igxCardThumbnail [roundShape]="true" src="/assets/wallpapers/sc2-watermark.webp"></igx-avatar>
-            <h1 *ngIf="!newGroup.inEdit" igxCardHeaderTitle>Нова група</h1>
+            <h1 *ngIf="!newGroup.inEdit" igxCardHeaderTitle i18n>New group</h1>
 
             <igx-input-group *ngIf="newGroup.inEdit" igxCardHeaderTitle>
-              <label igxLabel for="groupName">Име на групата</label>
+              <label igxLabel for="groupName" i18n>Group name</label>
               <input type="text" id="groupName" name="groupName" #groupName igxInput [required]="true" [(ngModel)]="newGroup.name" />
               <igx-suffix *ngIf="groupName.value" (click)="newGroup.name = null">
                 <igx-icon>clear</igx-icon>
@@ -161,8 +159,8 @@
           <igx-card-content class="new-group-body">
             <igx-icon *ngIf="!newGroup.inEdit" class="navigatable" (click)="newGroup.inEdit = true">add_circle_outline</igx-icon>
 
-            <button type="button" *ngIf="newGroup.inEdit" igxButton (click)="newGroup.inEdit = false">Cancel</button>
-            <button type="button" *ngIf="newGroup.inEdit" igxButton (click)="submitGroup(newGroup)">Submit</button>
+            <button type="button" *ngIf="newGroup.inEdit" igxButton (click)="newGroup.inEdit = false" i18n>Cancel</button>
+            <button type="button" *ngIf="newGroup.inEdit" igxButton (click)="submitGroup(newGroup)" i18n>Submit</button>
           </igx-card-content>
         </igx-card>
       </div>
@@ -171,31 +169,32 @@
 </div>
 
 <igx-dialog #newMatchDialog
-            title="Нова среща"
+            i18n-title
+            title="New match"
+            i18n-leftButtonLabel
             leftButtonLabel="Cancel"
             (onLeftButtonSelect)="newMatchDialog.close()"
+            i18n-rightButtonLabel
             rightButtonLabel="Submit"
             (onRightButtonSelect)="submitMatch(matchGrid); newMatchDialog.close()">
   <div class="match-details">
     <igx-date-picker [(ngModel)]="matchInEdit.startTime">
-      <label igxLabel>Дата</label>
+      <label igxLabel i18n>Start date</label>
     </igx-date-picker>
 
     <igx-time-picker [itemsDelta]="{hours: 1, minutes: 15, seconds: 1}" [(ngModel)]="matchInEdit.startTime">
-      <label igxLabel>Начало</label>
+      <label igxLabel i18n>Start time</label>
     </igx-time-picker>
 
     <igx-select [(ngModel)]="matchInEdit.groupId">
-      <label igxLabel>Група</label>
+      <label igxLabel i18n>Group</label>
       <igx-select-item *ngFor="let group of groups"
-                        [value]="group.id">
-        {{ group.name }}
-      </igx-select-item>
-      <igx-hint>*Ако мачът е от групова фаза</igx-hint>
+                        [value]="group.id">{{ group.name }}</igx-select-item>
+      <igx-hint i18n>*If the match is during the group stage</igx-hint>
     </igx-select>
 
     <igx-select [(ngModel)]="matchInEdit.player1Id" required>
-      <label igxLabel>Играч 1</label>
+      <label igxLabel i18n>Player 1</label>
       <igx-select-item *ngFor="let registration of registrations"
                         [value]="registration.userId"
                         [text]="registration.battleTag">
@@ -207,7 +206,7 @@
     vs.
 
     <igx-select [(ngModel)]="matchInEdit.player2Id" required>
-      <label igxLabel>Играч 2</label>
+      <label igxLabel i18n>Player 2</label>
       <igx-select-item *ngFor="let registration of registrations"
                         [value]="registration.userId"
                         [text]="registration.battleTag">
@@ -219,7 +218,8 @@
 </igx-dialog>
 
 <igx-dialog #newMatchMapDialog
-            title="Резултати"
+            i18n-title
+            title="Results"
             leftButtonLabel="Cancel"
             (onLeftButtonSelect)="newMatchMapDialog.close()"
             rightButtonLabel="Submit"
@@ -228,26 +228,24 @@
 
     <div class="horizontal-center">
       <igx-input-group>
-        <label igxLabel>Точки {{ matchInEdit.player1?.battleNetId }}</label>
+        <label igxLabel i18n>Points {{ matchInEdit.player1?.battleNetId }}</label>
         <input type="number" igxInput [(ngModel)]="matchInEdit.player1Points" />
       </igx-input-group>
       <span class="grid-vs-divider">:</span>
       <igx-input-group>
-        <label igxLabel>Точки {{ matchInEdit.player2?.battleNetId }}</label>
+        <label igxLabel i18n>Points {{ matchInEdit.player2?.battleNetId }}</label>
         <input type="number" igxInput [(ngModel)]="matchInEdit.player2Points" />
       </igx-input-group>
     </div>
 
     <div *ngFor="let map of matchInEdit.maps">
       <igx-select [(ngModel)]="map.map">
-        <label igxLabel>Карта</label>
-        <igx-select-item *ngFor="let map of mapList" [value]="map.id">
-          {{ map.map }}
-        </igx-select-item>
+        <label igxLabel i18n>Map</label>
+        <igx-select-item *ngFor="let map of mapList" [value]="map.id">{{ map.map }}</igx-select-item>
       </igx-select>
 
       <igx-select [(ngModel)]="map.winnerId">
-        <label igxLabel>Победител</label>
+        <label igxLabel i18n>Winner</label>
         <igx-select-item *ngFor="let registration of registrations | getPlayers:matchInEdit.player1Id:matchInEdit.player2Id"
                           [value]="registration.userId"
                           [text]="registration.battleTag">
@@ -257,24 +255,26 @@
       </igx-select>
 
       <button igxButton class="submit-button" (click)="deleteMatchMap(map, matchInEdit.maps)">
-        <igx-icon>delete_forever</igx-icon>Изтрий Тази Карта
+        <igx-icon>delete_forever</igx-icon>
+        <span i18n>Delete</span>
       </button>
     </div>
 
-    <igx-checkbox *ngIf="!matchInEdit.maps || !matchInEdit.maps.length" [(ngModel)]="matchInEdit.noShow">Служебна победа</igx-checkbox>
+    <igx-checkbox *ngIf="!matchInEdit.maps || !matchInEdit.maps.length" [(ngModel)]="matchInEdit.noShow">Walkover</igx-checkbox>
 
     <button *ngIf="matchInEdit.id"
             igxButton="outlined"
             (click)="matchInEdit.maps.push({ sc2MatchId: matchInEdit.id })">
-      <igx-icon>add_circle_outline</igx-icon>Добави Карта за Мача
+      <igx-icon>add_circle_outline</igx-icon>
+      <span i18n>Add a match map</span>
     </button>
   </div>
 </igx-dialog>
 
-<bg-confirm #confirmGroup title="Сигурни ли сте?" (ok)="deleteGroup($event)">
-  Това ще изтрие групата перманентно... Отборите ще трябва да се разпределят в нови групи.
+<bg-confirm #confirmGroup i18n-title title="Are you sure?" (ok)="deleteGroup($event)">
+  <p i18n>This would permanently delete the group... Teams would automatically be removed from the group.</p>
 </bg-confirm>
 
-<bg-confirm #confirmMatch title="Сигурни ли сте?" (ok)="matchGrid.deleteRowById($event.Id)">
-  Това ще изтрие срещата перманентно...
+<bg-confirm #confirmMatch i18n-title title="Are you sure?" (ok)="matchGrid.deleteRowById($event.Id)">
+  <p i18n>This will delete the match permanently...</p>
 </bg-confirm>

@@ -2,7 +2,7 @@
   <form #strategyForm="ngForm" (ngSubmit)="submitStrategy()" class="new-strategy">
     <span>{{ title }}</span>
     <igx-input-group>
-      <label for="strategyName" igxLabel>Title</label>
+      <label for="strategyName" igxLabel i18n>Title</label>
       <input #strategyName name="strategyName" id="strategyName" igxInput minlength="2" [required]="true" [(ngModel)]="newStrategy.title">
       <igx-suffix *ngIf="strategyName.value.length > 0" (click)="newStrategy.title = null">
           <igx-icon>clear</igx-icon>
@@ -10,7 +10,7 @@
     </igx-input-group>
 
     <igx-input-group class="space-out">
-      <label for="strategyDescription" igxLabel>Description</label>
+      <label for="strategyDescription" igxLabel i18n>Description</label>
       <textarea #strategyDescription id="strategyDescription" name="strategyDescription" igxInput minlength="2" [required]="true" [(ngModel)]="newStrategy.description">
       </textarea>
       <igx-suffix *ngIf="strategyDescription.value.length > 0" (click)="newStrategy.description = null">
@@ -20,15 +20,11 @@
 
     <div class="horizontal-center space-between space-out">
       <igx-radio-group>
-        <igx-radio name="strategySide" [(ngModel)]="newStrategy.side" [value]="0">
-          T-Side
-        </igx-radio>
-        <igx-radio name="strategySide" [(ngModel)]="newStrategy.side" [value]="1">
-          CT-Side
-        </igx-radio>
+        <igx-radio name="strategySide" [(ngModel)]="newStrategy.side" [value]="0" i18n>T-Side</igx-radio>
+        <igx-radio name="strategySide" [(ngModel)]="newStrategy.side" [value]="1" i18n>CT-Side</igx-radio>
       </igx-radio-group>
 
-      <igx-switch name="strategyPublic" [(ngModel)]="newStrategy.visible">Public</igx-switch>
+      <igx-switch name="strategyPublic" [(ngModel)]="newStrategy.visible" i18n>Public</igx-switch>
     </div>
 
     <igx-select id="mapSelector" class="space-out" name="mapSelector" [(ngModel)]="newStrategy.map">
@@ -42,7 +38,7 @@
       <igx-prefix>
         <igx-icon>link</igx-icon>
       </igx-prefix>
-      <label for="strategyUrl" igxLabel>Link to a video/resource</label>
+      <label for="strategyUrl" igxLabel i18n>Link to a video/resource</label>
       <input #strategyUrl
              name="strategyUrl"
              id="strategyUrl"
@@ -58,9 +54,9 @@
     <iframe *ngIf="getVideoEmbedLink()" class="video-frame space-out" [src]="newStrategy.url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
     <div class="column-wrapper space-out">
-      <button type="button" igxButton="outlined" class="submit-button" [disabled]="strategyForm.invalid" (click)="createAndRedirect()">Go to Editor</button>
-      <span class="separate">OR</span>
-      <button igxButton="outlined" igxRipple [disabled]="strategyForm.invalid || !newStrategy.url" class="submit-button">Submit</button>
+      <button type="button" igxButton="outlined" class="submit-button" [disabled]="strategyForm.invalid" (click)="createAndRedirect()" i18n>Go to Editor</button>
+      <span class="separate" i18n>OR</span>
+      <button igxButton="outlined" igxRipple [disabled]="strategyForm.invalid || !newStrategy.url" class="submit-button" i18n>Submit</button>
     </div>
   </form>
 </igx-dialog>

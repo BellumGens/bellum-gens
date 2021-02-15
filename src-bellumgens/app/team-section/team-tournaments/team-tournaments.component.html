@@ -1,6 +1,4 @@
-<p *ngIf="!tournaments || !tournaments.length">This team has not participated in any competitions.</p>
-
-
+<p *ngIf="!tournaments || !tournaments.length" i18n>This team has not participated in any competitions.</p>
 
 <div class="group-columns">
   <igx-grid *ngFor="let tournament of tournaments"
@@ -11,10 +9,10 @@
       <igx-grid-toolbar-title>{{tournament.name}}</igx-grid-toolbar-title>
     </igx-grid-toolbar>
 
-    <igx-column field="startTime" header="Date" dataType="date" width="15%">
+    <igx-column field="startTime" i18n-header header="Date" dataType="date" width="15%">
     </igx-column>
 
-    <igx-column header="Match" width="70%">
+    <igx-column i18n-header header="Match" width="70%">
       <ng-template igxCell let-cell="cell">
         <igx-avatar igxListThumbnail
                     [src]="cell.rowData.team1.teamAvatar"
@@ -34,11 +32,10 @@
       </ng-template>
     </igx-column>
 
-    <igx-column field="winnerTeamId" header="Result" width="15%">
+    <igx-column field="winnerTeamId" i18n-header header="Result" width="15%">
       <ng-template igxCell let-value>
-        <span [class]="value === emptyGuid ? 'color-warn' : value === team?.teamId ? 'color-success' : 'color-error'">
-          {{ value === emptyGuid ? 'Pending' : value === team?.teamId ? 'Win' : 'Loss' }}
-        </span>
+        <span [class]="value === emptyGuid ? 'color-warn' : value === team?.teamId ? 'color-success' : 'color-error'"
+              i18n>{{ value === emptyGuid ? 'Pending' : value === team?.teamId ? 'Win' : 'Loss' }}</span>
       </ng-template>
     </igx-column>
 

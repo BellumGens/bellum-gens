@@ -15,7 +15,7 @@
                      type="warning"
                      icon="priority_high"
                      i18n-title
-                     title="Your registration is still not confirmed! You need to pay the registration fee in order to confirm your participation!"
+                     title="This registration is still not confirmed! The registration fee has to be paid in order to confirm the registration!"
                      class="registration-badge-style">
           </igx-badge>
 
@@ -84,7 +84,7 @@
             </div>
           </div>
 
-          <div class="horizontal-center" *ngIf="dataItem.noShow" i18n>Walkover.</div>
+          <div class="horizontal-center" *ngIf="dataItem.noShow" i18n>Walkover</div>
 
           <div class="horizontal-center" *ngIf="!dataItem.maps.length && !dataItem.noShow" i18n>The match has not been played yet, or there's no results on record...</div>
         </ng-template>
