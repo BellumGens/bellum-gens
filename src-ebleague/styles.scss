@@ -173,14 +173,13 @@ $grid-toolbar-theme: igx-grid-toolbar-theme($background-color: $background);
   grid-template-columns: minmax(45%, 1fr) minmax(45%, 1fr);
   grid-column-gap: 48px;
   grid-row-gap: 16px;
-  padding: 12px 48px;
+  padding: 24px 72px;
 }
 
 .slide-info-column {
   max-width: 680px;
   min-width: 348px;
   padding: 52px;
-  vertical-align: middle;
   margin: auto;
 }
 
@@ -197,11 +196,6 @@ $grid-toolbar-theme: igx-grid-toolbar-theme($background-color: $background);
 
 .slide-info-column p {
   font-size: 1rem;
-}
-
-.twitch-stream {
-  width: 680px;
-  height: 400px;
 }
 
 .twitch-holder {
@@ -358,15 +352,9 @@ igx-calendar {
 
 /* END WATERMARKS */
 
-@media only screen and (max-width: 1280px) {
+@media only screen and (max-width: 700px) {
   .home-page-slide-columns {
-    grid-template-columns: minmax(348px, 1fr);
     padding: 16px 16px 12px 16px;
-  }
-
-  .twitch-stream {
-    width: 100%;
-    height: 400px;
   }
 }
 
