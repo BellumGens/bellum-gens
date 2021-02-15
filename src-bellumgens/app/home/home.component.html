@@ -76,6 +76,28 @@
 
   <div class="content-container-row">
     <igx-divider></igx-divider>
+    <h2 i18n id="contacts">Follow us for updates</h2>
+  </div>
+
+  <div class="content-container-row">
+    <div class="contacts">
+      <a href="https://www.facebook.com/bellumgens/" i18n-title title="Like us on Facebook" target="_blank" rel="noopener">
+        <img src="/assets/social/facebook-150x150.webp" alt="Facebook" />
+      </a>
+      <a href="https://twitter.com/BellumGens" i18n-title title="Follow us on Twitter" target="_blank" rel="noopener">
+        <img src="/assets/social/twitter-150x150.webp" alt="Twitter" />
+      </a>
+      <a href="https://www.linkedin.com/company/bellum-gens/" i18n-title title="Follow us on Linked-in" target="_blank" rel="noopener">
+        <img src="/assets/social/linkedin-150x150.webp" alt="Linked-in" />
+      </a>
+      <a href="https://discord.gg/bnTcpa9" i18n-title title="Join our Discord server" target="_blank" rel="noopener">
+        <img src="/assets/social/discord-150x150.webp" alt="Discord" />
+      </a>
+    </div>
+  </div>
+
+  <div class="content-container-row">
+    <igx-divider></igx-divider>
     <h4 id="partners" i18n>Partners</h4>
     <div class="horizontal-center">
       <a href="http://bprogaming.com/" i18n-title title="BPro Gaming is the first professional esports club in Bulgaria. During the past 4 years BPro has developed a number of professional players, team and infrastructure." target="_blank" rel="noopener">
@@ -120,23 +142,5 @@
         <button igxButton="outlined" class="submit-email" [disabled]="subscription.invalid || !userEmail" i18n>Subscribe</button>
       </div>
     </form>
-
-    <div class="contacts">
-      <a href="mailto:info@eb-league.com" i18n-title title="Email">
-        <igx-icon>email</igx-icon>
-      </a>
-      <a href="https://www.facebook.com/bellumgens/" i18n-title title="Like us on Facebook" target="_blank" rel="noopener">
-        <igx-icon fontSet="login-icons" name="facebook"></igx-icon>
-      </a>
-      <a href="https://twitter.com/BellumGens" i18n-title title="Follow us on Twitter" target="_blank" rel="noopener">
-        <igx-icon fontSet="login-icons" name="twitter"></igx-icon>
-      </a>
-      <a href="https://www.linkedin.com/company/bellum-gens/" i18n-title title="Follow us on Linked-in" target="_blank" rel="noopener">
-        <igx-icon fontSet="login-icons" name="linkedin"></igx-icon>
-      </a>
-      <a href="https://discord.gg/bnTcpa9" i18n-title title="Join our Discord server" target="_blank" rel="noopener">
-        <igx-icon fontSet="login-icons" name="discord"></igx-icon>
-      </a>
-    </div>
   </div>
 </div>
