@@ -206,6 +206,7 @@ export class AppModule {
     const complogos = ['discord', 'steam', 'twitch', 'battlenet'];
     complogos.forEach(c => this.iconService.addSvgIconFromText(c, logos.find(s => s.name === c).value, 'login-icons'));
     smproviders.forEach(p => this.iconService.addSvgIconFromText(p, socialMedia.find(s => s.name === p).value, 'login-icons'));
+
     this.iconService.addSvgIcon('bge-white', '/assets/login/bge-white.svg', 'partners');
     this.iconService.addSvgIcon('eb-league-white', '/assets/login/eb-league-white.svg', 'partners');
     //this.iconService.addSvgIcon('isobar', '/assets/partners/isobar.svg', 'partners');
@@ -214,5 +215,8 @@ export class AppModule {
     //this.iconService.addSvgIcon('modis', '/assets/partners/modis.svg', 'partners');
     //this.iconService.addSvgIcon('omen', '/assets/partners/omen.svg', 'partners');
     //this.iconService.addSvgIcon('paysafe', '/assets/partners/paysafe.svg', 'partners');
+
+    this.iconService.addSvgIcon('en', '/assets/country-flags/svg/united-kingdom.svg', 'languages');
+    this.iconService.addSvgIcon('bg', '/assets/country-flags/svg/bulgaria.svg', 'languages');
   }
 }
