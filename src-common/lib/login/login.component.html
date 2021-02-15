@@ -23,7 +23,7 @@
               <div class="igx-tabs__item-label" i18n>Profile</div>
             </div>
           </ng-template>
-          <div class="center-items profile-view">
+          <div class="profile-view">
             <igx-avatar [src]="authUser.avatarFull" [initials]="authUser.username" [roundShape]="true" [size]="'large'">
             </igx-avatar>
             <h1 class="igx-card-header__title highlight navigatable profile-username" (click)="navigateToProfile(authUser.customURL || authUser.id)">{{ authUser.username }}</h1>

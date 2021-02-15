@@ -50,10 +50,6 @@ html, body {
   justify-content: space-evenly;
 }
 
-.center-items {
-  text-align: center;
-}
-
 .horizontal-info__right {
   display: flex;
   flex-flow: row nowrap;
@@ -144,6 +140,10 @@ a > igx-icon {
   justify-content: space-evenly;
 }
 
+  .content-container-column.align-center {
+    align-items: center;
+  }
+
   .content-container-column p {
     margin: 0;
   }
@@ -157,11 +157,6 @@ a > igx-icon {
     width: auto;
     margin: 8px 0;
   }
-
-.left-column {
-  text-align: right;
-  align-items: flex-end;
-}
 
 .slide {
   background-size: cover;

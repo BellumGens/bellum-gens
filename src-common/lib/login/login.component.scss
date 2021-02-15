@@ -13,6 +13,9 @@
 }
 
 .profile-view {
+  display: flex;
+  align-items: center;
+  flex-flow: column;
   padding: 40px 0;
 }
 

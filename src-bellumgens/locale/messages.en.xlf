@@ -535,7 +535,7 @@
         <source>Availability</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/player-section/player-details/player-details.component.html</context>
-          <context context-type="linenumber">134</context>
+          <context context-type="linenumber">130</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/search/player-search/player-search.component.html</context>
@@ -546,28 +546,28 @@
         <source>Weapons</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/player-section/player-details/player-details.component.html</context>
-          <context context-type="linenumber">143</context>
+          <context context-type="linenumber">139</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a82c09e2a4817b07f0c53440daeee5f5024be816" datatype="html">
         <source><x id="INTERPOLATION" equiv-text="{{ weapon.kills }}"/> kills</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/player-section/player-details/player-details.component.html</context>
-          <context context-type="linenumber">153</context>
+          <context context-type="linenumber">149</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5a879a3698e421c2112f9bd3e78f0d043a2d8f06" datatype="html">
         <source><x id="INTERPOLATION" equiv-text="{{ viewAll ? &apos;All&apos; : &apos;Active Duty&apos; }}"/> Maps</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/player-section/player-details/player-details.component.html</context>
-          <context context-type="linenumber">162</context>
+          <context context-type="linenumber">158</context>
         </context-group>
       </trans-unit>
       <trans-unit id="18ffb8dd6858fe5f6be80453e60a84a45bbdb751" datatype="html">
         <source><x id="INTERPOLATION" equiv-text="{{viewAll ? &apos;View Active Duty&apos; : &apos;View All&apos;}}"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/player-section/player-details/player-details.component.html</context>
-          <context context-type="linenumber">163</context>
+          <context context-type="linenumber">159</context>
         </context-group>
       </trans-unit>
       <trans-unit id="03d2ed39f2e6a8eac9d54bb3423b1ff8ff3d361e" datatype="html">

@@ -42,6 +42,12 @@
   height: auto;
   // --igx-circular-bar-progress-circle-color: linear-gradient(to right, $progress-success, $secondary);
 }
+
+.top-weapon {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+}
 /* END User Profile */
 
 /* User Overview */
