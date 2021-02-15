@@ -4,7 +4,14 @@ import { ApiTournamentsService } from '../../../src-common/services/bellumgens-a
 import { Tournament, EMPTY_NEW_TOURNAMENT, TournamentApplication } from '../../../src-common/models/tournament';
 import { JerseyOrder, Promo } from '../../../src-common/models/jerseyorder';
 import { ApiShopService } from '../../../src-common/services/bellumgens-api.shop.service';
-import { IGridEditEventArgs, GridSelectionMode, DataType } from '@infragistics/igniteui-angular';
+import {
+  IGridEditEventArgs,
+  GridSelectionMode,
+  DataType,
+  IGroupingExpression,
+  SortingDirection,
+  DefaultSortingStrategy
+} from '@infragistics/igniteui-angular';
 import { noop } from 'rxjs';
 
 @Component({
@@ -22,6 +29,7 @@ export class AdminComponent {
   public promos: Promo [];
   public selectionMode = GridSelectionMode;
   public gridDataType = DataType;
+  public grouping: IGroupingExpression [];
 
   constructor(private authService: LoginService,
               private apiService: ApiTournamentsService,
@@ -40,6 +48,10 @@ export class AdminComponent {
     });
     this.shopService.getOrders().subscribe(data => this.orders = data);
     this.apiService.allRegistrations.subscribe(data => this.registrations = data);
+    this.grouping = [
+      { dir: SortingDirection.Desc, fieldName: 'tournamentName', ignoreCase: false, strategy: DefaultSortingStrategy.instance() },
+      { dir: SortingDirection.Asc, fieldName: 'game', ignoreCase: false, strategy: DefaultSortingStrategy.instance() }
+    ];
   }
 
   public submitRole(role: string) {

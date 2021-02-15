@@ -2,10 +2,11 @@
   <div class="content-container-row">
     <igx-grid #grid1
               [data]="registrations"
-              [height]="'550px'"
+              [paging]="true"
               primaryKey="id"
               [showGroupArea]="true"
               [allowFiltering]="true"
+              [groupingExpressions]="grouping"
               (cellEdit)="confirmRegistration($event)"
               [cellSelection]="selectionMode.none">
 
@@ -19,10 +20,12 @@
       </igx-column>
       <igx-column field="dateSubmitted" [dataType]="gridDataType.Date" [sortable]="true" i18n-header header="Date Submitted">
       </igx-column>
-      <igx-column field="game" [groupable]="true" i18n-header header="League">
+      <igx-column field="game" [groupable]="true" i18n-header header="Game">
         <span *igxCell="let value">
           {{ value ? 'StarCraft II' : 'CS:GO' }}
         </span>
+      </igx-column>
+      <igx-column field="tournamentName" [groupable]="true" [hidden]="true" i18n-header header="League">
       </igx-column>
       <igx-column field="hash" i18n-header header="Hash">
       </igx-column>
@@ -32,8 +35,11 @@
 
       <div *igxGroupByRow="let groupRow" class="igx-group-label">
         <igx-icon class="igx-group-label__icon">group_work</igx-icon>
-        <span class="igx-group-label__column-name">{{groupRow.column.header}}:</span>
-        <span class="igx-group-label__text">{{ groupRow.value ? 'StarCraft II' : 'CS:GO' }}</span>
+        <span class="igx-group-label__column-name">{{groupRow.column?.header}}:</span>
+        <span class="igx-group-label__text" *ngIf="groupRow.column?.field === 'game' else defaultGroupValue">{{ groupRow.value ? 'StarCraft II' : 'CS:GO' }}</span>
+        <ng-template #defaultGroupValue>
+          <span class="igx-group-label__text">{{ groupRow.value }}</span>
+        </ng-template>
         <igx-badge [value]="groupRow.records.length" class="igx-group-label__count-badge"></igx-badge>
       </div>
 
@@ -43,8 +49,8 @@
   <div class="content-container-row">
     <igx-grid #grid1
               [data]="orders"
-              [height]="'550px'"
               primaryKey="id"
+              [paging]="true"
               [allowFiltering]="true"
               (cellEdit)="editDone($event)"
               [cellSelection]="selectionMode.none">
@@ -53,7 +59,7 @@
         <igx-grid-toolbar-title i18n>Orders</igx-grid-toolbar-title>
       </igx-grid-toolbar>
 
-      <igx-column field="orderDate" [dataType]="gridDataType.Date" [sortable]="true" i18n-header header="Order date">
+      <igx-column field="orderDate" [dataType]="gridDataType.Date" width="165px" [sortable]="true" i18n-header header="Order date">
       </igx-column>
       <igx-column field="email" i18n-header header="Email">
       </igx-column>
