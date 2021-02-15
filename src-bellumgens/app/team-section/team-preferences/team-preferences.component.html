@@ -1,8 +1,8 @@
 <div class="horizontal-center" *ngIf="team">
   <form class="team-info-column" #teamInfo="ngForm" (ngSubmit)="updateTeamInfo()">
-    <span>Team Info</span>
+    <span i18n>Team Info</span>
     <igx-input-group class="team-info-input">
-      <label for="teamName" igxLabel>Name</label>
+      <label for="teamName" igxLabel i18n>Name</label>
       <input #teamName igxInput id="teamName" name="teamName" minlength="2" [required]="true" [(ngModel)]="team.teamName" />
       <igx-suffix *ngIf="teamName.value.length > 0" (click)="team.teamName = null">
         <igx-icon>clear</igx-icon>
@@ -10,7 +10,7 @@
     </igx-input-group>
 
     <igx-input-group class="team-info-input">
-      <label for="teamAvatar" igxLabel>Avatar</label>
+      <label for="teamAvatar" igxLabel i18n>Avatar</label>
       <input #teamAvatar="ngModel"
              igxInput
              type="url"
@@ -21,11 +21,11 @@
       <igx-suffix *ngIf="teamAvatar.model.length > 0" (click)="team.teamAvatar = null">
           <igx-icon>clear</igx-icon>
       </igx-suffix>
-      <igx-hint *ngIf="teamAvatar.invalid">You must provide an image url</igx-hint>
+      <igx-hint *ngIf="teamAvatar.invalid" i18n>You must provide an image url</igx-hint>
     </igx-input-group>
 
     <igx-input-group class="team-info-input">
-      <label for="teamDescription" igxLabel>Description</label>
+      <label for="teamDescription" igxLabel i18n>Description</label>
       <textarea #teamDescription igxInput id="teamDescription" name="teamDescription" minlength="2" [required]="true" [(ngModel)]="team.description"></textarea>
       <igx-suffix *ngIf="teamDescription.value.length > 0" (click)="team.description = null">
           <igx-icon>clear</igx-icon>
@@ -41,17 +41,18 @@
     </igx-input-group>
 
     <div class="team-info-input horizontal-center">
-      <label for="teamVisibility">Show team in searches</label>
+      <label for="teamVisibility" i18n>Show team in searches</label>
       <igx-switch class="horizontal-info__right" #teamVisibility id="teamVisibility" name="teamVisibility" [(ngModel)]="team.visible"></igx-switch>
     </div>
 
-    <button igxButton="raised" igxRipple class="submit-button team-info-input"
-            [disabled]="!teamInfo.touched || !teamInfo.valueChanges || teamInfo.invalid">
-      Update Team Info
-    </button>
+    <button igxButton="raised"
+            igxRipple
+            class="submit-button team-info-input"
+            i18n
+            [disabled]="!teamInfo.touched || !teamInfo.valueChanges || teamInfo.invalid">Update Team Info</button>
   </form>
   <div class="team-info-column">
-    <span>Team Member Roles</span>
+    <span i18n>Team Member Roles</span>
     <igx-list>
       <igx-list-item *ngFor="let user of teammembers; let i = index">
         <igx-avatar igxListThumbnail [src]="user.avatarMedium" [initials]="user.username" [roundShape]="true">
@@ -63,31 +64,25 @@
                     class="country-badge-small">
         </igx-avatar>
         <h2 igxListLineTitle>
-          <a [routerLink]="['/players', user.customUrl || user.userId]">
-            {{ user.username }}
-          </a>
+          <a [routerLink]="['/players', user.customUrl || user.userId]">{{ user.username }}</a>
         </h2>
         <h4 igxListLineSubTitle>{{ user.realName }}</h4>
 
         <div igxListAction>
             <div class="horizontal-center space-between">
-              <label [for]="'admin_switch_' + i" class="switch-label">Admin</label>
               <igx-switch [id]="'admin_switch_' + i"
-                          [aria-label]="user.username + ' is admin'"
                           [(ngModel)]="user.isAdmin"
                           [disabled]="user.userId === authUser?.id"
-                          (ngModelChange)="adminStatusUpdated(user)">
-              </igx-switch>
+                          (ngModelChange)="adminStatusUpdated(user)"
+                          i18n>Admin</igx-switch>
             </div>
 
             <div class="horizontal-center space-between">
-              <label [for]="'editor_switch_' + i" class="switch-label">Editor</label>
               <igx-switch [id]="'editor_switch_' + i"
-                          [aria-label]="user.username + ' can add and edit strategies'"
                           [disabled]="user.isAdmin || user.userId === authUser?.id"
                           [(ngModel)]="user.isEditor"
-                          (ngModelChange)="editorStatusUpdated(user)">
-              </igx-switch>
+                          (ngModelChange)="editorStatusUpdated(user)"
+                          i18n>Editor</igx-switch>
             </div>
         </div>
       </igx-list-item>

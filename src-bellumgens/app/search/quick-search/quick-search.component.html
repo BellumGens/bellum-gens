@@ -35,10 +35,6 @@
             <span>{{ searchResult.steamUser.userStats?.headshotPercentage | number:'1.2' }}%</span>
           </div>
       </div>
-
-      <ng-template #private>
-        <span i18n>Private</span>
-      </ng-template>
     </igx-list-item>
     <igx-list-item [isHeader]="true" i18n>Players</igx-list-item>
     <igx-list-item *ngIf="!searchResult.players.length">
@@ -70,10 +66,6 @@
             <span>{{ user.headshotPercentage | number:'1.2' }}%</span>
           </div>
       </div>
-
-      <ng-template #private>
-        <span>Private</span>
-      </ng-template>
     </igx-list-item>
     <igx-list-item *ngIf="searchResult.players.length > 3">
       <button igxButton="flat" igxRipple class="submit-button" [routerLink]="['/search/players', 'name=' + term]" i18n>View more players...</button>
@@ -92,10 +84,10 @@
     <igx-list-item *ngIf="!searchResult.teams.length">
       <span igxListLine i18n>No matching teams...</span>
     </igx-list-item>
-    <igx-list-item *ngFor="let team of searchResult.teams | reduceQuickSearchResult" class="navigatable" [routerLink]="['/team', team.CustomUrl]">
-      <igx-avatar igxListThumbnail [src]="team.TeamAvatar" [initials]="team.TeamName" [roundShape]="true">
+    <igx-list-item *ngFor="let team of searchResult.teams | reduceQuickSearchResult" class="navigatable" [routerLink]="['/team', team.customUrl]">
+      <igx-avatar igxListThumbnail [src]="team.teamAvatar" [initials]="team.teamName" [roundShape]="true">
       </igx-avatar>
-      <h2 igxListLineTitle>{{ team.TeamName }}</h2>
+      <h2 igxListLineTitle>{{ team.teamName }}</h2>
     </igx-list-item>
     <igx-list-item *ngIf="searchResult.teams.length > 3">
       <button igxButton="flat" igxRipple class="submit-button" [routerLink]="['/search/teams', 'name=' + term]" i18n>View more teams...</button>
@@ -114,15 +106,17 @@
     <igx-list-item *ngIf="!searchResult.strategies.length">
       <span igxListLine i18n>No matching strategies...</span>
     </igx-list-item>
-    <igx-list-item *ngFor="let strat of searchResult.strategies | reduceQuickSearchResult" class="navigatable" [routerLink]="['/team', strat.CustomUrl]">
-      <igx-avatar igxListThumbnail [src]="strat.Image" [initials]="strat.title">
+    <igx-list-item *ngFor="let strat of searchResult.strategies | reduceQuickSearchResult" class="navigatable" [routerLink]="['/team', strat.customUrl]">
+      <igx-avatar igxListThumbnail [src]="strat.image" [initials]="strat.title">
       </igx-avatar>
-      <h2 igxListLineTitle>
-        {{ strat.Title }}
-      </h2>
+      <h2 igxListLineTitle>{{ strat.title }}</h2>
     </igx-list-item>
     <igx-list-item *ngIf="searchResult.strategies.length > 3">
       <button igxButton="flat" igxRipple class="submit-button" [routerLink]="['/strategies', 'name=' + term]" i18n>View more strategies...</button>
     </igx-list-item>
   </igx-list>
+
+  <ng-template #private>
+    <span i18n>Private</span>
+  </ng-template>
 </div>

@@ -1,22 +1,19 @@
 <div *ngIf="team" class="overview-container overview-container-paddings">
   <div class="left-details-container">
-    <h4>Practice</h4>
+    <h4 i18n>Practice</h4>
     <app-availability [availability]="teamPractice" (availabilityChanged)="changeSchedule($event)" [editable]="isAdmin"></app-availability>
   </div>
 
   <div class="right-details-container">
     <igx-card type="outlined">
       <igx-card-header>
-        <h3 class="igx-card-header__title">Active lineup</h3>
+        <h3 igxCardHeaderTitle i18n>Active lineup</h3>
       </igx-card-header>
       <igx-card-content>
         <div class="horizontal space-between">
           <div *ngFor="let role of roleSlots" class="member-slot">
-            <div>
-              <span class="title">
-                {{ role.roleName }}
-              </span>
-            </div>
+            <span>{{ role.roleName }}</span>
+
             <div class="user-in-role" *ngIf="role.user">
               <igx-avatar *ngIf="role.user"
                           [src]="role.user.avatarFull"
@@ -46,16 +43,11 @@
                         igxDrop
                         (dropped)="assignToRole($event, role)">
             </igx-avatar>
-            <div>
-              <span *ngIf="role.user" class="title">
-                <a [routerLink]="['/players', role.user.customUrl || role.user.userId]">
-                  {{ role.user.username }}
-                </a>
-              </span>
-              <span *ngIf="!role.user" class="title">
-                [ empty ]
-              </span>
-            </div>
+
+            <a *ngIf="role.user else roleEmpty" [routerLink]="['/players', role.user.customUrl || role.user.userId]">{{ role.user.username }}</a>
+            <ng-template #roleEmpty>
+              <span i18n>[ empty ]</span>
+            </ng-template>
           </div>
         </div>
       </igx-card-content>
@@ -63,8 +55,8 @@
 
     <igx-card type="outlined">
       <igx-card-header>
-        <h3 class="igx-card-header__title">Bench</h3>
-        <h4 class="igx-card-header__subtitle" *ngIf="isAdmin">Drag players to add them to the active lineup</h4>
+        <h3 igxCardHeaderTitle i18n>Bench</h3>
+        <h4 igxCardHeaderSubtitle *ngIf="isAdmin" i18n>Drag players to add them to the active lineup</h4>
       </igx-card-header>
       <igx-card-content>
         <div class="horizontal padding-top">
@@ -86,22 +78,16 @@
                           (click)="moveToInactive(user)">
               </igx-avatar>
             </div>
-            <span class="title">
-              <a [routerLink]="['/players', user.customUrl || user.userId]">
-                {{ user.username }}
-              </a>
-            </span>
+            <a [routerLink]="['/players', user.customUrl || user.userId]">{{ user.username }}</a>
           </div>
-          <div *ngIf="!activeMembers?.length">
-            Bench is currently empty.
-          </div>
+          <div *ngIf="!activeMembers?.length" i18n>Bench is currently empty.</div>
         </div>
       </igx-card-content>
     </igx-card>
 
     <igx-card type="outlined">
       <igx-card-header>
-        <h3 class="igx-card-header__title">Inactive</h3>
+        <h3 igxCardHeaderTitle i18n>Inactive</h3>
       </igx-card-header>
       <igx-card-content>
         <div class="horizontal padding-top">
@@ -123,15 +109,9 @@
                           (click)="confirm.open(user)">
               </igx-avatar>
             </div>
-            <span class="title">
-              <a [routerLink]="['/players', user.customUrl || user.userId]">
-                {{ user.username }}
-              </a>
-            </span>
+            <a [routerLink]="['/players', user.customUrl || user.userId]">{{ user.username }}</a>
           </div>
-          <div *ngIf="!inactiveMembers?.length">
-            No inactive members.
-          </div>
+          <div *ngIf="!inactiveMembers?.length" i18n>No inactive members.</div>
         </div>
       </igx-card-content>
     </igx-card>

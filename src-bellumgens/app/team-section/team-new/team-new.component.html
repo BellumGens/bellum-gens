@@ -1,11 +1,11 @@
 <igx-dialog #createTeam [closeOnOutsideSelect]="true" *ngIf="authUser">
   <div class="create-team">
-    <span class="highlight">Import from Steam Group</span>
+    <span class="highlight" i18n>Import from Steam Group</span>
     <igx-input-group type="search">
       <igx-prefix>
           <igx-icon>search</igx-icon>
       </igx-prefix>
-      <label for="searchGroups" igxLabel>Search Groups</label>
+      <label for="searchGroups" igxLabel i18n>Search Groups</label>
       <input #search igxInput id="searchGroups" [(ngModel)]="searchGroups">
       <igx-suffix *ngIf="search.value.length > 0" (click)="searchGroups = null">
           <igx-icon>clear</igx-icon>
@@ -13,20 +13,18 @@
     </igx-input-group>
     <igx-list>
       <ng-template igxEmptyList>
-        <p>No Steam groups found...</p>
+        <p i18n>No Steam groups found...</p>
       </ng-template>
       <igx-list-item *ngFor="let group of groups | groupsFilter:searchGroups" (click)="createFromSteam(group)">
         <igx-avatar igxListThumbnail [src]="group.avatarFull" [initials]="group.groupName" [roundShape]="true">
         </igx-avatar>
-        <div igxListLineTitle>
-          {{ group.groupName }}
-        </div>
+        <div igxListLineTitle>{{ group.groupName }}</div>
       </igx-list-item>
     </igx-list>
-    <span class="highlight">Register with form</span>
+    <span class="highlight" i18n>Or create with form</span>
     <form #teamRegistration="ngForm" (ngSubmit)="createFromForm()">
       <igx-input-group>
-        <label igxLabel for="teamName">Team name</label>
+        <label igxLabel for="teamName" i18n>Team name</label>
         <igx-prefix>
           <igx-icon>text_fields</igx-icon>
         </igx-prefix>
@@ -40,7 +38,7 @@
       </igx-input-group>
 
       <igx-input-group>
-        <label igxLabel for="teamDescripton">Team motto</label>
+        <label igxLabel for="teamDescripton" i18n>Team motto</label>
         <igx-prefix>
           <igx-icon>text_fields</igx-icon>
         </igx-prefix>
@@ -62,7 +60,7 @@
           <igx-icon *ngIf="!newTeam.teamAvatar">link</igx-icon>
           <igx-avatar class="team-preview-avatar" *ngIf="newTeam.teamAvatar" [src]="newTeam.teamAvatar" [roundShape]="true" [size]="'small'" initials="NA"></igx-avatar>
         </igx-prefix>
-        <label igxLabel for="teamAvatar">Team Avatar URL</label>
+        <label igxLabel for="teamAvatar" i18n>Team Avatar URL</label>
         <input #teamAvatar="ngModel"
                 igxInput
                 type="url"
@@ -72,12 +70,14 @@
         <igx-suffix *ngIf="teamAvatar.value?.length > 0" (click)="newTeam.teamAvatar = null">
             <igx-icon>clear</igx-icon>
         </igx-suffix>
-        <igx-hint *ngIf="teamAvatar.invalid">You must provide an image url</igx-hint>
+        <igx-hint *ngIf="teamAvatar.invalid" i18n>You must provide an image url</igx-hint>
       </igx-input-group>
 
-      <button igxButton igxRipple [disabled]="!teamRegistration.touched || teamRegistration.invalid || inProgress" class="submit-button">
-        {{ inProgress ? 'Registering...' : 'Register' }}
-      </button>
+      <button igxButton
+              igxRipple
+              [disabled]="!teamRegistration.touched || teamRegistration.invalid || inProgress"
+              class="submit-button"
+              i18n>{{ inProgress ? 'Submitting...' : 'Submit' }}</button>
     </form>
   </div>
 </igx-dialog>

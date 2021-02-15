@@ -1,12 +1,12 @@
 <igx-list *ngIf="applications?.length">
-  <igx-list-item [isHeader]="true">Notifications for {{ team.teamName }}</igx-list-item>
+  <igx-list-item [isHeader]="true" i18n>Notifications for {{ team.teamName }}</igx-list-item>
   <igx-list-item *ngFor="let notification of applications | sortApplications:pipeTrigger" [class]="notificationClass[notification.state]">
       <igx-avatar igxListThumbnail [src]="notification.avatarIcon" [initials]="notification.userName" [roundShape]="true">
       </igx-avatar>
-      <h3 igxListLineSubTitle>
+      <h3 igxListLineSubTitle i18n>
         <a [routerLink]="['/players', notification.applicantId]">{{ notification.userName }}</a> has applied to join your team!
       </h3>
-      <span igxListLineSubTitle>Application: {{ notification.message }}</span>
+      <span igxListLineSubTitle i18n>Application: {{ notification.message }}</span>
       <span igxListLineSubTitle>{{ notification.sent | date }}</span>
       <div igxListAction *ngIf="notification.state | disabledNotifications:true else read">
         <button igxButton="flat" igxRipple [disabled]="actionInProgress" (click)="approveApplication(notification)">
