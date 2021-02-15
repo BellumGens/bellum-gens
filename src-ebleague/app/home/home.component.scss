@@ -82,7 +82,10 @@
   .winner-wrapper {
     display: flex;
     flex-flow: column;
-    margin-left: 16px;
+    margin: 24px;
+    min-height: 96px;
+    justify-content: center;
+    align-items: center;
   }
 
   // igx-linear-bar {

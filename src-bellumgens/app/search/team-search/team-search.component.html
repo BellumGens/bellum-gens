@@ -1,14 +1,14 @@
 <form (ngSubmit)="searchTeams()">
   <div class="form-row">
     <div>
-      <label for="lineup">Teams looking for</label>
+      <label for="lineup" i18n>Teams looking for</label>
       <igx-radio-group class="search-role-group" id="lineup">
         <igx-radio *ngFor="let slot of activeLineup" [(ngModel)]="searchModel.role" name="role" class="search-role" [value]="slot.role">{{ slot.roleName }}</igx-radio>
       </igx-radio-group>
     </div>
 
     <div class="slider-holder" *ngIf="authUser">
-      <label for="overlap">Minimum overlap of</label>
+      <label for="overlap" i18n>Minimum overlap of</label>
       <igx-slider class="slider"
                   id="overlap"
                   name="scheduleOverlap"
@@ -17,11 +17,11 @@
                   [maxValue]="40"
                   [(ngModel)]="searchModel.scheduleOverlap">
       </igx-slider>
-      <label>Hours availability</label>
+      <label i18n>Hours availability</label>
     </div>
   </div>
   <button class="search-button" igxButton="outlined" igxRipple>Search</button>
 </form>
 <div *ngIf="!authUser">
-  <p><b class="highlight">NOTE: </b>Signing in gives you access to more search options!</p>
+  <p i18n><b class="highlight">NOTE: </b>Signing in gives you access to more search options!</p>
 </div>

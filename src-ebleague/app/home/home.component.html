@@ -1,6 +1,6 @@
 <div class="home-page-slide-columns slide slide1">
   <div class="intro-column">
-    <h1 class="highlight">The Ultimate Gaming experience for your company</h1>
+    <h1 class="highlight" i18n>The Ultimate Gaming experience for your company</h1>
     <p i18n>Covid-19 changed the way teams in your company bond. Esports Business League is a team building charity esports event, where your company team can compete against teams from other companies. Participants in the Esports Business League so far include companies like VMware, DXC, SAP, Experian, TELUS, Modis, HP, Infragistics, Chaos Group and many more!</p>
     <button igxButton="raised" (click)="showContacts()" i18n>Learn more...</button>
   </div>
@@ -51,7 +51,7 @@
     <p i18n>Esports Business League Season 2 concluded on November 8th with grand finals in both StarCraft II and CS:GO! In the StarCraft II final SuGaRBuNNy [Nuvei] and IlPrincipino [UltraPlay] battled it out in a very compatitive BO5 where all 5 maps were played and the winner was <a href="https://bellumgens.com/players/76561198061226037" target="_blank" rel="noopener">SuGaRBuNNy [Nuvei]</a>. This makes him a reigning, defending champion in the StarCraft II category. The CS:GO final was between Plan-B [Modis] and 3nIGm4 [Infragistics]. The team from Modis <a href="https://bellumgens.com/team/Plan-B/details" target="_blank" rel="noopener">Plan-B</a> managed to win both maps. They got a relatively easy win on their map pick and the boys from Plan-B managed to take Infragistics 3nIGm4's map pick in overtime.</p>
   </div>
 
-  <div class="content-container-column center-items">
+  <div class="content-container-column align-center">
     <div class="watermark csgo-watermark"></div>
     <h3 i18n>Champion</h3>
     <div class="horizontal-center">
@@ -73,7 +73,7 @@
     </div>
 
     <h5 i18n>3rd-4th Place</h5>
-    <div class="horizontal-center space-evenly">
+    <div class="horizontal-center">
       <div class="horizontal-center">
         <img class="third-forth-place" src="/assets/partners/modis.webp" alt="Modis" title="Modis" />
         <div class="winner-wrapper">
@@ -92,25 +92,25 @@
     </div>
   </div>
 
-  <div class="content-container-column center-items">
+  <div class="content-container-column align-center">
     <div class="watermark sc2-watermark"></div>
     <h3 i18n>Champion</h3>
 
-    <div class="winner-wrapper">
+    <div class="winner-wrapper first-place-text">
       <a class="igx-card-header__title" href="https://bellumgens.com/players/76561198061226037" target="_blank" rel="noopener">SuGaRBuNNy</a>
       <span class="igx-card-header__subtitle">Nuvei</span>
     </div>
 
     <h4 i18n>Runner-up</h4>
 
-    <div class="winner-wrapper">
+    <div class="winner-wrapper second-place-text">
       <a class="igx-card-header__title" href="https://bellumgens.com/players/1a86fa91-1bfa-4787-94e6-a206f6893093" target="_blank" rel="noopener">IlPrincipino</a>
       <span class="igx-card-header__subtitle">UltraPlay</span>
     </div>
 
     <h5 i18n>3rd-4th Place</h5>
-    <div class="horizontal-center space-evenly">
-      <div class="winner-wrapper third-forth-place-text">
+    <div class="horizontal">
+      <div class="winner-wrapper">
         <a class="igx-card-header__title" href="https://bellumgens.com/players/76561198203040732" target="_blank" rel="noopener">msrm</a>
         <span class="igx-card-header__subtitle">Рюгис-М</span>
       </div>
@@ -157,7 +157,7 @@
     <h2 i18n>What is Esports Business League?</h2>
   </div>
 
-  <div class="content-container-column left-column">
+  <div class="content-container-column">
     <img src="/assets/wallpapers/cover.webp" class="preview-image" alt="Esports Business League" />
   </div>
 
@@ -165,9 +165,7 @@
     <p i18n>Esports Business League is a charity esports event, which provides working gamers with an arena for competition between individuals and teams from different companies. Each season of the league is 4-8 weeks in length. Matches take place on week days after working hours Monday-Thursday. The league culminates with finals where the teams and players who have accumulated the most points during the season meet. All league matches are being broadcasted live on our <a href="https://www.twitch.tv/ebleague_a" i18n-title title="Follow us on Twitch" target="_blank" rel="noopener">Twitch</a> channels.</p>
     <h3 i18n>When?</h3>
     <p i18n>Get ready for Season 3 of the one of a kind esports office league! Starting this season, Esports Business League becomes a charity event, through which participants will be able to choose the charity campaign they wish to support. Registrations will open soon!</p>
-    <p i18n>Registrations are open until reaching the deadline, or until all the available spots have been filled.</p>
-    <p i18n>Season 3 of the Esports Business League will begin <span class="highlight">{{ dates.compStart | date }}</span>.</p>
-    <p i18n>Esports Business League Season 3 finals will be held <span class="highlight">{{ dates.compStart | date }}</span>.</p>
+    <p i18n>Registrations are open until reaching the deadline, or until all the available spots have been filled. Season 3 of the Esports Business League will begin <span class="highlight">{{ dates.compStart | date }}</span> and finals will be held <span class="highlight">{{ dates.compStart | date }}</span>.</p>
   </div>
 
 
@@ -177,7 +175,7 @@
     <h2 id="terms" i18n>Terms and conditions</h2>
   </div>
 
-  <div class="content-container-column left-column">
+  <div class="content-container-column">
     <p i18n>All team members must be <span class="highlight">current employees of the company associated with the team registration, should not have any active engagement or affiliation with a professional esports organization, and haven't participated in professional esports matches as players in the past 24 months from the date of registration</span>. The team is allowed to have standins/substitute players and they have to comply with the same conditions as the main players on the team. Substitutes can be added to the team post registration, as long as they comply with the aforementioned conditions. Individual players (StarCraft II) must be <span class="highlight">current employees of the company associated with their registration</span>. The company represented by the team/individual must be provided at the time of registration.</p>
     <p i18n>Registrations are open until the deadline is reached, {{ dates.regDeadline }}, or until all open slots have been filled (16 CS:GO teams, 32 StarCraft II players). Successful registration completion requires registration fee payment - 300 BGN (VAT incl.) per team or 60 BGN (VAT incl.) per individual competitor. Registration fee paymant is done with a bank transfer after the registration form has been submitted. <span class="highlight">All registration fees are being added to the prize pool fund. At the end of the season the prize pool will be donated to a charitable cause chosen by the winners!</span></p>
   </div>
@@ -190,7 +188,7 @@
     <h2>Избрани Моменти</h2>
   </div>
 
-  <div class="content-container-column left-column">
+  <div class="content-container-column">
     <iframe class="twitch-stream" title="Highlight video" src="https://www.youtube.com/embed/Aocaj_kVdfA" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </div>
   <div class="content-container-column">
@@ -237,14 +235,12 @@
 
   <div class="content-container-column justify-start">
     <h3 i18n>CS:GO League</h3>
-    <p i18n>The prize pool is funded by the registration fees.</p>
     <p i18n>The winning team in the CS:GO league will appropriate 75% of the prize pool towards their choice of a charitable cause.</p>
     <p i18n>The runner-up team in the CS:GO league will appropriate 25% of the prize pool towards their choice of a charitable cause.</p>
   </div>
 
   <div class="content-container-column justify-start">
     <h3 i18n>StarCraft II League</h3>
-    <p i18n>The prize pool is funded by the registration fees.</p>
     <p i18n>The winner in the StarCraft II league will appropriate 75% of the prize pool towards their choice of a charitable cause.</p>
     <p i18n>The runner-up in the StarCraft II league will appropriate 25% of the prize pool towards their choice of a charitable cause.</p>
   </div>
@@ -291,7 +287,7 @@
     <h2>Сезон 1</h2>
   </div>
 
-  <div class="content-container-column center-items">
+  <div class="content-container-column">
     <div class="watermark csgo-watermark"></div>
     <h2>Шампиони</h2>
     <a href="https://bellumgens.com/team/BPro-Veterans/details" target="_blank" rel="noopener">
@@ -315,7 +311,7 @@
     </div>
   </div>
 
-  <div class="content-container-column center-items">
+  <div class="content-container-column">
     <div class="watermark sc2-watermark"></div>
     <h2>Шампион</h2>
 

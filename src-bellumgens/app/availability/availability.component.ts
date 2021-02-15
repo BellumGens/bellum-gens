@@ -10,19 +10,29 @@ import { IgxTimePickerComponent,
 @Component({
   selector: 'app-availability',
   templateUrl: './availability.component.html',
-  styleUrls: ['./availability.component.css']
+  styleUrls: ['./availability.component.scss']
 })
 export class AvailabilityComponent {
-  @Input() public availability: Availability [];
+  @Input()
+  public availability: Availability [];
 
-  @Input() public editable = false;
+  @Input()
+  public editable = false;
 
-  @Output() public availabilityChanged = new EventEmitter<Availability>();
+  @Output()
+  public availabilityChanged = new EventEmitter<Availability>();
 
-  @ViewChild('from') public from: IgxTimePickerComponent;
-  @ViewChild('to') public to: IgxTimePickerComponent;
-  @ViewChild(IgxChipsAreaComponent, { static: true }) public chips: IgxChipsAreaComponent;
-  @ViewChild(IgxDialogComponent, { static: true }) public dialog: IgxDialogComponent;
+  @ViewChild('from')
+  private from: IgxTimePickerComponent;
+
+  @ViewChild('to')
+  private to: IgxTimePickerComponent;
+
+  @ViewChild(IgxChipsAreaComponent, { static: true })
+  private chips: IgxChipsAreaComponent;
+
+  @ViewChild(IgxDialogComponent, { static: true })
+  private dialog: IgxDialogComponent;
 
   public selectedChip: IgxChipComponent;
   public get selectedDay() {
@@ -45,7 +55,7 @@ export class AvailabilityComponent {
       this.selectedDay = this.availability[index];
       this.dialog.open();
 
-      args.owner.selected = true;
+      //args.owner.selected = true;
       args.cancel = true;
       this.selectedChip = args.owner;
     }

@@ -5,8 +5,8 @@
             [selected]="weekday.available"
             (onClick)="daySelected($event)"
             (onRemove)="dayDeselected($event)">
-      <span class="igx-chip__text">{{ weekday.day | weekday }}</span>
-      <span class="igx-chip__subtext" *ngIf="weekday.available">{{ weekday.from | date:'H:mm' }}-{{ weekday.to | date:'H:mm' }}</span>
+    <span class="igx-chip__text">{{ weekday.day | weekday }}</span>
+    <span class="igx-chip__subtext" *ngIf="weekday.available">{{ weekday.from | date:'H:mm' }}-{{ weekday.to | date:'H:mm' }}</span>
   </igx-chip>
 </igx-chips-area>
 
@@ -15,10 +15,10 @@
     <h5 i18n>Available times for <span class="highlight" [textContent]="selectedDay ? (selectedDay.day | weekday) : ''"></span></h5>
     <div class="availability-time">
       <igx-time-picker #from class="time-picker" [value]="selectedDay.from" [itemsDelta]="{hours: 1, minutes: 15, seconds: 1}">
-        <label igxLabel i18n>от</label>
+        <label igxLabel i18n>From</label>
       </igx-time-picker>
       <igx-time-picker #to class="time-picker" [value]="selectedDay.to" [itemsDelta]="{hours: 1, minutes: 15, seconds: 1}">
-        <label igxLabel i18n>до</label>
+        <label igxLabel i18n>To</label>
       </igx-time-picker>
     </div>
   </div>

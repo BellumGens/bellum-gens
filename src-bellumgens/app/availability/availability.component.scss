@@ -1,0 +1,26 @@
+:host {
+  .igx-chip__text {
+    display: inline-block;
+    min-width: 10ch;
+  }
+
+  .igx-chip__subtext {
+    min-width: 11ch;
+    font-size: 0.74rem;
+    margin-left: 4px;
+    color: #FF0958;
+  }
+
+  igx-chip {
+    width: 100%;
+  }
+}
+
+.time-pickers {
+  padding: 16px;
+}
+
+.time-picker {
+  width: 200px;
+  margin: 0 16px;
+}
