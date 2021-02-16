@@ -3,10 +3,6 @@
     background-image: url('/assets/wallpapers/carousel-season2.webp');
   }
 
-  h1, h2 {
-    text-transform: uppercase;
-  }
-
   @media only screen and (max-width: 1024px) {
     .slide-info-column h1 {
       font-size: 2rem;
