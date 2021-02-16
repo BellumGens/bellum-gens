@@ -1,6 +1,7 @@
 :host {
   .registration-title {
     margin-top: 8px;
+    text-transform: uppercase;
   }
 
   .application-details {
@@ -36,6 +37,15 @@
   @media only screen and (max-width: 550px) {
     .success-dialog-content {
       width: 380px;
+    }
+
+    .registration-form-input {
+      width: 348px;
+    }
+
+    .registration-title {
+      font-size: 2.6rem;
+      line-height: 3rem;
     }
   }
 }

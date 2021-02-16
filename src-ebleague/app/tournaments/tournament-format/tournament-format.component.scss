@@ -2,4 +2,28 @@
   .slide1 {
     background-image: url('/assets/wallpapers/carousel-season2.webp');
   }
+
+  h1, h2 {
+    text-transform: uppercase;
+  }
+
+  @media only screen and (max-width: 1024px) {
+    .slide-info-column h1 {
+      font-size: 2rem;
+    }
+
+    .slide-info-column p {
+      font-size: 0.9rem;
+      margin-top: 0;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin: 0;
+    }
+
+    .home-page-slide-columns {
+      grid-template-columns: 1fr;
+    }
+  }
 }
