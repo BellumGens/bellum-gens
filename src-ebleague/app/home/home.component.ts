@@ -35,8 +35,8 @@ export class TournamentHomeComponent {
     this.authManager.emitOpenLogin(title);
   }
 
-  public showContacts() {
-    const element = document.getElementById('contacts');
+  public scrollTo(id: string) {
+    const element = document.getElementById(id);
     element.scrollIntoView({ behavior: 'smooth' });
   }
 
