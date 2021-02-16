@@ -50,6 +50,11 @@
     margin-top: 0;
   }
 
+  .info-button {
+    margin-left: 24px;
+    margin-top: 0;
+  }
+
   // .platinum {
   //   width: 380px;
   //   height: 200px;
@@ -163,6 +168,11 @@
     .slide1 {
       background-position: center;
       background-position-x: -1200px;
+    }
+
+    .info-button {
+      margin-left: 0;
+      margin-top: 12px;
     }
   }
 }

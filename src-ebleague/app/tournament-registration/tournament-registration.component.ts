@@ -53,12 +53,10 @@ export class TournamentRegistrationComponent {
   }
 
   public selectGame(game: Game) {
-    if (this.authUser) {
-      this.application.game = game;
-      const element = document.getElementById('registration');
-      element.scrollIntoView({ behavior: 'smooth' });
-      this.showDetails();
-    }
+    this.application.game = game;
+    const element = document.getElementById('registration');
+    element.scrollIntoView({ behavior: 'smooth' });
+    this.showDetails();
   }
 
   public showDetails() {

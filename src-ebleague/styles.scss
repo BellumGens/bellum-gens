@@ -183,21 +183,17 @@ $paginator-theme: igx-paginator-theme($background-color: $background);
 }
 
 .slide-info-column {
-  max-width: 680px;
+  max-width: 1000px;
   min-width: 348px;
   padding: 52px;
   margin: auto;
 }
 
 .slide-info-column h1 {
-  font-size: 1.75rem;
+  font-size: 4rem;
   font-weight: 800;
   margin: 0;
   line-height: 5rem;
-}
-
-.slide-info-column h4 {
-  font-size: 1.75rem;
 }
 
 .slide-info-column p {

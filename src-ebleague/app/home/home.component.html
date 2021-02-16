@@ -2,7 +2,17 @@
   <div class="intro-column">
     <h1 class="highlight" i18n>The Ultimate Gaming experience for your company</h1>
     <p i18n>Covid-19 changed the way teams in your company bond. Esports Business League is a team building charity esports event, where your company team can compete against teams from other companies. Participants in the Esports Business League so far include companies like VMware, DXC, SAP, Experian, TELUS, Modis, HP, Infragistics, Chaos Group and many more!</p>
-    <button igxButton="raised" (click)="showContacts()" i18n>Learn more...</button>
+
+    <button igxButton="raised" [disabled]="true"
+            i18n-click
+            (click)="!authUser ? openLogin('You must login first...') : registration.selectGame(gameEnum.CSGO)"
+            i18n>Register for CS:GO League</button>
+    <button igxButton="raised" [disabled]="true"
+            class="info-button"
+            i18n-click
+            (click)="!authUser ? openLogin('You must login first...') : registration.selectGame(gameEnum.StarCraft2)"
+            i18n>Register for StarCraft II League</button>
+    <button igxButton="flat" class="info-button" (click)="scrollTo('moreinfo')" i18n>Learn more...</button>
   </div>
 </div>
 
@@ -32,98 +42,33 @@
       </igx-linear-bar>
       <button igxButton="raised"
               [disabled]="true">Регистрациите са затворени</button>
-      <button igxButton="raised"
-              [disabled]="true"
-              (click)="!authUser ? openLogin('Първо влезте или се регистрирайте...') : registration.selectGame(gameEnum.StarCraft2)">Регистрирай се за StarCraft II</button>
     </div>
   </div>
 </div> -->
 
 <div class="content-container">
 
-  <!-- <app-tournament-registration #registration class="content-container-row" [tournamentId]="tournamentId"></app-tournament-registration> -->
+  <app-tournament-registration #registration class="content-container-row" [tournamentId]="tournamentId"></app-tournament-registration>
 
   <div class="content-container-row">
-    <h2 i18n>Season 2</h2>
+    <igx-divider></igx-divider>
+    <h2 i18n id="moreinfo">What is Esports Business League?</h2>
   </div>
 
-  <div class="content-container-row">
-    <p i18n>Esports Business League Season 2 concluded on November 8th with grand finals in both StarCraft II and CS:GO! In the StarCraft II final SuGaRBuNNy [Nuvei] and IlPrincipino [UltraPlay] battled it out in a very compatitive BO5 where all 5 maps were played and the winner was <a href="https://bellumgens.com/players/76561198061226037" target="_blank" rel="noopener">SuGaRBuNNy [Nuvei]</a>. This makes him a reigning, defending champion in the StarCraft II category. The CS:GO final was between Plan-B [Modis] and 3nIGm4 [Infragistics]. The team from Modis <a href="https://bellumgens.com/team/Plan-B/details" target="_blank" rel="noopener">Plan-B</a> managed to win both maps. They got a relatively easy win on their map pick and the boys from Plan-B managed to take Infragistics 3nIGm4's map pick in overtime.</p>
+  <div class="content-container-column">
+    <img src="/assets/wallpapers/cover.webp" class="preview-image" alt="Esports Business League" />
   </div>
 
-  <div class="content-container-column align-center">
-    <div class="watermark csgo-watermark"></div>
-    <h3 i18n>Champion</h3>
-    <div class="horizontal-center">
-      <img class="first-place" src="/assets/partners/plan-b.webp" alt="Plan-B [Modis]" title="Plan-B [Modis]" />
-      <div class="winner-wrapper">
-        <a href="https://bellumgens.com/team/Plan-B/details" class="igx-card-header__title" target="_blank" rel="noopener">Plan-B</a>
-        <span class="igx-card-header__subtitle">Modis</span>
-      </div>
-    </div>
-
-    <h4 i18n>Runner-up</h4>
-
-    <div class="horizontal-center">
-      <img class="second-place" src="/assets/partners/ig.webp" alt="3nIGm4 [Infragistics]" title="3nIGm4 [Infragistics]" />
-      <div class="winner-wrapper">
-        <a href="https://bellumgens.com/team/IG-Warriors/details" class="igx-card-header__title" target="_blank" rel="noopener">3nIGm4</a>
-        <span class="igx-card-header__subtitle">Infragistics</span>
-      </div>
-    </div>
-
-    <h5 i18n>3rd-4th Place</h5>
-    <div class="horizontal-center">
-      <div class="horizontal-center">
-        <img class="third-forth-place" src="/assets/partners/modis.webp" alt="Modis" title="Modis" />
-        <div class="winner-wrapper">
-          <a href="https://bellumgens.com/team/Mod1s/details" class="igx-card-header__title" target="_blank" rel="noopener">Mod1s</a>
-          <span class="igx-card-header__subtitle">Modis</span>
-        </div>
-      </div>
-
-      <div class="horizontal-center">
-        <img class="third-forth-place" src="/assets/partners/chaosgroup.webp" alt="CHAOS [Chaos Group]" title="CHAOS [Chaos Group]" />
-        <div class="winner-wrapper">
-          <a href="https://bellumgens.com/team/CHAOS/details" class="igx-card-header__title" target="_blank" rel="noopener">CHAOS</a>
-          <span class="igx-card-header__subtitle">Chaos Group</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="content-container-column align-center">
-    <div class="watermark sc2-watermark"></div>
-    <h3 i18n>Champion</h3>
-
-    <div class="winner-wrapper first-place-text">
-      <a class="igx-card-header__title" href="https://bellumgens.com/players/76561198061226037" target="_blank" rel="noopener">SuGaRBuNNy</a>
-      <span class="igx-card-header__subtitle">Nuvei</span>
-    </div>
-
-    <h4 i18n>Runner-up</h4>
-
-    <div class="winner-wrapper second-place-text">
-      <a class="igx-card-header__title" href="https://bellumgens.com/players/1a86fa91-1bfa-4787-94e6-a206f6893093" target="_blank" rel="noopener">IlPrincipino</a>
-      <span class="igx-card-header__subtitle">UltraPlay</span>
-    </div>
-
-    <h5 i18n>3rd-4th Place</h5>
-    <div class="horizontal">
-      <div class="winner-wrapper">
-        <a class="igx-card-header__title" href="https://bellumgens.com/players/76561198203040732" target="_blank" rel="noopener">msrm</a>
-        <span class="igx-card-header__subtitle">Рюгис-М</span>
-      </div>
-
-      <div class="winner-wrapper">
-        <a class="igx-card-header__title" href="https://bellumgens.com/players/76561199015442941" target="_blank" rel="noopener">kOliO</a>
-      </div>
-    </div>
+  <div class="content-container-column">
+    <p i18n>Esports Business League is a charity esports event, which provides working gamers with an arena for competition between individuals and teams from different companies. Each season of the league is 4-8 weeks in length. Matches take place on week days after working hours Monday-Thursday. The league culminates with finals where the teams and players who have accumulated the most points during the season meet. All league matches are being broadcasted live on our <a href="https://www.twitch.tv/ebleague_a" i18n-title title="Follow us on Twitch" target="_blank" rel="noopener">Twitch</a> channels.</p>
+    <h3 i18n>When?</h3>
+    <p i18n>Get ready for Season 3 of the one of a kind esports office league! Starting this season, Esports Business League becomes a charity event, through which participants will be able to choose the charity campaign they wish to support. Registrations will open soon!</p>
+    <p i18n>Registrations are open until reaching the deadline, or until all the available spots have been filled. Season 3 of the Esports Business League will begin <span class="highlight">{{ dates.compStart | date }}</span> and finals will be held <span class="highlight">{{ dates.compStart | date }}</span>.</p>
   </div>
 
   <div class="content-container-row">
     <igx-divider></igx-divider>
-    <h2 i18n id="contacts">Follow us for updates</h2>
+    <h2 i18n>Follow us for updates</h2>
   </div>
 
   <div class="content-container-row">
@@ -154,24 +99,6 @@
 
   <div class="content-container-row">
     <igx-divider></igx-divider>
-    <h2 i18n>What is Esports Business League?</h2>
-  </div>
-
-  <div class="content-container-column">
-    <img src="/assets/wallpapers/cover.webp" class="preview-image" alt="Esports Business League" />
-  </div>
-
-  <div class="content-container-column">
-    <p i18n>Esports Business League is a charity esports event, which provides working gamers with an arena for competition between individuals and teams from different companies. Each season of the league is 4-8 weeks in length. Matches take place on week days after working hours Monday-Thursday. The league culminates with finals where the teams and players who have accumulated the most points during the season meet. All league matches are being broadcasted live on our <a href="https://www.twitch.tv/ebleague_a" i18n-title title="Follow us on Twitch" target="_blank" rel="noopener">Twitch</a> channels.</p>
-    <h3 i18n>When?</h3>
-    <p i18n>Get ready for Season 3 of the one of a kind esports office league! Starting this season, Esports Business League becomes a charity event, through which participants will be able to choose the charity campaign they wish to support. Registrations will open soon!</p>
-    <p i18n>Registrations are open until reaching the deadline, or until all the available spots have been filled. Season 3 of the Esports Business League will begin <span class="highlight">{{ dates.compStart | date }}</span> and finals will be held <span class="highlight">{{ dates.compStart | date }}</span>.</p>
-  </div>
-
-
-
-  <div class="content-container-row">
-    <igx-divider></igx-divider>
     <h2 id="terms" i18n>Terms and conditions</h2>
   </div>
 
@@ -194,6 +121,44 @@
   <div class="content-container-column">
     <iframe class="twitch-stream" title="Highlight video" src="https://www.youtube.com/embed/yt35XM_avg8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
   </div> -->
+
+  <div class="content-container-row">
+    <igx-divider></igx-divider>
+    <h2 id="partners" i18n>Partners</h2>
+    <!-- <div class="horizontal-center">
+      <a href="https://www.isobar.com/bg/en/" target="_blank" rel="noopener">
+        <igx-icon fontSet="partners" name="isobar" title="Isobar solves complex business challenges through digital marketing and technology. #1 Digital agency in Bulgaria with 200+ ecommerce experts, growing for 12+ years." class="partner platinum"></igx-icon>
+      </a>
+      <a href="https://www.vmware.com/" target="_blank" rel="noopener">
+        <igx-icon fontSet="partners" name="vmware" title="VMware is a global leader in cloud infrastructure and business mobility. The company helps customers realize possibilities by accelerating their digital transformation journeys. Over the range of 12 years VMware Bulgaria has transformed from a purely R&D facility to a multifunctional hub with product, revenue generating professional services and business operations teams and is now one of the three core strategic sites for VMware globally." class="partner platinum"></igx-icon>
+      </a>
+      <a href="https://telusinternational.avature.net/careers/SearchJobsBulgaria?3_53_3=5183" target="_blank" rel="noopener">
+        <igx-icon fontSet="partners" name="telus" title="TELUS International Europe is the biggest employer in the BPO sector in Bulgaria, with a team of over 3000 people in Sofia and Plovdiv, and serves clients in over 40 languages." class="partner platinum"></igx-icon>
+      </a>
+      <a href="https://www8.hp.com/us/en/gaming/omen.html" target="_blank" rel="noopener">
+        <igx-icon fontSet="partners" name="omen" title="All matches at the EB-League finals will be played on OMEN desktop machines and OMEN 240hz monitors!" class="partner platinum"></igx-icon>
+      </a>
+    </div> -->
+    <!-- <div class="horizontal-center">
+      <a href="https://www.vmware.com/" target="_blank" rel="noopener" title="VMware is a global leader in cloud infrastructure and business mobility. The company helps customers realize possibilities by accelerating their digital transformation journeys. Over the range of 12 years VMware Bulgaria has transformed from a purely R&D facility to a multifunctional hub with product, revenue generating professional services and business operations teams and is now one of the three core strategic sites for VMware globally.">
+        <igx-icon fontSet="partners" name="vmware" class="partner gold"></igx-icon>
+      </a>
+      <a href="https://careers.paysafe.com/sofiaengineeringteams/" target="_blank" rel="noopener" title="С над 1200 служители, Paysafe е сред най-големите софтуерни компании и желани работодатели в България.">
+        <igx-icon fontSet="partners" name="paysafe" class="partner gold"></igx-icon>
+      </a>
+      <a href="https://www.modis.com/en-bg/" target="_blank" rel="noopener">
+        <igx-icon fontSet="partners" name="modis" title="Modis is a global leader in professional solutions for IT, Engineering and Life Sciences. With more than 20 years of experience the company has established office locations in Europe, North America, Asia and Australia." class="partner gold"></igx-icon>
+      </a>
+    </div> -->
+    <div class="horizontal-center">
+      <a href="http://bprogaming.com/" i18n-title title="BPro Gaming is the first professional esports club in Bulgaria. During the past 4 years BPro has developed a number of professional players, team and infrastructure." target="_blank" rel="noopener">
+        <img src="/assets/partners/bpro.webp" i18n-alt alt="BPro Gaming is the first professional esports club in Bulgaria. During the past 4 years BPro has developed a number of professional players, team and infrastructure." class="partner logistics" />
+      </a>
+      <a href="https://www.facebook.com/BSLesports/" i18n-title title="BSL a one of a kind StarCraft II league in Bulgaria and are contributing to the deveopment of Bulgarian talent in this esport! All StarCraft 2 games in the Esports Business League will be casted by the them!" target="_blank" rel="noopener">
+        <img src="/assets/partners/bsl.webp" i18n-alt alt="BSL a one of a kind StarCraft II league in Bulgaria and are contributing to the deveopment of Bulgarian talent in this esport! All StarCraft 2 games in the Esports Business League will be casted by the them!" class="partner logistics" />
+      </a>
+    </div>
+  </div>
 
   <div class="content-container-row">
     <igx-divider></igx-divider>
@@ -247,94 +212,153 @@
 
   <div class="content-container-row">
     <igx-divider></igx-divider>
-    <h2 id="partners" i18n>Partners</h2>
-    <!-- <div class="horizontal-center">
-      <a href="https://www.isobar.com/bg/en/" target="_blank" rel="noopener">
-        <igx-icon fontSet="partners" name="isobar" title="Isobar solves complex business challenges through digital marketing and technology. #1 Digital agency in Bulgaria with 200+ ecommerce experts, growing for 12+ years." class="partner platinum"></igx-icon>
-      </a>
-      <a href="https://www.vmware.com/" target="_blank" rel="noopener">
-        <igx-icon fontSet="partners" name="vmware" title="VMware is a global leader in cloud infrastructure and business mobility. The company helps customers realize possibilities by accelerating their digital transformation journeys. Over the range of 12 years VMware Bulgaria has transformed from a purely R&D facility to a multifunctional hub with product, revenue generating professional services and business operations teams and is now one of the three core strategic sites for VMware globally." class="partner platinum"></igx-icon>
-      </a>
-      <a href="https://telusinternational.avature.net/careers/SearchJobsBulgaria?3_53_3=5183" target="_blank" rel="noopener">
-        <igx-icon fontSet="partners" name="telus" title="TELUS International Europe is the biggest employer in the BPO sector in Bulgaria, with a team of over 3000 people in Sofia and Plovdiv, and serves clients in over 40 languages." class="partner platinum"></igx-icon>
-      </a>
-      <a href="https://www8.hp.com/us/en/gaming/omen.html" target="_blank" rel="noopener">
-        <igx-icon fontSet="partners" name="omen" title="All matches at the EB-League finals will be played on OMEN desktop machines and OMEN 240hz monitors!" class="partner platinum"></igx-icon>
-      </a>
-    </div> -->
-    <!-- <div class="horizontal-center">
-      <a href="https://www.vmware.com/" target="_blank" rel="noopener" title="VMware is a global leader in cloud infrastructure and business mobility. The company helps customers realize possibilities by accelerating their digital transformation journeys. Over the range of 12 years VMware Bulgaria has transformed from a purely R&D facility to a multifunctional hub with product, revenue generating professional services and business operations teams and is now one of the three core strategic sites for VMware globally.">
-        <igx-icon fontSet="partners" name="vmware" class="partner gold"></igx-icon>
-      </a>
-      <a href="https://careers.paysafe.com/sofiaengineeringteams/" target="_blank" rel="noopener" title="С над 1200 служители, Paysafe е сред най-големите софтуерни компании и желани работодатели в България.">
-        <igx-icon fontSet="partners" name="paysafe" class="partner gold"></igx-icon>
-      </a>
-      <a href="https://www.modis.com/en-bg/" target="_blank" rel="noopener">
-        <igx-icon fontSet="partners" name="modis" title="Modis is a global leader in professional solutions for IT, Engineering and Life Sciences. With more than 20 years of experience the company has established office locations in Europe, North America, Asia and Australia." class="partner gold"></igx-icon>
-      </a>
-    </div> -->
-    <div class="horizontal-center">
-      <a href="http://bprogaming.com/" i18n-title title="BPro Gaming is the first professional esports club in Bulgaria. During the past 4 years BPro has developed a number of professional players, team and infrastructure." target="_blank" rel="noopener">
-        <img src="/assets/partners/bpro.webp" i18n-alt alt="BPro Gaming is the first professional esports club in Bulgaria. During the past 4 years BPro has developed a number of professional players, team and infrastructure." class="partner logistics" />
-      </a>
-      <a href="https://www.facebook.com/BSLesports/" i18n-title title="BSL a one of a kind StarCraft II league in Bulgaria and are contributing to the deveopment of Bulgarian talent in this esport! All StarCraft 2 games in the Esports Business League will be casted by the them!" target="_blank" rel="noopener">
-        <img src="/assets/partners/bsl.webp" i18n-alt alt="BSL a one of a kind StarCraft II league in Bulgaria and are contributing to the deveopment of Bulgarian talent in this esport! All StarCraft 2 games in the Esports Business League will be casted by the them!" class="partner logistics" />
-      </a>
-    </div>
+    <h2 i18n>Season 2</h2>
+    <p i18n>Esports Business League Season 2 concluded on November 8th with grand finals in both StarCraft II and CS:GO! In the StarCraft II final SuGaRBuNNy [Nuvei] and IlPrincipino [UltraPlay] battled it out in a very compatitive BO5 where all 5 maps were played and the winner was <a href="https://bellumgens.com/players/76561198061226037" target="_blank" rel="noopener">SuGaRBuNNy [Nuvei]</a>. This makes him a reigning, defending champion in the StarCraft II category. The CS:GO final was between Plan-B [Modis] and 3nIGm4 [Infragistics]. The team from Modis <a href="https://bellumgens.com/team/Plan-B/details" target="_blank" rel="noopener">Plan-B</a> managed to win both maps. They got a relatively easy win on their map pick and the boys from Plan-B managed to take Infragistics 3nIGm4's map pick in overtime.</p>
   </div>
 
-  <!-- <div class="content-container-row">
-    <h2>Сезон 1</h2>
-  </div>
-
-  <div class="content-container-column">
+  <div class="content-container-column align-center">
     <div class="watermark csgo-watermark"></div>
-    <h2>Шампиони</h2>
-    <a href="https://bellumgens.com/team/BPro-Veterans/details" target="_blank" rel="noopener">
-      <img class="first-place" src="/assets/partners/bpro_veterans.webp" alt="Bpro Veterans" title="Bpro Veterans" />
-    </a>
+    <h3 i18n>Champion</h3>
+    <div class="horizontal-center">
+      <img class="first-place" src="/assets/partners/plan-b.webp" alt="Plan-B [Modis]" title="Plan-B [Modis]" />
+      <div class="winner-wrapper">
+        <a href="https://bellumgens.com/team/Plan-B/details" class="igx-card-header__title" target="_blank" rel="noopener">Plan-B</a>
+        <span class="igx-card-header__subtitle">Modis</span>
+      </div>
+    </div>
 
-    <h3>Второ място</h3>
-    <a href="https://bellumgens.com/team/DXC/details" target="_blank" rel="noopener">
-      <img class="second-place" src="https://sofiatech.bg/wp-content/uploads/2019/01/DXC-Technology-Logo.png" alt="DXC" title="DXC" />
-    </a>
+    <h4 i18n>Runner-up</h4>
+    <div class="horizontal-center">
+      <img class="second-place" src="/assets/partners/ig.webp" alt="3nIGm4 [Infragistics]" title="3nIGm4 [Infragistics]" />
+      <div class="winner-wrapper">
+        <a href="https://bellumgens.com/team/IG-Warriors/details" class="igx-card-header__title" target="_blank" rel="noopener">3nIGm4</a>
+        <span class="igx-card-header__subtitle">Infragistics</span>
+      </div>
+    </div>
 
-    <h4>Трето-четвърто място</h4>
-    <div class="horizontal-center space-evenly">
-      <a href="https://bellumgens.com/team/Mod1s/details" target="_blank" rel="noopener">
+    <h5 i18n>3rd-4th Place</h5>
+    <div class="horizontal-center">
+      <div class="horizontal-center">
         <img class="third-forth-place" src="/assets/partners/modis.webp" alt="Modis" title="Modis" />
-      </a>
+        <div class="winner-wrapper">
+          <a href="https://bellumgens.com/team/Mod1s/details" class="igx-card-header__title" target="_blank" rel="noopener">Mod1s</a>
+          <span class="igx-card-header__subtitle">Modis</span>
+        </div>
+      </div>
 
-      <a href="https://bellumgens.com/team/IG-Warriors/details" target="_blank" rel="noopener">
-        <img class="third-forth-place" src="/assets/partners/ig.webp" alt="3nIGm4 [Infragistics]" title="3nIGm4 [Infragistics]" />
-      </a>
+      <div class="horizontal-center">
+        <img class="third-forth-place" src="/assets/partners/chaosgroup.webp" alt="CHAOS [Chaos Group]" title="CHAOS [Chaos Group]" />
+        <div class="winner-wrapper">
+          <a href="https://bellumgens.com/team/CHAOS/details" class="igx-card-header__title" target="_blank" rel="noopener">CHAOS</a>
+          <span class="igx-card-header__subtitle">Chaos Group</span>
+        </div>
+      </div>
     </div>
   </div>
 
-  <div class="content-container-column">
+  <div class="content-container-column align-center">
     <div class="watermark sc2-watermark"></div>
-    <h2>Шампион</h2>
+    <h3 i18n>Champion</h3>
 
-    <a class="first-place-text" href="https://bellumgens.com/players/76561198061226037" target="_blank" rel="noopener">
-      SuGaRBuNNy [C3I]
-    </a>
-
-    <h3>Второ място</h3>
-    <a class="second-place-text" href="https://bellumgens.com/players/76561198809508330" target="_blank" rel="noopener">
-      t0ssboy [HP]
-    </a>
-
-    <h4>Трето-четвърто място</h4>
-    <div class="horizontal-center space-evenly">
-      <a class="third-forth-place-text" href="https://bellumgens.com/players/76561198798145467" target="_blank" rel="noopener">
-        LEv0n
-      </a>
-
-      <a class="third-forth-place-text" href="https://bellumgens.com/players/76561199015442941" target="_blank" rel="noopener">
-        kOliO
-      </a>
+    <div class="winner-wrapper first-place-text">
+      <a class="igx-card-header__title" href="https://bellumgens.com/players/76561198061226037" target="_blank" rel="noopener">SuGaRBuNNy</a>
+      <span class="igx-card-header__subtitle">Nuvei</span>
     </div>
-  </div> -->
+
+    <h4 i18n>Runner-up</h4>
+    <div class="winner-wrapper second-place-text">
+      <a class="igx-card-header__title" href="https://bellumgens.com/players/1a86fa91-1bfa-4787-94e6-a206f6893093" target="_blank" rel="noopener">IlPrincipino</a>
+      <span class="igx-card-header__subtitle">UltraPlay</span>
+    </div>
+
+    <h5 i18n>3rd-4th Place</h5>
+    <div class="horizontal">
+      <div class="winner-wrapper">
+        <a class="igx-card-header__title" href="https://bellumgens.com/players/76561198203040732" target="_blank" rel="noopener">msrm</a>
+        <span class="igx-card-header__subtitle">Рюгис-М</span>
+      </div>
+
+      <div class="winner-wrapper">
+        <a class="igx-card-header__title" href="https://bellumgens.com/players/76561199015442941" target="_blank" rel="noopener">kOliO</a>
+        <span class="igx-card-header__subtitle">Камелия - СК ЕООД</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-container-row">
+    <igx-divider></igx-divider>
+    <h2 i18n>Season 1</h2>
+    <p i18n>Esports Business League Season 1 ended on April 12 with grand finals in StarCraft II and CS:GO! In the StarCraft II grand final t0ssboy [HP] faced SuGaRBuNNy [C3I] and after a very competitive BO5 <a href="https://bellumgens.com/players/76561198061226037" target="_blank">SuGaRBuNNy [C3I]</a> emerged victorious. In the CS:GO grand final Bpro Veterans met DXC. After 3 heart-stopping maps <a href="https://bellumgens.com/team/BPro-Veterans/details" target="_blank">Bpro Veterans</a> managed to take the victory.</p>
+  </div>
+
+  <div class="content-container-column align-center">
+    <div class="watermark csgo-watermark"></div>
+    <h3 i18n>Champion</h3>
+    <div class="horizontal-center">
+      <img class="first-place" src="/assets/partners/bpro_veterans.webp" alt="Bpro Veterans" title="Bpro Veterans" />
+      <div class="winner-wrapper">
+        <a href="https://bellumgens.com/team/BPro-Veterans/details" class="igx-card-header__title" target="_blank" rel="noopener">BPro Veterans</a>
+        <span class="igx-card-header__subtitle">BPro Gaming</span>
+      </div>
+    </div>
+
+    <h4 i18n>Runner-up</h4>
+    <div class="horizontal-center">
+      <img class="second-place" src="https://sofiatech.bg/wp-content/uploads/2019/01/DXC-Technology-Logo.png" alt="DXC" title="DXC" />
+      <div class="winner-wrapper">
+        <a href="https://bellumgens.com/team/DXC/details" class="igx-card-header__title" target="_blank" rel="noopener">DXC</a>
+        <span class="igx-card-header__subtitle">DXC</span>
+      </div>
+    </div>
+
+    <h5 i18n>3rd-4th Place</h5>
+    <div class="horizontal-center">
+      <div class="horizontal-center">
+        <img class="third-forth-place" src="/assets/partners/modis.webp" alt="Modis" title="Modis" />
+        <div class="winner-wrapper">
+          <a href="https://bellumgens.com/team/Mod1s/details" class="igx-card-header__title" target="_blank" rel="noopener">Mod1s</a>
+          <span class="igx-card-header__subtitle">Modis</span>
+        </div>
+      </div>
+
+      <div class="horizontal-center">
+        <img class="third-forth-place" src="/assets/partners/ig.webp" alt="3nIGm4 [Infragistics]" title="3nIGm4 [Infragistics]" />
+        <div class="winner-wrapper">
+          <a href="https://bellumgens.com/team/IG-Warriors/details" class="igx-card-header__title" target="_blank" rel="noopener">3nIGm4</a>
+          <span class="igx-card-header__subtitle">Infragistics</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="content-container-column align-center">
+    <div class="watermark sc2-watermark"></div>
+    <h3 i18n>Champion</h3>
+
+    <div class="winner-wrapper first-place-text">
+      <a class="igx-card-header__title" href="https://bellumgens.com/players/76561198061226037" target="_blank" rel="noopener">SuGaRBuNNy</a>
+      <span class="igx-card-header__subtitle">Nuvei</span>
+    </div>
+
+    <h4 i18n>Runner-up</h4>
+    <div class="winner-wrapper second-place-text">
+      <a class="igx-card-header__title" href="https://bellumgens.com/players/76561198809508330" target="_blank" rel="noopener">t0ssboy</a>
+      <span class="igx-card-header__subtitle">HP</span>
+    </div>
+
+    <h5 i18n>3rd-4th Place</h5>
+    <div class="horizontal">
+      <div class="winner-wrapper">
+        <a class="igx-card-header__title" href="https://bellumgens.com/players/76561198798145467" target="_blank" rel="noopener">LEv0n</a>
+        <span class="igx-card-header__subtitle">Триумф такси</span>
+      </div>
+
+      <div class="winner-wrapper">
+        <a class="igx-card-header__title" href="https://bellumgens.com/players/76561199015442941" target="_blank" rel="noopener">kOliO</a>
+        <span class="igx-card-header__subtitle">Камелия - СК ЕООД</span>
+      </div>
+    </div>
+  </div>
 
   <div class="content-container-row">
     <igx-divider></igx-divider>
