@@ -3,7 +3,7 @@
   <div class="form-wrapper">
     <h2 id="registration" class="registration-title" i18n>Registration Season 3</h2>
 
-    <igx-select name="game" [required]="true" [disabled]="!authUser" class="registration-form-input" [(ngModel)]="application.game" (ngModelChange)="showDetails()">
+    <igx-select name="game" [required]="true" [disabled]="true" class="registration-form-input" [(ngModel)]="application.game" (ngModelChange)="showDetails()">
       <label igxLabel i18n>{{ authUser ? 'Choose league (game)' : 'You must login first'}}</label>
       <igx-select-item *ngFor="let game of games" [value]="game.id">
         {{ game.name }}
