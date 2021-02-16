@@ -1998,6 +1998,14 @@
           <context context-type="linenumber">70</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="7ba6122f01ffe868b92d71247608c5a167f78869" datatype="html">
+        <source>Родно място: <x id="INTERPOLATION" equiv-text="{{ member.birthplace }}"/></source>
+        <target>Birthplace: <x id="INTERPOLATION" equiv-text="{{ member.birthplace }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/production-crew/production-crew.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="4a4f46a2dcec36bd5c8c371ceee55c2226dec27f" datatype="html">
         <source>Schedule</source>
         <target>График</target>

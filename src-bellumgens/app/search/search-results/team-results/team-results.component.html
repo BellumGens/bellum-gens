@@ -2,7 +2,7 @@
 </app-app-shell>
 
 <div *ngIf="!loading" class="search-result-summary margin-bottom">
-  <h4 class="igx-card-header__title margin-bottom">Found <span class="highlight">{{teams?.length }}</span> results for teams{{ query | queryParsed }}</h4>
+  <h4 class="igx-card-header__title margin-bottom" i18n>Found <span class="highlight">{{teams?.length }}</span> results for teams{{ query | queryParsed }}</h4>
 </div>
 
 <div *ngIf="!loading" class="card-wrapper">
@@ -13,19 +13,6 @@
     </igx-card-header>
     <igx-card-content>
       <div>{{ team.description }}</div>
-      <!-- <igx-chips-area class="result-chips">
-        <igx-chip *ngFor="let role of team.members | openPositions"
-                  [selectable]="false">
-          <span class="igx-chip__text">{{ role.roleName }}</span>
-        </igx-chip>
-      </igx-chips-area>
-      <div>Practice days</div>
-      <igx-chips-area class="result-chips">
-        <igx-chip *ngFor="let weekday of team.practiceSchedule | daysAvailable"
-                  [selectable]="false">
-          <span class="igx-chip__text">{{ weekday.day | weekday }}</span>
-        </igx-chip>
-      </igx-chips-area> -->
     </igx-card-content>
   </igx-card>
 </div>

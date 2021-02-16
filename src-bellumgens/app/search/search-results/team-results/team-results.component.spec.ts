@@ -21,8 +21,7 @@ describe('TeamResultsComponent', () => {
         RouterTestingModule,
         IgxProgressBarModule,
         IgxCardModule,
-        IgxAvatarModule,
-        IgxChipsModule
+        IgxAvatarModule
       ],
       declarations: [
         TeamResultsComponent,
