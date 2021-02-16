@@ -20,7 +20,7 @@
           class="strat-title navigatable"
           [title]="strat.title"
           [routerLink]="['/strategies', 'details', strat.customUrl]">{{ strat.title }}</h2>
-      <h4 igxCardHeaderSubtitle>Visibility: {{ strat.visible ? 'Public' : 'Private'}}</h4>
+      <h4 igxCardHeaderSubtitle i18n>Visibility: {{ strat.visible ? 'Public' : 'Private'}}</h4>
       <h6 igxCardHeaderSubtitle class="card-smaller-subtitle" i18n>Last Edit: {{ strat.lastUpdated | date }}</h6>
     </igx-card-header>
 
@@ -43,12 +43,12 @@
               igxButton="fab"
               igxRipple
               (click)="shareOnTwitter(strat)">
-        <igx-icon fontSet="login-icons" name="twitter" title="Share Strategy"></igx-icon>
+        <igx-icon fontSet="login-icons" name="twitter" i18n-title title="Share Strategy"></igx-icon>
       </button>
       <button igxButton="fab"
               igxRipple
               (click)="newStrategy.open(strat, 'Edit strategy')">
-        <igx-icon title="Edit">edit</igx-icon>
+        <igx-icon i18n-title title="Edit">edit</igx-icon>
       </button>
       <button igxButton="fab"
               igxRipple

@@ -1807,6 +1807,13 @@
           <context context-type="linenumber">70</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="d356a49bcc72ee5628fdfc07fe2a40bd6e9bb80e" datatype="html">
+        <source>Birthplace: <x id="INTERPOLATION" equiv-text="{{ member.birthplace }}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/production-crew/production-crew.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="4a4f46a2dcec36bd5c8c371ceee55c2226dec27f" datatype="html">
         <source>Schedule</source>
         <context-group purpose="location">

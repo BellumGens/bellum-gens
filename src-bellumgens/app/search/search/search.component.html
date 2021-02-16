@@ -1,6 +1,6 @@
 <igx-buttongroup class="search-type" [multiSelection]="false" (onSelect)="searchType = $event.index + 1">
-  <button igxButton igxRipple>Players</button>
-  <button igxButton igxRipple>Teams</button>
+  <button igxButton igxRipple i18n>Players</button>
+  <button igxButton igxRipple i18n>Teams</button>
 </igx-buttongroup>
 
 <app-player-search *ngIf="searchType === 1"></app-player-search>
