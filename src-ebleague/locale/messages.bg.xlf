@@ -183,7 +183,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
-          <context context-type="linenumber">64</context>
+          <context context-type="linenumber">75</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
@@ -639,15 +639,15 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
-          <context context-type="linenumber">140</context>
+          <context context-type="linenumber">162</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
-          <context context-type="linenumber">176</context>
+          <context context-type="linenumber">198</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
-          <context context-type="linenumber">189</context>
+          <context context-type="linenumber">211</context>
         </context-group>
       </trans-unit>
       <trans-unit id="77bbe324b08f6636fb50f673cea05313b86fb692" datatype="html">
@@ -663,11 +663,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
-          <context context-type="linenumber">131</context>
+          <context context-type="linenumber">153</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
-          <context context-type="linenumber">169</context>
+          <context context-type="linenumber">191</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4c90059afafb7e160384d9f512797c95bb95c6dc" datatype="html">
@@ -939,7 +939,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
-          <context context-type="linenumber">83</context>
+          <context context-type="linenumber">94</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4e7f5f07ae8e67878f35b34bcee10e39300ff41a" datatype="html">
@@ -947,7 +947,7 @@
         <target>Поръчки</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
-          <context context-type="linenumber">59</context>
+          <context context-type="linenumber">70</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8147001f752fbf48f757011e6b7f88ebf28347df" datatype="html">
@@ -955,7 +955,7 @@
         <target>Направена на</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
-          <context context-type="linenumber">62</context>
+          <context context-type="linenumber">73</context>
         </context-group>
       </trans-unit>
       <trans-unit id="b760f123248930122fc7e7b6b6bf94e376e959c8" datatype="html">
@@ -963,7 +963,7 @@
         <target>Име</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
-          <context context-type="linenumber">66</context>
+          <context context-type="linenumber">77</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4748c2d70da707bead55b6602444f7ed3108ffcf" datatype="html">
@@ -971,7 +971,7 @@
         <target>Телефон</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
-          <context context-type="linenumber">71</context>
+          <context context-type="linenumber">82</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8a42942fb83e136a7f7825c67e6ddd4013b6669b" datatype="html">
@@ -979,7 +979,7 @@
         <target>Адрес</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
-          <context context-type="linenumber">76</context>
+          <context context-type="linenumber">87</context>
         </context-group>
       </trans-unit>
       <trans-unit id="60e677cc69693be93e9b1556757e76cf9d85ab8e" datatype="html">
@@ -987,7 +987,7 @@
         <target>Код за отстъпка</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
-          <context context-type="linenumber">81</context>
+          <context context-type="linenumber">92</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/shop/shop.component.html</context>
@@ -999,7 +999,7 @@
         <target>Доставена</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
-          <context context-type="linenumber">86</context>
+          <context context-type="linenumber">97</context>
         </context-group>
       </trans-unit>
       <trans-unit id="75d2cedd47ece334b9a744b828d3e0a99fb968e6" datatype="html">
@@ -1007,7 +1007,7 @@
         <target><x id="INTERPOLATION" equiv-text="{{details.cut ? &apos;Дамска&apos; : &apos;Мъжка&apos;}}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
-          <context context-type="linenumber">93</context>
+          <context context-type="linenumber">104</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5249494675a08788ec5e34450ca0d5def180fd28" datatype="html">
@@ -1015,7 +1015,7 @@
         <target>Турнири и роли</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
-          <context context-type="linenumber">103</context>
+          <context context-type="linenumber">125</context>
         </context-group>
       </trans-unit>
       <trans-unit id="27cb14232a5f816d17263834225e51fe22b7426f" datatype="html">
@@ -1023,11 +1023,11 @@
         <target>Име на турнира</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
-          <context context-type="linenumber">107</context>
+          <context context-type="linenumber">129</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
-          <context context-type="linenumber">145</context>
+          <context context-type="linenumber">167</context>
         </context-group>
       </trans-unit>
       <trans-unit id="d9c0446901e6ecf99ae0dff9d63229c9adabe9bf" datatype="html">
@@ -1035,11 +1035,11 @@
         <target>Лого на турнира</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
-          <context context-type="linenumber">115</context>
+          <context context-type="linenumber">137</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
-          <context context-type="linenumber">153</context>
+          <context context-type="linenumber">175</context>
         </context-group>
       </trans-unit>
       <trans-unit id="efef9052a28ad37bb4a063c2092a8bb2e0252d8d" datatype="html">
@@ -1047,11 +1047,11 @@
         <target>Описание на турнира</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
-          <context context-type="linenumber">123</context>
+          <context context-type="linenumber">145</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
-          <context context-type="linenumber">161</context>
+          <context context-type="linenumber">183</context>
         </context-group>
       </trans-unit>
       <trans-unit id="f60960faa2cd3e0db11e48688774d05dfa9d715b" datatype="html">
@@ -1059,11 +1059,11 @@
         <target>Крайна дата</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
-          <context context-type="linenumber">135</context>
+          <context context-type="linenumber">157</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
-          <context context-type="linenumber">173</context>
+          <context context-type="linenumber">195</context>
         </context-group>
       </trans-unit>
       <trans-unit id="b36e1450940b7f6028d8587568c7d669b53f7a06" datatype="html">
@@ -1071,7 +1071,7 @@
         <target>Активен</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
-          <context context-type="linenumber">138</context>
+          <context context-type="linenumber">160</context>
         </context-group>
       </trans-unit>
       <trans-unit id="b14a6a657def8351575e9abf049c9fdd55675950" datatype="html">
@@ -1079,7 +1079,7 @@
         <target>Няма дефинирани роли</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
-          <context context-type="linenumber">183</context>
+          <context context-type="linenumber">205</context>
         </context-group>
       </trans-unit>
       <trans-unit id="b9b3f11db278e64ed2cf44e46d0790c62f758338" datatype="html">
@@ -1087,7 +1087,7 @@
         <target>Нова роля</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin.component.html</context>
-          <context context-type="linenumber">186</context>
+          <context context-type="linenumber">208</context>
         </context-group>
       </trans-unit>
       <trans-unit id="d8512e2e339ff4f4991934a6f816a78b0bc3c9c4" datatype="html">
@@ -1386,9 +1386,9 @@
           <context context-type="linenumber">106</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="0085d7b7e1d7b343fef0ace509a7759330447989" datatype="html">
-        <source>Registrations are open until the deadline is reached, <x id="INTERPOLATION" equiv-text="{{ dates.regDeadline }}"/>, or until all open slots have been filled (16 CS:GO teams, 32 StarCraft II players). Successful registration completion requires registration fee payment - 300 BGN (VAT incl.) per team or 60 BGN (VAT incl.) per individual competitor. Registration fee paymant is done with a bank transfer after the registration form has been submitted. <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>All registration fees are being added to the prize pool fund. At the end of the season the prize pool will be donated to a charitable cause chosen by the winners!<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
-        <target>Записването ще бъде отворено до изтичане на крайния срок, <x id="INTERPOLATION" equiv-text="{{ dates.regDeadline }}"/>, или след запълване на всички отворени места (16 CS:GO отбора, 32 StarCraft II състезателя). Успешното завъзшване на регистрацията изисква и заплащането на входна такса - 300лв. с вкл. ДДС на отбор или 60лв. с вкл. ДДС на индивидуален състезател. Заплащането на таксата става по банков път след регистрацията. <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Всички средства събрани от таксите за регистрация се прибавят към наградният фонд на събитието. В края на сезона наградният фонд ще бъде дарен на благотворителни каузи избрани от участниците победители!<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
+      <trans-unit id="4d7552a8ec39efe26f25ab06dcb73f819c98beca" datatype="html">
+        <source>Registrations are open until the deadline is reached, <x id="INTERPOLATION" equiv-text="{{ dates.regDeadline }}"/>, or until all open slots have been filled (16 CS:GO teams, 32 StarCraft II players). Successful registration completion requires registration fee payment - 300 BGN per team or 60 BGN per individual competitor. Registration fee payment is done with a bank transfer after the registration form has been submitted. <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>All registration fees are being added to the prize pool fund. At the end of the season the prize pool will be donated to a charitable cause chosen by the winners!<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <target>Записването ще бъде отворено до изтичане на крайния срок, <x id="INTERPOLATION" equiv-text="{{ dates.regDeadline }}"/>, или след запълване на всички отворени места (16 CS:GO отбора, 32 StarCraft II състезателя). Успешното завъзшване на регистрацията изисква и заплащането на входна такса - 300лв. на отбор или 60лв. на индивидуален състезател. Заплащането на таксата става по банков път след регистрацията. <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Всички средства събрани от таксите за регистрация се прибавят към наградният фонд на събитието. В края на сезона наградният фонд ще бъде дарен на благотворителни каузи избрани от участниците победители!<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
           <context context-type="linenumber">107</context>
