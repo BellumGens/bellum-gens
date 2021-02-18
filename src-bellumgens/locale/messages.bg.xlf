@@ -747,7 +747,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-strategies/strategy-editor/strategy-editor.component.html</context>
-          <context context-type="linenumber">116</context>
+          <context context-type="linenumber">115</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-strategies/team-strategies.component.html</context>
@@ -1460,6 +1460,7 @@
       </trans-unit>
       <trans-unit id="c2317b4bdf2cb99d1f55afbb550ee164e909b90d" datatype="html">
         <source>Layers</source>
+        <target>Слоеве</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-strategies/strategy-editor/strategy-editor.component.html</context>
           <context context-type="linenumber">12</context>
@@ -1467,6 +1468,7 @@
       </trans-unit>
       <trans-unit id="764a8a101f8ee5a4b98844e93406182fb078507b" datatype="html">
         <source>Team</source>
+        <target>Отбор</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-strategies/strategy-editor/strategy-editor.component.html</context>
           <context context-type="linenumber">38</context>
@@ -1474,6 +1476,7 @@
       </trans-unit>
       <trans-unit id="b4fbdb1448b08fa3ac78d2f4c06e1a26f143c1d4" datatype="html">
         <source>Player Tokens</source>
+        <target>Играчи</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-strategies/strategy-editor/strategy-editor.component.html</context>
           <context context-type="linenumber">49</context>
@@ -1481,6 +1484,7 @@
       </trans-unit>
       <trans-unit id="cfd0384872a5c925f762e10643e9b19a5cdd4c1b" datatype="html">
         <source>Utility</source>
+        <target>Гранати</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-strategies/strategy-editor/strategy-editor.component.html</context>
           <context context-type="linenumber">77</context>
@@ -1488,6 +1492,7 @@
       </trans-unit>
       <trans-unit id="5979d1f693187bd7e0cd1df2332a8e1ab1b5e602" datatype="html">
         <source>Freeflow brushes</source>
+        <target>Четки за свободно рисуване</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-strategies/strategy-editor/strategy-editor.component.html</context>
           <context context-type="linenumber">88</context>
@@ -1495,34 +1500,39 @@
       </trans-unit>
       <trans-unit id="234787125b659a14f73d2e26dc8f0c0269623202" datatype="html">
         <source>Brush Color</source>
+        <target>Цвят на четката</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-strategies/strategy-editor/strategy-editor.component.html</context>
           <context context-type="linenumber">92</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="f288a3274db6a966db6f9e11fcb47f23244d1354" datatype="html">
-        <source> <x id="INTERPOLATION" equiv-text="{{ saveInProgress ? &apos;Saving...&apos; : &apos;Save&apos; }}"/> </source>
+      <trans-unit id="43161c0b95ba50ce9972fbcf0c7c879b9820e65d" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{ saveInProgress ? &apos;Saving...&apos; : &apos;Save&apos; }}"/></source>
+        <target><x id="INTERPOLATION" equiv-text="{{ saveInProgress ? &apos;Запазване...&apos; : &apos;Запази&apos; }}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-strategies/strategy-editor/strategy-editor.component.html</context>
-          <context context-type="linenumber">100,102</context>
+          <context context-type="linenumber">101</context>
         </context-group>
       </trans-unit>
       <trans-unit id="b527d99217455eeea21caaff4477c674a041944a" datatype="html">
         <source>Radars taken from</source>
+        <target>Радарите са взаимствани от</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-strategies/strategy-editor/strategy-editor.component.html</context>
-          <context context-type="linenumber">106</context>
+          <context context-type="linenumber">105</context>
         </context-group>
       </trans-unit>
       <trans-unit id="b0ad79d4968b0f85f20fcd26e6a530f830fa9245" datatype="html">
         <source>Are you sure you want to remove this layer...</source>
+        <target>Сигурен ли си, че искаш да изтриеш този слой...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-strategies/strategy-editor/strategy-editor.component.html</context>
-          <context context-type="linenumber">117</context>
+          <context context-type="linenumber">116</context>
         </context-group>
       </trans-unit>
       <trans-unit id="83791af2ecce5b38a2a0f1c1adb832dd22588447" datatype="html">
         <source>Create new strategy</source>
+        <target>Създай нова стратегия</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-strategies/team-strategies.component.html</context>
           <context context-type="linenumber">10</context>
@@ -1530,6 +1540,7 @@
       </trans-unit>
       <trans-unit id="79ba1f10da5702aec81a950c3cbdc2d90102783f" datatype="html">
         <source>Order By</source>
+        <target>Подреди по</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-strategies/team-strategies.component.html</context>
           <context context-type="linenumber">23</context>
@@ -1537,6 +1548,7 @@
       </trans-unit>
       <trans-unit id="6d0c185fb416644869e9bfab9d15adc5e4773b1f" datatype="html">
         <source>No strategies found...</source>
+        <target>Няма намерени стратегии...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-strategies/team-strategies.component.html</context>
           <context context-type="linenumber">34</context>
@@ -1544,6 +1556,7 @@
       </trans-unit>
       <trans-unit id="0bd8b27f60a1f098a53e06328426d818e3508ff9" datatype="html">
         <source>Share</source>
+        <target>Сподели</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-strategies/team-strategies.component.html</context>
           <context context-type="linenumber">85</context>
@@ -1551,6 +1564,7 @@
       </trans-unit>
       <trans-unit id="a06b18b9d35598a293b88cff5460b0f29a5411be" datatype="html">
         <source>Load More...</source>
+        <target>Зареди още...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-strategies/team-strategies.component.html</context>
           <context context-type="linenumber">106</context>
@@ -1558,6 +1572,7 @@
       </trans-unit>
       <trans-unit id="d4323fd3f1e6d3a9e094d7945b625917a0e8659e" datatype="html">
         <source>This team has not participated in any competitions.</source>
+        <target>Отборът не е участвал в състезания.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-tournaments/team-tournaments.component.html</context>
           <context context-type="linenumber">1</context>
@@ -1565,6 +1580,7 @@
       </trans-unit>
       <trans-unit id="2f933b826a570836cab04f683970a2d22068458c" datatype="html">
         <source>Date</source>
+        <target>Дата</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-tournaments/team-tournaments.component.html</context>
           <context context-type="linenumber">12</context>
@@ -1572,6 +1588,7 @@
       </trans-unit>
       <trans-unit id="180092a6b8a6151a05f4a7552a2fb75fd159dfa8" datatype="html">
         <source>Match</source>
+        <target>Среща</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-tournaments/team-tournaments.component.html</context>
           <context context-type="linenumber">15</context>
@@ -1579,13 +1596,15 @@
       </trans-unit>
       <trans-unit id="80ebb1b82fed892345531fff2ba095160972dd86" datatype="html">
         <source>Result</source>
+        <target>Резултат</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-tournaments/team-tournaments.component.html</context>
           <context context-type="linenumber">35</context>
         </context-group>
       </trans-unit>
       <trans-unit id="59cccf415c17eb925a29d75c889b369d1c1f1d01" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{ value === emptyGuid ? &apos;Pending&apos; : value === team?.teamId ? &apos;Win&apos; : &apos;Loss&apos; }}"/></source>
+        <source><x id="INTERPOLATION" equiv-text="{{ value === emptyGuid ? &apos;Предстои&apos; : value === team?.teamId ? &apos;Win&apos; : &apos;Loss&apos; }}"/></source>
+        <target><x id="INTERPOLATION" equiv-text="{{ value === emptyGuid ? &apos;Предстои&apos; : value === team?.teamId ? &apos;Победа&apos; : &apos;Загуба&apos; }}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-tournaments/team-tournaments.component.html</context>
           <context context-type="linenumber">38</context>
@@ -1593,6 +1612,8 @@
       </trans-unit>
       <trans-unit id="f968f4a83edfcfda5f3d64ba069fda1a0c2ae30e" datatype="html">
         <source>or login with form</source>
+        <target>или влез с име и парола</target>
+        <target><x id="INTERPOLATION" equiv-text="{{ value === emptyGuid ? &apos;Предстои&apos; : value === team?.teamId ? &apos;Победа&apos; : &apos;Загуба&apos; }}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/login/login-dialog/login-dialog.component.html</context>
           <context context-type="linenumber">5</context>
@@ -1600,6 +1621,7 @@
       </trans-unit>
       <trans-unit id="08c74dc9762957593b91f6eb5d65efdfc975bf48" datatype="html">
         <source>Username</source>
+        <target>Потребителско име</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/login/login-dialog/login-dialog.component.html</context>
           <context context-type="linenumber">7</context>
@@ -1611,6 +1633,7 @@
       </trans-unit>
       <trans-unit id="c32ef07f8803a223a83ed17024b38e8d82292407" datatype="html">
         <source>Password</source>
+        <target>Парола</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/login/login-dialog/login-dialog.component.html</context>
           <context context-type="linenumber">15</context>
@@ -1622,6 +1645,7 @@
       </trans-unit>
       <trans-unit id="3eb49d60bd859eb2d9d3a6d380cdf4e0b8252333" datatype="html">
         <source>Remember me</source>
+        <target>Запомни ме</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/login/login-dialog/login-dialog.component.html</context>
           <context context-type="linenumber">19</context>
@@ -1629,6 +1653,7 @@
       </trans-unit>
       <trans-unit id="3bb93d5b02f1f29b3940d4608c8289fff5a82220" datatype="html">
         <source>Don&apos;t have an account?</source>
+        <target>Нямате регистрация?</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/login/login-dialog/login-dialog.component.html</context>
           <context context-type="linenumber">21</context>
@@ -1636,6 +1661,7 @@
       </trans-unit>
       <trans-unit id="801c464dfaabb8eb2c16f2cc0bf81435030174dd" datatype="html">
         <source>login</source>
+        <target>вход</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/login/login-dialog/login-dialog.component.html</context>
           <context context-type="linenumber">25</context>
@@ -1647,6 +1673,7 @@
       </trans-unit>
       <trans-unit id="994363f08f9fbfa3b3994ff7b35c6904fdff18d8" datatype="html">
         <source>Profile</source>
+        <target>Профил</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/login/login.component.html</context>
           <context context-type="linenumber">11</context>
@@ -1658,6 +1685,7 @@
       </trans-unit>
       <trans-unit id="25508c929e905ee63d835a33652b4b10683179e4" datatype="html">
         <source>logout</source>
+        <target>изход</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/login/login.component.html</context>
           <context context-type="linenumber">35</context>
@@ -1665,6 +1693,7 @@
       </trans-unit>
       <trans-unit id="9a4328a5d7c4336ba01b604e4a5d9445dfd80e41" datatype="html">
         <source>Setup your account</source>
+        <target>Настройка на акаунта</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/registration/registration.component.html</context>
           <context context-type="linenumber">3</context>
@@ -1672,6 +1701,7 @@
       </trans-unit>
       <trans-unit id="5de538c0978c2504538817bdb227721b0bdc8ed9" datatype="html">
         <source>Username already taken...</source>
+        <target>Името е заето...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/registration/registration.component.html</context>
           <context context-type="linenumber">10</context>
@@ -1679,6 +1709,7 @@
       </trans-unit>
       <trans-unit id="598b500b7c3015f487fdae13b770a5eb38430371" datatype="html">
         <source>Must include at least 1 letter, 1 number and 1 special char</source>
+        <target>Трябва да съдържа поне 1 буква, 1 цифра и 1 символ</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/registration/registration.component.html</context>
           <context context-type="linenumber">34</context>
@@ -1686,6 +1717,7 @@
       </trans-unit>
       <trans-unit id="c1b7e6d75ff4285c7636c67e5ef259629b81725b" datatype="html">
         <source>Confirm Password</source>
+        <target>Потвърди паролата</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/registration/registration.component.html</context>
           <context context-type="linenumber">38</context>
@@ -1693,6 +1725,7 @@
       </trans-unit>
       <trans-unit id="cb694325f0b6a38f6921aa4d56381af191bfdd54" datatype="html">
         <source>Doesn&apos;t match...</source>
+        <target>Няма съвпадение...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/registration/registration.component.html</context>
           <context context-type="linenumber">40</context>
@@ -1700,6 +1733,7 @@
       </trans-unit>
       <trans-unit id="cfc2f436ec2beffb042e7511a73c89c372e86a6c" datatype="html">
         <source>Register</source>
+        <target>Регистрирай се</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/registration/registration.component.html</context>
           <context context-type="linenumber">49</context>
@@ -1707,6 +1741,7 @@
       </trans-unit>
       <trans-unit id="dc996c9abd70bed1d1924bce6e5b75e9c45bbf77" datatype="html">
         <source>Associated Logins</source>
+        <target>Асоцирани акаунти</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/user-preferences/user-preferences.component.html</context>
           <context context-type="linenumber">2</context>
@@ -1714,6 +1749,7 @@
       </trans-unit>
       <trans-unit id="87bb542a1f5c0dc963d29df364c6ac829279eba1" datatype="html">
         <source><x id="INTERPOLATION" equiv-text="{{ disableLogin(provider.name) ? provider.name : &apos;Add &apos; + provider.name }}"/></source>
+        <target><x id="INTERPOLATION" equiv-text="{{ disableLogin(provider.name) ? provider.name : &apos;Добави &apos; + provider.name }}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/user-preferences/user-preferences.component.html</context>
           <context context-type="linenumber">13</context>
@@ -1721,6 +1757,7 @@
       </trans-unit>
       <trans-unit id="24ecfa0b4a99d21b20b04950630e656d0519cd17" datatype="html">
         <source>Create username and password</source>
+        <target>Създай потребителско име и парола</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/user-preferences/user-preferences.component.html</context>
           <context context-type="linenumber">17</context>
@@ -1728,6 +1765,7 @@
       </trans-unit>
       <trans-unit id="9fefbb18689d747e86cb3b60086e5a52f34ef750" datatype="html">
         <source>Additional Preferences</source>
+        <target>Допълнителни настройки</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/user-preferences/user-preferences.component.html</context>
           <context context-type="linenumber">19</context>
@@ -1735,6 +1773,7 @@
       </trans-unit>
       <trans-unit id="cb37a606ee3450afdf67c7a186ef9988f2c4e1f4" datatype="html">
         <source>Show profile in searches</source>
+        <target>Показвай профила ми при търсене</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/user-preferences/user-preferences.component.html</context>
           <context context-type="linenumber">22</context>
@@ -1742,6 +1781,7 @@
       </trans-unit>
       <trans-unit id="978d2295734e8ddac32d3eaa58593df941de86d5" datatype="html">
         <source>Tournament Registration</source>
+        <target>Регистрации за турнири</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/user-preferences/user-preferences.component.html</context>
           <context context-type="linenumber">26</context>
@@ -1749,6 +1789,7 @@
       </trans-unit>
       <trans-unit id="c31bec609580fc8a8c52bb3058e973a9528adc0a" datatype="html">
         <source>Registration for <x id="INTERPOLATION" equiv-text="{{ registration.game ? &apos;StarCraft II&apos; : &apos;CS:GO&apos; }}"/></source>
+        <target>Регистрация за <x id="INTERPOLATION" equiv-text="{{ registration.game ? &apos;StarCraft II&apos; : &apos;CS:GO&apos; }}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/user-preferences/user-preferences.component.html</context>
           <context context-type="linenumber">30</context>
@@ -1756,6 +1797,7 @@
       </trans-unit>
       <trans-unit id="ccb854cc03b3fea200d7247fa750b15362a6652c" datatype="html">
         <source>Confirmation code <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{registration.hash}}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <target>Код за порвърждение <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{registration.hash}}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/user-preferences/user-preferences.component.html</context>
           <context context-type="linenumber">31</context>
@@ -1763,6 +1805,7 @@
       </trans-unit>
       <trans-unit id="6eb9dc94d8419e8058a8046f8016dd5bbd61be31" datatype="html">
         <source><x id="INTERPOLATION" equiv-text="{{ registration.state ? &apos;Confirmed&apos; : &apos;Pending&apos; }}"/></source>
+        <target><x id="INTERPOLATION" equiv-text="{{ registration.state ? &apos;Потвърдена&apos; : &apos;Очакваща плащане&apos; }}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/user-preferences/user-preferences.component.html</context>
           <context context-type="linenumber">33</context>
@@ -1770,6 +1813,7 @@
       </trans-unit>
       <trans-unit id="57c5c9697f53670d4668f56554715598b48bb6d0" datatype="html">
         <source>Delete Account Forever</source>
+        <target>Изтриване на профила завинаги</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/user-preferences/user-preferences.component.html</context>
           <context context-type="linenumber">41</context>
@@ -1777,6 +1821,7 @@
       </trans-unit>
       <trans-unit id="c5f3fb880fbd46f6b5ef0cef7ed174c0cd66b51f" datatype="html">
         <source>Pressing OK will delete your user account permanently...</source>
+        <target>Натискането на ОК ще изтрие профила ви перманентно...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/user-preferences/user-preferences.component.html</context>
           <context context-type="linenumber">47</context>
@@ -1784,6 +1829,7 @@
       </trans-unit>
       <trans-unit id="079fc56305a2e646ff9ff9259b0a02dcf73d6d0f" datatype="html">
         <source>Pressing OK will delete your tournament registration permanently...</source>
+        <target>Натискането на ОК ще изтрие турнирната ви регистрация перманентно...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/user-preferences/user-preferences.component.html</context>
           <context context-type="linenumber">50</context>
