@@ -1074,8 +1074,8 @@
           <context context-type="linenumber">58</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2b5669ec808beea0a77126eb447b4e3ef9f87969" datatype="html">
-        <source>Drag players to add them to the active lineup</source>
+      <trans-unit id="db78179f803f065d11ac368ca8118f0e01d9d482" datatype="html">
+        <source>Drag players to add them to the active roster</source>
         <target>Дръпни играч от пейката за да го добавиш към активния ростер</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-details/team-details.component.html</context>
@@ -1084,6 +1084,7 @@
       </trans-unit>
       <trans-unit id="9387c2571ac032777c1a1f97c815a8820d81365d" datatype="html">
         <source>Bench is currently empty.</source>
+        <target>Пейката е празна.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-details/team-details.component.html</context>
           <context context-type="linenumber">83</context>
@@ -1091,6 +1092,7 @@
       </trans-unit>
       <trans-unit id="43c4133c7a0263d2e33dd4c2e74d40784b2e4b1c" datatype="html">
         <source>Inactive</source>
+        <target>Неактивни</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-details/team-details.component.html</context>
           <context context-type="linenumber">90</context>
@@ -1098,6 +1100,7 @@
       </trans-unit>
       <trans-unit id="df22883d0e2aa262beeb7f9787fdb3c9bdd2ab52" datatype="html">
         <source>No inactive members.</source>
+        <target>Няма неактивни членове.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-details/team-details.component.html</context>
           <context context-type="linenumber">114</context>
@@ -1105,6 +1108,7 @@
       </trans-unit>
       <trans-unit id="175a73cade28a80f03097107aa68d4934516407e" datatype="html">
         <source>Pressing OK will permanently remove this player from the team...</source>
+        <target>Натискане на OK ще премахне играча от отбора перманентно...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-details/team-details.component.html</context>
           <context context-type="linenumber">123</context>
@@ -1112,6 +1116,7 @@
       </trans-unit>
       <trans-unit id="95c8ca74d890ebe610bf9a02de8f68c6a4a66d4d" datatype="html">
         <source>You need to login to view your teams.</source>
+        <target>Трябва да влезеш в акаунта си за да видиш отборите си.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-nav/team-nav.component.html</context>
           <context context-type="linenumber">2</context>
@@ -1119,6 +1124,7 @@
       </trans-unit>
       <trans-unit id="dce5044642c722e24e55659d7bda4dd7c63e9d7e" datatype="html">
         <source><x id="START_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;igx-icon&gt;"/>add_circle_outline<x id="CLOSE_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;/igx-icon&gt;"/>Create New CS:GO Team</source>
+        <target><x id="START_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;igx-icon&gt;"/>add_circle_outline<x id="CLOSE_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;/igx-icon&gt;"/>Създай нов CS:GO отбор</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-nav/team-nav.component.html</context>
           <context context-type="linenumber">3</context>
@@ -1126,13 +1132,15 @@
       </trans-unit>
       <trans-unit id="1318c37655a968099e8f9dd2343f89504e8e6f5e" datatype="html">
         <source><x id="START_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;igx-icon&gt;"/>visibility<x id="CLOSE_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;/igx-icon&gt;"/>Team Details</source>
+        <target><x id="START_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;igx-icon&gt;"/>visibility<x id="CLOSE_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;/igx-icon&gt;"/>Детайли за отбора</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-nav/team-nav.component.html</context>
           <context context-type="linenumber">14</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="87fb7bd7a343029f936009840a506dac7edaecb8" datatype="html">
-        <source><x id="START_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;igx-icon&gt;"/>delete_forever<x id="CLOSE_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;/igx-icon&gt; "/> Abandon Team</source>
+      <trans-unit id="3ddb53a5cfb6b85c395220b867bacb07b78cc227" datatype="html">
+        <source><x id="START_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;igx-icon&gt;"/>delete_forever<x id="CLOSE_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;/igx-icon&gt;"/>Abandon Team</source>
+        <target><x id="START_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;igx-icon&gt;"/>visibility<x id="CLOSE_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;/igx-icon&gt;"/>Напусни отбора</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-nav/team-nav.component.html</context>
           <context context-type="linenumber">15</context>
@@ -1140,6 +1148,7 @@
       </trans-unit>
       <trans-unit id="ec60dafe0a0ccd853f88a9958d80735049922dc9" datatype="html">
         <source>You will leave this team permanently. If you own the team and are the only team member, then the team will also be deleted...</source>
+        <target>Ще напуснеш този отбор перманентно. Ако ти си единствен член на отбора, тогава отборът също ще бъде изтрит...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-nav/team-nav.component.html</context>
           <context context-type="linenumber">23</context>
@@ -1147,6 +1156,7 @@
       </trans-unit>
       <trans-unit id="3f7375958010c5195648bc0d835ecbca71df8910" datatype="html">
         <source>Import from Steam Group</source>
+        <target>Създай от Стийм група</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-new/team-new.component.html</context>
           <context context-type="linenumber">3</context>
@@ -1154,6 +1164,7 @@
       </trans-unit>
       <trans-unit id="331569be55b32c1d34021f615153236b6f5c43d4" datatype="html">
         <source>Search Groups</source>
+        <target>Търси в групите</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-new/team-new.component.html</context>
           <context context-type="linenumber">8</context>
@@ -1161,6 +1172,7 @@
       </trans-unit>
       <trans-unit id="995bd8f54bbf93c05cb398aa04681b487b4794e1" datatype="html">
         <source>No Steam groups found...</source>
+        <target>Няма намерени стийм групи...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-new/team-new.component.html</context>
           <context context-type="linenumber">16</context>
@@ -1168,6 +1180,7 @@
       </trans-unit>
       <trans-unit id="da60f6a7a72e4de72e559e3ea27dce1fe5e68ace" datatype="html">
         <source>Or create with form</source>
+        <target>Или създай чрез формуляр</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-new/team-new.component.html</context>
           <context context-type="linenumber">24</context>
@@ -1175,6 +1188,7 @@
       </trans-unit>
       <trans-unit id="8cb29bd8a41385df3fafa700e888c9f9b7f66241" datatype="html">
         <source>Team name</source>
+        <target>Име на отбора</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-new/team-new.component.html</context>
           <context context-type="linenumber">27</context>
@@ -1182,6 +1196,7 @@
       </trans-unit>
       <trans-unit id="cc04150fc75e3c4eca19bbc7d585388f825433b1" datatype="html">
         <source>Team motto</source>
+        <target>Мото на отбора</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-new/team-new.component.html</context>
           <context context-type="linenumber">41</context>
@@ -1189,6 +1204,7 @@
       </trans-unit>
       <trans-unit id="19057ed3324dd5949509187671ac41b073fdcc2b" datatype="html">
         <source>Team Avatar URL</source>
+        <target>Аватар отбора</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-new/team-new.component.html</context>
           <context context-type="linenumber">63</context>
@@ -1196,6 +1212,7 @@
       </trans-unit>
       <trans-unit id="52105bbfe8076e464bdaed2cf5bfd1ed81cc0564" datatype="html">
         <source>You must provide an image url</source>
+        <target>Трябва да предоставите линк към картинка</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-new/team-new.component.html</context>
           <context context-type="linenumber">73</context>
@@ -1207,6 +1224,7 @@
       </trans-unit>
       <trans-unit id="d3b6eced9f54e6d4e82b129c12db8ecb40bc76d0" datatype="html">
         <source><x id="INTERPOLATION" equiv-text="{{ inProgress ? &apos;Submitting...&apos; : &apos;Submit&apos; }}"/></source>
+        <target><x id="INTERPOLATION" equiv-text="{{ inProgress ? &apos;Регистриране...&apos; : &apos;Регистрирай&apos; }}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-new/team-new.component.html</context>
           <context context-type="linenumber">80</context>
@@ -1214,27 +1232,31 @@
       </trans-unit>
       <trans-unit id="e444896ff82391b09d233979b42849027ee808cc" datatype="html">
         <source>Notifications for <x id="INTERPOLATION" equiv-text="{{ team.teamName }}"/></source>
+        <target>Известия за <x id="INTERPOLATION" equiv-text="{{ team.teamName }}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-notifications/team-notifications.component.html</context>
           <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="b9e919c6a3bc26b92bd4f6bf61cc9b4bfa86fbe2" datatype="html">
-        <source><x id="START_LINK" ctype="x-a" equiv-text="&lt;a [routerLink]=&quot;[&apos;/players&apos;, notification.applicantId]&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ notification.userName }}"/><x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt; "/> has applied to join your team! </source>
+      <trans-unit id="f8548b24ac98a02667a91e01552fa16d32ec860b" datatype="html">
+        <source><x id="START_LINK" ctype="x-a" equiv-text="&lt;a [routerLink]=&quot;[&apos;/players&apos;, notification.applicantId]&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ notification.userName }}"/><x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt; "/> has applied to join your team!</source>
+        <target><x id="START_LINK" ctype="x-a" equiv-text="&lt;a [routerLink]=&quot;[&apos;/players&apos;, notification.applicantId]&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ notification.userName }}"/><x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt; "/> е кандидатствал да се присъедини към отбора ти!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-notifications/team-notifications.component.html</context>
-          <context context-type="linenumber">7,8</context>
+          <context context-type="linenumber">6</context>
         </context-group>
       </trans-unit>
       <trans-unit id="52c75aa6817baba878ec98bfce2078bb88fd8f79" datatype="html">
         <source>Application: <x id="INTERPOLATION" equiv-text="{{ notification.message }}"/></source>
+        <target>Кандидатура: <x id="INTERPOLATION" equiv-text="{{ notification.message }}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-notifications/team-notifications.component.html</context>
-          <context context-type="linenumber">9</context>
+          <context context-type="linenumber">7</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4f8b2bb476981727ab34ed40fde1218361f92c45" datatype="html">
         <source>Details</source>
+        <target>Детайли</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-overview/team-overview.component.html</context>
           <context context-type="linenumber">25</context>
@@ -1242,20 +1264,27 @@
       </trans-unit>
       <trans-unit id="1adb91667ecd9d40c6a71e71403e28a21f3ca235" datatype="html">
         <source>Competitions</source>
+        <target>Състезания</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-overview/team-overview.component.html</context>
           <context context-type="linenumber">36</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="f384e03c86eea481be4697ecde3b48fdca0a13d0" datatype="html">
-        <source>Preferences</source>
+      <trans-unit id="121cc5391cd2a5115bc2b3160379ee5b36cd7716" datatype="html">
+        <source>Settings</source>
+        <target>Настройки</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-overview/team-overview.component.html</context>
           <context context-type="linenumber">60</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/login/login.component.html</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="d72b33cb154f7b8e16a00c32056becfc8a8cba89" datatype="html">
         <source>Team Info</source>
+        <target>Информация за отбора</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-preferences/team-preferences.component.html</context>
           <context context-type="linenumber">3</context>
@@ -1263,6 +1292,7 @@
       </trans-unit>
       <trans-unit id="cff1428d10d59d14e45edec3c735a27b5482db59" datatype="html">
         <source>Name</source>
+        <target>Име</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-preferences/team-preferences.component.html</context>
           <context context-type="linenumber">5</context>
@@ -1612,13 +1642,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/login/login.component.html</context>
           <context context-type="linenumber">35</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="121cc5391cd2a5115bc2b3160379ee5b36cd7716" datatype="html">
-        <source>Settings</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src-common/lib/login/login.component.html</context>
-          <context context-type="linenumber">43</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9a4328a5d7c4336ba01b604e4a5d9445dfd80e41" datatype="html">
