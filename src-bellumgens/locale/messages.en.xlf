@@ -293,8 +293,8 @@
           <context context-type="linenumber">52</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="f7568c706e790c4bcd1947c880c5045f43155420" datatype="html">
-        <source>Bellum Gens provides an in-browser CS:GO strategy editor, with all maps available. You can pick a map and draw strategies on the map radar, then share with the community for discussions, or make it private and share it with your team only.</source>
+      <trans-unit id="1fc212ff3439cff585f60e8f34104289e7a33a68" datatype="html">
+        <source>Bellum Gens provides an in-browser CS:GO strategy editor with all maps available. You can pick a map and draw strategies on the map radar, then share with the community for discussions, or make it private and share it with your team only.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
           <context context-type="linenumber">53</context>
@@ -389,8 +389,8 @@
           <context context-type="linenumber">14</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="599ee401031bc0f95308d45cfd0345b616197327" datatype="html">
-        <source>Subscribe to our newsletter.</source>
+      <trans-unit id="4da3fca528dbea95fa4ccad78f26a298e670a527" datatype="html">
+        <source>Get email updates from us!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
           <context context-type="linenumber">139</context>
@@ -452,8 +452,8 @@
           <context context-type="linenumber">10</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3f22c67bfa6a9ef0de1ed6f9c8ef9a377803c548" datatype="html">
-        <source>Now it&apos;s time to complete your profile! Fill in your <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>preferred playstyle<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>, you <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>availability<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> and your <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>preferred map pool<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>.</source>
+      <trans-unit id="aab33cc10fb73f6a3fa07bfad2be9f8d3b062e0a" datatype="html">
+        <source>Now it&apos;s time to complete your profile! Fill in your <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>preferred playstyle<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>, your <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>availability<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> and your <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>preferred map pool<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/player-section/player-details/player-details.component.html</context>
           <context context-type="linenumber">11</context>
@@ -547,8 +547,8 @@
           <context context-type="linenumber">149</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5a879a3698e421c2112f9bd3e78f0d043a2d8f06" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{ viewAll ? &apos;All&apos; : &apos;Active Duty&apos; }}"/> Maps</source>
+      <trans-unit id="f09fbe0b5bd58b1fc5bd80507f82b77bbb067c30" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{ viewAll ? &apos;Showing All&apos; : &apos;Showing Active Duty&apos; }}"/> Maps</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/player-section/player-details/player-details.component.html</context>
           <context context-type="linenumber">158</context>
@@ -561,8 +561,8 @@
           <context context-type="linenumber">159</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="03d2ed39f2e6a8eac9d54bb3423b1ff8ff3d361e" datatype="html">
-        <source>Add a new strategy?</source>
+      <trans-unit id="9045b1b95e1289d023d50a5765528707b17d0df1" datatype="html">
+        <source>Add a new strategy</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/player-section/user-strategies/user-strategies.component.html</context>
           <context context-type="linenumber">4</context>
