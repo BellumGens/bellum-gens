@@ -1,9 +1,11 @@
 /***************************************************************************************************
  * Load `$localize` onto the global scope - used if i18n tags appear in Angular templates.
  */
+import '@angular/localize/init';
 import 'zone.js/dist/zone-node';
 
 import { APP_BASE_HREF } from '@angular/common';
+import { LOCALE_ID } from '@angular/core';
 import { ngExpressEngine } from '@nguniversal/express-engine';
 
 import * as express from 'express';
@@ -18,9 +20,13 @@ import { environment } from './src-common/environments/environment';
 (global as any).XMLHttpRequest = xmlhttprequest.XMLHttpRequest;
 
 // The Express app is exported so that it can be used by serverless Functions.
-export const app = () => {
+export const app = (lang: string) => {
   const server = express();
-  const distFolder = join(process.cwd(), environment.distFolderBellumGens);
+  let distFolder = join(process.cwd(), environment.distFolderBellumGens, lang);
+
+  if (!existsSync(distFolder)) {
+    distFolder = join(process.cwd(), environment.distFolderBellumGens);
+  }
 
   const indexHtml = existsSync(join(distFolder, 'index.original.html')) ? 'index.original.html' : 'index';
 
@@ -44,12 +50,12 @@ export const app = () => {
 
   // All regular routes use the Universal engine
   server.get('*', (req, res) => {
-    res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }] });
+    res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }, { provide: LOCALE_ID, useValue: lang }] });
   });
 
   // All eb-league routes should redirect
   server.get('/tournament*', (req, res) => {
-    res.redirect(environment.ebleague);
+    res.redirect(environment.ebleague + req.originalUrl);
   });
 
   return server;
@@ -59,7 +65,12 @@ const run = () => {
   const port = process.env.PORT || 4000;
 
   // Start up the Node server
-  const server = app();
+  const appBg = app('bg');
+  const appEn = app('en');
+  const server = express();
+  server.use('/bg', appBg);
+  server.use('/en', appEn);
+  server.use('', appEn);
   server.listen(port, () => {
     console.log(`Node Express server listening on http://localhost:${port}`);
   });

@@ -29,7 +29,8 @@ import {
   IgxDividerModule,
   IgxCheckboxModule,
   IgxGridModule,
-  IgxDialogModule
+  IgxDialogModule,
+  IgxActionStripModule
 } from '@infragistics/igniteui-angular';
 
 
@@ -64,6 +65,7 @@ import {
     IgxCheckboxModule,
     IgxDividerModule,
     IgxDialogModule,
+    IgxActionStripModule,
     IgxGridModule
   ]
 })

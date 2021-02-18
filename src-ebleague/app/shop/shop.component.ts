@@ -13,7 +13,7 @@ import { Title, Meta } from '@angular/platform-browser';
 })
 export class ShopComponent extends BaseComponent {
   public order = Object.assign({}, EMPTY_JERSEY_ORDER);
-  public basePromo = .5;
+  public basePromo = .3;
   public promo = this.basePromo;
   public invalidPromo = false;
   public inProgress = false;

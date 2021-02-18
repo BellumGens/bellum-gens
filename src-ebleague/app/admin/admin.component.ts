@@ -10,11 +10,15 @@ import {
   DataType,
   IGroupingExpression,
   SortingDirection,
-  DefaultSortingStrategy
+  DefaultSortingStrategy,
+  IgxGridRowComponent,
+  IgxGridTransaction,
+  IgxTransactionService
 } from '@infragistics/igniteui-angular';
 import { noop } from 'rxjs';
 
 @Component({
+  providers: [{ provide: IgxGridTransaction, useClass: IgxTransactionService }],
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss']
@@ -72,5 +76,15 @@ export class AdminComponent {
     const rowData = event.rowData;
     rowData[event.column.field] = event.newValue ? 1 : 0;
     this.apiService.confirmRegistration(rowData).subscribe();
+  }
+
+  public deleteRegistration(rowContext: IgxGridRowComponent) {
+    rowContext.grid.transactions.commit(rowContext.grid.data, rowContext.rowID);
+    this.apiService.deleteRegistration(rowContext.rowID).subscribe();
+  }
+
+  public deleteOrder(rowContext: IgxGridRowComponent) {
+    rowContext.grid.transactions.commit(rowContext.grid.data, rowContext.rowID);
+    this.shopService.deleteOrder(rowContext.rowID).subscribe();
   }
 }

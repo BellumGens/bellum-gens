@@ -43,6 +43,17 @@
         <igx-badge [value]="groupRow.records.length" class="igx-group-label__count-badge"></igx-badge>
       </div>
 
+      <igx-action-strip #regActionStrip>
+        <button title="Save" igxButton="icon" igxRipple *ngIf="regActionStrip.context?.dirty || regActionStrip.context?.deleted"
+            (click)="deleteRegistration(regActionStrip.context)">
+            <igx-icon>save</igx-icon>
+        </button>
+        <button title="Delete" igxButton="icon" igxRipple *ngIf="!regActionStrip.context?.deleted"
+            (click)="regActionStrip.context.delete()">
+            <igx-icon>delete</igx-icon>
+        </button>
+      </igx-action-strip>
+
     </igx-grid>
   </div>
 
@@ -94,6 +105,17 @@
           <div class="highlight">{{ details.size | sizeName }}</div>
         </div>
       </div>
+
+      <igx-action-strip #ordersActionStrip>
+        <button title="Save" igxButton="icon" igxRipple *ngIf="ordersActionStrip.context?.dirty || ordersActionStrip.context?.deleted"
+            (click)="deleteOrder(ordersActionStrip.context)">
+            <igx-icon>save</igx-icon>
+        </button>
+        <button title="Delete" igxButton="icon" igxRipple *ngIf="!ordersActionStrip.context?.deleted"
+            (click)="ordersActionStrip.context.delete()">
+            <igx-icon>delete</igx-icon>
+        </button>
+      </igx-action-strip>
     </igx-grid>
   </div>
 </div>

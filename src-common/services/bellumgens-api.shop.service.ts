@@ -18,6 +18,19 @@ export class ApiShopService {
     return this.http.post<JerseyOrder>(`${this._apiEndpoint}/shop/order`, order);
   }
 
+  public deleteOrder(orderId: string) {
+    return this.http.delete<JerseyOrder>(`${this._apiEndpoint}/shop/order?orderId=${orderId}`, { withCredentials: true }).pipe(
+      map(response => {
+        this.commService.emitSuccess('Order deleted successfully!');
+        return response;
+      }),
+      catchError(error => {
+        this.commService.emitError(error.error);
+        return throwError(error);
+      })
+    );;
+  }
+
   public checkForPromo(code: string) {
     return this.http.get<Promo>(`${this._apiEndpoint}/shop/promo?code=${code}`);
   }

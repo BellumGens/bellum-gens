@@ -13,6 +13,12 @@
           "style": "scss"
         }
       },
+      "i18n": {
+        "sourceLocale": "en",
+        "locales": {
+          "bg": "src-bellumgens/locale/messages.bg.xlf"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
@@ -51,6 +57,7 @@
                   "with": "src-common/environments/environment.prod.ts"
                 }
               ],
+              "localize": true,
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -59,7 +66,11 @@
               "vendorChunk": false,
               "buildOptimizer": true,
               "serviceWorker": true,
+              "i18nMissingTranslation": "error",
               "ngswConfigPath": "src-bellumgens/ngsw-config.json"
+            },
+            "bg": {
+              "localize": ["bg"]
             }
           }
         },
@@ -71,6 +82,9 @@
           "configurations": {
             "production": {
               "browserTarget": "bellum-gens:build:production"
+            },
+            "bg": {
+              "browserTarget": "bellum-gens:build:bg"
             }
           }
         },

@@ -37,7 +37,7 @@
         <p i18n>Recruit your team and manage your team member roles, team strategies, practice times and more....</p>
         <button igxButton="raised" *ngIf="!authUser else loggedIn" (click)="openLogin()" i18n>Sign-up Now</button>
         <ng-template #loggedIn>
-          <button igxButton="raised" routerLink="myteams" i18n>Team Section</button>
+          <button igxButton="raised" routerLink="myteams" i18n>Go to Team Section</button>
         </ng-template>
       </div>
     </div>
@@ -50,7 +50,7 @@
   </div>
   <div class="content-container-column align-center">
     <h3 i18n>CS:GO Strategy Editor</h3>
-    <p i18n>Bellum Gens provides an in-browser CS:GO strategy editor, with all maps available. You can pick a map and draw strategies on the map radar, then share with the community for discussions, or make it private and share it with your team only.</p>
+    <p i18n>Bellum Gens provides an in-browser CS:GO strategy editor with all maps available. You can pick a map and draw strategies on the map radar, then share with the community for discussions, or make it private and share it with your team only.</p>
     <button igxButton="raised" routerLink="/strategies" class="nav-button" i18n>Browse Strategies</button>
   </div>
 
@@ -136,7 +136,7 @@
           <igx-suffix *ngIf="subMail.value" (click)="userEmail = null">
             <igx-icon>clear</igx-icon>
           </igx-suffix>
-          <igx-hint i18n>Subscribe to our newsletter.</igx-hint>
+          <igx-hint i18n>Get email updates from us!</igx-hint>
         </igx-input-group>
 
         <button igxButton="outlined" class="submit-email" [disabled]="subscription.invalid || !userEmail" i18n>Subscribe</button>

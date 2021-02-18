@@ -8,7 +8,7 @@
 <div class="search-result-summary">
   <div *ngIf="newUser">
     <h4 i18n>Welcome <span class="highlight">{{ player.steamUser.steamID }}</span>!</h4>
-    <p i18n>Now it's time to complete your profile! Fill in your <span class="highlight">preferred playstyle</span>, you <span class="highlight">availability</span> and your <span class="highlight">preferred map pool</span>.</p>
+    <p i18n>Now it's time to complete your profile! Fill in your <span class="highlight">preferred playstyle</span>, your <span class="highlight">availability</span> and your <span class="highlight">preferred map pool</span>.</p>
   </div>
 
   <div *ngIf="player && !player.steamUserException && !player?.registered" i18n>This player is not registered! If you own the profile then <a (click)="openLogin()" class="navigatable">register</a> to complete it.</div>
@@ -155,7 +155,7 @@
   <!-- Map Pool -->
   <igx-card *ngIf="!player.userStatsException" class="player-detail__stats map-pool">
     <igx-card-header>
-      <h4 igxCardHeaderTitle i18n>{{ viewAll ? 'All' : 'Active Duty' }} Maps</h4>
+      <h4 igxCardHeaderTitle i18n>{{ viewAll ? 'Showing All' : 'Showing Active Duty' }} Maps</h4>
       <button igxButton="flat" igxRipple (click)="viewAll = !viewAll" i18n>{{viewAll ? 'View Active Duty' : 'View All'}}</button>
     </igx-card-header>
     <igx-card-content>
