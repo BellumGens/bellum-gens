@@ -1091,6 +1091,13 @@
           <context context-type="linenumber">104</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="10497d9ae9e907bc53121a8a61fe84cf03db62e5" datatype="html">
+        <source>Email us</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/app.component.html</context>
+          <context context-type="linenumber">121</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="dcc0e3b278e7daf82c57d6742ad35d2b4deff1a5" datatype="html">
         <source>Like us on Facebook</source>
         <context-group purpose="location">

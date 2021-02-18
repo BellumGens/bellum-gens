@@ -2,11 +2,15 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en-US" datatype="plaintext" original="ng2.template">
     <body>
-      <trans-unit id="78d939c2b61b6aa71861400c418390639e28c752" datatype="html">
-        <source>My teams</source>
+      <trans-unit id="6558f793d067ac2d813c5fa40a5b549d1dea4f48" datatype="html">
+        <source>My Teams</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/app.component.html</context>
           <context context-type="linenumber">8</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-bellumgens/app/app.component.html</context>
+          <context context-type="linenumber">39</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8bcabdf6b16cad0313a86c7e940c5e3ad7f9f8ab" datatype="html">
@@ -25,6 +29,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/app.component.html</context>
           <context context-type="linenumber">18</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-bellumgens/app/app.component.html</context>
+          <context context-type="linenumber">47</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2718e4eb178eae9375805bac59a0787d67f0cf78" datatype="html">
@@ -62,20 +70,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
           <context context-type="linenumber">126</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6558f793d067ac2d813c5fa40a5b549d1dea4f48" datatype="html">
-        <source>My Teams</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src-bellumgens/app/app.component.html</context>
-          <context context-type="linenumber">39</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="3a66d41f47213d60fbd1832961b96ea791479035" datatype="html">
-        <source>My strategies</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src-bellumgens/app/app.component.html</context>
-          <context context-type="linenumber">47</context>
         </context-group>
       </trans-unit>
       <trans-unit id="76f3dbd0b2d8f1d1003fcecfea9cf5b6f145e082" datatype="html">
