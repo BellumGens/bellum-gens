@@ -764,7 +764,7 @@
       </trans-unit>
       <trans-unit id="3f0b5546ce2a4a4d4ca82f73a776eb3455c7227c" datatype="html">
         <source>Pressing OK will permanently remove this strategy...</source>
-        <target>Натискане на OK ще изтрие стратегията перманентно...</target>
+        <target>Натискане на ОК ще изтрие стратегията перманентно...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/player-section/user-strategies/user-strategies.component.html</context>
           <context context-type="linenumber">71</context>
@@ -1108,7 +1108,7 @@
       </trans-unit>
       <trans-unit id="175a73cade28a80f03097107aa68d4934516407e" datatype="html">
         <source>Pressing OK will permanently remove this player from the team...</source>
-        <target>Натискане на OK ще премахне играча от отбора перманентно...</target>
+        <target>Натискане на ОК ще премахне играча от отбора перманентно...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-details/team-details.component.html</context>
           <context context-type="linenumber">123</context>
@@ -1300,6 +1300,7 @@
       </trans-unit>
       <trans-unit id="cebb7f27b5028c62b4426da3bb3e3bd3f4a3443b" datatype="html">
         <source>Avatar</source>
+        <target>Аватар</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-preferences/team-preferences.component.html</context>
           <context context-type="linenumber">13</context>
@@ -1307,6 +1308,7 @@
       </trans-unit>
       <trans-unit id="eec715de352a6b114713b30b640d319fa78207a0" datatype="html">
         <source>Description</source>
+        <target>Описание</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-preferences/team-preferences.component.html</context>
           <context context-type="linenumber">28</context>
@@ -1318,6 +1320,7 @@
       </trans-unit>
       <trans-unit id="e5506c069058664207d39503b9c503eb3b09c4bb" datatype="html">
         <source>Show team in searches</source>
+        <target>Показвай отбора при търсене</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-preferences/team-preferences.component.html</context>
           <context context-type="linenumber">44</context>
@@ -1325,6 +1328,7 @@
       </trans-unit>
       <trans-unit id="8f939c163372ebf39372fe9f49866b2fb1ab06b2" datatype="html">
         <source>Update Team Info</source>
+        <target>Запази промените</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-preferences/team-preferences.component.html</context>
           <context context-type="linenumber">52</context>
@@ -1332,6 +1336,7 @@
       </trans-unit>
       <trans-unit id="5e9d5b5f0058e091c95f655b94a282c09d66d754" datatype="html">
         <source>Team Member Roles</source>
+        <target>Роли на членовете</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-preferences/team-preferences.component.html</context>
           <context context-type="linenumber">55</context>
@@ -1339,13 +1344,15 @@
       </trans-unit>
       <trans-unit id="408cb6073e60c5d966296a3207fc596adca75e01" datatype="html">
         <source>Admin</source>
+        <target>Администратор</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-preferences/team-preferences.component.html</context>
           <context context-type="linenumber">77</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="91444811128782dee281d41b12cd7e8f60df4673" datatype="html">
-        <source>Editor</source>
+      <trans-unit id="dcb7c381f20d499e0ae47cf01c55fb7a9f1597d8" datatype="html">
+        <source>Strategist</source>
+        <target>Стратег</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-preferences/team-preferences.component.html</context>
           <context context-type="linenumber">85</context>
@@ -1353,6 +1360,7 @@
       </trans-unit>
       <trans-unit id="fdf7cbdc140d0aab0f0b6c06065a0fd448ed6a2e" datatype="html">
         <source>Title</source>
+        <target>Заглавие</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-strategies/new-strategy/new-strategy.component.html</context>
           <context context-type="linenumber">5</context>
@@ -1360,6 +1368,7 @@
       </trans-unit>
       <trans-unit id="c77a58e5d8f1c5874285bc47b44138e261a76011" datatype="html">
         <source>T-Side</source>
+        <target>T-страна</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-strategies/new-strategy/new-strategy.component.html</context>
           <context context-type="linenumber">23</context>
@@ -1367,6 +1376,7 @@
       </trans-unit>
       <trans-unit id="f209cd7c11fd6aa29be553dbbbcc39086eff2f26" datatype="html">
         <source>CT-Side</source>
+        <target>CT-страна</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-strategies/new-strategy/new-strategy.component.html</context>
           <context context-type="linenumber">24</context>
@@ -1374,6 +1384,7 @@
       </trans-unit>
       <trans-unit id="3c4c080864b313cfdff5fdea6aae5da276246d99" datatype="html">
         <source>Public</source>
+        <target>Публична</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-strategies/new-strategy/new-strategy.component.html</context>
           <context context-type="linenumber">27</context>
@@ -1381,6 +1392,7 @@
       </trans-unit>
       <trans-unit id="138010d1c3fa7bdc64667c2d83fac01eb8c7e648" datatype="html">
         <source>Link to a video/resource</source>
+        <target>Линк към видео/ресурс</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-strategies/new-strategy/new-strategy.component.html</context>
           <context context-type="linenumber">41</context>
@@ -1388,6 +1400,7 @@
       </trans-unit>
       <trans-unit id="9296f895bfce0471480a4614c9c4fb924f7cb767" datatype="html">
         <source>Go to Editor</source>
+        <target>Отиди на едитора</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-strategies/new-strategy/new-strategy.component.html</context>
           <context context-type="linenumber">57</context>
@@ -1395,6 +1408,7 @@
       </trans-unit>
       <trans-unit id="63f5d0ec23e3cf4abf6d5221107633c90d8d4a15" datatype="html">
         <source>OR</source>
+        <target>ИЛИ</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-strategies/new-strategy/new-strategy.component.html</context>
           <context context-type="linenumber">58</context>
@@ -1402,6 +1416,7 @@
       </trans-unit>
       <trans-unit id="71c77bb8cecdf11ec3eead24dd1ba506573fa9cd" datatype="html">
         <source>Submit</source>
+        <target>Запиши</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-strategies/new-strategy/new-strategy.component.html</context>
           <context context-type="linenumber">59</context>
@@ -1409,6 +1424,7 @@
       </trans-unit>
       <trans-unit id="8491f4df5c8f02b1a042dce867afe83b79e4c561" datatype="html">
         <source>Author: <x id="START_LINK" ctype="x-a" equiv-text="&lt;a [routerLink]=&quot;[&apos;/players&apos;, strat.userId]&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ strat.owner }}"/><x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
+        <target>Автор: <x id="START_LINK" ctype="x-a" equiv-text="&lt;a [routerLink]=&quot;[&apos;/players&apos;, strat.userId]&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ strat.owner }}"/><x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-strategies/strategy-details/strategy-details.component.html</context>
           <context context-type="linenumber">14</context>
@@ -1420,6 +1436,7 @@
       </trans-unit>
       <trans-unit id="51d90f1faa976f613a07584b33d813d3f28e5841" datatype="html">
         <source><x id="INTERPOLATION" equiv-text="{{ !authUser ? &apos;Login to&apos; : &apos;Leave a&apos; }}"/> comment...</source>
+        <target><x id="INTERPOLATION" equiv-text="{{ !authUser ? &apos;Влез за&apos; : &apos;Остави&apos; }}"/> коментар...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-strategies/strategy-details/strategy-details.component.html</context>
           <context context-type="linenumber">82</context>
@@ -1427,6 +1444,7 @@
       </trans-unit>
       <trans-unit id="daa7ebc06dbee3bf4aabeb4ab5255c40539d93d0" datatype="html">
         <source>Pressing OK will permanently remove your comment...</source>
+        <target>Натискане на ОК ще изтрие коментара перманентно...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-strategies/strategy-details/strategy-details.component.html</context>
           <context context-type="linenumber">99</context>
@@ -1434,6 +1452,7 @@
       </trans-unit>
       <trans-unit id="d2a2915d79ff31439a174fc3a147004542291e29" datatype="html">
         <source>Map</source>
+        <target>Карта</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-strategies/strategy-editor/strategy-editor.component.html</context>
           <context context-type="linenumber">6</context>
