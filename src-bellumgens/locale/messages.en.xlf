@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
     <body>
       <trans-unit id="6558f793d067ac2d813c5fa40a5b549d1dea4f48" datatype="html">
         <source>My Teams</source>
@@ -136,11 +136,15 @@
           <context context-type="linenumber">119</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3f6eff4a447e47f5519e287c49d13aadbca60364" datatype="html">
-        <source>Follow us on Facebook</source>
+      <trans-unit id="dcc0e3b278e7daf82c57d6742ad35d2b4deff1a5" datatype="html">
+        <source>Like us on Facebook</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/app.component.html</context>
           <context context-type="linenumber">122</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
+          <context context-type="linenumber">84</context>
         </context-group>
       </trans-unit>
       <trans-unit id="e0de906591fddc1e423f4dd7a048ce2a821d058b" datatype="html">
@@ -275,8 +279,8 @@
           <context context-type="linenumber">37</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="e90fa3a63701000c6b886ce26247445715a17656" datatype="html">
-        <source>Team Section</source>
+      <trans-unit id="91142fd723bb475de289a9885abeecf7dfd67c72" datatype="html">
+        <source>Go to Team Section</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
           <context context-type="linenumber">40</context>
@@ -343,13 +347,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
           <context context-type="linenumber">79</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="dcc0e3b278e7daf82c57d6742ad35d2b4deff1a5" datatype="html">
-        <source>Like us on Facebook</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
-          <context context-type="linenumber">84</context>
         </context-group>
       </trans-unit>
       <trans-unit id="dc31d8a047fda51668747cb7dd377e6b013dec2f" datatype="html">

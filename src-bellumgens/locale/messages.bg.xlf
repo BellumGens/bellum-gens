@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
     <body>
       <trans-unit id="6558f793d067ac2d813c5fa40a5b549d1dea4f48" datatype="html">
         <source>My Teams</source>
@@ -150,15 +150,21 @@
           <context context-type="linenumber">119</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3f6eff4a447e47f5519e287c49d13aadbca60364" datatype="html">
-        <source>Follow us on Facebook</source>
+      <trans-unit id="dcc0e3b278e7daf82c57d6742ad35d2b4deff1a5" datatype="html">
+        <source>Like us on Facebook</source>
+		    <target>Харесайте страницата ни във Facebook</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/app.component.html</context>
           <context context-type="linenumber">122</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
+          <context context-type="linenumber">84</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="e0de906591fddc1e423f4dd7a048ce2a821d058b" datatype="html">
         <source>Follow us on Twitter</source>
+		    <target>Последвайте ни в Twitter</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/app.component.html</context>
           <context context-type="linenumber">125</context>
@@ -170,6 +176,7 @@
       </trans-unit>
       <trans-unit id="90d3c623b3043d49a7181a5f0cf8436995fc1f55" datatype="html">
         <source>Follow us on Linked-in</source>
+		    <target>Последвайте ни в Linked-in</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/app.component.html</context>
           <context context-type="linenumber">128</context>
@@ -181,6 +188,7 @@
       </trans-unit>
       <trans-unit id="34020763f269641858d4b88c875f5e56f16aa574" datatype="html">
         <source>Join our Discord server</source>
+		    <target>Присъединете се към нашият Discord сървър</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/app.component.html</context>
           <context context-type="linenumber">131</context>
@@ -192,6 +200,7 @@
       </trans-unit>
       <trans-unit id="ec41c7c461b2224f6247a55bea8aaec1d8ad2e8a" datatype="html">
         <source>Available times for <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot; [textContent]=&quot;selectedDay ? (selectedDay.day | weekday) : &apos;&apos;&quot;&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+		    <target>Възможни часове за <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot; [textContent]=&quot;selectedDay ? (selectedDay.day | weekday) : &apos;&apos;&quot;&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/availability/availability.component.html</context>
           <context context-type="linenumber">15</context>
@@ -199,6 +208,7 @@
       </trans-unit>
       <trans-unit id="d5e0dbc9fd4651759df915cdc6ba26fe3f17475f" datatype="html">
         <source>From</source>
+		    <target>От</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/availability/availability.component.html</context>
           <context context-type="linenumber">18</context>
@@ -206,6 +216,7 @@
       </trans-unit>
       <trans-unit id="63c9c3aa536dbd11120ae8feab62186c47838028" datatype="html">
         <source>To</source>
+		    <target>До</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/availability/availability.component.html</context>
           <context context-type="linenumber">21</context>
@@ -213,6 +224,7 @@
       </trans-unit>
       <trans-unit id="aaf13c2daf4a545724c082da3e73373251795aae" datatype="html">
         <source>Esports Business League Season 2 has concluded. Check out who the new champions are!</source>
+		    <target>Esports Business League сезон 2 приключи. Вижте кои са победителите!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
           <context context-type="linenumber">6</context>
@@ -220,6 +232,7 @@
       </trans-unit>
       <trans-unit id="b76d717d47f3de81acccbe6d2048136c1044c33d" datatype="html">
         <source>Go to EB-League</source>
+		    <target>Отиди на сайта на EB-League</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
           <context context-type="linenumber">7</context>
@@ -227,6 +240,7 @@
       </trans-unit>
       <trans-unit id="d764f164c20be4a9c203edbc8b0d17df116b8cfa" datatype="html">
         <source>The first professional Bellum Gens CS:GO tournament was held in the city of Stara Zagora! Check out who the champions are!</source>
+		    <target>Първият професионален CS:GO турнир на Bellum Gens се проведе в сърцето на Стара Загора! Вижте кои са победителите!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
           <context context-type="linenumber">16</context>
@@ -234,6 +248,7 @@
       </trans-unit>
       <trans-unit id="1196b28b30c53ade463a1db8e226dd0ba3510e35" datatype="html">
         <source>Go to BGE-Stara Zagora</source>
+		    <target>Отиди на сайта на BGE-Stara Zagora</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
           <context context-type="linenumber">17</context>
@@ -241,6 +256,7 @@
       </trans-unit>
       <trans-unit id="f80d939ebac320f4673396c615efd56919d7d69e" datatype="html">
         <source>Design and Share CS:GO Strategies</source>
+		    <target>Разработи и сподели CS:GO стратегии</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
           <context context-type="linenumber">25</context>
@@ -248,6 +264,7 @@
       </trans-unit>
       <trans-unit id="6316e9e6ee6cae3ee77ce7733d53618adf01e831" datatype="html">
         <source>The only online CS:GO strategy editor freely available to everyone! Discuss public strategies with everyone and build private strategies for your team only.</source>
+		    <target>Единственият онлайн CS:GO едитор за стратегии достъпен безплатно за всички! Дискутирай публични стратегии с всички или направи скрити стратегии само за твоят отбор.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
           <context context-type="linenumber">26</context>
@@ -255,6 +272,7 @@
       </trans-unit>
       <trans-unit id="d69eb7fd8549189fa41386e6499577d3666e10bd" datatype="html">
         <source>Browse Strategies</source>
+		    <target>Разгледай публичните стратегии</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
           <context context-type="linenumber">27</context>
@@ -266,6 +284,7 @@
       </trans-unit>
       <trans-unit id="a24e5b549f385bb054e7b6a38785b088fca99b18" datatype="html">
         <source>Sign-up Now</source>
+		    <target>Запиши се сега</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
           <context context-type="linenumber">28</context>
@@ -277,6 +296,7 @@
       </trans-unit>
       <trans-unit id="e037ffa387e7831c088455028a2709485c573547" datatype="html">
         <source>Manage your CS:GO Team</source>
+		    <target>Управлявай твоят CS:GO отбор</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
           <context context-type="linenumber">36</context>
@@ -284,13 +304,15 @@
       </trans-unit>
       <trans-unit id="d7c9f86df463359a57ad77e3d3ad94925dd50e8e" datatype="html">
         <source>Recruit your team and manage your team member roles, team strategies, practice times and more....</source>
+		    <target>Подбери своите съотборници и управлявай ролите и стратегиите в твоят CS:GO отбор...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
           <context context-type="linenumber">37</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="e90fa3a63701000c6b886ce26247445715a17656" datatype="html">
-        <source>Team Section</source>
+      <trans-unit id="91142fd723bb475de289a9885abeecf7dfd67c72" datatype="html">
+        <source>Go to Team Section</source>
+		    <target>Отиди на отборната секция</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
           <context context-type="linenumber">40</context>
@@ -298,6 +320,7 @@
       </trans-unit>
       <trans-unit id="e1d02dfc523f65fa6e7ebe562fe9b244f367d1dc" datatype="html">
         <source>CS:GO Strategy Editor</source>
+		    <target>Едитор за CS:GO стратегии</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
           <context context-type="linenumber">52</context>
@@ -305,6 +328,7 @@
       </trans-unit>
       <trans-unit id="f7568c706e790c4bcd1947c880c5045f43155420" datatype="html">
         <source>Bellum Gens provides an in-browser CS:GO strategy editor, with all maps available. You can pick a map and draw strategies on the map radar, then share with the community for discussions, or make it private and share it with your team only.</source>
+		    <target>Bellum Gens предоставя едитор за CS:GO стратегии в браузър с всички налични карти. You can pick a map and draw strategies on the map radar, then share with the community for discussions, or make it private and share it with your team only.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
           <context context-type="linenumber">53</context>
@@ -357,13 +381,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
           <context context-type="linenumber">79</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="dcc0e3b278e7daf82c57d6742ad35d2b4deff1a5" datatype="html">
-        <source>Like us on Facebook</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
-          <context context-type="linenumber">84</context>
         </context-group>
       </trans-unit>
       <trans-unit id="dc31d8a047fda51668747cb7dd377e6b013dec2f" datatype="html">

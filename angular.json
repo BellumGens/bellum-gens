@@ -16,7 +16,7 @@
       "i18n": {
         "sourceLocale": "en",
         "locales": {
-          "bg": "src-ebleague/locale/messages.bg.xlf"
+          "bg": "src-bellumgens/locale/messages.bg.xlf"
         }
       },
       "architect": {
