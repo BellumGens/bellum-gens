@@ -11,7 +11,7 @@ export class ProductionCrewComponent {
 
   constructor(@Inject(LOCALE_ID) localeId: string) {
     if (localeId === 'bg') {
-      this.crewMembers = Object.assign(CREW_MEMBERS, CREW_MEMBERS_BG);
+      this.crewMembers.map((item, i) => Object.assign(item, CREW_MEMBERS_BG[i]));
     }
   }
 

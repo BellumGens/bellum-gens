@@ -1239,6 +1239,17 @@
           <context context-type="linenumber">27</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="d2a2915d79ff31439a174fc3a147004542291e29" datatype="html">
+        <source>Map</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-bellumgens/app/team-section/team-strategies/new-strategy/new-strategy.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-bellumgens/app/team-section/team-strategies/strategy-editor/strategy-editor.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="138010d1c3fa7bdc64667c2d83fac01eb8c7e648" datatype="html">
         <source>Link to a video/resource</source>
         <context-group purpose="location">
@@ -1290,13 +1301,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-strategies/strategy-details/strategy-details.component.html</context>
           <context context-type="linenumber">99</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="d2a2915d79ff31439a174fc3a147004542291e29" datatype="html">
-        <source>Map</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src-bellumgens/app/team-section/team-strategies/strategy-editor/strategy-editor.component.html</context>
-          <context context-type="linenumber">6</context>
         </context-group>
       </trans-unit>
       <trans-unit id="c2317b4bdf2cb99d1f55afbb550ee164e909b90d" datatype="html">
@@ -1360,6 +1364,13 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-strategies/strategy-editor/strategy-editor.component.html</context>
           <context context-type="linenumber">116</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b105f50be6bdd52a475bf46361e7170687032843" datatype="html">
+        <source>Showing</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-bellumgens/app/team-section/team-strategies/team-strategies.component.html</context>
+          <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
       <trans-unit id="83791af2ecce5b38a2a0f1c1adb832dd22588447" datatype="html">
