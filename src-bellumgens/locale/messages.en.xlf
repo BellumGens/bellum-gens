@@ -912,11 +912,25 @@
           <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="d7b35c384aecd25a516200d6921836374613dfe7" datatype="html">
+        <source>Cancel</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-bellumgens/app/team-section/team-application/team-application.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fa0d6b330917208a29c51f09ed33815922b9fcbc" datatype="html">
+        <source>Submit Application</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-bellumgens/app/team-section/team-application/team-application.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="43b9f6b0cad9fef512c6dbae9bdda2f6bc301986" datatype="html">
         <source>Tell us about your motivation to join our team...</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-application/team-application.component.html</context>
-          <context context-type="linenumber">11</context>
+          <context context-type="linenumber">13</context>
         </context-group>
       </trans-unit>
       <trans-unit id="84163ab0e8fda4980f4f80abc64334e43fdeef84" datatype="html">
@@ -926,8 +940,8 @@
           <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6a1cd80d1f0c88506ce3ba166249a0d637bc2fc0" datatype="html">
-        <source>Active lineup</source>
+      <trans-unit id="2b6c1c4f80f90c5b4994b148c785ecbd79a98808" datatype="html">
+        <source>Active roster</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-details/team-details.component.html</context>
           <context context-type="linenumber">10</context>
@@ -1470,6 +1484,10 @@
       </trans-unit>
       <trans-unit id="994363f08f9fbfa3b3994ff7b35c6904fdff18d8" datatype="html">
         <source>Profile</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/login/login.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/login/login.component.html</context>
           <context context-type="linenumber">23</context>

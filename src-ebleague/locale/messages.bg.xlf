@@ -135,6 +135,10 @@
         <target>Профил</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/login/login.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/login/login.component.html</context>
           <context context-type="linenumber">23</context>
         </context-group>
       </trans-unit>
@@ -1703,8 +1707,8 @@
         </context-group>
       </trans-unit>
       <trans-unit id="3977ab4198ebb20ed34e337d4f5b44bd960403a6" datatype="html">
-        <source>Esports Business League Season 1 ended on April 12 with grand finals in StarCraft II and CS:GO! In the StarCraft II grand final t0ssboy [HP] faced SuGaRBuNNy [C3I] and after a very competitive BO5 <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://bellumgens.com/players/76561198061226037&quot; target=&quot;_blank&quot;&gt;"/>SuGaRBuNNy [C3I]<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt; "/> emerged victorious. In the CS:GO grand final Bpro Veterans met DXC. After 3 heart-stopping maps <x id="START_LINK_1" equiv-text="&lt;a href=&quot;https://bellumgens.com/team/BPro-Veterans/details&quot; target=&quot;_blank&quot;&gt;"/>Bpro Veterans<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt; "/> managed to take the victory.</source>
-        <target>Първият сезон на Esports Business League приключи на 12ти април с два грандиозни финала по StarCraft II и CS:GO! В категорията по StarCraft II, на финалът премериха сили t0ssboy [HP] и SuGaRBuNNy [C3I], като от успорваният BO5 победител излезе <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://bellumgens.com/players/76561198061226037&quot; target=&quot;_blank&quot;&gt;"/>SuGaRBuNNy [C3I]<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt; "/>. В категорията по CS:GO, на финалът премериха сили Bpro Veterans и DXC. След 3 инфарктни карти, победители излязоха <x id="START_LINK_1" equiv-text="&lt;a href=&quot;https://bellumgens.com/team/BPro-Veterans/details&quot; target=&quot;_blank&quot;&gt;"/>Bpro Veterans<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt; "/>.</target>
+        <source>Esports Business League Season 1 ended on April 12 with grand finals in StarCraft II and CS:GO! In the StarCraft II grand final t0ssboy [HP] faced SuGaRBuNNy [C3I] and after a very competitive BO5 <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://bellumgens.com/players/76561198061226037&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>SuGaRBuNNy [C3I]<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt; "/> emerged victorious. In the CS:GO grand final Bpro Veterans met DXC. After 3 heart-stopping maps <x id="START_LINK_1" equiv-text="&lt;a href=&quot;https://bellumgens.com/team/BPro-Veterans/details&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>Bpro Veterans<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt; "/> managed to take the victory.</source>
+        <target>Първият сезон на Esports Business League приключи на 12ти април с два грандиозни финала по StarCraft II и CS:GO! В категорията по StarCraft II, на финалът премериха сили t0ssboy [HP] и SuGaRBuNNy [C3I], като от успорваният BO5 победител излезе <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://bellumgens.com/players/76561198061226037&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>SuGaRBuNNy [C3I]<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt; "/>. В категорията по CS:GO, на финалът премериха сили Bpro Veterans и DXC. След 3 инфарктни карти, победители излязоха <x id="START_LINK_1" equiv-text="&lt;a href=&quot;https://bellumgens.com/team/BPro-Veterans/details&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>Bpro Veterans<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt; "/>.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/home/home.component.html</context>
           <context context-type="linenumber">291</context>

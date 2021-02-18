@@ -8,7 +8,7 @@
 <igx-circular-bar *ngIf="userCheck" [indeterminate]="true"></igx-circular-bar>
 
 <div *ngIf="authUser">
-  <button class="profile-button" #profileButton igxButton="flat" igxRipple [igxToggleAction]="userProfile" [overlaySettings]="overlaySettings">
+  <button class="profile-button" #profileButton igxButton="flat" igxRipple i18n-title title="Profile" [igxToggleAction]="userProfile" [overlaySettings]="overlaySettings">
     <igx-avatar [src]="authUser.avatarMedium" [initials]="authUser.username" [roundShape]="true">
     </igx-avatar>
     <igx-icon class="drop-down-arrow">arrow_drop_down</igx-icon>

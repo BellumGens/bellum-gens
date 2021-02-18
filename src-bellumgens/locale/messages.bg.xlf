@@ -888,6 +888,7 @@
       </trans-unit>
       <trans-unit id="57ad628a6abd2f4c0dc3461515c160f0581cc2bc" datatype="html">
         <source>Loading teams...</source>
+        <target>Зареждане на отбори...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/search/quick-search/quick-search.component.html</context>
           <context context-type="linenumber">77</context>
@@ -895,6 +896,7 @@
       </trans-unit>
       <trans-unit id="8a6afcf38cbb3107a31ae8636805be7f65182dc8" datatype="html">
         <source>Teams</source>
+        <target>Отбори</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/search/quick-search/quick-search.component.html</context>
           <context context-type="linenumber">83</context>
@@ -906,6 +908,7 @@
       </trans-unit>
       <trans-unit id="eb4ed6515359b92c33194eb2e1ffb579bc2be222" datatype="html">
         <source>No matching teams...</source>
+        <target>Няма намерени отбори отговарящи на условията...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/search/quick-search/quick-search.component.html</context>
           <context context-type="linenumber">85</context>
@@ -913,6 +916,7 @@
       </trans-unit>
       <trans-unit id="68a4fa03967dccea1ef2c36b09e52d4447ab8724" datatype="html">
         <source>View more teams...</source>
+        <target>Виж още отбори...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/search/quick-search/quick-search.component.html</context>
           <context context-type="linenumber">93</context>
@@ -920,6 +924,7 @@
       </trans-unit>
       <trans-unit id="b0df4904e8276f691cc10eb49010fe4fa37562c8" datatype="html">
         <source>Loading strategies...</source>
+        <target>Зареждане на стратегии...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/search/quick-search/quick-search.component.html</context>
           <context context-type="linenumber">99</context>
@@ -927,6 +932,7 @@
       </trans-unit>
       <trans-unit id="7f91692a4438dfb63f8f5120659ed60468fdfd81" datatype="html">
         <source>Strategies</source>
+        <target>Стратегии</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/search/quick-search/quick-search.component.html</context>
           <context context-type="linenumber">105</context>
@@ -938,6 +944,7 @@
       </trans-unit>
       <trans-unit id="404c3e05e164e7dd2d49321895fb77b39297dd78" datatype="html">
         <source>No matching strategies...</source>
+        <target>Няма намерени стратегии отговарящи на условията...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/search/quick-search/quick-search.component.html</context>
           <context context-type="linenumber">107</context>
@@ -945,6 +952,7 @@
       </trans-unit>
       <trans-unit id="c302c984329ab88692543c7aa09362c0b1bf4008" datatype="html">
         <source>View more strategies...</source>
+        <target>Виж още стратегии...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/search/quick-search/quick-search.component.html</context>
           <context context-type="linenumber">115</context>
@@ -952,6 +960,7 @@
       </trans-unit>
       <trans-unit id="ddd8a4986d2d1717a274a5a0fbed04988a819e69" datatype="html">
         <source>Private</source>
+        <target>Скрит</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/search/quick-search/quick-search.component.html</context>
           <context context-type="linenumber">120</context>
@@ -963,6 +972,7 @@
       </trans-unit>
       <trans-unit id="f19f9bc2e33cddbd1bc033847fdffa65fb481012" datatype="html">
         <source>Found <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{players?.length }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> results for players<x id="INTERPOLATION_1" equiv-text="{{ query | queryParsed:true }}"/></source>
+        <target>Намерени <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{players?.length }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> резултата за играчи<x id="INTERPOLATION_1" equiv-text="{{ query | queryParsed:true }}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/search/search-results/player-results/player-results.component.html</context>
           <context context-type="linenumber">5</context>
@@ -970,6 +980,7 @@
       </trans-unit>
       <trans-unit id="eacf621e972d0ee2ef4ed6e1cf75c17e86f8da96" datatype="html">
         <source>Preferred roles</source>
+        <target>Предпочитани роли</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/search/search-results/player-results/player-results.component.html</context>
           <context context-type="linenumber">30</context>
@@ -977,6 +988,7 @@
       </trans-unit>
       <trans-unit id="afe1a944a8691589c7ca8f09dfc9d9de9ba22f9c" datatype="html">
         <source>Found <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{teams?.length }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> results for teams<x id="INTERPOLATION_1" equiv-text="{{ query | queryParsed }}"/></source>
+        <target>Намерени <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{teams?.length }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> резултата за играчи<x id="INTERPOLATION_1" equiv-text="{{ query | queryParsed }}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/search/search-results/team-results/team-results.component.html</context>
           <context context-type="linenumber">5</context>
@@ -984,6 +996,7 @@
       </trans-unit>
       <trans-unit id="024baf16190eb76ca90206745e24b0b905d0d50c" datatype="html">
         <source>Teams looking for</source>
+        <target>Отбори търсещи</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/search/team-search/team-search.component.html</context>
           <context context-type="linenumber">4</context>
@@ -991,6 +1004,7 @@
       </trans-unit>
       <trans-unit id="cfbe13e489256e8fa83ed940a183cd702ffbc0c0" datatype="html">
         <source>Apply to join</source>
+        <target>Кандидатствай</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-application/team-application.component.html</context>
           <context context-type="linenumber">1</context>
@@ -998,27 +1012,47 @@
       </trans-unit>
       <trans-unit id="9aea5a495963d7616c9c03ab8270bd37246b6cda" datatype="html">
         <source>Why do you want to join our team?</source>
+        <target>Защо искаш да се присъединиш към отбора ни?</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-application/team-application.component.html</context>
           <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="43b9f6b0cad9fef512c6dbae9bdda2f6bc301986" datatype="html">
-        <source>Tell us about your motivation to join our team...</source>
+      <trans-unit id="d7b35c384aecd25a516200d6921836374613dfe7" datatype="html">
+        <source>Cancel</source>
+        <target>Откажи</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-application/team-application.component.html</context>
-          <context context-type="linenumber">11</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fa0d6b330917208a29c51f09ed33815922b9fcbc" datatype="html">
+        <source>Submit Application</source>
+        <target>Публикувай кандидатурата</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-bellumgens/app/team-section/team-application/team-application.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="43b9f6b0cad9fef512c6dbae9bdda2f6bc301986" datatype="html">
+        <source>Tell us about your motivation to join our team...</source>
+        <target>Разкажи ни повече за мотивацията си да се присъединиш към отбора ни...</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-bellumgens/app/team-section/team-application/team-application.component.html</context>
+          <context context-type="linenumber">13</context>
         </context-group>
       </trans-unit>
       <trans-unit id="84163ab0e8fda4980f4f80abc64334e43fdeef84" datatype="html">
         <source>Practice</source>
+        <target>Тренировки</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-details/team-details.component.html</context>
           <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6a1cd80d1f0c88506ce3ba166249a0d637bc2fc0" datatype="html">
-        <source>Active lineup</source>
+      <trans-unit id="2b6c1c4f80f90c5b4994b148c785ecbd79a98808" datatype="html">
+        <source>Active roster</source>
+        <target>Актирен ростер</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-details/team-details.component.html</context>
           <context context-type="linenumber">10</context>
@@ -1026,6 +1060,7 @@
       </trans-unit>
       <trans-unit id="976d3d811b2bc006dc9497c9194cbbfef57a9d20" datatype="html">
         <source>[ empty ]</source>
+        <target>[ празен ]</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-details/team-details.component.html</context>
           <context context-type="linenumber">49</context>
@@ -1033,6 +1068,7 @@
       </trans-unit>
       <trans-unit id="9cc2cd82841a2a5696e76f5ef0de7ccf2b976081" datatype="html">
         <source>Bench</source>
+        <target>Пейка</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-details/team-details.component.html</context>
           <context context-type="linenumber">58</context>
@@ -1040,6 +1076,7 @@
       </trans-unit>
       <trans-unit id="2b5669ec808beea0a77126eb447b4e3ef9f87969" datatype="html">
         <source>Drag players to add them to the active lineup</source>
+        <target>Дръпни играч от пейката за да го добавиш към активния ростер</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-details/team-details.component.html</context>
           <context context-type="linenumber">59</context>
@@ -1561,6 +1598,10 @@
       </trans-unit>
       <trans-unit id="994363f08f9fbfa3b3994ff7b35c6904fdff18d8" datatype="html">
         <source>Profile</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/login/login.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/login/login.component.html</context>
           <context context-type="linenumber">23</context>
