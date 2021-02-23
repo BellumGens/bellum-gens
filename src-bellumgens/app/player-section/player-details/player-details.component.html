@@ -118,7 +118,7 @@
       <h4 igxCardHeaderTitle i18n>Top weapon</h4>
     </igx-card-header>
     <igx-card-content class="top-weapon">
-      <igx-icon class="weapon-image" fontSet="weapon-icons" [name]="player.userStats.favouriteWeapon?.name"
+      <igx-icon class="weapon-image" family="weapon-icons" [name]="player.userStats.favouriteWeapon?.name"
         [title]="player.userStats.favouriteWeapon | topWeaponAlt">
       </igx-icon>
       <h5>{{ player.userStats.favouriteWeapon?.name }}</h5>
@@ -141,7 +141,7 @@
     <igx-card-content>
       <igx-list *ngIf="!player.userStatsException" displayDensity="compact">
         <igx-list-item *ngFor="let weapon of player.userStats.weapons | sortWeapons">
-          <igx-icon igxListThumbnail class="weapon-image-small" fontSet="weapon-icons" [name]="weapon.name"></igx-icon>
+          <igx-icon igxListThumbnail class="weapon-image-small" family="weapon-icons" [name]="weapon.name"></igx-icon>
           <span igxListLineTitle>
             <a>{{ weapon.name }}</a>
           </span>

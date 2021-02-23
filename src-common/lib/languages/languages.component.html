@@ -1,12 +1,12 @@
 <button class="profile-button" #profileButton igxButton="flat" igxRipple [igxToggleAction]="languagesDropDown" [overlaySettings]="overlaySettings">
-  <igx-icon fontSet="languages" [name]="localeId"></igx-icon>
+  <igx-icon family="languages" [name]="localeId"></igx-icon>
   <igx-icon class="drop-down-arrow">arrow_drop_down</igx-icon>
 </button>
 
 <igx-drop-down #languagesDropDown>
   <igx-drop-down-item *ngFor="let lang of languageList" [selected]="lang.code === localeId" (click)="changeLocale(lang.code)">
     <div class="dd-item-content">
-      <igx-icon fontSet="languages" [name]="lang.code"></igx-icon>
+      <igx-icon family="languages" [name]="lang.code"></igx-icon>
       <span>{{ lang.label }}</span>
     </div>
   </igx-drop-down-item>

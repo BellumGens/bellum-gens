@@ -15,7 +15,7 @@
       <igx-chip *ngFor="let map of maps | activeDutyMaps:viewAll"
                 [selected]="map.isPlayed"
                 [selectable]="true"
-                (onSelection)="changeMaps($event, map)">
+                (selectedChanging)="changeMaps($event, map)">
         {{ map.map | csgomapname }}
       </igx-chip>
     </igx-chips-area>
@@ -81,7 +81,7 @@
     <igx-drop-down #useractions (onSelection)="$event.cancel = true; useractions.close()">
       <igx-drop-down-item (click)="shareOnTwitter(strat)">
         <div class="horizontal-center">
-          <igx-icon fontSet="login-icons" name="twitter" title="Share Strategy"></igx-icon>
+          <igx-icon family="login-icons" name="twitter" title="Share Strategy"></igx-icon>
           <span class="title margin-left" i18n>Share</span>
         </div>
       </igx-drop-down-item>

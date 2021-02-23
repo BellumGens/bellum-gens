@@ -76,7 +76,7 @@
     <div class="editor-elements-section">
       <div i18n>Utility</div>
       <igx-icon *ngFor="let util of utility"
-                [fontSet]="util.fontSet"
+                [family]="util.family"
                 [name]="util.icon"
                 [title]="util.name"
                 class="editor-element-icon"
@@ -105,7 +105,7 @@
         <span i18n>Radars taken from</span>
         <a class="horizontal navigatable" href="http://simpleradar.com/" target="_blank" rel="noopener">
           &nbsp;simple radar&nbsp;
-          <igx-icon fontSet="login-icons" name="SimpleRadar"></igx-icon>
+          <igx-icon family="login-icons" name="SimpleRadar"></igx-icon>
         </a>
       </div>
     </div>

@@ -3,8 +3,8 @@
             [selectable]="editable"
             [removable]="editable && weekday.available"
             [selected]="weekday.available"
-            (onClick)="daySelected($event)"
-            (onRemove)="dayDeselected($event)">
+            (chipClick)="daySelected($event)"
+            (remove)="dayDeselected($event)">
     <span class="igx-chip__text">{{ weekday.day | weekday }}</span>
     <span class="igx-chip__subtext" *ngIf="weekday.available">{{ weekday.from | date:'H:mm' }}-{{ weekday.to | date:'H:mm' }}</span>
   </igx-chip>

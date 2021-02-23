@@ -40,7 +40,7 @@
     <igx-input-group class="registration-form-input" *ngIf="application.game === gameEnum.StarCraft2" >
       <label igxLabel for="email">Battle tag</label>
       <igx-prefix>
-        <igx-icon fontSet="login-icons" name="battlenet"></igx-icon>
+        <igx-icon family="login-icons" name="battlenet"></igx-icon>
       </igx-prefix>
       <input id="battletag" #battletag name="battletag" [required]="true" igxInput pattern="^[a-zA-Z0-9._%+-]+#[0-9]{4,6}$" [(ngModel)]="application.battleNetId" />
       <igx-suffix *ngIf="battletag.value" (click)="application.battleNetId = null">
