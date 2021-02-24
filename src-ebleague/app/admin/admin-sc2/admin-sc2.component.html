@@ -71,7 +71,7 @@
         </div>
       </div>
 
-      <div class="horizontal-center" *ngIf="dataItem.noShow" i18n-header>Walkover</div>
+      <div class="horizontal-center" *ngIf="dataItem.noShow" i18n>Walkover</div>
 
       <div class="horizontal-center" *ngIf="!dataItem.maps.length && !dataItem.noShow" i18n>The match has not been played yet, or there's no results on record...</div>
     </ng-template>
@@ -218,9 +218,9 @@
 <igx-dialog #newMatchMapDialog
             i18n-title
             title="Results"
-            leftButtonLabel="Cancel"
+            i18n-leftButtonLabel leftButtonLabel="Cancel"
             (onLeftButtonSelect)="newMatchMapDialog.close()"
-            rightButtonLabel="Submit"
+            i18n-rightButtonLabel rightButtonLabel="Submit"
             (onRightButtonSelect)="submitMatch(matchGrid); newMatchMapDialog.close()">
 
   <div class="horizontal-center">
@@ -257,7 +257,7 @@
     </button>
   </div>
 
-  <igx-checkbox *ngIf="!matchInEdit.maps || !matchInEdit.maps.length" [(ngModel)]="matchInEdit.noShow">Walkover</igx-checkbox>
+  <igx-checkbox *ngIf="!matchInEdit.maps || !matchInEdit.maps.length" [(ngModel)]="matchInEdit.noShow" i18n>Walkover</igx-checkbox>
 
   <button *ngIf="matchInEdit.id"
           igxButton="outlined"
