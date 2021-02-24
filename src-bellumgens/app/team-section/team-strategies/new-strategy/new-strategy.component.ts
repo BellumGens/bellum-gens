@@ -11,7 +11,7 @@ import { ApiStrategiesService } from '../../../../../src-common/services/bellumg
 @Component({
   selector: 'app-new-strategy',
   templateUrl: './new-strategy.component.html',
-  styleUrls: ['./new-strategy.component.css']
+  styleUrls: ['./new-strategy.component.scss']
 })
 export class NewStrategyComponent {
   @ViewChild('newStrat', { static: true }) public dialog: IgxDialogComponent;

@@ -1,4 +1,4 @@
-import { EventEmitter } from '@angular/core';
+import { Subject } from 'rxjs';
 
 export interface EditorLayer {
   name: string;
@@ -35,9 +35,9 @@ export interface LayerSelected {
 }
 
 export abstract class BaseLayer {
-  public layerUpdate = new EventEmitter<BaseLayer>();
-  public layerSelect = new EventEmitter<LayerSelected>();
-  public drawFinish = new EventEmitter<BaseLayer>();
+  public layerUpdate = new Subject<BaseLayer>();
+  public layerSelect = new Subject<LayerSelected>();
+  public drawFinish = new Subject<BaseLayer>();
   public selectedBorderColor = '#939393';
   public selectedBorderWidth = 1;
   public movable: boolean;
@@ -62,7 +62,7 @@ export abstract class BaseLayer {
 
   public set hidden(value: boolean) {
     this._hidden = value;
-    this.layerUpdate.emit(this);
+    this.layerUpdate.next(this);
   }
 
   public get selected() {
@@ -72,7 +72,7 @@ export abstract class BaseLayer {
   public set selected(selected: boolean) {
     if (this.selectable && this.selected !== selected) {
       this._selected = selected;
-      this.layerSelect.emit({layer: this, selected});
+      this.layerSelect.next({layer: this, selected});
     }
   }
 
@@ -138,7 +138,7 @@ export class ImageLayer extends BaseLayer {
           if (this.circle) {
             this.endCircle();
           }
-          this.drawFinish.emit(this);
+          this.drawFinish.next(this);
         };
       } else {
         if (this.selected) {
@@ -155,10 +155,10 @@ export class ImageLayer extends BaseLayer {
         if (this.circle) {
           this.endCircle();
         }
-        this.drawFinish.emit(this);
+        this.drawFinish.next(this);
       }
     } else {
-      this.drawFinish.emit(this);
+      this.drawFinish.next(this);
     }
   }
 
@@ -219,7 +219,7 @@ export class FreeflowLayer extends BaseLayer {
 
   public addPoint(point: PointCoordinate) {
     this._currentPath.points.push(point);
-    this.layerUpdate.emit(this);
+    this.layerUpdate.next(this);
   }
 
   public closePath() {
@@ -245,7 +245,7 @@ export class FreeflowLayer extends BaseLayer {
         }
       });
     }
-    this.drawFinish.emit(this);
+    this.drawFinish.next(this);
   }
 
   private optimize() {

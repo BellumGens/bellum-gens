@@ -5,7 +5,5 @@
             (onLeftButtonSelect)="cancelClicked($event)"
             (onRightButtonSelect)="okClicked()"
             (onClose)="onClose()">
-  <div class="dialog-content">
-    <ng-content></ng-content>
-  </div>
+  <ng-content></ng-content>
 </igx-dialog>

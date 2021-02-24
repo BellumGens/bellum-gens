@@ -1,5 +1,5 @@
 <igx-dialog #newStrat [closeOnOutsideSelect]="true" (onClose)="resetStrategy()">
-  <form #strategyForm="ngForm" (ngSubmit)="submitStrategy()" class="new-strategy">
+  <form #strategyForm="ngForm" (ngSubmit)="submitStrategy()">
     <span>{{ title }}</span>
     <igx-input-group>
       <label for="strategyName" igxLabel i18n>Title</label>
@@ -54,7 +54,7 @@
     <iframe *ngIf="getVideoEmbedLink()" class="video-frame space-out" [src]="newStrategy.url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
     <div class="column-wrapper space-out">
-      <button type="button" igxButton="outlined" class="submit-button" [disabled]="strategyForm.invalid" (click)="createAndRedirect()" i18n>Go to Editor</button>
+      <button type="button" igxButton="outlined" class="submit-button" [disabled]="strategyForm.invalid" (click)="createAndRedirect()" i18n>Editor</button>
       <span class="separate" i18n>OR</span>
       <button igxButton="outlined" igxRipple [disabled]="strategyForm.invalid || !newStrategy.url" class="submit-button" i18n>Submit</button>
     </div>
