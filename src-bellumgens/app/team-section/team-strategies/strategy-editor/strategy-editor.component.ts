@@ -13,7 +13,7 @@ import { ApiStrategiesService } from '../../../../../src-common/services/bellumg
 @Component({
   selector: 'app-strategy-editor',
   templateUrl: './strategy-editor.component.html',
-  styleUrls: ['./strategy-editor.component.css']
+  styleUrls: ['./strategy-editor.component.scss']
 })
 export class StrategyEditorComponent implements OnInit, OnDestroy {
   @ViewChild('board', { static: true }) public canvas: ElementRef;
@@ -39,6 +39,7 @@ export class StrategyEditorComponent implements OnInit, OnDestroy {
     x: 0,
     y: 0
   };
+  private _displayRatio = 1;
   private _drawLayer: FreeflowLayer;
   private intervalId;
 
@@ -51,8 +52,8 @@ export class StrategyEditorComponent implements OnInit, OnDestroy {
     if (!this.layers.length || (this.layers[0] as ImageLayer).src !== map.radar[0]) {
       const layer = this.editor.createImageLayer('Map Radar');
       layer.src = this._activeMap.radar[0];
-      layer.width = 1024;
-      layer.height = 1024;
+      layer.width = 1024 * this._displayRatio;
+      layer.height = 1024 * this._displayRatio;
       layer.movable = false;
       this.editor.replaceLayer(0, layer);
     }
@@ -70,7 +71,7 @@ export class StrategyEditorComponent implements OnInit, OnDestroy {
   public ngOnInit() {
     this.canvas.nativeElement.width = window.innerHeight - 140;
     this.canvas.nativeElement.height = window.innerHeight - 140;
-    this.editor = new StrategyEditor(this.canvas, (window.innerHeight - 140) / 1024);
+    this.editor = new StrategyEditor(this.canvas, this._displayRatio = (window.innerHeight - 140) / 1024);
     this.layers = this.editor.layers;
     this.route.params.subscribe(params => {
       const teamId = params['teamid'];
@@ -115,8 +116,8 @@ export class StrategyEditorComponent implements OnInit, OnDestroy {
     layer.width = args.drag.data.width;
     layer.height = args.drag.data.height;
     layer.circle = args.drag.data.circle;
-    layer.x = args.offsetX - Math.floor(layer.width / 2);
-    layer.y = args.offsetY - Math.floor(layer.height / 2);
+    layer.x = (args.offsetX - Math.floor(layer.width / 2)) / this._displayRatio;
+    layer.y = (args.offsetY - Math.floor(layer.height / 2)) / this._displayRatio;
     this.editor.addLayer(layer);
     layer.selected = true;
 
@@ -152,8 +153,8 @@ export class StrategyEditorComponent implements OnInit, OnDestroy {
 
   public canvasPointerDown(event: PointerEvent) {
     this._drag = true;
-    this._coordinates.x = Math.floor(event.offsetX);
-    this._coordinates.y = Math.floor(event.offsetY);
+    this._coordinates.x = Math.floor(event.offsetX / this._displayRatio);
+    this._coordinates.y = Math.floor(event.offsetY / this._displayRatio);
     if (this.brushSelected) {
       if (!this._drawLayer) {
         this._drawLayer = this.editor.createFreeflowLayer();
@@ -170,8 +171,8 @@ export class StrategyEditorComponent implements OnInit, OnDestroy {
 
   public canvasPointerMove(event: PointerEvent) {
     if (this._drag) {
-      const offsetX = Math.floor(event.offsetX);
-      const offsetY = Math.floor(event.offsetY);
+      const offsetX = Math.floor(event.offsetX / this._displayRatio);
+      const offsetY = Math.floor(event.offsetY / this._displayRatio);
       if (!this.brushSelected) {
         this.editor.moveSelected({x: offsetX - this._coordinates.x, y: offsetY - this._coordinates.y});
         this._coordinates.x = offsetX;
@@ -196,7 +197,7 @@ export class StrategyEditorComponent implements OnInit, OnDestroy {
   }
 
   public trySelectLayer(event: MouseEvent) {
-    this.editor.trySelectLayer({ x: event.offsetX, y: event.offsetY });
+    this.editor.trySelectLayer({ x: event.offsetX / this._displayRatio, y: event.offsetY / this._displayRatio });
   }
 
   public selectBrush() {

@@ -219,7 +219,7 @@ textarea {
 }
 
 .main-content-wrapper {
-  height: 100%;
+  height: calc(100% - 57px);
   min-width: 380px;
   display: flex;
 }
