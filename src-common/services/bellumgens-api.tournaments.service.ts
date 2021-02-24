@@ -300,7 +300,7 @@ export class ApiTournamentsService {
   }
 
   // public submitCSGOMatchMap(matchmap: TournamentCSGOMatchMap) {
-  //   return this.http.put<TournamentCSGOMatchMap>(`${this._apiEndpoint}/tournament/csgomatchmap?id=${matchmap.id || null}`,
+  //   return this.http.put<TournamentCSGOMatchMap>(`${this._apiEndpoint}/tournament/csgomatchmap?id=${matchmap.id}`,
   //     matchmap, { withCredentials: true}).pipe(
   //       map(response => {
   //         this.commService.emitSuccess('Tournament CS:GO match map updated successfully!');
@@ -328,7 +328,7 @@ export class ApiTournamentsService {
   }
 
   public submitSC2Match(match: TournamentSC2Match) {
-    return this.http.put<TournamentSC2Match>(`${this._apiEndpoint}/tournament/sc2match?id=${match.id || null}`,
+    return this.http.put<TournamentSC2Match>(`${this._apiEndpoint}/tournament/sc2match?id=${match.id}`,
       match, { withCredentials: true}).pipe(
         map(response => {
           this.commService.emitSuccess('Tournament StarCraft II match updated successfully!');
@@ -356,7 +356,7 @@ export class ApiTournamentsService {
   }
 
   // public submitSC2MatchMap(matchmap: TournamentSC2MatchMap) {
-  //   return this.http.put<TournamentSC2MatchMap>(`${this._apiEndpoint}/tournament/sc2matchmap?id=${matchmap.id || null}`,
+  //   return this.http.put<TournamentSC2MatchMap>(`${this._apiEndpoint}/tournament/sc2matchmap?id=${matchmap.id}`,
   //     matchmap, { withCredentials: true}).pipe(
   //       map(response => {
   //         this.commService.emitSuccess('Tournament StarCraft II match map updated successfully!');
