@@ -21,7 +21,7 @@
     <label class="register-link navigatable" (click)="openRegistration()" i18n>Don't have an account?</label>
 
     <button igxButton="outlined"
-            class="submit-button space-out"
+            class="submit-button"
             [disabled]="!userLogin.touched || !userLogin.valueChanges || userLogin.invalid || submitInProgress" i18n>login</button>
   </form>
 </igx-dialog>

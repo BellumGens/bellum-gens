@@ -181,44 +181,42 @@
             i18n-rightButtonLabel
             rightButtonLabel="Submit"
             (onRightButtonSelect)="submitMatch(matchGrid); newMatchDialog.close()">
-  <div class="match-details">
-    <igx-date-picker [(ngModel)]="matchInEdit.startTime">
-      <label igxLabel i18n>Start date</label>
-    </igx-date-picker>
+  <igx-date-picker [(ngModel)]="matchInEdit.startTime">
+    <label igxLabel i18n>Start date</label>
+  </igx-date-picker>
 
-    <igx-time-picker [itemsDelta]="{hours: 1, minutes: 15, seconds: 1}" [(ngModel)]="matchInEdit.startTime">
-      <label igxLabel i18n>Start time</label>
-    </igx-time-picker>
+  <igx-time-picker [itemsDelta]="{hours: 1, minutes: 15, seconds: 1}" [(ngModel)]="matchInEdit.startTime">
+    <label igxLabel i18n>Start time</label>
+  </igx-time-picker>
 
-    <igx-select [(ngModel)]="matchInEdit.groupId">
-      <label igxLabel i18n>Group</label>
-      <igx-select-item *ngFor="let group of groups"
-                        [value]="group.id">{{ group.name }}</igx-select-item>
-      <igx-hint>*Ако мачът е от групова фаза</igx-hint>
-    </igx-select>
+  <igx-select [(ngModel)]="matchInEdit.groupId">
+    <label igxLabel i18n>Group</label>
+    <igx-select-item *ngFor="let group of groups"
+                      [value]="group.id">{{ group.name }}</igx-select-item>
+    <igx-hint>*Ако мачът е от групова фаза</igx-hint>
+  </igx-select>
 
-    <igx-select [(ngModel)]="matchInEdit.team1Id" required>
-      <label igxLabel i18n>Team 1</label>
-      <igx-select-item *ngFor="let registration of registrations"
-                        [value]="registration.teamId"
-                        [text]="registration.team.teamName">
-        <igx-avatar [src]="registration.team.teamAvatar" [initials]="registration.team.teamName"></igx-avatar>
-        {{ registration.team.teamName }}
-      </igx-select-item>
-    </igx-select>
+  <igx-select [(ngModel)]="matchInEdit.team1Id" required>
+    <label igxLabel i18n>Team 1</label>
+    <igx-select-item *ngFor="let registration of registrations"
+                      [value]="registration.teamId"
+                      [text]="registration.team.teamName">
+      <igx-avatar [src]="registration.team.teamAvatar" [initials]="registration.team.teamName"></igx-avatar>
+      {{ registration.team.teamName }}
+    </igx-select-item>
+  </igx-select>
 
-    vs.
+  vs.
 
-    <igx-select [(ngModel)]="matchInEdit.team2Id" required>
-      <label igxLabel i18n>Team 2</label>
-      <igx-select-item *ngFor="let registration of registrations"
-                        [value]="registration.teamId"
-                        [text]="registration.team.teamName">
-        <igx-avatar [src]="registration.team.teamAvatar" [initials]="registration.team.teamName"></igx-avatar>
-        {{ registration.team.teamName }}
-      </igx-select-item>
-    </igx-select>
-  </div>
+  <igx-select [(ngModel)]="matchInEdit.team2Id" required>
+    <label igxLabel i18n>Team 2</label>
+    <igx-select-item *ngFor="let registration of registrations"
+                      [value]="registration.teamId"
+                      [text]="registration.team.teamName">
+      <igx-avatar [src]="registration.team.teamAvatar" [initials]="registration.team.teamName"></igx-avatar>
+      {{ registration.team.teamName }}
+    </igx-select-item>
+  </igx-select>
 </igx-dialog>
 
 <igx-dialog #newMatchMapDialog
@@ -229,54 +227,51 @@
             (onLeftButtonSelect)="newMatchMapDialog.close()"
             i18n-rightButtonLabel
             rightButtonLabel="Submit"
-            (onRightButtonSelect)="submitMatchMaps(matchGrid); newMatchMapDialog.close()">
-  <div class="match-details">
+            (onRightButtonSelect)="submitMatch(matchGrid); newMatchMapDialog.close()">
+  <div class="horizontal-center">
+    <igx-input-group>
+      <label igxLabel i18n>Points {{ matchInEdit.team1?.teamName }}</label>
+      <input type="number" igxInput [(ngModel)]="matchInEdit.team1Points" />
+    </igx-input-group>
+    <span class="grid-vs-divider">:</span>
+    <igx-input-group>
+      <label igxLabel i18n>Points {{ matchInEdit.team2?.teamName }}</label>
+      <input type="number" igxInput [(ngModel)]="matchInEdit.team2Points" />
+    </igx-input-group>
+  </div>
+
+  <div *ngFor="let map of matchInEdit.maps">
+    <igx-select [(ngModel)]="map.map">
+      <label igxLabel i18n>Map</label>
+      <igx-select-item *ngFor="let map of mapList" [value]="map.id">{{ map.map }}</igx-select-item>
+    </igx-select>
 
     <div class="horizontal-center">
       <igx-input-group>
-        <label igxLabel i18n>Points {{ matchInEdit.team1?.teamName }}</label>
-        <input type="number" igxInput [(ngModel)]="matchInEdit.team1Points" />
+        <label igxLabel i18n>Rounds {{ matchInEdit.team1.teamName }}</label>
+        <input type="number" igxInput [(ngModel)]="map.team1Score" />
       </igx-input-group>
       <span class="grid-vs-divider">:</span>
       <igx-input-group>
-        <label igxLabel i18n>Points {{ matchInEdit.team2?.teamName }}</label>
-        <input type="number" igxInput [(ngModel)]="matchInEdit.team2Points" />
+        <label igxLabel i18n>Rounds {{ matchInEdit.team2.teamName }}</label>
+        <input type="number" igxInput [(ngModel)]="map.team2Score" />
       </igx-input-group>
     </div>
 
-    <div *ngFor="let map of matchInEdit.maps">
-      <igx-select [(ngModel)]="map.map">
-        <label igxLabel i18n>Map</label>
-        <igx-select-item *ngFor="let map of mapList" [value]="map.id">{{ map.map }}</igx-select-item>
-      </igx-select>
-
-      <div class="horizontal-center">
-        <igx-input-group>
-          <label igxLabel i18n>Rounds {{ matchInEdit.team1.teamName }}</label>
-          <input type="number" igxInput [(ngModel)]="map.team1Score" />
-        </igx-input-group>
-        <span class="grid-vs-divider">:</span>
-        <igx-input-group>
-          <label igxLabel i18n>Rounds {{ matchInEdit.team2.teamName }}</label>
-          <input type="number" igxInput [(ngModel)]="map.team2Score" />
-        </igx-input-group>
-      </div>
-
-      <button igxButton class="submit-button" (click)="deleteMatchMap(map, matchInEdit.maps)">
-        <igx-icon>delete_forever</igx-icon>
-        <span i18n>Delete</span>
-      </button>
-    </div>
-
-    <igx-checkbox *ngIf="!matchInEdit.maps || !matchInEdit.maps.length" [(ngModel)]="matchInEdit.noShow" i18n>Walkover</igx-checkbox>
-
-    <button *ngIf="matchInEdit.id"
-            igxButton="outlined"
-            (click)="matchInEdit.maps.push({ csgoMatchId: matchInEdit.id })">
-      <igx-icon>add_circle_outline</igx-icon>
-      <span i18n>Add a match map</span>
+    <button igxButton class="submit-button delete-map" (click)="deleteMatchMap(map, matchInEdit.maps)">
+      <igx-icon>delete_forever</igx-icon>
+      <span i18n>Delete</span>
     </button>
   </div>
+
+  <igx-checkbox *ngIf="!matchInEdit.maps || !matchInEdit.maps.length" [(ngModel)]="matchInEdit.noShow" i18n>Walkover</igx-checkbox>
+
+  <button *ngIf="matchInEdit.id"
+          igxButton="outlined"
+          (click)="matchInEdit.maps.push({ csgoMatchId: matchInEdit.id })">
+    <igx-icon>add_circle_outline</igx-icon>
+    <span i18n>Add a match map</span>
+  </button>
 </igx-dialog>
 
 <bg-confirm #confirmGroup i18n-title title="Are you sure?" (ok)="deleteGroup($event)">

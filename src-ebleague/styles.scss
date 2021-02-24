@@ -308,22 +308,16 @@ igx-calendar {
   height: fit-content;
 }
 
-.match-details {
-  display: grid;
-  row-gap: 16px;
-  padding: 16px;
-}
-
- .match-details > * {
-   width: 100%;
- }
-
 .match-actions > * {
   margin: 0 4px;
 }
 
 .score-container {
   margin: 0 16px;
+}
+
+.delete-map {
+  margin-top: 4px;
 }
 /* END SCHEDULE */
 

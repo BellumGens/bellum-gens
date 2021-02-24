@@ -115,11 +115,6 @@ export class AdminSc2Component {
     dialog.open();
   }
 
-  public submitMatchMaps(grid: IgxGridComponent) {
-    this.submitMatch(grid);
-    this.matchInEdit.maps.forEach(map => this.apiService.submitSC2MatchMap(map).subscribe(data => map.id = data.id));
-  }
-
   public deleteMatchMap(map: TournamentMatchMap, maps: TournamentMatchMap []) {
     this.apiService.deleteSC2MatchMap(map.id).subscribe(() => {
       maps.splice(maps.indexOf(map), 1);

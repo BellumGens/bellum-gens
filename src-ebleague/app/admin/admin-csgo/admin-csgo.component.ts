@@ -115,11 +115,6 @@ export class AdminCsgoComponent {
     dialog.open();
   }
 
-  public submitMatchMaps(grid: IgxGridComponent) {
-    this.submitMatch(grid);
-    this.matchInEdit.maps.forEach(map => this.apiService.submitCSGOMatchMap(map).subscribe(data => map.id = data.id));
-  }
-
   public deleteMatchMap(map: TournamentMatchMap, maps: TournamentMatchMap []) {
     this.apiService.deleteCSGOMatchMap(map.id).subscribe(() => {
       maps.splice(maps.indexOf(map), 1);

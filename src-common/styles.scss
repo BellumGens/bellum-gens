@@ -90,11 +90,6 @@ textarea {
   width: 100%;
 }
 
-button > igx-icon,
-a > igx-icon {
-  margin-right: 4px;
-}
-
 .login-divider {
   height: 16px;
   margin-left: 8px;
@@ -321,13 +316,7 @@ a > igx-icon {
 
 .login-buttons {
   display: grid;
-  row-gap: 24px;
-  justify-content: center;
-  padding: 12px;
-}
-
-.login-buttons button:not(:first-child) {
-  margin-top: 8px;
+  row-gap: 12px;
 }
 
 .login-button {
@@ -336,8 +325,18 @@ a > igx-icon {
 
 .registration-form {
   display: grid;
-  row-gap: 24px;
+  row-gap: 12px;
 }
+
+.igx-dialog__window-content {
+  display: grid;
+  row-gap: 16px;
+  max-width: none;
+}
+
+  .igx-dialog__window-content > * {
+    width: 100%;
+  }
 
 @media only screen and (max-width: 720px) {
   .search-group {
