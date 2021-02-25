@@ -63,22 +63,19 @@
   // }
 
   .logistics {
-    width: 150px;
+    max-width: 150px;
   }
 
   .first-place {
     max-width: 130px;
-    object-fit: contain;
   }
 
   .second-place {
     max-width: 110px;
-    object-fit: contain;
   }
 
   .third-forth-place {
     max-width: 100px;
-    object-fit: contain;
   }
 
   .winner-wrapper {

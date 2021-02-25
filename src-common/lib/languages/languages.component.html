@@ -1,4 +1,10 @@
-<button class="profile-button" #profileButton igxButton="flat" igxRipple [igxToggleAction]="languagesDropDown" [overlaySettings]="overlaySettings">
+<button class="profile-button"
+        i18n-aria-label
+        aria-label="Choose a language"
+        igxButton="flat"
+        igxRipple
+        [igxToggleAction]="languagesDropDown"
+        [overlaySettings]="overlaySettings">
   <igx-icon family="languages" [name]="localeId"></igx-icon>
   <igx-icon class="drop-down-arrow">arrow_drop_down</igx-icon>
 </button>

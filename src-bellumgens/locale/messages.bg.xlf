@@ -1622,6 +1622,14 @@
           <context context-type="linenumber">38</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="7610ef697ea49cd4a8c20113de0d9aee7038423a" datatype="html">
+        <source>Choose a language</source>
+        <target>Избери език</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/languages/languages.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="f968f4a83edfcfda5f3d64ba069fda1a0c2ae30e" datatype="html">
         <source>or login with form</source>
         <target>или влез с име и парола</target>
