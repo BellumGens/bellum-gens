@@ -70,14 +70,11 @@ export class NewStrategyComponent {
   }
 
   public createAndRedirect() {
-    let route = ['strategies', 'edit'];
     if (this.team) {
       this.newStrategy.teamId = this.team.teamId;
-      route = ['team', this.team.customUrl];
     }
     this.apiService.submitStrategy(this.newStrategy).subscribe(strat => {
-      route.push(strat.customUrl);
-      this.router.navigate(route);
+      this.router.navigate(['strategies', 'edit', strat.customUrl]);
     });
   }
 

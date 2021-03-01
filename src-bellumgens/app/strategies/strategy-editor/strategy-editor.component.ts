@@ -73,20 +73,19 @@ export class StrategyEditorComponent implements OnInit, OnDestroy {
     this.editor = new StrategyEditor(this.canvas, (window.innerHeight - 129) / 1024);
     this.layers = this.editor.layers;
     this.route.params.subscribe(params => {
-      const teamId = params['teamid'];
-      if (teamId) {
-        this.apiService.getTeam(teamId).subscribe(team => {
-          if (team) {
-            this.team = team;
-            this.apiService.getTeamMembers(team.teamId).subscribe(members => this.teammembers = members);
-          }
-        });
-      }
       const stratid = params['stratid'];
       if (stratid) {
         this.apiStrategyService.getCurrentStrategy(stratid).subscribe(strat => {
           if (strat) {
             this.newStrategy = strat;
+            if (strat.teamId) {
+              this.apiService.getTeam(strat.teamId).subscribe(team => {
+                if (team) {
+                  this.team = team;
+                  this.apiService.getTeamMembers(team.teamId).subscribe(members => this.teammembers = members);
+                }
+              });
+            }
             if (strat.editorMetadata) {
               this.editor.restore(strat.editorMetadata);
             }

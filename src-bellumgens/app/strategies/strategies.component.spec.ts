@@ -82,7 +82,9 @@ describe('StrategiesComponent', () => {
           provide: ActivatedRoute,
           useValue: {
             parent: {
-              params: new Observable()
+              parent: {
+                params: new Observable()
+              }
             },
             data: new Observable()
           }

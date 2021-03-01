@@ -43,7 +43,7 @@ export class StrategiesComponent {
               private searchService: ApiSearchService,
               private authManager: LoginService,
               private socialMedia: SocialMediaService) {
-    this.activatedRoute.parent.params.subscribe(params => {
+    this.activatedRoute.parent.parent.params.subscribe(params => {
       const teamId = params['teamid'];
 
       if (teamId) {

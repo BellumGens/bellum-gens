@@ -13,12 +13,12 @@
           <span i18n>Notifications</span>
           <igx-badge class="notifications-badge" *ngIf="unreadNotifications > 0" [value]="unreadNotifications.toString()" type="info"></igx-badge>
         </span>
-        <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="user/strategies">
+        <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="strategies/user">
           <igx-icon>person</igx-icon>
           <span i18n>My Strategies</span>
         </span>
         <igx-divider></igx-divider>
-        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="strategies">
+        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="strategies/public">
           <igx-icon>playlist_add_check</igx-icon>
           <span i18n>CS:GO Strategies</span>
         </span>
@@ -44,11 +44,11 @@
           <igx-icon>notifications</igx-icon>
           <igx-badge class="notifications-badge" *ngIf="unreadNotifications > 0" [value]="unreadNotifications.toString()" type="info"></igx-badge>
         </span>
-        <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="user/strategies" i18n-title title="My Strategies">
+        <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="strategies/user" i18n-title title="My Strategies">
           <igx-icon>person</igx-icon>
         </span>
         <igx-divider></igx-divider>
-        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="strategies" i18n-title title="CS:GO Strategies">
+        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="strategies/public" i18n-title title="CS:GO Strategies">
           <igx-icon>playlist_add_check</igx-icon>
         </span>
         <span igxDrawerItem igxRipple routerLink="/" fragment="partners" i18n-title title="Partners">
