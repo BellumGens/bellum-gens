@@ -9,7 +9,7 @@
       </igx-suffix>
     </igx-input-group>
 
-    <igx-input-group class="space-out">
+    <igx-input-group>
       <label for="strategyDescription" igxLabel i18n>Description</label>
       <textarea #strategyDescription id="strategyDescription" name="strategyDescription" igxInput minlength="2" [required]="true" [(ngModel)]="newStrategy.description">
       </textarea>
@@ -18,23 +18,23 @@
       </igx-suffix>
     </igx-input-group>
 
-    <div class="horizontal-center space-between space-out">
-      <igx-radio-group class="strat-radio">
+    <div class="horizontal-center space-between">
+      <igx-radio-group>
         <igx-radio name="strategySide" [(ngModel)]="newStrategy.side" [value]="0" i18n>T-Side</igx-radio>
-        <igx-radio name="strategySide" [(ngModel)]="newStrategy.side" [value]="1" i18n>CT-Side</igx-radio>
+        <igx-radio name="strategySide" class="space-me-out" [(ngModel)]="newStrategy.side" [value]="1" i18n>CT-Side</igx-radio>
       </igx-radio-group>
 
       <igx-switch name="strategyPublic" [(ngModel)]="newStrategy.visible" i18n>Public</igx-switch>
     </div>
 
-    <igx-select id="mapSelector" class="space-out" name="mapSelector" [(ngModel)]="newStrategy.map">
+    <igx-select id="mapSelector" name="mapSelector" [(ngModel)]="newStrategy.map">
       <label for="mapSelector" igxLabel i18n>Map</label>
       <igx-select-item *ngFor="let map of mapList" (click)="selectedMap = map" [value]="map.id">
         {{ map.map }}
       </igx-select-item>
     </igx-select>
 
-    <igx-input-group class="space-out">
+    <igx-input-group>
       <igx-prefix>
         <igx-icon>link</igx-icon>
       </igx-prefix>
@@ -51,9 +51,9 @@
       </igx-suffix>
     </igx-input-group>
 
-    <iframe *ngIf="getVideoEmbedLink()" class="video-frame space-out" [src]="newStrategy.url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe *ngIf="getVideoEmbedLink()" class="video-frame" [src]="newStrategy.url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-    <div class="column-wrapper space-out">
+    <div class="row-wrapper">
       <button type="button" igxButton="outlined" class="submit-button" [disabled]="strategyForm.invalid" (click)="createAndRedirect()" i18n>Editor</button>
       <span class="separate" i18n>OR</span>
       <button igxButton="outlined" igxRipple [disabled]="strategyForm.invalid || !newStrategy.url" class="submit-button" i18n>Submit</button>

@@ -314,23 +314,15 @@ textarea {
   width: 150px;
 }
 
-.login-buttons {
-  display: grid;
-  row-gap: 12px;
-}
-
 .login-button {
   width: 250px;
 }
 
-.registration-form {
+.registration-form,
+.igx-dialog__window-content,
+.igx-dialog__window-content > form  {
   display: grid;
   row-gap: 12px;
-}
-
-.igx-dialog__window-content {
-  display: grid;
-  row-gap: 16px;
 }
 
   .igx-dialog__window-content > * {

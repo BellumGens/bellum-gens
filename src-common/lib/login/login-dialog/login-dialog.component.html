@@ -1,7 +1,7 @@
 <igx-dialog [closeOnOutsideSelect]="true" [title]="title">
   <bg-login-buttons></bg-login-buttons>
 
-  <form class="login-buttons" #userLogin="ngForm" (ngSubmit)="loginWithForm()">
+  <form #userLogin="ngForm" (ngSubmit)="loginWithForm()">
     <h6 style="text-align: center;" i18n>or login with form</h6>
     <igx-input-group class="login-button" type="border">
       <label for="username" igxLabel i18n>Username</label>
