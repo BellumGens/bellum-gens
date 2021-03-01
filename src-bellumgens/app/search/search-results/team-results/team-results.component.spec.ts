@@ -3,8 +3,6 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { TeamResultsComponent } from './team-results.component';
 import { IgxProgressBarModule, IgxCardModule, IgxAvatarModule } from '@infragistics/igniteui-angular';
 import { RouterTestingModule } from '@angular/router/testing';
-import { DaysAvailablePipe } from 'src-bellumgens/app/pipes/days-available.pipe';
-import { OpenPositionsPipe } from 'src-bellumgens/app/pipes/open-positions.pipe';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { QueryParsedPipe } from 'src-bellumgens/app/pipes/query-parsed.pipe';
 import { BellumGensModule } from 'src-common/lib/components.module';
@@ -25,8 +23,6 @@ describe('TeamResultsComponent', () => {
       ],
       declarations: [
         TeamResultsComponent,
-        DaysAvailablePipe,
-        OpenPositionsPipe,
         QueryParsedPipe
       ]
     })

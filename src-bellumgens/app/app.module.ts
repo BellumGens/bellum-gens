@@ -43,8 +43,6 @@ import { QuickSearchComponent } from './search/quick-search/quick-search.compone
 import { ReduceQuickSearchResultPipe } from './pipes/reduce-quick-search-result.pipe';
 import { TeamResultsComponent } from './search/search-results/team-results/team-results.component';
 import { PlayerResultsComponent } from './search/search-results/player-results/player-results.component';
-import { DaysAvailablePipe } from './pipes/days-available.pipe';
-import { OpenPositionsPipe } from './pipes/open-positions.pipe';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../../src-common/environments/environment';
 import { EmailconfirmComponent } from './emailconfirm/emailconfirm.component';
@@ -65,8 +63,6 @@ import { TeamSearchComponent } from './search/team-search/team-search.component'
     ReduceQuickSearchResultPipe,
     TeamResultsComponent,
     PlayerResultsComponent,
-    DaysAvailablePipe,
-    OpenPositionsPipe,
     EmailconfirmComponent,
     QueryParsedPipe,
     BaseComponent,

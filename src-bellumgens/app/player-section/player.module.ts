@@ -17,7 +17,7 @@ import { PlayerComponent } from './player.component';
 import { MapPoolComponent } from './map-pool/map-pool.component';
 import { FormsModule } from '@angular/forms';
 import { SteamCustomUrlPipe } from '../pipes/steam-custom-url.pipe';
-import { BellumGensModule } from 'src-common/lib/components.module';
+import { BellumGensModule } from '../../../src-common/lib/components.module';
 import { SortWeaponsPipe } from '../pipes/sort-weapons.pipe';
 import { TopWeaponAltPipe } from '../pipes/top-weapon-alt.pipe';
 

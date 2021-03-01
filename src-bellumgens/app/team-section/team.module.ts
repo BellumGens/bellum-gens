@@ -19,7 +19,7 @@ import { TeamComponent } from './team.component';
 import { TeamApplicationComponent } from './team-application/team-application.component';
 import { TeamDetailsComponent } from './team-details/team-details.component';
 import { TeamTournamentsComponent } from './team-tournaments/team-tournaments.component';
-import { BellumGensModule } from 'src-common/lib/components.module';
+import { BellumGensModule } from '../../../src-common/lib/components.module';
 import { TeamNavComponent } from './team-nav/team-nav.component';
 import { TeamNewComponent } from './team-new/team-new.component';
 import { GroupsFilterPipe } from '../pipes/groups-filter.pipe';

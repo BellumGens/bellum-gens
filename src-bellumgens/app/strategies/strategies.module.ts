@@ -21,7 +21,7 @@ import {
   IgxSwitchModule,
   IgxToggleModule
 } from '@infragistics/igniteui-angular';
-import { BellumGensModule } from 'src-common/lib/components.module';
+import { BellumGensModule } from '../../../src-common/lib/components.module';
 
 import { StrategiesRoutingModule } from './strategies-routing.module';
 import { StrategiesComponent } from './strategies.component';
