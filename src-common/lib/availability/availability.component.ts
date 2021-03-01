@@ -1,14 +1,16 @@
 import { Component, ViewChild, Input, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
-import { Availability } from '../../../src-common/models/playeravailability';
-import { IgxTimePickerComponent,
+import { Availability } from '../../models/playeravailability';
+import {
+  IgxTimePickerComponent,
   IgxChipsAreaComponent,
   IgxDialogComponent,
   IgxChipComponent,
   IChipClickEventArgs,
-  IBaseChipEventArgs} from '@infragistics/igniteui-angular';
+  IBaseChipEventArgs
+} from '@infragistics/igniteui-angular';
 
 @Component({
-  selector: 'app-availability',
+  selector: 'bg-availability',
   templateUrl: './availability.component.html',
   styleUrls: ['./availability.component.scss']
 })

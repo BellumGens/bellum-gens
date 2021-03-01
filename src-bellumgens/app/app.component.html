@@ -3,7 +3,7 @@
     <ng-template igxDrawer>
       <nav>
         <span igxDrawerItem [isHeader]="true">Bellum Gens</span>
-        <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="myteams">
+        <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="team/myteams">
           <igx-icon>people</igx-icon>
           <span i18n>My Teams</span>
           <igx-badge class="notifications-badge" *ngIf="teams?.length > 0" [value]="teams?.length.toString()" type="info"></igx-badge>
@@ -36,7 +36,7 @@
     <ng-template igxDrawerMini *ngIf="drawer.pin">
       <nav>
         <span igxDrawerItem [isHeader]="true">&nbsp;</span>
-        <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="myteams" i18n-title title="My Teams">
+        <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="team/myteams" i18n-title title="My Teams">
           <igx-icon>people</igx-icon>
           <igx-badge class="notifications-badge" *ngIf="teams?.length > 0" [value]="teams?.length.toString()" type="info"></igx-badge>
         </span>

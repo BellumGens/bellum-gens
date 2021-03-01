@@ -8,8 +8,8 @@ import { BellumgensApiService } from '../../../../src-common/services/bellumgens
 
 @Component({
   selector: 'app-player-notifications',
-  templateUrl: './notifications.component.html',
-  styleUrls: ['./notifications.component.css']
+  templateUrl: './player-notifications.component.html',
+  styleUrls: ['./player-notifications.component.scss']
 })
 export class PlayerNotificationsComponent {
   @Output()

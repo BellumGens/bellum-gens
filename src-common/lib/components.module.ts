@@ -18,7 +18,9 @@ import {
   IgxInputGroupModule,
   IgxSnackbarModule,
   IgxCheckboxModule,
-  IgxSelectModule
+  IgxSelectModule,
+  IgxTimePickerModule,
+  IgxChipsModule
 } from '@infragistics/igniteui-angular';
 
 import { SuccessErrorComponent } from './success-error/success-error.component';
@@ -32,6 +34,11 @@ import { CSGOMapimagePipe } from './pipes/csgomapimage.pipe';
 import { CSGOMapnamePipe } from './pipes/csgomapname.pipe';
 import { Sc2MapNamePipe } from './pipes/sc2-map-name.pipe';
 import { LanguagesComponent } from './languages/languages.component';
+import { PlayerCountryPipe } from './pipes/player-country.pipe';
+import { AvailabilityComponent } from './availability/availability.component';
+import { WeekdayPipe } from './pipes/weekday.pipe';
+import { LoadingComponent } from './loading/loading.component';
+import { ActiveDutyMapsPipe } from './pipes/active-duty-maps.pipe';
 
 
 @NgModule({
@@ -45,9 +52,14 @@ import { LanguagesComponent } from './languages/languages.component';
     RegistrationComponent,
     UnauthorizedComponent,
     LanguagesComponent,
+    AvailabilityComponent,
+    LoadingComponent,
     CSGOMapimagePipe,
     CSGOMapnamePipe,
-    Sc2MapNamePipe
+    Sc2MapNamePipe,
+    PlayerCountryPipe,
+    WeekdayPipe,
+    ActiveDutyMapsPipe
   ],
   exports: [
     ConfirmComponent,
@@ -59,9 +71,14 @@ import { LanguagesComponent } from './languages/languages.component';
     RegistrationComponent,
     UnauthorizedComponent,
     LanguagesComponent,
+    AvailabilityComponent,
+    LoadingComponent,
     CSGOMapimagePipe,
     CSGOMapnamePipe,
-    Sc2MapNamePipe
+    Sc2MapNamePipe,
+    PlayerCountryPipe,
+    WeekdayPipe,
+    ActiveDutyMapsPipe
   ],
   imports: [
     CommonModule,
@@ -80,7 +97,9 @@ import { LanguagesComponent } from './languages/languages.component';
     IgxInputGroupModule,
     IgxSnackbarModule,
     IgxCheckboxModule,
-    IgxSelectModule
+    IgxSelectModule,
+    IgxTimePickerModule,
+    IgxChipsModule
   ]
 })
 export class BellumGensModule {}

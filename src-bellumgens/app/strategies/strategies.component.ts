@@ -1,24 +1,24 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { BellumgensApiService } from '../../../../src-common/services/bellumgens-api.service';
-import { CSGOStrategy, VoteDirection } from '../../../../src-common/models/csgostrategy';
-import { CSGOMapPool, AllCSGOMaps } from '../../../../src-common/models/csgomaps';
+import { BellumgensApiService } from '../../../src-common/services/bellumgens-api.service';
+import { CSGOStrategy, VoteDirection } from '../../../src-common/models/csgostrategy';
+import { CSGOMapPool, AllCSGOMaps } from '../../../src-common/models/csgomaps';
 import { IChipSelectEventArgs } from '@infragistics/igniteui-angular';
 import { SafeResourceUrl } from '@angular/platform-browser';
-import { CSGOTeam } from '../../../../src-common/models/csgoteam';
-import { LoginService } from '../../../../src-common/services/login.service';
-import { ApplicationUser } from '../../../../src-common/models/applicationuser';
-import { GLOBAL_OVERLAY_SETTINGS, StratOrder, StratOrderBy } from '../../../../src-common/models/misc';
-import { SocialMediaService } from '../../../../src-common/services/social-media.service';
-import { ApiSearchService } from '../../../../src-common/services/bellumgens-api.search.service';
-import { ApiStrategiesService } from '../../../../src-common/services/bellumgens-api.strategies.service';
+import { CSGOTeam } from '../../../src-common/models/csgoteam';
+import { LoginService } from '../../../src-common/services/login.service';
+import { ApplicationUser } from '../../../src-common/models/applicationuser';
+import { GLOBAL_OVERLAY_SETTINGS, StratOrder, StratOrderBy } from '../../../src-common/models/misc';
+import { SocialMediaService } from '../../../src-common/services/social-media.service';
+import { ApiSearchService } from '../../../src-common/services/bellumgens-api.search.service';
+import { ApiStrategiesService } from '../../../src-common/services/bellumgens-api.strategies.service';
 
 @Component({
   selector: 'app-team-strategies',
-  templateUrl: './team-strategies.component.html',
-  styleUrls: ['./team-strategies.component.scss']
+  templateUrl: './strategies.component.html',
+  styleUrls: ['./strategies.component.scss']
 })
-export class TeamStrategiesComponent {
+export class StrategiesComponent {
   public isEditor: boolean = null;
 
   public strats: CSGOStrategy [];

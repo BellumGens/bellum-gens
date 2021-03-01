@@ -8,24 +8,24 @@ import {
   IgxIconService
 } from '@infragistics/igniteui-angular';
 
-import { LoginService } from '../../../../src-common/services/login.service';
-import { BellumgensApiService } from '../../../../src-common/services/bellumgens-api.service';
-import { CSGOPlayer, WeaponDescriptor } from '../../../../src-common/models/csgoplayer';
-import { Availability } from '../../../../src-common/models/playeravailability';
-import { ApplicationUser } from '../../../../src-common/models/applicationuser';
-import { CSGOTeam } from '../../../../src-common/models/csgoteam';
-import { CSGOMapPool } from '../../../../src-common/models/csgomaps';
-import { ALL_ROLES } from '../../../../src-common/models/playerrole';
-import { BaseComponent } from '../../base/base.component';
+import { LoginService } from '../../../src-common/services/login.service';
+import { BellumgensApiService } from '../../../src-common/services/bellumgens-api.service';
+import { CSGOPlayer, WeaponDescriptor } from '../../../src-common/models/csgoplayer';
+import { Availability } from '../../../src-common/models/playeravailability';
+import { ApplicationUser } from '../../../src-common/models/applicationuser';
+import { CSGOTeam } from '../../../src-common/models/csgoteam';
+import { CSGOMapPool } from '../../../src-common/models/csgomaps';
+import { ALL_ROLES } from '../../../src-common/models/playerrole';
+import { BaseComponent } from '../base/base.component';
 import { Observable } from 'rxjs';
-import { SortWeaponsPipe } from '../../pipes/sort-weapons.pipe';
+import { SortWeaponsPipe } from '../pipes/sort-weapons.pipe';
 
 @Component({
-  templateUrl: './player-details.component.html',
-  styleUrls: ['./player-details.component.scss'],
+  templateUrl: './player.component.html',
+  styleUrls: ['./player.component.scss'],
   encapsulation: ViewEncapsulation.None,
 })
-export class PlayerDetailsComponent extends BaseComponent {
+export class PlayerComponent extends BaseComponent {
   @ViewChild('primaryRole') public primaryRole: IgxDropDownComponent;
   @ViewChild('secondaryRole') public secondaryRole: IgxDropDownComponent;
 

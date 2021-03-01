@@ -1,14 +1,14 @@
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
-import { CSGOActiveDutyDescriptor, ActiveDuty, CSGOMap } from '../../../../../src-common/models/csgomaps';
-import { StrategyEditor } from '../../../../../src-common/models/strat-editor/strategy-editor';
-import { CSGOTeam, TeamMember } from '../../../../../src-common/models/csgoteam';
-import { BellumgensApiService } from '../../../../../src-common/services/bellumgens-api.service';
+import { CSGOActiveDutyDescriptor, ActiveDuty, CSGOMap } from '../../../../src-common/models/csgomaps';
+import { StrategyEditor } from '../../../../src-common/models/strat-editor/strategy-editor';
+import { CSGOTeam, TeamMember } from '../../../../src-common/models/csgoteam';
+import { BellumgensApiService } from '../../../../src-common/services/bellumgens-api.service';
 import { ActivatedRoute } from '@angular/router';
 import { IDropDroppedEventArgs, IgxIconService } from '@infragistics/igniteui-angular';
-import { STRAT_UTILITIES, EDITOR_BRUSH_COLORS } from '../../../../../src-common/models/strat-editor/utility';
-import { CSGOStrategy } from '../../../../../src-common/models/csgostrategy';
-import { BaseLayer, PointCoordinate, ImageLayer, FreeflowLayer } from '../../../../../src-common/models/strat-editor/editor-layer';
-import { ApiStrategiesService } from '../../../../../src-common/services/bellumgens-api.strategies.service';
+import { STRAT_UTILITIES, EDITOR_BRUSH_COLORS } from '../../../../src-common/models/strat-editor/utility';
+import { CSGOStrategy } from '../../../../src-common/models/csgostrategy';
+import { BaseLayer, PointCoordinate, ImageLayer, FreeflowLayer } from '../../../../src-common/models/strat-editor/editor-layer';
+import { ApiStrategiesService } from '../../../../src-common/services/bellumgens-api.strategies.service';
 
 @Component({
   selector: 'app-strategy-editor',

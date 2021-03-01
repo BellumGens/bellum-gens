@@ -1,5 +1,5 @@
-<app-app-shell *ngIf="loading">
-</app-app-shell>
+<bg-loading *ngIf="loading">
+</bg-loading>
 
 <div *ngIf="!loading" class="search-result-summary margin-bottom">
   <h4 class="igx-card-header__title margin-bottom" i18n>Found <span class="highlight">{{teams?.length }}</span> results for teams{{ query | queryParsed }}</h4>

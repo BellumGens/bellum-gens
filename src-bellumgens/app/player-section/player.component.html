@@ -1,5 +1,5 @@
-<app-app-shell *ngIf="loading">
-</app-app-shell>
+<bg-loading *ngIf="loading">
+</bg-loading>
 
 <div class="loading-overview" *ngIf="!player || player?.steamUserException">
   <h4 class="highlight" i18n>Steam CS:GO player profile not found...</h4>
@@ -130,7 +130,7 @@
       <h4 igxCardHeaderTitle i18n>Availability</h4>
     </igx-card-header>
     <igx-card-content>
-      <app-availability [availability]="availability" (availabilityChanged)="submitAvailability($event)" [editable]="playerIsUser"></app-availability>
+      <bg-availability [availability]="availability" (availabilityChanged)="submitAvailability($event)" [editable]="playerIsUser"></bg-availability>
     </igx-card-content>
   </igx-card>
 

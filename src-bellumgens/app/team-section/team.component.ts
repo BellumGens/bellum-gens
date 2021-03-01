@@ -1,18 +1,18 @@
 import { Component} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ApplicationUser } from '../../../../src-common/models/applicationuser';
-import { CSGOTeam, TEAM_PLACEHOLDER } from '../../../../src-common/models/csgoteam';
-import { BellumgensApiService } from '../../../../src-common/services/bellumgens-api.service';
-import { LoginService } from '../../../../src-common/services/login.service';
-import { BaseComponent } from '../../base/base.component';
+import { ApplicationUser } from '../../../src-common/models/applicationuser';
+import { CSGOTeam, TEAM_PLACEHOLDER } from '../../../src-common/models/csgoteam';
+import { BellumgensApiService } from '../../../src-common/services/bellumgens-api.service';
+import { LoginService } from '../../../src-common/services/login.service';
+import { BaseComponent } from '../base/base.component';
 import { Title, Meta } from '@angular/platform-browser';
 import { IgxIconService } from '@infragistics/igniteui-angular';
 
 @Component({
-  templateUrl: './team-overview.component.html',
-  styleUrls: ['./team-overview.component.css']
+  templateUrl: './team.component.html',
+  styleUrls: ['./team.component.scss']
 })
-export class TeamOverviewComponent extends BaseComponent {
+export class TeamComponent extends BaseComponent {
   public authUser: ApplicationUser;
   public team: CSGOTeam = TEAM_PLACEHOLDER;
   public isAdmin: boolean = null;

@@ -1,14 +1,14 @@
 import { Component, HostListener } from '@angular/core';
-import { BaseComponent } from '../../../base/base.component';
+import { BaseComponent } from '../../base/base.component';
 import { ActivatedRoute } from '@angular/router';
-import { CSGOStrategy, VoteDirection, NEW_EMPTY_COMMENT, StrategyComment } from '../../../../../src-common/models/csgostrategy';
-import { LoginService } from '../../../../../src-common/services/login.service';
-import { ApplicationUser } from '../../../../../src-common/models/applicationuser';
-import { GLOBAL_OVERLAY_SETTINGS } from '../../../../../src-common/models/misc';
-import { SocialMediaService } from '../../../../../src-common/services/social-media.service';
+import { CSGOStrategy, VoteDirection, NEW_EMPTY_COMMENT, StrategyComment } from '../../../../src-common/models/csgostrategy';
+import { LoginService } from '../../../../src-common/services/login.service';
+import { ApplicationUser } from '../../../../src-common/models/applicationuser';
+import { GLOBAL_OVERLAY_SETTINGS } from '../../../../src-common/models/misc';
+import { SocialMediaService } from '../../../../src-common/services/social-media.service';
 import { Title, Meta } from '@angular/platform-browser';
-import { environment } from '../../../../../src-common/environments/environment.prod';
-import { ApiStrategiesService } from '../../../../../src-common/services/bellumgens-api.strategies.service';
+import { environment } from '../../../../src-common/environments/environment.prod';
+import { ApiStrategiesService } from '../../../../src-common/services/bellumgens-api.strategies.service';
 
 @Component({
   selector: 'app-strategy-details',

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { TeamStrategiesComponent } from './team-strategies.component';
+import { StrategiesComponent } from './strategies.component';
 import { IgxIconModule,
   IgxCardModule,
   IgxInputGroupModule,
@@ -38,9 +38,9 @@ import { NewStrategyComponent } from './new-strategy/new-strategy.component';
 import { IsStratOwnerPipe } from 'src-bellumgens/app/pipes/is-strat-owner.pipe';
 import { BellumGensModule } from 'src-common/lib/components.module';
 
-describe('TeamStrategiesComponent', () => {
-  let component: TeamStrategiesComponent;
-  let fixture: ComponentFixture<TeamStrategiesComponent>;
+describe('StrategiesComponent', () => {
+  let component: StrategiesComponent;
+  let fixture: ComponentFixture<StrategiesComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -70,12 +70,10 @@ describe('TeamStrategiesComponent', () => {
         BellumGensModule
       ],
       declarations: [
-        TeamStrategiesComponent,
-        AppShellComponent,
+        StrategiesComponent,
         NewStrategyComponent,
         SafeVideoLinkPipe,
         SideStratsPipe,
-        WeekdayPipe,
         ActiveDutyMapsPipe,
         TruncateTextPipe,
         IsVideoPipe,
@@ -99,7 +97,7 @@ describe('TeamStrategiesComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TeamStrategiesComponent);
+    fixture = TestBed.createComponent(StrategiesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -29,8 +29,6 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { TeamNavComponent } from './team-section/team-nav/team-nav.component';
 import { QuickSearchComponent } from './search/quick-search/quick-search.component';
 import { SearchComponent } from './search/search/search.component';
-import { TeamNotificationsComponent } from './team-section/team-notifications/team-notifications.component';
-import { PlayerNotificationsComponent } from './player-section/notifications/notifications.component';
 import { FormsModule } from '@angular/forms';
 import { GroupsFilterPipe } from './pipes/groups-filter.pipe';
 import { ReduceQuickSearchResultPipe } from './pipes/reduce-quick-search-result.pipe';
@@ -43,7 +41,6 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { NotificationStatePipe } from './pipes/notification-state.pipe';
-import { PlayerCountryPipe } from './pipes/player-country.pipe';
 import { TeamNewComponent } from './team-section/team-new/team-new.component';
 import { BellumGensModule } from 'src-common/lib/components.module';
 
@@ -92,8 +89,6 @@ describe('AppComponent', () => {
         TeamNavComponent,
         QuickSearchComponent,
         SearchComponent,
-        TeamNotificationsComponent,
-        PlayerNotificationsComponent,
         PlayerSearchComponent,
         TeamSearchComponent,
         GroupsFilterPipe,
@@ -102,7 +97,6 @@ describe('AppComponent', () => {
         SortApplicationsPipe,
         SortNotificationsPipe,
         NotificationStatePipe,
-        PlayerCountryPipe,
         TeamNewComponent
       ],
     }).compileComponents();
