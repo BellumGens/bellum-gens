@@ -22,7 +22,7 @@ import { ApiSearchService } from '../../src-common/services/bellumgens-api.searc
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
   @ViewChild('quickSearch', { static: true }) public quickSearchDropDown: IgxDropDownComponent;

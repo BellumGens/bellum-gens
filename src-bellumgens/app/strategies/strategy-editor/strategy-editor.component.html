@@ -1,0 +1,117 @@
+<div class="strat-editor-host"
+    (pointermove)="canvasPointerMove($event)"
+    (pointerup)="canvasPointerUp()">
+  <div class="editor-elements list-container">
+    <igx-select *ngIf="newStrategy" class="editor-elements-section" id="mapSelector" name="mapSelector" [(ngModel)]="newStrategy.map" (ngModelChange)="changeMap($event)">
+      <label for="mapSelector" igxLabel i18n>Map</label>
+      <igx-select-item *ngFor="let map of maps" [value]="map.id">
+        {{ map.map }}
+      </igx-select-item>
+    </igx-select>
+    <div class="editor-elements-section">
+        <div i18n>Layers</div>
+        <igx-list [displayDensity]="'compact'" class="layer-list">
+          <igx-list-item *ngFor="let layer of layers" class="layer-info">
+            <igx-checkbox igxListThumbnail class="layer-selected" [disabled]="!layer.movable" (change)="deselectBrush()" [(ngModel)]="layer.selected"></igx-checkbox>
+            <igx-input-group igxListLine [ngClass]="layer.hidden ? 'hidden-layer' : ''" [displayDensity]="'compact'">
+              <igx-prefix>
+                <igx-icon (click)="layer.hidden = !layer.hidden">{{ layer.hidden ? 'visibility' : 'visibility_off'}}</igx-icon>
+              </igx-prefix>
+              <input igxInput [(ngModel)]="layer.name" />
+              <igx-suffix>
+                <igx-icon (click)="confirm.open(layer)">clear</igx-icon>
+              </igx-suffix>
+            </igx-input-group>
+          </igx-list-item>
+        </igx-list>
+      </div>
+  </div>
+
+  <canvas #board igxDrop
+          class="drawing-board"
+          (dropped)="surfaceDrop($event)"
+          (pointerdown)="canvasPointerDown($event)"
+          (click)="trySelectLayer($event)"></canvas>
+
+  <div class="editor-elements">
+    <div *ngIf="team" class="editor-elements-section">
+      <div i18n>Team</div>
+      <igx-avatar *ngFor="let member of teammembers"
+                  [src]="member.avatarIcon"
+                  [igxDrag]="{ src: member.avatarIcon, circle: true, width: 24, height: 24, name: member.username }"
+                  (dragStart)="deselectBrush()"
+                  class="editor-element-icon"
+                  [title]="member.username"
+                  [roundShape]="true">
+      </igx-avatar>
+    </div>
+    <div class="editor-elements-section">
+      <div i18n>Player Tokens</div>
+      <div class="horizontal">
+        <igx-avatar *ngFor="let i of ts"
+                    src="/assets/editor/t-pin.png"
+                    [igxDrag]="{ src: '/assets/editor/t-pin.png', width: 24, height: 24, removeT: true, name: 't' }"
+                    (dragStart)="deselectBrush()"
+                    class="editor-element-icon"
+                    [roundShape]="true">
+        </igx-avatar>
+      </div>
+      <div class="horizontal">
+        <igx-avatar *ngFor="let i of cts"
+                    [roundShape]="true"
+                    src="/assets/editor/ct-pin.png"
+                    (dragStart)="deselectBrush()"
+                    class="editor-element-icon"
+                    [igxDrag]="{ src: '/assets/editor/ct-pin.png', width: 24, height: 24, removeCT: true, name: 'ct' }"></igx-avatar>
+      </div>
+      <div class="horizontal">
+        <igx-avatar *ngFor="let i of enemies"
+                    [roundShape]="true"
+                    src="/assets/editor/ct-t-pin.png"
+                    (dragStart)="deselectBrush()"
+                    class="editor-element-icon"
+                    [igxDrag]="{ src: '/assets/editor/ct-t-pin.png', width: 24, height: 24, removeEnemy: true, name: 'enemy' }"></igx-avatar>
+      </div>
+    </div>
+    <div class="editor-elements-section">
+      <div i18n>Utility</div>
+      <igx-icon *ngFor="let util of utility"
+                [family]="util.family"
+                [name]="util.icon"
+                [title]="util.name"
+                class="editor-element-icon"
+                (dragStart)="deselectBrush()"
+                [igxDrag]="{ src: util.svg, circle: false, width: util.width, height: util.height, name: util.name }">
+      </igx-icon>
+    </div>
+    <div class="editor-elements-section">
+      <div i18n>Freeflow brushes</div>
+      <igx-icon [ngClass]="brushSelected ? 'editor-freeflow-element selected-element' : 'editor-freeflow-element'" (click)="selectBrush()">brush</igx-icon>
+    </div>
+    <div *ngIf="brushSelected" class="editor-elements-section">
+      <div i18n>Brush Color</div>
+      <igx-buttongroup>
+        <button igxButton igxRipple *ngFor="let color of colors" [selected]="color.selected" (click)="selectColor(color)">
+            <igx-icon [color]="color.color">color_lens</igx-icon>
+        </button>
+      </igx-buttongroup>
+    </div>
+    <div class="editor-elements-section">
+      <button igxButton="raised" igxRipple class="submit-button" (click)="saveStrat()"
+              [disabled]="!changes || saveInProgress" i18n>{{ saveInProgress ? 'Saving...' : 'Save' }}</button>
+    </div>
+    <div class="editor-credits">
+      <div class="horizontal">
+        <span i18n>Radars taken from</span>
+        <a class="horizontal navigatable" href="http://simpleradar.com/" target="_blank" rel="noopener">
+          &nbsp;simple radar&nbsp;
+          <igx-icon family="login-icons" name="SimpleRadar"></igx-icon>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<bg-confirm #confirm i18n-title title="Are you sure?" (ok)="deleteLayer($event)">
+  <p i18n>Are you sure you want to remove this layer...</p>
+</bg-confirm>

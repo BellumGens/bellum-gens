@@ -90,11 +90,6 @@ textarea {
   width: 100%;
 }
 
-button > igx-icon,
-a > igx-icon {
-  margin-right: 4px;
-}
-
 .login-divider {
   height: 16px;
   margin-left: 8px;
@@ -224,7 +219,7 @@ a > igx-icon {
 }
 
 .main-content-wrapper {
-  height: 100%;
+  height: calc(100% - 57px);
   min-width: 380px;
   display: flex;
 }
@@ -319,25 +314,20 @@ a > igx-icon {
   width: 150px;
 }
 
-.login-buttons {
-  display: grid;
-  row-gap: 24px;
-  justify-content: center;
-  padding: 12px;
-}
-
-.login-buttons button:not(:first-child) {
-  margin-top: 8px;
-}
-
 .login-button {
   width: 250px;
 }
 
-.registration-form {
+.registration-form,
+.igx-dialog__window-content,
+.igx-dialog__window-content > form  {
   display: grid;
-  row-gap: 24px;
+  row-gap: 12px;
 }
+
+  .igx-dialog__window-content > * {
+    width: 100%;
+  }
 
 @media only screen and (max-width: 720px) {
   .search-group {

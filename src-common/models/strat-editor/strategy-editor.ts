@@ -156,6 +156,9 @@ export class StrategyEditor {
 
   private _removeLayer(layer: BaseLayer) {
     this._unsubLayer(layer);
+    if (this._selectedLayer === layer) {
+      this._selectedLayer = null;
+    }
     this._layers.splice(this._layers.indexOf(layer), 1);
   }
 

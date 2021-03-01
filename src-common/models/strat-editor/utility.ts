@@ -1,7 +1,7 @@
 export interface UtilityDescriptor {
   name: string;
   icon: string;
-  fontSet: string;
+  family: string;
   svg: string;
   width: number;
   height: number;
@@ -16,7 +16,7 @@ export const STRAT_UTILITIES: UtilityDescriptor [] = [
   {
     name: 'Flash',
     icon: 'flashbang',
-    fontSet: 'weapon-icons',
+    family: 'weapon-icons',
     width: 72,
     height: 72,
     svg: '/assets/editor/flashbang.png'
@@ -24,7 +24,7 @@ export const STRAT_UTILITIES: UtilityDescriptor [] = [
   {
     name: 'Smoke',
     icon: 'smoke',
-    fontSet: 'weapon-icons',
+    family: 'weapon-icons',
     width: 72,
     height: 72,
     svg: '/assets/editor/smoke-nade.png'
@@ -32,7 +32,7 @@ export const STRAT_UTILITIES: UtilityDescriptor [] = [
   {
     name: 'Molotov',
     icon: 'molotov',
-    fontSet: 'weapon-icons',
+    family: 'weapon-icons',
     width: 72,
     height: 72,
     svg: '/assets/editor/molotov.png'
@@ -40,7 +40,7 @@ export const STRAT_UTILITIES: UtilityDescriptor [] = [
   {
     name: 'HE Grenade',
     icon: 'hegrenade',
-    fontSet: 'weapon-icons',
+    family: 'weapon-icons',
     width: 72,
     height: 72,
     svg: '/assets/editor/he-nade.png'
@@ -48,7 +48,7 @@ export const STRAT_UTILITIES: UtilityDescriptor [] = [
   {
     name: 'C4',
     icon: 'c4',
-    fontSet: 'weapon-icons',
+    family: 'weapon-icons',
     width: 30,
     height: 30,
     svg: '/assets/weapon-icons/svg_normal/weapon_c4.svg'

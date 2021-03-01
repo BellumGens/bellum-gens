@@ -1,8 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { NotificationsComponent } from './notifications.component';
-import { PlayerNotificationsComponent } from '../player-section/notifications/notifications.component';
-import { TeamNotificationsComponent } from '../team-section/team-notifications/team-notifications.component';
 import { IgxProgressBarModule, IgxListModule, IgxAvatarModule } from '@infragistics/igniteui-angular';
 import { DisabledNotificationsPipe } from '../pipes/disabled-notifications.pipe';
 import { SortNotificationsPipe } from '../pipes/sort-notifications.pipe';
@@ -11,6 +9,8 @@ import { SortApplicationsPipe } from '../pipes/sort-applications.pipe';
 import { NotificationStatePipe } from '../pipes/notification-state.pipe';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { PlayerNotificationsComponent } from './player-notifications/player-notifications.component';
+import { TeamNotificationsComponent } from './team-notifications/team-notifications.component';
 
 describe('NotificationsComponent', () => {
   let component: NotificationsComponent;

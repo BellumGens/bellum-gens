@@ -1,7 +1,7 @@
 <div *ngIf="team" class="overview-container overview-container-paddings">
   <div class="left-details-container">
     <h4 i18n>Practice</h4>
-    <app-availability [availability]="teamPractice" (availabilityChanged)="changeSchedule($event)" [editable]="isAdmin"></app-availability>
+    <bg-availability [availability]="teamPractice" (availabilityChanged)="changeSchedule($event)" [editable]="isAdmin"></bg-availability>
   </div>
 
   <div class="right-details-container">

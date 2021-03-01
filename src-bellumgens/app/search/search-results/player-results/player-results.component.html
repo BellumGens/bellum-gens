@@ -1,5 +1,5 @@
-<app-app-shell *ngIf="loading">
-</app-app-shell>
+<bg-loading *ngIf="loading">
+</bg-loading>
 
 <div *ngIf="!loading" class="search-result-summary margin-bottom">
   <h4 class="igx-card-header__title" i18n>Found <span class="highlight">{{players?.length }}</span> results for players{{ query | queryParsed:true }}</h4>
@@ -17,7 +17,7 @@
           <span class="title margin-left player-summary-stat">{{ player.killDeathRatio }}</span>
         </div>
         <div class="horizontal-center">
-          <igx-icon fontSet="weapon-icons" name="headshot" class="icon-avatar"></igx-icon>
+          <igx-icon family="weapon-icons" name="headshot" class="icon-avatar"></igx-icon>
           <span class="title margin-left player-summary-stat">{{ player.headshotPercentage | number:'1.2' }}%</span>
         </div>
       </div>

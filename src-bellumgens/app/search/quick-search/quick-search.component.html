@@ -25,13 +25,13 @@
       <h4 igxListLineSubTitle>{{ searchResult.steamUser.steamUser.realname }}</h4>
 
       <div igxListAction *ngIf="!searchResult.steamUser.userStatsException else private">
-          <div class="horizontal-center">
+          <div class="horizontal-center space-between">
             <igx-circular-bar class="icon-avatar" [value]="searchResult.steamUser.userStats?.killDeathRatio" [max]="2" [animate]="true" [textVisibility]="false" title="KDR"></igx-circular-bar>
             <span>{{ searchResult.steamUser.userStats?.killDeathRatio }}</span>
           </div>
 
-          <div class="horizontal-center">
-            <igx-icon fontSet="weapon-icons" name="headshot" class="icon-avatar"></igx-icon>
+          <div class="horizontal-center space-between">
+            <igx-icon family="weapon-icons" name="headshot" class="icon-avatar"></igx-icon>
             <span>{{ searchResult.steamUser.userStats?.headshotPercentage | number:'1.2' }}%</span>
           </div>
       </div>
@@ -56,13 +56,13 @@
       <h4 igxListLineSubTitle>{{ user.realname }}</h4>
 
       <div igxListAction *ngIf="!user.steamPrivate else private">
-          <div class="horizontal-center">
+          <div class="horizontal-center space-between">
             <igx-circular-bar class="icon-avatar" [value]="user.killDeathRatio" [max]="2" [animate]="true" [textVisibility]="false" title="KDR"></igx-circular-bar>
             <span>{{ user.killDeathRatio }}</span>
           </div>
 
-          <div class="horizontal-center">
-            <igx-icon fontSet="weapon-icons" name="headshot" class="icon-avatar"></igx-icon>
+          <div class="horizontal-center space-between">
+            <igx-icon family="weapon-icons" name="headshot" class="icon-avatar"></igx-icon>
             <span>{{ user.headshotPercentage | number:'1.2' }}%</span>
           </div>
       </div>

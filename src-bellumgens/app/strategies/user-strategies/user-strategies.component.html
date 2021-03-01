@@ -1,0 +1,73 @@
+<div class="card-wrapper">
+  <igx-card type="outlined" class="fit-content-card">
+      <igx-card-header class="empty-strategy">
+        <h4 class="igx-card-header__title" i18n>Add a new strategy</h4>
+      </igx-card-header>
+      <igx-card-content class="empty-strategy empty-strategy-content">
+          <igx-avatar icon="add"
+                      class="navigatable"
+                      [roundShape]="true"
+                      [size]="'large'"
+                      (click)="newStrategy.open()">
+          </igx-avatar>
+          <p class="highlight navigatable" (click)="newStrategy.open()" i18n>Create strategy</p>
+      </igx-card-content>
+  </igx-card>
+
+  <igx-card type="outlined" *ngFor="let strat of strats">
+    <igx-card-header>
+      <h2 igxCardHeaderTitle
+          class="strat-title navigatable"
+          [title]="strat.title"
+          [routerLink]="['/strategies', 'details', strat.customUrl]">{{ strat.title }}</h2>
+      <h4 igxCardHeaderSubtitle i18n>Visibility: {{ strat.visible ? 'Public' : 'Private'}}</h4>
+      <h6 igxCardHeaderSubtitle class="card-smaller-subtitle" i18n>Last Edit: {{ strat.lastUpdated | date }}</h6>
+    </igx-card-header>
+
+    <igx-card-media>
+      <iframe class="video-frame" *ngIf="strat.url | isVideo" [src]="strat.url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <img *ngIf="strat.stratImage" [src]="strat.stratImage" class="strat-image" [routerLink]="['/strategies', 'details', strat.customUrl]" />
+    </igx-card-media>
+
+    <igx-card-content>
+      <p class="igx-card-header__subtitle">{{ strat.description | truncateText:130 }}</p>
+    </igx-card-content>
+
+    <igx-card-actions [reverse]="true">
+      <span class="horizontal-center navigatable" [routerLink]="['/strategies', 'details', strat.customUrl]">
+        <igx-badge [value]="strat.comments?.length.toString()" type="info"></igx-badge>
+        <span i18n>Comments</span>
+      </span>
+
+      <button *ngIf="strat.visible"
+              igxButton="fab"
+              igxRipple
+              (click)="shareOnTwitter(strat)">
+        <igx-icon family="login-icons" name="twitter" i18n-title title="Share Strategy"></igx-icon>
+      </button>
+      <button igxButton="fab"
+              igxRipple
+              (click)="newStrategy.open(strat, 'Edit strategy')">
+        <igx-icon i18n-title title="Edit">edit</igx-icon>
+      </button>
+      <button igxButton="fab"
+              igxRipple
+              i18n-title
+              title="Delete"
+              (click)="confirm.open(strat)">
+        <igx-icon title="Delete">delete_forever</igx-icon>
+      </button>
+    </igx-card-actions>
+
+  </igx-card>
+</div>
+
+<app-new-strategy #newStrategy
+                  [authUser]="authUser">
+</app-new-strategy>
+
+<!-- Confirm -->
+<bg-confirm #confirm i18n-title title="Are you sure?" (ok)="deleteStrat($event)">
+  <p i18n>Pressing OK will permanently remove this strategy...</p>
+</bg-confirm>
+<!-- END Confirm -->

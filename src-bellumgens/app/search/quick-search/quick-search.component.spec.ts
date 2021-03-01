@@ -5,7 +5,6 @@ import { IgxProgressBarModule, IgxListModule, IgxAvatarModule, IgxIconModule } f
 import { RouterTestingModule } from '@angular/router/testing';
 import { ReduceQuickSearchResultPipe } from 'src-bellumgens/app/pipes/reduce-quick-search-result.pipe';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { PlayerCountryPipe } from 'src-bellumgens/app/pipes/player-country.pipe';
 
 describe('QuickSearchComponent', () => {
   let component: QuickSearchComponent;
@@ -23,8 +22,7 @@ describe('QuickSearchComponent', () => {
       ],
       declarations: [
         QuickSearchComponent,
-        ReduceQuickSearchResultPipe,
-        PlayerCountryPipe
+        ReduceQuickSearchResultPipe
       ]
     })
     .compileComponents();
