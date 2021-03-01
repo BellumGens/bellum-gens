@@ -23,14 +23,11 @@ import { FormsModule } from '@angular/forms';
 import { SideStratsPipe } from 'src-bellumgens/app/pipes/sidestrats.pipe';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { WeekdayPipe } from 'src-bellumgens/app/pipes/weekday.pipe';
-import { ActiveDutyMapsPipe } from 'src-bellumgens/app/pipes/active-duty-maps.pipe';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TruncateTextPipe } from 'src-bellumgens/app/pipes/truncate-text.pipe';
 import { IsVideoPipe } from 'src-bellumgens/app/pipes/is-video.pipe';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { VotesPipe } from 'src-bellumgens/app/pipes/votes.pipe';
-import { AppShellComponent } from 'src-bellumgens/app/app-shell/app-shell.component';
 import { HasVotedPipe } from 'src-bellumgens/app/pipes/has-voted.pipe';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -74,7 +71,6 @@ describe('StrategiesComponent', () => {
         NewStrategyComponent,
         SafeVideoLinkPipe,
         SideStratsPipe,
-        ActiveDutyMapsPipe,
         TruncateTextPipe,
         IsVideoPipe,
         VotesPipe,
