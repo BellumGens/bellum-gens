@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { PlayerNotificationsComponent } from './notifications.component';
+import { PlayerNotificationsComponent } from './player-notifications.component';
 import { IgxListModule, IgxAvatarModule } from '@infragistics/igniteui-angular';
 import { DisabledNotificationsPipe } from 'src-bellumgens/app/pipes/disabled-notifications.pipe';
 import { RouterTestingModule } from '@angular/router/testing';
