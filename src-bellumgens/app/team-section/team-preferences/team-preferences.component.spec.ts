@@ -4,13 +4,13 @@ import { TeamPreferencesComponent } from './team-preferences.component';
 import { IgxListModule, IgxIconModule, IgxSwitchModule, IgxInputGroupModule, IgxAvatarModule } from '@infragistics/igniteui-angular';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
-import { PlayerCountryPipe } from 'src-bellumgens/app/pipes/player-country.pipe';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TEAM_PLACEHOLDER } from '../../../../src-common/models/csgoteam';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { BellumGensModule } from 'src-common/lib/components.module';
 
 describe('TeamPreferencesComponent', () => {
   let component: TeamPreferencesComponent;
@@ -29,11 +29,11 @@ describe('TeamPreferencesComponent', () => {
         IgxSwitchModule,
         IgxInputGroupModule,
         IgxInputGroupModule,
-        IgxAvatarModule
+        IgxAvatarModule,
+        BellumGensModule
       ],
       declarations: [
-        TeamPreferencesComponent,
-        PlayerCountryPipe
+        TeamPreferencesComponent
       ],
       providers: [
         {

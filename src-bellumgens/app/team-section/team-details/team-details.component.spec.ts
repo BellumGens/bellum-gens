@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { TeamDetailsComponent } from './team-details.component';
-import { AvailabilityComponent } from 'src-bellumgens/app/availability/availability.component';
 import { IgxAvatarModule,
   IgxCardModule,
   IgxDragDropModule,
@@ -10,8 +9,6 @@ import { IgxAvatarModule,
   IgxDialogModule,
   IgxRippleModule } from '@infragistics/igniteui-angular';
 import { RouterTestingModule } from '@angular/router/testing';
-import { PlayerCountryPipe } from 'src-bellumgens/app/pipes/player-country.pipe';
-import { WeekdayPipe } from 'src-bellumgens/app/pipes/weekday.pipe';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -40,10 +37,7 @@ describe('TeamDetailsComponent', () => {
         BellumGensModule
       ],
       declarations: [
-        TeamDetailsComponent,
-        AvailabilityComponent,
-        PlayerCountryPipe,
-        WeekdayPipe
+        TeamDetailsComponent
       ],
       providers: [
         {

@@ -24,8 +24,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { SafeVideoLinkPipe } from 'src-bellumgens/app/pipes/safe-video-link.pipe';
 import { TruncateTextPipe } from 'src-bellumgens/app/pipes/truncate-text.pipe';
 import { IsVideoPipe } from 'src-bellumgens/app/pipes/is-video.pipe';
-import { NewStrategyComponent } from 'src-bellumgens/app/team-section/team-strategies/new-strategy/new-strategy.component';
 import { BellumGensModule } from 'src-common/lib/components.module';
+import { NewStrategyComponent } from '../new-strategy/new-strategy.component';
 
 describe('UserStrategiesComponent', () => {
   let component: UserStrategiesComponent;

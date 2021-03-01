@@ -19,7 +19,6 @@ import { VotesPipe } from 'src-bellumgens/app/pipes/votes.pipe';
 import { IsVideoPipe } from 'src-bellumgens/app/pipes/is-video.pipe';
 import { SafeVideoLinkPipe } from 'src-bellumgens/app/pipes/safe-video-link.pipe';
 import { FormsModule } from '@angular/forms';
-import { AppShellComponent } from 'src-bellumgens/app/app-shell/app-shell.component';
 import { HasVotedPipe } from 'src-bellumgens/app/pipes/has-voted.pipe';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BellumGensModule } from 'src-common/lib/components.module';
@@ -51,7 +50,6 @@ describe('StrategyDetailsComponent', () => {
       ],
       declarations: [
         StrategyDetailsComponent,
-        AppShellComponent,
         VotesPipe,
         IsVideoPipe,
         SafeVideoLinkPipe,
