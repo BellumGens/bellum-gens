@@ -28,8 +28,8 @@ export class ApiTournamentsService {
   private _activeTournament = new BehaviorSubject<Tournament>(null);
   private _companies = new BehaviorSubject<string []>(null);
   private _allRegistrations = new BehaviorSubject<TournamentApplication []>(null);
-  private _csgoRegistrations = new BehaviorSubject<TournamentParticipant []>(null);
-  private _sc2Registrations = new BehaviorSubject<TournamentParticipant []>(null);
+  private _csgoRegistrations = new Map<string, BehaviorSubject<TournamentParticipant []>>();
+  private _sc2Registrations = new Map<string, BehaviorSubject<TournamentParticipant []>>();
   private _csgoMatches = new Map<string, BehaviorSubject<TournamentCSGOMatch []>>();
   private _sc2Matches = new Map<string, BehaviorSubject<TournamentSC2Match []>>();
 
@@ -78,30 +78,32 @@ export class ApiTournamentsService {
     );
   }
 
-  public get csgoRegistrations() {
-    if (!this._csgoRegistrations.value) {
+  public getCsgoRegistrations(id: string): BehaviorSubject<TournamentParticipant []> {
+    if (!this._csgoRegistrations.has(id)) {
       this.loadingCSGORegistrations.next(true);
-      this.getCSGORegistrations().subscribe(data => {
-          this._csgoRegistrations.next(data);
+      this._csgoRegistrations.set(id, new BehaviorSubject<TournamentParticipant []>(null));
+      this.getCSGORegistrations(id).subscribe(data => {
+          this._csgoRegistrations.get(id).next(data);
           this.loadingCSGORegistrations.next(false);
         },
         () => this.loadingCSGORegistrations.next(false)
       );
     }
-    return this._csgoRegistrations;
+    return this._csgoRegistrations.get(id);
   }
 
-  public get sc2Registrations() {
-    if (!this._sc2Registrations.value) {
+  public getSc2Registrations(id: string): BehaviorSubject<TournamentParticipant []> {
+    if (!this._sc2Registrations.has(id)) {
       this.loadingSC2Registrations.next(true);
-      this.getSC2Registrations().subscribe(data => {
-          this._sc2Registrations.next(data);
+      this._sc2Registrations.set(id, new BehaviorSubject<TournamentParticipant []>(null));
+      this.getSC2Registrations(id).subscribe(data => {
+          this._sc2Registrations.get(id).next(data);
           this.loadingSC2Registrations.next(false);
         },
         () => this.loadingSC2Registrations.next(false)
       );
     }
-    return this._sc2Registrations;
+    return this._sc2Registrations.get(id);
   }
 
   public getCsgoMatches(id: string): BehaviorSubject<TournamentCSGOMatch []> {
@@ -387,12 +389,12 @@ export class ApiTournamentsService {
     return this.http.get<TournamentApplication []>(`${this._apiEndpoint}/tournament/allregistrations`, { withCredentials: true});
   }
 
-  private getCSGORegistrations() {
-    return this.http.get<TournamentParticipant []>(`${this._apiEndpoint}/tournament/csgoregs`);
+  private getCSGORegistrations(id: string) {
+    return this.http.get<TournamentParticipant []>(`${this._apiEndpoint}/tournament/csgoregs${id ? '?tournamentId=' + id : ''}`);
   }
 
-  private getSC2Registrations() {
-    return this.http.get<TournamentParticipant []>(`${this._apiEndpoint}/tournament/sc2regs`);
+  private getSC2Registrations(id: string) {
+    return this.http.get<TournamentParticipant []>(`${this._apiEndpoint}/tournament/sc2regs${id ? '?tournamentId=' + id : ''}`);
   }
 
   private getCompanies() {

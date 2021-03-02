@@ -33,11 +33,12 @@ export class TournamentSc2Component extends BaseComponent {
               meta: Meta,
               route: ActivatedRoute) {
     super(title, meta, route);
+    this.loginService.applicationUser.subscribe(user => this.authUser = user);
+
     this.activeRoute.params.subscribe(params => {
       this.tournamentId = params['tournamentid'];
-      this.apiService.sc2Registrations.subscribe(data => this.registrations = data);
       this.apiService.loadingSC2Registrations.subscribe(data => this.loading = data);
-      this.loginService.applicationUser.subscribe(user => this.authUser = user);
+      this.apiService.getSc2Registrations(this.tournamentId).subscribe(data => this.registrations = data);
       this.apiService.loadingSC2Matches.subscribe(data => this.loadingMatches = data);
       this.apiService.getSc2Matches(this.tournamentId).subscribe(data => {
         if (data) {
