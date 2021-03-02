@@ -35,7 +35,7 @@ export class AdminSc2Component {
   public matchInEdit: TournamentSC2Match = { startTime: new Date() };
 
   constructor(private apiService: ApiTournamentsService) {
-    this.apiService.sc2Registrations.subscribe(data => {
+    this.apiService.getSc2Registrations(null).subscribe(data => {
       if (data) {
         this.registrations = data;
       }

@@ -35,7 +35,7 @@ export class AdminCsgoComponent {
   public matchInEdit: TournamentCSGOMatch = { startTime: new Date() };
 
   constructor(private apiService: ApiTournamentsService) {
-    this.apiService.csgoRegistrations.subscribe(data => {
+    this.apiService.getCsgoRegistrations(null).subscribe(data => {
       if (data) {
         this.registrations = data;
       }

@@ -33,11 +33,12 @@ export class TournamentCsgoComponent extends BaseComponent {
               meta: Meta,
               route: ActivatedRoute) {
     super(title, meta, route);
+    this.loginService.applicationUser.subscribe(user => this.authUser = user);
+
     this.activeRoute.params.subscribe(params => {
       this.tournamentId = params['tournamentid'];
-      this.apiService.csgoRegistrations.subscribe(data => this.registrations = data);
       this.apiService.loadingCSGORegistrations.subscribe(data => this.loading = data);
-      this.loginService.applicationUser.subscribe(user => this.authUser = user);
+      this.apiService.getCsgoRegistrations(this.tournamentId).subscribe(data => this.registrations = data);
       this.apiService.loadingCSGOMatches.subscribe(data => this.loadingMatches = data);
       this.apiService.getCsgoMatches(this.tournamentId).subscribe(data => {
         if (data) {
