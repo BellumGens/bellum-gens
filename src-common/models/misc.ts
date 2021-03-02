@@ -47,7 +47,7 @@ export const CREW_MEMBERS = [
     instagram: 'https://www.instagram.com/officialniku/'
   },
   {
-    name: 'Георги "lop" Цанев',
+    name: 'Georgy "lop" Tsanev',
     birthplace: 'Plovdiv, Bulgaria',
     position: 'CS:GO caster',
     image: '/assets/crew/lop.webp',
