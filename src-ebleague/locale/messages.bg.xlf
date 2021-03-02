@@ -7,7 +7,7 @@
         <target>Създай от Steam група</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-new/team-new.component.html</context>
-          <context context-type="linenumber">3</context>
+          <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
       <trans-unit id="331569be55b32c1d34021f615153236b6f5c43d4" datatype="html">
@@ -15,7 +15,7 @@
         <target>Търси в групите</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-new/team-new.component.html</context>
-          <context context-type="linenumber">8</context>
+          <context context-type="linenumber">7</context>
         </context-group>
       </trans-unit>
       <trans-unit id="995bd8f54bbf93c05cb398aa04681b487b4794e1" datatype="html">
@@ -23,7 +23,7 @@
         <target>Няма намерени Steam групи...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-new/team-new.component.html</context>
-          <context context-type="linenumber">16</context>
+          <context context-type="linenumber">15</context>
         </context-group>
       </trans-unit>
       <trans-unit id="da60f6a7a72e4de72e559e3ea27dce1fe5e68ace" datatype="html">
@@ -31,7 +31,7 @@
         <target>Или създай чрез формуляр</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-new/team-new.component.html</context>
-          <context context-type="linenumber">24</context>
+          <context context-type="linenumber">23</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8cb29bd8a41385df3fafa700e888c9f9b7f66241" datatype="html">
@@ -39,7 +39,7 @@
         <target>Име на отбора</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-new/team-new.component.html</context>
-          <context context-type="linenumber">27</context>
+          <context context-type="linenumber">26</context>
         </context-group>
       </trans-unit>
       <trans-unit id="cc04150fc75e3c4eca19bbc7d585388f825433b1" datatype="html">
@@ -47,7 +47,7 @@
         <target>Мото на отбора</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-new/team-new.component.html</context>
-          <context context-type="linenumber">41</context>
+          <context context-type="linenumber">40</context>
         </context-group>
       </trans-unit>
       <trans-unit id="19057ed3324dd5949509187671ac41b073fdcc2b" datatype="html">
@@ -55,7 +55,7 @@
         <target>Аватар отбора</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-new/team-new.component.html</context>
-          <context context-type="linenumber">63</context>
+          <context context-type="linenumber">62</context>
         </context-group>
       </trans-unit>
       <trans-unit id="52105bbfe8076e464bdaed2cf5bfd1ed81cc0564" datatype="html">
@@ -63,7 +63,7 @@
         <target>Трябва да предоставите линк към картинка</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-new/team-new.component.html</context>
-          <context context-type="linenumber">73</context>
+          <context context-type="linenumber">72</context>
         </context-group>
       </trans-unit>
       <trans-unit id="d3b6eced9f54e6d4e82b129c12db8ecb40bc76d0" datatype="html">
@@ -71,7 +71,31 @@
         <target><x id="INTERPOLATION" equiv-text="{{ inProgress ? &apos;Регистриране...&apos; : &apos;Регистрирай&apos; }}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-new/team-new.component.html</context>
-          <context context-type="linenumber">80</context>
+          <context context-type="linenumber">79</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ec41c7c461b2224f6247a55bea8aaec1d8ad2e8a" datatype="html">
+        <source>Available times for <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot; [textContent]=&quot;selectedDay ? (selectedDay.day | weekday) : &apos;&apos;&quot;&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <target>Възможни часове за <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot; [textContent]=&quot;selectedDay ? (selectedDay.day | weekday) : &apos;&apos;&quot;&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/availability/availability.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d5e0dbc9fd4651759df915cdc6ba26fe3f17475f" datatype="html">
+        <source>From</source>
+		    <target>От</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/availability/availability.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="63c9c3aa536dbd11120ae8feab62186c47838028" datatype="html">
+        <source>To</source>
+		    <target>До</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/availability/availability.component.html</context>
+          <context context-type="linenumber">21</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7610ef697ea49cd4a8c20113de0d9aee7038423a" datatype="html">
