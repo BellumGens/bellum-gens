@@ -64,7 +64,7 @@
                 id="primary-role"
                 name="primary-role"
                 [disabled]="!playerIsUser"
-                [ngModel]="player.primaryRole"
+                [(ngModel)]="player.primaryRole"
                 (ngModelChange)="selectPrimary($event)">
       <label for="primary-role" igxLabel i18n>Primary Role</label>
       <igx-select-item *ngFor="let role of roles" [disabled]="role.id === player.secondaryRole" [value]="role.id">{{ role.name }}</igx-select-item>
@@ -73,7 +73,7 @@
                 id="secondary-role"
                 name="secondary-role"
                 [disabled]="!playerIsUser"
-                [ngModel]="player.secondaryRole"
+                [(ngModel)]="player.secondaryRole"
                 (ngModelChange)="selectSecondary($event)">
       <label for="secondary-role" igxLabel i18n>Secondary Role</label>
       <igx-select-item *ngFor="let role of roles" [disabled]="role.id === player.primaryRole" [value]="role.id">{{ role.name }}</igx-select-item>

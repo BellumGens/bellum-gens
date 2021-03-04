@@ -1,9 +1,8 @@
-import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
 
 import {
-  IgxDropDownComponent,
   ISelectionEventArgs,
   IgxIconService
 } from '@infragistics/igniteui-angular';
@@ -26,9 +25,6 @@ import { SortWeaponsPipe } from '../pipes/sort-weapons.pipe';
   encapsulation: ViewEncapsulation.None,
 })
 export class PlayerComponent extends BaseComponent {
-  @ViewChild('primaryRole') public primaryRole: IgxDropDownComponent;
-  @ViewChild('secondaryRole') public secondaryRole: IgxDropDownComponent;
-
   public authUser: ApplicationUser;
   public teamsAdmin: CSGOTeam [];
   public userTeams: Observable<CSGOTeam []>;
@@ -100,17 +96,11 @@ export class PlayerComponent extends BaseComponent {
   }
 
   public selectPrimary(value: number) {
-    if (this.player.primaryRole !== value) {
-      this.player.primaryRole = value;
-      this.apiService.setPrimaryRole(this.roles.find(r => r.id === value)).subscribe();
-    }
+    this.apiService.setPrimaryRole(this.roles.find(r => r.id === value)).subscribe();
   }
 
   public selectSecondary(value: number) {
-    if (this.player.secondaryRole !== value) {
-      this.player.secondaryRole = value;
-      this.apiService.setSecondaryRole(this.roles.find(r => r.id === value)).subscribe();
-    }
+    this.apiService.setSecondaryRole(this.roles.find(r => r.id === value)).subscribe();
   }
 
   public mapChange(args: CSGOMapPool) {

@@ -15,7 +15,7 @@ export const routes: Routes = [
   { path: 'emailconfirm', component: EmailconfirmComponent },
   { path: 'strategies', loadChildren: () => import('./strategies/strategies.module').then(m => m.StrategiesModule) },
   { path: 'emailconfirm/:error', component: EmailconfirmComponent },
-  { path: 'player', loadChildren: () => import('./player-section/player.module').then(m => m.PlayerModule) },
+  { path: 'players', loadChildren: () => import('./player-section/player.module').then(m => m.PlayerModule) },
   { path: 'team', loadChildren: () => import('./team-section/team.module').then(m => m.TeamModule) },
   { path: 'notifications', loadChildren: () => import('./notifications/notifications.module').then(m => m.NotificationsModule) },
   { path: 'search/teams/:query', component: TeamResultsComponent },
