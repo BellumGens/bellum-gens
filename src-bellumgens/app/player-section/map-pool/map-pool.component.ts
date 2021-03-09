@@ -22,9 +22,8 @@ export class MapPoolComponent {
 
   constructor() { }
 
-  public mapChange(args) {
-    args.checkbox.value.IsPlayed = args.checked;
-    this.update.emit(args.checkbox.value);
+  public mapChange(map: CSGOMapPool) {
+    this.update.emit(map);
   }
 
 }
