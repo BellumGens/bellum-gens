@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 
 import {
   IgxAvatarModule,
+  IgxButtonModule,
   IgxCardModule,
   IgxCheckboxModule,
   IgxDropDownModule,
   IgxListModule,
   IgxProgressBarModule,
+  IgxRippleModule,
   IgxSelectModule,
   IgxToggleModule
 } from '@infragistics/igniteui-angular';
@@ -36,6 +38,8 @@ import { TopWeaponAltPipe } from '../pipes/top-weapon-alt.pipe';
     PlayerRoutingModule,
     IgxCardModule,
     IgxProgressBarModule,
+    IgxButtonModule,
+    IgxRippleModule,
     IgxSelectModule,
     IgxAvatarModule,
     IgxDropDownModule,
