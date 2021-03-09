@@ -26,21 +26,21 @@ export class SuccessErrorComponent implements OnDestroy {
     if (msg) {
       this.successMsg = msg;
     }
-    this.success.show();
+    this.success.open();
   }
 
   public showError(msg?: string) {
     if (msg) {
       this.errorMsg = msg;
     }
-    this.error.show();
+    this.error.open();
   }
 
   public showMessage(msg?: string) {
     if (msg) {
       this.notificationMsg = msg;
     }
-    this.message.show();
+    this.message.open();
   }
 
   public ngOnDestroy() {

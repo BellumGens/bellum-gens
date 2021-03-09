@@ -16,7 +16,7 @@ export class ApiStrategiesService {
   public loadingStrategies = new BehaviorSubject<boolean>(false);
 
   private _apiEndpoint = environment.apiEndpoint;
-  private _currentStrategy = new BehaviorSubject<CSGOStrategy>(null);
+  private _strategyCache = new Map<string, BehaviorSubject<CSGOStrategy>>();
   private _strategies = new BehaviorSubject<CSGOStrategy []>([]);
 
   constructor(private http: HttpClient, private commService: CommunicationService) { }
@@ -68,17 +68,24 @@ export class ApiStrategiesService {
     return this.http.get<CSGOMapPool []>(`${this._apiEndpoint}/teams/mapPool?teamId=${teamId}`, { withCredentials: true });
   }
 
-  public getCurrentStrategy(stratId: string) {
-    if (!this._currentStrategy.value || this._currentStrategy.value.id !== stratId) {
-      this.getTeamStrat(stratId).subscribe(strat => this._currentStrategy.next(strat));
+  public getStrategy(stratId: string) {
+    if (!this._strategyCache.has(stratId)) {
+      this._strategyCache.set(stratId, new BehaviorSubject(null));
+      this.getTeamStrat(stratId).subscribe(strat => {
+        this._strategyCache.get(stratId).next(strat);
+      });
     }
-    return this._currentStrategy;
+    return this._strategyCache.get(stratId);
   }
 
   public submitStrategy(strat: CSGOStrategy) {
     return this.http.post<CSGOStrategy>(`${this._apiEndpoint}/strategy/strategy`, strat, { withCredentials: true }).pipe(
       map(response => {
-        this._currentStrategy.next(response);
+        if (this._strategyCache.has(strat.id)) {
+          this._strategyCache.get(strat.id).next(response);
+        } else {
+          this._strategyCache.set(strat.id, new BehaviorSubject(strat));
+        }
         this.commService.emitSuccess('Strategy saved!');
         return response;
       }),

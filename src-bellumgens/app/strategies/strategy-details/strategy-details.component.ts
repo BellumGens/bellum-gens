@@ -36,7 +36,7 @@ export class StrategyDetailsComponent extends BaseComponent {
         if (stratid) {
           this.meta.updateTag({ name: 'og:image', content: `${environment.rootApiEndpoint}/Content/Strats/${stratid}.png` });
           this.meta.updateTag({ name: 'twitter:image', content: `${environment.rootApiEndpoint}/Content/Strats/${stratid}.png` });
-          this.apiService.getCurrentStrategy(stratid).subscribe(strat => {
+          this.apiService.getStrategy(stratid).subscribe(strat => {
             if (strat) {
               this.strat = strat;
               this.newComment.stratId = strat.id;

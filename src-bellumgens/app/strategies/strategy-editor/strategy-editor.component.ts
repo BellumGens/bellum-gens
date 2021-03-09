@@ -75,7 +75,7 @@ export class StrategyEditorComponent implements OnInit, OnDestroy {
     this.route.params.subscribe(params => {
       const stratid = params['stratid'];
       if (stratid) {
-        this.apiStrategyService.getCurrentStrategy(stratid).subscribe(strat => {
+        this.apiStrategyService.getStrategy(stratid).subscribe(strat => {
           if (strat) {
             this.newStrategy = strat;
             if (strat.teamId) {
