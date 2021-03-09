@@ -7,6 +7,7 @@ import {
   IgxButtonGroupModule,
   IgxButtonModule,
   IgxCardModule,
+  IgxCheckboxModule,
   IgxChipsModule,
   IgxDialogModule,
   IgxDividerModule,
@@ -75,6 +76,7 @@ import { SideStratsPipe } from '../pipes/sidestrats.pipe';
     IgxRadioModule,
     IgxDialogModule,
     IgxSwitchModule,
+    IgxCheckboxModule,
     BellumGensModule
   ]
 })

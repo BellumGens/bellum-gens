@@ -20,7 +20,8 @@ import {
   IgxCheckboxModule,
   IgxSelectModule,
   IgxTimePickerModule,
-  IgxChipsModule
+  IgxChipsModule,
+  IgxRippleModule
 } from '@infragistics/igniteui-angular';
 
 import { SuccessErrorComponent } from './success-error/success-error.component';
@@ -85,6 +86,7 @@ import { ActiveDutyMapsPipe } from './pipes/active-duty-maps.pipe';
     FormsModule,
     IgxDialogModule,
     IgxButtonModule,
+    IgxRippleModule,
     IgxProgressBarModule,
     IgxAvatarModule,
     IgxTabsModule,

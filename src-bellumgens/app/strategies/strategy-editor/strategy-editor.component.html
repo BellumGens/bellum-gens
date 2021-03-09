@@ -12,12 +12,12 @@
         <div i18n>Layers</div>
         <igx-list [displayDensity]="'compact'" class="layer-list">
           <igx-list-item *ngFor="let layer of layers" class="layer-info">
-            <igx-checkbox igxListThumbnail class="layer-selected" [disabled]="!layer.movable" (change)="deselectBrush()" [(ngModel)]="layer.selected"></igx-checkbox>
+            <igx-checkbox igxListThumbnail [name]="'checkbox_' + layer.name" class="layer-selected" [disabled]="!layer.movable" (change)="deselectBrush()" [(ngModel)]="layer.selected"></igx-checkbox>
             <igx-input-group igxListLine [ngClass]="layer.hidden ? 'hidden-layer' : ''" [displayDensity]="'compact'">
               <igx-prefix>
                 <igx-icon (click)="layer.hidden = !layer.hidden">{{ layer.hidden ? 'visibility' : 'visibility_off'}}</igx-icon>
               </igx-prefix>
-              <input igxInput [(ngModel)]="layer.name" />
+              <input igxInput [name]="'name_' + layer.name" [(ngModel)]="layer.name" />
               <igx-suffix>
                 <igx-icon (click)="confirm.open(layer)">clear</igx-icon>
               </igx-suffix>
