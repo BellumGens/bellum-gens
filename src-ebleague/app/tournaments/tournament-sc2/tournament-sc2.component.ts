@@ -7,7 +7,6 @@ import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { TournamentParticipant, TournamentGroup } from '../../../../src-common/models/tournament';
 import { environment } from '../../../../src-common/environments/environment';
-import { DataType, GridSelectionMode } from '@infragistics/igniteui-angular';
 import { TournamentSC2Match } from '../../../../src-common/models/tournament-schedule';
 
 @Component({
@@ -23,8 +22,6 @@ export class TournamentSc2Component extends BaseComponent {
   public authUser: ApplicationUser;
   public tournamentId: string;
   public environment = environment;
-  public gridDataType = DataType;
-  public selectionMode = GridSelectionMode;
   public sc2matches: TournamentSC2Match [];
 
   constructor(private apiService: ApiTournamentsService,

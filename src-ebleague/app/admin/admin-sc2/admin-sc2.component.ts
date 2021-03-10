@@ -8,7 +8,6 @@ import { ApiTournamentsService } from '../../../../src-common/services/bellumgen
 import { environment } from '../../../../src-common/environments/environment';
 import {
   IDropDroppedEventArgs,
-  GridSelectionMode,
   IRowDataEventArgs,
   IgxGridComponent,
   IgxDialogComponent
@@ -31,7 +30,6 @@ export class AdminSc2Component {
   public newGroup = Object.assign({}, EMPTY_NEW_GROUP);
   public pipeTrigger = 0;
   public mapList: SC2LadderDescriptor [] = SC2_MAPS;
-  public selectionMode = GridSelectionMode;
   public matchInEdit: TournamentSC2Match = { startTime: new Date() };
 
   constructor(private apiService: ApiTournamentsService) {

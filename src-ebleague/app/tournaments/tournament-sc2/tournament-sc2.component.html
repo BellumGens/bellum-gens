@@ -26,7 +26,7 @@
         <igx-divider></igx-divider>
       </div>
 
-      <igx-grid [cellSelection]="selectionMode.none"
+      <igx-grid cellSelection="none"
                 [data]="sc2matches"
                 height="550px"
                 i18n-emptyGridMessage
@@ -41,7 +41,7 @@
           </igx-grid-toolbar-actions>
         </igx-grid-toolbar>
 
-        <igx-column field="startTime" width="220px" [dataType]="gridDataType.Date" i18n-header header="Start time">
+        <igx-column field="startTime" width="220px" dataType="date" i18n-header header="Start time">
           <ng-template igxCell let-value>
             {{ value | date:'MMM d, y, h:mm a' }}
           </ng-template>
@@ -92,7 +92,7 @@
 
       <div class="group-columns">
         <igx-grid *ngFor="let group of groups"
-                  [cellSelection]="selectionMode.none"
+                  cellSelection="none"
                   [data]="group.participants">
 
           <igx-grid-toolbar>
@@ -116,13 +116,13 @@
           </igx-column>
           <igx-column field="companyId" i18n-header header="Company" width="20%">
           </igx-column>
-          <igx-column field="matches" [dataType]="gridDataType.Number" i18n-header header="Matches" width="10%">
+          <igx-column field="matches" dataType="number" i18n-header header="Matches" width="10%">
           </igx-column>
-          <igx-column field="wins" [dataType]="gridDataType.Number" i18n-header header="Wins" width="10%">
+          <igx-column field="wins" dataType="number" i18n-header header="Wins" width="10%">
           </igx-column>
-          <igx-column field="losses" [dataType]="gridDataType.Number" i18n-header header="Losses" width="10%">
+          <igx-column field="losses" dataType="number" i18n-header header="Losses" width="10%">
           </igx-column>
-          <igx-column field="playerPoints" [dataType]="gridDataType.Number" i18n-header header="Points" width="10%">
+          <igx-column field="playerPoints" dataType="number" i18n-header header="Points" width="10%">
           </igx-column>
 
         </igx-grid>
