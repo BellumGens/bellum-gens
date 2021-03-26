@@ -8,7 +8,7 @@
               [allowFiltering]="true"
               [groupingExpressions]="grouping"
               (cellEdit)="confirmRegistration($event)"
-              [cellSelection]="selectionMode.none">
+              cellSelection="none">
 
       <igx-grid-toolbar>
         <igx-grid-toolbar-title i18n>Tournament Registrations</igx-grid-toolbar-title>
@@ -18,7 +18,7 @@
       </igx-column>
       <igx-column field="companyId" i18n-header header="Company">
       </igx-column>
-      <igx-column field="dateSubmitted" [dataType]="gridDataType.Date" [sortable]="true" i18n-header header="Date Submitted">
+      <igx-column field="dateSubmitted" dataType="date" [sortable]="true" i18n-header header="Date Submitted">
       </igx-column>
       <igx-column field="game" [groupable]="true" i18n-header header="Game">
         <span *igxCell="let value">
@@ -29,7 +29,7 @@
       </igx-column>
       <igx-column field="hash" i18n-header header="Hash">
       </igx-column>
-      <igx-column field="state" [editable]="true" [dataType]="gridDataType.Boolean" i18n-header header="Confirmed">
+      <igx-column field="state" [editable]="true" dataType="boolean" i18n-header header="Confirmed">
         <igx-icon *igxCell="let value" [class]="value ? 'color-success' : 'color-error'">{{ value ? 'check' : 'close' }}</igx-icon>
       </igx-column>
 
@@ -64,13 +64,13 @@
               [paging]="true"
               [allowFiltering]="true"
               (cellEdit)="editDone($event)"
-              [cellSelection]="selectionMode.none">
+              cellSelection="none">
 
       <igx-grid-toolbar>
         <igx-grid-toolbar-title i18n>Orders</igx-grid-toolbar-title>
       </igx-grid-toolbar>
 
-      <igx-column field="orderDate" [dataType]="gridDataType.Date" width="165px" [sortable]="true" i18n-header header="Order date">
+      <igx-column field="orderDate" dataType="date" width="165px" [sortable]="true" i18n-header header="Order date">
       </igx-column>
       <igx-column field="email" i18n-header header="Email">
       </igx-column>
@@ -91,10 +91,10 @@
       </igx-column>
       <igx-column field="promoCode" i18n-header header="Promo code">
       </igx-column>
-      <igx-column field="confirmed" [dataType]="gridDataType.Boolean" [editable]="true" i18n-header header="Confirmed">
+      <igx-column field="confirmed" dataType="boolean" [editable]="true" i18n-header header="Confirmed">
         <igx-icon *igxCell="let value" [class]="value ? 'color-success' : 'color-error'">{{ value ? 'check' : 'close' }}</igx-icon>
       </igx-column>
-      <igx-column field="shipped" [dataType]="gridDataType.Boolean" [editable]="true" i18n-header header="Shipped">
+      <igx-column field="shipped" dataType="boolean" [editable]="true" i18n-header header="Shipped">
         <igx-icon *igxCell="let value" [class]="value ? 'color-success' : 'color-error'">{{ value ? 'check' : 'close' }}</igx-icon>
       </igx-column>
 

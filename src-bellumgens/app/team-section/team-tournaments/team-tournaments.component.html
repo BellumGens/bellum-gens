@@ -2,7 +2,7 @@
 
 <div class="group-columns">
   <igx-grid *ngFor="let tournament of tournaments"
-            [cellSelection]="selectionMode.none"
+            cellSelection="none"
             [data]="tournament.csgoMatches">
 
     <igx-grid-toolbar>

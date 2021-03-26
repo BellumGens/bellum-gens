@@ -3,7 +3,6 @@ import { Tournament } from '../../../../src-common/models/tournament';
 import { ActivatedRoute } from '@angular/router';
 import { BellumgensApiService } from '../../../../src-common/services/bellumgens-api.service';
 import { CSGOTeam } from '../../../../src-common/models/csgoteam';
-import { GridSelectionMode } from '@infragistics/igniteui-angular';
 
 @Component({
   selector: 'app-team-tournaments',
@@ -14,7 +13,6 @@ export class TeamTournamentsComponent {
   public tournaments: Tournament [];
   public team: CSGOTeam;
   public emptyGuid = '00000000-0000-0000-0000-000000000000';
-  public selectionMode = GridSelectionMode;
 
   constructor(private apiService: BellumgensApiService,
               private activatedRoute: ActivatedRoute) {

@@ -30,7 +30,7 @@
         <igx-divider></igx-divider>
       </div>
 
-      <igx-grid [cellSelection]="selectionMode.none"
+      <igx-grid cellSelection="none"
                 [data]="csgomatches"
                 height="550px"
                 i18n-emptyGridMessage
@@ -45,7 +45,7 @@
           </igx-grid-toolbar-actions>
         </igx-grid-toolbar>
 
-        <igx-column field="startTime" width="220px" [dataType]="gridDataType.Date" i18n-header header="Start time">
+        <igx-column field="startTime" width="220px" dataType="date" i18n-header header="Start time">
           <ng-template igxCell let-value>
             {{ value | date:'MMM d, y, h:mm a' }}
           </ng-template>
@@ -98,7 +98,7 @@
 
       <div class="group-columns">
         <igx-grid *ngFor="let group of groups"
-                  [cellSelection]="selectionMode.none"
+                  cellSelection="none"
                   [data]="group.participants">
 
           <igx-grid-toolbar>
@@ -120,22 +120,22 @@
 
           <igx-column field="companyId" i18n-header header="Company" width="15%">
           </igx-column>
-          <igx-column field="matches" [dataType]="gridDataType.Number" i18n-header header="Matches" width="9%">
+          <igx-column field="matches" dataType="number" i18n-header header="Matches" width="9%">
           </igx-column>
-          <igx-column field="wins" [dataType]="gridDataType.Number" i18n-header header="Wins" width="9%">
+          <igx-column field="wins" dataType="number" i18n-header header="Wins" width="9%">
           </igx-column>
-          <igx-column field="oTWins" [dataType]="gridDataType.Number" i18n-header header="OT Wins" title="Победи в добавено време" width="9%">
+          <igx-column field="oTWins" dataType="number" i18n-header header="OT Wins" title="Победи в добавено време" width="9%">
           </igx-column>
-          <igx-column field="oTLosses" [dataType]="gridDataType.Number" i18n-header header="OT Losses" title="Загуби в добавено време" width="9%">
+          <igx-column field="oTLosses" dataType="number" i18n-header header="OT Losses" title="Загуби в добавено време" width="9%">
           </igx-column>
-          <igx-column field="losses" [dataType]="gridDataType.Number" i18n-header header="Losses" width="9%">
+          <igx-column field="losses" dataType="number" i18n-header header="Losses" width="9%">
           </igx-column>
-          <igx-column field="roundDifference" [dataType]="gridDataType.Number" i18n-header header="Round Diff" width="9%">
+          <igx-column field="roundDifference" dataType="number" i18n-header header="Round Diff" width="9%">
             <span *igxCell="let value" [class]="value > 0 ? 'color-success' : value < 0 ? 'color-error' : ''">
               {{ value }}
             </span>
           </igx-column>
-          <igx-column field="teamPoints" [dataType]="gridDataType.Number" i18n-header header="Points" width="9%">
+          <igx-column field="teamPoints" dataType="number" i18n-header header="Points" width="9%">
           </igx-column>
 
         </igx-grid>

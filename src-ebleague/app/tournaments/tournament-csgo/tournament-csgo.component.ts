@@ -7,7 +7,6 @@ import { ActivatedRoute } from '@angular/router';
 import { LoginService } from '../../../../src-common/services/login.service';
 import { ApplicationUser } from '../../../../src-common/models/applicationuser';
 import { environment } from '../../../../src-common/environments/environment';
-import { DataType, GridSelectionMode } from '@infragistics/igniteui-angular';
 import { TournamentCSGOMatch } from '../../../../src-common/models/tournament-schedule';
 
 @Component({
@@ -23,8 +22,6 @@ export class TournamentCsgoComponent extends BaseComponent {
   public authUser: ApplicationUser;
   public tournamentId: string;
   public environment = environment;
-  public selectionMode = GridSelectionMode;
-  public gridDataType = DataType;
   public csgomatches: TournamentCSGOMatch [];
 
   constructor(private apiService: ApiTournamentsService,

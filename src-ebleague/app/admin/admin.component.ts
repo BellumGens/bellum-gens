@@ -6,8 +6,6 @@ import { JerseyOrder, Promo } from '../../../src-common/models/jerseyorder';
 import { ApiShopService } from '../../../src-common/services/bellumgens-api.shop.service';
 import {
   IGridEditEventArgs,
-  GridSelectionMode,
-  DataType,
   IGroupingExpression,
   SortingDirection,
   DefaultSortingStrategy,
@@ -31,8 +29,6 @@ export class AdminComponent {
   public orders: JerseyOrder [];
   public registrations: TournamentApplication [];
   public promos: Promo [];
-  public selectionMode = GridSelectionMode;
-  public gridDataType = DataType;
   public grouping: IGroupingExpression [];
 
   constructor(private authService: LoginService,
