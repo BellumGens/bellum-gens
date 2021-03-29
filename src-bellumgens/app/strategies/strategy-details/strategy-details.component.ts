@@ -5,7 +5,7 @@ import { CSGOStrategy, VoteDirection, NEW_EMPTY_COMMENT, StrategyComment } from 
 import { LoginService } from '../../../../src-common/services/login.service';
 import { ApplicationUser } from '../../../../src-common/models/applicationuser';
 import { GLOBAL_OVERLAY_SETTINGS } from '../../../../src-common/models/misc';
-import { SocialMediaService } from '../../../../src-common/services/social-media.service';
+import { SocialMediaStrategyService } from '../../../../src-common/services/social-media.strategy.service';
 import { Title, Meta } from '@angular/platform-browser';
 import { environment } from '../../../../src-common/environments/environment.prod';
 import { ApiStrategiesService } from '../../../../src-common/services/bellumgens-api.strategies.service';
@@ -25,7 +25,7 @@ export class StrategyDetailsComponent extends BaseComponent {
 
   constructor(private apiService: ApiStrategiesService,
               private authManager: LoginService,
-              private socialMedia: SocialMediaService,
+              private socialMedia: SocialMediaStrategyService,
               title: Title,
               meta: Meta,
               activeRoute: ActivatedRoute) {

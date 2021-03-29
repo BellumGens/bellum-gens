@@ -19,11 +19,11 @@ import { TeamComponent } from './team.component';
 import { TeamApplicationComponent } from './team-application/team-application.component';
 import { TeamDetailsComponent } from './team-details/team-details.component';
 import { TeamTournamentsComponent } from './team-tournaments/team-tournaments.component';
-import { BellumGensModule } from '../../../src-common/lib/components.module';
 import { TeamNavComponent } from './team-nav/team-nav.component';
 import { TeamNewComponent } from './team-new/team-new.component';
 import { GroupsFilterPipe } from '../pipes/groups-filter.pipe';
 import { TeamPreferencesComponent } from './team-preferences/team-preferences.component';
+import { AvailabilityModule, BellumGensModule, ConfirmModule } from '../../../src-common/lib/public_api';
 
 
 @NgModule({
@@ -50,7 +50,9 @@ import { TeamPreferencesComponent } from './team-preferences/team-preferences.co
     IgxCardModule,
     IgxListModule,
     IgxSwitchModule,
-    BellumGensModule
+    BellumGensModule,
+    AvailabilityModule,
+    ConfirmModule
   ]
 })
 export class TeamModule { }

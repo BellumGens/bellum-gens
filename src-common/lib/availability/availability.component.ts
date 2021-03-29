@@ -1,4 +1,4 @@
-import { Component, ViewChild, Input, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
+import { Component, ViewChild, Input, Output, EventEmitter, ChangeDetectorRef, NgModule } from '@angular/core';
 import { Availability } from '../../models/playeravailability';
 import {
   IgxTimePickerComponent,
@@ -6,8 +6,13 @@ import {
   IgxDialogComponent,
   IgxChipComponent,
   IChipClickEventArgs,
-  IBaseChipEventArgs
+  IBaseChipEventArgs,
+  IgxDialogModule,
+  IgxChipsModule,
+  IgxTimePickerModule
 } from '@infragistics/igniteui-angular';
+import { WeekdayPipe } from '../pipes/weekday.pipe';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'bg-availability',
@@ -84,3 +89,21 @@ export class AvailabilityComponent {
     this.dialog.close();
   }
 }
+
+@NgModule({
+  declarations: [
+    AvailabilityComponent,
+    WeekdayPipe
+  ],
+  exports: [
+    AvailabilityComponent,
+    WeekdayPipe
+  ],
+  imports: [
+    CommonModule,
+    IgxDialogModule,
+    IgxChipsModule,
+    IgxTimePickerModule
+  ]
+})
+export class AvailabilityModule {}

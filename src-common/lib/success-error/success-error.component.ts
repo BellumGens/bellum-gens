@@ -1,5 +1,5 @@
-import { Component, ViewChild, OnDestroy } from '@angular/core';
-import { IgxSnackbarComponent } from '@infragistics/igniteui-angular';
+import { Component, ViewChild, OnDestroy, NgModule } from '@angular/core';
+import { IgxIconModule, IgxSnackbarComponent, IgxSnackbarModule } from '@infragistics/igniteui-angular';
 import { CommunicationService } from '../../services/communication.service';
 
 @Component({
@@ -49,3 +49,17 @@ export class SuccessErrorComponent implements OnDestroy {
     this.commService.message.unsubscribe();
   }
 }
+
+@NgModule({
+  declarations: [
+    SuccessErrorComponent
+  ],
+  exports: [
+    SuccessErrorComponent
+  ],
+  imports: [
+    IgxSnackbarModule,
+    IgxIconModule
+  ]
+})
+export class SuccessErrorModule {}

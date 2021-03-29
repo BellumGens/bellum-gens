@@ -22,7 +22,6 @@ import {
   IgxSwitchModule,
   IgxToggleModule
 } from '@infragistics/igniteui-angular';
-import { BellumGensModule } from '../../../src-common/lib/components.module';
 
 import { StrategiesRoutingModule } from './strategies-routing.module';
 import { StrategiesComponent } from './strategies.component';
@@ -37,6 +36,7 @@ import { HasVotedPipe } from '../pipes/has-voted.pipe';
 import { VotesPipe } from '../pipes/votes.pipe';
 import { IsStratOwnerPipe } from '../pipes/is-strat-owner.pipe';
 import { SideStratsPipe } from '../pipes/sidestrats.pipe';
+import { BellumGensModule, ConfirmModule, LoadingModule } from '../../../src-common/lib/public_api';
 
 
 @NgModule({
@@ -77,6 +77,8 @@ import { SideStratsPipe } from '../pipes/sidestrats.pipe';
     IgxDialogModule,
     IgxSwitchModule,
     IgxCheckboxModule,
+    ConfirmModule,
+    LoadingModule,
     BellumGensModule
   ]
 })

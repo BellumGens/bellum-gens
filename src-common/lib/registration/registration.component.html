@@ -40,7 +40,7 @@
       <igx-hint class="color-error" *ngIf="userRegistration.touched && confirmPassword.value !== userAccount.password" i18n>Doesn't match...</igx-hint>
     </igx-input-group>
 
-    <button igxButton="outlined"
+    <button igxButton="outlined" igxRipple
             class="submit-button space-out"
             [disabled]="!userRegistration.touched ||
                         !userRegistration.valueChanges ||

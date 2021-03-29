@@ -2,7 +2,7 @@
   <h6 i18n>Associated Logins</h6>
 
   <button *ngFor="let provider of providers"
-          igxButton="raised"
+          igxButton="raised" igxRipple
           class="submit-button navigatable"
           [igxButtonBackground]="loginColors[provider.name]"
           igxButtonColor="#fff"

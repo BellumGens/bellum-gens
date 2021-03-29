@@ -4,6 +4,7 @@ import { ApiTournamentsService } from '../../../src-common/services/bellumgens-a
 import { LoginService } from '../../../src-common/services/login.service';
 import { ApplicationUser } from '../../../src-common/models/applicationuser';
 import { CompetitionDefaults } from '../../../src-common/models/misc';
+import { SocialMediaService } from '../../../src-common/services/social-media.service';
 
 @Component({
   templateUrl: './home.component.html',
@@ -19,6 +20,7 @@ export class TournamentHomeComponent {
   public dates = CompetitionDefaults;
 
   constructor(private apiService: ApiTournamentsService,
+              private socialMedia: SocialMediaService,
               private authManager: LoginService) {
     this.apiService.activeTournament.subscribe(data => {
       if (data) {
@@ -44,5 +46,9 @@ export class TournamentHomeComponent {
     if (this.userEmail) {
       this.apiService.addSubscriber(this.userEmail).subscribe();
     }
+  }
+
+  public tweet() {
+    this.socialMedia.tweetWithText('Hey @EsportBLeague ...');
   }
 }

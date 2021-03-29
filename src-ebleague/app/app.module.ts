@@ -10,7 +10,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from '../../src-common/environments/environment';
 import { TournamentHomeComponent } from './home/home.component';
-import { BellumGensModule } from '../../src-common/lib/components.module';
 import { RaffleComponent } from './raffle/raffle.component';
 import { TournamentRegistrationComponent } from './tournament-registration/tournament-registration.component';
 import { StartsWithPipe } from '../../src-bellumgens/app/pipes/starts-with.pipe';
@@ -19,6 +18,7 @@ import { GroupsFilterPipe } from '../../src-bellumgens/app/pipes/groups-filter.p
 import { RegistrationSuccessComponent } from './tournament-registration/registration-success/registration-success.component';
 import { NewsComponent } from './news/news.component';
 import { GetRegCountPipe } from './pipes/get-reg-count.pipe';
+import { LanguagesModule, LoginModule, SuccessErrorModule } from 'src-common/lib/public_api';
 
 import {
   IgxNavbarModule,
@@ -41,7 +41,7 @@ import {
   IgxListModule,
   IgxCardModule
 } from '@infragistics/igniteui-angular';
-import { socialMedia, logos } from '@igniteui/material-icons-extended';
+import { socialMedia, logos, heartCare } from '@igniteui/material-icons-extended';
 
 @NgModule({
   declarations: [
@@ -81,7 +81,9 @@ import { socialMedia, logos } from '@igniteui/material-icons-extended';
     IgxDialogModule,
     IgxListModule,
     IgxCardModule,
-    BellumGensModule,
+    LoginModule,
+    SuccessErrorModule,
+    LanguagesModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     HammerModule
   ],
@@ -93,6 +95,7 @@ export class AppModule {
     const complogos = ['discord', 'steam', 'twitch', 'battlenet'];
     complogos.forEach(c => this.iconService.addSvgIconFromText(c, logos.find(s => s.name === c).value, 'login-icons'));
     smproviders.forEach(p => this.iconService.addSvgIconFromText(p, socialMedia.find(s => s.name === p).value, 'login-icons'));
+    this.iconService.addSvgIconFromText(heartCare.name, heartCare.value, 'health-icons');
 
     //this.iconService.addSvgIcon('isobar', '/assets/partners/isobar.svg', 'partners');
     //this.iconService.addSvgIcon('vmware', '/assets/partners/vmware.svg', 'partners');

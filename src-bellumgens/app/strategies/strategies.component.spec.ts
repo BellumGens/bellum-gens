@@ -33,7 +33,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { NewStrategyComponent } from './new-strategy/new-strategy.component';
 import { IsStratOwnerPipe } from 'src-bellumgens/app/pipes/is-strat-owner.pipe';
-import { BellumGensModule } from 'src-common/lib/components.module';
+import { BellumGensModule } from 'src-common/lib/public_api';
 
 describe('StrategiesComponent', () => {
   let component: StrategiesComponent;

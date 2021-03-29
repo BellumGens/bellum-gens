@@ -1,5 +1,5 @@
-import { Component, Input, EventEmitter, Output, ViewChild } from '@angular/core';
-import { IDialogEventArgs, IgxDialogComponent } from '@infragistics/igniteui-angular';
+import { Component, Input, EventEmitter, Output, ViewChild, NgModule } from '@angular/core';
+import { IDialogEventArgs, IgxDialogComponent, IgxDialogModule } from '@infragistics/igniteui-angular';
 
 @Component({
   selector: 'bg-confirm',
@@ -42,3 +42,16 @@ export class ConfirmComponent {
     this.dialog.open();
   }
 }
+
+@NgModule({
+  declarations: [
+    ConfirmComponent
+  ],
+  exports: [
+    ConfirmComponent
+  ],
+  imports: [
+    IgxDialogModule
+  ]
+})
+export class ConfirmModule {}
