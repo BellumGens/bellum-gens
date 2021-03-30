@@ -139,11 +139,11 @@
           <context context-type="linenumber">211</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="fe56d9c5b5055afbe7d059f75dffc5d8d76d1031" datatype="html">
-        <source>Available times for <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{selectedDay ? (selectedDay.day | weekday) : &apos;&apos;}}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+      <trans-unit id="5e68606a736dc2427abeb9f98b47162b98756b8a" datatype="html">
+        <source>Available times for  <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{selectedDay ? (selectedDay.day | weekday) : &apos;&apos;}}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/availability/availability.component.html</context>
-          <context context-type="linenumber">21</context>
+          <context context-type="linenumber">20</context>
         </context-group>
       </trans-unit>
       <trans-unit id="d5e0dbc9fd4651759df915cdc6ba26fe3f17475f" datatype="html">
