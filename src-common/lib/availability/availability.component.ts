@@ -1,10 +1,9 @@
-import { Component, ViewChild, Input, Output, EventEmitter, ChangeDetectorRef, NgModule } from '@angular/core';
+import { Component, ViewChild, Input, Output, EventEmitter, NgModule } from '@angular/core';
 import { Availability } from '../../models/playeravailability';
 import {
   IgxTimePickerComponent,
   IgxChipsAreaComponent,
   IgxDialogComponent,
-  IgxChipComponent,
   IChipClickEventArgs,
   IBaseChipEventArgs,
   IgxDialogModule,
@@ -41,7 +40,6 @@ export class AvailabilityComponent {
   @ViewChild(IgxDialogComponent, { static: true })
   private dialog: IgxDialogComponent;
 
-  public selectedChip: IgxChipComponent;
   public get selectedDay() {
     return this._availability;
   }
@@ -54,17 +52,12 @@ export class AvailabilityComponent {
 
   private _availability: Availability;
 
-  constructor(private _cdr: ChangeDetectorRef) { }
-
   public daySelected(args: IChipClickEventArgs) {
     if (this.editable) {
+      args.cancel = true;
       const index = this.chips.chipsList.toArray().indexOf(args.owner);
       this.selectedDay = this.availability[index];
       this.dialog.open();
-
-      //args.owner.selected = true;
-      args.cancel = true;
-      this.selectedChip = args.owner;
     }
   }
 
@@ -74,7 +67,6 @@ export class AvailabilityComponent {
     (args.originalEvent as PointerEvent).stopPropagation();
     availability.available = false;
     this.availabilityChanged.emit(availability);
-    this._cdr.detectChanges();
   }
 
   public availabilityChange() {
