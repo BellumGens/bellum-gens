@@ -18,7 +18,7 @@ import { GroupsFilterPipe } from '../../src-bellumgens/app/pipes/groups-filter.p
 import { RegistrationSuccessComponent } from './tournament-registration/registration-success/registration-success.component';
 import { NewsComponent } from './news/news.component';
 import { GetRegCountPipe } from './pipes/get-reg-count.pipe';
-import { LanguagesModule, LoginModule, SuccessErrorModule } from 'src-common/lib/public_api';
+import { LanguagesModule, LoginModule, SuccessErrorModule } from '../../src-common/lib/public_api';
 
 import {
   IgxNavbarModule,
