@@ -45,7 +45,7 @@ export class HomeComponent extends BaseComponent {
   }
 
   public tweet() {
-    this.socialMedia.tweetWithText('Hey @BellumGens...');
+    this.socialMedia.tweetWithText('Hey @BellumGens ...');
   }
 
   public openLogin() {

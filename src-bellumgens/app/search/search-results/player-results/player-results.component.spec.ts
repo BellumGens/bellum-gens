@@ -5,7 +5,7 @@ import { IgxProgressBarModule, IgxCardModule, IgxAvatarModule, IgxChipsModule, I
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { QueryParsedPipe } from 'src-bellumgens/app/pipes/query-parsed.pipe';
-import { BellumGensModule } from 'src-common/lib/components.module';
+import { BellumGensModule } from 'src-common/lib/public_api';
 
 describe('PlayerResultsComponent', () => {
   let component: PlayerResultsComponent;

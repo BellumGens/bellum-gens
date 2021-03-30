@@ -56,10 +56,20 @@
 
   <div class="content-container-row min-height-row">
     <igx-divider></igx-divider>
-    <h4 i18n>Bellum Gens is fully open source! We appreciate your feedback!</h4>
-    <div>
-      <a igxButton="outlined" href="https://github.com/BellumGens/bellum-gens/issues" target="_blank" rel="noopener" i18n>Submit an Issue</a>
-      <button igxButton="outlined" class="space-out-button" (click)="tweet()" i18n>Tweet to us</button>
+    <h4 i18n>We're fully open source! We appreciate your feedback!</h4>
+    <div class="horizontal-center">
+      <a igxButton="outlined" href="https://github.com/BellumGens/bellum-gens/issues" target="_blank" rel="noopener">
+        <igx-icon>bug_report</igx-icon>
+        <span i18n>Submit an Issue</span>
+      </a>
+      <button igxButton="outlined" class="space-out-button" (click)="tweet()">
+        <igx-icon family="login-icons" name="twitter"></igx-icon>
+        <span i18n>Tweet to us</span>
+      </button>
+      <a igxButton="outlined" class="space-out-button" href="https://github.com/sponsors/BellumGens?o=esb" target="_blank" rel="noopener">
+        <igx-icon family="health-icons" name="heart-care"></igx-icon>
+        <span i18n>Sponsor us on GitHub</span>
+      </a>
     </div>
     <igx-divider></igx-divider>
   </div>
@@ -67,7 +77,7 @@
   <div class="content-container-column align-center">
     <h4 i18n>Bellum Gens enables your CS:GO Team</h4>
     <p i18n>Bellum Gens is a CS:GO team finding and team management application, which allows players to look for teams matching their skill and availability, and team owners to manage their teams' roster and general organization. Because CS:GO is a team game!</p>
-    <button igxButton="raised" routerLink="myteams" class="nav-button" i18n>Register your Team</button>
+    <button igxButton="raised" routerLink="/team/myteams" class="nav-button" i18n>Register your Team</button>
   </div>
 
   <div class="content-container-column">

@@ -9,7 +9,7 @@ import { CSGOTeam } from '../../../src-common/models/csgoteam';
 import { LoginService } from '../../../src-common/services/login.service';
 import { ApplicationUser } from '../../../src-common/models/applicationuser';
 import { GLOBAL_OVERLAY_SETTINGS, StratOrder, StratOrderBy } from '../../../src-common/models/misc';
-import { SocialMediaService } from '../../../src-common/services/social-media.service';
+import { SocialMediaStrategyService } from '../../../src-common/services/social-media.strategy.service';
 import { ApiSearchService } from '../../../src-common/services/bellumgens-api.search.service';
 import { ApiStrategiesService } from '../../../src-common/services/bellumgens-api.strategies.service';
 
@@ -42,7 +42,7 @@ export class StrategiesComponent {
               private apiStrategyService: ApiStrategiesService,
               private searchService: ApiSearchService,
               private authManager: LoginService,
-              private socialMedia: SocialMediaService) {
+              private socialMedia: SocialMediaStrategyService) {
     this.activatedRoute.parent.parent.params.subscribe(params => {
       const teamId = params['teamid'];
 

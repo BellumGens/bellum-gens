@@ -58,7 +58,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
-          <context context-type="linenumber">101</context>
+          <context context-type="linenumber">111</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9b475bb63675494482effde989c7f1f18c232620" datatype="html">
@@ -69,7 +69,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
-          <context context-type="linenumber">126</context>
+          <context context-type="linenumber">136</context>
         </context-group>
       </trans-unit>
       <trans-unit id="76f3dbd0b2d8f1d1003fcecfea9cf5b6f145e082" datatype="html">
@@ -80,7 +80,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
-          <context context-type="linenumber">123</context>
+          <context context-type="linenumber">133</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7e892ba15f2c6c17e83510e273b3e10fc32ea016" datatype="html">
@@ -144,7 +144,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
-          <context context-type="linenumber">84</context>
+          <context context-type="linenumber">94</context>
         </context-group>
       </trans-unit>
       <trans-unit id="e0de906591fddc1e423f4dd7a048ce2a821d058b" datatype="html">
@@ -155,7 +155,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
-          <context context-type="linenumber">87</context>
+          <context context-type="linenumber">97</context>
         </context-group>
       </trans-unit>
       <trans-unit id="90d3c623b3043d49a7181a5f0cf8436995fc1f55" datatype="html">
@@ -166,7 +166,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
-          <context context-type="linenumber">90</context>
+          <context context-type="linenumber">100</context>
         </context-group>
       </trans-unit>
       <trans-unit id="34020763f269641858d4b88c875f5e56f16aa574" datatype="html">
@@ -177,7 +177,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
-          <context context-type="linenumber">93</context>
+          <context context-type="linenumber">103</context>
         </context-group>
       </trans-unit>
       <trans-unit id="aaf13c2daf4a545724c082da3e73373251795aae" datatype="html">
@@ -279,8 +279,8 @@
           <context context-type="linenumber">53</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="805ce81413e6cf1fba6d15a715b68a4fd12f10b7" datatype="html">
-        <source>Bellum Gens is fully open source! We appreciate your feedback!</source>
+      <trans-unit id="59d6b3162a7642b8543e3bcb701518a8db890f55" datatype="html">
+        <source>We&apos;re fully open source! We appreciate your feedback!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
           <context context-type="linenumber">59</context>
@@ -290,78 +290,85 @@
         <source>Submit an Issue</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
-          <context context-type="linenumber">61</context>
+          <context context-type="linenumber">63</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7decc856486a1e8f770b31b552f830364e94044e" datatype="html">
         <source>Tweet to us</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
-          <context context-type="linenumber">62</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="495b1455f8510d74a734ad531456d0b883f467ff" datatype="html">
+        <source>Sponsor us on GitHub</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
+          <context context-type="linenumber">71</context>
         </context-group>
       </trans-unit>
       <trans-unit id="f60fb86cfbfee8531f65bb74a4f85ace1ac56327" datatype="html">
         <source>Bellum Gens enables your CS:GO Team</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
-          <context context-type="linenumber">68</context>
+          <context context-type="linenumber">78</context>
         </context-group>
       </trans-unit>
       <trans-unit id="671254056ed78fe29a24799b99cef49ac446e528" datatype="html">
         <source>Bellum Gens is a CS:GO team finding and team management application, which allows players to look for teams matching their skill and availability, and team owners to manage their teams&apos; roster and general organization. Because CS:GO is a team game!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
-          <context context-type="linenumber">69</context>
+          <context context-type="linenumber">79</context>
         </context-group>
       </trans-unit>
       <trans-unit id="e308a61db6b4a8dfda0022f85b41767e9358584e" datatype="html">
         <source>Register your Team</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
-          <context context-type="linenumber">70</context>
+          <context context-type="linenumber">80</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ecf5a8cba04c9a8d627a9a65f98f47d02d823aba" datatype="html">
         <source>Follow us for updates</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
-          <context context-type="linenumber">79</context>
+          <context context-type="linenumber">89</context>
         </context-group>
       </trans-unit>
       <trans-unit id="dc31d8a047fda51668747cb7dd377e6b013dec2f" datatype="html">
         <source>BPro Gaming is the first professional esports club in Bulgaria. During the past 4 years BPro has developed a number of professional players, team and infrastructure.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
-          <context context-type="linenumber">103</context>
+          <context context-type="linenumber">113</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
-          <context context-type="linenumber">104</context>
+          <context context-type="linenumber">114</context>
         </context-group>
       </trans-unit>
       <trans-unit id="491d3a722a1e7e5a9d1cd0494869f367cb45dc74" datatype="html">
         <source>BSL a one of a kind StarCraft II league in Bulgaria and are contributing to the deveopment of Bulgarian talent in this esport! All StarCraft 2 games in the Esports Business League will be casted by the them!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
-          <context context-type="linenumber">106</context>
+          <context context-type="linenumber">116</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
-          <context context-type="linenumber">107</context>
+          <context context-type="linenumber">117</context>
         </context-group>
       </trans-unit>
       <trans-unit id="35c66e047680d31bf97d99dbf321f5ae7ab9df4e" datatype="html">
         <source>Bellum Gens is founded by two passionate about gaming friends. Bellum Gens is an esports organization focused on the development and popularization of esports in Bulgaria. We want to make esports a recognizable topic for the business and thus to help the development of all esports project in Bulgaria and on the Balkans.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
-          <context context-type="linenumber">124</context>
+          <context context-type="linenumber">134</context>
         </context-group>
       </trans-unit>
       <trans-unit id="244aae9346da82b0922506c2d2581373a15641cc" datatype="html">
         <source>Email</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
-          <context context-type="linenumber">131</context>
+          <context context-type="linenumber">141</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/registration/registration.component.html</context>
@@ -372,14 +379,14 @@
         <source>Get email updates from us!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
-          <context context-type="linenumber">139</context>
+          <context context-type="linenumber">149</context>
         </context-group>
       </trans-unit>
       <trans-unit id="d0336848b0c375a1c25ba369b3481ee383217a4f" datatype="html">
         <source>Subscribe</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/home/home.component.html</context>
-          <context context-type="linenumber">142</context>
+          <context context-type="linenumber">152</context>
         </context-group>
       </trans-unit>
       <trans-unit id="f09dd2768cc6366fc6ac414635d85920f8a12964" datatype="html">
@@ -841,6 +848,10 @@
           <context context-type="sourcefile">src-bellumgens/app/strategies/new-strategy/new-strategy.component.html</context>
           <context context-type="linenumber">59</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/availability/availability.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="b105f50be6bdd52a475bf46361e7170687032843" datatype="html">
         <source>Showing</source>
@@ -982,11 +993,11 @@
           <context context-type="linenumber">22</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src-common/lib/user-preferences/user-preferences.component.html</context>
+          <context context-type="sourcefile">src-common/lib/login/user-preferences/user-preferences.component.html</context>
           <context context-type="linenumber">46</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">src-common/lib/user-preferences/user-preferences.component.html</context>
+          <context context-type="sourcefile">src-common/lib/login/user-preferences/user-preferences.component.html</context>
           <context context-type="linenumber">49</context>
         </context-group>
       </trans-unit>
@@ -1125,6 +1136,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team-application/team-application.component.html</context>
           <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/availability/availability.component.html</context>
+          <context context-type="linenumber">15</context>
         </context-group>
       </trans-unit>
       <trans-unit id="fa0d6b330917208a29c51f09ed33815922b9fcbc" datatype="html">
@@ -1422,25 +1437,25 @@
           <context context-type="linenumber">43</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="ec41c7c461b2224f6247a55bea8aaec1d8ad2e8a" datatype="html">
-        <source>Available times for <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot; [textContent]=&quot;selectedDay ? (selectedDay.day | weekday) : &apos;&apos;&quot;&gt;"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+      <trans-unit id="5e68606a736dc2427abeb9f98b47162b98756b8a" datatype="html">
+        <source>Available times for  <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{selectedDay ? (selectedDay.day | weekday) : &apos;&apos;}}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/availability/availability.component.html</context>
-          <context context-type="linenumber">15</context>
+          <context context-type="linenumber">20</context>
         </context-group>
       </trans-unit>
       <trans-unit id="d5e0dbc9fd4651759df915cdc6ba26fe3f17475f" datatype="html">
         <source>From</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/availability/availability.component.html</context>
-          <context context-type="linenumber">18</context>
+          <context context-type="linenumber">24</context>
         </context-group>
       </trans-unit>
       <trans-unit id="63c9c3aa536dbd11120ae8feab62186c47838028" datatype="html">
         <source>To</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/availability/availability.component.html</context>
-          <context context-type="linenumber">21</context>
+          <context context-type="linenumber">27</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7610ef697ea49cd4a8c20113de0d9aee7038423a" datatype="html">
@@ -1522,6 +1537,90 @@
           <context context-type="linenumber">35</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="dc996c9abd70bed1d1924bce6e5b75e9c45bbf77" datatype="html">
+        <source>Associated Logins</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/login/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="87bb542a1f5c0dc963d29df364c6ac829279eba1" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{ disableLogin(provider.name) ? provider.name : &apos;Add &apos; + provider.name }}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/login/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="24ecfa0b4a99d21b20b04950630e656d0519cd17" datatype="html">
+        <source>Create username and password</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/login/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9fefbb18689d747e86cb3b60086e5a52f34ef750" datatype="html">
+        <source>Additional Preferences</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/login/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cb37a606ee3450afdf67c7a186ef9988f2c4e1f4" datatype="html">
+        <source>Show profile in searches</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/login/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="978d2295734e8ddac32d3eaa58593df941de86d5" datatype="html">
+        <source>Tournament Registration</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/login/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c31bec609580fc8a8c52bb3058e973a9528adc0a" datatype="html">
+        <source>Registration for <x id="INTERPOLATION" equiv-text="{{ registration.game ? &apos;StarCraft II&apos; : &apos;CS:GO&apos; }}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/login/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ccb854cc03b3fea200d7247fa750b15362a6652c" datatype="html">
+        <source>Confirmation code <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{registration.hash}}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/login/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6eb9dc94d8419e8058a8046f8016dd5bbd61be31" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{ registration.state ? &apos;Confirmed&apos; : &apos;Pending&apos; }}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/login/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="57c5c9697f53670d4668f56554715598b48bb6d0" datatype="html">
+        <source>Delete Account Forever</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/login/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c5f3fb880fbd46f6b5ef0cef7ed174c0cd66b51f" datatype="html">
+        <source>Pressing OK will delete your user account permanently...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/login/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="079fc56305a2e646ff9ff9259b0a02dcf73d6d0f" datatype="html">
+        <source>Pressing OK will delete your tournament registration permanently...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/login/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="9a4328a5d7c4336ba01b604e4a5d9445dfd80e41" datatype="html">
         <source>Setup your account</source>
         <context-group purpose="location">
@@ -1562,90 +1661,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/registration/registration.component.html</context>
           <context context-type="linenumber">49</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="dc996c9abd70bed1d1924bce6e5b75e9c45bbf77" datatype="html">
-        <source>Associated Logins</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src-common/lib/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">2</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="87bb542a1f5c0dc963d29df364c6ac829279eba1" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{ disableLogin(provider.name) ? provider.name : &apos;Add &apos; + provider.name }}"/></source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src-common/lib/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">13</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="24ecfa0b4a99d21b20b04950630e656d0519cd17" datatype="html">
-        <source>Create username and password</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src-common/lib/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">17</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="9fefbb18689d747e86cb3b60086e5a52f34ef750" datatype="html">
-        <source>Additional Preferences</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src-common/lib/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">19</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="cb37a606ee3450afdf67c7a186ef9988f2c4e1f4" datatype="html">
-        <source>Show profile in searches</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src-common/lib/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">22</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="978d2295734e8ddac32d3eaa58593df941de86d5" datatype="html">
-        <source>Tournament Registration</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src-common/lib/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">26</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="c31bec609580fc8a8c52bb3058e973a9528adc0a" datatype="html">
-        <source>Registration for <x id="INTERPOLATION" equiv-text="{{ registration.game ? &apos;StarCraft II&apos; : &apos;CS:GO&apos; }}"/></source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src-common/lib/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">30</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="ccb854cc03b3fea200d7247fa750b15362a6652c" datatype="html">
-        <source>Confirmation code <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{registration.hash}}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src-common/lib/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">31</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6eb9dc94d8419e8058a8046f8016dd5bbd61be31" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{ registration.state ? &apos;Confirmed&apos; : &apos;Pending&apos; }}"/></source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src-common/lib/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">33</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="57c5c9697f53670d4668f56554715598b48bb6d0" datatype="html">
-        <source>Delete Account Forever</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src-common/lib/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">41</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="c5f3fb880fbd46f6b5ef0cef7ed174c0cd66b51f" datatype="html">
-        <source>Pressing OK will delete your user account permanently...</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src-common/lib/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">47</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="079fc56305a2e646ff9ff9259b0a02dcf73d6d0f" datatype="html">
-        <source>Pressing OK will delete your tournament registration permanently...</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src-common/lib/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">50</context>
         </context-group>
       </trans-unit>
     </body>

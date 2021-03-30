@@ -1,4 +1,6 @@
-import { Component, Inject, LOCALE_ID } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, Inject, LOCALE_ID, NgModule } from '@angular/core';
+import { IgxButtonModule, IgxDropDownModule, IgxIconModule, IgxRippleModule, IgxToggleModule } from '@infragistics/igniteui-angular';
 import { GLOBAL_OVERLAY_SETTINGS } from '../../models/misc';
 
 @Component({
@@ -26,3 +28,21 @@ export class LanguagesComponent {
     window.location.href = window.location.origin + path;
   }
 }
+
+@NgModule({
+  declarations: [
+    LanguagesComponent
+  ],
+  exports: [
+    LanguagesComponent
+  ],
+  imports: [
+    CommonModule,
+    IgxButtonModule,
+    IgxRippleModule,
+    IgxIconModule,
+    IgxToggleModule,
+    IgxDropDownModule
+  ]
+})
+export class LanguagesModule {}

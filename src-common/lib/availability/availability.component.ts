@@ -1,13 +1,17 @@
-import { Component, ViewChild, Input, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
+import { Component, ViewChild, Input, Output, EventEmitter, NgModule } from '@angular/core';
 import { Availability } from '../../models/playeravailability';
 import {
   IgxTimePickerComponent,
   IgxChipsAreaComponent,
   IgxDialogComponent,
-  IgxChipComponent,
   IChipClickEventArgs,
-  IBaseChipEventArgs
+  IBaseChipEventArgs,
+  IgxDialogModule,
+  IgxChipsModule,
+  IgxTimePickerModule
 } from '@infragistics/igniteui-angular';
+import { WeekdayPipe } from '../pipes/weekday.pipe';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'bg-availability',
@@ -36,7 +40,6 @@ export class AvailabilityComponent {
   @ViewChild(IgxDialogComponent, { static: true })
   private dialog: IgxDialogComponent;
 
-  public selectedChip: IgxChipComponent;
   public get selectedDay() {
     return this._availability;
   }
@@ -49,17 +52,12 @@ export class AvailabilityComponent {
 
   private _availability: Availability;
 
-  constructor(private _cdr: ChangeDetectorRef) { }
-
   public daySelected(args: IChipClickEventArgs) {
     if (this.editable) {
+      args.cancel = true;
       const index = this.chips.chipsList.toArray().indexOf(args.owner);
       this.selectedDay = this.availability[index];
       this.dialog.open();
-
-      //args.owner.selected = true;
-      args.cancel = true;
-      this.selectedChip = args.owner;
     }
   }
 
@@ -69,7 +67,6 @@ export class AvailabilityComponent {
     (args.originalEvent as PointerEvent).stopPropagation();
     availability.available = false;
     this.availabilityChanged.emit(availability);
-    this._cdr.detectChanges();
   }
 
   public availabilityChange() {
@@ -84,3 +81,21 @@ export class AvailabilityComponent {
     this.dialog.close();
   }
 }
+
+@NgModule({
+  declarations: [
+    AvailabilityComponent,
+    WeekdayPipe
+  ],
+  exports: [
+    AvailabilityComponent,
+    WeekdayPipe
+  ],
+  imports: [
+    CommonModule,
+    IgxDialogModule,
+    IgxChipsModule,
+    IgxTimePickerModule
+  ]
+})
+export class AvailabilityModule {}

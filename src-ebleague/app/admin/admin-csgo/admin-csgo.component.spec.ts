@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { AdminCsgoComponent } from './admin-csgo.component';
-import { BellumGensModule } from 'src-common/lib/components.module';
+import { BellumGensModule } from 'src-common/lib/public_api';
 import { IgxListModule,
   IgxIconModule,
   IgxInputGroupModule,

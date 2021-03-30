@@ -14,7 +14,7 @@ import { GroupsFilterPipe } from 'src-bellumgens/app/pipes/groups-filter.pipe';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TeamNewComponent } from '../team-new/team-new.component';
-import { BellumGensModule } from 'src-common/lib/components.module';
+import { BellumGensModule } from 'src-common/lib/public_api';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
 describe('TeamNavComponent', () => {

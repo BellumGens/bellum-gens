@@ -1,11 +1,33 @@
-import { Component, Input, ViewChild } from '@angular/core';
-import { IgxProgressType, IgxDropDownComponent } from '@infragistics/igniteui-angular';
+import { Component, Input, NgModule, ViewChild } from '@angular/core';
+import {
+  IgxProgressType,
+  IgxDropDownComponent,
+  IgxDialogModule,
+  IgxIconModule,
+  IgxButtonModule,
+  IgxRippleModule,
+  IgxListModule,
+  IgxDividerModule,
+  IgxSwitchModule,
+  IgxAvatarModule,
+  IgxProgressBarModule,
+  IgxToggleModule,
+  IgxDropDownModule,
+  IgxTabsModule,
+  IgxInputGroupModule,
+  IgxCheckboxModule
+} from '@infragistics/igniteui-angular';
 import { LoginService } from '../../services/login.service';
 import { ApplicationUser } from '../../models/applicationuser';
 import { GLOBAL_OVERLAY_SETTINGS } from '../../models/misc';
 import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
 import { LoginDialogComponent } from './login-dialog/login-dialog.component';
+import { UserPreferencesComponent } from './user-preferences/user-preferences.component';
+import { LoginButtonsComponent } from './login-buttons/login-buttons.component';
+import { ConfirmModule } from '../confirm/confirm.component';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 export interface ProfileCompleteness {
   availability: boolean;
@@ -61,3 +83,38 @@ export class LoginComponent {
     }
   }
 }
+
+@NgModule({
+  declarations: [
+    LoginComponent,
+    LoginDialogComponent,
+    LoginButtonsComponent,
+    UserPreferencesComponent
+  ],
+  exports: [
+    LoginComponent,
+    LoginDialogComponent,
+    LoginButtonsComponent,
+    UserPreferencesComponent
+  ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IgxDialogModule,
+    IgxIconModule,
+    IgxButtonModule,
+    IgxRippleModule,
+    IgxListModule,
+    IgxDividerModule,
+    IgxCheckboxModule,
+    IgxSwitchModule,
+    IgxAvatarModule,
+    IgxProgressBarModule,
+    IgxToggleModule,
+    IgxDropDownModule,
+    IgxTabsModule,
+    IgxInputGroupModule,
+    ConfirmModule
+  ]
+})
+export class LoginModule {}

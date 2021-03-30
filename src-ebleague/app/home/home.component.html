@@ -97,6 +97,25 @@
     </div>
   </div>
 
+  <div class="content-container-row min-height-row">
+    <igx-divider></igx-divider>
+    <h4 i18n>We're fully open source! We appreciate your feedback!</h4>
+    <div class="horizontal-center">
+      <a igxButton="outlined" href="https://github.com/BellumGens/bellum-gens/issues" target="_blank" rel="noopener">
+        <igx-icon>bug_report</igx-icon>
+        <span i18n>Submit an Issue</span>
+      </a>
+      <button igxButton="outlined" class="space-out-button" (click)="tweet()">
+        <igx-icon family="login-icons" name="twitter"></igx-icon>
+        <span i18n>Tweet to us</span>
+      </button>
+      <a igxButton="outlined" class="space-out-button" href="https://github.com/sponsors/BellumGens?o=esb" target="_blank" rel="noopener">
+        <igx-icon family="health-icons" name="heart-care"></igx-icon>
+        <span i18n>Sponsor us on GitHub</span>
+      </a>
+    </div>
+  </div>
+
   <div class="content-container-row">
     <igx-divider></igx-divider>
     <h2 id="terms" i18n>Terms and conditions</h2>
@@ -363,7 +382,7 @@
   <div class="content-container-row">
     <igx-divider></igx-divider>
     <h2 id="aboutus" i18n>About us</h2>
-    <p i18n>Esports Бизнес Лигата is organized by Bellum Gens - organization focused on the development and popularization of esports in Bulgaria and on the Balkans. Bellum Gens was founded as an amateur project by two friends - gamers. We want to make esports a recognizable topic for the business and thus to help the development of all esports project in Bulgaria and on the Balkans.</p>
+    <p i18n>Esports Business League is organized by Bellum Gens - organization focused on the development and popularization of esports in Bulgaria and on the Balkans. Bellum Gens was founded as an amateur project by two friends - gamers. We want to make esports a recognizable topic for the business and thus to help the development of all esports project in Bulgaria and on the Balkans.</p>
 
     <h2 i18n>Contact us</h2>
     <form #subscription="ngForm" (ngSubmit)="subscribe()">

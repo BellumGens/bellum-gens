@@ -10,7 +10,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { BellumGensModule } from 'src-common/lib/components.module';
+import { BellumGensModule } from 'src-common/lib/public_api';
 
 describe('TeamPreferencesComponent', () => {
   let component: TeamPreferencesComponent;

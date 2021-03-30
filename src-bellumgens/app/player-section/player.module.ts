@@ -19,9 +19,9 @@ import { PlayerComponent } from './player.component';
 import { MapPoolComponent } from './map-pool/map-pool.component';
 import { FormsModule } from '@angular/forms';
 import { SteamCustomUrlPipe } from '../pipes/steam-custom-url.pipe';
-import { BellumGensModule } from '../../../src-common/lib/components.module';
 import { SortWeaponsPipe } from '../pipes/sort-weapons.pipe';
 import { TopWeaponAltPipe } from '../pipes/top-weapon-alt.pipe';
+import { AvailabilityModule, BellumGensModule, LoadingModule } from '../../../src-common/lib/public_api';
 
 
 @NgModule({
@@ -46,7 +46,9 @@ import { TopWeaponAltPipe } from '../pipes/top-weapon-alt.pipe';
     IgxToggleModule,
     IgxListModule,
     IgxCheckboxModule,
-    BellumGensModule
+    BellumGensModule,
+    AvailabilityModule,
+    LoadingModule
   ]
 })
 export class PlayerModule { }

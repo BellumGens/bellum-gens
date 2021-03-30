@@ -1,10 +1,14 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, NgModule } from '@angular/core';
+
 import { LoginService } from '../../services/login.service';
 import { UserRegistration } from '../../models/userlogin';
+import { ApplicationUser } from '../../models/applicationuser';
+
 import { fromEvent } from 'rxjs';
 import { map, debounceTime } from 'rxjs/operators';
-import { ApplicationUser } from '../../models/applicationuser';
 import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { IgxButtonModule, IgxIconModule, IgxInputGroupModule, IgxRippleModule } from '@infragistics/igniteui-angular';
 
 @Component({
   selector: 'bg-registration',
@@ -55,3 +59,20 @@ export class RegistrationComponent implements OnInit {
     });
   }
 }
+
+@NgModule({
+  declarations: [
+    RegistrationComponent
+  ],
+  exports: [
+    RegistrationComponent
+  ],
+  imports: [
+    FormsModule,
+    IgxInputGroupModule,
+    IgxIconModule,
+    IgxButtonModule,
+    IgxRippleModule
+  ]
+})
+export class RegistrationModule {}

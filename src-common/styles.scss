@@ -129,6 +129,10 @@ textarea {
   justify-content: space-evenly;
 }
 
+  .content-container-row.min-height-row {
+    min-height: 210px;
+  }
+
 .content-container-column {
   display: flex;
   flex-flow: column;

@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { ApplicationUser } from '../../../../src-common/models/applicationuser';
 import { LoginService } from '../../../../src-common/services/login.service';
 import { CSGOStrategy } from '../../../../src-common/models/csgostrategy';
-import { SocialMediaService } from '../../../../src-common/services/social-media.service';
+import { SocialMediaStrategyService } from '../../../../src-common/services/social-media.strategy.service';
 import { CommunicationService } from '../../../../src-common/services/communication.service';
 import { ApiStrategiesService } from '../../../../src-common/services/bellumgens-api.strategies.service';
 
@@ -15,7 +15,7 @@ export class UserStrategiesComponent {
   public strats: CSGOStrategy [];
 
   constructor(private authManager: LoginService,
-              private socialMedia: SocialMediaService,
+              private socialMedia: SocialMediaStrategyService,
               private commService: CommunicationService,
               private apiService: ApiStrategiesService) {
     this.authManager.applicationUser.subscribe(user => {

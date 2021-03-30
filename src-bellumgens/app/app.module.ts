@@ -32,7 +32,7 @@ import {
   IgxCarouselModule,
   IgxNavigationDrawerModule
 } from '@infragistics/igniteui-angular';
-import { socialMedia, logos } from '@igniteui/material-icons-extended';
+import { socialMedia, logos, heartCare } from '@igniteui/material-icons-extended';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
@@ -49,8 +49,8 @@ import { EmailconfirmComponent } from './emailconfirm/emailconfirm.component';
 import { QueryParsedPipe } from './pipes/query-parsed.pipe';
 import { BaseComponent } from './base/base.component';
 import { StartsWithPipe } from './pipes/starts-with.pipe';
-import { BellumGensModule } from '../../src-common/lib/components.module';
 import { TeamSearchComponent } from './search/team-search/team-search.component';
+import { BellumGensModule, LanguagesModule, LoadingModule, LoginModule, SuccessErrorModule } from '../../src-common/lib/public_api';
 
 @NgModule({
   declarations: [
@@ -99,6 +99,10 @@ import { TeamSearchComponent } from './search/team-search/team-search.component'
     IgxDividerModule,
     IgxCarouselModule,
     IgxNavigationDrawerModule,
+    LoginModule,
+    SuccessErrorModule,
+    LanguagesModule,
+    LoadingModule,
     BellumGensModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     HammerModule
@@ -111,6 +115,7 @@ export class AppModule {
     const complogos = ['discord', 'steam', 'twitch', 'battlenet'];
     complogos.forEach(c => this.iconService.addSvgIconFromText(c, logos.find(s => s.name === c).value, 'login-icons'));
     smproviders.forEach(p => this.iconService.addSvgIconFromText(p, socialMedia.find(s => s.name === p).value, 'login-icons'));
+    this.iconService.addSvgIconFromText(heartCare.name, heartCare.value, 'health-icons');
 
     this.iconService.addSvgIcon('bge-white', '/assets/login/bge-white.svg', 'partners');
     this.iconService.addSvgIcon('eb-league-white', '/assets/login/eb-league-white.svg', 'partners');

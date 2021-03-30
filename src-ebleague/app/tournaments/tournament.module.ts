@@ -10,7 +10,6 @@ import { TournamentSc2Component } from './tournament-sc2/tournament-sc2.componen
 import { BaseComponent } from '../../../src-bellumgens/app/base/base.component';
 import { ProductionCrewComponent } from './production-crew/production-crew.component';
 import { SortByPointsPipe } from '../pipes/sort-by-points.pipe';
-import { BellumGensModule } from '../../../src-common/lib/components.module';
 
 import {
   IgxDividerModule,
@@ -24,6 +23,7 @@ import {
   IgxCalendarModule,
   IgxGridModule
 } from '@infragistics/igniteui-angular';
+import { BellumGensModule } from '../../../src-common/lib/public_api';
 
 
 @NgModule({
