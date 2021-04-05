@@ -15,14 +15,17 @@
   </button>
   <igx-drop-down #userProfile>
     <div class="profile-container">
-      <igx-tabs type="fixed">
-        <igx-tabs-group class="profile-content">
-          <ng-template igxTab>
+      <!--NOTE: This component has been updated by Infragistics migration: v12.0.0
+Please check your template whether all bindings/event handlers are correct.-->
+<igx-tabs tabAlignment="justify">
+        <igx-tab-item class="profile-content">
+          <igx-tab-header>
             <div class="horizontal-center">
               <igx-icon>person</igx-icon>
               <div class="igx-tabs__item-label" i18n>Profile</div>
             </div>
-          </ng-template>
+          </igx-tab-header>
+<igx-tab-content>
           <div class="profile-view">
             <igx-avatar [src]="authUser.avatarFull" [initials]="authUser.username" [roundShape]="true" [size]="'large'">
             </igx-avatar>
@@ -34,18 +37,21 @@
             <igx-icon>logout</igx-icon>
             <span i18n>logout</span>
           </button>
-        </igx-tabs-group>
+        </igx-tab-content>
+</igx-tab-item>
 
-        <igx-tabs-group class="profile-content">
-          <ng-template igxTab>
+        <igx-tab-item class="profile-content">
+          <igx-tab-header>
             <div class="horizontal-center">
               <igx-icon>settings</igx-icon>
               <div class="igx-tabs__item-label" i18n>Settings</div>
             </div>
-          </ng-template>
+          </igx-tab-header>
+<igx-tab-content>
 
           <bg-user-preferences></bg-user-preferences>
-        </igx-tabs-group>
+        </igx-tab-content>
+</igx-tab-item>
       </igx-tabs>
     </div>
   </igx-drop-down>
