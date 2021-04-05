@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
 
 import { PositionSettings,
   HorizontalAlignment,
@@ -35,6 +35,7 @@ export class AppComponent implements OnInit {
   public searchResult: SearchResult;
   public unreadNotifications = 0;
   public environment = environment;
+  public title = window && window.matchMedia('(min-width: 768px)').matches ? 'Bellum Gens' : '';
 
   public overlaySettings = GLOBAL_OVERLAY_SETTINGS;
 
@@ -51,6 +52,11 @@ export class AppComponent implements OnInit {
         }
       }
     );
+  }
+
+  @HostListener('window:resize')
+  public resize() {
+    this.title = window.matchMedia('(min-width: 768px)').matches ? 'Bellum Gens' : '';
   }
 
   public ngOnInit(): void {

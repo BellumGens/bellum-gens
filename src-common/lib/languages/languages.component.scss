@@ -1,4 +1,6 @@
 :host {
+  margin-left: 0;
+
   .profile-button:hover,
   .profile-button:active,
   .profile-button:focus {
@@ -8,7 +10,6 @@
   .profile-button {
     --igx-button-flat-icon-color: white;
   }
-
 }
 
 .dd-item-content {
