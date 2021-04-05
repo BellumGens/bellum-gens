@@ -47,7 +47,6 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../../src-common/environments/environment';
 import { EmailconfirmComponent } from './emailconfirm/emailconfirm.component';
 import { QueryParsedPipe } from './pipes/query-parsed.pipe';
-import { BaseComponent } from './base/base.component';
 import { StartsWithPipe } from './pipes/starts-with.pipe';
 import { TeamSearchComponent } from './search/team-search/team-search.component';
 import { BellumGensModule, LanguagesModule, LoadingModule, LoginModule, SuccessErrorModule } from '../../src-common/lib/public_api';
@@ -65,7 +64,6 @@ import { BellumGensModule, LanguagesModule, LoadingModule, LoginModule, SuccessE
     PlayerResultsComponent,
     EmailconfirmComponent,
     QueryParsedPipe,
-    BaseComponent,
     StartsWithPipe,
     TeamSearchComponent
   ],
