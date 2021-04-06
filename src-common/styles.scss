@@ -19,7 +19,7 @@ html, body {
 
 /* Typography */
 .igx-typography {
-  color: var(--igx-card-header-text-color);
+  color: $primary;
 }
 
 .content {
@@ -309,6 +309,10 @@ textarea {
     --igx-icon-size: 64px;
     color: white;
   }
+
+.igx-button.profile-button igx-icon {
+  color: white;
+}
 
 .partner {
   margin: 16px;

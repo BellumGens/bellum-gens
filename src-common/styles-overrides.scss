@@ -4,8 +4,12 @@ igx-icon {
 }
 
 igx-card-actions igx-badge,
-igx-tab-item igx-icon {
+igx-tab-header igx-icon {
   margin-right: 8px;
+}
+
+.igx-navbar {
+  padding: 0 1rem;
 }
 
 .igx-nav-drawer__aside--pinned {

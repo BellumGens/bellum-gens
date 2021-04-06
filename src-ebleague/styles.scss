@@ -121,13 +121,13 @@ $snackbar-theme: igx-snackbar-theme($background: $banner-background, $border-rad
 /* END Snackbar */
 
 /* Button */
-$button-theme: igx-button-theme($resting-shadow: none,
-                                $hover-shadow: none,
-                                $focus-shadow: none,
-                                $foreground: $primary,
-                                $hover-foreground: $secondary,
-                                $background: transparent);
-@include igx-css-vars($button-theme);
+// $button-theme: igx-button-theme($resting-shadow: none,
+//                                 $hover-shadow: none,
+//                                 $focus-shadow: none,
+//                                 $foreground: $primary,
+//                                 $hover-foreground: $secondary,
+//                                 $background: transparent);
+// @include igx-css-vars($button-theme);
 /* END Button */
 
 /* Progress Circular */

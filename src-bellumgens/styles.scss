@@ -44,8 +44,8 @@ $include: (igx-avatar,
            igx-grid-toolbar);
 
 @include igx-dark-theme(
-    $palette: $app-palette,
-    $exclude: map-keys(map-remove($components, $include...),)
+  $palette: $app-palette,
+  $exclude: map-keys(map-remove($components, $include...),)
 );
 
 /* Navbar */
@@ -82,6 +82,7 @@ $list-theme: igx-list-theme($background: transparent,
 /* Nav Drawer */
 $navdrawer-theme: igx-navdrawer-theme(igx-palette($background, $secondary),
                                 $background: $background-gradient,
+                                $item-text-color: white,
                                 $item-active-text-color: $secondary,
                                 $item-active-icon-color: $secondary,
                                 $item-hover-text-color: $secondary,
