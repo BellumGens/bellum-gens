@@ -14,7 +14,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { BellumGensModule } from 'src-common/lib/public_api';
+import { AvailabilityModule, BellumGensModule, ConfirmModule } from 'src-common/lib/public_api';
 
 describe('TeamDetailsComponent', () => {
   let component: TeamDetailsComponent;
@@ -34,7 +34,9 @@ describe('TeamDetailsComponent', () => {
         IgxTimePickerModule,
         IgxDialogModule,
         IgxRippleModule,
-        BellumGensModule
+        BellumGensModule,
+        ConfirmModule,
+        AvailabilityModule
       ],
       declarations: [
         TeamDetailsComponent

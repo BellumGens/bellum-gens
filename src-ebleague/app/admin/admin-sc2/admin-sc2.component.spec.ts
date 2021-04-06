@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { AdminSc2Component } from './admin-sc2.component';
-import { BellumGensModule } from 'src-common/lib/public_api';
+import { BellumGensModule, ConfirmModule } from 'src-common/lib/public_api';
 import {
   IgxListModule,
   IgxIconModule,
@@ -53,7 +53,8 @@ describe('AdminSc2Component', () => {
         IgxCheckboxModule,
         IgxCalendarModule,
         IgxDialogModule,
-        IgxGridModule
+        IgxGridModule,
+        ConfirmModule
       ]
     })
     .compileComponents();
