@@ -5,7 +5,7 @@ import { IgxProgressBarModule, IgxCardModule, IgxAvatarModule } from '@infragist
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { QueryParsedPipe } from 'src-bellumgens/app/pipes/query-parsed.pipe';
-import { BellumGensModule } from 'src-common/lib/public_api';
+import { BellumGensModule, LoadingModule } from 'src-common/lib/public_api';
 
 describe('TeamResultsComponent', () => {
   let component: TeamResultsComponent;
@@ -19,7 +19,8 @@ describe('TeamResultsComponent', () => {
         IgxProgressBarModule,
         IgxCardModule,
         IgxAvatarModule,
-        BellumGensModule
+        BellumGensModule,
+        LoadingModule
       ],
       declarations: [
         TeamResultsComponent,

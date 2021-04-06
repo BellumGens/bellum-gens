@@ -42,7 +42,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { NotificationStatePipe } from './pipes/notification-state.pipe';
 import { TeamNewComponent } from './team-section/team-new/team-new.component';
-import { BellumGensModule } from 'src-common/lib/public_api';
+import { BellumGensModule, LanguagesModule, LoginModule, SuccessErrorModule } from 'src-common/lib/public_api';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -81,7 +81,10 @@ describe('AppComponent', () => {
         IgxDividerModule,
         IgxSelectModule,
         IgxSwitchModule,
-        BellumGensModule
+        BellumGensModule,
+        LanguagesModule,
+        LoginModule,
+        SuccessErrorModule
       ],
       declarations: [
         AppComponent,

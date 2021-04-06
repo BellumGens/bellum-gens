@@ -14,7 +14,7 @@ import { GroupsFilterPipe } from 'src-bellumgens/app/pipes/groups-filter.pipe';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TeamNewComponent } from '../team-new/team-new.component';
-import { BellumGensModule } from 'src-common/lib/public_api';
+import { BellumGensModule, ConfirmModule } from 'src-common/lib/public_api';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
 describe('TeamNavComponent', () => {
@@ -36,7 +36,8 @@ describe('TeamNavComponent', () => {
         IgxInputGroupModule,
         IgxDialogModule,
         IgxProgressBarModule,
-        BellumGensModule
+        BellumGensModule,
+        ConfirmModule
       ],
       declarations: [
         TeamNavComponent,

@@ -1,4 +1,5 @@
-import { Component, HostListener, ViewChild } from '@angular/core';
+import { Component, HostListener, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { LoginService } from '../../../src-common/services/login.service';
 import { ApplicationUser } from '../../../src-common/models/applicationuser';
 import { SocialMediaService } from '../../../src-common/services/social-media.service';
@@ -22,20 +23,23 @@ export class HomeComponent extends BaseComponent {
   public environment = environment;
   public userEmail: string = null;
 
-  constructor(private authManager: LoginService,
+  constructor(@Inject(PLATFORM_ID) private platformId: any,
+              private authManager: LoginService,
               private apiService: ApiTournamentsService,
               private socialMedia: SocialMediaService,
               titleService: Title,
               meta: Meta,
               activeRoute: ActivatedRoute) {
     super(titleService, meta, activeRoute);
-    this.navigation = window.matchMedia('(min-width: 768px)').matches;
     this.authManager.applicationUser.subscribe(data => this.authUser = data);
+    this.resize();
   }
 
   @HostListener('window:resize')
   public resize() {
-    this.navigation = window.matchMedia('(min-width: 768px)').matches;
+    if (isPlatformBrowser(this.platformId)) {
+      this.navigation = window.matchMedia('(min-width: 768px)').matches;
+    }
   }
 
   public subscribe() {

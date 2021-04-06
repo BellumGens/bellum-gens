@@ -18,7 +18,7 @@ import { FormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { BellumGensModule } from 'src-common/lib/public_api';
+import { BellumGensModule, LanguagesModule, LoginModule, SuccessErrorModule } from 'src-common/lib/public_api';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -46,7 +46,10 @@ describe('AppComponent', () => {
         IgxButtonGroupModule,
         IgxSliderModule,
         IgxDividerModule,
-        BellumGensModule
+        BellumGensModule,
+        LanguagesModule,
+        LoginModule,
+        SuccessErrorModule
       ],
       declarations: [
         AppComponent

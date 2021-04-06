@@ -21,7 +21,7 @@ import { SafeVideoLinkPipe } from 'src-bellumgens/app/pipes/safe-video-link.pipe
 import { FormsModule } from '@angular/forms';
 import { HasVotedPipe } from 'src-bellumgens/app/pipes/has-voted.pipe';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { BellumGensModule } from 'src-common/lib/public_api';
+import { BellumGensModule, ConfirmModule, LoadingModule } from 'src-common/lib/public_api';
 
 describe('StrategyDetailsComponent', () => {
   let component: StrategyDetailsComponent;
@@ -46,7 +46,9 @@ describe('StrategyDetailsComponent', () => {
         IgxToggleModule,
         IgxDialogModule,
         IgxButtonModule,
-        BellumGensModule
+        BellumGensModule,
+        ConfirmModule,
+        LoadingModule
       ],
       declarations: [
         StrategyDetailsComponent,

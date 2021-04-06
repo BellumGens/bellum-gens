@@ -15,7 +15,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ConfirmComponent } from '../../confirm/confirm.component';
+import { ConfirmComponent, ConfirmModule } from '../../confirm/confirm.component';
 
 describe('UserPreferencesComponent', () => {
   let component: UserPreferencesComponent;
@@ -36,7 +36,8 @@ describe('UserPreferencesComponent', () => {
         IgxButtonModule,
         IgxDividerModule,
         IgxRippleModule,
-        IgxListModule
+        IgxListModule,
+        ConfirmModule
       ],
       declarations: [ UserPreferencesComponent, ConfirmComponent ]
     })
