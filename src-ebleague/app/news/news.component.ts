@@ -1,4 +1,5 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { BaseComponent } from '../../../src-bellumgens/app/base/base.component';
@@ -9,15 +10,17 @@ import { BaseComponent } from '../../../src-bellumgens/app/base/base.component';
   styleUrls: ['./news.component.scss']
 })
 export class NewsComponent extends BaseComponent {
-  public horizontal = window ? window.matchMedia('(min-width: 768px)').matches : true;
+  public horizontal = true;
 
-  constructor(title: Title, meta: Meta, route: ActivatedRoute) {
+  constructor(@Inject(PLATFORM_ID) private platformId: any, title: Title, meta: Meta, route: ActivatedRoute) {
     super(title, meta, route);
+    this.resize();
   }
 
   @HostListener('window:resize')
   public resize() {
-    this.horizontal = window.matchMedia('(min-width: 768px)').matches;
+    if (isPlatformBrowser(this.platformId)) {
+      this.horizontal = window.matchMedia('(min-width: 768px)').matches;
+    }
   }
-
 }

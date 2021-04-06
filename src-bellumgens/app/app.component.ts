@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewChild, ElementRef, HostListener } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, HostListener, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 import { PositionSettings,
   HorizontalAlignment,
@@ -35,13 +36,14 @@ export class AppComponent implements OnInit {
   public searchResult: SearchResult;
   public unreadNotifications = 0;
   public environment = environment;
-  public title = window && window.matchMedia('(min-width: 768px)').matches ? 'Bellum Gens' : '';
+  public title = 'Bellum Gens';
 
   public overlaySettings = GLOBAL_OVERLAY_SETTINGS;
 
   private unreadPipe = new UnreadNotificationsPipe();
 
-  constructor(private authManager: LoginService,
+  constructor(@Inject(PLATFORM_ID) private platformId: any,
+              private authManager: LoginService,
               private apiService: BellumgensApiService,
               private searchService: ApiSearchService) {
     this.authManager.applicationUser.subscribe(user => {
@@ -52,15 +54,18 @@ export class AppComponent implements OnInit {
         }
       }
     );
+    this.resize();
   }
 
   @HostListener('window:resize')
   public resize() {
-    this.title = window.matchMedia('(min-width: 768px)').matches ? 'Bellum Gens' : '';
+    if (isPlatformBrowser(this.platformId)) {
+      this.title = window.matchMedia('(min-width: 768px)').matches ? 'Bellum Gens' : '';
+    }
   }
 
   public ngOnInit(): void {
-    if (!window.localStorage.getItem('cookiesAccepted')) {
+    if (isPlatformBrowser(this.platformId) && !window.localStorage.getItem('cookiesAccepted')) {
       this.banner.open();
     }
     this.initQuickSearch();

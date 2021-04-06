@@ -1,4 +1,5 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { BaseComponent } from '../../base/base.component';
 import { ActivatedRoute } from '@angular/router';
 import { CSGOStrategy, VoteDirection, NEW_EMPTY_COMMENT, StrategyComment } from '../../../../src-common/models/csgostrategy';
@@ -20,10 +21,11 @@ export class StrategyDetailsComponent extends BaseComponent {
   public authUser: ApplicationUser;
   public pipeTrigger = 0;
   public newComment = Object.assign({}, NEW_EMPTY_COMMENT);
-  public horizontal = window ? window.matchMedia('(min-width: 768px)').matches : true;
+  public horizontal = true;
   public overlaySettings = GLOBAL_OVERLAY_SETTINGS;
 
-  constructor(private apiService: ApiStrategiesService,
+  constructor(@Inject(PLATFORM_ID) private platformId: any,
+              private apiService: ApiStrategiesService,
               private authManager: LoginService,
               private socialMedia: SocialMediaStrategyService,
               title: Title,
@@ -51,11 +53,14 @@ export class StrategyDetailsComponent extends BaseComponent {
         }
       })
     );
+    this.resize();
   }
 
   @HostListener('window:resize')
   public resize() {
-    this.horizontal = window.matchMedia('(min-width: 768px)').matches;
+    if (isPlatformBrowser(this.platformId)) {
+      this.horizontal = window.matchMedia('(min-width: 768px)').matches;
+    }
   }
 
   public openLogin(title?: string) {
