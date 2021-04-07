@@ -48,7 +48,7 @@
         </igx-column>
 
         <igx-column field="matchDetails" i18n-header header="Match" [filterable]="false">
-          <div *igxCell="let cell = cell">
+          <div *igxCell="let cell = cell" class="horizontal-center">
             <igx-avatar igxListThumbnail
                         [src]="cell.rowData.player1.avatarMedium"
                         [initials]="cell.rowData.player1.username"
@@ -69,6 +69,24 @@
               {{ cell.rowData.player2.battleNetId }}
             </span>
           </div>
+        </igx-column>
+
+        <igx-column width="150px" field="videoLink" i18n-header header="Video" [filterable]="false">
+          <ng-template igxCell let-value>
+            <a *ngIf="value" [href]="value" target="_blank" class="horizontal-center">
+              <igx-icon>link</igx-icon>
+              <span>link</span>
+            </a>
+          </ng-template>
+        </igx-column>
+
+        <igx-column width="150px" field="demoLink" i18n-header header="Replay" [filterable]="false">
+          <ng-template igxCell let-value>
+            <a *ngIf="value" [href]="value" target="_blank" class="horizontal-center">
+              <igx-icon>link</igx-icon>
+              <span>link</span>
+            </a>
+          </ng-template>
         </igx-column>
 
         <ng-template igxGridDetail let-dataItem>

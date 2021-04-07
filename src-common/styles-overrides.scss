@@ -1,4 +1,4 @@
-/* ICONS */
+/* ICONS BADGES AVATARS */
 igx-icon {
   user-select: none;
 }
@@ -8,25 +8,16 @@ igx-tab-item igx-icon {
   margin-right: 8px;
 }
 
-.igx-nav-drawer__aside--pinned {
-  position: fixed;
-}
-
-.igx-nav-drawer__item > igx-icon,
-.igx-nav-drawer__item > igx-avatar {
-  margin-right: 8px;
-}
-
-.igx-nav-drawer__item > igx-avatar {
-  width: 24px;
-  height: 24px;
-  min-width: 24px;
-}
-
 igx-grid-cell > igx-avatar {
   margin-right: 8px;
 }
 /* END ICONS */
+
+/* NAVDRAWER */
+.igx-nav-drawer__aside--pinned {
+  position: fixed;
+}
+/* END NAVDRAWER */
 
 /* SNACKBAR */
 igx-snackbar {
@@ -40,9 +31,11 @@ igx-snackbar {
 }
 /* END SNACKBAR */
 
+/* DIVIDER */
 igx-divider {
   width: 100%;
 }
+/* END DIVIDER */
 
 igx-card-content h4 {
   margin: 24px 0px 0px 8px;
@@ -51,11 +44,6 @@ igx-card-content h4 {
 .igx-linear-bar__base {
   height: 12px;
 }
-
-.igx-typography .igx-tabs__item-label {
-  letter-spacing: 0.07rem;
-}
-
 
 /* Overlay */
 .igx-overlay {

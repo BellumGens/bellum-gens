@@ -213,6 +213,36 @@
       {{ registration.battleTag }}
     </igx-select-item>
   </igx-select>
+
+  <igx-input-group>
+    <label igxLabel i18n>Video Link</label>
+    <igx-prefix>
+      <igx-icon>link</igx-icon>
+    </igx-prefix>
+    <input igxInput
+           type="url"
+           pattern="^(?:http(s)?:\/\/)[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$"
+           #videoLink
+           [(ngModel)]="matchInEdit.videoLink" />
+    <igx-suffix *ngIf="videoLink.value.length > 0" (click)="matchInEdit.videoLink = null">
+        <igx-icon>clear</igx-icon>
+    </igx-suffix>
+  </igx-input-group>
+
+  <igx-input-group>
+    <label igxLabel i18n>Demo Link</label>
+    <igx-prefix>
+      <igx-icon>link</igx-icon>
+    </igx-prefix>
+    <input igxInput
+           type="url"
+           pattern="^(?:http(s)?:\/\/)[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$"
+           #demoLink
+           [(ngModel)]="matchInEdit.demoLink" />
+    <igx-suffix *ngIf="demoLink.value.length > 0" (click)="matchInEdit.demoLink = null">
+        <igx-icon>clear</igx-icon>
+    </igx-suffix>
+  </igx-input-group>
 </igx-dialog>
 
 <igx-dialog #newMatchMapDialog
