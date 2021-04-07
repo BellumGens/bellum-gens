@@ -19,14 +19,14 @@ html, body {
 
 /* Typography */
 .igx-typography {
-  color: var(--igx-card-header-text-color);
+  color: $primary;
 }
+/* END Typography */
 
 .content {
   height: 100%;
   width: 100%;
 }
-/* END Typography */
 
 .horizontal {
   display: flex;
