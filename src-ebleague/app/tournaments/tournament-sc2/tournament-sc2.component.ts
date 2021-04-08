@@ -39,7 +39,6 @@ export class TournamentSc2Component extends BaseComponent {
       this.apiService.loadingSC2Matches.subscribe(data => this.loadingMatches = data);
       this.apiService.getSc2Matches(this.tournamentId).subscribe(data => {
         if (data) {
-          data.forEach(item => item.startTime = new Date(item.startTime));
           this.sc2matches = data;
         }
       });

@@ -274,7 +274,7 @@ export class ApiTournamentsService {
   }
 
   public submitCSGOMatch(match: TournamentCSGOMatch) {
-    return this.http.put<TournamentCSGOMatch>(`${this._apiEndpoint}/tournament/csgomatch?id=${match.id || null}`,
+    return this.http.put<TournamentCSGOMatch>(`${this._apiEndpoint}/tournament/csgomatch${match.id ? '?id=' + match.id : ''}`,
       match, { withCredentials: true}).pipe(
         map(response => {
           this.commService.emitSuccess('Tournament CS:GO match updated successfully!');
@@ -330,7 +330,7 @@ export class ApiTournamentsService {
   }
 
   public submitSC2Match(match: TournamentSC2Match) {
-    return this.http.put<TournamentSC2Match>(`${this._apiEndpoint}/tournament/sc2match?id=${match.id}`,
+    return this.http.put<TournamentSC2Match>(`${this._apiEndpoint}/tournament/sc2match${match.id ? '?id=' + match.id : ''}`,
       match, { withCredentials: true}).pipe(
         map(response => {
           this.commService.emitSuccess('Tournament StarCraft II match updated successfully!');

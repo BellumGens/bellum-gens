@@ -39,7 +39,6 @@ export class TournamentCsgoComponent extends BaseComponent {
       this.apiService.loadingCSGOMatches.subscribe(data => this.loadingMatches = data);
       this.apiService.getCsgoMatches(this.tournamentId).subscribe(data => {
         if (data) {
-          data.forEach(item => item.startTime = new Date(item.startTime));
           this.csgomatches = data;
         }
       });

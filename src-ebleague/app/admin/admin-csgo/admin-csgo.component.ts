@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {
   EMPTY_NEW_GROUP,
+  Tournament,
   TournamentGroup,
   TournamentParticipant
 } from '../../../../src-common/models/tournament';
@@ -31,19 +32,24 @@ export class AdminCsgoComponent {
   public pipeTrigger = 0;
   public mapList: CSGOActiveDutyDescriptor [] = ActiveDuty;
   public matchInEdit: TournamentCSGOMatch = { startTime: new Date() };
+  public tournaments: Tournament [] = [];
+  public selectedTournament: Tournament;
 
   constructor(private apiService: ApiTournamentsService) {
-    this.apiService.getCsgoRegistrations(null).subscribe(data => {
+    this.apiService.tournaments.subscribe(t => this.tournaments = t);
+  }
+
+  public selectTournament(tournament: Tournament) {
+    this.apiService.getCsgoRegistrations(tournament.id).subscribe(data => {
       if (data) {
         this.registrations = data;
       }
     });
     this.apiService.loadingCSGORegistrations.subscribe(data => this.loading = data);
-    this.apiService.getCSGOGroups(null).subscribe(data => this.groups = data);
+    this.apiService.getCSGOGroups(tournament.id).subscribe(data => this.groups = data);
     this.apiService.loadingCSGOMatches.subscribe(data => this.loadingMatches = data);
-    this.apiService.getCsgoMatches(null).subscribe(data => {
+    this.apiService.getCsgoMatches(tournament.id).subscribe(data => {
       if (data) {
-        data.forEach(item => item.startTime = new Date(item.startTime));
         this.matches = data;
       }
     });

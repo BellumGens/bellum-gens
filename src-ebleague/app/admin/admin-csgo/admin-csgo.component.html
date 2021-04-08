@@ -1,4 +1,11 @@
 <div class="overview-container-card">
+  <igx-select class="tournament-select" [(ngModel)]="selectedTournament" (ngModelChange)="selectTournament($event)">
+    <label igxLabel i18n>Select tournament</label>
+    <igx-select-item *ngFor="let tournament of tournaments" [value]="tournament">
+      {{ tournament.name }}
+    </igx-select-item>
+  </igx-select>
+
   <igx-grid cellSelection="none"
             [data]="matches"
             height="550px"
@@ -11,7 +18,7 @@
             [allowFiltering]="true">
 
     <igx-grid-toolbar>
-      <igx-grid-toolbar-title i18n>All CS:GO matches</igx-grid-toolbar-title>
+      <igx-grid-toolbar-title i18n>{{ selectedTournament ? selectedTournament.name : 'No' }} CS:GO matches</igx-grid-toolbar-title>
       <igx-grid-toolbar-actions>
         <button igxButton="outlined" (click)="addNewMatch(); newMatchDialog.open()">
           <igx-icon>add_circle_outline</igx-icon>
@@ -52,6 +59,26 @@
       </div>
     </igx-column>
 
+    <igx-column width="150px" field="videoLink" i18n-header header="Video" [filterable]="false">
+      <ng-template igxCell let-value>
+        <a *ngIf="value" [href]="value" target="_blank" class="horizontal-center">
+          <igx-icon>link</igx-icon>
+          <span>link</span>
+        </a>
+        <span *ngIf="!value" i18n>No video</span>
+      </ng-template>
+    </igx-column>
+
+    <igx-column width="150px" field="demoLink" i18n-header header="Replay" [filterable]="false">
+      <ng-template igxCell let-value>
+        <a *ngIf="value" [href]="value" target="_blank" class="horizontal-center">
+          <igx-icon>link</igx-icon>
+          <span>link</span>
+        </a>
+        <span *ngIf="!value" i18n>No demo</span>
+      </ng-template>
+    </igx-column>
+
     <igx-column field="actions" width="160px" header=" " [filterable]="false">
       <div class="match-actions" *igxCell="let cell = cell">
         <igx-icon class="navigatable" title="Добави резултати" (click)="editMatch(cell.rowData, newMatchMapDialog)">add</igx-icon>
@@ -82,7 +109,7 @@
   <igx-card class="margin-top" type="outlined">
     <igx-card-header>
       <igx-avatar igxCardThumbnail [roundShape]="true" src="/assets/wallpapers/csgo-watermark.webp"></igx-avatar>
-      <h1 igxCardHeaderTitle i18n>Participants</h1>
+      <h1 igxCardHeaderTitle i18n>{{ selectedTournament ? selectedTournament.name : 'No' }} Participants</h1>
       <h2 igxCardHeaderSubtitle i18n>Drag and drop participants into the groups</h2>
     </igx-card-header>
     <igx-card-content>

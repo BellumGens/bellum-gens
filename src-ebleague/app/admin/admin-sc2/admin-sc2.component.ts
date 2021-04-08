@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import {
   TournamentGroup,
   TournamentParticipant,
-  EMPTY_NEW_GROUP
+  EMPTY_NEW_GROUP,
+  Tournament
 } from '../../../../src-common/models/tournament';
 import { ApiTournamentsService } from '../../../../src-common/services/bellumgens-api.tournaments.service';
 import { environment } from '../../../../src-common/environments/environment';
@@ -31,19 +32,24 @@ export class AdminSc2Component {
   public pipeTrigger = 0;
   public mapList: SC2LadderDescriptor [] = SC2_MAPS;
   public matchInEdit: TournamentSC2Match = { startTime: new Date() };
+  public tournaments: Tournament [] = [];
+  public selectedTournament: Tournament;
 
   constructor(private apiService: ApiTournamentsService) {
-    this.apiService.getSc2Registrations(null).subscribe(data => {
+    this.apiService.tournaments.subscribe(t => this.tournaments = t);
+  }
+
+  public selectTournament(tournament: Tournament) {
+    this.apiService.getSc2Registrations(tournament.id).subscribe(data => {
       if (data) {
         this.registrations = data;
       }
     });
     this.apiService.loadingSC2Registrations.subscribe(data => this.loading = data);
-    this.apiService.getSC2Groups(null).subscribe(data => this.groups = data);
+    this.apiService.getSC2Groups(tournament.id).subscribe(data => this.groups = data);
     this.apiService.loadingSC2Matches.subscribe(data => this.loadingMatches = data);
-    this.apiService.getSc2Matches(null).subscribe(data => {
+    this.apiService.getSc2Matches(tournament.id).subscribe(data => {
       if (data) {
-        data.forEach(item => item.startTime = new Date(item.startTime));
         this.matches = data;
       }
     });
@@ -51,6 +57,7 @@ export class AdminSc2Component {
 
   public submitGroup(group: TournamentGroup) {
     group.inEdit = false;
+    group.tournamentId = this.selectedTournament.id;
     this.apiService.submitSC2Group(group).subscribe(data => {
       if (!this.groups.find(g => g.id === data.id)) {
         this.groups.push(data);
@@ -102,7 +109,7 @@ export class AdminSc2Component {
   }
 
   public addNewMatch() {
-    this.matchInEdit = { startTime: new Date() };
+    this.matchInEdit = { startTime: new Date(), tournamentId: this.selectedTournament.id, maps: [] };
   }
 
   public editMatch(match: TournamentSC2Match, dialog: IgxDialogComponent) {
