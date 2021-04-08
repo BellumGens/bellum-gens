@@ -19,14 +19,14 @@ html, body {
 
 /* Typography */
 .igx-typography {
-  color: var(--igx-card-header-text-color);
+  color: $primary;
 }
+/* END Typography */
 
 .content {
   height: 100%;
   width: 100%;
 }
-/* END Typography */
 
 .horizontal {
   display: flex;
@@ -319,7 +319,8 @@ textarea {
 }
 
 .grid-team-name {
-  width: 150px;
+  width: 200px;
+  margin-left: 4px;
 }
 
 .login-button {
