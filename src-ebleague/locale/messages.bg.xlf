@@ -664,7 +664,7 @@
       </trans-unit>
       <trans-unit id="061531b201a1e114b746a892e3708990210fabff" datatype="html">
         <source><x id="INTERPOLATION" equiv-text="{{ selectedTournament ? selectedTournament.name : &apos;No&apos; }}"/> Participants</source>
-        <target><x id="INTERPOLATION" equiv-text="{{ selectedTournament ? selectedTournament.name : &apos;No&apos; }}"/> Участници</target>
+        <target><x id="INTERPOLATION" equiv-text="{{ selectedTournament ? selectedTournament.name : &apos;Няма&apos; }}"/> Участници</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin-csgo/admin-csgo.component.html</context>
           <context context-type="linenumber">112</context>
@@ -976,6 +976,7 @@
       </trans-unit>
       <trans-unit id="e09808c844845541ff38a000a24cc351dec31240" datatype="html">
         <source><x id="INTERPOLATION" equiv-text="{{selectedTournament ? selectedTournament.name : &apos;No&apos;}}"/> Participants</source>
+        <target><x id="INTERPOLATION" equiv-text="{{selectedTournament ? selectedTournament.name : &apos;Няма&apos;}}"/> Участници</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-ebleague/app/admin/admin-sc2/admin-sc2.component.html</context>
           <context context-type="linenumber">110</context>
