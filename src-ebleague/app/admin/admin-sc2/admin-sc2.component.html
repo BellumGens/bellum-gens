@@ -1,5 +1,5 @@
 <div class="overview-container-card">
-  <igx-select class="tournament-select" [(ngModel)]="selectedTournament" (ngModelChange)="selectTournament($event)">
+  <igx-select class="space-out-button" [(ngModel)]="selectedTournament" (ngModelChange)="selectTournament($event)">
     <label igxLabel i18n>Select tournament</label>
     <igx-select-item *ngFor="let tournament of tournaments" [value]="tournament">
       {{ tournament.name }}

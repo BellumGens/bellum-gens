@@ -46,7 +46,7 @@ export class AdminSc2Component {
       }
     });
     this.apiService.loadingSC2Registrations.subscribe(data => this.loading = data);
-    this.apiService.getSC2Groups(tournament.id).subscribe(data => this.groups = data);
+    this.apiService.getSc2Groups(tournament.id).subscribe(data => this.groups = data);
     this.apiService.loadingSC2Matches.subscribe(data => this.loadingMatches = data);
     this.apiService.getSc2Matches(tournament.id).subscribe(data => {
       if (data) {

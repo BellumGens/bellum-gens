@@ -2,7 +2,7 @@
   <igx-card type="outlined">
     <igx-card-header>
       <igx-avatar igxCardThumbnail [roundShape]="true" src="/assets/wallpapers/sc2-watermark.webp"></igx-avatar>
-      <h1 igxCardHeaderTitle>StarCraft II Лига</h1>
+      <h1 igxCardHeaderTitle>{{ tournament?.name }} StarCraft II League</h1>
     </igx-card-header>
     <igx-card-content>
       <h4 i18n>Participants</h4>
@@ -35,7 +35,7 @@
                 [allowFiltering]="true">
 
         <igx-grid-toolbar>
-          <igx-grid-toolbar-title i18n>Schedule</igx-grid-toolbar-title>
+          <igx-grid-toolbar-title i18n>{{ tournament?.name }} Schedule</igx-grid-toolbar-title>
           <igx-grid-toolbar-actions>
             <a href="https://challonge.com/ebleague_starcraft" target="_blank" rel="noopener" i18n>Season 2 bracket is available here</a>
           </igx-grid-toolbar-actions>

@@ -46,7 +46,7 @@ export class AdminCsgoComponent {
       }
     });
     this.apiService.loadingCSGORegistrations.subscribe(data => this.loading = data);
-    this.apiService.getCSGOGroups(tournament.id).subscribe(data => this.groups = data);
+    this.apiService.getCsgoGroups(tournament.id).subscribe(data => this.groups = data);
     this.apiService.loadingCSGOMatches.subscribe(data => this.loadingMatches = data);
     this.apiService.getCsgoMatches(tournament.id).subscribe(data => {
       if (data) {

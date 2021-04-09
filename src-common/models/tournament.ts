@@ -10,7 +10,6 @@ export interface Tournament {
   startDate?: Date;
   endDate?: Date;
   active?: boolean;
-  externalBracket?: string;
   csgoMatches?: TournamentCSGOMatch [];
 }
 

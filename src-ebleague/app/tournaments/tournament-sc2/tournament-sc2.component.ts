@@ -5,7 +5,7 @@ import { ApiTournamentsService } from '../../../../src-common/services/bellumgen
 import { LoginService } from '../../../../src-common/services/login.service';
 import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { TournamentParticipant, TournamentGroup } from '../../../../src-common/models/tournament';
+import { TournamentParticipant, TournamentGroup, Tournament } from '../../../../src-common/models/tournament';
 import { environment } from '../../../../src-common/environments/environment';
 import { TournamentSC2Match } from '../../../../src-common/models/tournament-schedule';
 
@@ -23,6 +23,7 @@ export class TournamentSc2Component extends BaseComponent {
   public tournamentId: string;
   public environment = environment;
   public sc2matches: TournamentSC2Match [];
+  public tournament: Tournament;
 
   constructor(private apiService: ApiTournamentsService,
               private loginService: LoginService,
@@ -34,6 +35,7 @@ export class TournamentSc2Component extends BaseComponent {
 
     this.activeRoute.params.subscribe(params => {
       this.tournamentId = params['tournamentid'];
+      this.apiService.getTournament(this.tournamentId).subscribe(t => this.tournament = t);
       this.apiService.loadingSC2Registrations.subscribe(data => this.loading = data);
       this.apiService.getSc2Registrations(this.tournamentId).subscribe(data => this.registrations = data);
       this.apiService.loadingSC2Matches.subscribe(data => this.loadingMatches = data);
@@ -42,7 +44,7 @@ export class TournamentSc2Component extends BaseComponent {
           this.sc2matches = data;
         }
       });
-      this.apiService.getSC2Groups(this.tournamentId).subscribe(data => this.groups = data);
+      this.apiService.getSc2Groups(this.tournamentId).subscribe(data => this.groups = data);
     });
   }
 
