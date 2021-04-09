@@ -29,6 +29,7 @@ export interface TournamentMatch {
   noShow?: boolean;
   groupId?: string;
   inEdit?: boolean;
+  tournamentId?: string;
 }
 
 export interface TournamentCSGOMatch extends TournamentMatch {

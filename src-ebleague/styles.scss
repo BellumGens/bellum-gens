@@ -58,6 +58,8 @@ $navbar-theme: igx-navbar-theme(igx-palette($background, $secondary),
 /* Nav Drawer */
 $navdrawer-theme: igx-navdrawer-theme(igx-palette($background, $secondary),
                                 $background: $background-gradient,
+                                $item-text-color: $primary,
+                                $item-icon-color: $primary,
                                 $item-active-text-color: $secondary,
                                 $item-active-icon-color: $secondary,
                                 $item-hover-text-color: $secondary,

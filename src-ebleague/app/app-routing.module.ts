@@ -14,9 +14,9 @@ export const routes: Routes = [
   { path: 'register', component: RegistrationComponent },
   { path: 'news', component: NewsComponent, data: {
       title: 'Esports Business League - News',
-      twitterTitle: 'Esports бизнес лига - Новини',
-      description: 'Esports Бизнес Лигата е аматьорско състезание за работещи геймъри по CS:GO и StarCraft II',
-      twitterDescription: 'Esports Бизнес Лигата е аматьорско състезание за работещи геймъри по CS:GO и StarCraft II',
+      twitterTitle: 'Esports Business League - News',
+      description: 'Esports Business League is an amateur esports competition at the workplace in CS:GO and StarCraft II',
+      twitterDescription: 'Esports Business League is an amateur esports competition at the workplace in CS:GO and StarCraft II',
       image: '/assets/crew/sugarbunny.jpg'
     }
   },

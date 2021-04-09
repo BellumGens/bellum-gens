@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { TournamentParticipant, TournamentGroup } from '../../../../src-common/models/tournament';
+import { TournamentParticipant, TournamentGroup, Tournament } from '../../../../src-common/models/tournament';
 import { ApiTournamentsService } from '../../../../src-common/services/bellumgens-api.tournaments.service';
 import { BaseComponent } from '../../../../src-bellumgens/app/base/base.component';
 import { Title, Meta } from '@angular/platform-browser';
@@ -23,6 +23,7 @@ export class TournamentCsgoComponent extends BaseComponent {
   public tournamentId: string;
   public environment = environment;
   public csgomatches: TournamentCSGOMatch [];
+  public tournament: Tournament;
 
   constructor(private apiService: ApiTournamentsService,
               private loginService: LoginService,
@@ -34,16 +35,16 @@ export class TournamentCsgoComponent extends BaseComponent {
 
     this.activeRoute.params.subscribe(params => {
       this.tournamentId = params['tournamentid'];
+      this.apiService.getTournament(this.tournamentId).subscribe(t => this.tournament = t);
       this.apiService.loadingCSGORegistrations.subscribe(data => this.loading = data);
       this.apiService.getCsgoRegistrations(this.tournamentId).subscribe(data => this.registrations = data);
       this.apiService.loadingCSGOMatches.subscribe(data => this.loadingMatches = data);
       this.apiService.getCsgoMatches(this.tournamentId).subscribe(data => {
         if (data) {
-          data.forEach(item => item.startTime = new Date(item.startTime));
           this.csgomatches = data;
         }
       });
-      this.apiService.getCSGOGroups(this.tournamentId).subscribe(data => this.groups = data);
+      this.apiService.getCsgoGroups(this.tournamentId).subscribe(data => this.groups = data);
     });
   }
 }
