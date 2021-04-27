@@ -20,10 +20,10 @@
   <h5 igxDialogTitle i18n>Available times for &nbsp;<span class="highlight">{{selectedDay ? (selectedDay.day | weekday) : ''}}</span></h5>
   <div *ngIf="selectedDay">
     <div class="horizontal-center">
-      <igx-time-picker #from class="time-picker" [value]="selectedDay.from" [itemsDelta]="{hours: 1, minutes: 15, seconds: 1}">
+      <igx-time-picker #from class="time-picker" [value]="selectedDay.from" [itemsDelta]="{hours: 1, minutes: 15, seconds: 1}" mode="dialog">
         <label igxLabel i18n>From</label>
       </igx-time-picker>
-      <igx-time-picker #to class="time-picker" [value]="selectedDay.to" [itemsDelta]="{hours: 1, minutes: 15, seconds: 1}">
+      <igx-time-picker #to class="time-picker" [value]="selectedDay.to" [itemsDelta]="{hours: 1, minutes: 15, seconds: 1}" mode="dialog">
         <label igxLabel i18n>To</label>
       </igx-time-picker>
     </div>

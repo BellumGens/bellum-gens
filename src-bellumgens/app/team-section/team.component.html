@@ -15,51 +15,51 @@
       </a>
     </div>
   </div>
-  <igx-tabs>
-    <igx-tab-item routerLink="details"
+  <!--NOTE: This component has been updated by Infragistics migration: v12.0.0
+Please check your template whether all bindings/event handlers are correct.-->
+<igx-tabs>
+    <igx-tab-item
                   routerLinkActive #rla1="routerLinkActive"
-                  [isSelected]="rla1.isActive">
-      <ng-template igxTab>
+                  [selected]="rla1.isActive">
+      <igx-tab-header routerLink="details">
         <div class="horizontal-center">
           <igx-icon>people_outline</igx-icon>
           <div class="igx-tabs__item-label" i18n>Details</div>
         </div>
-      </ng-template>
+      </igx-tab-header>
     </igx-tab-item>
 
-    <igx-tab-item routerLink="competitions"
+    <igx-tab-item
                   routerLinkActive #rla2="routerLinkActive"
-                  [isSelected]="rla2.isActive">
-      <ng-template igxTab>
+                  [selected]="rla2.isActive">
+      <igx-tab-header routerLink="competitions">
         <div class="horizontal-center">
           <igx-icon>sports_esports</igx-icon>
           <div class="igx-tabs__item-label" i18n>Competitions</div>
         </div>
-      </ng-template>
+      </igx-tab-header>
     </igx-tab-item>
 
     <igx-tab-item *ngIf="isMember"
-                  routerLink="strategies"
                   routerLinkActive #rla2="routerLinkActive"
-                  [isSelected]="rla2.isActive">
-      <ng-template igxTab>
+                  [selected]="rla2.isActive">
+      <igx-tab-header routerLink="strategies">
         <div class="horizontal-center">
           <igx-icon>playlist_add_check</igx-icon>
           <div class="igx-tabs__item-label" i18n>Strategies</div>
         </div>
-      </ng-template>
+      </igx-tab-header>
     </igx-tab-item>
 
     <igx-tab-item *ngIf="isAdmin"
-                  routerLink="preferences"
                   routerLinkActive #rla3="routerLinkActive"
-                  [isSelected]="rla3.isActive">
-      <ng-template igxTab>
+                  [selected]="rla3.isActive">
+      <igx-tab-header routerLink="preferences">
         <div class="horizontal-center">
           <igx-icon>settings</igx-icon>
           <div class="igx-tabs__item-label" i18n>Settings</div>
         </div>
-      </ng-template>
+      </igx-tab-header>
     </igx-tab-item>
   </igx-tabs>
   <router-outlet></router-outlet>

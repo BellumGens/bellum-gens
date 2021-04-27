@@ -9,7 +9,7 @@ import {
   IGroupingExpression,
   SortingDirection,
   DefaultSortingStrategy,
-  IgxGridRowComponent,
+  RowType,
   IgxGridTransaction,
   IgxTransactionService
 } from '@infragistics/igniteui-angular';
@@ -74,12 +74,12 @@ export class AdminComponent {
     this.apiService.confirmRegistration(rowData).subscribe();
   }
 
-  public deleteRegistration(rowContext: IgxGridRowComponent) {
+  public deleteRegistration(rowContext: RowType) {
     rowContext.grid.transactions.commit(rowContext.grid.data, rowContext.rowID);
     this.apiService.deleteRegistration(rowContext.rowID).subscribe();
   }
 
-  public deleteOrder(rowContext: IgxGridRowComponent) {
+  public deleteOrder(rowContext: RowType) {
     rowContext.grid.transactions.commit(rowContext.grid.data, rowContext.rowID);
     this.shopService.deleteOrder(rowContext.rowID).subscribe();
   }

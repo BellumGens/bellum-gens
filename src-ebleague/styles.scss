@@ -76,7 +76,7 @@ $card-theme: igx-card-theme($background: $background-gradient-lighter,
 /* END Card */
 
 /* Avatar */
-$avatar-theme: igx-avatar-theme($initials-background: transparent);
+$avatar-theme: igx-avatar-theme($background: transparent);
 @include igx-css-vars($avatar-theme);
 /* END Avatar */
 
@@ -123,12 +123,12 @@ $snackbar-theme: igx-snackbar-theme($background: $banner-background, $border-rad
 /* END Snackbar */
 
 /* Button */
-$button-theme: igx-button-theme($fab-resting-shadow: none,
-                                $fab-hover-shadow: none,
-                                $fab-focus-shadow: none,
-                                $fab-text-color: $primary,
-                                $fab-hover-text-color: $secondary,
-                                $fab-background: transparent);
+$button-theme: igx-button-theme($resting-shadow: none,
+                                $hover-shadow: none,
+                                $focus-shadow: none,
+                                $foreground: $primary,
+                                $hover-foreground: $secondary,
+                                $background: transparent);
 @include igx-css-vars($button-theme);
 /* END Button */
 
