@@ -59,8 +59,18 @@ $navbar-theme: igx-navbar-theme(igx-palette($background, $secondary),
 /* END Navbar */
 
 /* Avatar */
-$avatar-theme: igx-avatar-theme($background: transparent);
-@include igx-css-vars($avatar-theme);
+.empty-role {
+  $empty-role-avatar: igx-avatar-theme($color: #000, $size: 88px);
+  @include igx-css-vars($empty-role-avatar);
+}
+
+.empty-role-active {
+  --my-color: #3040AA;
+  $empty-role-active-avatar: igx-avatar-theme($color: var(--my-color),
+                                              $background: rgba(0, 0, 0, 0.15));
+  @include igx-css-vars($empty-role-active-avatar);
+  box-shadow: inset 0 0 0 2px var(--my-color);
+}
 /* END Avatar */
 
 /* Card */
@@ -81,13 +91,13 @@ $list-theme: igx-list-theme($background: transparent,
 
 /* Nav Drawer */
 $navdrawer-theme: igx-navdrawer-theme(igx-palette($background, $secondary),
-                                $background: $background-gradient,
-                                $item-text-color: $primary,
-                                $item-icon-color: $primary,
-                                $item-active-text-color: $secondary,
-                                $item-active-icon-color: $secondary,
-                                $item-hover-text-color: $secondary,
-                                $item-hover-icon-color: $secondary);
+                                      $background: $background-gradient,
+                                      $item-text-color: $primary,
+                                      $item-icon-color: $primary,
+                                      $item-active-text-color: $secondary,
+                                      $item-active-icon-color: $secondary,
+                                      $item-hover-text-color: $secondary,
+                                      $item-hover-icon-color: $secondary);
 @include igx-css-vars($navdrawer-theme);
 /* END Nav Drawer */
 
@@ -131,13 +141,15 @@ $snackbar-theme: igx-snackbar-theme($background: $banner-background, $border-rad
 /* END Snackbar */
 
 /* Button */
-$button-theme: igx-button-theme($resting-shadow: none,
-                                $hover-shadow: none,
-                                $focus-shadow: none,
-                                $foreground: $primary,
-                                $hover-foreground: $secondary,
-                                $background: transparent);
-@include igx-css-vars($button-theme);
+.strategy-actions {
+  $button-theme: igx-button-theme($resting-shadow: none,
+                                  $hover-shadow: none,
+                                  $focus-shadow: none,
+                                  $foreground: $primary,
+                                  $hover-foreground: $secondary,
+                                  $background: transparent);
+  @include igx-css-vars($button-theme);
+}
 /* END Button */
 
 /* Progress Circular */
@@ -146,7 +158,9 @@ $circular-progress-bar-theme: igx-progress-circular-theme($progress-circle-color
 /* END Progress Circular */
 
 /* Expansion Panel */
-$expansion-panel-theme: igx-expansion-panel-theme($header-background: $background, $header-focus-background: $background, $body-background: $background);
+$expansion-panel-theme: igx-expansion-panel-theme($header-background: $background,
+                                                  $header-focus-background: $background,
+                                                  $body-background: $background);
 @include igx-css-vars($expansion-panel-theme);
 /* END Expansion Panel */
 

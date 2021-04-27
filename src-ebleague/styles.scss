@@ -75,11 +75,6 @@ $card-theme: igx-card-theme($background: $background-gradient-lighter,
 @include igx-css-vars($card-theme);
 /* END Card */
 
-/* Avatar */
-$avatar-theme: igx-avatar-theme($background: transparent);
-@include igx-css-vars($avatar-theme);
-/* END Avatar */
-
 /* List */
 $list-theme: igx-list-theme($background: transparent,
                             $header-background: transparent,
@@ -353,6 +348,10 @@ igx-calendar {
   min-height: 131px;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+.thumbnail-image {
+  height: 40px;
 }
 
 /* END WATERMARKS */

@@ -13,7 +13,7 @@ import { Title, Meta } from '@angular/platform-browser';
 @Component({
   selector: 'app-team-details',
   templateUrl: './team-details.component.html',
-  styleUrls: ['./team-details.component.css']
+  styleUrls: ['./team-details.component.scss']
 })
 export class TeamDetailsComponent extends BaseComponent {
   @ViewChildren(IgxAvatarComponent, { read: ElementRef }) public emptyRoles: QueryList<ElementRef>;
