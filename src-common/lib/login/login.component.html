@@ -15,9 +15,7 @@
   </button>
   <igx-drop-down #userProfile>
     <div class="profile-container">
-      <!--NOTE: This component has been updated by Infragistics migration: v12.0.0
-Please check your template whether all bindings/event handlers are correct.-->
-<igx-tabs tabAlignment="justify">
+      <igx-tabs tabAlignment="justify">
         <igx-tab-item>
           <igx-tab-header>
             <div class="horizontal-center">
@@ -25,20 +23,20 @@ Please check your template whether all bindings/event handlers are correct.-->
               <div class="igx-tabs__item-label" i18n>Profile</div>
             </div>
           </igx-tab-header>
-<igx-tab-content class="profile-content">
-          <div class="profile-view">
-            <igx-avatar [src]="authUser.avatarFull" [initials]="authUser.username" [roundShape]="true" [size]="'large'">
-            </igx-avatar>
-            <h1 class="igx-card-header__title highlight navigatable profile-username" (click)="navigateToProfile(authUser.customURL || authUser.id)">{{ authUser.username }}</h1>
-            <h4 class="igx-card-header__subtitle">{{ authUser.realname }}</h4>
-          </div>
+          <igx-tab-content class="profile-content">
+            <div class="profile-view">
+              <igx-avatar [src]="authUser.avatarFull" [initials]="authUser.username" [roundShape]="true" [size]="'large'">
+              </igx-avatar>
+              <h1 class="igx-card-header__title highlight navigatable profile-username" (click)="navigateToProfile(authUser.customURL || authUser.id)">{{ authUser.username }}</h1>
+              <h4 class="igx-card-header__subtitle">{{ authUser.realname }}</h4>
+            </div>
 
-          <button class="submit-button" igxButton="outlined" igxRipple class="profile-username" (click)="logout()">
-            <igx-icon>logout</igx-icon>
-            <span i18n>logout</span>
-          </button>
-        </igx-tab-content>
-</igx-tab-item>
+            <button class="submit-button" igxButton="outlined" igxRipple class="profile-username" (click)="logout()">
+              <igx-icon>logout</igx-icon>
+              <span i18n>logout</span>
+            </button>
+          </igx-tab-content>
+        </igx-tab-item>
 
         <igx-tab-item>
           <igx-tab-header>
@@ -47,11 +45,11 @@ Please check your template whether all bindings/event handlers are correct.-->
               <div class="igx-tabs__item-label" i18n>Settings</div>
             </div>
           </igx-tab-header>
-<igx-tab-content class="profile-content">
+          <igx-tab-content class="profile-content">
 
-          <bg-user-preferences></bg-user-preferences>
-        </igx-tab-content>
-</igx-tab-item>
+            <bg-user-preferences></bg-user-preferences>
+          </igx-tab-content>
+        </igx-tab-item>
       </igx-tabs>
     </div>
   </igx-drop-down>
