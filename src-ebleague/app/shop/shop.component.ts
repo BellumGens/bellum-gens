@@ -18,6 +18,7 @@ export class ShopComponent extends BaseComponent {
   public invalidPromo = false;
   public inProgress = false;
   public basePrice = 60;
+  public countryCode = '+359';
 
   public cuts = [
     { text: 'Mъжка', cut: JerseyCut.Male },
