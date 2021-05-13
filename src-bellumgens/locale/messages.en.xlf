@@ -715,7 +715,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team.component.html</context>
-          <context context-type="linenumber">48</context>
+          <context context-type="linenumber">45</context>
         </context-group>
       </trans-unit>
       <trans-unit id="404c3e05e164e7dd2d49321895fb77b39297dd78" datatype="html">
@@ -1416,25 +1416,25 @@
         <source>Details</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team.component.html</context>
-          <context context-type="linenumber">25</context>
+          <context context-type="linenumber">24</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1adb91667ecd9d40c6a71e71403e28a21f3ca235" datatype="html">
         <source>Competitions</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team.component.html</context>
-          <context context-type="linenumber">36</context>
+          <context context-type="linenumber">34</context>
         </context-group>
       </trans-unit>
       <trans-unit id="121cc5391cd2a5115bc2b3160379ee5b36cd7716" datatype="html">
         <source>Settings</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/team-section/team.component.html</context>
-          <context context-type="linenumber">60</context>
+          <context context-type="linenumber">56</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/login/login.component.html</context>
-          <context context-type="linenumber">43</context>
+          <context context-type="linenumber">45</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5e68606a736dc2427abeb9f98b47162b98756b8a" datatype="html">
@@ -1534,7 +1534,7 @@
         <source>logout</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/login/login.component.html</context>
-          <context context-type="linenumber">35</context>
+          <context context-type="linenumber">36</context>
         </context-group>
       </trans-unit>
       <trans-unit id="dc996c9abd70bed1d1924bce6e5b75e9c45bbf77" datatype="html">

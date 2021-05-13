@@ -33,7 +33,7 @@
       </ng-template>
     </igx-column>
 
-    <igx-column field="teams" header="Среща" [filterable]="false">
+    <igx-column field="teams" i18n-header header="Match" [filterable]="false">
       <div *igxCell="let cell = cell">
         <igx-avatar igxListThumbnail
                     [src]="cell.rowData.team1.teamAvatar"
