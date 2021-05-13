@@ -102,7 +102,7 @@ export class TeamDetailsComponent extends BaseComponent {
     const user = args.drag.data;
     user.Role = role.role;
     role.user = user;
-    if (this.activeMembers.find(m => m.userId === args.drag.data.UserId)) {
+    if (this.activeMembers.find(m => m.userId === args.drag.data.userId)) {
       this.activeMembers.splice(this.activeMembers.indexOf(args.drag.data), 1);
     } else {
       this.inactiveMembers.splice(this.activeMembers.indexOf(args.drag.data), 1);
