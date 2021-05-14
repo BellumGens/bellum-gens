@@ -55,7 +55,7 @@
 
     <igx-card-actions [reverse]="true" class="strategy-actions">
       <span class="horizontal-center navigatable" [routerLink]="['/strategies', 'details', strat.customUrl]">
-        <igx-badge [value]="strat.comments?.length.toString()" type="info"></igx-badge>
+        <igx-badge [value]="strat.comments ? strat.comments.length : 0" type="info"></igx-badge>
         <span i18n>Comments</span>
       </span>
       <button igxButton="fab"
