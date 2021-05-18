@@ -70,8 +70,8 @@ export class AvailabilityComponent {
   }
 
   public availabilityChange() {
-    this.selectedDay.from = this.from.value;
-    this.selectedDay.to = this.to.value;
+    this.selectedDay.from = this.from.value as Date;
+    this.selectedDay.to = this.to.value as Date;
     this.selectedDay.available = true;
     this.availabilityChanged.emit(this.selectedDay);
     this.dialog.close();

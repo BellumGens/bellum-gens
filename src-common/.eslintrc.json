@@ -29,8 +29,7 @@
       "files": [
         "*.html"
       ],
-      "rules": {
-      }
+      "rules": {}
     }
   ]
 }

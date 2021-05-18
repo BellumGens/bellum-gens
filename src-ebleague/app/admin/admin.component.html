@@ -149,11 +149,11 @@
       </igx-suffix>
     </igx-input-group>
 
-    <igx-date-picker [name]="'leagueStartDate' + i" [required]="true" [(ngModel)]="league.startDate">
+    <igx-date-picker [name]="'leagueStartDate' + i" [required]="true" [(ngModel)]="league.startDate" mode="dialog">
       <label igxLabel i18n>Start date</label>
     </igx-date-picker>
 
-    <igx-date-picker [name]="'leagueEndDate' + i" [required]="true" [(ngModel)]="league.endDate">
+    <igx-date-picker [name]="'leagueEndDate' + i" [required]="true" [(ngModel)]="league.endDate" mode="dialog">
       <label igxLabel i18n>End date</label>
     </igx-date-picker>
 
@@ -187,11 +187,11 @@
       </igx-suffix>
     </igx-input-group>
 
-    <igx-date-picker name="startDate" [required]="true" [(ngModel)]="tournament.startDate">
+    <igx-date-picker name="startDate" [required]="true" [(ngModel)]="tournament.startDate" mode="dialog">
       <label igxLabel i18n>Start date</label>
     </igx-date-picker>
 
-    <igx-date-picker name="endDate" [required]="true" [(ngModel)]="tournament.endDate">
+    <igx-date-picker name="endDate" [required]="true" [(ngModel)]="tournament.endDate" mode="dialog">
       <label igxLabel i18n>End date</label>
     </igx-date-picker>
 

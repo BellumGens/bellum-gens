@@ -23,7 +23,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "aot": true,
             "outputPath": "dist/bellumgens/browser",
             "index": "src-bellumgens/index.html",
             "main": "src-bellumgens/main.ts",
@@ -41,7 +40,13 @@
             ],
             "scripts": [
               "./node_modules/hammerjs/hammer.min.js"
-            ]
+            ],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -128,7 +133,9 @@
           "options": {
             "outputPath": "dist/bellumgens/server",
             "main": "server-bellumgens.ts",
-            "tsConfig": "src-bellumgens/tsconfig.server.json"
+            "tsConfig": "src-bellumgens/tsconfig.server.json",
+            "sourceMap": true,
+            "optimization": false
           },
           "configurations": {
             "production": {
@@ -213,7 +220,6 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "aot": true,
             "outputPath": "dist/ebleague/browser",
             "index": "src-ebleague/index.html",
             "main": "src-ebleague/main.ts",
@@ -231,7 +237,13 @@
             ],
             "scripts": [
               "./node_modules/hammerjs/hammer.min.js"
-            ]
+            ],
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "buildOptimizer": false,
+            "sourceMap": true,
+            "optimization": false,
+            "namedChunks": true
           },
           "configurations": {
             "production": {
@@ -318,7 +330,9 @@
           "options": {
             "outputPath": "dist/ebleague/server",
             "main": "server-ebleague.ts",
-            "tsConfig": "src-ebleague/tsconfig.server.json"
+            "tsConfig": "src-ebleague/tsconfig.server.json",
+            "sourceMap": true,
+            "optimization": false
           },
           "configurations": {
             "production": {

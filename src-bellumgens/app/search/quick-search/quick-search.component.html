@@ -107,7 +107,7 @@
       <span igxListLine i18n>No matching strategies...</span>
     </igx-list-item>
     <igx-list-item *ngFor="let strat of searchResult.strategies | reduceQuickSearchResult" class="navigatable" [routerLink]="['/team', strat.customUrl]">
-      <igx-avatar igxListThumbnail [src]="strat.image" [initials]="strat.title">
+      <igx-avatar igxListThumbnail [src]="strat.image" [initials]="strat.title" [roundShape]="true">
       </igx-avatar>
       <h2 igxListLineTitle>{{ strat.title }}</h2>
     </igx-list-item>

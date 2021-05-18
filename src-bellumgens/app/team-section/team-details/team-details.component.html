@@ -19,10 +19,10 @@
                           [src]="role.user.avatarFull"
                           [initials]="role.user.username"
                           [roundShape]="true"
-                          [size]="'large'">
+                          size="large">
               </igx-avatar>
               <igx-avatar *ngIf="isAdmin"
-                          icon='clear'
+                          icon="clear"
                           [roundShape]="true"
                           class="country-badge-large navigatable"
                           title="Remove from role"
@@ -65,7 +65,7 @@
               <igx-avatar [src]="user.avatarMedium"
                           [initials]="user.username"
                           [roundShape]="true"
-                          [size]="'medium'"
+                          size="medium"
                           [igxDrag]="user"
                           (dragStart)="roleDragging($event)"
                           (dragEnd)="roleDraggingEnd()">
@@ -96,7 +96,7 @@
               <igx-avatar [src]="user.avatarMedium"
                           [initials]="user.username"
                           [roundShape]="true"
-                          [size]="'medium'"
+                          size="medium"
                           [igxDrag]="user"
                           (dragStart)="roleDragging($event)"
                           (dragEnd)="roleDraggingEnd()">

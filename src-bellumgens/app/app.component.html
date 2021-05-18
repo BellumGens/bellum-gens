@@ -6,12 +6,12 @@
         <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="team/myteams">
           <igx-icon>people</igx-icon>
           <span i18n>My Teams</span>
-          <igx-badge class="notifications-badge" *ngIf="teams?.length > 0" [value]="teams?.length.toString()" type="info"></igx-badge>
+          <igx-badge class="notifications-badge" *ngIf="teams?.length > 0" [value]="teams.length" type="info"></igx-badge>
         </span>
         <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="notifications">
           <igx-icon>notifications</igx-icon>
           <span i18n>Notifications</span>
-          <igx-badge class="notifications-badge" *ngIf="unreadNotifications > 0" [value]="unreadNotifications.toString()" type="info"></igx-badge>
+          <igx-badge class="notifications-badge" *ngIf="unreadNotifications > 0" [value]="unreadNotifications" type="info"></igx-badge>
         </span>
         <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="strategies/user">
           <igx-icon>person</igx-icon>
@@ -38,11 +38,11 @@
         <span igxDrawerItem [isHeader]="true">&nbsp;</span>
         <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="team/myteams" i18n-title title="My Teams">
           <igx-icon>people</igx-icon>
-          <igx-badge class="notifications-badge" *ngIf="teams?.length > 0" [value]="teams?.length.toString()" type="info"></igx-badge>
+          <igx-badge class="notifications-badge" *ngIf="teams?.length > 0" [value]="teams.length" type="info"></igx-badge>
         </span>
         <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="notifications" i18n-title title="Notifications">
           <igx-icon>notifications</igx-icon>
-          <igx-badge class="notifications-badge" *ngIf="unreadNotifications > 0" [value]="unreadNotifications.toString()" type="info"></igx-badge>
+          <igx-badge class="notifications-badge" *ngIf="unreadNotifications > 0" [value]="unreadNotifications" type="info"></igx-badge>
         </span>
         <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="strategies/user" i18n-title title="My Strategies">
           <igx-icon>person</igx-icon>

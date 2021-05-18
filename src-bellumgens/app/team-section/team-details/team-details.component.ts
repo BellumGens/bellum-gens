@@ -13,7 +13,7 @@ import { Title, Meta } from '@angular/platform-browser';
 @Component({
   selector: 'app-team-details',
   templateUrl: './team-details.component.html',
-  styleUrls: ['./team-details.component.css']
+  styleUrls: ['./team-details.component.scss']
 })
 export class TeamDetailsComponent extends BaseComponent {
   @ViewChildren(IgxAvatarComponent, { read: ElementRef }) public emptyRoles: QueryList<ElementRef>;
@@ -102,7 +102,7 @@ export class TeamDetailsComponent extends BaseComponent {
     const user = args.drag.data;
     user.Role = role.role;
     role.user = user;
-    if (this.activeMembers.find(m => m.userId === args.drag.data.UserId)) {
+    if (this.activeMembers.find(m => m.userId === args.drag.data.userId)) {
       this.activeMembers.splice(this.activeMembers.indexOf(args.drag.data), 1);
     } else {
       this.inactiveMembers.splice(this.activeMembers.indexOf(args.drag.data), 1);

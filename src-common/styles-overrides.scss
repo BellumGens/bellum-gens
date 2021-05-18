@@ -4,7 +4,7 @@ igx-icon {
 }
 
 igx-card-actions igx-badge,
-igx-tab-item igx-icon {
+igx-tab-header igx-icon {
   margin-right: 8px;
 }
 
@@ -12,6 +12,12 @@ igx-grid-cell > igx-avatar {
   margin-right: 8px;
 }
 /* END ICONS */
+
+/* NAVBAR */
+.igx-navbar {
+  padding: 0 1rem;
+}
+/* END NAVBAR */
 
 /* NAVDRAWER */
 .igx-nav-drawer__aside--pinned {

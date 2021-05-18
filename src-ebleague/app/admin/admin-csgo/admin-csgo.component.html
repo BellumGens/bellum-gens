@@ -10,7 +10,7 @@
             [data]="matches"
             height="550px"
             [primaryKey]="'id'"
-            (onRowDeleted)="deleteMatch($event)"
+            (rowDeleted)="deleteMatch($event)"
             #matchGrid
             i18n-emptyGridMessage
             emptyGridMessage="No matches found..."
@@ -33,7 +33,7 @@
       </ng-template>
     </igx-column>
 
-    <igx-column field="teams" header="Среща" [filterable]="false">
+    <igx-column field="teams" i18n-header header="Match" [filterable]="false">
       <div *igxCell="let cell = cell">
         <igx-avatar igxListThumbnail
                     [src]="cell.rowData.team1.teamAvatar"
@@ -208,11 +208,11 @@
             i18n-rightButtonLabel
             rightButtonLabel="Submit"
             (onRightButtonSelect)="submitMatch(matchGrid); newMatchDialog.close()">
-  <igx-date-picker [(ngModel)]="matchInEdit.startTime">
+  <igx-date-picker [(ngModel)]="matchInEdit.startTime" mode="dialog">
     <label igxLabel i18n>Start date</label>
   </igx-date-picker>
 
-  <igx-time-picker [itemsDelta]="{hours: 1, minutes: 15, seconds: 1}" [(ngModel)]="matchInEdit.startTime">
+  <igx-time-picker [itemsDelta]="{hours: 1, minutes: 15, seconds: 1}" [(ngModel)]="matchInEdit.startTime" mode="dialog">
     <label igxLabel i18n>Start time</label>
   </igx-time-picker>
 
