@@ -142,6 +142,8 @@ $snackbar-theme: igx-snackbar-theme($background: $banner-background, $border-rad
 
 /* Button */
 .strategy-actions {
+  display: flex;
+  align-items: center;
   $button-theme: igx-button-theme($resting-shadow: none,
                                   $hover-shadow: none,
                                   $focus-shadow: none,
