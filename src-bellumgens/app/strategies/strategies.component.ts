@@ -50,8 +50,11 @@ export class StrategiesComponent {
         this.apiService.getTeam(teamId).subscribe(team => {
           if (team) {
             this.team = team;
-            this.apiStrategyService.loadingStrategies.subscribe(loading => this.loading = loading);
-            this.apiStrategyService.getTeamStrats(team.teamId).subscribe(strats => this.strats = strats);
+            this.loading = true;
+            this.apiStrategyService.getTeamStrats(team.teamId).subscribe(strats => {
+              this.loading = false;
+              this.strats = strats;
+            });
             this.apiStrategyService.getTeamMapPool(team.teamId).subscribe(maps => this.maps = maps);
             this.authManager.getUserIsTeamEditor(team.teamId).subscribe(data => this.isEditor = data);
           }

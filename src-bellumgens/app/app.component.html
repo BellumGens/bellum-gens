@@ -17,7 +17,7 @@
           <igx-icon>person</igx-icon>
           <span i18n>My Strategies</span>
         </span>
-        <igx-divider></igx-divider>
+        <igx-divider *ngIf="authUser"></igx-divider>
         <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="strategies/public">
           <igx-icon>playlist_add_check</igx-icon>
           <span i18n>CS:GO Strategies</span>
@@ -47,7 +47,7 @@
         <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="strategies/user" i18n-title title="My Strategies">
           <igx-icon>person</igx-icon>
         </span>
-        <igx-divider></igx-divider>
+        <igx-divider *ngIf="authUser"></igx-divider>
         <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="strategies/public" i18n-title title="CS:GO Strategies">
           <igx-icon>playlist_add_check</igx-icon>
         </span>
