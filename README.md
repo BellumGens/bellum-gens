@@ -1,7 +1,6 @@
 # Bellum Gens: Looking for Group & Esports Business League (EB-League)
 ![Node.js CI](https://github.com/BellumGens/bellum-gens/workflows/Node.js%20CI/badge.svg)
 [![Build Status](https://dev.azure.com/BellumGens/Bellum%20Gens/_apis/build/status/BellumGens.bellum-gens?branchName=master)](https://dev.azure.com/BellumGens/Bellum%20Gens/_build/latest?definitionId=2&branchName=master)
-[![Build Status](https://travis-ci.org/BellumGens/bellum-gens.svg?branch=master)](https://travis-ci.org/BellumGens/bellum-gens)
 
 This project was generated with [Ignite UI CLI](https://github.com/IgniteUI/igniteui-cli) version 2.1.1.
 
