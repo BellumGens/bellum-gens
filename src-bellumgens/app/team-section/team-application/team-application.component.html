@@ -6,8 +6,8 @@
             leftButtonLabel="Cancel"
             i18n-rightButtonLabel
             rightButtonLabel="Submit Application"
-            (onLeftButtonSelect)="applicationDialog.close()"
-            (onRightButtonSelect)="submitApplication()">
+            (leftButtonSelect)="applicationDialog.close()"
+            (rightButtonSelect)="submitApplication()">
   <div class="application-dialog">
     <igx-input-group type="search" class="search">
       <label for="motivation" igxLabel i18n>Tell us about your motivation to join our team...</label>

@@ -1,4 +1,4 @@
-<igx-dialog #newStrat [closeOnOutsideSelect]="true" (onClose)="resetStrategy()">
+<igx-dialog #newStrat [closeOnOutsideSelect]="true" (closing)="resetStrategy()">
   <form #strategyForm="ngForm" (ngSubmit)="submitStrategy()">
     <span>{{ title }}</span>
     <igx-input-group>

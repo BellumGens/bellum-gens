@@ -62,7 +62,7 @@
         <h5 igxListLineSubTitle>{{ comment.published | date }}</h5>
         <igx-icon igxListActions class="navigatable" [igxToggleAction]="useractions" [overlaySettings]="overlaySettings">more_vert</igx-icon>
 
-        <igx-drop-down #useractions (onSelection)="$event.cancel = true; useractions.close()">
+        <igx-drop-down #useractions (selectionChanging)="$event.cancel = true; useractions.close()">
           <igx-drop-down-item (click)="editComment(comment)">
             <igx-icon title="edit strategy">edit</igx-icon>
             <span class="title margin-left" i18n>Edit</span>

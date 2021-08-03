@@ -200,10 +200,10 @@
             title="New match"
             i18n-leftButtonLabel
             leftButtonLabel="Cancel"
-            (onLeftButtonSelect)="newMatchDialog.close()"
+            (leftButtonSelect)="newMatchDialog.close()"
             i18n-rightButtonLabel
             rightButtonLabel="Submit"
-            (onRightButtonSelect)="submitMatch(matchGrid); newMatchDialog.close()">
+            (rightButtonSelect)="submitMatch(matchGrid); newMatchDialog.close()">
   <igx-date-picker [(ngModel)]="matchInEdit.startTime" mode="dialog">
     <label igxLabel i18n>Start date</label>
   </igx-date-picker>
@@ -276,9 +276,9 @@
             i18n-title
             title="Results"
             i18n-leftButtonLabel leftButtonLabel="Cancel"
-            (onLeftButtonSelect)="newMatchMapDialog.close()"
+            (leftButtonSelect)="newMatchMapDialog.close()"
             i18n-rightButtonLabel rightButtonLabel="Submit"
-            (onRightButtonSelect)="submitMatch(matchGrid); newMatchMapDialog.close()">
+            (rightButtonSelect)="submitMatch(matchGrid); newMatchMapDialog.close()">
 
   <div class="horizontal-center">
     <igx-input-group>

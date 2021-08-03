@@ -78,7 +78,7 @@
       </button>
     </igx-card-actions>
 
-    <igx-drop-down #useractions (onSelection)="$event.cancel = true; useractions.close()">
+    <igx-drop-down #useractions (selectionChanging)="$event.cancel = true; useractions.close()">
       <igx-drop-down-item (click)="shareOnTwitter(strat)">
         <div class="horizontal-center">
           <igx-icon family="login-icons" name="twitter" title="Share Strategy"></igx-icon>
