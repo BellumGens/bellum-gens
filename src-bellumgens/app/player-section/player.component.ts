@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
 
@@ -21,8 +21,7 @@ import { SortWeaponsPipe } from '../pipes/sort-weapons.pipe';
 
 @Component({
   templateUrl: './player.component.html',
-  styleUrls: ['./player.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+  styleUrls: ['./player.component.scss']
 })
 export class PlayerComponent extends BaseComponent {
   public authUser: ApplicationUser;
