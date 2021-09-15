@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { SuccessErrorComponent } from './success-error.component';
 import { IgxSnackbarModule, IgxIconModule } from '@infragistics/igniteui-angular';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('SuccessErrorComponent', () => {
   let component: SuccessErrorComponent;
@@ -12,6 +13,7 @@ describe('SuccessErrorComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule,
+        NoopAnimationsModule,
         IgxIconModule,
         IgxSnackbarModule
       ],

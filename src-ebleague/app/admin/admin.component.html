@@ -2,8 +2,7 @@
   <div class="content-container-row">
     <igx-grid #grid1
               [data]="registrations"
-              [paging]="true"
-              primaryKey="id"
+              primaryKey="id" [batchEditing]="true"
               [showGroupArea]="true"
               [allowFiltering]="true"
               [groupingExpressions]="grouping"
@@ -54,14 +53,15 @@
         </button>
       </igx-action-strip>
 
+      <igx-paginator></igx-paginator>
+
     </igx-grid>
   </div>
 
   <div class="content-container-row">
     <igx-grid #grid1
               [data]="orders"
-              primaryKey="id"
-              [paging]="true"
+              primaryKey="id" [batchEditing]="true"
               [allowFiltering]="true"
               (cellEdit)="editDone($event)"
               cellSelection="none">
@@ -116,6 +116,9 @@
             <igx-icon>delete</igx-icon>
         </button>
       </igx-action-strip>
+
+      <igx-paginator></igx-paginator>
+
     </igx-grid>
   </div>
 </div>

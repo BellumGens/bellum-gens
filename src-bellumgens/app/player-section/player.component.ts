@@ -22,7 +22,7 @@ import { SortWeaponsPipe } from '../pipes/sort-weapons.pipe';
 @Component({
   templateUrl: './player.component.html',
   styleUrls: ['./player.component.scss'],
-  encapsulation: ViewEncapsulation.None,
+  encapsulation: ViewEncapsulation.None
 })
 export class PlayerComponent extends BaseComponent {
   public authUser: ApplicationUser;

@@ -15,8 +15,8 @@
             leftButtonLabel="Cancel"
             i18n-rightButtonLabel
             rightButtonLabel="Submit"
-            (onLeftButtonSelect)="availabilityCancel()"
-            (onRightButtonSelect)="availabilityChange()">
+            (leftButtonSelect)="availabilityCancel()"
+            (rightButtonSelect)="availabilityChange()">
   <h5 igxDialogTitle i18n>Available times for &nbsp;<span class="highlight">{{selectedDay ? (selectedDay.day | weekday) : ''}}</span></h5>
   <div *ngIf="selectedDay">
     <div class="horizontal-center">

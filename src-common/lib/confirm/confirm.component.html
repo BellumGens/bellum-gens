@@ -2,8 +2,8 @@
             [title]="title"
             leftButtonLabel="Cancel"
             rightButtonLabel="OK"
-            (onLeftButtonSelect)="cancelClicked($event)"
-            (onRightButtonSelect)="okClicked()"
-            (onClose)="onClose()">
+            (leftButtonSelect)="cancelClicked($event)"
+            (rightButtonSelect)="okClicked()"
+            (closing)="onClose()">
   <ng-content></ng-content>
 </igx-dialog>

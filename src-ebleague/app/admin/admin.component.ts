@@ -9,14 +9,11 @@ import {
   IGroupingExpression,
   SortingDirection,
   DefaultSortingStrategy,
-  RowType,
-  IgxGridTransaction,
-  IgxTransactionService
+  RowType
 } from '@infragistics/igniteui-angular';
 import { noop } from 'rxjs';
 
 @Component({
-  providers: [{ provide: IgxGridTransaction, useClass: IgxTransactionService }],
   selector: 'app-admin',
   templateUrl: './admin.component.html',
   styleUrls: ['./admin.component.scss']
