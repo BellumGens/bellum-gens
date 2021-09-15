@@ -20,6 +20,7 @@ import { Observable } from 'rxjs';
 import { SortWeaponsPipe } from '../pipes/sort-weapons.pipe';
 
 @Component({
+  selector: 'app-player',
   templateUrl: './player.component.html',
   styleUrls: ['./player.component.scss'],
   encapsulation: ViewEncapsulation.None

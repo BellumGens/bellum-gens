@@ -4,6 +4,10 @@
 }
 
 /* User Profile */
+app-player .card-wrapper {
+  min-height: calc(100% - 69px);
+}
+
 .card-wrapper.profile-view-layout {
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }

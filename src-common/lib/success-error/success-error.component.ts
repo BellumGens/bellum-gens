@@ -5,41 +5,44 @@ import { CommunicationService } from '../../services/communication.service';
 @Component({
   selector: 'bg-success-error',
   templateUrl: './success-error.component.html',
-  styleUrls: ['./success-error.component.css']
+  styleUrls: ['./success-error.component.scss']
 })
 export class SuccessErrorComponent implements OnDestroy {
-  @ViewChild('error', { static: true }) public error: IgxSnackbarComponent;
-  @ViewChild('success', { static: true }) public success: IgxSnackbarComponent;
   @ViewChild('message', { static: true }) public message: IgxSnackbarComponent;
 
   public successMsg = 'Success...';
   public errorMsg = 'Error has occurred...';
   public notificationMsg = '';
+  public icon = 'done';
+  public class = 'color-success';
+
+  private settings = {
+    success: {
+      icon: 'done',
+      class: 'color-success'
+    },
+    error: {
+      icon: 'error',
+      class: 'color-error'
+    },
+    warn: {
+      icon: 'priority_high',
+      class: 'color-warn'
+    }
+  };
 
   constructor(private commService: CommunicationService) {
-    this.commService.error.subscribe(message => this.showError(message));
-    this.commService.success.subscribe(message => this.showSuccess(message));
-    this.commService.message.subscribe(message => this.showMessage(message));
+    this.commService.error.subscribe(message => this.showMessage('error', message));
+    this.commService.success.subscribe(message => this.showMessage('success', message));
+    this.commService.message.subscribe(message => this.showMessage('warn', message));
   }
 
-  public showSuccess(msg?: string) {
-    if (msg) {
-      this.successMsg = msg;
-    }
-    this.success.open();
-  }
-
-  public showError(msg?: string) {
-    if (msg) {
-      this.errorMsg = msg;
-    }
-    this.error.open();
-  }
-
-  public showMessage(msg?: string) {
+  public showMessage(type: string, msg?: string) {
     if (msg) {
       this.notificationMsg = msg;
     }
+    this.icon = this.settings[type].icon;
+    this.class = this.settings[type].class;
     this.message.open();
   }
 
