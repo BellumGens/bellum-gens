@@ -522,36 +522,12 @@
           <context context-type="linenumber">11</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="c53a99c499c11a259930183315cfd7e8c16d9249" datatype="html">
-        <source>This player is not registered! If you own the profile then <x id="START_LINK" ctype="x-a" equiv-text="&lt;a (click)=&quot;openLogin()&quot; class=&quot;navigatable&quot;&gt;"/>register<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> to complete it.</source>
-        <target>Този профил не е регистриран! ако това е твоят профил, тогава <x id="START_LINK" ctype="x-a" equiv-text="&lt;a (click)=&quot;openLogin()&quot; class=&quot;navigatable&quot;&gt;"/>регистрирай се<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>.</target>
+      <trans-unit id="ea104e101e1c816f476bd74a390f4cc67e66653a" datatype="html">
+        <source>This player is not registered! If you own the profile then <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span (click)=&quot;openLogin()&quot; class=&quot;highlight navigatable&quot;&gt;"/>register<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> to complete it.</source>
+        <target>Този профил не е регистриран! ако това е твоят профил, тогава <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span (click)=&quot;openLogin()&quot; class=&quot;highlight navigatable&quot;&gt;"/>регистрирай се<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/player-section/player.component.html</context>
           <context context-type="linenumber">14</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="f45ea51d6bd402a5e7c73fd5fec56f8b328a724f" datatype="html">
-        <source>Steam account is private.</source>
-        <target>Акаутът в стийм е скрит.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src-bellumgens/app/player-section/player.component.html</context>
-          <context context-type="linenumber">17</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="86453af0abbe2dc2f2f443c97674e0a5098bbb3c" datatype="html">
-        <source>If this is your account, you need to change the privacy level of your account, so we can access game stats from Steam.</source>
-        <target>Ако това е твоят акаунт, трябва да смениш нивото на поверителност, за да достъпим статистиките ти от Стийм.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src-bellumgens/app/player-section/player.component.html</context>
-          <context context-type="linenumber">18</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="a0817eaeeffe6d752fe5aef881b953c046f9cfad" datatype="html">
-        <source>To do this go to <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Steam Profile --&gt; Edit Profile --&gt; Privacy Settings --&gt; Set: &apos;My profile: Public&apos; and &apos;Game details: public&apos;<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
-        <target>За да го направиш отиди на <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Steam Profile --&gt; Edit Profile --&gt; Privacy Settings --&gt; Set: &apos;My profile: Public&apos; and &apos;Game details: public&apos;<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">src-bellumgens/app/player-section/player.component.html</context>
-          <context context-type="linenumber">19</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8cc75f47f7f742ff1fe004339aebb0b4b80f4b52" datatype="html">
@@ -559,7 +535,15 @@
         <target>Покани в отбор</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/player-section/player.component.html</context>
-          <context context-type="linenumber">35</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3d243a75c1a16642d9d887827bdaa8e97a8e6e5c" datatype="html">
+        <source>Invite</source>
+        <target>Покани</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-bellumgens/app/player-section/player.component.html</context>
+          <context context-type="linenumber">31</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ecfe1b137661b8662c5563a68ccffd22d32b202a" datatype="html">
@@ -567,7 +551,7 @@
         <target>Първична роля</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/player-section/player.component.html</context>
-          <context context-type="linenumber">69</context>
+          <context context-type="linenumber">62</context>
         </context-group>
       </trans-unit>
       <trans-unit id="0c96ba72031b8bede244011f363786a069f0900a" datatype="html">
@@ -575,7 +559,31 @@
         <target>Вторична роля</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/player-section/player.component.html</context>
+          <context context-type="linenumber">71</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f45ea51d6bd402a5e7c73fd5fec56f8b328a724f" datatype="html">
+        <source>Steam account is private.</source>
+        <target>Акаутът в стийм е скрит.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-bellumgens/app/player-section/player.component.html</context>
+          <context context-type="linenumber">77</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="86453af0abbe2dc2f2f443c97674e0a5098bbb3c" datatype="html">
+        <source>If this is your account, you need to change the privacy level of your account, so we can access game stats from Steam.</source>
+        <target>Ако това е твоят акаунт, трябва да смениш нивото на поверителност, за да достъпим статистиките ти от Стийм.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-bellumgens/app/player-section/player.component.html</context>
           <context context-type="linenumber">78</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a0817eaeeffe6d752fe5aef881b953c046f9cfad" datatype="html">
+        <source>To do this go to <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Steam Profile --&gt; Edit Profile --&gt; Privacy Settings --&gt; Set: &apos;My profile: Public&apos; and &apos;Game details: public&apos;<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <target>За да го направиш отиди на <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Steam Profile --&gt; Edit Profile --&gt; Privacy Settings --&gt; Set: &apos;My profile: Public&apos; and &apos;Game details: public&apos;<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-bellumgens/app/player-section/player.component.html</context>
+          <context context-type="linenumber">79</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8b39b7f49b0c05bc970115b321488193415340b5" datatype="html">
@@ -583,7 +591,7 @@
         <target>Точност</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/player-section/player.component.html</context>
-          <context context-type="linenumber">109</context>
+          <context context-type="linenumber">108</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8065f2db0008caa80552e0cad883e74cf10bfb8a" datatype="html">
@@ -591,7 +599,7 @@
         <target>Топ оръжие</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/player-section/player.component.html</context>
-          <context context-type="linenumber">118</context>
+          <context context-type="linenumber">117</context>
         </context-group>
       </trans-unit>
       <trans-unit id="b6e9ef688e9a9d6127b678bad35205f7dbf3d055" datatype="html">
@@ -599,7 +607,7 @@
         <target>Време за игра</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/player-section/player.component.html</context>
-          <context context-type="linenumber">130</context>
+          <context context-type="linenumber">129</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/search/player-search/player-search.component.html</context>
@@ -611,7 +619,7 @@
         <target>Оръжия</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/player-section/player.component.html</context>
-          <context context-type="linenumber">139</context>
+          <context context-type="linenumber">138</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a82c09e2a4817b07f0c53440daeee5f5024be816" datatype="html">
@@ -619,7 +627,7 @@
         <target><x id="INTERPOLATION" equiv-text="{{ weapon.kills }}"/> убийства</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/player-section/player.component.html</context>
-          <context context-type="linenumber">149</context>
+          <context context-type="linenumber">148</context>
         </context-group>
       </trans-unit>
       <trans-unit id="f09fbe0b5bd58b1fc5bd80507f82b77bbb067c30" datatype="html">
@@ -627,7 +635,7 @@
         <target><x id="INTERPOLATION" equiv-text="{{ viewAll ? &apos;Показване на всички&apos; : &apos;Показване на Active Duty&apos; }}"/> карти</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-bellumgens/app/player-section/player.component.html</context>
-          <context context-type="linenumber">158</context>
+          <context context-type="linenumber">157</context>
         </context-group>
       </trans-unit>
       <trans-unit id="18ffb8dd6858fe5f6be80453e60a84a45bbdb751" datatype="html">

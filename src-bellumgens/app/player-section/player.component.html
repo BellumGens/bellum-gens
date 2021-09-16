@@ -10,8 +10,8 @@
     <h4 i18n>Welcome <span class="highlight">{{ player.steamUser.steamID }}</span>!</h4>
     <p i18n>Now it's time to complete your profile! Fill in your <span class="highlight">preferred playstyle</span>, your <span class="highlight">availability</span> and your <span class="highlight">preferred map pool</span>.</p>
   </div>
-  <div class="content-container-row" *ngIf="player && !player.steamUserException && !player?.registered" i18n>
-    <div>This player is not registered! If you own the profile then <span (click)="openLogin()" class="highlight navigatable">register</span> to complete it.</div>
+  <div class="content-container-row" *ngIf="player && !player.steamUserException && !player?.registered">
+    <div i18n>This player is not registered! If you own the profile then <span (click)="openLogin()" class="highlight navigatable">register</span> to complete it.</div>
   </div>
 
   <div>
