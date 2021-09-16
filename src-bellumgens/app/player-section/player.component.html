@@ -5,22 +5,15 @@
   <h4 class="highlight" i18n>Steam CS:GO player profile not found...</h4>
 </div>
 
-<div class="search-result-summary">
-  <div *ngIf="newUser">
+<div *ngIf="player && !player.steamUserException" class="card-wrapper profile-view-layout">
+  <div class="content-container-row" *ngIf="newUser">
     <h4 i18n>Welcome <span class="highlight">{{ player.steamUser.steamID }}</span>!</h4>
     <p i18n>Now it's time to complete your profile! Fill in your <span class="highlight">preferred playstyle</span>, your <span class="highlight">availability</span> and your <span class="highlight">preferred map pool</span>.</p>
   </div>
-
-  <div *ngIf="player && !player.steamUserException && !player?.registered" i18n>This player is not registered! If you own the profile then <a (click)="openLogin()" class="navigatable">register</a> to complete it.</div>
-
-  <div *ngIf="player?.userStatsException">
-    <h4 i18n>Steam account is private.</h4>
-    <p i18n>If this is your account, you need to change the privacy level of your account, so we can access game stats from Steam.</p>
-    <p i18n>To do this go to <span class="highlight">Steam Profile --> Edit Profile --> Privacy Settings --> Set: 'My profile: Public' and 'Game details: public'</span></p>
+  <div class="content-container-row" *ngIf="player && !player.steamUserException && !player?.registered" i18n>
+    <div>This player is not registered! If you own the profile then <span (click)="openLogin()" class="highlight navigatable">register</span> to complete it.</div>
   </div>
-</div>
 
-<div *ngIf="player && !player.steamUserException" class="card-wrapper profile-view-layout">
   <div>
     <div>
       <igx-avatar [src]="player.steamUser?.avatarFull" [initials]="player.steamUser?.steamID" class="player-avatar">
@@ -35,7 +28,7 @@
               title="Invite to team"
               class="strategy-actions"
               [igxToggleAction]="teamInvite">
-        <igx-icon>people</igx-icon>
+        <igx-icon>people</igx-icon><span i18n>Invite</span>
         <igx-icon>arrow_drop_down</igx-icon>
       </button>
       <igx-drop-down (selectionChanging)="inviteToTeam($event)" #teamInvite>
@@ -78,6 +71,12 @@
       <label for="secondary-role" igxLabel i18n>Secondary Role</label>
       <igx-select-item *ngFor="let role of roles" [disabled]="role.id === player.primaryRole" [value]="role.id">{{ role.name }}</igx-select-item>
     </igx-select>
+  </div>
+
+  <div class="player-exception" *ngIf="player?.userStatsException">
+    <h4 i18n>Steam account is private.</h4>
+    <p i18n>If this is your account, you need to change the privacy level of your account, so we can access game stats from Steam.</p>
+    <p i18n>To do this go to <span class="highlight">Steam Profile --> Edit Profile --> Privacy Settings --> Set: 'My profile: Public' and 'Game details: public'</span></p>
   </div>
 
   <igx-card *ngIf="!player.userStatsException" class="player-detail__stats">

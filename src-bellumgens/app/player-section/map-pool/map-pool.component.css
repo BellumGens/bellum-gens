@@ -1,8 +1,7 @@
 .map-wrapper {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  grid-column-gap: 16px;
-  grid-row-gap: 16px;
+  grid-gap: 16px;
 }
 
 .map-inactive {
