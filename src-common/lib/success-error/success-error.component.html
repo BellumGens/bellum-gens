@@ -1,18 +1,6 @@
 <igx-snackbar #message [displayTime]="5000">
   <div class="snackbar-msg">
-    <igx-icon class="color-warn">priority_high</igx-icon>
+    <igx-icon [class]="class">{{icon}}</igx-icon>
     <span class="msg-container">{{notificationMsg}}</span>
-  </div>
-</igx-snackbar>
-<igx-snackbar #error [displayTime]="5000">
-  <div class="snackbar-msg">
-    <igx-icon class="color-error">error</igx-icon>
-    <span class="msg-container">{{errorMsg}}</span>
-  </div>
-</igx-snackbar>
-<igx-snackbar #success [displayTime]="5000">
-  <div class="snackbar-msg">
-    <igx-icon class="color-success">done</igx-icon>
-    <span class="msg-container">{{successMsg}}</span>
   </div>
 </igx-snackbar>

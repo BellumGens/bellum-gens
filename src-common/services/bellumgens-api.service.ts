@@ -248,6 +248,7 @@ export class BellumgensApiService {
 
   public getPlayer(userId: string) {
     if (!this.playerMatch(userId)) {
+      this._currentPlayer.next(null);
       this.loadingPlayer.next(true);
       this.getPlayerFromServer(userId).subscribe(
         player => {

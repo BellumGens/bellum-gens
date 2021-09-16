@@ -4,6 +4,10 @@
 }
 
 /* User Profile */
+app-player .card-wrapper {
+  padding-top: 24px;
+}
+
 .card-wrapper.profile-view-layout {
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
@@ -72,6 +76,12 @@
   flex-grow: 0;
 }
 /* END User Overview */
+
+@media only screen and (min-width: 600px) {
+  .player-exception {
+    grid-column: 2 / -1;
+  }
+}
 
 @media only screen and (min-width: 1660px) {
   .player-detail__stats.map-pool {
