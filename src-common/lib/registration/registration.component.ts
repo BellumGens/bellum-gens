@@ -9,6 +9,7 @@ import { map, debounceTime } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { IgxButtonModule, IgxIconModule, IgxInputGroupModule, IgxRippleModule } from '@infragistics/igniteui-angular';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'bg-registration',
@@ -69,6 +70,7 @@ export class RegistrationComponent implements OnInit {
   ],
   imports: [
     FormsModule,
+    CommonModule,
     IgxInputGroupModule,
     IgxIconModule,
     IgxButtonModule,

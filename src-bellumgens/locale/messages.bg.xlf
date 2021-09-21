@@ -1654,13 +1654,28 @@
           <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="f968f4a83edfcfda5f3d64ba069fda1a0c2ae30e" datatype="html">
-        <source>or login with form</source>
-        <target>или влез с име и парола</target>
-        <target><x id="INTERPOLATION" equiv-text="{{ value === emptyGuid ? &apos;Предстои&apos; : value === team?.teamId ? &apos;Победа&apos; : &apos;Загуба&apos; }}"/></target>
+      <trans-unit id="72638e600ce222ed8184c47260bbd68d362e693e" datatype="html">
+        <source>External</source>
+        <target>Външен</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/login/login-buttons/login-buttons.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="481e367da4aa8b317d91d69f05df5335838c72d6" datatype="html">
+        <source>Choose a login provider</source>
+        <target>Изберете начин на автентикация</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/login/login-dialog/login-dialog.component.html</context>
-          <context context-type="linenumber">5</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="010339e6584e1c44f5aa721080c96cf7bb471761" datatype="html">
+        <source>Form</source>
+        <target>Форма</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-common/lib/login/login-dialog/login-dialog.component.html</context>
+          <context context-type="linenumber">8</context>
         </context-group>
       </trans-unit>
       <trans-unit id="08c74dc9762957593b91f6eb5d65efdfc975bf48" datatype="html">
@@ -1668,7 +1683,7 @@
         <target>Потребителско име</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/login/login-dialog/login-dialog.component.html</context>
-          <context context-type="linenumber">7</context>
+          <context context-type="linenumber">11</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/registration/registration.component.html</context>
@@ -1680,7 +1695,7 @@
         <target>Парола</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/login/login-dialog/login-dialog.component.html</context>
-          <context context-type="linenumber">15</context>
+          <context context-type="linenumber">19</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/registration/registration.component.html</context>
@@ -1692,7 +1707,7 @@
         <target>Запомни ме</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/login/login-dialog/login-dialog.component.html</context>
-          <context context-type="linenumber">19</context>
+          <context context-type="linenumber">23</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3bb93d5b02f1f29b3940d4608c8289fff5a82220" datatype="html">
@@ -1700,7 +1715,7 @@
         <target>Нямате регистрация?</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src-common/lib/login/login-dialog/login-dialog.component.html</context>
-          <context context-type="linenumber">21</context>
+          <context context-type="linenumber">25</context>
         </context-group>
       </trans-unit>
       <trans-unit id="801c464dfaabb8eb2c16f2cc0bf81435030174dd" datatype="html">

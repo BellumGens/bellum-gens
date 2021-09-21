@@ -33,8 +33,8 @@ export class TournamentHomeComponent {
     this.authManager.applicationUser.subscribe(user => this.authUser = user);
   }
 
-  public openLogin(title?: string) {
-    this.authManager.emitOpenLogin(title);
+  public openLogin() {
+    this.authManager.emitOpenLogin();
   }
 
   public scrollTo(id: string) {

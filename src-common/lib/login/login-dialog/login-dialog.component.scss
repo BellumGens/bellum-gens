@@ -10,6 +10,23 @@ input:-webkit-autofill:active  {
   -webkit-text-fill-color: white;
   border-top-color: #192053;
   -webkit-box-shadow: 0 0 0px 1000px #192053 inset;
+  box-shadow: 0 0 0px 1000px #192053 inset;
   transition: background-color 5000s ease-in-out 0s;
   margin: 2px;
+}
+
+.login-dialog {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+@media only screen and (max-width: 720px) {
+  .login-dialog igx-divider {
+    display: none;
+  }
+
+  .login-dialog form {
+    margin-top: 12px;
+  }
 }

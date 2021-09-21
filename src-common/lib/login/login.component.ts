@@ -64,11 +64,7 @@ export class LoginComponent {
   constructor(private authManager: LoginService,
               private router: Router) {
     this.authManager.userCheckInProgress.subscribe(value => this.userCheck = value);
-    this.authManager.openLogin.subscribe(value => this.openLogin(value));
-  }
-
-  public openLogin(title?: string) {
-    this.dialog.openLogin(title);
+    this.authManager.openLogin.subscribe(_ => this.dialog.openLogin());
   }
 
   public logout() {

@@ -78,8 +78,8 @@ export class StrategiesComponent {
     this.authManager.applicationUser.subscribe(user => this.authUser = user);
   }
 
-  public openLogin(title?: string) {
-    this.authManager.emitOpenLogin(title);
+  public openLogin() {
+    this.authManager.emitOpenLogin();
   }
 
   public changeMaps(event: IChipSelectEventArgs, args: CSGOMapPool) {
@@ -113,7 +113,7 @@ export class StrategiesComponent {
 
   public voteStrat(strat: CSGOStrategy, direction: VoteDirection) {
     if (!this.authUser) {
-      this.openLogin('You need to login first');
+      this.openLogin();
     } else {
       this.apiStrategyService.submitStratVote(strat, direction, this.authUser.id).subscribe(() => this.pipeTrigger++);
     }
