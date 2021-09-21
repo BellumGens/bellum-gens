@@ -20,14 +20,10 @@ export class LoginDialogComponent {
   };
   public submitInProgress = false;
 
-  public title = 'Choose login provider';
   constructor(private authManager: LoginService, private router: Router) {
   }
 
-  public openLogin(title?: string) {
-    if (title) {
-      this.title = title;
-    }
+  public openLogin() {
     this.dialog.open();
   }
 

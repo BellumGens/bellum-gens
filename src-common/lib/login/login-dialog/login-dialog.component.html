@@ -1,11 +1,11 @@
-<igx-dialog [closeOnOutsideSelect]="true" [title]="title">
+<igx-dialog [closeOnOutsideSelect]="true" i18n-title title="Choose a login provider">
   <div class="login-dialog">
     <bg-login-buttons></bg-login-buttons>
 
     <igx-divider style="margin: 24px" [vertical]="true"></igx-divider>
 
     <form #userLogin="ngForm" (ngSubmit)="loginWithForm()">
-      <h6>Form</h6>
+      <h6 i18n>Form</h6>
 
       <igx-input-group class="login-button" type="border">
         <label for="username" igxLabel i18n>Username</label>

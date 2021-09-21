@@ -63,13 +63,13 @@ export class StrategyDetailsComponent extends BaseComponent {
     }
   }
 
-  public openLogin(title?: string) {
-    this.authManager.emitOpenLogin(title);
+  public openLogin() {
+    this.authManager.emitOpenLogin();
   }
 
   public voteStrat(strat: CSGOStrategy, direction: VoteDirection) {
     if (!this.authUser) {
-      this.openLogin('You need to login first');
+      this.openLogin();
     } else {
       this.apiService.submitStratVote(strat, direction, this.authUser.id).subscribe(() => this.pipeTrigger++);
     }

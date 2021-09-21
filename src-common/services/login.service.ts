@@ -34,8 +34,8 @@ export class LoginService {
               private commService: CommunicationService) {
   }
 
-  public emitOpenLogin(title?: string) {
-    this.openLogin.emit(title);
+  public emitOpenLogin() {
+    this.openLogin.emit();
   }
 
   public addPushSubscriber(sub: PushSubscription) {
