@@ -2578,6 +2578,54 @@
           <context context-type="linenumber">120</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="406bea2e7e79646f410658f3c279a11cc843768d" datatype="html">
+        <source>Active tournaments</source>
+        <target>Активни турнири</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7d71be1617d659156635b6c8b9624d8197cb2fc4" datatype="html">
+        <source>No active tournaments found...</source>
+        <target>Няма намерени активни турнири...</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="904c1842e34ada52c943f27ea9f267b9aa9ba9f6" datatype="html">
+        <source>Upcoming tournaments</source>
+        <target>Предстоящи турнири</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d240445698337e697b238f85532cea3d670ec5e2" datatype="html">
+        <source>No upcoming tournaments found...</source>
+        <target>Няма намерени предстоящи турнири...</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f9473be7da714a6d44b24afd3329211c80b0834d" datatype="html">
+        <source>Finished tournaments</source>
+        <target>Минали турнири</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="c6ebb0bcc9fdf9569509cb698975e943b8cc479c" datatype="html">
+        <source>No finished tournaments found...</source>
+        <target>Няма намерени минали турнири...</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src-ebleague/app/tournaments/tournament.component.html</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>
