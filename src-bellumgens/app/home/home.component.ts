@@ -25,7 +25,6 @@ export class HomeComponent extends BaseComponent {
 
   constructor(@Inject(PLATFORM_ID) private platformId: any,
               private authManager: LoginService,
-              private apiService: ApiTournamentsService,
               private socialMedia: SocialMediaService,
               titleService: Title,
               meta: Meta,
@@ -44,7 +43,7 @@ export class HomeComponent extends BaseComponent {
 
   public subscribe() {
     if (this.userEmail) {
-      this.apiService.addSubscriber(this.userEmail).subscribe();
+      this.authManager.addSubscriber(this.userEmail).subscribe();
     }
   }
 

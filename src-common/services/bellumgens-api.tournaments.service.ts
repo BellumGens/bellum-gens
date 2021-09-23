@@ -174,19 +174,6 @@ export class ApiTournamentsService {
     return this._sc2Groups.get(id);
   }
 
-  public addSubscriber(email: string) {
-    return this.http.post(`${this._apiEndpoint}/account/subscribe`, { email }).pipe(
-      map(response => {
-        this.commService.emitSuccess(response.toString());
-        return response;
-      }),
-      catchError(error => {
-        this.commService.emitError(error.error);
-        return throwError(error);
-      })
-    );
-  }
-
   public leagueRegistration(application: TournamentApplication) {
     return this.http.post<TournamentApplication>(`${this._apiEndpoint}/tournament/register`, application, { withCredentials: true }).pipe(
       catchError(error => {
