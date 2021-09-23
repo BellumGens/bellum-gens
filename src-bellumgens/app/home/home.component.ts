@@ -8,7 +8,6 @@ import { BaseComponent } from '../base/base.component';
 import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { IgxCarouselComponent } from '@infragistics/igniteui-angular';
-import { ApiTournamentsService } from '../../../src-common/services/bellumgens-api.tournaments.service';
 
 @Component({
   selector: 'app-home',
