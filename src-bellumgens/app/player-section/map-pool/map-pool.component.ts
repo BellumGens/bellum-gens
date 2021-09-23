@@ -5,7 +5,7 @@ import { CSGOMapPool } from '../../../../src-common/models/csgomaps';
 @Component({
   selector: 'app-map-pool',
   templateUrl: './map-pool.component.html',
-  styleUrls: ['./map-pool.component.css']
+  styleUrls: ['./map-pool.component.scss']
 })
 export class MapPoolComponent {
   @Input()
