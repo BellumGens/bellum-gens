@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { TournamentHomeComponent } from './home.component';
+import { HomeComponent } from './home.component';
 import { FormsModule } from '@angular/forms';
 import { IgxIconModule,
   IgxDividerModule,
@@ -25,8 +25,8 @@ import { TeamNewComponent } from 'src-bellumgens/app/team-section/team-new/team-
 import { GetRegCountPipe } from '../pipes/get-reg-count.pipe';
 
 describe('TournamentHomeComponent', () => {
-  let component: TournamentHomeComponent;
-  let fixture: ComponentFixture<TournamentHomeComponent>;
+  let component: HomeComponent;
+  let fixture: ComponentFixture<HomeComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -51,7 +51,7 @@ describe('TournamentHomeComponent', () => {
         BellumGensModule
       ],
       declarations: [
-        TournamentHomeComponent,
+        HomeComponent,
         TournamentRegistrationComponent,
         TeamNewComponent,
         GetRegCountPipe,
@@ -62,7 +62,7 @@ describe('TournamentHomeComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TournamentHomeComponent);
+    fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

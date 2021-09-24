@@ -9,7 +9,7 @@ import { TransferHttpCacheModule } from '@nguniversal/common';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from '../../src-common/environments/environment';
-import { TournamentHomeComponent } from './home/home.component';
+import { HomeComponent } from './home/home.component';
 import { RaffleComponent } from './raffle/raffle.component';
 import { TournamentRegistrationComponent } from './tournament-registration/tournament-registration.component';
 import { StartsWithPipe } from '../../src-bellumgens/app/pipes/starts-with.pipe';
@@ -46,7 +46,7 @@ import { socialMedia, logos, heartCare } from '@igniteui/material-icons-extended
 @NgModule({
   declarations: [
     AppComponent,
-    TournamentHomeComponent,
+    HomeComponent,
     GetRegCountPipe,
     RaffleComponent,
     TournamentRegistrationComponent,

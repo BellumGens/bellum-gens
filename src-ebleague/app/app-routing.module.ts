@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { TournamentHomeComponent } from './home/home.component';
+import { HomeComponent } from './home/home.component';
 import { RaffleComponent } from './raffle/raffle.component';
 import { RegistrationSuccessComponent } from './tournament-registration/registration-success/registration-success.component';
 import { RegistrationComponent } from '../../src-common/lib/registration/registration.component';
@@ -8,7 +8,7 @@ import { UnauthorizedComponent } from '../../src-common/lib/unauthorized/unautho
 import { NewsComponent } from './news/news.component';
 
 export const routes: Routes = [
-  { path: '', component: TournamentHomeComponent },
+  { path: '', component: HomeComponent },
   { path: 'giveaway', redirectTo: 'raffle', pathMatch: 'full' },
   { path: 'raffle', component: RaffleComponent },
   { path: 'register', component: RegistrationComponent },
@@ -29,7 +29,7 @@ export const routes: Routes = [
   { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
   { path: 'tournament', loadChildren: () => import('./tournaments/tournament.module').then(m => m.TournamentModule) },
   { path: 'shop', loadChildren: () => import('./shop/shop.module').then(m => m.ShopModule) },
-  { path: '**', component: TournamentHomeComponent }
+  { path: '**', component: HomeComponent }
 ];
 
 @NgModule({

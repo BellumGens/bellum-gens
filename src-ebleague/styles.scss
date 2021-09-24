@@ -36,11 +36,7 @@ $include: (igx-avatar,
            igx-date-picker,
            igx-calendar,
            igx-nav-drawer,
-           igx-banner,
-           igx-grid,
-           igx-grid-toolbar,
-           igx-paginator,
-           igx-action-strip);
+           igx-banner);
 
 @include igx-dark-theme(
     $palette: $app-palette,

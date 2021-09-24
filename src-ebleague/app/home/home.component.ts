@@ -10,7 +10,7 @@ import { SocialMediaService } from '../../../src-common/services/social-media.se
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class TournamentHomeComponent {
+export class HomeComponent {
   public userEmail: string = null;
   public gameEnum = Game;
   public registrations: RegistrationsCount [];
