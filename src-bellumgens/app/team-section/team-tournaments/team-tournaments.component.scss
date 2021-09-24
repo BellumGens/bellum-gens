@@ -1,3 +1,6 @@
+@import "~@infragistics/igniteui-angular/lib/core/styles/themes/index";
+@import "../../../style-vars.scss";
+
 :host {
   .group-columns {
     display: grid;
@@ -6,13 +9,14 @@
     padding: 48px 0;
   }
 
-  // @media only screen and (min-width: 1921px) {
-  //   .group-columns {
-  //     display: grid;
-  //     grid-template-columns: minmax(45%, 1fr) minmax(45%, 1fr);
-  //     grid-column-gap: 48px;
-  //     grid-row-gap: 16px;
-  //     padding: 48px 0;
-  //   }
-  // }
+  /* Grid */
+  $grid-theme: igx-grid-theme($content-background: $banner-background,
+  $header-background: $background);
+  @include igx-css-vars($grid-theme);
+  /* END Grid */
+
+  /* Grid Toolbar */
+  $grid-toolbar-theme: igx-grid-toolbar-theme($background-color: $background);
+  @include igx-css-vars($grid-toolbar-theme);
+  /* END Grid Toolbar */
 }

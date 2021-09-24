@@ -6,6 +6,7 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
 import { AdminCsgoComponent } from './admin-csgo/admin-csgo.component';
 import { AdminSc2Component } from './admin-sc2/admin-sc2.component';
+import { AdminMainComponent } from './admin-main/admin-main.component';
 import { NotInGroupPipe } from '../pipes/not-in-group.pipe';
 import { GetPlayersPipe } from '../pipes/get-players.pipe';
 import { SizeNamePipe } from '../pipes/size-name.pipe';
@@ -42,7 +43,8 @@ import {
     AdminSc2Component,
     NotInGroupPipe,
     GetPlayersPipe,
-    SizeNamePipe
+    SizeNamePipe,
+    AdminMainComponent
   ],
   imports: [
     CommonModule,

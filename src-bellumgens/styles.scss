@@ -58,21 +58,6 @@ $navbar-theme: igx-navbar-theme(igx-palette($background, $secondary),
 @include igx-css-vars($navbar-theme);
 /* END Navbar */
 
-/* Avatar */
-.empty-role {
-  $empty-role-avatar: igx-avatar-theme($color: #000, $size: 88px);
-  @include igx-css-vars($empty-role-avatar);
-}
-
-.empty-role-active {
-  --my-color: #3040AA;
-  $empty-role-active-avatar: igx-avatar-theme($color: var(--my-color),
-                                              $background: rgba(0, 0, 0, 0.15));
-  @include igx-css-vars($empty-role-active-avatar);
-  box-shadow: inset 0 0 0 2px var(--my-color);
-}
-/* END Avatar */
-
 /* Card */
 $card-theme: igx-card-theme($background: $background-gradient-lighter,
                             $header-text-color: rgba(255, 255, 255, 0.87),
@@ -175,17 +160,6 @@ $time-picker-theme: igx-time-picker-theme($background-color: $background);
 $overlay-theme: igx-overlay-theme($background-color: rgba(35, 51, 132, 0.7));
 @include igx-css-vars($overlay-theme);
 /* END Overlay */
-
-/* Grid */
-$grid-theme: igx-grid-theme($content-background: $banner-background,
-$header-background: $background);
-@include igx-css-vars($grid-theme);
-/* END Grid */
-
-/* Grid Toolbar */
-$grid-toolbar-theme: igx-grid-toolbar-theme($background-color: $background);
-@include igx-css-vars($grid-toolbar-theme);
-/* END Grid Toolbar */
 
 @import "../src-common/styles-overrides.scss";
 

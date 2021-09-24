@@ -1,0 +1,20 @@
+:host {
+  .players-list {
+    max-height: 500px;
+    overflow: auto;
+  }
+
+  .details-container {
+    width: 100%;
+  }
+
+  .column-center {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+  }
+
+  .content-container {
+    min-height: auto;
+  }
+}
