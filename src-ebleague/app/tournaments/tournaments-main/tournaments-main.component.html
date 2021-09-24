@@ -23,7 +23,7 @@
     <h2 i18n>Upcoming tournaments</h2>
     <h5 *ngIf="!upcoming || !upcoming.length" i18n>No upcoming tournaments found...</h5>
   </div>
-  <igx-card *ngFor="let tournament of upcoming else noTournaments">
+  <igx-card *ngFor="let tournament of upcoming">
     <igx-card-media>
       <img [src]="tournament.logo" [alt]="tournament.name" />
     </igx-card-media>
@@ -45,7 +45,7 @@
     <h2 i18n>Finished tournaments</h2>
     <h5 *ngIf="!past || !past.length" i18n>No finished tournaments found...</h5>
   </div>
-  <igx-card *ngFor="let tournament of past else noTournaments">
+  <igx-card *ngFor="let tournament of past">
     <igx-card-media>
       <img [src]="tournament.logo" [alt]="tournament.name" />
     </igx-card-media>
