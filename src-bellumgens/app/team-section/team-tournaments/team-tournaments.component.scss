@@ -1,4 +1,7 @@
-:host {
+@import "~@infragistics/igniteui-angular/lib/core/styles/themes/index";
+@import "../../../style-vars.scss";
+
+:host ::ng-deep {
   .group-columns {
     display: grid;
     grid-template-columns: 1fr;
@@ -6,13 +9,7 @@
     padding: 48px 0;
   }
 
-  // @media only screen and (min-width: 1921px) {
-  //   .group-columns {
-  //     display: grid;
-  //     grid-template-columns: minmax(45%, 1fr) minmax(45%, 1fr);
-  //     grid-column-gap: 48px;
-  //     grid-row-gap: 16px;
-  //     padding: 48px 0;
-  //   }
-  // }
+  @include igx-grid(igx-grid-theme($content-background: $banner-background, $header-background: $background));
+
+  @include igx-grid-toolbar(igx-grid-toolbar-theme($background-color: $background));
 }

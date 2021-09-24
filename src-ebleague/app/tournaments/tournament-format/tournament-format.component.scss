@@ -3,6 +3,33 @@
     background-image: url('/assets/wallpapers/carousel-season2.webp');
   }
 
+  .home-page-slide-columns {
+    display: grid;
+    height: auto;
+    grid-template-columns: minmax(45%, 1fr) minmax(45%, 1fr);
+    grid-column-gap: 48px;
+    grid-row-gap: 16px;
+    padding: 24px 72px;
+  }
+
+  .slide-info-column {
+    max-width: 1000px;
+    min-width: 348px;
+    padding: 52px;
+    margin: auto;
+  }
+
+  .slide-info-column h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    margin: 0;
+    line-height: 5rem;
+  }
+
+  .slide-info-column p {
+    font-size: 1rem;
+  }
+
   @media only screen and (max-width: 1024px) {
     .slide-info-column h1 {
       font-size: 2rem;
@@ -20,6 +47,12 @@
 
     .home-page-slide-columns {
       grid-template-columns: 1fr;
+    }
+  }
+
+  @media only screen and (max-width: 700px) {
+    .home-page-slide-columns {
+      padding: 16px 16px 12px 16px;
     }
   }
 }

@@ -1,56 +1,75 @@
-.user-in-role {
-  position: relative;
-}
+@import "~@infragistics/igniteui-angular/lib/core/styles/themes/index";
 
-.country-badge-large {
-  position: absolute;
-  top: -6px;
-  left: 56px;
-  width: 40px;
-  height: 40px;
-  min-width: 40px;
-  color: #000;
-}
+:host {
+  /* Avatar */
+  .empty-role {
+    $empty-role-avatar: igx-avatar-theme($color: #000, $size: 88px);
+    @include igx-css-vars($empty-role-avatar);
+  }
 
-.country-badge-medium {
-  position: absolute;
-  top: -6px;
-  left: 40px;
-  width: 32px;
-  height: 32px;
-  min-width: 32px;
-  color: #000;
-}
+  .empty-role-active {
+    --my-color: #3040AA;
+    $empty-role-active-avatar: igx-avatar-theme($color: var(--my-color),
+                                                $background: rgba(0, 0, 0, 0.15));
+    @include igx-css-vars($empty-role-active-avatar);
+    box-shadow: inset 0 0 0 2px var(--my-color);
+  }
+  /* END Avatar */
 
-.member-slot {
-  display: flex;
-  flex: 1 1 20%;
-	flex-flow: column;
-  align-items: center;
-  padding: 16px;
-}
+  .user-in-role {
+    position: relative;
+  }
 
-.active-inactive-users {
-  display: flex;
-  flex: 0 0 88px;
-	flex-flow: column;
-  align-items: center;
-  padding: 16px;
-}
+  .country-badge-large {
+    position: absolute;
+    top: -6px;
+    left: 56px;
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    color: #000;
+  }
 
-.horizontal.padding-top {
-  padding-top: 32px;
-}
+  .country-badge-medium {
+    position: absolute;
+    top: -6px;
+    left: 40px;
+    width: 32px;
+    height: 32px;
+    min-width: 32px;
+    color: #000;
+  }
 
-.right-details-container igx-card {
-  width: 100%;
-  min-width: 100%;
-}
+  .member-slot {
+    display: flex;
+    flex: 1 1 20%;
+    flex-flow: column;
+    align-items: center;
+    padding: 16px;
+  }
 
-.right-details-container igx-card:not(:first-child) {
-  margin: 16px 0px 0px 0px;
-}
+  .active-inactive-users {
+    display: flex;
+    flex: 0 0 88px;
+    flex-flow: column;
+    align-items: center;
+    padding: 16px;
+  }
 
-.overview-container-paddings {
-  padding: 16px 0px;
+  .horizontal.padding-top {
+    padding-top: 32px;
+  }
+
+  .right-details-container igx-card {
+    width: 100%;
+    min-width: 100%;
+  }
+
+  .right-details-container igx-card:not(:first-child) {
+    margin: 16px 0px 0px 0px;
+  }
+
+  .overview-container-paddings {
+    padding: 16px 0px;
+  }
 }

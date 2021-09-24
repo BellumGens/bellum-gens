@@ -1,20 +1,104 @@
-:host {
-  .players-list {
-    max-height: 500px;
-    overflow: auto;
-  }
+@import "~@infragistics/igniteui-angular/lib/core/styles/themes/index";
+@import "../../style-vars.scss";
 
-  .details-container {
-    width: 100%;
-  }
+:host ::ng-deep {
+  @include igx-grid(igx-grid-theme($content-background: $banner-background,
+                                  $drop-area-background: $banner-background,
+                                  $ghost-header-background: $banner-background,
+                                  $group-row-selected-background: $background,
+                                  $header-background: $background,
+                                  $cell-editing-background: $background));
 
-  .column-center {
+  @include igx-grid-toolbar(igx-grid-toolbar-theme($background-color: $background));
+
+  @include igx-paginator(igx-paginator-theme($background-color: $background));
+
+  @include igx-action-strip(igx-action-strip-theme($actions-background: transparent));
+
+  /* Registrations */
+  .registration-slot {
+    position: relative;
     display: flex;
     flex-flow: column;
     align-items: center;
+    padding: 4px 12px;
+    flex-basis: 150px;
+    min-height: 125px;
   }
 
-  .content-container {
-    min-height: auto;
+  .registration-slot > a,
+  .registration-slot > span {
+    font-size: 0.80rem;
+    text-align: center;
+  }
+
+  .registration-badge-style {
+    position: absolute;
+    left: 86px;
+  }
+  /* END Registrations */
+
+  .registration-container {
+    padding-bottom: 12px;
+  }
+
+  .new-group-card {
+    border: 1px dashed #aaa;
+  }
+
+  .new-group-card:hover {
+    border: 1px dashed #fff;
+  }
+
+  .new-group-body {
+    min-height: 350px;
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .new-group-body igx-icon {
+    width: 120px;
+    height: 120px;
+    font-size: 90pt;
+  }
+
+  .group-list {
+    min-height: 350px;
+  }
+
+  .new-group-body igx-icon:hover {
+    color: #fff;
+  }
+
+  .group-card-content {
+    padding: 0;
+  }
+
+  .action-icon-button {
+    margin: 0 4px;
+  }
+
+  .action-icon-button:hover {
+    color: $secondary;
+  }
+
+  .action-buttons {
+    display: flex;
+    align-items: center;
+    padding-right: 4px;
+  }
+
+  .match-actions > * {
+    margin: 0 4px;
+  }
+
+  .delete-map {
+    margin-top: 4px;
+  }
+
+  .score-container {
+    margin: 0 16px;
   }
 }

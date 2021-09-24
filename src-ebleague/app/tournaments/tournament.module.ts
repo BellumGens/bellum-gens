@@ -24,6 +24,7 @@ import {
   IgxGridModule
 } from '@infragistics/igniteui-angular';
 import { BellumGensModule } from '../../../src-common/lib/public_api';
+import { TournamentsMainComponent } from './tournaments-main/tournaments-main.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { BellumGensModule } from '../../../src-common/lib/public_api';
     TournamentSc2Component,
     ProductionCrewComponent,
     BaseComponent,
-    SortByPointsPipe
+    SortByPointsPipe,
+    TournamentsMainComponent
   ],
   imports: [
     CommonModule,

@@ -36,11 +36,7 @@ $include: (igx-avatar,
            igx-date-picker,
            igx-calendar,
            igx-nav-drawer,
-           igx-banner,
-           igx-grid,
-           igx-grid-toolbar,
-           igx-paginator,
-           igx-action-strip);
+           igx-banner);
 
 @include igx-dark-theme(
     $palette: $app-palette,
@@ -148,182 +144,7 @@ $time-picker-theme: igx-time-picker-theme($background-color: $background);
 @include igx-css-vars($time-picker-theme);
 /* END Time Picker */
 
-/* Grid */
-$grid-theme: igx-grid-theme($content-background: $banner-background,
-                            $drop-area-background: $banner-background,
-                            $ghost-header-background: $banner-background,
-                            $group-row-selected-background: $background,
-                            $header-background: $background,
-                            $cell-editing-background: $background);
-@include igx-css-vars($grid-theme);
-/* END Grid */
-
-/* Grid Toolbar */
-$grid-toolbar-theme: igx-grid-toolbar-theme($background-color: $background);
-@include igx-css-vars($grid-toolbar-theme);
-/* END Grid Toolbar */
-
-/* Paginator */
-$paginator-theme: igx-paginator-theme($background-color: $background);
-@include igx-css-vars($paginator-theme);
-/* END Paginator */
-
-/* Action strip */
-$action-strip-theme: igx-action-strip-theme($actions-background: transparent);
-@include igx-css-vars($action-strip-theme);
-/* END Action strip */
-
 @import "../src-common/styles-overrides.scss";
-
-/* HOME */
-.home-page-slide-columns {
-  display: grid;
-  height: auto;
-  grid-template-columns: minmax(45%, 1fr) minmax(45%, 1fr);
-  grid-column-gap: 48px;
-  grid-row-gap: 16px;
-  padding: 24px 72px;
-}
-
-.slide-info-column {
-  max-width: 1000px;
-  min-width: 348px;
-  padding: 52px;
-  margin: auto;
-}
-
-.slide-info-column h1 {
-  font-size: 4rem;
-  font-weight: 800;
-  margin: 0;
-  line-height: 5rem;
-}
-
-.slide-info-column p {
-  font-size: 1rem;
-}
-
-.twitch-holder {
-  text-align: center;
-}
-/* END HOME */
-
-/* Registrations */
-.registration-container {
-  padding-bottom: 12px;
-}
-
-.registration-slot {
-  position: relative;
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  padding: 4px 12px;
-  flex-basis: 150px;
-  min-height: 125px;
-}
-
-.registration-slot > a,
-.registration-slot > span {
-  font-size: 0.80rem;
-  text-align: center;
-}
-
-.registration-badge-style {
-  position: absolute;
-  left: 86px;
-}
-
-.empty-group-list {
-  height: 300px;
-  display: flex;
-  align-items: center;
-}
-/* END Registrations */
-
-/* Admin */
-.new-group-card {
-  border: 1px dashed #aaa;
-}
-
-.new-group-card:hover {
-  border: 1px dashed #fff;
-}
-
-.new-group-body {
-  min-height: 350px;
-  display: flex;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-}
-
-.new-group-body igx-icon {
-  width: 120px;
-  height: 120px;
-  font-size: 90pt;
-}
-
-.group-list {
-  min-height: 350px;
-}
-
-.new-group-body igx-icon:hover {
-  color: #fff;
-}
-
-.group-card-content {
-  padding: 0;
-}
-
-.action-icon-button {
-  margin: 0 4px;
-}
-
-.action-icon-button:hover {
-  color: $secondary;
-}
-
-.action-buttons {
-  display: flex;
-  align-items: center;
-  padding-right: 4px;
-}
-/* END Admin */
-
-/* SCHEDULE */
-.card-wrapper.igx-tabs__group {
-  display: grid;
-}
-
-.participants-container {
-  display: flex;
-  flex-wrap: wrap;
-  padding: 16px;
-}
-
-igx-calendar {
-  height: fit-content;
-}
-
-.match-actions > * {
-  margin: 0 4px;
-}
-
-.score-container {
-  margin: 0 16px;
-}
-
-.delete-map {
-  margin-top: 4px;
-}
-/* END SCHEDULE */
-
-.form-wrapper {
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-}
 
 .space-out {
   margin-bottom: 24px;
@@ -355,12 +176,6 @@ igx-calendar {
 }
 
 /* END WATERMARKS */
-
-@media only screen and (max-width: 700px) {
-  .home-page-slide-columns {
-    padding: 16px 16px 12px 16px;
-  }
-}
 
 @media only screen and (max-width: 550px) {
   .match-time {
