@@ -3,18 +3,6 @@
     <ng-template igxDrawer>
       <nav>
         <span igxDrawerItem [isHeader]="true">Esports Business League</span>
-        <!-- <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournament/csgo/">
-          <igx-avatar [src]="'/assets/wallpapers/csgo-watermark.webp'"
-                [roundShape]="true">
-          </igx-avatar>
-          Лига по CS:GO
-        </span>
-        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournament/sc2/">
-          <igx-avatar [src]="'/assets/wallpapers/sc2.webp'"
-                [roundShape]="true">
-          </igx-avatar>
-          Лига по StarCraft II
-        </span> -->
         <span igxDrawerItem igxRipple routerLink="tournament">
           <igx-icon>emoji_events</igx-icon>
           <span i18n>Tournaments</span>
@@ -45,24 +33,6 @@
     <ng-template igxDrawerMini *ngIf="drawer.pin">
       <nav>
         <span igxDrawerItem [isHeader]="true">&nbsp;</span>
-        <!-- <span igxDrawerItem
-              igxRipple
-              routerLinkActive="igx-nav-drawer__item--active"
-              routerLink="tournament/csgo/"
-              title="Лига по CS:GO">
-          <igx-avatar [src]="'/assets/wallpapers/csgo-watermark.webp'"
-                [roundShape]="true">
-          </igx-avatar>
-        </span>
-        <span igxDrawerItem
-              igxRipple
-              routerLinkActive="igx-nav-drawer__item--active"
-              routerLink="tournament/sc2/"
-              title="Лига по StarCraft II">
-          <igx-avatar [src]="'/assets/wallpapers/sc2.webp'"
-                [roundShape]="true">
-          </igx-avatar>
-        </span> -->
         <span igxDrawerItem igxRipple routerLink="tournament" i18n-title title="Tournaments">
           <igx-icon>emoji_events</igx-icon>
         </span>
