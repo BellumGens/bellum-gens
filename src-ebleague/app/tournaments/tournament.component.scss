@@ -17,6 +17,41 @@
   @include igx-css-vars($grid-toolbar-theme);
   /* END Grid Toolbar */
 
+  /* Registrations */
+  .registration-slot {
+    position: relative;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    padding: 4px 12px;
+    flex-basis: 150px;
+    min-height: 125px;
+  }
+
+  .registration-slot > a,
+  .registration-slot > span {
+    font-size: 0.80rem;
+    text-align: center;
+  }
+
+  .registration-badge-style {
+    position: absolute;
+    left: 86px;
+  }
+  /* END Registrations */
+
+  /* SCHEDULE */
+  .participants-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 16px;
+  }
+
+  .score-container {
+    margin: 0 16px;
+  }
+  /* END SCHEDULE */
+
   .group-columns {
     display: grid;
     grid-template-columns: 1fr;

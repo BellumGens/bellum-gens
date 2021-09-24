@@ -27,6 +27,29 @@
   @include igx-css-vars($action-strip-theme);
   /* END Action strip */
 
+  /* Registrations */
+  .registration-slot {
+    position: relative;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    padding: 4px 12px;
+    flex-basis: 150px;
+    min-height: 125px;
+  }
+
+  .registration-slot > a,
+  .registration-slot > span {
+    font-size: 0.80rem;
+    text-align: center;
+  }
+
+  .registration-badge-style {
+    position: absolute;
+    left: 86px;
+  }
+  /* END Registrations */
+
   .registration-container {
     padding-bottom: 12px;
   }
@@ -77,5 +100,17 @@
     display: flex;
     align-items: center;
     padding-right: 4px;
+  }
+
+  .match-actions > * {
+    margin: 0 4px;
+  }
+
+  .delete-map {
+    margin-top: 4px;
+  }
+
+  .score-container {
+    margin: 0 16px;
   }
 }
