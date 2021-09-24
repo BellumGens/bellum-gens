@@ -209,6 +209,19 @@ export class LoginService {
     return this.http.get<boolean>(`${this._apiEndpoint}/username?username=${username}`);
   }
 
+  public addSubscriber(email: string) {
+    return this.http.post(`${this._apiEndpoint}/account/subscribe`, { email }).pipe(
+      map(response => {
+        this.commService.emitSuccess(response.toString());
+        return response;
+      }),
+      catchError(error => {
+        this.commService.emitError(error.error);
+        return throwError(error);
+      })
+    );
+  }
+
   private initSw() {
     this.swPush.requestSubscription({
       serverPublicKey: environment.VAPID_PUBLIC_KEY

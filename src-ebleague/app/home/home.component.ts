@@ -44,7 +44,7 @@ export class TournamentHomeComponent {
 
   public subscribe() {
     if (this.userEmail) {
-      this.apiService.addSubscriber(this.userEmail).subscribe();
+      this.authManager.addSubscriber(this.userEmail).subscribe();
     }
   }
 

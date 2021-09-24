@@ -8,7 +8,6 @@ import { BaseComponent } from '../base/base.component';
 import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { IgxCarouselComponent } from '@infragistics/igniteui-angular';
-import { ApiTournamentsService } from '../../../src-common/services/bellumgens-api.tournaments.service';
 
 @Component({
   selector: 'app-home',
@@ -25,7 +24,6 @@ export class HomeComponent extends BaseComponent {
 
   constructor(@Inject(PLATFORM_ID) private platformId: any,
               private authManager: LoginService,
-              private apiService: ApiTournamentsService,
               private socialMedia: SocialMediaService,
               titleService: Title,
               meta: Meta,
@@ -44,7 +42,7 @@ export class HomeComponent extends BaseComponent {
 
   public subscribe() {
     if (this.userEmail) {
-      this.apiService.addSubscriber(this.userEmail).subscribe();
+      this.authManager.addSubscriber(this.userEmail).subscribe();
     }
   }
 
