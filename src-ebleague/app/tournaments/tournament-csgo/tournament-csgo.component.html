@@ -54,25 +54,25 @@
         <igx-column field="matchDetails" i18n-header header="Match" [filterable]="false">
           <div *igxCell="let cell = cell" class="horizontal-center">
             <igx-avatar igxListThumbnail
-                        [src]="cell.rowData.team1.teamAvatar"
-                        [initials]="cell.rowData.team1.teamName"
+                        [src]="cell.row.rowData.team1.teamAvatar"
+                        [initials]="cell.row.rowData.team1.teamName"
                         [roundShape]="true">
             </igx-avatar>
-            <a [href]="environment.bellumgens + '/team/' + cell.rowData.team1.customUrl"
-               [class]="cell.rowData.winnerTeamId === cell.rowData.team1.teamId ? 'highlight grid-team-name' : 'grid-team-name'">
-              {{ cell.rowData.team1.teamName }}
+            <a [href]="environment.bellumgens + '/team/' + cell.row.rowData.team1.customUrl"
+               [class]="cell.row.rowData.winnerTeamId === cell.row.rowData.team1.teamId ? 'highlight grid-team-name' : 'grid-team-name'">
+              {{ cell.row.rowData.team1.teamName }}
             </a>
 
             <span class="grid-vs-divider">vs.</span>
 
             <igx-avatar igxListThumbnail
-                        [src]="cell.rowData.team2.teamAvatar"
-                        [initials]="cell.rowData.team2.teamName"
+                        [src]="cell.row.rowData.team2.teamAvatar"
+                        [initials]="cell.row.rowData.team2.teamName"
                         [roundShape]="true">
             </igx-avatar>
-            <a [href]="environment.bellumgens + '/team/' + cell.rowData.team2.customUrl"
-               [class]="cell.rowData.winnerTeamId === cell.rowData.team2.teamId ? 'highlight grid-team-name' : 'grid-team-name'">
-              {{ cell.rowData.team2.teamName }}
+            <a [href]="environment.bellumgens + '/team/' + cell.row.rowData.team2.customUrl"
+               [class]="cell.row.rowData.winnerTeamId === cell.row.rowData.team2.teamId ? 'highlight grid-team-name' : 'grid-team-name'">
+              {{ cell.row.rowData.team2.teamName }}
             </a>
           </div>
         </igx-column>

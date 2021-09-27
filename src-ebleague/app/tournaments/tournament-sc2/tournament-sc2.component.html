@@ -50,23 +50,23 @@
         <igx-column field="matchDetails" i18n-header header="Match" [filterable]="false">
           <div *igxCell="let cell = cell" class="horizontal-center">
             <igx-avatar igxListThumbnail
-                        [src]="cell.rowData.player1.avatarMedium"
-                        [initials]="cell.rowData.player1.username"
+                        [src]="cell.row.rowData.player1.avatarMedium"
+                        [initials]="cell.row.rowData.player1.username"
                         [roundShape]="true">
             </igx-avatar>
-            <span [class]="cell.rowData.player1Points > cell.rowData.player2Points ? 'highlight grid-team-name' : 'grid-team-name'">
-              {{ cell.rowData.player1.battleNetId }}
+            <span [class]="cell.row.rowData.player1Points > cell.row.rowData.player2Points ? 'highlight grid-team-name' : 'grid-team-name'">
+              {{ cell.row.rowData.player1.battleNetId }}
             </span>
 
             <span class="grid-vs-divider">vs.</span>
 
             <igx-avatar
-                        [src]="cell.rowData.player2.avatarMedium"
-                        [initials]="cell.rowData.player2.username"
+                        [src]="cell.row.rowData.player2.avatarMedium"
+                        [initials]="cell.row.rowData.player2.username"
                         [roundShape]="true">
             </igx-avatar>
-            <span [class]="cell.rowData.player2Points > cell.rowData.player1Points ? 'highlight grid-team-name' : 'grid-team-name'">
-              {{ cell.rowData.player2.battleNetId }}
+            <span [class]="cell.row.rowData.player2Points > cell.row.rowData.player1Points ? 'highlight grid-team-name' : 'grid-team-name'">
+              {{ cell.row.rowData.player2.battleNetId }}
             </span>
           </div>
         </igx-column>
