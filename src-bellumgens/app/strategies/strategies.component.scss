@@ -1,4 +1,4 @@
-:host {
+:host ::ng-deep {
   .card-wrapper {
     min-height: calc(100% - 204px);
   }
@@ -7,9 +7,68 @@
     min-height: 581px;
     height: fit-content;
   }
-}
 
-.order-by {
-  height: 64px;
-  margin: 4px;
+  .navigation-item {
+    margin: 0px 4px;
+  }
+
+  .order-by {
+    height: 64px;
+    margin: 4px;
+  }
+
+  .user-has-voted,
+  .user-has-voted:focus {
+    color: #5B86FF;
+    font-weight: 800;
+  }
+
+  /* Strategies */
+  .video-frame {
+    width: 560px;
+    height: 315px;
+  }
+
+  .empty-strategy.empty-strategy-content {
+    min-height: 200px;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .strat-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 23ch;
+  }
+
+  .fit-content-card {
+    height: fit-content;
+  }
+
+  .strat-image {
+    cursor: zoom-in;
+    max-height: 315px;
+  }
+
+  .strat-filter-header {
+    display: flex;
+    width: 80%;
+    margin: auto;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 16px;
+  }
+
+  .map-filter {
+    width: auto;
+  }
+
+  .card-smaller-subtitle {
+    font-size: 0.65rem;
+  }
+
+  /* END Strategies */
 }

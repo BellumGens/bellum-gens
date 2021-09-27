@@ -190,51 +190,6 @@ $overlay-theme: igx-overlay-theme($background-color: rgba(35, 51, 132, 0.7));
 }
 /* END Team and Player Details */
 
-.center-message {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  color: #999;
-  font-size: 24px;
-  min-height: 120px;
-}
-
-/* Loading */
-.loading-indicator {
-  margin: 16px;
-  width: 66px;
-  height: 66px;
-}
-
-.loading-user-data {
-  height: 128px;
-  max-height: 128px;
-  width: 128px;
-  max-width: 128px;
-}
-/* END Loading */
-
-.horizontal-info__left {
-  display: flex;
-  flex-flow: column nowrap;
-  margin-left: 24px;
-}
-
-.list-container .horizontal-info__left {
-  max-width: 135px;
-}
-
-.horizontal-info__right--column {
-  display: flex;
-  flex-flow: column;
-  margin-left: auto;
-}
-
-  .title.margin-left.player-summary-stat {
-    min-width: 54px;
-  }
-
 .country-badge-small {
   position: absolute;
   top: 12px;
@@ -246,14 +201,6 @@ $overlay-theme: igx-overlay-theme($background-color: rgba(35, 51, 132, 0.7));
 
 .igx-chip {
   margin: 4px 4px 4px 0;
-}
-
-.notification-disabled {
-  opacity: 0.5;
-}
-
-.navigation-item {
-  margin: 0px 4px;
 }
 
 /* SEARCH */
@@ -286,26 +233,6 @@ $overlay-theme: igx-overlay-theme($background-color: rgba(35, 51, 132, 0.7));
   min-width: 216px;
 }
 
-.user-has-voted,
-.user-has-voted:focus {
-  color: #5B86FF;
-  font-weight: 800;
-}
-
-.search-result {
-  cursor: pointer;
-  position: relative;
-  display: flex;
-  flex: 0 1 360px;
-  min-width: 360px;
-  margin-bottom: 24px;
-  margin-right: 24px;
-}
-
-.search-result:focus {
-  outline: none;
-}
-
 .icon-avatar {
   width: 24px;
   min-width: 24px;
@@ -314,106 +241,7 @@ $overlay-theme: igx-overlay-theme($background-color: rgba(35, 51, 132, 0.7));
   margin-right: 8px;
   background-color: transparent;
 }
-
-.result-chips {
-  padding: 8px 0;
-}
-
-.search-result-summary {
-  width: 80%;
-  padding-top: 12px;
-  margin: auto;
-}
 /* END SEARCH */
-
-/* Strategies */
-.video-frame {
-  width: 560px;
-  height: 315px;
-}
-
-.empty-strategy.empty-strategy-content {
-  min-height: 200px;
-  display: flex;
-  flex-flow: column;
-  justify-content: space-evenly;
-  align-items: center;
-}
-
-.strat-title {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  max-width: 23ch;
-}
-
-.fit-content-card {
-  height: fit-content;
-}
-
-.strat-image {
-  cursor: zoom-in;
-  max-height: 315px;
-}
-
-.strat-filter-header {
-  display: flex;
-  width: 80%;
-  margin: auto;
-  justify-content: space-between;
-  align-items: center;
-  padding-top: 16px;
-}
-
-.map-filter {
-  width: auto;
-}
-
-.card-smaller-subtitle {
-  font-size: 0.65rem;
-}
-
-/* END Strategies */
-
-/* HOME */
-.slide {
-  display: flex;
-  width: 100%;
-  height: 450px;
-  align-items: center;
-}
-
-.slide-info {
-  width: 80%;
-  min-width: 380px;
-  padding: 16px;
-  vertical-align: middle;
-  margin: auto;
-}
-
-.slide-info h2 {
-  font-size: 3rem;
-  font-weight: 800;
-  margin: 0;
-}
-
-.slide-info h4 {
-  font-size: 1.75rem;
-  margin: 0;
-}
-
-.slide-info p {
-  font-size: 1rem;
-  margin: 16px 0 16px 0;
-}
-/* END HOME */
-
-@media only screen and (max-width: 1280px) {
-  .slide-info h2 {
-    font-size: 1.75rem;
-    margin: 0;
-  }
-}
 
 @media only screen and (max-width: 915px) {
   .overview-container {

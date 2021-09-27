@@ -1,10 +1,9 @@
 <bg-loading *ngIf="loading">
 </bg-loading>
-
-<div *ngIf="!loading" class="search-result-summary margin-bottom">
-  <h4 class="igx-card-header__title" i18n>Found <span class="highlight">{{players?.length }}</span> results for players{{ query | queryParsed:true }}</h4>
-</div>
 <div *ngIf="!loading" class="card-wrapper">
+  <div class="content-container-row">
+    <h4 class="igx-card-header__title" i18n>Found <span class="highlight">{{players?.length }}</span> results for players{{ query | queryParsed:true }}</h4>
+  </div>
   <igx-card *ngFor="let player of players" class="navigatable" [routerLink]="['/players', player.customURL || player.id]">
     <igx-card-header>
       <igx-avatar igxCardThumbnail [src]="player.avatarMedium" [size]="'medium'" [initials]="player.username" [roundShape]="true"></igx-avatar>
@@ -12,13 +11,13 @@
       <h5 igxCardHeaderSubtitle>{{ player.realname }}</h5>
 
       <div *ngIf="!player.steamPrivate">
-        <div class="horizontal-center">
+        <div class="horizontal-center space-between">
           <igx-circular-bar class="icon-avatar" [value]="player.killDeathRatio" [max]="2" [animate]="true" [textVisibility]="false" title="KDR"></igx-circular-bar>
-          <span class="title margin-left player-summary-stat">{{ player.killDeathRatio }}</span>
+          <span class="title margin-left">{{ player.killDeathRatio }}</span>
         </div>
-        <div class="horizontal-center">
+        <div class="horizontal-center space-between">
           <igx-icon family="weapon-icons" name="headshot" class="icon-avatar"></igx-icon>
-          <span class="title margin-left player-summary-stat">{{ player.headshotPercentage | number:'1.2' }}%</span>
+          <span class="title margin-left">{{ player.headshotPercentage | number:'1.2' }}%</span>
         </div>
       </div>
 
@@ -28,7 +27,7 @@
     </igx-card-header>
     <igx-card-content>
       <div i18n>Preferred roles</div>
-      <igx-chips-area class="result-chips">
+      <igx-chips-area>
         <igx-chip [selectable]="false">
           <span class="igx-chip__text">{{ roles[player.primaryRole].name }}</span>
         </igx-chip>

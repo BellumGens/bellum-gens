@@ -213,8 +213,7 @@ textarea {
   min-height: calc(100% - 57px);
 }
 
-  .overview-container-card .card-wrapper,
-  .overview-container-card .strat-filter-header {
+  .overview-container-card .card-wrapper {
     width: 100%;
   }
 
@@ -377,12 +376,9 @@ textarea {
 
 @media only screen and (max-width: 1280px) {
   .overview-container-card,
-  .card-wrapper,
-  .search-result-summary,
-  .strat-filter-header {
+  .card-wrapper {
     width: 100%;
-    padding-left: 8px;
-    padding-right: 8px;
+    padding: 0 8px;
   }
 
   .slide {
