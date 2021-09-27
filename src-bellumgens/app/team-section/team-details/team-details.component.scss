@@ -72,4 +72,31 @@
   .overview-container-paddings {
     padding: 16px 0px;
   }
+
+  .left-details-container {
+    width: 250px;
+    min-width: 250px;
+    padding-right: 16px;
+  }
+
+  .right-details-container {
+    display: flex;
+    flex: 1 1 100%;
+    flex-flow: row wrap;
+  }
+
+  .overview-container {
+    display: flex;
+    flex: 0 0 100%;
+    flex-wrap: nowrap;
+  }
+
+  @media only screen and (max-width: 915px) {
+    .overview-container {
+      flex-wrap: wrap;
+    }
+    .left-details-container {
+      width: 100%;
+    }
+  }
 }

@@ -170,26 +170,6 @@ $overlay-theme: igx-overlay-theme($background-color: rgba(35, 51, 132, 0.7));
   }
 }
 
-/* Team and Player Details */
-.left-details-container {
-  width: 250px;
-  min-width: 250px;
-  padding-right: 16px;
-}
-
-.right-details-container {
-  display: flex;
-  flex: 1 1 100%;
-  flex-flow: row wrap;
-}
-
-.overview-container {
-  display: flex;
-  flex: 0 0 100%;
-  flex-wrap: nowrap;
-}
-/* END Team and Player Details */
-
 .country-badge-small {
   position: absolute;
   top: 12px;
@@ -242,15 +222,6 @@ $overlay-theme: igx-overlay-theme($background-color: rgba(35, 51, 132, 0.7));
   background-color: transparent;
 }
 /* END SEARCH */
-
-@media only screen and (max-width: 915px) {
-  .overview-container {
-    flex-wrap: wrap;
-  }
-  .left-details-container {
-    width: 100%;
-  }
-}
 
 @media only screen and (max-width: 550px) {
   .slider-holder {

@@ -3,7 +3,7 @@
 
 <div *ngIf="!loading" class="card-wrapper">
   <div class="content-container-row">
-    <h4 class="igx-card-header__title margin-bottom" i18n>Found <span class="highlight">{{teams?.length }}</span> results for teams{{ query | queryParsed }}</h4>
+    <h4 class="igx-card-header__title" i18n>Found <span class="highlight">{{teams?.length }}</span> results for teams{{ query | queryParsed }}</h4>
   </div>
   <igx-card *ngFor="let team of teams" class="navigatable" [routerLink]="['/team', team.customUrl]">
     <igx-card-header>
