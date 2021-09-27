@@ -77,10 +77,6 @@ a {
   color: igx-color($app-palette, secondary);
 }
 
-.margin-bottom {
-  margin-bottom: 16px;
-}
-
 .highlight {
   color: $secondary;
   font-weight: 600;
@@ -94,11 +90,6 @@ textarea {
 
 .submit-button {
   width: 100%;
-}
-
-.login-divider {
-  height: 16px;
-  margin-left: 8px;
 }
 
 .content-container {
@@ -213,8 +204,7 @@ textarea {
   min-height: calc(100% - 57px);
 }
 
-  .overview-container-card .card-wrapper,
-  .overview-container-card .strat-filter-header {
+  .overview-container-card .card-wrapper {
     width: 100%;
   }
 
@@ -237,20 +227,7 @@ textarea {
   display: flex;
 }
 
-.action-button-container {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.notifications-badge {
-  position: absolute;
-  top: 0;
-  left: 22px;
-}
-
 /* Footer */
-
 .footer {
   width: 100%;
   display: flex;
@@ -275,14 +252,6 @@ textarea {
 }
 
 /* END Footer */
-
-.social-media-icon {
-  margin-left: 4px;
-}
-
-.search-group {
-  width: 256px;
-}
 
 .preview-image {
   -webkit-box-shadow: 0px 24px 48px -12px rgba(4,8,29,0.45);
@@ -348,10 +317,6 @@ textarea {
   }
 
 @media only screen and (max-width: 720px) {
-  .search-group {
-    width: auto;
-  }
-
   .footer {
     padding: 12px 12px 0 12px;
   }
@@ -361,14 +326,10 @@ textarea {
     margin: 8px auto;
   }
 
-  .success-dialog-content {
-    width: 380px;
-  }
-
-  .platinum {
-    width: 348px;
-    height: 200px;
-  }
+  // .platinum {
+  //   width: 348px;
+  //   height: 200px;
+  // }
 
   .loading-overview {
     width: 100%;
@@ -377,12 +338,9 @@ textarea {
 
 @media only screen and (max-width: 1280px) {
   .overview-container-card,
-  .card-wrapper,
-  .search-result-summary,
-  .strat-filter-header {
+  .card-wrapper {
     width: 100%;
-    padding-left: 8px;
-    padding-right: 8px;
+    padding: 0 8px;
   }
 
   .slide {

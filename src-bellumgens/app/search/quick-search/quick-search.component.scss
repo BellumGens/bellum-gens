@@ -1,0 +1,17 @@
+:host {
+  .loading-indicator {
+    margin: 16px;
+    width: 66px;
+    height: 66px;
+  }
+
+  .center-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-size: 24px;
+    min-height: 120px;
+  }
+}

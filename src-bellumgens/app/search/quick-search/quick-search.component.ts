@@ -6,7 +6,7 @@ import { ApiSearchService } from '../../../../src-common/services/bellumgens-api
 @Component({
   selector: 'app-quick-search',
   templateUrl: './quick-search.component.html',
-  styleUrls: ['./quick-search.component.css']
+  styleUrls: ['./quick-search.component.scss']
 })
 export class QuickSearchComponent {
   public searchResult: SearchResult = { steamUser: null, players: [], teams: [], strategies: [] };
