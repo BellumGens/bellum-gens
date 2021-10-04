@@ -12,6 +12,7 @@ import { GLOBAL_OVERLAY_SETTINGS, StratOrder, StratOrderBy } from '../../../src-
 import { SocialMediaStrategyService } from '../../../src-common/services/social-media.strategy.service';
 import { ApiSearchService } from '../../../src-common/services/bellumgens-api.search.service';
 import { ApiStrategiesService } from '../../../src-common/services/bellumgens-api.strategies.service';
+import { CommunicationService } from '../../../src-common/services/communication.service';
 
 @Component({
   selector: 'app-team-strategies',
@@ -28,7 +29,6 @@ export class StrategiesComponent {
   public sanitizedUrl: SafeResourceUrl;
   public pipeTrigger = 0;
   public viewAll = false;
-  public selectedStrat: CSGOStrategy;
   public loading = false;
   public hasMore = false;
   public page = 0;
@@ -42,40 +42,55 @@ export class StrategiesComponent {
               private apiStrategyService: ApiStrategiesService,
               private searchService: ApiSearchService,
               private authManager: LoginService,
+              private commService: CommunicationService,
               private socialMedia: SocialMediaStrategyService) {
-    this.activatedRoute.parent.parent.params.subscribe(params => {
-      const teamId = params['teamid'];
-
-      if (teamId) {
-        this.apiService.getTeam(teamId).subscribe(team => {
-          if (team) {
-            this.team = team;
-            this.loading = true;
-            this.apiStrategyService.getTeamStrats(team.teamId).subscribe(strats => {
-              this.loading = false;
-              this.strats = strats;
-            });
-            this.apiStrategyService.getTeamMapPool(team.teamId).subscribe(maps => this.maps = maps);
-            this.authManager.getUserIsTeamEditor(team.teamId).subscribe(data => this.isEditor = data);
+    this.activatedRoute.url.subscribe(value => {
+      if (value?.length && value[0]?.path === 'user') {
+        this.authManager.applicationUser.subscribe(user => {
+          if (user) {
+            this.authUser = user;
+            this.apiStrategyService.getUserStrategies(user.id).subscribe(
+              strats => this.strats = strats,
+              error => this.commService.emitError(error.error)
+            );
           }
         });
       } else {
-        this.activatedRoute.params.subscribe(param => {
-          const query = param['query'];
+        this.activatedRoute.parent.parent.params.subscribe(params => {
+          const teamId = params['teamid'];
 
-          if (query) {
-            this.searchService.searchStrategies(query);
-            this.searchService.loadingSearch.subscribe(loading => this.loading = loading);
-            this.searchService.strategySearchResult.subscribe(strats => this.strats = strats);
+          if (teamId) {
+            this.apiService.getTeam(teamId).subscribe(team => {
+              if (team) {
+                this.team = team;
+                this.loading = true;
+                this.apiStrategyService.getTeamStrats(team.teamId).subscribe(strats => {
+                  this.loading = false;
+                  this.strats = strats;
+                });
+                this.apiStrategyService.getTeamMapPool(team.teamId).subscribe(maps => this.maps = maps);
+                this.authManager.getUserIsTeamEditor(team.teamId).subscribe(data => this.isEditor = data);
+              }
+            });
           } else {
-            this.apiStrategyService.loadingStrategies.subscribe(loading => this.loading = loading);
-            this.apiStrategyService.strategies.subscribe(strats => this.strats = strats);
-            this.apiStrategyService.hasMoreStrats.subscribe(hasMore => this.hasMore = hasMore);
+            this.activatedRoute.params.subscribe(param => {
+              const query = param['query'];
+
+              if (query) {
+                this.searchService.searchStrategies(query);
+                this.searchService.loadingSearch.subscribe(loading => this.loading = loading);
+                this.searchService.strategySearchResult.subscribe(strats => this.strats = strats);
+              } else {
+                this.apiStrategyService.loadingStrategies.subscribe(loading => this.loading = loading);
+                this.apiStrategyService.strategies.subscribe(strats => this.strats = strats);
+                this.apiStrategyService.hasMoreStrats.subscribe(hasMore => this.hasMore = hasMore);
+              }
+            });
           }
         });
+        this.authManager.applicationUser.subscribe(user => this.authUser = user);
       }
     });
-    this.authManager.applicationUser.subscribe(user => this.authUser = user);
   }
 
   public openLogin() {
@@ -90,12 +105,7 @@ export class StrategiesComponent {
   }
 
   public deleteStrat(args: CSGOStrategy) {
-    this.apiStrategyService.deleteStrategy(args.id).subscribe(
-      () => {
-        this.strats.splice(this.strats.indexOf(args), 1);
-        this.pipeTrigger++;
-      }
-    );
+    this.apiStrategyService.deleteStrategy(args.id).subscribe(() => this.strats.splice(this.strats.indexOf(args), 1));
   }
 
   public shareOnTwitter(strat: CSGOStrategy) {

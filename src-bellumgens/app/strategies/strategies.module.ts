@@ -28,7 +28,6 @@ import { StrategiesComponent } from './strategies.component';
 import { StrategyDetailsComponent } from './strategy-details/strategy-details.component';
 import { NewStrategyComponent } from './new-strategy/new-strategy.component';
 import { StrategyEditorComponent } from './strategy-editor/strategy-editor.component';
-import { UserStrategiesComponent } from './user-strategies/user-strategies.component';
 import { TruncateTextPipe } from '../pipes/truncate-text.pipe';
 import { SafeVideoLinkPipe } from '../pipes/safe-video-link.pipe';
 import { IsVideoPipe } from '../pipes/is-video.pipe';
@@ -45,7 +44,6 @@ import { BellumGensModule, ConfirmModule, LoadingModule } from '../../../src-com
     StrategyDetailsComponent,
     NewStrategyComponent,
     StrategyEditorComponent,
-    UserStrategiesComponent,
     TruncateTextPipe,
     SafeVideoLinkPipe,
     IsVideoPipe,
