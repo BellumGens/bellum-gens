@@ -1,5 +1,16 @@
 import { CSGOMap } from './csgomaps';
 
+
+export enum Side {
+  TSide,
+  CTSide
+}
+
+export enum VoteDirection {
+  Up,
+  Down
+}
+
 export interface CSGOStrategy {
   id: string;
   teamId: string;
@@ -33,16 +44,6 @@ export interface StrategyComment {
   userName?: string;
   userAvatar?: string;
   _inEdit?: boolean;
-}
-
-export enum Side {
-  TSide,
-  CTSide
-}
-
-export enum VoteDirection {
-  Up,
-  Down
 }
 
 export const NEW_EMPTY_STRAT: CSGOStrategy = {

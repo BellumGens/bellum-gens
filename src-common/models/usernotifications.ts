@@ -1,6 +1,19 @@
 import { CSGOTeam } from './csgoteam';
 import { ApplicationUser } from './applicationuser';
 
+export enum NotificationState {
+  NotSeen,
+  Seen,
+  Rejected,
+  Accepted
+}
+
+export enum NotificationActions {
+  ViewTeam = 'viewteam',
+  ViewUser = 'viewuser',
+  ViewStrategy = 'viewstrategy'
+}
+
 export interface UserNotification {
   state: NotificationState;
   teamInfo: CSGOTeam;
@@ -14,17 +27,4 @@ export interface PushNotificationWrapper {
 
 export interface PushNotification {
   title: string;
-}
-
-export enum NotificationState {
-  NotSeen,
-  Seen,
-  Rejected,
-  Accepted
-}
-
-export enum NotificationActions {
-  ViewTeam = 'viewteam',
-  ViewUser = 'viewuser',
-  ViewStrategy = 'viewstrategy'
 }

@@ -1,6 +1,5 @@
 import { Component, Input, NgModule, ViewChild } from '@angular/core';
 import {
-  IgxProgressType,
   IgxDropDownComponent,
   IgxDialogModule,
   IgxIconModule,
@@ -29,19 +28,6 @@ import { ConfirmModule } from '../confirm/confirm.component';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
-export interface ProfileCompleteness {
-  availability: boolean;
-  primaryRole: boolean;
-  secondaryRole: boolean;
-  mapPool: boolean;
-  profileStage: number;
-  doneColor: string;
-  pendingColor: string;
-  doneIcon: string;
-  pendingIcon: string;
-  progressType: IgxProgressType;
-}
-
 @Component({
   selector: 'bg-login',
   templateUrl: './login.component.html',
@@ -57,14 +43,13 @@ export class LoginComponent {
   @Input()
   public authUser: ApplicationUser;
 
-  public profileCompleteness: ProfileCompleteness;
   public overlaySettings = GLOBAL_OVERLAY_SETTINGS;
   public userCheck = false;
 
   constructor(private authManager: LoginService,
               private router: Router) {
     this.authManager.userCheckInProgress.subscribe(value => this.userCheck = value);
-    this.authManager.openLogin.subscribe(_ => this.dialog.openLogin());
+    this.authManager.openLogin.subscribe(() => this.dialog.openLogin());
   }
 
   public logout() {
