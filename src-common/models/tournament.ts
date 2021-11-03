@@ -2,6 +2,15 @@ import { CSGOTeam } from './csgoteam';
 import { ApplicationUser } from './applicationuser';
 import { TournamentCSGOMatch } from './tournament-schedule';
 
+export enum Game {
+  CSGO,
+  StarCraft2
+}
+
+export enum TournamentApplicationState {
+  Pending,
+  Confirmed
+}
 export interface Tournament {
   id?: string;
   name: string;
@@ -73,16 +82,6 @@ export interface Company {
 export interface RegistrationsCount {
   game: Game;
   count: number;
-}
-
-export enum Game {
-  CSGO,
-  StarCraft2
-}
-
-export enum TournamentApplicationState {
-  Pending,
-  Confirmed
 }
 
 export const EMPTY_NEW_APPLICATION: TournamentApplication = { game: null, email: '' };

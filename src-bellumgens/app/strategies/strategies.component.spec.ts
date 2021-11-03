@@ -88,7 +88,8 @@ describe('StrategiesComponent', () => {
                 params: new Observable()
               }
             },
-            data: new Observable()
+            data: new Observable(),
+            url: new Observable()
           }
         }
       ]

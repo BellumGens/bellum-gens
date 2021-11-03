@@ -1,3 +1,15 @@
+export enum CSGOMap {
+  Cache,
+  Dust2,
+  Inferno,
+  Mirage,
+  Nuke,
+  Overpass,
+  Train,
+  Vertigo,
+  Cobblestone
+}
+
 export interface CSGOMapPool {
   map: CSGOMap;
   isPlayed: boolean;
@@ -11,18 +23,6 @@ export interface CSGOActiveDutyDescriptor {
   image: string;
   active: boolean;
   radar?: string [];
-}
-
-export enum CSGOMap {
-  Cache,
-  Dust2,
-  Inferno,
-  Mirage,
-  Nuke,
-  Overpass,
-  Train,
-  Vertigo,
-  Cobblestone
 }
 
 export const AllCSGOMaps: CSGOMapPool [] = [
