@@ -4,7 +4,6 @@
   "license": "MIT",
   "scripts": {
     "ng": "ng",
-    "postinstall": "ngcc",
     "start": "concurrently --kill-others \"npm run start-bellumgens\" \"npm run start-ebleague\"",
     "start-bellumgens": "ng serve -o",
     "start-ebleague": "ng serve eb-league --port=4201 -o",
