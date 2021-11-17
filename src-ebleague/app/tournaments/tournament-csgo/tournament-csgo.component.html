@@ -59,7 +59,7 @@
                         [roundShape]="true">
             </igx-avatar>
             <a [href]="environment.bellumgens + '/team/' + cell.row.rowData.team1.customUrl"
-               [class]="cell.row.rowData.winnerTeamId === cell.row.rowData.team1.teamId ? 'highlight grid-team-name' : 'grid-team-name'">
+               [class]="cell.row.rowData.winnerTeamId === cell.row.rowData.team1.teamId ? 'highlight grid-team-name color-success' : 'grid-team-name'">
               {{ cell.row.rowData.team1.teamName }}
             </a>
 
@@ -71,7 +71,7 @@
                         [roundShape]="true">
             </igx-avatar>
             <a [href]="environment.bellumgens + '/team/' + cell.row.rowData.team2.customUrl"
-               [class]="cell.row.rowData.winnerTeamId === cell.row.rowData.team2.teamId ? 'highlight grid-team-name' : 'grid-team-name'">
+               [class]="cell.row.rowData.winnerTeamId === cell.row.rowData.team2.teamId ? 'highlight grid-team-name color-success' : 'grid-team-name'">
               {{ cell.row.rowData.team2.teamName }}
             </a>
           </div>
