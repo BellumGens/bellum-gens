@@ -8,7 +8,7 @@ import { LoginService } from '../../../../src-common/services/login.service';
 @Component({
   selector: 'app-team-search',
   templateUrl: './team-search.component.html',
-  styleUrls: ['./team-search.component.css']
+  styleUrls: ['./team-search.component.scss']
 })
 export class TeamSearchComponent {
   public searchModel: TeamSearch = TEAM_SEARCH;
