@@ -1,4 +1,4 @@
-$app-palette: igx-palette($primary, $secondary);
+$app-palette: igx-palette($primary: $primary, $secondary: $secondary, $grays: $grays);
 
 @include igx-palette-vars($app-palette);
 

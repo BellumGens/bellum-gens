@@ -73,10 +73,8 @@ $list-theme: igx-list-theme($background: transparent,
 /* END List */
 
 /* Nav Drawer */
-$navdrawer-theme: igx-navdrawer-theme(igx-palette($background, $secondary),
-                                      $background: $background-gradient,
-                                      $item-text-color: $primary,
-                                      $item-icon-color: $primary,
+$navdrawer-theme: igx-navdrawer-theme($background: $background-gradient,
+                                      $item-hover-background: rgba(0, 0, 0, 0.11),
                                       $item-active-text-color: $secondary,
                                       $item-active-icon-color: $secondary,
                                       $item-hover-text-color: $secondary,
@@ -104,7 +102,10 @@ $radio-theme: igx-radio-theme($label-color: white, $empty-color: $secondary);
 /* END Radio */
 
 /* Tabs */
-$tabs-theme: igx-tabs-theme($item-background: $background, $indicator-color: $secondary);
+$tabs-theme: igx-tabs-theme($item-hover-background: rgba(0, 0, 0, 0.11),
+                            $item-active-background: rgba(0, 0, 0, 0.11),
+                            $item-background: $background,
+                            $indicator-color: $secondary);
 @include igx-css-vars($tabs-theme);
 /* END Tabs */
 
@@ -138,7 +139,7 @@ $snackbar-theme: igx-snackbar-theme($background: $banner-background, $border-rad
 /* END Button */
 
 /* Progress Circular */
-$circular-progress-bar-theme: igx-progress-circular-theme($progress-circle-color: $secondary);
+$circular-progress-bar-theme: igx-progress-circular-theme($base-circle-color: rgba(0, 0, 0, 0.14), $progress-circle-color: $secondary);
 @include igx-css-vars($circular-progress-bar-theme);
 /* END Progress Circular */
 
