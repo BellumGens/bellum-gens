@@ -1,5 +1,4 @@
-@import "~@infragistics/igniteui-angular/lib/core/styles/themes/index";
-@import "../../../style-vars.scss";
+@use "../../../variables" as *;
 
 :host ::ng-deep {
   .group-columns {
