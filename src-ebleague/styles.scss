@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 /* See: https://www.infragistics.com/products/ignite-ui-angular/angular/components/themes.html */
-@import "~@infragistics/igniteui-angular/lib/core/styles/themes/index";
+@use "variables" as *;
 @import "~minireset.css/minireset";
 
 @include igx-core();
@@ -9,7 +9,6 @@
   $font-family: "'Poppins', sans-serif"
 );
 
-@import "style-vars.scss";
 @import "../src-common/styles.scss";
 
 $include: (igx-avatar,
