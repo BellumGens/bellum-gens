@@ -15,20 +15,20 @@
     <igx-column i18n-header header="Match" width="70%">
       <ng-template igxCell let-cell="cell">
         <igx-avatar igxListThumbnail
-                    [src]="cell.row.rowData.team1.teamAvatar"
-                    [initials]="cell.row.rowData.team1.teamName"
+                    [src]="cell.row.data.team1.teamAvatar"
+                    [initials]="cell.row.data.team1.teamName"
                     [roundShape]="true">
         </igx-avatar>
-        <span [class]="cell.row.rowData.winnerTeamId === cell.row.rowData.team1.teamId ? 'highlight grid-team-name' : 'grid-team-name'">{{ cell.row.rowData.team1.teamName }}</span>
+        <span [class]="cell.row.data.winnerTeamId === cell.row.data.team1.teamId ? 'highlight grid-team-name' : 'grid-team-name'">{{ cell.row.data.team1.teamName }}</span>
 
         <span class="grid-vs-divider">vs.</span>
 
         <igx-avatar igxListThumbnail
-                    [src]="cell.row.rowData.team2.teamAvatar"
-                    [initials]="cell.row.rowData.team2.teamName"
+                    [src]="cell.row.data.team2.teamAvatar"
+                    [initials]="cell.row.data.team2.teamName"
                     [roundShape]="true">
         </igx-avatar>
-        <span [class]="cell.row.rowData.winnerTeamId === cell.row.rowData.team2.teamId ? 'highlight grid-team-name' : 'grid-team-name'">{{ cell.row.rowData.team2.teamName }}</span>
+        <span [class]="cell.row.data.winnerTeamId === cell.row.data.team2.teamId ? 'highlight grid-team-name' : 'grid-team-name'">{{ cell.row.data.team2.teamName }}</span>
       </ng-template>
     </igx-column>
 
