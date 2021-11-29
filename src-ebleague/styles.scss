@@ -53,6 +53,7 @@ $navbar-theme: igx-navbar-theme(igx-palette($background, $secondary),
 /* Nav Drawer */
 $navdrawer-theme: igx-navdrawer-theme($background: $background-gradient,
                                       $item-hover-background: rgba(0, 0, 0, 0.11),
+                                      $item-active-background: rgba(0, 0, 0, 0.11),
                                       $item-active-text-color: $secondary,
                                       $item-active-icon-color: $secondary,
                                       $item-hover-text-color: $secondary,
@@ -70,8 +71,6 @@ $card-theme: igx-card-theme($background: $background-gradient-lighter,
 
 /* List */
 $list-theme: igx-list-theme($background: transparent,
-                            $header-background: transparent,
-                            $item-background: transparent,
                             $item-background-active: rgba(0, 0, 0, 0.11));
 @include igx-css-vars($list-theme);
 /* END List */
