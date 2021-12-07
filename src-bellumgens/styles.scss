@@ -68,7 +68,6 @@ $navdrawer-theme: igx-navdrawer-theme($background: $background-gradient,
 
 /* Card */
 $card-theme: igx-card-theme($background: $background-gradient-lighter,
-                            $header-text-color: rgba(255, 255, 255, 0.87),
                             $resting-shadow: 0px 15px 30px 0px rgba(0,0,0,0.4),
                             $hover-shadow: 0px 15px 30px 0px rgba(0,0,0,0.7));
 @include igx-css-vars($card-theme);
