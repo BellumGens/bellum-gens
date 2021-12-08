@@ -149,11 +149,6 @@ $time-picker-theme: igx-time-picker-theme($background-color: $background);
 @include igx-css-vars($time-picker-theme);
 /* END Time Picker */
 
-/* Overlay */
-$overlay-theme: igx-overlay-theme($background-color: rgba(35, 51, 132, 0.7));
-@include igx-css-vars($overlay-theme);
-/* END Overlay */
-
 @import "../src-common/styles-overrides.scss";
 
 .list-container {

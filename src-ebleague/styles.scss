@@ -123,11 +123,6 @@ $circular-progress-bar-theme: igx-progress-circular-theme($base-circle-color: rg
 @include igx-css-vars($circular-progress-bar-theme);
 /* END Progress Circular */
 
-/* Overlay */
-$overlay-theme: igx-overlay-theme($background-color: rgba(35, 51, 132, 0.7));
-@include igx-css-vars($overlay-theme);
-/* END Overlay */
-
 /* Calendar */
 $calendar-theme: igx-calendar-theme($content-background: $background,
                                     $picker-background-color: $background);

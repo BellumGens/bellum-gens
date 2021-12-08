@@ -220,7 +220,7 @@
     <label igxLabel i18n>Group</label>
     <igx-select-item *ngFor="let group of groups"
                       [value]="group.id">{{ group.name }}</igx-select-item>
-    <igx-hint>*Ако мачът е от групова фаза</igx-hint>
+    <igx-hint i18n>*If the match is during the group stage</igx-hint>
   </igx-select>
 
   <igx-select [(ngModel)]="matchInEdit.team1Id" required>
