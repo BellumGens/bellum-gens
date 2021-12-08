@@ -81,9 +81,6 @@ $list-theme: igx-list-theme($background: transparent,
 
 /* Input Group */
 $input-group-theme: igx-input-group-theme($search-background: transparent,
-                                          $idle-text-color: rgba(255, 255, 255, 0.75),
-                                          $filled-text-color: white,
-                                          $focused-text-color: white,
                                           $label-floated-background: $background);
 @include igx-css-vars($input-group-theme);
 /* END Input Group */
