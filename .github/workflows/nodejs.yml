@@ -36,4 +36,4 @@ jobs:
       uses: cypress-io/github-action@v2
       with:
         build: npm run build:ssr
-        start: serve:ssr:bellumgens
+        start: npm run serve:ssr:bellumgens
