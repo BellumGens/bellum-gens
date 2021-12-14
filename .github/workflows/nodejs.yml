@@ -30,7 +30,6 @@ jobs:
     - run: echo "//packages.infragistics.com/npm/js-licensed/:always-auth=true" >> ~/.npmrc
     - run: npm ci
     - run: npm run lint
-    - run: npm run build:ssr
     - run: npm run test:prod
     - name: Cypress run
       uses: cypress-io/github-action@v2
