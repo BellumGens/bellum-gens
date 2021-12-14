@@ -31,4 +31,5 @@ jobs:
     - run: npm ci
     - run: npm run lint
     - run: npm run test:prod
+    - run: npm run cypress:run
     - run: npm run build:ssr
