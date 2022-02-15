@@ -36,23 +36,23 @@
     <igx-column field="teams" i18n-header header="Match" [filterable]="false">
       <div *igxCell="let cell = cell">
         <igx-avatar igxListThumbnail
-                    [src]="cell.row.rowData.player1.avatarMedium"
-                    [initials]="cell.row.rowData.player1.username"
+                    [src]="cell.row.data.player1.avatarMedium"
+                    [initials]="cell.row.data.player1.username"
                     [roundShape]="true">
         </igx-avatar>
-        <span [class]="cell.row.rowData.player1Points > cell.row.rowData.player2Points ? 'highlight grid-team-name' : 'grid-team-name'">
-          {{ cell.row.rowData.player1.battleNetId }}
+        <span [class]="cell.row.data.player1Points > cell.row.data.player2Points ? 'highlight grid-team-name' : 'grid-team-name'">
+          {{ cell.row.data.player1.battleNetId }}
         </span>
 
         <span class="grid-vs-divider">vs.</span>
 
         <igx-avatar
-                    [src]="cell.row.rowData.player2.avatarMedium"
-                    [initials]="cell.row.rowData.player2.username"
+                    [src]="cell.row.data.player2.avatarMedium"
+                    [initials]="cell.row.data.player2.username"
                     [roundShape]="true">
         </igx-avatar>
-        <span [class]="cell.row.rowData.player2Points > cell.row.rowData.player1Points ? 'highlight grid-team-name' : 'grid-team-name'">
-          {{ cell.row.rowData.player2.battleNetId }}
+        <span [class]="cell.row.data.player2Points > cell.row.data.player1Points ? 'highlight grid-team-name' : 'grid-team-name'">
+          {{ cell.row.data.player2.battleNetId }}
         </span>
       </div>
     </igx-column>
@@ -79,9 +79,9 @@
 
     <igx-column field="actions" width="160px" header=" " [filterable]="false">
       <div class="match-actions" *igxCell="let cell = cell">
-        <igx-icon class="navigatable" title="Добави резултати" (click)="editMatch(cell.row.rowData, newMatchMapDialog)">add</igx-icon>
-        <igx-icon class="navigatable" (click)="editMatch(cell.row.rowData, newMatchDialog)">edit</igx-icon>
-        <igx-icon class="navigatable" (click)="confirmMatch.open(cell.row.rowData)">delete_forever</igx-icon>
+        <igx-icon class="navigatable" title="Добави резултати" (click)="editMatch(cell.row.data, newMatchMapDialog)">add</igx-icon>
+        <igx-icon class="navigatable" (click)="editMatch(cell.row.data, newMatchDialog)">edit</igx-icon>
+        <igx-icon class="navigatable" (click)="confirmMatch.open(cell.row.data)">delete_forever</igx-icon>
       </div>
     </igx-column>
 

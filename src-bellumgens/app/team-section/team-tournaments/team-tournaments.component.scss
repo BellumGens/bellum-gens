@@ -1,5 +1,4 @@
-@import "~@infragistics/igniteui-angular/lib/core/styles/themes/index";
-@import "../../../style-vars.scss";
+@use "../../../variables" as *;
 
 :host ::ng-deep {
   .group-columns {
@@ -8,6 +7,8 @@
     grid-row-gap: 16px;
     padding: 48px 0;
   }
+
+  @include igx-core();
 
   @include igx-grid(igx-grid-theme($content-background: $banner-background, $header-background: $background));
 

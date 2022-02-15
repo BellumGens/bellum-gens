@@ -36,25 +36,25 @@
     <igx-column field="teams" i18n-header header="Match" [filterable]="false">
       <div *igxCell="let cell = cell">
         <igx-avatar igxListThumbnail
-                    [src]="cell.row.rowData.team1.teamAvatar"
-                    [initials]="cell.row.rowData.team1.teamName"
+                    [src]="cell.row.data.team1.teamAvatar"
+                    [initials]="cell.row.data.team1.teamName"
                     [roundShape]="true">
         </igx-avatar>
-        <a [href]="environment.bellumgens + '/team/' + cell.row.rowData.team1.customUrl"
-            [class]="cell.row.rowData.winnerTeamId === cell.row.rowData.team1.teamId ? 'highlight grid-team-name' : 'grid-team-name'">
-          {{ cell.row.rowData.team1.teamName }}
+        <a [href]="environment.bellumgens + '/team/' + cell.row.data.team1.customUrl"
+            [class]="cell.row.data.winnerTeamId === cell.row.data.team1.teamId ? 'highlight grid-team-name' : 'grid-team-name'">
+          {{ cell.row.data.team1.teamName }}
         </a>
 
         <span class="grid-vs-divider">vs.</span>
 
         <igx-avatar igxListThumbnail
-                    [src]="cell.row.rowData.team2.teamAvatar"
-                    [initials]="cell.row.rowData.team2.teamName"
+                    [src]="cell.row.data.team2.teamAvatar"
+                    [initials]="cell.row.data.team2.teamName"
                     [roundShape]="true">
         </igx-avatar>
-        <a [href]="environment.bellumgens + '/team/' + cell.row.rowData.team2.customUrl"
-            [class]="cell.row.rowData.winnerTeamId === cell.row.rowData.team2.teamId ? 'highlight grid-team-name' : 'grid-team-name'">
-          {{ cell.row.rowData.team2.teamName }}
+        <a [href]="environment.bellumgens + '/team/' + cell.row.data.team2.customUrl"
+            [class]="cell.row.data.winnerTeamId === cell.row.data.team2.teamId ? 'highlight grid-team-name' : 'grid-team-name'">
+          {{ cell.row.data.team2.teamName }}
         </a>
       </div>
     </igx-column>
@@ -81,9 +81,9 @@
 
     <igx-column field="actions" width="160px" header=" " [filterable]="false">
       <div class="match-actions" *igxCell="let cell = cell">
-        <igx-icon class="navigatable" title="Добави резултати" (click)="editMatch(cell.row.rowData, newMatchMapDialog)">add</igx-icon>
-        <igx-icon class="navigatable" (click)="editMatch(cell.row.rowData, newMatchDialog)">edit</igx-icon>
-        <igx-icon class="navigatable" (click)="confirmMatch.open(cell.row.rowData)">delete_forever</igx-icon>
+        <igx-icon class="navigatable" title="Добави резултати" (click)="editMatch(cell.row.data, newMatchMapDialog)">add</igx-icon>
+        <igx-icon class="navigatable" (click)="editMatch(cell.row.data, newMatchDialog)">edit</igx-icon>
+        <igx-icon class="navigatable" (click)="confirmMatch.open(cell.row.data)">delete_forever</igx-icon>
       </div>
     </igx-column>
 
@@ -220,7 +220,7 @@
     <label igxLabel i18n>Group</label>
     <igx-select-item *ngFor="let group of groups"
                       [value]="group.id">{{ group.name }}</igx-select-item>
-    <igx-hint>*Ако мачът е от групова фаза</igx-hint>
+    <igx-hint i18n>*If the match is during the group stage</igx-hint>
   </igx-select>
 
   <igx-select [(ngModel)]="matchInEdit.team1Id" required>

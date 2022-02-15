@@ -1,7 +1,3 @@
-$app-palette: igx-palette($primary, $secondary);
-
-@include igx-palette-vars($app-palette);
-
 html, body {
   height: 100%;
   min-width: 380px;
@@ -74,7 +70,7 @@ html, body {
 
 a {
   text-decoration: none;
-  color: igx-color($app-palette, secondary);
+  color: $secondary;
 }
 
 .highlight {

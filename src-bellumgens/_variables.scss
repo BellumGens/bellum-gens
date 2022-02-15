@@ -1,0 +1,13 @@
+@use '@infragistics/igniteui-angular/theming' as *;
+@forward '@infragistics/igniteui-angular/theming';
+
+$primary: white;
+$secondary: #FF0A3A;
+$grays: white;
+$background: #192053;
+$banner-background: #2C3D93;
+$background-gradient: linear-gradient(to right, $background, #04081D);
+$background-gradient-lighter: linear-gradient(135deg, #2f3978 0%, #10193f 100%);
+
+$app-palette: igx-palette($primary: $primary, $secondary: $secondary, $grays: $grays);
+@include igx-palette-vars($app-palette);

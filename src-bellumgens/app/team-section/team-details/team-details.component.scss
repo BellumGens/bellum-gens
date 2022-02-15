@@ -1,7 +1,7 @@
 @import "~@infragistics/igniteui-angular/lib/core/styles/themes/index";
 
 :host {
-  /* Avatar */
+  // Avatar
   .empty-role {
     $empty-role-avatar: igx-avatar-theme($color: #000, $size: 88px);
     @include igx-css-vars($empty-role-avatar);
@@ -14,7 +14,7 @@
     @include igx-css-vars($empty-role-active-avatar);
     box-shadow: inset 0 0 0 2px var(--my-color);
   }
-  /* END Avatar */
+  // END Avatar
 
   .user-in-role {
     position: relative;

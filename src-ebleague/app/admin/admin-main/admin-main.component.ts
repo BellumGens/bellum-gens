@@ -71,12 +71,12 @@ export class AdminMainComponent {
   }
 
   public deleteRegistration(rowContext: RowType) {
-    rowContext.grid.transactions.commit(rowContext.grid.data, rowContext.rowID);
-    this.apiService.deleteRegistration(rowContext.rowID).subscribe();
+    rowContext.grid.transactions.commit(rowContext.grid.data, rowContext.key);
+    this.apiService.deleteRegistration(rowContext.key).subscribe();
   }
 
   public deleteOrder(rowContext: RowType) {
-    rowContext.grid.transactions.commit(rowContext.grid.data, rowContext.rowID);
-    this.shopService.deleteOrder(rowContext.rowID).subscribe();
+    rowContext.grid.transactions.commit(rowContext.grid.data, rowContext.key);
+    this.shopService.deleteOrder(rowContext.key).subscribe();
   }
 }

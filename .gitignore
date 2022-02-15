@@ -26,6 +26,7 @@
 !.vscode/extensions.json
 
 # misc
+/.angular/cache
 /.sass-cache
 /connect.lock
 /coverage
@@ -38,6 +39,8 @@ testem.log
 # e2e
 /e2e/*.js
 /e2e/*.map
+/cypress/videos
+/cypress/screenshots
 
 # System Files
 .DS_Store

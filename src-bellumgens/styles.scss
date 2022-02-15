@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 /* See: https://www.infragistics.com/products/ignite-ui-angular/angular/components/themes.html */
-@import "~@infragistics/igniteui-angular/lib/core/styles/themes/index";
+@use "variables" as *;
 @import "~minireset.css/minireset";
 
 @include igx-core();
@@ -9,7 +9,6 @@
   $font-family: "'Poppins', sans-serif"
 );
 
-@import "style-vars.scss";
 @import "../src-common/styles.scss";
 
 $include: (igx-avatar,
@@ -56,27 +55,10 @@ $navbar-theme: igx-navbar-theme(igx-palette($background, $secondary),
 @include igx-css-vars($navbar-theme);
 /* END Navbar */
 
-/* Card */
-$card-theme: igx-card-theme($background: $background-gradient-lighter,
-                            $header-text-color: rgba(255, 255, 255, 0.87),
-                            $resting-shadow: 0px 15px 30px 0px rgba(0,0,0,0.4),
-                            $hover-shadow: 0px 15px 30px 0px rgba(0,0,0,0.7));
-@include igx-css-vars($card-theme);
-/* END Card */
-
-/* List */
-$list-theme: igx-list-theme($background: transparent,
-                            $header-background: transparent,
-                            $item-background: transparent,
-                            $item-background-active: rgba(0, 0, 0, 0.11));
-@include igx-css-vars($list-theme);
-/* END List */
-
 /* Nav Drawer */
-$navdrawer-theme: igx-navdrawer-theme(igx-palette($background, $secondary),
-                                      $background: $background-gradient,
-                                      $item-text-color: $primary,
-                                      $item-icon-color: $primary,
+$navdrawer-theme: igx-navdrawer-theme($background: $background-gradient,
+                                      $item-hover-background: rgba(0, 0, 0, 0.11),
+                                      $item-active-background: rgba(0, 0, 0, 0.11),
                                       $item-active-text-color: $secondary,
                                       $item-active-icon-color: $secondary,
                                       $item-hover-text-color: $secondary,
@@ -84,11 +66,21 @@ $navdrawer-theme: igx-navdrawer-theme(igx-palette($background, $secondary),
 @include igx-css-vars($navdrawer-theme);
 /* END Nav Drawer */
 
+/* Card */
+$card-theme: igx-card-theme($background: $background-gradient-lighter,
+                            $resting-shadow: 0px 15px 30px 0px rgba(0,0,0,0.4),
+                            $hover-shadow: 0px 15px 30px 0px rgba(0,0,0,0.7));
+@include igx-css-vars($card-theme);
+/* END Card */
+
+/* List */
+$list-theme: igx-list-theme($background: transparent,
+                            $item-background-active: rgba(0, 0, 0, 0.11));
+@include igx-css-vars($list-theme);
+/* END List */
+
 /* Input Group */
 $input-group-theme: igx-input-group-theme($search-background: transparent,
-                                          $idle-text-color: rgba(255, 255, 255, 0.75),
-                                          $filled-text-color: white,
-                                          $focused-text-color: white,
                                           $label-floated-background: $background);
 @include igx-css-vars($input-group-theme);
 /* END Input Group */
@@ -104,7 +96,10 @@ $radio-theme: igx-radio-theme($label-color: white, $empty-color: $secondary);
 /* END Radio */
 
 /* Tabs */
-$tabs-theme: igx-tabs-theme($item-background: $background, $indicator-color: $secondary);
+$tabs-theme: igx-tabs-theme($item-hover-background: rgba(0, 0, 0, 0.11),
+                            $item-active-background: rgba(0, 0, 0, 0.11),
+                            $item-background: $background,
+                            $indicator-color: $secondary);
 @include igx-css-vars($tabs-theme);
 /* END Tabs */
 
@@ -138,7 +133,7 @@ $snackbar-theme: igx-snackbar-theme($background: $banner-background, $border-rad
 /* END Button */
 
 /* Progress Circular */
-$circular-progress-bar-theme: igx-progress-circular-theme($progress-circle-color: $secondary);
+$circular-progress-bar-theme: igx-progress-circular-theme($base-circle-color: rgba(0, 0, 0, 0.14), $progress-circle-color: $secondary);
 @include igx-css-vars($circular-progress-bar-theme);
 /* END Progress Circular */
 
@@ -153,11 +148,6 @@ $expansion-panel-theme: igx-expansion-panel-theme($header-background: $backgroun
 $time-picker-theme: igx-time-picker-theme($background-color: $background);
 @include igx-css-vars($time-picker-theme);
 /* END Time Picker */
-
-/* Overlay */
-$overlay-theme: igx-overlay-theme($background-color: rgba(35, 51, 132, 0.7));
-@include igx-css-vars($overlay-theme);
-/* END Overlay */
 
 @import "../src-common/styles-overrides.scss";
 
@@ -188,10 +178,12 @@ $overlay-theme: igx-overlay-theme($background-color: rgba(35, 51, 132, 0.7));
   margin: 0 4px;
 }
 
+.igx-radio-group {
+  display: flex;
+}
+
 .search-role-group {
   min-height: 48px;
-  align-content: center;
-  display: flex;
   flex-wrap: wrap;
 }
 

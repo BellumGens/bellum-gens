@@ -9,7 +9,7 @@ import { CSGOTeam } from '../../../../src-common/models/csgoteam';
 @Component({
   selector: 'app-player-search',
   templateUrl: './player-search.component.html',
-  styleUrls: ['./player-search.component.css']
+  styleUrls: ['./player-search.component.scss']
 })
 export class PlayerSearchComponent {
   public searchModel: PlayerSearch = PLAYER_SEARCH;

@@ -1,6 +1,6 @@
 <igx-list *ngIf="authUser">
   <igx-list-item [isHeader]="true">
-    <span igxListLine i18n>Notifications for {{ authUser.username }}</span>
+    <span i18n>Notifications for {{ authUser.username }}</span>
   </igx-list-item>
   <igx-list-item *ngIf="!notifications?.length">
     <span igxListLine i18n>No new notifications.</span>
@@ -8,7 +8,7 @@
   <igx-list-item *ngFor="let notification of notifications | sortNotifications:pipeTrigger" [class]="notificationClass[notification.state]">
     <igx-avatar igxListThumbnail [src]="notification.teamInfo.teamAvatar" [initials]="notification.teamInfo.teamName" [roundShape]="true">
     </igx-avatar>
-    <h3 igxListLineSubTitle i18n>You have been invited to join <a [routerLink]="['/team', notification.teamInfo.customUrl]">{{ notification.teamInfo.teamName }}</a></h3>
+    <h3 igxListLineTitle i18n>You have been invited to join <a [routerLink]="['/team', notification.teamInfo.customUrl]">{{ notification.teamInfo.teamName }}</a></h3>
     <span igxListLineSubTitle>{{ notification.sent | date }}</span>
     <div igxListAction *ngIf="notification.state | disabledNotifications:true else read">
       <button igxButton="flat" igxRipple [disabled]="actionInProgress" (click)="acceptInvitation(notification)" i18n>{{actionInProgress ? 'Accepting...' : 'Accept'}}</button>

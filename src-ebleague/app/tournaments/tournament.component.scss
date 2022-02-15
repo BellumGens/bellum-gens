@@ -1,7 +1,7 @@
-@import "~@infragistics/igniteui-angular/lib/core/styles/themes/index";
-@import "../../style-vars.scss";
+@use "../../variables" as *;
 
 :host ::ng-deep {
+  @include igx-core();
   @include igx-grid(igx-grid-theme($content-background: $banner-background,
                                    $ghost-header-background: $banner-background,
                                    $header-background: $background));

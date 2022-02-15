@@ -76,7 +76,7 @@
       </igx-column>
       <igx-column field="name" i18n-header header="Full name">
         <span *igxCell="let cell = cell">
-          {{ cell.row.rowData.firstName }} {{ cell.row.rowData.lastName }}
+          {{ cell.row.data.firstName }} {{ cell.row.data.lastName }}
         </span>
       </igx-column>
       <igx-column field="phoneNumber" i18n-header header="Phone #">
@@ -86,7 +86,7 @@
       </igx-column>
       <igx-column field="address" i18n-header header="Full address">
         <span *igxCell="let cell = cell">
-          {{ cell.row.rowData.city }}, {{ cell.row.rowData.streetAddress }}
+          {{ cell.row.data.city }}, {{ cell.row.data.streetAddress }}
         </span>
       </igx-column>
       <igx-column field="promoCode" i18n-header header="Promo code">
