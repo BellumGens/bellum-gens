@@ -80,7 +80,7 @@
     "cypress": "latest",
     "eslint": "^8.2.0",
     "eslint-plugin-import": "2.25.2",
-    "eslint-plugin-jsdoc": "30.7.6",
+    "eslint-plugin-jsdoc": "37.9.2",
     "eslint-plugin-prefer-arrow": "1.2.2",
     "igniteui-cli": "~9.0.6",
     "jasmine-core": "~3.8.0",
