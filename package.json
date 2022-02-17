@@ -7,7 +7,7 @@
     "start": "concurrently --kill-others \"npm run start-bellumgens\" \"npm run start-ebleague\"",
     "start-bellumgens": "ng serve -o",
     "start-ebleague": "ng serve eb-league --port=4201 -o",
-    "build": "ng build bellum-gens --configuration production && ng build eb-league --configuration production",
+    "build": "ng build common --configuration production && ng build bellum-gens --configuration production && ng build eb-league --configuration production",
     "build:app-shell": "ng run bellum-gens:app-shell:production",
     "test": "ng test",
     "test:prod": "ng test -- --no-watch --no-progress --code-coverage --browsers=ChromeHeadlessCI",
@@ -24,8 +24,8 @@
     "build:client-and-server-bundles": "npm run build && ng run bellum-gens:server:production && ng run eb-league:server:production",
     "build:prerender": "npm run build:ssr && node dist/prerender",
     "i18n": "npm run i18n:bellumgens && npm run i18n:ebleague",
-    "i18n:bellumgens": "ng extract-i18n bellum-gens --out-file src-bellumgens/locale/messages.en.xlf",
-    "i18n:ebleague": "ng extract-i18n eb-league --out-file src-ebleague/locale/messages.en.xlf",
+    "i18n:bellumgens": "ng extract-i18n bellum-gens --out-file projects/bellumgens/src/locale/messages.en.xlf",
+    "i18n:ebleague": "ng extract-i18n eb-league --out-file projects/ebleague/src/locale/messages.en.xlf",
     "cypress:open": "concurrently \"ng serve\" \"cypress open\"",
     "cypress:run": "concurrently \"ng serve\" \"cypress run\""
   },
@@ -89,6 +89,7 @@
     "karma-coverage": "^2.1.0",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "^1.7.0",
+    "ng-packagr": "^13.2.1",
     "ts-loader": "^5.2.0",
     "tslint": "~6.1.0",
     "typescript": "4.4.4"

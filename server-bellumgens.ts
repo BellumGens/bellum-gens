@@ -12,9 +12,9 @@ import * as express from 'express';
 import * as xmlhttprequest from 'xmlhttprequest';
 import { join } from 'path';
 
-import { AppServerModule } from './src-bellumgens/main.server';
+import { AppServerModule } from './projects/bellumgens/src/main.server';
 import { existsSync } from 'fs';
-import { environment } from './src-common/environments/environment';
+import { environment } from './projects/common/src/environments/environment';
 
 // HTML polyfills
 (global as any).XMLHttpRequest = xmlhttprequest.XMLHttpRequest;
@@ -86,4 +86,4 @@ if (moduleFilename === __filename || moduleFilename.includes('iisnode')) {
   run();
 }
 
-export * from './src-bellumgens/main.server';
+export * from './projects/bellumgens/src/main.server';

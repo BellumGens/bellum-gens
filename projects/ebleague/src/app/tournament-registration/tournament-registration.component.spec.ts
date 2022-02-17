@@ -1,0 +1,69 @@
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+
+import { TournamentRegistrationComponent } from './tournament-registration.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { IgxIconModule,
+  IgxDividerModule,
+  IgxInputGroupModule,
+  IgxSelectModule,
+  IgxDialogModule,
+  IgxAvatarModule,
+  IgxAutocompleteModule,
+  IgxDropDownModule,
+  IgxButtonModule,
+  IgxListModule,
+  IgxProgressBarModule,
+  IgxCheckboxModule } from '@infragistics/igniteui-angular';
+import { StartsWithPipe } from 'projects/bellumgens/src/app/pipes/starts-with.pipe';
+import { TeamNewComponent } from 'projects/bellumgens/src/app/team-section/team-new/team-new.component';
+import { GroupsFilterPipe } from 'projects/bellumgens/src/app/pipes/groups-filter.pipe';
+
+describe('TournamentRegistrationComponent', () => {
+  let component: TournamentRegistrationComponent;
+  let fixture: ComponentFixture<TournamentRegistrationComponent>;
+
+  beforeEach(waitForAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        FormsModule,
+        HttpClientTestingModule,
+        RouterTestingModule,
+        NoopAnimationsModule,
+        ServiceWorkerModule.register('', {enabled: false}),
+        IgxIconModule,
+        IgxDividerModule,
+        IgxInputGroupModule,
+        IgxSelectModule,
+        IgxDialogModule,
+        IgxAvatarModule,
+        IgxAutocompleteModule,
+        IgxDropDownModule,
+        IgxButtonModule,
+        IgxListModule,
+        IgxProgressBarModule,
+        IgxCheckboxModule
+      ],
+      declarations: [
+        TournamentRegistrationComponent,
+        TeamNewComponent,
+        GroupsFilterPipe,
+        StartsWithPipe
+      ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(TournamentRegistrationComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});
