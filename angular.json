@@ -4,8 +4,8 @@
   "newProjectRoot": "projects",
   "projects": {
     "bellum-gens": {
-      "root": "",
-      "sourceRoot": "src-bellumgens",
+      "root": "projects/bellumgens",
+      "sourceRoot": "projects/bellumgens/src",
       "projectType": "application",
       "prefix": "app",
       "schematics": {
@@ -16,7 +16,7 @@
       "i18n": {
         "sourceLocale": "en",
         "locales": {
-          "bg": "src-bellumgens/locale/messages.bg.xlf"
+          "bg": "projects/bellumgens/src/locale/messages.bg.xlf"
         }
       },
       "architect": {
@@ -24,19 +24,19 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/bellumgens/browser",
-            "index": "src-bellumgens/index.html",
-            "main": "src-bellumgens/main.ts",
-            "polyfills": "src-bellumgens/polyfills.ts",
-            "tsConfig": "src-bellumgens/tsconfig.app.json",
+            "index": "projects/bellumgens/src/index.html",
+            "main": "projects/bellumgens/src/main.ts",
+            "polyfills": "projects/bellumgens/src/polyfills.ts",
+            "tsConfig": "projects/bellumgens/tsconfig.app.json",
             "assets": [
-              "src-bellumgens/favicon.ico",
-              "src-bellumgens/assets",
-              "src-bellumgens/web.config",
-              "src-bellumgens/robots.txt",
-              "src-bellumgens/manifest.json"
+              "projects/bellumgens/src/favicon.ico",
+              "projects/bellumgens/src/assets",
+              "projects/bellumgens/src/web.config",
+              "projects/bellumgens/src/robots.txt",
+              "projects/bellumgens/src/manifest.json"
             ],
             "styles": [
-              "src-bellumgens/styles.scss"
+              "projects/bellumgens/src/styles.scss"
             ],
             "scripts": [
               "./node_modules/hammerjs/hammer.min.js"
@@ -63,8 +63,8 @@
               ],
               "fileReplacements": [
                 {
-                  "replace": "src-common/environments/environment.ts",
-                  "with": "src-common/environments/environment.prod.ts"
+                  "replace": "projects/common/src/environments/environment.ts",
+                  "with": "projects/common/src/environments/environment.prod.ts"
                 }
               ],
               "localize": true,
@@ -77,7 +77,7 @@
               "buildOptimizer": true,
               "serviceWorker": true,
               "i18nMissingTranslation": "error",
-              "ngswConfigPath": "src-bellumgens/ngsw-config.json"
+              "ngswConfigPath": "projects/bellumgens/src/ngsw-config.json"
             },
             "bg": {
               "localize": [
@@ -109,20 +109,20 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src-bellumgens/test.ts",
-            "polyfills": "src-bellumgens/polyfills.ts",
-            "tsConfig": "src-bellumgens/tsconfig.spec.json",
-            "karmaConfig": "src-bellumgens/karma.conf.js",
+            "main": "projects/bellumgens/src/test.ts",
+            "polyfills": "projects/bellumgens/src/polyfills.ts",
+            "tsConfig": "projects/bellumgens/tsconfig.spec.json",
+            "karmaConfig": "projects/bellumgens/karma.conf.js",
             "styles": [
-              "src-bellumgens/styles.scss"
+              "projects/bellumgens/src/styles.scss"
             ],
             "scripts": [
               "./node_modules/hammerjs/hammer.min.js"
             ],
             "assets": [
-              "src-bellumgens/favicon.ico",
-              "src-bellumgens/assets",
-              "src-bellumgens/manifest.json"
+              "projects/bellumgens/src/favicon.ico",
+              "projects/bellumgens/src/assets",
+              "projects/bellumgens/src/manifest.json"
             ]
           }
         },
@@ -130,8 +130,8 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
-              "src-bellumgens/**/*.ts",
-              "src-bellumgens/**/*.html"
+              "projects/bellumgens/src/**/*.ts",
+              "projects/bellumgens/src/**/*.html"
             ]
           }
         },
@@ -140,7 +140,7 @@
           "options": {
             "outputPath": "dist/bellumgens/server",
             "main": "server-bellumgens.ts",
-            "tsConfig": "src-bellumgens/tsconfig.server.json",
+            "tsConfig": "projects/bellumgens/tsconfig.server.json",
             "sourceMap": true,
             "optimization": false
           },
@@ -148,8 +148,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "src-common/environments/environment.ts",
-                  "with": "src-common/environments/environment.prod.ts"
+                  "replace": "projects/common/src/environments/environment.ts",
+                  "with": "projects/common/src/environments/environment.prod.ts"
                 }
               ],
               "sourceMap": false,
@@ -266,7 +266,7 @@
     },
     "eb-league": {
       "root": "",
-      "sourceRoot": "src-ebleague",
+      "sourceRoot": "projects/ebleague/src",
       "projectType": "application",
       "prefix": "app",
       "schematics": {
@@ -277,7 +277,7 @@
       "i18n": {
         "sourceLocale": "en",
         "locales": {
-          "bg": "src-ebleague/locale/messages.bg.xlf"
+          "bg": "projects/ebleague/src/locale/messages.bg.xlf"
         }
       },
       "architect": {
@@ -285,19 +285,19 @@
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
             "outputPath": "dist/ebleague/browser",
-            "index": "src-ebleague/index.html",
-            "main": "src-ebleague/main.ts",
-            "polyfills": "src-ebleague/polyfills.ts",
-            "tsConfig": "src-ebleague/tsconfig.app.json",
+            "index": "projects/ebleague/src/index.html",
+            "main": "projects/ebleague/src/main.ts",
+            "polyfills": "projects/ebleague/src/polyfills.ts",
+            "tsConfig": "projects/ebleague/tsconfig.app.json",
             "assets": [
-              "src-ebleague/favicon.ico",
-              "src-ebleague/assets",
-              "src-ebleague/web.config",
-              "src-ebleague/robots.txt",
-              "src-ebleague/manifest.json"
+              "projects/ebleague/src/favicon.ico",
+              "projects/ebleague/src/assets",
+              "projects/ebleague/src/web.config",
+              "projects/ebleague/src/robots.txt",
+              "projects/ebleague/src/manifest.json"
             ],
             "styles": [
-              "src-ebleague/styles.scss"
+              "projects/ebleague/src/styles.scss"
             ],
             "scripts": [
               "./node_modules/hammerjs/hammer.min.js"
@@ -324,8 +324,8 @@
               ],
               "fileReplacements": [
                 {
-                  "replace": "src-common/environments/environment.ts",
-                  "with": "src-common/environments/environment.prod.ts"
+                  "replace": "projects/common/src/environments/environment.ts",
+                  "with": "projects/common/src/environments/environment.prod.ts"
                 }
               ],
               "localize": true,
@@ -338,7 +338,7 @@
               "buildOptimizer": true,
               "serviceWorker": true,
               "i18nMissingTranslation": "error",
-              "ngswConfigPath": "src-ebleague/ngsw-config.json"
+              "ngswConfigPath": "projects/ebleague/src/ngsw-config.json"
             },
             "bg": {
               "localize": [
@@ -370,20 +370,20 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src-ebleague/test.ts",
-            "polyfills": "src-ebleague/polyfills.ts",
-            "tsConfig": "src-ebleague/tsconfig.spec.json",
-            "karmaConfig": "src-ebleague/karma.conf.js",
+            "main": "projects/ebleague/src/test.ts",
+            "polyfills": "projects/ebleague/src/polyfills.ts",
+            "tsConfig": "projects/ebleague/tsconfig.spec.json",
+            "karmaConfig": "projects/ebleague/karma.conf.js",
             "styles": [
-              "src-ebleague/styles.scss"
+              "projects/ebleague/src/styles.scss"
             ],
             "scripts": [
               "./node_modules/hammerjs/hammer.min.js"
             ],
             "assets": [
-              "src-ebleague/favicon.ico",
-              "src-ebleague/assets",
-              "src-ebleague/manifest.json"
+              "projects/ebleague/src/favicon.ico",
+              "projects/ebleague/src/assets",
+              "projects/ebleague/src/manifest.json"
             ]
           }
         },
@@ -391,8 +391,8 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
-              "src-ebleague/**/*.ts",
-              "src-ebleague/**/*.html"
+              "projects/ebleague/src/**/*.ts",
+              "projects/ebleague/src/**/*.html"
             ]
           }
         },
@@ -401,7 +401,7 @@
           "options": {
             "outputPath": "dist/ebleague/server",
             "main": "server-ebleague.ts",
-            "tsConfig": "src-ebleague/tsconfig.server.json",
+            "tsConfig": "projects/ebleague/tsconfig.server.json",
             "sourceMap": true,
             "optimization": false
           },
@@ -409,8 +409,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "src-common/environments/environment.ts",
-                  "with": "src-common/environments/environment.prod.ts"
+                  "replace": "projects/common/src/environments/environment.ts",
+                  "with": "projects/common/src/environments/environment.prod.ts"
                 }
               ],
               "sourceMap": false,
@@ -478,8 +478,8 @@
       }
     },
     "common": {
-      "root": "",
-      "sourceRoot": "src-common",
+      "root": "projects/common",
+      "sourceRoot": "projects/common/src",
       "projectType": "library",
       "prefix": "bg",
       "schematics": {
@@ -488,21 +488,34 @@
         }
       },
       "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "tsConfig": "projects/common/tsconfig.lib.json",
+            "project": "projects/common/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/common/tsconfig.lib.prod.json",
+              "project": "projects/common/ng-package.prod.json"
+            }
+          }
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src-common/test.ts",
-            "polyfills": "src-common/polyfills.ts",
-            "tsConfig": "src-common/tsconfig.spec.json",
-            "karmaConfig": "src-common/karma.conf.js"
+            "main": "projects/common/src/test.ts",
+            "polyfills": "projects/common/src/polyfills.ts",
+            "tsConfig": "projects/common/tsconfig.spec.json",
+            "karmaConfig": "projects/common/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
-              "src-common/**/*.ts",
-              "src-common/**/*.html"
+              "projects/common/src/**/*.ts",
+              "projects/common/src/**/*.html"
             ]
           }
         },

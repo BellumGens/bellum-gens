@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.app.json",
+  "compilerOptions": {
+    "outDir": "../../out-tsc/app-server-bellumgens",
+    "baseUrl": ".",
+    "target": "es2016"
+},
+  "angularCompilerOptions": {
+    "entryModule": "app/app.server.module#AppServerModule"
+  },
+  "files": [
+    "src/main.server.ts",
+    "../../server-ebleague.ts"
+  ]
+}

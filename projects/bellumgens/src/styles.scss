@@ -1,0 +1,227 @@
+/* You can add global styles to this file, and also import other style files */
+/* See: https://www.infragistics.com/products/ignite-ui-angular/angular/components/themes.html */
+@use "variables" as *;
+@import "~minireset.css/minireset";
+
+@include igx-core();
+
+@include igx-typography(
+  $font-family: "'Poppins', sans-serif"
+);
+
+@import "../../common/src/styles.scss";
+
+$include: (igx-avatar,
+           igx-navbar,
+           igx-list,
+           igx-ripple,
+           igx-icon,
+           igx-overlay,
+           igx-button,
+           igx-button-group,
+           igx-dialog,
+           igx-input-group,
+           igx-drop-down,
+           igx-badge,
+           igx-card,
+           igx-chip,
+           igx-time-picker,
+           igx-checkbox,
+           igx-tabs,
+           igx-expansion-panel,
+           igx-radio,
+           igx-snackbar,
+           igx-circular-bar,
+           igx-linear-bar,
+           igx-slider,
+           igx-switch,
+           igx-divider,
+           igx-carousel,
+           igx-nav-drawer,
+           igx-banner);
+
+@include igx-dark-theme(
+  $palette: $app-palette,
+  $exclude: map-keys(map-remove($components, $include...),)
+);
+
+/* Navbar */
+$navbar-theme: igx-navbar-theme(igx-palette($background, $secondary),
+                                $background: $background-gradient,
+                                $text-color: white,
+                                $shadow: 0px 15px 30px 0px rgba(0,0,0,0.4),
+                                $idle-icon-color: white,
+                                $hover-icon-color: $secondary);
+@include igx-css-vars($navbar-theme);
+/* END Navbar */
+
+/* Nav Drawer */
+$navdrawer-theme: igx-navdrawer-theme($background: $background-gradient,
+                                      $item-hover-background: rgba(0, 0, 0, 0.11),
+                                      $item-active-background: rgba(0, 0, 0, 0.11),
+                                      $item-active-text-color: $secondary,
+                                      $item-active-icon-color: $secondary,
+                                      $item-hover-text-color: $secondary,
+                                      $item-hover-icon-color: $secondary);
+@include igx-css-vars($navdrawer-theme);
+/* END Nav Drawer */
+
+/* Card */
+$card-theme: igx-card-theme($background: $background-gradient-lighter,
+                            $resting-shadow: 0px 15px 30px 0px rgba(0,0,0,0.4),
+                            $hover-shadow: 0px 15px 30px 0px rgba(0,0,0,0.7));
+@include igx-css-vars($card-theme);
+/* END Card */
+
+/* List */
+$list-theme: igx-list-theme($background: transparent,
+                            $item-background-active: rgba(0, 0, 0, 0.11));
+@include igx-css-vars($list-theme);
+/* END List */
+
+/* Input Group */
+$input-group-theme: igx-input-group-theme($search-background: transparent,
+                                          $label-floated-background: $background);
+@include igx-css-vars($input-group-theme);
+/* END Input Group */
+
+/* Banner */
+$banner-theme: igx-banner-theme($banner-background: $banner-background);
+@include igx-css-vars($banner-theme);
+/* END Banner */
+
+/* Radio */
+$radio-theme: igx-radio-theme($label-color: white, $empty-color: $secondary);
+@include igx-css-vars($radio-theme);
+/* END Radio */
+
+/* Tabs */
+$tabs-theme: igx-tabs-theme($item-hover-background: rgba(0, 0, 0, 0.11),
+                            $item-active-background: rgba(0, 0, 0, 0.11),
+                            $item-background: $background,
+                            $indicator-color: $secondary);
+@include igx-css-vars($tabs-theme);
+/* END Tabs */
+
+/* Drop Down */
+$drop-down-theme: igx-drop-down-theme($background-color: $background);
+@include igx-css-vars($drop-down-theme);
+/* END Drop Down */
+
+/* Dialog */
+$dialog-theme: igx-dialog-theme($background: $background);
+@include igx-css-vars($dialog-theme);
+/* END Dialog */
+
+/* Snackbar */
+$snackbar-theme: igx-snackbar-theme($background: $banner-background, $border-radius: 24px);
+@include igx-css-vars($snackbar-theme);
+/* END Snackbar */
+
+/* Button */
+.strategy-actions {
+  display: flex;
+  align-items: center;
+  $button-theme: igx-button-theme($resting-shadow: none,
+                                  $hover-shadow: none,
+                                  $focus-shadow: none,
+                                  $foreground: $primary,
+                                  $hover-foreground: $secondary,
+                                  $background: transparent);
+  @include igx-css-vars($button-theme);
+}
+/* END Button */
+
+/* Progress Circular */
+$circular-progress-bar-theme: igx-progress-circular-theme($base-circle-color: rgba(0, 0, 0, 0.14), $progress-circle-color: $secondary);
+@include igx-css-vars($circular-progress-bar-theme);
+/* END Progress Circular */
+
+/* Expansion Panel */
+$expansion-panel-theme: igx-expansion-panel-theme($header-background: $background,
+                                                  $header-focus-background: $background,
+                                                  $body-background: $background);
+@include igx-css-vars($expansion-panel-theme);
+/* END Expansion Panel */
+
+/* Time Picker */
+$time-picker-theme: igx-time-picker-theme($background-color: $background);
+@include igx-css-vars($time-picker-theme);
+/* END Time Picker */
+
+@import "../../common/src/styles-overrides.scss";
+
+.list-container {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 320px;
+  + .list-container {
+    margin-left: 16px;
+  }
+}
+
+.country-badge-small {
+  position: absolute;
+  top: 12px;
+  left: 42px;
+  width: 16px;
+  height: 16px;
+  min-width: 16px;
+}
+
+.igx-chip {
+  margin: 4px 4px 4px 0;
+}
+
+/* SEARCH */
+.search-role {
+  margin: 0 4px;
+}
+
+.igx-radio-group {
+  display: flex;
+}
+
+.search-role-group {
+  min-height: 48px;
+  flex-wrap: wrap;
+}
+
+.form-row {
+  display: flex;
+  flex: 1 1 100%;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  padding: 8px;
+}
+
+.search-button {
+  margin: auto;
+  display: flex;
+  min-width: 300px;
+}
+
+.slider-holder {
+  min-width: 216px;
+}
+
+.icon-avatar {
+  width: 24px;
+  min-width: 24px;
+  max-width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  background-color: transparent;
+}
+/* END SEARCH */
+
+@media only screen and (max-width: 550px) {
+  .slider-holder {
+    min-width: 100%;
+  }
+
+  .form-row {
+    min-height: 330px;
+    justify-content: unset;
+  }
+}
