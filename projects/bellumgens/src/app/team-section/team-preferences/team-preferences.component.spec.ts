@@ -5,12 +5,11 @@ import { IgxListModule, IgxIconModule, IgxSwitchModule, IgxInputGroupModule, Igx
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { TEAM_PLACEHOLDER } from '../../../common/src/models/csgoteam';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { BellumGensModule } from 'projects/common/src/lib/public_api';
+import { BellumGensModule, TEAM_PLACEHOLDER } from '../../../../../common/src/public_api';
 
 describe('TeamPreferencesComponent', () => {
   let component: TeamPreferencesComponent;
