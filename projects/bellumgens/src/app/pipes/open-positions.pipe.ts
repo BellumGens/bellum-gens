@@ -1,6 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { TeamMember } from '../../common/src/models/csgoteam';
-import { PlaystyleRole, RoleSlot } from '../../common/src/models/playerrole';
+import { PlaystyleRole, RoleSlot, TeamMember } from '../../../../common/src/public_api';
 
 @Pipe({
   name: 'openPositions'

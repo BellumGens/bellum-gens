@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { AdminComponent } from './admin.component';
 
@@ -10,6 +11,9 @@ describe('AdminComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         AdminComponent
+      ],
+      imports: [
+        RouterTestingModule
       ]
     })
     .compileComponents();

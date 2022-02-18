@@ -21,7 +21,7 @@ import { SafeVideoLinkPipe } from 'projects/bellumgens/src/app/pipes/safe-video-
 import { FormsModule } from '@angular/forms';
 import { HasVotedPipe } from 'projects/bellumgens/src/app/pipes/has-voted.pipe';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { BellumGensModule, ConfirmModule, LoadingModule } from 'projects/common/src/lib/public_api';
+import { BellumGensModule, ConfirmModule, LoadingModule } from 'projects/common/src/public_api';
 
 describe('StrategyDetailsComponent', () => {
   let component: StrategyDetailsComponent;

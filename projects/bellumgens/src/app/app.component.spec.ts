@@ -42,7 +42,7 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { NotificationStatePipe } from './pipes/notification-state.pipe';
 import { TeamNewComponent } from './team-section/team-new/team-new.component';
-import { BellumGensModule, LanguagesModule, LoginModule, SuccessErrorModule } from 'projects/common/src/lib/public_api';
+import { BellumGensModule, LanguagesModule, LoginModule, SuccessErrorModule } from 'projects/common/src/public_api';
 
 describe('AppComponent', () => {
   let component: AppComponent;

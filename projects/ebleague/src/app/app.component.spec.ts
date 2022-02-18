@@ -18,7 +18,7 @@ import { FormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { BellumGensModule, LanguagesModule, LoginModule, SuccessErrorModule } from 'projects/common/src/lib/public_api';
+import { BellumGensModule, LanguagesModule, LoginModule, SuccessErrorModule } from 'projects/common/src/public_api';
 
 describe('AppComponent', () => {
   let component: AppComponent;

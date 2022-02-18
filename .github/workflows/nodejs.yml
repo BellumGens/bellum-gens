@@ -31,12 +31,12 @@ jobs:
     - run: npm ci
     - run: npm run lint
     - run: npm run test:prod
-    # - name: Publish to coveralls.io
-    #   if: matrix.node-version == '16.x'
-    #   uses: coverallsapp/github-action@v1.1.2
-    #   with:
-    #     github-token: ${{ github.token }}
-    #     path-to-lcov: 'coverage/bellum-gens/lcov.info'
+    - run: cat ./coverage/{bellum-gens,common,eb-league}/lcov.info > coverage/lcov.info
+    - name: Publish to coveralls.io
+      if: matrix.node-version == '16.x'
+      uses: coverallsapp/github-action@v1.1.2
+      with:
+        github-token: ${{ github.token }}
     - name: Cypress run
       uses: cypress-io/github-action@v2
       with:

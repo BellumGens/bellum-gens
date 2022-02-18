@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { AdminSc2Component } from './admin-sc2.component';
-import { BellumGensModule, ConfirmModule } from 'projects/common/src/lib/public_api';
+import { BellumGensModule, ConfirmModule } from 'projects/common/src/public_api';
 import {
   IgxListModule,
   IgxIconModule,

@@ -16,7 +16,7 @@ import {
 } from '@infragistics/igniteui-angular';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SortByPointsPipe } from 'projects/ebleague/src/app/pipes/sort-by-points.pipe';
-import { BellumGensModule } from 'projects/common/src/lib/public_api';
+import { BellumGensModule } from 'projects/common/src/public_api';
 
 describe('TournamentCsgoComponent', () => {
   let component: TournamentCsgoComponent;

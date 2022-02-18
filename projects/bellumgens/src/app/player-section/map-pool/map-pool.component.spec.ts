@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { MapPoolComponent } from './map-pool.component';
 import { IgxCheckboxModule, IgxCardModule } from '@infragistics/igniteui-angular';
-import { BellumGensModule } from 'projects/common/src/lib/public_api';
+import { BellumGensModule } from 'projects/common/src/public_api';
 
 describe('MapPoolComponent', () => {
   let component: MapPoolComponent;

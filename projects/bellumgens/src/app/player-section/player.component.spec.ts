@@ -25,7 +25,7 @@ import { SortWeaponsPipe } from 'projects/bellumgens/src/app/pipes/sort-weapons.
 import { FormsModule } from '@angular/forms';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { AvailabilityModule, BellumGensModule, ConfirmModule, LoadingModule } from 'projects/common/src/lib/public_api';
+import { AvailabilityModule, BellumGensModule, ConfirmModule, LoadingModule } from 'projects/common/src/public_api';
 import { MapPoolComponent } from './map-pool/map-pool.component';
 import { PlayerComponent } from './player.component';
 

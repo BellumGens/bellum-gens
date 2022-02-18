@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { IgxButtonModule, IgxDropDownModule, IgxIconModule, IgxRippleModule } from '@infragistics/igniteui-angular';
+import { IgxButtonModule, IgxDropDownModule, IgxIconModule, IgxRippleModule, IgxToggleModule } from '@infragistics/igniteui-angular';
 
 import { LanguagesComponent } from './languages.component';
 
@@ -16,6 +16,7 @@ describe('LanguagesComponent', () => {
         IgxButtonModule,
         IgxIconModule,
         IgxRippleModule,
+        IgxToggleModule,
         IgxDropDownModule
       ]
     })
