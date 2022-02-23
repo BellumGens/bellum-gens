@@ -7,7 +7,7 @@
     <form #userLogin="ngForm" (ngSubmit)="loginWithForm()">
       <h6 i18n>Form</h6>
 
-      <igx-input-group class="login-button" type="border">
+      <igx-input-group type="border">
         <label for="username" igxLabel i18n>Username</label>
         <igx-prefix>
           <igx-icon>person</igx-icon>
@@ -15,7 +15,7 @@
         <input #userName igxInput id="username" [required]="true" name="username" [(ngModel)]="logininfo.username" />
       </igx-input-group>
 
-      <igx-input-group class="login-button" type="border">
+      <igx-input-group type="border">
         <label for="passwordField" igxLabel i18n>Password</label>
         <input #passwordField igxInput type="password" [required]="true" id="passwordField" name="passwordField" [(ngModel)]="logininfo.password" />
       </igx-input-group>
