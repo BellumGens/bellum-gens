@@ -312,6 +312,16 @@ textarea {
     width: 100%;
   }
 
+/* Webkit autofill hax */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active  {
+  -webkit-text-fill-color: white;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
 @media only screen and (max-width: 720px) {
   .footer {
     padding: 12px 12px 0 12px;

@@ -3,15 +3,6 @@
   text-align: end;
 }
 
-input:-webkit-autofill,
-input:-webkit-autofill:hover,
-input:-webkit-autofill:focus,
-input:-webkit-autofill:active  {
-  -webkit-text-fill-color: white;
-  -webkit-background-clip: text;
-  background-clip: text;
-}
-
 .login-dialog {
   display: flex;
   flex-wrap: wrap;
