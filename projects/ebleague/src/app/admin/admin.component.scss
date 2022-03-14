@@ -1,20 +1,20 @@
 @use "../../variables" as *;
 
 :host ::ng-deep {
-  @include igx-core();
+  @include core();
 
-  @include igx-grid(igx-grid-theme($content-background: $banner-background,
+  @include grid(grid-theme($content-background: $banner-background,
                                   $drop-area-background: $banner-background,
                                   $ghost-header-background: $banner-background,
                                   $group-row-selected-background: $background,
                                   $header-background: $background,
                                   $cell-editing-background: $background));
 
-  @include igx-grid-toolbar(igx-grid-toolbar-theme($background-color: $background));
+  @include grid-toolbar(grid-toolbar-theme($background-color: $background));
 
-  @include igx-paginator(igx-paginator-theme($background-color: $background));
+  @include paginator(paginator-theme($background-color: $background));
 
-  @include igx-action-strip(igx-action-strip-theme($actions-background: transparent));
+  @include action-strip(action-strip-theme($actions-background: transparent));
 
   /* Registrations */
   .registration-slot {
