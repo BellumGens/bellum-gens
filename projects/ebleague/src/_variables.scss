@@ -9,5 +9,5 @@ $banner-background: #2C3D93;
 $background-gradient: linear-gradient(to right, $background, #04081D);
 $background-gradient-lighter: linear-gradient(135deg, #2f3978 0%, #10193f 100%);
 
-$app-palette: igx-palette($primary: $primary, $secondary: $secondary, $grays: $grays);
-@include igx-palette-vars($app-palette);
+$app-palette: palette($primary: $primary, $secondary: $secondary, $grays: $grays);
+@include palette-vars($app-palette);

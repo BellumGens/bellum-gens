@@ -8,9 +8,9 @@
     padding: 48px 0;
   }
 
-  @include igx-core();
+  @include core();
 
-  @include igx-grid(igx-grid-theme($content-background: $banner-background, $header-background: $background));
+  @include grid(grid-theme($content-background: $banner-background, $header-background: $background));
 
-  @include igx-grid-toolbar(igx-grid-toolbar-theme($background-color: $background));
+  @include grid-toolbar(grid-toolbar-theme($background-color: $background));
 }

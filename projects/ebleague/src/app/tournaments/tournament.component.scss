@@ -1,12 +1,12 @@
 @use "../../variables" as *;
 
 :host ::ng-deep {
-  @include igx-core();
-  @include igx-grid(igx-grid-theme($content-background: $banner-background,
+  @include core();
+  @include grid(grid-theme($content-background: $banner-background,
                                    $ghost-header-background: $banner-background,
                                    $header-background: $background));
 
-  @include igx-grid-toolbar(igx-grid-toolbar-theme($background-color: $background));
+  @include grid-toolbar(grid-toolbar-theme($background-color: $background));
 
   /* Registrations */
   .registration-slot {
