@@ -312,6 +312,15 @@ textarea {
     width: 100%;
   }
 
+.dd-item-content {
+  display: flex;
+  align-items: center;
+}
+
+  .dd-item-content > igx-icon {
+    margin-right: 12px;
+  }
+
 /* Webkit autofill hax */
 input:-webkit-autofill,
 input:-webkit-autofill:hover,

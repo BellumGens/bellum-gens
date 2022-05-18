@@ -80,21 +80,21 @@
 
     <igx-drop-down #useractions (selectionChanging)="$event.cancel = true; useractions.close()">
       <igx-drop-down-item (click)="shareOnTwitter(strat)">
-        <div class="horizontal-center">
+        <div class="dd-item-content">
           <igx-icon family="login-icons" name="twitter" title="Share Strategy"></igx-icon>
-          <span class="title margin-left" i18n>Share</span>
+          <span i18n>Share</span>
         </div>
       </igx-drop-down-item>
       <igx-drop-down-item *ngIf="(authUser | isStratOwner:strat) || isEditor" (click)="newStrategy.open(strat, 'Edit strategy')">
-        <div class="horizontal-center">
+        <div class="dd-item-content">
           <igx-icon title="Edit Strategy">edit</igx-icon>
-          <span class="title margin-left" i18n>Edit</span>
+          <span i18n>Edit</span>
         </div>
       </igx-drop-down-item>
       <igx-drop-down-item *ngIf="(authUser | isStratOwner:strat) || isEditor" (click)="confirm.open(strat)">
-        <div class="horizontal-center">
+        <div class="dd-item-content">
           <igx-icon title="Delete Strategy">delete_forever</igx-icon>
-          <span class="title margin-left" i18n>Delete</span>
+          <span i18n>Delete</span>
         </div>
       </igx-drop-down-item>
     </igx-drop-down>
