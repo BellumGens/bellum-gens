@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {
   PLAYER_SEARCH,
   PlayerSearch,
@@ -17,6 +17,7 @@ import { Router } from '@angular/router';
 export class PlayerSearchComponent {
   public searchModel: PlayerSearch = PLAYER_SEARCH;
 
+  @Input()
   public authUser: ApplicationUser;
   public teamAdmin: CSGOTeam [];
 
@@ -33,12 +34,7 @@ export class PlayerSearchComponent {
   ];
 
   constructor(private router: Router, private authManager: LoginService) {
-    this.authManager.applicationUser.subscribe(user => {
-      if (user) {
-        this.authUser = user;
-        this.authManager.teamsAdmin.subscribe(teams => this.teamAdmin = teams);
-      }
-    });
+    this.authManager.teamsAdmin.subscribe(teams => this.teamAdmin = teams);
   }
 
   public searchPlayers() {

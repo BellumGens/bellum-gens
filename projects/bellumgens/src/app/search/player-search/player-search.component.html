@@ -36,6 +36,9 @@
                   [step]="5"
                   [minValue]="0"
                   [maxValue]="40"
+                  [showTicks]="true"
+                  [primaryTicks]="5"
+                  [secondaryTicks]="1"
                   [(ngModel)]="searchModel.scheduleOverlap">
       </igx-slider>
       <label i18n>Hours availability</label>
@@ -43,6 +46,3 @@
   </div>
   <button class="search-button" igxButton="outlined" igxRipple i18n>Search</button>
 </form>
-<div *ngIf="!authUser">
-  <p i18n><b class="highlight">NOTE: </b>Signing in gives you access to more search options!</p>
-</div>

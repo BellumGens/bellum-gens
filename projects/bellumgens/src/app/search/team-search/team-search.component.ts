@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { PlaystyleRole, TeamSearch, TEAM_SEARCH, ApplicationUser } from '../../../../../common/src/public_api';
 import { Router } from '@angular/router';
 
@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class TeamSearchComponent {
   public searchModel: TeamSearch = TEAM_SEARCH;
 
+  @Input()
   public authUser: ApplicationUser;
 
   public activeLineup = [
