@@ -15,6 +15,8 @@ import { TeamSearchComponent } from '../team-search/team-search.component';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('SearchComponent', () => {
   let component: SearchComponent;
@@ -26,6 +28,8 @@ describe('SearchComponent', () => {
         FormsModule,
         RouterTestingModule,
         NoopAnimationsModule,
+        HttpClientTestingModule,
+        ServiceWorkerModule.register('', {enabled: false}),
         IgxButtonGroupModule,
         IgxRippleModule,
         IgxRadioModule,
