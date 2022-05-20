@@ -8,9 +8,9 @@
     </div>
 
     <div class="slider-holder" *ngIf="authUser">
-      <label for="overlap" i18n>Minimum overlap of</label>
-      <igx-slider id="overlap"
-                  name="scheduleOverlap"
+      <label for="overlap" i18n>Minimum hours overlap of availability</label>
+      <igx-slider name="scheduleOverlap"
+                  id="overlap"
                   [step]="5"
                   [minValue]="0"
                   [maxValue]="40"
@@ -18,8 +18,10 @@
                   [primaryTicks]="5"
                   [secondaryTicks]="1"
                   [(ngModel)]="searchModel.scheduleOverlap">
+        <ng-template igxSliderTickLabel let-value>
+          {{ parseInt(value, 10) }}
+        </ng-template>
       </igx-slider>
-      <label i18n>Hours availability</label>
     </div>
   </div>
   <button class="search-button" igxButton="outlined" igxRipple>Search</button>
