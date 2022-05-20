@@ -15,16 +15,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./player-search.component.scss']
 })
 export class PlayerSearchComponent {
-  public searchModel: PlayerSearch = PLAYER_SEARCH;
 
   @Input()
   public authUser: ApplicationUser;
   public teamAdmin: CSGOTeam [];
-
+  public searchModel: PlayerSearch = PLAYER_SEARCH;
   public userOverlap = 0;
-
   public teamName = 'Select Team';
-
   public activeLineup = [
     { roleName: 'IGL', role: PlaystyleRole.IGL },
     { roleName: 'Awper', role: PlaystyleRole.Awper },
