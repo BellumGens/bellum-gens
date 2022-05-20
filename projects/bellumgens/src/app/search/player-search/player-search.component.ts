@@ -29,6 +29,7 @@ export class PlayerSearchComponent {
     { roleName: 'Support', role: PlaystyleRole.Support },
     { roleName: 'Lurker', role: PlaystyleRole.Lurker }
   ];
+  public parseInt = parseInt;
 
   constructor(private router: Router, private authManager: LoginService) {
     this.authManager.teamsAdmin.subscribe(teams => this.teamAdmin = teams);

@@ -12,7 +12,7 @@
       <div class="search-role-group">
         <igx-radio-group class="search-role-group" id="availability">
           <igx-radio [(ngModel)]="userOverlap" class="search-role" name="userOverlap" [value]="0" i18n>Availability</igx-radio>
-          <igx-radio [(ngModel)]="userOverlap" class="search-role" name="userOverlap" [value]="1" i18n>Team practice</igx-radio>
+          <igx-radio [(ngModel)]="userOverlap" class="search-role" name="userOverlap" [value]="1" [disabled]="!teamAdmin.length" i18n>Team practice</igx-radio>
         </igx-radio-group>
       </div>
       <igx-select *ngIf="userOverlap && teamAdmin.length" name="teamOverlap" [(ngModel)]="searchModel.teamId">
@@ -30,7 +30,7 @@
     </div>
 
     <div class="slider-holder" *ngIf="authUser">
-      <label for="overlap" i18n>Minimum overlap of</label>
+      <label for="overlap" i18n>Minimum hours overlap of availability</label>
       <igx-slider name="scheduleOverlap"
                   id="overlap"
                   [step]="5"
@@ -40,8 +40,10 @@
                   [primaryTicks]="5"
                   [secondaryTicks]="1"
                   [(ngModel)]="searchModel.scheduleOverlap">
+        <ng-template igxSliderTickLabel let-value>
+          {{ parseInt(value, 10) }}
+        </ng-template>
       </igx-slider>
-      <label i18n>Hours availability</label>
     </div>
   </div>
   <button class="search-button" igxButton="outlined" igxRipple i18n>Search</button>

@@ -201,10 +201,6 @@ $time-picker-theme: time-picker-theme($background-color: $background);
   min-width: 300px;
 }
 
-.slider-holder {
-  min-width: 216px;
-}
-
 .icon-avatar {
   width: 24px;
   min-width: 24px;
@@ -218,6 +214,11 @@ $time-picker-theme: time-picker-theme($background-color: $background);
 @media only screen and (max-width: 550px) {
   .slider-holder {
     min-width: 100%;
+  }
+
+  .igx-banner__message {
+    flex: 0 1 auto;
+    margin-right: 0.5rem;
   }
 
   .form-row {
