@@ -7,7 +7,8 @@ export enum CSGOMap {
   Overpass,
   Train,
   Vertigo,
-  Cobblestone
+  Cobblestone,
+  Ancient
 }
 
 export interface CSGOMapPool {
@@ -61,6 +62,10 @@ export const AllCSGOMaps: CSGOMapPool [] = [
   {
     map: CSGOMap.Cobblestone,
     isPlayed: true
+  },
+  {
+    map: CSGOMap.Ancient,
+    isPlayed: true
   }
 ];
 
@@ -105,7 +110,7 @@ export const ActiveDuty: CSGOActiveDutyDescriptor [] = [{
     map: 'Train',
     image: 'assets/csgo_maps/de_train.jpg',
     radar: ['assets/csgo_map_radars/de_train_radar.png'],
-    active: true
+    active: false
   },
   {
     id: CSGOMap.Vertigo,
@@ -120,5 +125,12 @@ export const ActiveDuty: CSGOActiveDutyDescriptor [] = [{
     image: 'assets/csgo_maps/de_cbble.jpg',
     radar: ['assets/csgo_map_radars/de_cbble_radar.png'],
     active: false
+  },
+  {
+    id: CSGOMap.Ancient,
+    map: 'Ancient',
+    image: 'assets/csgo_maps/de_ancient.webp',
+    radar: ['assets/csgo_map_radars/de_cbble_radar.png'],
+    active: true
   }
 ];

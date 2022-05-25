@@ -97,7 +97,7 @@ export class PlayerComponent extends BaseComponent {
   }
 
   public get playerIsUser(): boolean {
-    return this.player && this.authUser && (this.player.steamUser.steamID64 === this.authUser.id);
+    return this.player && this.authUser && (this.player.steamUser.steamID64 === this.authUser.steamId);
   }
 
   public selectPrimary(value: number) {
