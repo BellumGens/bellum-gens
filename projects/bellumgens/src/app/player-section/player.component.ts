@@ -16,7 +16,8 @@ import {
   ApplicationUser,
   CSGOTeam,
   CSGOMapPool,
-  ALL_ROLES
+  ALL_ROLES,
+  CSGOActiveDutyDescriptor
 } from '../../../../common/src/public_api';
 
 import { BaseComponent } from '../base/base.component';
@@ -34,7 +35,7 @@ export class PlayerComponent extends BaseComponent {
   public teamsAdmin: CSGOTeam [];
   public userTeams: Observable<CSGOTeam []>;
   public availability: Availability [];
-  public mapPool: Observable<CSGOMapPool []>;
+  public mapPool: CSGOMapPool [];
   public player: CSGOPlayer;
   public newUser = false;
   public roles = ALL_ROLES;
@@ -69,7 +70,7 @@ export class PlayerComponent extends BaseComponent {
                     if (player.registered) {
                       this.userTeams = this.apiService.getUserTeams(player.id);
                       this.apiService.getAvailability(player.id).subscribe(data => this.availability = data);
-                      this.mapPool = this.apiService.getMapPool(player.id);
+                      this.apiService.getMapPool(player.id).subscribe(maps => this.mapPool = maps);
                     }
                     if (player.userStats) {
                       const weapons = new SortWeaponsPipe().transform(player.userStats.weapons);
@@ -108,8 +109,13 @@ export class PlayerComponent extends BaseComponent {
     this.apiService.setSecondaryRole(this.roles.find(r => r.id === value)).subscribe();
   }
 
-  public mapChange(args: CSGOMapPool) {
-    this.apiService.setMapPool(args).subscribe();
+  public mapChange(args: CSGOActiveDutyDescriptor) {
+    const map: CSGOMapPool = {
+      map: args.id,
+      isPlayed: args.active,
+      userId: this.authUser.id
+    }
+    this.apiService.setMapPool(map).subscribe();
   }
 
   public inviteToTeam(args: ISelectionEventArgs) {

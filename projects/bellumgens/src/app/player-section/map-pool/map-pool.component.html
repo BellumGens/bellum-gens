@@ -1,12 +1,12 @@
 <div class="map-wrapper">
-  <igx-card *ngFor="let map of mapPool | async | activeDutyMaps:viewAll" [horizontal]="false" [ngClass]="map.isPlayed ? 'map-column' : 'map-column map-inactive'">
+  <igx-card *ngFor="let map of maps | activeDutyMaps:viewAll" [horizontal]="false" [ngClass]="map.isPlayed ? 'map-column' : 'map-column map-inactive'">
     <igx-card-media>
-      <img [src]="map.map | csgomapimage" [alt]="map.map | csgomapname" />
+      <img [src]="map.image" [alt]="map.map" />
     </igx-card-media>
     <igx-card-actions>
-      <label>{{ map.map | csgomapname }}</label>
+      <label>{{ map.map }}</label>
       <div class="igx-card-actions__igroup--end">
-        <igx-checkbox [aria-label]="map.map | csgomapname" [(ngModel)]="map.isPlayed" [value]="map" [disabled]="readOnly" (ngModelChange)="mapChange(map)"></igx-checkbox>
+        <igx-checkbox [aria-label]="map.map" [(ngModel)]="map.isPlayed" [value]="map" [disabled]="readOnly" (change)="mapChange(map)"></igx-checkbox>
       </div>
     </igx-card-actions>
   </igx-card>
