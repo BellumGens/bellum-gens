@@ -32,7 +32,7 @@ describe('MapPoolComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create and augment rendered map pool', () => {
     expect(component).toBeTruthy();
     component.mapPool = [
       { map: 1, isPlayed: true },
