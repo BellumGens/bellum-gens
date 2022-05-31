@@ -34,5 +34,13 @@ describe('MapPoolComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+    component.mapPool = [
+      { map: 1, isPlayed: true },
+      { map: 3, isPlayed: true }
+    ];
+
+    expect(component.maps.find(m => m.id === 1).isPlayed).toBeTrue();
+    expect(component.maps.find(m => m.id === 2).isPlayed).toBeFalse();
+    expect(component.maps.find(m => m.id === 3).isPlayed).toBeTrue();
   });
 });
