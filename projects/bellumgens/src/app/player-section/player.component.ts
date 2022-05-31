@@ -112,7 +112,7 @@ export class PlayerComponent extends BaseComponent {
   public mapChange(args: CSGOActiveDutyDescriptor) {
     const map: CSGOMapPool = {
       map: args.id,
-      isPlayed: args.active,
+      isPlayed: args.isPlayed,
       userId: this.authUser.id
     }
     this.apiService.setMapPool(map).subscribe();
