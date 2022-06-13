@@ -23,7 +23,7 @@ steps:
 - script: npm config set _auth=$(npm_token) --scope:@infragistics
 
 - script: npm ci
-  displayName: npm install
+  displayName: npm ci --legacy-peer-deps
 
 - script: npm run lint
   displayName: run lint
