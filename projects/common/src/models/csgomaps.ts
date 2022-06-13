@@ -7,7 +7,8 @@ export enum CSGOMap {
   Overpass,
   Train,
   Vertigo,
-  Cobblestone
+  Cobblestone,
+  Ancient
 }
 
 export interface CSGOMapPool {
@@ -22,6 +23,7 @@ export interface CSGOActiveDutyDescriptor {
   map: string;
   image: string;
   active: boolean;
+  isPlayed: boolean;
   radar?: string [];
 }
 
@@ -61,6 +63,10 @@ export const AllCSGOMaps: CSGOMapPool [] = [
   {
     map: CSGOMap.Cobblestone,
     isPlayed: true
+  },
+  {
+    map: CSGOMap.Ancient,
+    isPlayed: true
   }
 ];
 
@@ -69,56 +75,73 @@ export const ActiveDuty: CSGOActiveDutyDescriptor [] = [{
     map: 'Cache',
     image: 'assets/csgo_maps/de_cache.jpg',
     radar: ['assets/csgo_map_radars/de_cache_radar.png'],
-    active: false
+    active: false,
+    isPlayed: false
   }, {
     id: CSGOMap.Dust2,
     map: 'Dust 2',
     image: 'assets/csgo_maps/de_dust2.jpg',
     radar: ['assets/csgo_map_radars/de_dust2_radar.png'],
-    active: true
+    active: true,
+    isPlayed: false
   }, {
     id: CSGOMap.Inferno,
     map: 'Inferno',
     image: 'assets/csgo_maps/de_inferno.jpg',
     radar: ['assets/csgo_map_radars/de_inferno_radar.png'],
-    active: true
+    active: true,
+    isPlayed: false
   }, {
     id: CSGOMap.Mirage,
     map: 'Mirage',
     image: 'assets/csgo_maps/de_mirage.jpg',
     radar: ['assets/csgo_map_radars/de_mirage_radar.png'],
-    active: true
+    active: true,
+    isPlayed: false
   }, {
     id: CSGOMap.Nuke,
     map: 'Nuke',
     image: 'assets/csgo_maps/de_nuke.jpg',
     radar: ['assets/csgo_map_radars/de_nuke_radar_combined.png'],
-    active: true
+    active: true,
+    isPlayed: false
   }, {
     id: CSGOMap.Overpass,
     map: 'Overpass',
     image: 'assets/csgo_maps/de_overpass.jpg',
     radar: ['assets/csgo_map_radars/de_overpass_radar.png'],
-    active: true
+    active: true,
+    isPlayed: false
   }, {
     id: CSGOMap.Train,
     map: 'Train',
     image: 'assets/csgo_maps/de_train.jpg',
     radar: ['assets/csgo_map_radars/de_train_radar.png'],
-    active: true
+    active: false,
+    isPlayed: false
   },
   {
     id: CSGOMap.Vertigo,
     map: 'Vertigo',
     image: 'assets/csgo_maps/de_vertigo.jpg',
     radar: ['assets/csgo_map_radars/de_vertigo_radar.png'],
-    active: true
+    active: true,
+    isPlayed: false
   },
   {
     id: CSGOMap.Cobblestone,
     map: 'Cobblestone',
     image: 'assets/csgo_maps/de_cbble.jpg',
     radar: ['assets/csgo_map_radars/de_cbble_radar.png'],
-    active: false
+    active: false,
+    isPlayed: false
+  },
+  {
+    id: CSGOMap.Ancient,
+    map: 'Ancient',
+    image: 'assets/csgo_maps/de_ancient.webp',
+    radar: ['assets/csgo_map_radars/de_cbble_radar.png'],
+    active: true,
+    isPlayed: false
   }
 ];

@@ -64,12 +64,16 @@
 
         <igx-drop-down #useractions (selectionChanging)="$event.cancel = true; useractions.close()">
           <igx-drop-down-item (click)="editComment(comment)">
-            <igx-icon title="edit strategy">edit</igx-icon>
-            <span class="title margin-left" i18n>Edit</span>
+            <div class="dd-item-content">
+              <igx-icon title="edit strategy">edit</igx-icon>
+              <span i18n>Edit</span>
+            </div>
           </igx-drop-down-item>
           <igx-drop-down-item (click)="confirm.open(comment)">
-            <igx-icon title="delete strategy">delete_forever</igx-icon>
-            <span class="title margin-left" i18n>Delete</span>
+            <div class="dd-item-content">
+              <igx-icon title="delete strategy">delete_forever</igx-icon>
+              <span i18n>Delete</span>
+            </div>
           </igx-drop-down-item>
         </igx-drop-down>
       </igx-list-item>

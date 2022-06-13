@@ -1,6 +1,5 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
-import { Observable } from 'rxjs';
-import { CSGOMapPool } from '../../../../../common/src/public_api';
+import { ActiveDuty, CSGOActiveDutyDescriptor, CSGOMapPool } from '../../../../../common/src/public_api';
 
 @Component({
   selector: 'app-map-pool',
@@ -12,18 +11,31 @@ export class MapPoolComponent {
   public viewAll = false;
 
   @Input()
-  public mapPool: Observable<CSGOMapPool []>;
+  public set mapPool(maps: CSGOMapPool []) {
+    if (maps?.length) {
+      this._maps = maps;
+      this.augmentActiveDuty();
+    }
+  }
 
   @Input()
   public readOnly: boolean;
 
   @Output()
-  public update = new EventEmitter<CSGOMapPool>();
+  public update = new EventEmitter<CSGOActiveDutyDescriptor>();
+
+  public maps = ActiveDuty;
+
+  private _maps: CSGOMapPool [];
 
   constructor() { }
 
-  public mapChange(map: CSGOMapPool) {
+  public mapChange(map: CSGOActiveDutyDescriptor) {
     this.update.emit(map);
+  }
+
+  private augmentActiveDuty() {
+    this._maps.forEach(map => this.maps.find(m => m.id === map.map).isPlayed = map.isPlayed);
   }
 
 }

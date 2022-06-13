@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { PlaystyleRole, TeamSearch, TEAM_SEARCH, ApplicationUser } from '../../../../../common/src/public_api';
 import { Router } from '@angular/router';
 
@@ -8,10 +8,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./team-search.component.scss']
 })
 export class TeamSearchComponent {
-  public searchModel: TeamSearch = TEAM_SEARCH;
 
+  @Input()
   public authUser: ApplicationUser;
 
+  public searchModel: TeamSearch = TEAM_SEARCH;
   public activeLineup = [
     { roleName: 'IGL', role: PlaystyleRole.IGL },
     { roleName: 'Awper', role: PlaystyleRole.Awper },
@@ -21,6 +22,8 @@ export class TeamSearchComponent {
   ];
 
   constructor(private router: Router) { }
+
+  public parseInt = parseInt;
 
   public searchTeams() {
     this.router.navigate(['search/teams', this.searchQuery]);

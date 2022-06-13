@@ -99,7 +99,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/search/player-search/player-search.component.html</context>
-          <context context-type="linenumber">44</context>
+          <context context-type="linenumber">49</context>
         </context-group>
       </trans-unit>
       <trans-unit id="39fd012ebe862208c7c3a0a315a5a656bec68b22" datatype="html">
@@ -678,9 +678,9 @@
           <context context-type="linenumber">19</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="0e1193932537e54c6085a97644eff8fd252e184f" datatype="html">
-        <source>Minimum overlap of</source>
-        <target>Минимални припокриване с</target>
+      <trans-unit id="e26e330372d7acfd25d0d36028fec978a5d759d1" datatype="html">
+        <source>Minimum hours overlap of availability</source>
+        <target>Минимално припокриване на свободни часове...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/search/player-search/player-search.component.html</context>
           <context context-type="linenumber">33</context>
@@ -688,30 +688,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/search/team-search/team-search.component.html</context>
           <context context-type="linenumber">11</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="3d7f641047e4762fa704cc65201a791fb00cbfc3" datatype="html">
-        <source>Hours availability</source>
-        <target>Часа за игра</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/search/player-search/player-search.component.html</context>
-          <context context-type="linenumber">41</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/search/team-search/team-search.component.html</context>
-          <context context-type="linenumber">19</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="fbd7b55201377bd001a5cbaa904538fafb1469ae" datatype="html">
-        <source><x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b class=&quot;highlight&quot;&gt;"/>NOTE: <x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/>Signing in gives you access to more search options!</source>
-        <target><x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b class=&quot;highlight&quot;&gt;"/>ВАЖНО: <x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/>Ако влезете в профила си ще имате достъп до разширено търсене!</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/search/player-search/player-search.component.html</context>
-          <context context-type="linenumber">47</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/search/team-search/team-search.component.html</context>
-          <context context-type="linenumber">25</context>
         </context-group>
       </trans-unit>
       <trans-unit id="e6a4d293728ac74d848519ba3383f33472bd8eae" datatype="html">
@@ -864,6 +840,14 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/search/search-results/team-results/team-results.component.html</context>
           <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="fbd7b55201377bd001a5cbaa904538fafb1469ae" datatype="html">
+        <source><x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b class=&quot;highlight&quot;&gt;"/>NOTE: <x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/>Signing in gives you access to more search options!</source>
+        <target><x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b class=&quot;highlight&quot;&gt;"/>ВАЖНО: <x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/>Ако влезете в профила си ще имате достъп до разширено търсене!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/search/search/search.component.html</context>
+          <context context-type="linenumber">10</context>
         </context-group>
       </trans-unit>
       <trans-unit id="024baf16190eb76ca90206745e24b0b905d0d50c" datatype="html">
@@ -1051,7 +1035,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/strategies/strategy-details/strategy-details.component.html</context>
-          <context context-type="linenumber">68</context>
+          <context context-type="linenumber">69</context>
         </context-group>
       </trans-unit>
       <trans-unit id="826b25211922a1b46436589233cb6f1a163d89b7" datatype="html">
@@ -1063,7 +1047,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/strategies/strategy-details/strategy-details.component.html</context>
-          <context context-type="linenumber">72</context>
+          <context context-type="linenumber">75</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a06b18b9d35598a293b88cff5460b0f29a5411be" datatype="html">
@@ -1083,7 +1067,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/strategies/strategy-details/strategy-details.component.html</context>
-          <context context-type="linenumber">98</context>
+          <context context-type="linenumber">102</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/strategies/strategy-editor/strategy-editor.component.html</context>
@@ -1119,7 +1103,7 @@
         <target><x id="INTERPOLATION" equiv-text="{{ !authUser ? &apos;Влез за&apos; : &apos;Остави&apos; }}"/> коментар...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/strategies/strategy-details/strategy-details.component.html</context>
-          <context context-type="linenumber">82</context>
+          <context context-type="linenumber">86</context>
         </context-group>
       </trans-unit>
       <trans-unit id="daa7ebc06dbee3bf4aabeb4ab5255c40539d93d0" datatype="html">
@@ -1127,7 +1111,7 @@
         <target>Натискане на ОК ще изтрие коментара перманентно...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/strategies/strategy-details/strategy-details.component.html</context>
-          <context context-type="linenumber">99</context>
+          <context context-type="linenumber">103</context>
         </context-group>
       </trans-unit>
       <trans-unit id="c2317b4bdf2cb99d1f55afbb550ee164e909b90d" datatype="html">

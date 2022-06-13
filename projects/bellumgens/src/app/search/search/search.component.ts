@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ApplicationUser, LoginService } from '../../../../../common/src/public_api';
 
 enum SearchType {
   None,
@@ -13,7 +14,9 @@ enum SearchType {
 })
 export class SearchComponent {
   public searchType = SearchType.None;
+  public authUser: ApplicationUser;
 
-  constructor() {
+  constructor(private authManager: LoginService) {
+    this.authManager.applicationUser.subscribe(user => this.authUser = user);
   }
 }

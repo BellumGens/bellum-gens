@@ -47,29 +47,29 @@ $include: (igx-avatar,
 
 /* Navbar */
 $navbar-theme: navbar-theme(palette($background, $secondary),
-                                $background: $background-gradient,
-                                $text-color: white,
-                                $shadow: 0px 15px 30px 0px rgba(0,0,0,0.4),
-                                $idle-icon-color: white,
-                                $hover-icon-color: $secondary);
+                            $background: $background-gradient,
+                            $text-color: white,
+                            $shadow: 0px 15px 30px 0px rgba(0,0,0,0.4),
+                            $idle-icon-color: white,
+                            $hover-icon-color: $secondary);
 @include css-vars($navbar-theme);
 /* END Navbar */
 
 /* Nav Drawer */
 $navdrawer-theme: navdrawer-theme($background: $background-gradient,
-                                      $item-hover-background: rgba(0, 0, 0, 0.11),
-                                      $item-active-background: rgba(0, 0, 0, 0.11),
-                                      $item-active-text-color: $secondary,
-                                      $item-active-icon-color: $secondary,
-                                      $item-hover-text-color: $secondary,
-                                      $item-hover-icon-color: $secondary);
+                                  $item-hover-background: rgba(0, 0, 0, 0.11),
+                                  $item-active-background: rgba(0, 0, 0, 0.11),
+                                  $item-active-text-color: $secondary,
+                                  $item-active-icon-color: $secondary,
+                                  $item-hover-text-color: $secondary,
+                                  $item-hover-icon-color: $secondary);
 @include css-vars($navdrawer-theme);
 /* END Nav Drawer */
 
 /* Card */
 $card-theme: card-theme($background: $background-gradient-lighter,
-                            $resting-shadow: 0px 15px 30px 0px rgba(0,0,0,0.4),
-                            $hover-shadow: 0px 15px 30px 0px rgba(0,0,0,0.7));
+                        $resting-shadow: 0px 15px 30px 0px rgba(0,0,0,0.4),
+                        $hover-shadow: 0px 15px 30px 0px rgba(0,0,0,0.7));
 @include css-vars($card-theme);
 /* END Card */
 
@@ -97,9 +97,9 @@ $radio-theme: radio-theme($label-color: white, $empty-color: $secondary);
 
 /* Tabs */
 $tabs-theme: tabs-theme($item-hover-background: rgba(0, 0, 0, 0.11),
-                            $item-active-background: rgba(0, 0, 0, 0.11),
-                            $item-background: $background,
-                            $indicator-color: $secondary);
+                        $item-active-background: rgba(0, 0, 0, 0.11),
+                        $item-background: $background,
+                        $indicator-color: $secondary);
 @include css-vars($tabs-theme);
 /* END Tabs */
 
@@ -123,11 +123,11 @@ $snackbar-theme: snackbar-theme($background: $banner-background, $border-radius:
   display: flex;
   align-items: center;
   $button-theme: button-theme($resting-shadow: none,
-                                  $hover-shadow: none,
-                                  $focus-shadow: none,
-                                  $foreground: $primary,
-                                  $hover-foreground: $secondary,
-                                  $background: transparent);
+                              $hover-shadow: none,
+                              $focus-shadow: none,
+                              $foreground: $primary,
+                              $hover-foreground: $secondary,
+                              $background: transparent);
   @include css-vars($button-theme);
 }
 /* END Button */
@@ -139,8 +139,8 @@ $circular-progress-bar-theme: progress-circular-theme($base-circle-color: rgba(0
 
 /* Expansion Panel */
 $expansion-panel-theme: expansion-panel-theme($header-background: $background,
-                                                  $header-focus-background: $background,
-                                                  $body-background: $background);
+                                              $header-focus-background: $background,
+                                              $body-background: $background);
 @include css-vars($expansion-panel-theme);
 /* END Expansion Panel */
 
@@ -201,10 +201,6 @@ $time-picker-theme: time-picker-theme($background-color: $background);
   min-width: 300px;
 }
 
-.slider-holder {
-  min-width: 216px;
-}
-
 .icon-avatar {
   width: 24px;
   min-width: 24px;
@@ -218,6 +214,11 @@ $time-picker-theme: time-picker-theme($background-color: $background);
 @media only screen and (max-width: 550px) {
   .slider-holder {
     min-width: 100%;
+  }
+
+  .igx-banner__message {
+    flex: 0 1 auto;
+    margin-right: 0.5rem;
   }
 
   .form-row {

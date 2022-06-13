@@ -52,17 +52,22 @@ app-player .card-wrapper {
 /* User Overview */
 
 .player-detail__stats {
-  border: 1px solid var(--igx-card-outline-color);
   min-height: 335px;
   height: fit-content;
+  background: transparent;
+  box-shadow: none;
 }
 
   .player-detail__stats .igx-circular-bar__text {
     font-size: 1.55rem;
   }
 
+  .player-detail__stats .igx-card-content {
+    text-align: center;
+  }
+
 .weapon-image {
-  height: 100%;
+  height: 205px;
   width: 100%;
 }
 
@@ -85,10 +90,6 @@ app-player .card-wrapper {
 @media only screen and (min-width: 1660px) {
   .player-detail__stats.map-pool {
     grid-column: 3 / -1;
-  }
-
-  .player-detail__stats {
-    height: auto;
   }
 }
 

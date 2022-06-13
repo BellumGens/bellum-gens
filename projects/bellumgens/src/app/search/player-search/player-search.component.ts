@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {
   PLAYER_SEARCH,
   PlayerSearch,
@@ -15,15 +15,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./player-search.component.scss']
 })
 export class PlayerSearchComponent {
-  public searchModel: PlayerSearch = PLAYER_SEARCH;
 
+  @Input()
   public authUser: ApplicationUser;
   public teamAdmin: CSGOTeam [];
-
+  public searchModel: PlayerSearch = PLAYER_SEARCH;
   public userOverlap = 0;
-
   public teamName = 'Select Team';
-
   public activeLineup = [
     { roleName: 'IGL', role: PlaystyleRole.IGL },
     { roleName: 'Awper', role: PlaystyleRole.Awper },
@@ -31,14 +29,10 @@ export class PlayerSearchComponent {
     { roleName: 'Support', role: PlaystyleRole.Support },
     { roleName: 'Lurker', role: PlaystyleRole.Lurker }
   ];
+  public parseInt = parseInt;
 
   constructor(private router: Router, private authManager: LoginService) {
-    this.authManager.applicationUser.subscribe(user => {
-      if (user) {
-        this.authUser = user;
-        this.authManager.teamsAdmin.subscribe(teams => this.teamAdmin = teams);
-      }
-    });
+    this.authManager.teamsAdmin.subscribe(teams => this.teamAdmin = teams);
   }
 
   public searchPlayers() {

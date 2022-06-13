@@ -3,5 +3,9 @@
   <button igxButton igxRipple i18n>Teams</button>
 </igx-buttongroup>
 
-<app-player-search *ngIf="searchType === 1"></app-player-search>
-<app-team-search *ngIf="searchType === 2"></app-team-search>
+<app-player-search *ngIf="searchType === 1" [authUser]="authUser"></app-player-search>
+<app-team-search *ngIf="searchType === 2" [authUser]="authUser"></app-team-search>
+
+<div *ngIf="!authUser">
+  <p i18n><b class="highlight">NOTE: </b>Signing in gives you access to more search options!</p>
+</div>
