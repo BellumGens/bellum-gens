@@ -10,7 +10,7 @@
     "build": "ng build common --configuration production && ng build bellum-gens --configuration production && ng build eb-league --configuration production",
     "build:app-shell": "ng run bellum-gens:app-shell:production",
     "test": "ng test",
-    "test:prod": "ng test -- --no-watch --no-progress --code-coverage --browsers=ChromeHeadlessCI",
+    "test:prod": "ng test --watch=false --no-progress --code-coverage --browsers=ChromeHeadlessCI",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "compile:server": "webpack --config webpack.bellumgens.server.config.js --progress --colors && webpack --config webpack.ebleague.server.config.js --progress --colors",
