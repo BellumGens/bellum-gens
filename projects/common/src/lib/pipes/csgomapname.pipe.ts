@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { ActiveDuty, CSGOMap } from '../../models/csgomaps';
+import { ACTIVE_DUTY, CSGOMap } from '../../models/csgomaps';
 
 @Pipe({
   name: 'csgomapname'
@@ -7,7 +7,7 @@ import { ActiveDuty, CSGOMap } from '../../models/csgomaps';
 export class CSGOMapnamePipe implements PipeTransform {
 
   public transform(map: CSGOMap): string {
-    return map !== undefined ? ActiveDuty.find(m => m.id === map).map : '';
+    return map !== undefined ? ACTIVE_DUTY.find(m => m.id === map).map : '';
   }
 
 }

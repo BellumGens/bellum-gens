@@ -93,7 +93,7 @@ export class PlayerComponent extends BaseComponent {
   }
 
   public submitAvailability(args: Availability) {
-    // this.authUser.availability.find(a => a.Day === args.Day).Available = args.Available;
+    args.userId = this.authUser.id;
     this.apiService.setAvailability(args).subscribe();
   }
 

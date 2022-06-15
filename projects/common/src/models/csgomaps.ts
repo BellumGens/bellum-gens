@@ -70,7 +70,7 @@ export const AllCSGOMaps: CSGOMapPool [] = [
   }
 ];
 
-export const ActiveDuty: CSGOActiveDutyDescriptor [] = [{
+export const ACTIVE_DUTY: CSGOActiveDutyDescriptor [] = [{
     id: CSGOMap.Cache,
     map: 'Cache',
     image: 'assets/csgo_maps/de_cache.jpg',

@@ -1,8 +1,7 @@
 import { Component, ViewChild, Input, Output, EventEmitter, NgModule } from '@angular/core';
-import { Availability } from '../../models/playeravailability';
+import { Availability, BASE_AVAILABILITY } from '../../models/playeravailability';
 import {
   IgxTimePickerComponent,
-  IgxChipsAreaComponent,
   IgxDialogComponent,
   IChipClickEventArgs,
   IBaseChipEventArgs,
@@ -20,7 +19,14 @@ import { CommonModule } from '@angular/common';
 })
 export class AvailabilityComponent {
   @Input()
-  public availability: Availability [];
+  public set availability(availability: Availability []) {
+    if (availability?.length > 0) {
+      this._availability = availability;
+      this.augmentAvailability();
+    }
+  }
+
+  public baseAvailability = structuredClone(BASE_AVAILABILITY);
 
   @Input()
   public editable = false;
@@ -28,45 +34,31 @@ export class AvailabilityComponent {
   @Output()
   public availabilityChanged = new EventEmitter<Availability>();
 
+  private _availability: Availability [];
+
   @ViewChild('from')
   private from: IgxTimePickerComponent;
 
   @ViewChild('to')
   private to: IgxTimePickerComponent;
 
-  @ViewChild(IgxChipsAreaComponent, { static: true })
-  private chips: IgxChipsAreaComponent;
-
   @ViewChild(IgxDialogComponent, { static: true })
   private dialog: IgxDialogComponent;
 
-  public get selectedDay() {
-    return this._availability;
-  }
+  public selectedDay: Availability;
 
-  public set selectedDay(day: Availability) {
-    this._availability = day;
-    this._availability.from = new Date(day.from);
-    this._availability.to = new Date(day.to);
-  }
-
-  private _availability: Availability;
-
-  public daySelected(args: IChipClickEventArgs) {
+  public daySelected(args: IChipClickEventArgs, day: Availability) {
     if (this.editable) {
       args.cancel = true;
-      const index = this.chips.chipsList.toArray().indexOf(args.owner);
-      this.selectedDay = this.availability[index];
+      this.selectedDay = day;
       this.dialog.open();
     }
   }
 
-  public dayDeselected(args: IBaseChipEventArgs) {
-    const index = this.chips.chipsList.toArray().indexOf(args.owner);
-    const availability = this.availability[index];
+  public dayDeselected(args: IBaseChipEventArgs, day: Availability) {
     (args.originalEvent as PointerEvent).stopPropagation();
-    availability.available = false;
-    this.availabilityChanged.emit(availability);
+    day.available = false;
+    this.availabilityChanged.emit(day);
   }
 
   public availabilityChange() {
@@ -79,6 +71,15 @@ export class AvailabilityComponent {
 
   public availabilityCancel() {
     this.dialog.close();
+  }
+
+  private augmentAvailability() {
+    this._availability.forEach(playerAvailability => {
+      const day = this.baseAvailability.find(a => a.day === playerAvailability.day);
+      day.available = playerAvailability.available
+      day.from = new Date(playerAvailability.from);
+      day.to = new Date(playerAvailability.to);
+    });
   }
 }
 

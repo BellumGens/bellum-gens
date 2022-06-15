@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import {
   CSGOActiveDutyDescriptor,
-  ActiveDuty,
+  ACTIVE_DUTY,
   CSGOMap,
   StrategyEditor,
   CSGOTeam,
@@ -24,7 +24,7 @@ import { IDropDroppedEventArgs, IgxIconService } from '@infragistics/igniteui-an
 export class StrategyEditorComponent implements OnInit, OnDestroy {
   @ViewChild('board', { static: true }) public canvas: ElementRef;
 
-  public maps: CSGOActiveDutyDescriptor [] = ActiveDuty;
+  public maps: CSGOActiveDutyDescriptor [] = ACTIVE_DUTY;
   public team: CSGOTeam;
   public teammembers: TeamMember [];
   public newStrategy: CSGOStrategy;

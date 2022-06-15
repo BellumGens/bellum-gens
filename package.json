@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "concurrently --kill-others \"npm run start-bellumgens\" \"npm run start-ebleague\"",
-    "start-bellumgens": "ng serve -o",
+    "start-bellumgens": "ng serve bellum-gens --port=4200 -o",
     "start-ebleague": "ng serve eb-league --port=4201 -o",
     "build": "ng build common --configuration production && ng build bellum-gens --configuration production && ng build eb-league --configuration production",
     "build:app-shell": "ng run bellum-gens:app-shell:production",
