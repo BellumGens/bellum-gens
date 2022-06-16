@@ -24,7 +24,7 @@ export class MapPoolComponent {
   @Output()
   public update = new EventEmitter<CSGOActiveDutyDescriptor>();
 
-  public maps = [...ACTIVE_DUTY];
+  public maps = structuredClone(ACTIVE_DUTY);
 
   private _maps: CSGOMapPool [];
 
