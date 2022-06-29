@@ -449,98 +449,98 @@
         <source>Steam CS:GO player profile not found...</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/player-section/player.component.html</context>
-          <context context-type="linenumber">5</context>
+          <context context-type="linenumber">5,8</context>
         </context-group>
       </trans-unit>
       <trans-unit id="94f9fcd401676f0a95a65f4b6b6cee8088746628" datatype="html">
-        <source>Welcome <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ player.steamUser.steamID }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>!</source>
+        <source>Welcome <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text=".steamID }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="!&lt;/h4&gt;"/>!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/player-section/player.component.html</context>
-          <context context-type="linenumber">10</context>
+          <context context-type="linenumber">10,11</context>
         </context-group>
       </trans-unit>
       <trans-unit id="aab33cc10fb73f6a3fa07bfad2be9f8d3b062e0a" datatype="html">
         <source>Now it&apos;s time to complete your profile! Fill in your <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>preferred playstyle<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>, your <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>availability<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> and your <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>preferred map pool<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/player-section/player.component.html</context>
-          <context context-type="linenumber">11</context>
+          <context context-type="linenumber">11,13</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ea104e101e1c816f476bd74a390f4cc67e66653a" datatype="html">
         <source>This player is not registered! If you own the profile then <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span (click)=&quot;openLogin()&quot; class=&quot;highlight navigatable&quot;&gt;"/>register<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> to complete it.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/player-section/player.component.html</context>
-          <context context-type="linenumber">14</context>
+          <context context-type="linenumber">14,16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8cc75f47f7f742ff1fe004339aebb0b4b80f4b52" datatype="html">
         <source>Invite to team</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/player-section/player.component.html</context>
-          <context context-type="linenumber">28</context>
+          <context context-type="linenumber">28,30</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3d243a75c1a16642d9d887827bdaa8e97a8e6e5c" datatype="html">
         <source>Invite</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/player-section/player.component.html</context>
-          <context context-type="linenumber">31</context>
+          <context context-type="linenumber">31,34</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ecfe1b137661b8662c5563a68ccffd22d32b202a" datatype="html">
         <source>Primary Role</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/player-section/player.component.html</context>
-          <context context-type="linenumber">62</context>
+          <context context-type="linenumber">62,63</context>
         </context-group>
       </trans-unit>
       <trans-unit id="0c96ba72031b8bede244011f363786a069f0900a" datatype="html">
         <source>Secondary Role</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/player-section/player.component.html</context>
-          <context context-type="linenumber">71</context>
+          <context context-type="linenumber">71,72</context>
         </context-group>
       </trans-unit>
       <trans-unit id="f45ea51d6bd402a5e7c73fd5fec56f8b328a724f" datatype="html">
         <source>Steam account is private.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/player-section/player.component.html</context>
-          <context context-type="linenumber">77</context>
+          <context context-type="linenumber">77,78</context>
         </context-group>
       </trans-unit>
       <trans-unit id="86453af0abbe2dc2f2f443c97674e0a5098bbb3c" datatype="html">
         <source>If this is your account, you need to change the privacy level of your account, so we can access game stats from Steam.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/player-section/player.component.html</context>
-          <context context-type="linenumber">78</context>
+          <context context-type="linenumber">78,79</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a0817eaeeffe6d752fe5aef881b953c046f9cfad" datatype="html">
         <source>To do this go to <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Steam Profile --&gt; Edit Profile --&gt; Privacy Settings --&gt; Set: &apos;My profile: Public&apos; and &apos;Game details: public&apos;<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/player-section/player.component.html</context>
-          <context context-type="linenumber">79</context>
+          <context context-type="linenumber">79,82</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8b39b7f49b0c05bc970115b321488193415340b5" datatype="html">
         <source>Accuracy</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/player-section/player.component.html</context>
-          <context context-type="linenumber">108</context>
+          <context context-type="linenumber">108,111</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8065f2db0008caa80552e0cad883e74cf10bfb8a" datatype="html">
         <source>Top weapon</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/player-section/player.component.html</context>
-          <context context-type="linenumber">117</context>
+          <context context-type="linenumber">117,119</context>
         </context-group>
       </trans-unit>
       <trans-unit id="b6e9ef688e9a9d6127b678bad35205f7dbf3d055" datatype="html">
         <source>Availability</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/player-section/player.component.html</context>
-          <context context-type="linenumber">129</context>
+          <context context-type="linenumber">129,132</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/search/player-search/player-search.component.html</context>
@@ -551,28 +551,32 @@
         <source>Weapons</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/player-section/player.component.html</context>
-          <context context-type="linenumber">138</context>
+          <context context-type="linenumber">138,141</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a82c09e2a4817b07f0c53440daeee5f5024be816" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{ weapon.kills }}"/> kills</source>
+        <source><x id="INTERPOLATION" equiv-text="kills&lt;/div&gt;
+        &lt;/igx-list-item&gt;
+      &lt;/igx-list&gt;"/> kills</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/player-section/player.component.html</context>
-          <context context-type="linenumber">148</context>
+          <context context-type="linenumber">148,149</context>
         </context-group>
       </trans-unit>
       <trans-unit id="f09fbe0b5bd58b1fc5bd80507f82b77bbb067c30" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{ viewAll ? &apos;Showing All&apos; : &apos;Showing Active Duty&apos; }}"/> Maps</source>
+        <source><x id="INTERPOLATION" equiv-text="Maps&lt;/h4&gt;
+      &lt;but"/> Maps</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/player-section/player.component.html</context>
-          <context context-type="linenumber">157</context>
+          <context context-type="linenumber">157,158</context>
         </context-group>
       </trans-unit>
       <trans-unit id="18ffb8dd6858fe5f6be80453e60a84a45bbdb751" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{viewAll ? &apos;View Active Duty&apos; : &apos;View All&apos;}}"/></source>
+        <source><x id="INTERPOLATION" equiv-text="&lt;/button&gt;
+    &lt;/igx-card-head"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/player-section/player.component.html</context>
-          <context context-type="linenumber">158</context>
+          <context context-type="linenumber">158,159</context>
         </context-group>
       </trans-unit>
       <trans-unit id="41b10d0c31318e61ef31a15a12363ce527031d3b" datatype="html">
@@ -700,7 +704,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team.component.html</context>
-          <context context-type="linenumber">45</context>
+          <context context-type="linenumber">40</context>
         </context-group>
       </trans-unit>
       <trans-unit id="404c3e05e164e7dd2d49321895fb77b39297dd78" datatype="html">
@@ -962,7 +966,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-nav/team-nav.component.html</context>
-          <context context-type="linenumber">28</context>
+          <context context-type="linenumber">28,29</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
@@ -1163,35 +1167,35 @@
         <source>You need to login to view your teams.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-nav/team-nav.component.html</context>
-          <context context-type="linenumber">2</context>
+          <context context-type="linenumber">2,3</context>
         </context-group>
       </trans-unit>
       <trans-unit id="dce5044642c722e24e55659d7bda4dd7c63e9d7e" datatype="html">
-        <source><x id="START_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;igx-icon&gt;"/>add_circle_outline<x id="CLOSE_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;/igx-icon&gt;"/>Create New CS:GO Team</source>
+        <source><x id="START_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="add_circle_outline&lt;/igx-icon&gt;Create New CS:GO Team&lt;/button&gt;"/>add_circle_outline<x id="CLOSE_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;/igx-icon&gt;"/>Create New CS:GO Team</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-nav/team-nav.component.html</context>
-          <context context-type="linenumber">3</context>
+          <context context-type="linenumber">3,5</context>
         </context-group>
       </trans-unit>
       <trans-unit id="d2da8d4eea7fd75e03af3d9027a51ea86a88d4cc" datatype="html">
         <source>Team Details</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-nav/team-nav.component.html</context>
-          <context context-type="linenumber">16</context>
+          <context context-type="linenumber">16,18</context>
         </context-group>
       </trans-unit>
       <trans-unit id="cd3e4634681897d1bdbdc79bc31a3609c511b462" datatype="html">
         <source>Abandon Team</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-nav/team-nav.component.html</context>
-          <context context-type="linenumber">20</context>
+          <context context-type="linenumber">20,24</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ec60dafe0a0ccd853f88a9958d80735049922dc9" datatype="html">
         <source>You will leave this team permanently. If you own the team and are the only team member, then the team will also be deleted...</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-nav/team-nav.component.html</context>
-          <context context-type="linenumber">29</context>
+          <context context-type="linenumber">29,31</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3f7375958010c5195648bc0d835ecbca71df8910" datatype="html">
@@ -1356,25 +1360,25 @@
         <source>Details</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team.component.html</context>
-          <context context-type="linenumber">24</context>
+          <context context-type="linenumber">23</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1adb91667ecd9d40c6a71e71403e28a21f3ca235" datatype="html">
         <source>Competitions</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team.component.html</context>
-          <context context-type="linenumber">34</context>
+          <context context-type="linenumber">31</context>
         </context-group>
       </trans-unit>
       <trans-unit id="121cc5391cd2a5115bc2b3160379ee5b36cd7716" datatype="html">
         <source>Settings</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team.component.html</context>
-          <context context-type="linenumber">56</context>
+          <context context-type="linenumber">49</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/login.component.html</context>
-          <context context-type="linenumber">45</context>
+          <context context-type="linenumber">42</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5e68606a736dc2427abeb9f98b47162b98756b8a" datatype="html">
@@ -1409,7 +1413,7 @@
         <source>External</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/login-buttons/login-buttons.component.html</context>
-          <context context-type="linenumber">2</context>
+          <context context-type="linenumber">2,4</context>
         </context-group>
       </trans-unit>
       <trans-unit id="481e367da4aa8b317d91d69f05df5335838c72d6" datatype="html">
@@ -1481,14 +1485,14 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/login.component.html</context>
-          <context context-type="linenumber">23</context>
+          <context context-type="linenumber">22</context>
         </context-group>
       </trans-unit>
       <trans-unit id="25508c929e905ee63d835a33652b4b10683179e4" datatype="html">
         <source>logout</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/login.component.html</context>
-          <context context-type="linenumber">36</context>
+          <context context-type="linenumber">34</context>
         </context-group>
       </trans-unit>
       <trans-unit id="dc996c9abd70bed1d1924bce6e5b75e9c45bbf77" datatype="html">
