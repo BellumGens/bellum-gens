@@ -13,7 +13,7 @@
   <igx-drop-down-item *ngFor="let lang of languageList" [selected]="lang.code === localeId" (click)="changeLocale(lang.code)">
     <div class="dd-item-content">
       <igx-icon family="languages" [name]="lang.code"></igx-icon>
-      <span>{{ lang.label }}</span>
+      <span [lang]="lang.code">{{ lang.label }}</span>
     </div>
   </igx-drop-down-item>
 </igx-drop-down>
