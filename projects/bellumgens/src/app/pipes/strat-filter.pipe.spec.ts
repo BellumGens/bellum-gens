@@ -1,4 +1,4 @@
-import { CSGOMap, CSGOStrategy } from 'dist/common/public_api';
+import { CSGOMap, CSGOStrategy } from '../../../../common/src/public_api';
 import { StratFilterPipe } from './strat-filter.pipe';
 
 describe('StratFilterPipe', () => {
