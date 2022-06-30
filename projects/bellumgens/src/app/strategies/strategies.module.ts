@@ -36,6 +36,7 @@ import { VotesPipe } from '../pipes/votes.pipe';
 import { IsStratOwnerPipe } from '../pipes/is-strat-owner.pipe';
 import { SideStratsPipe } from '../pipes/sidestrats.pipe';
 import { BellumGensModule, ConfirmModule, LoadingModule } from '../../../../common/src/public_api';
+import { StratFilterPipe } from '../pipes/strat-filter.pipe';
 
 
 @NgModule({
@@ -50,7 +51,8 @@ import { BellumGensModule, ConfirmModule, LoadingModule } from '../../../../comm
     HasVotedPipe,
     VotesPipe,
     IsStratOwnerPipe,
-    SideStratsPipe
+    SideStratsPipe,
+    StratFilterPipe
   ],
   imports: [
     CommonModule,
