@@ -5,7 +5,7 @@ import {
   CSGOTeam,
   ApplicationUser,
   CSGOActiveDutyDescriptor,
-  ActiveDuty,
+  ACTIVE_DUTY,
   ApiStrategiesService
 } from '../../../../../common/src/public_api';
 import { IgxDialogComponent } from '@infragistics/igniteui-angular';
@@ -28,7 +28,7 @@ export class NewStrategyComponent {
 
   public newStrategy: CSGOStrategy = Object.assign({}, NEW_EMPTY_STRAT);
   public videoId: string;
-  public mapList: CSGOActiveDutyDescriptor [] = ActiveDuty;
+  public mapList: CSGOActiveDutyDescriptor [] = ACTIVE_DUTY;
   public selectedMap = this.mapList[0];
   public title = 'Add a new team strategy';
 

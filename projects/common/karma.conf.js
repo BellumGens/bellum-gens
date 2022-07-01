@@ -21,6 +21,7 @@ module.exports = function (config) {
       reporters: [
         // reporters not supporting the `file` property
         { type: 'lcov' },
+        { type: 'text-summary' }
       ]
     },
     reporters: ['progress', 'kjhtml'],

@@ -19,20 +19,16 @@
     <igx-tab-item routerLinkActive #rla1="routerLinkActive"
                   [selected]="rla1.isActive">
       <igx-tab-header routerLink="details">
-        <div class="horizontal-center">
-          <igx-icon>people_outline</igx-icon>
-          <div class="igx-tabs__item-label" i18n>Details</div>
-        </div>
+        <igx-icon igxPrefix>people_outline</igx-icon>
+        <div igxTabHeaderLabel i18n>Details</div>
       </igx-tab-header>
     </igx-tab-item>
 
     <igx-tab-item routerLinkActive #rla2="routerLinkActive"
                   [selected]="rla2.isActive">
       <igx-tab-header routerLink="competitions">
-        <div class="horizontal-center">
-          <igx-icon>sports_esports</igx-icon>
-          <div class="igx-tabs__item-label" i18n>Competitions</div>
-        </div>
+        <igx-icon igxPrefix>sports_esports</igx-icon>
+        <div igxTabHeaderLabel i18n>Competitions</div>
       </igx-tab-header>
     </igx-tab-item>
 
@@ -40,10 +36,8 @@
                   routerLinkActive #rla2="routerLinkActive"
                   [selected]="rla2.isActive">
       <igx-tab-header routerLink="strategies">
-        <div class="horizontal-center">
-          <igx-icon>playlist_add_check</igx-icon>
-          <div class="igx-tabs__item-label" i18n>Strategies</div>
-        </div>
+        <igx-icon igxPrefix>playlist_add_check</igx-icon>
+        <div igxTabHeaderLabel i18n>Strategies</div>
       </igx-tab-header>
     </igx-tab-item>
 
@@ -51,10 +45,8 @@
                   routerLinkActive #rla3="routerLinkActive"
                   [selected]="rla3.isActive">
       <igx-tab-header routerLink="preferences">
-        <div class="horizontal-center">
-          <igx-icon>settings</igx-icon>
-          <div class="igx-tabs__item-label" i18n>Settings</div>
-        </div>
+        <igx-icon igxPrefix>settings</igx-icon>
+        <div igxTabHeaderLabel i18n>Settings</div>
       </igx-tab-header>
     </igx-tab-item>
   </igx-tabs>

@@ -1,5 +1,5 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
-import { ActiveDuty, CSGOActiveDutyDescriptor, CSGOMapPool } from '../../../../../common/src/public_api';
+import { ACTIVE_DUTY, CSGOActiveDutyDescriptor, CSGOMapPool } from '../../../../../common/src/public_api';
 
 @Component({
   selector: 'app-map-pool',
@@ -12,7 +12,7 @@ export class MapPoolComponent {
 
   @Input()
   public set mapPool(maps: CSGOMapPool []) {
-    if (maps?.length) {
+    if (maps?.length > 0) {
       this._maps = maps;
       this.augmentActiveDuty();
     }
@@ -24,7 +24,7 @@ export class MapPoolComponent {
   @Output()
   public update = new EventEmitter<CSGOActiveDutyDescriptor>();
 
-  public maps = ActiveDuty;
+  public maps = structuredClone(ACTIVE_DUTY);
 
   private _maps: CSGOMapPool [];
 

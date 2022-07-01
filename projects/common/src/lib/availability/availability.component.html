@@ -1,10 +1,10 @@
 <igx-chips-area>
-  <igx-chip *ngFor="let weekday of availability"
+  <igx-chip *ngFor="let weekday of baseAvailability"
             [selectable]="editable"
             [removable]="editable && weekday.available"
             [selected]="weekday.available"
-            (chipClick)="daySelected($event)"
-            (remove)="dayDeselected($event)">
+            (chipClick)="daySelected($event, weekday)"
+            (remove)="dayDeselected($event, weekday)">
     <span class="igx-chip__text">{{ weekday.day | weekday }}</span>
     <span class="igx-chip__subtext" *ngIf="weekday.available">{{ weekday.from | date:'H:mm' }}-{{ weekday.to | date:'H:mm' }}</span>
   </igx-chip>

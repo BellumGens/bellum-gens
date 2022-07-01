@@ -553,7 +553,6 @@
       }
     }
   },
-  "defaultProject": "bellum-gens",
   "cli": {
     "analytics": false
   }

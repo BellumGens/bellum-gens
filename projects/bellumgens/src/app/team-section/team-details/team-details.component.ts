@@ -131,6 +131,7 @@ export class TeamDetailsComponent extends BaseComponent {
   }
 
   public changeSchedule(day: Availability) {
+    day.teamId = this.team.teamId;
     this.apiService.setTeamPractice(day).subscribe();
   }
 }

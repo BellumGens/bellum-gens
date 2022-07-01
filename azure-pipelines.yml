@@ -15,15 +15,20 @@ variables:
 steps:
 - task: NodeTool@0
   inputs:
-    versionSpec: '12.x'
+    versionSpec: '16.x'
   displayName: 'Install Node.js'
 
 - script: npm config set @infragistics:registry $(ig_registry)
-- script: npm config set always-auth true --scope:@infragistics
-- script: npm config set _auth=$(npm_token) --scope:@infragistics
+  displayName: 'Npm add registry'
+
+- script: npm config set $(ig_scope):always-auth=true
+  displayName: 'Npm config'
+
+- script: npm config set $(ig_scope):_auth=$(npm_token)
+  displayName: 'Npm config auth'
 
 - script: npm ci
-  displayName: npm install
+  displayName: npm ci
 
 - script: npm run lint
   displayName: run lint

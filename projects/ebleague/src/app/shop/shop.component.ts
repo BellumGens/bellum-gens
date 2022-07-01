@@ -20,8 +20,8 @@ export class ShopComponent extends BaseComponent {
   public countryCode = '+359';
 
   public cuts = [
-    { text: 'Mъжка', cut: JerseyCut.Male },
-    { text: 'Дамска', cut: JerseyCut.Female }
+    { text: $localize`Male`, cut: JerseyCut.Male },
+    { text: $localize`Female`, cut: JerseyCut.Female }
   ];
 
   public allSizes: [

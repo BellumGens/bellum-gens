@@ -14,6 +14,7 @@ export enum CSGOMap {
 export interface CSGOMapPool {
   map: CSGOMap;
   isPlayed: boolean;
+  active?: boolean;
   userId?: string;
   teamId?: string;
 }
@@ -30,47 +31,57 @@ export interface CSGOActiveDutyDescriptor {
 export const AllCSGOMaps: CSGOMapPool [] = [
   {
     map: CSGOMap.Cache,
-    isPlayed: true
+    isPlayed: true,
+    active: false
   },
   {
     map: CSGOMap.Dust2,
-    isPlayed: true
+    isPlayed: true,
+    active: true
   },
   {
     map: CSGOMap.Inferno,
-    isPlayed: true
+    isPlayed: true,
+    active: true
   },
   {
     map: CSGOMap.Mirage,
-    isPlayed: true
+    isPlayed: true,
+    active: true
   },
   {
     map: CSGOMap.Nuke,
-    isPlayed: true
+    isPlayed: true,
+    active: true
   },
   {
     map: CSGOMap.Overpass,
-    isPlayed: true
+    isPlayed: true,
+    active: true
   },
   {
     map: CSGOMap.Train,
-    isPlayed: true
+    isPlayed: true,
+    active: false
   },
   {
     map: CSGOMap.Vertigo,
-    isPlayed: true
+    isPlayed: true,
+    active: true
   },
   {
     map: CSGOMap.Cobblestone,
-    isPlayed: true
+    isPlayed: true,
+    active: false
   },
   {
     map: CSGOMap.Ancient,
-    isPlayed: true
+    isPlayed: true,
+    active: true
   }
 ];
 
-export const ActiveDuty: CSGOActiveDutyDescriptor [] = [{
+export const ACTIVE_DUTY: CSGOActiveDutyDescriptor [] = [{
     id: CSGOMap.Cache,
     map: 'Cache',
     image: 'assets/csgo_maps/de_cache.jpg',

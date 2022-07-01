@@ -6,7 +6,7 @@ import {
   TournamentParticipant,
   ApiTournamentsService,
   TournamentCSGOMatch, TournamentMatchMap,
-  CSGOActiveDutyDescriptor, ActiveDuty
+  CSGOActiveDutyDescriptor, ACTIVE_DUTY
 } from '../../../../../common/src/public_api';
 import { environment } from '../../../../../common/src/environments/environment';
 import {
@@ -30,7 +30,7 @@ export class AdminCsgoComponent {
   public environment = environment;
   public newGroup = Object.assign({}, EMPTY_NEW_GROUP);
   public pipeTrigger = 0;
-  public mapList: CSGOActiveDutyDescriptor [] = ActiveDuty;
+  public mapList: CSGOActiveDutyDescriptor [] = ACTIVE_DUTY;
   public matchInEdit: TournamentCSGOMatch = { startTime: new Date() };
   public tournaments: Tournament [] = [];
   public selectedTournament: Tournament;

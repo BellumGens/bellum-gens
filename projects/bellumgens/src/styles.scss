@@ -81,7 +81,7 @@ $list-theme: list-theme($background: transparent,
 
 /* Input Group */
 $input-group-theme: input-group-theme($search-background: transparent,
-                                          $label-floated-background: $background);
+                                      $label-floated-background: $background);
 @include css-vars($input-group-theme);
 /* END Input Group */
 
