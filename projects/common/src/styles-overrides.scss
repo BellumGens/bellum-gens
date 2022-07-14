@@ -57,13 +57,13 @@ igx-card-content h4 {
 /* END List */
 
 .color-success {
-  color: var(--igx-success-500);
+  color: hsla(var(--igx-success-500));
 }
 
 .color-error {
-  color: var(--igx-error-500);
+  color: hsla(var(--igx-error-500));
 }
 
 .color-warn {
-  color: var(--igx-warn-500);
+  color: hsla(var(--igx-warn-500));
 }
