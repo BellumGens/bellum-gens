@@ -37,7 +37,7 @@
         <p i18n>Recruit your team and manage your team member roles, team strategies, practice times and more....</p>
         <button igxButton="raised" *ngIf="!authUser else loggedIn" (click)="openLogin()" i18n>Sign-up Now</button>
         <ng-template #loggedIn>
-          <button igxButton="raised" routerLink="myteams" i18n>Go to Team Section</button>
+          <button igxButton="raised" routerLink="/team/myteams" i18n>Go to Team Section</button>
         </ng-template>
       </div>
     </div>
