@@ -42,7 +42,7 @@
     "@angular/router": "14.2.2",
     "@angular/service-worker": "14.2.2",
     "@igniteui/material-icons-extended": "^2.11.0",
-    "@infragistics/igniteui-angular": "14.1.0",
+    "@infragistics/igniteui-angular": "14.1.1",
     "@nguniversal/builders": "14.2.0",
     "@nguniversal/express-engine": "14.2.0",
     "@types/express": "^4.17.11",
