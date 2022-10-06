@@ -95,7 +95,7 @@ export class StrategyEditorComponent implements OnInit, OnDestroy {
             if (strat.editorMetadata) {
               this.editor.restore(strat.editorMetadata);
             }
-            this.map = this.maps.find(m => m.id === strat.map);
+            this.map = this.maps.find(m => m.mapId === strat.map);
           }
         });
       }
@@ -109,7 +109,7 @@ export class StrategyEditorComponent implements OnInit, OnDestroy {
   }
 
   public changeMap(map: CSGOMap) {
-    this.map = this.maps.find(m => m.id === map);
+    this.map = this.maps.find(m => m.mapId === map);
     this.changes = true;
   }
 

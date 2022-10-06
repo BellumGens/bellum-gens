@@ -35,7 +35,7 @@ export class MapPoolComponent {
   }
 
   private augmentActiveDuty() {
-    this._maps.forEach(map => this.maps.find(m => m.id === map.map).isPlayed = map.isPlayed);
+    this._maps.forEach(map => this.maps.find(m => m.mapId === map.mapId).isPlayed = map.isPlayed);
   }
 
 }

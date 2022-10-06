@@ -101,7 +101,7 @@ export class StrategiesComponent {
 
   public changeMaps(event: IChipSelectEventArgs, args: CSGOMapPool) {
     if (event.originalEvent) {
-      this.maps.find(m => m.map === args.map).isPlayed = event.selected;
+      this.maps.find(m => m.mapId === args.mapId).isPlayed = event.selected;
       this.pipeTrigger++;
     }
   }
