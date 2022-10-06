@@ -4,7 +4,7 @@
   <div class="editor-elements list-container">
     <igx-select *ngIf="newStrategy" class="editor-elements-section" id="mapSelector" name="mapSelector" [(ngModel)]="newStrategy.map" (ngModelChange)="changeMap($event)">
       <label for="mapSelector" igxLabel i18n>Map</label>
-      <igx-select-item *ngFor="let map of maps" [value]="map.id">
+      <igx-select-item *ngFor="let map of maps" [value]="map.mapId">
         {{ map.map }}
       </igx-select-item>
     </igx-select>
