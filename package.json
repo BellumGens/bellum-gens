@@ -26,8 +26,8 @@
     "i18n": "npm run i18n:bellumgens && npm run i18n:ebleague",
     "i18n:bellumgens": "ng extract-i18n bellum-gens --out-file projects/bellumgens/src/locale/messages.en.xlf",
     "i18n:ebleague": "ng extract-i18n eb-league --out-file projects/ebleague/src/locale/messages.en.xlf",
-    "cypress:open": "concurrently \"ng serve\" \"cypress open\"",
-    "cypress:run": "concurrently \"ng serve\" \"cypress run\""
+    "cypress:open": "concurrently \"ng serve\" \"cypress open --config-file=cypress.config.ts\"",
+    "cypress:run": "concurrently \"ng serve\" \"cypress run --config-file=cypress.config.ts\""
   },
   "private": true,
   "dependencies": {
