@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 /* See: https://www.infragistics.com/products/ignite-ui-angular/angular/components/themes.html */
 @use "variables" as *;
-@import "~minireset.css/minireset";
+@import "minireset.css/minireset";
 
 @include core();
 

@@ -10,7 +10,7 @@ export class StratFilterPipe implements PipeTransform {
 
   public transform(strats: CSGOStrategy [], viewAll: boolean = true, _?: number): CSGOStrategy [] {
     if (strats && !viewAll) {
-      return strats.filter(s => this.maps.find(m => m.map === s.map).active);
+      return strats.filter(s => this.maps.find(m => m.mapId === s.map).active);
     }
     return strats;
   }

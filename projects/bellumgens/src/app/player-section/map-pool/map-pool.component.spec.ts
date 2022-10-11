@@ -35,12 +35,12 @@ describe('MapPoolComponent', () => {
   it('should create and augment rendered map pool', () => {
     expect(component).toBeTruthy();
     component.mapPool = [
-      { map: 1, isPlayed: true },
-      { map: 3, isPlayed: true }
+      { mapId: 1, isPlayed: true },
+      { mapId: 3, isPlayed: true }
     ];
 
-    expect(component.maps.find(m => m.id === 1).isPlayed).toBeTrue();
-    expect(component.maps.find(m => m.id === 2).isPlayed).toBeFalse();
-    expect(component.maps.find(m => m.id === 3).isPlayed).toBeTrue();
+    expect(component.maps.find(m => m.mapId === 1).isPlayed).toBeTrue();
+    expect(component.maps.find(m => m.mapId === 2).isPlayed).toBeFalse();
+    expect(component.maps.find(m => m.mapId === 3).isPlayed).toBeTrue();
   });
 });

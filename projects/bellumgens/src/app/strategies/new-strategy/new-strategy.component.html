@@ -29,7 +29,7 @@
 
     <igx-select id="mapSelector" name="mapSelector" [(ngModel)]="newStrategy.map">
       <label for="mapSelector" igxLabel i18n>Map</label>
-      <igx-select-item *ngFor="let map of mapList" (click)="selectedMap = map" [value]="map.id">
+      <igx-select-item *ngFor="let map of mapList" (click)="selectedMap = map" [value]="map.mapId">
         {{ map.map }}
       </igx-select-item>
     </igx-select>

@@ -111,7 +111,7 @@ export class PlayerComponent extends BaseComponent {
 
   public mapChange(args: CSGOActiveDutyDescriptor) {
     const map: CSGOMapPool = {
-      map: args.id,
+      mapId: args.mapId,
       isPlayed: args.isPlayed,
       userId: this.authUser.id
     }

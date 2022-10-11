@@ -300,7 +300,7 @@
   <div *ngFor="let map of matchInEdit.maps">
     <igx-select [(ngModel)]="map.map">
       <label igxLabel i18n>Map</label>
-      <igx-select-item *ngFor="let map of mapList" [value]="map.id">{{ map.map }}</igx-select-item>
+      <igx-select-item *ngFor="let map of mapList" [value]="map.mapId">{{ map.map }}</igx-select-item>
     </igx-select>
 
     <div class="horizontal-center">
