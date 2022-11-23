@@ -20,6 +20,11 @@
       "dom"
     ]
   },
+  "exclude": [
+    "e2e",
+    "cypress",
+    "./cypress.config.ts"
+  ],
   "angularCompilerOptions": {
     "strictTemplates": true,
     "fullTemplateTypeCheck": true,
