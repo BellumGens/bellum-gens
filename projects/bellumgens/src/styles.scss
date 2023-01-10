@@ -46,8 +46,7 @@ $include: (igx-avatar,
 );
 
 /* Navbar */
-$navbar-theme: navbar-theme(palette($background, $secondary),
-                            $background: $background-gradient,
+$navbar-theme: navbar-theme($background: $background-gradient,
                             $text-color: white,
                             $shadow: 0px 15px 30px 0px rgba(0,0,0,0.4),
                             $idle-icon-color: white,
