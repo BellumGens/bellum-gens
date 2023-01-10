@@ -512,12 +512,7 @@
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/common/tsconfig.lib.json",
-            "project": "projects/common/ng-package.json",
-            "stylePreprocessorOptions": {
-              "includePaths": [
-                "node_modules"
-              ]
-            }
+            "project": "projects/common/ng-package.json"
           },
           "configurations": {
             "production": {
