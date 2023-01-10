@@ -163,7 +163,12 @@
                 }
               ],
               "sourceMap": false,
-              "optimization": true
+              "optimization": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "node_modules"
+                ]
+              }
             }
           }
         },
@@ -434,7 +439,12 @@
                 }
               ],
               "sourceMap": false,
-              "optimization": true
+              "optimization": true,
+              "stylePreprocessorOptions": {
+                "includePaths": [
+                  "node_modules"
+                ]
+              }
             }
           }
         },
