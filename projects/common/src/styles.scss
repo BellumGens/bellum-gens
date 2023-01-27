@@ -2,6 +2,7 @@ html, body {
   height: 100%;
   min-width: 380px;
   background-color: $background;
+  color: var(--ig-surface-500-contrast);
 }
 
 .bellum-gens-navbar {
@@ -18,12 +19,6 @@ html, body {
 .navigatable:active {
   outline: none;
 }
-
-/* Typography */
-.igx-typography {
-  color: $primary;
-}
-/* END Typography */
 
 .content {
   height: 100%;
