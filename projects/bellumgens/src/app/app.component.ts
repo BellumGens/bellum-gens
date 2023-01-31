@@ -43,6 +43,7 @@ export class AppComponent implements OnInit {
   public unreadNotifications = 0;
   public environment = environment;
   public title = 'Bellum Gens';
+  public year = new Date().getFullYear();
 
   public overlaySettings = GLOBAL_OVERLAY_SETTINGS;
 
