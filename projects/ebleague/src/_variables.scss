@@ -1,9 +1,9 @@
 @use '@infragistics/igniteui-angular/theming' as igx;
 @forward '@infragistics/igniteui-angular/theming';
 
-$primary: white;
+$primary: #fff;
 $secondary: #FFB408;
-$gray: white;
+$gray: #ddd;
 $background: #192053;
 $banner-background: #2C3D93;
 $background-gradient: linear-gradient(to right, $background, #04081D);
@@ -13,10 +13,5 @@ $app-palette: igx.palette(
   $primary: $primary,
   $secondary: $secondary,
   $surface: $background,
-  $gray: $gray,
-  $info: igx.color(igx.$dark-material-palette, 'info'),
-  $success: igx.color(igx.$dark-material-palette, 'success'),
-  $error: igx.color(igx.$dark-material-palette, 'error'),
-  $warn: igx.color(igx.$dark-material-palette, 'warn')
+  $gray: $gray
 );
-@include igx.palette($app-palette);
