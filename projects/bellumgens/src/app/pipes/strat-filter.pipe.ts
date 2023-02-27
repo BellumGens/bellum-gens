@@ -2,7 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { AllCSGOMaps, CSGOMapPool, CSGOStrategy } from '../../../../common/src/public_api';
 
 @Pipe({
-  name: 'stratFilter'
+    name: 'stratFilter',
+    standalone: true
 })
 export class StratFilterPipe implements PipeTransform {
 

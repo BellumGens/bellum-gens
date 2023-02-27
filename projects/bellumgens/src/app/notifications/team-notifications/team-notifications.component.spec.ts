@@ -14,19 +14,17 @@ describe('TeamNotificationsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         RouterTestingModule,
         HttpClientTestingModule,
         IgxListModule,
-        IgxAvatarModule
-      ],
-      declarations: [
+        IgxAvatarModule,
         TeamNotificationsComponent,
         SortApplicationsPipe,
         DisabledNotificationsPipe,
         NotificationStatePipe
-      ]
-    })
+    ]
+})
     .compileComponents();
   }));
 

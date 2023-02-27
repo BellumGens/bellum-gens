@@ -2,9 +2,11 @@ import { Component, Input, EventEmitter, Output, ViewChild, NgModule } from '@an
 import { IDialogEventArgs, IgxDialogComponent, IgxDialogModule } from '@infragistics/igniteui-angular';
 
 @Component({
-  selector: 'bg-confirm',
-  templateUrl: './confirm.component.html',
-  styleUrls: ['./confirm.component.css']
+    selector: 'bg-confirm',
+    templateUrl: './confirm.component.html',
+    styleUrls: ['./confirm.component.css'],
+    standalone: true,
+    imports: [IgxDialogModule]
 })
 export class ConfirmComponent {
   @Input()
@@ -43,15 +45,4 @@ export class ConfirmComponent {
   }
 }
 
-@NgModule({
-  declarations: [
-    ConfirmComponent
-  ],
-  exports: [
-    ConfirmComponent
-  ],
-  imports: [
-    IgxDialogModule
-  ]
-})
-export class ConfirmModule {}
+

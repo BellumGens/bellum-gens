@@ -10,16 +10,16 @@ describe('LanguagesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LanguagesComponent ],
-      imports: [
+    imports: [
         NoopAnimationsModule,
         IgxButtonModule,
         IgxIconModule,
         IgxRippleModule,
         IgxToggleModule,
-        IgxDropDownModule
-      ]
-    })
+        IgxDropDownModule,
+        LanguagesComponent
+    ]
+})
     .compileComponents();
   });
 

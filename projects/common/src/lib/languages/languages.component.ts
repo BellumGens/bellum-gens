@@ -1,12 +1,14 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgFor } from '@angular/common';
 import { Component, Inject, LOCALE_ID, NgModule } from '@angular/core';
 import { IgxButtonModule, IgxDropDownModule, IgxIconModule, IgxRippleModule, IgxToggleModule } from '@infragistics/igniteui-angular';
 import { GLOBAL_OVERLAY_SETTINGS } from '../../models/misc';
 
 @Component({
-  selector: 'bg-languages',
-  templateUrl: './languages.component.html',
-  styleUrls: ['./languages.component.scss']
+    selector: 'bg-languages',
+    templateUrl: './languages.component.html',
+    styleUrls: ['./languages.component.scss'],
+    standalone: true,
+    imports: [IgxButtonModule, IgxRippleModule, IgxToggleModule, IgxIconModule, IgxDropDownModule, NgFor]
 })
 export class LanguagesComponent {
   public overlaySettings = GLOBAL_OVERLAY_SETTINGS;
@@ -29,20 +31,4 @@ export class LanguagesComponent {
   }
 }
 
-@NgModule({
-  declarations: [
-    LanguagesComponent
-  ],
-  exports: [
-    LanguagesComponent
-  ],
-  imports: [
-    CommonModule,
-    IgxButtonModule,
-    IgxRippleModule,
-    IgxIconModule,
-    IgxToggleModule,
-    IgxDropDownModule
-  ]
-})
-export class LanguagesModule {}
+

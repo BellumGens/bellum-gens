@@ -29,12 +29,12 @@ describe('StrategyDetailsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         RouterTestingModule,
         HttpClientTestingModule,
         NoopAnimationsModule,
         FormsModule,
-        ServiceWorkerModule.register('', {enabled: false}),
+        ServiceWorkerModule.register('', { enabled: false }),
         IgxCardModule,
         IgxIconModule,
         IgxListModule,
@@ -48,16 +48,14 @@ describe('StrategyDetailsComponent', () => {
         IgxButtonModule,
         BellumGensModule,
         ConfirmModule,
-        LoadingModule
-      ],
-      declarations: [
+        LoadingModule,
         StrategyDetailsComponent,
         VotesPipe,
         IsVideoPipe,
         SafeVideoLinkPipe,
         HasVotedPipe
-      ]
-    })
+    ]
+})
     .compileComponents();
   }));
 

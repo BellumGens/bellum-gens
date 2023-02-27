@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
-  templateUrl: './emailconfirm.component.html',
-  styleUrls: ['./emailconfirm.component.css']
+    templateUrl: './emailconfirm.component.html',
+    styleUrls: ['./emailconfirm.component.css'],
+    standalone: true
 })
 export class EmailconfirmComponent {
   public message = 'Email confirmed successfully!';

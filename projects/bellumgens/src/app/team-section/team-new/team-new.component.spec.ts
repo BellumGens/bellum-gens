@@ -19,11 +19,7 @@ describe('TeamNewComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        TeamNewComponent,
-        GroupsFilterPipe
-      ],
-      imports: [
+    imports: [
         FormsModule,
         HttpClientTestingModule,
         RouterTestingModule,
@@ -33,9 +29,11 @@ describe('TeamNewComponent', () => {
         IgxDialogModule,
         IgxAvatarModule,
         IgxListModule,
-        IgxProgressBarModule
-      ]
-    })
+        IgxProgressBarModule,
+        TeamNewComponent,
+        GroupsFilterPipe
+    ]
+})
     .compileComponents();
   }));
 

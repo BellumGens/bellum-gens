@@ -19,11 +19,7 @@ describe('NewStrategyComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        NewStrategyComponent,
-        SafeVideoLinkPipe
-      ],
-      imports: [
+    imports: [
         FormsModule,
         RouterTestingModule,
         HttpClientTestingModule,
@@ -33,9 +29,11 @@ describe('NewStrategyComponent', () => {
         IgxIconModule,
         IgxRadioModule,
         IgxSwitchModule,
-        IgxSelectModule
-      ]
-    })
+        IgxSelectModule,
+        NewStrategyComponent,
+        SafeVideoLinkPipe
+    ]
+})
     .compileComponents();
   }));
 

@@ -9,11 +9,30 @@ import {
 } from '../../../../common/src/public_api';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { FormsModule } from '@angular/forms';
+import { IgxAutocompleteModule, IgxAvatarModule, IgxCheckboxModule, IgxDropDownModule, IgxInputGroupModule, IgxSelectModule } from '@infragistics/igniteui-angular';
+import { TeamNewComponent } from '../../../../bellumgens/src/app/team-section/team-new/team-new.component';
+import { StartsWithPipe } from '../../../../bellumgens/src/app/pipes/starts-with.pipe';
+import { NgFor, NgIf } from '@angular/common';
 
 @Component({
-  selector: 'app-tournament-registration',
-  templateUrl: './tournament-registration.component.html',
-  styleUrls: ['./tournament-registration.component.scss']
+    selector: 'app-tournament-registration',
+    templateUrl: './tournament-registration.component.html',
+    styleUrls: ['./tournament-registration.component.scss'],
+    standalone: true,
+    imports: [
+      FormsModule,
+      IgxInputGroupModule,
+      IgxSelectModule,
+      IgxAvatarModule,
+      IgxAutocompleteModule,
+      IgxDropDownModule,
+      IgxCheckboxModule,
+      TeamNewComponent,
+      StartsWithPipe,
+      NgIf,
+      NgFor
+    ]
 })
 export class TournamentRegistrationComponent {
   @Input()

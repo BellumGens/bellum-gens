@@ -1,5 +1,5 @@
 import { Component, ViewChildren, QueryList, ElementRef } from '@angular/core';
-import { IDropDroppedEventArgs, IgxAvatarComponent } from '@infragistics/igniteui-angular';
+import { IDropDroppedEventArgs, IgxAvatarComponent, IgxCardModule, IgxAvatarModule, IgxDragDropModule } from '@infragistics/igniteui-angular';
 import {
   PlaystyleRole, RoleSlot,
   TeamMember, TEAM_PLACEHOLDER,
@@ -8,14 +8,20 @@ import {
   LoginService,
   ApplicationUser
 } from '../../../../../common/src/public_api';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { BaseComponent } from '../../base/base.component';
 import { Title, Meta } from '@angular/platform-browser';
+import { PlayerCountryPipe } from '../../../../../common/src/lib/pipes/player-country.pipe';
+import { ConfirmComponent } from '../../../../../common/src/lib/confirm/confirm.component';
+import { AvailabilityComponent } from '../../../../../common/src/lib/availability/availability.component';
+import { NgIf, NgFor } from '@angular/common';
 
 @Component({
-  selector: 'app-team-details',
-  templateUrl: './team-details.component.html',
-  styleUrls: ['./team-details.component.scss']
+    selector: 'app-team-details',
+    templateUrl: './team-details.component.html',
+    styleUrls: ['./team-details.component.scss'],
+    standalone: true,
+    imports: [NgIf, AvailabilityComponent, IgxCardModule, NgFor, IgxAvatarModule, IgxDragDropModule, RouterLink, ConfirmComponent, PlayerCountryPipe]
 })
 export class TeamDetailsComponent extends BaseComponent {
   @ViewChildren(IgxAvatarComponent, { read: ElementRef }) public emptyRoles: QueryList<ElementRef>;

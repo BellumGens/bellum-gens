@@ -1,4 +1,7 @@
+import { DatePipe, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { IgxDividerModule, IgxIconModule, IgxInputGroupModule } from '@infragistics/igniteui-angular';
 import {
   Game, RegistrationsCount, Tournament,
   ApiTournamentsService,
@@ -7,10 +10,13 @@ import {
   CompetitionDefaults,
   SocialMediaService
 } from '../../../../common/src/public_api';
+import { TournamentRegistrationComponent } from '../tournament-registration/tournament-registration.component';
 
 @Component({
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.scss'],
+    standalone: true,
+    imports: [ TournamentRegistrationComponent, IgxDividerModule, IgxIconModule, IgxInputGroupModule, FormsModule, DatePipe, NgIf ]
 })
 export class HomeComponent {
   public userEmail: string = null;

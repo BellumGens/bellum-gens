@@ -2,7 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { ALL_ROLES } from '../../../../common/src/public_api';
 
 @Pipe({
-  name: 'queryParsed'
+    name: 'queryParsed',
+    standalone: true
 })
 export class QueryParsedPipe implements PipeTransform {
 

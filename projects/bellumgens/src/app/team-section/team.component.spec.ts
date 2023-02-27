@@ -19,23 +19,21 @@ describe('TeamComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         HttpClientTestingModule,
         RouterTestingModule,
         FormsModule,
         NoopAnimationsModule,
-        ServiceWorkerModule.register('', {enabled: false}),
+        ServiceWorkerModule.register('', { enabled: false }),
         IgxAvatarModule,
         IgxIconModule,
         IgxTabsModule,
         IgxInputGroupModule,
-        IgxDialogModule
-      ],
-      declarations: [
+        IgxDialogModule,
         TeamComponent,
         TeamApplicationComponent
-      ]
-    })
+    ]
+})
     .compileComponents();
   }));
 

@@ -1,7 +1,7 @@
 import { Component, HostListener, Inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser, NgIf, NgClass, NgFor, DatePipe } from '@angular/common';
 import { BaseComponent } from '../../base/base.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import {
   CSGOStrategy,
   VoteDirection,
@@ -15,11 +15,21 @@ import {
 } from '../../../../../common/src/public_api';
 import { Title, Meta } from '@angular/platform-browser';
 import { environment } from '../../../../../common/src/environments/environment.prod';
+import { VotesPipe } from '../../pipes/votes.pipe';
+import { HasVotedPipe } from '../../pipes/has-voted.pipe';
+import { IsVideoPipe } from '../../pipes/is-video.pipe';
+import { SafeVideoLinkPipe } from '../../pipes/safe-video-link.pipe';
+import { ConfirmComponent } from '../../../../../common/src/lib/confirm/confirm.component';
+import { FormsModule } from '@angular/forms';
+import { IgxCardModule, IgxLayoutModule, IgxButtonModule, IgxRippleModule, IgxIconModule, IgxDividerModule, IgxListModule, IgxAvatarModule, IgxToggleModule, IgxDropDownModule, IgxInputGroupModule, IgxSuffixModule } from '@infragistics/igniteui-angular';
+import { LoadingComponent } from '../../../../../common/src/lib/loading/loading.component';
 
 @Component({
-  selector: 'app-strategy-details',
-  templateUrl: './strategy-details.component.html',
-  styleUrls: ['./strategy-details.component.scss']
+    selector: 'app-strategy-details',
+    templateUrl: './strategy-details.component.html',
+    styleUrls: ['./strategy-details.component.scss'],
+    standalone: true,
+    imports: [NgIf, LoadingComponent, IgxCardModule, IgxLayoutModule, RouterLink, IgxButtonModule, IgxRippleModule, IgxIconModule, NgClass, IgxDividerModule, IgxListModule, NgFor, IgxAvatarModule, IgxToggleModule, IgxDropDownModule, FormsModule, IgxInputGroupModule, IgxSuffixModule, ConfirmComponent, DatePipe, SafeVideoLinkPipe, IsVideoPipe, HasVotedPipe, VotesPipe]
 })
 export class StrategyDetailsComponent extends BaseComponent {
   public strat: CSGOStrategy;

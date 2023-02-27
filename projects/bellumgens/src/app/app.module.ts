@@ -49,30 +49,11 @@ import { EmailconfirmComponent } from './emailconfirm/emailconfirm.component';
 import { QueryParsedPipe } from './pipes/query-parsed.pipe';
 import { StartsWithPipe } from './pipes/starts-with.pipe';
 import { TeamSearchComponent } from './search/team-search/team-search.component';
-import {
-  BellumGensModule,
-  LanguagesModule,
-  LoadingModule,
-  LoginModule,
-  SuccessErrorModule
-} from '../../../common/src/public_api';
+import { LanguagesComponent, LoginComponent, SuccessErrorComponent } from '../../../common/src/public_api';
+
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    UnreadNotificationsPipe,
-    PlayerSearchComponent,
-    SearchComponent,
-    QuickSearchComponent,
-    ReduceQuickSearchResultPipe,
-    TeamResultsComponent,
-    PlayerResultsComponent,
-    EmailconfirmComponent,
-    QueryParsedPipe,
-    StartsWithPipe,
-    TeamSearchComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     FormsModule,
     HttpClientModule,
@@ -82,7 +63,7 @@ import {
     TransferHttpCacheModule,
     IgxAvatarModule,
     IgxNavbarModule,
-    IgxLayoutModule, // TODO: Remove
+    IgxLayoutModule,
     IgxRippleModule,
     IgxListModule,
     IgxIconModule,
@@ -103,13 +84,23 @@ import {
     IgxDividerModule,
     IgxCarouselModule,
     IgxNavigationDrawerModule,
-    LoginModule,
-    SuccessErrorModule,
-    LanguagesModule,
-    LoadingModule,
-    BellumGensModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    HammerModule
+    HammerModule,
+    HomeComponent,
+    UnreadNotificationsPipe,
+    PlayerSearchComponent,
+    SearchComponent,
+    QuickSearchComponent,
+    ReduceQuickSearchResultPipe,
+    TeamResultsComponent,
+    PlayerResultsComponent,
+    EmailconfirmComponent,
+    QueryParsedPipe,
+    StartsWithPipe,
+    TeamSearchComponent,
+    SuccessErrorComponent,
+    LoginComponent,
+    LanguagesComponent
   ],
   bootstrap: [AppComponent]
 })

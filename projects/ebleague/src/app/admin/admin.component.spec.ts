@@ -9,13 +9,11 @@ describe('AdminComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
+    imports: [
+        RouterTestingModule,
         AdminComponent
-      ],
-      imports: [
-        RouterTestingModule
-      ]
-    })
+    ]
+})
     .compileComponents();
   }));
 

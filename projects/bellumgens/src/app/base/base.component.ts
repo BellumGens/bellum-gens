@@ -4,8 +4,9 @@ import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute, Data } from '@angular/router';
 
 @Component({
-  template: ``,
-  styleUrls: ['./base.component.css']
+    template: ``,
+    styleUrls: ['./base.component.css'],
+    standalone: true
 })
 export class BaseComponent implements OnDestroy {
   protected subs: Subscription [] = [];

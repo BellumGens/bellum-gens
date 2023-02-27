@@ -13,7 +13,7 @@ describe('PlayerResultsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         HttpClientTestingModule,
         RouterTestingModule,
         IgxProgressBarModule,
@@ -22,13 +22,11 @@ describe('PlayerResultsComponent', () => {
         IgxChipsModule,
         IgxIconModule,
         BellumGensModule,
-        LoadingModule
-      ],
-      declarations: [
+        LoadingModule,
         PlayerResultsComponent,
         QueryParsedPipe
-      ]
-    })
+    ]
+})
     .compileComponents();
   }));
 

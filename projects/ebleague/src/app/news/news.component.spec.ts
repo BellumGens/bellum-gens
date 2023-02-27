@@ -10,13 +10,13 @@ describe('NewsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NewsComponent ],
-      imports: [
+    imports: [
         RouterTestingModule,
         IgxCardModule,
-        IgxLayoutModule
-      ]
-    })
+        IgxLayoutModule,
+        NewsComponent
+    ]
+})
     .compileComponents();
   });
 

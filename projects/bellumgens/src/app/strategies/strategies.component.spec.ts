@@ -33,7 +33,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { NewStrategyComponent } from './new-strategy/new-strategy.component';
 import { IsStratOwnerPipe } from 'projects/bellumgens/src/app/pipes/is-strat-owner.pipe';
-import { BellumGensModule, ConfirmModule, LoadingModule } from 'projects/common/src/public_api';
 import { StratFilterPipe } from '../pipes/strat-filter.pipe';
 
 describe('StrategiesComponent', () => {
@@ -43,57 +42,52 @@ describe('StrategiesComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        FormsModule,
-        RouterTestingModule,
-        NoopAnimationsModule,
-        HttpClientTestingModule,
-        ServiceWorkerModule.register('', {enabled: false}),
-        IgxIconModule,
-        IgxAvatarModule,
-        IgxCardModule,
-        IgxInputGroupModule,
-        IgxRadioModule,
-        IgxToggleModule,
-        IgxSelectModule,
-        IgxDialogModule,
-        IgxCheckboxModule,
-        IgxChipsModule,
-        IgxTimePickerModule,
-        IgxBadgeModule,
-        IgxSwitchModule,
-        IgxDropDownModule,
-        IgxProgressBarModule,
-        IgxButtonModule,
-        IgxDividerModule,
-        BellumGensModule,
-        ConfirmModule,
-        LoadingModule
-      ],
-      declarations: [
-        StrategiesComponent,
-        NewStrategyComponent,
-        SafeVideoLinkPipe,
-        SideStratsPipe,
-        TruncateTextPipe,
-        IsVideoPipe,
-        VotesPipe,
-        HasVotedPipe,
-        IsStratOwnerPipe,
-        StratFilterPipe
+          FormsModule,
+          RouterTestingModule,
+          NoopAnimationsModule,
+          HttpClientTestingModule,
+          ServiceWorkerModule.register('', { enabled: false }),
+          IgxIconModule,
+          IgxAvatarModule,
+          IgxCardModule,
+          IgxInputGroupModule,
+          IgxRadioModule,
+          IgxToggleModule,
+          IgxSelectModule,
+          IgxDialogModule,
+          IgxCheckboxModule,
+          IgxChipsModule,
+          IgxTimePickerModule,
+          IgxBadgeModule,
+          IgxSwitchModule,
+          IgxDropDownModule,
+          IgxProgressBarModule,
+          IgxButtonModule,
+          IgxDividerModule,
+          StrategiesComponent,
+          NewStrategyComponent,
+          SafeVideoLinkPipe,
+          SideStratsPipe,
+          TruncateTextPipe,
+          IsVideoPipe,
+          VotesPipe,
+          HasVotedPipe,
+          IsStratOwnerPipe,
+          StratFilterPipe
       ],
       providers: [
-        {
-          provide: ActivatedRoute,
-          useValue: {
-            parent: {
-              parent: {
-                params: new Observable()
+          {
+              provide: ActivatedRoute,
+              useValue: {
+                  parent: {
+                      parent: {
+                          params: new Observable()
+                      }
+                  },
+                  data: new Observable(),
+                  url: new Observable()
               }
-            },
-            data: new Observable(),
-            url: new Observable()
           }
-        }
       ]
     })
     .compileComponents();

@@ -18,7 +18,6 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { BellumGensModule } from 'projects/common/src/public_api';
 import { TournamentRegistrationComponent } from '../tournament-registration/tournament-registration.component';
 import { StartsWithPipe } from 'projects/bellumgens/src/app/pipes/starts-with.pipe';
 import { TeamNewComponent } from 'projects/bellumgens/src/app/team-section/team-new/team-new.component';
@@ -35,7 +34,7 @@ describe('TournamentHomeComponent', () => {
         HttpClientTestingModule,
         RouterTestingModule,
         NoopAnimationsModule,
-        ServiceWorkerModule.register('', {enabled: false}),
+        ServiceWorkerModule.register('', { enabled: false }),
         IgxIconModule,
         IgxDividerModule,
         IgxInputGroupModule,
@@ -48,17 +47,13 @@ describe('TournamentHomeComponent', () => {
         IgxListModule,
         IgxProgressBarModule,
         IgxCheckboxModule,
-        BellumGensModule
-      ],
-      declarations: [
         HomeComponent,
         TournamentRegistrationComponent,
         TeamNewComponent,
         GetRegCountPipe,
         StartsWithPipe
       ]
-    })
-    .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {

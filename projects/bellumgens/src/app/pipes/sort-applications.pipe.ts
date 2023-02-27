@@ -2,7 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { TeamApplication } from '../../../../common/src/public_api';
 
 @Pipe({
-  name: 'sortApplications'
+    name: 'sortApplications',
+    standalone: true
 })
 export class SortApplicationsPipe implements PipeTransform {
 

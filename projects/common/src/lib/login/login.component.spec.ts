@@ -31,12 +31,12 @@ describe('LoginComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         FormsModule,
         RouterTestingModule,
         NoopAnimationsModule,
         HttpClientTestingModule,
-        ServiceWorkerModule.register('', {enabled: false}),
+        ServiceWorkerModule.register('', { enabled: false }),
         IgxAvatarModule,
         IgxIconModule,
         IgxToggleModule,
@@ -50,16 +50,14 @@ describe('LoginComponent', () => {
         IgxButtonModule,
         IgxCheckboxModule,
         IgxProgressBarModule,
-        IgxListModule
-      ],
-      declarations: [
+        IgxListModule,
         LoginComponent,
         LoginDialogComponent,
         LoginButtonsComponent,
         UserPreferencesComponent,
         ConfirmComponent
-      ]
-    })
+    ]
+})
     .compileComponents();
   }));
 

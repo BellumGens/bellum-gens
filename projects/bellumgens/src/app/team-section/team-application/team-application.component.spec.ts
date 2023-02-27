@@ -13,7 +13,7 @@ describe('TeamApplicationComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         FormsModule,
         RouterTestingModule,
         NoopAnimationsModule,
@@ -21,10 +21,10 @@ describe('TeamApplicationComponent', () => {
         IgxIconModule,
         IgxInputGroupModule,
         IgxDialogModule,
-        IgxRippleModule
-      ],
-      declarations: [ TeamApplicationComponent ]
-    })
+        IgxRippleModule,
+        TeamApplicationComponent
+    ]
+})
     .compileComponents();
   }));
 

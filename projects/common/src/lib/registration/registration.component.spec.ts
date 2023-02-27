@@ -1,11 +1,10 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { RegistrationComponent } from './registration.component';
-import { IgxInputGroupModule, IgxButtonModule, IgxIconModule } from '@infragistics/igniteui-angular';
-import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ServiceWorkerModule } from '@angular/service-worker';
 import { RouterTestingModule } from '@angular/router/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 describe('RegistrationComponent', () => {
   let component: RegistrationComponent;
@@ -13,18 +12,14 @@ describe('RegistrationComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ RegistrationComponent ],
       imports: [
-        FormsModule,
         RouterTestingModule,
         HttpClientTestingModule,
+        RegistrationComponent,
         ServiceWorkerModule.register('', {enabled: false}),
-        IgxInputGroupModule,
-        IgxButtonModule,
-        IgxIconModule
+        NoopAnimationsModule
       ]
-    })
-    .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {

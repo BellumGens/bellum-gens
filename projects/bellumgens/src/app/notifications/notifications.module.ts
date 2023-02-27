@@ -13,22 +13,20 @@ import { NotificationStatePipe } from '../pipes/notification-state.pipe';
 
 
 @NgModule({
-  declarations: [
-    NotificationsComponent,
-    PlayerNotificationsComponent,
-    TeamNotificationsComponent,
-    DisabledNotificationsPipe,
-    SortNotificationsPipe,
-    SortApplicationsPipe,
-    NotificationStatePipe
-  ],
-  imports: [
-    CommonModule,
-    NotificationsRoutingModule,
-    IgxAvatarModule,
-    IgxListModule,
-    IgxButtonModule,
-    IgxRippleModule
-  ]
+    imports: [
+        CommonModule,
+        NotificationsRoutingModule,
+        IgxAvatarModule,
+        IgxListModule,
+        IgxButtonModule,
+        IgxRippleModule,
+        NotificationsComponent,
+        PlayerNotificationsComponent,
+        TeamNotificationsComponent,
+        DisabledNotificationsPipe,
+        SortNotificationsPipe,
+        SortApplicationsPipe,
+        NotificationStatePipe
+    ]
 })
 export class NotificationsModule { }

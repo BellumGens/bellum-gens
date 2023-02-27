@@ -23,21 +23,11 @@ import { TeamNavComponent } from './team-nav/team-nav.component';
 import { TeamNewComponent } from './team-new/team-new.component';
 import { GroupsFilterPipe } from '../pipes/groups-filter.pipe';
 import { TeamPreferencesComponent } from './team-preferences/team-preferences.component';
-import { AvailabilityModule, BellumGensModule, ConfirmModule } from '../../../../common/src/public_api';
+
 
 
 @NgModule({
-  declarations: [
-    TeamComponent,
-    TeamApplicationComponent,
-    TeamDetailsComponent,
-    TeamTournamentsComponent,
-    TeamNavComponent,
-    TeamNewComponent,
-    TeamPreferencesComponent,
-    GroupsFilterPipe
-  ],
-  imports: [
+    imports: [
     CommonModule,
     FormsModule,
     TeamRoutingModule,
@@ -50,9 +40,14 @@ import { AvailabilityModule, BellumGensModule, ConfirmModule } from '../../../..
     IgxCardModule,
     IgxListModule,
     IgxSwitchModule,
-    BellumGensModule,
-    AvailabilityModule,
-    ConfirmModule
-  ]
+    TeamComponent,
+    TeamApplicationComponent,
+    TeamDetailsComponent,
+    TeamTournamentsComponent,
+    TeamNavComponent,
+    TeamNewComponent,
+    TeamPreferencesComponent,
+    GroupsFilterPipe
+]
 })
 export class TeamModule { }

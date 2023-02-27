@@ -10,13 +10,13 @@ describe('TournamentsMainComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TournamentsMainComponent ],
-      imports: [
+    imports: [
         HttpClientTestingModule,
         IgxDividerModule,
-        IgxCardModule
-      ]
-    })
+        IgxCardModule,
+        TournamentsMainComponent
+    ]
+})
     .compileComponents();
   });
 

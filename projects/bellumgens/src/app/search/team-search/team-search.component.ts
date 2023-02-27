@@ -1,11 +1,16 @@
 import { Component, Input } from '@angular/core';
 import { PlaystyleRole, TeamSearch, TEAM_SEARCH, ApplicationUser } from '../../../../../common/src/public_api';
 import { Router } from '@angular/router';
+import { NgFor, NgIf } from '@angular/common';
+import { IgxRadioModule, IgxSliderModule, IgxButtonModule, IgxRippleModule } from '@infragistics/igniteui-angular';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-team-search',
-  templateUrl: './team-search.component.html',
-  styleUrls: ['./team-search.component.scss']
+    selector: 'app-team-search',
+    templateUrl: './team-search.component.html',
+    styleUrls: ['./team-search.component.scss'],
+    standalone: true,
+    imports: [FormsModule, IgxRadioModule, NgFor, NgIf, IgxSliderModule, IgxButtonModule, IgxRippleModule]
 })
 export class TeamSearchComponent {
 

@@ -9,13 +9,13 @@ describe('ProductionCrewComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProductionCrewComponent ],
-      imports: [
+    imports: [
         IgxCardModule,
         IgxIconModule,
-        IgxButtonModule
-      ]
-    })
+        IgxButtonModule,
+        ProductionCrewComponent
+    ]
+})
     .compileComponents();
   }));
 

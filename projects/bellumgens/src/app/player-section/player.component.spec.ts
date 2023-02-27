@@ -35,19 +35,12 @@ describe('PlayerComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        PlayerComponent,
-        MapPoolComponent,
-        SteamCustomUrlPipe,
-        TopWeaponAltPipe,
-        SortWeaponsPipe
-      ],
-      imports: [
+    imports: [
         HttpClientTestingModule,
         RouterTestingModule,
         NoopAnimationsModule,
         FormsModule,
-        ServiceWorkerModule.register('', {enabled: false}),
+        ServiceWorkerModule.register('', { enabled: false }),
         IgxProgressBarModule,
         IgxCardModule,
         IgxAvatarModule,
@@ -68,9 +61,14 @@ describe('PlayerComponent', () => {
         BellumGensModule,
         AvailabilityModule,
         ConfirmModule,
-        LoadingModule
-      ]
-    }).compileComponents();
+        LoadingModule,
+        PlayerComponent,
+        MapPoolComponent,
+        SteamCustomUrlPipe,
+        TopWeaponAltPipe,
+        SortWeaponsPipe
+    ]
+}).compileComponents();
   }));
 
   beforeEach(() => {

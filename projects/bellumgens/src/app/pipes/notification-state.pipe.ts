@@ -2,7 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { NotificationState } from '../../../../common/src/public_api';
 
 @Pipe({
-  name: 'notificationState'
+    name: 'notificationState',
+    standalone: true
 })
 export class NotificationStatePipe implements PipeTransform {
   private stateMap = ['Not seen', 'Seen', 'Rejected', 'Accepted'];

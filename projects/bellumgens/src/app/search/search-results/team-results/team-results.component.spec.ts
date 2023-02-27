@@ -13,20 +13,18 @@ describe('TeamResultsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         HttpClientTestingModule,
         RouterTestingModule,
         IgxProgressBarModule,
         IgxCardModule,
         IgxAvatarModule,
         BellumGensModule,
-        LoadingModule
-      ],
-      declarations: [
+        LoadingModule,
         TeamResultsComponent,
         QueryParsedPipe
-      ]
-    })
+    ]
+})
     .compileComponents();
   }));
 

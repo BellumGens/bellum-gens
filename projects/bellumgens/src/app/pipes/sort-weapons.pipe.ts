@@ -2,7 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { WeaponDescriptor } from '../../../../common/src/public_api';
 
 @Pipe({
-  name: 'sortWeapons'
+    name: 'sortWeapons',
+    standalone: true
 })
 export class SortWeaponsPipe implements PipeTransform {
   private _filter = new Set<string>(['headshot', 'enemy_weapon', 'against_zoomed_sniper', 'enemy_blinded', 'knife_fight']);

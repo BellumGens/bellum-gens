@@ -22,12 +22,12 @@ describe('HomeComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         FormsModule,
         HttpClientTestingModule,
         NoopAnimationsModule,
         RouterTestingModule,
-        ServiceWorkerModule.register('', {enabled: false}),
+        ServiceWorkerModule.register('', { enabled: false }),
         IgxInputGroupModule,
         IgxIconModule,
         IgxAvatarModule,
@@ -36,12 +36,10 @@ describe('HomeComponent', () => {
         IgxButtonModule,
         IgxCarouselModule,
         IgxDialogModule,
-        BellumGensModule
-      ],
-      declarations: [
+        BellumGensModule,
         HomeComponent
-      ]
-    })
+    ]
+})
     .compileComponents();
   }));
 

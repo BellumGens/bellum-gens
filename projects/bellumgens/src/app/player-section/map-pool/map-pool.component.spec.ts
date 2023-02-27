@@ -12,17 +12,15 @@ describe('MapPoolComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         FormsModule,
         IgxCheckboxModule,
         IgxCardModule,
         NoopAnimationsModule,
-        BellumGensModule
-      ],
-      declarations: [
+        BellumGensModule,
         MapPoolComponent
-      ]
-    })
+    ]
+})
     .compileComponents();
   }));
 

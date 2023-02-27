@@ -42,7 +42,6 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { NotificationStatePipe } from './pipes/notification-state.pipe';
 import { TeamNewComponent } from './team-section/team-new/team-new.component';
-import { BellumGensModule, LanguagesModule, LoginModule, SuccessErrorModule } from 'projects/common/src/public_api';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -50,12 +49,12 @@ describe('AppComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         HttpClientTestingModule,
         RouterTestingModule,
         FormsModule,
         NoopAnimationsModule,
-        ServiceWorkerModule.register('', {enabled: false}),
+        ServiceWorkerModule.register('', { enabled: false }),
         IgxNavigationDrawerModule,
         IgxNavbarModule,
         IgxLayoutModule,
@@ -81,13 +80,6 @@ describe('AppComponent', () => {
         IgxDividerModule,
         IgxSelectModule,
         IgxSwitchModule,
-        BellumGensModule,
-        LanguagesModule,
-        LoginModule,
-        SuccessErrorModule
-      ],
-      declarations: [
-        AppComponent,
         NotificationsComponent,
         TeamNavComponent,
         QuickSearchComponent,
@@ -101,8 +93,9 @@ describe('AppComponent', () => {
         SortNotificationsPipe,
         NotificationStatePipe,
         TeamNewComponent
-      ],
-    }).compileComponents();
+    ],
+    declarations: [AppComponent]
+}).compileComponents();
   }));
 
   beforeEach(() => {

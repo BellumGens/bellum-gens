@@ -1,16 +1,19 @@
 import { Component, HostListener, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser, NgIf } from '@angular/common';
 import { LoginService, ApplicationUser, SocialMediaService } from '../../../../common/src/public_api';
 import { environment } from '../../../../common/src/environments/environment';
 import { BaseComponent } from '../base/base.component';
 import { Title, Meta } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
-import { IgxCarouselComponent } from '@infragistics/igniteui-angular';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { IgxCarouselComponent, IgxCarouselModule, IgxIconModule, IgxButtonModule, IgxDividerModule, IgxInputGroupModule, IgxPrefixModule, IgxSuffixModule } from '@infragistics/igniteui-angular';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss']
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.scss'],
+    standalone: true,
+    imports: [IgxCarouselModule, IgxIconModule, IgxButtonModule, RouterLink, NgIf, IgxDividerModule, FormsModule, IgxInputGroupModule, IgxPrefixModule, IgxSuffixModule]
 })
 export class HomeComponent extends BaseComponent {
   @ViewChild(IgxCarouselComponent, { static: true }) public carousel: IgxCarouselComponent;

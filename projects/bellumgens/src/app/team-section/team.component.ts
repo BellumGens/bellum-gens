@@ -1,5 +1,5 @@
 import { Component} from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLinkActive, RouterLink, RouterOutlet } from '@angular/router';
 import {
   ApplicationUser,
   CSGOTeam, TEAM_PLACEHOLDER,
@@ -8,11 +8,15 @@ import {
 } from '../../../../common/src/public_api';
 import { BaseComponent } from '../base/base.component';
 import { Title, Meta } from '@angular/platform-browser';
-import { IgxIconService } from '@infragistics/igniteui-angular';
+import { IgxIconService, IgxAvatarModule, IgxIconModule, IgxTabsModule, IgxPrefixModule } from '@infragistics/igniteui-angular';
+import { TeamApplicationComponent } from './team-application/team-application.component';
+import { NgIf } from '@angular/common';
 
 @Component({
-  templateUrl: './team.component.html',
-  styleUrls: ['./team.component.scss']
+    templateUrl: './team.component.html',
+    styleUrls: ['./team.component.scss'],
+    standalone: true,
+    imports: [IgxAvatarModule, NgIf, TeamApplicationComponent, IgxIconModule, IgxTabsModule, RouterLinkActive, RouterLink, IgxPrefixModule, RouterOutlet]
 })
 export class TeamComponent extends BaseComponent {
   public authUser: ApplicationUser;

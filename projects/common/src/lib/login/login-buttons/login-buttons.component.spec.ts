@@ -12,16 +12,16 @@ describe('LoginButtonsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginButtonsComponent ],
-      imports: [
+    imports: [
         HttpClientTestingModule,
         RouterTestingModule,
-        ServiceWorkerModule.register('', {enabled: false}),
+        ServiceWorkerModule.register('', { enabled: false }),
         IgxButtonModule,
         IgxIconModule,
-        IgxDividerModule
-      ]
-    })
+        IgxDividerModule,
+        LoginButtonsComponent
+    ]
+})
     .compileComponents();
   }));
 

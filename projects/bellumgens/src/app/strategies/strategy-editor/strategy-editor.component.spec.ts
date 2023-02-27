@@ -16,7 +16,6 @@ import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { BellumGensModule, ConfirmModule } from 'projects/common/src/public_api';
 
 describe('StrategyEditorComponent', () => {
   let component: StrategyEditorComponent;
@@ -24,7 +23,7 @@ describe('StrategyEditorComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         FormsModule,
         RouterTestingModule,
         NoopAnimationsModule,
@@ -40,11 +39,9 @@ describe('StrategyEditorComponent', () => {
         IgxButtonGroupModule,
         IgxButtonModule,
         IgxProgressBarModule,
-        BellumGensModule,
-        ConfirmModule
-      ],
-      declarations: [ StrategyEditorComponent ]
-    })
+        StrategyEditorComponent
+    ]
+})
     .compileComponents();
   }));
 

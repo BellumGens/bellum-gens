@@ -10,12 +10,12 @@ describe('ConfirmComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         NoopAnimationsModule,
-        IgxDialogModule
-      ],
-      declarations: [ ConfirmComponent ]
-    })
+        IgxDialogModule,
+        ConfirmComponent
+    ]
+})
     .compileComponents();
   }));
 

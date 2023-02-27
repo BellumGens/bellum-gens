@@ -35,26 +35,12 @@ import { HasVotedPipe } from '../pipes/has-voted.pipe';
 import { VotesPipe } from '../pipes/votes.pipe';
 import { IsStratOwnerPipe } from '../pipes/is-strat-owner.pipe';
 import { SideStratsPipe } from '../pipes/sidestrats.pipe';
-import { BellumGensModule, ConfirmModule, LoadingModule } from '../../../../common/src/public_api';
+
 import { StratFilterPipe } from '../pipes/strat-filter.pipe';
 
 
 @NgModule({
-  declarations: [
-    StrategiesComponent,
-    StrategyDetailsComponent,
-    NewStrategyComponent,
-    StrategyEditorComponent,
-    TruncateTextPipe,
-    SafeVideoLinkPipe,
-    IsVideoPipe,
-    HasVotedPipe,
-    VotesPipe,
-    IsStratOwnerPipe,
-    SideStratsPipe,
-    StratFilterPipe
-  ],
-  imports: [
+    imports: [
     CommonModule,
     FormsModule,
     StrategiesRoutingModule,
@@ -72,14 +58,23 @@ import { StratFilterPipe } from '../pipes/strat-filter.pipe';
     IgxToggleModule,
     IgxDividerModule,
     IgxChipsModule,
-    IgxLayoutModule, // TODO: REMOVE
+    IgxLayoutModule,
     IgxRadioModule,
     IgxDialogModule,
     IgxSwitchModule,
     IgxCheckboxModule,
-    ConfirmModule,
-    LoadingModule,
-    BellumGensModule
-  ]
+    StrategiesComponent,
+    StrategyDetailsComponent,
+    NewStrategyComponent,
+    StrategyEditorComponent,
+    TruncateTextPipe,
+    SafeVideoLinkPipe,
+    IsVideoPipe,
+    HasVotedPipe,
+    VotesPipe,
+    IsStratOwnerPipe,
+    SideStratsPipe,
+    StratFilterPipe
+]
 })
 export class StrategiesModule { }

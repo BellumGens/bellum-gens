@@ -18,15 +18,13 @@ describe('NotificationsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         RouterTestingModule,
         HttpClientTestingModule,
-        ServiceWorkerModule.register('', {enabled: false}),
+        ServiceWorkerModule.register('', { enabled: false }),
         IgxProgressBarModule,
         IgxListModule,
-        IgxAvatarModule
-      ],
-      declarations: [
+        IgxAvatarModule,
         NotificationsComponent,
         PlayerNotificationsComponent,
         TeamNotificationsComponent,
@@ -34,8 +32,8 @@ describe('NotificationsComponent', () => {
         SortNotificationsPipe,
         SortApplicationsPipe,
         NotificationStatePipe
-      ]
-    })
+    ]
+})
     .compileComponents();
   }));
 

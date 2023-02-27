@@ -9,11 +9,11 @@ describe('BaseComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ BaseComponent ],
-      imports: [
-        RouterTestingModule
-      ]
-    })
+    imports: [
+        RouterTestingModule,
+        BaseComponent
+    ]
+})
     .compileComponents();
   }));
 
