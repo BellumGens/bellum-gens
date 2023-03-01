@@ -10,13 +10,13 @@ describe('MapPoolComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [
-        IgxCheckboxModule,
-        IgxCardModule,
-        NoopAnimationsModule,
-        MapPoolComponent
-    ]
-})
+        imports: [
+            IgxCheckboxModule,
+            IgxCardModule,
+            NoopAnimationsModule,
+            MapPoolComponent
+        ]
+    })
     .compileComponents();
   }));
 
