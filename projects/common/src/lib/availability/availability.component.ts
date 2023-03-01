@@ -1,4 +1,4 @@
-import { Component, ViewChild, Input, Output, EventEmitter, NgModule } from '@angular/core';
+import { Component, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { Availability, BASE_AVAILABILITY } from '../../models/playeravailability';
 import {
   IgxTimePickerComponent,
@@ -10,7 +10,7 @@ import {
   IgxTimePickerModule
 } from '@infragistics/igniteui-angular';
 import { WeekdayPipe } from '../pipes/weekday.pipe';
-import { CommonModule, NgFor, NgIf, DatePipe } from '@angular/common';
+import { NgFor, NgIf, DatePipe } from '@angular/common';
 
 @Component({
     selector: 'bg-availability',

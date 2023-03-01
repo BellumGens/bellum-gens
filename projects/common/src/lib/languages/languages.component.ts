@@ -1,5 +1,5 @@
-import { CommonModule, NgFor } from '@angular/common';
-import { Component, Inject, LOCALE_ID, NgModule } from '@angular/core';
+import { NgFor } from '@angular/common';
+import { Component, Inject, LOCALE_ID } from '@angular/core';
 import { IgxButtonModule, IgxDropDownModule, IgxIconModule, IgxRippleModule, IgxToggleModule } from '@infragistics/igniteui-angular';
 import { GLOBAL_OVERLAY_SETTINGS } from '../../models/misc';
 

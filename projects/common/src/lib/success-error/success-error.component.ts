@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnDestroy, NgModule } from '@angular/core';
+import { Component, ViewChild, OnDestroy } from '@angular/core';
 import { IgxIconModule, IgxSnackbarComponent, IgxSnackbarModule } from '@infragistics/igniteui-angular';
 import { CommunicationService } from '../../services/communication.service';
 

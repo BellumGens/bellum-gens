@@ -1,20 +1,14 @@
-import { Component, Input, NgModule, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import {
   IgxDropDownComponent,
-  IgxDialogModule,
   IgxIconModule,
   IgxButtonModule,
   IgxRippleModule,
-  IgxListModule,
-  IgxDividerModule,
-  IgxSwitchModule,
   IgxAvatarModule,
   IgxProgressBarModule,
   IgxToggleModule,
   IgxDropDownModule,
-  IgxTabsModule,
-  IgxInputGroupModule,
-  IgxCheckboxModule
+  IgxTabsModule
 } from '@infragistics/igniteui-angular';
 import { LoginService } from '../../services/login.service';
 import { ApplicationUser } from '../../models/applicationuser';
@@ -23,10 +17,8 @@ import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
 import { LoginDialogComponent } from './login-dialog/login-dialog.component';
 import { UserPreferencesComponent } from './user-preferences/user-preferences.component';
-import { LoginButtonsComponent } from './login-buttons/login-buttons.component';
 
-import { CommonModule, NgIf } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { NgIf } from '@angular/common';
 
 @Component({
     selector: 'bg-login',

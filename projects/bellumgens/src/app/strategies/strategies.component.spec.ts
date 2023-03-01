@@ -42,52 +42,52 @@ describe('StrategiesComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-          FormsModule,
-          RouterTestingModule,
-          NoopAnimationsModule,
-          HttpClientTestingModule,
-          ServiceWorkerModule.register('', { enabled: false }),
-          IgxIconModule,
-          IgxAvatarModule,
-          IgxCardModule,
-          IgxInputGroupModule,
-          IgxRadioModule,
-          IgxToggleModule,
-          IgxSelectModule,
-          IgxDialogModule,
-          IgxCheckboxModule,
-          IgxChipsModule,
-          IgxTimePickerModule,
-          IgxBadgeModule,
-          IgxSwitchModule,
-          IgxDropDownModule,
-          IgxProgressBarModule,
-          IgxButtonModule,
-          IgxDividerModule,
-          StrategiesComponent,
-          NewStrategyComponent,
-          SafeVideoLinkPipe,
-          SideStratsPipe,
-          TruncateTextPipe,
-          IsVideoPipe,
-          VotesPipe,
-          HasVotedPipe,
-          IsStratOwnerPipe,
-          StratFilterPipe
+        FormsModule,
+        RouterTestingModule,
+        NoopAnimationsModule,
+        HttpClientTestingModule,
+        ServiceWorkerModule.register('', { enabled: false }),
+        IgxIconModule,
+        IgxAvatarModule,
+        IgxCardModule,
+        IgxInputGroupModule,
+        IgxRadioModule,
+        IgxToggleModule,
+        IgxSelectModule,
+        IgxDialogModule,
+        IgxCheckboxModule,
+        IgxChipsModule,
+        IgxTimePickerModule,
+        IgxBadgeModule,
+        IgxSwitchModule,
+        IgxDropDownModule,
+        IgxProgressBarModule,
+        IgxButtonModule,
+        IgxDividerModule,
+        StrategiesComponent,
+        NewStrategyComponent,
+        SafeVideoLinkPipe,
+        SideStratsPipe,
+        TruncateTextPipe,
+        IsVideoPipe,
+        VotesPipe,
+        HasVotedPipe,
+        IsStratOwnerPipe,
+        StratFilterPipe
       ],
       providers: [
-          {
-              provide: ActivatedRoute,
-              useValue: {
-                  parent: {
-                      parent: {
-                          params: new Observable()
-                      }
-                  },
-                  data: new Observable(),
-                  url: new Observable()
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            parent: {
+              parent: {
+                params: new Observable()
               }
+            },
+            data: new Observable(),
+            url: new Observable()
           }
+        }
       ]
     })
     .compileComponents();

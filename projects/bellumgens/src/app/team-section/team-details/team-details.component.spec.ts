@@ -1,13 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { TeamDetailsComponent } from './team-details.component';
-import { IgxAvatarModule,
-  IgxCardModule,
-  IgxDragDropModule,
-  IgxChipsModule,
-  IgxTimePickerModule,
-  IgxDialogModule,
-  IgxRippleModule } from '@infragistics/igniteui-angular';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';

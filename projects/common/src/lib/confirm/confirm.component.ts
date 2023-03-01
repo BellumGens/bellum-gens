@@ -1,4 +1,4 @@
-import { Component, Input, EventEmitter, Output, ViewChild, NgModule } from '@angular/core';
+import { Component, Input, EventEmitter, Output, ViewChild } from '@angular/core';
 import { IDialogEventArgs, IgxDialogComponent, IgxDialogModule } from '@infragistics/igniteui-angular';
 
 @Component({
