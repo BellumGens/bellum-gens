@@ -13,7 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { IgxAutocompleteModule, IgxAvatarModule, IgxCheckboxModule, IgxDropDownModule, IgxInputGroupModule, IgxSelectModule } from '@infragistics/igniteui-angular';
 import { TeamNewComponent } from '../../../../bellumgens/src/app/team-section/team-new/team-new.component';
 import { StartsWithPipe } from '../../../../bellumgens/src/app/pipes/starts-with.pipe';
-import { NgFor, NgIf } from '@angular/common';
+import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 
 @Component({
     selector: 'app-tournament-registration',
@@ -31,7 +31,8 @@ import { NgFor, NgIf } from '@angular/common';
       TeamNewComponent,
       StartsWithPipe,
       NgIf,
-      NgFor
+      NgFor,
+      AsyncPipe
     ]
 })
 export class TournamentRegistrationComponent {
