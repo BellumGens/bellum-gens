@@ -12,7 +12,19 @@ import { NgIf, NgFor, DatePipe } from '@angular/common';
     templateUrl: './team-notifications.component.html',
     styleUrls: ['./team-notifications.component.css'],
     standalone: true,
-    imports: [NgIf, IgxListModule, NgFor, IgxAvatarModule, RouterLink, IgxButtonModule, IgxRippleModule, DatePipe, DisabledNotificationsPipe, SortApplicationsPipe, NotificationStatePipe]
+    imports: [
+      NgIf,
+      IgxListModule,
+      NgFor,
+      IgxAvatarModule,
+      RouterLink,
+      IgxButtonModule,
+      IgxRippleModule,
+      DatePipe,
+      DisabledNotificationsPipe,
+      SortApplicationsPipe,
+      NotificationStatePipe
+    ]
 })
 export class TeamNotificationsComponent implements OnInit {
   @Input() public team: CSGOTeam;

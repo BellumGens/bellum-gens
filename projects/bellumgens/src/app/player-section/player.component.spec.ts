@@ -22,10 +22,8 @@ import { TopWeaponAltPipe } from 'projects/bellumgens/src/app/pipes/top-weapon-a
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { SortWeaponsPipe } from 'projects/bellumgens/src/app/pipes/sort-weapons.pipe';
-import { FormsModule } from '@angular/forms';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { AvailabilityModule, BellumGensModule, ConfirmModule, LoadingModule } from 'projects/common/src/public_api';
 import { MapPoolComponent } from './map-pool/map-pool.component';
 import { PlayerComponent } from './player.component';
 
@@ -39,7 +37,6 @@ describe('PlayerComponent', () => {
         HttpClientTestingModule,
         RouterTestingModule,
         NoopAnimationsModule,
-        FormsModule,
         ServiceWorkerModule.register('', { enabled: false }),
         IgxProgressBarModule,
         IgxCardModule,
@@ -58,10 +55,6 @@ describe('PlayerComponent', () => {
         IgxDividerModule,
         IgxButtonModule,
         IgxInputGroupModule,
-        BellumGensModule,
-        AvailabilityModule,
-        ConfirmModule,
-        LoadingModule,
         PlayerComponent,
         MapPoolComponent,
         SteamCustomUrlPipe,

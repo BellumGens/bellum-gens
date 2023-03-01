@@ -12,11 +12,11 @@ import { FormsModule } from '@angular/forms';
 import { NgIf, NgFor } from '@angular/common';
 
 @Component({
-    selector: 'app-team-preferences',
-    templateUrl: './team-preferences.component.html',
-    styleUrls: ['./team-preferences.component.css'],
-    standalone: true,
-    imports: [NgIf, FormsModule, IgxInputGroupModule, IgxSuffixModule, IgxIconModule, IgxSwitchModule, IgxButtonModule, IgxRippleModule, IgxListModule, NgFor, IgxAvatarModule, RouterLink, PlayerCountryPipe]
+  selector: 'app-team-preferences',
+  templateUrl: './team-preferences.component.html',
+  styleUrls: ['./team-preferences.component.css'],
+  standalone: true,
+  imports: [NgIf, FormsModule, IgxInputGroupModule, IgxSuffixModule, IgxIconModule, IgxSwitchModule, IgxButtonModule, IgxRippleModule, IgxListModule, NgFor, IgxAvatarModule, RouterLink, PlayerCountryPipe]
 })
 export class TeamPreferencesComponent {
   public team: CSGOTeam;

@@ -5,6 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TeamNewComponent } from '../team-new/team-new.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 describe('TeamNavComponent', () => {
   let component: TeamNavComponent;
@@ -16,6 +17,7 @@ describe('TeamNavComponent', () => {
         RouterTestingModule,
         NoopAnimationsModule,
         HttpClientTestingModule,
+        ServiceWorkerModule.register('', { enabled: false }),
         TeamNewComponent
       ]
     }).compileComponents();

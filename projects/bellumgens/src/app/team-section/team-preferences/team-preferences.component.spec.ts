@@ -6,6 +6,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { TEAM_PLACEHOLDER } from '../../../../../common/src/public_api';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 describe('TeamPreferencesComponent', () => {
   let component: TeamPreferencesComponent;
@@ -15,7 +17,9 @@ describe('TeamPreferencesComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
+        HttpClientTestingModule,
         NoopAnimationsModule,
+        ServiceWorkerModule.register('', { enabled: false }),
         TeamPreferencesComponent
       ],
       providers: [
