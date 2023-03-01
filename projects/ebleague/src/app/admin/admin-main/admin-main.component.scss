@@ -1,3 +1,5 @@
+@use "../../../variables" as *;
+
 :host {
   .players-list {
     max-height: 500px;
@@ -17,4 +19,8 @@
   .content-container {
     min-height: auto;
   }
+
+  @include core();
+
+  @include chip(chip-theme());
 }

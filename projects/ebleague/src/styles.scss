@@ -16,7 +16,6 @@ $include: (igx-avatar,
            igx-list,
            igx-ripple,
            igx-icon,
-           igx-overlay,
            igx-button,
            igx-dialog,
            igx-input-group,
@@ -25,13 +24,11 @@ $include: (igx-avatar,
            igx-card,
            igx-checkbox,
            igx-tabs,
-           igx-expansion-panel,
            igx-snackbar,
            igx-circular-bar,
            igx-linear-bar,
            igx-switch,
            igx-divider,
-           igx-chip,
            igx-time-picker,
            igx-date-picker,
            igx-calendar,
@@ -46,8 +43,7 @@ $include: (igx-avatar,
 /* Navbar */
 $navbar-theme: navbar-theme(
   $background: $background-gradient,
-  $shadow: 0px 15px 30px 0px rgba(0,0,0,0.4),
-  $hover-icon-color: $secondary
+  $shadow: 0px 15px 30px 0px rgba(0,0,0,0.4)
 );
 @include css-vars($navbar-theme);
 /* END Navbar */
@@ -67,20 +63,19 @@ $navdrawer-theme: navdrawer-theme(
 
 /* Card */
 $card-theme: card-theme($background: $background-gradient-lighter,
-                            $resting-shadow: 0px 15px 30px 0px rgba(0,0,0,0.4),
-                            $hover-shadow: 0px 15px 30px 0px rgba(0,0,0,0.7));
+                        $resting-shadow: 0px 15px 30px 0px rgba(0,0,0,0.4),
+                        $hover-shadow: 0px 15px 30px 0px rgba(0,0,0,0.7));
 @include css-vars($card-theme);
 /* END Card */
 
 /* List */
 $list-theme: list-theme($background: transparent,
-                            $item-background-active: rgba(0, 0, 0, 0.11));
+                        $item-background-active: rgba(0, 0, 0, 0.11));
 @include css-vars($list-theme);
 /* END List */
 
 /* Input Group */
-$input-group-theme: input-group-theme($search-background: transparent,
-                                          $label-floated-background: $background);
+$input-group-theme: input-group-theme($label-floated-background: $background);
 @include css-vars($input-group-theme);
 /* END Input Group */
 
@@ -97,46 +92,15 @@ $tabs-theme: tabs-theme($item-hover-background: rgba(0, 0, 0, 0.11),
 @include css-vars($tabs-theme);
 /* END Tabs */
 
-/* Drop Down */
-$drop-down-theme: drop-down-theme($background-color: $background);
-@include css-vars($drop-down-theme);
-/* END Drop Down */
-
-/* Dialog */
-$dialog-theme: dialog-theme($background: $background);
-@include css-vars($dialog-theme);
-/* END Dialog */
-
 /* Snackbar */
 $snackbar-theme: snackbar-theme($background: $banner-background, $border-radius: 24px);
 @include css-vars($snackbar-theme);
 /* END Snackbar */
 
-/* Button */
-$button-theme: button-theme($resting-shadow: none,
-                                $hover-shadow: none,
-                                $focus-shadow: none,
-                                $foreground: $primary,
-                                $hover-foreground: $secondary,
-                                $background: transparent);
-@include css-vars($button-theme);
-/* END Button */
-
 /* Progress Circular */
 $circular-progress-bar-theme: progress-circular-theme($base-circle-color: rgba(0, 0, 0, 0.14), $progress-circle-color: $secondary);
 @include css-vars($circular-progress-bar-theme);
 /* END Progress Circular */
-
-/* Calendar */
-$calendar-theme: calendar-theme($content-background: $background,
-                                    $picker-background-color: $background);
-@include css-vars($calendar-theme);
-/* END Calendar */
-
-/* Time Picker */
-$time-picker-theme: time-picker-theme($background-color: $background);
-@include css-vars($time-picker-theme);
-/* END Time Picker */
 
 @import "../../common/src/styles-overrides.scss";
 

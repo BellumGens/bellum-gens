@@ -20,6 +20,7 @@ export class AppComponent implements OnInit {
 
   public authUser: ApplicationUser;
   public environment = environment;
+  public year = new Date().getFullYear();
 
   constructor(@Inject(LOCALE_ID) public localeId: string,
               private authManager: LoginService,

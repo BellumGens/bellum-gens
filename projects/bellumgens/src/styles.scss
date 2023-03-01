@@ -16,7 +16,6 @@ $include: (igx-avatar,
            igx-list,
            igx-ripple,
            igx-icon,
-           igx-overlay,
            igx-button,
            igx-button-group,
            igx-dialog,
@@ -28,7 +27,6 @@ $include: (igx-avatar,
            igx-time-picker,
            igx-checkbox,
            igx-tabs,
-           igx-expansion-panel,
            igx-radio,
            igx-snackbar,
            igx-circular-bar,
@@ -47,10 +45,7 @@ $include: (igx-avatar,
 
 /* Navbar */
 $navbar-theme: navbar-theme($background: $background-gradient,
-                            $text-color: white,
-                            $shadow: 0px 15px 30px 0px rgba(0,0,0,0.4),
-                            $idle-icon-color: white,
-                            $hover-icon-color: $secondary);
+                            $shadow: 0px 15px 30px 0px rgba(0,0,0,0.4));
 @include css-vars($navbar-theme);
 /* END Navbar */
 
@@ -74,7 +69,7 @@ $card-theme: card-theme($background: $background-gradient-lighter,
 
 /* List */
 $list-theme: list-theme($background: transparent,
-                            $item-background-active: rgba(0, 0, 0, 0.11));
+                        $item-background-active: rgba(0, 0, 0, 0.11));
 @include css-vars($list-theme);
 /* END List */
 
@@ -89,11 +84,6 @@ $banner-theme: banner-theme($banner-background: $banner-background);
 @include css-vars($banner-theme);
 /* END Banner */
 
-/* Radio */
-$radio-theme: radio-theme($label-color: white, $empty-color: $secondary);
-@include css-vars($radio-theme);
-/* END Radio */
-
 /* Tabs */
 $tabs-theme: tabs-theme($item-hover-background: rgba(0, 0, 0, 0.11),
                         $item-active-background: rgba(0, 0, 0, 0.11),
@@ -101,16 +91,6 @@ $tabs-theme: tabs-theme($item-hover-background: rgba(0, 0, 0, 0.11),
                         $indicator-color: $secondary);
 @include css-vars($tabs-theme);
 /* END Tabs */
-
-/* Drop Down */
-$drop-down-theme: drop-down-theme($background-color: $background);
-@include css-vars($drop-down-theme);
-/* END Drop Down */
-
-/* Dialog */
-$dialog-theme: dialog-theme($background: $background);
-@include css-vars($dialog-theme);
-/* END Dialog */
 
 /* Snackbar */
 $snackbar-theme: snackbar-theme($background: $banner-background, $border-radius: 24px);
@@ -142,11 +122,6 @@ $expansion-panel-theme: expansion-panel-theme($header-background: $background,
                                               $body-background: $background);
 @include css-vars($expansion-panel-theme);
 /* END Expansion Panel */
-
-/* Time Picker */
-$time-picker-theme: time-picker-theme($background-color: $background);
-@include css-vars($time-picker-theme);
-/* END Time Picker */
 
 @import "../../common/src/styles-overrides.scss";
 
