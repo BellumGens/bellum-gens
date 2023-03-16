@@ -38,8 +38,8 @@ describe('TournamentSc2Component', () => {
         IgxDividerModule,
         TournamentSc2Component,
         SortByPointsPipe
-    ]
-})
+      ]
+    })
     .compileComponents();
   }));
 

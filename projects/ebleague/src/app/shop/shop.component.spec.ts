@@ -35,8 +35,8 @@ describe('ShopComponent', () => {
         IgxDividerModule,
         IgxTextSelectionModule,
         ShopComponent, FilterSizesPipe
-    ]
-})
+      ]
+    })
     .compileComponents();
   }));
 
