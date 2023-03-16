@@ -1,10 +1,30 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TeamApplication, CSGOTeam, BellumgensApiService } from '../../../../../common/src/public_api';
+import { NotificationStatePipe } from '../../pipes/notification-state.pipe';
+import { SortApplicationsPipe } from '../../pipes/sort-applications.pipe';
+import { DisabledNotificationsPipe } from '../../pipes/disabled-notifications.pipe';
+import { RouterLink } from '@angular/router';
+import { IgxListModule, IgxAvatarModule, IgxButtonModule, IgxRippleModule } from '@infragistics/igniteui-angular';
+import { NgIf, NgFor, DatePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-team-notifications',
-  templateUrl: './team-notifications.component.html',
-  styleUrls: ['./team-notifications.component.css']
+    selector: 'app-team-notifications',
+    templateUrl: './team-notifications.component.html',
+    styleUrls: ['./team-notifications.component.css'],
+    standalone: true,
+    imports: [
+      NgIf,
+      IgxListModule,
+      NgFor,
+      IgxAvatarModule,
+      RouterLink,
+      IgxButtonModule,
+      IgxRippleModule,
+      DatePipe,
+      DisabledNotificationsPipe,
+      SortApplicationsPipe,
+      NotificationStatePipe
+    ]
 })
 export class TeamNotificationsComponent implements OnInit {
   @Input() public team: CSGOTeam;

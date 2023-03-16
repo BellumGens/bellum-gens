@@ -10,11 +10,11 @@ describe('LoadingComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        IgxProgressBarModule
-      ],
-      declarations: [ LoadingComponent ]
-    })
+    imports: [
+        IgxProgressBarModule,
+        LoadingComponent
+    ]
+})
     .compileComponents();
   }));
 

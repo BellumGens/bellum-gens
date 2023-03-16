@@ -6,11 +6,17 @@ import { LOGIN_ASSETS } from '../../../models/misc';
 import { TournamentApplication } from '../../../models/tournament';
 import { ApiTournamentsService } from '../../../services/bellumgens-api.tournaments.service';
 import { Router } from '@angular/router';
+import { ConfirmComponent } from '../../confirm/confirm.component';
+import { FormsModule } from '@angular/forms';
+import { IgxButtonModule, IgxRippleModule, IgxIconModule, IgxDividerModule, IgxSwitchModule, IgxListModule } from '@infragistics/igniteui-angular';
+import { NgFor, NgClass, NgIf } from '@angular/common';
 
 @Component({
-  selector: 'bg-user-preferences',
-  templateUrl: './user-preferences.component.html',
-  styleUrls: ['./user-preferences.component.scss']
+    selector: 'bg-user-preferences',
+    templateUrl: './user-preferences.component.html',
+    styleUrls: ['./user-preferences.component.scss'],
+    standalone: true,
+    imports: [NgFor, IgxButtonModule, IgxRippleModule, IgxIconModule, IgxDividerModule, IgxSwitchModule, FormsModule, IgxListModule, NgClass, NgIf, ConfirmComponent]
 })
 export class UserPreferencesComponent {
   public preferences: UserPreferences = {

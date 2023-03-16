@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import {
   BellumgensApiService,
   CSGOStrategy, VoteDirection,
@@ -13,13 +13,30 @@ import {
   ApiStrategiesService,
   CommunicationService
 } from '../../../../common/src/public_api';
-import { IChipSelectEventArgs } from '@infragistics/igniteui-angular';
+import { IChipSelectEventArgs, IgxButtonModule, IgxRippleModule, IgxChipsModule, IgxSelectModule, IgxInputGroupModule, IgxCardModule, IgxIconModule, IgxToggleModule, IgxBadgeModule, IgxDropDownModule, IgxAvatarModule } from '@infragistics/igniteui-angular';
 import { SafeResourceUrl } from '@angular/platform-browser';
+import { StratFilterPipe } from '../pipes/strat-filter.pipe';
+import { SideStratsPipe } from '../pipes/sidestrats.pipe';
+import { IsStratOwnerPipe } from '../pipes/is-strat-owner.pipe';
+import { VotesPipe } from '../pipes/votes.pipe';
+import { HasVotedPipe } from '../pipes/has-voted.pipe';
+import { IsVideoPipe } from '../pipes/is-video.pipe';
+import { SafeVideoLinkPipe } from '../pipes/safe-video-link.pipe';
+import { TruncateTextPipe } from '../pipes/truncate-text.pipe';
+import { ActiveDutyMapsPipe } from '../../../../common/src/lib/pipes/active-duty-maps.pipe';
+import { CSGOMapnamePipe } from '../../../../common/src/lib/pipes/csgomapname.pipe';
+import { ConfirmComponent } from '../../../../common/src/lib/confirm/confirm.component';
+import { NewStrategyComponent } from './new-strategy/new-strategy.component';
+import { LoadingComponent } from '../../../../common/src/lib/loading/loading.component';
+import { FormsModule } from '@angular/forms';
+import { NgFor, NgIf, NgClass, DatePipe } from '@angular/common';
 
 @Component({
-  selector: 'app-team-strategies',
-  templateUrl: './strategies.component.html',
-  styleUrls: ['./strategies.component.scss']
+    selector: 'app-team-strategies',
+    templateUrl: './strategies.component.html',
+    styleUrls: ['./strategies.component.scss'],
+    standalone: true,
+    imports: [IgxButtonModule, IgxRippleModule, IgxChipsModule, NgFor, IgxSelectModule, FormsModule, IgxInputGroupModule, NgIf, LoadingComponent, IgxCardModule, RouterLink, IgxIconModule, IgxToggleModule, IgxBadgeModule, NgClass, IgxDropDownModule, IgxAvatarModule, NewStrategyComponent, ConfirmComponent, DatePipe, CSGOMapnamePipe, ActiveDutyMapsPipe, TruncateTextPipe, SafeVideoLinkPipe, IsVideoPipe, HasVotedPipe, VotesPipe, IsStratOwnerPipe, SideStratsPipe, StratFilterPipe]
 })
 export class StrategiesComponent {
   public isEditor: boolean = null;

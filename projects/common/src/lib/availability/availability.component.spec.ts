@@ -11,17 +11,15 @@ describe('AvailabilityComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         NoopAnimationsModule,
         IgxChipsModule,
         IgxTimePickerModule,
-        IgxDialogModule
-      ],
-      declarations: [
+        IgxDialogModule,
         AvailabilityComponent,
         WeekdayPipe
-      ]
-    })
+    ]
+})
     .compileComponents();
   }));
 

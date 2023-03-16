@@ -2,7 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { TournamentParticipant } from '../../../../common/src/public_api';
 
 @Pipe({
-  name: 'getPlayers'
+    name: 'getPlayers',
+    standalone: true
 })
 export class GetPlayersPipe implements PipeTransform {
 

@@ -22,21 +22,21 @@ describe('LoginDialogComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ LoginDialogComponent, LoginButtonsComponent ],
-      imports: [
+    imports: [
         FormsModule,
         HttpClientTestingModule,
         RouterTestingModule,
         NoopAnimationsModule,
-        ServiceWorkerModule.register('', {enabled: false}),
+        ServiceWorkerModule.register('', { enabled: false }),
         IgxDialogModule,
         IgxButtonModule,
         IgxIconModule,
         IgxDividerModule,
         IgxCheckboxModule,
-        IgxInputGroupModule
-      ]
-    })
+        IgxInputGroupModule,
+        LoginDialogComponent, LoginButtonsComponent
+    ]
+})
     .compileComponents();
   }));
 

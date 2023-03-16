@@ -1,20 +1,14 @@
-import { Component, Input, NgModule, ViewChild } from '@angular/core';
+import { Component, Input, ViewChild } from '@angular/core';
 import {
   IgxDropDownComponent,
-  IgxDialogModule,
   IgxIconModule,
   IgxButtonModule,
   IgxRippleModule,
-  IgxListModule,
-  IgxDividerModule,
-  IgxSwitchModule,
   IgxAvatarModule,
   IgxProgressBarModule,
   IgxToggleModule,
   IgxDropDownModule,
-  IgxTabsModule,
-  IgxInputGroupModule,
-  IgxCheckboxModule
+  IgxTabsModule
 } from '@infragistics/igniteui-angular';
 import { LoginService } from '../../services/login.service';
 import { ApplicationUser } from '../../models/applicationuser';
@@ -23,15 +17,15 @@ import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
 import { LoginDialogComponent } from './login-dialog/login-dialog.component';
 import { UserPreferencesComponent } from './user-preferences/user-preferences.component';
-import { LoginButtonsComponent } from './login-buttons/login-buttons.component';
-import { ConfirmModule } from '../confirm/confirm.component';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+
+import { NgIf } from '@angular/common';
 
 @Component({
-  selector: 'bg-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+    selector: 'bg-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.scss'],
+    standalone: true,
+    imports: [LoginDialogComponent, NgIf, IgxButtonModule, IgxRippleModule, IgxIconModule, IgxProgressBarModule, IgxToggleModule, IgxAvatarModule, IgxDropDownModule, IgxTabsModule, UserPreferencesComponent]
 })
 export class LoginComponent {
   @ViewChild(LoginDialogComponent, { static: true })
@@ -65,37 +59,4 @@ export class LoginComponent {
   }
 }
 
-@NgModule({
-  declarations: [
-    LoginComponent,
-    LoginDialogComponent,
-    LoginButtonsComponent,
-    UserPreferencesComponent
-  ],
-  exports: [
-    LoginComponent,
-    LoginDialogComponent,
-    LoginButtonsComponent,
-    UserPreferencesComponent
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    IgxDialogModule,
-    IgxIconModule,
-    IgxButtonModule,
-    IgxRippleModule,
-    IgxListModule,
-    IgxDividerModule,
-    IgxCheckboxModule,
-    IgxSwitchModule,
-    IgxAvatarModule,
-    IgxProgressBarModule,
-    IgxToggleModule,
-    IgxDropDownModule,
-    IgxTabsModule,
-    IgxInputGroupModule,
-    ConfirmModule
-  ]
-})
-export class LoginModule {}
+

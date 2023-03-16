@@ -23,15 +23,11 @@ describe('TournamentSc2Component', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        TournamentSc2Component,
-        SortByPointsPipe
-      ],
-      imports: [
+    imports: [
         HttpClientTestingModule,
         RouterTestingModule,
         NoopAnimationsModule,
-        ServiceWorkerModule.register('', {enabled: false}),
+        ServiceWorkerModule.register('', { enabled: false }),
         IgxAvatarModule,
         IgxCardModule,
         IgxBadgeModule,
@@ -39,7 +35,9 @@ describe('TournamentSc2Component', () => {
         IgxProgressBarModule,
         IgxListModule,
         IgxGridModule,
-        IgxDividerModule
+        IgxDividerModule,
+        TournamentSc2Component,
+        SortByPointsPipe
       ]
     })
     .compileComponents();

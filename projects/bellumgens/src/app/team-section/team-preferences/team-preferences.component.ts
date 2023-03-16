@@ -5,12 +5,18 @@ import {
   ApplicationUser,
   LoginService
 } from '../../../../../common/src/public_api';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { PlayerCountryPipe } from '../../../../../common/src/lib/pipes/player-country.pipe';
+import { IgxInputGroupModule, IgxSuffixModule, IgxIconModule, IgxSwitchModule, IgxButtonModule, IgxRippleModule, IgxListModule, IgxAvatarModule } from '@infragistics/igniteui-angular';
+import { FormsModule } from '@angular/forms';
+import { NgIf, NgFor } from '@angular/common';
 
 @Component({
   selector: 'app-team-preferences',
   templateUrl: './team-preferences.component.html',
-  styleUrls: ['./team-preferences.component.css']
+  styleUrls: ['./team-preferences.component.css'],
+  standalone: true,
+  imports: [NgIf, FormsModule, IgxInputGroupModule, IgxSuffixModule, IgxIconModule, IgxSwitchModule, IgxButtonModule, IgxRippleModule, IgxListModule, NgFor, IgxAvatarModule, RouterLink, PlayerCountryPipe]
 })
 export class TeamPreferencesComponent {
   public team: CSGOTeam;

@@ -21,12 +21,12 @@ describe('PlayerSearchComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         FormsModule,
         RouterTestingModule,
         NoopAnimationsModule,
         HttpClientTestingModule,
-        ServiceWorkerModule.register('', {enabled: false}),
+        ServiceWorkerModule.register('', { enabled: false }),
         IgxRadioModule,
         IgxSliderModule,
         IgxRippleModule,
@@ -34,12 +34,10 @@ describe('PlayerSearchComponent', () => {
         IgxIconModule,
         IgxSelectModule,
         IgxInputGroupModule,
-        IgxButtonModule
-      ],
-      declarations: [
+        IgxButtonModule,
         PlayerSearchComponent
-      ]
-    })
+    ]
+})
     .compileComponents();
   }));
 

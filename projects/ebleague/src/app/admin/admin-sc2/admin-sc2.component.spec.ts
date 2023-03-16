@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { AdminSc2Component } from './admin-sc2.component';
-import { BellumGensModule, ConfirmModule } from 'projects/common/src/public_api';
 import {
   IgxListModule,
   IgxIconModule,
@@ -30,15 +29,10 @@ describe('AdminSc2Component', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        AdminSc2Component,
-        NotInGroupPipe
-      ],
       imports: [
         FormsModule,
         HttpClientTestingModule,
         NoopAnimationsModule,
-        BellumGensModule,
         IgxListModule,
         IgxIconModule,
         IgxInputGroupModule,
@@ -54,10 +48,10 @@ describe('AdminSc2Component', () => {
         IgxCalendarModule,
         IgxDialogModule,
         IgxGridModule,
-        ConfirmModule
+        AdminSc2Component,
+        NotInGroupPipe
       ]
-    })
-    .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -2,12 +2,15 @@ import { Component, HostListener, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
-import { BaseComponent } from '../../../../../projects/bellumgens/src/app/base/base.component';
+import { BaseComponent } from '../../../../bellumgens/src/app/base/base.component';
+import { IgxCardModule } from '@infragistics/igniteui-angular';
 
 @Component({
-  selector: 'app-news',
-  templateUrl: './news.component.html',
-  styleUrls: ['./news.component.scss']
+    selector: 'app-news',
+    templateUrl: './news.component.html',
+    styleUrls: ['./news.component.scss'],
+    standalone: true,
+    imports: [ IgxCardModule ]
 })
 export class NewsComponent extends BaseComponent {
   public horizontal = true;

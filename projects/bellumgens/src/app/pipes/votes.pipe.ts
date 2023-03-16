@@ -2,7 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { StrategyVote, VoteDirection } from '../../../../common/src/public_api';
 
 @Pipe({
-  name: 'votes'
+    name: 'votes',
+    standalone: true
 })
 export class VotesPipe implements PipeTransform {
 

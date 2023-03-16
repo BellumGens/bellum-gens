@@ -8,11 +8,16 @@ import {
   CSGOTeam
 } from '../../../../../common/src/public_api';
 import { Router } from '@angular/router';
+import { NgFor, NgIf } from '@angular/common';
+import { IgxRadioModule, IgxSelectModule, IgxInputGroupModule, IgxAvatarModule, IgxSliderModule, IgxButtonModule, IgxRippleModule } from '@infragistics/igniteui-angular';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-player-search',
-  templateUrl: './player-search.component.html',
-  styleUrls: ['./player-search.component.scss']
+    selector: 'app-player-search',
+    templateUrl: './player-search.component.html',
+    styleUrls: ['./player-search.component.scss'],
+    standalone: true,
+    imports: [FormsModule, IgxRadioModule, NgFor, NgIf, IgxSelectModule, IgxInputGroupModule, IgxAvatarModule, IgxSliderModule, IgxButtonModule, IgxRippleModule]
 })
 export class PlayerSearchComponent {
 

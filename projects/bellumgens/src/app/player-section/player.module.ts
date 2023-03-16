@@ -21,18 +21,11 @@ import { FormsModule } from '@angular/forms';
 import { SteamCustomUrlPipe } from '../pipes/steam-custom-url.pipe';
 import { SortWeaponsPipe } from '../pipes/sort-weapons.pipe';
 import { TopWeaponAltPipe } from '../pipes/top-weapon-alt.pipe';
-import { AvailabilityModule, BellumGensModule, LoadingModule } from '../../../../common/src/public_api';
+
 
 
 @NgModule({
-  declarations: [
-    PlayerComponent,
-    MapPoolComponent,
-    SteamCustomUrlPipe,
-    SortWeaponsPipe,
-    TopWeaponAltPipe
-  ],
-  imports: [
+    imports: [
     CommonModule,
     FormsModule,
     PlayerRoutingModule,
@@ -46,9 +39,11 @@ import { AvailabilityModule, BellumGensModule, LoadingModule } from '../../../..
     IgxToggleModule,
     IgxListModule,
     IgxCheckboxModule,
-    BellumGensModule,
-    AvailabilityModule,
-    LoadingModule
-  ]
+    PlayerComponent,
+    MapPoolComponent,
+    SteamCustomUrlPipe,
+    SortWeaponsPipe,
+    TopWeaponAltPipe
+]
 })
 export class PlayerModule { }

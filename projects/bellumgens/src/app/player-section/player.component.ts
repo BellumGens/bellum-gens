@@ -1,11 +1,8 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
 
-import {
-  ISelectionEventArgs,
-  IgxIconService
-} from '@infragistics/igniteui-angular';
+import { ISelectionEventArgs, IgxIconService, IgxAvatarModule, IgxButtonModule, IgxRippleModule, IgxToggleModule, IgxIconModule, IgxDropDownModule, IgxSelectModule, IgxInputGroupModule, IgxCardModule, IgxProgressBarModule, IgxListModule } from '@infragistics/igniteui-angular';
 
 import {
   LoginService,
@@ -23,12 +20,22 @@ import {
 import { BaseComponent } from '../base/base.component';
 import { Observable } from 'rxjs';
 import { SortWeaponsPipe } from '../pipes/sort-weapons.pipe';
+import { TopWeaponAltPipe } from '../pipes/top-weapon-alt.pipe';
+import { SteamCustomUrlPipe } from '../pipes/steam-custom-url.pipe';
+import { PlayerCountryPipe } from '../../../../common/src/lib/pipes/player-country.pipe';
+import { MapPoolComponent } from './map-pool/map-pool.component';
+import { AvailabilityComponent } from '../../../../common/src/lib/availability/availability.component';
+import { FormsModule } from '@angular/forms';
+import { LoadingComponent } from '../../../../common/src/lib/loading/loading.component';
+import { NgIf, NgFor, AsyncPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-player',
-  templateUrl: './player.component.html',
-  styleUrls: ['./player.component.scss'],
-  encapsulation: ViewEncapsulation.None
+    selector: 'app-player',
+    templateUrl: './player.component.html',
+    styleUrls: ['./player.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    standalone: true,
+    imports: [NgIf, LoadingComponent, IgxAvatarModule, IgxButtonModule, IgxRippleModule, IgxToggleModule, IgxIconModule, IgxDropDownModule, NgFor, RouterLink, IgxSelectModule, FormsModule, IgxInputGroupModule, IgxCardModule, IgxProgressBarModule, AvailabilityComponent, IgxListModule, MapPoolComponent, AsyncPipe, PlayerCountryPipe, SteamCustomUrlPipe, SortWeaponsPipe, TopWeaponAltPipe]
 })
 export class PlayerComponent extends BaseComponent {
   public authUser: ApplicationUser;

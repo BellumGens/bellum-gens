@@ -9,9 +9,8 @@ describe('TournamentComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ TournamentComponent ],
-      imports: [ RouterTestingModule ]
-    })
+    imports: [RouterTestingModule, TournamentComponent]
+})
     .compileComponents();
   }));
 

@@ -9,9 +9,8 @@ describe('EmailconfirmComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [ RouterTestingModule ],
-      declarations: [ EmailconfirmComponent ]
-    })
+    imports: [RouterTestingModule, EmailconfirmComponent]
+})
     .compileComponents();
   }));
 

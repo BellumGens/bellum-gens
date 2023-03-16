@@ -18,7 +18,8 @@ import { FormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { BellumGensModule, LanguagesModule, LoginModule, SuccessErrorModule } from 'projects/common/src/public_api';
+import { CommonModule } from '@angular/common';
+import { LanguagesComponent, LoginComponent, SuccessErrorComponent } from 'projects/common/src/public_api';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -30,8 +31,9 @@ describe('AppComponent', () => {
         HttpClientTestingModule,
         RouterTestingModule,
         FormsModule,
+        CommonModule,
         NoopAnimationsModule,
-        ServiceWorkerModule.register('', {enabled: false}),
+        ServiceWorkerModule.register('', { enabled: false }),
         IgxNavigationDrawerModule,
         IgxNavbarModule,
         IgxLayoutModule,
@@ -46,14 +48,11 @@ describe('AppComponent', () => {
         IgxButtonGroupModule,
         IgxSliderModule,
         IgxDividerModule,
-        BellumGensModule,
-        LanguagesModule,
-        LoginModule,
-        SuccessErrorModule
+        LanguagesComponent,
+        LoginComponent,
+        SuccessErrorComponent
       ],
-      declarations: [
-        AppComponent
-      ],
+      declarations: [AppComponent]
     }).compileComponents();
   }));
 

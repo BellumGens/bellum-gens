@@ -1,11 +1,13 @@
-import { Component, ViewChild, OnDestroy, NgModule } from '@angular/core';
+import { Component, ViewChild, OnDestroy } from '@angular/core';
 import { IgxIconModule, IgxSnackbarComponent, IgxSnackbarModule } from '@infragistics/igniteui-angular';
 import { CommunicationService } from '../../services/communication.service';
 
 @Component({
-  selector: 'bg-success-error',
-  templateUrl: './success-error.component.html',
-  styleUrls: ['./success-error.component.scss']
+    selector: 'bg-success-error',
+    templateUrl: './success-error.component.html',
+    styleUrls: ['./success-error.component.scss'],
+    standalone: true,
+    imports: [IgxSnackbarModule, IgxIconModule]
 })
 export class SuccessErrorComponent implements OnDestroy {
   @ViewChild('message', { static: true }) public message: IgxSnackbarComponent;
@@ -53,16 +55,4 @@ export class SuccessErrorComponent implements OnDestroy {
   }
 }
 
-@NgModule({
-  declarations: [
-    SuccessErrorComponent
-  ],
-  exports: [
-    SuccessErrorComponent
-  ],
-  imports: [
-    IgxSnackbarModule,
-    IgxIconModule
-  ]
-})
-export class SuccessErrorModule {}
+

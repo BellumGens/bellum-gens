@@ -12,13 +12,12 @@ import { environment } from '../../../common/src/environments/environment';
 import { HomeComponent } from './home/home.component';
 import { RaffleComponent } from './raffle/raffle.component';
 import { TournamentRegistrationComponent } from './tournament-registration/tournament-registration.component';
-import { StartsWithPipe } from '../../../../projects/bellumgens/src/app/pipes/starts-with.pipe';
-import { TeamNewComponent } from '../../../../projects/bellumgens/src/app/team-section/team-new/team-new.component';
-import { GroupsFilterPipe } from '../../../../projects/bellumgens/src/app/pipes/groups-filter.pipe';
+import { StartsWithPipe } from '../../../bellumgens/src/app/pipes/starts-with.pipe';
+import { TeamNewComponent } from '../../../bellumgens/src/app/team-section/team-new/team-new.component';
+import { GroupsFilterPipe } from '../../../bellumgens/src/app/pipes/groups-filter.pipe';
 import { RegistrationSuccessComponent } from './tournament-registration/registration-success/registration-success.component';
 import { NewsComponent } from './news/news.component';
 import { GetRegCountPipe } from './pipes/get-reg-count.pipe';
-import { LanguagesModule, LoginModule, SuccessErrorModule } from '../../../common/src/public_api';
 
 import {
   IgxNavbarModule,
@@ -42,52 +41,51 @@ import {
   IgxCardModule
 } from '@infragistics/igniteui-angular';
 import { socialMedia, logos, heartCare } from '@igniteui/material-icons-extended';
+import { LanguagesComponent, LoginComponent, SuccessErrorComponent } from '../../../common/src/public_api';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    GetRegCountPipe,
-    RaffleComponent,
-    TournamentRegistrationComponent,
-    TeamNewComponent,
-    StartsWithPipe,
-    GroupsFilterPipe,
-    RegistrationSuccessComponent,
-    NewsComponent
-  ],
-  imports: [
-    FormsModule,
-    HttpClientModule,
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    TransferHttpCacheModule,
-    IgxNavbarModule,
-    IgxLayoutModule,
-    IgxRippleModule,
-    IgxIconModule,
-    IgxInputGroupModule,
-    IgxButtonModule,
-    IgxBannerModule,
-    IgxProgressBarModule,
-    IgxDividerModule,
-    IgxAvatarModule,
-    IgxNavigationDrawerModule,
-    IgxSelectModule,
-    IgxDropDownModule,
-    IgxCheckboxModule,
-    IgxAutocompleteModule,
-    IgxDialogModule,
-    IgxListModule,
-    IgxCardModule,
-    LoginModule,
-    SuccessErrorModule,
-    LanguagesModule,
-    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    HammerModule
-  ],
-  bootstrap: [AppComponent]
+    declarations: [AppComponent],
+    imports: [
+        FormsModule,
+        HttpClientModule,
+        BrowserModule.withServerTransition({ appId: 'serverApp' }),
+        BrowserAnimationsModule,
+        AppRoutingModule,
+        TransferHttpCacheModule,
+        IgxNavbarModule,
+        IgxLayoutModule,
+        IgxRippleModule,
+        IgxIconModule,
+        IgxInputGroupModule,
+        IgxButtonModule,
+        IgxBannerModule,
+        IgxProgressBarModule,
+        IgxDividerModule,
+        IgxAvatarModule,
+        IgxNavigationDrawerModule,
+        IgxSelectModule,
+        IgxDropDownModule,
+        IgxCheckboxModule,
+        IgxAutocompleteModule,
+        IgxDialogModule,
+        IgxListModule,
+        IgxCardModule,
+        ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+        HammerModule,
+        HomeComponent,
+        GetRegCountPipe,
+        RaffleComponent,
+        TournamentRegistrationComponent,
+        TeamNewComponent,
+        StartsWithPipe,
+        GroupsFilterPipe,
+        RegistrationSuccessComponent,
+        NewsComponent,
+        SuccessErrorComponent,
+        LoginComponent,
+        LanguagesComponent
+    ],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
   constructor(private iconService: IgxIconService) {

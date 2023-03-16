@@ -24,16 +24,12 @@ describe('AdminMainComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [
-        AdminMainComponent,
-        SizeNamePipe
-      ],
-      imports: [
+    imports: [
         FormsModule,
         HttpClientTestingModule,
         NoopAnimationsModule,
         RouterTestingModule,
-        ServiceWorkerModule.register('', {enabled: false}),
+        ServiceWorkerModule.register('', { enabled: false }),
         IgxChipsModule,
         IgxInputGroupModule,
         IgxButtonModule,
@@ -42,9 +38,11 @@ describe('AdminMainComponent', () => {
         IgxDatePickerModule,
         IgxGridModule,
         IgxActionStripModule,
-        IgxCheckboxModule
-      ]
-    })
+        IgxCheckboxModule,
+        AdminMainComponent,
+        SizeNamePipe
+    ]
+})
     .compileComponents();
   });
 

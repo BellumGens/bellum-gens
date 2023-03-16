@@ -11,8 +11,6 @@ import { NotInGroupPipe } from '../pipes/not-in-group.pipe';
 import { GetPlayersPipe } from '../pipes/get-players.pipe';
 import { SizeNamePipe } from '../pipes/size-name.pipe';
 
-import { BellumGensModule, ConfirmModule } from '../../../../common/src/public_api';
-
 import {
   IgxChipsModule,
   IgxInputGroupModule,
@@ -37,40 +35,36 @@ import {
 
 
 @NgModule({
-  declarations: [
-    AdminComponent,
-    AdminCsgoComponent,
-    AdminSc2Component,
-    NotInGroupPipe,
-    GetPlayersPipe,
-    SizeNamePipe,
-    AdminMainComponent
-  ],
-  imports: [
-    CommonModule,
-    AdminRoutingModule,
-    FormsModule,
-    IgxChipsModule,
-    IgxInputGroupModule,
-    IgxListModule,
-    IgxIconModule,
-    IgxAvatarModule,
-    IgxDatePickerModule,
-    IgxButtonModule,
-    IgxCardModule,
-    IgxProgressBarModule,
-    IgxBadgeModule,
-    IgxDragDropModule,
-    IgxSelectModule,
-    IgxTimePickerModule,
-    IgxCalendarModule,
-    IgxCheckboxModule,
-    IgxDividerModule,
-    IgxDialogModule,
-    IgxActionStripModule,
-    IgxGridModule,
-    ConfirmModule,
-    BellumGensModule
-  ]
+    imports: [
+        CommonModule,
+        AdminRoutingModule,
+        FormsModule,
+        IgxChipsModule,
+        IgxInputGroupModule,
+        IgxListModule,
+        IgxIconModule,
+        IgxAvatarModule,
+        IgxDatePickerModule,
+        IgxButtonModule,
+        IgxCardModule,
+        IgxProgressBarModule,
+        IgxBadgeModule,
+        IgxDragDropModule,
+        IgxSelectModule,
+        IgxTimePickerModule,
+        IgxCalendarModule,
+        IgxCheckboxModule,
+        IgxDividerModule,
+        IgxDialogModule,
+        IgxActionStripModule,
+        IgxGridModule,
+        AdminComponent,
+        AdminCsgoComponent,
+        AdminSc2Component,
+        NotInGroupPipe,
+        GetPlayersPipe,
+        SizeNamePipe,
+        AdminMainComponent
+    ]
 })
 export class AdminModule { }

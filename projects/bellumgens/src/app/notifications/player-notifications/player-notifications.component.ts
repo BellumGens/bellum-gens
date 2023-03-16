@@ -1,5 +1,5 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import {
   LoginService,
   ApplicationUser,
@@ -7,12 +7,19 @@ import {
   NotificationState,
   BellumgensApiService
 } from '../../../../../common/src/public_api';
+import { NotificationStatePipe } from '../../pipes/notification-state.pipe';
+import { SortNotificationsPipe } from '../../pipes/sort-notifications.pipe';
+import { DisabledNotificationsPipe } from '../../pipes/disabled-notifications.pipe';
+import { IgxListModule, IgxAvatarModule, IgxButtonModule, IgxRippleModule } from '@infragistics/igniteui-angular';
+import { NgIf, NgFor, DatePipe } from '@angular/common';
 
 
 @Component({
-  selector: 'app-player-notifications',
-  templateUrl: './player-notifications.component.html',
-  styleUrls: ['./player-notifications.component.scss']
+    selector: 'app-player-notifications',
+    templateUrl: './player-notifications.component.html',
+    styleUrls: ['./player-notifications.component.scss'],
+    standalone: true,
+    imports: [NgIf, IgxListModule, NgFor, IgxAvatarModule, RouterLink, IgxButtonModule, IgxRippleModule, DatePipe, DisabledNotificationsPipe, SortNotificationsPipe, NotificationStatePipe]
 })
 export class PlayerNotificationsComponent {
   @Output()

@@ -1,15 +1,13 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { TeamPreferencesComponent } from './team-preferences.component';
-import { IgxListModule, IgxIconModule, IgxSwitchModule, IgxInputGroupModule, IgxAvatarModule } from '@infragistics/igniteui-angular';
-import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { ServiceWorkerModule } from '@angular/service-worker';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { BellumGensModule, TEAM_PLACEHOLDER } from '../../../../../common/src/public_api';
+import { TEAM_PLACEHOLDER } from '../../../../../common/src/public_api';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 describe('TeamPreferencesComponent', () => {
   let component: TeamPreferencesComponent;
@@ -18,20 +16,10 @@ describe('TeamPreferencesComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        FormsModule,
         RouterTestingModule,
-        NoopAnimationsModule,
         HttpClientTestingModule,
-        ServiceWorkerModule.register('', {enabled: false}),
-        IgxListModule,
-        IgxIconModule,
-        IgxSwitchModule,
-        IgxInputGroupModule,
-        IgxInputGroupModule,
-        IgxAvatarModule,
-        BellumGensModule
-      ],
-      declarations: [
+        NoopAnimationsModule,
+        ServiceWorkerModule.register('', { enabled: false }),
         TeamPreferencesComponent
       ],
       providers: [
@@ -45,8 +33,7 @@ describe('TeamPreferencesComponent', () => {
           }
         }
       ]
-    })
-    .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -6,21 +6,6 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { IgxIconModule,
-  IgxDividerModule,
-  IgxInputGroupModule,
-  IgxSelectModule,
-  IgxDialogModule,
-  IgxAvatarModule,
-  IgxAutocompleteModule,
-  IgxDropDownModule,
-  IgxButtonModule,
-  IgxListModule,
-  IgxProgressBarModule,
-  IgxCheckboxModule } from '@infragistics/igniteui-angular';
-import { StartsWithPipe } from 'projects/bellumgens/src/app/pipes/starts-with.pipe';
-import { TeamNewComponent } from 'projects/bellumgens/src/app/team-section/team-new/team-new.component';
-import { GroupsFilterPipe } from 'projects/bellumgens/src/app/pipes/groups-filter.pipe';
 
 describe('TournamentRegistrationComponent', () => {
   let component: TournamentRegistrationComponent;
@@ -28,32 +13,15 @@ describe('TournamentRegistrationComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         FormsModule,
         HttpClientTestingModule,
         RouterTestingModule,
         NoopAnimationsModule,
-        ServiceWorkerModule.register('', {enabled: false}),
-        IgxIconModule,
-        IgxDividerModule,
-        IgxInputGroupModule,
-        IgxSelectModule,
-        IgxDialogModule,
-        IgxAvatarModule,
-        IgxAutocompleteModule,
-        IgxDropDownModule,
-        IgxButtonModule,
-        IgxListModule,
-        IgxProgressBarModule,
-        IgxCheckboxModule
-      ],
-      declarations: [
-        TournamentRegistrationComponent,
-        TeamNewComponent,
-        GroupsFilterPipe,
-        StartsWithPipe
-      ]
-    })
+        ServiceWorkerModule.register('', { enabled: false }),
+        TournamentRegistrationComponent
+    ]
+})
     .compileComponents();
   }));
 

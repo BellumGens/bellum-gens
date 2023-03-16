@@ -33,7 +33,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { NewStrategyComponent } from './new-strategy/new-strategy.component';
 import { IsStratOwnerPipe } from 'projects/bellumgens/src/app/pipes/is-strat-owner.pipe';
-import { BellumGensModule, ConfirmModule, LoadingModule } from 'projects/common/src/public_api';
 import { StratFilterPipe } from '../pipes/strat-filter.pipe';
 
 describe('StrategiesComponent', () => {
@@ -47,7 +46,7 @@ describe('StrategiesComponent', () => {
         RouterTestingModule,
         NoopAnimationsModule,
         HttpClientTestingModule,
-        ServiceWorkerModule.register('', {enabled: false}),
+        ServiceWorkerModule.register('', { enabled: false }),
         IgxIconModule,
         IgxAvatarModule,
         IgxCardModule,
@@ -65,11 +64,6 @@ describe('StrategiesComponent', () => {
         IgxProgressBarModule,
         IgxButtonModule,
         IgxDividerModule,
-        BellumGensModule,
-        ConfirmModule,
-        LoadingModule
-      ],
-      declarations: [
         StrategiesComponent,
         NewStrategyComponent,
         SafeVideoLinkPipe,

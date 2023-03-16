@@ -13,8 +13,6 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { BellumGensModule } from 'projects/common/src/public_api';
-import { FormsModule } from '@angular/forms';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -22,12 +20,11 @@ describe('HomeComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        FormsModule,
+    imports: [
         HttpClientTestingModule,
         NoopAnimationsModule,
         RouterTestingModule,
-        ServiceWorkerModule.register('', {enabled: false}),
+        ServiceWorkerModule.register('', { enabled: false }),
         IgxInputGroupModule,
         IgxIconModule,
         IgxAvatarModule,
@@ -36,12 +33,9 @@ describe('HomeComponent', () => {
         IgxButtonModule,
         IgxCarouselModule,
         IgxDialogModule,
-        BellumGensModule
-      ],
-      declarations: [
         HomeComponent
-      ]
-    })
+    ]
+})
     .compileComponents();
   }));
 

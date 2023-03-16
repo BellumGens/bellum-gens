@@ -1,10 +1,16 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { ACTIVE_DUTY, CSGOActiveDutyDescriptor, CSGOMapPool } from '../../../../../common/src/public_api';
+import { ActiveDutyMapsPipe } from '../../../../../common/src/lib/pipes/active-duty-maps.pipe';
+import { FormsModule } from '@angular/forms';
+import { IgxCardModule, IgxCheckboxModule } from '@infragistics/igniteui-angular';
+import { NgFor, NgClass } from '@angular/common';
 
 @Component({
-  selector: 'app-map-pool',
-  templateUrl: './map-pool.component.html',
-  styleUrls: ['./map-pool.component.scss']
+    selector: 'app-map-pool',
+    templateUrl: './map-pool.component.html',
+    styleUrls: ['./map-pool.component.scss'],
+    standalone: true,
+    imports: [NgFor, IgxCardModule, NgClass, IgxCheckboxModule, FormsModule, ActiveDutyMapsPipe]
 })
 export class MapPoolComponent {
   @Input()

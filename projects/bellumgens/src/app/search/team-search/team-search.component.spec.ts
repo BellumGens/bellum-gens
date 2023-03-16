@@ -20,24 +20,22 @@ describe('TeamSearchComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         FormsModule,
         RouterTestingModule,
         NoopAnimationsModule,
         HttpClientTestingModule,
-        ServiceWorkerModule.register('', {enabled: false}),
+        ServiceWorkerModule.register('', { enabled: false }),
         IgxRadioModule,
         IgxSliderModule,
         IgxRippleModule,
         IgxAvatarModule,
         IgxIconModule,
         IgxInputGroupModule,
-        IgxButtonModule
-      ],
-      declarations: [
+        IgxButtonModule,
         TeamSearchComponent
-      ]
-    })
+    ]
+})
     .compileComponents();
   }));
 

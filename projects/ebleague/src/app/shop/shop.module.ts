@@ -19,22 +19,20 @@ import {
 
 
 @NgModule({
-  declarations: [
-    ShopComponent,
-    OrderSuccessComponent,
-    FilterSizesPipe
-  ],
-  imports: [
-    CommonModule,
-    FormsModule,
-    ShopRoutingModule,
-    IgxSelectModule,
-    IgxInputGroupModule,
-    IgxIconModule,
-    IgxButtonModule,
-    IgxMaskModule,
-    IgxDividerModule,
-    IgxTextSelectionModule
-  ]
+    imports: [
+        CommonModule,
+        FormsModule,
+        ShopRoutingModule,
+        IgxSelectModule,
+        IgxInputGroupModule,
+        IgxIconModule,
+        IgxButtonModule,
+        IgxMaskModule,
+        IgxDividerModule,
+        IgxTextSelectionModule,
+        ShopComponent,
+        OrderSuccessComponent,
+        FilterSizesPipe
+    ]
 })
 export class ShopModule { }

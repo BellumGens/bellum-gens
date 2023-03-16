@@ -8,8 +8,8 @@ describe('RaffleComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ RaffleComponent ]
-    })
+    imports: [RaffleComponent]
+})
     .compileComponents();
   }));
 

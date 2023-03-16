@@ -1,20 +1,12 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { TeamDetailsComponent } from './team-details.component';
-import { IgxAvatarModule,
-  IgxCardModule,
-  IgxDragDropModule,
-  IgxChipsModule,
-  IgxTimePickerModule,
-  IgxDialogModule,
-  IgxRippleModule } from '@infragistics/igniteui-angular';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
-import { AvailabilityModule, BellumGensModule, ConfirmModule } from 'projects/common/src/public_api';
 
 describe('TeamDetailsComponent', () => {
   let component: TeamDetailsComponent;
@@ -26,19 +18,7 @@ describe('TeamDetailsComponent', () => {
         RouterTestingModule,
         NoopAnimationsModule,
         HttpClientTestingModule,
-        ServiceWorkerModule.register('', {enabled: false}),
-        IgxAvatarModule,
-        IgxCardModule,
-        IgxDragDropModule,
-        IgxChipsModule,
-        IgxTimePickerModule,
-        IgxDialogModule,
-        IgxRippleModule,
-        BellumGensModule,
-        ConfirmModule,
-        AvailabilityModule
-      ],
-      declarations: [
+        ServiceWorkerModule.register('', { enabled: false }),
         TeamDetailsComponent
       ],
       providers: [
@@ -52,8 +32,7 @@ describe('TeamDetailsComponent', () => {
           }
         }
       ]
-    })
-    .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {

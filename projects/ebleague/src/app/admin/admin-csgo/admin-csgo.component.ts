@@ -9,17 +9,20 @@ import {
   CSGOActiveDutyDescriptor, ACTIVE_DUTY
 } from '../../../../../common/src/public_api';
 import { environment } from '../../../../../common/src/environments/environment';
-import {
-  IDropDroppedEventArgs,
-  IRowDataEventArgs,
-  IgxGridComponent,
-  IgxDialogComponent
-} from '@infragistics/igniteui-angular';
+import { IDropDroppedEventArgs, IRowDataEventArgs, IgxGridComponent, IgxDialogComponent, IgxSelectModule, IgxInputGroupModule, IgxGridModule, IgxGridToolbarModule, IgxButtonModule, IgxIconModule, IgxGridColumnModule, IgxAvatarModule, IgxListModule, IgxCardModule, IgxProgressBarModule, IgxDragDropModule, IgxBadgeModule, IgxSuffixModule, IgxDialogModule, IgxDatePickerModule, IgxTimePickerModule, IgxPrefixModule, IgxCheckboxModule } from '@infragistics/igniteui-angular';
+import { NotInGroupPipe } from '../../pipes/not-in-group.pipe';
+import { CSGOMapnamePipe } from '../../../../../common/src/lib/pipes/csgomapname.pipe';
+import { CSGOMapimagePipe } from '../../../../../common/src/lib/pipes/csgomapimage.pipe';
+import { ConfirmComponent } from '../../../../../common/src/lib/confirm/confirm.component';
+import { NgFor, NgIf, DatePipe } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
-  selector: 'app-admin-csgo',
-  templateUrl: './admin-csgo.component.html',
-  styleUrls: ['./admin-csgo.component.scss']
+    selector: 'app-admin-csgo',
+    templateUrl: './admin-csgo.component.html',
+    styleUrls: ['./admin-csgo.component.scss'],
+    standalone: true,
+    imports: [IgxSelectModule, FormsModule, IgxInputGroupModule, NgFor, IgxGridModule, IgxGridToolbarModule, IgxButtonModule, IgxIconModule, IgxGridColumnModule, IgxAvatarModule, IgxListModule, NgIf, IgxCardModule, IgxProgressBarModule, IgxDragDropModule, IgxBadgeModule, IgxSuffixModule, IgxDialogModule, IgxDatePickerModule, IgxTimePickerModule, IgxPrefixModule, IgxCheckboxModule, ConfirmComponent, DatePipe, CSGOMapimagePipe, CSGOMapnamePipe, NotInGroupPipe]
 })
 export class AdminCsgoComponent {
   public registrations: TournamentParticipant [];

@@ -2,7 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 
 @Pipe({
-  name: 'safeVideoLink'
+    name: 'safeVideoLink',
+    standalone: true
 })
 export class SafeVideoLinkPipe implements PipeTransform {
   constructor(private sanitizer: DomSanitizer) {}

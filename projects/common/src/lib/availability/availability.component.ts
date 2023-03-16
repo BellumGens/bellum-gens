@@ -1,4 +1,4 @@
-import { Component, ViewChild, Input, Output, EventEmitter, NgModule } from '@angular/core';
+import { Component, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { Availability, BASE_AVAILABILITY } from '../../models/playeravailability';
 import {
   IgxTimePickerComponent,
@@ -10,12 +10,14 @@ import {
   IgxTimePickerModule
 } from '@infragistics/igniteui-angular';
 import { WeekdayPipe } from '../pipes/weekday.pipe';
-import { CommonModule } from '@angular/common';
+import { NgFor, NgIf, DatePipe } from '@angular/common';
 
 @Component({
-  selector: 'bg-availability',
-  templateUrl: './availability.component.html',
-  styleUrls: ['./availability.component.scss']
+    selector: 'bg-availability',
+    templateUrl: './availability.component.html',
+    styleUrls: ['./availability.component.scss'],
+    standalone: true,
+    imports: [IgxChipsModule, NgFor, NgIf, IgxDialogModule, IgxTimePickerModule, DatePipe, WeekdayPipe]
 })
 export class AvailabilityComponent {
   @Input()
@@ -83,20 +85,4 @@ export class AvailabilityComponent {
   }
 }
 
-@NgModule({
-  declarations: [
-    AvailabilityComponent,
-    WeekdayPipe
-  ],
-  exports: [
-    AvailabilityComponent,
-    WeekdayPipe
-  ],
-  imports: [
-    CommonModule,
-    IgxDialogModule,
-    IgxChipsModule,
-    IgxTimePickerModule
-  ]
-})
-export class AvailabilityModule {}
+

@@ -49,5 +49,4 @@ export * from './lib/pipes/sc2-map-name.pipe';
 export * from './lib/pipes/weekday.pipe';
 
 /* Common Module */
-export * from './lib/bellumgens.module';
 export * from './lib/public_api';

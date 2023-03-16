@@ -5,13 +5,18 @@ import {
   SteamGroup,
   EMPTY_NEW_TEAM
 } from '../../../../../common/src/public_api';
-import { IgxDialogComponent } from '@infragistics/igniteui-angular';
+import { IgxDialogComponent, IgxDialogModule, IgxInputGroupModule, IgxPrefixModule, IgxIconModule, IgxSuffixModule, IgxListModule, IgxAvatarModule, IgxButtonModule, IgxRippleModule } from '@infragistics/igniteui-angular';
 import { Router } from '@angular/router';
+import { GroupsFilterPipe } from '../../pipes/groups-filter.pipe';
+import { FormsModule } from '@angular/forms';
+import { NgIf, NgFor } from '@angular/common';
 
 @Component({
-  selector: 'app-team-new',
-  templateUrl: './team-new.component.html',
-  styleUrls: ['./team-new.component.scss']
+    selector: 'app-team-new',
+    templateUrl: './team-new.component.html',
+    styleUrls: ['./team-new.component.scss'],
+    standalone: true,
+    imports: [NgIf, IgxDialogModule, IgxInputGroupModule, IgxPrefixModule, IgxIconModule, FormsModule, IgxSuffixModule, IgxListModule, NgFor, IgxAvatarModule, IgxButtonModule, IgxRippleModule, GroupsFilterPipe]
 })
 export class TeamNewComponent {
   @Input() public authUser: ApplicationUser;

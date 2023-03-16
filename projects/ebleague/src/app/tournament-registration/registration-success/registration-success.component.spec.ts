@@ -9,11 +9,11 @@ describe('RegistrationSuccessComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ RegistrationSuccessComponent ],
-      imports: [
-        RouterTestingModule
-      ]
-    })
+    imports: [
+        RouterTestingModule,
+        RegistrationSuccessComponent
+    ]
+})
     .compileComponents();
   }));
 

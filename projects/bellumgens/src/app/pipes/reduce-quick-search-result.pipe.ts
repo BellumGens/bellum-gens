@@ -1,7 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'reduceQuickSearchResult'
+    name: 'reduceQuickSearchResult',
+    standalone: true
 })
 export class ReduceQuickSearchResultPipe implements PipeTransform {
 

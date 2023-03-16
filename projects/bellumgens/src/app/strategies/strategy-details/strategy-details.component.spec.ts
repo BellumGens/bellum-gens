@@ -18,10 +18,8 @@ import { IgxCardModule,
 import { VotesPipe } from 'projects/bellumgens/src/app/pipes/votes.pipe';
 import { IsVideoPipe } from 'projects/bellumgens/src/app/pipes/is-video.pipe';
 import { SafeVideoLinkPipe } from 'projects/bellumgens/src/app/pipes/safe-video-link.pipe';
-import { FormsModule } from '@angular/forms';
 import { HasVotedPipe } from 'projects/bellumgens/src/app/pipes/has-voted.pipe';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { BellumGensModule, ConfirmModule, LoadingModule } from 'projects/common/src/public_api';
 
 describe('StrategyDetailsComponent', () => {
   let component: StrategyDetailsComponent;
@@ -29,12 +27,11 @@ describe('StrategyDetailsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         RouterTestingModule,
         HttpClientTestingModule,
         NoopAnimationsModule,
-        FormsModule,
-        ServiceWorkerModule.register('', {enabled: false}),
+        ServiceWorkerModule.register('', { enabled: false }),
         IgxCardModule,
         IgxIconModule,
         IgxListModule,
@@ -46,18 +43,13 @@ describe('StrategyDetailsComponent', () => {
         IgxToggleModule,
         IgxDialogModule,
         IgxButtonModule,
-        BellumGensModule,
-        ConfirmModule,
-        LoadingModule
-      ],
-      declarations: [
         StrategyDetailsComponent,
         VotesPipe,
         IsVideoPipe,
         SafeVideoLinkPipe,
         HasVotedPipe
-      ]
-    })
+    ]
+})
     .compileComponents();
   }));
 

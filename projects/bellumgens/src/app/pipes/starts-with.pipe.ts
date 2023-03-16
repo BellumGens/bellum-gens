@@ -1,7 +1,8 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'startsWith'
+    name: 'startsWith',
+    standalone: true
 })
 export class StartsWithPipe implements PipeTransform {
 

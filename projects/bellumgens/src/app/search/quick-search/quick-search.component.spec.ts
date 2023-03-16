@@ -12,19 +12,17 @@ describe('QuickSearchComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         RouterTestingModule,
         HttpClientTestingModule,
         IgxProgressBarModule,
         IgxListModule,
         IgxAvatarModule,
-        IgxIconModule
-      ],
-      declarations: [
+        IgxIconModule,
         QuickSearchComponent,
         ReduceQuickSearchResultPipe
-      ]
-    })
+    ]
+})
     .compileComponents();
   }));
 

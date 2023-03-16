@@ -2,7 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { SteamGroup } from '../../../../common/src/public_api';
 
 @Pipe({
-  name: 'groupsFilter'
+    name: 'groupsFilter',
+    standalone: true
 })
 export class GroupsFilterPipe implements PipeTransform {
 

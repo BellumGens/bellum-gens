@@ -22,8 +22,7 @@ describe('ShopComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ShopComponent, FilterSizesPipe ],
-      imports: [
+    imports: [
         FormsModule,
         HttpClientTestingModule,
         RouterTestingModule,
@@ -34,7 +33,8 @@ describe('ShopComponent', () => {
         IgxButtonModule,
         IgxMaskModule,
         IgxDividerModule,
-        IgxTextSelectionModule
+        IgxTextSelectionModule,
+        ShopComponent, FilterSizesPipe
       ]
     })
     .compileComponents();

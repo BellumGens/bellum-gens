@@ -11,14 +11,14 @@ describe('SuccessErrorComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         HttpClientTestingModule,
         NoopAnimationsModule,
         IgxIconModule,
-        IgxSnackbarModule
-      ],
-      declarations: [ SuccessErrorComponent ]
-    })
+        IgxSnackbarModule,
+        SuccessErrorComponent
+    ]
+})
     .compileComponents();
   }));
 

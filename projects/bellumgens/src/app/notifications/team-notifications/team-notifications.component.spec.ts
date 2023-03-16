@@ -18,16 +18,13 @@ describe('TeamNotificationsComponent', () => {
         RouterTestingModule,
         HttpClientTestingModule,
         IgxListModule,
-        IgxAvatarModule
-      ],
-      declarations: [
+        IgxAvatarModule,
         TeamNotificationsComponent,
         SortApplicationsPipe,
         DisabledNotificationsPipe,
         NotificationStatePipe
       ]
-    })
-    .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -2,10 +2,15 @@ import { Component, Output, EventEmitter } from '@angular/core';
 import { UnreadNotificationsPipe } from '../pipes/unread-notifications.pipe';
 import { LoginService, CSGOTeam } from '../../../../common/src/public_api';
 import { Observable } from 'rxjs';
+import { TeamNotificationsComponent } from './team-notifications/team-notifications.component';
+import { NgFor, AsyncPipe } from '@angular/common';
+import { PlayerNotificationsComponent } from './player-notifications/player-notifications.component';
 
 @Component({
-  templateUrl: './notifications.component.html',
-  styleUrls: ['./notifications.component.scss']
+    templateUrl: './notifications.component.html',
+    styleUrls: ['./notifications.component.scss'],
+    standalone: true,
+    imports: [PlayerNotificationsComponent, NgFor, TeamNotificationsComponent, AsyncPipe]
 })
 export class NotificationsComponent {
   @Output() public loaded = new EventEmitter<number>();
