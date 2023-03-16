@@ -44,7 +44,7 @@
 
     <ng-template #imageContent>
       <igx-card-media class="strategy-image-container">
-        <img *ngIf="strat.stratImage" [src]="strat.stratImage" [alt]="strat.title" />
+        <img [ngSrc]="strat.stratImage" *ngIf="strat.stratImage" width="900" height="900" [alt]="strat.title" />
       </igx-card-media>
     </ng-template>
   </div>

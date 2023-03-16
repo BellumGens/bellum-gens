@@ -9,14 +9,34 @@ import {
 import { IGridEditEventArgs, IGroupingExpression, SortingDirection, DefaultSortingStrategy, RowType, IgxGridModule, IgxGridToolbarModule, IgxGridColumnModule, IgxIconModule, IgxBadgeModule, IgxActionStripModule, IgxButtonModule, IgxRippleModule, IgxPaginatorModule, IgxInputGroupModule, IgxSuffixModule, IgxDatePickerModule, IgxCheckboxModule, IgxChipsModule } from '@infragistics/igniteui-angular';
 import { SizeNamePipe } from '../../pipes/size-name.pipe';
 import { FormsModule } from '@angular/forms';
-import { NgIf, NgFor } from '@angular/common';
+import { NgIf, NgFor, NgOptimizedImage } from '@angular/common';
 
 @Component({
     selector: 'app-admin-main',
     templateUrl: './admin-main.component.html',
     styleUrls: ['./admin-main.component.scss'],
     standalone: true,
-    imports: [IgxGridModule, IgxGridToolbarModule, IgxGridColumnModule, IgxIconModule, NgIf, IgxBadgeModule, IgxActionStripModule, IgxButtonModule, IgxRippleModule, IgxPaginatorModule, NgFor, FormsModule, IgxInputGroupModule, IgxSuffixModule, IgxDatePickerModule, IgxCheckboxModule, IgxChipsModule, SizeNamePipe]
+    imports: [
+      NgOptimizedImage,
+      NgIf,
+      NgFor,
+      FormsModule,
+      IgxGridModule,
+      IgxGridToolbarModule,
+      IgxGridColumnModule,
+      IgxIconModule,
+      IgxBadgeModule,
+      IgxActionStripModule,
+      IgxButtonModule,
+      IgxRippleModule,
+      IgxPaginatorModule,
+      IgxInputGroupModule,
+      IgxSuffixModule,
+      IgxDatePickerModule,
+      IgxCheckboxModule,
+      IgxChipsModule,
+      SizeNamePipe
+    ]
 })
 export class AdminMainComponent {
   public roles: string [];

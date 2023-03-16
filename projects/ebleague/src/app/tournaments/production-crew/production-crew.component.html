@@ -6,7 +6,7 @@
       <h3 igxCardHeaderSubtitle i18n>Birthplace: {{ member.birthplace }}</h3>
     </igx-card-header>
     <igx-card-media>
-      <img [src]="member.image" [alt]="member.name" />
+      <img [ngSrc]="member.image" width="640" height="426" [alt]="member.name" />
     </igx-card-media>
     <igx-card-actions [reverse]="true">
       <a igxButton *ngIf="member.facebook" [href]="member.facebook" target="_blank" rel="noopener">

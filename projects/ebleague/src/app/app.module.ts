@@ -42,6 +42,7 @@ import {
 } from '@infragistics/igniteui-angular';
 import { socialMedia, logos, heartCare } from '@igniteui/material-icons-extended';
 import { LanguagesComponent, LoginComponent, SuccessErrorComponent } from '../../../common/src/public_api';
+import { NgOptimizedImage } from '@angular/common';
 
 @NgModule({
     declarations: [AppComponent],
@@ -52,6 +53,7 @@ import { LanguagesComponent, LoginComponent, SuccessErrorComponent } from '../..
         BrowserAnimationsModule,
         AppRoutingModule,
         TransferHttpCacheModule,
+        NgOptimizedImage,
         IgxNavbarModule,
         IgxLayoutModule,
         IgxRippleModule,

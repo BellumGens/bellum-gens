@@ -46,7 +46,7 @@
 
     <igx-card-media>
       <iframe class="video-frame" *ngIf="strat.url | isVideo" [src]="strat.url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      <img *ngIf="strat.stratImage" [src]="strat.stratImage" class="strat-image" [routerLink]="['/strategies', 'details', strat.customUrl]" />
+      <img *ngIf="strat.stratImage" [ngSrc]="strat.stratImage" class="strat-image" width="350" height="315" [routerLink]="['/strategies', 'details', strat.customUrl]" />
     </igx-card-media>
 
     <igx-card-content>

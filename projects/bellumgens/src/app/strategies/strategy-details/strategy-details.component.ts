@@ -1,5 +1,5 @@
 import { Component, HostListener, Inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser, NgIf, NgClass, NgFor, DatePipe } from '@angular/common';
+import { isPlatformBrowser, NgIf, NgClass, NgFor, DatePipe, NgOptimizedImage } from '@angular/common';
 import { BaseComponent } from '../../base/base.component';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import {
@@ -29,7 +29,33 @@ import { LoadingComponent } from '../../../../../common/src/lib/loading/loading.
     templateUrl: './strategy-details.component.html',
     styleUrls: ['./strategy-details.component.scss'],
     standalone: true,
-    imports: [NgIf, LoadingComponent, IgxCardModule, IgxLayoutModule, RouterLink, IgxButtonModule, IgxRippleModule, IgxIconModule, NgClass, IgxDividerModule, IgxListModule, NgFor, IgxAvatarModule, IgxToggleModule, IgxDropDownModule, FormsModule, IgxInputGroupModule, IgxSuffixModule, ConfirmComponent, DatePipe, SafeVideoLinkPipe, IsVideoPipe, HasVotedPipe, VotesPipe]
+    imports: [
+      NgOptimizedImage,
+      NgIf,
+      NgFor,
+      NgClass,
+      DatePipe,
+      FormsModule,
+      RouterLink,
+      LoadingComponent,
+      IgxCardModule,
+      IgxLayoutModule,
+      IgxButtonModule,
+      IgxRippleModule,
+      IgxIconModule,
+      IgxDividerModule,
+      IgxListModule,
+      IgxAvatarModule,
+      IgxToggleModule,
+      IgxDropDownModule,
+      IgxInputGroupModule,
+      IgxSuffixModule,
+      ConfirmComponent,
+      SafeVideoLinkPipe,
+      IsVideoPipe,
+      HasVotedPipe,
+      VotesPipe
+    ]
 })
 export class StrategyDetailsComponent extends BaseComponent {
   public strat: CSGOStrategy;

@@ -1,5 +1,5 @@
 import { Component, HostListener, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
-import { isPlatformBrowser, NgIf } from '@angular/common';
+import { isPlatformBrowser, NgIf, NgOptimizedImage } from '@angular/common';
 import { LoginService, ApplicationUser, SocialMediaService } from '../../../../common/src/public_api';
 import { environment } from '../../../../common/src/environments/environment';
 import { BaseComponent } from '../base/base.component';
@@ -13,7 +13,19 @@ import { FormsModule } from '@angular/forms';
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss'],
     standalone: true,
-    imports: [IgxCarouselModule, IgxIconModule, IgxButtonModule, RouterLink, NgIf, IgxDividerModule, FormsModule, IgxInputGroupModule, IgxPrefixModule, IgxSuffixModule]
+    imports: [
+      RouterLink,
+      NgIf,
+      NgOptimizedImage,
+      FormsModule,
+      IgxDividerModule,
+      IgxInputGroupModule,
+      IgxPrefixModule,
+      IgxSuffixModule,
+      IgxCarouselModule,
+      IgxIconModule,
+      IgxButtonModule
+    ]
 })
 export class HomeComponent extends BaseComponent {
   @ViewChild(IgxCarouselComponent, { static: true }) public carousel: IgxCarouselComponent;
