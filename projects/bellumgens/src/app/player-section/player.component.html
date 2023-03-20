@@ -22,7 +22,7 @@
 
       <!-- <button igxButton="raised" [disabled]="true">Send message <igx-icon>mail</igx-icon></button> -->
       <button *ngIf="player?.registered && !playerIsUser && teamsAdmin?.length > 0"
-              igxButton="fab"
+              igxButton
               igxRipple
               i18n-title
               title="Invite to team"
@@ -30,16 +30,16 @@
               [igxToggleAction]="teamInvite">
         <igx-icon>people</igx-icon><span i18n>Invite</span>
         <igx-icon>arrow_drop_down</igx-icon>
+        <igx-drop-down (selectionChanging)="inviteToTeam($event)" #teamInvite>
+          <igx-drop-down-item class="team-invites" [value]="team" *ngFor="let team of teamsAdmin">
+            <igx-avatar [src]="team.teamAvatar" [initials]="team.teamName" [roundShape]="true">
+            </igx-avatar>
+            <span class="title margin-left">
+              {{ team.teamName }}
+            </span>
+          </igx-drop-down-item>
+        </igx-drop-down>
       </button>
-      <igx-drop-down (selectionChanging)="inviteToTeam($event)" #teamInvite>
-        <igx-drop-down-item class="team-invites" [value]="team" *ngFor="let team of teamsAdmin">
-          <igx-avatar [src]="team.teamAvatar" [initials]="team.teamName" [roundShape]="true">
-          </igx-avatar>
-          <span class="title margin-left">
-            {{ team.teamName }}
-          </span>
-        </igx-drop-down-item>
-      </igx-drop-down>
     </div>
     <h1 class="igx-card-header__title"><a [href]="player.steamUser | steamCustomUrl" target="_blank" rel="noopener">{{ player.steamUser?.steamID }}</a></h1>
     <h4 class="igx-card-header__subtitle">{{ player.steamUser?.realname }}</h4>
