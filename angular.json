@@ -149,7 +149,7 @@
           "builder": "@angular-devkit/build-angular:server",
           "options": {
             "outputPath": "dist/bellumgens/server",
-            "main": "server-bellumgens.ts",
+            "main": "projects/bellumgens/server-bellumgens.ts",
             "tsConfig": "projects/bellumgens/tsconfig.server.json",
             "sourceMap": true,
             "optimization": false
@@ -280,7 +280,7 @@
       }
     },
     "eb-league": {
-      "root": "",
+      "root": "projects/ebleague",
       "sourceRoot": "projects/ebleague/src",
       "projectType": "application",
       "prefix": "app",
@@ -425,7 +425,7 @@
           "builder": "@angular-devkit/build-angular:server",
           "options": {
             "outputPath": "dist/ebleague/server",
-            "main": "server-ebleague.ts",
+            "main": "projects/ebleague/server-ebleague.ts",
             "tsConfig": "projects/ebleague/tsconfig.server.json",
             "sourceMap": true,
             "optimization": false

@@ -3,12 +3,12 @@
   "compilerOptions": {
     "outDir": "../../out-tsc/app-server-bellumgens",
     "baseUrl": "."
-},
+  },
   "angularCompilerOptions": {
     "entryModule": "app/app.server.module#AppServerModule"
   },
   "files": [
     "src/main.server.ts",
-    "../../server-ebleague.ts"
+    "server-ebleague.ts"
   ]
 }
