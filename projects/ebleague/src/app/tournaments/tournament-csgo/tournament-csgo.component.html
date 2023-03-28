@@ -1,7 +1,7 @@
 <div class="overview-container-card">
   <igx-card type="outlined">
     <igx-card-header>
-      <igx-avatar src="/assets/wallpapers/csgo-watermark.webp" igxCardThumbnail [roundShape]="true"></igx-avatar>
+      <igx-avatar src="/assets/wallpapers/csgo-watermark.webp" igxCardThumbnail shape="circle"></igx-avatar>
       <h1 igxCardHeaderTitle i18n>{{ tournament?.name }} CS:GO League</h1>
     </igx-card-header>
     <igx-card-content>
@@ -13,7 +13,7 @@
                       [initials]="registration.team.teamName"
                       [title]="registration.companyId"
                       size="medium"
-                      [roundShape]="true">
+                      shape="circle">
           </igx-avatar>
           <igx-badge *ngIf="registration.userId === authUser?.id && registration.state === 0"
                       type="warning"
@@ -56,7 +56,7 @@
             <igx-avatar igxListThumbnail
                         [src]="cell.row.data.team1.teamAvatar"
                         [initials]="cell.row.data.team1.teamName"
-                        [roundShape]="true">
+                        shape="circle">
             </igx-avatar>
             <a [href]="environment.bellumgens + '/team/' + cell.row.data.team1.customUrl"
                [class]="cell.row.data.winnerTeamId === cell.row.data.team1.teamId ? 'highlight grid-team-name color-success' : 'grid-team-name'">
@@ -68,7 +68,7 @@
             <igx-avatar igxListThumbnail
                         [src]="cell.row.data.team2.teamAvatar"
                         [initials]="cell.row.data.team2.teamName"
-                        [roundShape]="true">
+                        shape="circle">
             </igx-avatar>
             <a [href]="environment.bellumgens + '/team/' + cell.row.data.team2.customUrl"
                [class]="cell.row.data.winnerTeamId === cell.row.data.team2.teamId ? 'highlight grid-team-name color-success' : 'grid-team-name'">
@@ -128,7 +128,7 @@
               <igx-avatar igxListThumbnail
                           [src]="value.teamAvatar"
                           [initials]="value.teamName"
-                          [roundShape]="true">
+                          shape="circle">
               </igx-avatar>
               <a igxListLineTitle [href]="environment.bellumgens + '/team/' + value.customUrl" target="_blank">
                 {{ value.teamName }}

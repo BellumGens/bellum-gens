@@ -31,7 +31,7 @@
         <igx-icon>people</igx-icon>
       </igx-prefix>
       <igx-select-item *ngFor="let team of userTeams | async" [value]="team.teamId" [text]="team.teamName">
-        <igx-avatar [src]="team.teamAvatar" [initials]="team.teamName" class="team-avatar" [roundShape]="true"></igx-avatar>
+        <igx-avatar [src]="team.teamAvatar" [initials]="team.teamName" class="team-avatar" shape="circle"></igx-avatar>
         <span class="title margin-left">{{ team.teamName }}</span>
       </igx-select-item>
       <igx-select-item (click)="newTeam.open(false)" i18n>Create a new team...</igx-select-item>

@@ -38,7 +38,7 @@
         <igx-avatar igxListThumbnail
                     [src]="cell.row.data.team1.teamAvatar"
                     [initials]="cell.row.data.team1.teamName"
-                    [roundShape]="true">
+                    shape="circle">
         </igx-avatar>
         <a [href]="environment.bellumgens + '/team/' + cell.row.data.team1.customUrl"
             [class]="cell.row.data.winnerTeamId === cell.row.data.team1.teamId ? 'highlight grid-team-name' : 'grid-team-name'">
@@ -50,7 +50,7 @@
         <igx-avatar igxListThumbnail
                     [src]="cell.row.data.team2.teamAvatar"
                     [initials]="cell.row.data.team2.teamName"
-                    [roundShape]="true">
+                    shape="circle">
         </igx-avatar>
         <a [href]="environment.bellumgens + '/team/' + cell.row.data.team2.customUrl"
             [class]="cell.row.data.winnerTeamId === cell.row.data.team2.teamId ? 'highlight grid-team-name' : 'grid-team-name'">
@@ -108,7 +108,7 @@
 
   <igx-card class="margin-top" type="outlined">
     <igx-card-header>
-      <igx-avatar igxCardThumbnail [roundShape]="true" src="/assets/wallpapers/csgo-watermark.webp"></igx-avatar>
+      <igx-avatar igxCardThumbnail shape="circle" src="/assets/wallpapers/csgo-watermark.webp"></igx-avatar>
       <h1 igxCardHeaderTitle i18n>{{ selectedTournament ? selectedTournament.name : 'No' }} Participants</h1>
       <h2 igxCardHeaderSubtitle i18n>Drag and drop participants into the groups</h2>
     </igx-card-header>
@@ -119,7 +119,7 @@
           <igx-avatar [src]="registration.team.teamAvatar"
                       [initials]="registration.team.teamName"
                       size="medium"
-                      [roundShape]="true"
+                      shape="circle"
                       [igxDrag]="registration">
           </igx-avatar>
           <igx-badge *ngIf="registration.state === 0"
@@ -137,7 +137,7 @@
       <div class="card-wrapper">
         <igx-card *ngFor="let group of groups">
           <igx-card-header>
-            <igx-avatar igxCardThumbnail [roundShape]="true" src="/assets/wallpapers/csgo-watermark.webp"></igx-avatar>
+            <igx-avatar igxCardThumbnail shape="circle" src="/assets/wallpapers/csgo-watermark.webp"></igx-avatar>
             <h1 *ngIf="!group.inEdit" igxCardHeaderTitle>{{group.name}}</h1>
             <igx-input-group *ngIf="group.inEdit" igxCardHeaderTitle>
               <label igxLabel for="groupName" i18n>Group name</label>
@@ -159,7 +159,7 @@
           <igx-card-content>
             <igx-list class="group-list" igxDrop (dropped)="addToGroup($event, group)">
               <igx-list-item *ngFor="let participant of group.participants">
-                <igx-avatar igxListThumbnail [src]="participant.team.teamAvatar" [initials]="participant.team.teamName" [roundShape]="true"></igx-avatar>
+                <igx-avatar igxListThumbnail [src]="participant.team.teamAvatar" [initials]="participant.team.teamName" shape="circle"></igx-avatar>
 
                 <a [href]="environment.bellumgens + '/team/' + participant.team.customUrl"
                    igxListLineTitle
@@ -175,7 +175,7 @@
 
         <igx-card class="new-group-card">
           <igx-card-header>
-            <igx-avatar igxCardThumbnail [roundShape]="true" src="/assets/wallpapers/csgo-watermark.webp"></igx-avatar>
+            <igx-avatar igxCardThumbnail shape="circle" src="/assets/wallpapers/csgo-watermark.webp"></igx-avatar>
             <h1 *ngIf="!newGroup.inEdit" igxCardHeaderTitle i18n>New group</h1>
 
             <igx-input-group *ngIf="newGroup.inEdit" igxCardHeaderTitle>

@@ -4,18 +4,18 @@
 
   <igx-card class="team-card" *ngFor="let team of teams | async">
     <igx-card-header>
-      <igx-avatar igxCardThumbnail [src]="team.teamAvatar" [initials]="team.teamName" [roundShape]="true"></igx-avatar>
+      <igx-avatar igxCardThumbnail [src]="team.teamAvatar" [initials]="team.teamName" shape="circle"></igx-avatar>
       <h3 igxCardHeaderTitle>{{ team.teamName }}</h3>
     </igx-card-header>
     <igx-card-content>
       <p>{{ team.description }}</p>
     </igx-card-content>
     <igx-card-actions>
-      <button igxButton="outlined" igxRipple [routerLink]="['/team', team.customUrl]">
+      <button igxButton="outlined" igxRipple [routerLink]="['/team', team.customUrl]" igxStart>
         <igx-icon>visibility</igx-icon>
         <span i18n>Team Details</span>
       </button>
-      <button igxButton="outlined" igxRipple (click)="confirm.open(team)">
+      <button igxButton="outlined" igxRipple (click)="confirm.open(team)" igxStart>
         <igx-icon>delete_forever</igx-icon>
         <span i18n>Abandon Team</span>
       </button>

@@ -9,15 +9,15 @@
       <img [ngSrc]="member.image" width="640" height="426" [alt]="member.name" />
     </igx-card-media>
     <igx-card-actions [reverse]="true">
-      <a igxButton *ngIf="member.facebook" [href]="member.facebook" target="_blank" rel="noopener">
+      <a igxButton *ngIf="member.facebook" [href]="member.facebook" target="_blank" rel="noopener" igxStart>
         <igx-icon family="login-icons" name="facebook"></igx-icon>
         <span>Facebook</span>
       </a>
-      <a igxButton *ngIf="member.instagram" [href]="member.instagram" target="_blank" rel="noopener">
+      <a igxButton *ngIf="member.instagram" [href]="member.instagram" target="_blank" rel="noopener" igxStart>
         <igx-icon family="login-icons" name="instagram"></igx-icon>
         <span>Instagram</span>
       </a>
-      <a igxButton *ngIf="member.twitter" [href]="member.twitter" target="_blank" rel="noopener">
+      <a igxButton *ngIf="member.twitter" [href]="member.twitter" target="_blank" rel="noopener" igxStart>
         <igx-icon family="login-icons" name="twitter"></igx-icon>
         <span>Twitter</span>
       </a>

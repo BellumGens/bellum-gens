@@ -17,7 +17,7 @@
         <igx-avatar igxListThumbnail
                     [src]="cell.row.data.team1.teamAvatar"
                     [initials]="cell.row.data.team1.teamName"
-                    [roundShape]="true">
+                    shape="circle">
         </igx-avatar>
         <span [class]="cell.row.data.winnerTeamId === cell.row.data.team1.teamId ? 'highlight grid-team-name' : 'grid-team-name'">{{ cell.row.data.team1.teamName }}</span>
 
@@ -26,7 +26,7 @@
         <igx-avatar igxListThumbnail
                     [src]="cell.row.data.team2.teamAvatar"
                     [initials]="cell.row.data.team2.teamName"
-                    [roundShape]="true">
+                    shape="circle">
         </igx-avatar>
         <span [class]="cell.row.data.winnerTeamId === cell.row.data.team2.teamId ? 'highlight grid-team-name' : 'grid-team-name'">{{ cell.row.data.team2.teamName }}</span>
       </ng-template>

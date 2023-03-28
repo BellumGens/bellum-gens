@@ -54,11 +54,11 @@
     <span i18n>Team Member Roles</span>
     <igx-list>
       <igx-list-item *ngFor="let user of teammembers; let i = index">
-        <igx-avatar igxListThumbnail [src]="user.avatarMedium" [initials]="user.username" [roundShape]="true">
+        <igx-avatar igxListThumbnail [src]="user.avatarMedium" [initials]="user.username" shape="circle">
         </igx-avatar>
         <igx-avatar *ngIf="user.country"
                     [src]="user.country | playerCountry"
-                    [roundShape]="true"
+                    shape="circle"
                     [title]="user.country"
                     class="country-badge-small">
         </igx-avatar>

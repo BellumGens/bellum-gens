@@ -57,7 +57,7 @@
         <span igxListLine i18n>Comments</span>
       </igx-list-item>
       <igx-list-item *ngFor="let comment of strat.comments">
-        <igx-avatar igxListThumbnail [src]="comment.userAvatar" [roundShape]="true"></igx-avatar>
+        <igx-avatar igxListThumbnail [src]="comment.userAvatar" shape="circle"></igx-avatar>
         <h3 [ngClass]="comment._inEdit ? 'comment-editing' : ''" igxListLineTitle>{{ comment.comment }}</h3>
         <h5 igxListLineSubTitle>{{ comment.published | date }}</h5>
         <igx-icon igxListActions class="navigatable" [igxToggleAction]="useractions" [overlaySettings]="overlaySettings">more_vert</igx-icon>
@@ -80,7 +80,7 @@
     </igx-list>
 
     <div class="horizontal comment-box">
-      <igx-avatar [src]="authUser?.avatarIcon" [roundShape]="true"></igx-avatar>
+      <igx-avatar [src]="authUser?.avatarIcon" shape="circle"></igx-avatar>
       <form #strategyForm="ngForm" (ngSubmit)="submitComment()" class="comment-input">
         <igx-input-group type="box">
           <label for="comment" igxLabel i18n>{{ !authUser ? 'Login to' : 'Leave a' }} comment...</label>

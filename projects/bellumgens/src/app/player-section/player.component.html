@@ -18,7 +18,7 @@
     <div>
       <igx-avatar [src]="player.steamUser?.avatarFull" [initials]="player.steamUser?.steamID" class="player-avatar">
       </igx-avatar>
-      <igx-avatar *ngIf="player.steamUser?.country" [src]="player.steamUser?.country | playerCountry" [roundShape]="true" [title]="player.steamUser?.country" class="country-badge-large"></igx-avatar>
+      <igx-avatar *ngIf="player.steamUser?.country" [src]="player.steamUser?.country | playerCountry" shape="circle" [title]="player.steamUser?.country" class="country-badge-large"></igx-avatar>
 
       <!-- <button igxButton="raised" [disabled]="true">Send message <igx-icon>mail</igx-icon></button> -->
       <button *ngIf="player?.registered && !playerIsUser && teamsAdmin?.length > 0"
@@ -32,7 +32,7 @@
         <igx-icon>arrow_drop_down</igx-icon>
         <igx-drop-down (selectionChanging)="inviteToTeam($event)" #teamInvite>
           <igx-drop-down-item class="team-invites" [value]="team" *ngFor="let team of teamsAdmin">
-            <igx-avatar [src]="team.teamAvatar" [initials]="team.teamName" [roundShape]="true">
+            <igx-avatar [src]="team.teamAvatar" [initials]="team.teamName" shape="circle">
             </igx-avatar>
             <span class="title margin-left">
               {{ team.teamName }}
@@ -49,7 +49,7 @@
                 [src]="team.teamAvatar"
                 [title]="team.teamName"
                 [routerLink]="['/team', team.customUrl]"
-                [roundShape]="true"
+                shape="circle"
                 [size]="'small'">
     </igx-avatar>
 
