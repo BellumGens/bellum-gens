@@ -1,7 +1,7 @@
 import { DatePipe, NgIf, NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { IgxDividerModule, IgxIconModule, IgxInputGroupModule } from '@infragistics/igniteui-angular';
+import { IgxButtonModule, IgxDividerModule, IgxIconModule, IgxInputGroupModule } from '@infragistics/igniteui-angular';
 import {
   Game, RegistrationsCount, Tournament,
   ApiTournamentsService,
@@ -21,6 +21,7 @@ import { TournamentRegistrationComponent } from '../tournament-registration/tour
       NgIf,
       FormsModule,
       TournamentRegistrationComponent,
+      IgxButtonModule,
       IgxDividerModule,
       IgxIconModule,
       IgxInputGroupModule,
