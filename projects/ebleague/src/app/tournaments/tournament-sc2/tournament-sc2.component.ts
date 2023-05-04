@@ -12,7 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../../../../common/src/environments/environment';
 import { Sc2MapNamePipe } from '../../../../../common/src/lib/pipes/sc2-map-name.pipe';
 import { NgIf, NgFor, DatePipe, NgOptimizedImage } from '@angular/common';
-import { IgxCardModule, IgxProgressBarModule, IgxAvatarModule, IgxBadgeModule, IgxDividerModule, IgxGridModule, IgxGridToolbarModule, IgxGridColumnModule, IgxIconModule } from '@infragistics/igniteui-angular';
+import { IgxCardModule, IgxProgressBarModule, IgxAvatarModule, IgxBadgeModule, IgxDividerModule, IgxGridModule, IgxIconModule } from '@infragistics/igniteui-angular';
 
 @Component({
     selector: 'app-tournament-sc2',
@@ -30,8 +30,6 @@ import { IgxCardModule, IgxProgressBarModule, IgxAvatarModule, IgxBadgeModule, I
       IgxBadgeModule,
       IgxDividerModule,
       IgxGridModule,
-      IgxGridToolbarModule,
-      IgxGridColumnModule,
       IgxIconModule,
       Sc2MapNamePipe
     ]

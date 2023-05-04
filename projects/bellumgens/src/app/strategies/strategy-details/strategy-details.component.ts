@@ -21,7 +21,7 @@ import { IsVideoPipe } from '../../pipes/is-video.pipe';
 import { SafeVideoLinkPipe } from '../../pipes/safe-video-link.pipe';
 import { ConfirmComponent } from '../../../../../common/src/lib/confirm/confirm.component';
 import { FormsModule } from '@angular/forms';
-import { IgxCardModule, IgxLayoutModule, IgxButtonModule, IgxRippleModule, IgxIconModule, IgxDividerModule, IgxListModule, IgxAvatarModule, IgxToggleModule, IgxDropDownModule, IgxInputGroupModule, IgxSuffixModule } from '@infragistics/igniteui-angular';
+import { IgxCardModule, IgxLayoutModule, IgxButtonModule, IgxRippleModule, IgxIconModule, IgxDividerModule, IgxListModule, IgxAvatarModule, IgxToggleModule, IgxDropDownModule, IgxInputGroupModule } from '@infragistics/igniteui-angular';
 import { LoadingComponent } from '../../../../../common/src/lib/loading/loading.component';
 
 @Component({
@@ -49,7 +49,6 @@ import { LoadingComponent } from '../../../../../common/src/lib/loading/loading.
       IgxToggleModule,
       IgxDropDownModule,
       IgxInputGroupModule,
-      IgxSuffixModule,
       ConfirmComponent,
       SafeVideoLinkPipe,
       IsVideoPipe,

@@ -1,5 +1,5 @@
 import { Component, ViewChild, Input } from '@angular/core';
-import { IgxDialogComponent, IgxButtonModule, IgxRippleModule, IgxDialogModule, IgxInputGroupModule, IgxSuffixModule, IgxIconModule } from '@infragistics/igniteui-angular';
+import { IgxDialogComponent, IgxButtonModule, IgxRippleModule, IgxDialogModule, IgxInputGroupModule, IgxIconModule } from '@infragistics/igniteui-angular';
 import {
   ApplicationUser,
   TeamApplication, CSGOTeam,
@@ -14,7 +14,7 @@ import { FormsModule } from '@angular/forms';
     templateUrl: './team-application.component.html',
     styleUrls: ['./team-application.component.css'],
     standalone: true,
-    imports: [IgxButtonModule, IgxRippleModule, IgxDialogModule, IgxInputGroupModule, FormsModule, NgIf, IgxSuffixModule, IgxIconModule]
+    imports: [IgxButtonModule, IgxRippleModule, IgxDialogModule, IgxInputGroupModule, FormsModule, NgIf, IgxIconModule]
 })
 export class TeamApplicationComponent {
   @ViewChild(IgxDialogComponent, { static: true }) public dialog: IgxDialogComponent;

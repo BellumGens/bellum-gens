@@ -5,7 +5,7 @@ import { Title, Meta } from '@angular/platform-browser';
 
 import { EMPTY_JERSEY_ORDER, JerseyCut, JerseyDetails, JerseySize, ApiShopService } from '../../../../common/src/public_api';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ISelectionEventArgs, IgxSelectModule, IgxInputGroupModule, IgxIconModule, IgxPrefixModule, IgxSuffixModule, IgxDividerModule, IgxButtonModule, IgxMaskModule, IgxTextSelectionModule } from '@infragistics/igniteui-angular';
+import { ISelectionEventArgs, IgxSelectModule, IgxInputGroupModule, IgxIconModule, IgxDividerModule, IgxButtonModule, IgxMaskModule, IgxTextSelectionModule } from '@infragistics/igniteui-angular';
 import { BaseComponent } from '../../../../bellumgens/src/app/base/base.component';
 import { FilterSizesPipe } from '../pipes/filter-sizes.pipe';
 
@@ -22,8 +22,6 @@ import { FilterSizesPipe } from '../pipes/filter-sizes.pipe';
       IgxSelectModule,
       IgxInputGroupModule,
       IgxIconModule,
-      IgxPrefixModule,
-      IgxSuffixModule,
       IgxDividerModule,
       IgxButtonModule,
       IgxMaskModule,

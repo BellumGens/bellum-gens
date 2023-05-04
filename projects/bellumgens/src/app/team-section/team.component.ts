@@ -8,7 +8,7 @@ import {
 } from '../../../../common/src/public_api';
 import { BaseComponent } from '../base/base.component';
 import { Title, Meta } from '@angular/platform-browser';
-import { IgxIconService, IgxAvatarModule, IgxIconModule, IgxTabsModule, IgxPrefixModule } from '@infragistics/igniteui-angular';
+import { IgxIconService, IgxAvatarModule, IgxIconModule, IgxTabsModule } from '@infragistics/igniteui-angular';
 import { TeamApplicationComponent } from './team-application/team-application.component';
 import { NgIf } from '@angular/common';
 
@@ -16,7 +16,7 @@ import { NgIf } from '@angular/common';
     templateUrl: './team.component.html',
     styleUrls: ['./team.component.scss'],
     standalone: true,
-    imports: [IgxAvatarModule, NgIf, TeamApplicationComponent, IgxIconModule, IgxTabsModule, RouterLinkActive, RouterLink, IgxPrefixModule, RouterOutlet]
+    imports: [IgxAvatarModule, NgIf, TeamApplicationComponent, IgxIconModule, IgxTabsModule, RouterLinkActive, RouterLink, RouterOutlet]
 })
 export class TeamComponent extends BaseComponent {
   public authUser: ApplicationUser;

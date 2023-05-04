@@ -6,7 +6,7 @@ import {
   JerseyOrder, Promo,
   ApiShopService
 } from '../../../../../common/src/public_api';
-import { IGridEditEventArgs, IGroupingExpression, SortingDirection, DefaultSortingStrategy, RowType, IgxGridModule, IgxGridToolbarModule, IgxGridColumnModule, IgxIconModule, IgxBadgeModule, IgxActionStripModule, IgxButtonModule, IgxRippleModule, IgxPaginatorModule, IgxInputGroupModule, IgxSuffixModule, IgxDatePickerModule, IgxCheckboxModule, IgxChipsModule } from '@infragistics/igniteui-angular';
+import { IGridEditEventArgs, IGroupingExpression, SortingDirection, DefaultSortingStrategy, RowType, IgxGridModule, IgxIconModule, IgxBadgeModule, IgxActionStripModule, IgxButtonModule, IgxRippleModule, IgxPaginatorModule, IgxInputGroupModule, IgxDatePickerModule, IgxCheckboxModule, IgxChipsModule } from '@infragistics/igniteui-angular';
 import { SizeNamePipe } from '../../pipes/size-name.pipe';
 import { FormsModule } from '@angular/forms';
 import { NgIf, NgFor, NgOptimizedImage } from '@angular/common';
@@ -22,8 +22,6 @@ import { NgIf, NgFor, NgOptimizedImage } from '@angular/common';
       NgFor,
       FormsModule,
       IgxGridModule,
-      IgxGridToolbarModule,
-      IgxGridColumnModule,
       IgxIconModule,
       IgxBadgeModule,
       IgxActionStripModule,
@@ -31,7 +29,6 @@ import { NgIf, NgFor, NgOptimizedImage } from '@angular/common';
       IgxRippleModule,
       IgxPaginatorModule,
       IgxInputGroupModule,
-      IgxSuffixModule,
       IgxDatePickerModule,
       IgxCheckboxModule,
       IgxChipsModule,

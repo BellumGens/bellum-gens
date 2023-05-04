@@ -9,7 +9,7 @@ import {
   CSGOActiveDutyDescriptor, ACTIVE_DUTY
 } from '../../../../../common/src/public_api';
 import { environment } from '../../../../../common/src/environments/environment';
-import { IDropDroppedEventArgs, IRowDataEventArgs, IgxGridComponent, IgxDialogComponent, IgxSelectModule, IgxInputGroupModule, IgxGridModule, IgxGridToolbarModule, IgxButtonModule, IgxIconModule, IgxGridColumnModule, IgxAvatarModule, IgxListModule, IgxCardModule, IgxProgressBarModule, IgxDragDropModule, IgxBadgeModule, IgxSuffixModule, IgxDialogModule, IgxDatePickerModule, IgxTimePickerModule, IgxPrefixModule, IgxCheckboxModule } from '@infragistics/igniteui-angular';
+import { IDropDroppedEventArgs, IRowDataEventArgs, IgxGridComponent, IgxDialogComponent, IgxSelectModule, IgxInputGroupModule, IgxGridModule, IgxButtonModule, IgxIconModule, IgxAvatarModule, IgxListModule, IgxCardModule, IgxProgressBarModule, IgxDragDropModule, IgxBadgeModule, IgxDialogModule, IgxDatePickerModule, IgxTimePickerModule, IgxCheckboxModule } from '@infragistics/igniteui-angular';
 import { NotInGroupPipe } from '../../pipes/not-in-group.pipe';
 import { CSGOMapnamePipe } from '../../../../../common/src/lib/pipes/csgomapname.pipe';
 import { CSGOMapimagePipe } from '../../../../../common/src/lib/pipes/csgomapimage.pipe';
@@ -22,7 +22,7 @@ import { FormsModule } from '@angular/forms';
     templateUrl: './admin-csgo.component.html',
     styleUrls: ['./admin-csgo.component.scss'],
     standalone: true,
-    imports: [IgxSelectModule, FormsModule, IgxInputGroupModule, NgFor, IgxGridModule, IgxGridToolbarModule, IgxButtonModule, IgxIconModule, IgxGridColumnModule, IgxAvatarModule, IgxListModule, NgIf, IgxCardModule, IgxProgressBarModule, IgxDragDropModule, IgxBadgeModule, IgxSuffixModule, IgxDialogModule, IgxDatePickerModule, IgxTimePickerModule, IgxPrefixModule, IgxCheckboxModule, ConfirmComponent, DatePipe, CSGOMapimagePipe, CSGOMapnamePipe, NotInGroupPipe]
+    imports: [IgxSelectModule, FormsModule, IgxInputGroupModule, NgFor, IgxGridModule, IgxButtonModule, IgxIconModule, IgxAvatarModule, IgxListModule, NgIf, IgxCardModule, IgxProgressBarModule, IgxDragDropModule, IgxBadgeModule, IgxDialogModule, IgxDatePickerModule, IgxTimePickerModule, IgxCheckboxModule, ConfirmComponent, DatePipe, CSGOMapimagePipe, CSGOMapnamePipe, NotInGroupPipe]
 })
 export class AdminCsgoComponent {
   public registrations: TournamentParticipant [];
