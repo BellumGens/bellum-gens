@@ -152,7 +152,8 @@
             "main": "projects/bellumgens/server-bellumgens.ts",
             "tsConfig": "projects/bellumgens/tsconfig.server.json",
             "sourceMap": true,
-            "optimization": false
+            "optimization": false,
+            "buildOptimizer": false
           },
           "configurations": {
             "production": {
@@ -168,7 +169,8 @@
                 "includePaths": [
                   "node_modules"
                 ]
-              }
+              },
+              "buildOptimizer": true
             }
           }
         },
@@ -428,7 +430,8 @@
             "main": "projects/ebleague/server-ebleague.ts",
             "tsConfig": "projects/ebleague/tsconfig.server.json",
             "sourceMap": true,
-            "optimization": false
+            "optimization": false,
+            "buildOptimizer": false
           },
           "configurations": {
             "production": {
@@ -444,7 +447,8 @@
                 "includePaths": [
                   "node_modules"
                 ]
-              }
+              },
+              "buildOptimizer": true
             }
           }
         },
