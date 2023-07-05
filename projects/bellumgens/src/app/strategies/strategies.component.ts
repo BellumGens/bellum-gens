@@ -119,7 +119,6 @@ export class StrategiesComponent {
                   this.loading = false;
                   this.strats = strats;
                 });
-                this.apiStrategyService.getTeamMapPool(team.teamId).subscribe(maps => this.maps = maps);
                 this.authManager.getUserIsTeamEditor(team.teamId).subscribe(data => this.isEditor = data);
               }
             });

@@ -16,7 +16,7 @@
                 [selected]="map.isPlayed"
                 [selectable]="true"
                 (selectedChanging)="changeMaps($event, map)">
-        {{ map.map | csgomapname }}
+        {{ map.mapId | csgomapname }}
       </igx-chip>
     </igx-chips-area>
     <igx-select [(ngModel)]="order" class="order-by">

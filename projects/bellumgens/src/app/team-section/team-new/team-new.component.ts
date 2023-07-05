@@ -34,7 +34,7 @@ export class TeamNewComponent {
 
   public open(navigate = true) {
     this.navigateOnCreate = navigate;
-    this.apiService.getPlayerGroups(this.authUser.id).subscribe(groups => this.groups = groups);
+    this.apiService.getPlayerGroups(this.authUser.steamId).subscribe(groups => this.groups = groups);
     this.createTeam.open();
   }
 

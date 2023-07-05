@@ -8,7 +8,8 @@ export enum CSGOMap {
   Train,
   Vertigo,
   Cobblestone,
-  Ancient
+  Ancient,
+  Anubis
 }
 
 export interface CSGOMapPool {
@@ -34,7 +35,7 @@ export const AllCSGOMaps: CSGOMapPool [] = [
   {
     mapId: CSGOMap.Dust2,
     isPlayed: true,
-    active: true
+    active: false
   },
   {
     mapId: CSGOMap.Inferno,
@@ -75,52 +76,64 @@ export const AllCSGOMaps: CSGOMapPool [] = [
     mapId: CSGOMap.Ancient,
     isPlayed: true,
     active: true
+  },
+  {
+    mapId: CSGOMap.Anubis,
+    isPlayed: true,
+    active: true
   }
 ];
 
-export const ACTIVE_DUTY: CSGOActiveDutyDescriptor [] = [{
+export const ACTIVE_DUTY: CSGOActiveDutyDescriptor [] = [
+  {
     mapId: CSGOMap.Cache,
     map: 'Cache',
     image: 'assets/csgo_maps/de_cache.jpg',
     radar: ['assets/csgo_map_radars/de_cache_radar.png'],
     active: false,
     isPlayed: false
-  }, {
+  },
+  {
     mapId: CSGOMap.Dust2,
     map: 'Dust 2',
     image: 'assets/csgo_maps/de_dust2.jpg',
     radar: ['assets/csgo_map_radars/de_dust2_radar.png'],
-    active: true,
+    active: false,
     isPlayed: false
-  }, {
+  },
+  {
     mapId: CSGOMap.Inferno,
     map: 'Inferno',
     image: 'assets/csgo_maps/de_inferno.jpg',
     radar: ['assets/csgo_map_radars/de_inferno_radar.png'],
     active: true,
     isPlayed: false
-  }, {
+  },
+  {
     mapId: CSGOMap.Mirage,
     map: 'Mirage',
     image: 'assets/csgo_maps/de_mirage.jpg',
     radar: ['assets/csgo_map_radars/de_mirage_radar.png'],
     active: true,
     isPlayed: false
-  }, {
+  },
+  {
     mapId: CSGOMap.Nuke,
     map: 'Nuke',
     image: 'assets/csgo_maps/de_nuke.jpg',
     radar: ['assets/csgo_map_radars/de_nuke_radar_combined.png'],
     active: true,
     isPlayed: false
-  }, {
+  },
+  {
     mapId: CSGOMap.Overpass,
     map: 'Overpass',
     image: 'assets/csgo_maps/de_overpass.jpg',
     radar: ['assets/csgo_map_radars/de_overpass_radar.png'],
     active: true,
     isPlayed: false
-  }, {
+  },
+  {
     mapId: CSGOMap.Train,
     map: 'Train',
     image: 'assets/csgo_maps/de_train.jpg',
@@ -148,6 +161,14 @@ export const ACTIVE_DUTY: CSGOActiveDutyDescriptor [] = [{
     mapId: CSGOMap.Ancient,
     map: 'Ancient',
     image: 'assets/csgo_maps/de_ancient.webp',
+    radar: ['assets/csgo_map_radars/de_cbble_radar.png'],
+    active: true,
+    isPlayed: false
+  },
+  {
+    mapId: CSGOMap.Anubis,
+    map: 'Anubis',
+    image: 'assets/csgo_maps/de_anubis.webp',
     radar: ['assets/csgo_map_radars/de_cbble_radar.png'],
     active: true,
     isPlayed: false
