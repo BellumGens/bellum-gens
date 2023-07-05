@@ -98,6 +98,11 @@ $snackbar-theme: snackbar-theme($background: $banner-background, $border-radius:
 @include css-vars($snackbar-theme);
 /* END Snackbar */
 
+/* Chip */
+$chip-theme: chip-theme($background: $banner-background);
+@include css-vars($chip-theme);
+/* END Chip */
+
 /* Button */
 .strategy-actions {
   display: flex;
