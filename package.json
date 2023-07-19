@@ -22,7 +22,7 @@
     "serve:ssr:ebleague": "cd dist/ebleague && node server/main.js",
     "build:ssr": "npm run build:client-and-server-bundles",
     "build:client-and-server-bundles": "npm run build && ng run bellum-gens:server:production && ng run eb-league:server:production",
-    "build:prerender": "npm run build:ssr && node dist/prerender",
+    "build:prerender": "ng run bellum-gens:prerender && ng run eb-league:prerender",
     "i18n": "npm run i18n:bellumgens && npm run i18n:ebleague",
     "i18n:bellumgens": "ng extract-i18n bellum-gens --out-file projects/bellumgens/src/locale/messages.en.xlf",
     "i18n:ebleague": "ng extract-i18n eb-league --out-file projects/ebleague/src/locale/messages.en.xlf",
