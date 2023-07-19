@@ -23,6 +23,9 @@ jobs:
 
       - name: npm install, build, and test
         run: |
+          echo "@infragistics:registry=https://packages.infragistics.com/npm/js-licensed/" >> ~/.npmrc
+          echo "//packages.infragistics.com/npm/js-licensed/:_auth=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
+          echo "//packages.infragistics.com/npm/js-licensed/:always-auth=true" >> ~/.npmrc
           npm install
           npm run build:ssr
 
