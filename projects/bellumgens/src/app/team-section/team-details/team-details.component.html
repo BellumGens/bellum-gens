@@ -18,19 +18,19 @@
               <igx-avatar *ngIf="role.user"
                           [src]="role.user.avatarFull"
                           [initials]="role.user.username"
-                          [roundShape]="true"
+                          shape="circle"
                           size="large">
               </igx-avatar>
               <igx-avatar *ngIf="isAdmin"
                           icon="clear"
-                          [roundShape]="true"
+                          shape="circle"
                           class="country-badge-large navigatable"
                           title="Remove from role"
                           (click)="removeFromRole(role)">
               </igx-avatar>
               <igx-avatar *ngIf="!isAdmin && role.user.country"
                           [src]="role.user.country | playerCountry"
-                          [roundShape]="true"
+                          shape="circle"
                           [title]="role.user.country"
                           class="country-badge-large">
               </igx-avatar>
@@ -38,7 +38,7 @@
             <igx-avatar *ngIf="!role.user"
                         class="empty-role"
                         icon="add"
-                        [roundShape]="true"
+                        shape="circle"
                         size="large"
                         igxDrop
                         (dropped)="assignToRole($event, role)">
@@ -64,7 +64,7 @@
             <div class="user-in-role">
               <igx-avatar [src]="user.avatarMedium"
                           [initials]="user.username"
-                          [roundShape]="true"
+                          shape="circle"
                           size="medium"
                           [igxDrag]="user"
                           (dragStart)="roleDragging($event)"
@@ -72,7 +72,7 @@
               </igx-avatar>
               <igx-avatar *ngIf="isAdmin"
                           icon="clear"
-                          [roundShape]="true"
+                          shape="circle"
                           class="country-badge-medium navigatable"
                           title="Move to inactive"
                           (click)="moveToInactive(user)">
@@ -95,7 +95,7 @@
             <div class="user-in-role">
               <igx-avatar [src]="user.avatarMedium"
                           [initials]="user.username"
-                          [roundShape]="true"
+                          shape="circle"
                           size="medium"
                           [igxDrag]="user"
                           (dragStart)="roleDragging($event)"
@@ -103,7 +103,7 @@
               </igx-avatar>
               <igx-avatar *ngIf="isAdmin && authUser.id !== user.userId"
                           icon="clear"
-                          [roundShape]="true"
+                          shape="circle"
                           class="country-badge-medium navigatable"
                           title="Remove from team"
                           (click)="confirm.open(user)">

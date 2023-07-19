@@ -26,7 +26,7 @@ $include: (igx-avatar,
            igx-tabs,
            igx-snackbar,
            igx-circular-bar,
-           igx-linear-bar,
+           // igx-linear-bar,
            igx-switch,
            igx-divider,
            igx-time-picker,
@@ -73,11 +73,6 @@ $list-theme: list-theme($background: transparent,
                         $item-background-active: rgba(0, 0, 0, 0.11));
 @include css-vars($list-theme);
 /* END List */
-
-/* Input Group */
-$input-group-theme: input-group-theme($label-floated-background: $background);
-@include css-vars($input-group-theme);
-/* END Input Group */
 
 /* Banner */
 $banner-theme: banner-theme($banner-background: $banner-background);
@@ -127,10 +122,6 @@ $circular-progress-bar-theme: progress-circular-theme($base-circle-color: rgba(0
   min-height: 131px;
   background-position: center;
   background-repeat: no-repeat;
-}
-
-.thumbnail-image {
-  height: 40px;
 }
 
 /* END WATERMARKS */

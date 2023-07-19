@@ -18,7 +18,7 @@ import { FormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { LanguagesComponent, LoginComponent, SuccessErrorComponent } from 'projects/common/src/public_api';
 
 describe('AppComponent', () => {
@@ -32,6 +32,7 @@ describe('AppComponent', () => {
         RouterTestingModule,
         FormsModule,
         CommonModule,
+        NgOptimizedImage,
         NoopAnimationsModule,
         ServiceWorkerModule.register('', { enabled: false }),
         IgxNavigationDrawerModule,

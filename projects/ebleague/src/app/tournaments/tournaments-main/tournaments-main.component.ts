@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 import { Tournament, ApiTournamentsService } from '../../../../../common/src/public_api';
 import { RouterLink } from '@angular/router';
 import { IgxCardModule, IgxDividerModule } from '@infragistics/igniteui-angular';
-import { NgIf, NgFor, DatePipe } from '@angular/common';
+import { NgIf, NgFor, DatePipe, NgOptimizedImage } from '@angular/common';
 
 @Component({
     selector: 'app-tournaments-main',
     templateUrl: './tournaments-main.component.html',
     styleUrls: ['./tournaments-main.component.scss'],
     standalone: true,
-    imports: [NgIf, NgFor, IgxCardModule, RouterLink, IgxDividerModule, DatePipe]
+    imports: [NgIf, NgFor, NgOptimizedImage, DatePipe, IgxCardModule, RouterLink, IgxDividerModule]
 })
 export class TournamentsMainComponent {
   public tournaments: Tournament [];

@@ -9,7 +9,7 @@
 
 <div *ngIf="authUser">
   <button class="profile-button" #profileButton igxButton="flat" igxRipple i18n-title title="Profile" [igxToggleAction]="userProfile" [overlaySettings]="overlaySettings">
-    <igx-avatar [src]="authUser.avatarMedium" [initials]="authUser.username" [roundShape]="true">
+    <igx-avatar [src]="authUser.avatarMedium" [initials]="authUser.username" shape="circle">
     </igx-avatar>
     <igx-icon class="drop-down-arrow">arrow_drop_down</igx-icon>
   </button>
@@ -23,7 +23,7 @@
           </igx-tab-header>
           <igx-tab-content class="profile-content">
             <div class="profile-view">
-              <igx-avatar [src]="authUser.avatarFull" [initials]="authUser.username" [roundShape]="true" [size]="'large'">
+              <igx-avatar [src]="authUser.avatarFull" [initials]="authUser.username" shape="circle" [size]="'large'">
               </igx-avatar>
               <h1 class="igx-card-header__title highlight navigatable profile-username" (click)="navigateToProfile(authUser.customURL || authUser.id)">{{ authUser.username }}</h1>
               <h4 class="igx-card-header__subtitle">{{ authUser.realname }}</h4>

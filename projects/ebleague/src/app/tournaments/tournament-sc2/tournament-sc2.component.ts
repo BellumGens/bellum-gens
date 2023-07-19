@@ -11,15 +11,28 @@ import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../../../../common/src/environments/environment';
 import { Sc2MapNamePipe } from '../../../../../common/src/lib/pipes/sc2-map-name.pipe';
-import { NgIf, NgFor, DatePipe } from '@angular/common';
-import { IgxCardModule, IgxProgressBarModule, IgxAvatarModule, IgxBadgeModule, IgxDividerModule, IgxGridModule, IgxGridToolbarModule, IgxGridColumnModule, IgxIconModule } from '@infragistics/igniteui-angular';
+import { NgIf, NgFor, DatePipe, NgOptimizedImage } from '@angular/common';
+import { IgxCardModule, IgxProgressBarModule, IgxAvatarModule, IgxBadgeModule, IgxDividerModule, IgxGridModule, IgxIconModule } from '@infragistics/igniteui-angular';
 
 @Component({
     selector: 'app-tournament-sc2',
     templateUrl: './tournament-sc2.component.html',
     styleUrls: ['./tournament-sc2.component.scss'],
     standalone: true,
-    imports: [IgxCardModule, NgIf, IgxProgressBarModule, NgFor, IgxAvatarModule, IgxBadgeModule, IgxDividerModule, IgxGridModule, IgxGridToolbarModule, IgxGridColumnModule, IgxIconModule, DatePipe, Sc2MapNamePipe]
+    imports: [
+      NgIf,
+      NgFor,
+      NgOptimizedImage,
+      DatePipe,
+      IgxCardModule,
+      IgxProgressBarModule,
+      IgxAvatarModule,
+      IgxBadgeModule,
+      IgxDividerModule,
+      IgxGridModule,
+      IgxIconModule,
+      Sc2MapNamePipe
+    ]
 })
 export class TournamentSc2Component extends BaseComponent {
   public registrations: TournamentParticipant [];

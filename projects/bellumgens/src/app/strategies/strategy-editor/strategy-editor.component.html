@@ -42,7 +42,7 @@
                   (dragStart)="deselectBrush()"
                   class="editor-element-icon"
                   [title]="member.username"
-                  [roundShape]="true">
+                  shape="circle">
       </igx-avatar>
     </div>
     <div class="editor-elements-section">
@@ -53,12 +53,12 @@
                     [igxDrag]="{ src: '/assets/editor/t-pin.png', width: 24, height: 24, removeT: true, name: 't' }"
                     (dragStart)="deselectBrush()"
                     class="editor-element-icon"
-                    [roundShape]="true">
+                    shape="circle">
         </igx-avatar>
       </div>
       <div class="horizontal">
         <igx-avatar *ngFor="let i of cts"
-                    [roundShape]="true"
+                    shape="circle"
                     src="/assets/editor/ct-pin.png"
                     (dragStart)="deselectBrush()"
                     class="editor-element-icon"
@@ -66,7 +66,7 @@
       </div>
       <div class="horizontal">
         <igx-avatar *ngFor="let i of enemies"
-                    [roundShape]="true"
+                    shape="circle"
                     src="/assets/editor/ct-t-pin.png"
                     (dragStart)="deselectBrush()"
                     class="editor-element-icon"

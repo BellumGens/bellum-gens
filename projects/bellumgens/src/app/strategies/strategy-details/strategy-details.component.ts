@@ -1,5 +1,5 @@
 import { Component, HostListener, Inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser, NgIf, NgClass, NgFor, DatePipe } from '@angular/common';
+import { isPlatformBrowser, NgIf, NgClass, NgFor, DatePipe, NgOptimizedImage } from '@angular/common';
 import { BaseComponent } from '../../base/base.component';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import {
@@ -21,7 +21,7 @@ import { IsVideoPipe } from '../../pipes/is-video.pipe';
 import { SafeVideoLinkPipe } from '../../pipes/safe-video-link.pipe';
 import { ConfirmComponent } from '../../../../../common/src/lib/confirm/confirm.component';
 import { FormsModule } from '@angular/forms';
-import { IgxCardModule, IgxLayoutModule, IgxButtonModule, IgxRippleModule, IgxIconModule, IgxDividerModule, IgxListModule, IgxAvatarModule, IgxToggleModule, IgxDropDownModule, IgxInputGroupModule, IgxSuffixModule } from '@infragistics/igniteui-angular';
+import { IgxCardModule, IgxLayoutModule, IgxButtonModule, IgxRippleModule, IgxIconModule, IgxDividerModule, IgxListModule, IgxAvatarModule, IgxToggleModule, IgxDropDownModule, IgxInputGroupModule } from '@infragistics/igniteui-angular';
 import { LoadingComponent } from '../../../../../common/src/lib/loading/loading.component';
 
 @Component({
@@ -29,7 +29,32 @@ import { LoadingComponent } from '../../../../../common/src/lib/loading/loading.
     templateUrl: './strategy-details.component.html',
     styleUrls: ['./strategy-details.component.scss'],
     standalone: true,
-    imports: [NgIf, LoadingComponent, IgxCardModule, IgxLayoutModule, RouterLink, IgxButtonModule, IgxRippleModule, IgxIconModule, NgClass, IgxDividerModule, IgxListModule, NgFor, IgxAvatarModule, IgxToggleModule, IgxDropDownModule, FormsModule, IgxInputGroupModule, IgxSuffixModule, ConfirmComponent, DatePipe, SafeVideoLinkPipe, IsVideoPipe, HasVotedPipe, VotesPipe]
+    imports: [
+      NgOptimizedImage,
+      NgIf,
+      NgFor,
+      NgClass,
+      DatePipe,
+      FormsModule,
+      RouterLink,
+      LoadingComponent,
+      IgxCardModule,
+      IgxLayoutModule,
+      IgxButtonModule,
+      IgxRippleModule,
+      IgxIconModule,
+      IgxDividerModule,
+      IgxListModule,
+      IgxAvatarModule,
+      IgxToggleModule,
+      IgxDropDownModule,
+      IgxInputGroupModule,
+      ConfirmComponent,
+      SafeVideoLinkPipe,
+      IsVideoPipe,
+      HasVotedPipe,
+      VotesPipe
+    ]
 })
 export class StrategyDetailsComponent extends BaseComponent {
   public strat: CSGOStrategy;

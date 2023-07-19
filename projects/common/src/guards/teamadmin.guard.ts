@@ -1,12 +1,12 @@
 import { Injectable, PLATFORM_ID, Inject } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot } from '@angular/router';
+import { ActivatedRouteSnapshot } from '@angular/router';
 import { LoginService } from '../services/login.service';
 import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TeamadminGuard implements CanActivate {
+export class TeamadminGuard  {
   private isBrowser: boolean;
 
   constructor(@Inject(PLATFORM_ID) platformId: string, private authService: LoginService) {

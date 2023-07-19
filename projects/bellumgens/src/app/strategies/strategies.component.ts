@@ -29,14 +29,46 @@ import { ConfirmComponent } from '../../../../common/src/lib/confirm/confirm.com
 import { NewStrategyComponent } from './new-strategy/new-strategy.component';
 import { LoadingComponent } from '../../../../common/src/lib/loading/loading.component';
 import { FormsModule } from '@angular/forms';
-import { NgFor, NgIf, NgClass, DatePipe } from '@angular/common';
+import { NgFor, NgIf, NgClass, DatePipe, NgOptimizedImage } from '@angular/common';
 
 @Component({
     selector: 'app-team-strategies',
     templateUrl: './strategies.component.html',
     styleUrls: ['./strategies.component.scss'],
     standalone: true,
-    imports: [IgxButtonModule, IgxRippleModule, IgxChipsModule, NgFor, IgxSelectModule, FormsModule, IgxInputGroupModule, NgIf, LoadingComponent, IgxCardModule, RouterLink, IgxIconModule, IgxToggleModule, IgxBadgeModule, NgClass, IgxDropDownModule, IgxAvatarModule, NewStrategyComponent, ConfirmComponent, DatePipe, CSGOMapnamePipe, ActiveDutyMapsPipe, TruncateTextPipe, SafeVideoLinkPipe, IsVideoPipe, HasVotedPipe, VotesPipe, IsStratOwnerPipe, SideStratsPipe, StratFilterPipe]
+    imports: [
+      NgOptimizedImage,
+      NgFor,
+      NgIf,
+      NgClass,
+      DatePipe,
+      RouterLink,
+      FormsModule,
+      IgxButtonModule,
+      IgxRippleModule,
+      IgxChipsModule,
+      IgxSelectModule,
+      IgxInputGroupModule,
+      LoadingComponent,
+      IgxCardModule,
+      IgxIconModule,
+      IgxToggleModule,
+      IgxBadgeModule,
+      IgxDropDownModule,
+      IgxAvatarModule,
+      NewStrategyComponent,
+      ConfirmComponent,
+      CSGOMapnamePipe,
+      ActiveDutyMapsPipe,
+      TruncateTextPipe,
+      SafeVideoLinkPipe,
+      IsVideoPipe,
+      HasVotedPipe,
+      VotesPipe,
+      IsStratOwnerPipe,
+      SideStratsPipe,
+      StratFilterPipe
+    ]
 })
 export class StrategiesComponent {
   public isEditor: boolean = null;
@@ -87,7 +119,6 @@ export class StrategiesComponent {
                   this.loading = false;
                   this.strats = strats;
                 });
-                this.apiStrategyService.getTeamMapPool(team.teamId).subscribe(maps => this.maps = maps);
                 this.authManager.getUserIsTeamEditor(team.teamId).subscribe(data => this.isEditor = data);
               }
             });

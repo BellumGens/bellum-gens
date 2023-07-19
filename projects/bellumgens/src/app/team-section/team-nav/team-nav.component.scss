@@ -1,10 +1,10 @@
 :host {
   .team-card {
-    min-height: 300px;
     height: fit-content;
   }
 
   .submit-button {
-    height: fit-content;
+    width: auto;
+    margin: 24px 24px 0 24px;
   }
 }

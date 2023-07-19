@@ -14,7 +14,7 @@ import {
   ApiStrategiesService
 } from '../../../../../common/src/public_api';
 import { ActivatedRoute } from '@angular/router';
-import { IDropDroppedEventArgs, IgxIconService, IgxSelectModule, IgxInputGroupModule, IgxListModule, IgxCheckboxModule, IgxPrefixModule, IgxIconModule, IgxSuffixModule, IgxDragDropModule, IgxAvatarModule, IgxButtonGroupModule, IgxButtonModule, IgxRippleModule } from '@infragistics/igniteui-angular';
+import { IDropDroppedEventArgs, IgxIconService, IgxSelectModule, IgxInputGroupModule, IgxListModule, IgxCheckboxModule, IgxIconModule, IgxDragDropModule, IgxAvatarModule, IgxButtonGroupModule, IgxButtonModule, IgxRippleModule } from '@infragistics/igniteui-angular';
 import { ConfirmComponent } from '../../../../../common/src/lib/confirm/confirm.component';
 import { FormsModule } from '@angular/forms';
 import { NgIf, NgFor, NgClass } from '@angular/common';
@@ -24,7 +24,7 @@ import { NgIf, NgFor, NgClass } from '@angular/common';
     templateUrl: './strategy-editor.component.html',
     styleUrls: ['./strategy-editor.component.scss'],
     standalone: true,
-    imports: [NgIf, IgxSelectModule, FormsModule, IgxInputGroupModule, NgFor, IgxListModule, IgxCheckboxModule, NgClass, IgxPrefixModule, IgxIconModule, IgxSuffixModule, IgxDragDropModule, IgxAvatarModule, IgxButtonGroupModule, IgxButtonModule, IgxRippleModule, ConfirmComponent]
+    imports: [NgIf, IgxSelectModule, FormsModule, IgxInputGroupModule, NgFor, IgxListModule, IgxCheckboxModule, NgClass, IgxIconModule, IgxDragDropModule, IgxAvatarModule, IgxButtonGroupModule, IgxButtonModule, IgxRippleModule, ConfirmComponent]
 })
 export class StrategyEditorComponent implements OnInit, OnDestroy {
   @ViewChild('board', { static: true }) public canvas: ElementRef;

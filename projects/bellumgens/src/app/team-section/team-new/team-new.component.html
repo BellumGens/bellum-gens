@@ -15,7 +15,7 @@
       <p i18n>No Steam groups found...</p>
     </ng-template>
     <igx-list-item *ngFor="let group of groups | groupsFilter:searchGroups" (click)="createFromSteam(group)">
-      <igx-avatar igxListThumbnail [src]="group.avatarFull" [initials]="group.groupName" [roundShape]="true">
+      <igx-avatar igxListThumbnail [src]="group.avatarFull" [initials]="group.groupName" shape="circle">
       </igx-avatar>
       <div igxListLineTitle>{{ group.groupName }}</div>
     </igx-list-item>
@@ -57,7 +57,7 @@
     <igx-input-group>
       <igx-prefix>
         <igx-icon *ngIf="!newTeam.teamAvatar">link</igx-icon>
-        <igx-avatar class="team-preview-avatar" *ngIf="newTeam.teamAvatar" [src]="newTeam.teamAvatar" [roundShape]="true" [size]="'small'" initials="NA"></igx-avatar>
+        <igx-avatar class="team-preview-avatar" *ngIf="newTeam.teamAvatar" [src]="newTeam.teamAvatar" shape="circle" [size]="'small'" initials="NA"></igx-avatar>
       </igx-prefix>
       <label igxLabel for="teamAvatar" i18n>Team Avatar URL</label>
       <input #teamAvatar="ngModel"

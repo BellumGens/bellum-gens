@@ -12,11 +12,11 @@
     <igx-list-item *ngIf="searchResult.steamUser?.steamUser"
                   [routerLink]="['/players', searchResult.steamUser.steamUser.customURL || searchResult.steamUser.steamUser.steamID64]"
                   class="navigatable">
-      <igx-avatar igxListThumbnail [src]="searchResult.steamUser.steamUser.avatarIcon" [initials]="searchResult.steamUser.steamUser.realname" [roundShape]="true">
+      <igx-avatar igxListThumbnail [src]="searchResult.steamUser.steamUser.avatarIcon" [initials]="searchResult.steamUser.steamUser.realname" shape="circle">
       </igx-avatar>
       <igx-avatar *ngIf="searchResult.steamUser.steamUser.country"
                   [src]="searchResult.steamUser.steamUser.country | playerCountry"
-                  [roundShape]="true"
+                  shape="circle"
                   [title]="searchResult.steamUser.steamUser.country"
                   class="country-badge-small">
       </igx-avatar>
@@ -43,11 +43,11 @@
     <igx-list-item *ngFor="let user of searchResult.players | reduceQuickSearchResult"
                   [routerLink]="['/players', user.customURL || user.id]"
                   class="navigatable">
-      <igx-avatar igxListThumbnail [src]="user.avatarIcon" [initials]="user.realname" [roundShape]="true">
+      <igx-avatar igxListThumbnail [src]="user.avatarIcon" [initials]="user.realname" shape="circle">
       </igx-avatar>
       <igx-avatar *ngIf="user.country"
                   [src]="user.country | playerCountry"
-                  [roundShape]="true"
+                  shape="circle"
                   [title]="user.country"
                   class="country-badge-small">
       </igx-avatar>
@@ -85,7 +85,7 @@
       <span igxListLine i18n>No matching teams...</span>
     </igx-list-item>
     <igx-list-item *ngFor="let team of searchResult.teams | reduceQuickSearchResult" class="navigatable" [routerLink]="['/team', team.customUrl]">
-      <igx-avatar igxListThumbnail [src]="team.teamAvatar" [initials]="team.teamName" [roundShape]="true">
+      <igx-avatar igxListThumbnail [src]="team.teamAvatar" [initials]="team.teamName" shape="circle">
       </igx-avatar>
       <h2 igxListLineTitle>{{ team.teamName }}</h2>
     </igx-list-item>
@@ -107,7 +107,7 @@
       <span igxListLine i18n>No matching strategies...</span>
     </igx-list-item>
     <igx-list-item *ngFor="let strat of searchResult.strategies | reduceQuickSearchResult" class="navigatable" [routerLink]="['/team', strat.customUrl]">
-      <igx-avatar igxListThumbnail [src]="strat.image" [initials]="strat.title" [roundShape]="true">
+      <igx-avatar igxListThumbnail [src]="strat.image" [initials]="strat.title" shape="circle">
       </igx-avatar>
       <h2 igxListLineTitle>{{ strat.title }}</h2>
     </igx-list-item>

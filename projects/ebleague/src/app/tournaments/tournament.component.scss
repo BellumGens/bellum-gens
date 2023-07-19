@@ -2,9 +2,16 @@
 
 :host ::ng-deep {
   @include core();
-  @include grid(grid-theme($content-background: $banner-background,
-                                   $ghost-header-background: $banner-background,
-                                   $header-background: $background));
+  @include grid(
+    grid-theme(
+      $content-background: $banner-background,
+      $ghost-header-background: $banner-background,
+      $header-background: $background
+    )
+  );
+
+  /* Filter UI has a chip */
+  @include chip(chip-theme());
 
   @include grid-toolbar(grid-toolbar-theme($background-color: $background));
 

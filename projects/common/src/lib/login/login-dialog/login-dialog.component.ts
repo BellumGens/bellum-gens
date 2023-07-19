@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { IgxDialogComponent, IgxDialogModule, IgxDividerModule, IgxInputGroupModule, IgxPrefixModule, IgxIconModule, IgxCheckboxModule, IgxButtonModule } from '@infragistics/igniteui-angular';
+import { IgxDialogComponent, IgxDialogModule, IgxDividerModule, IgxInputGroupModule, IgxIconModule, IgxCheckboxModule, IgxButtonModule } from '@infragistics/igniteui-angular';
 import { LoginService } from '../../../services/login.service';
 import { UserLogin } from '../../../models/userlogin';
 import { Router } from '@angular/router';
@@ -11,7 +11,7 @@ import { LoginButtonsComponent } from '../login-buttons/login-buttons.component'
     templateUrl: './login-dialog.component.html',
     styleUrls: ['./login-dialog.component.scss'],
     standalone: true,
-    imports: [IgxDialogModule, LoginButtonsComponent, IgxDividerModule, FormsModule, IgxInputGroupModule, IgxPrefixModule, IgxIconModule, IgxCheckboxModule, IgxButtonModule]
+    imports: [IgxDialogModule, LoginButtonsComponent, IgxDividerModule, FormsModule, IgxInputGroupModule, IgxIconModule, IgxCheckboxModule, IgxButtonModule]
 })
 export class LoginDialogComponent {
   @ViewChild(IgxDialogComponent, { static: true })

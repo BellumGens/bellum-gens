@@ -1,19 +1,33 @@
 import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { NgIf, NgFor, NgOptimizedImage } from '@angular/common';
+import { Title, Meta } from '@angular/platform-browser';
+
 import { EMPTY_JERSEY_ORDER, JerseyCut, JerseyDetails, JerseySize, ApiShopService } from '../../../../common/src/public_api';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ISelectionEventArgs, IgxSelectModule, IgxInputGroupModule, IgxIconModule, IgxPrefixModule, IgxSuffixModule, IgxDividerModule, IgxButtonModule, IgxMaskModule, IgxTextSelectionModule } from '@infragistics/igniteui-angular';
+import { ISelectionEventArgs, IgxSelectModule, IgxInputGroupModule, IgxIconModule, IgxDividerModule, IgxButtonModule, IgxMaskModule, IgxTextSelectionModule } from '@infragistics/igniteui-angular';
 import { BaseComponent } from '../../../../bellumgens/src/app/base/base.component';
-import { Title, Meta } from '@angular/platform-browser';
 import { FilterSizesPipe } from '../pipes/filter-sizes.pipe';
-import { FormsModule } from '@angular/forms';
-import { NgIf, NgFor } from '@angular/common';
 
 @Component({
     selector: 'app-shop',
     templateUrl: './shop.component.html',
     styleUrls: ['./shop.component.scss'],
     standalone: true,
-    imports: [NgIf, FormsModule, NgFor, IgxSelectModule, IgxInputGroupModule, IgxIconModule, IgxPrefixModule, IgxSuffixModule, IgxDividerModule, IgxButtonModule, IgxMaskModule, IgxTextSelectionModule, FilterSizesPipe]
+    imports: [
+      NgOptimizedImage,
+      NgIf,
+      FormsModule,
+      NgFor,
+      IgxSelectModule,
+      IgxInputGroupModule,
+      IgxIconModule,
+      IgxDividerModule,
+      IgxButtonModule,
+      IgxMaskModule,
+      IgxTextSelectionModule,
+      FilterSizesPipe
+    ]
 })
 export class ShopComponent extends BaseComponent {
   public order = Object.assign({}, EMPTY_JERSEY_ORDER);

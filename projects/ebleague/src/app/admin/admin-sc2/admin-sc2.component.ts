@@ -9,7 +9,7 @@ import {
   SC2_MAPS, SC2LadderDescriptor
 } from '../../../../../common/src/public_api';
 import { environment } from '../../../../../common/src/environments/environment';
-import { IDropDroppedEventArgs, IRowDataEventArgs, IgxGridComponent, IgxDialogComponent, IgxSelectModule, IgxInputGroupModule, IgxGridModule, IgxGridToolbarModule, IgxButtonModule, IgxIconModule, IgxGridColumnModule, IgxAvatarModule, IgxListModule, IgxCardModule, IgxProgressBarModule, IgxDragDropModule, IgxBadgeModule, IgxSuffixModule, IgxDialogModule, IgxDatePickerModule, IgxTimePickerModule, IgxPrefixModule, IgxCheckboxModule } from '@infragistics/igniteui-angular';
+import { IDropDroppedEventArgs, IRowDataEventArgs, IgxGridComponent, IgxDialogComponent, IgxSelectModule, IgxInputGroupModule, IgxGridModule, IgxButtonModule, IgxIconModule, IgxAvatarModule, IgxListModule, IgxCardModule, IgxProgressBarModule, IgxDragDropModule, IgxBadgeModule, IgxDialogModule, IgxDatePickerModule, IgxTimePickerModule, IgxCheckboxModule } from '@infragistics/igniteui-angular';
 import { GetPlayersPipe } from '../../pipes/get-players.pipe';
 import { NotInGroupPipe } from '../../pipes/not-in-group.pipe';
 import { Sc2MapNamePipe } from '../../../../../common/src/lib/pipes/sc2-map-name.pipe';
@@ -28,10 +28,8 @@ import { FormsModule } from '@angular/forms';
       IgxInputGroupModule,
       NgFor,
       IgxGridModule,
-      IgxGridToolbarModule,
       IgxButtonModule,
       IgxIconModule,
-      IgxGridColumnModule,
       IgxAvatarModule,
       IgxListModule,
       NgIf,
@@ -39,11 +37,9 @@ import { FormsModule } from '@angular/forms';
       IgxProgressBarModule,
       IgxDragDropModule,
       IgxBadgeModule,
-      IgxSuffixModule,
       IgxDialogModule,
       IgxDatePickerModule,
       IgxTimePickerModule,
-      IgxPrefixModule,
       IgxCheckboxModule,
       ConfirmComponent,
       DatePipe,

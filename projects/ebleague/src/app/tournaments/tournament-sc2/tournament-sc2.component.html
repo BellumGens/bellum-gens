@@ -1,7 +1,7 @@
 <div class="overview-container-card">
   <igx-card type="outlined">
     <igx-card-header>
-      <img igxCardThumbnail class="thumbnail-image" alt="SC2" src="/assets/wallpapers/sc2-watermark.webp" />
+      <igx-avatar src="/assets/wallpapers/sc2-watermark.webp" igxCardThumbnail shape="circle" />
       <h1 igxCardHeaderTitle>{{ tournament?.name }} StarCraft II League</h1>
     </igx-card-header>
     <igx-card-content>
@@ -9,7 +9,7 @@
       <div class="participants-container">
         <igx-circular-bar *ngIf="loading" [indeterminate]="true"></igx-circular-bar>
         <div *ngFor="let registration of registrations" class="registration-slot">
-          <igx-avatar [src]="registration.user.avatarMedium" [initials]="registration.user.username" size="medium" [roundShape]="true">
+          <igx-avatar [src]="registration.user.avatarMedium" [initials]="registration.user.username" size="medium" shape="circle">
           </igx-avatar>
           <igx-badge *ngIf="registration.userId === authUser?.id && registration.state === 0"
                      type="warning"
@@ -52,7 +52,7 @@
             <igx-avatar igxListThumbnail
                         [src]="cell.row.data.player1.avatarMedium"
                         [initials]="cell.row.data.player1.username"
-                        [roundShape]="true">
+                        shape="circle">
             </igx-avatar>
             <span [class]="cell.row.data.player1Points > cell.row.data.player2Points ? 'highlight grid-team-name color-success' : 'grid-team-name'">
               {{ cell.row.data.player1.battleNetId }}
@@ -63,7 +63,7 @@
             <igx-avatar
                         [src]="cell.row.data.player2.avatarMedium"
                         [initials]="cell.row.data.player2.username"
-                        [roundShape]="true">
+                        shape="circle">
             </igx-avatar>
             <span [class]="cell.row.data.player2Points > cell.row.data.player1Points ? 'highlight grid-team-name color-success' : 'grid-team-name'">
               {{ cell.row.data.player2.battleNetId }}
@@ -122,7 +122,7 @@
               <igx-avatar igxListThumbnail
                           [src]="value.avatarMedium"
                           [initials]="value.username"
-                          [roundShape]="true">
+                          shape="circle">
               </igx-avatar>
               <a igxListLineTitle [href]="environment.bellumgens + '/players/' + (value.customURL || value.id)" target="_blank">
                 {{ value.username }}

@@ -16,7 +16,7 @@
                 [selected]="map.isPlayed"
                 [selectable]="true"
                 (selectedChanging)="changeMaps($event, map)">
-        {{ map.map | csgomapname }}
+        {{ map.mapId | csgomapname }}
       </igx-chip>
     </igx-chips-area>
     <igx-select [(ngModel)]="order" class="order-by">
@@ -46,7 +46,7 @@
 
     <igx-card-media>
       <iframe class="video-frame" *ngIf="strat.url | isVideo" [src]="strat.url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      <img *ngIf="strat.stratImage" [src]="strat.stratImage" class="strat-image" [routerLink]="['/strategies', 'details', strat.customUrl]" />
+      <img *ngIf="strat.stratImage" [ngSrc]="strat.stratImage" class="strat-image" width="350" height="315" [routerLink]="['/strategies', 'details', strat.customUrl]" />
     </igx-card-media>
 
     <igx-card-content>
@@ -61,7 +61,7 @@
       <button igxButton="fab"
               [ngClass]="strat.votes | hasVoted:0:authUser:pipeTrigger"
               igxRipple
-              (click)="voteStrat(strat, 0)">
+              (click)="voteStrat(strat, 0)" igxStart>
         <igx-icon title="vote up">thumb_up</igx-icon>
         <span *ngIf="strat.votes | votes:0:pipeTrigger">
           {{strat.votes | votes:0:pipeTrigger}}
@@ -70,7 +70,7 @@
       <button igxButton="fab"
               [ngClass]="strat.votes | hasVoted:1:authUser:pipeTrigger"
               igxRipple
-              (click)="voteStrat(strat, 1)">
+              (click)="voteStrat(strat, 1)" igxStart>
         <igx-icon title="vote down">thumb_down</igx-icon>
         <span *ngIf="strat.votes | votes:1:pipeTrigger">
           {{strat.votes | votes:1:pipeTrigger}}
@@ -108,7 +108,7 @@
     <igx-card-content class="empty-strategy empty-strategy-content">
         <igx-avatar icon="sync"
                     class="navigatable"
-                    [roundShape]="true"
+                    shape="circle"
                     [size]="'large'"
                     (click)="loadMore()">
         </igx-avatar>
