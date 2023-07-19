@@ -171,7 +171,7 @@
         <source>External</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/login-buttons/login-buttons.component.html</context>
-          <context context-type="linenumber">2,4</context>
+          <context context-type="linenumber">2</context>
         </context-group>
       </trans-unit>
       <trans-unit id="481e367da4aa8b317d91d69f05df5335838c72d6" datatype="html">
@@ -409,7 +409,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournament-registration/tournament-registration.component.html</context>
-          <context context-type="linenumber">18,21</context>
+          <context context-type="linenumber">18</context>
         </context-group>
       </trans-unit>
       <trans-unit id="598b500b7c3015f487fdae13b770a5eb38430371" datatype="html">
@@ -441,7 +441,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournament-registration/tournament-registration.component.html</context>
-          <context context-type="linenumber">74,78</context>
+          <context context-type="linenumber">74</context>
         </context-group>
       </trans-unit>
       <trans-unit id="cb0039bb824172527356a299549dd98b107c7cb2" datatype="html">
@@ -912,7 +912,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournament-registration/tournament-registration.component.html</context>
-          <context context-type="linenumber">52,55</context>
+          <context context-type="linenumber">52</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
@@ -1909,14 +1909,14 @@
         <source>Male</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/shop/shop.component.ts</context>
-          <context context-type="linenumber">23</context>
+          <context context-type="linenumber">42</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5667840900782067941" datatype="html">
         <source>Female</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/shop/shop.component.ts</context>
-          <context context-type="linenumber">24</context>
+          <context context-type="linenumber">43</context>
         </context-group>
       </trans-unit>
       <trans-unit id="bee8ddbb771e963fa25daf150806bff1bdfb7814" datatype="html">
@@ -1979,11 +1979,11 @@
         <source>Registration Season 3</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournament-registration/tournament-registration.component.html</context>
-          <context context-type="linenumber">4,6</context>
+          <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
       <trans-unit id="d21f59c28462fecf7aba3f46ffb3a98589695b08" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="&lt;/label&gt;"/></source>
+        <source><x id="INTERPOLATION" equiv-text="&lt;/"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournament-registration/tournament-registration.component.html</context>
           <context context-type="linenumber">7,8</context>
@@ -1993,35 +1993,35 @@
         <source>*You&apos;ve not associated a Steam account...</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournament-registration/tournament-registration.component.html</context>
-          <context context-type="linenumber">11,15</context>
+          <context context-type="linenumber">11</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7defd12df478f8b5e045437f363408090d2da2bd" datatype="html">
         <source>Choose your team</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournament-registration/tournament-registration.component.html</context>
-          <context context-type="linenumber">29,32</context>
+          <context context-type="linenumber">29</context>
         </context-group>
       </trans-unit>
       <trans-unit id="ca6bda2b279920903f2c6d7be3466e3f709b93f0" datatype="html">
         <source>Create a new team...</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournament-registration/tournament-registration.component.html</context>
-          <context context-type="linenumber">37,40</context>
+          <context context-type="linenumber">37</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5dc4e0bc5382cdf0a2ce277cbd8b1ab2935a085f" datatype="html">
         <source>*Choose the company associated with your participation...</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournament-registration/tournament-registration.component.html</context>
-          <context context-type="linenumber">60,62</context>
+          <context context-type="linenumber">60</context>
         </context-group>
       </trans-unit>
       <trans-unit id="29af938a836108222ff6ee073e4975e5c775d0f5" datatype="html">
         <source>I accept the <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight navigatable&quot; (click)=&quot;scrollToTerms($event)&quot;&gt;"/>terms and conditions<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournament-registration/tournament-registration.component.html</context>
-          <context context-type="linenumber">70,71</context>
+          <context context-type="linenumber">70</context>
         </context-group>
       </trans-unit>
       <trans-unit id="d356a49bcc72ee5628fdfc07fe2a40bd6e9bb80e" datatype="html">

@@ -1,57 +1,57 @@
-# Node.js with Angular
-# Build a Node.js project that uses Angular.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
+# # Node.js with Angular
+# # Build a Node.js project that uses Angular.
+# # Add steps that analyze code, save build artifacts, deploy, and more:
+# # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
-trigger:
-- master
+# trigger:
+# - master
 
-pool:
-  vmImage: 'ubuntu-latest'
+# pool:
+#   vmImage: 'ubuntu-latest'
 
-variables:
-- group: node-variables
+# variables:
+# - group: node-variables
 
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '16.x'
-  displayName: 'Install Node.js'
+# steps:
+# - task: NodeTool@0
+#   inputs:
+#     versionSpec: '16.x'
+#   displayName: 'Install Node.js'
 
-- script: npm config set @infragistics:registry $(ig_registry)
-  displayName: 'Npm add registry'
+# - script: npm config set @infragistics:registry $(ig_registry)
+#   displayName: 'Npm add registry'
 
-- script: npm config set $(ig_scope):always-auth=true
-  displayName: 'Npm config'
+# - script: npm config set $(ig_scope):always-auth=true
+#   displayName: 'Npm config'
 
-- script: npm config set $(ig_scope):_auth=$(npm_token)
-  displayName: 'Npm config auth'
+# - script: npm config set $(ig_scope):_auth=$(npm_token)
+#   displayName: 'Npm config auth'
 
-- script: npm ci
-  displayName: npm ci
+# - script: npm ci
+#   displayName: npm ci
 
-- script: npm run lint
-  displayName: run lint
+# - script: npm run lint
+#   displayName: run lint
 
-- script: npm run test:prod
-  displayName: run test
+# - script: npm run test:prod
+#   displayName: run test
 
-# - script: npm run build:prerender
-#   displayName: build prerender
+# # - script: npm run build:prerender
+# #   displayName: build prerender
 
-- script: npm run build:ssr
-  displayName: build ssr
+# - script: npm run build:ssr
+#   displayName: build ssr
 
-- task: ShellScript@2
-  inputs:
-    scriptPath: 'predeploy.sh'
+# - task: ShellScript@2
+#   inputs:
+#     scriptPath: 'predeploy.sh'
 
-# Publish Build Artifacts to Azure Pipelines
-- task: PublishBuildArtifacts@1
-  inputs:
-    pathtoPublish: 'dist'
-    artifactName: 'dist'
-    publishLocation: 'Container'
-    targetPath: 'dist/bellum-gens'
-    parallel: true # Optional
-    #parallelCount: # Optional
+# # Publish Build Artifacts to Azure Pipelines
+# - task: PublishBuildArtifacts@1
+#   inputs:
+#     pathtoPublish: 'dist'
+#     artifactName: 'dist'
+#     publishLocation: 'Container'
+#     targetPath: 'dist/bellum-gens'
+#     parallel: true # Optional
+#     #parallelCount: # Optional
