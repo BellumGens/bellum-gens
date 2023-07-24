@@ -36,6 +36,8 @@ jobs:
           for filename in *; do
             mv "${filename}" "../${filename}"
           done
+          cd ../browser/en
+          mv "web.config" "../../web.config"
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
