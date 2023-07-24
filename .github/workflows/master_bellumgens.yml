@@ -30,8 +30,12 @@ jobs:
           npm run build:ssr
 
       - name: predeploy shell
-        run: ./predeploy.sh
         shell: bash
+        run: |
+          cd dist/bellumgens/server
+          for filename in *; do
+            mv "${filename}" "../${filename}"
+          done
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
