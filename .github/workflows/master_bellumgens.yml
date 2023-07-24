@@ -29,6 +29,9 @@ jobs:
           npm install
           npm run build:ssr
 
+      - name: predeploy shell
+        run: predeploy.sh
+        shell: bash
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
