@@ -43,7 +43,7 @@ export const app = (lang: string) => {
 
   // Example Express Rest API endpoints
   // app.get('/api/**', (req, res) => { });
-  // Serve static files from /browser
+  // Serve static files from /browser with 1 year caching
   server.get('*.*', express.static(distFolder, {
     maxAge: '1y'
   }));
@@ -51,11 +51,6 @@ export const app = (lang: string) => {
   // All regular routes use the Universal engine
   server.get('*', (req, res) => {
     res.render(indexHtml, { req, providers: [{ provide: APP_BASE_HREF, useValue: req.baseUrl }, { provide: LOCALE_ID, useValue: lang }] });
-  });
-
-  // All eb-league routes should redirect
-  server.get('/tournament*', (req, res) => {
-    res.redirect(environment.ebleague + req.originalUrl);
   });
 
   return server;
