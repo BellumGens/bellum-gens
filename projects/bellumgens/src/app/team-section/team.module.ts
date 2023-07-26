@@ -24,10 +24,8 @@ import { TeamNewComponent } from './team-new/team-new.component';
 import { GroupsFilterPipe } from '../pipes/groups-filter.pipe';
 import { TeamPreferencesComponent } from './team-preferences/team-preferences.component';
 
-
-
 @NgModule({
-    imports: [
+  imports: [
     CommonModule,
     FormsModule,
     TeamRoutingModule,
@@ -48,6 +46,6 @@ import { TeamPreferencesComponent } from './team-preferences/team-preferences.co
     TeamNewComponent,
     TeamPreferencesComponent,
     GroupsFilterPipe
-]
+  ]
 })
 export class TeamModule { }
