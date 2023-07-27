@@ -227,23 +227,11 @@ export class StrategyEditorComponent implements OnInit, OnDestroy {
   }
 
   private loadSvgs() {
-    if (!this.iconService.isSvgIconCached('SimpleRadar', 'login-icons')) {
-      this.iconService.addSvgIcon('SimpleRadar', '/assets/simple_radar.svg', 'login-icons');
-    }
-    if (!this.iconService.isSvgIconCached('flashbang', 'weapon-icons')) {
-      this.iconService.addSvgIcon('flashbang', '/assets/weapon-icons/svg_normal/weapon_flashbang.svg', 'weapon-icons');
-    }
-    if (!this.iconService.isSvgIconCached('smoke', 'weapon-icons')) {
-      this.iconService.addSvgIcon('smoke', '/assets/weapon-icons/svg_normal/weapon_smokegrenade.svg', 'weapon-icons');
-    }
-    if (!this.iconService.isSvgIconCached('c4', 'weapon-icons')) {
-      this.iconService.addSvgIcon('c4', '/assets/weapon-icons/svg_normal/weapon_c4.svg', 'weapon-icons');
-    }
-    if (!this.iconService.isSvgIconCached('molotov', 'weapon-icons')) {
-      this.iconService.addSvgIcon('molotov', '/assets/weapon-icons/svg_normal/weapon_molotov.svg', 'weapon-icons');
-    }
-    if (!this.iconService.isSvgIconCached('hegrenade', 'weapon-icons')) {
-      this.iconService.addSvgIcon('hegrenade', '/assets/weapon-icons/svg_normal/weapon_hegrenade.svg', 'weapon-icons');
-    }
+    this.iconService.addSvgIcon('SimpleRadar', '/assets/simple_radar.svg', 'login-icons');
+    this.iconService.addSvgIcon('flashbang', '/assets/weapon-icons/svg_normal/weapon_flashbang.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('smoke', '/assets/weapon-icons/svg_normal/weapon_smokegrenade.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('c4', '/assets/weapon-icons/svg_normal/weapon_c4.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('molotov', '/assets/weapon-icons/svg_normal/weapon_molotov.svg', 'weapon-icons');
+    this.iconService.addSvgIcon('hegrenade', '/assets/weapon-icons/svg_normal/weapon_hegrenade.svg', 'weapon-icons');
   }
 }

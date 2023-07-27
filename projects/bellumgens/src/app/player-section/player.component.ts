@@ -131,9 +131,7 @@ export class PlayerComponent extends BaseComponent {
 
   private loadSvgs(weapons: WeaponDescriptor []) {
     weapons.forEach(w => {
-      if (!this.iconService.isSvgIconCached(w.name, 'weapon-icons')) {
-        this.iconService.addSvgIcon(w.name, `/assets/weapon-icons/svg_normal/weapon_${w.name}.svg`, 'weapon-icons');
-      }
+      this.iconService.addSvgIcon(w.name, `/assets/weapon-icons/svg_normal/weapon_${w.name}.svg`, 'weapon-icons');
     });
   }
 }
