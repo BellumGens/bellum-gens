@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js app to Azure Web App - bellumgens
+name: Build and deploy Node.js app to Azure Web App - ebleague
 
 on:
   push:
@@ -11,39 +11,27 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v2
 
       - name: Set up Node.js version
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v1
         with:
           node-version: '18.x'
 
       - name: npm install, build, and test
         run: |
-          echo "@infragistics:registry=https://packages.infragistics.com/npm/js-licensed/" >> ~/.npmrc
-          echo "//packages.infragistics.com/npm/js-licensed/:_auth=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
-          echo "//packages.infragistics.com/npm/js-licensed/:always-auth=true" >> ~/.npmrc
           npm install
-          npm run build:ssr
-
-      - name: predeploy shell
-        shell: bash
-        run: |
-          cd dist/ebleague/server
-          for filename in *; do
-            mv "${filename}" "../${filename}"
-          done
-          cd ../browser/en
-          mv "web.config" "../../web.config"
-
+          npm run build --if-present
+          npm run test --if-present
+      
       - name: Upload artifact for deployment job
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v2
         with:
-          name: bellum-gens
-          path: dist/ebleague
+          name: node-app
+          path: .
 
   deploy:
     runs-on: ubuntu-latest
@@ -54,15 +42,15 @@ jobs:
 
     steps:
       - name: Download artifact from build job
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v2
         with:
-          name: bellum-gens
+          name: node-app
 
-      - name: 'Deploy eb-league to Azure Web App'
+      - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
         with:
           app-name: 'ebleague'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1035F3F6F938425B9A1529BCC7188625 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DE98D6F3CA68449BA8D84372248AA037 }}
           package: .
