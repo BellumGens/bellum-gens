@@ -58,7 +58,7 @@ jobs:
         with:
           name: bellum-gens
 
-      - name: 'Deploy to Azure Web App'
+      - name: 'Deploy bellumgens to Azure Web App'
         uses: azure/webapps-deploy@v2
         id: deploy-to-webapp
         with:
