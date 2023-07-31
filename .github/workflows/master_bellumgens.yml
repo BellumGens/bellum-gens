@@ -1,7 +1,7 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Build and deploy Node.js app to Azure Web App - bellumgens
+name: Build and deploy bellumgens and ebleague
 
 on:
   push:
@@ -38,12 +38,18 @@ jobs:
           done
           cd ../browser/en
           mv "web.config" "../../web.config"
+          cd ../../../ebleague/server
+          for filename in *; do
+            mv "${filename}" "../${filename}"
+          done
+          cd ../browser/en
+          mv "web.config" "../../web.config"
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v3
         with:
           name: bellum-gens
-          path: dist/bellumgens
+          path: dist/
 
   deploy:
     runs-on: ubuntu-latest
@@ -60,9 +66,18 @@ jobs:
 
       - name: 'Deploy bellumgens to Azure Web App'
         uses: azure/webapps-deploy@v2
-        id: deploy-to-webapp
+        id: deploy-to-bellumgens
         with:
           app-name: 'bellumgens'
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_1035F3F6F938425B9A1529BCC7188625 }}
-          package: .
+          package: ./bellumgens
+
+      - name: 'Deploy ebleague to Azure Web App'
+        uses: azure/webapps-deploy@v2
+        id: deploy-to-ebleague
+        with:
+          app-name: 'ebleague'
+          slot-name: 'Production'
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_DE98D6F3CA68449BA8D84372248AA037 }}
+          package: ./ebleague
