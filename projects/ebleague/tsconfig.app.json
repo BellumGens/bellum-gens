@@ -6,6 +6,6 @@
   },
   "files": [
     "src/main.ts",
-    "src/polyfills.ts"
+    "../common/src/polyfills.ts"
   ]
 }

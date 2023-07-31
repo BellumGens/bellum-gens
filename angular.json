@@ -26,7 +26,7 @@
             "outputPath": "dist/bellumgens/browser",
             "index": "projects/bellumgens/src/index.html",
             "main": "projects/bellumgens/src/main.ts",
-            "polyfills": "projects/bellumgens/src/polyfills.ts",
+            "polyfills": "projects/common/src/polyfills.ts",
             "tsConfig": "projects/bellumgens/tsconfig.app.json",
             "assets": [
               "projects/bellumgens/src/favicon.ico",
@@ -72,7 +72,7 @@
                   "with": "projects/common/src/environments/environment.prod.ts"
                 }
               ],
-              "localize": true,
+              "localize": false,
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -115,7 +115,7 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "projects/bellumgens/src/test.ts",
-            "polyfills": "projects/bellumgens/src/polyfills.ts",
+            "polyfills": "projects/common/src/polyfills.ts",
             "tsConfig": "projects/bellumgens/tsconfig.spec.json",
             "karmaConfig": "projects/bellumgens/karma.conf.js",
             "styles": [
@@ -304,7 +304,7 @@
             "outputPath": "dist/ebleague/browser",
             "index": "projects/ebleague/src/index.html",
             "main": "projects/ebleague/src/main.ts",
-            "polyfills": "projects/ebleague/src/polyfills.ts",
+            "polyfills": "projects/common/src/polyfills.ts",
             "tsConfig": "projects/ebleague/tsconfig.app.json",
             "assets": [
               "projects/ebleague/src/favicon.ico",
@@ -393,7 +393,7 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "projects/ebleague/src/test.ts",
-            "polyfills": "projects/ebleague/src/polyfills.ts",
+            "polyfills": "projects/common/src/polyfills.ts",
             "tsConfig": "projects/ebleague/tsconfig.spec.json",
             "karmaConfig": "projects/ebleague/karma.conf.js",
             "styles": [

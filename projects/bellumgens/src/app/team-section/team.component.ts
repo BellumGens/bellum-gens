@@ -54,9 +54,7 @@ export class TeamComponent extends BaseComponent {
   }
 
   private loadSvgs() {
-    if (!this.iconService.isSvgIconCached('discord-full-logo', 'login-icons')) {
-      this.iconService.addSvgIcon('discord-full-logo', '/assets/login/discord.svg', 'login-icons');
-    }
+    this.iconService.addSvgIcon('discord-full-logo', '/assets/login/discord.svg', 'login-icons');
   }
 
 }
