@@ -12,7 +12,6 @@ import { environment } from '../../../common/src/environments/environment';
 import { HomeComponent } from './home/home.component';
 import { RaffleComponent } from './raffle/raffle.component';
 import { TournamentRegistrationComponent } from './tournament-registration/tournament-registration.component';
-import { StartsWithPipe } from '../../../bellumgens/src/app/pipes/starts-with.pipe';
 import { TeamNewComponent } from '../../../bellumgens/src/app/team-section/team-new/team-new.component';
 import { GroupsFilterPipe } from '../../../bellumgens/src/app/pipes/groups-filter.pipe';
 import { RegistrationSuccessComponent } from './tournament-registration/registration-success/registration-success.component';
@@ -49,7 +48,7 @@ import { NgOptimizedImage } from '@angular/common';
     imports: [
         FormsModule,
         HttpClientModule,
-        BrowserModule.withServerTransition({ appId: 'serverApp' }),
+        BrowserModule,
         BrowserAnimationsModule,
         AppRoutingModule,
         TransferHttpCacheModule,
@@ -79,7 +78,6 @@ import { NgOptimizedImage } from '@angular/common';
         RaffleComponent,
         TournamentRegistrationComponent,
         TeamNewComponent,
-        StartsWithPipe,
         GroupsFilterPipe,
         RegistrationSuccessComponent,
         NewsComponent,

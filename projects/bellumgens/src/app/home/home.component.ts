@@ -40,15 +40,15 @@ export class HomeComponent extends BaseComponent {
               meta: Meta,
               activeRoute: ActivatedRoute) {
     super(titleService, meta, activeRoute);
-    this.authManager.applicationUser.subscribe(data => this.authUser = data);
-    this.resize();
+    if (isPlatformBrowser(this.platformId)) {
+      this.authManager.applicationUser.subscribe(data => this.authUser = data);
+      this.resize();
+    }
   }
 
   @HostListener('window:resize')
   public resize() {
-    if (isPlatformBrowser(this.platformId)) {
-      this.navigation = window.matchMedia('(min-width: 768px)').matches;
-    }
+    this.navigation = window.matchMedia('(min-width: 768px)').matches;
   }
 
   public subscribe() {

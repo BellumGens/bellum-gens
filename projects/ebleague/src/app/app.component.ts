@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChild, Inject, LOCALE_ID } from '@angular/core';
+import { Component, OnInit, ViewChild, Inject, PLATFORM_ID } from '@angular/core';
 
 import { IgxBannerComponent, IgxNavigationDrawerComponent} from '@infragistics/igniteui-angular';
 import { LoginService, ApplicationUser } from '../../../common/src/public_api';
 import { environment } from '../../../common/src/environments/environment';
 import { Router, NavigationEnd } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -22,23 +23,26 @@ export class AppComponent implements OnInit {
   public environment = environment;
   public year = new Date().getFullYear();
 
-  constructor(@Inject(LOCALE_ID) public localeId: string,
+  constructor(@Inject(PLATFORM_ID) private platformId: any,
               private authManager: LoginService,
               private router: Router) {
-    this.authManager.applicationUser.subscribe(data => {
-      this.authUser = data;
-    });
+    if (isPlatformBrowser(this.platformId)) {
+      this.authManager.applicationUser.subscribe(data => {
+        this.authUser = data;
+      });
+    }
   }
 
   public ngOnInit(): void {
-    if (!window?.localStorage?.getItem('cookiesAccepted')) {
-      this.banner.open();
-    }
+    if (isPlatformBrowser(this.platformId)) {
+      if (!window?.localStorage?.getItem('cookiesAccepted')) {
+        this.banner.open();
+      }
 
-    this.router.events.pipe(
-      filter(x => x instanceof NavigationEnd)
-    )
-    .subscribe(() => this.navdrawer.close());
+      this.router.events.pipe(
+        filter(x => x instanceof NavigationEnd)
+      ).subscribe(() => this.navdrawer.close());
+    }
   }
 
   public acceptCookies() {

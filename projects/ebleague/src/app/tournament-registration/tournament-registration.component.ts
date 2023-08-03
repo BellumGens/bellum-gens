@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { IgxAutocompleteModule, IgxAvatarModule, IgxCheckboxModule, IgxDropDownModule, IgxIconModule, IgxInputGroupModule, IgxSelectModule } from '@infragistics/igniteui-angular';
 import { TeamNewComponent } from '../../../../bellumgens/src/app/team-section/team-new/team-new.component';
-import { StartsWithPipe } from '../../../../bellumgens/src/app/pipes/starts-with.pipe';
+import { StartsWithPipe } from '../pipes/starts-with.pipe';
 import { AsyncPipe, NgFor, NgIf } from '@angular/common';
 
 @Component({
