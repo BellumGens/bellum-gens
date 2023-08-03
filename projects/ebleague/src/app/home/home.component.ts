@@ -41,16 +41,15 @@ export class HomeComponent {
               private apiService: ApiTournamentsService,
               private socialMedia: SocialMediaService,
               private authManager: LoginService) {
-    this.apiService.activeTournament.subscribe(data => {
-      if (data) {
-        this.tournament = data;
-        this.tournamentId = data.id;
-        this.apiService.getRegistrationsCount(data.id);
-      }
-    });
-    this.apiService.registrationsCount.subscribe(data => this.registrations = data);
-
     if (isPlatformBrowser(this.platformId)) {
+      this.apiService.activeTournament.subscribe(data => {
+        if (data) {
+          this.tournament = data;
+          this.tournamentId = data.id;
+          this.apiService.getRegistrationsCount(data.id);
+        }
+      });
+      this.apiService.registrationsCount.subscribe(data => this.registrations = data);
       this.authManager.applicationUser.subscribe(user => this.authUser = user);
     }
   }
