@@ -1,5 +1,5 @@
-import { DatePipe, NgIf, NgOptimizedImage } from '@angular/common';
-import { Component } from '@angular/core';
+import { DatePipe, NgIf, NgOptimizedImage, isPlatformBrowser } from '@angular/common';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { IgxButtonModule, IgxDividerModule, IgxIconModule, IgxInputGroupModule } from '@infragistics/igniteui-angular';
 import {
@@ -37,18 +37,21 @@ export class HomeComponent {
   public authUser: ApplicationUser;
   public dates = CompetitionDefaults;
 
-  constructor(private apiService: ApiTournamentsService,
+  constructor(@Inject(PLATFORM_ID) private platformId: any,
+              private apiService: ApiTournamentsService,
               private socialMedia: SocialMediaService,
               private authManager: LoginService) {
-    this.apiService.activeTournament.subscribe(data => {
-      if (data) {
-        this.tournament = data;
-        this.tournamentId = data.id;
-        this.apiService.getRegistrationsCount(data.id);
-      }
-    });
-    this.apiService.registrationsCount.subscribe(data => this.registrations = data);
-    this.authManager.applicationUser.subscribe(user => this.authUser = user);
+    if (isPlatformBrowser(this.platformId)) {
+      this.apiService.activeTournament.subscribe(data => {
+        if (data) {
+          this.tournament = data;
+          this.tournamentId = data.id;
+          this.apiService.getRegistrationsCount(data.id);
+        }
+      });
+      this.apiService.registrationsCount.subscribe(data => this.registrations = data);
+      this.authManager.applicationUser.subscribe(user => this.authUser = user);
+    }
   }
 
   public openLogin() {

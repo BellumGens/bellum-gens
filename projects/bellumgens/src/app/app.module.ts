@@ -11,44 +11,23 @@ import {
   IgxLayoutModule,
   IgxRippleModule,
   IgxAvatarModule,
-  IgxListModule,
   IgxIconModule,
   IgxInputGroupModule,
   IgxButtonModule,
-  IgxProgressBarModule,
   IgxBadgeModule,
-  IgxCardModule,
-  IgxChipsModule,
   IgxDropDownModule,
-  IgxToggleModule,
-  IgxExpansionPanelModule,
-  IgxRadioModule,
   IgxBannerModule,
-  IgxButtonGroupModule,
   IgxIconService,
-  IgxSliderModule,
-  IgxSelectModule,
   IgxDividerModule,
-  IgxCarouselModule,
   IgxNavigationDrawerModule
 } from '@infragistics/igniteui-angular';
 import { socialMedia, logos, heartCare } from '@igniteui/material-icons-extended';
 
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { UnreadNotificationsPipe } from './pipes/unread-notifications.pipe';
-import { PlayerSearchComponent } from './search/player-search/player-search.component';
 import { SearchComponent } from './search/search/search.component';
 import { QuickSearchComponent } from './search/quick-search/quick-search.component';
-import { ReduceQuickSearchResultPipe } from './pipes/reduce-quick-search-result.pipe';
-import { TeamResultsComponent } from './search/search-results/team-results/team-results.component';
-import { PlayerResultsComponent } from './search/search-results/player-results/player-results.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../../../common/src/environments/environment';
-import { EmailconfirmComponent } from './emailconfirm/emailconfirm.component';
-import { QueryParsedPipe } from './pipes/query-parsed.pipe';
-import { StartsWithPipe } from './pipes/starts-with.pipe';
-import { TeamSearchComponent } from './search/team-search/team-search.component';
 import { LanguagesComponent, LoginComponent, SuccessErrorComponent } from '../../../common/src/public_api';
 
 
@@ -57,7 +36,7 @@ import { LanguagesComponent, LoginComponent, SuccessErrorComponent } from '../..
   imports: [
     FormsModule,
     HttpClientModule,
-    BrowserModule.withServerTransition({ appId: 'serverApp' }),
+    BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     TransferHttpCacheModule,
@@ -65,39 +44,18 @@ import { LanguagesComponent, LoginComponent, SuccessErrorComponent } from '../..
     IgxNavbarModule,
     IgxLayoutModule,
     IgxRippleModule,
-    IgxListModule,
     IgxIconModule,
     IgxInputGroupModule,
     IgxButtonModule,
-    IgxToggleModule,
     IgxBadgeModule,
-    IgxCardModule,
-    IgxChipsModule,
     IgxDropDownModule,
-    IgxExpansionPanelModule,
-    IgxRadioModule,
     IgxBannerModule,
-    IgxButtonGroupModule,
-    IgxSliderModule,
-    IgxProgressBarModule,
-    IgxSelectModule,
     IgxDividerModule,
-    IgxCarouselModule,
     IgxNavigationDrawerModule,
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     HammerModule,
-    HomeComponent,
-    UnreadNotificationsPipe,
-    PlayerSearchComponent,
     SearchComponent,
     QuickSearchComponent,
-    ReduceQuickSearchResultPipe,
-    TeamResultsComponent,
-    PlayerResultsComponent,
-    EmailconfirmComponent,
-    QueryParsedPipe,
-    StartsWithPipe,
-    TeamSearchComponent,
     SuccessErrorComponent,
     LoginComponent,
     LanguagesComponent

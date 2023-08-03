@@ -9,36 +9,17 @@ import { TransferHttpCacheModule } from '@nguniversal/common';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { environment } from '../../../common/src/environments/environment';
-import { HomeComponent } from './home/home.component';
-import { RaffleComponent } from './raffle/raffle.component';
-import { TournamentRegistrationComponent } from './tournament-registration/tournament-registration.component';
-import { StartsWithPipe } from '../../../bellumgens/src/app/pipes/starts-with.pipe';
-import { TeamNewComponent } from '../../../bellumgens/src/app/team-section/team-new/team-new.component';
-import { GroupsFilterPipe } from '../../../bellumgens/src/app/pipes/groups-filter.pipe';
-import { RegistrationSuccessComponent } from './tournament-registration/registration-success/registration-success.component';
-import { NewsComponent } from './news/news.component';
-import { GetRegCountPipe } from './pipes/get-reg-count.pipe';
 
 import {
   IgxNavbarModule,
   IgxLayoutModule,
   IgxRippleModule,
   IgxIconModule,
-  IgxInputGroupModule,
   IgxButtonModule,
-  IgxProgressBarModule,
   IgxBannerModule,
   IgxIconService,
   IgxDividerModule,
-  IgxAvatarModule,
-  IgxNavigationDrawerModule,
-  IgxSelectModule,
-  IgxDropDownModule,
-  IgxCheckboxModule,
-  IgxAutocompleteModule,
-  IgxDialogModule,
-  IgxListModule,
-  IgxCardModule
+  IgxNavigationDrawerModule
 } from '@infragistics/igniteui-angular';
 import { socialMedia, logos, heartCare } from '@igniteui/material-icons-extended';
 import { LanguagesComponent, LoginComponent, SuccessErrorComponent } from '../../../common/src/public_api';
@@ -49,7 +30,7 @@ import { NgOptimizedImage } from '@angular/common';
     imports: [
         FormsModule,
         HttpClientModule,
-        BrowserModule.withServerTransition({ appId: 'serverApp' }),
+        BrowserModule,
         BrowserAnimationsModule,
         AppRoutingModule,
         TransferHttpCacheModule,
@@ -58,31 +39,12 @@ import { NgOptimizedImage } from '@angular/common';
         IgxLayoutModule,
         IgxRippleModule,
         IgxIconModule,
-        IgxInputGroupModule,
         IgxButtonModule,
         IgxBannerModule,
-        IgxProgressBarModule,
         IgxDividerModule,
-        IgxAvatarModule,
         IgxNavigationDrawerModule,
-        IgxSelectModule,
-        IgxDropDownModule,
-        IgxCheckboxModule,
-        IgxAutocompleteModule,
-        IgxDialogModule,
-        IgxListModule,
-        IgxCardModule,
         ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
         HammerModule,
-        HomeComponent,
-        GetRegCountPipe,
-        RaffleComponent,
-        TournamentRegistrationComponent,
-        TeamNewComponent,
-        StartsWithPipe,
-        GroupsFilterPipe,
-        RegistrationSuccessComponent,
-        NewsComponent,
         SuccessErrorComponent,
         LoginComponent,
         LanguagesComponent

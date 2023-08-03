@@ -53,29 +53,32 @@ export class AppComponent implements OnInit {
               private authManager: LoginService,
               private apiService: BellumgensApiService,
               private searchService: ApiSearchService) {
-    this.authManager.applicationUser.subscribe(user => {
-        this.authUser = user;
-        if (user) {
-          this.authManager.userNotifications.subscribe(data => this.unreadNotifications += this.unreadPipe.transform(data));
-          this.apiService.getUserTeams(user.id).subscribe(teams => this.teams = teams);
+    if (isPlatformBrowser(this.platformId)) {
+      this.authManager.applicationUser.subscribe(user => {
+          this.authUser = user;
+          if (user) {
+            this.authManager.userNotifications.subscribe(data => this.unreadNotifications += this.unreadPipe.transform(data));
+            this.apiService.getUserTeams(user.id).subscribe(teams => this.teams = teams);
+          }
         }
-      }
-    );
-    this.resize();
+      );
+      this.resize();
+    }
   }
 
   @HostListener('window:resize')
   public resize() {
-    if (isPlatformBrowser(this.platformId)) {
-      this.title = window.matchMedia('(min-width: 768px)').matches ? 'Bellum Gens' : '';
-    }
+    this.title = window.matchMedia('(min-width: 768px)').matches ? 'Bellum Gens' : '';
   }
 
   public ngOnInit(): void {
-    if (isPlatformBrowser(this.platformId) && !window.localStorage.getItem('cookiesAccepted')) {
-      this.banner.open();
+    if (isPlatformBrowser(this.platformId)) {
+      if (!window.localStorage.getItem('cookiesAccepted')) {
+        this.banner.open();
+      }
+
+      this.initQuickSearch();
     }
-    this.initQuickSearch();
   }
 
   public acceptCookies() {

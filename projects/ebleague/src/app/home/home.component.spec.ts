@@ -19,7 +19,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { TournamentRegistrationComponent } from '../tournament-registration/tournament-registration.component';
-import { StartsWithPipe } from 'projects/bellumgens/src/app/pipes/starts-with.pipe';
+import { StartsWithPipe } from '../pipes/starts-with.pipe';
 import { TeamNewComponent } from 'projects/bellumgens/src/app/team-section/team-new/team-new.component';
 import { GetRegCountPipe } from '../pipes/get-reg-count.pipe';
 
