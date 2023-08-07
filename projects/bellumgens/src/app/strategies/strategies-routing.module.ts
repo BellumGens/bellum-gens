@@ -8,15 +8,9 @@ const routes: Routes = [
   { path: '', component: StrategiesComponent },
   { path: 'public', component: StrategiesComponent },
   { path: 'user', component: StrategiesComponent },
-  { path: ':query', component: StrategiesComponent, data: {
-      title: 'CS:GO Strategies: find or create'
-    }
-  },
+  { path: ':query', component: StrategiesComponent, data: { title: 'CS:GO Strategies: find or create' } },
   { path: 'edit/:stratid', component: StrategyEditorComponent },
-  { path: 'details/:stratid', component: StrategyDetailsComponent, data: {
-      title: 'Bellum Gens CS:GO Strategy'
-    }
-  },
+  { path: 'details/:stratid', component: StrategyDetailsComponent, data: { title: 'Bellum Gens CS:GO Strategy' } },
 ];
 
 @NgModule({

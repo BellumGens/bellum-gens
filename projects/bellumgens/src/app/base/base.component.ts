@@ -11,11 +11,11 @@ import { ActivatedRoute, Data } from '@angular/router';
 export class BaseComponent implements OnDestroy {
   protected subs: Subscription [] = [];
 
-  private _title = 'Bellum Gens: CS:GO team management';
-  private _twitterTitle = 'CS:GO Strategy editor & community for team search and management.';
+  private _title = 'Bellum Gens: Premier Gaming and Esports Events Organizer';
+  private _twitterTitle = 'Bellum Gens: Premier Gaming and Esports Events Organizer';
   // eslint-disable-next-line max-len
-  private _description = 'CSGO Strategy editor | CSGO team finding and management | Bellum Gens: Looking for Group | Esports Business League';
-  private _twitterDescription = 'CS:GO Strategy editor & strategy sharing with the community. CS:GO team management platform.';
+  private _description = 'Bellum Gens is a premier gaming and esports events organizer in Bulgaria and the Balkans region. If you want to tap into esports we can help!';
+  private _twitterDescription = 'Bellum Gens is a premier gaming and esports events organizer in Bulgaria and the Balkans region.';
   private _image = '/assets/avatar_BG_blood.png';
   private data: Data;
 
