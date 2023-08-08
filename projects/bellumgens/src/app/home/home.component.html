@@ -1,20 +1,20 @@
 <igx-carousel #carousel class="carousel" [loop]="true" [interval]="10000" [navigation]="navigation">
   <igx-slide>
-    <div class="slide slide1">
+    <div class="slide slide0">
       <div class="slide-info">
-        <h2><igx-icon family="partners" name="eb-league-white" class="event-icon"></igx-icon>Esports Business League</h2>
-        <p i18n>Esports Business League is a gaming event for your office! Build better team bonds by friendly or competative gaming, or get your team to compete against other companies to show how good they are!</p>
-        <a [href]="environment.ebleague" target="_blank" rel="noopener" igxButton="raised" i18n>Go to EB-League</a>
+        <h2 class="horizontal"><igx-icon family="partners" name="bge-white" class="event-icon"></igx-icon>Bellum Gens Elite</h2>
+        <p i18n>Bellum Gens Elite is a premier esports event. The first professional Bellum Gens Counter-Strike tournament was held in the city of Stara Zagora and featured the highest ranked professional teams from Bulgaria and one team from Ukraine!</p>
+        <a href="https://bge-starazagora.com" target="_blank" rel="noopener" igxButton="raised" disabled i18n>Go to BGE-Stara Zagora</a>
       </div>
     </div>
   </igx-slide>
 
   <igx-slide>
-    <div class="slide slide0">
+    <div class="slide slide1">
       <div class="slide-info">
-        <h2><igx-icon family="partners" name="bge-white" class="event-icon"></igx-icon>Bellum Gens Elite - Stara Zagora</h2>
-        <p i18n>Bellum Gens Elite is a premier esports event. The first professional Bellum Gens Counter-Strike tournament was held in the city of Stara Zagora!</p>
-        <a href="https://bge-starazagora.com" target="_blank" rel="noopener" igxButton="raised" disabled i18n>Go to BGE-Stara Zagora</a>
+        <h2 class="horizontal"><igx-icon family="partners" name="eb-league-white" class="event-icon"></igx-icon>Esports Business League</h2>
+        <p i18n>Esports Business League is a gaming event for your office! Build better team bonds by friendly or competative gaming, or get your team to compete against other companies to show how good you are!</p>
+        <a [href]="environment.ebleague" target="_blank" rel="noopener" igxButton="raised" i18n>Go to EB-League</a>
       </div>
     </div>
   </igx-slide>
@@ -22,19 +22,8 @@
   <igx-slide>
     <div class="slide slide2">
       <div class="slide-info">
-        <h2 i18n>Design and Share CS:GO Strategies</h2>
-        <p i18n>The only online CS:GO strategy editor freely available to everyone! Discuss public strategies with everyone and build private strategies for your team only.</p>
-        <button igxButton="raised" routerLink="/strategies" i18n>Browse Strategies</button>
-        <button igxButton="outlined" igxButtonColor="#fff" *ngIf="!authUser" (click)="openLogin()" class="space-out-button" i18n>Sign-up Now</button>
-      </div>
-    </div>
-  </igx-slide>
-
-  <igx-slide>
-    <div class="slide slide3">
-      <div class="slide-info">
         <h2 i18n>Manage your CS:GO Team</h2>
-        <p i18n>Recruit your team and manage your team member roles, team strategies, practice times and more....</p>
+        <p i18n>Recruit your team and manage your team member roles, team strategies, practice times and more. The only online CS:GO strategy editor freely available to everyone! Discuss public strategies with everyone and build private strategies for your team.</p>
         <button igxButton="raised" *ngIf="!authUser else loggedIn" (click)="openLogin()" i18n>Sign-up Now</button>
         <ng-template #loggedIn>
           <button igxButton="raised" routerLink="/team/myteams" i18n>Go to Team Section</button>
