@@ -267,7 +267,7 @@ textarea {
   min-width: 128px;
   width: 100%;
   align-content: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   flex-wrap: wrap;
   margin-top: 16px;
 }
@@ -283,6 +283,20 @@ textarea {
 
 .partner {
   margin: 16px;
+}
+
+// .platinum {
+//   width: 380px;
+//   height: 200px;
+// }
+
+// .gold {
+//   width: 220px;
+//   height: 150px;
+// }
+
+.logistics {
+  max-width: 200px;
 }
 
 .grid-vs-divider {
