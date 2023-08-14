@@ -63,7 +63,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">111</context>
+          <context context-type="linenumber">114</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9b475bb63675494482effde989c7f1f18c232620" datatype="html">
@@ -72,10 +72,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/app.component.html</context>
           <context context-type="linenumber">31</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">136</context>
         </context-group>
       </trans-unit>
       <trans-unit id="76f3dbd0b2d8f1d1003fcecfea9cf5b6f145e082" datatype="html">
@@ -87,7 +83,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">133</context>
+          <context context-type="linenumber">38</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7e892ba15f2c6c17e83510e273b3e10fc32ea016" datatype="html">
@@ -159,7 +155,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">94</context>
+          <context context-type="linenumber">144</context>
         </context-group>
       </trans-unit>
       <trans-unit id="e0de906591fddc1e423f4dd7a048ce2a821d058b" datatype="html">
@@ -171,7 +167,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">97</context>
+          <context context-type="linenumber">147</context>
         </context-group>
       </trans-unit>
       <trans-unit id="90d3c623b3043d49a7181a5f0cf8436995fc1f55" datatype="html">
@@ -183,7 +179,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">100</context>
+          <context context-type="linenumber">150</context>
         </context-group>
       </trans-unit>
       <trans-unit id="34020763f269641858d4b88c875f5e56f16aa574" datatype="html">
@@ -195,31 +191,15 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">103</context>
+          <context context-type="linenumber">153</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="aaf13c2daf4a545724c082da3e73373251795aae" datatype="html">
-        <source>Esports Business League Season 2 has concluded. Check out who the new champions are!</source>
-		    <target>Esports Business League сезон 2 приключи. Вижте кои са победителите!</target>
+      <trans-unit id="0d0e1b60b303a6f545a2ed2e2c09e651ce89bb02" datatype="html">
+        <source>Bellum Gens Elite is a premier esports event. The first professional Bellum Gens Counter-Strike tournament was held in the city of Stara Zagora and featured the highest ranked professional teams from Bulgaria and one team from Ukraine!</source>
+        <target>Bellum Gens Elite е премиерно събитие в електронните спортове. Първият професионален Bellum Gens турнир по Counter-Strike беше проведен в град Стара Загора и в него взеха участие най-високопоставените професионални отбори от България, както и един отбор от Украйна.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
           <context context-type="linenumber">6</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="b76d717d47f3de81acccbe6d2048136c1044c33d" datatype="html">
-        <source>Go to EB-League</source>
-		    <target>Отиди на сайта на EB-League</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">7</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="d764f164c20be4a9c203edbc8b0d17df116b8cfa" datatype="html">
-        <source>The first professional Bellum Gens CS:GO tournament was held in the city of Stara Zagora! Check out who the champions are!</source>
-		    <target>Първият професионален CS:GO турнир на Bellum Gens се проведе в сърцето на Стара Загора! Вижте кои са победителите!</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1196b28b30c53ade463a1db8e226dd0ba3510e35" datatype="html">
@@ -227,47 +207,23 @@
 		    <target>Отиди на сайта на BGE-Stara Zagora</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="09fb8ba88333254d6a296f74c4e5786ff1997720" datatype="html">
+        <source>Esports Business League is a gaming event for your office! Build better team bonds by friendly or competative gaming, or get your team to compete against other companies to show how good you are!</source>
+        <target>Esports Бизнес Лига е gaming събитие за вашият офис. Създайте по-добър отборен дух, чрез приятелски или състезателни игри, или ангажирайте вашите служители да се състезават срещу участници от други фирми, за да покажете точно колко добри сте!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b76d717d47f3de81acccbe6d2048136c1044c33d" datatype="html">
+        <source>Go to EB-League</source>
+		    <target>Отиди на сайта на EB-League</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
           <context context-type="linenumber">17</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="f80d939ebac320f4673396c615efd56919d7d69e" datatype="html">
-        <source>Design and Share CS:GO Strategies</source>
-		    <target>Разработи и сподели CS:GO стратегии</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">25</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6316e9e6ee6cae3ee77ce7733d53618adf01e831" datatype="html">
-        <source>The only online CS:GO strategy editor freely available to everyone! Discuss public strategies with everyone and build private strategies for your team only.</source>
-		    <target>Единственият онлайн CS:GO едитор за стратегии достъпен безплатно за всички! Дискутирай публични стратегии с всички или направи скрити стратегии само за твоят отбор.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">26</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="d69eb7fd8549189fa41386e6499577d3666e10bd" datatype="html">
-        <source>Browse Strategies</source>
-		    <target>Разгледай публичните стратегии</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">27</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">54</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="a24e5b549f385bb054e7b6a38785b088fca99b18" datatype="html">
-        <source>Sign-up Now</source>
-		    <target>Запиши се сега</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">28</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">38</context>
         </context-group>
       </trans-unit>
       <trans-unit id="e037ffa387e7831c088455028a2709485c573547" datatype="html">
@@ -275,15 +231,23 @@
 		    <target>Управлявай твоят CS:GO отбор</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">36</context>
+          <context context-type="linenumber">25</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="d7c9f86df463359a57ad77e3d3ad94925dd50e8e" datatype="html">
-        <source>Recruit your team and manage your team member roles, team strategies, practice times and more....</source>
-		    <target>Подбери своите съотборници и управлявай ролите и стратегиите в твоят CS:GO отбор...</target>
+      <trans-unit id="ec7985a685b2cf53d2758749857318762357b1b7" datatype="html">
+        <source>Recruit your team and manage your team member roles, team strategies, practice times and more. The only online CS:GO strategy editor freely available to everyone! Discuss public strategies with everyone and build private strategies for your team.</source>
+        <target>Подбери своите съотборници и управлявай ролите и стратегиите в твоят CS:GO отбор. Единствения безплатен едитор за CS:GO стратегии достъпен за всеки. Дискутирайте публични стратегии с всички или правете стратегии достъпни само за вашият отбор.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">37</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a24e5b549f385bb054e7b6a38785b088fca99b18" datatype="html">
+        <source>Sign-up Now</source>
+		    <target>Запиши се сега</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
+          <context context-type="linenumber">27</context>
         </context-group>
       </trans-unit>
       <trans-unit id="91142fd723bb475de289a9885abeecf7dfd67c72" datatype="html">
@@ -291,71 +255,71 @@
 		    <target>Отиди на отборната секция</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">40</context>
+          <context context-type="linenumber">29</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="e1d02dfc523f65fa6e7ebe562fe9b244f367d1dc" datatype="html">
-        <source>CS:GO Strategy Editor</source>
-		    <target>Едитор за CS:GO стратегии</target>
+      <trans-unit id="aefac2bed86b447d9fca5a02e3da8ab273140de4" datatype="html">
+        <source>Bellum Gens is a gaming and esports event organizer and consultant focused on the development and popularization of esports in Bulgaria. We want to make esports a recognizable topic for the business and thus to help the development of all esports project in Bulgaria and on the Balkans. If you take interest in esports and want to advertise through esport, position your brand in tournaments, streams, or other gaming and esports channels, then we can help! Contact us for more information on available opportunities.</source>
+		    <target>Белум Генс е организатор на gaming и esports събития, както и консултант, фокусиран върху развитието и популяризацията на електронните спортове в България. Ние искаме да направим елетронните спортове разпознаваеми за бизнеса и така да спомогнем за развитието на проекти свързани с тях в България и на Балканите. Ако имате интерес към електронните спортове и искате да рекламирате чрез тях, да позиционирате бранда си в турнири, стриймове, или чрез други gaming и esports канали, тогава ние можем да помогнем! Свържете се с нас за повече информация.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">52</context>
+          <context context-type="linenumber">39</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1fc212ff3439cff585f60e8f34104289e7a33a68" datatype="html">
-        <source>Bellum Gens provides an in-browser CS:GO strategy editor with all maps available. You can pick a map and draw strategies on the map radar, then share with the community for discussions, or make it private and share it with your team only.</source>
-		    <target>Белум Генс предоставя едитор за CS:GO стратегии в браузър с всички налични карти. Избери карта и нарисувай твоята стратегия върху радара, а след това я сподели за мнения и коментари, или я направи скрита и я сподели само с твоя отбор.</target>
+      <trans-unit id="9699d112c9819bc23a9ccfbf82a3ba3d607c4e1c" datatype="html">
+        <source>Esports Events</source>
+        <target>Esports Събития</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">53</context>
+          <context context-type="linenumber">50</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="59d6b3162a7642b8543e3bcb701518a8db890f55" datatype="html">
-        <source>We&apos;re fully open source! We appreciate your feedback!</source>
-		    <target>Системата ни е с напълно отворен код! Ценим обратната ти връзка!</target>
+      <trans-unit id="2c6fc67178db9ac0d442af3ad1e303056e7d1da4" datatype="html">
+        <source>Bellum Gens is the organizer of the premier Bellum Gen Elite esports event. First held in the town of Stara Zagora, under the name <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Bellum Gens Elite - Stara Zagora<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>, BGE brought the top Counter-Strike talent in the region to compete under one roof for a prize pool of $10,000!</source>
+        <target>Белум Генс организира елитното Bellum Gens Elite. Провел се за първи път в град Стара Загора, под името <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Bellum Gens Elite - Stara Zagora<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>, BGE доведе в града топ Counter-Strike таланти от региона, които се състезаваха под един покрив за награден фонд от $10000!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7b841da47c20992018ddcf81884b18e529034e7c" datatype="html">
+        <source>Team Building and Gaming</source>
+        <target>Сплотяване на екип чрез игри</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
           <context context-type="linenumber">59</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="d7b03b3a76301b8f3eb1c16eb94db740084937d2" datatype="html">
-        <source>Submit an Issue</source>
-		    <target>Кажи ни за проблем който виждаш</target>
+      <trans-unit id="2a305b48faadfaf6eb977947bcc3d6b0b6349a9e" datatype="html">
+        <source>Bellum Gens is the organizer of the Esports Business League - a competitive amateur gaming event for the office. Miltiple companies in Bulgaria participated in seasons one and two of the <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Esports Business League<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> both for fun and team building and to show which company has the best gamers among their employees!</source>
+        <target>Белум Генс е оргиназатор на Esports Бизнес Лига - аматьорско компетативно събитие за офиса. Множество компании в България взеха участие в първите два сезона на <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Esports Business League<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> и се възползваха от възможността за забавление, сплотяване на екипа, както и да покажат коя компания има най-добрите геймъри сред техните служители!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">63</context>
+          <context context-type="linenumber">60</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7decc856486a1e8f770b31b552f830364e94044e" datatype="html">
-        <source>Tweet to us</source>
-		    <target>Изпрати ни Tweet</target>
+      <trans-unit id="da151f687d7c596d1046c9e7967f6c53b6d03027" datatype="html">
+        <source>Esports Business League</source>
+        <target>Esports Бизнес Лига</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">67</context>
+          <context context-type="linenumber">61</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="495b1455f8510d74a734ad531456d0b883f467ff" datatype="html">
-        <source>Sponsor us on GitHub</source>
-		    <target>Спонсорирай ни през GitHub</target>
+      <trans-unit id="c791dc388a2050431a921188288a7849baba6a3d" datatype="html">
+        <source>Team Management</source>
+        <target>Управление на отбори</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">71</context>
+          <context context-type="linenumber">75</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="f60fb86cfbfee8531f65bb74a4f85ace1ac56327" datatype="html">
-        <source>Bellum Gens enables your CS:GO Team</source>
-		    <target>Белум Генс подпомага развитието на CS:GO отбора ти</target>
+      <trans-unit id="9546624290f12e77c80b1c0116aea7593b49988b" datatype="html">
+        <source>Bellum Gens offers a CS:GO team finding and team management application, which allows players to look for teams matching their skill and availability, and team owners to manage their teams&apos; roster and general organization. Because CS:GO is a team game!</source>
+        <target>Белум Генс предлага приложение за намиране и управление на CS:GO отбори, което позволява на играчи да намерят отборите със сходни умения и времена за тренировка на собствените им. Белум Генс позволява на собствениците на отбори да менажират ростерите си и да организират отбора си. Защото CS:GO е отборна игра!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">78</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="671254056ed78fe29a24799b99cef49ac446e528" datatype="html">
-        <source>Bellum Gens is a CS:GO team finding and team management application, which allows players to look for teams matching their skill and availability, and team owners to manage their teams&apos; roster and general organization. Because CS:GO is a team game!</source>
-		    <target>Белум Генс е приложение за намиране и управление на CS:GO отбори, което позволява на играчи да намерят отборите със сходни умения и времена за тренировка на собствените им. Белум Генс позволява на собствениците на отбори да менажират ростерите си и да организират отбора си. Защото CS:GO е отборна игра!</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">79</context>
+          <context context-type="linenumber">76</context>
         </context-group>
       </trans-unit>
       <trans-unit id="e308a61db6b4a8dfda0022f85b41767e9358584e" datatype="html">
@@ -363,32 +327,44 @@
 		    <target>Регистрирай отбора си</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">80</context>
+          <context context-type="linenumber">77</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="ecf5a8cba04c9a8d627a9a65f98f47d02d823aba" datatype="html">
-        <source>Follow us for updates</source>
-        <target>Последвайте ни</target>
+      <trans-unit id="59d6b3162a7642b8543e3bcb701518a8db890f55" datatype="html">
+        <source>We&apos;re fully open source! We appreciate your feedback!</source>
+		    <target>Системата ни е с напълно отворен код! Ценим обратната ти връзка!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">89</context>
+          <context context-type="linenumber">95</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="dc31d8a047fda51668747cb7dd377e6b013dec2f" datatype="html">
-        <source>BPro Gaming is the first professional esports club in Bulgaria. During the past 4 years BPro has developed a number of professional players, team and infrastructure.</source>
-        <target>BPro e първата професионална клубна организация по електронни спортове в България. През последните 4 години BPro са изградили множество състезатели, отбори и инфраструктура.</target>
+      <trans-unit id="d7b03b3a76301b8f3eb1c16eb94db740084937d2" datatype="html">
+        <source>Submit an Issue</source>
+		    <target>Кажи ни за проблем който виждаш</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">113</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">114</context>
+          <context context-type="linenumber">99</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="491d3a722a1e7e5a9d1cd0494869f367cb45dc74" datatype="html">
-        <source>BSL a one of a kind StarCraft II league in Bulgaria and are contributing to the deveopment of Bulgarian talent in this esport! All StarCraft 2 games in the Esports Business League will be casted by the them!</source>
-        <target>BSL организират първата по рода си лига по StarCraft II в България и допринасят за развитието на талантите ни в този #esport! Всички StarCraft 2 игри от Esports Business League ще бъдат коментирани от тях!</target>
+      <trans-unit id="7decc856486a1e8f770b31b552f830364e94044e" datatype="html">
+        <source>Tweet to us</source>
+		    <target>Изпрати ни Tweet</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
+          <context context-type="linenumber">103</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="495b1455f8510d74a734ad531456d0b883f467ff" datatype="html">
+        <source>Sponsor us on GitHub</source>
+		    <target>Спонсорирай ни през GitHub</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
+          <context context-type="linenumber">107</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="17d9180e439dab2fcfae87b98de1c37acbb15178" datatype="html">
+        <source>BPro Gaming is the first professional esports club in Bulgaria. Since 2015 BPro has developed a number of professional players, team and infrastructure.</source>
+        <target>BPro Gaming e първата професионална клубна организация по електронни спортове в България. От 2015 насам BPro са изградили множество състезатели, отбори и инфраструктура.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
           <context context-type="linenumber">116</context>
@@ -398,12 +374,48 @@
           <context context-type="linenumber">117</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="35c66e047680d31bf97d99dbf321f5ae7ab9df4e" datatype="html">
-        <source>Bellum Gens is founded by two passionate about gaming friends. Bellum Gens is an esports organization focused on the development and popularization of esports in Bulgaria. We want to make esports a recognizable topic for the business and thus to help the development of all esports project in Bulgaria and on the Balkans.</source>
-        <target>Белум Генс е основана като аматьорски проект от двама приятели - геймъри. Искаме да направим esports тема, която е разбираема за бизнеса в България и по този начин да подпомогнем развитието на други esports проекти в България - наши, както и външни.</target>
+      <trans-unit id="f6c300ce121ef9f9b9801de0eb356a9374b147f4" datatype="html">
+        <source>Bulgarian StarCraft League a one of a kind StarCraft II league in Bulgaria and are contributing to the deveopment of Bulgarian talent in this esport! All StarCraft 2 games in the Esports Business League are casted by the them!</source>
+        <target>Българската Старкрафт Лига организират първата по рода си лига по StarCraft II в България и допринасят за развитието на талантите ни в този #esport! Всички StarCraft 2 игри от Esports Business League биват коментирани от тях!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">134</context>
+          <context context-type="linenumber">119</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
+          <context context-type="linenumber">120</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="0a7508509df9114354c407fe27fd2739103a8079" datatype="html">
+        <source>Stara Zagora is a 6000+ year-old city in the center of Bulgaria. We partner with Stara Zagora Municipality for the Bellum Gens Elite - Stara Zagora premier esports event!</source>
+        <target>Стара Загора е град на над 6000 години и се намира в самия център на България. Ние си партнирахме със Община Стара Загора за да проведем премиреното esports събитие Bellum Gens Elite - Stara Zagora.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
+          <context context-type="linenumber">122</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
+          <context context-type="linenumber">123</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="ecf5a8cba04c9a8d627a9a65f98f47d02d823aba" datatype="html">
+        <source>Follow us for updates</source>
+        <target>Последвайте ни</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
+          <context context-type="linenumber">139</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="d0336848b0c375a1c25ba369b3481ee383217a4f" datatype="html">
+        <source>Subscribe</source>
+        <target>Запиши се</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
+          <context context-type="linenumber">158</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
+          <context context-type="linenumber">174</context>
         </context-group>
       </trans-unit>
       <trans-unit id="244aae9346da82b0922506c2d2581373a15641cc" datatype="html">
@@ -411,7 +423,7 @@
         <target>Имейл адрес</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">141</context>
+          <context context-type="linenumber">163</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/registration/registration.component.html</context>
@@ -423,15 +435,7 @@
         <target>Оставете имейла си за да получавате известия от нас!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">149</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="d0336848b0c375a1c25ba369b3481ee383217a4f" datatype="html">
-        <source>Subscribe</source>
-        <target>Запиши се</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">152</context>
+          <context context-type="linenumber">171</context>
         </context-group>
       </trans-unit>
       <trans-unit id="f09dd2768cc6366fc6ac414635d85920f8a12964" datatype="html">
