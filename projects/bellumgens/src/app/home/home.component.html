@@ -1,20 +1,20 @@
 <igx-carousel #carousel class="carousel" [loop]="true" [interval]="10000" [navigation]="navigation">
   <igx-slide>
-    <div class="slide slide1">
+    <div class="slide slide0">
       <div class="slide-info">
-        <h2><igx-icon family="partners" name="eb-league-white" class="event-icon"></igx-icon>Esports Business League</h2>
-        <p i18n>Esports Business League Season 2 has concluded. Check out who the new champions are!</p>
-        <a [href]="environment.ebleague" target="_blank" rel="noopener" igxButton="raised" i18n>Go to EB-League</a>
+        <h2 class="horizontal"><igx-icon family="partners" name="bge-white" class="event-icon"></igx-icon>Bellum Gens Elite</h2>
+        <p i18n>Bellum Gens Elite is a premier esports event. The first professional Bellum Gens Counter-Strike tournament was held in the city of Stara Zagora and featured the highest ranked professional teams from Bulgaria and one team from Ukraine!</p>
+        <a href="https://bge-starazagora.com" target="_blank" rel="noopener" igxButton="raised" disabled i18n>Go to BGE-Stara Zagora</a>
       </div>
     </div>
   </igx-slide>
 
   <igx-slide>
-    <div class="slide slide0">
+    <div class="slide slide1">
       <div class="slide-info">
-        <h2><igx-icon family="partners" name="bge-white" class="event-icon"></igx-icon>Bellum Gens Elite - Stara Zagora</h2>
-        <p i18n>The first professional Bellum Gens CS:GO tournament was held in the city of Stara Zagora! Check out who the champions are!</p>
-        <a href="https://bge-starazagora.com" target="_blank" rel="noopener" igxButton="raised" i18n>Go to BGE-Stara Zagora</a>
+        <h2 class="horizontal"><igx-icon family="partners" name="eb-league-white" class="event-icon"></igx-icon>Esports Business League</h2>
+        <p i18n>Esports Business League is a gaming event for your office! Build better team bonds by friendly or competative gaming, or get your team to compete against other companies to show how good you are!</p>
+        <a [href]="environment.ebleague" target="_blank" rel="noopener" igxButton="raised" i18n>Go to EB-League</a>
       </div>
     </div>
   </igx-slide>
@@ -22,19 +22,8 @@
   <igx-slide>
     <div class="slide slide2">
       <div class="slide-info">
-        <h2 i18n>Design and Share CS:GO Strategies</h2>
-        <p i18n>The only online CS:GO strategy editor freely available to everyone! Discuss public strategies with everyone and build private strategies for your team only.</p>
-        <button igxButton="raised" routerLink="/strategies" i18n>Browse Strategies</button>
-        <button igxButton="outlined" igxButtonColor="#fff" *ngIf="!authUser" (click)="openLogin()" class="space-out-button" i18n>Sign-up Now</button>
-      </div>
-    </div>
-  </igx-slide>
-
-  <igx-slide>
-    <div class="slide slide3">
-      <div class="slide-info">
         <h2 i18n>Manage your CS:GO Team</h2>
-        <p i18n>Recruit your team and manage your team member roles, team strategies, practice times and more....</p>
+        <p i18n>Recruit your team and manage your team member roles, team strategies, practice times and more. The only online CS:GO strategy editor freely available to everyone! Discuss public strategies with everyone and build private strategies for your team.</p>
         <button igxButton="raised" *ngIf="!authUser else loggedIn" (click)="openLogin()" i18n>Sign-up Now</button>
         <ng-template #loggedIn>
           <button igxButton="raised" routerLink="/team/myteams" i18n>Go to Team Section</button>
@@ -45,6 +34,53 @@
 </igx-carousel>
 
 <div class="content-container">
+  <div class="content-container-row">
+    <h2 id="aboutus" i18n>About us</h2>
+    <p i18n>Bellum Gens is a gaming and esports event organizer and consultant focused on the development and popularization of esports in Bulgaria. We want to make esports a recognizable topic for the business and thus to help the development of all esports project in Bulgaria and on the Balkans. If you take interest in esports and want to advertise through esport, position your brand in tournaments, streams, or other gaming and esports channels, then we can help! Contact us for more information on available opportunities.</p>
+  </div>
+
+  <div class="content-container-row">
+    <igx-divider></igx-divider>
+  </div>
+
+  <div class="content-container-column">
+    <img ngSrc="/assets/wallpapers/bge-starazagora.webp" width="600" height="401" class="preview-image" alt="Strategy Editor" />
+  </div>
+  <div class="content-container-column align-center">
+    <h3 i18n>Esports Events</h3>
+    <p i18n>Bellum Gens is the organizer of the premier Bellum Gen Elite esports event. First held in the town of Stara Zagora, under the name <span class="highlight">Bellum Gens Elite - Stara Zagora</span>, BGE brought the top Counter-Strike talent in the region to compete under one roof for a prize pool of $10,000!</p>
+  </div>
+
+  <div class="content-container-row">
+    <igx-divider></igx-divider>
+  </div>
+
+  <div class="content-container-column align-center">
+    <h3 i18n>Team Building and Gaming</h3>
+    <p i18n>Bellum Gens is the organizer of the Esports Business League - a competitive amateur gaming event for the office. Miltiple companies in Bulgaria participated in seasons one and two of the <span class="highlight">Esports Business League</span> both for fun and team building and to show which company has the best gamers among their employees!</p>
+    <a igxButton="outlined" [href]="environment.ebleague" target="_blank" rel="noopener" class="nav-button" i18n>Esports Business League</a>
+  </div>
+  <div class="content-container-column">
+    <img ngSrc="/assets/wallpapers/eb-league.webp" width="600" height="340" class="preview-image" alt="CS:GO Team Overview" />
+  </div>
+
+  <div class="content-container-row">
+    <igx-divider></igx-divider>
+  </div>
+
+  <div class="content-container-column">
+    <img ngSrc="/assets/wallpapers/team-page.webp" width="600" height="314" class="preview-image" alt="CS:GO Team Overview" />
+  </div>
+  <div class="content-container-column align-center">
+    <h3 i18n>Team Management</h3>
+    <p i18n>Bellum Gens offers a CS:GO team finding and team management application, which allows players to look for teams matching their skill and availability, and team owners to manage their teams' roster and general organization. Because CS:GO is a team game!</p>
+    <button igxButton="outlined" routerLink="/team/myteams" class="nav-button" i18n>Register your Team</button>
+  </div>
+
+  <!-- <div class="content-container-row">
+    <igx-divider></igx-divider>
+  </div>
+
   <div class="content-container-column">
     <img ngSrc="/assets/wallpapers/strat-editor.webp" width="600" height="347" class="preview-image" alt="Strategy Editor" />
   </div>
@@ -52,7 +88,7 @@
     <h3 i18n>CS:GO Strategy Editor</h3>
     <p i18n>Bellum Gens provides an in-browser CS:GO strategy editor with all maps available. You can pick a map and draw strategies on the map radar, then share with the community for discussions, or make it private and share it with your team only.</p>
     <button igxButton="outlined" routerLink="/strategies" class="nav-button" i18n>Browse Strategies</button>
-  </div>
+  </div> -->
 
   <div class="content-container-row min-height-row">
     <igx-divider></igx-divider>
@@ -71,17 +107,31 @@
         <span i18n>Sponsor us on GitHub</span>
       </a>
     </div>
+  </div>
+
+  <div class="content-container-row">
     <igx-divider></igx-divider>
-  </div>
-
-  <div class="content-container-column align-center">
-    <h4 i18n>Bellum Gens enables your CS:GO Team</h4>
-    <p i18n>Bellum Gens is a CS:GO team finding and team management application, which allows players to look for teams matching their skill and availability, and team owners to manage their teams' roster and general organization. Because CS:GO is a team game!</p>
-    <button igxButton="outlined" routerLink="/team/myteams" class="nav-button" i18n>Register your Team</button>
-  </div>
-
-  <div class="content-container-column">
-    <img ngSrc="/assets/wallpapers/team-page.webp" width="600" height="314" class="preview-image" alt="CS:GO Team Overview" />
+    <h2 id="partners" i18n>Partners</h2>
+    <div class="horizontal-center">
+      <a href="http://bprogaming.com/" i18n-title title="BPro Gaming is the first professional esports club in Bulgaria. Since 2015 BPro has developed a number of professional players, team and infrastructure." target="_blank" rel="noopener">
+        <img ngSrc="/assets/partners/bpro.webp" width="134" height="112" i18n-alt alt="BPro Gaming is the first professional esports club in Bulgaria. Since 2015 BPro has developed a number of professional players, team and infrastructure." class="partner logistics" />
+      </a>
+      <a href="https://www.facebook.com/BSLesports/" i18n-title title="Bulgarian StarCraft League a one of a kind StarCraft II league in Bulgaria and are contributing to the deveopment of Bulgarian talent in this esport! All StarCraft 2 games in the Esports Business League are casted by the them!" target="_blank" rel="noopener">
+        <img ngSrc="/assets/partners/bsl.webp" width="134" height="134" i18n-alt alt="Bulgarian StarCraft League a one of a kind StarCraft II league in Bulgaria and are contributing to the deveopment of Bulgarian talent in this esport! All StarCraft 2 games in the Esports Business League are casted by the them!" class="partner logistics" />
+      </a>
+      <a href="https://www.starazagora.bg/" i18n-title title="Stara Zagora is a 6000+ year-old city in the center of Bulgaria. We partner with Stara Zagora Municipality for the Bellum Gens Elite - Stara Zagora premier esports event!" target="_blank" rel="noopener">
+        <img ngSrc="/assets/partners/stara-zagora-municipality.webp" width="384" height="134" i18n-alt alt="Stara Zagora is a 6000+ year-old city in the center of Bulgaria. We partner with Stara Zagora Municipality for the Bellum Gens Elite - Stara Zagora premier esports event!" class="partner logistics" />
+      </a>
+      <!-- <a href="https://www.vmware.com/" target="_blank" rel="noopener" i18n-title title="VMware is a global leader in cloud infrastructure and business mobility. The company helps customers realize possibilities by accelerating their digital transformation journeys. Over the range of 12 years VMware Bulgaria has transformed from a purely R&D facility to a multifunctional hub with product, revenue generating professional services and business operations teams and is now one of the three core strategic sites for VMware globally.">
+        <igx-icon family="partners" name="vmware" class="partner gold"></igx-icon>
+      </a>
+      <a href="https://careers.paysafe.com/sofiaengineeringteams/" target="_blank" rel="noopener" i18n-title title="With over 1200 employees, Paysafe is one of the largest software companies and is one of the most desirable employers in Bulgaria.">
+        <igx-icon family="partners" name="paysafe" class="partner gold"></igx-icon>
+      </a>
+      <a href="https://www.modis.com/en-bg/" target="_blank" rel="noopener">
+        <igx-icon family="partners" name="modis" title="Modis is a global leader in professional solutions for IT, Engineering and Life Sciences. With more than 20 years of experience the company has established office locations in Europe, North America, Asia and Australia." class="partner gold"></igx-icon>
+      </a> -->
+    </div>
   </div>
 
   <div class="content-container-row">
@@ -104,36 +154,8 @@
         <img ngSrc="/assets/social/discord-150x150.webp" width="150" height="150" alt="Discord" />
       </a>
     </div>
-  </div>
 
-  <div class="content-container-row">
-    <igx-divider></igx-divider>
-    <h2 id="partners" i18n>Partners</h2>
-    <div class="horizontal-center">
-      <a href="http://bprogaming.com/" i18n-title title="BPro Gaming is the first professional esports club in Bulgaria. During the past 4 years BPro has developed a number of professional players, team and infrastructure." target="_blank" rel="noopener">
-        <img ngSrc="/assets/partners/bpro.webp" width="134" height="112" i18n-alt alt="BPro Gaming is the first professional esports club in Bulgaria. During the past 4 years BPro has developed a number of professional players, team and infrastructure." class="partner logistics" />
-      </a>
-      <a href="https://www.facebook.com/BSLesports/" i18n-title title="BSL a one of a kind StarCraft II league in Bulgaria and are contributing to the deveopment of Bulgarian talent in this esport! All StarCraft 2 games in the Esports Business League will be casted by the them!" target="_blank" rel="noopener">
-        <img ngSrc="/assets/partners/bsl.webp" width="134" height="134" i18n-alt alt="BSL a one of a kind StarCraft II league in Bulgaria and are contributing to the deveopment of Bulgarian talent in this esport! All StarCraft 2 games in the Esports Business League will be casted by the them!" class="partner logistics" />
-      </a>
-      <!-- <a href="https://www.vmware.com/" target="_blank" rel="noopener" i18n-title title="VMware is a global leader in cloud infrastructure and business mobility. The company helps customers realize possibilities by accelerating their digital transformation journeys. Over the range of 12 years VMware Bulgaria has transformed from a purely R&D facility to a multifunctional hub with product, revenue generating professional services and business operations teams and is now one of the three core strategic sites for VMware globally.">
-        <igx-icon family="partners" name="vmware" class="partner gold"></igx-icon>
-      </a>
-      <a href="https://careers.paysafe.com/sofiaengineeringteams/" target="_blank" rel="noopener" i18n-title title="With over 1200 employees, Paysafe is one of the largest software companies and is one of the most desirable employers in Bulgaria.">
-        <igx-icon family="partners" name="paysafe" class="partner gold"></igx-icon>
-      </a>
-      <a href="https://www.modis.com/en-bg/" target="_blank" rel="noopener">
-        <igx-icon family="partners" name="modis" title="Modis is a global leader in professional solutions for IT, Engineering and Life Sciences. With more than 20 years of experience the company has established office locations in Europe, North America, Asia and Australia." class="partner gold"></igx-icon>
-      </a> -->
-    </div>
-  </div>
-
-  <div class="content-container-row">
-    <igx-divider></igx-divider>
-    <h2 id="aboutus" i18n>About us</h2>
-    <p i18n>Bellum Gens is founded by two passionate about gaming friends. Bellum Gens is an esports organization focused on the development and popularization of esports in Bulgaria. We want to make esports a recognizable topic for the business and thus to help the development of all esports project in Bulgaria and on the Balkans.</p>
-
-    <h2 i18n>Contacts</h2>
+    <h2 i18n>Subscribe</h2>
 
     <form #subscription="ngForm" (ngSubmit)="subscribe()">
       <div class="horizontal">
