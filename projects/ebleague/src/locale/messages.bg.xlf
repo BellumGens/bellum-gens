@@ -1484,7 +1484,7 @@
       </trans-unit>
       <trans-unit id="82d09d8d0afba19be5155dca6f3cccd2aa48f027" datatype="html">
         <source>The Ultimate Gaming experience for your company</source>
-		    <target>Ултиматното гейминг преживяване за вашата компания</target>
+		    <target>Гейминг преживяване за вашите служители</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
           <context context-type="linenumber">3</context>
@@ -1938,9 +1938,9 @@
           <context context-type="linenumber">382</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="11750bb0c2ac64b44cffc04289e40352112b6d09" datatype="html">
-        <source>Esports Business League is organized by Bellum Gens - organization focused on the development and popularization of esports in Bulgaria and on the Balkans. Bellum Gens was founded as an amateur project by two friends - gamers. We want to make esports a recognizable topic for the business and thus to help the development of all esports project in Bulgaria and on the Balkans.</source>
-        <target>Esports Бизнес Лигата се организира от Белум Генс - организация фокусирана върху развитието и популяризирането на esports в България и на Балканите. Белум Генс е основана като аматьорски проект от двама приятели - геймъри. Искаме да направим esports тема, която е разбираема за бизнеса в България и по този начин да подпомогнем развитието на други esports проекти в България - наши, както и външни.</target>
+      <trans-unit id="fe88386ed52a9b73393e3313fc2edc3aee3ede5c" datatype="html">
+        <source>Esports Business League is organized by Bellum Gens - organization focused on the development and popularization of esports in Bulgaria and on the Balkans. We want to make esports a recognizable topic for the business and thus to help the development of all esports projects in Bulgaria and on the Balkans.</source>
+        <target>Esports Бизнес Лигата се организира от Белум Генс - организация фокусирана върху развитието и популяризирането на esports в България и на Балканите. Искаме да направим esports тема, която е разбираема за бизнеса в България и по този начин да подпомогнем развитието на други esports проекти в България и на Балканите.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
           <context context-type="linenumber">383</context>
@@ -2194,14 +2194,6 @@
           <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="d21f59c28462fecf7aba3f46ffb3a98589695b08" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{ authUser ? &apos;Choose league (game)&apos; : &apos;You must login first&apos;}}"/></source>
-        <target><x id="INTERPOLATION" equiv-text="{{ authUser ? &apos;Изберете лига (игра)&apos; : &apos;Първо трябва да влезете в акаунта си&apos;}}"/></target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/tournament-registration/tournament-registration.component.html</context>
-          <context context-type="linenumber">7,8</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="95a7c44ac38d7193c7fb3890af5187457b90d727" datatype="html">
         <source>*You&apos;ve not associated a Steam account...</source>
         <target>*Вашият профил няма асоциран Steam акаунт...</target>
@@ -2240,6 +2232,22 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournament-registration/tournament-registration.component.html</context>
           <context context-type="linenumber">70</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5087015726170958383" datatype="html">
+        <source>Choose league (game)</source>
+        <target>Изберете лига (игра)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/tournament-registration/tournament-registration.component.ts</context>
+          <context context-type="linenumber">54</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8376311744797589133" datatype="html">
+        <source>Please login first</source>
+        <target>Моля влезете в акаунта си</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/tournament-registration/tournament-registration.component.ts</context>
+          <context context-type="linenumber">55</context>
         </context-group>
       </trans-unit>
       <trans-unit id="d356a49bcc72ee5628fdfc07fe2a40bd6e9bb80e" datatype="html">
