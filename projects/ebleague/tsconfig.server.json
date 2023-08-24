@@ -1,7 +1,7 @@
 {
   "extends": "./tsconfig.app.json",
   "compilerOptions": {
-    "outDir": "../../out-tsc/app-server-bellumgens",
+    "outDir": "../../out-tsc/app-server-ebleague",
     "baseUrl": "."
   },
   "angularCompilerOptions": {

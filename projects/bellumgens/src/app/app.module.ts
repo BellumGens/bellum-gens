@@ -1,7 +1,7 @@
 import { BrowserModule, HammerModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { Inject, LOCALE_ID, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { TransferHttpCacheModule } from '@nguniversal/common';
@@ -19,8 +19,10 @@ import {
   IgxBannerModule,
   IgxIconService,
   IgxDividerModule,
-  IgxNavigationDrawerModule
+  IgxNavigationDrawerModule,
+  changei18n
 } from '@infragistics/igniteui-angular';
+import { IgxResourceStringsBG } from 'igniteui-angular-i18n';
 import { socialMedia, logos, heartCare } from '@igniteui/material-icons-extended';
 
 import { AppComponent } from './app.component';
@@ -63,7 +65,7 @@ import { LanguagesComponent, LoginComponent, SuccessErrorComponent } from '../..
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(private iconService: IgxIconService) {
+  constructor(@Inject(LOCALE_ID) private localeId: string, private iconService: IgxIconService) {
     const smproviders = ['facebook', 'twitter', 'instagram', 'linkedin'];
     const complogos = ['discord', 'steam', 'twitch', 'battlenet'];
     complogos.forEach(c => this.iconService.addSvgIconFromText(c, logos.find(s => s.name === c).value, 'login-icons'));
@@ -81,5 +83,9 @@ export class AppModule {
 
     this.iconService.addSvgIcon('en', '/assets/country-flags/svg/united-kingdom.svg', 'languages');
     this.iconService.addSvgIcon('bg', '/assets/country-flags/svg/bulgaria.svg', 'languages');
+
+    if (this.localeId === 'bg') {
+      changei18n(IgxResourceStringsBG);
+    }
   }
 }

@@ -51,6 +51,9 @@ export class TournamentRegistrationComponent {
   public inProgress = false;
   public userTeams: Observable<CSGOTeam []>;
 
+  public chooseGame = $localize`Choose league (game)`;
+  public loginFirst = $localize`Please login first`;
+
   constructor(private authManager: LoginService,
               private apiService: ApiTournamentsService,
               private userService: BellumgensApiService,

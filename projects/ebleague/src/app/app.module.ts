@@ -1,10 +1,11 @@
 import { BrowserModule, HammerModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
+import { Inject, LOCALE_ID, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { TransferHttpCacheModule } from '@nguniversal/common';
+import { NgOptimizedImage } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,40 +20,41 @@ import {
   IgxBannerModule,
   IgxIconService,
   IgxDividerModule,
-  IgxNavigationDrawerModule
+  IgxNavigationDrawerModule,
+  changei18n
 } from '@infragistics/igniteui-angular';
+import { IgxResourceStringsBG } from 'igniteui-angular-i18n';
 import { socialMedia, logos, heartCare } from '@igniteui/material-icons-extended';
 import { LanguagesComponent, LoginComponent, SuccessErrorComponent } from '../../../common/src/public_api';
-import { NgOptimizedImage } from '@angular/common';
 
 @NgModule({
     declarations: [AppComponent],
     imports: [
-        FormsModule,
-        HttpClientModule,
-        BrowserModule,
-        BrowserAnimationsModule,
-        AppRoutingModule,
-        TransferHttpCacheModule,
-        NgOptimizedImage,
-        IgxNavbarModule,
-        IgxLayoutModule,
-        IgxRippleModule,
-        IgxIconModule,
-        IgxButtonModule,
-        IgxBannerModule,
-        IgxDividerModule,
-        IgxNavigationDrawerModule,
-        ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-        HammerModule,
-        SuccessErrorComponent,
-        LoginComponent,
-        LanguagesComponent
+      FormsModule,
+      HttpClientModule,
+      BrowserModule,
+      BrowserAnimationsModule,
+      AppRoutingModule,
+      TransferHttpCacheModule,
+      NgOptimizedImage,
+      IgxNavbarModule,
+      IgxLayoutModule,
+      IgxRippleModule,
+      IgxIconModule,
+      IgxButtonModule,
+      IgxBannerModule,
+      IgxDividerModule,
+      IgxNavigationDrawerModule,
+      ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
+      HammerModule,
+      SuccessErrorComponent,
+      LoginComponent,
+      LanguagesComponent
     ],
     bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(private iconService: IgxIconService) {
+  constructor(@Inject(LOCALE_ID) private localeId: string, private iconService: IgxIconService) {
     const smproviders = ['facebook', 'twitter', 'instagram', 'linkedin', 'youtube'];
     const complogos = ['discord', 'steam', 'twitch', 'battlenet'];
     complogos.forEach(c => this.iconService.addSvgIconFromText(c, logos.find(s => s.name === c).value, 'login-icons'));
@@ -68,5 +70,9 @@ export class AppModule {
 
     this.iconService.addSvgIcon('en', '/assets/country-flags/svg/united-kingdom.svg', 'languages');
     this.iconService.addSvgIcon('bg', '/assets/country-flags/svg/bulgaria.svg', 'languages');
+
+    if (this.localeId === 'bg') {
+      changei18n(IgxResourceStringsBG);
+    }
   }
 }

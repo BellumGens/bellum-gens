@@ -1,7 +1,3 @@
-/***************************************************************************************************
- * Load `$localize` onto the global scope - used if i18n tags appear in Angular templates.
- */
-import '@angular/localize/init';
 import 'zone.js/node';
 
 import { APP_BASE_HREF } from '@angular/common';
@@ -9,15 +5,11 @@ import { LOCALE_ID } from '@angular/core';
 import { ngExpressEngine } from '@nguniversal/express-engine';
 
 import * as express from 'express';
-import * as xmlhttprequest from 'xmlhttprequest';
 import { join } from 'path';
 
 import { AppServerModule } from './src/main.server';
 import { existsSync } from 'fs';
 import { environment } from '../common/src/environments/environment';
-
-// HTML polyfills
-(global as any).XMLHttpRequest = xmlhttprequest.XMLHttpRequest;
 
 // The Express app is exported so that it can be used by serverless Functions.
 export const app = (lang: string) => {

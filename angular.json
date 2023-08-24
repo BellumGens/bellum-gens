@@ -26,7 +26,7 @@
             "outputPath": "dist/bellumgens/browser",
             "index": "projects/bellumgens/src/index.html",
             "main": "projects/bellumgens/src/main.ts",
-            "polyfills": "projects/common/src/polyfills.ts",
+            "polyfills": ["zone.js"],
             "tsConfig": "projects/bellumgens/tsconfig.app.json",
             "assets": [
               "projects/bellumgens/src/favicon.ico",
@@ -115,7 +115,7 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "projects/bellumgens/src/test.ts",
-            "polyfills": "projects/common/src/polyfills.ts",
+            "polyfills": ["zone.js"],
             "tsConfig": "projects/bellumgens/tsconfig.spec.json",
             "karmaConfig": "projects/bellumgens/karma.conf.js",
             "styles": [
@@ -304,7 +304,7 @@
             "outputPath": "dist/ebleague/browser",
             "index": "projects/ebleague/src/index.html",
             "main": "projects/ebleague/src/main.ts",
-            "polyfills": "projects/common/src/polyfills.ts",
+            "polyfills": ["zone.js"],
             "tsConfig": "projects/ebleague/tsconfig.app.json",
             "assets": [
               "projects/ebleague/src/favicon.ico",
@@ -393,7 +393,7 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "projects/ebleague/src/test.ts",
-            "polyfills": "projects/common/src/polyfills.ts",
+            "polyfills": ["zone.js"],
             "tsConfig": "projects/ebleague/tsconfig.spec.json",
             "karmaConfig": "projects/ebleague/karma.conf.js",
             "styles": [
@@ -539,7 +539,7 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "projects/common/src/test.ts",
-            "polyfills": "projects/common/src/polyfills.ts",
+            "polyfills": ["zone.js"],
             "tsConfig": "projects/common/tsconfig.spec.json",
             "karmaConfig": "projects/common/karma.conf.js",
             "stylePreprocessorOptions": {

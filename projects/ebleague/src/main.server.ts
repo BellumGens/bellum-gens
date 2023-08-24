@@ -1,3 +1,4 @@
+import '@angular/localize/init';
 import { enableProdMode } from '@angular/core';
 
 import { environment } from '../../common/src/environments/environment';

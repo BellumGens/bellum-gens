@@ -2,10 +2,9 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "../../out-tsc/app-bellumgens",
-    "types": []
+    "types": ["@angular/localize"]
   },
   "files": [
-    "src/main.ts",
-    "../common/src/polyfills.ts"
+    "src/main.ts"
   ]
 }
