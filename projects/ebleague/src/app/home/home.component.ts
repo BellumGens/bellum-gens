@@ -1,6 +1,7 @@
 import { DatePipe, NgIf, NgOptimizedImage, isPlatformBrowser } from '@angular/common';
 import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { IgxButtonModule, IgxDividerModule, IgxIconModule, IgxInputGroupModule } from '@infragistics/igniteui-angular';
 import {
   Game, RegistrationsCount, Tournament,
@@ -19,6 +20,7 @@ import { TournamentRegistrationComponent } from '../tournament-registration/tour
     imports: [
       NgOptimizedImage,
       NgIf,
+      RouterLink,
       FormsModule,
       TournamentRegistrationComponent,
       IgxButtonModule,
