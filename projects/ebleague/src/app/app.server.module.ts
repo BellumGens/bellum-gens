@@ -11,8 +11,7 @@ import { provideClientHydration } from '@angular/platform-browser';
     ServerModule
   ],
   providers: [provideClientHydration()],
-  bootstrap: [AppComponent],
-  declarations: [],
+  bootstrap: [AppComponent]
 })
 export class AppServerModule {
   constructor() {
