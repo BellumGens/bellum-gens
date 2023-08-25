@@ -5,6 +5,7 @@ import { TeamadminGuard } from '../../../common/src/public_api';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'bellumgenselite', loadComponent: () => import('./events/events.component').then(m => m.EventsComponent) },
   { path: 'register', loadComponent: () => import('../../../common/src/public_api').then(m => m.RegistrationComponent) },
   { path: 'unauthorized', redirectTo: 'unauthorized/', pathMatch: 'full' },
   { path: 'unauthorized/:message', loadComponent: () => import('../../../common/src/public_api').then(m => m.UnauthorizedComponent) },

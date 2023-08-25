@@ -96,7 +96,7 @@ textarea {
   min-width: 380px;
   padding: 16px;
   margin: auto;
-  min-height: calc(100% - 57px);
+  min-height: calc(100% - 45px);
 }
 
   .content-container h1 {
@@ -170,7 +170,7 @@ textarea {
 /* Loading */
 .loading-overview {
   display: flex;
-  min-height: calc(100% - 57px);
+  min-height: calc(100% - 45px);
   justify-content: center;
   align-items: center;
   width: 60%;
@@ -185,7 +185,7 @@ textarea {
   margin: auto;
   padding-top: 24px;
   color: white;
-  min-height: calc(100% - 57px);
+  min-height: calc(100% - 45px);
 }
 
 .card-wrapper {
@@ -194,7 +194,7 @@ textarea {
   grid-gap: 16px;
   grid-auto-rows: max-content;
   margin: 24px;
-  min-height: calc(100% - 57px);
+  min-height: calc(100% - 45px);
 }
 
   .overview-container-card .card-wrapper {
@@ -215,7 +215,7 @@ textarea {
 }
 
 .main-content-wrapper {
-  height: calc(100% - 57px);
+  height: calc(100% - 45px);
   min-width: 380px;
   display: flex;
 }
@@ -225,7 +225,6 @@ textarea {
   width: 100%;
   display: flex;
   flex-flow: column;
-  padding: 12px 36px 0 36px;
 }
 
 .footer-row {
