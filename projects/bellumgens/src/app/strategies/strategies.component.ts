@@ -96,7 +96,7 @@ export class StrategiesComponent {
               private commService: CommunicationService,
               private socialMedia: SocialMediaStrategyService) {
     this.activatedRoute.url.subscribe(value => {
-      if (value?.length && value[0]?.path === 'user') {
+      if (value?.length && value[1]?.path === 'user') {
         this.authManager.applicationUser.subscribe(user => {
           if (user) {
             this.authUser = user;
