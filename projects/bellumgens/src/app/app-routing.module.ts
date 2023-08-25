@@ -5,9 +5,11 @@ import { TeamResultsComponent } from './search/search-results/team-results/team-
 import { PlayerResultsComponent } from './search/search-results/player-results/player-results.component';
 import { EmailconfirmComponent } from './emailconfirm/emailconfirm.component';
 import { RegistrationComponent, UnauthorizedComponent } from '../../../common/src/public_api';
+import { EventsComponent } from './events/events.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'bellumgenselite', component: EventsComponent },
   { path: 'register', component: RegistrationComponent },
   { path: 'unauthorized', redirectTo: 'unauthorized/', pathMatch: 'full' },
   { path: 'unauthorized/:message', component: UnauthorizedComponent },

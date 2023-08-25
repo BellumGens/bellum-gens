@@ -1,0 +1,39 @@
+:host {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  background-image: url('/assets/bge/bge-background-right.jpg');
+
+  @font-face {
+    font-family: 'dge-ebold';
+    src: url('/assets/fonts/dge-ebold.otf');
+  }
+
+  @font-face {
+    font-family: 'rg-b';
+    src: url('/assets/fonts/rg-r.otf');
+  }
+
+  @font-face {
+    font-family: 'rg-r';
+    src: url('/assets/fonts/rg-b.otf');
+  }
+
+  .content-container h1 {
+    font-family: 'dge-ebold';
+    font-size: 80pt;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .content-container h2 {
+    font-family: 'rg-b';
+    font-size: 36pt;
+    text-transform: uppercase;
+  }
+
+  .content-container p {
+    font-family: 'rg-r';
+    font-size: 14pt;
+  }
+}

@@ -1,10 +1,10 @@
 :host ::ng-deep {
   .card-wrapper {
-    min-height: calc(100% - 204px);
+    min-height: calc(100% - 281px);
   }
 
   .card-wrapper > igx-card {
-    min-height: 581px;
+    min-height: 200px;
     height: fit-content;
   }
 
