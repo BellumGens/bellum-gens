@@ -5,7 +5,7 @@ import { environment } from '../../../../common/src/environments/environment';
 import { BaseComponent } from '../base/base.component';
 import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { IgxCarouselComponent, IgxCarouselModule, IgxIconModule, IgxButtonModule, IgxDividerModule, IgxInputGroupModule } from '@infragistics/igniteui-angular';
+import { IgxCarouselComponent, IgxIconModule, IgxButtonModule, IgxDividerModule, IgxInputGroupModule, IgxSlideComponent } from '@infragistics/igniteui-angular';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -20,7 +20,8 @@ import { FormsModule } from '@angular/forms';
       FormsModule,
       IgxDividerModule,
       IgxInputGroupModule,
-      IgxCarouselModule,
+      IgxCarouselComponent,
+      IgxSlideComponent,
       IgxIconModule,
       IgxButtonModule
     ]

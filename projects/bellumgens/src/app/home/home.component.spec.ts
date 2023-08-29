@@ -1,14 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { HomeComponent } from './home.component';
-import { IgxInputGroupModule,
-  IgxIconModule,
-  IgxAvatarModule,
-  IgxProgressBarModule,
-  IgxDividerModule,
-  IgxButtonModule,
-  IgxDialogModule,
-  IgxCarouselModule} from '@infragistics/igniteui-angular';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -25,14 +17,6 @@ describe('HomeComponent', () => {
         NoopAnimationsModule,
         RouterTestingModule,
         ServiceWorkerModule.register('', { enabled: false }),
-        IgxInputGroupModule,
-        IgxIconModule,
-        IgxAvatarModule,
-        IgxDividerModule,
-        IgxProgressBarModule,
-        IgxButtonModule,
-        IgxCarouselModule,
-        IgxDialogModule,
         HomeComponent
     ]
 })
