@@ -27,11 +27,11 @@ export const StratOrder = [
   { display: 'Top Voted', order: StratOrderBy.TopVoted }
 ];
 
-export class CompetitionDefaults {
-  public static compStart = new Date(2021, 2, 24);
-  public static compFinals = new Date(2021, 4, 15);
-  public static regDeadline = new Date(2021, 8, 14);
-}
+// export class CompetitionDefaults {
+//   public static compStart = new Date(2021, 2, 24);
+//   public static compFinals = new Date(2021, 4, 15);
+//   public static regDeadline = new Date(2021, 8, 14);
+// }
 
 export const CREW_MEMBERS = [
   {

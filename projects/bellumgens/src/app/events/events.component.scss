@@ -19,6 +19,10 @@
     src: url('/assets/fonts/rg-b.otf');
   }
 
+  .content-container-row iframe {
+    height: 315px;
+  }
+
   .content-container h1 {
     font-family: 'dge-ebold';
     font-size: 80pt;
@@ -35,5 +39,19 @@
   .content-container p {
     font-family: 'rg-r';
     font-size: 14pt;
+  }
+
+  @media screen and (max-width: 1024px) {
+    .content-container h1 {
+      font-size: 36pt;
+    }
+
+    .content-container h2 {
+      font-size: 24pt;
+    }
+
+    .content-container p {
+      font-size: 12pt;
+    }
   }
 }

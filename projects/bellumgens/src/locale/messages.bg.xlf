@@ -207,7 +207,7 @@
         <target>Bellum Gens Elite - Стара Загора</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
-          <context context-type="linenumber">15</context>
+          <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2c6fc67178db9ac0d442af3ad1e303056e7d1da4" datatype="html">
@@ -215,7 +215,7 @@
         <target>Белум Генс организира елитното Bellum Gens Elite. Провел се за първи път в град Стара Загора, под името <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Bellum Gens Elite - Stara Zagora<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>, BGE доведе в града топ Counter-Strike таланти от региона, които се състезаваха под един покрив за награден фонд от $10000!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
-          <context context-type="linenumber">16</context>
+          <context context-type="linenumber">17</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
@@ -227,7 +227,7 @@
         <target>Bellum Gens Elite - Стара Загора беше едно от малкото LAN събития проведени през 2020, поради пандемията от Ковид-19, и само 10 отбора успяха да вземат участие във финалите.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
-          <context context-type="linenumber">17</context>
+          <context context-type="linenumber">18</context>
         </context-group>
       </trans-unit>
       <trans-unit id="0d0e1b60b303a6f545a2ed2e2c09e651ce89bb02" datatype="html">

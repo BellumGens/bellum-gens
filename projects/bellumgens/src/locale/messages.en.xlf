@@ -187,14 +187,14 @@
         <source>Bellum Gens Elite - Stara Zagora</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
-          <context context-type="linenumber">15</context>
+          <context context-type="linenumber">16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2c6fc67178db9ac0d442af3ad1e303056e7d1da4" datatype="html">
         <source>Bellum Gens is the organizer of the premier Bellum Gen Elite esports event. First held in the town of Stara Zagora, under the name <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Bellum Gens Elite - Stara Zagora<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>, BGE brought the top Counter-Strike talent in the region to compete under one roof for a prize pool of $10,000!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
-          <context context-type="linenumber">16</context>
+          <context context-type="linenumber">17</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
@@ -205,7 +205,7 @@
         <source>Bellum Gens Elite - Stara Zagora was one of the few LAN events held in 2020 and due to Covid-19, only 10 teams were able to participate in the finals.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
-          <context context-type="linenumber">17</context>
+          <context context-type="linenumber">18</context>
         </context-group>
       </trans-unit>
       <trans-unit id="0d0e1b60b303a6f545a2ed2e2c09e651ce89bb02" datatype="html">
