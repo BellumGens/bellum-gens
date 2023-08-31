@@ -23,7 +23,7 @@ import {
   changei18n
 } from '@infragistics/igniteui-angular';
 import { IgxResourceStringsBG } from 'igniteui-angular-i18n';
-import { socialMedia, logos, heartCare } from '@igniteui/material-icons-extended';
+import { facebook, twitter, instagram, linkedin, discord, steam, twitch, battlenet, heartCare } from '@igniteui/material-icons-extended';
 
 import { AppComponent } from './app.component';
 import { SearchComponent } from './search/search/search.component';
@@ -66,10 +66,8 @@ import { LanguagesComponent, LoginComponent, SuccessErrorComponent } from '../..
 })
 export class AppModule {
   constructor(@Inject(LOCALE_ID) private localeId: string, private iconService: IgxIconService) {
-    const smproviders = ['facebook', 'twitter', 'instagram', 'linkedin'];
-    const complogos = ['discord', 'steam', 'twitch', 'battlenet'];
-    complogos.forEach(c => this.iconService.addSvgIconFromText(c, logos.find(s => s.name === c).value, 'login-icons'));
-    smproviders.forEach(p => this.iconService.addSvgIconFromText(p, socialMedia.find(s => s.name === p).value, 'login-icons'));
+    const complogos = [discord, steam, twitch, battlenet, facebook, twitter, instagram, linkedin];
+    complogos.forEach(c => this.iconService.addSvgIconFromText(c.name, c.value, 'login-icons'));
     this.iconService.addSvgIconFromText(heartCare.name, heartCare.value, 'health-icons');
 
     this.iconService.addSvgIcon('bge-white', '/assets/login/bge-white.svg', 'partners');

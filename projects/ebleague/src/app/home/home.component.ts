@@ -8,7 +8,6 @@ import {
   ApiTournamentsService,
   LoginService,
   ApplicationUser,
-  CompetitionDefaults,
   SocialMediaService
 } from '../../../../common/src/public_api';
 import { TournamentRegistrationComponent } from '../tournament-registration/tournament-registration.component';
@@ -37,7 +36,6 @@ export class HomeComponent {
   public tournament: Tournament;
   public tournamentId: string;
   public authUser: ApplicationUser;
-  public dates = CompetitionDefaults;
 
   constructor(@Inject(PLATFORM_ID) private platformId: any,
               private apiService: ApiTournamentsService,
