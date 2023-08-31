@@ -5,7 +5,7 @@ import { environment } from '../../../../common/src/environments/environment';
 import { BaseComponent } from '../base/base.component';
 import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { IgxCarouselComponent, IgxIconModule, IgxButtonModule, IgxDividerModule, IgxInputGroupModule, IgxSlideComponent } from '@infragistics/igniteui-angular';
+import { IgxCarouselComponent, IgxSlideComponent, IgxDividerDirective, IgxButtonDirective, IgxIconComponent, IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -18,12 +18,12 @@ import { FormsModule } from '@angular/forms';
       NgIf,
       NgOptimizedImage,
       FormsModule,
-      IgxDividerModule,
-      IgxInputGroupModule,
+      IgxDividerDirective,
+      IGX_INPUT_GROUP_DIRECTIVES,
       IgxCarouselComponent,
       IgxSlideComponent,
-      IgxIconModule,
-      IgxButtonModule
+      IgxIconComponent,
+      IgxButtonDirective
     ]
 })
 export class HomeComponent extends BaseComponent {
