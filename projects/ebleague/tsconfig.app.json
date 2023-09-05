@@ -2,7 +2,7 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "../../out-tsc/app-ebleague",
-    "types": ["@angular/localize"]
+    "types": []
   },
   "files": [
     "src/main.ts"
