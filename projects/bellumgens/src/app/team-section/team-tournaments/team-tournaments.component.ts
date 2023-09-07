@@ -5,15 +5,15 @@ import {
   CSGOTeam
 } from '../../../../../common/src/public_api';
 import { ActivatedRoute } from '@angular/router';
-import { IgxGridModule, IgxAvatarModule, IgxListModule } from '@infragistics/igniteui-angular';
-import { NgIf, NgFor } from '@angular/common';
+// import { IgxGridModule, IgxAvatarModule, IgxListModule } from '@infragistics/igniteui-angular';
+import { NgIf } from '@angular/common';
 
 @Component({
     selector: 'app-team-tournaments',
     templateUrl: './team-tournaments.component.html',
     styleUrls: ['./team-tournaments.component.scss'],
     standalone: true,
-    imports: [NgIf, NgFor, IgxGridModule, IgxAvatarModule, IgxListModule]
+    imports: [NgIf/*, NgFor, IgxGridModule, IgxAvatarModule, IgxListModule*/]
 })
 export class TeamTournamentsComponent {
   public tournaments: Tournament [];

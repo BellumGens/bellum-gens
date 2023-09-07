@@ -38,6 +38,7 @@ jobs:
       with:
         github-token: ${{ github.token }}
     - name: Cypress run
+      if: matrix.node-version == '18.x'
       uses: cypress-io/github-action@v4.2.0
       with:
         build: npm run build:ssr
