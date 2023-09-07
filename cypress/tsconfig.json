@@ -4,6 +4,6 @@
   "exclude": [],
   "compilerOptions": {
     "sourceMap": false,
-    "types": ["cypress"]
+    "types": ["cypress", "@angular/localize"]
   }
 }
