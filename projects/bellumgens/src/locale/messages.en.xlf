@@ -264,8 +264,8 @@
           <context context-type="linenumber">29</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="aefac2bed86b447d9fca5a02e3da8ab273140de4" datatype="html">
-        <source>Bellum Gens is a gaming and esports event organizer and consultant focused on the development and popularization of esports in Bulgaria. We want to make esports a recognizable topic for the business and thus to help the development of all esports project in Bulgaria and on the Balkans. If you take interest in esports and want to advertise through esport, position your brand in tournaments, streams, or other gaming and esports channels, then we can help! Contact us for more information on available opportunities.</source>
+      <trans-unit id="9b2a916590f2feb687944fd1816b0e3b1796dc52" datatype="html">
+        <source>Bellum Gens is a gaming and esports event organizer and consultant focused on the development and popularization of esports in Bulgaria. We want to make esports a recognizable topic for the business and thus to help the development of all esports project in Bulgaria and on the Balkans. If you take interest in esports and want to advertise through esports, position your brand in tournaments, streams, or other gaming and esports channels, then we can help! Contact us for more information on available opportunities.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
           <context context-type="linenumber">39</context>
