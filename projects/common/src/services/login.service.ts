@@ -55,7 +55,7 @@ export class LoginService {
 
   public get teamsAdmin() {
     if (!this._teamsAdmin.value) {
-      this.getUserTeamsAdmin().subscribe(teams => this.teamsAdmin.next(teams));
+      this.getUserTeamsAdmin().subscribe(teams => this._teamsAdmin.next(teams));
     }
     return this._teamsAdmin;
   }
@@ -223,28 +223,30 @@ export class LoginService {
   }
 
   private initSw() {
-    this.swPush.requestSubscription({
-      serverPublicKey: environment.VAPID_PUBLIC_KEY
-    })
-    .then(sub => {
-      this.addPushSubscriber(sub).subscribe();
-      this.swPush.messages.subscribe((message: PushNotificationWrapper) => {
-        this.commService.emitMessage(message.notification.title);
+    if (this.swPush.isEnabled) {
+      this.swPush.requestSubscription({
+        serverPublicKey: environment.VAPID_PUBLIC_KEY
+      })
+      .then(sub => {
+        this.addPushSubscriber(sub).subscribe();
+        this.swPush.messages.subscribe((message: PushNotificationWrapper) => {
+          this.commService.emitMessage(message.notification.title);
 
-        // Update the app user with new notifications and teams
-        this.getAppUser().subscribe(user => this._applicationUser.next(user));
-      });
-      this.swPush.notificationClicks.subscribe(action => {
-        if (action.action === NotificationActions.ViewTeam) {
-          this.router.navigate(['team', action.notification.data]);
-        } else if (action.action === NotificationActions.ViewUser) {
-          this.router.navigate(['players', action.notification.data]);
-        } else if (action.action === NotificationActions.ViewStrategy) {
-          this.router.navigate(['strategies', 'details', action.notification.data]);
-        }
-      });
-    })
-    .catch(error => console.log(error));
+          // Update the app user with new notifications and teams
+          this.getAppUser().subscribe(user => this._applicationUser.next(user));
+        });
+        this.swPush.notificationClicks.subscribe(action => {
+          if (action.action === NotificationActions.ViewTeam) {
+            this.router.navigate(['team', action.notification.data]);
+          } else if (action.action === NotificationActions.ViewUser) {
+            this.router.navigate(['players', action.notification.data]);
+          } else if (action.action === NotificationActions.ViewStrategy) {
+            this.router.navigate(['strategies', 'details', action.notification.data]);
+          }
+        });
+      })
+      .catch(error => console.log(error));
+    }
   }
 
   private getAppUser() {
