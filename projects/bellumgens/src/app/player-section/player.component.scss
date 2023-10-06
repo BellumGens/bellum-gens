@@ -66,14 +66,8 @@ app-player .card-wrapper {
     text-align: center;
   }
 
-.weapon-image {
-  height: 205px;
-  width: 100%;
-}
-
 .weapon-image-small {
-  height: 60px;
-  width: 60px;
+  --size: 60px;
 }
 
 .card-title-no-grow {

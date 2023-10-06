@@ -1,6 +1,6 @@
 :host ::ng-deep {
   .card-wrapper {
-    min-height: calc(100% - 281px);
+    min-height: calc(100% - 248px);
   }
 
   .card-wrapper > igx-card {
@@ -13,7 +13,6 @@
   }
 
   .order-by {
-    height: 64px;
     margin: 4px;
   }
 

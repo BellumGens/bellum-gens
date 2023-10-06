@@ -5,10 +5,10 @@ import { LOCALE_ID } from '@angular/core';
 import { ngExpressEngine } from '@nguniversal/express-engine';
 
 import * as express from 'express';
-import { join } from 'path';
+import { join } from 'node:path';
 
 import { AppServerModule } from './src/main.server';
-import { existsSync } from 'fs';
+import { existsSync } from 'node:fs';
 import { environment } from '../common/src/environments/environment';
 
 // The Express app is exported so that it can be used by serverless Functions.

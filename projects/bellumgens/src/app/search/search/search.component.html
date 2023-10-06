@@ -1,4 +1,4 @@
-<igx-buttongroup class="search-type" [multiSelection]="false" (selected)="searchType = $event.index + 1">
+<igx-buttongroup class="search-type" [selectionMode]="'singleRequired'" (selected)="searchType = $event.index + 1">
   <button igxButton igxRipple i18n>Players</button>
   <button igxButton igxRipple i18n>Teams</button>
 </igx-buttongroup>

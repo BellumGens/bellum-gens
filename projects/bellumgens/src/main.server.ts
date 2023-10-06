@@ -8,5 +8,3 @@ if (environment.production) {
 }
 
 export { AppServerModule } from './app/app.server.module';
-
-export { renderApplication } from '@angular/platform-server';
