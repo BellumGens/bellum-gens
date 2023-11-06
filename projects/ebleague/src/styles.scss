@@ -74,6 +74,11 @@ $list-theme: list-theme($background: transparent,
 @include css-vars($list-theme);
 /* END List */
 
+/* Input Group */
+$input-group-theme: input-group-theme($search-background: transparent, $size: 48px);
+@include css-vars($input-group-theme);
+/* END Input Group */
+
 /* Banner */
 $banner-theme: banner-theme($banner-background: $banner-background);
 @include css-vars($banner-theme);

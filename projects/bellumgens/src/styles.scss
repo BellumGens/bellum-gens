@@ -76,7 +76,7 @@ $list-theme: list-theme($background: transparent,
 /* END List */
 
 /* Input Group */
-$input-group-theme: input-group-theme($search-background: transparent);
+$input-group-theme: input-group-theme($search-background: transparent, $size: 48px);
 @include css-vars($input-group-theme);
 /* END Input Group */
 
