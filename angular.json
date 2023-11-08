@@ -151,6 +151,7 @@
             "outputPath": "dist/bellumgens/server",
             "main": "projects/bellumgens/server-bellumgens.ts",
             "tsConfig": "projects/bellumgens/tsconfig.server.json",
+            "inlineStyleLanguage": "scss",
             "sourceMap": true,
             "optimization": false,
             "buildOptimizer": false
@@ -429,6 +430,7 @@
             "outputPath": "dist/ebleague/server",
             "main": "projects/ebleague/server-ebleague.ts",
             "tsConfig": "projects/ebleague/tsconfig.server.json",
+            "inlineStyleLanguage": "scss",
             "sourceMap": true,
             "optimization": false,
             "buildOptimizer": false
