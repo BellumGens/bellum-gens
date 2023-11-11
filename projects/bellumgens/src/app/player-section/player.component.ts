@@ -22,7 +22,7 @@ import { Observable } from 'rxjs';
 import { SortWeaponsPipe } from '../pipes/sort-weapons.pipe';
 import { TopWeaponAltPipe } from '../pipes/top-weapon-alt.pipe';
 import { SteamCustomUrlPipe } from '../pipes/steam-custom-url.pipe';
-import { PlayerCountryPipe } from '../../../../common/src/lib/pipes/player-country.pipe';
+import { CountrySVGPipe } from '../../../../common/src/lib/pipes/country-svg.pipe';
 import { MapPoolComponent } from './map-pool/map-pool.component';
 import { AvailabilityComponent } from '../../../../common/src/lib/availability/availability.component';
 import { FormsModule } from '@angular/forms';
@@ -35,7 +35,7 @@ import { NgIf, NgFor, AsyncPipe } from '@angular/common';
     styleUrls: ['./player.component.scss'],
     encapsulation: ViewEncapsulation.None,
     standalone: true,
-    imports: [NgIf, LoadingComponent, IgxAvatarModule, IgxButtonModule, IgxRippleModule, IgxToggleModule, IgxIconModule, IgxDropDownModule, NgFor, RouterLink, IgxSelectModule, FormsModule, IgxInputGroupModule, IgxCardModule, IgxProgressBarModule, AvailabilityComponent, IgxListModule, MapPoolComponent, AsyncPipe, PlayerCountryPipe, SteamCustomUrlPipe, SortWeaponsPipe, TopWeaponAltPipe]
+    imports: [NgIf, LoadingComponent, IgxAvatarModule, IgxButtonModule, IgxRippleModule, IgxToggleModule, IgxIconModule, IgxDropDownModule, NgFor, RouterLink, IgxSelectModule, FormsModule, IgxInputGroupModule, IgxCardModule, IgxProgressBarModule, AvailabilityComponent, IgxListModule, MapPoolComponent, AsyncPipe, CountrySVGPipe, SteamCustomUrlPipe, SortWeaponsPipe, TopWeaponAltPipe]
 })
 export class PlayerComponent extends BaseComponent {
   public authUser: ApplicationUser;

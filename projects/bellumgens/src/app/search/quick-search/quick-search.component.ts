@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { SearchResult, ApiSearchService } from '../../../../../common/src/public_api';
 import { IgxIconService, IgxListModule, IgxProgressBarModule, IgxAvatarModule, IgxIconModule, IgxButtonModule, IgxRippleModule } from '@infragistics/igniteui-angular';
 import { ReduceQuickSearchResultPipe } from '../../pipes/reduce-quick-search-result.pipe';
-import { PlayerCountryPipe } from '../../../../../common/src/lib/pipes/player-country.pipe';
+import { CountrySVGPipe } from '../../../../../common/src/lib/pipes/country-svg.pipe';
 import { RouterLink } from '@angular/router';
 import { NgIf, NgFor, DecimalPipe } from '@angular/common';
 
@@ -11,7 +11,7 @@ import { NgIf, NgFor, DecimalPipe } from '@angular/common';
     templateUrl: './quick-search.component.html',
     styleUrls: ['./quick-search.component.scss'],
     standalone: true,
-    imports: [IgxListModule, IgxProgressBarModule, NgIf, RouterLink, IgxAvatarModule, IgxIconModule, NgFor, IgxButtonModule, IgxRippleModule, DecimalPipe, PlayerCountryPipe, ReduceQuickSearchResultPipe]
+    imports: [IgxListModule, IgxProgressBarModule, NgIf, RouterLink, IgxAvatarModule, IgxIconModule, NgFor, IgxButtonModule, IgxRippleModule, DecimalPipe, CountrySVGPipe, ReduceQuickSearchResultPipe]
 })
 export class QuickSearchComponent {
   public searchResult: SearchResult = { steamUser: null, players: [], teams: [], strategies: [] };

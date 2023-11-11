@@ -8,7 +8,7 @@ import { ACTIVE_DUTY, CSGOMap } from '../../models/csgomaps';
 export class CSGOMapnamePipe implements PipeTransform {
 
   public transform(map: CSGOMap): string {
-    return map !== undefined ? ACTIVE_DUTY.find(m => m.mapId === map).map : '';
+    return ACTIVE_DUTY.find(m => m.mapId === map)?.map || '';
   }
 
 }
