@@ -1,5 +1,5 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
-import { ACTIVE_DUTY, CSGOActiveDutyDescriptor, CSGOMapPool } from '../../../../../common/src/public_api';
+import { ACTIVE_DUTY, CSGOMapPool } from '../../../../../common/src/public_api';
 import { ActiveDutyMapsPipe } from '../../../../../common/src/lib/pipes/active-duty-maps.pipe';
 import { FormsModule } from '@angular/forms';
 import { IgxCardModule, IgxCheckboxModule } from '@infragistics/igniteui-angular';
@@ -36,7 +36,7 @@ export class MapPoolComponent {
   public readOnly: boolean;
 
   @Output()
-  public update = new EventEmitter<CSGOActiveDutyDescriptor>();
+  public update = new EventEmitter<CSGOMapPool>();
 
   public maps = structuredClone(ACTIVE_DUTY);
 
@@ -44,7 +44,7 @@ export class MapPoolComponent {
 
   constructor() { }
 
-  public mapChange(map: CSGOActiveDutyDescriptor) {
+  public mapChange(map: CSGOMapPool) {
     this.update.emit(map);
   }
 

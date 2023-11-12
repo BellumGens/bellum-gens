@@ -3,7 +3,6 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import {
   BellumgensApiService,
   CSGOStrategy, VoteDirection,
-  CSGOMapPool, AllCSGOMaps,
   CSGOTeam,
   LoginService,
   ApplicationUser,
@@ -11,7 +10,9 @@ import {
   SocialMediaStrategyService,
   ApiSearchService,
   ApiStrategiesService,
-  CommunicationService
+  CommunicationService,
+  CSGOActiveDutyMap,
+  ACTIVE_DUTY
 } from '../../../../common/src/public_api';
 import { IChipSelectEventArgs, IgxButtonModule, IgxRippleModule, IgxChipsModule, IgxSelectModule, IgxInputGroupModule, IgxCardModule, IgxIconModule, IgxToggleModule, IgxBadgeModule, IgxDropDownModule, IgxAvatarModule } from '@infragistics/igniteui-angular';
 import { SafeResourceUrl } from '@angular/platform-browser';
@@ -74,7 +75,7 @@ export class StrategiesComponent {
   public isEditor: boolean = null;
 
   public strats: CSGOStrategy [];
-  public maps: CSGOMapPool [] = AllCSGOMaps;
+  public maps: CSGOActiveDutyMap [] = ACTIVE_DUTY;
   public team: CSGOTeam;
   public authUser: ApplicationUser;
   public sanitizedUrl: SafeResourceUrl;
@@ -147,7 +148,7 @@ export class StrategiesComponent {
     this.authManager.emitOpenLogin();
   }
 
-  public changeMaps(event: IChipSelectEventArgs, args: CSGOMapPool) {
+  public changeMaps(event: IChipSelectEventArgs, args: CSGOActiveDutyMap) {
     if (event.originalEvent) {
       this.maps.find(m => m.mapId === args.mapId).isPlayed = event.selected;
       this.pipeTrigger++;

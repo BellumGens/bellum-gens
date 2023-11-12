@@ -6,7 +6,7 @@ import {
   Tournament,
   ApiTournamentsService,
   TournamentSC2Match, TournamentMatchMap,
-  SC2_MAPS, SC2LadderDescriptor
+  SC2_MAPS, SC2LadderMap
 } from '../../../../../common/src/public_api';
 import { environment } from '../../../../../common/src/environments/environment';
 import { IDropDroppedEventArgs, IRowDataEventArgs, IgxGridComponent, IgxDialogComponent, IgxSelectModule, IgxInputGroupModule, IgxGridModule, IgxButtonModule, IgxIconModule, IgxAvatarModule, IgxListModule, IgxCardModule, IgxProgressBarModule, IgxDragDropModule, IgxBadgeModule, IgxDialogModule, IgxDatePickerModule, IgxTimePickerModule, IgxCheckboxModule } from '@infragistics/igniteui-angular';
@@ -57,7 +57,7 @@ export class AdminSc2Component {
   public environment = environment;
   public newGroup = Object.assign({}, EMPTY_NEW_GROUP);
   public pipeTrigger = 0;
-  public mapList: SC2LadderDescriptor [] = SC2_MAPS;
+  public mapList: SC2LadderMap [] = SC2_MAPS;
   public matchInEdit: TournamentSC2Match = { startTime: new Date() };
   public tournaments: Tournament [] = [];
   public selectedTournament: Tournament;

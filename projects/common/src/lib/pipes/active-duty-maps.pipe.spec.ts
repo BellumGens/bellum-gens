@@ -1,5 +1,5 @@
 import { ActiveDutyMapsPipe } from './active-duty-maps.pipe';
-import { CSGOMap, CSGOMapPool } from '../../public_api';
+import { CSGOActiveDutyMap, CSGOMap, CSGOMapPool } from '../../public_api';
 
 describe('ActiveDutyMapsPipe', () => {
   let pipe: ActiveDutyMapsPipe;
@@ -23,7 +23,7 @@ describe('ActiveDutyMapsPipe', () => {
       { mapId: CSGOMap.Vertigo, active: true, isPlayed: true },
       { mapId: CSGOMap.Ancient, active: true, isPlayed: true },
     ];
-    expect(pipe.transform(maps, true)).toEqual(maps);
+    expect(pipe.transform(maps as CSGOActiveDutyMap [], true)).toEqual(maps as CSGOActiveDutyMap []);
   });
 
   it('should return only active duty maps when viewAll is false', () => {
@@ -44,7 +44,7 @@ describe('ActiveDutyMapsPipe', () => {
       { mapId: CSGOMap.Overpass, active: true, isPlayed: true },
       { mapId: CSGOMap.Train, active: true, isPlayed: true },
     ];
-    expect(pipe.transform(maps, false)).toEqual(expected);
+    expect(pipe.transform(maps as CSGOActiveDutyMap [], false)).toEqual(expected as CSGOActiveDutyMap []);
   });
 
   it('should return empty array when maps is null or undefined', () => {

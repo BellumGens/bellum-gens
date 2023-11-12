@@ -13,8 +13,7 @@ import {
   ApplicationUser,
   CSGOTeam,
   CSGOMapPool,
-  ALL_ROLES,
-  CSGOActiveDutyDescriptor
+  ALL_ROLES
 } from '../../../../common/src/public_api';
 
 import { BaseComponent } from '../base/base.component';
@@ -116,13 +115,9 @@ export class PlayerComponent extends BaseComponent {
     this.apiService.setSecondaryRole(this.roles.find(r => r.id === value)).subscribe();
   }
 
-  public mapChange(args: CSGOActiveDutyDescriptor) {
-    const map: CSGOMapPool = {
-      mapId: args.mapId,
-      isPlayed: args.isPlayed,
-      userId: this.authUser.id
-    }
-    this.apiService.setMapPool(map).subscribe();
+  public mapChange(args: CSGOMapPool) {
+    args.userId = this.authUser.id;
+    this.apiService.setMapPool(args).subscribe();
   }
 
   public inviteToTeam(args: ISelectionEventArgs) {
