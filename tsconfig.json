@@ -22,7 +22,6 @@
     "useDefineForClassFields": false
   },
   "exclude": [
-    "e2e",
     "cypress",
     "./cypress.config.ts"
   ],
