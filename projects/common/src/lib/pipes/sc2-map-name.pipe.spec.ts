@@ -1,4 +1,3 @@
-import * as e from 'express';
 import { SC2Map } from '../../public_api';
 import { Sc2MapNamePipe } from './sc2-map-name.pipe';
 
