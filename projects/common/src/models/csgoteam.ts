@@ -6,7 +6,7 @@ export interface CSGOTeam {
   teamId?: string;
   teamName: string;
   teamAvatar: string;
-  description: string;
+  description?: string;
   discord?: string;
   visible: boolean;
   customUrl?: string;
@@ -49,16 +49,14 @@ export const TEAM_PLACEHOLDER: CSGOTeam = {
   teamName: 'Create or view teams',
   teamAvatar: '',
   description: 'Use the left navigation to create your own team or to view existing teams.',
-  visible: true,
+  visible: true
 };
 
 export const EMPTY_NEW_TEAM: CSGOTeam = {
   teamName: '',
   teamAvatar: '',
-  description: '',
   discord: '',
-  visible: true,
-  teamId: undefined
+  visible: true
 };
 
 export const TEAM_SEARCH: TeamSearch = {
