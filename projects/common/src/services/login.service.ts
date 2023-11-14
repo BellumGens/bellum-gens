@@ -146,7 +146,7 @@ export class LoginService {
       }),
       catchError(error => {
         this.commService.emitError(error.error);
-        return throwError(error);
+        return throwError(() => error);
       })
     );
   }
@@ -160,7 +160,7 @@ export class LoginService {
       }),
       catchError(error => {
         this.commService.emitError(error.error);
-        return throwError(error);
+        return throwError(() => error);
       })
     );
   }
@@ -173,7 +173,7 @@ export class LoginService {
       }),
       catchError(error => {
         this.commService.emitError(error.error);
-        return throwError(error);
+        return throwError(() => error);
       })
     );
   }
@@ -186,7 +186,7 @@ export class LoginService {
       }),
       catchError(error => {
         this.commService.emitError(error.error[''].join(' '));
-        return throwError(error);
+        return throwError(() => error);
       })
     );
   }
@@ -200,7 +200,7 @@ export class LoginService {
       }),
       catchError(error => {
         this.commService.emitError(error.error);
-        return throwError(error);
+        return throwError(() => error);
       })
     );
   }
@@ -217,7 +217,7 @@ export class LoginService {
       }),
       catchError(error => {
         this.commService.emitError(error.error);
-        return throwError(error);
+        return throwError(() => error);
       })
     );
   }

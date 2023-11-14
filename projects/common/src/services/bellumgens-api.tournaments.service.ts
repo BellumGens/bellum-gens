@@ -94,12 +94,13 @@ export class ApiTournamentsService {
     if (!this._csgoRegistrations.has(id)) {
       this.loadingCSGORegistrations.next(true);
       this._csgoRegistrations.set(id, new BehaviorSubject<TournamentParticipant []>(null));
-      this.getCSGORegistrations(id).subscribe(data => {
+      this.getCSGORegistrations(id).subscribe({
+        next: data => {
           this._csgoRegistrations.get(id).next(data);
           this.loadingCSGORegistrations.next(false);
         },
-        () => this.loadingCSGORegistrations.next(false)
-      );
+        complete: () => this.loadingCSGORegistrations.next(false)
+      });
     }
     return this._csgoRegistrations.get(id);
   }
@@ -108,12 +109,13 @@ export class ApiTournamentsService {
     if (!this._sc2Registrations.has(id)) {
       this.loadingSC2Registrations.next(true);
       this._sc2Registrations.set(id, new BehaviorSubject<TournamentParticipant []>(null));
-      this.getSC2Registrations(id).subscribe(data => {
+      this.getSC2Registrations(id).subscribe({
+        next: (data) => {
           this._sc2Registrations.get(id).next(data);
           this.loadingSC2Registrations.next(false);
         },
-        () => this.loadingSC2Registrations.next(false)
-      );
+        complete: () => this.loadingSC2Registrations.next(false)
+      });
     }
     return this._sc2Registrations.get(id);
   }
@@ -122,12 +124,13 @@ export class ApiTournamentsService {
     if (!this._csgoMatches.has(id)) {
       this.loadingCSGOMatches.next(true);
       this._csgoMatches.set(id, new BehaviorSubject<TournamentCSGOMatch []>(null));
-      this.getCSGOMatches(id).subscribe(data => {
+      this.getCSGOMatches(id).subscribe({
+        next: data => {
           this._csgoMatches.get(id).next(data);
           this.loadingCSGOMatches.next(false);
         },
-        () => this.loadingCSGOMatches.next(false)
-      );
+        complete: () => this.loadingCSGOMatches.next(false)
+      });
     }
     return this._csgoMatches.get(id);
   }
@@ -136,12 +139,13 @@ export class ApiTournamentsService {
     if (!this._sc2Matches.has(id)) {
       this.loadingSC2Matches.next(true);
       this._sc2Matches.set(id, new BehaviorSubject<TournamentSC2Match []>(null));
-      this.getSC2Matches(id).subscribe(data => {
+      this.getSC2Matches(id).subscribe({
+        next: (data) => {
           this._sc2Matches.get(id).next(data);
           this.loadingSC2Matches.next(false);
         },
-        () => this.loadingSC2Matches.next(false)
-      );
+        complete: () => this.loadingSC2Matches.next(false)
+      });
     }
     return this._sc2Matches.get(id);
   }
@@ -150,12 +154,13 @@ export class ApiTournamentsService {
     if (!this._csgoGroups.has(id)) {
       this.loadingCSGORegistrations.next(true);
       this._csgoGroups.set(id, new BehaviorSubject<TournamentCSGOGroup []>(null));
-      this.getCSGOGroups(id).subscribe(data => {
+      this.getCSGOGroups(id).subscribe({
+        next: (data) => {
           this._csgoGroups.get(id).next(data);
           this.loadingCSGORegistrations.next(false);
         },
-        () => this.loadingCSGORegistrations.next(false)
-      );
+        complete: () => this.loadingCSGORegistrations.next(false)
+      });
     }
     return this._csgoGroups.get(id);
   }
@@ -164,12 +169,13 @@ export class ApiTournamentsService {
     if (!this._sc2Groups.has(id)) {
       this.loadingSC2Registrations.next(true);
       this._sc2Groups.set(id, new BehaviorSubject<TournamentSC2Group []>(null));
-      this.getSC2Groups(id).subscribe(data => {
+      this.getSC2Groups(id).subscribe({
+        next: (data) => {
           this._sc2Groups.get(id).next(data);
           this.loadingSC2Registrations.next(false);
         },
-        () => this.loadingSC2Registrations.next(false)
-      );
+        complete: () => this.loadingSC2Registrations.next(false)
+      });
     }
     return this._sc2Groups.get(id);
   }
@@ -178,7 +184,7 @@ export class ApiTournamentsService {
     return this.http.post<TournamentApplication>(`${this._apiEndpoint}/tournament/register`, application, { withCredentials: true }).pipe(
       catchError(error => {
         this.commService.emitError(error.error);
-        return throwError(error);
+        return throwError(() => error);
       })
     );
   }
@@ -191,7 +197,7 @@ export class ApiTournamentsService {
       }),
       catchError(error => {
         this.commService.emitError(error.error);
-        return throwError(error);
+        return throwError(() => error);
       })
     );
   }
@@ -204,7 +210,7 @@ export class ApiTournamentsService {
       }),
       catchError(error => {
         this.commService.emitError(error.error);
-        return throwError(error);
+        return throwError(() => error);
       })
     );
   }
@@ -217,7 +223,7 @@ export class ApiTournamentsService {
       }),
       catchError(error => {
         this.commService.emitError(error.error);
-        return throwError(error);
+        return throwError(() => error);
       })
     );
   }
@@ -231,7 +237,7 @@ export class ApiTournamentsService {
         }),
         catchError(error => {
           this.commService.emitError(error.error);
-          return throwError(error);
+          return throwError(() => error);
         })
       );
   }
@@ -248,7 +254,7 @@ export class ApiTournamentsService {
       }),
       catchError(error => {
         this.commService.emitError(error.error);
-        return throwError(error);
+        return throwError(() => error);
       })
     );
   }
@@ -261,7 +267,7 @@ export class ApiTournamentsService {
       }),
       catchError(error => {
         this.commService.emitError(error.error);
-        return throwError(error);
+        return throwError(() => error);
       })
     );
   }
@@ -275,7 +281,7 @@ export class ApiTournamentsService {
         }),
         catchError(error => {
           this.commService.emitError(error.error);
-          return throwError(error);
+          return throwError(() => error);
         })
       );
   }
@@ -299,7 +305,7 @@ export class ApiTournamentsService {
         }),
         catchError(error => {
           this.commService.emitError(error.error);
-          return throwError(error);
+          return throwError(() => error);
         })
       );
   }
@@ -313,7 +319,7 @@ export class ApiTournamentsService {
         }),
         catchError(error => {
           this.commService.emitError(error.error);
-          return throwError(error);
+          return throwError(() => error);
         })
       );
   }
@@ -327,7 +333,7 @@ export class ApiTournamentsService {
   //       }),
   //       catchError(error => {
   //         this.commService.emitError(error.error);
-  //         return throwError(error);
+  //         return throwError(() => error);
   //       })
   //     );
   // }
@@ -341,7 +347,7 @@ export class ApiTournamentsService {
         }),
         catchError(error => {
           this.commService.emitError(error.error);
-          return throwError(error);
+          return throwError(() => error);
         })
       );
   }
@@ -355,7 +361,7 @@ export class ApiTournamentsService {
         }),
         catchError(error => {
           this.commService.emitError(error.error);
-          return throwError(error);
+          return throwError(() => error);
         })
       );
   }
@@ -369,7 +375,7 @@ export class ApiTournamentsService {
         }),
         catchError(error => {
           this.commService.emitError(error.error);
-          return throwError(error);
+          return throwError(() => error);
         })
       );
   }
@@ -383,7 +389,7 @@ export class ApiTournamentsService {
   //       }),
   //       catchError(error => {
   //         this.commService.emitError(error.error);
-  //         return throwError(error);
+  //         return throwError(() => error);
   //       })
   //     );
   // }
@@ -397,7 +403,7 @@ export class ApiTournamentsService {
         }),
         catchError(error => {
           this.commService.emitError(error.error);
-          return throwError(error);
+          return throwError(() => error);
         })
       );
   }
