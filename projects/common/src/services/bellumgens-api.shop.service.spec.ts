@@ -43,6 +43,7 @@ describe('ApiShopService', () => {
       service.deleteOrder(orderId).subscribe();
       const req = httpMock.expectOne(`${service['_apiEndpoint']}/shop/order?orderId=${orderId}`);
       expect(req.request.method).toBe('DELETE');
+      expect(req.request.withCredentials).toEqual(true);
       req.flush({});
     });
   });
@@ -62,6 +63,7 @@ describe('ApiShopService', () => {
       service.getOrders().subscribe();
       const req = httpMock.expectOne(`${service['_apiEndpoint']}/shop/orders`);
       expect(req.request.method).toBe('GET');
+      expect(req.request.withCredentials).toEqual(true);
       req.flush([]);
     });
   });
@@ -73,6 +75,7 @@ describe('ApiShopService', () => {
       const req = httpMock.expectOne(`${service['_apiEndpoint']}/shop/edit?orderId=${order.id}`);
       expect(req.request.method).toBe('PUT');
       expect(req.request.body).toEqual(order);
+      expect(req.request.withCredentials).toEqual(true);
       req.flush({});
     });
   });
