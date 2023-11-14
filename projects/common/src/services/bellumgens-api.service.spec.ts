@@ -30,6 +30,7 @@ describe('BellumgensApiService', () => {
     expect(service).toBeTruthy();
   });
 
+  // TODO: Extend each test with req.flush({}) to prevent errors in the console
   describe('getUserTeams', () => {
     it('should send a GET request to the correct URL', () => {
       const userId = '123';

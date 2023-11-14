@@ -24,6 +24,7 @@ describe('ApiSearchService', () => {
     expect(service).toBeTruthy();
   });
 
+  // TODO: Extend each test with req.flush({}) to prevent errors in the console
   describe('quickSearch', () => {
     it('should make a GET request to the API endpoint with the provided name', () => {
       const name = 'testName';
