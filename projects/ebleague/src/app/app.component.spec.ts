@@ -27,7 +27,7 @@ describe('AppComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
+    imports: [
         HttpClientTestingModule,
         RouterTestingModule,
         FormsModule,
@@ -51,10 +51,10 @@ describe('AppComponent', () => {
         IgxDividerModule,
         LanguagesComponent,
         LoginComponent,
-        SuccessErrorComponent
-      ],
-      declarations: [AppComponent]
-    }).compileComponents();
+        SuccessErrorComponent,
+        AppComponent
+    ]
+}).compileComponents();
   }));
 
   beforeEach(() => {
