@@ -79,7 +79,7 @@
     <p i18n>To do this go to <span class="highlight">Steam Profile --> Edit Profile --> Privacy Settings --> Set: 'My profile: Public' and 'Game details: public'</span></p>
   </div>
 
-  <igx-card *ngIf="!player.userStatsException" class="player-detail__stats">
+  <igx-card *ngIf="!player.userStatsException" class="player-detail__stats" elevated>
     <igx-card-header>
       <h4 igxCardHeaderTitle>KDR</h4>
     </igx-card-header>
@@ -94,7 +94,7 @@
     </igx-card-content>
   </igx-card>
 
-  <igx-card *ngIf="!player.userStatsException" class="player-detail__stats">
+  <igx-card *ngIf="!player.userStatsException" class="player-detail__stats" elevated>
     <igx-card-header>
       <h4 igxCardHeaderTitle>Headshot %</h4>
     </igx-card-header>
@@ -103,7 +103,7 @@
     </igx-card-content>
   </igx-card>
 
-  <igx-card *ngIf="!player.userStatsException" class="player-detail__stats">
+  <igx-card *ngIf="!player.userStatsException" class="player-detail__stats" elevated>
     <igx-card-header>
       <h4 igxCardHeaderTitle i18n>Accuracy</h4>
     </igx-card-header>
@@ -112,7 +112,7 @@
     </igx-card-content>
   </igx-card>
 
-  <igx-card *ngIf="!player.userStatsException" class="player-detail__stats">
+  <igx-card *ngIf="!player.userStatsException" class="player-detail__stats" elevated>
     <igx-card-header>
       <h4 igxCardHeaderTitle i18n>Top weapon</h4>
     </igx-card-header>
@@ -124,7 +124,7 @@
     </igx-card-content>
   </igx-card>
 
-  <igx-card *ngIf="!player.userStatsException" class="player-detail__stats">
+  <igx-card *ngIf="!player.userStatsException" class="player-detail__stats" elevated>
     <igx-card-header>
       <h4 igxCardHeaderTitle i18n>Availability</h4>
     </igx-card-header>
@@ -133,7 +133,7 @@
     </igx-card-content>
   </igx-card>
 
-  <igx-card *ngIf="!player.userStatsException" class="player-detail__stats">
+  <igx-card *ngIf="!player.userStatsException" class="player-detail__stats" elevated>
     <igx-card-header>
       <h4 igxCardHeaderTitle i18n>Weapons</h4>
     </igx-card-header>
@@ -152,7 +152,7 @@
   </igx-card>
 
   <!-- Map Pool -->
-  <igx-card *ngIf="!player.userStatsException" class="player-detail__stats map-pool">
+  <igx-card *ngIf="!player.userStatsException" class="player-detail__stats map-pool" elevated>
     <igx-card-header>
       <h4 igxCardHeaderTitle i18n>{{ viewAll ? 'Showing All' : 'Showing Active Duty' }} Maps</h4>
       <button igxButton="flat" igxRipple (click)="viewAll = !viewAll" i18n>{{viewAll ? 'View Active Duty' : 'View All'}}</button>

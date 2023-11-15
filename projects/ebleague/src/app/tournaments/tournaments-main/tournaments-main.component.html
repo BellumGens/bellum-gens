@@ -1,7 +1,7 @@
 <div class="card-wrapper">
   <h2 class="content-container-row" i18n>Active tournaments</h2>
   <h5 class="content-container-row" *ngIf="!tournaments || !tournaments.length" i18n>No active tournaments found...</h5>
-  <igx-card *ngFor="let tournament of tournaments">
+  <igx-card *ngFor="let tournament of tournaments" elevated>
     <igx-card-media>
       <img [ngSrc]="tournament.logo" width="352" height="300" [alt]="tournament.name" />
     </igx-card-media>
@@ -23,7 +23,7 @@
     <h2 i18n>Upcoming tournaments</h2>
     <h5 *ngIf="!upcoming || !upcoming.length" i18n>No upcoming tournaments found...</h5>
   </div>
-  <igx-card *ngFor="let tournament of upcoming">
+  <igx-card *ngFor="let tournament of upcoming" elevated>
     <igx-card-media>
       <img [ngSrc]="tournament.logo" width="352" height="300" [alt]="tournament.name" />
     </igx-card-media>
@@ -45,7 +45,7 @@
     <h2 i18n>Finished tournaments</h2>
     <h5 *ngIf="!past || !past.length" i18n>No finished tournaments found...</h5>
   </div>
-  <igx-card *ngFor="let tournament of past">
+  <igx-card *ngFor="let tournament of past" elevated>
     <igx-card-media>
       <img [ngSrc]="tournament.logo" width="352" height="300" [alt]="tournament.name" />
     </igx-card-media>

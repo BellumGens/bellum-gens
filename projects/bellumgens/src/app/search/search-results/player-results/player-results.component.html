@@ -4,7 +4,7 @@
   <div class="content-container-row">
     <h4 class="igx-card-header__title" i18n>Found <span class="highlight">{{players?.length }}</span> results for players{{ query | queryParsed:true }}</h4>
   </div>
-  <igx-card *ngFor="let player of players" class="navigatable" [routerLink]="['/players', player.customURL || player.id]">
+  <igx-card *ngFor="let player of players" class="navigatable" [routerLink]="['/players', player.customURL || player.id]" elevated>
     <igx-card-header>
       <igx-avatar igxCardThumbnail [src]="player.avatarMedium" [size]="'medium'" [initials]="player.username" shape="circle"></igx-avatar>
       <h3 igxCardHeaderTitle class="highlight">{{ player.username }}</h3>

@@ -104,7 +104,7 @@
     </ng-template>
   </igx-grid>
 
-  <igx-card type="outlined" class="margin-top">
+  <igx-card  class="margin-top">
     <igx-card-header>
       <igx-avatar igxCardThumbnail shape="circle" src="/assets/wallpapers/sc2-watermark.webp"></igx-avatar>
       <h1 igxCardHeaderTitle i18n>{{selectedTournament ? selectedTournament.name : 'No'}} Participants</h1>
@@ -132,7 +132,7 @@
         </div>
       </div>
       <div class="card-wrapper">
-        <igx-card *ngFor="let group of groups">
+        <igx-card *ngFor="let group of groups" elevated>
           <igx-card-header>
             <igx-avatar igxCardThumbnail shape="circle" src="/assets/wallpapers/sc2-watermark.webp"></igx-avatar>
             <h1 *ngIf="!group.inEdit" igxCardHeaderTitle>{{group.name}}</h1>
@@ -169,7 +169,7 @@
           </igx-card-content>
         </igx-card>
 
-        <igx-card class="new-group-card">
+        <igx-card class="new-group-card" elevated>
           <igx-card-header>
             <igx-avatar igxCardThumbnail shape="circle" src="/assets/wallpapers/sc2-watermark.webp"></igx-avatar>
             <h1 *ngIf="!newGroup.inEdit" igxCardHeaderTitle i18n>New group</h1>

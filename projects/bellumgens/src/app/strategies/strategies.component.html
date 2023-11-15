@@ -33,7 +33,7 @@
 <div class="card-wrapper">
   <span *ngIf="!loading && !strats?.length" class="igx-card-header__subtitle" i18n>No strategies found...</span>
 
-  <igx-card type="outlined" *ngFor="let strat of strats | stratFilter:viewAll:pipeTrigger | sidestrats:maps:order">
+  <igx-card  *ngFor="let strat of strats | stratFilter:viewAll:pipeTrigger | sidestrats:maps:order">
     <igx-card-header>
       <h2 igxCardHeaderTitle
           class="strat-title navigatable"
@@ -101,7 +101,7 @@
 
   </igx-card>
 
-  <igx-card type="outlined" class="fit-content-card" *ngIf="hasMore">
+  <igx-card  class="fit-content-card" *ngIf="hasMore">
     <igx-card-header class="empty-strategy">
       <h4 class="igx-card-header__title" i18n>Load More...</h4>
     </igx-card-header>

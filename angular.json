@@ -94,21 +94,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "bellum-gens:build"
+            "buildTarget": "bellum-gens:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "bellum-gens:build:production"
+              "buildTarget": "bellum-gens:build:production"
             },
             "bg": {
-              "browserTarget": "bellum-gens:build:bg"
+              "buildTarget": "bellum-gens:build:bg"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "bellum-gens:build"
+            "buildTarget": "bellum-gens:build"
           }
         },
         "test": {
@@ -176,7 +176,7 @@
           }
         },
         "serve-ssr": {
-          "builder": "@nguniversal/builders:ssr-dev-server",
+          "builder": "@angular-devkit/build-angular:ssr-dev-server",
           "options": {
             "browserTarget": "bellum-gens:build",
             "serverTarget": "bellum-gens:server"
@@ -189,7 +189,7 @@
           }
         },
         "prerender": {
-          "builder": "@nguniversal/builders:prerender",
+          "builder": "@angular-devkit/build-angular:prerender",
           "options": {
             "browserTarget": "bellum-gens:build:production",
             "serverTarget": "bellum-gens:server:production",
@@ -325,21 +325,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "eb-league:build"
+            "buildTarget": "eb-league:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "eb-league:build:production"
+              "buildTarget": "eb-league:build:production"
             },
             "bg": {
-              "browserTarget": "eb-league:build:bg"
+              "buildTarget": "eb-league:build:bg"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "eb-league:build"
+            "buildTarget": "eb-league:build"
           }
         },
         "test": {
@@ -407,7 +407,7 @@
           }
         },
         "serve-ssr": {
-          "builder": "@nguniversal/builders:ssr-dev-server",
+          "builder": "@angular-devkit/build-angular:ssr-dev-server",
           "options": {
             "browserTarget": "eb-league:build",
             "serverTarget": "eb-league:server"
@@ -420,7 +420,7 @@
           }
         },
         "prerender": {
-          "builder": "@nguniversal/builders:prerender",
+          "builder": "@angular-devkit/build-angular:prerender",
           "options": {
             "browserTarget": "eb-league:build:production",
             "serverTarget": "eb-league:server:production",
