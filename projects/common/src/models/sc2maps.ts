@@ -19,14 +19,14 @@ export enum SC2Map {
   IceAndChromeLE
 }
 
-export interface SC2LadderDescriptor {
+export interface SC2LadderMap {
   id: SC2Map;
   map: string;
   image?: string;
   active?: boolean;
 }
 
-export const SC2_MAPS: SC2LadderDescriptor [] = [{
+export const SC2_MAPS: SC2LadderMap [] = [{
     id: SC2Map.TritonLE,
     map: 'Triton LE'
   }, {

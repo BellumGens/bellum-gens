@@ -29,7 +29,7 @@
                           (click)="removeFromRole(role)">
               </igx-avatar>
               <igx-avatar *ngIf="!isAdmin && role.user.country"
-                          [src]="role.user.country | playerCountry"
+                          [src]="role.user.country | countrySVG"
                           shape="circle"
                           [title]="role.user.country"
                           class="country-badge-large">

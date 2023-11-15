@@ -50,7 +50,7 @@ describe('AppComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [
+      imports: [
         HttpClientTestingModule,
         RouterTestingModule,
         FormsModule,
@@ -97,9 +97,9 @@ describe('AppComponent', () => {
         LanguagesComponent,
         LoginComponent,
         SuccessErrorComponent
-    ],
-    declarations: [AppComponent]
-}).compileComponents();
+      ],
+      declarations: [AppComponent]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,14 +1,14 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-    name: 'playerCountry',
+    name: 'countrySVG',
     standalone: true
 })
-export class PlayerCountryPipe implements PipeTransform {
+export class CountrySVGPipe implements PipeTransform {
 
   public transform(country: string): string {
     if (!country) {
-      return null;
+      return '';
     }
     return 'assets/country-flags/svg/' + country.toLowerCase() + '.svg';
   }

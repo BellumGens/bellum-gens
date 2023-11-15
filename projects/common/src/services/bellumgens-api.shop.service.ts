@@ -26,7 +26,7 @@ export class ApiShopService {
       }),
       catchError(error => {
         this.commService.emitError(error.error);
-        return throwError(error);
+        return throwError(() => error);
       })
     );;
   }
@@ -47,7 +47,7 @@ export class ApiShopService {
       }),
       catchError(error => {
         this.commService.emitError(error.error);
-        return throwError(error);
+        return throwError(() => error);
       })
     );
   }

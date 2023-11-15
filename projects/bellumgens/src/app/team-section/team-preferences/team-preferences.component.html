@@ -57,7 +57,7 @@
         <igx-avatar igxListThumbnail [src]="user.avatarMedium" [initials]="user.username" shape="circle">
         </igx-avatar>
         <igx-avatar *ngIf="user.country"
-                    [src]="user.country | playerCountry"
+                    [src]="user.country | countrySVG"
                     shape="circle"
                     [title]="user.country"
                     class="country-badge-small">

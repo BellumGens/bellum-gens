@@ -6,7 +6,7 @@ import {
   TournamentParticipant,
   ApiTournamentsService,
   TournamentCSGOMatch, TournamentMatchMap,
-  CSGOActiveDutyDescriptor, ACTIVE_DUTY
+  CSGOActiveDutyMap, ACTIVE_DUTY
 } from '../../../../../common/src/public_api';
 import { environment } from '../../../../../common/src/environments/environment';
 import { IDropDroppedEventArgs, IRowDataEventArgs, IgxGridComponent, IgxDialogComponent, IgxSelectModule, IgxInputGroupModule, IgxGridModule, IgxButtonModule, IgxIconModule, IgxAvatarModule, IgxListModule, IgxCardModule, IgxProgressBarModule, IgxDragDropModule, IgxBadgeModule, IgxDialogModule, IgxDatePickerModule, IgxTimePickerModule, IgxCheckboxModule } from '@infragistics/igniteui-angular';
@@ -33,7 +33,7 @@ export class AdminCsgoComponent {
   public environment = environment;
   public newGroup = Object.assign({}, EMPTY_NEW_GROUP);
   public pipeTrigger = 0;
-  public mapList: CSGOActiveDutyDescriptor [] = ACTIVE_DUTY;
+  public mapList: CSGOActiveDutyMap [] = ACTIVE_DUTY;
   public matchInEdit: TournamentCSGOMatch = { startTime: new Date() };
   public tournaments: Tournament [] = [];
   public selectedTournament: Tournament;
