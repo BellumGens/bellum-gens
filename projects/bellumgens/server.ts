@@ -14,7 +14,7 @@ import { environment } from '../common/src/environments/environment';
 // The Express app is exported so that it can be used by serverless Functions.
 export function app(lang: string): express.Express {
   const server = express();
-  let distFolder = join(process.cwd(), environment.distFolderBellumGens, lang);
+  const distFolder = join(process.cwd(), environment.distFolderBellumGens, lang);
   const indexHtml = existsSync(join(distFolder, 'index.original.html'))
     ? join(distFolder, 'index.original.html')
     : join(distFolder, 'index.html');
