@@ -1,4 +1,3 @@
-
 import 'zone.js/node';
 
 import { APP_BASE_HREF } from '@angular/common';
@@ -59,7 +58,7 @@ export function app(lang: string): express.Express {
 }
 
 function run(): void {
-  const port = process.env['PORT'] || 4000;
+  const port = process.env['PORT'] || 4001;
 
   // Start up the Node server
   const appBg = app('bg');

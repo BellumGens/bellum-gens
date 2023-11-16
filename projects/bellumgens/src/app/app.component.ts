@@ -128,8 +128,8 @@ export class AppComponent implements OnInit {
         }
       );
       this.resize();
+      this.initSvgIcons();
     }
-    this.initSvgIcons();
   }
 
   @HostListener('window:resize')

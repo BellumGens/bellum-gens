@@ -80,8 +80,8 @@ export class AppComponent implements OnInit {
       this.authManager.applicationUser.subscribe(data => {
         this.authUser = data;
       });
+      this.initSvgIcons();
     }
-    this.initSvgIcons();
   }
 
   public ngOnInit(): void {
