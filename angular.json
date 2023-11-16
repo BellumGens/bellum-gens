@@ -149,7 +149,7 @@
           "builder": "@angular-devkit/build-angular:server",
           "options": {
             "outputPath": "dist/bellumgens/server",
-            "main": "projects/bellumgens/server-bellumgens.ts",
+            "main": "projects/bellumgens/server.ts",
             "tsConfig": "projects/bellumgens/tsconfig.server.json",
             "inlineStyleLanguage": "scss",
             "sourceMap": true,
@@ -380,7 +380,7 @@
           "builder": "@angular-devkit/build-angular:server",
           "options": {
             "outputPath": "dist/ebleague/server",
-            "main": "projects/ebleague/server-ebleague.ts",
+            "main": "projects/ebleague/server.ts",
             "tsConfig": "projects/ebleague/tsconfig.server.json",
             "inlineStyleLanguage": "scss",
             "sourceMap": true,
