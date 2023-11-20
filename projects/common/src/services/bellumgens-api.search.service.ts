@@ -62,9 +62,6 @@ export class ApiSearchService {
             this._teamSearchCache.set(query, teams);
             this.teamSearchResult.next(teams);
             this.loadingSearch.next(false);
-          },
-          error => {
-            this.commService.emitError(error.error);
           }
         );
       }
@@ -88,9 +85,6 @@ export class ApiSearchService {
             this._playerSearchCache.set(query, players);
             this.playerSearchResult.next(players);
             this.loadingSearch.next(false);
-          },
-          error => {
-            this.commService.emitError(error.error);
           }
         );
       }
@@ -114,9 +108,6 @@ export class ApiSearchService {
             this._strategySearchCache.set(query, strategies);
             this.strategySearchResult.next(strategies);
             this.loadingSearch.next(false);
-          },
-          error => {
-            this.commService.emitError(error.error);
           }
         );
       }
@@ -128,7 +119,7 @@ export class ApiSearchService {
       map(response => response),
       catchError(error => {
         this.commService.emitError(error.error);
-        return throwError(error);
+        return throwError(() => error);
       })
     );
   }
@@ -138,7 +129,7 @@ export class ApiSearchService {
       map(response => response),
       catchError(error => {
         this.commService.emitError(error.error);
-        return throwError(error);
+        return throwError(() => error);
       })
     );
   }
@@ -148,7 +139,7 @@ export class ApiSearchService {
       map(response => response),
       catchError(error => {
         this.commService.emitError(error.error);
-        return throwError(error);
+        return throwError(() => error);
       })
     );
   }
@@ -158,7 +149,7 @@ export class ApiSearchService {
       map(response => response),
       catchError(error => {
         this.commService.emitError(error.error);
-        return throwError(error);
+        return throwError(() => error);
       })
     );
   }

@@ -44,7 +44,7 @@ export * from './guards/teamadmin.guard';
 export * from './lib/pipes/active-duty-maps.pipe';
 export * from './lib/pipes/csgomapimage.pipe';
 export * from './lib/pipes/csgomapname.pipe';
-export * from './lib/pipes/player-country.pipe';
+export * from './lib/pipes/country-svg.pipe';
 export * from './lib/pipes/sc2-map-name.pipe';
 export * from './lib/pipes/weekday.pipe';
 

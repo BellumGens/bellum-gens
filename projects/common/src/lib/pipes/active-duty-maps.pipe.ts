@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { CSGOMapPool } from '../../public_api';
+import { CSGOActiveDutyMap } from '../../public_api';
 
 @Pipe({
     name: 'activeDutyMaps',
@@ -7,9 +7,11 @@ import { CSGOMapPool } from '../../public_api';
 })
 export class ActiveDutyMapsPipe implements PipeTransform {
 
-  public transform(maps: CSGOMapPool [], viewAll: boolean = true, _?: number): any [] {
+  public transform(maps: CSGOActiveDutyMap [], viewAll: boolean = true, _?: number): CSGOActiveDutyMap [] {
     if (maps && !viewAll) {
       return maps.filter(m => m.active);
+    } if (!maps) {
+      return [];
     }
     return maps;
   }

@@ -20,71 +20,13 @@ export interface CSGOMapPool {
   teamId?: string;
 }
 
-export interface CSGOActiveDutyDescriptor extends CSGOMapPool {
+export interface CSGOActiveDutyMap extends CSGOMapPool {
   map: string;
   image: string;
   radar?: string [];
 }
 
-export const AllCSGOMaps: CSGOMapPool [] = [
-  {
-    mapId: CSGOMap.Cache,
-    isPlayed: true,
-    active: false
-  },
-  {
-    mapId: CSGOMap.Dust2,
-    isPlayed: true,
-    active: false
-  },
-  {
-    mapId: CSGOMap.Inferno,
-    isPlayed: true,
-    active: true
-  },
-  {
-    mapId: CSGOMap.Mirage,
-    isPlayed: true,
-    active: true
-  },
-  {
-    mapId: CSGOMap.Nuke,
-    isPlayed: true,
-    active: true
-  },
-  {
-    mapId: CSGOMap.Overpass,
-    isPlayed: true,
-    active: true
-  },
-  {
-    mapId: CSGOMap.Train,
-    isPlayed: true,
-    active: false
-  },
-  {
-    mapId: CSGOMap.Vertigo,
-    isPlayed: true,
-    active: true
-  },
-  {
-    mapId: CSGOMap.Cobblestone,
-    isPlayed: true,
-    active: false
-  },
-  {
-    mapId: CSGOMap.Ancient,
-    isPlayed: true,
-    active: true
-  },
-  {
-    mapId: CSGOMap.Anubis,
-    isPlayed: true,
-    active: true
-  }
-];
-
-export const ACTIVE_DUTY: CSGOActiveDutyDescriptor [] = [
+export const ACTIVE_DUTY: CSGOActiveDutyMap [] = [
   {
     mapId: CSGOMap.Cache,
     map: 'Cache',

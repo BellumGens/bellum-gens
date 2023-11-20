@@ -4,7 +4,7 @@ import {
   NEW_EMPTY_STRAT,
   CSGOTeam,
   ApplicationUser,
-  CSGOActiveDutyDescriptor,
+  CSGOActiveDutyMap,
   ACTIVE_DUTY,
   ApiStrategiesService
 } from '../../../../../common/src/public_api';
@@ -33,7 +33,7 @@ export class NewStrategyComponent {
 
   public newStrategy: CSGOStrategy = Object.assign({}, NEW_EMPTY_STRAT);
   public videoId: string;
-  public mapList: CSGOActiveDutyDescriptor [] = ACTIVE_DUTY;
+  public mapList: CSGOActiveDutyMap [] = ACTIVE_DUTY;
   public selectedMap = this.mapList[0];
   public title = 'Add a new team strategy';
 

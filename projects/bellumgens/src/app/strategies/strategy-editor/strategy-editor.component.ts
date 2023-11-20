@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import {
-  CSGOActiveDutyDescriptor,
+  CSGOActiveDutyMap,
   ACTIVE_DUTY,
   CSGOMap,
   StrategyEditor,
@@ -29,7 +29,7 @@ import { NgIf, NgFor, NgClass } from '@angular/common';
 export class StrategyEditorComponent implements OnInit, OnDestroy {
   @ViewChild('board', { static: true }) public canvas: ElementRef;
 
-  public maps: CSGOActiveDutyDescriptor [] = ACTIVE_DUTY;
+  public maps: CSGOActiveDutyMap [] = ACTIVE_DUTY;
   public team: CSGOTeam;
   public teammembers: TeamMember [];
   public newStrategy: CSGOStrategy;
@@ -44,7 +44,7 @@ export class StrategyEditorComponent implements OnInit, OnDestroy {
   public saveInProgress = false;
   public changes = false;
 
-  private _activeMap: CSGOActiveDutyDescriptor;
+  private _activeMap: CSGOActiveDutyMap;
   private _drag = false;
   private _coordinates: PointCoordinate = {
     x: 0,
@@ -57,7 +57,7 @@ export class StrategyEditorComponent implements OnInit, OnDestroy {
     return this._activeMap;
   }
 
-  public set map(map: CSGOActiveDutyDescriptor) {
+  public set map(map: CSGOActiveDutyMap) {
     this._activeMap = map;
     if (!this.layers.length || (this.layers[0] as ImageLayer).src !== map.radar[0]) {
       const layer = this.editor.createImageLayer('Map Radar');

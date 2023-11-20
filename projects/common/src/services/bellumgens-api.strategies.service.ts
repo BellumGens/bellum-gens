@@ -29,11 +29,8 @@ export class ApiStrategiesService {
           this._strategies.next(data);
           this.loadingStrategies.next(false);
           this.hasMoreStrats.next(data.length === PAGE_SIZE);
-        },
-        error => {
-          this.loadingStrategies.next(false);
-          this.commService.emitError(error.error);
-        });
+        }
+      );
     }
     return this._strategies;
   }
@@ -44,10 +41,6 @@ export class ApiStrategiesService {
         this._strategies.next(this._strategies.value.concat(data));
         this.loadingStrategies.next(false);
         this.hasMoreStrats.next(data.length === PAGE_SIZE);
-      },
-      error => {
-        this.loadingStrategies.next(false);
-        this.commService.emitError(error.error);
       }
     );
   }
@@ -91,7 +84,7 @@ export class ApiStrategiesService {
       }),
       catchError(error => {
         this.commService.emitError(error.error);
-        return throwError(error);
+        return throwError(() => error);
       })
     );
   }
@@ -117,7 +110,7 @@ export class ApiStrategiesService {
       }),
       catchError(error => {
         this.commService.emitError(error.error);
-        return throwError(error);
+        return throwError(() => error);
       })
     );
   }
@@ -139,7 +132,7 @@ export class ApiStrategiesService {
       }),
       catchError(error => {
         this.commService.emitError(error.error);
-        return throwError(error);
+        return throwError(() => error);
       })
     );
   }
@@ -154,7 +147,7 @@ export class ApiStrategiesService {
       }),
       catchError(error => {
         this.commService.emitError(error.error);
-        return throwError(error);
+        return throwError(() => error);
       })
     );
   }
@@ -167,12 +160,22 @@ export class ApiStrategiesService {
       }),
       catchError(error => {
         this.commService.emitError(error.error);
-        return throwError(error);
+        return throwError(() => error);
       })
     );
   }
 
+  // TODO: Refactor to send page size as well
   private getStrategies(page: number = 0) {
-    return this.http.get<CSGOStrategy []>(`${this._apiEndpoint}/strategy/strategies?page=${page}`);
+    return this.http.get<CSGOStrategy []>(`${this._apiEndpoint}/strategy/strategies?page=${page}`).pipe(
+      map(response => {
+        return response;
+      }),
+      catchError(error => {
+        this.commService.emitError(error.error);
+        this.loadingStrategies.next(false);
+        return throwError(() => error);
+      })
+    );
   }
 }

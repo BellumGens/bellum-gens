@@ -33,7 +33,7 @@ describe('PlayerComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [
+      imports: [
         HttpClientTestingModule,
         RouterTestingModule,
         NoopAnimationsModule,
@@ -60,8 +60,8 @@ describe('PlayerComponent', () => {
         SteamCustomUrlPipe,
         TopWeaponAltPipe,
         SortWeaponsPipe
-    ]
-}).compileComponents();
+      ]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

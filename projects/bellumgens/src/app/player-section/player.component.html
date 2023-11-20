@@ -18,7 +18,7 @@
     <div>
       <igx-avatar [src]="player.steamUser?.avatarFull" [initials]="player.steamUser?.steamID" class="player-avatar">
       </igx-avatar>
-      <igx-avatar *ngIf="player.steamUser?.country" [src]="player.steamUser?.country | playerCountry" shape="circle" [title]="player.steamUser?.country" class="country-badge-large"></igx-avatar>
+      <igx-avatar *ngIf="player.steamUser?.country" [src]="player.steamUser?.country | countrySVG" shape="circle" [title]="player.steamUser?.country" class="country-badge-large"></igx-avatar>
 
       <!-- <button igxButton="raised" [disabled]="true">Send message <igx-icon>mail</igx-icon></button> -->
       <button *ngIf="player?.registered && !playerIsUser && teamsAdmin?.length > 0"

@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { AllCSGOMaps, CSGOMapPool, CSGOStrategy } from '../../../../common/src/public_api';
+import { ACTIVE_DUTY, CSGOActiveDutyMap, CSGOStrategy } from '../../../../common/src/public_api';
 
 @Pipe({
     name: 'stratFilter',
@@ -7,7 +7,7 @@ import { AllCSGOMaps, CSGOMapPool, CSGOStrategy } from '../../../../common/src/p
 })
 export class StratFilterPipe implements PipeTransform {
 
-  private maps: CSGOMapPool [] = AllCSGOMaps;
+  private maps: CSGOActiveDutyMap [] = ACTIVE_DUTY;
 
   public transform(strats: CSGOStrategy [], viewAll: boolean = true, _?: number): CSGOStrategy [] {
     if (strats && !viewAll) {

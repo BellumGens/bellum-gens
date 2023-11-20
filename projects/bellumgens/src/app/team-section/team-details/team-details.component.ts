@@ -11,7 +11,7 @@ import {
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { BaseComponent } from '../../base/base.component';
 import { Title, Meta } from '@angular/platform-browser';
-import { PlayerCountryPipe } from '../../../../../common/src/lib/pipes/player-country.pipe';
+import { CountrySVGPipe } from '../../../../../common/src/lib/pipes/country-svg.pipe';
 import { ConfirmComponent } from '../../../../../common/src/lib/confirm/confirm.component';
 import { AvailabilityComponent } from '../../../../../common/src/lib/availability/availability.component';
 import { NgIf, NgFor } from '@angular/common';
@@ -21,7 +21,7 @@ import { NgIf, NgFor } from '@angular/common';
     templateUrl: './team-details.component.html',
     styleUrls: ['./team-details.component.scss'],
     standalone: true,
-    imports: [NgIf, AvailabilityComponent, IgxCardModule, NgFor, IgxAvatarModule, IgxDragDropModule, RouterLink, ConfirmComponent, PlayerCountryPipe]
+    imports: [NgIf, AvailabilityComponent, IgxCardModule, NgFor, IgxAvatarModule, IgxDragDropModule, RouterLink, ConfirmComponent, CountrySVGPipe]
 })
 export class TeamDetailsComponent extends BaseComponent {
   @ViewChildren(IgxAvatarComponent, { read: ElementRef }) public emptyRoles: QueryList<ElementRef>;

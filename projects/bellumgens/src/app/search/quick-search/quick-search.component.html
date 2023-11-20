@@ -15,7 +15,7 @@
       <igx-avatar igxListThumbnail [src]="searchResult.steamUser.steamUser.avatarIcon" [initials]="searchResult.steamUser.steamUser.realname" shape="circle">
       </igx-avatar>
       <igx-avatar *ngIf="searchResult.steamUser.steamUser.country"
-                  [src]="searchResult.steamUser.steamUser.country | playerCountry"
+                  [src]="searchResult.steamUser.steamUser.country | countrySVG"
                   shape="circle"
                   [title]="searchResult.steamUser.steamUser.country"
                   class="country-badge-small">
@@ -46,7 +46,7 @@
       <igx-avatar igxListThumbnail [src]="user.avatarIcon" [initials]="user.realname" shape="circle">
       </igx-avatar>
       <igx-avatar *ngIf="user.country"
-                  [src]="user.country | playerCountry"
+                  [src]="user.country | countrySVG"
                   shape="circle"
                   [title]="user.country"
                   class="country-badge-small">
