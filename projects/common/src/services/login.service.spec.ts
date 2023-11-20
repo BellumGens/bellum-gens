@@ -4,11 +4,12 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { SwPush } from '@angular/service-worker';
 import { LoginService } from './login.service';
-import { ApplicationUser, CSGOTeam, Game, LoginProvider, NotificationState, TournamentApplication, UserNotification } from '../public_api';
+import { ApplicationUser, CSGOTeam, CommunicationService, Game, LoginProvider, NotificationState, TournamentApplication, UserLogin, UserNotification } from '../public_api';
 
 
 describe('LoginService', () => {
   let service: LoginService;
+  let commsService: CommunicationService;
   let httpMock: HttpTestingController;
 
   beforeEach(() => {
@@ -24,6 +25,7 @@ describe('LoginService', () => {
       ]
     });
     service = TestBed.inject(LoginService);
+    commsService = TestBed.inject(CommunicationService);
     httpMock = TestBed.inject(HttpTestingController);
   });
 
@@ -89,7 +91,7 @@ describe('LoginService', () => {
   it('should return tournament registrations', () => {
     const registrations: TournamentApplication [] = [
       { id: '1', game: Game.CSGO, email: 'test-email', state: 0 },
-      { id: '2', game: Game.StarCraft2, email: 'test-email-2', state: 1 }
+      { id: '2', game: Game.StarCraft2, email: 'test-email', state: 1 }
     ];
 
     service.tournamentRegistrations.subscribe();
@@ -180,6 +182,57 @@ describe('LoginService', () => {
     req.flush(true);
   });
 
+  it('should login with form', () => {
+    const loginInfo: UserLogin = { username: 'test-username', password: 'test-password', rememberMe: true };
+    const applicationUser: ApplicationUser = {
+      id: '1',
+      steamId: 'test-steam-id',
+      battleNetId: 'test-battlenet-id',
+      username: 'test-username',
+      email: 'test-email',
+      avatarFull: 'test-avatar',
+      avatarMedium: 'test-avatar',
+      avatarIcon: 'test-avatar',
+      customURL: 'test-url',
+      realname: 'test-realname',
+      searchVisible: true,
+      externalLogins: []
+    };
+    const registrations: TournamentApplication [] = [
+      { id: '1', game: Game.CSGO, email: 'test-email', state: 0 },
+      { id: '2', game: Game.StarCraft2, email: 'test-email', state: 1 }
+    ];
+
+    service.loginWithForm(loginInfo).subscribe(response => {
+      expect(response).toEqual(applicationUser);
+    });
+    commsService.success.subscribe(success => expect(success).toBe('Logged in successfully!'));
+
+    const req = httpMock.expectOne(`${service['_apiEndpoint']}/login`);
+    expect(req.request.method).toEqual('POST');
+    expect(req.request.body).toEqual(loginInfo);
+    expect(req.request.withCredentials).toEqual(true);
+    req.flush(applicationUser);
+    expect(service['_applicationUser'].value).toEqual(applicationUser);
+
+    const req2 = httpMock.expectOne(`${service['_apiBase']}/tournament/registrations`);
+    expect(req2.request.method).toEqual('GET');
+    expect(req2.request.withCredentials).toEqual(true);
+    req2.flush(registrations);
+    expect(service['_registrations'].value).toEqual(registrations);
+  });
+
+  it('should logout', () => {
+    service.logout().subscribe();
+    commsService.success.subscribe(success => expect(success).toBe('Logged out successfully!'));
+
+    const req = httpMock.expectOne(`${service['_apiEndpoint']}/logout`);
+    expect(req.request.method).toEqual('POST');
+    expect(req.request.withCredentials).toEqual(true);
+    req.flush({});
+    expect(service['_applicationUser'].value).toBeNull();
+  });
+
   // it('should get user roles', () => {
   //   service.getUserRoles().subscribe(roles => {
   //     // Add your assertions here
@@ -203,26 +256,6 @@ describe('LoginService', () => {
   //   const userId = 'test-user-id';
   //   const role = 'test-role';
   //   service.addUserToRole(userId, role).subscribe(response => {
-  //     // Add your assertions here
-  //   });
-  // });
-
-  // it('should login with provider', () => {
-  //   const provider = { name: 'test-provider' };
-  //   service.login(provider).subscribe(response => {
-  //     // Add your assertions here
-  //   });
-  // });
-
-  // it('should login with form', () => {
-  //   const loginInfo = { username: 'test-username', password: 'test-password' };
-  //   service.loginWithForm(loginInfo).subscribe(response => {
-  //     // Add your assertions here
-  //   });
-  // });
-
-  // it('should logout', () => {
-  //   service.logout().subscribe(response => {
   //     // Add your assertions here
   //   });
   // });
