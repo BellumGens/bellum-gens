@@ -212,7 +212,7 @@ export class LoginService {
   public addSubscriber(email: string) {
     return this.http.post(`${this._apiEndpoint}/account/subscribe`, { email }).pipe(
       map(response => {
-        this.commService.emitSuccess(response.toString());
+        this.commService.emitSuccess('Subscribed successfully!');
         return response;
       }),
       catchError(error => {

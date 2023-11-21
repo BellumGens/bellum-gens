@@ -4,7 +4,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { SwPush } from '@angular/service-worker';
 import { LoginService } from './login.service';
-import { ApplicationUser, CSGOTeam, CommunicationService, Game, LoginProvider, NotificationState, TournamentApplication, UserLogin, UserNotification } from '../public_api';
+import { ApplicationUser, CSGOTeam, CommunicationService, Game, LoginProvider, NotificationState, TournamentApplication, UserLogin, UserNotification, UserPreferences, UserRegistration } from '../public_api';
 
 
 describe('LoginService', () => {
@@ -233,6 +233,64 @@ describe('LoginService', () => {
     expect(service['_applicationUser'].value).toBeNull();
   });
 
+  it('should submit registration', () => {
+    const userAccount: UserRegistration = { username: 'test-username', password: 'test-password', confirmPassword: 'test-password', email: 'test-email' };
+    service.submitRegistration(userAccount).subscribe();
+    commsService.success.subscribe(success => expect(success).toBe('User registration completed successfully!'));
+
+    const req = httpMock.expectOne(`${service['_apiEndpoint']}/setpassword`);
+    expect(req.request.method).toEqual('POST');
+    expect(req.request.body).toEqual(userAccount);
+    expect(req.request.withCredentials).toEqual(true);
+    req.flush({});
+  });
+
+  it('should delete account', () => {
+    const userId = 'test-user-id';
+    service.deleteAccount(userId).subscribe();
+    commsService.success.subscribe(success => expect(success).toBe('Account deleted!'));
+
+    const req = httpMock.expectOne(`${service['_apiEndpoint']}/delete?userid=${userId}`);
+    expect(req.request.method).toEqual('DELETE');
+    expect(req.request.withCredentials).toEqual(true);
+    req.flush({});
+    expect(service['_applicationUser'].value).toBeNull();
+  });
+
+  it('should check username', () => {
+    const username = 'test-username';
+    service.checkUsername(username).subscribe(response => {
+      expect(response).toBe(true);
+    });
+
+    const req = httpMock.expectOne(`${service['_apiEndpoint']}/username?username=${username}`);
+    expect(req.request.method).toEqual('GET');
+    req.flush(true);
+  });
+
+  it('should update user preferences', () => {
+    const preferences: UserPreferences = { searchVisible: false, email: 'test-email' };
+    service.updateUserPreferences(preferences).subscribe();
+    commsService.success.subscribe(success => expect(success).toBe('Preferences updated successfully!'));
+
+    const req = httpMock.expectOne(`${service['_apiEndpoint']}/userinfo`);
+    expect(req.request.method).toEqual('PUT');
+    expect(req.request.body).toEqual(preferences);
+    expect(req.request.withCredentials).toEqual(true);
+    req.flush({ newEmail: true, email: 'test-email', searchVisible: false });
+  });
+
+  it('should add subscriber', () => {
+    const email = 'test-email';
+    service.addSubscriber(email).subscribe();
+    commsService.success.subscribe(success => expect(success).toBe('Subscribed successfully!'));
+
+    const req = httpMock.expectOne(`${service['_apiEndpoint']}/account/subscribe`);
+    expect(req.request.method).toEqual('POST');
+    expect(req.request.body).toEqual({ email: email });
+    req.flush({});
+  });
+
   // it('should get user roles', () => {
   //   service.getUserRoles().subscribe(roles => {
   //     // Add your assertions here
@@ -256,41 +314,6 @@ describe('LoginService', () => {
   //   const userId = 'test-user-id';
   //   const role = 'test-role';
   //   service.addUserToRole(userId, role).subscribe(response => {
-  //     // Add your assertions here
-  //   });
-  // });
-
-  // it('should update user preferences', () => {
-  //   const preferences = { theme: 'dark', language: 'en' };
-  //   service.updateUserPreferences(preferences).subscribe(response => {
-  //     // Add your assertions here
-  //   });
-  // });
-
-  // it('should submit registration', () => {
-  //   const userAccount = { username: 'test-username', password: 'test-password' };
-  //   service.submitRegistration(userAccount).subscribe(response => {
-  //     // Add your assertions here
-  //   });
-  // });
-
-  // it('should delete account', () => {
-  //   const userId = 'test-user-id';
-  //   service.deleteAccount(userId).subscribe(response => {
-  //     // Add your assertions here
-  //   });
-  // });
-
-  // it('should check username', () => {
-  //   const username = 'test-username';
-  //   service.checkUsername(username).subscribe(response => {
-  //     // Add your assertions here
-  //   });
-  // });
-
-  // it('should add subscriber', () => {
-  //   const email = 'test-email';
-  //   service.addSubscriber(email).subscribe(response => {
   //     // Add your assertions here
   //   });
   // });
