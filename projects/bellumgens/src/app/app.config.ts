@@ -1,4 +1,4 @@
-import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
+import { provideHttpClient, withFetch, withInterceptorsFromDi } from "@angular/common/http";
 import { ApplicationConfig, importProvidersFrom } from "@angular/core";
 import { provideRouter } from "@angular/router";
 import { routes } from "./app.routes";
@@ -11,7 +11,7 @@ export const appConfig: ApplicationConfig = {
   providers: [
       importProvidersFrom(ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })),
       provideRouter(routes),
-      provideHttpClient(withInterceptorsFromDi()),
+      provideHttpClient(withInterceptorsFromDi(), withFetch()),
       provideClientHydration(),
       provideAnimations()
   ]
