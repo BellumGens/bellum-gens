@@ -291,31 +291,40 @@ describe('LoginService', () => {
     req.flush({});
   });
 
-  // it('should get user roles', () => {
-  //   service.getUserRoles().subscribe(roles => {
-  //     // Add your assertions here
-  //   });
-  // });
+  it('should get user roles', () => {
+    service.getUserRoles().subscribe();
+    const req = httpMock.expectOne(`${service['_apiBase']}/admin/roles`);
+    expect(req.request.method).toEqual('GET');
+    expect(req.request.withCredentials).toEqual(true);
+    req.flush({});
+  });
 
-  // it('should get promo codes', () => {
-  //   service.getPromoCodes().subscribe(promoCodes => {
-  //     // Add your assertions here
-  //   });
-  // });
+  it('should get promo codes', () => {
+    service.getPromoCodes().subscribe();
+    const req = httpMock.expectOne(`${service['_apiBase']}/admin/promos`);
+    expect(req.request.method).toEqual('GET');
+    expect(req.request.withCredentials).toEqual(true);
+    req.flush({});
+  });
 
-  // it('should submit role', () => {
-  //   const role = 'test-role';
-  //   service.submitRole(role).subscribe(response => {
-  //     // Add your assertions here
-  //   });
-  // });
+  it('should submit role', () => {
+    const role = 'test-role';
+    service.submitRole(role).subscribe();
+    const req = httpMock.expectOne(`${service['_apiBase']}/admin/createrole?rolename=${role}`);
+    expect(req.request.method).toEqual('PUT');
+    expect(req.request.body).toEqual(role);
+    expect(req.request.withCredentials).toEqual(true);
+    req.flush({});
+  });
 
-  // it('should add user to role', () => {
-  //   const userId = 'test-user-id';
-  //   const role = 'test-role';
-  //   service.addUserToRole(userId, role).subscribe(response => {
-  //     // Add your assertions here
-  //   });
-  // });
+  it('should add user to role', () => {
+    const userId = 'test-user-id';
+    const role = 'test-role';
+    service.addUserToRole(userId, role).subscribe();
+    const req = httpMock.expectOne(`${service['_apiBase']}/admin/adduserrole?userid=${userId}&role=${role}`);
+    expect(req.request.method).toEqual('PUT');
+    expect(req.request.body).toEqual(role);
+    expect(req.request.withCredentials).toEqual(true);
+  });
 
 });
