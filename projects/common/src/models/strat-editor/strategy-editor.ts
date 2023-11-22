@@ -1,11 +1,13 @@
 import { ElementRef } from '@angular/core';
-import { BaseLayer,
+import {
+  BaseLayer,
   EditorLayerType,
   PointCoordinate,
   LayerSelected,
   ImageLayer,
   EditorLayer,
-  FreeflowLayer } from './editor-layer';
+  FreeflowLayer
+} from './editor-layer';
 
 export class StrategyEditor {
   public surfaceName: string;
