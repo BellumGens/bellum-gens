@@ -129,6 +129,12 @@
               "projects/bellumgens/src/assets",
               "projects/bellumgens/src/manifest.json"
             ],
+            "fileReplacements": [
+              {
+                "replace": "projects/common/src/environments/environment.ts",
+                "with": "projects/common/src/environments/environment.unit.ts"
+              }
+            ],
             "stylePreprocessorOptions": {
               "includePaths": [
                 "node_modules"
@@ -360,6 +366,12 @@
               "projects/ebleague/src/assets",
               "projects/ebleague/src/manifest.json"
             ],
+            "fileReplacements": [
+              {
+                "replace": "projects/common/src/environments/environment.ts",
+                "with": "projects/common/src/environments/environment.unit.ts"
+              }
+            ],
             "stylePreprocessorOptions": {
               "includePaths": [
                 "node_modules"
@@ -496,6 +508,12 @@
             "polyfills": ["zone.js"],
             "tsConfig": "projects/common/tsconfig.spec.json",
             "karmaConfig": "projects/common/karma.conf.js",
+            "fileReplacements": [
+              {
+                "replace": "projects/common/src/environments/environment.ts",
+                "with": "projects/common/src/environments/environment.unit.ts"
+              }
+            ],
             "stylePreprocessorOptions": {
               "includePaths": [
                 "node_modules"
