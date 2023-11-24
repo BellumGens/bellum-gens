@@ -496,6 +496,9 @@
             "polyfills": ["zone.js"],
             "tsConfig": "projects/common/tsconfig.spec.json",
             "karmaConfig": "projects/common/karma.conf.js",
+            "assets": [
+              "projects/common/src/assets"
+            ],
             "stylePreprocessorOptions": {
               "includePaths": [
                 "node_modules"

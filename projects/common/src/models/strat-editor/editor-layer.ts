@@ -156,7 +156,7 @@ export class ImageLayer extends BaseLayer {
           this.endCircle();
         }
         this.drawFinish.next(this);
-      }
+      };
     } else {
       this.drawFinish.next(this);
     }
@@ -190,7 +190,7 @@ export class ImageLayer extends BaseLayer {
 export class FreeflowLayer extends BaseLayer {
 
   public paths: FreeflowPath [];
-  public color = 'red';
+  public color = '#ff0000';
   public selectable = false;
 
   private _currentPath: FreeflowPath;
@@ -198,7 +198,7 @@ export class FreeflowLayer extends BaseLayer {
   constructor(private _context: any, name: string, displayRatio = 1, meta?: EditorLayer) {
     super(name, displayRatio, meta);
     this.paths = meta ? meta.paths : [];
-    this.color = meta ? meta.color : 'red';
+    this.color = meta ? meta.color : '#ff0000';
     this.type = EditorLayerType.Freeflow;
     this.movable = false;
     if (this._originalDR && this.displayRatio !== this._originalDR) {
