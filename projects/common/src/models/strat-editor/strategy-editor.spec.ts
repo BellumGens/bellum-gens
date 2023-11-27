@@ -80,7 +80,7 @@ describe('StrategyEditor', () => {
   });
 
   it('should remove a layer', () => {
-    const layer = new FreeflowLayer(canvas.getContext('2d'), 'Freeflow Layer');
+    const layer = new ImageLayer(canvas.getContext('2d'), 'Image Layer');
     strategyEditor.addLayer(layer);
     layer.selected = true;
     expect(strategyEditor['_selectedLayer']).toBe(layer);
