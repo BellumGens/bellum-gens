@@ -12,7 +12,7 @@ import {
 export class StrategyEditor {
   public surfaceName: string;
 
-  private _context: any;
+  private _context: CanvasRenderingContext2D;
   private _layers: BaseLayer[] = [];
   private _width = 1024;
   private _height = 1024;
@@ -20,7 +20,7 @@ export class StrategyEditor {
 
   private _selectedLayer: BaseLayer;
 
-  constructor(private _canvas: ElementRef, displayRatio = 1, name?: string) {
+  constructor(private _canvas: ElementRef<HTMLCanvasElement>, displayRatio = 1, name?: string) {
     this._context = this._canvas.nativeElement.getContext('2d');
     this._displayRatio = displayRatio;
     this.surfaceName = name ? name : this.generateId();

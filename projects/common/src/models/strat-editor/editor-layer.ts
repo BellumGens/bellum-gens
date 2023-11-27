@@ -108,7 +108,7 @@ export class ImageLayer extends BaseLayer {
   public image: HTMLImageElement;
   public circle = false;
 
-  constructor(private _context: any, name: string, displayRatio = 1, meta?: EditorLayer) {
+  constructor(private _context: CanvasRenderingContext2D, name: string, displayRatio = 1, meta?: EditorLayer) {
     super(name, displayRatio, meta);
     this.src = meta ? meta.src : '';
     this.circle = meta ? meta.circle : false;
@@ -195,7 +195,7 @@ export class FreeflowLayer extends BaseLayer {
 
   private _currentPath: FreeflowPath;
 
-  constructor(private _context: any, name: string, displayRatio = 1, meta?: EditorLayer) {
+  constructor(private _context: CanvasRenderingContext2D, name: string, displayRatio = 1, meta?: EditorLayer) {
     super(name, displayRatio, meta);
     this.paths = meta ? meta.paths : [];
     this.color = meta ? meta.color : '#ff0000';
