@@ -42,10 +42,10 @@ export class RegistrationComponent implements OnInit {
   }
 
   public submitRegistration() {
-    this.authManager.submitRegistration(this.userAccount).subscribe(
-      () => this.router.navigate(['/']),
-      error => this.error = error.error[''].join(' ')
-    );
+    this.authManager.submitRegistration(this.userAccount).subscribe({
+      next: () => this.router.navigate(['/']),
+      error: error => this.error = error.error[''].join(' ')
+    });
   }
 
   private initUsernameCheck() {
