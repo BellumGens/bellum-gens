@@ -42,9 +42,16 @@ export class RegistrationComponent implements OnInit {
   }
 
   public submitRegistration() {
+    this.submitInProgress = true;
     this.authManager.submitRegistration(this.userAccount).subscribe({
-      next: () => this.router.navigate(['/']),
-      error: error => this.error = error.error[''].join(' ')
+      next: () => {
+        this.submitInProgress = false;
+        this.router.navigate(['/']);
+      },
+      error: error => {
+        this.error = error.message;
+        this.submitInProgress = false;
+      }
     });
   }
 

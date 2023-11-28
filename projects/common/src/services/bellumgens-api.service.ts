@@ -83,7 +83,7 @@ export class BellumgensApiService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error);
+        this.commService.emitError(error.message);
         return throwError(() => error);
       })
     );
@@ -96,7 +96,7 @@ export class BellumgensApiService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error);
+        this.commService.emitError(error.message);
         return throwError(() => error);
       })
     );
@@ -109,7 +109,7 @@ export class BellumgensApiService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error);
+        this.commService.emitError(error.message);
         return throwError(() => error);
       })
     );
@@ -122,7 +122,7 @@ export class BellumgensApiService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error);
+        this.commService.emitError(error.message);
         return throwError(() => error);
       })
     );
@@ -137,7 +137,7 @@ export class BellumgensApiService {
           return response;
         }),
         catchError(error => {
-          this.commService.emitError(error.error);
+          this.commService.emitError(error.message);
           return throwError(() => error);
         })
       );
@@ -150,7 +150,7 @@ export class BellumgensApiService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error);
+        this.commService.emitError(error.message);
         return throwError(() => error);
       })
     );
@@ -165,7 +165,7 @@ export class BellumgensApiService {
           return response;
         }),
         catchError(error => {
-          this.commService.emitError(error.error);
+          this.commService.emitError(error.message);
           return throwError(() => error);
         })
     );
@@ -178,7 +178,7 @@ export class BellumgensApiService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error);
+        this.commService.emitError(error.message);
         return throwError(() => error);
       })
     );
@@ -195,7 +195,7 @@ export class BellumgensApiService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error);
+        this.commService.emitError(error.message);
         return throwError(() => error);
       })
     );
@@ -208,7 +208,7 @@ export class BellumgensApiService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error);
+        this.commService.emitError(error.message);
         return throwError(() => error);
       })
     );
@@ -221,7 +221,7 @@ export class BellumgensApiService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error);
+        this.commService.emitError(error.message);
         return throwError(() => error);
       })
     );
@@ -242,7 +242,7 @@ export class BellumgensApiService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error);
+        this.commService.emitError(error.message);
         return throwError(() => error);
       })
     );
@@ -279,7 +279,7 @@ export class BellumgensApiService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error);
+        this.commService.emitError(error.message);
         return throwError(() => error);
       })
     );
@@ -296,7 +296,7 @@ export class BellumgensApiService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error);
+        this.commService.emitError(error.message);
         return throwError(() => error);
       })
     );
@@ -309,7 +309,7 @@ export class BellumgensApiService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error);
+        this.commService.emitError(error.message);
         return throwError(() => error);
       })
     );
@@ -322,7 +322,7 @@ export class BellumgensApiService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error);
+        this.commService.emitError(error.message);
         return throwError(() => error);
       })
     );
@@ -339,7 +339,7 @@ export class BellumgensApiService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error);
+        this.commService.emitError(error.message);
         return throwError(() => error);
       })
     );
@@ -352,7 +352,7 @@ export class BellumgensApiService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error);
+        this.commService.emitError(error.message);
         return throwError(() => error);
       })
     );
@@ -365,7 +365,7 @@ export class BellumgensApiService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error);
+        this.commService.emitError(error.message);
         return throwError(() => error);
       })
     );

@@ -43,7 +43,7 @@ describe('LoginComponent', () => {
     .compileComponents();
     authService = TestBed.inject(LoginService);
     httpMock = TestBed.inject(HttpTestingController);
-    router = TestBed.get<Router>(Router);
+    router = TestBed.get(Router);
   }));
 
   beforeEach(() => {

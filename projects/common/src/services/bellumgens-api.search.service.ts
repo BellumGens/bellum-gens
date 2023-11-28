@@ -118,7 +118,7 @@ export class ApiSearchService {
     return this.http.get<SearchResult>(`${this._apiEndpoint}/search?name=${name}`).pipe(
       map(response => response),
       catchError(error => {
-        this.commService.emitError(error.error);
+        this.commService.emitError(error.message);
         return throwError(() => error);
       })
     );
@@ -128,7 +128,7 @@ export class ApiSearchService {
     return this.http.get<CSGOStrategy []>(`${this._apiEndpoint}/search/strategies?${query}`).pipe(
       map(response => response),
       catchError(error => {
-        this.commService.emitError(error.error);
+        this.commService.emitError(error.message);
         return throwError(() => error);
       })
     );
@@ -138,7 +138,7 @@ export class ApiSearchService {
     return this.http.get<CSGOPlayer []>(`${this._apiEndpoint}/search/players?${query}`, { withCredentials: true }).pipe(
       map(response => response),
       catchError(error => {
-        this.commService.emitError(error.error);
+        this.commService.emitError(error.message);
         return throwError(() => error);
       })
     );
@@ -148,7 +148,7 @@ export class ApiSearchService {
     return this.http.get<CSGOTeam []>(`${this._apiEndpoint}/search/teams?${query}`, { withCredentials: true }).pipe(
       map(response => response),
       catchError(error => {
-        this.commService.emitError(error.error);
+        this.commService.emitError(error.message);
         return throwError(() => error);
       })
     );
