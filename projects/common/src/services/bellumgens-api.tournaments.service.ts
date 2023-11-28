@@ -183,7 +183,7 @@ export class ApiTournamentsService {
   public leagueRegistration(application: TournamentApplication) {
     return this.http.post<TournamentApplication>(`${this._apiEndpoint}/tournament/register`, application, { withCredentials: true }).pipe(
       catchError(error => {
-        this.commService.emitError(error.error);
+        this.commService.emitError(error.message);
         return throwError(() => error);
       })
     );
@@ -196,7 +196,7 @@ export class ApiTournamentsService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error);
+        this.commService.emitError(error.message);
         return throwError(() => error);
       })
     );
@@ -209,7 +209,7 @@ export class ApiTournamentsService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error);
+        this.commService.emitError(error.message);
         return throwError(() => error);
       })
     );
@@ -222,7 +222,7 @@ export class ApiTournamentsService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error);
+        this.commService.emitError(error.message);
         return throwError(() => error);
       })
     );
@@ -236,7 +236,7 @@ export class ApiTournamentsService {
           return response;
         }),
         catchError(error => {
-          this.commService.emitError(error.error);
+          this.commService.emitError(error.message);
           return throwError(() => error);
         })
       );
@@ -253,7 +253,7 @@ export class ApiTournamentsService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error);
+        this.commService.emitError(error.message);
         return throwError(() => error);
       })
     );
@@ -266,7 +266,7 @@ export class ApiTournamentsService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error);
+        this.commService.emitError(error.message);
         return throwError(() => error);
       })
     );
@@ -280,7 +280,7 @@ export class ApiTournamentsService {
           return response;
         }),
         catchError(error => {
-          this.commService.emitError(error.error);
+          this.commService.emitError(error.message);
           return throwError(() => error);
         })
       );
@@ -304,7 +304,7 @@ export class ApiTournamentsService {
           return response;
         }),
         catchError(error => {
-          this.commService.emitError(error.error);
+          this.commService.emitError(error.message);
           return throwError(() => error);
         })
       );
@@ -318,7 +318,7 @@ export class ApiTournamentsService {
           return response;
         }),
         catchError(error => {
-          this.commService.emitError(error.error);
+          this.commService.emitError(error.message);
           return throwError(() => error);
         })
       );
@@ -332,7 +332,7 @@ export class ApiTournamentsService {
   //         return response;
   //       }),
   //       catchError(error => {
-  //         this.commService.emitError(error.error);
+  //         this.commService.emitError(error.message);
   //         return throwError(() => error);
   //       })
   //     );
@@ -346,7 +346,7 @@ export class ApiTournamentsService {
           return response;
         }),
         catchError(error => {
-          this.commService.emitError(error.error);
+          this.commService.emitError(error.message);
           return throwError(() => error);
         })
       );
@@ -360,7 +360,7 @@ export class ApiTournamentsService {
           return response;
         }),
         catchError(error => {
-          this.commService.emitError(error.error);
+          this.commService.emitError(error.message);
           return throwError(() => error);
         })
       );
@@ -374,7 +374,7 @@ export class ApiTournamentsService {
           return response;
         }),
         catchError(error => {
-          this.commService.emitError(error.error);
+          this.commService.emitError(error.message);
           return throwError(() => error);
         })
       );
@@ -388,7 +388,7 @@ export class ApiTournamentsService {
   //         return response;
   //       }),
   //       catchError(error => {
-  //         this.commService.emitError(error.error);
+  //         this.commService.emitError(error.message);
   //         return throwError(() => error);
   //       })
   //     );
@@ -402,7 +402,7 @@ export class ApiTournamentsService {
           return response;
         }),
         catchError(error => {
-          this.commService.emitError(error.error);
+          this.commService.emitError(error.message);
           return throwError(() => error);
         })
       );

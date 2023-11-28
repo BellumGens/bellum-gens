@@ -24,5 +24,4 @@ export class LoginButtonsComponent {
   public login(provider: LoginProvider) {
     this.authManager.login(provider);
   }
-
 }

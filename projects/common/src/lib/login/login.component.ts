@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import {
   IgxDropDownComponent,
   IgxIconModule,
@@ -25,7 +25,19 @@ import { NgIf } from '@angular/common';
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss'],
     standalone: true,
-    imports: [LoginDialogComponent, NgIf, IgxButtonModule, IgxRippleModule, IgxIconModule, IgxProgressBarModule, IgxToggleModule, IgxAvatarModule, IgxDropDownModule, IgxTabsModule, UserPreferencesComponent]
+    imports: [
+      LoginDialogComponent,
+      NgIf,
+      IgxButtonModule,
+      IgxRippleModule,
+      IgxIconModule,
+      IgxProgressBarModule,
+      IgxToggleModule,
+      IgxAvatarModule,
+      IgxDropDownModule,
+      IgxTabsModule,
+      UserPreferencesComponent
+    ]
 })
 export class LoginComponent {
   @ViewChild(LoginDialogComponent, { static: true })
@@ -34,7 +46,6 @@ export class LoginComponent {
   @ViewChild(IgxDropDownComponent, { static: false })
   public userProfile: IgxDropDownComponent;
 
-  @Input()
   public authUser: ApplicationUser;
 
   public overlaySettings = GLOBAL_OVERLAY_SETTINGS;
@@ -43,6 +54,7 @@ export class LoginComponent {
   constructor(private authManager: LoginService,
               private router: Router) {
     this.authManager.userCheckInProgress.subscribe(value => this.userCheck = value);
+    this.authManager.applicationUser.subscribe(user => this.authUser = user);
     this.authManager.openLogin.subscribe(() => this.dialog.openLogin());
   }
 

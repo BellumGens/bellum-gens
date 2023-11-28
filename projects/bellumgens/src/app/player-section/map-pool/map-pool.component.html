@@ -1,5 +1,5 @@
 <div class="map-wrapper">
-  <igx-card *ngFor="let map of maps | activeDutyMaps:viewAll" [horizontal]="false" [ngClass]="map.isPlayed ? 'map-column' : 'map-column map-inactive'">
+  <igx-card *ngFor="let map of maps | activeDutyMaps:viewAll" [horizontal]="false" [ngClass]="map.isPlayed ? 'map-column' : 'map-column map-inactive'" elevated>
     <igx-card-media>
       <img [ngSrc]="map.image" width="360" height="203" [alt]="map.map" />
     </igx-card-media>

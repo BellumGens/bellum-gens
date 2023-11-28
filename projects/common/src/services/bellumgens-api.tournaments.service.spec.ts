@@ -6,17 +6,6 @@ import { TournamentCSGOMatch, TournamentSC2Match } from '../models/tournament-sc
 import { Game, TournamentApplication, TournamentCSGOGroup, TournamentParticipant, TournamentSC2Group } from '../public_api';
 
 describe('ApiTournamentsService', () => {
-  beforeEach(() => TestBed.configureTestingModule({
-    imports: [ HttpClientTestingModule ]
-  }));
-
-  it('should be created', () => {
-    const service: ApiTournamentsService = TestBed.inject(ApiTournamentsService);
-    expect(service).toBeTruthy();
-  });
-
-});
-describe('ApiTournamentsService', () => {
   let service: ApiTournamentsService;
   let httpMock: HttpTestingController;
 

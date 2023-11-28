@@ -103,7 +103,7 @@ export class StrategiesComponent {
             this.authUser = user;
             this.apiStrategyService.getUserStrategies(user.id).subscribe(
               strats => this.strats = strats,
-              error => this.commService.emitError(error.error)
+              error => this.commService.emitError(error.message)
             );
           }
         });

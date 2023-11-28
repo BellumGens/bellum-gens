@@ -94,21 +94,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "bellum-gens:build"
+            "buildTarget": "bellum-gens:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "bellum-gens:build:production"
+              "buildTarget": "bellum-gens:build:production"
             },
             "bg": {
-              "browserTarget": "bellum-gens:build:bg"
+              "buildTarget": "bellum-gens:build:bg"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "bellum-gens:build"
+            "buildTarget": "bellum-gens:build"
           }
         },
         "test": {
@@ -128,6 +128,12 @@
               "projects/bellumgens/src/favicon.ico",
               "projects/bellumgens/src/assets",
               "projects/bellumgens/src/manifest.json"
+            ],
+            "fileReplacements": [
+              {
+                "replace": "projects/common/src/environments/environment.ts",
+                "with": "projects/common/src/environments/environment.unit.ts"
+              }
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
@@ -149,7 +155,7 @@
           "builder": "@angular-devkit/build-angular:server",
           "options": {
             "outputPath": "dist/bellumgens/server",
-            "main": "projects/bellumgens/server-bellumgens.ts",
+            "main": "projects/bellumgens/server.ts",
             "tsConfig": "projects/bellumgens/tsconfig.server.json",
             "inlineStyleLanguage": "scss",
             "sourceMap": true,
@@ -176,7 +182,7 @@
           }
         },
         "serve-ssr": {
-          "builder": "@nguniversal/builders:ssr-dev-server",
+          "builder": "@angular-devkit/build-angular:ssr-dev-server",
           "options": {
             "browserTarget": "bellum-gens:build",
             "serverTarget": "bellum-gens:server"
@@ -189,7 +195,7 @@
           }
         },
         "prerender": {
-          "builder": "@nguniversal/builders:prerender",
+          "builder": "@angular-devkit/build-angular:prerender",
           "options": {
             "browserTarget": "bellum-gens:build:production",
             "serverTarget": "bellum-gens:server:production",
@@ -325,21 +331,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "eb-league:build"
+            "buildTarget": "eb-league:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "eb-league:build:production"
+              "buildTarget": "eb-league:build:production"
             },
             "bg": {
-              "browserTarget": "eb-league:build:bg"
+              "buildTarget": "eb-league:build:bg"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "eb-league:build"
+            "buildTarget": "eb-league:build"
           }
         },
         "test": {
@@ -359,6 +365,12 @@
               "projects/ebleague/src/favicon.ico",
               "projects/ebleague/src/assets",
               "projects/ebleague/src/manifest.json"
+            ],
+            "fileReplacements": [
+              {
+                "replace": "projects/common/src/environments/environment.ts",
+                "with": "projects/common/src/environments/environment.unit.ts"
+              }
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
@@ -380,7 +392,7 @@
           "builder": "@angular-devkit/build-angular:server",
           "options": {
             "outputPath": "dist/ebleague/server",
-            "main": "projects/ebleague/server-ebleague.ts",
+            "main": "projects/ebleague/server.ts",
             "tsConfig": "projects/ebleague/tsconfig.server.json",
             "inlineStyleLanguage": "scss",
             "sourceMap": true,
@@ -407,7 +419,7 @@
           }
         },
         "serve-ssr": {
-          "builder": "@nguniversal/builders:ssr-dev-server",
+          "builder": "@angular-devkit/build-angular:ssr-dev-server",
           "options": {
             "browserTarget": "eb-league:build",
             "serverTarget": "eb-league:server"
@@ -420,7 +432,7 @@
           }
         },
         "prerender": {
-          "builder": "@nguniversal/builders:prerender",
+          "builder": "@angular-devkit/build-angular:prerender",
           "options": {
             "browserTarget": "eb-league:build:production",
             "serverTarget": "eb-league:server:production",
@@ -496,6 +508,15 @@
             "polyfills": ["zone.js"],
             "tsConfig": "projects/common/tsconfig.spec.json",
             "karmaConfig": "projects/common/karma.conf.js",
+            "assets": [
+              "projects/common/src/assets"
+            ],
+            "fileReplacements": [
+              {
+                "replace": "projects/common/src/environments/environment.ts",
+                "with": "projects/common/src/environments/environment.unit.ts"
+              }
+            ],
             "stylePreprocessorOptions": {
               "includePaths": [
                 "node_modules"

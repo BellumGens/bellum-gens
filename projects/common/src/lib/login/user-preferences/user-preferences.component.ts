@@ -20,7 +20,8 @@ import { NgFor, NgClass, NgIf } from '@angular/common';
 })
 export class UserPreferencesComponent {
   public preferences: UserPreferences = {
-    searchVisible: true
+    searchVisible: true,
+    email: ''
   };
 
   public loginColors = LOGIN_ASSETS;
@@ -32,7 +33,8 @@ export class UserPreferencesComponent {
     this.authManager.applicationUser.subscribe(user => {
       if (user) {
         this.preferences = {
-          searchVisible: user.searchVisible
+          searchVisible: user.searchVisible,
+          email: user.email
         };
         this.authManager.tournamentRegistrations.subscribe(data => this.registrations = data);
         this.authUser = user;

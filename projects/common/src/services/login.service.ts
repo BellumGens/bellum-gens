@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { throwError, BehaviorSubject } from 'rxjs';
 import { LoginProvider } from '../models/login-provider';
 import { Promo } from '../models/jerseyorder';
-import { ApplicationUser, UserPreferences, AdminAppUserSummary } from '../models/applicationuser';
+import { ApplicationUser, UserPreferences } from '../models/applicationuser';
 import { map, catchError } from 'rxjs/operators';
 import { environment } from '../environments/environment';
 import { SwPush } from '@angular/service-worker';
@@ -69,16 +69,16 @@ export class LoginService {
   public get applicationUser() {
     if (!this._applicationUser.value && !this.userCheckInProgress.value) {
       this.userCheckInProgress.next(true);
-      this.getAppUser().subscribe(
-        user => {
+      this.getAppUser().subscribe({
+        next: (user) => {
           if (user) {
             this._applicationUser.next(user);
             this.initSw();
           }
           this.userCheckInProgress.next(false);
         },
-        () => this.userCheckInProgress.next(false)
-      );
+        error: () => this.userCheckInProgress.next(false)
+      });
     }
 
     return this._applicationUser;
@@ -112,9 +112,9 @@ export class LoginService {
     return this.http.get<boolean>(`${this._apiBase}/teams/teameditor?teamid=${teamid}`, { withCredentials: true });
   }
 
-  public getUsers() {
-    return this.http.get<AdminAppUserSummary []>(`${this._apiBase}/admin/users`, { withCredentials: true });
-  }
+  // public getUsers() {
+  //   return this.http.get<AdminAppUserSummary []>(`${this._apiBase}/admin/users`, { withCredentials: true });
+  // }
 
   public getUserRoles() {
     return this.http.get<string []>(`${this._apiBase}/admin/roles`, { withCredentials: true });
@@ -145,7 +145,7 @@ export class LoginService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error);
+        this.commService.emitError(error.message);
         return throwError(() => error);
       })
     );
@@ -159,7 +159,7 @@ export class LoginService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error);
+        this.commService.emitError(error.message);
         return throwError(() => error);
       })
     );
@@ -172,7 +172,7 @@ export class LoginService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error);
+        this.commService.emitError(error.message);
         return throwError(() => error);
       })
     );
@@ -185,7 +185,7 @@ export class LoginService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error[''].join(' '));
+        this.commService.emitError(error.message);
         return throwError(() => error);
       })
     );
@@ -199,7 +199,7 @@ export class LoginService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error);
+        this.commService.emitError(error.message);
         return throwError(() => error);
       })
     );
@@ -212,11 +212,11 @@ export class LoginService {
   public addSubscriber(email: string) {
     return this.http.post(`${this._apiEndpoint}/account/subscribe`, { email }).pipe(
       map(response => {
-        this.commService.emitSuccess(response.toString());
+        this.commService.emitSuccess('Subscribed successfully!');
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.error);
+        this.commService.emitError(error.message);
         return throwError(() => error);
       })
     );

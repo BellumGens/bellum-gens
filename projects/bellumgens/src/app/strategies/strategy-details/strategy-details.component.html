@@ -1,6 +1,6 @@
 <bg-loading *ngIf="!strat"></bg-loading>
 
-<igx-card *ngIf="strat" class="strategy-details" type="outlined" [horizontal]="horizontal">
+<igx-card *ngIf="strat" class="strategy-details"  [horizontal]="horizontal">
 
   <div igxLayout igxLayoutDir="column" igxFlex [igxFlexGrow]="1">
     <igx-card-media *ngIf="strat.url | isVideo else imageContent" height="100%">

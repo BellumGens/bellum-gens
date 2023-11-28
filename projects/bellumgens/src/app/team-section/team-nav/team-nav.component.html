@@ -5,7 +5,7 @@
 <div class="card-wrapper">
   <p *ngIf="!authUser" i18n>You need to login to view your teams.</p>
 
-  <igx-card class="team-card" *ngFor="let team of teams | async">
+  <igx-card class="team-card" *ngFor="let team of teams | async" elevated>
     <igx-card-header>
       <igx-avatar igxCardThumbnail [src]="team.teamAvatar" [initials]="team.teamName" shape="circle"></igx-avatar>
       <h3 igxCardHeaderTitle>{{ team.teamName }}</h3>
