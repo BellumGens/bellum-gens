@@ -16,7 +16,19 @@ import { NgFor, NgClass, NgIf } from '@angular/common';
     templateUrl: './user-preferences.component.html',
     styleUrls: ['./user-preferences.component.scss'],
     standalone: true,
-    imports: [NgFor, IgxButtonModule, IgxRippleModule, IgxIconModule, IgxDividerModule, IgxSwitchModule, FormsModule, IgxListModule, NgClass, NgIf, ConfirmComponent]
+    imports: [
+      NgFor,
+      IgxButtonModule,
+      IgxRippleModule,
+      IgxIconModule,
+      IgxDividerModule,
+      IgxSwitchModule,
+      FormsModule,
+      IgxListModule,
+      NgClass,
+      NgIf,
+      ConfirmComponent
+    ]
 })
 export class UserPreferencesComponent {
   public preferences: UserPreferences = {
@@ -48,16 +60,23 @@ export class UserPreferencesComponent {
   }
 
   public submitPreferences() {
-    this.authManager.updateUserPreferences(this.preferences).subscribe();
+    this.authManager.updateUserPreferences(this.preferences).subscribe({
+      error: () => {}
+    });
   }
 
   public deleteAccount() {
-    this.authManager.deleteAccount(this.authUser.id).subscribe();
+    this.authManager.deleteAccount(this.authUser.id).subscribe({
+      error: () => {}
+    });
   }
 
   public deleteRegistration(registration: TournamentApplication) {
-    this.apiService.deleteRegistration(registration.id).subscribe(() => {
-      this.registrations.splice(this.registrations.indexOf(registration), 1);
+    this.apiService.deleteRegistration(registration.id).subscribe({
+      next: () => {
+        this.registrations.splice(this.registrations.indexOf(registration), 1);
+      },
+      error: () => {}
     });
   }
 
