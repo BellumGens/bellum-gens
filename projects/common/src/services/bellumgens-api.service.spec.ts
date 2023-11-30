@@ -167,6 +167,7 @@ describe('BellumgensApiService', () => {
     expect(req.request.method).toBe('PUT');
     expect(req.request.body).toEqual(team);
     expect(req.request.withCredentials).toBe(true);
+    req.flush({});
 
     const errorMessage = `Http failure response for ${service['_apiEndpoint']}/teams/team: 404 Team not found!`;
     commsService.error.subscribe(error => expect(error).toBe(errorMessage));
@@ -454,7 +455,7 @@ describe('BellumgensApiService', () => {
   });
 
   it('getPlayer should send a GET request to the correct URL', () => {
-    const userId = '123';
+    let userId = '1';
     const player: CSGOPlayer = {
       id: '1',
       steamId: 'test-steam-id',
@@ -471,13 +472,14 @@ describe('BellumgensApiService', () => {
       steamUser: null,
       steamUserException: false,
       userStats: null,
-      userStatsException: false,
+      userStatsException: true,
       registered: false,
       headshotPercentage: 0,
       killDeathRatio: 0,
       accuracy: 0,
       steamPrivate: true
     };
+    const sub1 = commsService.error.subscribe(error => expect(error).toBe('Account is private!'));
     service.getPlayer(userId).subscribe();
     expect(service.loadingPlayer.value).toBe(true);
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/users?userid=${userId}`);
@@ -486,12 +488,16 @@ describe('BellumgensApiService', () => {
     expect(service.loadingPlayer.value).toBe(false);
     expect(service['_currentPlayer'].value).toEqual(player);
 
+    sub1.unsubscribe();
+    commsService.error.subscribe(error => expect(error).toBe(`Http failure response for ${service['_apiEndpoint']}/users?userid=2: 404 Player not found!`));
+    userId = '2';
     service.getPlayer(userId).subscribe({
       error: () => {
         expect(service.loadingPlayer.value).toBe(false);
         expect(service['_currentPlayer'].value).toBeNull();
       }
     });
+    expect(service.loadingPlayer.value).toBe(true);
     const req2 = httpMock.expectOne(`${service['_apiEndpoint']}/users?userid=${userId}`);
     expect(req2.request.method).toBe('GET');
     req2.error(new ProgressEvent('Not Found'), { status: 404, statusText: 'Player not found!' });
@@ -505,39 +511,40 @@ describe('BellumgensApiService', () => {
     req.flush({});
   });
 
-  describe('getPlayerFromServer', () => {
-    it('should send a GET request to the correct URL', () => {
-      const userId = '789';
-      service.getPlayerFromServer(userId).subscribe();
-      const req = httpMock.expectOne(`${service['_apiEndpoint']}/users?userid=${userId}`);
-      expect(req.request.method).toBe('GET');
-    });
+  it('player getAvailability should send a GET request to the correct URL', () => {
+    const userId = '012';
+    service.getAvailability(userId).subscribe();
+    const req = httpMock.expectOne(`${service['_apiEndpoint']}/users/availability?userid=${userId}`);
+    expect(req.request.method).toBe('GET');
+    req.flush({});
   });
 
-  describe('player getAvailability', () => {
-    it('should send a GET request to the correct URL', () => {
-      const userId = '012';
-      service.getAvailability(userId).subscribe();
-      const req = httpMock.expectOne(`${service['_apiEndpoint']}/users/availability?userid=${userId}`);
-      expect(req.request.method).toBe('GET');
-    });
-  });
+  it('player setAvailability should send a PUT request to the correct URL', () => {
+    const availability: Availability = {
+      userId: '123',
+      day: DayOfWeek.Monday,
+      available: true,
+      from: new Date(),
+      to: new Date()
+    };
+    commsService.success.subscribe(success => expect(success).toBe('Availability updated!'));
+    service.setAvailability(availability).subscribe();
+    const req = httpMock.expectOne(`${service['_apiEndpoint']}/users/availability`);
+    expect(req.request.method).toBe('PUT');
+    expect(req.request.body).toEqual(availability);
+    expect(req.request.withCredentials).toBe(true);
+    req.flush({});
 
-  describe('player setAvailability', () => {
-    it('should send a PUT request to the correct URL', () => {
-      const availability: Availability = {
-        userId: '123',
-        day: DayOfWeek.Monday,
-        available: true,
-        from: new Date(),
-        to: new Date()
-      };
-      service.setAvailability(availability).subscribe();
-      const req = httpMock.expectOne(`${service['_apiEndpoint']}/users/availability`);
-      expect(req.request.method).toBe('PUT');
-      expect(req.request.body).toEqual(availability);
-      expect(req.request.withCredentials).toBe(true);
+    const errorMessage = `Http failure response for ${service['_apiEndpoint']}/users/availability: 500 Could not update availability!`;
+    commsService.error.subscribe(error => expect(error).toBe(errorMessage));
+    service.setAvailability(availability).subscribe({
+      error: err => expect(err.message).toBe(errorMessage)
     });
+    const req2 = httpMock.expectOne(`${service['_apiEndpoint']}/users/availability`);
+    expect(req2.request.method).toBe('PUT');
+    expect(req2.request.body).toEqual(availability);
+    expect(req2.request.withCredentials).toBe(true);
+    req2.error(new ProgressEvent('Server Error'), { status: 500, statusText: 'Could not update availability!' });
   });
 
   describe('setPrimaryRole', () => {

@@ -26,7 +26,10 @@
             "outputPath": "dist/bellumgens/browser",
             "index": "projects/bellumgens/src/index.html",
             "main": "projects/bellumgens/src/main.ts",
-            "polyfills": ["zone.js"],
+            "polyfills": [
+              "zone.js",
+              "@angular/localize/init"
+            ],
             "tsConfig": "projects/bellumgens/tsconfig.app.json",
             "assets": [
               "projects/bellumgens/src/favicon.ico",
@@ -352,7 +355,10 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "main": "projects/ebleague/src/test.ts",
-            "polyfills": ["zone.js"],
+            "polyfills": [
+              "zone.js",
+              "@angular/localize/init"
+            ],
             "tsConfig": "projects/ebleague/tsconfig.spec.json",
             "karmaConfig": "projects/ebleague/karma.conf.js",
             "styles": [
