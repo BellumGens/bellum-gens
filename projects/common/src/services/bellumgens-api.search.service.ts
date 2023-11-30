@@ -35,13 +35,14 @@ export class ApiSearchService {
       this.searchResult.next(this._searchResultCache.get(name));
     } else {
       this.loadingQuickSearch.next(true);
-      this.getQuickSearch(name).subscribe(
-        data => {
+      this.getQuickSearch(name).subscribe({
+        next: data => {
           this._searchResultCache.set(name, data);
           this.searchResult.next(data);
           this.loadingQuickSearch.next(false);
-        }
-      );
+        },
+        error: () => this.loadingQuickSearch.next(false)
+      });
     }
   }
 
