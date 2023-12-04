@@ -3,9 +3,8 @@ import { LoginButtonsComponent } from './login-buttons.component';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { RouterTestingModule } from '@angular/router/testing';
-import { LoginProvider } from '../../../models/login-provider';
 import { LOGIN_ASSETS } from '../../../models/misc';
-import { LoginService } from '../../../services/login.service';
+import { LoginProvider, LoginService } from '../../../public_api';
 
 describe('LoginButtonsComponent', () => {
   let component: LoginButtonsComponent;

@@ -546,26 +546,48 @@ describe('BellumgensApiService', () => {
     req2.error(new ProgressEvent('Server Error'), { status: 500, statusText: 'Could not update availability!' });
   });
 
-  describe('setPrimaryRole', () => {
-    it('should send a PUT request to the correct URL', () => {
-      const role: Role = { id: PlaystyleRole.Awper, name: 'Awper' };
-      service.setPrimaryRole(role).subscribe();
-      const req = httpMock.expectOne(`${service['_apiEndpoint']}/users/primaryrole?id=${role.id}`);
-      expect(req.request.method).toBe('PUT');
-      expect(req.request.body).toEqual(role);
-      expect(req.request.withCredentials).toBe(true);
+  it('setPrimaryRole should send a PUT request to the correct URL', () => {
+    const role: Role = { id: PlaystyleRole.Awper, name: 'Awper' };
+    commsService.success.subscribe(success => expect(success).toBe(`Primary role set to ${role.name}`));
+    service.setPrimaryRole(role).subscribe();
+    const req = httpMock.expectOne(`${service['_apiEndpoint']}/users/primaryrole?id=${role.id}`);
+    expect(req.request.method).toBe('PUT');
+    expect(req.request.body).toEqual(role);
+    expect(req.request.withCredentials).toBe(true);
+    req.flush({});
+
+    const errorMessage = `Http failure response for ${service['_apiEndpoint']}/users/primaryrole?id=${role.id}: 500 Could not update primary role!`;
+    commsService.error.subscribe(error => expect(error).toBe(errorMessage));
+    service.setPrimaryRole(role).subscribe({
+      error: err => expect(err.message).toBe(errorMessage)
     });
+    const req2 = httpMock.expectOne(`${service['_apiEndpoint']}/users/primaryrole?id=${role.id}`);
+    expect(req2.request.method).toBe('PUT');
+    expect(req2.request.body).toEqual(role);
+    expect(req2.request.withCredentials).toBe(true);
+    req2.error(new ProgressEvent('Server Error'), { status: 500, statusText: 'Could not update primary role!' });
   });
 
-  describe('setSecondaryRole', () => {
-    it('should send a PUT request to the correct URL', () => {
-      const role: Role = { id: PlaystyleRole.IGL, name: 'Ingame Leader' };
-      service.setSecondaryRole(role).subscribe();
-      const req = httpMock.expectOne(`${service['_apiEndpoint']}/users/secondaryrole?id=${role.id}`);
-      expect(req.request.method).toBe('PUT');
-      expect(req.request.body).toEqual(role);
-      expect(req.request.withCredentials).toBe(true);
+  it('setSecondaryRole should send a PUT request to the correct URL', () => {
+    const role: Role = { id: PlaystyleRole.IGL, name: 'Ingame Leader' };
+    commsService.success.subscribe(success => expect(success).toBe(`Secondary role set to ${role.name}`));
+    service.setSecondaryRole(role).subscribe();
+    const req = httpMock.expectOne(`${service['_apiEndpoint']}/users/secondaryrole?id=${role.id}`);
+    expect(req.request.method).toBe('PUT');
+    expect(req.request.body).toEqual(role);
+    expect(req.request.withCredentials).toBe(true);
+    req.flush({});
+
+    const errorMessage = `Http failure response for ${service['_apiEndpoint']}/users/secondaryrole?id=${role.id}: 500 Could not update secondary role!`;
+    commsService.error.subscribe(error => expect(error).toBe(errorMessage));
+    service.setSecondaryRole(role).subscribe({
+      error: err => expect(err.message).toBe(errorMessage)
     });
+    const req2 = httpMock.expectOne(`${service['_apiEndpoint']}/users/secondaryrole?id=${role.id}`);
+    expect(req2.request.method).toBe('PUT');
+    expect(req2.request.body).toEqual(role);
+    expect(req2.request.withCredentials).toBe(true);
+    req2.error(new ProgressEvent('Server Error'), { status: 500, statusText: 'Could not update secondary role!' });
   });
 
   describe('getMapPool', () => {
