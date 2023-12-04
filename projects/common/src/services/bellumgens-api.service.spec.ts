@@ -590,45 +590,77 @@ describe('BellumgensApiService', () => {
     req2.error(new ProgressEvent('Server Error'), { status: 500, statusText: 'Could not update secondary role!' });
   });
 
-  describe('getMapPool', () => {
-    it('should send a GET request to the correct URL', () => {
-      const userId = '234';
-      service.getMapPool(userId).subscribe();
-      const req = httpMock.expectOne(`${service['_apiEndpoint']}/users/mapPool?userid=${userId}`);
-      expect(req.request.method).toBe('GET');
-    });
+  it('getMapPool should send a GET request to the correct URL', () => {
+    const userId = '234';
+    service.getMapPool(userId).subscribe();
+    const req = httpMock.expectOne(`${service['_apiEndpoint']}/users/mapPool?userid=${userId}`);
+    expect(req.request.method).toBe('GET');
+    req.flush({});
   });
 
-  describe('setMapPool', () => {
-    it('should send a PUT request to the correct URL', () => {
-      const mapstatus: CSGOMapPool = { mapId: CSGOMap.Dust2, isPlayed: true };
-      service.setMapPool(mapstatus).subscribe();
-      const req = httpMock.expectOne(`${service['_apiEndpoint']}/users/mapPool`);
-      expect(req.request.method).toBe('PUT');
-      expect(req.request.body).toEqual(mapstatus);
-      expect(req.request.withCredentials).toBe(true);
+  it('setMapPool should send a PUT request to the correct URL', () => {
+    const mapstatus: CSGOMapPool = { mapId: CSGOMap.Dust2, isPlayed: true };
+    commsService.success.subscribe(success => expect(success).toBe('Map pool updated!'));
+    service.setMapPool(mapstatus).subscribe();
+    const req = httpMock.expectOne(`${service['_apiEndpoint']}/users/mapPool`);
+    expect(req.request.method).toBe('PUT');
+    expect(req.request.body).toEqual(mapstatus);
+    expect(req.request.withCredentials).toBe(true);
+    req.flush({});
+
+    const errorMessage = `Http failure response for ${service['_apiEndpoint']}/users/mapPool: 500 Could not update map pool!`;
+    commsService.error.subscribe(error => expect(error).toBe(errorMessage));
+    service.setMapPool(mapstatus).subscribe({
+      error: err => expect(err.message).toBe(errorMessage)
     });
+    const req2 = httpMock.expectOne(`${service['_apiEndpoint']}/users/mapPool`);
+    expect(req2.request.method).toBe('PUT');
+    expect(req2.request.body).toEqual(mapstatus);
+    expect(req2.request.withCredentials).toBe(true);
+    req2.error(new ProgressEvent('Server Error'), { status: 500, statusText: 'Could not update map pool!' });
   });
 
-  describe('acceptInvite', () => {
-    it('should send a PUT request to the correct URL', () => {
-      const notification: UserNotification = { state: NotificationState.NotSeen, teamInfo: null, invitingUser: null, sent: '' };
-      service.acceptInvite(notification).subscribe();
-      const req = httpMock.expectOne(`${service['_apiEndpoint']}/users/acceptTeamInvite`);
-      expect(req.request.method).toBe('PUT');
-      expect(req.request.body).toEqual(notification);
-      expect(req.request.withCredentials).toBe(true);
+  it('acceptInvite should send a PUT request to the correct URL', () => {
+    const notification: UserNotification = { state: NotificationState.NotSeen, teamInfo: null, invitingUser: null, sent: '' };
+    commsService.success.subscribe(success => expect(success).toBe('Team invite accepted!'));
+    service.acceptInvite(notification).subscribe();
+    const req = httpMock.expectOne(`${service['_apiEndpoint']}/users/acceptTeamInvite`);
+    expect(req.request.method).toBe('PUT');
+    expect(req.request.body).toEqual(notification);
+    expect(req.request.withCredentials).toBe(true);
+    req.flush({});
+
+    const errorMessage = `Http failure response for ${service['_apiEndpoint']}/users/acceptTeamInvite: 500 Could not accept team invite!`;
+    commsService.error.subscribe(error => expect(error).toBe(errorMessage));
+    service.acceptInvite(notification).subscribe({
+      error: err => expect(err.message).toBe(errorMessage)
     });
+    const req2 = httpMock.expectOne(`${service['_apiEndpoint']}/users/acceptTeamInvite`);
+    expect(req2.request.method).toBe('PUT');
+    expect(req2.request.body).toEqual(notification);
+    expect(req2.request.withCredentials).toBe(true);
+    req2.error(new ProgressEvent('Server Error'), { status: 500, statusText: 'Could not accept team invite!' });
   });
 
-  describe('rejectInvite', () => {
-    it('should send a PUT request to the correct URL', () => {
-      const notification: UserNotification = { state: NotificationState.NotSeen, teamInfo: null, invitingUser: null, sent: '' };
-      service.rejectInvite(notification).subscribe();
-      const req = httpMock.expectOne(`${service['_apiEndpoint']}/users/rejectTeamInvite`);
-      expect(req.request.method).toBe('PUT');
-      expect(req.request.body).toEqual(notification);
-      expect(req.request.withCredentials).toBe(true);
+  it('rejectInvite should send a PUT request to the correct URL', () => {
+    const notification: UserNotification = { state: NotificationState.NotSeen, teamInfo: null, invitingUser: null, sent: '' };
+    commsService.success.subscribe(success => expect(success).toBe('Team invite rejected!'));
+    service.rejectInvite(notification).subscribe();
+    const req = httpMock.expectOne(`${service['_apiEndpoint']}/users/rejectTeamInvite`);
+    expect(req.request.method).toBe('PUT');
+    expect(req.request.body).toEqual(notification);
+    expect(req.request.withCredentials).toBe(true);
+    req.flush({});
+
+    const errorMessage = `Http failure response for ${service['_apiEndpoint']}/users/rejectTeamInvite: 500 Could not reject team invite!`;
+    commsService.error.subscribe(error => expect(error).toBe(errorMessage));
+    service.rejectInvite(notification).subscribe({
+      error: err => expect(err.message).toBe(errorMessage)
     });
+    const req2 = httpMock.expectOne(`${service['_apiEndpoint']}/users/rejectTeamInvite`);
+    expect(req2.request.method).toBe('PUT');
+    expect(req2.request.body).toEqual(notification);
+    expect(req2.request.withCredentials).toBe(true);
+    req2.error(new ProgressEvent('Server Error'), { status: 500, statusText: 'Could not reject team invite!' });
   });
 });
