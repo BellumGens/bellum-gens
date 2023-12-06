@@ -7,7 +7,6 @@ import { environment } from '../environments/environment';
 import { CSGOStrategy, StrategyComment, StrategyVote, VoteDirection } from '../models/csgostrategy';
 import { CommunicationService } from './communication.service';
 
-const PAGE_SIZE = 25;
 @Injectable({
   providedIn: 'root'
 })
@@ -18,31 +17,35 @@ export class ApiStrategiesService {
   private _apiEndpoint = environment.apiEndpoint;
   private _strategyCache = new Map<string, BehaviorSubject<CSGOStrategy>>();
   private _strategies = new BehaviorSubject<CSGOStrategy []>([]);
+  private readonly PAGE_SIZE = 25;
 
   constructor(private http: HttpClient, private commService: CommunicationService) { }
 
   public get strategies() {
     if (!this._strategies.value.length) {
       this.loadingStrategies.next(true);
-      this.getStrategies().subscribe(
-        data => {
+      this.getStrategies().subscribe({
+        next: data => {
           this._strategies.next(data);
           this.loadingStrategies.next(false);
-          this.hasMoreStrats.next(data.length === PAGE_SIZE);
-        }
-      );
+          this.hasMoreStrats.next(data.length === this.PAGE_SIZE);
+        },
+        error: () => this.loadingStrategies.next(false)
+      });
     }
     return this._strategies;
   }
 
   public loadStrategiesPage(page: number) {
-    this.getStrategies(page).subscribe(
-      data => {
-        this._strategies.next(this._strategies.value.concat(data));
+    this.loadingStrategies.next(true);
+    this.getStrategies(page).subscribe({
+      next: data => {
+        this._strategies.next(data);
         this.loadingStrategies.next(false);
-        this.hasMoreStrats.next(data.length === PAGE_SIZE);
-      }
-    );
+        this.hasMoreStrats.next(data.length === this.PAGE_SIZE);
+      },
+      error: () => this.loadingStrategies.next(false)
+    });
   }
 
   public getUserStrategies(userId: string) {
@@ -141,7 +144,7 @@ export class ApiStrategiesService {
     return this.http.delete<StrategyComment>(`${this._apiEndpoint}/strategy/comment?id=${comment.id}`,
                           { withCredentials: true }).pipe(
       map(response => {
-        this.commService.emitSuccess('Comment submitted successfully!');
+        this.commService.emitSuccess('Comment deleted successfully!');
         strat.comments.splice(strat.comments.indexOf(comment), 1);
         return response;
       }),
@@ -173,7 +176,6 @@ export class ApiStrategiesService {
       }),
       catchError(error => {
         this.commService.emitError(error.message);
-        this.loadingStrategies.next(false);
         return throwError(() => error);
       })
     );

@@ -11,8 +11,7 @@ describe('ApiTournamentsService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ HttpClientTestingModule ],
-      providers: [ ApiTournamentsService ]
+      imports: [ HttpClientTestingModule ]
     });
     service = TestBed.inject(ApiTournamentsService);
     httpMock = TestBed.inject(HttpTestingController);

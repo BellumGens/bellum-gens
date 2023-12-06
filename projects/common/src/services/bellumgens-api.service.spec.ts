@@ -18,8 +18,7 @@ describe('BellumgensApiService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ HttpClientTestingModule ],
-      providers: [ BellumgensApiService ]
+      imports: [ HttpClientTestingModule ]
     });
     service = TestBed.inject(BellumgensApiService);
     httpMock = TestBed.inject(HttpTestingController);
