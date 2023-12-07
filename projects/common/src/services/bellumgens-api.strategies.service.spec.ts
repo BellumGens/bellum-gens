@@ -209,24 +209,37 @@ describe('ApiStrategiesService', () => {
     const direction = VoteDirection.Up;
     const userId = '123';
     const vote: StrategyVote = { userId: userId, vote: direction };
-    commsService.success.subscribe(message => expect(message).toEqual('Vote submitted successfully!'));
+    let sub = commsService.success.subscribe(message => expect(message).toEqual('Vote submitted successfully!'));
     service.submitStratVote(strat, direction, userId).subscribe();
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/strategy/vote`);
     expect(req.request.method).toEqual('POST');
     expect(req.request.body).toEqual({ id: strat.id, direction });
     expect(req.request.withCredentials).toEqual(true);
     req.flush(vote);
+    sub.unsubscribe();
 
     // Should update the vote if the user already voted
     const vote2: StrategyVote = { userId: userId, vote: VoteDirection.Down };
-    commsService.success.subscribe(message => expect(message).toEqual('Vote submitted successfully!'));
-    service.submitStratVote(strat, direction, userId).subscribe();
+    sub = commsService.success.subscribe(message => expect(message).toEqual('Vote submitted successfully!'));
+    service.submitStratVote(strat, VoteDirection.Down, userId).subscribe();
     const req2 = httpMock.expectOne(`${service['_apiEndpoint']}/strategy/vote`);
     expect(req2.request.method).toEqual('POST');
-    expect(req2.request.body).toEqual({ id: strat.id, direction });
+    expect(req2.request.body).toEqual({ id: strat.id, direction: VoteDirection.Down });
     expect(req2.request.withCredentials).toEqual(true);
     req2.flush(vote2);
     expect(strat.votes.find(v => v.userId === userId).vote).toEqual(vote2.vote);
+    sub.unsubscribe();
+
+    // Should remove the vote if the user already voted and the direction is the same
+    sub = commsService.success.subscribe(message => expect(message).toEqual('Vote removed successfully!'));
+    service.submitStratVote(strat, VoteDirection.Down, userId).subscribe();
+    const req4 = httpMock.expectOne(`${service['_apiEndpoint']}/strategy/vote`);
+    expect(req4.request.method).toEqual('POST');
+    expect(req4.request.body).toEqual({ id: strat.id, direction: VoteDirection.Down });
+    expect(req4.request.withCredentials).toEqual(true);
+    req4.flush(null);
+    expect(strat.votes.find(v => v.userId === userId)).toBeUndefined();
+    sub.unsubscribe();
 
     const errorMessage = `Http failure response for ${service['_apiEndpoint']}/strategy/vote: 500 Could not submit vote!`;
     commsService.error.subscribe(message => expect(message).toEqual(errorMessage));
