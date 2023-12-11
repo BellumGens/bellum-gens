@@ -252,16 +252,16 @@ export class BellumgensApiService {
     if (!this.playerMatch(userId)) {
       this._currentPlayer.next(null);
       this.loadingPlayer.next(true);
-      this.getPlayerFromServer(userId).subscribe(
-        player => {
+      this.getPlayerFromServer(userId).subscribe({
+        next: player => {
           this._currentPlayer.next(player);
           this.loadingPlayer.next(false);
         },
-        () => {
+        error: () => {
           this._currentPlayer.next(null);
           this.loadingPlayer.next(false);
         }
-      );
+      });
     }
     return this._currentPlayer;
   }

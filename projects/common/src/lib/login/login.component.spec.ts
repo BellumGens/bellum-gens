@@ -3,7 +3,6 @@ import { LoginComponent } from './login.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { ApplicationUser, LoginService } from '../../public_api';
 import { Router } from '@angular/router';
@@ -32,7 +31,6 @@ describe('LoginComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        FormsModule,
         RouterTestingModule,
         NoopAnimationsModule,
         HttpClientTestingModule,

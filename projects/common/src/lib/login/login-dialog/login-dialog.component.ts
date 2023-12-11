@@ -32,11 +32,15 @@ export class LoginDialogComponent {
   }
 
   public openRegistration() {
-    this.router.navigate(['register']);
     this.dialog.close();
+    this.router.navigate(['register']);
   }
 
   public loginWithForm() {
-    this.authManager.loginWithForm(this.logininfo).subscribe(() => this.dialog.close());
+    this.submitInProgress = true;
+    this.authManager.loginWithForm(this.logininfo).subscribe(() => {
+      this.dialog.close();
+      this.submitInProgress = false;
+    });
   }
 }

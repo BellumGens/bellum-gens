@@ -1,8 +1,11 @@
 :host {
   display: flex;
-  height: 100%;
+  height: calc(100% - 45px);
   width: 100%;
   background-image: url('/assets/bge/bge-background-right.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom right;
 
   @font-face {
     font-family: 'dge-ebold';
@@ -42,6 +45,8 @@
   }
 
   @media screen and (max-width: 1024px) {
+    background-position: center;
+
     .content-container h1 {
       font-size: 36pt;
     }

@@ -35,13 +35,14 @@ export class ApiSearchService {
       this.searchResult.next(this._searchResultCache.get(name));
     } else {
       this.loadingQuickSearch.next(true);
-      this.getQuickSearch(name).subscribe(
-        data => {
+      this.getQuickSearch(name).subscribe({
+        next: data => {
           this._searchResultCache.set(name, data);
           this.searchResult.next(data);
           this.loadingQuickSearch.next(false);
-        }
-      );
+        },
+        error: () => this.loadingQuickSearch.next(false)
+      });
     }
   }
 
@@ -57,13 +58,14 @@ export class ApiSearchService {
       } else {
         this.teamSearchResult.next([]);
         this.loadingSearch.next(true);
-        this.getFilteredTeams(query).subscribe(
-          teams => {
+        this.getFilteredTeams(query).subscribe({
+          next: teams => {
             this._teamSearchCache.set(query, teams);
             this.teamSearchResult.next(teams);
             this.loadingSearch.next(false);
-          }
-        );
+          },
+          error: () => this.loadingSearch.next(false)
+        });
       }
     }
   }
@@ -80,13 +82,14 @@ export class ApiSearchService {
       } else {
         this.playerSearchResult.next([]);
         this.loadingSearch.next(true);
-        this.getFilteredPlayers(query).subscribe(
-          players => {
+        this.getFilteredPlayers(query).subscribe({
+          next: players => {
             this._playerSearchCache.set(query, players);
             this.playerSearchResult.next(players);
             this.loadingSearch.next(false);
-          }
-        );
+          },
+          error: () => this.loadingSearch.next(false)
+        });
       }
     }
   }
@@ -103,13 +106,14 @@ export class ApiSearchService {
       } else {
         this.strategySearchResult.next([]);
         this.loadingSearch.next(true);
-        this.getFilteredStrategies(query).subscribe(
-          strategies => {
+        this.getFilteredStrategies(query).subscribe({
+          next: strategies => {
             this._strategySearchCache.set(query, strategies);
             this.strategySearchResult.next(strategies);
             this.loadingSearch.next(false);
-          }
-        );
+          },
+          error: () => this.loadingSearch.next(false)
+        });
       }
     }
   }

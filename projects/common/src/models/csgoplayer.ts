@@ -17,8 +17,8 @@ export interface CSGOPlayer extends ApplicationUser {
   userStats: CSGOStats;
   userStatsException: boolean;
   registered: boolean;
-  primaryRole: PlaystyleRole;
-  secondaryRole: PlaystyleRole;
+  primaryRole?: PlaystyleRole;
+  secondaryRole?: PlaystyleRole;
   headshotPercentage: number;
   killDeathRatio: number;
   accuracy: number;
