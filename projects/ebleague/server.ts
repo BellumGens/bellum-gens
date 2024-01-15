@@ -34,8 +34,8 @@ export function app(lang: string): express.Express {
   server.get('*', (req, res, next) => {
     const { protocol, originalUrl, baseUrl, headers } = req;
 
-    if (existsSync(join(process.cwd(), environment.distFolderBellumGens, originalUrl, 'index.html'))) {
-      indexHtml = join(process.cwd(), environment.distFolderBellumGens, originalUrl, 'index.html');
+    if (existsSync(join(process.cwd(), environment.distFolderEbleague, originalUrl, 'index.html'))) {
+      indexHtml = join(process.cwd(), environment.distFolderEbleague, originalUrl, 'index.html');
     }
 
     commonEngine
