@@ -14,7 +14,7 @@ import { environment } from '../common/src/environments/environment';
 export function app(lang: string): express.Express {
   const server = express();
   const distFolder = join(process.cwd(), environment.distFolderBellumGens, lang);
-  const indexHtml = existsSync(join(distFolder, 'index.original.html'))
+  let indexHtml = existsSync(join(distFolder, 'index.original.html'))
     ? join(distFolder, 'index.original.html')
     : join(distFolder, 'index.html');
 
@@ -36,6 +36,10 @@ export function app(lang: string): express.Express {
   // All regular routes use the Angular engine
   server.get('*', (req, res, next) => {
     const { protocol, originalUrl, baseUrl, headers } = req;
+
+    if (existsSync(join(process.cwd(), environment.distFolderBellumGens, originalUrl, 'index.html'))) {
+      indexHtml = join(process.cwd(), environment.distFolderBellumGens, originalUrl, 'index.html');
+    }
 
     commonEngine
       .render({
