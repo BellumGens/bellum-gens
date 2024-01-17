@@ -32,7 +32,7 @@ describe('RegistrationComponent', () => {
     commsService = TestBed.inject(CommunicationService);
     loginService = TestBed.inject(LoginService);
     httpMock = TestBed.inject(HttpTestingController);
-    router = TestBed.get(Router);
+    router = TestBed.inject(Router);
   }));
 
   beforeEach(() => {

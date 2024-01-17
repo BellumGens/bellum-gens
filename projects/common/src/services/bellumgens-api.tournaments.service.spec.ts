@@ -3,18 +3,21 @@ import { TestBed } from '@angular/core/testing';
 import { ApiTournamentsService } from './bellumgens-api.tournaments.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { TournamentCSGOMatch, TournamentSC2Match } from '../models/tournament-schedule';
-import { Game, TournamentApplication, TournamentCSGOGroup, TournamentParticipant, TournamentSC2Group } from '../public_api';
+import { CommunicationService, Game, TournamentApplication, TournamentCSGOGroup, TournamentParticipant, TournamentSC2Group } from '../public_api';
 
 describe('ApiTournamentsService', () => {
   let service: ApiTournamentsService;
   let httpMock: HttpTestingController;
+  let commsService: CommunicationService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ HttpClientTestingModule ]
+      imports: [ HttpClientTestingModule ],
+      providers: [ ApiTournamentsService ]
     });
     service = TestBed.inject(ApiTournamentsService);
     httpMock = TestBed.inject(HttpTestingController);
+    commsService = TestBed.inject(CommunicationService);
   });
 
   afterEach(() => {
@@ -53,6 +56,7 @@ describe('ApiTournamentsService', () => {
   it('should create a tournament', () => {
     const mockTournament = { name: 'New Tournament' };
 
+    commsService.success.subscribe(success => expect(success).toBe('Tournament updated successfully!'));
     service.createTournament(mockTournament).subscribe(tournament => {
       expect(tournament).toEqual({ id: '1', ...mockTournament });
     });
@@ -62,6 +66,21 @@ describe('ApiTournamentsService', () => {
     expect(req.request.body).toEqual(mockTournament);
     expect(req.request.withCredentials).toBe(true);
     req.flush({ id: '1', ...mockTournament });
+
+    const errorMessage = `Http failure response for ${service['_apiEndpoint']}/tournament/create: 500 Tournament creation failed`;
+    commsService.error.subscribe(error => expect(error).toBe(errorMessage));
+    service.createTournament(mockTournament).subscribe(
+      {
+        error: (error) => {
+          expect(error.message).toBe(errorMessage);
+        }
+      }
+    );
+    const req4 = httpMock.expectOne(`${service['_apiEndpoint']}/tournament/create`);
+    expect(req4.request.method).toBe('PUT');
+    expect(req4.request.body).toEqual(mockTournament);
+    expect(req4.request.withCredentials).toBe(true);
+    req4.error(new ProgressEvent('Server Error'), { status: 500, statusText: 'Tournament creation failed' });
   });
 
   it('should delete a registration', () => {

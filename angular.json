@@ -21,11 +21,16 @@
       },
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/bellumgens/browser",
+            "outputPath": "dist/bellumgens",
             "index": "projects/bellumgens/src/index.html",
-            "main": "projects/bellumgens/src/main.ts",
+            "browser": "projects/bellumgens/src/main.ts",
+            "server": "projects/bellumgens/src/main.server.ts",
+            "prerender": true,
+            "ssr": {
+              "entry": "projects/bellumgens/server.ts"
+            },
             "polyfills": [
               "zone.js",
               "@angular/localize/init"
@@ -44,9 +49,7 @@
             "scripts": [
               "./node_modules/hammerjs/hammer.min.js"
             ],
-            "vendorChunk": true,
             "extractLicenses": false,
-            "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
             "namedChunks": true,
@@ -81,11 +84,8 @@
               "sourceMap": false,
               "namedChunks": false,
               "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "serviceWorker": true,
-              "i18nMissingTranslation": "error",
-              "ngswConfigPath": "projects/bellumgens/src/ngsw-config.json"
+              "serviceWorker": "projects/bellumgens/src/ngsw-config.json",
+              "i18nMissingTranslation": "error"
             },
             "bg": {
               "localize": [
@@ -261,11 +261,16 @@
       },
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/ebleague/browser",
+            "outputPath": "dist/ebleague",
             "index": "projects/ebleague/src/index.html",
-            "main": "projects/ebleague/src/main.ts",
+            "browser": "projects/ebleague/src/main.ts",
+            "server": "projects/ebleague/src/main.server.ts",
+            "prerender": true,
+            "ssr": {
+              "entry": "projects/ebleague/server.ts"
+            },
             "polyfills": ["zone.js"],
             "tsConfig": "projects/ebleague/tsconfig.app.json",
             "assets": [
@@ -281,9 +286,7 @@
             "scripts": [
               "./node_modules/hammerjs/hammer.min.js"
             ],
-            "vendorChunk": true,
             "extractLicenses": false,
-            "buildOptimizer": false,
             "sourceMap": true,
             "optimization": false,
             "namedChunks": true,
@@ -318,11 +321,8 @@
               "sourceMap": false,
               "namedChunks": false,
               "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
-              "serviceWorker": true,
-              "i18nMissingTranslation": "error",
-              "ngswConfigPath": "projects/ebleague/src/ngsw-config.json"
+              "serviceWorker": "projects/ebleague/src/ngsw-config.json",
+              "i18nMissingTranslation": "error"
             },
             "bg": {
               "localize": [

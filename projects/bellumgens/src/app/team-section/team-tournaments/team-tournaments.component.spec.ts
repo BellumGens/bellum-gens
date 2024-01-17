@@ -13,25 +13,25 @@ describe('TeamTournamentsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [
-        RouterTestingModule,
-        HttpClientTestingModule,
-        IgxGridModule,
-        IgxAvatarModule,
-        TeamTournamentsComponent
-    ],
-    providers: [
-        {
-            provide: ActivatedRoute,
-            useValue: {
-                parent: {
-                    params: new Observable()
-                },
-                data: new Observable()
+        imports: [
+            RouterTestingModule,
+            HttpClientTestingModule,
+            IgxGridModule,
+            IgxAvatarModule,
+            TeamTournamentsComponent
+        ],
+        providers: [
+            {
+                provide: ActivatedRoute,
+                useValue: {
+                    parent: {
+                        params: new Observable()
+                    },
+                    data: new Observable()
+                }
             }
-        }
-    ]
-})
+        ]
+    })
     .compileComponents();
   }));
 

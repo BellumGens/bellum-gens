@@ -53,7 +53,7 @@ describe('UserPreferencesComponent', () => {
     authService = TestBed.inject(LoginService);
     httpMock = TestBed.inject(HttpTestingController);
     commsService = TestBed.inject(CommunicationService);
-    router = TestBed.get(Router);
+    router = TestBed.inject(Router);
   }));
 
   beforeEach(() => {
