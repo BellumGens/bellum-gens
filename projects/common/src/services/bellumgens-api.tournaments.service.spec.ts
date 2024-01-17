@@ -69,6 +69,13 @@ describe('ApiTournamentsService', () => {
 
     const errorMessage = `Http failure response for ${service['_apiEndpoint']}/tournament/create: 500 Tournament creation failed`;
     commsService.error.subscribe(error => expect(error).toBe(errorMessage));
+    service.createTournament(mockTournament).subscribe(
+      {
+        error: (error) => {
+          expect(error.message).toBe(errorMessage);
+        }
+      }
+    );
     const req4 = httpMock.expectOne(`${service['_apiEndpoint']}/tournament/create`);
     expect(req4.request.method).toBe('PUT');
     expect(req4.request.body).toEqual(mockTournament);
