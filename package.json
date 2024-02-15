@@ -52,8 +52,7 @@
     "minireset.css": "0.0.4",
     "rxjs": "^7.8.0",
     "tslib": "^2.6.2",
-    "xmlhttprequest": "^1.8.0",
-    "zone.js": "~0.14.3"
+    "zone.js": "~0.14.4"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^17.2.0",
@@ -68,9 +67,9 @@
     "@angular/localize": "^17.2.1",
     "@cypress/schematic": "^2.5.0",
     "@types/hammerjs": "^2.0.39",
-    "@types/jasmine": "^4.3.5",
+    "@types/jasmine": "^5.1.4",
     "@types/jasminewd2": "^2.0.9",
-    "@types/node": "^18.17.14",
+    "@types/node": "^20.11.17",
     "@typescript-eslint/eslint-plugin": "^6.10.0",
     "@typescript-eslint/parser": "^6.10.0",
     "browser-sync": "^3.0.0",
@@ -88,7 +87,7 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "^2.1.0",
     "karma-spec-reporter": "^0.0.36",
-    "ng-packagr": "^17.1.2",
+    "ng-packagr": "^17.2.0",
     "typescript": "5.3.3"
   }
 }
