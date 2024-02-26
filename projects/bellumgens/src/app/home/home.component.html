@@ -4,7 +4,7 @@
       <div class="slide-info">
         <h2 class="horizontal"><igx-icon family="partners" name="bge-white" class="event-icon"></igx-icon>Bellum Gens Elite</h2>
         <p i18n>Bellum Gens Elite is a premier esports event. The first professional Bellum Gens Counter-Strike tournament was held in the city of Stara Zagora and featured the highest ranked professional teams from Bulgaria and one team from Ukraine!</p>
-        <a routerLink="/bellumgenselite" igxButton="raised" i18n>Go to BGE-Stara Zagora</a>
+        <a routerLink="/bellumgenselite" igxButton="contained" i18n>Go to BGE-Stara Zagora</a>
       </div>
     </div>
   </igx-slide>
@@ -14,7 +14,7 @@
       <div class="slide-info">
         <h2 class="horizontal"><igx-icon family="partners" name="eb-league-white" class="event-icon"></igx-icon>Esports Business League</h2>
         <p i18n>Esports Business League is a gaming event for your office! Build better team bonds by friendly or competative gaming, or get your team to compete against other companies to show how good you are!</p>
-        <a [href]="environment.ebleague" target="_blank" rel="noopener" igxButton="raised" i18n>Go to EB-League</a>
+        <a [href]="environment.ebleague" target="_blank" rel="noopener" igxButton="contained" i18n>Go to EB-League</a>
       </div>
     </div>
   </igx-slide>
@@ -24,9 +24,9 @@
       <div class="slide-info">
         <h2 i18n>Manage your CS:GO Team</h2>
         <p i18n>Recruit your team and manage your team member roles, team strategies, practice times and more. The only online CS:GO strategy editor freely available to everyone! Discuss public strategies with everyone and build private strategies for your team.</p>
-        <button igxButton="raised" *ngIf="!authUser else loggedIn" (click)="openLogin()" i18n>Sign-up Now</button>
+        <button igxButton="contained" *ngIf="!authUser else loggedIn" (click)="openLogin()" i18n>Sign-up Now</button>
         <ng-template #loggedIn>
-          <button igxButton="raised" routerLink="/team/myteams" i18n>Go to Team Section</button>
+          <button igxButton="contained" routerLink="/team/myteams" i18n>Go to Team Section</button>
         </ng-template>
       </div>
     </div>
@@ -49,7 +49,7 @@
   <div class="content-container-column align-center">
     <h3 i18n>Esports Events</h3>
     <p i18n>Bellum Gens is the organizer of the premier Bellum Gen Elite esports event. First held in the town of Stara Zagora, under the name <span class="highlight">Bellum Gens Elite - Stara Zagora</span>, BGE brought the top Counter-Strike talent in the region to compete under one roof for a prize pool of $10,000!</p>
-    <a igxButton="raised" routerLink="/bellumgenselite" class="nav-button">Bellum Gens Elite</a>
+    <a igxButton="contained" routerLink="/bellumgenselite" class="nav-button">Bellum Gens Elite</a>
   </div>
 
   <div class="content-container-row">
@@ -59,7 +59,7 @@
   <div class="content-container-column align-center">
     <h3 i18n>Team Building and Gaming</h3>
     <p i18n>Bellum Gens is the organizer of the Esports Business League - a competitive amateur gaming event for the office. Miltiple companies in Bulgaria participated in seasons one and two of the <span class="highlight">Esports Business League</span> both for fun and team building and to show which company has the best gamers among their employees!</p>
-    <a igxButton="raised" [href]="environment.ebleague" target="_blank" rel="noopener" class="nav-button" i18n>Esports Business League</a>
+    <a igxButton="contained" [href]="environment.ebleague" target="_blank" rel="noopener" class="nav-button" i18n>Esports Business League</a>
   </div>
   <div class="content-container-column">
     <img ngSrc="/assets/wallpapers/eb-league.webp" width="600" height="340" class="preview-image" alt="CS:GO Team Overview" />

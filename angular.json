@@ -46,9 +46,6 @@
             "styles": [
               "projects/bellumgens/src/styles.scss"
             ],
-            "scripts": [
-              "./node_modules/hammerjs/hammer.min.js"
-            ],
             "extractLicenses": false,
             "sourceMap": true,
             "optimization": false,
@@ -123,9 +120,6 @@
             "karmaConfig": "projects/bellumgens/karma.conf.js",
             "styles": [
               "projects/bellumgens/src/styles.scss"
-            ],
-            "scripts": [
-              "./node_modules/hammerjs/hammer.min.js"
             ],
             "assets": [
               "projects/bellumgens/src/favicon.ico",
@@ -283,9 +277,6 @@
             "styles": [
               "projects/ebleague/src/styles.scss"
             ],
-            "scripts": [
-              "./node_modules/hammerjs/hammer.min.js"
-            ],
             "extractLicenses": false,
             "sourceMap": true,
             "optimization": false,
@@ -363,9 +354,6 @@
             "karmaConfig": "projects/ebleague/karma.conf.js",
             "styles": [
               "projects/ebleague/src/styles.scss"
-            ],
-            "scripts": [
-              "./node_modules/hammerjs/hammer.min.js"
             ],
             "assets": [
               "projects/ebleague/src/favicon.ico",

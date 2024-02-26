@@ -3,10 +3,10 @@
     <h1 class="highlight" i18n>The Ultimate Gaming experience for your company</h1>
     <p i18n>Covid-19 changed the way teams in your company bond. Esports Business League is a team building charity esports event, where your company team can compete against teams from other companies. Participants in the Esports Business League so far include companies like VMware, DXC, SAP, Experian, TELUS, Modis, HP, Infragistics, Chaos Group and many more!</p>
 
-    <button igxButton="raised" [disabled]="true"
+    <button igxButton="contained" [disabled]="true"
             (click)="!authUser ? openLogin() : registration.selectGame(gameEnum.CSGO)"
             i18n>Register for CS:GO League</button>
-    <button igxButton="raised" [disabled]="true"
+    <button igxButton="contained" [disabled]="true"
             class="info-button"
             (click)="!authUser ? openLogin() : registration.selectGame(gameEnum.StarCraft2)"
             i18n>Register for StarCraft II League</button>
