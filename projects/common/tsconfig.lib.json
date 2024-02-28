@@ -1,7 +1,7 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "outDir": "../../out-tsc/app-common",
+    "outDir": "../../out-tsc/lib-common",
     "types": []
   },
   "exclude": [

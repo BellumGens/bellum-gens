@@ -5,7 +5,7 @@ import {
   BellumgensApiService,
   LoginService,
   ConfirmComponent
-} from 'bellum-gens-common';
+} from '../../../../../common/src/public_api';
 import { Observable } from 'rxjs';
 import { TeamNewComponent } from '../team-new/team-new.component';
 import { RouterLink } from '@angular/router';

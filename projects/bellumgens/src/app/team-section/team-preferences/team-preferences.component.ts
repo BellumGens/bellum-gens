@@ -5,7 +5,7 @@ import {
   ApplicationUser,
   LoginService,
   CountrySVGPipe
-} from 'bellum-gens-common';
+} from '../../../../../common/src/public_api';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import {
   IGX_INPUT_GROUP_DIRECTIVES,

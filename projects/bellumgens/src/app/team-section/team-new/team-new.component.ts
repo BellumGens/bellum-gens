@@ -4,7 +4,7 @@ import {
   BellumgensApiService,
   SteamGroup,
   EMPTY_NEW_TEAM
-} from 'bellum-gens-common';
+} from '../../../../../common/src/public_api';
 import {
   IgxDialogComponent,
   IGX_INPUT_GROUP_DIRECTIVES,

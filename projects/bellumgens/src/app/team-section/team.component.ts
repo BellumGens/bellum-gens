@@ -7,7 +7,7 @@ import {
   CSGOTeam, TEAM_PLACEHOLDER,
   BellumgensApiService,
   LoginService
-} from 'bellum-gens-common';
+} from '../../../../common/src/public_api';
 import { BaseComponent } from '../base/base.component';
 import { IgxIconService, IgxIconComponent, IGX_TABS_DIRECTIVES, IgxAvatarComponent } from '@infragistics/igniteui-angular';
 import { TeamApplicationComponent } from './team-application/team-application.component';
