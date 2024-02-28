@@ -1,22 +1,31 @@
 import { Component} from '@angular/core';
+import { NgIf } from '@angular/common';
 import { ActivatedRoute, RouterLinkActive, RouterLink, RouterOutlet } from '@angular/router';
+import { Title, Meta } from '@angular/platform-browser';
 import {
   ApplicationUser,
   CSGOTeam, TEAM_PLACEHOLDER,
   BellumgensApiService,
   LoginService
-} from '../../../../common/src/public_api';
+} from 'bellum-gens-common';
 import { BaseComponent } from '../base/base.component';
-import { Title, Meta } from '@angular/platform-browser';
-import { IgxIconService, IgxAvatarModule, IgxIconModule, IgxTabsModule } from '@infragistics/igniteui-angular';
+import { IgxIconService, IgxIconComponent, IGX_TABS_DIRECTIVES, IgxAvatarComponent } from '@infragistics/igniteui-angular';
 import { TeamApplicationComponent } from './team-application/team-application.component';
-import { NgIf } from '@angular/common';
 
 @Component({
     templateUrl: './team.component.html',
     styleUrls: ['./team.component.scss'],
     standalone: true,
-    imports: [IgxAvatarModule, NgIf, TeamApplicationComponent, IgxIconModule, IgxTabsModule, RouterLinkActive, RouterLink, RouterOutlet]
+    imports: [
+      IgxAvatarComponent,
+      NgIf,
+      TeamApplicationComponent,
+      IgxIconComponent,
+      IGX_TABS_DIRECTIVES,
+      RouterLinkActive,
+      RouterLink,
+      RouterOutlet
+    ]
 })
 export class TeamComponent extends BaseComponent {
   public authUser: ApplicationUser;

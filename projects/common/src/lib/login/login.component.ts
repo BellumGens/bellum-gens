@@ -1,14 +1,13 @@
 import { Component, ViewChild } from '@angular/core';
 import {
   IgxDropDownComponent,
-  IgxIconModule,
-  IgxButtonModule,
-  IgxRippleModule,
-  IgxAvatarModule,
-  IgxProgressBarModule,
-  IgxToggleModule,
-  IgxDropDownModule,
-  IgxTabsModule
+  IgxButtonDirective,
+  IgxRippleDirective,
+  IgxIconComponent,
+  IgxCircularProgressBarComponent,
+  IgxToggleActionDirective,
+  IgxAvatarComponent,
+  IGX_TABS_DIRECTIVES
 } from '@infragistics/igniteui-angular';
 import { LoginService } from '../../services/login.service';
 import { ApplicationUser } from '../../models/applicationuser';
@@ -28,14 +27,14 @@ import { NgIf } from '@angular/common';
     imports: [
       LoginDialogComponent,
       NgIf,
-      IgxButtonModule,
-      IgxRippleModule,
-      IgxIconModule,
-      IgxProgressBarModule,
-      IgxToggleModule,
-      IgxAvatarModule,
-      IgxDropDownModule,
-      IgxTabsModule,
+      IgxButtonDirective,
+      IgxRippleDirective,
+      IgxIconComponent,
+      IgxCircularProgressBarComponent,
+      IgxToggleActionDirective,
+      IgxAvatarComponent,
+      IgxDropDownComponent,
+      IGX_TABS_DIRECTIVES,
       UserPreferencesComponent
     ]
 })

@@ -3,13 +3,19 @@ import {
   CSGOTeam, TeamMember,
   ApplicationUser,
   BellumgensApiService,
-  LoginService
-} from '../../../../../common/src/public_api';
+  LoginService,
+  ConfirmComponent
+} from 'bellum-gens-common';
 import { Observable } from 'rxjs';
-import { ConfirmComponent } from '../../../../../common/src/lib/confirm/confirm.component';
 import { TeamNewComponent } from '../team-new/team-new.component';
 import { RouterLink } from '@angular/router';
-import { IgxButtonModule, IgxRippleModule, IgxIconModule, IgxCardModule, IgxAvatarModule } from '@infragistics/igniteui-angular';
+import {
+  IgxButtonDirective,
+  IgxRippleDirective,
+  IgxIconComponent,
+  IGX_CARD_DIRECTIVES,
+  IgxAvatarComponent
+} from '@infragistics/igniteui-angular';
 import { NgIf, NgFor, AsyncPipe } from '@angular/common';
 
 @Component({
@@ -17,7 +23,19 @@ import { NgIf, NgFor, AsyncPipe } from '@angular/common';
     templateUrl: './team-nav.component.html',
     styleUrls: ['./team-nav.component.scss'],
     standalone: true,
-    imports: [NgIf, IgxButtonModule, IgxRippleModule, IgxIconModule, NgFor, IgxCardModule, IgxAvatarModule, RouterLink, TeamNewComponent, ConfirmComponent, AsyncPipe]
+    imports: [
+      NgIf,
+      IgxButtonDirective,
+      IgxRippleDirective,
+      IgxIconComponent,
+      NgFor,
+      IGX_CARD_DIRECTIVES,
+      IgxAvatarComponent,
+      RouterLink,
+      TeamNewComponent,
+      ConfirmComponent,
+      AsyncPipe
+    ]
 })
 export class TeamNavComponent {
   public activeMembers: TeamMember [];
