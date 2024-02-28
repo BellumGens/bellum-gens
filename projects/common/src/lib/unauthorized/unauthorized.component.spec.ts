@@ -9,9 +9,9 @@ describe('UnauthorizedComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    declarations: [UnauthorizedComponent],
     imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        UnauthorizedComponent
     ]
 })
     .compileComponents();
