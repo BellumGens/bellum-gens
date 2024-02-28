@@ -4,7 +4,7 @@ import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { RouterTestingModule } from "@angular/router/testing";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { ServiceWorkerModule } from "@angular/service-worker";
-import { ApplicationUser, CSGOTeam, TEAM_PLACEHOLDER } from "bellum-gens-common";
+import { TEAM_PLACEHOLDER } from "bellum-gens-common";
 
 describe('TeamComponent', () => {
   let component: TeamComponent;
