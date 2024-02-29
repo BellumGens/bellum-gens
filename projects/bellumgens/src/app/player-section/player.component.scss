@@ -87,8 +87,14 @@ app-player .card-wrapper {
   }
 }
 
-@media only screen and (min-width: 1992px) {
+@media only screen and (min-width: 1760px) {
   .player-detail__stats.map-pool {
     grid-column: 2 / -1;
+  }
+}
+
+@media only screen and (min-width: 2330px) {
+  .player-detail__stats.map-pool {
+    grid-column: 2 / 8;
   }
 }
