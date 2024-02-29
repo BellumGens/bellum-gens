@@ -27,16 +27,14 @@ export class PlayerResultsComponent extends BaseComponent {
               meta: Meta,
               activeRoute: ActivatedRoute) {
     super(title, meta, activeRoute);
-    this.subs.push(
-      this.activeRoute.params.subscribe(params => {
-        if (params.query) {
-          this.query = params.query;
-          this.apiService.searchPlayers(params.query);
-        }
-      }),
-      this.apiService.loadingSearch.subscribe(loading => this.loading = loading),
-      this.apiService.playerSearchResult.subscribe(players => this.players = players)
-    );
+    this.activeRoute.params.subscribe(params => {
+      if (params.query) {
+        this.query = params.query;
+        this.apiService.searchPlayers(params.query);
+      }
+    });
+    this.apiService.loadingSearch.subscribe(loading => this.loading = loading);
+    this.apiService.playerSearchResult.subscribe(players => this.players = players);
     this.iconService.addSvgIcon('headshot', '/assets/headshot24x24.svg', 'weapon-icons');
   }
 

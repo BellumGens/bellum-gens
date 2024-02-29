@@ -59,40 +59,38 @@ export class TeamDetailsComponent extends BaseComponent {
               activeRoute: ActivatedRoute) {
     super(title, meta, activeRoute);
 
-    this.subs.push(
-      this.authService.applicationUser.subscribe((data: ApplicationUser) => {
-        this.authUser = data;
-      }),
-      this.activeRoute.parent.params.subscribe(params => {
-        const teamId = params['teamid'];
+    this.authService.applicationUser.subscribe((data: ApplicationUser) => {
+      this.authUser = data;
+    });
+    this.activeRoute.parent.params.subscribe(params => {
+      const teamId = params['teamid'];
 
-        if (teamId) {
-          this.apiService.getTeam(teamId).subscribe(team => {
-            if (team) {
-              this.team = team;
-              this.authService.getUserIsTeamAdmin(team.teamId).subscribe(admin => this.isAdmin = admin);
+      if (teamId) {
+        this.apiService.getTeam(teamId).subscribe(team => {
+          if (team) {
+            this.team = team;
+            this.authService.getUserIsTeamAdmin(team.teamId).subscribe(admin => this.isAdmin = admin);
 
-              this.apiService.getTeamSchedule(team.teamId).subscribe(schedule => this.teamPractice = schedule);
-              this.apiService.getTeamMembers(team.teamId).subscribe(members => {
-                if (members) {
-                  this.teamMembers = members;
-                  this.roleSlots.forEach((role) => {
-                    const member = this.teamMembers.find(m => m.role === role.role);
-                    if (member) {
-                      role.user = member;
-                    } else {
-                      role.user = null;
-                    }
-                  });
-                  this.activeMembers = this.teamMembers.filter(m => m.isActive && m.role === PlaystyleRole.NotSet);
-                  this.inactiveMembers = this.teamMembers.filter(m => !m.isActive);
-                }
-              });
-            }
-          });
-        }
-      })
-    );
+            this.apiService.getTeamSchedule(team.teamId).subscribe(schedule => this.teamPractice = schedule);
+            this.apiService.getTeamMembers(team.teamId).subscribe(members => {
+              if (members) {
+                this.teamMembers = members;
+                this.roleSlots.forEach((role) => {
+                  const member = this.teamMembers.find(m => m.role === role.role);
+                  if (member) {
+                    role.user = member;
+                  } else {
+                    role.user = null;
+                  }
+                });
+                this.activeMembers = this.teamMembers.filter(m => m.isActive && m.role === PlaystyleRole.NotSet);
+                this.inactiveMembers = this.teamMembers.filter(m => !m.isActive);
+              }
+            });
+          }
+        });
+      }
+    });
   }
 
   public removeFromRole(role: RoleSlot) {

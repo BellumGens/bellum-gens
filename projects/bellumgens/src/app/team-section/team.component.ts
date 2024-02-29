@@ -40,26 +40,24 @@ export class TeamComponent extends BaseComponent {
               meta: Meta,
               activeRoute: ActivatedRoute) {
     super(title, meta, activeRoute);
-    this.subs.push(
-      this.authManager.applicationUser.subscribe((data: ApplicationUser) => {
-        this.authUser = data;
-      }),
-      this.activeRoute.params.subscribe(params => {
-        const teamId = params['teamid'];
+    this.authManager.applicationUser.subscribe((data: ApplicationUser) => {
+      this.authUser = data;
+    });
+    this.activeRoute.params.subscribe(params => {
+      const teamId = params['teamid'];
 
-        if (teamId) {
-          this.apiService.getTeam(teamId).subscribe(team => {
-            if (team) {
-              this.team = team;
-              this.authManager.getUserIsTeamMember(team.teamId).subscribe(data => this.isMember = data);
-              this.authManager.getUserIsTeamAdmin(team.teamId).subscribe(data => this.isAdmin = data);
-              this.titleService.setTitle('CS:GO Team: ' + team.teamName);
-              this.loadSvgs();
-            }
-          });
-        }
-      })
-    );
+      if (teamId) {
+        this.apiService.getTeam(teamId).subscribe(team => {
+          if (team) {
+            this.team = team;
+            this.authManager.getUserIsTeamMember(team.teamId).subscribe(data => this.isMember = data);
+            this.authManager.getUserIsTeamAdmin(team.teamId).subscribe(data => this.isAdmin = data);
+            this.titleService.setTitle('CS:GO Team: ' + team.teamName);
+            this.loadSvgs();
+          }
+        });
+      }
+    });
   }
 
   private loadSvgs() {

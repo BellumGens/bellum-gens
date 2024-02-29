@@ -56,42 +56,40 @@ export class PlayerComponent extends BaseComponent {
               meta: Meta,
               activeRoute: ActivatedRoute) {
     super(title, meta, activeRoute);
-    this.subs.push(
-      this.authManager.applicationUser.subscribe((data: ApplicationUser) => {
-        if (data) {
-          this.authUser = data;
-          this.authManager.teamsAdmin.subscribe(teams => this.teamsAdmin = teams);
-        }
-      }),
-      this.activatedRoute.params.subscribe(params => {
-        const userid = params['userid'];
-        this.newUser = params['newuser'];
-        if (userid) {
-          this.subs.push(this.apiService.getPlayer(userid).subscribe(
-              player => {
-                if (player) {
-                  this.player = player;
-                  if (player && !player.steamUserException) {
-                    this.titleService.setTitle('CS:GO Player: ' + player.steamUser.steamID);
-                    if (player.registered) {
-                      this.userTeams = this.apiService.getUserTeams(player.id);
-                      this.apiService.getAvailability(player.id).subscribe(data => this.availability = data);
-                      this.apiService.getMapPool(player.id).subscribe(maps => this.mapPool = maps);
-                    }
-                    if (player.userStats) {
-                      const weapons = new SortWeaponsPipe().transform(player.userStats.weapons);
-                      this.loadSvgs(weapons);
-                    }
-                  }
 
+    this.authManager.applicationUser.subscribe((data: ApplicationUser) => {
+      if (data) {
+        this.authUser = data;
+        this.authManager.teamsAdmin.subscribe(teams => this.teamsAdmin = teams);
+      }
+    });
+
+    this.activatedRoute.params.subscribe(params => {
+      const userid = params['userid'];
+      this.newUser = params['newuser'];
+      if (userid) {
+        this.apiService.getPlayer(userid).subscribe(
+            player => {
+              if (player) {
+                this.player = player;
+                if (player && !player.steamUserException) {
+                  this.titleService.setTitle('CS:GO Player: ' + player.steamUser.steamID);
+                  if (player.registered) {
+                    this.userTeams = this.apiService.getUserTeams(player.id);
+                    this.apiService.getAvailability(player.id).subscribe(data => this.availability = data);
+                    this.apiService.getMapPool(player.id).subscribe(maps => this.mapPool = maps);
+                  }
+                  if (player.userStats) {
+                    const weapons = new SortWeaponsPipe().transform(player.userStats.weapons);
+                    this.loadSvgs(weapons);
+                  }
                 }
               }
-            ),
-            this.apiService.loadingPlayer.subscribe(loading => this.loading = loading)
+            }
           );
-        }
-      })
-    );
+          this.apiService.loadingPlayer.subscribe(loading => this.loading = loading);
+      }
+    });
   }
 
   public openLogin() {
