@@ -87,7 +87,7 @@ export class StrategiesComponent {
   public isEditor: boolean = null;
 
   public strats: CSGOStrategy [];
-  public maps: CSGOActiveDutyMap [] = Object.assign(ACTIVE_DUTY);
+  public maps: CSGOActiveDutyMap [] = structuredClone(ACTIVE_DUTY);
   public team: CSGOTeam;
   public authUser: ApplicationUser;
   public pipeTrigger = 0;
