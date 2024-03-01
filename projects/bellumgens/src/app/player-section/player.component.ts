@@ -2,7 +2,20 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
 
-import { ISelectionEventArgs, IgxIconService, IgxAvatarModule, IgxButtonModule, IgxRippleModule, IgxToggleModule, IgxIconModule, IgxDropDownModule, IgxSelectModule, IgxInputGroupModule, IgxCardModule, IgxProgressBarModule, IgxListModule } from '@infragistics/igniteui-angular';
+import {
+  ISelectionEventArgs,
+  IgxIconService,
+  IgxAvatarComponent,
+  IgxButtonDirective,
+  IgxRippleDirective,
+  IgxToggleActionDirective,
+  IgxIconComponent,
+  IGX_DROP_DOWN_DIRECTIVES,
+  IGX_SELECT_DIRECTIVES,
+  IGX_CARD_DIRECTIVES,
+  IgxCircularProgressBarComponent,
+  IGX_LIST_DIRECTIVES
+} from '@infragistics/igniteui-angular';
 
 import {
   LoginService,
@@ -34,7 +47,30 @@ import { NgIf, NgFor, AsyncPipe } from '@angular/common';
     styleUrls: ['./player.component.scss'],
     encapsulation: ViewEncapsulation.None,
     standalone: true,
-    imports: [NgIf, LoadingComponent, IgxAvatarModule, IgxButtonModule, IgxRippleModule, IgxToggleModule, IgxIconModule, IgxDropDownModule, NgFor, RouterLink, IgxSelectModule, FormsModule, IgxInputGroupModule, IgxCardModule, IgxProgressBarModule, AvailabilityComponent, IgxListModule, MapPoolComponent, AsyncPipe, CountrySVGPipe, SteamCustomUrlPipe, SortWeaponsPipe, TopWeaponAltPipe]
+    imports: [
+      NgIf,
+      LoadingComponent,
+      IgxAvatarComponent,
+      IgxButtonDirective,
+      IgxRippleDirective,
+      IgxToggleActionDirective,
+      IgxIconComponent,
+      IGX_DROP_DOWN_DIRECTIVES,
+      NgFor,
+      RouterLink,
+      IGX_SELECT_DIRECTIVES,
+      FormsModule,
+      IGX_CARD_DIRECTIVES,
+      IgxCircularProgressBarComponent,
+      AvailabilityComponent,
+      IGX_LIST_DIRECTIVES,
+      MapPoolComponent,
+      AsyncPipe,
+      CountrySVGPipe,
+      SteamCustomUrlPipe,
+      SortWeaponsPipe,
+      TopWeaponAltPipe
+    ]
 })
 export class PlayerComponent extends BaseComponent {
   public authUser: ApplicationUser;
