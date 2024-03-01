@@ -8,7 +8,12 @@ import { fromEvent } from 'rxjs';
 import { map, debounceTime } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { IgxButtonModule, IgxIconModule, IgxInputGroupModule, IgxRippleModule } from '@infragistics/igniteui-angular';
+import {
+  IGX_INPUT_GROUP_DIRECTIVES,
+  IgxButtonDirective,
+  IgxIconComponent,
+  IgxRippleDirective
+} from '@infragistics/igniteui-angular';
 import { NgIf } from '@angular/common';
 
 @Component({
@@ -16,7 +21,7 @@ import { NgIf } from '@angular/common';
     templateUrl: './registration.component.html',
     styleUrls: ['./registration.component.scss'],
     standalone: true,
-    imports: [FormsModule, IgxInputGroupModule, IgxIconModule, NgIf, IgxButtonModule, IgxRippleModule]
+    imports: [FormsModule, IGX_INPUT_GROUP_DIRECTIVES, IgxIconComponent, NgIf, IgxButtonDirective, IgxRippleDirective]
 })
 export class RegistrationComponent implements OnInit {
   @ViewChild('regusername', { static: true }) public usernameInput: ElementRef;

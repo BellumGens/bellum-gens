@@ -8,7 +8,14 @@ import { ApiTournamentsService } from '../../../services/bellumgens-api.tourname
 import { Router } from '@angular/router';
 import { ConfirmComponent } from '../../confirm/confirm.component';
 import { FormsModule } from '@angular/forms';
-import { IgxButtonModule, IgxRippleModule, IgxIconModule, IgxDividerModule, IgxSwitchModule, IgxListModule } from '@infragistics/igniteui-angular';
+import {
+  IgxButtonDirective,
+  IgxRippleDirective,
+  IgxIconComponent,
+  IgxDividerDirective,
+  IgxSwitchComponent,
+  IGX_LIST_DIRECTIVES
+} from '@infragistics/igniteui-angular';
 import { NgFor, NgClass, NgIf } from '@angular/common';
 
 @Component({
@@ -18,13 +25,13 @@ import { NgFor, NgClass, NgIf } from '@angular/common';
     standalone: true,
     imports: [
       NgFor,
-      IgxButtonModule,
-      IgxRippleModule,
-      IgxIconModule,
-      IgxDividerModule,
-      IgxSwitchModule,
+      IgxButtonDirective,
+      IgxRippleDirective,
+      IgxIconComponent,
+      IgxDividerDirective,
+      IgxSwitchComponent,
       FormsModule,
-      IgxListModule,
+      IGX_LIST_DIRECTIVES,
       NgClass,
       NgIf,
       ConfirmComponent

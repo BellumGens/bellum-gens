@@ -19,6 +19,11 @@
       "ES2022",
       "dom"
     ],
+    "paths": {
+      "bellum-gens-common": [
+        "projects/common/src/public_api.ts"
+      ],
+    },
     "useDefineForClassFields": false
   },
   "exclude": [

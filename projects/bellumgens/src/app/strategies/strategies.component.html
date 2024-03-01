@@ -4,7 +4,7 @@
     <button class="navigation-item" igxButton="outlined" igxRipple (click)="viewAll = !viewAll">{{viewAll ? 'all maps' : 'active duty maps'}}</button>
   </div>
   <button class="navigation-item"
-          igxButton="raised"
+          igxButton="contained"
           igxRipple
           (click)="authUser ? newStrategy.open() : openLogin()"
           i18n>Create new strategy</button>

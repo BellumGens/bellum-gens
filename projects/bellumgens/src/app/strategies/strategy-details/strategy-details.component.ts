@@ -72,27 +72,25 @@ export class StrategyDetailsComponent extends BaseComponent {
               meta: Meta,
               activeRoute: ActivatedRoute) {
     super(title, meta, activeRoute);
-    this.subs.push(
-      this.activeRoute.params.subscribe(params => {
-        const stratid = params['stratid'];
-        if (stratid) {
-          this.meta.updateTag({ name: 'og:image', content: `${environment.rootApiEndpoint}/Content/Strats/${stratid}.png` });
-          this.meta.updateTag({ name: 'twitter:image', content: `${environment.rootApiEndpoint}/Content/Strats/${stratid}.png` });
-          this.apiService.getStrategy(stratid).subscribe(strat => {
-            if (strat) {
-              this.strat = strat;
-              this.newComment.stratId = strat.id;
-            }
-          });
-        }
-      }),
-      this.authManager.applicationUser.subscribe(user => {
-        this.authUser = user;
-        if (user) {
-          this.newComment.userId = user.id;
-        }
-      })
-    );
+    this.activeRoute.params.subscribe(params => {
+      const stratid = params['stratid'];
+      if (stratid) {
+        this.meta.updateTag({ name: 'og:image', content: `${environment.rootApiEndpoint}/Content/Strats/${stratid}.png` });
+        this.meta.updateTag({ name: 'twitter:image', content: `${environment.rootApiEndpoint}/Content/Strats/${stratid}.png` });
+        this.apiService.getStrategy(stratid).subscribe(strat => {
+          if (strat) {
+            this.strat = strat;
+            this.newComment.stratId = strat.id;
+          }
+        });
+      }
+    });
+    this.authManager.applicationUser.subscribe(user => {
+      this.authUser = user;
+      if (user) {
+        this.newComment.userId = user.id;
+      }
+    });
     this.resize();
   }
 

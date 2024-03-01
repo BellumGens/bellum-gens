@@ -1,6 +1,12 @@
 import { NgFor } from '@angular/common';
 import { Component, Inject, LOCALE_ID } from '@angular/core';
-import { IgxButtonModule, IgxDropDownModule, IgxIconModule, IgxRippleModule, IgxToggleModule } from '@infragistics/igniteui-angular';
+import {
+  IGX_DROP_DOWN_DIRECTIVES,
+  IgxButtonDirective,
+  IgxIconComponent,
+  IgxRippleDirective,
+  IgxToggleActionDirective
+} from '@infragistics/igniteui-angular';
 import { GLOBAL_OVERLAY_SETTINGS } from '../../models/misc';
 
 @Component({
@@ -8,7 +14,14 @@ import { GLOBAL_OVERLAY_SETTINGS } from '../../models/misc';
     templateUrl: './languages.component.html',
     styleUrls: ['./languages.component.scss'],
     standalone: true,
-    imports: [IgxButtonModule, IgxRippleModule, IgxToggleModule, IgxIconModule, IgxDropDownModule, NgFor]
+    imports: [
+      IgxButtonDirective,
+      IgxRippleDirective,
+      IgxToggleActionDirective,
+      IgxIconComponent,
+      IGX_DROP_DOWN_DIRECTIVES,
+      NgFor
+    ]
 })
 export class LanguagesComponent {
   public overlaySettings = GLOBAL_OVERLAY_SETTINGS;

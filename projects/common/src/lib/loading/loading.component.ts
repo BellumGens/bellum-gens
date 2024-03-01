@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { IgxProgressBarModule } from '@infragistics/igniteui-angular';
+import { IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular';
 
 @Component({
     selector: 'bg-loading',
     templateUrl: './loading.component.html',
     styleUrls: ['./loading.component.scss'],
     standalone: true,
-    imports: [IgxProgressBarModule]
+    imports: [IgxCircularProgressBarComponent]
 })
 export class LoadingComponent {}
 

@@ -25,15 +25,13 @@ export class TeamResultsComponent extends BaseComponent {
               meta: Meta,
               activeRoute: ActivatedRoute) {
     super(title, meta, activeRoute);
-    this.subs.push(
-      this.activeRoute.params.subscribe(params => {
-        if (params.query) {
-          this.query = params.query;
-          this.apiService.searchTeams(params.query);
-        }
-      }),
-      this.apiService.loadingSearch.subscribe(loading => this.loading = loading),
-      this.apiService.teamSearchResult.subscribe(players => this.teams = players)
-    );
+    this.activeRoute.params.subscribe(params => {
+      if (params.query) {
+        this.query = params.query;
+        this.apiService.searchTeams(params.query);
+      }
+    });
+    this.apiService.loadingSearch.subscribe(loading => this.loading = loading);
+    this.apiService.teamSearchResult.subscribe(players => this.teams = players);
   }
 }

@@ -1,5 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute, Data } from '@angular/router';
 
@@ -8,8 +7,7 @@ import { ActivatedRoute, Data } from '@angular/router';
     styleUrls: ['./base.component.css'],
     standalone: true
 })
-export class BaseComponent implements OnDestroy {
-  protected subs: Subscription [] = [];
+export class BaseComponent {
 
   private _title = 'Bellum Gens: Premier Gaming and Esports Events Organizer';
   private _twitterTitle = 'Bellum Gens: Premier Gaming and Esports Events Organizer';
@@ -22,7 +20,7 @@ export class BaseComponent implements OnDestroy {
   constructor(protected titleService: Title,
               protected meta: Meta,
               protected activeRoute: ActivatedRoute) {
-    this.subs.push(this.activeRoute.data.subscribe(data => {
+    this.activeRoute.data.subscribe(data => {
       this.data = data;
       this.titleService.setTitle(this.data.title || this._title);
       this.meta.updateTag({ name: 'description', content: this.data.description || this._description});
@@ -30,11 +28,7 @@ export class BaseComponent implements OnDestroy {
       this.meta.updateTag({ name: 'twitter:description', content: this.data.twitterDescription || this._twitterDescription});
       this.meta.updateTag({ name: 'og:image', content: this.data.image || this._image });
       this.meta.updateTag({ name: 'twitter:image', content: this.data.image || this._image });
-    }));
-  }
-
-  public ngOnDestroy() {
-    this.subs.forEach((sub) => sub.unsubscribe());
+    });
   }
 
 }

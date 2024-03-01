@@ -4,7 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
   selector: 'bg-unauthorized',
   templateUrl: './unauthorized.component.html',
-  styleUrls: ['./unauthorized.component.css']
+  styleUrls: ['./unauthorized.component.css'],
+  standalone: true
 })
 export class UnauthorizedComponent {
   public message = 'Unauthorized :(';

@@ -5,9 +5,8 @@ import {
   IgxDialogComponent,
   IChipClickEventArgs,
   IBaseChipEventArgs,
-  IgxDialogModule,
-  IgxChipsModule,
-  IgxTimePickerModule
+  IGX_CHIPS_DIRECTIVES,
+  IgxLabelDirective
 } from '@infragistics/igniteui-angular';
 import { WeekdayPipe } from '../pipes/weekday.pipe';
 import { NgFor, NgIf, DatePipe } from '@angular/common';
@@ -17,7 +16,16 @@ import { NgFor, NgIf, DatePipe } from '@angular/common';
     templateUrl: './availability.component.html',
     styleUrls: ['./availability.component.scss'],
     standalone: true,
-    imports: [IgxChipsModule, NgFor, NgIf, IgxDialogModule, IgxTimePickerModule, DatePipe, WeekdayPipe]
+    imports: [
+      IGX_CHIPS_DIRECTIVES,
+      NgFor,
+      NgIf,
+      IgxDialogComponent,
+      IgxTimePickerComponent,
+      IgxLabelDirective,
+      DatePipe,
+      WeekdayPipe
+    ]
 })
 export class AvailabilityComponent {
   @Input()

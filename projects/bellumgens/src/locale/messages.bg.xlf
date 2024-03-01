@@ -1362,9 +1362,9 @@
           <context context-type="linenumber">19</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="cd3e4634681897d1bdbdc79bc31a3609c511b462" datatype="html">
-        <source>Abandon Team</source>
-        <target>Напусни отбора</target>
+      <trans-unit id="3548321119891624524" datatype="html">
+        <source>Abandon</source>
+        <target>Напусни</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-nav/team-nav.component.html</context>
           <context context-type="linenumber">23</context>

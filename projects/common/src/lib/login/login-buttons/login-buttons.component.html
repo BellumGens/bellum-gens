@@ -1,7 +1,7 @@
 <div class="registration-form">
   <h6 i18n>External</h6>
   <button *ngFor="let provider of loginProviders | async"
-          igxButton="raised"
+          igxButton="contained"
           class="login-button navigatable"
           [igxButtonBackground]="loginColors[provider.name]"
           igxButtonColor="#fff"

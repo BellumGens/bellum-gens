@@ -3,7 +3,7 @@ import { LoginProvider } from '../../../models/login-provider';
 import { LoginService } from '../../../services/login.service';
 import { LOGIN_ASSETS } from '../../../models/misc';
 import { Observable } from 'rxjs';
-import { IgxButtonModule, IgxIconModule, IgxDividerModule } from '@infragistics/igniteui-angular';
+import { IgxButtonDirective, IgxIconComponent, IgxDividerDirective } from '@infragistics/igniteui-angular';
 import { NgFor, AsyncPipe } from '@angular/common';
 
 @Component({
@@ -11,7 +11,7 @@ import { NgFor, AsyncPipe } from '@angular/common';
     templateUrl: './login-buttons.component.html',
     styleUrls: ['./login-buttons.component.scss'],
     standalone: true,
-    imports: [NgFor, IgxButtonModule, IgxIconModule, IgxDividerModule, AsyncPipe]
+    imports: [NgFor, IgxButtonDirective, IgxIconComponent, IgxDividerDirective, AsyncPipe]
 })
 export class LoginButtonsComponent {
   public loginColors = LOGIN_ASSETS;

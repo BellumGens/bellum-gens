@@ -1,5 +1,7 @@
 import { Component} from '@angular/core';
+import { NgIf } from '@angular/common';
 import { ActivatedRoute, RouterLinkActive, RouterLink, RouterOutlet } from '@angular/router';
+import { Title, Meta } from '@angular/platform-browser';
 import {
   ApplicationUser,
   CSGOTeam, TEAM_PLACEHOLDER,
@@ -7,22 +9,29 @@ import {
   LoginService
 } from '../../../../common/src/public_api';
 import { BaseComponent } from '../base/base.component';
-import { Title, Meta } from '@angular/platform-browser';
-import { IgxIconService, IgxAvatarModule, IgxIconModule, IgxTabsModule } from '@infragistics/igniteui-angular';
+import { IgxIconService, IgxIconComponent, IGX_TABS_DIRECTIVES, IgxAvatarComponent } from '@infragistics/igniteui-angular';
 import { TeamApplicationComponent } from './team-application/team-application.component';
-import { NgIf } from '@angular/common';
 
 @Component({
     templateUrl: './team.component.html',
     styleUrls: ['./team.component.scss'],
     standalone: true,
-    imports: [IgxAvatarModule, NgIf, TeamApplicationComponent, IgxIconModule, IgxTabsModule, RouterLinkActive, RouterLink, RouterOutlet]
+    imports: [
+      IgxAvatarComponent,
+      NgIf,
+      TeamApplicationComponent,
+      IgxIconComponent,
+      IGX_TABS_DIRECTIVES,
+      RouterLinkActive,
+      RouterLink,
+      RouterOutlet
+    ]
 })
 export class TeamComponent extends BaseComponent {
   public authUser: ApplicationUser;
   public team: CSGOTeam = TEAM_PLACEHOLDER;
-  public isAdmin: boolean = null;
-  public isMember: boolean = null;
+  public isAdmin = false;
+  public isMember = false;
 
   constructor(private apiService: BellumgensApiService,
               private authManager: LoginService,
@@ -31,26 +40,24 @@ export class TeamComponent extends BaseComponent {
               meta: Meta,
               activeRoute: ActivatedRoute) {
     super(title, meta, activeRoute);
-    this.subs.push(
-      this.authManager.applicationUser.subscribe((data: ApplicationUser) => {
-        this.authUser = data;
-      }),
-      this.activeRoute.params.subscribe(params => {
-        const teamId = params['teamid'];
+    this.authManager.applicationUser.subscribe((data: ApplicationUser) => {
+      this.authUser = data;
+    });
+    this.activeRoute.params.subscribe(params => {
+      const teamId = params['teamid'];
 
-        if (teamId) {
-          this.apiService.getTeam(teamId).subscribe(team => {
-            if (team) {
-              this.team = team;
-              this.authManager.getUserIsTeamMember(team.teamId).subscribe(data => this.isMember = data);
-              this.authManager.getUserIsTeamAdmin(team.teamId).subscribe(data => this.isAdmin = data);
-              this.titleService.setTitle('CS:GO Team: ' + team.teamName);
-              this.loadSvgs();
-            }
-          });
-        }
-      })
-    );
+      if (teamId) {
+        this.apiService.getTeam(teamId).subscribe(team => {
+          if (team) {
+            this.team = team;
+            this.authManager.getUserIsTeamMember(team.teamId).subscribe(data => this.isMember = data);
+            this.authManager.getUserIsTeamAdmin(team.teamId).subscribe(data => this.isAdmin = data);
+            this.titleService.setTitle('CS:GO Team: ' + team.teamName);
+            this.loadSvgs();
+          }
+        });
+      }
+    });
   }
 
   private loadSvgs() {

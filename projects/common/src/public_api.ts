@@ -48,5 +48,5 @@ export * from './lib/pipes/country-svg.pipe';
 export * from './lib/pipes/sc2-map-name.pipe';
 export * from './lib/pipes/weekday.pipe';
 
-/* Common Module */
+/* Components */
 export * from './lib/public_api';

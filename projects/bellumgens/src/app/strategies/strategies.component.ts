@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { NgFor, NgIf, NgClass, DatePipe, NgOptimizedImage } from '@angular/common';
 import {
   BellumgensApiService,
   CSGOStrategy, VoteDirection,
@@ -14,8 +16,20 @@ import {
   CSGOActiveDutyMap,
   ACTIVE_DUTY
 } from '../../../../common/src/public_api';
-import { IChipSelectEventArgs, IgxButtonModule, IgxRippleModule, IgxChipsModule, IgxSelectModule, IgxInputGroupModule, IgxCardModule, IgxIconModule, IgxToggleModule, IgxBadgeModule, IgxDropDownModule, IgxAvatarModule } from '@infragistics/igniteui-angular';
-import { SafeResourceUrl } from '@angular/platform-browser';
+import {
+  IChipSelectEventArgs,
+  IgxButtonDirective,
+  IgxRippleDirective,
+  IGX_CHIPS_DIRECTIVES,
+  IGX_INPUT_GROUP_DIRECTIVES,
+  IGX_CARD_DIRECTIVES,
+  IgxIconComponent,
+  IgxToggleActionDirective,
+  IGX_SELECT_DIRECTIVES,
+  IgxBadgeComponent,
+  IGX_DROP_DOWN_DIRECTIVES,
+  IgxAvatarComponent
+} from '@infragistics/igniteui-angular';
 import { StratFilterPipe } from '../pipes/strat-filter.pipe';
 import { SideStratsPipe } from '../pipes/sidestrats.pipe';
 import { IsStratOwnerPipe } from '../pipes/is-strat-owner.pipe';
@@ -29,8 +43,6 @@ import { CSGOMapnamePipe } from '../../../../common/src/lib/pipes/csgomapname.pi
 import { ConfirmComponent } from '../../../../common/src/lib/confirm/confirm.component';
 import { NewStrategyComponent } from './new-strategy/new-strategy.component';
 import { LoadingComponent } from '../../../../common/src/lib/loading/loading.component';
-import { FormsModule } from '@angular/forms';
-import { NgFor, NgIf, NgClass, DatePipe, NgOptimizedImage } from '@angular/common';
 
 @Component({
     selector: 'app-team-strategies',
@@ -45,18 +57,18 @@ import { NgFor, NgIf, NgClass, DatePipe, NgOptimizedImage } from '@angular/commo
       DatePipe,
       RouterLink,
       FormsModule,
-      IgxButtonModule,
-      IgxRippleModule,
-      IgxChipsModule,
-      IgxSelectModule,
-      IgxInputGroupModule,
+      IgxButtonDirective,
+      IgxRippleDirective,
+      IGX_CHIPS_DIRECTIVES,
+      IGX_SELECT_DIRECTIVES,
+      IGX_INPUT_GROUP_DIRECTIVES,
       LoadingComponent,
-      IgxCardModule,
-      IgxIconModule,
-      IgxToggleModule,
-      IgxBadgeModule,
-      IgxDropDownModule,
-      IgxAvatarModule,
+      IGX_CARD_DIRECTIVES,
+      IgxIconComponent,
+      IgxToggleActionDirective,
+      IgxBadgeComponent,
+      IGX_DROP_DOWN_DIRECTIVES,
+      IgxAvatarComponent,
       NewStrategyComponent,
       ConfirmComponent,
       CSGOMapnamePipe,
@@ -75,10 +87,9 @@ export class StrategiesComponent {
   public isEditor: boolean = null;
 
   public strats: CSGOStrategy [];
-  public maps: CSGOActiveDutyMap [] = ACTIVE_DUTY;
+  public maps: CSGOActiveDutyMap [] = structuredClone(ACTIVE_DUTY);
   public team: CSGOTeam;
   public authUser: ApplicationUser;
-  public sanitizedUrl: SafeResourceUrl;
   public pipeTrigger = 0;
   public viewAll = false;
   public loading = false;
@@ -96,6 +107,7 @@ export class StrategiesComponent {
               private authManager: LoginService,
               private commService: CommunicationService,
               private socialMedia: SocialMediaStrategyService) {
+    this.maps.forEach(map => map.isPlayed = true);
     this.activatedRoute.url.subscribe(value => {
       if (value?.length && value[0]?.path === 'user') {
         this.authManager.applicationUser.subscribe(user => {

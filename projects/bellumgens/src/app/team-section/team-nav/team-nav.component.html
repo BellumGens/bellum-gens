@@ -1,4 +1,4 @@
-<button *ngIf="authUser" class="submit-button" igxButton="raised" igxRipple (click)="createTeam.open()" i18n>
+<button *ngIf="authUser" class="submit-button" igxButton="contained" igxRipple (click)="createTeam.open()" i18n>
   <igx-icon>add_circle_outline</igx-icon><span>Create New CS:GO Team</span>
 </button>
 
@@ -18,9 +18,9 @@
         <igx-icon>visibility</igx-icon>
         <span i18n>View Team</span>
       </button>
-      <button igxButton="outlined" igxRipple (click)="confirm.open(team)" igxEnd>
+      <button igxButton="contained" igxRipple (click)="confirm.open(team)" igxEnd>
         <igx-icon>delete_forever</igx-icon>
-        <span i18n>Abandon Team</span>
+        <span i18n>Abandon</span>
       </button>
     </igx-card-actions>
   </igx-card>

@@ -5,7 +5,15 @@ import {
   SteamGroup,
   EMPTY_NEW_TEAM
 } from '../../../../../common/src/public_api';
-import { IgxDialogComponent, IgxDialogModule, IgxInputGroupModule, IgxIconModule, IgxListModule, IgxAvatarModule, IgxButtonModule, IgxRippleModule } from '@infragistics/igniteui-angular';
+import {
+  IgxDialogComponent,
+  IGX_INPUT_GROUP_DIRECTIVES,
+  IgxIconComponent,
+  IGX_LIST_DIRECTIVES,
+  IgxAvatarComponent,
+  IgxButtonDirective,
+  IgxRippleDirective
+} from '@infragistics/igniteui-angular';
 import { Router } from '@angular/router';
 import { GroupsFilterPipe } from '../../pipes/groups-filter.pipe';
 import { FormsModule } from '@angular/forms';
@@ -16,7 +24,19 @@ import { NgIf, NgFor } from '@angular/common';
     templateUrl: './team-new.component.html',
     styleUrls: ['./team-new.component.scss'],
     standalone: true,
-    imports: [NgIf, IgxDialogModule, IgxInputGroupModule, IgxIconModule, FormsModule,  IgxListModule, NgFor, IgxAvatarModule, IgxButtonModule, IgxRippleModule, GroupsFilterPipe]
+    imports: [
+      NgIf,
+      IgxDialogComponent,
+      IGX_INPUT_GROUP_DIRECTIVES,
+      IgxIconComponent,
+      FormsModule,
+      IGX_LIST_DIRECTIVES,
+      NgFor,
+      IgxAvatarComponent,
+      IgxButtonDirective,
+      IgxRippleDirective,
+      GroupsFilterPipe
+    ]
 })
 export class TeamNewComponent {
   @Input() public authUser: ApplicationUser;
@@ -40,30 +60,30 @@ export class TeamNewComponent {
 
   public createFromSteam(group: SteamGroup) {
     this.inProgress = true;
-    this.apiService.registerSteamGroup(group).subscribe(
-      team => {
+    this.apiService.registerSteamGroup(group).subscribe({
+      next: team => {
         this.inProgress = false;
         this.createTeam.close();
         if (this.navigateOnCreate) {
           this.router.navigate(['/team', team.customUrl]);
         }
       },
-      () => this.inProgress = false
-    );
+      error: () => this.inProgress = false
+    });
   }
 
   public createFromForm() {
     this.inProgress = true;
-    this.apiService.registerTeam(this.newTeam).subscribe(
-      team => {
+    this.apiService.registerTeam(this.newTeam).subscribe({
+      next: team => {
         this.inProgress = false;
         this.createTeam.close();
         if (this.navigateOnCreate) {
           this.router.navigate(['/team', team.customUrl]);
         }
       },
-      () => this.inProgress = false
-    );
+      error: () => this.inProgress = false
+    });
   }
 
 }

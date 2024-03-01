@@ -2,7 +2,20 @@ import { Component, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
 
-import { ISelectionEventArgs, IgxIconService, IgxAvatarModule, IgxButtonModule, IgxRippleModule, IgxToggleModule, IgxIconModule, IgxDropDownModule, IgxSelectModule, IgxInputGroupModule, IgxCardModule, IgxProgressBarModule, IgxListModule } from '@infragistics/igniteui-angular';
+import {
+  ISelectionEventArgs,
+  IgxIconService,
+  IgxAvatarComponent,
+  IgxButtonDirective,
+  IgxRippleDirective,
+  IgxToggleActionDirective,
+  IgxIconComponent,
+  IGX_DROP_DOWN_DIRECTIVES,
+  IGX_SELECT_DIRECTIVES,
+  IGX_CARD_DIRECTIVES,
+  IgxCircularProgressBarComponent,
+  IGX_LIST_DIRECTIVES
+} from '@infragistics/igniteui-angular';
 
 import {
   LoginService,
@@ -34,7 +47,30 @@ import { NgIf, NgFor, AsyncPipe } from '@angular/common';
     styleUrls: ['./player.component.scss'],
     encapsulation: ViewEncapsulation.None,
     standalone: true,
-    imports: [NgIf, LoadingComponent, IgxAvatarModule, IgxButtonModule, IgxRippleModule, IgxToggleModule, IgxIconModule, IgxDropDownModule, NgFor, RouterLink, IgxSelectModule, FormsModule, IgxInputGroupModule, IgxCardModule, IgxProgressBarModule, AvailabilityComponent, IgxListModule, MapPoolComponent, AsyncPipe, CountrySVGPipe, SteamCustomUrlPipe, SortWeaponsPipe, TopWeaponAltPipe]
+    imports: [
+      NgIf,
+      LoadingComponent,
+      IgxAvatarComponent,
+      IgxButtonDirective,
+      IgxRippleDirective,
+      IgxToggleActionDirective,
+      IgxIconComponent,
+      IGX_DROP_DOWN_DIRECTIVES,
+      NgFor,
+      RouterLink,
+      IGX_SELECT_DIRECTIVES,
+      FormsModule,
+      IGX_CARD_DIRECTIVES,
+      IgxCircularProgressBarComponent,
+      AvailabilityComponent,
+      IGX_LIST_DIRECTIVES,
+      MapPoolComponent,
+      AsyncPipe,
+      CountrySVGPipe,
+      SteamCustomUrlPipe,
+      SortWeaponsPipe,
+      TopWeaponAltPipe
+    ]
 })
 export class PlayerComponent extends BaseComponent {
   public authUser: ApplicationUser;
@@ -56,42 +92,40 @@ export class PlayerComponent extends BaseComponent {
               meta: Meta,
               activeRoute: ActivatedRoute) {
     super(title, meta, activeRoute);
-    this.subs.push(
-      this.authManager.applicationUser.subscribe((data: ApplicationUser) => {
-        if (data) {
-          this.authUser = data;
-          this.authManager.teamsAdmin.subscribe(teams => this.teamsAdmin = teams);
-        }
-      }),
-      this.activatedRoute.params.subscribe(params => {
-        const userid = params['userid'];
-        this.newUser = params['newuser'];
-        if (userid) {
-          this.subs.push(this.apiService.getPlayer(userid).subscribe(
-              player => {
-                if (player) {
-                  this.player = player;
-                  if (player && !player.steamUserException) {
-                    this.titleService.setTitle('CS:GO Player: ' + player.steamUser.steamID);
-                    if (player.registered) {
-                      this.userTeams = this.apiService.getUserTeams(player.id);
-                      this.apiService.getAvailability(player.id).subscribe(data => this.availability = data);
-                      this.apiService.getMapPool(player.id).subscribe(maps => this.mapPool = maps);
-                    }
-                    if (player.userStats) {
-                      const weapons = new SortWeaponsPipe().transform(player.userStats.weapons);
-                      this.loadSvgs(weapons);
-                    }
-                  }
 
+    this.authManager.applicationUser.subscribe((data: ApplicationUser) => {
+      if (data) {
+        this.authUser = data;
+        this.authManager.teamsAdmin.subscribe(teams => this.teamsAdmin = teams);
+      }
+    });
+
+    this.activatedRoute.params.subscribe(params => {
+      const userid = params['userid'];
+      this.newUser = params['newuser'];
+      if (userid) {
+        this.apiService.getPlayer(userid).subscribe(
+            player => {
+              if (player) {
+                this.player = player;
+                if (player && !player.steamUserException) {
+                  this.titleService.setTitle('CS:GO Player: ' + player.steamUser.steamID);
+                  if (player.registered) {
+                    this.userTeams = this.apiService.getUserTeams(player.id);
+                    this.apiService.getAvailability(player.id).subscribe(data => this.availability = data);
+                    this.apiService.getMapPool(player.id).subscribe(maps => this.mapPool = maps);
+                  }
+                  if (player.userStats) {
+                    const weapons = new SortWeaponsPipe().transform(player.userStats.weapons);
+                    this.loadSvgs(weapons);
+                  }
                 }
               }
-            ),
-            this.apiService.loadingPlayer.subscribe(loading => this.loading = loading)
+            }
           );
-        }
-      })
-    );
+          this.apiService.loadingPlayer.subscribe(loading => this.loading = loading);
+      }
+    });
   }
 
   public openLogin() {

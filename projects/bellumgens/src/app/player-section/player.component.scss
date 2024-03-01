@@ -56,6 +56,7 @@ app-player .card-wrapper {
   height: fit-content;
   background: transparent;
   box-shadow: none;
+  border: none;
 }
 
   .player-detail__stats .igx-circular-bar__text {
@@ -87,8 +88,14 @@ app-player .card-wrapper {
   }
 }
 
-@media only screen and (min-width: 1992px) {
+@media only screen and (min-width: 1760px) {
   .player-detail__stats.map-pool {
     grid-column: 2 / -1;
+  }
+}
+
+@media only screen and (min-width: 2330px) {
+  .player-detail__stats.map-pool {
+    grid-column: 2 / 8;
   }
 }
