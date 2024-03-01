@@ -1,6 +1,4 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
+import { Routes } from '@angular/router';
 import { TournamentComponent } from './tournament.component';
 import { TournamentFormatComponent } from './tournament-format/tournament-format.component';
 import { TournamentCsgoComponent } from './tournament-csgo/tournament-csgo.component';
@@ -8,7 +6,7 @@ import { TournamentSc2Component } from './tournament-sc2/tournament-sc2.componen
 import { ProductionCrewComponent } from './production-crew/production-crew.component';
 import { TournamentsMainComponent } from './tournaments-main/tournaments-main.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: '', component: TournamentComponent, children: [
     { path: '', component: TournamentsMainComponent },
     { path: 'csgo', redirectTo: 'csgo/', pathMatch: 'full' },
@@ -33,9 +31,3 @@ const routes: Routes = [
   { path: 'format', component: TournamentFormatComponent },
   { path: 'crew', component: ProductionCrewComponent }
 ];
-
-@NgModule({
-  imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
-})
-export class TournamentRoutingModule { }
