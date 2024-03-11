@@ -6,7 +6,7 @@ import {
   ApplicationUser,
   TournamentCSGOMatch
 } from '../../../../../common/src/public_api';
-import { BaseComponent } from '../../../../../bellumgens/src/app/base/base.component';
+import { BaseDirective } from '../../../../../bellumgens/src/app/base/base.component';
 import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../../../../common/src/environments/environment';
@@ -36,7 +36,7 @@ import { IgxCardModule, IgxProgressBarModule, IgxAvatarModule, IgxBadgeModule, I
       CSGOMapnamePipe
     ]
 })
-export class TournamentCsgoComponent extends BaseComponent {
+export class TournamentCsgoComponent extends BaseDirective {
   public registrations: TournamentParticipant [];
   public groups: TournamentGroup [];
   public loading = false;

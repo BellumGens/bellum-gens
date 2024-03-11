@@ -12,7 +12,7 @@ import {
   CountrySVGPipe
 } from '../../../../../common/src/public_api';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { BaseComponent } from '../../base/base.component';
+import { BaseDirective } from '../../base/base.component';
 import { Title, Meta } from '@angular/platform-browser';
 import { NgIf, NgFor } from '@angular/common';
 
@@ -33,7 +33,7 @@ import { NgIf, NgFor } from '@angular/common';
       CountrySVGPipe
     ]
 })
-export class TeamDetailsComponent extends BaseComponent {
+export class TeamDetailsComponent extends BaseDirective {
   @ViewChildren(IgxAvatarComponent, { read: ElementRef }) public emptyRoles: QueryList<ElementRef>;
 
   public isAdmin = false;

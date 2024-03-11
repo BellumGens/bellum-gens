@@ -1,6 +1,6 @@
 import { Component, HostListener, Inject, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser, NgIf, NgClass, NgFor, DatePipe, NgOptimizedImage } from '@angular/common';
-import { BaseComponent } from '../../base/base.component';
+import { BaseDirective } from '../../base/base.component';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import {
   CSGOStrategy,
@@ -56,7 +56,7 @@ import { LoadingComponent } from '../../../../../common/src/lib/loading/loading.
       VotesPipe
     ]
 })
-export class StrategyDetailsComponent extends BaseComponent {
+export class StrategyDetailsComponent extends BaseDirective {
   public strat: CSGOStrategy;
   public authUser: ApplicationUser;
   public pipeTrigger = 0;

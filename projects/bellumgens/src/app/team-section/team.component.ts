@@ -8,7 +8,7 @@ import {
   BellumgensApiService,
   LoginService
 } from '../../../../common/src/public_api';
-import { BaseComponent } from '../base/base.component';
+import { BaseDirective } from '../base/base.component';
 import { IgxIconService, IgxIconComponent, IGX_TABS_DIRECTIVES, IgxAvatarComponent } from '@infragistics/igniteui-angular';
 import { TeamApplicationComponent } from './team-application/team-application.component';
 
@@ -27,7 +27,7 @@ import { TeamApplicationComponent } from './team-application/team-application.co
       RouterOutlet
     ]
 })
-export class TeamComponent extends BaseComponent {
+export class TeamComponent extends BaseDirective {
   public authUser: ApplicationUser;
   public team: CSGOTeam = TEAM_PLACEHOLDER;
   public isAdmin = false;

@@ -29,7 +29,7 @@ import {
   ALL_ROLES
 } from '../../../../common/src/public_api';
 
-import { BaseComponent } from '../base/base.component';
+import { BaseDirective } from '../base/base.component';
 import { Observable } from 'rxjs';
 import { SortWeaponsPipe } from '../pipes/sort-weapons.pipe';
 import { TopWeaponAltPipe } from '../pipes/top-weapon-alt.pipe';
@@ -72,7 +72,7 @@ import { NgIf, NgFor, AsyncPipe } from '@angular/common';
       TopWeaponAltPipe
     ]
 })
-export class PlayerComponent extends BaseComponent {
+export class PlayerComponent extends BaseDirective {
   public authUser: ApplicationUser;
   public teamsAdmin: CSGOTeam [];
   public userTeams: Observable<CSGOTeam []>;

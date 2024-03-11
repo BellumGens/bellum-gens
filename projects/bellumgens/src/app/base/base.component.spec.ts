@@ -1,24 +1,24 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { BaseComponent } from './base.component';
+import { BaseDirective } from './base.component';
 import { RouterTestingModule } from '@angular/router/testing';
 
 describe('BaseComponent', () => {
-  let component: BaseComponent;
-  let fixture: ComponentFixture<BaseComponent>;
+  let component: BaseDirective;
+  let fixture: ComponentFixture<BaseDirective>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        BaseComponent
+        BaseDirective
       ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BaseComponent);
+    fixture = TestBed.createComponent(BaseDirective);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

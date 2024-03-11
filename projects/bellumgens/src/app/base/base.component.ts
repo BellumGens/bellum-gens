@@ -1,13 +1,11 @@
-import { Component } from '@angular/core';
+import { Directive } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 
-@Component({
-    template: ``,
-    styleUrls: ['./base.component.css'],
+@Directive({
     standalone: true
 })
-export class BaseComponent {
+export class BaseDirective {
 
   private _title = 'Bellum Gens: Premier Gaming and Esports Events Organizer';
   private _twitterTitle = 'Bellum Gens: Premier Gaming and Esports Events Organizer';
