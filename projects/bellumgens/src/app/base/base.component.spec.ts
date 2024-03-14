@@ -2,6 +2,9 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { BaseDirective } from './base.component';
 import { RouterTestingModule } from '@angular/router/testing';
+import { Component } from '@angular/core';
+import { Meta, Title } from '@angular/platform-browser';
+import { ActivatedRoute } from '@angular/router';
 
 describe('BaseComponent', () => {
   let component: BaseDirective;
@@ -11,14 +14,14 @@ describe('BaseComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
-        BaseDirective
+        TestComponent
       ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(BaseDirective);
+    fixture = TestBed.createComponent(TestComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -32,3 +35,15 @@ describe('BaseComponent', () => {
     expect(component['_image']).toBe('/assets/avatar_BG_blood.png');
   });
 });
+
+@Component({
+  selector: 'app-test',
+  standalone: true,
+  template: '<div>Test component</div>',
+  imports: [BaseDirective]
+})
+export class TestComponent extends BaseDirective {
+  constructor(title: Title, meta: Meta, activeRoute: ActivatedRoute) {
+    super(title, meta, activeRoute);
+  }
+}

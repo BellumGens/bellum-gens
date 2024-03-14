@@ -3,7 +3,8 @@ import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 
 @Directive({
-    standalone: true
+  selector: 'app-base',
+  standalone: true
 })
 export class BaseDirective {
 
