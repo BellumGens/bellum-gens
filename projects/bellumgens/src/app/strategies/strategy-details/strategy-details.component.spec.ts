@@ -5,12 +5,13 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { GLOBAL_OVERLAY_SETTINGS, LoginService, NEW_EMPTY_COMMENT } from 'bellum-gens-common';
+import { CSGOMap, CSGOStrategy, GLOBAL_OVERLAY_SETTINGS, LoginService, NEW_EMPTY_COMMENT, Side, SocialMediaStrategyService, StrategyComment, VoteDirection } from 'bellum-gens-common';
 
 describe('StrategyDetailsComponent', () => {
   let component: StrategyDetailsComponent;
   let fixture: ComponentFixture<StrategyDetailsComponent>;
   let authService: LoginService;
+  let smService: SocialMediaStrategyService;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -24,6 +25,7 @@ describe('StrategyDetailsComponent', () => {
     })
     .compileComponents();
     authService = TestBed.inject(LoginService);
+    smService = TestBed.inject(SocialMediaStrategyService);
   }));
 
   beforeEach(() => {
@@ -50,38 +52,56 @@ describe('StrategyDetailsComponent', () => {
     expect(authService.openLogin.emit).toHaveBeenCalled();
   });
 
-  // it('should call voteStrat method with correct parameters', () => {
-  //   spyOn(component, 'voteStrat');
-  //   const strat: CSGOStrategy = { /* create a mock CSGOStrategy object */ };
-  //   const direction: VoteDirection = /* specify a vote direction */;
-  //   component.voteStrat(strat, direction);
-  //   expect(component.voteStrat).toHaveBeenCalledWith(strat, direction);
-  // });
+  it('should call voteStrat method with correct parameters', () => {
+    spyOn(component, 'voteStrat');
+    const strat: CSGOStrategy = {
+      id: '123456',
+      title: 'Test 1',
+      description: 'Test 2',
+      map: CSGOMap.Dust2,
+      side: Side.TSide,
+      teamId: '123',
+      url: 'test.com'
+    };
+    const direction = VoteDirection.Up;
+    component.voteStrat(strat, direction);
+    expect(component.voteStrat).toHaveBeenCalledWith(strat, direction);
+  });
 
-  // it('should call submitComment method', () => {
-  //   spyOn(component, 'submitComment');
-  //   component.submitComment();
-  //   expect(component.submitComment).toHaveBeenCalled();
-  // });
+  it('should call submitComment method', () => {
+    spyOn(component, 'submitComment');
+    component.submitComment();
+    expect(component.submitComment).toHaveBeenCalled();
+  });
 
-  // it('should call editComment method with correct parameter', () => {
-  //   spyOn(component, 'editComment');
-  //   const comment: StrategyComment = { /* create a mock StrategyComment object */ };
-  //   component.editComment(comment);
-  //   expect(component.editComment).toHaveBeenCalledWith(comment);
-  // });
+  it('should call editComment method with correct parameter', () => {
+    spyOn(component, 'editComment');
+    const comment: StrategyComment = { id: '123', stratId: '456', comment: 'Test', userId: '123', published: new Date() };
+    component.editComment(comment);
+    expect(component.editComment).toHaveBeenCalledWith(comment);
+  });
 
-  // it('should call deleteComment method with correct parameter', () => {
-  //   spyOn(component, 'deleteComment');
-  //   const comment: StrategyComment = { /* create a mock StrategyComment object */ };
-  //   component.deleteComment(comment);
-  //   expect(component.deleteComment).toHaveBeenCalledWith(comment);
-  // });
+  it('should call deleteComment method with correct parameter', () => {
+    spyOn(component, 'deleteComment');
+    const comment: StrategyComment = { id: '123', stratId: '456', comment: 'Test', userId: '123', published: new Date() };
+    component.deleteComment(comment);
+    expect(component.deleteComment).toHaveBeenCalledWith(comment);
+  });
 
-  // it('should call shareOnTwitter method with correct parameter', () => {
-  //   spyOn(component, 'shareOnTwitter');
-  //   const strat: CSGOStrategy = { /* create a mock CSGOStrategy object */ };
-  //   component.shareOnTwitter(strat);
-  //   expect(component.shareOnTwitter).toHaveBeenCalledWith(strat);
-  // });
+  it('should call shareOnTwitter method with correct parameter', () => {
+    spyOn(smService, 'shareOnTwitter');
+    const strat: CSGOStrategy = {
+      id: '123456',
+      title: 'Test 1',
+      description: 'Test 2',
+      map: CSGOMap.Dust2,
+      side: Side.TSide,
+      teamId: '123',
+      url: 'test.com'
+    };
+    component.shareOnTwitter(strat);
+    expect(smService.shareOnTwitter).toHaveBeenCalledWith(strat);
+  });
+
+  // TODO: Add more test cases with UI interactions
 });
