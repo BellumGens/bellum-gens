@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { BaseComponent } from '../../../../../bellumgens/src/app/base/base.component';
+import { BaseDirective } from '../../../../../bellumgens/src/app/base/base.component';
 import {
   ApplicationUser,
   ApiTournamentsService,
@@ -34,7 +34,7 @@ import { IgxCardModule, IgxProgressBarModule, IgxAvatarModule, IgxBadgeModule, I
       Sc2MapNamePipe
     ]
 })
-export class TournamentSc2Component extends BaseComponent {
+export class TournamentSc2Component extends BaseDirective {
   public registrations: TournamentParticipant [];
   public groups: TournamentGroup [];
   public loading = false;

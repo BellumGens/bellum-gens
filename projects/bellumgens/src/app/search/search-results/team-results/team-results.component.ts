@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CSGOTeam, ApiSearchService } from '../../../../../../common/src/public_api';
-import { BaseComponent } from '../../../base/base.component';
+import { BaseDirective } from '../../../base/base.component';
 import { Title, Meta } from '@angular/platform-browser';
 import { QueryParsedPipe } from '../../../pipes/query-parsed.pipe';
 import { IgxCardModule, IgxAvatarModule } from '@infragistics/igniteui-angular';
@@ -15,7 +15,7 @@ import { NgIf, NgFor } from '@angular/common';
     standalone: true,
     imports: [NgIf, LoadingComponent, NgFor, IgxCardModule, RouterLink, IgxAvatarModule, QueryParsedPipe]
 })
-export class TeamResultsComponent extends BaseComponent {
+export class TeamResultsComponent extends BaseDirective {
   public teams: CSGOTeam [];
   public loading = false;
   public query: string;

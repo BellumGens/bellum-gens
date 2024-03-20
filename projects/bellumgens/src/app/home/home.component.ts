@@ -2,7 +2,7 @@ import { Component, HostListener, Inject, PLATFORM_ID, ViewChild } from '@angula
 import { isPlatformBrowser, NgIf, NgOptimizedImage } from '@angular/common';
 import { LoginService, ApplicationUser, SocialMediaService } from '../../../../common/src/public_api';
 import { environment } from '../../../../common/src/environments/environment';
-import { BaseComponent } from '../base/base.component';
+import { BaseDirective } from '../base/base.component';
 import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { IgxCarouselComponent, IgxCarouselModule, IgxIconModule, IgxButtonModule, IgxDividerModule, IgxInputGroupModule } from '@infragistics/igniteui-angular';
@@ -25,7 +25,7 @@ import { FormsModule } from '@angular/forms';
       IgxButtonModule
     ]
 })
-export class HomeComponent extends BaseComponent {
+export class HomeComponent extends BaseDirective {
   @ViewChild(IgxCarouselComponent, { static: true }) public carousel: IgxCarouselComponent;
 
   public authUser: ApplicationUser;

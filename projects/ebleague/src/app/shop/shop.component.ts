@@ -6,7 +6,7 @@ import { Title, Meta } from '@angular/platform-browser';
 import { EMPTY_JERSEY_ORDER, JerseyCut, JerseyDetails, JerseySize, ApiShopService } from '../../../../common/src/public_api';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ISelectionEventArgs, IgxSelectModule, IgxInputGroupModule, IgxIconModule, IgxDividerModule, IgxButtonModule, IgxMaskModule, IgxTextSelectionModule } from '@infragistics/igniteui-angular';
-import { BaseComponent } from '../../../../bellumgens/src/app/base/base.component';
+import { BaseDirective } from '../../../../bellumgens/src/app/base/base.component';
 import { FilterSizesPipe } from '../pipes/filter-sizes.pipe';
 
 @Component({
@@ -29,7 +29,7 @@ import { FilterSizesPipe } from '../pipes/filter-sizes.pipe';
       FilterSizesPipe
     ]
 })
-export class ShopComponent extends BaseComponent {
+export class ShopComponent extends BaseDirective {
   public order = Object.assign({}, EMPTY_JERSEY_ORDER);
   public basePromo = .3;
   public promo = this.basePromo;
