@@ -2,10 +2,10 @@
   display: flex;
   height: calc(100% - 45px);
   width: 100%;
-  background-image: url('/assets/bge/bge-background-right.jpg');
+  background-image: url('/assets/bge/bge-background-right.webp');
   background-repeat: no-repeat;
-  background-size: cover;
-  background-position: bottom right;
+  background-color: #071365;
+  background-position: center right;
 
   @font-face {
     font-family: 'dge-ebold';
@@ -23,7 +23,8 @@
   }
 
   .content-container-row iframe {
-    height: 315px;
+    width: 1120px;
+    height: 630px;
   }
 
   .content-container h1 {
@@ -31,6 +32,7 @@
     font-size: 80pt;
     text-transform: uppercase;
     letter-spacing: 1px;
+    margin: 28px;
   }
 
   .content-container h2 {
@@ -39,7 +41,7 @@
     text-transform: uppercase;
   }
 
-  .content-container p {
+  .content-container p, ul {
     font-family: 'rg-r';
     font-size: 14pt;
   }

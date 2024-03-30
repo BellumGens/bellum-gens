@@ -161,7 +161,7 @@ export class AppComponent implements OnInit {
     complogos.forEach(c => this.iconService.addSvgIconFromText(c.name, c.value, 'login-icons'));
     this.iconService.addSvgIconFromText(heartCare.name, heartCare.value, 'health-icons');
 
-    this.iconService.addSvgIcon('bge-white', '/assets/login/bge-white.svg', 'partners');
+    this.iconService.addSvgIcon('bge-white', '/assets/login/bge-white-2024.svg', 'partners');
     this.iconService.addSvgIcon('eb-league-white', '/assets/login/eb-league-white.svg', 'partners');
     //this.iconService.addSvgIcon('isobar', '/assets/partners/isobar.svg', 'partners');
     //this.iconService.addSvgIcon('vmware', '/assets/partners/vmware.svg', 'partners');
