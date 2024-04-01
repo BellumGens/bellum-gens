@@ -196,7 +196,7 @@
       </trans-unit>
       <trans-unit id="3952441805588898781" datatype="html">
         <source>Bellum Gens Elite is a premier esports LAN event organized in Bulgaria. Ancient history and traditions, and beautiful scenery combine with high-level action-packed esports competition to bring you an unforgettable experience.</source>
-        <target>Bellum Gens Elite е премиерно ЛАН събитие по електронни спортове провеждащо се в България. Древна история и традиции, красива природа и гледки, се обединяват заедно със състезание по електронни спортове от най-високо ниво за едно незабравимо изживяване.</target>
+        <target>Белум Генс Елит е премиерно ЛАН събитие по електронни спортове провеждащо се в България. Древна история и традиции, красива природа и гледки, се обединяват заедно със състезание по електронни спортове от най-високо ниво за едно незабравимо изживяване.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
           <context context-type="linenumber">7,8</context>
@@ -208,6 +208,14 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
           <context context-type="linenumber">16,18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7642068151620286978" datatype="html">
+        <source>StarCraft II</source>
+        <target>СтарКрафт 2</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">18,19</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4848238542766776976" datatype="html">
@@ -364,7 +372,7 @@
       </trans-unit>
       <trans-unit id="4813482035412497716" datatype="html">
         <source>Bellum Gens Elite is a premier esports event. Bellum Gens Elite - Stara Zagora 2024 is going to feature the top StarCraft II talent clashing in a 4-day LAN event! Learn more at the event page!</source>
-        <target>Bellum Gens Elite е премиерно събитие по електронни спортове. Белум Генс Елит - Стара Загора 2024 ще представи най-добрите StarCraft II таланти в 4-дневно ЛАН събитие! Научете повече на страницата на събитието!</target>
+        <target>Bellum Gens Elite е премиерно събитие по електронни спортове. Белум Генс Елит - Стара Загора 2024 ще представи най-добрите СтарКрафт 2 таланти в 4-дневно ЛАН събитие! Научете повече на страницата на събитието!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
           <context context-type="linenumber">6,7</context>
