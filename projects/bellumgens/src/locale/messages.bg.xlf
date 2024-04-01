@@ -196,7 +196,7 @@
       </trans-unit>
       <trans-unit id="3952441805588898781" datatype="html">
         <source>Bellum Gens Elite is a premier esports LAN event organized in Bulgaria. Ancient history and traditions, and beautiful scenery combine with high-level action-packed esports competition to bring you an unforgettable experience.</source>
-        <target>Bellum Gens Elite е премиерно ЛАН събитие по електронни спортове провеждащо се в България. Древна история и традиции, красива природа и гледки, се обединяват заедно със състезание по електронни спортове от най-високо ниво за едно незабравимо изживяване.</target>
+        <target>Белум Генс Елит е премиерно ЛАН събитие по електронни спортове провеждащо се в България. Древна история и традиции, красива природа и гледки, се обединяват заедно със състезание по електронни спортове от най-високо ниво за едно незабравимо изживяване.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
           <context context-type="linenumber">7,8</context>
@@ -208,6 +208,14 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
           <context context-type="linenumber">16,18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7642068151620286978" datatype="html">
+        <source>StarCraft II</source>
+        <target>СтарКрафт 2</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">18,19</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4848238542766776976" datatype="html">
@@ -292,7 +300,7 @@
       </trans-unit>
       <trans-unit id="1788724141858245204" datatype="html">
         <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Bellum Gens Elite - Stara Zagora<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> 2020 brought the top Counter-Strike talent in the region to compete under one roof for a prize pool of $10,000!</source>
-        <target><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Bellum Gens Elite - Стара Загора<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> 2020 доведе най-добрите Counter-Strike таланти в региона да се състезават под един покрив за награден фонд от $10,000!</target>
+        <target><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Белум Генс Елит - Стара Загора<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> 2020 доведе най-добрите Counter-Strike таланти в региона да се състезават под един покрив за награден фонд от $10,000!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
           <context context-type="linenumber">51,52</context>
@@ -300,7 +308,7 @@
       </trans-unit>
       <trans-unit id="4593519162352876023" datatype="html">
         <source>Bellum Gens Elite - Stara Zagora was one of the few LAN events held in 2020 and due to Covid-19 lockdowns and travel restrictions, only 10 teams were able to participate in the LAN finals.</source>
-        <target>Bellum Gens Elite - Стара Загора беше едно от малкото ЛАН събития през 2020 година и поради Covid-19 локдауни и ограничения в пътуването, само 10 отбора успяха да участват в ЛАН финалите.</target>
+        <target>Белум Генс Елит - Стара Загора беше едно от малкото ЛАН събития през 2020 година и поради Covid-19 локдауни и ограничения в пътуването, само 10 отбора успяха да участват в ЛАН финалите.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
           <context context-type="linenumber">52,56</context>
@@ -344,7 +352,7 @@
       </trans-unit>
       <trans-unit id="6815496918999616976" datatype="html">
         <source>Stara Zagora is a 6000+ year-old city in the center of Bulgaria. We partner with Stara Zagora Municipality for the Bellum Gens Elite - Stara Zagora premier esports event!</source>
-        <target>Стара Загора е град на над 6000 години в центъра на България. Ние се партнираме с Община Стара Загора за Bellum Gens Elite - Стара Загора премиерното събитие по електронни спортове!</target>
+        <target>Стара Загора е град на над 6000 години в центъра на България. Ние се партнираме с Община Стара Загора за Белум Генс Елит - Стара Загора премиерното събитие по електронни спортове!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
           <context context-type="linenumber">75,76</context>
@@ -362,9 +370,9 @@
           <context context-type="linenumber">124,126</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4150925340026513224" datatype="html">
-        <source>Bellum Gens Elite is a premier esports event. The first professional Bellum Gens Counter-Strike tournament was held in the city of Stara Zagora and featured the highest ranked professional teams from Bulgaria and the region!</source>
-        <target>Bellum Gens Elite е премиерно събитие по електронни спортове. Първият професионален турнир по Counter-Strike на Bellum Gens се проведе в град Стара Загора и в него взеха участие най-високопоставените професионални отбори от България и региона!</target>
+      <trans-unit id="4813482035412497716" datatype="html">
+        <source>Bellum Gens Elite is a premier esports event. Bellum Gens Elite - Stara Zagora 2024 is going to feature the top StarCraft II talent clashing in a 4-day LAN event! Learn more at the event page!</source>
+        <target>Bellum Gens Elite е премиерно събитие по електронни спортове. Белум Генс Елит - Стара Загора 2024 ще представи най-добрите СтарКрафт 2 таланти в 4-дневно ЛАН събитие! Научете повече на страницата на събитието!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
           <context context-type="linenumber">6,7</context>
@@ -444,7 +452,7 @@
       </trans-unit>
       <trans-unit id="1712062112175116104" datatype="html">
         <source>Bellum Gens is the organizer of the premier Bellum Gen Elite esports event. First held in the town of Stara Zagora, under the name <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Bellum Gens Elite - Stara Zagora<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>, BGE brought the top Counter-Strike talent in the region to compete under one roof for a prize pool of $10,000!</source>
-        <target>Белум Генс е организатор на премиерното Bellum Gen Elite esports събитие. Първоначално проведено в град Стара Загора, под името <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Bellum Gens Elite - Стара Загора<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>, BGE доведе най-добрите Counter-Strike таланти в региона да се състезават под един покрив за награден фонд от $10,000!</target>
+        <target>Белум Генс е организатор на премиерното Bellum Gen Elite esports събитие. Първоначално проведено в град Стара Загора, под името <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Белум Генс Елит - Стара Загора<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>, BGE доведе най-добрите Counter-Strike таланти в региона да се състезават под един покрив за награден фонд от $10,000!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
           <context context-type="linenumber">51,52</context>

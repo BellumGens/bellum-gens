@@ -7,19 +7,23 @@
   background-color: #071365;
   background-position: center right;
 
-  @font-face {
-    font-family: 'dge-ebold';
-    src: url('/assets/fonts/dge-ebold.otf');
-  }
+  // @font-face {
+  //   font-family: 'dge-ebold';
+  //   src: url('/assets/fonts/dge-ebold.otf');
+  // }
 
-  @font-face {
-    font-family: 'rg-b';
-    src: url('/assets/fonts/rg-r.otf');
-  }
+  // @font-face {
+  //   font-family: 'rg-b';
+  //   src: url('/assets/fonts/rg-r.otf');
+  // }
 
-  @font-face {
-    font-family: 'rg-r';
-    src: url('/assets/fonts/rg-b.otf');
+  // @font-face {
+  //   font-family: 'rg-r';
+  //   src: url('/assets/fonts/rg-b.otf');
+  // }
+
+  .highlight {
+    color: #bccf00;
   }
 
   .content-container-row iframe {
@@ -28,21 +32,23 @@
   }
 
   .content-container h1 {
-    font-family: 'dge-ebold';
-    font-size: 80pt;
+    font-family: "Anton", "Oswald", sans-serif;
+    font-size: 96px;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    font-weight: normal;
     margin: 28px;
   }
 
   .content-container h2 {
-    font-family: 'rg-b';
+    font-family: 'Rajdhani', "Fira Sans Condensed", sans-serif;
     font-size: 36pt;
+    font-weight: bold;
     text-transform: uppercase;
   }
 
   .content-container p, ul {
-    font-family: 'rg-r';
+    font-family: 'Rajdhani', "Fira Sans Condensed", sans-serif;
+    font-weight: normal;
     font-size: 14pt;
   }
 
