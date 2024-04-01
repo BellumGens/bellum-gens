@@ -326,8 +326,8 @@
           <context context-type="linenumber">124,126</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4150925340026513224" datatype="html">
-        <source>Bellum Gens Elite is a premier esports event. The first professional Bellum Gens Counter-Strike tournament was held in the city of Stara Zagora and featured the highest ranked professional teams from Bulgaria and the region!</source>
+      <trans-unit id="4813482035412497716" datatype="html">
+        <source>Bellum Gens Elite is a premier esports event. Bellum Gens Elite - Stara Zagora 2024 is going to feature the top StarCraft II talent clashing in a 4-day LAN event! Learn more at the event page!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
           <context context-type="linenumber">6,7</context>
