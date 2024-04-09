@@ -26,9 +26,9 @@
     color: #bccf00;
   }
 
-  .content-container-row iframe {
-    width: 1120px;
-    height: 630px;
+  .content-container-column iframe {
+    width: 600px;
+    height: 315px;
   }
 
   .content-container h1 {
@@ -44,12 +44,32 @@
     font-size: 36pt;
     font-weight: bold;
     text-transform: uppercase;
+    margin-top: 0;
+  }
+
+  .content-container h3, .igx-card-header__title {
+    font-family: 'Rajdhani', "Fira Sans Condensed", sans-serif;
+    font-size: 24pt;
+  }
+
+  .content-container h3, .igx-card-header__subtitle {
+    font-family: 'Rajdhani', "Fira Sans Condensed", sans-serif;
   }
 
   .content-container p, ul {
     font-family: 'Rajdhani', "Fira Sans Condensed", sans-serif;
     font-weight: normal;
     font-size: 14pt;
+  }
+
+  .card-wrapper {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    width: 100%;
+  }
+
+  .country-badge-small {
+    position: static;
+    margin: 0 4px;
   }
 
   @media screen and (max-width: 1024px) {
