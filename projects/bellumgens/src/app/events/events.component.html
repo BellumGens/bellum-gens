@@ -5,7 +5,6 @@
       <h1>Bellum Gens Elite</h1>
     </div>
     <p i18n>Bellum Gens Elite is a premier esports LAN event organized in Bulgaria. Ancient history and traditions, and beautiful scenery combine with high-level action-packed esports competition to bring you an unforgettable experience.</p>
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/HcY0qUrRnJw?si=46RWHQ4ZQcokgblL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
   </div>
 
   <div class="content-container-row">
@@ -16,7 +15,9 @@
     <h2 i18n>BGE - Stara Zagora 2024</h2>
     <ul style="margin-bottom: 12px;">
       <li i18n>StarCraft II</li>
-      <li i18n><span class="highlight">4-8th</span> of September</li>
+      <li i18n>Qualifiers: <span class="highlight">TBA</span></li>
+      <li i18n>Main Event: <span class="highlight">4-8th</span> of September</li>
+      <li i18n><span class="highlight">16</span> players</li>
       <li i18n><span class="highlight">€10000</span> prize pool.</li>
       <li i18n>Summer Theater - Stara Zagora</li>
       <li i18n>Stay Tuned!</li>
@@ -24,7 +25,30 @@
     <p i18n><span class="highlight">Bellum Gens</span> join forces with the <span class="highlight">Bulgarian StarCraft League</span> and <span class="highlight">Stara Zagora Municipality</span> to bring you an epic esports experience!</p>
   </div>
   <div class="content-container-column">
-    <img alt="BGE Stara Zagora Logo" [src]="'/assets/login/bge-white-horizontal-2024.svg'" />
+    <img ngSrc="/assets/bge/stara-zagora1.webp" width="600" height="337" class="preview-image" alt="Stara Zagora - Samara Monument" />
+  </div>
+
+  <div class="content-container-row">
+    <igx-divider></igx-divider>
+  </div>
+
+  <div class="content-container-row">
+    <h2>Confirmed Players</h2>
+    <div class="card-wrapper">
+      <igx-card *ngFor="let player of players">
+        <igx-card-media>
+          <img [src]="player.image" alt="Player Avatar" />
+        </igx-card-media>
+        <igx-card-header>
+          <h3 igxCardHeaderTitle>
+            {{player.name}}
+            <!-- <igx-avatar [src]="player.race | sc2RaceThumb" shape="circle" [title]="player.race" class="country-badge-small"></igx-avatar>
+            <igx-avatar [src]="player.country | countrySVG" shape="circle" size="small" [title]="player.country" class="country-badge-small"></igx-avatar> -->
+          </h3>
+          <h4 igxCardHeaderSubtitle>Team: {{player.team}}</h4>
+        </igx-card-header>
+      </igx-card>
+    </div>
   </div>
 
   <div class="content-container-column">
@@ -44,7 +68,8 @@
   </div>
 
   <div class="content-container-column">
-    <img ngSrc="/assets/wallpapers/bellum-gens-elite-winners.webp" width="600" height="401" class="preview-image" alt="Bellum Gens Elite - Stara Zagora Winners" />
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/HcY0qUrRnJw?si=46RWHQ4ZQcokgblL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <!-- <img ngSrc="/assets/wallpapers/bellum-gens-elite-winners.webp" width="600" height="401" class="preview-image" alt="Bellum Gens Elite - Stara Zagora Winners" /> -->
   </div>
   <div class="content-container-column">
     <h2 i18n>Past Events</h2>
