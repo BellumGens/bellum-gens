@@ -70,6 +70,9 @@
   .country-badge-small {
     position: static;
     margin: 0 4px;
+    width: 24px;
+    height: 24px;
+    background-color: transparent;
   }
 
   @media screen and (max-width: 1024px) {
