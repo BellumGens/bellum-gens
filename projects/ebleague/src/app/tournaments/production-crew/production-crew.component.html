@@ -8,7 +8,7 @@
     <igx-card-media>
       <img [ngSrc]="member.image" width="640" height="426" [alt]="member.name" />
     </igx-card-media>
-    <igx-card-actions [reverse]="true">
+    <igx-card-actions>
       <a igxButton *ngIf="member.facebook" [href]="member.facebook" target="_blank" rel="noopener" igxStart>
         <igx-icon family="login-icons" name="facebook"></igx-icon>
         <span>Facebook</span>

@@ -53,7 +53,7 @@
       <p class="igx-card-header__subtitle">{{ strat.description | truncateText:130 }}</p>
     </igx-card-content>
 
-    <igx-card-actions [reverse]="true" class="strategy-actions">
+    <igx-card-actions class="strategy-actions">
       <span class="horizontal-center navigatable" [routerLink]="['/strategies', 'details', strat.customUrl]">
         <igx-badge [value]="strat.comments ? strat.comments.length : 0" type="info"></igx-badge>
         <span i18n>Comments</span>
