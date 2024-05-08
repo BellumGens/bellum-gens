@@ -27,7 +27,7 @@ import { Sc2RaceThumbPipe } from '../../../../common/src/lib/pipes/sc2-race-thum
 export class EventsComponent extends BaseDirective {
   public players = [
     {name: 'Kang "Solar" Min Soo', country: 'South-Korea', race: 'Zerg', team: 'Team Vitality', image: '/assets/bge/players/solar-2.png'},
-    {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', image: '/assets/bge/silhouette.webp'},
+    {name: 'Clement "Clem" Desplanches', country: 'France', race: 'Terran', team: 'Team Liquid', image: '/assets/bge/players/clem-1.png'},
     {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', image: '/assets/bge/silhouette.webp'},
     {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', image: '/assets/bge/silhouette.webp'},
     {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', image: '/assets/bge/silhouette.webp'},
