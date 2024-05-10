@@ -1,8 +1,13 @@
 .registration-form .igx-button {
   --igx-button-size: 48px;
+  color: #fff;
 }
 
 .login-divider {
   height: 24px;
   margin-left: 12px;
+}
+
+.login-button igx-icon {
+  color: #fff;
 }

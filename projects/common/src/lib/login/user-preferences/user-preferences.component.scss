@@ -1,5 +1,14 @@
+:host {
+  .login-divider {
+    height: 16px;
+    margin-left: 8px;
+  }
 
-.login-divider {
-  height: 16px;
-  margin-left: 8px;
+  button:not(:disabled) {
+    color: #fff;
+  }
+
+  button:not(:disabled) igx-icon {
+    color: #fff;
+  }
 }

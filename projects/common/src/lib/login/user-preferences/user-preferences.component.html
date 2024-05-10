@@ -4,8 +4,7 @@
   <button *ngFor="let provider of providers"
           igxButton="contained" igxRipple
           class="submit-button navigatable"
-          [igxButtonBackground]="loginColors[provider.name]"
-          igxButtonColor="#fff"
+          [style.background]="loginColors[provider.name]"
           (click)="login(provider)"
           [disabled]="disableLogin(provider.name)">
     <igx-icon family="login-icons" [name]="provider.name.toLowerCase()"></igx-icon>

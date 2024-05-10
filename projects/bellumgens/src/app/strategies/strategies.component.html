@@ -53,12 +53,12 @@
       <p class="igx-card-header__subtitle">{{ strat.description | truncateText:130 }}</p>
     </igx-card-content>
 
-    <igx-card-actions [reverse]="true" class="strategy-actions">
-      <span class="horizontal-center navigatable" [routerLink]="['/strategies', 'details', strat.customUrl]">
+    <igx-card-actions class="strategy-actions">
+      <span igxStart class="horizontal-center navigatable" [routerLink]="['/strategies', 'details', strat.customUrl]">
         <igx-badge [value]="strat.comments ? strat.comments.length : 0" type="info"></igx-badge>
         <span i18n>Comments</span>
       </span>
-      <button igxButton="fab"
+      <button igxEnd igxButton="fab"
               [ngClass]="strat.votes | hasVoted:0:authUser:pipeTrigger"
               igxRipple
               (click)="voteStrat(strat, 0)" igxStart>
@@ -67,7 +67,7 @@
           {{strat.votes | votes:0:pipeTrigger}}
         </span>
       </button>
-      <button igxButton="fab"
+      <button igxEnd igxButton="fab"
               [ngClass]="strat.votes | hasVoted:1:authUser:pipeTrigger"
               igxRipple
               (click)="voteStrat(strat, 1)" igxStart>
@@ -101,7 +101,7 @@
 
   </igx-card>
 
-  <igx-card  class="fit-content-card" *ngIf="hasMore">
+  <igx-card class="fit-content-card" *ngIf="hasMore">
     <igx-card-header class="empty-strategy">
       <h4 class="igx-card-header__title" i18n>Load More...</h4>
     </igx-card-header>

@@ -54,9 +54,13 @@ export class LoginDialogComponent {
 
   public loginWithForm() {
     this.submitInProgress = true;
-    this.authManager.loginWithForm(this.logininfo).subscribe(() => {
-      this.dialog.close();
-      this.submitInProgress = false;
+    this.authManager.loginWithForm(this.logininfo).subscribe({
+      next: () => {
+        this.dialog.close();
+      },
+      complete: () => {
+        this.submitInProgress = false;
+      }
     });
   }
 }

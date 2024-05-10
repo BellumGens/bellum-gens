@@ -43,15 +43,15 @@ export const CREW_MEMBERS = [
     facebook: 'https://www.facebook.com/nikutv/',
     instagram: 'https://www.instagram.com/officialniku/'
   },
-  {
-    name: 'Georgy "lop" Tsanev',
-    birthplace: 'Plovdiv, Bulgaria',
-    position: 'CS:GO caster',
-    image: '/assets/crew/lop.webp',
-    twitter: 'https://twitter.com/Mighty_Lop',
-    facebook: '',
-    instagram: ''
-  },
+  // {
+  //   name: 'Georgy "lop" Tsanev',
+  //   birthplace: 'Plovdiv, Bulgaria',
+  //   position: 'CS:GO caster',
+  //   image: '/assets/crew/lop.webp',
+  //   twitter: 'https://twitter.com/Mighty_Lop',
+  //   facebook: '',
+  //   instagram: ''
+  // },
   {
     name: 'Teodor "Tedd" Borisov',
     birthplace: 'Sofia, Bulgaria',
