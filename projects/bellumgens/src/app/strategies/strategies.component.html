@@ -61,7 +61,7 @@
       <button igxEnd igxButton="fab"
               [ngClass]="strat.votes | hasVoted:0:authUser:pipeTrigger"
               igxRipple
-              (click)="voteStrat(strat, 0)" igxStart>
+              (click)="voteStrat(strat, 0)">
         <igx-icon title="vote up">thumb_up</igx-icon>
         <span *ngIf="strat.votes | votes:0:pipeTrigger">
           {{strat.votes | votes:0:pipeTrigger}}
@@ -70,7 +70,7 @@
       <button igxEnd igxButton="fab"
               [ngClass]="strat.votes | hasVoted:1:authUser:pipeTrigger"
               igxRipple
-              (click)="voteStrat(strat, 1)" igxStart>
+              (click)="voteStrat(strat, 1)">
         <igx-icon title="vote down">thumb_down</igx-icon>
         <span *ngIf="strat.votes | votes:1:pipeTrigger">
           {{strat.votes | votes:1:pipeTrigger}}

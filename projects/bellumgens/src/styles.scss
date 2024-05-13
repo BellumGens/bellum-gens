@@ -105,8 +105,6 @@ $chip-theme: chip-theme($background: $banner-background);
 
 /* Button */
 .strategy-actions {
-  display: flex;
-  align-items: center;
   $button-theme: button-theme($resting-shadow: none,
                               $hover-shadow: none,
                               $focus-shadow: none,
