@@ -39,7 +39,7 @@
     margin: 28px;
   }
 
-  .content-container h2 {
+  .content-container h2, .cta-button-large {
     font-family: 'Rajdhani', "Fira Sans Condensed", sans-serif;
     font-size: 36pt;
     font-weight: bold;
@@ -78,7 +78,6 @@
 
   .cta-button-large {
     height: 88px;
-    font-size: 36pt;
     background-color: #bccf00;
   }
 
@@ -89,7 +88,7 @@
       font-size: 36pt;
     }
 
-    .content-container h2 {
+    .content-container h2, .cta-button-large {
       font-size: 24pt;
     }
 
@@ -99,8 +98,6 @@
 
     .cta-button-large {
       height: 60px;
-      font-size: 20pt;
-      background-color: #bccf00;
     }
   }
 }
