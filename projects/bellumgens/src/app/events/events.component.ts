@@ -1,5 +1,5 @@
 import { NgFor, NgIf, NgOptimizedImage } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, Inject, LOCALE_ID } from '@angular/core';
 import { IGX_CARD_DIRECTIVES, IgxAvatarComponent, IgxDividerDirective, IgxIconComponent } from '@infragistics/igniteui-angular';
 import { BaseDirective } from '../base/base.component';
 import { Meta, Title } from '@angular/platform-browser';
@@ -36,11 +36,17 @@ export class EventsComponent extends BaseDirective {
     {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', image: '/assets/bge/silhouette.webp'},
   ];
 
+  public ticketsUrl = 'https://www.eventim.bg/en/tickets/bellum-gens-elite-stara-zagora-stara-zagora-leten-teatr-642927/event.html';
+
   constructor(
     protected titleService: Title,
     protected meta: Meta,
-    protected activeRoute: ActivatedRoute
+    protected activeRoute: ActivatedRoute,
+    @Inject(LOCALE_ID) private localeId: string
   ) {
     super(titleService, meta, activeRoute);
+    if (this.localeId === 'bg') {
+      this.ticketsUrl = 'https://www.eventim.bg/bg/bileti/bellum-gens-elite-stara-zagora-stara-zagora-leten-teatr-642927/event.html';
+    }
   }
 }
