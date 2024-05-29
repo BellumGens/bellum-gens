@@ -36,3 +36,13 @@
 .profile-username {
   margin-top: 8px;
 }
+
+@media only screen and (max-width: 720px) {
+  .login-button-text {
+    display: none;
+  }
+
+  .login-button-button {
+    min-width: auto;
+  }
+}
