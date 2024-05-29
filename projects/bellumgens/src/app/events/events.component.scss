@@ -76,6 +76,12 @@
     background-color: transparent;
   }
 
+  .cta-button-large {
+    height: 88px;
+    font-size: 36pt;
+    background-color: #bccf00;
+  }
+
   @media screen and (max-width: 1024px) {
     background-position: center;
 
@@ -89,6 +95,12 @@
 
     .content-container p {
       font-size: 12pt;
+    }
+
+    .cta-button-large {
+      height: 60px;
+      font-size: 20pt;
+      background-color: #bccf00;
     }
   }
 }

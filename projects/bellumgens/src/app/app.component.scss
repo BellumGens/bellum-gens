@@ -1,4 +1,4 @@
-:host {
+:host ::ng-deep {
   > div {
     min-height: 100%;
   }
@@ -17,6 +17,11 @@
     .search-group {
       width: auto;
     }
+
+    .igx-navbar, .igx-navbar__right {
+      gap: 0;
+    }
+
   }
 }
 

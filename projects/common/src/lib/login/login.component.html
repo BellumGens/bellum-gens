@@ -1,8 +1,8 @@
 <bg-login-dialog #loginDialog></bg-login-dialog>
 
-<button igxButton="contained" igxRipple *ngIf="!authUser && !userCheck" (click)="loginDialog.openLogin()">
+<button igxButton="contained" class="login-button-button" igxRipple *ngIf="!authUser && !userCheck" (click)="loginDialog.openLogin()">
   <igx-icon>login</igx-icon>
-  <span i18n>login</span>
+  <span i18n class="login-button-text">login</span>
 </button>
 
 <igx-circular-bar *ngIf="userCheck" [indeterminate]="true"></igx-circular-bar>

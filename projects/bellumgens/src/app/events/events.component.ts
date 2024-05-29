@@ -1,6 +1,6 @@
 import { NgFor, NgIf, NgOptimizedImage } from '@angular/common';
 import { Component, Inject, LOCALE_ID } from '@angular/core';
-import { IGX_CARD_DIRECTIVES, IgxAvatarComponent, IgxDividerDirective, IgxIconComponent } from '@infragistics/igniteui-angular';
+import { IGX_CARD_DIRECTIVES, IgxAvatarComponent, IgxButtonDirective, IgxDividerDirective, IgxIconComponent } from '@infragistics/igniteui-angular';
 import { BaseDirective } from '../base/base.component';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
@@ -15,6 +15,7 @@ import { Sc2RaceThumbPipe } from '../../../../common/src/lib/pipes/sc2-race-thum
     IGX_CARD_DIRECTIVES,
     IgxAvatarComponent,
     IgxIconComponent,
+    IgxButtonDirective,
     NgOptimizedImage,
     CountrySVGPipe,
     Sc2RaceThumbPipe,
