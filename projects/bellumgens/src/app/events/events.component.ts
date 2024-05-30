@@ -1,4 +1,4 @@
-import { NgFor, NgIf, NgOptimizedImage } from '@angular/common';
+import { DatePipe, NgFor, NgIf, NgOptimizedImage } from '@angular/common';
 import { Component, Inject, LOCALE_ID } from '@angular/core';
 import { IGX_CARD_DIRECTIVES, IgxAvatarComponent, IgxButtonDirective, IgxDividerDirective, IgxIconComponent } from '@infragistics/igniteui-angular';
 import { BaseDirective } from '../base/base.component';
@@ -16,6 +16,7 @@ import { Sc2RaceThumbPipe } from '../../../../common/src/lib/pipes/sc2-race-thum
     IgxAvatarComponent,
     IgxIconComponent,
     IgxButtonDirective,
+    DatePipe,
     NgOptimizedImage,
     CountrySVGPipe,
     Sc2RaceThumbPipe,

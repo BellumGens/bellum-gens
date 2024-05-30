@@ -26,7 +26,8 @@
     <p i18n><span class="highlight">Bellum Gens</span> join forces with the <span class="highlight">Bulgarian StarCraft League</span> and <span class="highlight">Stara Zagora Municipality</span> to bring you an epic esports experience!</p>
   </div>
   <div class="content-container-column">
-    <img ngSrc="/assets/bge/stara-zagora1.webp" width="600" height="337" class="preview-image" alt="Stara Zagora - Samara Monument" />
+    <iframe width="560" height="315" class="preview-image" src="https://www.youtube.com/embed/4ZtIooYGp_g?si=zOJOViSa8gZwzRLE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <!-- <img ngSrc="/assets/bge/stara-zagora1.webp" width="600" height="337" class="preview-image" alt="Stara Zagora - Samara Monument" /> -->
   </div>
 
   <div class="content-container-row">
@@ -34,7 +35,7 @@
   </div>
 
   <div class="content-container-row">
-    <h2>Confirmed Players</h2>
+    <h2 i18n>Confirmed Players</h2>
     <div class="card-wrapper">
       <igx-card *ngFor="let player of players">
         <igx-card-media>
@@ -46,12 +47,107 @@
             <igx-avatar [src]="player.country | countrySVG" *ngIf="player.country !== 'TBA'" shape="circle" [title]="player.country" class="country-badge-small"></igx-avatar>
             <!-- <igx-avatar [src]="player.race | sc2RaceThumb" shape="circle" [title]="player.race" class="country-badge-small"></igx-avatar>
             <igx-avatar [src]="player.country | countrySVG" shape="circle" size="small" [title]="player.country" class="country-badge-small"></igx-avatar> -->
-            </div>
+          </div>
           <h4 igxCardHeaderSubtitle>{{player.team}}</h4>
         </igx-card-header>
       </igx-card>
     </div>
   </div>
+
+  <!-- <div class="content-container-row">
+    <h2 i18n>Qualifiers Schedule</h2>
+    <div class="card-wrapper">
+      <igx-card>
+        <igx-card-header>
+          <div igxCardHeaderTitle>
+            Regions and Dates TBA Soon!
+          </div>
+        </igx-card-header>
+      </igx-card>
+    </div>
+  </div>
+
+  <div class="content-container-row">
+    <h2 i18n>Main Event Schedule</h2>
+    <div class="card-wrapper">
+      <igx-card>
+        <igx-card-header>
+          <div igxCardHeaderTitle>
+            {{ '2024-09-04' | date: 'longDate' }}
+          </div>
+        </igx-card-header>
+        <igx-card-content>
+          <ul>
+            <li i18n>12:00: <span class="highlight">Pre-registration</span> for ticket holders</li>
+            <li i18n>All day: <span class="highlight">Media day</span></li>
+          </ul>
+        </igx-card-content>
+      </igx-card>
+
+      <igx-card>
+        <igx-card-header>
+          <div igxCardHeaderTitle>
+            {{ '2024-09-05' | date: 'longDate' }}
+          </div>
+        </igx-card-header>
+        <igx-card-content>
+          <ul>
+            <li i18n>12:00: <span class="highlight">Registration</span></li>
+            <li i18n>14:00: <span class="highlight">Opening Ceremony</span></li>
+            <li i18n>14:30: <span class="highlight">Tournament begins</span></li>
+          </ul>
+        </igx-card-content>
+      </igx-card>
+
+      <igx-card>
+        <igx-card-header>
+          <div igxCardHeaderTitle>
+            {{ '2024-09-06' | date: 'longDate' }}
+          </div>
+        </igx-card-header>
+        <igx-card-content>
+          <ul>
+            <li i18n>12:00: <span class="highlight">Registration</span> for late arrivals</li>
+            <li i18n>13:00: <span class="highlight">Gates open</span></li>
+            <li i18n>14:00: <span class="highlight">Tournament Day 2 begins</span></li>
+          </ul>
+        </igx-card-content>
+      </igx-card>
+
+      <igx-card>
+        <igx-card-header>
+          <div igxCardHeaderTitle>
+            {{ '2024-09-08' | date: 'longDate' }}
+          </div>
+        </igx-card-header>
+        <igx-card-content>
+          <ul>
+            <li i18n>12:00: <span class="highlight">Registration</span> for late arrivals</li>
+            <li i18n>13:00: <span class="highlight">Gates open</span></li>
+            <li i18n>14:00: <span class="highlight">Tournament Day 3 begins</span></li>
+          </ul>
+        </igx-card-content>
+      </igx-card>
+
+      <igx-card>
+        <igx-card-header>
+          <div igxCardHeaderTitle>
+            {{ '2024-09-07' | date: 'longDate' }}
+          </div>
+        </igx-card-header>
+        <igx-card-content>
+          <ul>
+            <li i18n>12:00: <span class="highlight">Registration</span> for late arrivals</li>
+            <li i18n>13:00: <span class="highlight">Gates open</span></li>
+            <li i18n>14:00: <span class="highlight">Opening Ceremony for finals day</span></li>
+            <li i18n>14:30: <span class="highlight">Tournament Day 3 begins</span></li>
+            <li i18n>19:30: <span class="highlight">Final Ceremony</span></li>
+            <li i18n>20:00: <span class="highlight">Final</span></li>
+          </ul>
+        </igx-card-content>
+      </igx-card>
+    </div>
+  </div> -->
 
   <div class="content-container-column">
     <img ngSrc="/assets/bge/summer-theater.webp" width="600" height="372" class="preview-image" alt="Summer Theater Stara Zagora" />
@@ -70,7 +166,7 @@
   </div>
 
   <div class="content-container-column">
-    <iframe width="560" height="315" src="https://www.youtube.com/embed/HcY0qUrRnJw?si=46RWHQ4ZQcokgblL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+    <iframe width="560" height="315" class="preview-image" src="https://www.youtube.com/embed/HcY0qUrRnJw?si=46RWHQ4ZQcokgblL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     <!-- <img ngSrc="/assets/wallpapers/bellum-gens-elite-winners.webp" width="600" height="401" class="preview-image" alt="Bellum Gens Elite - Stara Zagora Winners" /> -->
   </div>
   <div class="content-container-column">
