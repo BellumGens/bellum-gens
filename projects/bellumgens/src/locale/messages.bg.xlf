@@ -490,6 +490,14 @@
           <context context-type="linenumber">180,182</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="3987171197721002192" datatype="html">
+        <source>Organized With</source>
+        <target>Организирано заедно с</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">192,195</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="7363408312472202295" datatype="html">
         <source>Bulgarian StarCraft League a one of a kind StarCraft II league in Bulgaria and are contributing to the deveopment of Bulgarian talent in this esport! All StarCraft 2 games in the Esports Business League are casted by the them!</source>
         <target>Българската Старкрафт Лига организира първата по рода си лига по StarCraft II в България и допринася за развитието на талантите ни в този esport! Всички StarCraft 2 игри от Esports Business League биват коментирани от тях!</target>
@@ -558,8 +566,8 @@
           <context context-type="linenumber">6,7</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7502381144643270991" datatype="html">
-        <source>TICKETS NOW AVAILABLE</source>
+      <trans-unit id="2889920848563929575" datatype="html">
+        <source>TICKETS AVAILABLE NOW</source>
         <target>БИЛЕТИТЕ СА В ПРОДАЖБА</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
