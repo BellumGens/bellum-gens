@@ -182,6 +182,10 @@
           <context context-type="sourcefile">projects/bellumgens/src/app/app.component.html</context>
           <context context-type="linenumber">134,135</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
+          <context context-type="linenumber">160,161</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="3952441805588898781" datatype="html">
         <source>Bellum Gens Elite is a premier esports LAN event organized in Bulgaria. Ancient history and traditions, and beautiful scenery combine with high-level action-packed esports competition to bring you an unforgettable experience.</source>
@@ -677,18 +681,18 @@
         <source>Subscribe</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">162,165</context>
+          <context context-type="linenumber">165,168</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">178,183</context>
+          <context context-type="linenumber">181,186</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4768749765465246664" datatype="html">
         <source>Email</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">167,170</context>
+          <context context-type="linenumber">170,173</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/registration/registration.component.html</context>
@@ -699,7 +703,7 @@
         <source>Get email updates from us!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">175,178</context>
+          <context context-type="linenumber">178,181</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6265705198318613754" datatype="html">
