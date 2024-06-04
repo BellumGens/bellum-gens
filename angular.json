@@ -33,6 +33,7 @@
             },
             "polyfills": [
               "zone.js",
+              "hammerjs",
               "@angular/localize/init"
             ],
             "tsConfig": "projects/bellumgens/tsconfig.app.json",
