@@ -176,6 +176,13 @@
           <context context-type="linenumber">157,158</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="8172743349871739865" datatype="html">
+        <source>Follow us on Twitch</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/app.component.html</context>
+          <context context-type="linenumber">134,135</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="3952441805588898781" datatype="html">
         <source>Bellum Gens Elite is a premier esports LAN event organized in Bulgaria. Ancient history and traditions, and beautiful scenery combine with high-level action-packed esports competition to bring you an unforgettable experience.</source>
         <context-group purpose="location">
