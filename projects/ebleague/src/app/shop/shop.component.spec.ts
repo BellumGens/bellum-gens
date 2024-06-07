@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ShopComponent } from './shop.component';
 import { FormsModule } from '@angular/forms';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import {
   IgxSelectModule,
   IgxInputGroupModule,
@@ -15,6 +15,7 @@ import {
 import { FilterSizesPipe } from '../pipes/filter-sizes.pipe';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('ShopComponent', () => {
   let component: ShopComponent;
@@ -22,9 +23,7 @@ describe('ShopComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [
-        FormsModule,
-        HttpClientTestingModule,
+    imports: [FormsModule,
         RouterTestingModule,
         NoopAnimationsModule,
         IgxSelectModule,
@@ -34,9 +33,9 @@ describe('ShopComponent', () => {
         IgxMaskModule,
         IgxDividerModule,
         IgxTextSelectionModule,
-        ShopComponent, FilterSizesPipe
-      ]
-    })
+        ShopComponent, FilterSizesPipe],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+})
     .compileComponents();
   }));
 

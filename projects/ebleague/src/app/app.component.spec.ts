@@ -16,10 +16,11 @@ import { IgxNavigationDrawerModule,
   IgxDividerModule} from '@infragistics/igniteui-angular';
 import { FormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { LanguagesComponent, LoginComponent, SuccessErrorComponent } from 'projects/common/src/public_api';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -27,9 +28,7 @@ describe('AppComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [
-        HttpClientTestingModule,
-        RouterTestingModule,
+    imports: [RouterTestingModule,
         FormsModule,
         CommonModule,
         NgOptimizedImage,
@@ -52,8 +51,8 @@ describe('AppComponent', () => {
         LanguagesComponent,
         LoginComponent,
         SuccessErrorComponent,
-        AppComponent
-    ]
+        AppComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
 }).compileComponents();
   }));
 

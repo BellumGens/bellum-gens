@@ -23,7 +23,7 @@ import { FormsModule } from '@angular/forms';
 import { SideStratsPipe } from 'projects/bellumgens/src/app/pipes/sidestrats.pipe';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { TruncateTextPipe } from 'projects/bellumgens/src/app/pipes/truncate-text.pipe';
 import { IsVideoPipe } from 'projects/bellumgens/src/app/pipes/is-video.pipe';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -34,6 +34,7 @@ import { Observable } from 'rxjs';
 import { NewStrategyComponent } from './new-strategy/new-strategy.component';
 import { IsStratOwnerPipe } from 'projects/bellumgens/src/app/pipes/is-strat-owner.pipe';
 import { StratFilterPipe } from '../pipes/strat-filter.pipe';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('StrategiesComponent', () => {
   let component: StrategiesComponent;
@@ -41,11 +42,9 @@ describe('StrategiesComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        FormsModule,
+    imports: [FormsModule,
         RouterTestingModule,
         NoopAnimationsModule,
-        HttpClientTestingModule,
         ServiceWorkerModule.register('', { enabled: false }),
         IgxIconModule,
         IgxAvatarModule,
@@ -73,23 +72,24 @@ describe('StrategiesComponent', () => {
         VotesPipe,
         HasVotedPipe,
         IsStratOwnerPipe,
-        StratFilterPipe
-      ],
-      providers: [
+        StratFilterPipe],
+    providers: [
         {
-          provide: ActivatedRoute,
-          useValue: {
-            parent: {
-              parent: {
-                params: new Observable()
-              }
-            },
-            data: new Observable(),
-            url: new Observable()
-          }
-        }
-      ]
-    })
+            provide: ActivatedRoute,
+            useValue: {
+                parent: {
+                    parent: {
+                        params: new Observable()
+                    }
+                },
+                data: new Observable(),
+                url: new Observable()
+            }
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+})
     .compileComponents();
   }));
 

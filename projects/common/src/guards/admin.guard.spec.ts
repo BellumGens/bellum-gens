@@ -1,10 +1,11 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { AdminGuard } from './admin.guard';
 import { LoginService } from '../services/login.service';
 import { Observable } from 'rxjs';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 
 
@@ -15,13 +16,10 @@ describe('AdminGuard', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [AdminGuard, LoginService],
-      imports: [
-        HttpClientTestingModule,
-        RouterTestingModule,
-        ServiceWorkerModule.register('', { enabled: false })
-      ]
-    });
+    imports: [RouterTestingModule,
+        ServiceWorkerModule.register('', { enabled: false })],
+    providers: [AdminGuard, LoginService, provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+});
 
     guard = TestBed.inject(AdminGuard);
     authService = TestBed.inject(LoginService);

@@ -1,10 +1,11 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { SwPush } from '@angular/service-worker';
 import { LoginService } from './login.service';
 import { ApplicationUser, CSGOTeam, CommunicationService, Game, LoginProvider, NotificationState, TournamentApplication, UserLogin, UserNotification, UserPreferences, UserRegistration } from '../public_api';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 
 describe('LoginService', () => {
@@ -14,16 +15,15 @@ describe('LoginService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-        RouterTestingModule,
-        ServiceWorkerModule.register('', { enabled: false })
-      ],
-      providers: [
+    imports: [RouterTestingModule,
+        ServiceWorkerModule.register('', { enabled: false })],
+    providers: [
         LoginService,
-        { provide: SwPush, useValue: {} }
-      ]
-    });
+        { provide: SwPush, useValue: {} },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+});
     service = TestBed.inject(LoginService);
     commsService = TestBed.inject(CommunicationService);
     httpMock = TestBed.inject(HttpTestingController);

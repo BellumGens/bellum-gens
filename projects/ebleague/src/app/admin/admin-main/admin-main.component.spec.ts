@@ -11,12 +11,13 @@ import { IgxChipsModule,
   IgxGridModule,
   IgxActionStripModule,
   IgxCheckboxModule} from '@infragistics/igniteui-angular';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { RouterTestingModule } from '@angular/router/testing';
 import { FormsModule } from '@angular/forms';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { SizeNamePipe } from '../../pipes/size-name.pipe';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('AdminMainComponent', () => {
   let component: AdminMainComponent;
@@ -24,9 +25,7 @@ describe('AdminMainComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    imports: [
-        FormsModule,
-        HttpClientTestingModule,
+    imports: [FormsModule,
         NoopAnimationsModule,
         RouterTestingModule,
         ServiceWorkerModule.register('', { enabled: false }),
@@ -40,8 +39,8 @@ describe('AdminMainComponent', () => {
         IgxActionStripModule,
         IgxCheckboxModule,
         AdminMainComponent,
-        SizeNamePipe
-    ]
+        SizeNamePipe],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
 })
     .compileComponents();
   });

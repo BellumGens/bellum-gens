@@ -16,7 +16,8 @@ import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('SearchComponent', () => {
   let component: SearchComponent;
@@ -24,11 +25,9 @@ describe('SearchComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [
-        FormsModule,
+    imports: [FormsModule,
         RouterTestingModule,
         NoopAnimationsModule,
-        HttpClientTestingModule,
         ServiceWorkerModule.register('', { enabled: false }),
         IgxButtonGroupModule,
         IgxRippleModule,
@@ -42,8 +41,8 @@ describe('SearchComponent', () => {
         IgxSelectModule,
         SearchComponent,
         PlayerSearchComponent,
-        TeamSearchComponent
-    ]
+        TeamSearchComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
 })
     .compileComponents();
   }));

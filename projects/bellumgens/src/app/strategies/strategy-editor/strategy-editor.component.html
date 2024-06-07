@@ -10,10 +10,10 @@
     </igx-select>
     <div class="editor-elements-section">
         <div i18n>Layers</div>
-        <igx-list [displayDensity]="'compact'" class="layer-list">
+        <igx-list class="layer-list" [style.--ig-size]="'var(--ig-size-small)'">
           <igx-list-item *ngFor="let layer of layers" class="layer-info">
             <igx-checkbox igxListThumbnail [name]="'checkbox_' + layer.name" class="layer-selected" [disabled]="!layer.movable" (change)="deselectBrush()" [(ngModel)]="layer.selected"></igx-checkbox>
-            <igx-input-group igxListLine [ngClass]="layer.hidden ? 'hidden-layer' : ''" [displayDensity]="'compact'">
+            <igx-input-group igxListLine [ngClass]="layer.hidden ? 'hidden-layer' : ''" [style.--ig-size]="'var(--ig-size-small)'">
               <igx-prefix>
                 <igx-icon (click)="layer.hidden = !layer.hidden">{{ layer.hidden ? 'visibility' : 'visibility_off'}}</igx-icon>
               </igx-prefix>

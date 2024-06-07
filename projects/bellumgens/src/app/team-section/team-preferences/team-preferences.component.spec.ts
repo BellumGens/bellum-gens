@@ -6,8 +6,9 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { TEAM_PLACEHOLDER } from '../../../../../common/src/public_api';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('TeamPreferencesComponent', () => {
   let component: TeamPreferencesComponent;
@@ -15,25 +16,24 @@ describe('TeamPreferencesComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-        HttpClientTestingModule,
+    imports: [RouterTestingModule,
         NoopAnimationsModule,
         ServiceWorkerModule.register('', { enabled: false }),
-        TeamPreferencesComponent
-      ],
-      providers: [
+        TeamPreferencesComponent],
+    providers: [
         {
-          provide: ActivatedRoute,
-          useValue: {
-            parent: {
-              params: new Observable()
-            },
-            data: new Observable()
-          }
-        }
-      ]
-    }).compileComponents();
+            provide: ActivatedRoute,
+            useValue: {
+                parent: {
+                    params: new Observable()
+                },
+                data: new Observable()
+            }
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+}).compileComponents();
   }));
 
   beforeEach(() => {

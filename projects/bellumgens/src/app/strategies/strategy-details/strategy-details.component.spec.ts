@@ -2,10 +2,11 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { StrategyDetailsComponent } from './strategy-details.component';
 import { RouterTestingModule } from '@angular/router/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CSGOMap, CSGOStrategy, GLOBAL_OVERLAY_SETTINGS, LoginService, NEW_EMPTY_COMMENT, Side, SocialMediaStrategyService, StrategyComment, VoteDirection } from 'bellum-gens-common';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('StrategyDetailsComponent', () => {
   let component: StrategyDetailsComponent;
@@ -15,14 +16,12 @@ describe('StrategyDetailsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-        HttpClientTestingModule,
+    imports: [RouterTestingModule,
         NoopAnimationsModule,
         ServiceWorkerModule.register('', { enabled: false }),
-        StrategyDetailsComponent
-      ]
-    })
+        StrategyDetailsComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+})
     .compileComponents();
     authService = TestBed.inject(LoginService);
     smService = TestBed.inject(SocialMediaStrategyService);

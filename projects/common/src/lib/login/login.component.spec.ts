@@ -3,9 +3,10 @@ import { LoginComponent } from './login.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { ApplicationUser, LoginService } from '../../public_api';
 import { Router } from '@angular/router';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -30,14 +31,12 @@ describe('LoginComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
+    imports: [RouterTestingModule,
         NoopAnimationsModule,
-        HttpClientTestingModule,
         ServiceWorkerModule.register('', { enabled: false }),
-        LoginComponent
-      ]
-    })
+        LoginComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+})
     .compileComponents();
     authService = TestBed.inject(LoginService);
     httpMock = TestBed.inject(HttpTestingController);
