@@ -34,7 +34,7 @@ export class EventsComponent extends BaseDirective {
     {name: 'Tobias "ShoWTimE" Sieber', country: 'Germany', race: 'Protoss', team: 'BIG', image: '/assets/bge/players/6-showtime.png'},
     {name: 'Li "Oliveira" Peinan', country: 'China', race: 'Terran', team: 'DKZ Gaming', image: '/assets/bge/players/5-oliveira.png'},
     {name: 'Piotr "Spirit" Walukiewicz', country: 'Poland', race: 'Terran', team: 'Natus Vincere', image: '/assets/bge/players/7-spirit.png'},
-    {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', image: '/assets/bge/silhouette.webp'},
+    {name: 'Kim "Stats" Dae-yeob', country: 'South-Korea', race: 'Protoss', team: 'Twisted Minds', image: '/assets/bge/players/4-stats.png'},
     {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', image: '/assets/bge/silhouette.webp'},
   ];
 
