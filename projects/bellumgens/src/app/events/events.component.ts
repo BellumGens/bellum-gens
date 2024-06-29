@@ -35,7 +35,15 @@ export class EventsComponent extends BaseDirective {
     {name: 'Li "Oliveira" Peinan', country: 'China', race: 'Terran', team: 'DKZ Gaming', image: '/assets/bge/players/5-oliveira.png'},
     {name: 'Piotr "Spirit" Walukiewicz', country: 'Poland', race: 'Terran', team: 'Natus Vincere', image: '/assets/bge/players/7-spirit.png'},
     {name: 'Kim "Stats" Dae-yeob', country: 'South-Korea', race: 'Protoss', team: 'Twisted Minds', image: '/assets/bge/players/4-stats.png'},
-    {name: 'Riccardo "Reynor" Romiti', country: 'Italy', race: 'Zerg', team: 'BASILISK', image: '/assets/bge/players/8-reynor.png'}
+    {name: 'Riccardo "Reynor" Romiti', country: 'Italy', race: 'Zerg', team: 'BASILISK', image: '/assets/bge/players/8-reynor.png'},
+    {name: 'Open Qualifier', country: 'TBA', race: 'TBA', team: 'TBA', image: '/assets/bge/silhouette.webp'},
+    {name: 'Open Qualifier', country: 'TBA', race: 'TBA', team: 'TBA', image: '/assets/bge/silhouette.webp'},
+    {name: 'Open Qualifier', country: 'TBA', race: 'TBA', team: 'TBA', image: '/assets/bge/silhouette.webp'},
+    {name: 'Open Qualifier', country: 'TBA', race: 'TBA', team: 'TBA', image: '/assets/bge/silhouette.webp'},
+    {name: 'Open Qualifier', country: 'TBA', race: 'TBA', team: 'TBA', image: '/assets/bge/silhouette.webp'},
+    {name: 'Open Qualifier', country: 'TBA', race: 'TBA', team: 'TBA', image: '/assets/bge/silhouette.webp'},
+    {name: 'Open Qualifier', country: 'TBA', race: 'TBA', team: 'TBA', image: '/assets/bge/silhouette.webp'},
+    {name: 'Bulgarian Open Qualifier', country: 'Bulgaria', race: 'TBA', team: 'TBA', image: '/assets/bge/silhouette.webp'}
   ];
 
   public ticketsUrl = 'https://www.eventim.bg/en/tickets/bellum-gens-elite-stara-zagora-stara-zagora-leten-teatr-642927/event.html';

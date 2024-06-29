@@ -1,4 +1,15 @@
-:host {
+@use "../../variables" as *;
+
+$bge-accent: #bccf00;
+
+$new-palette: palette(
+  $primary: $primary,
+  $secondary: $bge-accent,
+  $surface: $background,
+  $gray: $gray
+);
+
+:host::ng-deep {
   display: flex;
   height: calc(100% - 45px);
   width: 100%;
@@ -7,6 +18,7 @@
   background-color: #071365;
   background-position: center right;
 
+  @include palette($new-palette);
   // @font-face {
   //   font-family: 'dge-ebold';
   //   src: url('/assets/fonts/dge-ebold.otf');
@@ -23,7 +35,7 @@
   // }
 
   .highlight {
-    color: #bccf00;
+    color: $bge-accent;
   }
 
   .content-container-column iframe, .content-container-row iframe {
@@ -78,7 +90,6 @@
 
   .cta-button-large {
     height: 88px;
-    background-color: #bccf00;
   }
 
   @media screen and (max-width: 1024px) {
