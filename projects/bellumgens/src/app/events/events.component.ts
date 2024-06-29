@@ -43,7 +43,7 @@ export class EventsComponent extends BaseDirective {
     {name: 'Open Qualifier', country: 'TBA', race: 'TBA', team: 'TBA', image: '/assets/bge/silhouette.webp'},
     {name: 'Open Qualifier', country: 'TBA', race: 'TBA', team: 'TBA', image: '/assets/bge/silhouette.webp'},
     {name: 'Open Qualifier', country: 'TBA', race: 'TBA', team: 'TBA', image: '/assets/bge/silhouette.webp'},
-    {name: 'Bulgarian Closed Qualifier', country: 'Bulgaria', race: 'TBA', team: 'TBA', image: '/assets/bge/silhouette.webp'}
+    {name: 'Bulgarian Open Qualifier', country: 'Bulgaria', race: 'TBA', team: 'TBA', image: '/assets/bge/silhouette.webp'}
   ];
 
   public ticketsUrl = 'https://www.eventim.bg/en/tickets/bellum-gens-elite-stara-zagora-stara-zagora-leten-teatr-642927/event.html';
