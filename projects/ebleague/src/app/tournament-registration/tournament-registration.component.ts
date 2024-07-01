@@ -70,12 +70,14 @@ export class TournamentRegistrationComponent {
   public leagueRegistration() {
     this.inProgress = true;
     this.application.tournamentId = this.tournamentId;
-    this.apiService.leagueRegistration(this.application).subscribe(application => {
-      this.inProgress = false;
-      this.application = application;
-      this.router.navigate(['/registration-success'], { state: application });
-    },
-    () => this.inProgress = false);
+    this.apiService.leagueRegistration(this.application).subscribe({
+      next: (application) => {
+        this.inProgress = false;
+        this.application = application;
+        this.router.navigate(['/registration-success'], { state: application });
+      },
+      complete: () => this.inProgress = false
+    });
   }
 
   public selectGame(game: Game) {

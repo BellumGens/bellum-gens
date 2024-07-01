@@ -34,7 +34,7 @@
     <igx-divider></igx-divider>
   </div>
 
-  <div class="content-container-row">
+  <div id="confirmed-players" class="content-container-row">
     <h2 i18n>Confirmed Players</h2>
     <div class="card-wrapper">
       <igx-card *ngFor="let player of players">
@@ -54,20 +54,61 @@
     </div>
   </div>
 
-  <!-- <div class="content-container-row">
-    <h2 i18n>Qualifiers Schedule</h2>
-    <div class="card-wrapper">
-      <igx-card>
-        <igx-card-header>
-          <div igxCardHeaderTitle>
-            Regions and Dates TBA Soon!
-          </div>
-        </igx-card-header>
-      </igx-card>
-    </div>
-  </div> -->
+  <div id="qualifiers" class="content-container-row">
+    <h2 i18n>Qualifiers</h2>
+  </div>
 
-  <div class="content-container-row">
+  <div class="content-container-column">
+    <igx-card>
+      <igx-card-header>
+        <div igxCardHeaderTitle>
+          <span class="highlight">Global Open Qualifier</span>
+        </div>
+        <div igxCardHeaderSubtitle>
+          {{ '2024-07-20' | date: 'longDate' }}
+        </div>
+      </igx-card-header>
+      <igx-card-content>
+        <ul>
+          <li i18n>Open to all players holding a <span class="highlight">Grandmaster</span> rank</li>
+          <li i18n><span class="highlight">Top 7</span> players qualify</li>
+          <li i18n>Single-elimination bracket</li>
+          <li i18n>Registration deadline <span class="highlight">{{ '2024-07-18' | date: 'longDate' }}</span></li>
+        </ul>
+      </igx-card-content>
+      <igx-card-actions>
+        <a href="https://forms.gle/AF4XTmahvmkxy349A" igxButton="outlined" i18n>Register Here</a>
+        <a href="/assets/bge/Rulebook - Bellum Gens Elite 2024.pdf" target="_blank" igxButton="outlined" i18n>View Rulebook</a>
+      </igx-card-actions>
+    </igx-card>
+  </div>
+
+  <div class="content-container-column">
+    <igx-card>
+      <igx-card-header>
+        <div igxCardHeaderTitle>
+          <span class="highlight">Bulgarian Open Qualifier</span>
+        </div>
+        <div igxCardHeaderSubtitle>
+          {{ '2024-07-21' | date: 'longDate' }}
+        </div>
+      </igx-card-header>
+      <igx-card-content>
+        <ul>
+          <li i18n>Limited to players from <span class="highlight">Bulgaria</span></li>
+          <li i18n><span class="highlight">Top</span> player qualifies</li>
+          <li i18n>Single-elimination bracket</li>
+          <li i18n>Registration deadline <span class="highlight">{{ '2024-07-18' | date: 'longDate' }}</span></li>
+        </ul>
+      </igx-card-content>
+      <igx-card-actions>
+        <a href="https://forms.gle/YZMsqCozLnvb6QNW6" igxButton="outlined" i18n>Register Here</a>
+        <a href="/assets/bge/Rulebook - Bellum Gens Elite 2024.pdf" target="_blank" igxButton="outlined" i18n>View Rulebook</a>
+      </igx-card-actions>
+    </igx-card>
+  </div>
+
+  <div id="main-event-schedule" class="content-container-row">
     <h2 i18n>Main Event Schedule</h2>
     <div class="card-wrapper">
       <igx-card>
