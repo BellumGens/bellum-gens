@@ -1,8 +1,9 @@
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { CSGOStrategy, Side, StrategyComment, StrategyVote, VoteDirection } from '../models/csgostrategy';
 import { ApiStrategiesService } from './bellumgens-api.strategies.service';
 import { CSGOMap, CommunicationService } from '../public_api';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('ApiStrategiesService', () => {
   let service: ApiStrategiesService;
@@ -10,7 +11,7 @@ describe('ApiStrategiesService', () => {
   let commsService: CommunicationService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({imports: [ HttpClientTestingModule ]});
+    TestBed.configureTestingModule({ imports: [], providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()] });
     service = TestBed.inject(ApiStrategiesService);
     httpMock = TestBed.inject(HttpTestingController);
     commsService = TestBed.inject(CommunicationService);

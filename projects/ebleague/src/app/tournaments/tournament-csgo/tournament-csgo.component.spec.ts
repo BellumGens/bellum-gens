@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { TournamentCsgoComponent } from './tournament-csgo.component';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import {
@@ -16,6 +16,7 @@ import {
 } from '@infragistics/igniteui-angular';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SortByPointsPipe } from 'projects/ebleague/src/app/pipes/sort-by-points.pipe';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('TournamentCsgoComponent', () => {
   let component: TournamentCsgoComponent;
@@ -23,9 +24,7 @@ describe('TournamentCsgoComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-        RouterTestingModule,
+    imports: [RouterTestingModule,
         NoopAnimationsModule,
         ServiceWorkerModule.register('', { enabled: false }),
         IgxAvatarModule,
@@ -37,9 +36,9 @@ describe('TournamentCsgoComponent', () => {
         IgxGridModule,
         IgxDividerModule,
         TournamentCsgoComponent,
-        SortByPointsPipe
-      ]
-    }).compileComponents();
+        SortByPointsPipe],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   }));
 
   beforeEach(() => {

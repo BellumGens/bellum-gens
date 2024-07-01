@@ -15,7 +15,8 @@ import { IgxIconModule,
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('StrategyEditorComponent', () => {
   let component: StrategyEditorComponent;
@@ -23,11 +24,9 @@ describe('StrategyEditorComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [
-        FormsModule,
+    imports: [FormsModule,
         RouterTestingModule,
         NoopAnimationsModule,
-        HttpClientTestingModule,
         IgxIconModule,
         IgxInputGroupModule,
         IgxListModule,
@@ -39,8 +38,8 @@ describe('StrategyEditorComponent', () => {
         IgxButtonGroupModule,
         IgxButtonModule,
         IgxProgressBarModule,
-        StrategyEditorComponent
-    ]
+        StrategyEditorComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
 })
     .compileComponents();
   }));

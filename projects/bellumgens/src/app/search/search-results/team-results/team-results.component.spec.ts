@@ -3,8 +3,9 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { TeamResultsComponent } from './team-results.component';
 import { IgxProgressBarModule, IgxCardModule, IgxAvatarModule } from '@infragistics/igniteui-angular';
 import { RouterTestingModule } from '@angular/router/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { QueryParsedPipe } from 'projects/bellumgens/src/app/pipes/query-parsed.pipe';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('TeamResultsComponent', () => {
   let component: TeamResultsComponent;
@@ -12,15 +13,13 @@ describe('TeamResultsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [
-        HttpClientTestingModule,
-        RouterTestingModule,
+    imports: [RouterTestingModule,
         IgxProgressBarModule,
         IgxCardModule,
         IgxAvatarModule,
         TeamResultsComponent,
-        QueryParsedPipe
-    ]
+        QueryParsedPipe],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
 })
     .compileComponents();
   }));

@@ -1,8 +1,9 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { ApiShopService } from './bellumgens-api.shop.service';
 import { JerseyCut, JerseyOrder, JerseySize, Promo } from '../models/jerseyorder';
 import { CommunicationService } from './communication.service';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 
 
@@ -13,8 +14,9 @@ describe('ApiShopService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ HttpClientTestingModule ]
-    });
+    imports: [],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+});
     service = TestBed.inject(ApiShopService);
     httpMock = TestBed.inject(HttpTestingController);
     commsService = TestBed.inject(CommunicationService);

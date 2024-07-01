@@ -12,7 +12,8 @@ import { IgxRadioModule,
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('TeamSearchComponent', () => {
   let component: TeamSearchComponent;
@@ -20,11 +21,9 @@ describe('TeamSearchComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [
-        FormsModule,
+    imports: [FormsModule,
         RouterTestingModule,
         NoopAnimationsModule,
-        HttpClientTestingModule,
         ServiceWorkerModule.register('', { enabled: false }),
         IgxRadioModule,
         IgxSliderModule,
@@ -33,8 +32,8 @@ describe('TeamSearchComponent', () => {
         IgxIconModule,
         IgxInputGroupModule,
         IgxButtonModule,
-        TeamSearchComponent
-    ]
+        TeamSearchComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
 })
     .compileComponents();
   }));

@@ -13,7 +13,8 @@ import { IgxRadioModule,
   IgxButtonModule,
   IgxSelectModule} from '@infragistics/igniteui-angular';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('PlayerSearchComponent', () => {
   let component: PlayerSearchComponent;
@@ -21,11 +22,9 @@ describe('PlayerSearchComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [
-        FormsModule,
+    imports: [FormsModule,
         RouterTestingModule,
         NoopAnimationsModule,
-        HttpClientTestingModule,
         ServiceWorkerModule.register('', { enabled: false }),
         IgxRadioModule,
         IgxSliderModule,
@@ -35,8 +34,8 @@ describe('PlayerSearchComponent', () => {
         IgxSelectModule,
         IgxInputGroupModule,
         IgxButtonModule,
-        PlayerSearchComponent
-    ]
+        PlayerSearchComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
 })
     .compileComponents();
   }));
