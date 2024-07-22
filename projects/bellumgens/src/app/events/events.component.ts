@@ -36,14 +36,14 @@ export class EventsComponent extends BaseDirective {
     {name: 'Piotr "Spirit" Walukiewicz', country: 'Poland', race: 'Terran', team: 'Natus Vincere', image: '/assets/bge/players/7-spirit.png'},
     {name: 'Kim "Stats" Dae-yeob', country: 'South-Korea', race: 'Protoss', team: 'Twisted Minds', image: '/assets/bge/players/4-stats.png'},
     {name: 'Riccardo "Reynor" Romiti', country: 'Italy', race: 'Zerg', team: 'BASILISK', image: '/assets/bge/players/8-reynor.png'},
-    {name: 'Open Qualifier', country: 'TBA', race: 'TBA', team: 'TBA', image: '/assets/bge/silhouette.webp'},
-    {name: 'Open Qualifier', country: 'TBA', race: 'TBA', team: 'TBA', image: '/assets/bge/silhouette.webp'},
-    {name: 'Open Qualifier', country: 'TBA', race: 'TBA', team: 'TBA', image: '/assets/bge/silhouette.webp'},
-    {name: 'Open Qualifier', country: 'TBA', race: 'TBA', team: 'TBA', image: '/assets/bge/silhouette.webp'},
-    {name: 'Open Qualifier', country: 'TBA', race: 'TBA', team: 'TBA', image: '/assets/bge/silhouette.webp'},
-    {name: 'Open Qualifier', country: 'TBA', race: 'TBA', team: 'TBA', image: '/assets/bge/silhouette.webp'},
-    {name: 'Open Qualifier', country: 'TBA', race: 'TBA', team: 'TBA', image: '/assets/bge/silhouette.webp'},
-    {name: 'Bulgarian Open Qualifier', country: 'Bulgaria', race: 'TBA', team: 'TBA', image: '/assets/bge/silhouette.webp'}
+    {name: 'Nikita "SKillous" Gurevich', country: '', race: 'Protoss', team: 'Team Liquid', image: '/assets/bge/silhouette.webp'},
+    {name: 'Huang "Lancer" Min', country: 'China', race: 'Protoss', team: 'Mystery Gaming', image: '/assets/bge/silhouette.webp'},
+    {name: 'Yoon "trigger" Hong', country: 'Canada', race: 'Protoss', team: 'BASILISK', image: '/assets/bge/silhouette.webp'},
+    {name: 'Adrien "DnS" Bouet', country: 'France', race: 'Protoss', team: 'Berserker eSports', image: '/assets/bge/silhouette.webp'},
+    {name: 'Maxwell "Astrea" Angel', country: 'United States', race: 'Protoss', team: 'Virtus.pro', image: '/assets/bge/silhouette.webp'},
+    {name: 'Julian "Lambo" Brosig', country: 'Germany', race: 'Zerg', team: 'Shopify Rebellion', image: '/assets/bge/silhouette.webp'},
+    {name: 'Kevin "Harstem" Koning', country: 'Netherlands', race: 'Protoss', team: 'Shopify Rebellion', image: '/assets/bge/silhouette.webp'},
+    {name: 'Mihail "msrm" Mihaylov', country: 'Bulgaria', race: 'Zerg', team: 'BSL', image: '/assets/bge/silhouette.webp'}
   ];
 
   public ticketsUrl = 'https://www.eventim.bg/en/tickets/bellum-gens-elite-stara-zagora-stara-zagora-leten-teatr-642927/event.html';
