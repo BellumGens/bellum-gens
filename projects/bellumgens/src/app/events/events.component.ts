@@ -27,7 +27,7 @@ import { Sc2RaceThumbPipe } from '../../../../common/src/lib/pipes/sc2-race-thum
   styleUrls: ['./events.component.scss']
 })
 export class EventsComponent extends BaseDirective {
-  public players = [
+  public invitedPlayers = [
     {name: 'Kang "Solar" Min Soo', country: 'South-Korea', race: 'Zerg', team: 'Team Vitality', image: '/assets/bge/players/2-solar.png'},
     {name: 'Clement "Clem" Desplanches', country: 'France', race: 'Terran', team: 'Team Liquid', image: '/assets/bge/players/1-clem.png'},
     {name: 'Diego "Kelazhur" Schwimer', country: 'Brazil', race: 'Terran', team: 'R8 Esports', image: '/assets/bge/players/3-kelazhur.png'},
@@ -36,14 +36,17 @@ export class EventsComponent extends BaseDirective {
     {name: 'Piotr "Spirit" Walukiewicz', country: 'Poland', race: 'Terran', team: 'Natus Vincere', image: '/assets/bge/players/7-spirit.png'},
     {name: 'Kim "Stats" Dae-yeob', country: 'South-Korea', race: 'Protoss', team: 'Twisted Minds', image: '/assets/bge/players/4-stats.png'},
     {name: 'Riccardo "Reynor" Romiti', country: 'Italy', race: 'Zerg', team: 'BASILISK', image: '/assets/bge/players/8-reynor.png'},
-    {name: 'Nikita "SKillous" Gurevich', country: '', race: 'Protoss', team: 'Team Liquid', image: '/assets/bge/silhouette.webp'},
-    {name: 'Huang "Lancer" Min', country: 'China', race: 'Protoss', team: 'Mystery Gaming', image: '/assets/bge/silhouette.webp'},
-    {name: 'Yoon "trigger" Hong', country: 'Canada', race: 'Protoss', team: 'BASILISK', image: '/assets/bge/silhouette.webp'},
-    {name: 'Adrien "DnS" Bouet', country: 'France', race: 'Protoss', team: 'Berserker eSports', image: '/assets/bge/silhouette.webp'},
-    {name: 'Maxwell "Astrea" Angel', country: 'United States', race: 'Protoss', team: 'Virtus.pro', image: '/assets/bge/silhouette.webp'},
-    {name: 'Julian "Lambo" Brosig', country: 'Germany', race: 'Zerg', team: 'Shopify Rebellion', image: '/assets/bge/silhouette.webp'},
-    {name: 'Kevin "Harstem" Koning', country: 'Netherlands', race: 'Protoss', team: 'Shopify Rebellion', image: '/assets/bge/silhouette.webp'},
-    {name: 'Mihail "msrm" Mihaylov', country: 'Bulgaria', race: 'Zerg', team: 'BSL', image: '/assets/bge/silhouette.webp'}
+  ];
+
+  public qualifiedPlayers = [
+    {name: 'Nikita "SKillous" Gurevich', country: '', race: 'Protoss', team: 'Team Liquid', source: 'Global Open Qualifier', image: '/assets/bge/silhouette.webp'},
+    {name: 'Huang "Lancer" Min', country: 'China', race: 'Protoss', team: 'Mystery Gaming', source: 'Global Open Qualifier', image: '/assets/bge/silhouette.webp'},
+    {name: 'Yoon "trigger" Hong', country: 'Canada', race: 'Protoss', team: 'BASILISK', source: 'Global Open Qualifier', image: '/assets/bge/silhouette.webp'},
+    {name: 'Adrien "DnS" Bouet', country: 'France', race: 'Protoss', team: 'Berserker eSports', source: 'Global Open Qualifier', image: '/assets/bge/silhouette.webp'},
+    {name: 'Maxwell "Astrea" Angel', country: 'United-States-of-America', race: 'Protoss', source: 'Global Open Qualifier', team: 'Virtus.pro', image: '/assets/bge/silhouette.webp'},
+    {name: 'Julian "Lambo" Brosig', country: 'Germany', race: 'Zerg', team: 'Shopify Rebellion', source: 'Global Open Qualifier', image: '/assets/bge/silhouette.webp'},
+    {name: 'Kevin "Harstem" Koning', country: 'Netherlands', race: 'Protoss', team: 'Shopify Rebellion', source: 'Global Open Qualifier', image: '/assets/bge/silhouette.webp'},
+    {name: 'Mihail "msrm" Mihaylov', country: 'Bulgaria', race: 'Zerg', team: 'BSL', source: 'Bulgarian Open Qualifier', image: '/assets/bge/silhouette.webp'}
   ];
 
   public ticketsUrl = 'https://www.eventim.bg/en/tickets/bellum-gens-elite-stara-zagora-stara-zagora-leten-teatr-642927/event.html';
