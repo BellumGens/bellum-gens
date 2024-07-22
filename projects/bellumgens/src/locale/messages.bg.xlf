@@ -306,20 +306,20 @@
           <context context-type="linenumber">26,28</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6815610617344453108" datatype="html">
-        <source>Confirmed Players</source>
-        <target>Потвърдени играчи</target>
+      <trans-unit id="2840244450736259781" datatype="html">
+        <source>Invited Players</source>
+        <target>Поканени играчи</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
           <context context-type="linenumber">38,40</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3935916693907446618" datatype="html">
-        <source>Qualifiers</source>
-        <target>Квалификации</target>
+      <trans-unit id="5589765201526433314" datatype="html">
+        <source>Qualified Players</source>
+        <target>Класирани играчи</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
-          <context context-type="linenumber">58,62</context>
+          <context context-type="linenumber">58,60</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4610392716196184999" datatype="html">
