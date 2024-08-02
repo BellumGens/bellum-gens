@@ -328,6 +328,7 @@
       </trans-unit>
       <trans-unit id="3935916693907446618" datatype="html">
         <source>Qualifiers</source>
+        <target>Квалификации</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
           <context context-type="linenumber">81,85</context>
