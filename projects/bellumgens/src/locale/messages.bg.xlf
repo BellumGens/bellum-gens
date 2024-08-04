@@ -75,7 +75,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
-          <context context-type="linenumber">252,254</context>
+          <context context-type="linenumber">234,236</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
@@ -326,7 +326,15 @@
           <context context-type="linenumber">58,60</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4610392716196184999" datatype="html">
+      <trans-unit id="3935916693907446618" datatype="html">
+        <source>Qualifiers</source>
+        <target>Квалификации</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">81,85</context>
+        </context-group>
+      </trans-unit>
+      <!-- <trans-unit id="4610392716196184999" datatype="html">
         <source>Open to all players holding a <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Grandmaster<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> rank</source>
         <target>Отворено за всички играчи с <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Грандмастърски<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> ранг</target>
         <context-group purpose="location">
@@ -417,7 +425,7 @@
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
           <context context-type="linenumber">98,99</context>
         </context-group>
-      </trans-unit>
+      </trans-unit>-->
       <trans-unit id="6959936203181447238" datatype="html">
         <source>Main Event Schedule</source>
         <target>Програма</target>
