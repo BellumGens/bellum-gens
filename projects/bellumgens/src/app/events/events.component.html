@@ -31,11 +31,10 @@
   </div>
 
   <div class="content-container-row">
-    <igx-divider></igx-divider>
+    <h2 i18n>Invited Players</h2>
   </div>
 
   <div id="confirmed-players" class="content-container-row">
-    <h2 i18n>Invited Players</h2>
     <div class="card-wrapper">
       <igx-card *ngFor="let player of invitedPlayers">
         <igx-card-media>
@@ -113,8 +112,11 @@
     </igx-card>
   </div>
 
-  <div id="main-event-schedule" class="content-container-row">
+  <div id="qualifiers" class="content-container-row">
     <h2 i18n>Main Event Schedule</h2>
+  </div>
+
+  <div id="main-event-schedule" class="content-container-row">
     <div class="card-wrapper">
       <igx-card>
         <igx-card-header>
