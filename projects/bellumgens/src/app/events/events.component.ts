@@ -42,11 +42,11 @@ export class EventsComponent extends BaseDirective {
     {name: 'Nikita "SKillous" Gurevich', country: '', race: 'Protoss', team: 'Team Liquid', source: 'Global Open Qualifier', image: '/assets/bge/players/10-skillous.png'},
     {name: 'Huang "Lancer" Min', country: 'China', race: 'Protoss', team: 'Mystery Gaming', source: 'Global Open Qualifier', image: '/assets/bge/players/14-lancer.png'},
     {name: 'Yoon "trigger" Hong', country: 'Canada', race: 'Protoss', team: 'BASILISK', source: 'Global Open Qualifier', image: '/assets/bge/players/9-trigger.png'},
-    {name: 'Adrien "DnS" Bouet', country: 'France', race: 'Protoss', team: 'Berserker eSports', source: 'Global Open Qualifier', image: '/assets/bge/silhouette.webp'},
+    {name: 'Adrien "DnS" Bouet', country: 'France', race: 'Protoss', team: 'Berserker eSports', source: 'Global Open Qualifier', image: '/assets/bge/players/15-dns.png'},
     {name: 'Maxwell "Astrea" Angel', country: 'United-States-of-America', race: 'Protoss', source: 'Global Open Qualifier', team: 'Virtus.pro', image: '/assets/bge/players/12-astrea.png'},
     {name: 'Julian "Lambo" Brosig', country: 'Germany', race: 'Zerg', team: 'Shopify Rebellion', source: 'Global Open Qualifier', image: '/assets/bge/players/11-lambo.png'},
     {name: 'Kevin "Harstem" Koning', country: 'Netherlands', race: 'Protoss', team: 'Shopify Rebellion', source: 'Global Open Qualifier', image: '/assets/bge/players/13-harstem.png'},
-    {name: 'Mihail "msrm" Mihaylov', country: 'Bulgaria', race: 'Zerg', team: 'BSL', source: 'Bulgarian Open Qualifier', image: '/assets/bge/silhouette.webp'}
+    {name: 'Mihail "msrm" Mihaylov', country: 'Bulgaria', race: 'Zerg', team: 'BSL', source: 'Bulgarian Open Qualifier', image: '/assets/bge/players/16-msrm.png'}
   ];
 
   public ticketsUrl = 'https://www.eventim.bg/en/tickets/bellum-gens-elite-stara-zagora-stara-zagora-leten-teatr-642927/event.html';
