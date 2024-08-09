@@ -266,7 +266,10 @@
             "ssr": {
               "entry": "projects/ebleague/server.ts"
             },
-            "polyfills": ["zone.js"],
+            "polyfills": [
+              "zone.js",
+              "@angular/localize/init"
+            ],
             "tsConfig": "projects/ebleague/tsconfig.app.json",
             "assets": [
               "projects/ebleague/src/favicon.ico",

@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { BellumgensApiService } from './bellumgens-api.service';
 import { SteamGroup, SteamUser } from '../models/steamuser';
 import { CSGOTeam, TeamMember, TeamApplication } from '../models/csgoteam';
@@ -9,6 +9,7 @@ import { CSGOMap, CSGOMapPool } from '../models/csgomaps';
 import { NotificationState, UserNotification } from '../models/usernotifications';
 import { CommunicationService } from './communication.service';
 import { CSGOPlayer } from '../public_api';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 
 describe('BellumgensApiService', () => {
@@ -18,8 +19,9 @@ describe('BellumgensApiService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ HttpClientTestingModule ]
-    });
+    imports: [],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+});
     service = TestBed.inject(BellumgensApiService);
     httpMock = TestBed.inject(HttpTestingController);
     commsService = TestBed.inject(CommunicationService);

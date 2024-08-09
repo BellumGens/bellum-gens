@@ -14,7 +14,7 @@ import { IgxIconModule,
   IgxListModule,
   IgxProgressBarModule,
   IgxCheckboxModule} from '@infragistics/igniteui-angular';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -22,6 +22,7 @@ import { TournamentRegistrationComponent } from '../tournament-registration/tour
 import { StartsWithPipe } from '../pipes/starts-with.pipe';
 import { TeamNewComponent } from 'projects/bellumgens/src/app/team-section/team-new/team-new.component';
 import { GetRegCountPipe } from '../pipes/get-reg-count.pipe';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('TournamentHomeComponent', () => {
   let component: HomeComponent;
@@ -29,9 +30,7 @@ describe('TournamentHomeComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        FormsModule,
-        HttpClientTestingModule,
+    imports: [FormsModule,
         RouterTestingModule,
         NoopAnimationsModule,
         ServiceWorkerModule.register('', { enabled: false }),
@@ -51,9 +50,9 @@ describe('TournamentHomeComponent', () => {
         TournamentRegistrationComponent,
         TeamNewComponent,
         GetRegCountPipe,
-        StartsWithPipe
-      ]
-    }).compileComponents();
+        StartsWithPipe],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   }));
 
   beforeEach(() => {

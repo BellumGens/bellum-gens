@@ -138,7 +138,7 @@
       <h4 igxCardHeaderTitle i18n>Weapons</h4>
     </igx-card-header>
     <igx-card-content>
-      <igx-list *ngIf="!player.userStatsException" displayDensity="compact">
+      <igx-list *ngIf="!player.userStatsException" [style.--ig-size]="'var(--ig-size-small)'">
         <igx-list-item *ngFor="let weapon of player.userStats.weapons | sortWeapons">
           <igx-icon igxListThumbnail class="weapon-image-small" family="weapon-icons" [name]="weapon.name"></igx-icon>
           <span igxListLineTitle>

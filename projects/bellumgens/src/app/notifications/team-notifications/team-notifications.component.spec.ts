@@ -6,7 +6,8 @@ import { SortApplicationsPipe } from 'projects/bellumgens/src/app/pipes/sort-app
 import { DisabledNotificationsPipe } from 'projects/bellumgens/src/app/pipes/disabled-notifications.pipe';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NotificationStatePipe } from 'projects/bellumgens/src/app/pipes/notification-state.pipe';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('TeamNotificationsComponent', () => {
   let component: TeamNotificationsComponent;
@@ -14,17 +15,15 @@ describe('TeamNotificationsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-        HttpClientTestingModule,
+    imports: [RouterTestingModule,
         IgxListModule,
         IgxAvatarModule,
         TeamNotificationsComponent,
         SortApplicationsPipe,
         DisabledNotificationsPipe,
-        NotificationStatePipe
-      ]
-    }).compileComponents();
+        NotificationStatePipe],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   }));
 
   beforeEach(() => {

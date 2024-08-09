@@ -3,9 +3,10 @@ import { UserPreferencesComponent } from './user-preferences.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { Router } from '@angular/router';
 import { ApplicationUser, CommunicationService, Game, LoginProvider, LoginService, TournamentApplication, TournamentApplicationState } from '../../../public_api';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 
 describe('UserPreferencesComponent', () => {
@@ -42,14 +43,12 @@ describe('UserPreferencesComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule,
-        RouterTestingModule,
+    imports: [RouterTestingModule,
         NoopAnimationsModule,
         ServiceWorkerModule.register('', { enabled: false }),
-        UserPreferencesComponent
-      ]
-    }).compileComponents();
+        UserPreferencesComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
     authService = TestBed.inject(LoginService);
     httpMock = TestBed.inject(HttpTestingController);
     commsService = TestBed.inject(CommunicationService);

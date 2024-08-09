@@ -10,8 +10,9 @@ import { IgxDialogModule,
   IgxSwitchModule,
   IgxSelectModule} from '@infragistics/igniteui-angular';
 import { SafeVideoLinkPipe } from 'projects/bellumgens/src/app/pipes/safe-video-link.pipe';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('NewStrategyComponent', () => {
   let component: NewStrategyComponent;
@@ -19,10 +20,8 @@ describe('NewStrategyComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [
-        FormsModule,
+    imports: [FormsModule,
         RouterTestingModule,
-        HttpClientTestingModule,
         NoopAnimationsModule,
         IgxDialogModule,
         IgxInputGroupModule,
@@ -31,8 +30,8 @@ describe('NewStrategyComponent', () => {
         IgxSwitchModule,
         IgxSelectModule,
         NewStrategyComponent,
-        SafeVideoLinkPipe
-    ]
+        SafeVideoLinkPipe],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
 })
     .compileComponents();
   }));

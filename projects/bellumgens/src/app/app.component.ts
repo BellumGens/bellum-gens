@@ -186,12 +186,12 @@ export class AppComponent implements OnInit {
       if (val.length) {
         const positionSettings: PositionSettings = {
           horizontalDirection: HorizontalAlignment.Left,
-          horizontalStartPoint: HorizontalAlignment.Right,
-          target: this.searchGroup.element.nativeElement
+          horizontalStartPoint: HorizontalAlignment.Right
         };
         const overlaySettings: OverlaySettings = {
           positionStrategy: new AutoPositionStrategy(positionSettings),
-          modal: false
+          modal: false,
+          target: this.searchGroup.element.nativeElement
         };
         this.quickSearchDropDown.open(overlaySettings);
         this.searchService.quickSearch(val);

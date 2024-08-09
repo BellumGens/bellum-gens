@@ -19,9 +19,10 @@ import {
   IgxDialogModule
 } from '@infragistics/igniteui-angular';
 import { FormsModule } from '@angular/forms';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { NotInGroupPipe } from 'projects/ebleague/src/app/pipes/not-in-group.pipe';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('AdminSc2Component', () => {
   let component: AdminSc2Component;
@@ -29,9 +30,7 @@ describe('AdminSc2Component', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        FormsModule,
-        HttpClientTestingModule,
+    imports: [FormsModule,
         NoopAnimationsModule,
         IgxListModule,
         IgxIconModule,
@@ -49,9 +48,9 @@ describe('AdminSc2Component', () => {
         IgxDialogModule,
         IgxGridModule,
         AdminSc2Component,
-        NotInGroupPipe
-      ]
-    }).compileComponents();
+        NotInGroupPipe],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   }));
 
   beforeEach(() => {

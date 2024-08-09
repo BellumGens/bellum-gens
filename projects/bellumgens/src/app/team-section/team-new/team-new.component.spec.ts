@@ -2,10 +2,11 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TeamNewComponent } from './team-new.component';
 import { ApplicationUser, BellumgensApiService, CSGOTeam, EMPTY_NEW_TEAM, SteamGroup } from 'bellum-gens-common';
 import { Router } from '@angular/router';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('TeamNewComponent', () => {
   let component: TeamNewComponent;
@@ -45,14 +46,12 @@ describe('TeamNewComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        FormsModule,
-        HttpClientTestingModule,
+    imports: [FormsModule,
         RouterTestingModule,
         NoopAnimationsModule,
-        TeamNewComponent
-      ]
-    })
+        TeamNewComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+})
     .compileComponents();
     httpMock = TestBed.inject(HttpTestingController);
     apiService = TestBed.inject(BellumgensApiService);
