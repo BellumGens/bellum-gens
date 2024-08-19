@@ -326,6 +326,14 @@
           <context context-type="linenumber">58,60</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="7492310905765634524" datatype="html">
+        <source>Talent</source>
+        <target>Таланти</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">80,82</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="3935916693907446618" datatype="html">
         <source>Qualifiers</source>
         <target>Квалификации</target>
