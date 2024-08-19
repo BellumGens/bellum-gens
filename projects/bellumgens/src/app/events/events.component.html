@@ -77,7 +77,27 @@
   </div>
 
   <div id="qualifiers" class="content-container-row">
-    <h2 i18n>Qualifiers</h2>
+    <h2 i18n>Qualified Players</h2>
+    <div class="card-wrapper">
+      <igx-card *ngFor="let caster of talent">
+        <igx-card-media>
+          <img [src]="caster.image" alt="Player Avatar" />
+        </igx-card-media>
+        <igx-card-header>
+          <div igxCardHeaderTitle>
+            <span>{{caster.name}}</span>
+            <igx-avatar [src]="caster.country | countrySVG" *ngIf="caster.country !== 'TBA'" shape="circle" [title]="caster.country" class="country-badge-small"></igx-avatar>
+            <!-- <igx-avatar [src]="player.race | sc2RaceThumb" shape="circle" [title]="player.race" class="country-badge-small"></igx-avatar>
+            <igx-avatar [src]="player.country | countrySVG" shape="circle" size="small" [title]="player.country" class="country-badge-small"></igx-avatar> -->
+          </div>
+          <h4 igxCardHeaderSubtitle>{{caster.role}}</h4>
+        </igx-card-header>
+      </igx-card>
+    </div>
+  </div>
+
+  <div id="qualifiers" class="content-container-row">
+    <h2 i18n>Talent</h2>
   </div>
 
   <div class="content-container-column">
