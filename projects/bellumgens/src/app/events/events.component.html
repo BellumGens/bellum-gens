@@ -49,6 +49,9 @@
           </div>
           <h4 igxCardHeaderSubtitle>{{player.team}}</h4>
         </igx-card-header>
+        <igx-card-content *ngIf="player.source">
+          <p>{{player.source}}</p>
+        </igx-card-content>
       </igx-card>
     </div>
   </div>
