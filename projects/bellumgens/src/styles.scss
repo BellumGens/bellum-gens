@@ -1,6 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 /* See: https://www.infragistics.com/products/ignite-ui-angular/angular/components/themes.html */
 @use "variables" as *;
+// Specifies large size for all components to match the previous defaults
+// This may not be needed for your project. Please consult https://www.infragistics.com/products/ignite-ui-angular/angular/components/general/update-guide for more details.
+:root {
+    --ig-size: var(--ig-size-large);
+}
 @import "minireset.css/minireset";
 
 @include core();
@@ -129,10 +134,16 @@ $expansion-panel-theme: expansion-panel-theme($header-background: $background,
 
 @import "../../common/src/styles-overrides.scss";
 
+// TODO: Remove after updating to next package version
+.igx-banner__actions > igx-banner-actions {
+  align-items: center;
+}
+
 .list-container {
   display: flex;
   flex-flow: column nowrap;
   width: 320px;
+  padding: 12px;
   + .list-container {
     margin-left: 16px;
   }
@@ -140,8 +151,8 @@ $expansion-panel-theme: expansion-panel-theme($header-background: $background,
 
 .country-badge-small {
   position: absolute;
-  top: 12px;
-  left: 42px;
+  top: 4px;
+  left: 32px;
   width: 16px;
   height: 16px;
   min-width: 16px;

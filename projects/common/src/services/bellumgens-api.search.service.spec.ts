@@ -1,8 +1,9 @@
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
 import { ApiSearchService } from './bellumgens-api.search.service';
 import { CommunicationService } from './communication.service';
 import { CSGOMap, CSGOPlayer, CSGOTeam, SearchResult, Side } from '../public_api';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 
 describe('ApiSearchService', () => {
@@ -12,8 +13,9 @@ describe('ApiSearchService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ HttpClientTestingModule ]
-    });
+    imports: [],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+});
     service = TestBed.inject(ApiSearchService);
     commService = TestBed.inject(CommunicationService);
     httpMock = TestBed.inject(HttpTestingController);

@@ -1,20 +1,18 @@
 import { TestBed, inject } from '@angular/core/testing';
 
 import { TeamadminGuard } from './teamadmin.guard';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { RouterTestingModule } from '@angular/router/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('TeamadminGuard', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [TeamadminGuard],
-      imports: [
-        HttpClientTestingModule,
-        RouterTestingModule,
-        ServiceWorkerModule.register('', {enabled: false})
-      ]
-    });
+    imports: [RouterTestingModule,
+        ServiceWorkerModule.register('', { enabled: false })],
+    providers: [TeamadminGuard, provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+});
   });
 
   it('should ...', inject([TeamadminGuard], (guard: TeamadminGuard) => {

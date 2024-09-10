@@ -1,8 +1,9 @@
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { IgxCardModule, IgxDividerModule } from '@infragistics/igniteui-angular';
 
 import { TournamentsMainComponent } from './tournaments-main.component';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('TournamentsMainComponent', () => {
   let component: TournamentsMainComponent;
@@ -10,12 +11,10 @@ describe('TournamentsMainComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    imports: [
-        HttpClientTestingModule,
-        IgxDividerModule,
+    imports: [IgxDividerModule,
         IgxCardModule,
-        TournamentsMainComponent
-    ]
+        TournamentsMainComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
 })
     .compileComponents();
   });

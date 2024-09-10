@@ -1,10 +1,11 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { TeamTournamentsComponent } from './team-tournaments.component';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('TeamTournamentsComponent', () => {
   let component: TeamTournamentsComponent;
@@ -12,23 +13,22 @@ describe('TeamTournamentsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-        imports: [
-            RouterTestingModule,
-            HttpClientTestingModule,
-            TeamTournamentsComponent
-        ],
-        providers: [
-            {
-                provide: ActivatedRoute,
-                useValue: {
-                    parent: {
-                        params: new Observable()
-                    },
-                    data: new Observable()
-                }
+    imports: [RouterTestingModule,
+        TeamTournamentsComponent],
+    providers: [
+        {
+            provide: ActivatedRoute,
+            useValue: {
+                parent: {
+                    params: new Observable()
+                },
+                data: new Observable()
             }
-        ]
-    })
+        },
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+    ]
+})
     .compileComponents();
   }));
 

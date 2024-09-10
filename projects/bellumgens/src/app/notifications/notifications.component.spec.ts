@@ -7,10 +7,11 @@ import { SortNotificationsPipe } from '../pipes/sort-notifications.pipe';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SortApplicationsPipe } from '../pipes/sort-applications.pipe';
 import { NotificationStatePipe } from '../pipes/notification-state.pipe';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { PlayerNotificationsComponent } from './player-notifications/player-notifications.component';
 import { TeamNotificationsComponent } from './team-notifications/team-notifications.component';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('NotificationsComponent', () => {
   let component: NotificationsComponent;
@@ -18,9 +19,7 @@ describe('NotificationsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [
-        RouterTestingModule,
-        HttpClientTestingModule,
+    imports: [RouterTestingModule,
         ServiceWorkerModule.register('', { enabled: false }),
         IgxProgressBarModule,
         IgxListModule,
@@ -31,8 +30,8 @@ describe('NotificationsComponent', () => {
         DisabledNotificationsPipe,
         SortNotificationsPipe,
         SortApplicationsPipe,
-        NotificationStatePipe
-    ]
+        NotificationStatePipe],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
 })
     .compileComponents();
   }));

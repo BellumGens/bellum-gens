@@ -1,9 +1,10 @@
 import { TestBed } from '@angular/core/testing';
 
 import { ApiTournamentsService } from './bellumgens-api.tournaments.service';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TournamentCSGOMatch, TournamentSC2Match } from '../models/tournament-schedule';
 import { CommunicationService, Game, TournamentApplication, TournamentCSGOGroup, TournamentParticipant, TournamentSC2Group } from '../public_api';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('ApiTournamentsService', () => {
   let service: ApiTournamentsService;
@@ -12,9 +13,9 @@ describe('ApiTournamentsService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [ HttpClientTestingModule ],
-      providers: [ ApiTournamentsService ]
-    });
+    imports: [],
+    providers: [ApiTournamentsService, provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+});
     service = TestBed.inject(ApiTournamentsService);
     httpMock = TestBed.inject(HttpTestingController);
     commsService = TestBed.inject(CommunicationService);

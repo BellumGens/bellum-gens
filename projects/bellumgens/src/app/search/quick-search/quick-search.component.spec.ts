@@ -4,7 +4,8 @@ import { QuickSearchComponent } from './quick-search.component';
 import { IgxProgressBarModule, IgxListModule, IgxAvatarModule, IgxIconModule } from '@infragistics/igniteui-angular';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ReduceQuickSearchResultPipe } from 'projects/bellumgens/src/app/pipes/reduce-quick-search-result.pipe';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('QuickSearchComponent', () => {
   let component: QuickSearchComponent;
@@ -12,16 +13,14 @@ describe('QuickSearchComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [
-        RouterTestingModule,
-        HttpClientTestingModule,
+    imports: [RouterTestingModule,
         IgxProgressBarModule,
         IgxListModule,
         IgxAvatarModule,
         IgxIconModule,
         QuickSearchComponent,
-        ReduceQuickSearchResultPipe
-    ]
+        ReduceQuickSearchResultPipe],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
 })
     .compileComponents();
   }));

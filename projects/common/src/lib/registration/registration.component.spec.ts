@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { Router } from '@angular/router';
@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { RegistrationComponent } from './registration.component';
 import { LoginService } from '../../services/login.service';
 import { CommunicationService } from '../../public_api';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('RegistrationComponent', () => {
   let component: RegistrationComponent;
@@ -20,15 +21,13 @@ describe('RegistrationComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        FormsModule,
+    imports: [FormsModule,
         RouterTestingModule,
-        HttpClientTestingModule,
         NoopAnimationsModule,
         ServiceWorkerModule.register('', { enabled: false }),
-        RegistrationComponent
-      ]
-    }).compileComponents();
+        RegistrationComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
     commsService = TestBed.inject(CommunicationService);
     loginService = TestBed.inject(LoginService);
     httpMock = TestBed.inject(HttpTestingController);
