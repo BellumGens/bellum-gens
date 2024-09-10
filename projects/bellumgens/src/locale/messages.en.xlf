@@ -520,8 +520,8 @@
           <context context-type="linenumber">275,278</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7363408312472202295" datatype="html">
-        <source>Bulgarian StarCraft League a one of a kind StarCraft II league in Bulgaria and are contributing to the deveopment of Bulgarian talent in this esport! All StarCraft 2 games in the Esports Business League are casted by the them!</source>
+      <trans-unit id="207202375710949952" datatype="html">
+        <source>Bulgarian StarCraft League a one of a kind StarCraft II league in Bulgaria and are contributing to the development of Bulgarian talent in this esport! All StarCraft 2 games in the Esports Business League are casted by the them!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
           <context context-type="linenumber">278,279</context>
