@@ -33,21 +33,28 @@ export class EventsComponent extends BaseDirective {
     {name: 'Diego "Kelazhur" Schwimer', country: 'Brazil', race: 'Terran', team: 'R8 Esports', image: '/assets/bge/players/3-kelazhur.png'},
     {name: 'Tobias "ShoWTimE" Sieber', country: 'Germany', race: 'Protoss', team: 'BIG', image: '/assets/bge/players/6-showtime.png'},
     {name: 'Li "Oliveira" Peinan', country: 'China', race: 'Terran', team: 'DKZ Gaming', image: '/assets/bge/players/5-oliveira.png'},
-    {name: 'Piotr "Spirit" Walukiewicz', country: 'Poland', race: 'Terran', team: 'Natus Vincere', image: '/assets/bge/players/7-spirit.png'},
+    {name: 'Peycho "Nitix" Ivanov', country: 'Bulgaria', race: 'Zerg', team: 'BSL', source: 'Replaces Piotr "Spirit" Walukiewicz', image: '/assets/bge/players/21-nitix.png'},
     {name: 'Kim "Stats" Dae-yeob', country: 'South-Korea', race: 'Protoss', team: 'Twisted Minds', image: '/assets/bge/players/4-stats.png'},
     {name: 'Riccardo "Reynor" Romiti', country: 'Italy', race: 'Zerg', team: 'BASILISK', image: '/assets/bge/players/8-reynor.png'},
   ];
 
   public qualifiedPlayers = [
     {name: 'Nikita "SKillous" Gurevich', country: '', race: 'Protoss', team: 'Team Liquid', source: 'Global Open Qualifier', image: '/assets/bge/players/10-skillous.png'},
-    {name: 'Huang "Lancer" Min', country: 'China', race: 'Protoss', team: 'Mystery Gaming', source: 'Global Open Qualifier', image: '/assets/bge/players/14-lancer.png'},
+    {name: 'Martin "Fjant" Koffman', country: 'Sweden', race: 'Zerg', team: 'Team Rotti', source: 'Replaces Huang "Lancer" Min', image: '/assets/bge/players/20-fjant.png'},
     {name: 'Yoon "trigger" Hong', country: 'Canada', race: 'Protoss', team: 'BASILISK', source: 'Global Open Qualifier', image: '/assets/bge/players/9-trigger.png'},
-    {name: 'Adrien "DnS" Bouet', country: 'France', race: 'Protoss', team: 'Berserker eSports', source: 'Global Open Qualifier', image: '/assets/bge/silhouette.webp'},
-    {name: 'Maxwell "Astrea" Angel', country: 'United-States-of-America', race: 'Protoss', source: 'Global Open Qualifier', team: 'Virtus.pro', image: '/assets/bge/players/12-astrea.png'},
+    {name: 'Adrien "DnS" Bouet', country: 'France', race: 'Protoss', team: 'Berserker eSports', source: 'Global Open Qualifier', image: '/assets/bge/players/15-dns.png'},
+    {name: 'Mateusz "Gerald" Budziak', country: 'Poland', race: 'Protoss', source: 'Replaces Maxwell "Astrea" Angel', team: 'PSISTORM Gaming', image: '/assets/bge/players/22-gerald.png'},
     {name: 'Julian "Lambo" Brosig', country: 'Germany', race: 'Zerg', team: 'Shopify Rebellion', source: 'Global Open Qualifier', image: '/assets/bge/players/11-lambo.png'},
     {name: 'Kevin "Harstem" Koning', country: 'Netherlands', race: 'Protoss', team: 'Shopify Rebellion', source: 'Global Open Qualifier', image: '/assets/bge/players/13-harstem.png'},
-    {name: 'Mihail "msrm" Mihaylov', country: 'Bulgaria', race: 'Zerg', team: 'BSL', source: 'Bulgarian Open Qualifier', image: '/assets/bge/silhouette.webp'}
+    {name: 'Mihail "msrm" Mihaylov', country: 'Bulgaria', race: 'Zerg', team: 'BSL', source: 'Bulgarian Open Qualifier', image: '/assets/bge/players/16-msrm.png'}
   ];
+
+  public talent = [
+    {name: 'Kevin "RotterdaM" van der Kooi', country: 'Netherlands', role: 'Commentator', image: '/assets/bge/talent/moderator-rotterdam.png'},
+    {name: 'Philip "BeoMulf" Mulford', country: 'United-States-of-America', role: 'Commentator', image: '/assets/bge/talent/moderator-beomulf.png'},
+    {name: 'Konstantin "NoThx" Kunev', country: 'Bulgaria', role: 'Commentator', image: '/assets/bge/talent/moderator-nothx.png'},
+    {name: 'Lachezar "Exalted" Kamenov', country: 'Bulgaria', role: 'Commentator', image: '/assets/bge/talent/moderator-exalted.png'}
+  ]
 
   public ticketsUrl = 'https://www.eventim.bg/en/tickets/bellum-gens-elite-stara-zagora-stara-zagora-leten-teatr-642927/event.html';
 

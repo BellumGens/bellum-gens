@@ -5,7 +5,9 @@
       <h1>Bellum Gens Elite</h1>
     </div>
     <p i18n>Bellum Gens Elite is a premier esports LAN event organized in Bulgaria. Ancient history and traditions, and beautiful scenery combine with high-level action-packed esports competition to bring you an unforgettable experience.</p>
-    <a [href]="this.ticketsUrl" target="_blank" igxButton="contained" class="cta-button-large" i18n>GET YOUR TICKETS NOW</a>
+    <p i18n>Clement "Clem" Desplanches is the champion of Bellum Gens Elite Stara Zagora 2024. Clem showed incredible form after becoming a world champion a few weeks earlier and won over Li "Oliveira" Peinan in the final with 4:1 map score.</p>
+    <img ngSrc="/assets/bge/clem-champion-2.webp" width="600" height="400" class="preview-image" alt="Summer Theater Stara Zagora" />
+    <!-- <a [href]="this.ticketsUrl" target="_blank" igxButton="contained" class="cta-button-large" style="margin-top: 12px" i18n>GET YOUR TICKETS NOW</a> -->
   </div>
 
   <div class="content-container-row">
@@ -31,11 +33,10 @@
   </div>
 
   <div class="content-container-row">
-    <igx-divider></igx-divider>
+    <h2 i18n>Invited Players</h2>
   </div>
 
   <div id="confirmed-players" class="content-container-row">
-    <h2 i18n>Invited Players</h2>
     <div class="card-wrapper">
       <igx-card *ngFor="let player of invitedPlayers">
         <igx-card-media>
@@ -50,6 +51,9 @@
           </div>
           <h4 igxCardHeaderSubtitle>{{player.team}}</h4>
         </igx-card-header>
+        <igx-card-content *ngIf="player.source">
+          <p>{{player.source}}</p>
+        </igx-card-content>
       </igx-card>
     </div>
   </div>
@@ -73,6 +77,26 @@
         <igx-card-content>
           <p>{{player.source}}</p>
         </igx-card-content>
+      </igx-card>
+    </div>
+  </div>
+
+  <div id="qualifiers" class="content-container-row">
+    <h2 i18n>Talent</h2>
+    <div class="card-wrapper">
+      <igx-card *ngFor="let caster of talent">
+        <igx-card-media>
+          <img [src]="caster.image" alt="Player Avatar" />
+        </igx-card-media>
+        <igx-card-header>
+          <div igxCardHeaderTitle>
+            <span>{{caster.name}}</span>
+            <igx-avatar [src]="caster.country | countrySVG" *ngIf="caster.country !== 'TBA'" shape="circle" [title]="caster.country" class="country-badge-small"></igx-avatar>
+            <!-- <igx-avatar [src]="player.race | sc2RaceThumb" shape="circle" [title]="player.race" class="country-badge-small"></igx-avatar>
+            <igx-avatar [src]="player.country | countrySVG" shape="circle" size="small" [title]="player.country" class="country-badge-small"></igx-avatar> -->
+          </div>
+          <h4 igxCardHeaderSubtitle>{{caster.role}}</h4>
+        </igx-card-header>
       </igx-card>
     </div>
   </div>
@@ -113,8 +137,11 @@
     </igx-card>
   </div>
 
-  <div id="main-event-schedule" class="content-container-row">
+  <div id="qualifiers" class="content-container-row">
     <h2 i18n>Main Event Schedule</h2>
+  </div>
+
+  <div id="main-event-schedule" class="content-container-row">
     <div class="card-wrapper">
       <igx-card>
         <igx-card-header>
@@ -126,6 +153,7 @@
           <ul>
             <li i18n>12:00: <span class="highlight">Pre-registration</span></li>
             <li i18n>All day: <span class="highlight">Media day</span></li>
+            <li i18n>18:00: <span class="highlight">Meet the players</span></li>
           </ul>
         </igx-card-content>
       </igx-card>
@@ -154,8 +182,8 @@
         <igx-card-content>
           <ul>
             <li i18n>12:00: <span class="highlight">Registration</span> for late arrivals</li>
-            <li i18n>13:00: <span class="highlight">Gates open</span></li>
-            <li i18n>14:00: <span class="highlight">Tournament Day 2 begins</span></li>
+            <li i18n>12:00: <span class="highlight">Gates open</span></li>
+            <li i18n>13:00: <span class="highlight">Tournament Day 2 begins</span></li>
           </ul>
         </igx-card-content>
       </igx-card>
@@ -169,8 +197,8 @@
         <igx-card-content>
           <ul>
             <li i18n>12:00: <span class="highlight">Registration</span> for late arrivals</li>
-            <li i18n>13:00: <span class="highlight">Gates open</span></li>
-            <li i18n>14:00: <span class="highlight">Tournament Day 3 begins</span></li>
+            <li i18n>12:00: <span class="highlight">Gates open</span></li>
+            <li i18n>13:00: <span class="highlight">Tournament Day 3 begins</span></li>
           </ul>
         </igx-card-content>
       </igx-card>

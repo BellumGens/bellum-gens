@@ -47,7 +47,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/app.component.html</context>
-          <context context-type="linenumber">55,58</context>
+          <context context-type="linenumber">56,58</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8130963410643970035" datatype="html">
@@ -75,7 +75,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
-          <context context-type="linenumber">234,236</context>
+          <context context-type="linenumber">236,238</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
@@ -230,12 +230,12 @@
           <context context-type="linenumber">7,8</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3943900250015895511" datatype="html">
-        <source>GET YOUR TICKETS NOW</source>
-        <target>ЗАКУПЕТЕ БИЛЕТИ СЕГА</target>
+      <trans-unit id="3530570787036012277" datatype="html">
+        <source>Clement &quot;Clem&quot; Desplanches is the champion of Bellum Gens Elite Stara Zagora 2024. Clem showed incredible form after becoming a world champion a few weeks earlier and won over Li &quot;Oliveira&quot; Peinan in the final with 4:1 map score.</source>
+        <target>Клемент &quot;Clem&quot; Депланш е шампионът на Bellum Gens Elite Стара Загора 2024. Клем показа невероятна форма след като стана световен шампион преди няколко седмици и надви Ли &quot;Oliveira&quot; Пейнан във финала с 4:1 карти.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
-          <context context-type="linenumber">8,12</context>
+          <context context-type="linenumber">8,9</context>
         </context-group>
       </trans-unit>
       <trans-unit id="754200717002516332" datatype="html">
@@ -324,6 +324,14 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
           <context context-type="linenumber">58,60</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7492310905765634524" datatype="html">
+        <source>Talent</source>
+        <target>Таланти</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">80,82</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3935916693907446618" datatype="html">
@@ -450,6 +458,14 @@
           <context context-type="linenumber">121,122</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="5601862774876866680" datatype="html">
+        <source>18:00: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Meet the players<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <target>18:00: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Среща с играчите<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">154,155</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="7207399645442796110" datatype="html">
         <source>12:00: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Registration<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
         <target>12:00: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Регистрация<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
@@ -490,36 +506,40 @@
           <context context-type="linenumber">179,180</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="6308563765456279884" datatype="html">
+        <source>12:00: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Gates open<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <target>12:00: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Вратите отварят<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">183,184</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">198,199</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8618036920452801675" datatype="html">
+        <source>13:00: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Tournament Day 2 begins<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <target>13:00: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Ден втори от турнира започва<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">184,185</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8642571126748807813" datatype="html">
+        <source>13:00: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Tournament Day 3 begins<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <target>13:00: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Ден трети от турнира започва<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">199,200</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="1384467375879757585" datatype="html">
         <source>13:00: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Gates open<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
         <target>13:00: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Вратите отварят<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
-          <context context-type="linenumber">150,151</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
-          <context context-type="linenumber">165,166</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
-          <context context-type="linenumber">180,181</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="81734764851475796" datatype="html">
-        <source>14:00: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Tournament Day 2 begins<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
-        <target>14:00: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Ден втори от турнира започва<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
-          <context context-type="linenumber">151,152</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="1805421978097425776" datatype="html">
-        <source>14:00: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Tournament Day 3 begins<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
-        <target>14:00: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Ден трети от турнира започва<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
-          <context context-type="linenumber">166,167</context>
+          <context context-type="linenumber">213,214</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5550985096549366268" datatype="html">
@@ -694,17 +714,17 @@
           <context context-type="linenumber">132,134</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4813482035412497716" datatype="html">
-        <source>Bellum Gens Elite is a premier esports event. Bellum Gens Elite - Stara Zagora 2024 is going to feature the top StarCraft II talent clashing in a 4-day LAN event! Learn more at the event page!</source>
-        <target>Bellum Gens Elite е премиерно събитие по електронни спортове. Белум Генс Елит - Стара Загора 2024 ще представи най-добрите СтарКрафт 2 таланти в 4-дневно ЛАН събитие! Научете повече на страницата на събитието!</target>
+      <trans-unit id="2395103405589091100" datatype="html">
+        <source>Bellum Gens Elite - Stara Zagora 2024 featured the top StarCraft II talent clashing in a 4-day LAN event! Clement &quot;Clem&quot; Desplanches is the champion of Bellum Gens Elite Stara Zagora 2024!</source>
+        <target>Bellum Gens Elite - Стара Загора 2024 представи най-добрите StarCraft II таланти борещи се в 4-дневно ЛАН събитие! Клемент &quot;Клем&quot; Депланш е шампионът на Bellum Gens Elite Стара Загора 2024!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
           <context context-type="linenumber">6,7</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2889920848563929575" datatype="html">
-        <source>TICKETS AVAILABLE NOW</source>
-        <target>БИЛЕТИТЕ СА В ПРОДАЖБА</target>
+      <trans-unit id="7002955679222677443" datatype="html">
+        <source>Learn More</source>
+        <target>Научи повече</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
           <context context-type="linenumber">7,13</context>

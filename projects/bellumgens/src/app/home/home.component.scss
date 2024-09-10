@@ -40,7 +40,8 @@
   }
 
   .slide0 {
-    background-image: url('/assets/wallpapers/sc2-jumbo-2.webp');
+    background-image: url('/assets/bge/clem-champion-1.jpg');
+    background-position-y: -310px;
   }
 
   .slide1 {
@@ -70,6 +71,10 @@
   // }
 
   @media only screen and (max-width: 1280px) {
+    .slide0 {
+      background-position-y: 0px;
+      background-position-x: 0px;
+    }
     .slide2 {
       background-size: auto;
       background-position: center;
@@ -88,6 +93,9 @@
   }
 
   @media only screen and (min-width: 2000px) {
+    .slide0 {
+      background-position-y: -500px;
+    }
     .slide2, .slide3 {
       background-position-y: -115px;
     }

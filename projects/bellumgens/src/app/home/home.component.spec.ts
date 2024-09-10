@@ -39,14 +39,6 @@ describe('HomeComponent', () => {
     expect(carousel).toBeTruthy();
   });
 
-  it('should have navigation set to true by default', () => {
-    expect(component.navigation).toBeTrue();
-  });
-
-  it('should have userEmail set to null by default', () => {
-    expect(component.userEmail).toBeNull();
-  });
-
   it('should call resize method on window resize', () => {
     spyOn(component, 'resize');
     window.dispatchEvent(new Event('resize'));

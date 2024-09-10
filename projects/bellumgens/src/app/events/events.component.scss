@@ -92,6 +92,13 @@ $new-palette: palette(
     height: 88px;
   }
 
+  @media screen and (min-width: 750px) and (max-width: 1024px) {
+    .content-container-column iframe, .content-container-row iframe {
+      width: 100%;
+      height: 500px;
+    }
+  }
+
   @media screen and (max-width: 1024px) {
     background-position: center;
 
