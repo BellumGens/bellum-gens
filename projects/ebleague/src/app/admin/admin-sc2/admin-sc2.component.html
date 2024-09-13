@@ -156,8 +156,8 @@
           <igx-card-content>
             <igx-list class="group-list" igxDrop (dropped)="addToGroup($event, group)">
               <igx-list-item *ngFor="let participant of group.participants">
-                <igx-avatar igxListThumbnail [src]="participant.user.avatarMedium" shape="circle"></igx-avatar>
-                <a igxListLineTitle [href]="environment.bellumgens + '/players/' + (participant.user.customURL || participant.userId)" target="_blank">
+                <igx-avatar igxListThumbnail [src]="participant.user.csgoDetails.avatarMedium" shape="circle"></igx-avatar>
+                <a igxListLineTitle [href]="environment.bellumgens + '/players/' + (participant.user.csgoDetails.customUrl || participant.userId)" target="_blank">
                   {{ participant.user.username }}
                 </a>
                 <span igxListLineTitle>
@@ -224,7 +224,7 @@
     <igx-select-item *ngFor="let registration of registrations"
                       [value]="registration.userId"
                       [text]="registration.battleTag">
-      <igx-avatar [src]="registration.user.avatarMedium" [initials]="registration.battleTag"></igx-avatar>
+      <igx-avatar [src]="registration.user.csgoDetails.avatarMedium" [initials]="registration.battleTag"></igx-avatar>
       {{ registration.battleTag }}
     </igx-select-item>
   </igx-select>
@@ -236,7 +236,7 @@
     <igx-select-item *ngFor="let registration of registrations"
                       [value]="registration.userId"
                       [text]="registration.battleTag">
-      <igx-avatar [src]="registration.user.avatarMedium" [initials]="registration.battleTag"></igx-avatar>
+      <igx-avatar [src]="registration.user.csgoDetails.avatarMedium" [initials]="registration.battleTag"></igx-avatar>
       {{ registration.battleTag }}
     </igx-select-item>
   </igx-select>
@@ -303,7 +303,7 @@
       <igx-select-item *ngFor="let registration of registrations | getPlayers:matchInEdit.player1Id:matchInEdit.player2Id"
                         [value]="registration.userId"
                         [text]="registration.battleTag">
-        <igx-avatar [src]="registration.user.avatarMedium" [initials]="registration.battleTag"></igx-avatar>
+        <igx-avatar [src]="registration.user.csgoDetails.avatarMedium" [initials]="registration.battleTag"></igx-avatar>
         {{ registration.battleTag }}
       </igx-select-item>
     </igx-select>

@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http';
 import { SteamGroup, SteamUser } from '../models/steamuser';
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
 import { CSGOTeam, TeamMember, TeamApplication } from '../models/csgoteam';
-import { CSGOPlayer } from '../models/csgoplayer';
 import { Availability } from '../models/playeravailability';
 import { Role } from '../models/playerrole';
 import { CSGOMapPool } from '../models/csgomaps';
@@ -12,6 +11,7 @@ import { UserNotification } from '../models/usernotifications';
 import { environment } from '../environments/environment';
 import { CommunicationService } from './communication.service';
 import { Tournament } from '../models/tournament';
+import { ApplicationUser } from '../models/applicationuser';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +28,7 @@ export class BellumgensApiService {
   private _currentTeam = new BehaviorSubject<CSGOTeam>(null);
   private _currentTeamMembers = new BehaviorSubject<TeamMember []>(null);
   private _currentTeamPractice = new BehaviorSubject<Availability []>(null);
-  private _currentPlayer = new BehaviorSubject<CSGOPlayer>(null);
+  private _currentPlayer = new BehaviorSubject<ApplicationUser>(null);
   private _teamApplications = new Map<string, Observable<TeamApplication[]>>();
 
   constructor(private http: HttpClient, private commService: CommunicationService) { }
@@ -271,7 +271,7 @@ export class BellumgensApiService {
   }
 
   public getPlayerFromServer(userId: string) {
-    return this.http.get<CSGOPlayer>(`${this._apiEndpoint}/users?userid=${userId}`).pipe(
+    return this.http.get<ApplicationUser>(`${this._apiEndpoint}/users?userid=${userId}`).pipe(
       map(response => {
         if (response.userStatsException) {
           this.commService.emitError('Account is private!');

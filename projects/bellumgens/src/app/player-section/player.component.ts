@@ -20,7 +20,6 @@ import {
 import {
   LoginService,
   BellumgensApiService,
-  CSGOPlayer,
   WeaponDescriptor,
   Availability,
   ApplicationUser,
@@ -78,7 +77,7 @@ export class PlayerComponent extends BaseDirective {
   public userTeams: Observable<CSGOTeam []>;
   public availability: Availability [];
   public mapPool: CSGOMapPool [];
-  public player: CSGOPlayer;
+  public player: ApplicationUser;
   public newUser = false;
   public roles = ALL_ROLES;
   public viewAll = false;

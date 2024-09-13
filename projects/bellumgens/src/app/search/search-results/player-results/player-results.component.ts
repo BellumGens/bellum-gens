@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { ALL_ROLES, CSGOPlayer, ApiSearchService } from '../../../../../../common/src/public_api';
+import { ALL_ROLES, ApiSearchService, ApplicationUser } from '../../../../../../common/src/public_api';
 import { BaseDirective } from '../../../base/base.component';
 import { IgxIconService, IgxCardModule, IgxAvatarModule, IgxProgressBarModule, IgxIconModule, IgxChipsModule } from '@infragistics/igniteui-angular';
 import { Title, Meta } from '@angular/platform-browser';
@@ -16,7 +16,7 @@ import { NgIf, NgFor, DecimalPipe } from '@angular/common';
     imports: [NgIf, LoadingComponent, NgFor, IgxCardModule, RouterLink, IgxAvatarModule, IgxProgressBarModule, IgxIconModule, IgxChipsModule, DecimalPipe, QueryParsedPipe]
 })
 export class PlayerResultsComponent extends BaseDirective {
-  public players: CSGOPlayer [];
+  public players: ApplicationUser [];
   public loading = false;
   public roles = ALL_ROLES;
   public query: string;
