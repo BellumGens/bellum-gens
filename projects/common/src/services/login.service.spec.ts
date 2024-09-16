@@ -190,11 +190,9 @@ describe('LoginService', () => {
       battleNetId: 'test-battlenet-id',
       username: 'test-username',
       email: 'test-email',
-      avatarFull: 'test-avatar',
-      avatarMedium: 'test-avatar',
-      avatarIcon: 'test-avatar',
-      customURL: 'test-url',
-      realname: 'test-realname',
+      steamUserException: false,
+      userStatsException: false,
+      registered: true,
       searchVisible: true,
       externalLogins: []
     };

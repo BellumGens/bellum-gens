@@ -8,7 +8,7 @@ import { PlaystyleRole, Role } from '../models/playerrole';
 import { CSGOMap, CSGOMapPool } from '../models/csgomaps';
 import { NotificationState, UserNotification } from '../models/usernotifications';
 import { CommunicationService } from './communication.service';
-import { CSGOPlayer } from '../public_api';
+import { ApplicationUser, CSGOPlayer } from '../public_api';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 
@@ -456,17 +456,12 @@ describe('BellumgensApiService', () => {
 
   it('getPlayer should send a GET request to the correct URL', () => {
     let userId = '1';
-    const player: CSGOPlayer = {
+    const player: ApplicationUser = {
       id: '1',
       steamId: 'test-steam-id',
       battleNetId: 'test-battlenet-id',
       username: 'test-username',
       email: 'test-email',
-      avatarFull: 'test-avatar',
-      avatarMedium: 'test-avatar',
-      avatarIcon: 'test-avatar',
-      customURL: 'test-url',
-      realname: 'test-realname',
       searchVisible: true,
       externalLogins: [],
       steamUser: null,
@@ -474,10 +469,6 @@ describe('BellumgensApiService', () => {
       userStats: null,
       userStatsException: true,
       registered: false,
-      headshotPercentage: 0,
-      killDeathRatio: 0,
-      accuracy: 0,
-      steamPrivate: true
     };
     const sub1 = commsService.error.subscribe(error => expect(error).toBe('Account is private!'));
     service.getPlayer(userId).subscribe();
