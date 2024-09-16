@@ -1,5 +1,5 @@
 import { DatePipe, NgFor, NgIf, NgOptimizedImage } from '@angular/common';
-import { Component, Inject, LOCALE_ID } from '@angular/core';
+import { Component } from '@angular/core';
 import { IGX_CARD_DIRECTIVES, IgxAvatarComponent, IgxButtonDirective, IgxDividerDirective, IgxIconComponent } from '@infragistics/igniteui-angular';
 import { BaseDirective } from '../base/base.component';
 import { Meta, Title } from '@angular/platform-browser';
@@ -56,17 +56,16 @@ export class EventsComponent extends BaseDirective {
     {name: 'Lachezar "Exalted" Kamenov', country: 'Bulgaria', role: 'Commentator', image: '/assets/bge/talent/moderator-exalted.png'}
   ]
 
-  public ticketsUrl = 'https://www.eventim.bg/en/tickets/bellum-gens-elite-stara-zagora-stara-zagora-leten-teatr-642927/event.html';
+  // public ticketsUrl = 'https://www.eventim.bg/en/tickets/bellum-gens-elite-stara-zagora-stara-zagora-leten-teatr-642927/event.html';
 
   constructor(
     protected titleService: Title,
     protected meta: Meta,
-    protected activeRoute: ActivatedRoute,
-    @Inject(LOCALE_ID) private localeId: string
+    protected activeRoute: ActivatedRoute
   ) {
     super(titleService, meta, activeRoute);
-    if (this.localeId === 'bg') {
-      this.ticketsUrl = 'https://www.eventim.bg/bg/bileti/bellum-gens-elite-stara-zagora-stara-zagora-leten-teatr-642927/event.html';
-    }
+    // if (this.localeId === 'bg') {
+    //   this.ticketsUrl = 'https://www.eventim.bg/bg/bileti/bellum-gens-elite-stara-zagora-stara-zagora-leten-teatr-642927/event.html';
+    // }
   }
 }
