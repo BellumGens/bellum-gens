@@ -8,7 +8,7 @@ import { PlaystyleRole, Role } from '../models/playerrole';
 import { CSGOMap, CSGOMapPool } from '../models/csgomaps';
 import { NotificationState, UserNotification } from '../models/usernotifications';
 import { CommunicationService } from './communication.service';
-import { ApplicationUser, CSGOPlayer } from '../public_api';
+import { ApplicationUser } from '../public_api';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 
