@@ -21,10 +21,10 @@ export interface ApplicationUser {
   userStatsException: boolean;
   registered: boolean;
 
-  userStats: CSGOStats;
-  steamUser: SteamUser;
-  csgoDetails: CSGODetails;
-  sc2Details: SC2Details;
+  userStats?: CSGOStats;
+  steamUser?: SteamUser;
+  csgoDetails?: CSGODetails;
+  sc2Details?: SC2Details;
 }
 
 export interface UserPreferences {
