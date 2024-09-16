@@ -1,11 +1,10 @@
 import { CSGOTeam } from './csgoteam';
-import { CSGODetails } from './csgoplayer';
 import { CSGOStrategy } from './csgostrategy';
 import { ApplicationUser } from './applicationuser';
 
 export interface SearchResult {
   teams: CSGOTeam [];
-  steamUser: CSGODetails;
+  steamUser: ApplicationUser;
   players: ApplicationUser [];
   strategies: CSGOStrategy [];
 }
