@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { UserPreferences, ApplicationUser } from '../../../models/applicationuser';
 import { LoginService } from '../../../services/login.service';
 import { LoginProvider } from '../../../models/login-provider';
@@ -48,6 +48,9 @@ export class UserPreferencesComponent {
   public authUser: ApplicationUser;
   public registrations: TournamentApplication [];
 
+  @Output()
+  public userDeleted = new EventEmitter<void>();
+
   constructor(private authManager: LoginService, private apiService: ApiTournamentsService, private router: Router) {
     this.authManager.applicationUser.subscribe(user => {
       if (user) {
@@ -74,6 +77,9 @@ export class UserPreferencesComponent {
 
   public deleteAccount() {
     this.authManager.deleteAccount(this.authUser.id).subscribe({
+      next: () => {
+        this.userDeleted.emit();
+      },
       error: () => {}
     });
   }

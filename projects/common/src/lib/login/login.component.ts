@@ -58,7 +58,11 @@ export class LoginComponent {
   }
 
   public logout() {
-    this.authManager.logout().subscribe(() => this.userProfile.close());
+    this.authManager.logout().subscribe(() => this.close());
+  }
+
+  public close() {
+    this.userProfile.close();
   }
 
   public navigateToProfile(id: string) {

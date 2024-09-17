@@ -43,7 +43,7 @@
           </igx-tab-header>
           <igx-tab-content class="profile-content">
 
-            <bg-user-preferences></bg-user-preferences>
+            <bg-user-preferences (userDeleted)="close()"></bg-user-preferences>
           </igx-tab-content>
         </igx-tab-item>
       </igx-tabs>
