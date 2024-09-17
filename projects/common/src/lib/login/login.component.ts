@@ -65,11 +65,19 @@ export class LoginComponent {
     this.userProfile.close();
   }
 
-  public navigateToProfile(id: string) {
+  public navigateToProfile(user: ApplicationUser) {
     if (window.location.href.startsWith(environment.bellumgens)) {
-      this.router.navigate(['/players/', id]);
+      if (user.csgoDetails) {
+        this.router.navigate(['/players/', user.csgoDetails.customUrl]);
+      } else if (user.sc2Details) {
+        this.router.navigate(['/players/', user.sc2Details.battleNetId]);
+      }
     } else {
-      window.location.href = `${environment.bellumgens}/players/${id}`;
+      if (user.csgoDetails) {
+        window.location.href = `${environment.bellumgens}/players/${user.csgoDetails.customUrl}`;
+      } else if (user.sc2Details) {
+        window.location.href = `${environment.bellumgens}/players/${user.sc2Details.battleNetId}`;
+      }
     }
   }
 }
