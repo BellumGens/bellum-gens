@@ -24,17 +24,32 @@ describe('LoginComponent', () => {
     steamUserException: false,
     userStatsException: false,
     registered: true,
+    csgoDetails: {
+      steamUser: null,
+      userStats: null,
+      headshotPercentage: 50,
+      killDeathRatio: 1,
+      accuracy: 0.2,
+      steamPrivate: false,
+      realName: 'Real Name',
+      customUrl: '123',
+      avatarFull: 'string',
+      avatarMedium: 'string',
+      avatarIcon: 'string'
+    },
     externalLogins: []
   };
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [RouterTestingModule,
+      imports: [
+        RouterTestingModule,
         NoopAnimationsModule,
         ServiceWorkerModule.register('', { enabled: false }),
-        LoginComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-})
+        LoginComponent
+      ],
+      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+    })
     .compileComponents();
     authService = TestBed.inject(LoginService);
     httpMock = TestBed.inject(HttpTestingController);
@@ -93,9 +108,8 @@ describe('LoginComponent', () => {
   });
 
   it('navigateToProfile method should call router.navigate with correct params', () => {
-    const id = '123';
     spyOn(router, 'navigate');
-    component.navigateToProfile(id);
-    expect(router.navigate).toHaveBeenCalledWith(['/players/', id]);
+    component.navigateToProfile(applicationUser);
+    expect(router.navigate).toHaveBeenCalledWith(['/players/', applicationUser.csgoDetails.customUrl]);
   });
 });
