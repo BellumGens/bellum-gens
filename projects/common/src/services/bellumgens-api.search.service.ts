@@ -1,13 +1,13 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CSGOTeam } from '../models/csgoteam';
-import { CSGOPlayer } from '../models/csgoplayer';
 import { SearchResult } from '../models/searchresult';
 import { CSGOStrategy } from '../models/csgostrategy';
 import { BehaviorSubject, throwError } from 'rxjs';
 import { environment } from '../environments/environment';
 import { catchError, map } from 'rxjs/operators';
 import { CommunicationService } from './communication.service';
+import { ApplicationUser } from '../models/applicationuser';
 
 @Injectable({
   providedIn: 'root'
@@ -16,14 +16,14 @@ export class ApiSearchService {
   public loadingQuickSearch = new BehaviorSubject<boolean>(false);
   public loadingSearch = new BehaviorSubject<boolean>(false);
   public searchResult = new BehaviorSubject<SearchResult>(null);
-  public playerSearchResult = new BehaviorSubject<CSGOPlayer []>(null);
+  public playerSearchResult = new BehaviorSubject<ApplicationUser []>(null);
   public teamSearchResult = new BehaviorSubject<CSGOTeam []>(null);
   public strategySearchResult = new BehaviorSubject<CSGOStrategy []>(null);
   public searchTerm = new BehaviorSubject<string>(null);
 
   private _apiEndpoint = environment.apiEndpoint;
   private _searchResultCache: Map<string, SearchResult> = new Map();
-  private _playerSearchCache: Map<string, CSGOPlayer []> = new Map();
+  private _playerSearchCache: Map<string, ApplicationUser []> = new Map();
   private _teamSearchCache: Map<string, CSGOTeam []> = new Map();
   private _strategySearchCache: Map<string, CSGOStrategy []> = new Map();
 
@@ -139,7 +139,7 @@ export class ApiSearchService {
   }
 
   private getFilteredPlayers(query: string) {
-    return this.http.get<CSGOPlayer []>(`${this._apiEndpoint}/search/players?${query}`, { withCredentials: true }).pipe(
+    return this.http.get<ApplicationUser []>(`${this._apiEndpoint}/search/players?${query}`, { withCredentials: true }).pipe(
       map(response => response),
       catchError(error => {
         this.commService.emitError(error.message);

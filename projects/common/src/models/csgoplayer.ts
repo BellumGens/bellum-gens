@@ -1,6 +1,5 @@
 import { SteamUser } from './steamuser';
 import { PlaystyleRole } from './playerrole';
-import { ApplicationUser } from './applicationuser';
 
 export interface CSGOStats {
   headshotPercentage: number;
@@ -11,18 +10,20 @@ export interface CSGOStats {
   weapons: WeaponDescriptor [];
 }
 
-export interface CSGOPlayer extends ApplicationUser {
+export interface CSGODetails {
   steamUser: SteamUser;
-  steamUserException: boolean;
   userStats: CSGOStats;
-  userStatsException: boolean;
-  registered: boolean;
   primaryRole?: PlaystyleRole;
   secondaryRole?: PlaystyleRole;
   headshotPercentage: number;
   killDeathRatio: number;
   accuracy: number;
   steamPrivate: boolean;
+  realName: string;
+  customUrl: string;
+  avatarFull: string;
+  avatarMedium: string;
+  avatarIcon: string;
 }
 
 export interface WeaponDescriptor {

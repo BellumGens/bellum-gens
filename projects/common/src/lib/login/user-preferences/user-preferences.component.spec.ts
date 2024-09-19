@@ -26,12 +26,10 @@ describe('UserPreferencesComponent', () => {
     battleNetId: 'test-battlenet-id',
     username: 'test-user',
     email: 'test-email',
-    avatarFull: 'test-avatar',
-    avatarMedium: 'test-avatar',
-    avatarIcon: 'test-avatar',
-    customURL: 'test-url',
-    realname: 'test-realname',
     searchVisible: false,
+    steamUserException: false,
+    userStatsException: false,
+    registered: true,
     externalLogins: [
       'Steam'
     ]

@@ -1,3 +1,7 @@
+import { CSGODetails, CSGOStats } from "./csgoplayer";
+import { SC2Details } from "./sc2player";
+import { SteamUser } from "./steamuser";
+
 export interface AdminAppUserSummary {
   id: string;
   avatarMedium: string;
@@ -5,22 +9,22 @@ export interface AdminAppUserSummary {
   roles: [];
 }
 
-export interface AppUserSummary {
+export interface ApplicationUser {
   id: string;
   steamId: string;
   username: string;
-  avatarMedium: string;
-  customURL: string;
   battleNetId: string;
-}
-
-export interface ApplicationUser extends AppUserSummary {
-  avatarIcon: string;
-  avatarFull: string;
-  realname: string;
   email: string;
   searchVisible: boolean;
   externalLogins: string [];
+  steamUserException: boolean;
+  userStatsException: boolean;
+  registered: boolean;
+
+  userStats?: CSGOStats;
+  steamUser?: SteamUser;
+  csgoDetails?: CSGODetails;
+  sc2Details?: SC2Details;
 }
 
 export interface UserPreferences {

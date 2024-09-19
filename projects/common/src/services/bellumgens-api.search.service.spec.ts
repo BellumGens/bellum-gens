@@ -2,7 +2,7 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { TestBed } from '@angular/core/testing';
 import { ApiSearchService } from './bellumgens-api.search.service';
 import { CommunicationService } from './communication.service';
-import { CSGOMap, CSGOPlayer, CSGOTeam, SearchResult, Side } from '../public_api';
+import { ApplicationUser, CSGOMap, CSGOTeam, SearchResult, Side } from '../public_api';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 
@@ -111,18 +111,13 @@ describe('ApiSearchService', () => {
 
   it('searchPlayers should make a GET request to the API endpoint with the provided query', () => {
     let query = 'role=1&overlap=1';
-    const players: CSGOPlayer [] = [
+    const players: ApplicationUser [] = [
       {
         id: '1',
         steamId: 'test-steam-id',
         battleNetId: 'test-battlenet-id',
         username: 'test-username',
         email: 'test-email',
-        avatarFull: 'test-avatar',
-        avatarMedium: 'test-avatar',
-        avatarIcon: 'test-avatar',
-        customURL: 'test-url',
-        realname: 'test-realname',
         searchVisible: true,
         externalLogins: [],
         steamUser: null,
@@ -130,10 +125,6 @@ describe('ApiSearchService', () => {
         userStats: null,
         userStatsException: true,
         registered: false,
-        headshotPercentage: 0,
-        killDeathRatio: 0,
-        accuracy: 0,
-        steamPrivate: true
       }
     ];
     service.searchPlayers(query);

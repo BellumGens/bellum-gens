@@ -1,5 +1,5 @@
 import { CSGOTeam } from './csgoteam';
-import { AppUserSummary } from './applicationuser';
+import { ApplicationUser } from './applicationuser';
 import { CSGOMap } from './csgomaps';
 import { SC2Map } from './sc2maps';
 
@@ -47,8 +47,8 @@ export interface TournamentSC2Match extends TournamentMatch {
   player2Id?: string;
   player1Points?: number;
   player2Points?: number;
-  player1?: AppUserSummary;
-  player2?: AppUserSummary;
+  player1?: ApplicationUser;
+  player2?: ApplicationUser;
   maps?: TournamentSC2MatchMap [];
 }
 
