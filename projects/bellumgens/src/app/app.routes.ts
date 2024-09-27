@@ -14,6 +14,7 @@ export const routes: Routes = [
       twitterDescription: 'Bellum Gens Elite Stara Zagora is the home of esports in Bulgaria. We host the best gaming events in the country.'
     }
   },
+  { path: 'partners', loadChildren: () => import('./partners/partners.routes').then(m => m.routes) },
   { path: 'register', component: RegistrationComponent },
   { path: 'unauthorized', redirectTo: 'unauthorized/', pathMatch: 'full' },
   { path: 'unauthorized/:message', component: UnauthorizedComponent },

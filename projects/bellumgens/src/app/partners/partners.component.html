@@ -1,0 +1,35 @@
+<igx-tabs>
+  <igx-tab-item routerLinkActive #rla1="routerLinkActive"
+                [selected]="rla1.isActive">
+    <igx-tab-header routerLink="details">
+      <igx-icon igxPrefix>people_outline</igx-icon>
+      <div igxTabHeaderLabel i18n>Details</div>
+    </igx-tab-header>
+  </igx-tab-item>
+
+  <igx-tab-item routerLinkActive #rla2="routerLinkActive"
+                [selected]="rla2.isActive">
+    <igx-tab-header routerLink="competitions">
+      <igx-icon igxPrefix>sports_esports</igx-icon>
+      <div igxTabHeaderLabel i18n>Competitions</div>
+    </igx-tab-header>
+  </igx-tab-item>
+
+  <igx-tab-item routerLinkActive #rla2="routerLinkActive"
+                [selected]="rla2.isActive">
+    <igx-tab-header routerLink="strategies">
+      <igx-icon igxPrefix>playlist_add_check</igx-icon>
+      <div igxTabHeaderLabel i18n>Strategies</div>
+    </igx-tab-header>
+  </igx-tab-item>
+
+  <igx-tab-item routerLinkActive #rla3="routerLinkActive"
+                [selected]="rla3.isActive">
+    <igx-tab-header routerLink="preferences">
+      <igx-icon igxPrefix>settings</igx-icon>
+      <div igxTabHeaderLabel i18n>Settings</div>
+    </igx-tab-header>
+  </igx-tab-item>
+</igx-tabs>
+
+<router-outlet></router-outlet>
