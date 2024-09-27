@@ -1,3 +1,4 @@
+import { NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLinkActive, RouterOutlet } from '@angular/router';
 import { IGX_TABS_DIRECTIVES } from '@infragistics/igniteui-angular';
@@ -8,7 +9,8 @@ import { IGX_TABS_DIRECTIVES } from '@infragistics/igniteui-angular';
   imports: [
     IGX_TABS_DIRECTIVES,
     RouterOutlet,
-    RouterLinkActive
+    RouterLinkActive,
+    NgOptimizedImage
   ],
   templateUrl: './partners.component.html',
   styleUrl: './partners.component.scss',
