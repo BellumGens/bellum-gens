@@ -24,22 +24,17 @@ export class VisitStaraZagoraComponent extends BaseDirective {
     {
       name: 'Facebook',
       icon: 'facebook',
-      url: 'https://www.facebook.com/techhub.bg'
+      url: 'https://www.facebook.com/visitstarazagora.bg'
     },
     {
       name: 'Instagram',
       icon: 'instagram',
-      url: 'https://www.instagram.com/TechHub.bg'
-    },
-    {
-      name: 'LinkedIn',
-      icon: 'linkedin',
-      url: 'https://www.linkedin.com/company/techhub-bg'
+      url: 'https://www.instagram.com/visitstarazagora/'
     },
     {
       name: 'TikTok',
       icon: 'tiktok',
-      url: 'https://www.tiktok.com/@techhub.bg'
+      url: 'https://www.tiktok.com/@visit.starazagora'
     }
   ];
 }

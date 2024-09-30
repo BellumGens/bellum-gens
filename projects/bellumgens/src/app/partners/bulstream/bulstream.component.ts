@@ -24,22 +24,17 @@ export class BulstreamComponent extends BaseDirective {
     {
       name: 'Facebook',
       icon: 'facebook',
-      url: 'https://www.facebook.com/techhub.bg'
+      url: 'https://www.facebook.com/bulstream'
     },
     {
       name: 'Instagram',
       icon: 'instagram',
-      url: 'https://www.instagram.com/TechHub.bg'
+      url: 'https://www.instagram.com/bulstreamcom/'
     },
     {
       name: 'LinkedIn',
       icon: 'linkedin',
-      url: 'https://www.linkedin.com/company/techhub-bg'
-    },
-    {
-      name: 'TikTok',
-      icon: 'tiktok',
-      url: 'https://www.tiktok.com/@techhub.bg'
+      url: 'https://www.linkedin.com/company/bulstream'
     }
   ];
 }

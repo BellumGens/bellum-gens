@@ -39,66 +39,80 @@
 
   <div id="confirmed-players" class="content-container-row">
     <div class="card-wrapper">
-      <igx-card *ngFor="let player of invitedPlayers">
-        <igx-card-media>
-          <img [src]="player.image" alt="Player Avatar" />
-        </igx-card-media>
-        <igx-card-header>
-          <div igxCardHeaderTitle>
-            <span>{{player.name}}</span>
-            <igx-avatar [src]="player.country | countrySVG" *ngIf="player.country !== 'TBA'" shape="circle" [title]="player.country" class="country-badge-small"></igx-avatar>
-            <!-- <igx-avatar [src]="player.race | sc2RaceThumb" shape="circle" [title]="player.race" class="country-badge-small"></igx-avatar>
-            <igx-avatar [src]="player.country | countrySVG" shape="circle" size="small" [title]="player.country" class="country-badge-small"></igx-avatar> -->
-          </div>
-          <h3 igxCardHeaderSubtitle>{{player.team}}</h3>
-        </igx-card-header>
-        <igx-card-content *ngIf="player.source">
-          <p>{{player.source}}</p>
-        </igx-card-content>
-      </igx-card>
+      @for (player of invitedPlayers; track player.name) {
+        <igx-card>
+          <igx-card-media>
+            <img [src]="player.image" alt="Player Avatar" />
+          </igx-card-media>
+          <igx-card-header>
+            <div igxCardHeaderTitle>
+              <span>{{player.name}}</span>
+              @if (player.country !== 'TBA') {
+                <igx-avatar [src]="player.country | countrySVG" shape="circle" [title]="player.country" class="country-badge-small"></igx-avatar>
+              }
+              <!-- <igx-avatar [src]="player.race | sc2RaceThumb" shape="circle" [title]="player.race" class="country-badge-small"></igx-avatar>
+              <igx-avatar [src]="player.country | countrySVG" shape="circle" size="small" [title]="player.country" class="country-badge-small"></igx-avatar> -->
+            </div>
+            <h3 igxCardHeaderSubtitle>{{player.team}}</h3>
+          </igx-card-header>
+          @if(player.source) {
+            <igx-card-content>
+              <p>{{player.source}}</p>
+            </igx-card-content>
+          }
+        </igx-card>
+      }
     </div>
   </div>
 
   <div id="qualifiers" class="content-container-row">
     <h2 i18n>Qualified Players</h2>
     <div class="card-wrapper">
-      <igx-card *ngFor="let player of qualifiedPlayers">
-        <igx-card-media>
-          <img [src]="player.image" alt="Player Avatar" />
-        </igx-card-media>
-        <igx-card-header>
-          <div igxCardHeaderTitle>
-            <span>{{player.name}}</span>
-            <igx-avatar [src]="player.country | countrySVG" *ngIf="player.country !== 'TBA'" shape="circle" [title]="player.country" class="country-badge-small"></igx-avatar>
-            <!-- <igx-avatar [src]="player.race | sc2RaceThumb" shape="circle" [title]="player.race" class="country-badge-small"></igx-avatar>
-            <igx-avatar [src]="player.country | countrySVG" shape="circle" size="small" [title]="player.country" class="country-badge-small"></igx-avatar> -->
-          </div>
-          <h3 igxCardHeaderSubtitle>{{player.team}}</h3>
-        </igx-card-header>
-        <igx-card-content>
-          <p>{{player.source}}</p>
-        </igx-card-content>
-      </igx-card>
+      @for (player of qualifiedPlayers; track player.name) {
+        <igx-card>
+          <igx-card-media>
+            <img [src]="player.image" alt="Player Avatar" />
+          </igx-card-media>
+          <igx-card-header>
+            <div igxCardHeaderTitle>
+              <span>{{player.name}}</span>
+              @if (player.country !== 'TBA') {
+                <igx-avatar [src]="player.country | countrySVG" shape="circle" [title]="player.country" class="country-badge-small"></igx-avatar>
+              }
+              <!-- <igx-avatar [src]="player.race | sc2RaceThumb" shape="circle" [title]="player.race" class="country-badge-small"></igx-avatar>
+              <igx-avatar [src]="player.country | countrySVG" shape="circle" size="small" [title]="player.country" class="country-badge-small"></igx-avatar> -->
+            </div>
+            <h3 igxCardHeaderSubtitle>{{player.team}}</h3>
+          </igx-card-header>
+          <igx-card-content>
+            <p>{{player.source}}</p>
+          </igx-card-content>
+        </igx-card>
+      }
     </div>
   </div>
 
   <div id="qualifiers" class="content-container-row">
     <h2 i18n>Talent</h2>
     <div class="card-wrapper">
-      <igx-card *ngFor="let caster of talent">
-        <igx-card-media>
-          <img [src]="caster.image" alt="Player Avatar" />
-        </igx-card-media>
-        <igx-card-header>
-          <div igxCardHeaderTitle>
-            <span>{{caster.name}}</span>
-            <igx-avatar [src]="caster.country | countrySVG" *ngIf="caster.country !== 'TBA'" shape="circle" [title]="caster.country" class="country-badge-small"></igx-avatar>
-            <!-- <igx-avatar [src]="player.race | sc2RaceThumb" shape="circle" [title]="player.race" class="country-badge-small"></igx-avatar>
-            <igx-avatar [src]="player.country | countrySVG" shape="circle" size="small" [title]="player.country" class="country-badge-small"></igx-avatar> -->
-          </div>
-          <h3 igxCardHeaderSubtitle>{{caster.role}}</h3>
-        </igx-card-header>
-      </igx-card>
+      @for (caster of talent; track caster.name) {
+        <igx-card>
+          <igx-card-media>
+            <img [src]="caster.image" alt="Player Avatar" />
+          </igx-card-media>
+          <igx-card-header>
+            <div igxCardHeaderTitle>
+              <span>{{caster.name}}</span>
+              @if (caster.country !== 'TBA') {
+                <igx-avatar [src]="caster.country | countrySVG" shape="circle" [title]="caster.country" class="country-badge-small"></igx-avatar>
+              }
+              <!-- <igx-avatar [src]="player.race | sc2RaceThumb" shape="circle" [title]="player.race" class="country-badge-small"></igx-avatar>
+              <igx-avatar [src]="player.country | countrySVG" shape="circle" size="small" [title]="player.country" class="country-badge-small"></igx-avatar> -->
+            </div>
+            <h3 igxCardHeaderSubtitle>{{caster.role}}</h3>
+          </igx-card-header>
+        </igx-card>
+      }
     </div>
   </div>
 
@@ -262,10 +276,10 @@
     <igx-divider></igx-divider>
     <h2 id="partners" i18n>Partners</h2>
     <div class="horizontal-center">
-      <a href="https://visitstarazagora.bg" i18n-title title="Visit Stara Zagora" target="_blank" rel="noopener">
+      <a routerLink="/partners/visit-stara-zagora" i18n-title title="Visit Stara Zagora">
         <img ngSrc="/assets/partners/visit-stara-zagora.png" width="519" height="330" i18n-alt alt="Visit Stara Zagora" class="partner gold" />
       </a>
-      <a href="https://techhub.bg/" title="TechHub.bg" target="_blank" rel="noopener">
+      <a routerLink="/partners/techhub" title="TechHub.bg">
         <img ngSrc="/assets/partners/Logo_Techhub_white.png" width="512" height="512" alt="TechHub.bg" class="partner gold" />
       </a>
     </div>
@@ -282,7 +296,7 @@
       <a href="https://www.starazagora.bg/" i18n-title title="Stara Zagora is a 6000+ year-old city in the center of Bulgaria. We partner with Stara Zagora Municipality for the Bellum Gens Elite - Stara Zagora premier esports event!" target="_blank" rel="noopener">
         <img ngSrc="/assets/partners/logo-stz.png" width="384" height="134" i18n-alt alt="Stara Zagora is a 6000+ year-old city in the center of Bulgaria. We partner with Stara Zagora Municipality for the Bellum Gens Elite - Stara Zagora premier esports event!" class="partner logistics" />
       </a>
-      <a href="https://bulstream.com/" title="Bulstream" target="_blank" rel="noopener">
+      <a routerLink="/partners/bulstream" title="Bulstream">
         <img ngSrc="/assets/partners/bulstream.png" width="512" height="512" alt="Bulstream" class="partner logistics" />
       </a>
     </div>
