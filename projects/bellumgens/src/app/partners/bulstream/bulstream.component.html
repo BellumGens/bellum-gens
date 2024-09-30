@@ -1,26 +1,26 @@
-<igx-card [horizontal]="true" elevated>
-  <igx-card-media width="550px">
-      <img ngSrc="/assets/partners/Sponsors-bulstream.png" width="1080" height="1080" />
+<igx-card [horizontal]="horizontal" elevated>
+  <igx-card-media [width]="mediaWidth">
+    <img ngSrc="/assets/partners/Sponsors-bulstream.png" width="1080" height="1080" />
   </igx-card-media>
 
   <div igxLayout igxLayoutDir="column" igxFlex [igxFlexGrow]="1">
-      <igx-card-header>
-          <h5 igxCardHeaderTitle>BulStream</h5>
-          <a href="https://bulstream.com" target="_blank">https://bulstream.com</a>
-      </igx-card-header>
+    <igx-card-header>
+      <h5 igxCardHeaderTitle>BulStream</h5>
+      <a href="https://bulstream.com" target="_blank">https://bulstream.com</a>
+    </igx-card-header>
 
-      <igx-card-content>
-        <p i18n>🎉We are thrilled to announce that BulStream is the official production partner of Bellum Gens Elite Stara Zagora! 🏆 BulStream has exclusively secured production for all events hosted by Bellum Gens - Esports Business League and Bellum Gens Elite.</p>
-        <p i18n>With their world-class production capabilities and exceptional live streaming services, BulStream is dedicated to delivering the highest quality esports experience to all viewers. Get ready for an unparalleled esports journey! 🎮✨</p>
-        <p i18n>Together, we aim to achieve top-tier production quality and deliver the ultimate esports experience for both players and audiences! 🚀</p>
-      </igx-card-content>
+    <igx-card-content>
+      <p i18n>🎉We are thrilled to announce that BulStream is the official production partner of Bellum Gens Elite Stara Zagora! 🏆 BulStream has exclusively secured production for all events hosted by Bellum Gens - Esports Business League and Bellum Gens Elite.</p>
+      <p i18n>With their world-class production capabilities and exceptional live streaming services, BulStream is dedicated to delivering the highest quality esports experience to all viewers. Get ready for an unparalleled esports journey! 🎮✨</p>
+      <p i18n>Together, we aim to achieve top-tier production quality and deliver the ultimate esports experience for both players and audiences! 🚀</p>
+    </igx-card-content>
 
-      <igx-card-actions [vertical]="false">
-        @for (item of social; track item.name) {
-          <a igxIconButton igxRipple igxEnd [href]="item.url" target="_blank" [title]="item.url">
-            <igx-icon family="login-icons" [name]="item.icon"></igx-icon>
-          </a>
-        }
-      </igx-card-actions>
+    <igx-card-actions [vertical]="false">
+      @for (item of social; track item.name) {
+        <a igxIconButton igxRipple igxEnd [href]="item.url" target="_blank" [title]="item.url">
+          <igx-icon family="login-icons" [name]="item.icon"></igx-icon>
+        </a>
+      }
+    </igx-card-actions>
   </div>
 </igx-card>
