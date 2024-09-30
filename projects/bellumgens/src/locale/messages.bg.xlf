@@ -1026,6 +1026,78 @@
           <context context-type="linenumber">7,8</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="8609462641858243755" datatype="html">
+        <source>🎉We are thrilled to announce that BulStream is the official production partner of Bellum Gens Elite Stara Zagora! 🏆 BulStream has exclusively secured production for all events hosted by Bellum Gens - Esports Business League and Bellum Gens Elite.</source>
+        <target>🎉Въодушевени сме да обявим, че BulStream е официалният продукционен партньор на Bellum Gens Elite Стара Загора! 🏆 BulStream ексклузивно осигурява продукцията за всички събития, организирани от Bellum Gens - Esports Business League и Bellum Gens Elite.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/partners/bulstream/bulstream.component.html</context>
+          <context context-type="linenumber">13,14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5026337626732271219" datatype="html">
+        <source>With their world-class production capabilities and exceptional live streaming services, BulStream is dedicated to delivering the highest quality esports experience to all viewers. Get ready for an unparalleled esports journey! 🎮✨</source>
+        <target>Със своите продукционни възможности от световен клас и изключителни услуги за живо предаване, BulStream се стреми да достави най-висококачественото преживяване на електронни спортове на всички зрители. Подгответе се за неповторимо пътешествие в електронните спортове! 🎮✨</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/partners/bulstream/bulstream.component.html</context>
+          <context context-type="linenumber">14,15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6200895417428519168" datatype="html">
+        <source>Together, we aim to achieve top-tier production quality and deliver the ultimate esports experience for both players and audiences! 🚀</source>
+        <target>Заедно, ние се стремим да постигнем продукционно качество от най-висока класа и да доставим най-доброто преживяване на електронни спортове както за играчите, така и за зрителите! 🚀</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/partners/bulstream/bulstream.component.html</context>
+          <context context-type="linenumber">15,18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5506180627376048896" datatype="html">
+        <source>We are thrilled to announce a 3-year partnership between Bellum Gens Elite Stara Zagora and TechHub.bg! 🤝</source>
+        <target>Въодушевени сме да обявим 3-годишно партньорство между Bellum Gens Elite Стара Загора и TechHub.bg! 🤝</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/partners/techhub/techhub.component.html</context>
+          <context context-type="linenumber">13,14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="458663560330478516" datatype="html">
+        <source>TechHub.bg makes tech shopping both easy and inspiring! With a wide range of high-quality products for home and office, they build a trusted community of enthusiasts and professionals. Your satisfaction is their top priority – discover the difference with TechHub.bg!</source>
+        <target>TechHub.bg прави пазаруването на техника лесно и вдъхновяващо! С широка гама от висококачествени продукти за дома и офиса, те създават доверена общност от ентусиасти и професионалисти. Вашето удовлетворение е тяхната първа грижа - открийте разликата с TechHub.bg!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/partners/techhub/techhub.component.html</context>
+          <context context-type="linenumber">14,15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3516336824381943618" datatype="html">
+        <source>Together, we are committed to fostering the growth and development of esports in our region. This collaboration will bring new opportunities, events, and initiatives to support our vibrant gaming community. 🎮✨</source>
+        <target>Заедно, ние сме посветени на насърчаването на растежа и развитието на електронните спортове в нашия регион. Тази колаборация ще донесе нови възможности, събития и инициативи, за да подкрепим нашата динамична игрова общност. 🎮✨</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/partners/techhub/techhub.component.html</context>
+          <context context-type="linenumber">15,18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2652114921227048505" datatype="html">
+        <source>🌟We are thrilled to present Visit Stara Zagora as the main official partner of Bellum Gens Elite Stara Zagora! This partnership marks a significant step forward in enhancing the development of esports in Bulgaria and raising awareness of Stara Zagora as a premier esports destination in the country.🌟</source>
+        <target>🌟Въодушевени сме да представим Visit Stara Zagora като основен официален партньор на Bellum Gens Elite Стара Загора! Това партньорство е значителна стъпка напред в подобряването на развитието на електронните спортове в България и повишаването на осведомеността за Стара Загора като водеща дестинация за електронни спортове в страната.🌟</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/partners/visit-stara-zagora/visit-stara-zagora.component.html</context>
+          <context context-type="linenumber">13,14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="366681784649161152" datatype="html">
+        <source>Stara Zagora is a real treasure trove for researchers. Here you can walk around the home of people who lived 8,000 years ago, walk along a fully preserved ancient street of the Roman city of Augusta Trayana, feel the spirit of the Renaissance and embark on many other exploratory missions. The city is extremely convenient for visiting and walking with an organized group.</source>
+        <target>Стара Загора е истинско съкровище за изследователите. Тук можете да се разхождате из дома на хора, които са живели преди 8 000 години, да се разхождате по напълно запазена древна улица на римския град Августа Траяна, да усетите духа на Възраждането и да се отправите на много други изследователски мисии. Градът е изключително удобен за посещение и разходка с организирана група.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/partners/visit-stara-zagora/visit-stara-zagora.component.html</context>
+          <context context-type="linenumber">14,15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="252067071493449052" datatype="html">
+        <source>Together, we aim to create a vibrant esports community and provide unparalleled opportunities for gamers and fans alike. 🎮</source>
+        <target>Заедно, ние се стремим да създадем динамична общност на електронните спортове и да предоставим безпрецедентни възможности както за геймърите, така и за феновете. 🎮</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/partners/visit-stara-zagora/visit-stara-zagora.component.html</context>
+          <context context-type="linenumber">15,18</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="5821155013101067419" datatype="html">
         <source>Steam CS:GO player profile not found...</source>
         <target>Steam CS:GO профилът не е намерен...</target>
