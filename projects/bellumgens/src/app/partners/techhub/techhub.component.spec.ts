@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TechhubComponent } from './techhub.component';
 import { RouterTestingModule } from '@angular/router/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('TechhubComponent', () => {
   let component: TechhubComponent;
@@ -8,7 +9,7 @@ describe('TechhubComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule, TechhubComponent],
+      imports: [RouterTestingModule, NoopAnimationsModule, TechhubComponent],
     }).compileComponents();
   });
 

@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { VisitStaraZagoraComponent } from './visit-stara-zagora.component';
 import { RouterTestingModule } from '@angular/router/testing';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('VisitStaraZagoraComponent', () => {
   let component: VisitStaraZagoraComponent;
@@ -8,7 +9,7 @@ describe('VisitStaraZagoraComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [RouterTestingModule, VisitStaraZagoraComponent],
+      imports: [RouterTestingModule, NoopAnimationsModule, VisitStaraZagoraComponent],
     })
     .compileComponents();
   });
