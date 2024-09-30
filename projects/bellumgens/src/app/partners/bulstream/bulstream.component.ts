@@ -2,12 +2,12 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { BaseDirective } from '../../base/base.component';
 
 @Component({
-  selector: 'app-techhub',
+  selector: 'app-bulstream',
   standalone: true,
   imports: [
   ],
-  templateUrl: './techhub.component.html',
-  styleUrl: './techhub.component.scss',
+  templateUrl: './bulstream.component.html',
+  styleUrl: './bulstream.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TechhubComponent extends BaseDirective { }
+export class BulstreamComponent extends BaseDirective { }
