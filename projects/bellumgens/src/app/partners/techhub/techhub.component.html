@@ -17,7 +17,7 @@
 
       <igx-card-actions [vertical]="false">
         @for (item of social; track item.name) {
-          <a igxIconButton igxRipple igxEnd [href]="item.url" target="_blank">
+          <a igxIconButton igxRipple igxEnd [href]="item.url" target="_blank" [title]="item.url">
             <igx-icon family="login-icons" [name]="item.icon"></igx-icon>
           </a>
         }

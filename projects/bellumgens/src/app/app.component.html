@@ -1,70 +1,66 @@
 <div igxLayout>
   <igx-nav-drawer [pinThreshold]="1600" id="navigation" #drawer>
     <ng-template igxDrawer>
-      <nav>
-        <span igxDrawerItem [isHeader]="true">Bellum Gens</span>
-        <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="team/myteams">
-          <igx-icon>people</igx-icon>
-          <span i18n>My Teams</span>
-          <igx-badge class="notifications-badge" *ngIf="teams?.length > 0" [value]="teams.length" type="info"></igx-badge>
-        </span>
-        <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="notifications">
-          <igx-icon>notifications</igx-icon>
-          <span i18n>Notifications</span>
-          <igx-badge class="notifications-badge" *ngIf="unreadNotifications > 0" [value]="unreadNotifications" type="info"></igx-badge>
-        </span>
-        <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="strategies/user">
-          <igx-icon>person</igx-icon>
-          <span i18n>My Strategies</span>
-        </span>
-        <igx-divider *ngIf="authUser"></igx-divider>
-        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="bellumgenselite">
-          <igx-icon>emoji_events</igx-icon>
-          <span i18n>Events</span>
-        </span>
-        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="strategies/public">
-          <igx-icon>playlist_add_check</igx-icon>
-          <span i18n>CS:GO Strategies</span>
-        </span>
-        <span igxDrawerItem igxRipple routerLink="/" fragment="partners">
-          <igx-icon>people_alt</igx-icon>
-          <span i18n>Partners</span>
-        </span>
-        <span igxDrawerItem igxRipple routerLink="/" fragment="aboutus">
-          <igx-icon>chat</igx-icon>
-          <span i18n>Contacts</span>
-        </span>
-      </nav>
+      <span igxDrawerItem [isHeader]="true">Bellum Gens</span>
+      <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="team/myteams">
+        <igx-icon>people</igx-icon>
+        <span i18n>My Teams</span>
+        <igx-badge class="notifications-badge" *ngIf="teams?.length > 0" [value]="teams.length" type="info"></igx-badge>
+      </span>
+      <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="notifications">
+        <igx-icon>notifications</igx-icon>
+        <span i18n>Notifications</span>
+        <igx-badge class="notifications-badge" *ngIf="unreadNotifications > 0" [value]="unreadNotifications" type="info"></igx-badge>
+      </span>
+      <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="strategies/user">
+        <igx-icon>person</igx-icon>
+        <span i18n>My Strategies</span>
+      </span>
+      <igx-divider *ngIf="authUser"></igx-divider>
+      <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="bellumgenselite">
+        <igx-icon>emoji_events</igx-icon>
+        <span i18n>Events</span>
+      </span>
+      <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="strategies/public">
+        <igx-icon>playlist_add_check</igx-icon>
+        <span i18n>CS:GO Strategies</span>
+      </span>
+      <span igxDrawerItem igxRipple routerLink="/" fragment="partners">
+        <igx-icon>people_alt</igx-icon>
+        <span i18n>Partners</span>
+      </span>
+      <span igxDrawerItem igxRipple routerLink="/" fragment="aboutus">
+        <igx-icon>chat</igx-icon>
+        <span i18n>Contacts</span>
+      </span>
     </ng-template>
 
     <ng-template igxDrawerMini *ngIf="drawer.pin">
-      <nav>
-        <span igxDrawerItem [isHeader]="true">&nbsp;</span>
-        <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="team/myteams" i18n-title title="My Teams">
-          <igx-icon>people</igx-icon>
-          <igx-badge class="notifications-badge" *ngIf="teams?.length > 0" [value]="teams.length" type="info"></igx-badge>
-        </span>
-        <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="notifications" i18n-title title="Notifications">
-          <igx-icon>notifications</igx-icon>
-          <igx-badge class="notifications-badge" *ngIf="unreadNotifications > 0" [value]="unreadNotifications" type="info"></igx-badge>
-        </span>
-        <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="strategies/user" i18n-title title="My Strategies">
-          <igx-icon>person</igx-icon>
-        </span>
-        <igx-divider *ngIf="authUser"></igx-divider>
-        <span igxDrawerItem igxRipple  routerLinkActive="igx-nav-drawer__item--active" routerLink="bellumgenselite" i18n-title title="Events">
-          <igx-icon>emoji_events</igx-icon>
-        </span>
-        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="strategies/public" i18n-title title="CS:GO Strategies">
-          <igx-icon>playlist_add_check</igx-icon>
-        </span>
-        <span igxDrawerItem igxRipple routerLink="/" fragment="partners" i18n-title title="Partners">
-          <igx-icon>people_alt</igx-icon>
-        </span>
-        <span igxDrawerItem igxRipple routerLink="/" fragment="aboutus" i18n-title title="About us">
-          <igx-icon>chat</igx-icon>
-        </span>
-      </nav>
+      <span igxDrawerItem [isHeader]="true">&nbsp;</span>
+      <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="team/myteams" i18n-title title="My Teams">
+        <igx-icon>people</igx-icon>
+        <igx-badge class="notifications-badge" *ngIf="teams?.length > 0" [value]="teams.length" type="info"></igx-badge>
+      </span>
+      <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="notifications" i18n-title title="Notifications">
+        <igx-icon>notifications</igx-icon>
+        <igx-badge class="notifications-badge" *ngIf="unreadNotifications > 0" [value]="unreadNotifications" type="info"></igx-badge>
+      </span>
+      <span igxDrawerItem igxRipple *ngIf="authUser" routerLinkActive="igx-nav-drawer__item--active" routerLink="strategies/user" i18n-title title="My Strategies">
+        <igx-icon>person</igx-icon>
+      </span>
+      <igx-divider *ngIf="authUser"></igx-divider>
+      <span igxDrawerItem igxRipple  routerLinkActive="igx-nav-drawer__item--active" routerLink="bellumgenselite" i18n-title title="Events">
+        <igx-icon>emoji_events</igx-icon>
+      </span>
+      <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="strategies/public" i18n-title title="CS:GO Strategies">
+        <igx-icon>playlist_add_check</igx-icon>
+      </span>
+      <span igxDrawerItem igxRipple routerLink="partners" i18n-title title="Partners">
+        <igx-icon>people_alt</igx-icon>
+      </span>
+      <span igxDrawerItem igxRipple routerLink="/" fragment="aboutus" i18n-title title="About us">
+        <igx-icon>chat</igx-icon>
+      </span>
     </ng-template>
   </igx-nav-drawer>
 

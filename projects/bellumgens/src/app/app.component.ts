@@ -158,7 +158,7 @@ export class AppComponent implements OnInit {
 
   private initSvgIcons() {
     const complogos = [discord, steam, twitch, battlenet, facebook, twitter, instagram, linkedin, tiktok];
-    complogos.forEach(c => this.iconService.addSvgIconFromText(c.name, c.value, 'login-icons'));
+    complogos.forEach(c => this.iconService.addSvgIconFromText(c.name, c.value, 'login-icons', true));
     this.iconService.addSvgIconFromText(heartCare.name, heartCare.value, 'health-icons');
 
     this.iconService.addSvgIcon('bge-white', '/assets/login/bge-white-2024.svg', 'partners');

@@ -15,6 +15,7 @@ export const routes: Routes = [
       twitterDescription: 'Bellum Gens partners and sponsors are the best in the business. Check out who supports us.'
     },
     children: [
+      { path: '', redirectTo: 'techhub', pathMatch: 'full' },
       {
         path: 'techhub', component: TechhubComponent, data: {
           title: 'Bellum Gens Partners: TechHub.bg',

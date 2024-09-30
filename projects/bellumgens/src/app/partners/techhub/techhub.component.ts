@@ -41,5 +41,5 @@ export class TechhubComponent extends BaseDirective {
       icon: 'tiktok',
       url: 'https://www.tiktok.com/@techhub.bg'
     }
-  ]
+  ];
 }
