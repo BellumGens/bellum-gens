@@ -33,8 +33,8 @@
     </igx-tab-item>
 
     <igx-tab-item *ngIf="isMember"
-                  routerLinkActive #rla2="routerLinkActive"
-                  [selected]="rla2.isActive">
+                  routerLinkActive #rla3="routerLinkActive"
+                  [selected]="rla3.isActive">
       <igx-tab-header routerLink="strategies">
         <igx-icon igxPrefix>playlist_add_check</igx-icon>
         <div igxTabHeaderLabel i18n>Strategies</div>
@@ -42,8 +42,8 @@
     </igx-tab-item>
 
     <igx-tab-item *ngIf="isAdmin"
-                  routerLinkActive #rla3="routerLinkActive"
-                  [selected]="rla3.isActive">
+                  routerLinkActive #rla4="routerLinkActive"
+                  [selected]="rla4.isActive">
       <igx-tab-header routerLink="preferences">
         <igx-icon igxPrefix>settings</igx-icon>
         <div igxTabHeaderLabel i18n>Settings</div>

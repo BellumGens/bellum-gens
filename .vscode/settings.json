@@ -3,5 +3,13 @@
 	"editor.insertSpaces": true,
   "editor.tabSize": 2,
   "workbench.colorCustomizations": {},
-  "explorer.compactFolders": false
+  "explorer.compactFolders": false,
+  "angular-schematics.schematicsDefaultOptions": {
+    "angular-component": {
+      "skipDisplayBlock": true
+    },
+    "angular-*": {
+      "externalTemplate": true
+    }
+  }
 }

@@ -1,9 +1,9 @@
-import { DatePipe, NgFor, NgIf, NgOptimizedImage } from '@angular/common';
+import { DatePipe, NgOptimizedImage } from '@angular/common';
 import { Component } from '@angular/core';
 import { IGX_CARD_DIRECTIVES, IgxAvatarComponent, IgxButtonDirective, IgxDividerDirective, IgxIconComponent } from '@infragistics/igniteui-angular';
 import { BaseDirective } from '../base/base.component';
 import { Meta, Title } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CountrySVGPipe } from '../../../../common/src/lib/pipes/country-svg.pipe';
 import { Sc2RaceThumbPipe } from '../../../../common/src/lib/pipes/sc2-race-thumb.pipe';
 
@@ -20,8 +20,7 @@ import { Sc2RaceThumbPipe } from '../../../../common/src/lib/pipes/sc2-race-thum
     NgOptimizedImage,
     CountrySVGPipe,
     Sc2RaceThumbPipe,
-    NgFor,
-    NgIf
+    RouterLink
   ],
   templateUrl: './events.component.html',
   styleUrls: ['./events.component.scss']

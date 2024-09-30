@@ -1,0 +1,19 @@
+:host::ng-deep {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 12px;
+
+  igx-card {
+    max-width: 1280px;
+  }
+
+  igx-icon {
+    --size: 40px;
+  }
+
+  @media screen and (max-width: 768px) {
+    .partner-image {
+      width: 83px;
+    }
+  }
+}

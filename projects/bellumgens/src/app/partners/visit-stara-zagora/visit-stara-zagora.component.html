@@ -1,0 +1,26 @@
+<igx-card [horizontal]="horizontal" elevated>
+  <igx-card-media [width]="mediaWidth">
+    <img ngSrc="/assets/partners/Sponsors-visit-stz.png" width="1080" height="1080" />
+  </igx-card-media>
+
+  <div igxLayout igxLayoutDir="column" igxFlex [igxFlexGrow]="1">
+    <igx-card-header>
+      <h5 igxCardHeaderTitle>Visit Stara Zagora</h5>
+      <a href="https://visitstarazagora.bg/" target="_blank">https://visitstarazagora.bg/</a>
+    </igx-card-header>
+
+    <igx-card-content>
+      <p i18n>🌟We are thrilled to present Visit Stara Zagora as the main official partner of Bellum Gens Elite Stara Zagora! This partnership marks a significant step forward in enhancing the development of esports in Bulgaria and raising awareness of Stara Zagora as a premier esports destination in the country.🌟</p>
+      <p i18n>Stara Zagora is a real treasure trove for researchers. Here you can walk around the home of people who lived 8,000 years ago, walk along a fully preserved ancient street of the Roman city of Augusta Trayana, feel the spirit of the Renaissance and embark on many other exploratory missions. The city is extremely convenient for visiting and walking with an organized group.</p>
+      <p i18n>Together, we aim to create a vibrant esports community and provide unparalleled opportunities for gamers and fans alike. 🎮</p>
+    </igx-card-content>
+
+    <igx-card-actions [vertical]="false">
+      @for (item of social; track item.name) {
+        <a igxIconButton igxRipple igxEnd [href]="item.url" target="_blank" [title]="item.url">
+          <igx-icon family="login-icons" [name]="item.icon"></igx-icon>
+        </a>
+      }
+    </igx-card-actions>
+  </div>
+</igx-card>
