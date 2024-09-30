@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, HostListener, Inject, PLATFORM_ID, LOCALE_ID } from '@angular/core';
-import { isPlatformBrowser, NgIf } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 import { RouterLinkActive, RouterLink, RouterOutlet } from '@angular/router';
 
 import {
@@ -56,43 +56,42 @@ import { battlenet, discord, facebook, heartCare, instagram, linkedin, steam, ti
 import { IgxResourceStringsBG } from 'igniteui-angular-i18n';
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss'],
-    standalone: true,
-    imports: [
-      IgxLayoutDirective,
-      IgxNavigationDrawerComponent,
-      IgxNavDrawerTemplateDirective,
-      IgxNavDrawerItemDirective,
-      NgIf,
-      IgxRippleDirective,
-      RouterLinkActive,
-      RouterLink,
-      IgxIconComponent,
-      IgxBadgeComponent,
-      IgxDividerDirective,
-      IgxNavDrawerMiniTemplateDirective,
-      IgxFlexDirective,
-      IgxNavbarComponent,
-      IgxNavbarActionDirective,
-      IgxAvatarComponent,
-      IgxInputGroupComponent,
-      IgxPrefixDirective,
-      IgxLabelDirective,
-      IgxInputDirective,
-      IgxSuffixDirective,
-      LanguagesComponent,
-      LoginComponent,
-      IgxBannerComponent,
-      IgxBannerActionsDirective,
-      IgxButtonDirective,
-      SearchComponent,
-      IgxDropDownComponent,
-      QuickSearchComponent,
-      SuccessErrorComponent,
-      RouterOutlet
-    ]
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
+  standalone: true,
+  imports: [
+    IgxLayoutDirective,
+    IgxNavigationDrawerComponent,
+    IgxNavDrawerTemplateDirective,
+    IgxNavDrawerItemDirective,
+    IgxRippleDirective,
+    RouterLinkActive,
+    RouterLink,
+    IgxIconComponent,
+    IgxBadgeComponent,
+    IgxDividerDirective,
+    IgxNavDrawerMiniTemplateDirective,
+    IgxFlexDirective,
+    IgxNavbarComponent,
+    IgxNavbarActionDirective,
+    IgxAvatarComponent,
+    IgxInputGroupComponent,
+    IgxPrefixDirective,
+    IgxLabelDirective,
+    IgxInputDirective,
+    IgxSuffixDirective,
+    LanguagesComponent,
+    LoginComponent,
+    IgxBannerComponent,
+    IgxBannerActionsDirective,
+    IgxButtonDirective,
+    SearchComponent,
+    IgxDropDownComponent,
+    QuickSearchComponent,
+    SuccessErrorComponent,
+    RouterOutlet
+  ]
 })
 export class AppComponent implements OnInit {
   @ViewChild('quickSearch', { static: true }) public quickSearchDropDown: IgxDropDownComponent;

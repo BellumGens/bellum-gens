@@ -14,24 +14,22 @@ import {
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { BaseDirective } from '../../base/base.component';
 import { Title, Meta } from '@angular/platform-browser';
-import { NgIf, NgFor } from '@angular/common';
+
 
 @Component({
-    selector: 'app-team-details',
-    templateUrl: './team-details.component.html',
-    styleUrls: ['./team-details.component.scss'],
-    standalone: true,
-    imports: [
-      NgIf,
-      AvailabilityComponent,
-      IGX_CARD_DIRECTIVES,
-      NgFor,
-      IgxAvatarComponent,
-      IGX_DRAG_DROP_DIRECTIVES,
-      RouterLink,
-      ConfirmComponent,
-      CountrySVGPipe
-    ]
+  selector: 'app-team-details',
+  templateUrl: './team-details.component.html',
+  styleUrls: ['./team-details.component.scss'],
+  standalone: true,
+  imports: [
+    AvailabilityComponent,
+    IGX_CARD_DIRECTIVES,
+    IgxAvatarComponent,
+    IGX_DRAG_DROP_DIRECTIVES,
+    RouterLink,
+    ConfirmComponent,
+    CountrySVGPipe
+  ]
 })
 export class TeamDetailsComponent extends BaseDirective {
   @ViewChildren(IgxAvatarComponent, { read: ElementRef }) public emptyRoles: QueryList<ElementRef>;

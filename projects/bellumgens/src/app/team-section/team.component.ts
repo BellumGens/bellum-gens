@@ -1,5 +1,5 @@
 import { Component} from '@angular/core';
-import { NgIf } from '@angular/common';
+
 import { ActivatedRoute, RouterLinkActive, RouterLink, RouterOutlet } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
 import {
@@ -13,19 +13,18 @@ import { IgxIconService, IgxIconComponent, IGX_TABS_DIRECTIVES, IgxAvatarCompone
 import { TeamApplicationComponent } from './team-application/team-application.component';
 
 @Component({
-    templateUrl: './team.component.html',
-    styleUrls: ['./team.component.scss'],
-    standalone: true,
-    imports: [
-      IgxAvatarComponent,
-      NgIf,
-      TeamApplicationComponent,
-      IgxIconComponent,
-      IGX_TABS_DIRECTIVES,
-      RouterLinkActive,
-      RouterLink,
-      RouterOutlet
-    ]
+  templateUrl: './team.component.html',
+  styleUrls: ['./team.component.scss'],
+  standalone: true,
+  imports: [
+    IgxAvatarComponent,
+    TeamApplicationComponent,
+    IgxIconComponent,
+    IGX_TABS_DIRECTIVES,
+    RouterLinkActive,
+    RouterLink,
+    RouterOutlet
+  ]
 })
 export class TeamComponent extends BaseDirective {
   public authUser: ApplicationUser;

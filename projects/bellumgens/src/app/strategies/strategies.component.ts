@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { NgFor, NgIf, NgClass, DatePipe, NgOptimizedImage } from '@angular/common';
+import { NgClass, DatePipe, NgOptimizedImage } from '@angular/common';
 import {
   BellumgensApiService,
   CSGOStrategy, VoteDirection,
@@ -50,38 +50,36 @@ import { LoadingComponent } from '../../../../common/src/lib/loading/loading.com
     styleUrls: ['./strategies.component.scss'],
     standalone: true,
     imports: [
-      NgOptimizedImage,
-      NgFor,
-      NgIf,
-      NgClass,
-      DatePipe,
-      RouterLink,
-      FormsModule,
-      IgxButtonDirective,
-      IgxRippleDirective,
-      IGX_CHIPS_DIRECTIVES,
-      IGX_SELECT_DIRECTIVES,
-      IGX_INPUT_GROUP_DIRECTIVES,
-      LoadingComponent,
-      IGX_CARD_DIRECTIVES,
-      IgxIconComponent,
-      IgxToggleActionDirective,
-      IgxBadgeComponent,
-      IGX_DROP_DOWN_DIRECTIVES,
-      IgxAvatarComponent,
-      NewStrategyComponent,
-      ConfirmComponent,
-      CSGOMapnamePipe,
-      ActiveDutyMapsPipe,
-      TruncateTextPipe,
-      SafeVideoLinkPipe,
-      IsVideoPipe,
-      HasVotedPipe,
-      VotesPipe,
-      IsStratOwnerPipe,
-      SideStratsPipe,
-      StratFilterPipe
-    ]
+    NgOptimizedImage,
+    NgClass,
+    DatePipe,
+    RouterLink,
+    FormsModule,
+    IgxButtonDirective,
+    IgxRippleDirective,
+    IGX_CHIPS_DIRECTIVES,
+    IGX_SELECT_DIRECTIVES,
+    IGX_INPUT_GROUP_DIRECTIVES,
+    LoadingComponent,
+    IGX_CARD_DIRECTIVES,
+    IgxIconComponent,
+    IgxToggleActionDirective,
+    IgxBadgeComponent,
+    IGX_DROP_DOWN_DIRECTIVES,
+    IgxAvatarComponent,
+    NewStrategyComponent,
+    ConfirmComponent,
+    CSGOMapnamePipe,
+    ActiveDutyMapsPipe,
+    TruncateTextPipe,
+    SafeVideoLinkPipe,
+    IsVideoPipe,
+    HasVotedPipe,
+    VotesPipe,
+    IsStratOwnerPipe,
+    SideStratsPipe,
+    StratFilterPipe
+]
 })
 export class StrategiesComponent {
   public isEditor: boolean = null;

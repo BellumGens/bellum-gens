@@ -2,18 +2,28 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ALL_ROLES, ApiSearchService, ApplicationUser } from '../../../../../../common/src/public_api';
 import { BaseDirective } from '../../../base/base.component';
-import { IgxIconService, IgxCardModule, IgxAvatarModule, IgxProgressBarModule, IgxIconModule, IgxChipsModule } from '@infragistics/igniteui-angular';
+import { IgxIconService, IGX_CARD_DIRECTIVES, IgxAvatarComponent, IgxIconComponent, IGX_CHIPS_DIRECTIVES, IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular';
 import { Title, Meta } from '@angular/platform-browser';
 import { QueryParsedPipe } from '../../../pipes/query-parsed.pipe';
 import { LoadingComponent } from '../../../../../../common/src/lib/loading/loading.component';
-import { NgIf, NgFor, DecimalPipe } from '@angular/common';
+import { DecimalPipe } from '@angular/common';
 
 @Component({
-    selector: 'app-player-results',
-    templateUrl: './player-results.component.html',
-    styleUrls: ['./player-results.component.css'],
-    standalone: true,
-    imports: [NgIf, LoadingComponent, NgFor, IgxCardModule, RouterLink, IgxAvatarModule, IgxProgressBarModule, IgxIconModule, IgxChipsModule, DecimalPipe, QueryParsedPipe]
+  selector: 'app-player-results',
+  templateUrl: './player-results.component.html',
+  styleUrls: ['./player-results.component.css'],
+  standalone: true,
+  imports: [
+    LoadingComponent,
+    IGX_CARD_DIRECTIVES,
+    IgxCircularProgressBarComponent,
+    RouterLink,
+    IgxAvatarComponent,
+    IgxIconComponent,
+    IGX_CHIPS_DIRECTIVES,
+    DecimalPipe,
+    QueryParsedPipe
+  ]
 })
 export class PlayerResultsComponent extends BaseDirective {
   public players: ApplicationUser [];

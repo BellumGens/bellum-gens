@@ -14,17 +14,31 @@ import {
   ApiStrategiesService
 } from '../../../../../common/src/public_api';
 import { ActivatedRoute } from '@angular/router';
-import { IDropDroppedEventArgs, IgxIconService, IgxSelectModule, IgxInputGroupModule, IgxListModule, IgxCheckboxModule, IgxIconModule, IgxDragDropModule, IgxAvatarModule, IgxButtonGroupModule, IgxButtonModule, IgxRippleModule } from '@infragistics/igniteui-angular';
+import { IDropDroppedEventArgs, IgxIconService, IGX_SELECT_DIRECTIVES, IGX_INPUT_GROUP_DIRECTIVES, IGX_LIST_DIRECTIVES, IgxCheckboxComponent, IgxIconComponent, IGX_DRAG_DROP_DIRECTIVES, IgxAvatarComponent, IGX_BUTTON_GROUP_DIRECTIVES, IgxButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular';
 import { ConfirmComponent } from '../../../../../common/src/lib/confirm/confirm.component';
 import { FormsModule } from '@angular/forms';
-import { NgIf, NgFor, NgClass } from '@angular/common';
+import { NgClass } from '@angular/common';
 
 @Component({
-    selector: 'app-strategy-editor',
-    templateUrl: './strategy-editor.component.html',
-    styleUrls: ['./strategy-editor.component.scss'],
-    standalone: true,
-    imports: [NgIf, IgxSelectModule, FormsModule, IgxInputGroupModule, NgFor, IgxListModule, IgxCheckboxModule, NgClass, IgxIconModule, IgxDragDropModule, IgxAvatarModule, IgxButtonGroupModule, IgxButtonModule, IgxRippleModule, ConfirmComponent]
+  selector: 'app-strategy-editor',
+  templateUrl: './strategy-editor.component.html',
+  styleUrls: ['./strategy-editor.component.scss'],
+  standalone: true,
+  imports: [
+    IGX_SELECT_DIRECTIVES,
+    FormsModule,
+    IGX_INPUT_GROUP_DIRECTIVES,
+    IGX_LIST_DIRECTIVES,
+    IgxCheckboxComponent,
+    NgClass,
+    IgxIconComponent,
+    IGX_DRAG_DROP_DIRECTIVES,
+    IgxAvatarComponent,
+    IGX_BUTTON_GROUP_DIRECTIVES,
+    IgxButtonDirective,
+    IgxRippleDirective,
+    ConfirmComponent
+  ]
 })
 export class StrategyEditorComponent implements OnInit, OnDestroy {
   @ViewChild('board', { static: true }) public canvas: ElementRef;

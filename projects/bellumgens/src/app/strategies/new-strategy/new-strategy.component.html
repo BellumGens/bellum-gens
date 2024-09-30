@@ -4,18 +4,22 @@
     <igx-input-group>
       <label for="strategyName" igxLabel i18n>Title</label>
       <input #strategyName name="strategyName" id="strategyName" igxInput minlength="2" [required]="true" [(ngModel)]="newStrategy.title">
-      <igx-suffix *ngIf="strategyName.value.length > 0" (click)="newStrategy.title = null">
+      @if (strategyName.value.length > 0) {
+        <igx-suffix (click)="newStrategy.title = null">
           <igx-icon>clear</igx-icon>
-      </igx-suffix>
+        </igx-suffix>
+      }
     </igx-input-group>
 
     <igx-input-group>
       <label for="strategyDescription" igxLabel i18n>Description</label>
       <textarea #strategyDescription id="strategyDescription" name="strategyDescription" igxInput minlength="2" [required]="true" [(ngModel)]="newStrategy.description">
       </textarea>
-      <igx-suffix *ngIf="strategyDescription.value.length > 0" (click)="newStrategy.description = null">
+      @if (strategyDescription.value.length > 0) {
+        <igx-suffix (click)="newStrategy.description = null">
           <igx-icon>clear</igx-icon>
-      </igx-suffix>
+        </igx-suffix>
+      }
     </igx-input-group>
 
     <div class="horizontal-center space-between">
@@ -29,9 +33,11 @@
 
     <igx-select id="mapSelector" name="mapSelector" [(ngModel)]="newStrategy.map">
       <label for="mapSelector" igxLabel i18n>Map</label>
-      <igx-select-item *ngFor="let map of mapList" (click)="selectedMap = map" [value]="map.mapId">
-        {{ map.map }}
-      </igx-select-item>
+      @for (map of mapList; track map) {
+        <igx-select-item (click)="selectedMap = map" [value]="map.mapId">
+          {{ map.map }}
+        </igx-select-item>
+      }
     </igx-select>
 
     <igx-input-group>
@@ -40,23 +46,27 @@
       </igx-prefix>
       <label for="strategyUrl" igxLabel i18n>Link to a video/resource</label>
       <input #strategyUrl
-             name="strategyUrl"
-             id="strategyUrl"
-             igxInput
-             type="url"
-             pattern="^(?:http(s)?:\/\/)[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$"
-             [(ngModel)]="newStrategy.url" />
-      <igx-suffix *ngIf="strategyUrl.value.length > 0" (click)="newStrategy.url = null">
-          <igx-icon>clear</igx-icon>
-      </igx-suffix>
-    </igx-input-group>
+        name="strategyUrl"
+        id="strategyUrl"
+        igxInput
+        type="url"
+        pattern="^(?:http(s)?:\/\/)[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$"
+        [(ngModel)]="newStrategy.url" />
+        @if (strategyUrl.value.length > 0) {
+          <igx-suffix (click)="newStrategy.url = null">
+            <igx-icon>clear</igx-icon>
+          </igx-suffix>
+        }
+      </igx-input-group>
 
-    <iframe *ngIf="getVideoEmbedLink()" class="video-frame" [src]="newStrategy.url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      @if (getVideoEmbedLink()) {
+        <iframe class="video-frame" [src]="newStrategy.url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      }
 
-    <div class="row-wrapper">
-      <button type="button" igxButton="outlined" class="submit-button" [disabled]="strategyForm.invalid" (click)="createAndRedirect()" i18n>Editor</button>
-      <span class="separate" i18n>OR</span>
-      <button igxButton="outlined" igxRipple [disabled]="strategyForm.invalid || !newStrategy.url" class="submit-button" i18n>Submit</button>
-    </div>
-  </form>
-</igx-dialog>
+      <div class="row-wrapper">
+        <button type="button" igxButton="outlined" class="submit-button" [disabled]="strategyForm.invalid" (click)="createAndRedirect()" i18n>Editor</button>
+        <span class="separate" i18n>OR</span>
+        <button igxButton="outlined" igxRipple [disabled]="strategyForm.invalid || !newStrategy.url" class="submit-button" i18n>Submit</button>
+      </div>
+    </form>
+  </igx-dialog>

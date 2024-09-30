@@ -3,26 +3,30 @@
     <div>
       <label for="lineup" i18n>Teams looking for</label>
       <igx-radio-group class="search-role-group" id="lineup" name="role" [(ngModel)]="searchModel.role">
-        <igx-radio *ngFor="let slot of activeLineup" class="search-role" [value]="slot.role">{{ slot.roleName }}</igx-radio>
+        @for (slot of activeLineup; track slot.role) {
+          <igx-radio class="search-role" [value]="slot.role">{{ slot.roleName }}</igx-radio>
+        }
       </igx-radio-group>
     </div>
 
-    <div class="slider-holder" *ngIf="authUser">
-      <label for="overlap" i18n>Minimum hours overlap of availability</label>
-      <igx-slider name="scheduleOverlap"
-                  id="overlap"
-                  [step]="5"
-                  [minValue]="0"
-                  [maxValue]="40"
-                  [showTicks]="true"
-                  [primaryTicks]="5"
-                  [secondaryTicks]="1"
-                  [(ngModel)]="searchModel.scheduleOverlap">
-        <ng-template igxSliderTickLabel let-value>
-          {{ parseInt(value, 10) }}
-        </ng-template>
-      </igx-slider>
-    </div>
+    @if (authUser) {
+      <div class="slider-holder">
+        <label for="overlap" i18n>Minimum hours overlap of availability</label>
+        <igx-slider name="scheduleOverlap"
+          id="overlap"
+          [step]="5"
+          [minValue]="0"
+          [maxValue]="40"
+          [showTicks]="true"
+          [primaryTicks]="5"
+          [secondaryTicks]="1"
+          [(ngModel)]="searchModel.scheduleOverlap">
+          <ng-template igxSliderTickLabel let-value>
+            {{ parseInt(value, 10) }}
+          </ng-template>
+        </igx-slider>
+      </div>
+    }
   </div>
   <button class="search-button" igxButton="outlined" igxRipple>Search</button>
 </form>

@@ -6,18 +6,22 @@
       <h1 class="igx-card-header__title">{{ team?.teamName }}</h1>
       <h3 class="igx-card-header__subtitle">{{ team?.description }}</h3>
     </div>
-    <div *ngIf="!isMember && team?.teamId" class="horizontal-info__right">
-      <app-team-application [authUser]="authUser" [team]="team"></app-team-application>
-    </div>
-    <div *ngIf="isMember && team?.discord" class="horizontal-info__right">
-      <a [href]="team.discord" target="_blank" rel="noopener">
-        <igx-icon class="discord-icon" family="login-icons" name="discord-full-logo"></igx-icon>
-      </a>
-    </div>
+    @if (!isMember && team?.teamId) {
+      <div class="horizontal-info__right">
+        <app-team-application [authUser]="authUser" [team]="team"></app-team-application>
+      </div>
+    }
+    @if (isMember && team?.discord) {
+      <div class="horizontal-info__right">
+        <a [href]="team.discord" target="_blank" rel="noopener">
+          <igx-icon class="discord-icon" family="login-icons" name="discord-full-logo"></igx-icon>
+        </a>
+      </div>
+    }
   </div>
   <igx-tabs>
     <igx-tab-item routerLinkActive #rla1="routerLinkActive"
-                  [selected]="rla1.isActive">
+      [selected]="rla1.isActive">
       <igx-tab-header routerLink="details">
         <igx-icon igxPrefix>people_outline</igx-icon>
         <div igxTabHeaderLabel i18n>Details</div>
@@ -25,30 +29,34 @@
     </igx-tab-item>
 
     <igx-tab-item routerLinkActive #rla2="routerLinkActive"
-                  [selected]="rla2.isActive">
+      [selected]="rla2.isActive">
       <igx-tab-header routerLink="competitions">
         <igx-icon igxPrefix>sports_esports</igx-icon>
         <div igxTabHeaderLabel i18n>Competitions</div>
       </igx-tab-header>
     </igx-tab-item>
 
-    <igx-tab-item *ngIf="isMember"
-                  routerLinkActive #rla3="routerLinkActive"
-                  [selected]="rla3.isActive">
-      <igx-tab-header routerLink="strategies">
-        <igx-icon igxPrefix>playlist_add_check</igx-icon>
-        <div igxTabHeaderLabel i18n>Strategies</div>
-      </igx-tab-header>
-    </igx-tab-item>
+    @if (isMember) {
+      <igx-tab-item
+        routerLinkActive #rla3="routerLinkActive"
+        [selected]="rla3.isActive">
+        <igx-tab-header routerLink="strategies">
+          <igx-icon igxPrefix>playlist_add_check</igx-icon>
+          <div igxTabHeaderLabel i18n>Strategies</div>
+        </igx-tab-header>
+      </igx-tab-item>
+    }
 
-    <igx-tab-item *ngIf="isAdmin"
-                  routerLinkActive #rla4="routerLinkActive"
-                  [selected]="rla4.isActive">
-      <igx-tab-header routerLink="preferences">
-        <igx-icon igxPrefix>settings</igx-icon>
-        <div igxTabHeaderLabel i18n>Settings</div>
-      </igx-tab-header>
-    </igx-tab-item>
+    @if (isAdmin) {
+      <igx-tab-item
+        routerLinkActive #rla4="routerLinkActive"
+        [selected]="rla4.isActive">
+        <igx-tab-header routerLink="preferences">
+          <igx-icon igxPrefix>settings</igx-icon>
+          <div igxTabHeaderLabel i18n>Settings</div>
+        </igx-tab-header>
+      </igx-tab-item>
+    }
   </igx-tabs>
   <router-outlet></router-outlet>
 </div>

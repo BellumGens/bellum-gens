@@ -38,38 +38,36 @@ import { MapPoolComponent } from './map-pool/map-pool.component';
 import { AvailabilityComponent } from '../../../../common/src/lib/availability/availability.component';
 import { FormsModule } from '@angular/forms';
 import { LoadingComponent } from '../../../../common/src/lib/loading/loading.component';
-import { NgIf, NgFor, AsyncPipe } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
-    selector: 'app-player',
-    templateUrl: './player.component.html',
-    styleUrls: ['./player.component.scss'],
-    encapsulation: ViewEncapsulation.None,
-    standalone: true,
-    imports: [
-      NgIf,
-      LoadingComponent,
-      IgxAvatarComponent,
-      IgxButtonDirective,
-      IgxRippleDirective,
-      IgxToggleActionDirective,
-      IgxIconComponent,
-      IGX_DROP_DOWN_DIRECTIVES,
-      NgFor,
-      RouterLink,
-      IGX_SELECT_DIRECTIVES,
-      FormsModule,
-      IGX_CARD_DIRECTIVES,
-      IgxCircularProgressBarComponent,
-      AvailabilityComponent,
-      IGX_LIST_DIRECTIVES,
-      MapPoolComponent,
-      AsyncPipe,
-      CountrySVGPipe,
-      SteamCustomUrlPipe,
-      SortWeaponsPipe,
-      TopWeaponAltPipe
-    ]
+  selector: 'app-player',
+  templateUrl: './player.component.html',
+  styleUrls: ['./player.component.scss'],
+  encapsulation: ViewEncapsulation.None,
+  standalone: true,
+  imports: [
+    LoadingComponent,
+    IgxAvatarComponent,
+    IgxButtonDirective,
+    IgxRippleDirective,
+    IgxToggleActionDirective,
+    IgxIconComponent,
+    IGX_DROP_DOWN_DIRECTIVES,
+    RouterLink,
+    IGX_SELECT_DIRECTIVES,
+    FormsModule,
+    IGX_CARD_DIRECTIVES,
+    IgxCircularProgressBarComponent,
+    AvailabilityComponent,
+    IGX_LIST_DIRECTIVES,
+    MapPoolComponent,
+    AsyncPipe,
+    CountrySVGPipe,
+    SteamCustomUrlPipe,
+    SortWeaponsPipe,
+    TopWeaponAltPipe
+  ]
 })
 export class PlayerComponent extends BaseDirective {
   public authUser: ApplicationUser;

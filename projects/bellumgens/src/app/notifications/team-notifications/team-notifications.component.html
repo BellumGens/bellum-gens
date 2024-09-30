@@ -1,21 +1,26 @@
-<igx-list *ngIf="applications?.length">
-  <igx-list-item [isHeader]="true" i18n>Notifications for {{ team.teamName }}</igx-list-item>
-  <igx-list-item *ngFor="let notification of applications | sortApplications:pipeTrigger" [class]="notificationClass[notification.state]">
-      <igx-avatar igxListThumbnail [src]="notification.avatarIcon" [initials]="notification.userName" shape="circle">
-      </igx-avatar>
-      <h3 igxListLineTitle i18n><a [routerLink]="['/players', notification.applicantId]">{{ notification.userName }}</a> has applied to join your team!</h3>
-      <span igxListLineSubTitle i18n>Application: {{ notification.message }}</span>
-      <span igxListLineSubTitle>{{ notification.sent | date }}</span>
-      <div igxListAction *ngIf="notification.state | disabledNotifications:true else read">
-        <button igxButton="flat" igxRipple [disabled]="actionInProgress" (click)="approveApplication(notification)">
-          {{actionInProgress ? actionText : 'Approve'}}
-        </button>
-        <button igxButton="flat" igxRipple [disabled]="actionInProgress" (click)="rejectApplication(notification)">
-          {{actionInProgress ? actionText : 'Reject'}}
-        </button>
-      </div>
-      <ng-template #read>
-        <button igxButton="flat" igxRipple [disabled]="true">{{ notification.state | notificationState }}</button>
-      </ng-template>
-  </igx-list-item>
-</igx-list>
+@if (applications?.length) {
+  <igx-list>
+    <igx-list-item [isHeader]="true" i18n>Notifications for {{ team.teamName }}</igx-list-item>
+    @for (notification of applications | sortApplications:pipeTrigger; track notification) {
+      <igx-list-item [class]="notificationClass[notification.state]">
+        <igx-avatar igxListThumbnail [src]="notification.avatarIcon" [initials]="notification.userName" shape="circle">
+        </igx-avatar>
+        <h3 igxListLineTitle i18n><a [routerLink]="['/players', notification.applicantId]">{{ notification.userName }}</a> has applied to join your team!</h3>
+        <span igxListLineSubTitle i18n>Application: {{ notification.message }}</span>
+        <span igxListLineSubTitle>{{ notification.sent | date }}</span>
+        @if (notification.state | disabledNotifications:true) {
+          <div igxListAction>
+            <button igxButton="flat" igxRipple [disabled]="actionInProgress" (click)="approveApplication(notification)">
+              {{actionInProgress ? actionText : 'Approve'}}
+            </button>
+            <button igxButton="flat" igxRipple [disabled]="actionInProgress" (click)="rejectApplication(notification)">
+              {{actionInProgress ? actionText : 'Reject'}}
+            </button>
+          </div>
+        } @else {
+          <button igxButton="flat" igxRipple [disabled]="true">{{ notification.state | notificationState }}</button>
+        }
+      </igx-list-item>
+    }
+  </igx-list>
+}
