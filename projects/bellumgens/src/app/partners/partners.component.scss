@@ -1,0 +1,13 @@
+:host::ng-deep {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+
+  igx-card {
+    max-width: 1280px;
+  }
+
+  // [igxIconButton] {
+  //   --ig-size: 36px;
+  // }
+}
