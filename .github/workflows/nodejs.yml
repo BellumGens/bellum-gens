@@ -30,6 +30,9 @@ jobs:
     - run: echo "//packages.infragistics.com/npm/js-licensed/:always-auth=true" >> ~/.npmrc
     - run: npm ci
     - run: npm run lint
+    - name: Build
+      if: matrix.node-version == '20.x'
+      run: npm run build
     - run: npm run test:prod
     - run: cat ./coverage/{bellum-gens,common,eb-league}/lcov.info > coverage/lcov.info
     - name: Publish to coveralls.io
