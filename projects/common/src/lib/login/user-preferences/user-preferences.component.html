@@ -1,17 +1,19 @@
 <div class="registration-form">
   <h6 i18n>Associated Logins</h6>
 
-  <button *ngFor="let provider of providers"
-          igxButton="contained" igxRipple
-          class="submit-button navigatable"
-          [style.background]="loginColors[provider.name]"
-          (click)="login(provider)"
-          [disabled]="disableLogin(provider.name)">
-    <igx-icon family="login-icons" [name]="provider.name.toLowerCase()"></igx-icon>
-    <igx-divider [vertical]="true" [inset]="'0 0 0 8px'" class="login-divider"></igx-divider>
-    <span class="submit-button" i18n>{{ disableLogin(provider.name) ? provider.name : 'Add ' + provider.name }}</span>
-    <igx-icon class="color-success">{{ disableLogin(provider.name) ? 'done' : '' }}</igx-icon>
-  </button>
+  @for (provider of providers; track provider.name) {
+    <button
+      igxButton="contained" igxRipple
+      class="submit-button navigatable"
+      [style.background]="loginColors[provider.name]"
+      (click)="login(provider)"
+      [disabled]="disableLogin(provider.name)">
+      <igx-icon family="login-icons" [name]="provider.name.toLowerCase()"></igx-icon>
+      <igx-divider [vertical]="true" [inset]="'0 0 0 8px'" class="login-divider"></igx-divider>
+      <span class="submit-button" i18n>{{ disableLogin(provider.name) ? provider.name : 'Add ' + provider.name }}</span>
+      <igx-icon class="color-success">{{ disableLogin(provider.name) ? 'done' : '' }}</igx-icon>
+    </button>
+  }
 
   <span class="highlight navigatable" (click)="openRegistration()" i18n>Create username and password</span>
 
@@ -25,14 +27,18 @@
   <h6 i18n>Tournament Registration</h6>
 
   <igx-list>
-    <igx-list-item *ngFor="let registration of registrations">
-      <h2 igxListLineTitle i18n>Registration for {{ registration.game ? 'StarCraft II' : 'CS:GO' }}</h2>
-      <h4 igxListLineSubTitle i18n>Confirmation code <span class="highlight">{{registration.hash}}</span></h4>
-      <div class="horizontal-center" igxListAction>
-        <span [ngClass]="{'color-warn': !registration.state, 'color-success': registration.state }" i18n>{{ registration.state ? 'Confirmed' : 'Pending' }}</span>
-        <igx-icon class="navigatable" *ngIf="!registration.state" (click)="confirmReg.open(registration)" title="Delete this application">delete_forever</igx-icon>
-      </div>
-    </igx-list-item>
+    @for (registration of registrations; track registration.id) {
+      <igx-list-item>
+        <h2 igxListLineTitle i18n>Registration for {{ registration.game ? 'StarCraft II' : 'CS:GO' }}</h2>
+        <h4 igxListLineSubTitle i18n>Confirmation code <span class="highlight">{{registration.hash}}</span></h4>
+        <div class="horizontal-center" igxListAction>
+          <span [ngClass]="{'color-warn': !registration.state, 'color-success': registration.state }" i18n>{{ registration.state ? 'Confirmed' : 'Pending' }}</span>
+          @if (!registration.state) {
+            <igx-icon class="navigatable" (click)="confirmReg.open(registration)" title="Delete this application">delete_forever</igx-icon>
+          }
+        </div>
+      </igx-list-item>
+    }
   </igx-list>
 
   <button igxButton="contained" igxRipple class="submit-button" (click)="confirm.open()">

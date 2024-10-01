@@ -14,14 +14,14 @@ import {
   IgxIconComponent,
   IgxRippleDirective
 } from '@infragistics/igniteui-angular';
-import { NgIf } from '@angular/common';
+
 
 @Component({
     selector: 'bg-registration',
     templateUrl: './registration.component.html',
     styleUrls: ['./registration.component.scss'],
     standalone: true,
-    imports: [FormsModule, IGX_INPUT_GROUP_DIRECTIVES, IgxIconComponent, NgIf, IgxButtonDirective, IgxRippleDirective]
+    imports: [FormsModule, IGX_INPUT_GROUP_DIRECTIVES, IgxIconComponent, IgxButtonDirective, IgxRippleDirective]
 })
 export class RegistrationComponent implements OnInit {
   @ViewChild('regusername', { static: true }) public usernameInput: ElementRef;

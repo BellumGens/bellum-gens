@@ -1,4 +1,4 @@
-import { NgFor } from '@angular/common';
+
 import { Component, Inject, LOCALE_ID } from '@angular/core';
 import {
   IGX_DROP_DOWN_DIRECTIVES,
@@ -10,18 +10,17 @@ import {
 import { GLOBAL_OVERLAY_SETTINGS } from '../../models/misc';
 
 @Component({
-    selector: 'bg-languages',
-    templateUrl: './languages.component.html',
-    styleUrls: ['./languages.component.scss'],
-    standalone: true,
-    imports: [
-      IgxButtonDirective,
-      IgxRippleDirective,
-      IgxToggleActionDirective,
-      IgxIconComponent,
-      IGX_DROP_DOWN_DIRECTIVES,
-      NgFor
-    ]
+  selector: 'bg-languages',
+  templateUrl: './languages.component.html',
+  styleUrls: ['./languages.component.scss'],
+  standalone: true,
+  imports: [
+    IgxButtonDirective,
+    IgxRippleDirective,
+    IgxToggleActionDirective,
+    IgxIconComponent,
+    IGX_DROP_DOWN_DIRECTIVES
+  ]
 })
 export class LanguagesComponent {
   public overlaySettings = GLOBAL_OVERLAY_SETTINGS;

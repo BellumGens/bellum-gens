@@ -4,14 +4,14 @@ import { LoginService } from '../../../services/login.service';
 import { LOGIN_ASSETS } from '../../../models/misc';
 import { Observable } from 'rxjs';
 import { IgxButtonDirective, IgxIconComponent, IgxDividerDirective } from '@infragistics/igniteui-angular';
-import { NgFor, AsyncPipe } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
-    selector: 'bg-login-buttons',
-    templateUrl: './login-buttons.component.html',
-    styleUrls: ['./login-buttons.component.scss'],
-    standalone: true,
-    imports: [NgFor, IgxButtonDirective, IgxIconComponent, IgxDividerDirective, AsyncPipe]
+  selector: 'bg-login-buttons',
+  templateUrl: './login-buttons.component.html',
+  styleUrls: ['./login-buttons.component.scss'],
+  standalone: true,
+  imports: [IgxButtonDirective, IgxIconComponent, IgxDividerDirective, AsyncPipe]
 })
 export class LoginButtonsComponent {
   public loginColors = LOGIN_ASSETS;
