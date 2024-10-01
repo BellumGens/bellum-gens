@@ -2,7 +2,12 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "../../out-tsc/app-ebleague",
-    "types": []
+    "types": [],
+    "paths": {
+      "bellum-gens-common": [
+        "dist/common"
+      ],
+    }
   },
   "files": [
     "src/main.ts",

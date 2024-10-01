@@ -1970,7 +1970,7 @@
           <context context-type="linenumber">10</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="9bc4a37a3db8e40eedcfac81688270fce9325d5a" datatype="html">
+      <trans-unit id="293fbac7f5bd412910c236729402703854c4e7f0" datatype="html">
         <source>Price <x id="START_TAG_DEL" ctype="x-del" equiv-text="&lt;del&gt;"/><x id="INTERPOLATION" equiv-text="{{basePrice}}"/> BGN<x id="CLOSE_TAG_DEL" ctype="x-del" equiv-text="&lt;/del&gt;"/> <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot; *ngIf=&quot;basePromo&quot;&gt;"/><x id="INTERPOLATION_1" equiv-text="{{ basePrice - basePrice * basePromo }}"/> BGN<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
         <target>Цена <x id="START_TAG_DEL" ctype="x-del" equiv-text="&lt;del&gt;"/><x id="INTERPOLATION" equiv-text="{{basePrice}}"/>лв.<x id="CLOSE_TAG_DEL" ctype="x-del" equiv-text="&lt;/del&gt;"/> <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot; *ngIf=&quot;basePromo&quot;&gt;"/><x id="INTERPOLATION_1" equiv-text="{{ basePrice - basePrice * basePromo }}"/>лв.<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
         <context-group purpose="location">

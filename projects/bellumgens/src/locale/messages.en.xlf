@@ -43,7 +43,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/app.component.html</context>
-          <context context-type="linenumber">66,68</context>
+          <context context-type="linenumber">65,68</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8130963410643970035" datatype="html">
@@ -318,7 +318,7 @@
         <source>Qualifiers</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
-          <context context-type="linenumber">120,125</context>
+          <context context-type="linenumber">120,124</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6959936203181447238" datatype="html">
@@ -763,7 +763,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/notifications/team-notifications/team-notifications.component.html</context>
-          <context context-type="linenumber">3,4</context>
+          <context context-type="linenumber">3</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3090613002627213011" datatype="html">
@@ -843,7 +843,7 @@
         <source>Together, we aim to achieve top-tier production quality and deliver the ultimate esports experience for both players and audiences! 🚀</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/partners/bulstream/bulstream.component.html</context>
-          <context context-type="linenumber">15,19</context>
+          <context context-type="linenumber">15,18</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5506180627376048896" datatype="html">
@@ -864,7 +864,7 @@
         <source>Together, we are committed to fostering the growth and development of esports in our region. This collaboration will bring new opportunities, events, and initiatives to support our vibrant gaming community. 🎮✨</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/partners/techhub/techhub.component.html</context>
-          <context context-type="linenumber">15,19</context>
+          <context context-type="linenumber">15,18</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2652114921227048505" datatype="html">
@@ -885,7 +885,7 @@
         <source>Together, we aim to create a vibrant esports community and provide unparalleled opportunities for gamers and fans alike. 🎮</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/partners/visit-stara-zagora/visit-stara-zagora.component.html</context>
-          <context context-type="linenumber">15,19</context>
+          <context context-type="linenumber">15,18</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5821155013101067419" datatype="html">
@@ -906,7 +906,7 @@
         <source>Now it&apos;s time to complete your profile! Fill in your <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>preferred playstyle<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>, your <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>availability<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> and your <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>preferred map pool<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/player-section/player.component.html</context>
-          <context context-type="linenumber">17,19</context>
+          <context context-type="linenumber">17,18</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5343134688320337481" datatype="html">
@@ -962,7 +962,7 @@
         <source>To do this go to <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Steam Profile --&gt; Edit Profile --&gt; Privacy Settings --&gt; Set: &apos;My profile: Public&apos; and &apos;Game details: public&apos;<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/player-section/player.component.html</context>
-          <context context-type="linenumber">98,100</context>
+          <context context-type="linenumber">98,99</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3263044568795523288" datatype="html">
@@ -1455,14 +1455,14 @@
         <source>Player Tokens</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/strategies/strategy-editor/strategy-editor.component.html</context>
-          <context context-type="linenumber">59,62</context>
+          <context context-type="linenumber">59,61</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4692173219815549932" datatype="html">
         <source>Utility</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/strategies/strategy-editor/strategy-editor.component.html</context>
-          <context context-type="linenumber">93,96</context>
+          <context context-type="linenumber">93,95</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6149225212275844401" datatype="html">
@@ -1564,7 +1564,7 @@
         <source>Drag players to add them to the active roster</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-details/team-details.component.html</context>
-          <context context-type="linenumber">70,74</context>
+          <context context-type="linenumber">70,73</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3787247192385194046" datatype="html">
@@ -1599,7 +1599,7 @@
         <source>Create New CS:GO Team</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-nav/team-nav.component.html</context>
-          <context context-type="linenumber">3,9</context>
+          <context context-type="linenumber">3,8</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8499244520954105685" datatype="html">
@@ -1620,7 +1620,7 @@
         <source>Abandon</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-nav/team-nav.component.html</context>
-          <context context-type="linenumber">28,33</context>
+          <context context-type="linenumber">28,32</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8271025541466234627" datatype="html">
@@ -1662,7 +1662,7 @@
         <source>Team name</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-new/team-new.component.html</context>
-          <context context-type="linenumber">31,34</context>
+          <context context-type="linenumber">31,33</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7377261059414390165" datatype="html">
@@ -1764,7 +1764,7 @@
         <source>Competitions</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team.component.html</context>
-          <context context-type="linenumber">35,40</context>
+          <context context-type="linenumber">35,39</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4930506384627295710" datatype="html">
@@ -1803,21 +1803,21 @@
         <source>Choose a language</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/languages/languages.component.html</context>
-          <context context-type="linenumber">3,7</context>
+          <context context-type="linenumber">3,6</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6736404413477208257" datatype="html">
         <source>External</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/login-buttons/login-buttons.component.html</context>
-          <context context-type="linenumber">2,4</context>
+          <context context-type="linenumber">2,3</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4750003394845614427" datatype="html">
         <source>Choose a login provider</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/login-dialog/login-dialog.component.html</context>
-          <context context-type="linenumber">1,4</context>
+          <context context-type="linenumber">1,3</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6907807228975360219" datatype="html">
@@ -1896,7 +1896,7 @@
         <source>Associated Logins</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">2,6</context>
+          <context context-type="linenumber">2,5</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7259863416324481753" datatype="html">

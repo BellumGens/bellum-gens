@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, HostListener, Inject, PLATFORM_ID }
 import { BaseDirective } from '../../base/base.component';
 import { isPlatformBrowser, NgOptimizedImage } from '@angular/common';
 import { IGX_CARD_DIRECTIVES, IgxIconButtonDirective, IgxRippleDirective, IgxIconComponent, IgxLayoutDirective, IgxFlexDirective } from '@infragistics/igniteui-angular';
-import { SocialMedia } from 'bellum-gens-common';
+import { SocialMedia } from '../../../../../common/src/public_api';
 import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 

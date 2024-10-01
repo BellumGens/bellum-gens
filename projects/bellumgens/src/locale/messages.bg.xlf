@@ -1578,7 +1578,7 @@
           <context context-type="linenumber">34,36</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1673640476085340422" datatype="html">
+      <trans-unit id="6196955894143841551" datatype="html">
         <source>Author: <x id="START_BLOCK_IF" equiv-text="@if (strat.owner) {"/><x id="START_LINK" ctype="x-a" equiv-text="&lt;a [routerLink]=&quot;[&apos;/players&apos;, strat.userId]&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ strat.owner }}"/><x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/><x id="CLOSE_BLOCK_IF" equiv-text="}"/></source>
         <target>Автор: <x id="START_BLOCK_IF" equiv-text="@if (strat.owner) {"/><x id="START_LINK" ctype="x-a" equiv-text="&lt;a [routerLink]=&quot;[&apos;/players&apos;, strat.userId]&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ strat.owner }}"/><x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/><x id="CLOSE_BLOCK_IF" equiv-text="}"/></target>
         <context-group purpose="location">
