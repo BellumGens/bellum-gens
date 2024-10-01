@@ -11,28 +11,26 @@ import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../../../../common/src/environments/environment';
 import { Sc2MapNamePipe } from '../../../../../common/src/lib/pipes/sc2-map-name.pipe';
-import { NgIf, NgFor, DatePipe, NgOptimizedImage } from '@angular/common';
-import { IgxCardModule, IgxProgressBarModule, IgxAvatarModule, IgxBadgeModule, IgxDividerModule, IgxGridModule, IgxIconModule } from '@infragistics/igniteui-angular';
+import { DatePipe, NgOptimizedImage } from '@angular/common';
+import { IGX_CARD_DIRECTIVES, IgxCircularProgressBarComponent, IgxAvatarComponent, IgxBadgeComponent, IgxDividerDirective, IGX_GRID_DIRECTIVES, IgxIconComponent } from '@infragistics/igniteui-angular';
 
 @Component({
-    selector: 'app-tournament-sc2',
-    templateUrl: './tournament-sc2.component.html',
-    styleUrls: ['./tournament-sc2.component.scss'],
-    standalone: true,
-    imports: [
-      NgIf,
-      NgFor,
-      NgOptimizedImage,
-      DatePipe,
-      IgxCardModule,
-      IgxProgressBarModule,
-      IgxAvatarModule,
-      IgxBadgeModule,
-      IgxDividerModule,
-      IgxGridModule,
-      IgxIconModule,
-      Sc2MapNamePipe
-    ]
+  selector: 'app-tournament-sc2',
+  templateUrl: './tournament-sc2.component.html',
+  styleUrls: ['./tournament-sc2.component.scss'],
+  standalone: true,
+  imports: [
+    NgOptimizedImage,
+    DatePipe,
+    IGX_CARD_DIRECTIVES,
+    IgxCircularProgressBarComponent,
+    IgxAvatarComponent,
+    IgxBadgeComponent,
+    IgxDividerDirective,
+    IGX_GRID_DIRECTIVES,
+    IgxIconComponent,
+    Sc2MapNamePipe
+  ]
 })
 export class TournamentSc2Component extends BaseDirective {
   public registrations: TournamentParticipant [];

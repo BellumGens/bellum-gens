@@ -1,8 +1,8 @@
-import { DatePipe, NgIf, NgOptimizedImage, isPlatformBrowser } from '@angular/common';
+import { DatePipe, NgOptimizedImage, isPlatformBrowser } from '@angular/common';
 import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
-import { IgxButtonModule, IgxDividerModule, IgxIconModule, IgxInputGroupModule } from '@infragistics/igniteui-angular';
+import { IGX_INPUT_GROUP_DIRECTIVES, IgxButtonDirective, IgxDividerDirective, IgxIconComponent } from '@infragistics/igniteui-angular';
 import {
   Game, RegistrationsCount, Tournament,
   ApiTournamentsService,
@@ -13,21 +13,20 @@ import {
 import { TournamentRegistrationComponent } from '../tournament-registration/tournament-registration.component';
 
 @Component({
-    templateUrl: './home.component.html',
-    styleUrls: ['./home.component.scss'],
-    standalone: true,
-    imports: [
-      NgOptimizedImage,
-      NgIf,
-      RouterLink,
-      FormsModule,
-      TournamentRegistrationComponent,
-      IgxButtonModule,
-      IgxDividerModule,
-      IgxIconModule,
-      IgxInputGroupModule,
-      DatePipe
-    ]
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss'],
+  standalone: true,
+  imports: [
+    NgOptimizedImage,
+    RouterLink,
+    FormsModule,
+    TournamentRegistrationComponent,
+    IgxButtonDirective,
+    IgxDividerDirective,
+    IgxIconComponent,
+    IGX_INPUT_GROUP_DIRECTIVES,
+    DatePipe
+  ]
 })
 export class HomeComponent {
   public userEmail: string = null;

@@ -9,119 +9,143 @@
 
     <p i18n>Made of 100% sportswear ventilated polyester, with high quality print, the official jersey is available in limited quantity! The jersey is ideal both for extended gaming sessions and sports activities in the open! Only 300 units of the 2020 jersey are being sold. We have both male and female cuts available. All orders are being shipped C.O.D. Free shipment for orders over 100 BGN.</p>
 
-    <h4 i18n>Price <del>{{basePrice}} BGN</del>&nbsp;<span class="highlight" *ngIf="basePromo">{{ basePrice - basePrice * basePromo }} BGN</span></h4>
-  </div>
+    <h4 i18n>Price <del>{{basePrice}} BGN</del>&nbsp;@if (basePromo) {
+      <span class="highlight">{{ basePrice - basePrice * basePromo }} BGN</span>
+    }</h4>
+</div>
 
-  <div class="content-container-column">
-    <img ngSrc="/assets/wallpapers/jersey-front-back.webp" width="600" height="572" alt="Esports Business League jersey" />
-  </div>
+<div class="content-container-column">
+  <img ngSrc="/assets/wallpapers/jersey-front-back.webp" width="600" height="572" alt="Esports Business League jersey" />
+</div>
 
-  <form #orderForm="ngForm" (ngSubmit)="placeOrder()" class="content-container-row ">
-    <div class="horizontal">
-      <div class="column-container">
-        <div class="horizontal-center" *ngFor="let jersey of order.jerseys; let i = index">
+<form #orderForm="ngForm" (ngSubmit)="placeOrder()" class="content-container-row ">
+  <div class="horizontal">
+    <div class="column-container">
+      @for (jersey of order.jerseys; track jersey; let i = $index) {
+        <div class="horizontal-center">
           <igx-select [value]="jersey.cut" (selectionChanging)="selectJerseyCut(jersey, $event)" type="border" class="order-form-input" name="jerseyCut">
             <label igxLabel i18n>Cut</label>
-            <igx-select-item *ngFor="let cut of cuts" [value]="cut.cut">
-              {{ cut.text }}
-            </igx-select-item>
+            @for (cut of cuts; track cut.cut) {
+              <igx-select-item [value]="cut.cut">
+                {{ cut.text }}
+              </igx-select-item>
+            }
           </igx-select>
-
           <igx-select [value]="jersey.size" (selectionChanging)="selectJerseySize(jersey, $event)" type="border" class="order-form-input" name="jerseySize">
             <label igxLabel i18n>Size</label>
-            <igx-select-item *ngFor="let size of allSizes | filterSizes:jersey.cut" [value]="size.size">
-              {{ size.text }}
-            </igx-select-item>
+            @for (size of allSizes | filterSizes:jersey.cut; track size.size) {
+              <igx-select-item [value]="size.size">
+                {{ size.text }}
+              </igx-select-item>
+            }
           </igx-select>
-
-          <igx-icon *ngIf="order.jerseys.length > 1 " (click)="order.jerseys.splice(i, 1)">clear</igx-icon>
+          @if (order.jerseys.length > 1 ) {
+            <igx-icon (click)="order.jerseys.splice(i, 1)">clear</igx-icon>
+          }
         </div>
-      </div>
+      }
+    </div>
 
-      <div class="order-summary">
-        <span i18n>{{order.jerseys.length}} x {{basePrice}} BGN = {{ order.jerseys.length * basePrice }} BGN</span>
+    <div class="order-summary">
+      <span i18n>{{order.jerseys.length}} x {{basePrice}} BGN = {{ order.jerseys.length * basePrice }} BGN</span>
 
-        <igx-input-group class="order-form-input" type="border">
-          <label igxLabel for="firstName" i18n>Promo code</label>
-          <igx-prefix>
-            <igx-icon>money_off</igx-icon>
-          </igx-prefix>
-          <input id="promocode" #promocode name="promocode" igxInput (blur)="checkForPromo()" [(ngModel)]="order.promoCode" />
-          <igx-suffix *ngIf="promocode.value" (click)="order.promoCode = null">
+      <igx-input-group class="order-form-input" type="border">
+        <label igxLabel for="firstName" i18n>Promo code</label>
+        <igx-prefix>
+          <igx-icon>money_off</igx-icon>
+        </igx-prefix>
+        <input id="promocode" #promocode name="promocode" igxInput (blur)="checkForPromo()" [(ngModel)]="order.promoCode" />
+        @if (promocode.value) {
+          <igx-suffix (click)="order.promoCode = null">
             <igx-icon>clear</igx-icon>
           </igx-suffix>
+        }
 
-          <igx-hint class="color-error" *ngIf="invalidPromo" i18n>Promo code is invalid...</igx-hint>
-        </igx-input-group>
-
-        <span *ngIf="promo > 0" class="color-success" i18n>{{ promo * 100 }}% off = -{{ (order.jerseys.length * basePrice) * promo }} BGN</span>
-        <span *ngIf="order.jerseys.length * basePrice * promo >= 100" i18n>Free shipping</span>
-        <igx-divider></igx-divider>
-        <span i18n>Total = {{ (order.jerseys.length * basePrice) * (1 - promo) }} BGN</span>
-      </div>
-    </div>
-
-    <div class="horizontal floating-button">
-      <button type="button" igxButton="outlined" (click)="order.jerseys.push({ cut: 0, size: 3 })">
-        <igx-icon>add</igx-icon>
-        <span i18n>Add one more</span>
-      </button>
-    </div>
-
-    <div class="horizontal">
-      <igx-input-group class="order-form-input" type="border">
-        <label igxLabel for="firstName" i18n>First name</label>
-        <igx-prefix>
-          <igx-icon>text_fields</igx-icon>
-        </igx-prefix>
-        <input id="firstName" #firstName name="firstName" igxInput [required]="true" [(ngModel)]="order.firstName" />
-        <igx-suffix *ngIf="firstName.value" (click)="order.firstName = null">
-          <igx-icon>clear</igx-icon>
-        </igx-suffix>
+        @if (invalidPromo) {
+          <igx-hint class="color-error" i18n>Promo code is invalid...</igx-hint>
+        }
       </igx-input-group>
 
-      <igx-input-group class="order-form-input" type="border">
-        <label igxLabel for="lastName" i18n>Last name</label>
-        <igx-prefix>
-          <igx-icon>text_fields</igx-icon>
-        </igx-prefix>
-        <input id="lastName" #lastName name="lastName" igxInput [required]="true" [(ngModel)]="order.lastName" />
-        <igx-suffix *ngIf="lastName.value" (click)="order.lastName = null">
-          <igx-icon>clear</igx-icon>
-        </igx-suffix>
-      </igx-input-group>
-
-      <igx-input-group class="order-form-input" type="border">
-        <label igxLabel for="orderemail" i18n>Email</label>
-        <igx-prefix>
-          <igx-icon>email</igx-icon>
-        </igx-prefix>
-        <input type="email" id="orderemail" #orderEmail name="orderemail" igxInput [required]="true" pattern="^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="order.email" />
-        <igx-suffix *ngIf="orderEmail.value" (click)="order.email = null">
-          <igx-icon>clear</igx-icon>
-        </igx-suffix>
-      </igx-input-group>
+      @if (promo > 0) {
+        <span class="color-success" i18n>{{ promo * 100 }}% off = -{{ (order.jerseys.length * basePrice) * promo }} BGN</span>
+      }
+      @if (order.jerseys.length * basePrice * promo >= 100) {
+        <span i18n>Free shipping</span>
+      }
+      <igx-divider></igx-divider>
+      <span i18n>Total = {{ (order.jerseys.length * basePrice) * (1 - promo) }} BGN</span>
     </div>
+  </div>
 
-    <div class="horizontal">
-      <igx-input-group class="order-form-input" type="border">
-        <igx-prefix>
-          <igx-icon title="Телефон">phone</igx-icon>
-          <span>{{countryCode}}</span>
-        </igx-prefix>
-        <input id="orderPhone"
-               #orderPhone
-               class="input-phone-number"
-               name="orderPhone"
-               igxInput
-               [required]="true"
-               [igxMask]="'000 00 00 00'"
-               [igxTextSelection]="true"
-               placeholder="--- -- -- --"
-               [(ngModel)]="order.phoneNumber" />
-        <igx-suffix *ngIf="orderPhone.value" (click)="order.phoneNumber = null">
+  <div class="horizontal floating-button">
+    <button type="button" igxButton="outlined" (click)="order.jerseys.push({ cut: 0, size: 3 })">
+      <igx-icon>add</igx-icon>
+      <span i18n>Add one more</span>
+    </button>
+  </div>
+
+  <div class="horizontal">
+    <igx-input-group class="order-form-input" type="border">
+      <label igxLabel for="firstName" i18n>First name</label>
+      <igx-prefix>
+        <igx-icon>text_fields</igx-icon>
+      </igx-prefix>
+      <input id="firstName" #firstName name="firstName" igxInput [required]="true" [(ngModel)]="order.firstName" />
+      @if (firstName.value) {
+        <igx-suffix (click)="order.firstName = null">
           <igx-icon>clear</igx-icon>
         </igx-suffix>
+      }
+    </igx-input-group>
+
+    <igx-input-group class="order-form-input" type="border">
+      <label igxLabel for="lastName" i18n>Last name</label>
+      <igx-prefix>
+        <igx-icon>text_fields</igx-icon>
+      </igx-prefix>
+      <input id="lastName" #lastName name="lastName" igxInput [required]="true" [(ngModel)]="order.lastName" />
+      @if (lastName.value) {
+        <igx-suffix (click)="order.lastName = null">
+          <igx-icon>clear</igx-icon>
+        </igx-suffix>
+      }
+    </igx-input-group>
+
+    <igx-input-group class="order-form-input" type="border">
+      <label igxLabel for="orderemail" i18n>Email</label>
+      <igx-prefix>
+        <igx-icon>email</igx-icon>
+      </igx-prefix>
+      <input type="email" id="orderemail" #orderEmail name="orderemail" igxInput [required]="true" pattern="^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="order.email" />
+      @if (orderEmail.value) {
+        <igx-suffix (click)="order.email = null">
+          <igx-icon>clear</igx-icon>
+        </igx-suffix>
+      }
+    </igx-input-group>
+  </div>
+
+  <div class="horizontal">
+    <igx-input-group class="order-form-input" type="border">
+      <igx-prefix>
+        <igx-icon title="Телефон">phone</igx-icon>
+        <span>{{countryCode}}</span>
+      </igx-prefix>
+      <input id="orderPhone"
+        #orderPhone
+        class="input-phone-number"
+        name="orderPhone"
+        igxInput
+        [required]="true"
+        [igxMask]="'000 00 00 00'"
+        [igxTextSelection]="true"
+        placeholder="--- -- -- --"
+        [(ngModel)]="order.phoneNumber" />
+        @if (orderPhone.value) {
+          <igx-suffix (click)="order.phoneNumber = null">
+            <igx-icon>clear</igx-icon>
+          </igx-suffix>
+        }
       </igx-input-group>
 
       <igx-input-group class="order-form-input" type="border">
@@ -130,9 +154,11 @@
           <igx-icon>home</igx-icon>
         </igx-prefix>
         <input id="orderCity" #orderCity name="orderCity" igxInput [required]="true" [(ngModel)]="order.city" />
-        <igx-suffix *ngIf="orderCity.value" (click)="order.city = null">
-          <igx-icon>clear</igx-icon>
-        </igx-suffix>
+        @if (orderCity.value) {
+          <igx-suffix (click)="order.city = null">
+            <igx-icon>clear</igx-icon>
+          </igx-suffix>
+        }
       </igx-input-group>
 
       <igx-input-group class="order-form-input" type="border">
@@ -141,9 +167,11 @@
           <igx-icon>home</igx-icon>
         </igx-prefix>
         <input id="orderAddress" #orderAddress name="orderAddress" igxInput [required]="true" [(ngModel)]="order.streetAddress" />
-        <igx-suffix *ngIf="orderAddress.value" (click)="order.streetAddress = null">
-          <igx-icon>clear</igx-icon>
-        </igx-suffix>
+        @if (orderAddress.value) {
+          <igx-suffix (click)="order.streetAddress = null">
+            <igx-icon>clear</igx-icon>
+          </igx-suffix>
+        }
       </igx-input-group>
     </div>
 

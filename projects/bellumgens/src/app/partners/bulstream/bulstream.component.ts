@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { BaseDirective } from '../../base/base.component';
 import { NgOptimizedImage } from '@angular/common';
 import { IGX_CARD_DIRECTIVES, IgxIconButtonDirective, IgxRippleDirective, IgxIconComponent, IgxLayoutDirective, IgxFlexDirective } from '@infragistics/igniteui-angular';
+import { SocialMedia } from 'bellum-gens-common';
 
 @Component({
   selector: 'app-bulstream',
@@ -20,7 +21,7 @@ import { IGX_CARD_DIRECTIVES, IgxIconButtonDirective, IgxRippleDirective, IgxIco
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BulstreamComponent extends BaseDirective {
-  public social = [
+  public social: SocialMedia [] = [
     {
       name: 'Facebook',
       icon: 'facebook',
