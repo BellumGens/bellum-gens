@@ -10,4 +10,10 @@
   igx-icon {
     --size: 40px;
   }
+
+  @media screen and (max-width: 768px) {
+    .partner-image {
+      width: 83px;
+    }
+  }
 }
