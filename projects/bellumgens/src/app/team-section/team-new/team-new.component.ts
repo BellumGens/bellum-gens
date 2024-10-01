@@ -17,7 +17,7 @@ import {
 import { Router } from '@angular/router';
 import { GroupsFilterPipe } from '../../pipes/groups-filter.pipe';
 import { FormsModule } from '@angular/forms';
-import { NgIf, NgFor } from '@angular/common';
+
 
 @Component({
     selector: 'app-team-new',
@@ -25,18 +25,16 @@ import { NgIf, NgFor } from '@angular/common';
     styleUrls: ['./team-new.component.scss'],
     standalone: true,
     imports: [
-      NgIf,
-      IgxDialogComponent,
-      IGX_INPUT_GROUP_DIRECTIVES,
-      IgxIconComponent,
-      FormsModule,
-      IGX_LIST_DIRECTIVES,
-      NgFor,
-      IgxAvatarComponent,
-      IgxButtonDirective,
-      IgxRippleDirective,
-      GroupsFilterPipe
-    ]
+    IgxDialogComponent,
+    IGX_INPUT_GROUP_DIRECTIVES,
+    IgxIconComponent,
+    FormsModule,
+    IGX_LIST_DIRECTIVES,
+    IgxAvatarComponent,
+    IgxButtonDirective,
+    IgxRippleDirective,
+    GroupsFilterPipe
+]
 })
 export class TeamNewComponent {
   @Input() public authUser: ApplicationUser;

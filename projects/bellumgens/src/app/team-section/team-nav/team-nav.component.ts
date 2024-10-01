@@ -16,26 +16,24 @@ import {
   IGX_CARD_DIRECTIVES,
   IgxAvatarComponent
 } from '@infragistics/igniteui-angular';
-import { NgIf, NgFor, AsyncPipe } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
-    selector: 'app-team-nav',
-    templateUrl: './team-nav.component.html',
-    styleUrls: ['./team-nav.component.scss'],
-    standalone: true,
-    imports: [
-      NgIf,
-      IgxButtonDirective,
-      IgxRippleDirective,
-      IgxIconComponent,
-      NgFor,
-      IGX_CARD_DIRECTIVES,
-      IgxAvatarComponent,
-      RouterLink,
-      TeamNewComponent,
-      ConfirmComponent,
-      AsyncPipe
-    ]
+  selector: 'app-team-nav',
+  templateUrl: './team-nav.component.html',
+  styleUrls: ['./team-nav.component.scss'],
+  standalone: true,
+  imports: [
+    IgxButtonDirective,
+    IgxRippleDirective,
+    IgxIconComponent,
+    IGX_CARD_DIRECTIVES,
+    IgxAvatarComponent,
+    RouterLink,
+    TeamNewComponent,
+    ConfirmComponent,
+    AsyncPipe
+  ]
 })
 export class TeamNavComponent {
   public activeMembers: TeamMember [];
