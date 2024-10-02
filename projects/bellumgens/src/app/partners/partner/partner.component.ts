@@ -1,13 +1,13 @@
-import { ChangeDetectionStrategy, Component, HostListener, Inject, PLATFORM_ID } from '@angular/core';
-import { BaseDirective } from '../../base/base.component';
 import { isPlatformBrowser, NgOptimizedImage } from '@angular/common';
-import { IGX_CARD_DIRECTIVES, IgxIconButtonDirective, IgxRippleDirective, IgxIconComponent, IgxLayoutDirective, IgxFlexDirective } from '@infragistics/igniteui-angular';
-import { SocialMedia } from '../../../../../common/src/public_api';
+import { ChangeDetectionStrategy, Component, HostListener, Inject, PLATFORM_ID } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
+import { IGX_CARD_DIRECTIVES, IgxIconButtonDirective, IgxRippleDirective, IgxIconComponent, IgxLayoutDirective, IgxFlexDirective } from '@infragistics/igniteui-angular';
+import { SocialMedia } from '../../../../../common/src/public_api';
+import { BaseDirective } from '../../base/base.component';
 
 @Component({
-  selector: 'app-bulstream',
+  selector: 'app-partner',
   standalone: true,
   imports: [
     IGX_CARD_DIRECTIVES,
@@ -18,35 +18,29 @@ import { ActivatedRoute } from '@angular/router';
     IgxFlexDirective,
     NgOptimizedImage
   ],
-  templateUrl: './bulstream.component.html',
-  styleUrl: './bulstream.component.scss',
+  templateUrl: './partner.component.html',
+  styleUrl: './partner.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BulstreamComponent extends BaseDirective {
-  public social: SocialMedia [] = [
-    {
-      name: 'Facebook',
-      icon: 'facebook',
-      url: 'https://www.facebook.com/bulstream'
-    },
-    {
-      name: 'Instagram',
-      icon: 'instagram',
-      url: 'https://www.instagram.com/bulstreamcom/'
-    },
-    {
-      name: 'LinkedIn',
-      icon: 'linkedin',
-      url: 'https://www.linkedin.com/company/bulstream'
-    }
-  ];
+export class PartnerComponent extends BaseDirective {
+  public social: SocialMedia [];
+  public image: string;
+  public name: string;
+  public url: string;
+  public expose: string [];
 
   public horizontal = true;
   public mediaWidth = '550px';
 
   constructor(@Inject(PLATFORM_ID) private platformId: any, titleService: Title, meta: Meta, activeRoute: ActivatedRoute) {
     super(titleService, meta, activeRoute);
-
+    this.activeRoute.data.subscribe(data => {
+      this.social = data.social;
+      this.image = data.partnerImage;
+      this.name = data.name;
+      this.url = data.url;
+      this.expose = data.expose;
+    });
     if (isPlatformBrowser(this.platformId)) {
       this.resize();
     }
@@ -61,4 +55,4 @@ export class BulstreamComponent extends BaseDirective {
       this.mediaWidth = '550px';
     }
   }
-}
+ }
