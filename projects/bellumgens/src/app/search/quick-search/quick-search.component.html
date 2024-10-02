@@ -47,31 +47,31 @@
         <span igxListLine i18n>No matching players...</span>
       </igx-list-item>
     }
-    @for (user of searchResult.players | reduceQuickSearchResult; track user.id) {
+    @for (user of searchResult.players | reduceQuickSearchResult; track user.csgoDetails.steamId) {
       <igx-list-item
-        [routerLink]="['/players', user.customURL || user.id]"
+        [routerLink]="['/players', user.csgoDetails.customURL || user.id]"
         class="navigatable">
-        <igx-avatar igxListThumbnail [src]="user.avatarIcon" [initials]="user.realname" shape="circle">
+        <igx-avatar igxListThumbnail [src]="user.csgoDetails.avatarIcon" [initials]="user.csgoDetails.realname" shape="circle">
         </igx-avatar>
-        @if (user.country) {
+        @if (user.csgoDetails.country) {
           <igx-avatar
-            [src]="user.country | countrySVG"
+            [src]="user.csgoDetails.country | countrySVG"
             shape="circle"
-            [title]="user.country"
+            [title]="user.csgoDetails.country"
             class="country-badge-small">
           </igx-avatar>
         }
         <h2 igxListLineTitle>{{ user.username }}</h2>
-        <h4 igxListLineSubTitle>{{ user.realname }}</h4>
+        <h4 igxListLineSubTitle>{{ user.csgoDetails.realName }}</h4>
         @if (!user.steamPrivate) {
           <div igxListAction>
             <div class="horizontal-center space-between">
-              <igx-circular-bar class="icon-avatar" [value]="user.killDeathRatio" [max]="2" [animate]="true" [textVisibility]="false" title="KDR"></igx-circular-bar>
-              <span>{{ user.killDeathRatio }}</span>
+              <igx-circular-bar class="icon-avatar" [value]="user.csgoDetails.killDeathRatio" [max]="2" [animate]="true" [textVisibility]="false" title="KDR"></igx-circular-bar>
+              <span>{{ user.csgoDetails.killDeathRatio }}</span>
             </div>
             <div class="horizontal-center space-between">
               <igx-icon family="weapon-icons" name="headshot" class="icon-avatar"></igx-icon>
-              <span>{{ user.headshotPercentage | number:'1.2' }}%</span>
+              <span>{{ user.csgoDetails.headshotPercentage | number:'1.2' }}%</span>
             </div>
           </div>
         } @else {
