@@ -1,12 +1,14 @@
 <div class="registration-form">
   <h6 i18n>External</h6>
-  <button *ngFor="let provider of loginProviders | async"
-          igxButton="contained"
-          class="login-button navigatable"
-          [style.background]="loginColors[provider.name]"
-          (click)="login(provider)">
-    <igx-icon family="login-icons" [name]="provider.name.toLowerCase()"></igx-icon>
-    <igx-divider [vertical]="true" [inset]="'0 0 0 8px'" class="login-divider"></igx-divider>
-    <span class="submit-button">{{ provider.name }}</span>
-  </button>
+  @for (provider of loginProviders | async; track provider.name) {
+    <button
+      igxButton="contained"
+      class="login-button navigatable"
+      [style.background]="loginColors[provider.name]"
+      (click)="login(provider)">
+      <igx-icon family="login-icons" [name]="provider.name.toLowerCase()"></igx-icon>
+      <igx-divider [vertical]="true" [inset]="'0 0 0 8px'" class="login-divider"></igx-divider>
+      <span class="submit-button">{{ provider.name }}</span>
+    </button>
+  }
 </div>

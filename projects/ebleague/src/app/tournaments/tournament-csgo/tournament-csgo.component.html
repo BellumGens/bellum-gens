@@ -7,36 +7,40 @@
     <igx-card-content>
       <h4 i18n>Participants</h4>
       <div class="participants-container">
-        <igx-circular-bar *ngIf="loading" [indeterminate]="true"></igx-circular-bar>
-        <div *ngFor="let registration of registrations" class="registration-slot">
-          <igx-avatar [src]="registration.team.teamAvatar"
-                      [initials]="registration.team.teamName"
-                      [title]="registration.companyId"
-                      size="medium"
-                      shape="circle">
-          </igx-avatar>
-          <igx-badge *ngIf="registration.userId === authUser?.id && registration.state === 0"
-                      type="warning"
-                      icon="priority_high"
-                      i18n-title
-                      title="This registration is still not confirmed! The registration fee has to be paid in order to confirm the registration!"
-                      class="registration-badge-style">
-          </igx-badge>
-
-          <a [href]="environment.bellumgens + '/team/' + registration.team.customUrl" target="_blank">{{ registration.team.teamName }}</a>
-
-          <span>[{{ registration.companyId }}]</span>
-        </div>
+        @if (loading) {
+          <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
+        }
+        @for (registration of registrations; track registration.id) {
+          <div class="registration-slot">
+            <igx-avatar [src]="registration.team.teamAvatar"
+              [initials]="registration.team.teamName"
+              [title]="registration.companyId"
+              size="medium"
+              shape="circle">
+            </igx-avatar>
+            @if (registration.userId === authUser?.id && registration.state === 0) {
+              <igx-badge
+                type="warning"
+                icon="priority_high"
+                i18n-title
+                title="This registration is still not confirmed! The registration fee has to be paid in order to confirm the registration!"
+                class="registration-badge-style">
+              </igx-badge>
+            }
+            <a [href]="environment.bellumgens + '/team/' + registration.team.customUrl" target="_blank">{{ registration.team.teamName }}</a>
+            <span>[{{ registration.companyId }}]</span>
+          </div>
+        }
         <igx-divider></igx-divider>
       </div>
 
       <igx-grid cellSelection="none"
-                [data]="csgomatches"
-                height="550px"
-                i18n-emptyGridMessage
-                emptyGridMessage="No matches found..."
-                [isLoading]="loadingMatches"
-                [allowFiltering]="true">
+        [data]="csgomatches"
+        height="550px"
+        i18n-emptyGridMessage
+        emptyGridMessage="No matches found..."
+        [isLoading]="loadingMatches"
+        [allowFiltering]="true">
 
         <igx-grid-toolbar>
           <igx-grid-toolbar-title i18n>{{ tournament?.name }} Schedule</igx-grid-toolbar-title>
@@ -54,24 +58,24 @@
         <igx-column field="matchDetails" i18n-header header="Match" [filterable]="false">
           <div *igxCell="let cell = cell" class="horizontal-center">
             <igx-avatar igxListThumbnail
-                        [src]="cell.row.data.team1.teamAvatar"
-                        [initials]="cell.row.data.team1.teamName"
-                        shape="circle">
+              [src]="cell.row.data.team1.teamAvatar"
+              [initials]="cell.row.data.team1.teamName"
+              shape="circle">
             </igx-avatar>
             <a [href]="environment.bellumgens + '/team/' + cell.row.data.team1.customUrl"
-               [class]="cell.row.data.winnerTeamId === cell.row.data.team1.teamId ? 'highlight grid-team-name color-success' : 'grid-team-name'">
+              [class]="cell.row.data.winnerTeamId === cell.row.data.team1.teamId ? 'highlight grid-team-name color-success' : 'grid-team-name'">
               {{ cell.row.data.team1.teamName }}
             </a>
 
             <span class="grid-vs-divider">vs.</span>
 
             <igx-avatar igxListThumbnail
-                        [src]="cell.row.data.team2.teamAvatar"
-                        [initials]="cell.row.data.team2.teamName"
-                        shape="circle">
+              [src]="cell.row.data.team2.teamAvatar"
+              [initials]="cell.row.data.team2.teamName"
+              shape="circle">
             </igx-avatar>
             <a [href]="environment.bellumgens + '/team/' + cell.row.data.team2.customUrl"
-               [class]="cell.row.data.winnerTeamId === cell.row.data.team2.teamId ? 'highlight grid-team-name color-success' : 'grid-team-name'">
+              [class]="cell.row.data.winnerTeamId === cell.row.data.team2.teamId ? 'highlight grid-team-name color-success' : 'grid-team-name'">
               {{ cell.row.data.team2.teamName }}
             </a>
           </div>
@@ -79,84 +83,90 @@
 
         <igx-column width="150px" field="videoLink" i18n-header header="Video" [filterable]="false">
           <ng-template igxCell let-value>
-            <a *ngIf="value" [href]="value" target="_blank" class="horizontal-center">
-              <igx-icon>link</igx-icon>
-              <span>link</span>
-            </a>
+            @if (value) {
+              <a [href]="value" target="_blank" class="horizontal-center">
+                <igx-icon>link</igx-icon>
+                <span>link</span>
+              </a>
+            }
           </ng-template>
         </igx-column>
 
         <igx-column width="150px" field="demoLink" i18n-header header="Demo" [filterable]="false">
           <ng-template igxCell let-value>
-            <a *ngIf="value" [href]="value" target="_blank" class="horizontal-center">
-              <igx-icon>link</igx-icon>
-              <span>link</span>
-            </a>
+            @if (value) {
+              <a [href]="value" target="_blank" class="horizontal-center">
+                <igx-icon>link</igx-icon>
+                <span>link</span>
+              </a>
+            }
           </ng-template>
         </igx-column>
 
         <ng-template igxGridDetail let-dataItem>
-          <div class="horizontal-center" *ngFor="let map of dataItem.maps">
-            <div class="score-container">
-              {{ map.team1Score }}
+          @for (map of dataItem.maps; track map.id) {
+            <div class="horizontal-center">
+              <div class="score-container">
+                {{ map.team1Score }}
+              </div>
+              <igx-avatar [src]="map.map | csgomapimage" [initials]="map.map | csgomapname" [title]="map.map | csgomapname"></igx-avatar>
+              <div class="score-container">
+                {{ map.team2Score }}
+              </div>
             </div>
+          }
 
-            <igx-avatar [src]="map.map | csgomapimage" [initials]="map.map | csgomapname" [title]="map.map | csgomapname"></igx-avatar>
+          @if (dataItem.noShow) {
+            <div class="horizontal-center" i18n>Walkover</div>
+          }
 
-            <div class="score-container">
-              {{ map.team2Score }}
-            </div>
-          </div>
-
-          <div class="horizontal-center" *ngIf="dataItem.noShow" i18n>Walkover</div>
-
-          <div class="horizontal-center" *ngIf="!dataItem.maps.length && !dataItem.noShow" i18n>The match has not been played yet, or there's no results on record...</div>
+          @if (!dataItem.maps.length && !dataItem.noShow) {
+            <div class="horizontal-center" i18n>The match has not been played yet, or there's no results on record...</div>
+          }
         </ng-template>
       </igx-grid>
 
       <div class="group-columns">
-        <igx-grid *ngFor="let group of groups"
-                  cellSelection="none"
-                  [data]="group.participants">
-
-          <igx-grid-toolbar>
-            <igx-grid-toolbar-title>{{group.name}}</igx-grid-toolbar-title>
-          </igx-grid-toolbar>
-
-          <igx-column field="team" i18n-header header="Team" width="22%">
-            <div *igxCell="let value">
-              <igx-avatar igxListThumbnail
-                          [src]="value.teamAvatar"
-                          [initials]="value.teamName"
-                          shape="circle">
-              </igx-avatar>
-              <a igxListLineTitle [href]="environment.bellumgens + '/team/' + value.customUrl" target="_blank">
-                {{ value.teamName }}
-              </a>
-            </div>
-          </igx-column>
-
-          <igx-column field="companyId" i18n-header header="Company" width="15%">
-          </igx-column>
-          <igx-column field="matches" dataType="number" i18n-header header="Matches" width="9%">
-          </igx-column>
-          <igx-column field="wins" dataType="number" i18n-header header="Wins" width="9%">
-          </igx-column>
-          <igx-column field="oTWins" dataType="number" i18n-header header="OT Wins" title="Победи в добавено време" width="9%">
-          </igx-column>
-          <igx-column field="oTLosses" dataType="number" i18n-header header="OT Losses" title="Загуби в добавено време" width="9%">
-          </igx-column>
-          <igx-column field="losses" dataType="number" i18n-header header="Losses" width="9%">
-          </igx-column>
-          <igx-column field="roundDifference" dataType="number" i18n-header header="Round Diff" width="9%">
-            <span *igxCell="let value" [class]="value > 0 ? 'color-success' : value < 0 ? 'color-error' : ''">
-              {{ value }}
-            </span>
-          </igx-column>
-          <igx-column field="teamPoints" dataType="number" i18n-header header="Points" width="9%">
-          </igx-column>
-
-        </igx-grid>
+        @for (group of groups; track group.id) {
+          <igx-grid
+            cellSelection="none"
+            [data]="group.participants">
+            <igx-grid-toolbar>
+              <igx-grid-toolbar-title>{{group.name}}</igx-grid-toolbar-title>
+            </igx-grid-toolbar>
+            <igx-column field="team" i18n-header header="Team" width="22%">
+              <div *igxCell="let value">
+                <igx-avatar igxListThumbnail
+                  [src]="value.teamAvatar"
+                  [initials]="value.teamName"
+                  shape="circle">
+                </igx-avatar>
+                <a igxListLineTitle [href]="environment.bellumgens + '/team/' + value.customUrl" target="_blank">
+                  {{ value.teamName }}
+                </a>
+              </div>
+            </igx-column>
+            <igx-column field="companyId" i18n-header header="Company" width="15%">
+            </igx-column>
+            <igx-column field="matches" dataType="number" i18n-header header="Matches" width="9%">
+            </igx-column>
+            <igx-column field="wins" dataType="number" i18n-header header="Wins" width="9%">
+            </igx-column>
+            <igx-column field="oTWins" dataType="number" i18n-header header="OT Wins" title="Победи в добавено време" width="9%">
+            </igx-column>
+            <igx-column field="oTLosses" dataType="number" i18n-header header="OT Losses" title="Загуби в добавено време" width="9%">
+            </igx-column>
+            <igx-column field="losses" dataType="number" i18n-header header="Losses" width="9%">
+            </igx-column>
+            <igx-column field="roundDifference" dataType="number" i18n-header header="Round Diff" width="9%">
+              <span *igxCell="let value" [class]="value > 0 ? 'color-success' : value < 0 ? 'color-error' : ''">
+                {{ value }}
+              </span>
+            </igx-column>
+            <igx-column field="teamPoints" dataType="number" i18n-header header="Points" width="9%">
+            </igx-column>
+          </igx-grid>
+        }
       </div>
 
     </igx-card-content>

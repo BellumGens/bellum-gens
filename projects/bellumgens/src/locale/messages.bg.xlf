@@ -1298,6 +1298,22 @@
           <context context-type="linenumber">11,12</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="3686284950598311784" datatype="html">
+        <source>Private</source>
+        <target>Скрит</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/search/quick-search/quick-search.component.html</context>
+          <context context-type="linenumber">40,44</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/search/quick-search/quick-search.component.html</context>
+          <context context-type="linenumber">78,82</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/search/search-results/player-results/player-results.component.html</context>
+          <context context-type="linenumber">18,22</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="7373619377359302437" datatype="html">
         <source>Players</source>
         <target>Играчи</target>
@@ -1396,18 +1412,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/search/quick-search/quick-search.component.html</context>
           <context context-type="linenumber">115,119</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="3686284950598311784" datatype="html">
-        <source>Private</source>
-        <target>Скрит</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/search/quick-search/quick-search.component.html</context>
-          <context context-type="linenumber">120,123</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/search/search-results/player-results/player-results.component.html</context>
-          <context context-type="linenumber">25,29</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3286250862778589264" datatype="html">
@@ -1574,16 +1578,12 @@
           <context context-type="linenumber">34,36</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1673640476085340422" datatype="html">
-        <source>Author: <x id="START_LINK" ctype="x-a" equiv-text="&lt;a *ngIf=&quot;strat.owner&quot; [routerLink]=&quot;[&apos;/players&apos;, strat.userId]&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ strat.owner }}"/><x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
-        <target>Автор: <x id="START_LINK" ctype="x-a" equiv-text="&lt;a *ngIf=&quot;strat.owner&quot; [routerLink]=&quot;[&apos;/players&apos;, strat.userId]&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ strat.owner }}"/><x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></target>
+      <trans-unit id="6196955894143841551" datatype="html">
+        <source>Author: <x id="START_BLOCK_IF" equiv-text="@if (strat.owner) {"/><x id="START_LINK" ctype="x-a" equiv-text="&lt;a [routerLink]=&quot;[&apos;/players&apos;, strat.userId]&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ strat.owner }}"/><x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/><x id="CLOSE_BLOCK_IF" equiv-text="}"/></source>
+        <target>Автор: <x id="START_BLOCK_IF" equiv-text="@if (strat.owner) {"/><x id="START_LINK" ctype="x-a" equiv-text="&lt;a [routerLink]=&quot;[&apos;/players&apos;, strat.userId]&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ strat.owner }}"/><x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/><x id="CLOSE_BLOCK_IF" equiv-text="}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/strategies/strategies.component.html</context>
-          <context context-type="linenumber">42,43</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/strategies/strategy-details/strategy-details.component.html</context>
-          <context context-type="linenumber">14,15</context>
+          <context context-type="linenumber">51,52</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7565223646841412182" datatype="html">
@@ -1688,6 +1688,14 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/strategies/strategies.component.html</context>
           <context context-type="linenumber">127,130</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1673640476085340422" datatype="html">
+        <source>Author: <x id="START_LINK" ctype="x-a" equiv-text="&lt;a [routerLink]=&quot;[&apos;/players&apos;, strat.userId]&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ strat.owner }}"/><x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
+        <target>Автор: <x id="START_LINK" ctype="x-a" equiv-text="&lt;a [routerLink]=&quot;[&apos;/players&apos;, strat.userId]&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ strat.owner }}"/><x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/strategies/strategy-details/strategy-details.component.html</context>
+          <context context-type="linenumber">22,23</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7517626688023766510" datatype="html">
@@ -1886,12 +1894,12 @@
           <context context-type="linenumber">123,126</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="549627223587221108" datatype="html">
-        <source><x id="START_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;igx-icon&gt;"/>add_circle_outline<x id="CLOSE_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;/igx-icon&gt;"/><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/>Create New CS:GO Team<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
-        <target><x id="START_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;igx-icon&gt;"/>add_circle_outline<x id="CLOSE_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;/igx-icon&gt;"/><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/>Създай нов CS:GO Отбор<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
+      <trans-unit id="7406116628965875270" datatype="html">
+        <source>Create New CS:GO Team</source>
+        <target>Създай нов CS:GO отбор</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-nav/team-nav.component.html</context>
-          <context context-type="linenumber">2,5</context>
+          <context context-type="linenumber">3,9</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8499244520954105685" datatype="html">

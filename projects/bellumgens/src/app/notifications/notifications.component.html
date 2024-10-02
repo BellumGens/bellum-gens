@@ -1,5 +1,7 @@
 <div class="overview-container-card">
   <app-player-notifications (loaded)="aggregate($event)" (changed)="changed($event)"></app-player-notifications>
 
-  <app-team-notifications *ngFor="let team of teamAdmin | async" [team]="team" (loaded)="aggregate($event)" (changed)="changed($event)"></app-team-notifications>
+  @for (team of teamAdmin | async; track team.teamId) {
+    <app-team-notifications [team]="team" (loaded)="aggregate($event)" (changed)="changed($event)"></app-team-notifications>
+  }
 </div>

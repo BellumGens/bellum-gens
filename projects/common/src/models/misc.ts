@@ -22,6 +22,12 @@ export enum StratOrderBy {
   TopVoted
 }
 
+export interface SocialMedia {
+  name: string;
+  icon: string;
+  url: string;
+}
+
 export const StratOrder = [
   { display: 'Most Recent', order: StratOrderBy.MostRecent },
   { display: 'Top Voted', order: StratOrderBy.TopVoted }
@@ -39,9 +45,23 @@ export const CREW_MEMBERS = [
     birthplace: 'Pazardzik, Bulgaria',
     position: 'CS:GO caster and host',
     image: '/assets/crew/niku.webp',
-    twitter: 'https://twitter.com/OfficialNiku',
-    facebook: 'https://www.facebook.com/nikutv/',
-    instagram: 'https://www.instagram.com/officialniku/'
+    social: [
+      {
+        name: 'Facebook',
+        icon: 'facebook',
+        url: 'https://www.facebook.com/nikutv/'
+      },
+      {
+        name: 'Twitter',
+        icon: 'twitter',
+        url: 'https://twitter.com/OfficialNiku'
+      },
+      {
+        name: 'Instagram',
+        icon: 'instagram',
+        url: 'https://www.instagram.com/officialniku/'
+      }
+    ]
   },
   // {
   //   name: 'Georgy "lop" Tsanev',
@@ -57,45 +77,95 @@ export const CREW_MEMBERS = [
     birthplace: 'Sofia, Bulgaria',
     position: 'CS:GO caster',
     image: '/assets/crew/tedcs.webp',
-    twitter: 'https://twitter.com/teddcs',
-    facebook: 'https://facebook.com/teddxd',
-    instagram: 'https://instagram.com/teodorb1'
+    social: [
+      {
+        name: 'Facebook',
+        icon: 'facebook',
+        url: 'https://facebook.com/teddxd'
+      },
+      {
+        name: 'Twitter',
+        icon: 'twitter',
+        url: 'https://twitter.com/teddcs'
+      },
+      {
+        name: 'Instagram',
+        icon: 'instagram',
+        url: 'https://instagram.com/teodorb1'
+      }
+    ]
   },
   {
     name: 'Atanas "FURY" Popov',
     birthplace: 'Bansko, Bulgaria',
     position: 'CS:GO server admin',
     image: '/assets/crew/fury.webp',
-    twitter: 'https://twitter.com/BProFURY',
-    facebook: '',
-    instagram: ''
+    social: [
+      {
+        name: 'Twitter',
+        icon: 'twitter',
+        url: 'https://twitter.com/BProFURY'
+      }
+    ]
   },
   {
     name: 'Petroslav "myth" Belchev',
     birthplace: 'Veliko Turnovo, Bulgaria',
     position: 'Motion graphics and video editing',
     image: '/assets/crew/myth.webp',
-    twitter: 'https://twitter.com/mythvt',
-    facebook: 'https://www.facebook.com/mythfilms/',
-    instagram: 'https://www.instagram.com/mythvt/'
+    social: [
+      {
+        name: 'Twitter',
+        icon: 'twitter',
+        url: 'https://twitter.com/mythvt'
+      },
+      {
+        name: 'Facebook',
+        icon: 'facebook',
+        url: 'https://www.facebook.com/mythfilms/'
+      },
+      {
+        name: 'Instagram',
+        icon: 'instagram',
+        url: 'https://www.instagram.com/mythvt/'
+      }
+    ]
   },
   {
     name: 'Mihail "msrm" Mihailov',
     birthplace: 'Pernik, Bulgaria',
     position: 'StarCraft II caster',
     image: '/assets/crew/msrm.webp',
-    twitter: 'https://twitter.com/The_msrm',
-    facebook: '',
-    instagram: ''
+    social: [
+      {
+        name: 'Twitter',
+        icon: 'twitter',
+        url: 'https://twitter.com/The_msrm'
+      }
+    ]
   },
   {
     name: 'Luchezar "exalted" Kamenov',
     birthplace: 'Sofia, Bulgaria',
     position: 'StarCraft II caster and host',
     image: '/assets/crew/exalted.webp',
-    twitter: 'https://twitter.com/BSLesports',
-    facebook: 'https://www.facebook.com/BSLesports/',
-    instagram: 'https://www.instagram.com/bsl_esports/'
+    social: [
+      {
+        name: 'Twitter',
+        icon: 'twitter',
+        url: 'https://x.com/bgstarcraft'
+      },
+      {
+        name: 'Facebook',
+        icon: 'facebook',
+        url: 'https://www.facebook.com/BGStarCraftLeague'
+      },
+      {
+        name: 'Instagram',
+        icon: 'instagram',
+        url: 'https://www.instagram.com/bgstarcraftleague/'
+      }
+    ]
   }
 ];
 

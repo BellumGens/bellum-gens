@@ -3,22 +3,21 @@ import { ACTIVE_DUTY, CSGOMapPool } from '../../../../../common/src/public_api';
 import { ActiveDutyMapsPipe } from '../../../../../common/src/lib/pipes/active-duty-maps.pipe';
 import { FormsModule } from '@angular/forms';
 import { IGX_CARD_DIRECTIVES, IgxCheckboxComponent } from '@infragistics/igniteui-angular';
-import { NgFor, NgClass, NgOptimizedImage } from '@angular/common';
+import { NgClass, NgOptimizedImage } from '@angular/common';
 
 @Component({
-    selector: 'app-map-pool',
-    templateUrl: './map-pool.component.html',
-    styleUrls: ['./map-pool.component.scss'],
-    standalone: true,
-    imports: [
-      NgFor,
-      NgClass,
-      NgOptimizedImage,
-      FormsModule,
-      IGX_CARD_DIRECTIVES,
-      IgxCheckboxComponent,
-      ActiveDutyMapsPipe
-    ]
+  selector: 'app-map-pool',
+  templateUrl: './map-pool.component.html',
+  styleUrls: ['./map-pool.component.scss'],
+  standalone: true,
+  imports: [
+    NgClass,
+    NgOptimizedImage,
+    FormsModule,
+    IGX_CARD_DIRECTIVES,
+    IgxCheckboxComponent,
+    ActiveDutyMapsPipe
+  ]
 })
 export class MapPoolComponent {
   @Input()

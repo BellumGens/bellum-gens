@@ -17,7 +17,7 @@ import {
   IgxAvatarComponent
 } from '@infragistics/igniteui-angular';
 import { FormsModule } from '@angular/forms';
-import { NgIf, NgFor } from '@angular/common';
+
 
 @Component({
   selector: 'app-team-preferences',
@@ -25,7 +25,6 @@ import { NgIf, NgFor } from '@angular/common';
   styleUrls: ['./team-preferences.component.css'],
   standalone: true,
   imports: [
-    NgIf,
     FormsModule,
     IGX_INPUT_GROUP_DIRECTIVES,
     IgxIconComponent,
@@ -33,11 +32,10 @@ import { NgIf, NgFor } from '@angular/common';
     IgxButtonDirective,
     IgxRippleDirective,
     IGX_LIST_DIRECTIVES,
-    NgFor,
     IgxAvatarComponent,
     RouterLink,
     CountrySVGPipe
-  ]
+]
 })
 export class TeamPreferencesComponent {
   public team: CSGOTeam;

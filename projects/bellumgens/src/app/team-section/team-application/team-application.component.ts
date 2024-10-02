@@ -12,23 +12,22 @@ import {
   NotificationState,
   BellumgensApiService
 } from '../../../../../common/src/public_api';
-import { NgIf } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 
 @Component({
-    selector: 'app-team-application',
-    templateUrl: './team-application.component.html',
-    styleUrls: ['./team-application.component.scss'],
-    standalone: true,
-    imports: [
-      IgxButtonDirective,
-      IgxRippleDirective,
-      IgxDialogComponent,
-      IGX_INPUT_GROUP_DIRECTIVES,
-      FormsModule,
-      NgIf,
-      IgxIconComponent
-    ]
+  selector: 'app-team-application',
+  templateUrl: './team-application.component.html',
+  styleUrls: ['./team-application.component.scss'],
+  standalone: true,
+  imports: [
+    IgxButtonDirective,
+    IgxRippleDirective,
+    IgxDialogComponent,
+    IGX_INPUT_GROUP_DIRECTIVES,
+    FormsModule,
+    IgxIconComponent
+  ]
 })
 export class TeamApplicationComponent {
   @ViewChild(IgxDialogComponent, { static: true }) public dialog: IgxDialogComponent;

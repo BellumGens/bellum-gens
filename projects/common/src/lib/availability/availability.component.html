@@ -1,31 +1,37 @@
 <igx-chips-area>
-  <igx-chip *ngFor="let weekday of baseAvailability"
-            [selectable]="editable"
-            [removable]="editable && weekday.available"
-            [selected]="weekday.available"
-            (chipClick)="daySelected($event, weekday)"
-            (remove)="dayDeselected($event, weekday)">
-    <span class="igx-chip__text">{{ weekday.day | weekday }}</span>
-    <span class="igx-chip__subtext" *ngIf="weekday.available">{{ weekday.from | date:'H:mm' }}-{{ weekday.to | date:'H:mm' }}</span>
-  </igx-chip>
+  @for (weekday of baseAvailability; track weekday.day) {
+    <igx-chip
+      [selectable]="editable"
+      [removable]="editable && weekday.available"
+      [selected]="weekday.available"
+      (chipClick)="daySelected($event, weekday)"
+      (remove)="dayDeselected($event, weekday)">
+      <span class="igx-chip__text">{{ weekday.day | weekday }}</span>
+      @if (weekday.available) {
+        <span class="igx-chip__subtext">{{ weekday.from | date:'H:mm' }}-{{ weekday.to | date:'H:mm' }}</span>
+      }
+    </igx-chip>
+  }
 </igx-chips-area>
 
 <igx-dialog [closeOnOutsideSelect]="true"
-            i18n-leftButtonLabel
-            leftButtonLabel="Cancel"
-            i18n-rightButtonLabel
-            rightButtonLabel="Submit"
-            (leftButtonSelect)="availabilityCancel()"
-            (rightButtonSelect)="availabilityChange()">
+  i18n-leftButtonLabel
+  leftButtonLabel="Cancel"
+  i18n-rightButtonLabel
+  rightButtonLabel="Submit"
+  (leftButtonSelect)="availabilityCancel()"
+  (rightButtonSelect)="availabilityChange()">
   <h5 igxDialogTitle i18n>Available times for &nbsp;<span class="highlight">{{selectedDay ? (selectedDay.day | weekday) : ''}}</span></h5>
-  <div *ngIf="selectedDay">
-    <div class="horizontal-center">
-      <igx-time-picker #from class="time-picker" [value]="selectedDay.from" [itemsDelta]="{hours: 1, minutes: 15, seconds: 1}" mode="dialog">
-        <label igxLabel i18n>From</label>
-      </igx-time-picker>
-      <igx-time-picker #to class="time-picker" [value]="selectedDay.to" [itemsDelta]="{hours: 1, minutes: 15, seconds: 1}" mode="dialog">
-        <label igxLabel i18n>To</label>
-      </igx-time-picker>
+  @if (selectedDay) {
+    <div>
+      <div class="horizontal-center">
+        <igx-time-picker #from class="time-picker" [value]="selectedDay.from" [itemsDelta]="{hours: 1, minutes: 15, seconds: 1}" mode="dialog">
+          <label igxLabel i18n>From</label>
+        </igx-time-picker>
+        <igx-time-picker #to class="time-picker" [value]="selectedDay.to" [itemsDelta]="{hours: 1, minutes: 15, seconds: 1}" mode="dialog">
+          <label igxLabel i18n>To</label>
+        </igx-time-picker>
+      </div>
     </div>
-  </div>
+  }
 </igx-dialog>

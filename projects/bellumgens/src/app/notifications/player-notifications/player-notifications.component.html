@@ -1,22 +1,28 @@
-<igx-list *ngIf="authUser">
-  <igx-list-item [isHeader]="true">
-    <span i18n>Notifications for {{ authUser.username }}</span>
-  </igx-list-item>
-  <igx-list-item *ngIf="!notifications?.length">
-    <span igxListLine i18n>No new notifications.</span>
-  </igx-list-item>
-  <igx-list-item *ngFor="let notification of notifications | sortNotifications:pipeTrigger" [class]="notificationClass[notification.state]">
-    <igx-avatar igxListThumbnail [src]="notification.teamInfo.teamAvatar" [initials]="notification.teamInfo.teamName" shape="circle">
-    </igx-avatar>
-    <h3 igxListLineTitle i18n>You have been invited to join <a [routerLink]="['/team', notification.teamInfo.customUrl]">{{ notification.teamInfo.teamName }}</a></h3>
-    <span igxListLineSubTitle>{{ notification.sent | date }}</span>
-    <div igxListAction *ngIf="notification.state | disabledNotifications:true else read">
-      <button igxButton="flat" igxRipple [disabled]="actionInProgress" (click)="acceptInvitation(notification)" i18n>{{actionInProgress ? 'Accepting...' : 'Accept'}}</button>
-      <button igxButton="flat" igxRipple [disabled]="actionInProgress" (click)="rejectInvitation(notification)" i18n>{{actionInProgress ? 'Rejecting...' : 'Reject'}}</button>
-    </div>
-
-    <ng-template #read>
-      <button igxButton="flat" igxRipple [disabled]="true">{{ notification.state | notificationState }}</button>
-    </ng-template>
-  </igx-list-item>
-</igx-list>
+@if (authUser) {
+  <igx-list>
+    <igx-list-item [isHeader]="true">
+      <span i18n>Notifications for {{ authUser.username }}</span>
+    </igx-list-item>
+    @if (!notifications?.length) {
+      <igx-list-item>
+        <span igxListLine i18n>No new notifications.</span>
+      </igx-list-item>
+    }
+    @for (notification of notifications | sortNotifications:pipeTrigger; track notification) {
+      <igx-list-item [class]="notificationClass[notification.state]">
+        <igx-avatar igxListThumbnail [src]="notification.teamInfo.teamAvatar" [initials]="notification.teamInfo.teamName" shape="circle">
+        </igx-avatar>
+        <h3 igxListLineTitle i18n>You have been invited to join <a [routerLink]="['/team', notification.teamInfo.customUrl]">{{ notification.teamInfo.teamName }}</a></h3>
+        <span igxListLineSubTitle>{{ notification.sent | date }}</span>
+        @if (notification.state | disabledNotifications:true) {
+          <div igxListAction>
+            <button igxButton="flat" igxRipple [disabled]="actionInProgress" (click)="acceptInvitation(notification)" i18n>{{actionInProgress ? 'Accepting...' : 'Accept'}}</button>
+            <button igxButton="flat" igxRipple [disabled]="actionInProgress" (click)="rejectInvitation(notification)" i18n>{{actionInProgress ? 'Rejecting...' : 'Reject'}}</button>
+          </div>
+        } @else {
+          <button igxButton="flat" igxRipple [disabled]="true">{{ notification.state | notificationState }}</button>
+        }
+      </igx-list-item>
+    }
+  </igx-list>
+}

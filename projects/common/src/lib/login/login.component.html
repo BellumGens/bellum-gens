@@ -1,52 +1,53 @@
 <bg-login-dialog #loginDialog></bg-login-dialog>
 
-<button igxButton="contained" class="login-button-button" igxRipple *ngIf="!authUser && !userCheck" (click)="loginDialog.openLogin()">
-  <igx-icon>login</igx-icon>
-  <span i18n class="login-button-text">login</span>
-</button>
-
-<igx-circular-bar *ngIf="userCheck" [indeterminate]="true"></igx-circular-bar>
-
-<div *ngIf="authUser">
-  <button class="profile-button" #profileButton igxButton="flat" igxRipple i18n-title title="Profile" [igxToggleAction]="userProfile" [overlaySettings]="overlaySettings">
-    <igx-avatar [src]="authUser.csgoDetails?.avatarMedium || authUser.sc2Details?.avatarUrl" [initials]="authUser.username" shape="circle">
-    </igx-avatar>
-    <igx-icon class="drop-down-arrow">arrow_drop_down</igx-icon>
+@if (!authUser && !userCheck) {
+  <button igxButton="contained" class="login-button-button" igxRipple (click)="loginDialog.openLogin()">
+    <igx-icon>login</igx-icon>
+    <span i18n class="login-button-text">login</span>
   </button>
-  <igx-drop-down #userProfile>
-    <div class="profile-container">
-      <igx-tabs tabAlignment="justify">
-        <igx-tab-item>
-          <igx-tab-header>
-            <igx-icon igxPrefix>person</igx-icon>
-            <div igxTabHeaderLabel i18n>Profile</div>
-          </igx-tab-header>
-          <igx-tab-content class="profile-content">
-            <div class="profile-view">
-              <igx-avatar [src]="authUser.csgoDetails?.avatarFull || authUser.sc2Details?.avatarUrl" [initials]="authUser.username" shape="circle" [size]="'large'">
-              </igx-avatar>
-              <h1 class="igx-card-header__title highlight navigatable profile-username" (click)="navigateToProfile(authUser)">{{ authUser.username }}</h1>
-              <h4 class="igx-card-header__subtitle">{{ authUser.csgoDetails?.realName || authUser.sc2Details?.battleNetBattleTag }}</h4>
-            </div>
-
-            <button class="submit-button" igxButton="outlined" igxRipple class="profile-username" (click)="logout()">
-              <igx-icon>logout</igx-icon>
-              <span i18n>logout</span>
-            </button>
-          </igx-tab-content>
-        </igx-tab-item>
-
-        <igx-tab-item>
-          <igx-tab-header>
-            <igx-icon igxPrefix>settings</igx-icon>
-            <div igxTabHeaderLabel i18n>Settings</div>
-          </igx-tab-header>
-          <igx-tab-content class="profile-content">
-
-            <bg-user-preferences (userDeleted)="close()"></bg-user-preferences>
-          </igx-tab-content>
-        </igx-tab-item>
-      </igx-tabs>
-    </div>
-  </igx-drop-down>
-</div>
+}
+@else if (userCheck) {
+  <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
+}
+@else if (authUser) {
+  <div>
+    <button class="profile-button" #profileButton igxButton="flat" igxRipple i18n-title title="Profile" [igxToggleAction]="userProfile" [overlaySettings]="overlaySettings">
+      <igx-avatar [src]="authUser.csgoDetails?.avatarMedium || authUser.sc2Details?.avatarUrl" [initials]="authUser.username" shape="circle">
+      </igx-avatar>
+      <igx-icon class="drop-down-arrow">arrow_drop_down</igx-icon>
+    </button>
+    <igx-drop-down #userProfile>
+      <div class="profile-container">
+        <igx-tabs tabAlignment="justify">
+          <igx-tab-item>
+            <igx-tab-header>
+              <igx-icon igxPrefix>person</igx-icon>
+              <div igxTabHeaderLabel i18n>Profile</div>
+            </igx-tab-header>
+            <igx-tab-content class="profile-content">
+              <div class="profile-view">
+                <igx-avatar [src]="authUser.csgoDetails?.avatarFull || authUser.sc2Details?.avatarUrl" [initials]="authUser.username" shape="circle" [size]="'large'">
+                </igx-avatar>
+                <h1 class="igx-card-header__title highlight navigatable profile-username" (click)="navigateToProfile(authUser)">{{ authUser.username }}</h1>
+                <h4 class="igx-card-header__subtitle">{{ authUser.csgoDetails?.realName || authUser.sc2Details?.battleNetBattleTag }}</h4>
+              </div>
+              <button class="submit-button" igxButton="outlined" igxRipple class="profile-username" (click)="logout()">
+                <igx-icon>logout</igx-icon>
+                <span i18n>logout</span>
+              </button>
+            </igx-tab-content>
+          </igx-tab-item>
+          <igx-tab-item>
+            <igx-tab-header>
+              <igx-icon igxPrefix>settings</igx-icon>
+              <div igxTabHeaderLabel i18n>Settings</div>
+            </igx-tab-header>
+            <igx-tab-content class="profile-content">
+              <bg-user-preferences (userDeleted)="close()"></bg-user-preferences>
+            </igx-tab-content>
+          </igx-tab-item>
+        </igx-tabs>
+      </div>
+    </igx-drop-down>
+  </div>
+}

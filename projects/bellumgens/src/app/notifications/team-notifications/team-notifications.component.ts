@@ -4,27 +4,25 @@ import { NotificationStatePipe } from '../../pipes/notification-state.pipe';
 import { SortApplicationsPipe } from '../../pipes/sort-applications.pipe';
 import { DisabledNotificationsPipe } from '../../pipes/disabled-notifications.pipe';
 import { RouterLink } from '@angular/router';
-import { IgxListModule, IgxAvatarModule, IgxButtonModule, IgxRippleModule } from '@infragistics/igniteui-angular';
-import { NgIf, NgFor, DatePipe } from '@angular/common';
+import { IGX_LIST_DIRECTIVES, IgxAvatarComponent, IgxButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular';
+import { DatePipe } from '@angular/common';
 
 @Component({
-    selector: 'app-team-notifications',
-    templateUrl: './team-notifications.component.html',
-    styleUrls: ['./team-notifications.component.css'],
-    standalone: true,
-    imports: [
-      NgIf,
-      IgxListModule,
-      NgFor,
-      IgxAvatarModule,
-      RouterLink,
-      IgxButtonModule,
-      IgxRippleModule,
-      DatePipe,
-      DisabledNotificationsPipe,
-      SortApplicationsPipe,
-      NotificationStatePipe
-    ]
+  selector: 'app-team-notifications',
+  templateUrl: './team-notifications.component.html',
+  styleUrls: ['./team-notifications.component.css'],
+  standalone: true,
+  imports: [
+    IGX_LIST_DIRECTIVES,
+    IgxAvatarComponent,
+    RouterLink,
+    IgxButtonDirective,
+    IgxRippleDirective,
+    DatePipe,
+    DisabledNotificationsPipe,
+    SortApplicationsPipe,
+    NotificationStatePipe
+  ]
 })
 export class TeamNotificationsComponent implements OnInit {
   @Input() public team: CSGOTeam;
@@ -53,28 +51,28 @@ export class TeamNotificationsComponent implements OnInit {
   public approveApplication(application: TeamApplication) {
     this.actionText = 'Approving...';
     this.actionInProgress = true;
-    this.apiService.approveApplication(application).subscribe(
-      data => {
+    this.apiService.approveApplication(application).subscribe({
+      next: data => {
         application = data;
         this.pipeTrigger++;
         this.changed.emit(-1);
         this.actionInProgress = false;
       },
-      () => this.actionInProgress = false
-    );
+      complete: () => this.actionInProgress = false
+    });
   }
 
   public rejectApplication(application: TeamApplication) {
     this.actionText = 'Rejecting...';
     this.actionInProgress = true;
-    this.apiService.rejectApplication(application).subscribe(
-      data => {
+    this.apiService.rejectApplication(application).subscribe({
+      next: data => {
         application = data;
         this.pipeTrigger++;
         this.changed.emit(-1);
         this.actionInProgress = false;
       },
-      () => this.actionInProgress = false
-    );
+      complete: () => this.actionInProgress = false
+    });
   }
 }

@@ -16,26 +16,24 @@ import {
   IgxSwitchComponent,
   IGX_LIST_DIRECTIVES
 } from '@infragistics/igniteui-angular';
-import { NgFor, NgClass, NgIf } from '@angular/common';
+import { NgClass } from '@angular/common';
 
 @Component({
-    selector: 'bg-user-preferences',
-    templateUrl: './user-preferences.component.html',
-    styleUrls: ['./user-preferences.component.scss'],
-    standalone: true,
-    imports: [
-      NgFor,
-      IgxButtonDirective,
-      IgxRippleDirective,
-      IgxIconComponent,
-      IgxDividerDirective,
-      IgxSwitchComponent,
-      FormsModule,
-      IGX_LIST_DIRECTIVES,
-      NgClass,
-      NgIf,
-      ConfirmComponent
-    ]
+  selector: 'bg-user-preferences',
+  templateUrl: './user-preferences.component.html',
+  styleUrls: ['./user-preferences.component.scss'],
+  standalone: true,
+  imports: [
+    IgxButtonDirective,
+    IgxRippleDirective,
+    IgxIconComponent,
+    IgxDividerDirective,
+    IgxSwitchComponent,
+    FormsModule,
+    IGX_LIST_DIRECTIVES,
+    NgClass,
+    ConfirmComponent
+  ]
 })
 export class UserPreferencesComponent {
   public preferences: UserPreferences = {

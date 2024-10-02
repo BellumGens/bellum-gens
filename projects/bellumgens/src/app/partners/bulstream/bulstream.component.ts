@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, HostListener, Inject, PLATFORM_ID }
 import { BaseDirective } from '../../base/base.component';
 import { isPlatformBrowser, NgOptimizedImage } from '@angular/common';
 import { IGX_CARD_DIRECTIVES, IgxIconButtonDirective, IgxRippleDirective, IgxIconComponent, IgxLayoutDirective, IgxFlexDirective } from '@infragistics/igniteui-angular';
+import { SocialMedia } from '../../../../../common/src/public_api';
 import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 
@@ -22,7 +23,7 @@ import { ActivatedRoute } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BulstreamComponent extends BaseDirective {
-  public social = [
+  public social: SocialMedia [] = [
     {
       name: 'Facebook',
       icon: 'facebook',

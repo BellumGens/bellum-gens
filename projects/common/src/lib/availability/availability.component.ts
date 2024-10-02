@@ -9,7 +9,7 @@ import {
   IgxLabelDirective
 } from '@infragistics/igniteui-angular';
 import { WeekdayPipe } from '../pipes/weekday.pipe';
-import { NgFor, NgIf, DatePipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 
 @Component({
     selector: 'bg-availability',
@@ -17,15 +17,13 @@ import { NgFor, NgIf, DatePipe } from '@angular/common';
     styleUrls: ['./availability.component.scss'],
     standalone: true,
     imports: [
-      IGX_CHIPS_DIRECTIVES,
-      NgFor,
-      NgIf,
-      IgxDialogComponent,
-      IgxTimePickerComponent,
-      IgxLabelDirective,
-      DatePipe,
-      WeekdayPipe
-    ]
+    IGX_CHIPS_DIRECTIVES,
+    IgxDialogComponent,
+    IgxTimePickerComponent,
+    IgxLabelDirective,
+    DatePipe,
+    WeekdayPipe
+]
 })
 export class AvailabilityComponent {
   @Input()

@@ -1,43 +1,47 @@
-<p *ngIf="!tournaments || !tournaments.length" i18n>This team has not participated in any competitions.</p>
+@if (!tournaments?.length) {
+  <p i18n>This team has not participated in any competitions.</p>
+}
 
 <div class="group-columns">
-  <!-- <igx-grid *ngFor="let tournament of tournaments"
-            cellSelection="none"
-            [data]="tournament.csgoMatches">
+  <!-- @for (let tournament of tournaments; track tournament.id) {
+  <igx-grid
+  cellSelection="none"
+  [data]="tournament.csgoMatches">
 
-    <igx-grid-toolbar>
-      <igx-grid-toolbar-title>{{tournament.name}}</igx-grid-toolbar-title>
-    </igx-grid-toolbar>
+  <igx-grid-toolbar>
+    <igx-grid-toolbar-title>{{tournament.name}}</igx-grid-toolbar-title>
+  </igx-grid-toolbar>
 
-    <igx-column field="startTime" i18n-header header="Date" dataType="date" width="15%">
-    </igx-column>
+  <igx-column field="startTime" i18n-header header="Date" dataType="date" width="15%">
+  </igx-column>
 
-    <igx-column i18n-header header="Match" width="70%">
-      <ng-template igxCell let-cell="cell">
-        <igx-avatar igxListThumbnail
-                    [src]="cell.row.data.team1.teamAvatar"
-                    [initials]="cell.row.data.team1.teamName"
-                    shape="circle">
-        </igx-avatar>
-        <span [class]="cell.row.data.winnerTeamId === cell.row.data.team1.teamId ? 'highlight grid-team-name' : 'grid-team-name'">{{ cell.row.data.team1.teamName }}</span>
+  <igx-column i18n-header header="Match" width="70%">
+    <ng-template igxCell let-cell="cell">
+      <igx-avatar igxListThumbnail
+        [src]="cell.row.data.team1.teamAvatar"
+        [initials]="cell.row.data.team1.teamName"
+        shape="circle">
+      </igx-avatar>
+      <span [class]="cell.row.data.winnerTeamId === cell.row.data.team1.teamId ? 'highlight grid-team-name' : 'grid-team-name'">{{ cell.row.data.team1.teamName }}</span>
 
-        <span class="grid-vs-divider">vs.</span>
+      <span class="grid-vs-divider">vs.</span>
 
-        <igx-avatar igxListThumbnail
-                    [src]="cell.row.data.team2.teamAvatar"
-                    [initials]="cell.row.data.team2.teamName"
-                    shape="circle">
-        </igx-avatar>
-        <span [class]="cell.row.data.winnerTeamId === cell.row.data.team2.teamId ? 'highlight grid-team-name' : 'grid-team-name'">{{ cell.row.data.team2.teamName }}</span>
-      </ng-template>
-    </igx-column>
+      <igx-avatar igxListThumbnail
+        [src]="cell.row.data.team2.teamAvatar"
+        [initials]="cell.row.data.team2.teamName"
+        shape="circle">
+      </igx-avatar>
+      <span [class]="cell.row.data.winnerTeamId === cell.row.data.team2.teamId ? 'highlight grid-team-name' : 'grid-team-name'">{{ cell.row.data.team2.teamName }}</span>
+    </ng-template>
+  </igx-column>
 
-    <igx-column field="winnerTeamId" i18n-header header="Result" width="15%">
-      <ng-template igxCell let-value>
-        <span [class]="value === emptyGuid ? 'color-warn' : value === team?.teamId ? 'color-success' : 'color-error'"
-              i18n>{{ value === emptyGuid ? 'Pending' : value === team?.teamId ? 'Win' : 'Loss' }}</span>
-      </ng-template>
-    </igx-column>
+  <igx-column field="winnerTeamId" i18n-header header="Result" width="15%">
+    <ng-template igxCell let-value>
+      <span [class]="value === emptyGuid ? 'color-warn' : value === team?.teamId ? 'color-success' : 'color-error'"
+      i18n>{{ value === emptyGuid ? 'Pending' : value === team?.teamId ? 'Win' : 'Loss' }}</span>
+    </ng-template>
+  </igx-column>
 
-  </igx-grid> -->
+</igx-grid>
+} -->
 </div>

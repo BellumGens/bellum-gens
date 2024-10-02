@@ -1,20 +1,22 @@
 <button igxButton="flat" igxRipple (click)="applicationDialog.open()" [disabled]="!authUser" i18n>Apply to join</button>
 <igx-dialog #applicationDialog
-            i18n-title
-            title="Why do you want to join our team?"
-            i18n-leftButtonLabel
-            leftButtonLabel="Cancel"
-            i18n-rightButtonLabel
-            rightButtonLabel="Submit Application"
-            (leftButtonSelect)="applicationDialog.close()"
-            (rightButtonSelect)="submitApplication()">
+  i18n-title
+  title="Why do you want to join our team?"
+  i18n-leftButtonLabel
+  leftButtonLabel="Cancel"
+  i18n-rightButtonLabel
+  rightButtonLabel="Submit Application"
+  (leftButtonSelect)="applicationDialog.close()"
+  (rightButtonSelect)="submitApplication()">
   <div class="application-dialog">
     <igx-input-group type="search" class="search">
       <label for="motivation" igxLabel i18n>Tell us about your motivation to join our team...</label>
       <textarea igxInput name="motivation" [(ngModel)]="application.message" [required]="true" class="application-message"></textarea>
-      <igx-suffix *ngIf="application.message.length > 0" (click)="application.message = ''">
+      @if (application.message.length > 0) {
+        <igx-suffix (click)="application.message = ''">
           <igx-icon>clear</igx-icon>
-      </igx-suffix>
+        </igx-suffix>
+      }
     </igx-input-group>
   </div>
 </igx-dialog>

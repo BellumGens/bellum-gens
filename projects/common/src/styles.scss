@@ -31,7 +31,6 @@ html, body {
 
 .horizontal {
   display: flex;
-  flex: 0 0 auto;
   flex-flow: row wrap;
 }
 
@@ -362,7 +361,6 @@ input:-webkit-autofill:active  {
 @media only screen and (max-width: 1280px) {
   .overview-container-card,
   .card-wrapper {
-    width: 100%;
     padding: 0 8px;
   }
 

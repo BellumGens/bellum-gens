@@ -10,31 +10,30 @@ import {
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { FormsModule } from '@angular/forms';
-import { IgxAutocompleteModule, IgxAvatarModule, IgxCheckboxModule, IgxDropDownModule, IgxIconModule, IgxInputGroupModule, IgxSelectModule } from '@infragistics/igniteui-angular';
+import { IGX_DRAG_DROP_DIRECTIVES, IGX_DROP_DOWN_DIRECTIVES, IGX_INPUT_GROUP_DIRECTIVES, IGX_SELECT_DIRECTIVES, IgxAutocompleteDirective, IgxAvatarComponent, IgxCheckboxComponent, IgxIconComponent } from '@infragistics/igniteui-angular';
 import { TeamNewComponent } from '../../../../bellumgens/src/app/team-section/team-new/team-new.component';
 import { StartsWithPipe } from '../pipes/starts-with.pipe';
-import { AsyncPipe, NgFor, NgIf } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
-    selector: 'app-tournament-registration',
-    templateUrl: './tournament-registration.component.html',
-    styleUrls: ['./tournament-registration.component.scss'],
-    standalone: true,
-    imports: [
-      FormsModule,
-      IgxInputGroupModule,
-      IgxSelectModule,
-      IgxIconModule,
-      IgxAvatarModule,
-      IgxAutocompleteModule,
-      IgxDropDownModule,
-      IgxCheckboxModule,
-      TeamNewComponent,
-      StartsWithPipe,
-      NgIf,
-      NgFor,
-      AsyncPipe
-    ]
+  selector: 'app-tournament-registration',
+  templateUrl: './tournament-registration.component.html',
+  styleUrls: ['./tournament-registration.component.scss'],
+  standalone: true,
+  imports: [
+    FormsModule,
+    IGX_INPUT_GROUP_DIRECTIVES,
+    IGX_SELECT_DIRECTIVES,
+    IgxIconComponent,
+    IgxAvatarComponent,
+    IgxAutocompleteDirective,
+    IGX_DROP_DOWN_DIRECTIVES,
+    IGX_DRAG_DROP_DIRECTIVES,
+    IgxCheckboxComponent,
+    TeamNewComponent,
+    StartsWithPipe,
+    AsyncPipe
+  ]
 })
 export class TournamentRegistrationComponent {
   @Input()

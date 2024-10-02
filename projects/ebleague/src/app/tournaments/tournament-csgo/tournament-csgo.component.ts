@@ -12,29 +12,27 @@ import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../../../../common/src/environments/environment';
 import { CSGOMapnamePipe } from '../../../../../common/src/lib/pipes/csgomapname.pipe';
 import { CSGOMapimagePipe } from '../../../../../common/src/lib/pipes/csgomapimage.pipe';
-import { NgIf, NgFor, DatePipe, NgOptimizedImage } from '@angular/common';
-import { IgxCardModule, IgxProgressBarModule, IgxAvatarModule, IgxBadgeModule, IgxDividerModule, IgxGridModule, IgxIconModule } from '@infragistics/igniteui-angular';
+import { DatePipe, NgOptimizedImage } from '@angular/common';
+import { IGX_CARD_DIRECTIVES, IgxCircularProgressBarComponent, IgxAvatarComponent, IgxBadgeComponent, IgxDividerDirective, IGX_GRID_DIRECTIVES, IgxIconComponent } from '@infragistics/igniteui-angular';
 
 @Component({
-    selector: 'app-tournament-csgo',
-    templateUrl: './tournament-csgo.component.html',
-    styleUrls: ['./tournament-csgo.component.scss'],
-    standalone: true,
-    imports: [
-      NgIf,
-      NgFor,
-      NgOptimizedImage,
-      DatePipe,
-      IgxCardModule,
-      IgxProgressBarModule,
-      IgxAvatarModule,
-      IgxBadgeModule,
-      IgxDividerModule,
-      IgxGridModule,
-      IgxIconModule,
-      CSGOMapimagePipe,
-      CSGOMapnamePipe
-    ]
+  selector: 'app-tournament-csgo',
+  templateUrl: './tournament-csgo.component.html',
+  styleUrls: ['./tournament-csgo.component.scss'],
+  standalone: true,
+  imports: [
+    NgOptimizedImage,
+    DatePipe,
+    IGX_CARD_DIRECTIVES,
+    IgxCircularProgressBarComponent,
+    IgxAvatarComponent,
+    IgxBadgeComponent,
+    IgxDividerDirective,
+    IGX_GRID_DIRECTIVES,
+    IgxIconComponent,
+    CSGOMapimagePipe,
+    CSGOMapnamePipe
+  ]
 })
 export class TournamentCsgoComponent extends BaseDirective {
   public registrations: TournamentParticipant [];

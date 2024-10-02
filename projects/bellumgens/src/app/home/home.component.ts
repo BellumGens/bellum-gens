@@ -1,29 +1,28 @@
 import { Component, HostListener, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
-import { isPlatformBrowser, NgIf, NgOptimizedImage } from '@angular/common';
+import { isPlatformBrowser, NgOptimizedImage } from '@angular/common';
 import { LoginService, ApplicationUser, SocialMediaService } from '../../../../common/src/public_api';
 import { environment } from '../../../../common/src/environments/environment';
 import { BaseDirective } from '../base/base.component';
 import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { IgxCarouselComponent, IgxCarouselModule, IgxIconModule, IgxButtonModule, IgxDividerModule, IgxInputGroupModule } from '@infragistics/igniteui-angular';
+import { IgxCarouselComponent, IgxDividerDirective, IGX_INPUT_GROUP_DIRECTIVES, IGX_CAROUSEL_DIRECTIVES, IgxIconComponent, IgxButtonDirective } from '@infragistics/igniteui-angular';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-    selector: 'app-home',
-    templateUrl: './home.component.html',
-    styleUrls: ['./home.component.scss'],
-    standalone: true,
-    imports: [
-      RouterLink,
-      NgIf,
-      NgOptimizedImage,
-      FormsModule,
-      IgxDividerModule,
-      IgxInputGroupModule,
-      IgxCarouselModule,
-      IgxIconModule,
-      IgxButtonModule
-    ]
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.scss'],
+  standalone: true,
+  imports: [
+    RouterLink,
+    NgOptimizedImage,
+    FormsModule,
+    IgxDividerDirective,
+    IGX_INPUT_GROUP_DIRECTIVES,
+    IGX_CAROUSEL_DIRECTIVES,
+    IgxIconComponent,
+    IgxButtonDirective
+  ]
 })
 export class HomeComponent extends BaseDirective {
   @ViewChild(IgxCarouselComponent, { static: true }) public carousel: IgxCarouselComponent;

@@ -10,16 +10,25 @@ import {
 import { NotificationStatePipe } from '../../pipes/notification-state.pipe';
 import { SortNotificationsPipe } from '../../pipes/sort-notifications.pipe';
 import { DisabledNotificationsPipe } from '../../pipes/disabled-notifications.pipe';
-import { IgxListModule, IgxAvatarModule, IgxButtonModule, IgxRippleModule } from '@infragistics/igniteui-angular';
-import { NgIf, NgFor, DatePipe } from '@angular/common';
-
+import { IGX_LIST_DIRECTIVES, IgxAvatarComponent, IgxButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular';
+import { DatePipe } from '@angular/common';
 
 @Component({
-    selector: 'app-player-notifications',
-    templateUrl: './player-notifications.component.html',
-    styleUrls: ['./player-notifications.component.scss'],
-    standalone: true,
-    imports: [NgIf, IgxListModule, NgFor, IgxAvatarModule, RouterLink, IgxButtonModule, IgxRippleModule, DatePipe, DisabledNotificationsPipe, SortNotificationsPipe, NotificationStatePipe]
+  selector: 'app-player-notifications',
+  templateUrl: './player-notifications.component.html',
+  styleUrls: ['./player-notifications.component.scss'],
+  standalone: true,
+  imports: [
+    IGX_LIST_DIRECTIVES,
+    IgxAvatarComponent,
+    RouterLink,
+    IgxButtonDirective,
+    IgxRippleDirective,
+    DatePipe,
+    DisabledNotificationsPipe,
+    SortNotificationsPipe,
+    NotificationStatePipe
+  ]
 })
 export class PlayerNotificationsComponent {
   @Output()
@@ -48,30 +57,32 @@ export class PlayerNotificationsComponent {
   public acceptInvitation(notification: UserNotification) {
     this.actionText = 'Accepting...';
     this.actionInProgress = true;
-    this.apiService.acceptInvite(notification).subscribe(
-      () => {
+    this.apiService.acceptInvite(notification).subscribe({
+      next: () => {
         notification.state = NotificationState.Accepted;
         this.pipeTrigger++;
         this.router.navigate(['team', notification.teamInfo.customUrl]);
         this.changed.emit(-1);
         this.actionInProgress = false;
       },
-      () => this.actionInProgress = false
+      complete: () => this.actionInProgress = false
+    }
+
     );
   }
 
   public rejectInvitation(notification: UserNotification) {
     this.actionText = 'Rejecting...';
     this.actionInProgress = true;
-    this.apiService.rejectInvite(notification).subscribe(
-      () => {
+    this.apiService.rejectInvite(notification).subscribe({
+      next: () => {
         notification.state = NotificationState.Rejected;
         this.pipeTrigger++;
         this.changed.emit(-1);
         this.actionInProgress = false;
       },
-      () => this.actionInProgress = false
-    );
+      complete: () => this.actionInProgress = false
+    });
   }
 
 }

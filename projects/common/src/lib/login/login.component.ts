@@ -17,26 +17,25 @@ import { Router } from '@angular/router';
 import { LoginDialogComponent } from './login-dialog/login-dialog.component';
 import { UserPreferencesComponent } from './user-preferences/user-preferences.component';
 
-import { NgIf } from '@angular/common';
+
 
 @Component({
-    selector: 'bg-login',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.scss'],
-    standalone: true,
-    imports: [
-      LoginDialogComponent,
-      NgIf,
-      IgxButtonDirective,
-      IgxRippleDirective,
-      IgxIconComponent,
-      IgxCircularProgressBarComponent,
-      IgxToggleActionDirective,
-      IgxAvatarComponent,
-      IgxDropDownComponent,
-      IGX_TABS_DIRECTIVES,
-      UserPreferencesComponent
-    ]
+  selector: 'bg-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss'],
+  standalone: true,
+  imports: [
+    LoginDialogComponent,
+    IgxButtonDirective,
+    IgxRippleDirective,
+    IgxIconComponent,
+    IgxCircularProgressBarComponent,
+    IgxToggleActionDirective,
+    IgxAvatarComponent,
+    IgxDropDownComponent,
+    IGX_TABS_DIRECTIVES,
+    UserPreferencesComponent
+  ]
 })
 export class LoginComponent {
   @ViewChild(LoginDialogComponent, { static: true })

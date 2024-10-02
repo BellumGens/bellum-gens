@@ -24,10 +24,11 @@
       <div class="slide-info">
         <h2 i18n>Manage your CS:GO Team</h2>
         <p i18n>Recruit your team and manage your team member roles, team strategies, practice times and more. The only online CS:GO strategy editor freely available to everyone! Discuss public strategies with everyone and build private strategies for your team.</p>
-        <button igxButton="contained" *ngIf="!authUser else loggedIn" (click)="openLogin()" i18n>Sign-up Now</button>
-        <ng-template #loggedIn>
+        @if (!authUser) {
+          <button igxButton="contained" (click)="openLogin()" i18n>Sign-up Now</button>
+        } @else {
           <button igxButton="contained" routerLink="/team/myteams" i18n>Go to Team Section</button>
-        </ng-template>
+        }
       </div>
     </div>
   </igx-slide>
@@ -183,9 +184,11 @@
             <igx-icon>email</igx-icon>
           </igx-prefix>
           <input type="email" id="subemail" #subMail name="subemail" igxInput pattern="^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="userEmail" />
-          <igx-suffix *ngIf="subMail.value" (click)="userEmail = null">
-            <igx-icon>clear</igx-icon>
-          </igx-suffix>
+          @if (subMail.value) {
+            <igx-suffix (click)="userEmail = null">
+              <igx-icon>clear</igx-icon>
+            </igx-suffix>
+          }
           <igx-hint i18n>Get email updates from us!</igx-hint>
         </igx-input-group>
 

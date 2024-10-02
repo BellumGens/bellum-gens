@@ -8,19 +8,30 @@ import {
   ACTIVE_DUTY,
   ApiStrategiesService
 } from '../../../../../common/src/public_api';
-import { IgxDialogComponent, IgxDialogModule, IgxInputGroupModule, IgxIconModule, IgxRadioModule, IgxSwitchModule, IgxSelectModule, IgxButtonModule, IgxRippleModule } from '@infragistics/igniteui-angular';
+import { IgxDialogComponent, IGX_DIALOG_DIRECTIVES, IGX_INPUT_GROUP_DIRECTIVES, IgxIconComponent, IGX_RADIO_GROUP_DIRECTIVES, IgxSwitchComponent, IGX_SELECT_DIRECTIVES, IgxButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular';
 import { IsVideoPipe } from '../../pipes/is-video.pipe';
 import { Router } from '@angular/router';
 import { SafeVideoLinkPipe } from '../../pipes/safe-video-link.pipe';
-import { NgIf, NgFor } from '@angular/common';
+
 import { FormsModule } from '@angular/forms';
 
 @Component({
-    selector: 'app-new-strategy',
-    templateUrl: './new-strategy.component.html',
-    styleUrls: ['./new-strategy.component.scss'],
-    standalone: true,
-    imports: [IgxDialogModule, FormsModule, IgxInputGroupModule, NgIf, IgxIconModule, IgxRadioModule, IgxSwitchModule, IgxSelectModule, NgFor, IgxButtonModule, IgxRippleModule, SafeVideoLinkPipe]
+  selector: 'app-new-strategy',
+  templateUrl: './new-strategy.component.html',
+  styleUrls: ['./new-strategy.component.scss'],
+  standalone: true,
+  imports: [
+    IGX_DIALOG_DIRECTIVES,
+    FormsModule,
+    IGX_INPUT_GROUP_DIRECTIVES,
+    IgxIconComponent,
+    IGX_RADIO_GROUP_DIRECTIVES,
+    IgxSwitchComponent,
+    IGX_SELECT_DIRECTIVES,
+    IgxButtonDirective,
+    IgxRippleDirective,
+    SafeVideoLinkPipe
+  ]
 })
 export class NewStrategyComponent {
   @ViewChild('newStrat', { static: true }) public dialog: IgxDialogComponent;

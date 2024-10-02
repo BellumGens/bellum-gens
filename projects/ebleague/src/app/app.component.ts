@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, Inject, PLATFORM_ID, LOCALE_ID } from '@angular/core';
-import { isPlatformBrowser, NgIf, NgOptimizedImage } from '@angular/common';
+import { isPlatformBrowser, NgOptimizedImage } from '@angular/common';
 import { Router, NavigationEnd, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
@@ -31,34 +31,33 @@ import { LoginComponent } from '../../../common/src/lib/login/login.component';
 import { LanguagesComponent } from '../../../common/src/lib/languages/languages.component';
 
 @Component({
-    selector: 'app-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss'],
-    standalone: true,
-    imports: [
-      IgxLayoutDirective,
-      IgxNavigationDrawerComponent,
-      IgxNavDrawerTemplateDirective,
-      IgxNavDrawerItemDirective,
-      IgxRippleDirective,
-      RouterLink,
-      IgxIconComponent,
-      RouterLinkActive,
-      NgIf,
-      IgxNavDrawerMiniTemplateDirective,
-      IgxFlexDirective,
-      IgxNavbarComponent,
-      IgxNavbarActionDirective,
-      NgOptimizedImage,
-      LanguagesComponent,
-      LoginComponent,
-      IgxBannerComponent,
-      IgxBannerActionsDirective,
-      IgxButtonDirective,
-      SuccessErrorComponent,
-      RouterOutlet,
-      IgxDividerDirective
-    ]
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
+  standalone: true,
+  imports: [
+    IgxLayoutDirective,
+    IgxNavigationDrawerComponent,
+    IgxNavDrawerTemplateDirective,
+    IgxNavDrawerItemDirective,
+    IgxRippleDirective,
+    RouterLink,
+    IgxIconComponent,
+    RouterLinkActive,
+    IgxNavDrawerMiniTemplateDirective,
+    IgxFlexDirective,
+    IgxNavbarComponent,
+    IgxNavbarActionDirective,
+    NgOptimizedImage,
+    LanguagesComponent,
+    LoginComponent,
+    IgxBannerComponent,
+    IgxBannerActionsDirective,
+    IgxButtonDirective,
+    SuccessErrorComponent,
+    RouterOutlet,
+    IgxDividerDirective
+  ]
 })
 export class AppComponent implements OnInit {
   @ViewChild('cookiesBanner', { static: true })

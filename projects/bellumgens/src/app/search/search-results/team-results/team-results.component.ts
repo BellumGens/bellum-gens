@@ -4,16 +4,22 @@ import { CSGOTeam, ApiSearchService } from '../../../../../../common/src/public_
 import { BaseDirective } from '../../../base/base.component';
 import { Title, Meta } from '@angular/platform-browser';
 import { QueryParsedPipe } from '../../../pipes/query-parsed.pipe';
-import { IgxCardModule, IgxAvatarModule } from '@infragistics/igniteui-angular';
+import { IGX_CARD_DIRECTIVES, IgxAvatarComponent } from '@infragistics/igniteui-angular';
 import { LoadingComponent } from '../../../../../../common/src/lib/loading/loading.component';
-import { NgIf, NgFor } from '@angular/common';
+
 
 @Component({
-    selector: 'app-team-results',
-    templateUrl: './team-results.component.html',
-    styleUrls: ['./team-results.component.css'],
-    standalone: true,
-    imports: [NgIf, LoadingComponent, NgFor, IgxCardModule, RouterLink, IgxAvatarModule, QueryParsedPipe]
+  selector: 'app-team-results',
+  templateUrl: './team-results.component.html',
+  styleUrls: ['./team-results.component.css'],
+  standalone: true,
+  imports: [
+    LoadingComponent,
+    IGX_CARD_DIRECTIVES,
+    RouterLink,
+    IgxAvatarComponent,
+    QueryParsedPipe
+  ]
 })
 export class TeamResultsComponent extends BaseDirective {
   public teams: CSGOTeam [];

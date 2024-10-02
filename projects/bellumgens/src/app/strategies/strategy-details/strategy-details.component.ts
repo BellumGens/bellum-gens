@@ -1,5 +1,5 @@
 import { Component, HostListener, Inject, PLATFORM_ID } from '@angular/core';
-import { isPlatformBrowser, NgIf, NgClass, NgFor, DatePipe, NgOptimizedImage } from '@angular/common';
+import { isPlatformBrowser, NgClass, DatePipe, NgOptimizedImage } from '@angular/common';
 import { BaseDirective } from '../../base/base.component';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import {
@@ -21,40 +21,39 @@ import { IsVideoPipe } from '../../pipes/is-video.pipe';
 import { SafeVideoLinkPipe } from '../../pipes/safe-video-link.pipe';
 import { ConfirmComponent } from '../../../../../common/src/lib/confirm/confirm.component';
 import { FormsModule } from '@angular/forms';
-import { IgxCardModule, IgxLayoutModule, IgxButtonModule, IgxRippleModule, IgxIconModule, IgxDividerModule, IgxListModule, IgxAvatarModule, IgxToggleModule, IgxDropDownModule, IgxInputGroupModule } from '@infragistics/igniteui-angular';
+import { IGX_CARD_DIRECTIVES, IgxLayoutDirective, IgxFlexDirective, IgxButtonDirective, IgxRippleDirective, IgxIconComponent, IgxDividerDirective, IGX_LIST_DIRECTIVES, IgxAvatarComponent, IgxToggleActionDirective, IGX_DROP_DOWN_DIRECTIVES, IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular';
 import { LoadingComponent } from '../../../../../common/src/lib/loading/loading.component';
 
 @Component({
-    selector: 'app-strategy-details',
-    templateUrl: './strategy-details.component.html',
-    styleUrls: ['./strategy-details.component.scss'],
-    standalone: true,
-    imports: [
-      NgOptimizedImage,
-      NgIf,
-      NgFor,
-      NgClass,
-      DatePipe,
-      FormsModule,
-      RouterLink,
-      LoadingComponent,
-      IgxCardModule,
-      IgxLayoutModule,
-      IgxButtonModule,
-      IgxRippleModule,
-      IgxIconModule,
-      IgxDividerModule,
-      IgxListModule,
-      IgxAvatarModule,
-      IgxToggleModule,
-      IgxDropDownModule,
-      IgxInputGroupModule,
-      ConfirmComponent,
-      SafeVideoLinkPipe,
-      IsVideoPipe,
-      HasVotedPipe,
-      VotesPipe
-    ]
+  selector: 'app-strategy-details',
+  templateUrl: './strategy-details.component.html',
+  styleUrls: ['./strategy-details.component.scss'],
+  standalone: true,
+  imports: [
+    NgOptimizedImage,
+    NgClass,
+    DatePipe,
+    FormsModule,
+    RouterLink,
+    LoadingComponent,
+    IGX_CARD_DIRECTIVES,
+    IgxLayoutDirective,
+    IgxFlexDirective,
+    IgxButtonDirective,
+    IgxRippleDirective,
+    IgxIconComponent,
+    IgxDividerDirective,
+    IGX_LIST_DIRECTIVES,
+    IgxAvatarComponent,
+    IgxToggleActionDirective,
+    IGX_DROP_DOWN_DIRECTIVES,
+    IGX_INPUT_GROUP_DIRECTIVES,
+    ConfirmComponent,
+    SafeVideoLinkPipe,
+    IsVideoPipe,
+    HasVotedPipe,
+    VotesPipe
+  ]
 })
 export class StrategyDetailsComponent extends BaseDirective {
   public strat: CSGOStrategy;

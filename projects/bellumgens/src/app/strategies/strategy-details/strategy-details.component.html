@@ -1,102 +1,106 @@
-<bg-loading *ngIf="!strat"></bg-loading>
-
-<igx-card *ngIf="strat" class="strategy-details"  [horizontal]="horizontal">
-
-  <div igxLayout igxLayoutDir="column" igxFlex [igxFlexGrow]="1">
-    <igx-card-media *ngIf="strat.url | isVideo else imageContent" height="100%">
-      <iframe [src]="strat.url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-    </igx-card-media>
-
-    <igx-card-header>
-      <h1 igxCardHeaderTitle>{{ strat.title }}</h1>
-      <h3 igxCardHeaderSubtitle>{{ strat.description }}</h3>
-      <h5 igxCardHeaderSubtitle class="card-smaller-subtitle">
-        <span *ngIf="strat.userId" i18n>Author: <a [routerLink]="['/players', strat.userId]">{{ strat.owner }}</a></span>
-        <span i18n>Last Edit: {{ strat.lastUpdated | date }}</span>
-      </h5>
-
-      <div class="center strategy-actions">
-        <button igxButton="fab"
-                igxRipple
-                (click)="shareOnTwitter(strat)">
-          <igx-icon family="login-icons" name="twitter" title="Share Strategy"></igx-icon>
-        </button>
-        <button igxButton="fab"
-                [ngClass]="strat.votes | hasVoted:0:authUser:pipeTrigger"
-                igxRipple
-                (click)="voteStrat(strat, 0)">
-          <igx-icon title="vote up">thumb_up</igx-icon>
-          <span *ngIf="strat.votes | votes:0:pipeTrigger">
-            {{strat.votes | votes:0:pipeTrigger}}
-          </span>
-        </button>
-        <button igxButton="fab"
-                [ngClass]="strat.votes | hasVoted:1:authUser:pipeTrigger"
-                igxRipple
-                (click)="voteStrat(strat, 1)">
-          <igx-icon title="vote down">thumb_down</igx-icon>
-          <span *ngIf="strat.votes | votes:1:pipeTrigger">
-            {{strat.votes | votes:1:pipeTrigger}}
-          </span>
-        </button>
-      </div>
-    </igx-card-header>
-
-    <ng-template #imageContent>
-      <igx-card-media class="strategy-image-container">
-        <img [ngSrc]="strat.stratImage" *ngIf="strat.stratImage" width="900" height="900" [alt]="strat.title" />
-      </igx-card-media>
-    </ng-template>
-  </div>
-
-  <igx-divider [vertical]="horizontal"></igx-divider>
-
-  <igx-card-actions layout="justify">
-    <igx-list class="list-container comments-container">
-      <igx-list-item>
-        <span igxListLine i18n>Comments</span>
-      </igx-list-item>
-      <igx-list-item *ngFor="let comment of strat.comments">
-        <igx-avatar igxListThumbnail [src]="comment.userAvatar" shape="circle"></igx-avatar>
-        <h3 [ngClass]="comment._inEdit ? 'comment-editing' : ''" igxListLineTitle>{{ comment.comment }}</h3>
-        <h5 igxListLineSubTitle>{{ comment.published | date }}</h5>
-        <igx-icon igxListActions class="navigatable" [igxToggleAction]="useractions" [overlaySettings]="overlaySettings">more_vert</igx-icon>
-
-        <igx-drop-down #useractions (selectionChanging)="$event.cancel = true; useractions.close()">
-          <igx-drop-down-item (click)="editComment(comment)">
-            <div class="dd-item-content">
-              <igx-icon title="edit strategy">edit</igx-icon>
-              <span i18n>Edit</span>
-            </div>
-          </igx-drop-down-item>
-          <igx-drop-down-item (click)="confirm.open(comment)">
-            <div class="dd-item-content">
-              <igx-icon title="delete strategy">delete_forever</igx-icon>
-              <span i18n>Delete</span>
-            </div>
-          </igx-drop-down-item>
-        </igx-drop-down>
-      </igx-list-item>
-    </igx-list>
-
-    <div class="horizontal comment-box">
-      <igx-avatar [src]="authUser?.csgoDetails?.avatarIcon" shape="circle"></igx-avatar>
-      <form #strategyForm="ngForm" (ngSubmit)="submitComment()" class="comment-input">
-        <igx-input-group type="box">
-          <label for="comment" igxLabel i18n>{{ !authUser ? 'Login to' : 'Leave a' }} comment...</label>
-          <textarea [disabled]="!authUser" #commentBox id="comment" name="comment" igxInput [(ngModel)]="newComment.comment"></textarea>
-          <button igxSuffix
-                  igxButton="fab"
-                  [ngClass]="strat.votes | hasVoted:1:authUser:pipeTrigger"
-                  [disabled]="!newComment.comment">
-            <igx-icon>send</igx-icon>
+@if (!strat) {
+  <bg-loading></bg-loading>
+}
+@else {
+  <igx-card class="strategy-details"  [horizontal]="horizontal">
+    <div igxLayout igxLayoutDir="column" igxFlex [igxFlexGrow]="1">
+      @if (strat.url | isVideo) {
+        <igx-card-media height="100%">
+          <iframe [src]="strat.url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </igx-card-media>
+      }
+      @else if (strat.stratImage) {
+        <igx-card-media class="strategy-image-container">
+          <img [ngSrc]="strat.stratImage" width="900" height="900" [alt]="strat.title" />
+        </igx-card-media>
+      }
+      <igx-card-header>
+        <h1 igxCardHeaderTitle>{{ strat.title }}</h1>
+        <h3 igxCardHeaderSubtitle>{{ strat.description }}</h3>
+        <h5 igxCardHeaderSubtitle class="card-smaller-subtitle">
+          @if (strat.userId) {
+            <span i18n>Author: <a [routerLink]="['/players', strat.userId]">{{ strat.owner }}</a></span>
+          }
+          <span i18n>Last Edit: {{ strat.lastUpdated | date }}</span>
+        </h5>
+        <div class="center strategy-actions">
+          <button igxButton="fab"
+            igxRipple
+            (click)="shareOnTwitter(strat)">
+            <igx-icon family="login-icons" name="twitter" title="Share Strategy"></igx-icon>
           </button>
-        </igx-input-group>
-      </form>
+          <button igxButton="fab"
+            [ngClass]="strat.votes | hasVoted:0:authUser:pipeTrigger"
+            igxRipple
+            (click)="voteStrat(strat, 0)">
+            <igx-icon title="vote up">thumb_up</igx-icon>
+            @if (strat.votes | votes:0:pipeTrigger) {
+              <span>
+                {{strat.votes | votes:0:pipeTrigger}}
+              </span>
+            }
+          </button>
+          <button igxButton="fab"
+            [ngClass]="strat.votes | hasVoted:1:authUser:pipeTrigger"
+            igxRipple
+            (click)="voteStrat(strat, 1)">
+            <igx-icon title="vote down">thumb_down</igx-icon>
+            @if (strat.votes | votes:1:pipeTrigger) {
+              <span>
+                {{strat.votes | votes:1:pipeTrigger}}
+              </span>
+            }
+          </button>
+        </div>
+      </igx-card-header>
     </div>
-  </igx-card-actions>
-
-</igx-card>
+    <igx-divider [vertical]="horizontal"></igx-divider>
+    <igx-card-actions layout="justify">
+      <igx-list class="list-container comments-container">
+        <igx-list-item>
+          <span igxListLine i18n>Comments</span>
+        </igx-list-item>
+        @for (comment of strat.comments; track comment.id) {
+          <igx-list-item>
+            <igx-avatar igxListThumbnail [src]="comment.userAvatar" shape="circle"></igx-avatar>
+            <h3 [ngClass]="comment._inEdit ? 'comment-editing' : ''" igxListLineTitle>{{ comment.comment }}</h3>
+            <h5 igxListLineSubTitle>{{ comment.published | date }}</h5>
+            <igx-icon igxListActions class="navigatable" [igxToggleAction]="useractions" [overlaySettings]="overlaySettings">more_vert</igx-icon>
+            <igx-drop-down #useractions (selectionChanging)="$event.cancel = true; useractions.close()">
+              <igx-drop-down-item (click)="editComment(comment)">
+                <div class="dd-item-content">
+                  <igx-icon title="edit strategy">edit</igx-icon>
+                  <span i18n>Edit</span>
+                </div>
+              </igx-drop-down-item>
+              <igx-drop-down-item (click)="confirm.open(comment)">
+                <div class="dd-item-content">
+                  <igx-icon title="delete strategy">delete_forever</igx-icon>
+                  <span i18n>Delete</span>
+                </div>
+              </igx-drop-down-item>
+            </igx-drop-down>
+          </igx-list-item>
+        }
+      </igx-list>
+      <div class="horizontal comment-box">
+        <igx-avatar [src]="authUser?.csgoDetails?.avatarIcon" shape="circle"></igx-avatar>
+        <form #strategyForm="ngForm" (ngSubmit)="submitComment()" class="comment-input">
+          <igx-input-group type="box">
+            <label for="comment" igxLabel i18n>{{ !authUser ? 'Login to' : 'Leave a' }} comment...</label>
+            <textarea [disabled]="!authUser" #commentBox id="comment" name="comment" igxInput [(ngModel)]="newComment.comment"></textarea>
+            <button igxSuffix
+              igxButton="fab"
+              [ngClass]="strat.votes | hasVoted:1:authUser:pipeTrigger"
+              [disabled]="!newComment.comment">
+              <igx-icon>send</igx-icon>
+            </button>
+          </igx-input-group>
+        </form>
+      </div>
+    </igx-card-actions>
+  </igx-card>
+}
 
 <!-- Confirm -->
 <bg-confirm #confirm i18n-title title="Are you sure?" (ok)="deleteComment($event)">

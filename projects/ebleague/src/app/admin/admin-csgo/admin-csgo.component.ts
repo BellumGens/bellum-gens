@@ -9,20 +9,42 @@ import {
   CSGOActiveDutyMap, ACTIVE_DUTY
 } from '../../../../../common/src/public_api';
 import { environment } from '../../../../../common/src/environments/environment';
-import { IDropDroppedEventArgs, IRowDataEventArgs, IgxGridComponent, IgxDialogComponent, IgxSelectModule, IgxInputGroupModule, IgxGridModule, IgxButtonModule, IgxIconModule, IgxAvatarModule, IgxListModule, IgxCardModule, IgxProgressBarModule, IgxDragDropModule, IgxBadgeModule, IgxDialogModule, IgxDatePickerModule, IgxTimePickerModule, IgxCheckboxModule } from '@infragistics/igniteui-angular';
+import { IDropDroppedEventArgs, IRowDataEventArgs, IgxGridComponent, IgxDialogComponent, IGX_SELECT_DIRECTIVES, IGX_INPUT_GROUP_DIRECTIVES, IGX_GRID_DIRECTIVES, IgxButtonDirective, IgxIconComponent, IgxAvatarComponent, IGX_LIST_DIRECTIVES, IGX_CARD_DIRECTIVES, IgxCircularProgressBarComponent, IGX_DRAG_DROP_DIRECTIVES, IgxBadgeComponent, IGX_DIALOG_DIRECTIVES, IGX_DATE_PICKER_DIRECTIVES, IGX_TIME_PICKER_DIRECTIVES, IgxCheckboxComponent } from '@infragistics/igniteui-angular';
 import { NotInGroupPipe } from '../../pipes/not-in-group.pipe';
 import { CSGOMapnamePipe } from '../../../../../common/src/lib/pipes/csgomapname.pipe';
 import { CSGOMapimagePipe } from '../../../../../common/src/lib/pipes/csgomapimage.pipe';
 import { ConfirmComponent } from '../../../../../common/src/lib/confirm/confirm.component';
-import { NgFor, NgIf, DatePipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
-    selector: 'app-admin-csgo',
-    templateUrl: './admin-csgo.component.html',
-    styleUrls: ['./admin-csgo.component.scss'],
-    standalone: true,
-    imports: [IgxSelectModule, FormsModule, IgxInputGroupModule, NgFor, IgxGridModule, IgxButtonModule, IgxIconModule, IgxAvatarModule, IgxListModule, NgIf, IgxCardModule, IgxProgressBarModule, IgxDragDropModule, IgxBadgeModule, IgxDialogModule, IgxDatePickerModule, IgxTimePickerModule, IgxCheckboxModule, ConfirmComponent, DatePipe, CSGOMapimagePipe, CSGOMapnamePipe, NotInGroupPipe]
+  selector: 'app-admin-csgo',
+  templateUrl: './admin-csgo.component.html',
+  styleUrls: ['./admin-csgo.component.scss'],
+  standalone: true,
+  imports: [
+    IGX_SELECT_DIRECTIVES,
+    FormsModule,
+    IGX_INPUT_GROUP_DIRECTIVES,
+    IGX_GRID_DIRECTIVES,
+    IgxButtonDirective,
+    IgxIconComponent,
+    IgxAvatarComponent,
+    IGX_LIST_DIRECTIVES,
+    IGX_CARD_DIRECTIVES,
+    IgxCircularProgressBarComponent,
+    IGX_DRAG_DROP_DIRECTIVES,
+    IgxBadgeComponent,
+    IGX_DIALOG_DIRECTIVES,
+    IGX_DATE_PICKER_DIRECTIVES,
+    IGX_TIME_PICKER_DIRECTIVES,
+    IgxCheckboxComponent,
+    ConfirmComponent,
+    DatePipe,
+    CSGOMapimagePipe,
+    CSGOMapnamePipe,
+    NotInGroupPipe
+  ]
 })
 export class AdminCsgoComponent {
   public registrations: TournamentParticipant [];
