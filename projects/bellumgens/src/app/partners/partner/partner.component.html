@@ -1,0 +1,26 @@
+<igx-card [horizontal]="horizontal" elevated>
+  <igx-card-media [width]="mediaWidth">
+    <img [ngSrc]="image" width="1080" height="1080" />
+  </igx-card-media>
+
+  <div igxLayout igxLayoutDir="column" igxFlex [igxFlexGrow]="1">
+    <igx-card-header>
+      <h5 igxCardHeaderTitle>{{ name }}</h5>
+      <a [href]="url" target="_blank">{{url}}</a>
+    </igx-card-header>
+
+    <igx-card-content>
+      @for (item of expose; track item) {
+        <p>{{ item }}</p>
+      }
+    </igx-card-content>
+
+    <igx-card-actions [vertical]="false">
+      @for (item of social; track item.name) {
+        <a igxIconButton igxRipple igxEnd [href]="item.url" target="_blank" [title]="item.url">
+          <igx-icon family="login-icons" [name]="item.icon"></igx-icon>
+        </a>
+      }
+    </igx-card-actions>
+  </div>
+</igx-card>
