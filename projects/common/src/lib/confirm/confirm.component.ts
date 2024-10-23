@@ -16,6 +16,7 @@ export class ConfirmComponent {
   public ok = new EventEmitter<any>();
 
   @Output()
+  // eslint-disable-next-line @angular-eslint/no-output-native
   public cancel = new EventEmitter<IDialogEventArgs>();
 
   @ViewChild(IgxDialogComponent, { static: true })
