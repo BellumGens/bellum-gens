@@ -230,28 +230,20 @@
           <context context-type="linenumber">7,8</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3530570787036012277" datatype="html">
-        <source>Clement &quot;Clem&quot; Desplanches is the champion of Bellum Gens Elite Stara Zagora 2024. Clem showed incredible form after becoming a world champion a few weeks earlier and won over Li &quot;Oliveira&quot; Peinan in the final with 4:1 map score.</source>
-        <target>Клемент &quot;Clem&quot; Депланш е шампионът на Bellum Gens Elite Стара Загора 2024. Клем показа невероятна форма след като стана световен шампион преди няколко седмици и надви Ли &quot;Oliveira&quot; Пейнан във финала с 4:1 карти.</target>
+      <trans-unit id="100580200993672699" datatype="html">
+        <source>Join us live on <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ &apos;2024-11-02 17:00:00 GMT+3&apos; | date: &apos;long&apos; }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> for Bellum Gens Elite future plans reveal!</source>
+        <target>Присъединете се на живо на <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ &apos;2024-11-02 17:00:00 GMT+3&apos; | date: &apos;long&apos; }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> за обявяването на бъдещите планове на Bellum Gens Elite!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
-          <context context-type="linenumber">8,9</context>
+          <context context-type="linenumber">15,16</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="844480397474090803" datatype="html">
-        <source>Bellum Gens Elite Stara Zagora 2024 replay pack is available for download!</source>
-        <target>Replay пакетът от Bellum Gens Elite Стара Загора 2024 е наличен за изтегляне!</target>
+      <trans-unit id="1368263726671170140" datatype="html">
+        <source>Watch on Twitch</source>
+        <target>Гледайте в Twitch</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
-          <context context-type="linenumber">10,11</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6496335101794250223" datatype="html">
-        <source>Download Replay Pack</source>
-        <target>Изтеглете Риплейите</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
-          <context context-type="linenumber">11,15</context>
+          <context context-type="linenumber">16,20</context>
         </context-group>
       </trans-unit>
       <trans-unit id="754200717002516332" datatype="html">
@@ -260,6 +252,14 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
           <context context-type="linenumber">16,18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5967694702200497844" datatype="html">
+        <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Bellum Gens<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> joined forces with the <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Bulgarian StarCraft League<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> and <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Stara Zagora Municipality<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> to deliver an epic esports experience!</source>
+        <target><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Белум Генс<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> обедини сили заедно със <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Българската Старкрафт Лига<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> и <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Община Стара Загора<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> за да ви донесе едно уникално esports изживяване!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">25,26</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7642068151620286978" datatype="html">
@@ -294,12 +294,12 @@
           <context context-type="linenumber">21,22</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4850114263945217488" datatype="html">
-        <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>€10000<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> prize pool.</source>
-        <target><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>€10000<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> награден фонд.</target>
+      <trans-unit id="5066848943496681447" datatype="html">
+        <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>€10000<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> prize pool</source>
+        <target><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>€10000<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> награден фонд</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
-          <context context-type="linenumber">22,23</context>
+          <context context-type="linenumber">31,32</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3266647593115055538" datatype="html">
@@ -310,20 +310,20 @@
           <context context-type="linenumber">23,24</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6352958249517210382" datatype="html">
-        <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Clem<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> is the 2024 champion!</source>
-        <target><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Клем<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> е шампионът за 2024 година!</target>
+      <trans-unit id="7736912794951102224" datatype="html">
+        <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Clement &quot;Clem&quot; Desplanches<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> is the 2024 champion!</source>
+        <target><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Клемент &quot;Клем&quot; Депланш<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> е шампионът за 2024 година!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
-          <context context-type="linenumber">27,29</context>
+          <context context-type="linenumber">33,35</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7475198266185418038" datatype="html">
-        <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Bellum Gens<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> join forces with the <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Bulgarian StarCraft League<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> and <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Stara Zagora Municipality<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> to bring you an epic esports experience!</source>
-        <target><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Белум Генс<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> обединява сили заедно със <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Българската Старкрафт Лига<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> и <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Община Стара Загора<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> за да ви донесе едно уникална изживяване!</target>
+      <trans-unit id="6496335101794250223" datatype="html">
+        <source>Download Replay Pack</source>
+        <target>Изтеглете Риплейите</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
-          <context context-type="linenumber">26,28</context>
+          <context context-type="linenumber">35,38</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2840244450736259781" datatype="html">
@@ -1026,30 +1026,6 @@
           <context context-type="linenumber">7,8</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8609462641858243755" datatype="html">
-        <source>🎉We are thrilled to announce that BulStream is the official production partner of Bellum Gens Elite Stara Zagora! 🏆 BulStream has exclusively secured production for all events hosted by Bellum Gens - Esports Business League and Bellum Gens Elite.</source>
-        <target>🎉Въодушевени сме да обявим, че BulStream е официалният продукционен партньор на Bellum Gens Elite Стара Загора! 🏆 BulStream ексклузивно осигурява продукцията за всички събития, организирани от Bellum Gens - Esports Business League и Bellum Gens Elite.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/partners/bulstream/bulstream.component.html</context>
-          <context context-type="linenumber">13,14</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="5026337626732271219" datatype="html">
-        <source>With their world-class production capabilities and exceptional live streaming services, BulStream is dedicated to delivering the highest quality esports experience to all viewers. Get ready for an unparalleled esports journey! 🎮✨</source>
-        <target>Със своите продукционни възможности от световен клас и изключителни услуги за живо предаване, BulStream се стреми да достави най-висококачественото преживяване на електронни спортове на всички зрители. Подгответе се за неповторимо пътешествие в електронните спортове! 🎮✨</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/partners/bulstream/bulstream.component.html</context>
-          <context context-type="linenumber">14,15</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6200895417428519168" datatype="html">
-        <source>Together, we aim to achieve top-tier production quality and deliver the ultimate esports experience for both players and audiences! 🚀</source>
-        <target>Заедно, ние се стремим да постигнем продукционно качество от най-висока класа и да доставим най-доброто преживяване на електронни спортове както за играчите, така и за зрителите! 🚀</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/partners/bulstream/bulstream.component.html</context>
-          <context context-type="linenumber">15,18</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="5506180627376048896" datatype="html">
         <source>We are thrilled to announce a 3-year partnership between Bellum Gens Elite Stara Zagora and TechHub.bg! 🤝</source>
         <target>Въодушевени сме да обявим 3-годишно партньорство между Bellum Gens Elite Стара Загора и TechHub.bg! 🤝</target>
@@ -1095,6 +1071,30 @@
         <target>Заедно, ние се стремим да създадем динамична общност на електронните спортове и да предоставим безпрецедентни възможности както за геймърите, така и за феновете. 🎮</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/partners/visit-stara-zagora/visit-stara-zagora.component.html</context>
+          <context context-type="linenumber">15,18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8609462641858243755" datatype="html">
+        <source>🎉We are thrilled to announce that BulStream is the official production partner of Bellum Gens Elite Stara Zagora! 🏆 BulStream has exclusively secured production for all events hosted by Bellum Gens - Esports Business League and Bellum Gens Elite.</source>
+        <target>🎉Въодушевени сме да обявим, че BulStream е официалният продукционен партньор на Bellum Gens Elite Стара Загора! 🏆 BulStream ексклузивно осигурява продукцията за всички събития, организирани от Bellum Gens - Esports Business League и Bellum Gens Elite.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/partners/bulstream/bulstream.component.html</context>
+          <context context-type="linenumber">13,14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5026337626732271219" datatype="html">
+        <source>With their world-class production capabilities and exceptional live streaming services, BulStream is dedicated to delivering the highest quality esports experience to all viewers. Get ready for an unparalleled esports journey! 🎮✨</source>
+        <target>Със своите продукционни възможности от световен клас и изключителни услуги за живо предаване, BulStream се стреми да достави най-висококачественото преживяване на електронни спортове на всички зрители. Подгответе се за неповторимо пътешествие в електронните спортове! 🎮✨</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/partners/bulstream/bulstream.component.html</context>
+          <context context-type="linenumber">14,15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6200895417428519168" datatype="html">
+        <source>Together, we aim to achieve top-tier production quality and deliver the ultimate esports experience for both players and audiences! 🚀</source>
+        <target>Заедно, ние се стремим да постигнем продукционно качество от най-висока класа и да доставим най-доброто преживяване на електронни спортове както за играчите, така и за зрителите! 🚀</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/partners/bulstream/bulstream.component.html</context>
           <context context-type="linenumber">15,18</context>
         </context-group>
       </trans-unit>
