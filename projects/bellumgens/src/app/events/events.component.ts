@@ -58,7 +58,8 @@ export class EventsComponent extends BaseDirective implements OnDestroy {
   ];
 
   // Timer for the event
-  public announcementDate = new Date('2024-11-02 17:00:00 GMT+3');
+  public isoDate = '2024-11-02T15:00:00Z';
+  public announcementDate = new Date(this.isoDate);
   public seconds = 0;
   public minutes = 0;
   public hours = 0;
