@@ -1034,6 +1034,14 @@
           <context context-type="linenumber">7,8</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="26330206416959344" datatype="html">
+        <source>If you&apos;re interested in our sponsorship opportunities, <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;mailto:info@bellumgens.com&quot;&gt;"/>get in touch<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>!</source>
+        <target>Ако сте заинтересовани от нашите възможности за спонсорство, <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;mailto:info@bellumgens.com&quot;&gt;"/>се свържете с нас<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/partners/partners.component.html</context>
+          <context context-type="linenumber">26,27</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="5506180627376048896" datatype="html">
         <source>We are thrilled to announce a 3-year partnership between Bellum Gens Elite Stara Zagora and TechHub.bg! 🤝</source>
         <target>Въодушевени сме да обявим 3-годишно партньорство между Bellum Gens Elite Стара Загора и TechHub.bg! 🤝</target>
