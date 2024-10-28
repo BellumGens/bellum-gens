@@ -1,11 +1,12 @@
-import { DatePipe, NgOptimizedImage } from '@angular/common';
-import { Component } from '@angular/core';
+import { DatePipe, DecimalPipe, isPlatformBrowser, NgOptimizedImage } from '@angular/common';
+import { Component, Inject, OnDestroy, PLATFORM_ID } from '@angular/core';
 import { IGX_CARD_DIRECTIVES, IgxAvatarComponent, IgxButtonDirective, IgxDividerDirective, IgxIconComponent } from '@infragistics/igniteui-angular';
 import { BaseDirective } from '../base/base.component';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CountrySVGPipe } from '../../../../common/src/lib/pipes/country-svg.pipe';
 import { Sc2RaceThumbPipe } from '../../../../common/src/lib/pipes/sc2-race-thumb.pipe';
+import { interval, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-events',
@@ -17,6 +18,7 @@ import { Sc2RaceThumbPipe } from '../../../../common/src/lib/pipes/sc2-race-thum
     IgxIconComponent,
     IgxButtonDirective,
     DatePipe,
+    DecimalPipe,
     NgOptimizedImage,
     CountrySVGPipe,
     Sc2RaceThumbPipe,
@@ -25,7 +27,7 @@ import { Sc2RaceThumbPipe } from '../../../../common/src/lib/pipes/sc2-race-thum
   templateUrl: './events.component.html',
   styleUrls: ['./events.component.scss']
 })
-export class EventsComponent extends BaseDirective {
+export class EventsComponent extends BaseDirective implements OnDestroy {
   public invitedPlayers = [
     {name: 'Kang "Solar" Min Soo', country: 'South-Korea', race: 'Zerg', team: 'Team Vitality', image: '/assets/bge/players/1-solar.png'},
     {name: 'Clement "Clem" Desplanches', country: 'France', race: 'Terran', team: 'Team Liquid', image: '/assets/bge/players/2-clem.png'},
@@ -53,11 +55,20 @@ export class EventsComponent extends BaseDirective {
     {name: 'Philip "BeoMulf" Mulford', country: 'United-States-of-America', role: 'Commentator', image: '/assets/bge/talent/18-beomulf.png'},
     {name: 'Konstantin "NoThx" Kunev', country: 'Bulgaria', role: 'Commentator', image: '/assets/bge/talent/19-nothx.png'},
     {name: 'Lachezar "Exalted" Kamenov', country: 'Bulgaria', role: 'Commentator', image: '/assets/bge/talent/20-exalted.png'}
-  ]
+  ];
+
+  // Timer for the event
+  public announcementDate = new Date('2024-11-02 17:00:00 GMT+3');
+  public seconds = 0;
+  public minutes = 0;
+  public hours = 0;
+  public days = 0;
+  public sub: Subscription;
 
   // public ticketsUrl = 'https://www.eventim.bg/en/tickets/bellum-gens-elite-stara-zagora-stara-zagora-leten-teatr-642927/event.html';
 
   constructor(
+    @Inject(PLATFORM_ID) private platformId: any,
     protected titleService: Title,
     protected meta: Meta,
     protected activeRoute: ActivatedRoute
@@ -66,5 +77,24 @@ export class EventsComponent extends BaseDirective {
     // if (this.localeId === 'bg') {
     //   this.ticketsUrl = 'https://www.eventim.bg/bg/bileti/bellum-gens-elite-stara-zagora-stara-zagora-leten-teatr-642927/event.html';
     // }
+    this.timeLeft();
+    if (isPlatformBrowser(this.platformId)) {
+      this.sub = interval(1000).subscribe(() => this.timeLeft());
+    }
+  }
+
+  public timeLeft() {
+    let delta = (this.announcementDate.getTime() - new Date().getTime()) / 1000;
+    this.days = Math.floor(delta / 86400);
+    delta -= this.days * 86400;
+    this.hours = Math.floor(delta / 3600) % 24;
+    delta -= this.hours * 3600;
+    this.minutes = Math.floor(delta / 60) % 60;
+    delta -= this.minutes * 60;
+    this.seconds = Math.floor(delta);
+  }
+
+  public ngOnDestroy() {
+    this.sub?.unsubscribe();
   }
 }

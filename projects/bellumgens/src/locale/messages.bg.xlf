@@ -238,6 +238,14 @@
           <context context-type="linenumber">15,16</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="8149490729241744297" datatype="html">
+        <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{days}}"/> <x id="INTERPOLATION_1" equiv-text="{{days !== 1 ? &apos;days&apos; : &apos;day&apos;}}"/> <x id="INTERPOLATION_2" equiv-text="{{hours | number:&apos;2.0-0&apos;}}"/>:<x id="INTERPOLATION_3" equiv-text="{{minutes | number:&apos;2.0-0&apos;}}"/>:<x id="INTERPOLATION_4" equiv-text="{{seconds | number:&apos;2.0-0&apos;}}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> left!</source>
+        <target>Остават <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{days}}"/> <x id="INTERPOLATION_1" equiv-text="{{days !== 1 ? &apos;дни&apos; : &apos;ден&apos;}}"/> <x id="INTERPOLATION_2" equiv-text="{{hours | number:&apos;2.0-0&apos;}}"/>:<x id="INTERPOLATION_3" equiv-text="{{minutes | number:&apos;2.0-0&apos;}}"/>:<x id="INTERPOLATION_4" equiv-text="{{seconds | number:&apos;2.0-0&apos;}}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">16,17</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="1368263726671170140" datatype="html">
         <source>Watch on Twitch</source>
         <target>Гледайте в Twitch</target>
