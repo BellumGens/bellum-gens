@@ -85,6 +85,10 @@ export class EventsComponent extends BaseDirective implements OnDestroy {
 
   public timeLeft() {
     let delta = (this.announcementDate.getTime() - new Date().getTime()) / 1000;
+    if (delta < 0) {
+      delta = 0;
+      this.sub.unsubscribe();
+    }
     this.days = Math.floor(delta / 86400);
     delta -= this.days * 86400;
     this.hours = Math.floor(delta / 3600) % 24;
