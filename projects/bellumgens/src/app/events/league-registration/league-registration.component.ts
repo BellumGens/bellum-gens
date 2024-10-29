@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, Input } from '@angular/core';
+import { Component } from '@angular/core';
 import {
   EMPTY_NEW_APPLICATION,
   ApplicationUser,
@@ -8,7 +8,7 @@ import {
 } from '../../../../../common/src/public_api';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { IGX_DRAG_DROP_DIRECTIVES, IGX_DROP_DOWN_DIRECTIVES, IGX_INPUT_GROUP_DIRECTIVES, IgxAutocompleteDirective, IgxButtonDirective, IgxCheckboxComponent, IgxDialogComponent, IgxDividerDirective, IgxIconComponent } from '@infragistics/igniteui-angular';
+import { IGX_DRAG_DROP_DIRECTIVES, IGX_DROP_DOWN_DIRECTIVES, IGX_INPUT_GROUP_DIRECTIVES, IGX_SELECT_DIRECTIVES, IgxAutocompleteDirective, IgxButtonDirective, IgxCheckboxComponent, IgxDialogComponent, IgxDividerDirective, IgxIconComponent } from '@infragistics/igniteui-angular';
 
 @Component({
   selector: 'app-league-registration',
@@ -26,16 +26,11 @@ import { IGX_DRAG_DROP_DIRECTIVES, IGX_DROP_DOWN_DIRECTIVES, IGX_INPUT_GROUP_DIR
     IgxCheckboxComponent,
     IgxButtonDirective,
     IgxDividerDirective,
+    IGX_SELECT_DIRECTIVES,
     StartsWithPipe
   ]
 })
 export class LeagueRegistrationComponent {
-  @Input()
-  public tournamentId: string;
-
-  @ViewChild('appDetails', { static: true })
-  public appDetails: ElementRef;
-
   public application = Object.assign({}, EMPTY_NEW_APPLICATION);
   public authUser: ApplicationUser;
   public companies: string [];
@@ -43,6 +38,19 @@ export class LeagueRegistrationComponent {
 
   public chooseGame = $localize`Choose league (game)`;
   public loginFirst = $localize`Please login first`;
+  public balkanCountries = [
+    $localize`Albania`,
+    $localize`Bosnia and Herzegovina`,
+    $localize`Bulgaria`,
+    $localize`Croatia`,
+    $localize`Greece`,
+    $localize`Kosovo`,
+    $localize`Macedonia`,
+    $localize`Montenegro`,
+    $localize`Romania`,
+    $localize`Serbia`,
+    $localize`Slovenia`,
+  ];
 
   constructor(private authManager: LoginService,
               private apiService: ApiTournamentsService,
@@ -59,7 +67,6 @@ export class LeagueRegistrationComponent {
 
   public leagueRegistration() {
     this.inProgress = true;
-    this.application.tournamentId = this.tournamentId;
     this.apiService.leagueRegistration(this.application).subscribe({
       next: (application) => {
         this.inProgress = false;

@@ -19,6 +19,10 @@
       }
     </igx-input-group>
 
+    <igx-select class="registration-form-input">
+
+    </igx-select>
+
     <igx-input-group class="registration-form-input" >
       <label igxLabel for="email">Battle tag</label>
       <igx-prefix>
@@ -64,15 +68,17 @@
 </form>
 
 <igx-dialog class="terms-dialog" [closeOnEscape]="true" [closeOnOutsideSelect]="true" leftButtonLabel="OK" (leftButtonSelect)="terms.close()" #terms>
-  <div class="content-container-row">
-    <h2 i18n>Terms and conditions</h2>
-  </div>
+  <div class="dialog-wrapper">
+    <div class="content-container-row">
+      <h2 i18n>Terms and conditions</h2>
+    </div>
 
-  <div class="form-wrapper">
-    <p i18n>All team members must be <span class="highlight">current employees of the company associated with the team registration, should not have any active engagement or affiliation with a professional esports organization, and haven't participated in professional esports matches as players in the past 24 months from the date of registration</span>. The team is allowed to have standins/substitute players and they have to comply with the same conditions as the main players on the team. Substitutes can be added to the team post registration, as long as they comply with the aforementioned conditions. Individual players (StarCraft II) must be <span class="highlight">current employees of the company associated with their registration</span>. The company represented by the team/individual must be provided at the time of registration.</p>
-    <p i18n>Registrations are open until the deadline is reached, or until all open slots have been filled (16 CS:GO teams, 32 StarCraft II players). Successful registration completion requires registration fee payment - 300 BGN per team or 60 BGN per individual competitor. Registration fee payment is done with a bank transfer after the registration form has been submitted. <span class="highlight">All registration fees are being added to the prize pool fund. At the end of the season the prize pool will be donated to a charitable cause chosen by the winners!</span></p>
-  </div>
-  <div>
-    <img ngSrc="/assets/wallpapers/jersey.webp" width="600" height="572" alt="Esports Business League" />
+    <div class="form-wrapper">
+      <p i18n>Registrations show intent for participation, but weekly participation would require timely weekly check-ins and being on-time for the matches. All applicants must reside <span class="highlight">in one of the listed Balkan countries</span>. If an applicant is discovered to permanently reside outside of the listed Balkan countries, that would lead to <span class="highlight">permanent disqualification</span> from the league and nullification of any points earned.</p>
+      <p i18n>Provided battle tag, in-game race preference, discord ID, should match with the accounts the applicant uses during the League.</p>
+    </div>
+    <div class="content-container-row">
+      <img src="/assets/login/bge-white-horizontal-2024.svg" width="600" height="87" alt="Esports Business League" />
+    </div>
   </div>
 </igx-dialog>

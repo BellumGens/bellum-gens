@@ -22,20 +22,10 @@
     margin: 4px 0;
   }
 
-  .team-avatar {
-    width: 32px;
-    min-width: 32px;
-    height: 32px;
-  }
-
   .form-wrapper {
     display: flex;
     flex-flow: column;
     align-items: center;
-  }
-
-  .terms-dialog {
-    width: 650px;
   }
 
   @media only screen and (max-width: 550px) {
@@ -43,13 +33,19 @@
       width: 348px;
     }
 
-    .terms-dialog {
-      width: 380px;
-    }
-
     .registration-title {
       font-size: 2.6rem;
       line-height: 3rem;
     }
+  }
+}
+
+.dialog-wrapper {
+  width: 650px;
+}
+
+@media only screen and (max-width: 550px) {
+  .dialog-wrapper {
+    width: 380px;
   }
 }
