@@ -7,13 +7,7 @@ import { RegistrationComponent, UnauthorizedComponent } from '../../../common/sr
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'bellumgenselite', loadComponent: () => import('./events/events.component').then(m => m.EventsComponent), data: {
-      title: 'Bellum Gens Elite Stara Zagora: The home of esports in Bulgaria',
-      twitterTitle: 'Bellum Gens Elite Stara Zagora: The home of esports in Bulgaria',
-      description: 'Bellum Gens Elite Stara Zagora is the home of esports in Bulgaria. We host the best gaming events in the country.',
-      twitterDescription: 'Bellum Gens Elite Stara Zagora is the home of esports in Bulgaria. We host the best gaming events in the country.'
-    }
-  },
+  { path: 'bellumgenselite', loadChildren: () => import('./events/events.routes').then(m => m.routes) },
   { path: 'partners', loadChildren: () => import('./partners/partners.routes').then(m => m.routes) },
   { path: 'register', component: RegistrationComponent },
   { path: 'unauthorized', redirectTo: 'unauthorized/', pathMatch: 'full' },

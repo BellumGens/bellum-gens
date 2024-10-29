@@ -1,0 +1,78 @@
+<form #tapplication="ngForm" (ngSubmit)="leagueRegistration()">
+
+  <div class="form-wrapper">
+    <h2 id="registration" class="registration-title" i18n>BGE Balkan Circuit Registration</h2>
+  </div>
+
+  <div #appDetails class="form-wrapper application-details">
+
+    <igx-input-group class="registration-form-input">
+      <label igxLabel for="email" i18n>Email</label>
+      <igx-prefix>
+        <igx-icon>email</igx-icon>
+      </igx-prefix>
+      <input type="email" id="email" #userMail name="email" [required]="true" igxInput pattern="^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="application.email" />
+      @if (userMail.value) {
+        <igx-suffix (click)="application.email = null">
+          <igx-icon>clear</igx-icon>
+        </igx-suffix>
+      }
+    </igx-input-group>
+
+    <igx-input-group class="registration-form-input" >
+      <label igxLabel for="email">Battle tag</label>
+      <igx-prefix>
+        <igx-icon family="login-icons" name="battlenet"></igx-icon>
+      </igx-prefix>
+      <input id="battletag" #battletag name="battletag" [required]="true" igxInput pattern="^[a-zA-Z0-9._%+-]+#[0-9]{4,6}$" [(ngModel)]="application.battleNetId" />
+      @if (battletag.value) {
+        <igx-suffix (click)="application.battleNetId = null">
+          <igx-icon>clear</igx-icon>
+        </igx-suffix>
+      }
+    </igx-input-group>
+
+    <igx-input-group class="registration-form-input">
+      <label igxLabel for="company" i18n>Team</label>
+      <igx-prefix>
+        <igx-icon>work</igx-icon>
+      </igx-prefix>
+      <input id="company" #company name="company" igxInput [igxAutocomplete]="companiesDD" [(ngModel)]="application.companyId" />
+      @if (company.value) {
+        <igx-suffix (click)="application.companyId = null">
+          <igx-icon>clear</igx-icon>
+        </igx-suffix>
+      }
+      <igx-hint i18n>*Choose the team associated with your participation...</igx-hint>
+    </igx-input-group>
+    <igx-drop-down #companiesDD maxHeight="320px">
+      @for (company of companies | startsWith:application.companyId; track company) {
+        <igx-drop-down-item [value]="company">
+          {{ company }}
+        </igx-drop-down-item>
+      }
+    </igx-drop-down>
+
+    <div class="horizontal-center">
+      <igx-checkbox #termsAccepted id="accept" name="accept" class="accept-terms-checkbox">
+        <label for="accept" i18n>I accept the <a class="highlight navigatable" (click)="terms.open(); $event.stopPropagation()">terms and conditions</a>.</label>
+      </igx-checkbox>
+    </div>
+
+    <button igxButton="outlined" class="submit-registration" [disabled]="tapplication.invalid || !termsAccepted.checked || inProgress" i18n>Register</button>
+  </div>
+</form>
+
+<igx-dialog class="terms-dialog" [closeOnEscape]="true" [closeOnOutsideSelect]="true" leftButtonLabel="OK" (leftButtonSelect)="terms.close()" #terms>
+  <div class="content-container-row">
+    <h2 i18n>Terms and conditions</h2>
+  </div>
+
+  <div class="form-wrapper">
+    <p i18n>All team members must be <span class="highlight">current employees of the company associated with the team registration, should not have any active engagement or affiliation with a professional esports organization, and haven't participated in professional esports matches as players in the past 24 months from the date of registration</span>. The team is allowed to have standins/substitute players and they have to comply with the same conditions as the main players on the team. Substitutes can be added to the team post registration, as long as they comply with the aforementioned conditions. Individual players (StarCraft II) must be <span class="highlight">current employees of the company associated with their registration</span>. The company represented by the team/individual must be provided at the time of registration.</p>
+    <p i18n>Registrations are open until the deadline is reached, or until all open slots have been filled (16 CS:GO teams, 32 StarCraft II players). Successful registration completion requires registration fee payment - 300 BGN per team or 60 BGN per individual competitor. Registration fee payment is done with a bank transfer after the registration form has been submitted. <span class="highlight">All registration fees are being added to the prize pool fund. At the end of the season the prize pool will be donated to a charitable cause chosen by the winners!</span></p>
+  </div>
+  <div>
+    <img ngSrc="/assets/wallpapers/jersey.webp" width="600" height="572" alt="Esports Business League" />
+  </div>
+</igx-dialog>
