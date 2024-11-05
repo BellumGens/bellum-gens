@@ -5,16 +5,7 @@
       <h1>Bellum Gens Elite</h1>
     </div>
     <p i18n>Bellum Gens Elite is a premier esports LAN event organized in Bulgaria. Ancient history and traditions, and beautiful scenery combine with high-level action-packed esports competition to bring you an unforgettable experience.</p>
-  </div>
-
-  <div class="content-container-column">
-    <iframe class="preview-image" src="https://player.twitch.tv/?channel=bge_starazagora&parent=bellumgens.com" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
-  </div>
-
-  <div class="content-container-column">
-    <p i18n>Join us live on <span class="highlight">{{ isoDate | date: 'long' }}</span> for Bellum Gens Elite future plans reveal!</p>
-    <h2 style="align-self: center" i18n><span class="highlight">{{days}} {{days !== 1 ? 'days' : 'day'}} {{hours | number:'2.0-0'}}:{{minutes | number:'2.0-0'}}:{{seconds | number:'2.0-0'}}</span> left!</h2>
-    <a href="https://www.twitch.tv/bge_starazagora/schedule?segmentID=4e46d897-c4b0-40c2-8a56-1b6f2ce63fd1" target="_blank" igxButton="contained" style="margin-top: 12px" i18n>Watch on Twitch</a>
+    <iframe class="preview-image" width="560" height="315" src="https://www.youtube.com/embed/g1P4dYvGpA0?si=2L8m1OjZfdOVF1mi" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
   </div>
 
   <div class="content-container-row">
@@ -22,30 +13,26 @@
   </div>
 
   <div class="content-container-column">
-    <h2 i18n>BGE - Stara Zagora 2024</h2>
-    <p i18n><span class="highlight">Bellum Gens</span> joined forces with the <span class="highlight">Bulgarian StarCraft League</span> and <span class="highlight">Stara Zagora Municipality</span> to deliver an epic esports experience!</p>
-    <ul style="margin-bottom: 12px;">
+    <h2 i18n>BGE - Stara Zagora 2025</h2>
+    <p i18n><span class="highlight">Bellum Gens Elite Stara Zagora</span> returns in 2025 for another epic showdown!</p>
+    <ul>
       <li i18n>StarCraft II</li>
-      <li i18n>Qualifiers: <span class="highlight">20-21st</span> of July</li>
-      <li i18n>Main Event: <span class="highlight">4-8th</span> of September</li>
-      <li i18n><span class="highlight">16</span> players</li>
-      <li i18n><span class="highlight">€10000</span> prize pool</li>
+      <li i18n>Main Event: <span class="highlight">4-7th</span> of June</li>
+      <li i18n><span class="highlight">4</span> invited players</li>
+      <li i18n><span class="highlight">12</span> qualifying players</li>
       <li i18n>Summer Theater - Stara Zagora</li>
-      <li i18n><span class="highlight">Clement "Clem" Desplanches</span> is the 2024 champion!</li>
+      <li i18n><span class="highlight">Tickets available soon</span>!</li>
     </ul>
-    <a href="https://drive.google.com/file/d/1IMuw9fx_ddOU56_p334b5t9e7j_o92fI/view?usp=sharing" target="_blank" igxButton="contained" style="margin-top: 12px" i18n>Download Replay Pack</a>
+    <p i18n>Stay tuned for more updates!</p>
   </div>
   <div class="content-container-column">
-    <img ngSrc="/assets/bge/clem-champion-2.webp" width="600" height="400" class="preview-image" alt="BGE Stara Zagora 2024 Champion: Clem" />
+    <img ngSrc="/assets/bge/bge-stage.webp" width="600" height="400" class="preview-image" alt="BGE Stara Zagora 2024 Champion: Clem" />
     <!-- <iframe width="560" height="315" class="preview-image" src="https://www.youtube.com/embed/4ZtIooYGp_g?si=zOJOViSa8gZwzRLE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     <img ngSrc="/assets/bge/stara-zagora1.webp" width="600" height="337" class="preview-image" alt="Stara Zagora - Samara Monument" /> -->
   </div>
 
-  <div class="content-container-row">
-    <h2 i18n>Invited Players</h2>
-  </div>
-
   <div id="confirmed-players" class="content-container-row">
+    <h2 i18n>Invited Players</h2>
     <div class="card-wrapper">
       @for (player of invitedPlayers; track player.name) {
         <igx-card>
@@ -58,8 +45,6 @@
               @if (player.country !== 'TBA') {
                 <igx-avatar [src]="player.country | countrySVG" shape="circle" [title]="player.country" class="country-badge-small"></igx-avatar>
               }
-              <!-- <igx-avatar [src]="player.race | sc2RaceThumb" shape="circle" [title]="player.race" class="country-badge-small"></igx-avatar>
-              <igx-avatar [src]="player.country | countrySVG" shape="circle" size="small" [title]="player.country" class="country-badge-small"></igx-avatar> -->
             </div>
             <h3 igxCardHeaderSubtitle>{{player.team}}</h3>
           </igx-card-header>
@@ -73,7 +58,7 @@
     </div>
   </div>
 
-  <div id="qualifiers" class="content-container-row">
+  <!-- <div id="qualified-players" class="content-container-row">
     <h2 i18n>Qualified Players</h2>
     <div class="card-wrapper">
       @for (player of qualifiedPlayers; track player.name) {
@@ -87,8 +72,6 @@
               @if (player.country !== 'TBA') {
                 <igx-avatar [src]="player.country | countrySVG" shape="circle" [title]="player.country" class="country-badge-small"></igx-avatar>
               }
-              <!-- <igx-avatar [src]="player.race | sc2RaceThumb" shape="circle" [title]="player.race" class="country-badge-small"></igx-avatar>
-              <igx-avatar [src]="player.country | countrySVG" shape="circle" size="small" [title]="player.country" class="country-badge-small"></igx-avatar> -->
             </div>
             <h3 igxCardHeaderSubtitle>{{player.team}}</h3>
           </igx-card-header>
@@ -100,7 +83,7 @@
     </div>
   </div>
 
-  <div id="qualifiers" class="content-container-row">
+  <div id="telent" class="content-container-row">
     <h2 i18n>Talent</h2>
     <div class="card-wrapper">
       @for (caster of talent; track caster.name) {
@@ -114,8 +97,6 @@
               @if (caster.country !== 'TBA') {
                 <igx-avatar [src]="caster.country | countrySVG" shape="circle" [title]="caster.country" class="country-badge-small"></igx-avatar>
               }
-              <!-- <igx-avatar [src]="player.race | sc2RaceThumb" shape="circle" [title]="player.race" class="country-badge-small"></igx-avatar>
-              <igx-avatar [src]="player.country | countrySVG" shape="circle" size="small" [title]="player.country" class="country-badge-small"></igx-avatar> -->
             </div>
             <h3 igxCardHeaderSubtitle>{{caster.role}}</h3>
           </igx-card-header>
@@ -160,7 +141,7 @@
     </igx-card>
   </div>
 
-  <div id="qualifiers" class="content-container-row">
+  <div id="main-event" class="content-container-row">
     <h2 i18n>Main Event Schedule</h2>
   </div>
 
@@ -244,7 +225,7 @@
         </igx-card-content>
       </igx-card>
     </div>
-  </div>
+  </div> -->
 
   <div class="content-container-column">
     <img ngSrc="/assets/bge/summer-theater.webp" width="600" height="372" class="preview-image" alt="Summer Theater Stara Zagora" />
@@ -262,12 +243,36 @@
     <img ngSrc="/assets/bge/roman-bathhouse.webp" width="600" height="395" class="preview-image" alt="Ancient Roman Structure" />
   </div>
 
+  <div class="content-container-row">
+    <h2 i18n>Past Events</h2>
+  </div>
+
+  <div class="content-container-column">
+    <h2 i18n>BGE - Stara Zagora 2024</h2>
+    <p i18n><span class="highlight">Bellum Gens</span> joined forces with the <span class="highlight">Bulgarian StarCraft League</span> and <span class="highlight">Stara Zagora Municipality</span> to deliver an epic esports experience!</p>
+    <ul style="margin-bottom: 12px;">
+      <li i18n>StarCraft II</li>
+      <li i18n>Qualifiers: <span class="highlight">20-21st</span> of July</li>
+      <li i18n>Main Event: <span class="highlight">4-8th</span> of September</li>
+      <li i18n><span class="highlight">16</span> players</li>
+      <li i18n><span class="highlight">€10000</span> prize pool</li>
+      <li i18n>Summer Theater - Stara Zagora</li>
+      <li i18n><span class="highlight">Clement "Clem" Desplanches</span> is the 2024 champion!</li>
+    </ul>
+    <a href="https://drive.google.com/file/d/1IMuw9fx_ddOU56_p334b5t9e7j_o92fI/view?usp=sharing" target="_blank" igxButton="contained" style="margin-top: 12px" i18n>Download Replay Pack</a>
+  </div>
+  <div class="content-container-column">
+    <img ngSrc="/assets/bge/clem-champion-2.webp" width="600" height="400" class="preview-image" alt="BGE Stara Zagora 2024 Champion: Clem" />
+    <!-- <iframe width="560" height="315" class="preview-image" src="https://www.youtube.com/embed/4ZtIooYGp_g?si=zOJOViSa8gZwzRLE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <img ngSrc="/assets/bge/stara-zagora1.webp" width="600" height="337" class="preview-image" alt="Stara Zagora - Samara Monument" /> -->
+  </div>
+
   <div class="content-container-column">
     <iframe width="560" height="315" class="preview-image" src="https://www.youtube.com/embed/HcY0qUrRnJw?si=46RWHQ4ZQcokgblL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
     <!-- <img ngSrc="/assets/wallpapers/bellum-gens-elite-winners.webp" width="600" height="401" class="preview-image" alt="Bellum Gens Elite - Stara Zagora Winners" /> -->
   </div>
   <div class="content-container-column">
-    <h2 i18n>Past Events</h2>
+    <h2 i18n>BGE - Stara Zagora 2020</h2>
     <p i18n><span class="highlight">Bellum Gens Elite - Stara Zagora</span> 2020 brought the top Counter-Strike talent in the region to compete under one roof for a prize pool of $10,000!</p>
     <p i18n>Bellum Gens Elite - Stara Zagora was one of the few LAN events held in 2020 and due to Covid-19 lockdowns and travel restrictions, only 10 teams were able to participate in the LAN finals.</p>
   </div>
