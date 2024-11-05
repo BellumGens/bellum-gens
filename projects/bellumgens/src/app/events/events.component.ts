@@ -1,12 +1,11 @@
-import { DatePipe, DecimalPipe, isPlatformBrowser, NgOptimizedImage } from '@angular/common';
-import { Component, Inject, OnDestroy, PLATFORM_ID } from '@angular/core';
+import { DatePipe, DecimalPipe, NgOptimizedImage } from '@angular/common';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { IGX_CARD_DIRECTIVES, IgxAvatarComponent, IgxButtonDirective, IgxDividerDirective, IgxIconComponent } from '@infragistics/igniteui-angular';
 import { BaseDirective } from '../base/base.component';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CountrySVGPipe } from '../../../../common/src/lib/pipes/country-svg.pipe';
 import { Sc2RaceThumbPipe } from '../../../../common/src/lib/pipes/sc2-race-thumb.pipe';
-import { interval, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-events',
@@ -27,7 +26,7 @@ import { interval, Subscription } from 'rxjs';
   templateUrl: './events.component.html',
   styleUrls: ['./events.component.scss']
 })
-export class EventsComponent extends BaseDirective implements OnDestroy {
+export class EventsComponent extends BaseDirective {
   public invitedPlayers = [
     {name: 'Kang "Solar" Min Soo', country: 'South-Korea', race: 'Zerg', team: 'Team Vitality', image: '/assets/bge/players/1-solar.png'},
     {name: 'Clement "Clem" Desplanches', country: 'France', race: 'Terran', team: 'Team Liquid', image: '/assets/bge/players/2-clem.png'},
@@ -58,13 +57,13 @@ export class EventsComponent extends BaseDirective implements OnDestroy {
   ];
 
   // Timer for the event
-  public isoDate = '2024-11-02T15:00:00Z';
-  public announcementDate = new Date(this.isoDate);
-  public seconds = 0;
-  public minutes = 0;
-  public hours = 0;
-  public days = 0;
-  public sub: Subscription;
+  // public isoDate = '2024-11-02T15:00:00Z';
+  // public announcementDate = new Date(this.isoDate);
+  // public seconds = 0;
+  // public minutes = 0;
+  // public hours = 0;
+  // public days = 0;
+  // public sub: Subscription;
 
   // public ticketsUrl = 'https://www.eventim.bg/en/tickets/bellum-gens-elite-stara-zagora-stara-zagora-leten-teatr-642927/event.html';
 
@@ -78,28 +77,28 @@ export class EventsComponent extends BaseDirective implements OnDestroy {
     // if (this.localeId === 'bg') {
     //   this.ticketsUrl = 'https://www.eventim.bg/bg/bileti/bellum-gens-elite-stara-zagora-stara-zagora-leten-teatr-642927/event.html';
     // }
-    this.timeLeft();
-    if (isPlatformBrowser(this.platformId)) {
-      this.sub = interval(1000).subscribe(() => this.timeLeft());
-    }
+    // if (isPlatformBrowser(this.platformId)) {
+    //   this.sub = interval(1000).subscribe(() => this.timeLeft());
+    // }
+    // this.timeLeft();
   }
 
-  public timeLeft() {
-    let delta = (this.announcementDate.getTime() - new Date().getTime()) / 1000;
-    if (delta < 0) {
-      delta = 0;
-      this.sub.unsubscribe();
-    }
-    this.days = Math.floor(delta / 86400);
-    delta -= this.days * 86400;
-    this.hours = Math.floor(delta / 3600) % 24;
-    delta -= this.hours * 3600;
-    this.minutes = Math.floor(delta / 60) % 60;
-    delta -= this.minutes * 60;
-    this.seconds = Math.floor(delta);
-  }
+  // public timeLeft() {
+  //   let delta = (this.announcementDate.getTime() - new Date().getTime()) / 1000;
+  //   if (delta < 0) {
+  //     delta = 0;
+  //     this.sub?.unsubscribe();
+  //   }
+  //   this.days = Math.floor(delta / 86400);
+  //   delta -= this.days * 86400;
+  //   this.hours = Math.floor(delta / 3600) % 24;
+  //   delta -= this.hours * 3600;
+  //   this.minutes = Math.floor(delta / 60) % 60;
+  //   delta -= this.minutes * 60;
+  //   this.seconds = Math.floor(delta);
+  // }
 
-  public ngOnDestroy() {
-    this.sub?.unsubscribe();
-  }
+  // public ngOnDestroy() {
+  //   this.sub?.unsubscribe();
+  // }
 }
