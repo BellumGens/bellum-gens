@@ -78,17 +78,17 @@ export class EventsComponent extends BaseDirective implements OnDestroy {
     // if (this.localeId === 'bg') {
     //   this.ticketsUrl = 'https://www.eventim.bg/bg/bileti/bellum-gens-elite-stara-zagora-stara-zagora-leten-teatr-642927/event.html';
     // }
-    this.timeLeft();
     if (isPlatformBrowser(this.platformId)) {
       this.sub = interval(1000).subscribe(() => this.timeLeft());
     }
+    this.timeLeft();
   }
 
   public timeLeft() {
     let delta = (this.announcementDate.getTime() - new Date().getTime()) / 1000;
     if (delta < 0) {
       delta = 0;
-      this.sub.unsubscribe();
+      this.sub?.unsubscribe();
     }
     this.days = Math.floor(delta / 86400);
     delta -= this.days * 86400;
