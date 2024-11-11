@@ -475,7 +475,7 @@
         }
       }
     },
-    "common": {
+    "bellum-gens-common": {
       "root": "projects/common",
       "sourceRoot": "projects/common/src",
       "projectType": "library",
