@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import {
-  EMPTY_NEW_APPLICATION,
   ApplicationUser,
   LoginService,
   ApiTournamentsService,
-  StartsWithPipe
+  StartsWithPipe,
+  TournamentApplication,
+  Game
 } from '../../../../../common/src/public_api';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -31,12 +32,11 @@ import { IGX_DRAG_DROP_DIRECTIVES, IGX_DROP_DOWN_DIRECTIVES, IGX_INPUT_GROUP_DIR
   ]
 })
 export class LeagueRegistrationComponent {
-  public application = Object.assign({}, EMPTY_NEW_APPLICATION);
+  public application: TournamentApplication = { game: Game.StarCraft2, email: '' };
   public authUser: ApplicationUser;
   public companies: string [];
   public inProgress = false;
 
-  public chooseGame = $localize`Choose league (game)`;
   public loginFirst = $localize`Please login first`;
   public balkanCountries = [
     $localize`Albania`,
