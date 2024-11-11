@@ -8,7 +8,7 @@
     "start-bellumgens": "ng serve bellum-gens --port=4200 -o",
     "start-ebleague": "ng serve eb-league --port=4201 -o",
     "build": "npm run build:common && npm run build:apps",
-    "build:common": "ng build common --configuration production",
+    "build:common": "ng build bellum-gens-common --configuration production",
     "build:bellumgens": "ng build bellum-gens --configuration production",
     "build:ebleague": "ng build eb-league --configuration production",
     "build:apps": "npm run build:bellumgens && npm run build:ebleague",
