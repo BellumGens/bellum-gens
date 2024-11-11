@@ -46,3 +46,4 @@ jobs:
       with:
         build: npm run build:ssr
         start: npm run serve:ssr:bellumgens
+        browser: chrome
