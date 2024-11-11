@@ -28,7 +28,8 @@
   },
   "exclude": [
     "cypress",
-    "./cypress.config.ts"
+    "./cypress.config.ts",
+    "node_modules"
   ],
   "angularCompilerOptions": {
     "strictTemplates": true,

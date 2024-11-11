@@ -4,8 +4,7 @@ import { IGX_CARD_DIRECTIVES, IgxAvatarComponent, IgxButtonDirective, IgxDivider
 import { BaseDirective } from '../base/base.component';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { CountrySVGPipe } from '../../../../common/src/lib/pipes/country-svg.pipe';
-import { Sc2RaceThumbPipe } from '../../../../common/src/lib/pipes/sc2-race-thumb.pipe';
+import { CountrySVGPipe, Sc2RaceThumbPipe } from 'bellum-gens-common';
 
 @Component({
   selector: 'app-events',
