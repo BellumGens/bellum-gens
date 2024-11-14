@@ -66,8 +66,8 @@
       <label igxLabel for="balkanCountry" i18n>Country</label>
       @for (country of balkanCountries; track country) {
         <igx-select-item [value]="country">
-          <igx-avatar [src]="country | countrySVG" size="small" shape="circle" [title]="country"></igx-avatar>
-          {{ country }}
+          <igx-avatar [src]="country | countrySVG" shape="circle" [title]="country"></igx-avatar>
+          <span class="title">{{ country }}</span>
         </igx-select-item>
       }
     </igx-select>
