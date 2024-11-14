@@ -46,11 +46,11 @@
     </igx-input-group>
 
     <igx-input-group class="registration-form-input">
-      <label igxLabel for="discord" i18n>Discord</label>
+      <label igxLabel for="discord" i18n>Discord ID</label>
       <igx-prefix>
         <igx-icon family="login-icons" name="discord"></igx-icon>
       </igx-prefix>
-      <input id="discord" #discord name="discord" igxInput [(ngModel)]="application.discord" />
+      <input id="discord" #discord name="discord" igxInput [(ngModel)]="application.discord" required />
       @if (discord.value) {
         <igx-suffix (click)="application.discord = null">
           <igx-icon>clear</igx-icon>
@@ -96,7 +96,6 @@
           <igx-icon>clear</igx-icon>
         </igx-suffix>
       }
-      <igx-hint i18n>*Choose the team associated with your participation...</igx-hint>
     </igx-input-group>
 
     <igx-drop-down #companiesDD maxHeight="320px">

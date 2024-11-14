@@ -530,6 +530,222 @@
           <context context-type="linenumber">132,134</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="6580447463385033749" datatype="html">
+        <source>BGE Balkan Circuit Registration</source>
+        <target>Регистрация за BGE Балкански Кръг</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.html</context>
+          <context context-type="linenumber">4,7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4768749765465246664" datatype="html">
+        <source>Email</source>
+        <target>Имейл</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.html</context>
+          <context context-type="linenumber">10,13</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
+          <context context-type="linenumber">182,185</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/registration/registration.component.html</context>
+          <context context-type="linenumber">16,19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5342432350421167093" datatype="html">
+        <source>First name</source>
+        <target>Име</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.html</context>
+          <context context-type="linenumber">23,26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3586674587150281199" datatype="html">
+        <source>Last name</source>
+        <target>Фамилия</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.html</context>
+          <context context-type="linenumber">36,39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8899253059265944182" datatype="html">
+        <source>Discord ID</source>
+        <target>Discord ID</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.html</context>
+          <context context-type="linenumber">49,51</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7178600628620972550" datatype="html">
+        <source>Join <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://discord.gg/bnTcpa9&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>Bellum Gens<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>  before the registration is submitted.</source>
+        <target>Присъединете се към <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://discord.gg/bnTcpa9&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>Bellum Gens<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>  преди да изпратите регистрацията.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.html</context>
+          <context context-type="linenumber">59</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="516176798986294299" datatype="html">
+        <source>Country</source>
+        <target>Държава</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.html</context>
+          <context context-type="linenumber">66,68</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3724068243287682962" datatype="html">
+        <source>Team</source>
+        <target>Отбор</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.html</context>
+          <context context-type="linenumber">89,92</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/strategies/strategy-editor/strategy-editor.component.html</context>
+          <context context-type="linenumber">45,47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8969745093580246177" datatype="html">
+        <source>I accept the <x id="START_LINK" ctype="x-a" equiv-text="&lt;a class=&quot;highlight navigatable&quot; (click)=&quot;terms.open(); $event.stopPropagation()&quot;&gt;"/>terms and conditions<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>.</source>
+        <target>Приемам <x id="START_LINK" ctype="x-a" equiv-text="&lt;a class=&quot;highlight navigatable&quot; (click)=&quot;terms.open(); $event.stopPropagation()&quot;&gt;"/>условията и правилата<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.html</context>
+          <context context-type="linenumber">112,113</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3301086086650990787" datatype="html">
+        <source>Register</source>
+        <target>Регистрирай ме</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.html</context>
+          <context context-type="linenumber">116,122</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/registration/registration.component.html</context>
+          <context context-type="linenumber">58,61</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2637040957358356533" datatype="html">
+        <source>Terms and conditions</source>
+        <target>Условия и правила</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.html</context>
+          <context context-type="linenumber">131,135</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1336455998508715892" datatype="html">
+        <source>Registrations show intent for participation, but weekly participation would require timely weekly check-ins and being on-time for the matches. All applicants must reside <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>in one of the listed Balkan countries<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>. If an applicant is discovered to permanently reside outside of the listed Balkan countries, that would lead to <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>permanent disqualification<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> from the league and nullification of any points earned.</source>
+        <target>Регистрациите показват желание за участие, но седмичното участие изисква своевременни седмични проверки и да бъдете на време за мачовете. Всички кандидати трябва да пребивават <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>в една от изброените балкански държави<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>. Ако се установи, че кандидатът постоянно пребивава извън изброените балкански държави, това ще доведе до <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>перманентна дисквалификация<x id="CLOSE_TAG" ctype="x-span" equiv-text="&lt;/span&gt;"/> от лигата и анулиране на всички спечелени точки.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.html</context>
+          <context context-type="linenumber">135,136</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="378079369477480920" datatype="html">
+        <source>Provided battle tag, in-game race preference, discord ID, should match with the accounts the applicant uses during the League.</source>
+        <target>Предоставеният battle tag, предпочитаната раса в играта, discord ID, трябва да съвпадат с акаунтите, които кандидатът използва по време на Лигата.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.html</context>
+          <context context-type="linenumber">136,139</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8376311744797589133" datatype="html">
+        <source>Please login first</source>
+        <target>Моля, първо влезте в профила си</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8282620512337325099" datatype="html">
+        <source>Albania</source>
+        <target>Албания</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
+          <context context-type="linenumber">57</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3028691365115610369" datatype="html">
+        <source>Bosnia and Herzegovina</source>
+        <target>Босна и Херцеговина</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
+          <context context-type="linenumber">58</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8273479446468988017" datatype="html">
+        <source>Bulgaria</source>
+        <target>България</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
+          <context context-type="linenumber">59</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6839230987909572003" datatype="html">
+        <source>Croatia</source>
+        <target>Хърватия</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7017590323423025630" datatype="html">
+        <source>Greece</source>
+        <target>Гърция</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
+          <context context-type="linenumber">61</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6185974288757792753" datatype="html">
+        <source>Kosovo</source>
+        <target>Косово</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
+          <context context-type="linenumber">62</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8310342568647317562" datatype="html">
+        <source>Montenegro</source>
+        <target>Черна гора</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
+          <context context-type="linenumber">63</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3422261352287393759" datatype="html">
+        <source>North Macedonia</source>
+        <target>Северна Македония</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="545992063382313902" datatype="html">
+        <source>Romania</source>
+        <target>Румъния</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
+          <context context-type="linenumber">65</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7676611321967250180" datatype="html">
+        <source>Serbia</source>
+        <target>Сърбия</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
+          <context context-type="linenumber">66</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2012353003398074522" datatype="html">
+        <source>Slovenia</source>
+        <target>Словения</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="2395103405589091100" datatype="html">
         <source>Bellum Gens Elite - Stara Zagora 2024 featured the top StarCraft II talent clashing in a 4-day LAN event! Clement &quot;Clem&quot; Desplanches is the champion of Bellum Gens Elite Stara Zagora 2024!</source>
         <target>Bellum Gens Elite - Стара Загора 2024 представи най-добрите StarCraft II таланти борещи се в 4-дневно ЛАН събитие! Клемент &quot;Клем&quot; Депланш е шампионът на Bellum Gens Elite Стара Загора 2024!</target>
