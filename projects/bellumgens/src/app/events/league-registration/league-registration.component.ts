@@ -10,7 +10,19 @@ import {
 } from '../../../../../common/src/public_api';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { IGX_DRAG_DROP_DIRECTIVES, IGX_DROP_DOWN_DIRECTIVES, IGX_INPUT_GROUP_DIRECTIVES, IGX_SELECT_DIRECTIVES, IgxAutocompleteDirective, IgxAvatarComponent, IgxButtonDirective, IgxCheckboxComponent, IgxDialogComponent, IgxDividerDirective, IgxIconComponent } from '@infragistics/igniteui-angular';
+import {
+  IGX_DRAG_DROP_DIRECTIVES,
+  IGX_DROP_DOWN_DIRECTIVES,
+  IGX_INPUT_GROUP_DIRECTIVES,
+  IGX_SELECT_DIRECTIVES,
+  IgxAutocompleteDirective,
+  IgxAvatarComponent,
+  IgxButtonDirective,
+  IgxCheckboxComponent,
+  IgxDialogComponent,
+  IgxDividerDirective,
+  IgxIconComponent
+} from '@infragistics/igniteui-angular';
 
 @Component({
   selector: 'app-league-registration',
@@ -78,11 +90,5 @@ export class LeagueRegistrationComponent {
       },
       complete: () => this.inProgress = false
     });
-  }
-
-  public scrollToTerms(event: MouseEvent) {
-    const element = document.getElementById('terms');
-    element.scrollIntoView({ behavior: 'smooth' });
-    event.stopPropagation();
   }
 }

@@ -19,7 +19,50 @@
       }
     </igx-input-group>
 
+    <igx-input-group class="registration-form-input">
+      <label igxLabel for="firstName" i18n>First name</label>
+      <igx-prefix>
+        <igx-icon>person</igx-icon>
+      </igx-prefix>
+      <input id="firstName" #firstName name="firstName" igxInput [(ngModel)]="application.firstName" />
+      @if (firstName.value) {
+        <igx-suffix (click)="application.firstName = null">
+          <igx-icon>clear</igx-icon>
+        </igx-suffix>
+      }
+    </igx-input-group>
+
+    <igx-input-group class="registration-form-input">
+      <label igxLabel for="lastName" i18n>Last name</label>
+      <igx-prefix>
+        <igx-icon>person</igx-icon>
+      </igx-prefix>
+      <input id="lastName" #lastName name="lastName" igxInput [(ngModel)]="application.lastName" />
+      @if (lastName.value) {
+        <igx-suffix (click)="application.lastName = null">
+          <igx-icon>clear</igx-icon>
+        </igx-suffix>
+      }
+    </igx-input-group>
+
+    <igx-input-group class="registration-form-input">
+      <label igxLabel for="discord" i18n>Discord</label>
+      <igx-prefix>
+        <igx-icon family="login-icons" name="discord"></igx-icon>
+      </igx-prefix>
+      <input id="discord" #discord name="discord" igxInput [(ngModel)]="application.discord" />
+      @if (discord.value) {
+        <igx-suffix (click)="application.discord = null">
+          <igx-icon>clear</igx-icon>
+        </igx-suffix>
+      }
+      <igx-hint i18n>Join&nbsp;<a href="https://discord.gg/bnTcpa9" target="_blank" rel="noopener">Bellum Gens</a> &nbsp;before the registration is submitted.</igx-hint>
+    </igx-input-group>
+
     <igx-select class="registration-form-input" [(ngModel)]="application.country" name="balkanCountry" required>
+      <igx-prefix>
+        <igx-icon>public</igx-icon>
+      </igx-prefix>
       <label igxLabel for="balkanCountry" i18n>Country</label>
       @for (country of balkanCountries; track country) {
         <igx-select-item [value]="country">
@@ -55,6 +98,7 @@
       }
       <igx-hint i18n>*Choose the team associated with your participation...</igx-hint>
     </igx-input-group>
+
     <igx-drop-down #companiesDD maxHeight="320px">
       @for (company of companies | startsWith:application.companyId; track company) {
         <igx-drop-down-item [value]="company">
@@ -73,7 +117,15 @@
   </div>
 </form>
 
-<igx-dialog class="terms-dialog" [closeOnEscape]="true" [closeOnOutsideSelect]="true" leftButtonLabel="OK" (leftButtonSelect)="terms.close()" #terms>
+<igx-dialog
+  class="terms-dialog"
+  [closeOnEscape]="true"
+  [closeOnOutsideSelect]="true"
+  rightButtonLabel="Cancel"
+  leftButtonLabel="OK"
+  (rightButtonSelect)="terms.close()"
+  (leftButtonSelect)="termsAccepted.checked = true; terms.close()"
+  #terms>
   <div class="dialog-wrapper">
     <div class="content-container-row">
       <h2 i18n>Terms and conditions</h2>
