@@ -5,11 +5,12 @@ import {
   ApiTournamentsService,
   StartsWithPipe,
   TournamentApplication,
-  Game
+  Game,
+  CountrySVGPipe
 } from '../../../../../common/src/public_api';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { IGX_DRAG_DROP_DIRECTIVES, IGX_DROP_DOWN_DIRECTIVES, IGX_INPUT_GROUP_DIRECTIVES, IGX_SELECT_DIRECTIVES, IgxAutocompleteDirective, IgxButtonDirective, IgxCheckboxComponent, IgxDialogComponent, IgxDividerDirective, IgxIconComponent } from '@infragistics/igniteui-angular';
+import { IGX_DRAG_DROP_DIRECTIVES, IGX_DROP_DOWN_DIRECTIVES, IGX_INPUT_GROUP_DIRECTIVES, IGX_SELECT_DIRECTIVES, IgxAutocompleteDirective, IgxAvatarComponent, IgxButtonDirective, IgxCheckboxComponent, IgxDialogComponent, IgxDividerDirective, IgxIconComponent } from '@infragistics/igniteui-angular';
 
 @Component({
   selector: 'app-league-registration',
@@ -28,7 +29,9 @@ import { IGX_DRAG_DROP_DIRECTIVES, IGX_DROP_DOWN_DIRECTIVES, IGX_INPUT_GROUP_DIR
     IgxButtonDirective,
     IgxDividerDirective,
     IGX_SELECT_DIRECTIVES,
-    StartsWithPipe
+    IgxAvatarComponent,
+    StartsWithPipe,
+    CountrySVGPipe
   ]
 })
 export class LeagueRegistrationComponent {
@@ -45,8 +48,8 @@ export class LeagueRegistrationComponent {
     $localize`Croatia`,
     $localize`Greece`,
     $localize`Kosovo`,
-    $localize`Macedonia`,
     $localize`Montenegro`,
+    $localize`North Macedonia`,
     $localize`Romania`,
     $localize`Serbia`,
     $localize`Slovenia`,

@@ -19,8 +19,14 @@
       }
     </igx-input-group>
 
-    <igx-select class="registration-form-input">
-
+    <igx-select class="registration-form-input" [(ngModel)]="application.country" name="balkanCountry" required>
+      <label igxLabel for="balkanCountry" i18n>Country</label>
+      @for (country of balkanCountries; track country) {
+        <igx-select-item [value]="country">
+          <igx-avatar [src]="country | countrySVG" size="small" shape="circle" [title]="country"></igx-avatar>
+          {{ country }}
+        </igx-select-item>
+      }
     </igx-select>
 
     <igx-input-group class="registration-form-input" >
