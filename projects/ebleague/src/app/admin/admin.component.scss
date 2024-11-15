@@ -4,17 +4,19 @@
   @include core();
 
   @include grid(grid-theme($content-background: $banner-background,
-                                  $drop-area-background: $banner-background,
-                                  $ghost-header-background: $banner-background,
-                                  $group-row-selected-background: $background,
-                                  $header-background: $background,
-                                  $cell-editing-background: $background));
+                            $drop-area-background: $banner-background,
+                            $ghost-header-background: $banner-background,
+                            $group-row-selected-background: $background,
+                            $header-background: $background,
+                            $cell-editing-background: $background));
 
   @include grid-toolbar(grid-toolbar-theme($background-color: $background));
 
   @include paginator(paginator-theme($background-color: $background));
 
   @include action-strip(action-strip-theme($actions-background: transparent));
+
+  @include chip(chip-theme($background: $banner-background));
 
   /* Registrations */
   .registration-slot {
