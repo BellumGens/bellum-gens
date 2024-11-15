@@ -82,7 +82,7 @@ export class LeagueRegistrationComponent {
 
   public leagueRegistration() {
     this.inProgress = true;
-    this.apiService.leagueRegistration(this.application).subscribe({
+    this.apiService.bgeRegistration(this.application).subscribe({
       next: (application) => {
         this.inProgress = false;
         this.application = application;
