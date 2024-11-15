@@ -74,7 +74,8 @@ export class LeagueRegistrationComponent {
       if (user) {
         this.authUser = user;
         this.application.email = user.email;
-        this.application.battleNetId = user.battleNetId;
+        this.application.battleNetId = user.sc2Details?.battleNetBattleTag;
+        this.application.country = user.steamUser?.country;
       }
     });
     this.apiService.companies.subscribe(data => this.companies = data);
