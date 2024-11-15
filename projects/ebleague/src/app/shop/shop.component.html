@@ -116,7 +116,7 @@
       <igx-prefix>
         <igx-icon>email</igx-icon>
       </igx-prefix>
-      <input type="email" id="orderemail" #orderEmail name="orderemail" igxInput [required]="true" pattern="^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="order.email" />
+      <input type="email" id="orderemail" #orderEmail name="orderemail" igxInput [required]="true" pattern="^[a-zA-Z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$" [(ngModel)]="order.email" />
       @if (orderEmail.value) {
         <igx-suffix (click)="order.email = null">
           <igx-icon>clear</igx-icon>
