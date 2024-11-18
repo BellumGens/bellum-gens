@@ -530,12 +530,12 @@
           <context context-type="linenumber">132,134</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6580447463385033749" datatype="html">
-        <source>BGE Balkan Circuit Registration</source>
-        <target>Регистрация за BGE Балкански Кръг</target>
+      <trans-unit id="7507103395208336060" datatype="html">
+        <source>You need to be logged in to register for the tournament.</source>
+        <target>Трябва да сте влезли в профила си, за да се регистрирате за турнира.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.html</context>
-          <context context-type="linenumber">4,7</context>
+          <context context-type="linenumber">9,12</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4768749765465246664" datatype="html">
@@ -642,9 +642,9 @@
           <context context-type="linenumber">135,136</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="378079369477480920" datatype="html">
-        <source>Provided battle tag, in-game race preference, discord ID, should match with the accounts the applicant uses during the League.</source>
-        <target>Предоставеният battle tag, предпочитаната раса в играта, discord ID, трябва да съвпадат с акаунтите, които кандидатът използва по време на Лигата.</target>
+      <trans-unit id="6298533831788441520" datatype="html">
+        <source>Provided battle tag, discord ID, should match with the accounts the applicant uses during the League.</source>
+        <target>Предоставеният battle tag, discord ID, трябва да съвпадат с акаунтите, които кандидатът използва по време на Лигата.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.html</context>
           <context context-type="linenumber">136,139</context>
@@ -744,6 +744,14 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
           <context context-type="linenumber">67</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5236769307780685681" datatype="html">
+        <source>Registration successful!</source>
+        <target>Регистрацията е успешна!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
+          <context context-type="linenumber">102</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2395103405589091100" datatype="html">
