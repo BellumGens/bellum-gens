@@ -1,17 +1,22 @@
 <form #tapplication="ngForm" (ngSubmit)="leagueRegistration()">
 
-  <div class="form-wrapper">
-    <h2 id="registration" class="registration-title" i18n>BGE Balkan Circuit Registration</h2>
+  <div class="horizontal-center">
+    <img width="88" height="88" alt="Tournament Logo" [src]="tournament?.logo" />
+    <h2 id="registration" class="registration-title">{{tournament?.name}}</h2>
   </div>
 
-  <div #appDetails class="form-wrapper application-details">
+  @if (!authUser) {
+    <p class="horizontal-center" i18n>You need to be logged in to register for the tournament.</p>
+  }
+
+  <div #appDetails class="form-wrapper application-details" [style]="authUser ? '' : 'display: none'">
 
     <igx-input-group class="registration-form-input">
       <label igxLabel for="email" i18n>Email</label>
       <igx-prefix>
         <igx-icon>email</igx-icon>
       </igx-prefix>
-      <input type="email" id="email" #userMail name="email" [required]="true" igxInput pattern="^[a-zA-Z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$" [(ngModel)]="application.email" />
+      <input type="email" id="email" #userMail name="email" [required]="true" igxInput [pattern]="emailRegex" [(ngModel)]="application.email" />
       @if (userMail.value) {
         <igx-suffix (click)="application.email = null">
           <igx-icon>clear</igx-icon>
@@ -72,12 +77,12 @@
       }
     </igx-select>
 
-    <igx-input-group class="registration-form-input" >
+    <igx-input-group class="registration-form-input">
       <label igxLabel for="email">Battle tag</label>
       <igx-prefix>
         <igx-icon family="login-icons" name="battlenet"></igx-icon>
       </igx-prefix>
-      <input id="battletag" #battletag name="battletag" [required]="true" igxInput pattern="^[a-zA-Z0-9._%+\-]+#[0-9]{4,7}$" [(ngModel)]="application.battleNetId" />
+      <input id="battletag" #battletag name="battletag" [required]="true" igxInput [pattern]="battleTagRegex" [(ngModel)]="application.battleNetId" />
       @if (battletag.value) {
         <igx-suffix (click)="application.battleNetId = null">
           <igx-icon>clear</igx-icon>
@@ -132,7 +137,7 @@
 
     <div class="form-wrapper">
       <p i18n>Registrations show intent for participation, but weekly participation would require timely weekly check-ins and being on-time for the matches. All applicants must reside <span class="highlight">in one of the listed Balkan countries</span>. If an applicant is discovered to permanently reside outside of the listed Balkan countries, that would lead to <span class="highlight">permanent disqualification</span> from the league and nullification of any points earned.</p>
-      <p i18n>Provided battle tag, in-game race preference, discord ID, should match with the accounts the applicant uses during the League.</p>
+      <p i18n>Provided battle tag, discord ID, should match with the accounts the applicant uses during the League.</p>
     </div>
     <div class="content-container-row">
       <img src="/assets/login/bge-white-horizontal-2024.svg" width="600" height="87" alt="Esports Business League" />

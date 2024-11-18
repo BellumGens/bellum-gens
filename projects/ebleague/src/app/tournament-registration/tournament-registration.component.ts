@@ -5,7 +5,8 @@ import {
   LoginService,
   ApiTournamentsService,
   BellumgensApiService,
-  CSGOTeam
+  CSGOTeam,
+  BATTLE_TAG_REGEX
 } from '../../../../common/src/public_api';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -52,6 +53,7 @@ export class TournamentRegistrationComponent {
 
   public chooseGame = $localize`Choose league (game)`;
   public loginFirst = $localize`Please login first`;
+  public battleTagRegex = BATTLE_TAG_REGEX;
 
   constructor(private authManager: LoginService,
               private apiService: ApiTournamentsService,

@@ -6,9 +6,12 @@ import {
   StartsWithPipe,
   TournamentApplication,
   Game,
-  CountrySVGPipe
+  CountrySVGPipe,
+  Tournament,
+  CommunicationService,
+  BATTLE_TAG_REGEX,
+  EMAIL_REGEX
 } from '../../../../../common/src/public_api';
-import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import {
   IGX_DRAG_DROP_DIRECTIVES,
@@ -48,9 +51,13 @@ import {
 })
 export class LeagueRegistrationComponent {
   public application: TournamentApplication = { game: Game.StarCraft2, email: '' };
+  public tournamentId: string;
+  public tournament: Tournament;
   public authUser: ApplicationUser;
   public companies: string [];
   public inProgress = false;
+  public battleTagRegex = BATTLE_TAG_REGEX;
+  public emailRegex = EMAIL_REGEX;
 
   public loginFirst = $localize`Please login first`;
   public balkanCountries = [
@@ -69,13 +76,19 @@ export class LeagueRegistrationComponent {
 
   constructor(private authManager: LoginService,
               private apiService: ApiTournamentsService,
-              private router: Router) {
+              private commService: CommunicationService) {
     this.authManager.applicationUser.subscribe(user => {
       if (user) {
         this.authUser = user;
         this.application.email = user.email;
         this.application.battleNetId = user.sc2Details?.battleNetBattleTag;
         this.application.country = user.steamUser?.country;
+      }
+    });
+    this.apiService.activeTournament.subscribe(data => {
+      if (data) {
+        this.tournament = data;
+        this.application.tournamentId = data.id;
       }
     });
     this.apiService.companies.subscribe(data => this.companies = data);
@@ -85,9 +98,12 @@ export class LeagueRegistrationComponent {
     this.inProgress = true;
     this.apiService.bgeRegistration(this.application).subscribe({
       next: (application) => {
-        this.inProgress = false;
         this.application = application;
-        this.router.navigate(['/registration-success'], { state: application });
+        this.commService.emitSuccess($localize`Registration successful!`);
+      },
+      error: (error) => {
+        this.inProgress = false;
+        this.commService.emitError(error.message);
       },
       complete: () => this.inProgress = false
     });

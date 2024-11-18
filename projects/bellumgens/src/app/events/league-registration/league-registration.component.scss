@@ -4,8 +4,16 @@
   padding: 12px 12px;
   min-height: calc(100% - 48px);
 
+  h2 {
+    font-family: 'Rajdhani', "Fira Sans Condensed", sans-serif;
+    font-size: 36pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-top: 0;
+  }
+
   .registration-title {
-    margin-top: 8px;
+    margin: 8px;
   }
 
   .accept-terms-checkbox {
