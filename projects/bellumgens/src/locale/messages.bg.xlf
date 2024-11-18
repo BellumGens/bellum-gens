@@ -2294,9 +2294,9 @@
           <context context-type="linenumber">21,22</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7809661067259292816" datatype="html">
-        <source>Tournament Registration</source>
-        <target>Регистрация за турнир</target>
+      <trans-unit id="6008054525649887988" datatype="html">
+        <source>Tournament Registrations</source>
+        <target>Регистрации за турнири</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
           <context context-type="linenumber">25,28</context>
