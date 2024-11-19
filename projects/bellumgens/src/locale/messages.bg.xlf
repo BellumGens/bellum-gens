@@ -834,6 +834,14 @@
           <context context-type="linenumber">102</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="3157590919027597260" datatype="html">
+        <source>Registration updated successfully!</source>
+        <target>Регистрацията е успешно обновена!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
+          <context context-type="linenumber">124</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="2395103405589091100" datatype="html">
         <source>Bellum Gens Elite - Stara Zagora 2024 featured the top StarCraft II talent clashing in a 4-day LAN event! Clement &quot;Clem&quot; Desplanches is the champion of Bellum Gens Elite Stara Zagora 2024!</source>
         <target>Bellum Gens Elite - Стара Загора 2024 представи най-добрите StarCraft II таланти борещи се в 4-дневно ЛАН събитие! Клемент &quot;Клем&quot; Депланш е шампионът на Bellum Gens Elite Стара Загора 2024!</target>
