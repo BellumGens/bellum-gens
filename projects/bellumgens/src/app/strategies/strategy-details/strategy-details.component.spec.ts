@@ -16,12 +16,12 @@ describe('StrategyDetailsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [RouterTestingModule,
-        NoopAnimationsModule,
-        ServiceWorkerModule.register('', { enabled: false }),
-        StrategyDetailsComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-})
+        imports: [RouterTestingModule,
+            NoopAnimationsModule,
+            ServiceWorkerModule.register('', { enabled: false }),
+            StrategyDetailsComponent],
+        providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+    })
     .compileComponents();
     authService = TestBed.inject(LoginService);
     smService = TestBed.inject(SocialMediaStrategyService);

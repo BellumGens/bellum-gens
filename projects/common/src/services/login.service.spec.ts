@@ -15,15 +15,17 @@ describe('LoginService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [RouterTestingModule,
-        ServiceWorkerModule.register('', { enabled: false })],
-    providers: [
-        LoginService,
-        { provide: SwPush, useValue: {} },
-        provideHttpClient(withInterceptorsFromDi()),
-        provideHttpClientTesting()
-    ]
-});
+    imports: [
+        RouterTestingModule,
+        ServiceWorkerModule.register('', { enabled: false })
+      ],
+      providers: [
+          LoginService,
+          { provide: SwPush, useValue: {} },
+          provideHttpClient(withInterceptorsFromDi()),
+          provideHttpClientTesting()
+      ]
+    });
     service = TestBed.inject(LoginService);
     commsService = TestBed.inject(CommunicationService);
     httpMock = TestBed.inject(HttpTestingController);
