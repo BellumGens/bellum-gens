@@ -5,14 +5,15 @@ import {
   LoginService,
   ApiTournamentsService,
   BellumgensApiService,
-  CSGOTeam
+  CSGOTeam,
+  BATTLE_TAG_REGEX
 } from '../../../../common/src/public_api';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { IGX_DRAG_DROP_DIRECTIVES, IGX_DROP_DOWN_DIRECTIVES, IGX_INPUT_GROUP_DIRECTIVES, IGX_SELECT_DIRECTIVES, IgxAutocompleteDirective, IgxAvatarComponent, IgxCheckboxComponent, IgxIconComponent } from '@infragistics/igniteui-angular';
 import { TeamNewComponent } from '../../../../bellumgens/src/app/team-section/team-new/team-new.component';
-import { StartsWithPipe } from '../pipes/starts-with.pipe';
+import { StartsWithPipe } from '../../../../common/src/lib/pipes/starts-with.pipe';
 import { AsyncPipe } from '@angular/common';
 
 @Component({
@@ -52,6 +53,7 @@ export class TournamentRegistrationComponent {
 
   public chooseGame = $localize`Choose league (game)`;
   public loginFirst = $localize`Please login first`;
+  public battleTagRegex = BATTLE_TAG_REGEX;
 
   constructor(private authManager: LoginService,
               private apiService: ApiTournamentsService,

@@ -13,6 +13,23 @@
   </div>
 
   <div class="content-container-column">
+    <img ngSrc="/assets/bge/bge-stats.webp" width="600" height="400" class="preview-image" alt="BGE Stara Zagora 2024: Stats" />
+    <!-- <iframe width="560" height="315" class="preview-image" src="https://www.youtube.com/embed/4ZtIooYGp_g?si=zOJOViSa8gZwzRLE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <img ngSrc="/assets/bge/stara-zagora1.webp" width="600" height="337" class="preview-image" alt="Stara Zagora - Samara Monument" /> -->
+  </div>
+  <div class="content-container-column">
+    <h2 i18n>BGE Balkan Circuit</h2>
+    <p i18n><span class="highlight">Bellum Gens Elite Balkan</span> weekly online circuit launches in November 2024 and presents every player in the Balkan region with the opportunity to participate in weekly online matches to earn points towards cash prizes.</p>
+    <ul>
+      <li i18n>Online circuit starts <span class="highlight">{{ '2024-11-30' | date: 'longDate' }}</span></li>
+      <li i18n><span class="highlight">Open</span> to everyone in the Balkan region</li>
+      <li i18n>Compete weekly to earn points towards <span class="highlight">monthly cash prizes</span></li>
+      <li i18n><span class="highlight">Improve</span> your personal gameplay!</li>
+    </ul>
+    <a i18n [routerLink]="['registration', bgeBalkanId]" igxButton="contained" style="margin-top: 12px" i18n>Sign-up to participate</a>
+  </div>
+
+  <div class="content-container-column">
     <h2 i18n>BGE - Stara Zagora 2025</h2>
     <p i18n><span class="highlight">Bellum Gens Elite Stara Zagora</span> returns in 2025 for another epic showdown!</p>
     <ul>

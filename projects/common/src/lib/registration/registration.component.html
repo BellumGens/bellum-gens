@@ -17,7 +17,7 @@
       <igx-prefix>
         <igx-icon>email</igx-icon>
       </igx-prefix>
-      <input type="email" id="email" #orderEmail name="email" igxInput [required]="true" pattern="^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="userAccount.email" />
+      <input type="email" id="email" #orderEmail name="email" igxInput [required]="true" pattern="^[a-zA-Z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$" [(ngModel)]="userAccount.email" />
     </igx-input-group>
 
     <igx-input-group type="border">

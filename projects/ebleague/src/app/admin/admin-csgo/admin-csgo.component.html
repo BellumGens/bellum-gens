@@ -255,8 +255,7 @@
   <igx-select [(ngModel)]="matchInEdit.groupId">
     <label igxLabel i18n>Group</label>
     @for (group of groups; track group.id) {
-      <igx-select-item
-      [value]="group.id">{{ group.name }}</igx-select-item>
+      <igx-select-item [value]="group.id">{{ group.name }}</igx-select-item>
     }
     <igx-hint i18n>*If the match is during the group stage</igx-hint>
   </igx-select>

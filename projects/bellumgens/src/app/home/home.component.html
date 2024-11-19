@@ -183,7 +183,7 @@
           <igx-prefix>
             <igx-icon>email</igx-icon>
           </igx-prefix>
-          <input type="email" id="subemail" #subMail name="subemail" igxInput pattern="^[a-zA-Z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" [(ngModel)]="userEmail" />
+          <input type="email" id="subemail" #subMail name="subemail" igxInput pattern="^[a-zA-Z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$" [(ngModel)]="userEmail" />
           @if (subMail.value) {
             <igx-suffix (click)="userEmail = null">
               <igx-icon>clear</igx-icon>

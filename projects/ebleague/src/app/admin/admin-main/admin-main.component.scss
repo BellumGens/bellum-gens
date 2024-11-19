@@ -19,8 +19,4 @@
   .content-container {
     min-height: auto;
   }
-
-  @include core();
-
-  @include chip(chip-theme());
 }

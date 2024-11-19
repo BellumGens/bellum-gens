@@ -32,6 +32,10 @@ export interface TournamentApplication {
   teamId?: string;
   email: string;
   battleNetId?: string;
+  firstName?: string;
+  lastName?: string;
+  discord?: string;
+  country?: string;
   hash?: string;
   dateSubmitted?: Date;
   state?: TournamentApplicationState;

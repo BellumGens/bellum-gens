@@ -10,7 +10,7 @@ export class CountrySVGPipe implements PipeTransform {
     if (!country) {
       return '';
     }
-    return 'assets/country-flags/svg/' + country.toLowerCase() + '.svg';
+    return 'assets/country-flags/svg/' + country.split(' ').join('-').toLowerCase() + '.svg';
   }
 
 }

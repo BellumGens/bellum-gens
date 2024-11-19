@@ -1,0 +1,146 @@
+<form #tapplication="ngForm" (ngSubmit)="leagueRegistration()">
+
+  <div class="horizontal-center">
+    <img width="88" height="88" alt="Tournament Logo" [src]="tournament?.logo" />
+    <h2 id="registration" class="registration-title">{{tournament?.name}}</h2>
+  </div>
+
+  @if (!authUser) {
+    <p class="horizontal-center" i18n>You need to be logged in to register for the tournament.</p>
+  }
+
+  <div #appDetails class="form-wrapper application-details" [style]="authUser ? '' : 'display: none'">
+
+    <igx-input-group class="registration-form-input">
+      <label igxLabel for="email" i18n>Email</label>
+      <igx-prefix>
+        <igx-icon>email</igx-icon>
+      </igx-prefix>
+      <input type="email" id="email" #userMail name="email" [required]="true" igxInput [pattern]="emailRegex" [(ngModel)]="application.email" />
+      @if (userMail.value) {
+        <igx-suffix (click)="application.email = null">
+          <igx-icon>clear</igx-icon>
+        </igx-suffix>
+      }
+    </igx-input-group>
+
+    <igx-input-group class="registration-form-input">
+      <label igxLabel for="firstName" i18n>First name</label>
+      <igx-prefix>
+        <igx-icon>person</igx-icon>
+      </igx-prefix>
+      <input id="firstName" #firstName name="firstName" igxInput [(ngModel)]="application.firstName" />
+      @if (firstName.value) {
+        <igx-suffix (click)="application.firstName = null">
+          <igx-icon>clear</igx-icon>
+        </igx-suffix>
+      }
+    </igx-input-group>
+
+    <igx-input-group class="registration-form-input">
+      <label igxLabel for="lastName" i18n>Last name</label>
+      <igx-prefix>
+        <igx-icon>person</igx-icon>
+      </igx-prefix>
+      <input id="lastName" #lastName name="lastName" igxInput [(ngModel)]="application.lastName" />
+      @if (lastName.value) {
+        <igx-suffix (click)="application.lastName = null">
+          <igx-icon>clear</igx-icon>
+        </igx-suffix>
+      }
+    </igx-input-group>
+
+    <igx-input-group class="registration-form-input">
+      <label igxLabel for="discord" i18n>Discord ID</label>
+      <igx-prefix>
+        <igx-icon family="login-icons" name="discord"></igx-icon>
+      </igx-prefix>
+      <input id="discord" #discord name="discord" igxInput [(ngModel)]="application.discord" required />
+      @if (discord.value) {
+        <igx-suffix (click)="application.discord = null">
+          <igx-icon>clear</igx-icon>
+        </igx-suffix>
+      }
+      <igx-hint i18n>Join&nbsp;<a href="https://discord.gg/bnTcpa9" target="_blank" rel="noopener">Bellum Gens</a> &nbsp;before the registration is submitted.</igx-hint>
+    </igx-input-group>
+
+    <igx-select class="registration-form-input" [(ngModel)]="application.country" name="balkanCountry" required>
+      <igx-prefix>
+        <igx-icon>public</igx-icon>
+      </igx-prefix>
+      <label igxLabel for="balkanCountry" i18n>Country</label>
+      @for (country of balkanCountries; track country) {
+        <igx-select-item [value]="country">
+          <igx-avatar [src]="country | countrySVG" shape="circle" [title]="country"></igx-avatar>
+          <span class="title">{{ country }}</span>
+        </igx-select-item>
+      }
+    </igx-select>
+
+    <igx-input-group class="registration-form-input">
+      <label igxLabel for="email">Battle tag</label>
+      <igx-prefix>
+        <igx-icon family="login-icons" name="battlenet"></igx-icon>
+      </igx-prefix>
+      <input id="battletag" #battletag name="battletag" [required]="true" igxInput [pattern]="battleTagRegex" [(ngModel)]="application.battleNetId" />
+      @if (battletag.value) {
+        <igx-suffix (click)="application.battleNetId = null">
+          <igx-icon>clear</igx-icon>
+        </igx-suffix>
+      }
+    </igx-input-group>
+
+    <igx-input-group class="registration-form-input">
+      <label igxLabel for="company" i18n>Team</label>
+      <igx-prefix>
+        <igx-icon>work</igx-icon>
+      </igx-prefix>
+      <input id="company" #company name="company" igxInput [igxAutocomplete]="companiesDD" [(ngModel)]="application.companyId" />
+      @if (company.value) {
+        <igx-suffix (click)="application.companyId = null">
+          <igx-icon>clear</igx-icon>
+        </igx-suffix>
+      }
+    </igx-input-group>
+
+    <igx-drop-down #companiesDD maxHeight="320px">
+      @for (company of companies | startsWith:application.companyId; track company) {
+        <igx-drop-down-item [value]="company">
+          {{ company }}
+        </igx-drop-down-item>
+      }
+    </igx-drop-down>
+
+    <div class="horizontal-center">
+      <igx-checkbox #termsAccepted id="accept" name="accept" class="accept-terms-checkbox">
+        <label for="accept" i18n>I accept the <a class="highlight navigatable" (click)="terms.open(); $event.stopPropagation()">terms and conditions</a>.</label>
+      </igx-checkbox>
+    </div>
+
+    <button igxButton="outlined" class="submit-registration" [disabled]="tapplication.invalid || !termsAccepted.checked || inProgress" i18n>{{application.id ? 'Update Registration' : 'Register'}}</button>
+  </div>
+</form>
+
+<igx-dialog
+  class="terms-dialog"
+  [closeOnEscape]="true"
+  [closeOnOutsideSelect]="true"
+  rightButtonLabel="Cancel"
+  leftButtonLabel="OK"
+  (rightButtonSelect)="terms.close()"
+  (leftButtonSelect)="termsAccepted.checked = true; terms.close()"
+  #terms>
+  <div class="dialog-wrapper">
+    <div class="content-container-row">
+      <h2 i18n>Terms and conditions</h2>
+    </div>
+
+    <div class="form-wrapper">
+      <p i18n>Registrations show intent for participation, but weekly participation would require timely weekly check-ins and being on-time for the matches. All applicants must reside <span class="highlight">in one of the listed Balkan countries</span>. If an applicant is discovered to permanently reside outside of the listed Balkan countries, that would lead to <span class="highlight">permanent disqualification</span> from the league and nullification of any points earned.</p>
+      <p i18n>Provided battle tag, discord ID, should match with the accounts the applicant uses during the League.</p>
+    </div>
+    <div class="content-container-row">
+      <img src="/assets/login/bge-white-horizontal-2024.svg" width="600" height="87" alt="Esports Business League" />
+    </div>
+  </div>
+</igx-dialog>

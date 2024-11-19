@@ -1,0 +1,65 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 12px;
+  min-height: calc(100% - 48px);
+  justify-content: center;
+
+  h2 {
+    font-family: 'Rajdhani', "Fira Sans Condensed", sans-serif;
+    font-size: 36pt;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-top: 0;
+  }
+
+  .registration-title {
+    margin: 8px;
+  }
+
+  .accept-terms-checkbox {
+    margin: 12px;
+  }
+
+  .submit-registration {
+    height: 48px;
+    margin: 8px auto;
+  }
+
+  .registration-form-input {
+    width: 380px;
+    margin: 4px 0;
+  }
+
+  .form-wrapper {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+  }
+
+  @media only screen and (max-width: 550px) {
+    .registration-form-input {
+      width: 348px;
+    }
+
+    .registration-title {
+      font-size: 2.6rem;
+      line-height: 3rem;
+    }
+  }
+}
+
+igx-avatar {
+  --size: 24px;
+  margin-right: 8px;
+}
+
+.dialog-wrapper {
+  width: 650px;
+}
+
+@media only screen and (max-width: 550px) {
+  .dialog-wrapper {
+    width: 380px;
+  }
+}

@@ -60,6 +60,10 @@ export class LoginService {
     return this._teamsAdmin;
   }
 
+  public getRegistration(tournamentId: string) {
+    return this.http.get<TournamentApplication>(`${this._apiBase}/tournament/userregistration?tournamentId=${tournamentId}`, { withCredentials: true});
+  }
+
   public getRegistrations() {
     this.http.get<TournamentApplication []>(`${this._apiBase}/tournament/registrations`, { withCredentials: true}).subscribe(data => {
       this._registrations.next(data);

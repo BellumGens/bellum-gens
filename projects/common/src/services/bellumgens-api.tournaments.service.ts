@@ -189,6 +189,15 @@ export class ApiTournamentsService {
     );
   }
 
+  public bgeRegistration(application: TournamentApplication, applicationId: string = '') {
+    return this.http.put<TournamentApplication>(`${this._apiEndpoint}/tournament/registerbge?tournamentId=${applicationId}`, application, { withCredentials: true }).pipe(
+      catchError(error => {
+        this.commService.emitError(error.message);
+        return throwError(() => error);
+      })
+    );
+  }
+
   public createTournament(tournament: Tournament) {
     return this.http.put<Tournament>(`${this._apiEndpoint}/tournament/create`, tournament, { withCredentials: true }).pipe(
       map(response => {

@@ -15,6 +15,10 @@ export const GLOBAL_OVERLAY_SETTINGS: OverlaySettings = {
   positionStrategy: new AutoPositionStrategy(positionSettings)
 };
 
+export const BATTLE_TAG_REGEX = /^[a-zA-Z0-9._%+\-]+#[0-9]{4,7}$/;
+
+export const EMAIL_REGEX = /^[a-zA-Z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$/;
+
 export const SameDay = (d1: Date, d2: Date): boolean => d1.getFullYear() === d2.getFullYear() && d1.getMonth() === d2.getMonth() && d1.getDate() === d2.getDate();
 
 export enum StratOrderBy {
