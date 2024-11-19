@@ -189,8 +189,8 @@ export class ApiTournamentsService {
     );
   }
 
-  public bgeRegistration(application: TournamentApplication) {
-    return this.http.post<TournamentApplication>(`${this._apiEndpoint}/tournament/registerbge`, application, { withCredentials: true }).pipe(
+  public bgeRegistration(application: TournamentApplication, applicationId: string = '') {
+    return this.http.put<TournamentApplication>(`${this._apiEndpoint}/tournament/registerbge?tournamentId=${applicationId}`, application, { withCredentials: true }).pipe(
       catchError(error => {
         this.commService.emitError(error.message);
         return throwError(() => error);

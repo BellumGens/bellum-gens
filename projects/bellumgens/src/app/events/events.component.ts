@@ -56,6 +56,8 @@ export class EventsComponent extends BaseDirective {
     {name: 'Lachezar "Exalted" Kamenov', country: 'Bulgaria', role: 'Commentator', image: '/assets/bge/talent/20-exalted.png'}
   ];
 
+  public bgeBalkanId = '0313a19e-d527-46f9-bbea-08dd07ccaf69';
+
   // Timer for the event
   // public isoDate = '2024-11-02T15:00:00Z';
   // public announcementDate = new Date(this.isoDate);

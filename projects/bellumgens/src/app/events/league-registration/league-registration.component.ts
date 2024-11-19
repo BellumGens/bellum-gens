@@ -26,6 +26,7 @@ import {
   IgxDividerDirective,
   IgxIconComponent
 } from '@infragistics/igniteui-angular';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-league-registration',
@@ -76,19 +77,37 @@ export class LeagueRegistrationComponent {
 
   constructor(private authManager: LoginService,
               private apiService: ApiTournamentsService,
-              private commService: CommunicationService) {
+              private commService: CommunicationService,
+              private activatedRoute: ActivatedRoute) {
+    this.activatedRoute.params.subscribe(params => {
+      if (params.tournamentId) {
+        this.tournamentId = params.tournamentId;
+        this.apiService.getTournament(params.tournamentId).subscribe(tournament => {
+          this.tournament = tournament;
+          this.application.tournamentId = tournament.id;
+        });
+      } else {
+        this.apiService.activeTournament.subscribe(data => {
+          if (data) {
+            this.tournament = data;
+            this.tournamentId = data.id;
+            this.application.tournamentId = data.id;
+          }
+        });
+      }
+    });
     this.authManager.applicationUser.subscribe(user => {
       if (user) {
         this.authUser = user;
-        this.application.email = user.email;
-        this.application.battleNetId = user.sc2Details?.battleNetBattleTag;
-        this.application.country = user.steamUser?.country;
-      }
-    });
-    this.apiService.activeTournament.subscribe(data => {
-      if (data) {
-        this.tournament = data;
-        this.application.tournamentId = data.id;
+        this.authManager.getRegistration(this.tournamentId).subscribe(data => {
+          if (data) {
+            this.application = data;
+          } else {
+            this.application.email = user.email;
+            this.application.battleNetId = user.sc2Details?.battleNetBattleTag;
+            this.application.country = user.steamUser?.country;
+          }
+        });
       }
     });
     this.apiService.companies.subscribe(data => this.companies = data);
@@ -96,10 +115,14 @@ export class LeagueRegistrationComponent {
 
   public leagueRegistration() {
     this.inProgress = true;
-    this.apiService.bgeRegistration(this.application).subscribe({
+    this.apiService.bgeRegistration(this.application, this.application.id).subscribe({
       next: (application) => {
-        this.application = application;
-        this.commService.emitSuccess($localize`Registration successful!`);
+        if (!this.application.id) {
+          this.application = application;
+          this.commService.emitSuccess($localize`Registration successful!`);
+        } else {
+          this.commService.emitSuccess($localize`Registration updated successfully!`);
+        }
       },
       error: (error) => {
         this.inProgress = false;

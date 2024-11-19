@@ -117,7 +117,7 @@
       </igx-checkbox>
     </div>
 
-    <button igxButton="outlined" class="submit-registration" [disabled]="tapplication.invalid || !termsAccepted.checked || inProgress" i18n>Register</button>
+    <button igxButton="outlined" class="submit-registration" [disabled]="tapplication.invalid || !termsAccepted.checked || inProgress" i18n>{{application.id ? 'Update Registration' : 'Register'}}</button>
   </div>
 </form>
 
