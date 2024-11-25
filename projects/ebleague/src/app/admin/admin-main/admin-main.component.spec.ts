@@ -25,7 +25,8 @@ describe('AdminMainComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    imports: [FormsModule,
+      imports: [
+        FormsModule,
         NoopAnimationsModule,
         RouterTestingModule,
         ServiceWorkerModule.register('', { enabled: false }),
@@ -39,9 +40,10 @@ describe('AdminMainComponent', () => {
         IgxActionStripModule,
         IgxCheckboxModule,
         AdminMainComponent,
-        SizeNamePipe],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-})
+        SizeNamePipe
+      ],
+      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+    })
     .compileComponents();
   });
 
@@ -54,4 +56,5 @@ describe('AdminMainComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-});
+
+  });

@@ -30,7 +30,8 @@ describe('AdminSc2Component', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [FormsModule,
+      imports: [
+        FormsModule,
         NoopAnimationsModule,
         IgxListModule,
         IgxIconModule,
@@ -48,9 +49,10 @@ describe('AdminSc2Component', () => {
         IgxDialogModule,
         IgxGridModule,
         AdminSc2Component,
-        NotInGroupPipe],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+        NotInGroupPipe
+      ],
+      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
