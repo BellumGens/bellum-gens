@@ -718,9 +718,9 @@
           <context context-type="linenumber">111</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="94814120ecf2fc31201e1e5cdfc1960ff0d1961c" datatype="html">
-        <source>This registration is still not confirmed! The registration fee has to be paid in order to confirm the registration!</source>
-        <target>Тази регистрация още не е потвърдена. Не е платена таксата за участие.</target>
+      <trans-unit id="963537ff4c79a0deae3dc336db5d269b9101a1c8" datatype="html">
+        <source>This registration is pending check-in for the current week!</source>
+        <target>Тази регистрация очаква потвърждение за текущата седмица!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-csgo/admin-csgo.component.html</context>
           <context context-type="linenumber">129</context>
@@ -2252,6 +2252,26 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournament-sc2/tournament-sc2.component.html</context>
           <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="94814120ecf2fc31201e1e5cdfc1960ff0d1961c" datatype="html">
+        <source>This registration is still not confirmed! The registration fee has to be paid in order to confirm the registration!</source>
+        <target>Тази регистрация още не е потвърдена. Не е платена таксата за участие.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-csgo/admin-csgo.component.html</context>
+          <context context-type="linenumber">129</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
+          <context context-type="linenumber">127</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournament-sc2/tournament-sc2.component.html</context>
+          <context context-type="linenumber">18</context>
         </context-group>
       </trans-unit>
       <trans-unit id="89d815f17ae9aa7d2a79f6de3ab90274020f373a" datatype="html">
