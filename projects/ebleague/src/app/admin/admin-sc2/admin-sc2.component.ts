@@ -61,7 +61,10 @@ export class AdminSc2Component {
   public selectedTournament: Tournament;
 
   constructor(private apiService: ApiTournamentsService) {
-    this.apiService.tournaments.subscribe(t => this.tournaments = t);
+    this.apiService.tournaments.subscribe(t => {
+      this.tournaments = t;
+      this.selectedTournament = t.find(tour => tour.active);
+    });
   }
 
   public selectTournament(tournament: Tournament) {
