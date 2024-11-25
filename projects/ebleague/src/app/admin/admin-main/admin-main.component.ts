@@ -59,7 +59,7 @@ export class AdminMainComponent {
         this.tournaments = data;
       }
     });
-    this.shopService.getOrders().subscribe(data => this.orders = data);
+    // this.shopService.getOrders().subscribe(data => this.orders = data);
     this.apiService.allRegistrations.subscribe(data => this.registrations = data);
     this.grouping = [
       { dir: SortingDirection.Desc, fieldName: 'tournamentName', ignoreCase: false, strategy: DefaultSortingStrategy.instance() },

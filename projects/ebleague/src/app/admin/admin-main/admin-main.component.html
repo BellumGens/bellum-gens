@@ -2,9 +2,11 @@
   <div class="content-container-row">
     <igx-grid #grid1
       [data]="registrations"
-      primaryKey="id" [batchEditing]="true"
+      primaryKey="id"
+      [batchEditing]="true"
       [showGroupArea]="true"
       [allowFiltering]="true"
+      [groupsExpanded]="false"
       [groupingExpressions]="grouping"
       (cellEdit)="confirmRegistration($event)"
       cellSelection="none">
@@ -63,7 +65,7 @@
     </igx-grid>
   </div>
 
-  <div class="content-container-row">
+  <!-- <div class="content-container-row">
     <igx-grid #grid1
       [data]="orders"
       primaryKey="id" [batchEditing]="true"
@@ -131,7 +133,7 @@
       <igx-paginator></igx-paginator>
 
     </igx-grid>
-  </div>
+  </div> -->
 </div>
 
 <div class="content-container">
@@ -139,7 +141,7 @@
     <h3 i18n>Tournaments and Roles</h3>
   </div>
   @for (league of tournaments; track league.id; let i = $index) {
-    <form #currentLeagueForm="ngForm" (ngSubmit)="updateTournament(league)">
+    <form #currentLeagueForm="ngForm" class="content-container-column" (ngSubmit)="updateTournament(league)">
       <igx-input-group>
         <label igxLabel [for]="'leagueName' + i" i18n>Tournament name</label>
         <input type="text" [id]="'leagueName' + i" [name]="'leagueName' + i" #leagueName igxInput [required]="true" [(ngModel)]="league.name" />
@@ -178,7 +180,7 @@
     </form>
   }
 
-  <form #leagueForm="ngForm" (ngSubmit)="updateTournament()">
+  <form #leagueForm="ngForm" class="content-container-column" (ngSubmit)="updateTournament()">
     <igx-input-group>
       <label igxLabel for="tournamentName" i18n>Tournament name</label>
       <input type="text" id="tournamentName" name="tournamentName" #tournamentName igxInput [required]="true" [(ngModel)]="tournament.name" />
@@ -220,9 +222,9 @@
     <button igxButton [disabled]="!leagueForm.valid || !leagueForm.touched" i18n>Submit</button>
   </form>
 
-  <div>
+  <div class="content-container-column">
     <igx-chips-area>
-      Roles
+      <span>Roles</span>
       @for (role of roles; track role) {
         <igx-chip>{{role}}</igx-chip>
       }
