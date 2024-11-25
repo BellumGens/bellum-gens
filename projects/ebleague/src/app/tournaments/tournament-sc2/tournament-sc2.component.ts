@@ -11,7 +11,7 @@ import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../../../../common/src/environments/environment';
 import { Sc2MapNamePipe } from '../../../../../common/src/lib/pipes/sc2-map-name.pipe';
-import { DatePipe, NgOptimizedImage } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import { IGX_CARD_DIRECTIVES, IgxCircularProgressBarComponent, IgxAvatarComponent, IgxBadgeComponent, IgxDividerDirective, IGX_GRID_DIRECTIVES, IgxIconComponent } from '@infragistics/igniteui-angular';
 
 @Component({
@@ -20,7 +20,6 @@ import { IGX_CARD_DIRECTIVES, IgxCircularProgressBarComponent, IgxAvatarComponen
   styleUrls: ['./tournament-sc2.component.scss'],
   standalone: true,
   imports: [
-    NgOptimizedImage,
     DatePipe,
     IGX_CARD_DIRECTIVES,
     IgxCircularProgressBarComponent,

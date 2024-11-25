@@ -714,6 +714,14 @@
           <context context-type="linenumber">131,135</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="4663840469486658953" datatype="html">
+        <source>Registrations are restricted to participants from the Balkan countries. Registrations have no age restrictions. Registrations for this event are not in any way binding and participation can be halted by the registrant at any point of time. Registrations can also be deleted by the user through the user profile settings menu.</source>
+        <target>Регистрациите са ограничени за участници от балканските държави. Регистрациите нямат възрастови ограничения. Регистрациите за това събитие по никакъв начин не са обвъзващи и участието може да бъде спряно от регистранта по всяко време. Регистрациите могат също да бъдат изтрити от потребителя чрез менюто за настройки на потребителския профил.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.html</context>
+          <context context-type="linenumber">139,140</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="1336455998508715892" datatype="html">
         <source>Registrations show intent for participation, but weekly participation would require timely weekly check-ins and being on-time for the matches. All applicants must reside <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>in one of the listed Balkan countries<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>. If an applicant is discovered to permanently reside outside of the listed Balkan countries, that would lead to <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>permanent disqualification<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> from the league and nullification of any points earned.</source>
         <target>Регистрациите показват желание за участие, но седмичното участие изисква своевременни седмични проверки и да бъдете на време за мачовете. Всички кандидати трябва да пребивават <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>в една от изброените балкански държави<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>. Ако се установи, че кандидатът постоянно пребивава извън изброените балкански държави, това ще доведе до <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>перманентна дисквалификация<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> от лигата и анулиране на всички спечелени точки.</target>
