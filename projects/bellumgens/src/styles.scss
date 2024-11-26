@@ -45,8 +45,9 @@ $include: (
   igx-banner
 );
 
-@include dark-theme(
+@include theme(
   $palette: $app-palette,
+  $schema: $dark-material-schema,
   $exclude: map-keys(map-remove($components, $include...),)
 );
 

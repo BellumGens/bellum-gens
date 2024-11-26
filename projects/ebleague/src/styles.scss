@@ -41,9 +41,10 @@ $include: (igx-avatar,
            igx-nav-drawer,
            igx-banner);
 
-@include dark-theme(
-    $palette: $app-palette,
-    $exclude: map-keys(map-remove($components, $include...),)
+@include theme(
+  $palette: $app-palette,
+  $schema: $dark-material-schema,
+  $exclude: map-keys(map-remove($components, $include...),)
 );
 
 /* Navbar */
