@@ -45,7 +45,6 @@ import { AsyncPipe } from '@angular/common';
   templateUrl: './player.component.html',
   styleUrls: ['./player.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  standalone: true,
   imports: [
     LoadingComponent,
     IgxAvatarComponent,

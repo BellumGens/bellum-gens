@@ -45,11 +45,10 @@ import { NewStrategyComponent } from './new-strategy/new-strategy.component';
 import { LoadingComponent } from '../../../../common/src/lib/loading/loading.component';
 
 @Component({
-    selector: 'app-team-strategies',
-    templateUrl: './strategies.component.html',
-    styleUrls: ['./strategies.component.scss'],
-    standalone: true,
-    imports: [
+  selector: 'app-team-strategies',
+  templateUrl: './strategies.component.html',
+  styleUrls: ['./strategies.component.scss'],
+  imports: [
     NgOptimizedImage,
     NgClass,
     DatePipe,
@@ -79,7 +78,7 @@ import { LoadingComponent } from '../../../../common/src/lib/loading/loading.com
     IsStratOwnerPipe,
     SideStratsPipe,
     StratFilterPipe
-]
+  ]
 })
 export class StrategiesComponent {
   public isEditor: boolean = null;

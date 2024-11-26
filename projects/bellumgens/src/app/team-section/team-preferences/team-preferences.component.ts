@@ -23,7 +23,6 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-team-preferences',
   templateUrl: './team-preferences.component.html',
   styleUrls: ['./team-preferences.component.css'],
-  standalone: true,
   imports: [
     FormsModule,
     IGX_INPUT_GROUP_DIRECTIVES,
@@ -35,7 +34,7 @@ import { FormsModule } from '@angular/forms';
     IgxAvatarComponent,
     RouterLink,
     CountrySVGPipe
-]
+  ]
 })
 export class TeamPreferencesComponent {
   public team: CSGOTeam;

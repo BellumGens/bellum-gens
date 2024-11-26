@@ -9,7 +9,6 @@ import { NgClass, NgOptimizedImage } from '@angular/common';
   selector: 'app-map-pool',
   templateUrl: './map-pool.component.html',
   styleUrls: ['./map-pool.component.scss'],
-  standalone: true,
   imports: [
     NgClass,
     NgOptimizedImage,

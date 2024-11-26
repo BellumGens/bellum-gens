@@ -9,7 +9,6 @@ import { Sc2RaceThumbPipe } from '../../../../common/src/lib/pipes/sc2-race-thum
 
 @Component({
   selector: 'app-events',
-  standalone: true,
   imports: [
     IgxDividerDirective,
     IGX_CARD_DIRECTIVES,

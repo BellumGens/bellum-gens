@@ -22,7 +22,6 @@ import { AsyncPipe } from '@angular/common';
   selector: 'app-team-nav',
   templateUrl: './team-nav.component.html',
   styleUrls: ['./team-nav.component.scss'],
-  standalone: true,
   imports: [
     IgxButtonDirective,
     IgxRippleDirective,

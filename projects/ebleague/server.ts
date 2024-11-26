@@ -2,7 +2,7 @@ import 'zone.js/node';
 
 import { APP_BASE_HREF } from '@angular/common';
 import { LOCALE_ID } from '@angular/core';
-import { CommonEngine } from '@angular/ssr';
+import { CommonEngine } from '@angular/ssr/node';
 import express from 'express';
 import { existsSync } from 'node:fs';
 import { join } from 'node:path';

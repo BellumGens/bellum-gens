@@ -19,7 +19,6 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-new-strategy',
   templateUrl: './new-strategy.component.html',
   styleUrls: ['./new-strategy.component.scss'],
-  standalone: true,
   imports: [
     IGX_DIALOG_DIRECTIVES,
     FormsModule,

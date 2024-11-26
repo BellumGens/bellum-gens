@@ -20,7 +20,6 @@ import { AsyncPipe } from '@angular/common';
   selector: 'app-tournament-registration',
   templateUrl: './tournament-registration.component.html',
   styleUrls: ['./tournament-registration.component.scss'],
-  standalone: true,
   imports: [
     FormsModule,
     IGX_INPUT_GROUP_DIRECTIVES,

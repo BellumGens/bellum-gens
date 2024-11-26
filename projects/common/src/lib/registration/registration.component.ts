@@ -20,7 +20,6 @@ import {
     selector: 'bg-registration',
     templateUrl: './registration.component.html',
     styleUrls: ['./registration.component.scss'],
-    standalone: true,
     imports: [FormsModule, IGX_INPUT_GROUP_DIRECTIVES, IgxIconComponent, IgxButtonDirective, IgxRippleDirective]
 })
 export class RegistrationComponent implements OnInit {

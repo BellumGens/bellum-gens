@@ -38,7 +38,6 @@ describe('BaseComponent', () => {
 
 @Component({
   selector: 'app-test',
-  standalone: true,
   template: '<div>Test component</div>',
   imports: [BaseDirective]
 })

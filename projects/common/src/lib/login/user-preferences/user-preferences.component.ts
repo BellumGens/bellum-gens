@@ -22,7 +22,6 @@ import { NgClass } from '@angular/common';
   selector: 'bg-user-preferences',
   templateUrl: './user-preferences.component.html',
   styleUrls: ['./user-preferences.component.scss'],
-  standalone: true,
   imports: [
     IgxButtonDirective,
     IgxRippleDirective,

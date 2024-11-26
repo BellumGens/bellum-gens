@@ -19,7 +19,6 @@ import { IGX_CARD_DIRECTIVES, IgxCircularProgressBarComponent, IgxAvatarComponen
   selector: 'app-tournament-csgo',
   templateUrl: './tournament-csgo.component.html',
   styleUrls: ['./tournament-csgo.component.scss'],
-  standalone: true,
   imports: [
     NgOptimizedImage,
     DatePipe,

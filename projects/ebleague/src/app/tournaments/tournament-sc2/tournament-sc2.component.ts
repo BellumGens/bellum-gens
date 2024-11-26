@@ -18,7 +18,6 @@ import { IGX_CARD_DIRECTIVES, IgxCircularProgressBarComponent, IgxAvatarComponen
   selector: 'app-tournament-sc2',
   templateUrl: './tournament-sc2.component.html',
   styleUrls: ['./tournament-sc2.component.scss'],
-  standalone: true,
   imports: [
     DatePipe,
     IGX_CARD_DIRECTIVES,

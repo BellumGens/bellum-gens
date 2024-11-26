@@ -8,7 +8,6 @@ import { DatePipe, NgOptimizedImage } from '@angular/common';
   selector: 'app-tournaments-main',
   templateUrl: './tournaments-main.component.html',
   styleUrls: ['./tournaments-main.component.scss'],
-  standalone: true,
   imports: [
     NgOptimizedImage,
     DatePipe,

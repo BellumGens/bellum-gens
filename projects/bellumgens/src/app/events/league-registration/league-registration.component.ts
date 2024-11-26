@@ -32,7 +32,6 @@ import { ActivatedRoute } from '@angular/router';
   selector: 'app-league-registration',
   templateUrl: './league-registration.component.html',
   styleUrls: ['./league-registration.component.scss'],
-  standalone: true,
   imports: [
     FormsModule,
     IGX_INPUT_GROUP_DIRECTIVES,

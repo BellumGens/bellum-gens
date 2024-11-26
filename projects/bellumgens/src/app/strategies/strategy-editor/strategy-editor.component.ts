@@ -23,7 +23,6 @@ import { NgClass } from '@angular/common';
   selector: 'app-strategy-editor',
   templateUrl: './strategy-editor.component.html',
   styleUrls: ['./strategy-editor.component.scss'],
-  standalone: true,
   imports: [
     IGX_SELECT_DIRECTIVES,
     FormsModule,

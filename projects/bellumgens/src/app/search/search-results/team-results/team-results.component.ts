@@ -12,7 +12,6 @@ import { LoadingComponent } from '../../../../../../common/src/lib/loading/loadi
   selector: 'app-team-results',
   templateUrl: './team-results.component.html',
   styleUrls: ['./team-results.component.css'],
-  standalone: true,
   imports: [
     LoadingComponent,
     IGX_CARD_DIRECTIVES,

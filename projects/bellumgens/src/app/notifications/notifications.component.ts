@@ -9,7 +9,6 @@ import { PlayerNotificationsComponent } from './player-notifications/player-noti
 @Component({
   templateUrl: './notifications.component.html',
   styleUrls: ['./notifications.component.scss'],
-  standalone: true,
   imports: [
     PlayerNotificationsComponent,
     TeamNotificationsComponent,

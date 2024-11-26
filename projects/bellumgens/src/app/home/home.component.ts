@@ -12,7 +12,6 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  standalone: true,
   imports: [
     RouterLink,
     NgOptimizedImage,

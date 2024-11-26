@@ -12,7 +12,6 @@ import { ActivatedRoute } from '@angular/router';
     selector: 'app-team-tournaments',
     templateUrl: './team-tournaments.component.html',
     styleUrls: ['./team-tournaments.component.scss'],
-    standalone: true,
     imports: []
 })
 export class TeamTournamentsComponent {

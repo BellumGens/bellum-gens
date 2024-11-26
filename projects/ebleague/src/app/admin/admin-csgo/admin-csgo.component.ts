@@ -21,7 +21,6 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-admin-csgo',
   templateUrl: './admin-csgo.component.html',
   styleUrls: ['./admin-csgo.component.scss'],
-  standalone: true,
   imports: [
     IGX_SELECT_DIRECTIVES,
     FormsModule,

@@ -11,7 +11,6 @@ import { DatePipe } from '@angular/common';
   selector: 'app-team-notifications',
   templateUrl: './team-notifications.component.html',
   styleUrls: ['./team-notifications.component.css'],
-  standalone: true,
   imports: [
     IGX_LIST_DIRECTIVES,
     IgxAvatarComponent,

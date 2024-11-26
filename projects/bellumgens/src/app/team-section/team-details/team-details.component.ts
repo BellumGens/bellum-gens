@@ -20,7 +20,6 @@ import { Title, Meta } from '@angular/platform-browser';
   selector: 'app-team-details',
   templateUrl: './team-details.component.html',
   styleUrls: ['./team-details.component.scss'],
-  standalone: true,
   imports: [
     AvailabilityComponent,
     IGX_CARD_DIRECTIVES,

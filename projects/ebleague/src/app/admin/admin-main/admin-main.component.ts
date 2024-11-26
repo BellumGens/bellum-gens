@@ -13,7 +13,6 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-admin-main',
   templateUrl: './admin-main.component.html',
   styleUrls: ['./admin-main.component.scss'],
-  standalone: true,
   imports: [
     FormsModule,
     IGX_GRID_DIRECTIVES,

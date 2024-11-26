@@ -9,7 +9,6 @@ import { IgxCardModule } from '@infragistics/igniteui-angular';
     selector: 'app-news',
     templateUrl: './news.component.html',
     styleUrls: ['./news.component.scss'],
-    standalone: true,
     imports: [
       NgOptimizedImage,
       IgxCardModule

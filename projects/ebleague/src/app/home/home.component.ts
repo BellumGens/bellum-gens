@@ -15,7 +15,6 @@ import { TournamentRegistrationComponent } from '../tournament-registration/tour
 @Component({
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  standalone: true,
   imports: [
     NgOptimizedImage,
     RouterLink,
