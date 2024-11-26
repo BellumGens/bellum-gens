@@ -115,8 +115,11 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/bellumgens/src/test.ts",
-            "polyfills": ["zone.js"],
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing",
+              "@angular/localize/init"
+            ],
             "tsConfig": "projects/bellumgens/tsconfig.spec.json",
             "karmaConfig": "projects/bellumgens/karma.conf.js",
             "styles": [
@@ -349,9 +352,9 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/ebleague/src/test.ts",
             "polyfills": [
               "zone.js",
+              "zone.js/testing",
               "@angular/localize/init"
             ],
             "tsConfig": "projects/ebleague/tsconfig.spec.json",
@@ -502,8 +505,11 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/common/src/test.ts",
-            "polyfills": ["zone.js"],
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing",
+              "@angular/localize/init"
+            ],
             "tsConfig": "projects/common/tsconfig.spec.json",
             "karmaConfig": "projects/common/karma.conf.js",
             "assets": [
