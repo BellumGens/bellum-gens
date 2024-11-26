@@ -1,11 +1,10 @@
-import { DatePipe, DecimalPipe, NgOptimizedImage } from '@angular/common';
+import { DatePipe, NgOptimizedImage } from '@angular/common';
 import { Component, Inject, PLATFORM_ID } from '@angular/core';
-import { IGX_CARD_DIRECTIVES, IgxAvatarComponent, IgxButtonDirective, IgxDividerDirective, IgxIconComponent } from '@infragistics/igniteui-angular';
+import { IGX_CARD_DIRECTIVES, IgxAvatarComponent, IgxButtonDirective, IgxDividerDirective } from '@infragistics/igniteui-angular';
 import { BaseDirective } from '../base/base.component';
 import { Meta, Title } from '@angular/platform-browser';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CountrySVGPipe } from '../../../../common/src/lib/pipes/country-svg.pipe';
-import { Sc2RaceThumbPipe } from '../../../../common/src/lib/pipes/sc2-race-thumb.pipe';
 
 @Component({
   selector: 'app-events',
@@ -13,13 +12,10 @@ import { Sc2RaceThumbPipe } from '../../../../common/src/lib/pipes/sc2-race-thum
     IgxDividerDirective,
     IGX_CARD_DIRECTIVES,
     IgxAvatarComponent,
-    IgxIconComponent,
     IgxButtonDirective,
     DatePipe,
-    DecimalPipe,
     NgOptimizedImage,
     CountrySVGPipe,
-    Sc2RaceThumbPipe,
     RouterLink
   ],
   templateUrl: './events.component.html',

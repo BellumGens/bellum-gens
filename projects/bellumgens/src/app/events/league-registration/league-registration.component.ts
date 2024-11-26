@@ -23,7 +23,6 @@ import {
   IgxButtonDirective,
   IgxCheckboxComponent,
   IgxDialogComponent,
-  IgxDividerDirective,
   IgxIconComponent
 } from '@infragistics/igniteui-angular';
 import { ActivatedRoute } from '@angular/router';
@@ -42,7 +41,6 @@ import { ActivatedRoute } from '@angular/router';
     IgxDialogComponent,
     IgxCheckboxComponent,
     IgxButtonDirective,
-    IgxDividerDirective,
     IGX_SELECT_DIRECTIVES,
     IgxAvatarComponent,
     StartsWithPipe,
