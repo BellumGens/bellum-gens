@@ -29,21 +29,21 @@ jobs:
           npm install
           npm run build:ssr
 
-      - name: predeploy shell
-        shell: bash
-        run: |
-          cd dist/bellumgens/server
-          for filename in *; do
-            mv "${filename}" "../${filename}"
-          done
-          cd ../browser/en
-          mv "web.config" "../../web.config"
-          cd ../../../ebleague/server
-          for filename in *; do
-            mv "${filename}" "../${filename}"
-          done
-          cd ../browser/en
-          mv "web.config" "../../web.config"
+      # - name: predeploy shell
+      #   shell: bash
+      #   run: |
+      #     cd dist/bellumgens/server
+      #     for filename in *; do
+      #       mv "${filename}" "../${filename}"
+      #     done
+      #     cd ../browser/en
+      #     mv "web.config" "../../web.config"
+      #     cd ../../../ebleague/server
+      #     for filename in *; do
+      #       mv "${filename}" "../${filename}"
+      #     done
+      #     cd ../browser/en
+      #     mv "web.config" "../../web.config"
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
