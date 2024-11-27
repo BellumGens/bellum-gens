@@ -10,7 +10,7 @@ import {
   ApplicationUser,
   SocialMediaService
 } from '../../../../common/src/public_api';
-import { TournamentRegistrationComponent } from '../tournament-registration/tournament-registration.component';
+// import { TournamentRegistrationComponent } from '../tournament-registration/tournament-registration.component';
 
 @Component({
   templateUrl: './home.component.html',
@@ -19,7 +19,7 @@ import { TournamentRegistrationComponent } from '../tournament-registration/tour
     NgOptimizedImage,
     RouterLink,
     FormsModule,
-    TournamentRegistrationComponent,
+    // TournamentRegistrationComponent,
     IgxButtonDirective,
     IgxDividerDirective,
     IgxIconComponent,
