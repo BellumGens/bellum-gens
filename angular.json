@@ -27,7 +27,7 @@
             "index": "projects/bellumgens/src/index.html",
             "browser": "projects/bellumgens/src/main.ts",
             "server": "projects/bellumgens/src/main.server.ts",
-            "prerender": true,
+            "outputMode": "server",
             "ssr": {
               "entry": "projects/bellumgens/server.ts"
             },
@@ -195,19 +195,6 @@
             }
           }
         },
-        "prerender": {
-          "builder": "@angular-devkit/build-angular:prerender",
-          "options": {
-            "browserTarget": "bellum-gens:build:production",
-            "serverTarget": "bellum-gens:server:production",
-            "routes": [
-              "/"
-            ]
-          },
-          "configurations": {
-            "production": {}
-          }
-        },
         "cypress-run": {
           "builder": "@cypress/schematic:cypress",
           "options": {
@@ -265,7 +252,7 @@
             "index": "projects/ebleague/src/index.html",
             "browser": "projects/ebleague/src/main.ts",
             "server": "projects/ebleague/src/main.server.ts",
-            "prerender": true,
+            "outputMode": "server",
             "ssr": {
               "entry": "projects/ebleague/server.ts"
             },
@@ -430,19 +417,6 @@
               "browserTarget": "eb-league:build:production",
               "serverTarget": "eb-league:server:production"
             }
-          }
-        },
-        "prerender": {
-          "builder": "@angular-devkit/build-angular:prerender",
-          "options": {
-            "browserTarget": "eb-league:build:production",
-            "serverTarget": "eb-league:server:production",
-            "routes": [
-              "/"
-            ]
-          },
-          "configurations": {
-            "production": {}
           }
         },
         "cypress-run": {
