@@ -27,28 +27,23 @@ jobs:
           echo "//packages.infragistics.com/npm/js-licensed/:_auth=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
           echo "//packages.infragistics.com/npm/js-licensed/:always-auth=true" >> ~/.npmrc
           npm install
-          npm run build
+          npm run build:ssr
 
       - name: predeploy shell
         shell: bash
         run: |
-          cp "run.cjs" "dist/bellumgens"
-          cp "run.cjs" "dist/ebleague"
-          cd dist/bellumgens/browser/en
+          cd dist/bellumgens/server
+          for filename in *; do
+            mv "${filename}" "../${filename}"
+          done
+          cd ../browser/en
           mv "web.config" "../../web.config"
-          cd ../../../ebleague/browser/en
+          cd ../../../ebleague/server
+          for filename in *; do
+            mv "${filename}" "../${filename}"
+          done
+          cd ../browser/en
           mv "web.config" "../../web.config"
-
-        #     cd dist/bellumgens/server
-        #     for filename in *; do
-        #       mv "${filename}" "../${filename}"
-        #     done
-        #     cd ../browser/en
-        #     mv "web.config" "../../web.config"
-        #     cd ../../../ebleague/server
-        #     for filename in *; do
-        #       mv "${filename}" "../${filename}"
-        #     done
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
