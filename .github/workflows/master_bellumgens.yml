@@ -32,8 +32,13 @@ jobs:
       - name: predeploy shell
         shell: bash
         run: |
+          cp "run.cjs" "dist/bellumgens"
+          cp "run.cjs" "dist/ebleague"
           cd dist/bellumgens/browser/en
           mv "web.config" "../../web.config"
+          cd ../../../ebleague/browser/en
+          mv "web.config" "../../web.config"
+
         #     cd dist/bellumgens/server
         #     for filename in *; do
         #       mv "${filename}" "../${filename}"
