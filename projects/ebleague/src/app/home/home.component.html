@@ -3,14 +3,14 @@
     <h1 class="highlight" i18n>The Ultimate Gaming experience for your company</h1>
     <p i18n>Covid-19 changed the way teams in your company bond. Esports Business League is a team building charity esports event, where your company team can compete against teams from other companies. Participants in the Esports Business League so far include companies like VMware, DXC, SAP, Experian, TELUS, Modis, HP, Infragistics, Chaos Group and many more!</p>
 
-    <button igxButton="contained" [disabled]="true"
+    <!-- <button igxButton="contained" [disabled]="true"
       (click)="!authUser ? openLogin() : registration.selectGame(gameEnum.CSGO)"
     i18n>Register for CS:GO League</button>
     <button igxButton="contained" [disabled]="true"
       class="info-button"
       (click)="!authUser ? openLogin() : registration.selectGame(gameEnum.StarCraft2)"
-    i18n>Register for StarCraft II League</button>
-    <button igxButton="flat" class="info-button" (click)="scrollTo('moreinfo')" i18n>Learn more...</button>
+    i18n>Register for StarCraft II League</button> -->
+    <button igxButton="contained" class="info-button" (click)="scrollTo('moreinfo')" i18n>Learn more...</button>
   </div>
 </div>
 
@@ -46,10 +46,10 @@
 
 <div class="content-container">
 
-  <app-tournament-registration #registration class="content-container-row" [tournamentId]="tournamentId"></app-tournament-registration>
+  <!-- <app-tournament-registration #registration class="content-container-row" [tournamentId]="tournamentId"></app-tournament-registration> -->
 
   <div class="content-container-row">
-    <igx-divider></igx-divider>
+    <!-- <igx-divider></igx-divider> -->
     <h2 i18n id="moreinfo">What is Esports Business League?</h2>
   </div>
 
