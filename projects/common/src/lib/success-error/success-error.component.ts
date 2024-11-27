@@ -6,7 +6,6 @@ import { CommunicationService } from '../../services/communication.service';
     selector: 'bg-success-error',
     templateUrl: './success-error.component.html',
     styleUrls: ['./success-error.component.scss'],
-    standalone: true,
     imports: [IgxSnackbarComponent, IgxIconComponent]
 })
 export class SuccessErrorComponent implements OnDestroy {

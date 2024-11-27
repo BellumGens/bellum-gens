@@ -59,7 +59,6 @@ import { IgxResourceStringsBG } from 'igniteui-angular-i18n';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  standalone: true,
   imports: [
     IgxLayoutDirective,
     IgxNavigationDrawerComponent,

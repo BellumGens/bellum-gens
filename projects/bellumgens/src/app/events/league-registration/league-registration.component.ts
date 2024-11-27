@@ -23,7 +23,6 @@ import {
   IgxButtonDirective,
   IgxCheckboxComponent,
   IgxDialogComponent,
-  IgxDividerDirective,
   IgxIconComponent
 } from '@infragistics/igniteui-angular';
 import { ActivatedRoute } from '@angular/router';
@@ -32,7 +31,6 @@ import { ActivatedRoute } from '@angular/router';
   selector: 'app-league-registration',
   templateUrl: './league-registration.component.html',
   styleUrls: ['./league-registration.component.scss'],
-  standalone: true,
   imports: [
     FormsModule,
     IGX_INPUT_GROUP_DIRECTIVES,
@@ -43,7 +41,6 @@ import { ActivatedRoute } from '@angular/router';
     IgxDialogComponent,
     IgxCheckboxComponent,
     IgxButtonDirective,
-    IgxDividerDirective,
     IGX_SELECT_DIRECTIVES,
     IgxAvatarComponent,
     StartsWithPipe,

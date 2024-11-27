@@ -13,7 +13,6 @@ import { FilterSizesPipe } from '../pipes/filter-sizes.pipe';
   selector: 'app-shop',
   templateUrl: './shop.component.html',
   styleUrls: ['./shop.component.scss'],
-  standalone: true,
   imports: [
     NgOptimizedImage,
     FormsModule,

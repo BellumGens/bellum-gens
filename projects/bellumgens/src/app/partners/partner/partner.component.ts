@@ -8,7 +8,6 @@ import { BaseDirective } from '../../base/base.component';
 
 @Component({
   selector: 'app-partner',
-  standalone: true,
   imports: [
     IGX_CARD_DIRECTIVES,
     IgxIconButtonDirective,
@@ -20,7 +19,7 @@ import { BaseDirective } from '../../base/base.component';
   ],
   templateUrl: './partner.component.html',
   styleUrl: './partner.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PartnerComponent extends BaseDirective {
   public social: SocialMedia [];

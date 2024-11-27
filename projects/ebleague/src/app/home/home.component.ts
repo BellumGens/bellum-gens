@@ -1,4 +1,4 @@
-import { DatePipe, NgOptimizedImage, isPlatformBrowser } from '@angular/common';
+import { NgOptimizedImage, isPlatformBrowser } from '@angular/common';
 import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
@@ -15,7 +15,6 @@ import { TournamentRegistrationComponent } from '../tournament-registration/tour
 @Component({
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
-  standalone: true,
   imports: [
     NgOptimizedImage,
     RouterLink,
@@ -24,8 +23,7 @@ import { TournamentRegistrationComponent } from '../tournament-registration/tour
     IgxButtonDirective,
     IgxDividerDirective,
     IgxIconComponent,
-    IGX_INPUT_GROUP_DIRECTIVES,
-    DatePipe
+    IGX_INPUT_GROUP_DIRECTIVES
   ]
 })
 export class HomeComponent {

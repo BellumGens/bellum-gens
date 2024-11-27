@@ -10,7 +10,6 @@ import { DecimalPipe } from '@angular/common';
   selector: 'app-quick-search',
   templateUrl: './quick-search.component.html',
   styleUrls: ['./quick-search.component.scss'],
-  standalone: true,
   imports: [
     IGX_LIST_DIRECTIVES,
     IgxCircularProgressBarComponent,

@@ -19,7 +19,6 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-team-application',
   templateUrl: './team-application.component.html',
   styleUrls: ['./team-application.component.scss'],
-  standalone: true,
   imports: [
     IgxButtonDirective,
     IgxRippleDirective,

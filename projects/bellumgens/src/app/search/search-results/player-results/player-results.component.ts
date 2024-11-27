@@ -12,7 +12,6 @@ import { DecimalPipe } from '@angular/common';
   selector: 'app-player-results',
   templateUrl: './player-results.component.html',
   styleUrls: ['./player-results.component.css'],
-  standalone: true,
   imports: [
     LoadingComponent,
     IGX_CARD_DIRECTIVES,

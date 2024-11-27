@@ -3,22 +3,15 @@
   "compilerOptions": {
     "baseUrl": "./",
     "importHelpers": true,
-    "module": "ES2022",
     "esModuleInterop": true,
     "outDir": "./dist/out-tsc",
     "sourceMap": true,
     "declaration": false,
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "module": "ES2022",
     "target": "ES2022",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "ES2022",
-      "dom"
-    ],
     "paths": {
       "bellum-gens-common": [
         "projects/common/src/public_api.ts"
@@ -32,6 +25,7 @@
     "node_modules"
   ],
   "angularCompilerOptions": {
+    "enableI18nLegacyMessageIdFormat": false,
     "strictTemplates": true,
     "fullTemplateTypeCheck": true,
     "strictInjectionParameters": true

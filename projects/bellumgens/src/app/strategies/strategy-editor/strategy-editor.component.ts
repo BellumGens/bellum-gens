@@ -23,7 +23,6 @@ import { NgClass } from '@angular/common';
   selector: 'app-strategy-editor',
   templateUrl: './strategy-editor.component.html',
   styleUrls: ['./strategy-editor.component.scss'],
-  standalone: true,
   imports: [
     IGX_SELECT_DIRECTIVES,
     FormsModule,
@@ -49,9 +48,9 @@ export class StrategyEditorComponent implements OnInit, OnDestroy {
   public newStrategy: CSGOStrategy;
   public utility = STRAT_UTILITIES;
   public layers: BaseLayer [];
-  public ts = [1, 1, 1, 1, 1];
-  public cts = [1, 1, 1, 1, 1];
-  public enemies = [1, 1, 1, 1, 1];
+  public ts = [1, 2, 3, 4, 5];
+  public cts = [1, 2, 3, 4, 5];
+  public enemies = [1, 2, 3, 4, 5];
   public brushSelected = false;
   public colors = Object.assign([], EDITOR_BRUSH_COLORS);
   public selectedColor = this.colors[0];

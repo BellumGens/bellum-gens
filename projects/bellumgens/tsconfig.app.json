@@ -2,7 +2,10 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "../../out-tsc/app-bellumgens",
-    "types": [],
+    "types": [
+      "node",
+      "@angular/localize"
+    ],
     "paths": {
       "bellum-gens-common": [
         "dist/common"

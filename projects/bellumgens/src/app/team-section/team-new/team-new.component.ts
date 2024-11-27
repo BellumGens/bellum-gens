@@ -20,11 +20,10 @@ import { FormsModule } from '@angular/forms';
 
 
 @Component({
-    selector: 'app-team-new',
-    templateUrl: './team-new.component.html',
-    styleUrls: ['./team-new.component.scss'],
-    standalone: true,
-    imports: [
+  selector: 'app-team-new',
+  templateUrl: './team-new.component.html',
+  styleUrls: ['./team-new.component.scss'],
+  imports: [
     IgxDialogComponent,
     IGX_INPUT_GROUP_DIRECTIVES,
     IgxIconComponent,
@@ -34,7 +33,7 @@ import { FormsModule } from '@angular/forms';
     IgxButtonDirective,
     IgxRippleDirective,
     GroupsFilterPipe
-]
+  ]
 })
 export class TeamNewComponent {
   @Input() public authUser: ApplicationUser;

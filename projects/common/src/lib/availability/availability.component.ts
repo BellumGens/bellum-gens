@@ -15,15 +15,14 @@ import { DatePipe } from '@angular/common';
     selector: 'bg-availability',
     templateUrl: './availability.component.html',
     styleUrls: ['./availability.component.scss'],
-    standalone: true,
     imports: [
-    IGX_CHIPS_DIRECTIVES,
-    IgxDialogComponent,
-    IgxTimePickerComponent,
-    IgxLabelDirective,
-    DatePipe,
-    WeekdayPipe
-]
+      IGX_CHIPS_DIRECTIVES,
+      IgxDialogComponent,
+      IgxTimePickerComponent,
+      IgxLabelDirective,
+      DatePipe,
+      WeekdayPipe
+    ]
 })
 export class AvailabilityComponent {
   @Input()

@@ -6,7 +6,6 @@ import { BaseDirective } from '../base/base.component';
 
 @Component({
   selector: 'app-partners',
-  standalone: true,
   imports: [
     IGX_TABS_DIRECTIVES,
     RouterOutlet,
@@ -16,6 +15,6 @@ import { BaseDirective } from '../base/base.component';
   ],
   templateUrl: './partners.component.html',
   styleUrl: './partners.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PartnersComponent extends BaseDirective {}

@@ -7,7 +7,6 @@ import { NgOptimizedImage } from '@angular/common';
   selector: 'app-production-crew',
   templateUrl: './production-crew.component.html',
   styleUrls: ['./production-crew.component.scss'],
-  standalone: true,
   imports: [
     NgOptimizedImage,
     IGX_CARD_DIRECTIVES,

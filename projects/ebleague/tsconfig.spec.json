@@ -4,12 +4,9 @@
     "outDir": "../../out-tsc/spec-ebleague",
     "types": [
       "jasmine",
-      "node"
+      "@angular/localize"
     ]
   },
-  "files": [
-    "src/test.ts"
-  ],
   "include": [
     "**/*.spec.ts",
     "**/*.d.ts"

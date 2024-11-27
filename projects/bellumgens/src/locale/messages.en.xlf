@@ -643,18 +643,25 @@
           <context context-type="linenumber">135,139</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="4663840469486658953" datatype="html">
+        <source>Registrations are restricted to participants from the Balkan countries. Registrations have no age restrictions. Registrations for this event are not in any way binding and participation can be halted by the registrant at any point of time. Registrations can also be deleted by the user through the user profile settings menu.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.html</context>
+          <context context-type="linenumber">139,140</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="1336455998508715892" datatype="html">
         <source>Registrations show intent for participation, but weekly participation would require timely weekly check-ins and being on-time for the matches. All applicants must reside <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>in one of the listed Balkan countries<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>. If an applicant is discovered to permanently reside outside of the listed Balkan countries, that would lead to <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>permanent disqualification<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> from the league and nullification of any points earned.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.html</context>
-          <context context-type="linenumber">139,140</context>
+          <context context-type="linenumber">140,141</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6298533831788441520" datatype="html">
         <source>Provided battle tag, discord ID, should match with the accounts the applicant uses during the League.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.html</context>
-          <context context-type="linenumber">140,143</context>
+          <context context-type="linenumber">141,144</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8376311744797589133" datatype="html">

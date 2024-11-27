@@ -23,7 +23,6 @@ import { UserPreferencesComponent } from './user-preferences/user-preferences.co
   selector: 'bg-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  standalone: true,
   imports: [
     LoginDialogComponent,
     IgxButtonDirective,

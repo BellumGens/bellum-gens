@@ -72,10 +72,6 @@
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
           <context context-type="linenumber">35,36</context>
         </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">110,111</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="3256590211420252677" datatype="html">
         <source>Choose a language</source>
@@ -213,7 +209,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">13,16</context>
+          <context context-type="linenumber">15,18</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7568207204804171315" datatype="html">
@@ -300,11 +296,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">17,18</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">81,82</context>
+          <context context-type="linenumber">19,20</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
@@ -569,8 +561,8 @@
           <context context-type="linenumber">127,130</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4868584767172486090" datatype="html">
-        <source>This registration is still not confirmed! The registration fee has to be paid in order to confirm the registration!</source>
+      <trans-unit id="5458206793423775370" datatype="html">
+        <source>This registration is pending check-in for the current week!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-csgo/admin-csgo.component.html</context>
           <context context-type="linenumber">147,149</context>
@@ -578,10 +570,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
           <context context-type="linenumber">147,149</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
-          <context context-type="linenumber">26,28</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournament-sc2/tournament-sc2.component.html</context>
@@ -691,15 +679,15 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">177,181</context>
+          <context context-type="linenumber">179,183</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">220,226</context>
+          <context context-type="linenumber">222,226</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">237,240</context>
+          <context context-type="linenumber">239,242</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
@@ -722,11 +710,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">171,173</context>
+          <context context-type="linenumber">173,175</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">213,216</context>
+          <context context-type="linenumber">215,218</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
@@ -880,7 +868,7 @@
         <source>Company</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">18,20</context>
+          <context context-type="linenumber">20,22</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournament-registration/tournament-registration.component.html</context>
@@ -899,164 +887,107 @@
         <source>Date Submitted</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">20,22</context>
+          <context context-type="linenumber">22,24</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4643591148728960560" datatype="html">
         <source>Game</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">23,24</context>
+          <context context-type="linenumber">25,26</context>
         </context-group>
       </trans-unit>
       <trans-unit id="973935442796422731" datatype="html">
         <source>League</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">27,29</context>
+          <context context-type="linenumber">29,31</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3602441324260631848" datatype="html">
         <source>Hash</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">30,31</context>
+          <context context-type="linenumber">32,33</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1902234206836707099" datatype="html">
         <source>Confirmed</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">31,32</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">99,100</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6575195871133210332" datatype="html">
-        <source>Orders</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">75,78</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2575666423611576469" datatype="html">
-        <source>Order date</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">78,80</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="8301535046747035390" datatype="html">
-        <source>Full name</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">82,84</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="665546201925711079" datatype="html">
-        <source>Phone #</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">87,90</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2148144896238147595" datatype="html">
-        <source>Full address</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">92,94</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="1943153960391120303" datatype="html">
-        <source>Promo code</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">97,99</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/shop/shop.component.html</context>
-          <context context-type="linenumber">53,56</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="4135157573284610192" datatype="html">
-        <source>Shipped</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">102,103</context>
+          <context context-type="linenumber">33,34</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9198937618936305417" datatype="html">
         <source>Tournaments and Roles</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">139,141</context>
+          <context context-type="linenumber">141,143</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8861872920583414435" datatype="html">
         <source>Tournament name</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">144,145</context>
+          <context context-type="linenumber">146,147</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">183,184</context>
+          <context context-type="linenumber">185,186</context>
         </context-group>
       </trans-unit>
       <trans-unit id="895170020706004881" datatype="html">
         <source>Tournament logo</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">153,154</context>
+          <context context-type="linenumber">155,156</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">193,194</context>
+          <context context-type="linenumber">195,196</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4894998749712021347" datatype="html">
         <source>Tournament description</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">162,163</context>
+          <context context-type="linenumber">164,165</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">203,204</context>
+          <context context-type="linenumber">205,206</context>
         </context-group>
       </trans-unit>
       <trans-unit id="126074860850048964" datatype="html">
         <source>End date</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">174,176</context>
+          <context context-type="linenumber">176,178</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">217,220</context>
+          <context context-type="linenumber">219,222</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8204176479746810612" datatype="html">
         <source>Active</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">176,177</context>
+          <context context-type="linenumber">178,179</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6009437916867942799" datatype="html">
         <source>No Roles Defined</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">230,234</context>
+          <context context-type="linenumber">232,236</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7756297752217979839" datatype="html">
         <source>New role</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">234,236</context>
+          <context context-type="linenumber">236,238</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8558919497900554182" datatype="html">
@@ -1758,6 +1689,13 @@
           <context context-type="linenumber">50,52</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="1943153960391120303" datatype="html">
+        <source>Promo code</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/shop/shop.component.html</context>
+          <context context-type="linenumber">53,56</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="3438893904854626784" datatype="html">
         <source>Promo code is invalid...</source>
         <context-group purpose="location">
@@ -1977,6 +1915,13 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournament-sc2/tournament-sc2.component.html</context>
           <context context-type="linenumber">8,10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4868584767172486090" datatype="html">
+        <source>This registration is still not confirmed! The registration fee has to be paid in order to confirm the registration!</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
+          <context context-type="linenumber">26,28</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1470502564856100727" datatype="html">

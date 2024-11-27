@@ -15,7 +15,6 @@ enum SearchType {
   selector: 'app-search',
   templateUrl: './search.component.html',
   styleUrls: ['./search.component.css'],
-  standalone: true,
   imports: [
     IGX_BUTTON_GROUP_DIRECTIVES,
     IgxButtonDirective,

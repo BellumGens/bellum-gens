@@ -16,7 +16,6 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-player-search',
   templateUrl: './player-search.component.html',
   styleUrls: ['./player-search.component.scss'],
-  standalone: true,
   imports: [
     FormsModule,
     IGX_RADIO_GROUP_DIRECTIVES,

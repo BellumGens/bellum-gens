@@ -12,18 +12,18 @@
         }
         @for (registration of registrations; track registration) {
           <div class="registration-slot">
-            <igx-avatar [src]="registration.user.csgoDetails.avatarMedium" [initials]="registration.user.username" size="medium" shape="circle">
+            <igx-avatar [src]="registration.user.csgoDetails?.avatarMedium" [initials]="registration.user.username" size="medium" shape="circle">
             </igx-avatar>
             @if (registration.userId === authUser?.id && registration.state === 0) {
               <igx-badge
                 type="warning"
                 icon="priority_high"
                 i18n-title
-                title="This registration is still not confirmed! The registration fee has to be paid in order to confirm the registration!"
+                title="This registration is pending check-in for the current week!"
                 class="registration-badge-style">
               </igx-badge>
             }
-            <a [href]="environment.bellumgens + '/players/' + (registration.user.csgoDetails.customUrl || registration.userId)" target="_blank">{{ registration.battleTag }}</a>
+            <a [href]="environment.bellumgens + '/players/' + (registration.user.csgoDetails?.customUrl || registration.userId)" target="_blank">{{ registration.battleTag }}</a>
             <span>[{{ registration.companyId }}]</span>
           </div>
         }

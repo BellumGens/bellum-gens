@@ -17,7 +17,6 @@ import { DatePipe } from '@angular/common';
   selector: 'app-player-notifications',
   templateUrl: './player-notifications.component.html',
   styleUrls: ['./player-notifications.component.scss'],
-  standalone: true,
   imports: [
     IGX_LIST_DIRECTIVES,
     IgxAvatarComponent,

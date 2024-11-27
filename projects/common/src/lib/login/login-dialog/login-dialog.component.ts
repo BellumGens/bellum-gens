@@ -17,7 +17,6 @@ import { LoginButtonsComponent } from '../login-buttons/login-buttons.component'
     selector: 'bg-login-dialog',
     templateUrl: './login-dialog.component.html',
     styleUrls: ['./login-dialog.component.scss'],
-    standalone: true,
     imports: [
       IgxDialogComponent,
       LoginButtonsComponent,

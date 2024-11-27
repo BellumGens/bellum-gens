@@ -39,17 +39,15 @@ import { IsVideoPipe } from '../pipes/is-video.pipe';
 import { SafeVideoLinkPipe } from '../pipes/safe-video-link.pipe';
 import { TruncateTextPipe } from '../pipes/truncate-text.pipe';
 import { ActiveDutyMapsPipe } from '../../../../common/src/lib/pipes/active-duty-maps.pipe';
-import { CSGOMapnamePipe } from '../../../../common/src/lib/pipes/csgomapname.pipe';
 import { ConfirmComponent } from '../../../../common/src/lib/confirm/confirm.component';
 import { NewStrategyComponent } from './new-strategy/new-strategy.component';
 import { LoadingComponent } from '../../../../common/src/lib/loading/loading.component';
 
 @Component({
-    selector: 'app-team-strategies',
-    templateUrl: './strategies.component.html',
-    styleUrls: ['./strategies.component.scss'],
-    standalone: true,
-    imports: [
+  selector: 'app-team-strategies',
+  templateUrl: './strategies.component.html',
+  styleUrls: ['./strategies.component.scss'],
+  imports: [
     NgOptimizedImage,
     NgClass,
     DatePipe,
@@ -69,7 +67,6 @@ import { LoadingComponent } from '../../../../common/src/lib/loading/loading.com
     IgxAvatarComponent,
     NewStrategyComponent,
     ConfirmComponent,
-    CSGOMapnamePipe,
     ActiveDutyMapsPipe,
     TruncateTextPipe,
     SafeVideoLinkPipe,
@@ -79,7 +76,7 @@ import { LoadingComponent } from '../../../../common/src/lib/loading/loading.com
     IsStratOwnerPipe,
     SideStratsPipe,
     StratFilterPipe
-]
+  ]
 })
 export class StrategiesComponent {
   public isEditor: boolean = null;

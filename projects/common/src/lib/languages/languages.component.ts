@@ -10,17 +10,16 @@ import {
 import { GLOBAL_OVERLAY_SETTINGS } from '../../models/misc';
 
 @Component({
-  selector: 'bg-languages',
-  templateUrl: './languages.component.html',
-  styleUrls: ['./languages.component.scss'],
-  standalone: true,
-  imports: [
-    IgxButtonDirective,
-    IgxRippleDirective,
-    IgxToggleActionDirective,
-    IgxIconComponent,
-    IGX_DROP_DOWN_DIRECTIVES
-  ]
+    selector: 'bg-languages',
+    templateUrl: './languages.component.html',
+    styleUrls: ['./languages.component.scss'],
+    imports: [
+      IgxButtonDirective,
+      IgxRippleDirective,
+      IgxToggleActionDirective,
+      IgxIconComponent,
+      IGX_DROP_DOWN_DIRECTIVES
+    ]
 })
 export class LanguagesComponent {
   public overlaySettings = GLOBAL_OVERLAY_SETTINGS;

@@ -2,7 +2,10 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "outDir": "../../out-tsc/lib-common",
-    "types": []
+    "types": [
+      "node",
+      "@angular/localize"
+    ]
   },
   "exclude": [
     "**/*.spec.ts"

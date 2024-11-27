@@ -10,7 +10,6 @@ import { AsyncPipe } from '@angular/common';
   selector: 'bg-login-buttons',
   templateUrl: './login-buttons.component.html',
   styleUrls: ['./login-buttons.component.scss'],
-  standalone: true,
   imports: [IgxButtonDirective, IgxIconComponent, IgxDividerDirective, AsyncPipe]
 })
 export class LoginButtonsComponent {

@@ -34,7 +34,6 @@ import { LanguagesComponent } from '../../../common/src/lib/languages/languages.
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  standalone: true,
   imports: [
     IgxLayoutDirective,
     IgxNavigationDrawerComponent,

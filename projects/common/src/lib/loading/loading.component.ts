@@ -5,7 +5,6 @@ import { IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular'
     selector: 'bg-loading',
     templateUrl: './loading.component.html',
     styleUrls: ['./loading.component.scss'],
-    standalone: true,
     imports: [IgxCircularProgressBarComponent]
 })
 export class LoadingComponent {}
