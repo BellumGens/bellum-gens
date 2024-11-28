@@ -28,7 +28,7 @@
       </igx-column>
       <igx-column field="tournamentName" [groupable]="true" [hidden]="true" i18n-header header="League">
       </igx-column>
-      <igx-column field="discord" i18n-header header="Discord">
+      <igx-column field="discord" header="Discord">
       </igx-column>
       <igx-column field="state" [editable]="true" dataType="boolean" i18n-header header="Confirmed">
         <igx-icon *igxCell="let value" [class]="value ? 'color-success' : 'color-error'">{{ value ? 'check' : 'close' }}</igx-icon>
