@@ -224,6 +224,19 @@ export class ApiTournamentsService {
     );
   }
 
+  public weeklyCheckin(reg: TournamentApplication) {
+    return this.http.put(`${this._apiEndpoint}/tournament/checkin?id=${reg.id}`, reg, { withCredentials: true }).pipe(
+      map(response => {
+        this.commService.emitSuccess('Tournament application updated successfully!');
+        return response;
+      }),
+      catchError(error => {
+        this.commService.emitError(error.message);
+        return throwError(() => error);
+      })
+    );
+  }
+
   public deleteRegistration(id: string) {
     return this.http.delete(`${this._apiEndpoint}/tournament/delete?id=${id}`, { withCredentials: true }).pipe(
       map(response => {

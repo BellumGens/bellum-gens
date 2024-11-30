@@ -81,6 +81,13 @@ export class UserPreferencesComponent {
     });
   }
 
+  public weeklyCheckin(registration: TournamentApplication) {
+    this.apiService.weeklyCheckin(registration).subscribe({
+      next: () => registration.state = 1,
+      error: () => {}
+    });
+  }
+
   public deleteRegistration(registration: TournamentApplication) {
     this.apiService.deleteRegistration(registration.id).subscribe({
       next: () => {
