@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { BaseDirective } from '../../base/base.component';
 import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { TournamentParticipant, TournamentGroup, ApplicationUser, TournamentSC2Match, Tournament, ApiTournamentsService, LoginService, Sc2MapNamePipe } from '../../../../../common/src/public_api';
+import { TournamentParticipant, TournamentGroup, ApplicationUser, TournamentSC2Match, Tournament, ApiTournamentsService, LoginService, Sc2MapNamePipe, CountrySVGPipe } from '../../../../../common/src/public_api';
 import { DatePipe } from '@angular/common';
 import { IGX_CARD_DIRECTIVES, IgxCircularProgressBarComponent, IgxAvatarComponent, IgxBadgeComponent, IgxDividerDirective, IGX_GRID_DIRECTIVES, IgxIconComponent } from '@infragistics/igniteui-angular';
 
@@ -16,11 +16,11 @@ import { IGX_CARD_DIRECTIVES, IgxCircularProgressBarComponent, IgxAvatarComponen
     IGX_CARD_DIRECTIVES,
     IgxCircularProgressBarComponent,
     IgxAvatarComponent,
-    IgxBadgeComponent,
     IgxDividerDirective,
     IGX_GRID_DIRECTIVES,
     IgxIconComponent,
-    Sc2MapNamePipe
+    Sc2MapNamePipe,
+    CountrySVGPipe
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

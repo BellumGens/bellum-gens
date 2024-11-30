@@ -14,15 +14,7 @@
           <div class="registration-slot">
             <igx-avatar [src]="registration.user.sc2Details?.avatarUrl || ''" [initials]="registration.user.username" size="medium" shape="circle">
             </igx-avatar>
-            @if (registration.userId === authUser?.id && registration.state === 0) {
-              <igx-badge
-                type="warning"
-                icon="priority_high"
-                i18n-title
-                title="This registration is pending check-in for the current week!"
-                class="registration-badge-style">
-              </igx-badge>
-            }
+            <igx-avatar [src]="registration.country | countrySVG" shape="circle" [title]="registration.country" class="country-badge-small"></igx-avatar>
             <a [routerLink]="['/players/', (registration.user.csgoDetails?.customUrl || registration.userId)]" target="_blank">{{ registration.battleTag }}</a>
             <span>[{{ registration.companyId }}]</span>
           </div>
