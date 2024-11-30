@@ -4,7 +4,7 @@ import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { TournamentParticipant, TournamentGroup, ApplicationUser, TournamentSC2Match, Tournament, ApiTournamentsService, LoginService, Sc2MapNamePipe, CountrySVGPipe } from '../../../../../common/src/public_api';
 import { DatePipe } from '@angular/common';
-import { IGX_CARD_DIRECTIVES, IgxCircularProgressBarComponent, IgxAvatarComponent, IgxBadgeComponent, IgxDividerDirective, IGX_GRID_DIRECTIVES, IgxIconComponent } from '@infragistics/igniteui-angular';
+import { IGX_CARD_DIRECTIVES, IgxCircularProgressBarComponent, IgxAvatarComponent, IgxDividerDirective, IGX_GRID_DIRECTIVES, IgxIconComponent } from '@infragistics/igniteui-angular';
 
 @Component({
   selector: 'app-bge-balkan',
