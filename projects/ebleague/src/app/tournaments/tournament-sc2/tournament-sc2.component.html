@@ -34,6 +34,7 @@
         @for (group of groups; track group.id) {
           <igx-grid
             cellSelection="none"
+            [isLoading]="loadingGroups"
             [data]="group.participants">
             <igx-grid-toolbar>
               <igx-grid-toolbar-title>{{group.name}}</igx-grid-toolbar-title>

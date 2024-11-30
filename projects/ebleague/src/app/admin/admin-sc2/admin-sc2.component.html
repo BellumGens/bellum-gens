@@ -153,80 +153,86 @@
         }
       </div>
       <div class="card-wrapper">
-        @for (group of groups; track group.id) {
-          <igx-card elevated>
+        @if (loadingGroups) {
+          <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
+        }
+        @else {
+          @for (group of groups; track group.id) {
+            <igx-card elevated>
+              <igx-card-header>
+                <igx-avatar igxCardThumbnail shape="circle" src="/assets/wallpapers/sc2-watermark.webp"></igx-avatar>
+                @if (!group.inEdit) {
+                  <h1 igxCardHeaderTitle>{{group.name}}</h1>
+                } @else {
+                  <igx-input-group igxCardHeaderTitle>
+                    <label igxLabel for="groupName" i18n>Group name</label>
+                    <input type="text" id="groupName" name="groupName" #groupName igxInput [required]="true" [(ngModel)]="group.name" />
+                    @if (groupName.value) {
+                      <igx-suffix (click)="group.name = null">
+                        <igx-icon>clear</igx-icon>
+                      </igx-suffix>
+                    }
+                  </igx-input-group>
+                }
+                <div class="action-buttons">
+                  @if (!group.inEdit) {
+                    <igx-icon class="navigatable action-icon-button" i18n-title title="Send Emails for Checkin" #emails (click)="sendCheckinEmails(selectedTournament.id)">email</igx-icon>
+                    <igx-icon class="navigatable action-icon-button" i18n-title title="Edit" (click)="group.inEdit = true">edit</igx-icon>
+                    <igx-icon class="navigatable action-icon-button" i18n-title title="Delete" (click)="confirmGroup.open(group.id)">delete</igx-icon>
+                  } @else {
+                    <igx-icon class="navigatable action-icon-button" (click)="group.inEdit = false">cancel</igx-icon>
+                    <igx-icon class="navigatable action-icon-button" (click)="submitGroup(group)">done</igx-icon>
+                  }
+                </div>
+              </igx-card-header>
+              <igx-card-content>
+                <igx-list class="group-list" igxDrop (dropped)="addToGroup($event, group)">
+                  @for (participant of group.participants; track participant.id) {
+                    <igx-list-item>
+                      <igx-avatar igxListThumbnail [src]="participant.user.sc2Details?.avatarUrl || ''" [initials]="participant.user.username" shape="circle"></igx-avatar>
+                      <a igxListLineTitle [href]="environment.bellumgens + '/players/' + (participant.user.csgoDetails?.customUrl || participant.userId)" target="_blank">
+                        {{ participant.user.username }}
+                      </a>
+                      <span igxListLineTitle>
+                        {{ participant.battleTag }}
+                      </span>
+                      <igx-icon class="navigatable" i18n-title title="Remove from group" (click)="removeFromGroup(participant, group)">delete</igx-icon>
+                    </igx-list-item>
+                  }
+                </igx-list>
+              </igx-card-content>
+            </igx-card>
+          }
+
+          <igx-card class="new-group-card" elevated>
             <igx-card-header>
               <igx-avatar igxCardThumbnail shape="circle" src="/assets/wallpapers/sc2-watermark.webp"></igx-avatar>
-              @if (!group.inEdit) {
-                <h1 igxCardHeaderTitle>{{group.name}}</h1>
+              @if (!newGroup.inEdit) {
+                <h1 igxCardHeaderTitle i18n>New group</h1>
               } @else {
                 <igx-input-group igxCardHeaderTitle>
                   <label igxLabel for="groupName" i18n>Group name</label>
-                  <input type="text" id="groupName" name="groupName" #groupName igxInput [required]="true" [(ngModel)]="group.name" />
+                  <input type="text" id="groupName" name="groupName" #groupName igxInput [required]="true" [(ngModel)]="newGroup.name" />
                   @if (groupName.value) {
-                    <igx-suffix (click)="group.name = null">
+                    <igx-suffix (click)="newGroup.name = null">
                       <igx-icon>clear</igx-icon>
                     </igx-suffix>
                   }
                 </igx-input-group>
               }
-              <div class="action-buttons">
-                @if (!group.inEdit) {
-                  <igx-icon class="navigatable action-icon-button" i18n-title title="Send Emails for Checkin" #emails (click)="sendCheckinEmails(selectedTournament.id)">email</igx-icon>
-                  <igx-icon class="navigatable action-icon-button" i18n-title title="Edit" (click)="group.inEdit = true">edit</igx-icon>
-                  <igx-icon class="navigatable action-icon-button" i18n-title title="Delete" (click)="confirmGroup.open(group.id)">delete</igx-icon>
-                } @else {
-                  <igx-icon class="navigatable action-icon-button" (click)="group.inEdit = false">cancel</igx-icon>
-                  <igx-icon class="navigatable action-icon-button" (click)="submitGroup(group)">done</igx-icon>
-                }
-              </div>
             </igx-card-header>
-            <igx-card-content>
-              <igx-list class="group-list" igxDrop (dropped)="addToGroup($event, group)">
-                @for (participant of group.participants; track participant.id) {
-                  <igx-list-item>
-                    <igx-avatar igxListThumbnail [src]="participant.user.sc2Details?.avatarUrl || ''" [initials]="participant.user.username" shape="circle"></igx-avatar>
-                    <a igxListLineTitle [href]="environment.bellumgens + '/players/' + (participant.user.csgoDetails?.customUrl || participant.userId)" target="_blank">
-                      {{ participant.user.username }}
-                    </a>
-                    <span igxListLineTitle>
-                      {{ participant.battleTag }}
-                    </span>
-                    <igx-icon class="navigatable" i18n-title title="Remove from group" (click)="removeFromGroup(participant, group)">delete</igx-icon>
-                  </igx-list-item>
-                }
-              </igx-list>
+
+            <igx-card-content class="new-group-body">
+              @if (!newGroup.inEdit) {
+                <igx-icon class="navigatable" (click)="newGroup.inEdit = true">add_circle_outline</igx-icon>
+              } @else {
+                <button type="button" igxButton (click)="newGroup.inEdit = false" i18n>Cancel</button>
+                <button type="button" igxButton (click)="submitGroup(newGroup)" i18n>Submit</button>
+              }
             </igx-card-content>
           </igx-card>
+
         }
-
-        <igx-card class="new-group-card" elevated>
-          <igx-card-header>
-            <igx-avatar igxCardThumbnail shape="circle" src="/assets/wallpapers/sc2-watermark.webp"></igx-avatar>
-            @if (!newGroup.inEdit) {
-              <h1 igxCardHeaderTitle i18n>New group</h1>
-            } @else {
-              <igx-input-group igxCardHeaderTitle>
-                <label igxLabel for="groupName" i18n>Group name</label>
-                <input type="text" id="groupName" name="groupName" #groupName igxInput [required]="true" [(ngModel)]="newGroup.name" />
-                @if (groupName.value) {
-                  <igx-suffix (click)="newGroup.name = null">
-                    <igx-icon>clear</igx-icon>
-                  </igx-suffix>
-                }
-              </igx-input-group>
-            }
-          </igx-card-header>
-
-          <igx-card-content class="new-group-body">
-            @if (!newGroup.inEdit) {
-              <igx-icon class="navigatable" (click)="newGroup.inEdit = true">add_circle_outline</igx-icon>
-            } @else {
-              <button type="button" igxButton (click)="newGroup.inEdit = false" i18n>Cancel</button>
-              <button type="button" igxButton (click)="submitGroup(newGroup)" i18n>Submit</button>
-            }
-          </igx-card-content>
-        </igx-card>
       </div>
     </igx-card-content>
   </igx-card>

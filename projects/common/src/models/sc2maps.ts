@@ -16,7 +16,16 @@ export enum SC2Map {
   LightshadeLE,
   RomanticideLE,
   JagannathaLE,
-  IceAndChromeLE
+  IceAndChromeLE,
+  AlcyoneLE,
+  AmphionLE,
+  CrimsonCourtLE,
+  DynastyLE,
+  GhostRiverLE,
+  GoldenauraLE,
+  OceanbornLE,
+  PostYouthLE,
+  SiteDeltaLE
 }
 
 export interface SC2LadderMap {
@@ -80,5 +89,32 @@ export const SC2_MAPS: SC2LadderMap [] = [{
   }, {
     id: SC2Map.IceAndChromeLE,
     map: 'Ice and Chrome LE'
+  }, {
+    id: SC2Map.AlcyoneLE,
+    map: 'Alcyone LE'
+  }, {
+    id: SC2Map.AmphionLE,
+    map: 'Amphion LE'
+  }, {
+    id: SC2Map.CrimsonCourtLE,
+    map: 'Crimson Court LE'
+  }, {
+    id: SC2Map.DynastyLE,
+    map: 'Dynasty LE'
+  }, {
+    id: SC2Map.GhostRiverLE,
+    map: 'Ghost River LE'
+  }, {
+    id: SC2Map.GoldenauraLE,
+    map: 'Goldenaura LE'
+  }, {
+    id: SC2Map.OceanbornLE,
+    map: 'Oceanborn LE'
+  }, {
+    id: SC2Map.PostYouthLE,
+    map: 'Post-Youth LE'
+  }, {
+    id: SC2Map.SiteDeltaLE,
+    map: 'Site Delta LE'
   }
 ];

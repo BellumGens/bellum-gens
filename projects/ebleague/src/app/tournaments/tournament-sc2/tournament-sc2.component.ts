@@ -35,6 +35,7 @@ export class TournamentSc2Component extends BaseDirective {
   public groups: TournamentGroup [];
   public loading = false;
   public loadingMatches = false;
+  public loadingGroups = false;
   public authUser: ApplicationUser;
   public tournamentId: string;
   public environment = environment;
@@ -60,6 +61,7 @@ export class TournamentSc2Component extends BaseDirective {
           this.sc2matches = data;
         }
       });
+      this.apiService.loadingSC2Groups.subscribe(data => this.loadingGroups = data);
       this.apiService.getSc2Groups(this.tournamentId).subscribe(data => this.groups = data);
     });
   }
