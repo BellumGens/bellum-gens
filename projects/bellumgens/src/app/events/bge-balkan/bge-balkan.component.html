@@ -31,7 +31,7 @@
             <igx-grid-toolbar>
               <igx-grid-toolbar-title>{{group.name}}</igx-grid-toolbar-title>
             </igx-grid-toolbar>
-            <igx-column field="user" i18n-header header="Player" width="20%">
+            <igx-column field="user" i18n-header header="Player">
               <div *igxCell="let value">
                 <igx-avatar igxListThumbnail
                   [initials]="value.username"
@@ -43,13 +43,11 @@
                 </a>
               </div>
             </igx-column>
-            <igx-column field="battleTag" header="Battle Tag" width="20%">
+            <igx-column field="country" i18n-header header="Country">
             </igx-column>
-            <igx-column field="companyId" i18n-header header="Team" width="20%">
+            <igx-column field="companyId" i18n-header header="Team">
             </igx-column>
-            <igx-column field="country" i18n-header header="Country" width="20%">
-            </igx-column>
-            <igx-column field="playerPoints" dataType="number" i18n-header header="Points" width="10%">
+            <igx-column field="playerPoints" dataType="number" i18n-header header="Points">
             </igx-column>
           </igx-grid>
         }
