@@ -56,16 +56,16 @@ export class BgeBalkanComponent extends BaseDirective {
         });
         this.apiService.getSc2Groups(this.tournamentId).subscribe(data => this.groups = data);
       } else {
-        this.apiService.activeTournament.subscribe(data => {
-          if (data) {
-            this.tournament = data;
-            this.tournamentId = data.id;
+        this.apiService.activeTournament.subscribe(t => {
+          if (t) {
+            this.tournament = t;
+            this.tournamentId = t.id;
             this.apiService.loadingSC2Registrations.subscribe(data => this.loading = data);
             this.apiService.getSc2Registrations(this.tournamentId).subscribe(data => this.registrations = data);
             this.apiService.loadingSC2Matches.subscribe(data => this.loadingMatches = data);
-            this.apiService.getSc2Matches(this.tournamentId).subscribe(data => {
-              if (data) {
-                this.sc2matches = data;
+            this.apiService.getSc2Matches(this.tournamentId).subscribe(matches => {
+              if (matches) {
+                this.sc2matches = matches;
               }
             });
             this.apiService.getSc2Groups(this.tournamentId).subscribe(data => this.groups = data);
