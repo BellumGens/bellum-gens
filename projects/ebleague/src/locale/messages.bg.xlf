@@ -2,86 +2,6 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="ng2.template">
     <body>
-      <trans-unit id="6634018439611394310" datatype="html">
-        <source>Import from Steam Group</source>
-        <target>Създай от Steam група</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-new/team-new.component.html</context>
-          <context context-type="linenumber">3,6</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="1025499628828428883" datatype="html">
-        <source>Search Groups</source>
-        <target>Търси в групите</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-new/team-new.component.html</context>
-          <context context-type="linenumber">8,9</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="944776409514058300" datatype="html">
-        <source>No Steam groups found...</source>
-        <target>Не са намерени Steam групи...</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-new/team-new.component.html</context>
-          <context context-type="linenumber">18,20</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2894955854294136007" datatype="html">
-        <source>Or create with form</source>
-        <target>Или създай с формуляра</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-new/team-new.component.html</context>
-          <context context-type="linenumber">28,29</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="550195626538405809" datatype="html">
-        <source>Team name</source>
-        <target>Име на отбора</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-new/team-new.component.html</context>
-          <context context-type="linenumber">31,33</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="7377261059414390165" datatype="html">
-        <source>Team motto</source>
-        <target>Мото на отбора</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-new/team-new.component.html</context>
-          <context context-type="linenumber">46,48</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="7681453845879212786" datatype="html">
-        <source>Team Avatar URL</source>
-        <target>Аватар на отбора</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-new/team-new.component.html</context>
-          <context context-type="linenumber">73,76</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6711042855903978761" datatype="html">
-        <source>You must provide an image url</source>
-        <target>Трябва да предоставите URL на изображение</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-new/team-new.component.html</context>
-          <context context-type="linenumber">86,89</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="187187500641108332" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{ inProgress ? &apos;Submitting...&apos; : &apos;Submit&apos; }}"/></source>
-        <target><x id="INTERPOLATION" equiv-text="{{ inProgress ? &apos;Изпращане...&apos; : &apos;Изпрати&apos; }}"/></target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-new/team-new.component.html</context>
-          <context context-type="linenumber">93,94</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">13,14</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">35,36</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="3256590211420252677" datatype="html">
         <source>Choose a language</source>
         <target>Избери език</target>
@@ -202,6 +122,18 @@
           <context context-type="linenumber">2,5</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="187187500641108332" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{ disableLogin(provider.name) ? provider.name : &apos;Add &apos; + provider.name }}"/></source>
+        <target><x id="INTERPOLATION" equiv-text="{{ disableLogin(provider.name) ? provider.name : &apos;Добави &apos; + provider.name }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">13,14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">35,36</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="7259863416324481753" datatype="html">
         <source>Create username and password</source>
         <target>Създай потребителско име и парола</target>
@@ -252,6 +184,22 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
           <context context-type="linenumber">33,34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="510526722664146848" datatype="html">
+        <source>Check in</source>
+        <target>Потвърди</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="639936982205063071" datatype="html">
+        <source>Delete this application</source>
+        <target>Изтрий тази регистрация</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">40</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7893114882018865592" datatype="html">
@@ -980,14 +928,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
           <context context-type="linenumber">29,31</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="3602441324260631848" datatype="html">
-        <source>Hash</source>
-        <target>Хаш</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">32,33</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1902234206836707099" datatype="html">
@@ -2021,70 +1961,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournament-registration/registration-success/registration-success.component.html</context>
           <context context-type="linenumber">13,15</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="7783015370335104921" datatype="html">
-        <source>Registration Season 3</source>
-        <target>Регистрация Сезон 3</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/tournament-registration/tournament-registration.component.html</context>
-          <context context-type="linenumber">4,6</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="1998517533081429544" datatype="html">
-        <source>*You&apos;ve not associated a Steam account...</source>
-        <target>*Вие не сте асоциирали Steam акаунт...</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/tournament-registration/tournament-registration.component.html</context>
-          <context context-type="linenumber">14,19</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="9162352493128751152" datatype="html">
-        <source>Choose your team</source>
-        <target>Изберете отбор</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/tournament-registration/tournament-registration.component.html</context>
-          <context context-type="linenumber">36,39</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="3876375076640478005" datatype="html">
-        <source>Create a new team...</source>
-        <target>Създай нов отбор...</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/tournament-registration/tournament-registration.component.html</context>
-          <context context-type="linenumber">46,50</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="1749890383025463894" datatype="html">
-        <source>*Choose the company associated with your participation...</source>
-        <target>*Изберете компанията с която ще асоцирате вашето участие...</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/tournament-registration/tournament-registration.component.html</context>
-          <context context-type="linenumber">76,78</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="7912447477245612147" datatype="html">
-        <source>I accept the <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight navigatable&quot; (click)=&quot;scrollToTerms($event)&quot;&gt;"/>terms and conditions<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>.</source>
-        <target>Приемам <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight navigatable&quot; (click)=&quot;scrollToTerms($event)&quot;&gt;"/>условията за записване<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/tournament-registration/tournament-registration.component.html</context>
-          <context context-type="linenumber">88,89</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="5087015726170958383" datatype="html">
-        <source>Choose league (game)</source>
-        <target>Изберете лига (игра)</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/tournament-registration/tournament-registration.component.ts</context>
-          <context context-type="linenumber">54</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="8376311744797589133" datatype="html">
-        <source>Please login first</source>
-        <target>Моля първо влезте в профила си</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/tournament-registration/tournament-registration.component.ts</context>
-          <context context-type="linenumber">55</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5231653557636379088" datatype="html">
