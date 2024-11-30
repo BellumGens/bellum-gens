@@ -133,7 +133,7 @@
         }
         @for (registration of registrations | notInGroup:'tournamentSC2GroupId':pipeTrigger; track registration.id) {
           <div class="registration-slot">
-            <igx-avatar [src]="registration.user.avatarMedium"
+            <igx-avatar [src]="registration.user.sc2Details?.avatarUrl"
               [initials]="registration.user.username"
               size="medium"
               shape="circle"
@@ -184,8 +184,8 @@
               <igx-list class="group-list" igxDrop (dropped)="addToGroup($event, group)">
                 @for (participant of group.participants; track participant.id) {
                   <igx-list-item>
-                    <igx-avatar igxListThumbnail [src]="participant.user.csgoDetails.avatarMedium" shape="circle"></igx-avatar>
-                    <a igxListLineTitle [href]="environment.bellumgens + '/players/' + (participant.user.csgoDetails.customUrl || participant.userId)" target="_blank">
+                    <igx-avatar igxListThumbnail [src]="participant.user.sc2Details?.avatarUrl" shape="circle"></igx-avatar>
+                    <a igxListLineTitle [href]="environment.bellumgens + '/players/' + (participant.user.csgoDetails?.customUrl || participant.userId)" target="_blank">
                       {{ participant.user.username }}
                     </a>
                     <span igxListLineTitle>
@@ -263,7 +263,7 @@
       <igx-select-item
         [value]="registration.userId"
         [text]="registration.battleTag">
-        <igx-avatar [src]="registration.user.csgoDetails.avatarMedium" [initials]="registration.battleTag"></igx-avatar>
+        <igx-avatar [src]="registration.user.sc2Details?.avatarUrl" [initials]="registration.battleTag"></igx-avatar>
         {{ registration.battleTag }}
       </igx-select-item>
     }
@@ -277,7 +277,7 @@
       <igx-select-item
         [value]="registration.userId"
         [text]="registration.battleTag">
-        <igx-avatar [src]="registration.user.csgoDetails.avatarMedium" [initials]="registration.battleTag"></igx-avatar>
+        <igx-avatar [src]="registration.user.sc2Details?.avatarUrl" [initials]="registration.battleTag"></igx-avatar>
         {{ registration.battleTag }}
       </igx-select-item>
     }
@@ -352,7 +352,7 @@
               <igx-select-item
                 [value]="registration.userId"
                 [text]="registration.battleTag">
-                <igx-avatar [src]="registration.user.csgoDetails.avatarMedium" [initials]="registration.battleTag"></igx-avatar>
+                <igx-avatar [src]="registration.user.sc2Details?.avatarUrl" [initials]="registration.battleTag"></igx-avatar>
                 {{ registration.battleTag }}
               </igx-select-item>
             }
