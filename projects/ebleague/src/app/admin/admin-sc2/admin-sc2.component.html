@@ -133,7 +133,7 @@
         }
         @for (registration of registrations | notInGroup:'tournamentSC2GroupId':pipeTrigger; track registration.id) {
           <div class="registration-slot">
-            <igx-avatar [src]="registration.user.sc2Details?.avatarUrl"
+            <igx-avatar [src]="registration.user.sc2Details?.avatarUrl || ''"
               [initials]="registration.user.username"
               size="medium"
               shape="circle"
@@ -172,6 +172,7 @@
               }
               <div class="action-buttons">
                 @if (!group.inEdit) {
+                  <igx-icon class="navigatable action-icon-button" i18n-title title="Send Emails for Checkin" #emails (click)="sendCheckinEmails(selectedTournament.id)">email</igx-icon>
                   <igx-icon class="navigatable action-icon-button" i18n-title title="Edit" (click)="group.inEdit = true">edit</igx-icon>
                   <igx-icon class="navigatable action-icon-button" i18n-title title="Delete" (click)="confirmGroup.open(group.id)">delete</igx-icon>
                 } @else {
@@ -184,7 +185,7 @@
               <igx-list class="group-list" igxDrop (dropped)="addToGroup($event, group)">
                 @for (participant of group.participants; track participant.id) {
                   <igx-list-item>
-                    <igx-avatar igxListThumbnail [src]="participant.user.sc2Details?.avatarUrl" shape="circle"></igx-avatar>
+                    <igx-avatar igxListThumbnail [src]="participant.user.sc2Details?.avatarUrl || ''" [initials]="participant.user.username" shape="circle"></igx-avatar>
                     <a igxListLineTitle [href]="environment.bellumgens + '/players/' + (participant.user.csgoDetails?.customUrl || participant.userId)" target="_blank">
                       {{ participant.user.username }}
                     </a>
@@ -263,7 +264,7 @@
       <igx-select-item
         [value]="registration.userId"
         [text]="registration.battleTag">
-        <igx-avatar [src]="registration.user.sc2Details?.avatarUrl" [initials]="registration.battleTag"></igx-avatar>
+        <igx-avatar [src]="registration.user.sc2Details?.avatarUrl || ''" [initials]="registration.battleTag"></igx-avatar>
         {{ registration.battleTag }}
       </igx-select-item>
     }
@@ -277,7 +278,7 @@
       <igx-select-item
         [value]="registration.userId"
         [text]="registration.battleTag">
-        <igx-avatar [src]="registration.user.sc2Details?.avatarUrl" [initials]="registration.battleTag"></igx-avatar>
+        <igx-avatar [src]="registration.user.sc2Details?.avatarUrl || ''" [initials]="registration.battleTag"></igx-avatar>
         {{ registration.battleTag }}
       </igx-select-item>
     }
@@ -352,7 +353,7 @@
               <igx-select-item
                 [value]="registration.userId"
                 [text]="registration.battleTag">
-                <igx-avatar [src]="registration.user.sc2Details?.avatarUrl" [initials]="registration.battleTag"></igx-avatar>
+                <igx-avatar [src]="registration.user.sc2Details?.avatarUrl || ''" [initials]="registration.battleTag"></igx-avatar>
                 {{ registration.battleTag }}
               </igx-select-item>
             }

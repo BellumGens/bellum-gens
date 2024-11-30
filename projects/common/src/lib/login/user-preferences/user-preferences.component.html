@@ -34,7 +34,10 @@
         <div class="horizontal-center" igxListAction>
           <span [ngClass]="{'color-warn': !registration.state, 'color-success': registration.state }" i18n>{{ registration.state ? 'Confirmed' : 'Pending' }}</span>
           @if (!registration.state) {
-            <igx-icon class="navigatable" (click)="confirmReg.open(registration)" title="Delete this application">delete_forever</igx-icon>
+            <igx-icon class="navigatable" (click)="weeklyCheckin(registration)" i18n-title title="Check in">where_to_vote</igx-icon>
+          }
+          @if (!registration.state) {
+            <igx-icon class="highlight navigatable" (click)="confirmReg.open(registration)" i18n-title title="Delete this application">delete_forever</igx-icon>
           }
         </div>
       </igx-list-item>

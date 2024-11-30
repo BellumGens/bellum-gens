@@ -2,77 +2,6 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="ng2.template">
     <body>
-      <trans-unit id="6634018439611394310" datatype="html">
-        <source>Import from Steam Group</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-new/team-new.component.html</context>
-          <context context-type="linenumber">3,4</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="1025499628828428883" datatype="html">
-        <source>Search Groups</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-new/team-new.component.html</context>
-          <context context-type="linenumber">8,9</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="944776409514058300" datatype="html">
-        <source>No Steam groups found...</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-new/team-new.component.html</context>
-          <context context-type="linenumber">18,19</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2894955854294136007" datatype="html">
-        <source>Or create with form</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-new/team-new.component.html</context>
-          <context context-type="linenumber">28,29</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="550195626538405809" datatype="html">
-        <source>Team name</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-new/team-new.component.html</context>
-          <context context-type="linenumber">31,32</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="7377261059414390165" datatype="html">
-        <source>Team motto</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-new/team-new.component.html</context>
-          <context context-type="linenumber">46,47</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="7681453845879212786" datatype="html">
-        <source>Team Avatar URL</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-new/team-new.component.html</context>
-          <context context-type="linenumber">73,74</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6711042855903978761" datatype="html">
-        <source>You must provide an image url</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-new/team-new.component.html</context>
-          <context context-type="linenumber">86</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="187187500641108332" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{ inProgress ? &apos;Submitting...&apos; : &apos;Submit&apos; }}"/></source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-new/team-new.component.html</context>
-          <context context-type="linenumber">93,94</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">13,14</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">35,36</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="3256590211420252677" datatype="html">
         <source>Choose a language</source>
         <context-group purpose="location">
@@ -180,6 +109,17 @@
           <context context-type="linenumber">2,4</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="187187500641108332" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{ disableLogin(provider.name) ? provider.name : &apos;Add &apos; + provider.name }}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">13,14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">35,36</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="7259863416324481753" datatype="html">
         <source>Create username and password</source>
         <context-group purpose="location">
@@ -226,22 +166,36 @@
           <context context-type="linenumber">33,34</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="510526722664146848" datatype="html">
+        <source>Check in</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="639936982205063071" datatype="html">
+        <source>Delete this application</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="7893114882018865592" datatype="html">
         <source>Delete Account Forever</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">46,47</context>
+          <context context-type="linenumber">49,50</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7515883357904500238" datatype="html">
         <source>Are you sure?</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">51</context>
+          <context context-type="linenumber">54</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">54</context>
+          <context context-type="linenumber">57</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-csgo/admin-csgo.component.html</context>
@@ -253,25 +207,25 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
-          <context context-type="linenumber">381</context>
+          <context context-type="linenumber">382</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
-          <context context-type="linenumber">385</context>
+          <context context-type="linenumber">386</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1829407837180331792" datatype="html">
         <source>Pressing OK will delete your user account permanently...</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">52,53</context>
+          <context context-type="linenumber">55,56</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2221100321668875234" datatype="html">
         <source>Pressing OK will delete your tournament registration permanently...</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">55,56</context>
+          <context context-type="linenumber">58,59</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4729859110254636214" datatype="html">
@@ -306,10 +260,6 @@
           <context context-type="sourcefile">projects/ebleague/src/app/shop/shop.component.html</context>
           <context context-type="linenumber">115,116</context>
         </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/tournament-registration/tournament-registration.component.html</context>
-          <context context-type="linenumber">22,23</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="3377733257357816211" datatype="html">
         <source>Must 8 or more characters and must include at least 1 letter, 1 number and 1 special char</source>
@@ -337,10 +287,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/registration/registration.component.html</context>
           <context context-type="linenumber">58,59</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/tournament-registration/tournament-registration.component.html</context>
-          <context context-type="linenumber">92,93</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7381827970983494105" datatype="html">
@@ -370,7 +316,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournament-sc2/tournament-sc2.component.html</context>
-          <context context-type="linenumber">37,38</context>
+          <context context-type="linenumber">73,74</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2470494039670246215" datatype="html">
@@ -396,7 +342,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
-          <context context-type="linenumber">236,237</context>
+          <context context-type="linenumber">237,238</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3770761673682962465" datatype="html">
@@ -415,7 +361,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
-          <context context-type="linenumber">248,249</context>
+          <context context-type="linenumber">249,250</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
@@ -423,7 +369,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournament-sc2/tournament-sc2.component.html</context>
-          <context context-type="linenumber">48,49</context>
+          <context context-type="linenumber">84,85</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6619869754055745168" datatype="html">
@@ -442,7 +388,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournament-sc2/tournament-sc2.component.html</context>
-          <context context-type="linenumber">54</context>
+          <context context-type="linenumber">90</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6549265851868599441" datatype="html">
@@ -461,7 +407,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournament-sc2/tournament-sc2.component.html</context>
-          <context context-type="linenumber">78</context>
+          <context context-type="linenumber">114</context>
         </context-group>
       </trans-unit>
       <trans-unit id="183581874551784576" datatype="html">
@@ -509,7 +455,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
-          <context context-type="linenumber">368</context>
+          <context context-type="linenumber">369</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
@@ -517,7 +463,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournament-sc2/tournament-sc2.component.html</context>
-          <context context-type="linenumber">118,119</context>
+          <context context-type="linenumber">154,155</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3425062088724754850" datatype="html">
@@ -536,7 +482,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournament-sc2/tournament-sc2.component.html</context>
-          <context context-type="linenumber">122,123</context>
+          <context context-type="linenumber">158,159</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8768389162031063883" datatype="html">
@@ -592,7 +538,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
-          <context context-type="linenumber">209,210</context>
+          <context context-type="linenumber">210,211</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7585826646011739428" datatype="html">
@@ -603,7 +549,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
-          <context context-type="linenumber">175</context>
+          <context context-type="linenumber">176</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7022070615528435141" datatype="html">
@@ -618,11 +564,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
-          <context context-type="linenumber">176</context>
+          <context context-type="linenumber">177</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
-          <context context-type="linenumber">362,363</context>
+          <context context-type="linenumber">363,364</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4296542518018293988" datatype="html">
@@ -633,7 +579,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
-          <context context-type="linenumber">206,207</context>
+          <context context-type="linenumber">207,208</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2159130950882492111" datatype="html">
@@ -652,15 +598,15 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
-          <context context-type="linenumber">224,225</context>
+          <context context-type="linenumber">225,226</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
-          <context context-type="linenumber">239</context>
+          <context context-type="linenumber">240</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
-          <context context-type="linenumber">325</context>
+          <context context-type="linenumber">326</context>
         </context-group>
       </trans-unit>
       <trans-unit id="935187492052582731" datatype="html">
@@ -691,15 +637,15 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
-          <context context-type="linenumber">225,226</context>
+          <context context-type="linenumber">226,227</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
-          <context context-type="linenumber">242</context>
+          <context context-type="linenumber">243</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
-          <context context-type="linenumber">327</context>
+          <context context-type="linenumber">328</context>
         </context-group>
       </trans-unit>
       <trans-unit id="888341446683346521" datatype="html">
@@ -718,7 +664,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
-          <context context-type="linenumber">244,245</context>
+          <context context-type="linenumber">245,246</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8623978917681527907" datatype="html">
@@ -729,7 +675,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
-          <context context-type="linenumber">252,253</context>
+          <context context-type="linenumber">253,254</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6826739576648458956" datatype="html">
@@ -740,7 +686,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
-          <context context-type="linenumber">257</context>
+          <context context-type="linenumber">258</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2992659907904826141" datatype="html">
@@ -765,7 +711,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
-          <context context-type="linenumber">287,288</context>
+          <context context-type="linenumber">288,289</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2013258814614550186" datatype="html">
@@ -776,7 +722,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
-          <context context-type="linenumber">304,305</context>
+          <context context-type="linenumber">305,306</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5968132631442328843" datatype="html">
@@ -787,7 +733,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
-          <context context-type="linenumber">323,324</context>
+          <context context-type="linenumber">324,325</context>
         </context-group>
       </trans-unit>
       <trans-unit id="464323669973961848" datatype="html">
@@ -802,11 +748,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
-          <context context-type="linenumber">331,332</context>
+          <context context-type="linenumber">332,333</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
-          <context context-type="linenumber">336,337</context>
+          <context context-type="linenumber">337,338</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5813867925497374051" datatype="html">
@@ -817,7 +763,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
-          <context context-type="linenumber">344,345</context>
+          <context context-type="linenumber">345,346</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5986939748618658940" datatype="html">
@@ -839,7 +785,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
-          <context context-type="linenumber">376,377</context>
+          <context context-type="linenumber">377,378</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4369193789995195819" datatype="html">
@@ -850,7 +796,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
-          <context context-type="linenumber">382,383</context>
+          <context context-type="linenumber">383,384</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1503464364146588995" datatype="html">
@@ -861,7 +807,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
-          <context context-type="linenumber">386,387</context>
+          <context context-type="linenumber">387,388</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1826215573205981970" datatype="html">
@@ -871,15 +817,7 @@
           <context context-type="linenumber">20,21</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/tournament-registration/tournament-registration.component.html</context>
-          <context context-type="linenumber">66,67</context>
-        </context-group>
-        <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
-          <context context-type="linenumber">149</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournament-sc2/tournament-sc2.component.html</context>
           <context context-type="linenumber">149</context>
         </context-group>
       </trans-unit>
@@ -902,13 +840,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
           <context context-type="linenumber">29,30</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="3602441324260631848" datatype="html">
-        <source>Hash</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">32</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1902234206836707099" datatype="html">
@@ -1005,7 +936,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournament-sc2/tournament-sc2.component.html</context>
-          <context context-type="linenumber">89</context>
+          <context context-type="linenumber">125</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5008201383009515838" datatype="html">
@@ -1015,32 +946,39 @@
           <context context-type="linenumber">83,84</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="6253404003148249194" datatype="html">
+        <source>Send Emails for Checkin</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
+          <context context-type="linenumber">175</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="8858806960007222085" datatype="html">
         <source>Remove from group</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
-          <context context-type="linenumber">194</context>
+          <context context-type="linenumber">195</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1567933707014835992" datatype="html">
         <source>Player 1</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
-          <context context-type="linenumber">261,262</context>
+          <context context-type="linenumber">262,263</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1814275131671684772" datatype="html">
         <source>Player 2</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
-          <context context-type="linenumber">275,276</context>
+          <context context-type="linenumber">276,277</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3787050687842841344" datatype="html">
         <source>Winner</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
-          <context context-type="linenumber">350,351</context>
+          <context context-type="linenumber">351,352</context>
         </context-group>
       </trans-unit>
       <trans-unit id="313153937351637902" datatype="html">
@@ -1822,62 +1760,6 @@
           <context context-type="linenumber">13,15</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7783015370335104921" datatype="html">
-        <source>Registration Season 3</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/tournament-registration/tournament-registration.component.html</context>
-          <context context-type="linenumber">4,6</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="1998517533081429544" datatype="html">
-        <source>*You&apos;ve not associated a Steam account...</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/tournament-registration/tournament-registration.component.html</context>
-          <context context-type="linenumber">14</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="9162352493128751152" datatype="html">
-        <source>Choose your team</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/tournament-registration/tournament-registration.component.html</context>
-          <context context-type="linenumber">36,37</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="3876375076640478005" datatype="html">
-        <source>Create a new team...</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/tournament-registration/tournament-registration.component.html</context>
-          <context context-type="linenumber">46</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="1749890383025463894" datatype="html">
-        <source>*Choose the company associated with your participation...</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/tournament-registration/tournament-registration.component.html</context>
-          <context context-type="linenumber">76</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="7912447477245612147" datatype="html">
-        <source>I accept the <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight navigatable&quot; (click)=&quot;scrollToTerms($event)&quot;&gt;"/>terms and conditions<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>.</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/tournament-registration/tournament-registration.component.html</context>
-          <context context-type="linenumber">88,89</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="5087015726170958383" datatype="html">
-        <source>Choose league (game)</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/tournament-registration/tournament-registration.component.ts</context>
-          <context context-type="linenumber">53</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="8376311744797589133" datatype="html">
-        <source>Please login first</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/tournament-registration/tournament-registration.component.ts</context>
-          <context context-type="linenumber">54</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="5231653557636379088" datatype="html">
         <source>Birthplace: <x id="INTERPOLATION" equiv-text="{{ member.birthplace }}"/></source>
         <context-group purpose="location">
@@ -1918,7 +1800,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournament-sc2/tournament-sc2.component.html</context>
-          <context context-type="linenumber">42</context>
+          <context context-type="linenumber">78</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7342228948056339077" datatype="html">
@@ -1929,7 +1811,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournament-sc2/tournament-sc2.component.html</context>
-          <context context-type="linenumber">44,45</context>
+          <context context-type="linenumber">80,81</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3724068243287682962" datatype="html">
@@ -1937,6 +1819,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
           <context context-type="linenumber">137</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournament-sc2/tournament-sc2.component.html</context>
+          <context context-type="linenumber">55</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1567940090040631427" datatype="html">
@@ -1947,7 +1833,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournament-sc2/tournament-sc2.component.html</context>
-          <context context-type="linenumber">151</context>
+          <context context-type="linenumber">57</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3763543734947983947" datatype="html">
@@ -1958,7 +1844,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournament-sc2/tournament-sc2.component.html</context>
-          <context context-type="linenumber">153</context>
+          <context context-type="linenumber">59</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6125242344720136714" datatype="html">
@@ -1983,7 +1869,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournament-sc2/tournament-sc2.component.html</context>
-          <context context-type="linenumber">155</context>
+          <context context-type="linenumber">61</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3988118461352243224" datatype="html">
@@ -2001,7 +1887,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournament-sc2/tournament-sc2.component.html</context>
-          <context context-type="linenumber">157</context>
+          <context context-type="linenumber">63</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4455180189756977016" datatype="html">
@@ -2197,7 +2083,7 @@
         <source>Player</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournament-sc2/tournament-sc2.component.html</context>
-          <context context-type="linenumber">135</context>
+          <context context-type="linenumber">41</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1839866165898642206" datatype="html">
