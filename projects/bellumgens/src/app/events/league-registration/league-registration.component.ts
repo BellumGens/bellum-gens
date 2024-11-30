@@ -59,17 +59,17 @@ export class LeagueRegistrationComponent {
 
   public loginFirst = $localize`Please login first`;
   public balkanCountries = [
-    $localize`Albania`,
-    $localize`Bosnia and Herzegovina`,
-    $localize`Bulgaria`,
-    $localize`Croatia`,
-    $localize`Greece`,
-    $localize`Kosovo`,
-    $localize`Montenegro`,
-    $localize`North Macedonia`,
-    $localize`Romania`,
-    $localize`Serbia`,
-    $localize`Slovenia`,
+    { name: $localize`Albania`, value: `Albania` },
+    { name: $localize`Bosnia and Herzegovina`, value: `Bosnia and Herzegovina` },
+    { name: $localize`Bulgaria`, value: `Bulgaria` },
+    { name: $localize`Croatia`, value: `Croatia` },
+    { name: $localize`Greece`, value: `Greece` },
+    { name: $localize`Kosovo`, value: `Kosovo` },
+    { name: $localize`Montenegro`, value: `Montenegro` },
+    { name: $localize`North Macedonia`, value: `North Macedonia` },
+    { name: $localize`Romania`, value: `Romania` },
+    { name: $localize`Serbia`, value: `Serbia` },
+    { name: $localize`Slovenia`, value: `Slovenia` }
   ];
 
   constructor(private authManager: LoginService,

@@ -70,9 +70,9 @@
       </igx-prefix>
       <label igxLabel for="balkanCountry" i18n>Country</label>
       @for (country of balkanCountries; track country) {
-        <igx-select-item [value]="country">
-          <igx-avatar [src]="country | countrySVG" shape="circle" [title]="country"></igx-avatar>
-          <span class="title">{{ country }}</span>
+        <igx-select-item [value]="country.value">
+          <igx-avatar [src]="country.value| countrySVG" shape="circle" [title]="country.name"></igx-avatar>
+          <span class="title">{{ country.name }}</span>
         </igx-select-item>
       }
     </igx-select>
