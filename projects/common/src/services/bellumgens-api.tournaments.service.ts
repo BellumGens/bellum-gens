@@ -106,7 +106,7 @@ export class ApiTournamentsService {
   }
 
   public getSc2Registrations(id: string): BehaviorSubject<TournamentParticipant []> {
-    if (!this._sc2Registrations.has(id)) {
+    if (!this.loadingSC2Registrations.value) {
       this.loadingSC2Registrations.next(true);
       this._sc2Registrations.set(id, new BehaviorSubject<TournamentParticipant []>(null));
       this.getSC2Registrations(id).subscribe({
@@ -136,9 +136,11 @@ export class ApiTournamentsService {
   }
 
   public getSc2Matches(id: string): BehaviorSubject<TournamentSC2Match []> {
-    if (!this._sc2Matches.has(id)) {
+    if (!this.loadingSC2Matches.value) {
       this.loadingSC2Matches.next(true);
-      this._sc2Matches.set(id, new BehaviorSubject<TournamentSC2Match []>(null));
+      if (!this._sc2Matches.has(id)) {
+        this._sc2Matches.set(id, new BehaviorSubject<TournamentSC2Match []>(null));
+      }
       this.getSC2Matches(id).subscribe({
         next: (data) => {
           this._sc2Matches.get(id).next(data);
@@ -166,9 +168,11 @@ export class ApiTournamentsService {
   }
 
   public getSc2Groups(id: string): BehaviorSubject<TournamentSC2Group []> {
-    if (!this._sc2Groups.has(id)) {
+    if (!this.loadingSC2Registrations.value) {
       this.loadingSC2Registrations.next(true);
-      this._sc2Groups.set(id, new BehaviorSubject<TournamentSC2Group []>(null));
+      if (!this._sc2Groups.has(id)) {
+        this._sc2Groups.set(id, new BehaviorSubject<TournamentSC2Group []>(null));
+      }
       this.getSC2Groups(id).subscribe({
         next: (data) => {
           this._sc2Groups.get(id).next(data);
@@ -311,7 +315,7 @@ export class ApiTournamentsService {
     return this.http.put<TournamentSC2Group>(`${this._apiEndpoint}/tournament/sc2group${group.id ? '?id=' + group.id : ''}`,
       group, { withCredentials: true}).pipe(
         map(response => {
-          this.commService.emitSuccess('Tournament CS:GO group updated successfully!');
+          this.commService.emitSuccess('Tournament StarCraft 2 group updated successfully!');
           return response;
         }),
         catchError(error => {
