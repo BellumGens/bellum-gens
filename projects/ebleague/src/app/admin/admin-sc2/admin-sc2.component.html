@@ -337,12 +337,12 @@
 
       <div class="horizontal-center">
         <igx-input-group>
-          <label igxLabel i18n>Points {{ matchInEdit.player1?.battleNetId }}</label>
+          <label igxLabel i18n>Points {{ matchInEdit.player1?.username }}</label>
           <input type="number" igxInput [(ngModel)]="matchInEdit.player1Points" />
         </igx-input-group>
         <span class="grid-vs-divider">:</span>
         <igx-input-group>
-          <label igxLabel i18n>Points {{ matchInEdit.player2?.battleNetId }}</label>
+          <label igxLabel i18n>Points {{ matchInEdit.player2?.username }}</label>
           <input type="number" igxInput [(ngModel)]="matchInEdit.player2Points" />
         </igx-input-group>
       </div>
@@ -361,8 +361,8 @@
               <igx-select-item
                 [value]="registration.userId"
                 [text]="registration.battleTag">
-                <igx-avatar [src]="registration.user.sc2Details?.avatarUrl || ''" [initials]="registration.battleTag"></igx-avatar>
-                {{ registration.battleTag }}
+                <igx-avatar [src]="registration.user.sc2Details?.avatarUrl || ''" [initials]="registration.user.username" size="small" [shape]="'circle'"></igx-avatar>
+                {{ registration.user.username }}
               </igx-select-item>
             }
           </igx-select>

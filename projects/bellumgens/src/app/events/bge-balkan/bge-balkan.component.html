@@ -14,15 +14,7 @@
           <div class="registration-slot">
             <igx-avatar [src]="registration.user.sc2Details?.avatarUrl || ''" [initials]="registration.user.username" size="medium" shape="circle">
             </igx-avatar>
-            @if (registration.userId === authUser?.id && registration.state === 0) {
-              <igx-badge
-                type="warning"
-                icon="priority_high"
-                i18n-title
-                title="This registration is pending check-in for the current week!"
-                class="registration-badge-style">
-              </igx-badge>
-            }
+            <igx-avatar [src]="registration.country | countrySVG" shape="circle" [title]="registration.country" class="country-badge-small"></igx-avatar>
             <a [routerLink]="['/players/', (registration.user.csgoDetails?.customUrl || registration.userId)]" target="_blank">{{ registration.battleTag }}</a>
             <span>[{{ registration.companyId }}]</span>
           </div>
@@ -39,7 +31,7 @@
             <igx-grid-toolbar>
               <igx-grid-toolbar-title>{{group.name}}</igx-grid-toolbar-title>
             </igx-grid-toolbar>
-            <igx-column field="user" i18n-header header="Player" width="20%">
+            <igx-column field="user" i18n-header header="Player">
               <div *igxCell="let value">
                 <igx-avatar igxListThumbnail
                   [initials]="value.username"
@@ -51,17 +43,11 @@
                 </a>
               </div>
             </igx-column>
-            <igx-column field="battleTag" header="Battle Tag" width="20%">
+            <igx-column field="country" i18n-header header="Country">
             </igx-column>
-            <igx-column field="companyId" i18n-header header="Team" width="20%">
+            <igx-column field="companyId" i18n-header header="Team">
             </igx-column>
-            <igx-column field="matches" dataType="number" i18n-header header="Matches" width="10%">
-            </igx-column>
-            <igx-column field="wins" dataType="number" i18n-header header="Wins" width="10%">
-            </igx-column>
-            <igx-column field="losses" dataType="number" i18n-header header="Losses" width="10%">
-            </igx-column>
-            <igx-column field="playerPoints" dataType="number" i18n-header header="Points" width="10%">
+            <igx-column field="playerPoints" dataType="number" i18n-header header="Points">
             </igx-column>
           </igx-grid>
         }

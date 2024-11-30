@@ -2,9 +2,9 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { BaseDirective } from '../../base/base.component';
 import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { TournamentParticipant, TournamentGroup, ApplicationUser, TournamentSC2Match, Tournament, ApiTournamentsService, LoginService, Sc2MapNamePipe } from '../../../../../common/src/public_api';
+import { TournamentParticipant, TournamentGroup, ApplicationUser, TournamentSC2Match, Tournament, ApiTournamentsService, LoginService, Sc2MapNamePipe, CountrySVGPipe } from '../../../../../common/src/public_api';
 import { DatePipe } from '@angular/common';
-import { IGX_CARD_DIRECTIVES, IgxCircularProgressBarComponent, IgxAvatarComponent, IgxBadgeComponent, IgxDividerDirective, IGX_GRID_DIRECTIVES, IgxIconComponent } from '@infragistics/igniteui-angular';
+import { IGX_CARD_DIRECTIVES, IgxCircularProgressBarComponent, IgxAvatarComponent, IgxDividerDirective, IGX_GRID_DIRECTIVES, IgxIconComponent } from '@infragistics/igniteui-angular';
 
 @Component({
   selector: 'app-bge-balkan',
@@ -16,11 +16,11 @@ import { IGX_CARD_DIRECTIVES, IgxCircularProgressBarComponent, IgxAvatarComponen
     IGX_CARD_DIRECTIVES,
     IgxCircularProgressBarComponent,
     IgxAvatarComponent,
-    IgxBadgeComponent,
     IgxDividerDirective,
     IGX_GRID_DIRECTIVES,
     IgxIconComponent,
-    Sc2MapNamePipe
+    Sc2MapNamePipe,
+    CountrySVGPipe
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
@@ -50,11 +50,7 @@ export class BgeBalkanComponent extends BaseDirective {
         this.apiService.loadingSC2Registrations.subscribe(data => this.loading = data);
         this.apiService.getSc2Registrations(this.tournamentId).subscribe(data => this.registrations = data);
         this.apiService.loadingSC2Matches.subscribe(data => this.loadingMatches = data);
-        this.apiService.getSc2Matches(this.tournamentId).subscribe(data => {
-          if (data) {
-            this.sc2matches = data;
-          }
-        });
+        this.apiService.getSc2Matches(this.tournamentId).subscribe(data => this.sc2matches = data);
         this.apiService.loadingSC2Groups.subscribe(data => this.loadingGroups = data);
         this.apiService.getSc2Groups(this.tournamentId).subscribe(data => this.groups = data);
       } else {
@@ -65,11 +61,7 @@ export class BgeBalkanComponent extends BaseDirective {
             this.apiService.loadingSC2Registrations.subscribe(data => this.loading = data);
             this.apiService.getSc2Registrations(this.tournamentId).subscribe(data => this.registrations = data);
             this.apiService.loadingSC2Matches.subscribe(data => this.loadingMatches = data);
-            this.apiService.getSc2Matches(this.tournamentId).subscribe(matches => {
-              if (matches) {
-                this.sc2matches = matches;
-              }
-            });
+            this.apiService.getSc2Matches(this.tournamentId).subscribe(matches => this.sc2matches = matches);
             this.apiService.loadingSC2Groups.subscribe(data => this.loadingGroups = data);
             this.apiService.getSc2Groups(this.tournamentId).subscribe(data => this.groups = data);
           }
