@@ -1045,6 +1045,14 @@
           <context context-type="linenumber">83,88</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="6253404003148249194" datatype="html">
+        <source>Send Emails for Checkin</source>
+        <target>Изпрати имейли за чекин</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
+          <context context-type="linenumber">175</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="8858806960007222085" datatype="html">
         <source>Remove from group</source>
         <target>Премахни от групата</target>

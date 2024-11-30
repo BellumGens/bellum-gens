@@ -172,6 +172,7 @@
               }
               <div class="action-buttons">
                 @if (!group.inEdit) {
+                  <igx-icon class="navigatable action-icon-button" i18n-title title="Send Emails for Checkin" #emails (click)="sendCheckinEmails(selectedTournament.id)">email</igx-icon>
                   <igx-icon class="navigatable action-icon-button" i18n-title title="Edit" (click)="group.inEdit = true">edit</igx-icon>
                   <igx-icon class="navigatable action-icon-button" i18n-title title="Delete" (click)="confirmGroup.open(group.id)">delete</igx-icon>
                 } @else {

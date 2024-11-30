@@ -211,6 +211,19 @@ export class ApiTournamentsService {
     );
   }
 
+  public sendCheckinEmails(tournamentId: string) {
+    return this.http.get(`${this._apiEndpoint}/tournament/sendcheckinemails?tournamentId=${tournamentId}`, { withCredentials: true }).pipe(
+      map(response => {
+        this.commService.emitSuccess(response['message']);
+        return response;
+      }),
+      catchError(error => {
+        this.commService.emitError(error.message);
+        return throwError(() => error);
+      })
+    );
+  }
+
   public confirmRegistration(reg: TournamentApplication) {
     return this.http.put(`${this._apiEndpoint}/tournament/confirm?id=${reg.id}`, reg, { withCredentials: true }).pipe(
       map(response => {

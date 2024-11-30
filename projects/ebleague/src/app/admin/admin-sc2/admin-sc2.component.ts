@@ -155,4 +155,11 @@ export class AdminSc2Component {
       maps.splice(maps.indexOf(map), 1);
     });
   }
+
+  public sendCheckinEmails(tournamentId: string) {
+    this.apiService.sendCheckinEmails(tournamentId).subscribe({
+      next: () => {},
+      complete: () => {}
+    });
+  }
 }
