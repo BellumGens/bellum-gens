@@ -23,7 +23,7 @@
                 class="registration-badge-style">
               </igx-badge>
             }
-            <a [href]="environment.bellumgens + '/players/' + (registration.user.csgoDetails?.customUrl || registration.userId)" target="_blank">{{ registration.battleTag }}</a>
+            <a [routerLink]="['/players/', (registration.user.csgoDetails?.customUrl || registration.userId)]" target="_blank">{{ registration.battleTag }}</a>
             <span>[{{ registration.companyId }}]</span>
           </div>
         }
@@ -41,11 +41,10 @@
             <igx-column field="user" i18n-header header="Player" width="20%">
               <div *igxCell="let value">
                 <igx-avatar igxListThumbnail
-                  [src]="value.avatarUrl || ''"
                   [initials]="value.username"
                   shape="circle">
                 </igx-avatar>
-                <a igxListLineTitle [href]="environment.bellumgens + '/players/' + (value?.customURL || value.id)" target="_blank">
+                <a igxListLineTitle [routerLink]="['/players/', (value?.customURL || value.id)]" target="_blank">
                   {{ value.username }}
                 </a>
               </div>
@@ -65,6 +64,7 @@
           </igx-grid>
         }
       </div>
+
 
       <igx-grid cellSelection="none"
         [data]="sc2matches"
@@ -159,7 +159,6 @@
           }
         </ng-template>
       </igx-grid>
-
     </igx-card-content>
   </igx-card>
 </div>
