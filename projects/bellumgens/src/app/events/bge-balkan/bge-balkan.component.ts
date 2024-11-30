@@ -50,11 +50,7 @@ export class BgeBalkanComponent extends BaseDirective {
         this.apiService.loadingSC2Registrations.subscribe(data => this.loading = data);
         this.apiService.getSc2Registrations(this.tournamentId).subscribe(data => this.registrations = data);
         this.apiService.loadingSC2Matches.subscribe(data => this.loadingMatches = data);
-        this.apiService.getSc2Matches(this.tournamentId).subscribe(data => {
-          if (data) {
-            this.sc2matches = data;
-          }
-        });
+        this.apiService.getSc2Matches(this.tournamentId).subscribe(data => this.sc2matches = data);
         this.apiService.loadingSC2Groups.subscribe(data => this.loadingGroups = data);
         this.apiService.getSc2Groups(this.tournamentId).subscribe(data => this.groups = data);
       } else {
@@ -65,11 +61,7 @@ export class BgeBalkanComponent extends BaseDirective {
             this.apiService.loadingSC2Registrations.subscribe(data => this.loading = data);
             this.apiService.getSc2Registrations(this.tournamentId).subscribe(data => this.registrations = data);
             this.apiService.loadingSC2Matches.subscribe(data => this.loadingMatches = data);
-            this.apiService.getSc2Matches(this.tournamentId).subscribe(matches => {
-              if (matches) {
-                this.sc2matches = matches;
-              }
-            });
+            this.apiService.getSc2Matches(this.tournamentId).subscribe(matches => this.sc2matches = matches);
             this.apiService.loadingSC2Groups.subscribe(data => this.loadingGroups = data);
             this.apiService.getSc2Groups(this.tournamentId).subscribe(data => this.groups = data);
           }
