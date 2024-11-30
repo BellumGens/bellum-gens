@@ -61,8 +61,11 @@ export class AdminSc2Component {
 
   constructor(private apiService: ApiTournamentsService) {
     this.apiService.tournaments.subscribe(t => {
-      this.tournaments = t;
-      this.selectedTournament = t?.find(tour => tour.active);
+      if (t) {
+        this.tournaments = t;
+        this.selectedTournament = t?.find(tour => tour.active);
+        this.selectTournament(this.selectedTournament);
+      }
     });
   }
 

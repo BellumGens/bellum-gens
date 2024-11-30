@@ -12,7 +12,7 @@
         }
         @for (registration of registrations; track registration) {
           <div class="registration-slot">
-            <igx-avatar [src]="registration.user.csgoDetails?.avatarMedium" [initials]="registration.user.username" size="medium" shape="circle">
+            <igx-avatar [src]="registration.user.sc2Details?.avatarUrl" [initials]="registration.user.username" size="medium" shape="circle">
             </igx-avatar>
             @if (registration.userId === authUser?.id && registration.state === 0) {
               <igx-badge
