@@ -38,12 +38,13 @@
     <igx-column field="teams" i18n-header header="Match" [filterable]="false">
       <div *igxCell="let cell = cell">
         <igx-avatar igxListThumbnail
-          [src]="cell.row.data.player1.avatarMedium"
+          [src]="cell.row.data.player1.sc2Details?.avatarUrl || ''"
           [initials]="cell.row.data.player1.username"
+          [size]="'small'"
           shape="circle">
         </igx-avatar>
         <span [class]="cell.row.data.player1Points > cell.row.data.player2Points ? 'highlight grid-team-name' : 'grid-team-name'">
-          {{ cell.row.data.player1.battleNetId }}
+          {{ cell.row.data.player1.username }}
         </span>
 
         <span class="grid-vs-divider">vs.</span>
@@ -51,10 +52,11 @@
         <igx-avatar
           [src]="cell.row.data.player2.avatarMedium"
           [initials]="cell.row.data.player2.username"
+          [size]="'small'"
           shape="circle">
         </igx-avatar>
         <span [class]="cell.row.data.player2Points > cell.row.data.player1Points ? 'highlight grid-team-name' : 'grid-team-name'">
-          {{ cell.row.data.player2.battleNetId }}
+          {{ cell.row.data.player2.username }}
         </span>
       </div>
     </igx-column>
@@ -270,7 +272,7 @@
       <igx-select-item
         [value]="registration.userId"
         [text]="registration.battleTag">
-        <igx-avatar [src]="registration.user.sc2Details?.avatarUrl || ''" [initials]="registration.battleTag"></igx-avatar>
+        <igx-avatar [src]="registration.user.sc2Details?.avatarUrl || ''" [initials]="registration.battleTag" [size]="'small'" [shape]="'circle'"></igx-avatar>
         {{ registration.battleTag }}
       </igx-select-item>
     }
@@ -284,7 +286,7 @@
       <igx-select-item
         [value]="registration.userId"
         [text]="registration.battleTag">
-        <igx-avatar [src]="registration.user.sc2Details?.avatarUrl || ''" [initials]="registration.battleTag"></igx-avatar>
+        <igx-avatar [src]="registration.user.sc2Details?.avatarUrl || ''" [initials]="registration.battleTag" [size]="'small'" [shape]="'circle'"></igx-avatar>
         {{ registration.battleTag }}
       </igx-select-item>
     }

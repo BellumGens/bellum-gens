@@ -12,7 +12,7 @@
         }
         @for (registration of registrations; track registration) {
           <div class="registration-slot">
-            <igx-avatar [src]="registration.user.sc2Details?.avatarUrl" [initials]="registration.user.username" size="medium" shape="circle">
+            <igx-avatar [src]="registration.user.sc2Details?.avatarUrl || ''" [initials]="registration.user.username" size="medium" shape="circle">
             </igx-avatar>
             @if (registration.userId === authUser?.id && registration.state === 0) {
               <igx-badge
@@ -43,6 +43,7 @@
               <div *igxCell="let value">
                 <igx-avatar igxListThumbnail
                   [initials]="value.username"
+                  [size]="'small'"
                   shape="circle">
                 </igx-avatar>
                 <a igxListLineTitle [routerLink]="['/players/', (value?.customURL || value.id)]" target="_blank">
@@ -91,23 +92,25 @@
         <igx-column field="matchDetails" i18n-header header="Match" [filterable]="false">
           <div *igxCell="let cell = cell" class="horizontal-center">
             <igx-avatar igxListThumbnail
-              [src]="cell.row.data.player1.avatarMedium"
+              [src]="cell.row.data.player1.sc2Details?.avatarUrl || ''"
               [initials]="cell.row.data.player1.username"
+              [size]="'small'"
               shape="circle">
             </igx-avatar>
             <span [class]="cell.row.data.player1Points > cell.row.data.player2Points ? 'highlight grid-team-name color-success' : 'grid-team-name'">
-              {{ cell.row.data.player1.battleNetId }}
+              {{ cell.row.data.player1.username }}
             </span>
 
             <span class="grid-vs-divider">vs.</span>
 
             <igx-avatar
-              [src]="cell.row.data.player2.avatarMedium"
+              [src]="cell.row.data.player2.sc2Details?.avatarUrl || ''"
               [initials]="cell.row.data.player2.username"
+              [size]="'small'"
               shape="circle">
             </igx-avatar>
             <span [class]="cell.row.data.player2Points > cell.row.data.player1Points ? 'highlight grid-team-name color-success' : 'grid-team-name'">
-              {{ cell.row.data.player2.battleNetId }}
+              {{ cell.row.data.player2.username }}
             </span>
           </div>
         </igx-column>
