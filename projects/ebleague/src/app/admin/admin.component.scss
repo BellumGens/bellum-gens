@@ -54,7 +54,7 @@
   }
 
   .new-group-body {
-    min-height: 350px;
+    min-height: calc(100% - 72px);
     display: flex;
     width: 100%;
     align-items: center;

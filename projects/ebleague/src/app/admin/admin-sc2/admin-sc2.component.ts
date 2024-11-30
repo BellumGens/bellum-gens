@@ -112,7 +112,7 @@ export class AdminSc2Component {
         } else {
           group.participants.push(event.dragData);
         }
-        event.dragData.TournamentSC2GroupId = group.id;
+        this.registrations.find(r => r.id === event.dragData.id).tournamentSC2GroupId = group.id;
       },
       complete: () => this.pipeTrigger++
     });
