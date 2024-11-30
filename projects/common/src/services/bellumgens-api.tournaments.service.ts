@@ -20,6 +20,7 @@ export class ApiTournamentsService {
   public loadingSC2Registrations = new BehaviorSubject<boolean>(false);
   public loadingCSGOMatches = new BehaviorSubject<boolean>(false);
   public loadingSC2Matches = new BehaviorSubject<boolean>(false);
+  public loadingSC2Groups = new BehaviorSubject<boolean>(false);
   public registrationsCount = new BehaviorSubject<RegistrationsCount []>(null);
 
   private _apiEndpoint = environment.apiEndpoint;
@@ -168,17 +169,17 @@ export class ApiTournamentsService {
   }
 
   public getSc2Groups(id: string): BehaviorSubject<TournamentSC2Group []> {
-    if (!this.loadingSC2Registrations.value) {
-      this.loadingSC2Registrations.next(true);
+    if (!this.loadingSC2Groups.value) {
+      this.loadingSC2Groups.next(true);
       if (!this._sc2Groups.has(id)) {
         this._sc2Groups.set(id, new BehaviorSubject<TournamentSC2Group []>(null));
       }
       this.getSC2Groups(id).subscribe({
         next: (data) => {
           this._sc2Groups.get(id).next(data);
-          this.loadingSC2Registrations.next(false);
+          this.loadingSC2Groups.next(false);
         },
-        complete: () => this.loadingSC2Registrations.next(false)
+        complete: () => this.loadingSC2Groups.next(false)
       });
     }
     return this._sc2Groups.get(id);

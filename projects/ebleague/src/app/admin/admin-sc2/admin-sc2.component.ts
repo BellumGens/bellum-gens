@@ -51,6 +51,7 @@ export class AdminSc2Component {
   public matches: TournamentSC2Match [];
   public loading = false;
   public loadingMatches = false;
+  public loadingGroups = false;
   public environment = environment;
   public newGroup = Object.assign({}, EMPTY_NEW_GROUP);
   public pipeTrigger = 0;
@@ -70,12 +71,13 @@ export class AdminSc2Component {
   }
 
   public selectTournament(tournament: Tournament) {
+    this.apiService.loadingSC2Registrations.subscribe(data => this.loading = data);
     this.apiService.getSc2Registrations(tournament.id).subscribe(data => {
       if (data) {
         this.registrations = data;
       }
     });
-    this.apiService.loadingSC2Registrations.subscribe(data => this.loading = data);
+    this.apiService.loadingSC2Groups.subscribe(data => this.loadingGroups = data);
     this.apiService.getSc2Groups(tournament.id).subscribe(data => this.groups = data);
     this.apiService.loadingSC2Matches.subscribe(data => this.loadingMatches = data);
     this.apiService.getSc2Matches(tournament.id).subscribe(data => {
@@ -103,14 +105,17 @@ export class AdminSc2Component {
   }
 
   public addToGroup(event: IDropDroppedEventArgs, group: TournamentGroup) {
-    this.apiService.addParticipantToGroup(event.dragData, group.id).subscribe();
-    if (!group.participants) {
-      group.participants = [ event.dragData ];
-    } else {
-      group.participants.push(event.dragData);
-    }
-    event.dragData.TournamentSC2GroupId = group.id;
-    this.pipeTrigger++;
+    this.apiService.addParticipantToGroup(event.dragData, group.id).subscribe({
+      next: () => {
+        if (!group.participants) {
+          group.participants = [ event.dragData ];
+        } else {
+          group.participants.push(event.dragData);
+        }
+        event.dragData.TournamentSC2GroupId = group.id;
+      },
+      complete: () => this.pipeTrigger++
+    });
   }
 
   public removeFromGroup(participant: TournamentParticipant, group: TournamentGroup) {
