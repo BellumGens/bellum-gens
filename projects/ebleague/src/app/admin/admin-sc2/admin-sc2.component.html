@@ -50,7 +50,7 @@
         <span class="grid-vs-divider">vs.</span>
 
         <igx-avatar
-          [src]="cell.row.data.player2.avatarMedium"
+          [src]="cell.row.data.player2.sc2Details?.avatarUrl || ''"
           [initials]="cell.row.data.player2.username"
           [size]="'small'"
           shape="circle">
