@@ -95,7 +95,7 @@
             <igx-avatar igxListThumbnail
               [src]="cell.row.data.player1.sc2Details?.avatarUrl || ''"
               [initials]="cell.row.data.player1.username"
-              [size]="'small'"
+              class="avatar-small"
               shape="circle">
             </igx-avatar>
             <span [class]="cell.row.data.player1Points > cell.row.data.player2Points ? 'highlight grid-team-name color-success' : 'grid-team-name'">
@@ -107,7 +107,7 @@
             <igx-avatar
               [src]="cell.row.data.player2.sc2Details?.avatarUrl || ''"
               [initials]="cell.row.data.player2.username"
-              [size]="'small'"
+              class="avatar-small"
               shape="circle">
             </igx-avatar>
             <span [class]="cell.row.data.player2Points > cell.row.data.player1Points ? 'highlight grid-team-name color-success' : 'grid-team-name'">
