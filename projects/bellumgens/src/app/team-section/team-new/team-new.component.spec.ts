@@ -44,12 +44,14 @@ describe('TeamNewComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [FormsModule,
+      imports: [
+        FormsModule,
         RouterTestingModule,
         NoopAnimationsModule,
-        TeamNewComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-})
+        TeamNewComponent
+      ],
+      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+    })
     .compileComponents();
     httpMock = TestBed.inject(HttpTestingController);
     apiService = TestBed.inject(BellumgensApiService);

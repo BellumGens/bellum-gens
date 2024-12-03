@@ -1,5 +1,5 @@
 import { DatePipe, NgOptimizedImage } from '@angular/common';
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { Component } from '@angular/core';
 import { IGX_CARD_DIRECTIVES, IgxAvatarComponent, IgxButtonDirective, IgxDividerDirective } from '@infragistics/igniteui-angular';
 import { BaseDirective } from '../base/base.component';
 import { Meta, Title } from '@angular/platform-browser';
@@ -65,7 +65,7 @@ export class EventsComponent extends BaseDirective {
   // public ticketsUrl = 'https://www.eventim.bg/en/tickets/bellum-gens-elite-stara-zagora-stara-zagora-leten-teatr-642927/event.html';
 
   constructor(
-    @Inject(PLATFORM_ID) private platformId: any,
+    //@Inject(PLATFORM_ID) private platformId: any,
     protected titleService: Title,
     protected meta: Meta,
     protected activeRoute: ActivatedRoute

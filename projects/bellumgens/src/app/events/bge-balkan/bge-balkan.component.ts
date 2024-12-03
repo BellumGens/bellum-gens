@@ -27,9 +27,9 @@ import { IGX_CARD_DIRECTIVES, IgxCircularProgressBarComponent, IgxAvatarComponen
 export class BgeBalkanComponent extends BaseDirective {
   public registrations: TournamentParticipant [];
   public groups: TournamentGroup [];
-  public loading = false;
-  public loadingMatches = false;
-  public loadingGroups = false;
+  public loading = true;
+  public loadingMatches = true;
+  public loadingGroups = true;
   public authUser: ApplicationUser;
   public tournamentId: string;
   public sc2matches: TournamentSC2Match [];

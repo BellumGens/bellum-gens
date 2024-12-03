@@ -358,8 +358,7 @@ export class ApiTournamentsService {
   }
 
   public getSC2Matches(id: string) {
-    return this.http.get<TournamentSC2Match []>(`${this._apiEndpoint}/tournament/sc2matches${id ? '?tournamentId=' + id : ''}`,
-                                                { withCredentials: true});
+    return this.http.get<TournamentSC2Match []>(`${this._apiEndpoint}/tournament/sc2matches${id ? '?tournamentId=' + id : ''}`);
   }
 
   public submitCSGOMatch(match: TournamentCSGOMatch) {
@@ -512,7 +511,6 @@ export class ApiTournamentsService {
   }
 
   private getSC2Groups(id: string) {
-    return this.http.get<TournamentSC2Group []>(`${this._apiEndpoint}/tournament/sc2groups${id ? '?tournamentId=' + id : ''}`,
-                                                { withCredentials: true});
+    return this.http.get<TournamentSC2Group []>(`${this._apiEndpoint}/tournament/sc2groups${id ? '?tournamentId=' + id : ''}`);
   }
 }
