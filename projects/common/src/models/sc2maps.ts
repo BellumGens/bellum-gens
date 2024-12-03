@@ -25,7 +25,16 @@ export enum SC2Map {
   GoldenauraLE,
   OceanbornLE,
   PostYouthLE,
-  SiteDeltaLE
+  SiteDeltaLE,
+  AbyssalReefLE,
+  AmygdalaLE,
+  ElDoradoLE,
+  FrostlineLE,
+  KingsCoveLE,
+  LeyLinesLE,
+  NeonVioletSquareLE,
+  UltraloveLE,
+  WhispersofGoldLE
 }
 
 export interface SC2LadderMap {
@@ -116,5 +125,32 @@ export const SC2_MAPS: SC2LadderMap [] = [{
   }, {
     id: SC2Map.SiteDeltaLE,
     map: 'Site Delta LE'
+  }, {
+    id: SC2Map.AbyssalReefLE,
+    map: 'Abyssal Reef LE'
+  }, {
+    id: SC2Map.AmygdalaLE,
+    map: 'Amygdala LE'
+  }, {
+    id: SC2Map.ElDoradoLE,
+    map: 'El Dorado LE'
+  }, {
+    id: SC2Map.FrostlineLE,
+    map: 'Frostline LE'
+  }, {
+    id: SC2Map.KingsCoveLE,
+    map: 'King\'s Cove LE'
+  }, {
+    id: SC2Map.LeyLinesLE,
+    map: 'Ley Lines LE'
+  }, {
+    id: SC2Map.NeonVioletSquareLE,
+    map: 'Neon Violet Square LE'
+  }, {
+    id: SC2Map.UltraloveLE,
+    map: 'Ultralove LE'
+  }, {
+    id: SC2Map.WhispersofGoldLE,
+    map: 'Whispers of Gold LE'
   }
 ];

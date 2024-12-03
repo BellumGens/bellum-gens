@@ -1006,6 +1006,22 @@
           <context context-type="linenumber">236,238</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="2671237193001897863" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{ selectedTournament ? selectedTournament.name : &apos;No&apos; }}"/> Registrations</source>
+        <target><x id="INTERPOLATION" equiv-text="{{ selectedTournament ? selectedTournament.name : &apos;Няма&apos; }}"/> Регистрации</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6253404003148249194" datatype="html">
+        <source>Send Emails for Checkin</source>
+        <target>Изпрати имейли за чекин</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
+          <context context-type="linenumber">28,29</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="8558919497900554182" datatype="html">
         <source><x id="INTERPOLATION" equiv-text="{{ selectedTournament ? selectedTournament.name : &apos;No&apos; }}"/> StarCraft II matches</source>
         <context-group purpose="location">
@@ -1031,14 +1047,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
           <context context-type="linenumber">83,88</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6253404003148249194" datatype="html">
-        <source>Send Emails for Checkin</source>
-        <target>Изпрати имейли за чекин</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
-          <context context-type="linenumber">175</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8858806960007222085" datatype="html">
@@ -1071,6 +1079,22 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
           <context context-type="linenumber">350,351</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7972706270175906827" datatype="html">
+        <source>This will send emails to all registrants...</source>
+        <target>Това ще изпрати имейли до всички регистрирани...</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
+          <context context-type="linenumber">478,479</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5529996257726432412" datatype="html">
+        <source>This will reset all checkin states and make their status pending...</source>
+        <target>Това ще нулира всички чекин статуси и ще ги направи статус "изчакващ"...</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
+          <context context-type="linenumber">482,483</context>
         </context-group>
       </trans-unit>
       <trans-unit id="313153937351637902" datatype="html">

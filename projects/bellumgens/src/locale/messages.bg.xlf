@@ -222,6 +222,14 @@
           <context context-type="linenumber">171,172</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="1953289080105363187" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{ tournament?.name }}"/> StarCraft II Circuit</source>
+        <target><x id="INTERPOLATION" equiv-text="{{ tournament?.name }}"/> СтарКрафт II Шампионат</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/bge-balkan/bge-balkan.component.html</context>
+          <context context-type="linenumber">5,6</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="3481736869685494304" datatype="html">
         <source>Participants</source>
         <target>Участници</target>
@@ -230,20 +238,32 @@
           <context context-type="linenumber">8,9</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="7683705529753923369" datatype="html">
+        <source>Player</source>
+        <target>Играч</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/bge-balkan/bge-balkan.component.html</context>
+          <context context-type="linenumber">34,35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="516176798986294299" datatype="html">
+        <source>Country</source>
+        <target>Държава</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/bge-balkan/bge-balkan.component.html</context>
+          <context context-type="linenumber">46,47</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.html</context>
+          <context context-type="linenumber">71,72</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="5458206793423775370" datatype="html">
         <source>This registration is pending check-in for the current week!</source>
         <target>Тази регистрация чака потвърждение за текущата седмица!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/bge-balkan/bge-balkan.component.html</context>
           <context context-type="linenumber">22,23</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="7683705529753923369" datatype="html">
-        <source>Player</source>
-        <target>Играч</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/events/bge-balkan/bge-balkan.component.html</context>
-          <context context-type="linenumber">41</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3724068243287682962" datatype="html">
@@ -262,12 +282,28 @@
           <context context-type="linenumber">45,46</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="516176798986294299" datatype="html">
-        <source>Country</source>
-        <target>Държава</target>
+      <trans-unit id="1567940090040631427" datatype="html">
+        <source>Matches</source>
+        <target>Мачове</target>
         <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.html</context>
-          <context context-type="linenumber">66,68</context>
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/bge-balkan/bge-balkan.component.html</context>
+          <context context-type="linenumber">58</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3763543734947983947" datatype="html">
+        <source>Wins</source>
+        <target>Победи</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/bge-balkan/bge-balkan.component.html</context>
+          <context context-type="linenumber">60</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5788544696260335750" datatype="html">
+        <source>Losses</source>
+        <target>Загуби</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/bge-balkan/bge-balkan.component.html</context>
+          <context context-type="linenumber">62</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5254622645701859101" datatype="html">
@@ -286,12 +322,12 @@
           <context context-type="linenumber">73,74</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1470502564856100727" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{ tournament?.name }}"/> Schedule</source>
-        <target><x id="INTERPOLATION" equiv-text="{{ tournament?.name }}"/> Програма</target>
+      <trans-unit id="2458757699063378066" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{ tournament?.name }}"/> Match Results</source>
+        <target><x id="INTERPOLATION" equiv-text="{{ tournament?.name }}"/> Резултати от мачовете</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/bge-balkan/bge-balkan.component.html</context>
-          <context context-type="linenumber">78</context>
+          <context context-type="linenumber">79</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6608644558680610100" datatype="html">
@@ -334,12 +370,12 @@
           <context context-type="linenumber">125</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7010388430610825271" datatype="html">
-        <source>Walkover</source>
+      <trans-unit id="4220387386577088457" datatype="html">
+        <source>Forfeited</source>
         <target>Служебна победа</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/bge-balkan/bge-balkan.component.html</context>
-          <context context-type="linenumber">154,155</context>
+          <context context-type="linenumber">157,158</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3425062088724754850" datatype="html">

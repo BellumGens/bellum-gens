@@ -21,6 +21,7 @@ export class ApiTournamentsService {
   public loadingCSGOMatches = new BehaviorSubject<boolean>(false);
   public loadingSC2Matches = new BehaviorSubject<boolean>(false);
   public loadingSC2Groups = new BehaviorSubject<boolean>(false);
+  public loadingTourRegistrations = new BehaviorSubject<boolean>(false);
   public registrationsCount = new BehaviorSubject<RegistrationsCount []>(null);
 
   private _apiEndpoint = environment.apiEndpoint;
@@ -30,6 +31,7 @@ export class ApiTournamentsService {
   private _activeTournament = new BehaviorSubject<Tournament>(null);
   private _companies = new BehaviorSubject<string []>(null);
   private _allRegistrations = new BehaviorSubject<TournamentApplication []>(null);
+  private _tourRegistrations = new BehaviorSubject<TournamentApplication []>(null);
   private _csgoRegistrations = new Map<string, BehaviorSubject<TournamentParticipant []>>();
   private _sc2Registrations = new Map<string, BehaviorSubject<TournamentParticipant []>>();
   private _csgoMatches = new Map<string, BehaviorSubject<TournamentCSGOMatch []>>();
@@ -83,6 +85,17 @@ export class ApiTournamentsService {
       });
     }
     return this._allRegistrations;
+  }
+
+  public tournamentRegistrations(tournamentId: string) {
+    if (!this.loadingTourRegistrations.value) {
+      this.loadingTourRegistrations.next(true);
+      this.getTournamentRegistrations(tournamentId).subscribe(data => {
+        this._tourRegistrations.next(data);
+        this.loadingTourRegistrations.next(false);
+      });
+    }
+    return this._tourRegistrations;
   }
 
   public getRegistrationsCount(id: string) {
@@ -216,6 +229,19 @@ export class ApiTournamentsService {
     );
   }
 
+  public resetCheckinState(tournamentId: string) {
+    return this.http.get(`${this._apiEndpoint}/tournament/resetstate?tournamentId=${tournamentId}`, { withCredentials: true }).pipe(
+      map(response => {
+        this.commService.emitSuccess(response['message']);
+        return response;
+      }),
+      catchError(error => {
+        this.commService.emitError(error.message);
+        return throwError(() => error);
+      })
+    );
+  }
+
   public sendCheckinEmails(tournamentId: string) {
     return this.http.get(`${this._apiEndpoint}/tournament/sendcheckinemails?tournamentId=${tournamentId}`, { withCredentials: true }).pipe(
       map(response => {
@@ -332,8 +358,7 @@ export class ApiTournamentsService {
   }
 
   public getSC2Matches(id: string) {
-    return this.http.get<TournamentSC2Match []>(`${this._apiEndpoint}/tournament/sc2matches${id ? '?tournamentId=' + id : ''}`,
-                                                { withCredentials: true});
+    return this.http.get<TournamentSC2Match []>(`${this._apiEndpoint}/tournament/sc2matches${id ? '?tournamentId=' + id : ''}`);
   }
 
   public submitCSGOMatch(match: TournamentCSGOMatch) {
@@ -456,6 +481,10 @@ export class ApiTournamentsService {
     return this.http.get<TournamentApplication []>(`${this._apiEndpoint}/tournament/allregistrations`, { withCredentials: true});
   }
 
+  private getTournamentRegistrations(tournamentId: string) {
+    return this.http.get<TournamentApplication []>(`${this._apiEndpoint}/tournament/tournamentregistrations?tournamentId=${tournamentId}`, { withCredentials: true});
+  }
+
   private getCSGORegistrations(id: string) {
     return this.http.get<TournamentParticipant []>(`${this._apiEndpoint}/tournament/csgoregs${id ? '?tournamentId=' + id : ''}`);
   }
@@ -482,7 +511,6 @@ export class ApiTournamentsService {
   }
 
   private getSC2Groups(id: string) {
-    return this.http.get<TournamentSC2Group []>(`${this._apiEndpoint}/tournament/sc2groups${id ? '?tournamentId=' + id : ''}`,
-                                                { withCredentials: true});
+    return this.http.get<TournamentSC2Group []>(`${this._apiEndpoint}/tournament/sc2groups${id ? '?tournamentId=' + id : ''}`);
   }
 }

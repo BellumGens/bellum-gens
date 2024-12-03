@@ -1,8 +1,8 @@
 <div class="overview-container-card">
   <igx-card>
     <igx-card-header>
-      <igx-avatar src="/assets/wallpapers/sc2-watermark.webp" igxCardThumbnail shape="circle" />
-      <h1 igxCardHeaderTitle>{{ tournament?.name }} StarCraft II League</h1>
+      <igx-avatar src="/assets/login/bge-white-2024.svg" igxCardThumbnail shape="circle" />
+      <h1 igxCardHeaderTitle i18n>{{ tournament?.name }} StarCraft II Circuit</h1>
     </igx-card-header>
     <igx-card-content>
       <h4 i18n>Participants</h4>
@@ -16,7 +16,9 @@
             </igx-avatar>
             <igx-avatar [src]="registration.country | countrySVG" shape="circle" [title]="registration.country" class="country-badge-small"></igx-avatar>
             <a [routerLink]="['/players/', (registration.user.csgoDetails?.customUrl || registration.userId)]" target="_blank">{{ registration.battleTag }}</a>
-            <span>[{{ registration.companyId }}]</span>
+            @if (registration.companyId) {
+              <span>[{{ registration.companyId }}]</span>
+            }
           </div>
         }
         <igx-divider></igx-divider>
@@ -26,7 +28,6 @@
         @for (group of groups; track group.id) {
           <igx-grid
             cellSelection="none"
-            [isLoading]="loadingGroups"
             [data]="group.participants">
             <igx-grid-toolbar>
               <igx-grid-toolbar-title>{{group.name}}</igx-grid-toolbar-title>
@@ -35,19 +36,34 @@
               <div *igxCell="let value">
                 <igx-avatar igxListThumbnail
                   [initials]="value.username"
-                  [size]="'small'"
+                  class="avatar-small"
                   shape="circle">
                 </igx-avatar>
-                <a igxListLineTitle [routerLink]="['/players/', (value?.customURL || value.id)]" target="_blank">
+                <span igxListLineTitle>
                   {{ value.username }}
-                </a>
+                </span>
               </div>
             </igx-column>
             <igx-column field="country" i18n-header header="Country">
+              <div *igxCell="let value">
+                <igx-avatar igxListThumbnail
+                  [src]="value | countrySVG"
+                  shape="circle" class="avatar-small">
+                </igx-avatar>
+                <span igxListLineTitle>
+                  {{ value }}
+                </span>
+              </div>
             </igx-column>
             <igx-column field="companyId" i18n-header header="Team">
             </igx-column>
-            <igx-column field="playerPoints" dataType="number" i18n-header header="Points">
+            <igx-column field="matches" dataType="number" i18n-header header="Matches" width="9%">
+            </igx-column>
+            <igx-column field="wins" dataType="number" i18n-header header="Wins" width="8%">
+            </igx-column>
+            <igx-column field="losses" dataType="number" i18n-header header="Losses" width="8%">
+            </igx-column>
+            <igx-column field="playerPoints" dataType="number" i18n-header header="Points" width="7%">
             </igx-column>
           </igx-grid>
         }
@@ -59,11 +75,10 @@
         height="550px"
         i18n-emptyGridMessage
         emptyGridMessage="No matches found..."
-        [isLoading]="loadingMatches"
-        [allowFiltering]="true">
+        [isLoading]="loadingMatches">
 
         <igx-grid-toolbar>
-          <igx-grid-toolbar-title i18n>{{ tournament?.name }} Schedule</igx-grid-toolbar-title>
+          <igx-grid-toolbar-title i18n>{{ tournament?.name }} Match Results</igx-grid-toolbar-title>
           <igx-grid-toolbar-actions>
             <a href="https://play.toornament.com/en_US/tournaments/8376728902519046144/matches/schedule" target="_blank" rel="noopener" i18n>Weekly Bracket</a>
           </igx-grid-toolbar-actions>
@@ -141,7 +156,7 @@
           }
 
           @if (dataItem.noShow) {
-            <div class="horizontal-center" i18n>Walkover</div>
+            <div class="horizontal-center" i18n>Forfeited</div>
           }
 
           @if (!dataItem.maps.length && !dataItem.noShow) {

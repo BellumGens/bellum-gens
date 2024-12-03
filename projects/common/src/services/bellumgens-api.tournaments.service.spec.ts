@@ -243,7 +243,7 @@ describe('ApiTournamentsService', () => {
 
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/tournament/sc2matches?tournamentId=1`);
     expect(req.request.method).toBe('GET');
-    expect(req.request.withCredentials).toBe(true);
+    expect(req.request.withCredentials).toBeFalse();
     req.flush(mockSc2Matches);
     expect(service['_sc2Matches'].get('1').value).toEqual(mockSc2Matches);
   });
@@ -273,7 +273,7 @@ describe('ApiTournamentsService', () => {
 
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/tournament/sc2groups?tournamentId=1`);
     expect(req.request.method).toBe('GET');
-    expect(req.request.withCredentials).toBe(true);
+    expect(req.request.withCredentials).toBeFalse();
     req.flush(mockSc2Groups);
     expect(service['_sc2Groups'].get('1').value).toEqual(mockSc2Groups);
   });
