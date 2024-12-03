@@ -46,17 +46,6 @@
       <igx-icon *igxCell="let value" [class]="value ? 'color-success' : 'color-error'">{{ value ? 'check' : 'close' }}</igx-icon>
     </igx-column>
 
-    <div *igxGroupByRow="let groupRow" class="igx-group-label">
-      <igx-icon class="igx-group-label__icon">group_work</igx-icon>
-      <span class="igx-group-label__column-name">{{groupRow.column?.header}}:</span>
-      @if (groupRow.column?.field === 'game') {
-        <span class="igx-group-label__text">{{ groupRow.value ? 'StarCraft II' : 'CS:GO' }}</span>
-      } @else {
-        <span class="igx-group-label__text">{{ groupRow.value }}</span>
-      }
-      <igx-badge [value]="groupRow.records.length" class="igx-group-label__count-badge"></igx-badge>
-    </div>
-
     <igx-action-strip #regActionStrip>
       @if (regActionStrip.context?.dirty || regActionStrip.context?.deleted) {
         <button title="Undo" igxIconButton="flat" igxRipple

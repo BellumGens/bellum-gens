@@ -54,10 +54,10 @@ export class AdminSc2Component {
   public participants: TournamentParticipant [];
   public groups: TournamentGroup [];
   public matches: TournamentSC2Match [];
-  public loading = false;
-  public loadingRegs = false;
-  public loadingMatches = false;
-  public loadingGroups = false;
+  public loading = true;
+  public loadingRegs = true;
+  public loadingMatches = true;
+  public loadingGroups = true;
   public environment = environment;
   public newGroup = Object.assign({}, EMPTY_NEW_GROUP);
   public pipeTrigger = 0;
