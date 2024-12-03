@@ -264,18 +264,17 @@
                       <igx-avatar igxListThumbnail [src]="participant.user.sc2Details?.avatarUrl || ''" [initials]="participant.user.username" shape="circle"></igx-avatar>
                       <a igxListLineTitle [href]="environment.bellumgens + '/players/' + (participant.user.csgoDetails?.customUrl || participant.userId)" target="_blank">
                         {{ participant.user.username }}
-                      </a>
-                      <span igxListLineTitle>
-                        {{ participant.battleTag }}
                         @if (participant.state === 0) {
                           <igx-badge
                             type="warning"
                             icon="priority_high"
                             i18n-title
-                            title="This registration is pending check-in for the current week!"
-                            class="registration-badge-style">
+                            title="This registration is pending check-in for the current week!">
                           </igx-badge>
                         }
+                      </a>
+                      <span igxListLineTitle>
+                        {{ participant.battleTag }}
                       </span>
                       <igx-icon class="navigatable" i18n-title title="Remove from group" (click)="removeFromGroup(participant, group)">delete</igx-icon>
                     </igx-list-item>
