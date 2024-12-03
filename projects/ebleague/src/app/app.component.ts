@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, Inject, PLATFORM_ID, LOCALE_ID } from '@angular/core';
 import { isPlatformBrowser, NgOptimizedImage } from '@angular/common';
-import { Router, NavigationEnd, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { Router, NavigationEnd, RouterLink, RouterLinkActive, RouterOutlet, ActivatedRoute } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
 import {
@@ -24,7 +24,7 @@ import {
 import { battlenet, discord, facebook, heartCare, instagram, linkedin, steam, twitch, twitter, youtube } from '@igniteui/material-icons-extended';
 import { IgxResourceStringsBG } from 'igniteui-angular-i18n';
 
-import { LoginService, ApplicationUser } from '../../../common/src/public_api';
+import { LoginService, ApplicationUser, CommunicationService } from '../../../common/src/public_api';
 import { environment } from '../../../common/src/environments/environment';
 import { SuccessErrorComponent } from '../../../common/src/lib/success-error/success-error.component';
 import { LoginComponent } from '../../../common/src/lib/login/login.component';
@@ -73,13 +73,20 @@ export class AppComponent implements OnInit {
               @Inject(LOCALE_ID) private localeId: string,
               private iconService: IgxIconService,
               private authManager: LoginService,
-              private router: Router) {
+              private notificationService: CommunicationService,
+              private router: Router,
+              private activatedRoute: ActivatedRoute) {
     if (isPlatformBrowser(this.platformId)) {
       this.authManager.applicationUser.subscribe(data => {
         this.authUser = data;
       });
-      this.initSvgIcons();
+      this.activatedRoute.queryParams.subscribe(params => {
+        if (params?.message) {
+          this.notificationService.emitSuccess(params.message);
+        }
+      });
     }
+    this.initSvgIcons();
   }
 
   public ngOnInit(): void {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import {
   TournamentGroup,
   TournamentParticipant,
@@ -6,10 +6,12 @@ import {
   Tournament,
   ApiTournamentsService,
   TournamentSC2Match, TournamentMatchMap,
-  SC2_MAPS, SC2LadderMap
+  SC2_MAPS, SC2LadderMap,
+  CommunicationService,
+  TournamentApplication
 } from '../../../../../common/src/public_api';
 import { environment } from '../../../../../common/src/environments/environment';
-import { IDropDroppedEventArgs, IRowDataEventArgs, IgxGridComponent, IgxDialogComponent, IGX_SELECT_DIRECTIVES, IGX_INPUT_GROUP_DIRECTIVES, IGX_GRID_DIRECTIVES, IgxButtonDirective, IgxIconComponent, IgxAvatarComponent, IGX_LIST_DIRECTIVES, IGX_CARD_DIRECTIVES, IgxCircularProgressBarComponent, IGX_DRAG_DROP_DIRECTIVES, IgxBadgeComponent, IGX_DIALOG_DIRECTIVES, IGX_DATE_PICKER_DIRECTIVES, IGX_TIME_PICKER_DIRECTIVES, IgxCheckboxComponent } from '@infragistics/igniteui-angular';
+import { IDropDroppedEventArgs, IRowDataEventArgs, IgxGridComponent, IgxDialogComponent, IGX_SELECT_DIRECTIVES, IGX_INPUT_GROUP_DIRECTIVES, IGX_GRID_DIRECTIVES, IgxButtonDirective, IgxIconComponent, IgxAvatarComponent, IGX_LIST_DIRECTIVES, IGX_CARD_DIRECTIVES, IgxCircularProgressBarComponent, IGX_DRAG_DROP_DIRECTIVES, IgxBadgeComponent, IGX_DIALOG_DIRECTIVES, IGX_DATE_PICKER_DIRECTIVES, IGX_TIME_PICKER_DIRECTIVES, IgxCheckboxComponent, IGX_ACTION_STRIP_DIRECTIVES, RowType, IGridEditEventArgs, IGroupingExpression, SortingDirection, DefaultSortingStrategy, IgxIconButtonDirective } from '@infragistics/igniteui-angular';
 import { GetPlayersPipe } from '../../pipes/get-players.pipe';
 import { NotInGroupPipe } from '../../pipes/not-in-group.pipe';
 import { Sc2MapNamePipe } from '../../../../../common/src/lib/pipes/sc2-map-name.pipe';
@@ -26,6 +28,8 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     IGX_INPUT_GROUP_DIRECTIVES,
     IGX_GRID_DIRECTIVES,
+    IGX_ACTION_STRIP_DIRECTIVES,
+    IgxIconButtonDirective,
     IgxButtonDirective,
     IgxIconComponent,
     IgxAvatarComponent,
@@ -46,10 +50,12 @@ import { FormsModule } from '@angular/forms';
   ]
 })
 export class AdminSc2Component {
-  public registrations: TournamentParticipant [];
+  public registrations: TournamentApplication [];
+  public participants: TournamentParticipant [];
   public groups: TournamentGroup [];
   public matches: TournamentSC2Match [];
   public loading = false;
+  public loadingRegs = false;
   public loadingMatches = false;
   public loadingGroups = false;
   public environment = environment;
@@ -59,8 +65,12 @@ export class AdminSc2Component {
   public matchInEdit: TournamentSC2Match = { startTime: new Date() };
   public tournaments: Tournament [] = [];
   public selectedTournament: Tournament;
+  public grouping: IGroupingExpression [];
 
-  constructor(private apiService: ApiTournamentsService) {
+  @ViewChild('registrationsGrid', { static: true }) public registrationsGrid: IgxGridComponent;
+
+  constructor(private apiService: ApiTournamentsService,
+              private notificationService: CommunicationService) {
     this.apiService.tournaments.subscribe(t => {
       if (t) {
         this.tournaments = t;
@@ -68,11 +78,20 @@ export class AdminSc2Component {
         this.selectTournament(this.selectedTournament);
       }
     });
+    this.grouping = [
+      { dir: SortingDirection.Desc, fieldName: 'tournamentName', ignoreCase: false, strategy: DefaultSortingStrategy.instance() }
+    ];
   }
 
   public selectTournament(tournament: Tournament) {
     this.apiService.loadingSC2Registrations.subscribe(data => this.loading = data);
     this.apiService.getSc2Registrations(tournament.id).subscribe(data => {
+      if (data) {
+        this.participants = data;
+      }
+    });
+    this.apiService.loadingTourRegistrations.subscribe(data => this.loadingRegs = data);
+    this.apiService.tournamentRegistrations(tournament.id).subscribe(data => {
       if (data) {
         this.registrations = data;
       }
@@ -85,6 +104,20 @@ export class AdminSc2Component {
         this.matches = data;
       }
     });
+  }
+
+  public confirmRegistration(event: IGridEditEventArgs) {
+    const rowData = event.rowData;
+    rowData[event.column.field] = event.newValue ? 1 : 0;
+    this.apiService.confirmRegistration(rowData).subscribe({
+      next: () => this.registrationsGrid.transactions.clear(rowData.id),
+      complete: () => {}
+    });
+  }
+
+  public deleteRegistration(rowContext: RowType) {
+    rowContext.grid.transactions.commit(rowContext.grid.data, rowContext.key);
+    this.apiService.deleteRegistration(rowContext.key).subscribe();
   }
 
   public submitGroup(group: TournamentGroup) {
@@ -100,7 +133,7 @@ export class AdminSc2Component {
   public deleteGroup(id: string) {
     const group = this.groups.find(g => g.id === id);
     this.apiService.deleteGroup(id).subscribe(() => this.groups.splice(this.groups.indexOf(group), 1));
-    this.registrations.filter(r => r.tournamentSC2GroupId === id).forEach(r => r.tournamentSC2GroupId = null);
+    this.participants.filter(r => r.tournamentSC2GroupId === id).forEach(r => r.tournamentSC2GroupId = null);
     this.pipeTrigger++;
   }
 
@@ -112,7 +145,7 @@ export class AdminSc2Component {
         } else {
           group.participants.push(event.dragData);
         }
-        this.registrations.find(r => r.id === event.dragData.id).tournamentSC2GroupId = group.id;
+        this.participants.find(r => r.id === event.dragData.id).tournamentSC2GroupId = group.id;
       },
       complete: () => this.pipeTrigger++
     });
@@ -121,7 +154,7 @@ export class AdminSc2Component {
   public removeFromGroup(participant: TournamentParticipant, group: TournamentGroup) {
     this.apiService.removeParticipantFromGroup(participant.id).subscribe();
     group.participants.splice(group.participants.indexOf(participant), 1);
-    this.registrations.find(r => r.id === participant.id).tournamentSC2GroupId = null;
+    this.participants.find(r => r.id === participant.id).tournamentSC2GroupId = null;
     this.pipeTrigger++;
   }
 
@@ -161,8 +194,19 @@ export class AdminSc2Component {
     });
   }
 
-  public sendCheckinEmails(tournamentId: string) {
-    this.apiService.sendCheckinEmails(tournamentId).subscribe({
+  public resetCheckinState() {
+    this.apiService.resetCheckinState(this.selectedTournament.id).subscribe({
+      next: () => {
+        this.registrations.forEach(r => r.state = 0);
+        this.registrationsGrid.notifyChanges(true);
+      },
+      complete: () => {}
+    });
+  }
+
+  public sendCheckinEmails() {
+    this.notificationService.emitMessage('Sending checkin emails...');
+    this.apiService.sendCheckinEmails(this.selectedTournament.id).subscribe({
       next: () => {},
       complete: () => {}
     });

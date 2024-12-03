@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, HostListener, Inject, PLATFORM_ID, LOCALE_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { RouterLinkActive, RouterLink, RouterOutlet } from '@angular/router';
+import { RouterLinkActive, RouterLink, RouterOutlet, ActivatedRoute } from '@angular/router';
 
 import {
   PositionSettings,
@@ -40,7 +40,8 @@ import {
   SearchResult,
   GLOBAL_OVERLAY_SETTINGS,
   CSGOTeam,
-  ApiSearchService
+  ApiSearchService,
+  CommunicationService
 } from '../../../common/src/public_api';
 
 import { fromEvent } from 'rxjs';
@@ -115,7 +116,9 @@ export class AppComponent implements OnInit {
               private iconService: IgxIconService,
               private authManager: LoginService,
               private apiService: BellumgensApiService,
-              private searchService: ApiSearchService) {
+              private searchService: ApiSearchService,
+              private notificationService: CommunicationService,
+              private activatedRoute: ActivatedRoute) {
     if (isPlatformBrowser(this.platformId)) {
       this.authManager.applicationUser.subscribe(user => {
           this.authUser = user;
@@ -125,9 +128,14 @@ export class AppComponent implements OnInit {
           }
         }
       );
+      this.activatedRoute.queryParams.subscribe(params => {
+        if (params?.message) {
+          this.notificationService.emitSuccess(params.message);
+        }
+      });
       this.resize();
-      this.initSvgIcons();
     }
+    this.initSvgIcons();
   }
 
   @HostListener('window:resize')
