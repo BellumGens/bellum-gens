@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BgeBalkanComponent } from './bge-balkan.component';
-import { ApiTournamentsService, LoginService } from '../../../../../common/src/public_api';
+import { ApiTournamentsService } from '../../../../../common/src/public_api';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -11,7 +11,7 @@ describe('BgeBalkanComponent', () => {
   let component: BgeBalkanComponent;
   let fixture: ComponentFixture<BgeBalkanComponent>;
   let apiService: ApiTournamentsService;
-  let loginService: LoginService;
+  //let loginService: LoginService;
   let httpMock: HttpTestingController;
 
   beforeEach(async () => {
@@ -26,7 +26,7 @@ describe('BgeBalkanComponent', () => {
     }).compileComponents();
 
     apiService = TestBed.inject(ApiTournamentsService);
-    loginService = TestBed.inject(LoginService);
+    //loginService = TestBed.inject(LoginService);
     httpMock = TestBed.inject(HttpTestingController);
   });
 
