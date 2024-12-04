@@ -11,7 +11,7 @@ import {
   TournamentApplication
 } from '../../../../../common/src/public_api';
 import { environment } from '../../../../../common/src/environments/environment';
-import { IDropDroppedEventArgs, IRowDataEventArgs, IgxGridComponent, IgxDialogComponent, IGX_SELECT_DIRECTIVES, IGX_INPUT_GROUP_DIRECTIVES, IGX_GRID_DIRECTIVES, IgxButtonDirective, IgxIconComponent, IgxAvatarComponent, IGX_LIST_DIRECTIVES, IGX_CARD_DIRECTIVES, IgxCircularProgressBarComponent, IGX_DRAG_DROP_DIRECTIVES, IgxBadgeComponent, IGX_DIALOG_DIRECTIVES, IGX_DATE_PICKER_DIRECTIVES, IGX_TIME_PICKER_DIRECTIVES, IgxCheckboxComponent, IGX_ACTION_STRIP_DIRECTIVES, RowType, IGridEditEventArgs, IGroupingExpression, SortingDirection, DefaultSortingStrategy, IgxIconButtonDirective } from '@infragistics/igniteui-angular';
+import { IDropDroppedEventArgs, IRowDataEventArgs, IgxGridComponent, IgxDialogComponent, IGX_SELECT_DIRECTIVES, IGX_INPUT_GROUP_DIRECTIVES, IGX_GRID_DIRECTIVES, IgxButtonDirective, IgxIconComponent, IgxAvatarComponent, IGX_LIST_DIRECTIVES, IGX_CARD_DIRECTIVES, IgxCircularProgressBarComponent, IGX_DRAG_DROP_DIRECTIVES, IgxBadgeComponent, IGX_DIALOG_DIRECTIVES, IGX_DATE_PICKER_DIRECTIVES, IGX_TIME_PICKER_DIRECTIVES, IgxCheckboxComponent, IGX_ACTION_STRIP_DIRECTIVES, RowType, IGridEditEventArgs, IGroupingExpression, SortingDirection, DefaultSortingStrategy, IgxIconButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular';
 import { GetPlayersPipe } from '../../pipes/get-players.pipe';
 import { NotInGroupPipe } from '../../pipes/not-in-group.pipe';
 import { Sc2MapNamePipe } from '../../../../../common/src/lib/pipes/sc2-map-name.pipe';
@@ -31,6 +31,7 @@ import { FormsModule } from '@angular/forms';
     IGX_ACTION_STRIP_DIRECTIVES,
     IgxIconButtonDirective,
     IgxButtonDirective,
+    IgxRippleDirective,
     IgxIconComponent,
     IgxAvatarComponent,
     IGX_LIST_DIRECTIVES,
@@ -192,6 +193,10 @@ export class AdminSc2Component {
     this.apiService.deleteSC2MatchMap(map.id).subscribe(() => {
       maps.splice(maps.indexOf(map), 1);
     });
+  }
+
+  public refreshRegistrations() {
+    this.apiService.tournamentRegistrations(this.selectedTournament.id).subscribe(data => this.registrations = data);
   }
 
   public resetCheckinState() {

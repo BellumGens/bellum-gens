@@ -22,6 +22,9 @@
     <igx-grid-toolbar>
       <igx-grid-toolbar-title i18n>{{ selectedTournament ? selectedTournament.name : 'No' }} Registrations</igx-grid-toolbar-title>
       <igx-grid-toolbar-actions>
+        <button igxIconButton="flat" igxRipple (click)="refreshRegistrations()">
+          <igx-icon>refresh</igx-icon>
+        </button>
         <button igxButton="outlined" (click)="resetCheckin.open()">Reset Checkin State</button>
         <button igxButton="outlined" (click)="confirmEmails.open()">
           <igx-icon class="navigatable action-icon-button">email</igx-icon>
