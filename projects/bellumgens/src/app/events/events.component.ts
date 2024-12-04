@@ -23,10 +23,10 @@ import { CountrySVGPipe } from '../../../../common/src/lib/pipes/country-svg.pip
 })
 export class EventsComponent extends BaseDirective {
   public invitedPlayers = [
-    {name: 'Clement "Clem" Desplanches', country: 'France', race: 'Terran', team: 'Team Liquid', source: 'Champion BGE Stara Zagora 2024', image: '/assets/bge/players/2-clem.png'},
-    {name: 'Li "Oliveira" Peinan', country: 'China', race: 'Terran', team: 'DKZ Gaming', source: 'Runner-up BGE Stara Zagora 2024', image: '/assets/bge/players/5-oliveira.png'},
-    {name: 'Riccardo "Reynor" Romiti', country: 'Italy', race: 'Zerg', team: 'BASILISK', source: '3rd place BGE Stara Zagora 2024', image: '/assets/bge/players/8-reynor.png'},
-    {name: 'Tobias "ShoWTimE" Sieber', country: 'Germany', race: 'Protoss', team: 'BIG', source: '4th place BGE Stara Zagora 2024', image: '/assets/bge/players/4-showtime.png'},
+    {name: 'Clement "Clem" Desplanches', country: 'France', race: 'Terran', team: 'Team Liquid', source: '🏆Champion BGE Stara Zagora 2024', image: '/assets/bge/players/2-clem.webp'},
+    {name: 'Li "Oliveira" Peinan', country: 'China', race: 'Terran', team: 'DKZ Gaming', source: 'Runner-up BGE Stara Zagora 2024', image: '/assets/bge/players/5-oliveira.webp'},
+    {name: 'Riccardo "Reynor" Romiti', country: 'Italy', race: 'Zerg', team: 'BASILISK', source: '3rd place BGE Stara Zagora 2024', image: '/assets/bge/players/8-reynor.webp'},
+    {name: 'Tobias "ShoWTimE" Sieber', country: 'Germany', race: 'Protoss', team: 'BIG', source: '4th place BGE Stara Zagora 2024', image: '/assets/bge/players/4-showtime.webp'},
   ];
 
   public qualifiedPlayers = [
