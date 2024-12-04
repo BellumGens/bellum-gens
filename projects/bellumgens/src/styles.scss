@@ -11,7 +11,8 @@
 @include core();
 
 @include typography(
-  $font-family: "'Poppins', sans-serif"
+  $font-family: "Rajdhani, Fira Sans Condensed, sans-serif",
+  $type-scale: $my-type-scale
 );
 
 @import "../../common/src/styles.scss";
@@ -135,9 +136,10 @@ $expansion-panel-theme: expansion-panel-theme($header-background: $background,
 
 @import "../../common/src/styles-overrides.scss";
 
-// TODO: Remove after updating to next package version
-.igx-banner__actions > igx-banner-actions {
-  align-items: center;
+li {
+  font-family: "Rajdhani", "Fira Sans Condensed", sans-serif;
+  font-size: 14pt;
+  font-weight: normal;
 }
 
 .list-container {

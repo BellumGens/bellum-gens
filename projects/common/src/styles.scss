@@ -97,19 +97,19 @@ textarea {
   min-height: calc(100% - 45px);
 }
 
-  .content-container h1 {
-    font-size: 3rem;
-    font-weight: 800;
-    margin: 0;
-  }
+  // .content-container h1 {
+  //   font-size: 3rem;
+  //   font-weight: 800;
+  //   margin: 0;
+  // }
 
-  .content-container h4 {
-    font-size: 1.75rem;
-  }
+  // .content-container h4 {
+  //   font-size: 1.75rem;
+  // }
 
-  .content-container p {
-    font-size: 1rem;
-  }
+  // .content-container p {
+  //   font-size: 1rem;
+  // }
 
 .content-container-row {
   grid-column: 1 / -1;
@@ -133,9 +133,9 @@ textarea {
     align-items: center;
   }
 
-  .content-container-column p {
-    margin: 0;
-  }
+  // .content-container-column p {
+  //   margin: 0;
+  // }
 
   .content-container-column ul {
     padding-inline-start: 40px;
@@ -238,7 +238,6 @@ textarea {
 
 .footer-row > a {
   width: 32px;
-  font-size: 1.7rem;
 }
 
 /* END Footer */
