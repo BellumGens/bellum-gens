@@ -7,6 +7,7 @@ Closes #
  - [ ] Refactoring
  - [ ] Minor enhancement
  - [ ] Content update
+ - [ ] Design update
  - [ ] Translations
 
 ### Additional information
