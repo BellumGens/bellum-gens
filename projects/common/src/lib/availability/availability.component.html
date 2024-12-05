@@ -8,7 +8,7 @@
       (remove)="dayDeselected($event, weekday)">
       <span class="igx-chip__text">{{ weekday.day | weekday }}</span>
       @if (weekday.available) {
-        <span class="igx-chip__subtext">{{ weekday.from | date:'H:mm' }}-{{ weekday.to | date:'H:mm' }}</span>
+        <span class="igx-chip__subtext highlight">{{ weekday.from | date:'H:mm' }}-{{ weekday.to | date:'H:mm' }}</span>
       }
     </igx-chip>
   }

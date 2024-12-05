@@ -1,24 +1,12 @@
-@use "../../variables" as *;
-
-$bge-accent: #bccf00;
-
-$new-palette: palette(
-  $primary: $primary,
-  $secondary: $bge-accent,
-  $surface: $background,
-  $gray: $gray
-);
-
 :host::ng-deep {
   display: flex;
-  height: calc(100% - 45px);
+  height: calc(100% - 40px);
   width: 100%;
   background-image: url('/assets/bge/bge-background-right.webp');
   background-repeat: no-repeat;
   background-color: #071365;
   background-position: center right;
 
-  @include palette($new-palette);
   // @font-face {
   //   font-family: 'dge-ebold';
   //   src: url('/assets/fonts/dge-ebold.otf');
@@ -34,45 +22,13 @@ $new-palette: palette(
   //   src: url('/assets/fonts/rg-b.otf');
   // }
 
-  .highlight {
-    color: $bge-accent;
-  }
-
   .content-container-column iframe, .content-container-row iframe {
     width: 600px;
     height: 315px;
   }
 
   .content-container h1 {
-    font-family: "Anton", "Oswald", sans-serif;
-    font-size: 96px;
-    text-transform: uppercase;
-    font-weight: normal;
     margin: 28px;
-  }
-
-  .content-container h2, .cta-button-large {
-    font-family: 'Rajdhani', "Fira Sans Condensed", sans-serif;
-    font-size: 36pt;
-    font-weight: bold;
-    text-transform: uppercase;
-    margin-top: 0;
-  }
-
-  .content-container h3, .igx-card-header__title {
-    font-family: 'Rajdhani', "Fira Sans Condensed", sans-serif;
-    font-size: 20pt;
-  }
-
-  .content-container h3, .igx-card-header__subtitle {
-    font-family: 'Rajdhani', "Fira Sans Condensed", sans-serif;
-    font-size: 12pt;
-  }
-
-  .content-container p, ul {
-    font-family: 'Rajdhani', "Fira Sans Condensed", sans-serif;
-    font-weight: normal;
-    font-size: 14pt;
   }
 
   .card-wrapper {

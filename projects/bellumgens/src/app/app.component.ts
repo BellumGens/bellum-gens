@@ -169,6 +169,7 @@ export class AppComponent implements OnInit {
 
     this.iconService.addSvgIcon('bge-white', '/assets/login/bge-white-2024.svg', 'partners');
     this.iconService.addSvgIcon('eb-league-white', '/assets/login/eb-league-white.svg', 'partners');
+    this.iconService.addSvgIcon('bg-logo', '/assets/bg-logo.svg', 'partners');
     //this.iconService.addSvgIcon('isobar', '/assets/partners/isobar.svg', 'partners');
     //this.iconService.addSvgIcon('vmware', '/assets/partners/vmware.svg', 'partners');
     //this.iconService.addSvgIcon('telus', '/assets/partners/telus.svg', 'partners');

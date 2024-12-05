@@ -14,21 +14,18 @@
     margin: auto;
   }
 
-  .slide-info h2 {
-    font-size: 3rem;
-    font-weight: 800;
-    margin: 0;
-  }
+  // .slide-info h2 {
+  //   margin: 0;
+  // }
 
-  .slide-info h4 {
-    font-size: 1.75rem;
-    margin: 0;
-  }
+  // .slide-info h4 {
+  //   font-size: 1.75rem;
+  //   margin: 0;
+  // }
 
-  .slide-info p {
-    font-size: 1rem;
-    margin: 16px 0 16px 0;
-  }
+  // .slide-info p {
+  //   margin: 16px 0 16px 0;
+  // }
 
   .nav-button {
     width: 250px;
@@ -59,8 +56,8 @@
   // }
 
   .event-icon {
-    width: 92px;
-    height: 82px;
+    width: 88px;
+    height: 88px;
   }
 
   // @media only screen and (max-width: 550px) {
@@ -80,14 +77,14 @@
       background-position: center;
       background-position-y: -100px;
     }
-    .slide-info h2 {
+    .slide-info h1 {
       font-size: 1.75rem;
       margin: 0;
     }
   }
 
   @media only screen and (min-width: 1281px) and (max-width: 1500px) {
-    .slide2{
+    .slide2 {
       background-position-y: 0px;
     }
   }

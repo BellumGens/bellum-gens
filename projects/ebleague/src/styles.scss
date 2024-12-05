@@ -8,10 +8,24 @@
 }
 @import "minireset.css/minireset";
 
+@font-face {
+  font-family: 'ebleague';
+  src: url('/assets/fonts/KelsonSans-Bold.woff') format('woff'),
+       url('/assets/fonts/KelsonSans-Bold.woff2') format('woff2'),
+       url('/assets/fonts/KelsonSans-Bold.eot') format('eot');
+}
+
+@font-face {
+  font-family: 'ebleague-bg';
+  src: url('/assets/fonts/KelsonSansBG-Bold.woff') format('woff'),
+       url('/assets/fonts/KelsonSansBG-Bold.woff2') format('woff2'),
+       url('/assets/fonts/KelsonSansBG-Bold.eot') format('eot');
+}
+
 @include core();
 
 @include typography(
-  $font-family: "'Poppins', sans-serif"
+  $font-family: "ebleague, ebleague-bg, sans-serif"
 );
 
 @import "../../common/src/styles.scss";
@@ -57,7 +71,6 @@ $navbar-theme: navbar-theme(
 
 /* Nav Drawer */
 $navdrawer-theme: navdrawer-theme(
-  $background: $background-gradient,
   $item-hover-background: rgba(0, 0, 0, 0.11),
   $item-active-background: rgba(0, 0, 0, 0.11),
   $item-active-text-color: $secondary,

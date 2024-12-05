@@ -1,7 +1,7 @@
 <div igxLayout>
   <igx-nav-drawer [pinThreshold]="1600" id="navigation" #drawer>
     <ng-template igxDrawer>
-      <span igxDrawerItem [isHeader]="true">Bellum Gens</span>
+      <span igxDrawerItem [isHeader]="true"></span>
       @if (authUser) {
         <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="team/myteams">
           <igx-icon>people</igx-icon>
@@ -43,7 +43,7 @@
 
     @if (drawer.pin) {
       <ng-template igxDrawerMini>
-        <span igxDrawerItem [isHeader]="true">&nbsp;</span>
+        <span igxDrawerItem [isHeader]="true"></span>
         @if (authUser) {
           <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="team/myteams" i18n-title title="My Teams">
             <igx-icon>people</igx-icon>
@@ -79,10 +79,10 @@
   </igx-nav-drawer>
 
   <div igxFlex igxLayout igxLayoutDir="columns" class="top-level-container">
-    <igx-navbar class="bellum-gens-navbar" [title]="title">
+    <igx-navbar class="bellum-gens-navbar">
       <igx-navbar-action>
         <igx-icon class="drawer-action navigatable" (click)="drawer.toggle()">menu</igx-icon>
-        <igx-avatar class="navigatable" [src]="'/assets/bg-avatar.webp'" title="Bellum Gens" shape="circle" routerLink="/"></igx-avatar>
+        <igx-icon class="navigatable logo" name="bg-logo" family="partners" title="Bellum Gens" routerLink="/" />
       </igx-navbar-action>
       <igx-input-group type="search" class="search-group" #searchGroup>
         <igx-prefix>
