@@ -22,6 +22,10 @@ igx-grid-cell > igx-avatar {
 .igx-nav-drawer__aside--pinned {
   position: fixed;
 }
+
+.igx-nav-drawer__item, .igx-nav-drawer__item--active {
+  clip-path: none;
+}
 /* END NAVDRAWER */
 
 /* SNACKBAR */
