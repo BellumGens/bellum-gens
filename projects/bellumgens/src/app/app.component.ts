@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, HostListener, Inject, PLATFORM_ID, LOCALE_ID } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, Inject, PLATFORM_ID, LOCALE_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { RouterLinkActive, RouterLink, RouterOutlet, ActivatedRoute } from '@angular/router';
 
@@ -22,7 +22,6 @@ import {
   IgxFlexDirective,
   IgxNavbarComponent,
   IgxNavbarActionDirective,
-  IgxAvatarComponent,
   IgxPrefixDirective,
   IgxLabelDirective,
   IgxInputDirective,
@@ -75,7 +74,6 @@ import { IgxResourceStringsBG } from 'igniteui-angular-i18n';
     IgxFlexDirective,
     IgxNavbarComponent,
     IgxNavbarActionDirective,
-    IgxAvatarComponent,
     IgxInputGroupComponent,
     IgxPrefixDirective,
     IgxLabelDirective,
@@ -104,7 +102,6 @@ export class AppComponent implements OnInit {
   public searchResult: SearchResult;
   public unreadNotifications = 0;
   public environment = environment;
-  public title = 'Bellum Gens';
   public year = new Date().getFullYear();
 
   public overlaySettings = GLOBAL_OVERLAY_SETTINGS;
@@ -133,14 +130,8 @@ export class AppComponent implements OnInit {
           this.notificationService.emitSuccess(params.message);
         }
       });
-      this.resize();
     }
     this.initSvgIcons();
-  }
-
-  @HostListener('window:resize')
-  public resize() {
-    this.title = window.matchMedia('(min-width: 768px)').matches ? 'Bellum Gens' : '';
   }
 
   public ngOnInit(): void {

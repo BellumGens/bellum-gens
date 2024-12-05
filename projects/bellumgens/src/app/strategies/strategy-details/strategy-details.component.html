@@ -2,7 +2,7 @@
   <bg-loading></bg-loading>
 }
 @else {
-  <igx-card class="strategy-details"  [horizontal]="horizontal">
+  <igx-card class="strategy-details" elevated [horizontal]="horizontal">
     <div igxLayout igxLayoutDir="column" igxFlex [igxFlexGrow]="1">
       @if (strat.url | isVideo) {
         <igx-card-media height="100%">

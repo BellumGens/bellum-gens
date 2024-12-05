@@ -70,8 +70,7 @@ $navdrawer-theme: navdrawer-theme($background: $background-gradient,
 /* END Nav Drawer */
 
 /* Card */
-$card-theme: card-theme($background: $background-gradient-lighter,
-                        $resting-shadow: 0px 15px 30px 0px rgba(0,0,0,0.4),
+$card-theme: card-theme($resting-shadow: 0px 15px 30px 0px rgba(0,0,0,0.4),
                         $hover-shadow: 0px 15px 30px 0px rgba(0,0,0,0.7));
 @include css-vars($card-theme);
 /* END Card */

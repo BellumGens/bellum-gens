@@ -674,9 +674,9 @@
           <context context-type="linenumber">218,219</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8066863113362407779" datatype="html">
-        <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Contact us<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> if you wish to sponsor this or any of the other event organized by Bellum Gens. Our contact info can be found at the footer of the page.</source>
-        <target><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Свържете се с нас<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> ако желаете да спонсорирате това или някое от другите събития организирани от Белум Генс. Нашите контакти могат да бъдат намерени в дъното на страницата.</target>
+      <trans-unit id="2038513265621613697" datatype="html">
+        <source><x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;mailto:info@bellumgens.com&quot;&gt;"/>Contact us<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> if you wish to sponsor this or any of the other event organized by Bellum Gens. Our social media contacts can be found at the footer of the page.</source>
+        <target><x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;mailto:info@bellumgens.com&quot;&gt;"/>Свържете се с нас<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> ако желаете да спонсорирате това или някое от другите събития организирани от Белум Генс. Нашите контакти могат да бъдат намерени в дъното на страницата.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
           <context context-type="linenumber">219,221</context>
