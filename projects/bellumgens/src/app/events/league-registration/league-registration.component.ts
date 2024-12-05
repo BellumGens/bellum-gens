@@ -81,15 +81,13 @@ export class LeagueRegistrationComponent {
         this.tournamentId = params.tournamentId;
         this.apiService.getTournament(params.tournamentId).subscribe(tournament => {
           this.tournament = tournament;
-          this.application.tournamentId = tournament.id;
+          this.application.tournamentId = tournament?.id;
         });
       } else {
         this.apiService.activeTournament.subscribe(data => {
-          if (data) {
-            this.tournament = data;
-            this.tournamentId = data.id;
-            this.application.tournamentId = data.id;
-          }
+          this.tournament = data;
+          this.tournamentId = data?.id;
+          this.application.tournamentId = this.tournamentId;
         });
       }
     });
