@@ -47,7 +47,7 @@
     "@infragistics/igniteui-angular": "19.0.0",
     "@types/express": "^5.0.0",
     "compression": "^1.7.5",
-    "express": "^4.21.1",
+    "express": "^4.21.2",
     "hammerjs": "^2.0.8",
     "igniteui-angular-i18n": "19.0.0",
     "minireset.css": "0.0.4",
