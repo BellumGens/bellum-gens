@@ -90,9 +90,9 @@ export class ApiTournamentsService {
   public tournamentRegistrations(tournamentId: string) {
     if (!this.loadingTourRegistrations.value) {
       this.loadingTourRegistrations.next(true);
-      this.getTournamentRegistrations(tournamentId).subscribe(data => {
-        this._tourRegistrations.next(data);
-        this.loadingTourRegistrations.next(false);
+      this.getTournamentRegistrations(tournamentId).subscribe({
+        next: data => this._tourRegistrations.next(data),
+        complete: () => this.loadingTourRegistrations.next(false)
       });
     }
     return this._tourRegistrations;

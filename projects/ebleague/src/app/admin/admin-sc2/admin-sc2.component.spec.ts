@@ -4,7 +4,7 @@ import { AdminSc2Component } from './admin-sc2.component';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { ApiTournamentsService } from 'projects/common/src/public_api';
+import { ApiTournamentsService, Tournament } from 'projects/common/src/public_api';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
 describe('AdminSc2Component', () => {
@@ -37,10 +37,37 @@ describe('AdminSc2Component', () => {
   });
 
   it('should load tournaments', () => {
-    const req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/tournaments`);
+    const tounaments = [{ id: '123', active: true }, { id: '234', active: false }] as Tournament[];
+    const spy = spyOn(component, 'selectTournament').and.callThrough();
+    let req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/tournaments`);
     expect(req.request.method).toBe('GET');
+    req.flush(tounaments);
+    expect(component.tournaments).toEqual(tounaments);
+    expect(spy).toHaveBeenCalled();
+
+    req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/sc2regs?tournamentId=123`);
+    expect(req.request.method).toBe('GET');
+    expect(component.loading).toBeTrue();
     req.flush([]);
-    expect(component.tournaments).toEqual([]);
+    expect(component.loading).toBeFalse();
+
+    req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/tournamentregistrations?tournamentId=123`);
+    expect(req.request.method).toBe('GET');
+    expect(component.loadingRegs).toBeTrue();
+    req.flush([]);
+    expect(component.loadingRegs).toBeFalse();
+
+    req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/sc2matches?tournamentId=123`);
+    expect(req.request.method).toBe('GET');
+    expect(component.loadingMatches).toBeTrue();
+    req.flush([]);
+    expect(component.loadingMatches).toBeFalse();
+
+    req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/sc2groups?tournamentId=123`);
+    expect(req.request.method).toBe('GET');
+    expect(component.loadingGroups).toBeTrue();
+    req.flush([]);
+    expect(component.loadingGroups).toBeFalse();
   });
 
 });
