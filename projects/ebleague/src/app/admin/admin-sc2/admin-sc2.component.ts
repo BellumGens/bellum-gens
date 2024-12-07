@@ -73,7 +73,7 @@ export class AdminSc2Component {
   constructor(private apiService: ApiTournamentsService,
               private notificationService: CommunicationService) {
     this.apiService.tournaments.subscribe(t => {
-      if (t) {
+      if (t && t.length > 0) {
         this.tournaments = t;
         this.selectedTournament = t?.find(tour => tour.active);
         this.selectTournament(this.selectedTournament);
