@@ -126,7 +126,6 @@ export class ApiTournamentsService {
       this.getSC2Registrations(id).subscribe({
         next: (data) => {
           this._sc2Registrations.get(id).next(data);
-          this.loadingSC2Registrations.next(false);
         },
         complete: () => this.loadingSC2Registrations.next(false)
       });
