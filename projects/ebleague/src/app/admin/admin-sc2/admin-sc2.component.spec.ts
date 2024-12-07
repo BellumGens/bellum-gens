@@ -4,14 +4,13 @@ import { AdminSc2Component } from './admin-sc2.component';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { ApiTournamentsService, LoginService } from 'projects/common/src/public_api';
+import { ApiTournamentsService } from 'projects/common/src/public_api';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
 describe('AdminSc2Component', () => {
   let component: AdminSc2Component;
   let fixture: ComponentFixture<AdminSc2Component>;
   let httpMock: HttpTestingController;
-  let loginService: LoginService;
   let apiService: ApiTournamentsService;
 
   beforeEach(waitForAsync(() => {
@@ -23,7 +22,6 @@ describe('AdminSc2Component', () => {
       ],
       providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
     }).compileComponents();
-    loginService = TestBed.inject(LoginService);
     httpMock = TestBed.inject(HttpTestingController);
     apiService = TestBed.inject(ApiTournamentsService);
   }));
