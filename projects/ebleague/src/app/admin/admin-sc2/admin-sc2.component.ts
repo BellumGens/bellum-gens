@@ -195,8 +195,17 @@ export class AdminSc2Component {
     });
   }
 
+  public refreshMatches() {
+    this.apiService.getSc2Matches(this.selectedTournament.id).subscribe(data => this.matches = data);
+  }
+
+  public refreshParticipants() {
+    this.apiService.getSc2Registrations(this.selectedTournament.id).subscribe(data => this.participants = data);
+  }
+
   public refreshRegistrations() {
     this.apiService.tournamentRegistrations(this.selectedTournament.id).subscribe(data => this.registrations = data);
+    this.apiService.getSc2Groups(this.selectedTournament.id).subscribe(data => this.groups = data);
   }
 
   public resetCheckinState() {
