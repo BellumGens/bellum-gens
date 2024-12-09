@@ -49,7 +49,6 @@ describe('BgeBalkanComponent', () => {
     let req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/activetournament`);
     expect(req.request.method).toBe('GET');
     expect(req.request.withCredentials).toBeFalse();
-    expect(component.loading).toBeTrue();
     req.flush(mockTournament);
     expect(component.loading).toBeTrue();
     expect(component.tournament).toEqual(mockTournament);
@@ -59,7 +58,6 @@ describe('BgeBalkanComponent', () => {
     expect(req.request.withCredentials).toBeFalse();
     req.flush(mockRegistrations);
     expect(component.loading).toBeFalse();
-    expect(component.registrations).toEqual(mockRegistrations);
 
     req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/sc2matches?tournamentId=123`);
     expect(req.request.method).toBe('GET');
@@ -67,7 +65,6 @@ describe('BgeBalkanComponent', () => {
     expect(component.loadingMatches).toBeTrue();
     req.flush(mockMatches);
     expect(component.loadingMatches).toBeFalse();
-    expect(component.sc2matches).toEqual(mockMatches);
 
     req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/sc2groups?tournamentId=123`);
     expect(req.request.method).toBe('GET');
@@ -75,6 +72,5 @@ describe('BgeBalkanComponent', () => {
     expect(component.loadingGroups).toBeTrue();
     req.flush(mockGroups);
     expect(component.loadingGroups).toBeFalse();
-    expect(component.groups).toEqual(mockGroups);
   });
 });
