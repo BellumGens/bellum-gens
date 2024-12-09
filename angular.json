@@ -252,7 +252,7 @@
             "index": "projects/ebleague/src/index.html",
             "browser": "projects/ebleague/src/main.ts",
             "server": "projects/ebleague/src/main.server.ts",
-            "prerender": true,
+            "outputMode": "server",
             "ssr": {
               "entry": "projects/ebleague/server.ts"
             },

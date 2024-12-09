@@ -1,79 +1,74 @@
-import 'zone.js/node';
-
-import { APP_BASE_HREF } from '@angular/common';
-import { LOCALE_ID } from '@angular/core';
-import { CommonEngine } from '@angular/ssr/node';
+import {
+  AngularNodeAppEngine,
+  createNodeRequestHandler,
+  isMainModule,
+  writeResponseToNodeResponse,
+} from '@angular/ssr/node';
 import express from 'express';
-import { existsSync } from 'node:fs';
-import { join } from 'node:path';
-import bootstrap from './src/main.server';
+import { dirname, resolve } from 'node:path';
+import { fileURLToPath } from 'node:url';
 
-import { environment } from '../common/src/environments/environment';
+const app = express();
 
-// The Express app is exported so that it can be used by serverless Functions.
-export function app(lang: string): express.Express {
-  const server = express();
-  const distFolder = join(process.cwd(), environment.distFolderEbleague, lang);
-  let indexHtml = existsSync(join(distFolder, 'index.original.html'))
-    ? join(distFolder, 'index.original.html')
-    : join(distFolder, 'index.html');
+export function server(lang: string): express.Express {
+  const app = express();
+  const angularApp = new AngularNodeAppEngine();
+  const serverDistFolder = dirname(fileURLToPath(import.meta.url));
+  const browserDistFolder = resolve(serverDistFolder, '../browser', lang);
 
-  const commonEngine = new CommonEngine();
+  /**
+   * Example Express Rest API endpoints can be defined here.
+   * Uncomment and define endpoints as necessary.
+   *
+   * Example:
+   * ```ts
+   * app.get('/api/**', (req, res) => {
+   *   // Handle API request
+   * });
+   * ```
+   */
 
-  server.set('view engine', 'html');
-  server.set('views', distFolder);
+  /**
+   * Serve static files from /browser
+   */
+  app.use(
+    express.static(browserDistFolder, {
+      maxAge: '1y'
+    }),
+  );
 
-  // Example Express Rest API endpoints
-  // server.get('/api/**', (req, res) => { });
-  // Serve static files from /browser
-  server.use(express.static(distFolder, {
-    maxAge: '1y'
-  }));
-
-  // All regular routes use the Angular engine
-  server.get('*', (req, res, next) => {
-    const { protocol, originalUrl, baseUrl, headers } = req;
-
-    if (existsSync(join(process.cwd(), environment.distFolderEbleague, originalUrl, 'index.html'))) {
-      indexHtml = join(process.cwd(), environment.distFolderEbleague, originalUrl, 'index.html');
-    }
-
-    commonEngine
-      .render({
-        bootstrap,
-        documentFilePath: indexHtml,
-        url: `${protocol}://${headers.host}${originalUrl}`,
-        publicPath: distFolder,
-        providers: [
-          { provide: APP_BASE_HREF, useValue: baseUrl },
-          { provide: LOCALE_ID, useValue: lang }
-        ],
-      })
-      .then((html) => res.send(html))
-      .catch((err) => next(err));
+  /**
+   * Handle all other requests by rendering the Angular application.
+   */
+  app.use('/**', (req, res, next) => {
+    angularApp
+      .handle(req)
+      .then((response) =>
+        response ? writeResponseToNodeResponse(response, res) : next(),
+      )
+      .catch(next);
   });
 
-  // All bellumgens routes should redirect
-  server.get('**/players/*', (req, res) => {
-    res.redirect(environment.bellumgens + req.originalUrl);
-  });
-
-  return server;
+  return app;
 }
 
-function run(): void {
-  const port = process.env['PORT'] || 4001;
-
-  // Start up the Node server
-  const appBg = app('bg');
-  const appEn = app('en');
-  const server = express();
-  server.use('/bg', appBg);
-  server.use('/en', appEn);
-  server.use('', appEn);
-  server.listen(port, () => {
+/**
+ * Start the server if this module is the main entry point.
+ * The server listens on the port defined by the `PORT` environment variable, or defaults to 4000.
+ */
+if (isMainModule(import.meta.url)) {
+  const port = process.env['PORT'] || 4000;
+  const appBG = server('bg');
+  const appEN = server('en');
+  app.use('/bg', appBG);
+  app.use('/en', appEN);
+  app.use('', appEN);
+  app.listen(port, () => {
     console.log(`Node Express server listening on http://localhost:${port}`);
   });
 }
 
-run();
+/**
+ * The request handler used by the Angular CLI (dev-server and during build).
+ */
+export const reqHandler = createNodeRequestHandler(app);
