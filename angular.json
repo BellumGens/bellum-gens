@@ -27,7 +27,7 @@
             "index": "projects/bellumgens/src/index.html",
             "browser": "projects/bellumgens/src/main.ts",
             "server": "projects/bellumgens/src/main.server.ts",
-            "prerender": true,
+            "outputMode": "server",
             "ssr": {
               "entry": "projects/bellumgens/server.ts"
             },
