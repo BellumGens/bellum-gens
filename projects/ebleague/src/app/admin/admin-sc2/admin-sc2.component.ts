@@ -73,7 +73,7 @@ export class AdminSc2Component {
   constructor(private apiService: ApiTournamentsService,
               private notificationService: CommunicationService) {
     this.apiService.tournaments.subscribe(t => {
-      if (t) {
+      if (t && t.length > 0) {
         this.tournaments = t;
         this.selectedTournament = t?.find(tour => tour.active);
         this.selectTournament(this.selectedTournament);
@@ -195,8 +195,17 @@ export class AdminSc2Component {
     });
   }
 
+  public refreshMatches() {
+    this.apiService.getSc2Matches(this.selectedTournament.id).subscribe(data => this.matches = data);
+  }
+
+  public refreshParticipants() {
+    this.apiService.getSc2Registrations(this.selectedTournament.id).subscribe(data => this.participants = data);
+  }
+
   public refreshRegistrations() {
     this.apiService.tournamentRegistrations(this.selectedTournament.id).subscribe(data => this.registrations = data);
+    this.apiService.getSc2Groups(this.selectedTournament.id).subscribe(data => this.groups = data);
   }
 
   public resetCheckinState() {
