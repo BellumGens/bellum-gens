@@ -57,7 +57,7 @@ export function server(lang: string): express.Express {
  * The server listens on the port defined by the `PORT` environment variable, or defaults to 4000.
  */
 if (isMainModule(import.meta.url)) {
-  const port = process.env['PORT'] || 4000;
+  const port = process.env['PORT'] || 4001;
   const appBG = server('bg');
   const appEN = server('en');
   app.use('/bg', appBG);
