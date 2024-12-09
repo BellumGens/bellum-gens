@@ -69,4 +69,4 @@ jobs:
         with:
           app-name: 'bellum-gens'
           slot-name: 'Production'
-          package: ./bellumgens
+          package: ./dist/bellumgens
