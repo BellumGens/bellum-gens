@@ -64,9 +64,17 @@ jobs:
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_752FA4AF4D9E4728A098E60C742B2A27 }}
 
       - name: 'Deploy to Azure Web App'
-        id: deploy-to-webapp
+        id: deploy-to-webapp-bellumgens
         uses: azure/webapps-deploy@v3
         with:
           app-name: 'bellum-gens'
           slot-name: 'Production'
           package: ./dist/bellumgens
+
+      - name: 'Deploy to Azure Web App'
+        id: deploy-to-webapp-ebleague
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: 'eb-league'
+          slot-name: 'Production'
+          package: ./dist/ebleague
