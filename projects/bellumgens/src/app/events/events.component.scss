@@ -7,21 +7,6 @@
   background-color: #071365;
   background-position: center right;
 
-  // @font-face {
-  //   font-family: 'dge-ebold';
-  //   src: url('/assets/fonts/dge-ebold.otf');
-  // }
-
-  // @font-face {
-  //   font-family: 'rg-b';
-  //   src: url('/assets/fonts/rg-r.otf');
-  // }
-
-  // @font-face {
-  //   font-family: 'rg-r';
-  //   src: url('/assets/fonts/rg-b.otf');
-  // }
-
   .content-container-column iframe, .content-container-row iframe {
     width: 600px;
     height: 315px;
@@ -55,7 +40,7 @@
     }
   }
 
-  @media screen and (max-width: 1024px) {
+  @media screen and (max-width: 768px) {
     background-position: center;
 
     .content-container h1 {
@@ -72,6 +57,12 @@
 
     .cta-button-large {
       height: 60px;
+    }
+  }
+
+  @media screen and (max-width: 550px) {
+    .content-container-column iframe, .content-container-row iframe {
+      height: 265px;
     }
   }
 }

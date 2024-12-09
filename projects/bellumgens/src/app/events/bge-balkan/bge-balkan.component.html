@@ -10,7 +10,7 @@
         @if (loading) {
           <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
         }
-        @for (registration of registrations; track registration) {
+        @for (registration of registrations | async; track registration) {
           <div class="registration-slot">
             <igx-avatar [src]="registration.user.sc2Details?.avatarUrl || ''" [initials]="registration.user.username" size="medium" shape="circle">
             </igx-avatar>
@@ -25,7 +25,7 @@
       </div>
 
       <div class="group-columns">
-        @for (group of groups; track group.id) {
+        @for (group of groups | async; track group.id) {
           <igx-grid
             cellSelection="none"
             [data]="group.participants">
@@ -71,7 +71,7 @@
 
 
       <igx-grid cellSelection="none"
-        [data]="sc2matches"
+        [data]="sc2matches | async"
         height="550px"
         i18n-emptyGridMessage
         emptyGridMessage="No matches found..."

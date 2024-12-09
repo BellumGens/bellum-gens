@@ -124,9 +124,7 @@ export class ApiTournamentsService {
       this.loadingSC2Registrations.next(true);
       this._sc2Registrations.set(id, new BehaviorSubject<TournamentParticipant []>(null));
       this.getSC2Registrations(id).subscribe({
-        next: (data) => {
-          this._sc2Registrations.get(id).next(data);
-        },
+        next: (data) => this._sc2Registrations.get(id).next(data),
         complete: () => this.loadingSC2Registrations.next(false)
       });
     }
@@ -155,10 +153,7 @@ export class ApiTournamentsService {
         this._sc2Matches.set(id, new BehaviorSubject<TournamentSC2Match []>(null));
       }
       this.getSC2Matches(id).subscribe({
-        next: (data) => {
-          this._sc2Matches.get(id).next(data);
-          this.loadingSC2Matches.next(false);
-        },
+        next: (data) => this._sc2Matches.get(id).next(data),
         complete: () => this.loadingSC2Matches.next(false)
       });
     }
@@ -187,10 +182,7 @@ export class ApiTournamentsService {
         this._sc2Groups.set(id, new BehaviorSubject<TournamentSC2Group []>(null));
       }
       this.getSC2Groups(id).subscribe({
-        next: (data) => {
-          this._sc2Groups.get(id).next(data);
-          this.loadingSC2Groups.next(false);
-        },
+        next: (data) => this._sc2Groups.get(id).next(data),
         complete: () => this.loadingSC2Groups.next(false)
       });
     }
