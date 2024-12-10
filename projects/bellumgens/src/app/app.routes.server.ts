@@ -7,6 +7,10 @@ export const serverRoutes: ServerRoute[] = [
   },
   {
     path: 'bellumgenselite/registration/:tournamentId',
+    renderMode: RenderMode.Client
+  },
+  {
+    path: 'bellumgenselite/bge-balkan-circuit',
     renderMode: RenderMode.Server
   },
   {

@@ -3,6 +3,7 @@
     <igx-card-header>
       <igx-avatar src="/assets/login/bge-white-2024.svg" igxCardThumbnail shape="circle" />
       <h1 igxCardHeaderTitle i18n>{{ tournament?.name }} StarCraft II Circuit</h1>
+      <a i18n [routerLink]="['../registration/', bgeBalkanId]" igxButton="contained" style="margin-top: 12px" i18n>Sign-up to participate</a>
     </igx-card-header>
     <igx-card-content>
       <h4 i18n>Participants</h4>

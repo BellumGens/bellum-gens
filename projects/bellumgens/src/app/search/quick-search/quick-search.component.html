@@ -47,11 +47,11 @@
         <span igxListLine i18n>No matching players...</span>
       </igx-list-item>
     }
-    @for (user of searchResult.players | reduceQuickSearchResult; track user.csgoDetails.steamId) {
+    @for (user of searchResult.players | reduceQuickSearchResult; track user.id) {
       <igx-list-item
-        [routerLink]="['/players', user.csgoDetails.customURL || user.id]"
+        [routerLink]="['/players', user.csgoDetails?.customURL || user.id]"
         class="navigatable">
-        <igx-avatar igxListThumbnail [src]="user.csgoDetails.avatarIcon" [initials]="user.csgoDetails.realname" shape="circle">
+        <igx-avatar igxListThumbnail [src]="user.csgoDetails?.avatarIcon" [initials]="user.csgoDetails?.realname" shape="circle">
         </igx-avatar>
         @if (user.csgoDetails.country) {
           <igx-avatar
