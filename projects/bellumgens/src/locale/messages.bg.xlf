@@ -882,6 +882,14 @@
           <context context-type="linenumber">136,139</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="1701438550171438879" datatype="html">
+        <source>Read the full rulebook</source>
+        <target>Прочетете пълния правилник</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.html</context>
+          <context context-type="linenumber">142,143</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="8376311744797589133" datatype="html">
         <source>Please login first</source>
         <target>Моля, първо влезте в профила си</target>
