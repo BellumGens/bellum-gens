@@ -27,7 +27,6 @@
             "index": "projects/bellumgens/src/index.html",
             "browser": "projects/bellumgens/src/main.ts",
             "server": "projects/bellumgens/src/main.server.ts",
-            "outputMode": "server",
             "ssr": {
               "entry": "projects/bellumgens/server.ts"
             },
@@ -76,6 +75,7 @@
                   "with": "projects/common/src/environments/environment.prod.ts"
                 }
               ],
+              "outputMode": "server",
               "localize": true,
               "optimization": true,
               "outputHashing": "all",
@@ -252,7 +252,6 @@
             "index": "projects/ebleague/src/index.html",
             "browser": "projects/ebleague/src/main.ts",
             "server": "projects/ebleague/src/main.server.ts",
-            "outputMode": "server",
             "ssr": {
               "entry": "projects/ebleague/server.ts"
             },
@@ -300,6 +299,7 @@
                   "with": "projects/common/src/environments/environment.prod.ts"
                 }
               ],
+              "outputMode": "server",
               "localize": true,
               "optimization": true,
               "outputHashing": "all",

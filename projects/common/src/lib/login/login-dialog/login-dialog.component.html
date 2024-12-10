@@ -17,6 +17,9 @@
 
       <igx-input-group type="border">
         <label for="passwordField" igxLabel i18n>Password</label>
+        <igx-prefix>
+          <igx-icon>key</igx-icon>
+        </igx-prefix>
         <input #passwordField igxInput type="password" [required]="true" id="passwordField" name="passwordField" [(ngModel)]="logininfo.password" />
       </igx-input-group>
 
