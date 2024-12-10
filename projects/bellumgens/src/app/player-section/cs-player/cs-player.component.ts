@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { BaseDirective } from '../../base/base.component';
 import {
   ALL_ROLES,
