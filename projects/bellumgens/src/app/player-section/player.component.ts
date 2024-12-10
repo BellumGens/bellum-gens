@@ -1,7 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 
-import { IGX_TABS_DIRECTIVES } from '@infragistics/igniteui-angular';
-import { RouterLinkActive } from '@angular/router';
+import { IGX_TABS_DIRECTIVES, IgxAvatarComponent, IgxIconComponent } from '@infragistics/igniteui-angular';
+import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-player',
@@ -10,7 +10,11 @@ import { RouterLinkActive } from '@angular/router';
   encapsulation: ViewEncapsulation.None,
   imports: [
     IGX_TABS_DIRECTIVES,
-    RouterLinkActive
+    IgxIconComponent,
+    IgxAvatarComponent,
+    RouterLink,
+    RouterLinkActive,
+    RouterOutlet
   ]
 })
 export class PlayerComponent {

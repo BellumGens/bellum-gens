@@ -51,18 +51,16 @@ $my-type-scale: igx.extend(
     ),
     body-2: igx.type-style(
       $font-family: "Rajdhani, Fira Sans Condensed, sans-serif",
-      $font-size: 14pt,
-      $font-weight: normal,
-      $margin-top: 1.75rem,
-      $margin-bottom: 1rem
+      $font-size: 1.1rem,
+      $font-weight: normal
     ),
     subtitle-1: igx.type-style(
       $font-family: "Rajdhani, Fira Sans Condensed, sans-serif",
-      $font-size: 14pt
+      $font-size: 1.3rem
     ),
     subtitle-2: igx.type-style(
       $font-family: "Rajdhani, Fira Sans Condensed, sans-serif",
-      $font-size: 14pt
+      $font-size: 1.1rem
     ),
     button: igx.type-style(
       $font-family: "Anton, Oswald, sans-serif",

@@ -21,8 +21,6 @@
     "serve:ssr": "concurrently --kill-others \"npm run serve:ssr:bellumgens\" \"npm run serve:ssr:ebleague\"",
     "serve:ssr:bellumgens": "node dist/bellumgens/server/server.mjs",
     "serve:ssr:ebleague": "node dist/ebleague/server/server.mjs",
-    "build:ssr": "npm run build:client-and-server-bundles",
-    "build:client-and-server-bundles": "npm run build:apps && ng run bellum-gens:server:production && ng run eb-league:server:production",
     "i18n": "npm run i18n:bellumgens && npm run i18n:ebleague",
     "i18n:bellumgens": "ng extract-i18n bellum-gens --out-file projects/bellumgens/src/locale/messages.en.xlf",
     "i18n:ebleague": "ng extract-i18n eb-league --out-file projects/ebleague/src/locale/messages.en.xlf",

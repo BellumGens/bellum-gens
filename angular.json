@@ -36,20 +36,16 @@
               "@angular/localize/init"
             ],
             "tsConfig": "projects/bellumgens/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
             "assets": [
               "projects/bellumgens/src/favicon.ico",
               "projects/bellumgens/src/assets",
-              "projects/bellumgens/src/web.config",
               "projects/bellumgens/src/robots.txt",
               "projects/bellumgens/src/manifest.json"
             ],
             "styles": [
               "projects/bellumgens/src/styles.scss"
             ],
-            "extractLicenses": false,
-            "sourceMap": true,
-            "optimization": false,
-            "namedChunks": true,
             "stylePreprocessorOptions": {
               "includePaths": [
                 "node_modules"
@@ -77,20 +73,22 @@
               ],
               "outputMode": "server",
               "localize": true,
-              "optimization": true,
               "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
               "serviceWorker": "projects/bellumgens/src/ngsw-config.json",
               "i18nMissingTranslation": "error"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
             },
             "bg": {
               "localize": [
                 "bg"
               ]
             }
-          }
+          },
+          "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -103,6 +101,9 @@
             },
             "bg": {
               "buildTarget": "bellum-gens:build:bg"
+            },
+            "development": {
+              "buildTarget": "ssr-test:build:development"
             }
           }
         },
@@ -122,6 +123,7 @@
             ],
             "tsConfig": "projects/bellumgens/tsconfig.spec.json",
             "karmaConfig": "projects/bellumgens/karma.conf.js",
+            "inlineStyleLanguage": "scss",
             "styles": [
               "projects/bellumgens/src/styles.scss"
             ],
@@ -150,49 +152,6 @@
               "projects/bellumgens/src/**/*.ts",
               "projects/bellumgens/src/**/*.html"
             ]
-          }
-        },
-        "server": {
-          "builder": "@angular-devkit/build-angular:server",
-          "options": {
-            "outputPath": "dist/bellumgens/server",
-            "main": "projects/bellumgens/server.ts",
-            "tsConfig": "projects/bellumgens/tsconfig.server.json",
-            "inlineStyleLanguage": "scss",
-            "sourceMap": true,
-            "optimization": false,
-            "buildOptimizer": false
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "projects/common/src/environments/environment.ts",
-                  "with": "projects/common/src/environments/environment.prod.ts"
-                }
-              ],
-              "sourceMap": false,
-              "optimization": true,
-              "stylePreprocessorOptions": {
-                "includePaths": [
-                  "node_modules"
-                ]
-              },
-              "buildOptimizer": true
-            }
-          }
-        },
-        "serve-ssr": {
-          "builder": "@angular-devkit/build-angular:ssr-dev-server",
-          "options": {
-            "browserTarget": "bellum-gens:build",
-            "serverTarget": "bellum-gens:server"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "bellum-gens:build:production",
-              "serverTarget": "bellum-gens:server:production"
-            }
           }
         },
         "cypress-run": {
@@ -257,23 +216,20 @@
             },
             "polyfills": [
               "zone.js",
+              "hammerjs",
               "@angular/localize/init"
             ],
             "tsConfig": "projects/ebleague/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
             "assets": [
               "projects/ebleague/src/favicon.ico",
               "projects/ebleague/src/assets",
-              "projects/ebleague/src/web.config",
               "projects/ebleague/src/robots.txt",
               "projects/ebleague/src/manifest.json"
             ],
             "styles": [
               "projects/ebleague/src/styles.scss"
             ],
-            "extractLicenses": false,
-            "sourceMap": true,
-            "optimization": false,
-            "namedChunks": true,
             "stylePreprocessorOptions": {
               "includePaths": [
                 "node_modules"
@@ -301,11 +257,7 @@
               ],
               "outputMode": "server",
               "localize": true,
-              "optimization": true,
               "outputHashing": "all",
-              "sourceMap": false,
-              "namedChunks": false,
-              "extractLicenses": true,
               "serviceWorker": "projects/ebleague/src/ngsw-config.json",
               "i18nMissingTranslation": "error"
             },
@@ -313,8 +265,14 @@
               "localize": [
                 "bg"
               ]
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
             }
-          }
+          },
+          "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -327,6 +285,9 @@
             },
             "bg": {
               "buildTarget": "eb-league:build:bg"
+            },
+            "development": {
+              "buildTarget": "ssr-test:build:development"
             }
           }
         },
@@ -346,6 +307,7 @@
             ],
             "tsConfig": "projects/ebleague/tsconfig.spec.json",
             "karmaConfig": "projects/ebleague/karma.conf.js",
+            "inlineStyleLanguage": "scss",
             "styles": [
               "projects/ebleague/src/styles.scss"
             ],
@@ -374,49 +336,6 @@
               "projects/ebleague/src/**/*.ts",
               "projects/ebleague/src/**/*.html"
             ]
-          }
-        },
-        "server": {
-          "builder": "@angular-devkit/build-angular:server",
-          "options": {
-            "outputPath": "dist/ebleague/server",
-            "main": "projects/ebleague/server.ts",
-            "tsConfig": "projects/ebleague/tsconfig.server.json",
-            "inlineStyleLanguage": "scss",
-            "sourceMap": true,
-            "optimization": false,
-            "buildOptimizer": false
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "projects/common/src/environments/environment.ts",
-                  "with": "projects/common/src/environments/environment.prod.ts"
-                }
-              ],
-              "sourceMap": false,
-              "optimization": true,
-              "stylePreprocessorOptions": {
-                "includePaths": [
-                  "node_modules"
-                ]
-              },
-              "buildOptimizer": true
-            }
-          }
-        },
-        "serve-ssr": {
-          "builder": "@angular-devkit/build-angular:ssr-dev-server",
-          "options": {
-            "browserTarget": "eb-league:build",
-            "serverTarget": "eb-league:server"
-          },
-          "configurations": {
-            "production": {
-              "browserTarget": "eb-league:build:production",
-              "serverTarget": "eb-league:server:production"
-            }
           }
         },
         "cypress-run": {

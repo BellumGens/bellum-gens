@@ -1,16 +1,27 @@
-<igx-tabs>
-  <igx-tab-item routerLinkActive #rla1="routerLinkActive"
-    [selected]="rla1.isActive">
-    <igx-tab-header routerLink="cs">
-      <igx-icon igxPrefix>people_outline</igx-icon>
-      <div igxTabHeaderLabel i18n>Details</div>
-    </igx-tab-header>
-  </igx-tab-item>
-  <igx-tab-item routerLinkActive #rla2="routerLinkActive"
-    [selected]="rla2.isActive">
-    <igx-tab-header routerLink="sc">
-      <igx-icon igxPrefix>sports_esports</igx-icon>
-      <div igxTabHeaderLabel i18n>Competitions</div>
-    </igx-tab-header>
-  </igx-tab-item>
-</igx-tabs>
+<div class="overview-container-card">
+  <igx-tabs>
+    <igx-tab-item routerLinkActive #rla1="routerLinkActive"
+      [selected]="rla1.isActive">
+      <igx-tab-header routerLink="cs">
+        <igx-avatar src="/assets/wallpapers/csgo-watermark.webp" igxPrefix shape="circle" size="small" />
+        <div igxTabHeaderLabel i18n>Counter-Strike</div>
+      </igx-tab-header>
+    </igx-tab-item>
+    <igx-tab-item routerLinkActive #rla2="routerLinkActive"
+      [selected]="rla2.isActive">
+      <igx-tab-header routerLink="sc">
+        <igx-avatar src="/assets/wallpapers/sc2-watermark.webp" igxPrefix shape="circle" size="small" />
+        <div igxTabHeaderLabel i18n>StarCraft II</div>
+      </igx-tab-header>
+    </igx-tab-item>
+    <igx-tab-item routerLinkActive #rla3="routerLinkActive"
+      [selected]="rla3.isActive">
+      <igx-tab-header routerLink="competitions">
+        <igx-icon igxPrefix>sports_esports</igx-icon>
+        <div igxTabHeaderLabel i18n>Competitions</div>
+      </igx-tab-header>
+    </igx-tab-item>
+  </igx-tabs>
+
+  <router-outlet></router-outlet>
+</div>

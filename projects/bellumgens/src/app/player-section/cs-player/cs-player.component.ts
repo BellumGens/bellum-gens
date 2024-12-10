@@ -9,6 +9,7 @@ import {
   CountrySVGPipe,
   CSGOMapPool,
   CSGOTeam,
+  LoadingComponent,
   LoginService,
   WeaponDescriptor
 } from '../../../../../common/src/public_api';
@@ -44,11 +45,11 @@ import { MapPoolComponent } from '../map-pool/map-pool.component';
     CountrySVGPipe,
     SteamCustomUrlPipe,
     SortWeaponsPipe,
-    TopWeaponAltPipe
+    TopWeaponAltPipe,
+    LoadingComponent
   ],
   templateUrl: './cs-player.component.html',
-  styleUrl: './cs-player.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrl: './cs-player.component.scss'
 })
 export class CsPlayerComponent extends BaseDirective {
   public authUser: ApplicationUser;
@@ -78,7 +79,7 @@ export class CsPlayerComponent extends BaseDirective {
       }
     });
 
-    this.activatedRoute.params.subscribe(params => {
+    this.activatedRoute.parent.params.subscribe(params => {
       const userid = params['userid'];
       this.newUser = params['newuser'];
       if (userid) {

@@ -1,10 +1,14 @@
+@if (loading) {
+  <bg-loading>
+  </bg-loading>
+}
+
 @if (!player || player?.steamUserException) {
   <div class="loading-overview">
     <h4 class="highlight" i18n>Steam CS:GO player profile not found...</h4>
   </div>
 }
-
-@if (player && !player.steamUserException) {
+@else {
   <div class="card-wrapper profile-view-layout">
     @if (newUser) {
       <div class="content-container-row">
