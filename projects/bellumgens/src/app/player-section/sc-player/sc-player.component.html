@@ -5,7 +5,7 @@
       <igx-avatar [src]="player.sc2Details?.avatarUrl" [initials]="player.steamUser?.steamID" class="player-avatar">
       </igx-avatar>
     </div>
-    <h1 class="igx-card-header__title"><a [href]="player.steamUser" target="_blank" rel="noopener">{{ player.steamUser?.steamID }}</a></h1>
-    <h4 class="igx-card-header__subtitle">{{ player.steamUser?.realname }}</h4>
+    <h1 class="igx-card-header__title"><a [href]="player.steamUser" target="_blank" rel="noopener">{{ player.sc2Details.battleNetBattleTag }}</a></h1>
+    <h4 class="igx-card-header__subtitle">{{ player.username }}</h4>
   </div>
 </div>

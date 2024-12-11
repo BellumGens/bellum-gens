@@ -7,20 +7,6 @@
 
   /* User Profile */
 
-  app-player .card-wrapper {
-    padding-top: 24px;
-  }
-
-  .card-wrapper.profile-view-layout {
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  }
-
-  .player-avatar {
-    width: 144px;
-    height: 144px;
-    border-radius: 16px;
-  }
-
   .team-avatar-link {
     cursor: pointer;
     margin: 0 16px 16px 0;
@@ -79,12 +65,6 @@
     flex-grow: 0;
   }
   /* END User Overview */
-
-  @media only screen and (max-width: 768px) {
-    .profile-container, .player-detail__stats {
-      max-width: 320px;
-    }
-  }
 
   @media only screen and (min-width: 600px) {
     .player-exception {

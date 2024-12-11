@@ -2,6 +2,16 @@
   background: none;
 }
 
+.card-wrapper.profile-view-layout {
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+}
+
+.player-avatar {
+  width: 144px;
+  height: 144px;
+  border-radius: 16px;
+}
+
 @media only screen and (max-width: 768px) {
   .overview-container-card {
     width: auto;
@@ -11,5 +21,9 @@
   .card-wrapper {
     padding: 20px;
     margin: 0;
+  }
+
+  .profile-container, .player-detail__stats {
+    max-width: 320px;
   }
 }
