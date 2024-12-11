@@ -2,6 +2,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
 
 import { IGX_TABS_DIRECTIVES, IgxAvatarComponent, IgxIconComponent } from '@infragistics/igniteui-angular';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { ApplicationUser, LoginService } from '../../../../common/src/public_api';
 
 @Component({
   selector: 'app-player',
@@ -18,6 +19,13 @@ import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
   ]
 })
 export class PlayerComponent {
-  constructor() {
+  public authUser: ApplicationUser;
+
+  constructor(private authManager: LoginService) {
+    this.authManager.applicationUser.subscribe((data: ApplicationUser) => {
+      if (data) {
+        this.authUser = data;
+      }
+    });
   }
 }

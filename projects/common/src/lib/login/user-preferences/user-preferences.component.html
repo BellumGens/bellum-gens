@@ -42,6 +42,14 @@
         </div>
       </igx-list-item>
     }
+    @if (isTournamentAdmin) {
+      <igx-list-item>
+        <button igxButton="flat" igxRipple class="submit-button" (click)="navigateToEventAdmin()">
+          <igx-icon>admin_panel_settings</igx-icon>
+          <span i18n>SC2 Tournament Admin</span>
+        </button>
+      </igx-list-item>
+    }
   </igx-list>
 
   <button igxButton="contained" igxRipple class="submit-button" (click)="confirm.open()">

@@ -104,4 +104,12 @@
   .score-container {
     margin: 0 16px;
   }
+
+  @media only screen and (max-width: 1024px) {
+    .overview-container-card {
+      width: auto;
+      margin: 0;
+      padding: 0 12px;
+    }
+  }
 }

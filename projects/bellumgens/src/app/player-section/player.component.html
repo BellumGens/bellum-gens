@@ -1,16 +1,18 @@
 <div class="overview-container-card">
   <igx-tabs>
     <igx-tab-item routerLinkActive #rla1="routerLinkActive"
+      [disabled]="!authUser?.csgoDetails"
       [selected]="rla1.isActive">
       <igx-tab-header routerLink="cs">
-        <igx-avatar src="/assets/wallpapers/csgo-watermark.webp" igxPrefix shape="circle" size="small" />
+        <igx-avatar class="tabs-avatar" src="/assets/wallpapers/csgo-watermark.webp" igxPrefix shape="circle" size="small" />
         <div igxTabHeaderLabel>Counter-Strike</div>
       </igx-tab-header>
     </igx-tab-item>
     <igx-tab-item routerLinkActive #rla2="routerLinkActive"
+      [disabled]="!authUser?.sc2Details"
       [selected]="rla2.isActive">
       <igx-tab-header routerLink="sc">
-        <igx-avatar src="/assets/wallpapers/sc2-watermark.webp" igxPrefix shape="circle" size="small" />
+        <igx-avatar class="tabs-avatar" src="/assets/wallpapers/sc2-watermark.webp" igxPrefix shape="circle" size="small" />
         <div igxTabHeaderLabel>StarCraft II</div>
       </igx-tab-header>
     </igx-tab-item>

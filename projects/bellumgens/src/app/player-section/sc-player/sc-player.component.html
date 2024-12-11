@@ -1,1 +1,11 @@
-<p>sc-player works!</p>,
+
+<div class="card-wrapper profile-view-layout">
+  <div class="profile-container">
+    <div>
+      <igx-avatar [src]="player.sc2Details?.avatarUrl" [initials]="player.steamUser?.steamID" class="player-avatar">
+      </igx-avatar>
+    </div>
+    <h1 class="igx-card-header__title"><a [href]="player.steamUser" target="_blank" rel="noopener">{{ player.steamUser?.steamID }}</a></h1>
+    <h4 class="igx-card-header__subtitle">{{ player.steamUser?.realname }}</h4>
+  </div>
+</div>

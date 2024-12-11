@@ -1,5 +1,15 @@
-:host {
-  igx-avatar {
-    background: none;
+.tabs-avatar {
+  background: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .overview-container-card {
+    width: auto;
+    margin: 0;
+  }
+
+  .card-wrapper {
+    padding: 20px;
+    margin: 0;
   }
 }

@@ -80,6 +80,12 @@
   }
   /* END User Overview */
 
+  @media only screen and (max-width: 768px) {
+    .profile-container, .player-detail__stats {
+      max-width: 320px;
+    }
+  }
+
   @media only screen and (min-width: 600px) {
     .player-exception {
       grid-column: 2 / -1;

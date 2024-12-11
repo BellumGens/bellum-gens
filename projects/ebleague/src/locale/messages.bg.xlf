@@ -202,6 +202,14 @@
           <context context-type="linenumber">40</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="7452914169697446489" datatype="html">
+        <source>SC2 Tournament Admin</source>
+        <target>Администрация на SC2 турнир</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">49,50</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="7893114882018865592" datatype="html">
         <source>Delete Account Forever</source>
         <target>Изтрий акаунта завинаги</target>
