@@ -1,0 +1,93 @@
+:host::ng-deep {
+
+  .team-invites {
+    height: 56px;
+    padding: 8px;
+  }
+
+  /* User Profile */
+
+  .team-avatar-link {
+    cursor: pointer;
+    margin: 0 16px 16px 0;
+  }
+
+  .team-avatar-link:focus,
+  .team-avatar-link:active {
+    outline: none;
+  }
+
+  .country-badge-large {
+    position: relative;
+    top: -63px;
+    left: -32px;
+    width: 52px;
+    height: 52px;
+    min-width: 52px;
+  }
+
+  .stats-progress {
+    width: auto;
+    height: auto;
+  }
+
+  .top-weapon {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+  }
+  /* END User Profile */
+
+  /* User Overview */
+
+  .player-detail__stats {
+    min-height: 335px;
+    height: fit-content;
+    background: transparent;
+    box-shadow: none;
+    border: none;
+  }
+
+    .player-detail__stats .igx-circular-bar__text {
+      font-size: 3.55rem;
+    }
+
+    .player-detail__stats .igx-card-content {
+      text-align: center;
+      overflow: visible;
+    }
+
+  .weapon-image-small {
+    --size: 60px;
+  }
+
+  .card-title-no-grow {
+    flex-grow: 0;
+  }
+  /* END User Overview */
+
+  @media only screen and (min-width: 600px) {
+    .player-exception {
+      grid-column: 2 / -1;
+    }
+  }
+
+  @media only screen and (min-width: 1660px) {
+    .player-detail__stats.map-pool {
+      grid-column: 3 / -1;
+    }
+  }
+
+  @media only screen and (min-width: 1760px) {
+    .player-detail__stats.map-pool {
+      grid-column: 2 / -1;
+    }
+  }
+
+  @media only screen and (min-width: 2330px) {
+    .player-detail__stats.map-pool {
+      grid-column: 2 / 8;
+    }
+  }
+
+}

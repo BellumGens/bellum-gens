@@ -22,6 +22,9 @@
 
     <igx-input-group type="border">
       <label for="password" igxLabel i18n>Password</label>
+      <igx-prefix>
+        <igx-icon>key</igx-icon>
+      </igx-prefix>
       <input #password="ngModel"
         igxInput
         type="password"
@@ -42,6 +45,9 @@
 
       <igx-input-group type="border">
         <label for="confirmPassword" igxLabel i18n>Confirm Password</label>
+        <igx-prefix>
+          <igx-icon>key</igx-icon>
+        </igx-prefix>
         <input #confirmPassword igxInput type="password" [required]="true" id="confirmPassword" name="confirmPassword" [(ngModel)]="userAccount.confirmPassword" />
         @if (userRegistration.touched && confirmPassword.value !== userAccount.password) {
           <igx-hint class="color-error" i18n>Doesn't match...</igx-hint>

@@ -76,6 +76,7 @@
     [data]="matches"
     height="550px"
     [primaryKey]="'id'"
+    [groupingExpressions]="grouping"
     (rowDeleted)="deleteMatch($event)"
     #matchGrid
     i18n-emptyGridMessage

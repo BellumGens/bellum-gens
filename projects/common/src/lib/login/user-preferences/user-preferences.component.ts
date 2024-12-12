@@ -17,6 +17,7 @@ import {
   IGX_LIST_DIRECTIVES
 } from '@infragistics/igniteui-angular';
 import { NgClass } from '@angular/common';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'bg-user-preferences',
@@ -44,6 +45,7 @@ export class UserPreferencesComponent {
   public providers: LoginProvider[];
   public authUser: ApplicationUser;
   public registrations: TournamentApplication [];
+  public isTournamentAdmin = false;
 
   @Output()
   public userDeleted = new EventEmitter<void>();
@@ -57,6 +59,7 @@ export class UserPreferencesComponent {
         };
         this.authManager.tournamentRegistrations.subscribe(data => this.registrations = data);
         this.authUser = user;
+        this.authManager.getUserIsTournamentAdmin().subscribe(data => this.isTournamentAdmin = data);
       }
     });
     this.authManager.loginProviders.subscribe(providers => this.providers = providers);
@@ -103,5 +106,13 @@ export class UserPreferencesComponent {
 
   public openRegistration() {
     this.router.navigate(['register']);
+  }
+
+  public navigateToEventAdmin() {
+    if (window.location.href.startsWith(environment.ebleague)) {
+      this.router.navigate(['/admin/sc2']);
+    } else {
+      window.location.href = `${environment.ebleague}/admin/sc2`;
+    }
   }
 }

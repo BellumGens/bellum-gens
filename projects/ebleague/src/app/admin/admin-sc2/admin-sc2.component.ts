@@ -80,7 +80,7 @@ export class AdminSc2Component {
       }
     });
     this.grouping = [
-      { dir: SortingDirection.Desc, fieldName: 'tournamentName', ignoreCase: false, strategy: DefaultSortingStrategy.instance() }
+      { dir: SortingDirection.Desc, fieldName: 'startTime', ignoreCase: false, strategy: DefaultSortingStrategy.instance() }
     ];
   }
 

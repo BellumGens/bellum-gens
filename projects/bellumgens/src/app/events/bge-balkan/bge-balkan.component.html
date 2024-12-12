@@ -3,6 +3,7 @@
     <igx-card-header>
       <igx-avatar src="/assets/login/bge-white-2024.svg" igxCardThumbnail shape="circle" />
       <h1 igxCardHeaderTitle i18n>{{ tournament?.name }} StarCraft II Circuit</h1>
+      <a i18n [routerLink]="['../registration/', bgeBalkanId]" igxButton="contained" style="margin-top: 12px" i18n>Sign-up to participate</a>
     </igx-card-header>
     <igx-card-content>
       <h4 i18n>Participants</h4>
@@ -15,7 +16,7 @@
             <igx-avatar [src]="registration.user.sc2Details?.avatarUrl || ''" [initials]="registration.user.username" size="medium" shape="circle">
             </igx-avatar>
             <igx-avatar [src]="registration.country | countrySVG" shape="circle" [title]="registration.country" class="country-badge-small"></igx-avatar>
-            <a [routerLink]="['/players/', (registration.user.csgoDetails?.customUrl || registration.userId)]" target="_blank">{{ registration.battleTag }}</a>
+            <a [routerLink]="['/players/', registration.user.id, 'sc']">{{ registration.battleTag }}</a>
             @if (registration.companyId) {
               <span>[{{ registration.companyId }}]</span>
             }
@@ -73,6 +74,7 @@
       <igx-grid cellSelection="none"
         [data]="sc2matches | async"
         height="550px"
+        [groupingExpressions]="grouping"
         i18n-emptyGridMessage
         emptyGridMessage="No matches found..."
         [isLoading]="loadingMatches">
