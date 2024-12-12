@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ApplicationUser, BellumgensApiService } from '../../../../../common/src/public_api';
+import { ApplicationUser, BellumgensApiService, LoadingComponent } from '../../../../../common/src/public_api';
 import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { IgxAvatarComponent } from '@infragistics/igniteui-angular';
@@ -7,7 +7,8 @@ import { IgxAvatarComponent } from '@infragistics/igniteui-angular';
 @Component({
   selector: 'app-sc-player',
   imports: [
-    IgxAvatarComponent
+    IgxAvatarComponent,
+    LoadingComponent
   ],
   templateUrl: './sc-player.component.html',
   styleUrl: './sc-player.component.scss',
@@ -17,11 +18,7 @@ export class ScPlayerComponent {
   public loading = true;
   public player: ApplicationUser;
 
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private titleService: Title,
-    private apiService: BellumgensApiService,
-  ) {
+  constructor(private activatedRoute: ActivatedRoute, private titleService: Title, private apiService: BellumgensApiService) {
     this.activatedRoute.parent.params.subscribe(params => {
       const userid = params['userid'];
       if (userid) {

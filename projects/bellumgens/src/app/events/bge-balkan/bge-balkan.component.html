@@ -16,7 +16,7 @@
             <igx-avatar [src]="registration.user.sc2Details?.avatarUrl || ''" [initials]="registration.user.username" size="medium" shape="circle">
             </igx-avatar>
             <igx-avatar [src]="registration.country | countrySVG" shape="circle" [title]="registration.country" class="country-badge-small"></igx-avatar>
-            <a [routerLink]="['/players/', (registration.user.csgoDetails?.customUrl || registration.userId)]" target="_blank">{{ registration.battleTag }}</a>
+            <a [routerLink]="['/players/', registration.user.id, 'sc']">{{ registration.battleTag }}</a>
             @if (registration.companyId) {
               <span>[{{ registration.companyId }}]</span>
             }
@@ -74,6 +74,7 @@
       <igx-grid cellSelection="none"
         [data]="sc2matches | async"
         height="550px"
+        [groupingExpressions]="grouping"
         i18n-emptyGridMessage
         emptyGridMessage="No matches found..."
         [isLoading]="loadingMatches">

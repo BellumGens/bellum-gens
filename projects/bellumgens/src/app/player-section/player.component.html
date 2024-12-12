@@ -1,7 +1,7 @@
 <div class="overview-container-card">
   <igx-tabs>
     <igx-tab-item routerLinkActive #rla1="routerLinkActive"
-      [disabled]="!authUser?.csgoDetails"
+      [disabled]="!player?.csgoDetails"
       [selected]="rla1.isActive">
       <igx-tab-header routerLink="cs">
         <igx-avatar class="tabs-avatar" src="/assets/wallpapers/csgo-watermark.webp" igxPrefix shape="circle" size="small" />
@@ -9,20 +9,20 @@
       </igx-tab-header>
     </igx-tab-item>
     <igx-tab-item routerLinkActive #rla2="routerLinkActive"
-      [disabled]="!authUser?.sc2Details"
+      [disabled]="!player?.sc2Details"
       [selected]="rla2.isActive">
       <igx-tab-header routerLink="sc">
         <igx-avatar class="tabs-avatar" src="/assets/wallpapers/sc2-watermark.webp" igxPrefix shape="circle" size="small" />
         <div igxTabHeaderLabel>StarCraft II</div>
       </igx-tab-header>
     </igx-tab-item>
-    <igx-tab-item routerLinkActive #rla3="routerLinkActive"
+    <!-- <igx-tab-item routerLinkActive #rla3="routerLinkActive"
       [selected]="rla3.isActive">
       <igx-tab-header routerLink="competitions">
         <igx-icon igxPrefix>sports_esports</igx-icon>
         <div igxTabHeaderLabel i18n>Competitions</div>
       </igx-tab-header>
-    </igx-tab-item>
+    </igx-tab-item> -->
   </igx-tabs>
 
   <router-outlet></router-outlet>
