@@ -73,7 +73,7 @@
 
       <igx-grid cellSelection="none"
         [data]="sc2matches | async"
-        height="550px"
+        height="650px"
         [groupingExpressions]="grouping"
         i18n-emptyGridMessage
         emptyGridMessage="No matches found..."
@@ -122,8 +122,8 @@
           <ng-template igxCell let-value>
             @if (value) {
               <a [href]="value" target="_blank" class="horizontal-center">
-                <igx-icon>link</igx-icon>
-                <span>link</span>
+                <igx-icon name="youtube" family="login-icons"></igx-icon>
+                <span i18n>Video</span>
               </a>
             }
           </ng-template>
@@ -134,13 +134,13 @@
             @if (value) {
               <a [href]="value" target="_blank" class="horizontal-center">
                 <igx-icon>link</igx-icon>
-                <span>link</span>
+                <span i18n>Replay</span>
               </a>
             }
           </ng-template>
         </igx-column>
 
-        <ng-template igxGridDetail let-dataItem>
+        <!-- <ng-template igxGridDetail let-dataItem>
           @for (map of dataItem.maps; track map.id) {
             <div class="horizontal-center">
               <div class="score-container">
@@ -164,7 +164,7 @@
           @if (!dataItem.maps.length && !dataItem.noShow) {
             <div class="horizontal-center" i18n>The match has not been played yet, or there's no results on record...</div>
           }
-        </ng-template>
+        </ng-template> -->
       </igx-grid>
     </igx-card-content>
   </igx-card>
