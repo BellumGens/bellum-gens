@@ -102,6 +102,9 @@
             </igx-avatar>
             <span [class]="cell.row.data.player1Points > cell.row.data.player2Points ? 'highlight grid-team-name color-success' : 'grid-team-name'">
               {{ cell.row.data.player1.username }}
+              @if (cell.row.data.player1Points > cell.row.data.player2Points) {
+                <igx-icon i18n-title title="Winner">check</igx-icon>
+              }
             </span>
 
             <span class="grid-vs-divider">vs.</span>
@@ -114,6 +117,9 @@
             </igx-avatar>
             <span [class]="cell.row.data.player2Points > cell.row.data.player1Points ? 'highlight grid-team-name color-success' : 'grid-team-name'">
               {{ cell.row.data.player2.username }}
+              @if (cell.row.data.player2Points > cell.row.data.player1Points) {
+                <igx-icon i18n-title title="Winner">check</igx-icon>
+              }
             </span>
           </div>
         </igx-column>
