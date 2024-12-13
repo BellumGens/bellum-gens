@@ -73,7 +73,7 @@
 
       <igx-grid cellSelection="none"
         [data]="sc2matches | async"
-        height="550px"
+        height="650px"
         [groupingExpressions]="grouping"
         i18n-emptyGridMessage
         emptyGridMessage="No matches found..."
@@ -102,6 +102,9 @@
             </igx-avatar>
             <span [class]="cell.row.data.player1Points > cell.row.data.player2Points ? 'highlight grid-team-name color-success' : 'grid-team-name'">
               {{ cell.row.data.player1.username }}
+              @if (cell.row.data.player1Points > cell.row.data.player2Points) {
+                <igx-icon i18n-title title="Winner">check</igx-icon>
+              }
             </span>
 
             <span class="grid-vs-divider">vs.</span>
@@ -114,6 +117,9 @@
             </igx-avatar>
             <span [class]="cell.row.data.player2Points > cell.row.data.player1Points ? 'highlight grid-team-name color-success' : 'grid-team-name'">
               {{ cell.row.data.player2.username }}
+              @if (cell.row.data.player2Points > cell.row.data.player1Points) {
+                <igx-icon i18n-title title="Winner">check</igx-icon>
+              }
             </span>
           </div>
         </igx-column>
@@ -122,8 +128,8 @@
           <ng-template igxCell let-value>
             @if (value) {
               <a [href]="value" target="_blank" class="horizontal-center">
-                <igx-icon>link</igx-icon>
-                <span>link</span>
+                <igx-icon name="youtube" family="login-icons"></igx-icon>
+                <span i18n>Video</span>
               </a>
             }
           </ng-template>
@@ -134,13 +140,13 @@
             @if (value) {
               <a [href]="value" target="_blank" class="horizontal-center">
                 <igx-icon>link</igx-icon>
-                <span>link</span>
+                <span i18n>Replay</span>
               </a>
             }
           </ng-template>
         </igx-column>
 
-        <ng-template igxGridDetail let-dataItem>
+        <!-- <ng-template igxGridDetail let-dataItem>
           @for (map of dataItem.maps; track map.id) {
             <div class="horizontal-center">
               <div class="score-container">
@@ -164,7 +170,7 @@
           @if (!dataItem.maps.length && !dataItem.noShow) {
             <div class="horizontal-center" i18n>The match has not been played yet, or there's no results on record...</div>
           }
-        </ng-template>
+        </ng-template> -->
       </igx-grid>
     </igx-card-content>
   </igx-card>

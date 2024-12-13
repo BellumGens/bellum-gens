@@ -74,7 +74,7 @@
     class="margin-top"
     cellSelection="none"
     [data]="matches"
-    height="550px"
+    height="650px"
     [primaryKey]="'id'"
     [groupingExpressions]="grouping"
     (rowDeleted)="deleteMatch($event)"
@@ -132,8 +132,8 @@
       <ng-template igxCell let-value>
         @if (value) {
           <a [href]="value" target="_blank" class="horizontal-center">
-            <igx-icon>link</igx-icon>
-            <span>link</span>
+            <igx-icon name="youtube" family="login-icons"></igx-icon>
+            <span i18n>Video</span>
           </a>
         } @else {
           <span i18n>No video</span>
@@ -146,7 +146,7 @@
         @if (value) {
           <a [href]="value" target="_blank" class="horizontal-center">
             <igx-icon>link</igx-icon>
-            <span>link</span>
+            <span i18n>Replay</span>
           </a>
         } @else {
           <span i18n>No replay</span>
