@@ -32,6 +32,11 @@
             [data]="group.participants">
             <igx-grid-toolbar>
               <igx-grid-toolbar-title>{{group.name}}</igx-grid-toolbar-title>
+              <igx-grid-toolbar-actions>
+                <button igxIconButton="flat" igxRipple (click)="refreshGroups()">
+                  <igx-icon>refresh</igx-icon>
+                </button>
+              </igx-grid-toolbar-actions>
             </igx-grid-toolbar>
             <igx-column field="user" i18n-header header="Player">
               <div *igxCell="let value">
@@ -82,6 +87,9 @@
         <igx-grid-toolbar>
           <igx-grid-toolbar-title i18n>{{ tournament?.name }} Match Results</igx-grid-toolbar-title>
           <igx-grid-toolbar-actions>
+            <button igxIconButton="flat" igxRipple (click)="refreshMatches()">
+              <igx-icon>refresh</igx-icon>
+            </button>
             <a href="https://play.toornament.com/en_US/tournaments/8376728902519046144/matches/schedule" target="_blank" rel="noopener" i18n>Weekly Bracket</a>
           </igx-grid-toolbar-actions>
         </igx-grid-toolbar>
