@@ -10,10 +10,6 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Client
   },
   {
-    path: 'bellumgenselite/bge-balkan-circuit',
-    renderMode: RenderMode.Server
-  },
-  {
     path: 'unauthorized/:message',
     renderMode: RenderMode.Client
   },

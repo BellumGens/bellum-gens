@@ -4,7 +4,7 @@ import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { TournamentParticipant, TournamentGroup, TournamentSC2Match, Tournament, ApiTournamentsService, CountrySVGPipe } from '../../../../../common/src/public_api';
 import { AsyncPipe, DatePipe } from '@angular/common';
-import { IGX_CARD_DIRECTIVES, IgxCircularProgressBarComponent, IgxAvatarComponent, IgxDividerDirective, IGX_GRID_DIRECTIVES, IgxIconComponent, IgxButtonDirective, IGroupingExpression, SortingDirection, DefaultSortingStrategy } from '@infragistics/igniteui-angular';
+import { IGX_CARD_DIRECTIVES, IgxCircularProgressBarComponent, IgxAvatarComponent, IgxDividerDirective, IGX_GRID_DIRECTIVES, IgxIconComponent, IgxButtonDirective, IGroupingExpression, SortingDirection, DefaultSortingStrategy, IgxIconButtonDirective } from '@infragistics/igniteui-angular';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -21,6 +21,7 @@ import { Observable } from 'rxjs';
     IGX_GRID_DIRECTIVES,
     IgxIconComponent,
     IgxButtonDirective,
+    IgxIconButtonDirective,
     CountrySVGPipe,
     AsyncPipe
   ],
@@ -59,5 +60,13 @@ export class BgeBalkanComponent extends BaseDirective {
     this.grouping = [
       { dir: SortingDirection.Desc, fieldName: 'startTime', ignoreCase: false, strategy: DefaultSortingStrategy.instance() }
     ];
+  }
+
+  public refreshGroups() {
+    this.groups = this.apiService.getSc2Groups(this.tournamentId);
+  }
+
+  public refreshMatches() {
+    this.sc2matches = this.apiService.getSc2Matches(this.tournamentId);
   }
 }
