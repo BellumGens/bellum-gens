@@ -91,7 +91,6 @@ export class AdminCsgoComponent {
   public deleteGroup(id: string) {
     const group = this.groups.find(g => g.id === id);
     this.apiService.deleteGroup(id).subscribe(() => this.groups.splice(this.groups.indexOf(group), 1));
-    this.registrations.filter(r => r.tournamentCSGOGroupId === id).forEach(r => r.tournamentCSGOGroupId = null);
     this.pipeTrigger++;
   }
 
@@ -109,7 +108,6 @@ export class AdminCsgoComponent {
   public removeFromGroup(participant: TournamentParticipant, group: TournamentGroup) {
     this.apiService.removeParticipantFromGroup(participant.id).subscribe();
     group.participants.splice(group.participants.indexOf(participant), 1);
-    this.registrations.find(r => r.id === participant.id).tournamentCSGOGroupId = null;
     this.pipeTrigger++;
   }
 

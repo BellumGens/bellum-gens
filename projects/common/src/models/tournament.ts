@@ -58,8 +58,6 @@ export interface TournamentParticipant {
   oTLosses: number;
   roundDifference: number;
   battleTag: string;
-  tournamentCSGOGroupId: string;
-  tournamentSC2GroupId: string;
 }
 
 export interface TournamentGroup {

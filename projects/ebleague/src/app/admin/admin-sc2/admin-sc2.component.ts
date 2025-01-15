@@ -134,7 +134,6 @@ export class AdminSc2Component {
   public deleteGroup(id: string) {
     const group = this.groups.find(g => g.id === id);
     this.apiService.deleteGroup(id).subscribe(() => this.groups.splice(this.groups.indexOf(group), 1));
-    this.participants.filter(r => r.tournamentSC2GroupId === id).forEach(r => r.tournamentSC2GroupId = null);
     this.pipeTrigger++;
   }
 
@@ -146,7 +145,6 @@ export class AdminSc2Component {
         } else {
           group.participants.push(event.dragData);
         }
-        this.participants.find(r => r.id === event.dragData.id).tournamentSC2GroupId = group.id;
       },
       complete: () => this.pipeTrigger++
     });
@@ -155,7 +153,6 @@ export class AdminSc2Component {
   public removeFromGroup(participant: TournamentParticipant, group: TournamentGroup) {
     this.apiService.removeParticipantFromGroup(participant.id).subscribe();
     group.participants.splice(group.participants.indexOf(participant), 1);
-    this.participants.find(r => r.id === participant.id).tournamentSC2GroupId = null;
     this.pipeTrigger++;
   }
 
