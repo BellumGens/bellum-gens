@@ -430,6 +430,14 @@
           <context context-type="linenumber">7,8</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="3943900250015895511" datatype="html">
+        <source>GET YOUR TICKETS NOW</source>
+        <target>ЗАКУПЕТЕ СИ БИЛЕТИ СЕГА</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">8,9</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="2360237759671040973" datatype="html">
         <source>BGE Balkan Circuit</source>
         <target>БГЕ Балкански Кръг</target>
@@ -550,12 +558,12 @@
           <context context-type="linenumber">259,260</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7724711173578069199" datatype="html">
-        <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Tickets available soon<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>!</source>
-        <target><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Билетите ще бъдат налични скоро<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>!</target>
+      <trans-unit id="8651165958675444105" datatype="html">
+        <source>Tickets available <x id="START_LINK" ctype="x-a" equiv-text="&lt;a class=&quot;highlight&quot; [href]=&quot;this.ticketsUrl&quot; target=&quot;_blank&quot;&gt;"/>NOW<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>!</source>
+        <target>Билети са налични <x id="START_LINK" ctype="x-a" equiv-text="&lt;a class=&quot;highlight&quot; [href]=&quot;this.ticketsUrl&quot; target=&quot;_blank&quot;&gt;"/>СЕГА<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
-          <context context-type="linenumber">24,26</context>
+          <context context-type="linenumber">42,43</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1396236914673007794" datatype="html">
