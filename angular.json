@@ -41,6 +41,7 @@
               "projects/bellumgens/src/favicon.ico",
               "projects/bellumgens/src/assets",
               "projects/bellumgens/src/robots.txt",
+              "projects/bellumgens/src/ads.txt",
               "projects/bellumgens/src/manifest.json"
             ],
             "styles": [
@@ -224,6 +225,7 @@
               "projects/ebleague/src/favicon.ico",
               "projects/ebleague/src/assets",
               "projects/ebleague/src/robots.txt",
+              "projects/ebleague/src/ads.txt",
               "projects/ebleague/src/manifest.json"
             ],
             "styles": [
