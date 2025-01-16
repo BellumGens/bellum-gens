@@ -358,6 +358,73 @@ describe('ApiTournamentsService', () => {
     req.flush({ id: '1', ...mockGroup });
   });
 
+  it('should delete a StarCraft II group', () => {
+    const mockGroupId = '1';
+
+    service.deleteGroup(mockGroupId).subscribe();
+
+    const req = httpMock.expectOne(`${service['_apiEndpoint']}/tournament/group?id=${mockGroupId}`);
+    expect(req.request.method).toBe('DELETE');
+    expect(req.request.withCredentials).toBe(true);
+    req.flush({});
+  });
+
+  it('should add a participant to a StarCraft II group', () => {
+    const mockParticipant: TournamentParticipant = {
+      id: '1',
+      userId: '123',
+      teamId: '123',
+      state: 0,
+      companyId: '123',
+      playerPoints: 0,
+      teamPoints: 0,
+      wins: 0,
+      losses: 0,
+      oTWins: 0,
+      oTLosses: 0,
+      roundDifference: 0,
+      battleTag: 'test'
+    };
+
+    const mockGroupId = '1';
+
+    service.addParticipantToGroup(mockParticipant, mockGroupId).subscribe(group => {
+      expect(group).toEqual({ id: '1', participants: [mockParticipant] });
+    });
+
+    const req = httpMock.expectOne(`${service['_apiEndpoint']}/tournament/participanttogroup?id=${mockGroupId}`);
+    expect(req.request.method).toBe('PUT');
+    expect(req.request.body).toEqual(mockParticipant);
+    expect(req.request.withCredentials).toBe(true);
+    req.flush({ id: '1', participants: [mockParticipant] });
+  });
+
+  it('should remove a participant from a StarCraft II group', () => {
+    const mockParticipantId = '1';
+    const mockGroupId = '1';
+
+    service.removeParticipantFromGroup(mockParticipantId, mockGroupId).subscribe();
+
+    const req = httpMock.expectOne(`${service['_apiEndpoint']}/tournament/participanttogroup?id=${mockParticipantId}&groupid=${mockGroupId}`);
+    expect(req.request.method).toBe('DELETE');
+    expect(req.request.withCredentials).toBe(true);
+    req.flush({});
+  });
+
+  it('should submit participant points', () => {
+    const mockParticipantId = '1';
+    const mockGroupId = '1';
+    const mockPoints = 10;
+
+    service.submitParticipantPoints(mockParticipantId, mockGroupId, mockPoints).subscribe();
+
+    const req = httpMock.expectOne(`${service['_apiEndpoint']}/tournament/participantpoints?participantId=${mockParticipantId}&groupId=${mockGroupId}`);
+    expect(req.request.method).toBe('PUT');
+    expect(req.request.body).toEqual({ points: mockPoints });
+    expect(req.request.withCredentials).toBe(true);
+    req.flush({});
+  });
+
   // it('should submit a CS:GO match map', () => {
   //   const mockMatchMap: TournamentCSGOMatchMap = { id: '1', map: 'Map A' };
 

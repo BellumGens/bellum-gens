@@ -343,6 +343,21 @@ export class ApiTournamentsService {
       );
   }
 
+  public submitParticipantPoints(participantid: string, groupid: string, points: number) {
+    return this.http.put(`${this._apiEndpoint}/tournament/participantpoints?participantId=${participantid}&groupId=${groupid}`,
+      { points },
+      { withCredentials: true}).pipe(
+        map(response => {
+          this.commService.emitSuccess('Tournament participant points updated successfully!');
+          return response;
+        }),
+        catchError(error => {
+          this.commService.emitError(error.message);
+          return throwError(() => error);
+        })
+      );
+  }
+
   public getCSGOMatches(id: string) {
     return this.http.get<TournamentCSGOMatch []>(`${this._apiEndpoint}/tournament/csgomatches${id ? '?tournamentId=' + id : ''}`,
                                                 { withCredentials: true});

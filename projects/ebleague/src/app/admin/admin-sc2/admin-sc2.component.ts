@@ -157,6 +157,10 @@ export class AdminSc2Component {
     this.pipeTrigger++;
   }
 
+  public submitParticipantPoints(participantId: string, groupId: string, points: number) {
+    this.apiService.submitParticipantPoints(participantId, groupId, points).subscribe();
+  }
+
   public submitMatch(grid: IgxGridComponent) {
     if (this.matchInEdit.player1Id && this.matchInEdit.player2Id) {
       this.apiService.submitSC2Match(this.matchInEdit).subscribe(data => {
