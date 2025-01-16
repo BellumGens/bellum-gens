@@ -106,8 +106,9 @@ export class AdminCsgoComponent {
   }
 
   public removeFromGroup(participant: TournamentParticipant, group: TournamentGroup) {
-    this.apiService.removeParticipantFromGroup(participant.id).subscribe();
-    group.participants.splice(group.participants.indexOf(participant), 1);
+    this.apiService.removeParticipantFromGroup(participant.id, group.id).subscribe({
+      next: () => group.participants.splice(group.participants.indexOf(participant), 1)
+    });
     this.pipeTrigger++;
   }
 
