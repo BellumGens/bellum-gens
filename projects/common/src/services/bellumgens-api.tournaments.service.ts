@@ -316,8 +316,8 @@ export class ApiTournamentsService {
     );
   }
 
-  public removeParticipantFromGroup(participantid: string) {
-    return this.http.delete(`${this._apiEndpoint}/tournament/participanttogroup?id=${participantid}`, { withCredentials: true }).pipe(
+  public removeParticipantFromGroup(participantid: string, groupid: string) {
+    return this.http.delete(`${this._apiEndpoint}/tournament/participanttogroup?id=${participantid}&groupid=${groupid}`, { withCredentials: true }).pipe(
       map(response => {
         this.commService.emitSuccess('Tournament participant deleted from group successfully!');
         return response;
@@ -334,6 +334,21 @@ export class ApiTournamentsService {
       group, { withCredentials: true}).pipe(
         map(response => {
           this.commService.emitSuccess('Tournament StarCraft 2 group updated successfully!');
+          return response;
+        }),
+        catchError(error => {
+          this.commService.emitError(error.message);
+          return throwError(() => error);
+        })
+      );
+  }
+
+  public submitParticipantPoints(participantid: string, groupid: string, points: number) {
+    return this.http.put(`${this._apiEndpoint}/tournament/participantpoints?participantId=${participantid}&groupId=${groupid}`,
+      { points },
+      { withCredentials: true}).pipe(
+        map(response => {
+          this.commService.emitSuccess('Tournament participant points updated successfully!');
           return response;
         }),
         catchError(error => {

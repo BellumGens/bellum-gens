@@ -44,22 +44,20 @@ export interface TournamentApplication {
 export interface TournamentParticipant {
   id: string;
   userId: string;
-  teamId: string;
+  teamId?: string;
   state: TournamentApplicationState;
-  user: ApplicationUser;
-  team: CSGOTeam;
+  user?: ApplicationUser;
+  team?: CSGOTeam;
   companyId: string;
   country?: string;
-  playerPoints: number;
-  teamPoints: number;
-  wins: number;
-  losses: number;
-  oTWins: number;
-  oTLosses: number;
-  roundDifference: number;
-  battleTag: string;
-  tournamentCSGOGroupId: string;
-  tournamentSC2GroupId: string;
+  playerPoints?: number;
+  teamPoints?: number;
+  wins?: number;
+  losses?: number;
+  oTWins?: number;
+  oTLosses?: number;
+  roundDifference?: number;
+  battleTag?: string;
 }
 
 export interface TournamentGroup {

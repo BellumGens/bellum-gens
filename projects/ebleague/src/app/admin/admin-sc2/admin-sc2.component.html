@@ -272,6 +272,15 @@
                       <span igxListLineTitle>
                         {{ participant.battleTag }}
                       </span>
+                      <igx-input-group>
+                        <label igxLabel i18n>Points</label>
+                        <input
+                          type="number"
+                          name="groupPosition"
+                          igxInput
+                          [(ngModel)]="participant.playerPoints"
+                          (ngModelChange)="submitParticipantPoints(participant.id, group.id, $event)" />
+                      </igx-input-group>
                       <igx-icon class="navigatable" i18n-title title="Remove from group" (click)="removeFromGroup(participant, group)">delete</igx-icon>
                     </igx-list-item>
                   }
