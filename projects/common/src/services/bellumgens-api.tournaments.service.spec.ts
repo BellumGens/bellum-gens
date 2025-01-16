@@ -173,8 +173,6 @@ describe('ApiTournamentsService', () => {
         oTLosses: 0,
         roundDifference: 0,
         battleTag: 'test',
-        tournamentCSGOGroupId: '123',
-        tournamentSC2GroupId: '123',
         user: null,
         team: null
       }
@@ -204,8 +202,6 @@ describe('ApiTournamentsService', () => {
         oTLosses: 0,
         roundDifference: 0,
         battleTag: 'test',
-        tournamentCSGOGroupId: '123',
-        tournamentSC2GroupId: '123',
         user: null,
         team: null
       }
@@ -320,8 +316,6 @@ describe('ApiTournamentsService', () => {
       oTLosses: 0,
       roundDifference: 0,
       battleTag: 'test',
-      tournamentCSGOGroupId: '123',
-      tournamentSC2GroupId: '123',
       user: null,
       team: null
     };
@@ -340,10 +334,11 @@ describe('ApiTournamentsService', () => {
 
   it('should remove a participant from a CS:GO group', () => {
     const mockParticipantId = '1';
+    const mockGroupId = '1';
 
-    service.removeParticipantFromGroup(mockParticipantId).subscribe();
+    service.removeParticipantFromGroup(mockParticipantId, mockGroupId).subscribe();
 
-    const req = httpMock.expectOne(`${service['_apiEndpoint']}/tournament/participanttogroup?id=${mockParticipantId}`);
+    const req = httpMock.expectOne(`${service['_apiEndpoint']}/tournament/participanttogroup?id=${mockParticipantId}&groupid=${mockGroupId}`);
     expect(req.request.method).toBe('DELETE');
     expect(req.request.withCredentials).toBe(true);
     req.flush({});
