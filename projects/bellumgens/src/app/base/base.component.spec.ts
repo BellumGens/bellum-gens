@@ -39,7 +39,7 @@ describe('BaseComponent', () => {
 @Component({
   selector: 'app-test',
   template: '<div>Test component</div>',
-  imports: [BaseDirective]
+  imports: []
 })
 export class TestComponent extends BaseDirective {
   constructor(title: Title, meta: Meta, activeRoute: ActivatedRoute) {
