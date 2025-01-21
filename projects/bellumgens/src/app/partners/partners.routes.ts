@@ -14,44 +14,44 @@ export const routes: Routes = [
     },
     children: [
       { path: '', redirectTo: 'visit-stara-zagora', pathMatch: 'full' },
-      {
-        path: 'techhub', component: PartnerComponent, data: {
-          title: 'Bellum Gens Partners: TechHub.bg',
-          twitterTitle: 'Bellum Gens Partners: TechHub.bg',
-          description: 'Bellum Gens partners and sponsors are the best in the business. Check out who supports us.',
-          twitterDescription: 'Bellum Gens partners and sponsors are the best in the business. Check out who supports us.',
-          name: 'TechHub.bg',
-          url: 'https://techhub.bg',
-          partnerImage: '/assets/partners/Sponsors-techhub.png',
-          expose: [
-            $localize`We are thrilled to announce a 3-year partnership between Bellum Gens Elite Stara Zagora and TechHub.bg! 🤝`,
-            $localize`TechHub.bg makes tech shopping both easy and inspiring! With a wide range of high-quality products for home and office, they build a trusted community of enthusiasts and professionals. Your satisfaction is their top priority – discover the difference with TechHub.bg!`,
-            $localize`Together, we are committed to fostering the growth and development of esports in our region. This collaboration will bring new opportunities, events, and initiatives to support our vibrant gaming community. 🎮✨`
-          ],
-          social: [
-            {
-              name: 'Facebook',
-              icon: 'facebook',
-              url: 'https://www.facebook.com/techhub.bg'
-            },
-            {
-              name: 'Instagram',
-              icon: 'instagram',
-              url: 'https://www.instagram.com/TechHub.bg'
-            },
-            {
-              name: 'LinkedIn',
-              icon: 'linkedin',
-              url: 'https://www.linkedin.com/company/techhub-bg'
-            },
-            {
-              name: 'TikTok',
-              icon: 'tiktok',
-              url: 'https://www.tiktok.com/@techhub.bg'
-            }
-          ]
-        }
-      },
+      // {
+      //   path: 'techhub', component: PartnerComponent, data: {
+      //     title: 'Bellum Gens Partners: TechHub.bg',
+      //     twitterTitle: 'Bellum Gens Partners: TechHub.bg',
+      //     description: 'Bellum Gens partners and sponsors are the best in the business. Check out who supports us.',
+      //     twitterDescription: 'Bellum Gens partners and sponsors are the best in the business. Check out who supports us.',
+      //     name: 'TechHub.bg',
+      //     url: 'https://techhub.bg',
+      //     partnerImage: '/assets/partners/Sponsors-techhub.png',
+      //     expose: [
+      //       $localize`We are thrilled to announce a 3-year partnership between Bellum Gens Elite Stara Zagora and TechHub.bg! 🤝`,
+      //       $localize`TechHub.bg makes tech shopping both easy and inspiring! With a wide range of high-quality products for home and office, they build a trusted community of enthusiasts and professionals. Your satisfaction is their top priority – discover the difference with TechHub.bg!`,
+      //       $localize`Together, we are committed to fostering the growth and development of esports in our region. This collaboration will bring new opportunities, events, and initiatives to support our vibrant gaming community. 🎮✨`
+      //     ],
+      //     social: [
+      //       {
+      //         name: 'Facebook',
+      //         icon: 'facebook',
+      //         url: 'https://www.facebook.com/techhub.bg'
+      //       },
+      //       {
+      //         name: 'Instagram',
+      //         icon: 'instagram',
+      //         url: 'https://www.instagram.com/TechHub.bg'
+      //       },
+      //       {
+      //         name: 'LinkedIn',
+      //         icon: 'linkedin',
+      //         url: 'https://www.linkedin.com/company/techhub-bg'
+      //       },
+      //       {
+      //         name: 'TikTok',
+      //         icon: 'tiktok',
+      //         url: 'https://www.tiktok.com/@techhub.bg'
+      //       }
+      //     ]
+      //   }
+      // },
       {
         path: 'visit-stara-zagora', component: PartnerComponent, data: {
           title: 'Bellum Gens Partners: Visit Stara Zagora',
