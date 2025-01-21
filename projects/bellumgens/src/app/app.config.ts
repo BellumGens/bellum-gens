@@ -1,6 +1,6 @@
 import { provideHttpClient, withFetch, withInterceptorsFromDi } from "@angular/common/http";
 import { ApplicationConfig, importProvidersFrom } from "@angular/core";
-import { provideRouter, withEnabledBlockingInitialNavigation, withInMemoryScrolling } from "@angular/router";
+import { provideRouter, withInMemoryScrolling } from "@angular/router";
 import { routes } from "./app.routes";
 import { provideAnimations } from "@angular/platform-browser/animations";
 import { ServiceWorkerModule } from "@angular/service-worker";
