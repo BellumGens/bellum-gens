@@ -52,8 +52,7 @@ $include: (igx-avatar,
            igx-time-picker,
            igx-date-picker,
            igx-calendar,
-           igx-nav-drawer,
-           igx-banner);
+           igx-nav-drawer);
 
 @include theme(
   $palette: $app-palette,
