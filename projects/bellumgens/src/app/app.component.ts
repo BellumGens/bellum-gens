@@ -95,7 +95,7 @@ export class AppComponent implements OnInit {
   @ViewChild('quickSearch', { static: true }) public quickSearchDropDown: IgxDropDownComponent;
   @ViewChild('searchGroup', { static: true }) public searchGroup: IgxInputGroupComponent;
   @ViewChild('searchInput', { static: true }) public searchInput: ElementRef;
-  @ViewChild('cookiesBanner', { static: true }) public banner: IgxBannerComponent;
+  // @ViewChild('cookiesBanner', { static: true }) public banner: IgxBannerComponent;
 
   public authUser: ApplicationUser;
   public teams: CSGOTeam [];
@@ -136,18 +136,18 @@ export class AppComponent implements OnInit {
 
   public ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
-      if (!window.localStorage.getItem('cookiesAccepted')) {
-        this.banner.open();
-      }
+      // if (!window.localStorage.getItem('cookiesAccepted')) {
+      //   this.banner.open();
+      // }
 
       this.initQuickSearch();
     }
   }
 
-  public acceptCookies() {
-    this.banner.close();
-    window.localStorage.setItem('cookiesAccepted', 'true');
-  }
+  // public acceptCookies() {
+  //   this.banner.close();
+  //   window.localStorage.setItem('cookiesAccepted', 'true');
+  // }
 
   public notificationsLoaded(args: number) {
     this.unreadNotifications += args;
