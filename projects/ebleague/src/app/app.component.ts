@@ -4,7 +4,6 @@ import { Router, NavigationEnd, RouterLink, RouterLinkActive, RouterOutlet, Acti
 import { filter } from 'rxjs/operators';
 
 import {
-  IgxBannerComponent,
   IgxNavigationDrawerComponent,
   IgxLayoutDirective,
   IgxNavDrawerTemplateDirective,
@@ -15,8 +14,6 @@ import {
   IgxFlexDirective,
   IgxNavbarComponent,
   IgxNavbarActionDirective,
-  IgxBannerActionsDirective,
-  IgxButtonDirective,
   IgxDividerDirective,
   IgxIconService,
   changei18n
@@ -50,17 +47,14 @@ import { LanguagesComponent } from '../../../common/src/lib/languages/languages.
     NgOptimizedImage,
     LanguagesComponent,
     LoginComponent,
-    IgxBannerComponent,
-    IgxBannerActionsDirective,
-    IgxButtonDirective,
     SuccessErrorComponent,
     RouterOutlet,
     IgxDividerDirective
   ]
 })
 export class AppComponent implements OnInit {
-  @ViewChild('cookiesBanner', { static: true })
-  private banner: IgxBannerComponent;
+  // @ViewChild('cookiesBanner', { static: true })
+  // private banner: IgxBannerComponent;
 
   @ViewChild('drawer', { static: true })
   private navdrawer: IgxNavigationDrawerComponent;
@@ -91,9 +85,9 @@ export class AppComponent implements OnInit {
 
   public ngOnInit(): void {
     if (isPlatformBrowser(this.platformId)) {
-      if (!window?.localStorage?.getItem('cookiesAccepted')) {
-        this.banner.open();
-      }
+      // if (!window?.localStorage?.getItem('cookiesAccepted')) {
+      //   this.banner.open();
+      // }
 
       this.router.events.pipe(
         filter(x => x instanceof NavigationEnd)
@@ -101,10 +95,10 @@ export class AppComponent implements OnInit {
     }
   }
 
-  public acceptCookies() {
-    this.banner.close();
-    window.localStorage.setItem('cookiesAccepted', 'true');
-  }
+  // public acceptCookies() {
+  //   this.banner.close();
+  //   window.localStorage.setItem('cookiesAccepted', 'true');
+  // }
 
   private initSvgIcons() {
     const complogos = [discord, steam, twitch, battlenet, facebook, twitter, instagram, linkedin, youtube];
