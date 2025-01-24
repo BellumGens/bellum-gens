@@ -114,30 +114,6 @@
           <context context-type="linenumber">49,51</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7620455187947929346" datatype="html">
-        <source>This site uses cookies.</source>
-        <target>Тази страница използва бисквитки.</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/app.component.html</context>
-          <context context-type="linenumber">94,96</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="872987573167594215" datatype="html">
-        <source>Cookies and You</source>
-		    <target>Научете повече</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/app.component.html</context>
-          <context context-type="linenumber">96,97</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="374089746247684352" datatype="html">
-        <source>I Understand</source>
-		    <target>Приемам</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/app.component.html</context>
-          <context context-type="linenumber">97,101</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="2653600116263338591" datatype="html">
         <source>Advanced search for:</source>
 		    <target>Разширено търсене:</target>
@@ -558,12 +534,16 @@
           <context context-type="linenumber">259,260</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8651165958675444105" datatype="html">
-        <source>Tickets available <x id="START_LINK" ctype="x-a" equiv-text="&lt;a class=&quot;highlight&quot; [href]=&quot;this.ticketsUrl&quot; target=&quot;_blank&quot;&gt;"/>NOW<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>!</source>
-        <target>Билети са налични <x id="START_LINK" ctype="x-a" equiv-text="&lt;a class=&quot;highlight&quot; [href]=&quot;this.ticketsUrl&quot; target=&quot;_blank&quot;&gt;"/>СЕГА<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>!</target>
+      <trans-unit id="2456657322953830873" datatype="html">
+        <source>Tickets Available Now</source>
+        <target>Билетите са в продажба</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
-          <context context-type="linenumber">42,43</context>
+          <context context-type="linenumber">54,55</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
+          <context context-type="linenumber">7,8</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1396236914673007794" datatype="html">
@@ -1086,20 +1066,12 @@
           <context context-type="linenumber">124</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2395103405589091100" datatype="html">
-        <source>Bellum Gens Elite - Stara Zagora 2024 featured the top StarCraft II talent clashing in a 4-day LAN event! Clement &quot;Clem&quot; Desplanches is the champion of Bellum Gens Elite Stara Zagora 2024!</source>
-        <target>Bellum Gens Elite - Стара Загора 2024 представи най-добрите StarCraft II таланти борещи се в 4-дневно ЛАН събитие! Клемент &quot;Клем&quot; Депланш е шампионът на Bellum Gens Elite Стара Загора 2024!</target>
+      <trans-unit id="3804855690503446606" datatype="html">
+        <source>Bellum Gens Elite - Stara Zagora 2025 will take place June 4-7th! Clement &quot;Clem&quot; Desplanches returns to defend his 2024 title against all the top contenders!</source>
+        <target>Белум Генс Елит - Стара Загора 2025 ще се проведе от 4 до 7 юни! Клемент &quot;Clem&quot; Депланш се завръща, за да защити титлата си от 2024 година срещу всички най-добри съперници!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
           <context context-type="linenumber">6,7</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="7002955679222677443" datatype="html">
-        <source>Learn More</source>
-        <target>Научи повече</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">7,13</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5744227677261445573" datatype="html">
