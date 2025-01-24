@@ -1185,30 +1185,6 @@
           <context context-type="linenumber">382,384</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6184424900000051197" datatype="html">
-        <source>This site uses cookies</source>
-        <target>Този сайт използва бисквитки</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/app.component.html</context>
-          <context context-type="linenumber">69,71</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="872987573167594215" datatype="html">
-        <source>Cookies and You</source>
-		    <target>Научете повече</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/app.component.html</context>
-          <context context-type="linenumber">71,72</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="374089746247684352" datatype="html">
-        <source>I Understand</source>
-        <target>Разбрах</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/app.component.html</context>
-          <context context-type="linenumber">72,76</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="9063698480688555645" datatype="html">
         <source>Email us</source>
 		    <target>Свържете се с над по имейл</target>
