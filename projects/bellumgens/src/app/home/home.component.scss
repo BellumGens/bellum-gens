@@ -39,6 +39,10 @@
   .slide0 {
     background-image: url('/assets/wallpapers/clem-champion-1.webp');
     background-position-y: -310px;
+
+    @media only screen and (width > 1280px) and (width < 1750px) {
+      background-position-y: -244px;
+    }
   }
 
   .slide1 {
@@ -66,12 +70,6 @@
     }
     .slide2, .slide3 {
       background-position-y: -115px;
-    }
-  }
-
-  @media only screen and (min-width: 1281px) and (max-width: 1500px) {
-    .slide2 {
-      background-position-y: 0px;
     }
   }
 
