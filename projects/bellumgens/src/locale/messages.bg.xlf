@@ -38,28 +38,32 @@
           <context context-type="linenumber">51,54</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5729418620241283277" datatype="html">
-        <source>Events</source>
-        <target>Събития</target>
+      <trans-unit id="7774464789796135543" datatype="html">
+        <source>Bellum Gens Elite</source>
+        <target>Белум Генс Елит</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/app.component.html</context>
-          <context context-type="linenumber">23,25</context>
+          <context context-type="linenumber">28,29</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/app.component.html</context>
-          <context context-type="linenumber">56,58</context>
+          <context context-type="linenumber">65,66</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8130963410643970035" datatype="html">
-        <source>CS:GO Strategies</source>
-        <target>CS:GO стратегии</target>
+      <trans-unit id="2360237759671040973" datatype="html">
+        <source>BGE Balkan Circuit</source>
+        <target>БГЕ Балкански Кръг</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/app.component.html</context>
-          <context context-type="linenumber">27,29</context>
+          <context context-type="linenumber">32,33</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/app.component.html</context>
-          <context context-type="linenumber">58,61</context>
+          <context context-type="linenumber">68,69</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">34,35</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3687194426938367329" datatype="html">
@@ -412,14 +416,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
           <context context-type="linenumber">8,9</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2360237759671040973" datatype="html">
-        <source>BGE Balkan Circuit</source>
-        <target>БГЕ Балкански Кръг</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
-          <context context-type="linenumber">21,22</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3744555885485676666" datatype="html">
