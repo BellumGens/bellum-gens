@@ -182,7 +182,7 @@ export class ApiTournamentsService {
         this._sc2Groups.set(id, new BehaviorSubject<TournamentSC2Group []>(null));
       }
       this.getSC2Groups(id).subscribe({
-        next: (data) => this._sc2Groups.get(id).next(data),
+        next: (data) => this._sc2Groups.get(id).next(data?.reverse()),
         complete: () => this.loadingSC2Groups.next(false)
       });
     }
