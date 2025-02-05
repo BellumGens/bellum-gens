@@ -1,14 +1,15 @@
 import { CSGOTeam } from './csgoteam';
 import { ApplicationUser } from './applicationuser';
 
-export enum NotificationState {
+export const enum NotificationState {
   NotSeen,
   Seen,
   Rejected,
   Accepted
 }
 
-export enum NotificationActions {
+export const enum NotificationActions {
+  Checkin = 'checkin',
   ViewTeam = 'viewteam',
   ViewUser = 'viewuser',
   ViewStrategy = 'viewstrategy'

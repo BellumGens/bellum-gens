@@ -246,6 +246,8 @@ export class LoginService {
             this.router.navigate(['players', action.notification.data]);
           } else if (action.action === NotificationActions.ViewStrategy) {
             this.router.navigate(['strategies', 'details', action.notification.data]);
+          } else if (action.action === NotificationActions.Checkin) {
+            window.open(action.notification.data.callbackUrl, '_blank');
           }
         });
       })
