@@ -2,14 +2,15 @@ import { CSGOTeam } from './csgoteam';
 import { ApplicationUser } from './applicationuser';
 import { TournamentCSGOMatch } from './tournament-schedule';
 
-export enum Game {
+export const enum Game {
   CSGO,
   StarCraft2
 }
 
-export enum TournamentApplicationState {
+export const enum TournamentApplicationState {
   Pending,
-  Confirmed
+  Confirmed,
+  Banned
 }
 export interface Tournament {
   id?: string;
