@@ -6,8 +6,12 @@
       <a i18n [routerLink]="['../registration/', bgeBalkanId]" igxButton="contained" style="margin-top: 12px" i18n>Sign-up to participate</a>
     </igx-card-header>
     <igx-card-content>
-      <h4 i18n>Participants</h4>
+      <p i18n>BGE Balkan is a regional StarCraft II circuit that takes place every week. Players from the Balkan region compete in a series of matches to earn points and prizes.</p>
+      <p i18n>The circuit is open to all players from the Balkan region, and it's free to participate. The top players from each week will earn points that will count towards guaranteed €150 euro prize pool at the end of the month.</p>
+      <p i18n>50% of all donations during game days are added on top of the guaranteed prize pool for the month.</p>
+      <p i18n>Matches are played on the EU server, and players are required to join the <a href="https://discord.gg/7Zt8VZJ" target="_blank" rel="noopener">BGE Balkan Discord</a> to communicate with the admins and other players. See the full <a href="/assets/bge/BGE Balkan Circuit Terms and Conditions Rulebook.pdf" target="_blank" rel="noopener">Rulebook</a> for more information.</p>
       <div class="participants-container">
+        <h4 i18n style="width: 100%">Participants</h4>
         @if (loading) {
           <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
         }
