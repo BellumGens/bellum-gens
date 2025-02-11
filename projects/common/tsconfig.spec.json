@@ -3,7 +3,8 @@
   "compilerOptions": {
     "outDir": "../../out-tsc/spec-common",
     "types": [
-      "jasmine"
+      "jasmine",
+      "@angular/localize"
     ]
   },
   "include": [
