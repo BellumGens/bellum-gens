@@ -46,6 +46,7 @@ export class UserPreferencesComponent {
   public authUser: ApplicationUser;
   public registrations: TournamentApplication [];
   public isTournamentAdmin = false;
+  public regStates = [$localize`Pending`, $localize`Confirmed`, $localize`Banned`];
 
   @Output()
   public userDeleted = new EventEmitter<void>();

@@ -32,7 +32,11 @@
         <h2 igxListLineTitle i18n>Registration for {{ registration.game ? 'StarCraft II' : 'CS:GO' }}</h2>
         <h4 igxListLineSubTitle i18n>Confirmation code <span class="highlight">{{registration.hash}}</span></h4>
         <div class="horizontal-center" igxListAction>
-          <span [ngClass]="{'color-warn': !registration.state, 'color-success': registration.state }" i18n>{{ registration.state ? 'Confirmed' : 'Pending' }}</span>
+          <span [ngClass]="{
+            'color-error': registration.state === 0,
+            'color-success': registration.state === 1,
+            'color-warn': registration.state === 2
+          }">{{ regStates[registration.state] }}</span>
           @if (!registration.state) {
             <igx-icon class="navigatable" (click)="weeklyCheckin(registration)" i18n-title title="Check in">where_to_vote</igx-icon>
           }

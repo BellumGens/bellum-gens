@@ -46,7 +46,12 @@
     <igx-column field="discord" header="Discord">
     </igx-column>
     <igx-column field="state" [editable]="true" [sortable]="true" dataType="boolean" i18n-header header="Confirmed">
-      <igx-icon *igxCell="let value" [class]="value ? 'color-success' : 'color-error'">{{ value ? 'check' : 'close' }}</igx-icon>
+      <igx-icon *igxCell="let value"
+                [ngClass]="{
+                  'color-error': value === 0,
+                  'color-success': value === 1,
+                  'color-warn': value === 2
+                }">{{ stateIcon[value] }}</igx-icon>
     </igx-column>
 
     <igx-action-strip #regActionStrip>

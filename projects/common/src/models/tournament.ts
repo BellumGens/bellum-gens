@@ -2,7 +2,7 @@ import { CSGOTeam } from './csgoteam';
 import { ApplicationUser } from './applicationuser';
 import { TournamentCSGOMatch } from './tournament-schedule';
 
-export const enum Game {
+export enum Game {
   CSGO,
   StarCraft2
 }

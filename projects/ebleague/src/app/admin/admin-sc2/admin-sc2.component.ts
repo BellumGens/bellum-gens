@@ -17,7 +17,7 @@ import { GetPlayersPipe } from '../../pipes/get-players.pipe';
 import { NotInGroupPipe } from '../../pipes/not-in-group.pipe';
 import { Sc2MapNamePipe } from '../../../../../common/src/lib/pipes/sc2-map-name.pipe';
 import { ConfirmComponent } from '../../../../../common/src/lib/confirm/confirm.component';
-import { DatePipe } from '@angular/common';
+import { DatePipe, NgClass } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -27,6 +27,7 @@ import { FormsModule } from '@angular/forms';
   imports: [
     IGX_SELECT_DIRECTIVES,
     FormsModule,
+    NgClass,
     IGX_INPUT_GROUP_DIRECTIVES,
     IGX_GRID_DIRECTIVES,
     IGX_ACTION_STRIP_DIRECTIVES,
@@ -68,6 +69,7 @@ export class AdminSc2Component {
   public tournaments: Tournament [] = [];
   public selectedTournament: Tournament;
   public grouping: IGroupingExpression [];
+  public stateIcon = ['close', 'check', 'warning'];
 
   @ViewChild('registrationsGrid', { static: true }) public registrationsGrid: IgxGridComponent;
 

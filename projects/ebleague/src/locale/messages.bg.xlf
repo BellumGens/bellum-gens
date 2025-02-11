@@ -262,6 +262,38 @@
           <context context-type="linenumber">55,58</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="4416413576346763682" datatype="html">
+        <source>Pending</source>
+        <target>Изчакващ</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.ts</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1902234206836707099" datatype="html">
+        <source>Confirmed</source>
+        <target>Потвърден</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.ts</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
+          <context context-type="linenumber">35,36</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
+          <context context-type="linenumber">48,49</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2999492056553212422" datatype="html">
+        <source>Banned</source>
+        <target>Забранен</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.ts</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="4729859110254636214" datatype="html">
         <source>Setup your account</source>
         <target>Настрой акаунта си</target>
@@ -924,14 +956,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
           <context context-type="linenumber">29,31</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="1902234206836707099" datatype="html">
-        <source>Confirmed</source>
-        <target>Потвърдено</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">33,34</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9198937618936305417" datatype="html">
