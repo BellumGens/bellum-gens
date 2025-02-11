@@ -3,7 +3,7 @@ import { UserPreferences, ApplicationUser } from '../../../models/applicationuse
 import { LoginService } from '../../../services/login.service';
 import { LoginProvider } from '../../../models/login-provider';
 import { LOGIN_ASSETS } from '../../../models/misc';
-import { TournamentApplication } from '../../../models/tournament';
+import { TournamentApplication, TournamentApplicationState } from '../../../models/tournament';
 import { ApiTournamentsService } from '../../../services/bellumgens-api.tournaments.service';
 import { Router } from '@angular/router';
 import { ConfirmComponent } from '../../confirm/confirm.component';
@@ -46,6 +46,7 @@ export class UserPreferencesComponent {
   public authUser: ApplicationUser;
   public registrations: TournamentApplication [];
   public isTournamentAdmin = false;
+  public regStates = [$localize`Pending`, $localize`Confirmed`, $localize`Banned`];
 
   @Output()
   public userDeleted = new EventEmitter<void>();
@@ -85,10 +86,12 @@ export class UserPreferencesComponent {
   }
 
   public weeklyCheckin(registration: TournamentApplication) {
-    this.apiService.weeklyCheckin(registration).subscribe({
-      next: () => registration.state = 1,
-      error: () => {}
-    });
+    if (registration.state !== TournamentApplicationState.Banned) {
+      this.apiService.weeklyCheckin(registration).subscribe({
+        next: () => registration.state = 1,
+        error: () => {}
+      });
+    }
   }
 
   public deleteRegistration(registration: TournamentApplication) {

@@ -242,6 +242,38 @@
           <context context-type="linenumber">6,7</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="7374206539559027773" datatype="html">
+        <source>BGE Balkan is a regional StarCraft II circuit that takes place every week. Players from the Balkan region compete in a series of matches to earn points and prizes.</source>
+        <target>BGE Balkan е регионален Шампионат по StarCraft II, който се провежда всяка седмица. Играчите от Балканския регион се състезават в серия от мачове, за да спечелят точки и награди.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/bge-balkan/bge-balkan.component.html</context>
+          <context context-type="linenumber">9,10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8992174294201959473" datatype="html">
+        <source>The circuit is open to all players from the Balkan region, and it&apos;s free to participate. The top players from each week will earn points that will count towards guaranteed €150 prize pool at the end of the month.</source>
+        <target>Кръгът е отворен за всички играчи от Балканския регион и участието е безплатно. Най-добрите играчи от всяка седмица ще спечелят точки, които ще бъдат отчетени към гарантиран пул от награди от €150 в края на месеца.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/bge-balkan/bge-balkan.component.html</context>
+          <context context-type="linenumber">10,11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7925457402862955356" datatype="html">
+        <source>50% of all donations during game days are added on top of the guaranteed prize pool for the month.</source>
+        <target>50% от всички дарения по време на игровите дни се добавят към гарантирания пул от награди за месеца.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/bge-balkan/bge-balkan.component.html</context>
+          <context context-type="linenumber">11,12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2215286969497894677" datatype="html">
+        <source>Matches are played on the EU server, and players are required to join the <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://discord.gg/7Zt8VZJ&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>BGE Balkan Discord<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> to communicate with the admins and other players. See the full <x id="START_LINK_1" equiv-text="&lt;a href=&quot;/assets/bge/BGE Balkan Circuit Terms and Conditions Rulebook.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>Rulebook<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> for more information.</source>
+        <target>Мачовете се играят на EU сървъра и играчите трябва да се присъединят към <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://discord.gg/7Zt8VZJ&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>BGE Balkan Discord<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>, за да комуникират с администраторите и другите играчи. Вижте пълния <x id="START_LINK_1" equiv-text="&lt;a href=&quot;/assets/bge/BGE Balkan Circuit Terms and Conditions Rulebook.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>Правилник<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> за повече информация.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/bge-balkan/bge-balkan.component.html</context>
+          <context context-type="linenumber">12,13</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="3481736869685494304" datatype="html">
         <source>Participants</source>
         <target>Участници</target>
@@ -2676,6 +2708,30 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
           <context context-type="linenumber">49,52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4416413576346763682" datatype="html">
+        <source>Pending</source>
+        <target>Изчакващ</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.ts</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1902234206836707099" datatype="html">
+        <source>Confirmed</source>
+        <target>Потвърден</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.ts</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2999492056553212422" datatype="html">
+        <source>Banned</source>
+        <target>Забранен</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.ts</context>
+          <context context-type="linenumber">49</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4729859110254636214" datatype="html">

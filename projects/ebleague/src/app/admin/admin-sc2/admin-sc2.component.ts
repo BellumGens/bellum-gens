@@ -8,7 +8,8 @@ import {
   TournamentSC2Match, TournamentMatchMap,
   SC2_MAPS, SC2LadderMap,
   CommunicationService,
-  TournamentApplication
+  TournamentApplication,
+  TournamentApplicationState
 } from '../../../../../common/src/public_api';
 import { environment } from '../../../../../common/src/environments/environment';
 import { IDropDroppedEventArgs, IRowDataEventArgs, IgxGridComponent, IgxDialogComponent, IGX_SELECT_DIRECTIVES, IGX_INPUT_GROUP_DIRECTIVES, IGX_GRID_DIRECTIVES, IgxButtonDirective, IgxIconComponent, IgxAvatarComponent, IGX_LIST_DIRECTIVES, IGX_CARD_DIRECTIVES, IgxCircularProgressBarComponent, IGX_DRAG_DROP_DIRECTIVES, IgxBadgeComponent, IGX_DIALOG_DIRECTIVES, IGX_DATE_PICKER_DIRECTIVES, IGX_TIME_PICKER_DIRECTIVES, IgxCheckboxComponent, IGX_ACTION_STRIP_DIRECTIVES, RowType, IGridEditEventArgs, IGroupingExpression, SortingDirection, DefaultSortingStrategy, IgxIconButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular';
@@ -16,7 +17,7 @@ import { GetPlayersPipe } from '../../pipes/get-players.pipe';
 import { NotInGroupPipe } from '../../pipes/not-in-group.pipe';
 import { Sc2MapNamePipe } from '../../../../../common/src/lib/pipes/sc2-map-name.pipe';
 import { ConfirmComponent } from '../../../../../common/src/lib/confirm/confirm.component';
-import { DatePipe } from '@angular/common';
+import { DatePipe, NgClass } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -26,6 +27,7 @@ import { FormsModule } from '@angular/forms';
   imports: [
     IGX_SELECT_DIRECTIVES,
     FormsModule,
+    NgClass,
     IGX_INPUT_GROUP_DIRECTIVES,
     IGX_GRID_DIRECTIVES,
     IGX_ACTION_STRIP_DIRECTIVES,
@@ -67,6 +69,7 @@ export class AdminSc2Component {
   public tournaments: Tournament [] = [];
   public selectedTournament: Tournament;
   public grouping: IGroupingExpression [];
+  public stateIcon = ['close', 'check', 'warning'];
 
   @ViewChild('registrationsGrid', { static: true }) public registrationsGrid: IgxGridComponent;
 
@@ -213,7 +216,7 @@ export class AdminSc2Component {
   public resetCheckinState() {
     this.apiService.resetCheckinState(this.selectedTournament.id).subscribe({
       next: () => {
-        this.registrations.forEach(r => r.state = 0);
+        this.registrations.filter(r => r.state !== TournamentApplicationState.Banned).forEach(r => r.state = 0);
         this.registrationsGrid.notifyChanges(true);
       },
       complete: () => {}

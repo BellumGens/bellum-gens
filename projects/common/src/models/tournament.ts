@@ -7,9 +7,10 @@ export enum Game {
   StarCraft2
 }
 
-export enum TournamentApplicationState {
+export const enum TournamentApplicationState {
   Pending,
-  Confirmed
+  Confirmed,
+  Banned
 }
 export interface Tournament {
   id?: string;
