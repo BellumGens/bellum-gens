@@ -228,8 +228,8 @@
           <context context-type="linenumber">9,10</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1882983340960650252" datatype="html">
-        <source>The circuit is open to all players from the Balkan region, and it&apos;s free to participate. The top players from each week will earn points that will count towards guaranteed €150 euro prize pool at the end of the month.</source>
+      <trans-unit id="8992174294201959473" datatype="html">
+        <source>The circuit is open to all players from the Balkan region, and it&apos;s free to participate. The top players from each week will earn points that will count towards guaranteed €150 prize pool at the end of the month.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/bge-balkan/bge-balkan.component.html</context>
           <context context-type="linenumber">10,11</context>
