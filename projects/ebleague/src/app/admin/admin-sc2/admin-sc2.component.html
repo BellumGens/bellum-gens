@@ -426,12 +426,12 @@
   <div class="horizontal-center">
     <igx-input-group>
       <label igxLabel i18n>Points {{ matchInEdit.player1?.username }}</label>
-      <input type="number" igxInput [(ngModel)]="matchInEdit.player1Points" />
+      <input type="number" igxInput igxTextSelection [(ngModel)]="matchInEdit.player1Points" />
     </igx-input-group>
     <span class="grid-vs-divider">:</span>
     <igx-input-group>
       <label igxLabel i18n>Points {{ matchInEdit.player2?.username }}</label>
-      <input type="number" igxInput [(ngModel)]="matchInEdit.player2Points" />
+      <input type="number" igxInput igxTextSelection [(ngModel)]="matchInEdit.player2Points" />
     </igx-input-group>
   </div>
 
