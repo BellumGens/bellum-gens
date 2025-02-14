@@ -145,8 +145,8 @@
           <li i18n>Open to all <span class="highlight">Grandmaster</span> players from the <span class="highlight">Americas region</span></li>
           <li i18n><span class="highlight">Top 2</span> players qualify</li>
           <li i18n>Single-elimination bracket</li>
-          <li i18n>Registration deadline <span class="highlight">{{ '2025-03-14T15:00:00Z' | date: 'medium' }}</span></li>
-          <li i18n>Qualifier checkin <span class="highlight">{{ '2025-03-15T13:00:00Z' | date: 'medium' }}</span></li>
+          <li i18n>Registration deadline <span class="highlight">{{ '2025-03-14T16:00:00Z' | date: 'medium' }}</span></li>
+          <li i18n>Qualifier checkin <span class="highlight">{{ '2025-03-15T14:00:00Z' | date: 'medium' }}</span></li>
         </ul>
       </igx-card-content>
       <igx-card-actions>
@@ -191,9 +191,23 @@
           <span class="highlight" i18n>Europe Open Qualifier</span>
         </div>
         <div igxCardHeaderSubtitle>
-          {{ '2025-03-29' | date: 'longDate' }}
+          {{ '2025-03-29T14:00:00Z' | date: 'medium' }}
         </div>
       </igx-card-header>
+      <igx-card-content>
+        <ul>
+          <li i18n>Open to all <span class="highlight">Grandmaster</span> players from the <span class="highlight">Europe region</span></li>
+          <li i18n><span class="highlight">Top 5</span> players qualify</li>
+          <li i18n>Single-elimination bracket</li>
+          <li i18n>Registration deadline <span class="highlight">{{ '2025-03-28T14:00:00Z' | date: 'medium' }}</span></li>
+          <li i18n>Qualifier checkin <span class="highlight">{{ '2025-03-29T12:00:00Z' | date: 'medium' }}</span></li>
+        </ul>
+      </igx-card-content>
+      <igx-card-actions>
+        <a href="https://www.twitch.tv/bge_starazagora" igxEnd igxButton="outlined">Stream</a>
+        <a href="/assets/bge/Rulebook - Bellum Gens Elite 2024.pdf" igxEnd target="_blank" igxButton="outlined" i18n>View Rulebook</a>
+        <a igxButton="contained" igxEnd [routerLink]="['registration/', asiaQualifierId]" i18n>Sign-up to participate</a>
+      </igx-card-actions>
     </igx-card>
   </div>
 
@@ -204,9 +218,23 @@
           <span class="highlight" i18n>Balkan Open Qualifier</span>
         </div>
         <div igxCardHeaderSubtitle>
-          {{ '2025-04-05' | date: 'longDate' }}
+          {{ '2025-04-05T14:00:00Z' | date: 'medium' }}
         </div>
       </igx-card-header>
+      <igx-card-content>
+        <ul>
+          <li i18n>Open to all <span class="highlight">Grandmaster</span> players from the <span class="highlight">Balkan region</span></li>
+          <li i18n><span class="highlight">Top</span> player qualifies</li>
+          <li i18n>Single-elimination bracket</li>
+          <li i18n>Registration deadline <span class="highlight">{{ '2025-04-04T14:00:00Z' | date: 'medium' }}</span></li>
+          <li i18n>Qualifier checkin <span class="highlight">{{ '2025-04-05T12:00:00Z' | date: 'medium' }}</span></li>
+        </ul>
+      </igx-card-content>
+      <igx-card-actions>
+        <a href="https://www.twitch.tv/bge_starazagora" igxEnd igxButton="outlined">Stream</a>
+        <a href="/assets/bge/Rulebook - Bellum Gens Elite 2024.pdf" igxEnd target="_blank" igxButton="outlined" i18n>View Rulebook</a>
+        <a igxButton="contained" igxEnd [routerLink]="['registration/', asiaQualifierId]" i18n>Sign-up to participate</a>
+      </igx-card-actions>
     </igx-card>
   </div>
 
