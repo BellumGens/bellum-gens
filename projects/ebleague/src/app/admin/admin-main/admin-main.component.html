@@ -3,6 +3,7 @@
     <igx-grid #grid1
       [data]="registrations"
       primaryKey="id"
+      [height]="'500px'"
       [batchEditing]="true"
       [showGroupArea]="true"
       [allowFiltering]="true"
@@ -143,46 +144,55 @@
     <h3 i18n>Tournaments and Roles</h3>
   </div>
   @for (league of tournaments; track league.id; let i = $index) {
-    <form #currentLeagueForm="ngForm" class="content-container-column" (ngSubmit)="updateTournament(league)">
-      <igx-input-group>
-        <label igxLabel [for]="'leagueName' + i" i18n>Tournament name</label>
-        <input type="text" [id]="'leagueName' + i" [name]="'leagueName' + i" #leagueName igxInput [required]="true" [(ngModel)]="league.name" />
-        @if (leagueName.value) {
-          <igx-suffix (click)="league.name = null">
-            <igx-icon>clear</igx-icon>
-          </igx-suffix>
-        }
-      </igx-input-group>
-      <igx-input-group>
-        <label igxLabel [for]="'leagueLogo' + i" i18n>Tournament logo</label>
-        <input type="text" [id]="'leagueLogo' + i" [name]="'leagueLogo' + i" #leagueLogo igxInput [required]="true" [(ngModel)]="league.logo" />
-        @if (leagueLogo.value) {
-          <igx-suffix (click)="league.logo = null">
-            <igx-icon>clear</igx-icon>
-          </igx-suffix>
-        }
-      </igx-input-group>
-      <igx-input-group>
-        <label igxLabel [for]="'leagueDescription' + i" i18n>Tournament description</label>
-        <textarea type="text" [id]="'leagueDescription' + i" [name]="'leagueDescription' + i" #leagueDescription igxInput [required]="true" [(ngModel)]="league.description"></textarea>
-        @if (leagueDescription.value) {
-          <igx-suffix (click)="league.description = null">
-            <igx-icon>clear</igx-icon>
-          </igx-suffix>
-        }
-      </igx-input-group>
-      <igx-date-picker [name]="'leagueStartDate' + i" [required]="true" [(ngModel)]="league.startDate" mode="dialog">
-        <label igxLabel i18n>Start date</label>
-      </igx-date-picker>
-      <igx-date-picker [name]="'leagueEndDate' + i" [required]="true" [(ngModel)]="league.endDate" mode="dialog">
-        <label igxLabel i18n>End date</label>
-      </igx-date-picker>
-      <igx-checkbox [name]="'active' + i" [(ngModel)]="league.active" i18n>Active</igx-checkbox>
-      <button igxButton [disabled]="!currentLeagueForm.valid || !currentLeagueForm.touched" i18n>Submit</button>
-    </form>
+    <igx-card>
+      <igx-card-header>
+        <h4 igxCardHeaderTitle>{{league.name}}</h4>
+        <!-- <igx-icon (click)="deleteTournament(league.id)">delete</igx-icon> -->
+      </igx-card-header>
+      <igx-card-content>
+        <form #currentLeagueForm="ngForm" class="content-container-column" (ngSubmit)="updateTournament(league)">
+          <igx-input-group>
+            <label igxLabel [for]="'leagueName' + i" i18n>Tournament name</label>
+            <input type="text" [id]="'leagueName' + i" [name]="'leagueName' + i" #leagueName igxInput [required]="true" [(ngModel)]="league.name" />
+            @if (leagueName.value) {
+              <igx-suffix (click)="league.name = null">
+                <igx-icon>clear</igx-icon>
+              </igx-suffix>
+            }
+          </igx-input-group>
+          <igx-input-group>
+            <label igxLabel [for]="'leagueLogo' + i" i18n>Tournament logo</label>
+            <input type="text" [id]="'leagueLogo' + i" [name]="'leagueLogo' + i" #leagueLogo igxInput [required]="true" [(ngModel)]="league.logo" />
+            @if (leagueLogo.value) {
+              <igx-suffix (click)="league.logo = null">
+                <igx-icon>clear</igx-icon>
+              </igx-suffix>
+            }
+          </igx-input-group>
+          <igx-input-group>
+            <label igxLabel [for]="'leagueDescription' + i" i18n>Tournament description</label>
+            <textarea type="text" [id]="'leagueDescription' + i" [name]="'leagueDescription' + i" #leagueDescription igxInput [required]="true" [(ngModel)]="league.description"></textarea>
+            @if (leagueDescription.value) {
+              <igx-suffix (click)="league.description = null">
+                <igx-icon>clear</igx-icon>
+              </igx-suffix>
+            }
+          </igx-input-group>
+          <igx-date-picker [name]="'leagueStartDate' + i" [required]="true" [(ngModel)]="league.startDate" mode="dialog">
+            <label igxLabel i18n>Start date</label>
+          </igx-date-picker>
+          <igx-date-picker [name]="'leagueEndDate' + i" [required]="true" [(ngModel)]="league.endDate" mode="dialog">
+            <label igxLabel i18n>End date</label>
+          </igx-date-picker>
+          <igx-checkbox [name]="'active' + i" [(ngModel)]="league.active" i18n>Active</igx-checkbox>
+          <button igxButton [disabled]="!currentLeagueForm.valid || !currentLeagueForm.touched" i18n>Submit</button>
+        </form>
+      </igx-card-content>
+    </igx-card>
   }
 
   <form #leagueForm="ngForm" class="content-container-column" (ngSubmit)="updateTournament()">
+    <h4 igxCardHeaderTitle i18n>New Tournament</h4>
     <igx-input-group>
       <label igxLabel for="tournamentName" i18n>Tournament name</label>
       <input type="text" id="tournamentName" name="tournamentName" #tournamentName igxInput [required]="true" [(ngModel)]="tournament.name" />

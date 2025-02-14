@@ -6,7 +6,7 @@ import {
   JerseyOrder, Promo,
   ApiShopService
 } from '../../../../../common/src/public_api';
-import { IGridEditEventArgs, IGroupingExpression, SortingDirection, DefaultSortingStrategy, RowType, IGX_GRID_DIRECTIVES, IgxIconComponent, IgxBadgeComponent, IGX_ACTION_STRIP_DIRECTIVES, IgxButtonDirective, IgxIconButtonDirective, IgxRippleDirective, IGX_PAGINATOR_DIRECTIVES, IGX_INPUT_GROUP_DIRECTIVES, IGX_DATE_PICKER_DIRECTIVES, IgxCheckboxComponent, IGX_CHIPS_DIRECTIVES } from '@infragistics/igniteui-angular';
+import { IGridEditEventArgs, IGroupingExpression, SortingDirection, DefaultSortingStrategy, RowType, IGX_GRID_DIRECTIVES, IgxIconComponent, IgxBadgeComponent, IGX_ACTION_STRIP_DIRECTIVES, IgxButtonDirective, IgxIconButtonDirective, IgxRippleDirective, IGX_PAGINATOR_DIRECTIVES, IGX_INPUT_GROUP_DIRECTIVES, IGX_DATE_PICKER_DIRECTIVES, IgxCheckboxComponent, IGX_CHIPS_DIRECTIVES, IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -25,6 +25,7 @@ import { FormsModule } from '@angular/forms';
     IGX_PAGINATOR_DIRECTIVES,
     IGX_INPUT_GROUP_DIRECTIVES,
     IGX_DATE_PICKER_DIRECTIVES,
+    IGX_CARD_DIRECTIVES,
     IgxCheckboxComponent,
     IGX_CHIPS_DIRECTIVES
   ]
