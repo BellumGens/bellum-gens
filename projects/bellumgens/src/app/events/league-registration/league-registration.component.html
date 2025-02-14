@@ -3,6 +3,7 @@
   <div class="horizontal-center">
     <img width="88" height="88" alt="Tournament Logo" [src]="tournament?.logo" />
     <h2 id="registration" class="registration-title">{{tournament?.name}}</h2>
+    <p>{{tournament?.description}}</p>
   </div>
 
   @if (!authUser) {
