@@ -103,7 +103,7 @@
               "buildTarget": "bellum-gens:build:bg"
             },
             "development": {
-              "buildTarget": "ssr-test:build:development"
+              "buildTarget": "bellum-gens:build:development"
             }
           }
         },

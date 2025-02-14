@@ -1022,6 +1022,14 @@
           <context context-type="linenumber">178,179</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="1280523270210192718" datatype="html">
+        <source>New Tournament</source>
+        <target>Нов турнир</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
+          <context context-type="linenumber">195,196</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="6009437916867942799" datatype="html">
         <source>No Roles Defined</source>
         <target>Няма дефинирани роли</target>
