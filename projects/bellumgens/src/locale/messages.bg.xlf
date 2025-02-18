@@ -258,9 +258,9 @@
           <context context-type="linenumber">10,11</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7925457402862955356" datatype="html">
-        <source>50% of all donations during game days are added on top of the guaranteed prize pool for the month.</source>
-        <target>50% от всички дарения по време на игровите дни се добавят към гарантирания пул от награди за месеца.</target>
+      <trans-unit id="4567931361446865419" datatype="html">
+        <source>50% of all donations during game days are added on top of the guaranteed prize pool for the month. You can donate through:</source>
+        <target>50% от всички дарения по време на игровите дни се добавят към гарантирания пул от награди за месеца. Можете да дарите чрез:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/bge-balkan/bge-balkan.component.html</context>
           <context context-type="linenumber">11,12</context>
