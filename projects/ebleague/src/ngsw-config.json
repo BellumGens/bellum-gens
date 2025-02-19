@@ -24,5 +24,19 @@
         ]
       }
     }
+  ],
+  "dataGroups": [
+    {
+      "name": "api-freshness",
+      "urls": [
+        "https://api.bellumgens.com/api/**"
+      ],
+      "cacheConfig": {
+        "maxSize": 100,
+        "maxAge": "1d",
+        "timeout": "10s",
+        "strategy": "freshness"
+      }
+    }
   ]
 }
