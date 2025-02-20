@@ -274,6 +274,14 @@
           <context context-type="linenumber">12,13</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="3481736869685494304" datatype="html">
+        <source>Participants</source>
+        <target>Участници</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/bge-balkan/bge-balkan.component.html</context>
+          <context context-type="linenumber">20,21</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="8415672729856687146" datatype="html">
         <source>No matches found...</source>
         <target>Няма намерени мачове...</target>
