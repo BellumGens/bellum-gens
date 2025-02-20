@@ -72,4 +72,28 @@ describe('BgeBalkanComponent', () => {
     expect(req.request.withCredentials).toBeFalse();
     req.flush(mockGroups);
   });
+
+  it('should refresh groups', () => {
+    const mockGroups = [{ id: 'group1' }] as any[];
+
+    component.tournamentId = '123';
+    component.refreshGroups();
+
+    const req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/sc2groups?tournamentId=123`);
+    expect(req.request.method).toBe('GET');
+    expect(req.request.withCredentials).toBeFalse();
+    req.flush(mockGroups);
+  });
+
+  it('should refresh matches', () => {
+    const mockMatches = [{ id: 'match1' }] as any[];
+
+    component.tournamentId = '123';
+    component.refreshMatches();
+
+    const req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/sc2matches?tournamentId=123`);
+    expect(req.request.method).toBe('GET');
+    expect(req.request.withCredentials).toBeFalse();
+    req.flush(mockMatches);
+  });
 });

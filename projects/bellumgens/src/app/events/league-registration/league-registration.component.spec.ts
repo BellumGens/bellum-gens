@@ -62,5 +62,9 @@ describe('LeagueRegistrationComponent', () => {
     spyOn(communicationService, 'emitSuccess');
     component.leagueRegistration();
     expect(communicationService.emitSuccess).toHaveBeenCalledWith(`Registration successful!`);
+
+    application.firstName = 'Konstantin';
+    component.leagueRegistration();
+    expect(communicationService.emitSuccess).toHaveBeenCalledWith(`Registration updated successfully!`);
   });
 });
