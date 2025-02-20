@@ -31,7 +31,7 @@
           </ng-template>
         </igx-column>
 
-        <igx-column i18n-header header="Match" width="65%">
+        <igx-column i18n-header header="Match" width="60%">
           <ng-template igxCell let-cell="cell">
             <igx-avatar igxListThumbnail
               [src]="cell.row.data.player1.avatarMedium"
@@ -53,7 +53,29 @@
           </ng-template>
         </igx-column>
 
-        <igx-column field="winnerPlayerId" i18n-header header="Result" width="15%">
+        <igx-column field="videoLink" i18n-header header="Video" [filterable]="false">
+          <ng-template igxCell let-value>
+            @if (value) {
+              <a [href]="value" target="_blank" class="horizontal-center">
+                <igx-icon name="youtube" family="login-icons"></igx-icon>
+                <span i18n>Video</span>
+              </a>
+            }
+          </ng-template>
+        </igx-column>
+
+        <igx-column field="demoLink" i18n-header header="Replay" [filterable]="false">
+          <ng-template igxCell let-value>
+            @if (value) {
+              <a [href]="value" target="_blank" class="horizontal-center">
+                <igx-icon>link</igx-icon>
+                <span i18n>Replay</span>
+              </a>
+            }
+          </ng-template>
+        </igx-column>
+
+        <igx-column field="winnerPlayerId" i18n-header header="Result">
           <ng-template igxCell let-value>
             <span [class]="!value ? 'color-warn' : value === player?.id ? 'color-success' : 'color-error'"
             i18n>{{ !value ? 'Pending' : value === player?.id ? 'Win' : 'Loss' }}</span>

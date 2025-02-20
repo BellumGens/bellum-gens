@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { ApplicationUser, BellumgensApiService, LoadingComponent, Tournament } from '../../../../../common/src/public_api';
 import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { IGX_GRID_DIRECTIVES, IgxAvatarComponent } from '@infragistics/igniteui-angular';
+import { IGX_GRID_DIRECTIVES, IgxAvatarComponent, IgxIconComponent } from '@infragistics/igniteui-angular';
 import { Observable } from 'rxjs';
 import { AsyncPipe, DatePipe } from '@angular/common';
 
@@ -10,6 +10,7 @@ import { AsyncPipe, DatePipe } from '@angular/common';
   selector: 'app-sc-player',
   imports: [
     IgxAvatarComponent,
+    IgxIconComponent,
     LoadingComponent,
     IGX_GRID_DIRECTIVES,
     AsyncPipe,
