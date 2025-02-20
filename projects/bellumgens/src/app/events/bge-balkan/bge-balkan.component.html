@@ -17,8 +17,8 @@
         <p i18n>Matches are played on the EU server, and players are required to join the <a href="https://discord.gg/7Zt8VZJ" target="_blank" rel="noopener">BGE Balkan Discord</a> to communicate with the admins and other players. See the full <a href="/assets/bge/BGE Balkan Circuit Terms and Conditions Rulebook.pdf" target="_blank" rel="noopener">Rulebook</a> for more information.</p>
       </div>
       <div class="participants-container">
-        <h4 i18n style="width: 100%">Participants</h4>
-        @if (loading) {
+        <h3 i18n style="width: 100%">Participants</h3>
+        @if (loading | async) {
           <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
         }
         @for (registration of registrations | async; track registration) {
@@ -32,71 +32,7 @@
             }
           </div>
         }
-        <igx-divider></igx-divider>
       </div>
-
-      <div class="group-columns">
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3320904478097217"
-            crossorigin="anonymous"></script>
-        <!-- Display Ad horizontal 1 -->
-        <ins class="adsbygoogle"
-            style="display:block"
-            data-ad-client="ca-pub-3320904478097217"
-            data-ad-slot="9044957402"
-            data-ad-format="auto"
-            data-full-width-responsive="true"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-        @for (group of groups | async; track group.id) {
-          <igx-grid
-            cellSelection="none"
-            [data]="group.participants">
-            <igx-grid-toolbar>
-              <igx-grid-toolbar-title>{{group.name}}</igx-grid-toolbar-title>
-              <igx-grid-toolbar-actions>
-                <button igxIconButton="flat" igxRipple (click)="refreshGroups()">
-                  <igx-icon>refresh</igx-icon>
-                </button>
-              </igx-grid-toolbar-actions>
-            </igx-grid-toolbar>
-            <igx-column field="user" i18n-header header="Player">
-              <div *igxCell="let value">
-                <igx-avatar igxListThumbnail
-                  [initials]="value.username"
-                  class="avatar-small"
-                  shape="circle">
-                </igx-avatar>
-                <span igxListLineTitle>
-                  {{ value.username }}
-                </span>
-              </div>
-            </igx-column>
-            <igx-column field="country" i18n-header header="Country">
-              <div *igxCell="let value">
-                <igx-avatar igxListThumbnail
-                  [src]="value | countrySVG"
-                  shape="circle" class="avatar-small">
-                </igx-avatar>
-                <span igxListLineTitle>
-                  {{ value }}
-                </span>
-              </div>
-            </igx-column>
-            <igx-column field="companyId" i18n-header header="Team">
-            </igx-column>
-            <igx-column field="matches" dataType="number" i18n-header header="Matches" width="9%">
-            </igx-column>
-            <igx-column field="wins" dataType="number" i18n-header header="Wins" width="8%">
-            </igx-column>
-            <igx-column field="losses" dataType="number" i18n-header header="Losses" width="8%">
-            </igx-column>
-            <igx-column field="playerPoints" dataType="number" i18n-header header="Points" width="7%">
-            </igx-column>
-          </igx-grid>
-        }
-      </div>
-
 
       <igx-grid cellSelection="none"
         [data]="sc2matches | async"
@@ -104,10 +40,10 @@
         [groupingExpressions]="grouping"
         i18n-emptyGridMessage
         emptyGridMessage="No matches found..."
-        [isLoading]="loadingMatches">
+        [isLoading]="loadingMatches | async">
 
         <igx-grid-toolbar>
-          <igx-grid-toolbar-title i18n>{{ tournament?.name }} Match Results</igx-grid-toolbar-title>
+          <igx-grid-toolbar-title><h3 i18n>Weekly Match Results</h3></igx-grid-toolbar-title>
           <igx-grid-toolbar-actions>
             <button igxIconButton="flat" igxRipple (click)="refreshMatches()">
               <igx-icon>refresh</igx-icon>
@@ -202,6 +138,69 @@
           }
         </ng-template> -->
       </igx-grid>
+
+      <div class="group-columns">
+        <h3 i18n>Monthly Standings</h3>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3320904478097217"
+            crossorigin="anonymous"></script>
+        <!-- Display Ad horizontal 1 -->
+        <ins class="adsbygoogle"
+            style="display:block"
+            data-ad-client="ca-pub-3320904478097217"
+            data-ad-slot="9044957402"
+            data-ad-format="auto"
+            data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+        @for (group of groups | async; track group.id) {
+          <igx-grid
+            cellSelection="none"
+            [data]="group.participants">
+            <igx-grid-toolbar>
+              <igx-grid-toolbar-title><h3>{{group.name}}</h3></igx-grid-toolbar-title>
+              <igx-grid-toolbar-actions>
+                <button igxIconButton="flat" igxRipple (click)="refreshGroups()">
+                  <igx-icon>refresh</igx-icon>
+                </button>
+              </igx-grid-toolbar-actions>
+            </igx-grid-toolbar>
+            <igx-column field="user" i18n-header header="Player">
+              <div *igxCell="let value">
+                <igx-avatar igxListThumbnail
+                  [initials]="value.username"
+                  class="avatar-small"
+                  shape="circle">
+                </igx-avatar>
+                <span igxListLineTitle>
+                  {{ value.username }}
+                </span>
+              </div>
+            </igx-column>
+            <igx-column field="country" i18n-header header="Country">
+              <div *igxCell="let value">
+                <igx-avatar igxListThumbnail
+                  [src]="value | countrySVG"
+                  shape="circle" class="avatar-small">
+                </igx-avatar>
+                <span igxListLineTitle>
+                  {{ value }}
+                </span>
+              </div>
+            </igx-column>
+            <igx-column field="companyId" i18n-header header="Team">
+            </igx-column>
+            <igx-column field="matches" dataType="number" i18n-header header="Matches" width="8%" minWidth="100px">
+            </igx-column>
+            <igx-column field="wins" dataType="number" i18n-header header="Wins" width="8%" minWidth="100px">
+            </igx-column>
+            <igx-column field="losses" dataType="number" i18n-header header="Losses" width="8%" minWidth="100px">
+            </igx-column>
+            <igx-column field="playerPoints" dataType="number" i18n-header header="Points" width="8%" minWidth="100px">
+            </igx-column>
+          </igx-grid>
+        }
+      </div>
     </igx-card-content>
   </igx-card>
 </div>

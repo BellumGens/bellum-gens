@@ -1,15 +1,66 @@
-@if (loading) {
+@if (loading | async) {
   <bg-loading>
   </bg-loading>
 }
 
-<div class="card-wrapper profile-view-layout">
-  <div class="profile-container">
-    <div>
-      <igx-avatar [src]="player.sc2Details?.avatarUrl" [initials]="player.steamUser?.steamID" class="player-avatar">
-      </igx-avatar>
+@if (player) {
+  <div class="card-wrapper profile-view-layout">
+    <div class="profile-container">
+      @if (player.sc2Details) {
+        <div>
+          <igx-avatar [src]="player.sc2Details?.avatarUrl" [initials]="player.sc2Details?.battleNetBattleTag" class="player-avatar">
+          </igx-avatar>
+        </div>
+        <h1 class="igx-card-header__title"><a [href]="player.sc2Details?.profileUrl" target="_blank" rel="noopener">{{ player.sc2Details?.battleNetBattleTag }}</a></h1>
+      }
+      <h4 class="igx-card-header__subtitle">{{ player.username }}</h4>
     </div>
-    <h1 class="igx-card-header__title"><a [href]="player.sc2Details.profileUrl" target="_blank" rel="noopener">{{ player.sc2Details.battleNetBattleTag }}</a></h1>
-    <h4 class="igx-card-header__subtitle">{{ player.username }}</h4>
+    @for (tournament of tournaments | async; track tournament.id) {
+      <igx-grid
+        cellSelection="none"
+        [height]="null"
+        [data]="tournament.sc2Matches">
+
+        <igx-grid-toolbar>
+          <igx-grid-toolbar-title>{{tournament.name}}</igx-grid-toolbar-title>
+        </igx-grid-toolbar>
+
+        <igx-column field="startTime" dataType="date" i18n-header header="Start time" [sortable]="true">
+          <ng-template igxCell let-value>
+            {{ value | date:'MMM d, y, h:mm a' }}
+          </ng-template>
+        </igx-column>
+
+        <igx-column i18n-header header="Match" width="65%">
+          <ng-template igxCell let-cell="cell">
+            <igx-avatar igxListThumbnail
+              [src]="cell.row.data.player1.avatarMedium"
+              [initials]="cell.row.data.player1.username"
+              class="avatar-small"
+              shape="circle">
+            </igx-avatar>
+            <span [class]="cell.row.data.winnerPlayerId === cell.row.data.player1.id ? 'highlight grid-team-name' : 'grid-team-name'">{{ cell.row.data.player1.username }}</span>
+
+            <span class="grid-vs-divider">vs.</span>
+
+            <igx-avatar igxListThumbnail
+              [src]="cell.row.data.player2.avatarMedium"
+              [initials]="cell.row.data.player2.username"
+              class="avatar-small"
+              shape="circle">
+            </igx-avatar>
+            <span [class]="cell.row.data.winnerPlayerId === cell.row.data.player2.id ? 'highlight grid-team-name' : 'grid-team-name'">{{ cell.row.data.player2.username }}</span>
+          </ng-template>
+        </igx-column>
+
+        <igx-column field="winnerPlayerId" i18n-header header="Result" width="15%">
+          <ng-template igxCell let-value>
+            <span [class]="!value ? 'color-warn' : value === player?.id ? 'color-success' : 'color-error'"
+            i18n>{{ !value ? 'Pending' : value === player?.id ? 'Win' : 'Loss' }}</span>
+          </ng-template>
+        </igx-column>
+
+      </igx-grid>
+    }
   </div>
-</div>
+}

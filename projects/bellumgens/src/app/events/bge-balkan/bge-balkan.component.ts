@@ -4,7 +4,7 @@ import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { TournamentParticipant, TournamentGroup, TournamentSC2Match, Tournament, ApiTournamentsService, CountrySVGPipe } from '../../../../../common/src/public_api';
 import { AsyncPipe, DatePipe } from '@angular/common';
-import { IGX_CARD_DIRECTIVES, IgxCircularProgressBarComponent, IgxAvatarComponent, IgxDividerDirective, IGX_GRID_DIRECTIVES, IgxIconComponent, IgxButtonDirective, IGroupingExpression, SortingDirection, DefaultSortingStrategy, IgxIconButtonDirective } from '@infragistics/igniteui-angular';
+import { IGX_CARD_DIRECTIVES, IgxCircularProgressBarComponent, IgxAvatarComponent, IGX_GRID_DIRECTIVES, IgxIconComponent, IgxButtonDirective, IGroupingExpression, SortingDirection, DefaultSortingStrategy, IgxIconButtonDirective } from '@infragistics/igniteui-angular';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -17,7 +17,6 @@ import { Observable } from 'rxjs';
     IGX_CARD_DIRECTIVES,
     IgxCircularProgressBarComponent,
     IgxAvatarComponent,
-    IgxDividerDirective,
     IGX_GRID_DIRECTIVES,
     IgxIconComponent,
     IgxButtonDirective,
@@ -30,9 +29,8 @@ import { Observable } from 'rxjs';
 export class BgeBalkanComponent extends BaseDirective {
   public registrations: Observable<TournamentParticipant []>;
   public groups: Observable<TournamentGroup []>;
-  public loading = true;
-  public loadingMatches = true;
-  public loadingGroups = true;
+  public loading: Observable<boolean>;
+  public loadingMatches: Observable<boolean>;
   public tournamentId: string;
   public sc2matches: Observable<TournamentSC2Match []>;
   public tournament: Tournament;
@@ -45,9 +43,8 @@ export class BgeBalkanComponent extends BaseDirective {
               meta: Meta,
               route: ActivatedRoute) {
     super(title, meta, route);
-    this.apiService.loadingSC2Registrations.subscribe(data => this.loading = data);
-    this.apiService.loadingSC2Matches.subscribe(data => this.loadingMatches = data);
-    this.apiService.loadingSC2Groups.subscribe(data => this.loadingGroups = data);
+    this.loading = this.apiService.loadingSC2Registrations;
+    this.loadingMatches = this.apiService.loadingSC2Matches;
     this.apiService.activeTournament.subscribe(t => {
       if (t) {
         this.tournament = t;
