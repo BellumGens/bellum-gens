@@ -104,7 +104,7 @@
   <div id="qualified-players" class="content-container-row">
     <h2 i18n>Qualified Players</h2>
     <div class="card-wrapper">
-      @for (player of qualifiedPlayers; track player.name) {
+      @for (player of qualifiedPlayers; track player) {
         <igx-card>
           <igx-card-media>
             <img [src]="player.image" alt="Player Avatar" />

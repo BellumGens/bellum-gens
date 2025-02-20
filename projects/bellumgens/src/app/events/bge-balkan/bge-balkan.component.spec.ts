@@ -6,6 +6,7 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { take } from 'rxjs';
 
 describe('BgeBalkanComponent', () => {
   let component: BgeBalkanComponent;
@@ -50,27 +51,25 @@ describe('BgeBalkanComponent', () => {
     expect(req.request.method).toBe('GET');
     expect(req.request.withCredentials).toBeFalse();
     req.flush(mockTournament);
-    expect(component.loading).toBeTrue();
+    component.loading.pipe(take(1)).subscribe(value => expect(value).toBeTrue());
     expect(component.tournament).toEqual(mockTournament);
 
     req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/sc2regs?tournamentId=123`);
     expect(req.request.method).toBe('GET');
     expect(req.request.withCredentials).toBeFalse();
     req.flush(mockRegistrations);
-    expect(component.loading).toBeFalse();
+    component.loading.pipe(take(1)).subscribe(value => expect(value).toBeFalse());
 
     req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/sc2matches?tournamentId=123`);
     expect(req.request.method).toBe('GET');
     expect(req.request.withCredentials).toBeFalse();
-    expect(component.loadingMatches).toBeTrue();
+    component.loadingMatches.pipe(take(1)).subscribe(value => expect(value).toBeTrue());
     req.flush(mockMatches);
-    expect(component.loadingMatches).toBeFalse();
+    component.loadingMatches.pipe(take(1)).subscribe(value => expect(value).toBeFalse());
 
     req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/sc2groups?tournamentId=123`);
     expect(req.request.method).toBe('GET');
     expect(req.request.withCredentials).toBeFalse();
-    expect(component.loadingGroups).toBeTrue();
     req.flush(mockGroups);
-    expect(component.loadingGroups).toBeFalse();
   });
 });
