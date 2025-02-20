@@ -29,9 +29,8 @@ import { Observable } from 'rxjs';
 export class BgeBalkanComponent extends BaseDirective {
   public registrations: Observable<TournamentParticipant []>;
   public groups: Observable<TournamentGroup []>;
-  public loading = true;
-  public loadingMatches = true;
-  public loadingGroups = true;
+  public loading: Observable<boolean>;
+  public loadingMatches: Observable<boolean>;
   public tournamentId: string;
   public sc2matches: Observable<TournamentSC2Match []>;
   public tournament: Tournament;
@@ -44,9 +43,8 @@ export class BgeBalkanComponent extends BaseDirective {
               meta: Meta,
               route: ActivatedRoute) {
     super(title, meta, route);
-    this.apiService.loadingSC2Registrations.subscribe(data => this.loading = data);
-    this.apiService.loadingSC2Matches.subscribe(data => this.loadingMatches = data);
-    this.apiService.loadingSC2Groups.subscribe(data => this.loadingGroups = data);
+    this.loading = this.apiService.loadingSC2Registrations;
+    this.loadingMatches = this.apiService.loadingSC2Matches;
     this.apiService.activeTournament.subscribe(t => {
       if (t) {
         this.tournament = t;

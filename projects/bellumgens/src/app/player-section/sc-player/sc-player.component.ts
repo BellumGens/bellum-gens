@@ -22,7 +22,7 @@ import { AsyncPipe, DatePipe } from '@angular/common';
 export class ScPlayerComponent {
   public loading: Observable<boolean>;
   public player: ApplicationUser;
-  public tournaments: Tournament [];
+  public tournaments: Observable<Tournament []>;
 
   constructor(private activatedRoute: ActivatedRoute, private titleService: Title, private apiService: BellumgensApiService) {
     this.activatedRoute.parent.params.subscribe(params => {
@@ -35,7 +35,7 @@ export class ScPlayerComponent {
               if (player && !player.steamUserException) {
                 this.titleService.setTitle('StarCraft II Player: ' + player.sc2Details?.battleNetBattleTag);
               }
-              this.apiService.getPlayerTournaments(player.id).subscribe(data => this.tournaments = data);
+              this.tournaments = this.apiService.getPlayerTournaments(player.id);
             }
           }
         );

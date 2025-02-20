@@ -18,7 +18,7 @@
       </div>
       <div class="participants-container">
         <h3 i18n style="width: 100%">Participants</h3>
-        @if (loading) {
+        @if (loading | async) {
           <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
         }
         @for (registration of registrations | async; track registration) {
@@ -40,7 +40,7 @@
         [groupingExpressions]="grouping"
         i18n-emptyGridMessage
         emptyGridMessage="No matches found..."
-        [isLoading]="loadingMatches">
+        [isLoading]="loadingMatches | async">
 
         <igx-grid-toolbar>
           <igx-grid-toolbar-title><h3 i18n>Weekly Match Results</h3></igx-grid-toolbar-title>
