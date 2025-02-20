@@ -1,6 +1,7 @@
 import { CSGOTeam } from './csgoteam';
 import { ApplicationUser } from './applicationuser';
 import { TournamentCSGOMatch } from './tournament-schedule';
+import { TournamentSC2Match } from 'dist/common';
 
 export enum Game {
   CSGO,
@@ -21,6 +22,7 @@ export interface Tournament {
   endDate?: Date;
   active?: boolean;
   csgoMatches?: TournamentCSGOMatch [];
+  sc2Matches?: TournamentSC2Match [];
 }
 
 export interface TournamentApplication {

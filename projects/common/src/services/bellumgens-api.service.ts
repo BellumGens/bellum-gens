@@ -266,6 +266,10 @@ export class BellumgensApiService {
     return this._currentPlayer;
   }
 
+  public getPlayerTournaments(userid: string) {
+    return this.http.get<Tournament []>(`${this._apiEndpoint}/users/tournaments?userid=${userid}`);
+  }
+
   public getPlayerGroups(userId: string) {
     return this.http.get<SteamGroup []>(`${this._apiEndpoint}/users/usergroups?userid=${userId}`);
   }
