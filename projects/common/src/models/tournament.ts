@@ -1,7 +1,6 @@
 import { CSGOTeam } from './csgoteam';
 import { ApplicationUser } from './applicationuser';
-import { TournamentCSGOMatch } from './tournament-schedule';
-import { TournamentSC2Match } from 'dist/common';
+import { TournamentCSGOMatch, TournamentSC2Match } from './tournament-schedule';
 
 export enum Game {
   CSGO,
