@@ -2186,17 +2186,17 @@
           <context context-type="linenumber">17,23</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3182874071726854772" datatype="html">
-        <source>Manage your CS:GO Team</source>
-        <target>Управлявай твоят CS:GO отбор</target>
+      <trans-unit id="174105668315595106" datatype="html">
+        <source>Manage your Counter-Strike Team</source>
+        <target>Управлявай твоят Counter-Strike отбор</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
           <context context-type="linenumber">25,26</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4830343968716314083" datatype="html">
-        <source>Recruit your team and manage your team member roles, team strategies, practice times and more. The only online CS:GO strategy editor freely available to everyone! Discuss public strategies with everyone and build private strategies for your team.</source>
-        <target>Подбери своите съотборници и управлявай ролите и стратегиите в твоят CS:GO отбор. Единствения безплатен едитор за CS:GO стратегии достъпен за всеки. Дискутирайте публични стратегии с всички или правете стратегии достъпни само за вашият отбор.</target>
+      <trans-unit id="5055818914605210411" datatype="html">
+        <source>Recruit your team and manage your team member roles, team strategies, practice times and more. The only online Counter-Strike strategy editor freely available to everyone! Discuss public strategies with everyone and build private strategies for your team.</source>
+        <target>Подбери своите съотборници и управлявай ролите и стратегиите в твоят Counter-Strike отбор. Единствения безплатен едитор за Counter-Strike стратегии достъпен за всеки. Дискутирайте публични стратегии с всички или правете стратегии достъпни само за вашият отбор.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
           <context context-type="linenumber">26,27</context>
@@ -2274,9 +2274,9 @@
           <context context-type="linenumber">76,77</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="714594635609833128" datatype="html">
-        <source>Bellum Gens offers a CS:GO team finding and team management application, which allows players to look for teams matching their skill and availability, and team owners to manage their teams&apos; roster and general organization. Because CS:GO is a team game!</source>
-        <target>Белум Генс предлага приложение за намиране на CS:GO отбори и управление на отбори, което позволява на играчите да търсят отбори, които отговарят на техните умения и време за игра, и на собствениците на отбори да управляват състава и общата организация на отборите си. Защото CS:GO е отборна игра!</target>
+      <trans-unit id="6820076149230307760" datatype="html">
+        <source>Bellum Gens offers a Counter-Strike team finding and team management application, which allows players to look for teams matching their skill and availability, and team owners to manage their teams&apos; roster and general organization. Because Counter-Strike is a team game!</source>
+        <target>Белум Генс предлага приложение за намиране на Counter-Strike отбори и управление на отбори, което позволява на играчите да търсят отбори, които отговарят на техните умения и време за игра, и на собствениците на отбори да управляват състава и общата организация на отборите си. Защото Counter-Strike е отборна игра!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
           <context context-type="linenumber">77,78</context>
@@ -2530,9 +2530,9 @@
           <context context-type="linenumber">15,18</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5821155013101067419" datatype="html">
-        <source>Steam CS:GO player profile not found...</source>
-        <target>Steam CS:GO профилът не е намерен...</target>
+      <trans-unit id="387452309157752775" datatype="html">
+        <source>Steam Counter-Strike player profile not found...</source>
+        <target>Steam Counter-Strike профилът не е намерен...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/player-section/player.component.html</context>
           <context context-type="linenumber">5,8</context>
@@ -3346,9 +3346,9 @@
           <context context-type="linenumber">123,126</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7406116628965875270" datatype="html">
-        <source>Create New CS:GO Team</source>
-        <target>Създай нов CS:GO отбор</target>
+      <trans-unit id="6169559049543839177" datatype="html">
+        <source>Create New Counter-Strike Team</source>
+        <target>Създай нов Counter-Strike отбор</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-nav/team-nav.component.html</context>
           <context context-type="linenumber">3,9</context>
@@ -3723,8 +3723,8 @@
         </context-group>
       </trans-unit>
       <trans-unit id="7568207204804171315" datatype="html">
-        <source>Registration for <x id="INTERPOLATION" equiv-text="{{ registration.game ? &apos;StarCraft II&apos; : &apos;CS:GO&apos; }}"/></source>
-        <target>Регистрация за <x id="INTERPOLATION" equiv-text="{{ registration.game ? &apos;StarCraft II&apos; : &apos;CS:GO&apos; }}"/></target>
+        <source>Registration for <x id="INTERPOLATION" equiv-text="{{ registration.game ? &apos;StarCraft II&apos; : &apos;Counter-Strike&apos; }}"/></source>
+        <target>Регистрация за <x id="INTERPOLATION" equiv-text="{{ registration.game ? &apos;StarCraft II&apos; : &apos;Counter-Strike&apos; }}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
           <context context-type="linenumber">29,30</context>

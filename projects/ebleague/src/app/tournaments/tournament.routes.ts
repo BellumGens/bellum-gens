@@ -11,10 +11,10 @@ export const routes: Routes = [
     { path: '', component: TournamentsMainComponent },
     { path: 'csgo', redirectTo: 'csgo/', pathMatch: 'full' },
     { path: 'csgo/:tournamentid', component: TournamentCsgoComponent, data: {
-        title: 'Esports Business League - CS:GO',
-        twitterTitle: 'Esports бизнес лига - CS:GO',
-        description: 'Esports Бизнес Лигата е аматьорско състезание за работещи геймъри по CS:GO и StarCraft II',
-        twitterDescription: 'Esports Бизнес Лигата е аматьорско състезание за работещи геймъри по CS:GO и StarCraft II',
+        title: 'Esports Business League - Counter-Strike',
+        twitterTitle: 'Esports бизнес лига - Counter-Strike',
+        description: 'Esports Бизнес Лигата е аматьорско състезание за работещи геймъри по Counter-Strike и StarCraft II',
+        twitterDescription: 'Esports Бизнес Лигата е аматьорско състезание за работещи геймъри по Counter-Strike и StarCraft II',
         image: '/assets/eb-league-logo-sm.png'
       }
     },
@@ -22,8 +22,8 @@ export const routes: Routes = [
     { path: 'sc2/:tournamentid', component: TournamentSc2Component, data: {
         title: 'Esports Business League - StarCraft II',
         twitterTitle: 'Esports бизнес лига - StarCraft II',
-        description: 'Esports Бизнес Лигата е аматьорско състезание за работещи геймъри по CS:GO и StarCraft II',
-        twitterDescription: 'Esports Бизнес Лигата е аматьорско състезание за работещи геймъри по CS:GO и StarCraft II',
+        description: 'Esports Бизнес Лигата е аматьорско състезание за работещи геймъри по Counter-Strike и StarCraft II',
+        twitterDescription: 'Esports Бизнес Лигата е аматьорско състезание за работещи геймъри по Counter-Strike и StarCraft II',
         image: '/assets/eb-league-logo-sm.png'
       }
     }

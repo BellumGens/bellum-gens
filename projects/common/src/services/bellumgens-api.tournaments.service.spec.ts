@@ -101,7 +101,7 @@ describe('ApiTournamentsService', () => {
     req.flush([]);
   });
 
-  it('should submit a CS:GO match', () => {
+  it('should submit a Counter-Strike match', () => {
     const mockMatch: TournamentCSGOMatch = { tournamentId: '1', team1Id: 'Team A', team2Id: 'Team B' };
 
     service.submitCSGOMatch(mockMatch).subscribe(match => {
@@ -115,7 +115,7 @@ describe('ApiTournamentsService', () => {
     req.flush({ id: '1', ...mockMatch });
   });
 
-  it('should delete a CS:GO match', () => {
+  it('should delete a Counter-Strike match', () => {
     const mockMatchId = '1';
 
     service.deleteCSGOMatch({ id: mockMatchId } as TournamentCSGOMatch).subscribe(() => {
@@ -157,7 +157,7 @@ describe('ApiTournamentsService', () => {
     expect(service.registrationsCount.value).toEqual(mockRegistrationsCount);
   });
 
-  it('should get CS:GO registrations', () => {
+  it('should get Counter-Strike registrations', () => {
     const mockCsgoRegistrations: TournamentParticipant[] = [
       {
         id: '1',
@@ -215,7 +215,7 @@ describe('ApiTournamentsService', () => {
     expect(service['_sc2Registrations'].get('1').value).toEqual(mockSc2Registrations);
   });
 
-  it('should get CS:GO matches', () => {
+  it('should get Counter-Strike matches', () => {
     const mockCsgoMatches: TournamentCSGOMatch [] = [
       { id: '1', team1Id: 'Team A', team2Id: 'Team B' },
       { id: '2', team1Id: 'Team C', team2Id: 'Team D' }
@@ -244,7 +244,7 @@ describe('ApiTournamentsService', () => {
     expect(service['_sc2Matches'].get('1').value).toEqual(mockSc2Matches);
   });
 
-  it('should get CS:GO groups', () => {
+  it('should get Counter-Strike groups', () => {
     const mockCsgoGroups = [
       { id: '1', name: 'Group A' },
       { id: '2', name: 'Group B' }
@@ -274,7 +274,7 @@ describe('ApiTournamentsService', () => {
     expect(service['_sc2Groups'].get('1').value).toEqual(mockSc2Groups);
   });
 
-  it('should submit a CS:GO group', () => {
+  it('should submit a Counter-Strike group', () => {
     const mockGroup: TournamentCSGOGroup = { tournamentId: '1', name: 'Group A' };
 
     service.submitCSGOGroup(mockGroup).subscribe(group => {
@@ -288,7 +288,7 @@ describe('ApiTournamentsService', () => {
     req.flush({ id: '1', ...mockGroup });
   });
 
-  it('should delete a CS:GO group', () => {
+  it('should delete a Counter-Strike group', () => {
     const mockGroupId = '1';
 
     service.deleteGroup(mockGroupId).subscribe(() => {
@@ -301,7 +301,7 @@ describe('ApiTournamentsService', () => {
     req.flush({});
   });
 
-  it('should add a participant to a CS:GO group', () => {
+  it('should add a participant to a Counter-Strike group', () => {
     const mockParticipant: TournamentParticipant = {
       id: '1',
       userId: '123',
@@ -332,7 +332,7 @@ describe('ApiTournamentsService', () => {
     req.flush({ id: '1', participants: [mockParticipant] });
   });
 
-  it('should remove a participant from a CS:GO group', () => {
+  it('should remove a participant from a Counter-Strike group', () => {
     const mockParticipantId = '1';
     const mockGroupId = '1';
 
@@ -425,7 +425,7 @@ describe('ApiTournamentsService', () => {
     req.flush({});
   });
 
-  // it('should submit a CS:GO match map', () => {
+  // it('should submit a Counter-Strike match map', () => {
   //   const mockMatchMap: TournamentCSGOMatchMap = { id: '1', map: 'Map A' };
 
   //   service.submitCSGOMatchMap(mockMatchMap).subscribe(matchMap => {
@@ -439,7 +439,7 @@ describe('ApiTournamentsService', () => {
   //   req.flush(mockMatchMap);
   // });
 
-  it('should delete a CS:GO match map', () => {
+  it('should delete a Counter-Strike match map', () => {
     const mockMatchMapId = '1';
 
     service.deleteCSGOMatchMap(mockMatchMapId).subscribe();

@@ -88,7 +88,7 @@ export class CsPlayerComponent extends BaseDirective {
               if (player) {
                 this.player = player;
                 if (player && !player.steamUserException) {
-                  this.titleService.setTitle('CS:GO Player: ' + player.steamUser.steamID);
+                  this.titleService.setTitle('Counter-Strike Player: ' + player.steamUser.steamID);
                   if (player.registered) {
                     this.userTeams = this.apiService.getUserTeams(player.id);
                     this.apiService.getAvailability(player.id).subscribe(data => this.availability = data);

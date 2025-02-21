@@ -26,7 +26,7 @@
       </igx-column>
       <igx-column field="game" [hidden]="true" [groupable]="true" i18n-header header="Game">
         <span *igxCell="let value">
-          {{ value ? 'StarCraft II' : 'CS:GO' }}
+          {{ value ? 'StarCraft II' : 'Counter-Strike' }}
         </span>
       </igx-column>
       <igx-column field="tournamentName" [groupable]="true" [hidden]="true" i18n-header header="League">
@@ -41,7 +41,7 @@
         <igx-icon class="igx-group-label__icon">group_work</igx-icon>
         <span class="igx-group-label__column-name">{{groupRow.column?.header}}:</span>
         @if (groupRow.column?.field === 'game') {
-          <span class="igx-group-label__text">{{ groupRow.value ? 'StarCraft II' : 'CS:GO' }}</span>
+          <span class="igx-group-label__text">{{ groupRow.value ? 'StarCraft II' : 'Counter-Strike' }}</span>
         } @else {
           <span class="igx-group-label__text">{{ groupRow.value }}</span>
         }

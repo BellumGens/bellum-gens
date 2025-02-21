@@ -47,7 +47,7 @@ export const CREW_MEMBERS = [
   {
     name: 'Nikola "niku" Gyaurov',
     birthplace: 'Pazardzik, Bulgaria',
-    position: 'CS:GO caster and host',
+    position: 'Counter-Strike caster and host',
     image: '/assets/crew/niku.webp',
     social: [
       {
@@ -70,7 +70,7 @@ export const CREW_MEMBERS = [
   // {
   //   name: 'Georgy "lop" Tsanev',
   //   birthplace: 'Plovdiv, Bulgaria',
-  //   position: 'CS:GO caster',
+  //   position: 'Counter-Strike caster',
   //   image: '/assets/crew/lop.webp',
   //   twitter: 'https://twitter.com/Mighty_Lop',
   //   facebook: '',
@@ -79,7 +79,7 @@ export const CREW_MEMBERS = [
   {
     name: 'Teodor "Tedd" Borisov',
     birthplace: 'Sofia, Bulgaria',
-    position: 'CS:GO caster',
+    position: 'Counter-Strike caster',
     image: '/assets/crew/tedcs.webp',
     social: [
       {
@@ -102,7 +102,7 @@ export const CREW_MEMBERS = [
   {
     name: 'Atanas "FURY" Popov',
     birthplace: 'Bansko, Bulgaria',
-    position: 'CS:GO server admin',
+    position: 'Counter-Strike server admin',
     image: '/assets/crew/fury.webp',
     social: [
       {
@@ -177,22 +177,22 @@ export const CREW_MEMBERS_BG = [
   {
     name: 'Никола "niku" Гяуров',
     birthplace: 'Пазарджик',
-    position: 'CS:GO кастър и Desk Host на финалите'
+    position: 'Counter-Strike кастър и Desk Host на финалите'
   },
   {
     name: 'Георги "lop" Цанев',
     birthplace: 'Пловдив',
-    position: 'CS:GO кастър'
+    position: 'Counter-Strike кастър'
   },
   {
     name: 'Теодор "Tedd" Борисов',
     birthplace: 'София',
-    position: 'CS:GO кастър'
+    position: 'Counter-Strike кастър'
   },
   {
     name: 'Атанас "fury" Попов',
     birthplace: 'Банско',
-    position: 'CS:GO server admin'
+    position: 'Counter-Strike server admin'
   },
   {
     name: 'Петрослав "myth" Белчев',

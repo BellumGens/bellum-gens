@@ -29,7 +29,7 @@ describe('SocialMediaStrategyService', () => {
       map: CSGOMap.Dust2,
       visible: true
     };
-    const expectedText = `Check out "${strat.title}" CS:GO strategy by ${strat.owner} on Bellum Gens https://bellumgens.com/strategies/details/${strat.customUrl}`;
+    const expectedText = `Check out "${strat.title}" Counter-Strike strategy by ${strat.owner} on Bellum Gens https://bellumgens.com/strategies/details/${strat.customUrl}`;
     const generatedText = service['stratTextForTwitter'](strat);
     expect(generatedText).toEqual(expectedText);
     // Add more expectations for the generated strategy text
