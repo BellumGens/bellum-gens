@@ -50,7 +50,7 @@ export class TeamComponent extends BaseDirective {
             this.team = team;
             this.authManager.getUserIsTeamMember(team.teamId).subscribe(data => this.isMember = data);
             this.authManager.getUserIsTeamAdmin(team.teamId).subscribe(data => this.isAdmin = data);
-            this.titleService.setTitle('CS:GO Team: ' + team.teamName);
+            this.titleService.setTitle('Counter-Strike Team: ' + team.teamName);
             this.loadSvgs();
           }
         });

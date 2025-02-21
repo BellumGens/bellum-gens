@@ -171,8 +171,8 @@
         </context-group>
       </trans-unit>
       <trans-unit id="7568207204804171315" datatype="html">
-        <source>Registration for <x id="INTERPOLATION" equiv-text="{{ registration.game ? &apos;StarCraft II&apos; : &apos;CS:GO&apos; }}"/></source>
-        <target>Регистрация за <x id="INTERPOLATION" equiv-text="{{ registration.game ? &apos;StarCraft II&apos; : &apos;CS:GO&apos; }}"/></target>
+        <source>Registration for <x id="INTERPOLATION" equiv-text="{{ registration.game ? &apos;StarCraft II&apos; : &apos;Counter-Strike&apos; }}"/></source>
+        <target>Регистрация за <x id="INTERPOLATION" equiv-text="{{ registration.game ? &apos;StarCraft II&apos; : &apos;Counter-Strike&apos; }}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
           <context context-type="linenumber">32,33</context>
@@ -402,9 +402,9 @@
           <context context-type="linenumber">37,39</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2470494039670246215" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{ selectedTournament ? selectedTournament.name : &apos;No&apos; }}"/> CS:GO matches</source>
-        <target><x id="INTERPOLATION" equiv-text="{{ selectedTournament ? selectedTournament.name : &apos;Няма&apos; }}"/> CS:GO мачове</target>
+      <trans-unit id="2522355448840678247" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{ selectedTournament ? selectedTournament.name : &apos;No&apos; }}"/> Counter-Strike matches</source>
+        <target><x id="INTERPOLATION" equiv-text="{{ selectedTournament ? selectedTournament.name : &apos;Няма&apos; }}"/> Counter-Strike мачове</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-csgo/admin-csgo.component.html</context>
           <context context-type="linenumber">23</context>
@@ -1330,8 +1330,8 @@
         </context-group>
       </trans-unit>
       <trans-unit id="6501991374313787221" datatype="html">
-        <source>Register for CS:GO League</source>
-        <target>Регистрирайте се за лигата по CS:GO</target>
+        <source>Register for Counter-Strike League</source>
+        <target>Регистрирайте се за лигата по Counter-Strike</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
           <context context-type="linenumber">8,10</context>
@@ -1425,9 +1425,9 @@
           <context context-type="linenumber">120,121</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8774469129520523891" datatype="html">
-        <source>Registrations are open until the deadline is reached, or until all open slots have been filled (16 CS:GO teams, 32 StarCraft II players). Successful registration completion requires registration fee payment - 300 BGN per team or 60 BGN per individual competitor. Registration fee payment is done with a bank transfer after the registration form has been submitted. <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>All registration fees are being added to the prize pool fund. At the end of the season the prize pool will be donated to a charitable cause chosen by the winners!<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
-        <target>Записването ще бъде отворено до изтичане на крайния срок, или след запълване на всички отворени места (16 CS:GO отбора, 32 StarCraft II състезателя). Успешното завъзшване на регистрацията изисква и заплащането на входна такса - 300лв. на отбор или 60лв. на индивидуален състезател. Заплащането на таксата става по банков път след регистрацията. <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Всички средства събрани от таксите за регистрация се прибавят към наградният фонд на събитието. В края на сезона наградният фонд ще бъде дарен на благотворителни каузи избрани от участниците победители!<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
+      <trans-unit id="2922874844697335241" datatype="html">
+        <source>Registrations are open until the deadline is reached, or until all open slots have been filled (16 Counter-Strike teams, 32 StarCraft II players). Successful registration completion requires registration fee payment - 300 BGN per team or 60 BGN per individual competitor. Registration fee payment is done with a bank transfer after the registration form has been submitted. <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>All registration fees are being added to the prize pool fund. At the end of the season the prize pool will be donated to a charitable cause chosen by the winners!<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <target>Записването ще бъде отворено до изтичане на крайния срок, или след запълване на всички отворени места (16 Counter-Strike отбора, 32 StarCraft II състезателя). Успешното завъзшване на регистрацията изисква и заплащането на входна такса - 300лв. на отбор или 60лв. на индивидуален състезател. Заплащането на таксата става по банков път след регистрацията. <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Всички средства събрани от таксите за регистрация се прибавят към наградният фонд на събитието. В края на сезона наградният фонд ще бъде дарен на благотворителни каузи избрани от участниците победители!<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
           <context context-type="linenumber">121,123</context>
@@ -1464,9 +1464,9 @@
           <context context-type="linenumber">172,177</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6574260541357316443" datatype="html">
-        <source>CS:GO League</source>
-        <target>CS:GO Лига</target>
+      <trans-unit id="602616889153572890" datatype="html">
+        <source>Counter-Strike League</source>
+        <target>Counter-Strike Лига</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
           <context context-type="linenumber">183,186</context>
@@ -1612,16 +1612,16 @@
           <context context-type="linenumber">212,215</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8876757156578405153" datatype="html">
-        <source>The winning team in the CS:GO league will appropriate 75% of the prize pool towards their choice of a charitable cause.</source>
-        <target>Отборът победител в CS:GO лигата ще получи 75% от наградният фонд за благотворителна кауза по тяхно избиране.</target>
+      <trans-unit id="594609801242261195" datatype="html">
+        <source>The winning team in the Counter-Strike league will appropriate 75% of the prize pool towards their choice of a charitable cause.</source>
+        <target>Отборът победител в Counter-Strike лигата ще получи 75% от наградният фонд за благотворителна кауза по тяхно избиране.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
           <context context-type="linenumber">217,218</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="587935742146360143" datatype="html">
-        <source>The runner-up team in the CS:GO league will appropriate 25% of the prize pool towards their choice of a charitable cause.</source>
+      <trans-unit id="6854501934643018835" datatype="html">
+        <source>The runner-up team in the Counter-Strike league will appropriate 25% of the prize pool towards their choice of a charitable cause.</source>
         <target>Отборът, класирал се втори, ще насочи 25% от наградният фонд към своята благотворителна кауза.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
@@ -1652,9 +1652,9 @@
           <context context-type="linenumber">229,230</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4282177560298772588" datatype="html">
-        <source>Esports Business League Season 2 concluded on November 8th with grand finals in both StarCraft II and CS:GO! In the StarCraft II final SuGaRBuNNy [Nuvei] and IlPrincipino [UltraPlay] battled it out in a very compatitive BO5 where all 5 maps were played and the winner was <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://bellumgens.com/players/76561198061226037&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>SuGaRBuNNy [Nuvei]<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>. This makes him a reigning, defending champion in the StarCraft II category. The CS:GO final was between Plan-B [Modis] and 3nIGm4 [Infragistics]. The team from Modis <x id="START_LINK_1" equiv-text="&lt;a href=&quot;https://bellumgens.com/team/Plan-B/details&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>Plan-B<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> managed to win both maps. They got a relatively easy win on their map pick and the boys from Plan-B managed to take Infragistics 3nIGm4&apos;s map pick in overtime.</source>
-        <target>Вторият сезон на Esports Business League приключи на 8ми ноември с два зрелищни финала по StarCraft II и CS:GO! В категорията StarCraft II, на финалът премериха сили SuGaRBuNNy [Nuvei] и IlPrincipino [UltraPlay], като в успорваният BO5 се играха всички 5 карти и накрая победител излезе <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://bellumgens.com/players/76561198061226037&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>SuGaRBuNNy [Nuvei]<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>, като това го прави шампион и на двата сезона провели се до момента. В категорията по CS:GO, на финалът премериха сили отборите на Plan-B [Modis] и 3nIGm4 [Infragistics]. Отборът на Modis <x id="START_LINK_1" equiv-text="&lt;a href=&quot;https://bellumgens.com/team/Plan-B/details&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>Plan-B<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> успя да спечели срещата в две карти, като победи сравнително лесно на картата, която бяха избрали, а след това момчетата от Plan-B успяха да спечелят в добавено време и картата избрана от техните опоненти от Infragistics 3nIGm4.</target>
+      <trans-unit id="5310455169638148184" datatype="html">
+        <source>Esports Business League Season 2 concluded on November 8th with grand finals in both StarCraft II and Counter-Strike! In the StarCraft II final SuGaRBuNNy [Nuvei] and IlPrincipino [UltraPlay] battled it out in a very compatitive BO5 where all 5 maps were played and the winner was <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://bellumgens.com/players/76561198061226037&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>SuGaRBuNNy [Nuvei]<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>. This makes him a reigning, defending champion in the StarCraft II category. The Counter-Strike final was between Plan-B [Modis] and 3nIGm4 [Infragistics]. The team from Modis <x id="START_LINK_1" equiv-text="&lt;a href=&quot;https://bellumgens.com/team/Plan-B/details&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>Plan-B<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> managed to win both maps. They got a relatively easy win on their map pick and the boys from Plan-B managed to take Infragistics 3nIGm4&apos;s map pick in overtime.</source>
+        <target>Вторият сезон на Esports Business League приключи на 8ми ноември с два зрелищни финала по StarCraft II и Counter-Strike! В категорията StarCraft II, на финалът премериха сили SuGaRBuNNy [Nuvei] и IlPrincipino [UltraPlay], като в успорваният BO5 се играха всички 5 карти и накрая победител излезе <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://bellumgens.com/players/76561198061226037&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>SuGaRBuNNy [Nuvei]<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>, като това го прави шампион и на двата сезона провели се до момента. В категорията по Counter-Strike, на финалът премериха сили отборите на Plan-B [Modis] и 3nIGm4 [Infragistics]. Отборът на Modis <x id="START_LINK_1" equiv-text="&lt;a href=&quot;https://bellumgens.com/team/Plan-B/details&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>Plan-B<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> успя да спечели срещата в две карти, като победи сравнително лесно на картата, която бяха избрали, а след това момчетата от Plan-B успяха да спечелят в добавено време и картата избрана от техните опоненти от Infragistics 3nIGm4.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
           <context context-type="linenumber">230,231</context>
@@ -1728,9 +1728,9 @@
           <context context-type="linenumber">304,305</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="395202058898672175" datatype="html">
-        <source>Esports Business League Season 1 ended on April 12 with grand finals in StarCraft II and CS:GO! In the StarCraft II grand final t0ssboy [HP] faced SuGaRBuNNy [C3I] and after a very competitive BO5 <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://bellumgens.com/players/76561198061226037&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>SuGaRBuNNy [C3I]<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> emerged victorious. In the CS:GO grand final Bpro Veterans met DXC. After 3 heart-stopping maps <x id="START_LINK_1" equiv-text="&lt;a href=&quot;https://bellumgens.com/team/BPro-Veterans/details&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>Bpro Veterans<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> managed to take the victory.</source>
-        <target>Първият сезон на Esports Business League приключи на 12ти април с два грандиозни финала по StarCraft II и CS:GO! В категорията по StarCraft II, на финалът премериха сили t0ssboy [HP] и SuGaRBuNNy [C3I], като от успорваният BO5 победител излезе <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://bellumgens.com/players/76561198061226037&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>SuGaRBuNNy [C3I]<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>. В категорията по CS:GO, на финалът премериха сили Bpro Veterans и DXC. След 3 инфарктни карти, победители излязоха <x id="START_LINK_1" equiv-text="&lt;a href=&quot;https://bellumgens.com/team/BPro-Veterans/details&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>Bpro Veterans<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>.</target>
+      <trans-unit id="4868222366087913394" datatype="html">
+        <source>Esports Business League Season 1 ended on April 12 with grand finals in StarCraft II and Counter-Strike! In the StarCraft II grand final t0ssboy [HP] faced SuGaRBuNNy [C3I] and after a very competitive BO5 <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://bellumgens.com/players/76561198061226037&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>SuGaRBuNNy [C3I]<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> emerged victorious. In the Counter-Strike grand final Bpro Veterans met DXC. After 3 heart-stopping maps <x id="START_LINK_1" equiv-text="&lt;a href=&quot;https://bellumgens.com/team/BPro-Veterans/details&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>Bpro Veterans<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> managed to take the victory.</source>
+        <target>Първият сезон на Esports Business League приключи на 12ти април с два грандиозни финала по StarCraft II и Counter-Strike! В категорията по StarCraft II, на финалът премериха сили t0ssboy [HP] и SuGaRBuNNy [C3I], като от успорваният BO5 победител излезе <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://bellumgens.com/players/76561198061226037&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>SuGaRBuNNy [C3I]<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>. В категорията по Counter-Strike, на финалът премериха сили Bpro Veterans и DXC. След 3 инфарктни карти, победители излязоха <x id="START_LINK_1" equiv-text="&lt;a href=&quot;https://bellumgens.com/team/BPro-Veterans/details&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>Bpro Veterans<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
           <context context-type="linenumber">305,306</context>
@@ -1943,9 +1943,9 @@
           <context context-type="linenumber">2,3</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5097025144491990971" datatype="html">
-        <source>In order to confirm your registration, you need to pay the registration fee (60 BGN for the StarCraft II league, or 300 BGN for the CS:GO league).</source>
-        <target>За да потвърдите вашата регистрация, трябва да заплатите таксата за участие (60 лв. за StarCraft II лигата или 300 лв. за CS:GO лигата).</target>
+      <trans-unit id="2224931445000753909" datatype="html">
+        <source>In order to confirm your registration, you need to pay the registration fee (60 BGN for the StarCraft II league, or 300 BGN for the Counter-Strike league).</source>
+        <target>За да потвърдите вашата регистрация, трябва да заплатите таксата за участие (60 лв. за StarCraft II лигата или 300 лв. за Counter-Strike лигата).</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournament-registration/registration-success/registration-success.component.html</context>
           <context context-type="linenumber">3,4</context>
@@ -2007,9 +2007,9 @@
           <context context-type="linenumber">7,8</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4051932331022900333" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{ tournament?.name }}"/> CS:GO League</source>
-        <target><x id="INTERPOLATION" equiv-text="{{ tournament?.name }}"/> CS:GO Лига</target>
+      <trans-unit id="3954831491132011924" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{ tournament?.name }}"/> Counter-Strike League</source>
+        <target><x id="INTERPOLATION" equiv-text="{{ tournament?.name }}"/> Counter-Strike Лига</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
           <context context-type="linenumber">5,6</context>
@@ -2159,9 +2159,9 @@
           <context context-type="linenumber">157,160</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4455180189756977016" datatype="html">
-        <source>Teams from the <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;title&quot;&gt;"/>CS:GO<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> league will be separated into groups of 4-8 teams.</source>
-        <target>Отборите от лигата по <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;title&quot;&gt;"/>CS:GO<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> ще бъдат разделени в групи по 4-8 отбора.</target>
+      <trans-unit id="6425815544651719151" datatype="html">
+        <source>Teams from the <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;title&quot;&gt;"/>Counter-Strike<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> league will be separated into groups of 4-8 teams.</source>
+        <target>Отборите от лигата по <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;title&quot;&gt;"/>Counter-Strike<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> ще бъдат разделени в групи по 4-8 отбора.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournament-format/tournament-format.component.html</context>
           <context context-type="linenumber">4,5</context>
@@ -2175,9 +2175,9 @@
           <context context-type="linenumber">5,7</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8867498313896542386" datatype="html">
-        <source>To the CS:GO League</source>
-        <target>Към CS:GO Лигата</target>
+      <trans-unit id="8135290035080601431" datatype="html">
+        <source>To the Counter-Strike League</source>
+        <target>Към Counter-Strike Лигата</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournament-format/tournament-format.component.html</context>
           <context context-type="linenumber">8,11</context>
@@ -2215,9 +2215,9 @@
           <context context-type="linenumber">24,25</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5543827817548394038" datatype="html">
-        <source>CS:GO Rulebook</source>
-        <target>CS:GO Правилник</target>
+      <trans-unit id="8270283769556011642" datatype="html">
+        <source>Counter-Strike Rulebook</source>
+        <target>Counter-Strike Правилник</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournament-format/tournament-format.component.html</context>
           <context context-type="linenumber">25,29</context>
@@ -2367,9 +2367,9 @@
           <context context-type="linenumber">82,83</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8754210544131138749" datatype="html">
-        <source>Usage of assistive software of any kind, which can be classified as a cheat, is strictly forbidden. Each match in the league would be streamed live and would be moderated by an admin. In the case of a suspicion of cheating, the case will be investigated by the admins and if the admins conclude that theres evidence beyond a reasonable doubt for cheating, then the player (StarCraft II), or team (CS:GO), which the player participates in would be <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>disqualified<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>!!! Esports Business League is an amateur event, where players need to show their own abilities, and not the abilities of a software which assists and alters their gameplay. Our goal is to provide the best experience for all participants!</source>
-        <target>Използване на помощен софтуер от какъвто и да е тип, който може да се класифицира като cheat, е напълно забранено. Всяка среща от лигата ще бъде излъчвана пряко и ще бъде наблюдавана от admin. При съмнение за използване на такъв софтуер, случаят ще бъде разгледан от организаторите и при заключение, че играч в лигата е използвал такъв софтуер, тогава играчът (SC II), или отборът (CS:GO), който играча представлява ще бъде <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>дисквалифициран<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>!!! Esports Бизнес Лигата е аматьорска лига, в която играчите трябва да покажат собствените си възможности, а не възможностите на софтуер, който подпомага играта им. Нашата цел да е предоставим добро преживяване за всички участващи!</target>
+      <trans-unit id="8536277626575637906" datatype="html">
+        <source>Usage of assistive software of any kind, which can be classified as a cheat, is strictly forbidden. Each match in the league would be streamed live and would be moderated by an admin. In the case of a suspicion of cheating, the case will be investigated by the admins and if the admins conclude that theres evidence beyond a reasonable doubt for cheating, then the player (StarCraft II), or team (Counter-Strike), which the player participates in would be <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>disqualified<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>!!! Esports Business League is an amateur event, where players need to show their own abilities, and not the abilities of a software which assists and alters their gameplay. Our goal is to provide the best experience for all participants!</source>
+        <target>Използване на помощен софтуер от какъвто и да е тип, който може да се класифицира като cheat, е напълно забранено. Всяка среща от лигата ще бъде излъчвана пряко и ще бъде наблюдавана от admin. При съмнение за използване на такъв софтуер, случаят ще бъде разгледан от организаторите и при заключение, че играч в лигата е използвал такъв софтуер, тогава играчът (SC II), или отборът (Counter-Strike), който играча представлява ще бъде <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>дисквалифициран<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>!!! Esports Бизнес Лигата е аматьорска лига, в която играчите трябва да покажат собствените си възможности, а не възможностите на софтуер, който подпомага играта им. Нашата цел да е предоставим добро преживяване за всички участващи!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournament-format/tournament-format.component.html</context>
           <context context-type="linenumber">83,85</context>

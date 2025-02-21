@@ -157,7 +157,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="7568207204804171315" datatype="html">
-        <source>Registration for <x id="INTERPOLATION" equiv-text="{{ registration.game ? &apos;StarCraft II&apos; : &apos;CS:GO&apos; }}"/></source>
+        <source>Registration for <x id="INTERPOLATION" equiv-text="{{ registration.game ? &apos;StarCraft II&apos; : &apos;Counter-Strike&apos; }}"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
           <context context-type="linenumber">32,33</context>
@@ -371,8 +371,8 @@
           <context context-type="linenumber">75,76</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2470494039670246215" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{ selectedTournament ? selectedTournament.name : &apos;No&apos; }}"/> CS:GO matches</source>
+      <trans-unit id="2522355448840678247" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{ selectedTournament ? selectedTournament.name : &apos;No&apos; }}"/> Counter-Strike matches</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-csgo/admin-csgo.component.html</context>
           <context context-type="linenumber">23</context>
@@ -1335,8 +1335,8 @@
           <context context-type="linenumber">131,132</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8774469129520523891" datatype="html">
-        <source>Registrations are open until the deadline is reached, or until all open slots have been filled (16 CS:GO teams, 32 StarCraft II players). Successful registration completion requires registration fee payment - 300 BGN per team or 60 BGN per individual competitor. Registration fee payment is done with a bank transfer after the registration form has been submitted. <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>All registration fees are being added to the prize pool fund. At the end of the season the prize pool will be donated to a charitable cause chosen by the winners!<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+      <trans-unit id="2922874844697335241" datatype="html">
+        <source>Registrations are open until the deadline is reached, or until all open slots have been filled (16 Counter-Strike teams, 32 StarCraft II players). Successful registration completion requires registration fee payment - 300 BGN per team or 60 BGN per individual competitor. Registration fee payment is done with a bank transfer after the registration form has been submitted. <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>All registration fees are being added to the prize pool fund. At the end of the season the prize pool will be donated to a charitable cause chosen by the winners!<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
           <context context-type="linenumber">132,134</context>
@@ -1371,8 +1371,8 @@
           <context context-type="linenumber">183</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6574260541357316443" datatype="html">
-        <source>CS:GO League</source>
+      <trans-unit id="602616889153572890" datatype="html">
+        <source>Counter-Strike League</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
           <context context-type="linenumber">194,195</context>
@@ -1503,15 +1503,15 @@
           <context context-type="linenumber">223,224</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8876757156578405153" datatype="html">
-        <source>The winning team in the CS:GO league will appropriate 75% of the prize pool towards their choice of a charitable cause.</source>
+      <trans-unit id="594609801242261195" datatype="html">
+        <source>The winning team in the Counter-Strike league will appropriate 75% of the prize pool towards their choice of a charitable cause.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
           <context context-type="linenumber">228,229</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="587935742146360143" datatype="html">
-        <source>The runner-up team in the CS:GO league will appropriate 25% of the prize pool towards their choice of a charitable cause.</source>
+      <trans-unit id="6854501934643018835" datatype="html">
+        <source>The runner-up team in the Counter-Strike league will appropriate 25% of the prize pool towards their choice of a charitable cause.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
           <context context-type="linenumber">229,230</context>
@@ -1538,8 +1538,8 @@
           <context context-type="linenumber">240,241</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4282177560298772588" datatype="html">
-        <source>Esports Business League Season 2 concluded on November 8th with grand finals in both StarCraft II and CS:GO! In the StarCraft II final SuGaRBuNNy [Nuvei] and IlPrincipino [UltraPlay] battled it out in a very compatitive BO5 where all 5 maps were played and the winner was <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://bellumgens.com/players/76561198061226037&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>SuGaRBuNNy [Nuvei]<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>. This makes him a reigning, defending champion in the StarCraft II category. The CS:GO final was between Plan-B [Modis] and 3nIGm4 [Infragistics]. The team from Modis <x id="START_LINK_1" equiv-text="&lt;a href=&quot;https://bellumgens.com/team/Plan-B/details&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>Plan-B<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> managed to win both maps. They got a relatively easy win on their map pick and the boys from Plan-B managed to take Infragistics 3nIGm4&apos;s map pick in overtime.</source>
+      <trans-unit id="5310455169638148184" datatype="html">
+        <source>Esports Business League Season 2 concluded on November 8th with grand finals in both StarCraft II and Counter-Strike! In the StarCraft II final SuGaRBuNNy [Nuvei] and IlPrincipino [UltraPlay] battled it out in a very compatitive BO5 where all 5 maps were played and the winner was <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://bellumgens.com/players/76561198061226037&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>SuGaRBuNNy [Nuvei]<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>. This makes him a reigning, defending champion in the StarCraft II category. The Counter-Strike final was between Plan-B [Modis] and 3nIGm4 [Infragistics]. The team from Modis <x id="START_LINK_1" equiv-text="&lt;a href=&quot;https://bellumgens.com/team/Plan-B/details&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>Plan-B<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> managed to win both maps. They got a relatively easy win on their map pick and the boys from Plan-B managed to take Infragistics 3nIGm4&apos;s map pick in overtime.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
           <context context-type="linenumber">241,242</context>
@@ -1609,8 +1609,8 @@
           <context context-type="linenumber">315,316</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="395202058898672175" datatype="html">
-        <source>Esports Business League Season 1 ended on April 12 with grand finals in StarCraft II and CS:GO! In the StarCraft II grand final t0ssboy [HP] faced SuGaRBuNNy [C3I] and after a very competitive BO5 <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://bellumgens.com/players/76561198061226037&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>SuGaRBuNNy [C3I]<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> emerged victorious. In the CS:GO grand final Bpro Veterans met DXC. After 3 heart-stopping maps <x id="START_LINK_1" equiv-text="&lt;a href=&quot;https://bellumgens.com/team/BPro-Veterans/details&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>Bpro Veterans<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> managed to take the victory.</source>
+      <trans-unit id="4868222366087913394" datatype="html">
+        <source>Esports Business League Season 1 ended on April 12 with grand finals in StarCraft II and Counter-Strike! In the StarCraft II grand final t0ssboy [HP] faced SuGaRBuNNy [C3I] and after a very competitive BO5 <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://bellumgens.com/players/76561198061226037&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>SuGaRBuNNy [C3I]<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> emerged victorious. In the Counter-Strike grand final Bpro Veterans met DXC. After 3 heart-stopping maps <x id="START_LINK_1" equiv-text="&lt;a href=&quot;https://bellumgens.com/team/BPro-Veterans/details&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>Bpro Veterans<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> managed to take the victory.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
           <context context-type="linenumber">316,317</context>
@@ -1798,8 +1798,8 @@
           <context context-type="linenumber">2,3</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5097025144491990971" datatype="html">
-        <source>In order to confirm your registration, you need to pay the registration fee (60 BGN for the StarCraft II league, or 300 BGN for the CS:GO league).</source>
+      <trans-unit id="2224931445000753909" datatype="html">
+        <source>In order to confirm your registration, you need to pay the registration fee (60 BGN for the StarCraft II league, or 300 BGN for the Counter-Strike league).</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournament-registration/registration-success/registration-success.component.html</context>
           <context context-type="linenumber">3,4</context>
@@ -1854,8 +1854,8 @@
           <context context-type="linenumber">7,8</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4051932331022900333" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{ tournament?.name }}"/> CS:GO League</source>
+      <trans-unit id="3954831491132011924" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{ tournament?.name }}"/> Counter-Strike League</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournament-csgo/tournament-csgo.component.html</context>
           <context context-type="linenumber">5,6</context>
@@ -1973,8 +1973,8 @@
           <context context-type="linenumber">161</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4455180189756977016" datatype="html">
-        <source>Teams from the <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;title&quot;&gt;"/>CS:GO<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> league will be separated into groups of 4-8 teams.</source>
+      <trans-unit id="6425815544651719151" datatype="html">
+        <source>Teams from the <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;title&quot;&gt;"/>Counter-Strike<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> league will be separated into groups of 4-8 teams.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournament-format/tournament-format.component.html</context>
           <context context-type="linenumber">4,5</context>
@@ -1987,8 +1987,8 @@
           <context context-type="linenumber">5,6</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8867498313896542386" datatype="html">
-        <source>To the CS:GO League</source>
+      <trans-unit id="8135290035080601431" datatype="html">
+        <source>To the Counter-Strike League</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournament-format/tournament-format.component.html</context>
           <context context-type="linenumber">8,9</context>
@@ -2022,8 +2022,8 @@
           <context context-type="linenumber">24,25</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5543827817548394038" datatype="html">
-        <source>CS:GO Rulebook</source>
+      <trans-unit id="8270283769556011642" datatype="html">
+        <source>Counter-Strike Rulebook</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournament-format/tournament-format.component.html</context>
           <context context-type="linenumber">25,26</context>
@@ -2155,8 +2155,8 @@
           <context context-type="linenumber">82,83</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8754210544131138749" datatype="html">
-        <source>Usage of assistive software of any kind, which can be classified as a cheat, is strictly forbidden. Each match in the league would be streamed live and would be moderated by an admin. In the case of a suspicion of cheating, the case will be investigated by the admins and if the admins conclude that theres evidence beyond a reasonable doubt for cheating, then the player (StarCraft II), or team (CS:GO), which the player participates in would be <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>disqualified<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>!!! Esports Business League is an amateur event, where players need to show their own abilities, and not the abilities of a software which assists and alters their gameplay. Our goal is to provide the best experience for all participants!</source>
+      <trans-unit id="8536277626575637906" datatype="html">
+        <source>Usage of assistive software of any kind, which can be classified as a cheat, is strictly forbidden. Each match in the league would be streamed live and would be moderated by an admin. In the case of a suspicion of cheating, the case will be investigated by the admins and if the admins conclude that theres evidence beyond a reasonable doubt for cheating, then the player (StarCraft II), or team (Counter-Strike), which the player participates in would be <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>disqualified<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>!!! Esports Business League is an amateur event, where players need to show their own abilities, and not the abilities of a software which assists and alters their gameplay. Our goal is to provide the best experience for all participants!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournament-format/tournament-format.component.html</context>
           <context context-type="linenumber">83,85</context>

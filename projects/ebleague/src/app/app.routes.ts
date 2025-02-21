@@ -11,8 +11,8 @@ export const routes: Routes = [
   { path: 'news', component: NewsComponent, data: {
       title: 'Esports Business League - News',
       twitterTitle: 'Esports Business League - News',
-      description: 'Esports Business League is an amateur esports competition at the workplace in CS:GO and StarCraft II',
-      twitterDescription: 'Esports Business League is an amateur esports competition at the workplace in CS:GO and StarCraft II',
+      description: 'Esports Business League is an amateur esports competition at the workplace in Counter-Strike and StarCraft II',
+      twitterDescription: 'Esports Business League is an amateur esports competition at the workplace in Counter-Strike and StarCraft II',
       image: '/assets/crew/sugarbunny.jpg'
     }
   },

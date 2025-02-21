@@ -13,6 +13,6 @@ export class SocialMediaStrategyService extends SocialMediaService {
 
   private stratTextForTwitter(strat: CSGOStrategy) {
     // eslint-disable-next-line max-len
-    return `Check out "${strat.title}" CS:GO strategy by ${strat.owner} on Bellum Gens https://bellumgens.com/strategies/details/${strat.customUrl}`;
+    return `Check out "${strat.title}" Counter-Strike strategy by ${strat.owner} on Bellum Gens https://bellumgens.com/strategies/details/${strat.customUrl}`;
   }
 }

@@ -29,7 +29,7 @@
   <igx-list>
     @for (registration of registrations; track registration.id) {
       <igx-list-item>
-        <h2 igxListLineTitle i18n>Registration for {{ registration.game ? 'StarCraft II' : 'CS:GO' }}</h2>
+        <h2 igxListLineTitle i18n>Registration for {{ registration.game ? 'StarCraft II' : 'Counter-Strike' }}</h2>
         <h4 igxListLineSubTitle i18n>Confirmation code <span class="highlight">{{registration.hash}}</span></h4>
         <div class="horizontal-center" igxListAction>
           <span [ngClass]="{
