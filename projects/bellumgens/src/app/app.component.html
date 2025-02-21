@@ -23,11 +23,11 @@
         </span>
         <igx-divider></igx-divider>
       }
-      <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="bellumgenselite">
+      <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" [routerLinkActiveOptions]="{ exact: true}" routerLink="bellumgenselite">
         <igx-icon>emoji_events</igx-icon>
         <span i18n>Bellum Gens Elite</span>
       </span>
-      <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="bellumgenselite/bge-balkan-circuit">
+      <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" [routerLinkActiveOptions]="{ exact: true}" routerLink="bellumgenselite/bge-balkan-circuit">
         <igx-icon>sports_esports</igx-icon>
         <span i18n>BGE Balkan Circuit</span>
       </span>
@@ -62,10 +62,10 @@
           </span>
           <igx-divider></igx-divider>
         }
-        <span igxDrawerItem igxRipple  routerLinkActive="igx-nav-drawer__item--active" routerLink="bellumgenselite" i18n-title title="Bellum Gens Elite">
+        <span igxDrawerItem igxRipple  routerLinkActive="igx-nav-drawer__item--active" routerLink="bellumgenselite" [routerLinkActiveOptions]="{ exact: true}" i18n-title title="Bellum Gens Elite">
           <igx-icon>emoji_events</igx-icon>
         </span>
-        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="bellumgenselite/bge-balkan-circuit" i18n-title title="BGE Balkan Circuit">
+        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="bellumgenselite/bge-balkan-circuit" [routerLinkActiveOptions]="{ exact: true}" i18n-title title="BGE Balkan Circuit">
           <igx-icon>sports_esports</igx-icon>
         </span>
         <span igxDrawerItem igxRipple routerLink="partners" i18n-title title="Partners">
