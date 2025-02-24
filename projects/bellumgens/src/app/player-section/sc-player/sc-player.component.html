@@ -25,13 +25,13 @@
           <igx-grid-toolbar-title>{{tournament.name}}</igx-grid-toolbar-title>
         </igx-grid-toolbar>
 
-        <igx-column field="startTime" dataType="date" i18n-header header="Start time" [sortable]="true">
+        <igx-column field="startTime" dataType="date" width="170px" i18n-header header="Start time" [sortable]="true">
           <ng-template igxCell let-value>
             {{ value | date:'MMM d, y, h:mm a' }}
           </ng-template>
         </igx-column>
 
-        <igx-column i18n-header header="Match" width="60%">
+        <igx-column i18n-header header="Match" width="40%">
           <ng-template igxCell let-cell="cell">
             <igx-avatar igxListThumbnail
               [src]="cell.row.data.player1.avatarMedium"
@@ -50,6 +50,13 @@
               shape="circle">
             </igx-avatar>
             <span [class]="cell.row.data.winnerPlayerId === cell.row.data.player2.id ? 'highlight grid-team-name' : 'grid-team-name'">{{ cell.row.data.player2.username }}</span>
+          </ng-template>
+        </igx-column>
+
+        <igx-column field="winnerPlayerId" i18n-header header="Result">
+          <ng-template igxCell let-value>
+            <span [class]="!value ? 'color-warn' : value === player?.id ? 'color-success' : 'color-error'"
+            i18n>{{ !value ? 'Pending' : value === player?.id ? 'Win' : 'Loss' }}</span>
           </ng-template>
         </igx-column>
 
@@ -72,13 +79,6 @@
                 <span i18n>Replay</span>
               </a>
             }
-          </ng-template>
-        </igx-column>
-
-        <igx-column field="winnerPlayerId" i18n-header header="Result">
-          <ng-template igxCell let-value>
-            <span [class]="!value ? 'color-warn' : value === player?.id ? 'color-success' : 'color-error'"
-            i18n>{{ !value ? 'Pending' : value === player?.id ? 'Win' : 'Loss' }}</span>
           </ng-template>
         </igx-column>
 

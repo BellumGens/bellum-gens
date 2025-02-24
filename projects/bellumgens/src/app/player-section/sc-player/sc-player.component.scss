@@ -15,6 +15,12 @@
     grid-template-columns: minmax(260px, 1fr) minmax(260px, 4fr);
   }
 
+  .grid-team-name {
+    display: flex;
+    width: 120px;
+    align-items: center;
+  }
+
   @media screen and (max-width: 1280px) {
     .card-wrapper.profile-view-layout {
       grid-template-columns: 1fr;
