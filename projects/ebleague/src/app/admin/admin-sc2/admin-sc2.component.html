@@ -283,6 +283,7 @@
                           type="number"
                           name="groupPosition"
                           igxInput
+                          igxTextSelection
                           [(ngModel)]="participant.playerPoints"
                           (ngModelChange)="submitParticipantPoints(participant.id, group.id, $event)" />
                       </igx-input-group>
@@ -345,11 +346,16 @@
     <label igxLabel i18n>Start time</label>
   </igx-time-picker>
 
-  <igx-select [(ngModel)]="matchInEdit.groupId">
+  <igx-select #groupPicker [(ngModel)]="matchInEdit.groupId">
     <label igxLabel i18n>Group</label>
     @for (group of groups; track group.id) {
       <igx-select-item
       [value]="group.id">{{ group.name }}</igx-select-item>
+    }
+    @if (groupPicker.value?.length > 0) {
+      <igx-suffix (click)="matchInEdit.groupId = null">
+        <igx-icon>clear</igx-icon>
+      </igx-suffix>
     }
     <igx-hint i18n>*If the match is during the group stage</igx-hint>
   </igx-select>

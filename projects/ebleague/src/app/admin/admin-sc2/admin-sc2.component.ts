@@ -184,7 +184,7 @@ export class AdminSc2Component {
   }
 
   public addNewMatch() {
-    this.matchInEdit = { startTime: new Date(), tournamentId: this.selectedTournament.id, maps: [] };
+    this.matchInEdit = { startTime: new Date(), tournamentId: this.selectedTournament.id, maps: [], groupId: this.groups[this.groups.length - 1].id };
   }
 
   public editMatch(match: TournamentSC2Match, dialog: IgxDialogComponent) {
