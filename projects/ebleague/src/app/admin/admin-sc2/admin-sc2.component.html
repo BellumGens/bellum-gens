@@ -14,7 +14,7 @@
     [data]="registrations"
     primaryKey="id"
     [batchEditing]="true"
-    height="550px"
+    height="600px"
     [isLoading]="loadingRegs"
     (cellEdit)="confirmRegistration($event)"
     cellSelection="none">
@@ -33,7 +33,7 @@
       </igx-grid-toolbar-actions>
     </igx-grid-toolbar>
 
-    <igx-column field="email" i18n-header header="Email">
+    <igx-column field="email" i18n-header header="Email" hasSummary="true">
     </igx-column>
     <igx-column field="battleNetId" i18n-header header="Username">
     </igx-column>

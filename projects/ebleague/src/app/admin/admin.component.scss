@@ -12,6 +12,8 @@
 
   @include grid-toolbar(grid-toolbar-theme($background-color: $background));
 
+  @include grid-summary(grid-summary-theme($background-color: $background, $result-color: white));
+
   @include paginator(paginator-theme($background-color: $background));
 
   @include action-strip(action-strip-theme($actions-background: transparent));
