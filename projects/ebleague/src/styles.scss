@@ -117,7 +117,7 @@ $snackbar-theme: snackbar-theme($background: $banner-background, $border-radius:
 /* END Snackbar */
 
 /* Progress Circular */
-$circular-progress-bar-theme: progress-circular-theme($base-circle-color: rgba(0, 0, 0, 0.14), $progress-circle-color: $secondary);
+$circular-progress-bar-theme: progress-circular-theme($base-circle-color: rgba(0, 0, 0, 0.14), $fill-color-default: $secondary);
 @include css-vars($circular-progress-bar-theme);
 /* END Progress Circular */
 
