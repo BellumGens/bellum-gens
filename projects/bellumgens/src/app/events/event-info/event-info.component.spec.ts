@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { EventInfoComponent } from './event-info.component';
 import { ApiTournamentsService } from '../../../../../common/src/public_api';
-import { BehaviorSubject, Observable, of, take } from 'rxjs';
+import { Observable, of, take } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -88,7 +88,7 @@ describe('EventInfoComponent', () => {
   });
 
   it('should refresh matches', () => {
-    const spy = spyOn(apiService, 'getSc2Matches');
+    spyOn(apiService, 'getSc2Matches');
     component.refreshMatches();
     expect(apiService.getSc2Matches).toHaveBeenCalledWith('123');
   });
