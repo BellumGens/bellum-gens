@@ -170,30 +170,6 @@
           <context context-type="linenumber">15,18</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7568207204804171315" datatype="html">
-        <source>Registration for <x id="INTERPOLATION" equiv-text="{{ registration.game ? &apos;StarCraft II&apos; : &apos;Counter-Strike&apos; }}"/></source>
-        <target>Регистрация за <x id="INTERPOLATION" equiv-text="{{ registration.game ? &apos;StarCraft II&apos; : &apos;Counter-Strike&apos; }}"/></target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">32,33</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="3938906754688277625" datatype="html">
-        <source>Confirmation code <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{registration.hash}}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
-        <target>Код за потвърждение <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{registration.hash}}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">33,34</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="510526722664146848" datatype="html">
-        <source>Check in</source>
-        <target>Потвърди</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">37</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="639936982205063071" datatype="html">
         <source>Delete this application</source>
         <target>Изтрий тази регистрация</target>

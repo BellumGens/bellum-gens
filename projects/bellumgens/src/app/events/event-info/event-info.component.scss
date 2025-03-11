@@ -1,0 +1,84 @@
+@use "../../../variables" as *;
+
+:host ::ng-deep {
+  @include core();
+  @include grid(
+    grid-theme(
+      $content-background: $banner-background,
+      $header-background: $background
+    )
+  );
+
+  /* Filter UI has a chip */
+  @include chip(chip-theme());
+
+  @include grid-toolbar(grid-toolbar-theme($background-color: $background));
+
+  /* Registrations */
+  .registration-slot {
+    position: relative;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    padding: 4px 12px;
+    flex-basis: 150px;
+    min-height: 125px;
+  }
+
+  .registration-slot > a,
+  .registration-slot > span {
+    font-size: 0.80rem;
+    text-align: center;
+  }
+
+  .registration-badge-style {
+    position: absolute;
+    left: 95px;
+  }
+  /* END Registrations */
+
+  /* SCHEDULE */
+  .participants-container {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 12px;
+  }
+
+  .score-container {
+    margin: 0 16px;
+  }
+  /* END SCHEDULE */
+
+  .group-columns {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-row-gap: 16px;
+    padding: 48px 0;
+  }
+
+  .avatar-small {
+    --size: 30px;
+  }
+
+  .country-badge-small {
+    left: 90px;
+    width: 20px;
+    height: 20px;
+  }
+
+  .grid-team-name {
+    display: flex;
+    width: 120px;
+    align-items: center;
+  }
+
+  // @media only screen and (min-width: 1921px) {
+  //   .group-columns {
+  //     display: grid;
+  //     grid-template-columns: minmax(45%, 1fr) minmax(45%, 1fr);
+  //     grid-column-gap: 48px;
+  //     grid-row-gap: 16px;
+  //     padding: 48px 0;
+  //   }
+  // }
+}

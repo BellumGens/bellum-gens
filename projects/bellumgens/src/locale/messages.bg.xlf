@@ -230,14 +230,6 @@
           <context context-type="linenumber">171,172</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1953289080105363187" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{ tournament?.name }}"/> StarCraft II Circuit</source>
-        <target><x id="INTERPOLATION" equiv-text="{{ tournament?.name }}"/> СтарКрафт II Шампионат</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/events/bge-balkan/bge-balkan.component.html</context>
-          <context context-type="linenumber">5,6</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="3511633367981687214" datatype="html">
         <source>Sign-up to participate</source>
         <target>Регистрирайте се, за да участвате</target>
@@ -271,11 +263,19 @@
         </context-group>
       </trans-unit>
       <trans-unit id="2215286969497894677" datatype="html">
-        <source>Matches are played on the EU server, and players are required to join the <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://discord.gg/7Zt8VZJ&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>BGE Balkan Discord<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> to communicate with the admins and other players. See the full <x id="START_LINK_1" equiv-text="&lt;a href=&quot;/assets/bge/BGE Balkan Circuit Terms and Conditions Rulebook.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>Rulebook<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> for more information.</source>
-        <target>Мачовете се играят на EU сървъра и играчите трябва да се присъединят към <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://discord.gg/7Zt8VZJ&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>BGE Balkan Discord<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>, за да комуникират с администраторите и другите играчи. Вижте пълния <x id="START_LINK_1" equiv-text="&lt;a href=&quot;/assets/bge/BGE Balkan Circuit Terms and Conditions Rulebook.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>Правилник<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> за повече информация.</target>
+        <source>Matches are played on the EU server, and players are required to join the <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://discord.gg/bnTcpa9&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>BGE Balkan Discord<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> to communicate with the admins and other players. See the full <x id="START_LINK_1" equiv-text="&lt;a href=&quot;/assets/bge/BGE Balkan Circuit Terms and Conditions Rulebook.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>Rulebook<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> for more information.</source>
+        <target>Мачовете се играят на EU сървъра и играчите трябва да се присъединят към <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://discord.gg/bnTcpa9&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>BGE Balkan Discord<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>, за да комуникират с администраторите и другите играчи. Вижте пълния <x id="START_LINK_1" equiv-text="&lt;a href=&quot;/assets/bge/BGE Balkan Circuit Terms and Conditions Rulebook.pdf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>Правилник<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> за повече информация.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/bge-balkan/bge-balkan.component.html</context>
           <context context-type="linenumber">12,13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5502854892234458979" datatype="html">
+        <source>Registered Participants</source>
+        <target>Регистрирани Участници</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/bge-balkan/bge-balkan.component.html</context>
+          <context context-type="linenumber">20,21</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3481736869685494304" datatype="html">
@@ -444,6 +444,14 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/bge-balkan/bge-balkan.component.html</context>
           <context context-type="linenumber">199</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2808065008424262150" datatype="html">
+        <source>Match Results</source>
+        <target>Резултати</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/event-info/event-info.component.html</context>
+          <context context-type="linenumber">39</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3952441805588898781" datatype="html">
@@ -720,6 +728,26 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
           <context context-type="linenumber">235,236</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5481649194894152487" datatype="html">
+        <source>View Participants</source>
+        <target>Вижте Участниците</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">155,156</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">183,184</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">211,212</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">239,240</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4052244520894456407" datatype="html">
@@ -3732,30 +3760,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
           <context context-type="linenumber">25,28</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="7568207204804171315" datatype="html">
-        <source>Registration for <x id="INTERPOLATION" equiv-text="{{ registration.game ? &apos;StarCraft II&apos; : &apos;Counter-Strike&apos; }}"/></source>
-        <target>Регистрация за <x id="INTERPOLATION" equiv-text="{{ registration.game ? &apos;StarCraft II&apos; : &apos;Counter-Strike&apos; }}"/></target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">29,30</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="3938906754688277625" datatype="html">
-        <source>Confirmation code <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{registration.hash}}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
-        <target>Код за потвърждение <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{registration.hash}}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">30,31</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="510526722664146848" datatype="html">
-        <source>Check in</source>
-        <target>Потвърди</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">37</context>
         </context-group>
       </trans-unit>
       <trans-unit id="639936982205063071" datatype="html">

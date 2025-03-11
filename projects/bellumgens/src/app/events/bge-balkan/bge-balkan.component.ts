@@ -45,7 +45,7 @@ export class BgeBalkanComponent extends BaseDirective {
     super(title, meta, route);
     this.loading = this.apiService.loadingSC2Registrations;
     this.loadingMatches = this.apiService.loadingSC2Matches;
-    this.apiService.activeTournament.subscribe(t => {
+    this.apiService.getTournament(this.bgeBalkanId).subscribe(t => {
       if (t) {
         this.tournament = t;
         this.tournamentId = t.id;

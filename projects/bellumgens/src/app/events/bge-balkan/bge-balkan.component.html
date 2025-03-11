@@ -2,7 +2,7 @@
   <igx-card [elevated]="true">
     <igx-card-header>
       <igx-avatar src="/assets/login/bge-white-2024.svg" igxCardThumbnail shape="circle" />
-      <h1 igxCardHeaderTitle i18n>{{ tournament?.name }} StarCraft II Circuit</h1>
+      <h1 igxCardHeaderTitle>{{ tournament?.name }}</h1>
       <a i18n [routerLink]="['../registration/', bgeBalkanId]" igxButton="contained" style="margin-top: 12px" i18n>Sign-up to participate</a>
     </igx-card-header>
     <igx-card-content>
@@ -17,7 +17,7 @@
         <p i18n>Matches are played on the EU server, and players are required to join the <a href="https://discord.gg/bnTcpa9" target="_blank" rel="noopener">BGE Balkan Discord</a> to communicate with the admins and other players. See the full <a href="/assets/bge/BGE Balkan Circuit Terms and Conditions Rulebook.pdf" target="_blank" rel="noopener">Rulebook</a> for more information.</p>
       </div>
       <div class="participants-container">
-        <h3 i18n style="width: 100%">Participants</h3>
+        <h3 i18n style="width: 100%">Registered Participants</h3>
         @if (loading | async) {
           <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
         }
@@ -26,7 +26,7 @@
             <igx-avatar [src]="registration.user.sc2Details?.avatarUrl || ''" [initials]="registration.user.username" size="medium" shape="circle">
             </igx-avatar>
             <igx-avatar [src]="registration.country | countrySVG" shape="circle" [title]="registration.country" class="country-badge-small"></igx-avatar>
-            <a [routerLink]="['/players/', registration.user.id, 'sc']">{{ registration.battleTag }}</a>
+            <a [routerLink]="['/players/', registration.user.id, 'sc']">{{ registration.user?.username || registration.battleTag }}</a>
             @if (registration.companyId) {
               <span>[{{ registration.companyId }}]</span>
             }

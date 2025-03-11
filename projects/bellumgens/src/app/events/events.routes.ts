@@ -2,6 +2,7 @@ import { Routes } from "@angular/router";
 import { EventsComponent } from "./events.component";
 import { LeagueRegistrationComponent } from "./league-registration/league-registration.component";
 import { BgeBalkanComponent } from "./bge-balkan/bge-balkan.component";
+import { EventInfoComponent } from "./event-info/event-info.component";
 
 export const routes: Routes = [
   { path: '', component: EventsComponent, data: {
@@ -12,6 +13,7 @@ export const routes: Routes = [
   } },
   { path: 'registration', component: LeagueRegistrationComponent },
   { path: 'registration/:tournamentId', component: LeagueRegistrationComponent },
+  { path: 'events/:tournamentId', component: EventInfoComponent },
   { path: 'bge-balkan-circuit', component: BgeBalkanComponent, data: {
     title: 'Bellum Gens Elite Weekly Balkan Circuit',
     twitterTitle: 'Bellum Gens Elite Weekly Balkan Circuit',

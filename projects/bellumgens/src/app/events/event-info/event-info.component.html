@@ -1,86 +1,47 @@
 <div class="overview-container-card">
-  <igx-card>
+  <igx-card [elevated]="true">
     <igx-card-header>
-      <igx-avatar src="/assets/wallpapers/sc2-watermark.webp" igxCardThumbnail shape="circle" />
+      <igx-avatar src="/assets/login/bge-white-2024.svg" igxCardThumbnail shape="circle" />
       <h1 igxCardHeaderTitle>{{ tournament?.name }}</h1>
+      <a i18n [routerLink]="['../../registration/', tournamentId]" igxButton="contained" style="margin-top: 12px" i18n>Sign-up to participate</a>
     </igx-card-header>
     <igx-card-content>
-      <h4 i18n>Participants</h4>
+      <div>
+        <p>{{tournament?.description}}</p>
+      </div>
       <div class="participants-container">
-        @if (loading) {
+        <h3 i18n style="width: 100%">Participants</h3>
+        @if (loading | async) {
           <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
         }
-        @for (registration of registrations; track registration) {
+        @for (registration of registrations | async; track registration) {
           <div class="registration-slot">
-            <igx-avatar [src]="registration.user.sc2Details?.avatarUrl" [initials]="registration.user.username" size="medium" shape="circle">
+            <igx-avatar [src]="registration.user.sc2Details?.avatarUrl || ''" [initials]="registration.user.username" size="medium" shape="circle">
             </igx-avatar>
-            @if (registration.userId === authUser?.id && registration.state === 0) {
-              <igx-badge
-                type="warning"
-                icon="priority_high"
-                i18n-title
-                title="This registration is pending check-in for the current week!"
-                class="registration-badge-style">
-              </igx-badge>
+            <igx-avatar [src]="registration.country | countrySVG" shape="circle" [title]="registration.country" class="country-badge-small"></igx-avatar>
+            <a [routerLink]="['/players/', registration.user.id, 'sc']">{{ registration.user?.username || registration.battleTag }}</a>
+            @if (registration.companyId) {
+              <span>[{{ registration.companyId }}]</span>
             }
-            <a [href]="environment.bellumgens + '/players/' + (registration.user.csgoDetails?.customUrl || registration.userId)" target="_blank">{{ registration.battleTag }}</a>
-            <span>[{{ registration.companyId }}]</span>
           </div>
-        }
-        <igx-divider></igx-divider>
-      </div>
-
-      <div class="group-columns">
-        @for (group of groups; track group.id) {
-          <igx-grid
-            cellSelection="none"
-            [isLoading]="loadingGroups"
-            [data]="group.participants">
-            <igx-grid-toolbar>
-              <igx-grid-toolbar-title>{{group.name}}</igx-grid-toolbar-title>
-            </igx-grid-toolbar>
-            <igx-column field="user" i18n-header header="Player" width="20%">
-              <div *igxCell="let value">
-                <igx-avatar igxListThumbnail
-                  [src]="value.avatarUrl || ''"
-                  [initials]="value.username"
-                  [size]="'small'"
-                  shape="circle">
-                </igx-avatar>
-                <a igxListLineTitle [href]="environment.bellumgens + '/players/' + (value?.customURL || value.id)" target="_blank">
-                  {{ value.username }}
-                </a>
-              </div>
-            </igx-column>
-            <igx-column field="battleTag" header="Battle Tag" width="20%">
-            </igx-column>
-            <igx-column field="companyId" i18n-header header="Team" width="20%">
-            </igx-column>
-            <igx-column field="matches" dataType="number" i18n-header header="Matches" width="10%">
-            </igx-column>
-            <igx-column field="wins" dataType="number" i18n-header header="Wins" width="10%">
-            </igx-column>
-            <igx-column field="losses" dataType="number" i18n-header header="Losses" width="10%">
-            </igx-column>
-            <igx-column field="playerPoints" dataType="number" i18n-header header="Points" width="10%">
-            </igx-column>
-          </igx-grid>
         }
       </div>
 
       <igx-grid cellSelection="none"
-        [data]="sc2matches"
-        height="550px"
+        [data]="sc2matches | async"
+        height="650px"
+        [groupingExpressions]="grouping"
         i18n-emptyGridMessage
         emptyGridMessage="No matches found..."
-        [isLoading]="loadingMatches"
-        [allowFiltering]="true">
+        [isLoading]="loadingMatches | async">
 
         <igx-grid-toolbar>
-          <igx-grid-toolbar-title i18n>{{ tournament?.name }} Schedule</igx-grid-toolbar-title>
-          <igx-grid-toolbar-actions>
-            <a href="https://challonge.com/ebleague_starcraft" target="_blank" rel="noopener" i18n>Season 2 bracket is available here</a>
-          </igx-grid-toolbar-actions>
+          <igx-grid-toolbar-title><h3 i18n>Match Results</h3></igx-grid-toolbar-title>
+          <!-- <igx-grid-toolbar-actions>
+            <button igxIconButton="flat" igxRipple (click)="refreshMatches()">
+              <igx-icon>refresh</igx-icon>
+            </button>
+          </igx-grid-toolbar-actions> -->
         </igx-grid-toolbar>
 
         <igx-column field="startTime" width="220px" dataType="date" i18n-header header="Start time">
@@ -94,11 +55,14 @@
             <igx-avatar igxListThumbnail
               [src]="cell.row.data.player1.sc2Details?.avatarUrl || ''"
               [initials]="cell.row.data.player1.username"
-              [size]="'small'"
+              class="avatar-small"
               shape="circle">
             </igx-avatar>
             <span [class]="cell.row.data.player1Points > cell.row.data.player2Points ? 'highlight grid-team-name color-success' : 'grid-team-name'">
               {{ cell.row.data.player1.username }}
+              @if (cell.row.data.player1Points > cell.row.data.player2Points) {
+                <igx-icon i18n-title title="Winner">check</igx-icon>
+              }
             </span>
 
             <span class="grid-vs-divider">vs.</span>
@@ -106,11 +70,14 @@
             <igx-avatar
               [src]="cell.row.data.player2.sc2Details?.avatarUrl || ''"
               [initials]="cell.row.data.player2.username"
-              [size]="'small'"
+              class="avatar-small"
               shape="circle">
             </igx-avatar>
             <span [class]="cell.row.data.player2Points > cell.row.data.player1Points ? 'highlight grid-team-name color-success' : 'grid-team-name'">
               {{ cell.row.data.player2.username }}
+              @if (cell.row.data.player2Points > cell.row.data.player1Points) {
+                <igx-icon i18n-title title="Winner">check</igx-icon>
+              }
             </span>
           </div>
         </igx-column>
@@ -119,8 +86,8 @@
           <ng-template igxCell let-value>
             @if (value) {
               <a [href]="value" target="_blank" class="horizontal-center">
-                <igx-icon>link</igx-icon>
-                <span>link</span>
+                <igx-icon name="youtube" family="login-icons"></igx-icon>
+                <span i18n>Video</span>
               </a>
             }
           </ng-template>
@@ -131,13 +98,13 @@
             @if (value) {
               <a [href]="value" target="_blank" class="horizontal-center">
                 <igx-icon>link</igx-icon>
-                <span>link</span>
+                <span i18n>Replay</span>
               </a>
             }
           </ng-template>
         </igx-column>
 
-        <ng-template igxGridDetail let-dataItem>
+        <!-- <ng-template igxGridDetail let-dataItem>
           @for (map of dataItem.maps; track map.id) {
             <div class="horizontal-center">
               <div class="score-container">
@@ -155,15 +122,14 @@
           }
 
           @if (dataItem.noShow) {
-            <div class="horizontal-center" i18n>Walkover</div>
+            <div class="horizontal-center" i18n>Forfeited</div>
           }
 
           @if (!dataItem.maps.length && !dataItem.noShow) {
             <div class="horizontal-center" i18n>The match has not been played yet, or there's no results on record...</div>
           }
-        </ng-template>
+        </ng-template> -->
       </igx-grid>
-
     </igx-card-content>
   </igx-card>
 </div>
