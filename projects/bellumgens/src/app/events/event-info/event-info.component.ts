@@ -3,8 +3,8 @@ import { DatePipe, AsyncPipe } from '@angular/common';
 import { RouterLink, ActivatedRoute } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
 import { BaseDirective } from '../../base/base.component';
-import { TournamentParticipant, TournamentGroup, TournamentSC2Match, Tournament, ApiTournamentsService, CountrySVGPipe } from '../../../../../common/src/public_api';
-import { IGX_CARD_DIRECTIVES, IgxCircularProgressBarComponent, IgxAvatarComponent, IGX_GRID_DIRECTIVES, IgxIconComponent, IgxButtonDirective, IgxIconButtonDirective, IGroupingExpression, SortingDirection, DefaultSortingStrategy } from '@infragistics/igniteui-angular';
+import { TournamentParticipant, TournamentSC2Match, Tournament, ApiTournamentsService, CountrySVGPipe } from '../../../../../common/src/public_api';
+import { IGX_CARD_DIRECTIVES, IgxCircularProgressBarComponent, IgxAvatarComponent, IGX_GRID_DIRECTIVES, IgxIconComponent, IgxButtonDirective, IGroupingExpression, SortingDirection, DefaultSortingStrategy } from '@infragistics/igniteui-angular';
 import { Observable } from 'rxjs';
 
 
@@ -19,7 +19,6 @@ import { Observable } from 'rxjs';
     IGX_GRID_DIRECTIVES,
     IgxIconComponent,
     IgxButtonDirective,
-    IgxIconButtonDirective,
     CountrySVGPipe,
     AsyncPipe
   ],

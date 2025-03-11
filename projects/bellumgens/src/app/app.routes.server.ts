@@ -10,6 +10,10 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Client
   },
   {
+    path: 'bellumgenselite/events/**',
+    renderMode: RenderMode.Client
+  },
+  {
     path: 'unauthorized/:message',
     renderMode: RenderMode.Client
   },

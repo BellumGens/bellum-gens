@@ -47,7 +47,7 @@ describe('BgeBalkanComponent', () => {
     const mockMatches = [{ id: 'match1' }] as any[];
     const mockGroups = [{ id: 'group1' }] as any[];
 
-    let req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/activetournament`);
+    let req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament?id=0313a19e-d527-46f9-bbea-08dd07ccaf69`);
     expect(req.request.method).toBe('GET');
     expect(req.request.withCredentials).toBeFalse();
     req.flush(mockTournament);
