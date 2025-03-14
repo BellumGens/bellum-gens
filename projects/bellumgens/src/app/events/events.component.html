@@ -25,8 +25,14 @@
   </div>
 
   <div class="content-container-column">
-    <iframe class="preview-image" width="560" height="315" src="https://www.youtube.com/embed/g1P4dYvGpA0?si=2L8m1OjZfdOVF1mi" title="BGE Stara Zagora 2024 Aftermovie" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <p i18n>Join us live on <span class="highlight">{{ isoDate | date: 'long' }}</span> for Bellum Gens Elite Stara Zagora 2025 Americas open qualifier!</p>
+    <h2 style="align-self: center" i18n><span class="highlight">{{days}} {{days !== 1 ? 'days' : 'day'}} {{hours | number:'2.0-0'}}:{{minutes | number:'2.0-0'}}:{{seconds | number:'2.0-0'}}</span> left!</h2>
+    <a href="https://www.twitch.tv/bge_starazagora" target="_blank" igxButton="contained" style="margin-top: 12px" i18n>Watch on Twitch</a>
   </div>
+
+  <!-- <div class="content-container-column">
+    <iframe class="preview-image" width="560" height="315" src="https://www.youtube.com/embed/g1P4dYvGpA0?si=2L8m1OjZfdOVF1mi" title="BGE Stara Zagora 2024 Aftermovie" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div> -->
 
   <div class="content-container-row">
     <igx-divider></igx-divider>
@@ -37,23 +43,6 @@
     <h2 style="align-self: center" i18n><span class="highlight">{{days}} {{days !== 1 ? 'days' : 'day'}} {{hours | number:'2.0-0'}}:{{minutes | number:'2.0-0'}}:{{seconds | number:'2.0-0'}}</span> left!</h2>
     <a href="https://www.twitch.tv/bge_starazagora" target="_blank" igxButton="contained" style="margin-top: 12px" i18n>Watch on Twitch</a>
   </div> -->
-
-  <div class="content-container-column">
-    <img ngSrc="/assets/bge/bge-stats.webp" priority width="600" height="400" class="preview-image" alt="BGE Stara Zagora 2024: Stats" />
-    <!-- <iframe width="560" height="315" class="preview-image" src="https://www.youtube.com/embed/4ZtIooYGp_g?si=zOJOViSa8gZwzRLE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    <img ngSrc="/assets/bge/stara-zagora1.webp" width="600" height="337" class="preview-image" alt="Stara Zagora - Samara Monument" /> -->
-  </div>
-  <div class="content-container-column">
-    <h2 i18n routerLink="bge-balkan-circuit" class="navigatable">BGE Balkan Circuit</h2>
-    <p i18n><span class="highlight">Bellum Gens Elite Balkan</span> weekly online circuit launches in November 2024 and presents every player in the Balkan region with the opportunity to participate in weekly online matches to earn points towards cash prizes.</p>
-    <ul>
-      <li i18n>Online circuit starts <span class="highlight">{{ '2024-11-30' | date: 'longDate' }}</span></li>
-      <li i18n><span class="highlight">Open</span> to everyone in the Balkan region</li>
-      <li i18n>Compete weekly to earn points towards <span class="highlight">monthly cash prizes</span></li>
-      <li i18n><span class="highlight">Improve</span> your personal gameplay!</li>
-    </ul>
-    <a i18n routerLink="bge-balkan-circuit" igxButton="contained" style="margin-top: 12px" i18n>Go to BGE Balkan Circuit</a>
-  </div>
 
   <div class="content-container-column">
     <h2 i18n>BGE - Stara Zagora 2025</h2>
@@ -69,9 +58,10 @@
     <p i18n>Stay tuned for more updates!</p>
   </div>
   <div class="content-container-column">
-    <img ngSrc="/assets/bge/bge-stage.webp" width="600" height="400" class="preview-image" alt="BGE Stara Zagora 2024 Champion: Clem" />
+    <iframe class="preview-image" width="560" height="315" src="https://www.youtube.com/embed/g1P4dYvGpA0?si=2L8m1OjZfdOVF1mi" title="BGE Stara Zagora 2024 Aftermovie" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     <!-- <iframe width="560" height="315" class="preview-image" src="https://www.youtube.com/embed/4ZtIooYGp_g?si=zOJOViSa8gZwzRLE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    <img ngSrc="/assets/bge/stara-zagora1.webp" width="600" height="337" class="preview-image" alt="Stara Zagora - Samara Monument" /> -->
+    <img ngSrc="/assets/bge/stara-zagora1.webp" width="600" height="337" class="preview-image" alt="Stara Zagora - Samara Monument" />
+    <img ngSrc="/assets/bge/bge-stage.webp" width="600" height="400" class="preview-image" alt="BGE Stara Zagora 2024 Champion: Clem" /> -->
   </div>
 
   <div id="confirmed-players" class="content-container-row">
@@ -351,7 +341,7 @@
   </div> -->
 
   <div class="content-container-column">
-    <img ngSrc="/assets/bge/summer-theater.webp" width="600" height="372" class="preview-image" alt="Summer Theater Stara Zagora" />
+    <img ngSrc="/assets/bge/bge-stage.webp" width="600" height="400" class="preview-image" alt="Summer Theater Stara Zagora" />
   </div>
   <div class="content-container-column">
     <h2 i18n>The Venue</h2>
@@ -364,6 +354,23 @@
   </div>
   <div class="content-container-column">
     <iframe class="preview-image" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2944.6812473186187!2d25.618919277487052!3d42.434519271186154!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40a86996f04f12f7%3A0xafe149bad3c02de0!2z0JvQtdGC0LXQvSDRgtC10LDRgtGK0YA!5e0!3m2!1sen!2sbg!4v1737724650312!5m2!1sen!2sbg" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+
+  <div class="content-container-column">
+    <img ngSrc="/assets/bge/bge-stats.webp" priority width="600" height="400" class="preview-image" alt="BGE Stara Zagora 2024: Stats" />
+    <!-- <iframe width="560" height="315" class="preview-image" src="https://www.youtube.com/embed/4ZtIooYGp_g?si=zOJOViSa8gZwzRLE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    <img ngSrc="/assets/bge/stara-zagora1.webp" width="600" height="337" class="preview-image" alt="Stara Zagora - Samara Monument" /> -->
+  </div>
+  <div class="content-container-column">
+    <h2 i18n id="bgebalkan" routerLink="bge-balkan-circuit" class="navigatable">BGE Balkan Circuit</h2>
+    <p i18n><span class="highlight">Bellum Gens Elite Balkan</span> weekly online circuit launches in November 2024 and presents every player in the Balkan region with the opportunity to participate in weekly online matches to earn points towards cash prizes.</p>
+    <ul>
+      <li i18n>Online circuit starts <span class="highlight">{{ '2024-11-30' | date: 'longDate' }}</span></li>
+      <li i18n><span class="highlight">Open</span> to everyone in the Balkan region</li>
+      <li i18n>Compete weekly to earn points towards <span class="highlight">monthly cash prizes</span></li>
+      <li i18n><span class="highlight">Improve</span> your personal gameplay!</li>
+    </ul>
+    <a i18n routerLink="bge-balkan-circuit" igxButton="contained" style="margin-top: 12px" i18n>Go to BGE Balkan Circuit</a>
   </div>
 
   <div class="content-container-row">
