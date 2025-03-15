@@ -188,7 +188,7 @@ export class AdminSc2Component {
       startTime: new Date(),
       tournamentId: this.selectedTournament.id,
       maps: [],
-      groupId: this.groups ? this.groups[this.groups.length - 1].id : null
+      groupId: this.groups?.length ? this.groups[this.groups.length - 1].id : null
     };
   }
 
