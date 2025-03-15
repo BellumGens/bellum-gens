@@ -34,7 +34,7 @@ export class EventsComponent extends BaseDirective {
 
   public qualifiedPlayers = [
     {name: 'Yoon "trigger" Hong', country: 'Canada', race: 'Protoss', team: 'BASILISK', source: 'Americas Open Qualifier', image: '/assets/bge/players/11-trigger.png'},
-    {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', source: 'Americas Open Qualifier', image: '/assets/bge/silhouette.webp'},
+    {name: 'Joseph "Future" Stanish', country: 'United States of America', race: 'Terran', team: 'Matcherino', source: 'Americas Open Qualifier', image: '/assets/bge/silhouette.webp'},
     {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', source: 'Europe Open Qualifier', image: '/assets/bge/silhouette.webp'},
     {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', source: 'Europe Open Qualifier', image: '/assets/bge/silhouette.webp'},
     {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', source: 'Europe Open Qualifier', image: '/assets/bge/silhouette.webp'},
