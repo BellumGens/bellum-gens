@@ -33,17 +33,17 @@ export class EventsComponent extends BaseDirective {
   ];
 
   public qualifiedPlayers = [
-    {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', source: 'Europe Open Qualifier', image: '/assets/bge/silhouette.webp'},
-    {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', source: 'Europe Open Qualifier', image: '/assets/bge/silhouette.webp'},
-    {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', source: 'Europe Open Qualifier', image: '/assets/bge/silhouette.webp'},
-    {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', source: 'Europe Open Qualifier', image: '/assets/bge/silhouette.webp'},
-    {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', source: 'Europe Open Qualifier', image: '/assets/bge/silhouette.webp'},
-    {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', source: 'Asia Open Qualifier', image: '/assets/bge/silhouette.webp'},
-    {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', source: 'Asia Open Qualifier', image: '/assets/bge/silhouette.webp'},
-    {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', source: 'Asia Open Qualifier', image: '/assets/bge/silhouette.webp'},
-    {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', source: 'Asia Open Qualifier', image: '/assets/bge/silhouette.webp'},
+    {name: 'Yoon "trigger" Hong', country: 'Canada', race: 'Protoss', team: 'BASILISK', source: 'Americas Open Qualifier', image: '/assets/bge/players/11-trigger.png'},
     {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', source: 'Americas Open Qualifier', image: '/assets/bge/silhouette.webp'},
-    {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', source: 'Americas Open Qualifier', image: '/assets/bge/silhouette.webp'},
+    {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', source: 'Europe Open Qualifier', image: '/assets/bge/silhouette.webp'},
+    {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', source: 'Europe Open Qualifier', image: '/assets/bge/silhouette.webp'},
+    {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', source: 'Europe Open Qualifier', image: '/assets/bge/silhouette.webp'},
+    {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', source: 'Europe Open Qualifier', image: '/assets/bge/silhouette.webp'},
+    {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', source: 'Europe Open Qualifier', image: '/assets/bge/silhouette.webp'},
+    {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', source: 'Asia Open Qualifier', image: '/assets/bge/silhouette.webp'},
+    {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', source: 'Asia Open Qualifier', image: '/assets/bge/silhouette.webp'},
+    {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', source: 'Asia Open Qualifier', image: '/assets/bge/silhouette.webp'},
+    {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', source: 'Asia Open Qualifier', image: '/assets/bge/silhouette.webp'},
     {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', source: 'Balkan Open Qualifier', image: '/assets/bge/silhouette.webp'},
   ];
 
