@@ -3,7 +3,7 @@
     <igx-card-header>
       <igx-avatar src="/assets/login/bge-white-2024.svg" igxCardThumbnail shape="circle" />
       <h1 igxCardHeaderTitle>{{ tournament?.name }}</h1>
-      <a i18n [routerLink]="['../../registration/', tournamentId]" igxButton="contained" style="margin-top: 12px" i18n>Sign-up to participate</a>
+      <a i18n [routerLink]="['../../registration/', tournamentId]" [disabled]="signUpDisabled" igxButton="contained" style="margin-top: 12px" i18n>Sign-up to participate</a>
     </igx-card-header>
     <igx-card-content>
       <div>
