@@ -20,6 +20,7 @@ export interface ApplicationUser {
   steamUserException: boolean;
   userStatsException: boolean;
   registered: boolean;
+  avatarUrl?: string;
 
   userStats?: CSGOStats;
   steamUser?: SteamUser;

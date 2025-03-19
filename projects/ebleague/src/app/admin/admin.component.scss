@@ -12,7 +12,7 @@
 
   @include grid-toolbar(grid-toolbar-theme($background-color: $background));
 
-  @include grid-summary(grid-summary-theme($background-color: $background, $result-color: white));
+  @include grid-summary(grid-summary-theme($background-color: $background));
 
   @include paginator(paginator-theme($background-color: $background));
 

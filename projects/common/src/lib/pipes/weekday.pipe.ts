@@ -1,5 +1,5 @@
-import { Pipe, PipeTransform } from '@angular/core';
-import { DayOfWeek } from '../../models/playeravailability';
+import { Pipe, type PipeTransform } from '@angular/core';
+import { type DayOfWeek } from '../../models/playeravailability';
 
 @Pipe({
     name: 'weekday',

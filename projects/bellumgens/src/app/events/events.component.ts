@@ -1,5 +1,5 @@
 import { DatePipe, DecimalPipe, isPlatformBrowser, NgOptimizedImage } from '@angular/common';
-import { Component, Inject, LOCALE_ID, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, LOCALE_ID, PLATFORM_ID, OnDestroy } from '@angular/core';
 import { IGX_CARD_DIRECTIVES, IgxAvatarComponent, IgxButtonDirective, IgxDividerDirective } from '@infragistics/igniteui-angular';
 import { BaseDirective } from '../base/base.component';
 import { Meta, Title } from '@angular/platform-browser';
@@ -23,7 +23,7 @@ import { interval, Subscription } from 'rxjs';
   templateUrl: './events.component.html',
   styleUrls: ['./events.component.scss']
 })
-export class EventsComponent extends BaseDirective {
+export class EventsComponent extends BaseDirective implements OnDestroy {
   public invitedPlayers = [
     {name: 'Clement "Clem" Desplanches', country: 'France', race: 'Terran', team: 'Team Liquid', source: '🏆Champion BGE Stara Zagora 2024', image: '/assets/bge/players/2-clem.webp'},
     {name: 'Joona "Serral" Sotala', country: 'Finland', race: 'Zerg', team: 'BASILISK', source: 'Replaces Li "Oliveira" Peinan', image: '/assets/bge/players/1-serral.webp'},

@@ -34,7 +34,7 @@
         <igx-column i18n-header header="Match" width="40%">
           <ng-template igxCell let-cell="cell">
             <igx-avatar igxListThumbnail
-              [src]="cell.row.data.player1.avatarMedium"
+              [src]="cell.row.data.player1.avatarUrl"
               [initials]="cell.row.data.player1.username"
               class="avatar-small"
               shape="circle">
@@ -44,7 +44,7 @@
             <span class="grid-vs-divider">vs.</span>
 
             <igx-avatar igxListThumbnail
-              [src]="cell.row.data.player2.avatarMedium"
+              [src]="cell.row.data.player2.avatarUrl"
               [initials]="cell.row.data.player2.username"
               class="avatar-small"
               shape="circle">

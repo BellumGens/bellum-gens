@@ -60,6 +60,10 @@
     --size: 30px;
   }
 
+  .avatar-no-background {
+    --background: transparent;
+  }
+
   .country-badge-small {
     left: 90px;
     width: 20px;

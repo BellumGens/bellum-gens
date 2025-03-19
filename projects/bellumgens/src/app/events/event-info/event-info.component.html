@@ -16,7 +16,7 @@
         }
         @for (registration of registrations | async; track registration) {
           <div class="registration-slot">
-            <igx-avatar [src]="registration.user.sc2Details?.avatarUrl || ''" [initials]="registration.user.username" size="medium" shape="circle">
+            <igx-avatar [src]="registration.user.sc2Details?.avatarUrl" [initials]="registration.user.username" size="medium" shape="circle">
             </igx-avatar>
             <igx-avatar [src]="registration.country | countrySVG" shape="circle" [title]="registration.country" class="country-badge-small"></igx-avatar>
             <a [routerLink]="['/players/', registration.user.id, 'sc']">{{ registration.user?.username || registration.battleTag }}</a>
@@ -53,13 +53,16 @@
         <igx-column field="matchDetails" i18n-header header="Match" [filterable]="false">
           <div *igxCell="let cell = cell" class="horizontal-center">
             <igx-avatar igxListThumbnail
-              [src]="cell.row.data.player1.sc2Details?.avatarUrl || ''"
+              [src]="cell.row.data.player1.avatarUrl"
               [initials]="cell.row.data.player1.username"
               class="avatar-small"
               shape="circle">
             </igx-avatar>
             <span [class]="cell.row.data.player1Points > cell.row.data.player2Points ? 'highlight grid-team-name color-success' : 'grid-team-name'">
               {{ cell.row.data.player1.username }}
+              @if (cell.row.data.player1Race) {
+                <igx-avatar [src]="cell.row.data.player1Race | raceIcon" class="avatar-small avatar-no-background" shape="circle"></igx-avatar>
+              }
               @if (cell.row.data.player1Points > cell.row.data.player2Points) {
                 <igx-icon i18n-title title="Winner">check</igx-icon>
               }
@@ -68,13 +71,16 @@
             <span class="grid-vs-divider">vs.</span>
 
             <igx-avatar
-              [src]="cell.row.data.player2.sc2Details?.avatarUrl || ''"
+              [src]="cell.row.data.player2.avatarUrl"
               [initials]="cell.row.data.player2.username"
               class="avatar-small"
               shape="circle">
             </igx-avatar>
             <span [class]="cell.row.data.player2Points > cell.row.data.player1Points ? 'highlight grid-team-name color-success' : 'grid-team-name'">
               {{ cell.row.data.player2.username }}
+              @if (cell.row.data.player2Race) {
+                <igx-avatar [src]="cell.row.data.player2Race | raceIcon" class="avatar-small avatar-no-background" shape="circle"></igx-avatar>
+              }
               @if (cell.row.data.player2Points > cell.row.data.player1Points) {
                 <igx-icon i18n-title title="Winner">check</igx-icon>
               }
