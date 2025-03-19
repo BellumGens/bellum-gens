@@ -60,6 +60,9 @@
             </igx-avatar>
             <span [class]="cell.row.data.player1Points > cell.row.data.player2Points ? 'highlight grid-team-name color-success' : 'grid-team-name'">
               {{ cell.row.data.player1.username }}
+              @if (cell.row.data.player1Race) {
+                <igx-avatar [src]="cell.row.data.player1Race | raceIcon" class="avatar-small avatar-no-background" shape="circle"></igx-avatar>
+              }
               @if (cell.row.data.player1Points > cell.row.data.player2Points) {
                 <igx-icon i18n-title title="Winner">check</igx-icon>
               }
@@ -75,6 +78,9 @@
             </igx-avatar>
             <span [class]="cell.row.data.player2Points > cell.row.data.player1Points ? 'highlight grid-team-name color-success' : 'grid-team-name'">
               {{ cell.row.data.player2.username }}
+              @if (cell.row.data.player2Race) {
+                <igx-avatar [src]="cell.row.data.player2Race | raceIcon" class="avatar-small avatar-no-background" shape="circle"></igx-avatar>
+              }
               @if (cell.row.data.player2Points > cell.row.data.player1Points) {
                 <igx-icon i18n-title title="Winner">check</igx-icon>
               }

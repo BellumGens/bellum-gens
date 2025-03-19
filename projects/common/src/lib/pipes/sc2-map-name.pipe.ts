@@ -1,5 +1,5 @@
-import { Pipe, PipeTransform } from '@angular/core';
-import { SC2Map, SC2_MAPS } from '../../models/sc2maps';
+import { Pipe, type PipeTransform } from '@angular/core';
+import { type SC2Map, SC2_MAPS } from '../../models/sc2maps';
 
 @Pipe({
     name: 'sc2MapName',
