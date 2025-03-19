@@ -112,7 +112,7 @@
     <igx-column field="teams" i18n-header header="Match" [filterable]="false">
       <div *igxCell="let cell = cell">
         <igx-avatar igxListThumbnail
-          [src]="cell.row.data.player1.sc2Details?.avatarUrl || ''"
+          [src]="cell.row.data.player1.avatarUrl"
           [initials]="cell.row.data.player1.username"
           [size]="'small'"
           shape="circle">
@@ -124,7 +124,7 @@
         <span class="grid-vs-divider">vs.</span>
 
         <igx-avatar
-          [src]="cell.row.data.player2.sc2Details?.avatarUrl || ''"
+          [src]="cell.row.data.player2.avatarUrl"
           [initials]="cell.row.data.player2.username"
           [size]="'small'"
           shape="circle">
@@ -213,7 +213,7 @@
         }
         @for (registration of participants | notInGroup:'tournamentSC2GroupId':pipeTrigger; track registration.id) {
           <div class="registration-slot">
-            <igx-avatar [src]="registration.user.sc2Details?.avatarUrl || ''"
+            <igx-avatar [src]="registration.user.sc2Details?.avatarUrl"
               [initials]="registration.user.username"
               size="medium"
               shape="circle"
@@ -368,7 +368,7 @@
       <igx-select-item
         [value]="registration.userId"
         [text]="registration.battleTag">
-        <igx-avatar [src]="registration.user.sc2Details?.avatarUrl || ''" [initials]="registration.battleTag" [size]="'small'" [shape]="'circle'"></igx-avatar>
+        <igx-avatar [src]="registration.user.sc2Details?.avatarUrl" [initials]="registration.battleTag" [size]="'small'" [shape]="'circle'"></igx-avatar>
         {{ registration.battleTag }}
       </igx-select-item>
     }
@@ -382,7 +382,7 @@
       <igx-select-item
         [value]="registration.userId"
         [text]="registration.battleTag">
-        <igx-avatar [src]="registration.user.sc2Details?.avatarUrl || ''" [initials]="registration.battleTag" [size]="'small'" [shape]="'circle'"></igx-avatar>
+        <igx-avatar [src]="registration.user.sc2Details?.avatarUrl" [initials]="registration.battleTag" [size]="'small'" [shape]="'circle'"></igx-avatar>
         {{ registration.battleTag }}
       </igx-select-item>
     }
@@ -457,7 +457,7 @@
           <igx-select-item
             [value]="registration.userId"
             [text]="registration.battleTag">
-            <igx-avatar [src]="registration.user.sc2Details?.avatarUrl || ''" [initials]="registration.user.username" size="small" [shape]="'circle'"></igx-avatar>
+            <igx-avatar [src]="registration.user.sc2Details?.avatarUrl" [initials]="registration.user.username" size="small" [shape]="'circle'"></igx-avatar>
             {{ registration.user.username }}
           </igx-select-item>
         }

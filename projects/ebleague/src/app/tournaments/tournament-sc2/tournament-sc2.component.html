@@ -42,7 +42,7 @@
             <igx-column field="user" i18n-header header="Player" width="20%">
               <div *igxCell="let value">
                 <igx-avatar igxListThumbnail
-                  [src]="value.avatarUrl || ''"
+                  [src]="value.sc2Details?.avatarUrl"
                   [initials]="value.username"
                   [size]="'small'"
                   shape="circle">
@@ -92,7 +92,7 @@
         <igx-column field="matchDetails" i18n-header header="Match" [filterable]="false">
           <div *igxCell="let cell = cell" class="horizontal-center">
             <igx-avatar igxListThumbnail
-              [src]="cell.row.data.player1.sc2Details?.avatarUrl || ''"
+              [src]="cell.row.data.player1.avatarUrl"
               [initials]="cell.row.data.player1.username"
               [size]="'small'"
               shape="circle">
@@ -104,7 +104,7 @@
             <span class="grid-vs-divider">vs.</span>
 
             <igx-avatar
-              [src]="cell.row.data.player2.sc2Details?.avatarUrl || ''"
+              [src]="cell.row.data.player2.avatarUrl"
               [initials]="cell.row.data.player2.username"
               [size]="'small'"
               shape="circle">
