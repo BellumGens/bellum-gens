@@ -13,7 +13,7 @@ export class RaceIconPipe implements PipeTransform {
     'assets/bge/race/zerg.png'
   ]
 
-  transform(value: SC2Race): string {
+  public transform(value: SC2Race): string {
     return value ? this.raceIcons[value] : '';
   }
 
