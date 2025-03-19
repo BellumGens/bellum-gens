@@ -374,6 +374,12 @@
     }
   </igx-select>
 
+  <igx-radio-group [(ngModel)]="matchInEdit.player1Race" required>
+    <igx-radio [value]="1" i18n>Protoss</igx-radio>
+    <igx-radio [value]="2" i18n>Terran</igx-radio>
+    <igx-radio [value]="3" i18n>Zerg</igx-radio>
+  </igx-radio-group>
+
   vs.
 
   <igx-select [(ngModel)]="matchInEdit.player2Id" required>
@@ -387,6 +393,12 @@
       </igx-select-item>
     }
   </igx-select>
+
+  <igx-radio-group [(ngModel)]="matchInEdit.player2Race" required>
+    <igx-radio [value]="1" i18n>Protoss</igx-radio>
+    <igx-radio [value]="2" i18n>Terran</igx-radio>
+    <igx-radio [value]="3" i18n>Zerg</igx-radio>
+  </igx-radio-group>
 
   <igx-input-group>
     <label igxLabel i18n>Video Link</label>
