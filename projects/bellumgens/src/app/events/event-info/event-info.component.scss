@@ -60,8 +60,16 @@
     --size: 30px;
   }
 
+  .avatar-tiny {
+    --size: 20px;
+  }
+
   .avatar-no-background {
     --background: transparent;
+  }
+
+  .avatar-no-background .igx-avatar__image {
+    background-size: auto;
   }
 
   .country-badge-small {
