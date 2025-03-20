@@ -12,6 +12,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read #This is required for actions/checkout
 
     steps:
       - uses: actions/checkout@v4
@@ -46,6 +48,7 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
       id-token: write #This is required for requesting the JWT
+      contents: read #This is required for actions/checkout
 
     steps:
       - name: Download artifact from build job
@@ -59,9 +62,9 @@ jobs:
       - name: Login to Azure bellum-gens
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_3B0302B7707D4CFEBEF6A9711FCF6B42 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_19D1A0A975A941F18E12EB9BDC079445 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_752FA4AF4D9E4728A098E60C742B2A27 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_F1E837D6C5DE4CFD9C1819F41D4E5A85 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_6A280898C48A4D87A349A21B2AC458F0 }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_987EB166EE8A42409D407C781A962941 }}
 
       - name: 'Deploy bellum-gens to Azure Web App'
         id: deploy-to-webapp-bellumgens
@@ -74,9 +77,9 @@ jobs:
       - name: Login to Azure eb-league
         uses: azure/login@v2
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_88E3F1519C854B6CBAC4EA468DBB1ED8 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_5750E01329904536BD957F23F220D875 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_4103DC4946854F0B82BE67B9E11E8A24 }}
+          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_317290C79BEF49CBAA0BAD4CDC2B76C5 }}
+          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_9F3F13AEBF9D47F1A268EF9B522E89FB }}
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_99C5716295DC4B3AA35E4BDEA96297E7 }}
 
       - name: 'Deploy eb-league to Azure Web App'
         id: deploy-to-webapp-ebleague
