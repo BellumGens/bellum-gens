@@ -48,7 +48,7 @@ export class EventInfoComponent extends BaseDirective {
     this.activeRoute.params.subscribe(params => {
       if (params['tournamentId']) {
         this.tournamentId = params['tournamentId'];
-        if (this.tournamentId === '1fe0af1f-7dfc-4476-db4d-08dd4cd5c5da') {
+        if (this.tournamentId === '1fe0af1f-7dfc-4476-db4d-08dd4cd5c5da' || this.tournamentId === '0232380e-c3d1-4c49-db4e-08dd4cd5c5da') {
           this.signUpDisabled = true;
         }
       }
