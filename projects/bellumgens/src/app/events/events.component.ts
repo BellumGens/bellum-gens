@@ -35,15 +35,15 @@ export class EventsComponent extends BaseDirective implements OnDestroy {
   public qualifiedPlayers = [
     {name: 'Yoon "trigger" Hong', country: 'Canada', race: 'Protoss', team: 'BASILISK', source: 'Americas Open Qualifier', image: '/assets/bge/players/11-trigger.png'},
     {name: 'Joseph "Future" Stanish', country: 'United States of America', race: 'Terran', team: 'Matcherino', source: 'Americas Open Qualifier', image: '/assets/bge/silhouette.webp'},
+    {name: 'Cho "Maru" Seong-ju', country: 'South Korea', race: 'Terran', team: 'Team Vitality', source: 'Asia Open Qualifier', image: '/assets/bge/silhouette.webp'},
+    {name: 'Kim "Ryung" Dong-won', country: 'South Korea', race: 'Terran', team: 'Team Vitality', source: 'Asia Open Qualifier', image: '/assets/bge/silhouette.webp'},
+    {name: 'Park "Zoun" Han-sol', country: 'South Korea', race: 'Protoss', team: '', source: 'Asia Open Qualifier', image: '/assets/bge/silhouette.webp'},
+    {name: 'Lei "Rex" Hao-chen', country: 'Taiwan', race: 'Zerg', team: 'OFFSYDE Esports', source: 'Asia Open Qualifier', image: '/assets/bge/silhouette.webp'},
     {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', source: 'Europe Open Qualifier', image: '/assets/bge/silhouette.webp'},
     {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', source: 'Europe Open Qualifier', image: '/assets/bge/silhouette.webp'},
     {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', source: 'Europe Open Qualifier', image: '/assets/bge/silhouette.webp'},
     {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', source: 'Europe Open Qualifier', image: '/assets/bge/silhouette.webp'},
     {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', source: 'Europe Open Qualifier', image: '/assets/bge/silhouette.webp'},
-    {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', source: 'Asia Open Qualifier', image: '/assets/bge/silhouette.webp'},
-    {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', source: 'Asia Open Qualifier', image: '/assets/bge/silhouette.webp'},
-    {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', source: 'Asia Open Qualifier', image: '/assets/bge/silhouette.webp'},
-    {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', source: 'Asia Open Qualifier', image: '/assets/bge/silhouette.webp'},
     {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', source: 'Balkan Open Qualifier', image: '/assets/bge/silhouette.webp'},
   ];
 
