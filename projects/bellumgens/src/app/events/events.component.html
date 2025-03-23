@@ -53,10 +53,10 @@
     <ul>
       <li i18n>StarCraft II</li>
       <li i18n>Main Event: <span class="highlight">4-7th</span> of June</li>
-      <li i18n><span class="highlight">4</span> invited players</li>
-      <li i18n><span class="highlight">12</span> qualifying players</li>
-      <li i18n>Summer Theater - Stara Zagora</li>
-      <li><a class="highlight" [href]="this.ticketsUrl" target="_blank" i18n>Tickets Available Now</a></li>
+      <li><span class="highlight navigatable" i18n (click)="scrollTo('confirmed-players')">4 invited players</span></li>
+      <li><span class="highlight navigatable" i18n (click)="scrollTo('qualified-players')">12 qualifying players</span></li>
+      <li><span class="highlight navigatable" i18n (click)="scrollTo('venue')">Summer Theater - Stara Zagora</span></li>
+      <li><a [href]="this.ticketsUrl" target="_blank" i18n>Tickets Available Now</a></li>
     </ul>
     <p i18n>Stay tuned for more updates!</p>
   </div>
@@ -341,12 +341,13 @@
     </div>
   </div> -->
 
-  <div class="content-container-column">
+  <div class="content-container-column" id="venue">
     <img ngSrc="/assets/bge/bge-stage.webp" width="600" height="400" class="preview-image" alt="Summer Theater Stara Zagora" />
   </div>
   <div class="content-container-column">
     <h2 i18n>The Venue</h2>
     <p i18n>The <span class="highlight">Summer Theater in Stara Zagora</span> is located at the foot of largest city park in Bulgaria. This open-air masterpiece combines nature and ancient traditions with modern architecture into a unique experience for the audience.</p>
+    <p i18n>This is the perfect place for you to experience StarCraft 2 duels of the highest level. Players clash like gladiators on the open-air stage of this gorgeous theater and you are presented with the opportunity to meet your favorite pros face-to-face along the alleys of the beautiful park the venue is located at.</p>
   </div>
 
   <div class="content-container-column">
