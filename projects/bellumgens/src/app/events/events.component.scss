@@ -29,6 +29,11 @@
     background-color: transparent;
   }
 
+  .timer-cta-button {
+    margin-top: 12px;
+    min-width: 250px;
+  }
+
   .cta-button-large {
     height: 88px;
     font-size: 36pt;
@@ -59,6 +64,10 @@
 
     .cta-button-large {
       height: 60px;
+    }
+
+    .timer-cta-button {
+      min-width: 150px;
     }
   }
 

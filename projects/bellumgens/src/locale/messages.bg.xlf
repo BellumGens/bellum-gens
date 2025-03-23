@@ -486,6 +486,14 @@
           <context context-type="linenumber">29,30</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="819996403327805209" datatype="html">
+        <source>Learn more</source>
+        <target>Научете повече</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">31,32</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="1368263726671170140" datatype="html">
         <source>Watch on Twitch</source>
         <target>Гледайте по Twitch</target>
@@ -530,17 +538,17 @@
           <context context-type="linenumber">20,21</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5239992958101598739" datatype="html">
-        <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>4<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> invited players</source>
-        <target><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>4<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> поканени играчи</target>
+      <trans-unit id="2532407623174888737" datatype="html">
+        <source>4 invited players</source>
+        <target>4 поканени играчи</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
           <context context-type="linenumber">21,22</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4701849670933362863" datatype="html">
-        <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>12<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> qualifying players</source>
-        <target><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>12<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> класирани играчи</target>
+      <trans-unit id="13643424848961280" datatype="html">
+        <source>12 qualifying players</source>
+        <target>12 класирани играчи</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
           <context context-type="linenumber">22,23</context>
@@ -814,6 +822,14 @@
           <context context-type="linenumber">196,199</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="7687066619472996139" datatype="html">
+        <source>This is the perfect place for you to experience StarCraft 2 duels of the highest level. Players clash like gladiators on the open-air stage of this gorgeous theater and you are presented with the opportunity to meet your favorite pros face-to-face along the alleys of the beautiful park the venue is located at.</source>
+        <target>Това е перфектното място за вас, за да изживеете най-високо ниво на дуели в СтарКрафт 2. Играчите се сблъскват като гладиатори на откритата сцена на този прекрасен театър и вие имате възможността да се срещнете с любимите си професионалисти лице в лице по алеите на красивия парк, в който се намира мястото.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">350,351</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="6527364670871054903" datatype="html">
         <source>Stara Zagora</source>
         <target>Стара Загора</target>
@@ -830,7 +846,6 @@
           <context context-type="linenumber">201,203</context>
         </context-group>
       </trans-unit>
-
       <trans-unit id="3744555885485676666" datatype="html">
         <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Bellum Gens Elite Balkan<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> weekly online circuit launches in November 2024 and presents every player in the Balkan region with the opportunity to participate in weekly online matches to earn points towards cash prizes.</source>
         <target><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Белум Генс Елит Балкански<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> седмичната онлайн лига стартира през ноември 2024 година и предоставя на всеки играч от Балканския регион възможността да участва в седмични онлайн мачове, за да спечели точки за месечни парични награди.</target>
