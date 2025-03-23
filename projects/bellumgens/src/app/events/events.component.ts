@@ -103,6 +103,11 @@ export class EventsComponent extends BaseDirective implements OnDestroy {
     this.seconds = Math.floor(delta);
   }
 
+  public scrollTo(id: string) {
+    const element = document.getElementById(id);
+    element.scrollIntoView({ behavior: 'smooth' });
+  }
+
   public ngOnDestroy() {
     this.sub?.unsubscribe();
   }
