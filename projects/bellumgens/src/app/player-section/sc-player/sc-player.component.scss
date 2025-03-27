@@ -11,6 +11,18 @@
     --size: 30px;
   }
 
+  .avatar-tiny {
+    --size: 20px;
+  }
+
+  .avatar-no-background {
+    --background: transparent;
+  }
+
+  .avatar-no-background .igx-avatar__image {
+    background-size: auto;
+  }
+
   .card-wrapper.profile-view-layout {
     grid-template-columns: minmax(260px, 1fr) minmax(260px, 4fr);
   }
