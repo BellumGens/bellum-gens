@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { ApplicationUser, BellumgensApiService, LoadingComponent, Tournament } from '../../../../../common/src/public_api';
+import { ApplicationUser, BellumgensApiService, LoadingComponent, RaceIconPipe, Tournament } from '../../../../../common/src/public_api';
 import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { IGX_GRID_DIRECTIVES, IgxAvatarComponent, IgxIconComponent } from '@infragistics/igniteui-angular';
@@ -14,7 +14,8 @@ import { AsyncPipe, DatePipe } from '@angular/common';
     LoadingComponent,
     IGX_GRID_DIRECTIVES,
     AsyncPipe,
-    DatePipe
+    DatePipe,
+    RaceIconPipe
   ],
   templateUrl: './sc-player.component.html',
   styleUrl: './sc-player.component.scss',

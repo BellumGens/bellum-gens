@@ -39,7 +39,12 @@
               class="avatar-small"
               shape="circle">
             </igx-avatar>
-            <span [class]="cell.row.data.winnerPlayerId === cell.row.data.player1.id ? 'highlight grid-team-name' : 'grid-team-name'">{{ cell.row.data.player1.username }}</span>
+            <span [class]="cell.row.data.winnerPlayerId === cell.row.data.player1.id ? 'highlight grid-team-name' : 'grid-team-name'">
+              {{ cell.row.data.player1.username }}
+              @if (cell.row.data.player1Race) {
+                <igx-avatar [src]="cell.row.data.player1Race | raceIcon" class="avatar-tiny avatar-no-background" shape="circle"></igx-avatar>
+              }
+            </span>
 
             <span class="grid-vs-divider">vs.</span>
 
@@ -49,7 +54,12 @@
               class="avatar-small"
               shape="circle">
             </igx-avatar>
-            <span [class]="cell.row.data.winnerPlayerId === cell.row.data.player2.id ? 'highlight grid-team-name' : 'grid-team-name'">{{ cell.row.data.player2.username }}</span>
+            <span [class]="cell.row.data.winnerPlayerId === cell.row.data.player2.id ? 'highlight grid-team-name' : 'grid-team-name'">
+              {{ cell.row.data.player2.username }}
+              @if (cell.row.data.player2Race) {
+                <igx-avatar [src]="cell.row.data.player2Race | raceIcon" class="avatar-tiny avatar-no-background" shape="circle"></igx-avatar>
+              }
+            </span>
           </ng-template>
         </igx-column>
 
