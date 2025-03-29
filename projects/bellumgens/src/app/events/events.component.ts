@@ -43,7 +43,7 @@ export class EventsComponent extends BaseDirective implements OnDestroy {
     {name: 'Yakov "YoungYakov" Moiseenko', country: 'Russia', race: 'Zerg', team: '', source: 'Europe Open Qualifier', image: '/assets/bge/silhouette.webp'},
     {name: 'Piotr "Spirit" Walukiewicz', country: 'Poland', race: 'Terran', team: '', source: 'Europe Open Qualifier', image: '/assets/bge/players/7-spirit.png'},
     {name: 'Kevin "Harstem" Koning', country: 'Netherlands', race: 'Protoss', team: 'Shopify Rebellion', source: 'Europe Open Qualifier', image: '/assets/bge/players/13-harstem.png'},
-    {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', source: 'Europe Open Qualifier', image: '/assets/bge/silhouette.webp'},
+    {name: 'Julian "Lambo" Brosig', country: 'Germany', race: 'Zerg', team: 'Shopify Rebellion', source: 'Europe Open Qualifier', image: '/assets/bge/players/11-lambo.png'},
     {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', source: 'Balkan Open Qualifier', image: '/assets/bge/silhouette.webp'},
   ];
 
