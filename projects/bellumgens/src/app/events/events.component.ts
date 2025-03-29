@@ -61,7 +61,7 @@ export class EventsComponent extends BaseDirective implements OnDestroy {
   public balkanQualifierId = '5670bc9c-26e4-44d8-db50-08dd4cd5c5da';
 
   // Timer for the event
-  public isoDate = '2025-03-29T14:00:00Z';
+  public isoDate = '2025-04-05T13:00:00Z';
   public announcementDate = new Date(this.isoDate);
   public seconds = 0;
   public minutes = 0;
