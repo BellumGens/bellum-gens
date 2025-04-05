@@ -37,17 +37,27 @@ describe('EventsComponent', () => {
   });
 
   it('should calculate time left correctly', () => {
-    const mockDate = new Date('2025-06-03T10:00:00Z');
+    let mockDate = new Date('2025-06-03T10:00:00Z');
     jasmine.clock().mockDate(mockDate);
     component.timeLeft();
     expect(component.days).toBe(1);
     expect(component.hours).toBe(0);
     expect(component.minutes).toBe(0);
     expect(component.seconds).toBe(0);
+
+    mockDate = new Date('2025-06-05T10:00:00Z');
+    jasmine.clock().mockDate(mockDate);
+    spyOn(component.sub, 'unsubscribe').and.callThrough();
+    component.timeLeft();
+    expect(component.days).toBe(0);
+    expect(component.hours).toBe(0);
+    expect(component.minutes).toBe(0);
+    expect(component.seconds).toBe(0);
+    expect(component.sub.unsubscribe).toHaveBeenCalled();
   });
 
   it('should unsubscribe from interval on destroy', () => {
-    spyOn(component.sub, 'unsubscribe');
+    spyOn(component.sub, 'unsubscribe').and.callThrough();
     component.ngOnDestroy();
     expect(component.sub.unsubscribe).toHaveBeenCalled();
   });
