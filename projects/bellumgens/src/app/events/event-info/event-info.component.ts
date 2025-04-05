@@ -37,6 +37,12 @@ export class EventInfoComponent extends BaseDirective {
   public tournament: Tournament;
   public grouping: IGroupingExpression [];
   public signUpDisabled = false;
+  public closedTournaments = [
+    '1fe0af1f-7dfc-4476-db4d-08dd4cd5c5da',
+    '0232380e-c3d1-4c49-db4e-08dd4cd5c5da',
+    '9f2f02af-c09b-4d97-db4f-08dd4cd5c5da',
+    '5670bc9c-26e4-44d8-db50-08dd4cd5c5da'
+  ];
 
   constructor(private apiService: ApiTournamentsService,
               title: Title,
@@ -48,11 +54,9 @@ export class EventInfoComponent extends BaseDirective {
     this.activeRoute.params.subscribe(params => {
       if (params['tournamentId']) {
         this.tournamentId = params['tournamentId'];
-        if (this.tournamentId === '1fe0af1f-7dfc-4476-db4d-08dd4cd5c5da' ||
-            this.tournamentId === '0232380e-c3d1-4c49-db4e-08dd4cd5c5da' ||
-            this.tournamentId === '9f2f02af-c09b-4d97-db4f-08dd4cd5c5da') {
-          this.signUpDisabled = true;
-        }
+        this.signUpDisabled = this.closedTournaments.some(t => {
+          return t === this.tournamentId;
+        });
       }
       this.apiService.getTournament(this.tournamentId).subscribe(t => {
         if (t) {
