@@ -15,6 +15,7 @@
       }
       <h4 class="igx-card-header__subtitle">{{ player.username }}</h4>
     </div>
+    <div>
     @for (tournament of tournaments | async; track tournament.id) {
       <igx-grid
         cellSelection="none"
@@ -94,5 +95,6 @@
 
       </igx-grid>
     }
+    </div>
   </div>
 }
