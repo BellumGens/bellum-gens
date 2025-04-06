@@ -1130,6 +1130,14 @@
           <context context-type="linenumber">218,219</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="2504904946434533362" datatype="html">
+        <source>Bellum Gens offers wide exposure to sponsors and partners via its digital channels and on-side during offline events.</source>
+        <target>Белум Генс предлага широка публика на спонсорите и партньорите си чрез дигиталните си канали и на място по време на офлайн събитията.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">412,413</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="2038513265621613697" datatype="html">
         <source><x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;mailto:info@bellumgens.com&quot;&gt;"/>Contact us<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> if you wish to sponsor this or any of the other event organized by Bellum Gens. Our social media contacts can be found at the footer of the page.</source>
         <target><x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;mailto:info@bellumgens.com&quot;&gt;"/>Свържете се с нас<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> ако желаете да спонсорирате това или някое от другите събития организирани от Белум Генс. Нашите контакти могат да бъдат намерени в дъното на страницата.</target>
