@@ -39,12 +39,12 @@ export class EventsComponent extends BaseDirective implements OnDestroy {
     {name: 'Kim "Ryung" Dong-won', country: 'South Korea', race: 'Terran', team: 'Team Vitality', source: 'Asia Open Qualifier', image: '/assets/bge/silhouette.webp'},
     {name: 'Park "Zoun" Han-sol', country: 'South Korea', race: 'Protoss', team: '', source: 'Asia Open Qualifier', image: '/assets/bge/silhouette.webp'},
     {name: 'Lei "Rex" Hao-chen', country: 'Taiwan', race: 'Zerg', team: 'OFFSYDE Esports', source: 'Asia Open Qualifier', image: '/assets/bge/silhouette.webp'},
-    {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', source: 'Europe Open Qualifier', image: '/assets/bge/silhouette.webp'},
-    {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', source: 'Europe Open Qualifier', image: '/assets/bge/silhouette.webp'},
-    {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', source: 'Europe Open Qualifier', image: '/assets/bge/silhouette.webp'},
-    {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', source: 'Europe Open Qualifier', image: '/assets/bge/silhouette.webp'},
-    {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', source: 'Europe Open Qualifier', image: '/assets/bge/silhouette.webp'},
-    {name: 'TBA', country: 'TBA', race: 'TBA', team: 'TBA', source: 'Balkan Open Qualifier', image: '/assets/bge/silhouette.webp'},
+    {name: 'Nikita "SKillous" Gurevich', country: 'Russia', race: 'Protoss', team: 'Team Liquid', source: 'Europe Open Qualifier', image: '/assets/bge/players/11-skillous.png'},
+    {name: 'Yakov "YoungYakov" Moiseenko', country: 'Russia', race: 'Zerg', team: '', source: 'Europe Open Qualifier', image: '/assets/bge/players/23-youngyakov.png'},
+    {name: 'Piotr "Spirit" Walukiewicz', country: 'Poland', race: 'Terran', team: '', source: 'Europe Open Qualifier', image: '/assets/bge/players/10-spirit.png'},
+    {name: 'Kevin "Harstem" Koning', country: 'Netherlands', race: 'Protoss', team: 'Shopify Rebellion', source: 'Europe Open Qualifier', image: '/assets/bge/players/7-harstem.png'},
+    {name: 'Julian "Lambo" Brosig', country: 'Germany', race: 'Zerg', team: 'Shopify Rebellion', source: 'Europe Open Qualifier', image: '/assets/bge/players/8-lambo.png'},
+    {name: 'Peycho "Nitix" Ivanov', country: 'Bulgaria', race: 'Zerg', team: 'BSL', source: 'Balkan Open Qualifier', image: '/assets/bge/players/6-nitix.png'},
   ];
 
   // public talent = [
@@ -61,7 +61,7 @@ export class EventsComponent extends BaseDirective implements OnDestroy {
   public balkanQualifierId = '5670bc9c-26e4-44d8-db50-08dd4cd5c5da';
 
   // Timer for the event
-  public isoDate = '2025-03-29T14:00:00Z';
+  public isoDate = '2025-06-04T10:00:00Z';
   public announcementDate = new Date(this.isoDate);
   public seconds = 0;
   public minutes = 0;
