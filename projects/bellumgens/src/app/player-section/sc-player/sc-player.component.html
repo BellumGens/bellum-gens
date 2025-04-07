@@ -19,7 +19,7 @@
     @for (tournament of tournaments | async; track tournament.id) {
       <igx-grid
         cellSelection="none"
-        [height]="null"
+        [height]="tournament.sc2Matches.length > 12 ? '650px' : null"
         [data]="tournament.sc2Matches">
 
         <igx-grid-toolbar>
