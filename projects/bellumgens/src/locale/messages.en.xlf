@@ -784,6 +784,123 @@
           <context context-type="linenumber">220,221</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="6959936203181447238" datatype="html">
+        <source>Main Event Schedule</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">259,260</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6123798376631367642" datatype="html">
+        <source>12:00: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Pre-registration<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">272,273</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="33777882086491652" datatype="html">
+        <source>All day: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Media day<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">273,274</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5601862774876866680" datatype="html">
+        <source>18:00: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Meet the players<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">274,275</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7207399645442796110" datatype="html">
+        <source>12:00: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Registration<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">287,288</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1880591079069337312" datatype="html">
+        <source>14:00: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Opening Ceremony<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">288,289</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9153484461486095703" datatype="html">
+        <source>14:30: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Tournament begins<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">289,290</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3969682705292975814" datatype="html">
+        <source>12:00: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Registration<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> for late arrivals</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">302,303</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">317,318</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">332,333</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6308563765456279884" datatype="html">
+        <source>12:00: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Gates open<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">303,304</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">318,319</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8618036920452801675" datatype="html">
+        <source>13:00: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Tournament Day 2 begins<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">304,305</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8642571126748807813" datatype="html">
+        <source>13:00: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Tournament Day 3 begins<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">319,320</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1384467375879757585" datatype="html">
+        <source>13:00: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Gates open<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">333,334</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8955013050685944852" datatype="html">
+        <source>14:30: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Tournament Day 4 begins<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">334,335</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8090429982267312866" datatype="html">
+        <source>19:30: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Final Ceremony<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">335,336</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4364695115855023285" datatype="html">
+        <source>20:30: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Final<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">336,337</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="2943688585171103132" datatype="html">
         <source>The Venue</source>
         <context-group purpose="location">
@@ -963,7 +1080,7 @@
         <source><x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;mailto:info@bellumgens.com&quot;&gt;"/>Contact us<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> if you wish to sponsor this or any of the other event organized by Bellum Gens. Our social media contacts can be found at the footer of the page.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
-          <context context-type="linenumber">413,415</context>
+          <context context-type="linenumber">413,414</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7548649556415017077" datatype="html">

@@ -40,6 +40,10 @@
     margin-bottom: 12px;
   }
 
+  .content-container-column img {
+    margin: 0;
+  }
+
   @media screen and (min-width: 750px) and (max-width: 1024px) {
     .content-container-column iframe, .content-container-row iframe {
       width: 100%;
