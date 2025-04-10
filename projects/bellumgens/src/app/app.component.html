@@ -2,44 +2,45 @@
   <igx-nav-drawer [pinThreshold]="1600" id="navigation" #drawer>
     <ng-template igxDrawer>
       <span igxDrawerItem [isHeader]="true"></span>
-      @if (authUser) {
-        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="team/myteams">
-          <igx-icon>people</igx-icon>
-          <span i18n>My Teams</span>
-          @if (teams?.length > 0) {
-            <igx-badge class="notifications-badge" [value]="teams.length" type="info"></igx-badge>
-          }
-        </span>
-        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="notifications">
-          <igx-icon>notifications</igx-icon>
-          <span i18n>Notifications</span>
-          @if (unreadNotifications > 0) {
-            <igx-badge class="notifications-badge" [value]="unreadNotifications" type="info"></igx-badge>
-          }
-        </span>
-        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="strategies/user">
-          <igx-icon>person</igx-icon>
-          <span i18n>My Strategies</span>
-        </span>
-        <igx-divider></igx-divider>
-      }
-      <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" [routerLinkActiveOptions]="{ exact: true}" routerLink="bellumgenselite">
-        <igx-icon>emoji_events</igx-icon>
-        <span i18n>Bellum Gens Elite</span>
-      </span>
-      <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" [routerLinkActiveOptions]="{ exact: true}" routerLink="bellumgenselite/bge-balkan-circuit">
-        <igx-icon>sports_esports</igx-icon>
-        <span i18n>BGE Balkan Circuit</span>
-      </span>
-      <span igxDrawerItem igxRipple routerLink="/" fragment="partners">
-        <igx-icon>people_alt</igx-icon>
-        <span i18n>Partners</span>
-      </span>
-      <span igxDrawerItem igxRipple routerLink="/" fragment="contacts">
-        <igx-icon>chat</igx-icon>
-        <span i18n>Contacts</span>
-      </span>
-    </ng-template>
+			<igx-tree class="tree">
+        @if (authUser) {
+          <igx-tree-node [expanded]="true" igxRipple routerLinkActive="igx-tree-node__wrapper--active" routerLink="team/myteams">
+            <igx-icon>people</igx-icon>
+            <span i18n>My Teams</span>
+            @if (teams?.length > 0) {
+              <igx-badge class="notifications-badge" [value]="teams.length" type="info"></igx-badge>
+            }
+          </igx-tree-node>
+          <igx-tree-node [expanded]="true" igxRipple routerLinkActive="igx-tree-node__wrapper--active" routerLink="notifications">
+            <igx-icon>notifications</igx-icon>
+            <span i18n>Notifications</span>
+            @if (unreadNotifications > 0) {
+              <igx-badge class="notifications-badge" [value]="unreadNotifications" type="info"></igx-badge>
+            }
+          </igx-tree-node>
+          <igx-tree-node [expanded]="true" igxRipple routerLinkActive="igx-tree-node__wrapper--active" routerLink="strategies/user">
+            <igx-icon>person</igx-icon>
+            <span i18n>My Strategies</span>
+          </igx-tree-node>
+        }
+				<igx-tree-node [expanded]="true" routerLinkActive="igx-tree-node__wrapper--active" [routerLinkActiveOptions]="{ exact: true}" routerLink="bellumgenselite">
+					<igx-tree-node routerLink="bellumgenselite/bge-balkan-circuit">
+						<igx-icon>sports_esports</igx-icon>
+            <span i18n>BGE Balkan Circuit</span>
+					</igx-tree-node>
+          <igx-icon>emoji_events</igx-icon>
+          <span i18n>Bellum Gens Elite</span>
+        </igx-tree-node>
+        <igx-tree-node routerLinkActive="igx-tree-node__wrapper--active" routerLink="partners">
+          <igx-icon>people_alt</igx-icon>
+          <span i18n>Partners</span>
+        </igx-tree-node>
+        <igx-tree-node routerLinkActive="igx-tree-node__wrapper--active" [routerLinkActiveOptions]="{ exact: true}"  routerLink="/" fragment="contacts">
+          <igx-icon>chat</igx-icon>
+          <span i18n>Contacts</span>
+        </igx-tree-node>
+			</igx-tree>
+		</ng-template>
 
     @if (drawer.pin) {
       <ng-template igxDrawerMini>
@@ -68,10 +69,10 @@
         <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="bellumgenselite/bge-balkan-circuit" [routerLinkActiveOptions]="{ exact: true}" i18n-title title="BGE Balkan Circuit">
           <igx-icon>sports_esports</igx-icon>
         </span>
-        <span igxDrawerItem igxRipple routerLink="partners" i18n-title title="Partners">
+        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="partners" i18n-title title="Partners">
           <igx-icon>people_alt</igx-icon>
         </span>
-        <span igxDrawerItem igxRipple routerLink="/" fragment="contacts" i18n-title title="About us">
+        <span igxDrawerItem igxRipple routerLink="/" routerLinkActive="igx-nav-drawer__item--active" [routerLinkActiveOptions]="{ exact: true}" fragment="contacts" i18n-title title="About us">
           <igx-icon>chat</igx-icon>
         </span>
       </ng-template>

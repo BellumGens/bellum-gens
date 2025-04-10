@@ -18,6 +18,10 @@
     height: 44px;
   }
 
+  .igx-nav-drawer {
+    --igx-nav-drawer-size: 320px;
+  }
+
   @media only screen and (max-width: 720px) {
     .search-group {
       width: auto;
