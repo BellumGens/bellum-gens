@@ -28,7 +28,7 @@
     <p i18n>Join us live on <span class="highlight">{{ isoDate | date: 'long' }}</span> for Bellum Gens Elite Stara Zagora 2025!</p>
     <h2 style="align-self: center" i18n><span class="highlight">{{days}} {{days !== 1 ? 'days' : 'day'}} {{hours | number:'2.0-0'}}:{{minutes | number:'2.0-0'}}:{{seconds | number:'2.0-0'}}</span> left!</h2>
     <div class="horizontal-center space-evenly">
-      <button target="_blank" igxButton="contained" class="timer-cta-button" (click)="scrollTo('qualifiers')" i18n>Learn more</button>
+      <button target="_blank" igxButton="contained" class="timer-cta-button" (click)="scrollTo('main-event')" i18n>Learn more</button>
       <a href="https://www.twitch.tv/bge_starazagora" target="_blank" igxButton="contained" class="timer-cta-button" i18n>Watch on Twitch</a>
     </div>
   </div>
@@ -257,69 +257,91 @@
     <h2 i18n>Main Event Schedule</h2>
   </div>
 
-  <div id="main-event-schedule" class="content-container-row">
-    <div class="card-wrapper">
-      <igx-card>
-        <igx-card-header>
-          <div igxCardHeaderTitle>
-            {{ '2025-06-03' | date: 'longDate' }}
-          </div>
-        </igx-card-header>
-        <igx-card-content>
-          <ul>
-            <li i18n>12:00: <span class="highlight">Pre-registration</span></li>
-            <li i18n>All day: <span class="highlight">Media day</span></li>
-            <li i18n>18:00: <span class="highlight">Meet the players</span></li>
-          </ul>
-        </igx-card-content>
-      </igx-card>
+  <div id="main-event-schedule" class="content-container-column">
+    <igx-card>
+      <igx-card-media>
+        <img ngSrc="/assets/bge/2024-media-day.webp" width="600" height="400" alt="BGE Stara Zagora 2024: Media Day" />
+      </igx-card-media>
+      <igx-card-header>
+        <div igxCardHeaderTitle>
+          {{ '2025-06-03' | date: 'longDate' }}
+        </div>
+      </igx-card-header>
+      <igx-card-content>
+        <ul>
+          <li i18n>12:00: <span class="highlight">Pre-registration</span></li>
+          <li i18n>All day: <span class="highlight">Media day</span></li>
+          <li i18n>18:00: <span class="highlight">Meet the players</span></li>
+        </ul>
+      </igx-card-content>
+    </igx-card>
+  </div>
 
-      <igx-card>
-        <igx-card-header>
-          <div igxCardHeaderTitle>
-            {{ '2025-06-04' | date: 'longDate' }}
-          </div>
-        </igx-card-header>
-        <igx-card-content>
-          <ul>
-            <li i18n>12:00: <span class="highlight">Registration</span></li>
-            <li i18n>14:00: <span class="highlight">Opening Ceremony</span></li>
-            <li i18n>14:30: <span class="highlight">Tournament begins</span></li>
-          </ul>
-        </igx-card-content>
-      </igx-card>
+  <div class="content-container-column">
+    <igx-card>
+      <igx-card-media>
+        <img ngSrc="/assets/bge/2024-day-1.webp" width="600" height="400" alt="BGE Stara Zagora 2024: Day 1" />
+      </igx-card-media>
+      <igx-card-header>
+        <div igxCardHeaderTitle>
+          {{ '2025-06-04' | date: 'longDate' }}
+        </div>
+      </igx-card-header>
+      <igx-card-content>
+        <ul>
+          <li i18n>12:00: <span class="highlight">Registration</span></li>
+          <li i18n>14:00: <span class="highlight">Opening Ceremony</span></li>
+          <li i18n>14:30: <span class="highlight">Tournament begins</span></li>
+        </ul>
+      </igx-card-content>
+    </igx-card>
+  </div>
 
-      <igx-card>
-        <igx-card-header>
-          <div igxCardHeaderTitle>
-            {{ '2025-06-05' | date: 'longDate' }}
-          </div>
-        </igx-card-header>
-        <igx-card-content>
-          <ul>
-            <li i18n>12:00: <span class="highlight">Registration</span> for late arrivals</li>
-            <li i18n>12:00: <span class="highlight">Gates open</span></li>
-            <li i18n>13:00: <span class="highlight">Tournament Day 2 begins</span></li>
-          </ul>
-        </igx-card-content>
-      </igx-card>
+  <div class="content-container-column">
+    <igx-card>
+      <igx-card-media>
+        <img ngSrc="/assets/bge/2024-day-2.webp" width="600" height="400" alt="BGE Stara Zagora 2024: Day 2" />
+      </igx-card-media>
+      <igx-card-header>
+        <div igxCardHeaderTitle>
+          {{ '2025-06-05' | date: 'longDate' }}
+        </div>
+      </igx-card-header>
+      <igx-card-content>
+        <ul>
+          <li i18n>12:00: <span class="highlight">Registration</span> for late arrivals</li>
+          <li i18n>12:00: <span class="highlight">Gates open</span></li>
+          <li i18n>13:00: <span class="highlight">Tournament Day 2 begins</span></li>
+        </ul>
+      </igx-card-content>
+    </igx-card>
+  </div>
 
-      <igx-card>
-        <igx-card-header>
-          <div igxCardHeaderTitle>
-            {{ '2025-06-06' | date: 'longDate' }}
-          </div>
-        </igx-card-header>
-        <igx-card-content>
-          <ul>
-            <li i18n>12:00: <span class="highlight">Registration</span> for late arrivals</li>
-            <li i18n>12:00: <span class="highlight">Gates open</span></li>
-            <li i18n>13:00: <span class="highlight">Tournament Day 3 begins</span></li>
-          </ul>
-        </igx-card-content>
-      </igx-card>
+  <div class="content-container-column">
+    <igx-card>
+      <igx-card-media>
+        <img ngSrc="/assets/bge/2024-day-3.webp" width="600" height="400" alt="BGE Stara Zagora 2024: Day 3" />
+      </igx-card-media>
+      <igx-card-header>
+        <div igxCardHeaderTitle>
+          {{ '2025-06-06' | date: 'longDate' }}
+        </div>
+      </igx-card-header>
+      <igx-card-content>
+        <ul>
+          <li i18n>12:00: <span class="highlight">Registration</span> for late arrivals</li>
+          <li i18n>12:00: <span class="highlight">Gates open</span></li>
+          <li i18n>13:00: <span class="highlight">Tournament Day 3 begins</span></li>
+        </ul>
+      </igx-card-content>
+    </igx-card>
+  </div>
 
+  <div class="content-container-row center">
       <igx-card>
+        <igx-card-media>
+          <img ngSrc="/assets/bge/2024-final-day.webp" width="600" height="400" alt="BGE Stara Zagora 2024: Final Day" />
+        </igx-card-media>
         <igx-card-header>
           <div igxCardHeaderTitle>
             {{ '2025-06-07' | date: 'longDate' }}
@@ -335,8 +357,8 @@
           </ul>
         </igx-card-content>
       </igx-card>
-    </div>
   </div>
+  <div class="content-container-column"><!-- Just an empty container for layout slot --></div>
 
   <div class="content-container-column" id="venue">
     <img ngSrc="/assets/bge/bge-stage.webp" width="600" height="400" class="preview-image" alt="Summer Theater Stara Zagora" />
