@@ -29,7 +29,7 @@
     <h2 style="align-self: center" i18n><span class="highlight">{{days}} {{days !== 1 ? 'days' : 'day'}} {{hours | number:'2.0-0'}}:{{minutes | number:'2.0-0'}}:{{seconds | number:'2.0-0'}}</span> left!</h2>
     <div class="horizontal-center space-evenly">
       <button target="_blank" igxButton="contained" class="timer-cta-button" (click)="scrollTo('main-event')" i18n>Learn more</button>
-      <a href="https://www.twitch.tv/bge_starazagora" target="_blank" igxButton="contained" class="timer-cta-button" i18n>Watch on Twitch</a>
+      <a [href]="this.ticketsUrl" target="_blank" igxButton="contained" class="timer-cta-button" i18n>SECURE YOUR TICKET</a>
     </div>
   </div>
 
@@ -53,12 +53,13 @@
     <ul>
       <li i18n>StarCraft II</li>
       <li i18n>Main Event: <span class="highlight">4-7th</span> of June</li>
+      <li i18n><span class="highlight">€10000</span> prize pool and 1 slot at the <a href="https://esportsworldcup.com/en">EWC 2025</a> StarCraft II finals</li>
       <li><span class="highlight navigatable" i18n (click)="scrollTo('confirmed-players')">4 invited players</span></li>
       <li><span class="highlight navigatable" i18n (click)="scrollTo('qualified-players')">12 qualifying players</span></li>
       <li><span class="highlight navigatable" i18n (click)="scrollTo('venue')">Summer Theater - Stara Zagora</span></li>
-      <li><a [href]="this.ticketsUrl" target="_blank" i18n>Tickets Available Now</a></li>
+      <li i18n>The top placing player at BGE Stara Zagora 2025, who has not already qualified for EWC from a previous qualification event, earns a spot at the <a href="https://esportsworldcup.com/en">EWC 2025</a> StarCraft II.</li>
+      <li><a [href]="this.ticketsUrl" target="_blank" i18n>Tickets Available</a></li>
     </ul>
-    <p i18n>Stay tuned for more updates!</p>
   </div>
   <div class="content-container-column">
     <img ngSrc="/assets/bge/clem-champion-2.webp" width="600" height="400" class="preview-image" alt="BGE Stara Zagora 2024 Champion: Clem" />
