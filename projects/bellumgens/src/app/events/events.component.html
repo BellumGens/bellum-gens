@@ -232,6 +232,34 @@
     </igx-card>
   </div>
 
+  <div class="content-container-column">
+    <igx-card>
+      <igx-card-header>
+        <div igxCardHeaderTitle>
+          <span class="highlight" i18n>Wildcard Qualifier</span>
+        </div>
+        <div igxCardHeaderSubtitle>
+          {{ '2025-04-30T12:00:00Z' | date: 'medium' }}
+        </div>
+      </igx-card-header>
+      <igx-card-content>
+        <ul>
+          <li i18n>Open to all <span class="highlight">Grandmaster</span> players.</li>
+          <li i18n><span class="highlight">Top 2</span> players qualify</li>
+          <li i18n>Single-elimination bracket</li>
+          <li i18n>Registration deadline <span class="highlight">{{ '2025-04-29T12:00:00Z' | date: 'medium' }}</span></li>
+          <li i18n>Qualifier checkin <span class="highlight">{{ '2025-04-30T10:00:00Z' | date: 'medium' }}</span></li>
+        </ul>
+      </igx-card-content>
+      <igx-card-actions>
+        <!-- <a href="https://www.twitch.tv/bge_starazagora" igxEnd igxButton="outlined">Stream</a> -->
+        <a href="/assets/bge/Rulebook - BGE Stara Zagora 2025.pdf" igxEnd target="_blank" igxButton="outlined" i18n>View Rulebook</a>
+        <a igxButton="outlined" igxEnd [routerLink]="['events/', wildcardQualifierId]" i18n>View Participants</a>
+        <a igxButton="contained" igxEnd [routerLink]="['registration/', wildcardQualifierId]" i18n>Sign-up to participate</a>
+      </igx-card-actions>
+    </igx-card>
+  </div>
+
   <!-- <div id="telent" class="content-container-row">
     <h2 i18n>Talent</h2>
     <div class="card-wrapper">

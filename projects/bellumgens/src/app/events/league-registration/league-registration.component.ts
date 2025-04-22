@@ -94,7 +94,6 @@ export class LeagueRegistrationComponent {
     { name: $localize`Iceland`, value: `Iceland` },
     { name: $localize`Ireland`, value: `Ireland` },
     { name: $localize`Italy`, value: `Italy` },
-    { name: $localize`Kazakhstan`, value: `Kazakhstan` },
     { name: $localize`Kosovo`, value: `Kosovo` },
     { name: $localize`Latvia`, value: `Latvia` },
     { name: $localize`Liechtenstein`, value: `Liechtenstein` },
@@ -118,7 +117,6 @@ export class LeagueRegistrationComponent {
     { name: $localize`Spain`, value: `Spain` },
     { name: $localize`Sweden`, value: `Sweden` },
     { name: $localize`Switzerland`, value: `Switzerland` },
-    { name: $localize`Turkey`, value: `Turkey` },
     { name: $localize`Ukraine`, value: `Ukraine` },
     { name: $localize`United Kingdom`, value: `United Kingdom` },
     { name: $localize`Vatican City`, value: `Vatican City` }
@@ -162,6 +160,7 @@ export class LeagueRegistrationComponent {
     { name: $localize`Sri Lanka`, value: `Sri Lanka` },
     { name: $localize`Syria`, value: `Syria` },
     { name: $localize`Tajikistan`, value: `Tajikistan` },
+    { name: $localize`Taiwan`, value: `Taiwan` },
     { name: $localize`Thailand`, value: `Thailand` },
     { name: $localize`Turkey`, value: `Turkey` },
     { name: $localize`Turkmenistan`, value: `Turkmenistan` },
@@ -204,6 +203,22 @@ export class LeagueRegistrationComponent {
     { name: $localize`Uruguay`, value: `Uruguay` },
     { name: $localize`Venezuela`, value: `Venezuela` }
   ];
+  public oceaniaCountries = [
+    { name: $localize`Australia`, value: `Australia` },
+    { name: $localize`Fiji`, value: `Fiji` },
+    { name: $localize`Kiribati`, value: `Kiribati` },
+    { name: $localize`Marshall Islands`, value: `Marshall Islands` },
+    { name: $localize`Micronesia`, value: `Micronesia` },
+    { name: $localize`Nauru`, value: `Nauru` },
+    { name: $localize`New Zealand`, value: `New Zealand` },
+    { name: $localize`Palau`, value: `Palau` },
+    { name: $localize`Papua New Guinea`, value: `Papua New Guinea` },
+    { name: $localize`Samoa`, value: `Samoa` },
+    { name: $localize`Solomon Islands`, value: `Solomon Islands` },
+    { name: $localize`Tonga`, value: `Tonga` },
+    { name: $localize`Tuvalu`, value: `Tuvalu` },
+    { name: $localize`Vanuatu`, value: `Vanuatu` }
+  ];
 
   public countriesList = this.balkanCountries;
 
@@ -223,6 +238,8 @@ export class LeagueRegistrationComponent {
             this.countriesList = this.asiaCountries;
           } else if (this.tournament?.name.includes('Americas')) {
             this.countriesList = this.americasCountries;
+          } else if (this.tournament?.name.includes('Wildcard')) {
+            this.countriesList = [].concat(this.europeCountries, this.asiaCountries, this.americasCountries, this.oceaniaCountries).sort((a, b) => a.name > b.name ? 1 : -1);
           }
         });
       } else {
