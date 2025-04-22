@@ -59,6 +59,7 @@ export class EventsComponent extends BaseDirective implements OnDestroy {
   public asiaQualifierId = '0232380e-c3d1-4c49-db4e-08dd4cd5c5da';
   public europeQualifierId = '9f2f02af-c09b-4d97-db4f-08dd4cd5c5da';
   public balkanQualifierId = '5670bc9c-26e4-44d8-db50-08dd4cd5c5da';
+  public wildcardQualifierId = '0e92f9ed-ca3d-450f-70e3-08dd81aa33d9';
 
   // Timer for the event
   public isoDate = '2025-06-04T10:00:00Z';

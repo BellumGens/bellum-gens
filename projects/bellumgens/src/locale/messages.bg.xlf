@@ -810,6 +810,22 @@
           <context context-type="linenumber">227,228</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="6149557426948409242" datatype="html">
+        <source>Wildcard Qualifier</source>
+        <target>Wildcard Квалификация</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">239,240</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4367761339366186814" datatype="html">
+        <source>Open to all <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Grandmaster<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> players.</source>
+        <target>Отворена за всички <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Грандмастър<x id="CLOSE_TAG_SPAN" equiv-text="&lt;/span&gt;"/> играчи.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">247,248</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="6959936203181447238" datatype="html">
         <source>Main Event Schedule</source>
         <target>Програма</target>
@@ -1326,20 +1342,20 @@
           <context context-type="linenumber">131,135</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4663840469486658953" datatype="html">
-        <source>Registrations are restricted to participants from the Balkan countries. Registrations have no age restrictions. Registrations for this event are not in any way binding and participation can be halted by the registrant at any point of time. Registrations can also be deleted by the user through the user profile settings menu.</source>
-        <target>Регистрациите са ограничени за участници от балканските държави. Регистрациите нямат възрастови ограничения. Регистрациите за това събитие по никакъв начин не са обвъзващи и участието може да бъде спряно от регистранта по всяко време. Регистрациите могат също да бъдат изтрити от потребителя чрез менюто за настройки на потребителския профил.</target>
+      <trans-unit id="5644969683089713886" datatype="html">
+        <source>Registrations are restricted to participants from the countries in the selected region. Registrations have no age restrictions. Registrations for this event are not in any way binding and participation can be halted by the registrant at any point of time. Registrations can also be deleted by the user through the user profile settings menu.</source>
+        <target>Регистрациите са ограничени за участници от страните в избрания регион. Регистрациите нямат възрастови ограничения. Регистрациите за това събитие по никакъв начин не са обвъзващи и участието може да бъде спряно от регистранта по всяко време. Регистрациите могат също да бъдат изтрити от потребителя чрез менюто за настройки на потребителския профил.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.html</context>
-          <context context-type="linenumber">139,140</context>
+          <context context-type="linenumber">154,155</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1336455998508715892" datatype="html">
-        <source>Registrations show intent for participation, but weekly participation would require timely weekly check-ins and being on-time for the matches. All applicants must reside <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>in one of the listed Balkan countries<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>. If an applicant is discovered to permanently reside outside of the listed Balkan countries, that would lead to <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>permanent disqualification<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> from the league and nullification of any points earned.</source>
-        <target>Регистрациите показват желание за участие, но седмичното участие изисква своевременни седмични проверки и да бъдете на време за мачовете. Всички кандидати трябва да пребивават <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>в една от изброените балкански държави<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>. Ако се установи, че кандидатът постоянно пребивава извън изброените балкански държави, това ще доведе до <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>перманентна дисквалификация<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> от лигата и анулиране на всички спечелени точки.</target>
+      <trans-unit id="8026823367716088157" datatype="html">
+        <source>Registrations show intent for participation, but participation would require timely check-ins and being on-time for the matches. All applicants must reside <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>in one of the listed countries<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>. If an applicant is discovered to permanently reside outside of the listed countries for the region, that would lead to <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>permanent disqualification<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> from the league and nullification of any points and/or rewards earned.</source>
+        <target>Регистрациите показват намерение за участие, но участието изисква навременен чекин и спазване на графика за мачовете. Всички кандидати трябва да живеят <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>в една от изброените държави<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>. Ако бъде открито, че регистрантът живее постоянно извън изброените държави за региона, това би довело до <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>перманентна дисквалификация<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> от лигата и анулиране на всякакви точки и/или награди.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.html</context>
-          <context context-type="linenumber">135,136</context>
+          <context context-type="linenumber">155,156</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6298533831788441520" datatype="html">
@@ -2058,6 +2074,14 @@
           <context context-type="linenumber">164</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="1812990033467917873" datatype="html">
+        <source>Taiwan</source>
+        <target>Тайван</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
+          <context context-type="linenumber">163</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="2040543873210054611" datatype="html">
         <source>Thailand</source>
         <target>Тайланд</target>
@@ -2360,6 +2384,118 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
           <context context-type="linenumber">205</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="797743923912773831" datatype="html">
+        <source>Australia</source>
+        <target>Австралия</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
+          <context context-type="linenumber">207</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7688915885626198194" datatype="html">
+        <source>Fiji</source>
+        <target>Фиджи</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
+          <context context-type="linenumber">208</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3050899002311904259" datatype="html">
+        <source>Kiribati</source>
+        <target>Кирибати</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
+          <context context-type="linenumber">209</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2592002115951925734" datatype="html">
+        <source>Marshall Islands</source>
+        <target>Маршалски острови</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
+          <context context-type="linenumber">210</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2869766744074512908" datatype="html">
+        <source>Micronesia</source>
+        <target>Микронезия</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
+          <context context-type="linenumber">211</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="217956830164259077" datatype="html">
+        <source>Nauru</source>
+        <target>Науру</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
+          <context context-type="linenumber">212</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3591085113786124083" datatype="html">
+        <source>New Zealand</source>
+        <target>Нова Зеландия</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
+          <context context-type="linenumber">213</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="680993875033620982" datatype="html">
+        <source>Palau</source>
+        <target>Палау</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
+          <context context-type="linenumber">214</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2090013391283494370" datatype="html">
+        <source>Papua New Guinea</source>
+        <target>Папуа Нова Гвинея</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
+          <context context-type="linenumber">215</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3921381038816272025" datatype="html">
+        <source>Samoa</source>
+        <target>Самоа</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
+          <context context-type="linenumber">216</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1353381156110688148" datatype="html">
+        <source>Solomon Islands</source>
+        <target>Соломонови острови</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
+          <context context-type="linenumber">217</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6930151682144775692" datatype="html">
+        <source>Tonga</source>
+        <target>Тонга</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
+          <context context-type="linenumber">218</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3086562963920355958" datatype="html">
+        <source>Tuvalu</source>
+        <target>Тувалу</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
+          <context context-type="linenumber">219</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3911861600857028021" datatype="html">
+        <source>Vanuatu</source>
+        <target>Вануату</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
+          <context context-type="linenumber">220</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5236769307780685681" datatype="html">
