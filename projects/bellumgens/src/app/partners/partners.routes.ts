@@ -128,7 +128,7 @@ export const routes: Routes = [
           url: 'https://www.stackit.de/en/',
           partnerImage: '/assets/partners/Sponsors-stackit.png',
           expose: [
-            '🎉We are thrilled to announce our partnership with STACKIT. This collaboration underscores STACKIT\'s unwavering commitment to enhancing the esports landscape by supporting one of the major StarCraft II events of the year.🎮✨',
+            '🎉 We are thrilled to announce our partnership with STACKIT. 🎮✨',
             'STACKIT - THE SOVEREIGN CLOUD FOR EUROPE',
             'We are the cloud provider of Schwarz Group – Europe‘s largest retailer. We were born out of the need for maximum sovereignty. With our sovereign and secure solutions, we now support customers from all over Europe and you in your digital transformation. Our support teams operating in the EU can provide you with expert advice on all questions relating to migration, target architecture, cloud assessment and platform reengineering at any time.',
             'STACKIT offers you more than just the cloud. Together with a broad network of partners, we support you holistically with individual approaches to the operation and implementation of cloud solutions that perfectly suit your needs. If required, we also offer colocation services. As a provider based in the EU and exclusively using EU data centers, we strengthen your digital sovereignty to the maximum.',
@@ -138,17 +138,17 @@ export const routes: Routes = [
             {
               name: 'Facebook',
               icon: 'facebook',
-              url: 'https://www.facebook.com/bulstream'
+              url: 'https://www.facebook.com/schwarzitbg'
             },
             {
               name: 'Instagram',
               icon: 'instagram',
-              url: 'https://www.instagram.com/bulstreamcom/'
+              url: 'https://www.instagram.com/schwarzit.bg/'
             },
             {
               name: 'LinkedIn',
               icon: 'linkedin',
-              url: 'https://www.linkedin.com/company/bulstream'
+              url: 'https://www.linkedin.com/company/schwarz-it-bulgaria/'
             }
           ]
         }
