@@ -19,6 +19,13 @@
       <img igxPrefix ngSrc="/assets/partners/bulstream.png" width="220" height="200" class="partner-image" alt="BulStream" title="BulStream" />
     </igx-tab-header>
   </igx-tab-item>
+
+  <igx-tab-item routerLinkActive #rla4="routerLinkActive"
+                [selected]="rla4.isActive">
+    <igx-tab-header routerLink="stackit">
+      <img igxPrefix ngSrc="/assets/partners/STACKIT_Logo_CMYK_Regular_Petrol-MZ_PNG-Mid.png" width="200" height="200" class="partner-image" alt="STACKIT" title="STACKIT" />
+    </igx-tab-header>
+  </igx-tab-item>
 </igx-tabs>
 
 <router-outlet></router-outlet>
