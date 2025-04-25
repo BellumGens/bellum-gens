@@ -62,7 +62,7 @@ export class EventsComponent extends BaseDirective implements OnDestroy {
   public wildcardQualifierId = '0e92f9ed-ca3d-450f-70e3-08dd81aa33d9';
 
   // Timer for the event
-  public isoDate = '2025-06-04T10:00:00Z';
+  public isoDate = '2025-04-30T12:00:00Z';
   public announcementDate = new Date(this.isoDate);
   public seconds = 0;
   public minutes = 0;
