@@ -37,6 +37,8 @@ describe('EventsComponent', () => {
   });
 
   it('should calculate time left correctly', () => {
+    component.isoDate = '2025-06-04T10:00:00Z';
+    component.announcementDate = new Date('2025-06-04T10:00:00Z');
     let mockDate = new Date('2025-06-03T10:00:00Z');
     jasmine.clock().mockDate(mockDate);
     component.timeLeft();
