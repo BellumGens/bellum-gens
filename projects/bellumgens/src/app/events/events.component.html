@@ -25,10 +25,10 @@
   </div>
 
   <div class="content-container-column">
-    <p i18n>Join us live on <span class="highlight">{{ isoDate | date: 'long' }}</span> for Bellum Gens Elite Stara Zagora 2025!</p>
+    <p i18n>Join us live on <span class="highlight">{{ isoDate | date: 'long' }}</span> for Bellum Gens Elite Stara Zagora 2025 Wildcard Qualifier!</p>
     <h2 style="align-self: center" i18n><span class="highlight">{{days}} {{days !== 1 ? 'days' : 'day'}} {{hours | number:'2.0-0'}}:{{minutes | number:'2.0-0'}}:{{seconds | number:'2.0-0'}}</span> left!</h2>
     <div class="horizontal-center space-evenly">
-      <button target="_blank" igxButton="contained" class="timer-cta-button" (click)="scrollTo('main-event')" i18n>Learn more</button>
+      <button target="_blank" igxButton="contained" class="timer-cta-button" (click)="scrollTo('qualifiers')" i18n>Learn more</button>
       <a [href]="this.ticketsUrl" target="_blank" igxButton="contained" class="timer-cta-button" i18n>SECURE YOUR TICKET</a>
     </div>
   </div>
@@ -125,7 +125,7 @@
   </div>
 
   <div class="content-container-column">
-    <igx-card>
+    <igx-card class="qualifier-card">
       <igx-card-header>
         <div igxCardHeaderTitle>
           <span class="highlight" i18n>Americas Open Qualifier</span>
@@ -136,11 +136,9 @@
       </igx-card-header>
       <igx-card-content>
         <ul>
-          <li i18n>Open to all <span class="highlight">Grandmaster</span> players from the <span class="highlight">Americas region</span></li>
-          <li i18n><span class="highlight">Top 2</span> players qualify</li>
-          <li i18n>Single-elimination bracket</li>
-          <li i18n>Registration deadline <span class="highlight">{{ '2025-03-14T16:00:00Z' | date: 'medium' }}</span></li>
-          <li i18n>Qualifier checkin <span class="highlight">{{ '2025-03-15T14:00:00Z' | date: 'medium' }}</span></li>
+          <li i18n><span class="highlight">Top 2</span> players qualified</li>
+          <li i18n><span class="highlight">Yoon "trigger" Hong</span> qualified with a top seed spot.</li>
+          <li i18n><span class="highlight">Joseph "Future" Stanish</span> qualified with a bottom seed spot.</li>
         </ul>
       </igx-card-content>
       <igx-card-actions>
@@ -152,7 +150,7 @@
   </div>
 
   <div class="content-container-column">
-    <igx-card>
+    <igx-card class="qualifier-card">
       <igx-card-header>
         <div igxCardHeaderTitle>
           <span class="highlight" i18n>Asia Open Qualifier</span>
@@ -163,11 +161,10 @@
       </igx-card-header>
       <igx-card-content>
         <ul>
-          <li i18n>Open to all <span class="highlight">Grandmaster</span> players from the <span class="highlight">Asia region</span></li>
-          <li i18n><span class="highlight">Top 4</span> players qualify</li>
-          <li i18n>Single-elimination bracket</li>
-          <li i18n>Registration deadline <span class="highlight">{{ '2025-03-21T08:00:00Z' | date: 'medium' }}</span></li>
-          <li i18n>Qualifier checkin <span class="highlight">{{ '2025-03-22T06:00:00Z' | date: 'medium' }}</span></li>
+          <li i18n><span class="highlight">Top 4</span> players qualified</li>
+          <li i18n><span class="highlight">Cho "Maru" Seong-ju</span> and <span class="highlight">Park "Zoun" Han-sol</span> qualified with top seed spots.</li>
+          <li i18n><span class="highlight">Kim "Ryung" Dong-won</span> and <span class="highlight">Lei "Rex" Hao-chen</span> qualified with bottom seed spots.</li>
+          <li i18n>UPDATE: <span class="highlight">Cho "Maru" Seong-ju</span> and <span class="highlight">Lei "Rex" Hao-chen</span> forfeited their spots.</li>
         </ul>
       </igx-card-content>
       <igx-card-actions>
@@ -179,7 +176,7 @@
   </div>
 
   <div class="content-container-column">
-    <igx-card>
+    <igx-card class="qualifier-card">
       <igx-card-header>
         <div igxCardHeaderTitle>
           <span class="highlight" i18n>Europe Open Qualifier</span>
@@ -190,11 +187,9 @@
       </igx-card-header>
       <igx-card-content>
         <ul>
-          <li i18n>Open to all <span class="highlight">Grandmaster</span> players from the <span class="highlight">Europe region</span></li>
-          <li i18n><span class="highlight">Top 5</span> players qualify</li>
-          <li i18n>Single-elimination bracket</li>
-          <li i18n>Registration deadline <span class="highlight">{{ '2025-03-28T14:00:00Z' | date: 'medium' }}</span></li>
-          <li i18n>Qualifier checkin <span class="highlight">{{ '2025-03-29T12:00:00Z' | date: 'medium' }}</span></li>
+          <li i18n><span class="highlight">Top 5</span> players qualified</li>
+          <li i18n><span class="highlight">Kevin "Harstem" Koning</span> qualified with a top seed spot.</li>
+          <li i18n><span class="highlight">Nikita "SKillous" Gurevich</span>, <span class="highlight">Yakov "YoungYakov" Moiseenko</span>, <span class="highlight">Piotr "Spirit" Walukiewicz</span>, <span class="highlight">Julian "Lambo" Brosig</span> qualified with bottom seed spots.</li>
         </ul>
       </igx-card-content>
       <igx-card-actions>
@@ -206,7 +201,7 @@
   </div>
 
   <div class="content-container-column">
-    <igx-card>
+    <igx-card class="qualifier-card">
       <igx-card-header>
         <div igxCardHeaderTitle>
           <span class="highlight" i18n>Balkan Open Qualifier</span>
@@ -217,11 +212,8 @@
       </igx-card-header>
       <igx-card-content>
         <ul>
-          <li i18n>Open to all <span class="highlight">Grandmaster</span> players from the <span class="highlight">Balkan region</span></li>
-          <li i18n><span class="highlight">Top</span> player qualifies</li>
-          <li i18n>Single-elimination bracket</li>
-          <li i18n>Registration deadline <span class="highlight">{{ '2025-04-04T13:00:00Z' | date: 'medium' }}</span></li>
-          <li i18n>Qualifier checkin <span class="highlight">{{ '2025-04-05T11:00:00Z' | date: 'medium' }}</span></li>
+          <li i18n><span class="highlight">Top</span> player qualified</li>
+          <li i18n><span class="highlight">Peycho "Nitix" Ivanov</span> qualified with a bottom seed spot.</li>
         </ul>
       </igx-card-content>
       <igx-card-actions>
@@ -233,7 +225,7 @@
   </div>
 
   <div class="content-container-column">
-    <igx-card>
+    <igx-card class="qualifier-card">
       <igx-card-header>
         <div igxCardHeaderTitle>
           <span class="highlight" i18n>Wildcard Qualifier</span>
@@ -300,6 +292,7 @@
         <ul>
           <li i18n>12:00: <span class="highlight">Pre-registration</span></li>
           <li i18n>All day: <span class="highlight">Media day</span></li>
+          <li i18n>All day: <span class="highlight">Player setup</span></li>
           <li i18n>18:00: <span class="highlight">Meet the players</span></li>
         </ul>
       </igx-card-content>
@@ -321,6 +314,7 @@
           <li i18n>12:00: <span class="highlight">Registration</span></li>
           <li i18n>14:00: <span class="highlight">Opening Ceremony</span></li>
           <li i18n>14:30: <span class="highlight">Tournament begins</span></li>
+          <li i18n>22:30: <span class="highlight">Afterparty</span> TBA</li>
         </ul>
       </igx-card-content>
     </igx-card>
@@ -341,6 +335,7 @@
           <li i18n>12:00: <span class="highlight">Registration</span> for late arrivals</li>
           <li i18n>12:00: <span class="highlight">Gates open</span></li>
           <li i18n>13:00: <span class="highlight">Tournament Day 2 begins</span></li>
+          <li i18n>22:30: <span class="highlight">Afterparty</span> TBA</li>
         </ul>
       </igx-card-content>
     </igx-card>
@@ -361,6 +356,7 @@
           <li i18n>12:00: <span class="highlight">Registration</span> for late arrivals</li>
           <li i18n>12:00: <span class="highlight">Gates open</span></li>
           <li i18n>13:00: <span class="highlight">Tournament Day 3 begins</span></li>
+          <li i18n>22:30: <span class="highlight">Afterparty</span> TBA</li>
         </ul>
       </igx-card-content>
     </igx-card>
@@ -387,7 +383,6 @@
         </igx-card-content>
       </igx-card>
   </div>
-  <div class="content-container-column"><!-- Just an empty container for layout slot --></div>
 
   <div class="content-container-column" id="venue">
     <img ngSrc="/assets/bge/bge-stage.webp" width="600" height="400" class="preview-image" alt="Summer Theater Stara Zagora" />
@@ -471,11 +466,13 @@
     <h2 id="partners" i18n>Partners</h2>
     <div class="horizontal-center">
       <a routerLink="/partners/visit-stara-zagora" i18n-title title="Visit Stara Zagora">
-        <img ngSrc="/assets/partners/visit-stara-zagora.png" width="519" height="330" i18n-alt alt="Visit Stara Zagora" class="partner gold" />
+        <img ngSrc="/assets/partners/visit-stara-zagora.png" width="380" height="242" i18n-alt alt="Visit Stara Zagora" class="partner platinum" />
       </a>
-      <!-- <a routerLink="/partners/techhub" title="TechHub.bg">
-        <img ngSrc="/assets/partners/Logo_Techhub_white.png" width="512" height="512" alt="TechHub.bg" class="partner gold" />
-      </a> -->
+    </div>
+    <div class="horizontal-center">
+      <a routerLink="/partners/stackit" title="STACKIT">
+        <img ngSrc="/assets/partners/STACKIT_Logo_RGB_Regular_White-MZ.svg" width="250" height="250" alt="STACKIT" class="partner gold" />
+      </a>
     </div>
   </div>
 

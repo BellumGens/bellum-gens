@@ -44,6 +44,10 @@
     margin: 0;
   }
 
+  .qualifier-card {
+    min-height: 335px;
+  }
+
   @media screen and (min-width: 750px) and (max-width: 1024px) {
     .content-container-column iframe, .content-container-row iframe {
       width: 100%;
