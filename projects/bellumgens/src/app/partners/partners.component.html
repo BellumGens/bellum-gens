@@ -26,6 +26,13 @@
       <img igxPrefix ngSrc="/assets/partners/STACKIT_Logo_RGB_Regular_White-MZ.svg" width="240" height="200" class="partner-image" alt="STACKIT" title="STACKIT" />
     </igx-tab-header>
   </igx-tab-item>
+
+  <igx-tab-item routerLinkActive #rla5="routerLinkActive"
+                [selected]="rla5.isActive">
+    <igx-tab-header routerLink="pcbuild">
+      <img igxPrefix ngSrc="/assets/partners/STACKIT_Logo_RGB_Regular_White-MZ.svg" width="240" height="200" class="partner-image" alt="PCBuild" title="PCBuild" />
+    </igx-tab-header>
+  </igx-tab-item>
 </igx-tabs>
 
 <router-outlet></router-outlet>

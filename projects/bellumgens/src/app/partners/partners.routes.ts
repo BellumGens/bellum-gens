@@ -152,6 +152,49 @@ export const routes: Routes = [
             }
           ]
         }
+      },
+      {
+        path: 'pcbuild', component: PartnerComponent, data: {
+          title: 'Bellum Gens Partners: PCBuild',
+          twitterTitle: 'Bellum Gens Partners: PCBuild',
+          description: 'Bellum Gens partners and sponsors are the best in the business. Check out who supports us.',
+          twitterDescription: 'Bellum Gens partners and sponsors are the best in the business. Check out who supports us.',
+          name: 'PCBuild',
+          url: 'https://pcbuild.bg/',
+          partnerImage: '/assets/partners/Sponsors-pcbuild.png',
+          expose: [
+            $localize`🎉 We are thrilled to announce our new strategic partnership with PCBuild! 🖥️✨`,
+            $localize`PCBuild specializes in assembling high-performance gaming configurations and is dedicated to supporting Bellum Gens Elite Stara Zagora 2025 and the esports community by providing gamers with the highest quality equipment possible. With their cutting-edge technology, expertly built systems, and commitment to excellence, PCBuild empowers players to realize their full potential and achieve greatness in the competitive gaming world. 🎮🏆`,
+            $localize`Together, we aim to elevate the esports experience and bring unparalleled performance to our players and fans!`
+          ],
+          social: [
+            {
+              name: 'Facebook',
+              icon: 'facebook',
+              url: 'https://www.facebook.com/pcbuildingbg/'
+            },
+            {
+              name: 'Instagram',
+              icon: 'instagram',
+              url: 'https://www.instagram.com/pcbuild.bg/'
+            },
+            {
+              name: 'YouTube',
+              icon: 'youtube',
+              url: 'https://www.youtube.com/channel/UCJDFgTEwJhFWG8zBB4Eghyg'
+            },
+            {
+              name: 'Twitch',
+              icon: 'twitch',
+              url: 'https://www.twitch.tv/pcbuildbg'
+            },
+            {
+              name: 'Discord',
+              icon: 'discord',
+              url: 'https://discord.com/invite/jKFQUxb'
+            }
+          ]
+        }
       }
     ]
   },

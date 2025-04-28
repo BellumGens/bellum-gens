@@ -2924,6 +2924,30 @@
           <context context-type="linenumber">15,18</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="2243485073259889346" datatype="html">
+        <source>🎉 We are thrilled to announce our new strategic partnership with PCBuild! 🖥️✨</source>
+        <target>🎉 Въодушевени сме да обявим нашето ново стратегическо партньорство с PCBuild! 🖥️✨</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/partners/partners.routes.ts</context>
+          <context context-type="linenumber">166</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="296030692561761159" datatype="html">
+        <source>PCBuild specializes in assembling high-performance gaming configurations and is dedicated to supporting Bellum Gens Elite Stara Zagora 2025 and the esports community by providing gamers with the highest quality equipment possible. With their cutting-edge technology, expertly built systems, and commitment to excellence, PCBuild empowers players to realize their full potential and achieve greatness in the competitive gaming world. 🎮🏆</source>
+        <target>PCBuild е специализирана в сглобяването на конфигурации за игри с висока производителност и е посветена на подкрепата на Bellum Gens Elite Стара Загора 2025 и общността на електронните спортове, предоставяйки на геймърите най-висококачественото оборудване. Със своите иновационни технологии, експертно изградени системи и ангажимент към съвършенството, PCBuild дава възможност на играчите да реализират пълния си потенциал и да постигнат величие в света на компетативните игри. 🎮🏆</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/partners/partners.routes.ts</context>
+          <context context-type="linenumber">167</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7168893699958069353" datatype="html">
+        <source>Together, we aim to elevate the esports experience and bring unparalleled performance to our players and fans!</source>
+        <target>Заедно, ние се стремим да подобрим преживяването на електронните спортове и да предоставим безпрецедентна производителност на нашите играчи и фенове!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/partners/partners.routes.ts</context>
+          <context context-type="linenumber">168</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="387452309157752775" datatype="html">
         <source>Steam Counter-Strike player profile not found...</source>
         <target>Steam Counter-Strike профилът не е намерен...</target>
