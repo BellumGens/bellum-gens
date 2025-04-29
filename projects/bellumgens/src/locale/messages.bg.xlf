@@ -2948,6 +2948,46 @@
           <context context-type="linenumber">168</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="450410873033102549" datatype="html">
+        <source>🎉🎓 Bellum Gens Elite Stara Zagora 2025 and Healthy GG Announce New Academic Research Partnership! 🖥️✨</source>
+        <target>🎉🎓 Bellum Gens Elite Стара Загора 2025 и Healthy GG обявяват ново партньорство в сферата на академичните изследвания! 🖥️✨</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/partners/partners.routes.ts</context>
+          <context context-type="linenumber">209</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6922415618747116378" datatype="html">
+        <source>We are thrilled to announce an exciting new partnership between Bellum Gens Elite Stara Zagora 2025 and Healthy GG. This collaboration aims to integrate academic excellence with mental health support, providing a holistic approach to the well-being and development of our community. 🎮🏆⚕️</source>
+        <target>Въодушевени сме да обявим вълнуващо ново партньорство между Bellum Gens Elite Стара Загора 2025 и Healthy GG. Тази колаборация цели да интегрира академичното съвършенство с подкрепата за психичното здраве, предоставяйки холистичен подход към благосъстоянието и развитието на нашата общност. 🎮🏆⚕️</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/partners/partners.routes.ts</context>
+          <context context-type="linenumber">210</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1696364850969881058" datatype="html">
+        <source>During BGE Stara Zagora we will host Andrzej Białecki, a PhD student at Warsaw University of Technology, and previously Józef Piłsudski University of Physical Education in Warsaw. He strives to learn more about various aspects of esports, and how to inform players to become better.</source>
+        <target>По време на BGE Стара Загора ще посрещнем Анджей Бялецки, докторант в Техническия университет на Варшава, и преди това в Университета по физическо възпитание на Юзеф Пилсудски във Варшава. Той се стреми да научи повече за различни аспекти на електронните спортове и как да информира играчите да станат по-добри.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/partners/partners.routes.ts</context>
+          <context context-type="linenumber">211</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4687458603872755412" datatype="html">
+        <source>We will leverage a system designed to display the live heart rate of the players to see how they react to the in-game stimuli. This system was designed by Andrzej with assistance of Marcin Warda.</source>
+        <target>Ние ще използваме система, проектирана да показва живото сърдечен ритъм на играчите, за да видим как реагират на игровите стимули. Тази система е проектирана от Анджей с помощта на Марчин Варда.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/partners/partners.routes.ts</context>
+          <context context-type="linenumber">212</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2910340113988560707" datatype="html">
+        <source>The live capture system was first introduced at a Polish tournament by Daniel Grabka.</source>
+        <target>Системата за живо улавяне беше представена за първи път на полски турнир от Даниел Грабка.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/partners/partners.routes.ts</context>
+          <context context-type="linenumber">213</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="387452309157752775" datatype="html">
         <source>Steam Counter-Strike player profile not found...</source>
         <target>Steam Counter-Strike профилът не е намерен...</target>
