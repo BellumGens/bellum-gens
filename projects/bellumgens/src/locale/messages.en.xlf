@@ -142,7 +142,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">179</context>
+          <context context-type="linenumber">185</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2296994854636737106" datatype="html">
@@ -153,7 +153,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">182</context>
+          <context context-type="linenumber">188</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5303831169234339262" datatype="html">
@@ -164,7 +164,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">185</context>
+          <context context-type="linenumber">191</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6509103536762295146" datatype="html">
@@ -175,7 +175,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">188</context>
+          <context context-type="linenumber">194</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5728193055695832804" datatype="html">
@@ -186,7 +186,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">191</context>
+          <context context-type="linenumber">197</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2809790251364949499" datatype="html">
@@ -197,7 +197,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">194</context>
+          <context context-type="linenumber">200</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8172743349871739865" datatype="html">
@@ -208,7 +208,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">197</context>
+          <context context-type="linenumber">203</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3511633367981687214" datatype="html">
@@ -1156,45 +1156,45 @@
         <source>Organized With</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
-          <context context-type="linenumber">481,482</context>
+          <context context-type="linenumber">487,488</context>
         </context-group>
       </trans-unit>
       <trans-unit id="207202375710949952" datatype="html">
         <source>Bulgarian StarCraft League a one of a kind StarCraft II league in Bulgaria and are contributing to the development of Bulgarian talent in this esport! All StarCraft 2 games in the Esports Business League are casted by the them!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
-          <context context-type="linenumber">484</context>
+          <context context-type="linenumber">490</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
-          <context context-type="linenumber">485</context>
+          <context context-type="linenumber">491</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">148</context>
+          <context context-type="linenumber">154</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">149</context>
+          <context context-type="linenumber">155</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6815496918999616976" datatype="html">
         <source>Stara Zagora is a 6000+ year-old city in the center of Bulgaria. We partner with Stara Zagora Municipality for the Bellum Gens Elite - Stara Zagora premier esports event!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
-          <context context-type="linenumber">487</context>
+          <context context-type="linenumber">493</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
-          <context context-type="linenumber">488</context>
+          <context context-type="linenumber">494</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">151</context>
+          <context context-type="linenumber">157</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">152</context>
+          <context context-type="linenumber">158</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7507103395208336060" datatype="html">
@@ -1212,7 +1212,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">207,208</context>
+          <context context-type="linenumber">213,214</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/registration/registration.component.html</context>
@@ -2517,25 +2517,25 @@
         <source>Follow us for updates</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">174,175</context>
+          <context context-type="linenumber">180,181</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1144407473317535723" datatype="html">
         <source>Subscribe</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">202,204</context>
+          <context context-type="linenumber">208,210</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">220,221</context>
+          <context context-type="linenumber">226,227</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3413422463415844699" datatype="html">
         <source>Get email updates from us!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">217</context>
+          <context context-type="linenumber">223</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6265705198318613754" datatype="html">
@@ -2581,7 +2581,7 @@
         <source>If you&apos;re interested in our sponsorship opportunities, <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;mailto:info@bellumgens.com&quot;&gt;"/>get in touch<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/partners/partners.component.html</context>
-          <context context-type="linenumber">40,41</context>
+          <context context-type="linenumber">47,48</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2652114921227048505" datatype="html">
@@ -2645,6 +2645,41 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/partners/partners.routes.ts</context>
           <context context-type="linenumber">168</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="450410873033102549" datatype="html">
+        <source>🎉🎓 Bellum Gens Elite Stara Zagora 2025 and Healthy GG Announce New Academic Research Partnership! 🖥️✨</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/partners/partners.routes.ts</context>
+          <context context-type="linenumber">209</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6922415618747116378" datatype="html">
+        <source>We are thrilled to announce an exciting new partnership between Bellum Gens Elite Stara Zagora 2025 and Healthy GG. This collaboration aims to integrate academic excellence with mental health support, providing a holistic approach to the well-being and development of our community. 🎮🏆⚕️</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/partners/partners.routes.ts</context>
+          <context context-type="linenumber">210</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1696364850969881058" datatype="html">
+        <source>During BGE Stara Zagora we will host Andrzej Białecki, a PhD student at Warsaw University of Technology, and previously Józef Piłsudski University of Physical Education in Warsaw. He strives to learn more about various aspects of esports, and how to inform players to become better.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/partners/partners.routes.ts</context>
+          <context context-type="linenumber">211</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4687458603872755412" datatype="html">
+        <source>We will leverage a system designed to display the live heart rate of the players to see how they react to the in-game stimuli. This system was designed by Andrzej with assistance of Marcin Warda.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/partners/partners.routes.ts</context>
+          <context context-type="linenumber">212</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2910340113988560707" datatype="html">
+        <source>The live capture system was first introduced at a Polish tournament by Daniel Grabka.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/partners/partners.routes.ts</context>
+          <context context-type="linenumber">213</context>
         </context-group>
       </trans-unit>
       <trans-unit id="387452309157752775" datatype="html">

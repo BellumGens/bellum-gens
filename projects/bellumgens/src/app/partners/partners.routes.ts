@@ -195,6 +195,36 @@ export const routes: Routes = [
             }
           ]
         }
+      },
+      {
+        path: 'healthygg', component: PartnerComponent, data: {
+          title: 'Bellum Gens Partners: Healthy GG',
+          twitterTitle: 'Bellum Gens Partners: Healthy GG',
+          description: 'Bellum Gens partners and sponsors are the best in the business. Check out who supports us.',
+          twitterDescription: 'Bellum Gens partners and sponsors are the best in the business. Check out who supports us.',
+          name: 'Healthy GG',
+          url: 'https://healthygg.org/',
+          partnerImage: '/assets/partners/Sponsors-hgg.png',
+          expose: [
+            $localize`🎉🎓 Bellum Gens Elite Stara Zagora 2025 and Healthy GG Announce New Academic Research Partnership! 🖥️✨`,
+            $localize`We are thrilled to announce an exciting new partnership between Bellum Gens Elite Stara Zagora 2025 and Healthy GG. This collaboration aims to integrate academic excellence with mental health support, providing a holistic approach to the well-being and development of our community. 🎮🏆⚕️`,
+            $localize`During BGE Stara Zagora we will host Andrzej Białecki, a PhD student at Warsaw University of Technology, and previously Józef Piłsudski University of Physical Education in Warsaw. He strives to learn more about various aspects of esports, and how to inform players to become better.`,
+            $localize`We will leverage a system designed to display the live heart rate of the players to see how they react to the in-game stimuli. This system was designed by Andrzej with assistance of Marcin Warda.`,
+            $localize`The live capture system was first introduced at a Polish tournament by Daniel Grabka.`
+          ],
+          social: [
+            {
+              name: 'Twitter',
+              icon: 'twitter',
+              url: 'https://x.com/Kaszanas'
+            },
+            {
+              name: 'Github',
+              icon: 'github',
+              url: 'https://github.com/Kaszanas'
+            }
+          ]
+        }
       }
     ]
   },
