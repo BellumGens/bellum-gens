@@ -52,7 +52,7 @@ import { QuickSearchComponent } from './search/quick-search/quick-search.compone
 import { SearchComponent } from './search/search/search.component';
 import { LoginComponent } from '../../../common/src/lib/login/login.component';
 import { LanguagesComponent } from '../../../common/src/lib/languages/languages.component';
-import { battlenet, discord, facebook, heartCare, instagram, linkedin, steam, tiktok, twitch, twitter, youtube } from '@igniteui/material-icons-extended';
+import { battlenet, discord, facebook, heartCare, instagram, linkedin, steam, tiktok, twitch, twitter, youtube, github } from '@igniteui/material-icons-extended';
 import { IgxResourceStringsBG } from 'igniteui-angular-i18n';
 
 @Component({
@@ -154,7 +154,7 @@ export class AppComponent implements OnInit {
   }
 
   private initSvgIcons() {
-    const complogos = [discord, steam, twitch, battlenet, facebook, twitter, instagram, linkedin, tiktok, youtube];
+    const complogos = [discord, steam, twitch, battlenet, facebook, twitter, instagram, linkedin, tiktok, youtube, github];
     complogos.forEach(c => this.iconService.addSvgIconFromText(c.name, c.value, 'login-icons', true));
     this.iconService.addSvgIconFromText(heartCare.name, heartCare.value, 'health-icons');
 
