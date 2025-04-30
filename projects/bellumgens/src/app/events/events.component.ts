@@ -38,7 +38,7 @@ export class EventsComponent extends BaseDirective implements OnDestroy {
     {name: 'Krystian "Krystianer" Szczęsny', country: 'Poland', race: 'Protoss', team: 'OFFSYDE Esports', source: 'Wildcard Qualifier', image: '/assets/bge/silhouette.webp'},
     {name: 'Kim "Ryung" Dong-won', country: 'South Korea', race: 'Terran', team: 'Team Vitality', source: 'Asia Open Qualifier', image: '/assets/bge/players/8-ryung.png'},
     {name: 'Park "Zoun" Han-sol', country: 'South Korea', race: 'Protoss', team: 'Team Vitality', source: 'Asia Open Qualifier', image: '/assets/bge/players/10-zoun.png'},
-    {name: 'Lei "Rex" Hao-chen', country: 'Taiwan', race: 'Zerg', team: 'OFFSYDE Esports', source: 'FORFEITED Asia Open Qualifier', image: '/assets/bge/players/10-rex.png'},
+    {name: 'Lev "Shameless" Bondarenko', country: 'Russia', race: 'Protoss', team: 'LittleFairy', source: 'Wildcard Qualifier', image: '/assets/bge/silhouette.webp'},
     {name: 'Nikita "SKillous" Gurevich', country: '', race: 'Protoss', team: 'Team Liquid', source: 'Europe Open Qualifier', image: '/assets/bge/players/11-skillous.png'},
     {name: 'Yakov "YoungYakov" Moiseenko', country: 'Russia', race: 'Zerg', team: '', source: 'Europe Open Qualifier', image: '/assets/bge/players/23-youngyakov.png'},
     {name: 'Piotr "Spirit" Walukiewicz', country: 'Poland', race: 'Terran', team: 'ROC Esports', source: 'Europe Open Qualifier', image: '/assets/bge/players/10-spirit.png'},
