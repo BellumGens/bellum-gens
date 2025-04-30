@@ -41,7 +41,8 @@ export class EventInfoComponent extends BaseDirective {
     '1fe0af1f-7dfc-4476-db4d-08dd4cd5c5da',
     '0232380e-c3d1-4c49-db4e-08dd4cd5c5da',
     '9f2f02af-c09b-4d97-db4f-08dd4cd5c5da',
-    '5670bc9c-26e4-44d8-db50-08dd4cd5c5da'
+    '5670bc9c-26e4-44d8-db50-08dd4cd5c5da',
+    '0e92f9ed-ca3d-450f-70e3-08dd81aa33d9'
   ];
 
   constructor(private apiService: ApiTournamentsService,
