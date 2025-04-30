@@ -469,9 +469,10 @@
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
           <context context-type="linenumber">8,9</context>
         </context-group>
-      </trans-unit><trans-unit id="3209775387456379988" datatype="html">
-        <source>Join us live on <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ isoDate | date: &apos;long&apos; }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> for Bellum Gens Elite Stara Zagora 2025 Wildcard Qualifier!</source>
-        <target>Присъединете се на живо на <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ isoDate | date: &apos;long&apos; }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> за Белум Генс Елит Стара Загора 2025 Wildcard Квалификацията!</target>
+      </trans-unit>
+      <trans-unit id="6406397948626139390" datatype="html">
+        <source>Join us live on <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ isoDate | date: &apos;long&apos; }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> for Bellum Gens Elite Stara Zagora 2025!</source>
+        <target>Присъединете се на живо на <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ isoDate | date: &apos;long&apos; }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> за Белум Генс Елит Стара Загора 2025!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
           <context context-type="linenumber">28,29</context>
@@ -2948,17 +2949,17 @@
           <context context-type="linenumber">168</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="450410873033102549" datatype="html">
-        <source>🎉🎓 Bellum Gens Elite Stara Zagora 2025 and Healthy GG Announce New Academic Research Partnership! 🖥️✨</source>
-        <target>🎉🎓 Bellum Gens Elite Стара Загора 2025 и Healthy GG обявяват ново партньорство в сферата на академичните изследвания! 🖥️✨</target>
+      <trans-unit id="8355108187325349825" datatype="html">
+        <source>🎉🎓 Bellum Gens Elite Stara Zagora 2025 and HealthyGG Announce New Academic Research Partnership! 🖥️✨</source>
+        <target>🎉🎓 Bellum Gens Elite Стара Загора 2025 и HealthyGG обявяват ново партньорство в сферата на академичните изследвания! 🖥️✨</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/partners/partners.routes.ts</context>
           <context context-type="linenumber">209</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6922415618747116378" datatype="html">
-        <source>We are thrilled to announce an exciting new partnership between Bellum Gens Elite Stara Zagora 2025 and Healthy GG. This collaboration aims to integrate academic excellence with mental health support, providing a holistic approach to the well-being and development of our community. 🎮🏆⚕️</source>
-        <target>Въодушевени сме да обявим вълнуващо ново партньорство между Bellum Gens Elite Стара Загора 2025 и Healthy GG. Тази колаборация цели да интегрира академичното съвършенство с подкрепата за психичното здраве, предоставяйки холистичен подход към благосъстоянието и развитието на нашата общност. 🎮🏆⚕️</target>
+      <trans-unit id="6159948669693773162" datatype="html">
+        <source>We are thrilled to announce an exciting new partnership between Bellum Gens Elite Stara Zagora 2025 and HealthyGG. This collaboration aims to integrate academic excellence with insights on performance, and broadcast technology. 🎮🏆⚕️</source>
+        <target>Въодушевени сме да обявим новото партньорство между Bellum Gens Elite Стара Загора 2025 и HealthyGG. Тази колаборация цели да интегрира академичното съвършенство с увеличение на производителността и технологиите за предаване. 🎮🏆⚕️</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/partners/partners.routes.ts</context>
           <context context-type="linenumber">210</context>

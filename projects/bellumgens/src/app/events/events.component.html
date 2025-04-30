@@ -25,10 +25,10 @@
   </div>
 
   <div class="content-container-column">
-    <p i18n>Join us live on <span class="highlight">{{ isoDate | date: 'long' }}</span> for Bellum Gens Elite Stara Zagora 2025 Wildcard Qualifier!</p>
+    <p i18n>Join us live on <span class="highlight">{{ isoDate | date: 'long' }}</span> for Bellum Gens Elite Stara Zagora 2025!</p>
     <h2 style="align-self: center" i18n><span class="highlight">{{days}} {{days !== 1 ? 'days' : 'day'}} {{hours | number:'2.0-0'}}:{{minutes | number:'2.0-0'}}:{{seconds | number:'2.0-0'}}</span> left!</h2>
     <div class="horizontal-center space-evenly">
-      <button target="_blank" igxButton="contained" class="timer-cta-button" (click)="scrollTo('qualifiers')" i18n>Learn more</button>
+      <button target="_blank" igxButton="contained" class="timer-cta-button" (click)="scrollTo('main-event')" i18n>Learn more</button>
       <a [href]="this.ticketsUrl" target="_blank" igxButton="contained" class="timer-cta-button" i18n>SECURE YOUR TICKET</a>
     </div>
   </div>
@@ -246,8 +246,7 @@
       <igx-card-actions>
         <!-- <a href="https://www.twitch.tv/bge_starazagora" igxEnd igxButton="outlined">Stream</a> -->
         <a href="/assets/bge/Rulebook - BGE Stara Zagora 2025.pdf" igxEnd target="_blank" igxButton="outlined" i18n>View Rulebook</a>
-        <a igxButton="outlined" igxEnd [routerLink]="['events/', wildcardQualifierId]" i18n>View Participants</a>
-        <a igxButton="contained" igxEnd [routerLink]="['registration/', wildcardQualifierId]" i18n>Sign-up to participate</a>
+        <a igxButton="contained" igxEnd [routerLink]="['events/', wildcardQualifierId]" i18n>View Participants</a>
       </igx-card-actions>
     </igx-card>
   </div>
@@ -476,8 +475,8 @@
       <a routerLink="/partners/pcbuild" title="PCBuild">
         <img ngSrc="/assets/partners/PC-Build-Logo-Vector color.svg" width="100" height="100" style="margin: 0 50px;" alt="PCBuild" class="partner gold" />
       </a>
-      <a routerLink="/partners/healthygg" title="Healthy GG">
-        <img ngSrc="/assets/partners/hgg-01resized.png" width="200" height="100" alt="Healthy GG" class="partner gold" />
+      <a routerLink="/partners/healthygg" title="HealthyGG">
+        <img ngSrc="/assets/partners/hgg-01resized.png" width="200" height="100" alt="HealthyGG" class="partner gold" />
       </a>
     </div>
   </div>
