@@ -829,6 +829,14 @@
           <context context-type="linenumber">243,244</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="7492310905765634524" datatype="html">
+        <source>Talent</source>
+        <target>Таланти</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">255,256</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="6959936203181447238" datatype="html">
         <source>Main Event Schedule</source>
         <target>Програма</target>
