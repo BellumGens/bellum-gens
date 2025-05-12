@@ -35,10 +35,10 @@ export class EventsComponent extends BaseDirective implements OnDestroy {
   public qualifiedPlayers = [
     {name: 'Yoon "trigger" Hong', country: 'Canada', race: 'Protoss', team: 'BASILISK', source: 'Americas Open Qualifier', image: '/assets/bge/players/6-trigger.png'},
     {name: 'Joseph "Future" Stanish', country: 'United States of America', race: 'Terran', team: 'Matcherino', source: 'Americas Open Qualifier', image: '/assets/bge/players/5-future.png'},
-    {name: 'Krystian "Krystianer" Szczęsny', country: 'Poland', race: 'Protoss', team: 'OFFSYDE Esports', source: 'Wildcard Qualifier', image: '/assets/bge/silhouette.webp'},
+    {name: 'Krystian "Krystianer" Szczęsny', country: 'Poland', race: 'Protoss', team: 'OFFSYDE Esports', source: 'Wildcard Qualifier', image: '/assets/bge/players/7-krystianer.png'},
     {name: 'Kim "Ryung" Dong-won', country: 'South Korea', race: 'Terran', team: 'Team Vitality', source: 'Asia Open Qualifier', image: '/assets/bge/players/8-ryung.png'},
     {name: 'Park "Zoun" Han-sol', country: 'South Korea', race: 'Protoss', team: 'Team Vitality', source: 'Asia Open Qualifier', image: '/assets/bge/players/10-zoun.png'},
-    {name: 'Lev "Shameless" Bondarenko', country: 'Russia', race: 'Protoss', team: 'LittleFairy', source: 'Wildcard Qualifier', image: '/assets/bge/silhouette.webp'},
+    {name: 'Mateusz "Gerald" Budziak', country: 'Poland', race: 'Protoss', source: 'Wildcard Qualifier', team: 'Streamerzone', image: '/assets/bge/players/10-gerald.png'},
     {name: 'Nikita "SKillous" Gurevich', country: '', race: 'Protoss', team: 'Team Liquid', source: 'Europe Open Qualifier', image: '/assets/bge/players/11-skillous.png'},
     {name: 'Yakov "YoungYakov" Moiseenko', country: 'Russia', race: 'Zerg', team: '', source: 'Europe Open Qualifier', image: '/assets/bge/players/23-youngyakov.png'},
     {name: 'Piotr "Spirit" Walukiewicz', country: 'Poland', race: 'Terran', team: 'ROC Esports', source: 'Europe Open Qualifier', image: '/assets/bge/players/10-spirit.png'},
