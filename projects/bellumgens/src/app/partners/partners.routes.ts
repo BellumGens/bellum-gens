@@ -225,6 +225,39 @@ export const routes: Routes = [
             }
           ]
         }
+      },
+      {
+        path: 'asrock', component: PartnerComponent, data: {
+          title: 'Bellum Gens Partners: ASRock',
+          twitterTitle: 'Bellum Gens Partners: ASRock',
+          description: 'Bellum Gens partners and sponsors are the best in the business. Check out who supports us.',
+          twitterDescription: 'Bellum Gens partners and sponsors are the best in the business. Check out who supports us.',
+          name: 'ASRock',
+          url: 'https://www.asrock.com/',
+          partnerImage: '/assets/partners/Sponsors-asrock.png',
+          expose: [
+            $localize`🎉 We are thrilled to announce that ASRock has partnered with Bellum Gens Elite Stara Zagora 2025 to bring you an unforgettable esports experience! This collaboration marks a significant milestone in the world of competitive gaming, combining ASRock's cutting-edge technology with the high-energy atmosphere of Bellum Gens Elite. 🖥️✨`,
+            $localize`About ASRock: Founded in 2002, ASRock Inc. is a leading Taiwanese manufacturer specializing in motherboards, industrial PCs, and home theater PCs (HTPC). Known for its innovative designs and high-quality products, ASRock has established itself as a major player in the global computer hardware industry. With a commitment to providing top-tier gaming solutions, ASRock's Phantom Gaming product line caters to gamers, professionals, and PC enthusiasts alike. 🎮🏆`,
+            $localize`Together, ASRock and Bellum Gens Elite Stara Zagora 2025 aim to elevate the esports experience to new heights, providing gamers and fans with state-of-the-art technology and thrilling gameplay. Stay tuned for more updates and join us in celebrating this exciting partnership!`
+          ],
+          social: [
+            {
+              name: 'Facebook',
+              icon: 'facebook',
+              url: 'https://www.facebook.com/ASRockInfo'
+            },
+            {
+              name: 'Instagram',
+              icon: 'instagram',
+              url: 'https://www.instagram.com/asrock_official/'
+            },
+            {
+              name: 'YouTube',
+              icon: 'youtube',
+              url: 'https://www.youtube.com/@ASRockInfo'
+            }
+          ]
+        }
       }
     ]
   },

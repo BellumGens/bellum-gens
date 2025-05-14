@@ -2997,6 +2997,30 @@
           <context context-type="linenumber">213</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="4000384183183588588" datatype="html">
+        <source>🎉 We are thrilled to announce that ASRock has partnered with Bellum Gens Elite Stara Zagora 2025 to bring you an unforgettable esports experience! This collaboration marks a significant milestone in the world of competitive gaming, combining ASRock&apos;s cutting-edge technology with the high-energy atmosphere of Bellum Gens Elite. 🖥️✨</source>
+        <target>🎉 Въодушевени сме да обявим партньорство между ASRock и Bellum Gens Elite Стара Загора 2025, за да ви предостави незабравимо преживяване в електронните спортове! Тази колаборация е значителна стъпка напред в света на компетативните игри, комбинирайки иновационната технология на ASRock с високата енергия на Bellum Gens Elite. 🖥️✨</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/partners/partners.routes.ts</context>
+          <context context-type="linenumber">239</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6825562224880341142" datatype="html">
+        <source>About ASRock: Founded in 2002, ASRock Inc. is a leading Taiwanese manufacturer specializing in motherboards, industrial PCs, and home theater PCs (HTPC). Known for its innovative designs and high-quality products, ASRock has established itself as a major player in the global computer hardware industry. With a commitment to providing top-tier gaming solutions, ASRock&apos;s Phantom Gaming product line caters to gamers, professionals, and PC enthusiasts alike. 🎮🏆</source>
+        <target>За ASRock: Основана през 2002 г., ASRock Inc. е водещ тайвански производител, специализиран в дънни платки, индустриални компютри и домашни театрални компютри (HTPC). Известна със своите иновационни дизайни и висококачествени продукти, ASRock се утвърди като основен играч в световната индустрия на компютърния хардуер. С ангажимент за предоставяне на решения от най-висок клас за игри, продуктовата линия Phantom Gaming на ASRock е насочена към геймъри, професионалисти и ентусиасти на PC.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/partners/partners.routes.ts</context>
+          <context context-type="linenumber">240</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4200418415628452622" datatype="html">
+        <source>Together, ASRock and Bellum Gens Elite Stara Zagora 2025 aim to elevate the esports experience to new heights, providing gamers and fans with state-of-the-art technology and thrilling gameplay. Stay tuned for more updates and join us in celebrating this exciting partnership!</source>
+        <target>Заедно, ASRock и Bellum Gens Elite Стара Загора 2025 имат за цел да издигнат преживяването в електронните спортове до нови висоти, предоставяйки на геймърите и феновете иновационна технология и вълнуваща игра. Останете с нас за повече актуализации и се присъединете към нас в празнуването на това вълнуващо партньорство!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/partners/partners.routes.ts</context>
+          <context context-type="linenumber">241</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="387452309157752775" datatype="html">
         <source>Steam Counter-Strike player profile not found...</source>
         <target>Steam Counter-Strike профилът не е намерен...</target>
