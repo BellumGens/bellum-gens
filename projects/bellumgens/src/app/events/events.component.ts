@@ -29,7 +29,7 @@ export class EventsComponent extends BaseDirective implements OnDestroy {
     {name: 'Joona "Serral" Sotala', country: 'Finland', race: 'Zerg', team: 'BASILISK', source: 'Replaces Li "Oliveira" Peinan', image: '/assets/bge/players/1-serral.webp'},
     // {name: 'Li "Oliveira" Peinan', country: 'China', race: 'Terran', team: 'DKZ Gaming', source: 'Runner-up BGE Stara Zagora 2024', image: '/assets/bge/players/5-oliveira.webp'},
     {name: 'Riccardo "Reynor" Romiti', country: 'Italy', race: 'Zerg', team: 'BASILISK', source: '3rd place BGE Stara Zagora 2024', image: '/assets/bge/players/3-reynor.webp'},
-    {name: 'Tobias "ShoWTimE" Sieber', country: 'Germany', race: 'Protoss', team: 'BIG', source: '4th place BGE Stara Zagora 2024', image: '/assets/bge/players/4-showtime.webp'},
+    {name: 'Tobias "ShoWTimE" Sieber', country: 'Germany', race: 'Protoss', team: 'Sentinels', source: '4th place BGE Stara Zagora 2024', image: '/assets/bge/players/4-showtime.webp'},
   ];
 
   public qualifiedPlayers = [
