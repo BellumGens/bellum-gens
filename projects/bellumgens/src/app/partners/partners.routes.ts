@@ -258,6 +258,59 @@ export const routes: Routes = [
             }
           ]
         }
+      },
+      {
+        path: 'deepcool', component: PartnerComponent, data: {
+          title: 'Bellum Gens Partners: DeepCool',
+          twitterTitle: 'Bellum Gens Partners: DeepCool',
+          description: 'Bellum Gens partners and sponsors are the best in the business. Check out who supports us.',
+          twitterDescription: 'Bellum Gens partners and sponsors are the best in the business. Check out who supports us.',
+          name: 'DeepCool',
+          url: 'https://www.deepcool.com',
+          partnerImage: '/assets/partners/Sponsors-deepcool.png',
+          expose: [
+            $localize`🎉 We are thrilled to announce a partnership between DeepCool, a leading innovator in computer hardware and cooling solutions, and Bellum Gens Elite Stara Zagora 2025, Bulgaria's premier esports event. 🖥️🥶✨`,
+            $localize`About DeepCool: Founded in 1996 and headquartered in Beijing, DeepCool has been at the forefront of providing high-performance cooling parts and thermal solutions globally. With a commitment to innovation and quality, DeepCool's product range includes air and water CPU coolers, computer cases, power supplies, and various computer peripherals. Their dedication to sustainability and excellence is evident through their ISO14000 environmental management standards and continuous improvements in energy-saving and consumption reduction. 🎮🏆`,
+            $localize`This partnership aims to enhance the esports experience by integrating DeepCool's cutting-edge technology with the thrilling competition of Bellum Gens Elite. Together, we are committed to pushing the boundaries of performance and entertainment, ensuring that both players and fans enjoy the best possible gaming environment.`
+          ],
+          social: [
+            {
+              name: 'YouTube',
+              icon: 'youtube',
+              url: 'https://www.youtube.com/@DeepcoolOfficial-1999/featured'
+            },
+            {
+              name: 'Facebook',
+              icon: 'facebook',
+              url: 'https://www.facebook.com/deepcoolglobal'
+            },
+            {
+              name: 'Twitter',
+              icon: 'twitter',
+              url: 'https://twitter.com/Deepcoolglobal'
+            },
+            {
+              name: 'Instagram',
+              icon: 'instagram',
+              url: 'https://www.instagram.com/deepcoolofficial/'
+            },
+            {
+              name: 'TikTok',
+              icon: 'tiktok',
+              url: 'https://www.tiktok.com/@deepcoolofficial'
+            },
+            {
+              name: 'LinkedIn',
+              icon: 'linkedin',
+              url: 'https://www.linkedin.com/company/deepcool/'
+            },
+            {
+              name: 'Discord',
+              icon: 'discord',
+              url: 'https://discord.com/invite/bqBgjpnh5d'
+            }
+          ]
+        }
       }
     ]
   },

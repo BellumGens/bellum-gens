@@ -142,7 +142,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">188</context>
+          <context context-type="linenumber">191</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2296994854636737106" datatype="html">
@@ -153,7 +153,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">191</context>
+          <context context-type="linenumber">194</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5303831169234339262" datatype="html">
@@ -164,7 +164,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">194</context>
+          <context context-type="linenumber">197</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6509103536762295146" datatype="html">
@@ -175,7 +175,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">197</context>
+          <context context-type="linenumber">200</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5728193055695832804" datatype="html">
@@ -186,7 +186,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">200</context>
+          <context context-type="linenumber">203</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2809790251364949499" datatype="html">
@@ -197,7 +197,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">203</context>
+          <context context-type="linenumber">206</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8172743349871739865" datatype="html">
@@ -208,7 +208,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">206</context>
+          <context context-type="linenumber">209</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3511633367981687214" datatype="html">
@@ -1159,30 +1159,11 @@
         <source>Organized With</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
-          <context context-type="linenumber">489,490</context>
+          <context context-type="linenumber">492,493</context>
         </context-group>
       </trans-unit>
       <trans-unit id="207202375710949952" datatype="html">
         <source>Bulgarian StarCraft League a one of a kind StarCraft II league in Bulgaria and are contributing to the development of Bulgarian talent in this esport! All StarCraft 2 games in the Esports Business League are casted by the them!</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
-          <context context-type="linenumber">492</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
-          <context context-type="linenumber">493</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">157</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">158</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6815496918999616976" datatype="html">
-        <source>Stara Zagora is a 6000+ year-old city in the center of Bulgaria. We partner with Stara Zagora Municipality for the Bellum Gens Elite - Stara Zagora premier esports event!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
           <context context-type="linenumber">495</context>
@@ -1200,6 +1181,25 @@
           <context context-type="linenumber">161</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="6815496918999616976" datatype="html">
+        <source>Stara Zagora is a 6000+ year-old city in the center of Bulgaria. We partner with Stara Zagora Municipality for the Bellum Gens Elite - Stara Zagora premier esports event!</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">498</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">499</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
+          <context context-type="linenumber">163</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
+          <context context-type="linenumber">164</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="7507103395208336060" datatype="html">
         <source>You need to be logged in to register for the tournament.</source>
         <context-group purpose="location">
@@ -1215,7 +1215,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">216,217</context>
+          <context context-type="linenumber">219,220</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/registration/registration.component.html</context>
@@ -2520,25 +2520,25 @@
         <source>Follow us for updates</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">183,184</context>
+          <context context-type="linenumber">186,187</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1144407473317535723" datatype="html">
         <source>Subscribe</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">211,213</context>
+          <context context-type="linenumber">214,216</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">229,230</context>
+          <context context-type="linenumber">232,233</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3413422463415844699" datatype="html">
         <source>Get email updates from us!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">226</context>
+          <context context-type="linenumber">229</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6265705198318613754" datatype="html">
@@ -2584,7 +2584,7 @@
         <source>If you&apos;re interested in our sponsorship opportunities, <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;mailto:info@bellumgens.com&quot;&gt;"/>get in touch<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/partners/partners.component.html</context>
-          <context context-type="linenumber">54,55</context>
+          <context context-type="linenumber">61,62</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2652114921227048505" datatype="html">
@@ -2704,6 +2704,27 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/partners/partners.routes.ts</context>
           <context context-type="linenumber">241</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2596886871439214002" datatype="html">
+        <source>🎉 We are thrilled to announce a partnership between DeepCool, a leading innovator in computer hardware and cooling solutions, and Bellum Gens Elite Stara Zagora 2025, Bulgaria&apos;s premier esports event. 🖥️🥶✨</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/partners/partners.routes.ts</context>
+          <context context-type="linenumber">272</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2916539162111123075" datatype="html">
+        <source>About DeepCool: Founded in 1996 and headquartered in Beijing, DeepCool has been at the forefront of providing high-performance cooling parts and thermal solutions globally. With a commitment to innovation and quality, DeepCool&apos;s product range includes air and water CPU coolers, computer cases, power supplies, and various computer peripherals. Their dedication to sustainability and excellence is evident through their ISO14000 environmental management standards and continuous improvements in energy-saving and consumption reduction. 🎮🏆</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/partners/partners.routes.ts</context>
+          <context context-type="linenumber">273</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4891732221717471804" datatype="html">
+        <source>This partnership aims to enhance the esports experience by integrating DeepCool&apos;s cutting-edge technology with the thrilling competition of Bellum Gens Elite. Together, we are committed to pushing the boundaries of performance and entertainment, ensuring that both players and fans enjoy the best possible gaming environment.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/partners/partners.routes.ts</context>
+          <context context-type="linenumber">274</context>
         </context-group>
       </trans-unit>
       <trans-unit id="387452309157752775" datatype="html">
