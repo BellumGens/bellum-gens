@@ -54,19 +54,14 @@ $include: (
 );
 
 /* Navbar */
-$navbar-theme: navbar-theme($background: $background-gradient,
+$navbar-theme: navbar-theme($background: $background,
                             $shadow: 0px 15px 30px 0px rgba(0,0,0,0.4));
 @include css-vars($navbar-theme);
 /* END Navbar */
 
 /* Nav Drawer */
-$navdrawer-theme: navdrawer-theme($background: $background-gradient,
-                                  $item-hover-background: rgba(0, 0, 0, 0.11),
-                                  $item-active-background: rgba(0, 0, 0, 0.11),
-                                  $item-active-text-color: $secondary,
-                                  $item-active-icon-color: $secondary,
-                                  $item-hover-text-color: $secondary,
-                                  $item-hover-icon-color: $secondary);
+$navdrawer-theme: navdrawer-theme($item-hover-background: rgba(0, 0, 0, 0.5),
+                                  $item-active-background: rgba(0, 0, 0, 0.5));
 @include css-vars($navdrawer-theme);
 /* END Nav Drawer */
 
