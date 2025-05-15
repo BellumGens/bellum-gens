@@ -47,6 +47,13 @@
       <img igxPrefix ngSrc="/assets/partners/ASRock_en_w.png" width="200" height="50" class="partner-image" alt="ASRock" title="ASRock" />
     </igx-tab-header>
   </igx-tab-item>
+
+  <igx-tab-item routerLinkActive #rla8="routerLinkActive"
+                [selected]="rla8.isActive">
+    <igx-tab-header routerLink="deepcool">
+      <img igxPrefix ngSrc="/assets/partners/deepcool.svg" width="200" height="50" class="partner-image" alt="DeepCool" title="DeepCool" />
+    </igx-tab-header>
+  </igx-tab-item>
 </igx-tabs>
 
 <router-outlet></router-outlet>

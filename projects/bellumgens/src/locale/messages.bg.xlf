@@ -3021,6 +3021,30 @@
           <context context-type="linenumber">241</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="2596886871439214002" datatype="html">
+        <source>🎉 We are thrilled to announce a partnership between DeepCool, a leading innovator in computer hardware and cooling solutions, and Bellum Gens Elite Stara Zagora 2025, Bulgaria&apos;s premier esports event. 🖥️🥶✨</source>
+        <target>🎉 Въодушевени сме да обявим партньорство между DeepCool, водещ иноватор в компютърния хардуер и охладителни решения, и Bellum Gens Elite Стара Загора 2025, водещото събитие за електронни спортове в България. 🖥️🥶✨</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/partners/partners.routes.ts</context>
+          <context context-type="linenumber">272</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2916539162111123075" datatype="html">
+        <source>About DeepCool: Founded in 1996 and headquartered in Beijing, DeepCool has been at the forefront of providing high-performance cooling parts and thermal solutions globally. With a commitment to innovation and quality, DeepCool&apos;s product range includes air and water CPU coolers, computer cases, power supplies, and various computer peripherals. Their dedication to sustainability and excellence is evident through their ISO14000 environmental management standards and continuous improvements in energy-saving and consumption reduction. 🎮🏆</source>
+        <target>За DeepCool: Основана през 1996 г. и с централа в Пекин, DeepCool е лидер в предоставянето на охладителни системи с висока производителност и термални решения по целия свят. С ангажимент към иновациите и качеството, продуктовата гама на DeepCool включва въздушни и водни охладители за CPU, компютърни кутии, захранвания и различни компютърни периферии. Тяхната отдаденост на устойчивостта и съвършенството е очевидна чрез стандартите им за управление на околната среда ISO14000 и непрекъснатите подобрения в спестяването на енергия и намаляването на потреблението. 🎮🏆</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/partners/partners.routes.ts</context>
+          <context context-type="linenumber">273</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4891732221717471804" datatype="html">
+        <source>This partnership aims to enhance the esports experience by integrating DeepCool&apos;s cutting-edge technology with the thrilling competition of Bellum Gens Elite. Together, we are committed to pushing the boundaries of performance and entertainment, ensuring that both players and fans enjoy the best possible gaming environment.</source>
+        <target>Това партньорство цели да подобри преживяването в електронните спортове, като интегрира иновационната технология на DeepCool с вълнуващата среда на Bellum Gens Elite. Заедно, ние сме ангажирани да разширим границите на производителността и развлечението, осигурявайки на играчите и феновете най-добрата възможна игрова среда.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/partners/partners.routes.ts</context>
+          <context context-type="linenumber">274</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="387452309157752775" datatype="html">
         <source>Steam Counter-Strike player profile not found...</source>
         <target>Steam Counter-Strike профилът не е намерен...</target>
