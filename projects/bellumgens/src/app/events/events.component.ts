@@ -48,10 +48,11 @@ export class EventsComponent extends BaseDirective implements OnDestroy {
   ];
 
   public talent = [
-    {name: 'Kevin "RotterdaM" van der Kooi', country: 'Netherlands', role: 'Commentator', image: '/assets/bge/talent/17-rotti.png'},
+    {name: 'Kevin "RotterdaM" van der Kooi', country: 'Netherlands', role: 'Commentator', image: '/assets/bge/talent/17-rotterdam.png'},
     {name: 'Philip "BeoMulf" Mulford', country: 'United-States-of-America', role: 'Commentator', image: '/assets/bge/talent/18-beomulf.png'},
-    {name: 'Konstantin "NoThx" Kunev', country: 'Bulgaria', role: 'Commentator', image: '/assets/bge/talent/19-nothx.png'},
-    {name: 'Lachezar "Exalted" Kamenov', country: 'Bulgaria', role: 'Commentator', image: '/assets/bge/talent/20-exalted.png'}
+    {name: 'Konstantin "NoThx" Kunev', country: 'Bulgaria', role: 'Commentator', image: '/assets/bge/talent/20-notnx.png'},
+    {name: 'Lachezar "Exalted" Kamenov', country: 'Bulgaria', role: 'Commentator', image: '/assets/bge/talent/19-lucho.png'},
+    {name: 'Jonathan "joXnka" Salame', country: 'Bulgaria', role: 'Commentator', image: '/assets/bge/talent/21-joxnka.png'}
   ];
 
   public bgeBalkanId = '0313a19e-d527-46f9-bbea-08dd07ccaf69';
