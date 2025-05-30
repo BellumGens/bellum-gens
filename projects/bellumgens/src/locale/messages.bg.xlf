@@ -901,9 +901,9 @@
           <context context-type="linenumber">289,290</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6466748440596179170" datatype="html">
-        <source>22:30: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Afterparty<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> TBA</source>
-        <target>22:30: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Афтър парти<x id="CLOSE_TAG_SPAN" equiv-text="&lt;/span&gt;"/> TBA</target>
+      <trans-unit id="7064518868150806580" datatype="html">
+        <source>22:30: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>LIVE DJ Afterparty<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> at <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://www.facebook.com/profile.php?id=61558329910519&quot;&gt;"/>Palikari Bar<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
+        <target>22:30: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Афтър парти с DJ на живо<x id="CLOSE_TAG_SPAN" equiv-text="&lt;/span&gt;"/> в <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://www.facebook.com/profile.php?id=61558329910519&quot;&gt;"/>Бар Паликари<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
           <context context-type="linenumber">317,318</context>
