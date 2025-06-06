@@ -893,9 +893,9 @@
           <context context-type="linenumber">288,289</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="9153484461486095703" datatype="html">
-        <source>14:30: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Tournament begins<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
-        <target>14:30: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Започване на турнира<x id="CLOSE_TAG_SPAN" equiv-text="&lt;/span&gt;"/></target>
+      <trans-unit id="6929771873050080537" datatype="html">
+        <source>13:00: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Tournament Day 4 begins<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <target>13:00: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Финалният ден на турнира започва<x id="CLOSE_TAG_SPAN" equiv-text="&lt;/span&gt;"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
           <context context-type="linenumber">289,290</context>
