@@ -5,7 +5,9 @@
       <h1>Bellum Gens Elite</h1>
     </div>
     <p i18n>Bellum Gens Elite is a premier esports LAN event organized in Bulgaria. Ancient history and traditions, and beautiful scenery combine with high-level action-packed esports competition to bring you an unforgettable experience.</p>
-    <a [href]="this.ticketsUrl" target="_blank" igxButton="contained" class="cta-button-large" i18n>GET YOUR TICKETS NOW</a>
+    <p i18n>Clement "Clem" Desplanches defended his crown at Bellum Gens Elite Stara Zagora 2025! Clem showed incredible form and won over Joona "Serral" Sotala in a nail-biter final match with 4:3 map score.</p>
+    <img ngSrc="/assets/bge/clem-champion-2025.webp" width="600" height="400" class="preview-image" alt="Clem Champion of BGE Stara Zagora 2025" />
+    <a href="https://drive.google.com/file/d/1ZpROG4CXAhyvhN25l0uMxglsnA3ypz8P/view?usp=drive_link" target="_blank" igxButton="contained" class="cta-button-large" i18n>DOWNLOAD REPLAY PACK</a>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3320904478097217"
         crossorigin="anonymous"></script>
     <!-- Display Ad horizontal -->
@@ -20,7 +22,7 @@
     </script>
   </div>
 
-  <div class="content-container-column">
+  <!-- <div class="content-container-column">
     <iframe class="preview-image" src="https://player.twitch.tv/?channel=bge_starazagora&parent=bellumgens.com" frameborder="0" allowfullscreen="true" scrolling="no" height="378" width="620"></iframe>
   </div>
 
@@ -31,7 +33,7 @@
       <button target="_blank" igxButton="contained" class="timer-cta-button" (click)="scrollTo('main-event')" i18n>Learn more</button>
       <a [href]="this.ticketsUrl" target="_blank" igxButton="contained" class="timer-cta-button" i18n>SECURE YOUR TICKET</a>
     </div>
-  </div>
+  </div> -->
 
   <!-- <div class="content-container-column">
     <iframe class="preview-image" width="560" height="315" src="https://www.youtube.com/embed/g1P4dYvGpA0?si=2L8m1OjZfdOVF1mi" title="BGE Stara Zagora 2024 Aftermovie" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -57,12 +59,13 @@
       <li><span class="highlight navigatable" i18n (click)="scrollTo('confirmed-players')">4 invited players</span></li>
       <li><span class="highlight navigatable" i18n (click)="scrollTo('qualified-players')">12 qualifying players</span></li>
       <li><span class="highlight navigatable" i18n (click)="scrollTo('venue')">Summer Theater - Stara Zagora</span></li>
-      <li i18n>The top placing player at BGE Stara Zagora 2025, who has not already qualified for EWC from a previous qualification event, earns a spot at the <a href="https://esportsworldcup.com/en">EWC 2025</a> StarCraft II.</li>
-      <li><a [href]="this.ticketsUrl" target="_blank" i18n>Tickets Available</a></li>
+      <li i18n><span class="highlight">Tobias "ShoWTimE" Sieber</span> is the 2025 EWC qualified player from BGE Stara Zagora 2025!</li>
+      <li i18n><span class="highlight">Clement "Clem" Desplanches</span> is the 2025 champion!</li>
+      <li><a href="https://drive.google.com/file/d/1ZpROG4CXAhyvhN25l0uMxglsnA3ypz8P/view?usp=drive_link" target="_blank" i18n>DOWNLOAD REPLAY PACK</a></li>
     </ul>
   </div>
   <div class="content-container-column">
-    <img ngSrc="/assets/bge/clem-champion-2.webp" width="600" height="400" class="preview-image" alt="BGE Stara Zagora 2024 Champion: Clem" />
+    <img ngSrc="/assets/bge/trophy-2025.webp" width="600" height="400" class="preview-image" alt="BGE Stara Zagora 2024: Trophy" />
     <!-- <iframe width="560" height="315" class="preview-image" src="https://www.youtube.com/embed/4ZtIooYGp_g?si=zOJOViSa8gZwzRLE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     <img ngSrc="/assets/bge/stara-zagora1.webp" width="600" height="337" class="preview-image" alt="Stara Zagora - Samara Monument" />
     <img ngSrc="/assets/bge/bge-stage.webp" width="600" height="400" class="preview-image" alt="BGE Stara Zagora 2024 Champion: Clem" /> -->
@@ -142,7 +145,7 @@
     </div>
   </div>
 
-  <div id="main-event" class="content-container-row">
+  <!-- <div id="main-event" class="content-container-row">
     <h2 i18n>Main Event Schedule</h2>
   </div>
 
@@ -182,14 +185,6 @@
           <li i18n>12:00: <span class="highlight">Registration</span></li>
           <li i18n>14:00: <span class="highlight">Opening Ceremony</span></li>
           <li i18n>14:30: <span class="highlight">Tournament begins</span></li>
-          <!-- <li>
-            <div i18n>22:30: <span class="highlight">LIVE DJ Afterparty</span> at <a href="https://www.facebook.com/profile.php?id=61558329910519">Palikari Bar</a></div>
-            <ul>
-              <li i18n>Lineup:</li>
-              <li><a href="https://m.facebook.com/hmsuorg" target="_blank">Salmon Flow (EXo [HMSU] b2b Bzzzt)</a></li>
-              <li><a href="https://www.soundinpicture.com/" target="_blank">SMYAH [Sound in Picture]</a></li>
-            </ul>
-          </li> -->
         </ul>
       </igx-card-content>
     </igx-card>
@@ -210,14 +205,6 @@
           <li i18n>12:00: <span class="highlight">Registration</span> for late arrivals</li>
           <li i18n>12:00: <span class="highlight">Gates open</span></li>
           <li i18n>13:00: <span class="highlight">Tournament Day 2 begins</span></li>
-          <!-- <li>
-            <div i18n>22:30: <span class="highlight">LIVE DJ Afterparty</span> at <a href="https://www.facebook.com/profile.php?id=61558329910519">Palikari Bar</a></div>
-            <ul>
-              <li i18n>Lineup:</li>
-              <li><a href="https://m.facebook.com/hmsuorg" target="_blank">Salmon Flow (EXo [HMSU] b2b Bzzzt)</a></li>
-              <li><a href="https://www.soundinpicture.com/" target="_blank">The Seismologist [OCHOBA]</a></li>
-            </ul>
-          </li> -->
         </ul>
       </igx-card-content>
     </igx-card>
@@ -288,7 +275,6 @@
         </ul>
       </igx-card-content>
       <igx-card-actions>
-        <!-- <a href="https://www.twitch.tv/bge_starazagora" igxEnd igxButton="outlined">Stream</a> -->
         <a href="/assets/bge/Rulebook - BGE Stara Zagora 2025.pdf" igxEnd target="_blank" igxButton="outlined" i18n>View Rulebook</a>
         <a igxButton="contained" igxEnd [routerLink]="['events', americasQualifierId]" i18n>View Participants</a>
       </igx-card-actions>
@@ -314,7 +300,6 @@
         </ul>
       </igx-card-content>
       <igx-card-actions>
-        <!-- <a href="https://www.twitch.tv/bge_starazagora" igxEnd igxButton="outlined">Stream</a> -->
         <a href="/assets/bge/Rulebook - BGE Stara Zagora 2025.pdf" igxEnd target="_blank" igxButton="outlined" i18n>View Rulebook</a>
         <a igxButton="contained" igxEnd [routerLink]="['events', asiaQualifierId]" i18n>View Participants</a>
       </igx-card-actions>
@@ -339,7 +324,6 @@
         </ul>
       </igx-card-content>
       <igx-card-actions>
-        <!-- <a href="https://www.twitch.tv/bge_starazagora" igxEnd igxButton="outlined">Stream</a> -->
         <a href="/assets/bge/Rulebook - BGE Stara Zagora 2025.pdf" igxEnd target="_blank" igxButton="outlined" i18n>View Rulebook</a>
         <a igxButton="contained" igxEnd [routerLink]="['events', europeQualifierId]" i18n>View Participants</a>
       </igx-card-actions>
@@ -363,7 +347,6 @@
         </ul>
       </igx-card-content>
       <igx-card-actions>
-        <!-- <a href="https://www.twitch.tv/bge_starazagora" igxEnd igxButton="outlined">Stream</a> -->
         <a href="/assets/bge/Rulebook - BGE Stara Zagora 2025.pdf" igxEnd target="_blank" igxButton="outlined" i18n>View Rulebook</a>
         <a igxButton="contained" igxEnd [routerLink]="['events/', balkanQualifierId]" i18n>View Participants</a>
       </igx-card-actions>
@@ -390,12 +373,11 @@
         </ul>
       </igx-card-content>
       <igx-card-actions>
-        <!-- <a href="https://www.twitch.tv/bge_starazagora" igxEnd igxButton="outlined">Stream</a> -->
         <a href="/assets/bge/Rulebook - BGE Stara Zagora 2025.pdf" igxEnd target="_blank" igxButton="outlined" i18n>View Rulebook</a>
         <a igxButton="contained" igxEnd [routerLink]="['events/', wildcardQualifierId]" i18n>View Participants</a>
       </igx-card-actions>
     </igx-card>
-  </div>
+  </div> -->
 
   <div class="content-container-row">
     <igx-divider></igx-divider>
