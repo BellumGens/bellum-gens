@@ -462,44 +462,24 @@
           <context context-type="linenumber">7,8</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3943900250015895511" datatype="html">
-        <source>GET YOUR TICKETS NOW</source>
-        <target>ЗАКУПЕТЕ СИ БИЛЕТИ СЕГА</target>
+      <trans-unit id="485869526916020864" datatype="html">
+        <source>Clement &quot;Clem&quot; Desplanches defended his crown at Bellum Gens Elite Stara Zagora 2025! Clem showed incredible form and won over Joona &quot;Serral&quot; Sotala in a nail-biter final match with 4:3 map score.</source>
+        <target>Клеман &quot;Клем&quot; Депланш защити титлата си на Белум Генс Елит Стара Загора 2025! Клем показа невероятна форма и победи Йоона &quot;Серал&quot; Сотала в напрегнат финален мач с резултат 4:3.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
           <context context-type="linenumber">8,9</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6406397948626139390" datatype="html">
-        <source>Join us live on <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ isoDate | date: &apos;long&apos; }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> for Bellum Gens Elite Stara Zagora 2025!</source>
-        <target>Присъединете се на живо на <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ isoDate | date: &apos;long&apos; }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> за Белум Генс Елит Стара Загора 2025!</target>
+      <trans-unit id="5586567164803623936" datatype="html">
+        <source>DOWNLOAD REPLAY PACK</source>
+        <target>СВАЛИ РИПЛЕЙИТЕ</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
-          <context context-type="linenumber">28,29</context>
+          <context context-type="linenumber">10,11</context>
         </context-group>
-      </trans-unit>
-      <trans-unit id="8149490729241744297" datatype="html">
-        <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{days}}"/> <x id="INTERPOLATION_1" equiv-text="{{days !== 1 ? &apos;days&apos; : &apos;day&apos;}}"/> <x id="INTERPOLATION_2" equiv-text="{{hours | number:&apos;2.0-0&apos;}}"/>:<x id="INTERPOLATION_3" equiv-text="{{minutes | number:&apos;2.0-0&apos;}}"/>:<x id="INTERPOLATION_4" equiv-text="{{seconds | number:&apos;2.0-0&apos;}}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> left!</source>
-        <target>Остават <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{days}}"/> <x id="INTERPOLATION_1" equiv-text="{{days !== 1 ? &apos;дни&apos; : &apos;ден&apos;}}"/> <x id="INTERPOLATION_2" equiv-text="{{hours | number:&apos;2.0-0&apos;}}"/>:<x id="INTERPOLATION_3" equiv-text="{{minutes | number:&apos;2.0-0&apos;}}"/>:<x id="INTERPOLATION_4" equiv-text="{{seconds | number:&apos;2.0-0&apos;}}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
-          <context context-type="linenumber">29,30</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="819996403327805209" datatype="html">
-        <source>Learn more</source>
-        <target>Научете повече</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
-          <context context-type="linenumber">31,32</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2784954730698182622" datatype="html">
-        <source>SECURE YOUR TICKET</source>
-        <target>ЗАЯВЕТЕ СИ БИЛЕТ</target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
-          <context context-type="linenumber">30,31</context>
+          <context context-type="linenumber">64,65</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4751048843482914946" datatype="html">
@@ -574,17 +554,17 @@
           <context context-type="linenumber">259,260</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4331911846799130589" datatype="html">
-        <source>The top placing player at BGE Stara Zagora 2025, who has not already qualified for EWC from a previous qualification event, earns a spot at the <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://esportsworldcup.com/en&quot;&gt;"/>EWC 2025<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> StarCraft II.</source>
-        <target>Играчът, който се класира най-високо на BGE Стара Загора 2025, и който не е вече квалифициран за EWC от предишно квалификационно събитие, печели място на <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://esportsworldcup.com/en&quot;&gt;"/>EWC 2025<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> StarCraft II.</target>
+      <trans-unit id="945807014170882287" datatype="html">
+        <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Tobias &quot;ShoWTimE&quot; Sieber<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> is the 2025 EWC qualified player from BGE Stara Zagora 2025!</source>
+        <target><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Тобиас &quot;ШоуТайм&quot; Зибер<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> е квалифицираният играч за EWC 2025 от Белум Генс Елит Стара Загора 2025!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
           <context context-type="linenumber">60,61</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5584154519221910993" datatype="html">
-        <source>Tickets Available</source>
-        <target>Вземете Билети</target>
+      <trans-unit id="5596523241334574425" datatype="html">
+        <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Clement &quot;Clem&quot; Desplanches<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> is the 2025 champion!</source>
+        <target><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Клеман &quot;Клем&quot; Депланш<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> е шампионът за 2025!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
           <context context-type="linenumber">61,62</context>
@@ -837,7 +817,7 @@
           <context context-type="linenumber">255,256</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6959936203181447238" datatype="html">
+      <!-- <trans-unit id="6959936203181447238" datatype="html">
         <source>Main Event Schedule</source>
         <target>Програма</target>
         <context-group purpose="location">
@@ -1030,7 +1010,7 @@
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
           <context context-type="linenumber">394,395</context>
         </context-group>
-      </trans-unit>
+      </trans-unit> -->
       <trans-unit id="2943688585171103132" datatype="html">
         <source>The Venue</source>
         <source>Мястото</source>
@@ -2587,30 +2567,30 @@
           <context context-type="linenumber">124</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3804855690503446606" datatype="html">
-        <source>Bellum Gens Elite - Stara Zagora 2025 will take place June 4-7th! Clement &quot;Clem&quot; Desplanches returns to defend his 2024 title against all the top contenders!</source>
-        <target>Белум Генс Елит - Стара Загора 2025 ще се проведе от 4 до 7 юни! Клемент &quot;Clem&quot; Депланш се завръща, за да защити титлата си от 2024 година срещу всички най-добри съперници!</target>
+      <trans-unit id="3439168359581909499" datatype="html">
+        <source>Clement &quot;Clem&quot; Desplanches successfully defended his 2024 title and is now two-time Bellum Gens Elite Stara Zagora Champion!</source>
+        <target>Клеман &quot;Клем&quot; Деспланш успешно защити титлата си от 2024 и вече е двукратен шампион на Белум Генс Елит Стара Загора!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
           <context context-type="linenumber">6,7</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2456657322953830873" datatype="html">
-        <source>Tickets Available Now</source>
-        <target>Билетите са в продажба</target>
+      <trans-unit id="819996403327805209" datatype="html">
+        <source>Learn more</source>
+        <target>Научи повече</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
           <context context-type="linenumber">7,8</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4029480519164458589" datatype="html">
+      <!-- <trans-unit id="4029480519164458589" datatype="html">
         <source>Open Qualifiers</source>
         <target>Отворени квалификации</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
           <context context-type="linenumber">8,9</context>
         </context-group>
-      </trans-unit>
+      </trans-unit> -->
       <trans-unit id="5744227677261445573" datatype="html">
         <source>Esports Business League is a gaming event for your office! Build better team bonds by friendly or competitive gaming, or get your team to compete against other companies to show how good you are!</source>
         <target>Esports Business League е gaming събитие за вашата офис! Създайте по-добър отборен дух, чрез приятелски или състезателни игри, или ангажирайте вашите служители да се състезават срещу участници от други фирми, за да покажете точно колко добри сте!</target>
