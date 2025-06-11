@@ -1,10 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgOptimizedImage } from '@angular/common';
-import { Title, Meta } from '@angular/platform-browser';
 
 import { EMPTY_JERSEY_ORDER, JerseyCut, JerseyDetails, JerseySize, ApiShopService } from '../../../../common/src/public_api';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { ISelectionEventArgs, IGX_SELECT_DIRECTIVES, IGX_INPUT_GROUP_DIRECTIVES, IgxIconComponent, IgxDividerDirective, IgxButtonDirective, IgxMaskDirective, IgxTextSelectionDirective } from '@infragistics/igniteui-angular';
 import { BaseDirective } from '../../../../bellumgens/src/app/base/base.component';
 import { FilterSizesPipe } from '../pipes/filter-sizes.pipe';
@@ -27,6 +26,9 @@ import { FilterSizesPipe } from '../pipes/filter-sizes.pipe';
   ]
 })
 export class ShopComponent extends BaseDirective {
+  private apiService = inject(ApiShopService);
+  private router = inject(Router);
+
   public order = Object.assign({}, EMPTY_JERSEY_ORDER);
   public basePromo = .3;
   public promo = this.basePromo;
@@ -49,14 +51,6 @@ export class ShopComponent extends BaseDirective {
     { text: 'XXL'; size: JerseySize.XXL; disabled: false },
     { text: 'XXXL'; size: JerseySize.XXXL; disabled: false }
   ];
-
-  constructor(private apiService: ApiShopService,
-              private router: Router,
-              title: Title,
-              meta: Meta,
-              route: ActivatedRoute) {
-    super(title, meta, route);
-  }
 
   public placeOrder() {
     this.inProgress = true;

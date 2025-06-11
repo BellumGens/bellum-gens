@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { BaseDirective } from '../../../../../bellumgens/src/app/base/base.component';
 import {
   ApplicationUser,
@@ -7,8 +7,6 @@ import {
   TournamentParticipant, TournamentGroup, Tournament,
   TournamentSC2Match
 } from '../../../../../common/src/public_api';
-import { Title, Meta } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../../../../common/src/environments/environment';
 import { Sc2MapNamePipe } from '../../../../../common/src/lib/pipes/sc2-map-name.pipe';
 import { DatePipe } from '@angular/common';
@@ -31,6 +29,9 @@ import { IGX_CARD_DIRECTIVES, IgxCircularProgressBarComponent, IgxAvatarComponen
   ]
 })
 export class TournamentSc2Component extends BaseDirective {
+  private apiService = inject(ApiTournamentsService);
+  private loginService = inject(LoginService);
+
   public registrations: TournamentParticipant [];
   public groups: TournamentGroup [];
   public loading = false;
@@ -42,12 +43,8 @@ export class TournamentSc2Component extends BaseDirective {
   public sc2matches: TournamentSC2Match [];
   public tournament: Tournament;
 
-  constructor(private apiService: ApiTournamentsService,
-              private loginService: LoginService,
-              title: Title,
-              meta: Meta,
-              route: ActivatedRoute) {
-    super(title, meta, route);
+  constructor() {
+    super();
     this.loginService.applicationUser.subscribe(user => this.authUser = user);
 
     this.activeRoute.params.subscribe(params => {

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ApplicationUser, BellumgensApiService, LoadingComponent, RaceIconPipe, Tournament } from '../../../../../common/src/public_api';
 import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
@@ -22,11 +22,15 @@ import { AsyncPipe, DatePipe } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ScPlayerComponent {
+  private activatedRoute = inject(ActivatedRoute);
+  private titleService = inject(Title);
+  private apiService = inject(BellumgensApiService);
+
   public loading: Observable<boolean>;
   public player: ApplicationUser;
   public tournaments: Observable<Tournament []>;
 
-  constructor(private activatedRoute: ActivatedRoute, private titleService: Title, private apiService: BellumgensApiService) {
+  constructor() {
     this.activatedRoute.parent.params.subscribe(params => {
       const userid = params['userid'];
       if (userid) {

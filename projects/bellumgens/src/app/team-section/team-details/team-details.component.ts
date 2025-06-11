@@ -1,4 +1,4 @@
-import { Component, ViewChildren, QueryList, ElementRef } from '@angular/core';
+import { Component, ViewChildren, QueryList, ElementRef, inject } from '@angular/core';
 import { IDropDroppedEventArgs, IgxAvatarComponent, IGX_CARD_DIRECTIVES, IGX_DRAG_DROP_DIRECTIVES } from '@infragistics/igniteui-angular';
 import {
   PlaystyleRole, RoleSlot,
@@ -11,10 +11,8 @@ import {
   ConfirmComponent,
   CountrySVGPipe
 } from '../../../../../common/src/public_api';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { BaseDirective } from '../../base/base.component';
-import { Title, Meta } from '@angular/platform-browser';
-
 
 @Component({
   selector: 'app-team-details',
@@ -31,6 +29,9 @@ import { Title, Meta } from '@angular/platform-browser';
   ]
 })
 export class TeamDetailsComponent extends BaseDirective {
+  private apiService = inject(BellumgensApiService);
+  private authService = inject(LoginService);
+
   @ViewChildren(IgxAvatarComponent, { read: ElementRef }) public emptyRoles: QueryList<ElementRef>;
 
   public isAdmin = false;
@@ -49,12 +50,8 @@ export class TeamDetailsComponent extends BaseDirective {
     { roleName: 'Lurker', role: PlaystyleRole.Lurker, user: null }
   ];
 
-  constructor(private apiService: BellumgensApiService,
-              private authService: LoginService,
-              title: Title,
-              meta: Meta,
-              activeRoute: ActivatedRoute) {
-    super(title, meta, activeRoute);
+  constructor() {
+    super();
 
     this.authService.applicationUser.subscribe((data: ApplicationUser) => {
       this.authUser = data;

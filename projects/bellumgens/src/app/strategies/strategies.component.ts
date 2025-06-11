@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { NgClass, DatePipe, NgOptimizedImage } from '@angular/common';
@@ -79,6 +79,14 @@ import { LoadingComponent } from '../../../../common/src/lib/loading/loading.com
   ]
 })
 export class StrategiesComponent {
+  private activatedRoute = inject(ActivatedRoute);
+  private apiService = inject(BellumgensApiService);
+  private apiStrategyService = inject(ApiStrategiesService);
+  private searchService = inject(ApiSearchService);
+  private authManager = inject(LoginService);
+  private commService = inject(CommunicationService);
+  private socialMedia = inject(SocialMediaStrategyService);
+
   public isEditor: boolean = null;
 
   public strats: CSGOStrategy [];
@@ -95,13 +103,7 @@ export class StrategiesComponent {
   public overlaySettings = GLOBAL_OVERLAY_SETTINGS;
   public stratOrder = StratOrder;
 
-  constructor(private activatedRoute: ActivatedRoute,
-              private apiService: BellumgensApiService,
-              private apiStrategyService: ApiStrategiesService,
-              private searchService: ApiSearchService,
-              private authManager: LoginService,
-              private commService: CommunicationService,
-              private socialMedia: SocialMediaStrategyService) {
+  constructor() {
     this.maps.forEach(map => map.isPlayed = true);
     this.activatedRoute.url.subscribe(value => {
       if (value?.length && value[0]?.path === 'user') {

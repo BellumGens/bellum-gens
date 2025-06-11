@@ -1,4 +1,4 @@
-import { Component, ViewChild, Input } from '@angular/core';
+import { Component, ViewChild, Input, inject } from '@angular/core';
 import {
   IgxDialogComponent,
   IgxButtonDirective,
@@ -29,6 +29,8 @@ import { FormsModule } from '@angular/forms';
   ]
 })
 export class TeamApplicationComponent {
+  private apiService = inject(BellumgensApiService);
+
   @ViewChild(IgxDialogComponent, { static: true }) public dialog: IgxDialogComponent;
 
   @Input()
@@ -43,8 +45,6 @@ export class TeamApplicationComponent {
     state: NotificationState.NotSeen,
     message: ''
   };
-
-  constructor(private apiService: BellumgensApiService) { }
 
   public submitApplication() {
     if (this.authUser) {

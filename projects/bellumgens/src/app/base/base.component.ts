@@ -1,4 +1,4 @@
-import { Directive } from '@angular/core';
+import { Directive, inject } from '@angular/core';
 import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 
@@ -7,6 +7,10 @@ import { ActivatedRoute } from '@angular/router';
   standalone: true
 })
 export class BaseDirective {
+  protected titleService = inject(Title);
+  protected meta = inject(Meta);
+  protected activeRoute = inject(ActivatedRoute);
+
 
   private _title = 'Bellum Gens: Premier Gaming and Esports Events Organizer';
   private _twitterTitle = 'Bellum Gens: Premier Gaming and Esports Events Organizer';
@@ -15,9 +19,7 @@ export class BaseDirective {
   private _twitterDescription = 'Bellum Gens is a premier gaming and esports events organizer in Bulgaria and the Balkans region.';
   private _image = '/assets/avatar_BG_blood.png';
 
-  constructor(protected titleService: Title,
-              protected meta: Meta,
-              protected activeRoute: ActivatedRoute) {
+  constructor() {
     this.activeRoute.data.subscribe(data => {
       this.titleService.setTitle(data.title || this._title);
       this.meta.updateTag({ name: 'description', content: data.description || this._description});

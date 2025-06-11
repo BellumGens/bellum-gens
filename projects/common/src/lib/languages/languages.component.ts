@@ -1,5 +1,5 @@
 
-import { Component, Inject, LOCALE_ID } from '@angular/core';
+import { Component, LOCALE_ID, inject } from '@angular/core';
 import {
   IGX_DROP_DOWN_DIRECTIVES,
   IgxButtonDirective,
@@ -22,13 +22,13 @@ import { GLOBAL_OVERLAY_SETTINGS } from '../../models/misc';
     ]
 })
 export class LanguagesComponent {
+  public localeId = inject(LOCALE_ID);
+
   public overlaySettings = GLOBAL_OVERLAY_SETTINGS;
   public languageList = [
     { code: 'en', label: 'English' },
     { code: 'bg', label: 'Български' }
   ];
-
-  constructor(@Inject(LOCALE_ID) public localeId: string) { }
 
   public changeLocale(lang: string) {
     let path = window.location.pathname;

@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import {
   LoginService,
@@ -30,6 +30,10 @@ import { DatePipe } from '@angular/common';
   ]
 })
 export class PlayerNotificationsComponent {
+  private apiService = inject(BellumgensApiService);
+  private authManager = inject(LoginService);
+  private router = inject(Router);
+
   @Output()
   public loaded = new EventEmitter<UserNotification []>();
 
@@ -44,7 +48,7 @@ export class PlayerNotificationsComponent {
   public authUser: ApplicationUser;
   public notifications: UserNotification [];
 
-  constructor(private apiService: BellumgensApiService, private authManager: LoginService, private router: Router) {
+  constructor() {
     this.authManager.applicationUser.subscribe(user => {
       if (user) {
         this.authUser = user;

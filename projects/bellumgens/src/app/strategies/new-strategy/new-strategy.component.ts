@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild, Output, EventEmitter } from '@angular/core';
+import { Component, Input, ViewChild, Output, EventEmitter, inject } from '@angular/core';
 import {
   CSGOStrategy,
   NEW_EMPTY_STRAT,
@@ -33,6 +33,9 @@ import { FormsModule } from '@angular/forms';
   ]
 })
 export class NewStrategyComponent {
+  private apiService = inject(ApiStrategiesService);
+  private router = inject(Router);
+
   @ViewChild('newStrat', { static: true }) public dialog: IgxDialogComponent;
 
   @Input() public team: CSGOTeam;
@@ -48,10 +51,6 @@ export class NewStrategyComponent {
   public title = 'Add a new team strategy';
 
   private _defaultTitle = 'Add a new team strategy';
-
-  constructor(private apiService: ApiStrategiesService,
-              private router: Router) {
-  }
 
   public open(strat?: CSGOStrategy, title?: string) {
     if (strat) {

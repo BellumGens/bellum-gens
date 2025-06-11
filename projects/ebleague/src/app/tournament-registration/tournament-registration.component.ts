@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, Input } from '@angular/core';
+import { Component, ViewChild, ElementRef, Input, inject } from '@angular/core';
 import {
   EMPTY_NEW_APPLICATION, Game, GAMES,
   ApplicationUser,
@@ -36,6 +36,11 @@ import { AsyncPipe } from '@angular/common';
   ]
 })
 export class TournamentRegistrationComponent {
+  private authManager = inject(LoginService);
+  private apiService = inject(ApiTournamentsService);
+  private userService = inject(BellumgensApiService);
+  private router = inject(Router);
+
   @Input()
   public tournamentId: string;
 
@@ -54,10 +59,7 @@ export class TournamentRegistrationComponent {
   public loginFirst = $localize`Please login first`;
   public battleTagRegex = BATTLE_TAG_REGEX;
 
-  constructor(private authManager: LoginService,
-              private apiService: ApiTournamentsService,
-              private userService: BellumgensApiService,
-              private router: Router) {
+  constructor() {
     this.authManager.applicationUser.subscribe(user => {
       if (user) {
         this.authUser = user;

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { BaseDirective } from '../../base/base.component';
 import {
   ALL_ROLES,
@@ -15,7 +15,6 @@ import {
 } from '../../../../../common/src/public_api';
 import { AsyncPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Title, Meta } from '@angular/platform-browser';
 import { RouterLink, ActivatedRoute } from '@angular/router';
 import { IgxAvatarComponent, IgxButtonDirective, IgxRippleDirective, IgxToggleActionDirective, IgxIconComponent, IGX_DROP_DOWN_DIRECTIVES, IGX_SELECT_DIRECTIVES, IGX_CARD_DIRECTIVES, IgxCircularProgressBarComponent, IGX_LIST_DIRECTIVES, IgxIconService, ISelectionEventArgs } from '@infragistics/igniteui-angular';
 import { Observable } from 'rxjs';
@@ -52,6 +51,11 @@ import { MapPoolComponent } from '../map-pool/map-pool.component';
   styleUrl: './cs-player.component.scss'
 })
 export class CsPlayerComponent extends BaseDirective {
+  private authManager = inject(LoginService);
+  private apiService = inject(BellumgensApiService);
+  private activatedRoute = inject(ActivatedRoute);
+  private iconService = inject(IgxIconService);
+
   public authUser: ApplicationUser;
   public teamsAdmin: CSGOTeam [];
   public userTeams: Observable<CSGOTeam []>;
@@ -63,14 +67,8 @@ export class CsPlayerComponent extends BaseDirective {
   public viewAll = false;
   public loading = false;
 
-  constructor(private authManager: LoginService,
-              private apiService: BellumgensApiService,
-              private activatedRoute: ActivatedRoute,
-              private iconService: IgxIconService,
-              title: Title,
-              meta: Meta,
-              activeRoute: ActivatedRoute) {
-    super(title, meta, activeRoute);
+  constructor() {
+    super();
 
     this.authManager.applicationUser.subscribe((data: ApplicationUser) => {
       if (data) {

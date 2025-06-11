@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import {
   PLAYER_SEARCH,
   PlayerSearch,
@@ -28,6 +28,9 @@ import { FormsModule } from '@angular/forms';
   ]
 })
 export class PlayerSearchComponent {
+  private router = inject(Router);
+  private authManager = inject(LoginService);
+
 
   @Input()
   public authUser: ApplicationUser;
@@ -44,7 +47,7 @@ export class PlayerSearchComponent {
   ];
   public parseInt = parseInt;
 
-  constructor(private router: Router, private authManager: LoginService) {
+  constructor() {
     this.authManager.teamsAdmin.subscribe(teams => this.teamAdmin = teams);
   }
 

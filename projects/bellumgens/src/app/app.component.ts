@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, Inject, PLATFORM_ID, LOCALE_ID } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, PLATFORM_ID, LOCALE_ID, inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { RouterLinkActive, RouterLink, RouterOutlet, ActivatedRoute } from '@angular/router';
 
@@ -92,6 +92,15 @@ import { IgxResourceStringsBG } from 'igniteui-angular-i18n';
   ]
 })
 export class AppComponent implements OnInit {
+  private platformId = inject(PLATFORM_ID);
+  private localeId = inject(LOCALE_ID);
+  private iconService = inject(IgxIconService);
+  private authManager = inject(LoginService);
+  private apiService = inject(BellumgensApiService);
+  private searchService = inject(ApiSearchService);
+  private notificationService = inject(CommunicationService);
+  private activatedRoute = inject(ActivatedRoute);
+
   @ViewChild('quickSearch', { static: true }) public quickSearchDropDown: IgxDropDownComponent;
   @ViewChild('searchGroup', { static: true }) public searchGroup: IgxInputGroupComponent;
   @ViewChild('searchInput', { static: true }) public searchInput: ElementRef;
@@ -108,14 +117,7 @@ export class AppComponent implements OnInit {
 
   private unreadPipe = new UnreadNotificationsPipe();
 
-  constructor(@Inject(PLATFORM_ID) private platformId: any,
-              @Inject(LOCALE_ID) private localeId: string,
-              private iconService: IgxIconService,
-              private authManager: LoginService,
-              private apiService: BellumgensApiService,
-              private searchService: ApiSearchService,
-              private notificationService: CommunicationService,
-              private activatedRoute: ActivatedRoute) {
+  constructor() {
     if (isPlatformBrowser(this.platformId)) {
       this.authManager.applicationUser.subscribe(user => {
           this.authUser = user;

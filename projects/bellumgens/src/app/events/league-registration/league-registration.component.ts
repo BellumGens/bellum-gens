@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   ApplicationUser,
   LoginService,
@@ -48,6 +48,11 @@ import { ActivatedRoute } from '@angular/router';
   ]
 })
 export class LeagueRegistrationComponent {
+  private authManager = inject(LoginService);
+  private apiService = inject(ApiTournamentsService);
+  private commService = inject(CommunicationService);
+  private activatedRoute = inject(ActivatedRoute);
+
   public application: TournamentApplication = { game: Game.StarCraft2, email: '' };
   public tournamentId: string;
   public tournament: Tournament;
@@ -222,10 +227,7 @@ export class LeagueRegistrationComponent {
 
   public countriesList = this.balkanCountries;
 
-  constructor(private authManager: LoginService,
-              private apiService: ApiTournamentsService,
-              private commService: CommunicationService,
-              private activatedRoute: ActivatedRoute) {
+  constructor() {
     this.activatedRoute.params.subscribe(params => {
       if (params.tournamentId) {
         this.tournamentId = params.tournamentId;

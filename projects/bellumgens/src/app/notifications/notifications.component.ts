@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, inject } from '@angular/core';
 import { UnreadNotificationsPipe } from '../pipes/unread-notifications.pipe';
 import { LoginService, CSGOTeam } from '../../../../common/src/public_api';
 import { Observable } from 'rxjs';
@@ -16,13 +16,15 @@ import { PlayerNotificationsComponent } from './player-notifications/player-noti
   ]
 })
 export class NotificationsComponent {
+  private authService = inject(LoginService);
+
   @Output() public loaded = new EventEmitter<number>();
 
   public teamAdmin: Observable<CSGOTeam []>;
 
   private unreadPipe = new UnreadNotificationsPipe();
 
-  constructor(private authService: LoginService) {
+  constructor() {
     this.authService.applicationUser.subscribe(user => {
       if (user) {
         this.teamAdmin = this.authService.teamsAdmin;

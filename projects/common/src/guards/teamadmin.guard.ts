@@ -1,4 +1,4 @@
-import { Injectable, PLATFORM_ID, Inject } from '@angular/core';
+import { Injectable, PLATFORM_ID, inject } from '@angular/core';
 import { ActivatedRouteSnapshot } from '@angular/router';
 import { LoginService } from '../services/login.service';
 import { isPlatformBrowser } from '@angular/common';
@@ -7,9 +7,13 @@ import { isPlatformBrowser } from '@angular/common';
   providedIn: 'root'
 })
 export class TeamadminGuard  {
+  private authService = inject(LoginService);
+
   private isBrowser: boolean;
 
-  constructor(@Inject(PLATFORM_ID) platformId: string, private authService: LoginService) {
+  constructor() {
+    const platformId = inject(PLATFORM_ID);
+
     this.isBrowser = isPlatformBrowser(platformId);
   }
 
