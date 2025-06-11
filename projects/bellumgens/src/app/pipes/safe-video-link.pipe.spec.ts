@@ -11,8 +11,8 @@ describe('SafeVideoLinkPipe', () => {
     });
   });
 
-  it('create an instance', inject([DomSanitizer], (domSanitizer: DomSanitizer) => {
-    const pipe = new SafeVideoLinkPipe(domSanitizer);
+  it('create an instance', inject([DomSanitizer], () => {
+    const pipe = new SafeVideoLinkPipe();
     expect(pipe).toBeTruthy();
   }));
 });

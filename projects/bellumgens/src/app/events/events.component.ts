@@ -87,20 +87,20 @@ export class EventsComponent extends BaseDirective {
     // this.timeLeft();
   }
 
-  // public timeLeft() {
-  //   let delta = (this.announcementDate.getTime() - new Date().getTime()) / 1000;
-  //   if (delta < 0) {
-  //     delta = 0;
-  //     this.sub?.unsubscribe();
-  //   }
-  //   this.days = Math.floor(delta / 86400);
-  //   delta -= this.days * 86400;
-  //   this.hours = Math.floor(delta / 3600) % 24;
-  //   delta -= this.hours * 3600;
-  //   this.minutes = Math.floor(delta / 60) % 60;
-  //   delta -= this.minutes * 60;
-  //   this.seconds = Math.floor(delta);
-  // }
+  public timeLeft() {
+    let delta = (this.announcementDate.getTime() - new Date().getTime()) / 1000;
+    if (delta < 0) {
+      delta = 0;
+      this.sub?.unsubscribe();
+    }
+    this.days = Math.floor(delta / 86400);
+    delta -= this.days * 86400;
+    this.hours = Math.floor(delta / 3600) % 24;
+    delta -= this.hours * 3600;
+    this.minutes = Math.floor(delta / 60) % 60;
+    delta -= this.minutes * 60;
+    this.seconds = Math.floor(delta);
+  }
 
   public scrollTo(id: string) {
     const element = document.getElementById(id);
