@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   BellumgensApiService,
   CSGOTeam, TeamMember,
@@ -37,14 +37,16 @@ import { FormsModule } from '@angular/forms';
   ]
 })
 export class TeamPreferencesComponent {
+  private apiService = inject(BellumgensApiService);
+  private authService = inject(LoginService);
+  private activeRoute = inject(ActivatedRoute);
+
   public team: CSGOTeam;
   public teammembers: TeamMember [];
 
   public authUser: ApplicationUser;
 
-  constructor(private apiService: BellumgensApiService,
-              private authService: LoginService,
-              private activeRoute: ActivatedRoute) {
+  constructor() {
     this.authService.applicationUser.subscribe(user => this.authUser = user);
     this.activeRoute.parent.params.subscribe(params => {
       const teamId = params['teamid'];

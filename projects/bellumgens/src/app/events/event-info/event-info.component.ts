@@ -1,7 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { DatePipe, AsyncPipe } from '@angular/common';
-import { RouterLink, ActivatedRoute } from '@angular/router';
-import { Title, Meta } from '@angular/platform-browser';
+import { RouterLink } from '@angular/router';
 import { BaseDirective } from '../../base/base.component';
 import { TournamentParticipant, TournamentSC2Match, Tournament, ApiTournamentsService, CountrySVGPipe, RaceIconPipe } from '../../../../../common/src/public_api';
 import { IGX_CARD_DIRECTIVES, IgxCircularProgressBarComponent, IgxAvatarComponent, IGX_GRID_DIRECTIVES, IgxIconComponent, IgxButtonDirective, IGroupingExpression, SortingDirection, DefaultSortingStrategy } from '@infragistics/igniteui-angular';
@@ -28,6 +27,8 @@ import { Observable } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EventInfoComponent extends BaseDirective {
+  private apiService = inject(ApiTournamentsService);
+
   public registrations: Observable<TournamentParticipant []>;
   // public groups: Observable<TournamentGroup []>;
   public loading: Observable<boolean>;
@@ -45,11 +46,8 @@ export class EventInfoComponent extends BaseDirective {
     '0e92f9ed-ca3d-450f-70e3-08dd81aa33d9'
   ];
 
-  constructor(private apiService: ApiTournamentsService,
-              title: Title,
-              meta: Meta,
-              route: ActivatedRoute) {
-    super(title, meta, route);
+  constructor() {
+    super();
     this.loading = this.apiService.loadingSC2Registrations;
     this.loadingMatches = this.apiService.loadingSC2Matches;
     this.activeRoute.params.subscribe(params => {

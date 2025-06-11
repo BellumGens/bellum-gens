@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   TournamentParticipant, TournamentGroup, Tournament,
   ApiTournamentsService,
@@ -7,8 +7,6 @@ import {
   TournamentCSGOMatch
 } from '../../../../../common/src/public_api';
 import { BaseDirective } from '../../../../../bellumgens/src/app/base/base.component';
-import { Title, Meta } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
 import { environment } from '../../../../../common/src/environments/environment';
 import { CSGOMapnamePipe } from '../../../../../common/src/lib/pipes/csgomapname.pipe';
 import { CSGOMapimagePipe } from '../../../../../common/src/lib/pipes/csgomapimage.pipe';
@@ -33,6 +31,9 @@ import { IGX_CARD_DIRECTIVES, IgxCircularProgressBarComponent, IgxAvatarComponen
   ]
 })
 export class TournamentCsgoComponent extends BaseDirective {
+  private apiService = inject(ApiTournamentsService);
+  private loginService = inject(LoginService);
+
   public registrations: TournamentParticipant [];
   public groups: TournamentGroup [];
   public loading = false;
@@ -43,12 +44,8 @@ export class TournamentCsgoComponent extends BaseDirective {
   public csgomatches: TournamentCSGOMatch [];
   public tournament: Tournament;
 
-  constructor(private apiService: ApiTournamentsService,
-              private loginService: LoginService,
-              title: Title,
-              meta: Meta,
-              route: ActivatedRoute) {
-    super(title, meta, route);
+  constructor() {
+    super();
     this.loginService.applicationUser.subscribe(user => this.authUser = user);
 
     this.activeRoute.params.subscribe(params => {

@@ -3,8 +3,6 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { BaseDirective } from './base.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { Component } from '@angular/core';
-import { Meta, Title } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
 
 describe('BaseComponent', () => {
   let component: BaseDirective;
@@ -42,7 +40,4 @@ describe('BaseComponent', () => {
   imports: []
 })
 export class TestComponent extends BaseDirective {
-  constructor(title: Title, meta: Meta, activeRoute: ActivatedRoute) {
-    super(title, meta, activeRoute);
-  }
 }

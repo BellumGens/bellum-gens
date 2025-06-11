@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   LoginService,
   ApiTournamentsService,
@@ -31,6 +31,10 @@ import { FormsModule } from '@angular/forms';
   ]
 })
 export class AdminMainComponent {
+  private authService = inject(LoginService);
+  private apiService = inject(ApiTournamentsService);
+  private shopService = inject(ApiShopService);
+
   public roles: string [];
   // public users: AdminAppUserSummary [];
   public tournaments: Tournament [];
@@ -40,9 +44,7 @@ export class AdminMainComponent {
   public promos: Promo [];
   public grouping: IGroupingExpression [];
 
-  constructor(private authService: LoginService,
-              private apiService: ApiTournamentsService,
-              private shopService: ApiShopService) {
+  constructor() {
     this.authService.getUserRoles().subscribe(data => this.roles = data);
     // this.authService.getUsers().subscribe(data => this.users = data);
     this.authService.getPromoCodes().subscribe(data => this.promos = data);

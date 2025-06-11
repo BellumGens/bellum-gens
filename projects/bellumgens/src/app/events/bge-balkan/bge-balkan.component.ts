@@ -1,7 +1,6 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { BaseDirective } from '../../base/base.component';
-import { Title, Meta } from '@angular/platform-browser';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { TournamentParticipant, TournamentGroup, TournamentSC2Match, Tournament, ApiTournamentsService, CountrySVGPipe, RaceIconPipe } from '../../../../../common/src/public_api';
 import { AsyncPipe, DatePipe } from '@angular/common';
 import { IGX_CARD_DIRECTIVES, IgxCircularProgressBarComponent, IgxAvatarComponent, IGX_GRID_DIRECTIVES, IgxIconComponent, IgxButtonDirective, IGroupingExpression, SortingDirection, DefaultSortingStrategy, IgxIconButtonDirective } from '@infragistics/igniteui-angular';
@@ -28,6 +27,8 @@ import { Observable } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BgeBalkanComponent extends BaseDirective {
+  private apiService = inject(ApiTournamentsService);
+
   public registrations: Observable<TournamentParticipant []>;
   public groups: Observable<TournamentGroup []>;
   public loading: Observable<boolean>;
@@ -39,11 +40,8 @@ export class BgeBalkanComponent extends BaseDirective {
 
   public bgeBalkanId = '0313a19e-d527-46f9-bbea-08dd07ccaf69';
 
-  constructor(private apiService: ApiTournamentsService,
-              title: Title,
-              meta: Meta,
-              route: ActivatedRoute) {
-    super(title, meta, route);
+  constructor() {
+    super();
     this.loading = this.apiService.loadingSC2Registrations;
     this.loadingMatches = this.apiService.loadingSC2Matches;
     this.apiService.getTournament(this.bgeBalkanId).subscribe(t => {

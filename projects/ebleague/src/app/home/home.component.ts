@@ -1,5 +1,5 @@
 import { NgOptimizedImage, isPlatformBrowser } from '@angular/common';
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, PLATFORM_ID, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { IGX_INPUT_GROUP_DIRECTIVES, IgxButtonDirective, IgxDividerDirective, IgxIconComponent } from '@infragistics/igniteui-angular';
@@ -27,6 +27,11 @@ import {
   ]
 })
 export class HomeComponent {
+  private platformId = inject(PLATFORM_ID);
+  private apiService = inject(ApiTournamentsService);
+  private socialMedia = inject(SocialMediaService);
+  private authManager = inject(LoginService);
+
   public userEmail: string = null;
   public gameEnum = Game;
   public registrations: RegistrationsCount [];
@@ -34,10 +39,7 @@ export class HomeComponent {
   public tournamentId: string;
   public authUser: ApplicationUser;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: any,
-              private apiService: ApiTournamentsService,
-              private socialMedia: SocialMediaService,
-              private authManager: LoginService) {
+  constructor() {
     if (isPlatformBrowser(this.platformId)) {
       this.apiService.activeTournament.subscribe(data => {
         if (data) {

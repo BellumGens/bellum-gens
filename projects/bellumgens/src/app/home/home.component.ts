@@ -1,10 +1,9 @@
-import { Component, HostListener, Inject, PLATFORM_ID, ViewChild } from '@angular/core';
+import { Component, HostListener, PLATFORM_ID, ViewChild, inject } from '@angular/core';
 import { isPlatformBrowser, NgOptimizedImage } from '@angular/common';
 import { LoginService, ApplicationUser, SocialMediaService } from '../../../../common/src/public_api';
 import { environment } from '../../../../common/src/environments/environment';
 import { BaseDirective } from '../base/base.component';
-import { Title, Meta } from '@angular/platform-browser';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import { IgxCarouselComponent, IgxDividerDirective, IGX_INPUT_GROUP_DIRECTIVES, IGX_CAROUSEL_DIRECTIVES, IgxIconComponent, IgxButtonDirective } from '@infragistics/igniteui-angular';
 import { FormsModule } from '@angular/forms';
 
@@ -24,6 +23,10 @@ import { FormsModule } from '@angular/forms';
   ]
 })
 export class HomeComponent extends BaseDirective {
+  private platformId = inject(PLATFORM_ID);
+  private authManager = inject(LoginService);
+  private socialMedia = inject(SocialMediaService);
+
   @ViewChild(IgxCarouselComponent, { static: true }) public carousel: IgxCarouselComponent;
 
   public authUser: ApplicationUser;
@@ -31,13 +34,8 @@ export class HomeComponent extends BaseDirective {
   public environment = environment;
   public userEmail: string = null;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: any,
-              private authManager: LoginService,
-              private socialMedia: SocialMediaService,
-              titleService: Title,
-              meta: Meta,
-              activeRoute: ActivatedRoute) {
-    super(titleService, meta, activeRoute);
+  constructor() {
+    super();
     if (isPlatformBrowser(this.platformId)) {
       this.authManager.applicationUser.subscribe(data => this.authUser = data);
       this.resize();

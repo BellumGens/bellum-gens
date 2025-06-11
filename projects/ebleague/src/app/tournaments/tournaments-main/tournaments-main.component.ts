@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Tournament, ApiTournamentsService } from '../../../../../common/src/public_api';
 import { RouterLink } from '@angular/router';
 import { IGX_CARD_DIRECTIVES, IgxDividerDirective } from '@infragistics/igniteui-angular';
@@ -17,11 +17,13 @@ import { DatePipe, NgOptimizedImage } from '@angular/common';
   ]
 })
 export class TournamentsMainComponent {
+  private apiService = inject(ApiTournamentsService);
+
   public tournaments: Tournament [];
   public past: Tournament [];
   public upcoming: Tournament [];
 
-  constructor(private apiService: ApiTournamentsService) {
+  constructor() {
     this.apiService.tournaments.subscribe(data => {
       if (data) {
         this.tournaments = data.filter(t => t.active);

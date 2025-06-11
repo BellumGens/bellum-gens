@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { SearchResult, ApiSearchService } from '../../../../../common/src/public_api';
 import { IgxIconService, IGX_LIST_DIRECTIVES, IgxAvatarComponent, IgxIconComponent, IgxButtonDirective, IgxRippleDirective, IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular';
 import { ReduceQuickSearchResultPipe } from '../../pipes/reduce-quick-search-result.pipe';
@@ -24,11 +24,14 @@ import { DecimalPipe } from '@angular/common';
   ]
 })
 export class QuickSearchComponent {
+  private apiService = inject(ApiSearchService);
+  private iconService = inject(IgxIconService);
+
   public searchResult: SearchResult = { steamUser: null, players: [], teams: [], strategies: [] };
   public loading = false;
   public term = '';
 
-  constructor(private apiService: ApiSearchService, private iconService: IgxIconService) {
+  constructor() {
     this.apiService.searchResult.subscribe(data => {
       if (data) {
         this.searchResult = data;

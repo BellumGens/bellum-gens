@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   EMPTY_NEW_GROUP,
   Tournament,
@@ -46,6 +46,8 @@ import { FormsModule } from '@angular/forms';
   ]
 })
 export class AdminCsgoComponent {
+  private apiService = inject(ApiTournamentsService);
+
   public registrations: TournamentParticipant [];
   public groups: TournamentGroup [];
   public matches: TournamentCSGOMatch [];
@@ -59,7 +61,7 @@ export class AdminCsgoComponent {
   public tournaments: Tournament [] = [];
   public selectedTournament: Tournament;
 
-  constructor(private apiService: ApiTournamentsService) {
+  constructor() {
     this.apiService.tournaments.subscribe(t => this.tournaments = t);
   }
 

@@ -1,4 +1,4 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable, EventEmitter, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { throwError, BehaviorSubject } from 'rxjs';
 import { LoginProvider } from '../models/login-provider';
@@ -18,6 +18,11 @@ import { CSGOTeam } from '../models/csgoteam';
   providedIn: 'root'
 })
 export class LoginService {
+  private http = inject(HttpClient);
+  private swPush = inject(SwPush);
+  private router = inject(Router);
+  private commService = inject(CommunicationService);
+
   public userCheckInProgress = new BehaviorSubject<boolean>(false);
   public openLogin = new EventEmitter<string>();
 
@@ -27,12 +32,6 @@ export class LoginService {
   private _userNotifications = new BehaviorSubject<UserNotification []>(null);
   private _registrations = new BehaviorSubject<TournamentApplication []>(null);
   private _teamsAdmin = new BehaviorSubject<CSGOTeam []>(null);
-
-  constructor(private http: HttpClient,
-              private swPush: SwPush,
-              private router: Router,
-              private commService: CommunicationService) {
-  }
 
   public emitOpenLogin() {
     this.openLogin.emit();

@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation, inject } from '@angular/core';
 
 import { IGX_TABS_DIRECTIVES, IgxAvatarComponent } from '@infragistics/igniteui-angular';
 import { ActivatedRoute, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
@@ -18,9 +18,12 @@ import { ApplicationUser, BellumgensApiService } from '../../../../common/src/pu
   ]
 })
 export class PlayerComponent {
+  private apiService = inject(BellumgensApiService);
+  private activatedRoute = inject(ActivatedRoute);
+
   public player: ApplicationUser;
 
-  constructor(private apiService: BellumgensApiService, private activatedRoute: ActivatedRoute) {
+  constructor() {
     this.activatedRoute.params.subscribe(params => {
       const userid = params['userid'];
       if (userid) {

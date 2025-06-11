@@ -1,7 +1,5 @@
 import { isPlatformBrowser, NgOptimizedImage } from '@angular/common';
-import { ChangeDetectionStrategy, Component, HostListener, Inject, PLATFORM_ID } from '@angular/core';
-import { Title, Meta } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ChangeDetectionStrategy, Component, HostListener, PLATFORM_ID, inject } from '@angular/core';
 import { IGX_CARD_DIRECTIVES, IgxIconButtonDirective, IgxRippleDirective, IgxIconComponent, IgxLayoutDirective, IgxFlexDirective } from '@infragistics/igniteui-angular';
 import { SocialMedia } from '../../../../../common/src/public_api';
 import { BaseDirective } from '../../base/base.component';
@@ -22,6 +20,8 @@ import { BaseDirective } from '../../base/base.component';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PartnerComponent extends BaseDirective {
+  private platformId = inject(PLATFORM_ID);
+
   public social: SocialMedia [];
   public image: string;
   public name: string;
@@ -31,8 +31,8 @@ export class PartnerComponent extends BaseDirective {
   public horizontal = true;
   public mediaWidth = '550px';
 
-  constructor(@Inject(PLATFORM_ID) private platformId: any, titleService: Title, meta: Meta, activeRoute: ActivatedRoute) {
-    super(titleService, meta, activeRoute);
+  constructor() {
+    super();
     this.activeRoute.data.subscribe(data => {
       this.social = data.social;
       this.image = data.partnerImage;

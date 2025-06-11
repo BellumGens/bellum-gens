@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { LoginProvider } from '../../../models/login-provider';
 import { LoginService } from '../../../services/login.service';
 import { LOGIN_ASSETS } from '../../../models/misc';
@@ -13,10 +13,12 @@ import { AsyncPipe } from '@angular/common';
   imports: [IgxButtonDirective, IgxIconComponent, IgxDividerDirective, AsyncPipe]
 })
 export class LoginButtonsComponent {
+  private authManager = inject(LoginService);
+
   public loginColors = LOGIN_ASSETS;
   public loginProviders: Observable<LoginProvider []>;
 
-  constructor(private authManager: LoginService) {
+  constructor() {
     this.loginProviders = this.authManager.loginProviders;
   }
 

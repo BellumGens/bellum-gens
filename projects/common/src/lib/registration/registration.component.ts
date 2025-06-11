@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, inject } from '@angular/core';
 
 import { LoginService } from '../../services/login.service';
 import { UserRegistration } from '../../models/userlogin';
@@ -23,6 +23,9 @@ import {
     imports: [FormsModule, IGX_INPUT_GROUP_DIRECTIVES, IgxIconComponent, IgxButtonDirective, IgxRippleDirective]
 })
 export class RegistrationComponent implements OnInit {
+  private authManager = inject(LoginService);
+  private router = inject(Router);
+
   @ViewChild('regusername', { static: true }) public usernameInput: ElementRef;
 
   public userAccount: UserRegistration = { username: '', password: '', confirmPassword: '', email: '' };
@@ -31,7 +34,7 @@ export class RegistrationComponent implements OnInit {
   public authUser: ApplicationUser;
   public error = '';
 
-  constructor(private authManager: LoginService, private router: Router) {
+  constructor() {
     this.authManager.applicationUser.subscribe(user => {
       this.authUser = user;
       if (user && user.email) {

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SteamGroup, SteamUser } from '../models/steamuser';
 import { Observable, throwError, BehaviorSubject } from 'rxjs';
@@ -17,6 +17,9 @@ import { ApplicationUser } from '../models/applicationuser';
   providedIn: 'root'
 })
 export class BellumgensApiService {
+  private http = inject(HttpClient);
+  private commService = inject(CommunicationService);
+
   public loadingTeams = new BehaviorSubject<boolean>(false);
   public loadingPlayers = new BehaviorSubject<boolean>(false);
   public loadingPlayer = new BehaviorSubject<boolean>(false);
@@ -30,8 +33,6 @@ export class BellumgensApiService {
   private _currentTeamPractice = new BehaviorSubject<Availability []>(null);
   private _currentPlayer = new BehaviorSubject<ApplicationUser>(null);
   private _teamApplications = new Map<string, Observable<TeamApplication[]>>();
-
-  constructor(private http: HttpClient, private commService: CommunicationService) { }
 
   public getUserTeams(userId: string) {
     return this.http.get<CSGOTeam []>(`${this._apiEndpoint}/users/userteams?userid=${userId}`, { withCredentials: true });

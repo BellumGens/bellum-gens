@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -7,9 +7,11 @@ import { ActivatedRoute } from '@angular/router';
     standalone: true
 })
 export class EmailconfirmComponent {
+  private route = inject(ActivatedRoute);
+
   public message = 'Email confirmed successfully!';
 
-  constructor(private route: ActivatedRoute) {
+  constructor() {
     this.route.params.subscribe(params => {
       if (params['error'] === 'error') {
         this.message = ':( Error confirming your email address!';

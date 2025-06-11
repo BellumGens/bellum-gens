@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, inject } from '@angular/core';
 import {
   TournamentGroup,
   TournamentParticipant,
@@ -85,6 +85,9 @@ import { FormsModule } from '@angular/forms';
   ]
 })
 export class AdminSc2Component {
+  private apiService = inject(ApiTournamentsService);
+  private notificationService = inject(CommunicationService);
+
   public registrations: TournamentApplication [];
   public participants: TournamentParticipant [];
   public groups: TournamentGroup [];
@@ -105,8 +108,7 @@ export class AdminSc2Component {
 
   @ViewChild('registrationsGrid', { static: true }) public registrationsGrid: IgxGridComponent;
 
-  constructor(private apiService: ApiTournamentsService,
-              private notificationService: CommunicationService) {
+  constructor() {
     this.apiService.tournaments.subscribe(t => {
       if (t && t.length > 0) {
         this.tournaments = t;

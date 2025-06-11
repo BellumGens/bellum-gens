@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, Inject, PLATFORM_ID, LOCALE_ID } from '@angular/core';
+import { Component, OnInit, ViewChild, PLATFORM_ID, LOCALE_ID, inject } from '@angular/core';
 import { isPlatformBrowser, NgOptimizedImage } from '@angular/common';
 import { Router, NavigationEnd, RouterLink, RouterLinkActive, RouterOutlet, ActivatedRoute } from '@angular/router';
 import { filter } from 'rxjs/operators';
@@ -53,6 +53,14 @@ import { LanguagesComponent } from '../../../common/src/lib/languages/languages.
   ]
 })
 export class AppComponent implements OnInit {
+  private platformId = inject(PLATFORM_ID);
+  private localeId = inject(LOCALE_ID);
+  private iconService = inject(IgxIconService);
+  private authManager = inject(LoginService);
+  private notificationService = inject(CommunicationService);
+  private router = inject(Router);
+  private activatedRoute = inject(ActivatedRoute);
+
   // @ViewChild('cookiesBanner', { static: true })
   // private banner: IgxBannerComponent;
 
@@ -63,13 +71,7 @@ export class AppComponent implements OnInit {
   public environment = environment;
   public year = new Date().getFullYear();
 
-  constructor(@Inject(PLATFORM_ID) private platformId: any,
-              @Inject(LOCALE_ID) private localeId: string,
-              private iconService: IgxIconService,
-              private authManager: LoginService,
-              private notificationService: CommunicationService,
-              private router: Router,
-              private activatedRoute: ActivatedRoute) {
+  constructor() {
     if (isPlatformBrowser(this.platformId)) {
       this.authManager.applicationUser.subscribe(data => {
         this.authUser = data;

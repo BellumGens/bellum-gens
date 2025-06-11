@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy, inject } from '@angular/core';
 import {
   CSGOActiveDutyMap,
   ACTIVE_DUTY,
@@ -40,6 +40,11 @@ import { NgClass } from '@angular/common';
   ]
 })
 export class StrategyEditorComponent implements OnInit, OnDestroy {
+  private apiService = inject(BellumgensApiService);
+  private apiStrategyService = inject(ApiStrategiesService);
+  private iconService = inject(IgxIconService);
+  private route = inject(ActivatedRoute);
+
   @ViewChild('board', { static: true }) public canvas: ElementRef;
 
   public maps: CSGOActiveDutyMap [] = ACTIVE_DUTY;
@@ -84,10 +89,7 @@ export class StrategyEditorComponent implements OnInit, OnDestroy {
 
   private editor: StrategyEditor;
 
-  constructor(private apiService: BellumgensApiService,
-              private apiStrategyService: ApiStrategiesService,
-              private iconService: IgxIconService,
-              private route: ActivatedRoute) {
+  constructor() {
     this.loadSvgs();
   }
 

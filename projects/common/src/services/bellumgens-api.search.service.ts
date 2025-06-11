@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { CSGOTeam } from '../models/csgoteam';
 import { SearchResult } from '../models/searchresult';
 import { CSGOStrategy } from '../models/csgostrategy';
@@ -13,6 +13,9 @@ import { ApplicationUser } from '../models/applicationuser';
   providedIn: 'root'
 })
 export class ApiSearchService {
+  private http = inject(HttpClient);
+  private commService = inject(CommunicationService);
+
   public loadingQuickSearch = new BehaviorSubject<boolean>(false);
   public loadingSearch = new BehaviorSubject<boolean>(false);
   public searchResult = new BehaviorSubject<SearchResult>(null);
@@ -26,8 +29,6 @@ export class ApiSearchService {
   private _playerSearchCache: Map<string, ApplicationUser []> = new Map();
   private _teamSearchCache: Map<string, CSGOTeam []> = new Map();
   private _strategySearchCache: Map<string, CSGOStrategy []> = new Map();
-
-  constructor(private http: HttpClient, private commService: CommunicationService) { }
 
   public quickSearch(name: string) {
     this.searchTerm.next(name);

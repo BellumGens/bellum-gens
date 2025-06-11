@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -8,9 +8,11 @@ import { ActivatedRoute } from '@angular/router';
   standalone: true
 })
 export class UnauthorizedComponent {
+  private activatedRoute = inject(ActivatedRoute);
+
   public message = 'Unauthorized :(';
 
-  constructor(private activatedRoute: ActivatedRoute) {
+  constructor() {
     this.activatedRoute.params.subscribe(params => {
       const message = params['message'];
       if (message) {

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, inject } from '@angular/core';
 import { TeamApplication, CSGOTeam, BellumgensApiService } from '../../../../../common/src/public_api';
 import { NotificationStatePipe } from '../../pipes/notification-state.pipe';
 import { SortApplicationsPipe } from '../../pipes/sort-applications.pipe';
@@ -24,6 +24,8 @@ import { DatePipe } from '@angular/common';
   ]
 })
 export class TeamNotificationsComponent implements OnInit {
+  private apiService = inject(BellumgensApiService);
+
   @Input() public team: CSGOTeam;
 
   @Output() public loaded = new EventEmitter<TeamApplication []>();
@@ -35,8 +37,6 @@ export class TeamNotificationsComponent implements OnInit {
   public pipeTrigger = 0;
   public actionInProgress = false;
   public actionText = '';
-
-  constructor(private apiService: BellumgensApiService) { }
 
   public ngOnInit() {
     if (this.team) {
