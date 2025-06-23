@@ -5,14 +5,11 @@ import { BrowserModule, DomSanitizer } from '@angular/platform-browser';
 describe('SafeVideoLinkPipe', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        BrowserModule
-      ]
     });
   });
 
-  it('create an instance', inject([DomSanitizer], () => {
-    const pipe = new SafeVideoLinkPipe();
+  it('create an instance', inject([DomSanitizer], (domSanitizer: DomSanitizer) => {
+    const pipe = new SafeVideoLinkPipe(domSanitizer);
     expect(pipe).toBeTruthy();
   }));
 });
