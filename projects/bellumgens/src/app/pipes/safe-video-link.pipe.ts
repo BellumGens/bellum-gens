@@ -6,6 +6,7 @@ import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
     standalone: true
 })
 export class SafeVideoLinkPipe implements PipeTransform {
+  // eslint-disable-next-line @angular-eslint/prefer-inject
   constructor(private sanitizer: DomSanitizer) {}
 
   public transform(url: string): SafeResourceUrl {
