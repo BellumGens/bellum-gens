@@ -7,6 +7,9 @@ export * from './languages/languages.component';
 export * from './unauthorized/unauthorized.component';
 export * from './registration/registration.component';
 
+/* e-commerce */
+export * from './shop/orderform.component';
+
 /* Login */
 export * from './login/login.component';
 export * from './login/login-dialog/login-dialog.component';

@@ -50,6 +50,7 @@ export * from './lib/pipes/sc2-race-thumb.pipe';
 export * from './lib/pipes/weekday.pipe';
 export * from './lib/pipes/starts-with.pipe';
 export * from './lib/pipes/race-icon.pipe';
+export * from './lib/pipes/filter-sizes.pipe';
 
 /* Components */
 export * from './lib/public_api';
