@@ -13,9 +13,18 @@ export enum JerseySize {
   XXXL
 }
 
-export interface JerseyDetails {
+export enum ProductType {
+  Jersey,
+  Umbrella,
+  Pen,
+  Pin,
+  Bracelet
+}
+
+export interface ProductOrderDetails {
   cut: JerseyCut;
   size: JerseySize;
+  product: Product;
 }
 
 export interface JerseySizes {
@@ -23,9 +32,20 @@ export interface JerseySizes {
   text: string;
 }
 
-export interface JerseyOrder {
+export interface Product {
+  id: string;
+  productName: string;
+  productType: ProductType;
+  description: string;
+  price: number;
+  discountPercentage?: number;
+  imageUrl: string;
+  quantity: number;
+}
+
+export interface Order {
   id?: string;
-  jerseys?: JerseyDetails [];
+  orderProducts?: ProductOrderDetails [];
   email?: string;
   firstName?: string;
   lastName?: string;
@@ -44,4 +64,4 @@ export interface Promo {
   expiration: Date;
 }
 
-export const EMPTY_JERSEY_ORDER: JerseyOrder = { jerseys: [{ cut: JerseyCut.Male, size: JerseySize.L }] };
+export const EMPTY_JERSEY_ORDER: Order = { orderProducts: [{ cut: JerseyCut.Male, size: JerseySize.L } as ProductOrderDetails] };

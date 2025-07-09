@@ -3,7 +3,7 @@ import {
   LoginService,
   ApiTournamentsService,
   Tournament, EMPTY_NEW_TOURNAMENT, TournamentApplication,
-  JerseyOrder, Promo,
+  Order, Promo,
   ApiShopService
 } from '../../../../../common/src/public_api';
 import { IGridEditEventArgs, IGroupingExpression, SortingDirection, DefaultSortingStrategy, RowType, IGX_GRID_DIRECTIVES, IgxIconComponent, IgxBadgeComponent, IGX_ACTION_STRIP_DIRECTIVES, IgxButtonDirective, IgxIconButtonDirective, IgxRippleDirective, IGX_PAGINATOR_DIRECTIVES, IGX_INPUT_GROUP_DIRECTIVES, IGX_DATE_PICKER_DIRECTIVES, IgxCheckboxComponent, IGX_CHIPS_DIRECTIVES, IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular';
@@ -39,7 +39,7 @@ export class AdminMainComponent {
   // public users: AdminAppUserSummary [];
   public tournaments: Tournament [];
   public tournament = Object.assign({}, EMPTY_NEW_TOURNAMENT);
-  public orders: JerseyOrder [];
+  public orders: Order [];
   public registrations: TournamentApplication [];
   public promos: Promo [];
   public grouping: IGroupingExpression [];

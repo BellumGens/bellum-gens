@@ -1,7 +1,7 @@
 <form #orderForm="ngForm" (ngSubmit)="placeOrder()">
   <div class="horizontal">
     <div class="column-container">
-      @for (jersey of order.jerseys; track jersey; let i = $index) {
+      @for (jersey of order.orderProducts; track jersey; let i = $index) {
         <div class="horizontal-center">
           <igx-select [value]="jersey.cut" (selectionChanging)="selectJerseyCut(jersey, $event)" type="border" class="order-form-input" name="jerseyCut">
             <label igxLabel i18n>Cut</label>
@@ -19,15 +19,15 @@
               </igx-select-item>
             }
           </igx-select>
-          @if (order.jerseys.length > 1 ) {
-            <igx-icon (click)="order.jerseys.splice(i, 1)">clear</igx-icon>
+          @if (order.orderProducts.length > 1 ) {
+            <igx-icon (click)="order.orderProducts.splice(i, 1)">clear</igx-icon>
           }
         </div>
       }
     </div>
 
     <div class="order-summary">
-      <span i18n>{{order.jerseys.length}} x {{basePrice}} BGN = {{ order.jerseys.length * basePrice }} BGN</span>
+      <span i18n>{{order.orderProducts.length}} x {{basePrice}} BGN = {{ order.orderProducts.length * basePrice }} BGN</span>
 
       <igx-input-group class="order-form-input" type="box">
         <label igxLabel for="firstName" i18n>Promo code</label>
@@ -47,18 +47,18 @@
       </igx-input-group>
 
       @if (promo > 0) {
-        <span class="color-success" i18n>{{ promo * 100 }}% off = -{{ (order.jerseys.length * basePrice) * promo }} BGN</span>
+        <span class="color-success" i18n>{{ promo * 100 }}% off = -{{ (order.orderProducts.length * basePrice) * promo }} BGN</span>
       }
-      @if (order.jerseys.length * basePrice * promo >= 100) {
+      @if (order.orderProducts.length * basePrice * promo >= 100) {
         <span i18n>Free shipping</span>
       }
       <igx-divider></igx-divider>
-      <span i18n>Total = {{ (order.jerseys.length * basePrice) * (1 - promo) }} BGN</span>
+      <span i18n>Total = {{ (order.orderProducts.length * basePrice) * (1 - promo) }} BGN</span>
     </div>
   </div>
 
   <div class="horizontal-center floating-button">
-    <button type="button" igxButton="outlined" (click)="order.jerseys.push({ cut: 0, size: 3 })">
+    <button type="button" igxButton="outlined" (click)="order.orderProducts.push()">
       <igx-icon>add</igx-icon>
       <span i18n>Add one more</span>
     </button>

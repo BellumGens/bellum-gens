@@ -2,7 +2,7 @@ import { Injectable, EventEmitter, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { throwError, BehaviorSubject } from 'rxjs';
 import { LoginProvider } from '../models/login-provider';
-import { Promo } from '../models/jerseyorder';
+import { Promo } from '../models/order';
 import { ApplicationUser, UserPreferences } from '../models/applicationuser';
 import { map, catchError } from 'rxjs/operators';
 import { environment } from '../environments/environment';

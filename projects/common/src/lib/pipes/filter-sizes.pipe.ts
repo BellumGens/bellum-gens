@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { JerseyCut, JerseySize, JerseySizes } from '../../models/jerseyorder';
+import { JerseyCut, JerseySize, JerseySizes } from '../../models/order';
 
 @Pipe({
     name: 'filterSizes',

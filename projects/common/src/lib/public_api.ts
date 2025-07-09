@@ -8,7 +8,7 @@ export * from './unauthorized/unauthorized.component';
 export * from './registration/registration.component';
 
 /* e-commerce */
-export * from './shop/orderform.component';
+export * from './shop/orderform/orderform.component';
 
 /* Login */
 export * from './login/login.component';

@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 import { environment } from '../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { JerseyOrder, Promo } from '../models/jerseyorder';
+import { Order, Promo } from '../models/order';
 import { map, catchError } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 import { CommunicationService } from './communication.service';
@@ -15,12 +15,12 @@ export class ApiShopService {
 
   private _apiEndpoint = environment.apiEndpoint;
 
-  public submitOrder(order: JerseyOrder) {
-    return this.http.post<JerseyOrder>(`${this._apiEndpoint}/shop/order`, order);
+  public submitOrder(order: Order) {
+    return this.http.post<Order>(`${this._apiEndpoint}/shop/order`, order);
   }
 
   public deleteOrder(orderId: string) {
-    return this.http.delete<JerseyOrder>(`${this._apiEndpoint}/shop/order?orderId=${orderId}`, { withCredentials: true }).pipe(
+    return this.http.delete<Order>(`${this._apiEndpoint}/shop/order?orderId=${orderId}`, { withCredentials: true }).pipe(
       map(response => {
         this.commService.emitSuccess('Order deleted successfully!');
         return response;
@@ -37,10 +37,10 @@ export class ApiShopService {
   }
 
   public getOrders() {
-    return this.http.get<JerseyOrder []>(`${this._apiEndpoint}/shop/orders`, { withCredentials: true });
+    return this.http.get<Order []>(`${this._apiEndpoint}/shop/orders`, { withCredentials: true });
   }
 
-  public confirmOrder(order: JerseyOrder) {
+  public confirmOrder(order: Order) {
     return this.http.put(`${this._apiEndpoint}/shop/edit?orderId=${order.id}`, order, { withCredentials: true }).pipe(
       map(response => {
         this.commService.emitSuccess('Order confirmed successfully!');

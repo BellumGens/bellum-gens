@@ -2,9 +2,9 @@ import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { ISelectionEventArgs, IGX_SELECT_DIRECTIVES, IGX_INPUT_GROUP_DIRECTIVES, IgxIconComponent, IgxDividerDirective, IgxButtonDirective, IgxMaskDirective, IgxTextSelectionDirective } from '@infragistics/igniteui-angular';
-import { FilterSizesPipe } from '../pipes/filter-sizes.pipe';
-import { ApiShopService } from '../../public_api';
-import { EMPTY_JERSEY_ORDER, JerseyCut, JerseyDetails, JerseyOrder, JerseySize } from '../../models/jerseyorder';
+import { FilterSizesPipe } from '../../pipes/filter-sizes.pipe';
+import { ApiShopService } from '../../../public_api';
+import { EMPTY_JERSEY_ORDER, JerseyCut, ProductOrderDetails, Order, JerseySize } from '../../../models/order';
 
 @Component({
   selector: 'bg-orderform',
@@ -49,7 +49,7 @@ export class OrderformComponent {
   ];
 
   @Output()
-  public orderSuccess = new EventEmitter<JerseyOrder>();
+  public orderSuccess = new EventEmitter<Order>();
 
   public placeOrder() {
     this.inProgress = true;
@@ -73,11 +73,11 @@ export class OrderformComponent {
     }
   }
 
-  public selectJerseyCut(jersey: JerseyDetails, event: ISelectionEventArgs) {
+  public selectJerseyCut(jersey: ProductOrderDetails, event: ISelectionEventArgs) {
     jersey.cut = event.newSelection.value;
   }
 
-  public selectJerseySize(jersey: JerseyDetails, event: ISelectionEventArgs) {
+  public selectJerseySize(jersey: ProductOrderDetails, event: ISelectionEventArgs) {
     jersey.size = event.newSelection.value;
   }
 

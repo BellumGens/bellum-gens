@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { ApiShopService } from './bellumgens-api.shop.service';
-import { JerseyCut, JerseyOrder, JerseySize, Promo } from '../models/jerseyorder';
+import { JerseyCut, Order, JerseySize, Promo } from '../models/order';
 import { CommunicationService } from './communication.service';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
@@ -32,7 +32,7 @@ describe('ApiShopService', () => {
 
   describe('submitOrder', () => {
     it('should send a POST request to the API with the order data', () => {
-      const order: JerseyOrder = { jerseys: [{ cut: JerseyCut.Male, size: JerseySize.L }] };
+      const order: Order = { jerseys: [{ cut: JerseyCut.Male, size: JerseySize.L }] };
       service.submitOrder(order).subscribe();
       const req = httpMock.expectOne(`${service['_apiEndpoint']}/shop/order`);
       expect(req.request.method).toBe('POST');
@@ -87,7 +87,7 @@ describe('ApiShopService', () => {
 
   describe('confirmOrder', () => {
     it('should send a PUT request to the API with the order data', () => {
-      const order: JerseyOrder = { id: '123', jerseys: [{ cut: JerseyCut.Male, size: JerseySize.L }] };
+      const order: Order = { id: '123', jerseys: [{ cut: JerseyCut.Male, size: JerseySize.L }] };
       commsService.success.subscribe(message => expect(message).toEqual('Order confirmed successfully!'));
       service.confirmOrder(order).subscribe();
       const req = httpMock.expectOne(`${service['_apiEndpoint']}/shop/edit?orderId=${order.id}`);
