@@ -1,1 +1,19 @@
-<p>products works!</p>,
+<div class="card-wrapper">
+  @for (product of products$ | async; track product.id) {
+    <igx-card class="product-card">
+      <igx-card-header>
+        <h2 igxCardHeaderTitle class="product-title">{{ product.productName }}</h2>
+        <h4 igxCardHeaderSubtitle>{{ product.description }}</h4>
+      </igx-card-header>
+      <igx-card-media>
+        <img [src]="product.imageUrl" alt="{{ product.productName }}" class="product-image" />
+      </igx-card-media>
+      <igx-card-content>
+        <p class="product-price">{{ product.price | currency:'EUR' }}</p>
+      </igx-card-content>
+      <igx-card-actions>
+        <button igxButton="raised" (click)="addToCart(product)">Add to Cart</button>
+      </igx-card-actions>
+    </igx-card>
+  }
+</div>

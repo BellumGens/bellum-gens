@@ -22,8 +22,8 @@ export enum ProductType {
 }
 
 export interface ProductOrderDetails {
-  cut: JerseyCut;
-  size: JerseySize;
+  cut?: JerseyCut;
+  size?: JerseySize;
   product: Product;
 }
 

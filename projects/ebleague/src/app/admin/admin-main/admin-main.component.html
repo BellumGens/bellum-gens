@@ -68,9 +68,9 @@
     </igx-grid>
   </div>
 
-  <!-- <div class="content-container-row">
+  <div class="content-container-row">
     <igx-grid #grid1
-      [data]="orders"
+      [data]="orders | async"
       primaryKey="id" [batchEditing]="true"
       [allowFiltering]="true"
       (cellEdit)="editDone($event)"
@@ -136,7 +136,7 @@
       <igx-paginator></igx-paginator>
 
     </igx-grid>
-  </div> -->
+  </div>
 </div>
 
 <div class="content-container">

@@ -1,9 +1,9 @@
 import { Injectable, inject } from '@angular/core';
 import { environment } from '../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Order, Promo } from '../models/order';
+import { Order, Product, ProductOrderDetails, Promo } from '../models/order';
 import { map, catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { BehaviorSubject, throwError } from 'rxjs';
 import { CommunicationService } from './communication.service';
 
 @Injectable({
@@ -14,9 +14,25 @@ export class ApiShopService {
   private commService = inject(CommunicationService);
 
   private _apiEndpoint = environment.apiEndpoint;
+  private _products = new BehaviorSubject<Product []>(null);
+
+  public cart = new BehaviorSubject<ProductOrderDetails []>([]);
 
   public submitOrder(order: Order) {
     return this.http.post<Order>(`${this._apiEndpoint}/shop/order`, order);
+  }
+
+  public get products() {
+    if (!this._products.value) {
+      this.http.get<Product []>(`${this._apiEndpoint}/shop/products`).subscribe({
+        next: (products) => this._products.next(products),
+        error: (error) => {
+          this.commService.emitError(error.message);
+          return throwError(() => error);
+        }
+      });
+    }
+    return this._products;
   }
 
   public deleteOrder(orderId: string) {
@@ -29,11 +45,16 @@ export class ApiShopService {
         this.commService.emitError(error.message);
         return throwError(() => error);
       })
-    );;
+    );
   }
 
   public checkForPromo(code: string) {
     return this.http.get<Promo>(`${this._apiEndpoint}/shop/promo?code=${code}`);
+  }
+
+  public addToCart(cartItem: ProductOrderDetails) {
+    this.cart.next([...this.cart.value, cartItem]);
+    this.commService.emitSuccess(`${cartItem.product.productName} added to cart!`);
   }
 
   public getOrders() {

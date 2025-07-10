@@ -8,6 +8,9 @@ import {
 } from '../../../../../common/src/public_api';
 import { IGridEditEventArgs, IGroupingExpression, SortingDirection, DefaultSortingStrategy, RowType, IGX_GRID_DIRECTIVES, IgxIconComponent, IgxBadgeComponent, IGX_ACTION_STRIP_DIRECTIVES, IgxButtonDirective, IgxIconButtonDirective, IgxRippleDirective, IGX_PAGINATOR_DIRECTIVES, IGX_INPUT_GROUP_DIRECTIVES, IGX_DATE_PICKER_DIRECTIVES, IgxCheckboxComponent, IGX_CHIPS_DIRECTIVES, IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular';
 import { FormsModule } from '@angular/forms';
+import { SizeNamePipe } from '../../pipes/size-name.pipe';
+import { Observable } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-admin-main',
@@ -27,7 +30,9 @@ import { FormsModule } from '@angular/forms';
     IGX_DATE_PICKER_DIRECTIVES,
     IGX_CARD_DIRECTIVES,
     IgxCheckboxComponent,
-    IGX_CHIPS_DIRECTIVES
+    IGX_CHIPS_DIRECTIVES,
+    SizeNamePipe,
+    AsyncPipe
   ]
 })
 export class AdminMainComponent {
@@ -39,7 +44,7 @@ export class AdminMainComponent {
   // public users: AdminAppUserSummary [];
   public tournaments: Tournament [];
   public tournament = Object.assign({}, EMPTY_NEW_TOURNAMENT);
-  public orders: Order [];
+  public orders: Observable<Order []>;
   public registrations: TournamentApplication [];
   public promos: Promo [];
   public grouping: IGroupingExpression [];
@@ -57,7 +62,7 @@ export class AdminMainComponent {
         this.tournaments = data;
       }
     });
-    // this.shopService.getOrders().subscribe(data => this.orders = data);
+    this.orders = this.shopService.getOrders();
     this.apiService.allRegistrations.subscribe(data => this.registrations = data);
     this.grouping = [
       { dir: SortingDirection.Desc, fieldName: 'tournamentName', ignoreCase: false, strategy: DefaultSortingStrategy.instance() },
