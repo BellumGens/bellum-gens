@@ -1239,6 +1239,86 @@
           <context context-type="linenumber">118,120</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="5378038310980574543" datatype="html">
+        <source>Bellum Gens Elite Stara Zagora 2026</source>
+        <target>Белум Генс Елит Стара Загора 2026</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
+          <context context-type="linenumber">2,3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5851482940642690185" datatype="html">
+        <source>Pre-register to receive an exclusive discount on tickets.</source>
+        <target>Предварително се регистрирайте, за да получите ексклузивна отстъпка за билети.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
+          <context context-type="linenumber">5,6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3369725258622444224" datatype="html">
+        <source>Signed up users so far: <x id="INTERPOLATION" equiv-text="{{ count() }}"/></source>
+        <target>Регистрирани до момента: <x id="INTERPOLATION" equiv-text="{{ count() }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
+          <context context-type="linenumber">8,9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1022343028421155535" datatype="html">
+        <source>Current discount: <x id="INTERPOLATION" equiv-text="{{ discount }}"/>%</source>
+        <target>Текуща отстъпка: <x id="INTERPOLATION" equiv-text="{{ discount }}"/>%</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
+          <context context-type="linenumber">10,12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3672216621204030551" datatype="html">
+        <source>Discount tiers: up to 250 sign-ups → 15%, up to 500 → 25%, over 500 → 33%.</source>
+        <target>Нива на отстъпка: до 250 регистрации → 15%, до 500 → 25%, над 500 → 33%.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
+          <context context-type="linenumber">13,16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4495585342086850500" datatype="html">
+        <source>You need to be logged in to submit the form. Please log in from the profile menu.</source>
+        <target>Трябва да сте влезли, за да изпратите формуляра. Моля, влезте от менюто на профила.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
+          <context context-type="linenumber">18,20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6227242344143900614" datatype="html">
+        <source>Please enter a valid email.</source>
+        <target>Моля, въведете валиден имейл.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
+          <context context-type="linenumber">25,27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8634112532047479804" datatype="html">
+        <source>This is my first Bellum Gens Elite event</source>
+        <target>Това е първото ми събитие на Белум Генс Елит</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
+          <context context-type="linenumber">31,33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7161168249531246509" datatype="html">
+        <source>Submit</source>
+        <target>Изпрати</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
+          <context context-type="linenumber">35,36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7708270344948043036" datatype="html">
+        <source>Thank you! Your pre-registration was recorded.</source>
+        <target>Благодарим! Вашата предварителна регистрация беше записана.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
+          <context context-type="linenumber">39,41</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="3987171197721002192" datatype="html">
         <source>Organized With</source>
         <target>Организирано заедно с</target>

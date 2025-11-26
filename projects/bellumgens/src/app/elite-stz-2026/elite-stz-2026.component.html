@@ -1,0 +1,40 @@
+<div class="container">
+  <h1 i18n>Bellum Gens Elite Stara Zagora 2026</h1>
+
+  <p i18n>Pre-register to receive an exclusive discount on tickets.</p>
+
+  <div class="stats" i18n>Signed up users so far: {{ count() }}</div>
+  <div class="discount" i18n>
+    Current discount: {{ discount }}%
+  </div>
+  <div class="tiers" i18n>
+    Discount tiers: up to 250 sign-ups → 15%, up to 500 → 25%, over 500 → 33%.
+  </div>
+
+  <div class="auth-info" *ngIf="!isAuthenticated" i18n>
+    You need to be logged in to submit the form. Please log in from the profile menu.
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" class="signup-form">
+    <igx-input-group>
+      <label igxLabel i18n>Email</label>
+      <input igxInput id="email" type="email" formControlName="email" [disabled]="!isAuthenticated" />
+    </igx-input-group>
+    <div class="error" *ngIf="form.controls.email.touched && form.controls.email.invalid" i18n>
+      Please enter a valid email.
+    </div>
+
+    <igx-checkbox formControlName="firstTime" [disabled]="!isAuthenticated">
+      <span i18n>This is my first Bellum Gens Elite event</span>
+    </igx-checkbox>
+
+    <button igxButton="raised" type="submit" [disabled]="!isAuthenticated || submitting()" i18n>Submit</button>
+  </form>
+
+  <div class="success" *ngIf="submitSuccess() === true" i18n>
+    Thank you! Your pre-registration was recorded.
+  </div>
+  <div class="error" *ngIf="submitSuccess() === false" i18n>
+    {{ errorMsg() }}
+  </div>
+</div>
