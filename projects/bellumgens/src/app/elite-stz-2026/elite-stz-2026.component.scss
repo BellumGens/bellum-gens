@@ -1,12 +1,23 @@
-.container {
-  max-width: 720px;
-  margin: 0 auto;
-  padding: 1rem;
+:host {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 12px;
+  min-height: calc(100% - 40px);
+  justify-content: center;
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 1rem;
+  }
+
+  .stats, .discount, .tiers { margin: 0.25rem 0; }
+
+  .signup-form { display: grid; gap: 0.5rem; margin-top: 1rem; }
+
+  .signup-form input[type="email"] { padding: 0.5rem; }
+
+  .checkbox { display: flex; align-items: center; gap: 0.5rem; }
+
+  button { padding: 0.5rem 1rem; }
 }
-.stats, .discount, .tiers { margin: 0.25rem 0; }
-.signup-form { display: grid; gap: 0.5rem; margin-top: 1rem; }
-.signup-form input[type="email"] { padding: 0.5rem; }
-.checkbox { display: flex; align-items: center; gap: 0.5rem; }
-button { padding: 0.5rem 1rem; }
-.error { color: #b00020; }
-.success { color: #0a7d3b; }

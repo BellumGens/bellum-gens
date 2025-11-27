@@ -9,7 +9,7 @@ export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'bellumgenselite', loadChildren: () => import('./events/events.routes').then(m => m.routes) },
   { path: 'partners', loadChildren: () => import('./partners/partners.routes').then(m => m.routes) },
-  { path: 'elite-stara-zagora-2026', loadComponent: () => import('./elite-stz-2026/elite-stz-2026.component').then(m => m.EliteStz2026Component) },
+  { path: 'bge-stara-zagora-2026', loadComponent: () => import('./elite-stz-2026/elite-stz-2026.component').then(m => m.EliteStz2026Component) },
   { path: 'register', component: RegistrationComponent },
   { path: 'unauthorized', redirectTo: 'unauthorized/', pathMatch: 'full' },
   { path: 'unauthorized/:message', component: UnauthorizedComponent },

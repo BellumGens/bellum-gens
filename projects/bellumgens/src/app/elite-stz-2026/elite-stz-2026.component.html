@@ -2,13 +2,16 @@
   <h1 i18n>Bellum Gens Elite Stara Zagora 2026</h1>
 
   <p i18n>Pre-register to receive an exclusive discount on tickets.</p>
+  <p class="info" i18n>Discount codes will be emailed when tickets go on sale at the beginning of 2026. Watch your inbox.</p>
 
   <div class="stats" i18n>Signed up users so far: {{ count() }}</div>
-  <div class="discount" i18n>
-    Current discount: {{ discount }}%
+  <div class="discount current-discount" i18n>
+    Current discount: <span class="highlight">{{ discount }}%</span>
   </div>
-  <div class="tiers" i18n>
-    Discount tiers: up to 250 sign-ups → 15%, up to 500 → 25%, over 500 → 33%.
+  <div class="tiers">
+    <div class="tier" i18n>1 – 250 sign-ups: <span class="highlight">15%</span></div>
+    <div class="tier" i18n>251 – 500 sign-ups: <span class="highlight">25%</span></div>
+    <div class="tier" i18n>501+ sign-ups: <span class="highlight">33%</span></div>
   </div>
 
   <div class="auth-info" *ngIf="!isAuthenticated" i18n>
@@ -25,16 +28,18 @@
     </div>
 
     <igx-checkbox formControlName="firstTime" [disabled]="!isAuthenticated">
-      <span i18n>This is my first Bellum Gens Elite event</span>
+      <span igxLabel i18n>This is my first Bellum Gens Elite event</span>
     </igx-checkbox>
+
+    <igx-checkbox formControlName="agreePrivacy" [disabled]="!isAuthenticated">
+      <span igxLabel i18n>I agree to the <a href="/privacy" target="_blank" rel="noopener">privacy terms</a></span>
+    </igx-checkbox>
+    <div class="error" *ngIf="form.controls.agreePrivacy.touched && form.controls.agreePrivacy.invalid" i18n>
+      Please agree to the privacy terms to proceed.
+    </div>
 
     <button igxButton="raised" type="submit" [disabled]="!isAuthenticated || submitting()" i18n>Submit</button>
   </form>
 
-  <div class="success" *ngIf="submitSuccess() === true" i18n>
-    Thank you! Your pre-registration was recorded.
-  </div>
-  <div class="error" *ngIf="submitSuccess() === false" i18n>
-    {{ errorMsg() }}
-  </div>
+  <!-- Success and error messaging handled via CommunicationService -->
 </div>

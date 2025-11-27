@@ -3,12 +3,27 @@ import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { PLATFORM_ID, Inject } from '@angular/core';
 import { EliteSignupService } from './elite-signup.service';
-import { IgxInputGroupModule, IgxCheckboxModule, IgxButtonModule } from '@infragistics/igniteui-angular';
+import { CommunicationService } from '../../../../common/src/public_api';
+import {
+  IgxButtonDirective,
+  IgxCheckboxComponent,
+  IgxInputDirective,
+  IgxInputGroupComponent,
+  IgxLabelDirective
+} from '@infragistics/igniteui-angular';
 
 @Component({
   selector: 'bge-elite-stz-2026',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, IgxInputGroupModule, IgxCheckboxModule, IgxButtonModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    IgxInputGroupComponent,
+    IgxInputDirective,
+    IgxLabelDirective,
+    IgxCheckboxComponent,
+    IgxButtonDirective
+  ],
   templateUrl: './elite-stz-2026.component.html',
   styleUrls: ['./elite-stz-2026.component.scss']
 })
@@ -16,15 +31,15 @@ export class EliteStz2026Component {
   constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
   private fb = inject(FormBuilder);
   private service: EliteSignupService = inject(EliteSignupService);
+  private commService = inject(CommunicationService);
 
   count: WritableSignal<number> = signal(0);
   submitting = signal(false);
-  submitSuccess = signal<boolean | null>(null);
-  errorMsg = signal<string | null>(null);
 
   form = this.fb.group({
     email: ['', [Validators.required, Validators.email]],
-    firstTime: [false]
+    firstTime: [false],
+    agreePrivacy: [false, [Validators.requiredTrue]]
   });
 
   isAuthenticated = this.service.isAuthenticated();
@@ -52,7 +67,6 @@ export class EliteStz2026Component {
       return;
     }
     this.submitting.set(true);
-    this.errorMsg.set(null);
     const payload = {
       email: this.form.value.email as string,
       firstTime: !!this.form.value.firstTime
@@ -61,15 +75,14 @@ export class EliteStz2026Component {
     this.service.signup(payload).subscribe({
       next: () => {
         this.submitting.set(false);
-        this.submitSuccess.set(true);
+        this.commService.emitSuccess($localize`Thank you! Your pre-registration was recorded.`);
         this.service.getSignupCount().subscribe({
           next: c => this.count.set(c ?? 0)
         });
       },
       error: (e) => {
         this.submitting.set(false);
-        this.submitSuccess.set(false);
-        this.errorMsg.set('Failed to submit. Please try again later.');
+        this.commService.emitError($localize`Failed to submit. Please try again later.`);
         console.error(e);
       }
     });
