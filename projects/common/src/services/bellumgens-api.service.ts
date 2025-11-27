@@ -385,9 +385,9 @@ export class BellumgensApiService {
   }
 
   public earlyBirdSignup(payload: EarlyBird) {
-    return this.http.post<string>(`${this._apiEndpoint}/account/earlybirdsignup`, payload, { withCredentials: true }).pipe(
+    return this.http.post<{ message: string }>(`${this._apiEndpoint}/account/earlybirdsignup`, payload, { withCredentials: true }).pipe(
       map(response => {
-        this.commService.emitSuccess(response);
+        this.commService.emitSuccess(response.message);
         return response;
       }),
       catchError(error => {
