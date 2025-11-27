@@ -28,7 +28,7 @@ jobs:
           echo "@infragistics:registry=https://packages.infragistics.com/npm/js-licensed/" >> ~/.npmrc
           echo "//packages.infragistics.com/npm/js-licensed/:_auth=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
           echo "//packages.infragistics.com/npm/js-licensed/:always-auth=true" >> ~/.npmrc
-          npm install
+          npm install  --force
           npm run build --if-present
 
       - name: Zip artifact for deployment
@@ -88,3 +88,4 @@ jobs:
           app-name: 'eb-league'
           slot-name: 'Production'
           package: ./dist/ebleague
+
