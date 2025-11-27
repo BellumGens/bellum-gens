@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [20.x, 22.x]
+        node-version: [22.x]
 
     steps:
     - uses: actions/checkout@v4
@@ -28,7 +28,7 @@ jobs:
     - run: echo "@infragistics:registry=https://packages.infragistics.com/npm/js-licensed/" >> ~/.npmrc
     - run: echo "//packages.infragistics.com/npm/js-licensed/:_auth=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
     - run: echo "//packages.infragistics.com/npm/js-licensed/:always-auth=true" >> ~/.npmrc
-    - run: npm ci
+    - run: npm i --force
     - run: npm run lint
     - name: Build
       if: matrix.node-version == '22.x'
@@ -42,7 +42,7 @@ jobs:
         github-token: ${{ github.token }}
     - name: Cypress run
       if: matrix.node-version == '22.x'
-      uses: cypress-io/github-action@v6.7.7
+      uses: cypress-io/github-action@v6.10.4
       with:
         start: npm run serve:ssr:bellumgens
         browser: chrome
