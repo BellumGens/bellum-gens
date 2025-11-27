@@ -42,7 +42,7 @@ export function server(lang: string): express.Express {
   /**
    * Handle all other requests by rendering the Angular application.
    */
-  app.use('/**', (req, res, next) => {
+  app.use('/{*splat}', (req, res, next) => {
     angularApp
       .handle(req)
       .then((response) =>

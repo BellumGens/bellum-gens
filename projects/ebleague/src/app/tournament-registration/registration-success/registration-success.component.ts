@@ -14,7 +14,7 @@ export class RegistrationSuccessComponent {
   public application: TournamentApplication;
 
   constructor() {
-    const nav = this.router.getCurrentNavigation();
+    const nav = this.router.currentNavigation();
     if (nav) {
       this.application = nav.extras.state as TournamentApplication;
     }
