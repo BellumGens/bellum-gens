@@ -24,7 +24,7 @@
     "i18n:bellumgens": "ng extract-i18n bellum-gens --out-file projects/bellumgens/src/locale/messages.en.xlf",
     "i18n:ebleague": "ng extract-i18n eb-league --out-file projects/ebleague/src/locale/messages.en.xlf",
     "cypress:open": "concurrently \"ng serve\" \"cypress open --config-file=cypress.config.ts\"",
-    "cypress:run": "concurrently \"npm run serve:ssr:bellumgens\" \"cypress run --config-file=cypress.config.ts\""
+    "cypress:run": "concurrently \"npm start\" \"cypress run --config-file=cypress.config.ts\""
   },
   "private": true,
   "dependencies": {
@@ -70,7 +70,7 @@
     "@typescript-eslint/parser": "^8.33.1",
     "browser-sync": "^3.0.4",
     "concurrently": "^9.2.0",
-    "cypress": "^14.5.0",
+    "cypress": "^15.7.0",
     "eslint": "^9.28.0",
     "eslint-plugin-import": "2.31.0",
     "eslint-plugin-jsdoc": "50.5.0",

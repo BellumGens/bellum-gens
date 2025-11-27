@@ -44,5 +44,5 @@ jobs:
       if: matrix.node-version == '22.x'
       uses: cypress-io/github-action@v6.7.7
       with:
-        start: npm run serve:ssr:bellumgens
+        start: npm start
         browser: chrome
