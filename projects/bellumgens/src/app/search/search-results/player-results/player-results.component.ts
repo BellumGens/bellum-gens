@@ -1,9 +1,8 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { Component, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { ALL_ROLES, ApiSearchService, ApplicationUser } from '../../../../../../common/src/public_api';
 import { BaseDirective } from '../../../base/base.component';
 import { IgxIconService, IGX_CARD_DIRECTIVES, IgxAvatarComponent, IgxIconComponent, IGX_CHIPS_DIRECTIVES, IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular';
-import { Title, Meta } from '@angular/platform-browser';
 import { QueryParsedPipe } from '../../../pipes/query-parsed.pipe';
 import { LoadingComponent } from '../../../../../../common/src/lib/loading/loading.component';
 import { DecimalPipe } from '@angular/common';
@@ -25,17 +24,16 @@ import { DecimalPipe } from '@angular/common';
   ]
 })
 export class PlayerResultsComponent extends BaseDirective {
+  private iconService = inject(IgxIconService);
+  private apiService = inject(ApiSearchService);
+
   public players: ApplicationUser [];
   public loading = false;
   public roles = ALL_ROLES;
   public query: string;
 
-  constructor(private iconService: IgxIconService,
-              private apiService: ApiSearchService,
-              title: Title,
-              meta: Meta,
-              activeRoute: ActivatedRoute) {
-    super(title, meta, activeRoute);
+  constructor() {
+    super();
     this.activeRoute.params.subscribe(params => {
       if (params.query) {
         this.query = params.query;

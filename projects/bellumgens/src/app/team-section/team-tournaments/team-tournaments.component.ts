@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   Tournament,
   BellumgensApiService,
@@ -15,12 +15,14 @@ import { ActivatedRoute } from '@angular/router';
     imports: []
 })
 export class TeamTournamentsComponent {
+  private apiService = inject(BellumgensApiService);
+  private activatedRoute = inject(ActivatedRoute);
+
   public tournaments: Tournament [];
   public team: CSGOTeam;
   public emptyGuid = '00000000-0000-0000-0000-000000000000';
 
-  constructor(private apiService: BellumgensApiService,
-              private activatedRoute: ActivatedRoute) {
+  constructor() {
     this.activatedRoute.parent.params.subscribe(params => {
       const teamId = params['teamid'];
       if (teamId) {

@@ -1,4 +1,4 @@
-import { Component, ViewChild, Input } from '@angular/core';
+import { Component, ViewChild, Input, inject } from '@angular/core';
 import {
   ApplicationUser,
   BellumgensApiService,
@@ -36,6 +36,9 @@ import { FormsModule } from '@angular/forms';
   ]
 })
 export class TeamNewComponent {
+  private apiService = inject(BellumgensApiService);
+  private router = inject(Router);
+
   @Input() public authUser: ApplicationUser;
 
   @ViewChild(IgxDialogComponent) public createTeam: IgxDialogComponent;
@@ -45,9 +48,6 @@ export class TeamNewComponent {
   public newTeam = Object.assign({}, EMPTY_NEW_TEAM);
   public navigateOnCreate = true;
   public inProgress = false;
-
-  constructor(private apiService: BellumgensApiService, private router: Router) {
-  }
 
   public open(navigate = true) {
     this.navigateOnCreate = navigate;

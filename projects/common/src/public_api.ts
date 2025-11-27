@@ -8,7 +8,7 @@ export * from './models/csgomaps';
 export * from './models/csgoplayer';
 export * from './models/csgostrategy';
 export * from './models/csgoteam';
-export * from './models/jerseyorder';
+export * from './models/order';
 export * from './models/login-provider';
 export * from './models/misc';
 export * from './models/playeravailability';
@@ -50,6 +50,7 @@ export * from './lib/pipes/sc2-race-thumb.pipe';
 export * from './lib/pipes/weekday.pipe';
 export * from './lib/pipes/starts-with.pipe';
 export * from './lib/pipes/race-icon.pipe';
+export * from './lib/pipes/filter-sizes.pipe';
 
 /* Components */
 export * from './lib/public_api';

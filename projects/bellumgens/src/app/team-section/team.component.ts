@@ -1,7 +1,6 @@
-import { Component} from '@angular/core';
+import { Component, inject } from '@angular/core';
 
-import { ActivatedRoute, RouterLinkActive, RouterLink, RouterOutlet } from '@angular/router';
-import { Title, Meta } from '@angular/platform-browser';
+import { RouterLinkActive, RouterLink, RouterOutlet } from '@angular/router';
 import {
   ApplicationUser,
   CSGOTeam, TEAM_PLACEHOLDER,
@@ -26,18 +25,17 @@ import { TeamApplicationComponent } from './team-application/team-application.co
   ]
 })
 export class TeamComponent extends BaseDirective {
+  private apiService = inject(BellumgensApiService);
+  private authManager = inject(LoginService);
+  private iconService = inject(IgxIconService);
+
   public authUser: ApplicationUser;
   public team: CSGOTeam = TEAM_PLACEHOLDER;
   public isAdmin = false;
   public isMember = false;
 
-  constructor(private apiService: BellumgensApiService,
-              private authManager: LoginService,
-              private iconService: IgxIconService,
-              title: Title,
-              meta: Meta,
-              activeRoute: ActivatedRoute) {
-    super(title, meta, activeRoute);
+  constructor() {
+    super();
     this.authManager.applicationUser.subscribe((data: ApplicationUser) => {
       this.authUser = data;
     });

@@ -1,13 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   LoginService,
   ApiTournamentsService,
   Tournament, EMPTY_NEW_TOURNAMENT, TournamentApplication,
-  JerseyOrder, Promo,
+  Order, Promo,
   ApiShopService
 } from '../../../../../common/src/public_api';
 import { IGridEditEventArgs, IGroupingExpression, SortingDirection, DefaultSortingStrategy, RowType, IGX_GRID_DIRECTIVES, IgxIconComponent, IgxBadgeComponent, IGX_ACTION_STRIP_DIRECTIVES, IgxButtonDirective, IgxIconButtonDirective, IgxRippleDirective, IGX_PAGINATOR_DIRECTIVES, IGX_INPUT_GROUP_DIRECTIVES, IGX_DATE_PICKER_DIRECTIVES, IgxCheckboxComponent, IGX_CHIPS_DIRECTIVES, IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular';
 import { FormsModule } from '@angular/forms';
+import { SizeNamePipe } from '../../pipes/size-name.pipe';
+import { Observable } from 'rxjs';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-admin-main',
@@ -27,22 +30,26 @@ import { FormsModule } from '@angular/forms';
     IGX_DATE_PICKER_DIRECTIVES,
     IGX_CARD_DIRECTIVES,
     IgxCheckboxComponent,
-    IGX_CHIPS_DIRECTIVES
+    IGX_CHIPS_DIRECTIVES,
+    SizeNamePipe,
+    AsyncPipe
   ]
 })
 export class AdminMainComponent {
+  private authService = inject(LoginService);
+  private apiService = inject(ApiTournamentsService);
+  private shopService = inject(ApiShopService);
+
   public roles: string [];
   // public users: AdminAppUserSummary [];
   public tournaments: Tournament [];
   public tournament = Object.assign({}, EMPTY_NEW_TOURNAMENT);
-  public orders: JerseyOrder [];
+  public orders: Observable<Order []>;
   public registrations: TournamentApplication [];
   public promos: Promo [];
   public grouping: IGroupingExpression [];
 
-  constructor(private authService: LoginService,
-              private apiService: ApiTournamentsService,
-              private shopService: ApiShopService) {
+  constructor() {
     this.authService.getUserRoles().subscribe(data => this.roles = data);
     // this.authService.getUsers().subscribe(data => this.users = data);
     this.authService.getPromoCodes().subscribe(data => this.promos = data);
@@ -55,7 +62,7 @@ export class AdminMainComponent {
         this.tournaments = data;
       }
     });
-    // this.shopService.getOrders().subscribe(data => this.orders = data);
+    this.orders = this.shopService.getOrders();
     this.apiService.allRegistrations.subscribe(data => this.registrations = data);
     this.grouping = [
       { dir: SortingDirection.Desc, fieldName: 'tournamentName', ignoreCase: false, strategy: DefaultSortingStrategy.instance() },

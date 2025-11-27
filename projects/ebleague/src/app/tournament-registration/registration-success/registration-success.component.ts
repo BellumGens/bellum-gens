@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { TournamentApplication } from '../../../../../common/src/public_api';
 
@@ -9,10 +9,12 @@ import { TournamentApplication } from '../../../../../common/src/public_api';
     standalone: true
 })
 export class RegistrationSuccessComponent {
+  private router = inject(Router);
+
   public application: TournamentApplication;
 
-  constructor(private router: Router) {
-    const nav = this.router.getCurrentNavigation();
+  constructor() {
+    const nav = this.router.currentNavigation();
     if (nav) {
       this.application = nav.extras.state as TournamentApplication;
     }

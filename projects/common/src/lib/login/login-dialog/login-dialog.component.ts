@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, inject } from '@angular/core';
 import {
   IgxDialogComponent,
   IgxDividerDirective,
@@ -29,6 +29,9 @@ import { LoginButtonsComponent } from '../login-buttons/login-buttons.component'
     ]
 })
 export class LoginDialogComponent {
+  private authManager = inject(LoginService);
+  private router = inject(Router);
+
   @ViewChild(IgxDialogComponent, { static: true })
   public dialog: IgxDialogComponent;
 
@@ -38,9 +41,6 @@ export class LoginDialogComponent {
     rememberMe: false
   };
   public submitInProgress = false;
-
-  constructor(private authManager: LoginService, private router: Router) {
-  }
 
   public openLogin() {
     this.dialog.open();

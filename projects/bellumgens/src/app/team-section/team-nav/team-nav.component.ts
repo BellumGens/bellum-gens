@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import {
   CSGOTeam, TeamMember,
   ApplicationUser,
@@ -35,13 +35,16 @@ import { AsyncPipe } from '@angular/common';
   ]
 })
 export class TeamNavComponent {
+  private authService = inject(LoginService);
+  private apiService = inject(BellumgensApiService);
+
   public activeMembers: TeamMember [];
   public inactiveMembers: TeamMember [];
   public teams: Observable<CSGOTeam []>;
 
   public authUser: ApplicationUser;
 
-  constructor(private authService: LoginService, private apiService: BellumgensApiService) {
+  constructor() {
     this.authService.applicationUser.subscribe(user => {
       this.authUser = user;
       if (user) {

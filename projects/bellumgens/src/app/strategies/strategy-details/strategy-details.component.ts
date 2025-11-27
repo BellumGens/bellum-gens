@@ -1,7 +1,7 @@
-import { Component, HostListener, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, HostListener, PLATFORM_ID, inject } from '@angular/core';
 import { isPlatformBrowser, NgClass, DatePipe, NgOptimizedImage } from '@angular/common';
 import { BaseDirective } from '../../base/base.component';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { RouterLink } from '@angular/router';
 import {
   CSGOStrategy,
   VoteDirection,
@@ -13,7 +13,6 @@ import {
   SocialMediaStrategyService,
   ApiStrategiesService
 } from '../../../../../common/src/public_api';
-import { Title, Meta } from '@angular/platform-browser';
 import { environment } from '../../../../../common/src/environments/environment.prod';
 import { VotesPipe } from '../../pipes/votes.pipe';
 import { HasVotedPipe } from '../../pipes/has-voted.pipe';
@@ -55,6 +54,11 @@ import { LoadingComponent } from '../../../../../common/src/lib/loading/loading.
   ]
 })
 export class StrategyDetailsComponent extends BaseDirective {
+  private platformId = inject(PLATFORM_ID);
+  private apiService = inject(ApiStrategiesService);
+  private authManager = inject(LoginService);
+  private socialMedia = inject(SocialMediaStrategyService);
+
   public strat: CSGOStrategy;
   public authUser: ApplicationUser;
   public pipeTrigger = 0;
@@ -62,14 +66,8 @@ export class StrategyDetailsComponent extends BaseDirective {
   public horizontal = true;
   public overlaySettings = GLOBAL_OVERLAY_SETTINGS;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: any,
-              private apiService: ApiStrategiesService,
-              private authManager: LoginService,
-              private socialMedia: SocialMediaStrategyService,
-              title: Title,
-              meta: Meta,
-              activeRoute: ActivatedRoute) {
-    super(title, meta, activeRoute);
+  constructor() {
+    super();
     this.activeRoute.params.subscribe(params => {
       const stratid = params['stratid'];
       if (stratid) {

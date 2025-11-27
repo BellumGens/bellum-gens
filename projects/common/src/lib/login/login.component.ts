@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, inject } from '@angular/core';
 import {
   IgxDropDownComponent,
   IgxButtonDirective,
@@ -37,6 +37,9 @@ import { UserPreferencesComponent } from './user-preferences/user-preferences.co
   ]
 })
 export class LoginComponent {
+  private authManager = inject(LoginService);
+  private router = inject(Router);
+
   @ViewChild(LoginDialogComponent, { static: true })
   public dialog: LoginDialogComponent;
 
@@ -48,8 +51,7 @@ export class LoginComponent {
   public overlaySettings = GLOBAL_OVERLAY_SETTINGS;
   public userCheck = false;
 
-  constructor(private authManager: LoginService,
-              private router: Router) {
+  constructor() {
     this.authManager.userCheckInProgress.subscribe(value => this.userCheck = value);
     this.authManager.applicationUser.subscribe(user => this.authUser = user);
     this.authManager.openLogin.subscribe(() => this.dialog.openLogin());

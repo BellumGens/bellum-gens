@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnDestroy } from '@angular/core';
+import { Component, ViewChild, OnDestroy, inject } from '@angular/core';
 import { IgxIconComponent, IgxSnackbarComponent } from '@infragistics/igniteui-angular';
 import { CommunicationService } from '../../services/communication.service';
 
@@ -9,6 +9,8 @@ import { CommunicationService } from '../../services/communication.service';
     imports: [IgxSnackbarComponent, IgxIconComponent]
 })
 export class SuccessErrorComponent implements OnDestroy {
+  private commService = inject(CommunicationService);
+
   @ViewChild('message', { static: true }) public message: IgxSnackbarComponent;
 
   public successMsg = 'Success...';
@@ -32,7 +34,7 @@ export class SuccessErrorComponent implements OnDestroy {
     }
   };
 
-  constructor(private commService: CommunicationService) {
+  constructor() {
     this.commService.error.subscribe(message => this.showMessage('error', message));
     this.commService.success.subscribe(message => this.showMessage('success', message));
     this.commService.message.subscribe(message => this.showMessage('warn', message));

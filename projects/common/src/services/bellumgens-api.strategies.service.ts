@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { BehaviorSubject, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { CSGOMapPool } from '../models/csgomaps';
@@ -11,6 +11,9 @@ import { CommunicationService } from './communication.service';
   providedIn: 'root'
 })
 export class ApiStrategiesService {
+  private http = inject(HttpClient);
+  private commService = inject(CommunicationService);
+
   public hasMoreStrats = new BehaviorSubject<boolean>(false);
   public loadingStrategies = new BehaviorSubject<boolean>(false);
 
@@ -18,8 +21,6 @@ export class ApiStrategiesService {
   private _strategyCache = new Map<string, BehaviorSubject<CSGOStrategy>>();
   private _strategies = new BehaviorSubject<CSGOStrategy []>([]);
   private readonly PAGE_SIZE = 25;
-
-  constructor(private http: HttpClient, private commService: CommunicationService) { }
 
   public get strategies() {
     if (!this._strategies.value.length) {

@@ -1,7 +1,5 @@
-import { Component, HostListener, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, HostListener, PLATFORM_ID, inject } from '@angular/core';
 import { isPlatformBrowser, NgOptimizedImage } from '@angular/common';
-import { Meta, Title } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
 import { BaseDirective } from '../../../../bellumgens/src/app/base/base.component';
 import { IgxCardModule } from '@infragistics/igniteui-angular';
 
@@ -15,10 +13,12 @@ import { IgxCardModule } from '@infragistics/igniteui-angular';
     ]
 })
 export class NewsComponent extends BaseDirective {
+  private platformId = inject(PLATFORM_ID);
+
   public horizontal = true;
 
-  constructor(@Inject(PLATFORM_ID) private platformId: any, title: Title, meta: Meta, route: ActivatedRoute) {
-    super(title, meta, route);
+  constructor() {
+    super();
     this.resize();
   }
 

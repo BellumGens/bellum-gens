@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommunicationService } from './communication.service';
 import { BehaviorSubject, throwError } from 'rxjs';
@@ -16,6 +16,9 @@ import { TournamentCSGOMatch, TournamentSC2Match, TournamentCSGOMatchMap, Tourna
   providedIn: 'root'
 })
 export class ApiTournamentsService {
+  private http = inject(HttpClient);
+  private commService = inject(CommunicationService);
+
   public loadingCSGORegistrations = new BehaviorSubject<boolean>(false);
   public loadingSC2Registrations = new BehaviorSubject<boolean>(false);
   public loadingCSGOMatches = new BehaviorSubject<boolean>(false);
@@ -38,8 +41,6 @@ export class ApiTournamentsService {
   private _sc2Matches = new Map<string, BehaviorSubject<TournamentSC2Match []>>();
   private _csgoGroups = new Map<string, BehaviorSubject<TournamentCSGOGroup []>>();
   private _sc2Groups = new Map<string, BehaviorSubject<TournamentSC2Group []>>();
-
-  constructor(private http: HttpClient, private commService: CommunicationService) { }
 
   public get tournaments() {
     if (!this._tournaments.value) {

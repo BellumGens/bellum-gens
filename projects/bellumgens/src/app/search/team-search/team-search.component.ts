@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { PlaystyleRole, TeamSearch, TEAM_SEARCH, ApplicationUser } from '../../../../../common/src/public_api';
 import { Router } from '@angular/router';
 
@@ -18,6 +18,8 @@ import { FormsModule } from '@angular/forms';
   ]
 })
 export class TeamSearchComponent {
+  private router = inject(Router);
+
 
   @Input()
   public authUser: ApplicationUser;
@@ -30,8 +32,6 @@ export class TeamSearchComponent {
     { roleName: 'Support', role: PlaystyleRole.Support },
     { roleName: 'Lurker', role: PlaystyleRole.Lurker }
   ];
-
-  constructor(private router: Router) { }
 
   public parseInt = parseInt;
 

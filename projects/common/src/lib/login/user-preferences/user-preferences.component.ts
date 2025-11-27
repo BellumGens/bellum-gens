@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, inject } from '@angular/core';
 import { UserPreferences, ApplicationUser } from '../../../models/applicationuser';
 import { LoginService } from '../../../services/login.service';
 import { LoginProvider } from '../../../models/login-provider';
@@ -36,6 +36,10 @@ import { environment } from '../../../environments/environment';
   ]
 })
 export class UserPreferencesComponent {
+  private authManager = inject(LoginService);
+  private apiService = inject(ApiTournamentsService);
+  private router = inject(Router);
+
   public preferences: UserPreferences = {
     searchVisible: true,
     email: ''
@@ -51,7 +55,7 @@ export class UserPreferencesComponent {
   @Output()
   public userDeleted = new EventEmitter<void>();
 
-  constructor(private authManager: LoginService, private apiService: ApiTournamentsService, private router: Router) {
+  constructor() {
     this.authManager.applicationUser.subscribe(user => {
       if (user) {
         this.preferences = {
