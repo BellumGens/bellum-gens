@@ -1,7 +1,7 @@
 import { Component, inject, WritableSignal, signal } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { PLATFORM_ID } from '@angular/core';
+import { PLATFORM_ID, OnInit } from '@angular/core';
 import { ApplicationUser, BellumgensApiService, CommunicationService, LoginService } from '../../../../common/src/public_api';
 import {
   IgxButtonDirective,
@@ -27,17 +27,17 @@ import { EarlyBird } from '../../../../common/src/models/subscribers';
   templateUrl: './elite-stz-2026.component.html',
   styleUrls: ['./elite-stz-2026.component.scss']
 })
-export class EliteStz2026Component {
+export class EliteStz2026Component implements OnInit {
   private platformId = inject(PLATFORM_ID);
   private fb = inject(FormBuilder);
   private commService = inject(CommunicationService);
   private authService = inject(LoginService);
   private apiService = inject(BellumgensApiService);
 
-  count: WritableSignal<number> = signal(0);
-  submitting = signal(false);
+  public count: WritableSignal<number> = signal(0);
+  public submitting = signal(false);
 
-  form = this.fb.group({
+  public form = this.fb.group({
     email: [{value: '', disabled: true}, [Validators.required, Validators.email]],
     firstTime: [{value: false, disabled: true}],
     agreePrivacy: [{value: false, disabled: true}, [Validators.requiredTrue]]
@@ -59,7 +59,7 @@ export class EliteStz2026Component {
     });
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
       this.apiService.getSignupCount().subscribe({
         next: c => this.count.set(c ?? 0),
@@ -68,7 +68,7 @@ export class EliteStz2026Component {
     }
   }
 
-  get discount(): number {
+  public get discount(): number {
     const c = this.count();
     if (c > 500) return 33;
     if (c > 250) return 25;
@@ -77,7 +77,7 @@ export class EliteStz2026Component {
     return 0;
   }
 
-  submit() {
+  public submit() {
     if (!this.authUser || this.form.invalid) {
       this.form.markAllAsTouched();
       return;
@@ -97,7 +97,7 @@ export class EliteStz2026Component {
       },
       error: (e) => {
         this.submitting.set(false);
-        this.commService.emitError(e.message || $localize`An error occurred while submitting your pre-registration. Please try again later.`);
+        this.commService.emitError(e.message || `An error occurred while submitting your pre-registration. Please try again later.`);
       }
     });
   }

@@ -14,6 +14,76 @@
           <context context-type="linenumber">43,45</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="6198117891778390169" datatype="html">
+        <source>Discount codes will be emailed when tickets go on sale at the beginning of 2026. Watch your inbox.</source>
+        <target>Кодовете за отстъпка ще бъдат изпратени по имейл, когато билетите излязат в продажба в началото на 2026 г. Следете пощата си.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5757081461658593866" datatype="html">
+        <source>Signed up users so far: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ count() }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <target>Регистрирани до момента: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ count() }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="77731815607044593" datatype="html">
+        <source> Current discount: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ discount }}"/>%<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <target> Текуща отстъпка: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ discount }}"/>%<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4659215906099996363" datatype="html">
+        <source>1 – 100 sign-ups: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>10%<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <target>1 – 100 регистрации: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>10%<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3730623598118805965" datatype="html">
+        <source>101 – 250 sign-ups: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>15%<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <target>101 – 250 регистрации: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>15%<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2603906111231562451" datatype="html">
+        <source>251 – 500 sign-ups: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>25%<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <target>251 – 500 регистрации: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>25%<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5829669422950647861" datatype="html">
+        <source>501+ sign-ups: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>33%<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <target>501+ регистрации: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>33%<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8608295418791099525" datatype="html">
+        <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>You need to be logged in<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> to submit the form. Please log in from the profile menu. </source>
+        <target><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Трябва да сте влезли<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> за да изпратите формуляра. Моля, влезте от менюто на профила. </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6452097450342668535" datatype="html">
+        <source> Please agree to the privacy terms to proceed. </source>
+        <target> Моля, съгласете се с условията за поверителност, за да продължите. </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8299208407524303969" datatype="html">
+        <source>I agree that the provided email address <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;/privacy&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>will receive information about BGE Stara Zagora 2026<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
+        <target>Съгласен съм, че предоставеният имейл адрес <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;/privacy&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>ще получава информация относно BGE Стара Загора 2026<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="5851560788527570644" datatype="html">
         <source>Notifications</source>
         <target>Известия</target>

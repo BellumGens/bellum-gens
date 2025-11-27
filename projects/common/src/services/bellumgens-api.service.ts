@@ -13,7 +13,6 @@ import { CommunicationService } from './communication.service';
 import { Tournament } from '../models/tournament';
 import { ApplicationUser } from '../models/applicationuser';
 import { EarlyBird } from '../models/subscribers';
-import { error } from 'console';
 
 @Injectable({
   providedIn: 'root'
@@ -392,7 +391,7 @@ export class BellumgensApiService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.message || $localize`An error occurred while submitting your pre-registration. Please try again later.`);
+        this.commService.emitError(error.message || `An error occurred while submitting your pre-registration. Please try again later.`);
         return throwError(() => error)
       })
     );

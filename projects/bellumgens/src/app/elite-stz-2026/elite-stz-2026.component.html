@@ -26,20 +26,24 @@
       <label igxLabel i18n>Email</label>
       <input igxInput id="email" type="email" formControlName="email" />
     </igx-input-group>
-    <div class="error" *ngIf="form.controls.email.touched && form.controls.email.invalid" i18n>
-      Please enter a valid email.
-    </div>
+    @if (form.controls.email.touched && form.controls.email.invalid) {
+      <div class="error" i18n>
+        Please enter a valid email.
+      </div>
+    }
 
     <igx-checkbox formControlName="firstTime">
       <span igxLabel i18n>This is my first Bellum Gens Elite event</span>
     </igx-checkbox>
 
     <igx-checkbox formControlName="agreePrivacy">
-      <span igxLabel i18n>I agree to the <a href="/privacy" target="_blank" rel="noopener">privacy terms</a></span>
+      <span igxLabel i18n>I agree that the provided email address <a href="/privacy" target="_blank" rel="noopener">will receive information about BGE Stara Zagora 2026</a></span>
     </igx-checkbox>
-    <div class="error" *ngIf="form.controls.agreePrivacy.touched && form.controls.agreePrivacy.invalid" i18n>
-      Please agree to the privacy terms to proceed.
-    </div>
+    @if (form.controls.agreePrivacy.touched && form.controls.agreePrivacy.invalid) {
+      <div class="error" i18n>
+        Please agree to the privacy terms to proceed.
+      </div>
+    }
 
     <button igxButton="contained" type="submit" [disabled]="!authUser || submitting()" i18n>Submit</button>
   </form>
