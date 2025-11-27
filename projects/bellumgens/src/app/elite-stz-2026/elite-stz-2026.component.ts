@@ -1,9 +1,8 @@
-import { Component, inject, Signal, WritableSignal, signal } from '@angular/core';
+import { Component, inject, WritableSignal, signal } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { PLATFORM_ID, Inject } from '@angular/core';
-import { EliteSignupService } from './elite-signup.service';
-import { CommunicationService } from '../../../../common/src/public_api';
+import { PLATFORM_ID } from '@angular/core';
+import { ApplicationUser, BellumgensApiService, CommunicationService, LoginService } from '../../../../common/src/public_api';
 import {
   IgxButtonDirective,
   IgxCheckboxComponent,
@@ -11,6 +10,7 @@ import {
   IgxInputGroupComponent,
   IgxLabelDirective
 } from '@infragistics/igniteui-angular';
+import { EarlyBird } from '../../../../common/src/models/subscribers';
 
 @Component({
   selector: 'bge-elite-stz-2026',
@@ -28,25 +28,40 @@ import {
   styleUrls: ['./elite-stz-2026.component.scss']
 })
 export class EliteStz2026Component {
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  private platformId = inject(PLATFORM_ID);
   private fb = inject(FormBuilder);
-  private service: EliteSignupService = inject(EliteSignupService);
   private commService = inject(CommunicationService);
+  private authService = inject(LoginService);
+  private apiService = inject(BellumgensApiService);
 
   count: WritableSignal<number> = signal(0);
   submitting = signal(false);
 
   form = this.fb.group({
-    email: ['', [Validators.required, Validators.email]],
-    firstTime: [false],
-    agreePrivacy: [false, [Validators.requiredTrue]]
+    email: [{value: '', disabled: true}, [Validators.required, Validators.email]],
+    firstTime: [{value: false, disabled: true}],
+    agreePrivacy: [{value: false, disabled: true}, [Validators.requiredTrue]]
   });
 
-  isAuthenticated = this.service.isAuthenticated();
+  public authUser: ApplicationUser | null = null;
+
+  constructor() {
+    this.authService.applicationUser.subscribe(user => {
+      this.authUser = user;
+      if (user) {
+        this.form.get('email')?.enable();
+        this.form.get('firstTime')?.enable();
+        this.form.get('agreePrivacy')?.enable();
+        if (user.email) {
+          this.form.patchValue({ email: user.email });
+        }
+      }
+    });
+  }
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
-      this.service.getSignupCount().subscribe({
+      this.apiService.getSignupCount().subscribe({
         next: c => this.count.set(c ?? 0),
         error: () => this.count.set(0)
       });
@@ -57,33 +72,32 @@ export class EliteStz2026Component {
     const c = this.count();
     if (c > 500) return 33;
     if (c > 250) return 25;
-    if (c > 0) return 15;
+    if (c > 100) return 15;
+    if (c > 0) return 10;
     return 0;
   }
 
   submit() {
-    if (!this.isAuthenticated || this.form.invalid) {
+    if (!this.authUser || this.form.invalid) {
       this.form.markAllAsTouched();
       return;
     }
     this.submitting.set(true);
-    const payload = {
+    const payload: EarlyBird = {
       email: this.form.value.email as string,
       firstTime: !!this.form.value.firstTime
     };
     if (!isPlatformBrowser(this.platformId)) return;
-    this.service.signup(payload).subscribe({
+    this.apiService.earlyBirdSignup(payload).subscribe({
       next: () => {
         this.submitting.set(false);
-        this.commService.emitSuccess($localize`Thank you! Your pre-registration was recorded.`);
-        this.service.getSignupCount().subscribe({
+        this.apiService.getSignupCount().subscribe({
           next: c => this.count.set(c ?? 0)
         });
       },
       error: (e) => {
         this.submitting.set(false);
-        this.commService.emitError($localize`Failed to submit. Please try again later.`);
-        console.error(e);
+        this.commService.emitError(e.message || $localize`An error occurred while submitting your pre-registration. Please try again later.`);
       }
     });
   }

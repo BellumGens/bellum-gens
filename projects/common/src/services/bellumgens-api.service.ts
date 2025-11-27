@@ -12,6 +12,8 @@ import { environment } from '../environments/environment';
 import { CommunicationService } from './communication.service';
 import { Tournament } from '../models/tournament';
 import { ApplicationUser } from '../models/applicationuser';
+import { EarlyBird } from '../models/subscribers';
+import { error } from 'console';
 
 @Injectable({
   providedIn: 'root'
@@ -372,6 +374,26 @@ export class BellumgensApiService {
       catchError(error => {
         this.commService.emitError(error.message);
         return throwError(() => error);
+      })
+    );
+  }
+
+  public getSignupCount(): Observable<number> {
+    return this.http.get<{ count: number }>(`${this._apiEndpoint}/account/earlybirdcount`, { withCredentials: true }).pipe(
+      map(r => r?.count ?? 0),
+      catchError(() => throwError(() => new Error('Failed to get signup count')))
+    );
+  }
+
+  public earlyBirdSignup(payload: EarlyBird) {
+    return this.http.post<string>(`${this._apiEndpoint}/account/earlybirdsignup`, payload, { withCredentials: true }).pipe(
+      map(response => {
+        this.commService.emitSuccess(response);
+        return response;
+      }),
+      catchError(error => {
+        this.commService.emitError(error.message || $localize`An error occurred while submitting your pre-registration. Please try again later.`);
+        return throwError(() => error)
       })
     );
   }
