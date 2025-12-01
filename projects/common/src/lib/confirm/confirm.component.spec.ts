@@ -36,12 +36,12 @@ describe('ConfirmComponent', () => {
   it('should emit ok event when okClicked is called', (done) => {
     const testEntity = { id: 1, name: 'Test' };
     component.open(testEntity);
-    
+
     component.ok.subscribe((entity) => {
       expect(entity).toEqual(testEntity);
       done();
     });
-    
+
     component.okClicked();
   });
 
@@ -56,7 +56,7 @@ describe('ConfirmComponent', () => {
       expect(args).toBeDefined();
       done();
     });
-    
+
     component.cancelClicked({} as any);
   });
 
@@ -69,9 +69,9 @@ describe('ConfirmComponent', () => {
   it('should open dialog and store entity', () => {
     const testEntity = { id: 1, name: 'Test' };
     spyOn(component.dialog, 'open');
-    
+
     component.open(testEntity);
-    
+
     expect(component.dialog.open).toHaveBeenCalled();
     expect(component['confirmEntity']).toEqual(testEntity);
   });

@@ -59,12 +59,12 @@ describe('NotificationsComponent', () => {
       { read: false },
       { read: false }
     ];
-    
+
     component.loaded.subscribe((count) => {
       expect(count).toBeGreaterThan(0);
       done();
     });
-    
+
     component.aggregate(mockNotifications);
   });
 
@@ -73,21 +73,21 @@ describe('NotificationsComponent', () => {
       { read: true },
       { read: true }
     ];
-    
+
     spyOn(component.loaded, 'emit');
     component.aggregate(mockNotifications);
-    
+
     expect(component.loaded.emit).not.toHaveBeenCalled();
   });
 
   it('should emit loaded event when changed is called', (done) => {
     const testCount = 3;
-    
+
     component.loaded.subscribe((count) => {
       expect(count).toBe(testCount);
       done();
     });
-    
+
     component.changed(testCount);
   });
 
