@@ -9,13 +9,10 @@ import {
 import { Observable } from 'rxjs';
 import { TeamNewComponent } from '../team-new/team-new.component';
 import { RouterLink } from '@angular/router';
-import {
-  IgxButtonDirective,
-  IgxRippleDirective,
-  IgxIconComponent,
-  IGX_CARD_DIRECTIVES,
-  IgxAvatarComponent
-} from '@infragistics/igniteui-angular';
+import { IgxButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
+import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
+import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
+import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
 import { AsyncPipe } from '@angular/common';
 
 @Component({

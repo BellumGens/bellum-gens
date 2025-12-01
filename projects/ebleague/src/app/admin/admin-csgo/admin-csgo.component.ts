@@ -9,7 +9,21 @@ import {
   CSGOActiveDutyMap, ACTIVE_DUTY
 } from '../../../../../common/src/public_api';
 import { environment } from '../../../../../common/src/environments/environment';
-import { IDropDroppedEventArgs, IRowDataEventArgs, IgxGridComponent, IgxDialogComponent, IGX_SELECT_DIRECTIVES, IGX_INPUT_GROUP_DIRECTIVES, IGX_GRID_DIRECTIVES, IgxButtonDirective, IgxIconComponent, IgxAvatarComponent, IGX_LIST_DIRECTIVES, IGX_CARD_DIRECTIVES, IgxCircularProgressBarComponent, IGX_DRAG_DROP_DIRECTIVES, IgxBadgeComponent, IGX_DIALOG_DIRECTIVES, IGX_DATE_PICKER_DIRECTIVES, IGX_TIME_PICKER_DIRECTIVES, IgxCheckboxComponent } from '@infragistics/igniteui-angular';
+import { IDropDroppedEventArgs, IGX_DRAG_DROP_DIRECTIVES, IgxButtonDirective } from '@infragistics/igniteui-angular/directives';
+import { IRowDataEventArgs } from '@infragistics/igniteui-angular/grids/core';
+import { IGX_GRID_DIRECTIVES, IgxGridComponent } from '@infragistics/igniteui-angular/grids/grid';
+import { IGX_DIALOG_DIRECTIVES, IgxDialogComponent } from '@infragistics/igniteui-angular/dialog';
+import { IGX_SELECT_DIRECTIVES } from '@infragistics/igniteui-angular/select';
+import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
+import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
+import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
+import { IGX_LIST_DIRECTIVES } from '@infragistics/igniteui-angular/list';
+import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
+import { IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular/progressbar';
+import { IgxBadgeComponent } from '@infragistics/igniteui-angular/badge';
+import { IGX_DATE_PICKER_DIRECTIVES } from '@infragistics/igniteui-angular/date-picker';
+import { IGX_TIME_PICKER_DIRECTIVES } from '@infragistics/igniteui-angular/time-picker';
+import { IgxCheckboxComponent } from '@infragistics/igniteui-angular/checkbox';
 import { NotInGroupPipe } from '../../pipes/not-in-group.pipe';
 import { CSGOMapnamePipe } from '../../../../../common/src/lib/pipes/csgomapname.pipe';
 import { CSGOMapimagePipe } from '../../../../../common/src/lib/pipes/csgomapimage.pipe';

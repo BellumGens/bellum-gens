@@ -4,7 +4,9 @@ import { NotificationStatePipe } from '../../pipes/notification-state.pipe';
 import { SortApplicationsPipe } from '../../pipes/sort-applications.pipe';
 import { DisabledNotificationsPipe } from '../../pipes/disabled-notifications.pipe';
 import { RouterLink } from '@angular/router';
-import { IGX_LIST_DIRECTIVES, IgxAvatarComponent, IgxButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular';
+import { IGX_LIST_DIRECTIVES } from '@infragistics/igniteui-angular/list';
+import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
+import { IgxButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
 import { DatePipe } from '@angular/common';
 
 @Component({

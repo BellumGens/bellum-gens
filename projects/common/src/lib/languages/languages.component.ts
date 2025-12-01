@@ -1,12 +1,8 @@
 
 import { Component, LOCALE_ID, inject } from '@angular/core';
-import {
-  IGX_DROP_DOWN_DIRECTIVES,
-  IgxButtonDirective,
-  IgxIconComponent,
-  IgxRippleDirective,
-  IgxToggleActionDirective
-} from '@infragistics/igniteui-angular';
+import { IGX_DROP_DOWN_DIRECTIVES } from '@infragistics/igniteui-angular/drop-down';
+import { IgxButtonDirective, IgxRippleDirective, IgxToggleActionDirective } from '@infragistics/igniteui-angular/directives';
+import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { GLOBAL_OVERLAY_SETTINGS } from '../../models/misc';
 
 @Component({

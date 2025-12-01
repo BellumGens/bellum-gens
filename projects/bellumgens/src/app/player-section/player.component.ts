@@ -1,6 +1,7 @@
 import { Component, ViewEncapsulation, inject } from '@angular/core';
 
-import { IGX_TABS_DIRECTIVES, IgxAvatarComponent } from '@infragistics/igniteui-angular';
+import { IGX_TABS_DIRECTIVES } from '@infragistics/igniteui-angular/tabs';
+import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
 import { ActivatedRoute, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { ApplicationUser, BellumgensApiService } from '../../../../common/src/public_api';
 

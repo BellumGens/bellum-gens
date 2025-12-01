@@ -3,7 +3,8 @@ import { ApplicationUser, LoginService } from '../../../../../common/src/public_
 import { TeamSearchComponent } from '../team-search/team-search.component';
 import { PlayerSearchComponent } from '../player-search/player-search.component';
 
-import { IGX_BUTTON_GROUP_DIRECTIVES, IgxButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular';
+import { IGX_BUTTON_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/button-group';
+import { IgxButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
 
 enum SearchType {
   None,

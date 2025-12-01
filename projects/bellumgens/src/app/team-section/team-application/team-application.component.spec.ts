@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { TeamApplicationComponent } from './team-application.component';
-import { IgxIconModule, IgxInputGroupModule, IgxDialogModule, IgxRippleModule } from '@infragistics/igniteui-angular';
+import { IgxIconComponent, IGX_INPUT_GROUP_DIRECTIVES, IGX_DIALOG_DIRECTIVES, IgxRippleDirective } from '@infragistics/igniteui-angular';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -17,10 +17,10 @@ describe('TeamApplicationComponent', () => {
     imports: [FormsModule,
         RouterTestingModule,
         NoopAnimationsModule,
-        IgxIconModule,
-        IgxInputGroupModule,
-        IgxDialogModule,
-        IgxRippleModule,
+        IgxIconComponent,
+        IGX_INPUT_GROUP_DIRECTIVES,
+        IGX_DIALOG_DIRECTIVES,
+        IgxRippleDirective,
         TeamApplicationComponent],
     providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
 })

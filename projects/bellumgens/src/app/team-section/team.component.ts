@@ -8,7 +8,9 @@ import {
   LoginService
 } from '../../../../common/src/public_api';
 import { BaseDirective } from '../base/base.component';
-import { IgxIconService, IgxIconComponent, IGX_TABS_DIRECTIVES, IgxAvatarComponent } from '@infragistics/igniteui-angular';
+import { IgxIconComponent, IgxIconService } from '@infragistics/igniteui-angular/icon';
+import { IGX_TABS_DIRECTIVES } from '@infragistics/igniteui-angular/tabs';
+import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
 import { TeamApplicationComponent } from './team-application/team-application.component';
 
 @Component({

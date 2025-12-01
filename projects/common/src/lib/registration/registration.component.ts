@@ -8,12 +8,9 @@ import { fromEvent } from 'rxjs';
 import { map, debounceTime } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import {
-  IGX_INPUT_GROUP_DIRECTIVES,
-  IgxButtonDirective,
-  IgxIconComponent,
-  IgxRippleDirective
-} from '@infragistics/igniteui-angular';
+import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
+import { IgxButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
+import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 
 
 @Component({

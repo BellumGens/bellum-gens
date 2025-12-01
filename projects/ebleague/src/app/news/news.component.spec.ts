@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { IgxCardModule, IgxLayoutModule } from '@infragistics/igniteui-angular';
+import { IGX_CARD_DIRECTIVES, IgxLayoutDirective } from '@infragistics/igniteui-angular';
 
 import { NewsComponent } from './news.component';
 
@@ -12,8 +12,8 @@ describe('NewsComponent', () => {
     await TestBed.configureTestingModule({
     imports: [
         RouterTestingModule,
-        IgxCardModule,
-        IgxLayoutModule,
+        IGX_CARD_DIRECTIVES,
+        IgxLayoutDirective,
         NewsComponent
     ]
 })

@@ -8,7 +8,13 @@ import {
   ACTIVE_DUTY,
   ApiStrategiesService
 } from '../../../../../common/src/public_api';
-import { IgxDialogComponent, IGX_DIALOG_DIRECTIVES, IGX_INPUT_GROUP_DIRECTIVES, IgxIconComponent, IGX_RADIO_GROUP_DIRECTIVES, IgxSwitchComponent, IGX_SELECT_DIRECTIVES, IgxButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular';
+import { IGX_DIALOG_DIRECTIVES, IgxDialogComponent } from '@infragistics/igniteui-angular/dialog';
+import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
+import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
+import { IGX_RADIO_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/radio';
+import { IgxSwitchComponent } from '@infragistics/igniteui-angular/switch';
+import { IGX_SELECT_DIRECTIVES } from '@infragistics/igniteui-angular/select';
+import { IgxButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
 import { IsVideoPipe } from '../../pipes/is-video.pipe';
 import { Router } from '@angular/router';
 import { SafeVideoLinkPipe } from '../../pipes/safe-video-link.pipe';

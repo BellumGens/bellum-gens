@@ -13,18 +13,14 @@ import {
   EMAIL_REGEX
 } from '../../../../../common/src/public_api';
 import { FormsModule } from '@angular/forms';
-import {
-  IGX_DRAG_DROP_DIRECTIVES,
-  IGX_DROP_DOWN_DIRECTIVES,
-  IGX_INPUT_GROUP_DIRECTIVES,
-  IGX_SELECT_DIRECTIVES,
-  IgxAutocompleteDirective,
-  IgxAvatarComponent,
-  IgxButtonDirective,
-  IgxCheckboxComponent,
-  IgxDialogComponent,
-  IgxIconComponent
-} from '@infragistics/igniteui-angular';
+import { IGX_DRAG_DROP_DIRECTIVES, IgxButtonDirective } from '@infragistics/igniteui-angular/directives';
+import { IGX_DROP_DOWN_DIRECTIVES, IgxAutocompleteDirective } from '@infragistics/igniteui-angular/drop-down';
+import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
+import { IGX_SELECT_DIRECTIVES } from '@infragistics/igniteui-angular/select';
+import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
+import { IgxCheckboxComponent } from '@infragistics/igniteui-angular/checkbox';
+import { IgxDialogComponent } from '@infragistics/igniteui-angular/dialog';
+import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({

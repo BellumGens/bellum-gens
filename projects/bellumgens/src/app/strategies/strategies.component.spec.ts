@@ -1,23 +1,21 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { StrategiesComponent } from './strategies.component';
-import { IgxIconModule,
-  IgxCardModule,
-  IgxInputGroupModule,
-  IgxRadioModule,
-  IgxDialogModule,
-  IgxToggleModule,
-  IgxCheckboxModule,
-  IgxChipsModule,
-  IgxTimePickerModule,
-  IgxSelectModule,
-  IgxAvatarModule,
-  IgxBadgeModule,
-  IgxSwitchModule,
-  IgxDropDownModule,
-  IgxProgressBarModule,
-  IgxButtonModule,
-  IgxDividerModule} from '@infragistics/igniteui-angular';
+import { IgxIconModule } from '@infragistics/igniteui-angular/icon';
+import { IgxCardModule } from '@infragistics/igniteui-angular/card';
+import { IgxInputGroupModule } from '@infragistics/igniteui-angular/input-group';
+import { IgxRadioModule } from '@infragistics/igniteui-angular/radio';
+import { IgxDialogModule } from '@infragistics/igniteui-angular/dialog';
+import { IgxButtonModule, IgxDividerModule, IgxToggleModule } from '@infragistics/igniteui-angular/directives';
+import { IgxCheckboxModule } from '@infragistics/igniteui-angular/checkbox';
+import { IgxChipsModule } from '@infragistics/igniteui-angular/chips';
+import { IgxTimePickerModule } from '@infragistics/igniteui-angular/time-picker';
+import { IgxSelectModule } from '@infragistics/igniteui-angular/select';
+import { IgxAvatarModule } from '@infragistics/igniteui-angular/avatar';
+import { IgxBadgeModule } from '@infragistics/igniteui-angular/badge';
+import { IgxSwitchModule } from '@infragistics/igniteui-angular/switch';
+import { IgxDropDownModule } from '@infragistics/igniteui-angular/drop-down';
+import { IgxProgressBarModule } from '@infragistics/igniteui-angular/progressbar';
 import { SafeVideoLinkPipe } from 'projects/bellumgens/src/app/pipes/safe-video-link.pipe';
 import { FormsModule } from '@angular/forms';
 import { SideStratsPipe } from 'projects/bellumgens/src/app/pipes/sidestrats.pipe';

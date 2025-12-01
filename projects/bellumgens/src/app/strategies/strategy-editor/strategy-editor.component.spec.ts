@@ -1,17 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { StrategyEditorComponent } from './strategy-editor.component';
-import { IgxIconModule,
-  IgxInputGroupModule,
-  IgxListModule,
-  IgxDragDropModule,
-  IgxAvatarModule,
-  IgxDialogModule,
-  IgxCheckboxModule,
-  IgxSelectModule,
-  IgxButtonGroupModule,
-  IgxButtonModule,
-  IgxProgressBarModule} from '@infragistics/igniteui-angular';
+import { IgxIconComponent, IGX_INPUT_GROUP_DIRECTIVES, IGX_LIST_DIRECTIVES, IgxButtonDirective, IGX_DRAG_DROP_DIRECTIVES, IgxAvatarComponent, IGX_DIALOG_DIRECTIVES, IgxCheckboxComponent, IGX_SELECT_DIRECTIVES, IgxButtonGroupComponent, IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -27,17 +17,17 @@ describe('StrategyEditorComponent', () => {
     imports: [FormsModule,
         RouterTestingModule,
         NoopAnimationsModule,
-        IgxIconModule,
-        IgxInputGroupModule,
-        IgxListModule,
-        IgxDragDropModule,
-        IgxAvatarModule,
-        IgxDialogModule,
-        IgxCheckboxModule,
-        IgxSelectModule,
-        IgxButtonGroupModule,
-        IgxButtonModule,
-        IgxProgressBarModule,
+        IgxIconComponent,
+        IGX_INPUT_GROUP_DIRECTIVES,
+        IGX_LIST_DIRECTIVES,
+        IGX_DRAG_DROP_DIRECTIVES,
+        IgxAvatarComponent,
+        IGX_DIALOG_DIRECTIVES,
+        IgxCheckboxComponent,
+        IGX_SELECT_DIRECTIVES,
+        IgxButtonGroupComponent,
+        IgxButtonDirective,
+        IgxCircularProgressBarComponent,
         StrategyEditorComponent],
     providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
 })

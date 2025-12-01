@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular';
+import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
 import { ApiShopService } from '../../../services/bellumgens-api.shop.service';
 import { AsyncPipe, CurrencyPipe } from '@angular/common';
 import { Product, ProductOrderDetails } from '../../../models/order';

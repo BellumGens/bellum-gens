@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { TeamNotificationsComponent } from './team-notifications.component';
-import { IgxListModule, IgxAvatarModule } from '@infragistics/igniteui-angular';
+import { IGX_LIST_DIRECTIVES, IgxAvatarComponent } from '@infragistics/igniteui-angular';
 import { SortApplicationsPipe } from 'projects/bellumgens/src/app/pipes/sort-applications.pipe';
 import { DisabledNotificationsPipe } from 'projects/bellumgens/src/app/pipes/disabled-notifications.pipe';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -16,8 +16,8 @@ describe('TeamNotificationsComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
     imports: [RouterTestingModule,
-        IgxListModule,
-        IgxAvatarModule,
+        IGX_LIST_DIRECTIVES,
+        IgxAvatarComponent,
         TeamNotificationsComponent,
         SortApplicationsPipe,
         DisabledNotificationsPipe,

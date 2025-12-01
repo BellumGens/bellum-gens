@@ -1,6 +1,8 @@
 import { DatePipe, NgOptimizedImage } from '@angular/common';
 import { Component, LOCALE_ID, inject } from '@angular/core';
-import { IGX_CARD_DIRECTIVES, IgxAvatarComponent, IgxButtonDirective, IgxDividerDirective } from '@infragistics/igniteui-angular';
+import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
+import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
+import { IgxButtonDirective, IgxDividerDirective } from '@infragistics/igniteui-angular/directives';
 import { BaseDirective } from '../base/base.component';
 import { RouterLink } from '@angular/router';
 import { CountrySVGPipe } from '../../../../common/src/lib/pipes/country-svg.pipe';

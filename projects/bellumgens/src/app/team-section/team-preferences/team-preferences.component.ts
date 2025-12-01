@@ -7,15 +7,12 @@ import {
   CountrySVGPipe
 } from '../../../../../common/src/public_api';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import {
-  IGX_INPUT_GROUP_DIRECTIVES,
-  IgxIconComponent,
-  IgxSwitchComponent,
-  IgxButtonDirective,
-  IgxRippleDirective,
-  IGX_LIST_DIRECTIVES,
-  IgxAvatarComponent
-} from '@infragistics/igniteui-angular';
+import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
+import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
+import { IgxSwitchComponent } from '@infragistics/igniteui-angular/switch';
+import { IgxButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
+import { IGX_LIST_DIRECTIVES } from '@infragistics/igniteui-angular/list';
+import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
 import { FormsModule } from '@angular/forms';
 
 

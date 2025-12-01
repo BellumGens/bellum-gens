@@ -3,21 +3,11 @@ import { isPlatformBrowser, NgOptimizedImage } from '@angular/common';
 import { Router, NavigationEnd, RouterLink, RouterLinkActive, RouterOutlet, ActivatedRoute } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
-import {
-  IgxNavigationDrawerComponent,
-  IgxLayoutDirective,
-  IgxNavDrawerTemplateDirective,
-  IgxNavDrawerItemDirective,
-  IgxRippleDirective,
-  IgxIconComponent,
-  IgxNavDrawerMiniTemplateDirective,
-  IgxFlexDirective,
-  IgxNavbarComponent,
-  IgxNavbarActionDirective,
-  IgxDividerDirective,
-  IgxIconService,
-  changei18n
-} from '@infragistics/igniteui-angular';
+import { IgxNavDrawerItemDirective, IgxNavDrawerMiniTemplateDirective, IgxNavDrawerTemplateDirective, IgxNavigationDrawerComponent } from '@infragistics/igniteui-angular/navigation-drawer';
+import { IgxDividerDirective, IgxFlexDirective, IgxLayoutDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
+import { IgxIconComponent, IgxIconService } from '@infragistics/igniteui-angular/icon';
+import { IgxNavbarActionDirective, IgxNavbarComponent } from '@infragistics/igniteui-angular/navbar';
+import { changei18n } from '@infragistics/igniteui-angular/core';
 import { battlenet, discord, facebook, heartCare, instagram, linkedin, steam, twitch, twitter, youtube } from '@igniteui/material-icons-extended';
 import { IgxResourceStringsBG } from 'igniteui-angular-i18n';
 

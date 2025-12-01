@@ -1,6 +1,8 @@
 import { isPlatformBrowser, NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component, HostListener, PLATFORM_ID, inject } from '@angular/core';
-import { IGX_CARD_DIRECTIVES, IgxIconButtonDirective, IgxRippleDirective, IgxIconComponent, IgxLayoutDirective, IgxFlexDirective } from '@infragistics/igniteui-angular';
+import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
+import { IgxFlexDirective, IgxIconButtonDirective, IgxLayoutDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
+import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { SocialMedia } from '../../../../../common/src/public_api';
 import { BaseDirective } from '../../base/base.component';
 

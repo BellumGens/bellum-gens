@@ -1,12 +1,9 @@
 import { Component, ViewChild, inject } from '@angular/core';
-import {
-  IgxDialogComponent,
-  IgxDividerDirective,
-  IGX_INPUT_GROUP_DIRECTIVES,
-  IgxIconComponent,
-  IgxCheckboxComponent,
-  IgxButtonDirective
-} from '@infragistics/igniteui-angular';
+import { IgxDialogComponent } from '@infragistics/igniteui-angular/dialog';
+import { IgxButtonDirective, IgxDividerDirective } from '@infragistics/igniteui-angular/directives';
+import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
+import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
+import { IgxCheckboxComponent } from '@infragistics/igniteui-angular/checkbox';
 import { LoginService } from '../../../services/login.service';
 import { UserLogin } from '../../../models/userlogin';
 import { Router } from '@angular/router';

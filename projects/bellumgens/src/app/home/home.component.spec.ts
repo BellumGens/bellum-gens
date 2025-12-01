@@ -5,7 +5,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { IgxCarouselComponent } from '@infragistics/igniteui-angular';
+import { IgxCarouselComponent } from '@infragistics/igniteui-angular/carousel';
 import { By } from '@angular/platform-browser';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 

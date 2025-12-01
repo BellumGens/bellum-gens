@@ -2,7 +2,9 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ApplicationUser, BellumgensApiService, LoadingComponent, RaceIconPipe, Tournament } from '../../../../../common/src/public_api';
 import { ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
-import { IGX_GRID_DIRECTIVES, IgxAvatarComponent, IgxIconComponent } from '@infragistics/igniteui-angular';
+import { IGX_GRID_DIRECTIVES } from '@infragistics/igniteui-angular/grids/grid';
+import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
+import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { Observable } from 'rxjs';
 import { AsyncPipe, DatePipe } from '@angular/common';
 

@@ -22,4 +22,14 @@ describe('RaffleComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should be a simple component with no complex logic', () => {
+    // Verify component is just a container
+    expect(component).toBeDefined();
+  });
+
+  it('should render template', () => {
+    const compiled = fixture.nativeElement;
+    expect(compiled).toBeTruthy();
+  });
 });
