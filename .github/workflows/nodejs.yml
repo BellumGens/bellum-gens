@@ -36,7 +36,7 @@ jobs:
     - run: npm run test:prod
     - run: cat ./coverage/{bellum-gens,common,eb-league}/lcov.info > coverage/lcov.info
     - name: Publish to coveralls.io
-      if: matrix.node-version == '20.x'
+      if: matrix.node-version == '22.x'
       uses: coverallsapp/github-action@v2.3.4
       with:
         github-token: ${{ github.token }}
