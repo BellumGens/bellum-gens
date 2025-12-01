@@ -2,8 +2,6 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { LoadingComponent } from './loading.component';
 
-import { IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular';
-
 describe('LoadingComponent', () => {
   let component: LoadingComponent;
   let fixture: ComponentFixture<LoadingComponent>;
@@ -11,7 +9,6 @@ describe('LoadingComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
     imports: [
-        IgxCircularProgressBarComponent,
         LoadingComponent
     ]
 })
@@ -27,4 +24,11 @@ describe('LoadingComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should render progress bar', () => {
+    const compiled = fixture.nativeElement;
+    const progressBar = compiled.querySelector('igx-circular-bar');
+    expect(progressBar).toBeTruthy();
+  });
+
 });

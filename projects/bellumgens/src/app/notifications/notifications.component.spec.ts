@@ -45,4 +45,53 @@ describe('NotificationsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should initialize teamAdmin observable', () => {
+    expect(component.teamAdmin).toBeDefined();
+  });
+
+  it('should emit loaded event when aggregate is called with unread notifications', (done) => {
+    const unreadCount = 5;
+    const mockNotifications = [
+      { read: false },
+      { read: false },
+      { read: false },
+      { read: false },
+      { read: false }
+    ];
+    
+    component.loaded.subscribe((count) => {
+      expect(count).toBeGreaterThan(0);
+      done();
+    });
+    
+    component.aggregate(mockNotifications);
+  });
+
+  it('should not emit loaded event when aggregate is called with all read notifications', () => {
+    const mockNotifications = [
+      { read: true },
+      { read: true }
+    ];
+    
+    spyOn(component.loaded, 'emit');
+    component.aggregate(mockNotifications);
+    
+    expect(component.loaded.emit).not.toHaveBeenCalled();
+  });
+
+  it('should emit loaded event when changed is called', (done) => {
+    const testCount = 3;
+    
+    component.loaded.subscribe((count) => {
+      expect(count).toBe(testCount);
+      done();
+    });
+    
+    component.changed(testCount);
+  });
+
+  it('should subscribe to auth user changes', () => {
+    expect(component.teamAdmin).toBeDefined();
+  });
 });

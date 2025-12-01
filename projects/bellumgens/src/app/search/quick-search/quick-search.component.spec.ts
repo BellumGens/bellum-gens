@@ -6,6 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ReduceQuickSearchResultPipe } from 'projects/bellumgens/src/app/pipes/reduce-quick-search-result.pipe';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { ApiSearchService } from 'bellum-gens-common';
 
 describe('QuickSearchComponent', () => {
   let component: QuickSearchComponent;
@@ -33,5 +34,56 @@ describe('QuickSearchComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should initialize with empty search result', () => {
+    expect(component.searchResult).toEqual({ steamUser: null, players: [], teams: [], strategies: [] });
+  });
+
+  it('should initialize loading as false', () => {
+    expect(component.loading).toBe(false);
+  });
+
+  it('should initialize term as empty string', () => {
+    expect(component.term).toBe('');
+  });
+
+  it('should update searchResult when apiService emits new data', () => {
+    const apiService = TestBed.inject(ApiSearchService) as ApiSearchService;
+    const mockResult = {
+      steamUser: null,
+      players: [{ id: '1', customUrl: 'player1' }],
+      teams: [],
+      strategies: []
+    };
+
+    apiService.searchResult.next(mockResult as any);
+    fixture.detectChanges();
+
+    expect(component.searchResult.players.length).toBe(1);
+  });
+
+  it('should update loading state when apiService emits loading status', () => {
+    const apiService = TestBed.inject(ApiSearchService) as ApiSearchService;
+
+    apiService.loadingQuickSearch.next(true);
+    fixture.detectChanges();
+
+    expect(component.loading).toBe(true);
+
+    apiService.loadingQuickSearch.next(false);
+    fixture.detectChanges();
+
+    expect(component.loading).toBe(false);
+  });
+
+  it('should update term when apiService emits search term', () => {
+    const apiService = TestBed.inject(ApiSearchService) as ApiSearchService;
+    const testTerm = 'test search';
+
+    apiService.searchTerm.next(testTerm);
+    fixture.detectChanges();
+
+    expect(component.term).toBe(testTerm);
   });
 });

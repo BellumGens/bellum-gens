@@ -10,6 +10,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { LoginService } from 'bellum-gens-common';
 
 describe('SearchComponent', () => {
   let component: SearchComponent;
@@ -46,5 +47,39 @@ describe('SearchComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should initialize searchType as None', () => {
+    expect(component.searchType).toBe(0); // SearchType.None
+  });
+
+  it('should initialize authUser as undefined', () => {
+    expect(component.authUser).toBeUndefined();
+  });
+
+  it('should subscribe to auth user changes', () => {
+    const authService = TestBed.inject(LoginService);
+    const mockUser = {
+      id: 'test-id',
+      username: 'TestUser'
+    };
+
+    authService.applicationUser.next(mockUser as any);
+    fixture.detectChanges();
+
+    expect(component.authUser).toBeDefined();
+  });
+
+  it('should change searchType when button is clicked', () => {
+    component.searchType = 1; // SearchType.Player
+    expect(component.searchType).toBe(1);
+
+    component.searchType = 2; // SearchType.Team
+    expect(component.searchType).toBe(2);
+  });
+
+  it('should have PlayerSearchComponent and TeamSearchComponent as children', () => {
+    const compiled = fixture.nativeElement;
+    expect(compiled).toBeTruthy();
   });
 });

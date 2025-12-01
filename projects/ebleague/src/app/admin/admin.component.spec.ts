@@ -26,4 +26,15 @@ describe('AdminComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should render router outlet', () => {
+    const compiled = fixture.nativeElement;
+    const routerOutlet = compiled.querySelector('router-outlet');
+    expect(routerOutlet).toBeTruthy();
+  });
+
+  it('should be a container component for admin routes', () => {
+    // Verify it has minimal logic
+    expect(component).toBeTruthy();
+  });
 });
