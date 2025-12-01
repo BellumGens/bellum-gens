@@ -4,7 +4,13 @@ import { TournamentCsgoComponent } from './tournament-csgo.component';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { IgxAvatarComponent, IgxBadgeComponent, IgxCircularProgressBarComponent, IgxDividerDirective, IgxIconComponent, IGX_CARD_DIRECTIVES, IGX_GRID_DIRECTIVES } from '@infragistics/igniteui-angular';
+import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
+import { IgxBadgeComponent } from '@infragistics/igniteui-angular/badge';
+import { IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular/progressbar';
+import { IgxDividerDirective } from '@infragistics/igniteui-angular/directives';
+import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
+import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
+import { IGX_GRID_DIRECTIVES } from '@infragistics/igniteui-angular/grids/grid';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SortByPointsPipe } from 'projects/ebleague/src/app/pipes/sort-by-points.pipe';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
@@ -15,20 +21,14 @@ describe('TournamentCsgoComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [RouterTestingModule,
+      imports: [
+        RouterTestingModule,
         NoopAnimationsModule,
         ServiceWorkerModule.register('', { enabled: false }),
-        IgxAvatarComponent,
-        IGX_CARD_DIRECTIVES,
-        IgxBadgeComponent,
-        IgxCircularProgressBarComponent,
-        IgxDividerDirective,
-        IGX_GRID_DIRECTIVES,
-        IgxIconComponent,
-        TournamentCsgoComponent,
-        SortByPointsPipe],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+        TournamentCsgoComponent
+      ],
+      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

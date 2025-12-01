@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ProductionCrewComponent } from './production-crew.component';
-import { IGX_CARD_DIRECTIVES, IgxIconComponent, IgxButtonDirective } from '@infragistics/igniteui-angular';
 
 describe('ProductionCrewComponent', () => {
   let component: ProductionCrewComponent;
@@ -9,13 +8,10 @@ describe('ProductionCrewComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [
-        IGX_CARD_DIRECTIVES,
-        IgxIconComponent,
-        IgxButtonDirective,
+      imports: [
         ProductionCrewComponent
-    ]
-})
+      ]
+    })
     .compileComponents();
   }));
 

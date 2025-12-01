@@ -1,11 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { PlayerNotificationsComponent } from './player-notifications.component';
-import { IGX_LIST_DIRECTIVES, IgxAvatarComponent } from '@infragistics/igniteui-angular';
-import { DisabledNotificationsPipe } from 'projects/bellumgens/src/app/pipes/disabled-notifications.pipe';
 import { RouterTestingModule } from '@angular/router/testing';
-import { SortNotificationsPipe } from 'projects/bellumgens/src/app/pipes/sort-notifications.pipe';
-import { NotificationStatePipe } from 'projects/bellumgens/src/app/pipes/notification-state.pipe';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
@@ -18,12 +14,7 @@ describe('NotificationsComponent', () => {
     TestBed.configureTestingModule({
     imports: [RouterTestingModule,
         ServiceWorkerModule.register('', { enabled: false }),
-        IGX_LIST_DIRECTIVES,
-        IgxAvatarComponent,
-        PlayerNotificationsComponent,
-        DisabledNotificationsPipe,
-        SortNotificationsPipe,
-        NotificationStatePipe],
+        PlayerNotificationsComponent],
     providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
 })
     .compileComponents();

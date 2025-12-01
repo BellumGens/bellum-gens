@@ -2,7 +2,16 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { HomeComponent } from './home.component';
 import { FormsModule } from '@angular/forms';
-import { IgxIconComponent, IgxButtonDirective, IgxDividerDirective, IGX_INPUT_GROUP_DIRECTIVES, IGX_SELECT_DIRECTIVES, IGX_DIALOG_DIRECTIVES, IgxAvatarComponent, IGX_DROP_DOWN_DIRECTIVES, IGX_LIST_DIRECTIVES, IgxCircularProgressBarComponent, IgxCheckboxComponent } from '@infragistics/igniteui-angular';
+import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
+import { IgxButtonDirective, IgxDividerDirective } from '@infragistics/igniteui-angular/directives';
+import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
+import { IGX_SELECT_DIRECTIVES } from '@infragistics/igniteui-angular/select';
+import { IGX_DIALOG_DIRECTIVES } from '@infragistics/igniteui-angular/dialog';
+import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
+import { IGX_DROP_DOWN_DIRECTIVES } from '@infragistics/igniteui-angular/drop-down';
+import { IGX_LIST_DIRECTIVES } from '@infragistics/igniteui-angular/list';
+import { IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular/progressbar';
+import { IgxCheckboxComponent } from '@infragistics/igniteui-angular/checkbox';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -19,28 +28,14 @@ describe('TournamentHomeComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [FormsModule,
+      imports: [
         RouterTestingModule,
         NoopAnimationsModule,
         ServiceWorkerModule.register('', { enabled: false }),
-        IgxIconComponent,
-        IgxDividerDirective,
-        IGX_INPUT_GROUP_DIRECTIVES,
-        IGX_SELECT_DIRECTIVES,
-        IGX_DIALOG_DIRECTIVES,
-        IgxAvatarComponent,
-        IGX_DROP_DOWN_DIRECTIVES,
-        IgxButtonDirective,
-        IGX_LIST_DIRECTIVES,
-        IgxCircularProgressBarComponent,
-        IgxCheckboxComponent,
-        HomeComponent,
-        TournamentRegistrationComponent,
-        TeamNewComponent,
-        GetRegCountPipe,
-        StartsWithPipe],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+        HomeComponent
+      ],
+      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
