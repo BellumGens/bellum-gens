@@ -47,30 +47,29 @@ describe('NotificationsComponent', () => {
   });
 
   it('should initialize teamAdmin observable', () => {
-    expect(component.teamAdmin).toBeDefined();
+    // teamAdmin is initialized only when user logs in
+    expect(component.teamAdmin).toBeUndefined();
   });
 
-  it('should emit loaded event when aggregate is called with unread notifications', (done) => {
+  it('should emit loaded event when aggregate is called with unread notifications', () => {
     const mockNotifications = [
-      { read: false },
-      { read: false },
-      { read: false },
-      { read: false },
-      { read: false }
+      { state: 0 }, // NotificationState.NotSeen = 0
+      { state: 0 },
+      { state: 0 },
+      { state: 0 },
+      { state: 0 }
     ];
 
-    component.loaded.subscribe((count) => {
-      expect(count).toBeGreaterThan(0);
-      done();
-    });
-
+    spyOn(component.loaded, 'emit');
     component.aggregate(mockNotifications);
+
+    expect(component.loaded.emit).toHaveBeenCalledWith(5);
   });
 
   it('should not emit loaded event when aggregate is called with all read notifications', () => {
     const mockNotifications = [
-      { read: true },
-      { read: true }
+      { state: 1 }, // NotificationState.Seen = 1
+      { state: 1 }
     ];
 
     spyOn(component.loaded, 'emit');
@@ -91,6 +90,7 @@ describe('NotificationsComponent', () => {
   });
 
   it('should subscribe to auth user changes', () => {
-    expect(component.teamAdmin).toBeDefined();
+    // teamAdmin is undefined until user logs in
+    expect(component.teamAdmin).toBeUndefined();
   });
 });

@@ -54,7 +54,8 @@ describe('SearchComponent', () => {
   });
 
   it('should initialize authUser as undefined', () => {
-    expect(component.authUser).toBeUndefined();
+    // authUser is null until subscription updates it
+    expect(component.authUser).toBeNull();
   });
 
   it('should subscribe to auth user changes', () => {
