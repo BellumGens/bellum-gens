@@ -51,7 +51,6 @@ describe('NotificationsComponent', () => {
   });
 
   it('should emit loaded event when aggregate is called with unread notifications', (done) => {
-    const unreadCount = 5;
     const mockNotifications = [
       { read: false },
       { read: false },

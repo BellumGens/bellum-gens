@@ -7,7 +7,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { PlayerComponent } from './player.component';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { BellumgensApiService } from 'bellum-gens-common';
-import { of, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 
 describe('PlayerComponent', () => {
@@ -16,12 +16,12 @@ describe('PlayerComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [RouterTestingModule,
-        NoopAnimationsModule,
-        ServiceWorkerModule.register('', { enabled: false }),
-        PlayerComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-}).compileComponents();
+        imports: [RouterTestingModule,
+            NoopAnimationsModule,
+            ServiceWorkerModule.register('', { enabled: false }),
+            PlayerComponent],
+        providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
