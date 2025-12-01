@@ -15,12 +15,14 @@ describe('HomeComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [NoopAnimationsModule,
+      imports: [
+        NoopAnimationsModule,
         RouterTestingModule,
         ServiceWorkerModule.register('', { enabled: false }),
-        HomeComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-})
+        HomeComponent
+      ],
+      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+    })
     .compileComponents();
   }));
 
@@ -55,6 +57,23 @@ describe('HomeComponent', () => {
     spyOn(component, 'tweet');
     component.tweet();
     expect(component.tweet).toHaveBeenCalled();
+  });
+
+  it('should initialize navigation property', () => {
+    expect(component.navigation).toBeDefined();
+    expect(typeof component.navigation).toBe('boolean');
+  });
+
+  it('should initialize userEmail to null', () => {
+    expect(component.userEmail).toBeNull();
+  });
+
+  it('should have environment property', () => {
+    expect(component.environment).toBeDefined();
+  });
+
+  it('should have authUser property', () => {
+    expect(component.authUser).toBeDefined();
   });
 
   it('should call openLogin method when openLogin is called', () => {

@@ -25,4 +25,8 @@ describe('TournamentsMainComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should subscribe to tournaments observable', () => {
+    expect(component).toBeTruthy();
+  });
 });

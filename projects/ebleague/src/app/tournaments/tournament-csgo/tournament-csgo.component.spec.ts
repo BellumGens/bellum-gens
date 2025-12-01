@@ -4,15 +4,7 @@ import { TournamentCsgoComponent } from './tournament-csgo.component';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
-import { IgxBadgeComponent } from '@infragistics/igniteui-angular/badge';
-import { IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular/progressbar';
-import { IgxDividerDirective } from '@infragistics/igniteui-angular/directives';
-import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
-import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
-import { IGX_GRID_DIRECTIVES } from '@infragistics/igniteui-angular/grids/grid';
 import { RouterTestingModule } from '@angular/router/testing';
-import { SortByPointsPipe } from 'projects/ebleague/src/app/pipes/sort-by-points.pipe';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('TournamentCsgoComponent', () => {
@@ -39,5 +31,9 @@ describe('TournamentCsgoComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should have environment property', () => {
+    expect(component.environment).toBeDefined();
   });
 });
