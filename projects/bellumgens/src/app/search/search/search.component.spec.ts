@@ -1,14 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { SearchComponent } from './search.component';
-import { IgxButtonGroupModule } from '@infragistics/igniteui-angular/button-group';
-import { IgxButtonModule, IgxRippleModule } from '@infragistics/igniteui-angular/directives';
-import { IgxRadioModule } from '@infragistics/igniteui-angular/radio';
-import { IgxIconModule } from '@infragistics/igniteui-angular/icon';
-import { IgxAvatarModule } from '@infragistics/igniteui-angular/avatar';
-import { IgxSliderModule } from '@infragistics/igniteui-angular/slider';
-import { IgxInputGroupModule } from '@infragistics/igniteui-angular/input-group';
-import { IgxSelectModule } from '@infragistics/igniteui-angular/select';
+import { IgxButtonGroupComponent, IgxButtonDirective, IgxRippleDirective, IGX_RADIO_GROUP_DIRECTIVES, IgxIconComponent, IgxAvatarComponent, IGX_SLIDER_DIRECTIVES, IGX_INPUT_GROUP_DIRECTIVES, IGX_SELECT_DIRECTIVES } from '@infragistics/igniteui-angular';
 import { PlayerSearchComponent } from '../player-search/player-search.component';
 import { TeamSearchComponent } from '../team-search/team-search.component';
 import { FormsModule } from '@angular/forms';
@@ -28,16 +21,15 @@ describe('SearchComponent', () => {
         RouterTestingModule,
         NoopAnimationsModule,
         ServiceWorkerModule.register('', { enabled: false }),
-        IgxButtonGroupModule,
-        IgxRippleModule,
-        IgxRadioModule,
-        IgxIconModule,
-        IgxAvatarModule,
-        IgxSliderModule,
-        IgxRippleModule,
-        IgxInputGroupModule,
-        IgxButtonModule,
-        IgxSelectModule,
+        IgxButtonGroupComponent,
+        IgxRippleDirective,
+        IGX_RADIO_GROUP_DIRECTIVES,
+        IgxIconComponent,
+        IgxAvatarComponent,
+        IGX_SLIDER_DIRECTIVES,
+        IGX_INPUT_GROUP_DIRECTIVES,
+        IgxButtonDirective,
+        IGX_SELECT_DIRECTIVES,
         SearchComponent,
         PlayerSearchComponent,
         TeamSearchComponent],

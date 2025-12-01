@@ -2,12 +2,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { TeamSearchComponent } from './team-search.component';
 import { FormsModule } from '@angular/forms';
-import { IgxRadioModule } from '@infragistics/igniteui-angular/radio';
-import { IgxSliderModule } from '@infragistics/igniteui-angular/slider';
-import { IgxButtonModule, IgxRippleModule } from '@infragistics/igniteui-angular/directives';
-import { IgxAvatarModule } from '@infragistics/igniteui-angular/avatar';
-import { IgxIconModule } from '@infragistics/igniteui-angular/icon';
-import { IgxInputGroupModule } from '@infragistics/igniteui-angular/input-group';
+import { IGX_RADIO_GROUP_DIRECTIVES, IGX_SLIDER_DIRECTIVES, IgxButtonDirective, IgxRippleDirective, IgxAvatarComponent, IgxIconComponent, IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -24,13 +19,13 @@ describe('TeamSearchComponent', () => {
         RouterTestingModule,
         NoopAnimationsModule,
         ServiceWorkerModule.register('', { enabled: false }),
-        IgxRadioModule,
-        IgxSliderModule,
-        IgxRippleModule,
-        IgxAvatarModule,
-        IgxIconModule,
-        IgxInputGroupModule,
-        IgxButtonModule,
+        IGX_RADIO_GROUP_DIRECTIVES,
+        IGX_SLIDER_DIRECTIVES,
+        IgxRippleDirective,
+        IgxAvatarComponent,
+        IgxIconComponent,
+        IGX_INPUT_GROUP_DIRECTIVES,
+        IgxButtonDirective,
         TeamSearchComponent],
     providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
 })

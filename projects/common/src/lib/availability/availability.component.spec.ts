@@ -1,9 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { AvailabilityComponent } from './availability.component';
-import { IgxChipsModule } from '@infragistics/igniteui-angular/chips';
-import { IgxTimePickerModule } from '@infragistics/igniteui-angular/time-picker';
-import { IgxDialogModule } from '@infragistics/igniteui-angular/dialog';
+import { IGX_CHIPS_DIRECTIVES, IGX_TIME_PICKER_DIRECTIVES, IGX_DIALOG_DIRECTIVES } from '@infragistics/igniteui-angular';
 import { WeekdayPipe } from '../pipes/weekday.pipe';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
@@ -15,9 +13,9 @@ describe('AvailabilityComponent', () => {
     TestBed.configureTestingModule({
     imports: [
         NoopAnimationsModule,
-        IgxChipsModule,
-        IgxTimePickerModule,
-        IgxDialogModule,
+        IGX_CHIPS_DIRECTIVES,
+        IGX_TIME_PICKER_DIRECTIVES,
+        IGX_DIALOG_DIRECTIVES,
         AvailabilityComponent,
         WeekdayPipe
     ]

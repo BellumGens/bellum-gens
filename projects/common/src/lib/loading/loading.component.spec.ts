@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { LoadingComponent } from './loading.component';
 
-import { IgxProgressBarModule } from '@infragistics/igniteui-angular/progressbar';
+import { IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular';
 
 describe('LoadingComponent', () => {
   let component: LoadingComponent;
@@ -11,7 +11,7 @@ describe('LoadingComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
     imports: [
-        IgxProgressBarModule,
+        IgxCircularProgressBarComponent,
         LoadingComponent
     ]
 })

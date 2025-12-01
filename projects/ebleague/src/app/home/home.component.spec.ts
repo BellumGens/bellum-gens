@@ -2,16 +2,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { HomeComponent } from './home.component';
 import { FormsModule } from '@angular/forms';
-import { IgxIconModule } from '@infragistics/igniteui-angular/icon';
-import { IgxButtonModule, IgxDividerModule } from '@infragistics/igniteui-angular/directives';
-import { IgxInputGroupModule } from '@infragistics/igniteui-angular/input-group';
-import { IgxSelectModule } from '@infragistics/igniteui-angular/select';
-import { IgxDialogModule } from '@infragistics/igniteui-angular/dialog';
-import { IgxAvatarModule } from '@infragistics/igniteui-angular/avatar';
-import { IgxAutocompleteModule, IgxDropDownModule } from '@infragistics/igniteui-angular/drop-down';
-import { IgxListModule } from '@infragistics/igniteui-angular/list';
-import { IgxProgressBarModule } from '@infragistics/igniteui-angular/progressbar';
-import { IgxCheckboxModule } from '@infragistics/igniteui-angular/checkbox';
+import { IgxIconComponent, IgxButtonDirective, IgxDividerDirective, IGX_INPUT_GROUP_DIRECTIVES, IGX_SELECT_DIRECTIVES, IGX_DIALOG_DIRECTIVES, IgxAvatarComponent, IGX_DROP_DOWN_DIRECTIVES, IGX_LIST_DIRECTIVES, IgxCircularProgressBarComponent, IgxCheckboxComponent } from '@infragistics/igniteui-angular';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -32,18 +23,17 @@ describe('TournamentHomeComponent', () => {
         RouterTestingModule,
         NoopAnimationsModule,
         ServiceWorkerModule.register('', { enabled: false }),
-        IgxIconModule,
-        IgxDividerModule,
-        IgxInputGroupModule,
-        IgxSelectModule,
-        IgxDialogModule,
-        IgxAvatarModule,
-        IgxAutocompleteModule,
-        IgxDropDownModule,
-        IgxButtonModule,
-        IgxListModule,
-        IgxProgressBarModule,
-        IgxCheckboxModule,
+        IgxIconComponent,
+        IgxDividerDirective,
+        IGX_INPUT_GROUP_DIRECTIVES,
+        IGX_SELECT_DIRECTIVES,
+        IGX_DIALOG_DIRECTIVES,
+        IgxAvatarComponent,
+        IGX_DROP_DOWN_DIRECTIVES,
+        IgxButtonDirective,
+        IGX_LIST_DIRECTIVES,
+        IgxCircularProgressBarComponent,
+        IgxCheckboxComponent,
         HomeComponent,
         TournamentRegistrationComponent,
         TeamNewComponent,

@@ -1,9 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { NotificationsComponent } from './notifications.component';
-import { IgxProgressBarModule } from '@infragistics/igniteui-angular/progressbar';
-import { IgxListModule } from '@infragistics/igniteui-angular/list';
-import { IgxAvatarModule } from '@infragistics/igniteui-angular/avatar';
+import { IgxCircularProgressBarComponent, IGX_LIST_DIRECTIVES, IgxAvatarComponent } from '@infragistics/igniteui-angular';
 import { DisabledNotificationsPipe } from '../pipes/disabled-notifications.pipe';
 import { SortNotificationsPipe } from '../pipes/sort-notifications.pipe';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -23,9 +21,9 @@ describe('NotificationsComponent', () => {
     TestBed.configureTestingModule({
     imports: [RouterTestingModule,
         ServiceWorkerModule.register('', { enabled: false }),
-        IgxProgressBarModule,
-        IgxListModule,
-        IgxAvatarModule,
+        IgxCircularProgressBarComponent,
+        IGX_LIST_DIRECTIVES,
+        IgxAvatarComponent,
         NotificationsComponent,
         PlayerNotificationsComponent,
         TeamNotificationsComponent,
