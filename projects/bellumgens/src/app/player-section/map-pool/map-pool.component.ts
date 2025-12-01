@@ -2,7 +2,8 @@ import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { ACTIVE_DUTY, CSGOMapPool } from '../../../../../common/src/public_api';
 import { ActiveDutyMapsPipe } from '../../../../../common/src/lib/pipes/active-duty-maps.pipe';
 import { FormsModule } from '@angular/forms';
-import { IGX_CARD_DIRECTIVES, IgxCheckboxComponent } from '@infragistics/igniteui-angular';
+import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
+import { IgxCheckboxComponent } from '@infragistics/igniteui-angular/checkbox';
 import { NgClass, NgOptimizedImage } from '@angular/common';
 
 @Component({

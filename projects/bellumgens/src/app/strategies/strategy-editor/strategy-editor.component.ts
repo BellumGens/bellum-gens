@@ -14,7 +14,14 @@ import {
   ApiStrategiesService
 } from '../../../../../common/src/public_api';
 import { ActivatedRoute } from '@angular/router';
-import { IDropDroppedEventArgs, IgxIconService, IGX_SELECT_DIRECTIVES, IGX_INPUT_GROUP_DIRECTIVES, IGX_LIST_DIRECTIVES, IgxCheckboxComponent, IgxIconComponent, IGX_DRAG_DROP_DIRECTIVES, IgxAvatarComponent, IGX_BUTTON_GROUP_DIRECTIVES, IgxButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular';
+import { IDropDroppedEventArgs, IGX_DRAG_DROP_DIRECTIVES, IgxButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
+import { IgxIconComponent, IgxIconService } from '@infragistics/igniteui-angular/icon';
+import { IGX_SELECT_DIRECTIVES } from '@infragistics/igniteui-angular/select';
+import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
+import { IGX_LIST_DIRECTIVES } from '@infragistics/igniteui-angular/list';
+import { IgxCheckboxComponent } from '@infragistics/igniteui-angular/checkbox';
+import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
+import { IGX_BUTTON_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/button-group';
 import { ConfirmComponent } from '../../../../../common/src/lib/confirm/confirm.component';
 import { FormsModule } from '@angular/forms';
 import { NgClass } from '@angular/common';

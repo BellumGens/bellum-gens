@@ -9,7 +9,12 @@ import {
 } from '../../../../../common/src/public_api';
 import { Router } from '@angular/router';
 
-import { IGX_RADIO_GROUP_DIRECTIVES, IGX_SELECT_DIRECTIVES, IGX_INPUT_GROUP_DIRECTIVES, IgxAvatarComponent, IGX_SLIDER_DIRECTIVES, IgxButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular';
+import { IGX_RADIO_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/radio';
+import { IGX_SELECT_DIRECTIVES } from '@infragistics/igniteui-angular/select';
+import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
+import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
+import { IGX_SLIDER_DIRECTIVES } from '@infragistics/igniteui-angular/slider';
+import { IgxButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
 import { FormsModule } from '@angular/forms';
 
 @Component({

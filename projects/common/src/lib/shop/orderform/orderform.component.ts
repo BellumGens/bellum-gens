@@ -1,7 +1,11 @@
 import { Component, EventEmitter, inject, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
-import { ISelectionEventArgs, IGX_SELECT_DIRECTIVES, IGX_INPUT_GROUP_DIRECTIVES, IgxIconComponent, IgxDividerDirective, IgxButtonDirective, IgxMaskDirective, IgxTextSelectionDirective } from '@infragistics/igniteui-angular';
+import { ISelectionEventArgs } from '@infragistics/igniteui-angular/drop-down';
+import { IGX_SELECT_DIRECTIVES } from '@infragistics/igniteui-angular/select';
+import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
+import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
+import { IgxButtonDirective, IgxDividerDirective, IgxMaskDirective, IgxTextSelectionDirective } from '@infragistics/igniteui-angular/directives';
 import { FilterSizesPipe } from '../../pipes/filter-sizes.pipe';
 import { ApiShopService } from '../../../public_api';
 import { EMPTY_JERSEY_ORDER, JerseyCut, ProductOrderDetails, Order, JerseySize } from '../../../models/order';

@@ -2,35 +2,15 @@ import { Component, OnInit, ViewChild, ElementRef, PLATFORM_ID, LOCALE_ID, injec
 import { isPlatformBrowser } from '@angular/common';
 import { RouterLinkActive, RouterLink, RouterOutlet, ActivatedRoute } from '@angular/router';
 
-import {
-  PositionSettings,
-  HorizontalAlignment,
-  OverlaySettings,
-  IgxDropDownComponent,
-  IgxInputGroupComponent,
-  AutoPositionStrategy,
-  IgxBannerComponent,
-  IgxLayoutDirective,
-  IgxNavigationDrawerComponent,
-  IgxNavDrawerTemplateDirective,
-  IgxNavDrawerItemDirective,
-  IgxRippleDirective,
-  IgxIconComponent,
-  IgxBadgeComponent,
-  IgxDividerDirective,
-  IgxNavDrawerMiniTemplateDirective,
-  IgxFlexDirective,
-  IgxNavbarComponent,
-  IgxNavbarActionDirective,
-  IgxPrefixDirective,
-  IgxLabelDirective,
-  IgxInputDirective,
-  IgxSuffixDirective,
-  IgxBannerActionsDirective,
-  IgxButtonDirective,
-  IgxIconService,
-  changei18n
-} from '@infragistics/igniteui-angular';
+import { AutoPositionStrategy, HorizontalAlignment, OverlaySettings, PositionSettings, changei18n } from '@infragistics/igniteui-angular/core';
+import { IgxDropDownComponent } from '@infragistics/igniteui-angular/drop-down';
+import { IgxInputDirective, IgxInputGroupComponent, IgxLabelDirective, IgxPrefixDirective, IgxSuffixDirective } from '@infragistics/igniteui-angular/input-group';
+import { IgxBannerActionsDirective, IgxBannerComponent } from '@infragistics/igniteui-angular/banner';
+import { IgxButtonDirective, IgxDividerDirective, IgxFlexDirective, IgxLayoutDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
+import { IgxNavDrawerItemDirective, IgxNavDrawerMiniTemplateDirective, IgxNavDrawerTemplateDirective, IgxNavigationDrawerComponent } from '@infragistics/igniteui-angular/navigation-drawer';
+import { IgxIconComponent, IgxIconService } from '@infragistics/igniteui-angular/icon';
+import { IgxBadgeComponent } from '@infragistics/igniteui-angular/badge';
+import { IgxNavbarActionDirective, IgxNavbarComponent } from '@infragistics/igniteui-angular/navbar';
 
 import {
   LoginService,

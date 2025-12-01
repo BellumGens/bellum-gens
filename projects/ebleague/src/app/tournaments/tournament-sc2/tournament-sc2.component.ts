@@ -10,7 +10,13 @@ import {
 import { environment } from '../../../../../common/src/environments/environment';
 import { Sc2MapNamePipe } from '../../../../../common/src/lib/pipes/sc2-map-name.pipe';
 import { DatePipe } from '@angular/common';
-import { IGX_CARD_DIRECTIVES, IgxCircularProgressBarComponent, IgxAvatarComponent, IgxBadgeComponent, IgxDividerDirective, IGX_GRID_DIRECTIVES, IgxIconComponent } from '@infragistics/igniteui-angular';
+import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
+import { IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular/progressbar';
+import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
+import { IgxBadgeComponent } from '@infragistics/igniteui-angular/badge';
+import { IgxDividerDirective } from '@infragistics/igniteui-angular/directives';
+import { IGX_GRID_DIRECTIVES } from '@infragistics/igniteui-angular/grids/grid';
+import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 
 @Component({
   selector: 'app-tournament-sc2',

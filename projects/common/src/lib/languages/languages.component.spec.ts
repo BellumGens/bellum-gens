@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { IgxButtonModule, IgxDropDownModule, IgxIconModule, IgxRippleModule, IgxToggleModule } from '@infragistics/igniteui-angular';
+import { IgxButtonModule, IgxRippleModule, IgxToggleModule } from '@infragistics/igniteui-angular/directives';
+import { IgxDropDownModule } from '@infragistics/igniteui-angular/drop-down';
+import { IgxIconModule } from '@infragistics/igniteui-angular/icon';
 
 import { LanguagesComponent } from './languages.component';
 

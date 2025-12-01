@@ -1,7 +1,8 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { SuccessErrorComponent } from './success-error.component';
-import { IgxSnackbarModule, IgxIconModule } from '@infragistics/igniteui-angular';
+import { IgxSnackbarModule } from '@infragistics/igniteui-angular/snackbar';
+import { IgxIconModule } from '@infragistics/igniteui-angular/icon';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';

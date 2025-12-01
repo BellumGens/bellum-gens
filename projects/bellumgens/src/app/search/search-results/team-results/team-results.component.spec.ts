@@ -1,7 +1,9 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { TeamResultsComponent } from './team-results.component';
-import { IgxProgressBarModule, IgxCardModule, IgxAvatarModule } from '@infragistics/igniteui-angular';
+import { IgxProgressBarModule } from '@infragistics/igniteui-angular/progressbar';
+import { IgxCardModule } from '@infragistics/igniteui-angular/card';
+import { IgxAvatarModule } from '@infragistics/igniteui-angular/avatar';
 import { RouterTestingModule } from '@angular/router/testing';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { QueryParsedPipe } from 'projects/bellumgens/src/app/pipes/query-parsed.pipe';

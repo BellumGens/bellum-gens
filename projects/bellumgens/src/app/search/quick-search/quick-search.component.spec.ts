@@ -1,7 +1,10 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { QuickSearchComponent } from './quick-search.component';
-import { IgxProgressBarModule, IgxListModule, IgxAvatarModule, IgxIconModule } from '@infragistics/igniteui-angular';
+import { IgxProgressBarModule } from '@infragistics/igniteui-angular/progressbar';
+import { IgxListModule } from '@infragistics/igniteui-angular/list';
+import { IgxAvatarModule } from '@infragistics/igniteui-angular/avatar';
+import { IgxIconModule } from '@infragistics/igniteui-angular/icon';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ReduceQuickSearchResultPipe } from 'projects/bellumgens/src/app/pipes/reduce-quick-search-result.pipe';
 import { provideHttpClientTesting } from '@angular/common/http/testing';

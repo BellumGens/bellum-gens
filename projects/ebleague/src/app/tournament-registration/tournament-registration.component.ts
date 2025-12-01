@@ -11,7 +11,13 @@ import {
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { FormsModule } from '@angular/forms';
-import { IGX_DRAG_DROP_DIRECTIVES, IGX_DROP_DOWN_DIRECTIVES, IGX_INPUT_GROUP_DIRECTIVES, IGX_SELECT_DIRECTIVES, IgxAutocompleteDirective, IgxAvatarComponent, IgxCheckboxComponent, IgxIconComponent } from '@infragistics/igniteui-angular';
+import { IGX_DRAG_DROP_DIRECTIVES } from '@infragistics/igniteui-angular/directives';
+import { IGX_DROP_DOWN_DIRECTIVES, IgxAutocompleteDirective } from '@infragistics/igniteui-angular/drop-down';
+import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
+import { IGX_SELECT_DIRECTIVES } from '@infragistics/igniteui-angular/select';
+import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
+import { IgxCheckboxComponent } from '@infragistics/igniteui-angular/checkbox';
+import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { TeamNewComponent } from '../../../../bellumgens/src/app/team-section/team-new/team-new.component';
 import { StartsWithPipe } from '../../../../common/src/lib/pipes/starts-with.pipe';
 import { AsyncPipe } from '@angular/common';

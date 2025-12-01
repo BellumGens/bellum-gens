@@ -1,14 +1,10 @@
 import { Component, ViewChild, inject } from '@angular/core';
-import {
-  IgxDropDownComponent,
-  IgxButtonDirective,
-  IgxRippleDirective,
-  IgxIconComponent,
-  IgxCircularProgressBarComponent,
-  IgxToggleActionDirective,
-  IgxAvatarComponent,
-  IGX_TABS_DIRECTIVES
-} from '@infragistics/igniteui-angular';
+import { IgxDropDownComponent } from '@infragistics/igniteui-angular/drop-down';
+import { IgxButtonDirective, IgxRippleDirective, IgxToggleActionDirective } from '@infragistics/igniteui-angular/directives';
+import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
+import { IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular/progressbar';
+import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
+import { IGX_TABS_DIRECTIVES } from '@infragistics/igniteui-angular/tabs';
 import { LoginService } from '../../services/login.service';
 import { ApplicationUser } from '../../models/applicationuser';
 import { GLOBAL_OVERLAY_SETTINGS } from '../../models/misc';

@@ -1,13 +1,9 @@
 import { Component, ViewChild, Input, Output, EventEmitter } from '@angular/core';
 import { Availability, BASE_AVAILABILITY } from '../../models/playeravailability';
-import {
-  IgxTimePickerComponent,
-  IgxDialogComponent,
-  IChipClickEventArgs,
-  IBaseChipEventArgs,
-  IGX_CHIPS_DIRECTIVES,
-  IgxLabelDirective
-} from '@infragistics/igniteui-angular';
+import { IgxTimePickerComponent } from '@infragistics/igniteui-angular/time-picker';
+import { IgxDialogComponent } from '@infragistics/igniteui-angular/dialog';
+import { IBaseChipEventArgs, IChipClickEventArgs, IGX_CHIPS_DIRECTIVES } from '@infragistics/igniteui-angular/chips';
+import { IgxLabelDirective } from '@infragistics/igniteui-angular/input-group';
 import { WeekdayPipe } from '../pipes/weekday.pipe';
 import { DatePipe } from '@angular/common';
 

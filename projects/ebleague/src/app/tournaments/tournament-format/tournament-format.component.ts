@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { IgxButtonModule, IgxDividerModule } from '@infragistics/igniteui-angular';
+import { IgxButtonModule, IgxDividerModule } from '@infragistics/igniteui-angular/directives';
 
 @Component({
     selector: 'app-tournament-format',

@@ -4,16 +4,14 @@ import { TournamentSc2Component } from './tournament-sc2.component';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import {
-  IgxAvatarModule,
-  IgxCardModule,
-  IgxBadgeModule,
-  IgxListModule,
-  IgxProgressBarModule,
-  IgxGridModule,
-  IgxCalendarModule,
-  IgxDividerModule
-} from '@infragistics/igniteui-angular';
+import { IgxAvatarModule } from '@infragistics/igniteui-angular/avatar';
+import { IgxCardModule } from '@infragistics/igniteui-angular/card';
+import { IgxBadgeModule } from '@infragistics/igniteui-angular/badge';
+import { IgxListModule } from '@infragistics/igniteui-angular/list';
+import { IgxProgressBarModule } from '@infragistics/igniteui-angular/progressbar';
+import { IgxGridModule } from '@infragistics/igniteui-angular/grids/grid';
+import { IgxCalendarModule } from '@infragistics/igniteui-angular/calendar';
+import { IgxDividerModule } from '@infragistics/igniteui-angular/directives';
 import { RouterTestingModule } from '@angular/router/testing';
 import { SortByPointsPipe } from 'projects/ebleague/src/app/pipes/sort-by-points.pipe';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';

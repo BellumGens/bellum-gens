@@ -1,15 +1,14 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { SearchComponent } from './search.component';
-import { IgxButtonGroupModule,
-  IgxRippleModule,
-  IgxRadioModule,
-  IgxIconModule,
-  IgxAvatarModule,
-  IgxSliderModule,
-  IgxInputGroupModule,
-  IgxButtonModule,
-  IgxSelectModule} from '@infragistics/igniteui-angular';
+import { IgxButtonGroupModule } from '@infragistics/igniteui-angular/button-group';
+import { IgxButtonModule, IgxRippleModule } from '@infragistics/igniteui-angular/directives';
+import { IgxRadioModule } from '@infragistics/igniteui-angular/radio';
+import { IgxIconModule } from '@infragistics/igniteui-angular/icon';
+import { IgxAvatarModule } from '@infragistics/igniteui-angular/avatar';
+import { IgxSliderModule } from '@infragistics/igniteui-angular/slider';
+import { IgxInputGroupModule } from '@infragistics/igniteui-angular/input-group';
+import { IgxSelectModule } from '@infragistics/igniteui-angular/select';
 import { PlayerSearchComponent } from '../player-search/player-search.component';
 import { TeamSearchComponent } from '../team-search/team-search.component';
 import { FormsModule } from '@angular/forms';

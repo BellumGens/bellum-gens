@@ -1,7 +1,9 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { NotificationsComponent } from './notifications.component';
-import { IgxProgressBarModule, IgxListModule, IgxAvatarModule } from '@infragistics/igniteui-angular';
+import { IgxProgressBarModule } from '@infragistics/igniteui-angular/progressbar';
+import { IgxListModule } from '@infragistics/igniteui-angular/list';
+import { IgxAvatarModule } from '@infragistics/igniteui-angular/avatar';
 import { DisabledNotificationsPipe } from '../pipes/disabled-notifications.pipe';
 import { SortNotificationsPipe } from '../pipes/sort-notifications.pipe';
 import { RouterTestingModule } from '@angular/router/testing';

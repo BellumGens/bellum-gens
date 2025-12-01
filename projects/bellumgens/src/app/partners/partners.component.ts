@@ -1,7 +1,7 @@
 import { NgOptimizedImage } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { IGX_TABS_DIRECTIVES } from '@infragistics/igniteui-angular';
+import { IGX_TABS_DIRECTIVES } from '@infragistics/igniteui-angular/tabs';
 import { BaseDirective } from '../base/base.component';
 
 @Component({

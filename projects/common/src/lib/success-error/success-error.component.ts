@@ -1,5 +1,6 @@
 import { Component, ViewChild, OnDestroy, inject } from '@angular/core';
-import { IgxIconComponent, IgxSnackbarComponent } from '@infragistics/igniteui-angular';
+import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
+import { IgxSnackbarComponent } from '@infragistics/igniteui-angular/snackbar';
 import { CommunicationService } from '../../services/communication.service';
 
 @Component({

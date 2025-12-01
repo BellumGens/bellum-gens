@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular';
+import { IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular/progressbar';
 
 @Component({
     selector: 'bg-loading',

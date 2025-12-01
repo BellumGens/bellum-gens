@@ -1,6 +1,10 @@
 import { Component, inject } from '@angular/core';
 import { SearchResult, ApiSearchService } from '../../../../../common/src/public_api';
-import { IgxIconService, IGX_LIST_DIRECTIVES, IgxAvatarComponent, IgxIconComponent, IgxButtonDirective, IgxRippleDirective, IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular';
+import { IgxIconComponent, IgxIconService } from '@infragistics/igniteui-angular/icon';
+import { IGX_LIST_DIRECTIVES } from '@infragistics/igniteui-angular/list';
+import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
+import { IgxButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
+import { IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular/progressbar';
 import { ReduceQuickSearchResultPipe } from '../../pipes/reduce-quick-search-result.pipe';
 import { CountrySVGPipe } from '../../../../../common/src/lib/pipes/country-svg.pipe';
 import { RouterLink } from '@angular/router';

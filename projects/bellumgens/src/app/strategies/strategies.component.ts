@@ -16,20 +16,15 @@ import {
   CSGOActiveDutyMap,
   ACTIVE_DUTY
 } from '../../../../common/src/public_api';
-import {
-  IChipSelectEventArgs,
-  IgxButtonDirective,
-  IgxRippleDirective,
-  IGX_CHIPS_DIRECTIVES,
-  IGX_INPUT_GROUP_DIRECTIVES,
-  IGX_CARD_DIRECTIVES,
-  IgxIconComponent,
-  IgxToggleActionDirective,
-  IGX_SELECT_DIRECTIVES,
-  IgxBadgeComponent,
-  IGX_DROP_DOWN_DIRECTIVES,
-  IgxAvatarComponent
-} from '@infragistics/igniteui-angular';
+import { IChipSelectEventArgs, IGX_CHIPS_DIRECTIVES } from '@infragistics/igniteui-angular/chips';
+import { IgxButtonDirective, IgxRippleDirective, IgxToggleActionDirective } from '@infragistics/igniteui-angular/directives';
+import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
+import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
+import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
+import { IGX_SELECT_DIRECTIVES } from '@infragistics/igniteui-angular/select';
+import { IgxBadgeComponent } from '@infragistics/igniteui-angular/badge';
+import { IGX_DROP_DOWN_DIRECTIVES } from '@infragistics/igniteui-angular/drop-down';
+import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
 import { StratFilterPipe } from '../pipes/strat-filter.pipe';
 import { SideStratsPipe } from '../pipes/sidestrats.pipe';
 import { IsStratOwnerPipe } from '../pipes/is-strat-owner.pipe';

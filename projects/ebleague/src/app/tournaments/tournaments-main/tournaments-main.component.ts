@@ -1,7 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { Tournament, ApiTournamentsService } from '../../../../../common/src/public_api';
 import { RouterLink } from '@angular/router';
-import { IGX_CARD_DIRECTIVES, IgxDividerDirective } from '@infragistics/igniteui-angular';
+import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
+import { IgxDividerDirective } from '@infragistics/igniteui-angular/directives';
 import { DatePipe, NgOptimizedImage } from '@angular/common';
 
 @Component({

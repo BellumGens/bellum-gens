@@ -20,7 +20,13 @@ import { IsVideoPipe } from '../../pipes/is-video.pipe';
 import { SafeVideoLinkPipe } from '../../pipes/safe-video-link.pipe';
 import { ConfirmComponent } from '../../../../../common/src/lib/confirm/confirm.component';
 import { FormsModule } from '@angular/forms';
-import { IGX_CARD_DIRECTIVES, IgxLayoutDirective, IgxFlexDirective, IgxButtonDirective, IgxRippleDirective, IgxIconComponent, IgxDividerDirective, IGX_LIST_DIRECTIVES, IgxAvatarComponent, IgxToggleActionDirective, IGX_DROP_DOWN_DIRECTIVES, IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular';
+import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
+import { IgxButtonDirective, IgxDividerDirective, IgxFlexDirective, IgxLayoutDirective, IgxRippleDirective, IgxToggleActionDirective } from '@infragistics/igniteui-angular/directives';
+import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
+import { IGX_LIST_DIRECTIVES } from '@infragistics/igniteui-angular/list';
+import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
+import { IGX_DROP_DOWN_DIRECTIVES } from '@infragistics/igniteui-angular/drop-down';
+import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
 import { LoadingComponent } from '../../../../../common/src/lib/loading/loading.component';
 
 @Component({

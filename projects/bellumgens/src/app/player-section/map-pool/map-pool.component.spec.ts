@@ -1,7 +1,8 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { MapPoolComponent } from './map-pool.component';
-import { IgxCheckboxModule, IgxCardModule } from '@infragistics/igniteui-angular';
+import { IgxCheckboxModule } from '@infragistics/igniteui-angular/checkbox';
+import { IgxCardModule } from '@infragistics/igniteui-angular/card';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('MapPoolComponent', () => {

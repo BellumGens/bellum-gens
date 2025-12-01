@@ -1,5 +1,7 @@
 import { Component, ViewChildren, QueryList, ElementRef, inject } from '@angular/core';
-import { IDropDroppedEventArgs, IgxAvatarComponent, IGX_CARD_DIRECTIVES, IGX_DRAG_DROP_DIRECTIVES } from '@infragistics/igniteui-angular';
+import { IDropDroppedEventArgs, IGX_DRAG_DROP_DIRECTIVES } from '@infragistics/igniteui-angular/directives';
+import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
+import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
 import {
   PlaystyleRole, RoleSlot,
   TeamMember, TEAM_PLACEHOLDER,

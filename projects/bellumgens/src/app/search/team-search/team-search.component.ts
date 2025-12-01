@@ -2,7 +2,9 @@ import { Component, Input, inject } from '@angular/core';
 import { PlaystyleRole, TeamSearch, TEAM_SEARCH, ApplicationUser } from '../../../../../common/src/public_api';
 import { Router } from '@angular/router';
 
-import { IGX_RADIO_GROUP_DIRECTIVES, IGX_SLIDER_DIRECTIVES, IgxButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular';
+import { IGX_RADIO_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/radio';
+import { IGX_SLIDER_DIRECTIVES } from '@infragistics/igniteui-angular/slider';
+import { IgxButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
 import { FormsModule } from '@angular/forms';
 
 @Component({

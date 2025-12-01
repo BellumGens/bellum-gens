@@ -1,11 +1,8 @@
 import { Component, ViewChild, Input, inject } from '@angular/core';
-import {
-  IgxDialogComponent,
-  IgxButtonDirective,
-  IgxRippleDirective,
-  IGX_INPUT_GROUP_DIRECTIVES,
-  IgxIconComponent
-} from '@infragistics/igniteui-angular';
+import { IgxDialogComponent } from '@infragistics/igniteui-angular/dialog';
+import { IgxButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
+import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
+import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import {
   ApplicationUser,
   TeamApplication, CSGOTeam,

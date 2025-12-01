@@ -1,6 +1,7 @@
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { IgxCardModule, IgxDividerModule } from '@infragistics/igniteui-angular';
+import { IgxCardModule } from '@infragistics/igniteui-angular/card';
+import { IgxDividerModule } from '@infragistics/igniteui-angular/directives';
 
 import { TournamentsMainComponent } from './tournaments-main.component';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';

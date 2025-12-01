@@ -3,7 +3,8 @@ import { LoginProvider } from '../../../models/login-provider';
 import { LoginService } from '../../../services/login.service';
 import { LOGIN_ASSETS } from '../../../models/misc';
 import { Observable } from 'rxjs';
-import { IgxButtonDirective, IgxIconComponent, IgxDividerDirective } from '@infragistics/igniteui-angular';
+import { IgxButtonDirective, IgxDividerDirective } from '@infragistics/igniteui-angular/directives';
+import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { AsyncPipe } from '@angular/common';
 
 @Component({

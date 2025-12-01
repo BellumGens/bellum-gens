@@ -3,12 +3,12 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { NewStrategyComponent } from './new-strategy.component';
 import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
-import { IgxDialogModule,
-  IgxInputGroupModule,
-  IgxIconModule,
-  IgxRadioModule,
-  IgxSwitchModule,
-  IgxSelectModule} from '@infragistics/igniteui-angular';
+import { IgxDialogModule } from '@infragistics/igniteui-angular/dialog';
+import { IgxInputGroupModule } from '@infragistics/igniteui-angular/input-group';
+import { IgxIconModule } from '@infragistics/igniteui-angular/icon';
+import { IgxRadioModule } from '@infragistics/igniteui-angular/radio';
+import { IgxSwitchModule } from '@infragistics/igniteui-angular/switch';
+import { IgxSelectModule } from '@infragistics/igniteui-angular/select';
 import { SafeVideoLinkPipe } from 'projects/bellumgens/src/app/pipes/safe-video-link.pipe';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';

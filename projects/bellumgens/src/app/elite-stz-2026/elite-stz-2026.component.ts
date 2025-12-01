@@ -3,13 +3,9 @@ import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { PLATFORM_ID, OnInit } from '@angular/core';
 import { ApplicationUser, BellumgensApiService, CommunicationService, LoginService } from '../../../../common/src/public_api';
-import {
-  IgxButtonDirective,
-  IgxCheckboxComponent,
-  IgxInputDirective,
-  IgxInputGroupComponent,
-  IgxLabelDirective
-} from '@infragistics/igniteui-angular';
+import { IgxButtonDirective } from '@infragistics/igniteui-angular/directives';
+import { IgxCheckboxComponent } from '@infragistics/igniteui-angular/checkbox';
+import { IgxInputDirective, IgxInputGroupComponent, IgxLabelDirective } from '@infragistics/igniteui-angular/input-group';
 import { EarlyBird } from '../../../../common/src/models/subscribers';
 
 @Component({

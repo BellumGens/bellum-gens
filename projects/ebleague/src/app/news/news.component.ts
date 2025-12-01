@@ -1,7 +1,7 @@
 import { Component, HostListener, PLATFORM_ID, inject } from '@angular/core';
 import { isPlatformBrowser, NgOptimizedImage } from '@angular/common';
 import { BaseDirective } from '../../../../bellumgens/src/app/base/base.component';
-import { IgxCardModule } from '@infragistics/igniteui-angular';
+import { IgxCardModule } from '@infragistics/igniteui-angular/card';
 
 @Component({
     selector: 'app-news',

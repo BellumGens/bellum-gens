@@ -6,7 +6,19 @@ import {
   Order, Promo,
   ApiShopService
 } from '../../../../../common/src/public_api';
-import { IGridEditEventArgs, IGroupingExpression, SortingDirection, DefaultSortingStrategy, RowType, IGX_GRID_DIRECTIVES, IgxIconComponent, IgxBadgeComponent, IGX_ACTION_STRIP_DIRECTIVES, IgxButtonDirective, IgxIconButtonDirective, IgxRippleDirective, IGX_PAGINATOR_DIRECTIVES, IGX_INPUT_GROUP_DIRECTIVES, IGX_DATE_PICKER_DIRECTIVES, IgxCheckboxComponent, IGX_CHIPS_DIRECTIVES, IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular';
+import { IGridEditEventArgs, RowType } from '@infragistics/igniteui-angular/grids/core';
+import { DefaultSortingStrategy, IGroupingExpression, SortingDirection } from '@infragistics/igniteui-angular/core';
+import { IGX_GRID_DIRECTIVES } from '@infragistics/igniteui-angular/grids/grid';
+import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
+import { IgxBadgeComponent } from '@infragistics/igniteui-angular/badge';
+import { IGX_ACTION_STRIP_DIRECTIVES } from '@infragistics/igniteui-angular/action-strip';
+import { IgxButtonDirective, IgxIconButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
+import { IGX_PAGINATOR_DIRECTIVES } from '@infragistics/igniteui-angular/paginator';
+import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
+import { IGX_DATE_PICKER_DIRECTIVES } from '@infragistics/igniteui-angular/date-picker';
+import { IgxCheckboxComponent } from '@infragistics/igniteui-angular/checkbox';
+import { IGX_CHIPS_DIRECTIVES } from '@infragistics/igniteui-angular/chips';
+import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
 import { FormsModule } from '@angular/forms';
 import { SizeNamePipe } from '../../pipes/size-name.pipe';
 import { Observable } from 'rxjs';

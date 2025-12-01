@@ -16,7 +16,14 @@ import {
 import { AsyncPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterLink, ActivatedRoute } from '@angular/router';
-import { IgxAvatarComponent, IgxButtonDirective, IgxRippleDirective, IgxToggleActionDirective, IgxIconComponent, IGX_DROP_DOWN_DIRECTIVES, IGX_SELECT_DIRECTIVES, IGX_CARD_DIRECTIVES, IgxCircularProgressBarComponent, IGX_LIST_DIRECTIVES, IgxIconService, ISelectionEventArgs } from '@infragistics/igniteui-angular';
+import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
+import { IgxButtonDirective, IgxRippleDirective, IgxToggleActionDirective } from '@infragistics/igniteui-angular/directives';
+import { IgxIconComponent, IgxIconService } from '@infragistics/igniteui-angular/icon';
+import { IGX_DROP_DOWN_DIRECTIVES, ISelectionEventArgs } from '@infragistics/igniteui-angular/drop-down';
+import { IGX_SELECT_DIRECTIVES } from '@infragistics/igniteui-angular/select';
+import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
+import { IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular/progressbar';
+import { IGX_LIST_DIRECTIVES } from '@infragistics/igniteui-angular/list';
 import { Observable } from 'rxjs';
 import { SortWeaponsPipe } from '../../pipes/sort-weapons.pipe';
 import { SteamCustomUrlPipe } from '../../pipes/steam-custom-url.pipe';
