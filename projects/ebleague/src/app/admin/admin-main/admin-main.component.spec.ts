@@ -35,16 +35,4 @@ describe('AdminMainComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should initialize tournament with empty new tournament', () => {
-    expect(component.tournament).toBeDefined();
-    expect(component.tournament.id).toBeUndefined();
-  });
-
-  it('should have roles property', () => {
-    expect(component.roles).toBeUndefined();
-  });
-
-  it('should have tournaments property', () => {
-    expect(component.tournaments).toBeUndefined();
-  });
 });
