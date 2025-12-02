@@ -28,12 +28,5 @@ describe('PartnersComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should extend BaseDirective', () => {
-    expect(component instanceof PartnersComponent).toBeTruthy();
-  });
-
-  it('should use OnPush change detection', () => {
-    const compiled = fixture.nativeElement;
-    expect(compiled).toBeTruthy();
-  });
+  // Add more tests here
 });

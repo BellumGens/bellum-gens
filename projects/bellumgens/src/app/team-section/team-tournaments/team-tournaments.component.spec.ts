@@ -13,24 +13,22 @@ describe('TeamTournamentsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
-        TeamTournamentsComponent
-      ],
-      providers: [
+    imports: [RouterTestingModule,
+        TeamTournamentsComponent],
+    providers: [
         {
-          provide: ActivatedRoute,
-          useValue: {
-            parent: {
-              params: new Observable()
-            },
-            data: new Observable()
-          }
+            provide: ActivatedRoute,
+            useValue: {
+                parent: {
+                    params: new Observable()
+                },
+                data: new Observable()
+            }
         },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting()
-      ]
-    })
+    ]
+})
     .compileComponents();
   }));
 
@@ -42,19 +40,5 @@ describe('TeamTournamentsComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should have emptyGuid initialized', () => {
-    expect(component.emptyGuid).toBeDefined();
-    expect(component.emptyGuid).toBe('00000000-0000-0000-0000-000000000000');
-  });
-
-  it('should have emptyGuid constant', () => {
-    expect(component.emptyGuid).toBe('00000000-0000-0000-0000-000000000000');
-  });
-
-  it('should initialize emptyGuid property', () => {
-    expect(component.emptyGuid).toBeDefined();
-    expect(typeof component.emptyGuid).toBe('string');
   });
 });

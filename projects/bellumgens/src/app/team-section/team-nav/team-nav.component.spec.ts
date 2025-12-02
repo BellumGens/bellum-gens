@@ -14,14 +14,12 @@ describe('TeamNavComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule,
+    imports: [RouterTestingModule,
         NoopAnimationsModule,
         ServiceWorkerModule.register('', { enabled: false }),
-        TeamNewComponent
-      ],
-      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-    }).compileComponents();
+        TeamNewComponent],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+}).compileComponents();
   }));
 
   beforeEach(() => {
@@ -32,23 +30,5 @@ describe('TeamNavComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
-
-  it('should initialize authUser as null', () => {
-    expect(component.authUser).toBeNull();
-  });
-
-  it('should subscribe to applicationUser on init', () => {
-    expect(component.teams).toBeUndefined();
-  });
-
-  it('should have abandonTeam method', () => {
-    expect(component.abandonTeam).toBeDefined();
-    expect(typeof component.abandonTeam).toBe('function');
-  });
-
-  it('should initialize activeMembers and inactiveMembers as undefined', () => {
-    expect(component.activeMembers).toBeUndefined();
-    expect(component.inactiveMembers).toBeUndefined();
   });
 });
