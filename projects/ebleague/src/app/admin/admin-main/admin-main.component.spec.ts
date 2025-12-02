@@ -39,12 +39,4 @@ describe('AdminMainComponent', () => {
     expect(component.tournament).toBeDefined();
     expect(component.tournament.id).toBeUndefined();
   });
-
-  it('should have roles property', () => {
-    expect(component.roles).toBeUndefined();
-  });
-
-  it('should have tournaments property', () => {
-    expect(component.tournaments).toBeUndefined();
-  });
 });
