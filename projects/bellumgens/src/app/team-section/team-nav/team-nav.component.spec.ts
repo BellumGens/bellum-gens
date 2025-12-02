@@ -38,7 +38,7 @@ describe('TeamNavComponent', () => {
     expect(component.authUser).toBeNull();
   });
 
-  it('should subscribe to applicationUser on init', () => {
+  it('should initialize teams as undefined when no user is authenticated', () => {
     expect(component.teams).toBeUndefined();
   });
 
