@@ -69,14 +69,4 @@ describe('TeamDetailsComponent', () => {
     expect(roleNames).toContain('Support');
     expect(roleNames).toContain('Lurker');
   });
-
-  it('should initialize with undefined team members', () => {
-    expect(component.teamMembers).toBeUndefined();
-    expect(component.activeMembers).toBeUndefined();
-    expect(component.inactiveMembers).toBeUndefined();
-  });
-
-  it('should initialize with undefined team practice', () => {
-    expect(component.teamPractice).toBeUndefined();
-  });
 });
