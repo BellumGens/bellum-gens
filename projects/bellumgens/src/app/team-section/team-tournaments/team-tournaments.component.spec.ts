@@ -41,4 +41,10 @@ describe('TeamTournamentsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should have emptyGuid property defined as expected string value', () => {
+    expect(component.emptyGuid).toBeDefined();
+    expect(typeof component.emptyGuid).toBe('string');
+    expect(component.emptyGuid).toBe('00000000-0000-0000-0000-000000000000');
+  });
 });

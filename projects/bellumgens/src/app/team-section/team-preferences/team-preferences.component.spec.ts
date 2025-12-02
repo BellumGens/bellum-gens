@@ -46,4 +46,13 @@ describe('TeamPreferencesComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should initialize authUser', () => {
+    expect(component.authUser).toBeDefined();
+  });
+
+  it('should initialize team property with TEAM_PLACEHOLDER', () => {
+    expect(component.team).toBeDefined();
+    expect(component.team).toEqual(TEAM_PLACEHOLDER);
+  });
 });
