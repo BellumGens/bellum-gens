@@ -1,16 +1,8 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { PlayerSearchComponent } from './player-search.component';
-import { FormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { IgxRadioModule } from '@infragistics/igniteui-angular/radio';
-import { IgxSliderModule } from '@infragistics/igniteui-angular/slider';
-import { IgxButtonModule, IgxRippleModule } from '@infragistics/igniteui-angular/directives';
-import { IgxAvatarModule } from '@infragistics/igniteui-angular/avatar';
-import { IgxIconModule } from '@infragistics/igniteui-angular/icon';
-import { IgxInputGroupModule } from '@infragistics/igniteui-angular/input-group';
-import { IgxSelectModule } from '@infragistics/igniteui-angular/select';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
@@ -21,21 +13,14 @@ describe('PlayerSearchComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [FormsModule,
+      imports: [
         RouterTestingModule,
         NoopAnimationsModule,
         ServiceWorkerModule.register('', { enabled: false }),
-        IgxRadioModule,
-        IgxSliderModule,
-        IgxRippleModule,
-        IgxAvatarModule,
-        IgxIconModule,
-        IgxSelectModule,
-        IgxInputGroupModule,
-        IgxButtonModule,
-        PlayerSearchComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-})
+        PlayerSearchComponent
+      ],
+      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+    })
     .compileComponents();
   }));
 
@@ -47,5 +32,31 @@ describe('PlayerSearchComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should initialize searchModel', () => {
+    expect(component.searchModel).toBeDefined();
+  });
+
+  it('should initialize userOverlap to 0', () => {
+    expect(component.userOverlap).toBe(0);
+  });
+
+  it('should initialize teamName', () => {
+    expect(component.teamName).toBe('Select Team');
+  });
+
+  it('should have activeLineup with 5 roles', () => {
+    expect(component.activeLineup).toBeDefined();
+    expect(component.activeLineup.length).toBe(5);
+  });
+
+  it('should have searchPlayers method', () => {
+    expect(component.searchPlayers).toBeDefined();
+    expect(typeof component.searchPlayers).toBe('function');
+  });
+
+  it('should have teamAdmin property', () => {
+    expect(component.teamAdmin).toBeDefined();
   });
 });

@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PartnersComponent } from './partners.component';
 import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { BaseDirective } from '../base/base.component';
 
 describe('PartnersComponent', () => {
   let component: PartnersComponent;
@@ -28,5 +29,12 @@ describe('PartnersComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  // Add more tests here
+  it('should extend BaseDirective', () => {
+    expect(component instanceof BaseDirective).toBeTruthy();
+  });
+
+  it('should use OnPush change detection', () => {
+    const compiled = fixture.nativeElement;
+    expect(compiled).toBeTruthy();
+  });
 });

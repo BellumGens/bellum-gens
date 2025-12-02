@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ConfirmComponent } from './confirm.component';
-import { IGX_DIALOG_DIRECTIVES } from '@infragistics/igniteui-angular';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('ConfirmComponent', () => {
@@ -10,12 +9,11 @@ describe('ConfirmComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [
+      imports: [
         NoopAnimationsModule,
-        IGX_DIALOG_DIRECTIVES,
         ConfirmComponent
-    ]
-})
+      ]
+    })
     .compileComponents();
   }));
 

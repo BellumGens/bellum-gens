@@ -16,24 +16,26 @@ describe('TeamPreferencesComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [RouterTestingModule,
+      imports: [
+        RouterTestingModule,
         NoopAnimationsModule,
         ServiceWorkerModule.register('', { enabled: false }),
-        TeamPreferencesComponent],
-    providers: [
+        TeamPreferencesComponent
+      ],
+      providers: [
         {
-            provide: ActivatedRoute,
-            useValue: {
-                parent: {
-                    params: new Observable()
-                },
-                data: new Observable()
-            }
+          provide: ActivatedRoute,
+          useValue: {
+            parent: {
+              params: new Observable()
+            },
+            data: new Observable()
+        }
         },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting()
-    ]
-}).compileComponents();
+      ]
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -45,5 +47,14 @@ describe('TeamPreferencesComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should initialize authUser', () => {
+    expect(component.authUser).toBeDefined();
+  });
+
+  it('should initialize team property with TEAM_PLACEHOLDER', () => {
+    expect(component.team).toBeDefined();
+    expect(component.team).toEqual(TEAM_PLACEHOLDER);
   });
 });

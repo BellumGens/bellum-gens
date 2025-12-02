@@ -1,6 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { IgxButtonDirective, IgxRippleDirective, IgxToggleActionDirective, IgxToggleDirective, IGX_DROP_DOWN_DIRECTIVES, IgxIconComponent } from '@infragistics/igniteui-angular';
 
 import { LanguagesComponent } from './languages.component';
 
@@ -10,17 +9,11 @@ describe('LanguagesComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-    imports: [
+      imports: [
         NoopAnimationsModule,
-        IgxButtonDirective,
-        IgxIconComponent,
-        IgxRippleDirective,
-        IgxToggleActionDirective,
-        IgxToggleDirective,
-        IGX_DROP_DOWN_DIRECTIVES,
         LanguagesComponent
-    ]
-})
+      ]
+    })
     .compileComponents();
   });
 

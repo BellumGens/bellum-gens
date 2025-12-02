@@ -51,6 +51,23 @@ describe('StrategyDetailsComponent', () => {
     expect(authService.openLogin.emit).toHaveBeenCalled();
   });
 
+  it('should have newComment initialized', () => {
+    expect(component.newComment).toBeDefined();
+  });
+
+  it('should initialize pipeTrigger to 0', () => {
+    expect(component.pipeTrigger).toBe(0);
+  });
+
+  it('should have horizontal property', () => {
+    expect(component.horizontal).toBeDefined();
+    expect(typeof component.horizontal).toBe('boolean');
+  });
+
+  it('should have overlaySettings property', () => {
+    expect(component.overlaySettings).toBeDefined();
+  });
+
   it('should call voteStrat method with correct parameters', () => {
     spyOn(component, 'voteStrat');
     const strat: CSGOStrategy = {
