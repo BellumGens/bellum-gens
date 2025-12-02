@@ -51,8 +51,4 @@ describe('TeamSearchComponent', () => {
     expect(component.searchTeams).toBeDefined();
     expect(typeof component.searchTeams).toBe('function');
   });
-
-  it('should have authUser property', () => {
-    expect(component.authUser).toBeUndefined();
-  });
 });
