@@ -207,6 +207,152 @@
           <context context-type="linenumber">209</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="5378038310980574543" datatype="html">
+        <source>Bellum Gens Elite Stara Zagora 2026</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
+          <context context-type="linenumber">2,4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5851482940642690185" datatype="html">
+        <source>Pre-register to receive an exclusive discount on tickets.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
+          <context context-type="linenumber">4,5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6198117891778390169" datatype="html">
+        <source>Discount codes will be emailed when tickets go on sale at the beginning of 2026. Watch your inbox.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
+          <context context-type="linenumber">5,6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5938439396099969421" datatype="html">
+        <source>Signup deadline: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ signupDeadline | date:&apos;long&apos; }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
+          <context context-type="linenumber">6,8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5757081461658593866" datatype="html">
+        <source>Signed up users so far: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ count() }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
+          <context context-type="linenumber">8,9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="77731815607044593" datatype="html">
+        <source> Current discount: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ discount }}"/>%<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
+          <context context-type="linenumber">10,12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4659215906099996363" datatype="html">
+        <source>1 – 100 sign-ups: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>10%<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
+          <context context-type="linenumber">13,14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3730623598118805965" datatype="html">
+        <source>101 – 250 sign-ups: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>15%<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
+          <context context-type="linenumber">14,15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2603906111231562451" datatype="html">
+        <source>251 – 500 sign-ups: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>25%<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
+          <context context-type="linenumber">15,16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5829669422950647861" datatype="html">
+        <source>501+ sign-ups: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>33%<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
+          <context context-type="linenumber">16,18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9059816325054234375" datatype="html">
+        <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Signup deadline has passed.<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> Pre-registration is now closed. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
+          <context context-type="linenumber">21,23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8608295418791099525" datatype="html">
+        <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>You need to be logged in<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> to submit the form. Please log in from the profile menu. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
+          <context context-type="linenumber">25,28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4768749765465246664" datatype="html">
+        <source>Email</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
+          <context context-type="linenumber">31,32</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.html</context>
+          <context context-type="linenumber">16,17</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
+          <context context-type="linenumber">219,220</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/registration/registration.component.html</context>
+          <context context-type="linenumber">16,17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8634112532047479804" datatype="html">
+        <source> Please enter a valid email. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
+          <context context-type="linenumber">36,37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4495585342086850500" datatype="html">
+        <source>This is my first Bellum Gens Elite event</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
+          <context context-type="linenumber">41,42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8299208407524303969" datatype="html">
+        <source>I agree that the provided email address <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;/privacy&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>will receive information about BGE Stara Zagora 2026<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
+          <context context-type="linenumber">45,46</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6452097450342668535" datatype="html">
+        <source> Please agree to the privacy terms to proceed. </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
+          <context context-type="linenumber">49,50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="935187492052582731" datatype="html">
+        <source>Submit</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
+          <context context-type="linenumber">53,54</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/strategies/new-strategy/new-strategy.component.html</context>
+          <context context-type="linenumber">69,70</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/availability/availability.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="3511633367981687214" datatype="html">
         <source>Sign-up to participate</source>
         <context-group purpose="location">
@@ -840,21 +986,6 @@
           <context context-type="linenumber">10,12</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4768749765465246664" datatype="html">
-        <source>Email</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.html</context>
-          <context context-type="linenumber">16,17</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">219,220</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/common/src/lib/registration/registration.component.html</context>
-          <context context-type="linenumber">16,17</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="5342432350421167093" datatype="html">
         <source>First name</source>
         <context-group purpose="location">
@@ -964,33 +1095,22 @@
         <source>Please login first</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">60</context>
+          <context context-type="linenumber">61</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8282620512337325099" datatype="html">
         <source>Albania</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">63</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">76</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="3028691365115610369" datatype="html">
-        <source>Bosnia and Herzegovina</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
           <context context-type="linenumber">64</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">81</context>
+          <context context-type="linenumber">77</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8273479446468988017" datatype="html">
-        <source>Bulgaria</source>
+      <trans-unit id="3028691365115610369" datatype="html">
+        <source>Bosnia and Herzegovina</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
           <context context-type="linenumber">65</context>
@@ -1000,8 +1120,8 @@
           <context context-type="linenumber">82</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6839230987909572003" datatype="html">
-        <source>Croatia</source>
+      <trans-unit id="8273479446468988017" datatype="html">
+        <source>Bulgaria</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
           <context context-type="linenumber">66</context>
@@ -1011,988 +1131,999 @@
           <context context-type="linenumber">83</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7017590323423025630" datatype="html">
-        <source>Greece</source>
+      <trans-unit id="6839230987909572003" datatype="html">
+        <source>Croatia</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
           <context context-type="linenumber">67</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">92</context>
+          <context context-type="linenumber">84</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6185974288757792753" datatype="html">
-        <source>Kosovo</source>
+      <trans-unit id="7017590323423025630" datatype="html">
+        <source>Greece</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
           <context context-type="linenumber">68</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">97</context>
+          <context context-type="linenumber">93</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8310342568647317562" datatype="html">
-        <source>Montenegro</source>
+      <trans-unit id="6185974288757792753" datatype="html">
+        <source>Kosovo</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
           <context context-type="linenumber">69</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">105</context>
+          <context context-type="linenumber">98</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3422261352287393759" datatype="html">
-        <source>North Macedonia</source>
+      <trans-unit id="8310342568647317562" datatype="html">
+        <source>Montenegro</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
           <context context-type="linenumber">70</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">107</context>
+          <context context-type="linenumber">106</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="545992063382313902" datatype="html">
-        <source>Romania</source>
+      <trans-unit id="3422261352287393759" datatype="html">
+        <source>North Macedonia</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
           <context context-type="linenumber">71</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">111</context>
+          <context context-type="linenumber">108</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7676611321967250180" datatype="html">
-        <source>Serbia</source>
+      <trans-unit id="545992063382313902" datatype="html">
+        <source>Romania</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
           <context context-type="linenumber">72</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">114</context>
+          <context context-type="linenumber">112</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2012353003398074522" datatype="html">
-        <source>Slovenia</source>
+      <trans-unit id="7676611321967250180" datatype="html">
+        <source>Serbia</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
           <context context-type="linenumber">73</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">116</context>
+          <context context-type="linenumber">115</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2012353003398074522" datatype="html">
+        <source>Slovenia</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
+          <context context-type="linenumber">74</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
+          <context context-type="linenumber">117</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1907015897505457162" datatype="html">
         <source>Andorra</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">77</context>
+          <context context-type="linenumber">78</context>
         </context-group>
       </trans-unit>
       <trans-unit id="21641575311466062" datatype="html">
         <source>Austria</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">78</context>
+          <context context-type="linenumber">79</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8624069568371048571" datatype="html">
         <source>Belarus</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">79</context>
+          <context context-type="linenumber">80</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6787546539374733271" datatype="html">
         <source>Belgium</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">80</context>
+          <context context-type="linenumber">81</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7127846603485222320" datatype="html">
         <source>Cyprus</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">84</context>
+          <context context-type="linenumber">85</context>
         </context-group>
       </trans-unit>
       <trans-unit id="724957661944599897" datatype="html">
         <source>Czech Republic</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">85</context>
+          <context context-type="linenumber">86</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7969063643194139319" datatype="html">
         <source>Denmark</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">86</context>
+          <context context-type="linenumber">87</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2245078127040642216" datatype="html">
         <source>Estonia</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">87</context>
+          <context context-type="linenumber">88</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8812557643580169825" datatype="html">
         <source>Finland</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">88</context>
+          <context context-type="linenumber">89</context>
         </context-group>
       </trans-unit>
       <trans-unit id="956678847762152494" datatype="html">
         <source>France</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">89</context>
+          <context context-type="linenumber">90</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7133553227204944356" datatype="html">
         <source>Georgia</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">90</context>
+          <context context-type="linenumber">91</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">134</context>
+          <context context-type="linenumber">135</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6014862663057951430" datatype="html">
         <source>Germany</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">91</context>
+          <context context-type="linenumber">92</context>
         </context-group>
       </trans-unit>
       <trans-unit id="67794167649611006" datatype="html">
         <source>Hungary</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">93</context>
+          <context context-type="linenumber">94</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4451202090740543367" datatype="html">
         <source>Iceland</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">94</context>
+          <context context-type="linenumber">95</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5378112888361106499" datatype="html">
         <source>Ireland</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">95</context>
+          <context context-type="linenumber">96</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2427223107800831324" datatype="html">
         <source>Italy</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">96</context>
+          <context context-type="linenumber">97</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2875990908335702580" datatype="html">
         <source>Latvia</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">98</context>
+          <context context-type="linenumber">99</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3917311667237336403" datatype="html">
         <source>Liechtenstein</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">99</context>
+          <context context-type="linenumber">100</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6546239914534670998" datatype="html">
         <source>Lithuania</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">100</context>
+          <context context-type="linenumber">101</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5913366966339102148" datatype="html">
         <source>Luxembourg</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">101</context>
+          <context context-type="linenumber">102</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7731013350359057223" datatype="html">
         <source>Malta</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">102</context>
+          <context context-type="linenumber">103</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8249619021597991822" datatype="html">
         <source>Moldova</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">103</context>
+          <context context-type="linenumber">104</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1736943888981108041" datatype="html">
         <source>Monaco</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">104</context>
+          <context context-type="linenumber">105</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3783587393795767345" datatype="html">
         <source>Netherlands</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">106</context>
+          <context context-type="linenumber">107</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6321687538487059592" datatype="html">
         <source>Norway</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">108</context>
+          <context context-type="linenumber">109</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2356316679035829946" datatype="html">
         <source>Poland</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">109</context>
+          <context context-type="linenumber">110</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1825932113518847029" datatype="html">
         <source>Portugal</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">110</context>
+          <context context-type="linenumber">111</context>
         </context-group>
       </trans-unit>
       <trans-unit id="185815212249169742" datatype="html">
         <source>Russia</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">112</context>
+          <context context-type="linenumber">113</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4251280664350448901" datatype="html">
         <source>San Marino</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">113</context>
+          <context context-type="linenumber">114</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1331379005917484978" datatype="html">
         <source>Slovakia</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">115</context>
+          <context context-type="linenumber">116</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3847673789207378086" datatype="html">
         <source>Spain</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">117</context>
+          <context context-type="linenumber">118</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7108948537958128740" datatype="html">
         <source>Sweden</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">118</context>
+          <context context-type="linenumber">119</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6173123073967909836" datatype="html">
         <source>Switzerland</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">119</context>
+          <context context-type="linenumber">120</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4346283537747431562" datatype="html">
         <source>Ukraine</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">120</context>
+          <context context-type="linenumber">121</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7303091661854783304" datatype="html">
         <source>United Kingdom</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">121</context>
+          <context context-type="linenumber">122</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7908523999517252381" datatype="html">
         <source>Vatican City</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">122</context>
+          <context context-type="linenumber">123</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1209826884150356967" datatype="html">
         <source>Afghanistan</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">125</context>
+          <context context-type="linenumber">126</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5004849258025239958" datatype="html">
         <source>Armenia</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">126</context>
+          <context context-type="linenumber">127</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2036677760731944610" datatype="html">
         <source>Azerbaijan</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">127</context>
+          <context context-type="linenumber">128</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4493078792980020324" datatype="html">
         <source>Bahrain</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">128</context>
+          <context context-type="linenumber">129</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7586179551119829690" datatype="html">
         <source>Bangladesh</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">129</context>
+          <context context-type="linenumber">130</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3404169924630177375" datatype="html">
         <source>Bhutan</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">130</context>
+          <context context-type="linenumber">131</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6884420559133272313" datatype="html">
         <source>Brunei</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">131</context>
+          <context context-type="linenumber">132</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7848663861484285422" datatype="html">
         <source>Cambodia</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">132</context>
+          <context context-type="linenumber">133</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5134090110001463731" datatype="html">
         <source>China</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">133</context>
+          <context context-type="linenumber">134</context>
         </context-group>
       </trans-unit>
       <trans-unit id="212820117866187249" datatype="html">
         <source>India</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">135</context>
+          <context context-type="linenumber">136</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5303806780432428245" datatype="html">
         <source>Indonesia</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">136</context>
+          <context context-type="linenumber">137</context>
         </context-group>
       </trans-unit>
       <trans-unit id="362851695433968241" datatype="html">
         <source>Iran</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">137</context>
+          <context context-type="linenumber">138</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1031090001427437760" datatype="html">
         <source>Iraq</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">138</context>
+          <context context-type="linenumber">139</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7015687759738910427" datatype="html">
         <source>Israel</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">139</context>
+          <context context-type="linenumber">140</context>
         </context-group>
       </trans-unit>
       <trans-unit id="80663871075536039" datatype="html">
         <source>Japan</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">140</context>
+          <context context-type="linenumber">141</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1308416951779533325" datatype="html">
         <source>Jordan</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">141</context>
+          <context context-type="linenumber">142</context>
         </context-group>
       </trans-unit>
       <trans-unit id="621094494471295638" datatype="html">
         <source>Kazakhstan</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">142</context>
+          <context context-type="linenumber">143</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6639775332361598247" datatype="html">
         <source>Kuwait</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">143</context>
+          <context context-type="linenumber">144</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6229118554878370786" datatype="html">
         <source>Kyrgyzstan</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">144</context>
+          <context context-type="linenumber">145</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4473457771422323359" datatype="html">
         <source>Laos</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">145</context>
+          <context context-type="linenumber">146</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7791127373754886139" datatype="html">
         <source>Lebanon</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">146</context>
+          <context context-type="linenumber">147</context>
         </context-group>
       </trans-unit>
       <trans-unit id="284282390173344035" datatype="html">
         <source>Malaysia</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">147</context>
+          <context context-type="linenumber">148</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5099084320487592164" datatype="html">
         <source>Maldives</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">148</context>
+          <context context-type="linenumber">149</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1368100063883641774" datatype="html">
         <source>Mongolia</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">149</context>
+          <context context-type="linenumber">150</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5816956679305721210" datatype="html">
         <source>Myanmar</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">150</context>
+          <context context-type="linenumber">151</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5857558127981009083" datatype="html">
         <source>Nepal</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">151</context>
+          <context context-type="linenumber">152</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4719742396933932796" datatype="html">
         <source>Oman</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">152</context>
+          <context context-type="linenumber">153</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9146974172614086551" datatype="html">
         <source>Pakistan</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">153</context>
+          <context context-type="linenumber">154</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8104197835427883104" datatype="html">
         <source>Palestine</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">154</context>
+          <context context-type="linenumber">155</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8818655556476681482" datatype="html">
         <source>Philippines</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">155</context>
+          <context context-type="linenumber">156</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8884008684136621484" datatype="html">
         <source>Qatar</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">156</context>
+          <context context-type="linenumber">157</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7893693635471733470" datatype="html">
         <source>Saudi Arabia</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">157</context>
+          <context context-type="linenumber">158</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4830118002486243553" datatype="html">
         <source>Singapore</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">158</context>
+          <context context-type="linenumber">159</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8249064893455428481" datatype="html">
         <source>South Korea</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">159</context>
+          <context context-type="linenumber">160</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7766766928661785123" datatype="html">
         <source>Sri Lanka</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">160</context>
+          <context context-type="linenumber">161</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3855305254439093484" datatype="html">
         <source>Syria</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">161</context>
+          <context context-type="linenumber">162</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5517910262648168251" datatype="html">
         <source>Tajikistan</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">162</context>
+          <context context-type="linenumber">163</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1812990033467917873" datatype="html">
         <source>Taiwan</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">163</context>
+          <context context-type="linenumber">164</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2040543873210054611" datatype="html">
         <source>Thailand</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">164</context>
+          <context context-type="linenumber">165</context>
         </context-group>
       </trans-unit>
       <trans-unit id="536132288864070221" datatype="html">
         <source>Turkey</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">165</context>
+          <context context-type="linenumber">166</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9141606215802528913" datatype="html">
         <source>Turkmenistan</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">166</context>
+          <context context-type="linenumber">167</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4392438521753358690" datatype="html">
         <source>United Arab Emirates</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">167</context>
+          <context context-type="linenumber">168</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4082876576192670199" datatype="html">
         <source>Uzbekistan</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">168</context>
+          <context context-type="linenumber">169</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1715874233028631360" datatype="html">
         <source>Vietnam</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">169</context>
+          <context context-type="linenumber">170</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5144971260883559528" datatype="html">
         <source>Yemen</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">170</context>
+          <context context-type="linenumber">171</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2234013645418722908" datatype="html">
         <source>Antigua and Barbuda</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">173</context>
+          <context context-type="linenumber">174</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2575998129003872734" datatype="html">
         <source>Argentina</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">174</context>
+          <context context-type="linenumber">175</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5530828807984079663" datatype="html">
         <source>Bahamas</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">175</context>
+          <context context-type="linenumber">176</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1075324242640516651" datatype="html">
         <source>Barbados</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">176</context>
+          <context context-type="linenumber">177</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6597121833699637826" datatype="html">
         <source>Belize</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">177</context>
+          <context context-type="linenumber">178</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6842720336797727339" datatype="html">
         <source>Bolivia</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">178</context>
+          <context context-type="linenumber">179</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5414293408829797992" datatype="html">
         <source>Brazil</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">179</context>
+          <context context-type="linenumber">180</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3486679398271885916" datatype="html">
         <source>Canada</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">180</context>
+          <context context-type="linenumber">181</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6268459440891516871" datatype="html">
         <source>Chile</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">181</context>
+          <context context-type="linenumber">182</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1188282719459309656" datatype="html">
         <source>Colombia</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">182</context>
+          <context context-type="linenumber">183</context>
         </context-group>
       </trans-unit>
       <trans-unit id="852177379378387675" datatype="html">
         <source>Costa Rica</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">183</context>
+          <context context-type="linenumber">184</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2504672715999212143" datatype="html">
         <source>Cuba</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">184</context>
+          <context context-type="linenumber">185</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9115400918128734980" datatype="html">
         <source>Dominica</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">185</context>
+          <context context-type="linenumber">186</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4719460798898909432" datatype="html">
         <source>Dominican Republic</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">186</context>
+          <context context-type="linenumber">187</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3753386582290088847" datatype="html">
         <source>Ecuador</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">187</context>
+          <context context-type="linenumber">188</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4251019598823492681" datatype="html">
         <source>Grenada</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">188</context>
+          <context context-type="linenumber">189</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2246799843509663005" datatype="html">
         <source>Guatemala</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">189</context>
+          <context context-type="linenumber">190</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3975233823881069207" datatype="html">
         <source>Guyana</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">190</context>
+          <context context-type="linenumber">191</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2845697602867633165" datatype="html">
         <source>Haiti</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">191</context>
+          <context context-type="linenumber">192</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5032618727171063903" datatype="html">
         <source>Honduras</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">192</context>
+          <context context-type="linenumber">193</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3315113630985882291" datatype="html">
         <source>Jamaica</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">193</context>
+          <context context-type="linenumber">194</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8147072510678737075" datatype="html">
         <source>Mexico</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">194</context>
+          <context context-type="linenumber">195</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1562013926672647714" datatype="html">
         <source>Nicaragua</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">195</context>
+          <context context-type="linenumber">196</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7803448958935133459" datatype="html">
         <source>Panama</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">196</context>
+          <context context-type="linenumber">197</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5162288429120066886" datatype="html">
         <source>Paraguay</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">197</context>
+          <context context-type="linenumber">198</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2132839256314048281" datatype="html">
         <source>Peru</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">198</context>
+          <context context-type="linenumber">199</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2123946206863913146" datatype="html">
         <source>Saint Kitts and Nevis</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">199</context>
+          <context context-type="linenumber">200</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1586762200046703444" datatype="html">
         <source>Suriname</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">200</context>
+          <context context-type="linenumber">201</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2766960236982030800" datatype="html">
         <source>Trinidad and Tobago</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">201</context>
+          <context context-type="linenumber">202</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6133495983093212227" datatype="html">
         <source>United States</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">202</context>
+          <context context-type="linenumber">203</context>
         </context-group>
       </trans-unit>
       <trans-unit id="976142842851961456" datatype="html">
         <source>Uruguay</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">203</context>
+          <context context-type="linenumber">204</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8420291181849337180" datatype="html">
         <source>Venezuela</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">204</context>
+          <context context-type="linenumber">205</context>
         </context-group>
       </trans-unit>
       <trans-unit id="797743923912773831" datatype="html">
         <source>Australia</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">207</context>
+          <context context-type="linenumber">208</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7688915885626198194" datatype="html">
         <source>Fiji</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">208</context>
+          <context context-type="linenumber">209</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3050899002311904259" datatype="html">
         <source>Kiribati</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">209</context>
+          <context context-type="linenumber">210</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2592002115951925734" datatype="html">
         <source>Marshall Islands</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">210</context>
+          <context context-type="linenumber">211</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2869766744074512908" datatype="html">
         <source>Micronesia</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">211</context>
+          <context context-type="linenumber">212</context>
         </context-group>
       </trans-unit>
       <trans-unit id="217956830164259077" datatype="html">
         <source>Nauru</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">212</context>
+          <context context-type="linenumber">213</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3591085113786124083" datatype="html">
         <source>New Zealand</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">213</context>
+          <context context-type="linenumber">214</context>
         </context-group>
       </trans-unit>
       <trans-unit id="680993875033620982" datatype="html">
         <source>Palau</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">214</context>
+          <context context-type="linenumber">215</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2090013391283494370" datatype="html">
         <source>Papua New Guinea</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">215</context>
+          <context context-type="linenumber">216</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3921381038816272025" datatype="html">
         <source>Samoa</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">216</context>
+          <context context-type="linenumber">217</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1353381156110688148" datatype="html">
         <source>Solomon Islands</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">217</context>
+          <context context-type="linenumber">218</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6930151682144775692" datatype="html">
         <source>Tonga</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">218</context>
+          <context context-type="linenumber">219</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3086562963920355958" datatype="html">
         <source>Tuvalu</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">219</context>
+          <context context-type="linenumber">220</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3911861600857028021" datatype="html">
         <source>Vanuatu</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">220</context>
+          <context context-type="linenumber">221</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5236769307780685681" datatype="html">
         <source>Registration successful!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">276</context>
+          <context context-type="linenumber">274</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3157590919027597260" datatype="html">
         <source>Registration updated successfully!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">278</context>
+          <context context-type="linenumber">276</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3439168359581909499" datatype="html">
@@ -2744,17 +2875,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/strategies/new-strategy/new-strategy.component.html</context>
           <context context-type="linenumber">68,69</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="935187492052582731" datatype="html">
-        <source>Submit</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/bellumgens/src/app/strategies/new-strategy/new-strategy.component.html</context>
-          <context context-type="linenumber">69,70</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/common/src/lib/availability/availability.component.html</context>
-          <context context-type="linenumber">22</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3313305464759255603" datatype="html">

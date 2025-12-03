@@ -21,6 +21,14 @@
           <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="5938439396099969421" datatype="html">
+        <source>Signup deadline: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ signupDeadline | date:&apos;long&apos; }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+        <target>Краен срок за регистрация: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ signupDeadline | date:&apos;long&apos; }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
+          <context context-type="linenumber">6,8</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="5757081461658593866" datatype="html">
         <source>Signed up users so far: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ count() }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
         <target>Регистрирани до момента: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ count() }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
@@ -61,6 +69,14 @@
         <target>501+ регистрации: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>33%<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9059816325054234375" datatype="html">
+        <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Signup deadline has passed.<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> Pre-registration is now closed. </source>
+        <target><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Крайният срок за регистрация е изтекъл.<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> Предварителната регистрация е затворена. </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
+          <context context-type="linenumber">21,23</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8608295418791099525" datatype="html">
