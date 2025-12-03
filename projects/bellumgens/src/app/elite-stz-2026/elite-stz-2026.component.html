@@ -16,7 +16,11 @@
     <div class="tier" i18n>501+ sign-ups: <span class="highlight">33%</span></div>
   </div>
 
-  @if (!authUser) {
+  @if (isPastDeadline) {
+    <div class="auth-info" i18n>
+      <span class="highlight">Signup deadline has passed.</span> Pre-registration is now closed.
+    </div>
+  } @else if (!authUser) {
     <div class="auth-info" i18n>
       <span class="highlight">You need to be logged in</span> to submit the form. Please log in from the profile menu.
     </div>
@@ -46,7 +50,7 @@
       </div>
     }
 
-    <button igxButton="contained" type="submit" [disabled]="!authUser || submitting()" i18n>Submit</button>
+    <button igxButton="contained" type="submit" [disabled]="isPastDeadline || !authUser || submitting()" i18n>Submit</button>
   </form>
 
   <!-- Success and error messaging handled via CommunicationService -->

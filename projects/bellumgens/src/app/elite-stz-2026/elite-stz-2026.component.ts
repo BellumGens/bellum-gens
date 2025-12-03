@@ -46,13 +46,17 @@ export class EliteStz2026Component implements OnInit {
   constructor() {
     this.authService.applicationUser.subscribe(user => {
       this.authUser = user;
-      if (user) {
+      if (user && !this.isPastDeadline) {
         this.form.get('email')?.enable();
         this.form.get('firstTime')?.enable();
         this.form.get('agreePrivacy')?.enable();
         if (user.email) {
           this.form.patchValue({ email: user.email });
         }
+      } else {
+        this.form.get('email')?.disable();
+        this.form.get('firstTime')?.disable();
+        this.form.get('agreePrivacy')?.disable();
       }
     });
   }
@@ -73,6 +77,10 @@ export class EliteStz2026Component implements OnInit {
     if (c > 100) return 15;
     if (c > 0) return 10;
     return 0;
+  }
+
+  public get isPastDeadline(): boolean {
+    return new Date() > new Date(this.signupDeadline);
   }
 
   public submit() {

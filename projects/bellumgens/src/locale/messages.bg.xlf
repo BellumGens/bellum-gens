@@ -71,6 +71,14 @@
           <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="9059816325054234375" datatype="html">
+        <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Signup deadline has passed.<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> Pre-registration is now closed. </source>
+        <target><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Крайният срок за регистрация е изтекъл.<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> Предварителната регистрация е затворена. </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
+          <context context-type="linenumber">21,23</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="8608295418791099525" datatype="html">
         <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>You need to be logged in<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> to submit the form. Please log in from the profile menu. </source>
         <target><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Трябва да сте влезли<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> за да изпратите формуляра. Моля, влезте от менюто на профила. </target>
