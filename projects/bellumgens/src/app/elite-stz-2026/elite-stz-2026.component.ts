@@ -1,6 +1,6 @@
 import { Component, inject, WritableSignal, signal } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { CommonModule, isPlatformBrowser, DatePipe } from '@angular/common';
 import { PLATFORM_ID, OnInit } from '@angular/core';
 import { ApplicationUser, BellumgensApiService, CommunicationService, LoginService } from '../../../../common/src/public_api';
 import { IgxButtonDirective } from '@infragistics/igniteui-angular/directives';
@@ -18,7 +18,8 @@ import { EarlyBird } from '../../../../common/src/models/subscribers';
     IgxInputDirective,
     IgxLabelDirective,
     IgxCheckboxComponent,
-    IgxButtonDirective
+    IgxButtonDirective,
+    DatePipe
   ],
   templateUrl: './elite-stz-2026.component.html',
   styleUrls: ['./elite-stz-2026.component.scss']
@@ -32,6 +33,7 @@ export class EliteStz2026Component implements OnInit {
 
   public count: WritableSignal<number> = signal(0);
   public submitting = signal(false);
+  public signupDeadline = '2025-12-18T16:00:00Z';
 
   public form = this.fb.group({
     email: [{value: '', disabled: true}, [Validators.required, Validators.email]],
