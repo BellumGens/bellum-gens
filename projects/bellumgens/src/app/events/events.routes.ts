@@ -9,7 +9,8 @@ export const routes: Routes = [
     title: 'Bellum Gens Elite Stara Zagora: The home of esports in Bulgaria',
     twitterTitle: 'Bellum Gens Elite Stara Zagora: The home of esports in Bulgaria',
     description: 'Bellum Gens Elite Stara Zagora is the home of esports in Bulgaria. We host the best gaming events in the country.',
-    twitterDescription: 'Bellum Gens Elite Stara Zagora is the home of esports in Bulgaria. We host the best gaming events in the country.'
+    twitterDescription: 'Bellum Gens Elite Stara Zagora is the home of esports in Bulgaria. We host the best gaming events in the country.',
+    image: '/assets/login/bge-white-2024.svg'
   } },
   { path: 'registration', component: LeagueRegistrationComponent },
   { path: 'registration/:tournamentId', component: LeagueRegistrationComponent },
@@ -18,6 +19,7 @@ export const routes: Routes = [
     title: 'Bellum Gens Elite Weekly Balkan Circuit',
     twitterTitle: 'Bellum Gens Elite Weekly Balkan Circuit',
     description: 'Bellum Gens Elite Weekly Balkan Circuit is a weekly StarCraft II competition for players from the Balkan region. Participate to earn points towards monthly cash prizes!',
-    twitterDescription: 'Bellum Gens Elite Weekly Balkan Circuit is a weekly StarCraft II competition for players from the Balkan region. Participate to earn points towards monthly cash prizes!'
+    twitterDescription: 'Bellum Gens Elite Weekly Balkan Circuit is a weekly StarCraft II competition for players from the Balkan region. Participate to earn points towards monthly cash prizes!',
+    image: '/assets/login/bge-white-2024.svg'
   } },
 ];

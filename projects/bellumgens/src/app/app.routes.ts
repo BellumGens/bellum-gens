@@ -9,7 +9,13 @@ export const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'bellumgenselite', loadChildren: () => import('./events/events.routes').then(m => m.routes) },
   { path: 'partners', loadChildren: () => import('./partners/partners.routes').then(m => m.routes) },
-  { path: 'bge-stara-zagora-2026', loadComponent: () => import('./elite-stz-2026/elite-stz-2026.component').then(m => m.EliteStz2026Component) },
+  { path: 'bge-stara-zagora-2026', loadComponent: () => import('./elite-stz-2026/elite-stz-2026.component').then(m => m.EliteStz2026Component), data: {
+    title: 'Bellum Gens Elite Stara Zagora 2026: Early Bird Signup',
+    twitterTitle: 'Bellum Gens Elite Stara Zagora 2026: Early Bird Signup',
+    description: 'Bellum Gens Elite Stara Zagora is the home of esports in Bulgaria. We host the best gaming events in the country.',
+    twitterDescription: 'Bellum Gens Elite Stara Zagora is the home of esports in Bulgaria. We host the best gaming events in the country.',
+    image: '/assets/login/bge-white-2024.svg'
+  } },
   { path: 'register', component: RegistrationComponent },
   { path: 'unauthorized', redirectTo: 'unauthorized/', pathMatch: 'full' },
   { path: 'unauthorized/:message', component: UnauthorizedComponent },
