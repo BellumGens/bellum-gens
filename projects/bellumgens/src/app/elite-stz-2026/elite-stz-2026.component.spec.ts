@@ -4,6 +4,7 @@ import { of, throwError, BehaviorSubject } from 'rxjs';
 import { EliteStz2026Component } from './elite-stz-2026.component';
 import { ApplicationUser, BellumgensApiService, CommunicationService, LoginService } from '../../../../common/src/public_api';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('EliteStz2026Component', () => {
   let component: EliteStz2026Component;
@@ -20,7 +21,7 @@ describe('EliteStz2026Component', () => {
     mockAuthService = jasmine.createSpyObj('LoginService', [], { applicationUser: authUserSubject.asObservable() });
 
     await TestBed.configureTestingModule({
-      imports: [EliteStz2026Component, NoopAnimationsModule],
+      imports: [EliteStz2026Component, NoopAnimationsModule, RouterTestingModule],
       providers: [
         { provide: BellumgensApiService, useValue: mockApiService },
         { provide: CommunicationService, useValue: mockCommService },
