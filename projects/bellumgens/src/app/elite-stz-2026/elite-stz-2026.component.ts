@@ -7,6 +7,7 @@ import { IgxButtonDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxCheckboxComponent } from '@infragistics/igniteui-angular/checkbox';
 import { IgxInputDirective, IgxInputGroupComponent, IgxLabelDirective } from '@infragistics/igniteui-angular/input-group';
 import { EarlyBird } from '../../../../common/src/models/subscribers';
+import { BaseDirective } from '../base/base.component';
 
 @Component({
   selector: 'bge-elite-stz-2026',
@@ -24,7 +25,7 @@ import { EarlyBird } from '../../../../common/src/models/subscribers';
   templateUrl: './elite-stz-2026.component.html',
   styleUrls: ['./elite-stz-2026.component.scss']
 })
-export class EliteStz2026Component implements OnInit {
+export class EliteStz2026Component extends BaseDirective implements OnInit {
   private platformId = inject(PLATFORM_ID);
   private fb = inject(FormBuilder);
   private commService = inject(CommunicationService);
@@ -44,6 +45,7 @@ export class EliteStz2026Component implements OnInit {
   public authUser: ApplicationUser | null = null;
 
   constructor() {
+    super();
     this.authService.applicationUser.subscribe(user => {
       this.authUser = user;
       if (user && !this.isPastDeadline) {
