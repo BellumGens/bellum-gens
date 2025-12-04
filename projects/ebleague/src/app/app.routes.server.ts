@@ -14,7 +14,7 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Server
   },
   {
-    path: 'tournament/admin/*',
+    path: 'tournament/admin/**',
     renderMode: RenderMode.Client
   },
   {
