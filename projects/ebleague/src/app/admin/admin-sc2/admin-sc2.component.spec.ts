@@ -703,12 +703,9 @@ describe('AdminSc2Component', () => {
   });
 
   describe('UI Integration Tests - Group Operations', () => {
-    let mockDialog: jasmine.SpyObj<IgxDialogComponent>;
-
     beforeEach(() => {
       component.selectedTournament = { id: 'tournament-123', active: true } as Tournament;
       component.groups = [];
-      mockDialog = jasmine.createSpyObj('IgxDialogComponent', ['open', 'close']);
     });
 
     it('should create a new group with full UI flow', () => {

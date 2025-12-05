@@ -1,17 +1,29 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { UnauthorizedComponent } from './unauthorized.component';
-import { RouterTestingModule } from '@angular/router/testing';
+import { provideRouter, ActivatedRoute } from '@angular/router';
+import { Subject } from 'rxjs';
 
 describe('UnauthorizedComponent', () => {
   let component: UnauthorizedComponent;
   let fixture: ComponentFixture<UnauthorizedComponent>;
+  let paramsSubject: Subject<any>;
 
   beforeEach(waitForAsync(() => {
+    paramsSubject = new Subject();
+
     TestBed.configureTestingModule({
         imports: [
-            RouterTestingModule,
             UnauthorizedComponent
+        ],
+        providers: [
+            provideRouter([]),
+            {
+                provide: ActivatedRoute,
+                useValue: {
+                    params: paramsSubject.asObservable()
+                }
+            }
         ]
     })
     .compileComponents();
@@ -32,19 +44,16 @@ describe('UnauthorizedComponent', () => {
   });
 
   it('should update message from route params', () => {
-    const activatedRoute = TestBed.inject(ActivatedRoute);
     const customMessage = 'Access Denied';
 
-    (activatedRoute.params as any).next({ message: customMessage });
+    paramsSubject.next({ message: customMessage });
     fixture.detectChanges();
 
     expect(component.message).toBe(customMessage);
   });
 
   it('should keep default message if no param provided', () => {
-    const activatedRoute = TestBed.inject(ActivatedRoute);
-
-    (activatedRoute.params as any).next({});
+    paramsSubject.next({});
     fixture.detectChanges();
 
     expect(component.message).toBe('Unauthorized :(');
@@ -58,5 +67,3 @@ describe('UnauthorizedComponent', () => {
     expect(compiled.textContent).toContain('Test Message');
   });
 });
-
-import { ActivatedRoute } from '@angular/router';

@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LeagueRegistrationComponent } from './league-registration.component';
 import {  of } from 'rxjs';
-import { RouterTestingModule } from '@angular/router/testing';
+import { provideRouter } from '@angular/router';
 import { ApiTournamentsService, CommunicationService, Game, TournamentApplication } from 'bellum-gens-common';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
@@ -19,10 +19,10 @@ describe('LeagueRegistrationComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         LeagueRegistrationComponent,
-        NoopAnimationsModule,
-        RouterTestingModule.withRoutes([]),
+        NoopAnimationsModule
       ],
       providers: [
+        provideRouter([]),
         { provide: SwPush, useValue: {} },
         provideHttpClient(withInterceptorsFromDi()),
         provideHttpClientTesting()

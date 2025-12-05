@@ -1,6 +1,5 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
-import { RouterTestingModule } from '@angular/router/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { EventAdminGuard } from './eventadmin.guard';
 import { LoginService } from '../services/login.service';
@@ -16,10 +15,11 @@ describe('EventAdminGuard', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-    imports: [RouterTestingModule,
-        ServiceWorkerModule.register('', { enabled: false })],
-    providers: [EventAdminGuard, LoginService, provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
-});
+      imports: [
+        ServiceWorkerModule.register('', { enabled: false })
+      ],
+      providers: [EventAdminGuard, LoginService, provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+    });
 
     guard = TestBed.inject(EventAdminGuard);
     authService = TestBed.inject(LoginService);

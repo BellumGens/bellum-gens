@@ -4,11 +4,11 @@ import { AdminMainComponent } from './admin-main.component';
 
 import { provideHttpClientTesting, HttpTestingController } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { RouterTestingModule } from '@angular/router/testing';
+import { provideRouter } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { ApiTournamentsService, ApiShopService, Tournament, Game, TournamentApplication, TournamentApplicationState, Order } from '../../../../../common/src/public_api';
-import { IGridEditEventArgs, RowType } from '@infragistics/igniteui-angular/grids/core';
+import { IGridEditEventArgs } from '@infragistics/igniteui-angular/grids/core';
 
 describe('AdminMainComponent', () => {
   let component: AdminMainComponent;
@@ -21,11 +21,14 @@ describe('AdminMainComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-        RouterTestingModule,
         ServiceWorkerModule.register('', { enabled: false }),
         AdminMainComponent
       ],
-      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+      providers: [
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideRouter([])
+      ]
     })
     .compileComponents();
   });

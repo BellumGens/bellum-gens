@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { LoginButtonsComponent } from './login-buttons.component';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { RouterTestingModule } from '@angular/router/testing';
+import { provideRouter } from '@angular/router';
 import { LOGIN_ASSETS } from '../../../models/misc';
 import { LoginProvider, LoginService } from '../../../public_api';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
@@ -15,10 +15,10 @@ describe('LoginButtonsComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [RouterTestingModule,
+    imports: [
         ServiceWorkerModule.register('', { enabled: false }),
         LoginButtonsComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+    providers: [provideRouter([]), provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
 })
     .compileComponents();
 

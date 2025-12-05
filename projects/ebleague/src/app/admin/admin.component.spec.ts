@@ -1,5 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing'
 
 import { AdminComponent } from './admin.component';
 
@@ -9,11 +8,10 @@ describe('AdminComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [
-        RouterTestingModule,
+      imports: [
         AdminComponent
-    ]
-})
+      ]
+    })
     .compileComponents();
   }));
 
