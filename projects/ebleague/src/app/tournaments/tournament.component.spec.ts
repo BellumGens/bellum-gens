@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { provideRouter } from '@angular/router';
 
 import { TournamentComponent } from './tournament.component';
 
@@ -9,7 +9,8 @@ describe('TournamentComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [RouterTestingModule, TournamentComponent]
+    imports: [TournamentComponent],
+    providers: [provideRouter([])]
 })
     .compileComponents();
   }));

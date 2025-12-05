@@ -1,11 +1,11 @@
 import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 import { TeamComponent } from "./team.component";
 import { provideHttpClientTesting } from "@angular/common/http/testing";
-import { RouterTestingModule } from "@angular/router/testing";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { ServiceWorkerModule } from "@angular/service-worker";
 import { TEAM_PLACEHOLDER } from "bellum-gens-common";
 import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
+import { provideRouter } from "@angular/router";
 
 describe('TeamComponent', () => {
   let component: TeamComponent;
@@ -13,11 +13,15 @@ describe('TeamComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [RouterTestingModule,
+    imports: [
         NoopAnimationsModule,
         ServiceWorkerModule.register('', { enabled: false }),
         TeamComponent],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+    providers: [
+      provideRouter([]),
+      provideHttpClient(withInterceptorsFromDi()),
+      provideHttpClientTesting()
+    ]
 })
     .compileComponents();
   }));

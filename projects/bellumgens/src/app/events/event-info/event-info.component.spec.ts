@@ -4,7 +4,6 @@ import { ApiTournamentsService } from '../../../../../common/src/public_api';
 import { Observable, of, take } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
-import { RouterTestingModule } from '@angular/router/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
@@ -21,7 +20,7 @@ describe('EventInfoComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         EventInfoComponent,
-        RouterTestingModule,
+
         NoopAnimationsModule
       ],
       providers: [

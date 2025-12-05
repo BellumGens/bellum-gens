@@ -2,7 +2,6 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { TeamTournamentsComponent } from './team-tournaments.component';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { RouterTestingModule } from '@angular/router/testing';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
@@ -14,7 +13,7 @@ describe('TeamTournamentsComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule,
+
         TeamTournamentsComponent
       ],
       providers: [

@@ -1,6 +1,5 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
-import { RouterTestingModule } from '@angular/router/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { SwPush } from '@angular/service-worker';
 import { LoginService } from './login.service';
@@ -16,7 +15,6 @@ describe('LoginService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
     imports: [
-        RouterTestingModule,
         ServiceWorkerModule.register('', { enabled: false })
       ],
       providers: [

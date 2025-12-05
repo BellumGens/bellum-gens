@@ -1,8 +1,9 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { BaseDirective } from './base.component';
-import { RouterTestingModule } from '@angular/router/testing';
+import { provideRouter, ActivatedRoute } from '@angular/router';
 import { Component } from '@angular/core';
+import { of } from 'rxjs';
 
 describe('BaseComponent', () => {
   let component: BaseDirective;
@@ -11,8 +12,16 @@ describe('BaseComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule,
         TestComponent
+      ],
+      providers: [
+        provideRouter([]),
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            data: of({})
+          }
+        }
       ]
     })
     .compileComponents();

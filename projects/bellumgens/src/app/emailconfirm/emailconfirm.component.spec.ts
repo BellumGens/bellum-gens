@@ -1,7 +1,8 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { EmailconfirmComponent } from './emailconfirm.component';
-import { RouterTestingModule } from '@angular/router/testing';
+import { provideRouter, ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
 
 describe('EmailconfirmComponent', () => {
   let component: EmailconfirmComponent;
@@ -9,7 +10,17 @@ describe('EmailconfirmComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-    imports: [RouterTestingModule, EmailconfirmComponent]
+    imports: [EmailconfirmComponent],
+    providers: [
+      provideRouter([]),
+      {
+        provide: ActivatedRoute,
+        useValue: {
+          params: of({}),
+          data: of({})
+        }
+      }
+    ]
 })
     .compileComponents();
   }));

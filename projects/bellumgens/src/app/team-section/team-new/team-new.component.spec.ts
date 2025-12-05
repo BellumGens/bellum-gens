@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { RouterTestingModule } from '@angular/router/testing';
+import { provideRouter } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TeamNewComponent } from './team-new.component';
@@ -46,11 +46,11 @@ describe('TeamNewComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         FormsModule,
-        RouterTestingModule,
+        
         NoopAnimationsModule,
         TeamNewComponent
       ],
-      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+      providers: [provideRouter([]), provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
     })
     .compileComponents();
     httpMock = TestBed.inject(HttpTestingController);

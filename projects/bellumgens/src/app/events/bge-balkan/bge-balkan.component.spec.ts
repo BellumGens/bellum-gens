@@ -4,7 +4,7 @@ import { ApiTournamentsService } from '../../../../../common/src/public_api';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { RouterTestingModule } from '@angular/router/testing';
+import { provideRouter } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { take } from 'rxjs';
 
@@ -19,11 +19,11 @@ describe('BgeBalkanComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         BgeBalkanComponent,
-        RouterTestingModule,
+        
         NoopAnimationsModule,
         ServiceWorkerModule.register('', { enabled: false }),
       ],
-      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+      providers: [provideRouter([]), provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
     }).compileComponents();
 
     apiService = TestBed.inject(ApiTournamentsService);

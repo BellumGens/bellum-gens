@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { provideRouter, ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
 
 import { NewsComponent } from './news.component';
 
@@ -10,8 +11,16 @@ describe('NewsComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule,
         NewsComponent
+      ],
+      providers: [
+        provideRouter([]),
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            data: of({})
+          }
+        }
       ]
     })
     .compileComponents();

@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { TournamentFormatComponent } from './tournament-format.component';
-import { RouterTestingModule } from '@angular/router/testing';
+import { provideRouter } from '@angular/router';
 
 describe('TournamentFormatComponent', () => {
   let component: TournamentFormatComponent;
@@ -9,7 +9,8 @@ describe('TournamentFormatComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [TournamentFormatComponent, RouterTestingModule]
+      imports: [TournamentFormatComponent],
+      providers: [provideRouter([])]
     })
     .compileComponents();
   }));

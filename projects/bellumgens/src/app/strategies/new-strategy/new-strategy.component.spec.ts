@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { NewStrategyComponent } from './new-strategy.component';
 import { FormsModule } from '@angular/forms';
-import { RouterTestingModule } from '@angular/router/testing';
+import { provideRouter } from '@angular/router';
 import { IgxDialogModule } from '@infragistics/igniteui-angular/dialog';
 import { IgxInputGroupModule } from '@infragistics/igniteui-angular/input-group';
 import { IgxIconModule } from '@infragistics/igniteui-angular/icon';
@@ -21,7 +21,7 @@ describe('NewStrategyComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
     imports: [FormsModule,
-        RouterTestingModule,
+        
         NoopAnimationsModule,
         IgxDialogModule,
         IgxInputGroupModule,
@@ -31,7 +31,7 @@ describe('NewStrategyComponent', () => {
         IgxSelectModule,
         NewStrategyComponent,
         SafeVideoLinkPipe],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+    providers: [provideRouter([]), provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
 })
     .compileComponents();
   }));

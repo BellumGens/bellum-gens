@@ -1,10 +1,11 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EventsComponent } from './events.component';
-import { RouterTestingModule } from '@angular/router/testing';
+import { provideRouter, ActivatedRoute } from '@angular/router';
 import { LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import bg from '@angular/common/locales/bg';
+import { of } from 'rxjs';
 
 describe('EventsComponent', () => {
   let component: EventsComponent;
@@ -13,8 +14,16 @@ describe('EventsComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule,
         EventsComponent
+      ],
+      providers: [
+        provideRouter([]),
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            data: of({})
+          }
+        }
       ]
     });
     fixture = TestBed.createComponent(EventsComponent);
@@ -86,11 +95,17 @@ describe('EventsComponent - bg locale', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule,
         EventsComponent
       ],
       providers: [
-        { provide: LOCALE_ID, useValue: 'bg' }
+        provideRouter([]),
+        { provide: LOCALE_ID, useValue: 'bg' },
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            data: of({})
+          }
+        }
       ]
     });
     fixture = TestBed.createComponent(EventsComponent);

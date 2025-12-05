@@ -1,8 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { PartnersComponent } from './partners.component';
-import { RouterTestingModule } from '@angular/router/testing';
+import { provideRouter, ActivatedRoute } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BaseDirective } from '../base/base.component';
+import { of } from 'rxjs';
 
 describe('PartnersComponent', () => {
   let component: PartnersComponent;
@@ -11,9 +12,17 @@ describe('PartnersComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule,
         NoopAnimationsModule,
         PartnersComponent
+      ],
+      providers: [
+        provideRouter([]),
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            data: of({})
+          }
+        }
       ]
     })
     .compileComponents();
