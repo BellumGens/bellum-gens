@@ -148,7 +148,10 @@ export class LoginService {
         return response;
       }),
       catchError(error => {
-        this.commService.emitError(error.message);
+        const errorMessage = typeof error.error === 'string' && error.error
+          ? error.error
+          : 'Login failed. Please check your credentials and try again.';
+        this.commService.emitError(errorMessage);
         return throwError(() => error);
       })
     );

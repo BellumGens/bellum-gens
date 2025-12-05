@@ -54,6 +54,9 @@ export class LoginDialogComponent {
       next: () => {
         this.dialog.close();
       },
+      error: () => {
+        this.submitInProgress = false;
+      },
       complete: () => {
         this.submitInProgress = false;
       }

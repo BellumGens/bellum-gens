@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync, fakeAsync, tick } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
@@ -107,4 +107,92 @@ describe('LoginDialogComponent', () => {
     req2.flush([]);
     expect(loginService['_registrations'].value).toEqual([]);
   });
+
+  it('should show error message when login fails with backend error', () => {
+    spyOn(component.dialog, 'close');
+    const errorMessage = 'Invalid username or password';
+    let errorEmitted = false;
+
+    // Set form data
+    component.logininfo.username = 'testuser';
+    component.logininfo.password = 'wrongpassword';
+
+    // Subscribe to error emissions
+    commsService.error.subscribe(message => {
+      expect(message).toEqual(errorMessage);
+      errorEmitted = true;
+    });
+
+    // Call the loginWithForm method
+    component.loginWithForm();
+    const req = httpMock.expectOne(`${loginService['_apiEndpoint']}/login`);
+    expect(req.request.method).toBe('POST');
+    expect(component.submitInProgress).toBe(true);
+
+    // Flush with error response
+    req.flush(errorMessage, { status: 400, statusText: 'Bad Request' });
+
+    expect(component.submitInProgress).toBe(false);
+    expect(component.dialog.close).not.toHaveBeenCalled();
+    expect(errorEmitted).toBe(true);
+  });
+
+  it('should show default error message when login fails without specific backend error', () => {
+    spyOn(component.dialog, 'close');
+    let errorEmitted = false;
+
+    // Set form data
+    component.logininfo.username = 'testuser';
+    component.logininfo.password = 'wrongpassword';
+
+    // Subscribe to error emissions
+    commsService.error.subscribe(message => {
+      expect(message).toEqual('Login failed. Please check your credentials and try again.');
+      errorEmitted = true;
+    });
+
+    // Call the loginWithForm method
+    component.loginWithForm();
+    const req = httpMock.expectOne(`${loginService['_apiEndpoint']}/login`);
+    expect(req.request.method).toBe('POST');
+    expect(component.submitInProgress).toBe(true);
+
+    // Flush with error response without error body
+    req.flush(null, { status: 500, statusText: 'Internal Server Error' });
+
+    expect(component.submitInProgress).toBe(false);
+    expect(component.dialog.close).not.toHaveBeenCalled();
+    expect(errorEmitted).toBe(true);
+  });
+
+  it('should show error message when login fails with network error', fakeAsync(() => {
+    spyOn(component.dialog, 'close');
+    let errorEmitted = false;
+    let capturedMessage = '';
+
+    // Set form data
+    component.logininfo.username = 'testuser';
+    component.logininfo.password = 'testpassword';
+
+    // Subscribe to error emissions
+    commsService.error.subscribe(message => {
+      capturedMessage = message;
+      errorEmitted = true;
+    });
+
+    // Call the loginWithForm method
+    component.loginWithForm();
+    const req = httpMock.expectOne(`${loginService['_apiEndpoint']}/login`);
+    expect(req.request.method).toBe('POST');
+    expect(component.submitInProgress).toBe(true);
+
+    // Simulate network error
+    req.error(new ProgressEvent('error'));
+    tick(); // Flush all async operations
+
+    expect(component.submitInProgress).toBe(false);
+    expect(component.dialog.close).not.toHaveBeenCalled();
+    expect(errorEmitted).toBe(true);
+    expect(capturedMessage).toEqual('Login failed. Please check your credentials and try again.');
+  }));
 });
