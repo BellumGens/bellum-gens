@@ -3,7 +3,7 @@
     <igx-grid #grid1
       [data]="registrations"
       primaryKey="id"
-      [height]="'500px'"
+      [height]="'600px'"
       [batchEditing]="true"
       [showGroupArea]="true"
       [allowFiltering]="true"
@@ -71,7 +71,9 @@
   <div class="content-container-row">
     <igx-grid #grid1
       [data]="orders | async"
-      primaryKey="id" [batchEditing]="true"
+      primaryKey="id"
+      [height]="'600px'"
+      [batchEditing]="true"
       [allowFiltering]="true"
       (cellEdit)="editDone($event)"
       cellSelection="none">

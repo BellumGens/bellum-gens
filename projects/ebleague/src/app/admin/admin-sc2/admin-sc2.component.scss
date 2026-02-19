@@ -1,5 +1,69 @@
-:host {
+@use "../../../variables" as *;
+
+:host ::ng-deep {
+  @include core();
+
+  // Compact grid theme with small size
+  @include grid(grid-theme(
+    $content-background: $banner-background,
+    $drop-area-background: $banner-background,
+    $ghost-header-background: $banner-background,
+    $group-row-selected-background: $background,
+    $header-background: $background,
+    $cell-editing-background: $background
+  ));
+
+  @include grid-toolbar(grid-toolbar-theme($background-color: $background));
+
+  @include grid-summary(grid-summary-theme($background-color: $background));
+
+  @include action-strip(action-strip-theme($actions-background: transparent));
+
+  // List theme
+  @include list(list-theme(
+    $background: transparent,
+    $item-background-active: rgba(0, 0, 0, 0.11)
+  ));
+
+  // Input group theme
+  @include input-group(input-group-theme(
+    $search-background: transparent
+  ));
+
+  // Apply compact sizing using CSS variables
+  igx-grid {
+    --ig-size: var(--ig-size-small);
+  }
+
   igx-list {
-    --ig-size: var(--ig-size-small)
+    --ig-size: var(--ig-size-small);
+  }
+
+  igx-input-group {
+    --ig-size: var(--ig-size-small);
+  }
+
+  // Custom spacing adjustments for better compactness
+  .grid-team-name {
+    font-size: 0.875rem;
+    width: 180px;
+  }
+
+  .grid-vs-divider {
+    margin: 0 4px;
+    font-size: 0.875rem;
+  }
+
+  .match-actions igx-icon {
+    font-size: 1.25rem;
+  }
+
+  // Fixed width for points input
+  .group-list igx-list-item {
+    igx-input-group {
+      width: 80px;
+      min-width: 80px;
+      max-width: 80px;
+    }
   }
 }
