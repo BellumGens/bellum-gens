@@ -44,7 +44,10 @@ $include: (
   igx-divider,
   igx-carousel,
   igx-nav-drawer,
-  igx-banner
+  igx-banner,
+  igx-grid,
+  igx-grid-toolbar,
+  igx-expansion-panel
 );
 
 @include theme(
@@ -54,79 +57,102 @@ $include: (
 );
 
 /* Navbar */
-$navbar-theme: navbar-theme($background: $background,
-                            $shadow: 0px 15px 30px 0px rgba(0,0,0,0.4));
-@include css-vars($navbar-theme);
+$navbar-theme: navbar-theme(
+  $background: var(--ig-surface-500),
+  $shadow: 0px 15px 30px 0px hsl(from var(--ig-gray-900) h s l / 0.4)
+);
+@include tokens($navbar-theme);
 /* END Navbar */
 
 /* Nav Drawer */
-$navdrawer-theme: navdrawer-theme($item-hover-background: rgba(0, 0, 0, 0.5),
-                                  $item-active-background: rgba(0, 0, 0, 0.5));
-@include css-vars($navdrawer-theme);
+$navdrawer-theme: navdrawer-theme(
+  $item-hover-background: hsl(from var(--ig-gray-900) h s l / 0.5),
+  $item-active-background: hsl(from var(--ig-gray-900) h s l / 0.5)
+);
+@include tokens($navdrawer-theme);
 /* END Nav Drawer */
 
 /* Card */
-$card-theme: card-theme($resting-shadow: 0px 15px 30px 0px rgba(0,0,0,0.4),
-                        $hover-shadow: 0px 15px 30px 0px rgba(0,0,0,0.7));
-@include css-vars($card-theme);
+$card-theme: card-theme(
+  $resting-shadow: 0px 15px 30px 0px hsl(from var(--ig-gray-900) h s l / 0.4),
+  $hover-shadow: 0px 15px 30px 0px hsl(from var(--ig-gray-900) h s l / 0.7)
+);
+@include tokens($card-theme);
 /* END Card */
 
 /* List */
-$list-theme: list-theme($background: transparent,
-                        $item-background-active: rgba(0, 0, 0, 0.11));
-@include css-vars($list-theme);
+$list-theme: list-theme(
+  $background: transparent,
+  $item-background-active: hsl(from var(--ig-gray-900) h s l / 0.11)
+);
+@include tokens($list-theme);
 /* END List */
 
 /* Input Group */
-$input-group-theme: input-group-theme($search-background: transparent, $size: 48px);
-@include css-vars($input-group-theme);
+$input-group-theme: input-group-theme(
+  $search-background: transparent,
+  $size: 48px
+);
+@include tokens($input-group-theme);
 /* END Input Group */
 
 /* Banner */
-$banner-theme: banner-theme($banner-background: $banner-background);
-@include css-vars($banner-theme);
+$banner-theme: banner-theme($banner-background: var(--ig-surface-300));
+@include tokens($banner-theme);
 /* END Banner */
 
 /* Tabs */
-$tabs-theme: tabs-theme($item-hover-background: rgba(0, 0, 0, 0.11),
-                        $item-active-background: rgba(0, 0, 0, 0.11),
-                        $item-background: $background,
-                        $indicator-color: $secondary);
-@include css-vars($tabs-theme);
+$tabs-theme: tabs-theme(
+  $item-hover-background: hsl(from var(--ig-gray-900) h s l / 0.11),
+  $item-active-background: hsl(from var(--ig-gray-900) h s l / 0.11),
+  $item-background: var(--ig-surface-500),
+  $indicator-color: var(--ig-secondary-500)
+);
+@include tokens($tabs-theme);
 /* END Tabs */
 
 /* Snackbar */
-$snackbar-theme: snackbar-theme($background: $banner-background, $border-radius: 24px);
-@include css-vars($snackbar-theme);
+$snackbar-theme: snackbar-theme(
+  $background: var(--ig-surface-300),
+  $border-radius: 24px
+);
+@include tokens($snackbar-theme);
 /* END Snackbar */
 
 /* Chip */
-$chip-theme: chip-theme($background: $banner-background);
-@include css-vars($chip-theme);
+$chip-theme: chip-theme($background: var(--ig-surface-300));
+@include tokens($chip-theme);
 /* END Chip */
 
 /* Button */
 .strategy-actions {
-  $button-theme: button-theme($resting-shadow: none,
-                              $hover-shadow: none,
-                              $focus-shadow: none,
-                              $foreground: $primary,
-                              $hover-foreground: $secondary,
-                              $background: transparent);
-  @include css-vars($button-theme);
+  $button-theme: fab-button-theme(
+    $resting-shadow: none,
+    $hover-shadow: none,
+    $focus-shadow: none,
+    $foreground: var(--ig-primary-500),
+    $hover-foreground: var(--ig-secondary-500),
+    $background: transparent
+  );
+  @include tokens($button-theme);
 }
 /* END Button */
 
 /* Progress Circular */
-$circular-progress-bar-theme: progress-circular-theme($base-circle-color: rgba(0, 0, 0, 0.14), $fill-color-default: $secondary);
-@include css-vars($circular-progress-bar-theme);
+$circular-progress-bar-theme: progress-circular-theme(
+  $base-circle-color: hsl(from var(--ig-gray-900) h s l / 0.14),
+  $fill-color-default: var(--ig-secondary-500)
+);
+@include tokens($circular-progress-bar-theme);
 /* END Progress Circular */
 
 /* Expansion Panel */
-$expansion-panel-theme: expansion-panel-theme($header-background: $background,
-                                              $header-focus-background: $background,
-                                              $body-background: $background);
-@include css-vars($expansion-panel-theme);
+$expansion-panel-theme: expansion-panel-theme(
+  $header-background: var(--ig-surface-500),
+  $header-focus-background: var(--ig-surface-500),
+  $body-background: var(--ig-surface-500)
+);
+@include tokens($expansion-panel-theme);
 /* END Expansion Panel */
 
 @import "../../common/src/styles-overrides.scss";

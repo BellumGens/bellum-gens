@@ -7,13 +7,13 @@
   }
 
   .drawing-board {
-    border: 1px solid #939393;
+    border: 1px solid var(--ig-gray-400);
   }
 
   .editor-elements {
     display: flex;
     flex-flow: column;
-    color: white;
+    color: var(--ig-surface-500-contrast);
     max-width: 240px;
     padding: 0 4px;
   }

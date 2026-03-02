@@ -4,10 +4,183 @@
   width: 100%;
   background-image: url('/assets/bge/bge-background-right.webp');
   background-repeat: no-repeat;
-  background-color: #071365;
+  background-color: var(--ig-surface-500);
   background-position: center right;
 
-  .content-container-column iframe, .content-container-row iframe {
+  // Hero Section
+  .hero-section {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: stretch;
+    gap: 0;
+    padding: 0;
+    min-height: 520px;
+    overflow: hidden;
+    border-radius: 8px;
+    margin-bottom: 8px;
+  }
+
+  .hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 20px;
+    flex: 3;
+    min-width: 0;
+    padding: 48px 40px 48px 0;
+
+    h1 {
+      margin: 0;
+      font-size: 3rem;
+      line-height: 1.05;
+    }
+  }
+
+  .hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .hero-logo {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+  }
+
+  .hero-edition-label {
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    opacity: 0.65;
+  }
+
+  .hero-tagline {
+    margin: 0;
+    opacity: 0.85;
+    max-width: 480px;
+    line-height: 1.6;
+  }
+
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border: 1px solid hsl(from var(--ig-gray-50) h s l / 0.25);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    background: hsl(from var(--ig-gray-50) h s l / 0.06);
+
+    igx-icon {
+      font-size: 1rem;
+      width: 1rem;
+      height: 1rem;
+    }
+  }
+
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    margin-top: 4px;
+  }
+
+  .hero-image-panel {
+    position: relative;
+    flex: 2;
+    min-width: 0;
+    min-height: 520px;
+  }
+
+  .hero-champion-image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+  }
+
+  .champion-badge {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, hsl(from var(--ig-surface-500) h s l / 0.92));
+    padding: 32px 20px 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .champion-label {
+    font-size: 0.7rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    opacity: 0.75;
+  }
+
+  .champion-name {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-top: 2px;
+  }
+
+  // Event stats strip
+  .event-stats-strip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    width: 100%;
+    padding: 20px;
+    background: hsl(from var(--ig-gray-50) h s l / 0.05);
+    border-radius: 8px;
+    border: 1px solid hsl(from var(--ig-gray-50) h s l / 0.1);
+    flex-wrap: wrap;
+  }
+
+  .stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px 32px;
+    gap: 4px;
+  }
+
+  .stat-value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .stat-label {
+    font-size: 0.8rem;
+    opacity: 0.7;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .stat-divider {
+    width: 1px;
+    height: 48px;
+    background: hsl(from var(--ig-gray-50) h s l / 0.2);
+  }
+
+  // iframes
+  .content-container-column iframe,
+  .content-container-row iframe {
     width: 600px;
     height: 315px;
   }
@@ -16,9 +189,98 @@
     margin: 28px;
   }
 
+  // Card wrapper (legacy)
   .card-wrapper {
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     width: 100%;
+  }
+
+  // Player cards grid
+  .player-cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    width: 100%;
+  }
+
+  .player-card {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    aspect-ratio: 3 / 4;
+    background: hsl(from var(--ig-gray-50) h s l / 0.05);
+    cursor: default;
+
+    &:hover .player-card-image {
+      transform: scale(1.04);
+    }
+
+    &:hover .player-card-footer {
+      padding-bottom: 20px;
+    }
+  }
+
+  .player-card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    transition: transform 0.35s ease;
+  }
+
+  .player-card-race {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: hsl(from var(--ig-gray-900) h s l / 0.55);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(4px);
+
+    img {
+      width: 26px;
+      height: 26px;
+      object-fit: contain;
+    }
+  }
+
+  .player-card-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, hsl(from var(--ig-surface-500) h s l / 0.97) 60%);
+    padding: 40px 12px 12px;
+    transition: padding-bottom 0.25s ease;
+  }
+
+  .player-card-name {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 700;
+    font-size: 0.82rem;
+    line-height: 1.3;
+    flex-wrap: wrap;
+  }
+
+  .player-card-team {
+    font-size: 0.72rem;
+    opacity: 0.75;
+    margin-top: 3px;
+  }
+
+  .player-card-source {
+    font-size: 0.68rem;
+    opacity: 0.6;
+    margin-top: 6px;
+    padding-top: 6px;
+    border-top: 1px solid hsl(from var(--ig-gray-50) h s l / 0.15);
   }
 
   .country-badge-small {
@@ -29,14 +291,15 @@
     background-color: transparent;
   }
 
-  .timer-cta-button {
-    margin-top: 12px;
-    min-width: 250px;
+  // Section CTA buttons
+  .section-cta {
+    margin-top: 16px;
+    align-self: flex-start;
   }
 
   .cta-button-large {
-    height: 88px;
-    font-size: 36pt;
+    height: 72px;
+    font-size: 28pt;
     margin-top: 12px;
   }
 
@@ -44,14 +307,312 @@
     margin: 0;
   }
 
-  .qualifier-card {
-    min-height: 335px;
+  // Partners tiers
+  .partners-tier {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    width: 100%;
+    padding: 16px 0;
+
+    &.gold-tier {
+      border-top: 1px solid hsl(from var(--ig-gray-50) h s l / 0.1);
+      border-bottom: 1px solid hsl(from var(--ig-gray-50) h s l / 0.1);
+      margin: 8px 0;
+    }
+  }
+
+  // Event summary list
+  .event-summary-list {
+    margin-bottom: 12px;
+    list-style: disc;
+    padding-inline-start: 20px;
+  }
+
+  // ─── Venue feature section ─────────────────────────────────────────────
+  .venue-feature-section {
+    gap: 0;
+    padding: 0;
+    align-items: stretch;
+  }
+
+  .venue-banner-image {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    object-position: center 30%;
+    display: block;
+    border-radius: 8px 8px 0 0;
+    margin: 0;
+  }
+
+  .venue-details-row {
+    display: flex;
+    width: 100%;
+    background: hsl(from var(--ig-gray-50) h s l / 0.04);
+    border: 1px solid hsl(from var(--ig-gray-50) h s l / 0.08);
+    border-top: none;
+    border-radius: 0 0 8px 8px;
+  }
+
+  .venue-detail-panel {
+    flex: 1;
+    padding: 32px 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    h2 { margin: 0; }
+
+    p {
+      margin: 0;
+      line-height: 1.65;
+      opacity: 0.88;
+    }
+
+    &:first-child {
+      border-right: 1px solid hsl(from var(--ig-gray-50) h s l / 0.1);
+    }
+  }
+
+  .venue-map {
+    width: 100% !important;
+    height: 240px !important;
+    border: 0;
+    border-radius: 6px;
+    display: block;
+    margin-top: auto;
+  }
+
+  // ─── BGE Balkan Circuit section ────────────────────────────────────────
+  .balkan-circuit-section {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center;
+    gap: 48px;
+    padding: 40px 0;
+  }
+
+  .balkan-circuit-visual {
+    flex-shrink: 0;
+    width: 400px;
+    height: 268px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+
+  .balkan-circuit-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    h2 { margin: 0; }
+    p { margin: 0; line-height: 1.65; }
+    ul { margin: 0; padding-inline-start: 20px; list-style: disc; }
+  }
+
+  // ─── Past events 3-column card grid ────────────────────────────────────
+  .past-events-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    width: 100%;
+    margin-top: 16px;
+  }
+
+  .event-history-card {
+    display: flex;
+    flex-direction: column;
+    background: hsl(from var(--ig-gray-50) h s l / 0.04);
+    border: 1px solid hsl(from var(--ig-gray-50) h s l / 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .event-card-year-badge {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: var(--ig-primary-500);
+    color: var(--ig-primary-500-contrast);
+    font-weight: 700;
+    font-size: 0.72rem;
+    letter-spacing: 2px;
+    padding: 3px 10px;
+    border-radius: 4px;
+    z-index: 1;
+  }
+
+  .event-card-media {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    position: relative;
+    overflow: hidden;
+    background: var(--ig-surface-500);
+
+    iframe {
+      position: absolute;
+      inset: 0;
+      width: 100% !important;
+      height: 100% !important;
+      border: none;
+      display: block;
+    }
+  }
+
+  .event-card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px;
+    flex: 1;
+
+    h3 {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    p {
+      margin: 0;
+      font-size: 0.9rem;
+      line-height: 1.6;
+      opacity: 0.85;
+    }
+
+    .section-cta {
+      margin-top: auto;
+      align-self: flex-start;
+    }
+  }
+
+  // ─── Sponsorship CTA strip ─────────────────────────────────────────────
+  .sponsorship-cta-section {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center;
+    gap: 48px;
+    padding: 40px 0;
+  }
+
+  .sponsorship-cta-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    h2 { margin: 0; }
+    p { margin: 0; line-height: 1.65; }
+  }
+
+  .sponsorship-visual {
+    flex-shrink: 0;
+    width: 400px;
+    height: 268px;
+    object-fit: cover;
+    border-radius: 8px;
   }
 
   @media screen and (min-width: 750px) and (max-width: 1024px) {
-    .content-container-column iframe, .content-container-row iframe {
+    .content-container-column iframe,
+    .content-container-row iframe {
       width: 100%;
       height: 500px;
+    }
+  }
+
+  @media screen and (max-width: 900px) {
+    .venue-banner-image {
+      height: 260px;
+    }
+
+    .venue-details-row {
+      flex-direction: column;
+    }
+
+    .venue-detail-panel:first-child {
+      border-right: none;
+      border-bottom: 1px solid hsl(from var(--ig-gray-50) h s l / 0.1);
+    }
+
+    .venue-detail-panel {
+      padding: 24px 20px;
+    }
+
+    .balkan-circuit-section {
+      flex-direction: column !important;
+    }
+
+    .balkan-circuit-visual {
+      width: 100%;
+      height: 220px;
+    }
+
+    .past-events-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .sponsorship-cta-section {
+      flex-direction: column !important;
+    }
+
+    .sponsorship-visual {
+      width: 100%;
+      height: 220px;
+    }
+
+    .hero-section {
+      flex-direction: column !important;
+      min-height: unset;
+      border-radius: 0;
+    }
+
+    .hero-content {
+      align-items: center;
+      text-align: center;
+      padding: 32px 16px;
+
+      h1 {
+        font-size: 2.2rem;
+      }
+    }
+
+    .hero-tagline {
+      max-width: 100%;
+    }
+
+    .hero-tags {
+      justify-content: center;
+    }
+
+    .hero-actions {
+      justify-content: center;
+    }
+
+    .hero-image-panel {
+      width: 100%;
+      min-height: 300px;
+      position: relative;
+    }
+
+    .hero-champion-image {
+      position: absolute;
+    }
+
+    .stat-divider {
+      display: none;
+    }
+
+    .event-stats-strip {
+      gap: 8px;
+    }
+
+    .stat-item {
+      padding: 8px 16px;
     }
   }
 
@@ -62,7 +623,8 @@
       font-size: 36pt;
     }
 
-    .content-container h2, .cta-button-large {
+    .content-container h2,
+    .cta-button-large {
       font-size: 24pt;
     }
 
@@ -73,15 +635,21 @@
     .cta-button-large {
       height: 60px;
     }
-
-    .timer-cta-button {
-      min-width: 150px;
-    }
   }
 
   @media screen and (max-width: 550px) {
-    .content-container-column iframe, .content-container-row iframe {
+    .content-container-column iframe,
+    .content-container-row iframe {
       height: 265px;
+    }
+
+    .hero-logo {
+      width: 56px;
+      height: 56px;
+    }
+
+    .cta-button-large {
+      font-size: 18pt;
     }
   }
 }

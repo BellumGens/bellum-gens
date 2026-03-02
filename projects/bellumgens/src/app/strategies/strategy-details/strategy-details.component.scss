@@ -20,7 +20,7 @@
   }
 
   .strategy-details igx-card-media > * {
-    background-color: #000;
+    background-color: var(--ig-gray-900);
     object-fit: contain;
   }
 

@@ -6,14 +6,10 @@
   justify-content: center;
   background-image: url('/assets/bge/bge-background-right.webp');
   background-repeat: no-repeat;
-  background-color: #071365;
+  background-color: var(--ig-surface-500);
   background-position: center right;
 
   h2 {
-    font-family: 'Rajdhani', "Fira Sans Condensed", sans-serif;
-    font-size: 36pt;
-    font-weight: bold;
-    text-transform: uppercase;
     margin-top: 0;
   }
 

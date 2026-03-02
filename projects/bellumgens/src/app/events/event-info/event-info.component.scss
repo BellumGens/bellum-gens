@@ -1,18 +1,14 @@
 @use "../../../variables" as *;
 
 :host ::ng-deep {
-  @include core();
-  @include grid(
-    grid-theme(
-      $content-background: $banner-background,
-      $header-background: $background
-    )
+  $grid-custom: grid-theme(
+    $content-background: var(--ig-surface-300),
+    $header-background: var(--ig-surface-500)
   );
+  @include tokens($grid-custom);
 
-  /* Filter UI has a chip */
-  @include chip(chip-theme());
-
-  @include grid-toolbar(grid-toolbar-theme($background-color: $background));
+  $toolbar-custom: grid-toolbar-theme($background-color: var(--ig-surface-500));
+  @include tokens($toolbar-custom);
 
   /* Registrations */
   .registration-slot {

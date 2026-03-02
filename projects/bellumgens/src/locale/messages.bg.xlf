@@ -4541,6 +4541,414 @@
           <context context-type="linenumber">49,52</context>
         </context-group>
       </trans-unit>
-    </body>
+            <trans-unit id="5336894661585606222" datatype="html">
+                <source>A premier LAN event where ancient history meets world-class esports — 16 of the best StarCraft II players competing for glory and €10,000.</source>
+                <target>Премиерно LAN събитие, където древната история се среща с esports от световна класа — 16 от най-добрите StarCraft II играчи се борят за слава и €10 000.</target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+                  <context context-type="linenumber">11,12</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="5999334860671753594" datatype="html">
+                <source>€10,000 Prize Pool</source>
+                <target>€10 000 Награден фонд</target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+                  <context context-type="linenumber">13</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="520815396619748953" datatype="html">
+                <source>16 Players</source>
+                <target>16 Играча</target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+                  <context context-type="linenumber">14</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="8885548938431055381" datatype="html">
+                <source>4–7 June 2025</source>
+                <target>4–7 юни 2025</target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+                  <context context-type="linenumber">15</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="5105991103504996112" datatype="html">
+                <source>View Players</source>
+                <target>Виж играчите</target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+                  <context context-type="linenumber">20,21</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="4593436872335895837" datatype="html">
+                <source>2025 Champion</source>
+                <target>Шампион 2025</target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+                  <context context-type="linenumber">26,27</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="8921695041094295962" datatype="html">
+                <source>Prize Pool</source>
+                <target>Награден фонд</target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+                  <context context-type="linenumber">53,54</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="3739446176754569090" datatype="html">
+                <source>Main Event</source>
+                <target>Основно събитие</target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+                  <context context-type="linenumber">63,64</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="5216942087616864337" datatype="html">
+                <source>The <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Summer Theater in Stara Zagora<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> is located at the foot of the largest city park in Bulgaria. This open-air masterpiece combines nature and ancient traditions with modern architecture into a unique experience.</source>
+                <target>The <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Летен театър в Стара Загора<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> се намира в подножието на най-големия градски парк в България. Този открит шедьовър съчетава природата и древните традиции с модерната архитектура в уникално преживяване.</target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+                  <context context-type="linenumber">164,165</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="2686278515067882461" datatype="html">
+                <source>Players clash like gladiators on the open-air stage of this gorgeous theater, and you get the chance to meet your favorite pros face-to-face along the alleys of the beautiful park.</source>
+                <target>Играчите се сблъскват като гладиатори на открития сцена на този прекрасен театър, а вие имате шанс да се срещнете лице в лице с любимите си про играчи по алеите на красивия парк.</target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+                  <context context-type="linenumber">165,166</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="2663666363609066444" datatype="html">
+                <source>The city hosting this event has more than <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>8,000 years of history<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>. Ancient forums, Roman murals and mosaics, 2,000-year-old theaters, bath houses, and aqueducts — it&apos;s all beneath your feet and all around you!</source>
+                <target>Градът домакин на това събитие има повече от <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>8 000 години история<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>. Древни форуми, римски стенописи и мозайки, 2 000-годишни театри, бани и акведукти — всичко е под краката ви и около вас!</target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+                  <context context-type="linenumber">169,170</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="1882262510593998151" datatype="html">
+                <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Bellum Gens Elite Balkan<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> is a weekly online circuit that gives every Balkan player the opportunity to participate in weekly matches and earn points toward cash prizes.</source>
+                <target><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Bellum Gens Elite Balkan<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> е седмична онлайн верига, която дава на всеки балкански играч възможността да участва в седмични мачове и да натрупва точки за парични награди.</target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+                  <context context-type="linenumber">184,186</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="6481260934539937324" datatype="html">
+                <source>Online circuit started <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ &apos;2024-11-30&apos; | date: &apos;longDate&apos; }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+                <target>Онлайн веригата стартира <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ &apos;2024-11-30&apos; | date: &apos;longDate&apos; }}"/><x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+                  <context context-type="linenumber">186,187</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="4133468691967704032" datatype="html">
+                <source>Compete weekly toward <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>monthly cash prizes<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+                <target>Участвайте седмично за <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>ежемесечни парични награди<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+                  <context context-type="linenumber">188,189</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="9093258495981730316" datatype="html">
+                <source>BGE — Stara Zagora 2025</source>
+                <target>BGE — Стара Загора 2025</target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+                  <context context-type="linenumber">207,208</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="4911987879323962897" datatype="html">
+                <source>Game: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>StarCraft II<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+                <target>Игра: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>StarCraft II<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+                  <context context-type="linenumber">209,210</context>
+                </context-group>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+                  <context context-type="linenumber">227,228</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="6798225141227673565" datatype="html">
+                <source>Date: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>4–7th June 2025<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+                <target>Дата: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>4–7 юни 2025<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+                  <context context-type="linenumber">210,211</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="1971945046433074102" datatype="html">
+                <source>Prize Pool: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>€10,000<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> + 1 EWC slot</source>
+                <target>Награден фонд: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>€10 000<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> + 1 място на EWC</target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+                  <context context-type="linenumber">211,212</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="1380837019808396374" datatype="html">
+                <source>EWC Qualifier: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>ShoWTimE<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+                <target>Квалификация за EWC: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>ShoWTimE<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+                  <context context-type="linenumber">212,213</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="8759920691444590262" datatype="html">
+                <source>Champion: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Clem<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+                <target>Шампион: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Clem<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+                  <context context-type="linenumber">213,214</context>
+                </context-group>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+                  <context context-type="linenumber">232,233</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="4669876095087490612" datatype="html">
+                <source>BGE — Stara Zagora 2024</source>
+                <target>BGE — Стара Загора 2024</target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+                  <context context-type="linenumber">225,226</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="7258497818967864436" datatype="html">
+                <source>Date: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>4–8th September 2024<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+                <target>Дата: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>4–8 септември 2024<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+                  <context context-type="linenumber">228,229</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="2890286882416011617" datatype="html">
+                <source>Players: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>16<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+                <target>Играчи: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>16<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+                  <context context-type="linenumber">229,230</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="4686207990368830957" datatype="html">
+                <source>Prize Pool: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>€10,000<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+                <target>Награден фонд: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>€10 000<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+                  <context context-type="linenumber">230,231</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="6420289489038313708" datatype="html">
+                <source>Venue: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Summer Theater — Stara Zagora<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
+                <target>Място: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Летен театър — Стара Загора<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+                  <context context-type="linenumber">231,232</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="79610840571993492" datatype="html">
+                <source>BGE — Stara Zagora 2020</source>
+                <target>BGE — Стара Загора 2020</target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+                  <context context-type="linenumber">244,245</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="4048800135516160343" datatype="html">
+                <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Bellum Gens Elite — Stara Zagora 2020<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> brought the top Counter-Strike talent in the region to compete under one roof for a prize pool of $10,000!</source>
+                <target><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Bellum Gens Elite — Стара Загора 2020<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> събра най-добрите Counter-Strike таланти в региона да се надпреварват под един покрив за награден фонд от $10 000!</target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+                  <context context-type="linenumber">245,246</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="5160228428885622504" datatype="html">
+                <source>One of the few LAN events held in 2020. Despite Covid-19 travel restrictions, 10 teams competed in the LAN finals.</source>
+                <target>Едно от малкото LAN събития, проведени през 2020 г. Въпреки ограниченията за пътуване заради Covid-19, 10 отбора се надпреварваха в LAN финалите.</target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+                  <context context-type="linenumber">246,247</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="1715844071247509962" datatype="html">
+                <source>Bellum Gens offers wide exposure to sponsors and partners via digital channels and on-site during offline events.</source>
+                <target>Bellum Gens предлага широка видимост на спонсори и партньори чрез дигитални канали и на място по време на офлайн събития.</target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+                  <context context-type="linenumber">257,258</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="6144363855277174673" datatype="html">
+                <source><x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;mailto:info@bellumgens.com&quot;&gt;"/>Contact us<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> if you wish to sponsor this or any other Bellum Gens event. Our social media contacts can be found in the footer.</source>
+                <target><x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;mailto:info@bellumgens.com&quot;&gt;"/>Свържете се с нас<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> ако желаете да спонсорирате това или друго събитие на Bellum Gens. Контактите ни в социалните мрежи са в долния колонтитул.</target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+                  <context context-type="linenumber">258,259</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="7104177141976931052" datatype="html">
+                <source>Bulgarian StarCraft League</source>
+                <target>Българска StarCraft Лига</target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+                  <context context-type="linenumber">296</context>
+                </context-group>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+                  <context context-type="linenumber">297</context>
+                </context-group>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
+                  <context context-type="linenumber">141</context>
+                </context-group>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
+                  <context context-type="linenumber">142</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="2968665029315048820" datatype="html">
+                <source>Stara Zagora Municipality</source>
+                <target>Община Стара Загора</target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+                  <context context-type="linenumber">299</context>
+                </context-group>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+                  <context context-type="linenumber">300</context>
+                </context-group>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
+                  <context context-type="linenumber">144</context>
+                </context-group>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
+                  <context context-type="linenumber">145</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="5505648376206290209" datatype="html">
+                <source>Esports Business League is a gaming event for your office! Build better team bonds by friendly or competitive gaming, or get your team to compete against other companies.</source>
+                <target>Esports Business League е гейминг събитие за вашия офис! Изградете по-добри екипни връзки чрез приятелски или конкурентен гейминг, или накарайте вашия екип да се надбива с отбори от други компании.</target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
+                  <context context-type="linenumber">16,17</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="3853349505898786088" datatype="html">
+                <source>Recruit your team, manage roles, strategies, practice times and more. The only free online Counter-Strike strategy editor available to everyone!</source>
+                <target>Наберете вашия отбор, управлявайте роли, стратегии, времена за тренировки и много повече. Единственият безплатен онлайн редактор на Counter-Strike стратегии, достъпен за всички!</target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
+                  <context context-type="linenumber">26,27</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="7436996661568033362" datatype="html">
+                <source>About Bellum Gens</source>
+                <target>За Bellum Gens</target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
+                  <context context-type="linenumber">55,56</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="6372921677673118464" datatype="html">
+                <source>Bellum Gens is a gaming and esports event organizer and consultant focused on development and popularization of esports in Bulgaria. We help brands connect with gaming audiences through tournaments, streams, and digital channels. <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;mailto:info@bellumgens.com&quot;&gt;"/>Contact us<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> to learn about available opportunities.</source>
+                <target>Bellum Gens е организатор на гейминг и esports събития и консултант, фокусиран върху развитието и популяризирането на esports в България. Помагаме на брандове да се свържат с гейминг аудитории чрез турнири, стриймове и дигитални канали. <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;mailto:info@bellumgens.com&quot;&gt;"/>Свържете се с нас<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> за повече информация за наличните възможности.</target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
+                  <context context-type="linenumber">56,57</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="7578543956227710715" datatype="html">
+                <source>Organizer of the premier <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Bellum Gens Elite<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> StarCraft II LAN event — top players from around the world competing for a <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>€10,000<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> prize pool at the Summer Theater in Stara Zagora.</source>
+                <target>Организатор на премиер <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Bellum Gens Elite<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> LAN събитие по StarCraft II — топ играчи от целия свят се борят за <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>€10 000<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> награден фонд на Летен театър в Стара Загора.</target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
+                  <context context-type="linenumber">66,67</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="2690119124558896720" datatype="html">
+                <source>Team Building &amp; Gaming</source>
+                <target>Изграждане на екип &amp; гейминг</target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
+                  <context context-type="linenumber">74,75</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="526332915777904914" datatype="html">
+                <source>Organizer of the <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Esports Business League<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> — a competitive gaming event for the office. Multiple companies competed across seasons for fun, team building, and bragging rights!</source>
+                <target>Организатор на <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Esports Business League<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> — конкурентно гейминг събитие за офиса. Множество компании се надпреварваха в различни сезони за забавление, екипен дух и право на похвала!</target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
+                  <context context-type="linenumber">75,76</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="8993625035612590666" datatype="html">
+                <source>A Counter-Strike team finder and management platform — find teams matching your skill, manage rosters, strategies, and schedules. Because Counter-Strike is a team game!</source>
+                <target>Платформа за намиране и управление на Counter-Strike отбори — намерете отбори, подходящи за вашето ниво, управлявайте съставите, стратегиите и графиците. Защото Counter-Strike е отборна игра!</target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
+                  <context context-type="linenumber">84,85</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="8790918354594417962" datatype="html">
+                <source>Facebook</source>
+                <target>Facebook</target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
+                  <context context-type="linenumber">160,161</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="1715373473261069991" datatype="html">
+                <source>Twitter</source>
+                <target>Twitter</target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
+                  <context context-type="linenumber">164,165</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="3080109816219994129" datatype="html">
+                <source>Instagram</source>
+                <target>Instagram</target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
+                  <context context-type="linenumber">168,169</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="8401085193044135025" datatype="html">
+                <source>YouTube</source>
+                <target>YouTube</target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
+                  <context context-type="linenumber">172,173</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="4440081753597585133" datatype="html">
+                <source>LinkedIn</source>
+                <target>LinkedIn</target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
+                  <context context-type="linenumber">176,177</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="3400027835914346369" datatype="html">
+                <source>Discord</source>
+                <target>Discord</target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
+                  <context context-type="linenumber">180,181</context>
+                </context-group>
+              </trans-unit>
+        <trans-unit id="2044436736853242257" datatype="html">
+                <source>Twitch</source>
+                <target>Twitch</target>
+                <context-group purpose="location">
+                  <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
+                  <context context-type="linenumber">184,185</context>
+                </context-group>
+              </trans-unit>
+</body>
   </file>
 </xliff>
