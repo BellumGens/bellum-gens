@@ -1,23 +1,25 @@
 import { DatePipe, NgOptimizedImage } from '@angular/common';
 import { Component, LOCALE_ID, inject } from '@angular/core';
-import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
 import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
 import { IgxButtonDirective, IgxDividerDirective } from '@infragistics/igniteui-angular/directives';
+import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { BaseDirective } from '../base/base.component';
 import { RouterLink } from '@angular/router';
 import { CountrySVGPipe } from '../../../../common/src/lib/pipes/country-svg.pipe';
+import { Sc2RaceThumbPipe } from '../../../../common/src/lib/pipes/sc2-race-thumb.pipe';
 import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-events',
   imports: [
     IgxDividerDirective,
-    IGX_CARD_DIRECTIVES,
     IgxAvatarComponent,
     IgxButtonDirective,
+    IgxIconComponent,
     DatePipe,
     NgOptimizedImage,
     CountrySVGPipe,
+    Sc2RaceThumbPipe,
     RouterLink
   ],
   templateUrl: './events.component.html',

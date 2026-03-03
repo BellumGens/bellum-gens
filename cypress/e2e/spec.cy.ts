@@ -21,7 +21,7 @@ describe('Bellum Gens E2E Tests', () => {
     cy.contains('h1', /Bellum Gens Elite Stara Zagora 2026/i)
     // Verify the email input is disabled
     cy.get('input#email').should('be.disabled')
-    // Verify the form shows a message that user needs to be logged in
-    cy.contains(/You need to be logged in/i)
+    // Verify the form shows a message that the signup deadline has passed
+    cy.contains(/Signup deadline has passed/i)
   })
 })
