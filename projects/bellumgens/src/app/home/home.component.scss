@@ -4,35 +4,39 @@
     width: 100%;
     height: 450px;
     align-items: center;
+    overflow: hidden;
   }
 
   .slide-info {
-    width: 80%;
-    min-width: 380px;
-    padding: 16px;
-    vertical-align: middle;
+    width: min(680px, calc(100% - 48px));
+    padding: 24px 32px;
     margin: auto;
-  }
+    // --ig-surface-500 = dark navy — correct dark overlay against bright imagery.
+    // --ig-gray-900 is near-white in this dark palette (high-contrast foreground).
+    background: hsl(from var(--ig-surface-500) h s l / 0.88);
+    border-radius: 10px;
+    border: 1px solid hsl(from var(--ig-gray-900) h s l / 0.12);
 
-  // .slide-info h2 {
-  //   margin: 0;
-  // }
+    // Scoped h1 override: MCP create_typography recommended 64px / lh 1.1 so that
+    // a 3-line title (3 × 70px ≈ 211px) + body + button fit inside the 450px slide.
+    h1 {
+      font-size: 64px;
+      line-height: 1.1;
+      margin: 0;
+    }
 
-  // .slide-info h4 {
-  //   font-size: 1.75rem;
-  //   margin: 0;
-  // }
-
-  // .slide-info p {
-  //   margin: 16px 0 16px 0;
-  // }
-
-  .nav-button {
-    width: 250px;
+    // Compact the body-1 type-scale margins (normally margin-top: 1.75rem from
+    // $my-type-scale) to prevent overflow inside the constrained slide height.
+    p {
+      margin: 8px 0 12px;
+      line-height: 1.6;
+      color: var(--ig-gray-900);
+      opacity: 0.9;
+    }
   }
 
   .carousel {
-    --igx-carousel-button-background: transparent;
+    --ig-carousel-button-background: transparent;
     height: 450px;
   }
 
@@ -54,11 +58,6 @@
     background-position-y: -100px;
   }
 
-  // .slide3 {
-  //   background-image: url('/assets/wallpapers/carousel_image_1.webp');
-  //   background-position: center;
-  // }
-
   .event-icon {
     width: 88px;
     height: 88px;
@@ -68,11 +67,130 @@
     margin: 6px;
   }
 
+  // About section
+  .about-section {
+    padding: 8px 0;
+
+    .about-text {
+      max-width: 800px;
+      text-align: center;
+      opacity: 0.9;
+    }
+  }
+
+  // Feature cards grid
+  .feature-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    width: 100%;
+  }
+
+  .feature-card {
+    display: flex;
+    flex-direction: column;
+    border-radius: 8px;
+    overflow: hidden;
+    background: hsl(from var(--ig-gray-50) h s l / 0.04);
+    border: 1px solid hsl(from var(--ig-gray-50) h s l / 0.08);
+    transition: box-shadow 0.2s ease;
+
+    &:hover {
+      box-shadow: 0 8px 32px hsl(from var(--ig-gray-900) h s l / 0.5);
+    }
+  }
+
+  .feature-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+    margin: 0 !important;
+  }
+
+  .feature-card-body {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 12px;
+    flex: 1;
+
+    h3 {
+      margin: 0;
+    }
+
+    p {
+      flex: 1;
+      margin: 0;
+      opacity: 0.9;
+    }
+  }
+
+  .feature-btn {
+    align-self: flex-start;
+    margin-top: auto;
+  }
+
+  // Partners tiers
+  .partners-tier {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 32px;
+    width: 100%;
+    padding: 16px 0;
+
+    &.gold-tier {
+      border-top: 1px solid hsl(from var(--ig-gray-50) h s l / 0.1);
+      border-bottom: 1px solid hsl(from var(--ig-gray-50) h s l / 0.1);
+      margin: 8px 0;
+    }
+  }
+
+  // Social grid
+  .social-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+
+  .social-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 16px;
+    border-radius: 8px;
+    border: 1px solid hsl(from var(--ig-gray-50) h s l / 0.1);
+    transition: background 0.2s ease;
+    min-width: 80px;
+    text-align: center;
+    color: var(--ig-surface-500-contrast);
+
+    img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+    }
+
+    span {
+      font-size: 0.75rem;
+      opacity: 0.8;
+    }
+
+    &:hover {
+      background: hsl(from var(--ig-gray-50) h s l / 0.08);
+    }
+  }
+
   @media only screen and (min-width: 2000px) {
     .slide0 {
       background-position-y: -500px;
     }
-    .slide2, .slide3 {
+    .slide2 {
       background-position-y: -115px;
     }
   }
@@ -81,26 +199,34 @@
     .slide0 {
       background-position-y: 0px;
       background-position-x: 0px;
-      background-color: rgba($color: #000000, $alpha: 0.5);
+      background-color: hsl(from var(--ig-surface-500) h s l / 0.5);
     }
     .slide2 {
       background-size: auto;
       background-position: center;
       background-position-y: -100px;
     }
+
+    .feature-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
   }
 
   @media only screen and (max-width: 820px) {
     .slide-info h1 {
-      font-size: 52px;
+      font-size: 48px;
       margin: 0;
+    }
+
+    .feature-grid {
+      grid-template-columns: 1fr;
     }
   }
 
   @media only screen and (max-width: 550px) {
     .slide-info h1 {
-      font-size: 30px;
-      line-height: normal;
+      font-size: 28px;
+      line-height: 1.15;
     }
 
     .event-icon {

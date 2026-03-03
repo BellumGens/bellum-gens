@@ -5,7 +5,7 @@
 html, body {
   height: 100%;
   min-width: 380px;
-  background-color: $background;
+  background-color: var(--ig-surface-500);
   color: var(--ig-surface-500-contrast);
 }
 
@@ -67,11 +67,11 @@ html, body {
 
 a {
   text-decoration: none;
-  color: $secondary;
+  color: var(--ig-secondary-500);
 }
 
 .highlight {
-  color: $secondary;
+  color: var(--ig-secondary-500);
   font-weight: 600;
 }
 
@@ -154,7 +154,7 @@ textarea {
 }
 
 .overlay-background {
-  background-color: rgba($color: #000, $alpha: 0.75);
+  background-color: hsl(from var(--ig-gray-900) h s l / 0.75);
 }
 
 .drawer-action {
@@ -174,7 +174,7 @@ textarea {
   width: 60%;
   margin: auto;
   padding: 0 16px;
-  color: $primary;
+  color: var(--ig-primary-500);
 }
 /* END Loading */
 
@@ -269,7 +269,7 @@ textarea {
 }
 
   .contacts igx-icon {
-    --igx-icon-size: 64px;
+    --ig-icon-size: 64px;
     color: white;
   }
 

@@ -1,18 +1,19 @@
-@use "../../../variables" as *;
+@use "@infragistics/igniteui-angular/theming" as *;
 
 :host ::ng-deep {
   @include core();
   @include grid(
     grid-theme(
-      $content-background: $banner-background,
-      $header-background: $background
+      $schema: $dark-material-schema,
+      $content-background: var(--ig-surface-300),
+      $header-background: var(--ig-surface-500)
     )
   );
 
-  /* Filter UI has a chip */
-  @include chip(chip-theme());
-
-  @include grid-toolbar(grid-toolbar-theme($background-color: $background));
+  @include grid-toolbar(grid-toolbar-theme(
+    $schema: $dark-material-schema,
+    $background-color: var(--ig-surface-500)
+  ));
 
   /* Registrations */
   .registration-slot {

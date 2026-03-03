@@ -52,6 +52,7 @@ describe('EliteStz2026Component', () => {
 
   it('should enable form controls when user logs in', () => {
     const user: ApplicationUser = { email: 'test@example.com', id: '123', username: 'testuser' } as ApplicationUser;
+    component.signupDeadline = '2030-01-01T00:00:00Z';
     authUserSubject.next(user);
 
     expect(component.form.get('email')?.disabled).toBe(false);
@@ -105,6 +106,7 @@ describe('EliteStz2026Component', () => {
   describe('submit', () => {
     beforeEach(() => {
       const user: ApplicationUser = { email: 'test@example.com', id: '123', username: 'testuser' } as ApplicationUser;
+      component.signupDeadline = '2030-01-01T00:00:00Z';
       authUserSubject.next(user);
       component.form.patchValue({ email: 'test@example.com', firstTime: true, agreePrivacy: true });
     });
