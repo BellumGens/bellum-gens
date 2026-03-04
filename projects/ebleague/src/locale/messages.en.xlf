@@ -71,7 +71,7 @@
         <source>Don&apos;t have an account?</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/login-dialog/login-dialog.component.html</context>
-          <context context-type="linenumber">28,30</context>
+          <context context-type="linenumber">28,29</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6542676228301148432" datatype="html">
@@ -122,6 +122,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
           <context context-type="linenumber">13,14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
+          <context context-type="linenumber">117,118</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7259863416324481753" datatype="html">
@@ -251,6 +255,10 @@
           <context context-type="linenumber">36,37</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
+          <context context-type="linenumber">106,107</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
           <context context-type="linenumber">50,51</context>
         </context-group>
@@ -283,8 +291,16 @@
           <context context-type="linenumber">16,17</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/orderform/orderform.component.html</context>
+          <context context-type="linenumber">95,96</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
           <context context-type="linenumber">20</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
+          <context context-type="linenumber">88</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
@@ -292,11 +308,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">397,398</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/shop/shop.component.html</context>
-          <context context-type="linenumber">115,116</context>
+          <context context-type="linenumber">343,344</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3377733257357816211" datatype="html">
@@ -325,6 +337,122 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/registration/registration.component.html</context>
           <context context-type="linenumber">64,65</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3804037606764273869" datatype="html">
+        <source>Cut</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/orderform/orderform.component.html</context>
+          <context context-type="linenumber">7,8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="45739481977493163" datatype="html">
+        <source>Size</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/orderform/orderform.component.html</context>
+          <context context-type="linenumber">15,16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4320496146171823526" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{order.orderProducts.length}}"/> x <x id="INTERPOLATION_1" equiv-text="{{basePrice}}"/> BGN = <x id="INTERPOLATION_2" equiv-text="{{ order.orderProducts.length * basePrice }}"/> BGN</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/orderform/orderform.component.html</context>
+          <context context-type="linenumber">30,32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1943153960391120303" datatype="html">
+        <source>Promo code</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/orderform/orderform.component.html</context>
+          <context context-type="linenumber">33,34</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
+          <context context-type="linenumber">104,105</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3438893904854626784" datatype="html">
+        <source>Promo code is invalid...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/orderform/orderform.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2335951072585495896" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{ promo * 100 }}"/>% off = -<x id="INTERPOLATION_1" equiv-text="{{ (order.orderProducts.length * basePrice) * promo }}"/> BGN</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/orderform/orderform.component.html</context>
+          <context context-type="linenumber">50,52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3329104600473653078" datatype="html">
+        <source>Free shipping</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/orderform/orderform.component.html</context>
+          <context context-type="linenumber">53,54</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3743739810451209476" datatype="html">
+        <source>Total = <x id="INTERPOLATION" equiv-text="{{ (order.orderProducts.length * basePrice) * (1 - promo) }}"/> BGN</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/orderform/orderform.component.html</context>
+          <context context-type="linenumber">56,57</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="515880391246540742" datatype="html">
+        <source>Add one more</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/orderform/orderform.component.html</context>
+          <context context-type="linenumber">63,64</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5342432350421167093" datatype="html">
+        <source>First name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/orderform/orderform.component.html</context>
+          <context context-type="linenumber">69,70</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3586674587150281199" datatype="html">
+        <source>Last name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/orderform/orderform.component.html</context>
+          <context context-type="linenumber">82,83</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2314075913167237221" datatype="html">
+        <source>City</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/orderform/orderform.component.html</context>
+          <context context-type="linenumber">132,133</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1847047605496409443" datatype="html">
+        <source>Street</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/orderform/orderform.component.html</context>
+          <context context-type="linenumber">145,146</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="220550782947016929" datatype="html">
+        <source>Order</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/orderform/orderform.component.html</context>
+          <context context-type="linenumber">159,160</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8012344910054029733" datatype="html">
+        <source>Male</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/orderform/orderform.component.ts</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5667840900782067941" datatype="html">
+        <source>Female</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/orderform/orderform.component.ts</context>
+          <context context-type="linenumber">42</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7381827970983494105" datatype="html">
@@ -671,15 +799,15 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">189,190</context>
+          <context context-type="linenumber">191,192</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">235,236</context>
+          <context context-type="linenumber">237,238</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">252,253</context>
+          <context context-type="linenumber">254,255</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
@@ -702,11 +830,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">183,184</context>
+          <context context-type="linenumber">185,186</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">228,229</context>
+          <context context-type="linenumber">230,231</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
@@ -775,11 +903,11 @@
         <source>Results</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-csgo/admin-csgo.component.html</context>
-          <context context-type="linenumber">327</context>
+          <context context-type="linenumber">326,327</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
-          <context context-type="linenumber">441</context>
+          <context context-type="linenumber">440,441</context>
         </context-group>
       </trans-unit>
       <trans-unit id="464323669973961848" datatype="html">
@@ -889,90 +1017,132 @@
         <source>League</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">33</context>
+          <context context-type="linenumber">32,33</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
-          <context context-type="linenumber">47</context>
+          <context context-type="linenumber">46,47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6575195871133210332" datatype="html">
+        <source>Orders</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
+          <context context-type="linenumber">82</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2575666423611576469" datatype="html">
+        <source>Order date</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
+          <context context-type="linenumber">85,86</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8301535046747035390" datatype="html">
+        <source>Full name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
+          <context context-type="linenumber">89,90</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="665546201925711079" datatype="html">
+        <source>Phone #</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
+          <context context-type="linenumber">94,95</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2148144896238147595" datatype="html">
+        <source>Full address</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
+          <context context-type="linenumber">99,100</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4135157573284610192" datatype="html">
+        <source>Shipped</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
+          <context context-type="linenumber">109,110</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9198937618936305417" datatype="html">
         <source>Tournaments and Roles</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">144,145</context>
+          <context context-type="linenumber">146,147</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8861872920583414435" datatype="html">
         <source>Tournament name</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">156,157</context>
+          <context context-type="linenumber">158,159</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">198,199</context>
+          <context context-type="linenumber">200,201</context>
         </context-group>
       </trans-unit>
       <trans-unit id="895170020706004881" datatype="html">
         <source>Tournament logo</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">165,166</context>
+          <context context-type="linenumber">167,168</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">208,209</context>
+          <context context-type="linenumber">210,211</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4894998749712021347" datatype="html">
         <source>Tournament description</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">174,175</context>
+          <context context-type="linenumber">176,177</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">218,219</context>
+          <context context-type="linenumber">220,221</context>
         </context-group>
       </trans-unit>
       <trans-unit id="126074860850048964" datatype="html">
         <source>End date</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">186,187</context>
+          <context context-type="linenumber">188,189</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">232,233</context>
+          <context context-type="linenumber">234,235</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8204176479746810612" datatype="html">
         <source>Active</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">188</context>
+          <context context-type="linenumber">190</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1280523270210192718" datatype="html">
         <source>New Tournament</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">196,197</context>
+          <context context-type="linenumber">198,199</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6009437916867942799" datatype="html">
         <source>No Roles Defined</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">245</context>
+          <context context-type="linenumber">247</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7756297752217979839" datatype="html">
         <source>New role</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">249,250</context>
+          <context context-type="linenumber">251,252</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2671237193001897863" datatype="html">
@@ -1157,7 +1327,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">190,191</context>
+          <context context-type="linenumber">145,146</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3933266700834385010" datatype="html">
@@ -1194,7 +1364,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">393,394</context>
+          <context context-type="linenumber">339,340</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9063698480688555645" datatype="html">
@@ -1212,7 +1382,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">82</context>
+          <context context-type="linenumber">54</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2296994854636737106" datatype="html">
@@ -1223,7 +1393,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">85</context>
+          <context context-type="linenumber">58</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5303831169234339262" datatype="html">
@@ -1234,7 +1404,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">88</context>
+          <context context-type="linenumber">62</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5728193055695832804" datatype="html">
@@ -1245,7 +1415,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">91</context>
+          <context context-type="linenumber">66</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6509103536762295146" datatype="html">
@@ -1256,7 +1426,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">94</context>
+          <context context-type="linenumber">70</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8172743349871739865" datatype="html">
@@ -1267,11 +1437,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">72</context>
+          <context context-type="linenumber">26</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">97</context>
+          <context context-type="linenumber">74</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2809790251364949499" datatype="html">
@@ -1282,7 +1452,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">100</context>
+          <context context-type="linenumber">78</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2481407899351142299" datatype="html">
@@ -1296,386 +1466,467 @@
         <source>Covid-19 changed the way teams in your company bond. Esports Business League is a team building charity esports event, where your company team can compete against teams from other companies. Participants in the Esports Business League so far include companies like VMware, DXC, SAP, Experian, TELUS, Modis, HP, Infragistics, Chaos Group and many more!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">4,6</context>
+          <context context-type="linenumber">4,5</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3133721765999570339" datatype="html">
         <source>Learn more...</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">13,14</context>
+          <context context-type="linenumber">5,6</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7861648815471048304" datatype="html">
         <source>What is Esports Business League?</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">64,65</context>
+          <context context-type="linenumber">25,26</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5788038965320075531" datatype="html">
         <source>Esports Business League is a charity esports event, which provides working gamers with an arena for competition between individuals and teams from different companies. Each season of the league is 4-8 weeks in length. Matches take place on week days after working hours Monday-Thursday. The league culminates with finals where the teams and players who have accumulated the most points during the season meet. All league matches are being broadcasted live on our <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://www.twitch.tv/ebleague_a&quot; i18n-title title=&quot;Follow us on Twitch&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>Twitch<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> channels.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">72,74</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="5482409466013880056" datatype="html">
-        <source>Follow us for updates</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">77,78</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="5820285117373829731" datatype="html">
-        <source>We&apos;re fully open source</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">108,109</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="1438137049644980631" datatype="html">
-        <source>Submit an Issue</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">112,113</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="5270160571927636118" datatype="html">
-        <source>Tweet to us</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">116,117</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="3012262639715240901" datatype="html">
-        <source>Sponsor us on GitHub</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">120,121</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2637040957358356533" datatype="html">
-        <source>Terms and conditions</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">127,128</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="617953678346886396" datatype="html">
-        <source>All team members must be <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>current employees of the company associated with the team registration, should not have any active engagement or affiliation with a professional esports organization, and haven&apos;t participated in professional esports matches as players in the past 24 months from the date of registration<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>. The team is allowed to have standins/substitute players and they have to comply with the same conditions as the main players on the team. Substitutes can be added to the team post registration, as long as they comply with the aforementioned conditions. Individual players (StarCraft II) must be <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>current employees of the company associated with their registration<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>. The company represented by the team/individual must be provided at the time of registration.</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">131,132</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2922874844697335241" datatype="html">
-        <source>Registrations are open until the deadline is reached, or until all open slots have been filled (16 Counter-Strike teams, 32 StarCraft II players). Successful registration completion requires registration fee payment - 300 BGN per team or 60 BGN per individual competitor. Registration fee payment is done with a bank transfer after the registration form has been submitted. <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>All registration fees are being added to the prize pool fund. At the end of the season the prize pool will be donated to a charitable cause chosen by the winners!<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">132,134</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="3687194426938367329" datatype="html">
-        <source>Partners</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">152,153</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="7804787070138486075" datatype="html">
-        <source>BPro Gaming is the first professional esports club in Bulgaria. During the past 4 years BPro has developed a number of professional players, team and infrastructure.</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">179</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">180</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2780399049578026894" datatype="html">
-        <source>BSL a one of a kind StarCraft II league in Bulgaria and are contributing to the deveopment of Bulgarian talent in this esport! All StarCraft 2 games in the Esports Business League will be casted by the them!</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">182</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">183</context>
+          <context context-type="linenumber">26,27</context>
         </context-group>
       </trans-unit>
       <trans-unit id="602616889153572890" datatype="html">
         <source>Counter-Strike League</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">194,195</context>
+          <context context-type="linenumber">34,35</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">227,228</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="7965299943188421659" datatype="html">
-        <source>3-7 weeks</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">196,197</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">210,211</context>
+          <context context-type="linenumber">149,150</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4832895653791100728" datatype="html">
-        <source>2 groups with up to 8 teams each</source>
+      <trans-unit id="6564548865407442665" datatype="html">
+        <source>Groups of up to 8 teams competing in a round-robin format across 3-7 weeks. Matches on weekday evenings, capped off by a grand finals weekend. All matches are streamed live!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">197,198</context>
+          <context context-type="linenumber">35,36</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4536502687229159790" datatype="html">
-        <source>1-2 matches per team per week</source>
+      <trans-unit id="723251513816909868" datatype="html">
+        <source>View Results</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">198,199</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="4535299792161849107" datatype="html">
-        <source>Matches are in BO1 or BO3 format</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">199,200</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6963678079688528756" datatype="html">
-        <source>Round robin format</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">200,201</context>
+          <context context-type="linenumber">36,37</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">214,215</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2372533938893433338" datatype="html">
-        <source>Each team earns points weekly</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">201,202</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2138963456376827752" datatype="html">
-        <source>Finals weekend with the 4 best teams from the group stage</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">202,203</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="7238551743296008452" datatype="html">
-        <source>Full information about the format can be found <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/format&quot;&gt;"/>here<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">203,204</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">217,218</context>
+          <context context-type="linenumber">44,45</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8126795906002262534" datatype="html">
         <source>StarCraft II League</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">208,209</context>
+          <context context-type="linenumber">42,43</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">233,234</context>
+          <context context-type="linenumber">164,165</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8299603162260914749" datatype="html">
+        <source>Groups of up to 8 players competing in a round-robin format across 3-7 weeks. Matches on weekday evenings, capped off by a grand finals weekend. All matches are streamed live!</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">43,44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5482409466013880056" datatype="html">
+        <source>Follow us for updates</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">52,53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8790918354594417962" datatype="html">
+        <source>Facebook</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">56,57</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1715373473261069991" datatype="html">
+        <source>Twitter</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">60,61</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3080109816219994129" datatype="html">
+        <source>Instagram</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">64,65</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4440081753597585133" datatype="html">
+        <source>LinkedIn</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">68,69</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8401085193044135025" datatype="html">
+        <source>YouTube</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">72,73</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2044436736853242257" datatype="html">
+        <source>Twitch</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">76,77</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3400027835914346369" datatype="html">
+        <source>Discord</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">80,81</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5820285117373829731" datatype="html">
+        <source>We&apos;re fully open source</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">87,88</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1438137049644980631" datatype="html">
+        <source>Submit an Issue</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">91,92</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5270160571927636118" datatype="html">
+        <source>Tweet to us</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">95,96</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3012262639715240901" datatype="html">
+        <source>Sponsor us on GitHub</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">99,100</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2637040957358356533" datatype="html">
+        <source>Terms and conditions</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">107,108</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8432298517635441247" datatype="html">
+        <source><x id="START_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;igx-icon class=&quot;terms-icon&quot;&gt;"/>group<x id="CLOSE_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;/igx-icon&gt;"/> Team eligibility</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">110,111</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4870826257516930129" datatype="html">
+        <source>All team members must be <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>current employees<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> of the registered company, with no active professional esports affiliation and no professional matches in the past <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>24 months<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>. Standins must meet the same conditions.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">111,112</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6267977753587498128" datatype="html">
+        <source><x id="START_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;igx-icon class=&quot;terms-icon&quot;&gt;"/>person<x id="CLOSE_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;/igx-icon&gt;"/> Individual players (SC2)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">114,115</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3500503727979600518" datatype="html">
+        <source>StarCraft II competitors must be <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>current employees<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> of their registered company. Substitutes may be added post-registration under the same eligibility conditions.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">115,116</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7125724961098345297" datatype="html">
+        <source><x id="START_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;igx-icon class=&quot;terms-icon&quot;&gt;"/>payments<x id="CLOSE_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;/igx-icon&gt;"/> Registration fee</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">118,119</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8097960375631755973" datatype="html">
+        <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>300 BGN<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> per Counter-Strike team · <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>60 BGN<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> per StarCraft II player. Paid via bank transfer after form submission. Limited to 16 teams / 32 players.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">119,120</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7120425338819708986" datatype="html">
+        <source><x id="START_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;igx-icon class=&quot;terms-icon&quot;&gt;"/>volunteer_activism<x id="CLOSE_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;/igx-icon&gt;"/> Prize pool &amp; charity</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">122,123</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3422727798653108393" datatype="html">
+        <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>All registration fees form the prize pool<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>, which is fully donated to a charitable cause <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>chosen by the winners<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> at the end of each season.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">123,124</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3687194426938367329" datatype="html">
+        <source>Partners</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">131,132</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7804787070138486075" datatype="html">
+        <source>BPro Gaming is the first professional esports club in Bulgaria. During the past 4 years BPro has developed a number of professional players, team and infrastructure.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">133</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">134</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2780399049578026894" datatype="html">
+        <source>BSL a one of a kind StarCraft II league in Bulgaria and are contributing to the deveopment of Bulgarian talent in this esport! All StarCraft 2 games in the Esports Business League will be casted by the them!</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">136</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">137</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7965299943188421659" datatype="html">
+        <source>3-7 weeks</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">152,153</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">167,168</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4832895653791100728" datatype="html">
+        <source>2 groups with up to 8 teams each</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">153,154</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4536502687229159790" datatype="html">
+        <source>1-2 matches per team per week</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">154,155</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4535299792161849107" datatype="html">
+        <source>Matches are in BO1 or BO3 format</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">155,156</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6963678079688528756" datatype="html">
+        <source>Round robin format</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">156,157</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">171,172</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2372533938893433338" datatype="html">
+        <source>Each team earns points weekly</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">157,158</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2138963456376827752" datatype="html">
+        <source>Finals weekend with the 4 best teams from the group stage</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">158,159</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7238551743296008452" datatype="html">
+        <source>Full information about the format can be found <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/format&quot;&gt;"/>here<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">159,160</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">174,175</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6358691247464697458" datatype="html">
         <source>4 groups with up to 8 players each</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">211,212</context>
+          <context context-type="linenumber">168,169</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8180216739344428729" datatype="html">
         <source>1-2 matches per player per week</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">212,213</context>
+          <context context-type="linenumber">169,170</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1673417064738260440" datatype="html">
         <source>Matches are in BO3 format</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">213,214</context>
+          <context context-type="linenumber">170,171</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7460326809874175697" datatype="html">
         <source>Each player earns points weekly</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">215,216</context>
+          <context context-type="linenumber">172,173</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7423735566374556688" datatype="html">
         <source>Finals weekend with the 8 best players from the group stage</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">216,217</context>
+          <context context-type="linenumber">173,174</context>
         </context-group>
       </trans-unit>
       <trans-unit id="383368278746852722" datatype="html">
         <source>Prizes</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">223,224</context>
+          <context context-type="linenumber">183,184</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="594609801242261195" datatype="html">
-        <source>The winning team in the Counter-Strike league will appropriate 75% of the prize pool towards their choice of a charitable cause.</source>
+      <trans-unit id="8641536843478789441" datatype="html">
+        <source>🥇 1st Place — 75%</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">228,229</context>
+          <context context-type="linenumber">186</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6854501934643018835" datatype="html">
-        <source>The runner-up team in the Counter-Strike league will appropriate 25% of the prize pool towards their choice of a charitable cause.</source>
+      <trans-unit id="4527426330244681546" datatype="html">
+        <source>The winning team/player will appropriate <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>75%<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> of the prize pool towards their choice of a charitable cause.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">229,230</context>
+          <context context-type="linenumber">187,188</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7733003546813499165" datatype="html">
-        <source>The winner in the StarCraft II league will appropriate 75% of the prize pool towards their choice of a charitable cause.</source>
+      <trans-unit id="782591578946281816" datatype="html">
+        <source>🥈 2nd Place — 25%</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">234,235</context>
+          <context context-type="linenumber">190</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2083736820711626256" datatype="html">
-        <source>The runner-up in the StarCraft II league will appropriate 25% of the prize pool towards their choice of a charitable cause.</source>
+      <trans-unit id="1067569314715495182" datatype="html">
+        <source>The runner-up will appropriate <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>25%<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> of the prize pool towards their choice of a charitable cause.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">235,236</context>
+          <context context-type="linenumber">191,192</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6774181056711321209" datatype="html">
         <source>Season 2</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">240,241</context>
+          <context context-type="linenumber">199,200</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5310455169638148184" datatype="html">
-        <source>Esports Business League Season 2 concluded on November 8th with grand finals in both StarCraft II and Counter-Strike! In the StarCraft II final SuGaRBuNNy [Nuvei] and IlPrincipino [UltraPlay] battled it out in a very compatitive BO5 where all 5 maps were played and the winner was <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://bellumgens.com/players/76561198061226037&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>SuGaRBuNNy [Nuvei]<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>. This makes him a reigning, defending champion in the StarCraft II category. The Counter-Strike final was between Plan-B [Modis] and 3nIGm4 [Infragistics]. The team from Modis <x id="START_LINK_1" equiv-text="&lt;a href=&quot;https://bellumgens.com/team/Plan-B/details&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>Plan-B<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> managed to win both maps. They got a relatively easy win on their map pick and the boys from Plan-B managed to take Infragistics 3nIGm4&apos;s map pick in overtime.</source>
+      <trans-unit id="6332127443728593658" datatype="html">
+        <source>Season 2 concluded on November 8th with grand finals in both StarCraft II and Counter-Strike. <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://bellumgens.com/players/76561198061226037&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>SuGaRBuNNy [Nuvei]<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> claimed the SC2 title after a nail-biting BO5, while <x id="START_LINK_1" equiv-text="&lt;a href=&quot;https://bellumgens.com/team/Plan-B/details&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>Plan-B [Modis]<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> swept both maps to take the CS:GO crown.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">241,243</context>
+          <context context-type="linenumber">200,201</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2105541012628263915" datatype="html">
-        <source>Champion</source>
+      <trans-unit id="504929498126302225" datatype="html">
+        <source>Counter-Strike</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">246,247</context>
+          <context context-type="linenumber">203,204</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">286,288</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">321,322</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">361,363</context>
+          <context context-type="linenumber">272,273</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1121846399202257714" datatype="html">
-        <source>Runner-up</source>
+      <trans-unit id="7642068151620286978" datatype="html">
+        <source>StarCraft II</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">255,256</context>
+          <context context-type="linenumber">234,235</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">293,294</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">330,331</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">368,369</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="991269843248241261" datatype="html">
-        <source>3rd-4th Place</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">264,265</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">299,300</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">339,340</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">374,375</context>
+          <context context-type="linenumber">303,304</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2933924260886600655" datatype="html">
         <source>Season 1</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">315,316</context>
+          <context context-type="linenumber">268,269</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4868222366087913394" datatype="html">
-        <source>Esports Business League Season 1 ended on April 12 with grand finals in StarCraft II and Counter-Strike! In the StarCraft II grand final t0ssboy [HP] faced SuGaRBuNNy [C3I] and after a very competitive BO5 <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://bellumgens.com/players/76561198061226037&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>SuGaRBuNNy [C3I]<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> emerged victorious. In the Counter-Strike grand final Bpro Veterans met DXC. After 3 heart-stopping maps <x id="START_LINK_1" equiv-text="&lt;a href=&quot;https://bellumgens.com/team/BPro-Veterans/details&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>Bpro Veterans<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> managed to take the victory.</source>
+      <trans-unit id="2083877499157947490" datatype="html">
+        <source>Season 1 ended on April 12 with grand finals in both StarCraft II and Counter-Strike. <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://bellumgens.com/players/76561198061226037&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>SuGaRBuNNy [C3I]<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> won a competitive BO5 to claim the SC2 title, while <x id="START_LINK_1" equiv-text="&lt;a href=&quot;https://bellumgens.com/team/BPro-Veterans/details&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>Bpro Veterans<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> triumphed in a 3-map thriller over DXC.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">316,318</context>
+          <context context-type="linenumber">269,270</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2501489806101473286" datatype="html">
         <source>About us</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">390,391</context>
+          <context context-type="linenumber">337,338</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4882904217612304370" datatype="html">
-        <source>Esports Business League is organized by Bellum Gens - organization focused on the development and popularization of esports in Bulgaria and on the Balkans. We want to make esports a recognizable topic for the business and thus to help the development of all esports projects in Bulgaria and on the Balkans.</source>
+      <trans-unit id="5547360100576742750" datatype="html">
+        <source>Esports Business League is organized by <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Bellum Gens<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> — an organization focused on the development and popularization of esports in Bulgaria and on the Balkans. We want to make esports a recognizable topic for the business community and help all esports projects in the region grow.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">391,393</context>
+          <context context-type="linenumber">338,339</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3413422463415844699" datatype="html">
         <source>Get email updates from us!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">407</context>
+          <context context-type="linenumber">353</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1144407473317535723" datatype="html">
         <source>Subscribe</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">410,411</context>
+          <context context-type="linenumber">355,356</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7217256634311753646" datatype="html">
@@ -1710,119 +1961,7 @@
         <source>Price <x id="START_TAG_DEL" ctype="x-del" equiv-text="&lt;del&gt;"/><x id="INTERPOLATION" equiv-text="{{basePrice}}"/> BGN<x id="CLOSE_TAG_DEL" ctype="x-del" equiv-text="&lt;/del&gt;"/> <x id="START_BLOCK_IF" equiv-text="@if (basePromo) {"/><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION_1" equiv-text="{{ basePrice - basePrice * basePromo }}"/> BGN<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/><x id="CLOSE_BLOCK_IF" equiv-text="}"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/shop/shop.component.html</context>
-          <context context-type="linenumber">12,17</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="3804037606764273869" datatype="html">
-        <source>Cut</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/shop/shop.component.html</context>
-          <context context-type="linenumber">27,28</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="45739481977493163" datatype="html">
-        <source>Size</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/shop/shop.component.html</context>
-          <context context-type="linenumber">35,36</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="4320496146171823526" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{order.jerseys.length}}"/> x <x id="INTERPOLATION_1" equiv-text="{{basePrice}}"/> BGN = <x id="INTERPOLATION_2" equiv-text="{{ order.jerseys.length * basePrice }}"/> BGN</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/shop/shop.component.html</context>
-          <context context-type="linenumber">50,52</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="1943153960391120303" datatype="html">
-        <source>Promo code</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/shop/shop.component.html</context>
-          <context context-type="linenumber">53,54</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="3438893904854626784" datatype="html">
-        <source>Promo code is invalid...</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/shop/shop.component.html</context>
-          <context context-type="linenumber">65</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2335951072585495896" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{ promo * 100 }}"/>% off = -<x id="INTERPOLATION_1" equiv-text="{{ (order.jerseys.length * basePrice) * promo }}"/> BGN</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/shop/shop.component.html</context>
-          <context context-type="linenumber">70,72</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="3329104600473653078" datatype="html">
-        <source>Free shipping</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/shop/shop.component.html</context>
-          <context context-type="linenumber">73,74</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="3743739810451209476" datatype="html">
-        <source>Total = <x id="INTERPOLATION" equiv-text="{{ (order.jerseys.length * basePrice) * (1 - promo) }}"/> BGN</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/shop/shop.component.html</context>
-          <context context-type="linenumber">76,77</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="515880391246540742" datatype="html">
-        <source>Add one more</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/shop/shop.component.html</context>
-          <context context-type="linenumber">83,84</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="5342432350421167093" datatype="html">
-        <source>First name</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/shop/shop.component.html</context>
-          <context context-type="linenumber">89,90</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="3586674587150281199" datatype="html">
-        <source>Last name</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/shop/shop.component.html</context>
-          <context context-type="linenumber">102,103</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2314075913167237221" datatype="html">
-        <source>City</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/shop/shop.component.html</context>
-          <context context-type="linenumber">152,153</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="1847047605496409443" datatype="html">
-        <source>Street</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/shop/shop.component.html</context>
-          <context context-type="linenumber">165,166</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="220550782947016929" datatype="html">
-        <source>Order</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/shop/shop.component.html</context>
-          <context context-type="linenumber">179,180</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="8012344910054029733" datatype="html">
-        <source>Male</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/shop/shop.component.ts</context>
-          <context context-type="linenumber">39</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="5667840900782067941" datatype="html">
-        <source>Female</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/shop/shop.component.ts</context>
-          <context context-type="linenumber">40</context>
+          <context context-type="linenumber">12,16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7649531171132885067" datatype="html">
@@ -2203,7 +2342,7 @@
         <source>No active tournaments found...</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournaments-main/tournaments-main.component.html</context>
-          <context context-type="linenumber">16,18</context>
+          <context context-type="linenumber">16,17</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7452493878033552676" datatype="html">

@@ -158,7 +158,7 @@
             <label igxLabel [for]="'leagueName' + i" i18n>Tournament name</label>
             <input type="text" [id]="'leagueName' + i" [name]="'leagueName' + i" #leagueName igxInput [required]="true" [(ngModel)]="league.name" />
             @if (leagueName.value) {
-              <igx-suffix (click)="league.name = null">
+              <igx-suffix (click)="league.name = ''">
                 <igx-icon>clear</igx-icon>
               </igx-suffix>
             }
@@ -167,7 +167,7 @@
             <label igxLabel [for]="'leagueLogo' + i" i18n>Tournament logo</label>
             <input type="text" [id]="'leagueLogo' + i" [name]="'leagueLogo' + i" #leagueLogo igxInput [required]="true" [(ngModel)]="league.logo" />
             @if (leagueLogo.value) {
-              <igx-suffix (click)="league.logo = null">
+              <igx-suffix (click)="league.logo = ''">
                 <igx-icon>clear</igx-icon>
               </igx-suffix>
             }
@@ -176,7 +176,7 @@
             <label igxLabel [for]="'leagueDescription' + i" i18n>Tournament description</label>
             <textarea type="text" [id]="'leagueDescription' + i" [name]="'leagueDescription' + i" #leagueDescription igxInput [required]="true" [(ngModel)]="league.description"></textarea>
             @if (leagueDescription.value) {
-              <igx-suffix (click)="league.description = null">
+              <igx-suffix (click)="league.description = ''">
                 <igx-icon>clear</igx-icon>
               </igx-suffix>
             }
@@ -200,7 +200,7 @@
       <label igxLabel for="tournamentName" i18n>Tournament name</label>
       <input type="text" id="tournamentName" name="tournamentName" #tournamentName igxInput [required]="true" [(ngModel)]="tournament.name" />
       @if (tournamentName.value) {
-        <igx-suffix (click)="tournament.name = null">
+        <igx-suffix (click)="tournament.name = ''">
           <igx-icon>clear</igx-icon>
         </igx-suffix>
       }
@@ -210,7 +210,7 @@
       <label igxLabel for="tournamentLogo" i18n>Tournament logo</label>
       <input type="text" id="tournamentLogo" name="tournamentLogo" #tournamentLogo igxInput [required]="true" [(ngModel)]="tournament.logo" />
       @if (tournamentLogo.value) {
-        <igx-suffix (click)="tournament.logo = null">
+        <igx-suffix (click)="tournament.logo = ''">
           <igx-icon>clear</igx-icon>
         </igx-suffix>
       }
@@ -220,7 +220,7 @@
       <label igxLabel for="tournamentDescription" i18n>Tournament description</label>
       <textarea type="text" id="tournamentDescription" name="tournamentDescription" #tournamentDescription igxInput [required]="true" [(ngModel)]="tournament.description"></textarea>
       @if (tournamentDescription.value) {
-        <igx-suffix (click)="tournament.description = null">
+        <igx-suffix (click)="tournament.description = ''">
           <igx-icon>clear</igx-icon>
         </igx-suffix>
       }
