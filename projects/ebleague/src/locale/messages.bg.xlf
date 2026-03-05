@@ -2541,7 +2541,7 @@
       </trans-unit>
       <trans-unit id="6564548865407442665" datatype="html">
         <source>Groups of up to 8 teams competing in a round-robin format across 3-7 weeks. Matches on weekday evenings, capped off by a grand finals weekend. All matches are streamed live!</source>
-        <target>Групи от до 8 отбора, играещи по round-robin формат в продължение на 3-7 седмици. Мачове в работни вечери, завършващи с финален уикенд. Всички мачове се излъчват на живо!</target>
+        <target>Групи от до 8 отбора, играещи по round-robin формат в продължение на 3-7 седмици. Мачове вечер в работни дни, завършващи с финален уикенд. Всички мачове се излъчват на живо!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
           <context context-type="linenumber">35,36</context>
@@ -2557,7 +2557,7 @@
       </trans-unit>
       <trans-unit id="8299603162260914749" datatype="html">
         <source>Groups of up to 8 players competing in a round-robin format across 3-7 weeks. Matches on weekday evenings, capped off by a grand finals weekend. All matches are streamed live!</source>
-        <target>Групи от до 8 играча, играещи по round-robin формат в продължение на 3-7 седмици. Мачове в работни вечери, завършващи с финален уикенд. Всички мачове се излъчват на живо!</target>
+        <target>Групи от до 8 играча, играещи по round-robin формат в продължение на 3-7 седмици. Мачове вечер в работни дни, завършващи с финален уикенд. Всички мачове се излъчват на живо!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
           <context context-type="linenumber">43,44</context>
@@ -2733,7 +2733,7 @@
       </trans-unit>
       <trans-unit id="5547360100576742750" datatype="html">
         <source>Esports Business League is organized by <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Bellum Gens<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> — an organization focused on the development and popularization of esports in Bulgaria and on the Balkans. We want to make esports a recognizable topic for the business community and help all esports projects in the region grow.</source>
-        <target>Esports Business League се организира от <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Bellum Gens<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> — организация, фокусирана върху развитието и популяризирането на е-спорта в България и на Балканите. Искаме да направим е-спорта разпознаваема тема за бизнес общността и да помогнем на всички е-спорт проекти в региона да растат.</target>
+        <target>Esports Business League се организира от <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Bellum Gens<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> — организация, фокусирана върху развитието и популяризирането на електронните спортове в България и на Балканите. Искаме да направим електронните спортове разпознаваема тема за бизнес общността и да помогнем на всички проекти свързани с електронни спортове в региона да растат.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
           <context context-type="linenumber">338,339</context>
