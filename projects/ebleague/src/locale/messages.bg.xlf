@@ -2507,6 +2507,238 @@
           <context context-type="linenumber">107</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="504929498126302225" datatype="html">
+        <source>Counter-Strike</source>
+        <target>Counter-Strike</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">203,204</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7642068151620286978" datatype="html">
+        <source>StarCraft II</source>
+        <target>StarCraft II</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">234,235</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="602616889153572890" datatype="html">
+        <source>Counter-Strike League</source>
+        <target>Counter-Strike Лига</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">34,35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8126795906002262534" datatype="html">
+        <source>StarCraft II League</source>
+        <target>StarCraft II Лига</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">42,43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6564548865407442665" datatype="html">
+        <source>Groups of up to 8 teams competing in a round-robin format across 3-7 weeks. Matches on weekday evenings, capped off by a grand finals weekend. All matches are streamed live!</source>
+        <target>Групи от до 8 отбора, играещи по round-robin формат в продължение на 3-7 седмици. Мачове вечер в работни дни, завършващи с финален уикенд. Всички мачове се излъчват на живо!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">35,36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="723251513816909868" datatype="html">
+        <source>View Results</source>
+        <target>Виж резултатите</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">36,37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8299603162260914749" datatype="html">
+        <source>Groups of up to 8 players competing in a round-robin format across 3-7 weeks. Matches on weekday evenings, capped off by a grand finals weekend. All matches are streamed live!</source>
+        <target>Групи от до 8 играча, играещи по round-robin формат в продължение на 3-7 седмици. Мачове вечер в работни дни, завършващи с финален уикенд. Всички мачове се излъчват на живо!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">43,44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8790918354594417962" datatype="html">
+        <source>Facebook</source>
+        <target>Facebook</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">56,57</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1715373473261069991" datatype="html">
+        <source>Twitter</source>
+        <target>Twitter</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">60,61</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3080109816219994129" datatype="html">
+        <source>Instagram</source>
+        <target>Instagram</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">64,65</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4440081753597585133" datatype="html">
+        <source>LinkedIn</source>
+        <target>LinkedIn</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">68,69</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8401085193044135025" datatype="html">
+        <source>YouTube</source>
+        <target>YouTube</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">72,73</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2044436736853242257" datatype="html">
+        <source>Twitch</source>
+        <target>Twitch</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">76,77</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3400027835914346369" datatype="html">
+        <source>Discord</source>
+        <target>Discord</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">80,81</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8432298517635441247" datatype="html">
+        <source><x id="START_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;igx-icon class=&quot;terms-icon&quot;&gt;"/>group<x id="CLOSE_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;/igx-icon&gt;"/> Team eligibility</source>
+        <target><x id="START_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;igx-icon class=&quot;terms-icon&quot;&gt;"/>group<x id="CLOSE_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;/igx-icon&gt;"/> Изисквания за участие</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">110,111</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4870826257516930129" datatype="html">
+        <source>All team members must be <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>current employees<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> of the registered company, with no active professional esports affiliation and no professional matches in the past <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>24 months<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>. Standins must meet the same conditions.</source>
+        <target>Всички членове на отбора трябва да са <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>настоящи служители<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> на регистрираната компания, без активна принадлежност към професионален е-спорт и без професионални мачове през последните <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>24 месеца<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>. Резервите трябва да отговарят на същите условия.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">111,112</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6267977753587498128" datatype="html">
+        <source><x id="START_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;igx-icon class=&quot;terms-icon&quot;&gt;"/>person<x id="CLOSE_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;/igx-icon&gt;"/> Individual players (SC2)</source>
+        <target><x id="START_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;igx-icon class=&quot;terms-icon&quot;&gt;"/>person<x id="CLOSE_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;/igx-icon&gt;"/> Индивидуални играчи (SC2)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">114,115</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3500503727979600518" datatype="html">
+        <source>StarCraft II competitors must be <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>current employees<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> of their registered company. Substitutes may be added post-registration under the same eligibility conditions.</source>
+        <target>Играчите в StarCraft II трябва да са <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>настоящи служители<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> на регистрираната компания. Заместници могат да бъдат добавяни след регистрацията при същите условия за допустимост.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">115,116</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7125724961098345297" datatype="html">
+        <source><x id="START_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;igx-icon class=&quot;terms-icon&quot;&gt;"/>payments<x id="CLOSE_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;/igx-icon&gt;"/> Registration fee</source>
+        <target><x id="START_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;igx-icon class=&quot;terms-icon&quot;&gt;"/>payments<x id="CLOSE_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;/igx-icon&gt;"/> Регистрационна такса</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">118,119</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8097960375631755973" datatype="html">
+        <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>300 BGN<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> per Counter-Strike team · <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>60 BGN<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> per StarCraft II player. Paid via bank transfer after form submission. Limited to 16 teams / 32 players.</source>
+        <target><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>300 лв.<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> за Counter-Strike отбор · <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>60 лв.<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> за StarCraft II играч. Плаща се с банков превод след попълване на формата. Лимит: 16 отбора / 32 играча.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">119,120</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7120425338819708986" datatype="html">
+        <source><x id="START_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;igx-icon class=&quot;terms-icon&quot;&gt;"/>volunteer_activism<x id="CLOSE_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;/igx-icon&gt;"/> Prize pool &amp; charity</source>
+        <target><x id="START_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;igx-icon class=&quot;terms-icon&quot;&gt;"/>volunteer_activism<x id="CLOSE_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;/igx-icon&gt;"/> Награден фонд и благотворителност</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">122,123</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3422727798653108393" datatype="html">
+        <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>All registration fees form the prize pool<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>, which is fully donated to a charitable cause <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>chosen by the winners<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> at the end of each season.</source>
+        <target><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Всички регистрационни такси формират наградния фонд<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>, който се дарява изцяло за благотворителна кауза, <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>избрана от победителите<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> в края на всеки сезон.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">123,124</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8641536843478789441" datatype="html">
+        <source>&#x1F947; 1st Place &#x2014; 75%</source>
+        <target>&#x1F947; 1-во място &#x2014; 75%</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">186</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4527426330244681546" datatype="html">
+        <source>The winning team/player will appropriate <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>75%<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> of the prize pool towards their choice of a charitable cause.</source>
+        <target>Победителят ще насочи <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>75%<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> от наградния фонд към избрана от тях благотворителна кауза.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">187,188</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="782591578946281816" datatype="html">
+        <source>&#x1F948; 2nd Place &#x2014; 25%</source>
+        <target>&#x1F948; 2-ро място &#x2014; 25%</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">190</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1067569314715495182" datatype="html">
+        <source>The runner-up will appropriate <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>25%<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> of the prize pool towards their choice of a charitable cause.</source>
+        <target>Вторият класиран ще насочи <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>25%<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> от наградния фонд към избрана от тях благотворителна кауза.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">191,192</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6332127443728593658" datatype="html">
+        <source>Season 2 concluded on November 8th with grand finals in both StarCraft II and Counter-Strike. <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://bellumgens.com/players/76561198061226037&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>SuGaRBuNNy [Nuvei]<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> claimed the SC2 title after a nail-biting BO5, while <x id="START_LINK_1" equiv-text="&lt;a href=&quot;https://bellumgens.com/team/Plan-B/details&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>Plan-B [Modis]<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> swept both maps to take the CS:GO crown.</source>
+        <target>Сезон 2 приключи на 8 ноември с финали в StarCraft II и Counter-Strike. <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://bellumgens.com/players/76561198061226037&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>SuGaRBuNNy [Nuvei]<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> спечели титлата в SC2 след вълнуващо BO5, докато <x id="START_LINK_1" equiv-text="&lt;a href=&quot;https://bellumgens.com/team/Plan-B/details&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>Plan-B [Modis]<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> взе и двете карти за трофея в CS:GO.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">200,201</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2083877499157947490" datatype="html">
+        <source>Season 1 ended on April 12 with grand finals in both StarCraft II and Counter-Strike. <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://bellumgens.com/players/76561198061226037&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>SuGaRBuNNy [C3I]<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> won a competitive BO5 to claim the SC2 title, while <x id="START_LINK_1" equiv-text="&lt;a href=&quot;https://bellumgens.com/team/BPro-Veterans/details&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>Bpro Veterans<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> triumphed in a 3-map thriller over DXC.</source>
+        <target>Сезон 1 приключи на 12 април с финали в StarCraft II и Counter-Strike. <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://bellumgens.com/players/76561198061226037&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>SuGaRBuNNy [C3I]<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> спечели SC2 титлата след конкурентно BO5, докато <x id="START_LINK_1" equiv-text="&lt;a href=&quot;https://bellumgens.com/team/BPro-Veterans/details&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>Bpro Veterans<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> победи в триизмерен трилър срещу DXC.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">269,270</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5547360100576742750" datatype="html">
+        <source>Esports Business League is organized by <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Bellum Gens<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> — an organization focused on the development and popularization of esports in Bulgaria and on the Balkans. We want to make esports a recognizable topic for the business community and help all esports projects in the region grow.</source>
+        <target>Esports Business League се организира от <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Bellum Gens<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> — организация, фокусирана върху развитието и популяризирането на електронните спортове в България и на Балканите. Искаме да направим електронните спортове разпознаваема тема за бизнес общността и да помогнем на всички проекти свързани с електронни спортове в региона да растат.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">338,339</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>

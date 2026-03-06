@@ -1,6 +1,123 @@
 @use "../../../variables" as *;
 
-:host {
+:host ::ng-deep {
+  @include core();
+
+  @include grid(grid-theme(
+    $content-background: $banner-background,
+    $drop-area-background: $banner-background,
+    $ghost-header-background: $banner-background,
+    $group-row-selected-background: $background,
+    $header-background: $background,
+    $cell-editing-background: $background
+  ));
+
+  @include grid-toolbar(grid-toolbar-theme($background-color: $background));
+
+  @include grid-summary(grid-summary-theme($background-color: $background));
+
+  @include paginator(paginator-theme($background-color: $background));
+
+  @include action-strip(action-strip-theme($actions-background: transparent));
+
+  $input-group-theme: input-group-theme(
+    $filled-text-color: white,
+    $box-background: $banner-background,
+    $box-background-hover: $banner-background,
+    $box-background-focus: $banner-background,
+    $box-disabled-background: rgba($banner-background, 0.5),
+    $idle-text-color: rgba(white, 0.7),
+    $focused-text-color: white,
+    $border-color: rgba(white, 0.2),
+    $hover-border-color: rgba($primary, 0.5),
+    $focused-border-color: $primary,
+    $box-border-radius: 4px
+  );
+  @include css-vars($input-group-theme);
+
+  $checkbox-theme: checkbox-theme(
+    $fill-color: $primary,
+    $fill-color-hover: color($app-palette, 'primary', 600),
+    $tick-color: white,
+    $label-color: white,
+    $empty-color: rgba(white, 0.3),
+    $border-radius: 3px
+  );
+  @include css-vars($checkbox-theme);
+
+  $button-theme: button-theme(
+    $background: $primary,
+    $hover-background: color($app-palette, 'primary', 600),
+    $focus-background: color($app-palette, 'primary', 600),
+    $disabled-background: rgba($primary, 0.3),
+    $foreground: white,
+    $disabled-foreground: rgba(white, 0.5),
+    $border-radius: 4px
+  );
+  @include css-vars($button-theme);
+
+  $card-theme: card-theme(
+    $background: $banner-background,
+    $header-text-color: $primary,
+    $subtitle-text-color: rgba(white, 0.7),
+    $content-text-color: white,
+    $border-radius: 8px
+  );
+  @include css-vars($card-theme);
+
+  // Apply compact sizing using CSS variables
+  igx-grid {
+    --ig-size: var(--ig-size-small);
+  }
+
+  // Tournament cards styling
+  igx-card {
+    margin-bottom: 24px;
+
+    igx-card-header {
+      h4[igxCardHeaderTitle],
+      h1[igxCardHeaderTitle] {
+        color: $primary;
+        font-weight: 600;
+      }
+
+      h5[igxCardHeaderSubtitle],
+      h2[igxCardHeaderSubtitle] {
+        color: rgba(white, 0.6);
+        font-size: 0.875rem;
+      }
+    }
+
+    igx-card-content {
+      padding: 24px;
+
+      form {
+        gap: 20px;
+
+        igx-input-group {
+          margin-bottom: 0;
+        }
+
+        igx-date-picker {
+          margin-bottom: 0;
+        }
+
+        igx-checkbox {
+          margin-top: 8px;
+          margin-bottom: 8px;
+          padding: 8px 0;
+          display: flex;
+          align-items: center;
+        }
+
+        button[igxButton] {
+          margin-top: 8px;
+          align-self: flex-start;
+        }
+      }
+    }
+  }
+
   .players-list {
     max-height: 500px;
     overflow: auto;
