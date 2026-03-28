@@ -17,21 +17,21 @@ Both applications share a common library (`bellum-gens-common`) with shared serv
 
 ```
 projects/
-├── bellumgens/          # Main Bellum Gens application
+├── bellumgens/            # Main Bellum Gens application
 │   └── src/
 │       ├── app/
 │       ├── assets/
-│       ├── locale/      # i18n translation files
-│       ├── main.ts      # Client entry point
+│       ├── locale/        # i18n translation files
+│       ├── main.ts        # Client entry point
 │       └── main.server.ts # SSR entry point
-├── ebleague/            # Esports Business League application
+├── ebleague/              # Esports Business League application
 │   └── src/
 │       ├── app/
 │       ├── assets/
-│       ├── locale/      # i18n translation files
-│       ├── main.ts      # Client entry point
+│       ├── locale/        # i18n translation files
+│       ├── main.ts        # Client entry point
 │       └── main.server.ts # SSR entry point
-└── common/              # Shared library (published to npm)
+└── common/                # Shared library of components, pipes, services, models, and utilities used by both applications
     └── src/
         ├── environments/
         ├── guards/
