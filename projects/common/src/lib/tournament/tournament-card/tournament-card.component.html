@@ -1,0 +1,78 @@
+<igx-card elevated class="tournament-card">
+  @if (tournament().logo) {
+    <igx-card-media height="180px">
+      <img [ngSrc]="tournament().logo" width="352" height="180" [alt]="tournament().name" priority />
+    </igx-card-media>
+  } @else {
+    <igx-card-media height="180px">
+      <div class="card-placeholder-media">
+        <igx-icon>emoji_events</igx-icon>
+      </div>
+    </igx-card-media>
+  }
+
+  <igx-card-header>
+    <h3 igxCardHeaderTitle>{{ tournament().name }}</h3>
+    <div igxCardHeaderSubtitle class="card-meta">
+      @if (tournament().startDate) {
+        <span class="meta-item">
+          <igx-icon>calendar_today</igx-icon>
+          {{ tournament().startDate | date:'mediumDate' }}
+          @if (tournament().endDate) {
+            <span> – {{ tournament().endDate | date:'mediumDate' }}</span>
+          }
+        </span>
+      }
+    </div>
+  </igx-card-header>
+
+  <igx-card-content>
+    <div class="card-badges">
+      <igx-chip [selectable]="false" [removable]="false">
+        <igx-icon igxPrefix>{{ visibilityIcon }}</igx-icon>
+        {{ tournament().visibility || 'public' }}
+      </igx-chip>
+
+      @if (statusLabel) {
+        <igx-chip [selectable]="false" [removable]="false" [class]="'status-' + tournament().status">
+          {{ statusLabel }}
+        </igx-chip>
+      }
+
+      @if (gameLabel) {
+        <igx-chip [selectable]="false" [removable]="false">
+          <igx-icon igxPrefix>sports_esports</igx-icon>
+          {{ gameLabel }}
+        </igx-chip>
+      }
+    </div>
+
+    @if (tournament().prizePool) {
+      <div class="prize-pool">
+        <igx-icon>payments</igx-icon>
+        <span class="prize-amount">{{ tournament().prizePool }}</span>
+      </div>
+    }
+
+    @if (tournament().description) {
+      <p class="card-description">{{ tournament().description }}</p>
+    }
+  </igx-card-content>
+
+  <igx-card-actions>
+    <a igxButton="outlined" igxRipple [routerLink]="[detailRoutePrefix(), tournament().id]" i18n>
+      View Details
+    </a>
+    @if (showManage()) {
+      <button igxButton="flat" igxRipple (click)="manage.emit(tournament())" i18n>
+        <igx-icon>settings</igx-icon>
+        Manage
+      </button>
+    }
+    @if (showManage()) {
+      <button igxButton="flat" igxRipple (click)="deleteTournament.emit(tournament())" class="danger-btn" i18n>
+        <igx-icon>delete</igx-icon>
+      </button>
+    }
+  </igx-card-actions>
+</igx-card>

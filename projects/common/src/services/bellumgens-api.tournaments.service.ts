@@ -9,7 +9,8 @@ import { TournamentApplication,
   Tournament,
   TournamentCSGOGroup,
   TournamentSC2Group,
-  TournamentParticipant } from '../models/tournament';
+  TournamentParticipant,
+  TournamentVisibility } from '../models/tournament';
 import { TournamentCSGOMatch, TournamentSC2Match, TournamentCSGOMatchMap, TournamentSC2MatchMap } from '../models/tournament-schedule';
 
 @Injectable({
@@ -478,6 +479,69 @@ export class ApiTournamentsService {
           return throwError(() => error);
         })
       );
+  }
+
+  private _myTournaments = new BehaviorSubject<Tournament []>(null);
+
+  public get myTournaments() {
+    if (!this._myTournaments.value) {
+      this.http.get<Tournament []>(`${this._apiEndpoint}/tournament/mytournaments`, { withCredentials: true }).subscribe(
+        data => this._myTournaments.next(data)
+      );
+    }
+    return this._myTournaments;
+  }
+
+  public get publicTournaments() {
+    if (!this._tournaments.value) {
+      this.getTournaments().subscribe(data => {
+        this._tournaments.next(data);
+      });
+    }
+    return this._tournaments;
+  }
+
+  public joinByInviteCode(inviteCode: string) {
+    return this.http.post<Tournament>(`${this._apiEndpoint}/tournament/join`, { inviteCode }, { withCredentials: true }).pipe(
+      map(response => {
+        this.commService.emitSuccess('Successfully joined tournament!');
+        return response;
+      }),
+      catchError(error => {
+        this.commService.emitError(error.message);
+        return throwError(() => error);
+      })
+    );
+  }
+
+  public deleteTournament(id: string) {
+    return this.http.delete(`${this._apiEndpoint}/tournament/delete-tournament?id=${id}`, { withCredentials: true }).pipe(
+      map(response => {
+        this.commService.emitSuccess('Tournament deleted successfully!');
+        const current = this._myTournaments.value;
+        if (current) {
+          this._myTournaments.next(current.filter(t => t.id !== id));
+        }
+        return response;
+      }),
+      catchError(error => {
+        this.commService.emitError(error.message);
+        return throwError(() => error);
+      })
+    );
+  }
+
+  public updateTournament(tournament: Tournament) {
+    return this.http.put<Tournament>(`${this._apiEndpoint}/tournament/create`, tournament, { withCredentials: true }).pipe(
+      map(response => {
+        this.commService.emitSuccess('Tournament updated successfully!');
+        return response;
+      }),
+      catchError(error => {
+        this.commService.emitError(error.message);
+        return throwError(() => error);
+      })
+    );
   }
 
   private getTournamentFromServer(id: string) {

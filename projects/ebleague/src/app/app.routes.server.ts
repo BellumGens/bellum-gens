@@ -6,15 +6,23 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Client
   },
   {
-    path: 'tournament/csgo/:tournamentid',
+    path: 'tournaments/csgo/:tournamentid',
     renderMode: RenderMode.Server
   },
   {
-    path: 'tournament/sc2/:tournamentid',
+    path: 'tournaments/sc2/:tournamentid',
     renderMode: RenderMode.Server
   },
   {
-    path: 'tournament/admin/**',
+    path: 'tournaments/admin/**',
+    renderMode: RenderMode.Client
+  },
+  {
+    path: 'tournaments/view/:tournamentId',
+    renderMode: RenderMode.Client
+  },
+  {
+    path: 'tournaments/manage/:tournamentId',
     renderMode: RenderMode.Client
   },
   {

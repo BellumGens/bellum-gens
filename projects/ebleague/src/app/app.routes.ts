@@ -19,11 +19,12 @@ export const routes: Routes = [
   { path: 'registration-success', loadComponent: () => import('./tournament-registration/registration-success/registration-success.component').then(c => c.RegistrationSuccessComponent) },
   { path: 'unauthorized', redirectTo: 'unauthorized/', pathMatch: 'full' },
   { path: 'unauthorized/:message', component: UnauthorizedComponent },
-  { path: 'format', redirectTo: '/tournament/format', pathMatch: 'full' },
-  { path: 'csgo', redirectTo: '/tournament/csgo/', pathMatch: 'full' },
-  { path: 'sc2', redirectTo: '/tournament/sc2/', pathMatch: 'full' },
+  { path: 'format', redirectTo: '/tournaments/format', pathMatch: 'full' },
+  { path: 'csgo', redirectTo: '/tournaments/csgo/', pathMatch: 'full' },
+  { path: 'sc2', redirectTo: '/tournaments/sc2/', pathMatch: 'full' },
   { path: 'admin', loadChildren: () => import('./admin/admin.routes').then(m => m.routes) },
-  { path: 'tournament', loadChildren: () => import('./tournaments/tournament.routes').then(m => m.routes) },
+  { path: 'tournaments', loadChildren: () => import('./tournaments/tournament.routes').then(m => m.routes) },
+  { path: 'tournament', redirectTo: 'tournaments', pathMatch: 'prefix' },
   { path: 'shop', loadChildren: () => import('./shop/shop.routes').then(m => m.routes) },
   { path: '**', component: HomeComponent }
 ];
