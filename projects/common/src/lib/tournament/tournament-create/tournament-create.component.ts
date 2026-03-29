@@ -36,18 +36,18 @@ export class TournamentCreateComponent {
   private router = inject(Router);
   private activeRoute = inject(ActivatedRoute);
 
-  saving = signal(false);
-  isEditMode = signal(false);
-  tournamentId = signal<string | null>(null);
+  public saving = signal(false);
+  public isEditMode = signal(false);
+  public tournamentId = signal<string | null>(null);
 
-  games = GAMES;
-  visibilityOptions = [
+  public games = GAMES;
+  public visibilityOptions = [
     { value: TournamentVisibility.Public, label: 'Public', icon: 'public' },
     { value: TournamentVisibility.Private, label: 'Private', icon: 'lock' },
     { value: TournamentVisibility.InviteOnly, label: 'Invite Only', icon: 'mail' }
   ];
 
-  form = new FormGroup({
+  public form = new FormGroup({
     name: new FormControl('', Validators.required),
     description: new FormControl(''),
     game: new FormControl<Game | null>(null),
@@ -81,7 +81,7 @@ export class TournamentCreateComponent {
     });
   }
 
-  submit() {
+  public submit() {
     if (this.form.invalid) return;
 
     this.saving.set(true);
@@ -119,7 +119,7 @@ export class TournamentCreateComponent {
     }
   }
 
-  cancel() {
+  public cancel() {
     this.router.navigate(['/tournaments']);
   }
 }

@@ -30,18 +30,14 @@ import { IgxChipComponent } from '@infragistics/igniteui-angular/chips';
   ]
 })
 export class TournamentCardComponent {
-  tournament = input.required<Tournament>();
-  detailRoutePrefix = input<string>('/tournaments');
-  showManage = input(false);
+  public tournament = input.required<Tournament>();
+  public detailRoutePrefix = input<string>('/tournaments');
+  public showManage = input(false);
 
-  manage = output<Tournament>();
-  deleteTournament = output<Tournament>();
+  public manage = output<Tournament>();
+  public deleteTournament = output<Tournament>();
 
-  TournamentStatus = TournamentStatus;
-  TournamentVisibility = TournamentVisibility;
-  Game = Game;
-
-  get statusBadgeType(): string {
+  public get statusBadgeType(): string {
     const t = this.tournament();
     switch (t.status) {
       case TournamentStatus.Open: return 'success';
@@ -52,7 +48,7 @@ export class TournamentCardComponent {
     }
   }
 
-  get statusLabel(): string {
+  public get statusLabel(): string {
     const t = this.tournament();
     switch (t.status) {
       case TournamentStatus.Draft: return 'Draft';
@@ -64,7 +60,7 @@ export class TournamentCardComponent {
     }
   }
 
-  get visibilityIcon(): string {
+  public get visibilityIcon(): string {
     const t = this.tournament();
     switch (t.visibility) {
       case TournamentVisibility.Public: return 'public';
@@ -74,7 +70,7 @@ export class TournamentCardComponent {
     }
   }
 
-  get gameLabel(): string {
+  public get gameLabel(): string {
     const t = this.tournament();
     switch (t.game) {
       case Game.CSGO: return 'Counter-Strike';

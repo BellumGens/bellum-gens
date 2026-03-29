@@ -74,8 +74,7 @@ export const routes: Routes = [
       twitterDescription: 'View tournament details, participants, and match results.',
       image: '/assets/eb-league-logo-sm.png'
     }
-  }
-];
+  },
   { path: 'format', component: TournamentFormatComponent },
   { path: 'crew', component: ProductionCrewComponent }
 ];

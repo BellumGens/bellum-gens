@@ -35,23 +35,23 @@ export class TournamentListComponent {
   private loginService = inject(LoginService);
   private router = inject(Router);
 
-  tournaments = signal<Tournament[]>([]);
-  myTournaments = signal<Tournament[]>([]);
-  loading = signal(true);
-  activeTab = signal(0);
-  inviteCode = '';
+  public tournaments = signal<Tournament[]>([]);
+  public myTournaments = signal<Tournament[]>([]);
+  public loading = signal(true);
+  public activeTab = signal(0);
+  public inviteCode = '';
 
-  isLoggedIn = computed(() => !!this.loginService.applicationUser?.value);
+  public isLoggedIn = computed(() => !!this.loginService.applicationUser?.value);
 
-  activeTournaments = computed(() =>
+  public activeTournaments = computed(() =>
     this.tournaments().filter(t => t.status === TournamentStatus.Open || t.status === TournamentStatus.InProgress)
   );
 
-  upcomingTournaments = computed(() =>
+  public upcomingTournaments = computed(() =>
     this.tournaments().filter(t => t.status === TournamentStatus.Draft && t.startDate && new Date(t.startDate).getTime() > Date.now())
   );
 
-  completedTournaments = computed(() =>
+  public completedTournaments = computed(() =>
     this.tournaments().filter(t => t.status === TournamentStatus.Completed)
   );
 
@@ -70,19 +70,19 @@ export class TournamentListComponent {
     });
   }
 
-  createTournament() {
+  public createTournament() {
     this.router.navigate(['/tournaments/create']);
   }
 
-  manageTournament(tournament: Tournament) {
+  public manageTournament(tournament: Tournament) {
     this.router.navigate(['/tournaments/manage', tournament.id]);
   }
 
-  onDeleteTournament(tournament: Tournament) {
+  public onDeleteTournament(tournament: Tournament) {
     this.apiService.deleteTournament(tournament.id).subscribe();
   }
 
-  joinByInvite(dialog: IgxDialogComponent) {
+  public joinByInvite(dialog: IgxDialogComponent) {
     if (this.inviteCode?.trim()) {
       this.apiService.joinByInviteCode(this.inviteCode.trim()).subscribe({
         next: () => {

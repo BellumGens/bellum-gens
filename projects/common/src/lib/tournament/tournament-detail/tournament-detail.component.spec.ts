@@ -7,7 +7,6 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { of } from 'rxjs';
 
 import { TournamentDetailComponent } from './tournament-detail.component';
-import { ApiTournamentsService } from '../../../services/bellumgens-api.tournaments.service';
 import { TournamentStatus, TournamentVisibility, Game } from '../../../models/tournament';
 
 describe('TournamentDetailComponent', () => {

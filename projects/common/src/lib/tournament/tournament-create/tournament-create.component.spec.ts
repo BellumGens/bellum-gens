@@ -108,7 +108,6 @@ describe('TournamentCreateComponent (edit mode)', () => {
   let component: TournamentCreateComponent;
   let fixture: ComponentFixture<TournamentCreateComponent>;
   let httpMock: HttpTestingController;
-  let apiService: ApiTournamentsService;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -125,7 +124,6 @@ describe('TournamentCreateComponent (edit mode)', () => {
     }).compileComponents();
 
     httpMock = TestBed.inject(HttpTestingController);
-    apiService = TestBed.inject(ApiTournamentsService);
   });
 
   beforeEach(() => {

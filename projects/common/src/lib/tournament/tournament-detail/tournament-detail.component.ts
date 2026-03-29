@@ -48,29 +48,25 @@ export class TournamentDetailComponent {
   private activeRoute = inject(ActivatedRoute);
   private loginService = inject(LoginService);
 
-  tournament = signal<Tournament | null>(null);
-  loading = signal(true);
-  registrations: Observable<TournamentParticipant[]>;
-  sc2Matches: Observable<TournamentSC2Match[]>;
-  csgoMatches: Observable<TournamentCSGOMatch[]>;
-  loadingRegistrations: Observable<boolean>;
+  public tournament = signal<Tournament | null>(null);
+  public loading = signal(true);
+  public registrations: Observable<TournamentParticipant[]>;
+  public sc2Matches: Observable<TournamentSC2Match[]>;
+  public csgoMatches: Observable<TournamentCSGOMatch[]>;
+  public loadingRegistrations: Observable<boolean>;
 
-  TournamentStatus = TournamentStatus;
-  TournamentVisibility = TournamentVisibility;
-  Game = Game;
-
-  isOwner = computed(() => {
+  public isOwner = computed(() => {
     const t = this.tournament();
     const user = this.loginService.applicationUser?.value;
     return t && user && t.creatorId === user.id;
   });
 
-  canJoin = computed(() => {
+  public canJoin = computed(() => {
     const t = this.tournament();
     return t && t.status === TournamentStatus.Open && t.visibility !== TournamentVisibility.Private;
   });
 
-  get statusLabel(): string {
+  public get statusLabel(): string {
     const t = this.tournament();
     if (!t) return '';
     switch (t.status) {
@@ -83,7 +79,7 @@ export class TournamentDetailComponent {
     }
   }
 
-  get visibilityIcon(): string {
+  public get visibilityIcon(): string {
     const t = this.tournament();
     if (!t) return 'public';
     switch (t.visibility) {

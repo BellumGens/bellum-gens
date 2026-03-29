@@ -9,8 +9,8 @@ import { TournamentApplication,
   Tournament,
   TournamentCSGOGroup,
   TournamentSC2Group,
-  TournamentParticipant,
-  TournamentVisibility } from '../models/tournament';
+  TournamentParticipant
+ } from '../models/tournament';
 import { TournamentCSGOMatch, TournamentSC2Match, TournamentCSGOMatchMap, TournamentSC2MatchMap } from '../models/tournament-schedule';
 
 @Injectable({
