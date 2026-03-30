@@ -112,8 +112,8 @@ export class AppComponent implements OnInit {
           this.notificationService.emitSuccess(params.message);
         }
       });
+      this.initSvgIcons();
     }
-    this.initSvgIcons();
   }
 
   public ngOnInit(): void {

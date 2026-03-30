@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, PLATFORM_ID } from '@angular/core';
 
 import { RouterLinkActive, RouterLink, RouterOutlet } from '@angular/router';
 import {
@@ -7,6 +7,7 @@ import {
   BellumgensApiService,
   LoginService
 } from '../../../../common/src/public_api';
+import { isPlatformBrowser } from '@angular/common';
 import { BaseDirective } from '../base/base.component';
 import { IgxIconComponent, IgxIconService } from '@infragistics/igniteui-angular/icon';
 import { IGX_TABS_DIRECTIVES } from '@infragistics/igniteui-angular/tabs';
@@ -30,6 +31,7 @@ export class TeamComponent extends BaseDirective {
   private apiService = inject(BellumgensApiService);
   private authManager = inject(LoginService);
   private iconService = inject(IgxIconService);
+  private platformId = inject(PLATFORM_ID);
 
   public authUser: ApplicationUser;
   public team: CSGOTeam = TEAM_PLACEHOLDER;
@@ -59,7 +61,9 @@ export class TeamComponent extends BaseDirective {
   }
 
   private loadSvgs() {
-    this.iconService.addSvgIcon('discord-full-logo', '/assets/login/discord.svg', 'login-icons');
+    if (isPlatformBrowser(this.platformId)) {
+      this.iconService.addSvgIcon('discord-full-logo', '/assets/login/discord.svg', 'login-icons');
+    }
   }
 
 }
