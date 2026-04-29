@@ -1,88 +1,136 @@
-<div class="card-wrapper">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3320904478097217"
-      crossorigin="anonymous"></script>
-  <!-- Display Ad horizontal 1 -->
-  <ins class="adsbygoogle"
-      style="display:block"
-      data-ad-client="ca-pub-3320904478097217"
-      data-ad-slot="9044957402"
-      data-ad-format="auto"
-      data-full-width-responsive="true"></ins>
-  <script>
-      (adsbygoogle = window.adsbygoogle || []).push({});
-  </script>
-  <h2 class="content-container-row" i18n>Active tournaments</h2>
-  @if (!tournaments || !tournaments.length) {
-    <h5 class="content-container-row" i18n>No active tournaments found...</h5>
-  }
-  @for (tournament of tournaments; track tournament.id) {
-    <igx-card elevated>
-      <igx-card-media>
-        <img [ngSrc]="tournament.logo" width="352" height="300" [alt]="tournament.name" />
-      </igx-card-media>
-      <igx-card-header>
-        <h4 igxCardHeaderTitle>{{tournament.name}}</h4>
-        <span igxCardHeaderSubtitle>{{tournament.startDate | date}} - {{tournament.endDate | date}}</span>
-      </igx-card-header>
-      <igx-card-content>
-        <p>{{tournament.description}}</p>
-        <div class="horizontal-center margin-top">
-          <!-- <img ngSrc="/assets/wallpapers/csgo-logo.webp" width="250" height="107" class="navigatable tournament-image" alt="Counter-Strike" [routerLink]="['csgo', tournament.id]" /> -->
-          <img ngSrc="/assets/wallpapers/starcraft2-logo.webp" width="250" height="107" class="navigatable tournament-image" alt="StarCraft II" [routerLink]="['sc2', tournament.id]" />
-        </div>
-      </igx-card-content>
-    </igx-card>
+<div class="seasons-hub">
+  <header class="seasons-header">
+    <h1 i18n>EBL Seasons</h1>
+    <p class="header-subtitle" i18n>Esports Business League tournament seasons</p>
+    <a igxButton="outlined" igxRipple routerLink="/tournaments" i18n>
+      <igx-icon>military_tech</igx-icon>
+      Browse All Tournaments
+    </a>
+  </header>
+
+  <section class="season-section">
+    <h2 i18n>
+      <igx-icon>live_tv</igx-icon>
+      Active Seasons
+    </h2>
+    @if (!tournaments || !tournaments.length) {
+      <div class="empty-state">
+        <igx-icon>emoji_events</igx-icon>
+        <p i18n>No active seasons at the moment</p>
+      </div>
+    }
+    <div class="season-grid">
+      @for (tournament of tournaments; track tournament.id) {
+        <igx-card elevated class="season-card">
+          @if (tournament.logo) {
+            <igx-card-media height="200px">
+              <img [ngSrc]="tournament.logo" width="352" height="200" [alt]="tournament.name" />
+            </igx-card-media>
+          }
+          <igx-card-header>
+            <h3 igxCardHeaderTitle>{{tournament.name}}</h3>
+            <span igxCardHeaderSubtitle class="card-date">
+              <igx-icon>calendar_today</igx-icon>
+              {{tournament.startDate | date:'mediumDate'}} - {{tournament.endDate | date:'mediumDate'}}
+            </span>
+          </igx-card-header>
+          <igx-card-content>
+            <igx-chip [selectable]="false" [removable]="false" class="status-active" i18n>Active</igx-chip>
+            @if (tournament.description) {
+              <p class="card-desc">{{tournament.description}}</p>
+            }
+            <div class="game-links">
+              <a igxButton="outlined" igxRipple [routerLink]="['csgo', tournament.id]" class="game-btn" i18n>
+                <igx-icon>sports_esports</igx-icon>
+                Counter-Strike
+              </a>
+              <a igxButton="outlined" igxRipple [routerLink]="['sc2', tournament.id]" class="game-btn" i18n>
+                <igx-icon>sports_esports</igx-icon>
+                StarCraft II
+              </a>
+            </div>
+          </igx-card-content>
+        </igx-card>
+      }
+    </div>
+  </section>
+
+  @if (upcoming?.length) {
+    <igx-divider></igx-divider>
+    <section class="season-section">
+      <h2 i18n>
+        <igx-icon>upcoming</igx-icon>
+        Upcoming Seasons
+      </h2>
+      <div class="season-grid">
+        @for (tournament of upcoming; track tournament.id) {
+          <igx-card elevated class="season-card">
+            @if (tournament.logo) {
+              <igx-card-media height="200px">
+                <img [ngSrc]="tournament.logo" width="352" height="200" [alt]="tournament.name" />
+              </igx-card-media>
+            }
+            <igx-card-header>
+              <h3 igxCardHeaderTitle>{{tournament.name}}</h3>
+              <span igxCardHeaderSubtitle class="card-date">
+                <igx-icon>calendar_today</igx-icon>
+                {{tournament.startDate | date:'mediumDate'}} - {{tournament.endDate | date:'mediumDate'}}
+              </span>
+            </igx-card-header>
+            <igx-card-content>
+              <igx-chip [selectable]="false" [removable]="false" class="status-upcoming" i18n>Upcoming</igx-chip>
+              @if (tournament.description) {
+                <p class="card-desc">{{tournament.description}}</p>
+              }
+            </igx-card-content>
+          </igx-card>
+        }
+      </div>
+    </section>
   }
 
-  <div class="content-container-row">
+  @if (past?.length) {
     <igx-divider></igx-divider>
-    <h2 i18n>Upcoming tournaments</h2>
-    @if (!upcoming || !upcoming.length) {
-      <h5 i18n>No upcoming tournaments found...</h5>
-    }
-  </div>
-  @for (tournament of upcoming; track tournament.id) {
-    <igx-card elevated>
-      <igx-card-media>
-        <img [ngSrc]="tournament.logo" width="352" height="300" [alt]="tournament.name" />
-      </igx-card-media>
-      <igx-card-header>
-        <h4 igxCardHeaderTitle>{{tournament.name}}</h4>
-        <span igxCardHeaderSubtitle>{{tournament.startDate | date}} - {{tournament.endDate | date}}</span>
-      </igx-card-header>
-      <igx-card-content>
-        <p>{{tournament.description}}</p>
-        <div class="horizontal-center margin-top">
-          <!-- <img ngSrc="/assets/wallpapers/csgo-logo.webp" width="250" height="107" class="navigatable tournament-image" alt="Counter-Strike" [routerLink]="['csgo', tournament.id]" /> -->
-          <img ngSrc="/assets/wallpapers/starcraft2-logo.webp" width="250" height="107" class="navigatable tournament-image" alt="StarCraft II" [routerLink]="['sc2', tournament.id]" />
-        </div>
-      </igx-card-content>
-    </igx-card>
-  }
-
-  <div class="content-container-row">
-    <igx-divider></igx-divider>
-    <h2 i18n>Finished tournaments</h2>
-    @if (!past || !past.length) {
-      <h5 i18n>No finished tournaments found...</h5>
-    }
-  </div>
-  @for (tournament of past; track tournament.id) {
-    <igx-card elevated>
-      <igx-card-media>
-        <img [ngSrc]="tournament.logo" width="352" height="300" [alt]="tournament.name" />
-      </igx-card-media>
-      <igx-card-header>
-        <h4 igxCardHeaderTitle>{{tournament.name}}</h4>
-        <span igxCardHeaderSubtitle>{{tournament.startDate | date}} - {{tournament.endDate | date}}</span>
-      </igx-card-header>
-      <igx-card-content>
-        <p>{{tournament.description}}</p>
-        <div class="horizontal-center margin-top">
-          <img ngSrc="/assets/wallpapers/csgo-logo.webp" width="250" height="107" class="navigatable tournament-image" alt="Counter-Strike" [routerLink]="['csgo', tournament.id]" />
-          <img ngSrc="/assets/wallpapers/starcraft2-logo.webp" width="250" height="107" class="navigatable tournament-image" alt="StarCraft II" [routerLink]="['sc2', tournament.id]" />
-        </div>
-      </igx-card-content>
-    </igx-card>
+    <section class="season-section">
+      <h2 i18n>
+        <igx-icon>history</igx-icon>
+        Past Seasons
+      </h2>
+      <div class="season-grid">
+        @for (tournament of past; track tournament.id) {
+          <igx-card elevated class="season-card">
+            @if (tournament.logo) {
+              <igx-card-media height="200px">
+                <img [ngSrc]="tournament.logo" width="352" height="200" [alt]="tournament.name" />
+              </igx-card-media>
+            }
+            <igx-card-header>
+              <h3 igxCardHeaderTitle>{{tournament.name}}</h3>
+              <span igxCardHeaderSubtitle class="card-date">
+                <igx-icon>calendar_today</igx-icon>
+                {{tournament.startDate | date:'mediumDate'}} - {{tournament.endDate | date:'mediumDate'}}
+              </span>
+            </igx-card-header>
+            <igx-card-content>
+              <igx-chip [selectable]="false" [removable]="false" class="status-completed" i18n>Completed</igx-chip>
+              @if (tournament.description) {
+                <p class="card-desc">{{tournament.description}}</p>
+              }
+              <div class="game-links">
+                <a igxButton="outlined" igxRipple [routerLink]="['csgo', tournament.id]" class="game-btn" i18n>
+                  <igx-icon>sports_esports</igx-icon>
+                  Counter-Strike
+                </a>
+                <a igxButton="outlined" igxRipple [routerLink]="['sc2', tournament.id]" class="game-btn" i18n>
+                  <igx-icon>sports_esports</igx-icon>
+                  StarCraft II
+                </a>
+              </div>
+            </igx-card-content>
+          </igx-card>
+        }
+      </div>
+    </section>
   }
 </div>
+

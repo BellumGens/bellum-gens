@@ -1,0 +1,178 @@
+@if (loading()) {
+  <div class="loading-container">
+    <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
+  </div>
+} @else if (tournament(); as t) {
+  <div class="detail-container">
+    <!-- Hero Section -->
+    <section class="tournament-hero">
+      @if (t.logo) {
+        <div class="hero-bg" [style.background-image]="'url(' + t.logo + ')'"></div>
+      }
+      <div class="hero-content">
+        <div class="hero-info">
+          <div class="hero-badges">
+            <igx-chip [selectable]="false" [removable]="false" [class]="'status-' + t.status">
+              {{ statusLabel }}
+            </igx-chip>
+            <igx-chip [selectable]="false" [removable]="false">
+              <igx-icon igxPrefix>{{ visibilityIcon }}</igx-icon>
+              {{ t.visibility || 'public' }}
+            </igx-chip>
+          </div>
+
+          <h1>{{ t.name }}</h1>
+
+          @if (t.startDate) {
+            <div class="hero-date">
+              <igx-icon>calendar_today</igx-icon>
+              <span>{{ t.startDate | date:'longDate' }}</span>
+              @if (t.endDate) {
+                <span> – {{ t.endDate | date:'longDate' }}</span>
+              }
+            </div>
+          }
+
+          @if (t.prizePool) {
+            <div class="hero-prize">
+              <igx-icon>payments</igx-icon>
+              <span>{{ t.prizePool }}</span>
+            </div>
+          }
+
+          @if (t.description) {
+            <p class="hero-description">{{ t.description }}</p>
+          }
+        </div>
+
+        <div class="hero-actions">
+          @if (canJoin()) {
+            <button igxButton="contained" igxRipple i18n>
+              <igx-icon>how_to_reg</igx-icon>
+              Register
+            </button>
+          }
+          @if (isOwner()) {
+            <a igxButton="outlined" igxRipple [routerLink]="['/tournaments/manage', t.id]" i18n>
+              <igx-icon>settings</igx-icon>
+              Manage
+            </a>
+          }
+          @if (t.inviteCode && isOwner()) {
+            <div class="invite-code-box">
+              <igx-icon>vpn_key</igx-icon>
+              <span class="invite-label" i18n>Invite Code:</span>
+              <code>{{ t.inviteCode }}</code>
+            </div>
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Tournament Info Stats -->
+    @if (t.maxParticipants) {
+      <section class="stats-strip">
+        <div class="stat-item">
+          <igx-icon>people</igx-icon>
+          <div class="stat-text">
+            <span class="stat-value">{{ t.maxParticipants }}</span>
+            <span class="stat-label" i18n>Max Players</span>
+          </div>
+        </div>
+      </section>
+    }
+
+    <!-- Content Tabs -->
+    <igx-tabs tabAlignment="start">
+      <igx-tab-item>
+        <igx-tab-header>
+          <igx-icon igxTabHeaderIcon>people</igx-icon>
+          <span igxTabHeaderLabel i18n>Participants</span>
+        </igx-tab-header>
+        <igx-tab-content>
+          @if (loadingRegistrations | async) {
+            <div class="loading-container">
+              <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
+            </div>
+          } @else {
+            <div class="participants-grid">
+              @for (reg of registrations | async; track reg.id) {
+                <div class="participant-card">
+                  <igx-avatar
+                    [src]="reg.user?.sc2Details?.avatarUrl || reg.user?.steamUser?.avatarFull"
+                    [initials]="reg.user?.username"
+                    size="large"
+                    shape="circle">
+                  </igx-avatar>
+                  @if (reg.country) {
+                    <igx-avatar [src]="reg.country | countrySVG" shape="circle" [title]="reg.country" class="country-badge"></igx-avatar>
+                  }
+                  <span class="participant-name">{{ reg.user?.username || reg.battleTag }}</span>
+                  @if (reg.companyId) {
+                    <span class="participant-org">[{{ reg.companyId }}]</span>
+                  }
+                </div>
+              } @empty {
+                <div class="empty-state">
+                  <igx-icon>person_add</igx-icon>
+                  <p i18n>No participants registered yet</p>
+                </div>
+              }
+            </div>
+          }
+        </igx-tab-content>
+      </igx-tab-item>
+
+      <igx-tab-item>
+        <igx-tab-header>
+          <igx-icon igxTabHeaderIcon>leaderboard</igx-icon>
+          <span igxTabHeaderLabel i18n>Matches</span>
+        </igx-tab-header>
+        <igx-tab-content>
+          <div class="matches-section">
+            @if (sc2Matches | async; as matches) {
+              @for (match of matches; track match.id) {
+                <div class="match-row">
+                  <div class="match-time">{{ match.startTime | date:'MMM d, h:mm a' }}</div>
+                  <div class="match-players">
+                    <div class="player" [class.winner]="match.player1Points > match.player2Points">
+                      <igx-avatar [src]="match.player1?.avatarUrl" [initials]="match.player1?.username" size="small" shape="circle"></igx-avatar>
+                      <span>{{ match.player1?.username }}</span>
+                      @if (match.player1Race) {
+                        <igx-avatar [src]="match.player1Race | raceIcon" shape="circle" class="race-icon"></igx-avatar>
+                      }
+                    </div>
+                    <div class="match-score">
+                      <span [class.winner]="match.player1Points > match.player2Points">{{ match.player1Points }}</span>
+                      <span class="vs">:</span>
+                      <span [class.winner]="match.player2Points > match.player1Points">{{ match.player2Points }}</span>
+                    </div>
+                    <div class="player" [class.winner]="match.player2Points > match.player1Points">
+                      <igx-avatar [src]="match.player2?.avatarUrl" [initials]="match.player2?.username" size="small" shape="circle"></igx-avatar>
+                      <span>{{ match.player2?.username }}</span>
+                      @if (match.player2Race) {
+                        <igx-avatar [src]="match.player2Race | raceIcon" shape="circle" class="race-icon"></igx-avatar>
+                      }
+                    </div>
+                  </div>
+                  <div class="match-actions">
+                    @if (match.videoLink) {
+                      <a [href]="match.videoLink" target="_blank" igxButton="flat" igxRipple>
+                        <igx-icon>play_circle</igx-icon>
+                      </a>
+                    }
+                  </div>
+                </div>
+              } @empty {
+                <div class="empty-state">
+                  <igx-icon>sports_esports</igx-icon>
+                  <p i18n>No matches scheduled yet</p>
+                </div>
+              }
+            }
+          </div>
+        </igx-tab-content>
+      </igx-tab-item>
+    </igx-tabs>
+  </div>
+}

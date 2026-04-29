@@ -16,3 +16,9 @@ export * from './login/login-dialog/login-dialog.component';
 export * from './login/user-preferences/user-preferences.component';
 export * from './login/login-buttons/login-buttons.component';
 
+/* Tournament */
+export * from './tournament/tournament-card/tournament-card.component';
+export * from './tournament/tournament-list/tournament-list.component';
+export * from './tournament/tournament-create/tournament-create.component';
+export * from './tournament/tournament-detail/tournament-detail.component';
+

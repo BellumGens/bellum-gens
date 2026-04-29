@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, OnDestroy, inject } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy, inject, PLATFORM_ID } from '@angular/core';
 import {
   CSGOActiveDutyMap,
   ACTIVE_DUTY,
@@ -24,7 +24,7 @@ import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
 import { IGX_BUTTON_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/button-group';
 import { ConfirmComponent } from '../../../../../common/src/lib/confirm/confirm.component';
 import { FormsModule } from '@angular/forms';
-import { NgClass } from '@angular/common';
+import { isPlatformBrowser, NgClass } from '@angular/common';
 
 @Component({
   selector: 'app-strategy-editor',
@@ -51,6 +51,7 @@ export class StrategyEditorComponent implements OnInit, OnDestroy {
   private apiStrategyService = inject(ApiStrategiesService);
   private iconService = inject(IgxIconService);
   private route = inject(ActivatedRoute);
+  private platformId = inject(PLATFORM_ID);
 
   @ViewChild('board', { static: true }) public canvas: ElementRef;
 
@@ -97,7 +98,9 @@ export class StrategyEditorComponent implements OnInit, OnDestroy {
   private editor: StrategyEditor;
 
   constructor() {
-    this.loadSvgs();
+    if (isPlatformBrowser(this.platformId)) {
+      this.loadSvgs();
+    }
   }
 
   public ngOnInit() {

@@ -2,7 +2,9 @@ import { Component, inject } from '@angular/core';
 import { Tournament, ApiTournamentsService } from '../../../../../common/src/public_api';
 import { RouterLink } from '@angular/router';
 import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
-import { IgxDividerDirective } from '@infragistics/igniteui-angular/directives';
+import { IgxDividerDirective, IgxButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
+import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
+import { IgxChipComponent } from '@infragistics/igniteui-angular/chips';
 import { DatePipe, NgOptimizedImage } from '@angular/common';
 
 @Component({
@@ -14,7 +16,11 @@ import { DatePipe, NgOptimizedImage } from '@angular/common';
     DatePipe,
     IGX_CARD_DIRECTIVES,
     RouterLink,
-    IgxDividerDirective
+    IgxDividerDirective,
+    IgxButtonDirective,
+    IgxRippleDirective,
+    IgxIconComponent,
+    IgxChipComponent
   ]
 })
 export class TournamentsMainComponent {
