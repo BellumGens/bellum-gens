@@ -1,0 +1,97 @@
+<div class="create-container">
+  <header class="create-header">
+    <button igxButton="flat" igxRipple (click)="cancel()">
+      <igx-icon>arrow_back</igx-icon>
+    </button>
+    @if (isEditMode()) {
+      <h2 i18n>Edit Tournament</h2>
+    } @else {
+      <h2 i18n>Create Tournament</h2>
+    }
+  </header>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" class="create-form">
+    <section class="form-section">
+      <h3 i18n>Basic Information</h3>
+
+      <igx-input-group type="border">
+        <label igxLabel i18n>Tournament Name</label>
+        <input igxInput formControlName="name" />
+        <igx-prefix><igx-icon>emoji_events</igx-icon></igx-prefix>
+        @if (form.controls.name.invalid && form.controls.name.touched) {
+          <igx-hint i18n>Tournament name is required</igx-hint>
+        }
+      </igx-input-group>
+
+      <igx-input-group type="border">
+        <label igxLabel i18n>Description</label>
+        <textarea igxInput formControlName="description" rows="4"></textarea>
+        <igx-prefix><igx-icon>description</igx-icon></igx-prefix>
+      </igx-input-group>
+
+      <igx-select formControlName="game" placeholder="Select game" i18n-placeholder>
+        <label igxLabel i18n>Game</label>
+        @for (game of games; track game.id) {
+          <igx-select-item [value]="game.id">{{ game.name }}</igx-select-item>
+        }
+      </igx-select>
+    </section>
+
+    <section class="form-section">
+      <h3 i18n>Schedule</h3>
+
+      <div class="form-row">
+        <igx-date-picker formControlName="startDate" i18n-placeholder placeholder="Start Date">
+          <label igxLabel i18n>Start Date</label>
+        </igx-date-picker>
+
+        <igx-date-picker formControlName="endDate" i18n-placeholder placeholder="End Date">
+          <label igxLabel i18n>End Date</label>
+        </igx-date-picker>
+      </div>
+    </section>
+
+    <section class="form-section">
+      <h3 i18n>Settings</h3>
+
+      <igx-select formControlName="visibility" placeholder="Visibility" i18n-placeholder>
+        <label igxLabel i18n>Visibility</label>
+        @for (opt of visibilityOptions; track opt.value) {
+          <igx-select-item [value]="opt.value">
+            <igx-icon>{{ opt.icon }}</igx-icon>
+            {{ opt.label }}
+          </igx-select-item>
+        }
+      </igx-select>
+
+      <div class="form-row">
+        <igx-input-group type="border">
+          <label igxLabel i18n>Max Participants</label>
+          <input igxInput formControlName="maxParticipants" type="number" min="2" />
+          <igx-prefix><igx-icon>people</igx-icon></igx-prefix>
+        </igx-input-group>
+
+        <igx-input-group type="border">
+          <label igxLabel i18n>Prize Pool</label>
+          <input igxInput formControlName="prizePool" />
+          <igx-prefix><igx-icon>payments</igx-icon></igx-prefix>
+          <igx-hint i18n>e.g. $10,000 or €5,000</igx-hint>
+        </igx-input-group>
+      </div>
+    </section>
+
+    <div class="form-actions">
+      <button igxButton="flat" igxRipple type="button" (click)="cancel()" i18n>Cancel</button>
+      <button igxButton="contained" igxRipple type="submit" [disabled]="form.invalid || saving()">
+        @if (saving()) {
+          <igx-icon>hourglass_empty</igx-icon>
+        }
+        @if (isEditMode()) {
+          <span i18n>Save Changes</span>
+        } @else {
+          <span i18n>Create Tournament</span>
+        }
+      </button>
+    </div>
+  </form>
+</div>

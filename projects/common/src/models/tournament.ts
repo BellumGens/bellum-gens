@@ -12,6 +12,21 @@ export const enum TournamentApplicationState {
   Confirmed,
   Banned
 }
+
+export enum TournamentVisibility {
+  Public = 'public',
+  Private = 'private',
+  InviteOnly = 'invite-only'
+}
+
+export enum TournamentStatus {
+  Draft = 'draft',
+  Open = 'open',
+  InProgress = 'in-progress',
+  Completed = 'completed',
+  Cancelled = 'cancelled'
+}
+
 export interface Tournament {
   id?: string;
   name: string;
@@ -20,6 +35,13 @@ export interface Tournament {
   startDate?: Date;
   endDate?: Date;
   active?: boolean;
+  game?: Game;
+  visibility?: TournamentVisibility;
+  status?: TournamentStatus;
+  creatorId?: string;
+  inviteCode?: string;
+  maxParticipants?: number;
+  prizePool?: string;
   csgoMatches?: TournamentCSGOMatch [];
   sc2Matches?: TournamentSC2Match [];
 }
@@ -91,7 +113,11 @@ export interface RegistrationsCount {
 
 export const EMPTY_NEW_APPLICATION: TournamentApplication = { game: null, email: '' };
 
-export const EMPTY_NEW_TOURNAMENT: Tournament = { name: null };
+export const EMPTY_NEW_TOURNAMENT: Tournament = {
+  name: null,
+  visibility: TournamentVisibility.Public,
+  status: TournamentStatus.Draft
+};
 
 export const EMPTY_NEW_GROUP: TournamentGroup = { name: null, inEdit: false };
 

@@ -1,0 +1,136 @@
+<div class="tournaments-hub">
+  <header class="hub-header">
+    <div class="header-content">
+      <h1 i18n>Tournaments</h1>
+      <p class="header-subtitle" i18n>Create, join, and compete in esports tournaments</p>
+    </div>
+    <div class="header-actions">
+      <button igxButton="outlined" igxRipple (click)="inviteDialog.open()" i18n>
+        <igx-icon>vpn_key</igx-icon>
+        Join by Code
+      </button>
+      <button igxButton="contained" igxRipple (click)="createTournament()" i18n>
+        <igx-icon>add</igx-icon>
+        Create Tournament
+      </button>
+    </div>
+  </header>
+
+  <igx-tabs [(selectedIndex)]="activeTab" tabAlignment="start">
+    <igx-tab-item>
+      <igx-tab-header>
+        <igx-icon igxTabHeaderIcon>emoji_events</igx-icon>
+        <span igxTabHeaderLabel i18n>Active</span>
+      </igx-tab-header>
+      <igx-tab-content>
+        @if (loading()) {
+          <div class="loading-container">
+            <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
+          </div>
+        } @else {
+          @if (activeTournaments().length) {
+            <div class="tournament-grid">
+              @for (tournament of activeTournaments(); track tournament.id) {
+                <bg-tournament-card [tournament]="tournament" detailRoutePrefix="/tournaments/view"></bg-tournament-card>
+              }
+            </div>
+          } @else {
+            <div class="empty-state">
+              <igx-icon>emoji_events</igx-icon>
+              <h3 i18n>No active tournaments</h3>
+              <p i18n>Check back soon or create your own tournament!</p>
+            </div>
+          }
+        }
+      </igx-tab-content>
+    </igx-tab-item>
+
+    <igx-tab-item>
+      <igx-tab-header>
+        <igx-icon igxTabHeaderIcon>upcoming</igx-icon>
+        <span igxTabHeaderLabel i18n>Upcoming</span>
+      </igx-tab-header>
+      <igx-tab-content>
+        @if (upcomingTournaments().length) {
+          <div class="tournament-grid">
+            @for (tournament of upcomingTournaments(); track tournament.id) {
+              <bg-tournament-card [tournament]="tournament" detailRoutePrefix="/tournaments/view"></bg-tournament-card>
+            }
+          </div>
+        } @else {
+          <div class="empty-state">
+            <igx-icon>schedule</igx-icon>
+            <h3 i18n>No upcoming tournaments</h3>
+            <p i18n>Be the first to create one!</p>
+          </div>
+        }
+      </igx-tab-content>
+    </igx-tab-item>
+
+    <igx-tab-item>
+      <igx-tab-header>
+        <igx-icon igxTabHeaderIcon>military_tech</igx-icon>
+        <span igxTabHeaderLabel i18n>Completed</span>
+      </igx-tab-header>
+      <igx-tab-content>
+        @if (completedTournaments().length) {
+          <div class="tournament-grid">
+            @for (tournament of completedTournaments(); track tournament.id) {
+              <bg-tournament-card [tournament]="tournament" detailRoutePrefix="/tournaments/view"></bg-tournament-card>
+            }
+          </div>
+        } @else {
+          <div class="empty-state">
+            <igx-icon>history</igx-icon>
+            <h3 i18n>No completed tournaments yet</h3>
+          </div>
+        }
+      </igx-tab-content>
+    </igx-tab-item>
+
+    <igx-tab-item>
+      <igx-tab-header>
+        <igx-icon igxTabHeaderIcon>person</igx-icon>
+        <span igxTabHeaderLabel i18n>My Tournaments</span>
+      </igx-tab-header>
+      <igx-tab-content>
+        @if (myTournaments().length) {
+          <div class="tournament-grid">
+            @for (tournament of myTournaments(); track tournament.id) {
+              <bg-tournament-card
+                [tournament]="tournament"
+                detailRoutePrefix="/tournaments/view"
+                [showManage]="true"
+                (manage)="manageTournament($event)"
+                (deleteTournament)="onDeleteTournament($event)">
+              </bg-tournament-card>
+            }
+          </div>
+        } @else {
+          <div class="empty-state">
+            <igx-icon>add_circle_outline</igx-icon>
+            <h3 i18n>You haven't created any tournaments</h3>
+            <p i18n>Create your first tournament to get started!</p>
+            <button igxButton="contained" igxRipple (click)="createTournament()" i18n>
+              <igx-icon>add</igx-icon>
+              Create Tournament
+            </button>
+          </div>
+        }
+      </igx-tab-content>
+    </igx-tab-item>
+  </igx-tabs>
+</div>
+
+<igx-dialog #inviteDialog [isModal]="true" [closeOnEscape]="true" title="Join Tournament" i18n-title>
+  <igx-input-group type="border">
+    <label igxLabel i18n>Invite Code</label>
+    <input igxInput name="inviteCode" type="text" [(ngModel)]="inviteCode" />
+    <igx-prefix><igx-icon>vpn_key</igx-icon></igx-prefix>
+    <igx-hint i18n>Enter the invite code shared by the tournament organizer</igx-hint>
+  </igx-input-group>
+  <div igxDialogActions>
+    <button igxButton="flat" (click)="inviteDialog.close()" i18n>Cancel</button>
+    <button igxButton="contained" (click)="joinByInvite(inviteDialog)" [disabled]="!inviteCode?.trim()" i18n>Join</button>
+  </div>
+</igx-dialog>

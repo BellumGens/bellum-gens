@@ -3,6 +3,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TournamentsMainComponent } from './tournaments-main.component';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideRouter } from '@angular/router';
 import { ApiTournamentsService, Tournament } from 'projects/common/src/public_api';
 
 describe('TournamentsMainComponent', () => {
@@ -14,7 +15,7 @@ describe('TournamentsMainComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [TournamentsMainComponent],
-      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+      providers: [provideRouter([]), provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
     })
     .compileComponents();
     httpMock = TestBed.inject(HttpTestingController);

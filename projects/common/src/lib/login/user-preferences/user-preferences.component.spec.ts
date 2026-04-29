@@ -5,7 +5,8 @@ import { provideRouter } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { Router } from '@angular/router';
-import { ApplicationUser, CommunicationService, Game, LoginProvider, LoginService, TournamentApplication, TournamentApplicationState } from '../../../public_api';
+import { ApplicationUser, CommunicationService, LoginProvider, LoginService, TournamentApplication } from '../../../public_api';
+import { Game, TournamentApplicationState } from '../../../models/tournament';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 
@@ -42,7 +43,7 @@ describe('UserPreferencesComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        
+
         NoopAnimationsModule,
         ServiceWorkerModule.register('', { enabled: false }),
         UserPreferencesComponent

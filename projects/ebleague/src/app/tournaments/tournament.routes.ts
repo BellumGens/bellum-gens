@@ -5,6 +5,7 @@ import { TournamentCsgoComponent } from './tournament-csgo/tournament-csgo.compo
 import { TournamentSc2Component } from './tournament-sc2/tournament-sc2.component';
 import { ProductionCrewComponent } from './production-crew/production-crew.component';
 import { TournamentsMainComponent } from './tournaments-main/tournaments-main.component';
+import { TournamentListComponent, TournamentCreateComponent, TournamentDetailComponent } from '../../../../common/src/public_api';
 
 export const routes: Routes = [
   { path: '', component: TournamentComponent, children: [
@@ -28,6 +29,52 @@ export const routes: Routes = [
       }
     }
   ] },
+  { path: 'format', component: TournamentFormatComponent },
+  { path: 'crew', component: ProductionCrewComponent },
+  {
+    path: 'hub',
+    component: TournamentListComponent,
+    data: {
+      title: 'Tournaments - Esports Business League',
+      twitterTitle: 'Tournaments - Esports Business League',
+      description: 'Browse and join esports tournaments on Esports Business League. Create your own tournaments, compete with others, and manage your events.',
+      twitterDescription: 'Browse and join esports tournaments on Esports Business League.',
+      image: '/assets/eb-league-logo-sm.png'
+    }
+  },
+  {
+    path: 'create',
+    component: TournamentCreateComponent,
+    data: {
+      title: 'Create Tournament - Esports Business League',
+      twitterTitle: 'Create Tournament - Esports Business League',
+      description: 'Create a new esports tournament on Esports Business League.',
+      twitterDescription: 'Create a new esports tournament on Esports Business League.',
+      image: '/assets/eb-league-logo-sm.png'
+    }
+  },
+  {
+    path: 'manage/:tournamentId',
+    component: TournamentCreateComponent,
+    data: {
+      title: 'Edit Tournament - Esports Business League',
+      twitterTitle: 'Edit Tournament - Esports Business League',
+      description: 'Edit your tournament settings on Esports Business League.',
+      twitterDescription: 'Edit your tournament settings on Esports Business League.',
+      image: '/assets/eb-league-logo-sm.png'
+    }
+  },
+  {
+    path: 'view/:tournamentId',
+    component: TournamentDetailComponent,
+    data: {
+      title: 'Tournament Details - Esports Business League',
+      twitterTitle: 'Tournament Details - Esports Business League',
+      description: 'View tournament details, participants, and match results.',
+      twitterDescription: 'View tournament details, participants, and match results.',
+      image: '/assets/eb-league-logo-sm.png'
+    }
+  },
   { path: 'format', component: TournamentFormatComponent },
   { path: 'crew', component: ProductionCrewComponent }
 ];

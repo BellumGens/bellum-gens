@@ -2739,6 +2739,438 @@
           <context context-type="linenumber">338,339</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="1161299114153631702" datatype="html">
+        <source>Completed</source>
+        <target>Завършени</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-list/tournament-list.component.html</context>
+          <context context-type="linenumber">73,74</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournaments-main/tournaments-main.component.html</context>
+          <context context-type="linenumber">115</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1633172132963272518" datatype="html">
+        <source>Create Tournament</source>
+        <target>Създаване на турнир</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-create/tournament-create.component.html</context>
+          <context context-type="linenumber">9,10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-create/tournament-create.component.html</context>
+          <context context-type="linenumber">92,93</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1762934695330421573" datatype="html">
+        <source>Invite Code</source>
+        <target>Код за покана</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-list/tournament-list.component.html</context>
+          <context context-type="linenumber">127,128</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1958605276691820365" datatype="html">
+        <source>No upcoming tournaments</source>
+        <target>Няма предстоящи турнири</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-list/tournament-list.component.html</context>
+          <context context-type="linenumber">63,64</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2091998857685399998" datatype="html">
+        <source>No completed tournaments yet</source>
+        <target>Все още няма завършени турнири</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-list/tournament-list.component.html</context>
+          <context context-type="linenumber">85,86</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2357232480441236945" datatype="html">
+        <source>EBL Seasons</source>
+        <target>EBL Сезони</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/app.component.html</context>
+          <context context-type="linenumber">7,8</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/app.component.html</context>
+          <context context-type="linenumber">38,39</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournaments-main/tournaments-main.component.html</context>
+          <context context-type="linenumber">3,4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2912145266712471124" datatype="html">
+        <source><x id="START_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;igx-icon&gt;"/>upcoming<x id="CLOSE_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;/igx-icon&gt;"/> Upcoming Seasons </source>
+        <target><x id="START_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;igx-icon&gt;"/>upcoming<x id="CLOSE_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;/igx-icon&gt;"/> Предстоящи сезони </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournaments-main/tournaments-main.component.html</context>
+          <context context-type="linenumber">62,64</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3102609814464535134" datatype="html">
+        <source><x id="START_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;igx-icon&gt;"/>military_tech<x id="CLOSE_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;/igx-icon&gt;"/> Browse All Tournaments </source>
+        <target><x id="START_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;igx-icon&gt;"/>military_tech<x id="CLOSE_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;/igx-icon&gt;"/> Преглед на всички турнири </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournaments-main/tournaments-main.component.html</context>
+          <context context-type="linenumber">6,9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3142968393315533250" datatype="html">
+        <source>Tournament name is required</source>
+        <target>Името на турнира е задължително</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-create/tournament-create.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3151986639855172294" datatype="html">
+        <source><x id="START_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;igx-icon&gt;"/>add<x id="CLOSE_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;/igx-icon&gt;"/> Create Tournament </source>
+        <target><x id="START_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;igx-icon&gt;"/>add<x id="CLOSE_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;/igx-icon&gt;"/> Създаване на турнир </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-list/tournament-list.component.html</context>
+          <context context-type="linenumber">13,15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-list/tournament-list.component.html</context>
+          <context context-type="linenumber">115,117</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3420623715794941357" datatype="html">
+        <source>Be the first to create one!</source>
+        <target>Бъдете първият, който ще създаде!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-list/tournament-list.component.html</context>
+          <context context-type="linenumber">64,65</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3423879041839483698" datatype="html">
+        <source><x id="START_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;igx-icon&gt;"/>live_tv<x id="CLOSE_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;/igx-icon&gt;"/> Active Seasons </source>
+        <target><x id="START_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;igx-icon&gt;"/>live_tv<x id="CLOSE_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;/igx-icon&gt;"/> Активни сезони </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournaments-main/tournaments-main.component.html</context>
+          <context context-type="linenumber">13,16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3604386807230411192" datatype="html">
+        <source>Start Date</source>
+        <target>Начална дата</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-create/tournament-create.component.html</context>
+          <context context-type="linenumber">44,45</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-create/tournament-create.component.html</context>
+          <context context-type="linenumber">45,46</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3798118958851949194" datatype="html">
+        <source>Esports Business League tournament seasons</source>
+        <target>Esports Business League турнирни сезони</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournaments-main/tournaments-main.component.html</context>
+          <context context-type="linenumber">4,5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3969815576844116502" datatype="html">
+        <source>Tournament Name</source>
+        <target>Име на турнира</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-create/tournament-create.component.html</context>
+          <context context-type="linenumber">18,19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4247366245711051009" datatype="html">
+        <source>Edit Tournament</source>
+        <target>Редактиране на турнир</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-create/tournament-create.component.html</context>
+          <context context-type="linenumber">7,8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4319441956121197474" datatype="html">
+        <source>Save Changes</source>
+        <target>Запазване на промените</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-create/tournament-create.component.html</context>
+          <context context-type="linenumber">90,91</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4341002761281619346" datatype="html">
+        <source>Max Players</source>
+        <target>Максимален брой играчи</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-detail/tournament-detail.component.html</context>
+          <context context-type="linenumber">79,80</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4372506581838158924" datatype="html">
+        <source>Max Participants</source>
+        <target>Максимален брой участници</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-create/tournament-create.component.html</context>
+          <context context-type="linenumber">69,70</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4425261597270351519" datatype="html">
+        <source>Select game</source>
+        <target>Изберете игра</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-create/tournament-create.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4902817035128594900" datatype="html">
+        <source>Description</source>
+        <target>Описание</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-create/tournament-create.component.html</context>
+          <context context-type="linenumber">27,28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5162209722895396533" datatype="html">
+        <source>Enter the invite code shared by the tournament organizer</source>
+        <target>Въведете кода за покана, споделен от организатора на турнира</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-list/tournament-list.component.html</context>
+          <context context-type="linenumber">130</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5256041485164998577" datatype="html">
+        <source>No active tournaments</source>
+        <target>Няма активни турнири</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-list/tournament-list.component.html</context>
+          <context context-type="linenumber">40,41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5286620359229393771" datatype="html">
+        <source> View Details </source>
+        <target> Преглед </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-card/tournament-card.component.html</context>
+          <context context-type="linenumber">64,65</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5433782699501161466" datatype="html">
+        <source>Schedule</source>
+        <target>График</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-create/tournament-create.component.html</context>
+          <context context-type="linenumber">41,43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="550094924826156710" datatype="html">
+        <source>No active seasons at the moment</source>
+        <target>Няма активни сезони в момента</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournaments-main/tournaments-main.component.html</context>
+          <context context-type="linenumber">19,20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6028207238191684747" datatype="html">
+        <source>My Tournaments</source>
+        <target>Моите турнири</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-list/tournament-list.component.html</context>
+          <context context-type="linenumber">94,95</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6123237793833966601" datatype="html">
+        <source>You haven&apos;t created any tournaments</source>
+        <target>Не сте създали турнири</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-list/tournament-list.component.html</context>
+          <context context-type="linenumber">112,113</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6160729601306428852" datatype="html">
+        <source>e.g. $10,000 or €5,000</source>
+        <target>напр. $10,000 или €5,000</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-create/tournament-create.component.html</context>
+          <context context-type="linenumber">78</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6547339363660356423" datatype="html">
+        <source>No participants registered yet</source>
+        <target>Все още няма регистрирани участници</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-detail/tournament-detail.component.html</context>
+          <context context-type="linenumber">118,119</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7379726829888309084" datatype="html">
+        <source>End Date</source>
+        <target>Крайна дата</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-create/tournament-create.component.html</context>
+          <context context-type="linenumber">48,49</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-create/tournament-create.component.html</context>
+          <context context-type="linenumber">49,50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7707960481453154131" datatype="html">
+        <source><x id="START_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;igx-icon&gt;"/>how_to_reg<x id="CLOSE_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;/igx-icon&gt;"/> Register </source>
+        <target><x id="START_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;igx-icon&gt;"/>how_to_reg<x id="CLOSE_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;/igx-icon&gt;"/> Регистрация </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-detail/tournament-detail.component.html</context>
+          <context context-type="linenumber">51,53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7830303036963124678" datatype="html">
+        <source>Create your first tournament to get started!</source>
+        <target>Създайте първия си турнир, за да започнете!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-list/tournament-list.component.html</context>
+          <context context-type="linenumber">113,114</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7912968403833168306" datatype="html">
+        <source><x id="START_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;igx-icon&gt;"/>sports_esports<x id="CLOSE_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;/igx-icon&gt;"/> Counter-Strike </source>
+        <target><x id="START_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;igx-icon&gt;"/>sports_esports<x id="CLOSE_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;/igx-icon&gt;"/> Counter-Strike </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournaments-main/tournaments-main.component.html</context>
+          <context context-type="linenumber">44,46</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournaments-main/tournaments-main.component.html</context>
+          <context context-type="linenumber">121,123</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8226720584158150840" datatype="html">
+        <source>Join Tournament</source>
+        <target>Присъедини се към турнир</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-list/tournament-list.component.html</context>
+          <context context-type="linenumber">125</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8271357500216966879" datatype="html">
+        <source>Visibility</source>
+        <target>Видимост</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-create/tournament-create.component.html</context>
+          <context context-type="linenumber">57</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-create/tournament-create.component.html</context>
+          <context context-type="linenumber">58,59</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8307140841776883735" datatype="html">
+        <source>Join</source>
+        <target>Присъединяване</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-list/tournament-list.component.html</context>
+          <context context-type="linenumber">134,135</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8373156083061523092" datatype="html">
+        <source>No matches scheduled yet</source>
+        <target>Все още няма насрочени мачове</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-detail/tournament-detail.component.html</context>
+          <context context-type="linenumber">169,170</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8440697829395030800" datatype="html">
+        <source>Check back soon or create your own tournament!</source>
+        <target>Проверете отново скоро или създайте свой собствен турнир!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-list/tournament-list.component.html</context>
+          <context context-type="linenumber">41,42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8564339141459830002" datatype="html">
+        <source><x id="START_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;igx-icon&gt;"/>history<x id="CLOSE_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;/igx-icon&gt;"/> Past Seasons </source>
+        <target><x id="START_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;igx-icon&gt;"/>history<x id="CLOSE_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;/igx-icon&gt;"/> Минали сезони </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournaments-main/tournaments-main.component.html</context>
+          <context context-type="linenumber">96,98</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8640566240646378534" datatype="html">
+        <source><x id="START_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;igx-icon&gt;"/>settings<x id="CLOSE_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;/igx-icon&gt;"/> Manage </source>
+        <target><x id="START_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;igx-icon&gt;"/>settings<x id="CLOSE_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;/igx-icon&gt;"/> Управление </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-card/tournament-card.component.html</context>
+          <context context-type="linenumber">68,70</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-detail/tournament-detail.component.html</context>
+          <context context-type="linenumber">57,59</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8725224299321680590" datatype="html">
+        <source>Upcoming</source>
+        <target>Предстоящи</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-list/tournament-list.component.html</context>
+          <context context-type="linenumber">51,52</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournaments-main/tournaments-main.component.html</context>
+          <context context-type="linenumber">81</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8781767917622107949" datatype="html">
+        <source>Basic Information</source>
+        <target>Основна информация</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-create/tournament-create.component.html</context>
+          <context context-type="linenumber">15,17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8921695041094295962" datatype="html">
+        <source>Prize Pool</source>
+        <target>Награден фонд</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-create/tournament-create.component.html</context>
+          <context context-type="linenumber">75,76</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9073540442040811483" datatype="html">
+        <source>Invite Code:</source>
+        <target>Код за покана:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-detail/tournament-detail.component.html</context>
+          <context context-type="linenumber">64,65</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9209195486314385244" datatype="html">
+        <source>Create, join, and compete in esports tournaments</source>
+        <target>Създавайте, присъединявайте се и се състезавайте в esports турнири</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-list/tournament-list.component.html</context>
+          <context context-type="linenumber">5,6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9221599709259683638" datatype="html">
+        <source><x id="START_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;igx-icon&gt;"/>sports_esports<x id="CLOSE_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;/igx-icon&gt;"/> StarCraft II </source>
+        <target><x id="START_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;igx-icon&gt;"/>sports_esports<x id="CLOSE_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;/igx-icon&gt;"/> StarCraft II </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournaments-main/tournaments-main.component.html</context>
+          <context context-type="linenumber">48,50</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournaments-main/tournaments-main.component.html</context>
+          <context context-type="linenumber">125,127</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="938816375564935925" datatype="html">
+        <source><x id="START_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;igx-icon&gt;"/>vpn_key<x id="CLOSE_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;/igx-icon&gt;"/> Join by Code </source>
+        <target><x id="START_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;igx-icon&gt;"/>vpn_key<x id="CLOSE_TAG_IGX_ICON" ctype="x-igx_icon" equiv-text="&lt;/igx-icon&gt;"/> Присъединяване с код </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-list/tournament-list.component.html</context>
+          <context context-type="linenumber">9,11</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>

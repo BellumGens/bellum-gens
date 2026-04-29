@@ -1,4 +1,5 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, PLATFORM_ID } from '@angular/core';
+import { DecimalPipe, isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { ALL_ROLES, ApiSearchService, ApplicationUser } from '../../../../../../common/src/public_api';
 import { BaseDirective } from '../../../base/base.component';
@@ -9,7 +10,6 @@ import { IGX_CHIPS_DIRECTIVES } from '@infragistics/igniteui-angular/chips';
 import { IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular/progressbar';
 import { QueryParsedPipe } from '../../../pipes/query-parsed.pipe';
 import { LoadingComponent } from '../../../../../../common/src/lib/loading/loading.component';
-import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-player-results',
@@ -30,6 +30,7 @@ import { DecimalPipe } from '@angular/common';
 export class PlayerResultsComponent extends BaseDirective {
   private iconService = inject(IgxIconService);
   private apiService = inject(ApiSearchService);
+  private platformId = inject(PLATFORM_ID);
 
   public players: ApplicationUser [];
   public loading = false;
@@ -46,7 +47,9 @@ export class PlayerResultsComponent extends BaseDirective {
     });
     this.apiService.loadingSearch.subscribe(loading => this.loading = loading);
     this.apiService.playerSearchResult.subscribe(players => this.players = players);
-    this.iconService.addSvgIcon('headshot', '/assets/headshot24x24.svg', 'weapon-icons');
+    if (isPlatformBrowser(this.platformId)) {
+      this.iconService.addSvgIcon('headshot', '/assets/headshot24x24.svg', 'weapon-icons');
+    }
   }
 
 }

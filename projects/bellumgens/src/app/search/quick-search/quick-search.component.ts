@@ -1,4 +1,5 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, PLATFORM_ID } from '@angular/core';
+import { DecimalPipe, isPlatformBrowser } from '@angular/common';
 import { SearchResult, ApiSearchService } from '../../../../../common/src/public_api';
 import { IgxIconComponent, IgxIconService } from '@infragistics/igniteui-angular/icon';
 import { IGX_LIST_DIRECTIVES } from '@infragistics/igniteui-angular/list';
@@ -8,7 +9,6 @@ import { IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular/
 import { ReduceQuickSearchResultPipe } from '../../pipes/reduce-quick-search-result.pipe';
 import { CountrySVGPipe } from '../../../../../common/src/lib/pipes/country-svg.pipe';
 import { RouterLink } from '@angular/router';
-import { DecimalPipe } from '@angular/common';
 
 @Component({
   selector: 'app-quick-search',
@@ -30,6 +30,7 @@ import { DecimalPipe } from '@angular/common';
 export class QuickSearchComponent {
   private apiService = inject(ApiSearchService);
   private iconService = inject(IgxIconService);
+  private platformId = inject(PLATFORM_ID);
 
   public searchResult: SearchResult = { steamUser: null, players: [], teams: [], strategies: [] };
   public loading = false;
@@ -43,6 +44,8 @@ export class QuickSearchComponent {
     });
     this.apiService.loadingQuickSearch.subscribe(data => this.loading = data);
     this.apiService.searchTerm.subscribe(term => this.term = term);
-    this.iconService.addSvgIcon('headshot', '/assets/headshot24x24.svg', 'weapon-icons');
+    if (isPlatformBrowser(this.platformId)) {
+      this.iconService.addSvgIcon('headshot', '/assets/headshot24x24.svg', 'weapon-icons');
+    }
   }
 }
