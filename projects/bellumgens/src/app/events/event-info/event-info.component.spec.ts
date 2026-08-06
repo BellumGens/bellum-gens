@@ -5,7 +5,7 @@ import { Observable, of, take } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 
 describe('EventInfoComponent', () => {
@@ -27,7 +27,7 @@ describe('EventInfoComponent', () => {
         { provide: ActivatedRoute, useValue: { params: of({ tournamentId: '123' }), data: new Observable<any>() } },
         Title,
         Meta,
-        provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()
+        provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()
       ]
     }).compileComponents();
 

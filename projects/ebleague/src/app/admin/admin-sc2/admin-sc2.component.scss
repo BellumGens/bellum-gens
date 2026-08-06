@@ -13,7 +13,7 @@
     $cell-editing-background: $background
   ));
 
-  @include grid-toolbar(grid-toolbar-theme($background-color: $background));
+  @include grid-toolbar(grid-toolbar-theme($background: $background));
 
   @include grid-summary(grid-summary-theme($background-color: $background));
 

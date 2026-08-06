@@ -10,11 +10,11 @@
                             $header-background: $background,
                             $cell-editing-background: $background));
 
-  @include grid-toolbar(grid-toolbar-theme($background-color: $background));
+  @include grid-toolbar(grid-toolbar-theme($background: $background));
 
   @include grid-summary(grid-summary-theme($background-color: $background));
 
-  @include paginator(paginator-theme($background-color: $background));
+  @include paginator(paginator-theme($background: $background));
 
   @include action-strip(action-strip-theme($actions-background: transparent));
 

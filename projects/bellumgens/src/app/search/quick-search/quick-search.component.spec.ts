@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { QuickSearchComponent } from './quick-search.component';
 import { provideRouter } from '@angular/router';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { ApiSearchService } from 'bellum-gens-common';
 
 describe('QuickSearchComponent', () => {
@@ -16,7 +16,7 @@ describe('QuickSearchComponent', () => {
           
           QuickSearchComponent
         ],
-        providers: [provideRouter([]), provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+        providers: [provideRouter([]), provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
     })
     .compileComponents();
   }));

@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter, Router, ActivatedRoute } from '@angular/router';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { of } from 'rxjs';
@@ -21,7 +21,7 @@ describe('TournamentCreateComponent', () => {
       imports: [NoopAnimationsModule, ServiceWorkerModule.register('', { enabled: false }), TournamentCreateComponent],
       providers: [
         provideRouter([]),
-        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClient(withXhr(), withInterceptorsFromDi()),
         provideHttpClientTesting(),
         {
           provide: ActivatedRoute,
@@ -114,7 +114,7 @@ describe('TournamentCreateComponent (edit mode)', () => {
       imports: [NoopAnimationsModule, ServiceWorkerModule.register('', { enabled: false }), TournamentCreateComponent],
       providers: [
         provideRouter([]),
-        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClient(withXhr(), withInterceptorsFromDi()),
         provideHttpClientTesting(),
         {
           provide: ActivatedRoute,

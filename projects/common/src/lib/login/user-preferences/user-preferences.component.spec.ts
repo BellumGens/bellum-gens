@@ -7,7 +7,7 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { Router } from '@angular/router';
 import { ApplicationUser, CommunicationService, LoginProvider, LoginService, TournamentApplication } from '../../../public_api';
 import { Game, TournamentApplicationState } from '../../../models/tournament';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 
 describe('UserPreferencesComponent', () => {
@@ -48,7 +48,7 @@ describe('UserPreferencesComponent', () => {
         ServiceWorkerModule.register('', { enabled: false }),
         UserPreferencesComponent
       ],
-      providers: [provideRouter([]), provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+      providers: [provideRouter([]), provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
     }).compileComponents();
     authService = TestBed.inject(LoginService);
     httpMock = TestBed.inject(HttpTestingController);

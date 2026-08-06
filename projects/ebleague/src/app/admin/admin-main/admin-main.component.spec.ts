@@ -6,7 +6,7 @@ import { provideHttpClientTesting, HttpTestingController } from '@angular/common
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { provideRouter } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { ApiTournamentsService, ApiShopService, Tournament, Game, TournamentApplication, TournamentApplicationState, Order } from '../../../../../common/src/public_api';
 import { IGridEditEventArgs } from '@infragistics/igniteui-angular/grids/core';
 
@@ -25,7 +25,7 @@ describe('AdminMainComponent', () => {
         AdminMainComponent
       ],
       providers: [
-        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClient(withXhr(), withInterceptorsFromDi()),
         provideHttpClientTesting(),
         provideRouter([])
       ]

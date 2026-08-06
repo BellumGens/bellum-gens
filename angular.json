@@ -87,6 +87,27 @@
               "localize": [
                 "bg"
               ]
+            },
+            "testing": {
+              "aot": false,
+              "optimization": false,
+              "extractLicenses": false,
+              "assets": [
+                "projects/bellumgens/src/favicon.ico",
+                "projects/bellumgens/src/assets",
+                "projects/bellumgens/src/manifest.json"
+              ],
+              "polyfills": [
+                "zone.js",
+                "zone.js/testing",
+                "@angular/localize/init"
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/common/src/environments/environment.ts",
+                  "with": "projects/common/src/environments/environment.unit.ts"
+                }
+              ]
             }
           }
         },
@@ -114,35 +135,15 @@
           }
         },
         "test": {
-          "builder": "@angular/build:karma",
+          "builder": "@angular/build:unit-test",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing",
-              "@angular/localize/init"
-            ],
             "tsConfig": "projects/bellumgens/tsconfig.spec.json",
-            "karmaConfig": "projects/bellumgens/karma.conf.js",
-            "inlineStyleLanguage": "scss",
-            "styles": [
-              "projects/bellumgens/src/styles.scss"
+            "coverageReporters": [
+              "lcov",
+              "text-summary"
             ],
-            "assets": [
-              "projects/bellumgens/src/favicon.ico",
-              "projects/bellumgens/src/assets",
-              "projects/bellumgens/src/manifest.json"
-            ],
-            "fileReplacements": [
-              {
-                "replace": "projects/common/src/environments/environment.ts",
-                "with": "projects/common/src/environments/environment.unit.ts"
-              }
-            ],
-            "stylePreprocessorOptions": {
-              "includePaths": [
-                "node_modules"
-              ]
-            }
+            "buildTarget": ":build:testing",
+            "runner": "vitest"
           }
         },
         "lint": {
@@ -271,6 +272,27 @@
               "optimization": false,
               "extractLicenses": false,
               "sourceMap": true
+            },
+            "testing": {
+              "aot": false,
+              "optimization": false,
+              "extractLicenses": false,
+              "assets": [
+                "projects/ebleague/src/favicon.ico",
+                "projects/ebleague/src/assets",
+                "projects/ebleague/src/manifest.json"
+              ],
+              "polyfills": [
+                "zone.js",
+                "zone.js/testing",
+                "@angular/localize/init"
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/common/src/environments/environment.ts",
+                  "with": "projects/common/src/environments/environment.unit.ts"
+                }
+              ]
             }
           }
         },
@@ -298,35 +320,15 @@
           }
         },
         "test": {
-          "builder": "@angular/build:karma",
+          "builder": "@angular/build:unit-test",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing",
-              "@angular/localize/init"
-            ],
             "tsConfig": "projects/ebleague/tsconfig.spec.json",
-            "karmaConfig": "projects/ebleague/karma.conf.js",
-            "inlineStyleLanguage": "scss",
-            "styles": [
-              "projects/ebleague/src/styles.scss"
+            "coverageReporters": [
+              "lcov",
+              "text-summary"
             ],
-            "assets": [
-              "projects/ebleague/src/favicon.ico",
-              "projects/ebleague/src/assets",
-              "projects/ebleague/src/manifest.json"
-            ],
-            "fileReplacements": [
-              {
-                "replace": "projects/common/src/environments/environment.ts",
-                "with": "projects/common/src/environments/environment.unit.ts"
-              }
-            ],
-            "stylePreprocessorOptions": {
-              "includePaths": [
-                "node_modules"
-              ]
-            }
+            "buildTarget": ":build:testing",
+            "runner": "vitest"
           }
         },
         "lint": {

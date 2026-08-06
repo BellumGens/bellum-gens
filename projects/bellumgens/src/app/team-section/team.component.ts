@@ -16,8 +16,7 @@ import { TeamApplicationComponent } from './team-application/team-application.co
 
 @Component({
   templateUrl: './team.component.html',
-  styleUrls: ['./team.component.scss'],
-  imports: [
+  styleUrls: ['./team.component.scss'],  imports: [
     IgxAvatarComponent,
     TeamApplicationComponent,
     IgxIconComponent,

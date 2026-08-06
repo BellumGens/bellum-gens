@@ -16,8 +16,7 @@ import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 @Component({
     selector: 'bg-registration',
     templateUrl: './registration.component.html',
-    styleUrls: ['./registration.component.scss'],
-    imports: [FormsModule, IGX_INPUT_GROUP_DIRECTIVES, IgxIconComponent, IgxButtonDirective, IgxRippleDirective]
+    styleUrls: ['./registration.component.scss'],    imports: [FormsModule, IGX_INPUT_GROUP_DIRECTIVES, IgxIconComponent, IgxButtonDirective, IgxRippleDirective]
 })
 export class RegistrationComponent implements OnInit {
   private authManager = inject(LoginService);

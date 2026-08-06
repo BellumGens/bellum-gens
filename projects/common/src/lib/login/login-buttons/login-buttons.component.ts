@@ -10,8 +10,7 @@ import { AsyncPipe } from '@angular/common';
 @Component({
   selector: 'bg-login-buttons',
   templateUrl: './login-buttons.component.html',
-  styleUrls: ['./login-buttons.component.scss'],
-  imports: [IgxButtonDirective, IgxIconComponent, IgxDividerDirective, AsyncPipe]
+  styleUrls: ['./login-buttons.component.scss'],  imports: [IgxButtonDirective, IgxIconComponent, IgxDividerDirective, AsyncPipe]
 })
 export class LoginButtonsComponent {
   private authManager = inject(LoginService);

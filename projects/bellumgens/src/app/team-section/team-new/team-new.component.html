@@ -27,7 +27,7 @@
     </igx-list>
     <span class="highlight" i18n>Or create with form</span>
     <form #teamRegistration="ngForm" (ngSubmit)="createFromForm()">
-      <igx-input-group>
+      <igx-input-group type="line">
         <label igxLabel for="teamName" i18n>Team name</label>
         <igx-prefix>
           <igx-icon>text_fields</igx-icon>
@@ -42,7 +42,7 @@
             </igx-suffix>
           }
         </igx-input-group>
-        <igx-input-group>
+        <igx-input-group type="line">
           <label igxLabel for="teamDescripton" i18n>Team motto</label>
           <igx-prefix>
             <igx-icon>text_fields</igx-icon>
@@ -61,7 +61,7 @@
             </igx-suffix>
           }
         </igx-input-group>
-        <igx-input-group>
+        <igx-input-group type="line">
           <igx-prefix>
             @if (!newTeam.teamAvatar) {
               <igx-icon>link</igx-icon>

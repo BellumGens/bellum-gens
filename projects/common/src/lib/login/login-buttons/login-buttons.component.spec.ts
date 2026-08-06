@@ -5,7 +5,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { provideRouter } from '@angular/router';
 import { LOGIN_ASSETS } from '../../../models/misc';
 import { LoginProvider, LoginService } from '../../../public_api';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 describe('LoginButtonsComponent', () => {
   let component: LoginButtonsComponent;
@@ -18,7 +18,7 @@ describe('LoginButtonsComponent', () => {
     imports: [
         ServiceWorkerModule.register('', { enabled: false }),
         LoginButtonsComponent],
-    providers: [provideRouter([]), provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+    providers: [provideRouter([]), provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
 })
     .compileComponents();
 

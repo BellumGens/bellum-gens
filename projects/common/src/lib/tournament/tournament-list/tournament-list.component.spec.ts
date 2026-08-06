@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter, Router } from '@angular/router';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
@@ -19,7 +19,7 @@ describe('TournamentListComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [NoopAnimationsModule, ServiceWorkerModule.register('', { enabled: false }), TournamentListComponent],
-      providers: [provideRouter([]), provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+      providers: [provideRouter([]), provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
     }).compileComponents();
 
     httpMock = TestBed.inject(HttpTestingController);

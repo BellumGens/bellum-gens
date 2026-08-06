@@ -138,7 +138,7 @@ $chip-theme: chip-theme($background: var(--ig-surface-300));
 
 /* Progress Circular */
 $circular-progress-bar-theme: progress-circular-theme(
-  $base-circle-color: hsl(from var(--ig-gray-900) h s l / 0.14),
+  $track-color: hsl(from var(--ig-gray-900) h s l / 0.14),
   $fill-color-default: var(--ig-secondary-500)
 );
 @include tokens($circular-progress-bar-theme);

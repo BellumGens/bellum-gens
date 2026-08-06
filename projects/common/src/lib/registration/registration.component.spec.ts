@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 import { RegistrationComponent } from './registration.component';
 import { LoginService } from '../../services/login.service';
 import { CommunicationService } from '../../public_api';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 describe('RegistrationComponent', () => {
   let component: RegistrationComponent;
@@ -26,7 +26,7 @@ describe('RegistrationComponent', () => {
         ServiceWorkerModule.register('', { enabled: false }),
         RegistrationComponent
       ],
-      providers: [provideRouter([]), provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+      providers: [provideRouter([]), provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
     }).compileComponents();
     commsService = TestBed.inject(CommunicationService);
     loginService = TestBed.inject(LoginService);

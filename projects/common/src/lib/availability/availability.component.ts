@@ -10,8 +10,7 @@ import { DatePipe } from '@angular/common';
 @Component({
     selector: 'bg-availability',
     templateUrl: './availability.component.html',
-    styleUrls: ['./availability.component.scss'],
-    imports: [
+    styleUrls: ['./availability.component.scss'],    imports: [
       IGX_CHIPS_DIRECTIVES,
       IgxDialogComponent,
       IgxTimePickerComponent,

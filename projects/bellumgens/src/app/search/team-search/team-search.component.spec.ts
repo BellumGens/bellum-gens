@@ -5,7 +5,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { provideRouter } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 describe('TeamSearchComponent', () => {
   let component: TeamSearchComponent;
@@ -19,7 +19,7 @@ describe('TeamSearchComponent', () => {
         ServiceWorkerModule.register('', { enabled: false }),
         TeamSearchComponent
       ],
-      providers: [provideRouter([]), provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+      providers: [provideRouter([]), provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
     })
     .compileComponents();
   }));

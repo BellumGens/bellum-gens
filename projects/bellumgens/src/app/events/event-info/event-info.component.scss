@@ -12,7 +12,7 @@
 
   @include grid-toolbar(grid-toolbar-theme(
     $schema: $dark-material-schema,
-    $background-color: var(--ig-surface-500)
+    $background: var(--ig-surface-500)
   ));
 
   /* Registrations */

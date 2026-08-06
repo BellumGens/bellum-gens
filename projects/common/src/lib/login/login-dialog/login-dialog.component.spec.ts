@@ -9,7 +9,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { ApplicationUser, CommunicationService, LoginService } from '../../../public_api';
 
 import { LoginDialogComponent } from './login-dialog.component';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 describe('LoginDialogComponent', () => {
   let component: LoginDialogComponent;
@@ -40,7 +40,7 @@ describe('LoginDialogComponent', () => {
         NoopAnimationsModule,
         ServiceWorkerModule.register('', { enabled: false }),
         LoginDialogComponent],
-    providers: [provideRouter([]), provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+    providers: [provideRouter([]), provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
 })
     .compileComponents();
 

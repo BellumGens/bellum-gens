@@ -2,7 +2,7 @@
   <div class="horizontal-center">
     <form class="team-info-column" #teamInfo="ngForm" (ngSubmit)="updateTeamInfo()">
       <span i18n>Team Info</span>
-      <igx-input-group class="team-info-input">
+      <igx-input-group type="line" class="team-info-input">
         <label for="teamName" igxLabel i18n>Name</label>
         <input #teamName igxInput id="teamName" name="teamName" minlength="2" [required]="true" [(ngModel)]="team.teamName" />
         @if (teamName.value.length > 0) {
@@ -11,7 +11,7 @@
           </igx-suffix>
         }
       </igx-input-group>
-      <igx-input-group class="team-info-input">
+      <igx-input-group type="line" class="team-info-input">
         <label for="teamAvatar" igxLabel i18n>Avatar</label>
         <input #teamAvatar="ngModel"
           igxInput
@@ -29,7 +29,7 @@
             <igx-hint i18n>You must provide an image url</igx-hint>
           }
         </igx-input-group>
-        <igx-input-group class="team-info-input">
+        <igx-input-group type="line" class="team-info-input">
           <label for="teamDescription" igxLabel i18n>Description</label>
           <textarea #teamDescription igxInput id="teamDescription" name="teamDescription" minlength="2" [required]="true" [(ngModel)]="team.description"></textarea>
           @if (teamDescription.value.length > 0) {
@@ -38,7 +38,7 @@
             </igx-suffix>
           }
         </igx-input-group>
-        <igx-input-group class="team-info-input">
+        <igx-input-group type="line" class="team-info-input">
           <label for="teamDiscord" igxLabel>Discord</label>
           <input #teamDiscord igxInput id="teamDiscord" name="teamDiscord" [(ngModel)]="team.discord" />
           @if (teamDiscord.value.length > 0) {

@@ -5,7 +5,7 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { PlayerComponent } from './player.component';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { BellumgensApiService } from 'bellum-gens-common';
 import { BehaviorSubject } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
@@ -20,7 +20,7 @@ describe('PlayerComponent', () => {
             NoopAnimationsModule,
             ServiceWorkerModule.register('', { enabled: false }),
             PlayerComponent],
-        providers: [provideRouter([]), provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+        providers: [provideRouter([]), provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
     }).compileComponents();
   }));
 

@@ -42,9 +42,9 @@ export class UserPreferencesComponent {
   };
 
   public loginColors = LOGIN_ASSETS;
-  public providers: LoginProvider[];
-  public authUser: ApplicationUser;
-  public registrations: TournamentApplication [];
+  public providers!: LoginProvider[];
+  public authUser!: ApplicationUser;
+  public registrations!: TournamentApplication [];
   public isTournamentAdmin = false;
   public regStates = [$localize`Pending`, $localize`Confirmed`, $localize`Banned`];
 

@@ -4,7 +4,7 @@ import { TeamApplicationComponent } from './team-application.component';
 import { provideRouter } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 describe('TeamApplicationComponent', () => {
   let component: TeamApplicationComponent;
@@ -17,7 +17,7 @@ describe('TeamApplicationComponent', () => {
         NoopAnimationsModule,
         TeamApplicationComponent
       ],
-      providers: [provideRouter([]), provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+      providers: [provideRouter([]), provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
     })
     .compileComponents();
   }));

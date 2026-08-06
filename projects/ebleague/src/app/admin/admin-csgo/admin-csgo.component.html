@@ -1,5 +1,7 @@
 <div class="overview-container-card">
-  <igx-select class="space-out-button" [(ngModel)]="selectedTournament" (ngModelChange)="selectTournament($event)">
+  <!-- IgxSelect: default positioning changed to AutoPositionStrategy (below/above input).
+     To preserve overlap behavior: this.select.overlaySettings = { positionStrategy: new IgxSelectOverlapPositionStrategy(this.select) }; -->
+<igx-select type="line" class="space-out-button" [(ngModel)]="selectedTournament" (ngModelChange)="selectTournament($event)">
     <label igxLabel i18n>Select tournament</label>
     @for (tournament of tournaments; track tournament.id) {
       <igx-select-item [value]="tournament">
@@ -162,7 +164,7 @@
                 <h1 igxCardHeaderTitle>{{group.name}}</h1>
               }
               @else {
-                <igx-input-group igxCardHeaderTitle>
+                <igx-input-group type="line" igxCardHeaderTitle>
                   <label igxLabel for="groupName" i18n>Group name</label>
                   <input type="text" id="groupName" name="groupName" #groupName igxInput [required]="true" [(ngModel)]="group.name" />
                   @if (groupName.value) {
@@ -208,7 +210,7 @@
               <h1 igxCardHeaderTitle i18n>New group</h1>
             }
             @else {
-              <igx-input-group igxCardHeaderTitle>
+              <igx-input-group type="line" igxCardHeaderTitle>
                 <label igxLabel for="groupName" i18n>Group name</label>
                 <input type="text" id="groupName" name="groupName" #groupName igxInput [required]="true" [(ngModel)]="newGroup.name" />
                 @if (groupName.value) {
@@ -244,15 +246,17 @@
   i18n-rightButtonLabel
   rightButtonLabel="Submit"
   (rightButtonSelect)="submitMatch(matchGrid); newMatchDialog.close()">
-  <igx-date-picker [(ngModel)]="matchInEdit.startTime" mode="dialog">
+  <igx-date-picker type="line" [(ngModel)]="matchInEdit.startTime" mode="dialog">
     <label igxLabel i18n>Start date</label>
   </igx-date-picker>
 
-  <igx-time-picker [itemsDelta]="{hours: 1, minutes: 15, seconds: 1}" [(ngModel)]="matchInEdit.startTime" mode="dialog">
+  <igx-time-picker type="line" [itemsDelta]="{hours: 1, minutes: 15, seconds: 1}" [(ngModel)]="matchInEdit.startTime" mode="dialog">
     <label igxLabel i18n>Start time</label>
   </igx-time-picker>
 
-  <igx-select [(ngModel)]="matchInEdit.groupId">
+  <!-- IgxSelect: default positioning changed to AutoPositionStrategy (below/above input).
+     To preserve overlap behavior: this.select.overlaySettings = { positionStrategy: new IgxSelectOverlapPositionStrategy(this.select) }; -->
+<igx-select type="line" [(ngModel)]="matchInEdit.groupId">
     <label igxLabel i18n>Group</label>
     @for (group of groups; track group.id) {
       <igx-select-item [value]="group.id">{{ group.name }}</igx-select-item>
@@ -260,7 +264,9 @@
     <igx-hint i18n>*If the match is during the group stage</igx-hint>
   </igx-select>
 
-  <igx-select [(ngModel)]="matchInEdit.team1Id" required>
+  <!-- IgxSelect: default positioning changed to AutoPositionStrategy (below/above input).
+     To preserve overlap behavior: this.select.overlaySettings = { positionStrategy: new IgxSelectOverlapPositionStrategy(this.select) }; -->
+<igx-select type="line" [(ngModel)]="matchInEdit.team1Id" required>
     <label igxLabel i18n>Team 1</label>
     @for (registration of registrations; track registration.id) {
       <igx-select-item
@@ -274,7 +280,9 @@
 
   vs.
 
-  <igx-select [(ngModel)]="matchInEdit.team2Id" required>
+  <!-- IgxSelect: default positioning changed to AutoPositionStrategy (below/above input).
+     To preserve overlap behavior: this.select.overlaySettings = { positionStrategy: new IgxSelectOverlapPositionStrategy(this.select) }; -->
+<igx-select type="line" [(ngModel)]="matchInEdit.team2Id" required>
     <label igxLabel i18n>Team 2</label>
     @for (registration of registrations; track registration.id) {
       <igx-select-item
@@ -286,7 +294,7 @@
     }
   </igx-select>
 
-  <igx-input-group>
+  <igx-input-group type="line">
     <label igxLabel i18n>Video Link</label>
     <igx-prefix>
       <igx-icon>link</igx-icon>
@@ -303,7 +311,7 @@
       }
     </igx-input-group>
 
-    <igx-input-group>
+    <igx-input-group type="line">
       <label igxLabel i18n>Demo Link</label>
       <igx-prefix>
         <igx-icon>link</igx-icon>
@@ -331,12 +339,12 @@
       rightButtonLabel="Submit"
       (rightButtonSelect)="submitMatch(matchGrid); newMatchMapDialog.close()">
       <div class="horizontal-center">
-        <igx-input-group>
+        <igx-input-group type="line">
           <label igxLabel i18n>Points {{ matchInEdit.team1?.teamName }}</label>
           <input type="number" igxInput [(ngModel)]="matchInEdit.team1Points" />
         </igx-input-group>
         <span class="grid-vs-divider">:</span>
-        <igx-input-group>
+        <igx-input-group type="line">
           <label igxLabel i18n>Points {{ matchInEdit.team2?.teamName }}</label>
           <input type="number" igxInput [(ngModel)]="matchInEdit.team2Points" />
         </igx-input-group>
@@ -344,19 +352,21 @@
 
       @for (map of matchInEdit.maps; track map.id) {
         <div>
-          <igx-select [(ngModel)]="map.map">
+          <!-- IgxSelect: default positioning changed to AutoPositionStrategy (below/above input).
+     To preserve overlap behavior: this.select.overlaySettings = { positionStrategy: new IgxSelectOverlapPositionStrategy(this.select) }; -->
+<igx-select type="line" [(ngModel)]="map.map">
             <label igxLabel i18n>Map</label>
             @for (map of mapList; track map.mapId) {
               <igx-select-item [value]="map.mapId">{{ map.map }}</igx-select-item>
             }
           </igx-select>
           <div class="horizontal-center">
-            <igx-input-group>
+            <igx-input-group type="line">
               <label igxLabel i18n>Rounds {{ matchInEdit.team1.teamName }}</label>
               <input type="number" igxInput [(ngModel)]="map.team1Score" />
             </igx-input-group>
             <span class="grid-vs-divider">:</span>
-            <igx-input-group>
+            <igx-input-group type="line">
               <label igxLabel i18n>Rounds {{ matchInEdit.team2.teamName }}</label>
               <input type="number" igxInput [(ngModel)]="map.team2Score" />
             </igx-input-group>

@@ -4,7 +4,7 @@ import { StrategyEditorComponent } from './strategy-editor.component';
 import { provideRouter } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 describe('StrategyEditorComponent', () => {
   let component: StrategyEditorComponent;
@@ -17,7 +17,7 @@ describe('StrategyEditorComponent', () => {
         NoopAnimationsModule,
         StrategyEditorComponent
       ],
-      providers: [provideRouter([]), provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+      providers: [provideRouter([]), provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
     })
     .compileComponents();
   }));

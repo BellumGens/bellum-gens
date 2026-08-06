@@ -13,7 +13,7 @@
   /* Filter UI has a chip */
   @include chip(chip-theme());
 
-  @include grid-toolbar(grid-toolbar-theme($background-color: $background));
+  @include grid-toolbar(grid-toolbar-theme($background: $background));
 
   /* Registrations */
   .registration-slot {

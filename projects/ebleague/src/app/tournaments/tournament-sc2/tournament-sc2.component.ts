@@ -21,8 +21,7 @@ import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 @Component({
   selector: 'app-tournament-sc2',
   templateUrl: './tournament-sc2.component.html',
-  styleUrls: ['./tournament-sc2.component.scss'],
-  imports: [
+  styleUrls: ['./tournament-sc2.component.scss'],  imports: [
     DatePipe,
     IGX_CARD_DIRECTIVES,
     IgxCircularProgressBarComponent,

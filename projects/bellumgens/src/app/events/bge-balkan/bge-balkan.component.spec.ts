@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BgeBalkanComponent } from './bge-balkan.component';
 import { ApiTournamentsService } from '../../../../../common/src/public_api';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { provideRouter } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -23,7 +23,7 @@ describe('BgeBalkanComponent', () => {
         NoopAnimationsModule,
         ServiceWorkerModule.register('', { enabled: false }),
       ],
-      providers: [provideRouter([]), provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+      providers: [provideRouter([]), provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
     }).compileComponents();
 
     apiService = TestBed.inject(ApiTournamentsService);

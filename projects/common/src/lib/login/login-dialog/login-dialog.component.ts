@@ -13,8 +13,7 @@ import { LoginButtonsComponent } from '../login-buttons/login-buttons.component'
 @Component({
     selector: 'bg-login-dialog',
     templateUrl: './login-dialog.component.html',
-    styleUrls: ['./login-dialog.component.scss'],
-    imports: [
+    styleUrls: ['./login-dialog.component.scss'],    imports: [
       IgxDialogComponent,
       LoginButtonsComponent,
       IgxDividerDirective,

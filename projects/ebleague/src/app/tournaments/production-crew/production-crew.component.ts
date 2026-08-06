@@ -8,8 +8,7 @@ import { NgOptimizedImage } from '@angular/common';
 @Component({
   selector: 'app-production-crew',
   templateUrl: './production-crew.component.html',
-  styleUrls: ['./production-crew.component.scss'],
-  imports: [
+  styleUrls: ['./production-crew.component.scss'],  imports: [
     NgOptimizedImage,
     IGX_CARD_DIRECTIVES,
     IgxButtonDirective,

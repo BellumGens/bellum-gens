@@ -62,9 +62,9 @@ import { FormsModule } from '@angular/forms';
 export class AdminCsgoComponent {
   private apiService = inject(ApiTournamentsService);
 
-  public registrations: TournamentParticipant [];
-  public groups: TournamentGroup [];
-  public matches: TournamentCSGOMatch [];
+  public registrations!: TournamentParticipant [];
+  public groups!: TournamentGroup [];
+  public matches!: TournamentCSGOMatch [];
   public loading = false;
   public loadingMatches = false;
   public environment = environment;
@@ -73,7 +73,7 @@ export class AdminCsgoComponent {
   public mapList: CSGOActiveDutyMap [] = ACTIVE_DUTY;
   public matchInEdit: TournamentCSGOMatch = { startTime: new Date() };
   public tournaments: Tournament [] = [];
-  public selectedTournament: Tournament;
+  public selectedTournament!: Tournament;
 
   constructor() {
     this.apiService.tournaments.subscribe(t => this.tournaments = t);
@@ -123,7 +123,7 @@ export class AdminCsgoComponent {
 
   public removeFromGroup(participant: TournamentParticipant, group: TournamentGroup) {
     this.apiService.removeParticipantFromGroup(participant.id, group.id).subscribe({
-      next: () => group.participants.splice(group.participants.indexOf(participant), 1)
+      next: () => group.participants?.splice(group.participants.indexOf(participant), 1)
     });
     this.pipeTrigger++;
   }

@@ -6,7 +6,7 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CSGOMap, CSGOStrategy, GLOBAL_OVERLAY_SETTINGS, LoginService, NEW_EMPTY_COMMENT, Side, SocialMediaStrategyService, StrategyComment, VoteDirection } from 'bellum-gens-common';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 describe('StrategyDetailsComponent', () => {
   let component: StrategyDetailsComponent;
@@ -20,7 +20,7 @@ describe('StrategyDetailsComponent', () => {
             NoopAnimationsModule,
             ServiceWorkerModule.register('', { enabled: false }),
             StrategyDetailsComponent],
-        providers: [provideRouter([]), provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+        providers: [provideRouter([]), provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
     })
     .compileComponents();
     authService = TestBed.inject(LoginService);

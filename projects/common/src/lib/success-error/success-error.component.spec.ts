@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { SuccessErrorComponent } from './success-error.component';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { CommunicationService } from 'bellum-gens-common';
 
 describe('SuccessErrorComponent', () => {
@@ -16,7 +16,7 @@ describe('SuccessErrorComponent', () => {
         NoopAnimationsModule,
         SuccessErrorComponent
       ],
-      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+      providers: [provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
     })
     .compileComponents();
   }));

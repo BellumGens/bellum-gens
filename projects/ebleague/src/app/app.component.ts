@@ -20,8 +20,7 @@ import { LanguagesComponent } from '../../../common/src/lib/languages/languages.
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  imports: [
+  styleUrls: ['./app.component.scss'],  imports: [
     IgxLayoutDirective,
     IgxNavigationDrawerComponent,
     IgxNavDrawerTemplateDirective,

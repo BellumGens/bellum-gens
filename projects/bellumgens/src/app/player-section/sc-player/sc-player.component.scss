@@ -7,7 +7,7 @@
   );
   @include tokens($grid-custom);
 
-  $toolbar-custom: grid-toolbar-theme($background-color: var(--ig-surface-500));
+  $toolbar-custom: grid-toolbar-theme($background: var(--ig-surface-500));
   @include tokens($toolbar-custom);
 
   .avatar-small {

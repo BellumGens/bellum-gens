@@ -13,8 +13,7 @@ import { EMPTY_JERSEY_ORDER, JerseyCut, ProductOrderDetails, Order, JerseySize }
 @Component({
   selector: 'bg-orderform',
   templateUrl: './orderform.component.html',
-  styleUrls: ['./orderform.component.scss'],
-  imports: [
+  styleUrls: ['./orderform.component.scss'],  imports: [
     FormsModule,
     IGX_SELECT_DIRECTIVES,
     IGX_INPUT_GROUP_DIRECTIVES,

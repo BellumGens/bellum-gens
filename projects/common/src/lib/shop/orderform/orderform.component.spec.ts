@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { OrderformComponent } from './orderform.component';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { EMPTY_JERSEY_ORDER } from 'bellum-gens-common';
 
@@ -16,7 +16,7 @@ describe('OrderformComponent', () => {
       OrderformComponent,
       NoopAnimationsModule
     ],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+    providers: [provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
 })
     .compileComponents();
   }));

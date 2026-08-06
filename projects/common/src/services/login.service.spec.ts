@@ -4,7 +4,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { SwPush } from '@angular/service-worker';
 import { LoginService } from './login.service';
 import { ApplicationUser, CSGOTeam, CommunicationService, Game, LoginProvider, NotificationState, TournamentApplication, UserLogin, UserNotification, UserPreferences, UserRegistration } from '../public_api';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 
 describe('LoginService', () => {
@@ -20,7 +20,7 @@ describe('LoginService', () => {
       providers: [
           LoginService,
           { provide: SwPush, useValue: {} },
-          provideHttpClient(withInterceptorsFromDi()),
+          provideHttpClient(withXhr(), withInterceptorsFromDi()),
           provideHttpClientTesting()
       ]
     });

@@ -54,8 +54,7 @@ import { MapPoolComponent } from '../map-pool/map-pool.component';
     TopWeaponAltPipe,
     LoadingComponent
   ],
-  templateUrl: './cs-player.component.html',
-  styleUrl: './cs-player.component.scss'
+  templateUrl: './cs-player.component.html',  styleUrl: './cs-player.component.scss'
 })
 export class CsPlayerComponent extends BaseDirective {
   private authManager = inject(LoginService);

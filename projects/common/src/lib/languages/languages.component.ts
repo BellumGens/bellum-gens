@@ -8,8 +8,7 @@ import { GLOBAL_OVERLAY_SETTINGS } from '../../models/misc';
 @Component({
   selector: 'bg-languages',
   templateUrl: './languages.component.html',
-  styleUrls: ['./languages.component.scss'],
-  imports: [
+  styleUrls: ['./languages.component.scss'],  imports: [
     IgxButtonDirective,
     IgxRippleDirective,
     IgxToggleActionDirective,

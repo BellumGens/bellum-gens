@@ -14,8 +14,7 @@ import { LoadingComponent } from '../../../../../../common/src/lib/loading/loadi
 @Component({
   selector: 'app-player-results',
   templateUrl: './player-results.component.html',
-  styleUrls: ['./player-results.component.css'],
-  imports: [
+  styleUrls: ['./player-results.component.css'],  imports: [
     LoadingComponent,
     IGX_CARD_DIRECTIVES,
     IgxCircularProgressBarComponent,

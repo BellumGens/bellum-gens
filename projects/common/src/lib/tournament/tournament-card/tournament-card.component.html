@@ -1,7 +1,7 @@
 <igx-card elevated class="tournament-card">
   @if (tournament().logo) {
     <igx-card-media height="180px">
-      <img [ngSrc]="tournament().logo" width="352" height="180" [alt]="tournament().name" priority />
+      <img [ngSrc]="tournament().logo || ''" width="352" height="180" [alt]="tournament().name" priority />
     </igx-card-media>
   } @else {
     <igx-card-media height="180px">

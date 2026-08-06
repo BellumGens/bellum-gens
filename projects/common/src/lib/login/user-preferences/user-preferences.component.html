@@ -36,7 +36,7 @@
             'color-error': registration.state === 0,
             'color-success': registration.state === 1,
             'color-warn': registration.state === 2
-          }">{{ regStates[registration.state] }}</span>
+          }">{{ regStates[registration?.state ?? 0] }}</span>
           @if (!registration.state) {
             <igx-icon class="navigatable" (click)="weeklyCheckin(registration)" i18n-title title="Check in">where_to_vote</igx-icon>
           }

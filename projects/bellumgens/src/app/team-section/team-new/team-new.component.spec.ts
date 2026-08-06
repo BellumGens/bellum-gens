@@ -6,7 +6,7 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { TeamNewComponent } from './team-new.component';
 import { ApplicationUser, BellumgensApiService, CSGOTeam, EMPTY_NEW_TEAM, SteamGroup } from 'bellum-gens-common';
 import { Router } from '@angular/router';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 describe('TeamNewComponent', () => {
   let component: TeamNewComponent;
@@ -50,7 +50,7 @@ describe('TeamNewComponent', () => {
         NoopAnimationsModule,
         TeamNewComponent
       ],
-      providers: [provideRouter([]), provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+      providers: [provideRouter([]), provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
     })
     .compileComponents();
     httpMock = TestBed.inject(HttpTestingController);

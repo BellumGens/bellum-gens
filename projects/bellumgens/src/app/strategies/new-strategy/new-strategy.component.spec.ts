@@ -12,7 +12,7 @@ import { IgxSelectModule } from '@infragistics/igniteui-angular/select';
 import { SafeVideoLinkPipe } from 'projects/bellumgens/src/app/pipes/safe-video-link.pipe';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 describe('NewStrategyComponent', () => {
   let component: NewStrategyComponent;
@@ -31,7 +31,7 @@ describe('NewStrategyComponent', () => {
         IgxSelectModule,
         NewStrategyComponent,
         SafeVideoLinkPipe],
-    providers: [provideRouter([]), provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+    providers: [provideRouter([]), provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
 })
     .compileComponents();
   }));

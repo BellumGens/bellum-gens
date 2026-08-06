@@ -1,7 +1,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
+    "strict": false,
     "importHelpers": true,
     "esModuleInterop": true,
     "outDir": "./dist/out-tsc",
@@ -14,8 +14,11 @@
     "target": "ES2022",
     "paths": {
       "bellum-gens-common": [
-        "projects/common/src/public_api.ts"
+        "./projects/common/src/public_api.ts"
       ],
+      "projects/*": [
+        "./projects/*"
+      ]
     },
     "useDefineForClassFields": false
   },

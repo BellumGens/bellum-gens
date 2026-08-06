@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { AdminSc2Component } from './admin-sc2.component';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { ApiTournamentsService, Tournament, TournamentGroup, TournamentSC2Match, TournamentParticipant, TournamentApplication, TournamentApplicationState } from 'projects/common/src/public_api';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { IgxGridComponent } from '@infragistics/igniteui-angular/grids/grid';
@@ -22,7 +22,7 @@ describe('AdminSc2Component', () => {
         AdminSc2Component,
         ServiceWorkerModule.register('', { enabled: false }),
       ],
-      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+      providers: [provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
     }).compileComponents();
     httpMock = TestBed.inject(HttpTestingController);
     apiService = TestBed.inject(ApiTournamentsService);

@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ShopComponent } from './shop.component';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
 import { routes } from './shop.routes';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -17,7 +17,7 @@ describe('ShopComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [ShopComponent, NoopAnimationsModule],
-      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting(), provideRouter(routes)]
+      providers: [provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting(), provideRouter(routes)]
     }).compileComponents();
   }));
 

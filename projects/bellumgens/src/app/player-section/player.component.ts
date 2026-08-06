@@ -9,8 +9,7 @@ import { ApplicationUser, BellumgensApiService } from '../../../../common/src/pu
   selector: 'app-player',
   templateUrl: './player.component.html',
   styleUrls: ['./player.component.scss'],
-  encapsulation: ViewEncapsulation.None,
-  imports: [
+  encapsulation: ViewEncapsulation.None,  imports: [
     IGX_TABS_DIRECTIVES,
     IgxAvatarComponent,
     RouterLink,

@@ -3,7 +3,7 @@ import { LeagueRegistrationComponent } from './league-registration.component';
 import {  of } from 'rxjs';
 import { provideRouter } from '@angular/router';
 import { ApiTournamentsService, CommunicationService, Game, TournamentApplication } from 'bellum-gens-common';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { SwPush } from '@angular/service-worker';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -24,7 +24,7 @@ describe('LeagueRegistrationComponent', () => {
       providers: [
         provideRouter([]),
         { provide: SwPush, useValue: {} },
-        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClient(withXhr(), withInterceptorsFromDi()),
         provideHttpClientTesting()
       ]
     }).compileComponents();

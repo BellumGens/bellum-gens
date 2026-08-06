@@ -8,8 +8,7 @@ import { BaseDirective } from '../../../../bellumgens/src/app/base/base.componen
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
-  styleUrls: ['./shop.component.scss'],
-  imports: [
+  styleUrls: ['./shop.component.scss'],  imports: [
     NgOptimizedImage,
     OrderformComponent
   ]

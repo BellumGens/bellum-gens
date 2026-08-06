@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { TeamNotificationsComponent } from './team-notifications.component';
 import { provideRouter } from '@angular/router';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 describe('TeamNotificationsComponent', () => {
   let component: TeamNotificationsComponent;
@@ -13,7 +13,7 @@ describe('TeamNotificationsComponent', () => {
     TestBed.configureTestingModule({
     imports: [
         TeamNotificationsComponent],
-    providers: [provideRouter([]), provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+    providers: [provideRouter([]), provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
 }).compileComponents();
   }));
 

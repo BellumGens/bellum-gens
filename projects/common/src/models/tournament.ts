@@ -111,15 +111,16 @@ export interface RegistrationsCount {
   count: number;
 }
 
-export const EMPTY_NEW_APPLICATION: TournamentApplication = { game: null, email: '' };
+export const EMPTY_NEW_APPLICATION: TournamentApplication = { id: '', game: Game.CSGO, email: '' };
 
 export const EMPTY_NEW_TOURNAMENT: Tournament = {
-  name: null,
+  id: '',
+  name: '',
   visibility: TournamentVisibility.Public,
   status: TournamentStatus.Draft
 };
 
-export const EMPTY_NEW_GROUP: TournamentGroup = { name: null, inEdit: false };
+export const EMPTY_NEW_GROUP: TournamentGroup = { id: '', name: '', inEdit: false };
 
 export const GAMES = [
   { name: 'Counter Strike: Global Offensive', id: Game.CSGO },

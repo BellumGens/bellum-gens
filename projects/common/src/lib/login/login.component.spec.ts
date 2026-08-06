@@ -6,7 +6,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { ApplicationUser, LoginService } from '../../public_api';
 import { Router } from '@angular/router';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 describe('LoginComponent', () => {
   let component: LoginComponent;
@@ -48,7 +48,7 @@ describe('LoginComponent', () => {
         ServiceWorkerModule.register('', { enabled: false }),
         LoginComponent
       ],
-      providers: [provideRouter([]), provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+      providers: [provideRouter([]), provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
     })
     .compileComponents();
     authService = TestBed.inject(LoginService);

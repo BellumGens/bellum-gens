@@ -7,7 +7,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { IgxCarouselComponent } from '@infragistics/igniteui-angular/carousel';
 import { By } from '@angular/platform-browser';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -21,7 +21,7 @@ describe('HomeComponent', () => {
         ServiceWorkerModule.register('', { enabled: false }),
         HomeComponent
       ],
-      providers: [provideRouter([]), provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+      providers: [provideRouter([]), provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
     })
     .compileComponents();
   }));

@@ -19,8 +19,7 @@ import { BaseDirective } from '../../base/base.component';
 @Component({
   selector: 'app-team-details',
   templateUrl: './team-details.component.html',
-  styleUrls: ['./team-details.component.scss'],
-  imports: [
+  styleUrls: ['./team-details.component.scss'],  imports: [
     AvailabilityComponent,
     IGX_CARD_DIRECTIVES,
     IgxAvatarComponent,
