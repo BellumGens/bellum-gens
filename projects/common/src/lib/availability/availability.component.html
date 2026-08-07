@@ -25,10 +25,10 @@
   @if (selectedDay) {
     <div>
       <div class="horizontal-center">
-        <igx-time-picker type="line" #from class="time-picker" [value]="selectedDay.from" [itemsDelta]="{hours: 1, minutes: 15, seconds: 1}" mode="dialog">
+        <igx-time-picker type="border" #from class="time-picker" [value]="selectedDay.from" [itemsDelta]="{hours: 1, minutes: 15, seconds: 1}" mode="dialog">
           <label igxLabel i18n>From</label>
         </igx-time-picker>
-        <igx-time-picker type="line" #to class="time-picker" [value]="selectedDay.to" [itemsDelta]="{hours: 1, minutes: 15, seconds: 1}" mode="dialog">
+        <igx-time-picker type="border" #to class="time-picker" [value]="selectedDay.to" [itemsDelta]="{hours: 1, minutes: 15, seconds: 1}" mode="dialog">
           <label igxLabel i18n>To</label>
         </igx-time-picker>
       </div>

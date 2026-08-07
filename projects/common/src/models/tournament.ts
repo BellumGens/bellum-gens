@@ -111,7 +111,7 @@ export interface RegistrationsCount {
   count: number;
 }
 
-export const EMPTY_NEW_APPLICATION: TournamentApplication = { id: '', game: Game.CSGO, email: '' };
+export const EMPTY_NEW_APPLICATION: TournamentApplication = { game: null, email: '' };
 
 export const EMPTY_NEW_TOURNAMENT: Tournament = {
   id: '',

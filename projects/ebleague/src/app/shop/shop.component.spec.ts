@@ -44,14 +44,14 @@ describe('ShopComponent', () => {
   });
 
   it('should subscribe to orderSuccess event on init', () => {
-    spyOn(component.orderForm.orderSuccess, 'subscribe');
+    vi.spyOn(component.orderForm.orderSuccess, 'subscribe').mockImplementation(() => undefined);
     component.ngOnInit();
     expect(component.orderForm.orderSuccess.subscribe).toHaveBeenCalled();
   });
 
   it('should navigate to order-success on order success', () => {
     const router = TestBed.inject(Router);
-    spyOn(router, 'navigate');
+    vi.spyOn(router, 'navigate').mockImplementation(() => undefined);
 
     component.ngOnInit();
     component.orderForm.orderSuccess.emit();

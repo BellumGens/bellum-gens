@@ -166,7 +166,7 @@ describe('ApiStrategiesService', () => {
     const errorMessage = `Http failure response for ${service['_apiEndpoint']}/strategy/strategy: 500 Could not save strategy!`;
     commsService.error.subscribe(message => expect(message).toEqual(errorMessage));
     service.submitStrategy(strat2).subscribe({
-      next: () => fail('Should not succeed'),
+      next: () => expect.fail('Should not succeed'),
       error: error => expect(error.message).toEqual(errorMessage)
     });
     const req2 = httpMock.expectOne(`${service['_apiEndpoint']}/strategy/strategy`);
@@ -245,7 +245,7 @@ describe('ApiStrategiesService', () => {
     const errorMessage = `Http failure response for ${service['_apiEndpoint']}/strategy/vote: 500 Could not submit vote!`;
     commsService.error.subscribe(message => expect(message).toEqual(errorMessage));
     service.submitStratVote(strat, direction, userId).subscribe({
-      next: () => fail('Should not succeed'),
+      next: () => expect.fail('Should not succeed'),
       error: error => expect(error.message).toEqual(errorMessage)
     });
     const req3 = httpMock.expectOne(`${service['_apiEndpoint']}/strategy/vote`);
@@ -290,7 +290,7 @@ describe('ApiStrategiesService', () => {
     const errorMessage = `Http failure response for ${service['_apiEndpoint']}/strategy/comment: 500 Could not submit comment!`;
     commsService.error.subscribe(message => expect(message).toEqual(errorMessage));
     service.submitStratComment(comment, strat).subscribe({
-      next: () => fail('Should not succeed'),
+      next: () => expect.fail('Should not succeed'),
       error: error => expect(error.message).toEqual(errorMessage)
     });
     const req3 = httpMock.expectOne(`${service['_apiEndpoint']}/strategy/comment`);
@@ -325,7 +325,7 @@ describe('ApiStrategiesService', () => {
     const errorMessage = `Http failure response for ${service['_apiEndpoint']}/strategy/comment?id=${comment.id}: 500 Could not delete comment!`;
     commsService.error.subscribe(message => expect(message).toEqual(errorMessage));
     service.deleteStratComment(comment, strat).subscribe({
-      next: () => fail('Should not succeed'),
+      next: () => expect.fail('Should not succeed'),
       error: error => expect(error.message).toEqual(errorMessage)
     });
     const req2 = httpMock.expectOne(`${service['_apiEndpoint']}/strategy/comment?id=${comment.id}`);
@@ -346,7 +346,7 @@ describe('ApiStrategiesService', () => {
     const errorMessage = `Http failure response for ${service['_apiEndpoint']}/strategy/strat?id=${stratId}: 500 Could not delete strategy!`;
     commsService.error.subscribe(message => expect(message).toEqual(errorMessage));
     service.deleteStrategy(stratId).subscribe({
-      next: () => fail('Should not succeed'),
+      next: () => expect.fail('Should not succeed'),
       error: error => expect(error.message).toEqual(errorMessage)
     });
     const req2 = httpMock.expectOne(`${service['_apiEndpoint']}/strategy/strat?id=${stratId}`);
@@ -358,7 +358,7 @@ describe('ApiStrategiesService', () => {
   it('should handle errors', () => {
     const stratId = '234';
     service.getTeamStrat(stratId).subscribe({
-      next: () => fail('Should not succeed'),
+      next: () => expect.fail('Should not succeed'),
       error: (error) => expect(error.status).toEqual(404)
     });
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/strategy/strat?stratId=${stratId}`);

@@ -49,7 +49,7 @@ describe('LoginButtonsComponent', () => {
 
   it('should call login method with the selected provider', () => {
     const mockProvider: LoginProvider = { name: 'Steam', state: 'test', url: 'test' };
-    spyOn(loginService, 'login');
+    vi.spyOn(loginService, 'login').mockImplementation(() => undefined);
     component.login(mockProvider);
     expect(loginService.login).toHaveBeenCalledWith(mockProvider);
   });

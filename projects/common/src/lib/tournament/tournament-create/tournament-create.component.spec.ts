@@ -76,29 +76,29 @@ describe('TournamentCreateComponent', () => {
   });
 
   it('should not submit if form is invalid', () => {
-    const spy = spyOn(apiService, 'createTournament');
+    const spy = vi.spyOn(apiService, 'createTournament').mockImplementation(() => undefined);
     component.submit();
     expect(spy).not.toHaveBeenCalled();
   });
 
   it('should call createTournament on submit in create mode', () => {
-    const spy = spyOn(apiService, 'createTournament').and.returnValue(of({} as any));
-    spyOn(router, 'navigate');
+    const spy = vi.spyOn(apiService, 'createTournament').mockReturnValue(of({} as any));
+    vi.spyOn(router, 'navigate').mockImplementation(() => undefined);
     component.form.patchValue({ name: 'New Tournament' });
     component.submit();
     expect(spy).toHaveBeenCalled();
   });
 
   it('should navigate to /tournaments after successful create', () => {
-    spyOn(apiService, 'createTournament').and.returnValue(of({} as any));
-    const navSpy = spyOn(router, 'navigate');
+    vi.spyOn(apiService, 'createTournament').mockReturnValue(of({} as any));
+    const navSpy = vi.spyOn(router, 'navigate').mockImplementation(() => undefined);
     component.form.patchValue({ name: 'New Tournament' });
     component.submit();
     expect(navSpy).toHaveBeenCalledWith(['/tournaments']);
   });
 
   it('should navigate to /tournaments on cancel', () => {
-    const spy = spyOn(router, 'navigate');
+    const spy = vi.spyOn(router, 'navigate').mockImplementation(() => undefined);
     component.cancel();
     expect(spy).toHaveBeenCalledWith(['/tournaments']);
   });

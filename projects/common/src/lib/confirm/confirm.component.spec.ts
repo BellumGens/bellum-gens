@@ -31,42 +31,40 @@ describe('ConfirmComponent', () => {
     expect(component.title).toBe('');
   });
 
-  it('should emit ok event when okClicked is called', (done) => {
+  it('should emit ok event when okClicked is called', async () => {
     const testEntity = { id: 1, name: 'Test' };
     component.open(testEntity);
 
-    component.ok.subscribe((entity) => {
-      expect(entity).toEqual(testEntity);
-      done();
-    });
+    const ok = new Promise(resolve => component.ok.subscribe(resolve));
 
     component.okClicked();
+
+    expect(await ok).toEqual(testEntity);
   });
 
   it('should close dialog when okClicked is called', () => {
-    spyOn(component.dialog, 'close');
+    vi.spyOn(component.dialog, 'close').mockImplementation(() => undefined);
     component.okClicked();
     expect(component.dialog.close).toHaveBeenCalled();
   });
 
-  it('should emit cancel event when cancelClicked is called', (done) => {
-    component.cancel.subscribe((args) => {
-      expect(args).toBeDefined();
-      done();
-    });
+  it('should emit cancel event when cancelClicked is called', async () => {
+    const cancelled = new Promise(resolve => component.cancel.subscribe(resolve));
 
     component.cancelClicked({} as any);
+
+    expect(await cancelled).toBeDefined();
   });
 
   it('should close dialog when cancelClicked is called', () => {
-    spyOn(component.dialog, 'close');
+    vi.spyOn(component.dialog, 'close').mockImplementation(() => undefined);
     component.cancelClicked({} as any);
     expect(component.dialog.close).toHaveBeenCalled();
   });
 
   it('should open dialog and store entity', () => {
     const testEntity = { id: 1, name: 'Test' };
-    spyOn(component.dialog, 'open');
+    vi.spyOn(component.dialog, 'open').mockImplementation(() => undefined);
 
     component.open(testEntity);
 

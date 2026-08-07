@@ -1,3 +1,4 @@
+import { ChangeDetectorRef } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { UnauthorizedComponent } from './unauthorized.component';
@@ -61,6 +62,9 @@ describe('UnauthorizedComponent', () => {
 
   it('should display message in template', () => {
     component.message = 'Test Message';
+    // The component declares no changeDetection, which under Angular 22 means OnPush, so
+    // mutating a property from outside the component needs its view marked dirty first.
+    fixture.debugElement.injector.get(ChangeDetectorRef).markForCheck();
     fixture.detectChanges();
 
     const compiled = fixture.nativeElement;

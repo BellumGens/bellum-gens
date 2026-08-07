@@ -42,19 +42,19 @@ describe('HomeComponent', () => {
   });
 
   it('should call resize method on window resize', () => {
-    spyOn(component, 'resize');
+    vi.spyOn(component, 'resize').mockImplementation(() => undefined);
     window.dispatchEvent(new Event('resize'));
     expect(component.resize).toHaveBeenCalled();
   });
 
   it('should call subscribe method when subscribe is called', () => {
-    spyOn(component, 'subscribe');
+    vi.spyOn(component, 'subscribe').mockImplementation(() => undefined);
     component.subscribe();
     expect(component.subscribe).toHaveBeenCalled();
   });
 
   it('should call tweet method when tweet is called', () => {
-    spyOn(component, 'tweet');
+    vi.spyOn(component, 'tweet').mockImplementation(() => undefined);
     component.tweet();
     expect(component.tweet).toHaveBeenCalled();
   });
@@ -77,7 +77,7 @@ describe('HomeComponent', () => {
   });
 
   it('should call openLogin method when openLogin is called', () => {
-    spyOn(component, 'openLogin');
+    vi.spyOn(component, 'openLogin').mockImplementation(() => undefined);
     component.openLogin();
     expect(component.openLogin).toHaveBeenCalled();
   });

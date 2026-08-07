@@ -68,7 +68,7 @@ describe('LoginComponent', () => {
 
   it('should have a dialog component which opens when the LoginService emits openLogin', () => {
     expect(component.dialog).toBeDefined();
-    spyOn(component.dialog, 'openLogin');
+    vi.spyOn(component.dialog, 'openLogin').mockImplementation(() => undefined);
     authService.emitOpenLogin();
     expect(component.dialog.openLogin).toHaveBeenCalled();
   });
@@ -86,9 +86,9 @@ describe('LoginComponent', () => {
   it('should have userCheck when a request in currently pending', () => {
     authService.applicationUser.subscribe();
     const req = httpMock.expectOne(`${authService['_apiEndpoint']}`);
-    expect(component.userCheck).toBeTrue();
+    expect(component.userCheck).toBe(true);
     req.flush(applicationUser);
-    expect(component.userCheck).toBeFalse();
+    expect(component.userCheck).toBe(false);
     expect(component.authUser).toBe(applicationUser);
   });
 
@@ -99,7 +99,7 @@ describe('LoginComponent', () => {
     component.authUser = applicationUser;
     fixture.detectChanges();
 
-    spyOn(component.userProfile, 'close');
+    vi.spyOn(component.userProfile, 'close').mockImplementation(() => undefined);
     component.logout();
     req = httpMock.expectOne(`${authService['_apiEndpoint']}/logout`);
     req.flush({});
@@ -108,7 +108,7 @@ describe('LoginComponent', () => {
   });
 
   it('navigateToProfile method should call router.navigate with correct params', () => {
-    spyOn(router, 'navigate');
+    vi.spyOn(router, 'navigate').mockImplementation(() => undefined);
     component.navigateToProfile(applicationUser);
     expect(router.navigate).toHaveBeenCalledWith(['/players/', applicationUser.csgoDetails.customUrl]);
   });

@@ -44,7 +44,7 @@ describe('NotificationsComponent', () => {
       { state: 0 }
     ];
 
-    spyOn(component.loaded, 'emit');
+    vi.spyOn(component.loaded, 'emit').mockImplementation(() => undefined);
     component.aggregate(mockNotifications);
 
     expect(component.loaded.emit).toHaveBeenCalledWith(5);
@@ -56,21 +56,19 @@ describe('NotificationsComponent', () => {
       { state: 1 }
     ];
 
-    spyOn(component.loaded, 'emit');
+    vi.spyOn(component.loaded, 'emit').mockImplementation(() => undefined);
     component.aggregate(mockNotifications);
 
     expect(component.loaded.emit).not.toHaveBeenCalled();
   });
 
-  it('should emit loaded event when changed is called', (done) => {
+  it('should emit loaded event when changed is called', async () => {
     const testCount = 3;
-
-    component.loaded.subscribe((count) => {
-      expect(count).toBe(testCount);
-      done();
-    });
+    const loaded = new Promise<number>(resolve => component.loaded.subscribe(resolve));
 
     component.changed(testCount);
+
+    expect(await loaded).toBe(testCount);
   });
 
   it('should subscribe to auth user changes', () => {

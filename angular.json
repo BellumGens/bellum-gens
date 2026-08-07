@@ -143,7 +143,11 @@
               "text-summary"
             ],
             "buildTarget": ":build:testing",
-            "runner": "vitest"
+            "runner": "vitest",
+            "runnerConfig": "vitest-base.config.ts",
+            "setupFiles": [
+              "projects/testing/vitest-setup.ts"
+            ]
           }
         },
         "lint": {
@@ -328,7 +332,11 @@
               "text-summary"
             ],
             "buildTarget": ":build:testing",
-            "runner": "vitest"
+            "runner": "vitest",
+            "runnerConfig": "vitest-base.config.ts",
+            "setupFiles": [
+              "projects/testing/vitest-setup.ts"
+            ]
           }
         },
         "lint": {
@@ -397,16 +405,15 @@
             }
           }
         },
-        "test": {
-          "builder": "@angular/build:karma",
+        "build-test": {
+          "builder": "@angular/build:application",
           "options": {
+            "tsConfig": "projects/common/tsconfig.spec.json",
             "polyfills": [
               "zone.js",
               "zone.js/testing",
               "@angular/localize/init"
             ],
-            "tsConfig": "projects/common/tsconfig.spec.json",
-            "karmaConfig": "projects/common/karma.conf.js",
             "assets": [
               "projects/common/src/assets"
             ],
@@ -421,6 +428,22 @@
                 "node_modules"
               ]
             }
+          }
+        },
+        "test": {
+          "builder": "@angular/build:unit-test",
+          "options": {
+            "tsConfig": "projects/common/tsconfig.spec.json",
+            "coverageReporters": [
+              "lcov",
+              "text-summary"
+            ],
+            "buildTarget": "bellum-gens-common:build-test",
+            "runner": "vitest",
+            "runnerConfig": "vitest-base.config.ts",
+            "setupFiles": [
+              "projects/testing/vitest-setup.ts"
+            ]
           }
         },
         "lint": {

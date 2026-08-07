@@ -20,7 +20,7 @@ describe('ImageLayer', () => {
     expect(imageLayer.type).toBe(EditorLayerType.Image);
   });
 
-  it('should draw the image layer', (done) => {
+  it('should draw the image layer', async () => {
     let sample = samples[0];
     const meta: EditorLayer = {
       name: sample.name,
@@ -35,15 +35,16 @@ describe('ImageLayer', () => {
       circle: false
     };
     const imageLayer = new ImageLayer(context, 'Layer', 1, meta);
-    imageLayer.drawFinish.subscribe(() => {
-      expect(context.drawImage).toHaveBeenCalled();
-      done();
-    });
-    spyOn(context, 'drawImage');
+    const drawFinished = new Promise<void>(resolve => imageLayer.drawFinish.subscribe(() => resolve()));
+    vi.spyOn(context, 'drawImage').mockImplementation(() => undefined);
     imageLayer.draw();
+
+    await drawFinished;
+
+    expect(context.drawImage).toHaveBeenCalled();
   });
 
-  it('should begin and end circle', (done) => {
+  it('should begin and end circle', async () => {
     let sample = samples[1];
     const meta: EditorLayer = {
       name: sample.name,
@@ -58,17 +59,18 @@ describe('ImageLayer', () => {
       circle: true
     };
     const imageLayer = new ImageLayer(context, 'Layer', 1, meta);
-    imageLayer.drawFinish.subscribe(() => {
-      expect(context.drawImage).toHaveBeenCalled();
-      expect(context.arc).toHaveBeenCalledWith(meta.x + meta.width / 2, meta.y + meta.height / 2, meta.width / 2, 0, 2 * Math.PI, true);
-      done();
-    });
-    spyOn(context, 'drawImage');
-    spyOn(context, 'arc');
+    const drawFinished = new Promise<void>(resolve => imageLayer.drawFinish.subscribe(() => resolve()));
+    vi.spyOn(context, 'drawImage').mockImplementation(() => undefined);
+    vi.spyOn(context, 'arc').mockImplementation(() => undefined);
     imageLayer.draw();
+
+    await drawFinished;
+
+    expect(context.drawImage).toHaveBeenCalled();
+    expect(context.arc).toHaveBeenCalledWith(meta.x + meta.width / 2, meta.y + meta.height / 2, meta.width / 2, 0, 2 * Math.PI, true);
   });
 
-  it('should draw selected border', (done) => {
+  it('should draw selected border', async () => {
     let sample = samples[0];
     const meta: EditorLayer = {
       name: sample.name,
@@ -84,14 +86,15 @@ describe('ImageLayer', () => {
     };
     const imageLayer = new ImageLayer(context, 'Layer', 1, meta);
     imageLayer.selected = true;
-    imageLayer.drawFinish.subscribe(() => {
-      expect(context.strokeStyle).toBe(imageLayer.selectedBorderColor);
-      expect(context.lineWidth).toBe(imageLayer.selectedBorderWidth);
-      expect(context.strokeRect).toHaveBeenCalledWith(meta.x, meta.y, meta.width, meta.height);
-      done();
-    });
-    spyOn(context, 'strokeRect');
+    const drawFinished = new Promise<void>(resolve => imageLayer.drawFinish.subscribe(() => resolve()));
+    vi.spyOn(context, 'strokeRect').mockImplementation(() => undefined);
     imageLayer.draw();
+
+    await drawFinished;
+
+    expect(context.strokeStyle).toBe(imageLayer.selectedBorderColor);
+    expect(context.lineWidth).toBe(imageLayer.selectedBorderWidth);
+    expect(context.strokeRect).toHaveBeenCalledWith(meta.x, meta.y, meta.width, meta.height);
   });
 });
 
@@ -137,10 +140,10 @@ describe('FreeflowLayer', () => {
 
   it('should draw the freeflow layer', () => {
     const freeflowLayer = new FreeflowLayer(context, 'Layer');
-    spyOn(context, 'beginPath');
-    spyOn(context, 'moveTo');
-    spyOn(context, 'lineTo');
-    spyOn(context, 'stroke');
+    vi.spyOn(context, 'beginPath').mockImplementation(() => undefined);
+    vi.spyOn(context, 'moveTo').mockImplementation(() => undefined);
+    vi.spyOn(context, 'lineTo').mockImplementation(() => undefined);
+    vi.spyOn(context, 'stroke').mockImplementation(() => undefined);
     freeflowLayer.createPath();
     freeflowLayer.addPoint({ x: 10, y: 20 });
     freeflowLayer.addPoint({ x: 30, y: 40 });

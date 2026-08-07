@@ -9,6 +9,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { ApiTournamentsService, ApiShopService, Tournament, Game, TournamentApplication, TournamentApplicationState, Order } from '../../../../../common/src/public_api';
 import { IGridEditEventArgs } from '@infragistics/igniteui-angular/grids/core';
+import { createSpyObj } from '../../../../../testing/spy-obj';
 
 describe('AdminMainComponent', () => {
   let component: AdminMainComponent;
@@ -292,9 +293,9 @@ describe('AdminMainComponent', () => {
 
   describe('Registration Management - deleteRegistration', () => {
     it('should delete a registration', () => {
-      const mockRowContext = jasmine.createSpyObj('RowType', ['grid']);
-      mockRowContext.grid = jasmine.createSpyObj('IgxGridComponent', ['transactions']);
-      mockRowContext.grid.transactions.commit = jasmine.createSpy('commit');
+      const mockRowContext = createSpyObj('RowType', ['grid']);
+      mockRowContext.grid = createSpyObj('IgxGridComponent', ['transactions']);
+      mockRowContext.grid.transactions.commit = vi.fn();
       mockRowContext.grid.data = [];
       mockRowContext.key = 'reg-1';
 
@@ -310,9 +311,9 @@ describe('AdminMainComponent', () => {
 
     it('should delete multiple registrations', () => {
       const createMockRowContext = (key: string) => {
-        const mockRowContext = jasmine.createSpyObj('RowType', ['grid']);
-        mockRowContext.grid = jasmine.createSpyObj('IgxGridComponent', ['transactions']);
-        mockRowContext.grid.transactions.commit = jasmine.createSpy('commit');
+        const mockRowContext = createSpyObj('RowType', ['grid']);
+        mockRowContext.grid = createSpyObj('IgxGridComponent', ['transactions']);
+        mockRowContext.grid.transactions.commit = vi.fn();
         mockRowContext.grid.data = [];
         mockRowContext.key = key;
         return mockRowContext;
@@ -334,9 +335,9 @@ describe('AdminMainComponent', () => {
     });
 
     it('should commit transaction before deleting registration', () => {
-      const mockRowContext = jasmine.createSpyObj('RowType', ['grid']);
-      mockRowContext.grid = jasmine.createSpyObj('IgxGridComponent', ['transactions']);
-      mockRowContext.grid.transactions.commit = jasmine.createSpy('commit');
+      const mockRowContext = createSpyObj('RowType', ['grid']);
+      mockRowContext.grid = createSpyObj('IgxGridComponent', ['transactions']);
+      mockRowContext.grid.transactions.commit = vi.fn();
       mockRowContext.grid.data = [{ id: 'reg-1' }];
       mockRowContext.key = 'reg-1';
 
@@ -352,9 +353,9 @@ describe('AdminMainComponent', () => {
 
   describe('Order Management - deleteOrder', () => {
     it('should delete an order', () => {
-      const mockRowContext = jasmine.createSpyObj('RowType', ['grid']);
-      mockRowContext.grid = jasmine.createSpyObj('IgxGridComponent', ['transactions']);
-      mockRowContext.grid.transactions.commit = jasmine.createSpy('commit');
+      const mockRowContext = createSpyObj('RowType', ['grid']);
+      mockRowContext.grid = createSpyObj('IgxGridComponent', ['transactions']);
+      mockRowContext.grid.transactions.commit = vi.fn();
       mockRowContext.grid.data = [];
       mockRowContext.key = 'order-1';
 
@@ -370,9 +371,9 @@ describe('AdminMainComponent', () => {
 
     it('should delete multiple orders', () => {
       const createMockRowContext = (key: string) => {
-        const mockRowContext = jasmine.createSpyObj('RowType', ['grid']);
-        mockRowContext.grid = jasmine.createSpyObj('IgxGridComponent', ['transactions']);
-        mockRowContext.grid.transactions.commit = jasmine.createSpy('commit');
+        const mockRowContext = createSpyObj('RowType', ['grid']);
+        mockRowContext.grid = createSpyObj('IgxGridComponent', ['transactions']);
+        mockRowContext.grid.transactions.commit = vi.fn();
         mockRowContext.grid.data = [];
         mockRowContext.key = key;
         return mockRowContext;

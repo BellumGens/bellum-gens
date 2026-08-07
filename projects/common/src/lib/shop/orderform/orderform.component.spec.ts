@@ -67,7 +67,7 @@ describe('OrderformComponent', () => {
 
   it('should set inProgress to true and call apiService.submitOrder on placeOrder', () => {
     const apiService = (component as any).apiService;
-    spyOn(apiService, 'submitOrder').and.returnValue({
+    vi.spyOn(apiService, 'submitOrder').mockReturnValue({
       subscribe: (handlers: any) => {
         handlers.next();
         handlers.complete();
@@ -82,7 +82,7 @@ describe('OrderformComponent', () => {
   it('should check promo code and set promo and invalidPromo correctly (valid promo)', () => {
     const apiService = (component as any).apiService;
     component.order.promoCode = 'PROMO';
-    spyOn(apiService, 'checkForPromo').and.returnValue({
+    vi.spyOn(apiService, 'checkForPromo').mockReturnValue({
       subscribe: (cb: any) => cb({ discount: 0.1 })
     });
     component.promo = component.basePromo;
@@ -95,7 +95,7 @@ describe('OrderformComponent', () => {
   it('should check promo code and set invalidPromo to true if promo is invalid', () => {
     const apiService = (component as any).apiService;
     component.order.promoCode = 'INVALID';
-    spyOn(apiService, 'checkForPromo').and.returnValue({
+    vi.spyOn(apiService, 'checkForPromo').mockReturnValue({
       subscribe: (cb: any) => cb(null)
     });
     component.invalidPromo = false;

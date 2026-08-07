@@ -23,7 +23,7 @@
     </igx-chips-area>
     <!-- IgxSelect: default positioning changed to AutoPositionStrategy (below/above input).
      To preserve overlap behavior: this.select.overlaySettings = { positionStrategy: new IgxSelectOverlapPositionStrategy(this.select) }; -->
-<igx-select type="line" [(ngModel)]="order" class="order-by">
+<igx-select type="border" [(ngModel)]="order" class="order-by">
       <label igxLabel i18n>Order By</label>
       @for (cond of stratOrder; track cond.order) {
         <igx-select-item [value]="cond.order">

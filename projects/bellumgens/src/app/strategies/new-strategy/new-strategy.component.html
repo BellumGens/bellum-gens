@@ -1,7 +1,7 @@
 <igx-dialog #newStrat [closeOnOutsideSelect]="true" (closing)="resetStrategy()">
   <form #strategyForm="ngForm" (ngSubmit)="submitStrategy()">
     <span>{{ title }}</span>
-    <igx-input-group type="line">
+    <igx-input-group type="border">
       <label for="strategyName" igxLabel i18n>Title</label>
       <input #strategyName name="strategyName" id="strategyName" igxInput minlength="2" [required]="true" [(ngModel)]="newStrategy.title">
       @if (strategyName.value.length > 0) {
@@ -11,7 +11,7 @@
       }
     </igx-input-group>
 
-    <igx-input-group type="line">
+    <igx-input-group type="border">
       <label for="strategyDescription" igxLabel i18n>Description</label>
       <textarea #strategyDescription id="strategyDescription" name="strategyDescription" igxInput minlength="2" [required]="true" [(ngModel)]="newStrategy.description">
       </textarea>
@@ -33,7 +33,7 @@
 
     <!-- IgxSelect: default positioning changed to AutoPositionStrategy (below/above input).
      To preserve overlap behavior: this.select.overlaySettings = { positionStrategy: new IgxSelectOverlapPositionStrategy(this.select) }; -->
-<igx-select type="line" id="mapSelector" name="mapSelector" [(ngModel)]="newStrategy.map">
+<igx-select type="border" id="mapSelector" name="mapSelector" [(ngModel)]="newStrategy.map">
       <label for="mapSelector" igxLabel i18n>Map</label>
       @for (map of mapList; track map) {
         <igx-select-item (click)="selectedMap = map" [value]="map.mapId">
@@ -42,7 +42,7 @@
       }
     </igx-select>
 
-    <igx-input-group type="line">
+    <igx-input-group type="border">
       <igx-prefix>
         <igx-icon>link</igx-icon>
       </igx-prefix>

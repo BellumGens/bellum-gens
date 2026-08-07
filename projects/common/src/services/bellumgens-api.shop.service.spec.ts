@@ -54,7 +54,7 @@ describe('ApiShopService', () => {
       const errorMessage = `Http failure response for ${service['_apiEndpoint']}/shop/order?orderId=${orderId}: 500 Could not delete order!`;
       commsService.error.subscribe(message => expect(message).toEqual(errorMessage));
       service.deleteOrder(orderId).subscribe({
-        next: () => fail('Should not succeed'),
+        next: () => expect.fail('Should not succeed'),
         error: error => expect(error.message).toEqual(errorMessage)
       });
       const req2 = httpMock.expectOne(`${service['_apiEndpoint']}/shop/order?orderId=${orderId}`);
@@ -99,7 +99,7 @@ describe('ApiShopService', () => {
       const errorMessage = `Http failure response for ${service['_apiEndpoint']}/shop/edit?orderId=${order.id}: 500 Could not confirm order!`;
       commsService.error.subscribe(message => expect(message).toEqual(errorMessage));
       service.confirmOrder(order).subscribe({
-        next: () => fail('Should not succeed'),
+        next: () => expect.fail('Should not succeed'),
         error: error => expect(error.message).toEqual(errorMessage)
       });
       const req2 = httpMock.expectOne(`${service['_apiEndpoint']}/shop/edit?orderId=${order.id}`);

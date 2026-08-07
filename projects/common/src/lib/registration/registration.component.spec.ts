@@ -41,7 +41,7 @@ describe('RegistrationComponent', () => {
   });
 
   it('should create', () => {
-    const spy = spyOn(component as any, 'initUsernameCheck');
+    const spy = vi.spyOn(component as any, 'initUsernameCheck').mockImplementation(() => undefined);
     expect(component).toBeTruthy();
     expect(component.usernameInput).toBeDefined();
     component.ngOnInit();
@@ -49,11 +49,11 @@ describe('RegistrationComponent', () => {
   });
 
   it('should submit registration', () => {
-    spyOn(router, 'navigate');
+    vi.spyOn(router, 'navigate').mockImplementation(() => undefined);
     commsService.success.subscribe(success => expect(success).toBe('User registration completed successfully!'));
 
     component.submitRegistration();
-    expect(component.submitInProgress).toBeTrue();
+    expect(component.submitInProgress).toBe(true);
 
     const req = httpMock.expectOne(`${loginService['_apiEndpoint']}/setpassword`);
     expect(req.request.method).toBe('POST');
@@ -67,7 +67,7 @@ describe('RegistrationComponent', () => {
     commsService.error.subscribe(error => expect(error).toBe(errorMessage));
 
     component.submitRegistration();
-    expect(component.submitInProgress).toBeTrue();
+    expect(component.submitInProgress).toBe(true);
 
     const req = httpMock.expectOne(`${loginService['_apiEndpoint']}/setpassword`);
     expect(req.request.method).toBe('POST');
@@ -77,7 +77,7 @@ describe('RegistrationComponent', () => {
   });
 
   // it('should initialize username check', () => {
-  //   spyOn(fromEvent(component.usernameInput.nativeElement, 'input'), 'pipe').and.returnValue(
+  //   vi.spyOn(fromEvent(component.usernameInput.nativeElement, 'input'), 'pipe').mockReturnValue(
   //     fromEvent(component.usernameInput.nativeElement, 'input').pipe(
   //       debounceTime(300),
   //       map((event: any) => event.target.value)

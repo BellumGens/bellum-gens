@@ -154,7 +154,7 @@
       </igx-card-header>
       <igx-card-content>
         <form #currentLeagueForm="ngForm" class="content-container-column" (ngSubmit)="updateTournament(league)">
-          <igx-input-group type="line">
+          <igx-input-group type="border">
             <label igxLabel [for]="'leagueName' + i" i18n>Tournament name</label>
             <input type="text" [id]="'leagueName' + i" [name]="'leagueName' + i" #leagueName igxInput [required]="true" [(ngModel)]="league.name" />
             @if (leagueName.value) {
@@ -163,7 +163,7 @@
               </igx-suffix>
             }
           </igx-input-group>
-          <igx-input-group type="line">
+          <igx-input-group type="border">
             <label igxLabel [for]="'leagueLogo' + i" i18n>Tournament logo</label>
             <input type="text" [id]="'leagueLogo' + i" [name]="'leagueLogo' + i" #leagueLogo igxInput [required]="true" [(ngModel)]="league.logo" />
             @if (leagueLogo.value) {
@@ -172,7 +172,7 @@
               </igx-suffix>
             }
           </igx-input-group>
-          <igx-input-group type="line">
+          <igx-input-group type="border">
             <label igxLabel [for]="'leagueDescription' + i" i18n>Tournament description</label>
             <textarea type="text" [id]="'leagueDescription' + i" [name]="'leagueDescription' + i" #leagueDescription igxInput [required]="true" [(ngModel)]="league.description"></textarea>
             @if (leagueDescription.value) {
@@ -181,10 +181,10 @@
               </igx-suffix>
             }
           </igx-input-group>
-          <igx-date-picker type="line" [name]="'leagueStartDate' + i" [required]="true" [(ngModel)]="league.startDate" mode="dialog">
+          <igx-date-picker type="border" [name]="'leagueStartDate' + i" [required]="true" [(ngModel)]="league.startDate" mode="dialog">
             <label igxLabel i18n>Start date</label>
           </igx-date-picker>
-          <igx-date-picker type="line" [name]="'leagueEndDate' + i" [required]="true" [(ngModel)]="league.endDate" mode="dialog">
+          <igx-date-picker type="border" [name]="'leagueEndDate' + i" [required]="true" [(ngModel)]="league.endDate" mode="dialog">
             <label igxLabel i18n>End date</label>
           </igx-date-picker>
           <igx-checkbox [name]="'active' + i" [(ngModel)]="league.active" i18n>Active</igx-checkbox>
@@ -196,7 +196,7 @@
 
   <form #leagueForm="ngForm" class="content-container-column" (ngSubmit)="updateTournament()">
     <h4 igxCardHeaderTitle i18n>New Tournament</h4>
-    <igx-input-group type="line">
+    <igx-input-group type="border">
       <label igxLabel for="tournamentName" i18n>Tournament name</label>
       <input type="text" id="tournamentName" name="tournamentName" #tournamentName igxInput [required]="true" [(ngModel)]="tournament.name" />
       @if (tournamentName.value) {
@@ -206,7 +206,7 @@
       }
     </igx-input-group>
 
-    <igx-input-group type="line">
+    <igx-input-group type="border">
       <label igxLabel for="tournamentLogo" i18n>Tournament logo</label>
       <input type="text" id="tournamentLogo" name="tournamentLogo" #tournamentLogo igxInput [required]="true" [(ngModel)]="tournament.logo" />
       @if (tournamentLogo.value) {
@@ -216,7 +216,7 @@
       }
     </igx-input-group>
 
-    <igx-input-group type="line">
+    <igx-input-group type="border">
       <label igxLabel for="tournamentDescription" i18n>Tournament description</label>
       <textarea type="text" id="tournamentDescription" name="tournamentDescription" #tournamentDescription igxInput [required]="true" [(ngModel)]="tournament.description"></textarea>
       @if (tournamentDescription.value) {
@@ -226,11 +226,11 @@
       }
     </igx-input-group>
 
-    <igx-date-picker type="line" name="startDate" [required]="true" [(ngModel)]="tournament.startDate" mode="dialog">
+    <igx-date-picker type="border" name="startDate" [required]="true" [(ngModel)]="tournament.startDate" mode="dialog">
       <label igxLabel i18n>Start date</label>
     </igx-date-picker>
 
-    <igx-date-picker type="line" name="endDate" [required]="true" [(ngModel)]="tournament.endDate" mode="dialog">
+    <igx-date-picker type="border" name="endDate" [required]="true" [(ngModel)]="tournament.endDate" mode="dialog">
       <label igxLabel i18n>End date</label>
     </igx-date-picker>
 
@@ -247,7 +247,7 @@
         <igx-chip i18n>No Roles Defined</igx-chip>
       }
     </igx-chips-area>
-    <igx-input-group type="line">
+    <igx-input-group type="border">
       <label igxLabel i18n>New role</label>
       <input type="text" #roleinput igxInput />
     </igx-input-group>

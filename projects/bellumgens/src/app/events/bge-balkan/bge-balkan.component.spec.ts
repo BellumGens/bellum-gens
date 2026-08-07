@@ -49,27 +49,27 @@ describe('BgeBalkanComponent', () => {
 
     let req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament?id=0313a19e-d527-46f9-bbea-08dd07ccaf69`);
     expect(req.request.method).toBe('GET');
-    expect(req.request.withCredentials).toBeFalse();
+    expect(req.request.withCredentials).toBe(false);
     req.flush(mockTournament);
-    component.loading.pipe(take(1)).subscribe(value => expect(value).toBeTrue());
+    component.loading.pipe(take(1)).subscribe(value => expect(value).toBe(true));
     expect(component.tournament).toEqual(mockTournament);
 
     req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/sc2regs?tournamentId=123`);
     expect(req.request.method).toBe('GET');
-    expect(req.request.withCredentials).toBeFalse();
+    expect(req.request.withCredentials).toBe(false);
     req.flush(mockRegistrations);
-    component.loading.pipe(take(1)).subscribe(value => expect(value).toBeFalse());
+    component.loading.pipe(take(1)).subscribe(value => expect(value).toBe(false));
 
     req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/sc2matches?tournamentId=123`);
     expect(req.request.method).toBe('GET');
-    expect(req.request.withCredentials).toBeFalse();
-    component.loadingMatches.pipe(take(1)).subscribe(value => expect(value).toBeTrue());
+    expect(req.request.withCredentials).toBe(false);
+    component.loadingMatches.pipe(take(1)).subscribe(value => expect(value).toBe(true));
     req.flush(mockMatches);
-    component.loadingMatches.pipe(take(1)).subscribe(value => expect(value).toBeFalse());
+    component.loadingMatches.pipe(take(1)).subscribe(value => expect(value).toBe(false));
 
     req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/sc2groups?tournamentId=123`);
     expect(req.request.method).toBe('GET');
-    expect(req.request.withCredentials).toBeFalse();
+    expect(req.request.withCredentials).toBe(false);
     req.flush(mockGroups);
   });
 
@@ -81,7 +81,7 @@ describe('BgeBalkanComponent', () => {
 
     const req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/sc2groups?tournamentId=123`);
     expect(req.request.method).toBe('GET');
-    expect(req.request.withCredentials).toBeFalse();
+    expect(req.request.withCredentials).toBe(false);
     req.flush(mockGroups);
   });
 
@@ -93,7 +93,7 @@ describe('BgeBalkanComponent', () => {
 
     const req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/sc2matches?tournamentId=123`);
     expect(req.request.method).toBe('GET');
-    expect(req.request.withCredentials).toBeFalse();
+    expect(req.request.withCredentials).toBe(false);
     req.flush(mockMatches);
   });
 });

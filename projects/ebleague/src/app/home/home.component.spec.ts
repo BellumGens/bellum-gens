@@ -37,8 +37,8 @@ describe('TournamentHomeComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should initialize userEmail to null', () => {
-    expect(component.userEmail).toBeNull();
+  it('should initialize userEmail to an empty string', () => {
+    expect(component.userEmail).toBe('');
   });
 
   it('should have gameEnum property', () => {

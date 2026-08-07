@@ -3,7 +3,8 @@ import { TestBed } from '@angular/core/testing';
 import { ApiTournamentsService } from './bellumgens-api.tournaments.service';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { TournamentCSGOMatch, TournamentSC2Match } from '../models/tournament-schedule';
-import { CommunicationService, Game, TournamentApplication, TournamentCSGOGroup, TournamentParticipant, TournamentSC2Group } from '../public_api';
+import { CommunicationService, TournamentApplication, TournamentCSGOGroup, TournamentParticipant, TournamentSC2Group } from '../public_api';
+import { Game } from '../models/tournament';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 describe('ApiTournamentsService', () => {
@@ -87,18 +88,23 @@ describe('ApiTournamentsService', () => {
   it('should delete a registration', () => {
     const mockRegistrationId = '1';
 
-    service.deleteRegistration(mockRegistrationId).subscribe(() => {
-      expect(service.allRegistrations.value).not.toContain(jasmine.objectContaining({ id: mockRegistrationId }));
-    });
+    service.deleteRegistration(mockRegistrationId).subscribe();
 
     let req = httpMock.expectOne(`${service['_apiEndpoint']}/tournament/delete?id=${mockRegistrationId}`);
     expect(req.request.method).toBe('DELETE');
     expect(req.request.withCredentials).toBe(true);
     req.flush({});
+
+    // Reading the getter is what kicks off the refresh, since the subject is still empty.
+    const registrations = service.allRegistrations;
     req = httpMock.expectOne(`${service['_apiEndpoint']}/tournament/allregistrations`);
     expect(req.request.method).toBe('GET');
     expect(req.request.withCredentials).toBe(true);
     req.flush([]);
+
+    // Asserted after the flush: until then the subject still holds its initial null, and
+    // `not.toContain` on null throws rather than passing.
+    expect(registrations.value).not.toContain(expect.objectContaining({ id: mockRegistrationId }));
   });
 
   it('should submit a Counter-Strike match', () => {
@@ -239,7 +245,7 @@ describe('ApiTournamentsService', () => {
 
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/tournament/sc2matches?tournamentId=1`);
     expect(req.request.method).toBe('GET');
-    expect(req.request.withCredentials).toBeFalse();
+    expect(req.request.withCredentials).toBe(false);
     req.flush(mockSc2Matches);
     expect(service['_sc2Matches'].get('1').value).toEqual(mockSc2Matches);
   });
@@ -269,7 +275,7 @@ describe('ApiTournamentsService', () => {
 
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/tournament/sc2groups?tournamentId=1`);
     expect(req.request.method).toBe('GET');
-    expect(req.request.withCredentials).toBeFalse();
+    expect(req.request.withCredentials).toBe(false);
     req.flush(mockSc2Groups);
     expect(service['_sc2Groups'].get('1').value).toEqual(mockSc2Groups);
   });
