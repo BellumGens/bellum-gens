@@ -3,7 +3,7 @@
 :host ::ng-deep {
   @include core();
 
-  @include grid(grid-theme(
+  @include tokens(grid-theme(
     $content-background: $banner-background,
     $drop-area-background: $banner-background,
     $ghost-header-background: $banner-background,
@@ -12,13 +12,13 @@
     $cell-editing-background: $background
   ));
 
-  @include grid-toolbar(grid-toolbar-theme($background: $background));
+  @include tokens(grid-toolbar-theme($background: $background));
 
-  @include grid-summary(grid-summary-theme($background-color: $background));
+  @include tokens(grid-summary-theme($background-color: $background));
 
-  @include paginator(paginator-theme($background: $background));
+  @include tokens(paginator-theme($background: $background));
 
-  @include action-strip(action-strip-theme($actions-background: transparent));
+  @include tokens(action-strip-theme($actions-background: transparent));
 
   $input-group-theme: input-group-theme(
     $filled-text-color: white,

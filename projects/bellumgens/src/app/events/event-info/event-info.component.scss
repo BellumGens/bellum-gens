@@ -2,7 +2,7 @@
 
 :host ::ng-deep {
   @include core();
-  @include grid(
+  @include tokens(
     grid-theme(
       $schema: $dark-material-schema,
       $content-background: var(--ig-surface-300),
@@ -10,7 +10,7 @@
     )
   );
 
-  @include grid-toolbar(grid-toolbar-theme(
+  @include tokens(grid-toolbar-theme(
     $schema: $dark-material-schema,
     $background: var(--ig-surface-500)
   ));

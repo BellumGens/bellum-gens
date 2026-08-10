@@ -1,6 +1,6 @@
 import { Component, ViewChild, inject } from '@angular/core';
 import { IgxDialogComponent } from '@infragistics/igniteui-angular/dialog';
-import { IgxButtonDirective, IgxDividerDirective } from '@infragistics/igniteui-angular/directives';
+import { IgxButtonDirective, IgxDividerComponent } from '@infragistics/igniteui-angular/directives';
 import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { IgxCheckboxComponent } from '@infragistics/igniteui-angular/checkbox';
@@ -16,7 +16,7 @@ import { LoginButtonsComponent } from '../login-buttons/login-buttons.component'
     styleUrls: ['./login-dialog.component.scss'],    imports: [
       IgxDialogComponent,
       LoginButtonsComponent,
-      IgxDividerDirective,
+      IgxDividerComponent,
       FormsModule,
       IGX_INPUT_GROUP_DIRECTIVES,
       IgxIconComponent,

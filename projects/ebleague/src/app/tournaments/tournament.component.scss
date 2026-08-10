@@ -2,7 +2,7 @@
 
 :host ::ng-deep {
   @include core();
-  @include grid(
+  @include tokens(
     grid-theme(
       $content-background: $banner-background,
       $ghost-header-background: $banner-background,
@@ -11,9 +11,9 @@
   );
 
   /* Filter UI has a chip */
-  @include chip(chip-theme());
+  @include tokens(chip-theme());
 
-  @include grid-toolbar(grid-toolbar-theme($background: $background));
+  @include tokens(grid-toolbar-theme($background: $background));
 
   /* Registrations */
   .registration-slot {

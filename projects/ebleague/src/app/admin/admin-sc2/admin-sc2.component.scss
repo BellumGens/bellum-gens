@@ -4,7 +4,7 @@
   @include core();
 
   // Compact grid theme with small size
-  @include grid(grid-theme(
+  @include tokens(grid-theme(
     $content-background: $banner-background,
     $drop-area-background: $banner-background,
     $ghost-header-background: $banner-background,
@@ -13,20 +13,20 @@
     $cell-editing-background: $background
   ));
 
-  @include grid-toolbar(grid-toolbar-theme($background: $background));
+  @include tokens(grid-toolbar-theme($background: $background));
 
-  @include grid-summary(grid-summary-theme($background-color: $background));
+  @include tokens(grid-summary-theme($background-color: $background));
 
-  @include action-strip(action-strip-theme($actions-background: transparent));
+  @include tokens(action-strip-theme($actions-background: transparent));
 
   // List theme
-  @include list(list-theme(
+  @include tokens(list-theme(
     $background: transparent,
     $item-background-active: rgba(0, 0, 0, 0.11)
   ));
 
   // Input group theme
-  @include input-group(input-group-theme(
+  @include tokens(input-group-theme(
     $search-background: transparent
   ));
 
