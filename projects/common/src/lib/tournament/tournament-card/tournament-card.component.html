@@ -34,7 +34,7 @@
       </igx-chip>
 
       @if (statusLabel) {
-        <igx-chip [selectable]="false" [removable]="false" [class]="'status-' + tournament().status">
+        <igx-chip [selectable]="false" [removable]="false" [class.status-open]="tournament().status === 'open'" [class.status-in-progress]="tournament().status === 'in-progress'" [class.status-completed]="tournament().status === 'completed'" [class.status-cancelled]="tournament().status === 'cancelled'" [class.status-draft]="tournament().status === 'draft'">
           {{ statusLabel }}
         </igx-chip>
       }

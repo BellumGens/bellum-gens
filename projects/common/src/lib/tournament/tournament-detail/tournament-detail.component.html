@@ -12,7 +12,7 @@
       <div class="hero-content">
         <div class="hero-info">
           <div class="hero-badges">
-            <igx-chip [selectable]="false" [removable]="false" [class]="'status-' + t.status">
+            <igx-chip [selectable]="false" [removable]="false" [class.status-open]="t.status === 'open'" [class.status-in-progress]="t.status === 'in-progress'" [class.status-completed]="t.status === 'completed'" [class.status-cancelled]="t.status === 'cancelled'" [class.status-draft]="t.status === 'draft'">
               {{ statusLabel }}
             </igx-chip>
             <igx-chip [selectable]="false" [removable]="false">

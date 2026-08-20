@@ -1,34 +1,62 @@
 @use "../../../variables" as *;
 
 :host ::ng-deep {
-  @include core();
-
   // Compact grid theme with small size
-  @include tokens(grid-theme(
-    $content-background: $banner-background,
-    $drop-area-background: $banner-background,
-    $ghost-header-background: $banner-background,
-    $group-row-selected-background: $background,
-    $header-background: $background,
-    $cell-editing-background: $background
-  ));
+  @include tokens(
+    grid-theme(
+      $schema: $dark-material-schema,
+      $content-background: $banner-background,
+      $drop-area-background: $banner-background,
+      $ghost-header-background: $banner-background,
+      $group-row-selected-background: $background,
+      $header-background: $background,
+      $cell-editing-background: $background
+    ),
+    $mode: 'scoped'
+  );
 
-  @include tokens(grid-toolbar-theme($background: $background));
+  @include tokens(
+    grid-toolbar-theme(
+      $schema: $dark-material-schema,
+      $background: $background
+    ),
+    $mode: 'scoped'
+  );
 
-  @include tokens(grid-summary-theme($background-color: $background));
+  @include tokens(
+    grid-summary-theme(
+      $schema: $dark-material-schema,
+      $background-color: $background
+    ),
+    $mode: 'scoped'
+  );
 
-  @include tokens(action-strip-theme($actions-background: transparent));
+  @include tokens(
+    action-strip-theme(
+      $schema: $dark-material-schema,
+      $actions-background: transparent
+    ),
+    $mode: 'scoped'
+  );
 
   // List theme
-  @include tokens(list-theme(
-    $background: transparent,
-    $item-background-active: rgba(0, 0, 0, 0.11)
-  ));
+  @include tokens(
+    list-theme(
+      $schema: $dark-material-schema,
+      $background: transparent,
+      $item-background-active: rgba(0, 0, 0, 0.11)
+    ),
+    $mode: 'scoped'
+  );
 
   // Input group theme
-  @include tokens(input-group-theme(
-    $search-background: transparent
-  ));
+  @include tokens(
+    input-group-theme(
+      $schema: $dark-material-schema,
+      $search-background: transparent
+    ),
+    $mode: 'scoped'
+  );
 
   // Apply compact sizing using CSS variables
   igx-grid {
