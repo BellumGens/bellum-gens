@@ -88,16 +88,22 @@
 .status-active {
   --ig-chip-background: rgba(76, 175, 80, 0.15);
   --ig-chip-text-color: #4caf50;
+  --background: var(--ig-chip-background);
+  --text-color: var(--ig-chip-text-color);
 }
 
 .status-upcoming {
   --ig-chip-background: rgba(33, 150, 243, 0.15);
   --ig-chip-text-color: #2196f3;
+  --background: var(--ig-chip-background);
+  --text-color: var(--ig-chip-text-color);
 }
 
 .status-completed {
   --ig-chip-background: rgba(158, 158, 158, 0.15);
   --ig-chip-text-color: #9e9e9e;
+  --background: var(--ig-chip-background);
+  --text-color: var(--ig-chip-text-color);
 }
 
 .empty-state {

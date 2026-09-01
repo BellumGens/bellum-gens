@@ -3,7 +3,7 @@ import { Component, PLATFORM_ID, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
-import { IgxButtonDirective, IgxDividerDirective } from '@infragistics/igniteui-angular/directives';
+import { IgxButtonDirective, IgxDividerComponent } from '@infragistics/igniteui-angular/directives';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import {
   Game, RegistrationsCount, Tournament,
@@ -22,7 +22,7 @@ import {
     FormsModule,
     // TournamentRegistrationComponent,
     IgxButtonDirective,
-    IgxDividerDirective,
+    IgxDividerComponent,
     IgxIconComponent,
     IGX_INPUT_GROUP_DIRECTIVES
   ]

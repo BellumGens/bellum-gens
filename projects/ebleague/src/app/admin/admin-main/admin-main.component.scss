@@ -1,26 +1,53 @@
 @use "../../../variables" as *;
 
 :host ::ng-deep {
-  @include core();
+  @include tokens(
+    grid-theme(
+      $schema: $dark-material-schema,
+      $content-background: $banner-background,
+      $drop-area-background: $banner-background,
+      $ghost-header-background: $banner-background,
+      $group-row-selected-background: $background,
+      $header-background: $background,
+      $cell-editing-background: $background
+    ),
+    $mode: 'scoped'
+  );
 
-  @include grid(grid-theme(
-    $content-background: $banner-background,
-    $drop-area-background: $banner-background,
-    $ghost-header-background: $banner-background,
-    $group-row-selected-background: $background,
-    $header-background: $background,
-    $cell-editing-background: $background
-  ));
+  @include tokens(
+    grid-toolbar-theme(
+      $schema: $dark-material-schema,
+      $background: $background
+    ),
+    $mode: 'scoped'
+  );
 
-  @include grid-toolbar(grid-toolbar-theme($background: $background));
+  @include tokens(
+    grid-summary-theme(
+      $schema: $dark-material-schema,
+      $background-color: $background
+    ),
+    $mode: 'scoped'
+  );
 
-  @include grid-summary(grid-summary-theme($background-color: $background));
+  @include tokens(
+    paginator-theme(
+      $schema: $dark-material-schema,
+      $background: $background
+    ),
+    $mode: 'scoped'
+  );
 
-  @include paginator(paginator-theme($background: $background));
-
-  @include action-strip(action-strip-theme($actions-background: transparent));
+  @include tokens(
+    action-strip-theme(
+      $schema: $dark-material-schema,
+      $actions-background: transparent
+    ),
+    $mode: 'scoped'
+  );
 
   $input-group-theme: input-group-theme(
+    $schema: $dark-material-schema,
     $filled-text-color: white,
     $box-background: $banner-background,
     $box-background-hover: $banner-background,
@@ -33,9 +60,10 @@
     $focused-border-color: $primary,
     $box-border-radius: 4px
   );
-  @include css-vars($input-group-theme);
+  @include tokens($input-group-theme, $mode: 'scoped');
 
   $checkbox-theme: checkbox-theme(
+    $schema: $dark-material-schema,
     $fill-color: $primary,
     $fill-color-hover: color($app-palette, 'primary', 600),
     $tick-color: white,
@@ -43,9 +71,10 @@
     $empty-color: rgba(white, 0.3),
     $border-radius: 3px
   );
-  @include css-vars($checkbox-theme);
+  @include tokens($checkbox-theme, $mode: 'scoped');
 
   $button-theme: button-theme(
+    $schema: $dark-material-schema,
     $background: $primary,
     $hover-background: color($app-palette, 'primary', 600),
     $focus-background: color($app-palette, 'primary', 600),
@@ -54,16 +83,17 @@
     $disabled-foreground: rgba(white, 0.5),
     $border-radius: 4px
   );
-  @include css-vars($button-theme);
+  @include tokens($button-theme, $mode: 'scoped');
 
   $card-theme: card-theme(
+    $schema: $dark-material-schema,
     $background: $banner-background,
     $header-text-color: $primary,
     $subtitle-text-color: rgba(white, 0.7),
     $content-text-color: white,
     $border-radius: 8px
   );
-  @include css-vars($card-theme);
+  @include tokens($card-theme, $mode: 'scoped');
 
   // Apply compact sizing using CSS variables
   igx-grid {

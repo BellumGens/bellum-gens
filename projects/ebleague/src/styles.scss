@@ -6,7 +6,12 @@
 :root {
     --ig-size: var(--ig-size-large);
 }
-@import "minireset.css/minireset";
+// Layer the reset into `ig.reset` — the lowest layer in Ignite UI's cascade
+// order (`@layer ig.reset, ig.base, ig.<theme>, ig.derived`, emitted by the
+// `theme()` mixin below) — so component and author styles win over it.
+@layer ig.reset {
+  @import "minireset.css/minireset";
+}
 
 @font-face {
   font-family: 'ebleague';
@@ -39,10 +44,12 @@ $include: (igx-avatar,
            igx-icon-button,
            igx-dialog,
            igx-input-group,
+           igx-select,
            igx-drop-down,
            igx-radio,
            igx-badge,
            igx-card,
+           igx-chip,
            igx-checkbox,
            igx-tabs,
            igx-snackbar,
@@ -53,6 +60,7 @@ $include: (igx-avatar,
            igx-time-picker,
            igx-date-picker,
            igx-calendar,
+           igx-action-strip,
            igx-nav-drawer);
 
 @include theme(
@@ -63,14 +71,16 @@ $include: (igx-avatar,
 
 /* Navbar */
 $navbar-theme: navbar-theme(
+  $schema: $dark-material-schema,
   $background: $background,
   $shadow: 0px 15px 30px 0px rgba(0,0,0,0.4)
 );
-@include css-vars($navbar-theme);
+@include tokens($navbar-theme);
 /* END Navbar */
 
 /* Nav Drawer */
 $navdrawer-theme: navdrawer-theme(
+  $schema: $dark-material-schema,
   $item-hover-background: rgba(0, 0, 0, 0.11),
   $item-active-background: rgba(0, 0, 0, 0.11),
   $item-active-text-color: $secondary,
@@ -78,48 +88,66 @@ $navdrawer-theme: navdrawer-theme(
   $item-hover-text-color: $secondary,
   $item-hover-icon-color: $secondary
 );
-@include css-vars($navdrawer-theme);
+@include tokens($navdrawer-theme);
 /* END Nav Drawer */
 
 /* Card */
-$card-theme: card-theme($background: $background-gradient-lighter,
+$card-theme: card-theme($schema: $dark-material-schema,
+                        $background: $background-gradient-lighter,
                         $resting-shadow: 0px 15px 30px 0px rgba(0,0,0,0.4),
                         $hover-shadow: 0px 15px 30px 0px rgba(0,0,0,0.7));
-@include css-vars($card-theme);
+@include tokens($card-theme);
 /* END Card */
 
 /* List */
-$list-theme: list-theme($background: transparent,
+$list-theme: list-theme($schema: $dark-material-schema,
+                        $background: transparent,
                         $item-background-active: rgba(0, 0, 0, 0.11));
-@include css-vars($list-theme);
+@include tokens($list-theme);
 /* END List */
 
 /* Input Group */
-$input-group-theme: input-group-theme($search-background: transparent, $size: 48px);
-@include css-vars($input-group-theme);
+$input-group-theme: input-group-theme(
+  $schema: $dark-material-schema,
+  $search-background: transparent,
+  $size: 48px
+);
+@include tokens($input-group-theme);
 /* END Input Group */
 
 /* Banner */
-$banner-theme: banner-theme($banner-background: $banner-background);
-@include css-vars($banner-theme);
+$banner-theme: banner-theme(
+  $schema: $dark-material-schema,
+  $banner-background: $banner-background
+);
+@include tokens($banner-theme);
 /* END Banner */
 
 /* Tabs */
-$tabs-theme: tabs-theme($item-hover-background: rgba(0, 0, 0, 0.11),
+$tabs-theme: tabs-theme($schema: $dark-material-schema,
+                            $item-hover-background: rgba(0, 0, 0, 0.11),
                             $item-active-background: rgba(0, 0, 0, 0.11),
                             $item-background: $background,
                             $indicator-color: $secondary);
-@include css-vars($tabs-theme);
+@include tokens($tabs-theme);
 /* END Tabs */
 
 /* Snackbar */
-$snackbar-theme: snackbar-theme($background: $banner-background, $border-radius: 24px);
-@include css-vars($snackbar-theme);
+$snackbar-theme: snackbar-theme(
+  $schema: $dark-material-schema,
+  $background: $banner-background,
+  $border-radius: 24px
+);
+@include tokens($snackbar-theme);
 /* END Snackbar */
 
 /* Progress Circular */
-$circular-progress-bar-theme: progress-circular-theme($track-color: rgba(0, 0, 0, 0.14), $fill-color-default: $secondary);
-@include css-vars($circular-progress-bar-theme);
+$circular-progress-bar-theme: progress-circular-theme(
+  $schema: $dark-material-schema,
+  $track-color: rgba(0, 0, 0, 0.14),
+  $fill-color-default: $secondary
+);
+@include tokens($circular-progress-bar-theme);
 /* END Progress Circular */
 
 @import "../../common/src/styles-overrides.scss";
