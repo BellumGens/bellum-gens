@@ -8,7 +8,7 @@ import { ApiTournamentsService } from '../../../services/bellumgens-api.tourname
 import { Router } from '@angular/router';
 import { ConfirmComponent } from '../../confirm/confirm.component';
 import { FormsModule } from '@angular/forms';
-import { IgxButtonDirective, IgxDividerDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
+import { IgxButtonDirective, IgxDividerComponent, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { IgxSwitchComponent } from '@infragistics/igniteui-angular/switch';
 import { IGX_LIST_DIRECTIVES } from '@infragistics/igniteui-angular/list';
@@ -23,7 +23,7 @@ import { environment } from '../../../environments/environment';
     IgxButtonDirective,
     IgxRippleDirective,
     IgxIconComponent,
-    IgxDividerDirective,
+    IgxDividerComponent,
     IgxSwitchComponent,
     FormsModule,
     IGX_LIST_DIRECTIVES,

@@ -9,12 +9,16 @@
   }
 
   $grid-custom: grid-theme(
+    $schema: $dark-material-schema,
     $content-background: var(--ig-surface-300),
     $header-background: var(--ig-surface-500)
   );
-  @include tokens($grid-custom);
+  @include tokens($grid-custom, $mode: 'scoped');
 
-  $toolbar-custom: grid-toolbar-theme($background: var(--ig-surface-500));
-  @include tokens($toolbar-custom);
+  $toolbar-custom: grid-toolbar-theme(
+    $schema: $dark-material-schema,
+    $background: var(--ig-surface-500)
+  );
+  @include tokens($toolbar-custom, $mode: 'scoped');
 }
 

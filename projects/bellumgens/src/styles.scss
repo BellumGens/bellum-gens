@@ -6,7 +6,12 @@
 :root {
     --ig-size: var(--ig-size-large);
 }
-@import "minireset.css/minireset";
+// Layer the reset into `ig.reset` — the lowest layer in Ignite UI's cascade
+// order (`@layer ig.reset, ig.base, ig.<theme>, ig.derived`, emitted by the
+// `theme()` mixin below) — so component and author styles win over it.
+@layer ig.reset {
+  @import "minireset.css/minireset";
+}
 
 @include core();
 
@@ -28,6 +33,7 @@ $include: (
   igx-button-group,
   igx-dialog,
   igx-input-group,
+  igx-select,
   igx-drop-down,
   igx-badge,
   igx-card,
@@ -56,6 +62,7 @@ $include: (
 
 /* Navbar */
 $navbar-theme: navbar-theme(
+  $schema: $dark-material-schema,
   $background: var(--ig-surface-500),
   $shadow: 0px 15px 30px 0px hsl(from var(--ig-gray-900) h s l / 0.4)
 );
@@ -64,6 +71,7 @@ $navbar-theme: navbar-theme(
 
 /* Nav Drawer */
 $navdrawer-theme: navdrawer-theme(
+  $schema: $dark-material-schema,
   $item-hover-background: hsl(from var(--ig-gray-900) h s l / 0.5),
   $item-active-background: hsl(from var(--ig-gray-900) h s l / 0.5)
 );
@@ -72,6 +80,7 @@ $navdrawer-theme: navdrawer-theme(
 
 /* Card */
 $card-theme: card-theme(
+  $schema: $dark-material-schema,
   $resting-shadow: 0px 15px 30px 0px hsl(from var(--ig-gray-900) h s l / 0.4),
   $hover-shadow: 0px 15px 30px 0px hsl(from var(--ig-gray-900) h s l / 0.7)
 );
@@ -80,6 +89,7 @@ $card-theme: card-theme(
 
 /* List */
 $list-theme: list-theme(
+  $schema: $dark-material-schema,
   $background: transparent,
   $item-background-active: hsl(from var(--ig-gray-900) h s l / 0.11)
 );
@@ -88,6 +98,7 @@ $list-theme: list-theme(
 
 /* Input Group */
 $input-group-theme: input-group-theme(
+  $schema: $dark-material-schema,
   $search-background: transparent,
   $size: 48px
 );
@@ -95,12 +106,16 @@ $input-group-theme: input-group-theme(
 /* END Input Group */
 
 /* Banner */
-$banner-theme: banner-theme($banner-background: var(--ig-surface-300));
+$banner-theme: banner-theme(
+  $schema: $dark-material-schema,
+  $banner-background: var(--ig-surface-300)
+);
 @include tokens($banner-theme);
 /* END Banner */
 
 /* Tabs */
 $tabs-theme: tabs-theme(
+  $schema: $dark-material-schema,
   $item-hover-background: hsl(from var(--ig-gray-900) h s l / 0.11),
   $item-active-background: hsl(from var(--ig-gray-900) h s l / 0.11),
   $item-background: var(--ig-surface-500),
@@ -111,6 +126,7 @@ $tabs-theme: tabs-theme(
 
 /* Snackbar */
 $snackbar-theme: snackbar-theme(
+  $schema: $dark-material-schema,
   $background: var(--ig-surface-300),
   $border-radius: 24px
 );
@@ -118,13 +134,17 @@ $snackbar-theme: snackbar-theme(
 /* END Snackbar */
 
 /* Chip */
-$chip-theme: chip-theme($background: var(--ig-surface-300));
+$chip-theme: chip-theme(
+  $schema: $dark-material-schema,
+  $background: var(--ig-surface-300)
+);
 @include tokens($chip-theme);
 /* END Chip */
 
 /* Button */
 .strategy-actions {
   $button-theme: fab-button-theme(
+    $schema: $dark-material-schema,
     $resting-shadow: none,
     $hover-shadow: none,
     $focus-shadow: none,
@@ -138,6 +158,7 @@ $chip-theme: chip-theme($background: var(--ig-surface-300));
 
 /* Progress Circular */
 $circular-progress-bar-theme: progress-circular-theme(
+  $schema: $dark-material-schema,
   $track-color: hsl(from var(--ig-gray-900) h s l / 0.14),
   $fill-color-default: var(--ig-secondary-500)
 );
@@ -146,6 +167,7 @@ $circular-progress-bar-theme: progress-circular-theme(
 
 /* Expansion Panel */
 $expansion-panel-theme: expansion-panel-theme(
+  $schema: $dark-material-schema,
   $header-background: var(--ig-surface-500),
   $header-focus-background: var(--ig-surface-500),
   $body-background: var(--ig-surface-500)
