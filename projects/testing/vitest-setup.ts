@@ -36,6 +36,18 @@ if (typeof Element !== 'undefined' && !Element.prototype.scrollIntoView) {
   Element.prototype.scrollIntoView = () => undefined;
 }
 
+// IgxStylesRegistrar registers every component stylesheet by spreading `document.adoptedStyleSheets`,
+// which jsdom does not implement at all, so constructing any component that uses it (igx-grid, via
+// IgxGridBaseDirective) throws "adoptedStyleSheets is not iterable". The stub is an own property of
+// the document instance rather than of `Document.prototype` on purpose: Lit -- which backs
+// igniteui-webcomponents -- feature-detects constructable stylesheets with
+// `'adoptedStyleSheets' in Document.prototype` and would switch to a shadow-root code path jsdom
+// cannot support. jsdom's CSSStyleSheet is constructable and implements replaceSync, so the sheets
+// the registrar puts here are real; nothing applies them, which is fine as no test asserts on styling.
+if (typeof document !== 'undefined' && !('adoptedStyleSheets' in document)) {
+  document.adoptedStyleSheets = [];
+}
+
 // jsdom ships no canvas backend, so getContext('2d') returns null and it never loads images.
 // Both gaps are stubbed below rather than by installing the `canvas` package, which needs a
 // native build. The strat-editor tests assert *which* context calls a layer makes, not what
