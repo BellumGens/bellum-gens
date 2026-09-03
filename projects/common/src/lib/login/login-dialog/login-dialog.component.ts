@@ -1,4 +1,4 @@
-import { Component, ViewChild, inject } from '@angular/core';
+import { Component, ViewChild, inject, ChangeDetectorRef } from '@angular/core';
 import { IgxDialogComponent } from '@infragistics/igniteui-angular/dialog';
 import { IgxButtonDirective, IgxDividerComponent } from '@infragistics/igniteui-angular/directives';
 import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
@@ -13,7 +13,8 @@ import { LoginButtonsComponent } from '../login-buttons/login-buttons.component'
 @Component({
     selector: 'bg-login-dialog',
     templateUrl: './login-dialog.component.html',
-    styleUrls: ['./login-dialog.component.scss'],    imports: [
+    styleUrls: ['./login-dialog.component.scss'],
+    imports: [
       IgxDialogComponent,
       LoginButtonsComponent,
       IgxDividerComponent,
@@ -27,6 +28,7 @@ import { LoginButtonsComponent } from '../login-buttons/login-buttons.component'
 export class LoginDialogComponent {
   private authManager = inject(LoginService);
   private router = inject(Router);
+  private cdr = inject(ChangeDetectorRef);
 
   @ViewChild(IgxDialogComponent, { static: true })
   public dialog: IgxDialogComponent;
@@ -40,6 +42,7 @@ export class LoginDialogComponent {
 
   public openLogin() {
     this.dialog.open();
+    this.cdr.markForCheck();
   }
 
   public openRegistration() {
