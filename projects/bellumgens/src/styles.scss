@@ -72,8 +72,12 @@ $navbar-theme: navbar-theme(
 /* Nav Drawer */
 $navdrawer-theme: navdrawer-theme(
   $schema: $dark-material-schema,
-  $item-hover-background: hsl(from var(--ig-gray-900) h s l / 0.5),
-  $item-active-background: hsl(from var(--ig-gray-900) h s l / 0.5)
+  $item-hover-background: rgba(0, 0, 0, 0.11),
+  $item-active-background: rgba(0, 0, 0, 0.11),
+  $item-active-text-color: $secondary,
+  $item-active-icon-color: $secondary,
+  $item-hover-text-color: $secondary,
+  $item-hover-icon-color: $secondary
 );
 @include tokens($navdrawer-theme);
 /* END Nav Drawer */

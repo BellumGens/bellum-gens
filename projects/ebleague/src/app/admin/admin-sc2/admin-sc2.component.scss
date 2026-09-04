@@ -2,25 +2,13 @@
 
 :host ::ng-deep {
   // Compact grid theme with small size
-  @include tokens(
-    grid-theme(
-      $schema: $dark-material-schema,
-      $content-background: $banner-background,
-      $drop-area-background: $banner-background,
-      $ghost-header-background: $banner-background,
-      $group-row-selected-background: $background,
-      $header-background: $background,
-      $cell-editing-background: $background
-    ),
-    $mode: 'scoped'
-  );
-
-  @include tokens(
-    grid-toolbar-theme(
-      $schema: $dark-material-schema,
-      $background: $background
-    ),
-    $mode: 'scoped'
+  @include app-grid-theme(
+    $header-background: $background,
+    $content-background: $banner-background,
+    $drop-area-background: $banner-background,
+    $ghost-header-background: $banner-background,
+    $group-row-selected-background: $background,
+    $cell-editing-background: $background
   );
 
   @include tokens(

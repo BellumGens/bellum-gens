@@ -1,21 +1,9 @@
-@use "@infragistics/igniteui-angular/theming" as *;
+@use "../../../variables" as *;
 
 :host ::ng-deep {
-  @include tokens(
-    grid-theme(
-      $schema: $dark-material-schema,
-      $content-background: var(--ig-surface-300),
-      $header-background: var(--ig-surface-500)
-    ),
-    $mode: 'scoped'
-  );
-
-  @include tokens(
-    grid-toolbar-theme(
-      $schema: $dark-material-schema,
-      $background: var(--ig-surface-500)
-    ),
-    $mode: 'scoped'
+  @include app-grid-theme(
+    $header-background: var(--ig-surface-500),
+    $content-background: var(--ig-surface-300)
   );
 
   /* Registrations */

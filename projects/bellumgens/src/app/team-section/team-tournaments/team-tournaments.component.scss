@@ -8,17 +8,9 @@
     padding: 48px 0;
   }
 
-  $grid-custom: grid-theme(
-    $schema: $dark-material-schema,
-    $content-background: var(--ig-surface-300),
-    $header-background: var(--ig-surface-500)
+  @include app-grid-theme(
+    $header-background: var(--ig-surface-500),
+    $content-background: var(--ig-surface-300)
   );
-  @include tokens($grid-custom, $mode: 'scoped');
-
-  $toolbar-custom: grid-toolbar-theme(
-    $schema: $dark-material-schema,
-    $background: var(--ig-surface-500)
-  );
-  @include tokens($toolbar-custom, $mode: 'scoped');
 }
 
