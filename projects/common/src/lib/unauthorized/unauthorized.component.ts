@@ -1,6 +1,5 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { signal } from '@angular/core';
 
 @Component({
   selector: 'bg-unauthorized',

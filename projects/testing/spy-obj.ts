@@ -7,7 +7,7 @@ import { vi, type Mock } from 'vitest';
 
 /** An object of type `T` whose method members are Vitest mocks. Replaces `jasmine.SpyObj<T>`. */
 export type SpyObj<T> = T & {
-  [K in keyof T]: T[K] extends (...args: any []) => any ? Mock : T[K];
+  [K in keyof T]: T[K] extends (...args: unknown[]) => unknown ? Mock : T[K];
 };
 
 /**
