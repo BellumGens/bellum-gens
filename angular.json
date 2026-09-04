@@ -139,7 +139,7 @@
           "options": {
             "tsConfig": "projects/bellumgens/tsconfig.spec.json",
             "coverageReporters": [
-              "lcov",
+              "json",
               "text-summary"
             ],
             "buildTarget": ":build:testing",
@@ -328,7 +328,7 @@
           "options": {
             "tsConfig": "projects/ebleague/tsconfig.spec.json",
             "coverageReporters": [
-              "lcov",
+              "json",
               "text-summary"
             ],
             "buildTarget": ":build:testing",
@@ -435,7 +435,7 @@
           "options": {
             "tsConfig": "projects/common/tsconfig.spec.json",
             "coverageReporters": [
-              "lcov",
+              "json",
               "text-summary"
             ],
             "buildTarget": "bellum-gens-common:build-test",

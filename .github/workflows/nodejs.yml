@@ -16,12 +16,12 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [22.x]
+        node-version: [24.x]
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v7
     - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
+      uses: actions/setup-node@v7
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
@@ -31,17 +31,16 @@ jobs:
     - run: npm ci
     - run: npm run lint
     - name: Build
-      if: matrix.node-version == '22.x'
       run: npm run build
-    - run: npm run test:prod
-    - run: cat ./coverage/{bellum-gens,common,eb-league}/lcov.info > coverage/lcov.info
+    - run: npm run test:prod -- --coverage
+    - name: Merge coverage
+      run: npm run coverage:merge
     - name: Publish to coveralls.io
-      if: matrix.node-version == '22.x'
-      uses: coverallsapp/github-action@v2.3.4
+      uses: coverallsapp/github-action@v2.3.8
       with:
         github-token: ${{ github.token }}
+        file: coverage/lcov.info
     - name: Cypress run
-      if: matrix.node-version == '22.x'
       uses: cypress-io/github-action@v6.10.4
       with:
         start: npm run serve:ssr:bellumgens
