@@ -28,12 +28,12 @@
         @if (!searchResult.steamUser.userStatsException) {
           <div igxListAction>
             <div class="horizontal-center space-between">
-              <igx-circular-bar class="icon-avatar" [value]="searchResult.steamUser.userStats?.killDeathRatio" [max]="2" [animate]="true" [textVisibility]="false" title="KDR"></igx-circular-bar>
+              <igx-circular-bar class="icon-avatar" [value]="searchResult.steamUser.userStats?.killDeathRatio ?? 0" [max]="2" [animate]="true" [textVisibility]="false" title="KDR"></igx-circular-bar>
               <span>{{ searchResult.steamUser.userStats?.killDeathRatio }}</span>
             </div>
             <div class="horizontal-center space-between">
               <igx-icon family="weapon-icons" name="headshot" class="icon-avatar"></igx-icon>
-              <span>{{ searchResult.steamUser.userStats?.headshotPercentage | number:'1.2' }}%</span>
+              <span>{{ $safeNavigationMigration(searchResult.steamUser.userStats?.headshotPercentage) | number:'1.2' }}%</span>
             </div>
           </div>
         } @else {
@@ -51,7 +51,7 @@
       <igx-list-item
         [routerLink]="['/players', user.csgoDetails?.customURL || user.id]"
         class="navigatable">
-        <igx-avatar igxListThumbnail [src]="user.csgoDetails?.avatarIcon" [initials]="user.csgoDetails?.realname" shape="circle">
+        <igx-avatar igxListThumbnail [src]="$safeNavigationMigration(user.csgoDetails?.avatarIcon)" [initials]="$safeNavigationMigration(user.csgoDetails?.realname)" shape="circle">
         </igx-avatar>
         @if (user.csgoDetails.country) {
           <igx-avatar

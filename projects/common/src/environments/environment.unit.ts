@@ -1,7 +1,7 @@
 export const environment = {
   production: false,
-  ebleague: 'http://localhost:9876',
-  bellumgens: 'http://localhost:9876',
+  ebleague: 'http://localhost:4201',
+  bellumgens: 'http://localhost:4200',
   rootApiEndpoint: 'https://localhost:44348',
   authApiEndpoint: 'https://localhost:44348/api/account',
   apiEndpoint: 'https://localhost:44348/api',

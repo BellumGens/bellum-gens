@@ -14,7 +14,6 @@ export class BaseDirective {
 
   private _title = 'Bellum Gens: Premier Gaming and Esports Events Organizer';
   private _twitterTitle = 'Bellum Gens: Premier Gaming and Esports Events Organizer';
-  // eslint-disable-next-line max-len
   private _description = 'Bellum Gens is a premier gaming and esports events organizer in Bulgaria and the Balkans region. If you want to tap into esports we can help!';
   private _twitterDescription = 'Bellum Gens is a premier gaming and esports events organizer in Bulgaria and the Balkans region.';
   private _image = '/assets/avatar_BG_blood.png';

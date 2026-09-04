@@ -12,7 +12,7 @@
         }
         @for (registration of registrations; track registration) {
           <div class="registration-slot">
-            <igx-avatar [src]="registration.user.sc2Details?.avatarUrl" [initials]="registration.user.username" size="medium" shape="circle">
+            <igx-avatar [src]="registration.user?.sc2Details?.avatarUrl || ''" [initials]="registration.user.username" size="medium" shape="circle">
             </igx-avatar>
             @if (registration.userId === authUser?.id && registration.state === 0) {
               <igx-badge
@@ -42,7 +42,7 @@
             <igx-column field="user" i18n-header header="Player" width="20%">
               <div *igxCell="let value">
                 <igx-avatar igxListThumbnail
-                  [src]="value.sc2Details?.avatarUrl"
+                  [src]="$safeNavigationMigration(value.sc2Details?.avatarUrl)"
                   [initials]="value.username"
                   [size]="'small'"
                   shape="circle">

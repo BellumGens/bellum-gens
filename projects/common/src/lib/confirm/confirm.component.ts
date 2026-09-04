@@ -4,8 +4,7 @@ import { IDialogEventArgs, IgxDialogComponent } from '@infragistics/igniteui-ang
 @Component({
     selector: 'bg-confirm',
     templateUrl: './confirm.component.html',
-    styleUrls: ['./confirm.component.css'],
-    imports: [IgxDialogComponent]
+    styleUrls: ['./confirm.component.css'],    imports: [IgxDialogComponent]
 })
 export class ConfirmComponent {
   @Input()

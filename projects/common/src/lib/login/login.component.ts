@@ -37,12 +37,12 @@ export class LoginComponent {
   private router = inject(Router);
 
   @ViewChild(LoginDialogComponent, { static: true })
-  public dialog: LoginDialogComponent;
+  public dialog!: LoginDialogComponent;
 
   @ViewChild(IgxDropDownComponent, { static: false })
-  public userProfile: IgxDropDownComponent;
+  public userProfile!: IgxDropDownComponent;
 
-  public authUser: ApplicationUser;
+  public authUser!: ApplicationUser;
 
   public overlaySettings = GLOBAL_OVERLAY_SETTINGS;
   public userCheck = false;

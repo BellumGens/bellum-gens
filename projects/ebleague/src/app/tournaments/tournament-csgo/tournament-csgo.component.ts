@@ -15,21 +15,20 @@ import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
 import { IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular/progressbar';
 import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
 import { IgxBadgeComponent } from '@infragistics/igniteui-angular/badge';
-import { IgxDividerDirective } from '@infragistics/igniteui-angular/directives';
+import { IgxDividerComponent } from '@infragistics/igniteui-angular/directives';
 import { IGX_GRID_DIRECTIVES } from '@infragistics/igniteui-angular/grids/grid';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 
 @Component({
   selector: 'app-tournament-csgo',
   templateUrl: './tournament-csgo.component.html',
-  styleUrls: ['./tournament-csgo.component.scss'],
-  imports: [
+  styleUrls: ['./tournament-csgo.component.scss'],  imports: [
     DatePipe,
     IGX_CARD_DIRECTIVES,
     IgxCircularProgressBarComponent,
     IgxAvatarComponent,
     IgxBadgeComponent,
-    IgxDividerDirective,
+    IgxDividerComponent,
     IGX_GRID_DIRECTIVES,
     IgxIconComponent,
     CSGOMapimagePipe,

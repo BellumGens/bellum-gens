@@ -1,4 +1,4 @@
-import { provideHttpClient, withFetch, withInterceptorsFromDi } from "@angular/common/http";
+import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
 import { ApplicationConfig, importProvidersFrom } from "@angular/core";
 import { provideRouter, withInMemoryScrolling } from "@angular/router";
 import { routes } from "./app.routes";
@@ -17,7 +17,7 @@ export const appConfig: ApplicationConfig = {
           anchorScrolling: 'enabled'
         })
       ),
-      provideHttpClient(withInterceptorsFromDi(), withFetch()),
+      provideHttpClient(withInterceptorsFromDi()),
       provideClientHydration(withEventReplay()),
       provideAnimations()
   ]

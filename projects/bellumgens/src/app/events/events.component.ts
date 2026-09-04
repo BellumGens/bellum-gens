@@ -1,7 +1,7 @@
 import { DatePipe, NgOptimizedImage } from '@angular/common';
 import { Component, LOCALE_ID, inject } from '@angular/core';
 import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
-import { IgxButtonDirective, IgxDividerDirective } from '@infragistics/igniteui-angular/directives';
+import { IgxButtonDirective, IgxDividerComponent } from '@infragistics/igniteui-angular/directives';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { BaseDirective } from '../base/base.component';
 import { RouterLink } from '@angular/router';
@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-events',
   imports: [
-    IgxDividerDirective,
+    IgxDividerComponent,
     IgxAvatarComponent,
     IgxButtonDirective,
     IgxIconComponent,

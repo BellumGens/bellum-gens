@@ -46,29 +46,35 @@ describe('EventsComponent', () => {
   });
 
   it('should calculate time left correctly', () => {
-    component.isoDate = '2025-06-04T10:00:00Z';
-    component.announcementDate = new Date('2025-06-04T10:00:00Z');
-    let mockDate = new Date('2025-06-03T10:00:00Z');
-    jasmine.clock().mockDate(mockDate);
-    component.timeLeft();
-    expect(component.days).toBe(1);
-    expect(component.hours).toBe(0);
-    expect(component.minutes).toBe(0);
-    expect(component.seconds).toBe(0);
+    // Only Date is faked so the component's countdown interval keeps using real timers.
+    vi.useFakeTimers({ toFake: ['Date'] });
+    try {
+      component.isoDate = '2025-06-04T10:00:00Z';
+      component.announcementDate = new Date('2025-06-04T10:00:00Z');
+      let mockDate = new Date('2025-06-03T10:00:00Z');
+      vi.setSystemTime(mockDate);
+      component.timeLeft();
+      expect(component.days).toBe(1);
+      expect(component.hours).toBe(0);
+      expect(component.minutes).toBe(0);
+      expect(component.seconds).toBe(0);
 
-    mockDate = new Date('2025-06-05T10:00:00Z');
-    jasmine.clock().mockDate(mockDate);
-    // spyOn(component.sub, 'unsubscribe').and.callThrough();
-    component.timeLeft();
-    expect(component.days).toBe(0);
-    expect(component.hours).toBe(0);
-    expect(component.minutes).toBe(0);
-    expect(component.seconds).toBe(0);
-    // expect(component.sub.unsubscribe).toHaveBeenCalled();
+      mockDate = new Date('2025-06-05T10:00:00Z');
+      vi.setSystemTime(mockDate);
+      // vi.spyOn(component.sub, 'unsubscribe');
+      component.timeLeft();
+      expect(component.days).toBe(0);
+      expect(component.hours).toBe(0);
+      expect(component.minutes).toBe(0);
+      expect(component.seconds).toBe(0);
+      // expect(component.sub.unsubscribe).toHaveBeenCalled();
+    } finally {
+      vi.useRealTimers();
+    }
   });
 
   // it('should unsubscribe from interval on destroy', () => {
-  //   spyOn(component.sub, 'unsubscribe').and.callThrough();
+  //   vi.spyOn(component.sub, 'unsubscribe');
   //   component.ngOnDestroy();
   //   expect(component.sub.unsubscribe).toHaveBeenCalled();
   // });
@@ -77,7 +83,7 @@ describe('EventsComponent', () => {
     const elementId = 'test-id';
     const mockElement = document.createElement('div');
     mockElement.id = elementId;
-    spyOn(mockElement, 'scrollIntoView');
+    vi.spyOn(mockElement, 'scrollIntoView').mockImplementation(() => undefined);
     document.body.appendChild(mockElement);
 
     component.scrollTo(elementId);

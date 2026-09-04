@@ -1,14 +1,10 @@
 @use "../../../variables" as *;
 
 :host ::ng-deep {
-  $grid-custom: grid-theme(
-    $content-background: var(--ig-surface-300),
-    $header-background: var(--ig-surface-500)
+  @include app-grid-theme(
+    $header-background: var(--ig-surface-500),
+    $content-background: var(--ig-surface-300)
   );
-  @include tokens($grid-custom);
-
-  $toolbar-custom: grid-toolbar-theme($background-color: var(--ig-surface-500));
-  @include tokens($toolbar-custom);
 
   .avatar-small {
     --size: 30px;

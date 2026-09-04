@@ -5,7 +5,7 @@ import { environment } from '../../../../common/src/environments/environment';
 import { BaseDirective } from '../base/base.component';
 import { RouterLink } from '@angular/router';
 import { IGX_CAROUSEL_DIRECTIVES, IgxCarouselComponent } from '@infragistics/igniteui-angular/carousel';
-import { IgxButtonDirective, IgxDividerDirective } from '@infragistics/igniteui-angular/directives';
+import { IgxButtonDirective, IgxDividerComponent } from '@infragistics/igniteui-angular/directives';
 import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { FormsModule } from '@angular/forms';
@@ -18,7 +18,7 @@ import { FormsModule } from '@angular/forms';
     RouterLink,
     NgOptimizedImage,
     FormsModule,
-    IgxDividerDirective,
+    IgxDividerComponent,
     IGX_INPUT_GROUP_DIRECTIVES,
     IGX_CAROUSEL_DIRECTIVES,
     IgxIconComponent,

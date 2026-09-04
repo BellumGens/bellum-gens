@@ -1,24 +1,46 @@
 @use "../../variables" as *;
 
 :host ::ng-deep {
-  @include core();
+  @include app-grid-theme(
+    $header-background: $background,
+    $content-background: $banner-background,
+    $drop-area-background: $banner-background,
+    $ghost-header-background: $banner-background,
+    $group-row-selected-background: $background,
+    $cell-editing-background: $background
+  );
 
-  @include grid(grid-theme($content-background: $banner-background,
-                            $drop-area-background: $banner-background,
-                            $ghost-header-background: $banner-background,
-                            $group-row-selected-background: $background,
-                            $header-background: $background,
-                            $cell-editing-background: $background));
+  @include tokens(
+    grid-summary-theme(
+      $schema: $dark-material-schema,
+      $background-color: $background
+    ),
+    $mode: 'scoped'
+  );
 
-  @include grid-toolbar(grid-toolbar-theme($background-color: $background));
+  @include tokens(
+    paginator-theme(
+      $schema: $dark-material-schema,
+      $background: $background
+    ),
+    $mode: 'scoped'
+  );
 
-  @include grid-summary(grid-summary-theme($background-color: $background));
+  @include tokens(
+    action-strip-theme(
+      $schema: $dark-material-schema,
+      $actions-background: transparent
+    ),
+    $mode: 'scoped'
+  );
 
-  @include paginator(paginator-theme($background-color: $background));
-
-  @include action-strip(action-strip-theme($actions-background: transparent));
-
-  @include chip(chip-theme($background: $banner-background));
+  @include tokens(
+    chip-theme(
+      $schema: $dark-material-schema,
+      $background: $banner-background
+    ),
+    $mode: 'scoped'
+  );
 
   /* Registrations */
   .registration-slot {

@@ -5,7 +5,7 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { PlayerComponent } from './player.component';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { BellumgensApiService } from 'bellum-gens-common';
 import { BehaviorSubject } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
@@ -20,7 +20,7 @@ describe('PlayerComponent', () => {
             NoopAnimationsModule,
             ServiceWorkerModule.register('', { enabled: false }),
             PlayerComponent],
-        providers: [provideRouter([]), provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+        providers: [provideRouter([]), provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
     }).compileComponents();
   }));
 
@@ -47,7 +47,7 @@ describe('PlayerComponent', () => {
     };
 
     const playerSubject = new BehaviorSubject(mockPlayer as any);
-    spyOn(apiService, 'getPlayer').and.returnValue(playerSubject);
+    vi.spyOn(apiService, 'getPlayer').mockReturnValue(playerSubject);
 
     // Trigger route change
     const activatedRoute = TestBed.inject(ActivatedRoute) as ActivatedRoute;
@@ -56,7 +56,7 @@ describe('PlayerComponent', () => {
     expect(apiService.getPlayer).toHaveBeenCalledWith('test-id');
   });
 
-  it('should set player when API returns data', (done) => {
+  it('should set player when API returns data', async () => {
     const apiService = TestBed.inject(BellumgensApiService);
     const mockPlayer = {
       id: 'test-id',
@@ -65,14 +65,13 @@ describe('PlayerComponent', () => {
     };
 
     const playerSubject = new BehaviorSubject(mockPlayer as any);
-    spyOn(apiService, 'getPlayer').and.returnValue(playerSubject);
+    vi.spyOn(apiService, 'getPlayer').mockReturnValue(playerSubject);
 
     const activatedRoute = TestBed.inject(ActivatedRoute) as ActivatedRoute;
     (activatedRoute.params as any).next({ userid: 'test-id' });
 
-    setTimeout(() => {
-      expect(component.player).toBeDefined();
-      done();
-    }, 100);
+    await new Promise(resolve => setTimeout(resolve, 100));
+
+    expect(component.player).toBeDefined();
   });
 });

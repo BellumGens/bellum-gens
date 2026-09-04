@@ -3,12 +3,20 @@
   "compilerOptions": {
     "outDir": "../../out-tsc/spec-ebleague",
     "types": [
-      "jasmine",
-      "@angular/localize"
+      "@angular/localize",
+      "vitest/globals"
     ]
   },
   "include": [
     "**/*.spec.ts",
     "**/*.d.ts"
-  ]
+  ],
+  "angularCompilerOptions": {
+    "extendedDiagnostics": {
+      "checks": {
+        "nullishCoalescingNotNullable": "suppress",
+        "optionalChainNotNullable": "suppress"
+      }
+    }
+  }
 }

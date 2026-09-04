@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter, Router, ActivatedRoute } from '@angular/router';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { of } from 'rxjs';
@@ -21,7 +21,7 @@ describe('TournamentCreateComponent', () => {
       imports: [NoopAnimationsModule, ServiceWorkerModule.register('', { enabled: false }), TournamentCreateComponent],
       providers: [
         provideRouter([]),
-        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClient(withXhr(), withInterceptorsFromDi()),
         provideHttpClientTesting(),
         {
           provide: ActivatedRoute,
@@ -76,29 +76,29 @@ describe('TournamentCreateComponent', () => {
   });
 
   it('should not submit if form is invalid', () => {
-    const spy = spyOn(apiService, 'createTournament');
+    const spy = vi.spyOn(apiService, 'createTournament').mockImplementation(() => undefined);
     component.submit();
     expect(spy).not.toHaveBeenCalled();
   });
 
   it('should call createTournament on submit in create mode', () => {
-    const spy = spyOn(apiService, 'createTournament').and.returnValue(of({} as any));
-    spyOn(router, 'navigate');
+    const spy = vi.spyOn(apiService, 'createTournament').mockReturnValue(of({} as any));
+    vi.spyOn(router, 'navigate').mockImplementation(() => undefined);
     component.form.patchValue({ name: 'New Tournament' });
     component.submit();
     expect(spy).toHaveBeenCalled();
   });
 
   it('should navigate to /tournaments after successful create', () => {
-    spyOn(apiService, 'createTournament').and.returnValue(of({} as any));
-    const navSpy = spyOn(router, 'navigate');
+    vi.spyOn(apiService, 'createTournament').mockReturnValue(of({} as any));
+    const navSpy = vi.spyOn(router, 'navigate').mockImplementation(() => undefined);
     component.form.patchValue({ name: 'New Tournament' });
     component.submit();
     expect(navSpy).toHaveBeenCalledWith(['/tournaments']);
   });
 
   it('should navigate to /tournaments on cancel', () => {
-    const spy = spyOn(router, 'navigate');
+    const spy = vi.spyOn(router, 'navigate').mockImplementation(() => undefined);
     component.cancel();
     expect(spy).toHaveBeenCalledWith(['/tournaments']);
   });
@@ -114,7 +114,7 @@ describe('TournamentCreateComponent (edit mode)', () => {
       imports: [NoopAnimationsModule, ServiceWorkerModule.register('', { enabled: false }), TournamentCreateComponent],
       providers: [
         provideRouter([]),
-        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClient(withXhr(), withInterceptorsFromDi()),
         provideHttpClientTesting(),
         {
           provide: ActivatedRoute,

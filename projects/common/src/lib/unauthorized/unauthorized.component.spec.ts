@@ -1,3 +1,4 @@
+import { ChangeDetectorRef } from '@angular/core';
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { UnauthorizedComponent } from './unauthorized.component';
@@ -40,7 +41,7 @@ describe('UnauthorizedComponent', () => {
   });
 
   it('should have default message', () => {
-    expect(component.message).toBe('Unauthorized :(');
+    expect(component.message()).toBe('Unauthorized :(');
   });
 
   it('should update message from route params', () => {
@@ -49,18 +50,21 @@ describe('UnauthorizedComponent', () => {
     paramsSubject.next({ message: customMessage });
     fixture.detectChanges();
 
-    expect(component.message).toBe(customMessage);
+    expect(component.message()).toBe(customMessage);
   });
 
   it('should keep default message if no param provided', () => {
     paramsSubject.next({});
     fixture.detectChanges();
 
-    expect(component.message).toBe('Unauthorized :(');
+    expect(component.message()).toBe('Unauthorized :(');
   });
 
   it('should display message in template', () => {
-    component.message = 'Test Message';
+    component.message.set('Test Message');
+    // The component declares no changeDetection, which under Angular 22 means OnPush, so
+    // mutating a property from outside the component needs its view marked dirty first.
+    fixture.debugElement.injector.get(ChangeDetectorRef).markForCheck();
     fixture.detectChanges();
 
     const compiled = fixture.nativeElement;

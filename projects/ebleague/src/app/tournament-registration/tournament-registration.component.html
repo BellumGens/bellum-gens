@@ -3,14 +3,16 @@
   <div class="form-wrapper">
     <h2 id="registration" class="registration-title" i18n>Registration Season 3</h2>
 
-    <igx-select name="game" [required]="true" [disabled]="true" class="registration-form-input" [(ngModel)]="application.game" (ngModelChange)="showDetails()">
+    <!-- IgxSelect: default positioning changed to AutoPositionStrategy (below/above input).
+     To preserve overlap behavior: this.select.overlaySettings = { positionStrategy: new IgxSelectOverlapPositionStrategy(this.select) }; -->
+    <igx-select type="border" name="game" [required]="true" [disabled]="true" class="registration-form-input" [(ngModel)]="application.game" (ngModelChange)="showDetails()">
       <label igxLabel>{{ authUser ? chooseGame : loginFirst}}</label>
       @for (game of games; track game.id) {
         <igx-select-item [value]="game.id">
           {{ game.name }}
         </igx-select-item>
       }
-      @if (application.game === 0 && !authUser.steamId) {
+      @if (application.game === 0 && !authUser?.steamId) {
         <igx-hint i18n>*You've not associated a Steam account...</igx-hint>
       }
     </igx-select>
@@ -18,7 +20,7 @@
 
   <div #appDetails class="form-wrapper application-details">
 
-    <igx-input-group class="registration-form-input">
+    <igx-input-group type="border" class="registration-form-input">
       <label igxLabel for="email" i18n>Email</label>
       <igx-prefix>
         <igx-icon>email</igx-icon>
@@ -32,7 +34,9 @@
     </igx-input-group>
 
     @if (application.game === gameEnum.CSGO) {
-      <igx-select id="team" #team name="team" [required]="true" [(ngModel)]="application.teamId" class="registration-form-input" >
+      <!-- IgxSelect: default positioning changed to AutoPositionStrategy (below/above input).
+     To preserve overlap behavior: this.select.overlaySettings = { positionStrategy: new IgxSelectOverlapPositionStrategy(this.select) }; -->
+<igx-select type="border" id="team" #team name="team" [required]="true" [(ngModel)]="application.teamId" class="registration-form-input" >
         <label igxLabel for="email" i18n>Choose your team</label>
         <igx-prefix>
           <igx-icon>people</igx-icon>
@@ -48,7 +52,7 @@
     }
 
     @if (application.game === gameEnum.StarCraft2) {
-      <igx-input-group class="registration-form-input" >
+      <igx-input-group type="border" class="registration-form-input" >
         <label igxLabel for="email">Battle tag</label>
         <igx-prefix>
           <igx-icon family="login-icons" name="battlenet"></igx-icon>
@@ -62,7 +66,7 @@
       </igx-input-group>
     }
 
-    <igx-input-group class="registration-form-input">
+    <igx-input-group type="border" class="registration-form-input">
       <label igxLabel for="company" i18n>Company</label>
       <igx-prefix>
         <igx-icon>work</igx-icon>

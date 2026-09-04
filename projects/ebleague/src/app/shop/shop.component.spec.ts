@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ShopComponent } from './shop.component';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
 import { routes } from './shop.routes';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -17,7 +17,7 @@ describe('ShopComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [ShopComponent, NoopAnimationsModule],
-      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting(), provideRouter(routes)]
+      providers: [provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting(), provideRouter(routes)]
     }).compileComponents();
   }));
 
@@ -44,14 +44,14 @@ describe('ShopComponent', () => {
   });
 
   it('should subscribe to orderSuccess event on init', () => {
-    spyOn(component.orderForm.orderSuccess, 'subscribe');
+    vi.spyOn(component.orderForm.orderSuccess, 'subscribe').mockImplementation(() => undefined);
     component.ngOnInit();
     expect(component.orderForm.orderSuccess.subscribe).toHaveBeenCalled();
   });
 
   it('should navigate to order-success on order success', () => {
     const router = TestBed.inject(Router);
-    spyOn(router, 'navigate');
+    vi.spyOn(router, 'navigate').mockImplementation(() => undefined);
 
     component.ngOnInit();
     component.orderForm.orderSuccess.emit();

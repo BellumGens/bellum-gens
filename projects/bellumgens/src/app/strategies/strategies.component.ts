@@ -41,8 +41,7 @@ import { LoadingComponent } from '../../../../common/src/lib/loading/loading.com
 @Component({
   selector: 'app-team-strategies',
   templateUrl: './strategies.component.html',
-  styleUrls: ['./strategies.component.scss'],
-  imports: [
+  styleUrls: ['./strategies.component.scss'],  imports: [
     NgOptimizedImage,
     NgClass,
     DatePipe,

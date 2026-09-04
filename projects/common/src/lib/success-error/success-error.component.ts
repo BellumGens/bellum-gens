@@ -6,8 +6,7 @@ import { CommunicationService } from '../../services/communication.service';
 @Component({
     selector: 'bg-success-error',
     templateUrl: './success-error.component.html',
-    styleUrls: ['./success-error.component.scss'],
-    imports: [IgxSnackbarComponent, IgxIconComponent]
+    styleUrls: ['./success-error.component.scss'],    imports: [IgxSnackbarComponent, IgxIconComponent]
 })
 export class SuccessErrorComponent implements OnDestroy {
   private commService = inject(CommunicationService);

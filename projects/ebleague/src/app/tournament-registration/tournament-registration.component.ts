@@ -25,8 +25,7 @@ import { AsyncPipe } from '@angular/common';
 @Component({
   selector: 'app-tournament-registration',
   templateUrl: './tournament-registration.component.html',
-  styleUrls: ['./tournament-registration.component.scss'],
-  imports: [
+  styleUrls: ['./tournament-registration.component.scss'],  imports: [
     FormsModule,
     IGX_INPUT_GROUP_DIRECTIVES,
     IGX_SELECT_DIRECTIVES,

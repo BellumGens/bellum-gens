@@ -13,8 +13,7 @@ import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-quick-search',
   templateUrl: './quick-search.component.html',
-  styleUrls: ['./quick-search.component.scss'],
-  imports: [
+  styleUrls: ['./quick-search.component.scss'],  imports: [
     IGX_LIST_DIRECTIVES,
     IgxCircularProgressBarComponent,
     RouterLink,

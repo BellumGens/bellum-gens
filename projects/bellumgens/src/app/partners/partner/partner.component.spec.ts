@@ -47,21 +47,21 @@ describe('PartnerComponent', () => {
   });
 
   it('should set horizontal to true if window width is >= 1024px', () => {
-    spyOn(window, 'matchMedia').and.returnValue({ matches: true } as MediaQueryList);
+    vi.spyOn(window, 'matchMedia').mockReturnValue({ matches: true } as MediaQueryList);
     component.resize();
-    expect(component.horizontal).toBeTrue();
+    expect(component.horizontal).toBe(true);
     expect(component.mediaWidth).toBe('550px');
   });
 
   it('should set horizontal to false if window width is < 1024px', () => {
-    spyOn(window, 'matchMedia').and.returnValue({ matches: false } as MediaQueryList);
+    vi.spyOn(window, 'matchMedia').mockReturnValue({ matches: false } as MediaQueryList);
     component.resize();
-    expect(component.horizontal).toBeFalse();
+    expect(component.horizontal).toBe(false);
     expect(component.mediaWidth).toBe('100%');
   });
 
   it('should call resize on window resize event', () => {
-    spyOn(component, 'resize');
+    vi.spyOn(component, 'resize').mockImplementation(() => undefined);
     window.dispatchEvent(new Event('resize'));
     expect(component.resize).toHaveBeenCalled();
   });

@@ -1,34 +1,50 @@
 @use "../../../variables" as *;
 
 :host ::ng-deep {
-  @include core();
-
   // Compact grid theme with small size
-  @include grid(grid-theme(
+  @include app-grid-theme(
+    $header-background: $background,
     $content-background: $banner-background,
     $drop-area-background: $banner-background,
     $ghost-header-background: $banner-background,
     $group-row-selected-background: $background,
-    $header-background: $background,
     $cell-editing-background: $background
-  ));
+  );
 
-  @include grid-toolbar(grid-toolbar-theme($background-color: $background));
+  @include tokens(
+    grid-summary-theme(
+      $schema: $dark-material-schema,
+      $background-color: $background
+    ),
+    $mode: 'scoped'
+  );
 
-  @include grid-summary(grid-summary-theme($background-color: $background));
-
-  @include action-strip(action-strip-theme($actions-background: transparent));
+  @include tokens(
+    action-strip-theme(
+      $schema: $dark-material-schema,
+      $actions-background: transparent
+    ),
+    $mode: 'scoped'
+  );
 
   // List theme
-  @include list(list-theme(
-    $background: transparent,
-    $item-background-active: rgba(0, 0, 0, 0.11)
-  ));
+  @include tokens(
+    list-theme(
+      $schema: $dark-material-schema,
+      $background: transparent,
+      $item-background-active: rgba(0, 0, 0, 0.11)
+    ),
+    $mode: 'scoped'
+  );
 
   // Input group theme
-  @include input-group(input-group-theme(
-    $search-background: transparent
-  ));
+  @include tokens(
+    input-group-theme(
+      $schema: $dark-material-schema,
+      $search-background: transparent
+    ),
+    $mode: 'scoped'
+  );
 
   // Apply compact sizing using CSS variables
   igx-grid {

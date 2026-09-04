@@ -6,7 +6,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { TeamNewComponent } from '../team-new/team-new.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 describe('TeamNavComponent', () => {
   let component: TeamNavComponent;
@@ -20,7 +20,7 @@ describe('TeamNavComponent', () => {
         ServiceWorkerModule.register('', { enabled: false }),
         TeamNewComponent
       ],
-      providers: [provideRouter([]), provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+      providers: [provideRouter([]), provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
     }).compileComponents();
   }));
 

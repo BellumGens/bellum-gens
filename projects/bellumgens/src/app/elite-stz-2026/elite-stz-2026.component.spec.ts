@@ -5,20 +5,21 @@ import { EliteStz2026Component } from './elite-stz-2026.component';
 import { ApplicationUser, BellumgensApiService, CommunicationService, LoginService } from '../../../../common/src/public_api';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute } from '@angular/router';
+import { createSpyObj, SpyObj } from '../../../../testing/spy-obj';
 
 describe('EliteStz2026Component', () => {
   let component: EliteStz2026Component;
   let fixture: ComponentFixture<EliteStz2026Component>;
-  let mockApiService: jasmine.SpyObj<BellumgensApiService>;
-  let mockCommService: jasmine.SpyObj<CommunicationService>;
-  let mockAuthService: jasmine.SpyObj<LoginService>;
+  let mockApiService: SpyObj<BellumgensApiService>;
+  let mockCommService: SpyObj<CommunicationService>;
+  let mockAuthService: SpyObj<LoginService>;
   let authUserSubject: BehaviorSubject<ApplicationUser | null>;
 
   beforeEach(async () => {
     authUserSubject = new BehaviorSubject<ApplicationUser | null>(null);
-    mockApiService = jasmine.createSpyObj('BellumgensApiService', ['getSignupCount', 'earlyBirdSignup']);
-    mockCommService = jasmine.createSpyObj('CommunicationService', ['emitError']);
-    mockAuthService = jasmine.createSpyObj('LoginService', [], { applicationUser: authUserSubject.asObservable() });
+    mockApiService = createSpyObj('BellumgensApiService', ['getSignupCount', 'earlyBirdSignup']);
+    mockCommService = createSpyObj('CommunicationService', ['emitError']);
+    mockAuthService = createSpyObj('LoginService', [], { applicationUser: authUserSubject.asObservable() });
 
     await TestBed.configureTestingModule({
       imports: [EliteStz2026Component, NoopAnimationsModule],
@@ -62,7 +63,7 @@ describe('EliteStz2026Component', () => {
   });
 
   it('should fetch signup count on init in browser', () => {
-    mockApiService.getSignupCount.and.returnValue(of(42));
+    mockApiService.getSignupCount.mockReturnValue(of(42));
     fixture.detectChanges();
 
     expect(mockApiService.getSignupCount).toHaveBeenCalled();
@@ -70,7 +71,7 @@ describe('EliteStz2026Component', () => {
   });
 
   it('should set count to 0 on error', () => {
-    mockApiService.getSignupCount.and.returnValue(throwError(() => new Error('error')));
+    mockApiService.getSignupCount.mockReturnValue(throwError(() => new Error('error')));
     fixture.detectChanges();
 
     expect(component.count()).toBe(0);
@@ -126,8 +127,8 @@ describe('EliteStz2026Component', () => {
     });
 
     it('should submit successfully and update count', () => {
-      mockApiService.earlyBirdSignup.and.returnValue(of(undefined));
-      mockApiService.getSignupCount.and.returnValue(of(43));
+      mockApiService.earlyBirdSignup.mockReturnValue(of(undefined));
+      mockApiService.getSignupCount.mockReturnValue(of(43));
 
       component.submit();
 
@@ -141,7 +142,7 @@ describe('EliteStz2026Component', () => {
 
     it('should handle submission error', () => {
       const error = { message: 'Submission failed' };
-      mockApiService.earlyBirdSignup.and.returnValue(throwError(() => error));
+      mockApiService.earlyBirdSignup.mockReturnValue(throwError(() => error));
 
       component.submit();
 
@@ -150,7 +151,7 @@ describe('EliteStz2026Component', () => {
     });
 
     it('should use default error message if none provided', () => {
-      mockApiService.earlyBirdSignup.and.returnValue(throwError(() => ({})));
+      mockApiService.earlyBirdSignup.mockReturnValue(throwError(() => ({})));
 
       component.submit();
 

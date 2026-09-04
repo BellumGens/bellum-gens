@@ -3,7 +3,7 @@ import { Component, PLATFORM_ID, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
-import { IgxButtonDirective, IgxDividerDirective } from '@infragistics/igniteui-angular/directives';
+import { IgxButtonDirective, IgxDividerComponent } from '@infragistics/igniteui-angular/directives';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import {
   Game, RegistrationsCount, Tournament,
@@ -12,7 +12,6 @@ import {
   ApplicationUser,
   SocialMediaService
 } from '../../../../common/src/public_api';
-// import { TournamentRegistrationComponent } from '../tournament-registration/tournament-registration.component';
 
 @Component({
   templateUrl: './home.component.html',
@@ -23,7 +22,7 @@ import {
     FormsModule,
     // TournamentRegistrationComponent,
     IgxButtonDirective,
-    IgxDividerDirective,
+    IgxDividerComponent,
     IgxIconComponent,
     IGX_INPUT_GROUP_DIRECTIVES
   ]
@@ -34,12 +33,12 @@ export class HomeComponent {
   private socialMedia = inject(SocialMediaService);
   private authManager = inject(LoginService);
 
-  public userEmail: string = null;
+  public userEmail: string = '';
   public gameEnum = Game;
-  public registrations: RegistrationsCount [];
-  public tournament: Tournament;
-  public tournamentId: string;
-  public authUser: ApplicationUser;
+  public registrations!: RegistrationsCount [];
+  public tournament!: Tournament;
+  public tournamentId!: string;
+  public authUser!: ApplicationUser;
 
   constructor() {
     if (isPlatformBrowser(this.platformId)) {
@@ -61,7 +60,9 @@ export class HomeComponent {
 
   public scrollTo(id: string) {
     const element = document.getElementById(id);
-    element.scrollIntoView({ behavior: 'smooth' });
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 
   public subscribe() {

@@ -3,11 +3,12 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { AdminSc2Component } from './admin-sc2.component';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { ApiTournamentsService, Tournament, TournamentGroup, TournamentSC2Match, TournamentParticipant, TournamentApplication, TournamentApplicationState } from 'projects/common/src/public_api';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { IgxGridComponent } from '@infragistics/igniteui-angular/grids/grid';
 import { IgxDialogComponent } from '@infragistics/igniteui-angular/dialog';
+import { createSpyObj, SpyObj } from '../../../../../testing/spy-obj';
 
 describe('AdminSc2Component', () => {
   let component: AdminSc2Component;
@@ -22,7 +23,7 @@ describe('AdminSc2Component', () => {
         AdminSc2Component,
         ServiceWorkerModule.register('', { enabled: false }),
       ],
-      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+      providers: [provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
     }).compileComponents();
     httpMock = TestBed.inject(HttpTestingController);
     apiService = TestBed.inject(ApiTournamentsService);
@@ -40,7 +41,8 @@ describe('AdminSc2Component', () => {
 
   it('should load tournaments', () => {
     const tounaments = [{ id: '123', active: true }, { id: '234', active: false }] as Tournament[];
-    const spy = spyOn(component, 'selectTournament').and.callThrough();
+    // vi.spyOn calls through by default, matching the original .and.callThrough()
+    const spy = vi.spyOn(component, 'selectTournament');
     let req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/tournaments`);
     expect(req.request.method).toBe('GET');
     req.flush(tounaments);
@@ -49,27 +51,27 @@ describe('AdminSc2Component', () => {
 
     req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/sc2regs?tournamentId=123`);
     expect(req.request.method).toBe('GET');
-    expect(component.loading).toBeTrue();
+    expect(component.loading).toBe(true);
     req.flush([]);
-    expect(component.loading).toBeFalse();
+    expect(component.loading).toBe(false);
 
     req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/tournamentregistrations?tournamentId=123`);
     expect(req.request.method).toBe('GET');
-    expect(component.loadingRegs).toBeTrue();
+    expect(component.loadingRegs).toBe(true);
     req.flush([]);
-    expect(component.loadingRegs).toBeFalse();
+    expect(component.loadingRegs).toBe(false);
 
     req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/sc2matches?tournamentId=123`);
     expect(req.request.method).toBe('GET');
-    expect(component.loadingMatches).toBeTrue();
+    expect(component.loadingMatches).toBe(true);
     req.flush([]);
-    expect(component.loadingMatches).toBeFalse();
+    expect(component.loadingMatches).toBe(false);
 
     req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/sc2groups?tournamentId=123`);
     expect(req.request.method).toBe('GET');
-    expect(component.loadingGroups).toBeTrue();
+    expect(component.loadingGroups).toBe(true);
     req.flush([]);
-    expect(component.loadingGroups).toBeFalse();
+    expect(component.loadingGroups).toBe(false);
   });
 
   describe('submitGroup', () => {
@@ -179,12 +181,12 @@ describe('AdminSc2Component', () => {
   });
 
   describe('submitMatch', () => {
-    let mockGrid: jasmine.SpyObj<IgxGridComponent>;
+    let mockGrid: SpyObj<IgxGridComponent>;
 
     beforeEach(() => {
       component.selectedTournament = { id: 'tournament-123', active: true } as Tournament;
       component.matches = [];
-      mockGrid = jasmine.createSpyObj('IgxGridComponent', ['addRow']);
+      mockGrid = createSpyObj('IgxGridComponent', ['addRow']);
     });
 
     it('should submit a new match with player1Id and player2Id', () => {
@@ -208,7 +210,7 @@ describe('AdminSc2Component', () => {
       const returnedMatch = { ...newMatch, id: 'match-123', startTime: '2025-12-10T10:00:00' };
       req.flush(returnedMatch);
 
-      expect(mockGrid.addRow).toHaveBeenCalledWith(jasmine.objectContaining({
+      expect(mockGrid.addRow).toHaveBeenCalledWith(expect.objectContaining({
         id: 'match-123',
         player1Id: 'player-1',
         player2Id: 'player-2'
@@ -279,8 +281,8 @@ describe('AdminSc2Component', () => {
       const returnedMatch = { ...newMatch, id: 'match-123', startTime: '2025-12-10T10:00:00' };
       req.flush(returnedMatch);
 
-      expect(mockGrid.addRow).toHaveBeenCalledWith(jasmine.objectContaining({
-        startTime: jasmine.any(Date)
+      expect(mockGrid.addRow).toHaveBeenCalledWith(expect.objectContaining({
+        startTime: expect.any(Date)
       }));
     });
   });
@@ -301,7 +303,7 @@ describe('AdminSc2Component', () => {
       expect(component.matchInEdit.tournamentId).toBe('tournament-123');
       expect(component.matchInEdit.maps).toEqual([]);
       expect(component.matchInEdit.groupId).toBe('group-2');
-      expect(component.matchInEdit.startTime).toEqual(jasmine.any(Date));
+      expect(component.matchInEdit.startTime).toEqual(expect.any(Date));
     });
 
     it('should set groupId to null when no groups exist', () => {
@@ -333,10 +335,10 @@ describe('AdminSc2Component', () => {
   });
 
   describe('editMatch', () => {
-    let mockDialog: jasmine.SpyObj<IgxDialogComponent>;
+    let mockDialog: SpyObj<IgxDialogComponent>;
 
     beforeEach(() => {
-      mockDialog = jasmine.createSpyObj('IgxDialogComponent', ['open']);
+      mockDialog = createSpyObj('IgxDialogComponent', ['open']);
     });
 
     it('should set matchInEdit and open dialog', () => {
@@ -531,7 +533,7 @@ describe('AdminSc2Component', () => {
       ];
 
       component.registrations = mockRegistrations;
-      const gridSpy = jasmine.createSpyObj('IgxGridComponent', ['notifyChanges']);
+      const gridSpy = createSpyObj('IgxGridComponent', ['notifyChanges']);
       component.registrationsGrid = gridSpy;
 
       component.resetCheckinState();
@@ -553,7 +555,7 @@ describe('AdminSc2Component', () => {
       ];
 
       component.registrations = mockRegistrations;
-      const gridSpy = jasmine.createSpyObj('IgxGridComponent', ['notifyChanges']);
+      const gridSpy = createSpyObj('IgxGridComponent', ['notifyChanges']);
       component.registrationsGrid = gridSpy;
 
       component.resetCheckinState();
@@ -572,28 +574,26 @@ describe('AdminSc2Component', () => {
       component.selectedTournament = { id: 'tournament-123', active: true } as Tournament;
     });
 
-    it('should send checkin emails to registered players', (done) => {
+    it('should send checkin emails to registered players', async () => {
       component.sendCheckinEmails();
 
       const req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/sendcheckinemails?tournamentId=tournament-123`);
       expect(req.request.method).toBe('GET');
       req.flush({});
 
-      setTimeout(() => {
-        done();
-      }, 100);
+      await new Promise(resolve => setTimeout(resolve, 100));
     });
   });
 
   describe('UI Integration Tests - Match Operations', () => {
-    let mockGrid: jasmine.SpyObj<IgxGridComponent>;
-    let mockDialog: jasmine.SpyObj<IgxDialogComponent>;
+    let mockGrid: SpyObj<IgxGridComponent>;
+    let mockDialog: SpyObj<IgxDialogComponent>;
 
     beforeEach(() => {
       component.selectedTournament = { id: 'tournament-123', active: true } as Tournament;
       component.groups = [{ id: 'group-1', name: 'Group A' } as TournamentGroup];
-      mockGrid = jasmine.createSpyObj('IgxGridComponent', ['addRow']);
-      mockDialog = jasmine.createSpyObj('IgxDialogComponent', ['open', 'close']);
+      mockGrid = createSpyObj('IgxGridComponent', ['addRow']);
+      mockDialog = createSpyObj('IgxDialogComponent', ['open', 'close']);
     });
 
     it('should create a new match with full UI flow', () => {

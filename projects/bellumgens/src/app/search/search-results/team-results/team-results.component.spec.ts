@@ -7,7 +7,7 @@ import { IgxAvatarModule } from '@infragistics/igniteui-angular/avatar';
 import { provideRouter } from '@angular/router';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { QueryParsedPipe } from 'projects/bellumgens/src/app/pipes/query-parsed.pipe';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 describe('TeamResultsComponent', () => {
   let component: TeamResultsComponent;
@@ -21,7 +21,7 @@ describe('TeamResultsComponent', () => {
         IgxAvatarModule,
         TeamResultsComponent,
         QueryParsedPipe],
-    providers: [provideRouter([]), provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+    providers: [provideRouter([]), provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
 })
     .compileComponents();
   }));

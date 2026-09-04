@@ -6,7 +6,7 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CSGOMap, CSGOStrategy, GLOBAL_OVERLAY_SETTINGS, LoginService, NEW_EMPTY_COMMENT, Side, SocialMediaStrategyService, StrategyComment, VoteDirection } from 'bellum-gens-common';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 describe('StrategyDetailsComponent', () => {
   let component: StrategyDetailsComponent;
@@ -20,7 +20,7 @@ describe('StrategyDetailsComponent', () => {
             NoopAnimationsModule,
             ServiceWorkerModule.register('', { enabled: false }),
             StrategyDetailsComponent],
-        providers: [provideRouter([]), provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+        providers: [provideRouter([]), provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
     })
     .compileComponents();
     authService = TestBed.inject(LoginService);
@@ -40,13 +40,13 @@ describe('StrategyDetailsComponent', () => {
   });
 
   it('should call resize method on window resize event', () => {
-    spyOn(component, 'resize');
+    vi.spyOn(component, 'resize').mockImplementation(() => undefined);
     window.dispatchEvent(new Event('resize'));
     expect(component.resize).toHaveBeenCalled();
   });
 
   it('should call openLogin method', () => {
-    spyOn(authService.openLogin, 'emit');
+    vi.spyOn(authService.openLogin, 'emit').mockImplementation(() => undefined);
     component.openLogin();
     expect(authService.openLogin.emit).toHaveBeenCalled();
   });
@@ -69,7 +69,7 @@ describe('StrategyDetailsComponent', () => {
   });
 
   it('should call voteStrat method with correct parameters', () => {
-    spyOn(component, 'voteStrat');
+    vi.spyOn(component, 'voteStrat').mockImplementation(() => undefined);
     const strat: CSGOStrategy = {
       id: '123456',
       title: 'Test 1',
@@ -85,27 +85,27 @@ describe('StrategyDetailsComponent', () => {
   });
 
   it('should call submitComment method', () => {
-    spyOn(component, 'submitComment');
+    vi.spyOn(component, 'submitComment').mockImplementation(() => undefined);
     component.submitComment();
     expect(component.submitComment).toHaveBeenCalled();
   });
 
   it('should call editComment method with correct parameter', () => {
-    spyOn(component, 'editComment');
+    vi.spyOn(component, 'editComment').mockImplementation(() => undefined);
     const comment: StrategyComment = { id: '123', stratId: '456', comment: 'Test', userId: '123', published: new Date() };
     component.editComment(comment);
     expect(component.editComment).toHaveBeenCalledWith(comment);
   });
 
   it('should call deleteComment method with correct parameter', () => {
-    spyOn(component, 'deleteComment');
+    vi.spyOn(component, 'deleteComment').mockImplementation(() => undefined);
     const comment: StrategyComment = { id: '123', stratId: '456', comment: 'Test', userId: '123', published: new Date() };
     component.deleteComment(comment);
     expect(component.deleteComment).toHaveBeenCalledWith(comment);
   });
 
   it('should call shareOnTwitter method with correct parameter', () => {
-    spyOn(smService, 'shareOnTwitter');
+    vi.spyOn(smService, 'shareOnTwitter').mockImplementation(() => undefined);
     const strat: CSGOStrategy = {
       id: '123456',
       title: 'Test 1',

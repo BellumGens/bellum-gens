@@ -21,7 +21,7 @@ import { SafeVideoLinkPipe } from '../../pipes/safe-video-link.pipe';
 import { ConfirmComponent } from '../../../../../common/src/lib/confirm/confirm.component';
 import { FormsModule } from '@angular/forms';
 import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
-import { IgxButtonDirective, IgxDividerDirective, IgxFlexDirective, IgxLayoutDirective, IgxRippleDirective, IgxToggleActionDirective } from '@infragistics/igniteui-angular/directives';
+import { IgxButtonDirective, IgxDividerComponent, IgxFlexDirective, IgxLayoutDirective, IgxRippleDirective, IgxToggleActionDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { IGX_LIST_DIRECTIVES } from '@infragistics/igniteui-angular/list';
 import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
@@ -32,8 +32,7 @@ import { LoadingComponent } from '../../../../../common/src/lib/loading/loading.
 @Component({
   selector: 'app-strategy-details',
   templateUrl: './strategy-details.component.html',
-  styleUrls: ['./strategy-details.component.scss'],
-  imports: [
+  styleUrls: ['./strategy-details.component.scss'],  imports: [
     NgOptimizedImage,
     NgClass,
     DatePipe,
@@ -46,7 +45,7 @@ import { LoadingComponent } from '../../../../../common/src/lib/loading/loading.
     IgxButtonDirective,
     IgxRippleDirective,
     IgxIconComponent,
-    IgxDividerDirective,
+    IgxDividerComponent,
     IGX_LIST_DIRECTIVES,
     IgxAvatarComponent,
     IgxToggleActionDirective,

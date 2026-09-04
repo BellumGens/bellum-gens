@@ -1,5 +1,7 @@
 <div class="overview-container-card">
-  <igx-select class="space-out-button" [(ngModel)]="selectedTournament" (ngModelChange)="selectTournament($event)">
+  <!-- IgxSelect: default positioning changed to AutoPositionStrategy (below/above input).
+     To preserve overlap behavior: this.select.overlaySettings = { positionStrategy: new IgxSelectOverlapPositionStrategy(this.select) }; -->
+<igx-select type="border" class="space-out-button" [(ngModel)]="selectedTournament" (ngModelChange)="selectTournament($event)">
     <label igxLabel i18n>Select tournament</label>
     @for (tournament of tournaments; track tournament.id) {
       <igx-select-item [value]="tournament">
@@ -213,7 +215,7 @@
         }
         @for (registration of participants | notInGroup:'tournamentSC2GroupId':pipeTrigger; track registration.id) {
           <div class="registration-slot">
-            <igx-avatar [src]="registration.user.sc2Details?.avatarUrl"
+            <igx-avatar [src]="$safeNavigationMigration(registration.user.sc2Details?.avatarUrl)"
               [initials]="registration.user.username"
               size="medium"
               shape="circle"
@@ -244,7 +246,7 @@
                 @if (!group.inEdit) {
                   <h1 igxCardHeaderTitle>{{group.name}}</h1>
                 } @else {
-                  <igx-input-group igxCardHeaderTitle>
+                  <igx-input-group type="border" igxCardHeaderTitle>
                     <label igxLabel for="groupName" i18n>Group name</label>
                     <input type="text" id="groupName" name="groupName" #groupName igxInput [required]="true" [(ngModel)]="group.name" />
                     <igx-suffix>
@@ -279,7 +281,7 @@
                       <span igxListLineTitle>
                         {{ participant.battleTag }}
                       </span>
-                      <igx-input-group>
+                      <igx-input-group type="border">
                         <label igxLabel i18n>Points</label>
                         <input
                           type="number"
@@ -303,7 +305,7 @@
               @if (!newGroup.inEdit) {
                 <h1 igxCardHeaderTitle i18n>New group</h1>
               } @else {
-                <igx-input-group igxCardHeaderTitle>
+                <igx-input-group type="border" igxCardHeaderTitle>
                   <label igxLabel for="groupName" i18n>Group name</label>
                   <input type="text" id="groupName" name="groupName" #groupName igxInput [required]="true" [(ngModel)]="newGroup.name" />
                   @if (groupName.value) {
@@ -340,15 +342,17 @@
   i18n-rightButtonLabel
   rightButtonLabel="Submit"
   (rightButtonSelect)="submitMatch(matchGrid); newMatchDialog.close()">
-  <igx-date-picker [(ngModel)]="matchInEdit.startTime" mode="dialog">
+  <igx-date-picker type="border" [(ngModel)]="matchInEdit.startTime" mode="dialog">
     <label igxLabel i18n>Start date</label>
   </igx-date-picker>
 
-  <igx-time-picker [itemsDelta]="{hours: 1, minutes: 15, seconds: 1}" [(ngModel)]="matchInEdit.startTime" mode="dialog">
+  <igx-time-picker type="border" [itemsDelta]="{hours: 1, minutes: 15, seconds: 1}" [(ngModel)]="matchInEdit.startTime" mode="dialog">
     <label igxLabel i18n>Start time</label>
   </igx-time-picker>
 
-  <igx-select #groupPicker [(ngModel)]="matchInEdit.groupId">
+  <!-- IgxSelect: default positioning changed to AutoPositionStrategy (below/above input).
+     To preserve overlap behavior: this.select.overlaySettings = { positionStrategy: new IgxSelectOverlapPositionStrategy(this.select) }; -->
+<igx-select type="border" #groupPicker [(ngModel)]="matchInEdit.groupId">
     <label igxLabel i18n>Group</label>
     @for (group of groups; track group.id) {
       <igx-select-item
@@ -362,13 +366,15 @@
     <igx-hint i18n>*If the match is during the group stage</igx-hint>
   </igx-select>
 
-  <igx-select [(ngModel)]="matchInEdit.player1Id" required>
+  <!-- IgxSelect: default positioning changed to AutoPositionStrategy (below/above input).
+     To preserve overlap behavior: this.select.overlaySettings = { positionStrategy: new IgxSelectOverlapPositionStrategy(this.select) }; -->
+<igx-select type="border" [(ngModel)]="matchInEdit.player1Id" required>
     <label igxLabel i18n>Player 1</label>
     @for (registration of participants; track registration.id) {
       <igx-select-item
         [value]="registration.userId"
         [text]="registration.battleTag">
-        <igx-avatar [src]="registration.user.sc2Details?.avatarUrl" [initials]="registration.battleTag" [size]="'small'" [shape]="'circle'"></igx-avatar>
+        <igx-avatar [src]="$safeNavigationMigration(registration.user.sc2Details?.avatarUrl)" [initials]="registration.battleTag" [size]="'small'" [shape]="'circle'"></igx-avatar>
         {{ registration.battleTag }}
       </igx-select-item>
     }
@@ -382,13 +388,15 @@
 
   vs.
 
-  <igx-select [(ngModel)]="matchInEdit.player2Id" required>
+  <!-- IgxSelect: default positioning changed to AutoPositionStrategy (below/above input).
+     To preserve overlap behavior: this.select.overlaySettings = { positionStrategy: new IgxSelectOverlapPositionStrategy(this.select) }; -->
+<igx-select type="border" [(ngModel)]="matchInEdit.player2Id" required>
     <label igxLabel i18n>Player 2</label>
     @for (registration of participants; track registration.id) {
       <igx-select-item
         [value]="registration.userId"
         [text]="registration.battleTag">
-        <igx-avatar [src]="registration.user.sc2Details?.avatarUrl" [initials]="registration.battleTag" [size]="'small'" [shape]="'circle'"></igx-avatar>
+        <igx-avatar [src]="$safeNavigationMigration(registration.user.sc2Details?.avatarUrl)" [initials]="registration.battleTag" [size]="'small'" [shape]="'circle'"></igx-avatar>
         {{ registration.battleTag }}
       </igx-select-item>
     }
@@ -400,7 +408,7 @@
     <igx-radio [value]="3" i18n>Zerg</igx-radio>
   </igx-radio-group>
 
-  <igx-input-group>
+  <igx-input-group type="border">
     <label igxLabel i18n>Video Link</label>
     <igx-prefix>
       <igx-icon>link</igx-icon>
@@ -417,7 +425,7 @@
     }
   </igx-input-group>
 
-  <igx-input-group>
+  <igx-input-group type="border">
     <label igxLabel i18n>Demo Link</label>
     <igx-prefix>
       <igx-icon>link</igx-icon>
@@ -444,12 +452,12 @@
   (rightButtonSelect)="submitMatch(matchGrid); newMatchMapDialog.close()">
 
   <div class="horizontal-center">
-    <igx-input-group>
+    <igx-input-group type="border">
       <label igxLabel i18n>Points {{ matchInEdit.player1?.username }}</label>
       <input type="number" igxInput igxTextSelection [(ngModel)]="matchInEdit.player1Points" />
     </igx-input-group>
     <span class="grid-vs-divider">:</span>
-    <igx-input-group>
+    <igx-input-group type="border">
       <label igxLabel i18n>Points {{ matchInEdit.player2?.username }}</label>
       <input type="number" igxInput igxTextSelection [(ngModel)]="matchInEdit.player2Points" />
     </igx-input-group>
@@ -457,19 +465,23 @@
 
   @for (map of matchInEdit.maps; track map.id) {
     <div>
-      <igx-select [(ngModel)]="map.map">
+      <!-- IgxSelect: default positioning changed to AutoPositionStrategy (below/above input).
+     To preserve overlap behavior: this.select.overlaySettings = { positionStrategy: new IgxSelectOverlapPositionStrategy(this.select) }; -->
+<igx-select type="border" [(ngModel)]="map.map">
         <label igxLabel i18n>Map</label>
         @for (map of mapList; track map.id) {
           <igx-select-item [value]="map.id">{{ map.map }}</igx-select-item>
         }
       </igx-select>
-      <igx-select [(ngModel)]="map.winnerId">
+      <!-- IgxSelect: default positioning changed to AutoPositionStrategy (below/above input).
+     To preserve overlap behavior: this.select.overlaySettings = { positionStrategy: new IgxSelectOverlapPositionStrategy(this.select) }; -->
+<igx-select type="border" [(ngModel)]="map.winnerId">
         <label igxLabel i18n>Winner</label>
         @for (registration of participants | getPlayers:matchInEdit.player1Id:matchInEdit.player2Id; track registration.id) {
           <igx-select-item
             [value]="registration.userId"
             [text]="registration.battleTag">
-            <igx-avatar [src]="registration.user.sc2Details?.avatarUrl" [initials]="registration.user.username" size="small" [shape]="'circle'"></igx-avatar>
+            <igx-avatar [src]="$safeNavigationMigration(registration.user.sc2Details?.avatarUrl)" [initials]="registration.user.username" size="small" [shape]="'circle'"></igx-avatar>
             {{ registration.user.username }}
           </igx-select-item>
         }

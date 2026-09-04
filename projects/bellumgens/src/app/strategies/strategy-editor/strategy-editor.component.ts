@@ -29,8 +29,7 @@ import { isPlatformBrowser, NgClass } from '@angular/common';
 @Component({
   selector: 'app-strategy-editor',
   templateUrl: './strategy-editor.component.html',
-  styleUrls: ['./strategy-editor.component.scss'],
-  imports: [
+  styleUrls: ['./strategy-editor.component.scss'],  imports: [
     IGX_SELECT_DIRECTIVES,
     FormsModule,
     IGX_INPUT_GROUP_DIRECTIVES,

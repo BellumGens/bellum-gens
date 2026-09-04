@@ -5,7 +5,7 @@ import { routes } from "./app.routes";
 import { provideAnimations } from "@angular/platform-browser/animations";
 import { ServiceWorkerModule } from "@angular/service-worker";
 import { environment } from "../../../common/src/environments/environment";
-import { provideClientHydration } from "@angular/platform-browser";
+import { provideClientHydration, withNoIncrementalHydration } from "@angular/platform-browser";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -18,7 +18,7 @@ export const appConfig: ApplicationConfig = {
         })
       ),
       provideHttpClient(withInterceptorsFromDi(), withFetch()),
-      provideClientHydration(),
+      provideClientHydration(withNoIncrementalHydration()),
       provideAnimations()
   ]
 };

@@ -3,7 +3,9 @@
     <div class="column-container">
       @for (jersey of order.orderProducts; track jersey; let i = $index) {
         <div class="horizontal-center">
-          <igx-select [value]="jersey.cut" (selectionChanging)="selectJerseyCut(jersey, $event)" type="border" class="order-form-input" name="jerseyCut">
+          <!-- IgxSelect: default positioning changed to AutoPositionStrategy (below/above input).
+     To preserve overlap behavior: this.select.overlaySettings = { positionStrategy: new IgxSelectOverlapPositionStrategy(this.select) }; -->
+<igx-select [value]="jersey.cut" (selectionChanging)="selectJerseyCut(jersey, $event)" type="border" class="order-form-input" name="jerseyCut">
             <label igxLabel i18n>Cut</label>
             @for (cut of cuts; track cut.cut) {
               <igx-select-item [value]="cut.cut">
@@ -11,7 +13,9 @@
               </igx-select-item>
             }
           </igx-select>
-          <igx-select [value]="jersey.size" (selectionChanging)="selectJerseySize(jersey, $event)" type="border" class="order-form-input" name="jerseySize">
+          <!-- IgxSelect: default positioning changed to AutoPositionStrategy (below/above input).
+     To preserve overlap behavior: this.select.overlaySettings = { positionStrategy: new IgxSelectOverlapPositionStrategy(this.select) }; -->
+<igx-select [value]="jersey.size" (selectionChanging)="selectJerseySize(jersey, $event)" type="border" class="order-form-input" name="jerseySize">
             <label igxLabel i18n>Size</label>
             @for (size of allSizes | filterSizes:jersey.cut; track size.size) {
               <igx-select-item [value]="size.size">

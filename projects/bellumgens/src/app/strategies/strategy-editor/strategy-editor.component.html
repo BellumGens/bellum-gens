@@ -3,7 +3,9 @@
   (pointerup)="canvasPointerUp()">
   <div class="editor-elements list-container">
     @if (newStrategy) {
-      <igx-select class="editor-elements-section" id="mapSelector" name="mapSelector" [(ngModel)]="newStrategy.map" (ngModelChange)="changeMap($event)">
+      <!-- IgxSelect: default positioning changed to AutoPositionStrategy (below/above input).
+     To preserve overlap behavior: this.select.overlaySettings = { positionStrategy: new IgxSelectOverlapPositionStrategy(this.select) }; -->
+<igx-select type="border" class="editor-elements-section" id="mapSelector" name="mapSelector" [(ngModel)]="newStrategy.map" (ngModelChange)="changeMap($event)">
         <label for="mapSelector" igxLabel i18n>Map</label>
         @for (map of maps; track map.mapId) {
           <igx-select-item [value]="map.mapId">
@@ -18,7 +20,7 @@
         @for (layer of layers; track layer.name) {
           <igx-list-item class="layer-info">
             <igx-checkbox igxListThumbnail [name]="'checkbox_' + layer.name" class="layer-selected" [disabled]="!layer.movable" (change)="deselectBrush()" [(ngModel)]="layer.selected"></igx-checkbox>
-            <igx-input-group igxListLine [ngClass]="layer.hidden ? 'hidden-layer' : ''" [style.--ig-size]="'var(--ig-size-small)'">
+            <igx-input-group type="border" igxListLine [ngClass]="layer.hidden ? 'hidden-layer' : ''" [style.--ig-size]="'var(--ig-size-small)'">
               <igx-prefix>
                 <igx-icon (click)="layer.hidden = !layer.hidden">{{ layer.hidden ? 'visibility' : 'visibility_off'}}</igx-icon>
               </igx-prefix>

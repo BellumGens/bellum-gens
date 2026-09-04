@@ -7,7 +7,7 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { Router } from '@angular/router';
 import { ApplicationUser, CommunicationService, LoginProvider, LoginService, TournamentApplication } from '../../../public_api';
 import { Game, TournamentApplicationState } from '../../../models/tournament';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 
 describe('UserPreferencesComponent', () => {
@@ -48,7 +48,7 @@ describe('UserPreferencesComponent', () => {
         ServiceWorkerModule.register('', { enabled: false }),
         UserPreferencesComponent
       ],
-      providers: [provideRouter([]), provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+      providers: [provideRouter([]), provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
     }).compileComponents();
     authService = TestBed.inject(LoginService);
     httpMock = TestBed.inject(HttpTestingController);
@@ -87,7 +87,7 @@ describe('UserPreferencesComponent', () => {
   });
 
   it('should call login method', () => {
-    spyOn(authService, 'login');
+    vi.spyOn(authService, 'login').mockImplementation(() => undefined);
     component.login(providers[0]);
     expect(authService.login).toHaveBeenCalledWith(providers[0]);
   });
@@ -98,7 +98,7 @@ describe('UserPreferencesComponent', () => {
     const req = httpMock.expectOne(`${authService['_apiEndpoint']}/userinfo`);
     expect(req.request.method).toBe('PUT');
     expect(req.request.body).toEqual(component.preferences);
-    expect(req.request.withCredentials).toBeTrue();
+    expect(req.request.withCredentials).toBe(true);
     req.flush({});
 
     commsService.error.subscribe(message => expect(message).toEqual(`Http failure response for ${authService['_apiEndpoint']}/userinfo: 500 Something went wrong!`));
@@ -106,7 +106,7 @@ describe('UserPreferencesComponent', () => {
     const req2 = httpMock.expectOne(`${authService['_apiEndpoint']}/userinfo`);
     expect(req2.request.method).toBe('PUT');
     expect(req2.request.body).toEqual(component.preferences);
-    expect(req2.request.withCredentials).toBeTrue();
+    expect(req2.request.withCredentials).toBe(true);
     req2.error(new ProgressEvent('Server Error'), { status: 500, statusText: 'Something went wrong!' });
   });
 
@@ -115,14 +115,14 @@ describe('UserPreferencesComponent', () => {
     component.deleteAccount();
     const req = httpMock.expectOne(`${authService['_apiEndpoint']}/delete?userid=${applicationUser.id}`);
     expect(req.request.method).toBe('DELETE');
-    expect(req.request.withCredentials).toBeTrue();
+    expect(req.request.withCredentials).toBe(true);
     req.flush({});
 
     commsService.error.subscribe(message => expect(message).toEqual(`Http failure response for ${authService['_apiEndpoint']}/delete?userid=${applicationUser.id}: 500 Something went wrong!`));
     component.deleteAccount();
     const req2 = httpMock.expectOne(`${authService['_apiEndpoint']}/delete?userid=${applicationUser.id}`);
     expect(req2.request.method).toBe('DELETE');
-    expect(req2.request.withCredentials).toBeTrue();
+    expect(req2.request.withCredentials).toBe(true);
     req2.error(new ProgressEvent('Server Error'), { status: 500, statusText: 'Something went wrong!' });
   });
 
@@ -135,7 +135,7 @@ describe('UserPreferencesComponent', () => {
     component.deleteRegistration(registration);
     const req2 = httpMock.expectOne(`${authService['_apiBase']}/tournament/delete?id=${registration.id}`);
     expect(req2.request.method).toBe('DELETE');
-    expect(req2.request.withCredentials).toBeTrue();
+    expect(req2.request.withCredentials).toBe(true);
     req2.flush({});
     expect(component.registrations).toEqual([registrations[0]]);
 
@@ -143,17 +143,17 @@ describe('UserPreferencesComponent', () => {
     component.deleteRegistration(registration);
     const req3 = httpMock.expectOne(`${authService['_apiBase']}/tournament/delete?id=${registration.id}`);
     expect(req3.request.method).toBe('DELETE');
-    expect(req3.request.withCredentials).toBeTrue();
+    expect(req3.request.withCredentials).toBe(true);
     req3.error(new ProgressEvent('Server Error'), { status: 500, statusText: 'Something went wrong!' });
   });
 
   it('disableLogin should return true for externalLogins on the authUser', () => {
-    expect(component.disableLogin('BattleNet')).toBeFalse();
-    expect(component.disableLogin('Steam')).toBeTrue();
+    expect(component.disableLogin('BattleNet')).toBe(false);
+    expect(component.disableLogin('Steam')).toBe(true);
   });
 
   it('should call openRegistration method', () => {
-    spyOn(router, 'navigate');
+    vi.spyOn(router, 'navigate').mockImplementation(() => undefined);
     component.openRegistration();
     expect(router.navigate).toHaveBeenCalledWith(['register']);
   });

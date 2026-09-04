@@ -3,7 +3,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { SuccessErrorComponent } from './success-error.component';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { CommunicationService } from 'bellum-gens-common';
 
 describe('SuccessErrorComponent', () => {
@@ -16,7 +16,7 @@ describe('SuccessErrorComponent', () => {
         NoopAnimationsModule,
         SuccessErrorComponent
       ],
-      providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+      providers: [provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
     })
     .compileComponents();
   }));
@@ -42,7 +42,7 @@ describe('SuccessErrorComponent', () => {
   });
 
   it('should show success message', () => {
-    spyOn(component.message, 'open');
+    vi.spyOn(component.message, 'open').mockImplementation(() => undefined);
     const testMessage = 'Operation successful';
 
     component.showMessage('success', testMessage);
@@ -54,7 +54,7 @@ describe('SuccessErrorComponent', () => {
   });
 
   it('should show error message', () => {
-    spyOn(component.message, 'open');
+    vi.spyOn(component.message, 'open').mockImplementation(() => undefined);
     const testMessage = 'Operation failed';
 
     component.showMessage('error', testMessage);
@@ -66,7 +66,7 @@ describe('SuccessErrorComponent', () => {
   });
 
   it('should show warning message', () => {
-    spyOn(component.message, 'open');
+    vi.spyOn(component.message, 'open').mockImplementation(() => undefined);
     const testMessage = 'Warning: Check your input';
 
     component.showMessage('warn', testMessage);
@@ -78,7 +78,7 @@ describe('SuccessErrorComponent', () => {
   });
 
   it('should use default notification message if none provided', () => {
-    spyOn(component.message, 'open');
+    vi.spyOn(component.message, 'open').mockImplementation(() => undefined);
     const previousMsg = component.notificationMsg;
 
     component.showMessage('success');
@@ -89,7 +89,7 @@ describe('SuccessErrorComponent', () => {
 
   it('should subscribe to communication service on creation', () => {
     const commService = TestBed.inject(CommunicationService) as CommunicationService;
-    spyOn(component, 'showMessage');
+    vi.spyOn(component, 'showMessage').mockImplementation(() => undefined);
 
     commService.emitSuccess('Test success');
 
@@ -98,7 +98,7 @@ describe('SuccessErrorComponent', () => {
 
   it('should handle error from communication service', () => {
     const commService = TestBed.inject(CommunicationService) as CommunicationService;
-    spyOn(component, 'showMessage');
+    vi.spyOn(component, 'showMessage').mockImplementation(() => undefined);
 
     commService.emitError('Test error');
 
@@ -107,7 +107,7 @@ describe('SuccessErrorComponent', () => {
 
   it('should handle message from communication service', () => {
     const commService = TestBed.inject(CommunicationService) as CommunicationService;
-    spyOn(component, 'showMessage');
+    vi.spyOn(component, 'showMessage').mockImplementation(() => undefined);
 
     commService.emitMessage('Test warning');
 
