@@ -24,8 +24,8 @@
     "i18n": "npm run i18n:bellumgens && npm run i18n:ebleague",
     "i18n:bellumgens": "ng extract-i18n bellum-gens --out-file projects/bellumgens/src/locale/messages.en.xlf",
     "i18n:ebleague": "ng extract-i18n eb-league --out-file projects/ebleague/src/locale/messages.en.xlf",
-    "cypress:open": "concurrently \"ng serve\" \"cypress open --config-file=cypress.config.ts\"",
-    "cypress:run": "concurrently \"npm run serve:ssr:bellumgens\" \"cypress run --config-file=cypress.config.ts\""
+    "cypress:open": "concurrently --kill-others --success first \"ng serve bellum-gens --port=4000\" \"node scripts/cypress.js open --config-file=cypress.config.ts\"",
+    "cypress:run": "concurrently --kill-others --success first \"npm run serve:ssr:bellumgens\" \"node scripts/cypress.js run --config-file=cypress.config.ts --browser chrome\""
   },
   "private": true,
   "dependencies": {
@@ -47,11 +47,11 @@
     "express": "^5.2.1",
     "hammerjs": "^2.0.8",
     "igniteui-angular-i18n": "22.1.2",
-    "igniteui-webcomponents": "^7.2.4",
+    "igniteui-webcomponents": "^7.3.1",
     "minireset.css": "0.0.4",
     "rxjs": "^7.8.2",
     "tslib": "^2.6.2",
-    "zone.js": "~0.16.1"
+    "zone.js": "~0.16.3"
   },
   "devDependencies": {
     "@angular-eslint/builder": "^22.0.0",
@@ -64,15 +64,15 @@
     "@angular/compiler-cli": "^22.1.5",
     "@angular/language-service": "^22.1.5",
     "@angular/localize": "^22.1.5",
-    "@cypress/schematic": "^5.0.0",
+    "@cypress/schematic": "^6.0.0",
     "@types/node": "^20.11.17",
     "@typescript-eslint/eslint-plugin": "^8.33.1",
     "@typescript-eslint/parser": "^8.33.1",
-    "@vitest/coverage-v8": "^4.1.11",
+    "@vitest/coverage-v8": "^5.0.0",
     "angular-eslint": "^22.1.0",
     "browser-sync": "^3.0.4",
-    "concurrently": "^9.2.0",
-    "cypress": "^15.7.0",
+    "concurrently": "^10.0.5",
+    "cypress": "^16.0.0",
     "eslint": "^9.28.0",
     "eslint-plugin-import": "2.31.0",
     "eslint-plugin-jsdoc": "50.5.0",
@@ -85,6 +85,6 @@
     "ng-packagr": "^22.0.1",
     "typescript": "6.0.3",
     "typescript-eslint": "^8.66.0",
-    "vitest": "^4.0.8"
+    "vitest": "^5.0.0"
   }
 }

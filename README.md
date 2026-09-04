@@ -143,9 +143,12 @@ npm run test:prod
 Run e2e tests with Cypress:
 
 ```bash
-npm run cypress:open       # Open Cypress in interactive mode
+npm run cypress:open       # Open Cypress in interactive mode against `ng serve` on port 4000
+npm run build:bellumgens   # Headless runs test the built SSR bundle, so build it first
 npm run cypress:run        # Run Cypress in headless mode
 ```
+
+Both scripts start the app server themselves and exit when Cypress finishes.
 
 ## Code Quality
 

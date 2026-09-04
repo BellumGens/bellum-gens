@@ -41,7 +41,9 @@ jobs:
         github-token: ${{ github.token }}
         file: coverage/lcov.info
     - name: Cypress run
-      uses: cypress-io/github-action@v6.10.4
+      uses: cypress-io/github-action@v7.4.3
       with:
+        install: false
         start: npm run serve:ssr:bellumgens
+        wait-on: 'http://localhost:4000'
         browser: chrome
