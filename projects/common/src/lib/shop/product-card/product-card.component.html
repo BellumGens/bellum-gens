@@ -1,0 +1,35 @@
+<igx-card elevated class="product-card">
+  <a class="product-media" [routerLink]="['/shop/product', product().slug]" [attr.aria-label]="product().name">
+    @if (product().imageUrl) {
+      <img [src]="product().imageUrl" [alt]="product().name" loading="lazy" />
+    } @else {
+      <div class="product-placeholder">
+        <igx-icon>shopping_bag</igx-icon>
+      </div>
+    }
+  </a>
+
+  <igx-card-header>
+    <h4 igxCardHeaderTitle>{{ product().name }}</h4>
+    <span igxCardHeaderSubtitle>{{ brandName() }}</span>
+  </igx-card-header>
+
+  <igx-card-content>
+    <div class="product-price">
+      @if (hasDiscount()) {
+        <del>{{ product().price | currency:'EUR' }}</del>
+      }
+      <span class="highlight">{{ price() | currency:'EUR' }}</span>
+    </div>
+    @if (soldOut()) {
+      <igx-chip [selectable]="false" [removable]="false" class="sold-out" i18n>Sold out</igx-chip>
+    }
+  </igx-card-content>
+
+  <igx-card-actions>
+    <a igxButton="outlined" igxRipple [routerLink]="['/shop/product', product().slug]" i18n>View</a>
+    @if (!hasOptions()) {
+      <button type="button" igxButton="contained" igxRipple [disabled]="soldOut()" (click)="addToCart()" i18n>Add to cart</button>
+    }
+  </igx-card-actions>
+</igx-card>

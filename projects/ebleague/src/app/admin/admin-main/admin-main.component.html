@@ -69,20 +69,36 @@
   </div>
 
   <div class="content-container-row">
-    <igx-grid #grid1
-      [data]="orders | async"
+    <igx-grid #ordersGrid
+      [data]="orders()"
       primaryKey="id"
       [height]="'600px'"
-      [batchEditing]="true"
       [allowFiltering]="true"
-      (cellEdit)="editDone($event)"
       cellSelection="none">
 
       <igx-grid-toolbar>
-        <igx-grid-toolbar-title i18n>Orders</igx-grid-toolbar-title>
+        <igx-grid-toolbar-title i18n>Shop orders</igx-grid-toolbar-title>
+        <igx-grid-toolbar-actions>
+          <a igxButton="flat" igxRipple [href]="ordersExportUrl" target="_blank" rel="noopener">
+            <igx-icon>download</igx-icon>
+            <span i18n>Export CSV</span>
+          </a>
+          <button type="button" igxButton="flat" igxRipple (click)="loadOrders()">
+            <igx-icon>refresh</igx-icon>
+            <span i18n>Refresh</span>
+          </button>
+        </igx-grid-toolbar-actions>
       </igx-grid-toolbar>
 
+      <igx-column field="orderNumber" width="150px" [sortable]="true" i18n-header header="Order #">
+      </igx-column>
       <igx-column field="orderDate" dataType="date" width="165px" [sortable]="true" i18n-header header="Order date">
+      </igx-column>
+      <igx-column field="status" width="150px" [sortable]="true" i18n-header header="Status">
+        <span *igxCell="let value" [class]="'order-status status-' + value">{{ statusName(value) }}</span>
+      </igx-column>
+      <igx-column field="total" dataType="currency" width="120px" [sortable]="true" i18n-header header="Total">
+        <span *igxCell="let cell = cell">{{ cell.row.data.total | currency:cell.row.data.currency }}</span>
       </igx-column>
       <igx-column field="email" i18n-header header="Email">
       </igx-column>
@@ -92,52 +108,85 @@
         </span>
       </igx-column>
       <igx-column field="phoneNumber" i18n-header header="Phone #">
-        <span *igxCell="let value">
-          +359 {{ value }}
-        </span>
       </igx-column>
       <igx-column field="address" i18n-header header="Full address">
         <span *igxCell="let cell = cell">
-          {{ cell.row.data.city }}, {{ cell.row.data.streetAddress }}
+          {{ cell.row.data.streetAddress }}, {{ cell.row.data.postalCode }} {{ cell.row.data.city }}
         </span>
       </igx-column>
-      <igx-column field="promoCode" i18n-header header="Promo code">
+      <igx-column field="deliveryMethod" width="140px" i18n-header header="Delivery">
+        <span *igxCell="let value">{{ deliveryNames[value] }}</span>
       </igx-column>
-      <igx-column field="confirmed" dataType="boolean" [editable]="true" i18n-header header="Confirmed">
-        <igx-icon *igxCell="let value" [class]="value ? 'color-success' : 'color-error'">{{ value ? 'check' : 'close' }}</igx-icon>
+      <igx-column field="promoCode" width="120px" i18n-header header="Promo code">
       </igx-column>
-      <igx-column field="shipped" dataType="boolean" [editable]="true" i18n-header header="Shipped">
-        <igx-icon *igxCell="let value" [class]="value ? 'color-success' : 'color-error'">{{ value ? 'check' : 'close' }}</igx-icon>
+      <igx-column field="trackingNumber" i18n-header header="Tracking #">
       </igx-column>
 
-      <div *igxGridDetail="let dataItem" class="horizontal details-container space-evenly">
-        @for (details of dataItem.jerseys; track details) {
-          <div class="column-center">
-            <img ngSrc="/assets/wallpapers/jersey-small.webp" width="105" height="100" alt="Esports Business League jersey" />
-            <div i18n>{{details.cut ? 'Female' : 'Male'}}</div>
-            <div class="highlight">{{ details.size | sizeName }}</div>
-          </div>
+      <div *igxGridDetail="let dataItem" class="order-details">
+        <ul class="order-items">
+          @for (item of dataItem.items; track item.id) {
+            <li>
+              <span class="item-qty">{{ item.quantity }} ×</span>
+              <span class="item-name">{{ item.productName }}@if (item.variantName) { <span class="item-variant">({{ item.variantName }})</span> }</span>
+              <span class="item-total">{{ item.lineTotal | currency:dataItem.currency }}</span>
+            </li>
+          }
+        </ul>
+        @if (dataItem.customerNote) {
+          <p class="order-note"><b i18n>Customer note:</b> {{ dataItem.customerNote }}</p>
         }
+        @if (dataItem.adminNote) {
+          <p class="order-note"><b i18n>Admin note:</b> {{ dataItem.adminNote }}</p>
+        }
+        <div class="order-actions">
+          @if (dataItem.status === OrderStatus.Paid) {
+            <igx-input-group type="border" class="tracking-input">
+              <label igxLabel [for]="'tracking-' + dataItem.id" i18n>Tracking number</label>
+              <input igxInput [id]="'tracking-' + dataItem.id" [name]="'tracking-' + dataItem.id" [(ngModel)]="tracking[dataItem.id]" />
+            </igx-input-group>
+            <button type="button" igxButton="contained" igxRipple (click)="updateOrderStatus(dataItem, OrderStatus.Shipped)">
+              <igx-icon>local_shipping</igx-icon>
+              <span i18n>Mark shipped</span>
+            </button>
+            <button type="button" igxButton="outlined" igxRipple (click)="updateOrderStatus(dataItem, OrderStatus.Delivered)">
+              <igx-icon>inventory_2</igx-icon>
+              <span i18n>Mark delivered</span>
+            </button>
+          }
+          @if (dataItem.status === OrderStatus.Shipped) {
+            <button type="button" igxButton="contained" igxRipple (click)="updateOrderStatus(dataItem, OrderStatus.Delivered)">
+              <igx-icon>inventory_2</igx-icon>
+              <span i18n>Mark delivered</span>
+            </button>
+          }
+          @if (dataItem.status === OrderStatus.AwaitingPayment) {
+            <button type="button" igxButton="outlined" igxRipple (click)="updateOrderStatus(dataItem, OrderStatus.Cancelled)">
+              <igx-icon>cancel</igx-icon>
+              <span i18n>Cancel order</span>
+            </button>
+          }
+          @if (dataItem.status === OrderStatus.Paid || dataItem.status === OrderStatus.Shipped || dataItem.status === OrderStatus.Delivered) {
+            <button type="button" igxButton="flat" igxRipple class="color-error" (click)="refundOrder(dataItem)">
+              <igx-icon>undo</igx-icon>
+              <span i18n>Refund</span>
+            </button>
+          }
+        </div>
       </div>
-
-      <igx-action-strip #ordersActionStrip>
-        @if (ordersActionStrip.context?.dirty || ordersActionStrip.context?.deleted) {
-          <button title="Save" igxIconButton="flat" igxRipple
-            (click)="deleteOrder(ordersActionStrip.context)">
-            <igx-icon>save</igx-icon>
-          </button>
-        }
-        @if (!ordersActionStrip.context?.deleted) {
-          <button title="Delete" igxIconButton="flat" igxRipple
-            (click)="ordersActionStrip.context.delete()">
-            <igx-icon>delete</igx-icon>
-          </button>
-        }
-      </igx-action-strip>
 
       <igx-paginator></igx-paginator>
 
     </igx-grid>
+  </div>
+
+  <div class="content-container-row">
+    <h3 i18n>Shop catalog</h3>
+    <bg-product-editor></bg-product-editor>
+  </div>
+
+  <div class="content-container-row">
+    <h3 i18n>Promo codes</h3>
+    <bg-promo-editor></bg-promo-editor>
   </div>
 </div>
 
