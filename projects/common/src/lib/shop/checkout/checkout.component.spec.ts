@@ -7,6 +7,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { CheckoutComponent } from './checkout.component';
 import { CartService } from '../../../services/cart.service';
 import { ApiShopService } from '../../../services/bellumgens-api.shop.service';
+import { LoginService } from '../../../services/login.service';
+import { ApplicationUser } from '../../../models/applicationuser';
 import { Brand, Product, ProductType, Quote } from '../../../models/shop';
 
 const umbrella: Product = {
@@ -170,4 +172,67 @@ describe('CheckoutComponent', () => {
     expect(component.problems().length).toBe(1);
     flushQuotes(validQuote);
   }));
+
+  it('explains a rate limited attempt', fakeAsync(() => {
+    fillCart();
+    fillForm();
+
+    component.pay();
+
+    httpMock.expectOne(`${api['_apiEndpoint']}/shop/orders`).flush('', { status: 429, statusText: 'Too Many Requests' });
+
+    expect(component.problems()[0]).toContain('Too many attempts');
+    flushQuotes(validQuote);
+  }));
+
+  it('falls back to a general message for an unexpected failure', fakeAsync(() => {
+    fillCart();
+    fillForm();
+
+    component.pay();
+
+    httpMock.expectOne(`${api['_apiEndpoint']}/shop/orders`).flush('', { status: 500, statusText: 'Server Error' });
+
+    expect(component.problems()[0]).toContain('could not be placed');
+    expect(component.submitting()).toBe(false);
+    flushQuotes(validQuote);
+  }));
+
+  it('refuses to pay a cart the server has since rejected', fakeAsync(() => {
+    fillCart();
+    fillForm();
+    cart.quote.set({ ...validQuote, isValid: false });
+
+    component.pay();
+
+    httpMock.expectNone(`${api['_apiEndpoint']}/shop/orders`);
+    expect(component.problems()[0]).toContain('cart has changed');
+    // The page re-prices the cart so the visitor sees what changed.
+    flushQuotes(validQuote);
+  }));
+
+  it('prefills the email of the signed in customer', () => {
+    TestBed.inject(LoginService)['_applicationUser'].next({ email: 'ivan@example.com' } as unknown as ApplicationUser);
+
+    expect(component.form.controls.email.value).toBe('ivan@example.com');
+  });
+
+  it('keeps an email the customer already typed', () => {
+    component.form.controls.email.setValue('other@example.com');
+
+    TestBed.inject(LoginService)['_applicationUser'].next({ email: 'ivan@example.com' } as unknown as ApplicationUser);
+
+    expect(component.form.controls.email.value).toBe('other@example.com');
+  });
+
+  it('reports which fields are invalid to the template', () => {
+    component.form.controls.city.markAsTouched();
+
+    expect(component.invalid('city')).toBe(true);
+    expect(component.invalid('postalCode')).toBe(false);
+  });
+
+  it('checks out in the language the storefront is running in', () => {
+    expect(['bg', 'en']).toContain(component.language);
+  });
 });
