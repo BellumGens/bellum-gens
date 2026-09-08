@@ -4,7 +4,7 @@ import { PlayerNotificationsComponent } from './player-notifications.component';
 import { provideRouter } from '@angular/router';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 describe('NotificationsComponent', () => {
   let component: PlayerNotificationsComponent;
@@ -15,7 +15,7 @@ describe('NotificationsComponent', () => {
     imports: [
         ServiceWorkerModule.register('', { enabled: false }),
         PlayerNotificationsComponent],
-    providers: [provideRouter([]), provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+    providers: [provideRouter([]), provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
 })
     .compileComponents();
   }));

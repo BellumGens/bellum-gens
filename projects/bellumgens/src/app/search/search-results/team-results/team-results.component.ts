@@ -11,8 +11,7 @@ import { LoadingComponent } from '../../../../../../common/src/lib/loading/loadi
 @Component({
   selector: 'app-team-results',
   templateUrl: './team-results.component.html',
-  styleUrls: ['./team-results.component.css'],
-  imports: [
+  styleUrls: ['./team-results.component.css'],  imports: [
     LoadingComponent,
     IGX_CARD_DIRECTIVES,
     RouterLink,

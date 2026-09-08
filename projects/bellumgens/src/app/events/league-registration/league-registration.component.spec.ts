@@ -3,7 +3,7 @@ import { LeagueRegistrationComponent } from './league-registration.component';
 import {  of } from 'rxjs';
 import { provideRouter } from '@angular/router';
 import { ApiTournamentsService, CommunicationService, Game, TournamentApplication } from 'bellum-gens-common';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { SwPush } from '@angular/service-worker';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -24,7 +24,7 @@ describe('LeagueRegistrationComponent', () => {
       providers: [
         provideRouter([]),
         { provide: SwPush, useValue: {} },
-        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClient(withXhr(), withInterceptorsFromDi()),
         provideHttpClientTesting()
       ]
     }).compileComponents();
@@ -45,21 +45,21 @@ describe('LeagueRegistrationComponent', () => {
 
   // it('should initialize tournamentId and tournament on init', () => {
   //   const tournament: Tournament = { id: '123', name: 'Test Tournament' } as Tournament;
-  //   spyOn(apiTournamentsService, 'getTournament').and.returnValue(new BehaviorSubject(tournament));
+  //   vi.spyOn(apiTournamentsService, 'getTournament').mockReturnValue(new BehaviorSubject(tournament));
   //   expect(component.tournamentId).toBe('123');
   //   expect(component.tournament).toEqual(tournament);
   // });
 
   // it('should initialize application user on init', () => {
   //   const user: ApplicationUser = { email: 'test@example.com' } as ApplicationUser;
-  //   spyOn(loginService.applicationUser, 'getValue').and.returnValue(user);
+  //   vi.spyOn(loginService.applicationUser, 'getValue').mockReturnValue(user);
   //   expect(component.authUser).toEqual(user);
   // });
 
   it('should handle league registration success', () => {
     const application: TournamentApplication = { id: '1', game: Game.StarCraft2, email: 'test@example.com' };
-    spyOn(apiTournamentsService, 'bgeRegistration').and.returnValue(of(application));
-    spyOn(communicationService, 'emitSuccess');
+    vi.spyOn(apiTournamentsService, 'bgeRegistration').mockReturnValue(of(application));
+    vi.spyOn(communicationService, 'emitSuccess').mockImplementation(() => undefined);
     component.leagueRegistration();
     expect(communicationService.emitSuccess).toHaveBeenCalledWith(`Registration successful!`);
 

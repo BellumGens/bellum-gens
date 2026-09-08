@@ -9,8 +9,7 @@ import { NgClass, NgOptimizedImage } from '@angular/common';
 @Component({
   selector: 'app-map-pool',
   templateUrl: './map-pool.component.html',
-  styleUrls: ['./map-pool.component.scss'],
-  imports: [
+  styleUrls: ['./map-pool.component.scss'],  imports: [
     NgClass,
     NgOptimizedImage,
     FormsModule,

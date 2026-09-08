@@ -1,0 +1,40 @@
+@use "@infragistics/igniteui-angular/theming" as *;
+
+/// Scoped grid + grid toolbar theme shared by every component that renders an
+/// igx-grid. Include it inside the component's `:host ::ng-deep` block.
+///
+/// Since igniteui-theming 28, grid-theme() derives the row/group tokens from
+/// $background/$foreground instead of from $content-background/$header-background,
+/// so a theme that only sets the latter two ends up with the schema's gray-50 rows
+/// and neutral gray group rows. The tokens below reproduce what earlier versions
+/// derived from the two backgrounds.
+///
+/// @param {Color} $header-background - Header, toolbar and group-row background.
+/// @param {Color} $content-background - Body background; row colors are derived from it.
+/// @param {ArgList} $args... - Extra keyword arguments forwarded to grid-theme().
+@mixin app-grid-theme($header-background, $content-background, $args...) {
+  @include tokens(
+    grid-theme(
+      $schema: $dark-material-schema,
+      $header-background: $header-background,
+      $content-background: $content-background,
+      $row-odd-background: hsl(from var(--content-background) h calc(s - 10) l),
+      $row-even-background: hsl(from var(--content-background) h calc(s + 10) l),
+      $row-hover-background: dynamic-shade(var(--content-background), $offset: 7),
+      $row-border-color: hsl(from var(--ig-gray-900) h s l / 0.08),
+      $group-row-background: var(--header-background),
+      $group-count-background: adaptive-contrast(var(--header-background)),
+      $group-count-text-color: adaptive-contrast(var(--group-count-background)),
+      $args...
+    ),
+    $mode: 'scoped'
+  );
+
+  @include tokens(
+    grid-toolbar-theme(
+      $schema: $dark-material-schema,
+      $background: $header-background
+    ),
+    $mode: 'scoped'
+  );
+}

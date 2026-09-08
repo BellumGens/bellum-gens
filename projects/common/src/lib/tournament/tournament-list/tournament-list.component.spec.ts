@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter, Router } from '@angular/router';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
@@ -19,7 +19,7 @@ describe('TournamentListComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [NoopAnimationsModule, ServiceWorkerModule.register('', { enabled: false }), TournamentListComponent],
-      providers: [provideRouter([]), provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+      providers: [provideRouter([]), provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
     }).compileComponents();
 
     httpMock = TestBed.inject(HttpTestingController);
@@ -69,19 +69,20 @@ describe('TournamentListComponent', () => {
   });
 
   it('should navigate to create on createTournament', () => {
-    const spy = spyOn(router, 'navigate');
+    const spy = vi.spyOn(router, 'navigate').mockImplementation(() => undefined);
     component.createTournament();
     expect(spy).toHaveBeenCalledWith(['/tournaments/create']);
   });
 
   it('should navigate to manage on manageTournament', () => {
-    const spy = spyOn(router, 'navigate');
+    const spy = vi.spyOn(router, 'navigate').mockImplementation(() => undefined);
     component.manageTournament({ id: 't1', name: 'Test' });
     expect(spy).toHaveBeenCalledWith(['/tournaments/manage', 't1']);
   });
 
   it('should call deleteTournament on service', () => {
-    const spy = spyOn(apiService, 'deleteTournament').and.callThrough();
+    // vi.spyOn calls through by default, matching the original .and.callThrough()
+    const spy = vi.spyOn(apiService, 'deleteTournament');
     component.onDeleteTournament({ id: 't1', name: 'Test' });
     expect(spy).toHaveBeenCalledWith('t1');
   });

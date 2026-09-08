@@ -4,7 +4,7 @@ import { provideHttpClientTesting } from "@angular/common/http/testing";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { ServiceWorkerModule } from "@angular/service-worker";
 import { TEAM_PLACEHOLDER } from "bellum-gens-common";
-import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from "@angular/common/http";
 import { provideRouter } from "@angular/router";
 
 describe('TeamComponent', () => {
@@ -19,7 +19,7 @@ describe('TeamComponent', () => {
         TeamComponent],
     providers: [
       provideRouter([]),
-      provideHttpClient(withInterceptorsFromDi()),
+      provideHttpClient(withXhr(), withInterceptorsFromDi()),
       provideHttpClientTesting()
     ]
 })
@@ -48,7 +48,7 @@ describe('TeamComponent', () => {
 
   // it('should call the BellumgensApiService to load team data', () => {
   //   const mockTeam: CSGOTeam = { id: 1, name: 'Team A' };
-  //   spyOn(component.apiService, 'getTeam').and.returnValue(of(mockTeam));
+  //   vi.spyOn(component.apiService, 'getTeam').mockReturnValue(of(mockTeam));
   //   component.ngOnInit();
   //   expect(component.team).toEqual(mockTeam);
   //   expect(component.apiService.getTeam).toHaveBeenCalled();
@@ -57,13 +57,13 @@ describe('TeamComponent', () => {
   // it('should set isAdmin to true if the authenticated user is an admin', () => {
   //   const mockUser: ApplicationUser = { id: 1, name: 'John Doe', isAdmin: true };
   //   component.authUser = mockUser;
-  //   expect(component.isAdmin).toBeTrue();
+  //   expect(component.isAdmin).toBe(true);
   // });
 
   // it('should set isMember to true if the authenticated user is a member of the team', () => {
   //   const mockUser: ApplicationUser = { id: 1, name: 'John Doe', teamId: 1 };
   //   component.authUser = mockUser;
   //   component.team = { id: 1, name: 'Team A' };
-  //   expect(component.isMember).toBeTrue();
+  //   expect(component.isMember).toBe(true);
   // });
 });

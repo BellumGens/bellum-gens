@@ -27,8 +27,7 @@ import { AsyncPipe } from '@angular/common';
 @Component({
   selector: 'app-admin-main',
   templateUrl: './admin-main.component.html',
-  styleUrls: ['./admin-main.component.scss'],
-  imports: [
+  styleUrls: ['./admin-main.component.scss'],  imports: [
     FormsModule,
     IGX_GRID_DIRECTIVES,
     IgxIconComponent,

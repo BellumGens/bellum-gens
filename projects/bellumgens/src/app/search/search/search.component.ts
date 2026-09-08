@@ -15,8 +15,7 @@ enum SearchType {
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.css'],
-  imports: [
+  styleUrls: ['./search.component.css'],  imports: [
     IGX_BUTTON_GROUP_DIRECTIVES,
     IgxButtonDirective,
     IgxRippleDirective,

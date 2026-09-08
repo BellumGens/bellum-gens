@@ -50,9 +50,9 @@ export class TournamentDetailComponent {
 
   public tournament = signal<Tournament | null>(null);
   public loading = signal(true);
-  public registrations: Observable<TournamentParticipant[]>;
-  public sc2Matches: Observable<TournamentSC2Match[]>;
-  public csgoMatches: Observable<TournamentCSGOMatch[]>;
+  public registrations!: Observable<TournamentParticipant[]>;
+  public sc2Matches!: Observable<TournamentSC2Match[]>;
+  public csgoMatches!: Observable<TournamentCSGOMatch[]>;
   public loadingRegistrations: Observable<boolean>;
 
   public isOwner = computed(() => {

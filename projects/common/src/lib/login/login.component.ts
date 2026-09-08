@@ -12,6 +12,7 @@ import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
 import { LoginDialogComponent } from './login-dialog/login-dialog.component';
 import { UserPreferencesComponent } from './user-preferences/user-preferences.component';
+import { IgxCardHeaderTitleDirective, IgxCardHeaderSubtitleDirective } from "@infragistics/igniteui-angular/card";
 
 
 
@@ -29,20 +30,22 @@ import { UserPreferencesComponent } from './user-preferences/user-preferences.co
     IgxAvatarComponent,
     IgxDropDownComponent,
     IGX_TABS_DIRECTIVES,
-    UserPreferencesComponent
-  ]
+    UserPreferencesComponent,
+    IgxCardHeaderTitleDirective,
+    IgxCardHeaderSubtitleDirective
+]
 })
 export class LoginComponent {
   private authManager = inject(LoginService);
   private router = inject(Router);
 
   @ViewChild(LoginDialogComponent, { static: true })
-  public dialog: LoginDialogComponent;
+  public dialog!: LoginDialogComponent;
 
   @ViewChild(IgxDropDownComponent, { static: false })
-  public userProfile: IgxDropDownComponent;
+  public userProfile!: IgxDropDownComponent;
 
-  public authUser: ApplicationUser;
+  public authUser!: ApplicationUser;
 
   public overlaySettings = GLOBAL_OVERLAY_SETTINGS;
   public userCheck = false;

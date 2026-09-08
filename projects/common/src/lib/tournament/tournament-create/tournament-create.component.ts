@@ -38,7 +38,7 @@ export class TournamentCreateComponent {
 
   public saving = signal(false);
   public isEditMode = signal(false);
-  public tournamentId = signal<string | null>(null);
+  public tournamentId = signal<string>('');
 
   public games = GAMES;
   public visibilityOptions = [
@@ -88,10 +88,11 @@ export class TournamentCreateComponent {
     const value = this.form.value;
 
     const tournament: Tournament = {
-      name: value.name,
+      id: '',
+      name: value.name || '',
       description: value.description || undefined,
       game: value.game ?? undefined,
-      visibility: value.visibility,
+      visibility: value.visibility || TournamentVisibility.Public,
       startDate: value.startDate || undefined,
       endDate: value.endDate || undefined,
       maxParticipants: value.maxParticipants || undefined,

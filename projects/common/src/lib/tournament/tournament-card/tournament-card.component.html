@@ -1,7 +1,7 @@
 <igx-card elevated class="tournament-card">
   @if (tournament().logo) {
     <igx-card-media height="180px">
-      <img [ngSrc]="tournament().logo" width="352" height="180" [alt]="tournament().name" priority />
+      <img [ngSrc]="tournament().logo || ''" width="352" height="180" [alt]="tournament().name" priority />
     </igx-card-media>
   } @else {
     <igx-card-media height="180px">
@@ -34,7 +34,7 @@
       </igx-chip>
 
       @if (statusLabel) {
-        <igx-chip [selectable]="false" [removable]="false" [class]="'status-' + tournament().status">
+        <igx-chip [selectable]="false" [removable]="false" [class.status-open]="tournament().status === 'open'" [class.status-in-progress]="tournament().status === 'in-progress'" [class.status-completed]="tournament().status === 'completed'" [class.status-cancelled]="tournament().status === 'cancelled'" [class.status-draft]="tournament().status === 'draft'">
           {{ statusLabel }}
         </igx-chip>
       }

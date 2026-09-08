@@ -4,7 +4,7 @@ import { Router, NavigationEnd, RouterLink, RouterLinkActive, RouterOutlet, Acti
 import { filter } from 'rxjs/operators';
 
 import { IgxNavDrawerItemDirective, IgxNavDrawerMiniTemplateDirective, IgxNavDrawerTemplateDirective, IgxNavigationDrawerComponent } from '@infragistics/igniteui-angular/navigation-drawer';
-import { IgxDividerDirective, IgxFlexDirective, IgxLayoutDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
+import { IgxDividerComponent, IgxFlexDirective, IgxLayoutDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxIconComponent, IgxIconService } from '@infragistics/igniteui-angular/icon';
 import { IgxNavbarActionDirective, IgxNavbarComponent } from '@infragistics/igniteui-angular/navbar';
 import { changei18n } from '@infragistics/igniteui-angular/core';
@@ -20,8 +20,7 @@ import { LanguagesComponent } from '../../../common/src/lib/languages/languages.
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  imports: [
+  styleUrls: ['./app.component.scss'],  imports: [
     IgxLayoutDirective,
     IgxNavigationDrawerComponent,
     IgxNavDrawerTemplateDirective,
@@ -39,7 +38,7 @@ import { LanguagesComponent } from '../../../common/src/lib/languages/languages.
     LoginComponent,
     SuccessErrorComponent,
     RouterOutlet,
-    IgxDividerDirective
+    IgxDividerComponent
   ]
 })
 export class AppComponent implements OnInit {

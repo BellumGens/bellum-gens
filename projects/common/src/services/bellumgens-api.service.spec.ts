@@ -9,7 +9,7 @@ import { CSGOMap, CSGOMapPool } from '../models/csgomaps';
 import { NotificationState, UserNotification } from '../models/usernotifications';
 import { CommunicationService } from './communication.service';
 import { ApplicationUser } from '../public_api';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 
 describe('BellumgensApiService', () => {
@@ -20,7 +20,7 @@ describe('BellumgensApiService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
     imports: [],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+    providers: [provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
 });
     service = TestBed.inject(BellumgensApiService);
     httpMock = TestBed.inject(HttpTestingController);

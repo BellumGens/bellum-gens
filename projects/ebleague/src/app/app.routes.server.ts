@@ -18,6 +18,10 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Client
   },
   {
+    path: 'tournaments/hub',
+    renderMode: RenderMode.Client
+  },
+  {
     path: 'tournaments/view/:tournamentId',
     renderMode: RenderMode.Client
   },

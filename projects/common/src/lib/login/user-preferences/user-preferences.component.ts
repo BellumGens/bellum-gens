@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, inject } from '@angular/core';
+import { Component, EventEmitter, Output, inject, signal } from '@angular/core';
 import { UserPreferences, ApplicationUser } from '../../../models/applicationuser';
 import { LoginService } from '../../../services/login.service';
 import { LoginProvider } from '../../../models/login-provider';
@@ -8,7 +8,7 @@ import { ApiTournamentsService } from '../../../services/bellumgens-api.tourname
 import { Router } from '@angular/router';
 import { ConfirmComponent } from '../../confirm/confirm.component';
 import { FormsModule } from '@angular/forms';
-import { IgxButtonDirective, IgxDividerDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
+import { IgxButtonDirective, IgxDividerComponent, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { IgxSwitchComponent } from '@infragistics/igniteui-angular/switch';
 import { IGX_LIST_DIRECTIVES } from '@infragistics/igniteui-angular/list';
@@ -23,7 +23,7 @@ import { environment } from '../../../environments/environment';
     IgxButtonDirective,
     IgxRippleDirective,
     IgxIconComponent,
-    IgxDividerDirective,
+    IgxDividerComponent,
     IgxSwitchComponent,
     FormsModule,
     IGX_LIST_DIRECTIVES,
@@ -36,16 +36,16 @@ export class UserPreferencesComponent {
   private apiService = inject(ApiTournamentsService);
   private router = inject(Router);
 
-  public preferences: UserPreferences = {
+  public preferences = signal<UserPreferences>({
     searchVisible: true,
     email: ''
-  };
+  });
 
   public loginColors = LOGIN_ASSETS;
-  public providers: LoginProvider[];
-  public authUser: ApplicationUser;
-  public registrations: TournamentApplication [];
-  public isTournamentAdmin = false;
+  public providers = signal<LoginProvider []>([]);
+  public authUser = signal<ApplicationUser | null>(null);
+  public registrations = signal<TournamentApplication []>([]);
+  public isTournamentAdmin = signal(false);
   public regStates = [$localize`Pending`, $localize`Confirmed`, $localize`Banned`];
 
   @Output()
@@ -54,30 +54,39 @@ export class UserPreferencesComponent {
   constructor() {
     this.authManager.applicationUser.subscribe(user => {
       if (user) {
-        this.preferences = {
+        this.preferences.set({
           searchVisible: user.searchVisible,
           email: user.email
-        };
-        this.authManager.tournamentRegistrations.subscribe(data => this.registrations = data);
-        this.authUser = user;
-        this.authManager.getUserIsTournamentAdmin().subscribe(data => this.isTournamentAdmin = data);
+        });
+        this.authManager.tournamentRegistrations.subscribe(data => {
+          if (data) {
+            this.registrations.set(data);
+          }
+        });
+        this.authUser.set(user);
+        this.authManager.getUserIsTournamentAdmin().subscribe(data => this.isTournamentAdmin.set(data));
       }
     });
-    this.authManager.loginProviders.subscribe(providers => this.providers = providers);
+    this.authManager.loginProviders.subscribe(providers => this.providers.set(providers));
   }
 
   public login(provider: LoginProvider) {
     this.authManager.login(provider);
   }
 
+  public setSearchVisible(searchVisible: boolean) {
+    this.preferences.update(preferences => ({ ...preferences, searchVisible }));
+    this.submitPreferences();
+  }
+
   public submitPreferences() {
-    this.authManager.updateUserPreferences(this.preferences).subscribe({
+    this.authManager.updateUserPreferences(this.preferences()).subscribe({
       error: () => {}
     });
   }
 
   public deleteAccount() {
-    this.authManager.deleteAccount(this.authUser.id).subscribe({
+    this.authManager.deleteAccount(this.authUser().id).subscribe({
       next: () => {
         this.userDeleted.emit();
       },
@@ -97,14 +106,16 @@ export class UserPreferencesComponent {
   public deleteRegistration(registration: TournamentApplication) {
     this.apiService.deleteRegistration(registration.id).subscribe({
       next: () => {
-        this.registrations.splice(this.registrations.indexOf(registration), 1);
+        const registrations = this.registrations();
+        registrations.splice(registrations.indexOf(registration), 1);
+        this.registrations.set([...registrations]);
       },
       error: () => {}
     });
   }
 
   public disableLogin(provider: string) {
-    return this.authUser ? this.authUser.externalLogins.includes(provider) : false;
+    return this.authUser() ? this.authUser().externalLogins.includes(provider) : false;
   }
 
   public openRegistration() {

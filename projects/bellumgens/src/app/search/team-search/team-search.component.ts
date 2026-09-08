@@ -10,8 +10,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-team-search',
   templateUrl: './team-search.component.html',
-  styleUrls: ['./team-search.component.scss'],
-  imports: [
+  styleUrls: ['./team-search.component.scss'],  imports: [
     FormsModule,
     IGX_RADIO_GROUP_DIRECTIVES,
     IGX_SLIDER_DIRECTIVES,

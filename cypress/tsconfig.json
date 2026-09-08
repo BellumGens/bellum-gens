@@ -3,6 +3,10 @@
   "include": ["**/*.ts"],
   "exclude": [],
   "compilerOptions": {
+    // TypeScript 6 (TS5011) requires an explicit rootDir whenever outDir is set (inherited from the
+    // root config) and the compiled files do not share the config's directory. Cypress compiles each
+    // spec on its own through ts-loader, so the computed root would otherwise be e.g. ./e2e.
+    "rootDir": "..",
     "sourceMap": false,
     "types": ["cypress", "node"]
   }

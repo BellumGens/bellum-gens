@@ -24,8 +24,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-new-strategy',
   templateUrl: './new-strategy.component.html',
-  styleUrls: ['./new-strategy.component.scss'],
-  imports: [
+  styleUrls: ['./new-strategy.component.scss'],  imports: [
     IGX_DIALOG_DIRECTIVES,
     FormsModule,
     IGX_INPUT_GROUP_DIRECTIVES,

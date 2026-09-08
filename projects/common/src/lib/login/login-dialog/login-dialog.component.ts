@@ -1,6 +1,6 @@
-import { Component, ViewChild, inject } from '@angular/core';
+import { Component, ViewChild, inject, ChangeDetectorRef } from '@angular/core';
 import { IgxDialogComponent } from '@infragistics/igniteui-angular/dialog';
-import { IgxButtonDirective, IgxDividerDirective } from '@infragistics/igniteui-angular/directives';
+import { IgxButtonDirective, IgxDividerComponent } from '@infragistics/igniteui-angular/directives';
 import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { IgxCheckboxComponent } from '@infragistics/igniteui-angular/checkbox';
@@ -17,7 +17,7 @@ import { LoginButtonsComponent } from '../login-buttons/login-buttons.component'
     imports: [
       IgxDialogComponent,
       LoginButtonsComponent,
-      IgxDividerDirective,
+      IgxDividerComponent,
       FormsModule,
       IGX_INPUT_GROUP_DIRECTIVES,
       IgxIconComponent,
@@ -28,6 +28,7 @@ import { LoginButtonsComponent } from '../login-buttons/login-buttons.component'
 export class LoginDialogComponent {
   private authManager = inject(LoginService);
   private router = inject(Router);
+  private cdr = inject(ChangeDetectorRef);
 
   @ViewChild(IgxDialogComponent, { static: true })
   public dialog: IgxDialogComponent;
@@ -41,6 +42,7 @@ export class LoginDialogComponent {
 
   public openLogin() {
     this.dialog.open();
+    this.cdr.markForCheck();
   }
 
   public openRegistration() {

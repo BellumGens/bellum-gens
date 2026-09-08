@@ -12,7 +12,7 @@
       <div class="hero-content">
         <div class="hero-info">
           <div class="hero-badges">
-            <igx-chip [selectable]="false" [removable]="false" [class]="'status-' + t.status">
+            <igx-chip [selectable]="false" [removable]="false" [class.status-open]="t.status === 'open'" [class.status-in-progress]="t.status === 'in-progress'" [class.status-completed]="t.status === 'completed'" [class.status-cancelled]="t.status === 'cancelled'" [class.status-draft]="t.status === 'draft'">
               {{ statusLabel }}
             </igx-chip>
             <igx-chip [selectable]="false" [removable]="false">
@@ -99,8 +99,8 @@
               @for (reg of registrations | async; track reg.id) {
                 <div class="participant-card">
                   <igx-avatar
-                    [src]="reg.user?.sc2Details?.avatarUrl || reg.user?.steamUser?.avatarFull"
-                    [initials]="reg.user?.username"
+                    [src]="reg.user?.sc2Details?.avatarUrl || reg.user?.steamUser?.avatarFull || ''"
+                    [initials]="reg.user?.username || ''"
                     size="large"
                     shape="circle">
                   </igx-avatar>
@@ -135,20 +135,20 @@
                 <div class="match-row">
                   <div class="match-time">{{ match.startTime | date:'MMM d, h:mm a' }}</div>
                   <div class="match-players">
-                    <div class="player" [class.winner]="match.player1Points > match.player2Points">
-                      <igx-avatar [src]="match.player1?.avatarUrl" [initials]="match.player1?.username" size="small" shape="circle"></igx-avatar>
+                    <div class="player" [class.winner]="(match.player1Points || 0) > (match.player2Points || 0)">
+                      <igx-avatar [src]="match.player1?.avatarUrl || ''" [initials]="match.player1?.username || ''" size="small" shape="circle"></igx-avatar>
                       <span>{{ match.player1?.username }}</span>
                       @if (match.player1Race) {
                         <igx-avatar [src]="match.player1Race | raceIcon" shape="circle" class="race-icon"></igx-avatar>
                       }
                     </div>
                     <div class="match-score">
-                      <span [class.winner]="match.player1Points > match.player2Points">{{ match.player1Points }}</span>
+                      <span [class.winner]="(match.player1Points || 0) > (match.player2Points || 0)">{{ match.player1Points }}</span>
                       <span class="vs">:</span>
-                      <span [class.winner]="match.player2Points > match.player1Points">{{ match.player2Points }}</span>
+                      <span [class.winner]="(match.player2Points || 0) > (match.player1Points || 0)">{{ match.player2Points }}</span>
                     </div>
-                    <div class="player" [class.winner]="match.player2Points > match.player1Points">
-                      <igx-avatar [src]="match.player2?.avatarUrl" [initials]="match.player2?.username" size="small" shape="circle"></igx-avatar>
+                    <div class="player" [class.winner]="(match.player2Points || 0) > (match.player1Points || 0)">
+                      <igx-avatar [src]="match.player2?.avatarUrl || ''" [initials]="match.player2?.username || ''" size="small" shape="circle"></igx-avatar>
                       <span>{{ match.player2?.username }}</span>
                       @if (match.player2Race) {
                         <igx-avatar [src]="match.player2Race | raceIcon" shape="circle" class="race-icon"></igx-avatar>

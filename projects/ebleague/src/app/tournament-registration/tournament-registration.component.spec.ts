@@ -6,7 +6,7 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideRouter } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 describe('TournamentRegistrationComponent', () => {
   let component: TournamentRegistrationComponent;
@@ -19,7 +19,7 @@ describe('TournamentRegistrationComponent', () => {
         ServiceWorkerModule.register('', { enabled: false }),
         TournamentRegistrationComponent],
     providers: [
-      provideHttpClient(withInterceptorsFromDi()),
+      provideHttpClient(withXhr(), withInterceptorsFromDi()),
       provideHttpClientTesting(),
       provideRouter([])
     ]

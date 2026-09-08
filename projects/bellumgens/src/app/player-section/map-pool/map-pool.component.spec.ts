@@ -30,8 +30,8 @@ describe('MapPoolComponent', () => {
       { mapId: 3, isPlayed: true }
     ];
 
-    expect(component.maps.find(m => m.mapId === 1).isPlayed).toBeTrue();
-    expect(component.maps.find(m => m.mapId === 2).isPlayed).toBeFalse();
-    expect(component.maps.find(m => m.mapId === 3).isPlayed).toBeTrue();
+    expect(component.maps.find(m => m.mapId === 1).isPlayed).toBe(true);
+    expect(component.maps.find(m => m.mapId === 2).isPlayed).toBe(false);
+    expect(component.maps.find(m => m.mapId === 3).isPlayed).toBe(true);
   });
 });

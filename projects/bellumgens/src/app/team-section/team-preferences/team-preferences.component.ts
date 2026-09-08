@@ -19,8 +19,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-team-preferences',
   templateUrl: './team-preferences.component.html',
-  styleUrls: ['./team-preferences.component.css'],
-  imports: [
+  styleUrls: ['./team-preferences.component.css'],  imports: [
     FormsModule,
     IGX_INPUT_GROUP_DIRECTIVES,
     IgxIconComponent,

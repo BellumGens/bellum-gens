@@ -6,7 +6,7 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { TeamNewComponent } from './team-new.component';
 import { ApplicationUser, BellumgensApiService, CSGOTeam, EMPTY_NEW_TEAM, SteamGroup } from 'bellum-gens-common';
 import { Router } from '@angular/router';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 describe('TeamNewComponent', () => {
   let component: TeamNewComponent;
@@ -50,7 +50,7 @@ describe('TeamNewComponent', () => {
         NoopAnimationsModule,
         TeamNewComponent
       ],
-      providers: [provideRouter([]), provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+      providers: [provideRouter([]), provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
     })
     .compileComponents();
     httpMock = TestBed.inject(HttpTestingController);
@@ -79,32 +79,32 @@ describe('TeamNewComponent', () => {
   });
 
   it('should create a team from a Steam group', () => {
-    spyOn(router, 'navigate');
+    vi.spyOn(router, 'navigate').mockImplementation(() => undefined);
     component.createFromSteam(mockGroup);
     const req = httpMock.expectOne(`${apiService["_apiEndpoint"]}/teams/team`);
     expect(req.request.method).toBe('POST');
     expect(req.request.body).toEqual(mockGroup);
-    expect(req.request.withCredentials).toBeTrue();
-    expect(component.inProgress).toBeTrue();
+    expect(req.request.withCredentials).toBe(true);
+    expect(component.inProgress).toBe(true);
     req.flush(mockTeam);
-    expect(component.inProgress).toBeFalse();
+    expect(component.inProgress).toBe(false);
     expect(router.navigate).toHaveBeenCalledWith(['/team', mockTeam.customUrl]);
-    expect(component.createTeam.isCollapsed).toBeTrue();
+    expect(component.createTeam.isCollapsed).toBe(true);
   });
 
   it('should create a team from the form', () => {
-    spyOn(router, 'navigate');
+    vi.spyOn(router, 'navigate').mockImplementation(() => undefined);
     component.newTeam.teamName = 'Test Team';
     component.newTeam.description = 'Test Description';
     component.createFromForm();
     const req = httpMock.expectOne(`${apiService["_apiEndpoint"]}/teams/newteam`);
     expect(req.request.method).toBe('POST');
     expect(req.request.body).toEqual(component.newTeam);
-    expect(req.request.withCredentials).toBeTrue();
-    expect(component.inProgress).toBeTrue();
+    expect(req.request.withCredentials).toBe(true);
+    expect(component.inProgress).toBe(true);
     req.flush(mockTeam);
-    expect(component.inProgress).toBeFalse();
-    expect(component.createTeam.isCollapsed).toBeTrue();
+    expect(component.inProgress).toBe(false);
+    expect(component.createTeam.isCollapsed).toBe(true);
     expect(router.navigate).toHaveBeenCalledWith(['/team', mockTeam.customUrl]);
   });
 });

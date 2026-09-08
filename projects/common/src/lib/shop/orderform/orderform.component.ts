@@ -5,7 +5,7 @@ import { ISelectionEventArgs } from '@infragistics/igniteui-angular/drop-down';
 import { IGX_SELECT_DIRECTIVES } from '@infragistics/igniteui-angular/select';
 import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
-import { IgxButtonDirective, IgxDividerDirective, IgxMaskDirective, IgxTextSelectionDirective } from '@infragistics/igniteui-angular/directives';
+import { IgxButtonDirective, IgxDividerComponent, IgxMaskDirective, IgxTextSelectionDirective } from '@infragistics/igniteui-angular/directives';
 import { FilterSizesPipe } from '../../pipes/filter-sizes.pipe';
 import { ApiShopService } from '../../../public_api';
 import { EMPTY_JERSEY_ORDER, JerseyCut, ProductOrderDetails, Order, JerseySize } from '../../../models/order';
@@ -13,13 +13,12 @@ import { EMPTY_JERSEY_ORDER, JerseyCut, ProductOrderDetails, Order, JerseySize }
 @Component({
   selector: 'bg-orderform',
   templateUrl: './orderform.component.html',
-  styleUrls: ['./orderform.component.scss'],
-  imports: [
+  styleUrls: ['./orderform.component.scss'],  imports: [
     FormsModule,
     IGX_SELECT_DIRECTIVES,
     IGX_INPUT_GROUP_DIRECTIVES,
     IgxIconComponent,
-    IgxDividerDirective,
+    IgxDividerComponent,
     IgxButtonDirective,
     IgxMaskDirective,
     IgxTextSelectionDirective,

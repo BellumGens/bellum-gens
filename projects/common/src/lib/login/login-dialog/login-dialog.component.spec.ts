@@ -9,7 +9,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { ApplicationUser, CommunicationService, LoginService } from '../../../public_api';
 
 import { LoginDialogComponent } from './login-dialog.component';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 describe('LoginDialogComponent', () => {
   let component: LoginDialogComponent;
@@ -40,7 +40,7 @@ describe('LoginDialogComponent', () => {
         NoopAnimationsModule,
         ServiceWorkerModule.register('', { enabled: false }),
         LoginDialogComponent],
-    providers: [provideRouter([]), provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+    providers: [provideRouter([]), provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
 })
     .compileComponents();
 
@@ -69,21 +69,21 @@ describe('LoginDialogComponent', () => {
   });
 
   it('should open the login dialog', () => {
-    spyOn(component.dialog, 'open');
+    vi.spyOn(component.dialog, 'open').mockImplementation(() => undefined);
     component.openLogin();
     expect(component.dialog.open).toHaveBeenCalled();
   });
 
   it('should open the registration dialog', () => {
-    spyOn(component.dialog, 'close');
-    spyOn(router, 'navigate');
+    vi.spyOn(component.dialog, 'close').mockImplementation(() => undefined);
+    vi.spyOn(router, 'navigate').mockImplementation(() => undefined);
     component.openRegistration();
     expect(component.dialog.close).toHaveBeenCalled();
     expect(router.navigate).toHaveBeenCalledWith(['register']);
   });
 
   it('should perform login with form data', () => {
-    spyOn(component.dialog, 'close');
+    vi.spyOn(component.dialog, 'close').mockImplementation(() => undefined);
     // Set form data
     component.logininfo.username = 'testuser';
     component.logininfo.password = 'testpassword';
@@ -109,7 +109,7 @@ describe('LoginDialogComponent', () => {
   });
 
   it('should show error message when login fails with backend error', () => {
-    spyOn(component.dialog, 'close');
+    vi.spyOn(component.dialog, 'close').mockImplementation(() => undefined);
     const errorMessage = 'Invalid username or password';
     let errorEmitted = false;
 
@@ -138,7 +138,7 @@ describe('LoginDialogComponent', () => {
   });
 
   it('should show default error message when login fails without specific backend error', () => {
-    spyOn(component.dialog, 'close');
+    vi.spyOn(component.dialog, 'close').mockImplementation(() => undefined);
     let errorEmitted = false;
 
     // Set form data
@@ -166,7 +166,7 @@ describe('LoginDialogComponent', () => {
   });
 
   it('should show error message when login fails with network error', fakeAsync(() => {
-    spyOn(component.dialog, 'close');
+    vi.spyOn(component.dialog, 'close').mockImplementation(() => undefined);
     let errorEmitted = false;
     let capturedMessage = '';
 

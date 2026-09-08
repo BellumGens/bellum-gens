@@ -29,7 +29,9 @@
         <igx-prefix><igx-icon>description</igx-icon></igx-prefix>
       </igx-input-group>
 
-      <igx-select formControlName="game" placeholder="Select game" i18n-placeholder>
+      <!-- IgxSelect: default positioning changed to AutoPositionStrategy (below/above input).
+     To preserve overlap behavior: this.select.overlaySettings = { positionStrategy: new IgxSelectOverlapPositionStrategy(this.select) }; -->
+<igx-select type="border" formControlName="game" placeholder="Select game" i18n-placeholder>
         <label igxLabel i18n>Game</label>
         @for (game of games; track game.id) {
           <igx-select-item [value]="game.id">{{ game.name }}</igx-select-item>
@@ -41,11 +43,11 @@
       <h3 i18n>Schedule</h3>
 
       <div class="form-row">
-        <igx-date-picker formControlName="startDate" i18n-placeholder placeholder="Start Date">
+        <igx-date-picker type="border" formControlName="startDate" i18n-placeholder placeholder="Start Date">
           <label igxLabel i18n>Start Date</label>
         </igx-date-picker>
 
-        <igx-date-picker formControlName="endDate" i18n-placeholder placeholder="End Date">
+        <igx-date-picker type="border" formControlName="endDate" i18n-placeholder placeholder="End Date">
           <label igxLabel i18n>End Date</label>
         </igx-date-picker>
       </div>
@@ -54,7 +56,9 @@
     <section class="form-section">
       <h3 i18n>Settings</h3>
 
-      <igx-select formControlName="visibility" placeholder="Visibility" i18n-placeholder>
+      <!-- IgxSelect: default positioning changed to AutoPositionStrategy (below/above input).
+     To preserve overlap behavior: this.select.overlaySettings = { positionStrategy: new IgxSelectOverlapPositionStrategy(this.select) }; -->
+<igx-select type="border" formControlName="visibility" placeholder="Visibility" i18n-placeholder>
         <label igxLabel i18n>Visibility</label>
         @for (opt of visibilityOptions; track opt.value) {
           <igx-select-item [value]="opt.value">

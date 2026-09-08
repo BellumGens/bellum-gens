@@ -4,7 +4,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { AdminGuard } from './admin.guard';
 import { LoginService } from '../services/login.service';
 import { Observable } from 'rxjs';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 
 
@@ -18,7 +18,7 @@ describe('AdminGuard', () => {
       imports: [
         ServiceWorkerModule.register('', { enabled: false })
       ],
-      providers: [AdminGuard, LoginService, provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+      providers: [AdminGuard, LoginService, provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
     });
 
     guard = TestBed.inject(AdminGuard);

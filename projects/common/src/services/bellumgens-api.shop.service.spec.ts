@@ -3,7 +3,7 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { ApiShopService } from './bellumgens-api.shop.service';
 import { JerseyCut, Order, JerseySize, Promo, ProductOrderDetails } from '../models/order';
 import { CommunicationService } from './communication.service';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 
 
@@ -15,7 +15,7 @@ describe('ApiShopService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
     imports: [],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+    providers: [provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
 });
     service = TestBed.inject(ApiShopService);
     httpMock = TestBed.inject(HttpTestingController);
@@ -54,7 +54,7 @@ describe('ApiShopService', () => {
       const errorMessage = `Http failure response for ${service['_apiEndpoint']}/shop/order?orderId=${orderId}: 500 Could not delete order!`;
       commsService.error.subscribe(message => expect(message).toEqual(errorMessage));
       service.deleteOrder(orderId).subscribe({
-        next: () => fail('Should not succeed'),
+        next: () => expect.fail('Should not succeed'),
         error: error => expect(error.message).toEqual(errorMessage)
       });
       const req2 = httpMock.expectOne(`${service['_apiEndpoint']}/shop/order?orderId=${orderId}`);
@@ -99,7 +99,7 @@ describe('ApiShopService', () => {
       const errorMessage = `Http failure response for ${service['_apiEndpoint']}/shop/edit?orderId=${order.id}: 500 Could not confirm order!`;
       commsService.error.subscribe(message => expect(message).toEqual(errorMessage));
       service.confirmOrder(order).subscribe({
-        next: () => fail('Should not succeed'),
+        next: () => expect.fail('Should not succeed'),
         error: error => expect(error.message).toEqual(errorMessage)
       });
       const req2 = httpMock.expectOne(`${service['_apiEndpoint']}/shop/edit?orderId=${order.id}`);

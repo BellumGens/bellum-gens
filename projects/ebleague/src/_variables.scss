@@ -1,5 +1,6 @@
 @use '@infragistics/igniteui-angular/theming' as igx;
 @forward '@infragistics/igniteui-angular/theming';
+@forward '../../common/src/grid-theme';
 
 $primary: #2176FF;
 $secondary: #F9B218;

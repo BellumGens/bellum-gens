@@ -20,8 +20,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-player-search',
   templateUrl: './player-search.component.html',
-  styleUrls: ['./player-search.component.scss'],
-  imports: [
+  styleUrls: ['./player-search.component.scss'],  imports: [
     FormsModule,
     IGX_RADIO_GROUP_DIRECTIVES,
     IGX_SELECT_DIRECTIVES,

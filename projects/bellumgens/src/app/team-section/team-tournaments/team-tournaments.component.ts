@@ -11,8 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 @Component({
     selector: 'app-team-tournaments',
     templateUrl: './team-tournaments.component.html',
-    styleUrls: ['./team-tournaments.component.scss'],
-    imports: []
+    styleUrls: ['./team-tournaments.component.scss'],    imports: []
 })
 export class TeamTournamentsComponent {
   private apiService = inject(BellumgensApiService);

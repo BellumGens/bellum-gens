@@ -45,7 +45,7 @@ describe('StrategyEditor', () => {
       circle: false
     };
     const imageLayer2 = strategyEditor.createLayer(EditorLayerType.Image, meta);
-    expect(imageLayer2 instanceof ImageLayer).toBeTrue();
+    expect(imageLayer2 instanceof ImageLayer).toBe(true);
     expect(imageLayer2).toBeTruthy();
     strategyEditor.addLayer(imageLayer2);
     expect(strategyEditor.layers.length).toBe(2);
@@ -54,7 +54,7 @@ describe('StrategyEditor', () => {
 
   it('should create and add a new freeflow layer', () => {
     const freeflowLayer = strategyEditor.createFreeflowLayer();
-    const spy = spyOn(strategyEditor, 'flip');
+    const spy = vi.spyOn(strategyEditor, 'flip').mockImplementation(() => undefined);
     expect(freeflowLayer).toBeTruthy();
     strategyEditor.addLayer(freeflowLayer);
     expect(spy).toHaveBeenCalled();

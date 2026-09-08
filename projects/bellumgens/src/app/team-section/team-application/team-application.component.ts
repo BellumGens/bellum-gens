@@ -15,8 +15,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-team-application',
   templateUrl: './team-application.component.html',
-  styleUrls: ['./team-application.component.scss'],
-  imports: [
+  styleUrls: ['./team-application.component.scss'],  imports: [
     IgxButtonDirective,
     IgxRippleDirective,
     IgxDialogComponent,

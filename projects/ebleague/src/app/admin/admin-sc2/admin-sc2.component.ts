@@ -40,8 +40,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-admin-sc2',
   templateUrl: './admin-sc2.component.html',
-  styleUrls: ['./admin-sc2.component.scss'],
-  imports: [
+  styleUrls: ['./admin-sc2.component.scss'],  imports: [
     IGX_SELECT_DIRECTIVES,
     FormsModule,
     NgClass,

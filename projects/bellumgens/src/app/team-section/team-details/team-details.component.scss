@@ -2,17 +2,22 @@
 
 :host {
   .empty-role {
-    $empty-role-avatar: avatar-theme($color: var(--ig-gray-900), $size: 88px);
-    @include tokens($empty-role-avatar);
+    $empty-role-avatar: avatar-theme(
+      $schema: $dark-material-schema,
+      $color: var(--ig-gray-900),
+      $size: 88px
+    );
+    @include tokens($empty-role-avatar, $mode: 'scoped');
   }
 
   .empty-role-active {
     --my-color: var(--ig-primary-600);
     $empty-role-active-avatar: avatar-theme(
+      $schema: $dark-material-schema,
       $color: var(--my-color),
       $background: hsl(from var(--ig-gray-900) h s l / 0.15)
     );
-    @include tokens($empty-role-active-avatar);
+    @include tokens($empty-role-active-avatar, $mode: 'scoped');
     box-shadow: inset 0 0 0 2px var(--my-color);
   }
 

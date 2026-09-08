@@ -19,7 +19,9 @@
           </igx-radio-group>
         </div>
         @if (userOverlap && teamAdmin.length) {
-          <igx-select name="teamOverlap" [(ngModel)]="searchModel.teamId">
+          <!-- IgxSelect: default positioning changed to AutoPositionStrategy (below/above input).
+     To preserve overlap behavior: this.select.overlaySettings = { positionStrategy: new IgxSelectOverlapPositionStrategy(this.select) }; -->
+<igx-select type="border" name="teamOverlap" [(ngModel)]="searchModel.teamId">
             <label for="team-select" igxLabel i18n>Select team</label>
             @for (team of teamAdmin; track team.teamId) {
               <igx-select-item

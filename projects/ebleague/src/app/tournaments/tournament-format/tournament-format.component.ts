@@ -5,8 +5,7 @@ import { IgxButtonModule, IgxDividerModule } from '@infragistics/igniteui-angula
 @Component({
     selector: 'app-tournament-format',
     templateUrl: './tournament-format.component.html',
-    styleUrls: ['./tournament-format.component.scss'],
-    imports: [IgxButtonModule, RouterLink, IgxDividerModule]
+    styleUrls: ['./tournament-format.component.scss'],    imports: [IgxButtonModule, RouterLink, IgxDividerModule]
 })
 export class TournamentFormatComponent {
   public compStart = '28ми септември 2020';

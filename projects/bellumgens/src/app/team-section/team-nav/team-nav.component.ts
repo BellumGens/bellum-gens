@@ -18,8 +18,7 @@ import { AsyncPipe } from '@angular/common';
 @Component({
   selector: 'app-team-nav',
   templateUrl: './team-nav.component.html',
-  styleUrls: ['./team-nav.component.scss'],
-  imports: [
+  styleUrls: ['./team-nav.component.scss'],  imports: [
     IgxButtonDirective,
     IgxRippleDirective,
     IgxIconComponent,

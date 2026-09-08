@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 import { ApiSearchService } from './bellumgens-api.search.service';
 import { CommunicationService } from './communication.service';
 import { ApplicationUser, CSGOMap, CSGOTeam, SearchResult, Side } from '../public_api';
-import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 
 describe('ApiSearchService', () => {
@@ -14,7 +14,7 @@ describe('ApiSearchService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
     imports: [],
-    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+    providers: [provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
 });
     service = TestBed.inject(ApiSearchService);
     commService = TestBed.inject(CommunicationService);
