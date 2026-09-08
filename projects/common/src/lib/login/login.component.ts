@@ -12,6 +12,7 @@ import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
 import { LoginDialogComponent } from './login-dialog/login-dialog.component';
 import { UserPreferencesComponent } from './user-preferences/user-preferences.component';
+import { IgxCardHeaderTitleDirective, IgxCardHeaderSubtitleDirective } from "@infragistics/igniteui-angular/card";
 
 
 
@@ -29,8 +30,10 @@ import { UserPreferencesComponent } from './user-preferences/user-preferences.co
     IgxAvatarComponent,
     IgxDropDownComponent,
     IGX_TABS_DIRECTIVES,
-    UserPreferencesComponent
-  ]
+    UserPreferencesComponent,
+    IgxCardHeaderTitleDirective,
+    IgxCardHeaderSubtitleDirective
+]
 })
 export class LoginComponent {
   private authManager = inject(LoginService);
