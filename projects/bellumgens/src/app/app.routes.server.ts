@@ -69,6 +69,28 @@ export const serverRoutes: ServerRoute[] = [
     path: 'tournaments/**',
     renderMode: RenderMode.Client
   },
+  // The catalog is rendered on the server so products are crawlable; the cart, checkout and
+  // order pages depend on browser state (localStorage, the payment redirect) and render on the client.
+  {
+    path: 'shop',
+    renderMode: RenderMode.Server
+  },
+  {
+    path: 'shop/product/:slug',
+    renderMode: RenderMode.Server
+  },
+  {
+    path: 'shop/cart',
+    renderMode: RenderMode.Client
+  },
+  {
+    path: 'shop/checkout',
+    renderMode: RenderMode.Client
+  },
+  {
+    path: 'shop/order/:id',
+    renderMode: RenderMode.Client
+  },
   {
     path: '**',
     renderMode: RenderMode.Prerender

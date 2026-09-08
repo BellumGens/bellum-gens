@@ -5301,6 +5301,970 @@
           <context context-type="linenumber">169,170</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="1147358182484006761" datatype="html">
+        <source>Shop</source>
+        <target>Магазин</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/app.component.html</context>
+          <context context-type="linenumber">40,41</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/app.component.html</context>
+          <context context-type="linenumber">83</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4398863504443682316" datatype="html">
+        <source>Cart</source>
+        <target>Кошница</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/cart-badge/cart-badge.component.ts</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/cart-badge/cart-badge.component.ts</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3892726426312426643" datatype="html">
+        <source>Your cart</source>
+        <target>Вашата кошница</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
+          <context context-type="linenumber">2,4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5609220492185313571" datatype="html">
+        <source>Your cart is empty.</source>
+        <target>Кошницата ви е празна.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
+          <context context-type="linenumber">7,8</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">6,7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3572620848660813145" datatype="html">
+        <source>Browse the shop</source>
+        <target>Към магазина</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
+          <context context-type="linenumber">8,9</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">7,8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6762504134540024018" datatype="html">
+        <source>Quantity</source>
+        <target>Количество</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
+          <context context-type="linenumber">32,33</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/product-detail/product-detail.component.html</context>
+          <context context-type="linenumber">93,94</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5976972428645972794" datatype="html">
+        <source>Decrease quantity</source>
+        <target>Намали количеството</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
+          <context context-type="linenumber">33,34</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/product-detail/product-detail.component.html</context>
+          <context context-type="linenumber">94,95</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3783103111649205344" datatype="html">
+        <source>Increase quantity</source>
+        <target>Увеличи количеството</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
+          <context context-type="linenumber">37,38</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/product-detail/product-detail.component.html</context>
+          <context context-type="linenumber">98,99</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8576059747584995089" datatype="html">
+        <source>Remove from cart</source>
+        <target>Премахни от кошницата</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
+          <context context-type="linenumber">42,43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7372755454773589030" datatype="html">
+        <source>Delivery</source>
+        <target>Доставка</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
+          <context context-type="linenumber">50,51</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
+          <context context-type="linenumber">112,113</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1943153960391120303" datatype="html">
+        <source>Promo code</source>
+        <target>Промо код</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
+          <context context-type="linenumber">57,58</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
+          <context context-type="linenumber">61,62</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2808523933915213618" datatype="html">
+        <source>Clear promo code</source>
+        <target>Изчисти промо кода</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
+          <context context-type="linenumber">64,65</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5910548035629840004" datatype="html">
+        <source>Promo code applied</source>
+        <target>Промо кодът е приложен</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
+          <context context-type="linenumber">71</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4391289919356861627" datatype="html">
+        <source>Apply</source>
+        <target>Приложи</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
+          <context context-type="linenumber">74,75</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="870418232806327600" datatype="html">
+        <source>Subtotal</source>
+        <target>Междинна сума</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
+          <context context-type="linenumber">81,82</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">131,132</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
+          <context context-type="linenumber">92,93</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4808411315981120788" datatype="html">
+        <source>Discount</source>
+        <target>Отстъпка</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
+          <context context-type="linenumber">84,85</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">134,135</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
+          <context context-type="linenumber">95</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5972351850683239127" datatype="html">
+        <source>Shipping</source>
+        <target>Доставка</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
+          <context context-type="linenumber">87,88</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">137,138</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
+          <context context-type="linenumber">98,99</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5891064527381218201" datatype="html">
+        <source>Free</source>
+        <target>Безплатно</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
+          <context context-type="linenumber">92,93</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
+          <context context-type="linenumber">94,95</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">142,143</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
+          <context context-type="linenumber">103,104</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3448462145758383019" datatype="html">
+        <source>Total</source>
+        <target>Общо</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
+          <context context-type="linenumber">97,98</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">145,146</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
+          <context context-type="linenumber">106,107</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="951647379377002104" datatype="html">
+        <source>Some items in your cart are no longer available in the selected quantity. Please review the lines marked above.</source>
+        <target>Някои артикули в кошницата ви вече не са налични в избраното количество. Моля, прегледайте отбелязаните редове по-горе.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
+          <context context-type="linenumber">101,102</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8460943836204127071" datatype="html">
+        <source>Proceed to checkout</source>
+        <target>Към плащане</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
+          <context context-type="linenumber">109,110</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6703953321803564304" datatype="html">
+        <source>Continue shopping</source>
+        <target>Продължи с пазаруването</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
+          <context context-type="linenumber">110,111</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4776389683576645610" datatype="html">
+        <source>Checkout</source>
+        <target>Плащане</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">2,4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="606929755258304715" datatype="html">
+        <source>Contact details</source>
+        <target>Данни за контакт</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">12,13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6407628057642629970" datatype="html">
+        <source>First name is required</source>
+        <target>Името е задължително</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5005290836214172506" datatype="html">
+        <source>Last name is required</source>
+        <target>Фамилията е задължителна</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8393572872476859972" datatype="html">
+        <source>A valid email is required for your receipt</source>
+        <target>Необходим е валиден имейл за вашата разписка</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3262236020277300799" datatype="html">
+        <source>Phone</source>
+        <target>Телефон</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">43,44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3502031199023569021" datatype="html">
+        <source>A phone number is required for the courier</source>
+        <target>Необходим е телефонен номер за куриера</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2314075913167237221" datatype="html">
+        <source>City</source>
+        <target>Град</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">55,56</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8196693563065832060" datatype="html">
+        <source>City is required</source>
+        <target>Градът е задължителен</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">58</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7450324673386885301" datatype="html">
+        <source>Postal code</source>
+        <target>Пощенски код</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">64,65</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1489529088540992154" datatype="html">
+        <source>Street address</source>
+        <target>Адрес</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">70,71</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4828301915611932087" datatype="html">
+        <source>Street address is required</source>
+        <target>Адресът е задължителен</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">73</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1757596382251562510" datatype="html">
+        <source>Note for us (optional)</source>
+        <target>Бележка към нас (по избор)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">78,79</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2154351671035362566" datatype="html">
+        <source>I have read and accept the <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;/shop/terms&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>terms of sale<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>, including the 14-day right of withdrawal.</source>
+        <target>Прочетох и приемам <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;/shop/terms&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>условията за продажба<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>, включително 14-дневното право на отказ.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">84,85</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1922076098697885125" datatype="html">
+        <source>Please accept the terms of sale to continue</source>
+        <target>Моля, приемете условията за продажба, за да продължите</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">87,88</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8678404962788128999" datatype="html">
+        <source>Pay <x id="INTERPOLATION" equiv-text="{{ cart.quote()?.total | currency:&apos;EUR&apos; }}"/> with Revolut</source>
+        <target>Плати <x id="INTERPOLATION" equiv-text="{{ cart.quote()?.total | currency:&apos;EUR&apos; }}"/> с Revolut</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">105,106</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2438394539246700277" datatype="html">
+        <source>Back to cart</source>
+        <target>Обратно към кошницата</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">107,108</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1487095934476017709" datatype="html">
+        <source>You will be redirected to Revolut&apos;s secure checkout. Cards, Revolut Pay, Apple Pay and Google Pay are accepted. We never see your card details.</source>
+        <target>Ще бъдете пренасочени към защитеното плащане на Revolut. Приемат се карти, Revolut Pay, Apple Pay и Google Pay. Ние никога не виждаме данните на картата ви.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">109,110</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6784365883106685930" datatype="html">
+        <source>Order summary</source>
+        <target>Обобщение на поръчката</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">113,114</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopCartInvalid" datatype="html">
+        <source>Your cart has changed. Please review it before paying.</source>
+        <target>Кошницата ви се промени. Моля, прегледайте я, преди да платите.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.ts</context>
+          <context context-type="linenumber">85</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopPaymentsUnavailable" datatype="html">
+        <source>Payments are temporarily unavailable. Please try again in a few minutes.</source>
+        <target>Плащанията са временно недостъпни. Моля, опитайте отново след няколко минути.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.ts</context>
+          <context context-type="linenumber">112</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopTooManyAttempts" datatype="html">
+        <source>Too many attempts. Please wait a minute and try again.</source>
+        <target>Твърде много опити. Моля, изчакайте минута и опитайте отново.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.ts</context>
+          <context context-type="linenumber">114</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopOrderFailed" datatype="html">
+        <source>The order could not be placed. Please try again.</source>
+        <target>Поръчката не можа да бъде направена. Моля, опитайте отново.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.ts</context>
+          <context context-type="linenumber">116</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6757279725033067279" datatype="html">
+        <source>We could not find this order. Check the link in your email or contact us at info@bellumgens.com.</source>
+        <target>Не можахме да намерим тази поръчка. Проверете връзката в имейла си или се свържете с нас на info@bellumgens.com.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
+          <context context-type="linenumber">4,5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5024688278763036307" datatype="html">
+        <source>Back to the shop</source>
+        <target>Обратно към магазина</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
+          <context context-type="linenumber">5,6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
+          <context context-type="linenumber">65,66</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/product-detail/product-detail.component.html</context>
+          <context context-type="linenumber">5,6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8977100891351110096" datatype="html">
+        <source>Order <x id="INTERPOLATION" equiv-text="{{ order.orderNumber }}"/></source>
+        <target>Поръчка <x id="INTERPOLATION" equiv-text="{{ order.orderNumber }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
+          <context context-type="linenumber">15,16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6552342657511192051" datatype="html">
+        <source>We are waiting for the payment confirmation from Revolut. This usually takes a few seconds.</source>
+        <target>Изчакваме потвърждение на плащането от Revolut. Това обикновено отнема няколко секунди.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
+          <context context-type="linenumber">24,25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6196753135203058907" datatype="html">
+        <source>The payment has not been confirmed yet. If you completed it, it will be confirmed shortly and you will receive an email.</source>
+        <target>Плащането още не е потвърдено. Ако сте го завършили, то ще бъде потвърдено скоро и ще получите имейл.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
+          <context context-type="linenumber">29,30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8307067438454489828" datatype="html">
+        <source>The payment did not go through. You can try again with a different card or payment method.</source>
+        <target>Плащането не беше успешно. Можете да опитате отново с друга карта или начин на плащане.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
+          <context context-type="linenumber">31,32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8886802108494030613" datatype="html">
+        <source>This order has not been paid yet.</source>
+        <target>Тази поръчка още не е платена.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
+          <context context-type="linenumber">33,34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7759202440346157868" datatype="html">
+        <source>Complete payment</source>
+        <target>Завърши плащането</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
+          <context context-type="linenumber">37,38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3524315187932958045" datatype="html">
+        <source>Try paying again</source>
+        <target>Опитай да платиш отново</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
+          <context context-type="linenumber">40,41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8327261190482575398" datatype="html">
+        <source>Refresh status</source>
+        <target>Обнови статуса</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
+          <context context-type="linenumber">42,43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3779712244710638690" datatype="html">
+        <source>Unpaid orders are cancelled automatically at <x id="INTERPOLATION" equiv-text="{{ order.expiresOn | date:&apos;short&apos; }}"/>.</source>
+        <target>Неплатените поръчки се отменят автоматично в <x id="INTERPOLATION" equiv-text="{{ order.expiresOn | date:&apos;short&apos; }}"/>.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
+          <context context-type="linenumber">44,46</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="479671540243537529" datatype="html">
+        <source>Thank you! Your payment was received and a confirmation was sent to <x id="INTERPOLATION" equiv-text="{{ order.email }}"/>.</source>
+        <target>Благодарим ви! Плащането е получено и потвърждение е изпратено на <x id="INTERPOLATION" equiv-text="{{ order.email }}"/>.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
+          <context context-type="linenumber">47,48</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3667623827099714416" datatype="html">
+        <source>You can collect your order at our next event. We will contact you with the details.</source>
+        <target>Можете да получите поръчката си на следващото ни събитие. Ще се свържем с вас с подробности.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
+          <context context-type="linenumber">49,50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1943776584601765181" datatype="html">
+        <source>We will email you again when the order is handed to the courier.</source>
+        <target>Ще ви изпратим имейл, когато поръчката бъде предадена на куриера.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
+          <context context-type="linenumber">51,52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8288836170502588209" datatype="html">
+        <source>Your order is on its way.</source>
+        <target>Поръчката ви е на път.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
+          <context context-type="linenumber">55,56</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1549861453376876412" datatype="html">
+        <source>Tracking number:</source>
+        <target>Номер за проследяване:</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
+          <context context-type="linenumber">57</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7287448365789388225" datatype="html">
+        <source>Your order has been delivered. Enjoy, and see you at the next event!</source>
+        <target>Поръчката ви е доставена. Насладете се и до скоро на следващото събитие!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
+          <context context-type="linenumber">61,62</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5641420397057111191" datatype="html">
+        <source>This order was cancelled and nothing was charged. Feel free to place a new one.</source>
+        <target>Тази поръчка беше отменена и нищо не е таксувано. Можете да направите нова.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
+          <context context-type="linenumber">64,65</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1931464943584065031" datatype="html">
+        <source>This order was refunded. The money returns to your original payment method within a few business days.</source>
+        <target>Тази поръчка беше възстановена. Сумата се връща към първоначалния начин на плащане в рамките на няколко работни дни.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
+          <context context-type="linenumber">68,69</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6162691442834560200" datatype="html">
+        <source>Items</source>
+        <target>Артикули</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
+          <context context-type="linenumber">75,76</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1882847587197073775" datatype="html">
+        <source>Ordered on</source>
+        <target>Поръчано на</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
+          <context context-type="linenumber">120</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6664678750303771482" datatype="html">
+        <source>Sold out</source>
+        <target>Изчерпано</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/product-card/product-card.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/product-detail/product-detail.component.html</context>
+          <context context-type="linenumber">86</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2509141182388535183" datatype="html">
+        <source>View</source>
+        <target>Виж</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/product-card/product-card.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5871412787804796799" datatype="html">
+        <source>Add to cart</source>
+        <target>Добави в кошницата</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/product-card/product-card.component.html</context>
+          <context context-type="linenumber">32,33</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/product-detail/product-detail.component.html</context>
+          <context context-type="linenumber">104,105</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="212171840001434096" datatype="html">
+        <source>We could not find this product. It may have been removed from the shop.</source>
+        <target>Не можахме да намерим този продукт. Възможно е да е премахнат от магазина.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/product-detail/product-detail.component.html</context>
+          <context context-type="linenumber">4,5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1063195851397612585" datatype="html">
+        <source>All products</source>
+        <target>Всички продукти</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/product-detail/product-detail.component.html</context>
+          <context context-type="linenumber">14,15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/product-list/product-list.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3804037606764273869" datatype="html">
+        <source>Cut</source>
+        <target>Кройка</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/product-detail/product-detail.component.html</context>
+          <context context-type="linenumber">56,57</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="45739481977493163" datatype="html">
+        <source>Size</source>
+        <target>Размер</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/product-detail/product-detail.component.html</context>
+          <context context-type="linenumber">62,63</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7897525911182415807" datatype="html">
+        <source> (sold out)</source>
+        <target>(изчерпано)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/product-detail/product-detail.component.html</context>
+          <context context-type="linenumber">67,68</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8021687558521014030" datatype="html">
+        <source>Option</source>
+        <target>Опция</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/product-detail/product-detail.component.html</context>
+          <context context-type="linenumber">76,77</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8643855560869694784" datatype="html">
+        <source>Only <x id="INTERPOLATION" equiv-text="{{ stock() }}"/> left in stock</source>
+        <target>Остават само <x id="INTERPOLATION" equiv-text="{{ stock() }}"/> в наличност</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/product-detail/product-detail.component.html</context>
+          <context context-type="linenumber">88,89</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6933614038296766060" datatype="html">
+        <source>Go to cart</source>
+        <target>Към кошницата</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/product-detail/product-detail.component.html</context>
+          <context context-type="linenumber">106,107</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6908095335030903860" datatype="html">
+        <source>Merchandise</source>
+        <target>Мърчандайз</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/product-list/product-list.component.html</context>
+          <context context-type="linenumber">3,4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6232021315035282660" datatype="html">
+        <source>Official Bellum Gens, Esports Business League and BGE Stara Zagora gear. Prices are in EUR. We deliver across Bulgaria or hand your order over at one of our events.</source>
+        <target>Официални артикули на Bellum Gens, Esports Business League и BGE Stara Zagora. Цените са в евро. Доставяме в цяла България или предаваме поръчката ви на някое от нашите събития.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/product-list/product-list.component.html</context>
+          <context context-type="linenumber">4,5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2404440459884288830" datatype="html">
+        <source>Filter by brand</source>
+        <target>Филтрирай по марка</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/product-list/product-list.component.html</context>
+          <context context-type="linenumber">7,8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7303630345645048857" datatype="html">
+        <source>All brands</source>
+        <target>Всички марки</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/product-list/product-list.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8941223776952590908" datatype="html">
+        <source>Filter by product type</source>
+        <target>Филтрирай по вид продукт</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/product-list/product-list.component.html</context>
+          <context context-type="linenumber">15,16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7571800532565103524" datatype="html">
+        <source>Nothing matches this filter yet. Check back soon!</source>
+        <target>Все още нищо не отговаря на този филтър. Проверете отново скоро!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/product-list/product-list.component.html</context>
+          <context context-type="linenumber">28,29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopTypeJersey" datatype="html">
+        <source>Jersey</source>
+        <target>Тениска</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
+          <context context-type="linenumber">294</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopTypeUmbrella" datatype="html">
+        <source>Umbrella</source>
+        <target>Чадър</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
+          <context context-type="linenumber">295</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopTypePen" datatype="html">
+        <source>Pen</source>
+        <target>Химикалка</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
+          <context context-type="linenumber">296</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopTypePin" datatype="html">
+        <source>Pin</source>
+        <target>Значка</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
+          <context context-type="linenumber">297</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopTypeBracelet" datatype="html">
+        <source>Bracelet</source>
+        <target>Гривна</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
+          <context context-type="linenumber">298</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopTypeOther" datatype="html">
+        <source>Other</source>
+        <target>Друго</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
+          <context context-type="linenumber">299</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopStatusAwaitingPayment" datatype="html">
+        <source>Awaiting payment</source>
+        <target>Очаква плащане</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
+          <context context-type="linenumber">303</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopStatusPaid" datatype="html">
+        <source>Paid</source>
+        <target>Платена</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
+          <context context-type="linenumber">304</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopStatusShipped" datatype="html">
+        <source>Shipped</source>
+        <target>Изпратена</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
+          <context context-type="linenumber">305</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopStatusDelivered" datatype="html">
+        <source>Delivered</source>
+        <target>Доставена</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
+          <context context-type="linenumber">306</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopStatusCancelled" datatype="html">
+        <source>Cancelled</source>
+        <target>Отменена</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
+          <context context-type="linenumber">307</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopStatusRefunded" datatype="html">
+        <source>Refunded</source>
+        <target>Възстановена</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
+          <context context-type="linenumber">308</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopDeliveryCourier" datatype="html">
+        <source>Courier delivery</source>
+        <target>Доставка с куриер</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
+          <context context-type="linenumber">312</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopDeliveryPickup" datatype="html">
+        <source>Pick up at an event</source>
+        <target>Получаване на събитие</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
+          <context context-type="linenumber">313</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopCutMale" datatype="html">
+        <source>Male</source>
+        <target>Мъжка</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
+          <context context-type="linenumber">317</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopCutFemale" datatype="html">
+        <source>Female</source>
+        <target>Дамска</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
+          <context context-type="linenumber">318</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopProductSaved" datatype="html">
+        <source>Product saved!</source>
+        <target>Продуктът е запазен!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
+          <context context-type="linenumber">107</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopProductDeactivated" datatype="html">
+        <source>The product has orders, so it was deactivated instead of deleted.</source>
+        <target>Продуктът има поръчки, затова беше деактивиран вместо изтрит.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
+          <context context-type="linenumber">118</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopProductDeleted" datatype="html">
+        <source>Product deleted!</source>
+        <target>Продуктът е изтрит!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
+          <context context-type="linenumber">119</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopOrderUpdated" datatype="html">
+        <source>Order updated!</source>
+        <target>Поръчката е обновена!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
+          <context context-type="linenumber">142</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopOrderRefunded" datatype="html">
+        <source>Refund sent to the payment provider.</source>
+        <target>Възстановяването е изпратено към платежния доставчик.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
+          <context context-type="linenumber">149</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopPromoSaved" datatype="html">
+        <source>Promo code saved!</source>
+        <target>Промо кодът е запазен!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
+          <context context-type="linenumber">167</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopPromoDeactivated" datatype="html">
+        <source>The code was used by orders, so it was deactivated instead of deleted.</source>
+        <target>Кодът е използван в поръчки, затова беше деактивиран вместо изтрит.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
+          <context context-type="linenumber">175</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopPromoDeleted" datatype="html">
+        <source>Promo code deleted!</source>
+        <target>Промо кодът е изтрит!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
+          <context context-type="linenumber">176</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopAddedToCart" datatype="html">
+        <source><x id="name" equiv-text="label"/> added to your cart</source>
+        <target><x id="name" equiv-text="label"/> е добавен в кошницата ви</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/services/cart.service.ts</context>
+          <context context-type="linenumber">90</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>

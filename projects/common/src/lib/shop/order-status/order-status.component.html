@@ -1,0 +1,124 @@
+<div class="shop-container">
+  @if (notFound()) {
+    <div class="horizontal-center shop-empty">
+      <p i18n>We could not find this order. Check the link in your email or contact us at info&#64;bellumgens.com.</p>
+      <a igxButton="outlined" igxRipple routerLink="/shop" i18n>Back to the shop</a>
+    </div>
+  } @else if (!order()) {
+    <div class="horizontal-center shop-loading">
+      <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
+    </div>
+  } @else if (order(); as order) {
+    <header class="status-header" [class]="'status-' + order.status">
+      <igx-icon class="status-icon">{{ statusIcon(order.status) }}</igx-icon>
+      <div>
+        <span class="order-number" i18n>Order {{ order.orderNumber }}</span>
+        <h2>{{ statusNames[order.status] }}</h2>
+      </div>
+    </header>
+
+    <section class="status-message">
+      @switch (order.status) {
+        @case (OrderStatus.AwaitingPayment) {
+          @if (paymentPending && polling()) {
+            <p i18n>We are waiting for the payment confirmation from Revolut. This usually takes a few seconds.</p>
+            <div class="horizontal-center">
+              <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
+            </div>
+          } @else if (paymentPending && timedOut()) {
+            <p i18n>The payment has not been confirmed yet. If you completed it, it will be confirmed shortly and you will receive an email.</p>
+          } @else if (order.canRetryPayment) {
+            <p i18n>The payment did not go through. You can try again with a different card or payment method.</p>
+          } @else {
+            <p i18n>This order has not been paid yet.</p>
+          }
+          <div class="actions">
+            @if (order.checkoutUrl && paymentPending) {
+              <button type="button" igxButton="contained" igxRipple (click)="payNow()" i18n>Complete payment</button>
+            }
+            @if (order.canRetryPayment) {
+              <button type="button" igxButton="contained" igxRipple [disabled]="busy()" (click)="retryPayment()" i18n>Try paying again</button>
+            }
+            <button type="button" igxButton="outlined" igxRipple (click)="refresh()" i18n>Refresh status</button>
+          </div>
+          <p class="expiry-note" i18n>Unpaid orders are cancelled automatically at {{ order.expiresOn | date:'short' }}.</p>
+        }
+        @case (OrderStatus.Paid) {
+          <p i18n>Thank you! Your payment was received and a confirmation was sent to {{ order.email }}.</p>
+          @if (order.deliveryMethod === 1) {
+            <p i18n>You can collect your order at our next event. We will contact you with the details.</p>
+          } @else {
+            <p i18n>We will email you again when the order is handed to the courier.</p>
+          }
+        }
+        @case (OrderStatus.Shipped) {
+          <p i18n>Your order is on its way.</p>
+          @if (order.trackingNumber) {
+            <p><span i18n>Tracking number:</span> <span class="highlight">{{ order.trackingNumber }}</span></p>
+          }
+        }
+        @case (OrderStatus.Delivered) {
+          <p i18n>Your order has been delivered. Enjoy, and see you at the next event!</p>
+        }
+        @case (OrderStatus.Cancelled) {
+          <p i18n>This order was cancelled and nothing was charged. Feel free to place a new one.</p>
+          <a igxButton="contained" igxRipple routerLink="/shop" i18n>Back to the shop</a>
+        }
+        @case (OrderStatus.Refunded) {
+          <p i18n>This order was refunded. The money returns to your original payment method within a few business days.</p>
+        }
+      }
+    </section>
+
+    <div class="order-layout">
+      <section class="order-items">
+        <h4 i18n>Items</h4>
+        <ul>
+          @for (item of order.items; track item.id ?? item.productId + (item.variantId ?? '')) {
+            <li>
+              <span class="line-qty">{{ item.quantity }} ×</span>
+              <span class="line-name">
+                {{ item.productName }}
+                @if (item.variantName) {
+                  <span class="line-variant">({{ item.variantName }})</span>
+                }
+              </span>
+              <span class="line-total">{{ item.lineTotal | currency:'EUR' }}</span>
+            </li>
+          }
+        </ul>
+        <igx-divider></igx-divider>
+        <dl class="totals">
+          <dt i18n>Subtotal</dt>
+          <dd>{{ order.subtotal | currency:'EUR' }}</dd>
+          @if (order.discountTotal > 0) {
+            <dt><span i18n>Discount</span> @if (order.promoCode) { ({{ order.promoCode }}) }</dt>
+            <dd class="color-success">-{{ order.discountTotal | currency:'EUR' }}</dd>
+          }
+          <dt i18n>Shipping</dt>
+          <dd>
+            @if (order.shippingCost > 0) {
+              {{ order.shippingCost | currency:'EUR' }}
+            } @else {
+              <span i18n>Free</span>
+            }
+          </dd>
+          <dt class="grand-total" i18n>Total</dt>
+          <dd class="grand-total">{{ order.total | currency:'EUR' }}</dd>
+        </dl>
+      </section>
+
+      <section class="order-details">
+        <h4 i18n>Delivery</h4>
+        <p>{{ deliveryNames[order.deliveryMethod] }}</p>
+        <p>
+          {{ order.firstName }} {{ order.lastName }}<br />
+          {{ order.streetAddress }}<br />
+          {{ order.postalCode }} {{ order.city }}, {{ order.country }}<br />
+          {{ order.phoneNumber }}
+        </p>
+        <p class="order-date"><span i18n>Ordered on</span> {{ order.orderDate | date:'medium' }}</p>
+      </section>
+    </div>
+  }
+</div>

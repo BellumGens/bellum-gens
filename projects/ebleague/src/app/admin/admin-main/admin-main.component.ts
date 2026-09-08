@@ -1,10 +1,15 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import {
   LoginService,
   ApiTournamentsService,
   Tournament, EMPTY_NEW_TOURNAMENT, TournamentApplication,
-  Order, Promo,
-  ApiShopService
+  ApiShopService,
+  ShopOrder,
+  OrderStatus,
+  ORDER_STATUS_NAMES,
+  DELIVERY_METHOD_NAMES,
+  ProductEditorComponent,
+  PromoEditorComponent
 } from '../../../../../common/src/public_api';
 import { IGridEditEventArgs, RowType } from '@infragistics/igniteui-angular/grids/core';
 import { DefaultSortingStrategy, IGroupingExpression, SortingDirection } from '@infragistics/igniteui-angular/core';
@@ -20,15 +25,14 @@ import { IgxCheckboxComponent } from '@infragistics/igniteui-angular/checkbox';
 import { IGX_CHIPS_DIRECTIVES } from '@infragistics/igniteui-angular/chips';
 import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
 import { FormsModule } from '@angular/forms';
-import { SizeNamePipe } from '../../pipes/size-name.pipe';
-import { Observable } from 'rxjs';
-import { AsyncPipe } from '@angular/common';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-admin-main',
   templateUrl: './admin-main.component.html',
-  styleUrls: ['./admin-main.component.scss'],  imports: [
+  styleUrls: ['./admin-main.component.scss'],  imports: [
     FormsModule,
+    CurrencyPipe,
     IGX_GRID_DIRECTIVES,
     IgxIconComponent,
     IgxBadgeComponent,
@@ -42,8 +46,8 @@ import { AsyncPipe } from '@angular/common';
     IGX_CARD_DIRECTIVES,
     IgxCheckboxComponent,
     IGX_CHIPS_DIRECTIVES,
-    SizeNamePipe,
-    AsyncPipe
+    ProductEditorComponent,
+    PromoEditorComponent
   ]
 })
 export class AdminMainComponent {
@@ -52,18 +56,21 @@ export class AdminMainComponent {
   private shopService = inject(ApiShopService);
 
   public roles: string [];
-  // public users: AdminAppUserSummary [];
   public tournaments: Tournament [];
   public tournament = Object.assign({}, EMPTY_NEW_TOURNAMENT);
-  public orders: Observable<Order []>;
+  public orders = signal<ShopOrder []>([]);
   public registrations: TournamentApplication [];
-  public promos: Promo [];
   public grouping: IGroupingExpression [];
+
+  public OrderStatus = OrderStatus;
+  public statusNames = ORDER_STATUS_NAMES;
+  public deliveryNames = DELIVERY_METHOD_NAMES;
+  public ordersExportUrl = this.shopService.ordersExportUrl;
+  /** Tracking numbers typed in the order detail rows, keyed by order id. */
+  public tracking: Record<string, string> = {};
 
   constructor() {
     this.authService.getUserRoles().subscribe(data => this.roles = data);
-    // this.authService.getUsers().subscribe(data => this.users = data);
-    this.authService.getPromoCodes().subscribe(data => this.promos = data);
     this.apiService.tournaments.subscribe(data => {
       if (data) {
         data.forEach(t => {
@@ -73,7 +80,7 @@ export class AdminMainComponent {
         this.tournaments = data;
       }
     });
-    this.orders = this.shopService.getOrders();
+    this.loadOrders();
     this.apiService.allRegistrations.subscribe(data => this.registrations = data);
     this.grouping = [
       { dir: SortingDirection.Desc, fieldName: 'tournamentName', ignoreCase: false, strategy: DefaultSortingStrategy.instance() },
@@ -89,10 +96,21 @@ export class AdminMainComponent {
     this.apiService.createTournament(tournament || this.tournament).subscribe(data => !tournament ? this.tournaments.push(data) : null);
   }
 
-  public editDone(event: IGridEditEventArgs) {
-    const rowData = event.rowData;
-    rowData[event.column.field] = event.newValue;
-    this.shopService.confirmOrder(rowData).subscribe();
+  public loadOrders() {
+    this.shopService.getAdminOrders().subscribe(orders => this.orders.set(orders));
+  }
+
+  public statusName(status: OrderStatus) {
+    return this.statusNames[status];
+  }
+
+  public updateOrderStatus(order: ShopOrder, status: OrderStatus) {
+    this.shopService.updateOrderStatus(order.id, { status, trackingNumber: this.tracking[order.id] || order.trackingNumber || null })
+      .subscribe(updated => this.replaceOrder(updated));
+  }
+
+  public refundOrder(order: ShopOrder) {
+    this.shopService.refundOrder(order.id).subscribe(updated => this.replaceOrder(updated));
   }
 
   public confirmRegistration(event: IGridEditEventArgs) {
@@ -106,8 +124,7 @@ export class AdminMainComponent {
     this.apiService.deleteRegistration(rowContext.key).subscribe();
   }
 
-  public deleteOrder(rowContext: RowType) {
-    rowContext.grid.transactions.commit(rowContext.grid.data, rowContext.key);
-    this.shopService.deleteOrder(rowContext.key).subscribe();
+  private replaceOrder(updated: ShopOrder) {
+    this.orders.update(orders => orders.map(o => o.id === updated.id ? { ...o, ...updated } : o));
   }
 }

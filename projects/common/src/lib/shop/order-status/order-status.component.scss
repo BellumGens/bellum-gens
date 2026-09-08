@@ -1,0 +1,146 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.shop-container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.shop-loading,
+.shop-empty {
+  flex-direction: column;
+  gap: 16px;
+  padding: 48px 16px;
+}
+
+.status-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 16px;
+
+  h2 {
+    margin: 0;
+  }
+
+  .order-number {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.85rem;
+    opacity: 0.8;
+  }
+
+  .status-icon {
+    font-size: 56px;
+    width: 56px;
+    height: 56px;
+  }
+
+  &.status-1 .status-icon,
+  &.status-2 .status-icon,
+  &.status-3 .status-icon {
+    color: var(--ig-success-500);
+  }
+
+  &.status-4 .status-icon {
+    color: var(--ig-error-500);
+  }
+
+  &.status-0 .status-icon,
+  &.status-5 .status-icon {
+    color: var(--ig-warn-500);
+  }
+}
+
+.status-message {
+  padding: 16px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+  margin-bottom: 24px;
+
+  p {
+    margin: 0 0 12px;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+
+  .expiry-note {
+    font-size: 0.9rem;
+    opacity: 0.75;
+    margin: 0;
+  }
+}
+
+.order-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  gap: 32px;
+
+  @media (max-width: 800px) {
+    grid-template-columns: 1fr;
+  }
+
+  h4 {
+    margin: 0 0 8px;
+  }
+}
+
+.order-items ul {
+  list-style: none;
+  margin: 0 0 12px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  li {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 8px;
+  }
+
+  .line-variant {
+    opacity: 0.7;
+  }
+
+  .line-total {
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+}
+
+.totals {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 6px 16px;
+  margin: 12px 0 0;
+
+  dd {
+    margin: 0;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .grand-total {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: 6px;
+  }
+}
+
+.order-details p {
+  margin: 0 0 12px;
+}
+
+.order-date {
+  font-size: 0.9rem;
+  opacity: 0.75;
+}
