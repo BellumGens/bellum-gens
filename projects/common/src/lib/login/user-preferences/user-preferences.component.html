@@ -1,7 +1,7 @@
 <div class="registration-form">
   <h6 i18n>Associated Logins</h6>
 
-  @for (provider of providers; track provider.name) {
+  @for (provider of providers(); track provider.name) {
     <button
       igxButton="contained" igxRipple
       class="submit-button navigatable"
@@ -21,13 +21,13 @@
 
   <div class="horizontal-center">
     <label for="userVisibility" i18n>Show profile in searches</label>
-    <igx-switch class="horizontal-info__right" #teamVisibility id="userVisibility" name="userVisibility" [(ngModel)]="preferences.searchVisible" (ngModelChange)="submitPreferences()"></igx-switch>
+    <igx-switch class="horizontal-info__right" #teamVisibility id="userVisibility" name="userVisibility" [ngModel]="preferences().searchVisible" (ngModelChange)="setSearchVisible($event)"></igx-switch>
   </div>
 
   <h6 i18n>Tournament Registrations</h6>
 
   <igx-list>
-    @for (registration of registrations; track registration.id) {
+    @for (registration of registrations(); track registration.id) {
       <igx-list-item>
         <h2 igxListLineTitle>{{ registration.tournamentName }}</h2>
         <h4 igxListLineSubTitle>{{ registration.game ? 'StarCraft II' : 'Counter-Strike' }}</h4>
@@ -46,7 +46,7 @@
         </div>
       </igx-list-item>
     }
-    @if (isTournamentAdmin) {
+    @if (isTournamentAdmin()) {
       <igx-list-item>
         <button igxButton="flat" igxRipple class="submit-button" (click)="navigateToEventAdmin()">
           <igx-icon>admin_panel_settings</igx-icon>

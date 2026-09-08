@@ -73,16 +73,16 @@ describe('UserPreferencesComponent', () => {
   });
 
   it('should have default preferences', () => {
-    expect(component.authUser).toBe(applicationUser);
-    expect(component.preferences).toEqual({ searchVisible: false, email: 'test-email' });
+    expect(component.authUser()).toBe(applicationUser);
+    expect(component.preferences()).toEqual({ searchVisible: false, email: 'test-email' });
   });
 
   it('should have providers', () => {
-    expect(component.providers).toEqual(providers);
+    expect(component.providers()).toEqual(providers);
   });
 
   it('should have registrations', () => {
-    expect(component.registrations).toEqual(registrations);
+    expect(component.registrations()).toEqual(registrations);
     expect(authService['_registrations'].value).toEqual(registrations);
   });
 
@@ -97,7 +97,7 @@ describe('UserPreferencesComponent', () => {
     component.submitPreferences();
     const req = httpMock.expectOne(`${authService['_apiEndpoint']}/userinfo`);
     expect(req.request.method).toBe('PUT');
-    expect(req.request.body).toEqual(component.preferences);
+    expect(req.request.body).toEqual(component.preferences());
     expect(req.request.withCredentials).toBe(true);
     req.flush({});
 
@@ -105,9 +105,21 @@ describe('UserPreferencesComponent', () => {
     component.submitPreferences();
     const req2 = httpMock.expectOne(`${authService['_apiEndpoint']}/userinfo`);
     expect(req2.request.method).toBe('PUT');
-    expect(req2.request.body).toEqual(component.preferences);
+    expect(req2.request.body).toEqual(component.preferences());
     expect(req2.request.withCredentials).toBe(true);
     req2.error(new ProgressEvent('Server Error'), { status: 500, statusText: 'Something went wrong!' });
+  });
+
+  it('should update the preferences signal on search visibility change', () => {
+    expect(component.preferences().searchVisible).toBe(false);
+
+    component.setSearchVisible(true);
+    expect(component.preferences()).toEqual({ searchVisible: true, email: 'test-email' });
+
+    const req = httpMock.expectOne(`${authService['_apiEndpoint']}/userinfo`);
+    expect(req.request.method).toBe('PUT');
+    expect(req.request.body).toEqual({ searchVisible: true, email: 'test-email' });
+    req.flush({});
   });
 
   it('should call deleteAccount method', () => {
@@ -127,17 +139,19 @@ describe('UserPreferencesComponent', () => {
   });
 
   it('should call deleteRegistration method', () => {
-    expect(component.registrations).toEqual(registrations);
+    expect(component.registrations()).toEqual(registrations);
     expect(authService['_registrations'].value).toEqual(registrations);
 
     const registration = registrations[0];
+    const remaining = registrations[1];
     commsService.success.subscribe(message => expect(message).toEqual('Tournament application deleted successfully!'));
     component.deleteRegistration(registration);
     const req2 = httpMock.expectOne(`${authService['_apiBase']}/tournament/delete?id=${registration.id}`);
     expect(req2.request.method).toBe('DELETE');
     expect(req2.request.withCredentials).toBe(true);
     req2.flush({});
-    expect(component.registrations).toEqual([registrations[0]]);
+    expect(component.registrations()).toEqual([remaining]);
+    expect(authService['_registrations'].value).toEqual([remaining]);
 
     commsService.error.subscribe(message => expect(message).toEqual(`Http failure response for ${authService['_apiBase']}/tournament/delete?id=${registration.id}: 500 Something went wrong!`));
     component.deleteRegistration(registration);

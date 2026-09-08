@@ -123,6 +123,12 @@ $tabs-theme: tabs-theme(
   $item-hover-background: hsl(from var(--ig-gray-900) h s l / 0.11),
   $item-active-background: hsl(from var(--ig-gray-900) h s l / 0.11),
   $item-background: var(--ig-surface-500),
+  $item-text-color: hsl(from var(--ig-gray-900) h s l / 0.8),
+  $item-icon-color: hsl(from var(--ig-gray-900) h s l / 0.8),
+  $item-hover-color: var(--ig-gray-900),
+  $item-hover-icon-color: var(--ig-gray-900),
+  $item-active-color: var(--ig-secondary-500),
+  $item-active-icon-color: var(--ig-secondary-500),
   $indicator-color: var(--ig-secondary-500)
 );
 @include tokens($tabs-theme);

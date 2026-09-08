@@ -23,7 +23,7 @@
     }
     <div class="profile-container">
       <div>
-        <igx-avatar [src]="$safeNavigationMigration(player.steamUser?.avatarFull)" [initials]="$safeNavigationMigration(player.steamUser?.steamID)" class="player-avatar">
+        <igx-avatar [src]="player.steamUser?.avatarFull || ''" [initials]="player.steamUser?.steamID || ''" class="player-avatar">
         </igx-avatar>
         @if (player.steamUser?.country) {
           <igx-avatar [src]="$safeNavigationMigration(player.steamUser?.country) | countrySVG" shape="circle" [title]="$safeNavigationMigration(player.steamUser?.country)" class="country-badge-large"></igx-avatar>
