@@ -1,4 +1,4 @@
-import { Component, ViewChild, inject } from '@angular/core';
+import { Component, ViewChild, inject, signal } from '@angular/core';
 import { IgxDropDownComponent } from '@infragistics/igniteui-angular/drop-down';
 import { IgxButtonDirective, IgxRippleDirective, IgxToggleActionDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
@@ -45,14 +45,14 @@ export class LoginComponent {
   @ViewChild(IgxDropDownComponent, { static: false })
   public userProfile!: IgxDropDownComponent;
 
-  public authUser!: ApplicationUser;
+  public authUser = signal<ApplicationUser | null>(null);
 
   public overlaySettings = GLOBAL_OVERLAY_SETTINGS;
-  public userCheck = false;
+  public userCheck = signal<boolean>(false);
 
   constructor() {
-    this.authManager.userCheckInProgress.subscribe(value => this.userCheck = value);
-    this.authManager.applicationUser.subscribe(user => this.authUser = user);
+    this.authManager.userCheckInProgress.subscribe(value => this.userCheck.set(value));
+    this.authManager.applicationUser.subscribe(user => this.authUser.set(user));
     this.authManager.openLogin.subscribe(() => this.dialog.openLogin());
   }
 
