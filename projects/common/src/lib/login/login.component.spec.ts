@@ -78,7 +78,7 @@ describe('LoginComponent', () => {
     authService.applicationUser.subscribe();
     const req = httpMock.expectOne(`${authService['_apiEndpoint']}`);
     req.flush(applicationUser);
-    expect(component.authUser).toBe(applicationUser);
+    expect(component.authUser()).toBe(applicationUser);
     fixture.detectChanges();
     expect(component.userProfile).toBeDefined();
   });
@@ -86,17 +86,17 @@ describe('LoginComponent', () => {
   it('should have userCheck when a request in currently pending', () => {
     authService.applicationUser.subscribe();
     const req = httpMock.expectOne(`${authService['_apiEndpoint']}`);
-    expect(component.userCheck).toBe(true);
+    expect(component.userCheck()).toBe(true);
     req.flush(applicationUser);
-    expect(component.userCheck).toBe(false);
-    expect(component.authUser).toBe(applicationUser);
+    expect(component.userCheck()).toBe(false);
+    expect(component.authUser()).toBe(applicationUser);
   });
 
   it('should call logout method', () => {
     authService.applicationUser.subscribe();
     let req = httpMock.expectOne(`${authService['_apiEndpoint']}`);
     req.flush(applicationUser);
-    component.authUser = applicationUser;
+    component.authUser.set(applicationUser);
     fixture.detectChanges();
 
     vi.spyOn(component.userProfile, 'close').mockImplementation(() => undefined);
@@ -104,7 +104,7 @@ describe('LoginComponent', () => {
     req = httpMock.expectOne(`${authService['_apiEndpoint']}/logout`);
     req.flush({});
     expect(component.userProfile.close).toHaveBeenCalled();
-    expect(component.authUser).toBeNull();
+    expect(component.authUser()).toBeNull();
   });
 
   it('navigateToProfile method should call router.navigate with correct params', () => {
