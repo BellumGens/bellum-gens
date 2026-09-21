@@ -13,7 +13,7 @@
   </script>
   <igx-tabs>
     <igx-tab-item routerLinkActive #rla1="routerLinkActive"
-      [disabled]="!player?.csgoDetails"
+      [disabled]="!player()?.csgoDetails"
       [selected]="rla1.isActive">
       <igx-tab-header routerLink="cs">
         <igx-avatar class="tabs-avatar" src="/assets/wallpapers/csgo-watermark.webp" igxPrefix shape="circle" size="small" />
@@ -21,7 +21,7 @@
       </igx-tab-header>
     </igx-tab-item>
     <igx-tab-item routerLinkActive #rla2="routerLinkActive"
-      [disabled]="!player?.sc2Details"
+      [disabled]="!player()?.sc2Details"
       [selected]="rla2.isActive">
       <igx-tab-header routerLink="sc">
         <igx-avatar class="tabs-avatar" src="/assets/wallpapers/sc2-watermark.webp" igxPrefix shape="circle" size="small" />
@@ -37,5 +37,5 @@
     </igx-tab-item> -->
   </igx-tabs>
 
-  <router-outlet></router-outlet>
+  <router-outlet [routerOutletData]="player()"></router-outlet>
 </div>

@@ -34,8 +34,8 @@ describe('PlayerComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should initialize player as undefined', () => {
-    expect(component.player).toBeUndefined();
+  it('should initialize player as null', () => {
+    expect(component.player()).toBeNull();
   });
 
   it('should load player data when route params contain userid', () => {
@@ -72,6 +72,6 @@ describe('PlayerComponent', () => {
 
     await new Promise(resolve => setTimeout(resolve, 100));
 
-    expect(component.player).toBeDefined();
+    expect(component.player()).toBeDefined();
   });
 });

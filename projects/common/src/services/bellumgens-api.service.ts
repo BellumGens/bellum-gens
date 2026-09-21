@@ -6,6 +6,7 @@ import { CSGOTeam, TeamMember, TeamApplication } from '../models/csgoteam';
 import { Availability } from '../models/playeravailability';
 import { Role } from '../models/playerrole';
 import { CSGOMapPool } from '../models/csgomaps';
+import { CSGODetails } from '../models/csgoplayer';
 import { map, catchError } from 'rxjs/operators';
 import { UserNotification } from '../models/usernotifications';
 import { environment } from '../environments/environment';
@@ -311,6 +312,7 @@ export class BellumgensApiService {
   public setPrimaryRole(role: Role): Observable<any> {
     return this.http.put(`${this._apiEndpoint}/users/primaryrole?id=${role.id}`, role, { withCredentials: true }).pipe(
       map(response => {
+        this.updateCurrentPlayerDetails({ primaryRole: role.id });
         this.commService.emitSuccess(`Primary role set to ${role.name}`);
         return response;
       }),
@@ -324,6 +326,7 @@ export class BellumgensApiService {
   public setSecondaryRole(role: Role): Observable<any> {
     return this.http.put(`${this._apiEndpoint}/users/secondaryrole?id=${role.id}`, role, { withCredentials: true }).pipe(
       map(response => {
+        this.updateCurrentPlayerDetails({ secondaryRole: role.id });
         this.commService.emitSuccess(`Secondary role set to ${role.name}`);
         return response;
       }),
@@ -403,6 +406,13 @@ export class BellumgensApiService {
 
   private getTeamMembersFromServer(teamId: string) {
     return this.http.get<TeamMember []>(`${this._apiEndpoint}/teams/members?teamid=${teamId}`);
+  }
+
+  private updateCurrentPlayerDetails(details: Partial<CSGODetails>) {
+    const player = this._currentPlayer.value;
+    if (player?.csgoDetails) {
+      this._currentPlayer.next({ ...player, csgoDetails: { ...player.csgoDetails, ...details } });
+    }
   }
 
   private playerMatch(userId: string) {

@@ -32,16 +32,16 @@ describe('QuickSearchComponent', () => {
   });
 
   it('should initialize with empty search result', () => {
-    expect(component.searchResult).toEqual({ steamUser: null, players: [], teams: [], strategies: [] });
+    expect(component.searchResult()).toEqual({ steamUser: null, players: [], teams: [], strategies: [] });
   });
 
   it('should initialize loading as false', () => {
-    expect(component.loading).toBe(false);
+    expect(component.loading()).toBe(false);
   });
 
   it('should initialize term as empty string', () => {
     // term can be '' or null depending on initialization timing
-    expect(component.term === '' || component.term === null).toBeTruthy();
+    expect(component.term() === '' || component.term() === null).toBeTruthy();
   });
 
   it('should update searchResult when apiService emits new data', () => {
@@ -68,7 +68,7 @@ describe('QuickSearchComponent', () => {
     apiService.searchResult.next(mockResult as any);
     fixture.detectChanges();
 
-    expect(component.searchResult.players.length).toBe(1);
+    expect(component.searchResult().players.length).toBe(1);
   });
 
   it('should update loading state when apiService emits loading status', () => {
@@ -77,12 +77,12 @@ describe('QuickSearchComponent', () => {
     apiService.loadingQuickSearch.next(true);
     fixture.detectChanges();
 
-    expect(component.loading).toBe(true);
+    expect(component.loading()).toBe(true);
 
     apiService.loadingQuickSearch.next(false);
     fixture.detectChanges();
 
-    expect(component.loading).toBe(false);
+    expect(component.loading()).toBe(false);
   });
 
   it('should update term when apiService emits search term', () => {
@@ -92,6 +92,6 @@ describe('QuickSearchComponent', () => {
     apiService.searchTerm.next(testTerm);
     fixture.detectChanges();
 
-    expect(component.term).toBe(testTerm);
+    expect(component.term()).toBe(testTerm);
   });
 });

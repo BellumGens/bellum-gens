@@ -1,4 +1,5 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, effect, inject, linkedSignal, signal, Signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { BaseDirective } from '../../base/base.component';
 import {
   ALL_ROLES,
@@ -11,11 +12,11 @@ import {
   CSGOTeam,
   LoadingComponent,
   LoginService,
+  PlaystyleRole,
   WeaponDescriptor
 } from '../../../../../common/src/public_api';
-import { AsyncPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterLink, ActivatedRoute } from '@angular/router';
+import { RouterLink, ActivatedRoute, ROUTER_OUTLET_DATA } from '@angular/router';
 import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
 import { IgxButtonDirective, IgxRippleDirective, IgxToggleActionDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxIconComponent, IgxIconService } from '@infragistics/igniteui-angular/icon';
@@ -24,7 +25,7 @@ import { IGX_SELECT_DIRECTIVES } from '@infragistics/igniteui-angular/select';
 import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
 import { IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular/progressbar';
 import { IGX_LIST_DIRECTIVES } from '@infragistics/igniteui-angular/list';
-import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { SortWeaponsPipe } from '../../pipes/sort-weapons.pipe';
 import { SteamCustomUrlPipe } from '../../pipes/steam-custom-url.pipe';
 import { TopWeaponAltPipe } from '../../pipes/top-weapon-alt.pipe';
@@ -47,7 +48,6 @@ import { MapPoolComponent } from '../map-pool/map-pool.component';
     AvailabilityComponent,
     IGX_LIST_DIRECTIVES,
     MapPoolComponent,
-    AsyncPipe,
     CountrySVGPipe,
     SteamCustomUrlPipe,
     SortWeaponsPipe,
@@ -62,51 +62,65 @@ export class CsPlayerComponent extends BaseDirective {
   private activatedRoute = inject(ActivatedRoute);
   private iconService = inject(IgxIconService);
 
-  public authUser: ApplicationUser;
-  public teamsAdmin: CSGOTeam [];
-  public userTeams: Observable<CSGOTeam []>;
-  public availability: Availability [];
-  public mapPool: CSGOMapPool [];
-  public player: ApplicationUser;
-  public newUser = false;
+  // Handed down by the parent PlayerComponent through the router outlet.
+  public player = inject(ROUTER_OUTLET_DATA) as Signal<ApplicationUser>;
+
+  public authUser = signal<ApplicationUser>(null);
+  public teamsAdmin = signal<CSGOTeam []>(null);
+  public userTeams = signal<CSGOTeam []>([]);
+  public availability = signal<Availability []>(null);
+  public mapPool = signal<CSGOMapPool []>(null);
+  public viewAll = signal(false);
+  public loading = toSignal(this.apiService.loadingPlayer, { initialValue: false });
   public roles = ALL_ROLES;
-  public viewAll = false;
-  public loading = false;
+
+  public newUser = toSignal(
+    this.activatedRoute.parent.params.pipe(map(params => !!params['newuser'])),
+    { initialValue: false }
+  );
+
+  // Locally editable copy of the roles, so a pick shows up immediately instead of
+  // waiting for the server. Re-seeds whenever a new player comes down from the parent.
+  public csgoDetails = linkedSignal(() => this.player()?.csgoDetails);
+
+  public playerIsUser = computed(() => {
+    const player = this.player();
+    const authUser = this.authUser();
+    return !!player && !!authUser && player.steamUser.steamID64 === authUser.steamId;
+  });
+
+  private detailsLoadedFor: string;
 
   constructor() {
     super();
 
     this.authManager.applicationUser.subscribe((data: ApplicationUser) => {
       if (data) {
-        this.authUser = data;
-        this.authManager.teamsAdmin.subscribe(teams => this.teamsAdmin = teams);
+        this.authUser.set(data);
+        this.authManager.teamsAdmin.subscribe(teams => this.teamsAdmin.set(teams));
       }
     });
 
-    this.activatedRoute.parent.params.subscribe(params => {
-      const userid = params['userid'];
-      this.newUser = params['newuser'];
-      if (userid) {
-        this.apiService.getPlayer(userid).subscribe(
-            player => {
-              if (player) {
-                this.player = player;
-                if (player && !player.steamUserException) {
-                  this.titleService.setTitle('Counter-Strike Player: ' + player.steamUser.steamID);
-                  if (player.registered) {
-                    this.userTeams = this.apiService.getUserTeams(player.id);
-                    this.apiService.getAvailability(player.id).subscribe(data => this.availability = data);
-                    this.apiService.getMapPool(player.id).subscribe(maps => this.mapPool = maps);
-                  }
-                  if (player.userStats) {
-                    const weapons = new SortWeaponsPipe().transform(player.userStats.weapons);
-                    this.loadSvgs(weapons);
-                  }
-                }
-              }
-            }
-          );
-          this.apiService.loadingPlayer.subscribe(loading => this.loading = loading);
+    effect(() => {
+      const player = this.player();
+      if (!player || player.steamUserException) {
+        return;
+      }
+      this.titleService.setTitle('Counter-Strike Player: ' + player.steamUser.steamID);
+
+      // The player object is replaced whenever a role changes, so only pull the
+      // rest of the profile once per player.
+      if (this.detailsLoadedFor === player.id) {
+        return;
+      }
+      this.detailsLoadedFor = player.id;
+      if (player.registered) {
+        this.apiService.getUserTeams(player.id).subscribe(teams => this.userTeams.set(teams));
+        this.apiService.getAvailability(player.id).subscribe(data => this.availability.set(data));
+        this.apiService.getMapPool(player.id).subscribe(maps => this.mapPool.set(maps));
+      }
+      if (player.userStats) {
+        this.loadSvgs(new SortWeaponsPipe().transform(player.userStats.weapons));
       }
     });
   }
@@ -116,29 +130,27 @@ export class CsPlayerComponent extends BaseDirective {
   }
 
   public submitAvailability(args: Availability) {
-    args.userId = this.authUser.id;
+    args.userId = this.authUser().id;
     this.apiService.setAvailability(args).subscribe();
   }
 
-  public get playerIsUser(): boolean {
-    return this.player && this.authUser && (this.player.steamUser.steamID64 === this.authUser.steamId);
-  }
-
-  public selectPrimary(value: number) {
+  public selectPrimary(value: PlaystyleRole) {
+    this.csgoDetails.update(details => ({ ...details, primaryRole: value }));
     this.apiService.setPrimaryRole(this.roles.find(r => r.id === value)).subscribe();
   }
 
-  public selectSecondary(value: number) {
+  public selectSecondary(value: PlaystyleRole) {
+    this.csgoDetails.update(details => ({ ...details, secondaryRole: value }));
     this.apiService.setSecondaryRole(this.roles.find(r => r.id === value)).subscribe();
   }
 
   public mapChange(args: CSGOMapPool) {
-    args.userId = this.authUser.id;
+    args.userId = this.authUser().id;
     this.apiService.setMapPool(args).subscribe();
   }
 
   public inviteToTeam(args: ISelectionEventArgs) {
-    this.apiService.inviteToTeam(this.player.steamUser, args.newSelection.value).subscribe();
+    this.apiService.inviteToTeam(this.player().steamUser, args.newSelection.value).subscribe();
   }
 
   private loadSvgs(weapons: WeaponDescriptor []) {

@@ -1,4 +1,4 @@
-import { Component, Input, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, signal } from '@angular/core';
 import {
   PLAYER_SEARCH,
   PlayerSearch,
@@ -20,6 +20,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-player-search',
   templateUrl: './player-search.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./player-search.component.scss'],  imports: [
     FormsModule,
     IGX_RADIO_GROUP_DIRECTIVES,
@@ -36,12 +37,23 @@ export class PlayerSearchComponent {
   private authManager = inject(LoginService);
 
 
-  @Input()
-  public authUser: ApplicationUser;
-  public teamAdmin: CSGOTeam [];
-  public searchModel: PlayerSearch = PLAYER_SEARCH;
-  public userOverlap = 0;
-  public teamName = 'Select Team';
+  public authUser = input<ApplicationUser>();
+
+  public teamAdmin = signal<CSGOTeam []>(null);
+  public role = signal<PlaystyleRole>(PLAYER_SEARCH.role);
+  public scheduleOverlap = signal(PLAYER_SEARCH.scheduleOverlap);
+  public teamId = signal<string>(PLAYER_SEARCH.teamId);
+  public userOverlap = signal(0);
+  public teamName = signal('Select Team');
+
+  // Assembled from the individual field signals so the query builder keeps
+  // working against a single object.
+  public searchModel = computed<PlayerSearch>(() => ({
+    role: this.role(),
+    scheduleOverlap: this.scheduleOverlap(),
+    teamId: this.teamId()
+  }));
+
   public activeLineup = [
     { roleName: 'IGL', role: PlaystyleRole.IGL },
     { roleName: 'Awper', role: PlaystyleRole.Awper },
@@ -52,26 +64,27 @@ export class PlayerSearchComponent {
   public parseInt = parseInt;
 
   constructor() {
-    this.authManager.teamsAdmin.subscribe(teams => this.teamAdmin = teams);
+    this.authManager.teamsAdmin.subscribe(teams => this.teamAdmin.set(teams));
   }
 
   public searchPlayers() {
-    if (!this.userOverlap) {
-      this.teamName = 'Select Team';
-      this.searchModel.teamId = null;
+    if (!this.userOverlap()) {
+      this.teamName.set('Select Team');
+      this.teamId.set(null);
     }
     this.router.navigate(['search/players', this.searchQuery]);
   }
 
   private get searchQuery() {
+    const model = this.searchModel();
     let query = '';
-    if (this.searchModel.role != null) {
-      query = `role=${this.searchModel.role}&`;
+    if (model.role != null) {
+      query = `role=${model.role}&`;
     }
-    if (this.searchModel.teamId) {
-      query += `teamid=${this.searchModel.teamId}&`;
+    if (model.teamId) {
+      query += `teamid=${model.teamId}&`;
     }
-    return `${query}overlap=${this.searchModel.scheduleOverlap}`;
+    return `${query}overlap=${model.scheduleOverlap}`;
   }
 
 }

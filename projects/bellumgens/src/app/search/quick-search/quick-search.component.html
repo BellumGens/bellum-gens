@@ -1,5 +1,5 @@
 <div class="list-container">
-  <igx-list #players [isLoading]="loading">
+  <igx-list #players [isLoading]="loading()">
     <ng-template igxDataLoading>
       <div class="center-message">
         <span i18n>Loading players...</span>
@@ -8,32 +8,32 @@
         </div>
       </div>
     </ng-template>
-    @if (searchResult.steamUser?.steamUser) {
+    @if (searchResult().steamUser?.steamUser) {
       <igx-list-item [isHeader]="true" i18n>Steam User</igx-list-item>
       <igx-list-item
-        [routerLink]="['/players', searchResult.steamUser.steamUser.customURL || searchResult.steamUser.steamUser.steamID64]"
+        [routerLink]="['/players', searchResult().steamUser.steamUser.customURL || searchResult().steamUser.steamUser.steamID64]"
         class="navigatable">
-        <igx-avatar igxListThumbnail [src]="searchResult.steamUser.steamUser.avatarIcon" [initials]="searchResult.steamUser.steamUser.realname" shape="circle">
+        <igx-avatar igxListThumbnail [src]="searchResult().steamUser.steamUser.avatarIcon" [initials]="searchResult().steamUser.steamUser.realname" shape="circle">
         </igx-avatar>
-        @if (searchResult.steamUser.steamUser.country) {
+        @if (searchResult().steamUser.steamUser.country) {
           <igx-avatar
-            [src]="searchResult.steamUser.steamUser.country | countrySVG"
+            [src]="searchResult().steamUser.steamUser.country | countrySVG"
             shape="circle"
-            [title]="searchResult.steamUser.steamUser.country"
+            [title]="searchResult().steamUser.steamUser.country"
             class="country-badge-small">
           </igx-avatar>
         }
-        <h2 igxListLineTitle>{{ searchResult.steamUser.steamUser.steamID }}</h2>
-        <h4 igxListLineSubTitle>{{ searchResult.steamUser.steamUser.realname }}</h4>
-        @if (!searchResult.steamUser.userStatsException) {
+        <h2 igxListLineTitle>{{ searchResult().steamUser.steamUser.steamID }}</h2>
+        <h4 igxListLineSubTitle>{{ searchResult().steamUser.steamUser.realname }}</h4>
+        @if (!searchResult().steamUser.userStatsException) {
           <div igxListAction>
             <div class="horizontal-center space-between">
-              <igx-circular-bar class="icon-avatar" [value]="searchResult.steamUser.userStats?.killDeathRatio ?? 0" [max]="2" [animate]="true" [textVisibility]="false" title="KDR"></igx-circular-bar>
-              <span>{{ searchResult.steamUser.userStats?.killDeathRatio }}</span>
+              <igx-circular-bar class="icon-avatar" [value]="searchResult().steamUser.userStats?.killDeathRatio ?? 0" [max]="2" [animate]="true" [textVisibility]="false" title="KDR"></igx-circular-bar>
+              <span>{{ searchResult().steamUser.userStats?.killDeathRatio }}</span>
             </div>
             <div class="horizontal-center space-between">
               <igx-icon family="weapon-icons" name="headshot" class="icon-avatar"></igx-icon>
-              <span>{{ $safeNavigationMigration(searchResult.steamUser.userStats?.headshotPercentage) | number:'1.2' }}%</span>
+              <span>{{ searchResult().steamUser.userStats?.headshotPercentage | number:'1.2' }}%</span>
             </div>
           </div>
         } @else {
@@ -42,16 +42,16 @@
       </igx-list-item>
     }
     <igx-list-item [isHeader]="true" i18n>Players</igx-list-item>
-    @if (!searchResult.players.length) {
+    @if (!searchResult().players.length) {
       <igx-list-item>
         <span igxListLine i18n>No matching players...</span>
       </igx-list-item>
     }
-    @for (user of searchResult.players | reduceQuickSearchResult; track user.id) {
+    @for (user of searchResult().players | reduceQuickSearchResult; track user.id) {
       <igx-list-item
         [routerLink]="['/players', user.csgoDetails?.customURL || user.id]"
         class="navigatable">
-        <igx-avatar igxListThumbnail [src]="$safeNavigationMigration(user.csgoDetails?.avatarIcon)" [initials]="$safeNavigationMigration(user.csgoDetails?.realname)" shape="circle">
+        <igx-avatar igxListThumbnail [src]="user.csgoDetails?.avatarIcon" [initials]="user.csgoDetails?.realname" shape="circle">
         </igx-avatar>
         @if (user.csgoDetails.country) {
           <igx-avatar
@@ -79,13 +79,13 @@
         }
       </igx-list-item>
     }
-    @if (searchResult.players.length > 3) {
+    @if (searchResult().players.length > 3) {
       <igx-list-item>
-        <button igxButton="flat" igxRipple class="submit-button" [routerLink]="['/search/players', 'name=' + term]" i18n>View more players...</button>
+        <button igxButton="flat" igxRipple class="submit-button" [routerLink]="['/search/players', 'name=' + term()]" i18n>View more players...</button>
       </igx-list-item>
     }
   </igx-list>
-  <igx-list [isLoading]="loading">
+  <igx-list [isLoading]="loading()">
     <ng-template igxDataLoading>
       <div class="center-message">
         <span i18n>Loading teams...</span>
@@ -95,25 +95,25 @@
       </div>
     </ng-template>
     <igx-list-item [isHeader]="true" i18n>Teams</igx-list-item>
-    @if (!searchResult.teams.length) {
+    @if (!searchResult().teams.length) {
       <igx-list-item>
         <span igxListLine i18n>No matching teams...</span>
       </igx-list-item>
     }
-    @for (team of searchResult.teams | reduceQuickSearchResult; track team.teamId) {
+    @for (team of searchResult().teams | reduceQuickSearchResult; track team.teamId) {
     <igx-list-item class="navigatable" [routerLink]="['/team', team.customUrl]">
       <igx-avatar igxListThumbnail [src]="team.teamAvatar" [initials]="team.teamName" shape="circle">
       </igx-avatar>
       <h2 igxListLineTitle>{{ team.teamName }}</h2>
     </igx-list-item>
     }
-    @if (searchResult.teams.length > 3) {
+    @if (searchResult().teams.length > 3) {
       <igx-list-item>
-        <button igxButton="flat" igxRipple class="submit-button" [routerLink]="['/search/teams', 'name=' + term]" i18n>View more teams...</button>
+        <button igxButton="flat" igxRipple class="submit-button" [routerLink]="['/search/teams', 'name=' + term()]" i18n>View more teams...</button>
       </igx-list-item>
     }
   </igx-list>
-  <igx-list [isLoading]="loading">
+  <igx-list [isLoading]="loading()">
     <ng-template igxDataLoading>
       <div class="center-message">
         <span i18n>Loading strategies...</span>
@@ -123,21 +123,21 @@
       </div>
     </ng-template>
     <igx-list-item [isHeader]="true" i18n>Strategies</igx-list-item>
-    @if (!searchResult.strategies.length) {
+    @if (!searchResult().strategies.length) {
       <igx-list-item>
         <span igxListLine i18n>No matching strategies...</span>
       </igx-list-item>
     }
-    @for (strat of searchResult.strategies | reduceQuickSearchResult; track strat.id) {
+    @for (strat of searchResult().strategies | reduceQuickSearchResult; track strat.id) {
       <igx-list-item class="navigatable" [routerLink]="['/team', strat.customUrl]">
         <igx-avatar igxListThumbnail [src]="strat.image" [initials]="strat.title" shape="circle">
         </igx-avatar>
         <h2 igxListLineTitle>{{ strat.title }}</h2>
       </igx-list-item>
     }
-    @if (searchResult.strategies.length > 3) {
+    @if (searchResult().strategies.length > 3) {
       <igx-list-item>
-        <button igxButton="flat" igxRipple class="submit-button" [routerLink]="['/strategies', 'name=' + term]" i18n>View more strategies...</button>
+        <button igxButton="flat" igxRipple class="submit-button" [routerLink]="['/strategies', 'name=' + term()]" i18n>View more strategies...</button>
       </igx-list-item>
     }
   </igx-list>

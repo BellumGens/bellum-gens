@@ -1,22 +1,22 @@
-@if (loading | async) {
+@if (loading()) {
   <bg-loading>
   </bg-loading>
 }
 
-@if (player) {
+@if (player()) {
   <div class="card-wrapper profile-view-layout">
     <div class="profile-container">
-      @if (player.sc2Details) {
+      @if (player().sc2Details) {
         <div>
-          <igx-avatar [src]="player.sc2Details?.avatarUrl || ''" [initials]="player.sc2Details?.battleNetBattleTag || ''" class="player-avatar">
+          <igx-avatar [src]="player().sc2Details?.avatarUrl || ''" [initials]="player().sc2Details?.battleNetBattleTag || ''" class="player-avatar">
           </igx-avatar>
         </div>
-        <h1 class="igx-card-header__title"><a [href]="$safeNavigationMigration(player.sc2Details?.profileUrl)" target="_blank" rel="noopener">{{ player.sc2Details?.battleNetBattleTag }}</a></h1>
+        <h1 class="igx-card-header__title"><a [href]="player().sc2Details?.profileUrl" target="_blank" rel="noopener">{{ player().sc2Details?.battleNetBattleTag }}</a></h1>
       }
-      <h4 class="igx-card-header__subtitle">{{ player.username }}</h4>
+      <h4 class="igx-card-header__subtitle">{{ player().username }}</h4>
     </div>
     <div>
-    @for (tournament of tournaments | async; track tournament.id) {
+    @for (tournament of tournaments(); track tournament.id) {
       <igx-grid
         cellSelection="none"
         [height]="tournament.sc2Matches.length > 12 ? '650px' : null"
@@ -66,8 +66,8 @@
 
         <igx-column field="winnerPlayerId" i18n-header header="Result">
           <ng-template igxCell let-value>
-            <span [class]="!value ? 'color-warn' : value === player?.id ? 'color-success' : 'color-error'"
-            i18n>{{ !value ? 'Pending' : value === player?.id ? 'Win' : 'Loss' }}</span>
+            <span [class]="!value ? 'color-warn' : value === player()?.id ? 'color-success' : 'color-error'"
+            i18n>{{ !value ? 'Pending' : value === player()?.id ? 'Win' : 'Loss' }}</span>
           </ng-template>
         </igx-column>
 
