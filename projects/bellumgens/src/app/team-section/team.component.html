@@ -3,8 +3,8 @@
     <igx-avatar [initials]="team?.teamName || ''" [src]="team?.teamAvatar || ''" shape="circle" [size]="'large'">
     </igx-avatar>
     <div class="horizontal-info__left">
-      <h1 class="igx-card-header__title">{{ team?.teamName }}</h1>
-      <h3 class="igx-card-header__subtitle">{{ team?.description }}</h3>
+      <h1 igxCardHeaderTitle>{{ team?.teamName }}</h1>
+      <h3 igxCardHeaderSubtitle>{{ team?.description }}</h3>
     </div>
     @if (!isMember && team?.teamId) {
       <div class="horizontal-info__right">

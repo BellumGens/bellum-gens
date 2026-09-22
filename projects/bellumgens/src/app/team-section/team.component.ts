@@ -12,12 +12,15 @@ import { BaseDirective } from '../base/base.component';
 import { IgxIconComponent, IgxIconService } from '@infragistics/igniteui-angular/icon';
 import { IGX_TABS_DIRECTIVES } from '@infragistics/igniteui-angular/tabs';
 import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
+import { IgxCardHeaderTitleDirective, IgxCardHeaderSubtitleDirective } from '@infragistics/igniteui-angular/card';
 import { TeamApplicationComponent } from './team-application/team-application.component';
 
 @Component({
   templateUrl: './team.component.html',
   styleUrls: ['./team.component.scss'],  imports: [
     IgxAvatarComponent,
+    IgxCardHeaderTitleDirective,
+    IgxCardHeaderSubtitleDirective,
     TeamApplicationComponent,
     IgxIconComponent,
     IGX_TABS_DIRECTIVES,
