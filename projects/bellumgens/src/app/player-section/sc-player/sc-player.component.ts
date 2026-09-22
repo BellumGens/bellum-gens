@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, effect, inject, signal, Signal } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { ApplicationUser, BellumgensApiService, LoadingComponent, RaceIconPipe, Tournament } from '../../../../../common/src/public_api';
+import { IgxCardHeaderTitleDirective, IgxCardHeaderSubtitleDirective } from '@infragistics/igniteui-angular/card';
 import { ROUTER_OUTLET_DATA } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { IGX_GRID_DIRECTIVES } from '@infragistics/igniteui-angular/grids/grid';
@@ -15,6 +16,8 @@ import { DatePipe } from '@angular/common';
     IgxIconComponent,
     LoadingComponent,
     IGX_GRID_DIRECTIVES,
+    IgxCardHeaderTitleDirective,
+    IgxCardHeaderSubtitleDirective,
     DatePipe,
     RaceIconPipe
   ],

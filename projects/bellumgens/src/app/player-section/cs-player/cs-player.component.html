@@ -53,8 +53,8 @@
           </button>
         }
       </div>
-      <h1 class="igx-card-header__title"><a [href]="player().steamUser | steamCustomUrl" target="_blank" rel="noopener">{{ player().steamUser?.steamID }}</a></h1>
-      <h4 class="igx-card-header__subtitle">{{ player().steamUser?.realname }}</h4>
+      <h1 igxCardHeaderTitle><a [href]="player().steamUser | steamCustomUrl" target="_blank" rel="noopener">{{ player().steamUser?.steamID }}</a></h1>
+      <h4 igxCardHeaderSubtitle>{{ player().steamUser?.realname }}</h4>
       @for (team of userTeams(); track team.teamId) {
         <igx-avatar class="team-avatar-link"
           [initials]="team.teamName"
@@ -67,8 +67,9 @@
       }
       @if (!player().userStatsException) {
         <!-- IgxSelect: default positioning changed to AutoPositionStrategy (below/above input).
-     To preserve overlap behavior: this.select.overlaySettings = { positionStrategy: new IgxSelectOverlapPositionStrategy(this.select) }; -->
-<igx-select type="border"
+            To preserve overlap behavior: this.select.overlaySettings = { positionStrategy: new IgxSelectOverlapPositionStrategy(this.select) }; -->
+        <igx-select type="border"
+          class="role-select"
           id="primary-role"
           name="primary-role"
           [disabled]="!playerIsUser()"
@@ -80,8 +81,9 @@
           }
         </igx-select>
         <!-- IgxSelect: default positioning changed to AutoPositionStrategy (below/above input).
-     To preserve overlap behavior: this.select.overlaySettings = { positionStrategy: new IgxSelectOverlapPositionStrategy(this.select) }; -->
-<igx-select type="border"
+            To preserve overlap behavior: this.select.overlaySettings = { positionStrategy: new IgxSelectOverlapPositionStrategy(this.select) }; -->
+        <igx-select type="border"
+          class="role-select"
           id="secondary-role"
           name="secondary-role"
           [disabled]="!playerIsUser()"

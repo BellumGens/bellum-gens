@@ -11,9 +11,9 @@
           <igx-avatar [src]="player().sc2Details?.avatarUrl || ''" [initials]="player().sc2Details?.battleNetBattleTag || ''" class="player-avatar">
           </igx-avatar>
         </div>
-        <h1 class="igx-card-header__title"><a [href]="player().sc2Details?.profileUrl" target="_blank" rel="noopener">{{ player().sc2Details?.battleNetBattleTag }}</a></h1>
+        <h1 igxCardHeaderTitle><a [href]="player().sc2Details?.profileUrl" target="_blank" rel="noopener">{{ player().sc2Details?.battleNetBattleTag }}</a></h1>
       }
-      <h4 class="igx-card-header__subtitle">{{ player().username }}</h4>
+      <h4 igxCardHeaderSubtitle>{{ player().username }}</h4>
     </div>
     <div>
     @for (tournament of tournaments(); track tournament.id) {

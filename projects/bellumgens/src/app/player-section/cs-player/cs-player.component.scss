@@ -25,10 +25,21 @@
     height: 52px;
     min-width: 52px;
   }
-
+  
   .stats-progress {
-    width: auto;
-    height: auto;
+    --ig-circular-bar-diameter: 200px;
+    --stroke-thickness: 10px;
+    --scale-factor: 4;
+  }
+
+  .role-select {
+    --ig-input-group-size: 40px;
+    --ig-size: var(--ig-size-small);
+    max-width: 224px;
+
+    + .role-select {
+      margin-block-start: 16px;
+    }
   }
 
   .top-weapon {
@@ -47,10 +58,6 @@
     box-shadow: none;
     border: none;
   }
-
-    .player-detail__stats .igx-circular-bar__text {
-      font-size: 3.55rem;
-    }
 
     .player-detail__stats .igx-card-content {
       text-align: center;
