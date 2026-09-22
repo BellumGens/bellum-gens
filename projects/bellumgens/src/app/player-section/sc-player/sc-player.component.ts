@@ -49,10 +49,13 @@ export class ScPlayerComponent {
       if (this.tournamentsLoadedFor === player.id) {
         return;
       }
-      this.tournamentsLoadedFor = player.id;
-      this.apiService.getPlayerTournaments(player.id).subscribe(
-        tournaments => this.tournaments.set(tournaments)
-      );
+this.tournamentsLoadedFor = player.id;
+      this.tournaments.set([]);
+      this.apiService.getPlayerTournaments(player.id).subscribe(tournaments => {
+        if (this.player()?.id === player.id) {
+          this.tournaments.set(tournaments);
+        }
+      });
     });
   }
 }
