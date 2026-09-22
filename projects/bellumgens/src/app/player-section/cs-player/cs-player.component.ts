@@ -54,7 +54,8 @@ import { MapPoolComponent } from '../map-pool/map-pool.component';
     TopWeaponAltPipe,
     LoadingComponent
   ],
-  templateUrl: './cs-player.component.html',  styleUrl: './cs-player.component.scss'
+  templateUrl: './cs-player.component.html',
+  styleUrl: './cs-player.component.scss'
 })
 export class CsPlayerComponent extends BaseDirective {
   private authManager = inject(LoginService);
@@ -113,8 +114,14 @@ export class CsPlayerComponent extends BaseDirective {
       if (this.detailsLoadedFor === player.id) {
         return;
       }
+      this.userTeams.set([]);
       this.detailsLoadedFor = player.id;
-      if (player.registered) {
+        const requestedPlayerId = player.id;
+        this.apiService.getUserTeams(player.id).subscribe(teams => {
+          if (this.player()?.id === requestedPlayerId) {
+            this.userTeams.set(teams);
+          }
+        });
         this.apiService.getUserTeams(player.id).subscribe(teams => this.userTeams.set(teams));
         this.apiService.getAvailability(player.id).subscribe(data => this.availability.set(data));
         this.apiService.getMapPool(player.id).subscribe(maps => this.mapPool.set(maps));
