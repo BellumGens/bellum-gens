@@ -1,4 +1,5 @@
-import { Component, ViewChild, OnDestroy, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal, viewChild } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { IgxSnackbarComponent } from '@infragistics/igniteui-angular/snackbar';
 import { CommunicationService } from '../../services/communication.service';
@@ -6,18 +7,19 @@ import { CommunicationService } from '../../services/communication.service';
 @Component({
     selector: 'bg-success-error',
     templateUrl: './success-error.component.html',
+    changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ['./success-error.component.scss'],    imports: [IgxSnackbarComponent, IgxIconComponent]
 })
-export class SuccessErrorComponent implements OnDestroy {
+export class SuccessErrorComponent {
   private commService = inject(CommunicationService);
 
-  @ViewChild('message', { static: true }) public message: IgxSnackbarComponent;
+  public message = viewChild.required<IgxSnackbarComponent>('message');
 
   public successMsg = 'Success...';
   public errorMsg = 'Error has occurred...';
-  public notificationMsg = '';
-  public icon = 'done';
-  public class = 'color-success';
+  public notificationMsg = signal('');
+  public icon = signal('done');
+  public class = signal('color-success');
 
   private settings = {
     success: {
@@ -35,24 +37,21 @@ export class SuccessErrorComponent implements OnDestroy {
   };
 
   constructor() {
-    this.commService.error.subscribe(message => this.showMessage('error', message));
-    this.commService.success.subscribe(message => this.showMessage('success', message));
-    this.commService.message.subscribe(message => this.showMessage('warn', message));
+    this.commService.error.pipe(takeUntilDestroyed())
+      .subscribe(message => this.showMessage('error', message));
+    this.commService.success.pipe(takeUntilDestroyed())
+      .subscribe(message => this.showMessage('success', message));
+    this.commService.message.pipe(takeUntilDestroyed())
+      .subscribe(message => this.showMessage('warn', message));
   }
 
   public showMessage(type: string, msg?: string) {
     if (msg) {
-      this.notificationMsg = msg;
+      this.notificationMsg.set(msg);
     }
-    this.icon = this.settings[type].icon;
-    this.class = this.settings[type].class;
-    this.message.open();
-  }
-
-  public ngOnDestroy() {
-    this.commService.error.unsubscribe();
-    this.commService.success.unsubscribe();
-    this.commService.message.unsubscribe();
+    this.icon.set(this.settings[type].icon);
+    this.class.set(this.settings[type].class);
+    this.message().open();
   }
 }
 

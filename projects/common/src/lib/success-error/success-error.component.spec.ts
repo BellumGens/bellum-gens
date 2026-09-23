@@ -37,54 +37,54 @@ describe('SuccessErrorComponent', () => {
   });
 
   it('should have default icon and class for success', () => {
-    expect(component.icon).toBe('done');
-    expect(component.class).toBe('color-success');
+    expect(component.icon()).toBe('done');
+    expect(component.class()).toBe('color-success');
   });
 
   it('should show success message', () => {
-    vi.spyOn(component.message, 'open').mockImplementation(() => undefined);
+    vi.spyOn(component.message(), 'open').mockImplementation(() => undefined);
     const testMessage = 'Operation successful';
 
     component.showMessage('success', testMessage);
 
-    expect(component.notificationMsg).toBe(testMessage);
-    expect(component.icon).toBe('done');
-    expect(component.class).toBe('color-success');
-    expect(component.message.open).toHaveBeenCalled();
+    expect(component.notificationMsg()).toBe(testMessage);
+    expect(component.icon()).toBe('done');
+    expect(component.class()).toBe('color-success');
+    expect(component.message().open).toHaveBeenCalled();
   });
 
   it('should show error message', () => {
-    vi.spyOn(component.message, 'open').mockImplementation(() => undefined);
+    vi.spyOn(component.message(), 'open').mockImplementation(() => undefined);
     const testMessage = 'Operation failed';
 
     component.showMessage('error', testMessage);
 
-    expect(component.notificationMsg).toBe(testMessage);
-    expect(component.icon).toBe('error');
-    expect(component.class).toBe('color-error');
-    expect(component.message.open).toHaveBeenCalled();
+    expect(component.notificationMsg()).toBe(testMessage);
+    expect(component.icon()).toBe('error');
+    expect(component.class()).toBe('color-error');
+    expect(component.message().open).toHaveBeenCalled();
   });
 
   it('should show warning message', () => {
-    vi.spyOn(component.message, 'open').mockImplementation(() => undefined);
+    vi.spyOn(component.message(), 'open').mockImplementation(() => undefined);
     const testMessage = 'Warning: Check your input';
 
     component.showMessage('warn', testMessage);
 
-    expect(component.notificationMsg).toBe(testMessage);
-    expect(component.icon).toBe('priority_high');
-    expect(component.class).toBe('color-warn');
-    expect(component.message.open).toHaveBeenCalled();
+    expect(component.notificationMsg()).toBe(testMessage);
+    expect(component.icon()).toBe('priority_high');
+    expect(component.class()).toBe('color-warn');
+    expect(component.message().open).toHaveBeenCalled();
   });
 
   it('should use default notification message if none provided', () => {
-    vi.spyOn(component.message, 'open').mockImplementation(() => undefined);
-    const previousMsg = component.notificationMsg;
+    vi.spyOn(component.message(), 'open').mockImplementation(() => undefined);
+    const previousMsg = component.notificationMsg();
 
     component.showMessage('success');
 
-    expect(component.notificationMsg).toBe(previousMsg);
-    expect(component.message.open).toHaveBeenCalled();
+    expect(component.notificationMsg()).toBe(previousMsg);
+    expect(component.message().open).toHaveBeenCalled();
   });
 
   it('should subscribe to communication service on creation', () => {

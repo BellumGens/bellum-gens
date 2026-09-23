@@ -1,4 +1,4 @@
-import { Component, Input, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input, signal } from '@angular/core';
 import { PlaystyleRole, TeamSearch, TEAM_SEARCH, ApplicationUser } from '../../../../../common/src/public_api';
 import { Router } from '@angular/router';
 
@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-team-search',
   templateUrl: './team-search.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./team-search.component.scss'],  imports: [
     FormsModule,
     IGX_RADIO_GROUP_DIRECTIVES,
@@ -21,11 +22,18 @@ import { FormsModule } from '@angular/forms';
 export class TeamSearchComponent {
   private router = inject(Router);
 
+  public authUser = input<ApplicationUser>();
 
-  @Input()
-  public authUser: ApplicationUser;
+  public role = signal<PlaystyleRole>(TEAM_SEARCH.role);
+  public scheduleOverlap = signal(TEAM_SEARCH.scheduleOverlap);
 
-  public searchModel: TeamSearch = TEAM_SEARCH;
+  // Assembled from the individual field signals so the query builder keeps
+  // working against a single object.
+  public searchModel = computed<TeamSearch>(() => ({
+    role: this.role(),
+    scheduleOverlap: this.scheduleOverlap()
+  }));
+
   public activeLineup = [
     { roleName: 'IGL', role: PlaystyleRole.IGL },
     { roleName: 'Awper', role: PlaystyleRole.Awper },
@@ -41,10 +49,11 @@ export class TeamSearchComponent {
   }
 
   private get searchQuery() {
+    const model = this.searchModel();
     let query = '';
-    if (this.searchModel.role != null) {
-      query = `role=${this.searchModel.role}&`;
+    if (model.role != null) {
+      query = `role=${model.role}&`;
     }
-    return `${query}overlap=${this.searchModel.scheduleOverlap}`;
+    return `${query}overlap=${model.scheduleOverlap}`;
   }
 }

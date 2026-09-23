@@ -1,5 +1,5 @@
 <div class="strat-filter-header">
-  <div class="igx-card-header__title">
+  <div igxCardHeaderTitle>
     <span i18n>Showing</span>
     <button class="navigation-item" igxButton="outlined" igxRipple (click)="viewAll = !viewAll">{{viewAll ? 'all maps' : 'active duty maps'}}</button>
   </div>
@@ -40,7 +40,7 @@
 
 <div class="card-wrapper">
   @if (!loading && !strats?.length) {
-    <span class="igx-card-header__subtitle" i18n>No strategies found...</span>
+    <span igxCardHeaderSubtitle i18n>No strategies found...</span>
   }
 
   @for (strat of strats | stratFilter:viewAll:pipeTrigger | sidestrats:maps:order; track strat.id) {
@@ -63,7 +63,7 @@
         }
       </igx-card-media>
       <igx-card-content>
-        <p class="igx-card-header__subtitle">{{ strat.description | truncateText:130 }}</p>
+        <p igxCardHeaderSubtitle>{{ strat.description | truncateText:130 }}</p>
       </igx-card-content>
       <igx-card-actions class="strategy-actions">
         <span igxStart class="horizontal-center navigatable" [routerLink]="['/strategies', 'details', strat.customUrl]">
@@ -121,7 +121,7 @@
   @if (hasMore) {
     <igx-card class="fit-content-card">
       <igx-card-header class="empty-strategy">
-        <h4 class="igx-card-header__title" i18n>Load More...</h4>
+        <h4 igxCardHeaderTitle i18n>Load More...</h4>
       </igx-card-header>
       <igx-card-content class="empty-strategy empty-strategy-content">
         <igx-avatar icon="sync"

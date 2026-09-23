@@ -38,12 +38,12 @@ describe('SearchComponent', () => {
   });
 
   it('should initialize searchType as None', () => {
-    expect(component.searchType).toBe(0); // SearchType.None
+    expect(component.searchType()).toBe(0); // SearchType.None
   });
 
   it('should initialize authUser as undefined', () => {
     // authUser is null until subscription updates it
-    expect(component.authUser).toBeNull();
+    expect(component.authUser()).toBeNull();
   });
 
   it('should subscribe to auth user changes', () => {
@@ -56,15 +56,15 @@ describe('SearchComponent', () => {
     authService.applicationUser.next(mockUser as any);
     fixture.detectChanges();
 
-    expect(component.authUser).toBeDefined();
+    expect(component.authUser()).toBeDefined();
   });
 
   it('should change searchType when button is clicked', () => {
-    component.searchType = 1; // SearchType.Player
-    expect(component.searchType).toBe(1);
+    component.searchType.set(1); // SearchType.Player
+    expect(component.searchType()).toBe(1);
 
-    component.searchType = 2; // SearchType.Team
-    expect(component.searchType).toBe(2);
+    component.searchType.set(2); // SearchType.Team
+    expect(component.searchType()).toBe(2);
   });
 
   it('should have PlayerSearchComponent and TeamSearchComponent as children', () => {

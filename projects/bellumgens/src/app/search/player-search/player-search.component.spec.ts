@@ -39,11 +39,11 @@ describe('PlayerSearchComponent', () => {
   });
 
   it('should initialize userOverlap to 0', () => {
-    expect(component.userOverlap).toBe(0);
+    expect(component.userOverlap()).toBe(0);
   });
 
   it('should initialize teamName', () => {
-    expect(component.teamName).toBe('Select Team');
+    expect(component.teamName()).toBe('Select Team');
   });
 
   it('should have activeLineup with 5 roles', () => {

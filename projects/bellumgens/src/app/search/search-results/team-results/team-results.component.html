@@ -1,13 +1,13 @@
-@if (loading) {
+@if (loading()) {
   <bg-loading>
   </bg-loading>
 }
 @else {
   <div class="card-wrapper">
     <div class="content-container-row">
-      <h4 class="igx-card-header__title" i18n>Found <span class="highlight">{{teams?.length }}</span> results for teams{{ query | queryParsed }}</h4>
+      <h4 igxCardHeaderTitle i18n>Found <span class="highlight">{{teams()?.length }}</span> results for teams{{ query() | queryParsed }}</h4>
     </div>
-    @for (team of teams; track team.teamId) {
+    @for (team of teams(); track team.teamId) {
       <igx-card class="navigatable" [routerLink]="['/team', team.customUrl]" elevated>
         <igx-card-header>
           <igx-avatar igxCardThumbnail [src]="team.teamAvatar" [initials]="team.teamName" [size]="'medium'" shape="circle"></igx-avatar>

@@ -541,7 +541,7 @@ describe('BellumgensApiService', () => {
   it('setPrimaryRole should send a PUT request to the correct URL', () => {
     const role: Role = { id: PlaystyleRole.Awper, name: 'Awper' };
     commsService.success.subscribe(success => expect(success).toBe(`Primary role set to ${role.name}`));
-    service.setPrimaryRole(role).subscribe();
+    service.setPrimaryRole(role, 'player-id').subscribe();
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/users/primaryrole?id=${role.id}`);
     expect(req.request.method).toBe('PUT');
     expect(req.request.body).toEqual(role);
@@ -550,7 +550,7 @@ describe('BellumgensApiService', () => {
 
     const errorMessage = `Http failure response for ${service['_apiEndpoint']}/users/primaryrole?id=${role.id}: 500 Could not update primary role!`;
     commsService.error.subscribe(error => expect(error).toBe(errorMessage));
-    service.setPrimaryRole(role).subscribe({
+    service.setPrimaryRole(role, 'player-id').subscribe({
       error: err => expect(err.message).toBe(errorMessage)
     });
     const req2 = httpMock.expectOne(`${service['_apiEndpoint']}/users/primaryrole?id=${role.id}`);
@@ -563,7 +563,7 @@ describe('BellumgensApiService', () => {
   it('setSecondaryRole should send a PUT request to the correct URL', () => {
     const role: Role = { id: PlaystyleRole.IGL, name: 'Ingame Leader' };
     commsService.success.subscribe(success => expect(success).toBe(`Secondary role set to ${role.name}`));
-    service.setSecondaryRole(role).subscribe();
+    service.setSecondaryRole(role, 'player-id').subscribe();
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/users/secondaryrole?id=${role.id}`);
     expect(req.request.method).toBe('PUT');
     expect(req.request.body).toEqual(role);
@@ -572,7 +572,7 @@ describe('BellumgensApiService', () => {
 
     const errorMessage = `Http failure response for ${service['_apiEndpoint']}/users/secondaryrole?id=${role.id}: 500 Could not update secondary role!`;
     commsService.error.subscribe(error => expect(error).toBe(errorMessage));
-    service.setSecondaryRole(role).subscribe({
+    service.setSecondaryRole(role, 'player-id').subscribe({
       error: err => expect(err.message).toBe(errorMessage)
     });
     const req2 = httpMock.expectOne(`${service['_apiEndpoint']}/users/secondaryrole?id=${role.id}`);
@@ -580,6 +580,62 @@ describe('BellumgensApiService', () => {
     expect(req2.request.body).toEqual(role);
     expect(req2.request.withCredentials).toBe(true);
     req2.error(new ProgressEvent('Server Error'), { status: 500, statusText: 'Could not update secondary role!' });
+  });
+
+  const rolePlayer = (id: string) => ({
+    id,
+    csgoDetails: { primaryRole: PlaystyleRole.NotSet, secondaryRole: PlaystyleRole.NotSet }
+  }) as ApplicationUser;
+
+  it('setPrimaryRole should update the cached player it was issued for', () => {
+    const role: Role = { id: PlaystyleRole.Awper, name: 'Awper' };
+    service['_currentPlayer'].next(rolePlayer('player-a'));
+
+    service.setPrimaryRole(role, 'player-a').subscribe();
+    httpMock.expectOne(`${service['_apiEndpoint']}/users/primaryrole?id=${role.id}`).flush({});
+
+    expect(service['_currentPlayer'].value.csgoDetails.primaryRole).toBe(PlaystyleRole.Awper);
+  });
+
+  it('setPrimaryRole should not patch a different player cached before the response arrives', () => {
+    const role: Role = { id: PlaystyleRole.Awper, name: 'Awper' };
+    service['_currentPlayer'].next(rolePlayer('player-a'));
+
+    service.setPrimaryRole(role, 'player-a').subscribe();
+    const req = httpMock.expectOne(`${service['_apiEndpoint']}/users/primaryrole?id=${role.id}`);
+
+    // navigation swaps the cached player while the PUT is still in flight
+    const playerB = rolePlayer('player-b');
+    service['_currentPlayer'].next(playerB);
+    req.flush({});
+
+    expect(service['_currentPlayer'].value).toBe(playerB);
+    expect(playerB.csgoDetails.primaryRole).toBe(PlaystyleRole.NotSet);
+  });
+
+  it('setSecondaryRole should update the cached player it was issued for', () => {
+    const role: Role = { id: PlaystyleRole.IGL, name: 'Ingame Leader' };
+    service['_currentPlayer'].next(rolePlayer('player-a'));
+
+    service.setSecondaryRole(role, 'player-a').subscribe();
+    httpMock.expectOne(`${service['_apiEndpoint']}/users/secondaryrole?id=${role.id}`).flush({});
+
+    expect(service['_currentPlayer'].value.csgoDetails.secondaryRole).toBe(PlaystyleRole.IGL);
+  });
+
+  it('setSecondaryRole should not patch a different player cached before the response arrives', () => {
+    const role: Role = { id: PlaystyleRole.IGL, name: 'Ingame Leader' };
+    service['_currentPlayer'].next(rolePlayer('player-a'));
+
+    service.setSecondaryRole(role, 'player-a').subscribe();
+    const req = httpMock.expectOne(`${service['_apiEndpoint']}/users/secondaryrole?id=${role.id}`);
+
+    const playerB = rolePlayer('player-b');
+    service['_currentPlayer'].next(playerB);
+    req.flush({});
+
+    expect(service['_currentPlayer'].value).toBe(playerB);
+    expect(playerB.csgoDetails.secondaryRole).toBe(PlaystyleRole.NotSet);
   });
 
   it('getMapPool should send a GET request to the correct URL', () => {

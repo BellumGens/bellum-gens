@@ -1,16 +1,16 @@
-<igx-buttongroup class="search-type" [selectionMode]="'singleRequired'" (selected)="searchType = $event.index + 1">
+<igx-buttongroup class="search-type" [selectionMode]="'singleRequired'" (selected)="searchType.set($event.index + 1)">
   <button igxButton igxRipple i18n>Players</button>
   <button igxButton igxRipple i18n>Teams</button>
 </igx-buttongroup>
 
-@if (searchType === 1) {
-  <app-player-search [authUser]="authUser"></app-player-search>
+@if (searchType() === 1) {
+  <app-player-search [authUser]="authUser()"></app-player-search>
 }
-@else if (searchType === 2) {
-  <app-team-search [authUser]="authUser"></app-team-search>
+@else if (searchType() === 2) {
+  <app-team-search [authUser]="authUser()"></app-team-search>
 }
 
-@if (!authUser) {
+@if (!authUser()) {
   <div>
     <p i18n><b class="highlight">NOTE: </b>Signing in gives you access to more search options!</p>
   </div>

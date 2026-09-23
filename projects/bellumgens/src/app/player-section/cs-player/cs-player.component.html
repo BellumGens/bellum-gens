@@ -1,35 +1,35 @@
-@if (loading) {
+@if (loading()) {
   <bg-loading>
   </bg-loading>
 }
 
-@if (!player || player?.steamUserException) {
+@if (!player() || player()?.steamUserException) {
   <div class="loading-overview">
     <h4 class="highlight" i18n>Steam Counter-Strike player profile not found...</h4>
   </div>
 }
 @else {
   <div class="card-wrapper profile-view-layout">
-    @if (newUser) {
+    @if (newUser()) {
       <div class="content-container-row">
-        <h4 i18n>Welcome <span class="highlight">{{ player.steamUser.steamID }}</span>!</h4>
+        <h4 i18n>Welcome <span class="highlight">{{ player().steamUser.steamID }}</span>!</h4>
         <p i18n>Now it's time to complete your profile! Fill in your <span class="highlight">preferred playstyle</span>, your <span class="highlight">availability</span> and your <span class="highlight">preferred map pool</span>.</p>
       </div>
     }
-    @if (!player?.registered) {
+    @if (!player()?.registered) {
       <div class="content-container-row">
         <div i18n>This player is not registered! If you own the profile then <span (click)="openLogin()" class="highlight navigatable">register</span> to complete it.</div>
       </div>
     }
     <div class="profile-container">
       <div>
-        <igx-avatar [src]="player.steamUser?.avatarFull || ''" [initials]="player.steamUser?.steamID || ''" class="player-avatar">
+        <igx-avatar [src]="player().steamUser?.avatarFull || ''" [initials]="player().steamUser?.steamID || ''" class="player-avatar">
         </igx-avatar>
-        @if (player.steamUser?.country) {
-          <igx-avatar [src]="$safeNavigationMigration(player.steamUser?.country) | countrySVG" shape="circle" [title]="$safeNavigationMigration(player.steamUser?.country)" class="country-badge-large"></igx-avatar>
+        @if (player().steamUser?.country) {
+          <igx-avatar [src]="player().steamUser?.country | countrySVG" shape="circle" [title]="player().steamUser?.country" class="country-badge-large"></igx-avatar>
         }
         <!-- <button igxButton="raised" [disabled]="true">Send message <igx-icon>mail</igx-icon></button> -->
-        @if (player?.registered && !playerIsUser && teamsAdmin?.length > 0) {
+        @if (player()?.registered && !playerIsUser() && teamsAdmin()?.length > 0) {
           <button
             igxButton
             igxRipple
@@ -40,7 +40,7 @@
             <igx-icon>people</igx-icon><span i18n>Invite</span>
             <igx-icon>arrow_drop_down</igx-icon>
             <igx-drop-down (selectionChanging)="inviteToTeam($event)" #teamInvite>
-              @for (team of teamsAdmin; track team.teamId) {
+              @for (team of teamsAdmin(); track team.teamId) {
                 <igx-drop-down-item class="team-invites" [value]="team">
                   <igx-avatar [src]="team.teamAvatar" [initials]="team.teamName" shape="circle">
                   </igx-avatar>
@@ -53,9 +53,9 @@
           </button>
         }
       </div>
-      <h1 class="igx-card-header__title"><a [href]="player.steamUser | steamCustomUrl" target="_blank" rel="noopener">{{ player.steamUser?.steamID }}</a></h1>
-      <h4 class="igx-card-header__subtitle">{{ player.steamUser?.realname }}</h4>
-      @for (team of userTeams | async; track team.teamId) {
+      <h1 igxCardHeaderTitle><a [href]="player().steamUser | steamCustomUrl" target="_blank" rel="noopener">{{ player().steamUser?.steamID }}</a></h1>
+      <h4 igxCardHeaderSubtitle>{{ player().steamUser?.realname }}</h4>
+      @for (team of userTeams(); track team.teamId) {
         <igx-avatar class="team-avatar-link"
           [initials]="team.teamName"
           [src]="team.teamAvatar"
@@ -65,36 +65,38 @@
           [size]="'small'">
         </igx-avatar>
       }
-      @if (!player.userStatsException) {
+      @if (!player().userStatsException) {
         <!-- IgxSelect: default positioning changed to AutoPositionStrategy (below/above input).
-     To preserve overlap behavior: this.select.overlaySettings = { positionStrategy: new IgxSelectOverlapPositionStrategy(this.select) }; -->
-<igx-select type="border"
+            To preserve overlap behavior: this.select.overlaySettings = { positionStrategy: new IgxSelectOverlapPositionStrategy(this.select) }; -->
+        <igx-select type="border"
+          class="role-select"
           id="primary-role"
           name="primary-role"
-          [disabled]="!playerIsUser"
-          [(ngModel)]="player.csgoDetails.primaryRole"
+          [disabled]="!playerIsUser()"
+          [ngModel]="csgoDetails()?.primaryRole"
           (ngModelChange)="selectPrimary($event)">
           <label for="primary-role" igxLabel i18n>Primary Role</label>
           @for (role of roles; track role.id) {
-            <igx-select-item [disabled]="role.id === player.csgoDetails.secondaryRole" [value]="role.id">{{ role.name }}</igx-select-item>
+            <igx-select-item [disabled]="role.id === csgoDetails()?.secondaryRole" [value]="role.id">{{ role.name }}</igx-select-item>
           }
         </igx-select>
         <!-- IgxSelect: default positioning changed to AutoPositionStrategy (below/above input).
-     To preserve overlap behavior: this.select.overlaySettings = { positionStrategy: new IgxSelectOverlapPositionStrategy(this.select) }; -->
-<igx-select type="border"
+            To preserve overlap behavior: this.select.overlaySettings = { positionStrategy: new IgxSelectOverlapPositionStrategy(this.select) }; -->
+        <igx-select type="border"
+          class="role-select"
           id="secondary-role"
           name="secondary-role"
-          [disabled]="!playerIsUser"
-          [(ngModel)]="player.csgoDetails.secondaryRole"
+          [disabled]="!playerIsUser()"
+          [ngModel]="csgoDetails()?.secondaryRole"
           (ngModelChange)="selectSecondary($event)">
           <label for="secondary-role" igxLabel i18n>Secondary Role</label>
           @for (role of roles; track role.id) {
-            <igx-select-item [disabled]="role.id === player.csgoDetails.primaryRole" [value]="role.id">{{ role.name }}</igx-select-item>
+            <igx-select-item [disabled]="role.id === csgoDetails()?.primaryRole" [value]="role.id">{{ role.name }}</igx-select-item>
           }
         </igx-select>
       }
     </div>
-    @if (player?.userStatsException) {
+    @if (player()?.userStatsException) {
       <div class="player-exception">
         <h4 i18n>Steam account is private.</h4>
         <p i18n>If this is your account, you need to change the privacy level of your account, so we can access game stats from Steam.</p>
@@ -108,11 +110,11 @@
         </igx-card-header>
         <igx-card-content>
           <igx-circular-bar class="stats-progress"
-            [value]="player.userStats.killDeathRatio"
+            [value]="player().userStats.killDeathRatio"
             [max]="2"
             [animate]="true"
             title="KDR"
-            [text]="player.userStats.killDeathRatio.toString()">
+            [text]="player().userStats.killDeathRatio.toString()">
           </igx-circular-bar>
         </igx-card-content>
       </igx-card>
@@ -121,7 +123,7 @@
           <h4 igxCardHeaderTitle>Headshot %</h4>
         </igx-card-header>
         <igx-card-content>
-          <igx-circular-bar class="stats-progress" [value]="player.userStats.headshotPercentage" [max]="100" [animate]="true" title="Headshot Percentage" [text]="player.userStats.headshotPercentage + '%'"></igx-circular-bar>
+          <igx-circular-bar class="stats-progress" [value]="player().userStats.headshotPercentage" [max]="100" [animate]="true" title="Headshot Percentage" [text]="player().userStats.headshotPercentage + '%'"></igx-circular-bar>
         </igx-card-content>
       </igx-card>
       <igx-card class="player-detail__stats">
@@ -129,7 +131,7 @@
           <h4 igxCardHeaderTitle i18n>Accuracy</h4>
         </igx-card-header>
         <igx-card-content>
-          <igx-circular-bar class="stats-progress" [value]="player.userStats.accuracy" [max]="100" [animate]="true" [text]="player.userStats.accuracy + '%'"></igx-circular-bar>
+          <igx-circular-bar class="stats-progress" [value]="player().userStats.accuracy" [max]="100" [animate]="true" [text]="player().userStats.accuracy + '%'"></igx-circular-bar>
         </igx-card-content>
       </igx-card>
       <igx-card class="player-detail__stats">
@@ -137,10 +139,10 @@
           <h4 igxCardHeaderTitle i18n>Top weapon</h4>
         </igx-card-header>
         <igx-card-content class="top-weapon">
-          <igx-icon style="width: 100%; height: 205px;" family="weapon-icons" [name]="$safeNavigationMigration(player.userStats.favouriteWeapon?.name)"
-            [title]="player.userStats.favouriteWeapon | topWeaponAlt">
+          <igx-icon style="width: 100%; height: 205px;" family="weapon-icons" [name]="player().userStats.favouriteWeapon?.name"
+            [title]="player().userStats.favouriteWeapon | topWeaponAlt">
           </igx-icon>
-          <h5>{{ player.userStats.favouriteWeapon?.name }}</h5>
+          <h5>{{ player().userStats.favouriteWeapon?.name }}</h5>
         </igx-card-content>
       </igx-card>
       <igx-card class="player-detail__stats">
@@ -148,7 +150,7 @@
           <h4 igxCardHeaderTitle i18n>Availability</h4>
         </igx-card-header>
         <igx-card-content>
-          <bg-availability [availability]="availability" (availabilityChanged)="submitAvailability($event)" [editable]="playerIsUser"></bg-availability>
+          <bg-availability [availability]="availability()" (availabilityChanged)="submitAvailability($event)" [editable]="playerIsUser()"></bg-availability>
         </igx-card-content>
       </igx-card>
       <igx-card class="player-detail__stats">
@@ -157,7 +159,7 @@
         </igx-card-header>
         <igx-card-content>
           <igx-list [style.--ig-size]="'var(--ig-size-small)'">
-            @for (weapon of player.userStats.weapons | sortWeapons; track weapon.name) {
+            @for (weapon of player().userStats.weapons | sortWeapons; track weapon.name) {
               <igx-list-item>
                 <igx-icon igxListThumbnail class="weapon-image-small" family="weapon-icons" [name]="weapon.name"></igx-icon>
                 <span igxListLineTitle>
@@ -171,13 +173,13 @@
       </igx-card>
       <igx-card class="player-detail__stats map-pool">
         <igx-card-header>
-          <h4 igxCardHeaderTitle i18n>{{ viewAll ? 'Showing All' : 'Showing Active Duty' }} Maps</h4>
-          <button igxButton="flat" igxRipple (click)="viewAll = !viewAll" i18n>{{viewAll ? 'View Active Duty' : 'View All'}}</button>
+          <h4 igxCardHeaderTitle i18n>{{ viewAll() ? 'Showing All' : 'Showing Active Duty' }} Maps</h4>
+          <button igxButton="flat" igxRipple (click)="viewAll.set(!viewAll())" i18n>{{viewAll() ? 'View Active Duty' : 'View All'}}</button>
         </igx-card-header>
         <igx-card-content>
-          <app-map-pool [readOnly]="!playerIsUser"
-            [viewAll]="viewAll"
-            [mapPool]="mapPool"
+          <app-map-pool [readOnly]="!playerIsUser()"
+            [viewAll]="viewAll()"
+            [mapPool]="mapPool()"
           (update)="mapChange($event)"></app-map-pool>
         </igx-card-content>
       </igx-card>

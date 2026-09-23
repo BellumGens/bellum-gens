@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation, inject, signal } from '@angular/core';
 
 import { IGX_TABS_DIRECTIVES } from '@infragistics/igniteui-angular/tabs';
 import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
@@ -9,7 +9,9 @@ import { ApplicationUser, BellumgensApiService } from '../../../../common/src/pu
   selector: 'app-player',
   templateUrl: './player.component.html',
   styleUrls: ['./player.component.scss'],
-  encapsulation: ViewEncapsulation.None,  imports: [
+  encapsulation: ViewEncapsulation.None,
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [
     IGX_TABS_DIRECTIVES,
     IgxAvatarComponent,
     RouterLink,
@@ -21,7 +23,7 @@ export class PlayerComponent {
   private apiService = inject(BellumgensApiService);
   private activatedRoute = inject(ActivatedRoute);
 
-  public player: ApplicationUser;
+  public player = signal<ApplicationUser>(null);
 
   constructor() {
     this.activatedRoute.params.subscribe(params => {
@@ -30,7 +32,7 @@ export class PlayerComponent {
         this.apiService.getPlayer(userid).subscribe(
           player => {
             if (player) {
-              this.player = player;
+              this.player.set(player);
             }
           }
         );
