@@ -143,12 +143,12 @@ export class CsPlayerComponent extends BaseDirective {
 
   public selectPrimary(value: PlaystyleRole) {
     this.csgoDetails.update(details => ({ ...details, primaryRole: value }));
-    this.apiService.setPrimaryRole(this.roles.find(r => r.id === value)).subscribe();
+    this.apiService.setPrimaryRole(this.roles.find(r => r.id === value), this.player().id).subscribe();
   }
 
   public selectSecondary(value: PlaystyleRole) {
     this.csgoDetails.update(details => ({ ...details, secondaryRole: value }));
-    this.apiService.setSecondaryRole(this.roles.find(r => r.id === value)).subscribe();
+    this.apiService.setSecondaryRole(this.roles.find(r => r.id === value), this.player().id).subscribe();
   }
 
   public mapChange(args: CSGOMapPool) {

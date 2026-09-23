@@ -309,10 +309,10 @@ export class BellumgensApiService {
     );
   }
 
-  public setPrimaryRole(role: Role): Observable<any> {
+  public setPrimaryRole(role: Role, userId: string): Observable<any> {
     return this.http.put(`${this._apiEndpoint}/users/primaryrole?id=${role.id}`, role, { withCredentials: true }).pipe(
       map(response => {
-        this.updateCurrentPlayerDetails({ primaryRole: role.id });
+        this.updateCurrentPlayerDetails(userId, { primaryRole: role.id });
         this.commService.emitSuccess(`Primary role set to ${role.name}`);
         return response;
       }),
@@ -323,10 +323,10 @@ export class BellumgensApiService {
     );
   }
 
-  public setSecondaryRole(role: Role): Observable<any> {
+  public setSecondaryRole(role: Role, userId: string): Observable<any> {
     return this.http.put(`${this._apiEndpoint}/users/secondaryrole?id=${role.id}`, role, { withCredentials: true }).pipe(
       map(response => {
-        this.updateCurrentPlayerDetails({ secondaryRole: role.id });
+        this.updateCurrentPlayerDetails(userId, { secondaryRole: role.id });
         this.commService.emitSuccess(`Secondary role set to ${role.name}`);
         return response;
       }),
@@ -408,9 +408,11 @@ export class BellumgensApiService {
     return this.http.get<TeamMember []>(`${this._apiEndpoint}/teams/members?teamid=${teamId}`);
   }
 
-  private updateCurrentPlayerDetails(details: Partial<CSGODetails>) {
+  private updateCurrentPlayerDetails(userId: string, details: Partial<CSGODetails>) {
     const player = this._currentPlayer.value;
-    if (player?.csgoDetails) {
+    // The PUT can resolve after navigation has swapped the cached player, so only
+    // patch the cache if it still holds the player that was actually edited.
+    if (player?.id === userId && player.csgoDetails) {
       this._currentPlayer.next({ ...player, csgoDetails: { ...player.csgoDetails, ...details } });
     }
   }
