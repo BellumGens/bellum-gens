@@ -1,0 +1,138 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.editor-layout {
+  display: grid;
+  grid-template-columns: minmax(240px, 1fr) minmax(0, 2fr);
+  gap: 24px;
+  align-items: start;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.pane-header,
+.variants-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+
+  h4 {
+    margin: 0;
+  }
+}
+
+.product-list-pane igx-list-item {
+  cursor: pointer;
+
+  &.selected {
+    background: rgba(255, 255, 255, 0.08);
+  }
+}
+
+.inactive-chip {
+  margin-left: 8px;
+  --ig-size: var(--ig-size-small);
+}
+
+.product-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  h4 {
+    margin: 0;
+  }
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  align-items: start;
+
+  .full-width {
+    grid-column: 1 / -1;
+  }
+
+  @media (max-width: 700px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.image-preview {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.upload-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.upload-button {
+  cursor: pointer;
+
+  &.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
+
+  igx-icon {
+    margin-right: 8px;
+  }
+}
+
+.hint {
+  font-size: 0.9rem;
+  opacity: 0.75;
+  margin: 0;
+}
+
+.variants {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.variant-row {
+  display: grid;
+  grid-template-columns: minmax(140px, 2fr) minmax(110px, 1fr) minmax(110px, 1fr) minmax(90px, 1fr) minmax(110px, 1fr) minmax(100px, 1fr) auto auto;
+  gap: 8px;
+  align-items: center;
+  padding: 8px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.04);
+
+  @media (max-width: 1100px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.variants-actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.form-actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+
+  igx-icon {
+    margin-right: 8px;
+  }
+
+  .danger {
+    color: var(--ig-error-500);
+  }
+}

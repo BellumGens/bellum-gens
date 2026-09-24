@@ -1,0 +1,114 @@
+<div class="shop-container">
+  <h2 i18n>Your cart</h2>
+
+  @if (cart.isEmpty()) {
+    <div class="horizontal-center shop-empty">
+      <igx-icon class="empty-icon">shopping_cart</igx-icon>
+      <p i18n>Your cart is empty.</p>
+      <a igxButton="contained" igxRipple routerLink="/shop" i18n>Browse the shop</a>
+    </div>
+  } @else {
+    <div class="cart-layout">
+      <ul class="cart-lines">
+        @for (item of cart.items(); track item.productId + (item.variantId ?? '')) {
+          <li class="cart-line" [class.has-problem]="problem(item)">
+            <a class="line-image" [routerLink]="['/shop/product', item.product.slug]">
+              @if (item.product.imageUrl) {
+                <img [src]="item.product.imageUrl" [alt]="item.product.name" loading="lazy" />
+              } @else {
+                <igx-icon>shopping_bag</igx-icon>
+              }
+            </a>
+            <div class="line-info">
+              <a class="line-name" [routerLink]="['/shop/product', item.product.slug]">{{ item.product.name }}</a>
+              @if (item.variant) {
+                <span class="line-variant">{{ item.variant.name }}</span>
+              }
+              <span class="line-unit">{{ unitPrice(item) | currency:'EUR' }}</span>
+              @if (problem(item)) {
+                <span class="color-error line-problem">{{ problem(item) }}</span>
+              }
+            </div>
+            <div class="line-quantity" role="group" i18n-aria-label aria-label="Quantity">
+              <button type="button" igxIconButton="flat" igxRipple (click)="cart.setQuantity(item, item.quantity - 1)" i18n-title title="Decrease quantity">
+                <igx-icon>remove</igx-icon>
+              </button>
+              <span class="quantity-value">{{ item.quantity }}</span>
+              <button type="button" igxIconButton="flat" igxRipple (click)="cart.setQuantity(item, item.quantity + 1)" [disabled]="item.quantity >= 10" i18n-title title="Increase quantity">
+                <igx-icon>add</igx-icon>
+              </button>
+            </div>
+            <div class="line-total">{{ (unitPrice(item) * item.quantity) | currency:'EUR' }}</div>
+            <button type="button" igxIconButton="flat" igxRipple class="line-remove" (click)="cart.remove(item)" i18n-title title="Remove from cart">
+              <igx-icon>delete</igx-icon>
+            </button>
+          </li>
+        }
+      </ul>
+
+      <aside class="cart-summary">
+        <h4 i18n>Delivery</h4>
+        <igx-radio-group [value]="cart.deliveryMethod()" (change)="setDelivery($event.value)">
+          @for (method of deliveryMethods; track method) {
+            <igx-radio [value]="method">{{ deliveryNames[method] }}</igx-radio>
+          }
+        </igx-radio-group>
+
+        <h4 i18n>Promo code</h4>
+        <form class="promo-form" (ngSubmit)="applyPromo()">
+          <igx-input-group type="border">
+            <igx-prefix><igx-icon>local_offer</igx-icon></igx-prefix>
+            <label igxLabel for="promoCode" i18n>Promo code</label>
+            <input igxInput id="promoCode" name="promoCode" [ngModel]="promoInput()" (ngModelChange)="promoInput.set($event)" autocomplete="off" />
+            @if (promoInput()) {
+              <igx-suffix (click)="clearPromo()" role="button" i18n-title title="Clear promo code">
+                <igx-icon>clear</igx-icon>
+              </igx-suffix>
+            }
+            @if (cart.quote()?.promoProblem) {
+              <igx-hint class="color-error">{{ cart.quote()?.promoProblem }}</igx-hint>
+            } @else if (cart.quote()?.promoApplied) {
+              <igx-hint class="color-success" i18n>Promo code applied</igx-hint>
+            }
+          </igx-input-group>
+          <button type="submit" igxButton="outlined" igxRipple [disabled]="!promoInput()" i18n>Apply</button>
+        </form>
+
+        <igx-divider></igx-divider>
+
+        @if (cart.quote(); as quote) {
+          <dl class="totals" [class.quoting]="cart.quoting()">
+            <dt i18n>Subtotal</dt>
+            <dd>{{ quote.subtotal | currency:'EUR' }}</dd>
+            @if (quote.discountTotal > 0) {
+              <dt i18n>Discount</dt>
+              <dd class="color-success">-{{ quote.discountTotal | currency:'EUR' }}</dd>
+            }
+            <dt i18n>Shipping</dt>
+            <dd>
+              @if (quote.shippingCost > 0) {
+                {{ quote.shippingCost | currency:'EUR' }}
+              } @else if (quote.freeShipping) {
+                <span class="color-success" i18n>Free</span>
+              } @else {
+                <span i18n>Free</span>
+              }
+            </dd>
+            <dt class="grand-total" i18n>Total</dt>
+            <dd class="grand-total">{{ quote.total | currency:'EUR' }}</dd>
+          </dl>
+          @if (!quote.isValid) {
+            <p class="color-error" i18n>Some items in your cart are no longer available in the selected quantity. Please review the lines marked above.</p>
+          }
+        } @else {
+          <div class="horizontal-center">
+            <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
+          </div>
+        }
+
+        <a igxButton="contained" igxRipple class="checkout-button" routerLink="/shop/checkout" [class.disabled]="!cart.quote()?.isValid || cart.quoting()" [attr.aria-disabled]="!cart.quote()?.isValid || cart.quoting()" i18n>Proceed to checkout</a>
+        <a igxButton="flat" igxRipple routerLink="/shop" i18n>Continue shopping</a>
+      </aside>
+    </div>
+  }
+</div>

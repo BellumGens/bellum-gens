@@ -27,6 +27,18 @@
   ],
   "dataGroups": [
     {
+      "name": "shop-orders",
+      "urls": [
+        "https://api.bellumgens.com/api/shop/orders/**",
+        "https://api.bellumgens.com/api/shop/quote"
+      ],
+      "cacheConfig": {
+        "maxSize": 0,
+        "maxAge": "0u",
+        "strategy": "freshness"
+      }
+    },
+    {
       "name": "api-freshness",
       "urls": [
         "https://api.bellumgens.com/api/**"

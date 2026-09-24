@@ -1,0 +1,65 @@
+:host {
+  display: block;
+}
+
+.product-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+}
+
+.product-media {
+  display: block;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.04);
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+}
+
+.product-placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+
+  igx-icon {
+    font-size: 64px;
+    width: 64px;
+    height: 64px;
+    opacity: 0.3;
+  }
+}
+
+.product-price {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  font-size: 1.25rem;
+
+  del {
+    opacity: 0.6;
+    font-size: 1rem;
+  }
+}
+
+.sold-out {
+  margin-top: 8px;
+}
+
+igx-card-actions {
+  margin-top: auto;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}

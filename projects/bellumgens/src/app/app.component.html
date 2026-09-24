@@ -35,6 +35,10 @@
         <igx-icon>military_tech</igx-icon>
         <span i18n>Tournaments</span>
       </span>
+      <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="shop">
+        <igx-icon>shopping_cart</igx-icon>
+        <span i18n>Shop</span>
+      </span>
       <span igxDrawerItem igxRipple routerLink="/" fragment="partners">
         <igx-icon>people_alt</igx-icon>
         <span i18n>Partners</span>
@@ -75,6 +79,9 @@
         <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournaments" i18n-title title="Tournaments">
           <igx-icon>military_tech</igx-icon>
         </span>
+        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="shop" i18n-title title="Shop">
+          <igx-icon>shopping_cart</igx-icon>
+        </span>
         <span igxDrawerItem igxRipple routerLink="partners" i18n-title title="Partners">
           <igx-icon>people_alt</igx-icon>
         </span>
@@ -104,6 +111,7 @@
         }
       </igx-input-group>
 
+      <bg-cart-badge></bg-cart-badge>
       <bg-languages></bg-languages>
       <bg-login></bg-login>
     </igx-navbar>

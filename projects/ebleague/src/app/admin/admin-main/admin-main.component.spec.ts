@@ -7,7 +7,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { provideRouter } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
-import { ApiTournamentsService, ApiShopService, Tournament, Game, TournamentApplication, TournamentApplicationState, Order } from '../../../../../common/src/public_api';
+import { ApiTournamentsService, ApiShopService, Tournament, Game, TournamentApplication, TournamentApplicationState, ShopOrder, OrderStatus } from '../../../../../common/src/public_api';
 import { IGridEditEventArgs } from '@infragistics/igniteui-angular/grids/core';
 import { createSpyObj } from '../../../../../testing/spy-obj';
 
@@ -46,10 +46,12 @@ describe('AdminMainComponent', () => {
 
     // Answer constructor's HTTP requests
     httpMock.expectOne(`${apiService['_apiEndpoint']}/admin/roles`).flush([]);
-    httpMock.expectOne(`${apiService['_apiEndpoint']}/admin/promos`).flush([]);
     httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/tournaments`).flush([]);
     httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/allregistrations`).flush([]);
-    httpMock.expectOne(`${shopService['_apiEndpoint']}/shop/orders`).flush([]);
+    httpMock.expectOne(`${shopService['_apiEndpoint']}/shopadmin/orders`).flush([]);
+    // The embedded catalog and promo editors load their data on creation.
+    httpMock.expectOne(`${shopService['_apiEndpoint']}/shopadmin/products`).flush([]);
+    httpMock.expectOne(`${shopService['_apiEndpoint']}/shopadmin/promos`).flush([]);
   });
 
   afterEach(() => {
@@ -144,52 +146,70 @@ describe('AdminMainComponent', () => {
     });
   });
 
-  describe('Order Management - editDone', () => {
-    it('should confirm an order with field updates', () => {
-      const mockOrder: Order = {
-        id: 'order-1',
-        email: 'test@example.com',
-        firstName: 'John',
-        lastName: 'Doe'
-      };
+  describe('Order Management', () => {
+    const paidOrder: ShopOrder = {
+      id: 'order-1',
+      orderSequence: 1,
+      orderNumber: 'BG-2026-000001',
+      email: 'test@example.com',
+      firstName: 'John',
+      lastName: 'Doe',
+      phoneNumber: '+359 888 123 456',
+      city: 'Sofia',
+      streetAddress: 'bul. Vitosha 1',
+      country: 'BG',
+      language: 'bg',
+      deliveryMethod: 0,
+      subtotal: 30,
+      discountTotal: 0,
+      shippingCost: 6,
+      total: 36,
+      currency: 'EUR',
+      status: OrderStatus.Paid,
+      paymentMethod: 0,
+      orderDate: '2026-09-04T10:00:00Z',
+      expiresOn: '2026-09-04T11:00:00Z',
+      items: [],
+      payments: []
+    };
 
-      const gridEditEventArgs: IGridEditEventArgs = {
-        rowData: { ...mockOrder },
-        column: { field: 'firstName' } as any,
-        newValue: 'Jane',
-        oldValue: 'John'
-      } as IGridEditEventArgs;
+    it('should mark an order as shipped with the tracking number', () => {
+      component.orders.set([paidOrder]);
+      component.tracking['order-1'] = 'SPD-123';
 
-      component.editDone(gridEditEventArgs);
+      component.updateOrderStatus(paidOrder, OrderStatus.Shipped);
 
-      const req = httpMock.expectOne(`${shopService['_apiEndpoint']}/shop/edit?orderId=order-1`);
+      const req = httpMock.expectOne(`${shopService['_apiEndpoint']}/shopadmin/orders/order-1/status`);
       expect(req.request.method).toBe('PUT');
-      expect(req.request.body.firstName).toBe('Jane');
+      expect(req.request.body).toEqual({ status: OrderStatus.Shipped, trackingNumber: 'SPD-123' });
+      expect(req.request.withCredentials).toBe(true);
 
-      req.flush({});
+      req.flush({ ...paidOrder, status: OrderStatus.Shipped, trackingNumber: 'SPD-123' });
+
+      expect(component.orders()[0].status).toBe(OrderStatus.Shipped);
+      expect(component.orders()[0].trackingNumber).toBe('SPD-123');
     });
 
-    it('should confirm order with multiple field updates', () => {
-      const mockOrder: Order = {
-        id: 'order-2',
-        firstName: 'John',
-        lastName: 'Doe'
-      };
+    it('should request a refund and reflect the returned status', () => {
+      component.orders.set([paidOrder]);
 
-      const gridEditEventArgs: IGridEditEventArgs = {
-        rowData: { ...mockOrder },
-        column: { field: 'lastName' } as any,
-        newValue: 'Smith',
-        oldValue: 'Doe'
-      } as IGridEditEventArgs;
+      component.refundOrder(paidOrder);
 
-      component.editDone(gridEditEventArgs);
+      const req = httpMock.expectOne(`${shopService['_apiEndpoint']}/shopadmin/orders/order-1/refund`);
+      expect(req.request.method).toBe('POST');
+      req.flush({ ...paidOrder, status: OrderStatus.Refunded });
 
-      const req = httpMock.expectOne(`${shopService['_apiEndpoint']}/shop/edit?orderId=order-2`);
-      expect(req.request.method).toBe('PUT');
-      expect(req.request.body.lastName).toBe('Smith');
+      expect(component.orders()[0].status).toBe(OrderStatus.Refunded);
+    });
 
-      req.flush({});
+    it('should reload orders on demand', () => {
+      component.loadOrders();
+
+      const req = httpMock.expectOne(`${shopService['_apiEndpoint']}/shopadmin/orders`);
+      expect(req.request.method).toBe('GET');
+      req.flush([paidOrder]);
+
+      expect(component.orders().length).toBe(1);
     });
   });
 
@@ -346,50 +366,6 @@ describe('AdminMainComponent', () => {
       expect(mockRowContext.grid.transactions.commit).toHaveBeenCalled();
 
       const req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/delete?id=reg-1`);
-      expect(req.request.method).toBe('DELETE');
-      req.flush({});
-    });
-  });
-
-  describe('Order Management - deleteOrder', () => {
-    it('should delete an order', () => {
-      const mockRowContext = createSpyObj('RowType', ['grid']);
-      mockRowContext.grid = createSpyObj('IgxGridComponent', ['transactions']);
-      mockRowContext.grid.transactions.commit = vi.fn();
-      mockRowContext.grid.data = [];
-      mockRowContext.key = 'order-1';
-
-      component.deleteOrder(mockRowContext as any);
-
-      expect(mockRowContext.grid.transactions.commit).toHaveBeenCalledWith([], 'order-1');
-
-      const req = httpMock.expectOne(`${shopService['_apiEndpoint']}/shop/order?orderId=order-1`);
-      expect(req.request.method).toBe('DELETE');
-
-      req.flush({});
-    });
-
-    it('should delete multiple orders', () => {
-      const createMockRowContext = (key: string) => {
-        const mockRowContext = createSpyObj('RowType', ['grid']);
-        mockRowContext.grid = createSpyObj('IgxGridComponent', ['transactions']);
-        mockRowContext.grid.transactions.commit = vi.fn();
-        mockRowContext.grid.data = [];
-        mockRowContext.key = key;
-        return mockRowContext;
-      };
-
-      const rowContext1 = createMockRowContext('order-1');
-      const rowContext2 = createMockRowContext('order-2');
-
-      component.deleteOrder(rowContext1 as any);
-      component.deleteOrder(rowContext2 as any);
-
-      let req = httpMock.expectOne(`${shopService['_apiEndpoint']}/shop/order?orderId=order-1`);
-      expect(req.request.method).toBe('DELETE');
-      req.flush({});
-
-      req = httpMock.expectOne(`${shopService['_apiEndpoint']}/shop/order?orderId=order-2`);
       expect(req.request.method).toBe('DELETE');
       req.flush({});
     });

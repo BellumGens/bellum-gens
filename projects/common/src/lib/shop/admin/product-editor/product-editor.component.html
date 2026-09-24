@@ -1,0 +1,216 @@
+<div class="editor-layout">
+  <aside class="product-list-pane">
+    <div class="pane-header">
+      <h4 i18n>Products</h4>
+      <button type="button" igxButton="outlined" igxRipple (click)="newProduct()">
+        <igx-icon>add</igx-icon>
+        <span i18n>New product</span>
+      </button>
+    </div>
+    @if (loading()) {
+      <p i18n>Loading products...</p>
+    } @else if (products().length === 0) {
+      <p i18n>No products yet. Create the first one.</p>
+    } @else {
+      <igx-list>
+        @for (product of products(); track product.id) {
+          <igx-list-item [class.selected]="product.id === selectedId()" (click)="edit(product)">
+            <span igxListLineTitle>
+              {{ product.name }}
+              @if (!product.active) {
+                <igx-chip class="inactive-chip" [selectable]="false" [removable]="false" i18n>Inactive</igx-chip>
+              }
+            </span>
+            <span igxListLineSubTitle>{{ brandNames[product.brand] }} · {{ product.price | currency:'EUR' }} · {{ product.variants?.length || 0 }} <ng-container i18n>options</ng-container></span>
+          </igx-list-item>
+        }
+      </igx-list>
+    }
+  </aside>
+
+  <form class="product-form" [formGroup]="form" (ngSubmit)="save()" novalidate>
+    <h4>
+      @if (isNew()) {
+        <ng-container i18n>New product</ng-container>
+      } @else {
+        {{ form.controls.name.value }}
+      }
+    </h4>
+
+    <div class="form-grid">
+      <igx-input-group type="border" class="full-width">
+        <label igxLabel for="productName" i18n>Name</label>
+        <input igxInput id="productName" formControlName="name" />
+        @if (form.controls.name.invalid && form.controls.name.touched) {
+          <igx-hint class="color-error" i18n>Name is required</igx-hint>
+        }
+      </igx-input-group>
+
+      <igx-input-group type="border">
+        <label igxLabel for="productSlug" i18n>URL slug</label>
+        <input igxInput id="productSlug" formControlName="slug" placeholder="generated-from-name" />
+        <igx-hint i18n>Leave empty to generate it from the name</igx-hint>
+      </igx-input-group>
+
+      <igx-input-group type="border">
+        <label igxLabel for="productSort" i18n>Sort order</label>
+        <input igxInput id="productSort" type="number" formControlName="sortOrder" />
+      </igx-input-group>
+
+      <igx-select formControlName="brand" type="border">
+        <label igxLabel i18n>Brand</label>
+        @for (b of brands; track b) {
+          <igx-select-item [value]="b">{{ brandNames[b] }}</igx-select-item>
+        }
+      </igx-select>
+
+      <igx-select formControlName="type" type="border">
+        <label igxLabel i18n>Product type</label>
+        @for (t of types; track t) {
+          <igx-select-item [value]="t">{{ typeNames[t] }}</igx-select-item>
+        }
+      </igx-select>
+
+      <igx-input-group type="border">
+        <label igxLabel for="productPrice" i18n>Price (EUR)</label>
+        <input igxInput id="productPrice" type="number" step="0.01" min="0" formControlName="price" />
+        @if (form.controls.price.invalid && form.controls.price.touched) {
+          <igx-hint class="color-error" i18n>Price must be zero or more</igx-hint>
+        }
+      </igx-input-group>
+
+      <igx-input-group type="border">
+        <label igxLabel for="productDiscount" i18n>Discount (%)</label>
+        <input igxInput id="productDiscount" type="number" step="1" min="0" max="100" formControlName="discountPercentage" />
+        <igx-hint i18n>Shown as a strike-through price. Leave empty for none.</igx-hint>
+      </igx-input-group>
+
+      @if (!hasVariants) {
+        <igx-input-group type="border">
+          <label igxLabel for="productStock" i18n>Stock</label>
+          <input igxInput id="productStock" type="number" min="0" formControlName="stockQuantity" />
+          <igx-hint i18n>Leave empty when stock is not tracked</igx-hint>
+        </igx-input-group>
+      }
+
+      <igx-input-group type="border" class="full-width">
+        <label igxLabel for="productDescription" i18n>Description</label>
+        <textarea igxInput id="productDescription" formControlName="description" rows="4"></textarea>
+      </igx-input-group>
+
+      <igx-input-group type="border" class="full-width">
+        <label igxLabel for="productImage" i18n>Main image URL</label>
+        <input igxInput id="productImage" formControlName="imageUrl" />
+        @if (form.controls.imageUrl.value) {
+          <igx-suffix>
+            <img class="image-preview" [src]="form.controls.imageUrl.value" alt="" />
+          </igx-suffix>
+        }
+      </igx-input-group>
+
+      <div class="upload-row full-width">
+        @if (isNew()) {
+          <span class="hint" i18n>Save the product first, then upload its image.</span>
+        } @else {
+          <label igxButton="outlined" igxRipple class="upload-button" [class.disabled]="uploading()">
+            <igx-icon>upload</igx-icon>
+            <span i18n>Upload PNG image</span>
+            <input type="file" accept="image/png" hidden (change)="upload($event)" [disabled]="uploading()" />
+          </label>
+          @if (uploading()) {
+            <span class="hint" i18n>Uploading...</span>
+          }
+        }
+      </div>
+
+      <igx-input-group type="border" class="full-width">
+        <label igxLabel for="productGallery" i18n>Gallery image URLs (one per line)</label>
+        <textarea igxInput id="productGallery" formControlName="galleryUrls" rows="3"></textarea>
+      </igx-input-group>
+
+      <igx-checkbox formControlName="active" i18n>Visible in the shop</igx-checkbox>
+    </div>
+
+    <igx-divider></igx-divider>
+
+    <div class="variants-header">
+      <h4 i18n>Options and sizes</h4>
+      <div class="variants-actions">
+        <button type="button" igxButton="flat" igxRipple (click)="generateJerseySizes()" i18n>Add jersey sizes</button>
+        <button type="button" igxButton="outlined" igxRipple (click)="addVariant()">
+          <igx-icon>add</igx-icon>
+          <span i18n>Add option</span>
+        </button>
+      </div>
+    </div>
+    <p class="hint" i18n>Products with options are ordered by option, and stock is tracked per option. Leave the list empty for simple products.</p>
+
+    <div formArrayName="variants" class="variants">
+      @for (variant of variants.controls; track variant; let i = $index) {
+        <div class="variant-row" [formGroupName]="i">
+          <igx-input-group type="border" class="variant-name">
+            <label igxLabel [for]="'variantName' + i" i18n>Option name</label>
+            <input igxInput [id]="'variantName' + i" formControlName="name" [placeholder]="variantName(variant.controls.cut.value, variant.controls.size.value)" />
+          </igx-input-group>
+          <igx-select formControlName="cut" type="border" class="variant-select">
+            <label igxLabel i18n>Cut</label>
+            @for (c of cuts; track c) {
+              <igx-select-item [value]="c">
+                @if (c === none) {
+                  <ng-container i18n>None</ng-container>
+                } @else {
+                  {{ cutNames[c] }}
+                }
+              </igx-select-item>
+            }
+          </igx-select>
+          <igx-select formControlName="size" type="border" class="variant-select">
+            <label igxLabel i18n>Size</label>
+            @for (s of sizes; track s) {
+              <igx-select-item [value]="s">
+                @if (s === none) {
+                  <ng-container i18n>None</ng-container>
+                } @else {
+                  {{ sizeNames[s] }}
+                }
+              </igx-select-item>
+            }
+          </igx-select>
+          <igx-input-group type="border" class="variant-number">
+            <label igxLabel [for]="'variantStock' + i" i18n>Stock</label>
+            <input igxInput [id]="'variantStock' + i" type="number" min="0" formControlName="stockQuantity" />
+          </igx-input-group>
+          <igx-input-group type="border" class="variant-number">
+            <label igxLabel [for]="'variantPrice' + i" i18n>Price override</label>
+            <input igxInput [id]="'variantPrice' + i" type="number" step="0.01" min="0" formControlName="priceOverride" />
+          </igx-input-group>
+          <igx-input-group type="border" class="variant-sku">
+            <label igxLabel [for]="'variantSku' + i">SKU</label>
+            <input igxInput [id]="'variantSku' + i" formControlName="sku" />
+          </igx-input-group>
+          <igx-checkbox formControlName="active" i18n>Active</igx-checkbox>
+          <button type="button" igxIconButton="flat" igxRipple (click)="removeVariant(i)" i18n-title title="Remove option">
+            <igx-icon>delete</igx-icon>
+          </button>
+        </div>
+      }
+    </div>
+
+    <div class="form-actions">
+      <button type="submit" igxButton="contained" igxRipple [disabled]="saving()">
+        <igx-icon>save</igx-icon>
+        <span i18n>Save product</span>
+      </button>
+      @if (!isNew()) {
+        <button type="button" igxButton="flat" igxRipple class="danger" (click)="askDelete()">
+          <igx-icon>delete</igx-icon>
+          <span i18n>Delete</span>
+        </button>
+      }
+    </div>
+  </form>
+</div>
+
+<bg-confirm i18n-title title="Delete this product?" (ok)="delete($event)">
+  <p i18n>Products that were already ordered are deactivated instead of deleted, so order history stays intact.</p>
+</bg-confirm>

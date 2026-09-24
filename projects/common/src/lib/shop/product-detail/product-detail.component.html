@@ -1,0 +1,111 @@
+<div class="shop-container">
+  @if (notFound()) {
+    <div class="horizontal-center shop-empty">
+      <p i18n>We could not find this product. It may have been removed from the shop.</p>
+      <a igxButton="outlined" igxRipple routerLink="/shop" i18n>Back to the shop</a>
+    </div>
+  } @else if (!product()) {
+    <div class="horizontal-center shop-loading">
+      <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
+    </div>
+  } @else {
+    <a class="back-link" routerLink="/shop">
+      <igx-icon>arrow_back</igx-icon>
+      <span i18n>All products</span>
+    </a>
+
+    <div class="product-layout">
+      <div class="product-gallery">
+        @if (image()) {
+          <img class="main-image" [src]="image()" [alt]="product()!.name" />
+        } @else {
+          <div class="product-placeholder">
+            <igx-icon>shopping_bag</igx-icon>
+          </div>
+        }
+        @if (gallery().length > 1) {
+          <div class="thumbnails">
+            @for (url of gallery(); track url) {
+              <button type="button" class="thumbnail" [class.active]="url === image()" (click)="image.set(url)">
+                <img [src]="url" [alt]="product()!.name" loading="lazy" />
+              </button>
+            }
+          </div>
+        }
+      </div>
+
+      <div class="product-info">
+        <span class="brand">{{ brandNames[product()!.brand] }}</span>
+        <h2>{{ product()!.name }}</h2>
+
+        <div class="product-price">
+          @if (hasDiscount()) {
+            <del>{{ (selectedVariant()?.priceOverride ?? product()!.price) | currency:'EUR' }}</del>
+            <igx-chip [selectable]="false" [removable]="false">-{{ product()!.discountPercentage }}%</igx-chip>
+          }
+          <span class="highlight">{{ price() | currency:'EUR' }}</span>
+        </div>
+
+        @if (product()!.description) {
+          <p class="description">{{ product()!.description }}</p>
+        }
+
+        @if (hasCutAndSize()) {
+          <div class="options">
+            <igx-select [value]="cut()" (selectionChanging)="selectCut($event)" type="border" class="option-select">
+              <label igxLabel i18n>Cut</label>
+              @for (c of cuts(); track c) {
+                <igx-select-item [value]="c">{{ cutNames[c] }}</igx-select-item>
+              }
+            </igx-select>
+            <igx-select [value]="size()" (selectionChanging)="selectSize($event)" type="border" class="option-select">
+              <label igxLabel i18n>Size</label>
+              @for (s of sizes(); track s) {
+                <igx-select-item [value]="s" [disabled]="!sizeAvailable(s)">
+                  {{ sizeNames[s] }}
+                  @if (!sizeAvailable(s)) {
+                    <span class="sold-out-note" i18n> (sold out)</span>
+                  }
+                </igx-select-item>
+              }
+            </igx-select>
+          </div>
+        } @else if (hasVariants()) {
+          <div class="options">
+            <igx-select [value]="variantId()" (selectionChanging)="selectVariant($event)" type="border" class="option-select">
+              <label igxLabel i18n>Option</label>
+              @for (v of activeVariants(); track v.id) {
+                <igx-select-item [value]="v.id">{{ v.name }}</igx-select-item>
+              }
+            </igx-select>
+          </div>
+        }
+
+        <div class="stock-line">
+          @if (soldOut()) {
+            <igx-chip [selectable]="false" [removable]="false" i18n>Sold out</igx-chip>
+          } @else if (stock() !== null && stock() !== undefined && stock()! <= 5) {
+            <span class="color-warn" i18n>Only {{ stock() }} left in stock</span>
+          }
+        </div>
+
+        <div class="purchase-row">
+          <div class="quantity" role="group" i18n-aria-label aria-label="Quantity">
+            <button type="button" igxIconButton="outlined" igxRipple (click)="changeQuantity(-1)" [disabled]="quantity() <= 1" i18n-title title="Decrease quantity">
+              <igx-icon>remove</igx-icon>
+            </button>
+            <span class="quantity-value">{{ quantity() }}</span>
+            <button type="button" igxIconButton="outlined" igxRipple (click)="changeQuantity(1)" [disabled]="quantity() >= maxQuantity || (stock() !== null && stock() !== undefined && quantity() >= stock()!)" i18n-title title="Increase quantity">
+              <igx-icon>add</igx-icon>
+            </button>
+          </div>
+          <button type="button" igxButton="contained" igxRipple class="add-button" [disabled]="!canAdd()" (click)="addToCart()">
+            <igx-icon>add_shopping_cart</igx-icon>
+            <span i18n>Add to cart</span>
+          </button>
+          <a igxButton="outlined" igxRipple routerLink="/shop/cart" i18n>Go to cart</a>
+        </div>
+      </div>
+    </div>
+  }
+</div>

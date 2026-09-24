@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { RegistrationComponent, UnauthorizedComponent } from '../../../common/src/public_api';
 import { NewsComponent } from './news/news.component';
+import { shopRedirectGuard } from './guards/shop-redirect.guard';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -25,6 +26,7 @@ export const routes: Routes = [
   { path: 'admin', loadChildren: () => import('./admin/admin.routes').then(m => m.routes) },
   { path: 'tournaments', loadChildren: () => import('./tournaments/tournament.routes').then(m => m.routes) },
   { path: 'tournament', redirectTo: 'tournaments', pathMatch: 'prefix' },
-  { path: 'shop', loadChildren: () => import('./shop/shop.routes').then(m => m.routes) },
+  // The shop lives on bellumgens.com now. The Express server 301s direct hits; the guard handles in-app navigation.
+  { path: 'shop', canActivate: [shopRedirectGuard], children: [{ path: '**', component: HomeComponent }] },
   { path: '**', component: HomeComponent }
 ];
