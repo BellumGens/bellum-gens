@@ -30,6 +30,12 @@
             "ssr": {
               "entry": "projects/bellumgens/server.ts"
             },
+            "security": {
+              "allowedHosts": [
+                  "bellumgens.com",
+                  "www.bellumgens.com"
+              ]
+            },
             "polyfills": [
               "zone.js",
               "hammerjs",
@@ -218,6 +224,12 @@
             "server": "projects/ebleague/src/main.server.ts",
             "ssr": {
               "entry": "projects/ebleague/server.ts"
+            },
+            "security": {
+              "allowedHosts": [
+                  "eb-league.com",
+                  "www.eb-league.com"
+              ]
             },
             "polyfills": [
               "zone.js",
