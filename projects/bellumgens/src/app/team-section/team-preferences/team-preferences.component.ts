@@ -1,4 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component, Injector, Signal, inject, signal } from '@angular/core';
+import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
+import { distinctUntilChanged, filter, map, switchMap } from 'rxjs/operators';
 import {
   BellumgensApiService,
   CSGOTeam, TeamMember,
@@ -6,7 +8,7 @@ import {
   LoginService,
   CountrySVGPipe
 } from '../../../../../common/src/public_api';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { RouterLink, ROUTER_OUTLET_DATA } from '@angular/router';
 import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { IgxSwitchComponent } from '@infragistics/igniteui-angular/switch';
@@ -19,7 +21,8 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-team-preferences',
   templateUrl: './team-preferences.component.html',
-  styleUrls: ['./team-preferences.component.css'],  imports: [
+  styleUrls: ['./team-preferences.component.css'],
+  imports: [
     FormsModule,
     IGX_INPUT_GROUP_DIRECTIVES,
     IgxIconComponent,
@@ -35,31 +38,26 @@ import { FormsModule } from '@angular/forms';
 export class TeamPreferencesComponent {
   private apiService = inject(BellumgensApiService);
   private authService = inject(LoginService);
-  private activeRoute = inject(ActivatedRoute);
+  private injector = inject(Injector);
 
-  public team: CSGOTeam;
-  public teammembers: TeamMember [];
+  // Handed down by the parent TeamComponent through the router outlet. The form edits it in place.
+  public team = inject(ROUTER_OUTLET_DATA) as Signal<CSGOTeam>;
+  public teammembers = signal<TeamMember []>(undefined);
 
-  public authUser: ApplicationUser;
+  public authUser: Signal<ApplicationUser> = this.authService.applicationUser;
 
   constructor() {
-    this.authService.applicationUser.subscribe(user => this.authUser = user);
-    this.activeRoute.parent.params.subscribe(params => {
-      const teamId = params['teamid'];
-
-      if (teamId) {
-        this.apiService.getTeam(teamId).subscribe(team => {
-          if (team) {
-            this.team = team;
-            this.apiService.getTeamMembers(team.teamId).subscribe(members => this.teammembers = members);
-          }
-        });
-      }
-    });
+    toObservable(this.team).pipe(
+      map(team => team?.teamId),
+      filter(teamId => !!teamId),
+      distinctUntilChanged(),
+      switchMap(teamId => toObservable(this.apiService.getTeamMembers(teamId), { injector: this.injector })),
+      takeUntilDestroyed()
+    ).subscribe(members => this.teammembers.set(members));
   }
 
   public updateTeamInfo() {
-    this.apiService.updateTeam(this.team).subscribe();
+    this.apiService.updateTeam(this.team()).subscribe();
   }
 
   public adminStatusUpdated(user: TeamMember) {

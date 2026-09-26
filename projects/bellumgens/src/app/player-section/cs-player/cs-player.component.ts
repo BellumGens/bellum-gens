@@ -66,13 +66,14 @@ export class CsPlayerComponent extends BaseDirective {
   // Handed down by the parent PlayerComponent through the router outlet.
   public player = inject(ROUTER_OUTLET_DATA) as Signal<ApplicationUser>;
 
-  public authUser = signal<ApplicationUser>(null);
-  public teamsAdmin = signal<CSGOTeam []>(null);
+  public authUser: Signal<ApplicationUser> = this.authManager.applicationUser;
+  // Only pull the admin teams once a user is logged in.
+  public teamsAdmin = computed<CSGOTeam []>(() => this.authUser() ? this.authManager.teamsAdmin() : null);
   public userTeams = signal<CSGOTeam []>([]);
   public availability = signal<Availability []>(null);
   public mapPool = signal<CSGOMapPool []>(null);
   public viewAll = signal(false);
-  public loading = toSignal(this.apiService.loadingPlayer, { initialValue: false });
+  public loading = this.apiService.loadingPlayer;
   public roles = ALL_ROLES;
 
   public newUser = toSignal(
@@ -94,13 +95,6 @@ export class CsPlayerComponent extends BaseDirective {
 
   constructor() {
     super();
-
-    this.authManager.applicationUser.subscribe((data: ApplicationUser) => {
-      if (data) {
-        this.authUser.set(data);
-        this.authManager.teamsAdmin.subscribe(teams => this.teamsAdmin.set(teams));
-      }
-    });
 
     effect(() => {
       const player = this.player();

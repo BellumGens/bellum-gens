@@ -1,34 +1,31 @@
-import { Component, inject } from '@angular/core';
+import { Component, Signal, inject } from '@angular/core';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
+import { distinctUntilChanged, filter, map, switchMap } from 'rxjs/operators';
 import {
-  Tournament,
   BellumgensApiService,
   CSGOTeam
 } from '../../../../../common/src/public_api';
-import { ActivatedRoute } from '@angular/router';
+import { ROUTER_OUTLET_DATA } from '@angular/router';
 // import { IgxGridModule, IgxAvatarModule, IgxListModule } from '@infragistics/igniteui-angular';
 
 
 @Component({
     selector: 'app-team-tournaments',
     templateUrl: './team-tournaments.component.html',
-    styleUrls: ['./team-tournaments.component.scss'],    imports: []
+    styleUrls: ['./team-tournaments.component.scss'],
+    imports: []
 })
 export class TeamTournamentsComponent {
   private apiService = inject(BellumgensApiService);
-  private activatedRoute = inject(ActivatedRoute);
 
-  public tournaments: Tournament [];
-  public team: CSGOTeam;
+  // Handed down by the parent TeamComponent through the router outlet.
+  public team = inject(ROUTER_OUTLET_DATA) as Signal<CSGOTeam>;
+
+  public tournaments = toSignal(toObservable(this.team).pipe(
+    map(team => team?.teamId),
+    filter(teamId => !!teamId),
+    distinctUntilChanged(),
+    switchMap(teamId => this.apiService.getTeamTournaments(teamId))
+  ));
   public emptyGuid = '00000000-0000-0000-0000-000000000000';
-
-  constructor() {
-    this.activatedRoute.parent.params.subscribe(params => {
-      const teamId = params['teamid'];
-      if (teamId) {
-        this.apiService.getTeam(teamId).subscribe(team => this.team = team);
-        this.apiService.getTeamTournaments(teamId).subscribe(data => this.tournaments = data);
-      }
-    });
-  }
-
 }

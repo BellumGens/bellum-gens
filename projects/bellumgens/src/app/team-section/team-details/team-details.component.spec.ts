@@ -1,19 +1,21 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TeamDetailsComponent } from './team-details.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, ROUTER_OUTLET_DATA } from '@angular/router';
 import { Observable } from 'rxjs';
+import { signal } from '@angular/core';
+import { TEAM_PLACEHOLDER } from '../../../../../common/src/public_api';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 describe('TeamDetailsComponent', () => {
   let component: TeamDetailsComponent;
   let fixture: ComponentFixture<TeamDetailsComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
 
         NoopAnimationsModule,
@@ -30,11 +32,12 @@ describe('TeamDetailsComponent', () => {
             data: new Observable()
           }
         },
+        { provide: ROUTER_OUTLET_DATA, useValue: signal(TEAM_PLACEHOLDER) },
         provideHttpClient(withXhr(), withInterceptorsFromDi()),
         provideHttpClientTesting()
       ]
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TeamDetailsComponent);
@@ -47,21 +50,21 @@ describe('TeamDetailsComponent', () => {
   });
 
   it('should initialize with team placeholder', () => {
-    expect(component.team).toBeDefined();
-    expect(component.team.teamName).toBe('Create or view teams');
+    expect(component.team()).toBeDefined();
+    expect(component.team().teamName).toBe('Create or view teams');
   });
 
   it('should initialize isAdmin as false', () => {
-    expect(component.isAdmin).toBe(false);
+    expect(component.isAdmin()).toBe(false);
   });
 
   it('should have 5 role slots', () => {
-    expect(component.roleSlots).toBeDefined();
-    expect(component.roleSlots.length).toBe(5);
+    expect(component.roleSlots()).toBeDefined();
+    expect(component.roleSlots().length).toBe(5);
   });
 
   it('should have role slots with correct names', () => {
-    const roleNames = component.roleSlots.map(slot => slot.roleName);
+    const roleNames = component.roleSlots().map(slot => slot.roleName);
     expect(roleNames).toContain('IGL');
     expect(roleNames).toContain('Awper');
     expect(roleNames).toContain('Entry Fragger');

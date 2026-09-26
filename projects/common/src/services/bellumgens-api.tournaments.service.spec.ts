@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { computed, signal } from '@angular/core';
 
 import { ApiTournamentsService } from './bellumgens-api.tournaments.service';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
@@ -36,23 +37,23 @@ describe('ApiTournamentsService', () => {
       { id: '2', name: 'Tournament 2' }
     ];
 
-    service.tournaments.subscribe();
+    service.tournaments();
 
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/tournament/tournaments`);
     expect(req.request.method).toBe('GET');
     req.flush(mockTournaments);
-    expect(service['_tournaments'].value).toEqual(mockTournaments);
+    expect(service['_tournaments']()).toEqual(mockTournaments);
   });
 
   it('should get a tournament by id', () => {
     const mockTournament = { id: '123', name: 'Tournament 1' };
 
-    service.getTournament('123').subscribe();
+    service.getTournament('123');
 
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/tournament?id=${mockTournament.id}`);
     expect(req.request.method).toBe('GET');
     req.flush(mockTournament);
-    expect(service['_tournament'].value).toEqual(mockTournament);
+    expect(service['_tournamentsById'].get('123')()).toEqual(mockTournament);
   });
 
   it('should create a tournament', () => {
@@ -95,16 +96,16 @@ describe('ApiTournamentsService', () => {
     expect(req.request.withCredentials).toBe(true);
     req.flush({});
 
-    // Reading the getter is what kicks off the refresh, since the subject is still empty.
+    // Reading the getter is what kicks off the refresh, since the signal is still empty.
     const registrations = service.allRegistrations;
     req = httpMock.expectOne(`${service['_apiEndpoint']}/tournament/allregistrations`);
     expect(req.request.method).toBe('GET');
     expect(req.request.withCredentials).toBe(true);
     req.flush([]);
 
-    // Asserted after the flush: until then the subject still holds its initial null, and
+    // Asserted after the flush: until then the signal still holds its initial null, and
     // `not.toContain` on null throws rather than passing.
-    expect(registrations.value).not.toContain(expect.objectContaining({ id: mockRegistrationId }));
+    expect(registrations()).not.toContain(expect.objectContaining({ id: mockRegistrationId }));
   });
 
   it('should submit a Counter-Strike match', () => {
@@ -140,13 +141,13 @@ describe('ApiTournamentsService', () => {
       { id: '2', email: 'test1@mail.co.uk', game: Game.StarCraft2 }
     ];
 
-    service.allRegistrations.subscribe();
+    service.allRegistrations();
 
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/tournament/allregistrations`);
     expect(req.request.method).toBe('GET');
     expect(req.request.withCredentials).toBe(true);
     req.flush(mockRegistrations);
-    expect(service['_allRegistrations'].value).toEqual(mockRegistrations);
+    expect(service['_allRegistrations']()).toEqual(mockRegistrations);
   });
 
   it('should get registrations count', () => {
@@ -160,7 +161,7 @@ describe('ApiTournamentsService', () => {
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/tournament/regcount?tournamentId=1`);
     expect(req.request.method).toBe('GET');
     req.flush(mockRegistrationsCount);
-    expect(service.registrationsCount.value).toEqual(mockRegistrationsCount);
+    expect(service.registrationsCount()).toEqual(mockRegistrationsCount);
   });
 
   it('should get Counter-Strike registrations', () => {
@@ -184,12 +185,12 @@ describe('ApiTournamentsService', () => {
       }
     ];
 
-    service.getCsgoRegistrations('1').subscribe();
+    service.getCsgoRegistrations('1');
 
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/tournament/csgoregs?tournamentId=1`);
     expect(req.request.method).toBe('GET');
     req.flush(mockCsgoRegistrations);
-    expect(service['_csgoRegistrations'].get('1').value).toEqual(mockCsgoRegistrations);
+    expect(service['_csgoRegistrations'].get('1')()).toEqual(mockCsgoRegistrations);
   });
 
   it('should get StarCraft II registrations', () => {
@@ -213,12 +214,12 @@ describe('ApiTournamentsService', () => {
       }
     ];
 
-    service.getSc2Registrations('1').subscribe();
+    service.getSc2Registrations('1');
 
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/tournament/sc2regs?tournamentId=1`);
     expect(req.request.method).toBe('GET');
     req.flush(mockSc2Registrations);
-    expect(service['_sc2Registrations'].get('1').value).toEqual(mockSc2Registrations);
+    expect(service['_sc2Registrations'].get('1')()).toEqual(mockSc2Registrations);
   });
 
   it('should get Counter-Strike matches', () => {
@@ -227,12 +228,12 @@ describe('ApiTournamentsService', () => {
       { id: '2', team1Id: 'Team C', team2Id: 'Team D' }
     ];
 
-    service.getCsgoMatches('1').subscribe();
+    service.getCsgoMatches('1');
 
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/tournament/csgomatches?tournamentId=1`);
     expect(req.request.method).toBe('GET');
     req.flush(mockCsgoMatches);
-    expect(service['_csgoMatches'].get('1').value).toEqual(mockCsgoMatches);
+    expect(service['_csgoMatches'].get('1')()).toEqual(mockCsgoMatches);
   });
 
   it('should get StarCraft II matches', () => {
@@ -241,13 +242,13 @@ describe('ApiTournamentsService', () => {
       { id: '2', player1Id: 'Player C', player2Id: 'Player D' }
     ];
 
-    service.getSc2Matches('1').subscribe();
+    service.getSc2Matches('1');
 
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/tournament/sc2matches?tournamentId=1`);
     expect(req.request.method).toBe('GET');
     expect(req.request.withCredentials).toBe(false);
     req.flush(mockSc2Matches);
-    expect(service['_sc2Matches'].get('1').value).toEqual(mockSc2Matches);
+    expect(service['_sc2Matches'].get('1')()).toEqual(mockSc2Matches);
   });
 
   it('should get Counter-Strike groups', () => {
@@ -256,13 +257,13 @@ describe('ApiTournamentsService', () => {
       { id: '2', name: 'Group B' }
     ];
 
-    service.getCsgoGroups('1').subscribe();
+    service.getCsgoGroups('1');
 
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/tournament/csgogroups?tournamentId=1`);
     expect(req.request.method).toBe('GET');
     expect(req.request.withCredentials).toBe(true);
     req.flush(mockCsgoGroups);
-    expect(service['_csgoGroups'].get('1').value).toEqual(mockCsgoGroups);
+    expect(service['_csgoGroups'].get('1')()).toEqual(mockCsgoGroups);
   });
 
   it('should get StarCraft II groups', () => {
@@ -271,13 +272,109 @@ describe('ApiTournamentsService', () => {
       { id: '2', name: 'Group B' }
     ];
 
-    service.getSc2Groups('1').subscribe();
+    service.getSc2Groups('1');
 
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/tournament/sc2groups?tournamentId=1`);
     expect(req.request.method).toBe('GET');
     expect(req.request.withCredentials).toBe(false);
     req.flush(mockSc2Groups);
-    expect(service['_sc2Groups'].get('1').value).toEqual(mockSc2Groups);
+    // Cached in reverse order, without mutating the server data
+    expect(service['_sc2Groups'].get('1')()).toEqual([mockSc2Groups[1], mockSc2Groups[0]]);
+    expect(mockSc2Groups[0].id).toBe('1');
+  });
+
+  it('should fetch a per-id cache only once and return the same signal', () => {
+    const first = service.getSc2Matches('1');
+    const second = service.getSc2Matches('1');
+    expect(second).toBe(first);
+
+    const req = httpMock.expectOne(`${service['_apiEndpoint']}/tournament/sc2matches?tournamentId=1`);
+    req.flush([{ id: 'm1' }]);
+
+    expect(service.getSc2Matches('1')()).toEqual([{ id: 'm1' }]);
+    httpMock.expectNone(`${service['_apiEndpoint']}/tournament/sc2matches?tournamentId=1`);
+  });
+
+  it('should re-fetch StarCraft II data into the same signal on refresh', () => {
+    const registrations = service.getSc2Registrations('1');
+    httpMock.expectOne(`${service['_apiEndpoint']}/tournament/sc2regs?tournamentId=1`).flush([{ id: 'r1' }]);
+
+    expect(service.refreshSc2Registrations('1')).toBe(registrations);
+    // A second refresh while the first is in flight doesn't issue another request
+    service.refreshSc2Registrations('1');
+    expect(service.loadingSC2Registrations()).toBe(true);
+    httpMock.expectOne(`${service['_apiEndpoint']}/tournament/sc2regs?tournamentId=1`).flush([{ id: 'r2' }]);
+
+    expect(registrations()).toEqual([{ id: 'r2' }]);
+    expect(service.loadingSC2Registrations()).toBe(false);
+
+    service.refreshSc2Matches('1');
+    httpMock.expectOne(`${service['_apiEndpoint']}/tournament/sc2matches?tournamentId=1`).flush([]);
+    service.refreshSc2Groups('1');
+    httpMock.expectOne(`${service['_apiEndpoint']}/tournament/sc2groups?tournamentId=1`).flush([]);
+    service.refreshTournamentRegistrations('1');
+    httpMock.expectOne(`${service['_apiEndpoint']}/tournament/tournamentregistrations?tournamentId=1`).flush([]);
+  });
+
+  it('should be safe to read per-id caches inside computed', () => {
+    const id = signal('1');
+    const matches = computed(() => service.getSc2Matches(id())());
+
+    expect(matches()).toBeNull();
+    httpMock.expectOne(`${service['_apiEndpoint']}/tournament/sc2matches?tournamentId=1`).flush([{ id: 'm1' }]);
+    expect(matches()).toEqual([{ id: 'm1' }]);
+
+    id.set('2');
+    expect(matches()).toBeNull();
+    httpMock.expectOne(`${service['_apiEndpoint']}/tournament/sc2matches?tournamentId=2`).flush([]);
+    expect(matches()).toEqual([]);
+  });
+
+  it('should read a tournament from the loaded tournaments list', () => {
+    service.tournaments();
+    httpMock.expectOne(`${service['_apiEndpoint']}/tournament/tournaments`).flush([{ id: '1', name: 'Tournament 1' }]);
+
+    expect(service.getTournament('1')()).toEqual({ id: '1', name: 'Tournament 1' });
+    httpMock.expectNone(`${service['_apiEndpoint']}/tournament?id=1`);
+  });
+
+  it('should remove a deleted tournament from my tournaments', () => {
+    const myTournaments = service.myTournaments;
+    httpMock.expectOne(`${service['_apiEndpoint']}/tournament/mytournaments`).flush([{ id: '1' }, { id: '2' }]);
+
+    service.deleteTournament('1').subscribe();
+    httpMock.expectOne(`${service['_apiEndpoint']}/tournament/delete-tournament?id=1`).flush({});
+
+    expect(myTournaments()).toEqual([{ id: '2' }]);
+  });
+
+  it('should keep the cached groups in sync when groups are added or deleted', () => {
+    const csgoGroups = service.getCsgoGroups('1');
+    httpMock.expectOne(`${service['_apiEndpoint']}/tournament/csgogroups?tournamentId=1`).flush([{ id: 'g1', name: 'Group A' }]);
+    const sc2Groups = service.getSc2Groups('1');
+    httpMock.expectOne(`${service['_apiEndpoint']}/tournament/sc2groups?tournamentId=1`).flush([{ id: 's1', name: 'Group A' }]);
+
+    // The Counter-Strike group doesn't carry its tournament, so the cache is identified explicitly
+    service.submitCSGOGroup({ name: 'Group B' }, '1').subscribe();
+    httpMock.expectOne(`${service['_apiEndpoint']}/tournament/csgogroup`).flush({ id: 'g2', name: 'Group B' });
+    expect(csgoGroups().map(g => g.id)).toEqual(['g1', 'g2']);
+
+    // Re-submitting an existing group doesn't duplicate it
+    service.submitCSGOGroup({ id: 'g2', name: 'Group B' }, '1').subscribe();
+    httpMock.expectOne(`${service['_apiEndpoint']}/tournament/csgogroup?id=g2`).flush({ id: 'g2', name: 'Group B' });
+    expect(csgoGroups().length).toBe(2);
+
+    service.submitSC2Group({ name: 'Group B', tournamentId: '1' }).subscribe();
+    httpMock.expectOne(`${service['_apiEndpoint']}/tournament/sc2group`).flush({ id: 's2', name: 'Group B', tournamentId: '1' });
+    expect(sc2Groups().map(g => g.id)).toEqual(['s2', 's1']);
+
+    service.deleteGroup('g1').subscribe();
+    httpMock.expectOne(`${service['_apiEndpoint']}/tournament/group?id=g1`).flush({});
+    expect(csgoGroups().map(g => g.id)).toEqual(['g2']);
+
+    service.deleteGroup('s1').subscribe();
+    httpMock.expectOne(`${service['_apiEndpoint']}/tournament/group?id=s1`).flush({});
+    expect(sc2Groups().map(g => g.id)).toEqual(['s2']);
   });
 
   it('should submit a Counter-Strike group', () => {

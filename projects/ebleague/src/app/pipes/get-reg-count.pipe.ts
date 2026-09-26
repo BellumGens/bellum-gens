@@ -2,8 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { RegistrationsCount, Game } from '../../../../common/src/public_api';
 
 @Pipe({
-    name: 'getRegCount',
-    standalone: true
+    name: 'getRegCount'
 })
 export class GetRegCountPipe implements PipeTransform {
 

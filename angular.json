@@ -37,8 +37,6 @@
               ]
             },
             "polyfills": [
-              "zone.js",
-              "hammerjs",
               "@angular/localize/init"
             ],
             "tsConfig": "projects/bellumgens/tsconfig.app.json",
@@ -104,8 +102,6 @@
                 "projects/bellumgens/src/manifest.json"
               ],
               "polyfills": [
-                "zone.js",
-                "zone.js/testing",
                 "@angular/localize/init"
               ],
               "fileReplacements": [
@@ -232,8 +228,6 @@
               ]
             },
             "polyfills": [
-              "zone.js",
-              "hammerjs",
               "@angular/localize/init"
             ],
             "tsConfig": "projects/ebleague/tsconfig.app.json",
@@ -299,8 +293,6 @@
                 "projects/ebleague/src/manifest.json"
               ],
               "polyfills": [
-                "zone.js",
-                "zone.js/testing",
                 "@angular/localize/init"
               ],
               "fileReplacements": [
@@ -422,8 +414,6 @@
           "options": {
             "tsConfig": "projects/common/tsconfig.spec.json",
             "polyfills": [
-              "zone.js",
-              "zone.js/testing",
               "@angular/localize/init"
             ],
             "assets": [

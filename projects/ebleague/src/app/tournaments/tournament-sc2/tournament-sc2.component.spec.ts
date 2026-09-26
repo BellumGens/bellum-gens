@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TournamentSc2Component } from './tournament-sc2.component';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
@@ -11,8 +11,8 @@ describe('TournamentSc2Component', () => {
   let component: TournamentSc2Component;
   let fixture: ComponentFixture<TournamentSc2Component>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
         ServiceWorkerModule.register('', { enabled: false }),
@@ -25,7 +25,7 @@ describe('TournamentSc2Component', () => {
     ]
     })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TournamentSc2Component);

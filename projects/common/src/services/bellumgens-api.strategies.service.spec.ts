@@ -1,4 +1,5 @@
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
+import { computed } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { CSGOStrategy, Side, StrategyComment, StrategyVote, VoteDirection } from '../models/csgostrategy';
 import { ApiStrategiesService } from './bellumgens-api.strategies.service';
@@ -28,25 +29,37 @@ describe('ApiStrategiesService', () => {
   it('should load strategies page on `strategies` getter', () => {
     const page = 0;
     const errorMessage = `Http failure response for ${service['_apiEndpoint']}/strategy/strategies?page=${page}: 500 Could not retrieve strategies!`;
-    commsService.error.subscribe(message => expect(message).toEqual(errorMessage));
-    let sub = service.strategies.subscribe({
-      error: error => expect(error.message).toEqual(errorMessage)
-    });
+    const sub = commsService.error.subscribe(message => expect(message).toEqual(errorMessage));
+    const strategies = service.strategies;
+    // a second access while the first page is loading must not issue another request
+    expect(service.strategies).toBe(strategies);
     const req2 = httpMock.expectOne(`${service['_apiEndpoint']}/strategy/strategies?page=${page}`);
     expect(req2.request.method).toEqual('GET');
-    expect(service.loadingStrategies.value).toEqual(true);
+    expect(service.loadingStrategies()).toEqual(true);
     req2.error(new ProgressEvent('Server Error'), { status: 500, statusText: 'Could not retrieve strategies!' });
-    expect(service.loadingStrategies.value).toEqual(false);
+    expect(service.loadingStrategies()).toEqual(false);
     sub.unsubscribe();
 
-    sub = service.strategies.subscribe();
+    service.strategies;
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/strategy/strategies?page=${page}`);
     expect(req.request.method).toEqual('GET');
-    expect(service.loadingStrategies.value).toEqual(true);
-    req.flush([]);
-    expect(service.loadingStrategies.value).toEqual(false);
-    expect(service['_strategies'].value).toEqual([]);
-    sub.unsubscribe();
+    expect(service.loadingStrategies()).toEqual(true);
+    const data = Array.from({ length: 25 }, (_, i) => ({ id: `${i}` }) as CSGOStrategy);
+    req.flush(data);
+    expect(service.loadingStrategies()).toEqual(false);
+    expect(service.hasMoreStrats()).toEqual(true);
+    expect(strategies()).toEqual(data);
+
+    // already loaded, so no further request
+    service.strategies;
+    httpMock.expectNone(`${service['_apiEndpoint']}/strategy/strategies?page=${page}`);
+  });
+
+  it('should be safe to read `strategies` from a reactive context', () => {
+    const count = computed(() => service.strategies().length);
+    expect(() => count()).not.toThrow();
+    httpMock.expectOne(`${service['_apiEndpoint']}/strategy/strategies?page=0`).flush([{ id: '1' }]);
+    expect(count()).toEqual(1);
   });
 
   it('should load strategies page', () => {
@@ -54,19 +67,19 @@ describe('ApiStrategiesService', () => {
     service.loadStrategiesPage(page);
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/strategy/strategies?page=${page}`);
     expect(req.request.method).toEqual('GET');
-    expect(service.loadingStrategies.value).toEqual(true);
+    expect(service.loadingStrategies()).toEqual(true);
     req.flush([]);
-    expect(service.loadingStrategies.value).toEqual(false);
-    expect(service['_strategies'].value).toEqual([]);
+    expect(service.loadingStrategies()).toEqual(false);
+    expect(service['_strategies']()).toEqual([]);
 
     const errorMessage = `Http failure response for ${service['_apiEndpoint']}/strategy/strategies?page=${page}: 500 Could not retrieve strategies!`;
     commsService.error.subscribe(message => expect(message).toEqual(errorMessage));
     service.loadStrategiesPage(page);
     const req2 = httpMock.expectOne(`${service['_apiEndpoint']}/strategy/strategies?page=${page}`);
     expect(req2.request.method).toEqual('GET');
-    expect(service.loadingStrategies.value).toEqual(true);
+    expect(service.loadingStrategies()).toEqual(true);
     req2.error(new ProgressEvent('Server Error'), { status: 500, statusText: 'Could not retrieve strategies!' });
-    expect(service.loadingStrategies.value).toEqual(false);
+    expect(service.loadingStrategies()).toEqual(false);
   });
 
   it('should get user strategies', () => {
@@ -76,7 +89,7 @@ describe('ApiStrategiesService', () => {
     expect(req.request.method).toEqual('GET');
     expect(req.request.withCredentials).toEqual(true);
     req.flush([]);
-    expect(service['_strategies'].value).toEqual([]);
+    expect(service['_strategies']()).toEqual([]);
   });
 
   it('should get team strat', () => {
@@ -95,7 +108,7 @@ describe('ApiStrategiesService', () => {
     expect(req.request.method).toEqual('GET');
     expect(req.request.withCredentials).toEqual(true);
     req.flush([]);
-    expect(service['_strategies'].value).toEqual([]);
+    expect(service['_strategies']()).toEqual([]);
   });
 
   it('should get team map pool', () => {
@@ -105,12 +118,15 @@ describe('ApiStrategiesService', () => {
     expect(req.request.method).toEqual('GET');
     expect(req.request.withCredentials).toEqual(true);
     req.flush([]);
-    expect(service['_strategies'].value).toEqual([]);
+    expect(service['_strategies']()).toEqual([]);
   });
 
   it('should get strategy', () => {
     const stratId = '123456789';
-    service.getStrategy(stratId);
+    const strat = service.getStrategy(stratId);
+    expect(strat()).toBeNull();
+    // cached, so a second call returns the same signal without another request
+    expect(service.getStrategy(stratId)).toBe(strat);
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/strategy/strat?stratId=${stratId}`);
     expect(req.request.method).toEqual('GET');
     expect(req.request.withCredentials).toEqual(true);
@@ -123,7 +139,7 @@ describe('ApiStrategiesService', () => {
       teamId: '123',
       url: 'test'
     });
-    expect(service['_strategyCache'].get(stratId).value).toEqual({
+    expect(service['_strategyCache'].get(stratId)()).toEqual({
       id: '123456789',
       title: 'Test',
       description: 'Test',
@@ -132,6 +148,7 @@ describe('ApiStrategiesService', () => {
       teamId: '123',
       url: 'test'
     });
+    expect(strat().title).toEqual('Test');
   });
 
   it('should submit strategy', () => {
@@ -151,7 +168,7 @@ describe('ApiStrategiesService', () => {
     expect(req.request.body).toEqual(strat);
     expect(req.request.withCredentials).toEqual(true);
     req.flush(strat);
-    expect(service['_strategyCache'].get(strat.id).value).toEqual(strat);
+    expect(service['_strategyCache'].get(strat.id)()).toEqual(strat);
 
     const strat2: CSGOStrategy = {
       id: '123456',
@@ -193,7 +210,7 @@ describe('ApiStrategiesService', () => {
     expect(req3.request.body).toEqual(strat3);
     expect(req3.request.withCredentials).toEqual(true);
     req3.flush(strat3);
-    expect(service['_strategyCache'].get(strat3.id).value).toEqual(strat3);
+    expect(service['_strategyCache'].get(strat3.id)()).toEqual(strat3);
   });
 
   it('should submit strat vote', () => {
@@ -210,36 +227,42 @@ describe('ApiStrategiesService', () => {
     const direction = VoteDirection.Up;
     const userId = '123';
     const vote: StrategyVote = { userId: userId, vote: direction };
+    let updated: CSGOStrategy;
     let sub = commsService.success.subscribe(message => expect(message).toEqual('Vote submitted successfully!'));
-    service.submitStratVote(strat, direction, userId).subscribe();
+    service.submitStratVote(strat, direction, userId).subscribe(result => updated = result);
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/strategy/vote`);
     expect(req.request.method).toEqual('POST');
     expect(req.request.body).toEqual({ id: strat.id, direction });
     expect(req.request.withCredentials).toEqual(true);
     req.flush(vote);
+    expect(updated.votes).toEqual([vote]);
+    // the given strategy is not mutated
+    expect(strat.votes).toEqual([]);
     sub.unsubscribe();
 
     // Should update the vote if the user already voted
+    const voted = updated;
     const vote2: StrategyVote = { userId: userId, vote: VoteDirection.Down };
     sub = commsService.success.subscribe(message => expect(message).toEqual('Vote submitted successfully!'));
-    service.submitStratVote(strat, VoteDirection.Down, userId).subscribe();
+    service.submitStratVote(voted, VoteDirection.Down, userId).subscribe(result => updated = result);
     const req2 = httpMock.expectOne(`${service['_apiEndpoint']}/strategy/vote`);
     expect(req2.request.method).toEqual('POST');
     expect(req2.request.body).toEqual({ id: strat.id, direction: VoteDirection.Down });
     expect(req2.request.withCredentials).toEqual(true);
     req2.flush(vote2);
-    expect(strat.votes.find(v => v.userId === userId).vote).toEqual(vote2.vote);
+    expect(updated.votes.find(v => v.userId === userId).vote).toEqual(vote2.vote);
+    expect(voted.votes[0].vote).toEqual(direction);
     sub.unsubscribe();
 
     // Should remove the vote if the user already voted and the direction is the same
     sub = commsService.success.subscribe(message => expect(message).toEqual('Vote removed successfully!'));
-    service.submitStratVote(strat, VoteDirection.Down, userId).subscribe();
+    service.submitStratVote(updated, VoteDirection.Down, userId).subscribe(result => updated = result);
     const req4 = httpMock.expectOne(`${service['_apiEndpoint']}/strategy/vote`);
     expect(req4.request.method).toEqual('POST');
     expect(req4.request.body).toEqual({ id: strat.id, direction: VoteDirection.Down });
     expect(req4.request.withCredentials).toEqual(true);
     req4.flush(null);
-    expect(strat.votes.find(v => v.userId === userId)).toBeUndefined();
+    expect(updated.votes.find(v => v.userId === userId)).toBeUndefined();
     sub.unsubscribe();
 
     const errorMessage = `Http failure response for ${service['_apiEndpoint']}/strategy/vote: 500 Could not submit vote!`;
@@ -255,6 +278,36 @@ describe('ApiStrategiesService', () => {
     req3.error(new ProgressEvent('Server Error'), { status: 500, statusText: 'Could not submit vote!' });
   });
 
+  it('should only remove the voting user\'s vote when a vote is withdrawn', () => {
+    const other: StrategyVote = { userId: 'other', vote: VoteDirection.Up };
+    const strat = { id: '1', votes: [other] } as CSGOStrategy;
+    let updated: CSGOStrategy;
+    service.submitStratVote(strat, VoteDirection.Up, 'me').subscribe(result => updated = result);
+    httpMock.expectOne(`${service['_apiEndpoint']}/strategy/vote`).flush(null);
+    expect(updated.votes).toEqual([other]);
+  });
+
+  it('should swap a voted strategy into the cached strategies and strategy cache', () => {
+    const cachedStrat = { id: 'abc', customUrl: 'my-strat', votes: [] } as CSGOStrategy;
+    const other = { id: 'other', votes: [] } as CSGOStrategy;
+    service['_strategies'].set([cachedStrat, other]);
+    const byUrl = service.getStrategy('my-strat');
+    httpMock.expectOne(`${service['_apiEndpoint']}/strategy/strat?stratId=my-strat`).flush(cachedStrat);
+    const list = service['_strategies']();
+
+    const vote: StrategyVote = { userId: 'u', vote: VoteDirection.Up };
+    let updated: CSGOStrategy;
+    service.submitStratVote(cachedStrat, VoteDirection.Up, 'u').subscribe(result => updated = result);
+    httpMock.expectOne(`${service['_apiEndpoint']}/strategy/vote`).flush(vote);
+
+    expect(service['_strategies']()).not.toBe(list);
+    expect(service['_strategies']()[0]).toBe(updated);
+    expect(service['_strategies']()[1]).toBe(other);
+    expect(byUrl()).toBe(updated);
+    expect(updated.votes).toEqual([vote]);
+    expect(cachedStrat.votes).toEqual([]);
+  });
+
   it('should submit strat comment', () => {
     const comment: StrategyComment = { id: '123', stratId: '456', comment: 'Test', userId: '123', published: new Date() };
     const strat: CSGOStrategy = {
@@ -267,25 +320,33 @@ describe('ApiStrategiesService', () => {
       url: 'test',
       comments: []
     };
+    service['_strategies'].set([strat]);
+    let updated: CSGOStrategy;
     const sub = commsService.success.subscribe(message => expect(message).toEqual('Comment submitted successfully!'));
-    service.submitStratComment(comment, strat).subscribe();
+    service.submitStratComment(comment, strat).subscribe(result => updated = result);
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/strategy/comment`);
     expect(req.request.method).toEqual('POST');
     expect(req.request.body).toEqual(comment);
     expect(req.request.withCredentials).toEqual(true);
     req.flush(comment);
+    expect(updated.comments).toEqual([comment]);
+    expect(strat.comments).toEqual([]);
+    expect(service['_strategies']()[0]).toBe(updated);
     sub.unsubscribe();
 
     // Should update the comment if the comment is already cached
+    const commented = updated;
     const comment2: StrategyComment = { id: '123', stratId: '456', comment: 'Updated test comment', userId: '123', published: new Date() };
     commsService.success.subscribe(message => expect(message).toEqual('Comment edited successfully!'));
-    service.submitStratComment(comment2, strat).subscribe();
+    service.submitStratComment(comment2, commented).subscribe(result => updated = result);
     const req2 = httpMock.expectOne(`${service['_apiEndpoint']}/strategy/comment`);
     expect(req2.request.method).toEqual('POST');
     expect(req2.request.body).toEqual(comment2);
     expect(req2.request.withCredentials).toEqual(true);
     req2.flush(comment2);
-    expect(strat.comments.find(c => c.id === comment2.id).comment).toEqual(comment2.comment);
+    expect(updated.comments.length).toEqual(1);
+    expect(updated.comments.find(c => c.id === comment2.id).comment).toEqual(comment2.comment);
+    expect(commented.comments[0].comment).toEqual('Test');
 
     const errorMessage = `Http failure response for ${service['_apiEndpoint']}/strategy/comment: 500 Could not submit comment!`;
     commsService.error.subscribe(message => expect(message).toEqual(errorMessage));
@@ -302,6 +363,7 @@ describe('ApiStrategiesService', () => {
 
   it('should delete strat comment', () => {
     const comment: StrategyComment = { id: '123', stratId: '456', comment: 'Test', userId: '123', published: new Date() };
+    const remaining: StrategyComment = { id: '789', stratId: '456', comment: 'Other', userId: '123', published: new Date() };
     const strat: CSGOStrategy = {
       id: '456',
       title: 'Test',
@@ -311,16 +373,19 @@ describe('ApiStrategiesService', () => {
       teamId: '123',
       url: 'test',
       comments: [
-        { id: '123', stratId: '456', comment: 'Test', userId: '123', published: new Date() }
+        { id: '123', stratId: '456', comment: 'Test', userId: '123', published: new Date() },
+        remaining
       ]
     };
+    let updated: CSGOStrategy;
     commsService.success.subscribe(message => expect(message).toEqual('Comment deleted successfully!'));
-    service.deleteStratComment(comment, strat).subscribe();
+    service.deleteStratComment(comment, strat).subscribe(result => updated = result);
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/strategy/comment?id=${comment.id}`);
     expect(req.request.method).toEqual('DELETE');
     expect(req.request.withCredentials).toEqual(true);
     req.flush({});
-    expect(strat.comments.length).toEqual(0);
+    expect(updated.comments).toEqual([remaining]);
+    expect(strat.comments.length).toEqual(2);
 
     const errorMessage = `Http failure response for ${service['_apiEndpoint']}/strategy/comment?id=${comment.id}: 500 Could not delete comment!`;
     commsService.error.subscribe(message => expect(message).toEqual(errorMessage));
@@ -353,6 +418,20 @@ describe('ApiStrategiesService', () => {
     expect(req2.request.method).toEqual('DELETE');
     expect(req2.request.withCredentials).toEqual(true);
     req2.error(new ProgressEvent('Server Error'), { status: 500, statusText: 'Could not delete strategy!' });
+  });
+
+  it('should drop a deleted strategy from the caches', () => {
+    const deleted = { id: '345', customUrl: 'deleted' } as CSGOStrategy;
+    const kept = { id: '678' } as CSGOStrategy;
+    service['_strategies'].set([deleted, kept]);
+    service.getStrategy('deleted');
+    httpMock.expectOne(`${service['_apiEndpoint']}/strategy/strat?stratId=deleted`).flush(deleted);
+
+    service.deleteStrategy('345').subscribe();
+    httpMock.expectOne(`${service['_apiEndpoint']}/strategy/strat?id=345`).flush({});
+
+    expect(service['_strategies']()).toEqual([kept]);
+    expect(service['_strategyCache'].has('deleted')).toBe(false);
   });
 
   it('should handle errors', () => {

@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, effect, inject, signal, Signal } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { Component, effect, inject, signal, Signal } from '@angular/core';
 import { ApplicationUser, BellumgensApiService, LoadingComponent, RaceIconPipe, Tournament } from '../../../../../common/src/public_api';
 import { IgxCardHeaderTitleDirective, IgxCardHeaderSubtitleDirective } from '@infragistics/igniteui-angular/card';
 import { ROUTER_OUTLET_DATA } from '@angular/router';
@@ -22,8 +21,7 @@ import { DatePipe } from '@angular/common';
     RaceIconPipe
   ],
   templateUrl: './sc-player.component.html',
-  styleUrl: './sc-player.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  styleUrl: './sc-player.component.scss'
 })
 export class ScPlayerComponent {
   private titleService = inject(Title);
@@ -32,7 +30,7 @@ export class ScPlayerComponent {
   // Handed down by the parent PlayerComponent through the router outlet.
   public player = inject(ROUTER_OUTLET_DATA) as Signal<ApplicationUser>;
 
-  public loading = toSignal(this.apiService.loadingPlayer, { initialValue: false });
+  public loading = this.apiService.loadingPlayer;
   public tournaments = signal<Tournament []>([]);
 
   private tournamentsLoadedFor: string;

@@ -35,6 +35,9 @@ export * from './services/login.service';
 export * from './services/social-media.service';
 export * from './services/social-media.strategy.service';
 
+/* Providers */
+export * from './providers/unhandled-rxjs-errors';
+
 /* Guards */
 export * from './guards/admin.guard';
 export * from './guards/eventadmin.guard';

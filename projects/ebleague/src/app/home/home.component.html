@@ -344,15 +344,15 @@
           <igx-prefix>
             <igx-icon>email</igx-icon>
           </igx-prefix>
-          <input type="email" id="subemail" #subMail name="subemail" igxInput pattern="^[a-zA-Z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$" [(ngModel)]="userEmail" />
-          @if (subMail.value) {
-            <igx-suffix (click)="userEmail = ''">
+          <input type="email" id="subemail" name="subemail" igxInput pattern="^[a-zA-Z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$" [(ngModel)]="userEmail" />
+          @if (userEmail()) {
+            <igx-suffix (click)="userEmail.set('')">
               <igx-icon>clear</igx-icon>
             </igx-suffix>
           }
           <igx-hint i18n>Get email updates from us!</igx-hint>
         </igx-input-group>
-        <button type="submit" igxButton="outlined" class="submit-email" [disabled]="subscription.invalid || !userEmail" i18n>Subscribe</button>
+        <button type="submit" igxButton="outlined" class="submit-email" [disabled]="subscription.invalid || !userEmail()" i18n>Subscribe</button>
       </div>
     </form>
   </div>

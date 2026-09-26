@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { StrategiesComponent } from './strategies.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -12,8 +12,8 @@ describe('StrategiesComponent', () => {
   let component: StrategiesComponent;
   let fixture: ComponentFixture<StrategiesComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
 
         NoopAnimationsModule,
@@ -38,7 +38,7 @@ describe('StrategiesComponent', () => {
       ]
     })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(StrategiesComponent);
@@ -51,12 +51,12 @@ describe('StrategiesComponent', () => {
   });
 
   it('should have maps array initialized', () => {
-    expect(component.maps).toBeDefined();
-    expect(Array.isArray(component.maps)).toBe(true);
+    expect(component.maps()).toBeDefined();
+    expect(Array.isArray(component.maps())).toBe(true);
   });
 
   it('should initialize loading to false', () => {
-    expect(component.loading).toBe(false);
+    expect(component.loading()).toBe(false);
   });
 
   it('should initialize page to 0', () => {
@@ -64,7 +64,7 @@ describe('StrategiesComponent', () => {
   });
 
   it('should initialize viewAll to false', () => {
-    expect(component.viewAll).toBe(false);
+    expect(component.viewAll()).toBe(false);
   });
 
   it('should have overlaySettings property', () => {

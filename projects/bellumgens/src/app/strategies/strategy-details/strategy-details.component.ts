@@ -1,5 +1,7 @@
-import { Component, HostListener, PLATFORM_ID, inject } from '@angular/core';
-import { isPlatformBrowser, NgClass, DatePipe, NgOptimizedImage } from '@angular/common';
+import { Component, Injector, PLATFORM_ID, Signal, effect, inject, signal, untracked } from '@angular/core';
+import { toObservable, takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { filter, map, switchMap, tap } from 'rxjs';
+import { isPlatformBrowser, DatePipe, NgOptimizedImage } from '@angular/common';
 import { BaseDirective } from '../../base/base.component';
 import { RouterLink } from '@angular/router';
 import {
@@ -32,9 +34,12 @@ import { LoadingComponent } from '../../../../../common/src/lib/loading/loading.
 @Component({
   selector: 'app-strategy-details',
   templateUrl: './strategy-details.component.html',
-  styleUrls: ['./strategy-details.component.scss'],  imports: [
+  styleUrls: ['./strategy-details.component.scss'],
+  host: {
+    '(window:resize)': 'resize()'
+  },
+  imports: [
     NgOptimizedImage,
-    NgClass,
     DatePipe,
     FormsModule,
     RouterLink,
@@ -63,42 +68,43 @@ export class StrategyDetailsComponent extends BaseDirective {
   private apiService = inject(ApiStrategiesService);
   private authManager = inject(LoginService);
   private socialMedia = inject(SocialMediaStrategyService);
+  private injector = inject(Injector);
 
-  public strat: CSGOStrategy;
-  public authUser: ApplicationUser;
-  public pipeTrigger = 0;
-  public newComment = Object.assign({}, NEW_EMPTY_COMMENT);
-  public horizontal = true;
+  public strat = signal<CSGOStrategy>(null);
+  public authUser: Signal<ApplicationUser> = this.authManager.applicationUser;
+  public newComment = signal<StrategyComment>(Object.assign({}, NEW_EMPTY_COMMENT));
+  public horizontal = signal(true);
   public overlaySettings = GLOBAL_OVERLAY_SETTINGS;
 
   constructor() {
     super();
-    this.activeRoute.params.subscribe(params => {
-      const stratid = params['stratid'];
-      if (stratid) {
+    this.activeRoute.params.pipe(
+      map(params => params['stratid'] as string),
+      filter(stratid => !!stratid),
+      tap(stratid => {
         this.meta.updateTag({ name: 'og:image', content: `${environment.rootApiEndpoint}/Content/Strats/${stratid}.png` });
         this.meta.updateTag({ name: 'twitter:image', content: `${environment.rootApiEndpoint}/Content/Strats/${stratid}.png` });
-        this.apiService.getStrategy(stratid).subscribe(strat => {
-          if (strat) {
-            this.strat = strat;
-            this.newComment.stratId = strat.id;
-          }
-        });
-      }
+      }),
+      switchMap(stratid => toObservable(this.apiService.getStrategy(stratid), { injector: this.injector })),
+      filter(strat => !!strat),
+      takeUntilDestroyed()
+    ).subscribe(strat => {
+      this.strat.set(strat);
+      // The cached strategy is replaced on every vote/comment, so keep the comment draft unless the strategy changed.
+      this.newComment.update(comment => comment.stratId === strat.id ? comment : { ...comment, stratId: strat.id });
     });
-    this.authManager.applicationUser.subscribe(user => {
-      this.authUser = user;
+    effect(() => {
+      const user = this.authUser();
       if (user) {
-        this.newComment.userId = user.id;
+        untracked(() => this.newComment.update(comment => ({ ...comment, userId: user.id })));
       }
     });
     this.resize();
   }
 
-  @HostListener('window:resize')
   public resize() {
     if (isPlatformBrowser(this.platformId)) {
-      this.horizontal = window.matchMedia('(min-width: 768px)').matches;
+      this.horizontal.set(window.matchMedia('(min-width: 768px)').matches);
     }
   }
 
@@ -107,28 +113,31 @@ export class StrategyDetailsComponent extends BaseDirective {
   }
 
   public voteStrat(strat: CSGOStrategy, direction: VoteDirection) {
-    if (!this.authUser) {
+    const authUser = this.authUser();
+    if (!authUser) {
       this.openLogin();
     } else {
-      this.apiService.submitStratVote(strat, direction, this.authUser.id).subscribe(() => this.pipeTrigger++);
+      this.apiService.submitStratVote(strat, direction, authUser.id).subscribe(updated => this.strat.set(updated));
     }
   }
 
   public submitComment() {
-    this.newComment._inEdit = false;
-    this.apiService.submitStratComment(this.newComment, this.strat).subscribe(() => {
-      this.newComment = { userId: this.authUser.id, stratId: this.strat.id, comment: null };
+    // When editing, the model is the listed comment itself, so clear its edit marker directly.
+    const comment = this.newComment();
+    comment._inEdit = false;
+    this.apiService.submitStratComment(comment, this.strat()).subscribe(updated => {
+      this.strat.set(updated);
+      this.newComment.set({ userId: this.authUser().id, stratId: updated.id, comment: null });
     });
   }
 
   public editComment(comment: StrategyComment) {
-    this.newComment = comment;
-    this.newComment._inEdit = true;
-    this.pipeTrigger++;
+    comment._inEdit = true;
+    this.newComment.set(comment);
   }
 
   public deleteComment(comment: StrategyComment) {
-    this.apiService.deleteStratComment(comment, this.strat).subscribe(() => this.pipeTrigger++);
+    this.apiService.deleteStratComment(comment, this.strat()).subscribe(updated => this.strat.set(updated));
   }
 
   public shareOnTwitter(strat: CSGOStrategy) {

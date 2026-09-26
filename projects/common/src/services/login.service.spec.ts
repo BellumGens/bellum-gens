@@ -1,3 +1,4 @@
+import { computed } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -39,9 +40,11 @@ describe('LoginService', () => {
   });
 
   it('should emit openLogin event', () => {
-    const openLoginSpy = vi.spyOn(service.openLogin, 'emit').mockImplementation(() => undefined);
+    const openLoginSpy = vi.fn();
+    const sub = service.openLogin.subscribe(openLoginSpy);
     service.emitOpenLogin();
-    expect(openLoginSpy).toHaveBeenCalled();
+    expect(openLoginSpy).toHaveBeenCalledTimes(1);
+    sub.unsubscribe();
   });
 
   it('should add push subscriber', () => {
@@ -95,14 +98,31 @@ describe('LoginService', () => {
       { id: '2', game: Game.StarCraft2, email: 'test-email', state: 1 }
     ];
 
-    service.tournamentRegistrations.subscribe();
+    const result = service.tournamentRegistrations;
+    expect(result()).toBeNull();
 
     const req = httpMock.expectOne(`${service['_apiBase']}/tournament/registrations`);
     expect(req.request.method).toEqual('GET');
     expect(req.request.withCredentials).toEqual(true);
     req.flush(registrations);
 
-    expect(service['_registrations'].value).toEqual(registrations);
+    expect(service['_registrations']()).toEqual(registrations);
+    expect(result()).toEqual(registrations);
+
+    // cached: accessing again does not trigger another request
+    expect(service.tournamentRegistrations()).toEqual(registrations);
+    httpMock.expectNone(`${service['_apiBase']}/tournament/registrations`);
+  });
+
+  it('should set tournament registrations', () => {
+    const registrations: TournamentApplication [] = [
+      { id: '1', game: Game.CSGO, email: 'test-email', state: 0 }
+    ];
+
+    service.setTournamentRegistrations(registrations);
+
+    expect(service.tournamentRegistrations()).toEqual(registrations);
+    httpMock.expectNone(`${service['_apiBase']}/tournament/registrations`);
   });
 
   it('should return teams admin', () => {
@@ -111,14 +131,15 @@ describe('LoginService', () => {
       { teamId: '2', teamName: 'Team 2', teamAvatar: 'test-avatar-2', visible: true }
     ];
 
-    service.teamsAdmin.subscribe();
+    const result = service.teamsAdmin;
 
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/userteamsadmin`);
     expect(req.request.method).toEqual('GET');
     expect(req.request.withCredentials).toEqual(true);
     req.flush(teamsAdmin);
 
-    expect(service['_teamsAdmin'].value).toEqual(teamsAdmin);
+    expect(service['_teamsAdmin']()).toEqual(teamsAdmin);
+    expect(result()).toEqual(teamsAdmin);
   });
 
   it('should get application user', () => {
@@ -135,14 +156,40 @@ describe('LoginService', () => {
       externalLogins: []
     };
 
-    service.applicationUser.subscribe();
+    const result = service.applicationUser;
+    expect(result()).toBeNull();
+    expect(service.userCheckInProgress()).toBe(true);
+
+    // a second access while the check is in progress does not trigger another request
+    service.applicationUser();
 
     const req = httpMock.expectOne(`${service['_apiEndpoint']}`);
     expect(req.request.method).toEqual('GET');
     expect(req.request.withCredentials).toEqual(true);
     req.flush(applicationUser);
 
-    expect(service['_applicationUser'].value).toEqual(applicationUser);
+    expect(service['_applicationUser']()).toEqual(applicationUser);
+    expect(result()).toEqual(applicationUser);
+    expect(service.userCheckInProgress()).toBe(false);
+  });
+
+  it('should reset userCheckInProgress when the application user request fails', () => {
+    service.applicationUser();
+    expect(service.userCheckInProgress()).toBe(true);
+
+    const req = httpMock.expectOne(`${service['_apiEndpoint']}`);
+    req.flush('Unauthorized', { status: 401, statusText: 'Unauthorized' });
+
+    expect(service.userCheckInProgress()).toBe(false);
+    expect(service.applicationUser()).toBeNull();
+    // a new check is started because there is still no user
+    httpMock.expectOne(`${service['_apiEndpoint']}`).flush(null);
+  });
+
+  it('should allow reading the application user inside a computed without throwing', () => {
+    const isLoggedIn = computed(() => !!service.applicationUser());
+    expect(isLoggedIn()).toBe(false);
+    httpMock.expectOne(`${service['_apiEndpoint']}`).flush(null);
   });
 
   it('should get user notifications', () => {
@@ -151,14 +198,15 @@ describe('LoginService', () => {
       { state: NotificationState.Accepted, teamInfo: null, invitingUser: null, sent: '2021-01-01T00:00:00.000Z' }
     ];
 
-    service.userNotifications.subscribe();
+    const result = service.userNotifications;
 
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/usernotifications`);
     expect(req.request.method).toEqual('GET');
     expect(req.request.withCredentials).toEqual(true);
     req.flush(userNotifications);
 
-    expect(service['_userNotifications'].value).toEqual(userNotifications);
+    expect(service['_userNotifications']()).toEqual(userNotifications);
+    expect(result()).toEqual(userNotifications);
   });
 
   it('should get user is team member', () => {
@@ -210,16 +258,17 @@ describe('LoginService', () => {
     expect(req.request.body).toEqual(loginInfo);
     expect(req.request.withCredentials).toEqual(true);
     req.flush(applicationUser);
-    expect(service['_applicationUser'].value).toEqual(applicationUser);
+    expect(service['_applicationUser']()).toEqual(applicationUser);
 
     const req2 = httpMock.expectOne(`${service['_apiBase']}/tournament/registrations`);
     expect(req2.request.method).toEqual('GET');
     expect(req2.request.withCredentials).toEqual(true);
     req2.flush(registrations);
-    expect(service['_registrations'].value).toEqual(registrations);
+    expect(service['_registrations']()).toEqual(registrations);
   });
 
   it('should logout', () => {
+    service['_applicationUser'].set({ id: '1' } as ApplicationUser);
     service.logout().subscribe();
     commsService.success.subscribe(success => expect(success).toBe('Logged out successfully!'));
 
@@ -227,7 +276,7 @@ describe('LoginService', () => {
     expect(req.request.method).toEqual('POST');
     expect(req.request.withCredentials).toEqual(true);
     req.flush({});
-    expect(service['_applicationUser'].value).toBeNull();
+    expect(service['_applicationUser']()).toBeNull();
   });
 
   it('should submit registration', () => {
@@ -244,6 +293,7 @@ describe('LoginService', () => {
 
   it('should delete account', () => {
     const userId = 'test-user-id';
+    service['_applicationUser'].set({ id: userId } as ApplicationUser);
     service.deleteAccount(userId).subscribe();
     commsService.success.subscribe(success => expect(success).toBe('Account deleted!'));
 
@@ -251,7 +301,7 @@ describe('LoginService', () => {
     expect(req.request.method).toEqual('DELETE');
     expect(req.request.withCredentials).toEqual(true);
     req.flush({});
-    expect(service['_applicationUser'].value).toBeNull();
+    expect(service['_applicationUser']()).toBeNull();
   });
 
   it('should check username', () => {

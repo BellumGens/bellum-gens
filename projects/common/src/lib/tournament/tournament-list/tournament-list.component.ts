@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { Tournament, TournamentStatus } from '../../../models/tournament';
 import { ApiTournamentsService } from '../../../services/bellumgens-api.tournaments.service';
@@ -16,7 +16,6 @@ import { FormsModule } from '@angular/forms';
   selector: 'bg-tournament-list',
   templateUrl: './tournament-list.component.html',
   styleUrl: './tournament-list.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     FormsModule,
     TournamentCardComponent,
@@ -35,13 +34,17 @@ export class TournamentListComponent {
   private loginService = inject(LoginService);
   private router = inject(Router);
 
-  public tournaments = signal<Tournament[]>([]);
-  public myTournaments = signal<Tournament[]>([]);
-  public loading = signal(true);
+  private publicTournaments = this.apiService.publicTournaments;
+  private ownTournaments = this.apiService.myTournaments;
+
+  public tournaments = computed<Tournament[]>(() => this.publicTournaments() ?? []);
+  public myTournaments = computed<Tournament[]>(() => this.ownTournaments() ?? []);
+  public loading = computed(() => !this.publicTournaments());
   public activeTab = signal(0);
   public inviteCode = '';
 
-  public isLoggedIn = computed(() => !!this.loginService.applicationUser?.value);
+  private authUser = this.loginService.applicationUser;
+  public isLoggedIn = computed(() => !!this.authUser());
 
   public activeTournaments = computed(() =>
     this.tournaments().filter(t => t.status === TournamentStatus.Open || t.status === TournamentStatus.InProgress)
@@ -54,21 +57,6 @@ export class TournamentListComponent {
   public completedTournaments = computed(() =>
     this.tournaments().filter(t => t.status === TournamentStatus.Completed)
   );
-
-  constructor() {
-    this.apiService.publicTournaments.subscribe(data => {
-      if (data) {
-        this.tournaments.set(data);
-        this.loading.set(false);
-      }
-    });
-
-    this.apiService.myTournaments.subscribe(data => {
-      if (data) {
-        this.myTournaments.set(data);
-      }
-    });
-  }
 
   public createTournament() {
     this.router.navigate(['/tournaments/create']);

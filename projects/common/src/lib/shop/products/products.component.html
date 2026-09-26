@@ -1,5 +1,5 @@
 <div class="card-wrapper">
-  @for (product of products$ | async; track product.id) {
+  @for (product of products(); track product.id) {
     <igx-card class="product-card">
       <igx-card-header>
         <h2 igxCardHeaderTitle class="product-title">{{ product.productName }}</h2>

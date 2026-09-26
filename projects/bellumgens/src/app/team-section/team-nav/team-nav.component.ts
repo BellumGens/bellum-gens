@@ -1,24 +1,24 @@
 import { Component, inject } from '@angular/core';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import {
   CSGOTeam, TeamMember,
-  ApplicationUser,
   BellumgensApiService,
   LoginService,
   ConfirmComponent
 } from '../../../../../common/src/public_api';
-import { Observable } from 'rxjs';
+import { filter, switchMap } from 'rxjs/operators';
 import { TeamNewComponent } from '../team-new/team-new.component';
 import { RouterLink } from '@angular/router';
 import { IgxButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
 import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
-import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-team-nav',
   templateUrl: './team-nav.component.html',
-  styleUrls: ['./team-nav.component.scss'],  imports: [
+  styleUrls: ['./team-nav.component.scss'],
+  imports: [
     IgxButtonDirective,
     IgxRippleDirective,
     IgxIconComponent,
@@ -26,8 +26,7 @@ import { AsyncPipe } from '@angular/common';
     IgxAvatarComponent,
     RouterLink,
     TeamNewComponent,
-    ConfirmComponent,
-    AsyncPipe
+    ConfirmComponent
   ]
 })
 export class TeamNavComponent {
@@ -36,20 +35,14 @@ export class TeamNavComponent {
 
   public activeMembers: TeamMember [];
   public inactiveMembers: TeamMember [];
-  public teams: Observable<CSGOTeam []>;
+  public authUser = this.authService.applicationUser;
 
-  public authUser: ApplicationUser;
-
-  constructor() {
-    this.authService.applicationUser.subscribe(user => {
-      this.authUser = user;
-      if (user) {
-        this.teams = this.apiService.getUserTeams(user.id);
-      }
-    });
-  }
+  public teams = toSignal(toObservable(this.authUser).pipe(
+    filter(user => !!user),
+    switchMap(user => this.apiService.getUserTeams(user.id))
+  ));
 
   public abandonTeam(team: CSGOTeam) {
     this.apiService.abandonTeam(team).subscribe();
-}
+  }
 }

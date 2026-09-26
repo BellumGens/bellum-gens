@@ -1,8 +1,8 @@
-@if (team) {
+@if (team()) {
   <div class="overview-container overview-container-paddings">
     <div class="left-details-container">
       <h4 i18n>Practice</h4>
-      <bg-availability [availability]="teamPractice" (availabilityChanged)="changeSchedule($event)" [editable]="isAdmin"></bg-availability>
+      <bg-availability [availability]="teamPractice()" (availabilityChanged)="changeSchedule($event)" [editable]="isAdmin()"></bg-availability>
     </div>
     <div class="right-details-container">
       <igx-card>
@@ -11,7 +11,7 @@
         </igx-card-header>
         <igx-card-content>
           <div class="horizontal space-between">
-            @for (role of roleSlots; track role.role) {
+            @for (role of roleSlots(); track role.role) {
               <div class="member-slot">
                 <span>{{ role.roleName }}</span>
                 @if (role.user) {
@@ -24,7 +24,7 @@
                         size="large">
                       </igx-avatar>
                     }
-                    @if (isAdmin) {
+                    @if (isAdmin()) {
                       <igx-avatar
                         icon="clear"
                         shape="circle"
@@ -33,7 +33,7 @@
                         (click)="removeFromRole(role)">
                       </igx-avatar>
                     }
-                    @if (!isAdmin && role.user.country) {
+                    @if (!isAdmin() && role.user.country) {
                       <igx-avatar
                         [src]="role.user.country | countrySVG"
                         shape="circle"
@@ -66,13 +66,13 @@
       <igx-card>
         <igx-card-header>
           <h3 igxCardHeaderTitle i18n>Bench</h3>
-          @if (isAdmin) {
+          @if (isAdmin()) {
             <h4 igxCardHeaderSubtitle i18n>Drag players to add them to the active roster</h4>
           }
         </igx-card-header>
         <igx-card-content>
           <div class="horizontal padding-top">
-            @for (user of activeMembers; track user) {
+            @for (user of activeMembers(); track user.userId) {
               <div class="active-inactive-users">
                 <div class="user-in-role">
                   <igx-avatar [src]="user.avatarMedium"
@@ -83,7 +83,7 @@
                     (dragStart)="roleDragging($event)"
                     (dragEnd)="roleDraggingEnd()">
                   </igx-avatar>
-                  @if (isAdmin) {
+                  @if (isAdmin()) {
                     <igx-avatar
                       icon="clear"
                       shape="circle"
@@ -96,7 +96,7 @@
                 <a [routerLink]="['/players', user.customUrl || user.userId]">{{ user.username }}</a>
               </div>
             }
-            @if (!activeMembers?.length) {
+            @if (!activeMembers().length) {
               <div i18n>Bench is currently empty.</div>
             }
           </div>
@@ -108,7 +108,7 @@
         </igx-card-header>
         <igx-card-content>
           <div class="horizontal padding-top">
-            @for (user of inactiveMembers; track user.userId) {
+            @for (user of inactiveMembers(); track user.userId) {
               <div class="active-inactive-users">
                 <div class="user-in-role">
                   <igx-avatar [src]="user.avatarMedium"
@@ -119,7 +119,7 @@
                     (dragStart)="roleDragging($event)"
                     (dragEnd)="roleDraggingEnd()">
                   </igx-avatar>
-                  @if (isAdmin && authUser.id !== user.userId) {
+                  @if (isAdmin() && authUser()?.id !== user.userId) {
                     <igx-avatar
                       icon="clear"
                       shape="circle"
@@ -132,7 +132,7 @@
                 <a [routerLink]="['/players', user.customUrl || user.userId]">{{ user.username }}</a>
               </div>
             }
-            @if (!inactiveMembers?.length) {
+            @if (!inactiveMembers().length) {
               <div i18n>No inactive members.</div>
             }
           </div>

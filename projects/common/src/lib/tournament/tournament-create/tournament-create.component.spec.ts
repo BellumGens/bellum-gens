@@ -137,7 +137,7 @@ describe('TournamentCreateComponent (edit mode)', () => {
     expect(component.tournamentId()).toBe('t1');
   });
 
-  it('should fetch tournament and patch form in edit mode', () => {
+  it('should fetch tournament and patch form in edit mode', async () => {
     const req = httpMock.expectOne(r => r.url.includes('/tournament') && r.url.includes('id=t1'));
     req.flush({
       id: 't1',
@@ -146,6 +146,8 @@ describe('TournamentCreateComponent (edit mode)', () => {
       game: Game.CSGO,
       visibility: TournamentVisibility.Private
     });
+    // The form is patched by an effect
+    await fixture.whenStable();
 
     expect(component.form.value.name).toBe('Existing Tournament');
     expect(component.form.value.description).toBe('A description');

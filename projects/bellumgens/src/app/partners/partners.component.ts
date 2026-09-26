@@ -1,5 +1,5 @@
 import { NgOptimizedImage } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { IGX_TABS_DIRECTIVES } from '@infragistics/igniteui-angular/tabs';
 import { BaseDirective } from '../base/base.component';
@@ -14,7 +14,6 @@ import { BaseDirective } from '../base/base.component';
     NgOptimizedImage
   ],
   templateUrl: './partners.component.html',
-  styleUrl: './partners.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrl: './partners.component.scss'
 })
 export class PartnersComponent extends BaseDirective {}

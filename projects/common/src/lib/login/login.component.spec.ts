@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoginComponent } from './login.component';
 import { provideRouter } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -40,8 +40,8 @@ describe('LoginComponent', () => {
     externalLogins: []
   };
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
         
         NoopAnimationsModule,
@@ -54,7 +54,7 @@ describe('LoginComponent', () => {
     authService = TestBed.inject(LoginService);
     httpMock = TestBed.inject(HttpTestingController);
     router = TestBed.inject(Router);
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(LoginComponent);
@@ -67,24 +67,23 @@ describe('LoginComponent', () => {
   });
 
   it('should have a dialog component which opens when the LoginService emits openLogin', () => {
-    expect(component.dialog).toBeDefined();
-    vi.spyOn(component.dialog, 'openLogin').mockImplementation(() => undefined);
+    expect(component.dialog()).toBeDefined();
+    vi.spyOn(component.dialog(), 'openLogin').mockImplementation(() => undefined);
     authService.emitOpenLogin();
-    expect(component.dialog.openLogin).toHaveBeenCalled();
+    expect(component.dialog().openLogin).toHaveBeenCalled();
   });
 
   it('should have a userProfile component after authUser is set', () => {
-    expect(component.userProfile).toBeUndefined();
-    authService.applicationUser.subscribe();
+    expect(component.userProfile()).toBeUndefined();
+    // the component triggers the user check on creation
     const req = httpMock.expectOne(`${authService['_apiEndpoint']}`);
     req.flush(applicationUser);
     expect(component.authUser()).toBe(applicationUser);
     fixture.detectChanges();
-    expect(component.userProfile).toBeDefined();
+    expect(component.userProfile()).toBeDefined();
   });
 
   it('should have userCheck when a request in currently pending', () => {
-    authService.applicationUser.subscribe();
     const req = httpMock.expectOne(`${authService['_apiEndpoint']}`);
     expect(component.userCheck()).toBe(true);
     req.flush(applicationUser);
@@ -93,17 +92,17 @@ describe('LoginComponent', () => {
   });
 
   it('should call logout method', () => {
-    authService.applicationUser.subscribe();
     let req = httpMock.expectOne(`${authService['_apiEndpoint']}`);
     req.flush(applicationUser);
-    component.authUser.set(applicationUser);
+    expect(component.authUser()).toBe(applicationUser);
     fixture.detectChanges();
 
-    vi.spyOn(component.userProfile, 'close').mockImplementation(() => undefined);
+    const userProfile = component.userProfile();
+    vi.spyOn(userProfile, 'close').mockImplementation(() => undefined);
     component.logout();
     req = httpMock.expectOne(`${authService['_apiEndpoint']}/logout`);
     req.flush({});
-    expect(component.userProfile.close).toHaveBeenCalled();
+    expect(userProfile.close).toHaveBeenCalled();
     expect(component.authUser()).toBeNull();
   });
 

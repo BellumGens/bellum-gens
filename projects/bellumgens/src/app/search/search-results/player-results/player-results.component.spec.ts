@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PlayerResultsComponent } from './player-results.component';
 import { provideRouter } from '@angular/router';
@@ -9,8 +9,8 @@ describe('PlayerResultsComponent', () => {
   let component: PlayerResultsComponent;
   let fixture: ComponentFixture<PlayerResultsComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
         
         PlayerResultsComponent
@@ -18,7 +18,7 @@ describe('PlayerResultsComponent', () => {
       providers: [provideRouter([]), provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
     })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PlayerResultsComponent);

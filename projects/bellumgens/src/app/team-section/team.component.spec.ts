@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { TeamComponent } from "./team.component";
 import { provideHttpClientTesting } from "@angular/common/http/testing";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
@@ -11,8 +11,8 @@ describe('TeamComponent', () => {
   let component: TeamComponent;
   let fixture: ComponentFixture<TeamComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
     imports: [
         NoopAnimationsModule,
         ServiceWorkerModule.register('', { enabled: false }),
@@ -24,7 +24,7 @@ describe('TeamComponent', () => {
     ]
 })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TeamComponent);
@@ -37,7 +37,7 @@ describe('TeamComponent', () => {
   });
 
   it('should have a placeholder team initially', () => {
-    expect(component.team).toEqual(TEAM_PLACEHOLDER);
+    expect(component.team()).toEqual(TEAM_PLACEHOLDER);
   });
 
   // it('should set the authenticated user', () => {

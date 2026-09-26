@@ -68,22 +68,22 @@ describe('TournamentDetailComponent', () => {
     const req = httpMock.expectOne(r => r.url.includes('/tournament') && r.url.includes('id=t1'));
     req.flush({ id: 't1', name: 'Test', status: TournamentStatus.InProgress });
 
-    expect(component.statusLabel).toBe('In Progress');
+    expect(component.statusLabel()).toBe('In Progress');
   });
 
   it('should return correct visibility icon', () => {
     const req = httpMock.expectOne(r => r.url.includes('/tournament') && r.url.includes('id=t1'));
     req.flush({ id: 't1', name: 'Test', visibility: TournamentVisibility.Private });
 
-    expect(component.visibilityIcon).toBe('lock');
+    expect(component.visibilityIcon()).toBe('lock');
   });
 
   it('should return empty status label when no tournament', () => {
-    expect(component.statusLabel).toBe('');
+    expect(component.statusLabel()).toBe('');
   });
 
   it('should return public visibility icon when no tournament', () => {
-    expect(component.visibilityIcon).toBe('public');
+    expect(component.visibilityIcon()).toBe('public');
   });
 
   it('should compute canJoin for open public tournament', () => {

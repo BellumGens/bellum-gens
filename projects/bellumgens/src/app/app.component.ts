@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, PLATFORM_ID, LOCALE_ID, inject } from '@angular/core';
+import { Component, ElementRef, PLATFORM_ID, LOCALE_ID, Signal, afterNextRender, computed, effect, inject, signal, untracked, viewChild } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { RouterLinkActive, RouterLink, RouterOutlet, ActivatedRoute } from '@angular/router';
 
@@ -71,7 +71,7 @@ import { IgxResourceStringsBG } from 'igniteui-angular-i18n';
     RouterOutlet
   ]
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   private platformId = inject(PLATFORM_ID);
   private localeId = inject(LOCALE_ID);
   private iconService = inject(IgxIconService);
@@ -81,15 +81,23 @@ export class AppComponent implements OnInit {
   private notificationService = inject(CommunicationService);
   private activatedRoute = inject(ActivatedRoute);
 
-  @ViewChild('quickSearch', { static: true }) public quickSearchDropDown: IgxDropDownComponent;
-  @ViewChild('searchGroup', { static: true }) public searchGroup: IgxInputGroupComponent;
-  @ViewChild('searchInput', { static: true }) public searchInput: ElementRef;
-  // @ViewChild('cookiesBanner', { static: true }) public banner: IgxBannerComponent;
+  public quickSearchDropDown = viewChild.required<IgxDropDownComponent>('quickSearch');
+  public searchGroup = viewChild.required<IgxInputGroupComponent>('searchGroup');
+  public searchInput = viewChild.required<ElementRef<HTMLInputElement>>('searchInput');
+  // public banner = viewChild.required<IgxBannerComponent>('cookiesBanner');
 
-  public authUser: ApplicationUser;
-  public teams: CSGOTeam [];
+  private isBrowser = isPlatformBrowser(this.platformId);
+  // The user is only looked up in the browser.
+  public authUser: Signal<ApplicationUser> = this.isBrowser ? this.authManager.applicationUser : signal<ApplicationUser>(null).asReadonly();
+  public teams = signal<CSGOTeam []>(null);
   public searchResult: SearchResult;
-  public unreadNotifications = 0;
+  public searchTerm = signal('');
+  // Unread notifications cached by the LoginService plus any changes reported by the notifications view.
+  private unreadNotificationsDelta = signal(0);
+  private serviceUnreadNotifications = computed(() =>
+    this.authUser() ? this.unreadPipe.transform(this.authManager.userNotifications()) : 0
+  );
+  public unreadNotifications = computed(() => this.serviceUnreadNotifications() + this.unreadNotificationsDelta());
   public environment = environment;
   public year = new Date().getFullYear();
 
@@ -98,15 +106,13 @@ export class AppComponent implements OnInit {
   private unreadPipe = new UnreadNotificationsPipe();
 
   constructor() {
-    if (isPlatformBrowser(this.platformId)) {
-      this.authManager.applicationUser.subscribe(user => {
-          this.authUser = user;
-          if (user) {
-            this.authManager.userNotifications.subscribe(data => this.unreadNotifications += this.unreadPipe.transform(data));
-            this.apiService.getUserTeams(user.id).subscribe(teams => this.teams = teams);
-          }
+    if (this.isBrowser) {
+      effect(() => {
+        const user = this.authUser();
+        if (user) {
+          untracked(() => this.apiService.getUserTeams(user.id).subscribe(teams => this.teams.set(teams)));
         }
-      );
+      });
       this.activatedRoute.queryParams.subscribe(params => {
         if (params?.message) {
           this.notificationService.emitSuccess(params.message);
@@ -114,25 +120,28 @@ export class AppComponent implements OnInit {
       });
       this.initSvgIcons();
     }
-  }
-
-  public ngOnInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
+    // afterNextRender only runs in the browser.
+    afterNextRender(() => {
       // if (!window.localStorage.getItem('cookiesAccepted')) {
-      //   this.banner.open();
+      //   this.banner().open();
       // }
 
       this.initQuickSearch();
-    }
+    });
   }
 
   // public acceptCookies() {
-  //   this.banner.close();
+  //   this.banner().close();
   //   window.localStorage.setItem('cookiesAccepted', 'true');
   // }
 
   public notificationsLoaded(args: number) {
-    this.unreadNotifications += args;
+    this.unreadNotificationsDelta.update(count => count + args);
+  }
+
+  public clearSearch() {
+    this.searchInput().nativeElement.value = '';
+    this.searchTerm.set('');
   }
 
   private initSvgIcons() {
@@ -159,7 +168,7 @@ export class AppComponent implements OnInit {
   }
 
   private initQuickSearch() {
-    const input = fromEvent(this.searchInput.nativeElement, 'keyup')
+    const input = fromEvent(this.searchInput().nativeElement, 'keyup')
                     .pipe(map<Event, string>(e => (e.currentTarget as HTMLInputElement).value));
     const debouncedInput = input.pipe(debounceTime(300));
     debouncedInput.subscribe(val => {
@@ -171,9 +180,9 @@ export class AppComponent implements OnInit {
         const overlaySettings: OverlaySettings = {
           positionStrategy: new AutoPositionStrategy(positionSettings),
           modal: false,
-          target: this.searchGroup.element.nativeElement
+          target: this.searchGroup().element.nativeElement
         };
-        this.quickSearchDropDown.open(overlaySettings);
+        this.quickSearchDropDown().open(overlaySettings);
         this.searchService.quickSearch(val);
       }
     });

@@ -2,19 +2,19 @@
   <igx-nav-drawer [pinThreshold]="1600" id="navigation" #drawer>
     <ng-template igxDrawer>
       <span igxDrawerItem [isHeader]="true"></span>
-      @if (authUser) {
+      @if (authUser()) {
         <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="team/myteams">
           <igx-icon>people</igx-icon>
           <span i18n>My Teams</span>
-          @if (teams?.length > 0) {
-            <igx-badge class="notifications-badge" [value]="teams.length" type="info"></igx-badge>
+          @if (teams()?.length > 0) {
+            <igx-badge class="notifications-badge" [value]="teams().length" type="info"></igx-badge>
           }
         </span>
         <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="notifications">
           <igx-icon>notifications</igx-icon>
           <span i18n>Notifications</span>
-          @if (unreadNotifications > 0) {
-            <igx-badge class="notifications-badge" [value]="unreadNotifications" type="info"></igx-badge>
+          @if (unreadNotifications() > 0) {
+            <igx-badge class="notifications-badge" [value]="unreadNotifications()" type="info"></igx-badge>
           }
         </span>
         <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="strategies/user">
@@ -48,17 +48,17 @@
     @if (drawer.pin) {
       <ng-template igxDrawerMini>
         <span igxDrawerItem [isHeader]="true"></span>
-        @if (authUser) {
+        @if (authUser()) {
           <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="team/myteams" i18n-title title="My Teams">
             <igx-icon>people</igx-icon>
-            @if (teams?.length > 0) {
-              <igx-badge class="notifications-badge" [value]="teams.length" type="info"></igx-badge>
+            @if (teams()?.length > 0) {
+              <igx-badge class="notifications-badge" [value]="teams().length" type="info"></igx-badge>
             }
           </span>
           <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="notifications" i18n-title title="Notifications">
             <igx-icon>notifications</igx-icon>
-            @if (unreadNotifications > 0) {
-              <igx-badge class="notifications-badge" [value]="unreadNotifications" type="info"></igx-badge>
+            @if (unreadNotifications() > 0) {
+              <igx-badge class="notifications-badge" [value]="unreadNotifications()" type="info"></igx-badge>
             }
           </span>
           <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="strategies/user" i18n-title title="My Strategies">
@@ -96,9 +96,9 @@
           <igx-icon>search</igx-icon>
         </igx-prefix>
         <label igxLabel for="searchInput" i18n>Search</label>
-        <input id="searchInput" #searchInput igxInput (focus)="advancedSearch.open()" class="search-input" />
-        @if (searchInput.value.length > 0) {
-          <igx-suffix (click)="searchInput.value = ''">
+        <input id="searchInput" #searchInput igxInput (focus)="advancedSearch.open()" (input)="searchTerm.set(searchInput.value)" class="search-input" />
+        @if (searchTerm().length > 0) {
+          <igx-suffix (click)="clearSearch()">
             <igx-icon>clear</igx-icon>
           </igx-suffix>
         }

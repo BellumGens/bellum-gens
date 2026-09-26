@@ -1,5 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, PLATFORM_ID, signal } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { Component, computed, inject, PLATFORM_ID } from '@angular/core';
 import { DecimalPipe, isPlatformBrowser } from '@angular/common';
 import { SearchResult, ApiSearchService } from '../../../../../common/src/public_api';
 import { IgxIconComponent, IgxIconService } from '@infragistics/igniteui-angular/icon';
@@ -11,10 +10,11 @@ import { ReduceQuickSearchResultPipe } from '../../pipes/reduce-quick-search-res
 import { CountrySVGPipe } from '../../../../../common/src/lib/pipes/country-svg.pipe';
 import { RouterLink } from '@angular/router';
 
+const EMPTY_SEARCH_RESULT: SearchResult = { steamUser: null, players: [], teams: [], strategies: [] };
+
 @Component({
   selector: 'app-quick-search',
   templateUrl: './quick-search.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./quick-search.component.scss'],  imports: [
     IGX_LIST_DIRECTIVES,
     IgxCircularProgressBarComponent,
@@ -33,16 +33,11 @@ export class QuickSearchComponent {
   private iconService = inject(IgxIconService);
   private platformId = inject(PLATFORM_ID);
 
-  public searchResult = signal<SearchResult>({ steamUser: null, players: [], teams: [], strategies: [] });
-  public loading = toSignal(this.apiService.loadingQuickSearch, { initialValue: false });
-  public term = toSignal(this.apiService.searchTerm, { initialValue: '' });
+  public searchResult = computed<SearchResult>(() => this.apiService.searchResult() ?? EMPTY_SEARCH_RESULT);
+  public loading = this.apiService.loadingQuickSearch;
+  public term = computed(() => this.apiService.searchTerm() ?? '');
 
   constructor() {
-    this.apiService.searchResult.subscribe(data => {
-      if (data) {
-        this.searchResult.set(data);
-      }
-    });
     if (isPlatformBrowser(this.platformId)) {
       this.iconService.addSvgIcon('headshot', '/assets/headshot24x24.svg', 'weapon-icons');
     }

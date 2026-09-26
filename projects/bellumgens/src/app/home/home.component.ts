@@ -1,4 +1,4 @@
-import { Component, HostListener, PLATFORM_ID, ViewChild, inject } from '@angular/core';
+import { Component, PLATFORM_ID, Signal, inject, signal, viewChild } from '@angular/core';
 import { isPlatformBrowser, NgOptimizedImage } from '@angular/common';
 import { LoginService, ApplicationUser, SocialMediaService } from '../../../../common/src/public_api';
 import { environment } from '../../../../common/src/environments/environment';
@@ -14,6 +14,9 @@ import { FormsModule } from '@angular/forms';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
+  host: {
+    '(window:resize)': 'resize()'
+  },
   imports: [
     RouterLink,
     NgOptimizedImage,
@@ -30,29 +33,31 @@ export class HomeComponent extends BaseDirective {
   private authManager = inject(LoginService);
   private socialMedia = inject(SocialMediaService);
 
-  @ViewChild(IgxCarouselComponent, { static: true }) public carousel: IgxCarouselComponent;
+  public carousel = viewChild(IgxCarouselComponent);
 
-  public authUser: ApplicationUser;
-  public navigation = true;
+  // The user is only looked up in the browser.
+  public authUser: Signal<ApplicationUser> = isPlatformBrowser(this.platformId)
+    ? this.authManager.applicationUser
+    : signal<ApplicationUser>(null).asReadonly();
+  public navigation = signal(true);
   public environment = environment;
-  public userEmail: string = null;
+  public userEmail = signal<string>(null);
 
   constructor() {
     super();
     if (isPlatformBrowser(this.platformId)) {
-      this.authManager.applicationUser.subscribe(data => this.authUser = data);
       this.resize();
     }
   }
 
-  @HostListener('window:resize')
   public resize() {
-    this.navigation = window.matchMedia('(min-width: 768px)').matches;
+    this.navigation.set(window.matchMedia('(min-width: 768px)').matches);
   }
 
   public subscribe() {
-    if (this.userEmail) {
-      this.authManager.addSubscriber(this.userEmail).subscribe();
+    const email = this.userEmail();
+    if (email) {
+      this.authManager.addSubscriber(email).subscribe();
     }
   }
 
@@ -63,5 +68,4 @@ export class HomeComponent extends BaseDirective {
   public openLogin() {
     this.authManager.emitOpenLogin();
   }
-
 }

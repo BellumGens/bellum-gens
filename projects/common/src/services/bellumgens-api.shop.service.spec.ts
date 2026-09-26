@@ -109,4 +109,44 @@ describe('ApiShopService', () => {
       req2.error(new ProgressEvent('Server Error'), { status: 500, statusText: 'Could not confirm order!' });
     });
   });
+
+  describe('products', () => {
+    it('should lazily load the products once and expose them as a signal', () => {
+      const products = service.products;
+      expect(products()).toBeNull();
+      // a second access while the request is in flight must not issue another request
+      expect(service.products).toBe(products);
+      const req = httpMock.expectOne(`${service['_apiEndpoint']}/shop/products`);
+      expect(req.request.method).toBe('GET');
+      req.flush([{ id: '1', productName: 'Jersey' }]);
+      expect(products()).toEqual([{ id: '1', productName: 'Jersey' }] as any);
+      service.products;
+      httpMock.expectNone(`${service['_apiEndpoint']}/shop/products`);
+    });
+
+    it('should emit an error and allow a retry when loading fails', () => {
+      let error: string;
+      commsService.error.subscribe(message => error = message);
+      service.products;
+      httpMock.expectOne(`${service['_apiEndpoint']}/shop/products`)
+        .error(new ProgressEvent('Server Error'), { status: 500, statusText: 'Could not load products!' });
+      expect(error).toContain('Could not load products!');
+      service.products;
+      httpMock.expectOne(`${service['_apiEndpoint']}/shop/products`).flush([]);
+    });
+  });
+
+  describe('addToCart', () => {
+    it('should append the item to the cart immutably and emit a success message', () => {
+      let message: string;
+      commsService.success.subscribe(m => message = m);
+      const initial = service.cart();
+      const item = { product: { productName: 'Jersey' } } as ProductOrderDetails;
+      service.addToCart(item);
+      expect(service.cart()).toEqual([item]);
+      expect(service.cart()).not.toBe(initial);
+      expect(initial).toEqual([]);
+      expect(message).toBe('Jersey added to cart!');
+    });
+  });
 });

@@ -1,9 +1,9 @@
-@if (!tournaments?.length) {
+@if (!tournaments()?.length) {
   <p i18n>This team has not participated in any competitions.</p>
 }
 
 <div class="group-columns">
-  <!-- @for (let tournament of tournaments; track tournament.id) {
+  <!-- @for (let tournament of tournaments(); track tournament.id) {
   <igx-grid
   cellSelection="none"
   [data]="tournament.csgoMatches">
@@ -37,8 +37,8 @@
 
   <igx-column field="winnerTeamId" i18n-header header="Result" width="15%">
     <ng-template igxCell let-value>
-      <span [class]="value === emptyGuid ? 'color-warn' : value === team?.teamId ? 'color-success' : 'color-error'"
-      i18n>{{ value === emptyGuid ? 'Pending' : value === team?.teamId ? 'Win' : 'Loss' }}</span>
+      <span [class]="value === emptyGuid ? 'color-warn' : value === team()?.teamId ? 'color-success' : 'color-error'"
+      i18n>{{ value === emptyGuid ? 'Pending' : value === team()?.teamId ? 'Win' : 'Loss' }}</span>
     </ng-template>
   </igx-column>
 

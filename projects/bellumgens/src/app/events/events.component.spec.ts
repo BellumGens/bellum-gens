@@ -54,19 +54,19 @@ describe('EventsComponent', () => {
       let mockDate = new Date('2025-06-03T10:00:00Z');
       vi.setSystemTime(mockDate);
       component.timeLeft();
-      expect(component.days).toBe(1);
-      expect(component.hours).toBe(0);
-      expect(component.minutes).toBe(0);
-      expect(component.seconds).toBe(0);
+      expect(component.days()).toBe(1);
+      expect(component.hours()).toBe(0);
+      expect(component.minutes()).toBe(0);
+      expect(component.seconds()).toBe(0);
 
       mockDate = new Date('2025-06-05T10:00:00Z');
       vi.setSystemTime(mockDate);
       // vi.spyOn(component.sub, 'unsubscribe');
       component.timeLeft();
-      expect(component.days).toBe(0);
-      expect(component.hours).toBe(0);
-      expect(component.minutes).toBe(0);
-      expect(component.seconds).toBe(0);
+      expect(component.days()).toBe(0);
+      expect(component.hours()).toBe(0);
+      expect(component.minutes()).toBe(0);
+      expect(component.seconds()).toBe(0);
       // expect(component.sub.unsubscribe).toHaveBeenCalled();
     } finally {
       vi.useRealTimers();

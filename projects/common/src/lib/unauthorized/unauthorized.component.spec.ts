@@ -1,5 +1,4 @@
-import { ChangeDetectorRef } from '@angular/core';
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { UnauthorizedComponent } from './unauthorized.component';
 import { provideRouter, ActivatedRoute } from '@angular/router';
@@ -10,10 +9,10 @@ describe('UnauthorizedComponent', () => {
   let fixture: ComponentFixture<UnauthorizedComponent>;
   let paramsSubject: Subject<any>;
 
-  beforeEach(waitForAsync(() => {
+  beforeEach(async () => {
     paramsSubject = new Subject();
 
-    TestBed.configureTestingModule({
+    await TestBed.configureTestingModule({
         imports: [
             UnauthorizedComponent
         ],
@@ -28,7 +27,7 @@ describe('UnauthorizedComponent', () => {
         ]
     })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(UnauthorizedComponent);
@@ -51,6 +50,7 @@ describe('UnauthorizedComponent', () => {
     fixture.detectChanges();
 
     expect(component.message()).toBe(customMessage);
+    expect(fixture.nativeElement.textContent).toContain(customMessage);
   });
 
   it('should keep default message if no param provided', () => {
@@ -62,9 +62,6 @@ describe('UnauthorizedComponent', () => {
 
   it('should display message in template', () => {
     component.message.set('Test Message');
-    // The component declares no changeDetection, which under Angular 22 means OnPush, so
-    // mutating a property from outside the component needs its view marked dirty first.
-    fixture.debugElement.injector.get(ChangeDetectorRef).markForCheck();
     fixture.detectChanges();
 
     const compiled = fixture.nativeElement;

@@ -1,9 +1,7 @@
-import { Component, Output, EventEmitter, inject } from '@angular/core';
+import { Component, computed, inject, output } from '@angular/core';
 import { UnreadNotificationsPipe } from '../pipes/unread-notifications.pipe';
-import { LoginService, CSGOTeam } from '../../../../common/src/public_api';
-import { Observable } from 'rxjs';
+import { CSGOTeam, LoginService } from '../../../../common/src/public_api';
 import { TeamNotificationsComponent } from './team-notifications/team-notifications.component';
-import { AsyncPipe } from '@angular/common';
 import { PlayerNotificationsComponent } from './player-notifications/player-notifications.component';
 
 @Component({
@@ -11,26 +9,19 @@ import { PlayerNotificationsComponent } from './player-notifications/player-noti
   styleUrls: ['./notifications.component.scss'],
   imports: [
     PlayerNotificationsComponent,
-    TeamNotificationsComponent,
-    AsyncPipe
+    TeamNotificationsComponent
   ]
 })
 export class NotificationsComponent {
   private authService = inject(LoginService);
 
-  @Output() public loaded = new EventEmitter<number>();
+  public loaded = output<number>();
 
-  public teamAdmin: Observable<CSGOTeam []>;
+  // Only pull the admin teams once a user is logged in.
+  private authUser = this.authService.applicationUser;
+  public teamAdmin = computed<CSGOTeam []>(() => this.authUser() ? this.authService.teamsAdmin() : undefined);
 
   private unreadPipe = new UnreadNotificationsPipe();
-
-  constructor() {
-    this.authService.applicationUser.subscribe(user => {
-      if (user) {
-        this.teamAdmin = this.authService.teamsAdmin;
-      }
-    });
-  }
 
   public aggregate(args: any[]) {
     const unread = this.unreadPipe.transform(args);
@@ -42,5 +33,4 @@ export class NotificationsComponent {
   public changed(args: number) {
     this.loaded.emit(args);
   }
-
 }

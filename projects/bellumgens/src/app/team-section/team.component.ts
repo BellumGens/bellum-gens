@@ -1,4 +1,6 @@
-import { Component, inject, PLATFORM_ID } from '@angular/core';
+import { Component, inject, Injector, PLATFORM_ID, Signal, signal } from '@angular/core';
+import { toObservable, takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { filter, map, switchMap } from 'rxjs';
 
 import { RouterLinkActive, RouterLink, RouterOutlet } from '@angular/router';
 import {
@@ -17,7 +19,8 @@ import { TeamApplicationComponent } from './team-application/team-application.co
 
 @Component({
   templateUrl: './team.component.html',
-  styleUrls: ['./team.component.scss'],  imports: [
+  styleUrls: ['./team.component.scss'],
+  imports: [
     IgxAvatarComponent,
     IgxCardHeaderTitleDirective,
     IgxCardHeaderSubtitleDirective,
@@ -34,31 +37,28 @@ export class TeamComponent extends BaseDirective {
   private authManager = inject(LoginService);
   private iconService = inject(IgxIconService);
   private platformId = inject(PLATFORM_ID);
+  private injector = inject(Injector);
 
-  public authUser: ApplicationUser;
-  public team: CSGOTeam = TEAM_PLACEHOLDER;
-  public isAdmin = false;
-  public isMember = false;
+  public authUser: Signal<ApplicationUser> = this.authManager.applicationUser;
+  // Handed down to the child routes through the router outlet.
+  public team = signal<CSGOTeam>(TEAM_PLACEHOLDER);
+  public isAdmin = signal(false);
+  public isMember = signal(false);
 
   constructor() {
     super();
-    this.authManager.applicationUser.subscribe((data: ApplicationUser) => {
-      this.authUser = data;
-    });
-    this.activeRoute.params.subscribe(params => {
-      const teamId = params['teamid'];
-
-      if (teamId) {
-        this.apiService.getTeam(teamId).subscribe(team => {
-          if (team) {
-            this.team = team;
-            this.authManager.getUserIsTeamMember(team.teamId).subscribe(data => this.isMember = data);
-            this.authManager.getUserIsTeamAdmin(team.teamId).subscribe(data => this.isAdmin = data);
-            this.titleService.setTitle('Counter-Strike Team: ' + team.teamName);
-            this.loadSvgs();
-          }
-        });
-      }
+    this.activeRoute.params.pipe(
+      map(params => params['teamid'] as string),
+      filter(teamId => !!teamId),
+      switchMap(teamId => toObservable(this.apiService.getTeam(teamId), { injector: this.injector })),
+      filter(team => !!team),
+      takeUntilDestroyed()
+    ).subscribe(team => {
+      this.team.set(team);
+      this.authManager.getUserIsTeamMember(team.teamId).subscribe(data => this.isMember.set(data));
+      this.authManager.getUserIsTeamAdmin(team.teamId).subscribe(data => this.isAdmin.set(data));
+      this.titleService.setTitle('Counter-Strike Team: ' + team.teamName);
+      this.loadSvgs();
     });
   }
 

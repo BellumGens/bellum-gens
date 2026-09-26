@@ -1,4 +1,4 @@
-import { TestBed, ComponentFixture, waitForAsync } from '@angular/core/testing';
+import { TestBed, ComponentFixture } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
@@ -11,8 +11,8 @@ describe('AppComponent', () => {
   let component: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
     imports: [
         FormsModule,
         NoopAnimationsModule,
@@ -20,7 +20,7 @@ describe('AppComponent', () => {
         AppComponent],
     providers: [provideRouter([]), provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
 }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AppComponent);
@@ -30,5 +30,16 @@ describe('AppComponent', () => {
 
   it('should create the app', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should track the search term and clear it', () => {
+    const input: HTMLInputElement = fixture.nativeElement.querySelector('#searchInput');
+    input.value = 'bellum';
+    input.dispatchEvent(new Event('input'));
+    expect(component.searchTerm()).toBe('bellum');
+
+    component.clearSearch();
+    expect(component.searchTerm()).toBe('');
+    expect(input.value).toBe('');
   });
 });

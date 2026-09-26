@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NewStrategyComponent } from './new-strategy.component';
 import { FormsModule } from '@angular/forms';
@@ -18,8 +18,8 @@ describe('NewStrategyComponent', () => {
   let component: NewStrategyComponent;
   let fixture: ComponentFixture<NewStrategyComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
     imports: [FormsModule,
         
         NoopAnimationsModule,
@@ -34,7 +34,7 @@ describe('NewStrategyComponent', () => {
     providers: [provideRouter([]), provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
 })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NewStrategyComponent);

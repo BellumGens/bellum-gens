@@ -1,4 +1,4 @@
-import { Component, ViewChild, inject, ChangeDetectorRef } from '@angular/core';
+import { ChangeDetectorRef, Component, inject, signal, viewChild } from '@angular/core';
 import { IgxDialogComponent } from '@infragistics/igniteui-angular/dialog';
 import { IgxButtonDirective, IgxDividerComponent } from '@infragistics/igniteui-angular/directives';
 import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
@@ -30,37 +30,36 @@ export class LoginDialogComponent {
   private router = inject(Router);
   private cdr = inject(ChangeDetectorRef);
 
-  @ViewChild(IgxDialogComponent, { static: true })
-  public dialog: IgxDialogComponent;
+  public dialog = viewChild.required(IgxDialogComponent);
 
   public logininfo: UserLogin = {
     username: '',
     password: '',
     rememberMe: false
   };
-  public submitInProgress = false;
+  public submitInProgress = signal(false);
 
   public openLogin() {
-    this.dialog.open();
+    this.dialog().open();
     this.cdr.markForCheck();
   }
 
   public openRegistration() {
-    this.dialog.close();
+    this.dialog().close();
     this.router.navigate(['register']);
   }
 
   public loginWithForm() {
-    this.submitInProgress = true;
+    this.submitInProgress.set(true);
     this.authManager.loginWithForm(this.logininfo).subscribe({
       next: () => {
-        this.dialog.close();
+        this.dialog().close();
       },
       error: () => {
-        this.submitInProgress = false;
+        this.submitInProgress.set(false);
       },
       complete: () => {
-        this.submitInProgress = false;
+        this.submitInProgress.set(false);
       }
     });
   }

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, input, signal } from '@angular/core';
+import { Component, computed, inject, input, signal } from '@angular/core';
 import { PlaystyleRole, TeamSearch, TEAM_SEARCH, ApplicationUser } from '../../../../../common/src/public_api';
 import { Router } from '@angular/router';
 
@@ -10,7 +10,6 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-team-search',
   templateUrl: './team-search.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./team-search.component.scss'],  imports: [
     FormsModule,
     IGX_RADIO_GROUP_DIRECTIVES,

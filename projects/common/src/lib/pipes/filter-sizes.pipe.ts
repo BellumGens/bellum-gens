@@ -2,8 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { JerseyCut, JerseySize, JerseySizes } from '../../models/order';
 
 @Pipe({
-    name: 'filterSizes',
-    standalone: true
+    name: 'filterSizes'
 })
 export class FilterSizesPipe implements PipeTransform {
 

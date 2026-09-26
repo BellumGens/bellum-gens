@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, input, signal } from '@angular/core';
+import { Component, Signal, computed, inject, input, signal } from '@angular/core';
 import {
   PLAYER_SEARCH,
   PlayerSearch,
@@ -20,7 +20,6 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-player-search',
   templateUrl: './player-search.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./player-search.component.scss'],  imports: [
     FormsModule,
     IGX_RADIO_GROUP_DIRECTIVES,
@@ -39,7 +38,7 @@ export class PlayerSearchComponent {
 
   public authUser = input<ApplicationUser>();
 
-  public teamAdmin = signal<CSGOTeam []>(null);
+  public teamAdmin: Signal<CSGOTeam []> = this.authManager.teamsAdmin;
   public role = signal<PlaystyleRole>(PLAYER_SEARCH.role);
   public scheduleOverlap = signal(PLAYER_SEARCH.scheduleOverlap);
   public teamId = signal<string>(PLAYER_SEARCH.teamId);
@@ -62,10 +61,6 @@ export class PlayerSearchComponent {
     { roleName: 'Lurker', role: PlaystyleRole.Lurker }
   ];
   public parseInt = parseInt;
-
-  constructor() {
-    this.authManager.teamsAdmin.subscribe(teams => this.teamAdmin.set(teams));
-  }
 
   public searchPlayers() {
     if (!this.userOverlap()) {

@@ -1,4 +1,6 @@
-import { Component, OnInit, ViewChild, ElementRef, OnDestroy, inject, PLATFORM_ID } from '@angular/core';
+import { Component, ElementRef, Injector, OnDestroy, PLATFORM_ID, afterNextRender, inject, signal, viewChild, DestroyRef } from '@angular/core';
+import { toObservable, takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { distinctUntilChanged, filter, share, switchMap, tap } from 'rxjs';
 import {
   CSGOActiveDutyMap,
   ACTIVE_DUTY,
@@ -24,18 +26,18 @@ import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
 import { IGX_BUTTON_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/button-group';
 import { ConfirmComponent } from '../../../../../common/src/lib/confirm/confirm.component';
 import { FormsModule } from '@angular/forms';
-import { isPlatformBrowser, NgClass } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-strategy-editor',
   templateUrl: './strategy-editor.component.html',
-  styleUrls: ['./strategy-editor.component.scss'],  imports: [
+  styleUrls: ['./strategy-editor.component.scss'],
+  imports: [
     IGX_SELECT_DIRECTIVES,
     FormsModule,
     IGX_INPUT_GROUP_DIRECTIVES,
     IGX_LIST_DIRECTIVES,
     IgxCheckboxComponent,
-    NgClass,
     IgxIconComponent,
     IGX_DRAG_DROP_DIRECTIVES,
     IgxAvatarComponent,
@@ -45,31 +47,32 @@ import { isPlatformBrowser, NgClass } from '@angular/common';
     ConfirmComponent
   ]
 })
-export class StrategyEditorComponent implements OnInit, OnDestroy {
+export class StrategyEditorComponent implements OnDestroy {
   private apiService = inject(BellumgensApiService);
   private apiStrategyService = inject(ApiStrategiesService);
   private iconService = inject(IgxIconService);
   private route = inject(ActivatedRoute);
   private platformId = inject(PLATFORM_ID);
+  private injector = inject(Injector);
+  private destroyRef = inject(DestroyRef);
 
-  @ViewChild('board', { static: true }) public canvas: ElementRef;
+  public canvas = viewChild.required<ElementRef<HTMLCanvasElement>>('board');
 
   public maps: CSGOActiveDutyMap [] = ACTIVE_DUTY;
-  public team: CSGOTeam;
-  public teammembers: TeamMember [];
-  public newStrategy: CSGOStrategy;
+  public team = signal<CSGOTeam>(null);
+  public teammembers = signal<TeamMember []>([]);
+  public newStrategy = signal<CSGOStrategy>(null);
   public utility = STRAT_UTILITIES;
-  public layers: BaseLayer [];
-  public ts = [1, 2, 3, 4, 5];
-  public cts = [1, 2, 3, 4, 5];
-  public enemies = [1, 2, 3, 4, 5];
-  public brushSelected = false;
+  public layers = signal<BaseLayer []>([]);
+  public ts = signal([1, 2, 3, 4, 5]);
+  public cts = signal([1, 2, 3, 4, 5]);
+  public enemies = signal([1, 2, 3, 4, 5]);
+  public brushSelected = signal(false);
   public colors = Object.assign([], EDITOR_BRUSH_COLORS);
   public selectedColor = this.colors[0];
-  public saveInProgress = false;
-  public changes = false;
+  public saveInProgress = signal(false);
+  public changes = signal(false);
 
-  private _activeMap: CSGOActiveDutyMap;
   private _drag = false;
   private _coordinates: PointCoordinate = {
     x: 0,
@@ -78,58 +81,14 @@ export class StrategyEditorComponent implements OnInit, OnDestroy {
   private _drawLayer: FreeflowLayer;
   private intervalId;
 
-  public get map() {
-    return this._activeMap;
-  }
-
-  public set map(map: CSGOActiveDutyMap) {
-    this._activeMap = map;
-    if (!this.layers.length || (this.layers[0] as ImageLayer).src !== map.radar[0]) {
-      const layer = this.editor.createImageLayer('Map Radar');
-      layer.src = this._activeMap.radar[0];
-      layer.width = 1024;
-      layer.height = 1024;
-      layer.movable = false;
-      this.editor.replaceLayer(0, layer);
-    }
-  }
-
   private editor: StrategyEditor;
 
   constructor() {
     if (isPlatformBrowser(this.platformId)) {
       this.loadSvgs();
     }
-  }
-
-  public ngOnInit() {
-    this.canvas.nativeElement.width = window.innerHeight - 129;
-    this.canvas.nativeElement.height = window.innerHeight - 129;
-    this.editor = new StrategyEditor(this.canvas, (window.innerHeight - 129) / 1024);
-    this.layers = this.editor.layers;
-    this.route.params.subscribe(params => {
-      const stratid = params['stratid'];
-      if (stratid) {
-        this.apiStrategyService.getStrategy(stratid).subscribe(strat => {
-          if (strat) {
-            this.newStrategy = strat;
-            if (strat.teamId) {
-              this.apiService.getTeam(strat.teamId).subscribe(team => {
-                if (team) {
-                  this.team = team;
-                  this.apiService.getTeamMembers(team.teamId).subscribe(members => this.teammembers = members);
-                }
-              });
-            }
-            if (strat.editorMetadata) {
-              this.editor.restore(strat.editorMetadata);
-            }
-            this.map = this.maps.find(m => m.mapId === strat.map);
-          }
-        });
-      }
-    });
-    this.intervalId = setInterval(this.saveStrat.bind(this), 300000);
+    // The editor draws on a canvas sized to the window, so it can only be set up in the browser.
+    afterNextRender(() => this.initEditor());
   }
 
   public ngOnDestroy() {
@@ -138,8 +97,8 @@ export class StrategyEditorComponent implements OnInit, OnDestroy {
   }
 
   public changeMap(map: CSGOMap) {
-    this.map = this.maps.find(m => m.mapId === map);
-    this.changes = true;
+    this.setMap(this.maps.find(m => m.mapId === map));
+    this.changes.set(true);
   }
 
   public surfaceDrop(args: IDropDroppedEventArgs) {
@@ -153,34 +112,40 @@ export class StrategyEditorComponent implements OnInit, OnDestroy {
     layer.y = args.offsetY - Math.floor(layer.height / 2);
     this.editor.addLayer(layer);
     layer.selected = true;
+    this.syncLayers();
 
-    if (args.drag.data.removeEnemy && this.enemies.length > 1) {
-      this.enemies.splice(0, 1);
-    } else if (args.drag.data.removeCT && this.cts.length > 1) {
-      this.cts.splice(0, 1);
-    } else if (args.drag.data.removeT && this.ts.length > 1) {
-      this.ts.splice(0, 1);
+    if (args.drag.data.removeEnemy && this.enemies().length > 1) {
+      this.enemies.update(enemies => enemies.slice(1));
+    } else if (args.drag.data.removeCT && this.cts().length > 1) {
+      this.cts.update(cts => cts.slice(1));
+    } else if (args.drag.data.removeT && this.ts().length > 1) {
+      this.ts.update(ts => ts.slice(1));
     }
-    this.changes = true;
+    this.changes.set(true);
   }
 
   public deleteLayer(layer: BaseLayer) {
     this.editor.removeLayer(layer);
-    this.changes = true;
+    this.syncLayers();
+    this.changes.set(true);
   }
 
   public saveStrat() {
-    if (this.changes) {
-      this.saveInProgress = true;
+    if (this.changes() && this.newStrategy()) {
+      this.saveInProgress.set(true);
       this.editor.deselectAll();
       this.deselectBrush();
-      this.newStrategy.stratImage = this.canvas.nativeElement.toDataURL('image/png');
-      this.newStrategy.editorMetadata = this.editor.save();
-      this.apiStrategyService.submitStrategy(this.newStrategy).subscribe(
-        () => this.saveInProgress = false,
-        () => this.saveInProgress = false
-      );
-      this.changes = false;
+      const strat: CSGOStrategy = {
+        ...this.newStrategy(),
+        stratImage: this.canvas().nativeElement.toDataURL('image/png'),
+        editorMetadata: this.editor.save()
+      };
+      this.newStrategy.set(strat);
+      this.apiStrategyService.submitStrategy(strat).subscribe({
+        next: () => this.saveInProgress.set(false),
+        error: () => this.saveInProgress.set(false)
+      });
+      this.changes.set(false);
     }
   }
 
@@ -188,7 +153,7 @@ export class StrategyEditorComponent implements OnInit, OnDestroy {
     this._drag = true;
     this._coordinates.x = Math.floor(event.offsetX);
     this._coordinates.y = Math.floor(event.offsetY);
-    if (this.brushSelected) {
+    if (this.brushSelected()) {
       if (!this._drawLayer) {
         this._drawLayer = this.editor.createFreeflowLayer();
         this._drawLayer.color = this.selectedColor.color;
@@ -196,6 +161,7 @@ export class StrategyEditorComponent implements OnInit, OnDestroy {
         this._drawLayer.y = this._coordinates.y;
         this._drawLayer.createPath();
         this.editor.addLayer(this._drawLayer);
+        this.syncLayers();
       } else {
         this._drawLayer.createPath();
       }
@@ -206,7 +172,7 @@ export class StrategyEditorComponent implements OnInit, OnDestroy {
     if (this._drag) {
       const offsetX = Math.floor(event.offsetX);
       const offsetY = Math.floor(event.offsetY);
-      if (!this.brushSelected) {
+      if (!this.brushSelected()) {
         this.editor.moveSelected({x: offsetX - this._coordinates.x, y: offsetY - this._coordinates.y});
         this._coordinates.x = offsetX;
         this._coordinates.y = offsetY;
@@ -215,7 +181,7 @@ export class StrategyEditorComponent implements OnInit, OnDestroy {
         this._coordinates.x = offsetX;
         this._coordinates.y = offsetY;
       }
-      this.changes = true;
+      this.changes.set(true);
     }
   }
 
@@ -225,7 +191,7 @@ export class StrategyEditorComponent implements OnInit, OnDestroy {
     this._coordinates.y = 0;
     if (this._drawLayer) {
       this._drawLayer.closePath();
-      this.changes = true;
+      this.changes.set(true);
     }
   }
 
@@ -234,12 +200,12 @@ export class StrategyEditorComponent implements OnInit, OnDestroy {
   }
 
   public selectBrush() {
-    this.brushSelected = !this.brushSelected;
+    this.brushSelected.update(selected => !selected);
     this.editor.deselectAll();
   }
 
   public deselectBrush() {
-    this.brushSelected = false;
+    this.brushSelected.set(false);
     this._drawLayer = null;
   }
 
@@ -248,6 +214,56 @@ export class StrategyEditorComponent implements OnInit, OnDestroy {
     color.selected = true;
     this.selectedColor = color;
     this._drawLayer = null;
+  }
+
+  private initEditor() {
+    const canvas = this.canvas();
+    const size = window.innerHeight - 129;
+    canvas.nativeElement.width = size;
+    canvas.nativeElement.height = size;
+    this.editor = new StrategyEditor(canvas, size / 1024);
+    this.syncLayers();
+    const strat$ = this.route.params.pipe(
+      filter(params => !!params['stratid']),
+      switchMap(params => toObservable(this.apiStrategyService.getStrategy(params['stratid']), { injector: this.injector })),
+      filter(strat => !!strat),
+      takeUntilDestroyed(this.destroyRef),
+      share()
+    );
+    strat$.subscribe(strat => {
+      this.newStrategy.set(strat);
+      if (strat.editorMetadata) {
+        this.editor.restore(strat.editorMetadata);
+      }
+      this.setMap(this.maps.find(m => m.mapId === strat.map));
+    });
+    strat$.pipe(
+      filter(strat => !!strat.teamId),
+      distinctUntilChanged((previous, current) => previous.teamId === current.teamId),
+      switchMap(strat => toObservable(this.apiService.getTeam(strat.teamId), { injector: this.injector })),
+      filter(team => !!team),
+      tap(team => this.team.set(team)),
+      switchMap(team => toObservable(this.apiService.getTeamMembers(team.teamId), { injector: this.injector }))
+    ).subscribe(members => this.teammembers.set(members));
+    this.intervalId = setInterval(() => this.saveStrat(), 300000);
+  }
+
+  private setMap(map: CSGOActiveDutyMap) {
+    const layers = this.editor.layers;
+    if (!layers.length || (layers[0] as ImageLayer).src !== map.radar[0]) {
+      const layer = this.editor.createImageLayer('Map Radar');
+      layer.src = map.radar[0];
+      layer.width = 1024;
+      layer.height = 1024;
+      layer.movable = false;
+      this.editor.replaceLayer(0, layer);
+    }
+    this.syncLayers();
+  }
+
+  // The editor keeps its layers in a mutable array, so hand the template a fresh copy after every change.
+  private syncLayers() {
+    this.layers.set([...this.editor.layers]);
   }
 
   private loadSvgs() {

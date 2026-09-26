@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { provideRouter } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -42,8 +42,8 @@ describe('TeamNewComponent', () => {
     steamGroup: mockGroup
   };
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
         FormsModule,
         
@@ -56,12 +56,12 @@ describe('TeamNewComponent', () => {
     httpMock = TestBed.inject(HttpTestingController);
     apiService = TestBed.inject(BellumgensApiService);
     router = TestBed.inject(Router);
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TeamNewComponent);
     component = fixture.componentInstance;
-    component.authUser = mockUser;
+    fixture.componentRef.setInput('authUser', mockUser);
     fixture.detectChanges();
   });
 
@@ -75,7 +75,7 @@ describe('TeamNewComponent', () => {
 
   it('should open the createTeam dialog', () => {
     component.open();
-    expect(component.createTeam.isCollapsed).toBe(false);
+    expect(component.createTeam().isCollapsed).toBe(false);
   });
 
   it('should create a team from a Steam group', () => {
@@ -85,11 +85,11 @@ describe('TeamNewComponent', () => {
     expect(req.request.method).toBe('POST');
     expect(req.request.body).toEqual(mockGroup);
     expect(req.request.withCredentials).toBe(true);
-    expect(component.inProgress).toBe(true);
+    expect(component.inProgress()).toBe(true);
     req.flush(mockTeam);
-    expect(component.inProgress).toBe(false);
+    expect(component.inProgress()).toBe(false);
     expect(router.navigate).toHaveBeenCalledWith(['/team', mockTeam.customUrl]);
-    expect(component.createTeam.isCollapsed).toBe(true);
+    expect(component.createTeam().isCollapsed).toBe(true);
   });
 
   it('should create a team from the form', () => {
@@ -101,10 +101,10 @@ describe('TeamNewComponent', () => {
     expect(req.request.method).toBe('POST');
     expect(req.request.body).toEqual(component.newTeam);
     expect(req.request.withCredentials).toBe(true);
-    expect(component.inProgress).toBe(true);
+    expect(component.inProgress()).toBe(true);
     req.flush(mockTeam);
-    expect(component.inProgress).toBe(false);
-    expect(component.createTeam.isCollapsed).toBe(true);
+    expect(component.inProgress()).toBe(false);
+    expect(component.createTeam().isCollapsed).toBe(true);
     expect(router.navigate).toHaveBeenCalledWith(['/team', mockTeam.customUrl]);
   });
 });

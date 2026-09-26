@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PlayerNotificationsComponent } from './player-notifications.component';
 import { provideRouter } from '@angular/router';
@@ -10,15 +10,15 @@ describe('NotificationsComponent', () => {
   let component: PlayerNotificationsComponent;
   let fixture: ComponentFixture<PlayerNotificationsComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
     imports: [
         ServiceWorkerModule.register('', { enabled: false }),
         PlayerNotificationsComponent],
     providers: [provideRouter([]), provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
 })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PlayerNotificationsComponent);
