@@ -92,9 +92,11 @@ export class TeamDetailsComponent extends BaseDirective {
   }
 
   public removeFromTeam(user: TeamMember) {
-    this.apiService.removeTeamMember(user).subscribe(() =>
-      this.inactiveMembers.update(members => members.filter(m => m.userId !== user.userId))
-    );
+    this.apiService.removeTeamMember(user).subscribe({
+      next: () => this.inactiveMembers.update(members => members.filter(m => m.userId !== user.userId)),
+      // The service already tells the user; the member just stays in the list
+      error: () => {}
+    });
   }
 
   public moveToInactive(user: TeamMember) {

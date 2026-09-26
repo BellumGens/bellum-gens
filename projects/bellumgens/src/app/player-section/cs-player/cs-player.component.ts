@@ -108,17 +108,29 @@ export class CsPlayerComponent extends BaseDirective {
       if (this.detailsLoadedFor === player.id) {
         return;
       }
+      // Don't carry the previous player's profile over while this one loads (or if it has none).
       this.userTeams.set([]);
+      this.availability.set(null);
+      this.mapPool.set(null);
       this.detailsLoadedFor = player.id;
       if (player.registered) {
-        const requestedPlayerId = player.id;
+        // A response that arrives after the parent switched to another player is dropped.
+        const isCurrent = () => this.player()?.id === player.id;
         this.apiService.getUserTeams(player.id).subscribe(teams => {
-          if (this.player()?.id === requestedPlayerId) {
+          if (isCurrent()) {
             this.userTeams.set(teams);
           }
         });
-        this.apiService.getAvailability(player.id).subscribe(data => this.availability.set(data));
-        this.apiService.getMapPool(player.id).subscribe(maps => this.mapPool.set(maps));
+        this.apiService.getAvailability(player.id).subscribe(data => {
+          if (isCurrent()) {
+            this.availability.set(data);
+          }
+        });
+        this.apiService.getMapPool(player.id).subscribe(maps => {
+          if (isCurrent()) {
+            this.mapPool.set(maps);
+          }
+        });
       }
       if (player.userStats) {
         this.loadSvgs(new SortWeaponsPipe().transform(player.userStats.weapons));

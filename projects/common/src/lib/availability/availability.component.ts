@@ -25,12 +25,12 @@ export class AvailabilityComponent {
   public editable = input(false);
   public availabilityChanged = output<Availability>();
 
-  // Local week schedule: re-augmented whenever a non-empty availability is passed in,
-  // otherwise it keeps its current state (including edits made in this component).
+  // Local week schedule: re-seeded from the base week whenever a new availability is passed in, so one
+  // player's or team's schedule never bleeds into the next. Edits made here update it until then.
   public baseAvailability = linkedSignal<Availability [], Availability []>({
     source: this.availability,
-    computation: (availability, previous) => {
-      const base = previous?.value ?? structuredClone(BASE_AVAILABILITY);
+    computation: availability => {
+      const base = structuredClone(BASE_AVAILABILITY);
       if (!availability?.length) {
         return base;
       }

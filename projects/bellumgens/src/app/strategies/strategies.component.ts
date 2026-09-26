@@ -157,7 +157,11 @@ export class StrategiesComponent {
   }
 
   public deleteStrat(args: CSGOStrategy) {
-    this.apiStrategyService.deleteStrategy(args.id).subscribe(() => this.strats.update(strats => strats.filter(s => s !== args)));
+    this.apiStrategyService.deleteStrategy(args.id).subscribe({
+      next: () => this.strats.update(strats => strats.filter(s => s !== args)),
+      // The service already tells the user; the strategy just stays in the list
+      error: () => {}
+    });
   }
 
   public shareOnTwitter(strat: CSGOStrategy) {

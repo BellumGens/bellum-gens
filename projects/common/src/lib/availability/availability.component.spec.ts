@@ -45,11 +45,40 @@ describe('AvailabilityComponent', () => {
     expect(component.baseAvailability().filter(a => a.available).length).toBe(1);
   });
 
-  it('should keep the current availability when an empty availability is passed', () => {
-    const before = component.baseAvailability();
+  it('should replace the previous schedule when a different availability is passed', () => {
+    const monday: Availability = { day: DayOfWeek.Monday, available: true, from: new Date('2018-01-15T18:00:00.000Z'), to: new Date('2018-01-15T20:00:00.000Z') };
+    const tuesday: Availability = { day: DayOfWeek.Tuesday, available: true, from: new Date('2018-01-16T18:00:00.000Z'), to: new Date('2018-01-16T20:00:00.000Z') };
+    fixture.componentRef.setInput('availability', [monday]);
+    fixture.detectChanges();
+
+    fixture.componentRef.setInput('availability', [tuesday]);
+    fixture.detectChanges();
+
+    const available = component.baseAvailability().filter(a => a.available);
+    expect(available.map(a => a.day)).toEqual([DayOfWeek.Tuesday]);
+  });
+
+  it('should reset to the base week when an empty availability is passed after a schedule', () => {
+    const monday: Availability = { day: DayOfWeek.Monday, available: true, from: new Date('2018-01-15T18:00:00.000Z'), to: new Date('2018-01-15T20:00:00.000Z') };
+    fixture.componentRef.setInput('availability', [monday]);
+    fixture.detectChanges();
+
     fixture.componentRef.setInput('availability', []);
     fixture.detectChanges();
-    expect(component.baseAvailability()).toEqual(before);
+
+    expect(component.baseAvailability().some(a => a.available)).toBe(false);
+  });
+
+  it('should keep local edits while the availability input stays the same', () => {
+    const monday: Availability = { day: DayOfWeek.Monday, available: true, from: new Date('2018-01-15T18:00:00.000Z'), to: new Date('2018-01-15T20:00:00.000Z') };
+    fixture.componentRef.setInput('availability', [monday]);
+    fixture.detectChanges();
+    const args = { originalEvent: { stopPropagation: vi.fn() } } as any;
+
+    component.dayDeselected(args, component.baseAvailability().find(a => a.day === DayOfWeek.Monday));
+    fixture.detectChanges();
+
+    expect(component.baseAvailability().find(a => a.day === DayOfWeek.Monday).available).toBe(false);
   });
 
   it('should mark a day unavailable and emit on deselect', () => {
