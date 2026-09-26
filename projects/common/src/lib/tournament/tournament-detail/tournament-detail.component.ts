@@ -52,8 +52,8 @@ export class TournamentDetailComponent {
   public tournament = computed<Tournament | null>(() => this.tournamentId() ? this.apiService.getTournament(this.tournamentId())() ?? null : null);
   public loading = computed(() => !this.tournament());
   // Each game's data is only loaded for tournaments of that game (or of no specific game)
-  private hasSc2Data = computed(() => this.tournament() && (this.tournament().game === Game.StarCraft2 || !this.tournament().game));
-  private hasCsgoData = computed(() => this.tournament() && (this.tournament().game === Game.CSGO || !this.tournament().game));
+  private hasSc2Data = computed(() => this.tournament() && (this.tournament().game === Game.StarCraft2 || this.tournament().game == null));
+  private hasCsgoData = computed(() => this.tournament() && (this.tournament().game === Game.CSGO || this.tournament().game == null));
   public registrations = computed<TournamentParticipant[]>(() =>
     this.hasSc2Data() ? this.apiService.getSc2Registrations(this.tournament().id)() ?? [] : []);
   public sc2Matches = computed<TournamentSC2Match[] | null>(() =>

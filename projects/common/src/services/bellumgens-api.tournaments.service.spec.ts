@@ -7,6 +7,7 @@ import { TournamentCSGOMatch, TournamentSC2Match } from '../models/tournament-sc
 import { CommunicationService, TournamentApplication, TournamentCSGOGroup, TournamentParticipant, TournamentSC2Group } from '../public_api';
 import { Game } from '../models/tournament';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
+import { Observable, config as rxjsConfig } from 'rxjs';
 
 describe('ApiTournamentsService', () => {
   let service: ApiTournamentsService;
@@ -601,5 +602,416 @@ describe('ApiTournamentsService', () => {
     expect(req.request.method).toBe('DELETE');
     expect(req.request.withCredentials).toBe(true);
     req.flush({});
+  });
+
+  describe('lazy signals', () => {
+    it.each([
+      ['tournaments', '/tournament/tournaments', false],
+      ['activeTournament', '/tournament/activetournament', false],
+      ['companies', '/companies', false],
+      ['allRegistrations', '/tournament/allregistrations', true],
+      ['myTournaments', '/tournament/mytournaments', true]
+    ] as const)('should fetch %s once on first read and reuse the loaded value', (getter, path, withCredentials) => {
+      const value = service[getter];
+      // A second read while the first request is in flight doesn't duplicate it
+      expect(service[getter]).toBeTruthy();
+
+      const req = httpMock.expectOne(`${service['_apiEndpoint']}${path}`);
+      expect(req.request.method).toBe('GET');
+      expect(req.request.withCredentials).toBe(withCredentials);
+      req.flush(getter === 'activeTournament' ? { id: 't1' } : [{ id: 'x' }]);
+
+      expect(service[getter]()).toEqual(value());
+      expect(value()).toBeTruthy();
+      // Already loaded, so reading it again doesn't re-fetch
+      service[getter]();
+      httpMock.expectNone(`${service['_apiEndpoint']}${path}`);
+    });
+
+    it('should expose the tournaments list as the public tournaments', () => {
+      const publicTournaments = service.publicTournaments;
+      httpMock.expectOne(`${service['_apiEndpoint']}/tournament/tournaments`).flush([{ id: '1' }]);
+
+      expect(publicTournaments()).toEqual([{ id: '1' }]);
+      expect(service.tournaments()).toEqual([{ id: '1' }]);
+      httpMock.expectNone(`${service['_apiEndpoint']}/tournament/tournaments`);
+    });
+
+    it('should fetch a tournament from the server when it is not in the loaded list', () => {
+      service.tournaments();
+      httpMock.expectOne(`${service['_apiEndpoint']}/tournament/tournaments`).flush([{ id: '1' }]);
+
+      const tournament = service.getTournament('2');
+      expect(tournament()).toBeNull();
+      httpMock.expectOne(`${service['_apiEndpoint']}/tournament?id=2`).flush({ id: '2', name: 'Tournament 2' });
+      expect(tournament()).toEqual({ id: '2', name: 'Tournament 2' });
+
+      // Cached from then on
+      expect(service.getTournament('2')()).toEqual({ id: '2', name: 'Tournament 2' });
+      httpMock.expectNone(`${service['_apiEndpoint']}/tournament?id=2`);
+    });
+  });
+
+  describe('per-id caches', () => {
+    it('should fetch tournament registrations with credentials and toggle their loading flag', () => {
+      const registrations = service.tournamentRegistrations('1');
+      expect(service.loadingTourRegistrations()).toBe(true);
+      expect(service.tournamentRegistrations('1')).toBe(registrations);
+
+      const req = httpMock.expectOne(`${service['_apiEndpoint']}/tournament/tournamentregistrations?tournamentId=1`);
+      expect(req.request.method).toBe('GET');
+      expect(req.request.withCredentials).toBe(true);
+      req.flush([{ id: 'r1' }]);
+
+      expect(registrations()).toEqual([{ id: 'r1' }]);
+      expect(service.loadingTourRegistrations()).toBe(false);
+      expect(service.refreshTournamentRegistrations('1')).toBe(registrations);
+      httpMock.expectOne(`${service['_apiEndpoint']}/tournament/tournamentregistrations?tournamentId=1`).flush([]);
+      expect(registrations()).toEqual([]);
+    });
+
+    it.each([
+      ['getCsgoRegistrations', 'loadingCSGORegistrations', '/tournament/csgoregs?tournamentId=1'],
+      ['getSc2Registrations', 'loadingSC2Registrations', '/tournament/sc2regs?tournamentId=1'],
+      ['getCsgoMatches', 'loadingCSGOMatches', '/tournament/csgomatches?tournamentId=1'],
+      ['getSc2Matches', 'loadingSC2Matches', '/tournament/sc2matches?tournamentId=1'],
+      // Counter-Strike groups share the registrations loading flag
+      ['getCsgoGroups', 'loadingCSGORegistrations', '/tournament/csgogroups?tournamentId=1'],
+      ['getSc2Groups', 'loadingSC2Groups', '/tournament/sc2groups?tournamentId=1']
+    ] as const)('%s should set %s while the request is in flight', (method, flag, path) => {
+      service[method]('1');
+      expect(service[flag]()).toBe(true);
+      httpMock.expectOne(`${service['_apiEndpoint']}${path}`).flush([]);
+      expect(service[flag]()).toBe(false);
+    });
+
+    it.each([
+      ['refreshSc2Registrations', 'getSc2Registrations', '/tournament/sc2regs?tournamentId=1'],
+      ['refreshSc2Matches', 'getSc2Matches', '/tournament/sc2matches?tournamentId=1'],
+      ['refreshSc2Groups', 'getSc2Groups', '/tournament/sc2groups?tournamentId=1'],
+      ['refreshTournamentRegistrations', 'tournamentRegistrations', '/tournament/tournamentregistrations?tournamentId=1']
+    ] as const)('%s should be skipped while the initial %s request is in flight', (refresh, get, path) => {
+      const cached = service[get]('1');
+      expect(service[refresh]('1')).toBe(cached);
+      service[refresh]('1');
+
+      httpMock.expectOne(`${service['_apiEndpoint']}${path}`).flush([{ id: 'a' }]);
+      expect(cached()).toEqual([{ id: 'a' }]);
+    });
+
+    it('should keep the StarCraft II groups empty when the server returns none', () => {
+      const groups = service.getSc2Groups('1');
+      httpMock.expectOne(`${service['_apiEndpoint']}/tournament/sc2groups?tournamentId=1`).flush(null);
+      expect(groups()).toBeNull();
+      expect(service.loadingSC2Groups()).toBe(false);
+    });
+
+    it.each([
+      ['getCsgoRegistrations', '/tournament/csgoregs'],
+      ['getSc2Registrations', '/tournament/sc2regs'],
+      ['getCsgoMatches', '/tournament/csgomatches'],
+      ['getSc2Matches', '/tournament/sc2matches'],
+      ['getCsgoGroups', '/tournament/csgogroups'],
+      ['getSc2Groups', '/tournament/sc2groups']
+    ] as const)('%s should omit the tournament filter for an empty id', (method, path) => {
+      service[method]('');
+      httpMock.expectOne(`${service['_apiEndpoint']}${path}`).flush([]);
+    });
+  });
+
+  describe('failed fetches', () => {
+    let unhandled: unknown[];
+    let previousHandler: typeof rxjsConfig.onUnhandledError;
+
+    // The caches subscribe without an error callback, so rxjs reports the HttpErrorResponse as unhandled
+    // from a setTimeout; fake timers let each test collect it before the handler is restored.
+    beforeEach(() => {
+      vi.useFakeTimers({ toFake: ['setTimeout'] });
+      unhandled = [];
+      previousHandler = rxjsConfig.onUnhandledError;
+      rxjsConfig.onUnhandledError = err => unhandled.push(err);
+    });
+
+    afterEach(() => {
+      vi.runAllTimers();
+      rxjsConfig.onUnhandledError = previousHandler;
+      vi.useRealTimers();
+    });
+
+    const fail = (path: string) => httpMock.expectOne(`${service['_apiEndpoint']}${path}`)
+      .error(new ProgressEvent('error'), { status: 500, statusText: 'Server Error' });
+
+    it.each([
+      ['tournaments', '/tournament/tournaments'],
+      ['activeTournament', '/tournament/activetournament'],
+      ['companies', '/companies'],
+      ['allRegistrations', '/tournament/allregistrations'],
+      ['myTournaments', '/tournament/mytournaments']
+    ] as const)('should retry %s on the next read after an error', (getter, path) => {
+      const value = service[getter];
+      fail(path);
+      expect(value()).toBeNull();
+
+      service[getter]();
+      httpMock.expectOne(`${service['_apiEndpoint']}${path}`).flush(getter === 'activeTournament' ? { id: 't1' } : []);
+      expect(value()).toEqual(getter === 'activeTournament' ? { id: 't1' } : []);
+    });
+
+    it.each([
+      ['getSc2Registrations', 'refreshSc2Registrations', 'loadingSC2Registrations', '/tournament/sc2regs?tournamentId=1'],
+      ['getSc2Matches', 'refreshSc2Matches', 'loadingSC2Matches', '/tournament/sc2matches?tournamentId=1'],
+      ['getSc2Groups', 'refreshSc2Groups', 'loadingSC2Groups', '/tournament/sc2groups?tournamentId=1'],
+      ['tournamentRegistrations', 'refreshTournamentRegistrations', 'loadingTourRegistrations',
+        '/tournament/tournamentregistrations?tournamentId=1']
+    ] as const)('%s should clear %s and allow a refresh after an error', (get, refresh, flag, path) => {
+      const cached = service[get]('1');
+      expect(service[flag]()).toBe(true);
+      fail(path);
+
+      expect(service[flag]()).toBe(false);
+      expect(cached()).toBeNull();
+      vi.runAllTimers();
+      expect(unhandled).toEqual([expect.objectContaining({ status: 500 })]);
+
+      service[refresh]('1');
+      expect(service[flag]()).toBe(true);
+      httpMock.expectOne(`${service['_apiEndpoint']}${path}`).flush([{ id: 'a' }]);
+      expect(cached()).toEqual([{ id: 'a' }]);
+      expect(service[flag]()).toBe(false);
+    });
+
+    it.each([
+      ['getCsgoRegistrations', 'loadingCSGORegistrations', '/tournament/csgoregs?tournamentId=1'],
+      ['getCsgoMatches', 'loadingCSGOMatches', '/tournament/csgomatches?tournamentId=1'],
+      ['getCsgoGroups', 'loadingCSGORegistrations', '/tournament/csgogroups?tournamentId=1']
+    ] as const)('%s should clear %s after an error', (method, flag, path) => {
+      const cached = service[method]('1');
+      fail(path);
+      expect(service[flag]()).toBe(false);
+      expect(cached()).toBeNull();
+    });
+
+    it('should leave a tournament empty when it fails to load', () => {
+      const tournament = service.getTournament('1');
+      fail('/tournament?id=1');
+      expect(tournament()).toBeNull();
+    });
+  });
+
+  describe('mutations', () => {
+    let emitSuccess: ReturnType<typeof vi.spyOn>;
+    let emitError: ReturnType<typeof vi.spyOn>;
+
+    beforeEach(() => {
+      emitSuccess = vi.spyOn(commsService, 'emitSuccess');
+      emitError = vi.spyOn(commsService, 'emitError');
+    });
+
+    interface MutationCase {
+      name: string;
+      call: (s: ApiTournamentsService) => Observable<unknown>;
+      method: string;
+      path: string;
+      body?: unknown;
+      response?: unknown;
+      success?: string;
+    }
+
+    const reg: TournamentApplication = { id: 'r1', email: 'test@mail.com', game: Game.CSGO };
+    const participant = { id: 'p1', userId: 'u1' } as TournamentParticipant;
+
+    const cases: MutationCase[] = [
+      { name: 'leagueRegistration', call: s => s.leagueRegistration(reg), method: 'POST', path: '/tournament/register', body: reg },
+      { name: 'bgeRegistration', call: s => s.bgeRegistration(reg, 't1'), method: 'PUT',
+        path: '/tournament/registerbge?tournamentId=t1', body: reg },
+      { name: 'bgeRegistration without a tournament', call: s => s.bgeRegistration(reg), method: 'PUT',
+        path: '/tournament/registerbge?tournamentId=', body: reg },
+      { name: 'createTournament', call: s => s.createTournament({ name: 'T' }), method: 'PUT', path: '/tournament/create',
+        body: { name: 'T' }, success: 'Tournament updated successfully!' },
+      { name: 'updateTournament', call: s => s.updateTournament({ id: 't1', name: 'T' }), method: 'PUT', path: '/tournament/create',
+        body: { id: 't1', name: 'T' }, success: 'Tournament updated successfully!' },
+      { name: 'resetCheckinState', call: s => s.resetCheckinState('t1'), method: 'GET', path: '/tournament/resetstate?tournamentId=t1',
+        response: { message: 'State reset' }, success: 'State reset' },
+      { name: 'sendCheckinEmails', call: s => s.sendCheckinEmails('t1'), method: 'GET',
+        path: '/tournament/sendcheckinemails?tournamentId=t1', response: { message: 'Emails sent' }, success: 'Emails sent' },
+      { name: 'confirmRegistration', call: s => s.confirmRegistration(reg), method: 'PUT', path: '/tournament/confirm?id=r1', body: reg,
+        success: 'Tournament application updated successfully!' },
+      { name: 'weeklyCheckin', call: s => s.weeklyCheckin(reg), method: 'PUT', path: '/tournament/checkin?id=r1', body: reg,
+        success: 'Tournament application updated successfully!' },
+      { name: 'deleteRegistration', call: s => s.deleteRegistration('r1'), method: 'DELETE', path: '/tournament/delete?id=r1',
+        success: 'Tournament application deleted successfully!' },
+      { name: 'submitCSGOGroup', call: s => s.submitCSGOGroup({ id: 'g1', name: 'A' }), method: 'PUT', path: '/tournament/csgogroup?id=g1',
+        body: { id: 'g1', name: 'A' }, success: 'Tournament Counter-Strike group updated successfully!' },
+      { name: 'addParticipantToGroup', call: s => s.addParticipantToGroup(participant, 'g1'), method: 'PUT',
+        path: '/tournament/participanttogroup?id=g1', body: participant, success: 'Tournament participant added to group successfully!' },
+      { name: 'removeParticipantFromGroup', call: s => s.removeParticipantFromGroup('p1', 'g1'), method: 'DELETE',
+        path: '/tournament/participanttogroup?id=p1&groupid=g1', success: 'Tournament participant deleted from group successfully!' },
+      { name: 'submitSC2Group', call: s => s.submitSC2Group({ id: 's1', name: 'A' }), method: 'PUT', path: '/tournament/sc2group?id=s1',
+        body: { id: 's1', name: 'A' }, success: 'Tournament StarCraft 2 group updated successfully!' },
+      { name: 'submitParticipantPoints', call: s => s.submitParticipantPoints('p1', 'g1', 3), method: 'PUT',
+        path: '/tournament/participantpoints?participantId=p1&groupId=g1', body: { points: 3 },
+        success: 'Tournament participant points updated successfully!' },
+      { name: 'submitCSGOMatch', call: s => s.submitCSGOMatch({ id: 'm1' }), method: 'PUT', path: '/tournament/csgomatch?id=m1',
+        body: { id: 'm1' }, success: 'Tournament Counter-Strike match updated successfully!' },
+      { name: 'deleteCSGOMatch', call: s => s.deleteCSGOMatch({ id: 'm1' }), method: 'DELETE', path: '/tournament/csgomatch?id=m1',
+        success: 'Tournament Counter-Strike match deleted successfully!' },
+      { name: 'deleteCSGOMatchMap', call: s => s.deleteCSGOMatchMap('mm1'), method: 'DELETE', path: '/tournament/csgomatchmap?id=mm1',
+        success: 'Tournament Counter-Strike match map deleted successfully!' },
+      { name: 'submitSC2Match', call: s => s.submitSC2Match({ id: 'm1' }), method: 'PUT', path: '/tournament/sc2match?id=m1',
+        body: { id: 'm1' }, success: 'Tournament StarCraft II match updated successfully!' },
+      { name: 'deleteSC2Match', call: s => s.deleteSC2Match({ id: 'm1' }), method: 'DELETE', path: '/tournament/sc2match?id=m1',
+        success: 'Tournament StarCraft II match deleted successfully!' },
+      { name: 'deleteSC2MatchMap', call: s => s.deleteSC2MatchMap('mm1'), method: 'DELETE', path: '/tournament/sc2matchmap?id=mm1',
+        success: 'Tournament StarCraft II match map deleted successfully!' },
+      { name: 'joinByInviteCode', call: s => s.joinByInviteCode('CODE'), method: 'POST', path: '/tournament/join',
+        body: { inviteCode: 'CODE' }, response: { id: 't1' }, success: 'Successfully joined tournament!' },
+      { name: 'deleteTournament', call: s => s.deleteTournament('t1'), method: 'DELETE', path: '/tournament/delete-tournament?id=t1',
+        success: 'Tournament deleted successfully!' }
+    ];
+
+    it.each(cases)('$name should send $method $path with credentials and report success', c => {
+      const response = c.response ?? { id: 'response' };
+      const next = vi.fn();
+      c.call(service).subscribe(next);
+
+      const req = httpMock.expectOne(`${service['_apiEndpoint']}${c.path}`);
+      expect(req.request.method).toBe(c.method);
+      expect(req.request.withCredentials).toBe(true);
+      if (c.body !== undefined) {
+        expect(req.request.body).toEqual(c.body);
+      }
+      req.flush(response);
+
+      expect(next).toHaveBeenCalledWith(response);
+      if (c.success) {
+        expect(emitSuccess).toHaveBeenCalledWith(c.success);
+      } else {
+        expect(emitSuccess).not.toHaveBeenCalled();
+      }
+      expect(emitError).not.toHaveBeenCalled();
+    });
+
+    it.each(cases)('$name should report the error and rethrow it', c => {
+      const error = vi.fn();
+      c.call(service).subscribe({ error });
+
+      const url = `${service['_apiEndpoint']}${c.path}`;
+      httpMock.expectOne(url).error(new ProgressEvent('error'), { status: 500, statusText: 'Server Error' });
+
+      const message = `Http failure response for ${url}: 500 Server Error`;
+      expect(emitError).toHaveBeenCalledWith(message);
+      expect(error).toHaveBeenCalledWith(expect.objectContaining({ message, status: 500 }));
+      expect(emitSuccess).not.toHaveBeenCalled();
+    });
+
+    it('should submit new matches without an id in the url', () => {
+      service.submitSC2Match({ player1Id: 'a' }).subscribe();
+      const req = httpMock.expectOne(`${service['_apiEndpoint']}/tournament/sc2match`);
+      expect(req.request.withCredentials).toBe(true);
+      req.flush({ id: 'm1' });
+    });
+
+    it('should keep my tournaments unloaded when deleting before they were fetched', () => {
+      service.deleteTournament('t1').subscribe();
+      httpMock.expectOne(`${service['_apiEndpoint']}/tournament/delete-tournament?id=t1`).flush({});
+      expect(service['_myTournaments']()).toBeNull();
+    });
+
+    it('should keep my tournaments when deleting a tournament fails', () => {
+      const myTournaments = service.myTournaments;
+      httpMock.expectOne(`${service['_apiEndpoint']}/tournament/mytournaments`).flush([{ id: 't1' }]);
+
+      service.deleteTournament('t1').subscribe({ error: () => undefined });
+      httpMock.expectOne(`${service['_apiEndpoint']}/tournament/delete-tournament?id=t1`)
+        .error(new ProgressEvent('error'), { status: 500, statusText: 'Server Error' });
+      expect(myTournaments()).toEqual([{ id: 't1' }]);
+    });
+
+    it('should keep the group caches when deleting a group fails, without reporting it', () => {
+      const csgoGroups = service.getCsgoGroups('1');
+      httpMock.expectOne(`${service['_apiEndpoint']}/tournament/csgogroups?tournamentId=1`).flush([{ id: 'g1', name: 'A' }]);
+
+      const error = vi.fn();
+      service.deleteGroup('g1').subscribe({ error });
+      httpMock.expectOne(`${service['_apiEndpoint']}/tournament/group?id=g1`)
+        .error(new ProgressEvent('error'), { status: 500, statusText: 'Server Error' });
+
+      expect(error).toHaveBeenCalled();
+      expect(csgoGroups()).toEqual([{ id: 'g1', name: 'A' }]);
+      expect(emitError).not.toHaveBeenCalled();
+    });
+
+    it('should remove a deleted group from the caches of every tournament', () => {
+      const csgo1 = service.getCsgoGroups('1');
+      httpMock.expectOne(`${service['_apiEndpoint']}/tournament/csgogroups?tournamentId=1`).flush([{ id: 'g1', name: 'A' }]);
+      const csgo2 = service.getCsgoGroups('2');
+      httpMock.expectOne(`${service['_apiEndpoint']}/tournament/csgogroups?tournamentId=2`).flush([{ id: 'g2', name: 'B' }]);
+      const sc2 = service.getSc2Groups('1');
+      // Still in flight, so there is nothing to remove from it yet
+      service.deleteGroup('g2').subscribe();
+      httpMock.expectOne(`${service['_apiEndpoint']}/tournament/group?id=g2`).flush({});
+
+      expect(csgo1()).toEqual([{ id: 'g1', name: 'A' }]);
+      expect(csgo2()).toEqual([]);
+      expect(sc2()).toBeNull();
+      httpMock.expectOne(`${service['_apiEndpoint']}/tournament/sc2groups?tournamentId=1`).flush([]);
+    });
+
+    it('should add a new group to the cache of the tournament returned by the server', () => {
+      const csgoGroups = service.getCsgoGroups('1');
+      httpMock.expectOne(`${service['_apiEndpoint']}/tournament/csgogroups?tournamentId=1`).flush([{ id: 'g1', name: 'A' }]);
+      const sc2Groups = service.getSc2Groups('1');
+      httpMock.expectOne(`${service['_apiEndpoint']}/tournament/sc2groups?tournamentId=1`).flush([{ id: 's1', name: 'A' }]);
+
+      service.submitCSGOGroup({ name: 'B' }).subscribe();
+      httpMock.expectOne(`${service['_apiEndpoint']}/tournament/csgogroup`).flush({ id: 'g2', name: 'B', tournamentId: '1' });
+      service.submitSC2Group({ name: 'B' }).subscribe();
+      httpMock.expectOne(`${service['_apiEndpoint']}/tournament/sc2group`).flush({ id: 's2', name: 'B', tournamentId: '1' });
+
+      expect(csgoGroups().map(g => g.id)).toEqual(['g1', 'g2']);
+      expect(sc2Groups().map(g => g.id)).toEqual(['s2', 's1']);
+    });
+
+    it('should not touch the group caches when the tournament is unknown or not loaded', () => {
+      const csgoGroups = service.getCsgoGroups('1');
+      httpMock.expectOne(`${service['_apiEndpoint']}/tournament/csgogroups?tournamentId=1`).flush([{ id: 'g1', name: 'A' }]);
+
+      // No tournament anywhere
+      service.submitCSGOGroup({ name: 'B' }).subscribe();
+      httpMock.expectOne(`${service['_apiEndpoint']}/tournament/csgogroup`).flush({ id: 'g2', name: 'B' });
+      // A tournament whose groups were never loaded
+      service.submitCSGOGroup({ name: 'C', tournamentId: '2' }).subscribe();
+      httpMock.expectOne(`${service['_apiEndpoint']}/tournament/csgogroup`).flush({ id: 'g3', name: 'C', tournamentId: '2' });
+      service.submitSC2Group({ name: 'C', tournamentId: '2' }).subscribe();
+      httpMock.expectOne(`${service['_apiEndpoint']}/tournament/sc2group`).flush({ id: 's3', name: 'C', tournamentId: '2' });
+      // An empty response
+      service.submitCSGOGroup({ name: 'D' }, '1').subscribe();
+      httpMock.expectOne(`${service['_apiEndpoint']}/tournament/csgogroup`).flush(null);
+
+      expect(csgoGroups()).toEqual([{ id: 'g1', name: 'A' }]);
+      expect(service['_csgoGroups'].has('2')).toBe(false);
+      expect(service['_sc2Groups'].has('2')).toBe(false);
+    });
+
+    it('should not add a group to a cache that is still loading', () => {
+      const sc2Groups = service.getSc2Groups('1');
+      service.submitSC2Group({ name: 'B', tournamentId: '1' }).subscribe();
+      httpMock.expectOne(`${service['_apiEndpoint']}/tournament/sc2group`).flush({ id: 's2', name: 'B', tournamentId: '1' });
+      expect(sc2Groups()).toBeNull();
+
+      httpMock.expectOne(`${service['_apiEndpoint']}/tournament/sc2groups?tournamentId=1`).flush([{ id: 's1', name: 'A' }, { id: 's2', name: 'B' }]);
+      expect(sc2Groups().map(g => g.id)).toEqual(['s2', 's1']);
+    });
+
+    it('should not change the group caches when saving a group fails', () => {
+      const csgoGroups = service.getCsgoGroups('1');
+      httpMock.expectOne(`${service['_apiEndpoint']}/tournament/csgogroups?tournamentId=1`).flush([{ id: 'g1', name: 'A' }]);
+
+      service.submitCSGOGroup({ name: 'B' }, '1').subscribe({ error: () => undefined });
+      httpMock.expectOne(`${service['_apiEndpoint']}/tournament/csgogroup`)
+        .error(new ProgressEvent('error'), { status: 500, statusText: 'Server Error' });
+
+      expect(csgoGroups()).toEqual([{ id: 'g1', name: 'A' }]);
+    });
   });
 });

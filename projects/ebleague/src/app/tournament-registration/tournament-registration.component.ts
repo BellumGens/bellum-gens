@@ -77,6 +77,8 @@ export class TournamentRegistrationComponent {
         this.application.set(application);
         this.router.navigate(['/registration-success'], { state: application });
       },
+      // the service reports the error, the form only needs to be submittable again
+      error: () => this.inProgress.set(false),
       complete: () => this.inProgress.set(false)
     });
   }

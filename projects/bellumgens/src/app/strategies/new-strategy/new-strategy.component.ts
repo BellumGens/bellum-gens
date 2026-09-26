@@ -75,19 +75,24 @@ export class NewStrategyComponent {
 
   public submitStrategy() {
     const strategy = this.strategyToSubmit();
-    this.apiService.submitStrategy(strategy).subscribe(
-      strat => {
-        if (!strategy.id) {
+    // A new strategy carries the empty guid from NEW_EMPTY_STRAT until the server assigns its id.
+    const isNew = !strategy.id || strategy.id === NEW_EMPTY_STRAT.id;
+    this.apiService.submitStrategy(strategy).subscribe({
+      next: strat => {
+        if (isNew) {
           this.strategyAdded.emit(strat);
         }
         this.dialog().close();
-      }
-    );
+      },
+      // The service already reports the error; keep the dialog open so the user can retry.
+      error: () => {}
+    });
   }
 
   public createAndRedirect() {
-    this.apiService.submitStrategy(this.strategyToSubmit()).subscribe(strat => {
-      this.router.navigate(['strategies', 'edit', strat.customUrl]);
+    this.apiService.submitStrategy(this.strategyToSubmit()).subscribe({
+      next: strat => this.router.navigate(['strategies', 'edit', strat.customUrl]),
+      error: () => {}
     });
   }
 
