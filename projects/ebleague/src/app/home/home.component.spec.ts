@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HomeComponent } from './home.component';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
@@ -11,8 +11,8 @@ describe('TournamentHomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
 
         NoopAnimationsModule,
@@ -25,7 +25,7 @@ describe('TournamentHomeComponent', () => {
         provideRouter([])
       ]
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(HomeComponent);
@@ -38,7 +38,7 @@ describe('TournamentHomeComponent', () => {
   });
 
   it('should initialize userEmail to an empty string', () => {
-    expect(component.userEmail).toBe('');
+    expect(component.userEmail()).toBe('');
   });
 
   it('should have gameEnum property', () => {
@@ -46,11 +46,11 @@ describe('TournamentHomeComponent', () => {
   });
 
   it('should have registrations property', () => {
-    expect(component.registrations).toBeDefined();
+    expect(component.registrations()).toBeDefined();
   });
 
   it('should have authUser property', () => {
-    expect(component.authUser).toBeDefined();
+    expect(component.authUser()).toBeDefined();
   });
 
   it('should have openLogin method', () => {

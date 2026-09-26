@@ -1,3 +1,4 @@
+import { computed } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { BellumgensApiService } from './bellumgens-api.service';
@@ -57,13 +58,28 @@ describe('BellumgensApiService', () => {
   it('getTeam should send a GET request to the correct URL', () => {
     const teamId = '789';
     const mockteam: CSGOTeam = { teamId: '789', teamName: 'Test Team', visible: true, teamAvatar: 'test.jpg' };
-    service.getTeam(teamId).subscribe();
+    const team = service.getTeam(teamId);
+    expect(team()).toBeNull();
     expect(service['_teamReqInProgress']).toBe(true);
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/teams?teamid=${teamId}`);
     expect(req.request.method).toBe('GET');
     req.flush(mockteam);
     expect(service['_teamReqInProgress']).toBe(false);
-    expect(service['_currentTeam'].value).toEqual(mockteam);
+    expect(service['_currentTeam']()).toEqual(mockteam);
+    expect(team()).toEqual(mockteam);
+  });
+
+  it('getTeam should not re-request while a request is in flight', () => {
+    service.getTeam('789');
+    service.getTeam('789');
+    httpMock.expectOne(`${service['_apiEndpoint']}/teams?teamid=789`).flush({ teamId: '789' });
+  });
+
+  it('getTeam should be safe to call from a reactive context', () => {
+    const team = computed(() => service.getTeam('789')());
+    expect(() => team()).not.toThrow();
+    httpMock.expectOne(`${service['_apiEndpoint']}/teams?teamid=789`).flush({ teamId: '789', customUrl: '789', teamName: 'Test Team' });
+    expect(team().teamName).toBe('Test Team');
   });
 
   it('getTeamMembers should send a GET request to the correct URL', () => {
@@ -84,11 +100,12 @@ describe('BellumgensApiService', () => {
       country: 'DE',
       realName: 'Test User'
     }];
-    service.getTeamMembers(teamId).subscribe();
+    const members = service.getTeamMembers(teamId);
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/teams/members?teamid=${teamId}`);
     expect(req.request.method).toBe('GET');
     req.flush(teamMembers);
-    expect(service['_currentTeamMembers'].value).toEqual(teamMembers);
+    expect(service['_currentTeamMembers']()).toEqual(teamMembers);
+    expect(members()).toEqual(teamMembers);
   });
 
   it('getTeamSchedule should send a GET request to the correct URL', () => {
@@ -100,11 +117,12 @@ describe('BellumgensApiService', () => {
       from: new Date(),
       to: new Date()
     }];
-    service.getTeamSchedule(teamId).subscribe();
+    const schedule = service.getTeamSchedule(teamId);
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/teams/availability?teamid=${teamId}`);
     expect(req.request.method).toBe('GET');
     req.flush(availability);
-    expect(service['_currentTeamPractice'].value).toEqual(availability);
+    expect(service['_currentTeamPractice']()).toEqual(availability);
+    expect(schedule()).toEqual(availability);
   });
 
   it('registerSteamGroup should send a POST request to the correct URL', () => {
@@ -471,27 +489,42 @@ describe('BellumgensApiService', () => {
       registered: false,
     };
     const sub1 = commsService.error.subscribe(error => expect(error).toBe('Account is private!'));
-    service.getPlayer(userId).subscribe();
-    expect(service.loadingPlayer.value).toBe(true);
+    const cached = service.getPlayer(userId);
+    expect(service.loadingPlayer()).toBe(true);
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/users?userid=${userId}`);
     expect(req.request.method).toBe('GET');
     req.flush(player);
-    expect(service.loadingPlayer.value).toBe(false);
-    expect(service['_currentPlayer'].value).toEqual(player);
+    expect(service.loadingPlayer()).toBe(false);
+    expect(service['_currentPlayer']()).toEqual(player);
+    expect(cached()).toEqual(player);
 
     sub1.unsubscribe();
     commsService.error.subscribe(error => expect(error).toBe(`Http failure response for ${service['_apiEndpoint']}/users?userid=2: 404 Player not found!`));
     userId = '2';
-    service.getPlayer(userId).subscribe({
-      error: () => {
-        expect(service.loadingPlayer.value).toBe(false);
-        expect(service['_currentPlayer'].value).toBeNull();
-      }
-    });
-    expect(service.loadingPlayer.value).toBe(true);
+    service.getPlayer(userId);
+    expect(service.loadingPlayer()).toBe(true);
+    expect(cached()).toBeNull();
     const req2 = httpMock.expectOne(`${service['_apiEndpoint']}/users?userid=${userId}`);
     expect(req2.request.method).toBe('GET');
     req2.error(new ProgressEvent('Not Found'), { status: 404, statusText: 'Player not found!' });
+    expect(service.loadingPlayer()).toBe(false);
+    expect(service['_currentPlayer']()).toBeNull();
+  });
+
+  it('getPlayer should not re-request a player that is already cached', () => {
+    service['_currentPlayer'].set({ id: '1', steamUser: { steamID64: '765', customURL: 'custom' } } as ApplicationUser);
+    const cached = service.getPlayer('custom');
+    expect(cached().id).toBe('1');
+    expect(service.loadingPlayer()).toBe(false);
+    httpMock.expectNone(`${service['_apiEndpoint']}/users?userid=custom`);
+  });
+
+  it('getPlayer should be safe to call from a reactive context', () => {
+    const player = computed(() => service.getPlayer('3')());
+    expect(() => player()).not.toThrow();
+    expect(service.loadingPlayer()).toBe(true);
+    httpMock.expectOne(`${service['_apiEndpoint']}/users?userid=3`).flush({ id: '3', steamUser: { steamID64: '3' } });
+    expect(player().id).toBe('3');
   });
 
   it('getPlayerGroups should send a GET request to the correct URL', () => {
@@ -589,52 +622,52 @@ describe('BellumgensApiService', () => {
 
   it('setPrimaryRole should update the cached player it was issued for', () => {
     const role: Role = { id: PlaystyleRole.Awper, name: 'Awper' };
-    service['_currentPlayer'].next(rolePlayer('player-a'));
+    service['_currentPlayer'].set(rolePlayer('player-a'));
 
     service.setPrimaryRole(role, 'player-a').subscribe();
     httpMock.expectOne(`${service['_apiEndpoint']}/users/primaryrole?id=${role.id}`).flush({});
 
-    expect(service['_currentPlayer'].value.csgoDetails.primaryRole).toBe(PlaystyleRole.Awper);
+    expect(service['_currentPlayer']().csgoDetails.primaryRole).toBe(PlaystyleRole.Awper);
   });
 
   it('setPrimaryRole should not patch a different player cached before the response arrives', () => {
     const role: Role = { id: PlaystyleRole.Awper, name: 'Awper' };
-    service['_currentPlayer'].next(rolePlayer('player-a'));
+    service['_currentPlayer'].set(rolePlayer('player-a'));
 
     service.setPrimaryRole(role, 'player-a').subscribe();
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/users/primaryrole?id=${role.id}`);
 
     // navigation swaps the cached player while the PUT is still in flight
     const playerB = rolePlayer('player-b');
-    service['_currentPlayer'].next(playerB);
+    service['_currentPlayer'].set(playerB);
     req.flush({});
 
-    expect(service['_currentPlayer'].value).toBe(playerB);
+    expect(service['_currentPlayer']()).toBe(playerB);
     expect(playerB.csgoDetails.primaryRole).toBe(PlaystyleRole.NotSet);
   });
 
   it('setSecondaryRole should update the cached player it was issued for', () => {
     const role: Role = { id: PlaystyleRole.IGL, name: 'Ingame Leader' };
-    service['_currentPlayer'].next(rolePlayer('player-a'));
+    service['_currentPlayer'].set(rolePlayer('player-a'));
 
     service.setSecondaryRole(role, 'player-a').subscribe();
     httpMock.expectOne(`${service['_apiEndpoint']}/users/secondaryrole?id=${role.id}`).flush({});
 
-    expect(service['_currentPlayer'].value.csgoDetails.secondaryRole).toBe(PlaystyleRole.IGL);
+    expect(service['_currentPlayer']().csgoDetails.secondaryRole).toBe(PlaystyleRole.IGL);
   });
 
   it('setSecondaryRole should not patch a different player cached before the response arrives', () => {
     const role: Role = { id: PlaystyleRole.IGL, name: 'Ingame Leader' };
-    service['_currentPlayer'].next(rolePlayer('player-a'));
+    service['_currentPlayer'].set(rolePlayer('player-a'));
 
     service.setSecondaryRole(role, 'player-a').subscribe();
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/users/secondaryrole?id=${role.id}`);
 
     const playerB = rolePlayer('player-b');
-    service['_currentPlayer'].next(playerB);
+    service['_currentPlayer'].set(playerB);
     req.flush({});
 
-    expect(service['_currentPlayer'].value).toBe(playerB);
+    expect(service['_currentPlayer']()).toBe(playerB);
     expect(playerB.csgoDetails.secondaryRole).toBe(PlaystyleRole.NotSet);
   });
 

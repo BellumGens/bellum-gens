@@ -38,12 +38,13 @@ describe('ApiSearchService', () => {
       steamUser: null
     };
     service.quickSearch(name);
-    expect(service.loadingQuickSearch.value).toBeTruthy();
+    expect(service.searchTerm()).toBe(name);
+    expect(service.loadingQuickSearch()).toBeTruthy();
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/search?name=${name}`);
     expect(req.request.method).toBe('GET');
     req.flush(result);
-    expect(service.searchResult.value).toEqual(result);
-    expect(service.loadingQuickSearch.value).toBeFalsy();
+    expect(service.searchResult()).toEqual(result);
+    expect(service.loadingQuickSearch()).toBeFalsy();
     expect(service['_searchResultCache'].get(name)).toEqual(result);
 
     name = 'test';
@@ -57,8 +58,8 @@ describe('ApiSearchService', () => {
     // Should return the search result from the cache if the name is already cached
     name = 'testName';
     service.quickSearch(name);
-    expect(service.loadingQuickSearch.value).toBeFalsy();
-    expect(service.searchResult.value).toEqual(result);
+    expect(service.loadingQuickSearch()).toBeFalsy();
+    expect(service.searchResult()).toEqual(result);
   });
 
   it('searchTeams should make a GET request to the API endpoint with the provided query', () => {
@@ -70,11 +71,11 @@ describe('ApiSearchService', () => {
     service.searchTeams(query);
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/search/teams?${query}`);
     expect(req.request.method).toBe('GET');
-    expect(service.loadingSearch.value).toBeTruthy();
-    expect(service.teamSearchResult.value).toEqual([]);
+    expect(service.loadingSearch()).toBeTruthy();
+    expect(service.teamSearchResult()).toEqual([]);
     req.flush(teams);
-    expect(service.loadingSearch.value).toBeFalsy();
-    expect(service.teamSearchResult.value).toEqual(teams);
+    expect(service.loadingSearch()).toBeFalsy();
+    expect(service.teamSearchResult()).toEqual(teams);
     expect(service['_teamSearchCache'].get(query)).toEqual(teams);
 
     query = 'role=2&overlap=1';
@@ -100,13 +101,13 @@ describe('ApiSearchService', () => {
     expect(req3.request.method).toBe('GET');
     req3.flush(result);
     service.searchTeams(query);
-    expect(service.teamSearchResult.value).toEqual(result.teams);
+    expect(service.teamSearchResult()).toEqual(result.teams);
 
     // Should return the team search result from the cache if the query is already cached
     query = 'role=1&overlap=1';
     service.searchTeams(query);
-    expect(service.loadingSearch.value).toBeFalsy();
-    expect(service.teamSearchResult.value).toEqual(teams);
+    expect(service.loadingSearch()).toBeFalsy();
+    expect(service.teamSearchResult()).toEqual(teams);
   });
 
   it('searchPlayers should make a GET request to the API endpoint with the provided query', () => {
@@ -130,10 +131,10 @@ describe('ApiSearchService', () => {
     service.searchPlayers(query);
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/search/players?${query}`);
     expect(req.request.method).toBe('GET');
-    expect(service.loadingSearch.value).toBeTruthy();
+    expect(service.loadingSearch()).toBeTruthy();
     req.flush(players);
-    expect(service.loadingSearch.value).toBeFalsy();
-    expect(service.playerSearchResult.value).toEqual(players);
+    expect(service.loadingSearch()).toBeFalsy();
+    expect(service.playerSearchResult()).toEqual(players);
     expect(service['_playerSearchCache'].get(query)).toEqual(players);
 
     query = 'role=2&overlap=1';
@@ -158,13 +159,13 @@ describe('ApiSearchService', () => {
     expect(req3.request.method).toBe('GET');
     req3.flush(result);
     service.searchPlayers(query);
-    expect(service.playerSearchResult.value).toEqual(result.players);
+    expect(service.playerSearchResult()).toEqual(result.players);
 
     // Should return the player search result from the cache if the query is already cached
     query = 'role=1&overlap=1';
     service.searchPlayers(query);
-    expect(service.loadingSearch.value).toBeFalsy();
-    expect(service.playerSearchResult.value).toEqual(players);
+    expect(service.loadingSearch()).toBeFalsy();
+    expect(service.playerSearchResult()).toEqual(players);
   });
 
   it('searchStrategies should make a GET request to the API endpoint with the provided query', () => {
@@ -172,10 +173,10 @@ describe('ApiSearchService', () => {
     service.searchStrategies(query);
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/search/strategies?${query}`);
     expect(req.request.method).toBe('GET');
-    expect(service.loadingSearch.value).toBeTruthy();
+    expect(service.loadingSearch()).toBeTruthy();
     req.flush([]);
-    expect(service.loadingSearch.value).toBeFalsy();
-    expect(service.strategySearchResult.value).toEqual([]);
+    expect(service.loadingSearch()).toBeFalsy();
+    expect(service.strategySearchResult()).toEqual([]);
     expect(service['_strategySearchCache'].get(query)).toEqual([]);
 
     query = 'testQuery2';
@@ -209,12 +210,12 @@ describe('ApiSearchService', () => {
     expect(req3.request.method).toBe('GET');
     req3.flush(result);
     service.searchStrategies(query);
-    expect(service.strategySearchResult.value).toEqual(result.strategies);
+    expect(service.strategySearchResult()).toEqual(result.strategies);
 
     // Should return the strategy search result from the cache if the query is already cached
     query = 'testQuery';
     service.searchStrategies(query);
-    expect(service.loadingSearch.value).toBeFalsy();
-    expect(service.strategySearchResult.value).toEqual([]);
+    expect(service.loadingSearch()).toBeFalsy();
+    expect(service.strategySearchResult()).toEqual([]);
   });
 });

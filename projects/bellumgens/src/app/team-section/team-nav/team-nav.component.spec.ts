@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TeamNavComponent } from './team-nav.component';
 import { provideRouter } from '@angular/router';
@@ -12,8 +12,8 @@ describe('TeamNavComponent', () => {
   let component: TeamNavComponent;
   let fixture: ComponentFixture<TeamNavComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
         
         NoopAnimationsModule,
@@ -22,7 +22,7 @@ describe('TeamNavComponent', () => {
       ],
       providers: [provideRouter([]), provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TeamNavComponent);
@@ -35,11 +35,11 @@ describe('TeamNavComponent', () => {
   });
 
   it('should initialize authUser as null', () => {
-    expect(component.authUser).toBeNull();
+    expect(component.authUser()).toBeNull();
   });
 
   it('should initialize teams as undefined when no user is authenticated', () => {
-    expect(component.teams).toBeUndefined();
+    expect(component.teams()).toBeUndefined();
   });
 
   it('should have abandonTeam method', () => {

@@ -32,11 +32,10 @@
         <h2 igxListLineTitle>{{ registration.tournamentName }}</h2>
         <h4 igxListLineSubTitle>{{ registration.game ? 'StarCraft II' : 'Counter-Strike' }}</h4>
         <div class="horizontal-center" igxListAction>
-          <span [ngClass]="{
-            'color-error': registration.state === 0,
-            'color-success': registration.state === 1,
-            'color-warn': registration.state === 2
-          }">{{ regStates[registration?.state ?? 0] }}</span>
+          <span
+            [class.color-error]="registration.state === 0"
+            [class.color-success]="registration.state === 1"
+            [class.color-warn]="registration.state === 2">{{ regStates[registration?.state ?? 0] }}</span>
           @if (!registration.state) {
             <igx-icon class="navigatable" (click)="weeklyCheckin(registration)" i18n-title title="Check in">where_to_vote</igx-icon>
           }

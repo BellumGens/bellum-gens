@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, signal, viewChild } from '@angular/core';
+import { Component, inject, signal, viewChild } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { IgxSnackbarComponent } from '@infragistics/igniteui-angular/snackbar';
@@ -7,7 +7,6 @@ import { CommunicationService } from '../../services/communication.service';
 @Component({
     selector: 'bg-success-error',
     templateUrl: './success-error.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ['./success-error.component.scss'],    imports: [IgxSnackbarComponent, IgxIconComponent]
 })
 export class SuccessErrorComponent {

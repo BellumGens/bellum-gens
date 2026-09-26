@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output, inject, signal } from '@angular/core';
+import { Component, Signal, computed, effect, inject, linkedSignal, output, signal, untracked } from '@angular/core';
 import { UserPreferences, ApplicationUser } from '../../../models/applicationuser';
 import { LoginService } from '../../../services/login.service';
 import { LoginProvider } from '../../../models/login-provider';
@@ -12,7 +12,6 @@ import { IgxButtonDirective, IgxDividerComponent, IgxRippleDirective } from '@in
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { IgxSwitchComponent } from '@infragistics/igniteui-angular/switch';
 import { IGX_LIST_DIRECTIVES } from '@infragistics/igniteui-angular/list';
-import { NgClass } from '@angular/common';
 import { environment } from '../../../environments/environment';
 
 @Component({
@@ -27,7 +26,6 @@ import { environment } from '../../../environments/environment';
     IgxSwitchComponent,
     FormsModule,
     IGX_LIST_DIRECTIVES,
-    NgClass,
     ConfirmComponent
   ]
 })
@@ -36,35 +34,31 @@ export class UserPreferencesComponent {
   private apiService = inject(ApiTournamentsService);
   private router = inject(Router);
 
-  public preferences = signal<UserPreferences>({
-    searchVisible: true,
-    email: ''
+  public authUser: Signal<ApplicationUser | null> = this.authManager.applicationUser;
+
+  // Locally editable copy of the user preferences. Re-seeds whenever a user logs in.
+  public preferences = linkedSignal<ApplicationUser | null, UserPreferences>({
+    source: this.authUser,
+    computation: (user, previous) => user
+      ? { searchVisible: user.searchVisible, email: user.email }
+      : previous?.value ?? { searchVisible: true, email: '' }
   });
 
   public loginColors = LOGIN_ASSETS;
   public providers = signal<LoginProvider []>([]);
-  public authUser = signal<ApplicationUser | null>(null);
-  public registrations = signal<TournamentApplication []>([]);
+  // The registrations are cached by the login service and only pulled once a user is logged in.
+  public registrations = computed<TournamentApplication []>(() =>
+    this.authUser() ? this.authManager.tournamentRegistrations() ?? [] : []
+  );
   public isTournamentAdmin = signal(false);
   public regStates = [$localize`Pending`, $localize`Confirmed`, $localize`Banned`];
 
-  @Output()
-  public userDeleted = new EventEmitter<void>();
+  public userDeleted = output<void>();
 
   constructor() {
-    this.authManager.applicationUser.subscribe(user => {
-      if (user) {
-        this.preferences.set({
-          searchVisible: user.searchVisible,
-          email: user.email
-        });
-        this.authManager.tournamentRegistrations.subscribe(data => {
-          if (data) {
-            this.registrations.set(data);
-          }
-        });
-        this.authUser.set(user);
-        this.authManager.getUserIsTournamentAdmin().subscribe(data => this.isTournamentAdmin.set(data));
+    effect(() => {
+      if (this.authUser()) {
+        untracked(() => this.authManager.getUserIsTournamentAdmin().subscribe(data => this.isTournamentAdmin.set(data)));
       }
     });
     this.authManager.loginProviders.subscribe(providers => this.providers.set(providers));
@@ -97,7 +91,8 @@ export class UserPreferencesComponent {
   public weeklyCheckin(registration: TournamentApplication) {
     if (registration.state !== TournamentApplicationState.Banned) {
       this.apiService.weeklyCheckin(registration).subscribe({
-        next: () => registration.state = 1,
+        next: () => this.updateRegistrations(this.registrations()
+          .map(r => r.id === registration.id ? { ...r, state: TournamentApplicationState.Confirmed } : r)),
         error: () => {}
       });
     }
@@ -105,11 +100,7 @@ export class UserPreferencesComponent {
 
   public deleteRegistration(registration: TournamentApplication) {
     this.apiService.deleteRegistration(registration.id).subscribe({
-      next: () => {
-        const registrations = this.registrations();
-        registrations.splice(registrations.indexOf(registration), 1);
-        this.registrations.set([...registrations]);
-      },
+      next: () => this.updateRegistrations(this.registrations().filter(r => r.id !== registration.id)),
       error: () => {}
     });
   }
@@ -128,5 +119,10 @@ export class UserPreferencesComponent {
     } else {
       window.location.href = `${environment.ebleague}/admin/sc2`;
     }
+  }
+
+  private updateRegistrations(registrations: TournamentApplication []) {
+    // The registrations are cached by the login service, which the local view derives from.
+    this.authManager.setTournamentRegistrations(registrations);
   }
 }

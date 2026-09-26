@@ -5,43 +5,43 @@
 
     <!-- IgxSelect: default positioning changed to AutoPositionStrategy (below/above input).
      To preserve overlap behavior: this.select.overlaySettings = { positionStrategy: new IgxSelectOverlapPositionStrategy(this.select) }; -->
-    <igx-select type="border" name="game" [required]="true" [disabled]="true" class="registration-form-input" [(ngModel)]="application.game" (ngModelChange)="showDetails()">
-      <label igxLabel>{{ authUser ? chooseGame : loginFirst}}</label>
+    <igx-select type="border" name="game" [required]="true" [disabled]="true" class="registration-form-input" [(ngModel)]="application().game" (ngModelChange)="showDetails()">
+      <label igxLabel>{{ authUser() ? chooseGame : loginFirst}}</label>
       @for (game of games; track game.id) {
         <igx-select-item [value]="game.id">
           {{ game.name }}
         </igx-select-item>
       }
-      @if (application.game === 0 && !authUser?.steamId) {
+      @if (application().game === 0 && !authUser()?.steamId) {
         <igx-hint i18n>*You've not associated a Steam account...</igx-hint>
       }
     </igx-select>
   </div>
 
-  <div #appDetails class="form-wrapper application-details">
+  <div class="form-wrapper application-details" [class.application-details-show]="detailsVisible()">
 
     <igx-input-group type="border" class="registration-form-input">
       <label igxLabel for="email" i18n>Email</label>
       <igx-prefix>
         <igx-icon>email</igx-icon>
       </igx-prefix>
-      <input type="email" id="email" #userMail name="email" [required]="true" igxInput pattern="^[a-zA-Z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$" [(ngModel)]="application.email" />
+      <input type="email" id="email" #userMail name="email" [required]="true" igxInput pattern="^[a-zA-Z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$" [(ngModel)]="application().email" />
       @if (userMail.value) {
-        <igx-suffix (click)="application.email = null">
+        <igx-suffix (click)="application().email = null">
           <igx-icon>clear</igx-icon>
         </igx-suffix>
       }
     </igx-input-group>
 
-    @if (application.game === gameEnum.CSGO) {
+    @if (application().game === gameEnum.CSGO) {
       <!-- IgxSelect: default positioning changed to AutoPositionStrategy (below/above input).
      To preserve overlap behavior: this.select.overlaySettings = { positionStrategy: new IgxSelectOverlapPositionStrategy(this.select) }; -->
-<igx-select type="border" id="team" #team name="team" [required]="true" [(ngModel)]="application.teamId" class="registration-form-input" >
+<igx-select type="border" id="team" #team name="team" [required]="true" [(ngModel)]="application().teamId" class="registration-form-input" >
         <label igxLabel for="email" i18n>Choose your team</label>
         <igx-prefix>
           <igx-icon>people</igx-icon>
         </igx-prefix>
-        @for (team of userTeams | async; track team.teamId) {
+        @for (team of userTeams(); track team.teamId) {
           <igx-select-item [value]="team.teamId" [text]="team.teamName">
             <igx-avatar [src]="team.teamAvatar" [initials]="team.teamName" class="team-avatar" shape="circle"></igx-avatar>
             <span class="title margin-left">{{ team.teamName }}</span>
@@ -51,15 +51,15 @@
       </igx-select>
     }
 
-    @if (application.game === gameEnum.StarCraft2) {
+    @if (application().game === gameEnum.StarCraft2) {
       <igx-input-group type="border" class="registration-form-input" >
         <label igxLabel for="email">Battle tag</label>
         <igx-prefix>
           <igx-icon family="login-icons" name="battlenet"></igx-icon>
         </igx-prefix>
-        <input id="battletag" #battletag name="battletag" [required]="true" igxInput [pattern]="battleTagRegex" [(ngModel)]="application.battleNetId" />
+        <input id="battletag" #battletag name="battletag" [required]="true" igxInput [pattern]="battleTagRegex" [(ngModel)]="application().battleNetId" />
         @if (battletag.value) {
-          <igx-suffix (click)="application.battleNetId = null">
+          <igx-suffix (click)="application().battleNetId = null">
             <igx-icon>clear</igx-icon>
           </igx-suffix>
         }
@@ -71,16 +71,16 @@
       <igx-prefix>
         <igx-icon>work</igx-icon>
       </igx-prefix>
-      <input id="company" #company name="company" igxInput [igxAutocomplete]="companiesDD" [(ngModel)]="application.companyId" [required]="true" />
+      <input id="company" #company name="company" igxInput [igxAutocomplete]="companiesDD" [(ngModel)]="application().companyId" [required]="true" />
       @if (company.value) {
-        <igx-suffix (click)="application.companyId = null">
+        <igx-suffix (click)="application().companyId = null">
           <igx-icon>clear</igx-icon>
         </igx-suffix>
       }
       <igx-hint i18n>*Choose the company associated with your participation...</igx-hint>
     </igx-input-group>
     <igx-drop-down #companiesDD maxHeight="320px">
-      @for (company of companies | startsWith:application.companyId; track company) {
+      @for (company of companies() | startsWith:application().companyId; track company) {
         <igx-drop-down-item [value]="company">
           {{ company }}
         </igx-drop-down-item>
@@ -93,8 +93,8 @@
       </igx-checkbox>
     </div>
 
-    <button igxButton="outlined" class="submit-registration" [disabled]="tapplication.invalid || !termsAccepted.checked || inProgress" i18n>Register</button>
+    <button igxButton="outlined" class="submit-registration" [disabled]="tapplication.invalid || !termsAccepted.checked || inProgress()" i18n>Register</button>
   </div>
 </form>
 
-<app-team-new #newTeam [authUser]="authUser"></app-team-new>
+<app-team-new #newTeam [authUser]="authUser()"></app-team-new>

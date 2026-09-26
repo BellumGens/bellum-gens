@@ -13,14 +13,14 @@
       <igx-icon>live_tv</igx-icon>
       Active Seasons
     </h2>
-    @if (!tournaments || !tournaments.length) {
+    @if (!tournaments().length) {
       <div class="empty-state">
         <igx-icon>emoji_events</igx-icon>
         <p i18n>No active seasons at the moment</p>
       </div>
     }
     <div class="season-grid">
-      @for (tournament of tournaments; track tournament.id) {
+      @for (tournament of tournaments(); track tournament.id) {
         <igx-card elevated class="season-card">
           @if (tournament.logo) {
             <igx-card-media height="200px">
@@ -55,7 +55,7 @@
     </div>
   </section>
 
-  @if (upcoming?.length) {
+  @if (upcoming().length) {
     <igx-divider></igx-divider>
     <section class="season-section">
       <h2 i18n>
@@ -63,7 +63,7 @@
         Upcoming Seasons
       </h2>
       <div class="season-grid">
-        @for (tournament of upcoming; track tournament.id) {
+        @for (tournament of upcoming(); track tournament.id) {
           <igx-card elevated class="season-card">
             @if (tournament.logo) {
               <igx-card-media height="200px">
@@ -89,7 +89,7 @@
     </section>
   }
 
-  @if (past?.length) {
+  @if (past().length) {
     <igx-divider></igx-divider>
     <section class="season-section">
       <h2 i18n>
@@ -97,7 +97,7 @@
         Past Seasons
       </h2>
       <div class="season-grid">
-        @for (tournament of past; track tournament.id) {
+        @for (tournament of past(); track tournament.id) {
           <igx-card elevated class="season-card">
             @if (tournament.logo) {
               <igx-card-media height="200px">

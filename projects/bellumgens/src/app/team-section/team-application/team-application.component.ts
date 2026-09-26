@@ -1,4 +1,4 @@
-import { Component, ViewChild, Input, inject } from '@angular/core';
+import { Component, inject, input, viewChild } from '@angular/core';
 import { IgxDialogComponent } from '@infragistics/igniteui-angular/dialog';
 import { IgxButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
 import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
@@ -15,7 +15,8 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-team-application',
   templateUrl: './team-application.component.html',
-  styleUrls: ['./team-application.component.scss'],  imports: [
+  styleUrls: ['./team-application.component.scss'],
+  imports: [
     IgxButtonDirective,
     IgxRippleDirective,
     IgxDialogComponent,
@@ -27,13 +28,11 @@ import { FormsModule } from '@angular/forms';
 export class TeamApplicationComponent {
   private apiService = inject(BellumgensApiService);
 
-  @ViewChild(IgxDialogComponent, { static: true }) public dialog: IgxDialogComponent;
+  public dialog = viewChild.required(IgxDialogComponent);
 
-  @Input()
-  public authUser: ApplicationUser;
+  public authUser = input<ApplicationUser>();
 
-  @Input()
-  public team: CSGOTeam;
+  public team = input<CSGOTeam>();
 
   public application: TeamApplication = {
     teamId: '',
@@ -43,10 +42,14 @@ export class TeamApplicationComponent {
   };
 
   public submitApplication() {
-    if (this.authUser) {
-      this.application.applicantId = this.authUser.id;
-      this.application.teamId = this.team.teamId;
-      this.apiService.submitApplication(this.application).subscribe(() => this.dialog.close());
+    const authUser = this.authUser();
+    if (authUser) {
+      const application: TeamApplication = {
+        ...this.application,
+        applicantId: authUser.id,
+        teamId: this.team().teamId
+      };
+      this.apiService.submitApplication(application).subscribe(() => this.dialog().close());
     }
   }
 }

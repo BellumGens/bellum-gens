@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { BaseDirective } from './base.component';
 import { provideRouter, ActivatedRoute } from '@angular/router';
@@ -9,8 +9,8 @@ describe('BaseComponent', () => {
   let component: BaseDirective;
   let fixture: ComponentFixture<BaseDirective>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
         TestComponent
       ],
@@ -25,7 +25,7 @@ describe('BaseComponent', () => {
       ]
     })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TestComponent);

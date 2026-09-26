@@ -2,8 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { NotificationState } from '../../../../common/src/public_api';
 
 @Pipe({
-    name: 'disabledNotifications',
-    standalone: true
+    name: 'disabledNotifications'
 })
 export class DisabledNotificationsPipe implements PipeTransform {
 

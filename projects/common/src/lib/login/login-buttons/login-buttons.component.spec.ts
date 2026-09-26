@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { LoginButtonsComponent } from './login-buttons.component';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
@@ -13,8 +13,8 @@ describe('LoginButtonsComponent', () => {
   let httpMock: HttpTestingController;
   let loginService: LoginService;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
     imports: [
         ServiceWorkerModule.register('', { enabled: false }),
         LoginButtonsComponent],
@@ -24,7 +24,7 @@ describe('LoginButtonsComponent', () => {
 
     loginService = TestBed.inject(LoginService);
     httpMock = TestBed.inject(HttpTestingController);
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(LoginButtonsComponent);
@@ -39,8 +39,12 @@ describe('LoginButtonsComponent', () => {
   it('should have loginProviders', () => {
     const req = httpMock.expectOne(`${loginService['_apiEndpoint']}/ExternalLogins?returnUrl=%2F`);
     expect(req.request.method).toBe('GET');
-    req.flush([]);
-    component.loginProviders.subscribe(providers => expect(providers).toEqual([]));
+    const providers: LoginProvider [] = [{ name: 'Steam', state: 'test', url: 'test' }];
+    expect(component.loginProviders()).toEqual([]);
+    req.flush(providers);
+    expect(component.loginProviders()).toEqual(providers);
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelectorAll('button').length).toBe(1);
   });
 
   it('should have loginColors', () => {

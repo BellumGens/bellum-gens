@@ -51,12 +51,12 @@ describe('TournamentsMainComponent', () => {
     req.flush(tournaments);
 
     // tournaments array: active=true (id 1, 3, 4)
-    expect(component.tournaments.length).toBe(3);
+    expect(component.tournaments().length).toBe(3);
     // past array: endDate < now (id 3)
-    expect(component.past.length).toBe(1);
-    expect(component.past[0].id).toBe('3');
+    expect(component.past().length).toBe(1);
+    expect(component.past()[0].id).toBe('3');
     // upcoming array: startDate > now (id 4)
-    expect(component.upcoming.length).toBe(1);
-    expect(component.upcoming[0].id).toBe('4');
+    expect(component.upcoming().length).toBe(1);
+    expect(component.upcoming()[0].id).toBe('4');
   });
 });

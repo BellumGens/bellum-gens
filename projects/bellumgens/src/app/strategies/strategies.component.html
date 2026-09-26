@@ -1,18 +1,18 @@
 <div class="strat-filter-header">
   <div igxCardHeaderTitle>
     <span i18n>Showing</span>
-    <button class="navigation-item" igxButton="outlined" igxRipple (click)="viewAll = !viewAll">{{viewAll ? 'all maps' : 'active duty maps'}}</button>
+    <button class="navigation-item" igxButton="outlined" igxRipple (click)="viewAll.set(!viewAll())">{{viewAll() ? 'all maps' : 'active duty maps'}}</button>
   </div>
   <button class="navigation-item"
     igxButton="contained"
     igxRipple
-    (click)="authUser ? newStrategy.open() : openLogin()"
+    (click)="authUser() ? newStrategy.open() : openLogin()"
   i18n>Create new strategy</button>
 </div>
 <div class="strat-filter-header">
   <div class="horizontal">
     <igx-chips-area class="map-filter">
-      @for (map of maps | activeDutyMaps:viewAll; track map.mapId) {
+      @for (map of maps() | activeDutyMaps:viewAll(); track map.mapId) {
         <igx-chip
           [selected]="map.isPlayed"
           [selectable]="true"
@@ -34,16 +34,16 @@
   </div>
 </div>
 
-@if (loading) {
+@if (loading()) {
   <bg-loading></bg-loading>
 }
 
 <div class="card-wrapper">
-  @if (!loading && !strats?.length) {
+  @if (!loading() && !strats()?.length) {
     <span igxCardHeaderSubtitle i18n>No strategies found...</span>
   }
 
-  @for (strat of strats | stratFilter:viewAll:pipeTrigger | sidestrats:maps:order; track strat.id) {
+  @for (strat of strats() | stratFilter:viewAll() | sidestrats:maps():order(); track strat.id) {
     <igx-card elevated>
       <igx-card-header>
         <h2 igxCardHeaderTitle
@@ -71,24 +71,24 @@
           <span i18n>Comments</span>
         </span>
         <button igxEnd igxButton="fab"
-          [ngClass]="strat.votes | hasVoted:0:authUser:pipeTrigger"
+          [class]="strat.votes | hasVoted:0:authUser()"
           igxRipple
           (click)="voteStrat(strat, 0)">
           <igx-icon title="vote up">thumb_up</igx-icon>
-          @if (strat.votes | votes:0:pipeTrigger) {
+          @if (strat.votes | votes:0) {
             <span>
-              {{strat.votes | votes:0:pipeTrigger}}
+              {{strat.votes | votes:0}}
             </span>
           }
         </button>
         <button igxEnd igxButton="fab"
-          [ngClass]="strat.votes | hasVoted:1:authUser:pipeTrigger"
+          [class]="strat.votes | hasVoted:1:authUser()"
           igxRipple
           (click)="voteStrat(strat, 1)">
           <igx-icon title="vote down">thumb_down</igx-icon>
-          @if (strat.votes | votes:1:pipeTrigger) {
+          @if (strat.votes | votes:1) {
             <span>
-              {{strat.votes | votes:1:pipeTrigger}}
+              {{strat.votes | votes:1}}
             </span>
           }
         </button>
@@ -100,7 +100,7 @@
             <span i18n>Share</span>
           </div>
         </igx-drop-down-item>
-        @if ((authUser | isStratOwner:strat) || isEditor) {
+        @if ((authUser() | isStratOwner:strat) || isEditor()) {
           <igx-drop-down-item (click)="newStrategy.open(strat, 'Edit strategy')">
             <div class="dd-item-content">
               <igx-icon title="Edit Strategy">edit</igx-icon>
@@ -118,7 +118,7 @@
     </igx-card>
   }
 
-  @if (hasMore) {
+  @if (hasMore()) {
     <igx-card class="fit-content-card">
       <igx-card-header class="empty-strategy">
         <h4 igxCardHeaderTitle i18n>Load More...</h4>
@@ -137,8 +137,8 @@
 
 <app-new-strategy #newStrategy
   (strategyAdded)="onStrategyAdded($event)"
-  [team]="team"
-  [authUser]="authUser">
+  [team]="team()"
+  [authUser]="authUser()">
 </app-new-strategy>
 
 <!-- Confirm -->

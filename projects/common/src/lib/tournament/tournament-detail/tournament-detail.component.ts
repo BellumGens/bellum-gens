@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component, inject, signal, computed } from '@angular/core';
+import { Component, inject, computed } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { DatePipe, AsyncPipe } from '@angular/common';
+import { DatePipe } from '@angular/common';
 import {
   Tournament,
   TournamentParticipant,
@@ -12,7 +13,7 @@ import { ApiTournamentsService } from '../../../services/bellumgens-api.tourname
 import { LoginService } from '../../../services/login.service';
 import { CountrySVGPipe } from '../../pipes/country-svg.pipe';
 import { RaceIconPipe } from '../../pipes/race-icon.pipe';
-import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { TournamentSC2Match, TournamentCSGOMatch } from '../../../models/tournament-schedule';
 import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
 import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
@@ -26,10 +27,8 @@ import { IGX_TABS_DIRECTIVES } from '@infragistics/igniteui-angular/tabs';
   selector: 'bg-tournament-detail',
   templateUrl: './tournament-detail.component.html',
   styleUrl: './tournament-detail.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DatePipe,
-    AsyncPipe,
     RouterLink,
     IGX_CARD_DIRECTIVES,
     IgxAvatarComponent,
@@ -48,16 +47,26 @@ export class TournamentDetailComponent {
   private activeRoute = inject(ActivatedRoute);
   private loginService = inject(LoginService);
 
-  public tournament = signal<Tournament | null>(null);
-  public loading = signal(true);
-  public registrations!: Observable<TournamentParticipant[]>;
-  public sc2Matches!: Observable<TournamentSC2Match[]>;
-  public csgoMatches!: Observable<TournamentCSGOMatch[]>;
-  public loadingRegistrations: Observable<boolean>;
+  private tournamentId = toSignal(this.activeRoute.params.pipe(map(params => params['tournamentId'] as string)));
+
+  public tournament = computed<Tournament | null>(() => this.tournamentId() ? this.apiService.getTournament(this.tournamentId())() ?? null : null);
+  public loading = computed(() => !this.tournament());
+  // Each game's data is only loaded for tournaments of that game (or of no specific game)
+  private hasSc2Data = computed(() => this.tournament() && (this.tournament().game === Game.StarCraft2 || this.tournament().game == null));
+  private hasCsgoData = computed(() => this.tournament() && (this.tournament().game === Game.CSGO || this.tournament().game == null));
+  public registrations = computed<TournamentParticipant[]>(() =>
+    this.hasSc2Data() ? this.apiService.getSc2Registrations(this.tournament().id)() ?? [] : []);
+  public sc2Matches = computed<TournamentSC2Match[] | null>(() =>
+    this.hasSc2Data() ? this.apiService.getSc2Matches(this.tournament().id)() : null);
+  public csgoMatches = computed<TournamentCSGOMatch[] | null>(() =>
+    this.hasCsgoData() ? this.apiService.getCsgoMatches(this.tournament().id)() : null);
+  public loadingRegistrations = this.apiService.loadingSC2Registrations;
+
+  private authUser = this.loginService.applicationUser;
 
   public isOwner = computed(() => {
     const t = this.tournament();
-    const user = this.loginService.applicationUser?.value;
+    const user = this.authUser();
     return t && user && t.creatorId === user.id;
   });
 
@@ -66,7 +75,7 @@ export class TournamentDetailComponent {
     return t && t.status === TournamentStatus.Open && t.visibility !== TournamentVisibility.Private;
   });
 
-  public get statusLabel(): string {
+  public statusLabel = computed(() => {
     const t = this.tournament();
     if (!t) return '';
     switch (t.status) {
@@ -77,9 +86,9 @@ export class TournamentDetailComponent {
       case TournamentStatus.Cancelled: return 'Cancelled';
       default: return '';
     }
-  }
+  });
 
-  public get visibilityIcon(): string {
+  public visibilityIcon = computed(() => {
     const t = this.tournament();
     if (!t) return 'public';
     switch (t.visibility) {
@@ -88,28 +97,5 @@ export class TournamentDetailComponent {
       case TournamentVisibility.InviteOnly: return 'mail';
       default: return 'public';
     }
-  }
-
-  constructor() {
-    this.loadingRegistrations = this.apiService.loadingSC2Registrations;
-
-    this.activeRoute.params.subscribe(params => {
-      if (params['tournamentId']) {
-        this.apiService.getTournament(params['tournamentId']).subscribe(t => {
-          if (t) {
-            this.tournament.set(t);
-            this.loading.set(false);
-
-            if (t.game === Game.StarCraft2 || !t.game) {
-              this.registrations = this.apiService.getSc2Registrations(t.id);
-              this.sc2Matches = this.apiService.getSc2Matches(t.id);
-            }
-            if (t.game === Game.CSGO || !t.game) {
-              this.csgoMatches = this.apiService.getCsgoMatches(t.id);
-            }
-          }
-        });
-      }
-    });
-  }
+  });
 }

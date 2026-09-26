@@ -2,19 +2,19 @@
   <igx-card>
     <igx-card-header>
       <igx-avatar src="/assets/wallpapers/sc2-watermark.webp" igxCardThumbnail shape="circle" />
-      <h1 igxCardHeaderTitle>{{ tournament?.name }}</h1>
+      <h1 igxCardHeaderTitle>{{ tournament()?.name }}</h1>
     </igx-card-header>
     <igx-card-content>
       <h4 i18n>Participants</h4>
       <div class="participants-container">
-        @if (loading) {
+        @if (loading()) {
           <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
         }
-        @for (registration of registrations; track registration) {
+        @for (registration of registrations(); track registration) {
           <div class="registration-slot">
             <igx-avatar [src]="registration.user?.sc2Details?.avatarUrl || ''" [initials]="registration.user.username" size="medium" shape="circle">
             </igx-avatar>
-            @if (registration.userId === authUser?.id && registration.state === 0) {
+            @if (registration.userId === authUser()?.id && registration.state === 0) {
               <igx-badge
                 type="warning"
                 icon="priority_high"
@@ -31,10 +31,10 @@
       </div>
 
       <div class="group-columns">
-        @for (group of groups; track group.id) {
+        @for (group of groups(); track group.id) {
           <igx-grid
             cellSelection="none"
-            [isLoading]="loadingGroups"
+            [isLoading]="loadingGroups()"
             [data]="group.participants">
             <igx-grid-toolbar>
               <igx-grid-toolbar-title>{{group.name}}</igx-grid-toolbar-title>
@@ -69,15 +69,15 @@
       </div>
 
       <igx-grid cellSelection="none"
-        [data]="sc2matches"
+        [data]="sc2matches()"
         height="550px"
         i18n-emptyGridMessage
         emptyGridMessage="No matches found..."
-        [isLoading]="loadingMatches"
+        [isLoading]="loadingMatches()"
         [allowFiltering]="true">
 
         <igx-grid-toolbar>
-          <igx-grid-toolbar-title i18n>{{ tournament?.name }} Schedule</igx-grid-toolbar-title>
+          <igx-grid-toolbar-title i18n>{{ tournament()?.name }} Schedule</igx-grid-toolbar-title>
           <igx-grid-toolbar-actions>
             <a href="https://challonge.com/ebleague_starcraft" target="_blank" rel="noopener" i18n>Season 2 bracket is available here</a>
           </igx-grid-toolbar-actions>

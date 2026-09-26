@@ -1,10 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { map } from 'rxjs/operators';
 import {
-  TournamentParticipant, TournamentGroup, Tournament,
   ApiTournamentsService,
-  LoginService,
-  ApplicationUser,
-  TournamentCSGOMatch
+  LoginService
 } from '../../../../../common/src/public_api';
 import { BaseDirective } from '../../../../../bellumgens/src/app/base/base.component';
 import { environment } from '../../../../../common/src/environments/environment';
@@ -22,7 +21,8 @@ import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 @Component({
   selector: 'app-tournament-csgo',
   templateUrl: './tournament-csgo.component.html',
-  styleUrls: ['./tournament-csgo.component.scss'],  imports: [
+  styleUrls: ['./tournament-csgo.component.scss'],
+  imports: [
     DatePipe,
     IGX_CARD_DIRECTIVES,
     IgxCircularProgressBarComponent,
@@ -39,32 +39,14 @@ export class TournamentCsgoComponent extends BaseDirective {
   private apiService = inject(ApiTournamentsService);
   private loginService = inject(LoginService);
 
-  public registrations: TournamentParticipant [];
-  public groups: TournamentGroup [];
-  public loading = false;
-  public loadingMatches = false;
-  public authUser: ApplicationUser;
-  public tournamentId: string;
   public environment = environment;
-  public csgomatches: TournamentCSGOMatch [];
-  public tournament: Tournament;
-
-  constructor() {
-    super();
-    this.loginService.applicationUser.subscribe(user => this.authUser = user);
-
-    this.activeRoute.params.subscribe(params => {
-      this.tournamentId = params['tournamentid'];
-      this.apiService.getTournament(this.tournamentId).subscribe(t => this.tournament = t);
-      this.apiService.loadingCSGORegistrations.subscribe(data => this.loading = data);
-      this.apiService.getCsgoRegistrations(this.tournamentId).subscribe(data => this.registrations = data);
-      this.apiService.loadingCSGOMatches.subscribe(data => this.loadingMatches = data);
-      this.apiService.getCsgoMatches(this.tournamentId).subscribe(data => {
-        if (data) {
-          this.csgomatches = data;
-        }
-      });
-      this.apiService.getCsgoGroups(this.tournamentId).subscribe(data => this.groups = data);
-    });
-  }
+  public authUser = this.loginService.applicationUser;
+  // An empty tournament id loads the active tournament's data
+  public tournamentId = toSignal(this.activeRoute.params.pipe(map(params => params['tournamentid'] as string)));
+  public tournament = computed(() => this.apiService.getTournament(this.tournamentId())());
+  public loading = this.apiService.loadingCSGORegistrations;
+  public registrations = computed(() => this.apiService.getCsgoRegistrations(this.tournamentId())());
+  public loadingMatches = this.apiService.loadingCSGOMatches;
+  public csgomatches = computed(() => this.apiService.getCsgoMatches(this.tournamentId())() ?? undefined);
+  public groups = computed(() => this.apiService.getCsgoGroups(this.tournamentId())());
 }

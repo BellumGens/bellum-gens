@@ -1,9 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, linkedSignal, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import {
   LoginService,
   ApiTournamentsService,
-  Tournament, EMPTY_NEW_TOURNAMENT, TournamentApplication,
-  Order, Promo,
+  Tournament, EMPTY_NEW_TOURNAMENT,
+  Promo,
   ApiShopService
 } from '../../../../../common/src/public_api';
 import { IGridEditEventArgs, RowType } from '@infragistics/igniteui-angular/grids/core';
@@ -21,13 +22,13 @@ import { IGX_CHIPS_DIRECTIVES } from '@infragistics/igniteui-angular/chips';
 import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
 import { FormsModule } from '@angular/forms';
 import { SizeNamePipe } from '../../pipes/size-name.pipe';
-import { Observable } from 'rxjs';
-import { AsyncPipe } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-admin-main',
   templateUrl: './admin-main.component.html',
-  styleUrls: ['./admin-main.component.scss'],  imports: [
+  styleUrls: ['./admin-main.component.scss'],
+  imports: [
     FormsModule,
     IGX_GRID_DIRECTIVES,
     IgxIconComponent,
@@ -43,7 +44,7 @@ import { AsyncPipe } from '@angular/common';
     IgxCheckboxComponent,
     IGX_CHIPS_DIRECTIVES,
     SizeNamePipe,
-    AsyncPipe
+    NgOptimizedImage
   ]
 })
 export class AdminMainComponent {
@@ -51,42 +52,40 @@ export class AdminMainComponent {
   private apiService = inject(ApiTournamentsService);
   private shopService = inject(ApiShopService);
 
-  public roles: string [];
+  public roles = signal<string []>(null);
   // public users: AdminAppUserSummary [];
-  public tournaments: Tournament [];
+  private allTournaments = this.apiService.tournaments;
+  // A local copy with parsed dates for the grid's date editors; tournaments created here are appended to it
+  public tournaments = linkedSignal<Tournament []>(() => this.allTournaments()?.map(t => ({
+    ...t,
+    startDate: new Date(t.startDate),
+    endDate: new Date(t.endDate)
+  })) ?? null);
   public tournament = Object.assign({}, EMPTY_NEW_TOURNAMENT);
-  public orders: Observable<Order []>;
-  public registrations: TournamentApplication [];
-  public promos: Promo [];
-  public grouping: IGroupingExpression [];
+  public orders = toSignal(this.shopService.getOrders());
+  public registrations = this.apiService.allRegistrations;
+  public promos = signal<Promo []>(null);
+  public grouping: IGroupingExpression [] = [
+    { dir: SortingDirection.Desc, fieldName: 'tournamentName', ignoreCase: false, strategy: DefaultSortingStrategy.instance() },
+    { dir: SortingDirection.Asc, fieldName: 'game', ignoreCase: false, strategy: DefaultSortingStrategy.instance() }
+  ];
 
   constructor() {
-    this.authService.getUserRoles().subscribe(data => this.roles = data);
+    this.authService.getUserRoles().subscribe(data => this.roles.set(data));
     // this.authService.getUsers().subscribe(data => this.users = data);
-    this.authService.getPromoCodes().subscribe(data => this.promos = data);
-    this.apiService.tournaments.subscribe(data => {
-      if (data) {
-        data.forEach(t => {
-          t.startDate = new Date(t.startDate);
-          t.endDate = new Date(t.endDate);
-        });
-        this.tournaments = data;
-      }
-    });
-    this.orders = this.shopService.getOrders();
-    this.apiService.allRegistrations.subscribe(data => this.registrations = data);
-    this.grouping = [
-      { dir: SortingDirection.Desc, fieldName: 'tournamentName', ignoreCase: false, strategy: DefaultSortingStrategy.instance() },
-      { dir: SortingDirection.Asc, fieldName: 'game', ignoreCase: false, strategy: DefaultSortingStrategy.instance() }
-    ];
+    this.authService.getPromoCodes().subscribe(data => this.promos.set(data));
   }
 
   public submitRole(role: string) {
-    this.authService.submitRole(role).subscribe(() => this.authService.getUserRoles().subscribe(roles => this.roles = roles));
+    this.authService.submitRole(role).subscribe(() => this.authService.getUserRoles().subscribe(roles => this.roles.set(roles)));
   }
 
   public updateTournament(tournament?: Tournament) {
-    this.apiService.createTournament(tournament || this.tournament).subscribe(data => !tournament ? this.tournaments.push(data) : null);
+    this.apiService.createTournament(tournament || this.tournament).subscribe(data => {
+      if (!tournament) {
+        this.tournaments.update(tournaments => [...(tournaments || []), data]);
+      }
+    });
   }
 
   public editDone(event: IGridEditEventArgs) {

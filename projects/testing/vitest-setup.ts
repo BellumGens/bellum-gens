@@ -1,11 +1,6 @@
 // Global test setup, shared by all three projects via the `setupFiles` option of
 // the `@angular/build:unit-test` targets in angular.json.
 
-// zone.js/testing only patches Jasmine and Mocha. Under Vitest the describe/it bodies
-// need this additional patch to run inside a ProxyZone, which Angular's waitForAsync()
-// and fakeAsync() require.
-import 'zone.js/plugins/vitest-patch';
-
 // The tests used to run in a real Chrome instance under Karma. They now run in jsdom,
 // which implements none of the APIs below -- yet Ignite UI components and a few of our
 // own components call them while rendering. Each stub is only installed if missing, so

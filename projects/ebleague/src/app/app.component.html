@@ -1,5 +1,5 @@
 <div igxLayout>
-  <igx-nav-drawer [pinThreshold]="1600" id="navigation" #drawer>
+  <igx-nav-drawer [pinThreshold]="1600" id="navigation" #drawer (pinChange)="drawerPinned.set($event)">
     <ng-template igxDrawer>
       <span igxDrawerItem [isHeader]="true">Esports Business League</span>
       <span igxDrawerItem igxRipple routerLink="tournaments">
@@ -32,7 +32,7 @@
       </span>
     </ng-template>
 
-    @if (drawer.pin) {
+    @if (drawerPinned()) {
       <ng-template igxDrawerMini>
         <span igxDrawerItem [isHeader]="true">&nbsp;</span>
         <span igxDrawerItem igxRipple routerLink="tournaments" i18n-title title="EBL Seasons">

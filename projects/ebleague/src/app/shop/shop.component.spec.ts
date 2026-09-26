@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ShopComponent } from './shop.component';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
@@ -8,18 +8,20 @@ import { routes } from './shop.routes';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { Router } from '@angular/router';
+import { By } from '@angular/platform-browser';
+import { Order, OrderformComponent } from '../../../../common/src/public_api';
 import { BaseDirective } from '../../../../bellumgens/src/app/base/base.component';
 
 describe('ShopComponent', () => {
   let component: ShopComponent;
   let fixture: ComponentFixture<ShopComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [ShopComponent, NoopAnimationsModule],
       providers: [provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting(), provideRouter(routes)]
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ShopComponent);
@@ -39,22 +41,23 @@ describe('ShopComponent', () => {
     expect(component.basePrice).toBe(60);
   });
 
-  it('should have orderForm ViewChild', () => {
-    expect(component.orderForm).toBeDefined();
+  it('should render the order form', () => {
+    expect(fixture.debugElement.query(By.directive(OrderformComponent))).toBeTruthy();
   });
 
-  it('should subscribe to orderSuccess event on init', () => {
-    vi.spyOn(component.orderForm.orderSuccess, 'subscribe').mockImplementation(() => undefined);
-    component.ngOnInit();
-    expect(component.orderForm.orderSuccess.subscribe).toHaveBeenCalled();
+  it('should handle the orderSuccess event of the order form', () => {
+    vi.spyOn(component, 'onOrderSuccess').mockImplementation(() => undefined);
+    const orderForm: OrderformComponent = fixture.debugElement.query(By.directive(OrderformComponent)).componentInstance;
+    orderForm.orderSuccess.emit({} as Order);
+    expect(component.onOrderSuccess).toHaveBeenCalled();
   });
 
   it('should navigate to order-success on order success', () => {
     const router = TestBed.inject(Router);
     vi.spyOn(router, 'navigate').mockImplementation(() => undefined);
 
-    component.ngOnInit();
-    component.orderForm.orderSuccess.emit();
+    const orderForm: OrderformComponent = fixture.debugElement.query(By.directive(OrderformComponent)).componentInstance;
+    orderForm.orderSuccess.emit({} as Order);
 
     expect(router.navigate).toHaveBeenCalledWith(['shop', 'order-success']);
   });

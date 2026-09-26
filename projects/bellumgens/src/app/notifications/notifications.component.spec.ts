@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { NotificationsComponent } from './notifications.component';
 import { provideRouter } from '@angular/router';
@@ -10,15 +10,15 @@ describe('NotificationsComponent', () => {
   let component: NotificationsComponent;
   let fixture: ComponentFixture<NotificationsComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
     imports: [
         ServiceWorkerModule.register('', { enabled: false }),
         NotificationsComponent],
     providers: [provideRouter([]), provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
 })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(NotificationsComponent);
@@ -32,7 +32,7 @@ describe('NotificationsComponent', () => {
 
   it('should initialize teamAdmin observable', () => {
     // teamAdmin is initialized only when user logs in
-    expect(component.teamAdmin).toBeUndefined();
+    expect(component.teamAdmin()).toBeUndefined();
   });
 
   it('should emit loaded event when aggregate is called with unread notifications', () => {
@@ -73,6 +73,6 @@ describe('NotificationsComponent', () => {
 
   it('should subscribe to auth user changes', () => {
     // teamAdmin is undefined until user logs in
-    expect(component.teamAdmin).toBeUndefined();
+    expect(component.teamAdmin()).toBeUndefined();
   });
 });

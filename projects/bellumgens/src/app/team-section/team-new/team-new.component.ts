@@ -1,7 +1,8 @@
-import { Component, ViewChild, Input, inject } from '@angular/core';
+import { Component, inject, input, signal, viewChild } from '@angular/core';
 import {
   ApplicationUser,
   BellumgensApiService,
+  CSGOTeam,
   SteamGroup,
   EMPTY_NEW_TEAM
 } from '../../../../../common/src/public_api';
@@ -19,7 +20,8 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-team-new',
   templateUrl: './team-new.component.html',
-  styleUrls: ['./team-new.component.scss'],  imports: [
+  styleUrls: ['./team-new.component.scss'],
+  imports: [
     IgxDialogComponent,
     IGX_INPUT_GROUP_DIRECTIVES,
     IgxIconComponent,
@@ -35,48 +37,43 @@ export class TeamNewComponent {
   private apiService = inject(BellumgensApiService);
   private router = inject(Router);
 
-  @Input() public authUser: ApplicationUser;
+  public authUser = input<ApplicationUser>();
 
-  @ViewChild(IgxDialogComponent) public createTeam: IgxDialogComponent;
+  public createTeam = viewChild(IgxDialogComponent);
 
-  public groups: SteamGroup [];
-  public searchGroups: string;
+  public groups = signal<SteamGroup []>(undefined);
+  public searchGroups = signal<string>(undefined);
   public newTeam = Object.assign({}, EMPTY_NEW_TEAM);
   public navigateOnCreate = true;
-  public inProgress = false;
+  public inProgress = signal(false);
 
   public open(navigate = true) {
     this.navigateOnCreate = navigate;
-    this.apiService.getPlayerGroups(this.authUser.steamId).subscribe(groups => this.groups = groups);
-    this.createTeam.open();
+    this.apiService.getPlayerGroups(this.authUser().steamId).subscribe(groups => this.groups.set(groups));
+    this.createTeam().open();
   }
 
   public createFromSteam(group: SteamGroup) {
-    this.inProgress = true;
+    this.inProgress.set(true);
     this.apiService.registerSteamGroup(group).subscribe({
-      next: team => {
-        this.inProgress = false;
-        this.createTeam.close();
-        if (this.navigateOnCreate) {
-          this.router.navigate(['/team', team.customUrl]);
-        }
-      },
-      error: () => this.inProgress = false
+      next: team => this.teamCreated(team),
+      error: () => this.inProgress.set(false)
     });
   }
 
   public createFromForm() {
-    this.inProgress = true;
+    this.inProgress.set(true);
     this.apiService.registerTeam(this.newTeam).subscribe({
-      next: team => {
-        this.inProgress = false;
-        this.createTeam.close();
-        if (this.navigateOnCreate) {
-          this.router.navigate(['/team', team.customUrl]);
-        }
-      },
-      error: () => this.inProgress = false
+      next: team => this.teamCreated(team),
+      error: () => this.inProgress.set(false)
     });
   }
 
+  private teamCreated(team: CSGOTeam) {
+    this.inProgress.set(false);
+    this.createTeam().close();
+    if (this.navigateOnCreate) {
+      this.router.navigate(['/team', team.customUrl]);
+    }
+  }
 }

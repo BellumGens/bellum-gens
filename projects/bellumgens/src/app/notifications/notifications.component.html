@@ -1,7 +1,7 @@
 <div class="overview-container-card">
   <app-player-notifications (loaded)="aggregate($event)" (changed)="changed($event)"></app-player-notifications>
 
-  @for (team of teamAdmin | async; track team.teamId) {
+  @for (team of teamAdmin(); track team.teamId) {
     <app-team-notifications [team]="team" (loaded)="aggregate($event)" (changed)="changed($event)"></app-team-notifications>
   }
 </div>

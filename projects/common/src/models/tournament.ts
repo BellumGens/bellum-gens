@@ -69,6 +69,8 @@ export interface TournamentParticipant {
   id: string;
   userId: string;
   teamId?: string;
+  tournamentCSGOGroupId?: string;
+  tournamentSC2GroupId?: string;
   state: TournamentApplicationState;
   user?: ApplicationUser;
   team?: CSGOTeam;

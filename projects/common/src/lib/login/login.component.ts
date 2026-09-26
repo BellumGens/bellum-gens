@@ -1,4 +1,5 @@
-import { Component, ViewChild, inject, signal } from '@angular/core';
+import { Component, Signal, inject, viewChild } from '@angular/core';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { IgxDropDownComponent } from '@infragistics/igniteui-angular/drop-down';
 import { IgxButtonDirective, IgxRippleDirective, IgxToggleActionDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
@@ -12,9 +13,7 @@ import { environment } from '../../environments/environment';
 import { Router } from '@angular/router';
 import { LoginDialogComponent } from './login-dialog/login-dialog.component';
 import { UserPreferencesComponent } from './user-preferences/user-preferences.component';
-import { IgxCardHeaderTitleDirective, IgxCardHeaderSubtitleDirective } from "@infragistics/igniteui-angular/card";
-
-
+import { IgxCardHeaderTitleDirective, IgxCardHeaderSubtitleDirective } from '@infragistics/igniteui-angular/card';
 
 @Component({
   selector: 'bg-login',
@@ -33,27 +32,23 @@ import { IgxCardHeaderTitleDirective, IgxCardHeaderSubtitleDirective } from "@in
     UserPreferencesComponent,
     IgxCardHeaderTitleDirective,
     IgxCardHeaderSubtitleDirective
-]
+  ]
 })
 export class LoginComponent {
   private authManager = inject(LoginService);
   private router = inject(Router);
 
-  @ViewChild(LoginDialogComponent, { static: true })
-  public dialog!: LoginDialogComponent;
+  public dialog = viewChild.required(LoginDialogComponent);
+  public userProfile = viewChild(IgxDropDownComponent);
 
-  @ViewChild(IgxDropDownComponent, { static: false })
-  public userProfile!: IgxDropDownComponent;
-
-  public authUser = signal<ApplicationUser | null>(null);
+  public authUser: Signal<ApplicationUser | null> = this.authManager.applicationUser;
 
   public overlaySettings = GLOBAL_OVERLAY_SETTINGS;
-  public userCheck = signal<boolean>(false);
+  public userCheck: Signal<boolean> = this.authManager.userCheckInProgress;
 
   constructor() {
-    this.authManager.userCheckInProgress.subscribe(value => this.userCheck.set(value));
-    this.authManager.applicationUser.subscribe(user => this.authUser.set(user));
-    this.authManager.openLogin.subscribe(() => this.dialog.openLogin());
+    this.authManager.openLogin.pipe(takeUntilDestroyed())
+      .subscribe(() => this.dialog().openLogin());
   }
 
   public logout() {
@@ -61,7 +56,7 @@ export class LoginComponent {
   }
 
   public close() {
-    this.userProfile.close();
+    this.userProfile()?.close();
   }
 
   public navigateToProfile(user: ApplicationUser) {

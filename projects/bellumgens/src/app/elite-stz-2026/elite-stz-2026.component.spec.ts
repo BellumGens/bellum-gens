@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { PLATFORM_ID } from '@angular/core';
-import { of, throwError, BehaviorSubject } from 'rxjs';
+import { PLATFORM_ID, WritableSignal, signal } from '@angular/core';
+import { of, throwError } from 'rxjs';
 import { EliteStz2026Component } from './elite-stz-2026.component';
 import { ApplicationUser, BellumgensApiService, CommunicationService, LoginService } from '../../../../common/src/public_api';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -13,13 +13,15 @@ describe('EliteStz2026Component', () => {
   let mockApiService: SpyObj<BellumgensApiService>;
   let mockCommService: SpyObj<CommunicationService>;
   let mockAuthService: SpyObj<LoginService>;
-  let authUserSubject: BehaviorSubject<ApplicationUser | null>;
+  let authUser: WritableSignal<ApplicationUser | null>;
 
   beforeEach(async () => {
-    authUserSubject = new BehaviorSubject<ApplicationUser | null>(null);
+    authUser = signal<ApplicationUser | null>(null);
     mockApiService = createSpyObj('BellumgensApiService', ['getSignupCount', 'earlyBirdSignup']);
+    // TestBed.tick() (used to flush the auth user effect) also runs ngOnInit, which loads the signup count.
+    mockApiService.getSignupCount.mockReturnValue(of(0));
     mockCommService = createSpyObj('CommunicationService', ['emitError']);
-    mockAuthService = createSpyObj('LoginService', [], { applicationUser: authUserSubject.asObservable() });
+    mockAuthService = createSpyObj('LoginService', [], { applicationUser: authUser.asReadonly() });
 
     await TestBed.configureTestingModule({
       imports: [EliteStz2026Component, NoopAnimationsModule],
@@ -54,7 +56,8 @@ describe('EliteStz2026Component', () => {
   it('should enable form controls when user logs in', () => {
     const user: ApplicationUser = { email: 'test@example.com', id: '123', username: 'testuser' } as ApplicationUser;
     component.signupDeadline = '2030-01-01T00:00:00Z';
-    authUserSubject.next(user);
+    authUser.set(user);
+    TestBed.tick();
 
     expect(component.form.get('email')?.disabled).toBe(false);
     expect(component.form.get('firstTime')?.disabled).toBe(false);
@@ -80,27 +83,27 @@ describe('EliteStz2026Component', () => {
   describe('discount calculation', () => {
     it('should return 10% for count between 1-100', () => {
       component.count.set(50);
-      expect(component.discount).toBe(10);
+      expect(component.discount()).toBe(10);
     });
 
     it('should return 15% for count between 101-250', () => {
       component.count.set(150);
-      expect(component.discount).toBe(15);
+      expect(component.discount()).toBe(15);
     });
 
     it('should return 25% for count between 251-500', () => {
       component.count.set(300);
-      expect(component.discount).toBe(25);
+      expect(component.discount()).toBe(25);
     });
 
     it('should return 33% for count above 500', () => {
       component.count.set(600);
-      expect(component.discount).toBe(33);
+      expect(component.discount()).toBe(33);
     });
 
     it('should return 0% for count of 0', () => {
       component.count.set(0);
-      expect(component.discount).toBe(0);
+      expect(component.discount()).toBe(0);
     });
   });
 
@@ -108,7 +111,8 @@ describe('EliteStz2026Component', () => {
     beforeEach(() => {
       const user: ApplicationUser = { email: 'test@example.com', id: '123', username: 'testuser' } as ApplicationUser;
       component.signupDeadline = '2030-01-01T00:00:00Z';
-      authUserSubject.next(user);
+      authUser.set(user);
+      TestBed.tick();
       component.form.patchValue({ email: 'test@example.com', firstTime: true, agreePrivacy: true });
     });
 
@@ -120,7 +124,7 @@ describe('EliteStz2026Component', () => {
     });
 
     it('should not submit if user is not authenticated', () => {
-      component.authUser = null;
+      authUser.set(null);
       component.submit();
 
       expect(mockApiService.earlyBirdSignup).not.toHaveBeenCalled();

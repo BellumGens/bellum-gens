@@ -1,14 +1,14 @@
-@if (authUser) {
+@if (authUser()) {
   <igx-list>
     <igx-list-item [isHeader]="true">
-      <span i18n>Notifications for {{ authUser.username }}</span>
+      <span i18n>Notifications for {{ authUser().username }}</span>
     </igx-list-item>
-    @if (!notifications?.length) {
+    @if (!notifications()?.length) {
       <igx-list-item>
         <span igxListLine i18n>No new notifications.</span>
       </igx-list-item>
     }
-    @for (notification of notifications | sortNotifications:pipeTrigger; track notification) {
+    @for (notification of notifications() | sortNotifications:pipeTrigger(); track notification) {
       <igx-list-item [class]="notificationClass[notification.state]">
         <igx-avatar igxListThumbnail [src]="notification.teamInfo.teamAvatar" [initials]="notification.teamInfo.teamName" shape="circle">
         </igx-avatar>
@@ -16,8 +16,8 @@
         <span igxListLineSubTitle>{{ notification.sent | date }}</span>
         @if (notification.state | disabledNotifications:true) {
           <div igxListAction>
-            <button igxButton="flat" igxRipple [disabled]="actionInProgress" (click)="acceptInvitation(notification)" i18n>{{actionInProgress ? 'Accepting...' : 'Accept'}}</button>
-            <button igxButton="flat" igxRipple [disabled]="actionInProgress" (click)="rejectInvitation(notification)" i18n>{{actionInProgress ? 'Rejecting...' : 'Reject'}}</button>
+            <button igxButton="flat" igxRipple [disabled]="actionInProgress()" (click)="acceptInvitation(notification)" i18n>{{actionInProgress() ? 'Accepting...' : 'Accept'}}</button>
+            <button igxButton="flat" igxRipple [disabled]="actionInProgress()" (click)="rejectInvitation(notification)" i18n>{{actionInProgress() ? 'Rejecting...' : 'Reject'}}</button>
           </div>
         } @else {
           <button igxButton="flat" igxRipple [disabled]="true">{{ notification.state | notificationState }}</button>

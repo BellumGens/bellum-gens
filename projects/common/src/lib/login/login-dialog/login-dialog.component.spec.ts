@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync, fakeAsync, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
@@ -33,8 +33,8 @@ describe('LoginDialogComponent', () => {
     ]
   };
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
     imports: [FormsModule,
         
         NoopAnimationsModule,
@@ -48,7 +48,7 @@ describe('LoginDialogComponent', () => {
     httpMock = TestBed.inject(HttpTestingController);
     commsService = TestBed.inject(CommunicationService);
     router = TestBed.inject(Router);
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(LoginDialogComponent);
@@ -69,21 +69,21 @@ describe('LoginDialogComponent', () => {
   });
 
   it('should open the login dialog', () => {
-    vi.spyOn(component.dialog, 'open').mockImplementation(() => undefined);
+    vi.spyOn(component.dialog(), 'open').mockImplementation(() => undefined);
     component.openLogin();
-    expect(component.dialog.open).toHaveBeenCalled();
+    expect(component.dialog().open).toHaveBeenCalled();
   });
 
   it('should open the registration dialog', () => {
-    vi.spyOn(component.dialog, 'close').mockImplementation(() => undefined);
+    vi.spyOn(component.dialog(), 'close').mockImplementation(() => undefined);
     vi.spyOn(router, 'navigate').mockImplementation(() => undefined);
     component.openRegistration();
-    expect(component.dialog.close).toHaveBeenCalled();
+    expect(component.dialog().close).toHaveBeenCalled();
     expect(router.navigate).toHaveBeenCalledWith(['register']);
   });
 
   it('should perform login with form data', () => {
-    vi.spyOn(component.dialog, 'close').mockImplementation(() => undefined);
+    vi.spyOn(component.dialog(), 'close').mockImplementation(() => undefined);
     // Set form data
     component.logininfo.username = 'testuser';
     component.logininfo.password = 'testpassword';
@@ -95,21 +95,21 @@ describe('LoginDialogComponent', () => {
     expect(req.request.method).toBe('POST');
     expect(req.request.body).toEqual(component.logininfo);
     expect(req.request.withCredentials).toBe(true);
-    expect(component.submitInProgress).toBe(true);
+    expect(component.submitInProgress()).toBe(true);
     req.flush(applicationUser);
-    expect(component.submitInProgress).toBe(false);
-    expect(component.dialog.close).toHaveBeenCalled();
-    expect(loginService['_applicationUser'].value).toEqual(applicationUser);
+    expect(component.submitInProgress()).toBe(false);
+    expect(component.dialog().close).toHaveBeenCalled();
+    expect(loginService['_applicationUser']()).toEqual(applicationUser);
 
     const req2 = httpMock.expectOne(`${loginService['_apiBase']}/tournament/registrations`);
     expect(req2.request.method).toBe('GET');
     expect(req2.request.withCredentials).toBe(true);
     req2.flush([]);
-    expect(loginService['_registrations'].value).toEqual([]);
+    expect(loginService['_registrations']()).toEqual([]);
   });
 
   it('should show error message when login fails with backend error', () => {
-    vi.spyOn(component.dialog, 'close').mockImplementation(() => undefined);
+    vi.spyOn(component.dialog(), 'close').mockImplementation(() => undefined);
     const errorMessage = 'Invalid username or password';
     let errorEmitted = false;
 
@@ -127,18 +127,18 @@ describe('LoginDialogComponent', () => {
     component.loginWithForm();
     const req = httpMock.expectOne(`${loginService['_apiEndpoint']}/login`);
     expect(req.request.method).toBe('POST');
-    expect(component.submitInProgress).toBe(true);
+    expect(component.submitInProgress()).toBe(true);
 
     // Flush with error response
     req.flush(errorMessage, { status: 400, statusText: 'Bad Request' });
 
-    expect(component.submitInProgress).toBe(false);
-    expect(component.dialog.close).not.toHaveBeenCalled();
+    expect(component.submitInProgress()).toBe(false);
+    expect(component.dialog().close).not.toHaveBeenCalled();
     expect(errorEmitted).toBe(true);
   });
 
   it('should show default error message when login fails without specific backend error', () => {
-    vi.spyOn(component.dialog, 'close').mockImplementation(() => undefined);
+    vi.spyOn(component.dialog(), 'close').mockImplementation(() => undefined);
     let errorEmitted = false;
 
     // Set form data
@@ -155,18 +155,18 @@ describe('LoginDialogComponent', () => {
     component.loginWithForm();
     const req = httpMock.expectOne(`${loginService['_apiEndpoint']}/login`);
     expect(req.request.method).toBe('POST');
-    expect(component.submitInProgress).toBe(true);
+    expect(component.submitInProgress()).toBe(true);
 
     // Flush with error response without error body
     req.flush(null, { status: 500, statusText: 'Internal Server Error' });
 
-    expect(component.submitInProgress).toBe(false);
-    expect(component.dialog.close).not.toHaveBeenCalled();
+    expect(component.submitInProgress()).toBe(false);
+    expect(component.dialog().close).not.toHaveBeenCalled();
     expect(errorEmitted).toBe(true);
   });
 
-  it('should show error message when login fails with network error', fakeAsync(() => {
-    vi.spyOn(component.dialog, 'close').mockImplementation(() => undefined);
+  it('should show error message when login fails with network error', () => {
+    vi.spyOn(component.dialog(), 'close').mockImplementation(() => undefined);
     let errorEmitted = false;
     let capturedMessage = '';
 
@@ -184,15 +184,14 @@ describe('LoginDialogComponent', () => {
     component.loginWithForm();
     const req = httpMock.expectOne(`${loginService['_apiEndpoint']}/login`);
     expect(req.request.method).toBe('POST');
-    expect(component.submitInProgress).toBe(true);
+    expect(component.submitInProgress()).toBe(true);
 
     // Simulate network error
     req.error(new ProgressEvent('error'));
-    tick(); // Flush all async operations
 
-    expect(component.submitInProgress).toBe(false);
-    expect(component.dialog.close).not.toHaveBeenCalled();
+    expect(component.submitInProgress()).toBe(false);
+    expect(component.dialog().close).not.toHaveBeenCalled();
     expect(errorEmitted).toBe(true);
     expect(capturedMessage).toEqual('Login failed. Please check your credentials and try again.');
-  }));
+  });
 });

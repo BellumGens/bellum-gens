@@ -1,7 +1,7 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, Signal, inject, signal, untracked } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SteamGroup, SteamUser } from '../models/steamuser';
-import { Observable, throwError, BehaviorSubject } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { CSGOTeam, TeamMember, TeamApplication } from '../models/csgoteam';
 import { Availability } from '../models/playeravailability';
 import { Role } from '../models/playerrole';
@@ -22,18 +22,25 @@ export class BellumgensApiService {
   private http = inject(HttpClient);
   private commService = inject(CommunicationService);
 
-  public loadingTeams = new BehaviorSubject<boolean>(false);
-  public loadingPlayers = new BehaviorSubject<boolean>(false);
-  public loadingPlayer = new BehaviorSubject<boolean>(false);
+  private _loadingTeams = signal(false);
+  private _loadingPlayers = signal(false);
+  private _loadingPlayer = signal(false);
+  public readonly loadingTeams = this._loadingTeams.asReadonly();
+  public readonly loadingPlayers = this._loadingPlayers.asReadonly();
+  public readonly loadingPlayer = this._loadingPlayer.asReadonly();
 
   private _apiEndpoint = environment.apiEndpoint;
   private _teamReqInProgress = false;
 
   // Cache
-  private _currentTeam = new BehaviorSubject<CSGOTeam>(null);
-  private _currentTeamMembers = new BehaviorSubject<TeamMember []>(null);
-  private _currentTeamPractice = new BehaviorSubject<Availability []>(null);
-  private _currentPlayer = new BehaviorSubject<ApplicationUser>(null);
+  private _currentTeam = signal<CSGOTeam>(null);
+  private _currentTeamMembers = signal<TeamMember []>(null);
+  private _currentTeamPractice = signal<Availability []>(null);
+  private _currentPlayer = signal<ApplicationUser>(null);
+  private readonly currentTeam = this._currentTeam.asReadonly();
+  private readonly currentTeamMembers = this._currentTeamMembers.asReadonly();
+  private readonly currentTeamPractice = this._currentTeamPractice.asReadonly();
+  private readonly currentPlayer = this._currentPlayer.asReadonly();
   private _teamApplications = new Map<string, Observable<TeamApplication[]>>();
 
   public getUserTeams(userId: string) {
@@ -48,35 +55,44 @@ export class BellumgensApiService {
     return this._teamApplications.get(teamId);
   }
 
-  public getTeam(teamId: string) {
-    if (!this._teamReqInProgress) {
-      if (!this._currentTeam.value || this._currentTeam.value.teamId !== teamId || this._currentTeam.value.customUrl !== teamId) {
-        this._teamReqInProgress = true;
-        this.getTeamFromServer(teamId).subscribe(team => {
-          this._currentTeam.next(team);
-          this._teamReqInProgress = false;
+  public getTeam(teamId: string): Signal<CSGOTeam> {
+    untracked(() => {
+      if (!this._teamReqInProgress) {
+        const team = this._currentTeam();
+        if (!team || team.teamId !== teamId || team.customUrl !== teamId) {
+          this._teamReqInProgress = true;
+          this.getTeamFromServer(teamId).subscribe(response => {
+            this._currentTeam.set(response);
+            this._teamReqInProgress = false;
+          });
+        }
+      }
+    });
+    return this.currentTeam;
+  }
+
+  public getTeamMembers(teamId: string): Signal<TeamMember []> {
+    untracked(() => {
+      const team = this._currentTeam();
+      if (!this._currentTeamMembers() || team.teamId !== teamId || team.customUrl !== teamId) {
+        this.getTeamMembersFromServer(teamId).subscribe(members => {
+          this._currentTeamMembers.set(members);
         });
       }
-    }
-    return this._currentTeam;
+    });
+    return this.currentTeamMembers;
   }
 
-  public getTeamMembers(teamId: string) {
-    if (!this._currentTeamMembers.value || this._currentTeam.value.teamId !== teamId || this._currentTeam.value.customUrl !== teamId) {
-      this.getTeamMembersFromServer(teamId).subscribe(members => {
-        this._currentTeamMembers.next(members);
-      });
-    }
-    return this._currentTeamMembers;
-  }
-
-  public getTeamSchedule(teamId: string) {
-    if (!this._currentTeamPractice.value || this._currentTeam.value.teamId !== teamId || this._currentTeam.value.customUrl !== teamId) {
-      this.getTeamPractice(teamId).subscribe(schedule => {
-        this._currentTeamPractice.next(schedule);
-      });
-    }
-    return this._currentTeamPractice;
+  public getTeamSchedule(teamId: string): Signal<Availability []> {
+    untracked(() => {
+      const team = this._currentTeam();
+      if (!this._currentTeamPractice() || team.teamId !== teamId || team.customUrl !== teamId) {
+        this.getTeamPractice(teamId).subscribe(schedule => {
+          this._currentTeamPractice.set(schedule);
+        });
+      }
+    });
+    return this.currentTeamPractice;
   }
 
   public registerSteamGroup(group: SteamGroup) {
@@ -251,22 +267,24 @@ export class BellumgensApiService {
     );
   }
 
-  public getPlayer(userId: string) {
-    if (!this.playerMatch(userId)) {
-      this._currentPlayer.next(null);
-      this.loadingPlayer.next(true);
-      this.getPlayerFromServer(userId).subscribe({
-        next: player => {
-          this._currentPlayer.next(player);
-          this.loadingPlayer.next(false);
-        },
-        error: () => {
-          this._currentPlayer.next(null);
-          this.loadingPlayer.next(false);
-        }
-      });
-    }
-    return this._currentPlayer;
+  public getPlayer(userId: string): Signal<ApplicationUser> {
+    untracked(() => {
+      if (!this.playerMatch(userId)) {
+        this._currentPlayer.set(null);
+        this._loadingPlayer.set(true);
+        this.getPlayerFromServer(userId).subscribe({
+          next: player => {
+            this._currentPlayer.set(player);
+            this._loadingPlayer.set(false);
+          },
+          error: () => {
+            this._currentPlayer.set(null);
+            this._loadingPlayer.set(false);
+          }
+        });
+      }
+    });
+    return this.currentPlayer;
   }
 
   public getPlayerTournaments(userid: string) {
@@ -409,16 +427,17 @@ export class BellumgensApiService {
   }
 
   private updateCurrentPlayerDetails(userId: string, details: Partial<CSGODetails>) {
-    const player = this._currentPlayer.value;
+    const player = this._currentPlayer();
     // The PUT can resolve after navigation has swapped the cached player, so only
     // patch the cache if it still holds the player that was actually edited.
     if (player?.id === userId && player.csgoDetails) {
-      this._currentPlayer.next({ ...player, csgoDetails: { ...player.csgoDetails, ...details } });
+      this._currentPlayer.set({ ...player, csgoDetails: { ...player.csgoDetails, ...details } });
     }
   }
 
   private playerMatch(userId: string) {
-    return this._currentPlayer.value && this._currentPlayer.value.steamUser &&
-      (this._currentPlayer.value.steamUser.customURL === userId ||  this._currentPlayer.value.steamUser.steamID64 === userId);
+    const player = this._currentPlayer();
+    return player && player.steamUser &&
+      (player.steamUser.customURL === userId || player.steamUser.steamID64 === userId);
   }
 }

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Output } from '@angular/core';
+import { Component, computed, inject, output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
 import { ISelectionEventArgs } from '@infragistics/igniteui-angular/drop-down';
@@ -13,7 +13,8 @@ import { EMPTY_JERSEY_ORDER, JerseyCut, ProductOrderDetails, Order, JerseySize }
 @Component({
   selector: 'bg-orderform',
   templateUrl: './orderform.component.html',
-  styleUrls: ['./orderform.component.scss'],  imports: [
+  styleUrls: ['./orderform.component.scss'],
+  imports: [
     FormsModule,
     IGX_SELECT_DIRECTIVES,
     IGX_INPUT_GROUP_DIRECTIVES,
@@ -28,13 +29,16 @@ import { EMPTY_JERSEY_ORDER, JerseyCut, ProductOrderDetails, Order, JerseySize }
 export class OrderformComponent {
   private apiService = inject(ApiShopService);
 
-  public order = Object.assign({}, EMPTY_JERSEY_ORDER);
+  public order = signal<Order>(structuredClone(EMPTY_JERSEY_ORDER));
   public basePromo = .3;
-  public promo = this.basePromo;
-  public invalidPromo = false;
-  public inProgress = false;
+  public promo = signal(this.basePromo);
+  public invalidPromo = signal(false);
+  public inProgress = signal(false);
   public basePrice = 60;
   public countryCode = '+359';
+
+  public productCount = computed(() => this.order().orderProducts.length);
+  public subtotal = computed(() => this.productCount() * this.basePrice);
 
   public cuts = [
     { text: $localize`Male`, cut: JerseyCut.Male },
@@ -51,37 +55,55 @@ export class OrderformComponent {
     { text: 'XXXL'; size: JerseySize.XXXL; disabled: false }
   ];
 
-  @Output()
-  public orderSuccess = new EventEmitter<Order>();
+  public orderSuccess = output<Order>();
 
   public placeOrder() {
-    this.inProgress = true;
-    this.apiService.submitOrder(this.order).subscribe({
-      next: () => this.orderSuccess.emit(this.order),
-      complete: () => this.inProgress = false
+    this.inProgress.set(true);
+    const order = this.order();
+    this.apiService.submitOrder(order).subscribe({
+      next: () => this.orderSuccess.emit(order),
+      error: () => this.inProgress.set(false),
+      complete: () => this.inProgress.set(false)
     });
   }
 
   public checkForPromo() {
-    if (this.order.promoCode) {
-      this.apiService.checkForPromo(this.order.promoCode).subscribe(data => {
+    const promoCode = this.order().promoCode;
+    if (promoCode) {
+      this.apiService.checkForPromo(promoCode).subscribe(data => {
         if (data) {
-          this.promo = this.basePromo + data.discount;
-          this.invalidPromo = false;
+          this.promo.set(this.basePromo + data.discount);
+          this.invalidPromo.set(false);
         } else {
-          this.order.promoCode = null;
-          this.invalidPromo = true;
+          this.updateOrder('promoCode', null);
+          this.invalidPromo.set(true);
         }
       });
     }
   }
 
+  public updateOrder<K extends keyof Order>(field: K, value: Order[K]) {
+    this.order.update(order => ({ ...order, [field]: value }));
+  }
+
+  public addJersey() {
+    const jersey = structuredClone(EMPTY_JERSEY_ORDER.orderProducts[0]);
+    this.updateOrder('orderProducts', [...this.order().orderProducts, jersey]);
+  }
+
+  public removeJersey(index: number) {
+    this.updateOrder('orderProducts', this.order().orderProducts.filter((_, i) => i !== index));
+  }
+
   public selectJerseyCut(jersey: ProductOrderDetails, event: ISelectionEventArgs) {
-    jersey.cut = event.newSelection.value;
+    this.updateJersey(jersey, { cut: event.newSelection.value });
   }
 
   public selectJerseySize(jersey: ProductOrderDetails, event: ISelectionEventArgs) {
-    jersey.size = event.newSelection.value;
+    this.updateJersey(jersey, { size: event.newSelection.value });
   }
 
+  private updateJersey(jersey: ProductOrderDetails, changes: Partial<ProductOrderDetails>) {
+    this.updateOrder('orderProducts', this.order().orderProducts.map(j => j === jersey ? { ...j, ...changes } : j));
+  }
 }

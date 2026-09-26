@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PlayerSearchComponent } from './player-search.component';
 import { provideRouter } from '@angular/router';
@@ -11,8 +11,8 @@ describe('PlayerSearchComponent', () => {
   let component: PlayerSearchComponent;
   let fixture: ComponentFixture<PlayerSearchComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
         
         NoopAnimationsModule,
@@ -22,7 +22,7 @@ describe('PlayerSearchComponent', () => {
       providers: [provideRouter([]), provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
     })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PlayerSearchComponent);

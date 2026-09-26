@@ -1,19 +1,19 @@
 <div class="overview-container-card">
   <div class="team-details-header">
-    <igx-avatar [initials]="team?.teamName || ''" [src]="team?.teamAvatar || ''" shape="circle" [size]="'large'">
+    <igx-avatar [initials]="team()?.teamName || ''" [src]="team()?.teamAvatar || ''" shape="circle" [size]="'large'">
     </igx-avatar>
     <div class="horizontal-info__left">
-      <h1 igxCardHeaderTitle>{{ team?.teamName }}</h1>
-      <h3 igxCardHeaderSubtitle>{{ team?.description }}</h3>
+      <h1 igxCardHeaderTitle>{{ team()?.teamName }}</h1>
+      <h3 igxCardHeaderSubtitle>{{ team()?.description }}</h3>
     </div>
-    @if (!isMember && team?.teamId) {
+    @if (!isMember() && team()?.teamId) {
       <div class="horizontal-info__right">
-        <app-team-application [authUser]="authUser" [team]="team"></app-team-application>
+        <app-team-application [authUser]="authUser()" [team]="team()"></app-team-application>
       </div>
     }
-    @if (isMember && team?.discord) {
+    @if (isMember() && team()?.discord) {
       <div class="horizontal-info__right">
-        <a [href]="team.discord" target="_blank" rel="noopener">
+        <a [href]="team().discord" target="_blank" rel="noopener">
           <igx-icon class="discord-icon" family="login-icons" name="discord-full-logo"></igx-icon>
         </a>
       </div>
@@ -36,7 +36,7 @@
       </igx-tab-header>
     </igx-tab-item>
 
-    @if (isMember) {
+    @if (isMember()) {
       <igx-tab-item
         routerLinkActive #rla3="routerLinkActive"
         [selected]="rla3.isActive">
@@ -47,7 +47,7 @@
       </igx-tab-item>
     }
 
-    @if (isAdmin) {
+    @if (isAdmin()) {
       <igx-tab-item
         routerLinkActive #rla4="routerLinkActive"
         [selected]="rla4.isActive">
@@ -58,5 +58,5 @@
       </igx-tab-item>
     }
   </igx-tabs>
-  <router-outlet></router-outlet>
+  <router-outlet [routerOutletData]="team()"></router-outlet>
 </div>

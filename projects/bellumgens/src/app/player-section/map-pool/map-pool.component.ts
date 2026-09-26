@@ -1,53 +1,43 @@
-import { Component, Input, EventEmitter, Output } from '@angular/core';
-import { ACTIVE_DUTY, CSGOMapPool } from '../../../../../common/src/public_api';
+import { Component, input, linkedSignal, output } from '@angular/core';
+import { ACTIVE_DUTY, CSGOActiveDutyMap, CSGOMapPool } from '../../../../../common/src/public_api';
 import { ActiveDutyMapsPipe } from '../../../../../common/src/lib/pipes/active-duty-maps.pipe';
-import { FormsModule } from '@angular/forms';
 import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
 import { IgxCheckboxComponent } from '@infragistics/igniteui-angular/checkbox';
-import { NgClass, NgOptimizedImage } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-map-pool',
   templateUrl: './map-pool.component.html',
-  styleUrls: ['./map-pool.component.scss'],  imports: [
-    NgClass,
+  styleUrls: ['./map-pool.component.scss'],
+  imports: [
     NgOptimizedImage,
-    FormsModule,
     IGX_CARD_DIRECTIVES,
     IgxCheckboxComponent,
     ActiveDutyMapsPipe
   ]
 })
 export class MapPoolComponent {
-  @Input()
-  public viewAll = false;
+  public viewAll = input(false);
 
-  @Input()
-  public set mapPool(maps: CSGOMapPool []) {
-    if (maps?.length > 0) {
-      this._maps = maps;
-      this.augmentActiveDuty();
-    }
+  public mapPool = input<CSGOMapPool []>();
+
+  public readOnly = input<boolean>();
+
+  public update = output<CSGOMapPool>();
+
+  // The active duty maps augmented with the player's pool. Re-seeded whenever
+  // a new pool comes in, and updated locally as maps get toggled.
+  public maps = linkedSignal<CSGOActiveDutyMap []>(() => {
+    const pool = this.mapPool();
+    return ACTIVE_DUTY.map(map => {
+      const played = pool?.find(m => m.mapId === map.mapId);
+      return played ? { ...map, isPlayed: played.isPlayed } : { ...map };
+    });
+  });
+
+  public mapChange(map: CSGOActiveDutyMap, isPlayed: boolean) {
+    const updated = { ...map, isPlayed };
+    this.maps.update(maps => maps.map(m => m.mapId === map.mapId ? updated : m));
+    this.update.emit({ ...updated });
   }
-
-  @Input()
-  public readOnly: boolean;
-
-  @Output()
-  public update = new EventEmitter<CSGOMapPool>();
-
-  public maps = structuredClone(ACTIVE_DUTY);
-
-  private _maps: CSGOMapPool [];
-
-  constructor() { }
-
-  public mapChange(map: CSGOMapPool) {
-    this.update.emit(map);
-  }
-
-  private augmentActiveDuty() {
-    this._maps.forEach(map => this.maps.find(m => m.mapId === map.mapId).isPlayed = map.isPlayed);
-  }
-
 }

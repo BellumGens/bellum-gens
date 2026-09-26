@@ -1,37 +1,30 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TeamTournamentsComponent } from './team-tournaments.component';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
-import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
+import { ROUTER_OUTLET_DATA } from '@angular/router';
+import { signal } from '@angular/core';
+import { TEAM_PLACEHOLDER } from '../../../../../common/src/public_api';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 describe('TeamTournamentsComponent', () => {
   let component: TeamTournamentsComponent;
   let fixture: ComponentFixture<TeamTournamentsComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
 
         TeamTournamentsComponent
       ],
       providers: [
-        {
-          provide: ActivatedRoute,
-          useValue: {
-            parent: {
-              params: new Observable()
-            },
-            data: new Observable()
-          }
-        },
+        { provide: ROUTER_OUTLET_DATA, useValue: signal(TEAM_PLACEHOLDER) },
         provideHttpClient(withXhr(), withInterceptorsFromDi()),
         provideHttpClientTesting()
       ]
     })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TeamTournamentsComponent);

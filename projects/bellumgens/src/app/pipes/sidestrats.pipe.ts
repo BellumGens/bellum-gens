@@ -2,8 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { CSGOStrategy, VoteDirection, CSGOMapPool, StratOrderBy } from '../../../../common/src/public_api';
 
 @Pipe({
-    name: 'sidestrats',
-    standalone: true
+    name: 'sidestrats'
 })
 export class SideStratsPipe implements PipeTransform {
 

@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AdminSc2Component } from './admin-sc2.component';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
@@ -16,8 +16,8 @@ describe('AdminSc2Component', () => {
   let httpMock: HttpTestingController;
   let apiService: ApiTournamentsService;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
         AdminSc2Component,
@@ -27,7 +27,7 @@ describe('AdminSc2Component', () => {
     }).compileComponents();
     httpMock = TestBed.inject(HttpTestingController);
     apiService = TestBed.inject(ApiTournamentsService);
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AdminSc2Component);
@@ -39,45 +39,48 @@ describe('AdminSc2Component', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should load tournaments', () => {
+  it('should load tournaments', async () => {
     const tounaments = [{ id: '123', active: true }, { id: '234', active: false }] as Tournament[];
     // vi.spyOn calls through by default, matching the original .and.callThrough()
     const spy = vi.spyOn(component, 'selectTournament');
     let req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/tournaments`);
     expect(req.request.method).toBe('GET');
     req.flush(tounaments);
-    expect(component.tournaments).toEqual(tounaments);
-    expect(spy).toHaveBeenCalled();
+    expect(component.tournaments()).toEqual(tounaments);
+    // The active tournament is selected by an effect
+    await fixture.whenStable();
+    expect(spy).toHaveBeenCalledWith(tounaments[0]);
+    expect(component.selectedTournament()).toEqual(tounaments[0]);
 
     req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/sc2regs?tournamentId=123`);
     expect(req.request.method).toBe('GET');
-    expect(component.loading).toBe(true);
+    expect(component.loading()).toBe(true);
     req.flush([]);
-    expect(component.loading).toBe(false);
+    expect(component.loading()).toBe(false);
 
     req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/tournamentregistrations?tournamentId=123`);
     expect(req.request.method).toBe('GET');
-    expect(component.loadingRegs).toBe(true);
+    expect(component.loadingRegs()).toBe(true);
     req.flush([]);
-    expect(component.loadingRegs).toBe(false);
+    expect(component.loadingRegs()).toBe(false);
 
     req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/sc2matches?tournamentId=123`);
     expect(req.request.method).toBe('GET');
-    expect(component.loadingMatches).toBe(true);
+    expect(component.loadingMatches()).toBe(true);
     req.flush([]);
-    expect(component.loadingMatches).toBe(false);
+    expect(component.loadingMatches()).toBe(false);
 
     req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/sc2groups?tournamentId=123`);
     expect(req.request.method).toBe('GET');
-    expect(component.loadingGroups).toBe(true);
+    expect(component.loadingGroups()).toBe(true);
     req.flush([]);
-    expect(component.loadingGroups).toBe(false);
+    expect(component.loadingGroups()).toBe(false);
   });
 
   describe('submitGroup', () => {
     beforeEach(() => {
-      component.selectedTournament = { id: 'tournament-123', active: true } as Tournament;
-      component.groups = [];
+      component.selectedTournament.set({ id: 'tournament-123', active: true } as Tournament);
+      component.groups.set([]);
     });
 
     it('should submit a new group and add it to the groups array', () => {
@@ -105,8 +108,8 @@ describe('AdminSc2Component', () => {
       expect(req.request.body.inEdit).toBe(false);
       req.flush(returnedGroup);
 
-      expect(component.groups.length).toBe(1);
-      expect(component.groups[0]).toEqual(returnedGroup);
+      expect(component.groups().length).toBe(1);
+      expect(component.groups()[0]).toEqual(returnedGroup);
     });
 
     it('should submit an existing group and not duplicate it in the array', () => {
@@ -118,7 +121,7 @@ describe('AdminSc2Component', () => {
         participants: []
       };
 
-      component.groups = [existingGroup];
+      component.groups.set([existingGroup]);
 
       component.submitGroup(existingGroup);
 
@@ -126,7 +129,7 @@ describe('AdminSc2Component', () => {
       expect(req.request.method).toBe('PUT');
       req.flush(existingGroup);
 
-      expect(component.groups.length).toBe(1);
+      expect(component.groups().length).toBe(1);
     });
 
     it('should set tournamentId and inEdit flag correctly', () => {
@@ -152,8 +155,8 @@ describe('AdminSc2Component', () => {
     it('should delete a group and remove it from the groups array', () => {
       const group1: TournamentGroup = { id: 'group-1', name: 'Group 1', participants: [] };
       const group2: TournamentGroup = { id: 'group-2', name: 'Group 2', participants: [] };
-      component.groups = [group1, group2];
-      component.pipeTrigger = 0;
+      component.groups.set([group1, group2]);
+      component.pipeTrigger.set(0);
 
       component.deleteGroup('group-1');
 
@@ -161,22 +164,22 @@ describe('AdminSc2Component', () => {
       expect(req.request.method).toBe('DELETE');
       req.flush({});
 
-      expect(component.groups.length).toBe(1);
-      expect(component.groups[0]).toEqual(group2);
-      expect(component.pipeTrigger).toBe(1);
+      expect(component.groups().length).toBe(1);
+      expect(component.groups()[0]).toEqual(group2);
+      expect(component.pipeTrigger()).toBe(1);
     });
 
     it('should increment pipeTrigger after deletion', () => {
       const group: TournamentGroup = { id: 'group-1', name: 'Group 1', participants: [] };
-      component.groups = [group];
-      component.pipeTrigger = 5;
+      component.groups.set([group]);
+      component.pipeTrigger.set(5);
 
       component.deleteGroup('group-1');
 
       const req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/group?id=group-1`);
       req.flush({});
 
-      expect(component.pipeTrigger).toBe(6);
+      expect(component.pipeTrigger()).toBe(6);
     });
   });
 
@@ -184,8 +187,8 @@ describe('AdminSc2Component', () => {
     let mockGrid: SpyObj<IgxGridComponent>;
 
     beforeEach(() => {
-      component.selectedTournament = { id: 'tournament-123', active: true } as Tournament;
-      component.matches = [];
+      component.selectedTournament.set({ id: 'tournament-123', active: true } as Tournament);
+      component.matches.set([]);
       mockGrid = createSpyObj('IgxGridComponent', ['addRow']);
     });
 
@@ -289,14 +292,14 @@ describe('AdminSc2Component', () => {
 
   describe('addNewMatch', () => {
     beforeEach(() => {
-      component.selectedTournament = { id: 'tournament-123', active: true } as Tournament;
+      component.selectedTournament.set({ id: 'tournament-123', active: true } as Tournament);
     });
 
     it('should initialize a new match with tournament details', () => {
-      component.groups = [
+      component.groups.set([
         { id: 'group-1', name: 'Group A' } as TournamentGroup,
         { id: 'group-2', name: 'Group B' } as TournamentGroup
-      ];
+      ]);
 
       component.addNewMatch();
 
@@ -307,7 +310,7 @@ describe('AdminSc2Component', () => {
     });
 
     it('should set groupId to null when no groups exist', () => {
-      component.groups = [];
+      component.groups.set([]);
 
       component.addNewMatch();
 
@@ -315,11 +318,11 @@ describe('AdminSc2Component', () => {
     });
 
     it('should set groupId to the last group in the array', () => {
-      component.groups = [
+      component.groups.set([
         { id: 'group-1', name: 'Group A' } as TournamentGroup,
         { id: 'group-2', name: 'Group B' } as TournamentGroup,
         { id: 'group-3', name: 'Group C' } as TournamentGroup
-      ];
+      ]);
 
       component.addNewMatch();
 
@@ -432,7 +435,7 @@ describe('AdminSc2Component', () => {
         dragData: participant
       } as any;
 
-      component.pipeTrigger = 0;
+      component.pipeTrigger.set(0);
       component.addToGroup(dropEvent, group);
 
       const req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/participanttogroup?id=group-1`);
@@ -440,7 +443,7 @@ describe('AdminSc2Component', () => {
       req.flush({});
 
       expect(group.participants).toEqual([participant]);
-      expect(component.pipeTrigger).toBe(1);
+      expect(component.pipeTrigger()).toBe(1);
     });
 
     it('should add a participant to a group with existing participants', () => {
@@ -470,7 +473,7 @@ describe('AdminSc2Component', () => {
         dragData: newParticipant
       } as any;
 
-      component.pipeTrigger = 5;
+      component.pipeTrigger.set(5);
       component.addToGroup(dropEvent, group);
 
       const req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/participanttogroup?id=group-1`);
@@ -479,7 +482,7 @@ describe('AdminSc2Component', () => {
 
       expect(group.participants.length).toBe(2);
       expect(group.participants[1]).toEqual(newParticipant);
-      expect(component.pipeTrigger).toBe(6);
+      expect(component.pipeTrigger()).toBe(6);
     });
   });
 
@@ -507,7 +510,7 @@ describe('AdminSc2Component', () => {
         participants: [participant1, participant2]
       };
 
-      component.pipeTrigger = 0;
+      component.pipeTrigger.set(0);
       component.removeFromGroup(participant1, group);
 
       const req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/participanttogroup?id=participant-1&groupid=group-1`);
@@ -516,13 +519,13 @@ describe('AdminSc2Component', () => {
 
       expect(group.participants.length).toBe(1);
       expect(group.participants[0]).toEqual(participant2);
-      expect(component.pipeTrigger).toBe(1);
+      expect(component.pipeTrigger()).toBe(1);
     });
   });
 
   describe('UI Integration Tests - Checkin State', () => {
     beforeEach(() => {
-      component.selectedTournament = { id: 'tournament-123', active: true } as Tournament;
+      component.selectedTournament.set({ id: 'tournament-123', active: true } as Tournament);
     });
 
     it('should reset checkin state and update all registrations', () => {
@@ -532,9 +535,9 @@ describe('AdminSc2Component', () => {
         { id: 'reg-3', state: 2, banned: true } as any
       ];
 
-      component.registrations = mockRegistrations;
+      component.registrations.set(mockRegistrations);
       const gridSpy = createSpyObj('IgxGridComponent', ['notifyChanges']);
-      component.registrationsGrid = gridSpy;
+      vi.spyOn(component, 'registrationsGrid').mockReturnValue(gridSpy);
 
       component.resetCheckinState();
 
@@ -542,9 +545,9 @@ describe('AdminSc2Component', () => {
       expect(req.request.method).toBe('GET');
       req.flush({});
 
-      expect(component.registrations[0].state).toBe(0);
-      expect(component.registrations[1].state).toBe(0);
-      expect(component.registrations[2].state).toBe(2); // Banned users should not change
+      expect(component.registrations()[0].state).toBe(0);
+      expect(component.registrations()[1].state).toBe(0);
+      expect(component.registrations()[2].state).toBe(2); // Banned users should not change
       expect(gridSpy.notifyChanges).toHaveBeenCalledWith(true);
     });
 
@@ -554,9 +557,9 @@ describe('AdminSc2Component', () => {
         { id: 'reg-2', state: TournamentApplicationState.Banned } as TournamentApplication
       ];
 
-      component.registrations = mockRegistrations;
+      component.registrations.set(mockRegistrations);
       const gridSpy = createSpyObj('IgxGridComponent', ['notifyChanges']);
-      component.registrationsGrid = gridSpy;
+      vi.spyOn(component, 'registrationsGrid').mockReturnValue(gridSpy);
 
       component.resetCheckinState();
 
@@ -564,14 +567,14 @@ describe('AdminSc2Component', () => {
       expect(req.request.method).toBe('GET');
       req.flush({});
 
-      expect(component.registrations[0].state).toBe(0);
-      expect(component.registrations[1].state).toBe(TournamentApplicationState.Banned); // Should remain unchanged
+      expect(component.registrations()[0].state).toBe(0);
+      expect(component.registrations()[1].state).toBe(TournamentApplicationState.Banned); // Should remain unchanged
     });
   });
 
   describe('UI Integration Tests - Send Emails', () => {
     beforeEach(() => {
-      component.selectedTournament = { id: 'tournament-123', active: true } as Tournament;
+      component.selectedTournament.set({ id: 'tournament-123', active: true } as Tournament);
     });
 
     it('should send checkin emails to registered players', async () => {
@@ -590,8 +593,8 @@ describe('AdminSc2Component', () => {
     let mockDialog: SpyObj<IgxDialogComponent>;
 
     beforeEach(() => {
-      component.selectedTournament = { id: 'tournament-123', active: true } as Tournament;
-      component.groups = [{ id: 'group-1', name: 'Group A' } as TournamentGroup];
+      component.selectedTournament.set({ id: 'tournament-123', active: true } as Tournament);
+      component.groups.set([{ id: 'group-1', name: 'Group A' } as TournamentGroup]);
       mockGrid = createSpyObj('IgxGridComponent', ['addRow']);
       mockDialog = createSpyObj('IgxDialogComponent', ['open', 'close']);
     });
@@ -698,14 +701,14 @@ describe('AdminSc2Component', () => {
       expect(req.request.method).toBe('GET');
       req.flush(matches);
 
-      expect(component.matches).toEqual(matches);
+      expect(component.matches()).toEqual(matches);
     });
   });
 
   describe('UI Integration Tests - Group Operations', () => {
     beforeEach(() => {
-      component.selectedTournament = { id: 'tournament-123', active: true } as Tournament;
-      component.groups = [];
+      component.selectedTournament.set({ id: 'tournament-123', active: true } as Tournament);
+      component.groups.set([]);
     });
 
     it('should create a new group with full UI flow', () => {
@@ -730,8 +733,8 @@ describe('AdminSc2Component', () => {
       };
       req.flush(returnedGroup);
 
-      expect(component.groups.length).toBe(1);
-      expect(component.groups[0]).toEqual(returnedGroup);
+      expect(component.groups().length).toBe(1);
+      expect(component.groups()[0]).toEqual(returnedGroup);
     });
 
     it('should edit an existing group', () => {
@@ -742,7 +745,7 @@ describe('AdminSc2Component', () => {
         participants: []
       };
 
-      component.groups = [existingGroup];
+      component.groups.set([existingGroup]);
       existingGroup.name = 'Group A Updated';
 
       component.submitGroup(existingGroup);
@@ -753,15 +756,15 @@ describe('AdminSc2Component', () => {
 
       req.flush(existingGroup);
 
-      expect(component.groups.length).toBe(1);
-      expect(component.groups[0].name).toBe('Group A Updated');
+      expect(component.groups().length).toBe(1);
+      expect(component.groups()[0].name).toBe('Group A Updated');
     });
 
     it('should delete a group with full UI flow', () => {
       const group1: TournamentGroup = { id: 'group-1', name: 'Group A', participants: [] };
       const group2: TournamentGroup = { id: 'group-2', name: 'Group B', participants: [] };
-      component.groups = [group1, group2];
-      component.pipeTrigger = 0;
+      component.groups.set([group1, group2]);
+      component.pipeTrigger.set(0);
 
       component.deleteGroup('group-1');
 
@@ -769,9 +772,9 @@ describe('AdminSc2Component', () => {
       expect(req.request.method).toBe('DELETE');
       req.flush({});
 
-      expect(component.groups.length).toBe(1);
-      expect(component.groups[0].name).toBe('Group B');
-      expect(component.pipeTrigger).toBe(1);
+      expect(component.groups().length).toBe(1);
+      expect(component.groups()[0].name).toBe('Group B');
+      expect(component.pipeTrigger()).toBe(1);
     });
 
     it('should refresh groups from API', () => {
@@ -789,13 +792,13 @@ describe('AdminSc2Component', () => {
       expect(req.request.method).toBe('GET');
       req.flush(groups);
 
-      expect(component.groups).toEqual(groups);
+      expect(component.groups()).toEqual(groups);
     });
   });
 
   describe('UI Integration Tests - Player Group Management', () => {
     beforeEach(() => {
-      component.selectedTournament = { id: 'tournament-123', active: true } as Tournament;
+      component.selectedTournament.set({ id: 'tournament-123', active: true } as Tournament);
     });
 
     it('should add a player to a group with full UI flow', () => {
@@ -814,7 +817,7 @@ describe('AdminSc2Component', () => {
       };
 
       const dragEvent = { dragData: player } as any;
-      component.pipeTrigger = 0;
+      component.pipeTrigger.set(0);
 
       component.addToGroup(dragEvent, group);
 
@@ -824,7 +827,7 @@ describe('AdminSc2Component', () => {
       req.flush({});
 
       expect(group.participants).toEqual([player]);
-      expect(component.pipeTrigger).toBe(1);
+      expect(component.pipeTrigger()).toBe(1);
     });
 
     it('should add multiple players to a group sequentially', () => {
@@ -883,7 +886,7 @@ describe('AdminSc2Component', () => {
         participants: [player1, player2]
       };
 
-      component.pipeTrigger = 0;
+      component.pipeTrigger.set(0);
       component.removeFromGroup(player1, group);
 
       const req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/participanttogroup?id=player-1&groupid=group-1`);
@@ -892,7 +895,7 @@ describe('AdminSc2Component', () => {
 
       expect(group.participants.length).toBe(1);
       expect(group.participants[0]).toEqual(player2);
-      expect(component.pipeTrigger).toBe(1);
+      expect(component.pipeTrigger()).toBe(1);
     });
 
     it('should submit participant points', () => {
@@ -916,7 +919,7 @@ describe('AdminSc2Component', () => {
       expect(req.request.method).toBe('GET');
       req.flush(participants);
 
-      expect(component.participants).toEqual(participants);
+      expect(component.participants()).toEqual(participants);
     });
   });
 

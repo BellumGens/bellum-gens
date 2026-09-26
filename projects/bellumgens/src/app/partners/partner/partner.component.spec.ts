@@ -39,25 +39,25 @@ describe('PartnerComponent', () => {
   });
 
   it('should initialize with data from route', () => {
-    expect(component.social).toEqual([{ name: 'Facebook', icon: 'facebook', url: 'https://facebook.com' }]);
-    expect(component.image).toBe('image.jpg');
-    expect(component.name).toBe('Partner Name');
-    expect(component.url).toBe('https://partner.com');
-    expect(component.expose).toEqual(['info1', 'info2']);
+    expect(component.social()).toEqual([{ name: 'Facebook', icon: 'facebook', url: 'https://facebook.com' }]);
+    expect(component.image()).toBe('image.jpg');
+    expect(component.name()).toBe('Partner Name');
+    expect(component.url()).toBe('https://partner.com');
+    expect(component.expose()).toEqual(['info1', 'info2']);
   });
 
   it('should set horizontal to true if window width is >= 1024px', () => {
     vi.spyOn(window, 'matchMedia').mockReturnValue({ matches: true } as MediaQueryList);
     component.resize();
-    expect(component.horizontal).toBe(true);
-    expect(component.mediaWidth).toBe('550px');
+    expect(component.horizontal()).toBe(true);
+    expect(component.mediaWidth()).toBe('550px');
   });
 
   it('should set horizontal to false if window width is < 1024px', () => {
     vi.spyOn(window, 'matchMedia').mockReturnValue({ matches: false } as MediaQueryList);
     component.resize();
-    expect(component.horizontal).toBe(false);
-    expect(component.mediaWidth).toBe('100%');
+    expect(component.horizontal()).toBe(false);
+    expect(component.mediaWidth()).toBe('100%');
   });
 
   it('should call resize on window resize event', () => {

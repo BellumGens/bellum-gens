@@ -1,6 +1,6 @@
-import { Injectable, EventEmitter, inject } from '@angular/core';
+import { Injectable, Signal, inject, signal, untracked } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { throwError, BehaviorSubject } from 'rxjs';
+import { throwError, Subject } from 'rxjs';
 import { LoginProvider } from '../models/login-provider';
 import { Promo } from '../models/order';
 import { ApplicationUser, UserPreferences } from '../models/applicationuser';
@@ -23,18 +23,25 @@ export class LoginService {
   private router = inject(Router);
   private commService = inject(CommunicationService);
 
-  public userCheckInProgress = new BehaviorSubject<boolean>(false);
-  public openLogin = new EventEmitter<string>();
+  private _userCheckInProgress = signal(false);
+  public readonly userCheckInProgress = this._userCheckInProgress.asReadonly();
+
+  private _openLogin = new Subject<void>();
+  public readonly openLogin = this._openLogin.asObservable();
 
   private _apiEndpoint = environment.authApiEndpoint;
   private _apiBase = environment.apiEndpoint;
-  private _applicationUser = new BehaviorSubject<ApplicationUser>(null);
-  private _userNotifications = new BehaviorSubject<UserNotification []>(null);
-  private _registrations = new BehaviorSubject<TournamentApplication []>(null);
-  private _teamsAdmin = new BehaviorSubject<CSGOTeam []>(null);
+  private _applicationUser = signal<ApplicationUser>(null);
+  private _applicationUserReadonly = this._applicationUser.asReadonly();
+  private _userNotifications = signal<UserNotification []>(null);
+  private _userNotificationsReadonly = this._userNotifications.asReadonly();
+  private _registrations = signal<TournamentApplication []>(null);
+  private _registrationsReadonly = this._registrations.asReadonly();
+  private _teamsAdmin = signal<CSGOTeam []>(null);
+  private _teamsAdminReadonly = this._teamsAdmin.asReadonly();
 
   public emitOpenLogin() {
-    this.openLogin.emit();
+    this._openLogin.next();
   }
 
   public addPushSubscriber(sub: PushSubscription) {
@@ -45,18 +52,29 @@ export class LoginService {
     return this.http.get<LoginProvider []>(`${this._apiEndpoint}/ExternalLogins?returnUrl=%2F`);
   }
 
-  public get tournamentRegistrations() {
-    if (!this._registrations.value) {
-      this.getRegistrations();
-    }
-    return this._registrations;
+  /** Lazily loads the current user's tournament registrations on first access. */
+  public get tournamentRegistrations(): Signal<TournamentApplication []> {
+    untracked(() => {
+      if (!this._registrations()) {
+        this.getRegistrations();
+      }
+    });
+    return this._registrationsReadonly;
   }
 
-  public get teamsAdmin() {
-    if (!this._teamsAdmin.value) {
-      this.getUserTeamsAdmin().subscribe(teams => this._teamsAdmin.next(teams));
-    }
-    return this._teamsAdmin;
+  /** Replaces the cached tournament registrations (e.g. after a registration was deleted). */
+  public setTournamentRegistrations(registrations: TournamentApplication []) {
+    this._registrations.set(registrations);
+  }
+
+  /** Lazily loads the teams the current user administers on first access. */
+  public get teamsAdmin(): Signal<CSGOTeam []> {
+    untracked(() => {
+      if (!this._teamsAdmin()) {
+        this.getUserTeamsAdmin().subscribe(teams => this._teamsAdmin.set(teams));
+      }
+    });
+    return this._teamsAdminReadonly;
   }
 
   public getRegistration(tournamentId: string) {
@@ -65,34 +83,40 @@ export class LoginService {
 
   public getRegistrations() {
     this.http.get<TournamentApplication []>(`${this._apiBase}/tournament/registrations`, { withCredentials: true}).subscribe(data => {
-      this._registrations.next(data);
+      this._registrations.set(data);
     });
   }
 
-  public get applicationUser() {
-    if (!this._applicationUser.value && !this.userCheckInProgress.value) {
-      this.userCheckInProgress.next(true);
-      this.getAppUser().subscribe({
-        next: (user) => {
-          if (user) {
-            this._applicationUser.next(user);
-            this.initSw();
-          }
-          this.userCheckInProgress.next(false);
-        },
-        error: () => this.userCheckInProgress.next(false)
-      });
-    }
+  /** Lazily checks for a logged in user on first access. `null` means no (known) user. */
+  public get applicationUser(): Signal<ApplicationUser> {
+    untracked(() => {
+      if (!this._applicationUser() && !this._userCheckInProgress()) {
+        this._userCheckInProgress.set(true);
+        this.getAppUser().subscribe({
+          next: (user) => {
+            if (user) {
+              this._applicationUser.set(user);
+              this.initSw();
+            }
+            this._userCheckInProgress.set(false);
+          },
+          error: () => this._userCheckInProgress.set(false)
+        });
+      }
+    });
 
-    return this._applicationUser;
+    return this._applicationUserReadonly;
   }
 
-  public get userNotifications() {
-    if (!this._userNotifications.value) {
-      this.getUserNotifications().subscribe(data => this._userNotifications.next(data));
-    }
+  /** Lazily loads the current user's notifications on first access. */
+  public get userNotifications(): Signal<UserNotification []> {
+    untracked(() => {
+      if (!this._userNotifications()) {
+        this.getUserNotifications().subscribe(data => this._userNotifications.set(data));
+      }
+    });
 
-    return this._userNotifications;
+    return this._userNotificationsReadonly;
   }
 
   public getUserIsAppAdmin() {
@@ -143,7 +167,7 @@ export class LoginService {
     return this.http.post<ApplicationUser>(`${this._apiEndpoint}/login`, logininfo, { withCredentials: true }).pipe(
       map(response => {
         this.commService.emitSuccess('Logged in successfully!');
-        this._applicationUser.next(response);
+        this._applicationUser.set(response);
         this.getRegistrations();
         return response;
       }),
@@ -161,7 +185,7 @@ export class LoginService {
     return this.http.post(`${this._apiEndpoint}/logout`, null, { withCredentials: true }).pipe(
       map(response => {
         this.commService.emitSuccess('Logged out successfully!');
-        this._applicationUser.next(null);
+        this._applicationUser.set(null);
         return response;
       }),
       catchError(error => {
@@ -200,7 +224,7 @@ export class LoginService {
   public deleteAccount(userid: string) {
     return this.http.delete(`${this._apiEndpoint}/delete?userid=${userid}`, { withCredentials: true }).pipe(
       map(response => {
-        this._applicationUser.next(null);
+        this._applicationUser.set(null);
         this.commService.emitSuccess(`Account deleted!`);
         return response;
       }),
@@ -239,7 +263,7 @@ export class LoginService {
           this.commService.emitMessage(message.notification.title);
 
           // Update the app user with new notifications and teams
-          this.getAppUser().subscribe(user => this._applicationUser.next(user));
+          this.getAppUser().subscribe(user => this._applicationUser.set(user));
         });
         this.swPush.notificationClicks.subscribe(action => {
           if (action.action === NotificationActions.ViewTeam) {
