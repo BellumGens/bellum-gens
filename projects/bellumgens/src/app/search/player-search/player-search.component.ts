@@ -38,8 +38,7 @@ export class PlayerSearchComponent {
 
 
   public authUser = input<ApplicationUser>();
-public teamAdmin: Signal<CSGOTeam []> = computed(() => this.authUser() ? this.authManager.teamsAdmin() : null);
-  public teamAdmin: Signal<CSGOTeam []> = this.authManager.teamsAdmin;
+  public teamAdmin: Signal<CSGOTeam []> = computed(() => this.authUser() ? this.authManager.teamsAdmin() : null);
   public role = signal<PlaystyleRole>(PLAYER_SEARCH.role);
   public scheduleOverlap = signal(PLAYER_SEARCH.scheduleOverlap);
   public teamId = signal<string>(PLAYER_SEARCH.teamId);
