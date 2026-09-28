@@ -20,7 +20,8 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-player-search',
   templateUrl: './player-search.component.html',
-  styleUrls: ['./player-search.component.scss'],  imports: [
+  styleUrls: ['./player-search.component.scss'],
+  imports: [
     FormsModule,
     IGX_RADIO_GROUP_DIRECTIVES,
     IGX_SELECT_DIRECTIVES,
@@ -37,7 +38,7 @@ export class PlayerSearchComponent {
 
 
   public authUser = input<ApplicationUser>();
-
+public teamAdmin: Signal<CSGOTeam []> = computed(() => this.authUser() ? this.authManager.teamsAdmin() : null);
   public teamAdmin: Signal<CSGOTeam []> = this.authManager.teamsAdmin;
   public role = signal<PlaystyleRole>(PLAYER_SEARCH.role);
   public scheduleOverlap = signal(PLAYER_SEARCH.scheduleOverlap);
