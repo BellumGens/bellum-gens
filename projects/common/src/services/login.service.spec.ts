@@ -277,6 +277,9 @@ describe('LoginService', () => {
     expect(req.request.withCredentials).toEqual(true);
     req.flush({});
     expect(service['_applicationUser']()).toBeNull();
+    expect(service['_teamsAdmin']()).toBeNull();
+    expect(service['_userNotifications']()).toBeNull();
+    expect(service['_registrations']()).toBeNull();
   });
 
   it('should submit registration', () => {

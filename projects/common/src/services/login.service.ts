@@ -186,6 +186,9 @@ export class LoginService {
       map(response => {
         this.commService.emitSuccess('Logged out successfully!');
         this._applicationUser.set(null);
+        this._teamsAdmin.set(null);
+        this._userNotifications.set(null);
+        this._registrations.set(null);
         return response;
       }),
       catchError(error => {
