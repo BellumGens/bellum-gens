@@ -39,8 +39,10 @@ if (typeof Element !== 'undefined' && !Element.prototype.scrollIntoView) {
 // `'adoptedStyleSheets' in Document.prototype` and would switch to a shadow-root code path jsdom
 // cannot support. jsdom's CSSStyleSheet is constructable and implements replaceSync, so the sheets
 // the registrar puts here are real; nothing applies them, which is fine as no test asserts on styling.
+// lib.dom declares the property as always present, so the `in` check narrows `document` to `never`;
+// Object.assign still sets it as a plain own property.
 if (typeof document !== 'undefined' && !('adoptedStyleSheets' in document)) {
-  document.adoptedStyleSheets = [];
+  Object.assign(document, { adoptedStyleSheets: [] });
 }
 
 // jsdom ships no canvas backend, so getContext('2d') returns null and it never loads images.
@@ -74,7 +76,7 @@ if (noCanvasBackend) {
       stroke: () => undefined,
       strokeRect: () => undefined
     };
-  } as typeof HTMLCanvasElement.prototype.getContext;
+  } as unknown as typeof HTMLCanvasElement.prototype.getContext;
 }
 
 // Without a canvas backend jsdom never fires `load` on an image, so code that draws inside
