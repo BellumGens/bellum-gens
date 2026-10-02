@@ -6,7 +6,7 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { ActivatedRoute, Params, provideRouter, UrlSegment } from '@angular/router';
 import { BehaviorSubject, config, of, throwError } from 'rxjs';
-import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
+import { HttpErrorResponse, provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { signal, WritableSignal } from '@angular/core';
 import { IChipSelectEventArgs } from '@infragistics/igniteui-angular/chips';
 import {
@@ -414,15 +414,19 @@ describe('StrategiesComponent', () => {
       expect(renderedTitles()).toEqual(['Strat mine']);
     });
 
-    it('reports an error when the user strategies fail to load', async () => {
-      vi.spyOn(strategiesService, 'getUserStrategies').mockReturnValue(throwError(() => new Error('boom')));
+    it('reports a friendly error, without the request url, when the user strategies fail to load', async () => {
+      const url = 'https://api/strategy/userstrats?userid=user-1';
+      vi.spyOn(strategiesService, 'getUserStrategies').mockReturnValue(throwError(() =>
+        new HttpErrorResponse({ status: 500, statusText: 'Internal Server Error', url })));
       const emitError = vi.spyOn(commService, 'emitError');
       await create();
 
       user.set({ id: 'user-1' } as ApplicationUser);
       await fixture.whenStable();
 
-      expect(emitError).toHaveBeenCalledWith('boom');
+      expect(emitError).toHaveBeenCalledTimes(1);
+      expect(emitError).toHaveBeenCalledWith('Your strategies could not be loaded. Please try again later.');
+      expect(emitError.mock.calls[0][0]).not.toContain(url);
     });
   });
 });

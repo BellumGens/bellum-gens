@@ -104,10 +104,10 @@ export class StrategiesComponent {
       if (value?.length && value[0]?.path === 'user') {
         this.authUser$.subscribe(user => {
           if (user) {
-            this.apiStrategyService.getUserStrategies(user.id).subscribe(
-              strats => this.strats.set(strats),
-              error => this.commService.emitError(error.message)
-            );
+            this.apiStrategyService.getUserStrategies(user.id).subscribe({
+              next: strats => this.strats.set(strats),
+              error: () => this.commService.emitError($localize`Your strategies could not be loaded. Please try again later.`)
+            });
           }
         });
       } else {
