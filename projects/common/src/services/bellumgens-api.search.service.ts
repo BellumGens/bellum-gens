@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
+import { Injectable, inject, signal } from '@angular/core';
 import { CSGOTeam } from '../models/csgoteam';
 import { SearchResult } from '../models/searchresult';
 import { CSGOStrategy } from '../models/csgostrategy';
-import { BehaviorSubject, throwError } from 'rxjs';
+import { throwError } from 'rxjs';
 import { environment } from '../environments/environment';
 import { catchError, map } from 'rxjs/operators';
 import { CommunicationService } from './communication.service';
@@ -16,13 +16,21 @@ export class ApiSearchService {
   private http = inject(HttpClient);
   private commService = inject(CommunicationService);
 
-  public loadingQuickSearch = new BehaviorSubject<boolean>(false);
-  public loadingSearch = new BehaviorSubject<boolean>(false);
-  public searchResult = new BehaviorSubject<SearchResult>(null);
-  public playerSearchResult = new BehaviorSubject<ApplicationUser []>(null);
-  public teamSearchResult = new BehaviorSubject<CSGOTeam []>(null);
-  public strategySearchResult = new BehaviorSubject<CSGOStrategy []>(null);
-  public searchTerm = new BehaviorSubject<string>(null);
+  private _loadingQuickSearch = signal(false);
+  private _loadingSearch = signal(false);
+  private _searchResult = signal<SearchResult>(null);
+  private _playerSearchResult = signal<ApplicationUser []>(null);
+  private _teamSearchResult = signal<CSGOTeam []>(null);
+  private _strategySearchResult = signal<CSGOStrategy []>(null);
+  private _searchTerm = signal<string>(null);
+
+  public readonly loadingQuickSearch = this._loadingQuickSearch.asReadonly();
+  public readonly loadingSearch = this._loadingSearch.asReadonly();
+  public readonly searchResult = this._searchResult.asReadonly();
+  public readonly playerSearchResult = this._playerSearchResult.asReadonly();
+  public readonly teamSearchResult = this._teamSearchResult.asReadonly();
+  public readonly strategySearchResult = this._strategySearchResult.asReadonly();
+  public readonly searchTerm = this._searchTerm.asReadonly();
 
   private _apiEndpoint = environment.apiEndpoint;
   private _searchResultCache: Map<string, SearchResult> = new Map();
@@ -31,41 +39,41 @@ export class ApiSearchService {
   private _strategySearchCache: Map<string, CSGOStrategy []> = new Map();
 
   public quickSearch(name: string) {
-    this.searchTerm.next(name);
+    this._searchTerm.set(name);
     if (this._searchResultCache.has(name)) {
-      this.searchResult.next(this._searchResultCache.get(name));
+      this._searchResult.set(this._searchResultCache.get(name));
     } else {
-      this.loadingQuickSearch.next(true);
+      this._loadingQuickSearch.set(true);
       this.getQuickSearch(name).subscribe({
         next: data => {
           this._searchResultCache.set(name, data);
-          this.searchResult.next(data);
-          this.loadingQuickSearch.next(false);
+          this._searchResult.set(data);
+          this._loadingQuickSearch.set(false);
         },
-        error: () => this.loadingQuickSearch.next(false)
+        error: () => this._loadingQuickSearch.set(false)
       });
     }
   }
 
   public searchTeams(query: string) {
     if (this._teamSearchCache.has(query)) {
-      this.teamSearchResult.next(this._teamSearchCache.get(query));
+      this._teamSearchResult.set(this._teamSearchCache.get(query));
     } else {
       if (query.startsWith('name')) {
         const val = query.split('=')[1];
         if (this._searchResultCache.has(val)) {
-          this.teamSearchResult.next(this._searchResultCache.get(val).teams);
+          this._teamSearchResult.set(this._searchResultCache.get(val).teams);
         }
       } else {
-        this.teamSearchResult.next([]);
-        this.loadingSearch.next(true);
+        this._teamSearchResult.set([]);
+        this._loadingSearch.set(true);
         this.getFilteredTeams(query).subscribe({
           next: teams => {
             this._teamSearchCache.set(query, teams);
-            this.teamSearchResult.next(teams);
-            this.loadingSearch.next(false);
+            this._teamSearchResult.set(teams);
+            this._loadingSearch.set(false);
           },
-          error: () => this.loadingSearch.next(false)
+          error: () => this._loadingSearch.set(false)
         });
       }
     }
@@ -73,23 +81,23 @@ export class ApiSearchService {
 
   public searchPlayers(query: string) {
     if (this._playerSearchCache.has(query)) {
-      this.playerSearchResult.next(this._playerSearchCache.get(query));
+      this._playerSearchResult.set(this._playerSearchCache.get(query));
     } else {
       if (query.startsWith('name')) {
         const val = query.split('=')[1];
         if (this._searchResultCache.has(val)) {
-          this.playerSearchResult.next(this._searchResultCache.get(val).players);
+          this._playerSearchResult.set(this._searchResultCache.get(val).players);
         }
       } else {
-        this.playerSearchResult.next([]);
-        this.loadingSearch.next(true);
+        this._playerSearchResult.set([]);
+        this._loadingSearch.set(true);
         this.getFilteredPlayers(query).subscribe({
           next: players => {
             this._playerSearchCache.set(query, players);
-            this.playerSearchResult.next(players);
-            this.loadingSearch.next(false);
+            this._playerSearchResult.set(players);
+            this._loadingSearch.set(false);
           },
-          error: () => this.loadingSearch.next(false)
+          error: () => this._loadingSearch.set(false)
         });
       }
     }
@@ -97,23 +105,23 @@ export class ApiSearchService {
 
   public searchStrategies(query: string) {
     if (this._strategySearchCache.has(query)) {
-      this.strategySearchResult.next(this._strategySearchCache.get(query));
+      this._strategySearchResult.set(this._strategySearchCache.get(query));
     } else {
       if (query.startsWith('name')) {
         const val = query.split('=')[1];
         if (this._searchResultCache.has(val)) {
-          this.strategySearchResult.next(this._searchResultCache.get(val).strategies);
+          this._strategySearchResult.set(this._searchResultCache.get(val).strategies);
         }
       } else {
-        this.strategySearchResult.next([]);
-        this.loadingSearch.next(true);
+        this._strategySearchResult.set([]);
+        this._loadingSearch.set(true);
         this.getFilteredStrategies(query).subscribe({
           next: strategies => {
             this._strategySearchCache.set(query, strategies);
-            this.strategySearchResult.next(strategies);
-            this.loadingSearch.next(false);
+            this._strategySearchResult.set(strategies);
+            this._loadingSearch.set(false);
           },
-          error: () => this.loadingSearch.next(false)
+          error: () => this._loadingSearch.set(false)
         });
       }
     }

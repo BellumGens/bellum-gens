@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { UserPreferencesComponent } from './user-preferences.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { provideRouter } from '@angular/router';
@@ -40,8 +40,8 @@ describe('UserPreferencesComponent', () => {
     { id: '2', game: Game.StarCraft2, email: 'test-email', dateSubmitted: new Date(), state: TournamentApplicationState.Pending }
   ];
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
 
         NoopAnimationsModule,
@@ -54,7 +54,7 @@ describe('UserPreferencesComponent', () => {
     httpMock = TestBed.inject(HttpTestingController);
     commsService = TestBed.inject(CommunicationService);
     router = TestBed.inject(Router);
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(UserPreferencesComponent);
@@ -62,6 +62,8 @@ describe('UserPreferencesComponent', () => {
     fixture.detectChanges();
     const req = httpMock.expectOne(`${authService['_apiEndpoint']}`);
     req.flush(applicationUser);
+    // re-render so the registrations are pulled for the logged in user
+    TestBed.tick();
     const req2 = httpMock.expectOne(`${authService['_apiBase']}/tournament/registrations`);
     req2.flush(registrations);
     const req3 = httpMock.expectOne(`${authService['_apiEndpoint']}/ExternalLogins?returnUrl=%2F`);
@@ -83,7 +85,7 @@ describe('UserPreferencesComponent', () => {
 
   it('should have registrations', () => {
     expect(component.registrations()).toEqual(registrations);
-    expect(authService['_registrations'].value).toEqual(registrations);
+    expect(authService['_registrations']()).toEqual(registrations);
   });
 
   it('should call login method', () => {
@@ -129,7 +131,11 @@ describe('UserPreferencesComponent', () => {
     expect(req.request.method).toBe('DELETE');
     expect(req.request.withCredentials).toBe(true);
     req.flush({});
+    // a successful deletion logs the user out
+    expect(component.authUser()).toBeNull();
 
+    // log the user back in to exercise the error path
+    authService['_applicationUser'].set(applicationUser);
     commsService.error.subscribe(message => expect(message).toEqual(`Http failure response for ${authService['_apiEndpoint']}/delete?userid=${applicationUser.id}: 500 Something went wrong!`));
     component.deleteAccount();
     const req2 = httpMock.expectOne(`${authService['_apiEndpoint']}/delete?userid=${applicationUser.id}`);
@@ -140,7 +146,7 @@ describe('UserPreferencesComponent', () => {
 
   it('should call deleteRegistration method', () => {
     expect(component.registrations()).toEqual(registrations);
-    expect(authService['_registrations'].value).toEqual(registrations);
+    expect(authService['_registrations']()).toEqual(registrations);
 
     const registration = registrations[0];
     const remaining = registrations[1];
@@ -151,7 +157,7 @@ describe('UserPreferencesComponent', () => {
     expect(req2.request.withCredentials).toBe(true);
     req2.flush({});
     expect(component.registrations()).toEqual([remaining]);
-    expect(authService['_registrations'].value).toEqual([remaining]);
+    expect(authService['_registrations']()).toEqual([remaining]);
 
     commsService.error.subscribe(message => expect(message).toEqual(`Http failure response for ${authService['_apiBase']}/tournament/delete?id=${registration.id}: 500 Something went wrong!`));
     component.deleteRegistration(registration);
@@ -159,6 +165,30 @@ describe('UserPreferencesComponent', () => {
     expect(req3.request.method).toBe('DELETE');
     expect(req3.request.withCredentials).toBe(true);
     req3.error(new ProgressEvent('Server Error'), { status: 500, statusText: 'Something went wrong!' });
+  });
+
+  it('should emit userDeleted after the account is deleted', () => {
+    const emitSpy = vi.spyOn(component.userDeleted, 'emit');
+    component.deleteAccount();
+    const req = httpMock.expectOne(`${authService['_apiEndpoint']}/delete?userid=${applicationUser.id}`);
+    req.flush({});
+    expect(emitSpy).toHaveBeenCalled();
+  });
+
+  it('should confirm the registration on weekly checkin', () => {
+    const registration = registrations[0];
+    component.weeklyCheckin(registration);
+    const req = httpMock.expectOne(`${authService['_apiBase']}/tournament/checkin?id=${registration.id}`);
+    expect(req.request.method).toBe('PUT');
+    req.flush({});
+    expect(component.registrations()[0].state).toBe(TournamentApplicationState.Confirmed);
+    expect(component.registrations()[1].state).toBe(TournamentApplicationState.Pending);
+    expect(authService['_registrations']()[0].state).toBe(TournamentApplicationState.Confirmed);
+
+    fixture.detectChanges();
+    const states = fixture.nativeElement.querySelectorAll('[igxListAction] > span');
+    expect(states[0].classList).toContain('color-success');
+    expect(states[1].classList).toContain('color-error');
   });
 
   it('disableLogin should return true for externalLogins on the authUser', () => {

@@ -2,8 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { UserNotification } from '../../../../common/src/public_api';
 
 @Pipe({
-    name: 'sortNotifications',
-    standalone: true
+    name: 'sortNotifications'
 })
 export class SortNotificationsPipe implements PipeTransform {
 

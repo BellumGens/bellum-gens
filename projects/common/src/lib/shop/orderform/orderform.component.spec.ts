@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { OrderformComponent } from './orderform.component';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
@@ -10,8 +10,8 @@ describe('OrderformComponent', () => {
   let component: OrderformComponent;
   let fixture: ComponentFixture<OrderformComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
     imports: [
       OrderformComponent,
       NoopAnimationsModule
@@ -19,7 +19,7 @@ describe('OrderformComponent', () => {
     providers: [provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
 })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(OrderformComponent);
@@ -32,11 +32,12 @@ describe('OrderformComponent', () => {
   });
 
   it('should initialize order with EMPTY_JERSEY_ORDER', () => {
-    expect(component.order).toBeDefined();
+    expect(component.order()).toBeDefined();
     // Optionally check for properties if EMPTY_JERSEY_ORDER is known
     // Expect different reference, same values
-    expect(component.order).not.toBe(EMPTY_JERSEY_ORDER)
-    expect(component.order).toEqual(EMPTY_JERSEY_ORDER);
+    expect(component.order()).not.toBe(EMPTY_JERSEY_ORDER);
+    expect(component.order().orderProducts).not.toBe(EMPTY_JERSEY_ORDER.orderProducts);
+    expect(component.order()).toEqual(EMPTY_JERSEY_ORDER);
   });
 
   it('should have basePromo set to 0.3', () => {
@@ -52,17 +53,18 @@ describe('OrderformComponent', () => {
   });
 
   it('should set jersey.cut when selectJerseyCut is called', () => {
-    const jersey = { cut: null } as any;
+    const jersey = component.order().orderProducts[0];
     const event = { newSelection: { value: 'testCut' } } as any;
     component.selectJerseyCut(jersey, event);
-    expect(jersey.cut).toBe('testCut');
+    expect(component.order().orderProducts[0].cut).toBe('testCut');
+    expect(EMPTY_JERSEY_ORDER.orderProducts[0].cut).not.toBe('testCut');
   });
 
   it('should set jersey.size when selectJerseySize is called', () => {
-    const jersey = { size: null } as any;
+    const jersey = component.order().orderProducts[0];
     const event = { newSelection: { value: 'testSize' } } as any;
     component.selectJerseySize(jersey, event);
-    expect(jersey.size).toBe('testSize');
+    expect(component.order().orderProducts[0].size).toBe('testSize');
   });
 
   it('should set inProgress to true and call apiService.submitOrder on placeOrder', () => {
@@ -73,34 +75,46 @@ describe('OrderformComponent', () => {
         handlers.complete();
       }
     });
-    component.inProgress = false;
+    const emitSpy = vi.spyOn(component.orderSuccess, 'emit');
+    component.inProgress.set(false);
     component.placeOrder();
-    expect(component.inProgress).toBe(false); // after complete
-    expect(apiService.submitOrder).toHaveBeenCalledWith(component.order);
+    expect(component.inProgress()).toBe(false); // after complete
+    expect(apiService.submitOrder).toHaveBeenCalledWith(component.order());
+    expect(emitSpy).toHaveBeenCalledWith(component.order());
   });
 
   it('should check promo code and set promo and invalidPromo correctly (valid promo)', () => {
     const apiService = (component as any).apiService;
-    component.order.promoCode = 'PROMO';
+    component.updateOrder('promoCode', 'PROMO');
     vi.spyOn(apiService, 'checkForPromo').mockReturnValue({
       subscribe: (cb: any) => cb({ discount: 0.1 })
     });
-    component.promo = component.basePromo;
-    component.invalidPromo = true;
+    component.promo.set(component.basePromo);
+    component.invalidPromo.set(true);
     component.checkForPromo();
-    expect(component.promo).toBe(component.basePromo + 0.1);
-    expect(component.invalidPromo).toBe(false);
+    expect(component.promo()).toBe(component.basePromo + 0.1);
+    expect(component.invalidPromo()).toBe(false);
   });
 
   it('should check promo code and set invalidPromo to true if promo is invalid', () => {
     const apiService = (component as any).apiService;
-    component.order.promoCode = 'INVALID';
+    component.updateOrder('promoCode', 'INVALID');
     vi.spyOn(apiService, 'checkForPromo').mockReturnValue({
       subscribe: (cb: any) => cb(null)
     });
-    component.invalidPromo = false;
+    component.invalidPromo.set(false);
     component.checkForPromo();
-    expect(component.order.promoCode).toBeNull();
-    expect(component.invalidPromo).toBe(true);
+    expect(component.order().promoCode).toBeNull();
+    expect(component.invalidPromo()).toBe(true);
+  });
+
+  it('should add and remove jerseys', () => {
+    component.addJersey();
+    expect(component.productCount()).toBe(2);
+    expect(component.subtotal()).toBe(2 * component.basePrice);
+    expect(EMPTY_JERSEY_ORDER.orderProducts.length).toBe(1);
+
+    component.removeJersey(0);
+    expect(component.productCount()).toBe(1);
   });
 });

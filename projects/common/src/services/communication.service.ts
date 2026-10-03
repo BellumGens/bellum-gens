@@ -1,24 +1,31 @@
-import { Injectable, EventEmitter } from '@angular/core';
+import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
+/**
+ * App-wide fire-and-forget notifications (success / error / info messages).
+ * These are events rather than state, so they are exposed as observables.
+ */
 @Injectable({
   providedIn: 'root'
 })
 export class CommunicationService {
-  public success = new EventEmitter<string>();
-  public error = new EventEmitter<string>();
-  public message = new EventEmitter<string>();
+  private _success = new Subject<string>();
+  private _error = new Subject<string>();
+  private _message = new Subject<string>();
 
-  constructor() { }
+  public readonly success = this._success.asObservable();
+  public readonly error = this._error.asObservable();
+  public readonly message = this._message.asObservable();
 
   public emitError(error: string) {
-    this.error.emit(error);
+    this._error.next(error);
   }
 
   public emitSuccess(success: string) {
-    this.success.emit(success);
+    this._success.next(success);
   }
 
   public emitMessage(message: string) {
-    this.message.emit(message);
+    this._message.next(message);
   }
 }

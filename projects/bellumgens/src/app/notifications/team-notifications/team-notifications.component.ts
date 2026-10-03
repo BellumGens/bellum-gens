@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, inject } from '@angular/core';
+import { Component, OnInit, inject, input, output, signal } from '@angular/core';
 import { TeamApplication, CSGOTeam, BellumgensApiService } from '../../../../../common/src/public_api';
 import { NotificationStatePipe } from '../../pipes/notification-state.pipe';
 import { SortApplicationsPipe } from '../../pipes/sort-applications.pipe';
@@ -28,52 +28,54 @@ import { DatePipe } from '@angular/common';
 export class TeamNotificationsComponent implements OnInit {
   private apiService = inject(BellumgensApiService);
 
-  @Input() public team: CSGOTeam;
+  public team = input<CSGOTeam>();
 
-  @Output() public loaded = new EventEmitter<TeamApplication []>();
+  public loaded = output<TeamApplication []>();
 
-  @Output() public changed = new EventEmitter<number>();
+  public changed = output<number>();
 
   public notificationClass = ['', '', 'notification-disabled', 'notification-disabled'];
-  public applications: TeamApplication [];
-  public pipeTrigger = 0;
-  public actionInProgress = false;
-  public actionText = '';
+  public applications = signal<TeamApplication []>(null);
+  public actionInProgress = signal(false);
+  public actionText = signal('');
 
   public ngOnInit() {
-    if (this.team) {
-      this.apiService.teamApplications(this.team.teamId).subscribe(data => {
-        this.applications = data;
+    const team = this.team();
+    if (team) {
+      this.apiService.teamApplications(team.teamId).subscribe(data => {
+        this.applications.set(data);
         this.loaded.emit(data);
       });
     }
   }
 
   public approveApplication(application: TeamApplication) {
-    this.actionText = 'Approving...';
-    this.actionInProgress = true;
+    this.actionText.set('Approving...');
+    this.actionInProgress.set(true);
     this.apiService.approveApplication(application).subscribe({
       next: data => {
-        application = data;
-        this.pipeTrigger++;
+        this.replaceApplication(application, data);
         this.changed.emit(-1);
-        this.actionInProgress = false;
+        this.actionInProgress.set(false);
       },
-      complete: () => this.actionInProgress = false
+      complete: () => this.actionInProgress.set(false)
     });
   }
 
   public rejectApplication(application: TeamApplication) {
-    this.actionText = 'Rejecting...';
-    this.actionInProgress = true;
+    this.actionText.set('Rejecting...');
+    this.actionInProgress.set(true);
     this.apiService.rejectApplication(application).subscribe({
       next: data => {
-        application = data;
-        this.pipeTrigger++;
+        this.replaceApplication(application, data);
         this.changed.emit(-1);
-        this.actionInProgress = false;
+        this.actionInProgress.set(false);
       },
-      complete: () => this.actionInProgress = false
+      complete: () => this.actionInProgress.set(false)
     });
+  }
+
+  private replaceApplication(application: TeamApplication, updated: TeamApplication) {
+    this.applications.update(list => list.map(a => a === application ? { ...a, ...updated } : a));
   }
 }

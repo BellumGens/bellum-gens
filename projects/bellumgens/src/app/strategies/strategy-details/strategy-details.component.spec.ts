@@ -1,11 +1,12 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { StrategyDetailsComponent } from './strategy-details.component';
 import { provideRouter } from '@angular/router';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { CSGOMap, CSGOStrategy, GLOBAL_OVERLAY_SETTINGS, LoginService, NEW_EMPTY_COMMENT, Side, SocialMediaStrategyService, StrategyComment, VoteDirection } from 'bellum-gens-common';
+import { ApiStrategiesService, CSGOMap, CSGOStrategy, GLOBAL_OVERLAY_SETTINGS, LoginService, NEW_EMPTY_COMMENT, Side, SocialMediaStrategyService, StrategyComment, VoteDirection } from 'bellum-gens-common';
+import { of } from 'rxjs';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 describe('StrategyDetailsComponent', () => {
@@ -14,8 +15,8 @@ describe('StrategyDetailsComponent', () => {
   let authService: LoginService;
   let smService: SocialMediaStrategyService;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
         imports: [
             NoopAnimationsModule,
             ServiceWorkerModule.register('', { enabled: false }),
@@ -25,7 +26,7 @@ describe('StrategyDetailsComponent', () => {
     .compileComponents();
     authService = TestBed.inject(LoginService);
     smService = TestBed.inject(SocialMediaStrategyService);
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(StrategyDetailsComponent);
@@ -35,7 +36,7 @@ describe('StrategyDetailsComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-    expect(component.newComment).toEqual(NEW_EMPTY_COMMENT);
+    expect(component.newComment()).toEqual(NEW_EMPTY_COMMENT);
     expect(component.overlaySettings).toEqual(GLOBAL_OVERLAY_SETTINGS);
   });
 
@@ -46,22 +47,35 @@ describe('StrategyDetailsComponent', () => {
   });
 
   it('should call openLogin method', () => {
-    vi.spyOn(authService.openLogin, 'emit').mockImplementation(() => undefined);
+    const openLoginSpy = vi.fn();
+    const sub = authService.openLogin.subscribe(openLoginSpy);
     component.openLogin();
-    expect(authService.openLogin.emit).toHaveBeenCalled();
+    expect(openLoginSpy).toHaveBeenCalledTimes(1);
+    sub.unsubscribe();
   });
 
   it('should have newComment initialized', () => {
-    expect(component.newComment).toBeDefined();
+    expect(component.newComment()).toBeDefined();
   });
 
-  it('should initialize pipeTrigger to 0', () => {
-    expect(component.pipeTrigger).toBe(0);
+  it('should swap in the updated strategy emitted by the service after deleting a comment', () => {
+    const comment: StrategyComment = { id: '123', stratId: '456', comment: 'Test', userId: '123' };
+    const strat = { id: '456', comments: [comment] } as CSGOStrategy;
+    const updated = { id: '456', comments: [] } as CSGOStrategy;
+    const strategiesService = TestBed.inject(ApiStrategiesService);
+    vi.spyOn(strategiesService, 'deleteStratComment').mockReturnValue(of(updated));
+    component.strat.set(strat);
+
+    component.deleteComment(comment);
+
+    expect(strategiesService.deleteStratComment).toHaveBeenCalledWith(comment, strat);
+    expect(component.strat()).toBe(updated);
+    expect(strat.comments).toEqual([comment]);
   });
 
   it('should have horizontal property', () => {
-    expect(component.horizontal).toBeDefined();
-    expect(typeof component.horizontal).toBe('boolean');
+    expect(component.horizontal()).toBeDefined();
+    expect(typeof component.horizontal()).toBe('boolean');
   });
 
   it('should have overlaySettings property', () => {

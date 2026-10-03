@@ -8,17 +8,17 @@
       <h4 igxCardHeaderTitle i18n>Found <span class="highlight">{{players()?.length }}</span> results for players{{ query() | queryParsed:true }}</h4>
     </div>
     @for (player of players(); track player.id) {
-      <igx-card class="navigatable" [routerLink]="['/players', player.csgoDetails.customUrl || player.id]" elevated>
+      <igx-card class="navigatable" [routerLink]="['/players', player.csgoDetails?.customUrl || player.id]" elevated>
         <igx-card-header>
-          <igx-avatar igxCardThumbnail [src]="player.csgoDetails.avatarMedium" [size]="'medium'" [initials]="player.username" shape="circle"></igx-avatar>
+          <igx-avatar igxCardThumbnail [src]="player.csgoDetails?.avatarMedium" [size]="'medium'" [initials]="player.username" shape="circle"></igx-avatar>
           <h3 igxCardHeaderTitle class="highlight">{{ player.username }}</h3>
-          <h5 igxCardHeaderSubtitle>{{ player.csgoDetails.realName }}</h5>
-          @if (player.csgoDetails.steamPrivate) {
+          <h5 igxCardHeaderSubtitle>{{ player.csgoDetails?.realName }}</h5>
+          @if (player.csgoDetails?.steamPrivate) {
             <div class="horizontal-center">
               <span class="title" i18n>Private</span>
             </div>
           }
-          @else {
+          @else if (player.csgoDetails) {
             <div>
               <div class="horizontal-center space-between">
                 <igx-circular-bar class="icon-avatar" [value]="player.csgoDetails.killDeathRatio" [max]="2" [animate]="true" [textVisibility]="false" title="KDR"></igx-circular-bar>
@@ -31,17 +31,19 @@
             </div>
           }
         </igx-card-header>
-        <igx-card-content>
-          <div i18n>Preferred roles</div>
-          <igx-chips-area>
-            <igx-chip [selectable]="false">
-              <span class="igx-chip__text">{{ roles[player.csgoDetails.primaryRole].name }}</span>
-            </igx-chip>
-            <igx-chip [selectable]="false">
-              <span class="igx-chip__text">{{ roles[player.csgoDetails.secondaryRole].name }}</span>
-            </igx-chip>
-          </igx-chips-area>
-        </igx-card-content>
+        @if (player.csgoDetails) {
+          <igx-card-content>
+            <div i18n>Preferred roles</div>
+            <igx-chips-area>
+              <igx-chip [selectable]="false">
+                <span class="igx-chip__text">{{ roles[player.csgoDetails.primaryRole].name }}</span>
+              </igx-chip>
+              <igx-chip [selectable]="false">
+                <span class="igx-chip__text">{{ roles[player.csgoDetails.secondaryRole].name }}</span>
+              </igx-chip>
+            </igx-chips-area>
+          </igx-card-content>
+        }
       </igx-card>
     }
   </div>

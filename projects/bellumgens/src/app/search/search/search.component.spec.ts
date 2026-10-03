@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SearchComponent } from './search.component';
 import { FormsModule } from '@angular/forms';
@@ -13,8 +13,8 @@ describe('SearchComponent', () => {
   let component: SearchComponent;
   let fixture: ComponentFixture<SearchComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
         FormsModule,
         
@@ -25,7 +25,7 @@ describe('SearchComponent', () => {
       providers: [provideRouter([]), provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
     })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SearchComponent);
@@ -53,10 +53,10 @@ describe('SearchComponent', () => {
       username: 'TestUser'
     };
 
-    authService.applicationUser.next(mockUser as any);
+    authService['_applicationUser'].set(mockUser as any);
     fixture.detectChanges();
 
-    expect(component.authUser()).toBeDefined();
+    expect(component.authUser()).toEqual(mockUser);
   });
 
   it('should change searchType when button is clicked', () => {

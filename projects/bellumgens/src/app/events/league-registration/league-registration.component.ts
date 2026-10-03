@@ -1,4 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component, Signal, computed, effect, inject, signal, untracked } from '@angular/core';
+import { toObservable, toSignal } from '@angular/core/rxjs-interop';
+import { map } from 'rxjs/operators';
 import {
   ApplicationUser,
   LoginService,
@@ -7,7 +9,6 @@ import {
   TournamentApplication,
   Game,
   CountrySVGPipe,
-  Tournament,
   CommunicationService,
   BATTLE_TAG_REGEX,
   EMAIL_REGEX
@@ -49,12 +50,17 @@ export class LeagueRegistrationComponent {
   private commService = inject(CommunicationService);
   private activatedRoute = inject(ActivatedRoute);
 
-  public application: TournamentApplication = { game: Game.StarCraft2, email: '' };
-  public tournamentId: string;
-  public tournament: Tournament;
-  public authUser: ApplicationUser;
-  public companies: string [];
-  public inProgress = false;
+  public application = signal<TournamentApplication>({ game: Game.StarCraft2, email: '' });
+  private routeTournamentId = toSignal(this.activatedRoute.params.pipe(map(params => params['tournamentId'] as string)));
+  // Without a tournament in the route, the registration is for the active tournament
+  public tournament = computed(() => this.routeTournamentId()
+    ? this.apiService.getTournament(this.routeTournamentId())()
+    : this.apiService.activeTournament());
+  public tournamentId = computed(() => this.routeTournamentId() ?? this.tournament()?.id);
+  public authUser: Signal<ApplicationUser> = this.authManager.applicationUser;
+  private authUser$ = toObservable(this.authUser);
+  public companies = this.apiService.companies;
+  public inProgress = signal(false);
   public battleTagRegex = BATTLE_TAG_REGEX;
   public emailRegex = EMAIL_REGEX;
 
@@ -221,66 +227,64 @@ export class LeagueRegistrationComponent {
     { name: $localize`Vanuatu`, value: `Vanuatu` }
   ];
 
-  public countriesList = this.balkanCountries;
+  // The region's countries are only picked for a tournament given in the route
+  public countriesList = computed(() => {
+    const name = this.routeTournamentId() ? this.tournament()?.name : undefined;
+    if (name?.includes('Europe')) {
+      return this.europeCountries;
+    } else if (name?.includes('Asia')) {
+      return this.asiaCountries;
+    } else if (name?.includes('Americas')) {
+      return this.americasCountries;
+    } else if (name?.includes('Wildcard')) {
+      return [].concat(this.europeCountries, this.asiaCountries, this.americasCountries, this.oceaniaCountries).sort((a, b) => a.name > b.name ? 1 : -1);
+    }
+    return this.balkanCountries;
+  });
 
   constructor() {
-    this.activatedRoute.params.subscribe(params => {
-      if (params.tournamentId) {
-        this.tournamentId = params.tournamentId;
-        this.apiService.getTournament(params.tournamentId).subscribe(tournament => {
-          this.tournament = tournament;
-          this.application.tournamentId = tournament?.id;
-          if (this.tournament?.name.includes('Europe')) {
-            this.countriesList = this.europeCountries;
-          } else if (this.tournament?.name.includes('Asia')) {
-            this.countriesList = this.asiaCountries;
-          } else if (this.tournament?.name.includes('Americas')) {
-            this.countriesList = this.americasCountries;
-          } else if (this.tournament?.name.includes('Wildcard')) {
-            this.countriesList = [].concat(this.europeCountries, this.asiaCountries, this.americasCountries, this.oceaniaCountries).sort((a, b) => a.name > b.name ? 1 : -1);
-          }
-        });
-      } else {
-        this.apiService.activeTournament.subscribe(data => {
-          this.tournament = data;
-          this.tournamentId = data?.id;
-          this.application.tournamentId = this.tournamentId;
-        });
-      }
+    effect(() => {
+      const tournamentId = this.tournament()?.id;
+      untracked(() => this.patchApplication({ tournamentId }));
     });
-    this.authManager.applicationUser.subscribe(user => {
+    this.authUser$.subscribe(user => {
       if (user) {
-        this.authUser = user;
-        this.authManager.getRegistration(this.tournamentId).subscribe(data => {
+        this.authManager.getRegistration(this.tournamentId()).subscribe(data => {
           if (data) {
-            this.application = data;
+            this.application.set(data);
           } else {
-            this.application.email = user.email;
-            this.application.battleNetId = user.sc2Details?.battleNetBattleTag;
-            this.application.country = user.steamUser?.country;
+            this.patchApplication({
+              email: user.email,
+              battleNetId: user.sc2Details?.battleNetBattleTag,
+              country: user.steamUser?.country
+            });
           }
         });
       }
     });
-    this.apiService.companies.subscribe(data => this.companies = data);
+  }
+
+  public patchApplication(changes: Partial<TournamentApplication>) {
+    this.application.update(application => ({ ...application, ...changes }));
   }
 
   public leagueRegistration() {
-    this.inProgress = true;
-    this.apiService.bgeRegistration(this.application, this.application.id).subscribe({
-      next: (application) => {
-        if (!this.application.id) {
-          this.application = application;
+    this.inProgress.set(true);
+    const application = this.application();
+    this.apiService.bgeRegistration(application, application.id).subscribe({
+      next: (result) => {
+        if (!application.id) {
+          this.application.set(result);
           this.commService.emitSuccess($localize`Registration successful!`);
         } else {
           this.commService.emitSuccess($localize`Registration updated successfully!`);
         }
       },
       error: (error) => {
-        this.inProgress = false;
+        this.inProgress.set(false);
         this.commService.emitError(error.message);
       },
-      complete: () => this.inProgress = false
+      complete: () => this.inProgress.set(false)
     });
   }
 }

@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,8 +18,8 @@ describe('RegistrationComponent', () => {
   let commsService: CommunicationService;
   let router: Router;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
         
         NoopAnimationsModule,
@@ -32,7 +32,7 @@ describe('RegistrationComponent', () => {
     loginService = TestBed.inject(LoginService);
     httpMock = TestBed.inject(HttpTestingController);
     router = TestBed.inject(Router);
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(RegistrationComponent);
@@ -43,7 +43,7 @@ describe('RegistrationComponent', () => {
   it('should create', () => {
     const spy = vi.spyOn(component as any, 'initUsernameCheck').mockImplementation(() => undefined);
     expect(component).toBeTruthy();
-    expect(component.usernameInput).toBeDefined();
+    expect(component.usernameInput()).toBeDefined();
     component.ngOnInit();
     expect(spy).toHaveBeenCalled();
   });
@@ -53,12 +53,13 @@ describe('RegistrationComponent', () => {
     commsService.success.subscribe(success => expect(success).toBe('User registration completed successfully!'));
 
     component.submitRegistration();
-    expect(component.submitInProgress).toBe(true);
+    expect(component.submitInProgress()).toBe(true);
 
     const req = httpMock.expectOne(`${loginService['_apiEndpoint']}/setpassword`);
     expect(req.request.method).toBe('POST');
-    expect(req.request.body).toEqual(component.userAccount);
+    expect(req.request.body).toEqual(component.userAccount());
     req.flush({});
+    expect(component.submitInProgress()).toBe(false);
     expect(router.navigate).toHaveBeenCalledWith(['/']);
   });
 
@@ -67,13 +68,20 @@ describe('RegistrationComponent', () => {
     commsService.error.subscribe(error => expect(error).toBe(errorMessage));
 
     component.submitRegistration();
-    expect(component.submitInProgress).toBe(true);
+    expect(component.submitInProgress()).toBe(true);
 
     const req = httpMock.expectOne(`${loginService['_apiEndpoint']}/setpassword`);
     expect(req.request.method).toBe('POST');
-    expect(req.request.body).toEqual(component.userAccount);
+    expect(req.request.body).toEqual(component.userAccount());
     req.error(new ProgressEvent('Server Error'), { status: 500, statusText: 'Registration failed' });
-    expect(component.error).toBe(errorMessage);
+    expect(component.error()).toBe(errorMessage);
+    expect(component.submitInProgress()).toBe(false);
+  });
+
+  it('should update the user account from the form fields', () => {
+    component.updateAccount('username', 'new-user');
+    component.updateAccount('email', 'new@user.com');
+    expect(component.userAccount()).toEqual({ username: 'new-user', password: '', confirmPassword: '', email: 'new@user.com' });
   });
 
   // it('should initialize username check', () => {

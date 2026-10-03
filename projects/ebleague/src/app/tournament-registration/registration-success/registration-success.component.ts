@@ -3,9 +3,9 @@ import { Router } from '@angular/router';
 import { TournamentApplication } from '../../../../../common/src/public_api';
 
 @Component({
-    selector: 'app-registration-success',
-    templateUrl: './registration-success.component.html',
-    styleUrls: ['./registration-success.component.scss'],    standalone: true
+  selector: 'app-registration-success',
+  templateUrl: './registration-success.component.html',
+  styleUrls: ['./registration-success.component.scss']
 })
 export class RegistrationSuccessComponent {
   private router = inject(Router);

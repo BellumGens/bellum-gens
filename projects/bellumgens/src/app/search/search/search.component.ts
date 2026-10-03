@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { Component, Signal, inject, signal } from '@angular/core';
 import { ApplicationUser, LoginService } from '../../../../../common/src/public_api';
 import { TeamSearchComponent } from '../team-search/team-search.component';
 import { PlayerSearchComponent } from '../player-search/player-search.component';
@@ -15,7 +15,6 @@ enum SearchType {
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./search.component.css'],  imports: [
     IGX_BUTTON_GROUP_DIRECTIVES,
     IgxButtonDirective,
@@ -28,9 +27,5 @@ export class SearchComponent {
   private authManager = inject(LoginService);
 
   public searchType = signal<SearchType>(SearchType.None);
-  public authUser = signal<ApplicationUser>(null);
-
-  constructor() {
-    this.authManager.applicationUser.subscribe(user => this.authUser.set(user));
-  }
+  public authUser: Signal<ApplicationUser> = this.authManager.applicationUser;
 }

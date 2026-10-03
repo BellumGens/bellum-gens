@@ -1,7 +1,6 @@
-import { Component, inject, WritableSignal, signal } from '@angular/core';
+import { Component, OnInit, PLATFORM_ID, Signal, computed, effect, inject, signal, untracked } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
-import { CommonModule, isPlatformBrowser, DatePipe } from '@angular/common';
-import { PLATFORM_ID, OnInit } from '@angular/core';
+import { isPlatformBrowser, DatePipe } from '@angular/common';
 import { ApplicationUser, BellumgensApiService, CommunicationService, LoginService } from '../../../../common/src/public_api';
 import { IgxButtonDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxCheckboxComponent } from '@infragistics/igniteui-angular/checkbox';
@@ -11,9 +10,7 @@ import { BaseDirective } from '../base/base.component';
 
 @Component({
   selector: 'bge-elite-stz-2026',
-  standalone: true,
   imports: [
-    CommonModule,
     ReactiveFormsModule,
     IgxInputGroupComponent,
     IgxInputDirective,
@@ -32,7 +29,7 @@ export class EliteStz2026Component extends BaseDirective implements OnInit {
   private authService = inject(LoginService);
   private apiService = inject(BellumgensApiService);
 
-  public count: WritableSignal<number> = signal(0);
+  public count = signal(0);
   public submitting = signal(false);
   public signupDeadline = '2025-12-18T16:00:00Z';
 
@@ -42,24 +39,35 @@ export class EliteStz2026Component extends BaseDirective implements OnInit {
     agreePrivacy: [{value: false, disabled: true}, [Validators.requiredTrue]]
   });
 
-  public authUser: ApplicationUser | null = null;
+  public authUser: Signal<ApplicationUser | null> = this.authService.applicationUser;
+
+  public discount = computed(() => {
+    const c = this.count();
+    if (c > 500) return 33;
+    if (c > 250) return 25;
+    if (c > 100) return 15;
+    if (c > 0) return 10;
+    return 0;
+  });
 
   constructor() {
     super();
-    this.authService.applicationUser.subscribe(user => {
-      this.authUser = user;
-      if (user && !this.isPastDeadline) {
-        this.form.get('email')?.enable();
-        this.form.get('firstTime')?.enable();
-        this.form.get('agreePrivacy')?.enable();
-        if (user.email) {
-          this.form.patchValue({ email: user.email });
+    effect(() => {
+      const user = this.authUser();
+      untracked(() => {
+        if (user && !this.isPastDeadline) {
+          this.form.get('email')?.enable();
+          this.form.get('firstTime')?.enable();
+          this.form.get('agreePrivacy')?.enable();
+          if (user.email) {
+            this.form.patchValue({ email: user.email });
+          }
+        } else {
+          this.form.get('email')?.disable();
+          this.form.get('firstTime')?.disable();
+          this.form.get('agreePrivacy')?.disable();
         }
-      } else {
-        this.form.get('email')?.disable();
-        this.form.get('firstTime')?.disable();
-        this.form.get('agreePrivacy')?.disable();
-      }
+      });
     });
   }
 
@@ -72,21 +80,12 @@ export class EliteStz2026Component extends BaseDirective implements OnInit {
     }
   }
 
-  public get discount(): number {
-    const c = this.count();
-    if (c > 500) return 33;
-    if (c > 250) return 25;
-    if (c > 100) return 15;
-    if (c > 0) return 10;
-    return 0;
-  }
-
   public get isPastDeadline(): boolean {
     return new Date() > new Date(this.signupDeadline);
   }
 
   public submit() {
-    if (!this.authUser || this.form.invalid) {
+    if (!this.authUser() || this.form.invalid) {
       this.form.markAllAsTouched();
       return;
     }

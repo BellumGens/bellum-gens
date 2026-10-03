@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { OrderSuccessComponent } from './order-success.component';
 
@@ -6,12 +6,12 @@ describe('OrderSuccessComponent', () => {
   let component: OrderSuccessComponent;
   let fixture: ComponentFixture<OrderSuccessComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
     imports: [OrderSuccessComponent]
 })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(OrderSuccessComponent);

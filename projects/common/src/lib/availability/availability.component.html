@@ -1,8 +1,8 @@
 <igx-chips-area>
-  @for (weekday of baseAvailability; track weekday.day) {
+  @for (weekday of baseAvailability(); track weekday.day) {
     <igx-chip
-      [selectable]="editable"
-      [removable]="editable && weekday.available"
+      [selectable]="editable()"
+      [removable]="editable() && weekday.available"
       [selected]="weekday.available"
       (chipClick)="daySelected($event, weekday)"
       (remove)="dayDeselected($event, weekday)">
@@ -21,14 +21,14 @@
   rightButtonLabel="Submit"
   (leftButtonSelect)="availabilityCancel()"
   (rightButtonSelect)="availabilityChange()">
-  <h5 igxDialogTitle i18n>Available times for &nbsp;<span class="highlight">{{selectedDay ? (selectedDay.day | weekday) : ''}}</span></h5>
-  @if (selectedDay) {
+  <h5 igxDialogTitle i18n>Available times for &nbsp;<span class="highlight">{{selectedDay() ? (selectedDay().day | weekday) : ''}}</span></h5>
+  @if (selectedDay(); as day) {
     <div>
       <div class="horizontal-center">
-        <igx-time-picker type="border" #from class="time-picker" [value]="selectedDay.from" [itemsDelta]="{hours: 1, minutes: 15, seconds: 1}" mode="dialog">
+        <igx-time-picker type="border" #from class="time-picker" [value]="day.from" [itemsDelta]="{hours: 1, minutes: 15, seconds: 1}" mode="dialog">
           <label igxLabel i18n>From</label>
         </igx-time-picker>
-        <igx-time-picker type="border" #to class="time-picker" [value]="selectedDay.to" [itemsDelta]="{hours: 1, minutes: 15, seconds: 1}" mode="dialog">
+        <igx-time-picker type="border" #to class="time-picker" [value]="day.to" [itemsDelta]="{hours: 1, minutes: 15, seconds: 1}" mode="dialog">
           <label igxLabel i18n>To</label>
         </igx-time-picker>
       </div>

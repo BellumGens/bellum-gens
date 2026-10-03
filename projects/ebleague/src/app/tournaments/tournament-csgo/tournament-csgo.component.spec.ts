@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TournamentCsgoComponent } from './tournament-csgo.component';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
@@ -11,8 +11,8 @@ describe('TournamentCsgoComponent', () => {
   let component: TournamentCsgoComponent;
   let fixture: ComponentFixture<TournamentCsgoComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
         ServiceWorkerModule.register('', { enabled: false }),
@@ -24,7 +24,7 @@ describe('TournamentCsgoComponent', () => {
         provideRouter([])
     ]
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TournamentCsgoComponent);

@@ -2,8 +2,8 @@
   <igx-card [elevated]="true">
     <igx-card-header>
       <igx-avatar src="/assets/login/bge-white-2024.svg" igxCardThumbnail shape="circle" />
-      <h1 igxCardHeaderTitle>{{ tournament?.name }}</h1>
-      <a i18n [routerLink]="['../../registration/', tournamentId]" [disabled]="signUpDisabled" igxButton="contained" style="margin-top: 12px" i18n>Sign-up to participate</a>
+      <h1 igxCardHeaderTitle>{{ tournament()?.name }}</h1>
+      <a i18n [routerLink]="['../../registration/', tournamentId()]" [disabled]="signUpDisabled()" igxButton="contained" style="margin-top: 12px" i18n>Sign-up to participate</a>
     </igx-card-header>
     <igx-card-content>
       <div>
@@ -19,14 +19,14 @@
         <script>
             (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
-        <p>{{tournament?.description}}</p>
+        <p>{{ tournament()?.description }}</p>
       </div>
       <div class="participants-container">
         <h3 i18n style="width: 100%">Participants</h3>
-        @if (loading | async) {
+        @if (loading()) {
           <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
         }
-        @for (registration of registrations | async; track registration) {
+        @for (registration of registrations(); track registration) {
           <div class="registration-slot">
             <igx-avatar [src]="registration.user?.sc2Details?.avatarUrl || ''" [initials]="registration.user.username" size="medium" shape="circle">
             </igx-avatar>
@@ -40,12 +40,12 @@
       </div>
 
       <igx-grid cellSelection="none"
-        [data]="sc2matches | async"
+        [data]="sc2matches()"
         height="650px"
         [groupingExpressions]="grouping"
         i18n-emptyGridMessage
         emptyGridMessage="No matches found..."
-        [isLoading]="loadingMatches | async">
+        [isLoading]="loadingMatches()">
 
         <igx-grid-toolbar>
           <igx-grid-toolbar-title><h3 i18n>Match Results</h3></igx-grid-toolbar-title>

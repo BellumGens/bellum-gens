@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EmailconfirmComponent } from './emailconfirm.component';
 import { provideRouter, ActivatedRoute } from '@angular/router';
@@ -8,8 +8,8 @@ describe('EmailconfirmComponent', () => {
   let component: EmailconfirmComponent;
   let fixture: ComponentFixture<EmailconfirmComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
     imports: [EmailconfirmComponent],
     providers: [
       provideRouter([]),
@@ -23,7 +23,7 @@ describe('EmailconfirmComponent', () => {
     ]
 })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(EmailconfirmComponent);
@@ -33,5 +33,6 @@ describe('EmailconfirmComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+    expect(component.message()).toBe('Email confirmed successfully!');
   });
 });

@@ -1,4 +1,4 @@
-@if (authUser) {
+@if (authUser()) {
   <igx-dialog #createTeam [closeOnOutsideSelect]="true">
     <span class="highlight" i18n>Import from Steam Group</span>
     <igx-input-group type="search">
@@ -8,7 +8,7 @@
       <label for="searchGroups" igxLabel i18n>Search Groups</label>
       <input #search igxInput id="searchGroups" [(ngModel)]="searchGroups">
       @if (search.value.length > 0) {
-        <igx-suffix (click)="searchGroups = null">
+        <igx-suffix (click)="searchGroups.set(null)">
           <igx-icon>clear</igx-icon>
         </igx-suffix>
       }
@@ -17,7 +17,7 @@
       <ng-template igxEmptyList>
         <p i18n>No Steam groups found...</p>
       </ng-template>
-      @for (group of groups | groupsFilter:searchGroups; track group.groupID64) {
+      @for (group of groups() | groupsFilter:searchGroups(); track group.groupID64) {
         <igx-list-item (click)="createFromSteam(group)">
           <igx-avatar igxListThumbnail [src]="group.avatarFull" [initials]="group.groupName" shape="circle">
           </igx-avatar>
@@ -88,9 +88,9 @@
           </igx-input-group>
           <button igxButton
             igxRipple
-            [disabled]="!teamRegistration.touched || teamRegistration.invalid || inProgress"
+            [disabled]="!teamRegistration.touched || teamRegistration.invalid || inProgress()"
             class="submit-button"
-          i18n>{{ inProgress ? 'Submitting...' : 'Submit' }}</button>
+          i18n>{{ inProgress() ? 'Submitting...' : 'Submit' }}</button>
         </form>
       </igx-dialog>
     }

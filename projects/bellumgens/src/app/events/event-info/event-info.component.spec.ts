@@ -1,7 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { EventInfoComponent } from './event-info.component';
 import { ApiTournamentsService } from '../../../../../common/src/public_api';
-import { Observable, of, take } from 'rxjs';
+import { signal } from '@angular/core';
+import { Observable, of } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -46,14 +47,17 @@ describe('EventInfoComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should set tournament details on init', () => {
+  it('should set tournament details on init', async () => {
     const mockTournament = { id: '123', name: 'Test Tournament', description: 'Test Description', logo: 'test-logo' } as any;
     let req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament?id=123`);
     expect(req.request.method).toBe('GET');
     expect(req.request.withCredentials).toBe(false);
     req.flush(mockTournament);
-    expect(component.tournament).toEqual(mockTournament);
-    expect(component.tournamentId).toBe('123');
+    expect(component.tournament()).toEqual(mockTournament);
+    expect(component.tournamentId()).toBe('123');
+    expect(component.signUpDisabled()).toBe(false);
+    // The meta tags are updated by an effect
+    await fixture.whenStable();
     expect(metaService.getTag('name="og:title"').content).toBe('Test Tournament');
     expect(metaService.getTag('name="og:image"').content).toBe('test-logo');
     expect(metaService.getTag('name="description"').content).toBe('Test Description');
@@ -68,27 +72,27 @@ describe('EventInfoComponent', () => {
     expect(req.request.withCredentials).toBe(false);
     req.flush(mockTournament);
 
-    component.loading.pipe(take(1)).subscribe(value => expect(value).toBe(true));
+    expect(component.loading()).toBe(true);
     req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/sc2regs?tournamentId=123`);
     expect(req.request.method).toBe('GET');
     expect(req.request.withCredentials).toBe(false);
     req.flush(mockRegistrations);
-    component.registrations.pipe(take(1)).subscribe(value => expect(value).toEqual(mockRegistrations));
-    component.loading.pipe(take(1)).subscribe(value => expect(value).toBe(false));
+    expect(component.registrations()).toEqual(mockRegistrations);
+    expect(component.loading()).toBe(false);
 
     const mockMatches = [{ id: 'match1' }] as any[];
-    component.loadingMatches.pipe(take(1)).subscribe(value => expect(value).toBe(true));
+    expect(component.loadingMatches()).toBe(true);
     req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/sc2matches?tournamentId=123`);
     expect(req.request.method).toBe('GET');
     expect(req.request.withCredentials).toBe(false);
     req.flush(mockMatches);
-    component.loadingMatches.pipe(take(1)).subscribe(value => expect(value).toBe(false));
-    component.sc2matches.pipe(take(1)).subscribe(value => expect(value).toEqual(mockMatches));
+    expect(component.loadingMatches()).toBe(false);
+    expect(component.sc2matches()).toEqual(mockMatches);
   });
 
   it('should refresh matches', () => {
-    vi.spyOn(apiService, 'getSc2Matches').mockImplementation(() => undefined);
+    vi.spyOn(apiService, 'refreshSc2Matches').mockReturnValue(signal([]).asReadonly());
     component.refreshMatches();
-    expect(apiService.getSc2Matches).toHaveBeenCalledWith('123');
+    expect(apiService.refreshSc2Matches).toHaveBeenCalledWith('123');
   });
 });

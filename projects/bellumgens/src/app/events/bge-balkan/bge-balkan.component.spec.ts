@@ -6,7 +6,6 @@ import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/com
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { provideRouter } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { take } from 'rxjs';
 
 describe('BgeBalkanComponent', () => {
   let component: BgeBalkanComponent;
@@ -41,7 +40,7 @@ describe('BgeBalkanComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should initialize with correct data', () => {
+  it('should initialize with correct data', async () => {
     const mockTournament = { id: '123' } as any;
     const mockRegistrations = [{ id: 'reg1' }] as any[];
     const mockMatches = [{ id: 'match1' }] as any[];
@@ -51,49 +50,63 @@ describe('BgeBalkanComponent', () => {
     expect(req.request.method).toBe('GET');
     expect(req.request.withCredentials).toBe(false);
     req.flush(mockTournament);
-    component.loading.pipe(take(1)).subscribe(value => expect(value).toBe(true));
-    expect(component.tournament).toEqual(mockTournament);
+    expect(component.tournament()).toEqual(mockTournament);
+    expect(component.tournamentId()).toBe('123');
+    // Rendering the tournament's data kicks off loading it
+    await fixture.whenStable();
+    expect(component.loading()).toBe(true);
 
     req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/sc2regs?tournamentId=123`);
     expect(req.request.method).toBe('GET');
     expect(req.request.withCredentials).toBe(false);
     req.flush(mockRegistrations);
-    component.loading.pipe(take(1)).subscribe(value => expect(value).toBe(false));
+    expect(component.loading()).toBe(false);
+    expect(component.registrations()).toEqual(mockRegistrations);
 
     req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/sc2matches?tournamentId=123`);
     expect(req.request.method).toBe('GET');
     expect(req.request.withCredentials).toBe(false);
-    component.loadingMatches.pipe(take(1)).subscribe(value => expect(value).toBe(true));
+    expect(component.loadingMatches()).toBe(true);
     req.flush(mockMatches);
-    component.loadingMatches.pipe(take(1)).subscribe(value => expect(value).toBe(false));
+    expect(component.loadingMatches()).toBe(false);
+    expect(component.sc2matches()).toEqual(mockMatches);
 
     req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/sc2groups?tournamentId=123`);
     expect(req.request.method).toBe('GET');
     expect(req.request.withCredentials).toBe(false);
     req.flush(mockGroups);
+    expect(component.groups()).toEqual(mockGroups);
   });
 
-  it('should refresh groups', () => {
+  it('should refresh groups', async () => {
     const mockGroups = [{ id: 'group1' }] as any[];
 
-    component.tournamentId = '123';
+    httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament?id=0313a19e-d527-46f9-bbea-08dd07ccaf69`).flush({ id: '123' });
+    await fixture.whenStable();
+    httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/sc2groups?tournamentId=123`).flush([]);
+
     component.refreshGroups();
 
     const req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/sc2groups?tournamentId=123`);
     expect(req.request.method).toBe('GET');
     expect(req.request.withCredentials).toBe(false);
     req.flush(mockGroups);
+    expect(component.groups()).toEqual(mockGroups);
   });
 
-  it('should refresh matches', () => {
+  it('should refresh matches', async () => {
     const mockMatches = [{ id: 'match1' }] as any[];
 
-    component.tournamentId = '123';
+    httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament?id=0313a19e-d527-46f9-bbea-08dd07ccaf69`).flush({ id: '123' });
+    await fixture.whenStable();
+    httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/sc2matches?tournamentId=123`).flush([]);
+
     component.refreshMatches();
 
     const req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/sc2matches?tournamentId=123`);
     expect(req.request.method).toBe('GET');
     expect(req.request.withCredentials).toBe(false);
     req.flush(mockMatches);
+    expect(component.sc2matches()).toEqual(mockMatches);
   });
 });

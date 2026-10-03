@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter, inject } from '@angular/core';
+import { Component, Signal, computed, inject, output, signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import {
   LoginService,
@@ -36,58 +36,49 @@ export class PlayerNotificationsComponent {
   private authManager = inject(LoginService);
   private router = inject(Router);
 
-  @Output()
-  public loaded = new EventEmitter<UserNotification []>();
+  public loaded = output<UserNotification []>();
 
-  @Output()
-  public changed = new EventEmitter<number>();
+  public changed = output<number>();
 
   public notificationClass = ['', '', 'notification-disabled', 'notification-disabled'];
-  public pipeTrigger = 0;
-  public actionInProgress = false;
-  public actionText = '';
+  // Bumped after a notification's state changes, so the sort pipe and the
+  // list re-render.
+  public pipeTrigger = signal(0);
+  public actionInProgress = signal(false);
+  public actionText = signal('');
 
-  public authUser: ApplicationUser;
-  public notifications: UserNotification [];
-
-  constructor() {
-    this.authManager.applicationUser.subscribe(user => {
-      if (user) {
-        this.authUser = user;
-        this.authManager.userNotifications.subscribe(data => this.notifications = data);
-      }
-    });
-  }
+  public authUser: Signal<ApplicationUser> = this.authManager.applicationUser;
+  // Only pull the notifications once a user is logged in.
+  public notifications = computed<UserNotification []>(() => this.authUser() ? this.authManager.userNotifications() : null);
 
   public acceptInvitation(notification: UserNotification) {
-    this.actionText = 'Accepting...';
-    this.actionInProgress = true;
+    this.actionText.set('Accepting...');
+    this.actionInProgress.set(true);
     this.apiService.acceptInvite(notification).subscribe({
       next: () => {
+        // The notification belongs to the list cached by LoginService, so it is
+        // updated in place to keep that cache in sync.
         notification.state = NotificationState.Accepted;
-        this.pipeTrigger++;
+        this.pipeTrigger.update(v => v + 1);
         this.router.navigate(['team', notification.teamInfo.customUrl]);
         this.changed.emit(-1);
-        this.actionInProgress = false;
+        this.actionInProgress.set(false);
       },
-      complete: () => this.actionInProgress = false
-    }
-
-    );
+      complete: () => this.actionInProgress.set(false)
+    });
   }
 
   public rejectInvitation(notification: UserNotification) {
-    this.actionText = 'Rejecting...';
-    this.actionInProgress = true;
+    this.actionText.set('Rejecting...');
+    this.actionInProgress.set(true);
     this.apiService.rejectInvite(notification).subscribe({
       next: () => {
         notification.state = NotificationState.Rejected;
-        this.pipeTrigger++;
+        this.pipeTrigger.update(v => v + 1);
         this.changed.emit(-1);
-        this.actionInProgress = false;
+        this.actionInProgress.set(false);
       },
-      complete: () => this.actionInProgress = false
+      complete: () => this.actionInProgress.set(false)
     });
   }
-
 }

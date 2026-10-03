@@ -1,5 +1,5 @@
 import { provideHttpClient, withInterceptorsFromDi } from "@angular/common/http";
-import { ApplicationConfig, importProvidersFrom } from "@angular/core";
+import { ApplicationConfig, importProvidersFrom, provideBrowserGlobalErrorListeners } from "@angular/core";
 import { provideRouter, withInMemoryScrolling } from "@angular/router";
 import { routes } from "./app.routes";
 import { provideAnimations } from "@angular/platform-browser/animations";
@@ -9,6 +9,7 @@ import { provideClientHydration, withEventReplay } from "@angular/platform-brows
 
 export const appConfig: ApplicationConfig = {
   providers: [
+      provideBrowserGlobalErrorListeners(),
       importProvidersFrom(ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })),
       provideRouter(
         routes,

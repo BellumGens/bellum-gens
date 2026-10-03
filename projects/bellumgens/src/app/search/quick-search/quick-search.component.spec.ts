@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { QuickSearchComponent } from './quick-search.component';
 import { provideRouter } from '@angular/router';
@@ -10,8 +10,8 @@ describe('QuickSearchComponent', () => {
   let component: QuickSearchComponent;
   let fixture: ComponentFixture<QuickSearchComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
         imports: [
           
           QuickSearchComponent
@@ -19,7 +19,7 @@ describe('QuickSearchComponent', () => {
         providers: [provideRouter([]), provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
     })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(QuickSearchComponent);
@@ -40,8 +40,7 @@ describe('QuickSearchComponent', () => {
   });
 
   it('should initialize term as empty string', () => {
-    // term can be '' or null depending on initialization timing
-    expect(component.term() === '' || component.term() === null).toBeTruthy();
+    expect(component.term()).toBe('');
   });
 
   it('should update searchResult when apiService emits new data', () => {
@@ -65,7 +64,7 @@ describe('QuickSearchComponent', () => {
       strategies: []
     };
 
-    apiService.searchResult.next(mockResult as any);
+    apiService['_searchResult'].set(mockResult as any);
     fixture.detectChanges();
 
     expect(component.searchResult().players.length).toBe(1);
@@ -74,12 +73,12 @@ describe('QuickSearchComponent', () => {
   it('should update loading state when apiService emits loading status', () => {
     const apiService = TestBed.inject(ApiSearchService) as ApiSearchService;
 
-    apiService.loadingQuickSearch.next(true);
+    apiService['_loadingQuickSearch'].set(true);
     fixture.detectChanges();
 
     expect(component.loading()).toBe(true);
 
-    apiService.loadingQuickSearch.next(false);
+    apiService['_loadingQuickSearch'].set(false);
     fixture.detectChanges();
 
     expect(component.loading()).toBe(false);
@@ -89,7 +88,7 @@ describe('QuickSearchComponent', () => {
     const apiService = TestBed.inject(ApiSearchService) as ApiSearchService;
     const testTerm = 'test search';
 
-    apiService.searchTerm.next(testTerm);
+    apiService['_searchTerm'].set(testTerm);
     fixture.detectChanges();
 
     expect(component.term()).toBe(testTerm);

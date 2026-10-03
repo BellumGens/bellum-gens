@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TeamSearchComponent } from './team-search.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -11,8 +11,8 @@ describe('TeamSearchComponent', () => {
   let component: TeamSearchComponent;
   let fixture: ComponentFixture<TeamSearchComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
         
         NoopAnimationsModule,
@@ -22,7 +22,7 @@ describe('TeamSearchComponent', () => {
       providers: [provideRouter([]), provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
     })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TeamSearchComponent);

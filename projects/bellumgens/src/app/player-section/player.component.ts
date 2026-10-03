@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ViewEncapsulation, inject, signal } from '@angular/core';
+import { Component, Signal, ViewEncapsulation, inject, linkedSignal, signal } from '@angular/core';
 
 import { IGX_TABS_DIRECTIVES } from '@infragistics/igniteui-angular/tabs';
 import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
@@ -10,7 +10,6 @@ import { ApplicationUser, BellumgensApiService } from '../../../../common/src/pu
   templateUrl: './player.component.html',
   styleUrls: ['./player.component.scss'],
   encapsulation: ViewEncapsulation.None,
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     IGX_TABS_DIRECTIVES,
     IgxAvatarComponent,
@@ -23,19 +22,19 @@ export class PlayerComponent {
   private apiService = inject(BellumgensApiService);
   private activatedRoute = inject(ActivatedRoute);
 
-  public player = signal<ApplicationUser>(null);
+  private cachedPlayer = signal<Signal<ApplicationUser>>(null);
+
+  // Keeps showing the previous player while the next one loads (the service cache is cleared meanwhile).
+  public player = linkedSignal<ApplicationUser, ApplicationUser>({
+    source: () => this.cachedPlayer()?.() ?? null,
+    computation: (player, previous) => player ?? previous?.value ?? null
+  });
 
   constructor() {
     this.activatedRoute.params.subscribe(params => {
       const userid = params['userid'];
       if (userid) {
-        this.apiService.getPlayer(userid).subscribe(
-          player => {
-            if (player) {
-              this.player.set(player);
-            }
-          }
-        );
+        this.cachedPlayer.set(this.apiService.getPlayer(userid));
       }
     });
   }

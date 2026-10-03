@@ -1,7 +1,7 @@
 <div class="content-container">
   <div class="content-container-row">
     <igx-grid #grid1
-      [data]="registrations"
+      [data]="registrations()"
       primaryKey="id"
       [height]="'600px'"
       [batchEditing]="true"
@@ -70,7 +70,7 @@
 
   <div class="content-container-row">
     <igx-grid #grid1
-      [data]="orders | async"
+      [data]="orders()"
       primaryKey="id"
       [height]="'600px'"
       [batchEditing]="true"
@@ -145,7 +145,7 @@
   <div class="content-container-row">
     <h3 i18n>Tournaments and Roles</h3>
   </div>
-  @for (league of tournaments; track league.id; let i = $index) {
+  @for (league of tournaments(); track league.id; let i = $index) {
     <igx-card>
       <igx-card-header>
         <h4 igxCardHeaderTitle>{{league.name}}</h4>
@@ -240,10 +240,10 @@
   <div class="content-container-column">
     <igx-chips-area>
       <span>Roles</span>
-      @for (role of roles; track role) {
+      @for (role of roles(); track role) {
         <igx-chip>{{role}}</igx-chip>
       }
-      @if (!roles) {
+      @if (!roles()) {
         <igx-chip i18n>No Roles Defined</igx-chip>
       }
     </igx-chips-area>

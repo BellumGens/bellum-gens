@@ -1,15 +1,15 @@
-@if (authUser) {
+@if (authUser()) {
   <button class="submit-button" igxButton="contained" igxRipple (click)="createTeam.open()">
     <igx-icon>add_circle_outline</igx-icon><span i18n>Create New Counter-Strike Team</span>
   </button>
 }
 
 <div class="card-wrapper">
-  @if (!authUser) {
+  @if (!authUser()) {
     <p i18n>You need to login to view your teams.</p>
   }
 
-  @for (team of teams | async; track team.teamId) {
+  @for (team of teams(); track team.teamId) {
     <igx-card class="team-card" elevated>
       <igx-card-header>
         <igx-avatar igxCardThumbnail [src]="team.teamAvatar" [initials]="team.teamName" shape="circle"></igx-avatar>
@@ -32,7 +32,7 @@
   }
 </div>
 
-<app-team-new #createTeam [authUser]="authUser"></app-team-new>
+<app-team-new #createTeam [authUser]="authUser()"></app-team-new>
 
 <bg-confirm #confirm i18n-title title="Are you sure?" (ok)="abandonTeam($event)">
   <p i18n>You will leave this team permanently. If you own the team and are the only team member, then the team will also be deleted...</p>

@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild, Output, EventEmitter, inject } from '@angular/core';
+import { Component, inject, input, output, signal, viewChild } from '@angular/core';
 import {
   CSGOStrategy,
   NEW_EMPTY_STRAT,
@@ -24,7 +24,8 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-new-strategy',
   templateUrl: './new-strategy.component.html',
-  styleUrls: ['./new-strategy.component.scss'],  imports: [
+  styleUrls: ['./new-strategy.component.scss'],
+  imports: [
     IGX_DIALOG_DIRECTIVES,
     FormsModule,
     IGX_INPUT_GROUP_DIRECTIVES,
@@ -34,6 +35,7 @@ import { FormsModule } from '@angular/forms';
     IGX_SELECT_DIRECTIVES,
     IgxButtonDirective,
     IgxRippleDirective,
+    IsVideoPipe,
     SafeVideoLinkPipe
   ]
 })
@@ -41,85 +43,74 @@ export class NewStrategyComponent {
   private apiService = inject(ApiStrategiesService);
   private router = inject(Router);
 
-  @ViewChild('newStrat', { static: true }) public dialog: IgxDialogComponent;
+  public dialog = viewChild.required<IgxDialogComponent>('newStrat');
 
-  @Input() public team: CSGOTeam;
+  public team = input<CSGOTeam>();
 
-  @Input() public authUser: ApplicationUser;
+  public authUser = input<ApplicationUser>();
 
-  @Output() public strategyAdded = new EventEmitter<CSGOStrategy>();
+  public strategyAdded = output<CSGOStrategy>();
 
-  public newStrategy: CSGOStrategy = Object.assign({}, NEW_EMPTY_STRAT);
-  public videoId: string;
+  public newStrategy = signal<CSGOStrategy>(Object.assign({}, NEW_EMPTY_STRAT));
   public mapList: CSGOActiveDutyMap [] = ACTIVE_DUTY;
   public selectedMap = this.mapList[0];
-  public title = 'Add a new team strategy';
+  public title = signal('Add a new team strategy');
 
   private _defaultTitle = 'Add a new team strategy';
 
   public open(strat?: CSGOStrategy, title?: string) {
     if (strat) {
-      this.newStrategy = strat;
-    } else if (!this.team) {
-      this.newStrategy.visible = true;
+      this.newStrategy.set(strat);
+    } else if (!this.team()) {
+      this.newStrategy.update(current => ({ ...current, visible: true }));
     }
 
-    if (title) {
-      this.title = title;
-    } else {
-      this.title = this._defaultTitle;
-    }
-    this.dialog.open();
+    this.title.set(title || this._defaultTitle);
+    this.dialog().open();
   }
 
   public resetStrategy() {
-    const strat = Object.assign({}, NEW_EMPTY_STRAT);
-    strat.visible = !this.team;
-    this.newStrategy = strat;
+    this.newStrategy.set({ ...NEW_EMPTY_STRAT, visible: !this.team() });
   }
 
   public submitStrategy() {
-    if (this.team) {
-      this.newStrategy.teamId = this.team.teamId;
-    }
-    this.apiService.submitStrategy(this.newStrategy).subscribe(
-      strat => {
-        if (!this.newStrategy.id) {
+    const strategy = this.strategyToSubmit();
+    // A new strategy carries the empty guid from NEW_EMPTY_STRAT until the server assigns its id.
+    const isNew = !strategy.id || strategy.id === NEW_EMPTY_STRAT.id;
+    this.apiService.submitStrategy(strategy).subscribe({
+      next: strat => {
+        if (isNew) {
           this.strategyAdded.emit(strat);
         }
-        this.dialog.close();
-      }
-    );
-  }
-
-  public createAndRedirect() {
-    if (this.team) {
-      this.newStrategy.teamId = this.team.teamId;
-    }
-    this.apiService.submitStrategy(this.newStrategy).subscribe(strat => {
-      this.router.navigate(['strategies', 'edit', strat.customUrl]);
+        this.dialog().close();
+      },
+      // The service already reports the error; keep the dialog open so the user can retry.
+      error: () => {}
     });
   }
 
-  public getVideoEmbedLink() {
-    if (IsVideoPipe.isYoutube(this.newStrategy.url)) {
-      const parts = IsVideoPipe._youtubeRegEx.exec(this.newStrategy.url);
-      if (this.videoId && this.videoId === parts[5]) {
-        return true;
-      }
-      this.videoId = parts[5];
-      this.newStrategy.url = IsVideoPipe.getYoutubeEmbedLink(this.newStrategy.url);
-      return true;
-    } else if (IsVideoPipe.isTwitch(this.newStrategy.url)) {
-      const parts = IsVideoPipe._twitchRegEx.exec(this.newStrategy.url);
-      if (this.videoId && this.videoId === parts[3]) {
-        return true;
-      }
-      this.videoId = parts[3];
-      this.newStrategy.url = IsVideoPipe.getTwitchEmbedLink(this.newStrategy.url);
-      return true;
-    }
-    return false;
+  public createAndRedirect() {
+    this.apiService.submitStrategy(this.strategyToSubmit()).subscribe({
+      next: strat => this.router.navigate(['strategies', 'edit', strat.customUrl]),
+      error: () => {}
+    });
   }
 
+  // The form edits the strategy fields in place (when editing, that is the listed strategy itself),
+  // so the url is normalized the same way.
+  public urlChanged(url: string) {
+    let link = url;
+    if (IsVideoPipe.isYoutube(url)) {
+      link = IsVideoPipe.getYoutubeEmbedLink(url);
+    } else if (IsVideoPipe.isTwitch(url)) {
+      link = IsVideoPipe.getTwitchEmbedLink(url);
+    }
+    this.newStrategy().url = link;
+  }
+
+  private strategyToSubmit(): CSGOStrategy {
+    const team = this.team();
+    const strategy = this.newStrategy();
+    return team ? { ...strategy, teamId: team.teamId } : strategy;
+  }
 }

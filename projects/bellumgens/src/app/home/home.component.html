@@ -1,4 +1,4 @@
-<igx-carousel #carousel class="carousel" [loop]="true" [interval]="10000" [navigation]="navigation">
+<igx-carousel #carousel class="carousel" [loop]="true" [interval]="10000" [navigation]="navigation()">
   <igx-slide>
     <div class="slide slide0">
       <div class="slide-info">
@@ -24,7 +24,7 @@
       <div class="slide-info">
         <h1 i18n>Manage your Counter-Strike Team</h1>
         <p i18n>Recruit your team, manage roles, strategies, practice times and more. The only free online Counter-Strike strategy editor available to everyone!</p>
-        @if (!authUser) {
+        @if (!authUser()) {
           <button igxButton="contained" (click)="openLogin()" i18n>Sign-up Now</button>
         } @else {
           <button igxButton="contained" routerLink="/team/myteams" i18n>Go to Team Section</button>
@@ -195,13 +195,13 @@
           </igx-prefix>
           <input type="email" id="subemail" #subMail name="subemail" igxInput pattern="^[a-zA-Z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$" [(ngModel)]="userEmail" />
           @if (subMail.value) {
-            <igx-suffix (click)="userEmail = ''">
+            <igx-suffix (click)="userEmail.set('')">
               <igx-icon>clear</igx-icon>
             </igx-suffix>
           }
           <igx-hint i18n>Get email updates from us!</igx-hint>
         </igx-input-group>
-        <button type="submit" igxButton="outlined" class="submit-email" [disabled]="subscription.invalid || !userEmail" i18n>Subscribe</button>
+        <button type="submit" igxButton="outlined" class="submit-email" [disabled]="subscription.invalid || !userEmail()" i18n>Subscribe</button>
       </div>
     </form>
   </div>

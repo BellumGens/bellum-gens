@@ -2,8 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { SteamUser } from '../../../../common/src/public_api';
 
 @Pipe({
-    name: 'steamCustomUrl',
-    standalone: true
+    name: 'steamCustomUrl'
 })
 export class SteamCustomUrlPipe implements PipeTransform {
 

@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ConfirmComponent } from './confirm.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -7,15 +7,15 @@ describe('ConfirmComponent', () => {
   let component: ConfirmComponent;
   let fixture: ComponentFixture<ConfirmComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
         ConfirmComponent
       ]
     })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(ConfirmComponent);
@@ -28,7 +28,7 @@ describe('ConfirmComponent', () => {
   });
 
   it('should have default title as empty string', () => {
-    expect(component.title).toBe('');
+    expect(component.title()).toBe('');
   });
 
   it('should emit ok event when okClicked is called', async () => {
@@ -43,9 +43,9 @@ describe('ConfirmComponent', () => {
   });
 
   it('should close dialog when okClicked is called', () => {
-    vi.spyOn(component.dialog, 'close').mockImplementation(() => undefined);
+    vi.spyOn(component.dialog(), 'close').mockImplementation(() => undefined);
     component.okClicked();
-    expect(component.dialog.close).toHaveBeenCalled();
+    expect(component.dialog().close).toHaveBeenCalled();
   });
 
   it('should emit cancel event when cancelClicked is called', async () => {
@@ -57,18 +57,18 @@ describe('ConfirmComponent', () => {
   });
 
   it('should close dialog when cancelClicked is called', () => {
-    vi.spyOn(component.dialog, 'close').mockImplementation(() => undefined);
+    vi.spyOn(component.dialog(), 'close').mockImplementation(() => undefined);
     component.cancelClicked({} as any);
-    expect(component.dialog.close).toHaveBeenCalled();
+    expect(component.dialog().close).toHaveBeenCalled();
   });
 
   it('should open dialog and store entity', () => {
     const testEntity = { id: 1, name: 'Test' };
-    vi.spyOn(component.dialog, 'open').mockImplementation(() => undefined);
+    vi.spyOn(component.dialog(), 'open').mockImplementation(() => undefined);
 
     component.open(testEntity);
 
-    expect(component.dialog.open).toHaveBeenCalled();
+    expect(component.dialog().open).toHaveBeenCalled();
     expect(component['confirmEntity']).toEqual(testEntity);
   });
 
@@ -79,7 +79,9 @@ describe('ConfirmComponent', () => {
   });
 
   it('should accept custom title', () => {
-    component.title = 'Custom Confirmation';
-    expect(component.title).toBe('Custom Confirmation');
+    fixture.componentRef.setInput('title', 'Custom Confirmation');
+    fixture.detectChanges();
+    expect(component.title()).toBe('Custom Confirmation');
+    expect(component.dialog().title).toBe('Custom Confirmation');
   });
 });

@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { TeamResultsComponent } from './team-results.component';
 import { IgxProgressBarModule } from '@infragistics/igniteui-angular/progressbar';
@@ -13,8 +13,8 @@ describe('TeamResultsComponent', () => {
   let component: TeamResultsComponent;
   let fixture: ComponentFixture<TeamResultsComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
     imports: [
         IgxProgressBarModule,
         IgxCardModule,
@@ -24,7 +24,7 @@ describe('TeamResultsComponent', () => {
     providers: [provideRouter([]), provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
 })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(TeamResultsComponent);

@@ -81,7 +81,7 @@ describe('AdminMainComponent', () => {
 
       // When passing a tournament parameter, it doesn't push to the array
       // The method only pushes when using this.tournament (no parameter)
-      expect(component.tournaments).toBeDefined();
+      expect(component.tournaments()).toBeDefined();
     });
 
     it('should create a tournament using component property', () => {
@@ -92,7 +92,7 @@ describe('AdminMainComponent', () => {
         endDate: new Date('2025-12-20'),
         active: true
       };
-      component.tournaments = [];
+      component.tournaments.set([]);
 
       component.updateTournament();
 
@@ -102,7 +102,7 @@ describe('AdminMainComponent', () => {
       const createdTournament: Tournament = { id: 'tournament-2', ...component.tournament };
       req.flush(createdTournament);
 
-      expect(component.tournaments.length).toBe(1);
+      expect(component.tournaments().length).toBe(1);
     });
 
     it('should update an existing tournament', () => {
@@ -134,13 +134,13 @@ describe('AdminMainComponent', () => {
         }
       ];
 
-      // Trigger the tournaments subscription
-      apiService.tournaments.next(mockTournaments);
+      // Update the service's cached tournaments
+      apiService['_tournaments'].set(mockTournaments);
 
-      expect(component.tournaments).toBeDefined();
-      expect(component.tournaments.length).toBe(1);
-      expect(component.tournaments[0].startDate instanceof Date).toBe(true);
-      expect(component.tournaments[0].endDate instanceof Date).toBe(true);
+      expect(component.tournaments()).toBeDefined();
+      expect(component.tournaments().length).toBe(1);
+      expect(component.tournaments()[0].startDate instanceof Date).toBe(true);
+      expect(component.tournaments()[0].endDate instanceof Date).toBe(true);
     });
   });
 

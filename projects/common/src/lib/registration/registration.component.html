@@ -6,8 +6,8 @@
       <igx-prefix>
         <igx-icon>person</igx-icon>
       </igx-prefix>
-      <input #regusername igxInput id="regusername" [required]="true" name="regusername" [(ngModel)]="userAccount.username" />
-      @if (inUse) {
+      <input #regusername igxInput id="regusername" [required]="true" name="regusername" [ngModel]="userAccount().username" (ngModelChange)="updateAccount('username', $event)" />
+      @if (inUse()) {
         <igx-hint class="color-error" i18n>Username already taken...</igx-hint>
       }
     </igx-input-group>
@@ -17,7 +17,7 @@
       <igx-prefix>
         <igx-icon>email</igx-icon>
       </igx-prefix>
-      <input type="email" id="email" #orderEmail name="email" igxInput [required]="true" pattern="^[a-zA-Z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$" [(ngModel)]="userAccount.email" />
+      <input type="email" id="email" #orderEmail name="email" igxInput [required]="true" pattern="^[a-zA-Z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$" [ngModel]="userAccount().email" (ngModelChange)="updateAccount('email', $event)" />
     </igx-input-group>
 
     <igx-input-group type="border">
@@ -32,10 +32,10 @@
         pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&~])[A-Za-z\d@$!%*#?&~]{8,}$"
         id="password"
         name="password"
-        [(ngModel)]="userAccount.password" />
-        @if (error) {
+        [ngModel]="userAccount().password" (ngModelChange)="updateAccount('password', $event)" />
+        @if (error()) {
           <igx-hint class="color-error error-hint">
-            {{error}}
+            {{ error() }}
           </igx-hint>
         }
         @if (password.touched && password.invalid) {
@@ -48,8 +48,8 @@
         <igx-prefix>
           <igx-icon>key</igx-icon>
         </igx-prefix>
-        <input #confirmPassword igxInput type="password" [required]="true" id="confirmPassword" name="confirmPassword" [(ngModel)]="userAccount.confirmPassword" />
-        @if (userRegistration.touched && confirmPassword.value !== userAccount.password) {
+        <input #confirmPassword igxInput type="password" [required]="true" id="confirmPassword" name="confirmPassword" [ngModel]="userAccount().confirmPassword" (ngModelChange)="updateAccount('confirmPassword', $event)" />
+        @if (userRegistration.touched && confirmPassword.value !== userAccount().password) {
           <igx-hint class="color-error" i18n>Doesn't match...</igx-hint>
         }
       </igx-input-group>
@@ -60,7 +60,7 @@
               [disabled]="!userRegistration.touched ||
                         !userRegistration.valueChanges ||
                         userRegistration.invalid ||
-                        submitInProgress"
+                        submitInProgress()"
               i18n>Register</button>
     </form>
   </div>

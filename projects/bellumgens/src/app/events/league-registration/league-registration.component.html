@@ -1,25 +1,25 @@
 <form #tapplication="ngForm" (ngSubmit)="leagueRegistration()">
 
   <div class="horizontal-center">
-    <img width="88" height="88" alt="Tournament Logo" [src]="tournament?.logo" />
-    <h2 id="registration" class="registration-title">{{tournament?.name}}</h2>
+    <img width="88" height="88" alt="Tournament Logo" [src]="tournament()?.logo" />
+    <h2 id="registration" class="registration-title">{{ tournament()?.name }}</h2>
   </div>
-  <p class="horizontal-center">{{tournament?.description}}</p>
+  <p class="horizontal-center">{{ tournament()?.description }}</p>
 
-  @if (!authUser) {
+  @if (!authUser()) {
     <p class="horizontal-center" i18n>You need to be logged in to register for the tournament.</p>
   }
 
-  <div #appDetails class="form-wrapper application-details" [style]="authUser ? '' : 'display: none'">
+  <div #appDetails class="form-wrapper application-details" [style.display]="authUser() ? null : 'none'">
 
     <igx-input-group class="registration-form-input">
       <label igxLabel for="email" i18n>Email</label>
       <igx-prefix>
         <igx-icon>email</igx-icon>
       </igx-prefix>
-      <input type="email" id="email" #userMail name="email" [required]="true" igxInput [pattern]="emailRegex" [(ngModel)]="application.email" />
+      <input type="email" id="email" #userMail name="email" [required]="true" igxInput [pattern]="emailRegex" [ngModel]="application().email" (ngModelChange)="patchApplication({ email: $event })" />
       @if (userMail.value) {
-        <igx-suffix (click)="application.email = null">
+        <igx-suffix (click)="patchApplication({ email: null })">
           <igx-icon>clear</igx-icon>
         </igx-suffix>
       }
@@ -30,9 +30,9 @@
       <igx-prefix>
         <igx-icon>person</igx-icon>
       </igx-prefix>
-      <input id="firstName" #firstName name="firstName" igxInput [(ngModel)]="application.firstName" />
+      <input id="firstName" #firstName name="firstName" igxInput [ngModel]="application().firstName" (ngModelChange)="patchApplication({ firstName: $event })" />
       @if (firstName.value) {
-        <igx-suffix (click)="application.firstName = null">
+        <igx-suffix (click)="patchApplication({ firstName: null })">
           <igx-icon>clear</igx-icon>
         </igx-suffix>
       }
@@ -43,9 +43,9 @@
       <igx-prefix>
         <igx-icon>person</igx-icon>
       </igx-prefix>
-      <input id="lastName" #lastName name="lastName" igxInput [(ngModel)]="application.lastName" />
+      <input id="lastName" #lastName name="lastName" igxInput [ngModel]="application().lastName" (ngModelChange)="patchApplication({ lastName: $event })" />
       @if (lastName.value) {
-        <igx-suffix (click)="application.lastName = null">
+        <igx-suffix (click)="patchApplication({ lastName: null })">
           <igx-icon>clear</igx-icon>
         </igx-suffix>
       }
@@ -56,21 +56,21 @@
       <igx-prefix>
         <igx-icon family="login-icons" name="discord"></igx-icon>
       </igx-prefix>
-      <input id="discord" #discord name="discord" igxInput [(ngModel)]="application.discord" required />
+      <input id="discord" #discord name="discord" igxInput [ngModel]="application().discord" (ngModelChange)="patchApplication({ discord: $event })" required />
       @if (discord.value) {
-        <igx-suffix (click)="application.discord = null">
+        <igx-suffix (click)="patchApplication({ discord: null })">
           <igx-icon>clear</igx-icon>
         </igx-suffix>
       }
       <igx-hint i18n>Join&nbsp;<a href="https://discord.gg/bnTcpa9" target="_blank" rel="noopener">Bellum Gens</a> &nbsp;before the registration is submitted.</igx-hint>
     </igx-input-group>
 
-    <igx-select class="registration-form-input" [(ngModel)]="application.country" name="balkanCountry" required>
+    <igx-select class="registration-form-input" [ngModel]="application().country" (ngModelChange)="patchApplication({ country: $event })" name="balkanCountry" required>
       <igx-prefix>
         <igx-icon>public</igx-icon>
       </igx-prefix>
       <label igxLabel for="balkanCountry" i18n>Country</label>
-      @for (country of countriesList; track country) {
+      @for (country of countriesList(); track country) {
         <igx-select-item [value]="country.value">
           <igx-avatar [src]="country.value | countrySVG" shape="circle" [title]="country.name"></igx-avatar>
           <span class="title">{{ country.name }}</span>
@@ -83,9 +83,9 @@
       <igx-prefix>
         <igx-icon family="login-icons" name="battlenet"></igx-icon>
       </igx-prefix>
-      <input id="battletag" #battletag name="battletag" [required]="true" igxInput [pattern]="battleTagRegex" [(ngModel)]="application.battleNetId" />
+      <input id="battletag" #battletag name="battletag" [required]="true" igxInput [pattern]="battleTagRegex" [ngModel]="application().battleNetId" (ngModelChange)="patchApplication({ battleNetId: $event })" />
       @if (battletag.value) {
-        <igx-suffix (click)="application.battleNetId = null">
+        <igx-suffix (click)="patchApplication({ battleNetId: null })">
           <igx-icon>clear</igx-icon>
         </igx-suffix>
       }
@@ -96,16 +96,16 @@
       <igx-prefix>
         <igx-icon>work</igx-icon>
       </igx-prefix>
-      <input id="company" #company name="company" igxInput [igxAutocomplete]="companiesDD" [(ngModel)]="application.companyId" />
+      <input id="company" #company name="company" igxInput [igxAutocomplete]="companiesDD" [ngModel]="application().companyId" (ngModelChange)="patchApplication({ companyId: $event })" />
       @if (company.value) {
-        <igx-suffix (click)="application.companyId = null">
+        <igx-suffix (click)="patchApplication({ companyId: null })">
           <igx-icon>clear</igx-icon>
         </igx-suffix>
       }
     </igx-input-group>
 
     <igx-drop-down #companiesDD maxHeight="320px">
-      @for (company of companies | startsWith:application.companyId; track company) {
+      @for (company of companies() | startsWith:application().companyId; track company) {
         <igx-drop-down-item [value]="company">
           {{ company }}
         </igx-drop-down-item>
@@ -118,7 +118,7 @@
       </igx-checkbox>
     </div>
 
-    <button igxButton="outlined" class="submit-registration" [disabled]="tapplication.invalid || !termsAccepted.checked || inProgress" i18n>{{application.id ? 'Update Registration' : 'Register'}}</button>
+    <button igxButton="outlined" class="submit-registration" [disabled]="tapplication.invalid || !termsAccepted.checked || inProgress()" i18n>{{application().id ? 'Update Registration' : 'Register'}}</button>
   </div>
 
 </form>

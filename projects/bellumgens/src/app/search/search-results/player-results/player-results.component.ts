@@ -1,8 +1,7 @@
-import { ChangeDetectionStrategy, Component, inject, PLATFORM_ID, signal } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { Component, inject, PLATFORM_ID, signal } from '@angular/core';
 import { DecimalPipe, isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { ALL_ROLES, ApiSearchService, ApplicationUser } from '../../../../../../common/src/public_api';
+import { ALL_ROLES, ApiSearchService } from '../../../../../../common/src/public_api';
 import { BaseDirective } from '../../../base/base.component';
 import { IgxIconComponent, IgxIconService } from '@infragistics/igniteui-angular/icon';
 import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
@@ -15,7 +14,6 @@ import { LoadingComponent } from '../../../../../../common/src/lib/loading/loadi
 @Component({
   selector: 'app-player-results',
   templateUrl: './player-results.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./player-results.component.css'],  imports: [
     LoadingComponent,
     IGX_CARD_DIRECTIVES,
@@ -33,8 +31,8 @@ export class PlayerResultsComponent extends BaseDirective {
   private apiService = inject(ApiSearchService);
   private platformId = inject(PLATFORM_ID);
 
-  public players = signal<ApplicationUser []>(null);
-  public loading = toSignal(this.apiService.loadingSearch, { initialValue: false });
+  public players = this.apiService.playerSearchResult;
+  public loading = this.apiService.loadingSearch;
   public roles = ALL_ROLES;
   public query = signal<string>(null);
 
@@ -46,7 +44,6 @@ export class PlayerResultsComponent extends BaseDirective {
         this.apiService.searchPlayers(params.query);
       }
     });
-    this.apiService.playerSearchResult.subscribe(players => this.players.set(players));
     if (isPlatformBrowser(this.platformId)) {
       this.iconService.addSvgIcon('headshot', '/assets/headshot24x24.svg', 'weapon-icons');
     }

@@ -1,24 +1,24 @@
 import { Component, inject } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { ActivatedRoute } from '@angular/router';
+import { map } from 'rxjs/operators';
 
 @Component({
-    templateUrl: './emailconfirm.component.html',
-    styleUrls: ['./emailconfirm.component.css'],
-    standalone: true
+  templateUrl: './emailconfirm.component.html',
+  styleUrls: ['./emailconfirm.component.css']
 })
 export class EmailconfirmComponent {
   private route = inject(ActivatedRoute);
 
-  public message = 'Email confirmed successfully!';
-
-  constructor() {
-    this.route.params.subscribe(params => {
+  public message = toSignal(
+    this.route.params.pipe(map(params => {
       if (params['error'] === 'error') {
-        this.message = ':( Error confirming your email address!';
+        return ':( Error confirming your email address!';
       } else if (params['error'] === 'unsubscribed') {
-        this.message = 'You\'ve been unsubscribed successfully!';
+        return 'You\'ve been unsubscribed successfully!';
       }
-    });
-  }
-
+      return 'Email confirmed successfully!';
+    })),
+    { initialValue: 'Email confirmed successfully!' }
+  );
 }

@@ -1,11 +1,10 @@
-import { Component, inject } from '@angular/core';
+import { Component, computed, inject, effect } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { map } from 'rxjs/operators';
 import { BaseDirective } from '../../../../../bellumgens/src/app/base/base.component';
 import {
-  ApplicationUser,
   ApiTournamentsService,
-  LoginService,
-  TournamentParticipant, TournamentGroup, Tournament,
-  TournamentSC2Match
+  LoginService
 } from '../../../../../common/src/public_api';
 import { environment } from '../../../../../common/src/environments/environment';
 import { Sc2MapNamePipe } from '../../../../../common/src/lib/pipes/sc2-map-name.pipe';
@@ -21,7 +20,8 @@ import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 @Component({
   selector: 'app-tournament-sc2',
   templateUrl: './tournament-sc2.component.html',
-  styleUrls: ['./tournament-sc2.component.scss'],  imports: [
+  styleUrls: ['./tournament-sc2.component.scss'],
+  imports: [
     DatePipe,
     IGX_CARD_DIRECTIVES,
     IgxCircularProgressBarComponent,
@@ -37,35 +37,26 @@ export class TournamentSc2Component extends BaseDirective {
   private apiService = inject(ApiTournamentsService);
   private loginService = inject(LoginService);
 
-  public registrations: TournamentParticipant [];
-  public groups: TournamentGroup [];
-  public loading = false;
-  public loadingMatches = false;
-  public loadingGroups = false;
-  public authUser: ApplicationUser;
-  public tournamentId: string;
   public environment = environment;
-  public sc2matches: TournamentSC2Match [];
-  public tournament: Tournament;
+  public authUser = this.loginService.applicationUser;
+  // An empty tournament id loads the active tournament's data
+  public tournamentId = toSignal(this.activeRoute.params.pipe(map(params => params['tournamentid'] as string)));
+  public tournament = computed(() => this.apiService.getTournament(this.tournamentId())());
+  public loading = this.apiService.loadingSC2Registrations;
+  public registrations = computed(() => this.apiService.getSc2Registrations(this.tournamentId())());
+  public loadingMatches = this.apiService.loadingSC2Matches;
+  public sc2matches = computed(() => this.apiService.getSc2Matches(this.tournamentId())() ?? undefined);
+  public loadingGroups = this.apiService.loadingSC2Groups;
+  public groups = computed(() => this.apiService.getSc2Groups(this.tournamentId())());
 
   constructor() {
     super();
-    this.loginService.applicationUser.subscribe(user => this.authUser = user);
-
-    this.activeRoute.params.subscribe(params => {
-      this.tournamentId = params['tournamentid'];
-      this.apiService.getTournament(this.tournamentId).subscribe(t => this.tournament = t);
-      this.apiService.loadingSC2Registrations.subscribe(data => this.loading = data);
-      this.apiService.getSc2Registrations(this.tournamentId).subscribe(data => this.registrations = data);
-      this.apiService.loadingSC2Matches.subscribe(data => this.loadingMatches = data);
-      this.apiService.getSc2Matches(this.tournamentId).subscribe(data => {
-        if (data) {
-          this.sc2matches = data;
-        }
-      });
-      this.apiService.loadingSC2Groups.subscribe(data => this.loadingGroups = data);
-      this.apiService.getSc2Groups(this.tournamentId).subscribe(data => this.groups = data);
+    // Results change during a live event, so entering the page always re-fetches them
+    effect(() => {
+      const id = this.tournamentId();
+      this.apiService.refreshSc2Registrations(id);
+      this.apiService.refreshSc2Matches(id);
+      this.apiService.refreshSc2Groups(id);
     });
   }
-
 }

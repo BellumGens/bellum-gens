@@ -1,7 +1,7 @@
 <form #orderForm="ngForm" (ngSubmit)="placeOrder()">
   <div class="horizontal">
     <div class="column-container">
-      @for (jersey of order.orderProducts; track jersey; let i = $index) {
+      @for (jersey of order().orderProducts; track $index; let i = $index) {
         <div class="horizontal-center">
           <!-- IgxSelect: default positioning changed to AutoPositionStrategy (below/above input).
      To preserve overlap behavior: this.select.overlaySettings = { positionStrategy: new IgxSelectOverlapPositionStrategy(this.select) }; -->
@@ -23,46 +23,46 @@
               </igx-select-item>
             }
           </igx-select>
-          @if (order.orderProducts.length > 1 ) {
-            <igx-icon (click)="order.orderProducts.splice(i, 1)">clear</igx-icon>
+          @if (productCount() > 1) {
+            <igx-icon (click)="removeJersey(i)">clear</igx-icon>
           }
         </div>
       }
     </div>
 
     <div class="order-summary">
-      <span i18n>{{order.orderProducts.length}} x {{basePrice}} BGN = {{ order.orderProducts.length * basePrice }} BGN</span>
+      <span i18n>{{ productCount() }} x {{basePrice}} BGN = {{ subtotal() }} BGN</span>
 
       <igx-input-group class="order-form-input" type="box">
         <label igxLabel for="firstName" i18n>Promo code</label>
         <igx-prefix>
           <igx-icon>money_off</igx-icon>
         </igx-prefix>
-        <input id="promocode" #promocode name="promocode" igxInput (blur)="checkForPromo()" [(ngModel)]="order.promoCode" />
+        <input id="promocode" #promocode name="promocode" igxInput (blur)="checkForPromo()" [ngModel]="order().promoCode" (ngModelChange)="updateOrder('promoCode', $event)" />
         @if (promocode.value) {
-          <igx-suffix (click)="order.promoCode = null">
+          <igx-suffix (click)="updateOrder('promoCode', null)">
             <igx-icon>clear</igx-icon>
           </igx-suffix>
         }
 
-        @if (invalidPromo) {
+        @if (invalidPromo()) {
           <igx-hint class="color-error" i18n>Promo code is invalid...</igx-hint>
         }
       </igx-input-group>
 
-      @if (promo > 0) {
-        <span class="color-success" i18n>{{ promo * 100 }}% off = -{{ (order.orderProducts.length * basePrice) * promo }} BGN</span>
+      @if (promo() > 0) {
+        <span class="color-success" i18n>{{ promo() * 100 }}% off = -{{ subtotal() * promo() }} BGN</span>
       }
-      @if (order.orderProducts.length * basePrice * promo >= 100) {
+      @if (subtotal() * promo() >= 100) {
         <span i18n>Free shipping</span>
       }
       <igx-divider></igx-divider>
-      <span i18n>Total = {{ (order.orderProducts.length * basePrice) * (1 - promo) }} BGN</span>
+      <span i18n>Total = {{ subtotal() * (1 - promo()) }} BGN</span>
     </div>
   </div>
 
   <div class="horizontal-center floating-button">
-    <button type="button" igxButton="outlined" (click)="order.orderProducts.push()">
+    <button type="button" igxButton="outlined" (click)="addJersey()">
       <igx-icon>add</igx-icon>
       <span i18n>Add one more</span>
     </button>
@@ -74,9 +74,9 @@
       <igx-prefix>
         <igx-icon>text_fields</igx-icon>
       </igx-prefix>
-      <input id="firstName" #firstName name="firstName" igxInput [required]="true" [(ngModel)]="order.firstName" />
+      <input id="firstName" #firstName name="firstName" igxInput [required]="true" [ngModel]="order().firstName" (ngModelChange)="updateOrder('firstName', $event)" />
       @if (firstName.value) {
-        <igx-suffix (click)="order.firstName = null">
+        <igx-suffix (click)="updateOrder('firstName', null)">
           <igx-icon>clear</igx-icon>
         </igx-suffix>
       }
@@ -87,9 +87,9 @@
       <igx-prefix>
         <igx-icon>text_fields</igx-icon>
       </igx-prefix>
-      <input id="lastName" #lastName name="lastName" igxInput [required]="true" [(ngModel)]="order.lastName" />
+      <input id="lastName" #lastName name="lastName" igxInput [required]="true" [ngModel]="order().lastName" (ngModelChange)="updateOrder('lastName', $event)" />
       @if (lastName.value) {
-        <igx-suffix (click)="order.lastName = null">
+        <igx-suffix (click)="updateOrder('lastName', null)">
           <igx-icon>clear</igx-icon>
         </igx-suffix>
       }
@@ -100,9 +100,9 @@
       <igx-prefix>
         <igx-icon>email</igx-icon>
       </igx-prefix>
-      <input type="email" id="orderemail" #orderEmail name="orderemail" igxInput [required]="true" pattern="^[a-zA-Z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$" [(ngModel)]="order.email" />
+      <input type="email" id="orderemail" #orderEmail name="orderemail" igxInput [required]="true" pattern="^[a-zA-Z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$" [ngModel]="order().email" (ngModelChange)="updateOrder('email', $event)" />
       @if (orderEmail.value) {
-        <igx-suffix (click)="order.email = null">
+        <igx-suffix (click)="updateOrder('email', null)">
           <igx-icon>clear</igx-icon>
         </igx-suffix>
       }
@@ -124,9 +124,9 @@
         [igxMask]="'000 00 00 00'"
         [igxTextSelection]="true"
         placeholder="--- -- -- --"
-        [(ngModel)]="order.phoneNumber" />
+        [ngModel]="order().phoneNumber" (ngModelChange)="updateOrder('phoneNumber', $event)" />
         @if (orderPhone.value) {
-          <igx-suffix (click)="order.phoneNumber = null">
+          <igx-suffix (click)="updateOrder('phoneNumber', null)">
             <igx-icon>clear</igx-icon>
           </igx-suffix>
         }
@@ -137,9 +137,9 @@
         <igx-prefix>
           <igx-icon>home</igx-icon>
         </igx-prefix>
-        <input id="orderCity" #orderCity name="orderCity" igxInput [required]="true" [(ngModel)]="order.city" />
+        <input id="orderCity" #orderCity name="orderCity" igxInput [required]="true" [ngModel]="order().city" (ngModelChange)="updateOrder('city', $event)" />
         @if (orderCity.value) {
-          <igx-suffix (click)="order.city = null">
+          <igx-suffix (click)="updateOrder('city', null)">
             <igx-icon>clear</igx-icon>
           </igx-suffix>
         }
@@ -150,9 +150,9 @@
         <igx-prefix>
           <igx-icon>home</igx-icon>
         </igx-prefix>
-        <input id="orderAddress" #orderAddress name="orderAddress" igxInput [required]="true" [(ngModel)]="order.streetAddress" />
+        <input id="orderAddress" #orderAddress name="orderAddress" igxInput [required]="true" [ngModel]="order().streetAddress" (ngModelChange)="updateOrder('streetAddress', $event)" />
         @if (orderAddress.value) {
-          <igx-suffix (click)="order.streetAddress = null">
+          <igx-suffix (click)="updateOrder('streetAddress', null)">
             <igx-icon>clear</igx-icon>
           </igx-suffix>
         }
@@ -160,7 +160,7 @@
     </div>
 
     <div class="horizontal-center floating-button">
-      <button igxButton="outlined" [disabled]="!orderForm.touched || orderForm.invalid || inProgress" i18n>Order</button>
+      <button igxButton="outlined" [disabled]="!orderForm.touched || orderForm.invalid || inProgress()" i18n>Order</button>
     </div>
 
 </form>

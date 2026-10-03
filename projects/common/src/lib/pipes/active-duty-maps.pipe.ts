@@ -2,8 +2,7 @@ import { Pipe, type PipeTransform } from '@angular/core';
 import { type CSGOActiveDutyMap } from '../../public_api';
 
 @Pipe({
-    name: 'activeDutyMaps',
-    standalone: true
+    name: 'activeDutyMaps'
 })
 export class ActiveDutyMapsPipe implements PipeTransform {
 

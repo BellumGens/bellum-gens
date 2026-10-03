@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SuccessErrorComponent } from './success-error.component';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
@@ -10,8 +10,8 @@ describe('SuccessErrorComponent', () => {
   let component: SuccessErrorComponent;
   let fixture: ComponentFixture<SuccessErrorComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
         SuccessErrorComponent
@@ -19,7 +19,7 @@ describe('SuccessErrorComponent', () => {
       providers: [provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
     })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SuccessErrorComponent);

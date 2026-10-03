@@ -2,8 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { TournamentParticipant } from '../../../../common/src/public_api';
 
 @Pipe({
-    name: 'notInGroup',
-    standalone: true
+    name: 'notInGroup'
 })
 export class NotInGroupPipe implements PipeTransform {
 

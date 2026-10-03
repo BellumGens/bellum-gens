@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, inject } from '@angular/core';
-import { BehaviorSubject, throwError } from 'rxjs';
+import { Injectable, Signal, WritableSignal, inject, signal, untracked } from '@angular/core';
+import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { CSGOMapPool } from '../models/csgomaps';
 import { environment } from '../environments/environment';
@@ -14,38 +14,35 @@ export class ApiStrategiesService {
   private http = inject(HttpClient);
   private commService = inject(CommunicationService);
 
-  public hasMoreStrats = new BehaviorSubject<boolean>(false);
-  public loadingStrategies = new BehaviorSubject<boolean>(false);
+  private _hasMoreStrats = signal(false);
+  private _loadingStrategies = signal(false);
+  public readonly hasMoreStrats = this._hasMoreStrats.asReadonly();
+  public readonly loadingStrategies = this._loadingStrategies.asReadonly();
 
   private _apiEndpoint = environment.apiEndpoint;
-  private _strategyCache = new Map<string, BehaviorSubject<CSGOStrategy>>();
-  private _strategies = new BehaviorSubject<CSGOStrategy []>([]);
+  private _strategyCache = new Map<string, WritableSignal<CSGOStrategy>>();
+  private _strategies = signal<CSGOStrategy []>([]);
+  private _strategiesReadonly = this._strategies.asReadonly();
   private readonly PAGE_SIZE = 25;
 
-  public get strategies() {
-    if (!this._strategies.value.length) {
-      this.loadingStrategies.next(true);
-      this.getStrategies().subscribe({
-        next: data => {
-          this._strategies.next(data);
-          this.loadingStrategies.next(false);
-          this.hasMoreStrats.next(data.length === this.PAGE_SIZE);
-        },
-        error: () => this.loadingStrategies.next(false)
-      });
-    }
-    return this._strategies;
+  public get strategies(): Signal<CSGOStrategy []> {
+    untracked(() => {
+      if (!this._strategies().length && !this._loadingStrategies()) {
+        this.loadStrategiesPage(0);
+      }
+    });
+    return this._strategiesReadonly;
   }
 
   public loadStrategiesPage(page: number) {
-    this.loadingStrategies.next(true);
+    this._loadingStrategies.set(true);
     this.getStrategies(page).subscribe({
       next: data => {
-        this._strategies.next(data);
-        this.loadingStrategies.next(false);
-        this.hasMoreStrats.next(data.length === this.PAGE_SIZE);
+        this._strategies.set(data);
+        this._loadingStrategies.set(false);
+        this._hasMoreStrats.set(data.length === this.PAGE_SIZE);
       },
-      error: () => this.loadingStrategies.next(false)
+      error: () => this._loadingStrategies.set(false)
     });
   }
 
@@ -65,23 +62,24 @@ export class ApiStrategiesService {
     return this.http.get<CSGOMapPool []>(`${this._apiEndpoint}/teams/mapPool?teamId=${teamId}`, { withCredentials: true });
   }
 
-  public getStrategy(stratId: string) {
-    if (!this._strategyCache.has(stratId)) {
-      this._strategyCache.set(stratId, new BehaviorSubject(null));
-      this.getTeamStrat(stratId).subscribe(strat => {
-        this._strategyCache.get(stratId).next(strat);
-      });
-    }
-    return this._strategyCache.get(stratId);
+  public getStrategy(stratId: string): Signal<CSGOStrategy> {
+    return untracked(() => {
+      if (!this._strategyCache.has(stratId)) {
+        const cached = signal<CSGOStrategy>(null);
+        this._strategyCache.set(stratId, cached);
+        this.getTeamStrat(stratId).subscribe(strat => cached.set(strat));
+      }
+      return this._strategyCache.get(stratId).asReadonly();
+    });
   }
 
   public submitStrategy(strat: CSGOStrategy) {
     return this.http.post<CSGOStrategy>(`${this._apiEndpoint}/strategy/strategy`, strat, { withCredentials: true }).pipe(
       map(response => {
         if (this._strategyCache.has(strat.id)) {
-          this._strategyCache.get(strat.id).next(response);
+          this._strategyCache.get(strat.id).set(response);
         } else {
-          this._strategyCache.set(strat.id, new BehaviorSubject(strat));
+          this._strategyCache.set(strat.id, signal(strat));
         }
         this.commService.emitSuccess('Strategy saved!');
         return response;
@@ -93,24 +91,28 @@ export class ApiStrategiesService {
     );
   }
 
-  public submitStratVote(strat: CSGOStrategy, direction: VoteDirection, userId: string) {
+  /**
+   * Submits a vote and emits the strategy with its votes updated. The given strategy is not mutated:
+   * a new strategy object replaces it in the service caches, and callers holding their own copy should swap it in.
+   */
+  public submitStratVote(strat: CSGOStrategy, direction: VoteDirection, userId: string): Observable<CSGOStrategy> {
     return this.http.post<StrategyVote>(`${this._apiEndpoint}/strategy/vote`,
                           { id: strat.id, direction },
                           { withCredentials: true }).pipe(
       map(response => {
-        const vote = strat.votes.find(v => v.userId === userId);
+        const votes = strat.votes || [];
+        const hasVoted = votes.some(v => v.userId === userId);
+        let updatedVotes: StrategyVote [];
         if (response) {
           this.commService.emitSuccess('Vote submitted successfully!');
-          if (vote) {
-            vote.vote = response.vote;
-          } else {
-            strat.votes.push(response);
-          }
+          updatedVotes = hasVoted
+            ? votes.map(v => v.userId === userId ? { ...v, vote: response.vote } : v)
+            : [...votes, response];
         } else {
           this.commService.emitSuccess('Vote removed successfully!');
-          strat.votes.splice(strat.votes.indexOf(vote), 1);
+          updatedVotes = votes.filter(v => v.userId !== userId);
         }
-        return response;
+        return this.patchStrategy(strat, { votes: updatedVotes });
       }),
       catchError(error => {
         this.commService.emitError(error.message);
@@ -119,20 +121,25 @@ export class ApiStrategiesService {
     );
   }
 
-  public submitStratComment(comment: StrategyComment, strat: CSGOStrategy) {
+  /**
+   * Submits a new or edited comment and emits the strategy with its comments updated (the given strategy is not mutated).
+   */
+  public submitStratComment(comment: StrategyComment, strat: CSGOStrategy): Observable<CSGOStrategy> {
     return this.http.post<StrategyComment>(`${this._apiEndpoint}/strategy/comment`,
                           comment,
                           { withCredentials: true }).pipe(
       map(response => {
-        const existing = strat.comments.find(c => c.id === response.id);
-        if (existing) {
-          existing.comment = response.comment;
+        const comments = strat.comments || [];
+        const isEdit = comments.some(c => c.id === response.id);
+        let updatedComments: StrategyComment [];
+        if (isEdit) {
+          updatedComments = comments.map(c => c.id === response.id ? { ...c, comment: response.comment } : c);
           this.commService.emitSuccess('Comment edited successfully!');
         } else {
-          strat.comments.push(response);
+          updatedComments = [...comments, response];
           this.commService.emitSuccess('Comment submitted successfully!');
         }
-        return response;
+        return this.patchStrategy(strat, { comments: updatedComments });
       }),
       catchError(error => {
         this.commService.emitError(error.message);
@@ -141,13 +148,16 @@ export class ApiStrategiesService {
     );
   }
 
-  public deleteStratComment(comment: StrategyComment, strat: CSGOStrategy) {
+  /**
+   * Deletes a comment and emits the strategy without it (the given strategy is not mutated).
+   */
+  public deleteStratComment(comment: StrategyComment, strat: CSGOStrategy): Observable<CSGOStrategy> {
     return this.http.delete<StrategyComment>(`${this._apiEndpoint}/strategy/comment?id=${comment.id}`,
                           { withCredentials: true }).pipe(
-      map(response => {
+      map(() => {
         this.commService.emitSuccess('Comment deleted successfully!');
-        strat.comments.splice(strat.comments.indexOf(comment), 1);
-        return response;
+        const comments = (strat.comments || []).filter(c => c !== comment && !(comment.id && c.id === comment.id));
+        return this.patchStrategy(strat, { comments });
       }),
       catchError(error => {
         this.commService.emitError(error.message);
@@ -159,6 +169,12 @@ export class ApiStrategiesService {
   public deleteStrategy(id: string) {
     return this.http.delete(`${this._apiEndpoint}/strategy/strat?id=${id}`, { withCredentials: true }).pipe(
       map(response => {
+        this._strategies.update(strats => strats.some(s => s.id === id) ? strats.filter(s => s.id !== id) : strats);
+        this._strategyCache.forEach((cached, key) => {
+          if (cached()?.id === id) {
+            this._strategyCache.delete(key);
+          }
+        });
         this.commService.emitSuccess('Strategy successfully deleted!');
         return response;
       }),
@@ -167,6 +183,26 @@ export class ApiStrategiesService {
         return throwError(() => error);
       })
     );
+  }
+
+  /**
+   * Applies the patch to the given strategy without mutating it, swaps the result into every cache that
+   * holds that strategy (the strategies page and the per-strategy cache, which may be keyed by id or by
+   * custom url) and returns it.
+   */
+  private patchStrategy(strat: CSGOStrategy, patch: Partial<CSGOStrategy>): CSGOStrategy {
+    const updated: CSGOStrategy = { ...strat, ...patch };
+    const apply = (cached: CSGOStrategy) => cached === strat ? updated : { ...cached, ...patch };
+    this._strategies.update(strats => strats.some(s => s.id === strat.id)
+      ? strats.map(s => s.id === strat.id ? apply(s) : s)
+      : strats);
+    this._strategyCache.forEach(cached => {
+      const current = cached();
+      if (current?.id === strat.id) {
+        cached.set(apply(current));
+      }
+    });
+    return updated;
   }
 
   // TODO: Refactor to send page size as well

@@ -1,5 +1,5 @@
 import { DatePipe, NgOptimizedImage } from '@angular/common';
-import { Component, LOCALE_ID, inject } from '@angular/core';
+import { Component, LOCALE_ID, inject, signal } from '@angular/core';
 import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
 import { IgxButtonDirective, IgxDividerComponent } from '@infragistics/igniteui-angular/directives';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
@@ -70,16 +70,15 @@ export class EventsComponent extends BaseDirective {
   // Timer for the event
   public isoDate = '2025-06-04T10:00:00Z';
   public announcementDate = new Date(this.isoDate);
-  public seconds = 0;
-  public minutes = 0;
-  public hours = 0;
-  public days = 0;
+  public seconds = signal(0);
+  public minutes = signal(0);
+  public hours = signal(0);
+  public days = signal(0);
   public sub: Subscription;
 
   public ticketsUrl = 'https://www.eventim.bg/en/tickets/bellum-gens-elite-stara-zagora-2025-stara-zagora-leten-teatr-662711/event.html';
 
   constructor() {
-
     super();
 
     if (this.localeId === 'bg') {
@@ -97,13 +96,16 @@ export class EventsComponent extends BaseDirective {
       delta = 0;
       this.sub?.unsubscribe();
     }
-    this.days = Math.floor(delta / 86400);
-    delta -= this.days * 86400;
-    this.hours = Math.floor(delta / 3600) % 24;
-    delta -= this.hours * 3600;
-    this.minutes = Math.floor(delta / 60) % 60;
-    delta -= this.minutes * 60;
-    this.seconds = Math.floor(delta);
+    const days = Math.floor(delta / 86400);
+    delta -= days * 86400;
+    const hours = Math.floor(delta / 3600) % 24;
+    delta -= hours * 3600;
+    const minutes = Math.floor(delta / 60) % 60;
+    delta -= minutes * 60;
+    this.days.set(days);
+    this.hours.set(hours);
+    this.minutes.set(minutes);
+    this.seconds.set(Math.floor(delta));
   }
 
   public scrollTo(id: string) {

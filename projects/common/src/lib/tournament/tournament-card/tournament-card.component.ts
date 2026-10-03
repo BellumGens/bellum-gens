@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { DatePipe, NgOptimizedImage } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { Tournament, TournamentStatus, TournamentVisibility, Game } from '../../../models/tournament';
@@ -11,7 +11,6 @@ import { IgxChipComponent } from '@infragistics/igniteui-angular/chips';
   selector: 'bg-tournament-card',
   templateUrl: './tournament-card.component.html',
   styleUrl: './tournament-card.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     DatePipe,
     NgOptimizedImage,

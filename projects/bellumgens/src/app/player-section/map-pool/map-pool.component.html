@@ -1,13 +1,13 @@
 <div class="map-wrapper">
-  @for (map of maps | activeDutyMaps:viewAll; track map.mapId) {
-    <igx-card [ngClass]="map.isPlayed ? 'map-column' : 'map-column map-inactive'">
+  @for (map of maps() | activeDutyMaps:viewAll(); track map.mapId) {
+    <igx-card class="map-column" [class.map-inactive]="!map.isPlayed">
       <igx-card-media>
         <img [ngSrc]="map.image" width="360" height="203" [alt]="map.map" />
       </igx-card-media>
       <igx-card-actions>
         <label>{{ map.map }}</label>
         <div class="igx-card-actions__igroup--end">
-          <igx-checkbox [aria-label]="map.map" [(ngModel)]="map.isPlayed" [value]="map" [disabled]="readOnly" (change)="mapChange(map)"></igx-checkbox>
+          <igx-checkbox [aria-label]="map.map" [checked]="map.isPlayed" [value]="map" [disabled]="readOnly()" (change)="mapChange(map, $event.checked)"></igx-checkbox>
         </div>
       </igx-card-actions>
     </igx-card>

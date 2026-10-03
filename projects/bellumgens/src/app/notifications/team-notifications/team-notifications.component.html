@@ -1,7 +1,7 @@
-@if (applications?.length) {
+@if (applications()?.length) {
   <igx-list>
-    <igx-list-item [isHeader]="true" i18n>Notifications for {{ team.teamName }}</igx-list-item>
-    @for (notification of applications | sortApplications:pipeTrigger; track notification) {
+    <igx-list-item [isHeader]="true" i18n>Notifications for {{ team().teamName }}</igx-list-item>
+    @for (notification of applications() | sortApplications; track notification) {
       <igx-list-item [class]="notificationClass[notification.state]">
         <igx-avatar igxListThumbnail [src]="notification.avatarIcon" [initials]="notification.userName" shape="circle">
         </igx-avatar>
@@ -10,11 +10,11 @@
         <span igxListLineSubTitle>{{ notification.sent | date }}</span>
         @if (notification.state | disabledNotifications:true) {
           <div igxListAction>
-            <button igxButton="flat" igxRipple [disabled]="actionInProgress" (click)="approveApplication(notification)">
-              {{actionInProgress ? actionText : 'Approve'}}
+            <button igxButton="flat" igxRipple [disabled]="actionInProgress()" (click)="approveApplication(notification)">
+              {{actionInProgress() ? actionText() : 'Approve'}}
             </button>
-            <button igxButton="flat" igxRipple [disabled]="actionInProgress" (click)="rejectApplication(notification)">
-              {{actionInProgress ? actionText : 'Reject'}}
+            <button igxButton="flat" igxRipple [disabled]="actionInProgress()" (click)="rejectApplication(notification)">
+              {{actionInProgress() ? actionText() : 'Reject'}}
             </button>
           </div>
         } @else {

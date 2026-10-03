@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { provideRouter } from '@angular/router';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
@@ -7,22 +7,22 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { PlayerComponent } from './player.component';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { BellumgensApiService } from 'bellum-gens-common';
-import { BehaviorSubject } from 'rxjs';
+import { signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 describe('PlayerComponent', () => {
   let component: PlayerComponent;
   let fixture: ComponentFixture<PlayerComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
         imports: [
             NoopAnimationsModule,
             ServiceWorkerModule.register('', { enabled: false }),
             PlayerComponent],
         providers: [provideRouter([]), provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
     }).compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(PlayerComponent);
@@ -46,8 +46,7 @@ describe('PlayerComponent', () => {
       email: 'test@test.com'
     };
 
-    const playerSubject = new BehaviorSubject(mockPlayer as any);
-    vi.spyOn(apiService, 'getPlayer').mockReturnValue(playerSubject);
+    vi.spyOn(apiService, 'getPlayer').mockReturnValue(signal(mockPlayer as any).asReadonly());
 
     // Trigger route change
     const activatedRoute = TestBed.inject(ActivatedRoute) as ActivatedRoute;
@@ -64,14 +63,31 @@ describe('PlayerComponent', () => {
       email: 'test@test.com'
     };
 
-    const playerSubject = new BehaviorSubject(mockPlayer as any);
-    vi.spyOn(apiService, 'getPlayer').mockReturnValue(playerSubject);
+    vi.spyOn(apiService, 'getPlayer').mockReturnValue(signal(mockPlayer as any).asReadonly());
 
     const activatedRoute = TestBed.inject(ActivatedRoute) as ActivatedRoute;
     (activatedRoute.params as any).next({ userid: 'test-id' });
 
-    await new Promise(resolve => setTimeout(resolve, 100));
+    await fixture.whenStable();
 
-    expect(component.player()).toBeDefined();
+    expect(component.player()).toEqual(mockPlayer);
+  });
+
+  it('should keep the previous player while the next one is loading', () => {
+    const apiService = TestBed.inject(BellumgensApiService);
+    const cached = signal<any>({ id: 'player-a' });
+    vi.spyOn(apiService, 'getPlayer').mockReturnValue(cached.asReadonly());
+
+    const activatedRoute = TestBed.inject(ActivatedRoute) as ActivatedRoute;
+    (activatedRoute.params as any).next({ userid: 'player-a' });
+    expect(component.player().id).toBe('player-a');
+
+    // navigating to another player clears the service cache until it loads
+    cached.set(null);
+    (activatedRoute.params as any).next({ userid: 'player-b' });
+    expect(component.player().id).toBe('player-a');
+
+    cached.set({ id: 'player-b' });
+    expect(component.player().id).toBe('player-b');
   });
 });

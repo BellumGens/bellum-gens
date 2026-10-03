@@ -13,10 +13,10 @@
         <div class="hero-info">
           <div class="hero-badges">
             <igx-chip [selectable]="false" [removable]="false" [class.status-open]="t.status === 'open'" [class.status-in-progress]="t.status === 'in-progress'" [class.status-completed]="t.status === 'completed'" [class.status-cancelled]="t.status === 'cancelled'" [class.status-draft]="t.status === 'draft'">
-              {{ statusLabel }}
+              {{ statusLabel() }}
             </igx-chip>
             <igx-chip [selectable]="false" [removable]="false">
-              <igx-icon igxPrefix>{{ visibilityIcon }}</igx-icon>
+              <igx-icon igxPrefix>{{ visibilityIcon() }}</igx-icon>
               {{ t.visibility || 'public' }}
             </igx-chip>
           </div>
@@ -90,13 +90,13 @@
           <span igxTabHeaderLabel i18n>Participants</span>
         </igx-tab-header>
         <igx-tab-content>
-          @if (loadingRegistrations | async) {
+          @if (loadingRegistrations()) {
             <div class="loading-container">
               <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
             </div>
           } @else {
             <div class="participants-grid">
-              @for (reg of registrations | async; track reg.id) {
+              @for (reg of registrations(); track reg.id) {
                 <div class="participant-card">
                   <igx-avatar
                     [src]="reg.user?.sc2Details?.avatarUrl || reg.user?.steamUser?.avatarFull || ''"
@@ -130,7 +130,7 @@
         </igx-tab-header>
         <igx-tab-content>
           <div class="matches-section">
-            @if (sc2Matches | async; as matches) {
+            @if (sc2Matches(); as matches) {
               @for (match of matches; track match.id) {
                 <div class="match-row">
                   <div class="match-time">{{ match.startTime | date:'MMM d, h:mm a' }}</div>

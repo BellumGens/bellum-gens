@@ -3,7 +3,7 @@
      To preserve overlap behavior: this.select.overlaySettings = { positionStrategy: new IgxSelectOverlapPositionStrategy(this.select) }; -->
 <igx-select type="border" class="space-out-button" [(ngModel)]="selectedTournament" (ngModelChange)="selectTournament($event)">
     <label igxLabel i18n>Select tournament</label>
-    @for (tournament of tournaments; track tournament.id) {
+    @for (tournament of tournaments(); track tournament.id) {
       <igx-select-item [value]="tournament">
         {{ tournament.name }}
       </igx-select-item>
@@ -13,16 +13,16 @@
   <igx-grid
     #registrationsGrid
     class="margin-top"
-    [data]="registrations"
+    [data]="registrations()"
     primaryKey="id"
     [batchEditing]="true"
     height="600px"
-    [isLoading]="loadingRegs"
+    [isLoading]="loadingRegs()"
     (cellEdit)="confirmRegistration($event)"
     cellSelection="none">
 
     <igx-grid-toolbar>
-      <igx-grid-toolbar-title i18n>{{ selectedTournament ? selectedTournament.name : 'No' }} Registrations</igx-grid-toolbar-title>
+      <igx-grid-toolbar-title i18n>{{ selectedTournament() ? selectedTournament().name : 'No' }} Registrations</igx-grid-toolbar-title>
       <igx-grid-toolbar-actions>
         <button igxIconButton="flat" igxRipple (click)="refreshRegistrations()">
           <igx-icon>refresh</igx-icon>
@@ -51,11 +51,9 @@
     </igx-column>
     <igx-column field="state" [editable]="true" [sortable]="true" dataType="boolean" i18n-header header="Confirmed">
       <igx-icon *igxCell="let value"
-                [ngClass]="{
-                  'color-error': value === 0,
-                  'color-success': value === 1,
-                  'color-warn': value === 2
-                }">{{ stateIcon[value] }}</igx-icon>
+                [class.color-error]="value === 0"
+                [class.color-success]="value === 1"
+                [class.color-warn]="value === 2">{{ stateIcon[value] }}</igx-icon>
     </igx-column>
 
     <igx-action-strip #regActionStrip>
@@ -82,7 +80,7 @@
   <igx-grid
     class="margin-top"
     cellSelection="none"
-    [data]="matches"
+    [data]="matches()"
     height="650px"
     [primaryKey]="'id'"
     [groupingExpressions]="grouping"
@@ -90,10 +88,10 @@
     #matchGrid
     i18n-emptyGridMessage
     emptyGridMessage="No matches found..."
-    [isLoading]="loading">
+    [isLoading]="loading()">
 
     <igx-grid-toolbar>
-      <igx-grid-toolbar-title i18n>{{ selectedTournament ? selectedTournament.name : 'No' }} StarCraft II matches</igx-grid-toolbar-title>
+      <igx-grid-toolbar-title i18n>{{ selectedTournament() ? selectedTournament().name : 'No' }} StarCraft II matches</igx-grid-toolbar-title>
       <igx-grid-toolbar-actions>
         <button igxIconButton="flat" igxRipple (click)="refreshMatches()">
           <igx-icon>refresh</igx-icon>
@@ -201,7 +199,7 @@
   <igx-card class="margin-top">
     <igx-card-header>
       <igx-avatar igxCardThumbnail shape="circle" src="/assets/wallpapers/sc2-watermark.webp"></igx-avatar>
-      <h1 igxCardHeaderTitle i18n>{{selectedTournament ? selectedTournament.name : 'No'}} Participants</h1>
+      <h1 igxCardHeaderTitle i18n>{{selectedTournament() ? selectedTournament().name : 'No'}} Participants</h1>
       <h2 igxCardHeaderSubtitle i18n>Drag and drop participants into the groups</h2>
 
       <button igxIconButton="flat" igxRipple (click)="refreshParticipants()">
@@ -210,10 +208,10 @@
     </igx-card-header>
     <igx-card-content>
       <div class="horizontal-center registration-container">
-        @if (loading) {
+        @if (loading()) {
           <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
         }
-        @for (registration of participants | notInGroup:'tournamentSC2GroupId':pipeTrigger; track registration.id) {
+        @for (registration of participants() | notInGroup:'tournamentSC2GroupId':pipeTrigger(); track registration.id) {
           <div class="registration-slot">
             <igx-avatar [src]="$safeNavigationMigration(registration.user.sc2Details?.avatarUrl)"
               [initials]="registration.user.username"
@@ -235,11 +233,11 @@
         }
       </div>
       <div class="card-wrapper">
-        @if (loadingGroups) {
+        @if (loadingGroups()) {
           <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
         }
         @else {
-          @for (group of groups; track group.id) {
+          @for (group of groups(); track group.id) {
             <igx-card elevated>
               <igx-card-header>
                 <igx-avatar igxCardThumbnail shape="circle" src="/assets/wallpapers/sc2-watermark.webp"></igx-avatar>
@@ -354,7 +352,7 @@
      To preserve overlap behavior: this.select.overlaySettings = { positionStrategy: new IgxSelectOverlapPositionStrategy(this.select) }; -->
 <igx-select type="border" #groupPicker [(ngModel)]="matchInEdit.groupId">
     <label igxLabel i18n>Group</label>
-    @for (group of groups; track group.id) {
+    @for (group of groups(); track group.id) {
       <igx-select-item
       [value]="group.id">{{ group.name }}</igx-select-item>
     }
@@ -370,7 +368,7 @@
      To preserve overlap behavior: this.select.overlaySettings = { positionStrategy: new IgxSelectOverlapPositionStrategy(this.select) }; -->
 <igx-select type="border" [(ngModel)]="matchInEdit.player1Id" required>
     <label igxLabel i18n>Player 1</label>
-    @for (registration of participants; track registration.id) {
+    @for (registration of participants(); track registration.id) {
       <igx-select-item
         [value]="registration.userId"
         [text]="registration.battleTag">
@@ -392,7 +390,7 @@
      To preserve overlap behavior: this.select.overlaySettings = { positionStrategy: new IgxSelectOverlapPositionStrategy(this.select) }; -->
 <igx-select type="border" [(ngModel)]="matchInEdit.player2Id" required>
     <label igxLabel i18n>Player 2</label>
-    @for (registration of participants; track registration.id) {
+    @for (registration of participants(); track registration.id) {
       <igx-select-item
         [value]="registration.userId"
         [text]="registration.battleTag">
@@ -477,7 +475,7 @@
      To preserve overlap behavior: this.select.overlaySettings = { positionStrategy: new IgxSelectOverlapPositionStrategy(this.select) }; -->
 <igx-select type="border" [(ngModel)]="map.winnerId">
         <label igxLabel i18n>Winner</label>
-        @for (registration of participants | getPlayers:matchInEdit.player1Id:matchInEdit.player2Id; track registration.id) {
+        @for (registration of participants() | getPlayers:matchInEdit.player1Id:matchInEdit.player2Id; track registration.id) {
           <igx-select-item
             [value]="registration.userId"
             [text]="registration.battleTag">

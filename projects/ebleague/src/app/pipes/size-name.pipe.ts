@@ -2,8 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { JerseySize } from '../../../../common/src/public_api';
 
 @Pipe({
-    name: 'sizeName',
-    standalone: true
+    name: 'sizeName'
 })
 export class SizeNamePipe implements PipeTransform {
   private allSizes = [

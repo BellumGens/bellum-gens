@@ -1,5 +1,5 @@
-import { Component, inject } from '@angular/core';
-import { Tournament, ApiTournamentsService } from '../../../../../common/src/public_api';
+import { Component, computed, inject } from '@angular/core';
+import { ApiTournamentsService } from '../../../../../common/src/public_api';
 import { RouterLink } from '@angular/router';
 import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
 import { IgxDividerComponent, IgxButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
@@ -26,17 +26,9 @@ import { DatePipe, NgOptimizedImage } from '@angular/common';
 export class TournamentsMainComponent {
   private apiService = inject(ApiTournamentsService);
 
-  public tournaments!: Tournament [];
-  public past!: Tournament [];
-  public upcoming!: Tournament [];
+  private allTournaments = this.apiService.tournaments;
 
-  constructor() {
-    this.apiService.tournaments.subscribe(data => {
-      if (data) {
-        this.tournaments = data.filter(t => t.active);
-        this.past = data.filter(t => new Date(t.endDate!).getTime() < Date.now());
-        this.upcoming = data.filter(t => new Date(t.startDate!).getTime() > Date.now());
-      }
-    });
-  }
+  public tournaments = computed(() => (this.allTournaments() ?? []).filter(t => t.active));
+  public past = computed(() => (this.allTournaments() ?? []).filter(t => new Date(t.endDate!).getTime() < Date.now()));
+  public upcoming = computed(() => (this.allTournaments() ?? []).filter(t => new Date(t.startDate!).getTime() > Date.now()));
 }
