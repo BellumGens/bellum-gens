@@ -1,13 +1,13 @@
 import { Injectable, Signal, inject, signal, untracked } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SteamGroup, SteamUser } from '../models/steamuser';
-import { Observable, throwError } from 'rxjs';
+import { Observable, Subscription, throwError } from 'rxjs';
 import { CSGOTeam, TeamMember, TeamApplication } from '../models/csgoteam';
 import { Availability } from '../models/playeravailability';
 import { Role } from '../models/playerrole';
 import { CSGOMapPool } from '../models/csgomaps';
 import { CSGODetails } from '../models/csgoplayer';
-import { map, catchError } from 'rxjs/operators';
+import { map, catchError, finalize } from 'rxjs/operators';
 import { UserNotification } from '../models/usernotifications';
 import { environment } from '../environments/environment';
 import { CommunicationService } from './communication.service';
@@ -30,7 +30,9 @@ export class BellumgensApiService {
   public readonly loadingPlayer = this._loadingPlayer.asReadonly();
 
   private _apiEndpoint = environment.apiEndpoint;
-  private _teamReqInProgress = false;
+  // The id being fetched and its request, so navigating to another id can supersede it
+  private _teamRequest: { teamId: string; subscription: Subscription } = null;
+  private _playerRequest: { userId: string; subscription: Subscription } = null;
 
   // Cache
   private _currentTeam = signal<CSGOTeam>(null);
@@ -57,15 +59,22 @@ export class BellumgensApiService {
 
   public getTeam(teamId: string): Signal<CSGOTeam> {
     untracked(() => {
-      if (!this._teamReqInProgress) {
-        const team = this._currentTeam();
-        if (!team || team.teamId !== teamId || team.customUrl !== teamId) {
-          this._teamReqInProgress = true;
-          this.getTeamFromServer(teamId).subscribe(response => {
-            this._currentTeam.set(response);
-            this._teamReqInProgress = false;
-          });
-        }
+      if (this._teamRequest?.teamId === teamId) {
+        return;
+      }
+      const team = this._currentTeam();
+      if (!team || team.teamId !== teamId || team.customUrl !== teamId) {
+        // A slower response for the previous team must not overwrite this one
+        this._teamRequest?.subscription.unsubscribe();
+        const request = { teamId, subscription: null as Subscription };
+        this._teamRequest = request;
+        request.subscription = this.getTeamFromServer(teamId).pipe(
+          finalize(() => {
+            if (this._teamRequest === request) {
+              this._teamRequest = null;
+            }
+          })
+        ).subscribe(response => this._currentTeam.set(response));
       }
     });
     return this.currentTeam;
@@ -269,20 +278,26 @@ export class BellumgensApiService {
 
   public getPlayer(userId: string): Signal<ApplicationUser> {
     untracked(() => {
-      if (!this.playerMatch(userId)) {
-        this._currentPlayer.set(null);
-        this._loadingPlayer.set(true);
-        this.getPlayerFromServer(userId).subscribe({
-          next: player => {
-            this._currentPlayer.set(player);
-            this._loadingPlayer.set(false);
-          },
-          error: () => {
-            this._currentPlayer.set(null);
+      if (this._playerRequest?.userId === userId || this.playerMatch(userId)) {
+        return;
+      }
+      // A slower response for the previous player must not overwrite this one
+      this._playerRequest?.subscription.unsubscribe();
+      this._currentPlayer.set(null);
+      this._loadingPlayer.set(true);
+      const request = { userId, subscription: null as Subscription };
+      this._playerRequest = request;
+      request.subscription = this.getPlayerFromServer(userId).pipe(
+        finalize(() => {
+          if (this._playerRequest === request) {
+            this._playerRequest = null;
             this._loadingPlayer.set(false);
           }
-        });
-      }
+        })
+      ).subscribe({
+        next: player => this._currentPlayer.set(player),
+        error: () => this._currentPlayer.set(null)
+      });
     });
     return this.currentPlayer;
   }

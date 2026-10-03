@@ -50,8 +50,10 @@ export class TeamComponent extends BaseDirective {
     this.activeRoute.params.pipe(
       map(params => params['teamid'] as string),
       filter(teamId => !!teamId),
-      switchMap(teamId => toObservable(this.apiService.getTeam(teamId), { injector: this.injector })),
-      filter(team => !!team),
+      // The service signal still holds the previous team until the requested one arrives
+      switchMap(teamId => toObservable(this.apiService.getTeam(teamId), { injector: this.injector }).pipe(
+        filter(team => team?.teamId === teamId || team?.customUrl === teamId)
+      )),
       takeUntilDestroyed()
     ).subscribe(team => {
       this.team.set(team);

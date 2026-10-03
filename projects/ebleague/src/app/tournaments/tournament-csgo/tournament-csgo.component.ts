@@ -1,4 +1,4 @@
-import { Component, computed, inject } from '@angular/core';
+import { Component, computed, effect, inject } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs/operators';
 import {
@@ -49,4 +49,15 @@ export class TournamentCsgoComponent extends BaseDirective {
   public loadingMatches = this.apiService.loadingCSGOMatches;
   public csgomatches = computed(() => this.apiService.getCsgoMatches(this.tournamentId())() ?? undefined);
   public groups = computed(() => this.apiService.getCsgoGroups(this.tournamentId())());
+
+  constructor() {
+    super();
+    // Results change during a live event, so entering the page always re-fetches them
+    effect(() => {
+      const id = this.tournamentId();
+      this.apiService.refreshCsgoRegistrations(id);
+      this.apiService.refreshCsgoMatches(id);
+      this.apiService.refreshCsgoGroups(id);
+    });
+  }
 }

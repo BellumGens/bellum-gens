@@ -317,6 +317,26 @@ describe('ApiTournamentsService', () => {
     httpMock.expectOne(`${service['_apiEndpoint']}/tournament/tournamentregistrations?tournamentId=1`).flush([]);
   });
 
+  it('should re-fetch Counter-Strike data into the same signal on refresh', () => {
+    const registrations = service.getCsgoRegistrations('1');
+    httpMock.expectOne(`${service['_apiEndpoint']}/tournament/csgoregs?tournamentId=1`).flush([{ id: 'r1' }]);
+    expect(service.refreshCsgoRegistrations('1')).toBe(registrations);
+    httpMock.expectOne(`${service['_apiEndpoint']}/tournament/csgoregs?tournamentId=1`).flush([{ id: 'r2' }]);
+    expect(registrations()).toEqual([{ id: 'r2' }]);
+
+    const matches = service.getCsgoMatches('1');
+    httpMock.expectOne(`${service['_apiEndpoint']}/tournament/csgomatches?tournamentId=1`).flush([]);
+    expect(service.refreshCsgoMatches('1')).toBe(matches);
+    httpMock.expectOne(`${service['_apiEndpoint']}/tournament/csgomatches?tournamentId=1`).flush([{ id: 'm1' }]);
+    expect(matches()).toEqual([{ id: 'm1' }]);
+
+    const groups = service.getCsgoGroups('1');
+    httpMock.expectOne(`${service['_apiEndpoint']}/tournament/csgogroups?tournamentId=1`).flush([]);
+    expect(service.refreshCsgoGroups('1')).toBe(groups);
+    httpMock.expectOne(`${service['_apiEndpoint']}/tournament/csgogroups?tournamentId=1`).flush([{ id: 'g1' }]);
+    expect(groups()).toEqual([{ id: 'g1' }]);
+  });
+
   it('should be safe to read per-id caches inside computed', () => {
     const id = signal('1');
     const matches = computed(() => service.getSc2Matches(id())());
@@ -686,6 +706,9 @@ describe('ApiTournamentsService', () => {
     });
 
     it.each([
+      ['refreshCsgoRegistrations', 'getCsgoRegistrations', '/tournament/csgoregs?tournamentId=1'],
+      ['refreshCsgoMatches', 'getCsgoMatches', '/tournament/csgomatches?tournamentId=1'],
+      ['refreshCsgoGroups', 'getCsgoGroups', '/tournament/csgogroups?tournamentId=1'],
       ['refreshSc2Registrations', 'getSc2Registrations', '/tournament/sc2regs?tournamentId=1'],
       ['refreshSc2Matches', 'getSc2Matches', '/tournament/sc2matches?tournamentId=1'],
       ['refreshSc2Groups', 'getSc2Groups', '/tournament/sc2groups?tournamentId=1'],

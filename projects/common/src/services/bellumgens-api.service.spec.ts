@@ -60,11 +60,11 @@ describe('BellumgensApiService', () => {
     const mockteam: CSGOTeam = { teamId: '789', teamName: 'Test Team', visible: true, teamAvatar: 'test.jpg' };
     const team = service.getTeam(teamId);
     expect(team()).toBeNull();
-    expect(service['_teamReqInProgress']).toBe(true);
+    expect(service['_teamRequest'].teamId).toBe(teamId);
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/teams?teamid=${teamId}`);
     expect(req.request.method).toBe('GET');
     req.flush(mockteam);
-    expect(service['_teamReqInProgress']).toBe(false);
+    expect(service['_teamRequest']).toBeNull();
     expect(service['_currentTeam']()).toEqual(mockteam);
     expect(team()).toEqual(mockteam);
   });
@@ -73,6 +73,16 @@ describe('BellumgensApiService', () => {
     service.getTeam('789');
     service.getTeam('789');
     httpMock.expectOne(`${service['_apiEndpoint']}/teams?teamid=789`).flush({ teamId: '789' });
+  });
+
+  it('getTeam should drop the in-flight request when a different team is requested', () => {
+    service.getTeam('A');
+    const reqA = httpMock.expectOne(`${service['_apiEndpoint']}/teams?teamid=A`);
+    const team = service.getTeam('B');
+    const reqB = httpMock.expectOne(`${service['_apiEndpoint']}/teams?teamid=B`);
+    expect(reqA.cancelled).toBe(true);
+    reqB.flush({ teamId: 'B' });
+    expect(team()).toEqual({ teamId: 'B' });
   });
 
   it('getTeam should be safe to call from a reactive context', () => {
@@ -517,6 +527,19 @@ describe('BellumgensApiService', () => {
     expect(cached().id).toBe('1');
     expect(service.loadingPlayer()).toBe(false);
     httpMock.expectNone(`${service['_apiEndpoint']}/users?userid=custom`);
+  });
+
+  it('getPlayer should drop the in-flight request when a different player is requested', () => {
+    service.getPlayer('A');
+    const reqA = httpMock.expectOne(`${service['_apiEndpoint']}/users?userid=A`);
+    const player = service.getPlayer('B');
+    // Requesting the same player again while it loads doesn't issue another request
+    service.getPlayer('B');
+    const reqB = httpMock.expectOne(`${service['_apiEndpoint']}/users?userid=B`);
+    expect(reqA.cancelled).toBe(true);
+    reqB.flush({ id: 'B', steamUser: { steamID64: 'B' } });
+    expect(player().id).toBe('B');
+    expect(service.loadingPlayer()).toBe(false);
   });
 
   it('getPlayer should be safe to call from a reactive context', () => {

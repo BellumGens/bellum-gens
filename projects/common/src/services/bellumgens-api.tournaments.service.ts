@@ -105,6 +105,10 @@ export class ApiTournamentsService {
     return this.cached(this._csgoRegistrations, id, i => this.getCSGORegistrations(i), this._loadingCSGORegistrations);
   }
 
+  public refreshCsgoRegistrations(id: string): Signal<TournamentParticipant []> {
+    return this.refresh(this._csgoRegistrations, id, i => this.getCSGORegistrations(i), this._loadingCSGORegistrations);
+  }
+
   public getSc2Registrations(id: string): Signal<TournamentParticipant []> {
     return this.cached(this._sc2Registrations, id, i => this.getSC2Registrations(i), this._loadingSC2Registrations);
   }
@@ -115,6 +119,10 @@ export class ApiTournamentsService {
 
   public getCsgoMatches(id: string): Signal<TournamentCSGOMatch []> {
     return this.cached(this._csgoMatches, id, i => this.getCSGOMatches(i), this._loadingCSGOMatches);
+  }
+
+  public refreshCsgoMatches(id: string): Signal<TournamentCSGOMatch []> {
+    return this.refresh(this._csgoMatches, id, i => this.getCSGOMatches(i), this._loadingCSGOMatches);
   }
 
   public getSc2Matches(id: string): Signal<TournamentSC2Match []> {
@@ -128,6 +136,10 @@ export class ApiTournamentsService {
   // Counter-Strike groups have always shared the registrations loading flag
   public getCsgoGroups(id: string): Signal<TournamentCSGOGroup []> {
     return this.cached(this._csgoGroups, id, i => this.getCSGOGroups(i), this._loadingCSGORegistrations);
+  }
+
+  public refreshCsgoGroups(id: string): Signal<TournamentCSGOGroup []> {
+    return this.refresh(this._csgoGroups, id, i => this.getCSGOGroups(i), this._loadingCSGORegistrations);
   }
 
   /** StarCraft II groups are cached in reverse server order. */
