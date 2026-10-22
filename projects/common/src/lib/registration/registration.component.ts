@@ -1,4 +1,4 @@
-import { Component, DestroyRef, ElementRef, OnInit, Signal, effect, inject, signal, untracked, viewChild } from '@angular/core';
+import { AfterViewInit, Component, DestroyRef, ElementRef, Signal, effect, inject, signal, untracked, viewChild } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import { LoginService } from '../../services/login.service';
@@ -19,7 +19,7 @@ import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
   styleUrls: ['./registration.component.scss'],
   imports: [FormsModule, IGX_INPUT_GROUP_DIRECTIVES, IgxIconComponent, IgxButtonDirective, IgxRippleDirective]
 })
-export class RegistrationComponent implements OnInit {
+export class RegistrationComponent implements AfterViewInit {
   private authManager = inject(LoginService);
   private router = inject(Router);
   private destroyRef = inject(DestroyRef);
@@ -41,7 +41,7 @@ export class RegistrationComponent implements OnInit {
     });
   }
 
-  public ngOnInit() {
+  public ngAfterViewInit() {
     this.initUsernameCheck();
   }
 

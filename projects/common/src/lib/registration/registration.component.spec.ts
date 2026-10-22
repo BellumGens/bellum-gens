@@ -44,7 +44,7 @@ describe('RegistrationComponent', () => {
     const spy = vi.spyOn(component as any, 'initUsernameCheck').mockImplementation(() => undefined);
     expect(component).toBeTruthy();
     expect(component.usernameInput()).toBeDefined();
-    component.ngOnInit();
+    component.ngAfterViewInit();
     expect(spy).toHaveBeenCalled();
   });
 
