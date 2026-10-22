@@ -8,7 +8,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { Meta } from '@angular/platform-browser';
 import { By } from '@angular/platform-browser';
 import { PLATFORM_ID, Provider, WritableSignal } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, config as rxjsConfig } from 'rxjs';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import {
   ApiStrategiesService,
@@ -304,7 +304,22 @@ describe('StrategyDetailsComponent', () => {
     });
 
     describe('logged in', () => {
+      let unhandledError: ReturnType<typeof vi.fn<(err: unknown) => void>>;
+
+      // Lets rxjs report errors that no subscriber handled.
+      const flushUnhandledErrors = () => new Promise(resolve => setTimeout(resolve));
+
+      const failRequest = (method: string, url: string) =>
+        httpMock.expectOne(r => r.method === method && r.url.endsWith(url))
+          .flush('Server error', { status: 500, statusText: 'Server Error' });
+
+      afterEach(() => {
+        rxjsConfig.onUnhandledError = null;
+      });
+
       beforeEach(async () => {
+        unhandledError = vi.fn<(err: unknown) => void>();
+        rxjsConfig.onUnhandledError = unhandledError;
         authUser.set(user);
         await create();
         await loadStrategy(strategy({
@@ -357,7 +372,7 @@ describe('StrategyDetailsComponent', () => {
 
         el().querySelector('form').dispatchEvent(new Event('submit'));
         const req = httpMock.expectOne(r => r.method === 'POST' && r.url.endsWith('/strategy/comment'));
-        expect(req.request.body).toEqual({ userId: 'me', stratId: 'strat-1', comment: 'Nice smokes', _inEdit: false });
+        expect(req.request.body).toEqual({ userId: 'me', stratId: 'strat-1', comment: 'Nice smokes' });
         req.flush(comment('c3', { comment: 'Nice smokes', userId: 'me' }));
         await fixture.whenStable();
 
@@ -368,27 +383,135 @@ describe('StrategyDetailsComponent', () => {
         expect(send.disabled).toBe(true);
       });
 
-      it('edits a listed comment in place', async () => {
+      it('does not style the send button as a vote', () => {
+        expect(button('vote down').className).toContain('user-has-voted');
+        expect(button('send').className).not.toContain('user-has-voted');
+      });
+
+      it('keeps the strategy when a vote fails', async () => {
+        const before = component.strat();
+        button('vote up').click();
+
+        failRequest('POST', '/strategy/vote');
+        await fixture.whenStable();
+        await flushUnhandledErrors();
+
+        expect(unhandledError).not.toHaveBeenCalled();
+        expect(component.strat()).toBe(before);
+      });
+
+      it('edits a copy of a listed comment and applies it once saved', async () => {
         await commentAction(1, 'Edit');
 
-        const edited = component.strat().comments[1];
-        expect(component.newComment()).toBe(edited);
-        expect(edited._inEdit).toBe(true);
+        const listed = component.strat().comments[1];
+        expect(component.newComment()).not.toBe(listed);
+        expect(component.newComment()).toEqual(listed);
+        expect(component.editedCommentId()).toBe('c2');
         expect(textarea().value).toBe('Comment c2');
+        expect(document.activeElement).toBe(textarea());
         expect(el().querySelectorAll('h3[igxListLineTitle]')[1].classList).toContain('comment-editing');
 
         await typeComment('Updated');
-        el().querySelector('form').dispatchEvent(new Event('submit'));
 
-        expect(edited._inEdit).toBe(false);
+        // The listed comment is untouched until the edit is saved.
+        expect(listed.comment).toBe('Comment c2');
+        expect(el().querySelectorAll('h3[igxListLineTitle]')[1].textContent).toBe('Comment c2');
+
+        el().querySelector('form').dispatchEvent(new Event('submit'));
         const req = httpMock.expectOne(r => r.method === 'POST' && r.url.endsWith('/strategy/comment'));
-        expect(req.request.body).toBe(edited);
+        expect(req.request.body).toEqual({ ...listed, comment: 'Updated' });
+        expect('_inEdit' in req.request.body).toBe(false);
         req.flush(comment('c2', { comment: 'Updated', userId: 'me' }));
         await fixture.whenStable();
 
         expect(component.strat().comments.map(c => c.comment)).toEqual(['Comment c1', 'Updated']);
         expect(el().querySelectorAll('h3[igxListLineTitle]')[1].classList).not.toContain('comment-editing');
+        expect(component.editedCommentId()).toBeNull();
         expect(component.newComment()).toEqual({ userId: 'me', stratId: 'strat-1', comment: null });
+      });
+
+      it('keeps the edit when saving it fails', async () => {
+        await commentAction(1, 'Edit');
+        await typeComment('Updated');
+
+        el().querySelector('form').dispatchEvent(new Event('submit'));
+        failRequest('POST', '/strategy/comment');
+        await fixture.whenStable();
+        await flushUnhandledErrors();
+
+        expect(unhandledError).not.toHaveBeenCalled();
+        expect(component.strat().comments[1].comment).toBe('Comment c2');
+        expect(el().querySelectorAll('h3[igxListLineTitle]')[1].textContent).toBe('Comment c2');
+        expect(el().querySelectorAll('h3[igxListLineTitle]')[1].classList).toContain('comment-editing');
+        expect(component.editedCommentId()).toBe('c2');
+        expect(textarea().value).toBe('Updated');
+      });
+
+      it('keeps a new comment draft when submitting it fails', async () => {
+        await typeComment('Nice smokes');
+
+        el().querySelector('form').dispatchEvent(new Event('submit'));
+        failRequest('POST', '/strategy/comment');
+        await fixture.whenStable();
+        await flushUnhandledErrors();
+
+        expect(unhandledError).not.toHaveBeenCalled();
+        expect(component.strat().comments.length).toBe(2);
+        expect(component.newComment().comment).toBe('Nice smokes');
+        expect(textarea().value).toBe('Nice smokes');
+      });
+
+      it('cancels an edit', async () => {
+        const cancel = () => Array.from<HTMLButtonElement>(el().querySelectorAll('form button'))
+          .find(b => b.textContent.trim() === 'Cancel edit');
+        expect(cancel()).toBeUndefined();
+
+        await commentAction(1, 'Edit');
+        await typeComment('Updated');
+        expect(cancel().type).toBe('button');
+
+        cancel().click();
+        await fixture.whenStable();
+
+        httpMock.expectNone(r => r.url.includes('/strategy/comment'));
+        expect(component.editedCommentId()).toBeNull();
+        expect(component.newComment()).toEqual({ userId: 'me', stratId: 'strat-1', comment: null });
+        expect(component.strat().comments[1].comment).toBe('Comment c2');
+        expect(el().querySelectorAll('h3[igxListLineTitle]')[1].classList).not.toContain('comment-editing');
+        expect(textarea().value).toBe('');
+        expect(document.activeElement).toBe(textarea());
+        expect(cancel()).toBeUndefined();
+      });
+
+      it('drops the edit when the edited comment is deleted', async () => {
+        await commentAction(1, 'Edit');
+
+        component.deleteComment(component.strat().comments[1]);
+        httpMock.expectOne(r => r.method === 'DELETE' && r.url.endsWith('/strategy/comment?id=c2')).flush(null);
+        await fixture.whenStable();
+
+        expect(component.strat().comments.map(c => c.id)).toEqual(['c1']);
+        expect(component.editedCommentId()).toBeNull();
+        expect(component.newComment()).toEqual({ userId: 'me', stratId: 'strat-1', comment: null });
+      });
+
+      it('drops the edit when another strategy loads', async () => {
+        await commentAction(1, 'Edit');
+
+        await loadStrategy(strategy({ id: 'strat-2', title: 'Long A' }));
+
+        expect(component.editedCommentId()).toBeNull();
+        expect(component.newComment()).toEqual({ userId: 'me', stratId: 'strat-2', comment: null });
+      });
+
+      it('keeps the comment when deleting it fails', async () => {
+        component.deleteComment(component.strat().comments[0]);
+        failRequest('DELETE', '/strategy/comment?id=c1');
+        await fixture.whenStable();
+        await flushUnhandledErrors();
+
+        expect(unhandledError).not.toHaveBeenCalled();
+        expect(component.strat().comments.map(c => c.id)).toEqual(['c1', 'c2']);
       });
 
       it('deletes a comment after confirmation', async () => {

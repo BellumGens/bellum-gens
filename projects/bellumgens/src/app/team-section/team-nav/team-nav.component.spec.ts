@@ -55,11 +55,6 @@ describe('TeamNavComponent', () => {
       expect(typeof component.abandonTeam).toBe('function');
     });
 
-    it('should initialize activeMembers and inactiveMembers as undefined', () => {
-      expect(component.activeMembers).toBeUndefined();
-      expect(component.inactiveMembers).toBeUndefined();
-    });
-
     it('should ask the user to login and not render the create button or team cards', async () => {
       await fixture.whenStable();
       const el: HTMLElement = fixture.nativeElement;
@@ -168,6 +163,23 @@ describe('TeamNavComponent', () => {
       expect(req.request.url).toContain('teamId=team-1');
       expect(req.request.withCredentials).toBe(true);
       req.flush({});
+      await fixture.whenStable();
+
+      expect(component.teams()).toEqual([TEAMS[1]]);
+      const cards = fixture.nativeElement.querySelectorAll('igx-card');
+      expect(cards.length).toBe(1);
+      expect(cards[0].querySelector('h3').textContent).toContain('Second Team');
+    });
+
+    it('should keep the team in the list when abandoning fails', async () => {
+      await flushTeams(TEAMS);
+      component.abandonTeam(TEAMS[0]);
+      httpMock.expectOne(r => r.url.includes('/teams/abandon'))
+        .flush('error', { status: 500, statusText: 'Server Error' });
+      await fixture.whenStable();
+
+      expect(component.teams()).toEqual(TEAMS);
+      expect(fixture.nativeElement.querySelectorAll('igx-card').length).toBe(2);
     });
 
     it('should not abandon a team when the confirmation is cancelled', async () => {

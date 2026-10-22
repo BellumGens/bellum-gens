@@ -199,6 +199,28 @@ describe('TeamNotificationsComponent', () => {
     expect(buttonsOf(rejected).map(b => b.textContent.trim())).toEqual(['Rejected']);
   });
 
+  for (const [action, index, url] of [['approving', 0, 'approveapplication'], ['rejecting', 1, 'rejectapplication']] as const) {
+    it(`should re-enable the buttons when ${action} an application fails`, async () => {
+      const changed = vi.fn();
+      component.changed.subscribe(changed);
+      await loadApplications(createApplications());
+
+      buttonsOf(itemFor('PlayerOne'))[index].click();
+      await fixture.whenStable();
+      expect(component.actionInProgress()).toBe(true);
+
+      httpMock.expectOne(`${apiEndpoint}/teams/${url}`).flush('error', { status: 500, statusText: 'Server Error' });
+      await fixture.whenStable();
+
+      expect(component.actionInProgress()).toBe(false);
+      expect(changed).not.toHaveBeenCalled();
+      expect(component.applications().find(a => a.applicantId === 'player-1').state).toBe(NotificationState.NotSeen);
+      const buttons = buttonsOf(itemFor('PlayerOne'));
+      expect(buttons.map(b => b.textContent.trim())).toEqual(['Approve', 'Reject']);
+      expect(buttons.every(b => !b.disabled)).toBe(true);
+    });
+  }
+
   it('should only replace the handled application', async () => {
     const applications = createApplications();
     await loadApplications(applications);

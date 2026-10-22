@@ -44,6 +44,8 @@ export interface TournamentCSGOMatch extends TournamentMatch {
   team2Id?: string;
   team1Points?: number;
   team2Points?: number;
+  /** Computed by the API from the points; the empty GUID when the match is tied or not played yet. */
+  winnerTeamId?: string;
   team1?: CSGOTeam;
   team2?: CSGOTeam;
   maps?: TournamentCSGOMatchMap [];

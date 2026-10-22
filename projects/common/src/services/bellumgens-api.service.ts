@@ -39,6 +39,10 @@ export class BellumgensApiService {
   private _currentTeamMembers = signal<TeamMember []>(null);
   private _currentTeamPractice = signal<Availability []>(null);
   private _currentPlayer = signal<ApplicationUser>(null);
+  // The id the cached members and schedule were fetched for. They are cached
+  // independently of the current team, so they carry their own key.
+  private _currentTeamMembersId: string = null;
+  private _currentTeamPracticeId: string = null;
   private readonly currentTeam = this._currentTeam.asReadonly();
   private readonly currentTeamMembers = this._currentTeamMembers.asReadonly();
   private readonly currentTeamPractice = this._currentTeamPractice.asReadonly();
@@ -63,7 +67,8 @@ export class BellumgensApiService {
         return;
       }
       const team = this._currentTeam();
-      if (!team || team.teamId !== teamId || team.customUrl !== teamId) {
+      // Teams are requested either by id or by custom url
+      if (!team || (team.teamId !== teamId && team.customUrl !== teamId)) {
         // A slower response for the previous team must not overwrite this one
         this._teamRequest?.subscription.unsubscribe();
         const request = { teamId, subscription: null as Subscription };
@@ -82,9 +87,9 @@ export class BellumgensApiService {
 
   public getTeamMembers(teamId: string): Signal<TeamMember []> {
     untracked(() => {
-      const team = this._currentTeam();
-      if (!this._currentTeamMembers() || team.teamId !== teamId || team.customUrl !== teamId) {
+      if (!this._currentTeamMembers() || this._currentTeamMembersId !== teamId) {
         this.getTeamMembersFromServer(teamId).subscribe(members => {
+          this._currentTeamMembersId = teamId;
           this._currentTeamMembers.set(members);
         });
       }
@@ -94,9 +99,9 @@ export class BellumgensApiService {
 
   public getTeamSchedule(teamId: string): Signal<Availability []> {
     untracked(() => {
-      const team = this._currentTeam();
-      if (!this._currentTeamPractice() || team.teamId !== teamId || team.customUrl !== teamId) {
+      if (!this._currentTeamPractice() || this._currentTeamPracticeId !== teamId) {
         this.getTeamPractice(teamId).subscribe(schedule => {
+          this._currentTeamPracticeId = teamId;
           this._currentTeamPractice.set(schedule);
         });
       }
@@ -146,6 +151,7 @@ export class BellumgensApiService {
   public updateTeamMember(teamMember: TeamMember): Observable<TeamMember> {
     return this.http.put<TeamMember>(`${this._apiEndpoint}/teams/member`, teamMember, { withCredentials: true }).pipe(
       map(response => {
+        this._currentTeamMembersId = null;
         this.commService.emitSuccess(`${teamMember.username} updated successfully!`);
         return response;
       }),
@@ -161,6 +167,7 @@ export class BellumgensApiService {
     return this.http.delete(`${this._apiEndpoint}/teams/removemember?teamId=${teamMember.teamId}&userId=${teamMember.userId}`,
       { withCredentials: true }).pipe(
         map(response => {
+          this._currentTeamMembersId = null;
           this.commService.emitSuccess(`${teamMember.username} removed from team!`);
           return response;
         }),
@@ -174,6 +181,7 @@ export class BellumgensApiService {
   public abandonTeam(team: CSGOTeam) {
     return this.http.delete(`${this._apiEndpoint}/teams/abandon?teamId=${team.teamId}`, { withCredentials: true }).pipe(
       map(response => {
+        this._currentTeamMembersId = null;
         this.commService.emitSuccess(`You're are no longer part of ${team.teamName}`);
         return response;
       }),
@@ -219,6 +227,7 @@ export class BellumgensApiService {
   public approveApplication(application: TeamApplication): Observable<TeamApplication> {
     return this.http.put<TeamApplication>(`${this._apiEndpoint}/teams/approveapplication`, application, { withCredentials: true }).pipe(
       map(response => {
+        this._currentTeamMembersId = null;
         this.commService.emitSuccess(`${application.userName} is now part of your team!`);
         return response;
       }),
@@ -266,6 +275,7 @@ export class BellumgensApiService {
   public setTeamPractice(day: Availability) {
     return this.http.put(`${this._apiEndpoint}/teams/availability`, day, { withCredentials: true }).pipe(
       map(response => {
+        this._currentTeamPracticeId = null;
         this.commService.emitSuccess('Practice schedule updated!');
         return response;
       }),
@@ -390,6 +400,7 @@ export class BellumgensApiService {
   public acceptInvite(notification: UserNotification) {
     return this.http.put(`${this._apiEndpoint}/users/acceptTeamInvite`, notification, { withCredentials: true }).pipe(
       map(response => {
+        this._currentTeamMembersId = null;
         this.commService.emitSuccess('Team invite accepted!');
         return response;
       }),

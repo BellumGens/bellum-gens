@@ -25,6 +25,7 @@ export class LoginService {
 
   private _userCheckInProgress = signal(false);
   public readonly userCheckInProgress = this._userCheckInProgress.asReadonly();
+  private _notificationsCheckInProgress = false;
 
   private _openLogin = new Subject<void>();
   public readonly openLogin = this._openLogin.asObservable();
@@ -111,8 +112,15 @@ export class LoginService {
   /** Lazily loads the current user's notifications on first access. */
   public get userNotifications(): Signal<UserNotification []> {
     untracked(() => {
-      if (!this._userNotifications()) {
-        this.getUserNotifications().subscribe(data => this._userNotifications.set(data));
+      if (!this._userNotifications() && !this._notificationsCheckInProgress) {
+        this._notificationsCheckInProgress = true;
+        this.getUserNotifications().subscribe({
+          next: data => {
+            this._userNotifications.set(data);
+            this._notificationsCheckInProgress = false;
+          },
+          error: () => this._notificationsCheckInProgress = false
+        });
       }
     });
 

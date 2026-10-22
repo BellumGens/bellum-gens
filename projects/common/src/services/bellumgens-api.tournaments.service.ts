@@ -25,16 +25,20 @@ export class ApiTournamentsService {
   private _loadingSC2Registrations = signal(false);
   private _loadingCSGOMatches = signal(false);
   private _loadingSC2Matches = signal(false);
+  private _loadingCSGOGroups = signal(false);
   private _loadingSC2Groups = signal(false);
   private _loadingTourRegistrations = signal(false);
+  private _loadingTournaments = signal(false);
   private _registrationsCount = signal<RegistrationsCount []>(null);
 
   public readonly loadingCSGORegistrations = this._loadingCSGORegistrations.asReadonly();
   public readonly loadingSC2Registrations = this._loadingSC2Registrations.asReadonly();
   public readonly loadingCSGOMatches = this._loadingCSGOMatches.asReadonly();
   public readonly loadingSC2Matches = this._loadingSC2Matches.asReadonly();
+  public readonly loadingCSGOGroups = this._loadingCSGOGroups.asReadonly();
   public readonly loadingSC2Groups = this._loadingSC2Groups.asReadonly();
   public readonly loadingTourRegistrations = this._loadingTourRegistrations.asReadonly();
+  public readonly loadingTournaments = this._loadingTournaments.asReadonly();
   public readonly registrationsCount = this._registrationsCount.asReadonly();
 
   private _apiEndpoint = environment.apiEndpoint;
@@ -57,7 +61,7 @@ export class ApiTournamentsService {
   private _pending = new WeakSet<WritableSignal<unknown>>();
 
   public get tournaments(): Signal<Tournament []> {
-    return this.lazy(this._tournaments, () => this.getTournaments());
+    return this.lazy(this._tournaments, () => this.getTournaments(), this._loadingTournaments);
   }
 
   public getTournament(id: string): Signal<Tournament> {
@@ -133,13 +137,12 @@ export class ApiTournamentsService {
     return this.refresh(this._sc2Matches, id, i => this.getSC2Matches(i), this._loadingSC2Matches);
   }
 
-  // Counter-Strike groups have always shared the registrations loading flag
   public getCsgoGroups(id: string): Signal<TournamentCSGOGroup []> {
-    return this.cached(this._csgoGroups, id, i => this.getCSGOGroups(i), this._loadingCSGORegistrations);
+    return this.cached(this._csgoGroups, id, i => this.getCSGOGroups(i), this._loadingCSGOGroups);
   }
 
   public refreshCsgoGroups(id: string): Signal<TournamentCSGOGroup []> {
-    return this.refresh(this._csgoGroups, id, i => this.getCSGOGroups(i), this._loadingCSGORegistrations);
+    return this.refresh(this._csgoGroups, id, i => this.getCSGOGroups(i), this._loadingCSGOGroups);
   }
 
   /** StarCraft II groups are cached in reverse server order. */
@@ -505,10 +508,10 @@ export class ApiTournamentsService {
   }
 
   /** Returns `target`, fetching it first when it holds no value and no request is in flight. */
-  private lazy<T>(target: WritableSignal<T>, request: () => Observable<T>): Signal<T> {
+  private lazy<T>(target: WritableSignal<T>, request: () => Observable<T>, loading?: WritableSignal<boolean>): Signal<T> {
     untracked(() => {
       if (!target()) {
-        this.fetchInto(target, request());
+        this.fetchInto(target, request(), loading);
       }
     });
     return target.asReadonly();
@@ -545,7 +548,11 @@ export class ApiTournamentsService {
         this._pending.delete(target);
         loading?.set(false);
       })
-    ).subscribe(data => target.set(data));
+    ).subscribe({
+      next: data => target.set(data),
+      // A failed fetch leaves the value empty, so the next read retries it; `finalize` clears the loading flag
+      error: () => undefined
+    });
   }
 
   private addGroupToCache<T extends TournamentGroup>(cache: Map<string, WritableSignal<T []>>, tournamentId: string,

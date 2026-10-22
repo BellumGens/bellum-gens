@@ -165,8 +165,8 @@
               }
               @else {
                 <igx-input-group type="border" igxCardHeaderTitle>
-                  <label igxLabel for="groupName" i18n>Group name</label>
-                  <input type="text" id="groupName" name="groupName" #groupName igxInput [required]="true" [(ngModel)]="group.name" />
+                  <label igxLabel [for]="'groupName' + group.id" i18n>Group name</label>
+                  <input type="text" [id]="'groupName' + group.id" name="groupName" #groupName igxInput [required]="true" [(ngModel)]="group.name" />
                   @if (groupName.value) {
                     <igx-suffix (click)="group.name = null">
                       <igx-icon>clear</igx-icon>
@@ -211,8 +211,8 @@
             }
             @else {
               <igx-input-group type="border" igxCardHeaderTitle>
-                <label igxLabel for="groupName" i18n>Group name</label>
-                <input type="text" id="groupName" name="groupName" #groupName igxInput [required]="true" [(ngModel)]="newGroup.name" />
+                <label igxLabel for="newGroupName" i18n>Group name</label>
+                <input type="text" id="newGroupName" name="newGroupName" #groupName igxInput [required]="true" [(ngModel)]="newGroup.name" />
                 @if (groupName.value) {
                   <igx-suffix (click)="newGroup.name = null">
                     <igx-icon>clear</igx-icon>

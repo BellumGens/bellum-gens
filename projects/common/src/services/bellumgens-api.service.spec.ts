@@ -135,6 +135,88 @@ describe('BellumgensApiService', () => {
     expect(schedule()).toEqual(availability);
   });
 
+  describe('team cache', () => {
+    const teamUrl = (id: string) => `${service['_apiEndpoint']}/teams?teamid=${id}`;
+    const membersUrl = (id: string) => `${service['_apiEndpoint']}/teams/members?teamid=${id}`;
+    const scheduleUrl = (id: string) => `${service['_apiEndpoint']}/teams/availability?teamid=${id}`;
+    const cachedTeam: CSGOTeam = { teamId: 'team-1', customUrl: 'team-url', teamName: 'Cached', visible: true, teamAvatar: '' };
+
+    it('getTeam should serve the cached team by id or custom url', () => {
+      service.getTeam('team-1');
+      httpMock.expectOne(teamUrl('team-1')).flush(cachedTeam);
+
+      expect(service.getTeam('team-1')()).toEqual(cachedTeam);
+      expect(service.getTeam('team-url')()).toEqual(cachedTeam);
+      httpMock.expectNone(teamUrl('team-1'));
+      httpMock.expectNone(teamUrl('team-url'));
+    });
+
+    it('getTeam should request a team that matches neither the cached id nor custom url', () => {
+      service.getTeam('team-1');
+      httpMock.expectOne(teamUrl('team-1')).flush(cachedTeam);
+
+      service.getTeam('team-2');
+      httpMock.expectOne(teamUrl('team-2')).flush({ ...cachedTeam, teamId: 'team-2', customUrl: 'other' });
+      expect(service.getTeam('team-2')().teamId).toBe('team-2');
+    });
+
+    it('getTeamMembers should serve cached members for the same team without a cached team', () => {
+      const members = [{ userId: 'u1', teamId: 'team-1' }] as TeamMember [];
+      expect(service['_currentTeam']()).toBeNull();
+      service.getTeamMembers('team-1');
+      httpMock.expectOne(membersUrl('team-1')).flush(members);
+
+      expect(() => service.getTeamMembers('team-1')).not.toThrow();
+      httpMock.expectNone(membersUrl('team-1'));
+      expect(service.getTeamMembers('team-1')()).toEqual(members);
+    });
+
+    it('getTeamMembers should refetch for a different team even when the current team matches it', () => {
+      service.getTeamMembers('team-1');
+      httpMock.expectOne(membersUrl('team-1')).flush([{ userId: 'u1', teamId: 'team-1' }]);
+      service.getTeam('team-2');
+      httpMock.expectOne(teamUrl('team-2')).flush({ ...cachedTeam, teamId: 'team-2' });
+
+      const members = service.getTeamMembers('team-2');
+      httpMock.expectOne(membersUrl('team-2')).flush([{ userId: 'u2', teamId: 'team-2' }]);
+      expect(members()).toEqual([{ userId: 'u2', teamId: 'team-2' }]);
+    });
+
+    it('getTeamMembers should refetch after the members were changed', () => {
+      const member = { userId: 'u1', teamId: 'team-1', username: 'u1' } as TeamMember;
+      service.getTeamMembers('team-1');
+      httpMock.expectOne(membersUrl('team-1')).flush([member]);
+
+      service.updateTeamMember(member).subscribe();
+      httpMock.expectOne(`${service['_apiEndpoint']}/teams/member`).flush(member);
+
+      service.getTeamMembers('team-1');
+      httpMock.expectOne(membersUrl('team-1')).flush([member]);
+    });
+
+    it('getTeamSchedule should serve the cached schedule for the same team', () => {
+      service.getTeamSchedule('team-1');
+      httpMock.expectOne(scheduleUrl('team-1')).flush([]);
+
+      service.getTeamSchedule('team-1');
+      httpMock.expectNone(scheduleUrl('team-1'));
+
+      service.getTeamSchedule('team-2');
+      httpMock.expectOne(scheduleUrl('team-2')).flush([]);
+    });
+
+    it('getTeamSchedule should refetch after the schedule was changed', () => {
+      service.getTeamSchedule('team-1');
+      httpMock.expectOne(scheduleUrl('team-1')).flush([]);
+
+      service.setTeamPractice({ teamId: 'team-1', day: DayOfWeek.Monday, available: true, from: null, to: null }).subscribe();
+      httpMock.expectOne(`${service['_apiEndpoint']}/teams/availability`).flush({});
+
+      service.getTeamSchedule('team-1');
+      httpMock.expectOne(scheduleUrl('team-1')).flush([]);
+    });
+  });
+
   it('registerSteamGroup should send a POST request to the correct URL', () => {
     const group: SteamGroup = {
       groupID64: '678',

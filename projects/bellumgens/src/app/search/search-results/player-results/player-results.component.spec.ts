@@ -167,6 +167,17 @@ describe('PlayerResultsComponent', () => {
       expect(bareCard.querySelector('igx-card-content')).toBeNull();
     });
 
+    it('should render a placeholder chip for roles the player has not set', async () => {
+      params.next({ query: 'overlap=0' });
+      httpMock.expectOne(searchUrl('overlap=0')).flush([
+        player('p1', 'NoRoles', csgoDetails({ primaryRole: undefined, secondaryRole: null }))
+      ]);
+      await fixture.whenStable();
+
+      const chips = Array.from(el().querySelectorAll('igx-card igx-chip')).map(c => c.textContent.trim());
+      expect(chips).toEqual(['---', '---']);
+    });
+
     it('should link each card to the player custom url, falling back to the id', async () => {
       params.next({ query: 'overlap=0' });
       httpMock.expectOne(searchUrl('overlap=0')).flush([

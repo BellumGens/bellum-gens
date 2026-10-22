@@ -9,7 +9,8 @@ import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import {
-  ApiTournamentsService, ApiShopService, CommunicationService, Tournament, Game, TournamentApplication, TournamentApplicationState, Order, Promo
+  ApiTournamentsService, ApiShopService, CommunicationService, Tournament, Game, TournamentApplication, TournamentApplicationState, Order, Promo,
+  EMPTY_NEW_TOURNAMENT, JerseyCut, JerseySize, ProductOrderDetails
 } from '../../../../../common/src/public_api';
 import { IGridEditEventArgs } from '@infragistics/igniteui-angular/grids/core';
 import { IgxGridComponent } from '@infragistics/igniteui-angular/grids/grid';
@@ -129,6 +130,9 @@ describe('AdminMainComponent', () => {
         req.flush(createdTournament);
 
         expect(component.tournaments().length).toBe(1);
+        // The new tournament form starts over, so submitting again doesn't resend the created tournament
+        expect(component.tournament).toEqual(EMPTY_NEW_TOURNAMENT);
+        expect(component.tournament).not.toBe(EMPTY_NEW_TOURNAMENT);
       });
 
       it('should start a new tournament list when none was loaded', () => {
@@ -259,6 +263,8 @@ describe('AdminMainComponent', () => {
         const req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/confirm?id=reg-1`);
         expect(req.request.method).toBe('PUT');
         expect(req.request.body.state).toBe(1); // TournamentApplicationState.Confirmed
+        // The row keeps the editor's value, so the grid doesn't consider it changed
+        expect(gridEditEventArgs.rowData.state).toBe(true);
 
         req.flush({});
       });
@@ -285,6 +291,7 @@ describe('AdminMainComponent', () => {
         const req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/confirm?id=reg-2`);
         expect(req.request.method).toBe('PUT');
         expect(req.request.body.state).toBe(0); // TournamentApplicationState.Pending
+        expect(gridEditEventArgs.rowData.state).toBe(false);
 
         req.flush({});
       });
@@ -334,15 +341,21 @@ describe('AdminMainComponent', () => {
       });
     });
 
-    describe('Registration Management - deleteRegistration', () => {
-      it('should delete a registration', () => {
+    describe('Registration Management - saveRegistration', () => {
+      const createMockRowContext = (key: string, deleted = true) => {
         const mockRowContext = createSpyObj('RowType', ['grid']);
         mockRowContext.grid = createSpyObj('IgxGridComponent', ['transactions']);
         mockRowContext.grid.transactions.commit = vi.fn();
         mockRowContext.grid.data = [];
-        mockRowContext.key = 'reg-1';
+        mockRowContext.key = key;
+        mockRowContext.deleted = deleted;
+        return mockRowContext;
+      };
 
-        component.deleteRegistration(mockRowContext as any);
+      it('should delete a registration marked deleted', () => {
+        const mockRowContext = createMockRowContext('reg-1');
+
+        component.saveRegistration(mockRowContext as any);
 
         expect(mockRowContext.grid.transactions.commit).toHaveBeenCalledWith([], 'reg-1');
 
@@ -353,20 +366,11 @@ describe('AdminMainComponent', () => {
       });
 
       it('should delete multiple registrations', () => {
-        const createMockRowContext = (key: string) => {
-          const mockRowContext = createSpyObj('RowType', ['grid']);
-          mockRowContext.grid = createSpyObj('IgxGridComponent', ['transactions']);
-          mockRowContext.grid.transactions.commit = vi.fn();
-          mockRowContext.grid.data = [];
-          mockRowContext.key = key;
-          return mockRowContext;
-        };
-
         const rowContext1 = createMockRowContext('reg-1');
         const rowContext2 = createMockRowContext('reg-2');
 
-        component.deleteRegistration(rowContext1 as any);
-        component.deleteRegistration(rowContext2 as any);
+        component.saveRegistration(rowContext1 as any);
+        component.saveRegistration(rowContext2 as any);
 
         let req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/delete?id=reg-1`);
         expect(req.request.method).toBe('DELETE');
@@ -378,13 +382,10 @@ describe('AdminMainComponent', () => {
       });
 
       it('should commit transaction before deleting registration', () => {
-        const mockRowContext = createSpyObj('RowType', ['grid']);
-        mockRowContext.grid = createSpyObj('IgxGridComponent', ['transactions']);
-        mockRowContext.grid.transactions.commit = vi.fn();
+        const mockRowContext = createMockRowContext('reg-1');
         mockRowContext.grid.data = [{ id: 'reg-1' }];
-        mockRowContext.key = 'reg-1';
 
-        component.deleteRegistration(mockRowContext as any);
+        component.saveRegistration(mockRowContext as any);
 
         expect(mockRowContext.grid.transactions.commit).toHaveBeenCalled();
 
@@ -392,17 +393,32 @@ describe('AdminMainComponent', () => {
         expect(req.request.method).toBe('DELETE');
         req.flush({});
       });
+
+      it('should only commit the changes of an edited registration', () => {
+        const mockRowContext = createMockRowContext('reg-1', false);
+
+        component.saveRegistration(mockRowContext as any);
+
+        expect(mockRowContext.grid.transactions.commit).toHaveBeenCalledWith([], 'reg-1');
+        httpMock.expectNone(`${apiService['_apiEndpoint']}/tournament/delete?id=reg-1`);
+      });
     });
 
-    describe('Order Management - deleteOrder', () => {
-      it('should delete an order', () => {
+    describe('Order Management - saveOrder', () => {
+      const createMockRowContext = (key: string, deleted = true) => {
         const mockRowContext = createSpyObj('RowType', ['grid']);
         mockRowContext.grid = createSpyObj('IgxGridComponent', ['transactions']);
         mockRowContext.grid.transactions.commit = vi.fn();
         mockRowContext.grid.data = [];
-        mockRowContext.key = 'order-1';
+        mockRowContext.key = key;
+        mockRowContext.deleted = deleted;
+        return mockRowContext;
+      };
 
-        component.deleteOrder(mockRowContext as any);
+      it('should delete an order marked deleted', () => {
+        const mockRowContext = createMockRowContext('order-1');
+
+        component.saveOrder(mockRowContext as any);
 
         expect(mockRowContext.grid.transactions.commit).toHaveBeenCalledWith([], 'order-1');
 
@@ -413,20 +429,11 @@ describe('AdminMainComponent', () => {
       });
 
       it('should delete multiple orders', () => {
-        const createMockRowContext = (key: string) => {
-          const mockRowContext = createSpyObj('RowType', ['grid']);
-          mockRowContext.grid = createSpyObj('IgxGridComponent', ['transactions']);
-          mockRowContext.grid.transactions.commit = vi.fn();
-          mockRowContext.grid.data = [];
-          mockRowContext.key = key;
-          return mockRowContext;
-        };
-
         const rowContext1 = createMockRowContext('order-1');
         const rowContext2 = createMockRowContext('order-2');
 
-        component.deleteOrder(rowContext1 as any);
-        component.deleteOrder(rowContext2 as any);
+        component.saveOrder(rowContext1 as any);
+        component.saveOrder(rowContext2 as any);
 
         let req = httpMock.expectOne(`${shopService['_apiEndpoint']}/shop/order?orderId=order-1`);
         expect(req.request.method).toBe('DELETE');
@@ -435,6 +442,15 @@ describe('AdminMainComponent', () => {
         req = httpMock.expectOne(`${shopService['_apiEndpoint']}/shop/order?orderId=order-2`);
         expect(req.request.method).toBe('DELETE');
         req.flush({});
+      });
+
+      it('should only commit the changes of an edited order', () => {
+        const mockRowContext = createMockRowContext('order-1', false);
+
+        component.saveOrder(mockRowContext as any);
+
+        expect(mockRowContext.grid.transactions.commit).toHaveBeenCalledWith([], 'order-1');
+        httpMock.expectNone(`${shopService['_apiEndpoint']}/shop/order?orderId=order-1`);
       });
     });
   });
@@ -492,8 +508,7 @@ describe('AdminMainComponent', () => {
     ];
     const cards = () => Array.from(el().querySelectorAll('igx-card'));
     const forms = () => Array.from(el().querySelectorAll('form'));
-    // The registrations grid's group-by chip for the 'tournamentName' column has the same id as this input, so the editors are found by name
-    const newForm = () => el().querySelector('input[name="tournamentName"]').closest('form');
+    const newForm = () => el().querySelector('#newTournamentName').closest('form');
     const type = (input: HTMLInputElement | HTMLTextAreaElement, value: string) => {
       input.value = value;
       input.dispatchEvent(new Event('input'));
@@ -607,6 +622,27 @@ describe('AdminMainComponent', () => {
       expect(cards().length).toBe(1);
       expect(cards()[0].querySelector('h4').textContent).toContain('Autumn League');
       expect(cards()[0].querySelector('h5').textContent).toContain('league-2');
+
+      // The new tournament form is cleared, so it cannot resend the created tournament
+      expect(component.tournament).toEqual(EMPTY_NEW_TOURNAMENT);
+      expect(form.querySelector<HTMLInputElement>('#newTournamentName').value).toBe('');
+      expect(form.querySelector<HTMLInputElement>('[name="tournamentLogo"]').value).toBe('');
+      expect(form.querySelector<HTMLTextAreaElement>('[name="tournamentDescription"]').value).toBe('');
+      expect(submitButton(form).disabled).toBe(true);
+    });
+
+    it('should label the new tournament name with an id of its own', async () => {
+      // The registrations grid is grouped by its 'tournamentName' column, which renders a group-by chip
+      flushInitialRequests({
+        registrations: [{ id: 'reg-1', game: Game.CSGO, email: 'a@example.com', tournamentName: 'Spring League' }]
+      });
+      await render();
+
+      const input = el().querySelector<HTMLInputElement>('#newTournamentName');
+      expect(input.name).toBe('tournamentName');
+      expect(el().querySelector<HTMLLabelElement>('label[for="newTournamentName"]').textContent).toContain('Tournament name');
+      const ids = Array.from(el().querySelectorAll('[id]')).map(e => e.id).filter(id => id);
+      expect(ids.filter((id, i) => ids.indexOf(id) !== i)).toEqual([]);
     });
 
     it('should clear the new tournament fields from their suffix icons', async () => {
@@ -708,10 +744,29 @@ describe('AdminMainComponent', () => {
       expect(req.request.body).toEqual(expect.objectContaining({ id: 'reg-2', state: TournamentApplicationState.Confirmed }));
       req.flush({});
 
-      // The edited row is now dirty, so the action strip offers to save it as well
+      // The edit is saved right away, so the row has no pending changes left to save
       await hoverRow('reg-2');
-      expect(stripButton('Save')).toBeTruthy();
+      expect(grid().dataRowList.find(r => r.key === 'reg-2').dirty).toBe(false);
+      expect(stripButton('Save')).toBeNull();
       expect(stripButton('Delete')).toBeTruthy();
+    });
+
+    it('should keep an edited registration when its pending changes are saved', async () => {
+      grid().toggleAllGroupRows();
+      await render();
+
+      // Editing through the API leaves the change pending in the batch
+      grid().updateCell(true, 'reg-2', 'state');
+      await hoverRow('reg-2');
+      expect(grid().dataRowList.find(r => r.key === 'reg-2').dirty).toBe(true);
+
+      stripButton('Save').click();
+      await render();
+
+      httpMock.expectNone(`${apiService['_apiEndpoint']}/tournament/delete?id=reg-2`);
+      expect(grid().transactions.getAggregatedChanges(false)).toEqual([]);
+      expect(grid().data.map(r => r.id)).toEqual(['reg-1', 'reg-2']);
+      expect(grid().data[1].state).toBe(true);
     });
 
     it('should only offer to delete a pristine registration', async () => {
@@ -751,7 +806,11 @@ describe('AdminMainComponent', () => {
     const orders = (): Order [] => [
       {
         id: 'order-1', email: 'jane@example.com', firstName: 'Jane', lastName: 'Doe', phoneNumber: '888123456',
-        city: 'Sofia', streetAddress: '1 Main St', promoCode: 'EBL10', confirmed: true, shipped: false
+        city: 'Sofia', streetAddress: '1 Main St', promoCode: 'EBL10', confirmed: true, shipped: false,
+        orderProducts: [
+          { cut: JerseyCut.Male, size: JerseySize.L } as ProductOrderDetails,
+          { cut: JerseyCut.Female, size: JerseySize.XS } as ProductOrderDetails
+        ]
       },
       {
         id: 'order-2', email: 'john@example.com', firstName: 'John', lastName: 'Roe', phoneNumber: '888654321',
@@ -800,6 +859,29 @@ describe('AdminMainComponent', () => {
       await render();
 
       expect(grid().nativeElement.querySelector('.details-container')).toBeTruthy();
+    });
+
+    it('should list the cut and size of each ordered product in the details area', async () => {
+      grid().expandRow('order-1');
+      await render();
+
+      const products = Array.from(grid().nativeElement.querySelectorAll('.details-container > .column-center'))
+        .map(p => Array.from(p.querySelectorAll('div')).map(d => d.textContent.trim()));
+      expect(products).toEqual([['Male', 'L'], ['Female', 'XS']]);
+    });
+
+    it('should keep an edited order when its pending changes are saved', async () => {
+      grid().updateCell(true, 'order-2', 'confirmed');
+      await hoverRow('order-2');
+      expect(grid().dataRowList.find(r => r.key === 'order-2').dirty).toBe(true);
+
+      stripButton('Save').click();
+      await render();
+
+      httpMock.expectNone(`${shopService['_apiEndpoint']}/shop/order?orderId=order-2`);
+      expect(grid().transactions.getAggregatedChanges(false)).toEqual([]);
+      expect(grid().data.map(o => o.id)).toEqual(['order-1', 'order-2']);
+      expect(grid().data[1].confirmed).toBe(true);
     });
 
     it('should save an order when one of its cells is edited', async () => {

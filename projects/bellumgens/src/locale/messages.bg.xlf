@@ -5309,6 +5309,10 @@
           <context context-type="linenumber">169,170</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="7435987726117859556" datatype="html">
+        <source>Cancel edit</source>
+        <target>Откажи редакцията</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

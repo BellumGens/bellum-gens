@@ -39,7 +39,7 @@ export class TournamentListComponent {
 
   public tournaments = computed<Tournament[]>(() => this.publicTournaments() ?? []);
   public myTournaments = computed<Tournament[]>(() => this.ownTournaments() ?? []);
-  public loading = computed(() => !this.publicTournaments());
+  public loading = this.apiService.loadingTournaments;
   public activeTab = signal(0);
   public inviteCode = '';
 
@@ -67,7 +67,8 @@ export class TournamentListComponent {
   }
 
   public onDeleteTournament(tournament: Tournament) {
-    this.apiService.deleteTournament(tournament.id).subscribe();
+    // The service reports the failure to the user and the card stays in the list
+    this.apiService.deleteTournament(tournament.id).subscribe({ error: () => undefined });
   }
 
   public joinByInvite(dialog: IgxDialogComponent) {
@@ -76,7 +77,9 @@ export class TournamentListComponent {
         next: () => {
           dialog.close();
           this.inviteCode = '';
-        }
+        },
+        // The service reports the failure to the user; the dialog stays open so the code can be corrected
+        error: () => undefined
       });
     }
   }

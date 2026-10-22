@@ -1,4 +1,7 @@
-import { Component, ElementRef, PLATFORM_ID, LOCALE_ID, Signal, afterNextRender, computed, effect, inject, signal, untracked, viewChild } from '@angular/core';
+import {
+  Component, ElementRef, PLATFORM_ID, LOCALE_ID, OutputEmitterRef, Signal,
+  afterNextRender, computed, effect, inject, linkedSignal, signal, untracked, viewChild
+} from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { RouterLinkActive, RouterLink, RouterOutlet, ActivatedRoute } from '@angular/router';
 
@@ -34,6 +37,8 @@ import { LoginComponent } from '../../../common/src/lib/login/login.component';
 import { LanguagesComponent } from '../../../common/src/lib/languages/languages.component';
 import { battlenet, discord, facebook, heartCare, instagram, linkedin, steam, tiktok, twitch, twitter, youtube, github } from '@igniteui/material-icons-extended';
 import { IgxResourceStringsBG } from 'igniteui-angular-i18n';
+// Type only, so the lazy loaded notifications route stays out of the main bundle
+import type { NotificationsComponent } from './notifications/notifications.component';
 
 @Component({
   selector: 'app-root',
@@ -92,12 +97,12 @@ export class AppComponent {
   public teams = signal<CSGOTeam []>(null);
   public searchResult: SearchResult;
   public searchTerm = signal('');
-  // Unread notifications cached by the LoginService plus any changes reported by the notifications view.
-  private unreadNotificationsDelta = signal(0);
   private serviceUnreadNotifications = computed(() =>
     this.authUser() ? this.unreadPipe.transform(this.authManager.userNotifications()) : 0
   );
-  public unreadNotifications = computed(() => this.serviceUnreadNotifications() + this.unreadNotificationsDelta());
+  // Unread notifications cached by the LoginService, until the notifications view reports
+  // the total it shows (which also covers the team applications it loads and handles).
+  public unreadNotifications = linkedSignal(() => this.serviceUnreadNotifications());
   public environment = environment;
   public year = new Date().getFullYear();
 
@@ -135,8 +140,16 @@ export class AppComponent {
   //   window.localStorage.setItem('cookiesAccepted', 'true');
   // }
 
-  public notificationsLoaded(args: number) {
-    this.unreadNotificationsDelta.update(count => count + args);
+  public routeActivated(component: unknown) {
+    const unreadChanged = (component as Partial<NotificationsComponent>)?.unreadChanged;
+    if (unreadChanged instanceof OutputEmitterRef) {
+      // The subscription ends when the routed component is destroyed
+      unreadChanged.subscribe(unread => this.notificationsLoaded(unread));
+    }
+  }
+
+  public notificationsLoaded(unread: number) {
+    this.unreadNotifications.set(unread);
   }
 
   public clearSearch() {

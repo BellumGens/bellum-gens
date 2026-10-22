@@ -17,14 +17,16 @@
      To preserve overlap behavior: this.select.overlaySettings = { positionStrategy: new IgxSelectOverlapPositionStrategy(this.select) }; -->
 <igx-select [value]="jersey.size" (selectionChanging)="selectJerseySize(jersey, $event)" type="border" class="order-form-input" name="jerseySize">
             <label igxLabel i18n>Size</label>
-            @for (size of allSizes | filterSizes:jersey.cut; track size.size) {
+            @for (size of jersey.cut | filterSizes; track size.size) {
               <igx-select-item [value]="size.size">
                 {{ size.text }}
               </igx-select-item>
             }
           </igx-select>
           @if (productCount() > 1) {
-            <igx-icon (click)="removeJersey(i)">clear</igx-icon>
+            <button type="button" igxIconButton="flat" (click)="removeJersey(i)" i18n-aria-label aria-label="Remove jersey">
+              <igx-icon>clear</igx-icon>
+            </button>
           }
         </div>
       }
@@ -34,14 +36,16 @@
       <span i18n>{{ productCount() }} x {{basePrice}} BGN = {{ subtotal() }} BGN</span>
 
       <igx-input-group class="order-form-input" type="box">
-        <label igxLabel for="firstName" i18n>Promo code</label>
+        <label igxLabel for="promocode" i18n>Promo code</label>
         <igx-prefix>
           <igx-icon>money_off</igx-icon>
         </igx-prefix>
         <input id="promocode" #promocode name="promocode" igxInput (blur)="checkForPromo()" [ngModel]="order().promoCode" (ngModelChange)="updateOrder('promoCode', $event)" />
         @if (promocode.value) {
-          <igx-suffix (click)="updateOrder('promoCode', null)">
-            <igx-icon>clear</igx-icon>
+          <igx-suffix>
+            <button type="button" igxIconButton="flat" (click)="updateOrder('promoCode', null)" i18n-aria-label aria-label="Clear promo code">
+              <igx-icon>clear</igx-icon>
+            </button>
           </igx-suffix>
         }
 
@@ -76,8 +80,10 @@
       </igx-prefix>
       <input id="firstName" #firstName name="firstName" igxInput [required]="true" [ngModel]="order().firstName" (ngModelChange)="updateOrder('firstName', $event)" />
       @if (firstName.value) {
-        <igx-suffix (click)="updateOrder('firstName', null)">
-          <igx-icon>clear</igx-icon>
+        <igx-suffix>
+          <button type="button" igxIconButton="flat" (click)="updateOrder('firstName', null)" i18n-aria-label aria-label="Clear first name">
+            <igx-icon>clear</igx-icon>
+          </button>
         </igx-suffix>
       }
     </igx-input-group>
@@ -89,8 +95,10 @@
       </igx-prefix>
       <input id="lastName" #lastName name="lastName" igxInput [required]="true" [ngModel]="order().lastName" (ngModelChange)="updateOrder('lastName', $event)" />
       @if (lastName.value) {
-        <igx-suffix (click)="updateOrder('lastName', null)">
-          <igx-icon>clear</igx-icon>
+        <igx-suffix>
+          <button type="button" igxIconButton="flat" (click)="updateOrder('lastName', null)" i18n-aria-label aria-label="Clear last name">
+            <igx-icon>clear</igx-icon>
+          </button>
         </igx-suffix>
       }
     </igx-input-group>
@@ -102,8 +110,10 @@
       </igx-prefix>
       <input type="email" id="orderemail" #orderEmail name="orderemail" igxInput [required]="true" pattern="^[a-zA-Z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$" [ngModel]="order().email" (ngModelChange)="updateOrder('email', $event)" />
       @if (orderEmail.value) {
-        <igx-suffix (click)="updateOrder('email', null)">
-          <igx-icon>clear</igx-icon>
+        <igx-suffix>
+          <button type="button" igxIconButton="flat" (click)="updateOrder('email', null)" i18n-aria-label aria-label="Clear email">
+            <igx-icon>clear</igx-icon>
+          </button>
         </igx-suffix>
       }
     </igx-input-group>
@@ -111,6 +121,7 @@
 
   <div class="horizontal">
     <igx-input-group class="order-form-input" type="border">
+      <label igxLabel for="orderPhone" i18n>Phone #</label>
       <igx-prefix>
         <igx-icon title="Телефон">phone</igx-icon>
         <span>{{countryCode}}</span>
@@ -126,8 +137,10 @@
         placeholder="--- -- -- --"
         [ngModel]="order().phoneNumber" (ngModelChange)="updateOrder('phoneNumber', $event)" />
         @if (orderPhone.value) {
-          <igx-suffix (click)="updateOrder('phoneNumber', null)">
-            <igx-icon>clear</igx-icon>
+          <igx-suffix>
+            <button type="button" igxIconButton="flat" (click)="updateOrder('phoneNumber', null)" i18n-aria-label aria-label="Clear phone number">
+              <igx-icon>clear</igx-icon>
+            </button>
           </igx-suffix>
         }
       </igx-input-group>
@@ -139,8 +152,10 @@
         </igx-prefix>
         <input id="orderCity" #orderCity name="orderCity" igxInput [required]="true" [ngModel]="order().city" (ngModelChange)="updateOrder('city', $event)" />
         @if (orderCity.value) {
-          <igx-suffix (click)="updateOrder('city', null)">
-            <igx-icon>clear</igx-icon>
+          <igx-suffix>
+            <button type="button" igxIconButton="flat" (click)="updateOrder('city', null)" i18n-aria-label aria-label="Clear city">
+              <igx-icon>clear</igx-icon>
+            </button>
           </igx-suffix>
         }
       </igx-input-group>
@@ -152,15 +167,17 @@
         </igx-prefix>
         <input id="orderAddress" #orderAddress name="orderAddress" igxInput [required]="true" [ngModel]="order().streetAddress" (ngModelChange)="updateOrder('streetAddress', $event)" />
         @if (orderAddress.value) {
-          <igx-suffix (click)="updateOrder('streetAddress', null)">
-            <igx-icon>clear</igx-icon>
+          <igx-suffix>
+            <button type="button" igxIconButton="flat" (click)="updateOrder('streetAddress', null)" i18n-aria-label aria-label="Clear street">
+              <igx-icon>clear</igx-icon>
+            </button>
           </igx-suffix>
         }
       </igx-input-group>
     </div>
 
     <div class="horizontal-center floating-button">
-      <button igxButton="outlined" [disabled]="!orderForm.touched || orderForm.invalid || inProgress()" i18n>Order</button>
+      <button igxButton="outlined" [disabled]="!orderForm.touched || orderForm.invalid || hasUnavailableJersey() || inProgress()" i18n>Order</button>
     </div>
 
 </form>

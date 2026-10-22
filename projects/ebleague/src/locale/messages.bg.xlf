@@ -3171,6 +3171,38 @@
           <context context-type="linenumber">9,11</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="389760964377001932" datatype="html">
+        <source>Remove jersey</source>
+        <target>Премахни фланелката</target>
+      </trans-unit>
+      <trans-unit id="2808523933915213618" datatype="html">
+        <source>Clear promo code</source>
+        <target>Изчисти промо кода</target>
+      </trans-unit>
+      <trans-unit id="1908499290314678195" datatype="html">
+        <source>Clear first name</source>
+        <target>Изчисти името</target>
+      </trans-unit>
+      <trans-unit id="7579320793279445748" datatype="html">
+        <source>Clear last name</source>
+        <target>Изчисти фамилията</target>
+      </trans-unit>
+      <trans-unit id="336262150804823681" datatype="html">
+        <source>Clear email</source>
+        <target>Изчисти имейла</target>
+      </trans-unit>
+      <trans-unit id="4503263884508479200" datatype="html">
+        <source>Clear phone number</source>
+        <target>Изчисти телефонния номер</target>
+      </trans-unit>
+      <trans-unit id="6270324904893142587" datatype="html">
+        <source>Clear city</source>
+        <target>Изчисти града</target>
+      </trans-unit>
+      <trans-unit id="4319438082923496965" datatype="html">
+        <source>Clear street</source>
+        <target>Изчисти улицата</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

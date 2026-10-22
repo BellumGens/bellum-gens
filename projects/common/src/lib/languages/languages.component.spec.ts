@@ -74,6 +74,11 @@ describe('LanguagesComponent', () => {
       expect(icon.componentInstance.name).toBe(component.localeId);
     });
 
+    it('should give the toggle button an accessible name', () => {
+      const button: HTMLButtonElement = fixture.nativeElement.querySelector('button.profile-button');
+      expect(button.getAttribute('aria-label')).toBe('Choose a language');
+    });
+
     it('should not render the language items until the drop down is opened', () => {
       expect(document.querySelectorAll('igx-drop-down-item').length).toBe(0);
     });

@@ -5,8 +5,8 @@ import { ISelectionEventArgs } from '@infragistics/igniteui-angular/drop-down';
 import { IGX_SELECT_DIRECTIVES } from '@infragistics/igniteui-angular/select';
 import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
-import { IgxButtonDirective, IgxDividerComponent, IgxMaskDirective, IgxTextSelectionDirective } from '@infragistics/igniteui-angular/directives';
-import { FilterSizesPipe } from '../../pipes/filter-sizes.pipe';
+import { IgxButtonDirective, IgxDividerComponent, IgxIconButtonDirective, IgxMaskDirective, IgxTextSelectionDirective } from '@infragistics/igniteui-angular/directives';
+import { FilterSizesPipe, isJerseySizeAvailable, jerseySizes } from '../../pipes/filter-sizes.pipe';
 import { ApiShopService } from '../../../public_api';
 import { EMPTY_JERSEY_ORDER, JerseyCut, ProductOrderDetails, Order, JerseySize } from '../../../models/order';
 
@@ -21,6 +21,7 @@ import { EMPTY_JERSEY_ORDER, JerseyCut, ProductOrderDetails, Order, JerseySize }
     IgxIconComponent,
     IgxDividerComponent,
     IgxButtonDirective,
+    IgxIconButtonDirective,
     IgxMaskDirective,
     IgxTextSelectionDirective,
     FilterSizesPipe
@@ -39,25 +40,19 @@ export class OrderformComponent {
 
   public productCount = computed(() => this.order().orderProducts.length);
   public subtotal = computed(() => this.productCount() * this.basePrice);
+  public hasUnavailableJersey = computed(() => this.order().orderProducts.some(j => !isJerseySizeAvailable(j.cut, j.size)));
 
   public cuts = [
     { text: $localize`Male`, cut: JerseyCut.Male },
     { text: $localize`Female`, cut: JerseyCut.Female }
   ];
 
-  public allSizes: [
-    { text: 'XS'; size: JerseySize.XS; disabled: false },
-    { text: 'S'; size: JerseySize.S; disabled: false },
-    { text: 'M'; size: JerseySize.M; disabled: false },
-    { text: 'L'; size: JerseySize.L; disabled: false },
-    { text: 'XL'; size: JerseySize.XL; disabled: false },
-    { text: 'XXL'; size: JerseySize.XXL; disabled: false },
-    { text: 'XXXL'; size: JerseySize.XXXL; disabled: false }
-  ];
-
   public orderSuccess = output<Order>();
 
   public placeOrder() {
+    if (this.hasUnavailableJersey()) {
+      return;
+    }
     this.inProgress.set(true);
     const order = this.order();
     this.apiService.submitOrder(order).subscribe({
@@ -96,11 +91,18 @@ export class OrderformComponent {
   }
 
   public selectJerseyCut(jersey: ProductOrderDetails, event: ISelectionEventArgs) {
-    this.updateJersey(jersey, { cut: event.newSelection.value });
+    const cut: JerseyCut = event.newSelection.value;
+    this.updateJersey(jersey, { cut, size: this.closestAvailableSize(cut, jersey.size) });
   }
 
   public selectJerseySize(jersey: ProductOrderDetails, event: ISelectionEventArgs) {
     this.updateJersey(jersey, { size: event.newSelection.value });
+  }
+
+  private closestAvailableSize(cut: JerseyCut, size: JerseySize): JerseySize {
+    return jerseySizes(cut)
+      .map(s => s.size)
+      .reduce((closest, s) => Math.abs(s - size) < Math.abs(closest - size) ? s : closest);
   }
 
   private updateJersey(jersey: ProductOrderDetails, changes: Partial<ProductOrderDetails>) {

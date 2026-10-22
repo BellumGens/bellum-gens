@@ -45,9 +45,6 @@ const participant = (id: string, teamName: string, overrides: Partial<Tournament
   ...overrides
 });
 
-// The match grid highlights the winner by `winnerTeamId`, which the API sends but the model doesn't declare
-type CsgoMatchWithWinner = TournamentCSGOMatch & { winnerTeamId?: string };
-
 const TOURNAMENTS: Tournament [] = [
   { id: 't1', name: 'Spring Cup' },
   { id: 't2', name: 'Autumn Cup' }
@@ -315,6 +312,20 @@ describe('AdminCsgoComponent', () => {
       expect(groupMembers(groupCards()[0])).toEqual([]);
     });
 
+    it('returns a removed participant to the unassigned list when the group lists its own copy', () => {
+      // The server sends the group members separately from the registrations
+      const member = { ...bravo };
+      groupA.participants = [member];
+      fixture.detectChanges();
+
+      component.removeFromGroup(member, groupA);
+      fixture.detectChanges();
+
+      expect(member.tournamentCSGOGroupId).toBeNull();
+      expect(bravo.tournamentCSGOGroupId).toBeNull();
+      expect(unassigned()).toEqual(['Alpha', 'Bravo']);
+    });
+
     it('keeps the participant in the group when the removal fails', async () => {
       vi.mocked(apiService.removeParticipantFromGroup).mockReturnValue(throwError(() => new Error('nope')));
       const trigger = component.pipeTrigger();
@@ -335,7 +346,7 @@ describe('AdminCsgoComponent', () => {
       iconIn(card, 'edit').click();
       fixture.detectChanges();
       expect(groupA.inEdit).toBe(true);
-      const input = card.querySelector<HTMLInputElement>('input#groupName');
+      const input = card.querySelector<HTMLInputElement>('input#groupNameg1');
       input.value = 'Group Alpha';
       input.dispatchEvent(new Event('input'));
 
@@ -346,7 +357,7 @@ describe('AdminCsgoComponent', () => {
       expect(groupA.name).toBe('Group Alpha');
       expect(groupA.inEdit).toBe(false);
       expect(card.querySelector('h1').textContent.trim()).toBe('Group Alpha');
-      expect(card.querySelector('input#groupName')).toBeNull();
+      expect(card.querySelector('input#groupNameg1')).toBeNull();
     });
 
     it('clears the name of a group in edit', async () => {
@@ -356,7 +367,7 @@ describe('AdminCsgoComponent', () => {
       await fixture.whenStable();
       fixture.detectChanges();
 
-      const input = card.querySelector<HTMLInputElement>('input#groupName');
+      const input = card.querySelector<HTMLInputElement>('input#groupNameg1');
       expect(input.value).toBe('Group A');
       card.querySelector<HTMLElement>('igx-suffix').click();
       fixture.detectChanges();
@@ -372,7 +383,7 @@ describe('AdminCsgoComponent', () => {
       const newGroupCard = el().querySelector('.new-group-card');
       iconIn(newGroupCard, 'add_circle_outline').click();
       fixture.detectChanges();
-      const input = newGroupCard.querySelector<HTMLInputElement>('input#groupName');
+      const input = newGroupCard.querySelector<HTMLInputElement>('input#newGroupName');
       input.value = 'Group B';
       input.dispatchEvent(new Event('input'));
       fixture.detectChanges();
@@ -385,6 +396,22 @@ describe('AdminCsgoComponent', () => {
 
       expect(component.newGroup.name).toBeNull();
       expect(newGroupCard.querySelector('igx-suffix')).toBeNull();
+    });
+
+    it('gives each group name editor an id of its own, labelled by its label', () => {
+      groups.set([groupA, { id: 'g2', name: 'Group B', participants: [] }]);
+      fixture.detectChanges();
+      groupCards().forEach(card => iconIn(card, 'edit').click());
+      iconIn(el().querySelector('.new-group-card'), 'add_circle_outline').click();
+      fixture.detectChanges();
+
+      const inputs = Array.from(el().querySelectorAll<HTMLInputElement>('.card-wrapper igx-card-header input'));
+      expect(inputs.map(i => i.id)).toEqual(['groupNameg1', 'groupNameg2', 'newGroupName']);
+      inputs.forEach(input => {
+        const label = input.closest('igx-input-group').querySelector('label');
+        expect(label.htmlFor).toBe(input.id);
+        expect(label.textContent).toContain('Group name');
+      });
     });
 
     it('cancels editing a group without submitting', () => {
@@ -419,6 +446,7 @@ describe('AdminCsgoComponent', () => {
 
       expect(submit).toHaveBeenCalledWith(expect.objectContaining({ name: 'Group B' }), 't1');
       expect(component.newGroup.inEdit).toBe(false);
+      expect(component.newGroup.name).toBeFalsy();
       expect(groupCards().map(c => c.querySelector('h1').textContent.trim())).toEqual(['Group A', 'Group B']);
     });
 
@@ -449,6 +477,21 @@ describe('AdminCsgoComponent', () => {
       expect(remove).toHaveBeenCalledWith('g1');
       expect(component.pipeTrigger()).toBe(trigger + 1);
       expect(groupCards().length).toBe(0);
+      // The members of the deleted group are unassigned again
+      expect(bravo.tournamentCSGOGroupId).toBeNull();
+      expect(unassigned()).toEqual(['Alpha', 'Bravo']);
+    });
+
+    it('keeps the group and its members when the deletion fails', async () => {
+      vi.spyOn(apiService, 'deleteGroup').mockReturnValue(throwError(() => new Error('nope')));
+      const trigger = component.pipeTrigger();
+
+      await expectUnhandledError(() => component.deleteGroup('g1'));
+      fixture.detectChanges();
+
+      expect(component.pipeTrigger()).toBe(trigger);
+      expect(bravo.tournamentCSGOGroupId).toBe('g1');
+      expect(unassigned()).toEqual(['Alpha']);
     });
   });
 
@@ -622,9 +665,9 @@ describe('AdminCsgoComponent', () => {
   describe('match grid', () => {
     let alpha: TournamentParticipant;
     let bravo: TournamentParticipant;
-    let played: CsgoMatchWithWinner;
-    let walkover: CsgoMatchWithWinner;
-    let upcoming: CsgoMatchWithWinner;
+    let played: TournamentCSGOMatch;
+    let walkover: TournamentCSGOMatch;
+    let upcoming: TournamentCSGOMatch;
 
     const render = async () => {
       fixture.detectChanges();

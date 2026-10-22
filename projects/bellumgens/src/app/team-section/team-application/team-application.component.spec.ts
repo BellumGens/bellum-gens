@@ -182,6 +182,32 @@ describe('TeamApplicationComponent', () => {
       await vi.waitFor(() => expect(component.dialog().isOpen).toBe(false));
     });
 
+    it('should report a failed submission and keep the dialog open', async () => {
+      const error = vi.spyOn(TestBed.inject(CommunicationService), 'emitError');
+      await openDialog();
+      await typeMessage('I am a great AWPer');
+
+      dialogButton('Submit Application').click();
+      await fixture.whenStable();
+
+      httpMock.expectOne(r => r.url.endsWith('/teams/apply'))
+        .flush('error', { status: 500, statusText: 'Server Error' });
+      await fixture.whenStable();
+
+      expect(error).toHaveBeenCalled();
+      expect(component.dialog().isOpen).toBe(true);
+      expect(component.application.message).toBe('I am a great AWPer');
+    });
+
+    it('should not submit an application without a team', async () => {
+      fixture.componentRef.setInput('team', undefined);
+      await openDialog();
+      await typeMessage('I am a great AWPer');
+
+      expect(() => component.submitApplication()).not.toThrow();
+      httpMock.expectNone(r => r.url.includes('/teams/apply'));
+    });
+
     it('should not mutate the component application when submitting', async () => {
       await openDialog();
       await typeMessage('Hello');

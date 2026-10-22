@@ -5,7 +5,8 @@ import {
   ApiTournamentsService,
   Tournament, EMPTY_NEW_TOURNAMENT,
   Promo,
-  ApiShopService
+  ApiShopService,
+  TournamentApplicationState
 } from '../../../../../common/src/public_api';
 import { IGridEditEventArgs, RowType } from '@infragistics/igniteui-angular/grids/core';
 import { DefaultSortingStrategy, IGroupingExpression, SortingDirection } from '@infragistics/igniteui-angular/core';
@@ -84,6 +85,8 @@ export class AdminMainComponent {
     this.apiService.createTournament(tournament || this.tournament).subscribe(data => {
       if (!tournament) {
         this.tournaments.update(tournaments => [...(tournaments || []), data]);
+        // Start the next new tournament from a blank form
+        this.tournament = Object.assign({}, EMPTY_NEW_TOURNAMENT);
       }
     });
   }
@@ -96,17 +99,29 @@ export class AdminMainComponent {
 
   public confirmRegistration(event: IGridEditEventArgs) {
     const rowData = event.rowData;
-    rowData[event.column.field] = event.newValue ? 1 : 0;
-    this.apiService.confirmRegistration(rowData).subscribe();
+    // The row keeps the editor's boolean, so the grid sees no pending change once it's saved;
+    // the server receives the state as a number
+    rowData[event.column.field] = event.newValue;
+    this.apiService.confirmRegistration({
+      ...rowData,
+      [event.column.field]: event.newValue ? TournamentApplicationState.Confirmed : TournamentApplicationState.Pending
+    }).subscribe();
   }
 
-  public deleteRegistration(rowContext: RowType) {
+  // Applies the row's pending changes and deletes it on the server only if it was marked deleted
+  public saveRegistration(rowContext: RowType) {
+    const deleted = rowContext.deleted;
     rowContext.grid.transactions.commit(rowContext.grid.data, rowContext.key);
-    this.apiService.deleteRegistration(rowContext.key).subscribe();
+    if (deleted) {
+      this.apiService.deleteRegistration(rowContext.key).subscribe();
+    }
   }
 
-  public deleteOrder(rowContext: RowType) {
+  public saveOrder(rowContext: RowType) {
+    const deleted = rowContext.deleted;
     rowContext.grid.transactions.commit(rowContext.grid.data, rowContext.key);
-    this.shopService.deleteOrder(rowContext.key).subscribe();
+    if (deleted) {
+      this.shopService.deleteOrder(rowContext.key).subscribe();
+    }
   }
 }

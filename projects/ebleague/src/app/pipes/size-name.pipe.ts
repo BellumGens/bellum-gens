@@ -6,7 +6,7 @@ import { JerseySize } from '../../../../common/src/public_api';
 })
 export class SizeNamePipe implements PipeTransform {
   private allSizes = [
-    { text: 'XS', size: JerseySize.S },
+    { text: 'XS', size: JerseySize.XS },
     { text: 'S', size: JerseySize.S },
     { text: 'M', size: JerseySize.M },
     { text: 'L', size: JerseySize.L },
@@ -16,7 +16,7 @@ export class SizeNamePipe implements PipeTransform {
   ];
 
   public transform(size: JerseySize): string {
-    return this.allSizes.find(s => s.size === size).text;
+    return this.allSizes.find(s => s.size === size)?.text ?? '';
   }
 
 }

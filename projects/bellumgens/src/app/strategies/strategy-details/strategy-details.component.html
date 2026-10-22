@@ -60,11 +60,11 @@
         @for (comment of strat.comments; track comment.id) {
           <igx-list-item>
             <igx-avatar igxListThumbnail [src]="comment.userAvatar" shape="circle"></igx-avatar>
-            <h3 [class.comment-editing]="comment._inEdit" igxListLineTitle>{{ comment.comment }}</h3>
+            <h3 [class.comment-editing]="comment.id === editedCommentId()" igxListLineTitle>{{ comment.comment }}</h3>
             <h5 igxListLineSubTitle>{{ comment.published | date }}</h5>
             <igx-icon igxListActions class="navigatable" [igxToggleAction]="useractions" [overlaySettings]="overlaySettings">more_vert</igx-icon>
             <igx-drop-down #useractions (selectionChanging)="$event.cancel = true; useractions.close()">
-              <igx-drop-down-item (click)="editComment(comment)">
+              <igx-drop-down-item (click)="editComment(comment); commentBox.focus()">
                 <div class="dd-item-content">
                   <igx-icon title="edit strategy">edit</igx-icon>
                   <span i18n>Edit</span>
@@ -85,14 +85,16 @@
         <form #strategyForm="ngForm" (ngSubmit)="submitComment()" class="comment-input">
           <igx-input-group type="box">
             <label for="comment" igxLabel i18n>{{ !authUser() ? 'Login to' : 'Leave a' }} comment...</label>
-            <textarea [disabled]="!authUser()" #commentBox id="comment" name="comment" igxInput [(ngModel)]="newComment().comment"></textarea>
+            <textarea [disabled]="!authUser()" #commentBox id="comment" name="comment" igxInput [ngModel]="newComment().comment" (ngModelChange)="updateCommentText($event)"></textarea>
             <button igxSuffix
               igxButton="fab"
-              [class]="strat.votes | hasVoted:1:authUser()"
               [disabled]="!newComment().comment">
               <igx-icon>send</igx-icon>
             </button>
           </igx-input-group>
+          @if (editedCommentId()) {
+            <button type="button" igxButton="flat" igxRipple (click)="cancelEdit(); commentBox.focus()" i18n>Cancel edit</button>
+          }
         </form>
       </div>
     </igx-card-actions>

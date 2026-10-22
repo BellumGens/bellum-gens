@@ -137,9 +137,13 @@ export class AdminSc2Component {
     });
   }
 
-  public deleteRegistration(rowContext: RowType) {
+  // Applies the row's pending changes and deletes it on the server only if it was marked deleted
+  public saveRegistration(rowContext: RowType) {
+    const deleted = rowContext.deleted;
     rowContext.grid.transactions.commit(rowContext.grid.data, rowContext.key);
-    this.apiService.deleteRegistration(rowContext.key).subscribe();
+    if (deleted) {
+      this.apiService.deleteRegistration(rowContext.key).subscribe();
+    }
   }
 
   public submitGroup(group: TournamentGroup) {
@@ -149,17 +153,28 @@ export class AdminSc2Component {
       if (!this.groups().find(g => g.id === data.id)) {
         this.groups.update(groups => [...groups, data]);
       }
+      if (group === this.newGroup) {
+        // The New group card starts over once its group is created
+        this.newGroup = Object.assign({}, EMPTY_NEW_GROUP);
+      }
     });
   }
 
   public deleteGroup(id: string) {
-    this.apiService.deleteGroup(id).subscribe(() => this.groups.update(groups => groups.filter(g => g.id !== id)));
-    this.pipeTrigger.update(trigger => trigger + 1);
+    this.apiService.deleteGroup(id).subscribe(() => {
+      this.groups.update(groups => groups.filter(g => g.id !== id));
+      // The members of the deleted group are unassigned again
+      this.participants()?.filter(p => p.tournamentSC2GroupId === id).forEach(p => p.tournamentSC2GroupId = null);
+      this.pipeTrigger.update(trigger => trigger + 1);
+    });
   }
 
   public addToGroup(event: IDropDroppedEventArgs, group: TournamentGroup) {
     this.apiService.addParticipantToGroup(event.dragData, group.id).subscribe({
-      next: () => group.participants = [ ...(group.participants || []), event.dragData ],
+      next: () => {
+        group.participants = [ ...(group.participants || []), event.dragData ];
+        event.dragData.tournamentSC2GroupId = group.id;
+      },
       complete: () => this.pipeTrigger.update(trigger => trigger + 1)
     });
   }
@@ -168,6 +183,12 @@ export class AdminSc2Component {
     this.apiService.removeParticipantFromGroup(participant.id, group.id).subscribe({
       next: () => {
         group.participants = group.participants.filter(p => p !== participant);
+        participant.tournamentSC2GroupId = null;
+        // The groups list their own copies of the participants, so the unassigned participant is cleared as well
+        const listed = this.participants()?.find(p => p.id === participant.id);
+        if (listed) {
+          listed.tournamentSC2GroupId = null;
+        }
         this.pipeTrigger.update(trigger => trigger + 1);
       }
     });
@@ -238,7 +259,7 @@ export class AdminSc2Component {
     this.apiService.resetCheckinState(this.selectedTournament().id).subscribe({
       next: () => {
         // Row objects are shared with the grid's batch editing, so they're reset in place
-        this.registrations().filter(r => r.state !== TournamentApplicationState.Banned).forEach(r => r.state = 0);
+        this.registrations()?.filter(r => r.state !== TournamentApplicationState.Banned).forEach(r => r.state = 0);
         this.registrationsGrid().notifyChanges(true);
       },
       complete: () => {}

@@ -1,5 +1,5 @@
 import { Component, Signal, computed, effect, inject, signal, untracked } from '@angular/core';
-import { toObservable, toSignal } from '@angular/core/rxjs-interop';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs/operators';
 import {
   ApplicationUser,
@@ -58,7 +58,6 @@ export class LeagueRegistrationComponent {
     : this.apiService.activeTournament());
   public tournamentId = computed(() => this.routeTournamentId() ?? this.tournament()?.id);
   public authUser: Signal<ApplicationUser> = this.authManager.applicationUser;
-  private authUser$ = toObservable(this.authUser);
   public companies = this.apiService.companies;
   public inProgress = signal(false);
   public battleTagRegex = BATTLE_TAG_REGEX;
@@ -247,9 +246,12 @@ export class LeagueRegistrationComponent {
       const tournamentId = this.tournament()?.id;
       untracked(() => this.patchApplication({ tournamentId }));
     });
-    this.authUser$.subscribe(user => {
-      if (user) {
-        this.authManager.getRegistration(this.tournamentId()).subscribe(data => {
+    // The registration can only be fetched once both the user and the tournament are known
+    effect(onCleanup => {
+      const user = this.authUser();
+      const tournamentId = this.tournamentId();
+      if (user && tournamentId) {
+        const subscription = untracked(() => this.authManager.getRegistration(tournamentId).subscribe(data => {
           if (data) {
             this.application.set(data);
           } else {
@@ -259,7 +261,8 @@ export class LeagueRegistrationComponent {
               country: user.steamUser?.country
             });
           }
-        });
+        }));
+        onCleanup(() => subscription.unsubscribe());
       }
     });
   }
@@ -280,10 +283,8 @@ export class LeagueRegistrationComponent {
           this.commService.emitSuccess($localize`Registration updated successfully!`);
         }
       },
-      error: (error) => {
-        this.inProgress.set(false);
-        this.commService.emitError(error.message);
-      },
+      // The error is already reported by the service
+      error: () => this.inProgress.set(false),
       complete: () => this.inProgress.set(false)
     });
   }

@@ -49,24 +49,26 @@
     }
     @for (user of searchResult().players | reduceQuickSearchResult; track user.id) {
       <igx-list-item
-        [routerLink]="['/players', user.csgoDetails?.customURL || user.id]"
+        [routerLink]="['/players', user.csgoDetails?.customUrl || user.id]"
         class="navigatable">
-        <igx-avatar igxListThumbnail [src]="user.csgoDetails?.avatarIcon" [initials]="user.csgoDetails?.realname" shape="circle">
+        <igx-avatar igxListThumbnail [src]="user.csgoDetails?.avatarIcon" [initials]="user.csgoDetails?.realName" shape="circle">
         </igx-avatar>
-        @if (user.csgoDetails.country) {
+        @if (user.steamUser?.country || user.csgoDetails?.steamUser?.country; as country) {
           <igx-avatar
-            [src]="user.csgoDetails.country | countrySVG"
+            [src]="country | countrySVG"
             shape="circle"
-            [title]="user.csgoDetails.country"
+            [title]="country"
             class="country-badge-small">
           </igx-avatar>
         }
         <h2 igxListLineTitle>{{ user.username }}</h2>
-        <h4 igxListLineSubTitle>{{ user.csgoDetails.realName }}</h4>
-        @if (!user.steamPrivate) {
+        <h4 igxListLineSubTitle>{{ user.csgoDetails?.realName }}</h4>
+        @if (user.csgoDetails?.steamPrivate) {
+          <span i18n>Private</span>
+        } @else if (user.csgoDetails) {
           <div igxListAction>
             <div class="horizontal-center space-between">
-              <igx-circular-bar class="icon-avatar" [value]="user.csgoDetails.killDeathRatio" [max]="2" [animate]="true" [textVisibility]="false" title="KDR"></igx-circular-bar>
+              <igx-circular-bar class="icon-avatar" [value]="user.csgoDetails.killDeathRatio ?? 0" [max]="2" [animate]="true" [textVisibility]="false" title="KDR"></igx-circular-bar>
               <span>{{ user.csgoDetails.killDeathRatio }}</span>
             </div>
             <div class="horizontal-center space-between">
@@ -74,8 +76,6 @@
               <span>{{ user.csgoDetails.headshotPercentage | number:'1.2' }}%</span>
             </div>
           </div>
-        } @else {
-          <span i18n>Private</span>
         }
       </igx-list-item>
     }
@@ -129,8 +129,8 @@
       </igx-list-item>
     }
     @for (strat of searchResult().strategies | reduceQuickSearchResult; track strat.id) {
-      <igx-list-item class="navigatable" [routerLink]="['/team', strat.customUrl]">
-        <igx-avatar igxListThumbnail [src]="strat.image" [initials]="strat.title" shape="circle">
+      <igx-list-item class="navigatable" [routerLink]="['/strategies', 'details', strat.customUrl || strat.id]">
+        <igx-avatar igxListThumbnail [src]="strat.stratImage" [initials]="strat.title" shape="circle">
         </igx-avatar>
         <h2 igxListLineTitle>{{ strat.title }}</h2>
       </igx-list-item>

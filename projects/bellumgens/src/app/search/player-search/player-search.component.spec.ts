@@ -88,10 +88,6 @@ describe('PlayerSearchComponent', () => {
     expect(component.userOverlap()).toBe(0);
   });
 
-  it('should initialize teamName', () => {
-    expect(component.teamName()).toBe('Select Team');
-  });
-
   it('should have activeLineup with 5 roles', () => {
     expect(component.activeLineup).toBeDefined();
     expect(component.activeLineup.length).toBe(5);
@@ -186,7 +182,6 @@ describe('PlayerSearchComponent', () => {
     it('should drop a previously selected team when searching by personal availability', async () => {
       await chooseTeamPractice([team('t1', 'Team One')]);
       component.teamId.set('t1');
-      component.teamName.set('Team One');
       radioInputs('availability')[0].click();
       await fixture.whenStable();
       expect(component.userOverlap()).toBe(0);
@@ -195,7 +190,6 @@ describe('PlayerSearchComponent', () => {
 
       expect(navigate).toHaveBeenCalledWith(['search/players', 'overlap=0']);
       expect(component.teamId()).toBeNull();
-      expect(component.teamName()).toBe('Select Team');
     });
   });
 });

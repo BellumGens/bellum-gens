@@ -11,7 +11,7 @@
 }
 @else if (authUser()) {
   <div>
-    <button class="profile-button" #profileButton igxButton="flat" igxRipple i18n-title title="Profile" [igxToggleAction]="userProfile" [overlaySettings]="overlaySettings">
+    <button class="profile-button" #profileButton igxButton="flat" igxRipple i18n-title title="Profile" i18n-igxLabel igxLabel="Profile" [igxToggleAction]="userProfile" [overlaySettings]="overlaySettings">
       <igx-avatar [src]="authUser().csgoDetails?.avatarMedium || authUser().sc2Details?.avatarUrl || ''" [initials]="authUser().username" shape="circle">
       </igx-avatar>
       <igx-icon class="drop-down-arrow">arrow_drop_down</igx-icon>
@@ -31,7 +31,7 @@
                 <h1 igxCardHeaderTitle class="highlight navigatable profile-username" (click)="navigateToProfile(authUser())">{{ authUser().username }}</h1>
                 <h4 igxCardHeaderSubtitle>{{ authUser().csgoDetails?.realName || authUser().sc2Details?.battleNetBattleTag }}</h4>
               </div>
-              <button class="submit-button" igxButton="outlined" igxRipple class="profile-username" (click)="logout()">
+              <button class="submit-button profile-username" igxButton="outlined" igxRipple (click)="logout()">
                 <igx-icon>logout</igx-icon>
                 <span i18n>logout</span>
               </button>

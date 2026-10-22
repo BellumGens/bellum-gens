@@ -191,6 +191,7 @@ describe('LoginComponent', () => {
 
       expect(fixture.nativeElement.querySelector('igx-circular-bar')).toBeNull();
       expect(profileButton().getAttribute('title')).toBe('Profile');
+      expect(profileButton().getAttribute('aria-label')).toBe('Profile');
       const [avatar] = avatars();
       expect(avatar.src).toBe(applicationUser.csgoDetails.avatarMedium);
       expect(avatar.initials).toBe(applicationUser.username);
@@ -255,6 +256,8 @@ describe('LoginComponent', () => {
 
       const logoutButton = Array.from(document.querySelectorAll<HTMLButtonElement>('igx-tab-content button'))
         .find(b => b.textContent.includes('logout'));
+      expect(logoutButton.classList).toContain('submit-button');
+      expect(logoutButton.classList).toContain('profile-username');
       logoutButton.click();
       const req = httpMock.expectOne(`${authService['_apiEndpoint']}/logout`);
       expect(req.request.method).toBe('POST');

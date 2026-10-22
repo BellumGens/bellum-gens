@@ -87,12 +87,20 @@ export class AdminCsgoComponent {
   // The service adds new groups to (and removes deleted ones from) its per-tournament cache
   public submitGroup(group: TournamentGroup) {
     group.inEdit = false;
-    this.apiService.submitCSGOGroup(group, this.tournamentId()).subscribe();
+    this.apiService.submitCSGOGroup(group, this.tournamentId()).subscribe(() => {
+      if (group === this.newGroup) {
+        // The New group card starts over once its group is created
+        this.newGroup = Object.assign({}, EMPTY_NEW_GROUP);
+      }
+    });
   }
 
   public deleteGroup(id: string) {
-    this.apiService.deleteGroup(id).subscribe();
-    this.pipeTrigger.update(trigger => trigger + 1);
+    this.apiService.deleteGroup(id).subscribe(() => {
+      // The members of the deleted group are unassigned again
+      this.registrations()?.filter(r => r.tournamentCSGOGroupId === id).forEach(r => r.tournamentCSGOGroupId = null);
+      this.pipeTrigger.update(trigger => trigger + 1);
+    });
   }
 
   public addToGroup(event: IDropDroppedEventArgs, group: TournamentGroup) {
@@ -107,6 +115,11 @@ export class AdminCsgoComponent {
       next: () => {
         group.participants = group.participants?.filter(p => p !== participant);
         participant.tournamentCSGOGroupId = null;
+        // The groups may list their own copies of the participants, so the unassigned participant is cleared as well
+        const listed = this.registrations()?.find(r => r.id === participant.id);
+        if (listed) {
+          listed.tournamentCSGOGroupId = null;
+        }
         this.pipeTrigger.update(trigger => trigger + 1);
       }
     });

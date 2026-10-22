@@ -36,10 +36,10 @@
             <div i18n>Preferred roles</div>
             <igx-chips-area>
               <igx-chip [selectable]="false">
-                <span class="igx-chip__text">{{ roles[player.csgoDetails.primaryRole].name }}</span>
+                <span class="igx-chip__text">{{ roles[player.csgoDetails.primaryRole ?? 0].name }}</span>
               </igx-chip>
               <igx-chip [selectable]="false">
-                <span class="igx-chip__text">{{ roles[player.csgoDetails.secondaryRole].name }}</span>
+                <span class="igx-chip__text">{{ roles[player.csgoDetails.secondaryRole ?? 0].name }}</span>
               </igx-chip>
             </igx-chips-area>
           </igx-card-content>

@@ -469,6 +469,7 @@ describe('AdminSc2Component', () => {
       req.flush({});
 
       expect(group.participants).toEqual([participant]);
+      expect(participant.tournamentSC2GroupId).toBe('group-1');
       expect(component.pipeTrigger()).toBe(1);
     });
 
@@ -508,6 +509,7 @@ describe('AdminSc2Component', () => {
 
       expect(group.participants.length).toBe(2);
       expect(group.participants[1]).toEqual(newParticipant);
+      expect(newParticipant.tournamentSC2GroupId).toBe('group-1');
       expect(component.pipeTrigger()).toBe(6);
     });
   });
@@ -519,7 +521,8 @@ describe('AdminSc2Component', () => {
         userName: 'Player1',
         userId: 'user-1',
         state: 0,
-        companyId: 'company-1'
+        companyId: 'company-1',
+        tournamentSC2GroupId: 'group-1'
       } as TournamentParticipant;
 
       const participant2: TournamentParticipant = {
@@ -527,7 +530,8 @@ describe('AdminSc2Component', () => {
         userName: 'Player2',
         userId: 'user-2',
         state: 0,
-        companyId: 'company-2'
+        companyId: 'company-2',
+        tournamentSC2GroupId: 'group-1'
       } as TournamentParticipant;
 
       const group: TournamentGroup = {
@@ -545,6 +549,8 @@ describe('AdminSc2Component', () => {
 
       expect(group.participants.length).toBe(1);
       expect(group.participants[0]).toEqual(participant2);
+      expect(participant1.tournamentSC2GroupId).toBeNull();
+      expect(participant2.tournamentSC2GroupId).toBe('group-1');
       expect(component.pipeTrigger()).toBe(1);
     });
   });
@@ -595,6 +601,19 @@ describe('AdminSc2Component', () => {
 
       expect(component.registrations()[0].state).toBe(0);
       expect(component.registrations()[1].state).toBe(TournamentApplicationState.Banned); // Should remain unchanged
+    });
+
+    it('should reset checkin state while no registrations are loaded', () => {
+      component.registrations.set(null);
+      const gridSpy = createSpyObj('IgxGridComponent', ['notifyChanges']);
+      vi.spyOn(component, 'registrationsGrid').mockReturnValue(gridSpy);
+
+      component.resetCheckinState();
+
+      httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/resetstate?tournamentId=tournament-123`).flush({});
+
+      expect(component.registrations()).toBeNull();
+      expect(gridSpy.notifyChanges).toHaveBeenCalledWith(true);
     });
   });
 
@@ -955,8 +974,9 @@ describe('AdminSc2Component', () => {
       { id: 't2', name: 'Autumn League' }
     ];
 
-    const sc2User = (id: string, username: string, overrides: Partial<ApplicationUser> & { customURL?: string } = {}) =>
+    const sc2User = (id: string, username: string, overrides: Partial<ApplicationUser> = {}) =>
       ({ id, username, ...overrides }) as ApplicationUser;
+    const customUrl = (url: string) => ({ csgoDetails: { customUrl: url } as ApplicationUser['csgoDetails'] });
 
     const sc2Player = (id: string, battleTag: string, overrides: Partial<TournamentParticipant> = {}): TournamentParticipant => ({
       id,
@@ -1026,7 +1046,7 @@ describe('AdminSc2Component', () => {
     beforeEach(() => {
       const alpha = sc2Player('p1', 'Alpha#111', { state: TournamentApplicationState.Pending });
       const bravo = sc2Player('p2', 'Bravo#222', {
-        user: sc2User('user-p2', 'Bravo', { customURL: 'bravo' }),
+        user: sc2User('user-p2', 'Bravo', customUrl('bravo')),
         tournamentSC2GroupId: 'g1'
       });
       const charlie = sc2Player('p3', 'Charlie#333', {
@@ -1257,6 +1277,21 @@ describe('AdminSc2Component', () => {
             expect(stripButton('Delete')).not.toBeNull();
             expect(stripButton('Undo')).toBeNull();
             expect(stripButton('Save')).toBeNull();
+          });
+
+          it('saves the pending changes of an edited registration without deleting it', async () => {
+            // Editing through the API leaves the change pending in the batch
+            registrationsGrid().updateCell(false, 'r2', 'state');
+            await render();
+            expect(stripButton('Save')).not.toBeNull();
+
+            stripButton('Save').click();
+            await render();
+
+            httpMock.expectNone(`${api()}/tournament/delete?id=r2`);
+            expect(registrationsGrid().transactions.getState('r2')).toBeUndefined();
+            expect(registrationsGrid().data.map(r => r.id)).toEqual(['r1', 'r2', 'r3']);
+            expect(registrationsGrid().data[1].state).toBe(false);
           });
 
           it('marks a registration deleted, then commits and deletes it on save', async () => {
@@ -1603,7 +1638,7 @@ describe('AdminSc2Component', () => {
         });
 
         it('links a participant through its custom url when it has one', async () => {
-          participants[0].user = sc2User('user-p1', 'Alpha', { customURL: 'alpha' });
+          participants[0].user = sc2User('user-p1', 'Alpha', customUrl('alpha'));
 
           iconIn(el().querySelector('igx-card-header'), 'refresh').closest('button').click();
 
@@ -1643,6 +1678,8 @@ describe('AdminSc2Component', () => {
 
           expect(component.pipeTrigger()).toBe(trigger + 1);
           expect(members(groupCards()[1])).toEqual(['Charlie']);
+          expect(charlie.tournamentSC2GroupId).toBe('g2');
+          expect(unassigned()).toEqual(['Alpha#111']);
         });
 
         it('removes a participant from a group', async () => {
@@ -1657,6 +1694,7 @@ describe('AdminSc2Component', () => {
 
           expect(component.pipeTrigger()).toBe(trigger + 1);
           expect(members(groupCards()[0])).toEqual(['Delta']);
+          expect(unassigned()).toEqual(['Alpha#111', 'Bravo#222', 'Charlie#333']);
         });
 
         it('submits the points entered for a group member', async () => {
@@ -1678,7 +1716,7 @@ describe('AdminSc2Component', () => {
 
           iconIn(card, 'edit').click();
           await render();
-          const input = card.querySelector<HTMLInputElement>('input#groupName');
+          const input = card.querySelector<HTMLInputElement>('input#groupNameg1');
           expect(input).not.toBeNull();
           typeInto(input, 'Group Alpha');
 
@@ -1690,7 +1728,7 @@ describe('AdminSc2Component', () => {
           req.flush({ ...req.request.body });
           await render();
 
-          expect(card.querySelector('input#groupName')).toBeNull();
+          expect(card.querySelector('input#groupNameg1')).toBeNull();
           expect(groupCards().map(c => c.querySelector('h1').textContent.trim())).toEqual(['Group Alpha', 'Group B']);
         });
 
@@ -1702,7 +1740,7 @@ describe('AdminSc2Component', () => {
           iconIn(card, 'cancel').click();
           await render();
 
-          expect(card.querySelector('input#groupName')).toBeNull();
+          expect(card.querySelector('input#groupNameg1')).toBeNull();
           expect(card.querySelector('h1').textContent.trim()).toBe('Group A');
         });
 
@@ -1724,10 +1762,25 @@ describe('AdminSc2Component', () => {
           expect(groupCards().map(c => c.querySelector('h1').textContent.trim())).toEqual(['Group A']);
         });
 
+        it('returns the members of a deleted group to the unassigned participants', async () => {
+          const confirmGroup = confirms()[0];
+          expect(unassigned()).toEqual(['Alpha#111', 'Charlie#333']);
+
+          iconIn(groupCards()[0], 'delete_forever').click();
+          await render();
+          dialogAction(confirmGroup.dialog(), 'OK').click();
+
+          httpMock.expectOne(`${api()}/tournament/group?id=g1`).flush({});
+          await render();
+
+          expect(groupCards().map(c => c.querySelector('h1').textContent.trim())).toEqual(['Group B']);
+          expect(unassigned()).toEqual(['Alpha#111', 'Bravo#222', 'Charlie#333']);
+        });
+
         it('creates a new group for the selected tournament', async () => {
           iconIn(newGroupCard(), 'add_circle_outline').click();
           await render();
-          const input = newGroupCard().querySelector<HTMLInputElement>('input#groupName');
+          const input = newGroupCard().querySelector<HTMLInputElement>('input#newGroupName');
           typeInto(input, 'Group C');
           await render();
 
@@ -1741,13 +1794,33 @@ describe('AdminSc2Component', () => {
 
           expect(groupCards().map(c => c.querySelector('h1').textContent.trim())).toEqual(['Group A', 'Group B', 'Group C']);
           expect(newGroupCard().textContent).toContain('New group');
+
+          // Starting another group begins with an empty name
+          expect(component.newGroup).toEqual({ id: '', name: '', inEdit: false });
+          iconIn(newGroupCard(), 'add_circle_outline').click();
+          await render();
+          expect(newGroupCard().querySelector<HTMLInputElement>('input#newGroupName').value).toBe('');
+        });
+
+        it('gives each group name editor an id of its own, labelled by its label', async () => {
+          groupCards().forEach(card => iconIn(card, 'edit').click());
+          iconIn(newGroupCard(), 'add_circle_outline').click();
+          await render();
+
+          const inputs = Array.from(el().querySelectorAll<HTMLInputElement>('.card-wrapper igx-card-header input'));
+          expect(inputs.map(i => i.id)).toEqual(['groupNameg1', 'groupNameg2', 'newGroupName']);
+          inputs.forEach(input => {
+            const label = input.closest('igx-input-group').querySelector('label');
+            expect(label.htmlFor).toBe(input.id);
+            expect(label.textContent).toContain('Group name');
+          });
         });
 
         it('clears the name of a new group and cancels creating it', async () => {
           iconIn(newGroupCard(), 'add_circle_outline').click();
           await render();
           expect(newGroupCard().querySelector('igx-suffix')).toBeNull();
-          typeInto(newGroupCard().querySelector<HTMLInputElement>('input#groupName'), 'Group C');
+          typeInto(newGroupCard().querySelector<HTMLInputElement>('input#newGroupName'), 'Group C');
           await render();
 
           newGroupCard().querySelector<HTMLElement>('igx-suffix').click();

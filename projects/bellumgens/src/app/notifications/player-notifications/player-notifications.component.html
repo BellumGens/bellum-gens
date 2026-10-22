@@ -16,8 +16,8 @@
         <span igxListLineSubTitle>{{ notification.sent | date }}</span>
         @if (notification.state | disabledNotifications:true) {
           <div igxListAction>
-            <button igxButton="flat" igxRipple [disabled]="actionInProgress()" (click)="acceptInvitation(notification)" i18n>{{actionInProgress() ? 'Accepting...' : 'Accept'}}</button>
-            <button igxButton="flat" igxRipple [disabled]="actionInProgress()" (click)="rejectInvitation(notification)" i18n>{{actionInProgress() ? 'Rejecting...' : 'Reject'}}</button>
+            <button igxButton="flat" igxRipple [disabled]="actionInProgress()" (click)="acceptInvitation(notification)" i18n>{{ actionInProgress() ? actionText() : 'Accept' }}</button>
+            <button igxButton="flat" igxRipple [disabled]="actionInProgress()" (click)="rejectInvitation(notification)" i18n>{{ actionInProgress() ? actionText() : 'Reject' }}</button>
           </div>
         } @else {
           <button igxButton="flat" igxRipple [disabled]="true">{{ notification.state | notificationState }}</button>

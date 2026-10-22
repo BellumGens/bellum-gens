@@ -209,6 +209,23 @@ describe('LoginService', () => {
     expect(result()).toEqual(userNotifications);
   });
 
+  it('should request user notifications once while a request is in flight', () => {
+    service.userNotifications();
+    service.userNotifications();
+
+    httpMock.expectOne(`${service['_apiEndpoint']}/usernotifications`).flush([]);
+    expect(service.userNotifications()).toEqual([]);
+    httpMock.expectNone(`${service['_apiEndpoint']}/usernotifications`);
+  });
+
+  it('should retry user notifications after a failed request', () => {
+    service.userNotifications();
+    httpMock.expectOne(`${service['_apiEndpoint']}/usernotifications`).error(new ProgressEvent('error'), { status: 500 });
+
+    service.userNotifications();
+    httpMock.expectOne(`${service['_apiEndpoint']}/usernotifications`).flush([]);
+  });
+
   it('should get user is team member', () => {
     const teamId = 'test-team-id';
     service.getUserIsTeamMember(teamId).subscribe(member => expect(member).toBe(true));

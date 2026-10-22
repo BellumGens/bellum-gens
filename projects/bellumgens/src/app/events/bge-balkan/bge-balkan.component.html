@@ -3,7 +3,7 @@
     <igx-card-header>
       <igx-avatar src="/assets/login/bge-white-2024.svg" igxCardThumbnail shape="circle" />
       <h1 igxCardHeaderTitle>{{ tournament()?.name }}</h1>
-      <a i18n [routerLink]="['../registration/', bgeBalkanId]" igxButton="contained" style="margin-top: 12px" i18n>Sign-up to participate</a>
+      <a [routerLink]="['../registration/', bgeBalkanId]" igxButton="contained" style="margin-top: 12px" i18n>Sign-up to participate</a>
     </igx-card-header>
     <igx-card-content>
       <div>
@@ -35,10 +35,14 @@
         }
         @for (registration of registrations(); track registration) {
           <div class="registration-slot">
-            <igx-avatar [src]="registration.user.sc2Details?.avatarUrl" [initials]="registration.user.username" size="medium" shape="circle">
+            <igx-avatar [src]="registration.user?.sc2Details?.avatarUrl" [initials]="registration.user?.username" size="medium" shape="circle">
             </igx-avatar>
             <igx-avatar [src]="registration.country | countrySVG" shape="circle" [title]="registration.country" class="country-badge-small"></igx-avatar>
-            <a [routerLink]="['/players/', registration.user.id, 'sc']">{{ registration.user?.username || registration.battleTag }}</a>
+            @if (registration.user) {
+              <a [routerLink]="['/players/', registration.user.id, 'sc']">{{ registration.user.username || registration.battleTag }}</a>
+            } @else {
+              <span class="participant-name">{{ registration.battleTag }}</span>
+            }
             @if (registration.companyId) {
               <span>[{{ registration.companyId }}]</span>
             }

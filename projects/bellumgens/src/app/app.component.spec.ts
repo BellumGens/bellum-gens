@@ -6,7 +6,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
-import { LOCALE_ID, PLATFORM_ID, Provider } from '@angular/core';
+import { Component, LOCALE_ID, PLATFORM_ID, Provider, output } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { IgxIconService } from '@infragistics/igniteui-angular/icon';
 import { IgxBannerComponent } from '@infragistics/igniteui-angular/banner';
@@ -35,6 +35,15 @@ const notification = (state: NotificationState): UserNotification => ({
 });
 
 const emptySearch: SearchResult = { steamUser: null, players: [], teams: [], strategies: [] };
+
+/** Stands in for the routed notifications view, which reports the unread count it shows. */
+@Component({ template: '' })
+class NotificationsViewStubComponent {
+  public unreadChanged = output<number>();
+}
+
+@Component({ template: '' })
+class OtherViewStubComponent {}
 
 describe('AppComponent', () => {
   let component: AppComponent;
@@ -182,19 +191,49 @@ describe('AppComponent', () => {
         expect(badgeValue('notifications')).toBeUndefined();
       });
 
-      it('should adjust the unread notifications badge by the reported delta', async () => {
+      it('should show the unread notifications count reported by the notifications view', async () => {
         await login([], [notification(NotificationState.NotSeen)]);
         expect(badgeValue('notifications')).toBe('1');
 
-        component.notificationsLoaded(2);
+        component.notificationsLoaded(3);
         await fixture.whenStable();
         expect(component.unreadNotifications()).toBe(3);
         expect(badgeValue('notifications')).toBe('3');
 
-        component.notificationsLoaded(-3);
+        component.notificationsLoaded(0);
         await fixture.whenStable();
         expect(component.unreadNotifications()).toBe(0);
         expect(badgeValue('notifications')).toBeUndefined();
+      });
+
+      it('should update the badge from the routed notifications view', async () => {
+        await login([], [notification(NotificationState.NotSeen), notification(NotificationState.NotSeen)]);
+        expect(badgeValue('notifications')).toBe('2');
+        const router = TestBed.inject(Router);
+        router.resetConfig([
+          { path: 'notifications', component: NotificationsViewStubComponent },
+          { path: 'other', component: OtherViewStubComponent }
+        ]);
+
+        await router.navigateByUrl('/notifications');
+        await fixture.whenStable();
+        const view = fixture.debugElement.query(By.directive(NotificationsViewStubComponent))
+          .componentInstance as NotificationsViewStubComponent;
+
+        view.unreadChanged.emit(1);
+        await fixture.whenStable();
+        expect(component.unreadNotifications()).toBe(1);
+        expect(badgeValue('notifications')).toBe('1');
+
+        view.unreadChanged.emit(0);
+        await fixture.whenStable();
+        expect(badgeValue('notifications')).toBeUndefined();
+
+        // Other routed views do not touch the badge, which keeps the last reported count
+        await router.navigateByUrl('/other');
+        await fixture.whenStable();
+        expect(fixture.debugElement.query(By.directive(OtherViewStubComponent))).not.toBeNull();
+        expect(component.unreadNotifications()).toBe(0);
       });
     });
 

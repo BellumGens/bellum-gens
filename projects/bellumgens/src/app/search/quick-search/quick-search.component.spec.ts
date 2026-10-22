@@ -6,10 +6,12 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { PLATFORM_ID } from '@angular/core';
 import { IgxIconService } from '@infragistics/igniteui-angular/icon';
-import { ApiSearchService, ApplicationUser, CSGODetails, CSGOStrategy, CSGOTeam, SearchResult } from '../../../../../common/src/public_api';
+import { By } from '@angular/platform-browser';
+import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
+import { ApiSearchService, ApplicationUser, CSGODetails, CSGOStrategy, CSGOTeam, SearchResult, SteamUser } from '../../../../../common/src/public_api';
 import { environment } from '../../../../../common/src/environments/environment';
 
-const csgoDetails = (overrides: Partial<CSGODetails> & { country?: string } = {}): CSGODetails => ({
+const csgoDetails = (overrides: Partial<CSGODetails> = {}): CSGODetails => ({
   steamUser: null,
   userStats: null,
   headshotPercentage: 45.6,
@@ -24,7 +26,7 @@ const csgoDetails = (overrides: Partial<CSGODetails> & { country?: string } = {}
   ...overrides
 });
 
-const player = (id: string, username: string, details: CSGODetails, overrides: Partial<ApplicationUser> & { steamPrivate?: boolean } = {}): ApplicationUser => ({
+const player = (id: string, username: string, details: CSGODetails, overrides: Partial<ApplicationUser> = {}): ApplicationUser => ({
   id,
   steamId: id,
   username,
@@ -47,7 +49,7 @@ const team = (teamId: string, teamName: string): CSGOTeam => ({
   visible: true
 });
 
-const strategy = (id: string, title: string): CSGOStrategy => ({
+const strategy = (id: string, title: string, overrides: Partial<CSGOStrategy> = {}): CSGOStrategy => ({
   id,
   teamId: null,
   side: 0,
@@ -55,24 +57,27 @@ const strategy = (id: string, title: string): CSGOStrategy => ({
   description: '',
   url: '',
   map: 0,
-  customUrl: `${id}-url`
+  customUrl: `${id}-url`,
+  ...overrides
+});
+
+const steamProfile = (country = 'bg', customURL = 'steam-custom'): SteamUser => ({
+  steamID64: '76561198000000000',
+  steamID: 'SteamName',
+  avatarIcon: '',
+  avatarMedium: '',
+  avatarFull: '',
+  realname: 'Steam Real Name',
+  location: '',
+  country,
+  summary: '',
+  customURL,
+  groups: []
 });
 
 const steamUser = (overrides: Partial<ApplicationUser> = {}, country = 'bg', customURL = 'steam-custom'): ApplicationUser => ({
   ...player('steam-user', 'steam-user', null),
-  steamUser: {
-    steamID64: '76561198000000000',
-    steamID: 'SteamName',
-    avatarIcon: '',
-    avatarMedium: '',
-    avatarFull: '',
-    realname: 'Steam Real Name',
-    location: '',
-    country,
-    summary: '',
-    customURL,
-    groups: []
-  },
+  steamUser: steamProfile(country, customURL),
   userStats: {
     headshotPercentage: 51.2,
     killDeathRatio: 1.1,
@@ -218,39 +223,57 @@ describe('QuickSearchComponent', () => {
     it('should render the matched players with their stats', async () => {
       await search('pl', result({
         players: [
-          player('1', 'player1', csgoDetails({ customUrl: 'custom-one', country: 'bg' })),
-          player('2', 'player2', csgoDetails({ realName: 'Second Real' }))
+          player('1', 'player1', csgoDetails({ customUrl: 'custom-one' }), { steamUser: steamProfile('bg') }),
+          player('2', 'player2', csgoDetails({ realName: 'Second Real' })),
+          player('3', 'player3', csgoDetails({ steamUser: steamProfile('rs') }))
         ]
       }));
 
       const [players] = lists();
-      expect(titles(players)).toEqual(['player1', 'player2']);
+      expect(titles(players)).toEqual(['player1', 'player2', 'player3']);
       expect(players.textContent).toContain('Real Name');
       expect(players.textContent).toContain('Second Real');
       expect(players.textContent).toContain('1.5');
       expect(players.textContent).toContain('45.60%');
       expect(players.textContent).not.toContain('No matching players...');
-      // Only the first player has a country, rendered as a small flag avatar.
-      const flags = players.querySelectorAll<HTMLElement>('igx-avatar.country-badge-small');
-      expect(flags.length).toBe(1);
-      expect(flags[0].getAttribute('title')).toBe('bg');
+      // The country comes from the steam profile, rendered as a small flag avatar.
+      const flags = Array.from(players.querySelectorAll<HTMLElement>('igx-avatar.country-badge-small'));
+      expect(flags.map(f => f.getAttribute('title'))).toEqual(['bg', 'rs']);
       expect(moreButton(players)).toBeNull();
     });
 
+    it('should use the real name of the players for the avatar initials', async () => {
+      await search('pl', result({ players: [player('1', 'player1', csgoDetails({ realName: 'Real Name' }))] }));
+
+      const avatar = fixture.debugElement.query(By.css('igx-list-item.navigatable igx-avatar[igxListThumbnail]'))
+        .injector.get(IgxAvatarComponent);
+      expect(avatar.initials).toBe('Real Name');
+    });
+
     it('should mark players with private steam profiles', async () => {
-      await search('pl', result({ players: [player('1', 'player1', csgoDetails(), { steamPrivate: true })] }));
+      await search('pl', result({ players: [player('1', 'player1', csgoDetails({ steamPrivate: true }))] }));
 
       const [players] = lists();
       expect(players.textContent).toContain('Private');
       expect(players.querySelector('[igxListAction]')).toBeNull();
     });
 
-    it('should link players to their profile by id', async () => {
-      await search('pl', result({ players: [player('1', 'player1', csgoDetails()), player('2', 'player2', csgoDetails())] }));
+    it('should render players without counter-strike details', async () => {
+      await search('pl', result({ players: [player('1', 'player1', undefined)] }));
+
+      const [players] = lists();
+      expect(titles(players)).toEqual(['player1']);
+      expect(players.querySelector('[igxListAction]')).toBeNull();
+      expect(players.querySelector('igx-avatar.country-badge-small')).toBeNull();
+      expect(players.textContent).not.toContain('Private');
+    });
+
+    it('should link players to their profile by custom url, falling back to the id', async () => {
+      await search('pl', result({ players: [player('1', 'player1', csgoDetails({ customUrl: 'custom-one' })), player('2', 'player2', csgoDetails())] }));
 
       const items = Array.from(lists()[0].querySelectorAll<HTMLElement>('igx-list-item.navigatable'));
       items[0].click();
-      expect(router.navigateByUrl).toHaveBeenLastCalledWith(router.createUrlTree(['/players', '1']), expect.anything());
+      expect(router.navigateByUrl).toHaveBeenLastCalledWith(router.createUrlTree(['/players', 'custom-one']), expect.anything());
       items[1].click();
       expect(router.navigateByUrl).toHaveBeenLastCalledWith(router.createUrlTree(['/players', '2']), expect.anything());
     });
@@ -335,12 +358,26 @@ describe('QuickSearchComponent', () => {
     });
 
     it('should render the matched strategies', async () => {
-      await search('st', result({ strategies: [strategy('s1', 'Rush B')] }));
+      await search('st', result({ strategies: [strategy('s1', 'Rush B', { stratImage: 'https://example.com/s1.png' })] }));
 
       const strategies = lists()[2];
       expect(titles(strategies)).toEqual(['Rush B']);
       expect(strategies.textContent).not.toContain('No matching strategies...');
       expect(moreButton(strategies)).toBeNull();
+      const avatar = fixture.debugElement.queryAll(By.css('igx-list-item.navigatable igx-avatar[igxListThumbnail]'))
+        .map(a => a.injector.get(IgxAvatarComponent))
+        .find(a => a.initials === 'Rush B');
+      expect(avatar.src).toBe('https://example.com/s1.png');
+    });
+
+    it('should link strategies to their details by custom url, falling back to the id', async () => {
+      await search('st', result({ strategies: [strategy('s1', 'Rush B'), strategy('s2', 'Long A', { customUrl: null })] }));
+
+      const items = Array.from(lists()[2].querySelectorAll<HTMLElement>('igx-list-item.navigatable'));
+      items[0].click();
+      expect(router.navigateByUrl).toHaveBeenLastCalledWith(router.createUrlTree(['/strategies', 'details', 's1-url']), expect.anything());
+      items[1].click();
+      expect(router.navigateByUrl).toHaveBeenLastCalledWith(router.createUrlTree(['/strategies', 'details', 's2']), expect.anything());
     });
 
     it('should show at most three strategies and a link to view more', async () => {

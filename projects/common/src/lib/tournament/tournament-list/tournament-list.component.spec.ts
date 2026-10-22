@@ -161,14 +161,35 @@ describe('TournamentListComponent', () => {
     expect(cardNames(tabContents()[3])).toEqual(['Mine']);
   });
 
-  it('should treat a null server response as no tournaments', () => {
+  it('should treat a null server response as no tournaments and stop loading', async () => {
     httpMock.expectOne(tournamentsUrl()).flush(null);
     httpMock.expectOne(myTournamentsUrl()).flush(null);
     httpMock.expectOne(loginService['_apiEndpoint']).flush(null);
 
     expect(component.tournaments()).toEqual([]);
     expect(component.myTournaments()).toEqual([]);
-    expect(component.loading()).toBe(true);
+    expect(component.loading()).toBe(false);
+    const active = await showTab(0);
+    expect(active.querySelector('igx-circular-bar')).toBeNull();
+    expect(active.querySelector('.empty-state h3').textContent).toContain('No active tournaments');
+  });
+
+  it('should stop loading and show the empty state when the tournaments fail to load', async () => {
+    const unhandled = vi.fn();
+    config.onUnhandledError = unhandled;
+
+    httpMock.expectOne(tournamentsUrl()).flush('Server error', { status: 500, statusText: 'Server Error' });
+    httpMock.expectOne(myTournamentsUrl()).flush([]);
+    httpMock.expectOne(loginService['_apiEndpoint']).flush(null);
+    // RxJS reports unhandled errors from a timer, so give it one macrotask
+    await new Promise(resolve => setTimeout(resolve));
+
+    expect(unhandled).not.toHaveBeenCalled();
+    expect(component.loading()).toBe(false);
+    expect(component.tournaments()).toEqual([]);
+    const active = await showTab(0);
+    expect(active.querySelector('igx-circular-bar')).toBeNull();
+    expect(active.querySelector('.empty-state h3').textContent).toContain('No active tournaments');
   });
 
   it('should reflect the logged in user', () => {
@@ -253,7 +274,7 @@ describe('TournamentListComponent', () => {
     });
 
     it('should keep the tournament when deletion fails', async () => {
-      // the component subscribes without an error callback, so RxJS reports the rethrown error as unhandled
+      // the service reports the error and the component handles the rethrown one, so nothing is left unhandled
       const unhandled = vi.fn();
       config.onUnhandledError = unhandled;
       let error: string;
@@ -269,7 +290,7 @@ describe('TournamentListComponent', () => {
       await new Promise(resolve => setTimeout(resolve));
 
       expect(error).toContain('403 Forbidden');
-      expect(unhandled).toHaveBeenCalledTimes(1);
+      expect(unhandled).not.toHaveBeenCalled();
       expect(cardNames(myTab)).toEqual(['Mine 1', 'Mine 2']);
     });
   });
@@ -335,7 +356,7 @@ describe('TournamentListComponent', () => {
     });
 
     it('should keep the dialog open and the code when joining fails', async () => {
-      // the component subscribes without an error callback, so RxJS reports the rethrown error as unhandled
+      // the service reports the error and the component handles the rethrown one, so nothing is left unhandled
       const unhandled = vi.fn();
       config.onUnhandledError = unhandled;
       let error: string;
@@ -346,10 +367,11 @@ describe('TournamentListComponent', () => {
       httpMock.expectOne(joinUrl()).flush('Not found', { status: 404, statusText: 'Not Found' });
       fixture.detectChanges();
 
+      // RxJS reports unhandled errors from a timer, so give it one macrotask
       await new Promise(resolve => setTimeout(resolve));
 
       expect(error).toContain('404 Not Found');
-      expect(unhandled).toHaveBeenCalledTimes(1);
+      expect(unhandled).not.toHaveBeenCalled();
       expect(component.inviteCode).toBe('BADCODE');
       expect(inviteDialog().isOpen).toBe(true);
     });

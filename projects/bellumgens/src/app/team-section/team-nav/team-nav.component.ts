@@ -1,7 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, linkedSignal } from '@angular/core';
 import { toObservable, toSignal } from '@angular/core/rxjs-interop';
 import {
-  CSGOTeam, TeamMember,
+  CSGOTeam,
   BellumgensApiService,
   LoginService,
   ConfirmComponent
@@ -33,16 +33,20 @@ export class TeamNavComponent {
   private authService = inject(LoginService);
   private apiService = inject(BellumgensApiService);
 
-  public activeMembers: TeamMember [];
-  public inactiveMembers: TeamMember [];
   public authUser = this.authService.applicationUser;
 
-  public teams = toSignal(toObservable(this.authUser).pipe(
+  private userTeams = toSignal(toObservable(this.authUser).pipe(
     filter(user => !!user),
     switchMap(user => this.apiService.getUserTeams(user.id))
   ));
+  // Reloaded with the user's teams and updated locally when a team is abandoned
+  public teams = linkedSignal(() => this.userTeams());
 
   public abandonTeam(team: CSGOTeam) {
-    this.apiService.abandonTeam(team).subscribe();
+    this.apiService.abandonTeam(team).subscribe({
+      next: () => this.teams.update(teams => teams?.filter(t => t.teamId !== team.teamId)),
+      // The service already tells the user; the team just stays in the list
+      error: () => {}
+    });
   }
 }

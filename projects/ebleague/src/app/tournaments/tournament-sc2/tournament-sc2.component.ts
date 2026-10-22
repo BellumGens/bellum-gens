@@ -41,7 +41,9 @@ export class TournamentSc2Component extends BaseDirective {
   public authUser = this.loginService.applicationUser;
   // An empty tournament id loads the active tournament's data
   public tournamentId = toSignal(this.activeRoute.params.pipe(map(params => params['tournamentid'] as string)));
-  public tournament = computed(() => this.apiService.getTournament(this.tournamentId())());
+  public tournament = computed(() => this.tournamentId()
+    ? this.apiService.getTournament(this.tournamentId())()
+    : this.apiService.activeTournament());
   public loading = this.apiService.loadingSC2Registrations;
   public registrations = computed(() => this.apiService.getSc2Registrations(this.tournamentId())());
   public loadingMatches = this.apiService.loadingSC2Matches;

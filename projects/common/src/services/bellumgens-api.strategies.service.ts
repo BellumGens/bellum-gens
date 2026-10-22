@@ -125,8 +125,11 @@ export class ApiStrategiesService {
    * Submits a new or edited comment and emits the strategy with its comments updated (the given strategy is not mutated).
    */
   public submitStratComment(comment: StrategyComment, strat: CSGOStrategy): Observable<CSGOStrategy> {
+    // _inEdit is a client-only marker, so it is not sent to the server.
+    const body: StrategyComment = { ...comment };
+    delete body._inEdit;
     return this.http.post<StrategyComment>(`${this._apiEndpoint}/strategy/comment`,
-                          comment,
+                          body,
                           { withCredentials: true }).pipe(
       map(response => {
         const comments = strat.comments || [];

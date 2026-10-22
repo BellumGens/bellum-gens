@@ -63,7 +63,7 @@
           <igx-icon>undo</igx-icon>
         </button>
         <button title="Save" igxIconButton="flat" igxRipple
-          (click)="deleteRegistration(regActionStrip.context)">
+          (click)="saveRegistration(regActionStrip.context)">
           <igx-icon>save</igx-icon>
         </button>
       }
@@ -228,7 +228,7 @@
                 class="registration-badge-style">
               </igx-badge>
             }
-            <a [href]="environment.bellumgens + '/players/' + (registration.user.customURL || registration.userId)" target="_blank">{{ registration.battleTag }}</a>
+            <a [href]="environment.bellumgens + '/players/' + (registration.user.csgoDetails?.customUrl || registration.userId)" target="_blank">{{ registration.battleTag }}</a>
           </div>
         }
       </div>
@@ -245,8 +245,8 @@
                   <h1 igxCardHeaderTitle>{{group.name}}</h1>
                 } @else {
                   <igx-input-group type="border" igxCardHeaderTitle>
-                    <label igxLabel for="groupName" i18n>Group name</label>
-                    <input type="text" id="groupName" name="groupName" #groupName igxInput [required]="true" [(ngModel)]="group.name" />
+                    <label igxLabel [for]="'groupName' + group.id" i18n>Group name</label>
+                    <input type="text" [id]="'groupName' + group.id" name="groupName" igxInput [required]="true" [(ngModel)]="group.name" />
                     <igx-suffix>
                       <igx-icon class="navigatable action-icon-button" (click)="submitGroup(group)">done</igx-icon>
                       <igx-icon class="navigatable action-icon-button" (click)="group.inEdit = false">cancel</igx-icon>
@@ -304,8 +304,8 @@
                 <h1 igxCardHeaderTitle i18n>New group</h1>
               } @else {
                 <igx-input-group type="border" igxCardHeaderTitle>
-                  <label igxLabel for="groupName" i18n>Group name</label>
-                  <input type="text" id="groupName" name="groupName" #groupName igxInput [required]="true" [(ngModel)]="newGroup.name" />
+                  <label igxLabel for="newGroupName" i18n>Group name</label>
+                  <input type="text" id="newGroupName" name="newGroupName" #groupName igxInput [required]="true" [(ngModel)]="newGroup.name" />
                   @if (groupName.value) {
                     <igx-suffix (click)="newGroup.name = null">
                       <igx-icon>clear</igx-icon>

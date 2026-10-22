@@ -38,9 +38,6 @@ const makeRegistration = (id: string, userId: string, state: TournamentApplicati
   companyId: `${t.teamName} Inc.`
 });
 
-// The schedule template highlights the winner by `winnerTeamId`, which the API sends but the model doesn't declare
-type CsgoMatchWithWinner = TournamentCSGOMatch & { winnerTeamId?: string };
-
 describe('TournamentCsgoComponent', () => {
   let component: TournamentCsgoComponent;
   let fixture: ComponentFixture<TournamentCsgoComponent>;
@@ -52,6 +49,7 @@ describe('TournamentCsgoComponent', () => {
   const el = (): HTMLElement => fixture.nativeElement;
   const api = (path: string) => `${apiService['_apiEndpoint']}/tournament/${path}`;
   const grids = () => Array.from(el().querySelectorAll<HTMLElement>('igx-grid'));
+  const activeTournamentUrl = () => api('activetournament');
 
   /** Answers the requests the page issues on load (or on a route change) for the given tournament id. */
   const flushPage = (query: string, data: {
@@ -112,7 +110,9 @@ describe('TournamentCsgoComponent', () => {
   it('loads the active tournament data when the route carries no tournament id', async () => {
     expect(component.tournamentId()).toBeUndefined();
     flushUser(null);
-    httpMock.expectOne(req => req.url.startsWith(`${apiService['_apiEndpoint']}/tournament?id=`)).flush({ id: 'active', name: 'Spring' });
+    // An empty id loads the active tournament rather than requesting `/tournament?id=undefined`
+    httpMock.expectNone(req => req.url.includes('/tournament?id='));
+    httpMock.expectOne(activeTournamentUrl()).flush({ id: 'active', name: 'Spring' });
     flushPage('');
     httpMock.verify();
     await render();
@@ -161,12 +161,56 @@ describe('TournamentCsgoComponent', () => {
     expect(el().querySelector('.participants-container igx-circular-bar')).toBeNull();
   });
 
+  it('tracks the registrations and groups loading separately', async () => {
+    flushUser(null);
+    httpMock.expectOne(activeTournamentUrl()).flush(null);
+    await render();
+    expect(component.loading()).toBe(true);
+    expect(component.loadingGroups()).toBe(true);
+
+    // The groups answering first must not stop the participants spinner
+    httpMock.expectOne(api('csgogroups')).flush([{ id: 'g1', name: 'Group A', participants: [] }]);
+    await render();
+    expect(component.loadingGroups()).toBe(false);
+    expect(component.loading()).toBe(true);
+    expect(el().querySelector('.participants-container igx-circular-bar')).not.toBeNull();
+
+    httpMock.expectOne(api('csgoregs')).flush([]);
+    httpMock.expectOne(api('csgomatches')).flush([]);
+    await render();
+    expect(component.loading()).toBe(false);
+    expect(el().querySelector('.participants-container igx-circular-bar')).toBeNull();
+  });
+
+  it('marks the group grids as loading while the groups are re-fetched', async () => {
+    flushUser(null);
+    httpMock.expectOne(activeTournamentUrl()).flush(null);
+    flushPage('', { groups: [{ id: 'g1', name: 'Group A', participants: [] }] });
+    await render();
+
+    const groupGrid = () => fixture.debugElement
+      .queryAll(debugEl => debugEl.componentInstance instanceof IgxGridComponent)
+      .map(debugEl => debugEl.componentInstance as IgxGridComponent)
+      .find(g => g.data === component.groups()[0].participants);
+    expect(groupGrid().isLoading).toBe(false);
+
+    apiService.refreshCsgoGroups(undefined);
+    await render();
+    expect(component.loadingGroups()).toBe(true);
+    expect(component.loading()).toBe(false);
+    expect(groupGrid().isLoading).toBe(true);
+
+    httpMock.expectOne(api('csgogroups')).flush([{ id: 'g1', name: 'Group A', participants: [] }]);
+    await render();
+    expect(groupGrid().isLoading).toBe(false);
+  });
+
   it('renders every registration and flags only the current user\'s unconfirmed one', async () => {
     const alpha = team('team-1', 'Alpha');
     const bravo = team('team-2', 'Bravo');
     const charlie = team('team-3', 'Charlie');
     flushUser({ id: 'me' });
-    httpMock.expectOne(req => req.url.includes('/tournament?id=')).flush(null);
+    httpMock.expectOne(activeTournamentUrl()).flush(null);
     flushPage('', {
       registrations: [
         makeRegistration('r1', 'me', TournamentApplicationState.Pending, alpha),
@@ -189,7 +233,7 @@ describe('TournamentCsgoComponent', () => {
   it('renders the schedule with winners highlighted, media links and match details', async () => {
     const alpha = team('team-1', 'Alpha');
     const bravo = team('team-2', 'Bravo');
-    const matches: CsgoMatchWithWinner [] = [
+    const matches: TournamentCSGOMatch [] = [
       {
         id: 'm1', team1: alpha, team2: bravo, team1Id: 'team-1', team2Id: 'team-2', winnerTeamId: 'team-1',
         startTime: new Date(2024, 0, 15, 18, 30), videoLink: 'https://video/1', demoLink: 'https://demo/1',
@@ -205,7 +249,7 @@ describe('TournamentCsgoComponent', () => {
       { id: 'm3', team1: bravo, team2: alpha, team1Id: 'team-2', team2Id: 'team-1', maps: [] }
     ];
     flushUser(null);
-    httpMock.expectOne(req => req.url.includes('/tournament?id=')).flush(null);
+    httpMock.expectOne(activeTournamentUrl()).flush(null);
     flushPage('', { matches });
     await render();
 
@@ -261,7 +305,7 @@ describe('TournamentCsgoComponent', () => {
       { id: 'g2', name: 'Group B', participants: [] }
     ];
     flushUser(null);
-    httpMock.expectOne(req => req.url.includes('/tournament?id=')).flush(null);
+    httpMock.expectOne(activeTournamentUrl()).flush(null);
     flushPage('', { groups });
     await render();
 

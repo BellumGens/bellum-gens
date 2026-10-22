@@ -21,12 +21,14 @@ describe('OrderformComponent', () => {
 
   const el = (): HTMLElement => fixture.nativeElement;
   const input = (id: string): HTMLInputElement => el().querySelector(`#${id}`);
-  const suffix = (id: string): HTMLElement => input(id).closest('igx-input-group').querySelector('igx-suffix');
+  const clearButton = (id: string): HTMLButtonElement => input(id).closest('igx-input-group').querySelector('igx-suffix button');
+  const label = (id: string): HTMLLabelElement => el().querySelector(`label[for="${id}"]`);
   const orderButton = (): HTMLButtonElement =>
     Array.from(el().querySelectorAll<HTMLButtonElement>('button')).find(b => b.textContent.trim() === 'Order');
   const addButton = (): HTMLButtonElement =>
     Array.from(el().querySelectorAll<HTMLButtonElement>('button')).find(b => b.textContent.includes('Add one more'));
-  const removeIcons = (): HTMLElement[] => Array.from(el().querySelectorAll<HTMLElement>('.column-container > .horizontal-center > igx-icon'));
+  const removeButtons = (): HTMLButtonElement[] =>
+    Array.from(el().querySelectorAll<HTMLButtonElement>('.column-container > .horizontal-center > button'));
   const summary = () => el().querySelector('.order-summary').textContent;
   const selects = (): IgxSelectComponent[] =>
     fixture.debugElement.queryAll(By.directive(IgxSelectComponent)).map(s => s.componentInstance as IgxSelectComponent);
@@ -132,7 +134,7 @@ describe('OrderformComponent', () => {
     expect(summary()).toContain('Total = 42 BGN');
     expect(summary()).not.toContain('Free shipping');
     // a single jersey cannot be removed
-    expect(removeIcons().length).toBe(0);
+    expect(removeButtons().length).toBe(0);
   });
 
   describe('jersey selection', () => {
@@ -147,6 +149,31 @@ describe('OrderformComponent', () => {
       expect(cutSelect(0).value).toBe(JerseyCut.Female);
       expect(sizeSelect(0).items.map(i => i.value))
         .toEqual([JerseySize.XS, JerseySize.S, JerseySize.M, JerseySize.L, JerseySize.XL]);
+    });
+
+    it('should switch to the closest size the new cut is available in', async () => {
+      await choose(sizeSelect(0), JerseySize.XXXL);
+
+      await choose(cutSelect(0), JerseyCut.Female);
+
+      expect(component.order().orderProducts[0]).toEqual({ cut: JerseyCut.Female, size: JerseySize.XL });
+      expect(sizeSelect(0).value).toBe(JerseySize.XL);
+      expect(sizeSelect(0).selectedItem?.value).toBe(JerseySize.XL);
+
+      await choose(sizeSelect(0), JerseySize.XS);
+      await choose(cutSelect(0), JerseyCut.Male);
+
+      expect(component.order().orderProducts[0]).toEqual({ cut: JerseyCut.Male, size: JerseySize.S });
+      expect(sizeSelect(0).value).toBe(JerseySize.S);
+    });
+
+    it('should keep the size when the new cut is available in it', async () => {
+      await choose(sizeSelect(0), JerseySize.M);
+
+      await choose(cutSelect(0), JerseyCut.Female);
+
+      expect(component.order().orderProducts[0]).toEqual({ cut: JerseyCut.Female, size: JerseySize.M });
+      expect(component.hasUnavailableJersey()).toBe(false);
     });
 
     it('should update the size of a jersey', async () => {
@@ -176,7 +203,7 @@ describe('OrderformComponent', () => {
       expect(component.subtotal()).toBe(2 * component.basePrice);
       expect(EMPTY_JERSEY_ORDER.orderProducts.length).toBe(1);
       expect(selects().length).toBe(4);
-      expect(removeIcons().length).toBe(2);
+      expect(removeButtons().length).toBe(2);
       expect(summary()).toContain('2 x 60 BGN = 120 BGN');
       expect(summary()).toContain('Total = 84 BGN');
     });
@@ -186,12 +213,12 @@ describe('OrderformComponent', () => {
       await render();
       await choose(cutSelect(0), JerseyCut.Female);
 
-      removeIcons()[0].click();
+      removeButtons()[0].click();
       await render();
 
       expect(component.productCount()).toBe(1);
       expect(component.order().orderProducts[0].cut).toBe(JerseyCut.Male);
-      expect(removeIcons().length).toBe(0);
+      expect(removeButtons().length).toBe(0);
       expect(summary()).toContain('1 x 60 BGN = 60 BGN');
     });
 
@@ -273,20 +300,64 @@ describe('OrderformComponent', () => {
     ];
 
     for (const [id, field, value] of fields) {
-      it(`should clear ${field} with the suffix icon`, async () => {
-        expect(suffix(id)).toBeNull();
+      it(`should clear ${field} with the suffix button`, async () => {
+        expect(clearButton(id)).toBeNull();
 
         component.updateOrder(field, value);
         await render();
         expect(input(id).value).not.toBe('');
 
-        suffix(id).click();
+        clearButton(id).click();
         await render();
 
         expect(component.order()[field]).toBeNull();
-        expect(suffix(id)).toBeNull();
+        expect(clearButton(id)).toBeNull();
       });
     }
+  });
+
+  describe('accessibility', () => {
+    it('should label every field', () => {
+      expect(label('promocode').textContent.trim()).toBe('Promo code');
+      expect(label('firstName').textContent.trim()).toBe('First name');
+      expect(label('lastName').textContent.trim()).toBe('Last name');
+      expect(label('orderemail').textContent.trim()).toBe('Email');
+      expect(label('orderPhone').textContent.trim()).toBe('Phone #');
+      expect(label('orderCity').textContent.trim()).toBe('City');
+      expect(label('orderAddress').textContent.trim()).toBe('Street');
+      expect(el().querySelectorAll('label[for="firstName"]').length).toBe(1);
+    });
+
+    it('should render the remove jersey actions as named buttons that do not submit the form', async () => {
+      addButton().click();
+      await render();
+
+      for (const button of removeButtons()) {
+        expect(button.type).toBe('button');
+        expect(button.getAttribute('aria-label')).toBe('Remove jersey');
+      }
+    });
+
+    it('should render the clear actions as named buttons that do not submit the form', async () => {
+      const fields: [string, keyof Order, string][] = [
+        ['promocode', 'promoCode', 'Clear promo code'],
+        ['firstName', 'firstName', 'Clear first name'],
+        ['lastName', 'lastName', 'Clear last name'],
+        ['orderemail', 'email', 'Clear email'],
+        ['orderCity', 'city', 'Clear city'],
+        ['orderAddress', 'streetAddress', 'Clear street'],
+        ['orderPhone', 'phoneNumber', 'Clear phone number']
+      ];
+      for (const [, field] of fields) {
+        component.updateOrder(field, '888123456');
+      }
+      await render();
+
+      for (const [id, , name] of fields) {
+        expect(clearButton(id).type).toBe('button');
+        expect(clearButton(id).getAttribute('aria-label')).toBe(name);
+      }
+    });
   });
 
   describe('placing an order', () => {
@@ -307,6 +378,20 @@ describe('OrderformComponent', () => {
 
       await fillValidForm();
       expect(orderButton().disabled).toBe(false);
+    });
+
+    it('should not submit a jersey in a size its cut is not available in', async () => {
+      await fillValidForm();
+      expect(orderButton().disabled).toBe(false);
+
+      component.updateOrder('orderProducts', [{ cut: JerseyCut.Female, size: JerseySize.XXXL } as Order['orderProducts'][number]]);
+      await render();
+
+      expect(component.hasUnavailableJersey()).toBe(true);
+      expect(orderButton().disabled).toBe(true);
+      component.placeOrder();
+      expect(component.inProgress()).toBe(false);
+      httpMock.expectNone(orderUrl());
     });
 
     it('should reject an invalid email', async () => {

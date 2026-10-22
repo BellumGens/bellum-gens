@@ -361,6 +361,28 @@ describe('ApiStrategiesService', () => {
     req3.error(new ProgressEvent('Server Error'), { status: 500, statusText: 'Could not submit comment!' });
   });
 
+  it('should not send the client-only edit marker of a comment', () => {
+    const comment: StrategyComment = { id: '123', stratId: '456', comment: 'Edited', userId: '123', _inEdit: true };
+    const strat: CSGOStrategy = {
+      id: '456',
+      title: 'Test',
+      description: 'Test',
+      map: CSGOMap.Dust2,
+      side: Side.TSide,
+      teamId: '123',
+      url: 'test',
+      comments: [{ ...comment, comment: 'Original', _inEdit: false }]
+    };
+    let updated: CSGOStrategy;
+    service.submitStratComment(comment, strat).subscribe(result => updated = result);
+    const req = httpMock.expectOne(`${service['_apiEndpoint']}/strategy/comment`);
+    expect(req.request.body).toEqual({ id: '123', stratId: '456', comment: 'Edited', userId: '123' });
+    expect('_inEdit' in req.request.body).toBe(false);
+    expect(comment._inEdit).toBe(true);
+    req.flush({ id: '123', stratId: '456', comment: 'Edited', userId: '123' });
+    expect(updated.comments[0].comment).toEqual('Edited');
+  });
+
   it('should delete strat comment', () => {
     const comment: StrategyComment = { id: '123', stratId: '456', comment: 'Test', userId: '123', published: new Date() };
     const remaining: StrategyComment = { id: '789', stratId: '456', comment: 'Other', userId: '123', published: new Date() };

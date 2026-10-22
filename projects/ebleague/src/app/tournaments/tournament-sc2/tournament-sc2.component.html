@@ -12,7 +12,7 @@
         }
         @for (registration of registrations(); track registration) {
           <div class="registration-slot">
-            <igx-avatar [src]="registration.user?.sc2Details?.avatarUrl || ''" [initials]="registration.user.username" size="medium" shape="circle">
+            <igx-avatar [src]="registration.user?.sc2Details?.avatarUrl || ''" [initials]="registration.user?.username" size="medium" shape="circle">
             </igx-avatar>
             @if (registration.userId === authUser()?.id && registration.state === 0) {
               <igx-badge
@@ -23,7 +23,7 @@
                 class="registration-badge-style">
               </igx-badge>
             }
-            <a [href]="environment.bellumgens + '/players/' + (registration.user.csgoDetails?.customUrl || registration.userId)" target="_blank">{{ registration.battleTag }}</a>
+            <a [href]="environment.bellumgens + '/players/' + (registration.user?.id || registration.userId) + '/sc'" target="_blank">{{ registration.battleTag }}</a>
             <span>[{{ registration.companyId }}]</span>
           </div>
         }
@@ -40,15 +40,15 @@
               <igx-grid-toolbar-title>{{group.name}}</igx-grid-toolbar-title>
             </igx-grid-toolbar>
             <igx-column field="user" i18n-header header="Player" width="20%">
-              <div *igxCell="let value">
+              <div *igxCell="let value; let cell = cell">
                 <igx-avatar igxListThumbnail
-                  [src]="$safeNavigationMigration(value.sc2Details?.avatarUrl)"
-                  [initials]="value.username"
+                  [src]="value?.sc2Details?.avatarUrl"
+                  [initials]="value?.username"
                   [size]="'small'"
                   shape="circle">
                 </igx-avatar>
-                <a igxListLineTitle [href]="environment.bellumgens + '/players/' + (value?.customURL || value.id)" target="_blank">
-                  {{ value.username }}
+                <a igxListLineTitle [href]="environment.bellumgens + '/players/' + (value?.id || cell.row.data.userId) + '/sc'" target="_blank">
+                  {{ value?.username }}
                 </a>
               </div>
             </igx-column>

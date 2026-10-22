@@ -1,6 +1,6 @@
 <div class="content-container">
   <div class="content-container-row">
-    <igx-grid #grid1
+    <igx-grid #registrationsGrid
       [data]="registrations()"
       primaryKey="id"
       [height]="'600px'"
@@ -51,7 +51,7 @@
       <igx-action-strip #regActionStrip>
         @if (regActionStrip.context?.dirty || regActionStrip.context?.deleted) {
           <button title="Save" igxIconButton="flat" igxRipple
-            (click)="deleteRegistration(regActionStrip.context)">
+            (click)="saveRegistration(regActionStrip.context)">
             <igx-icon>save</igx-icon>
           </button>
         }
@@ -69,7 +69,7 @@
   </div>
 
   <div class="content-container-row">
-    <igx-grid #grid1
+    <igx-grid #ordersGrid
       [data]="orders()"
       primaryKey="id"
       [height]="'600px'"
@@ -111,7 +111,7 @@
       </igx-column>
 
       <div *igxGridDetail="let dataItem" class="horizontal details-container space-evenly">
-        @for (details of dataItem.jerseys; track details) {
+        @for (details of dataItem.orderProducts; track $index) {
           <div class="column-center">
             <img ngSrc="/assets/wallpapers/jersey-small.webp" width="105" height="100" alt="Esports Business League jersey" />
             <div i18n>{{details.cut ? 'Female' : 'Male'}}</div>
@@ -123,7 +123,7 @@
       <igx-action-strip #ordersActionStrip>
         @if (ordersActionStrip.context?.dirty || ordersActionStrip.context?.deleted) {
           <button title="Save" igxIconButton="flat" igxRipple
-            (click)="deleteOrder(ordersActionStrip.context)">
+            (click)="saveOrder(ordersActionStrip.context)">
             <igx-icon>save</igx-icon>
           </button>
         }
@@ -197,8 +197,8 @@
   <form #leagueForm="ngForm" class="content-container-column" (ngSubmit)="updateTournament()">
     <h4 igxCardHeaderTitle i18n>New Tournament</h4>
     <igx-input-group type="border">
-      <label igxLabel for="tournamentName" i18n>Tournament name</label>
-      <input type="text" id="tournamentName" name="tournamentName" #tournamentName igxInput [required]="true" [(ngModel)]="tournament.name" />
+      <label igxLabel for="newTournamentName" i18n>Tournament name</label>
+      <input type="text" id="newTournamentName" name="tournamentName" #tournamentName igxInput [required]="true" [(ngModel)]="tournament.name" />
       @if (tournamentName.value) {
         <igx-suffix (click)="tournament.name = ''">
           <igx-icon>clear</igx-icon>

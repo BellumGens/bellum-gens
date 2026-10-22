@@ -191,6 +191,17 @@ describe('BgeBalkanComponent', () => {
       expect(second.querySelector('span')).toBeNull();
     });
 
+    it('should render a participant without a user by their battle tag, without a profile link', async () => {
+      await loadTournament({ regs: [{ id: 'r3', country: 'Greece', battleTag: 'Gamma#4321', companyId: 'ACME' }] });
+
+      const slots = el().querySelectorAll('.registration-slot');
+      expect(slots.length).toBe(1);
+      expect(slots[0].querySelector('a')).toBeNull();
+      expect(slots[0].querySelector('.participant-name').textContent.trim()).toBe('Gamma#4321');
+      expect(slots[0].querySelector('.country-badge-small').getAttribute('title')).toBe('Greece');
+      expect(slots[0].textContent).toContain('[ACME]');
+    });
+
     it('should show the empty grid message when there are no matches', async () => {
       await loadTournament();
 

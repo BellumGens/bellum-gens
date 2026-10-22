@@ -20,7 +20,7 @@
           name="teamAvatar"
           pattern="^https?:\/\/(?:[a-z\-]+\.)+[a-z]{2,6}(?:\/[^\/#?]+)+\.(?:jpe?g|png|webp)$"
           [(ngModel)]="team().teamAvatar" />
-          @if (teamAvatar.model.length > 0) {
+          @if (teamAvatar.model?.length > 0) {
             <igx-suffix (click)="team().teamAvatar = null">
               <igx-icon>clear</igx-icon>
             </igx-suffix>

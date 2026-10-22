@@ -43,11 +43,14 @@ export class TournamentCsgoComponent extends BaseDirective {
   public authUser = this.loginService.applicationUser;
   // An empty tournament id loads the active tournament's data
   public tournamentId = toSignal(this.activeRoute.params.pipe(map(params => params['tournamentid'] as string)));
-  public tournament = computed(() => this.apiService.getTournament(this.tournamentId())());
+  public tournament = computed(() => this.tournamentId()
+    ? this.apiService.getTournament(this.tournamentId())()
+    : this.apiService.activeTournament());
   public loading = this.apiService.loadingCSGORegistrations;
   public registrations = computed(() => this.apiService.getCsgoRegistrations(this.tournamentId())());
   public loadingMatches = this.apiService.loadingCSGOMatches;
   public csgomatches = computed(() => this.apiService.getCsgoMatches(this.tournamentId())() ?? undefined);
+  public loadingGroups = this.apiService.loadingCSGOGroups;
   public groups = computed(() => this.apiService.getCsgoGroups(this.tournamentId())());
 
   constructor() {

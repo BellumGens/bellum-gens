@@ -73,6 +73,11 @@ export class StrategyDetailsComponent extends BaseDirective {
   public strat = signal<CSGOStrategy>(null);
   public authUser: Signal<ApplicationUser> = this.authManager.applicationUser;
   public newComment = signal<StrategyComment>(Object.assign({}, NEW_EMPTY_COMMENT));
+  /**
+   * Id of the listed comment being edited. The draft in newComment is a copy of it,
+   * so the listed comment only changes once the edit is saved.
+   */
+  public editedCommentId = signal<string>(null);
   public horizontal = signal(true);
   public overlaySettings = GLOBAL_OVERLAY_SETTINGS;
 
@@ -91,7 +96,14 @@ export class StrategyDetailsComponent extends BaseDirective {
     ).subscribe(strat => {
       this.strat.set(strat);
       // The cached strategy is replaced on every vote/comment, so keep the comment draft unless the strategy changed.
-      this.newComment.update(comment => comment.stratId === strat.id ? comment : { ...comment, stratId: strat.id });
+      if (this.newComment().stratId !== strat.id) {
+        if (this.editedCommentId()) {
+          // A comment of another strategy can't be edited here.
+          this.resetComment(strat.id);
+        } else {
+          this.newComment.update(comment => ({ ...comment, stratId: strat.id }));
+        }
+      }
     });
     effect(() => {
       const user = this.authUser();
@@ -117,30 +129,57 @@ export class StrategyDetailsComponent extends BaseDirective {
     if (!authUser) {
       this.openLogin();
     } else {
-      this.apiService.submitStratVote(strat, direction, authUser.id).subscribe(updated => this.strat.set(updated));
+      this.apiService.submitStratVote(strat, direction, authUser.id).subscribe({
+        next: updated => this.strat.set(updated),
+        // The service already reports the error and the strategy is left as it was.
+        error: () => undefined
+      });
     }
   }
 
+  public updateCommentText(text: string) {
+    this.newComment.update(comment => ({ ...comment, comment: text }));
+  }
+
   public submitComment() {
-    // When editing, the model is the listed comment itself, so clear its edit marker directly.
-    const comment = this.newComment();
-    comment._inEdit = false;
-    this.apiService.submitStratComment(comment, this.strat()).subscribe(updated => {
-      this.strat.set(updated);
-      this.newComment.set({ userId: this.authUser().id, stratId: updated.id, comment: null });
+    this.apiService.submitStratComment(this.newComment(), this.strat()).subscribe({
+      next: updated => {
+        this.strat.set(updated);
+        this.resetComment(updated.id);
+      },
+      // The service already reports the error. Keep the draft (and the edit) so it can be retried or cancelled.
+      error: () => undefined
     });
   }
 
   public editComment(comment: StrategyComment) {
-    comment._inEdit = true;
-    this.newComment.set(comment);
+    this.editedCommentId.set(comment.id);
+    this.newComment.set({ ...comment });
+  }
+
+  public cancelEdit() {
+    this.resetComment(this.strat().id);
   }
 
   public deleteComment(comment: StrategyComment) {
-    this.apiService.deleteStratComment(comment, this.strat()).subscribe(updated => this.strat.set(updated));
+    this.apiService.deleteStratComment(comment, this.strat()).subscribe({
+      next: updated => {
+        this.strat.set(updated);
+        if (comment.id === this.editedCommentId()) {
+          this.resetComment(updated.id);
+        }
+      },
+      // The service already reports the error and the comment stays listed.
+      error: () => undefined
+    });
   }
 
   public shareOnTwitter(strat: CSGOStrategy) {
     this.socialMedia.shareOnTwitter(strat);
+  }
+
+  private resetComment(stratId: string) {
+    this.editedCommentId.set(null);
+    this.newComment.set({ userId: this.authUser()?.id ?? null, stratId, comment: null });
   }
 }

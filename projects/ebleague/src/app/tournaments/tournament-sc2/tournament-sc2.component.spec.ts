@@ -59,8 +59,9 @@ describe('TournamentSc2Component', () => {
   const flushUser = (user: Partial<ApplicationUser> | null) =>
     httpMock.expectOne(loginService['_apiEndpoint']).flush(user);
 
+  /** Answers the active tournament request a page without a routed tournament id issues. */
   const flushTournament = (tournament: Tournament | null) =>
-    httpMock.expectOne(req => req.url.startsWith(`${apiService['_apiEndpoint']}/tournament?id=`)).flush(tournament);
+    httpMock.expectOne(api('activetournament')).flush(tournament);
 
   /** Answers the requests the page issues on load (or on a route change) for the given tournament id. */
   const flushPage = (query: string, data: {
@@ -114,6 +115,8 @@ describe('TournamentSc2Component', () => {
   it('loads the active tournament data when the route carries no tournament id', async () => {
     expect(component.tournamentId()).toBeUndefined();
     flushUser(null);
+    // An empty id loads the active tournament rather than requesting `/tournament?id=undefined`
+    httpMock.expectNone(req => req.url.includes('/tournament?id='));
     flushTournament({ id: 'active', name: 'StarCraft II League' });
     flushPage('');
     httpMock.verify();
@@ -174,20 +177,23 @@ describe('TournamentSc2Component', () => {
       registrations: [
         makeRegistration('r1', 'me', TournamentApplicationState.Pending, withAvatar, 'Serral#1234'),
         makeRegistration('r2', 'me', TournamentApplicationState.Confirmed, player('me', 'Serral'), 'Serral#5678'),
-        makeRegistration('r3', 'other', TournamentApplicationState.Pending, player('other', 'Maru'), 'Maru#1111')
+        makeRegistration('r3', 'other', TournamentApplicationState.Pending, player('other', 'Maru'), 'Maru#1111'),
+        // A registration whose user account is gone still renders
+        { id: 'r4', userId: 'gone', state: TournamentApplicationState.Confirmed, user: null, battleTag: 'Ghost#0000', companyId: 'Ghost Inc.' }
       ]
     });
     await render();
 
     const slots = Array.from(el().querySelectorAll('.registration-slot'));
-    expect(slots.length).toBe(3);
-    expect(slots.map(s => !!s.querySelector('igx-badge'))).toEqual([true, false, false]);
+    expect(slots.length).toBe(4);
+    expect(slots.map(s => !!s.querySelector('igx-badge'))).toEqual([true, false, false, false]);
 
-    // A player is linked by their custom url when they have one, otherwise by their user id
+    // StarCraft II players link to the StarCraft II tab of their profile by user id, never by a Counter-Strike url
     const links = slots.map(s => s.querySelector<HTMLAnchorElement>('a'));
-    expect(links.map(a => a.textContent.trim())).toEqual(['Serral#1234', 'Serral#5678', 'Maru#1111']);
-    expect(links[0].getAttribute('href')).toBe(`${component.environment.bellumgens}/players/serral`);
-    expect(links[2].getAttribute('href')).toBe(`${component.environment.bellumgens}/players/other`);
+    expect(links.map(a => a.textContent.trim())).toEqual(['Serral#1234', 'Serral#5678', 'Maru#1111', 'Ghost#0000']);
+    expect(links[0].getAttribute('href')).toBe(`${component.environment.bellumgens}/players/me/sc`);
+    expect(links[2].getAttribute('href')).toBe(`${component.environment.bellumgens}/players/other/sc`);
+    expect(links[3].getAttribute('href')).toBe(`${component.environment.bellumgens}/players/gone/sc`);
     expect(slots[2].querySelector(':scope > span').textContent).toBe('[Maru Inc.]');
 
     // Players without a StarCraft II avatar fall back to their initials
@@ -210,7 +216,8 @@ describe('TournamentSc2Component', () => {
           participant('p1', player('u1', 'Serral', {
             sc2Details: { avatarUrl: 'https://example.com/serral.png' } as ApplicationUser['sc2Details']
           })),
-          participant('p2', player('u2', 'Maru'))
+          participant('p2', player('u2', 'Maru')),
+          { id: 'p3', userId: 'u3', state: TournamentApplicationState.Confirmed, user: null, battleTag: 'Ghost#1', companyId: 'Ghost Inc.' }
         ] },
         { id: 'g2', name: 'Group B', participants: [] }
       ]
@@ -222,10 +229,12 @@ describe('TournamentSc2Component', () => {
     expect(groupGrids.map(g => g.querySelector('igx-grid-toolbar-title').textContent.trim())).toEqual(['Group B', 'Group A']);
 
     const playerLinks = Array.from(groupGrids[1].querySelectorAll<HTMLAnchorElement>('a[igxListLineTitle]'));
-    expect(playerLinks.map(a => a.textContent.trim())).toEqual(['Serral', 'Maru']);
+    expect(playerLinks.map(a => a.textContent.trim())).toEqual(['Serral', 'Maru', '']);
+    // Players are linked by user id (falling back to the participant's), as ApplicationUser has no custom url
     expect(playerLinks.map(a => a.getAttribute('href'))).toEqual([
-      `${component.environment.bellumgens}/players/u1`,
-      `${component.environment.bellumgens}/players/u2`
+      `${component.environment.bellumgens}/players/u1/sc`,
+      `${component.environment.bellumgens}/players/u2/sc`,
+      `${component.environment.bellumgens}/players/u3/sc`
     ]);
     const avatars = Array.from(groupGrids[1].querySelectorAll<HTMLElement>('igx-avatar'));
     expect(avatars[0].querySelector<HTMLElement>('.igx-avatar__image').style.backgroundImage).toContain('https://example.com/serral.png');

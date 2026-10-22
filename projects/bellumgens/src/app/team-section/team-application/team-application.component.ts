@@ -43,13 +43,18 @@ export class TeamApplicationComponent {
 
   public submitApplication() {
     const authUser = this.authUser();
-    if (authUser) {
+    const team = this.team();
+    if (authUser && team) {
       const application: TeamApplication = {
         ...this.application,
         applicantId: authUser.id,
-        teamId: this.team().teamId
+        teamId: team.teamId
       };
-      this.apiService.submitApplication(application).subscribe(() => this.dialog().close());
+      this.apiService.submitApplication(application).subscribe({
+        next: () => this.dialog().close(),
+        // The service already tells the user; the dialog stays open so they can retry
+        error: () => {}
+      });
     }
   }
 }

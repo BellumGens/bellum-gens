@@ -648,6 +648,22 @@ describe('ApiTournamentsService', () => {
       httpMock.expectNone(`${service['_apiEndpoint']}${path}`);
     });
 
+    it('should flag the tournaments list as loading until the server answers, even with no tournaments', () => {
+      expect(service.loadingTournaments()).toBe(false);
+      const tournaments = service.tournaments;
+      expect(service.loadingTournaments()).toBe(true);
+
+      httpMock.expectOne(`${service['_apiEndpoint']}/tournament/tournaments`).flush(null);
+      expect(tournaments()).toBeNull();
+      expect(service.loadingTournaments()).toBe(false);
+
+      // An empty answer is retried on the next read
+      service.publicTournaments();
+      expect(service.loadingTournaments()).toBe(true);
+      httpMock.expectOne(`${service['_apiEndpoint']}/tournament/tournaments`).flush([{ id: '1' }]);
+      expect(service.loadingTournaments()).toBe(false);
+    });
+
     it('should expose the tournaments list as the public tournaments', () => {
       const publicTournaments = service.publicTournaments;
       httpMock.expectOne(`${service['_apiEndpoint']}/tournament/tournaments`).flush([{ id: '1' }]);
@@ -695,14 +711,41 @@ describe('ApiTournamentsService', () => {
       ['getSc2Registrations', 'loadingSC2Registrations', '/tournament/sc2regs?tournamentId=1'],
       ['getCsgoMatches', 'loadingCSGOMatches', '/tournament/csgomatches?tournamentId=1'],
       ['getSc2Matches', 'loadingSC2Matches', '/tournament/sc2matches?tournamentId=1'],
-      // Counter-Strike groups share the registrations loading flag
-      ['getCsgoGroups', 'loadingCSGORegistrations', '/tournament/csgogroups?tournamentId=1'],
+      ['getCsgoGroups', 'loadingCSGOGroups', '/tournament/csgogroups?tournamentId=1'],
       ['getSc2Groups', 'loadingSC2Groups', '/tournament/sc2groups?tournamentId=1']
     ] as const)('%s should set %s while the request is in flight', (method, flag, path) => {
       service[method]('1');
       expect(service[flag]()).toBe(true);
       httpMock.expectOne(`${service['_apiEndpoint']}${path}`).flush([]);
       expect(service[flag]()).toBe(false);
+    });
+
+    it.each([
+      ['getCsgoGroups', 'loadingCSGOGroups', 'loadingCSGORegistrations', '/tournament/csgogroups?tournamentId=1'],
+      ['refreshCsgoGroups', 'loadingCSGOGroups', 'loadingCSGORegistrations', '/tournament/csgogroups?tournamentId=1'],
+      ['getCsgoRegistrations', 'loadingCSGORegistrations', 'loadingCSGOGroups', '/tournament/csgoregs?tournamentId=1']
+    ] as const)('%s should set only %s, leaving %s untouched', (method, flag, otherFlag, path) => {
+      service[method]('1');
+      expect(service[flag]()).toBe(true);
+      expect(service[otherFlag]()).toBe(false);
+      httpMock.expectOne(`${service['_apiEndpoint']}${path}`).flush([]);
+      expect(service[flag]()).toBe(false);
+      expect(service[otherFlag]()).toBe(false);
+    });
+
+    it('should track the Counter-Strike registrations and groups loading independently', () => {
+      service.getCsgoRegistrations('1');
+      service.getCsgoGroups('1');
+      expect(service.loadingCSGORegistrations()).toBe(true);
+      expect(service.loadingCSGOGroups()).toBe(true);
+
+      httpMock.expectOne(`${service['_apiEndpoint']}/tournament/csgogroups?tournamentId=1`).flush([]);
+      expect(service.loadingCSGOGroups()).toBe(false);
+      // The registrations are still in flight, so their spinner keeps going
+      expect(service.loadingCSGORegistrations()).toBe(true);
+
+      httpMock.expectOne(`${service['_apiEndpoint']}/tournament/csgoregs?tournamentId=1`).flush([]);
+      expect(service.loadingCSGORegistrations()).toBe(false);
     });
 
     it.each([
@@ -746,8 +789,8 @@ describe('ApiTournamentsService', () => {
     let unhandled: unknown[];
     let previousHandler: typeof rxjsConfig.onUnhandledError;
 
-    // The caches subscribe without an error callback, so rxjs reports the HttpErrorResponse as unhandled
-    // from a setTimeout; fake timers let each test collect it before the handler is restored.
+    // rxjs would report an error the caches didn't handle from a setTimeout; fake timers let each test
+    // collect any such error before the handler is restored, so the tests can assert there is none.
     beforeEach(() => {
       vi.useFakeTimers({ toFake: ['setTimeout'] });
       unhandled = [];
@@ -774,6 +817,8 @@ describe('ApiTournamentsService', () => {
       const value = service[getter];
       fail(path);
       expect(value()).toBeNull();
+      vi.runAllTimers();
+      expect(unhandled).toEqual([]);
 
       service[getter]();
       httpMock.expectOne(`${service['_apiEndpoint']}${path}`).flush(getter === 'activeTournament' ? { id: 't1' } : []);
@@ -794,7 +839,7 @@ describe('ApiTournamentsService', () => {
       expect(service[flag]()).toBe(false);
       expect(cached()).toBeNull();
       vi.runAllTimers();
-      expect(unhandled).toEqual([expect.objectContaining({ status: 500 })]);
+      expect(unhandled).toEqual([]);
 
       service[refresh]('1');
       expect(service[flag]()).toBe(true);
@@ -806,18 +851,32 @@ describe('ApiTournamentsService', () => {
     it.each([
       ['getCsgoRegistrations', 'loadingCSGORegistrations', '/tournament/csgoregs?tournamentId=1'],
       ['getCsgoMatches', 'loadingCSGOMatches', '/tournament/csgomatches?tournamentId=1'],
-      ['getCsgoGroups', 'loadingCSGORegistrations', '/tournament/csgogroups?tournamentId=1']
+      ['getCsgoGroups', 'loadingCSGOGroups', '/tournament/csgogroups?tournamentId=1']
     ] as const)('%s should clear %s after an error', (method, flag, path) => {
       const cached = service[method]('1');
       fail(path);
       expect(service[flag]()).toBe(false);
       expect(cached()).toBeNull();
+      vi.runAllTimers();
+      expect(unhandled).toEqual([]);
+    });
+
+    it('should clear the tournaments loading flag when the list fails to load', () => {
+      const tournaments = service.tournaments;
+      expect(service.loadingTournaments()).toBe(true);
+      fail('/tournament/tournaments');
+      expect(service.loadingTournaments()).toBe(false);
+      expect(tournaments()).toBeNull();
+      vi.runAllTimers();
+      expect(unhandled).toEqual([]);
     });
 
     it('should leave a tournament empty when it fails to load', () => {
       const tournament = service.getTournament('1');
       fail('/tournament?id=1');
       expect(tournament()).toBeNull();
+      vi.runAllTimers();
+      expect(unhandled).toEqual([]);
     });
   });
 

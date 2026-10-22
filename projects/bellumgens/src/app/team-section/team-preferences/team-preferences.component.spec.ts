@@ -234,6 +234,23 @@ describe('TeamPreferencesComponent', () => {
         expect(component.team().discord).toBeNull();
       });
 
+      it('should clear the team avatar through the suffix', async () => {
+        await setup();
+        suffix('teamAvatar').click();
+        await fixture.whenStable();
+        fixture.detectChanges();
+        await fixture.whenStable();
+        expect(component.team().teamAvatar).toBeNull();
+        expect(suffix('teamAvatar')).toBeNull();
+      });
+
+      it('should render the form for a team without an avatar', async () => {
+        await setup({ team: { ...TEAM, teamAvatar: null } });
+        expect(input('teamAvatar').value).toBe('');
+        expect(suffix('teamAvatar')).toBeNull();
+        expect(el().querySelectorAll('form igx-suffix').length).toBe(3);
+      });
+
       it('should toggle the team visibility in place', async () => {
         await setup();
         (el().querySelector('#teamVisibility input') as HTMLInputElement).click();

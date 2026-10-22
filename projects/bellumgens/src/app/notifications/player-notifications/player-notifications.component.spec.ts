@@ -142,7 +142,7 @@ describe('NotificationsComponent', () => {
     expect(component.actionInProgress()).toBe(true);
     expect(component.actionText()).toBe('Accepting...');
     const inProgress = buttonsOf(itemFor('New Team'));
-    expect(inProgress.map(b => b.textContent.trim())).toEqual(['Accepting...', 'Rejecting...']);
+    expect(inProgress.map(b => b.textContent.trim())).toEqual(['Accepting...', 'Accepting...']);
     expect(inProgress.every(b => b.disabled)).toBe(true);
 
     const req = httpMock.expectOne(`${apiEndpoint}/users/acceptTeamInvite`);
@@ -174,6 +174,7 @@ describe('NotificationsComponent', () => {
 
     expect(component.actionInProgress()).toBe(true);
     expect(component.actionText()).toBe('Rejecting...');
+    expect(buttonsOf(itemFor('New Team')).map(b => b.textContent.trim())).toEqual(['Rejecting...', 'Rejecting...']);
     expect(buttonsOf(itemFor('New Team')).every(b => b.disabled)).toBe(true);
 
     const req = httpMock.expectOne(`${apiEndpoint}/users/rejectTeamInvite`);
@@ -193,6 +194,31 @@ describe('NotificationsComponent', () => {
     expect(items[0].classList).toContain('notification-disabled');
     expect(buttonsOf(items[0]).map(b => b.textContent.trim())).toEqual(['Rejected']);
   });
+
+  for (const [action, index, url] of [['accepting', 0, 'acceptTeamInvite'], ['rejecting', 1, 'rejectTeamInvite']] as const) {
+    it(`should re-enable the buttons when ${action} an invitation fails`, async () => {
+      const navigateSpy = vi.spyOn(router, 'navigate').mockResolvedValue(true);
+      const changed = vi.fn();
+      component.changed.subscribe(changed);
+      await loadNotifications(createNotifications());
+      const notification = component.notifications().find(n => n.teamInfo.teamId === 'team-1');
+
+      buttonsOf(itemFor('New Team'))[index].click();
+      await fixture.whenStable();
+      expect(component.actionInProgress()).toBe(true);
+
+      httpMock.expectOne(`${apiEndpoint}/users/${url}`).flush('error', { status: 500, statusText: 'Server Error' });
+      await fixture.whenStable();
+
+      expect(component.actionInProgress()).toBe(false);
+      expect(notification.state).toBe(NotificationState.NotSeen);
+      expect(changed).not.toHaveBeenCalled();
+      expect(navigateSpy).not.toHaveBeenCalled();
+      const buttons = buttonsOf(itemFor('New Team'));
+      expect(buttons.map(b => b.textContent.trim())).toEqual(['Accept', 'Reject']);
+      expect(buttons.every(b => !b.disabled)).toBe(true);
+    });
+  }
 
   it('should re-sort the list once an invitation is accepted', async () => {
     vi.spyOn(router, 'navigate').mockResolvedValue(true);

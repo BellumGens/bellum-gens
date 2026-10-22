@@ -64,6 +64,8 @@ export class PlayerNotificationsComponent {
         this.changed.emit(-1);
         this.actionInProgress.set(false);
       },
+      // The service already tells the user; re-enable the buttons so they can retry
+      error: () => this.actionInProgress.set(false),
       complete: () => this.actionInProgress.set(false)
     });
   }
@@ -78,6 +80,8 @@ export class PlayerNotificationsComponent {
         this.changed.emit(-1);
         this.actionInProgress.set(false);
       },
+      // The service already tells the user; re-enable the buttons so they can retry
+      error: () => this.actionInProgress.set(false),
       complete: () => this.actionInProgress.set(false)
     });
   }

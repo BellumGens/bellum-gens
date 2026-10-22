@@ -43,7 +43,6 @@ export class PlayerSearchComponent {
   public scheduleOverlap = signal(PLAYER_SEARCH.scheduleOverlap);
   public teamId = signal<string>(PLAYER_SEARCH.teamId);
   public userOverlap = signal(0);
-  public teamName = signal('Select Team');
 
   // Assembled from the individual field signals so the query builder keeps
   // working against a single object.
@@ -64,7 +63,6 @@ export class PlayerSearchComponent {
 
   public searchPlayers() {
     if (!this.userOverlap()) {
-      this.teamName.set('Select Team');
       this.teamId.set(null);
     }
     this.router.navigate(['search/players', this.searchQuery]);

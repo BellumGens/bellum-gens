@@ -214,6 +214,33 @@ describe('LeagueRegistrationComponent', () => {
     });
   });
 
+  describe('with an already logged in user and no tournament in the route', () => {
+    it('should fetch the registration only once the active tournament is known', async () => {
+      await create({ user: USER });
+
+      // The active tournament is still loading, so its registration can't be requested yet
+      httpMock.expectNone(req => req.url.includes('/tournament/userregistration'));
+      expect(component.tournamentId()).toBeUndefined();
+
+      httpMock.expectOne(activeTournamentUrl()).flush(ACTIVE_TOURNAMENT);
+      httpMock.expectOne(companiesUrl()).flush([]);
+      await fixture.whenStable();
+
+      const req = httpMock.expectOne(userRegistrationUrl('active-1'));
+      expect(req.request.withCredentials).toBe(true);
+      req.flush(null);
+      await fixture.whenStable();
+
+      expect(component.application()).toEqual({
+        game: Game.StarCraft2,
+        email: 'alpha@example.com',
+        tournamentId: 'active-1',
+        battleNetId: 'Alpha#1234',
+        country: 'Bulgaria'
+      });
+    });
+  });
+
   describe('with a logged in user', () => {
     const loadForUser = async (registration: TournamentApplication | null, companies: string[] = []) => {
       await create({ user: USER, tournamentId: 't1' });
@@ -380,6 +407,8 @@ describe('LeagueRegistrationComponent', () => {
         httpMock.expectOne(registerUrl()).flush('Server error', { status: 500, statusText: 'Server Error' });
         await fixture.whenStable();
 
+        // The error is reported once, by the service
+        expect(error).toHaveBeenCalledTimes(1);
         expect(error).toHaveBeenCalledWith(expect.stringContaining('500 Server Error'));
         expect(component.inProgress()).toBe(false);
         expect(component.application().id).toBeUndefined();
@@ -448,7 +477,18 @@ describe('LeagueRegistrationComponent', () => {
         expect(suggestions).toEqual(['ACME', 'Apex']);
       });
 
+      it('should clear the team and suggest all teams again when its clear icon is clicked', async () => {
+        await type('company', 'a');
 
+        suffix('company').click();
+        await fixture.whenStable();
+
+        expect(component.application().companyId).toBeNull();
+        expect(input('company').value).toBe('');
+        expect(suffix('company')).toBeNull();
+        const suggestions = Array.from(document.querySelectorAll('igx-drop-down-item')).map(i => i.textContent.trim());
+        expect(suggestions).toEqual(['ACME', 'Apex', 'Bellum']);
+      });
     });
   });
 });

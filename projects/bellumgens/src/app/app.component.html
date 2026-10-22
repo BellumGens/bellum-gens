@@ -133,7 +133,7 @@
 
     <div class="main-content-wrapper">
       <div class="content">
-        <router-outlet></router-outlet>
+        <router-outlet (activate)="routeActivated($event)"></router-outlet>
 
         <footer class="footer">
           <igx-divider></igx-divider>
