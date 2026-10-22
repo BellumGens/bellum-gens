@@ -136,20 +136,64 @@ describe('AppComponent', () => {
       expect(successes).toEqual([]);
     });
 
-    it('should toggle the drawer from the menu icon and close it on navigation', async () => {
+    it('should toggle the drawer from the menu button and close it on navigation', async () => {
       flushFlags();
       flushUserCheck();
-      const menu = el().querySelector<HTMLElement>('igx-icon.drawer-action');
+      const menu = el().querySelector<HTMLButtonElement>('button.drawer-action');
 
       expect(drawer().isOpen).toBe(false);
+      expect(menu.getAttribute('aria-expanded')).toBe('false');
       menu.click();
       await render();
       expect(drawer().isOpen).toBe(true);
+      expect(menu.getAttribute('aria-expanded')).toBe('true');
 
       await TestBed.inject(Router).navigateByUrl('/');
       await render();
 
       expect(drawer().isOpen).toBe(false);
+    });
+
+    it('should expose the menu toggle as a named button controlling the drawer', () => {
+      flushFlags();
+      flushUserCheck();
+      const menu = el().querySelector<HTMLButtonElement>('igx-navbar-action button.drawer-action');
+
+      expect(menu).not.toBeNull();
+      expect(menu.type).toBe('button');
+      expect(menu.getAttribute('aria-label')).toBe('Toggle navigation menu');
+      expect(menu.getAttribute('aria-controls')).toBe('navigation');
+      expect(el().querySelector('#navigation')).not.toBeNull();
+      expect(el().querySelector('igx-navbar-action igx-icon[class*="navigatable"]')).toBeNull();
+    });
+
+    it('should link the logo to the home page', () => {
+      flushFlags();
+      flushUserCheck();
+      const logo = el().querySelector<HTMLImageElement>('igx-navbar-action img');
+      const link = logo.closest('a');
+
+      expect(link).not.toBeNull();
+      expect(link.getAttribute('href')).toBe('/');
+      expect(logo.getAttribute('alt')).toBe('Esports Business League');
+    });
+
+    it('should render the drawer items as links', () => {
+      flushFlags();
+      flushUserCheck();
+      const items = Array.from(el().querySelectorAll<HTMLElement>('[igxDrawerItem]:not(.igx-nav-drawer__item--header)'));
+
+      expect(items.length).toBe(7);
+      items.forEach(item => {
+        expect(item.tagName).toBe('A');
+        expect(item.getAttribute('href')).toBeTruthy();
+      });
+      expect(items.map(i => i.querySelector('span').textContent.trim())).toEqual([
+        'EBL Seasons', 'Tournaments', 'Shop', 'Tournament format', 'Our partners', 'Our crew', 'Contact us'
+      ]);
+      expect(items.map(i => i.getAttribute('href'))).toEqual([
+        '/tournaments', '/tournaments/hub', '/shop', '/tournaments/format', '/#partners', '/tournaments/crew', '/#aboutus'
+      ]);
     });
 
     describe('drawer pinning', () => {
@@ -187,6 +231,7 @@ describe('AppComponent', () => {
         expect(miniItemTitles()).toEqual([
           'EBL Seasons', 'Tournaments', 'Shop', 'Tournament format', 'Our partners', 'Our crew', 'Contact us'
         ]);
+        Array.from(el().querySelectorAll('[igxDrawerItem][title]')).forEach(item => expect(item.tagName).toBe('A'));
 
         await resizeTo(1024);
 

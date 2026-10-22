@@ -8,6 +8,7 @@ import { ActivatedRoute, Params, provideRouter, UrlSegment } from '@angular/rout
 import { BehaviorSubject, config, of, throwError } from 'rxjs';
 import { HttpErrorResponse, provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { signal, WritableSignal } from '@angular/core';
+import { By } from '@angular/platform-browser';
 import { IChipSelectEventArgs } from '@infragistics/igniteui-angular/chips';
 import {
   ApiSearchService,
@@ -24,6 +25,8 @@ import {
   StratOrderBy,
   VoteDirection
 } from '../../../../common/src/public_api';
+import { ConfirmComponent } from '../../../../common/src/lib/confirm/confirm.component';
+import { NewStrategyComponent } from './new-strategy/new-strategy.component';
 
 const strat = (id: string, overrides: Partial<CSGOStrategy> = {}): CSGOStrategy => ({
   id,
@@ -54,16 +57,27 @@ describe('StrategiesComponent', () => {
   const renderedTitles = (): string [] =>
     Array.from<HTMLElement>(fixture.nativeElement.querySelectorAll('h2.strat-title')).map(h => h.textContent.trim());
 
+  const actionsButtons = (): HTMLButtonElement [] =>
+    Array.from(fixture.nativeElement.querySelectorAll('button[aria-label="Strategy actions"]'));
+
   // Opens the actions drop-down of the first card and returns its item labels.
   const openActions = async (): Promise<string []> => {
-    const more = Array.from<HTMLElement>(fixture.nativeElement.querySelectorAll('igx-icon'))
-      .find(i => i.textContent.trim() === 'more_vert');
-    more.click();
+    actionsButtons()[0].click();
     await fixture.whenStable();
 
     return Array.from<HTMLElement>(document.querySelectorAll('igx-drop-down-item .dd-item-content span'))
       .map(i => i.textContent.trim());
   };
+
+  // Clicks the item with the given label in the open actions drop-down.
+  const selectAction = async (label: string) => {
+    Array.from<HTMLElement>(document.querySelectorAll('igx-drop-down-item'))
+      .find(i => i.querySelector('.dd-item-content span').textContent.trim() === label)
+      .click();
+    await fixture.whenStable();
+  };
+
+  const loadMoreButton = (): HTMLButtonElement => fixture.nativeElement.querySelector('button.load-more-button');
 
   const create = async () => {
     fixture = TestBed.createComponent(StrategiesComponent);
@@ -148,8 +162,10 @@ describe('StrategiesComponent', () => {
     });
 
     it('loads the next page from the load more card', async () => {
-      const loadMore = fixture.nativeElement.querySelector('igx-avatar[icon="sync"]') as HTMLElement;
-      expect(loadMore).toBeTruthy();
+      const loadMore = loadMoreButton();
+      expect(loadMore.type).toBe('button');
+      expect(loadMore.getAttribute('aria-label')).toBe('Load More...');
+      expect(loadMore.querySelector('igx-avatar[icon="sync"]').getAttribute('aria-hidden')).toBe('true');
 
       loadMore.click();
       expect(component.page).toBe(1);
@@ -164,7 +180,7 @@ describe('StrategiesComponent', () => {
       strategiesService['_hasMoreStrats'].set(false);
       await fixture.whenStable();
 
-      expect(fixture.nativeElement.querySelector('igx-avatar[icon="sync"]')).toBeNull();
+      expect(loadMoreButton()).toBeNull();
     });
 
     it('filters the rendered list by the selected maps on user interaction only', async () => {
@@ -293,6 +309,87 @@ describe('StrategiesComponent', () => {
 
       expect(component.strats().map(s => s.id)).toEqual(['1', '2', 'new']);
       expect(renderedTitles()).toContain('Strat new');
+    });
+
+    it('renders the strategy actions as named menu buttons', async () => {
+      const buttons = actionsButtons();
+      expect(buttons.length).toBe(2);
+      for (const button of buttons) {
+        expect(button.type).toBe('button');
+        expect(button.getAttribute('aria-haspopup')).toBe('listbox');
+        expect(button.getAttribute('aria-expanded')).toBe('false');
+      }
+
+      await openActions();
+
+      expect(actionsButtons()[0].getAttribute('aria-expanded')).toBe('true');
+      expect(actionsButtons()[1].getAttribute('aria-expanded')).toBe('false');
+    });
+
+    it('shares a strategy from the actions drop-down', async () => {
+      const share = vi.spyOn(TestBed.inject(SocialMediaStrategyService), 'shareOnTwitter').mockImplementation(() => undefined);
+
+      await openActions();
+      await selectAction('Share');
+
+      expect(share).toHaveBeenCalledWith(component.strats()[0]);
+    });
+
+    it('edits and deletes a strategy from the actions drop-down', async () => {
+      user.set({ id: 'owner' } as ApplicationUser);
+      strategiesService['_strategies'].set([strat('1', { userId: 'owner' })]);
+      await fixture.whenStable();
+      const newStrategy = fixture.debugElement.query(By.directive(NewStrategyComponent)).componentInstance as NewStrategyComponent;
+      const confirm = fixture.debugElement.query(By.directive(ConfirmComponent)).componentInstance as ConfirmComponent;
+      const edit = vi.spyOn(newStrategy, 'open').mockImplementation(() => undefined);
+      const del = vi.spyOn(confirm, 'open').mockImplementation(() => undefined);
+
+      await openActions();
+      await selectAction('Edit');
+      expect(edit).toHaveBeenCalledWith(component.strats()[0], 'Edit strategy');
+
+      await openActions();
+      await selectAction('Delete');
+      expect(del).toHaveBeenCalledWith(component.strats()[0]);
+    });
+
+    it('runs a strategy action with the keyboard', async () => {
+      user.set({ id: 'owner' } as ApplicationUser);
+      strategiesService['_strategies'].set([strat('1', { userId: 'owner' })]);
+      await fixture.whenStable();
+      const newStrategy = fixture.debugElement.query(By.directive(NewStrategyComponent)).componentInstance as NewStrategyComponent;
+      const edit = vi.spyOn(newStrategy, 'open').mockImplementation(() => undefined);
+
+      await openActions();
+      const button = actionsButtons()[0];
+      button.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
+      button.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
+      button.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+      await fixture.whenStable();
+
+      expect(edit).toHaveBeenCalledWith(component.strats()[0], 'Edit strategy');
+    });
+
+    it('links the title, image and comments of a strategy to its details', async () => {
+      strategiesService['_strategies'].set([strat('1', { stratImage: '/strat-1.png', comments: [] })]);
+      await fixture.whenStable();
+
+      const title = fixture.nativeElement.querySelector('h2.strat-title a') as HTMLAnchorElement;
+      expect(title.getAttribute('href')).toBe('/strategies/details/strat-1');
+      expect(title.textContent.trim()).toBe('Strat 1');
+
+      // The image repeats the title link, so it is kept out of the tab order and the accessibility tree.
+      const image = fixture.nativeElement.querySelector('img.strat-image') as HTMLImageElement;
+      const imageLink = image.closest('a');
+      expect(imageLink.getAttribute('href')).toBe('/strategies/details/strat-1');
+      expect(imageLink.getAttribute('tabindex')).toBe('-1');
+      expect(imageLink.getAttribute('aria-hidden')).toBe('true');
+      expect(image.getAttribute('alt')).toBe('');
+
+      const comments = fixture.nativeElement.querySelector('a.comments-link') as HTMLAnchorElement;
+      expect(comments.getAttribute('href')).toBe('/strategies/details/strat-1');
+      expect(comments.getAttribute('aria-label')).toBe('Comments: 0');
+      expect(comments.querySelector('igx-badge').getAttribute('aria-hidden')).toBe('true');
     });
 
     it('shares a strategy on twitter', () => {

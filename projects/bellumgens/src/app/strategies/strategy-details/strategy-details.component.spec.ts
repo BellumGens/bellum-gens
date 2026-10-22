@@ -92,13 +92,16 @@ describe('StrategyDetailsComponent', () => {
     await fixture.whenStable();
   };
 
+  // The list item of the comment at the given index (the first list item is the "Comments" header).
+  const commentItem = (index: number): HTMLElement => el().querySelectorAll<HTMLElement>('igx-list-item')[index + 1];
+
+  const actionsButton = (index: number): HTMLButtonElement => commentItem(index).querySelector('button');
+
   // Opens the actions drop-down of the comment at the given index and clicks the item with the given label.
   const commentAction = async (index: number, label: string) => {
-    const more = Array.from<HTMLElement>(el().querySelectorAll('igx-list-item igx-icon'))
-      .filter(i => i.textContent.trim() === 'more_vert')[index];
-    more.click();
+    actionsButton(index).click();
     await fixture.whenStable();
-    const dropDown = el().querySelectorAll('igx-drop-down')[index];
+    const dropDown = commentItem(index).querySelector('igx-drop-down');
     const item = Array.from<HTMLElement>(dropDown.querySelectorAll('igx-drop-down-item'))
       .find(i => i.querySelector('.dd-item-content span').textContent.trim() === label);
     item.click();
@@ -290,6 +293,14 @@ describe('StrategyDetailsComponent', () => {
         expect(button('vote up').className).not.toContain('user-has-voted');
       });
 
+      it('shows no comment actions', async () => {
+        await loadStrategy(strategy({ id: 'strat-3', comments: [comment('c1'), comment('c2', { userId: 'me' })] }));
+
+        expect(el().querySelectorAll('h3[igxListLineTitle]').length).toBe(2);
+        expect(el().querySelector('igx-list-item button')).toBeNull();
+        expect(el().querySelector('igx-list-item igx-drop-down')).toBeNull();
+      });
+
       it('opens the login instead of voting', () => {
         const openLoginSpy = vi.fn();
         const sub = authService.openLogin.subscribe(openLoginSpy);
@@ -339,6 +350,50 @@ describe('StrategyDetailsComponent', () => {
       it('lists the comments', () => {
         const titles = Array.from<HTMLElement>(el().querySelectorAll('h3[igxListLineTitle]')).map(h => h.textContent);
         expect(titles).toEqual(['Comment c1', 'Comment c2']);
+      });
+
+      it('shows the comment actions only on the comments of the user', () => {
+        expect(actionsButton(0)).toBeNull();
+        expect(commentItem(0).querySelector('igx-drop-down')).toBeNull();
+
+        const actions = actionsButton(1);
+        expect(actions.type).toBe('button');
+        expect(actions.getAttribute('aria-label')).toBe('Comment actions');
+        expect(actions.getAttribute('aria-haspopup')).toBe('listbox');
+        expect(actions.getAttribute('aria-expanded')).toBe('false');
+        expect(actions.closest('[igxListAction]')).toBeTruthy();
+      });
+
+      it('hides the comment actions when the user logs out', async () => {
+        authUser.set(null);
+        await fixture.whenStable();
+
+        expect(el().querySelector('igx-list-item button')).toBeNull();
+      });
+
+      it('marks the comment actions as expanded while open', async () => {
+        actionsButton(1).click();
+        await fixture.whenStable();
+
+        expect(actionsButton(1).getAttribute('aria-expanded')).toBe('true');
+
+        actionsButton(1).click();
+        await fixture.whenStable();
+
+        expect(actionsButton(1).getAttribute('aria-expanded')).toBe('false');
+      });
+
+      it('edits a comment with the keyboard', async () => {
+        const actions = actionsButton(1);
+        actions.click();
+        await fixture.whenStable();
+
+        actions.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
+        actions.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+        await fixture.whenStable();
+
+        expect(component.editedCommentId()).toBe('c2');
+        expect(document.activeElement).toBe(textarea());
       });
 
       it('assigns a user that logs in later to the comment draft', async () => {
@@ -518,16 +573,17 @@ describe('StrategyDetailsComponent', () => {
         const confirm = fixture.debugElement.query(By.directive(ConfirmComponent)).componentInstance as ConfirmComponent;
         vi.spyOn(confirm, 'open');
 
-        await commentAction(0, 'Delete');
-        const target = component.strat().comments[0];
+        await commentAction(1, 'Delete');
+        const target = component.strat().comments[1];
         expect(confirm.open).toHaveBeenCalledWith(target);
+        expect(component.editedCommentId()).toBeNull();
 
         confirm.okClicked();
-        const req = httpMock.expectOne(r => r.method === 'DELETE' && r.url.endsWith('/strategy/comment?id=c1'));
+        const req = httpMock.expectOne(r => r.method === 'DELETE' && r.url.endsWith('/strategy/comment?id=c2'));
         req.flush(null);
         await fixture.whenStable();
 
-        expect(component.strat().comments.map(c => c.id)).toEqual(['c2']);
+        expect(component.strat().comments.map(c => c.id)).toEqual(['c1']);
         expect(el().querySelectorAll('h3[igxListLineTitle]').length).toBe(1);
       });
     });

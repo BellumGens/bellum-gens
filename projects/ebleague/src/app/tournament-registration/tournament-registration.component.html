@@ -27,8 +27,10 @@
       </igx-prefix>
       <input type="email" id="email" #userMail name="email" [required]="true" igxInput pattern="^[a-zA-Z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$" [(ngModel)]="application().email" />
       @if (userMail.value) {
-        <igx-suffix (click)="application().email = null">
-          <igx-icon>clear</igx-icon>
+        <igx-suffix>
+          <button type="button" igxIconButton="flat" (click)="application().email = null" i18n-aria-label aria-label="Clear email">
+            <igx-icon>clear</igx-icon>
+          </button>
         </igx-suffix>
       }
     </igx-input-group>
@@ -36,7 +38,7 @@
     @if (application().game === gameEnum.CSGO) {
       <!-- IgxSelect: default positioning changed to AutoPositionStrategy (below/above input).
      To preserve overlap behavior: this.select.overlaySettings = { positionStrategy: new IgxSelectOverlapPositionStrategy(this.select) }; -->
-<igx-select type="border" id="team" #team name="team" [required]="true" [(ngModel)]="application().teamId" class="registration-form-input" >
+<igx-select type="border" id="team" #team name="team" [required]="true" [(ngModel)]="application().teamId" class="registration-form-input" (selectionChanging)="teamSelectionChanging($event, team, newTeam)">
         <label igxLabel for="email" i18n>Choose your team</label>
         <igx-prefix>
           <igx-icon>people</igx-icon>
@@ -47,7 +49,7 @@
             <span class="title margin-left">{{ team.teamName }}</span>
           </igx-select-item>
         }
-        <igx-select-item (click)="newTeam.open(false)" i18n>Create a new team...</igx-select-item>
+        <igx-select-item [value]="newTeamOption" i18n>Create a new team...</igx-select-item>
       </igx-select>
     }
 
@@ -59,8 +61,10 @@
         </igx-prefix>
         <input id="battletag" #battletag name="battletag" [required]="true" igxInput [pattern]="battleTagRegex" [(ngModel)]="application().battleNetId" />
         @if (battletag.value) {
-          <igx-suffix (click)="application().battleNetId = null">
-            <igx-icon>clear</igx-icon>
+          <igx-suffix>
+            <button type="button" igxIconButton="flat" (click)="application().battleNetId = null" i18n-aria-label aria-label="Clear battle tag">
+              <igx-icon>clear</igx-icon>
+            </button>
           </igx-suffix>
         }
       </igx-input-group>
@@ -73,8 +77,10 @@
       </igx-prefix>
       <input id="company" #company name="company" igxInput [igxAutocomplete]="companiesDD" [(ngModel)]="application().companyId" [required]="true" />
       @if (company.value) {
-        <igx-suffix (click)="application().companyId = null">
-          <igx-icon>clear</igx-icon>
+        <igx-suffix>
+          <button type="button" igxIconButton="flat" (click)="application().companyId = null" i18n-aria-label aria-label="Clear company">
+            <igx-icon>clear</igx-icon>
+          </button>
         </igx-suffix>
       }
       <igx-hint i18n>*Choose the company associated with your participation...</igx-hint>
@@ -89,7 +95,7 @@
 
     <div class="horizontal-center">
       <igx-checkbox #termsAccepted id="accept" name="accept" class="accept-terms-checkbox">
-        <label for="accept" i18n>I accept the <span class="highlight navigatable" (click)="scrollToTerms($event)">terms and conditions</span>.</label>
+        <label for="accept" i18n>I accept the <a href="#terms" class="highlight" (click)="scrollToTerms($event)">terms and conditions</a>.</label>
       </igx-checkbox>
     </div>
 

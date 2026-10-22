@@ -48,7 +48,7 @@ describe('LeagueRegistrationComponent', () => {
 
   const el = (): HTMLElement => fixture.nativeElement;
   const input = (name: string) => el().querySelector<HTMLInputElement>(`input[name="${name}"]`);
-  const suffix = (name: string) => input(name).closest('igx-input-group').querySelector<HTMLElement>('igx-suffix');
+  const suffix = (name: string) => input(name).closest('igx-input-group').querySelector<HTMLButtonElement>('igx-suffix button');
   const submitButton = () => el().querySelector<HTMLButtonElement>('button.submit-registration');
   const details = () => el().querySelector<HTMLElement>('.application-details');
   const termsDialog = (): IgxDialogComponent => fixture.debugElement.query(By.directive(IgxDialogComponent)).componentInstance;
@@ -297,6 +297,35 @@ describe('LeagueRegistrationComponent', () => {
         expect(component.application().country).toBe('Serbia');
       });
 
+      it('should render the clear actions as named buttons that do not submit the form', async () => {
+        const fields = ['email', 'firstName', 'lastName', 'discord', 'battletag', 'company'];
+        for (const field of fields) {
+          await type(field, 'Value');
+        }
+
+        expect(fields.map(field => suffix(field).type)).toEqual(fields.map(() => 'button'));
+        expect(fields.map(field => suffix(field).getAttribute('aria-label'))).toEqual([
+          'Clear email', 'Clear first name', 'Clear last name', 'Clear Discord ID', 'Clear battle tag', 'Clear team'
+        ]);
+      });
+
+      it('should open the terms from a keyboard focusable link without navigating', async () => {
+        const link = el().querySelector<HTMLAnchorElement>('label a');
+        expect(link.getAttribute('href')).toBe('#');
+
+        const click = new MouseEvent('click', { bubbles: true, cancelable: true });
+        link.dispatchEvent(click);
+        await fixture.whenStable();
+
+        expect(click.defaultPrevented).toBe(true);
+        expect(termsDialog().isOpen).toBe(true);
+        expect(termsCheckbox().checked).toBe(false);
+      });
+
+      it('should label the battle tag field', () => {
+        expect(el().querySelector('label[for="battletag"]').textContent.trim()).toBe('Battle tag');
+      });
+
       it('should clear a field when its clear icon is clicked', async () => {
         const fields = ['email', 'firstName', 'lastName', 'discord', 'battletag', 'company'];
         for (const field of fields) {
@@ -342,7 +371,7 @@ describe('LeagueRegistrationComponent', () => {
       });
 
       it('should accept the terms from the terms and conditions dialog', async () => {
-        el().querySelector<HTMLAnchorElement>('label a.navigatable').click();
+        el().querySelector<HTMLAnchorElement>('label a').click();
         await fixture.whenStable();
         expect(termsDialog().isOpen).toBe(true);
         expect(termsCheckbox().checked).toBe(false);
@@ -355,7 +384,7 @@ describe('LeagueRegistrationComponent', () => {
       });
 
       it('should not accept the terms when the terms and conditions dialog is cancelled', async () => {
-        el().querySelector<HTMLAnchorElement>('label a.navigatable').click();
+        el().querySelector<HTMLAnchorElement>('label a').click();
         await fixture.whenStable();
         expect(termsDialog().isOpen).toBe(true);
 

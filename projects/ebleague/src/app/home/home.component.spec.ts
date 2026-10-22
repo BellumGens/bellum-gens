@@ -57,4 +57,30 @@ describe('TournamentHomeComponent', () => {
     expect(component.openLogin).toBeDefined();
     expect(typeof component.openLogin).toBe('function');
   });
+
+  it('should link the league format headings to the format page', () => {
+    const links = Array.from(fixture.nativeElement.querySelectorAll('.format-card-header h3 a') as NodeListOf<HTMLAnchorElement>);
+
+    expect(links.map(l => l.textContent.trim())).toEqual(['Counter-Strike League', 'StarCraft II League']);
+    links.forEach(l => expect(l.getAttribute('href')).toBe('/format'));
+  });
+
+  it('should clear the subscription email from a named button', async () => {
+    const clear = () => (fixture.nativeElement as HTMLElement).querySelector<HTMLButtonElement>('form igx-suffix button');
+    expect(clear()).toBeNull();
+
+    component.userEmail.set('fan@example.com');
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    expect(clear().type).toBe('button');
+    expect(clear().getAttribute('aria-label')).toBe('Clear email');
+
+    clear().click();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    expect(component.userEmail()).toBe('');
+    expect(clear()).toBeNull();
+  });
 });

@@ -995,8 +995,8 @@ describe('AdminSc2Component', () => {
 
     const api = () => apiService['_apiEndpoint'];
     const el = (): HTMLElement => fixture.nativeElement;
-    const iconIn = (root: Element, text: string) =>
-      Array.from(root.querySelectorAll<HTMLElement>('igx-icon')).find(i => i.textContent.trim() === text);
+    // The icon actions are buttons, found by their accessible name
+    const named = (root: Element, label: string) => root.querySelector<HTMLButtonElement>(`button[aria-label="${label}"]`);
     const buttonIn = (root: Element, text: string) =>
       Array.from(root.querySelectorAll<HTMLButtonElement>('button')).find(b => b.textContent.includes(text));
     const grids = () => fixture.debugElement.queryAll(By.directive(IgxGridComponent)).map(d => d.componentInstance as IgxGridComponent);
@@ -1157,6 +1157,20 @@ describe('AdminSc2Component', () => {
         expect(el().querySelector('h1[igxCardHeaderTitle]').textContent).toContain('Spring League Participants');
       });
 
+      it('names its icon only refresh buttons and has no clickable icons', () => {
+        [
+          named(registrationsGrid().nativeElement, 'Refresh registrations'),
+          named(matchGrid().nativeElement, 'Refresh matches'),
+          named(el().querySelector('igx-card-header'), 'Refresh participants')
+        ].forEach(button => {
+          expect(button).not.toBeNull();
+          expect(button.type).toBe('button');
+        });
+        expect(el().querySelectorAll('igx-icon.navigatable').length).toBe(0);
+        Array.from(el().querySelectorAll<HTMLButtonElement>('button[igxIconButton]'))
+          .forEach(button => expect(button.getAttribute('aria-label') || button.title).toBeTruthy());
+      });
+
       it('loads the data of a tournament picked from the tournament select', async () => {
         const tournamentSelect = selectLabelled('Select tournament');
         expect(tournamentSelect.items.map(i => i.element.nativeElement.textContent.trim())).toEqual(['Spring League', 'Autumn League']);
@@ -1218,7 +1232,7 @@ describe('AdminSc2Component', () => {
         it('refreshes the registrations and groups from the toolbar', () => {
           const toolbar = registrationsGrid().nativeElement.querySelector('igx-grid-toolbar');
 
-          iconIn(toolbar, 'refresh').closest('button').click();
+          named(toolbar, 'Refresh registrations').click();
 
           httpMock.expectOne(`${api()}/tournament/tournamentregistrations?tournamentId=t1`).flush([]);
           httpMock.expectOne(`${api()}/tournament/sc2groups?tournamentId=t1`).flush([]);
@@ -1342,6 +1356,13 @@ describe('AdminSc2Component', () => {
           expect(cellOf('m2', 'demoLink').textContent.trim()).toBe('No replay');
         });
 
+        it('exposes the row actions as named buttons', () => {
+          const actions = Array.from(cellOf('m1', 'actions').querySelectorAll('button'));
+
+          expect(actions.map(b => b.getAttribute('aria-label'))).toEqual(['Add results', 'Edit match', 'Delete match']);
+          actions.forEach(b => expect(b.type).toBe('button'));
+        });
+
         it('shows the map results, walkovers and unplayed matches in the row details', async () => {
           matchGrid().expandAll();
           await render();
@@ -1356,7 +1377,7 @@ describe('AdminSc2Component', () => {
         it('refreshes the matches from the toolbar', () => {
           const toolbar = matchGrid().nativeElement.querySelector('igx-grid-toolbar');
 
-          iconIn(toolbar, 'refresh').closest('button').click();
+          named(toolbar, 'Refresh matches').click();
 
           httpMock.expectOne(`${api()}/tournament/sc2matches?tournamentId=t1`).flush([]);
           expect(component.matches()).toEqual([]);
@@ -1364,7 +1385,7 @@ describe('AdminSc2Component', () => {
 
         it('deletes a match once its deletion is confirmed', async () => {
           const confirmMatch = confirms()[1];
-          iconIn(cellOf('m2', 'actions'), 'delete_forever').click();
+          named(cellOf('m2', 'actions'), 'Delete match').click();
           await render();
           expect(confirmMatch.dialog().isOpen).toBe(true);
 
@@ -1394,27 +1415,32 @@ describe('AdminSc2Component', () => {
           });
 
           it('clears the group of the match', async () => {
-            const clearGroup = () => iconIn(selectElement(selectLabelled('Group')), 'clear');
-            expect(clearGroup()).toBeDefined();
+            const clearGroup = () => named(selectElement(selectLabelled('Group')), 'Clear group');
+            expect(clearGroup()).not.toBeNull();
+            expect(clearGroup().type).toBe('button');
 
             clearGroup().click();
             await render();
 
             expect(component.matchInEdit.groupId).toBeNull();
-            expect(clearGroup()).toBeUndefined();
+            expect(clearGroup()).toBeNull();
+            // clearing the group does not open the group select
+            expect(selectLabelled('Group').collapsed).toBe(true);
           });
 
           it('clears the video and demo links of the match', async () => {
             const [video, demo] = Array.from(dialogWindow(dialog).querySelectorAll<HTMLInputElement>('input[type="url"]'));
-            const clearOf = (input: HTMLInputElement) => iconIn(input.closest('igx-input-group'), 'clear');
-            expect(clearOf(video)).toBeUndefined();
-            expect(clearOf(demo)).toBeUndefined();
+            const clearOf = (input: HTMLInputElement) => input.closest('igx-input-group').querySelector<HTMLButtonElement>('igx-suffix button');
+            expect(clearOf(video)).toBeNull();
+            expect(clearOf(demo)).toBeNull();
 
             typeInto(video, 'https://youtu.be/new');
             typeInto(demo, 'https://replays.sc2.gg/new');
             await render();
             expect(component.matchInEdit.videoLink).toBe('https://youtu.be/new');
             expect(component.matchInEdit.demoLink).toBe('https://replays.sc2.gg/new');
+            expect(clearOf(video).getAttribute('aria-label')).toBe('Clear video link');
+            expect(clearOf(demo).getAttribute('aria-label')).toBe('Clear demo link');
 
             clearOf(video).click();
             clearOf(demo).click();
@@ -1422,8 +1448,8 @@ describe('AdminSc2Component', () => {
 
             expect(component.matchInEdit.videoLink).toBeNull();
             expect(component.matchInEdit.demoLink).toBeNull();
-            expect(clearOf(video)).toBeUndefined();
-            expect(clearOf(demo)).toBeUndefined();
+            expect(clearOf(video)).toBeNull();
+            expect(clearOf(demo)).toBeNull();
           });
 
           it('submits the picked players and adds the created match to the grid', async () => {
@@ -1507,7 +1533,7 @@ describe('AdminSc2Component', () => {
         it('opens a match for editing with a Date start time', async () => {
           const dialog = dialogTitled('New match');
 
-          iconIn(cellOf('m3', 'actions'), 'edit').click();
+          named(cellOf('m3', 'actions'), 'Edit match').click();
           await render();
 
           expect(dialog.isOpen).toBe(true);
@@ -1524,7 +1550,7 @@ describe('AdminSc2Component', () => {
           let dialog: IgxDialogComponent;
 
           const openResults = async (id: string) => {
-            iconIn(cellOf(id, 'actions'), 'add').click();
+            named(cellOf(id, 'actions'), 'Add results').click();
             await render();
           };
 
@@ -1637,10 +1663,24 @@ describe('AdminSc2Component', () => {
           expect(avatars.map(a => [a.initials, a.src])).toEqual([['Alpha#111', undefined], ['Charlie', 'charlie.png']]);
         });
 
+        it('exposes the group actions as named buttons', async () => {
+          const card = groupCards()[0];
+          const labels = (root: Element) => Array.from(root.querySelectorAll('button')).map(b => b.getAttribute('aria-label'));
+
+          expect(labels(card.querySelector('.action-buttons'))).toEqual(['Edit group', 'Delete group']);
+          expect(named(card.querySelector('igx-list-item'), 'Remove from group').type).toBe('button');
+          expect(named(newGroupCard(), 'New group').type).toBe('button');
+
+          named(card, 'Edit group').click();
+          await render();
+
+          expect(labels(card.querySelector('igx-card-header igx-suffix'))).toEqual(['Save group', 'Cancel']);
+        });
+
         it('links a participant through its custom url when it has one', async () => {
           participants[0].user = sc2User('user-p1', 'Alpha', customUrl('alpha'));
 
-          iconIn(el().querySelector('igx-card-header'), 'refresh').closest('button').click();
+          named(el().querySelector('igx-card-header'), 'Refresh participants').click();
 
           httpMock.expectOne(`${api()}/tournament/sc2regs?tournamentId=t1`).flush([...participants]);
           await render();
@@ -1685,7 +1725,7 @@ describe('AdminSc2Component', () => {
         it('removes a participant from a group', async () => {
           const trigger = component.pipeTrigger();
 
-          iconIn(groupCards()[0].querySelector('igx-list-item'), 'delete').click();
+          named(groupCards()[0].querySelector('igx-list-item'), 'Remove from group').click();
 
           const req = httpMock.expectOne(`${api()}/tournament/participanttogroup?id=p2&groupid=g1`);
           expect(req.request.method).toBe('DELETE');
@@ -1714,13 +1754,13 @@ describe('AdminSc2Component', () => {
         it('renames a group inline and submits it for the selected tournament', async () => {
           const card = groupCards()[0];
 
-          iconIn(card, 'edit').click();
+          named(card, 'Edit group').click();
           await render();
           const input = card.querySelector<HTMLInputElement>('input#groupNameg1');
           expect(input).not.toBeNull();
           typeInto(input, 'Group Alpha');
 
-          iconIn(card, 'done').click();
+          named(card, 'Save group').click();
 
           const req = httpMock.expectOne(`${api()}/tournament/sc2group?id=g1`);
           expect(req.request.method).toBe('PUT');
@@ -1735,9 +1775,9 @@ describe('AdminSc2Component', () => {
         it('cancels renaming a group without submitting', async () => {
           const card = groupCards()[0];
 
-          iconIn(card, 'edit').click();
+          named(card, 'Edit group').click();
           await render();
-          iconIn(card, 'cancel').click();
+          named(card, 'Cancel').click();
           await render();
 
           expect(card.querySelector('input#groupNameg1')).toBeNull();
@@ -1748,7 +1788,7 @@ describe('AdminSc2Component', () => {
           const confirmGroup = confirms()[0];
           const trigger = component.pipeTrigger();
 
-          iconIn(groupCards()[1], 'delete_forever').click();
+          named(groupCards()[1], 'Delete group').click();
           await render();
           expect(confirmGroup.dialog().isOpen).toBe(true);
           dialogAction(confirmGroup.dialog(), 'OK').click();
@@ -1766,7 +1806,7 @@ describe('AdminSc2Component', () => {
           const confirmGroup = confirms()[0];
           expect(unassigned()).toEqual(['Alpha#111', 'Charlie#333']);
 
-          iconIn(groupCards()[0], 'delete_forever').click();
+          named(groupCards()[0], 'Delete group').click();
           await render();
           dialogAction(confirmGroup.dialog(), 'OK').click();
 
@@ -1778,7 +1818,7 @@ describe('AdminSc2Component', () => {
         });
 
         it('creates a new group for the selected tournament', async () => {
-          iconIn(newGroupCard(), 'add_circle_outline').click();
+          named(newGroupCard(), 'New group').click();
           await render();
           const input = newGroupCard().querySelector<HTMLInputElement>('input#newGroupName');
           typeInto(input, 'Group C');
@@ -1797,14 +1837,14 @@ describe('AdminSc2Component', () => {
 
           // Starting another group begins with an empty name
           expect(component.newGroup).toEqual({ id: '', name: '', inEdit: false });
-          iconIn(newGroupCard(), 'add_circle_outline').click();
+          named(newGroupCard(), 'New group').click();
           await render();
           expect(newGroupCard().querySelector<HTMLInputElement>('input#newGroupName').value).toBe('');
         });
 
         it('gives each group name editor an id of its own, labelled by its label', async () => {
-          groupCards().forEach(card => iconIn(card, 'edit').click());
-          iconIn(newGroupCard(), 'add_circle_outline').click();
+          groupCards().forEach(card => named(card, 'Edit group').click());
+          named(newGroupCard(), 'New group').click();
           await render();
 
           const inputs = Array.from(el().querySelectorAll<HTMLInputElement>('.card-wrapper igx-card-header input'));
@@ -1817,13 +1857,13 @@ describe('AdminSc2Component', () => {
         });
 
         it('clears the name of a new group and cancels creating it', async () => {
-          iconIn(newGroupCard(), 'add_circle_outline').click();
+          named(newGroupCard(), 'New group').click();
           await render();
           expect(newGroupCard().querySelector('igx-suffix')).toBeNull();
           typeInto(newGroupCard().querySelector<HTMLInputElement>('input#newGroupName'), 'Group C');
           await render();
 
-          newGroupCard().querySelector<HTMLElement>('igx-suffix').click();
+          named(newGroupCard(), 'Clear group name').click();
           await render();
           expect(component.newGroup.name).toBeNull();
           expect(newGroupCard().querySelector('igx-suffix')).toBeNull();

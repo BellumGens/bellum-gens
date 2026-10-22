@@ -9,7 +9,7 @@ import { AutoPositionStrategy, HorizontalAlignment, OverlaySettings, PositionSet
 import { IgxDropDownComponent } from '@infragistics/igniteui-angular/drop-down';
 import { IgxInputDirective, IgxInputGroupComponent, IgxLabelDirective, IgxPrefixDirective, IgxSuffixDirective } from '@infragistics/igniteui-angular/input-group';
 import { IgxBannerActionsDirective, IgxBannerComponent } from '@infragistics/igniteui-angular/banner';
-import { IgxButtonDirective, IgxDividerComponent, IgxFlexDirective, IgxLayoutDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
+import { IgxButtonDirective, IgxDividerComponent, IgxFlexDirective, IgxIconButtonDirective, IgxLayoutDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxNavDrawerItemDirective, IgxNavDrawerMiniTemplateDirective, IgxNavDrawerTemplateDirective, IgxNavigationDrawerComponent } from '@infragistics/igniteui-angular/navigation-drawer';
 import { IgxIconComponent, IgxIconService } from '@infragistics/igniteui-angular/icon';
 import { IgxBadgeComponent } from '@infragistics/igniteui-angular/badge';
@@ -73,7 +73,8 @@ import type { NotificationsComponent } from './notifications/notifications.compo
     IgxDropDownComponent,
     QuickSearchComponent,
     SuccessErrorComponent,
-    RouterOutlet
+    RouterOutlet,
+    IgxIconButtonDirective
   ]
 })
 export class AppComponent {

@@ -93,9 +93,15 @@
 
     <igx-column field="actions" width="160px" header=" " [filterable]="false">
       <div class="match-actions" *igxCell="let cell = cell">
-        <igx-icon class="navigatable" title="Добави резултати" (click)="editMatch(cell.row.data, newMatchMapDialog)">add</igx-icon>
-        <igx-icon class="navigatable" (click)="editMatch(cell.row.data, newMatchDialog)">edit</igx-icon>
-        <igx-icon class="navigatable" (click)="confirmMatch.open(cell.row.data)">delete_forever</igx-icon>
+        <button type="button" igxIconButton="flat" (click)="editMatch(cell.row.data, newMatchMapDialog)" i18n-title title="Add results" i18n-aria-label aria-label="Add results">
+          <igx-icon>add</igx-icon>
+        </button>
+        <button type="button" igxIconButton="flat" (click)="editMatch(cell.row.data, newMatchDialog)" i18n-aria-label aria-label="Edit match">
+          <igx-icon>edit</igx-icon>
+        </button>
+        <button type="button" igxIconButton="flat" (click)="confirmMatch.open(cell.row.data)" i18n-aria-label aria-label="Delete match">
+          <igx-icon>delete_forever</igx-icon>
+        </button>
       </div>
     </igx-column>
 
@@ -168,20 +174,30 @@
                   <label igxLabel [for]="'groupName' + group.id" i18n>Group name</label>
                   <input type="text" [id]="'groupName' + group.id" name="groupName" #groupName igxInput [required]="true" [(ngModel)]="group.name" />
                   @if (groupName.value) {
-                    <igx-suffix (click)="group.name = null">
-                      <igx-icon>clear</igx-icon>
+                    <igx-suffix>
+                      <button type="button" igxIconButton="flat" (click)="group.name = null" i18n-aria-label aria-label="Clear group name">
+                        <igx-icon>clear</igx-icon>
+                      </button>
                     </igx-suffix>
                   }
                 </igx-input-group>
               }
               <div class="action-buttons">
                 @if (!group.inEdit) {
-                  <igx-icon class="navigatable action-icon-button" i18n-title title="Edit" (click)="group.inEdit = true">edit</igx-icon>
-                  <igx-icon class="navigatable action-icon-button" i18n-title title="Delete" (click)="confirmGroup.open(group.id)">delete</igx-icon>
+                  <button type="button" igxIconButton="flat" (click)="group.inEdit = true" i18n-title title="Edit" i18n-aria-label aria-label="Edit group">
+                    <igx-icon>edit</igx-icon>
+                  </button>
+                  <button type="button" igxIconButton="flat" (click)="confirmGroup.open(group.id)" i18n-title title="Delete" i18n-aria-label aria-label="Delete group">
+                    <igx-icon>delete</igx-icon>
+                  </button>
                 }
                 @else {
-                  <igx-icon class="navigatable action-icon-button" (click)="group.inEdit = false">cancel</igx-icon>
-                  <igx-icon class="navigatable action-icon-button" (click)="submitGroup(group)">done</igx-icon>
+                  <button type="button" igxIconButton="flat" (click)="group.inEdit = false" i18n-aria-label aria-label="Cancel">
+                    <igx-icon>cancel</igx-icon>
+                  </button>
+                  <button type="button" igxIconButton="flat" (click)="submitGroup(group)" i18n-aria-label aria-label="Save group">
+                    <igx-icon>done</igx-icon>
+                  </button>
                 }
               </div>
             </igx-card-header>
@@ -195,7 +211,9 @@
                       target="_blank">
                       {{ participant.team.teamName }}
                     </a>
-                    <igx-icon class="navigatable" title="Премахни от групата" (click)="removeFromGroup(participant, group)">delete</igx-icon>
+                    <button type="button" igxIconButton="flat" (click)="removeFromGroup(participant, group)" i18n-title title="Remove from group" i18n-aria-label aria-label="Remove from group">
+                      <igx-icon>delete</igx-icon>
+                    </button>
                   </igx-list-item>
                 }
               </igx-list>
@@ -214,8 +232,10 @@
                 <label igxLabel for="newGroupName" i18n>Group name</label>
                 <input type="text" id="newGroupName" name="newGroupName" #groupName igxInput [required]="true" [(ngModel)]="newGroup.name" />
                 @if (groupName.value) {
-                  <igx-suffix (click)="newGroup.name = null">
-                    <igx-icon>clear</igx-icon>
+                  <igx-suffix>
+                    <button type="button" igxIconButton="flat" (click)="newGroup.name = null" i18n-aria-label aria-label="Clear group name">
+                      <igx-icon>clear</igx-icon>
+                    </button>
                   </igx-suffix>
                 }
               </igx-input-group>
@@ -224,7 +244,9 @@
 
           <igx-card-content class="new-group-body">
             @if (!newGroup.inEdit) {
-              <igx-icon class="navigatable" (click)="newGroup.inEdit = true">add_circle_outline</igx-icon>
+              <button type="button" igxIconButton="flat" (click)="newGroup.inEdit = true" i18n-aria-label aria-label="New group">
+                <igx-icon>add_circle_outline</igx-icon>
+              </button>
             }
             @else {
               <button type="button" igxButton (click)="newGroup.inEdit = false" i18n>Cancel</button>
@@ -305,8 +327,10 @@
       #videoLink
       [(ngModel)]="matchInEdit.videoLink" />
       @if (videoLink.value.length > 0) {
-        <igx-suffix (click)="matchInEdit.videoLink = null">
-          <igx-icon>clear</igx-icon>
+        <igx-suffix>
+          <button type="button" igxIconButton="flat" (click)="matchInEdit.videoLink = null" i18n-aria-label aria-label="Clear video link">
+            <igx-icon>clear</igx-icon>
+          </button>
         </igx-suffix>
       }
     </igx-input-group>
@@ -322,8 +346,10 @@
         #demoLink
         [(ngModel)]="matchInEdit.demoLink" />
         @if (demoLink.value.length > 0) {
-          <igx-suffix (click)="matchInEdit.demoLink = null">
-            <igx-icon>clear</igx-icon>
+          <igx-suffix>
+            <button type="button" igxIconButton="flat" (click)="matchInEdit.demoLink = null" i18n-aria-label aria-label="Clear demo link">
+              <igx-icon>clear</igx-icon>
+            </button>
           </igx-suffix>
         }
       </igx-input-group>

@@ -25,13 +25,13 @@
                       </igx-avatar>
                     }
                     @if (isAdmin()) {
-                      <igx-avatar
-                        icon="clear"
-                        shape="circle"
-                        class="country-badge-large navigatable"
-                        title="Remove from role"
+                      <button type="button"
+                        class="avatar-action country-badge-large"
+                        [title]="removeFromRoleLabel(role.user)"
+                        [attr.aria-label]="removeFromRoleLabel(role.user)"
                         (click)="removeFromRole(role)">
-                      </igx-avatar>
+                        <igx-avatar icon="clear" shape="circle"></igx-avatar>
+                      </button>
                     }
                     @if (!isAdmin() && role.user.country) {
                       <igx-avatar
@@ -84,13 +84,13 @@
                     (dragEnd)="roleDraggingEnd()">
                   </igx-avatar>
                   @if (isAdmin()) {
-                    <igx-avatar
-                      icon="clear"
-                      shape="circle"
-                      class="country-badge-medium navigatable"
-                      title="Move to inactive"
+                    <button type="button"
+                      class="avatar-action country-badge-medium"
+                      [title]="moveToInactiveLabel(user)"
+                      [attr.aria-label]="moveToInactiveLabel(user)"
                       (click)="moveToInactive(user)">
-                    </igx-avatar>
+                      <igx-avatar icon="clear" shape="circle"></igx-avatar>
+                    </button>
                   }
                 </div>
                 <a [routerLink]="['/players', user.customUrl || user.userId]">{{ user.username }}</a>
@@ -120,13 +120,13 @@
                     (dragEnd)="roleDraggingEnd()">
                   </igx-avatar>
                   @if (isAdmin() && authUser()?.id !== user.userId) {
-                    <igx-avatar
-                      icon="clear"
-                      shape="circle"
-                      class="country-badge-medium navigatable"
-                      title="Remove from team"
+                    <button type="button"
+                      class="avatar-action country-badge-medium"
+                      [title]="removeFromTeamLabel(user)"
+                      [attr.aria-label]="removeFromTeamLabel(user)"
                       (click)="confirm.open(user)">
-                    </igx-avatar>
+                      <igx-avatar icon="clear" shape="circle"></igx-avatar>
+                    </button>
                   }
                 </div>
                 <a [routerLink]="['/players', user.customUrl || user.userId]">{{ user.username }}</a>

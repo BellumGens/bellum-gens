@@ -35,20 +35,6 @@
 </igx-carousel>
 
 <div class="content-container">
-  <div class="content-container-row">
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3320904478097217"
-        crossorigin="anonymous"></script>
-    <!-- Display Ad horizontal 1 -->
-    <ins class="adsbygoogle"
-        style="display:block"
-        data-ad-client="ca-pub-3320904478097217"
-        data-ad-slot="9044957402"
-        data-ad-format="auto"
-        data-full-width-responsive="true"></ins>
-    <script>
-        (adsbygoogle = window.adsbygoogle || []).push({});
-    </script>
-  </div>
 
   <!-- About section -->
   <div class="content-container-row about-section">
@@ -195,8 +181,10 @@
           </igx-prefix>
           <input type="email" id="subemail" #subMail name="subemail" igxInput pattern="^[a-zA-Z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$" [(ngModel)]="userEmail" />
           @if (subMail.value) {
-            <igx-suffix (click)="userEmail.set('')">
-              <igx-icon>clear</igx-icon>
+            <igx-suffix>
+              <button type="button" igxIconButton="flat" (click)="userEmail.set('')" i18n-aria-label aria-label="Clear email">
+                <igx-icon>clear</igx-icon>
+              </button>
             </igx-suffix>
           }
           <igx-hint i18n>Get email updates from us!</igx-hint>

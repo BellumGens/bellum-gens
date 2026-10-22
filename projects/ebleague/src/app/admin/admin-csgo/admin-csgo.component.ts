@@ -9,7 +9,7 @@ import {
   CSGOActiveDutyMap, ACTIVE_DUTY
 } from '../../../../../common/src/public_api';
 import { environment } from '../../../../../common/src/environments/environment';
-import { IDropDroppedEventArgs, IGX_DRAG_DROP_DIRECTIVES, IgxButtonDirective } from '@infragistics/igniteui-angular/directives';
+import { IDropDroppedEventArgs, IGX_DRAG_DROP_DIRECTIVES, IgxButtonDirective, IgxIconButtonDirective } from '@infragistics/igniteui-angular/directives';
 import { IRowDataEventArgs } from '@infragistics/igniteui-angular/grids/core';
 import { IGX_GRID_DIRECTIVES, IgxGridComponent } from '@infragistics/igniteui-angular/grids/grid';
 import { IGX_DIALOG_DIRECTIVES, IgxDialogComponent } from '@infragistics/igniteui-angular/dialog';
@@ -41,6 +41,7 @@ import { FormsModule } from '@angular/forms';
     IGX_INPUT_GROUP_DIRECTIVES,
     IGX_GRID_DIRECTIVES,
     IgxButtonDirective,
+    IgxIconButtonDirective,
     IgxIconComponent,
     IgxAvatarComponent,
     IGX_LIST_DIRECTIVES,

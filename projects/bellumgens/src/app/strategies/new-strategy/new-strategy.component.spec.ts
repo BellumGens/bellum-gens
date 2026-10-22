@@ -1,5 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
+import { IgxSelectComponent } from '@infragistics/igniteui-angular/select';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { provideRouter, Router } from '@angular/router';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
@@ -81,7 +82,7 @@ describe('NewStrategyComponent', () => {
   const editorButton = () => buttons().find(b => b.textContent.includes('Editor'));
   const submitButton = () => buttons().find(b => b.textContent.includes('Submit'));
   const clearButtonFor = (selector: string) =>
-    el<HTMLElement>(selector).closest('igx-input-group').querySelector<HTMLElement>('igx-suffix') ?? undefined;
+    el<HTMLElement>(selector).closest('igx-input-group').querySelector<HTMLButtonElement>('igx-suffix button') ?? undefined;
   const iframe = () => el<HTMLIFrameElement>('iframe.video-frame');
   const titleText = () => (fixture.nativeElement as HTMLElement).querySelector('form > span')?.textContent.trim();
 
@@ -186,6 +187,33 @@ describe('NewStrategyComponent', () => {
 
       expect(component.newStrategy().title).toBeNull();
       expect(el<HTMLInputElement>('#strategyName').value).toBe('');
+    });
+
+    it('renders the clear actions as named buttons that do not submit the form', async () => {
+      await fillValidForm();
+
+      for (const [selector, name] of [
+        ['#strategyName', 'Clear title'],
+        ['#strategyDescription', 'Clear description'],
+        ['#strategyUrl', 'Clear link']
+      ]) {
+        const clear = clearButtonFor(selector);
+        expect(clear.type).toBe('button');
+        expect(clear.getAttribute('aria-label')).toBe(name);
+      }
+    });
+
+    it('stores a map selected without clicking an item, as with the keyboard', async () => {
+      const select = fixture.debugElement.query(By.directive(IgxSelectComponent)).componentInstance as IgxSelectComponent;
+      const mirage = component.mapList.find(m => m.mapId === CSGOMap.Mirage);
+      const item = select.items.find(i => i.value === mirage.mapId);
+
+      // Enter/Space on a focused item selects it through the same path as the keyboard navigation.
+      select.selectItem(item);
+      await fixture.whenStable();
+
+      expect(component.newStrategy().map).toBe(CSGOMap.Mirage);
+      expect(component.selectedMap).toBe(mirage);
     });
 
     it('stores the selected map', async () => {

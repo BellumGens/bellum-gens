@@ -14,7 +14,8 @@ import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { IGX_RADIO_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/radio';
 import { IgxSwitchComponent } from '@infragistics/igniteui-angular/switch';
 import { IGX_SELECT_DIRECTIVES } from '@infragistics/igniteui-angular/select';
-import { IgxButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
+import { ISelectionEventArgs } from '@infragistics/igniteui-angular/drop-down';
+import { IgxButtonDirective, IgxIconButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
 import { IsVideoPipe } from '../../pipes/is-video.pipe';
 import { Router } from '@angular/router';
 import { SafeVideoLinkPipe } from '../../pipes/safe-video-link.pipe';
@@ -36,7 +37,8 @@ import { FormsModule } from '@angular/forms';
     IgxButtonDirective,
     IgxRippleDirective,
     IsVideoPipe,
-    SafeVideoLinkPipe
+    SafeVideoLinkPipe,
+    IgxIconButtonDirective
   ]
 })
 export class NewStrategyComponent {
@@ -67,6 +69,11 @@ export class NewStrategyComponent {
 
     this.title.set(title || this._defaultTitle);
     this.dialog().open();
+  }
+
+  // Runs for mouse and keyboard selection alike.
+  public selectMap(event: ISelectionEventArgs) {
+    this.selectedMap = this.mapList.find(map => map.mapId === event.newSelection?.value) ?? this.selectedMap;
   }
 
   public resetStrategy() {

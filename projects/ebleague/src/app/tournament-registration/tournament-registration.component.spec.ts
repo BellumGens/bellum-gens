@@ -7,10 +7,12 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { By } from '@angular/platform-browser';
 import { IgxDropDownComponent } from '@infragistics/igniteui-angular/drop-down';
+import { IgxSelectComponent } from '@infragistics/igniteui-angular/select';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { of, Subject, throwError } from 'rxjs';
 
 import { TournamentRegistrationComponent } from './tournament-registration.component';
+import { TeamNewComponent } from '../../../../bellumgens/src/app/team-section/team-new/team-new.component';
 import {
   ApiTournamentsService,
   ApplicationUser,
@@ -247,14 +249,145 @@ describe('TournamentRegistrationComponent', () => {
       document.body.appendChild(terms);
       const scroll = vi.spyOn(terms, 'scrollIntoView');
       create();
-      const event = new MouseEvent('click', { bubbles: true });
+      const event = new MouseEvent('click', { bubbles: true, cancelable: true });
       const stop = vi.spyOn(event, 'stopPropagation');
 
       el().querySelector('.accept-terms-checkbox .highlight').dispatchEvent(event);
 
       expect(scroll).toHaveBeenCalledWith({ behavior: 'smooth' });
       expect(stop).toHaveBeenCalled();
+      // the link only scrolls, it does not navigate
+      expect(event.defaultPrevented).toBe(true);
       terms.remove();
+    });
+
+    it('offers the terms as a keyboard reachable link', () => {
+      create();
+
+      const link = el().querySelector<HTMLAnchorElement>('.accept-terms-checkbox .highlight');
+      expect(link.tagName).toBe('A');
+      expect(link.getAttribute('href')).toBe('#terms');
+      expect(link.textContent.trim()).toBe('terms and conditions');
+    });
+  });
+
+  describe('clearing fields', () => {
+    const clearButton = (label: string) => el().querySelector<HTMLButtonElement>(`igx-suffix button[aria-label="${label}"]`);
+    const render = async () => {
+      await fixture.whenStable();
+      fixture.detectChanges();
+    };
+
+    beforeEach(async () => {
+      authUser.set(makeUser());
+      create();
+      component.selectGame(Game.StarCraft2);
+      component.application.update(application => ({ ...application, companyId: 'Acme' }));
+      fixture.detectChanges();
+      await render();
+    });
+
+    it('offers named clear buttons for the filled in fields', () => {
+      ['Clear email', 'Clear battle tag', 'Clear company'].forEach(label => {
+        const button = clearButton(label);
+        expect(button).not.toBeNull();
+        expect(button.type).toBe('button');
+      });
+    });
+
+    it('clears the email', async () => {
+      clearButton('Clear email').click();
+      await render();
+
+      expect(component.application().email).toBeNull();
+      expect(clearButton('Clear email')).toBeNull();
+    });
+
+    it('clears the battle tag', async () => {
+      clearButton('Clear battle tag').click();
+      await render();
+
+      expect(component.application().battleNetId).toBeNull();
+      expect(clearButton('Clear battle tag')).toBeNull();
+    });
+
+    it('clears the company', async () => {
+      clearButton('Clear company').click();
+      await render();
+
+      expect(component.application().companyId).toBeNull();
+    });
+  });
+
+  describe('creating a new team', () => {
+    let select: IgxSelectComponent;
+    let openNewTeam: ReturnType<typeof vi.spyOn>;
+
+    const keydown = (key: string) => {
+      el().querySelector('igx-select#team input').dispatchEvent(new KeyboardEvent('keydown', { key, bubbles: true }));
+      fixture.detectChanges();
+    };
+
+    beforeEach(() => {
+      vi.mocked(userService.getUserTeams).mockReturnValue(of([team('team-1', 'Alpha')]));
+      authUser.set(makeUser());
+      create();
+      component.selectGame(Game.CSGO);
+      fixture.detectChanges();
+      select = fixture.debugElement.query(By.css('igx-select#team')).componentInstance as IgxSelectComponent;
+      const newTeam = fixture.debugElement.query(By.directive(TeamNewComponent)).componentInstance as TeamNewComponent;
+      openNewTeam = vi.spyOn(newTeam, 'open').mockImplementation(() => undefined);
+    });
+
+    it('opens the new team dialog when the option is clicked, without selecting it', async () => {
+      select.open();
+      fixture.detectChanges();
+      const option = select.items.find(i => i.value === component.newTeamOption);
+      const close = vi.spyOn(select, 'close');
+
+      option.element.nativeElement.click();
+      fixture.detectChanges();
+      await fixture.whenStable();
+
+      expect(openNewTeam).toHaveBeenCalledWith(false);
+      expect(component.application().teamId).not.toBe(component.newTeamOption);
+      expect(select.value).not.toBe(component.newTeamOption);
+      expect(close).toHaveBeenCalled();
+    });
+
+    it('opens the new team dialog when the option is chosen with the keyboard', async () => {
+      keydown('Enter');
+      expect(select.collapsed).toBe(false);
+
+      keydown('End');
+      expect(select.focusedItem.value).toBe(component.newTeamOption);
+      const close = vi.spyOn(select, 'close');
+      keydown('Enter');
+      await fixture.whenStable();
+
+      expect(openNewTeam).toHaveBeenCalledWith(false);
+      expect(component.application().teamId).not.toBe(component.newTeamOption);
+      expect(select.value).not.toBe(component.newTeamOption);
+      expect(close).toHaveBeenCalled();
+    });
+
+    it('does not open the dialog while arrowing through the closed select', () => {
+      keydown('ArrowDown');
+      keydown('ArrowDown');
+
+      expect(openNewTeam).not.toHaveBeenCalled();
+      expect(component.application().teamId).not.toBe(component.newTeamOption);
+    });
+
+    it('still selects a team', () => {
+      select.open();
+      fixture.detectChanges();
+
+      select.items.find(i => i.value === 'team-1').element.nativeElement.click();
+      fixture.detectChanges();
+
+      expect(openNewTeam).not.toHaveBeenCalled();
+      expect(select.value).toBe('team-1');
     });
   });
 

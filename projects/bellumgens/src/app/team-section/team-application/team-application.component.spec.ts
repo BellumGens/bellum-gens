@@ -26,7 +26,7 @@ describe('TeamApplicationComponent', () => {
   const dialogButton = (label: string) => fixture.debugElement.queryAll(By.css('.igx-dialog__window-actions button'))
     .find(b => (b.nativeElement as HTMLElement).textContent.includes(label)).nativeElement as HTMLButtonElement;
   const textarea = () => fixture.nativeElement.querySelector('textarea[name="motivation"]') as HTMLTextAreaElement;
-  const clearIcon = () => fixture.nativeElement.querySelector('igx-suffix') as HTMLElement;
+  const clearIcon = () => fixture.nativeElement.querySelector('igx-suffix button') as HTMLButtonElement;
 
   const typeMessage = async (message: string) => {
     const el = textarea();
@@ -148,6 +148,8 @@ describe('TeamApplicationComponent', () => {
       await openDialog();
       await typeMessage('I am a great AWPer');
 
+      expect(clearIcon().type).toBe('button');
+      expect(clearIcon().getAttribute('aria-label')).toBe('Clear message');
       clearIcon().click();
       await fixture.whenStable();
 

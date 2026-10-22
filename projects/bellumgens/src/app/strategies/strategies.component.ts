@@ -18,13 +18,13 @@ import {
   ACTIVE_DUTY
 } from '../../../../common/src/public_api';
 import { IChipSelectEventArgs, IGX_CHIPS_DIRECTIVES } from '@infragistics/igniteui-angular/chips';
-import { IgxButtonDirective, IgxRippleDirective, IgxToggleActionDirective } from '@infragistics/igniteui-angular/directives';
+import { IgxButtonDirective, IgxIconButtonDirective, IgxRippleDirective, IgxToggleActionDirective } from '@infragistics/igniteui-angular/directives';
 import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
 import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { IGX_SELECT_DIRECTIVES } from '@infragistics/igniteui-angular/select';
 import { IgxBadgeComponent } from '@infragistics/igniteui-angular/badge';
-import { IGX_DROP_DOWN_DIRECTIVES } from '@infragistics/igniteui-angular/drop-down';
+import { IGX_DROP_DOWN_DIRECTIVES, ISelectionEventArgs } from '@infragistics/igniteui-angular/drop-down';
 import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
 import { StratFilterPipe } from '../pipes/strat-filter.pipe';
 import { SideStratsPipe } from '../pipes/sidestrats.pipe';
@@ -49,6 +49,7 @@ import { LoadingComponent } from '../../../../common/src/lib/loading/loading.com
     RouterLink,
     FormsModule,
     IgxButtonDirective,
+    IgxIconButtonDirective,
     IgxRippleDirective,
     IGX_CHIPS_DIRECTIVES,
     IGX_SELECT_DIRECTIVES,
@@ -96,6 +97,8 @@ export class StrategiesComponent {
   public page = 0;
   public order = signal(StratOrderBy.TopVoted);
 
+  /** Id of the strategy whose actions drop-down is open. */
+  public openedActionsId = signal<string>(null);
   public overlaySettings = GLOBAL_OVERLAY_SETTINGS;
   public stratOrder = StratOrder;
 
@@ -166,6 +169,33 @@ export class StrategiesComponent {
 
   public shareOnTwitter(strat: CSGOStrategy) {
     this.socialMedia.shareOnTwitter(strat);
+  }
+
+  public strategyAction(event: ISelectionEventArgs, strat: CSGOStrategy, newStrategy: NewStrategyComponent, confirm: ConfirmComponent) {
+    // The actions only run commands, they don't keep a selection.
+    event.cancel = true;
+    switch (event.newSelection?.value) {
+      case 'share':
+        this.shareOnTwitter(strat);
+        break;
+      case 'edit':
+        newStrategy.open(strat, 'Edit strategy');
+        break;
+      case 'delete':
+        confirm.open(strat);
+        break;
+    }
+  }
+
+  /** The comments link is named by the comment count, since its badge only reads "badge" to assistive technologies. */
+  public commentsLabel(strat: CSGOStrategy) {
+    return $localize`Comments: ${strat.comments?.length ?? 0}:count:`;
+  }
+
+  public actionsClosed(stratId: string) {
+    if (this.openedActionsId() === stratId) {
+      this.openedActionsId.set(null);
+    }
   }
 
   public onStrategyAdded(strat: CSGOStrategy) {

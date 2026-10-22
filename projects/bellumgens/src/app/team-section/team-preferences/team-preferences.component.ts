@@ -12,7 +12,7 @@ import { RouterLink, ROUTER_OUTLET_DATA } from '@angular/router';
 import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { IgxSwitchComponent } from '@infragistics/igniteui-angular/switch';
-import { IgxButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
+import { IgxButtonDirective, IgxIconButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
 import { IGX_LIST_DIRECTIVES } from '@infragistics/igniteui-angular/list';
 import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
 import { FormsModule } from '@angular/forms';
@@ -32,7 +32,8 @@ import { FormsModule } from '@angular/forms';
     IGX_LIST_DIRECTIVES,
     IgxAvatarComponent,
     RouterLink,
-    CountrySVGPipe
+    CountrySVGPipe,
+    IgxIconButtonDirective
   ]
 })
 export class TeamPreferencesComponent {

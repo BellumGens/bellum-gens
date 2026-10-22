@@ -82,5 +82,25 @@ describe('HomeComponent', () => {
     expect(component.openLogin).toHaveBeenCalled();
   });
 
+  it('should clear the subscription email from a named button that does not submit the form', async () => {
+    const email = fixture.nativeElement.querySelector('#subemail') as HTMLInputElement;
+    const clear = () => email.closest('igx-input-group').querySelector<HTMLButtonElement>('igx-suffix button');
+    expect(clear()).toBeNull();
+
+    email.value = 'fan@example.com';
+    email.dispatchEvent(new Event('input'));
+    await fixture.whenStable();
+
+    expect(clear().type).toBe('button');
+    expect(clear().getAttribute('aria-label')).toBe('Clear email');
+
+    clear().click();
+    await fixture.whenStable();
+
+    expect(component.userEmail()).toBe('');
+    expect(email.value).toBe('');
+    expect(clear()).toBeNull();
+  });
+
   // TODO: Add more test cases with UI interactions
 });

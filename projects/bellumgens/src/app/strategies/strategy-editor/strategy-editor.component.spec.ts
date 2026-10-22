@@ -9,6 +9,8 @@ import { PLATFORM_ID, Provider, signal, WritableSignal } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { IDropDroppedEventArgs } from '@infragistics/igniteui-angular/directives';
 import { IgxIconService } from '@infragistics/igniteui-angular/icon';
+import { By } from '@angular/platform-browser';
+import { ConfirmComponent } from '../../../../../common/src/lib/confirm/confirm.component';
 import {
   ACTIVE_DUTY,
   ApiStrategiesService,
@@ -384,6 +386,44 @@ describe('StrategyEditorComponent', () => {
         expect(component.layers().length).toBe(3);
         expect((component.layers()[2] as FreeflowLayer).color).toBe(blue.color);
         component.selectColor(component.colors[0]);
+      });
+
+      it('hides a layer and asks to remove it from named buttons', async () => {
+        component.surfaceDrop(dropArgs({ name: 't', src: '/assets/editor/t-pin.png', width: 24, height: 24 }));
+        await fixture.whenStable();
+        const confirm = fixture.debugElement.query(By.directive(ConfirmComponent)).componentInstance as ConfirmComponent;
+        const open = vi.spyOn(confirm, 'open').mockImplementation(() => undefined);
+        const item = fixture.nativeElement.querySelectorAll('igx-list-item')[1] as HTMLElement;
+        const hide = item.querySelector<HTMLButtonElement>('igx-prefix button');
+        const remove = item.querySelector<HTMLButtonElement>('igx-suffix button');
+
+        expect(hide.type).toBe('button');
+        expect(hide.getAttribute('aria-label')).toBe('Hide layer');
+        expect(hide.getAttribute('aria-pressed')).toBe('false');
+        expect(remove.type).toBe('button');
+        expect(remove.getAttribute('aria-label')).toBe('Remove layer');
+
+        hide.click();
+        await fixture.whenStable();
+        expect(component.layers()[1].hidden).toBe(true);
+        expect(hide.getAttribute('aria-pressed')).toBe('true');
+
+        remove.click();
+        expect(open).toHaveBeenCalledWith(component.layers()[1]);
+      });
+
+      it('toggles the brush from a named toggle button', async () => {
+        const brush = fixture.nativeElement.querySelector('button.editor-freeflow-element') as HTMLButtonElement;
+        expect(brush.type).toBe('button');
+        expect(brush.getAttribute('aria-label')).toBe('Freeflow brush');
+        expect(brush.getAttribute('aria-pressed')).toBe('false');
+
+        brush.click();
+        await fixture.whenStable();
+
+        expect(component.brushSelected()).toBe(true);
+        expect(brush.getAttribute('aria-pressed')).toBe('true');
+        expect(brush.classList).toContain('selected-element');
       });
 
       it('toggles the brush off again', async () => {

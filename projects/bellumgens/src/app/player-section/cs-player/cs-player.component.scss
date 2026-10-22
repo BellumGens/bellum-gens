@@ -8,13 +8,19 @@
   /* User Profile */
 
   .team-avatar-link {
-    cursor: pointer;
+    display: inline-flex;
+    border-radius: 50%;
     margin: 0 16px 16px 0;
   }
 
-  .team-avatar-link:focus,
-  .team-avatar-link:active {
-    outline: none;
+  // A text button that keeps the look of the highlighted text it replaced
+  .text-button {
+    padding: 0;
+    border: none;
+    background: none;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
   }
 
   .country-badge-large {

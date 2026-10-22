@@ -18,7 +18,7 @@
     }
     @if (!player()?.registered) {
       <div class="content-container-row">
-        <div i18n>This player is not registered! If you own the profile then <span (click)="openLogin()" class="highlight navigatable">register</span> to complete it.</div>
+        <div i18n>This player is not registered! If you own the profile then <button type="button" (click)="openLogin()" class="highlight text-button">register</button> to complete it.</div>
       </div>
     }
     <div class="profile-container">
@@ -56,14 +56,14 @@
       <h1 igxCardHeaderTitle><a [href]="player().steamUser | steamCustomUrl" target="_blank" rel="noopener">{{ player().steamUser?.steamID }}</a></h1>
       <h4 igxCardHeaderSubtitle>{{ player().steamUser?.realname }}</h4>
       @for (team of userTeams(); track team.teamId) {
-        <igx-avatar class="team-avatar-link"
-          [initials]="team.teamName"
-          [src]="team.teamAvatar"
-          [title]="team.teamName"
-          [routerLink]="['/team', team.customUrl]"
-          shape="circle"
-          [size]="'small'">
-        </igx-avatar>
+        <a class="team-avatar-link" [routerLink]="['/team', team.customUrl]" [title]="team.teamName" [attr.aria-label]="team.teamName">
+          <igx-avatar
+            [initials]="team.teamName"
+            [src]="team.teamAvatar"
+            shape="circle"
+            [size]="'small'">
+          </igx-avatar>
+        </a>
       }
       @if (!player().userStatsException) {
         <!-- IgxSelect: default positioning changed to AutoPositionStrategy (below/above input).

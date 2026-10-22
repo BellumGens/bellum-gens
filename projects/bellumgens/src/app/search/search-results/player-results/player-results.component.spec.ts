@@ -189,8 +189,9 @@ describe('PlayerResultsComponent', () => {
 
       const router = TestBed.inject(Router);
       const navigate = vi.spyOn(router, 'navigateByUrl').mockResolvedValue(true);
-      const cards = el().querySelectorAll<HTMLElement>('igx-card');
-      cards.forEach(card => card.click());
+      const links = el().querySelectorAll<HTMLAnchorElement>('igx-card h3 a.card-link');
+      expect(Array.from(links).map(a => a.getAttribute('href'))).toEqual(['/players/with-url', '/players/p2', '/players/p3']);
+      links.forEach(link => link.click());
 
       const urls = navigate.mock.calls.map(([url]) => router.serializeUrl(url as UrlTree));
       expect(urls).toEqual(['/players/with-url', '/players/p2', '/players/p3']);

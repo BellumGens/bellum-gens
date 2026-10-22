@@ -149,7 +149,7 @@ describe('TeamPreferencesComponent', () => {
 
     const el = () => fixture.nativeElement as HTMLElement;
     const input = (id: string) => el().querySelector(`#${id}`) as HTMLInputElement;
-    const suffix = (id: string) => input(id).closest('igx-input-group').querySelector('igx-suffix') as HTMLElement;
+    const suffix = (id: string) => input(id).closest('igx-input-group').querySelector('igx-suffix button') as HTMLButtonElement;
     const listItems = () => Array.from(el().querySelectorAll('igx-list-item')) as HTMLElement [];
     const switchFor = (prefix: string, index: number) =>
       fixture.debugElement.query(By.css(`#${prefix}_switch_${index}`)).componentInstance as IgxSwitchComponent;
@@ -221,6 +221,19 @@ describe('TeamPreferencesComponent', () => {
         expect(component.team().teamName).toBe('New Name');
         expect(component.team().description).toBe('New description');
         expect(component.team().discord).toBe('new-discord');
+      });
+
+      it('should render the clear actions as named buttons that do not submit the form', async () => {
+        await setup();
+        for (const [id, name] of [
+          ['teamName', 'Clear team name'],
+          ['teamAvatar', 'Clear team avatar URL'],
+          ['teamDescription', 'Clear description'],
+          ['teamDiscord', 'Clear Discord']
+        ]) {
+          expect(suffix(id).type).toBe('button');
+          expect(suffix(id).getAttribute('aria-label')).toBe(name);
+        }
       });
 
       it('should clear the team name, description and discord through the suffixes', async () => {

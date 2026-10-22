@@ -55,7 +55,7 @@ describe('TeamNewComponent', () => {
   const submitButton = () => el().querySelector('.submit-button') as HTMLButtonElement;
   const form = () => el().querySelector('form') as HTMLFormElement;
   const suffixFor = (selector: string) =>
-    (el().querySelector(selector) as HTMLElement).closest('igx-input-group').querySelector('igx-suffix') as HTMLElement;
+    (el().querySelector(selector) as HTMLElement).closest('igx-input-group').querySelector('igx-suffix button') as HTMLButtonElement;
 
   const type = async (selector: string, value: string) => {
     const input = el().querySelector(selector) as HTMLInputElement | HTMLTextAreaElement;
@@ -154,6 +154,33 @@ describe('TeamNewComponent', () => {
       expect(items[2].textContent).toContain('Third Group');
     });
 
+    it('should render each group as a button named by the group', async () => {
+      await openWithGroups();
+      const buttons = Array.from(listItems()).map(item => item.querySelector('button'));
+
+      expect(buttons.map(b => b.type)).toEqual(['button', 'button', 'button']);
+      expect(buttons.map(b => b.textContent.trim())).toEqual(['Test Group', 'Another Clan', 'Third Group']);
+      expect(buttons.every(b => b.hasAttribute('igxListLineTitle'))).toBe(true);
+    });
+
+    it('should name the clear buttons and keep them from submitting the form', async () => {
+      await openWithGroups();
+      await type('#searchGroups', 'clan');
+      await type('#teamName', 'Team Name');
+      await type('#teamDescripton', 'Our motto');
+      await type('#teamAvatar', 'https://cdn.example.com/avatars/team.png');
+
+      for (const [selector, name] of [
+        ['#searchGroups', 'Clear search'],
+        ['#teamName', 'Clear team name'],
+        ['#teamDescripton', 'Clear team motto'],
+        ['#teamAvatar', 'Clear team avatar URL']
+      ]) {
+        expect(suffixFor(selector).type).toBe('button');
+        expect(suffixFor(selector).getAttribute('aria-label')).toBe(name);
+      }
+    });
+
     it('should show the empty list message when the user has no groups', async () => {
       await openWithGroups([]);
       expect(listItems().length).toBe(0);
@@ -196,7 +223,7 @@ describe('TeamNewComponent', () => {
       const success = vi.spyOn(TestBed.inject(CommunicationService), 'emitSuccess');
       await openWithGroups();
 
-      (listItems()[1] as HTMLElement).click();
+      listItems()[1].querySelector('button').click();
       await fixture.whenStable();
 
       const req = httpMock.expectOne(`${apiService['_apiEndpoint']}/teams/team`);

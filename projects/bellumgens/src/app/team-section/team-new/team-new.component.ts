@@ -11,7 +11,7 @@ import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { IGX_LIST_DIRECTIVES } from '@infragistics/igniteui-angular/list';
 import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
-import { IgxButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
+import { IgxButtonDirective, IgxIconButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
 import { Router } from '@angular/router';
 import { GroupsFilterPipe } from '../../pipes/groups-filter.pipe';
 import { FormsModule } from '@angular/forms';
@@ -30,7 +30,8 @@ import { FormsModule } from '@angular/forms';
     IgxAvatarComponent,
     IgxButtonDirective,
     IgxRippleDirective,
-    GroupsFilterPipe
+    GroupsFilterPipe,
+    IgxIconButtonDirective
   ]
 })
 export class TeamNewComponent {

@@ -23,11 +23,11 @@ import { SafeVideoLinkPipe } from '../../pipes/safe-video-link.pipe';
 import { ConfirmComponent } from '../../../../../common/src/lib/confirm/confirm.component';
 import { FormsModule } from '@angular/forms';
 import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
-import { IgxButtonDirective, IgxDividerComponent, IgxFlexDirective, IgxLayoutDirective, IgxRippleDirective, IgxToggleActionDirective } from '@infragistics/igniteui-angular/directives';
+import { IgxButtonDirective, IgxDividerComponent, IgxFlexDirective, IgxIconButtonDirective, IgxLayoutDirective, IgxRippleDirective, IgxToggleActionDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { IGX_LIST_DIRECTIVES } from '@infragistics/igniteui-angular/list';
 import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
-import { IGX_DROP_DOWN_DIRECTIVES } from '@infragistics/igniteui-angular/drop-down';
+import { IGX_DROP_DOWN_DIRECTIVES, ISelectionEventArgs } from '@infragistics/igniteui-angular/drop-down';
 import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
 import { LoadingComponent } from '../../../../../common/src/lib/loading/loading.component';
 
@@ -48,6 +48,7 @@ import { LoadingComponent } from '../../../../../common/src/lib/loading/loading.
     IgxLayoutDirective,
     IgxFlexDirective,
     IgxButtonDirective,
+    IgxIconButtonDirective,
     IgxRippleDirective,
     IgxIconComponent,
     IgxDividerComponent,
@@ -78,6 +79,8 @@ export class StrategyDetailsComponent extends BaseDirective {
    * so the listed comment only changes once the edit is saved.
    */
   public editedCommentId = signal<string>(null);
+  /** Id of the comment whose actions drop-down is open. */
+  public openedActionsId = signal<string>(null);
   public horizontal = signal(true);
   public overlaySettings = GLOBAL_OVERLAY_SETTINGS;
 
@@ -150,6 +153,32 @@ export class StrategyDetailsComponent extends BaseDirective {
       // The service already reports the error. Keep the draft (and the edit) so it can be retried or cancelled.
       error: () => undefined
     });
+  }
+
+  /** Only the author of a comment can edit or delete it. */
+  public isOwnComment(comment: StrategyComment) {
+    const user = this.authUser();
+    return !!user?.id && comment.userId === user.id;
+  }
+
+  public commentAction(event: ISelectionEventArgs, comment: StrategyComment, commentBox: HTMLTextAreaElement, confirm: ConfirmComponent) {
+    // The actions only run commands, they don't keep a selection.
+    event.cancel = true;
+    switch (event.newSelection?.value) {
+      case 'edit':
+        this.editComment(comment);
+        commentBox.focus();
+        break;
+      case 'delete':
+        confirm.open(comment);
+        break;
+    }
+  }
+
+  public actionsClosed(commentId: string) {
+    if (this.openedActionsId() === commentId) {
+      this.openedActionsId.set(null);
+    }
   }
 
   public editComment(comment: StrategyComment) {

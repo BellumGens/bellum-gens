@@ -115,7 +115,10 @@ describe('TeamResultsComponent', () => {
 
     const router = TestBed.inject(Router);
     const navigate = vi.spyOn(router, 'navigateByUrl').mockResolvedValue(true);
-    el().querySelector<HTMLElement>('igx-card').click();
+    const link = el().querySelector<HTMLAnchorElement>('igx-card h3 a.card-link');
+    expect(link.getAttribute('href')).toBe('/team/t1-url');
+    expect(link.textContent.trim()).toBe('Team One');
+    link.click();
 
     expect(navigate).toHaveBeenCalledTimes(1);
     expect(router.serializeUrl(navigate.mock.calls[0][0] as UrlTree)).toBe('/team/t1-url');

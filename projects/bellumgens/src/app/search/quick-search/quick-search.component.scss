@@ -5,6 +5,26 @@
     height: 66px;
   }
 
+  // The title link covers the whole list item, so the item stays clickable everywhere
+  .item-link {
+    color: inherit;
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+    }
+
+    &:focus-visible {
+      outline: none;
+    }
+
+    &:focus-visible::after {
+      outline: 2px solid var(--ig-secondary-500);
+      outline-offset: -2px;
+    }
+  }
+
   .center-message {
     display: flex;
     flex-direction: column;

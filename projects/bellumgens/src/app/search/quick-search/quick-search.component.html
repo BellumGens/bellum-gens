@@ -10,9 +10,7 @@
     </ng-template>
     @if (searchResult().steamUser?.steamUser) {
       <igx-list-item [isHeader]="true" i18n>Steam User</igx-list-item>
-      <igx-list-item
-        [routerLink]="['/players', searchResult().steamUser.steamUser.customURL || searchResult().steamUser.steamUser.steamID64]"
-        class="navigatable">
+      <igx-list-item class="result-item">
         <igx-avatar igxListThumbnail [src]="searchResult().steamUser.steamUser.avatarIcon" [initials]="searchResult().steamUser.steamUser.realname" shape="circle">
         </igx-avatar>
         @if (searchResult().steamUser.steamUser.country) {
@@ -23,7 +21,9 @@
             class="country-badge-small">
           </igx-avatar>
         }
-        <h2 igxListLineTitle>{{ searchResult().steamUser.steamUser.steamID }}</h2>
+        <h2 igxListLineTitle>
+          <a class="item-link" [routerLink]="['/players', searchResult().steamUser.steamUser.customURL || searchResult().steamUser.steamUser.steamID64]">{{ searchResult().steamUser.steamUser.steamID }}</a>
+        </h2>
         <h4 igxListLineSubTitle>{{ searchResult().steamUser.steamUser.realname }}</h4>
         @if (!searchResult().steamUser.userStatsException) {
           <div igxListAction>
@@ -48,9 +48,7 @@
       </igx-list-item>
     }
     @for (user of searchResult().players | reduceQuickSearchResult; track user.id) {
-      <igx-list-item
-        [routerLink]="['/players', user.csgoDetails?.customUrl || user.id]"
-        class="navigatable">
+      <igx-list-item class="result-item">
         <igx-avatar igxListThumbnail [src]="user.csgoDetails?.avatarIcon" [initials]="user.csgoDetails?.realName" shape="circle">
         </igx-avatar>
         @if (user.steamUser?.country || user.csgoDetails?.steamUser?.country; as country) {
@@ -61,7 +59,9 @@
             class="country-badge-small">
           </igx-avatar>
         }
-        <h2 igxListLineTitle>{{ user.username }}</h2>
+        <h2 igxListLineTitle>
+          <a class="item-link" [routerLink]="['/players', user.csgoDetails?.customUrl || user.id]">{{ user.username }}</a>
+        </h2>
         <h4 igxListLineSubTitle>{{ user.csgoDetails?.realName }}</h4>
         @if (user.csgoDetails?.steamPrivate) {
           <span i18n>Private</span>
@@ -101,10 +101,12 @@
       </igx-list-item>
     }
     @for (team of searchResult().teams | reduceQuickSearchResult; track team.teamId) {
-    <igx-list-item class="navigatable" [routerLink]="['/team', team.customUrl]">
+    <igx-list-item class="result-item">
       <igx-avatar igxListThumbnail [src]="team.teamAvatar" [initials]="team.teamName" shape="circle">
       </igx-avatar>
-      <h2 igxListLineTitle>{{ team.teamName }}</h2>
+      <h2 igxListLineTitle>
+        <a class="item-link" [routerLink]="['/team', team.customUrl]">{{ team.teamName }}</a>
+      </h2>
     </igx-list-item>
     }
     @if (searchResult().teams.length > 3) {
@@ -129,10 +131,12 @@
       </igx-list-item>
     }
     @for (strat of searchResult().strategies | reduceQuickSearchResult; track strat.id) {
-      <igx-list-item class="navigatable" [routerLink]="['/strategies', 'details', strat.customUrl || strat.id]">
+      <igx-list-item class="result-item">
         <igx-avatar igxListThumbnail [src]="strat.stratImage" [initials]="strat.title" shape="circle">
         </igx-avatar>
-        <h2 igxListLineTitle>{{ strat.title }}</h2>
+        <h2 igxListLineTitle>
+          <a class="item-link" [routerLink]="['/strategies', 'details', strat.customUrl || strat.id]">{{ strat.title }}</a>
+        </h2>
       </igx-list-item>
     }
     @if (searchResult().strategies.length > 3) {

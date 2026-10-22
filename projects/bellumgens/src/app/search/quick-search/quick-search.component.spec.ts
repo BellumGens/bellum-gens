@@ -245,7 +245,7 @@ describe('QuickSearchComponent', () => {
     it('should use the real name of the players for the avatar initials', async () => {
       await search('pl', result({ players: [player('1', 'player1', csgoDetails({ realName: 'Real Name' }))] }));
 
-      const avatar = fixture.debugElement.query(By.css('igx-list-item.navigatable igx-avatar[igxListThumbnail]'))
+      const avatar = fixture.debugElement.query(By.css('igx-list-item.result-item igx-avatar[igxListThumbnail]'))
         .injector.get(IgxAvatarComponent);
       expect(avatar.initials).toBe('Real Name');
     });
@@ -271,7 +271,10 @@ describe('QuickSearchComponent', () => {
     it('should link players to their profile by custom url, falling back to the id', async () => {
       await search('pl', result({ players: [player('1', 'player1', csgoDetails({ customUrl: 'custom-one' })), player('2', 'player2', csgoDetails())] }));
 
-      const items = Array.from(lists()[0].querySelectorAll<HTMLElement>('igx-list-item.navigatable'));
+      const items = Array.from(lists()[0].querySelectorAll<HTMLElement>('igx-list-item a.item-link'));
+      expect(items.map(i => i.getAttribute('href'))).toEqual(['/players/custom-one', '/players/2']);
+      // The items are no longer links themselves, so they don't need to be focusable.
+      expect(lists()[0].querySelector('igx-list-item[tabindex]')).toBeNull();
       items[0].click();
       expect(router.navigateByUrl).toHaveBeenLastCalledWith(router.createUrlTree(['/players', 'custom-one']), expect.anything());
       items[1].click();
@@ -303,7 +306,7 @@ describe('QuickSearchComponent', () => {
       expect(players.textContent).toContain('51.20%');
       expect(players.querySelector('igx-avatar.country-badge-small').getAttribute('title')).toBe('bg');
 
-      players.querySelector<HTMLElement>('igx-list-item.navigatable').click();
+      players.querySelector<HTMLElement>('igx-list-item a.item-link').click();
       expect(router.navigateByUrl).toHaveBeenLastCalledWith(router.createUrlTree(['/players', 'steam-custom']), expect.anything());
     });
 
@@ -315,7 +318,7 @@ describe('QuickSearchComponent', () => {
       expect(players.querySelector('[igxListAction]')).toBeNull();
       expect(players.querySelector('igx-avatar.country-badge-small')).toBeNull();
 
-      players.querySelector<HTMLElement>('igx-list-item.navigatable').click();
+      players.querySelector<HTMLElement>('igx-list-item a.item-link').click();
       expect(router.navigateByUrl).toHaveBeenLastCalledWith(router.createUrlTree(['/players', '76561198000000000']), expect.anything());
     });
 
@@ -341,7 +344,7 @@ describe('QuickSearchComponent', () => {
       expect(teams.textContent).not.toContain('No matching teams...');
       expect(moreButton(teams)).toBeNull();
 
-      teams.querySelector<HTMLElement>('igx-list-item.navigatable').click();
+      teams.querySelector<HTMLElement>('igx-list-item a.item-link').click();
       expect(router.navigateByUrl).toHaveBeenLastCalledWith(router.createUrlTree(['/team', 't1-url']), expect.anything());
     });
 
@@ -364,7 +367,7 @@ describe('QuickSearchComponent', () => {
       expect(titles(strategies)).toEqual(['Rush B']);
       expect(strategies.textContent).not.toContain('No matching strategies...');
       expect(moreButton(strategies)).toBeNull();
-      const avatar = fixture.debugElement.queryAll(By.css('igx-list-item.navigatable igx-avatar[igxListThumbnail]'))
+      const avatar = fixture.debugElement.queryAll(By.css('igx-list-item.result-item igx-avatar[igxListThumbnail]'))
         .map(a => a.injector.get(IgxAvatarComponent))
         .find(a => a.initials === 'Rush B');
       expect(avatar.src).toBe('https://example.com/s1.png');
@@ -373,7 +376,7 @@ describe('QuickSearchComponent', () => {
     it('should link strategies to their details by custom url, falling back to the id', async () => {
       await search('st', result({ strategies: [strategy('s1', 'Rush B'), strategy('s2', 'Long A', { customUrl: null })] }));
 
-      const items = Array.from(lists()[2].querySelectorAll<HTMLElement>('igx-list-item.navigatable'));
+      const items = Array.from(lists()[2].querySelectorAll<HTMLElement>('igx-list-item a.item-link'));
       items[0].click();
       expect(router.navigateByUrl).toHaveBeenLastCalledWith(router.createUrlTree(['/strategies', 'details', 's1-url']), expect.anything());
       items[1].click();

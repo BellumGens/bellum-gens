@@ -4,7 +4,7 @@ import { Router, NavigationEnd, RouterLink, RouterLinkActive, RouterOutlet, Acti
 import { filter } from 'rxjs/operators';
 
 import { IgxNavDrawerItemDirective, IgxNavDrawerMiniTemplateDirective, IgxNavDrawerTemplateDirective, IgxNavigationDrawerComponent } from '@infragistics/igniteui-angular/navigation-drawer';
-import { IgxDividerComponent, IgxFlexDirective, IgxLayoutDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
+import { IgxDividerComponent, IgxFlexDirective, IgxIconButtonDirective, IgxLayoutDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxIconComponent, IgxIconService } from '@infragistics/igniteui-angular/icon';
 import { IgxNavbarActionDirective, IgxNavbarComponent } from '@infragistics/igniteui-angular/navbar';
 import { changei18n } from '@infragistics/igniteui-angular/core';
@@ -29,6 +29,7 @@ import { LanguagesComponent } from '../../../common/src/lib/languages/languages.
     IgxRippleDirective,
     RouterLink,
     IgxIconComponent,
+    IgxIconButtonDirective,
     RouterLinkActive,
     IgxNavDrawerMiniTemplateDirective,
     IgxFlexDirective,

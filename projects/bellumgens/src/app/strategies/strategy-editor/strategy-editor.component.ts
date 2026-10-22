@@ -16,7 +16,7 @@ import {
   ApiStrategiesService
 } from '../../../../../common/src/public_api';
 import { ActivatedRoute } from '@angular/router';
-import { IDropDroppedEventArgs, IGX_DRAG_DROP_DIRECTIVES, IgxButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
+import { IDropDroppedEventArgs, IGX_DRAG_DROP_DIRECTIVES, IgxButtonDirective, IgxIconButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxIconComponent, IgxIconService } from '@infragistics/igniteui-angular/icon';
 import { IGX_SELECT_DIRECTIVES } from '@infragistics/igniteui-angular/select';
 import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
@@ -44,7 +44,8 @@ import { isPlatformBrowser } from '@angular/common';
     IGX_BUTTON_GROUP_DIRECTIVES,
     IgxButtonDirective,
     IgxRippleDirective,
-    ConfirmComponent
+    ConfirmComponent,
+    IgxIconButtonDirective
   ]
 })
 export class StrategyEditorComponent implements OnDestroy {

@@ -141,6 +141,7 @@ describe('LoginComponent', () => {
       await fixture.whenStable();
     };
     const profileUsername = (): HTMLElement => document.querySelector('h1.profile-username');
+    const profileLink = (): HTMLButtonElement => profileUsername().querySelector('button');
     const profileSubtitle = (): string => document.querySelector('[igxCardHeaderSubtitle]').textContent.trim();
 
     afterEach(() => {
@@ -235,7 +236,8 @@ describe('LoginComponent', () => {
       await logIn(applicationUser);
       await openProfile();
 
-      profileUsername().click();
+      expect(profileLink().type).toBe('button');
+      profileLink().click();
 
       expect(navigate).toHaveBeenCalledWith(['/players/', applicationUser.csgoDetails.customUrl]);
     });
@@ -245,7 +247,8 @@ describe('LoginComponent', () => {
       await logIn(sc2User);
       await openProfile();
 
-      profileUsername().click();
+      expect(profileLink().type).toBe('button');
+      profileLink().click();
 
       expect(navigate).toHaveBeenCalledWith(['/players/', 'sc2-id']);
     });

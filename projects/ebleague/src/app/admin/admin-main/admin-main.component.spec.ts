@@ -569,19 +569,25 @@ describe('AdminMainComponent', () => {
       expect(cards().length).toBe(1);
     });
 
-    it('should clear the tournament fields from their suffix icons', async () => {
+    const clearLabels = ['Clear tournament name', 'Clear tournament logo', 'Clear tournament description'];
+    const clearButtons = (root: Element) => Array.from(root.querySelectorAll<HTMLButtonElement>('igx-suffix button'))
+      .filter(b => !b.closest('igx-date-picker'));
+
+    it('should clear the tournament fields from their named clear buttons', async () => {
       flushInitialRequests({ tournaments: leagues() });
       await render();
       const card = cards()[0];
-      const suffixes = () => Array.from(card.querySelectorAll<HTMLElement>('igx-suffix')).filter(s => !s.closest('igx-date-picker'));
 
-      expect(suffixes().length).toBe(3);
-      suffixes().forEach(s => s.click());
+      expect(clearButtons(card).map(b => b.getAttribute('aria-label'))).toEqual(clearLabels);
+      clearButtons(card).forEach(b => {
+        expect(b.type).toBe('button');
+        b.click();
+      });
       await render();
 
       expect(component.tournaments()[0]).toEqual(expect.objectContaining({ name: '', logo: '', description: '' }));
       expect(card.querySelector<HTMLInputElement>('#leagueName0').value).toBe('');
-      expect(suffixes().length).toBe(0);
+      expect(clearButtons(card).length).toBe(0);
     });
 
     it('should create a new tournament and list it', async () => {
@@ -645,25 +651,28 @@ describe('AdminMainComponent', () => {
       expect(ids.filter((id, i) => ids.indexOf(id) !== i)).toEqual([]);
     });
 
-    it('should clear the new tournament fields from their suffix icons', async () => {
+    it('should clear the new tournament fields from their named clear buttons', async () => {
       flushInitialRequests();
       await render();
       const form = newForm();
-      const suffixes = () => Array.from(form.querySelectorAll<HTMLElement>('igx-suffix')).filter(s => !s.closest('igx-date-picker'));
 
-      expect(suffixes().length).toBe(0);
+      expect(clearButtons(form).length).toBe(0);
       type(form.querySelector<HTMLInputElement>('[name="tournamentName"]'), 'Autumn League');
       type(form.querySelector<HTMLInputElement>('[name="tournamentLogo"]'), '/autumn.png');
       type(form.querySelector<HTMLTextAreaElement>('[name="tournamentDescription"]'), 'Autumn season');
       await render();
 
-      expect(suffixes().length).toBe(3);
-      suffixes().forEach(s => s.click());
+      expect(clearButtons(form).map(b => b.getAttribute('aria-label'))).toEqual(clearLabels);
+      clearButtons(form).forEach(b => {
+        // a plain button, so clearing a field does not submit the form (httpMock.verify checks nothing was sent)
+        expect(b.type).toBe('button');
+        b.click();
+      });
       await render();
 
       expect(component.tournament).toEqual(expect.objectContaining({ name: '', logo: '', description: '' }));
       expect(form.querySelector<HTMLInputElement>('[name="tournamentName"]').value).toBe('');
-      expect(suffixes().length).toBe(0);
+      expect(clearButtons(form).length).toBe(0);
       expect(submitButton(form).disabled).toBe(true);
     });
   });

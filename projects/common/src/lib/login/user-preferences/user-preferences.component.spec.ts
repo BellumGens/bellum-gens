@@ -191,6 +191,30 @@ describe('UserPreferencesComponent', () => {
     expect(states[1].classList).toContain('color-error');
   });
 
+  it('should render the registration actions as named buttons', () => {
+    fixture.detectChanges();
+    const actions = Array.from<HTMLButtonElement>(fixture.nativeElement.querySelectorAll('igx-list-item')[0].querySelectorAll('[igxListAction] button'));
+
+    expect(actions.map(b => b.type)).toEqual(['button', 'button']);
+    expect(actions.map(b => b.getAttribute('aria-label'))).toEqual(['Check in', 'Delete this application']);
+
+    actions[0].click();
+    const req = httpMock.expectOne(`${authService['_apiBase']}/tournament/checkin?id=${registrations[0].id}`);
+    expect(req.request.method).toBe('PUT');
+    req.flush({});
+  });
+
+  it('should open the registration from a button', () => {
+    vi.spyOn(router, 'navigate').mockImplementation(() => undefined);
+    const button = Array.from<HTMLButtonElement>(fixture.nativeElement.querySelectorAll('button'))
+      .find(b => b.textContent.trim() === 'Create username and password');
+
+    expect(button.type).toBe('button');
+    button.click();
+
+    expect(router.navigate).toHaveBeenCalledWith(['register']);
+  });
+
   it('disableLogin should return true for externalLogins on the authUser', () => {
     expect(component.disableLogin('BattleNet')).toBe(false);
     expect(component.disableLogin('Steam')).toBe(true);

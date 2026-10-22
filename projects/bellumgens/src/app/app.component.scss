@@ -18,6 +18,16 @@
     height: 44px;
   }
 
+  .logo-link {
+    display: inline-flex;
+    color: inherit;
+  }
+
+  // The drawer items are links; drop the global link color so the drawer theme colors apply
+  a[igxDrawerItem] {
+    color: revert-layer;
+  }
+
   @media only screen and (max-width: 720px) {
     .search-group {
       width: auto;

@@ -1,6 +1,6 @@
 import { Component, inject, input, viewChild } from '@angular/core';
 import { IgxDialogComponent } from '@infragistics/igniteui-angular/dialog';
-import { IgxButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
+import { IgxButtonDirective, IgxIconButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
 import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import {
@@ -22,7 +22,8 @@ import { FormsModule } from '@angular/forms';
     IgxDialogComponent,
     IGX_INPUT_GROUP_DIRECTIVES,
     FormsModule,
-    IgxIconComponent
+    IgxIconComponent,
+    IgxIconButtonDirective
   ]
 })
 export class TeamApplicationComponent {

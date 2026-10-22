@@ -1,3 +1,21 @@
 :host > div {
   min-height: 100%;
 }
+
+// The drawer items are links: keep the drawer's own item colours over the global link colour
+a[igxDrawerItem] {
+  color: var(--item-text-color);
+
+  &:hover,
+  &:focus {
+    color: var(--item-hover-text-color);
+  }
+
+  &.igx-nav-drawer-item--active {
+    color: var(--item-active-text-color);
+  }
+}
+
+.logo-link {
+  display: inline-flex;
+}

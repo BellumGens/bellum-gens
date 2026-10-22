@@ -107,6 +107,20 @@ describe('LanguagesComponent', () => {
       expect(location.href).toBe('http://localhost:4200/en/teams/some-team');
     });
 
+    it('should change the language with the keyboard', async () => {
+      location.pathname = '/players/some-player';
+      await openDropDown();
+      const toggle = fixture.nativeElement.querySelector('button.profile-button') as HTMLButtonElement;
+      expect(toggle.getAttribute('aria-haspopup')).toBe('listbox');
+
+      toggle.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
+      toggle.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowDown', bubbles: true }));
+      toggle.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+      await fixture.whenStable();
+
+      expect(location.href).toBe('http://localhost:4200/bg/players/some-player');
+    });
+
     it('should replace a trailing locale segment of the current path', () => {
       location.pathname = '/en';
 

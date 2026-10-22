@@ -82,6 +82,20 @@ describe('LoginDialogComponent', () => {
     expect(router.navigate).toHaveBeenCalledWith(['register']);
   });
 
+  it('should open the registration from a button that does not submit the form', async () => {
+    vi.spyOn(router, 'navigate').mockImplementation(() => undefined);
+    component.openLogin();
+    await fixture.whenStable();
+
+    const register = document.querySelector<HTMLButtonElement>('button.register-link');
+    expect(register.type).toBe('button');
+    expect(register.textContent.trim()).toBe("Don't have an account?");
+
+    register.click();
+
+    expect(router.navigate).toHaveBeenCalledWith(['register']);
+  });
+
   it('should perform login with form data', () => {
     vi.spyOn(component.dialog(), 'close').mockImplementation(() => undefined);
     // Set form data

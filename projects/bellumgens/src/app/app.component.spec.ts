@@ -251,7 +251,10 @@ describe('AppComponent', () => {
         await fixture.whenStable();
         expect(component.searchTerm()).toBe('bellum');
 
-        el().querySelector<HTMLElement>('igx-suffix').click();
+        const clear = el().querySelector<HTMLButtonElement>('igx-suffix button');
+        expect(clear.type).toBe('button');
+        expect(clear.getAttribute('aria-label')).toBe('Clear search');
+        clear.click();
         await fixture.whenStable();
 
         expect(component.searchTerm()).toBe('');
@@ -341,10 +344,33 @@ describe('AppComponent', () => {
       const drawer = fixture.debugElement.query(By.directive(IgxNavigationDrawerComponent)).componentInstance as IgxNavigationDrawerComponent;
       expect(drawer.isOpen).toBe(false);
 
-      el().querySelector<HTMLElement>('.drawer-action').click();
+      const menu = el().querySelector<HTMLButtonElement>('button.drawer-action');
+      expect(menu.type).toBe('button');
+      expect(menu.getAttribute('aria-label')).toBe('Navigation menu');
+      expect(menu.getAttribute('aria-controls')).toBe('navigation');
+      expect(menu.getAttribute('aria-expanded')).toBe('false');
+
+      menu.click();
       await fixture.whenStable();
 
       expect(drawer.isOpen).toBe(true);
+      expect(menu.getAttribute('aria-expanded')).toBe('true');
+    });
+
+    it('should render the navigation and the logo as links', async () => {
+      await flushUser(null);
+
+      const items = Array.from(el().querySelectorAll<HTMLElement>('igx-nav-drawer [igxDrawerItem]:not(.igx-nav-drawer__item--header)'));
+      expect(items.length).toBeGreaterThan(0);
+      for (const item of items) {
+        expect(item.tagName).toBe('A');
+        expect(item.getAttribute('href')).toBeTruthy();
+      }
+      expect(drawerItem('tournaments').getAttribute('href')).toBe('/tournaments');
+
+      const logo = el().querySelector<HTMLAnchorElement>('igx-navbar a.logo-link');
+      expect(logo.getAttribute('href')).toBe('/');
+      expect(logo.getAttribute('aria-label')).toBe('Bellum Gens');
     });
   });
 

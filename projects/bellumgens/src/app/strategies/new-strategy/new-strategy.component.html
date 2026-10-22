@@ -5,8 +5,10 @@
       <label for="strategyName" igxLabel i18n>Title</label>
       <input #strategyName name="strategyName" id="strategyName" igxInput minlength="2" [required]="true" [(ngModel)]="newStrategy().title">
       @if (strategyName.value.length > 0) {
-        <igx-suffix (click)="newStrategy().title = null">
-          <igx-icon>clear</igx-icon>
+        <igx-suffix>
+          <button type="button" igxIconButton="flat" (click)="newStrategy().title = null" i18n-aria-label aria-label="Clear title">
+            <igx-icon>clear</igx-icon>
+          </button>
         </igx-suffix>
       }
     </igx-input-group>
@@ -16,8 +18,10 @@
       <textarea #strategyDescription id="strategyDescription" name="strategyDescription" igxInput minlength="2" [required]="true" [(ngModel)]="newStrategy().description">
       </textarea>
       @if (strategyDescription.value.length > 0) {
-        <igx-suffix (click)="newStrategy().description = null">
-          <igx-icon>clear</igx-icon>
+        <igx-suffix>
+          <button type="button" igxIconButton="flat" (click)="newStrategy().description = null" i18n-aria-label aria-label="Clear description">
+            <igx-icon>clear</igx-icon>
+          </button>
         </igx-suffix>
       }
     </igx-input-group>
@@ -33,10 +37,10 @@
 
     <!-- IgxSelect: default positioning changed to AutoPositionStrategy (below/above input).
      To preserve overlap behavior: this.select.overlaySettings = { positionStrategy: new IgxSelectOverlapPositionStrategy(this.select) }; -->
-<igx-select type="border" id="mapSelector" name="mapSelector" [(ngModel)]="newStrategy().map">
+<igx-select type="border" id="mapSelector" name="mapSelector" [(ngModel)]="newStrategy().map" (selectionChanging)="selectMap($event)">
       <label for="mapSelector" igxLabel i18n>Map</label>
       @for (map of mapList; track map) {
-        <igx-select-item (click)="selectedMap = map" [value]="map.mapId">
+        <igx-select-item [value]="map.mapId">
           {{ map.map }}
         </igx-select-item>
       }
@@ -56,8 +60,10 @@
         [ngModel]="newStrategy().url"
         (ngModelChange)="urlChanged($event)" />
         @if (strategyUrl.value.length > 0) {
-          <igx-suffix (click)="newStrategy().url = null">
-            <igx-icon>clear</igx-icon>
+          <igx-suffix>
+            <button type="button" igxIconButton="flat" (click)="newStrategy().url = null" i18n-aria-label aria-label="Clear link">
+              <igx-icon>clear</igx-icon>
+            </button>
           </igx-suffix>
         }
       </igx-input-group>

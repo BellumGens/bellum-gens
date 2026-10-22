@@ -6,8 +6,10 @@
         <label for="teamName" igxLabel i18n>Name</label>
         <input #teamName igxInput id="teamName" name="teamName" minlength="2" [required]="true" [(ngModel)]="team().teamName" />
         @if (teamName.value.length > 0) {
-          <igx-suffix (click)="team().teamName = null">
-            <igx-icon>clear</igx-icon>
+          <igx-suffix>
+            <button type="button" igxIconButton="flat" (click)="team().teamName = null" i18n-aria-label aria-label="Clear team name">
+              <igx-icon>clear</igx-icon>
+            </button>
           </igx-suffix>
         }
       </igx-input-group>
@@ -21,8 +23,10 @@
           pattern="^https?:\/\/(?:[a-z\-]+\.)+[a-z]{2,6}(?:\/[^\/#?]+)+\.(?:jpe?g|png|webp)$"
           [(ngModel)]="team().teamAvatar" />
           @if (teamAvatar.model?.length > 0) {
-            <igx-suffix (click)="team().teamAvatar = null">
-              <igx-icon>clear</igx-icon>
+            <igx-suffix>
+              <button type="button" igxIconButton="flat" (click)="team().teamAvatar = null" i18n-aria-label aria-label="Clear team avatar URL">
+                <igx-icon>clear</igx-icon>
+              </button>
             </igx-suffix>
           }
           @if (teamAvatar.invalid) {
@@ -33,8 +37,10 @@
           <label for="teamDescription" igxLabel i18n>Description</label>
           <textarea #teamDescription igxInput id="teamDescription" name="teamDescription" minlength="2" [required]="true" [(ngModel)]="team().description"></textarea>
           @if (teamDescription.value.length > 0) {
-            <igx-suffix (click)="team().description = null">
-              <igx-icon>clear</igx-icon>
+            <igx-suffix>
+              <button type="button" igxIconButton="flat" (click)="team().description = null" i18n-aria-label aria-label="Clear description">
+                <igx-icon>clear</igx-icon>
+              </button>
             </igx-suffix>
           }
         </igx-input-group>
@@ -42,8 +48,10 @@
           <label for="teamDiscord" igxLabel>Discord</label>
           <input #teamDiscord igxInput id="teamDiscord" name="teamDiscord" [(ngModel)]="team().discord" />
           @if (teamDiscord.value.length > 0) {
-            <igx-suffix (click)="team().discord = null">
-              <igx-icon>clear</igx-icon>
+            <igx-suffix>
+              <button type="button" igxIconButton="flat" (click)="team().discord = null" i18n-aria-label aria-label="Clear Discord">
+                <igx-icon>clear</igx-icon>
+              </button>
             </igx-suffix>
           }
         </igx-input-group>

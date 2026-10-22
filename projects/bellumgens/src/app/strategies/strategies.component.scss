@@ -71,5 +71,24 @@
   .strategy-actions igx-badge {
     margin-right: 4px;
   }
+
+  // Links and buttons that keep the look of the text and avatar they replaced
+  .strat-title-link,
+  .comments-link {
+    color: inherit;
+  }
+
+  .strat-title-link:focus-visible {
+    outline-offset: -2px;
+  }
+
+  .load-more-button {
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: none;
+    color: inherit;
+    cursor: pointer;
+  }
   /* END Strategies */
 }

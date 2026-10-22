@@ -42,22 +42,48 @@ describe('TournamentsMainComponent', () => {
     const tournaments: Tournament[] = [
       { id: '1', name: 'Active Current Tournament', active: true, startDate: oneDayAgo, endDate: oneDayFromNow },
       { id: '2', name: 'Inactive Tournament', active: false, startDate: oneDayAgo, endDate: oneDayFromNow },
-      { id: '3', name: 'Past Tournament', active: true, startDate: twoDaysAgo, endDate: oneDayAgo },
-      { id: '4', name: 'Upcoming Tournament', active: true, startDate: oneDayFromNow, endDate: twoDaysFromNow }
+      { id: '3', name: 'Active Ended Tournament', active: true, startDate: twoDaysAgo, endDate: oneDayAgo },
+      { id: '4', name: 'Active Future Tournament', active: true, startDate: oneDayFromNow, endDate: twoDaysFromNow },
+      { id: '5', name: 'Past Tournament', active: false, startDate: twoDaysAgo, endDate: oneDayAgo },
+      { id: '6', name: 'Upcoming Tournament', active: false, startDate: oneDayFromNow, endDate: twoDaysFromNow }
     ];
 
     const req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/tournaments`);
     expect(req.request.method).toBe('GET');
     req.flush(tournaments);
 
-    // tournaments array: active=true (id 1, 3, 4)
-    expect(component.tournaments().length).toBe(3);
-    // past array: endDate < now (id 3)
-    expect(component.past().length).toBe(1);
-    expect(component.past()[0].id).toBe('3');
-    // upcoming array: startDate > now (id 4)
-    expect(component.upcoming().length).toBe(1);
-    expect(component.upcoming()[0].id).toBe('4');
+    const ids = (list: Tournament[]) => list.map(t => t.id);
+    // tournaments array: every active one, whatever its dates (id 1, 3, 4)
+    expect(ids(component.tournaments())).toEqual(['1', '3', '4']);
+    // past array: inactive with endDate < now (id 5)
+    expect(ids(component.past())).toEqual(['5']);
+    // upcoming array: inactive with startDate > now (id 6)
+    expect(ids(component.upcoming())).toEqual(['6']);
+    // no tournament is listed in more than one section
+    const listed = [...component.tournaments(), ...component.past(), ...component.upcoming()].map(t => t.id);
+    expect(new Set(listed).size).toBe(listed.length);
+  });
+
+  it('should list an active tournament whose end date has passed only as active, not as past', () => {
+    const now = Date.now();
+    const ended: Tournament = { id: 'ended', name: 'Active Ended', active: true, startDate: new Date(now - 172800000), endDate: new Date(now - 86400000) };
+
+    httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/tournaments`).flush([ended]);
+
+    expect(component.tournaments().map(t => t.id)).toEqual(['ended']);
+    expect(component.past()).toEqual([]);
+    expect(component.upcoming()).toEqual([]);
+  });
+
+  it('should list an active tournament that has not started yet only as active, not as upcoming', () => {
+    const now = Date.now();
+    const future: Tournament = { id: 'future', name: 'Active Future', active: true, startDate: new Date(now + 86400000), endDate: new Date(now + 172800000) };
+
+    httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/tournaments`).flush([future]);
+
+    expect(component.tournaments().map(t => t.id)).toEqual(['future']);
+    expect(component.upcoming()).toEqual([]);
+    expect(component.past()).toEqual([]);
   });
 
   describe('rendering', () => {
@@ -188,8 +214,9 @@ describe('TournamentsMainComponent', () => {
 
       const dates = Array.from(fixture.nativeElement.querySelectorAll('.card-date') as NodeListOf<HTMLElement>)
         .map(d => d.textContent!.replace(/\s+/g, ' '));
-      // rendered once in the active section and once in the past section
-      expect(dates.length).toBe(2);
+      // the active tournament is rendered once, in the active section, even though its end date has passed
+      expect(dates.length).toBe(1);
+      expect(sections().length).toBe(1);
       dates.forEach(text => {
         expect(text).toContain('Jan 15, 2020');
         expect(text).toContain('Feb 20, 2020');
@@ -205,6 +232,34 @@ describe('TournamentsMainComponent', () => {
       expect(sections().length).toBe(1);
       expect(sections()[0].querySelectorAll('igx-card').length).toBe(2);
       expect(fixture.nativeElement.querySelector('.empty-state')).toBeNull();
+      expect(fixture.nativeElement.querySelectorAll('igx-divider').length).toBe(0);
+    });
+
+    it('should render an active season whose end date has passed only in the active section', async () => {
+      await flushTournaments([
+        { id: 'a1', name: 'Ended Active', active: true, startDate: new Date(now - 2 * day), endDate: new Date(now - day) }
+      ]);
+
+      expect(sections().length).toBe(1);
+      expect(heading(sections()[0])).toContain('Active Seasons');
+      const cards: NodeListOf<HTMLElement> = fixture.nativeElement.querySelectorAll('igx-card');
+      expect(cards.length).toBe(1);
+      expect(cards[0].querySelector('igx-chip.status-active')).toBeTruthy();
+      expect(fixture.nativeElement.querySelector('igx-chip.status-completed')).toBeNull();
+      expect(fixture.nativeElement.querySelectorAll('igx-divider').length).toBe(0);
+    });
+
+    it('should render an active season that has not started yet only in the active section', async () => {
+      await flushTournaments([
+        { id: 'a1', name: 'Future Active', active: true, startDate: new Date(now + day), endDate: new Date(now + 2 * day) }
+      ]);
+
+      expect(sections().length).toBe(1);
+      expect(heading(sections()[0])).toContain('Active Seasons');
+      const cards: NodeListOf<HTMLElement> = fixture.nativeElement.querySelectorAll('igx-card');
+      expect(cards.length).toBe(1);
+      expect(cards[0].querySelector('igx-chip.status-active')).toBeTruthy();
+      expect(fixture.nativeElement.querySelector('igx-chip.status-upcoming')).toBeNull();
       expect(fixture.nativeElement.querySelectorAll('igx-divider').length).toBe(0);
     });
 

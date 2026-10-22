@@ -193,6 +193,12 @@ describe('TeamDetailsComponent', () => {
 
     const text = () => (fixture.nativeElement as HTMLElement).textContent;
     const byTitle = (title: string) => Array.from((fixture.nativeElement as HTMLElement).querySelectorAll(`igx-avatar[title="${title}"]`)) as HTMLElement [];
+    // The member actions are named after the action and the member, e.g. "Remove igl-user from role".
+    const actions = (prefix: string, suffix: string) => Array.from((fixture.nativeElement as HTMLElement).querySelectorAll<HTMLButtonElement>('button.avatar-action'))
+      .filter(b => b.getAttribute('aria-label').startsWith(prefix) && b.getAttribute('aria-label').endsWith(suffix));
+    const removeFromRoleButtons = () => actions('Remove ', ' from role');
+    const moveToInactiveButtons = () => actions('Move ', ' to inactive');
+    const removeFromTeamButtons = () => actions('Remove ', ' from team');
     const slot = (role: PlaystyleRole) => component.roleSlots().find(s => s.role === role);
     const ids = (list: TeamMember []) => list.map(m => m.userId);
     const dropArgs = (dragged: TeamMember) => ({ drag: { data: dragged }, cancel: false }) as unknown as IDropDroppedEventArgs;
@@ -274,9 +280,9 @@ describe('TeamDetailsComponent', () => {
 
       it('should not render admin controls', () => {
         expect(component.isAdmin()).toBe(false);
-        expect(byTitle('Remove from role').length).toBe(0);
-        expect(byTitle('Move to inactive').length).toBe(0);
-        expect(byTitle('Remove from team').length).toBe(0);
+        expect(removeFromRoleButtons().length).toBe(0);
+        expect(moveToInactiveButtons().length).toBe(0);
+        expect(removeFromTeamButtons().length).toBe(0);
         expect(text()).not.toContain('Drag players to add them to the active roster');
       });
 
@@ -299,14 +305,24 @@ describe('TeamDetailsComponent', () => {
 
       it('should render admin controls instead of country badges', () => {
         expect(component.isAdmin()).toBe(true);
-        expect(byTitle('Remove from role').length).toBe(2);
-        expect(byTitle('Move to inactive').length).toBe(2);
+        expect(removeFromRoleButtons().length).toBe(2);
+        expect(moveToInactiveButtons().length).toBe(2);
         expect(byTitle('bg').length).toBe(0);
         expect(text()).toContain('Drag players to add them to the active roster');
       });
 
+      it('should name the admin controls after the action and the member', () => {
+        const [removeIgl] = removeFromRoleButtons();
+        expect(removeIgl.type).toBe('button');
+        expect(removeIgl.getAttribute('aria-label')).toBe('Remove Leader from role');
+        expect(removeIgl.getAttribute('title')).toBe('Remove Leader from role');
+        expect(moveToInactiveButtons().map(b => b.getAttribute('aria-label')))
+          .toEqual(['Move user-bench-a to inactive', 'Move user-bench-b to inactive']);
+        expect(removeFromTeamButtons()[0].getAttribute('aria-label')).toBe('Remove user-inactive-a from team');
+      });
+
       it('should not offer removing the current user from the team', () => {
-        const removable = byTitle('Remove from team');
+        const removable = removeFromTeamButtons();
         expect(removable.length).toBe(1);
         expect(removable[0].closest('.active-inactive-users').textContent).toContain('user-inactive-a');
       });
@@ -370,7 +386,7 @@ describe('TeamDetailsComponent', () => {
       });
 
       it('should move a role user back to the bench when removed from the role', async () => {
-        const removeFromRole = byTitle('Remove from role')[0];
+        const removeFromRole = removeFromRoleButtons()[0];
         removeFromRole.click();
         await fixture.whenStable();
 
@@ -378,7 +394,7 @@ describe('TeamDetailsComponent', () => {
         expect(slot(PlaystyleRole.IGL).user).toBeNull();
         expect(ids(component.activeMembers())).toEqual(['bench-a', 'bench-b', 'igl']);
         expect(component.activeMembers()[2].role).toBe(PlaystyleRole.NotSet);
-        expect(byTitle('Move to inactive').length).toBe(3);
+        expect(moveToInactiveButtons().length).toBe(3);
       });
     });
 
@@ -388,14 +404,14 @@ describe('TeamDetailsComponent', () => {
       });
 
       it('should move a bench member to the inactive list', async () => {
-        byTitle('Move to inactive')[0].click();
+        moveToInactiveButtons()[0].click();
         await fixture.whenStable();
 
         expect(updateTeamMember).toHaveBeenCalledWith({ ...benchA, isActive: false });
         expect(ids(component.activeMembers())).toEqual(['bench-b']);
         expect(ids(component.inactiveMembers())).toEqual(['inactive-a', 'inactive-b', 'bench-a']);
         expect(component.inactiveMembers()[2].isActive).toBe(false);
-        expect(byTitle('Remove from team').length).toBe(3);
+        expect(removeFromTeamButtons().length).toBe(3);
       });
 
       it('should show the empty bench message once the last bench member is moved out', async () => {
@@ -413,7 +429,7 @@ describe('TeamDetailsComponent', () => {
 
       it('should remove the member through the confirm dialog after the delete succeeds', async () => {
         await setup({ admin: true });
-        byTitle('Remove from team')[1].click();
+        removeFromTeamButtons()[1].click();
         await fixture.whenStable();
         expect(removeTeamMember).not.toHaveBeenCalled();
 

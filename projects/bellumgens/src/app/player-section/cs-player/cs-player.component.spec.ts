@@ -276,6 +276,9 @@ describe('CsPlayerComponent', () => {
       expect(apiService.getMapPool).toHaveBeenCalledWith('player-1');
       expect(component.userTeams()).toEqual(teams);
       expect(el().querySelectorAll('.team-avatar-link').length).toBe(1);
+      const teamLink = el().querySelector<HTMLAnchorElement>('a.team-avatar-link');
+      expect(teamLink.getAttribute('href')).toBe(`/team/${teams[0].customUrl}`);
+      expect(teamLink.getAttribute('aria-label')).toBe(teams[0].teamName);
       expect(fixture.debugElement.query(By.css('bg-availability')).componentInstance.availability()).toEqual(availability);
       expect(fixture.debugElement.query(By.css('app-map-pool')).componentInstance.mapPool()).toEqual(mapPool);
     });
@@ -289,7 +292,8 @@ describe('CsPlayerComponent', () => {
       expect(apiService.getAvailability).not.toHaveBeenCalled();
       expect(apiService.getMapPool).not.toHaveBeenCalled();
 
-      const register = el().querySelector<HTMLElement>('.navigatable');
+      const register = el().querySelector<HTMLButtonElement>('button.text-button');
+      expect(register.type).toBe('button');
       expect(register.textContent.trim()).toBe('register');
       register.click();
       expect(openLogin).toHaveBeenCalledTimes(1);

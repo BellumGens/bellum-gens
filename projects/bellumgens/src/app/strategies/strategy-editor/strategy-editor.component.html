@@ -22,11 +22,21 @@
             <igx-checkbox igxListThumbnail [name]="'checkbox_' + layer.name" class="layer-selected" [disabled]="!layer.movable" (change)="deselectBrush()" [(ngModel)]="layer.selected"></igx-checkbox>
             <igx-input-group type="border" igxListLine [class.hidden-layer]="layer.hidden" [style.--ig-size]="'var(--ig-size-small)'">
               <igx-prefix>
-                <igx-icon (click)="layer.hidden = !layer.hidden">{{ layer.hidden ? 'visibility' : 'visibility_off'}}</igx-icon>
+                <button type="button"
+                  igxIconButton="flat"
+                  class="layer-action"
+                  (click)="layer.hidden = !layer.hidden"
+                  [attr.aria-pressed]="!!layer.hidden"
+                  i18n-aria-label
+                  aria-label="Hide layer">
+                  <igx-icon>{{ layer.hidden ? 'visibility' : 'visibility_off'}}</igx-icon>
+                </button>
               </igx-prefix>
               <input igxInput [name]="'name_' + layer.name" [(ngModel)]="layer.name" />
               <igx-suffix>
-                <igx-icon (click)="confirm.open(layer)">clear</igx-icon>
+                <button type="button" igxIconButton="flat" class="layer-action" (click)="confirm.open(layer)" i18n-aria-label aria-label="Remove layer">
+                  <igx-icon>clear</igx-icon>
+                </button>
               </igx-suffix>
             </igx-input-group>
           </igx-list-item>
@@ -106,7 +116,16 @@
     </div>
     <div class="editor-elements-section">
       <div i18n>Freeflow brushes</div>
-      <igx-icon class="editor-freeflow-element" [class.selected-element]="brushSelected()" (click)="selectBrush()">brush</igx-icon>
+      <button type="button"
+        igxIconButton="flat"
+        class="editor-freeflow-element"
+        [class.selected-element]="brushSelected()"
+        [attr.aria-pressed]="brushSelected()"
+        (click)="selectBrush()"
+        i18n-aria-label
+        aria-label="Freeflow brush">
+        <igx-icon>brush</igx-icon>
+      </button>
     </div>
     @if (brushSelected()) {
       <div class="editor-elements-section">

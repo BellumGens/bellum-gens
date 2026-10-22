@@ -10,10 +10,10 @@ import {
 } from '../../../../common/src/public_api';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { IGX_DRAG_DROP_DIRECTIVES } from '@infragistics/igniteui-angular/directives';
-import { IGX_DROP_DOWN_DIRECTIVES, IgxAutocompleteDirective } from '@infragistics/igniteui-angular/drop-down';
+import { IGX_DRAG_DROP_DIRECTIVES, IgxIconButtonDirective } from '@infragistics/igniteui-angular/directives';
+import { IGX_DROP_DOWN_DIRECTIVES, ISelectionEventArgs, IgxAutocompleteDirective } from '@infragistics/igniteui-angular/drop-down';
 import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
-import { IGX_SELECT_DIRECTIVES } from '@infragistics/igniteui-angular/select';
+import { IGX_SELECT_DIRECTIVES, IgxSelectComponent } from '@infragistics/igniteui-angular/select';
 import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
 import { IgxCheckboxComponent } from '@infragistics/igniteui-angular/checkbox';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
@@ -29,6 +29,7 @@ import { StartsWithPipe } from '../../../../common/src/lib/pipes/starts-with.pip
     IGX_INPUT_GROUP_DIRECTIVES,
     IGX_SELECT_DIRECTIVES,
     IgxIconComponent,
+    IgxIconButtonDirective,
     IgxAvatarComponent,
     IgxAutocompleteDirective,
     IGX_DROP_DOWN_DIRECTIVES,
@@ -58,6 +59,8 @@ export class TournamentRegistrationComponent {
   public chooseGame = $localize`Choose league (game)`;
   public loginFirst = $localize`Please login first`;
   public battleTagRegex = BATTLE_TAG_REGEX;
+  /** The value of the team select option that creates a new team instead of choosing one */
+  public readonly newTeamOption = 'new-team';
 
   constructor() {
     effect(() => {
@@ -102,9 +105,27 @@ export class TournamentRegistrationComponent {
     }
   }
 
-  public scrollToTerms(event: MouseEvent) {
-    const element = document.getElementById('terms');
-    element.scrollIntoView({ behavior: 'smooth' });
+  /**
+   * Opens the new team dialog instead of selecting the "Create a new team..." option,
+   * whether it was picked with the mouse or the keyboard.
+   */
+  public teamSelectionChanging(event: ISelectionEventArgs, select: IgxSelectComponent, newTeam: TeamNewComponent) {
+    if (event.newSelection?.value !== this.newTeamOption) {
+      return;
+    }
+    event.cancel = true;
+    // Arrowing through a closed select should not pop up the dialog
+    if (!select.collapsed) {
+      select.close();
+      newTeam.open(false);
+    }
+  }
+
+  public scrollToTerms(event: Event) {
+    // The link only scrolls to the terms, it should neither navigate nor toggle the checkbox
+    event.preventDefault();
     event.stopPropagation();
+    const element = document.getElementById('terms');
+    element?.scrollIntoView({ behavior: 'smooth' });
   }
 }

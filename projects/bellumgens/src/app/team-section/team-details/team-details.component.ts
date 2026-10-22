@@ -127,6 +127,18 @@ export class TeamDetailsComponent extends BaseDirective {
     }
   }
 
+  public removeFromRoleLabel(member: TeamMember) {
+    return $localize`Remove ${member.username}:username: from role`;
+  }
+
+  public moveToInactiveLabel(member: TeamMember) {
+    return $localize`Move ${member.username}:username: to inactive`;
+  }
+
+  public removeFromTeamLabel(member: TeamMember) {
+    return $localize`Remove ${member.username}:username: from team`;
+  }
+
   public roleDraggingEnd() {
     this.emptyRoles().forEach((avatar) => {
       avatar.nativeElement.classList.remove('empty-role-active');
