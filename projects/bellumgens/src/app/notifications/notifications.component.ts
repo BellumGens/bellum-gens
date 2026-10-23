@@ -29,21 +29,25 @@ export class NotificationsComponent {
     this.playerChanges();
     return this.authUser() ? this.unreadPipe.transform(this.authService.userNotifications()) : 0;
   });
-  // Team applications are loaded fresh by every team in the view.
-  private teamUnread = signal(0);
+  // Team applications are loaded fresh by every team in the view; only the current user's teams are counted.
+  private teamCounts = signal(new Map<string, number>());
+  private teamUnread = computed(() => {
+    const counts = this.teamCounts();
+    return (this.teamAdmin() ?? []).reduce((total, team) => total + (counts.get(team.teamId) ?? 0), 0);
+  });
   public unreadCount = computed(() => this.playerUnread() + this.teamUnread());
 
   constructor() {
     effect(() => this.unreadChanged.emit(this.unreadCount()));
   }
 
-  public teamLoaded(applications: TeamApplication []) {
+  public teamLoaded(teamId: string, applications: TeamApplication []) {
     const unread = applications ? applications.filter(a => a.state === NotificationState.NotSeen).length : 0;
-    this.teamUnread.update(count => count + unread);
+    this.teamCounts.update(counts => new Map(counts).set(teamId, unread));
   }
 
-  public teamChanged(delta: number) {
-    this.teamUnread.update(count => count + delta);
+  public teamChanged(teamId: string, delta: number) {
+    this.teamCounts.update(counts => new Map(counts).set(teamId, (counts.get(teamId) ?? 0) + delta));
   }
 
   public playerChanged() {

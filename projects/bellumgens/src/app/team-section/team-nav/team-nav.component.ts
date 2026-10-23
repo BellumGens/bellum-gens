@@ -6,7 +6,8 @@ import {
   LoginService,
   ConfirmComponent
 } from '../../../../../common/src/public_api';
-import { filter, switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { catchError, switchMap } from 'rxjs/operators';
 import { TeamNewComponent } from '../team-new/team-new.component';
 import { RouterLink } from '@angular/router';
 import { IgxButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
@@ -35,9 +36,11 @@ export class TeamNavComponent {
 
   public authUser = this.authService.applicationUser;
 
+  // A failed request falls back to no teams, so a later login can still load them
   private userTeams = toSignal(toObservable(this.authUser).pipe(
-    filter(user => !!user),
-    switchMap(user => this.apiService.getUserTeams(user.id))
+    switchMap(user => user
+      ? this.apiService.getUserTeams(user.id).pipe(catchError(() => of([] as CSGOTeam [])))
+      : of(undefined))
   ));
   // Reloaded with the user's teams and updated locally when a team is abandoned
   public teams = linkedSignal(() => this.userTeams());

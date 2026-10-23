@@ -151,5 +151,23 @@ describe('NotificationsComponent', () => {
       expect(component.unreadCount()).toBe(2);
       expect(reported.at(-1)).toBe(2);
     });
+
+    it('should not count the previous team applications again after logging in again', async () => {
+      const loginService = TestBed.inject(LoginService);
+      loginService['_applicationUser'].set(null);
+      await fixture.whenStable();
+      expect(component.unreadCount()).toBe(0);
+
+      loginService['_applicationUser'].set({ id: 'user-1', username: 'TestUser' } as ApplicationUser);
+      await fixture.whenStable();
+      httpMock.match(`${authApiEndpoint}/userteamsadmin`).forEach(req => req.flush([team]));
+      await fixture.whenStable();
+      httpMock.match(`${apiEndpoint}/teams/applications?teamId=${team.teamId}`)
+        .forEach(req => req.flush([application('p1', NotificationState.NotSeen), application('p2', NotificationState.Accepted)]));
+      await fixture.whenStable();
+
+      expect(component.unreadCount()).toBe(3);
+      expect(reported.at(-1)).toBe(3);
+    });
   });
 });

@@ -171,6 +171,30 @@ describe('TeamNavComponent', () => {
       expect(cards[0].querySelector('h3').textContent).toContain('Second Team');
     });
 
+    it('should show no teams when loading fails and load them again for the next user', async () => {
+      httpMock.expectOne(r => r.url.includes('/users/userteams')).flush('error', { status: 500, statusText: 'Server Error' });
+      await fixture.whenStable();
+      expect(component.teams()).toEqual([]);
+
+      TestBed.inject(LoginService)['_applicationUser'].set({ ...user, id: 'user-2' });
+      await fixture.whenStable();
+      const req = httpMock.expectOne(r => r.url.includes('/users/userteams'));
+      expect(req.request.url).toContain('userid=user-2');
+      req.flush(TEAMS);
+      await fixture.whenStable();
+
+      expect(component.teams()).toEqual(TEAMS);
+    });
+
+    it('should clear the teams when the user logs out', async () => {
+      await flushTeams(TEAMS);
+      TestBed.inject(LoginService)['_applicationUser'].set(null);
+      await fixture.whenStable();
+
+      expect(component.teams()).toBeUndefined();
+      expect(fixture.nativeElement.querySelectorAll('igx-card').length).toBe(0);
+    });
+
     it('should keep the team in the list when abandoning fails', async () => {
       await flushTeams(TEAMS);
       component.abandonTeam(TEAMS[0]);
