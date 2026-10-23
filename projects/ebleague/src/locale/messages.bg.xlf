@@ -3203,6 +3203,74 @@
         <source>Clear street</source>
         <target>Изчисти улицата</target>
       </trans-unit>
+      <trans-unit id="6954994945455278066" datatype="html">
+        <source>Add results</source>
+        <target>Добави резултати</target>
+      </trans-unit>
+      <trans-unit id="6057682020224590394" datatype="html">
+        <source>Edit match</source>
+        <target>Редактирай мача</target>
+      </trans-unit>
+      <trans-unit id="4266118310753122635" datatype="html">
+        <source>Delete match</source>
+        <target>Изтрий мача</target>
+      </trans-unit>
+      <trans-unit id="1986447133938400920" datatype="html">
+        <source>Clear group name</source>
+        <target>Изчисти името на групата</target>
+      </trans-unit>
+      <trans-unit id="9210705833797356375" datatype="html">
+        <source>Edit group</source>
+        <target>Редактирай групата</target>
+      </trans-unit>
+      <trans-unit id="989480357041643523" datatype="html">
+        <source>Delete group</source>
+        <target>Изтрий групата</target>
+      </trans-unit>
+      <trans-unit id="1484398468753074704" datatype="html">
+        <source>Save group</source>
+        <target>Запази групата</target>
+      </trans-unit>
+      <trans-unit id="185615311542087271" datatype="html">
+        <source>Clear video link</source>
+        <target>Изчисти линка към видеото</target>
+      </trans-unit>
+      <trans-unit id="1407999135191600742" datatype="html">
+        <source>Clear demo link</source>
+        <target>Изчисти линка към демото</target>
+      </trans-unit>
+      <trans-unit id="4222596374849656522" datatype="html">
+        <source>Clear tournament name</source>
+        <target>Изчисти името на турнира</target>
+      </trans-unit>
+      <trans-unit id="2143577252337766748" datatype="html">
+        <source>Clear tournament logo</source>
+        <target>Изчисти логото на турнира</target>
+      </trans-unit>
+      <trans-unit id="3864080177386682033" datatype="html">
+        <source>Clear tournament description</source>
+        <target>Изчисти описанието на турнира</target>
+      </trans-unit>
+      <trans-unit id="5974076313016086058" datatype="html">
+        <source>Refresh registrations</source>
+        <target>Обнови регистрациите</target>
+      </trans-unit>
+      <trans-unit id="5642684721638809670" datatype="html">
+        <source>Refresh matches</source>
+        <target>Обнови мачовете</target>
+      </trans-unit>
+      <trans-unit id="8531171170890558057" datatype="html">
+        <source>Refresh participants</source>
+        <target>Обнови участниците</target>
+      </trans-unit>
+      <trans-unit id="3108295184226330469" datatype="html">
+        <source>Clear group</source>
+        <target>Изчисти групата</target>
+      </trans-unit>
+      <trans-unit id="7905906949244958644" datatype="html">
+        <source>Toggle navigation menu</source>
+        <target>Превключи навигационното меню</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

@@ -5313,6 +5313,110 @@
         <source>Cancel edit</source>
         <target>Откажи редакцията</target>
       </trans-unit>
+      <trans-unit id="4266320720634993254" datatype="html">
+        <source>Navigation menu</source>
+        <target>Меню за навигация</target>
+      </trans-unit>
+      <trans-unit id="3643866539136239218" datatype="html">
+        <source>Clear search</source>
+        <target>Изчисти търсенето</target>
+      </trans-unit>
+      <trans-unit id="336262150804823681" datatype="html">
+        <source>Clear email</source>
+        <target>Изчисти имейла</target>
+      </trans-unit>
+      <trans-unit id="1908499290314678195" datatype="html">
+        <source>Clear first name</source>
+        <target>Изчисти името</target>
+      </trans-unit>
+      <trans-unit id="7579320793279445748" datatype="html">
+        <source>Clear last name</source>
+        <target>Изчисти фамилията</target>
+      </trans-unit>
+      <trans-unit id="9044412112822364442" datatype="html">
+        <source>Clear Discord ID</source>
+        <target>Изчисти Discord ID</target>
+      </trans-unit>
+      <trans-unit id="8847699240210775351" datatype="html">
+        <source>Clear battle tag</source>
+        <target>Изчисти battle tag</target>
+      </trans-unit>
+      <trans-unit id="1680394846540474506" datatype="html">
+        <source>Clear team</source>
+        <target>Изчисти отбора</target>
+      </trans-unit>
+      <trans-unit id="2065079282974468004" datatype="html">
+        <source>This player is not registered! If you own the profile then <x id="START_TAG_BUTTON" ctype="x-button" equiv-text="&lt;button type=&quot;button&quot; (click)=&quot;openLogin()&quot; class=&quot;highlight text-button&quot;&gt;"/>register<x id="CLOSE_TAG_BUTTON" ctype="x-button" equiv-text="&lt;/button&gt;"/> to complete it.</source>
+        <target>Този играч не е регистриран! Ако притежавате профила, <x id="START_TAG_BUTTON" ctype="x-button" equiv-text="&lt;button type=&quot;button&quot; (click)=&quot;openLogin()&quot; class=&quot;highlight text-button&quot;&gt;"/>регистрирайте се<x id="CLOSE_TAG_BUTTON" ctype="x-button" equiv-text="&lt;/button&gt;"/>, за да го довършите.</target>
+      </trans-unit>
+      <trans-unit id="8700906313160445906" datatype="html">
+        <source>Clear title</source>
+        <target>Изчисти заглавието</target>
+      </trans-unit>
+      <trans-unit id="8499912632963768403" datatype="html">
+        <source>Clear description</source>
+        <target>Изчисти описанието</target>
+      </trans-unit>
+      <trans-unit id="4420722297301365560" datatype="html">
+        <source>Clear link</source>
+        <target>Изчисти връзката</target>
+      </trans-unit>
+      <trans-unit id="1005793522224066358" datatype="html">
+        <source>Strategy actions</source>
+        <target>Действия със стратегията</target>
+      </trans-unit>
+      <trans-unit id="6540298259410047676" datatype="html">
+        <source>Comments: <x id="count" equiv-text="strat.comments?.length ?? 0"/></source>
+        <target>Коментари: <x id="count" equiv-text="strat.comments?.length ?? 0"/></target>
+      </trans-unit>
+      <trans-unit id="6929565600314524258" datatype="html">
+        <source>Comment actions</source>
+        <target>Действия с коментара</target>
+      </trans-unit>
+      <trans-unit id="4226610033254671527" datatype="html">
+        <source>Hide layer</source>
+        <target>Скрий слоя</target>
+      </trans-unit>
+      <trans-unit id="4385567779417111571" datatype="html">
+        <source>Remove layer</source>
+        <target>Премахни слоя</target>
+      </trans-unit>
+      <trans-unit id="3047537011717170621" datatype="html">
+        <source>Freeflow brush</source>
+        <target>Свободна четка</target>
+      </trans-unit>
+      <trans-unit id="5231930137256698658" datatype="html">
+        <source>Clear message</source>
+        <target>Изчисти съобщението</target>
+      </trans-unit>
+      <trans-unit id="7800738675096880095" datatype="html">
+        <source>Remove <x id="username" equiv-text="member.username"/> from role</source>
+        <target>Премахни <x id="username" equiv-text="member.username"/> от ролята</target>
+      </trans-unit>
+      <trans-unit id="9182905864150468739" datatype="html">
+        <source>Move <x id="username" equiv-text="member.username"/> to inactive</source>
+        <target>Премести <x id="username" equiv-text="member.username"/> в неактивни</target>
+      </trans-unit>
+      <trans-unit id="5488466320845465302" datatype="html">
+        <source>Remove <x id="username" equiv-text="member.username"/> from team</source>
+        <target>Премахни <x id="username" equiv-text="member.username"/> от отбора</target>
+      </trans-unit>
+      <trans-unit id="5613992837503682068" datatype="html">
+        <source>Clear team name</source>
+        <target>Изчисти името на отбора</target>
+      </trans-unit>
+      <trans-unit id="8972415480841314475" datatype="html">
+        <source>Clear team motto</source>
+        <target>Изчисти девиза на отбора</target>
+      </trans-unit>
+      <trans-unit id="2450097354054432711" datatype="html">
+        <source>Clear team avatar URL</source>
+        <target>Изчисти URL адреса на аватара на отбора</target>
+      </trans-unit>
+      <trans-unit id="4663040583690807740" datatype="html">
+        <source>Clear Discord</source>
+        <target>Изчисти Discord</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

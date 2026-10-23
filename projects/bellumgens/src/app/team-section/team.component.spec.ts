@@ -304,5 +304,15 @@ describe('TeamComponent', () => {
       expect(TestBed.inject(Router).url).toBe('/team/team-1/preferences');
       expect(element().querySelector('.team-child').textContent).toBe('Test Team');
     });
+
+    it('should navigate to the child route of a tab activated with the keyboard', async () => {
+      const headers = harness.fixture.debugElement.queryAll(By.css('igx-tab-header'));
+      const settings = headers[3].nativeElement as HTMLElement;
+      settings.focus();
+      settings.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
+      await harness.fixture.whenStable();
+
+      expect(TestBed.inject(Router).url).toBe('/team/team-1/preferences');
+    });
   });
 });

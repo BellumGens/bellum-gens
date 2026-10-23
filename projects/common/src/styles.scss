@@ -19,8 +19,8 @@ html, body {
   cursor: pointer;
 }
 
-.navigatable:focus,
-.navigatable:active {
+// Pointer focus doesn't need an outline, but keyboard focus must stay visible (WCAG 2.4.7)
+.navigatable:focus:not(:focus-visible) {
   outline: none;
 }
 

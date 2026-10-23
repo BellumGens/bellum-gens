@@ -827,7 +827,6 @@ describe('AdminMainComponent', () => {
       }
     ];
     const grid = () => fixture.debugElement.queryAll(By.directive(IgxGridComponent))[1].componentInstance as IgxGridComponent;
-    const actionStrip = () => grid().actionStrip as IgxActionStripComponent;
     const stripButton = (title: string) => grid().nativeElement.querySelector<HTMLButtonElement>(`igx-action-strip button[title="${title}"]`);
     const hoverRow = async (key: string) => {
       grid().dataRowList.find(r => r.key === key).nativeElement.dispatchEvent(new MouseEvent('mouseenter'));

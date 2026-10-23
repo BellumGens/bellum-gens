@@ -1,5 +1,6 @@
 <div class="overview-container-card">
-  <igx-tabs>
+  <!-- Routing tabs: arrow keys move focus, Enter/Space activates the focused tab (navigates) -->
+  <igx-tabs activation="manual">
     <igx-tab-item routerLinkActive #rla1="routerLinkActive"
       [disabled]="!player()?.csgoDetails"
       [selected]="rla1.isActive">

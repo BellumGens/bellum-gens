@@ -4,7 +4,7 @@
   @for (provider of providers(); track provider.name) {
     <button
       igxButton="contained" igxRipple
-      class="submit-button navigatable"
+      class="submit-button"
       [style.background]="loginColors[provider.name]"
       (click)="login(provider)"
       [disabled]="disableLogin(provider.name)">

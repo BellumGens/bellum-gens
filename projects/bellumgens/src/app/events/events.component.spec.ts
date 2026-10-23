@@ -79,6 +79,15 @@ describe('EventsComponent', () => {
   //   expect(component.sub.unsubscribe).toHaveBeenCalled();
   // });
 
+  it('should link the BGE Balkan Circuit heading with a real link', () => {
+    const heading = fixture.nativeElement.querySelector('h2#bgebalkan') as HTMLElement;
+    const link = heading.querySelector('a');
+
+    expect(link.textContent.trim()).toBe('BGE Balkan Circuit');
+    expect(link.hasAttribute('href')).toBe(true);
+    expect(heading.hasAttribute('tabindex')).toBe(false);
+  });
+
   it('should scroll to the correct element', () => {
     const elementId = 'test-id';
     const mockElement = document.createElement('div');
