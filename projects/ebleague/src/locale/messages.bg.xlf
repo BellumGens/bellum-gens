@@ -3271,6 +3271,94 @@
         <source>Toggle navigation menu</source>
         <target>Превключи навигационното меню</target>
       </trans-unit>
+      <trans-unit id="1405463563837173046" datatype="html">
+        <source>Set up your account</source>
+        <target>Настройте профила си</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/registration/registration.component.html</context>
+          <context context-type="linenumber">3,4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5259416047008119946" datatype="html">
+        <source>Tournament details</source>
+        <target>Детайли за турнира</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-card/tournament-card.component.html</context>
+          <context context-type="linenumber">31,32</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-detail/tournament-detail.component.html</context>
+          <context context-type="linenumber">15,16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4911523777296608973" datatype="html">
+        <source>Delete tournament</source>
+        <target>Изтрий турнира</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-card/tournament-card.component.html</context>
+          <context context-type="linenumber">74,75</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8890553633144307762" datatype="html">
+        <source>Back</source>
+        <target>Назад</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-create/tournament-create.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7355648723531214824" datatype="html">
+        <source>You don&apos;t have access to this page. Log in with an account that has access to it, or go back to the home page.</source>
+        <target>Нямате достъп до тази страница. Влезте с профил, който има достъп до нея, или се върнете към началната страница.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/unauthorized/unauthorized.component.html</context>
+          <context context-type="linenumber">3,4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3497245523524615821" datatype="html">
+        <source>Go to the home page</source>
+        <target>Към началната страница</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/unauthorized/unauthorized.component.html</context>
+          <context context-type="linenumber">13,14</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/tournament-registration/registration-success/registration-success.component.html</context>
+          <context context-type="linenumber">20,21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8582617224681018520" datatype="html">
+        <source>Esports Business League Season 2 finals giveaway</source>
+        <target>Томбола на финалите на втори сезон на Esports Business League</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/raffle/raffle.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6847115594685057654" datatype="html">
+        <source>Your order has been received! We will call you for additional confirmation!</source>
+        <target>Вашата поръчка е получена! Ще се свържем с вас за допълнително потвърждение!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/shop/order-success/order-success.component.html</context>
+          <context context-type="linenumber">2,3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3310562111340576398" datatype="html">
+        <source>There are no registration details to show.</source>
+        <target>Няма данни за регистрация, които да бъдат показани.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/tournament-registration/registration-success/registration-success.component.html</context>
+          <context context-type="linenumber">18,19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1528954806611289994" datatype="html">
+        <source>If you have already registered, your registration code can be found through your user profile.</source>
+        <target>Ако вече сте се регистрирали, можете да намерите кода за регистрация през вашия профил.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/tournament-registration/registration-success/registration-success.component.html</context>
+          <context context-type="linenumber">19,20</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>

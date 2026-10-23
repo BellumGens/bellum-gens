@@ -5417,6 +5417,154 @@
         <source>Clear Discord</source>
         <target>Изчисти Discord</target>
       </trans-unit>
+      <trans-unit id="5642684721638809670" datatype="html">
+        <source>Refresh matches</source>
+        <target>Обнови мачовете</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/bge-balkan/bge-balkan.component.html</context>
+          <context context-type="linenumber">52,53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="666756836576955221" datatype="html">
+        <source>Refresh standings</source>
+        <target>Обнови класирането</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/bge-balkan/bge-balkan.component.html</context>
+          <context context-type="linenumber">161,162</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3633668241861229327" datatype="html">
+        <source>Map of the Summer Theater in Stara Zagora</source>
+        <target>Карта на Летния театър в Стара Загора</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">155</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1983989454569140684" datatype="html">
+        <source>Layer name</source>
+        <target>Име на слоя</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/strategies/strategy-editor/strategy-editor.component.html</context>
+          <context context-type="linenumber">35,36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3891478385025215430" datatype="html">
+        <source>Yellow</source>
+        <target>Жълт</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/strategies/strategy-editor/strategy-editor.component.ts</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4082253113407591781" datatype="html">
+        <source>Blue</source>
+        <target>Син</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/strategies/strategy-editor/strategy-editor.component.ts</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4046446611860328467" datatype="html">
+        <source>Red</source>
+        <target>Червен</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/strategies/strategy-editor/strategy-editor.component.ts</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="119581980963263815" datatype="html">
+        <source>Green</source>
+        <target>Зелен</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/strategies/strategy-editor/strategy-editor.component.ts</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6194760889104675204" datatype="html">
+        <source>Pink</source>
+        <target>Розов</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/strategies/strategy-editor/strategy-editor.component.ts</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3451129084922491008" datatype="html">
+        <source>Select layer</source>
+        <target>Изберете слой</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/strategies/strategy-editor/strategy-editor.component.ts</context>
+          <context context-type="linenumber">91</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3475004687424015839" datatype="html">
+        <source>Vote up: <x id="count" equiv-text="count"/></source>
+        <target>Глас за: <x id="count" equiv-text="count"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/strategies/vote-label.ts</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7995786720820132998" datatype="html">
+        <source>Vote down: <x id="count" equiv-text="count"/></source>
+        <target>Глас против: <x id="count" equiv-text="count"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/strategies/vote-label.ts</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1405463563837173046" datatype="html">
+        <source>Set up your account</source>
+        <target>Настройте профила си</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/registration/registration.component.html</context>
+          <context context-type="linenumber">3,4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5259416047008119946" datatype="html">
+        <source>Tournament details</source>
+        <target>Детайли за турнира</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-card/tournament-card.component.html</context>
+          <context context-type="linenumber">31,32</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-detail/tournament-detail.component.html</context>
+          <context context-type="linenumber">15,16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4911523777296608973" datatype="html">
+        <source>Delete tournament</source>
+        <target>Изтрий турнира</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-card/tournament-card.component.html</context>
+          <context context-type="linenumber">74,75</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8890553633144307762" datatype="html">
+        <source>Back</source>
+        <target>Назад</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-create/tournament-create.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7355648723531214824" datatype="html">
+        <source>You don&apos;t have access to this page. Log in with an account that has access to it, or go back to the home page.</source>
+        <target>Нямате достъп до тази страница. Влезте с профил, който има достъп до нея, или се върнете към началната страница.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/unauthorized/unauthorized.component.html</context>
+          <context context-type="linenumber">3,4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3497245523524615821" datatype="html">
+        <source>Go to the home page</source>
+        <target>Към началната страница</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/unauthorized/unauthorized.component.html</context>
+          <context context-type="linenumber">13,14</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>
