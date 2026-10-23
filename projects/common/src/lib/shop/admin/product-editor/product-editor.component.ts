@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ViewChild, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal, viewChild } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 import { FormArray, FormControl, FormGroup, NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
@@ -58,15 +58,13 @@ type VariantForm = FormGroup<{
     ConfirmComponent
   ],
   templateUrl: './product-editor.component.html',
-  styleUrl: './product-editor.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrl: './product-editor.component.scss'
 })
 export class ProductEditorComponent {
   private shopApi = inject(ApiShopService);
   private fb = inject(NonNullableFormBuilder);
 
-  @ViewChild(ConfirmComponent, { static: true })
-  public confirm: ConfirmComponent;
+  public confirm = viewChild.required(ConfirmComponent);
 
   public products = signal<Product[]>([]);
   public loading = signal(true);
@@ -235,7 +233,7 @@ export class ProductEditorComponent {
 
   public askDelete() {
     if (this.selectedId()) {
-      this.confirm.open(this.selectedId());
+      this.confirm().open(this.selectedId());
     }
   }
 

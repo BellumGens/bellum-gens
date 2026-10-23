@@ -366,7 +366,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
-          <context context-type="linenumber">34</context>
+          <context context-type="linenumber">36</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5706531354343599313" datatype="html">
@@ -387,7 +387,7 @@
         <source>Inactive</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
-          <context context-type="linenumber">21</context>
+          <context context-type="linenumber">22</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/promo-editor/promo-editor.component.html</context>
@@ -398,77 +398,77 @@
         <source>options</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
-          <context context-type="linenumber">24</context>
+          <context context-type="linenumber">25</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8953033926734869941" datatype="html">
         <source>Name</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
-          <context context-type="linenumber">42,43</context>
+          <context context-type="linenumber">44,45</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3833692663709091545" datatype="html">
         <source>Name is required</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
-          <context context-type="linenumber">45</context>
+          <context context-type="linenumber">47</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5553009790257288680" datatype="html">
         <source>URL slug</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
-          <context context-type="linenumber">50,51</context>
+          <context context-type="linenumber">52,53</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5180358026844575602" datatype="html">
         <source>Leave empty to generate it from the name</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
-          <context context-type="linenumber">52</context>
+          <context context-type="linenumber">54</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8419515490539218007" datatype="html">
         <source>Sort order</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
-          <context context-type="linenumber">56,57</context>
+          <context context-type="linenumber">58,59</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2559885490456050359" datatype="html">
         <source>Brand</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
-          <context context-type="linenumber">61,62</context>
+          <context context-type="linenumber">63,64</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6964530103202862227" datatype="html">
         <source>Product type</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
-          <context context-type="linenumber">68,69</context>
+          <context context-type="linenumber">70,71</context>
         </context-group>
       </trans-unit>
       <trans-unit id="808353450478042657" datatype="html">
         <source>Price (EUR)</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
-          <context context-type="linenumber">75,76</context>
+          <context context-type="linenumber">77,78</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4719229540858596662" datatype="html">
         <source>Price must be zero or more</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
-          <context context-type="linenumber">78</context>
+          <context context-type="linenumber">80</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6131874190146381475" datatype="html">
         <source>Discount (%)</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
-          <context context-type="linenumber">83,84</context>
+          <context context-type="linenumber">85,86</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/promo-editor/promo-editor.component.html</context>
@@ -479,32 +479,32 @@
         <source>Shown as a strike-through price. Leave empty for none.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
-          <context context-type="linenumber">85</context>
+          <context context-type="linenumber">87</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4613338085351943838" datatype="html">
         <source>Stock</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
-          <context context-type="linenumber">90,91</context>
+          <context context-type="linenumber">92,93</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
-          <context context-type="linenumber">180,181</context>
+          <context context-type="linenumber">182,183</context>
         </context-group>
       </trans-unit>
       <trans-unit id="265166443704627143" datatype="html">
         <source>Leave empty when stock is not tracked</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
-          <context context-type="linenumber">92</context>
+          <context context-type="linenumber">94</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4902817035128594900" datatype="html">
         <source>Description</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
-          <context context-type="linenumber">97,98</context>
+          <context context-type="linenumber">99,100</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-create/tournament-create.component.html</context>
@@ -515,116 +515,116 @@
         <source>Main image URL</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
-          <context context-type="linenumber">102,103</context>
+          <context context-type="linenumber">104,105</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3884222790160182700" datatype="html">
         <source>Save the product first, then upload its image.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
-          <context context-type="linenumber">113,114</context>
+          <context context-type="linenumber">115,116</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9179063812327348875" datatype="html">
         <source>Upload PNG image</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
-          <context context-type="linenumber">117,118</context>
+          <context context-type="linenumber">119,120</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1245343823699368872" datatype="html">
         <source>Uploading...</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
-          <context context-type="linenumber">121,122</context>
+          <context context-type="linenumber">123,124</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4167411494741586301" datatype="html">
         <source>Gallery image URLs (one per line)</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
-          <context context-type="linenumber">127,128</context>
+          <context context-type="linenumber">129,130</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7154216965883065990" datatype="html">
         <source>Visible in the shop</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
-          <context context-type="linenumber">131</context>
+          <context context-type="linenumber">133</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2222342560934079216" datatype="html">
         <source>Options and sizes</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
-          <context context-type="linenumber">137,138</context>
+          <context context-type="linenumber">139,140</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5030912845329529692" datatype="html">
         <source>Add jersey sizes</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
-          <context context-type="linenumber">139,140</context>
+          <context context-type="linenumber">141,142</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4910631867841099191" datatype="html">
         <source>Add option</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
-          <context context-type="linenumber">142,143</context>
+          <context context-type="linenumber">144,145</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7199787897746650467" datatype="html">
         <source>Products with options are ordered by option, and stock is tracked per option. Leave the list empty for simple products.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
-          <context context-type="linenumber">146,148</context>
+          <context context-type="linenumber">148,150</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3061192590618575679" datatype="html">
         <source>Option name</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
-          <context context-type="linenumber">152,153</context>
+          <context context-type="linenumber">154,155</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3804037606764273869" datatype="html">
         <source>Cut</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
-          <context context-type="linenumber">156,157</context>
+          <context context-type="linenumber">158,159</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6252070156626006029" datatype="html">
         <source>None</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
-          <context context-type="linenumber">160</context>
+          <context context-type="linenumber">162</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
-          <context context-type="linenumber">172</context>
+          <context context-type="linenumber">174</context>
         </context-group>
       </trans-unit>
       <trans-unit id="45739481977493163" datatype="html">
         <source>Size</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
-          <context context-type="linenumber">168,169</context>
+          <context context-type="linenumber">170,171</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6747622589739373151" datatype="html">
         <source>Price override</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
-          <context context-type="linenumber">184,185</context>
+          <context context-type="linenumber">186,187</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8204176479746810612" datatype="html">
         <source>Active</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
-          <context context-type="linenumber">191</context>
+          <context context-type="linenumber">193</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/promo-editor/promo-editor.component.html</context>
@@ -647,21 +647,21 @@
         <source>Remove option</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
-          <context context-type="linenumber">192,193</context>
+          <context context-type="linenumber">194,195</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8916463584035714027" datatype="html">
         <source>Save product</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
-          <context context-type="linenumber">202,203</context>
+          <context context-type="linenumber">204,205</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7022070615528435141" datatype="html">
         <source>Delete</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
-          <context context-type="linenumber">207,208</context>
+          <context context-type="linenumber">209,210</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-csgo/admin-csgo.component.html</context>
@@ -684,21 +684,21 @@
         <source>Delete this product?</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
-          <context context-type="linenumber">214</context>
+          <context context-type="linenumber">216</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2923055308869340757" datatype="html">
         <source>Products that were already ordered are deactivated instead of deleted, so order history stays intact.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
-          <context context-type="linenumber">215,216</context>
+          <context context-type="linenumber">217,218</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopVariantDefault" datatype="html">
         <source>Default</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.ts</context>
-          <context context-type="linenumber">280</context>
+          <context context-type="linenumber">278</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4871113601367811353" datatype="html">
@@ -2091,7 +2091,7 @@
         <source>League</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">33</context>
+          <context context-type="linenumber">32,33</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
@@ -2137,7 +2137,7 @@
         <source>Status</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">98</context>
+          <context context-type="linenumber">97,98</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3448462145758383019" datatype="html">

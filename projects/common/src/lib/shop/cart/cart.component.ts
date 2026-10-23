@@ -1,7 +1,7 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { Component, computed, inject } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { FormsModule } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
 import { IgxButtonDirective, IgxDividerComponent, IgxIconButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
@@ -15,7 +15,7 @@ import { CartItem, DELIVERY_METHOD_NAMES, DeliveryMethod, effectivePrice } from 
   imports: [
     CurrencyPipe,
     RouterLink,
-    FormsModule,
+    ReactiveFormsModule,
     IGX_INPUT_GROUP_DIRECTIVES,
     IgxButtonDirective,
     IgxIconButtonDirective,
@@ -27,15 +27,16 @@ import { CartItem, DELIVERY_METHOD_NAMES, DeliveryMethod, effectivePrice } from 
     IgxCircularProgressBarComponent
   ],
   templateUrl: './cart.component.html',
-  styleUrl: './cart.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrl: './cart.component.scss'
 })
 export class CartComponent {
   public cart = inject(CartService);
 
-  public promoInput = signal(this.cart.promoCode() ?? '');
+  public promoForm = new FormGroup({ code: new FormControl(this.cart.promoCode() ?? '', { nonNullable: true }) });
+  public promoInput = this.promoForm.controls.code;
   public deliveryMethods = [DeliveryMethod.Courier, DeliveryMethod.EventPickup];
   public deliveryNames = DELIVERY_METHOD_NAMES;
+  public canCheckout = computed(() => !!this.cart.quote()?.isValid && !this.cart.quoting());
 
   public unitPrice(item: CartItem) {
     return effectivePrice(item.product, item.variant);
@@ -48,11 +49,11 @@ export class CartComponent {
   }
 
   public applyPromo() {
-    this.cart.setPromoCode(this.promoInput());
+    this.cart.setPromoCode(this.promoInput.value);
   }
 
   public clearPromo() {
-    this.promoInput.set('');
+    this.promoInput.setValue('');
     this.cart.setPromoCode(null);
   }
 

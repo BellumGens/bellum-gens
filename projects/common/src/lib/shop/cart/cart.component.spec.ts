@@ -68,13 +68,13 @@ describe('CartComponent', () => {
   const fill = (product = umbrella(), quantity = 1, value: Quote = quote()) => {
     cart.add(product, null, quantity);
     fixture.detectChanges();
-    cart.quote.set(value);
-    cart.quoting.set(false);
+    cart['_quote'].set(value);
+    cart['_quoting'].set(false);
     fixture.detectChanges();
   };
 
   const showQuote = (value: Quote) => {
-    cart.quote.set(value);
+    cart['_quote'].set(value);
     fixture.detectChanges();
   };
 
@@ -162,7 +162,7 @@ describe('CartComponent', () => {
   it('applies a promo code in upper case and puts it on the next quote request', () => {
     fill();
 
-    component.promoInput.set(' save10 ');
+    component.promoInput.setValue(' save10 ');
     component.applyPromo();
 
     expect(cart.promoCode()).toBe('SAVE10');
@@ -171,7 +171,7 @@ describe('CartComponent', () => {
 
   it('confirms an applied promo code', () => {
     fill();
-    component.promoInput.set('SAVE10');
+    component.promoInput.setValue('SAVE10');
     component.applyPromo();
 
     showQuote(quote({ promoApplied: true, promoCode: 'SAVE10', discountTotal: 1.5, total: 19.5 }));
@@ -182,12 +182,12 @@ describe('CartComponent', () => {
 
   it('clears the promo code', () => {
     fill();
-    component.promoInput.set('SAVE10');
+    component.promoInput.setValue('SAVE10');
     component.applyPromo();
 
     component.clearPromo();
 
-    expect(component.promoInput()).toBe('');
+    expect(component.promoInput.value).toBe('');
     expect(cart.promoCode()).toBeNull();
     expect(cart.request().promoCode).toBeNull();
   });
@@ -241,7 +241,7 @@ describe('CartComponent', () => {
   it('disables checkout while the cart is being re-priced', () => {
     fill();
 
-    cart.quoting.set(true);
+    cart['_quoting'].set(true);
     fixture.detectChanges();
 
     expect(fixture.nativeElement.querySelector('.checkout-button').classList.contains('disabled')).toBe(true);

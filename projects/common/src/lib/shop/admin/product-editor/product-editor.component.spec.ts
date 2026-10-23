@@ -243,6 +243,38 @@ describe('ProductEditorComponent', () => {
     load();
   });
 
+  it('loads a product that lists neither gallery images nor options', () => {
+    load();
+
+    component.edit(umbrella({ galleryUrls: undefined, variants: undefined }));
+
+    expect(component.form.controls.galleryUrls.value).toBe('');
+    expect(component.hasVariants).toBe(false);
+  });
+
+  it('sends the discount and option prices as numbers and cleared ones as null', () => {
+    load();
+    component.form.patchValue({ name: 'Bracelet', price: 5, discountPercentage: '15' as never });
+    component.addVariant();
+    component.addVariant();
+    component.variants.controls[0].patchValue({ priceOverride: '7.5' as never });
+    component.variants.controls[1].patchValue({ priceOverride: '' as never });
+
+    component.save();
+
+    const req = httpMock.expectOne(r => r.method === 'POST' && r.url === productsUrl());
+    expect(req.request.body.discountPercentage).toBe(15);
+    expect(req.request.body.variants.map((v: { priceOverride: number | null }) => v.priceOverride)).toEqual([7.5, null]);
+    req.flush(umbrella());
+    load();
+
+    component.newProduct();
+    component.form.patchValue({ name: 'Bracelet', price: 5, discountPercentage: '' as never });
+    component.save();
+
+    expect(httpMock.expectOne(r => r.method === 'POST' && r.url === productsUrl()).request.body.discountPercentage).toBeNull();
+  });
+
   it('sends a placeholder id for a brand new option', () => {
     load();
     component.form.patchValue({ name: 'Bracelet', price: 5 });
@@ -276,7 +308,7 @@ describe('ProductEditorComponent', () => {
   it('asks for confirmation before deleting', () => {
     load();
     component.edit(umbrella());
-    const open = vi.spyOn(component.confirm, 'open');
+    const open = vi.spyOn(component.confirm(), 'open');
 
     component.askDelete();
 
@@ -285,7 +317,7 @@ describe('ProductEditorComponent', () => {
 
   it('does not ask for confirmation for an unsaved product', () => {
     load();
-    const open = vi.spyOn(component.confirm, 'open');
+    const open = vi.spyOn(component.confirm(), 'open');
 
     component.askDelete();
 
@@ -323,6 +355,20 @@ describe('ProductEditorComponent', () => {
 
     expect(component.uploading()).toBe(false);
     expect(component.form.controls.imageUrl.value).toBe('https://blob.example.com/shop/umbrella.png');
+  });
+
+  it('lets the image be uploaded again after a failed upload', async () => {
+    load();
+    component.edit(umbrella());
+    const file = new File(['fake-png-bytes'], 'umbrella.png', { type: 'image/png' });
+
+    component.upload({ target: { files: [file], value: 'umbrella.png' } } as unknown as Event);
+
+    await vi.waitUntil(() => component.uploading(), { timeout: 2000 });
+    httpMock.expectOne(`${productsUrl()}/p1/image`).flush('Only PNG images are supported.', { status: 400, statusText: 'Bad Request' });
+
+    expect(component.uploading()).toBe(false);
+    expect(component.form.controls.imageUrl.value).toBe(umbrella().imageUrl ?? '');
   });
 
   it('ignores an upload before the product is saved', () => {

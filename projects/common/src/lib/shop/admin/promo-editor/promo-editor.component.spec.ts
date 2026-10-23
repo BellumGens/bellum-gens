@@ -197,7 +197,7 @@ describe('PromoEditorComponent', () => {
 
   it('asks for confirmation before deleting a code', () => {
     load();
-    const open = vi.spyOn(component.confirm, 'open');
+    const open = vi.spyOn(component.confirm(), 'open');
 
     component.askDelete(promo());
 

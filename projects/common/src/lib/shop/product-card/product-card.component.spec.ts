@@ -145,6 +145,12 @@ describe('ProductCardComponent', () => {
     expect(fixture.nativeElement.querySelector('button[igxbutton], button')).toBeNull();
   });
 
+  it('treats a product that lists no options as a simple product', () => {
+    show(product({ variants: undefined }));
+
+    expect(component.hasOptions()).toBe(false);
+  });
+
   it('links to the product page by slug', () => {
     show(product());
 

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { BaseDirective } from '../base/base.component';
 
@@ -6,8 +6,7 @@ import { BaseDirective } from '../base/base.component';
 @Component({
   selector: 'app-shop',
   imports: [RouterOutlet],
-  template: '<router-outlet></router-outlet>',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  template: '<router-outlet></router-outlet>'
 })
 export class ShopComponent extends BaseDirective {
 }

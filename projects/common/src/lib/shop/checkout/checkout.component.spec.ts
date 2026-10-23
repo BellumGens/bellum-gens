@@ -84,7 +84,7 @@ describe('CheckoutComponent', () => {
   const fillCart = () => {
     cart.add(umbrella);
     flushQuotes(validQuote);
-    cart.quote.set(validQuote);
+    cart['_quote'].set(validQuote);
     fixture.detectChanges();
   };
 
@@ -175,6 +175,18 @@ describe('CheckoutComponent', () => {
     flushQuotes(validQuote);
   });
 
+  it('explains when payments are unavailable even without a message from the server', () => {
+    fillCart();
+    fillForm();
+
+    component.pay();
+
+    httpMock.expectOne(`${api['_apiEndpoint']}/shop/orders`).flush('', { status: 503, statusText: 'Service Unavailable' });
+
+    expect(component.problems()[0]).toContain('temporarily unavailable');
+    flushQuotes(validQuote);
+  });
+
   it('explains a rate limited attempt', () => {
     fillCart();
     fillForm();
@@ -203,7 +215,7 @@ describe('CheckoutComponent', () => {
   it('refuses to pay a cart the server has since rejected', () => {
     fillCart();
     fillForm();
-    cart.quote.set({ ...validQuote, isValid: false });
+    cart['_quote'].set({ ...validQuote, isValid: false });
 
     component.pay();
 

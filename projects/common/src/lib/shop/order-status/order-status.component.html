@@ -20,12 +20,12 @@
     <section class="status-message">
       @switch (order.status) {
         @case (OrderStatus.AwaitingPayment) {
-          @if (paymentPending && polling()) {
+          @if (paymentPending() && polling()) {
             <p i18n>We are waiting for the payment confirmation from Revolut. This usually takes a few seconds.</p>
             <div class="horizontal-center">
               <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
             </div>
-          } @else if (paymentPending && timedOut()) {
+          } @else if (paymentPending() && timedOut()) {
             <p i18n>The payment has not been confirmed yet. If you completed it, it will be confirmed shortly and you will receive an email.</p>
           } @else if (order.canRetryPayment) {
             <p i18n>The payment did not go through. You can try again with a different card or payment method.</p>
@@ -33,7 +33,7 @@
             <p i18n>This order has not been paid yet.</p>
           }
           <div class="actions">
-            @if (order.checkoutUrl && paymentPending) {
+            @if (order.checkoutUrl && paymentPending()) {
               <button type="button" igxButton="contained" igxRipple (click)="payNow()" i18n>Complete payment</button>
             }
             @if (order.canRetryPayment) {
@@ -45,7 +45,7 @@
         }
         @case (OrderStatus.Paid) {
           <p i18n>Thank you! Your payment was received and a confirmation was sent to {{ order.email }}.</p>
-          @if (order.deliveryMethod === 1) {
+          @if (order.deliveryMethod === DeliveryMethod.EventPickup) {
             <p i18n>You can collect your order at our next event. We will contact you with the details.</p>
           } @else {
             <p i18n>We will email you again when the order is handed to the courier.</p>

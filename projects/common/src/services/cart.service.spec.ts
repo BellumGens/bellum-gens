@@ -88,6 +88,22 @@ describe('CartService', () => {
     ]);
   });
 
+  it('changes only the line it is asked to', () => {
+    service.add(product());
+    service.add(product({ id: 'p2', name: 'Pen' }));
+    service.add(product({ id: 'p2', name: 'Pen' }));
+
+    service.setQuantity(service.items()[0], 3);
+
+    expect(service.items().map(i => i.quantity)).toEqual([3, 2]);
+  });
+
+  it('ignores adding less than one item', () => {
+    service.add(product(), null, 0);
+
+    expect(service.isEmpty()).toBe(true);
+  });
+
   it('removes a line when its quantity drops to zero', () => {
     service.add(product());
 
@@ -119,6 +135,34 @@ describe('CartService', () => {
 
     expect(service.count()).toBe(2);
     expect(service.promoCode()).toBe('SAVE10');
+  });
+
+  it('restores the event pickup delivery choice', () => {
+    service.add(product());
+    service.setDeliveryMethod(DeliveryMethod.EventPickup);
+    TestBed.tick();
+
+    TestBed.resetTestingModule();
+    configure();
+
+    expect(service.deliveryMethod()).toBe(DeliveryMethod.EventPickup);
+  });
+
+  it('discards a stored cart it cannot read', () => {
+    TestBed.resetTestingModule();
+    localStorage.setItem(CartService.storageKey, '{not json');
+
+    configure();
+
+    expect(service.isEmpty()).toBe(true);
+    expect(localStorage.getItem(CartService.storageKey)).toBeNull();
+  });
+
+  it('does not ask for a fresh quote for an empty cart', () => {
+    service.refresh();
+
+    httpMock.expectNone(`${api['_apiEndpoint']}/shop/quote`);
+    expect(service.quoting()).toBe(false);
   });
 
   it('asks the API for a quote after the cart changes', () => {

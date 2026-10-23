@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, ViewChild, inject, signal } from '@angular/core';
+import { Component, inject, signal, viewChild } from '@angular/core';
 import { DatePipe, PercentPipe } from '@angular/common';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
@@ -33,15 +33,13 @@ const ANY_BRAND = -1;
     ConfirmComponent
   ],
   templateUrl: './promo-editor.component.html',
-  styleUrl: './promo-editor.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrl: './promo-editor.component.scss'
 })
 export class PromoEditorComponent {
   private shopApi = inject(ApiShopService);
   private fb = inject(NonNullableFormBuilder);
 
-  @ViewChild(ConfirmComponent, { static: true })
-  public confirm: ConfirmComponent;
+  public confirm = viewChild.required(ConfirmComponent);
 
   public promos = signal<Promo[]>([]);
   public editing = signal<Promo | null>(null);
@@ -118,7 +116,7 @@ export class PromoEditorComponent {
   }
 
   public askDelete(promo: Promo) {
-    this.confirm.open(promo.code);
+    this.confirm().open(promo.code);
   }
 
   public delete(code: string) {

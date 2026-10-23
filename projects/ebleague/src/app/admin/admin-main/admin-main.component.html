@@ -142,7 +142,7 @@
           @if (dataItem.status === OrderStatus.Paid) {
             <igx-input-group type="border" class="tracking-input">
               <label igxLabel [for]="'tracking-' + dataItem.id" i18n>Tracking number</label>
-              <input igxInput [id]="'tracking-' + dataItem.id" [name]="'tracking-' + dataItem.id" [(ngModel)]="tracking[dataItem.id]" />
+              <input igxInput [id]="'tracking-' + dataItem.id" [name]="'tracking-' + dataItem.id" [ngModel]="tracking()[dataItem.id]" (ngModelChange)="setTracking(dataItem.id, $event)" />
             </igx-input-group>
             <button type="button" igxButton="contained" igxRipple (click)="updateOrderStatus(dataItem, OrderStatus.Shipped)">
               <igx-icon>local_shipping</igx-icon>

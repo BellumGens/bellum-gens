@@ -55,14 +55,16 @@
         </igx-radio-group>
 
         <h4 i18n>Promo code</h4>
-        <form class="promo-form" (ngSubmit)="applyPromo()">
+        <form class="promo-form" [formGroup]="promoForm" (ngSubmit)="applyPromo()">
           <igx-input-group type="border">
             <igx-prefix><igx-icon>local_offer</igx-icon></igx-prefix>
             <label igxLabel for="promoCode" i18n>Promo code</label>
-            <input igxInput id="promoCode" name="promoCode" [ngModel]="promoInput()" (ngModelChange)="promoInput.set($event)" autocomplete="off" />
-            @if (promoInput()) {
-              <igx-suffix (click)="clearPromo()" role="button" i18n-title title="Clear promo code">
-                <igx-icon>clear</igx-icon>
+            <input igxInput id="promoCode" formControlName="code" autocomplete="off" />
+            @if (promoInput.value) {
+              <igx-suffix>
+                <button type="button" igxIconButton="flat" (click)="clearPromo()" i18n-aria-label aria-label="Clear promo code">
+                  <igx-icon>clear</igx-icon>
+                </button>
               </igx-suffix>
             }
             @if (cart.quote()?.promoProblem) {
@@ -71,7 +73,7 @@
               <igx-hint class="color-success" i18n>Promo code applied</igx-hint>
             }
           </igx-input-group>
-          <button type="submit" igxButton="outlined" igxRipple [disabled]="!promoInput()" i18n>Apply</button>
+          <button type="submit" igxButton="outlined" igxRipple [disabled]="!promoInput.value" i18n>Apply</button>
         </form>
 
         <igx-divider></igx-divider>
@@ -106,7 +108,7 @@
           </div>
         }
 
-        <a igxButton="contained" igxRipple class="checkout-button" routerLink="/shop/checkout" [class.disabled]="!cart.quote()?.isValid || cart.quoting()" [attr.aria-disabled]="!cart.quote()?.isValid || cart.quoting()" i18n>Proceed to checkout</a>
+        <a igxButton="contained" igxRipple class="checkout-button" routerLink="/shop/checkout" [class.disabled]="!canCheckout()" [attr.aria-disabled]="!canCheckout()" [attr.tabindex]="canCheckout() ? null : -1" i18n>Proceed to checkout</a>
         <a igxButton="flat" igxRipple routerLink="/shop" i18n>Continue shopping</a>
       </aside>
     </div>

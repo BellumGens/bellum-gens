@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, DOCUMENT, LOCALE_ID, PLATFORM_ID, effect, inject, signal, untracked } from '@angular/core';
+import { Component, DOCUMENT, LOCALE_ID, PLATFORM_ID, effect, inject, signal, untracked } from '@angular/core';
 import { CurrencyPipe, isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -28,8 +28,7 @@ import { DELIVERY_METHOD_NAMES, OrderRequest } from '../../../models/shop';
     IgxCircularProgressBarComponent
   ],
   templateUrl: './checkout.component.html',
-  styleUrl: './checkout.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrl: './checkout.component.scss'
 })
 export class CheckoutComponent {
   public cart = inject(CartService);

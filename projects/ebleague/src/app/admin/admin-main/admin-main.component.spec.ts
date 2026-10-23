@@ -223,7 +223,7 @@ describe('AdminMainComponent', () => {
       it('should mark an order as shipped with the tracking number', () => {
         const paidOrder = shopOrder();
         component.orders.set([paidOrder]);
-        component.tracking['order-1'] = 'SPD-123';
+        component.setTracking('order-1', 'SPD-123');
 
         component.updateOrderStatus(paidOrder, OrderStatus.Shipped);
 

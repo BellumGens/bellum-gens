@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
+import { Component, computed, inject, input } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
@@ -20,8 +20,7 @@ import { BRAND_NAMES, Product, effectivePrice, isSoldOut } from '../../../models
     IgxChipComponent
   ],
   templateUrl: './product-card.component.html',
-  styleUrl: './product-card.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrl: './product-card.component.scss'
 })
 export class ProductCardComponent {
   private cart = inject(CartService);

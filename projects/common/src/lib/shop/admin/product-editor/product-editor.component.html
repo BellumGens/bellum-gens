@@ -14,14 +14,16 @@
     } @else {
       <igx-list>
         @for (product of products(); track product.id) {
-          <igx-list-item [class.selected]="product.id === selectedId()" (click)="edit(product)">
-            <span igxListLineTitle>
-              {{ product.name }}
-              @if (!product.active) {
-                <igx-chip class="inactive-chip" [selectable]="false" [removable]="false" i18n>Inactive</igx-chip>
-              }
-            </span>
-            <span igxListLineSubTitle>{{ brandNames[product.brand] }} · {{ product.price | currency:'EUR' }} · {{ product.variants?.length || 0 }} <ng-container i18n>options</ng-container></span>
+          <igx-list-item [class.selected]="product.id === selectedId()">
+            <button type="button" class="product-row" [attr.aria-pressed]="product.id === selectedId()" (click)="edit(product)">
+              <span igxListLineTitle>
+                {{ product.name }}
+                @if (!product.active) {
+                  <igx-chip class="inactive-chip" [selectable]="false" [removable]="false" i18n>Inactive</igx-chip>
+                }
+              </span>
+              <span igxListLineSubTitle>{{ brandNames[product.brand] }} · {{ product.price | currency:'EUR' }} · {{ product.variants?.length || 0 }} <ng-container i18n>options</ng-container></span>
+            </button>
           </igx-list-item>
         }
       </igx-list>
@@ -115,7 +117,7 @@
           <label igxButton="outlined" igxRipple class="upload-button" [class.disabled]="uploading()">
             <igx-icon>upload</igx-icon>
             <span i18n>Upload PNG image</span>
-            <input type="file" accept="image/png" hidden (change)="upload($event)" [disabled]="uploading()" />
+            <input type="file" class="file-input" accept="image/png" (change)="upload($event)" [disabled]="uploading()" />
           </label>
           @if (uploading()) {
             <span class="hint" i18n>Uploading...</span>

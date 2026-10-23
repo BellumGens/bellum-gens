@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { IgxBadgeComponent } from '@infragistics/igniteui-angular/badge';
@@ -35,8 +35,7 @@ import { CartService } from '../../../services/cart.service';
       top: 0;
       right: 0;
     }
-  `,
-  changeDetection: ChangeDetectionStrategy.OnPush
+  `
 })
 export class CartBadgeComponent {
   public cart = inject(CartService);

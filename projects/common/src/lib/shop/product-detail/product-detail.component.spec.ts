@@ -96,6 +96,71 @@ describe('ProductDetailComponent', () => {
     httpMock.match(`${api['_apiEndpoint']}/shop/quote`).forEach(request => request.flush(null));
   };
 
+  it('has no gallery and is not sold out before the product arrives', () => {
+    fixture.detectChanges();
+
+    expect(component.gallery()).toEqual([]);
+    expect(component.soldOut()).toBe(false);
+    expect(component.canAdd()).toBe(false);
+    expect(component.price()).toBe(0);
+    expect(component.regularPrice()).toBe(0);
+    expect(component.stock()).toBeNull();
+
+    httpMock.expectOne(productUrl('ebl-jersey')).flush(jersey());
+  });
+
+  it('asks for the product even when the route names none', () => {
+    load();
+
+    params.next(convertToParamMap({}));
+    httpMock.expectOne(productUrl('')).flush('', { status: 404, statusText: 'Not Found' });
+
+    expect(component.notFound()).toBe(true);
+  });
+
+  it('strikes through the price of the chosen option when the product is discounted', () => {
+    const discounted = jersey();
+    discounted.discountPercentage = 10;
+    discounted.variants[0].priceOverride = 40;
+    load(discounted);
+
+    expect(component.regularPrice()).toBe(40);
+
+    component.selectSize({ newSelection: { value: JerseySize.XL } } as never);
+    fixture.detectChanges();
+
+    expect(component.regularPrice()).toBe(30);
+    expect(fixture.nativeElement.querySelector('del').textContent).toContain('30');
+  });
+
+  it('shows a product that lists neither options nor gallery images', () => {
+    load(umbrella({ imageUrl: '/umbrella.png', variants: undefined, galleryUrls: undefined }), 'ebl-jersey');
+
+    expect(component.hasVariants()).toBe(false);
+    expect(component.gallery()).toEqual(['/umbrella.png']);
+    expect(component.canAdd()).toBe(true);
+  });
+
+  it('keeps the chosen size when the other cut has it too', () => {
+    const both = jersey();
+    both.variants.push(jerseyVariant('v-female-l', JerseyCut.Female, JerseySize.L, 2));
+    load(both);
+
+    component.selectCut({ newSelection: { value: JerseyCut.Female } } as never);
+
+    expect(component.size()).toBe(JerseySize.L);
+    expect(component.selectedVariant()?.id).toBe('v-female-l');
+  });
+
+  it('has no selection for a cut and size combination that does not exist', () => {
+    load();
+
+    component.selectSize({ newSelection: { value: JerseySize.S } } as never);
+
+    expect(component.selectedVariant()).toBeNull();
+    expect(component.canAdd()).toBe(false);
+  });
+
   it('loads the product named in the route and sets the page title', () => {
     load();
 

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Title } from '@angular/platform-browser';
@@ -41,8 +41,7 @@ import {
     IgxCircularProgressBarComponent
   ],
   templateUrl: './product-detail.component.html',
-  styleUrl: './product-detail.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrl: './product-detail.component.scss'
 })
 export class ProductDetailComponent {
   private route = inject(ActivatedRoute);
@@ -99,8 +98,18 @@ export class ProductDetailComponent {
   });
 
   public price = computed(() => this.product() ? effectivePrice(this.product()!, this.selectedVariant()) : 0);
+  /** The price before the product discount, shown struck through. */
+  public regularPrice = computed(() => this.selectedVariant()?.priceOverride ?? this.product()?.price ?? 0);
   public hasDiscount = computed(() => (this.product()?.discountPercentage ?? 0) > 0);
   public stock = computed(() => this.product() ? variantStock(this.product()!, this.selectedVariant()) : null);
+  public lowStock = computed(() => {
+    const stock = this.stock();
+    return stock !== null && stock !== undefined && stock <= 5;
+  });
+  public atMaxQuantity = computed(() => {
+    const stock = this.stock();
+    return this.quantity() >= this.maxQuantity || (stock !== null && stock !== undefined && this.quantity() >= stock);
+  });
   public soldOut = computed(() => {
     const product = this.product();
     if (!product) {

@@ -103,6 +103,16 @@ describe('ProductListComponent', () => {
     expect(component.filtered().map(p => p.id)).toEqual(['p2', 'p4']);
   });
 
+  it('clears the type filter when its chip is deselected', () => {
+    load();
+
+    component.selectType(ProductType.Jersey, true);
+    component.selectType(ProductType.Jersey, false);
+
+    expect(component.type()).toBeNull();
+    expect(component.filtered().length).toBe(4);
+  });
+
   it('combines the brand and type filters', () => {
     load();
 
@@ -115,10 +125,22 @@ describe('ProductListComponent', () => {
   it('ignores a deselect for a filter that is no longer active', () => {
     load();
     component.selectBrand(Brand.EBLeague, true);
+    component.selectType(ProductType.Jersey, true);
 
     component.selectBrand(Brand.BellumGens, false);
+    component.selectType(ProductType.Umbrella, false);
 
     expect(component.brand()).toBe(Brand.EBLeague);
+    expect(component.type()).toBe(ProductType.Jersey);
+  });
+
+  it('has nothing to filter before the catalog arrives', () => {
+    fixture.detectChanges();
+
+    expect(component.filtered()).toEqual([]);
+    expect(component.types()).toEqual([]);
+
+    httpMock.expectOne(`${api['_apiEndpoint']}/shop/products`).flush([]);
   });
 
   it('resets the filter when the all chip is selected', () => {

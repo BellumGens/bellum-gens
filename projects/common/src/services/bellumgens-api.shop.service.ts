@@ -1,7 +1,7 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, Signal, inject, signal, untracked } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { Observable, of, throwError } from 'rxjs';
-import { catchError, shareReplay, tap } from 'rxjs/operators';
+import { Observable, throwError } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 import { environment } from '../environments/environment';
 import { CommunicationService } from './communication.service';
 import {
@@ -29,27 +29,27 @@ export class ApiShopService {
   private commService = inject(CommunicationService);
 
   private _apiEndpoint = environment.apiEndpoint;
-  private _products$: Observable<Product[]> | null = null;
+  private _products = signal<Product[] | null>(null);
+  private _productsReadonly = this._products.asReadonly();
+  private _productsRequested = false;
 
   // Storefront
 
-  /** Active products. Cached for the lifetime of the app; call `refreshProducts()` to drop the cache. */
-  public get products(): Observable<Product[]> {
-    if (!this._products$) {
-      this._products$ = this.http.get<Product[]>(`${this._apiEndpoint}/shop/products`).pipe(
-        catchError(error => {
-          this._products$ = null;
-          this.commService.emitError(error.message);
-          return of([] as Product[]);
-        }),
-        shareReplay({ bufferSize: 1, refCount: false })
-      );
-    }
-    return this._products$;
+  /** Active products, null until they are loaded. Loaded on first read and kept for the lifetime of the app. */
+  public get products(): Signal<Product[] | null> {
+    untracked(() => {
+      if (!this._productsRequested) {
+        this.loadProducts();
+      }
+    });
+    return this._productsReadonly;
   }
 
+  /** Reloads the products once the catalog changed, if anything has read them. */
   public refreshProducts() {
-    this._products$ = null;
+    if (this._productsRequested) {
+      this.loadProducts();
+    }
   }
 
   public getProducts(brand?: Brand, type?: ProductType) {
@@ -182,6 +182,19 @@ export class ApiShopService {
     return this.http.post<WebhookRegistration>(`${this._apiEndpoint}/shopadmin/payments/webhook`, { url }, { withCredentials: true }).pipe(
       catchError(error => this.fail<WebhookRegistration>(error))
     );
+  }
+
+  private loadProducts() {
+    this._productsRequested = true;
+    this.http.get<Product[]>(`${this._apiEndpoint}/shop/products`).subscribe({
+      next: products => this._products.set(products),
+      error: error => {
+        // The next read tries again; until then the shop shows an empty list rather than loading forever
+        this._productsRequested = false;
+        this._products.update(products => products ?? []);
+        this.commService.emitError(error.message);
+      }
+    });
   }
 
   private fail<T>(error: { error?: unknown; message: string }): Observable<T> {

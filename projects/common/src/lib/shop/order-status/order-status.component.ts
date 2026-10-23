@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, DOCUMENT, OnDestroy, PLATFORM_ID, inject, signal } from '@angular/core';
+import { Component, DOCUMENT, DestroyRef, PLATFORM_ID, computed, inject, signal } from '@angular/core';
 import { CurrencyPipe, DatePipe, isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -7,7 +7,7 @@ import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular/progressbar';
 import { ApiShopService } from '../../../services/bellumgens-api.shop.service';
 import { CartService } from '../../../services/cart.service';
-import { DELIVERY_METHOD_NAMES, ORDER_STATUS_NAMES, OrderStatus, OrderStatusView, PaymentStatus } from '../../../models/shop';
+import { DELIVERY_METHOD_NAMES, DeliveryMethod, ORDER_STATUS_NAMES, OrderStatus, OrderStatusView, PaymentStatus } from '../../../models/shop';
 
 @Component({
   selector: 'bg-order-status',
@@ -22,10 +22,9 @@ import { DELIVERY_METHOD_NAMES, ORDER_STATUS_NAMES, OrderStatus, OrderStatusView
     IgxCircularProgressBarComponent
   ],
   templateUrl: './order-status.component.html',
-  styleUrl: './order-status.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrl: './order-status.component.scss'
 })
-export class OrderStatusComponent implements OnDestroy {
+export class OrderStatusComponent {
   /** How often the page asks the API while a payment is still pending. */
   public static readonly pollIntervalMs = 3000;
   /** After this long the page stops polling and offers a manual refresh. */
@@ -46,28 +45,26 @@ export class OrderStatusComponent implements OnDestroy {
   public statusNames = ORDER_STATUS_NAMES;
   public deliveryNames = DELIVERY_METHOD_NAMES;
   public OrderStatus = OrderStatus;
+  public DeliveryMethod = DeliveryMethod;
 
   private orderId = '';
   private pollStarted = 0;
   private timer: ReturnType<typeof setTimeout> | null = null;
 
+  public awaitingPayment = computed(() => this.order()?.status === OrderStatus.AwaitingPayment);
+  public paymentPending = computed(() => {
+    const paymentStatus = this.order()?.paymentStatus;
+    return this.awaitingPayment() && (paymentStatus === PaymentStatus.Pending || paymentStatus === PaymentStatus.Authorised);
+  });
+
   constructor() {
+    inject(DestroyRef).onDestroy(() => this.stopPolling());
     this.route.paramMap.pipe(takeUntilDestroyed()).subscribe(params => {
       this.orderId = params.get('id') ?? '';
       this.pollStarted = Date.now();
       this.timedOut.set(false);
       this.load();
     });
-  }
-
-  public get awaitingPayment() {
-    const order = this.order();
-    return !!order && order.status === OrderStatus.AwaitingPayment;
-  }
-
-  public get paymentPending() {
-    const order = this.order();
-    return this.awaitingPayment && (order?.paymentStatus === PaymentStatus.Pending || order?.paymentStatus === PaymentStatus.Authorised);
   }
 
   public statusIcon(status: OrderStatus) {
@@ -103,10 +100,6 @@ export class OrderStatusComponent implements OnDestroy {
         this.load();
       }
     });
-  }
-
-  public ngOnDestroy() {
-    this.stopPolling();
   }
 
   private load() {

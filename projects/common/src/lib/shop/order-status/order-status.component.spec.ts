@@ -81,7 +81,7 @@ describe('OrderStatusComponent', () => {
     httpMock.expectOne(orderUrl()).flush(order(OrderStatus.AwaitingPayment, PaymentStatus.Pending));
     fixture.detectChanges();
     expect(component.polling()).toBe(true);
-    expect(component.paymentPending).toBe(true);
+    expect(component.paymentPending()).toBe(true);
 
     vi.advanceTimersByTime(OrderStatusComponent.pollIntervalMs);
     httpMock.expectOne(orderUrl()).flush(order(OrderStatus.AwaitingPayment, PaymentStatus.Pending));
@@ -111,6 +111,14 @@ describe('OrderStatusComponent', () => {
 
     expect(component.notFound()).toBe(true);
     expect(component.order()).toBeNull();
+  });
+
+  it('keeps the page when the order cannot be loaded for another reason', () => {
+    httpMock.expectOne(orderUrl()).flush('', { status: 500, statusText: 'Server Error' });
+    fixture.detectChanges();
+
+    expect(component.notFound()).toBe(false);
+    expect(component.polling()).toBe(false);
   });
 
   it('picks an icon per status', () => {
@@ -221,7 +229,7 @@ describe('OrderStatusComponent', () => {
 
   it('empties the cart once the order is paid', () => {
     const cart = TestBed.inject(CartService);
-    cart.items.set([{ productId: 'p1', quantity: 1, product: {} as never }]);
+    cart['_items'].set([{ productId: 'p1', quantity: 1, product: {} as never }]);
 
     httpMock.expectOne(orderUrl()).flush(order(OrderStatus.Paid, PaymentStatus.Completed));
 
@@ -248,5 +256,27 @@ describe('OrderStatusComponent', () => {
     fixture.detectChanges();
 
     expect(fixture.nativeElement.textContent).toContain('was refunded');
+  });
+});
+
+describe('OrderStatusComponent without an order id', () => {
+  it('shows the not found state without asking the API', async () => {
+    await TestBed.configureTestingModule({
+      imports: [OrderStatusComponent, NoopAnimationsModule],
+      providers: [
+        provideHttpClient(withXhr(), withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideRouter([]),
+        { provide: ActivatedRoute, useValue: { paramMap: of(convertToParamMap({})) } }
+      ]
+    }).compileComponents();
+    const httpMock = TestBed.inject(HttpTestingController);
+    const fixture = TestBed.createComponent(OrderStatusComponent);
+
+    fixture.detectChanges();
+
+    expect(fixture.componentInstance.notFound()).toBe(true);
+    expect(fixture.nativeElement.textContent).toContain('could not find this order');
+    httpMock.verify();
   });
 });

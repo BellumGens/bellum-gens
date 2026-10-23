@@ -79,7 +79,7 @@ export class AdminMainComponent {
   public deliveryNames = DELIVERY_METHOD_NAMES;
   public ordersExportUrl = this.shopService.ordersExportUrl;
   /** Tracking numbers typed in the order detail rows, keyed by order id. */
-  public tracking: Record<string, string> = {};
+  public tracking = signal<Record<string, string>>({});
 
   constructor() {
     this.authService.getUserRoles().subscribe(data => this.roles.set(data));
@@ -110,8 +110,12 @@ export class AdminMainComponent {
   }
 
   public updateOrderStatus(order: ShopOrder, status: OrderStatus) {
-    this.shopService.updateOrderStatus(order.id, { status, trackingNumber: this.tracking[order.id] || order.trackingNumber || null })
+    this.shopService.updateOrderStatus(order.id, { status, trackingNumber: this.tracking()[order.id] || order.trackingNumber || null })
       .subscribe(updated => this.replaceOrder(updated));
+  }
+
+  public setTracking(orderId: string, trackingNumber: string) {
+    this.tracking.update(tracking => ({ ...tracking, [orderId]: trackingNumber }));
   }
 
   public refundOrder(order: ShopOrder) {
