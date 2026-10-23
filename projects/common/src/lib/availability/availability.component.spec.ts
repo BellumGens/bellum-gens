@@ -56,19 +56,19 @@ describe('AvailabilityComponent', () => {
   });
 
   it('should augment the base availability from the availability input', () => {
-    const monday: Availability = {
+    const setmonday: Availability = {
       day: DayOfWeek.Monday,
       available: true,
       from: new Date('2018-01-15T18:00:00.000Z'),
       to: new Date('2018-01-15T20:00:00.000Z')
     };
-    fixture.componentRef.setInput('availability', [monday]);
+    fixture.componentRef.setInput('availability', [setmonday]);
     fixture.detectChanges();
 
     const day = component.baseAvailability().find(a => a.day === DayOfWeek.Monday);
     expect(day.available).toBe(true);
-    expect(day.from).toEqual(monday.from);
-    expect(day.to).toEqual(monday.to);
+    expect(day.from).toEqual(setmonday.from);
+    expect(day.to).toEqual(setmonday.to);
     expect(component.baseAvailability().filter(a => a.available).length).toBe(1);
   });
 
