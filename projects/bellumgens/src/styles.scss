@@ -251,6 +251,8 @@ li {
   height: 24px;
   margin-right: 8px;
   background-color: transparent;
+  // The circular bar draws its SVG from the diameter variable, not the host size
+  --ig-circular-bar-diameter: 24px;
 }
 /* END SEARCH */
 

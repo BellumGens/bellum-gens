@@ -26,7 +26,7 @@
         </h2>
         <h4 igxListLineSubTitle>{{ searchResult().steamUser.steamUser.realname }}</h4>
         @if (!searchResult().steamUser.userStatsException) {
-          <div igxListAction>
+          <div igxListAction class="player-stats">
             <div class="horizontal-center space-between">
               <igx-circular-bar class="icon-avatar" [value]="searchResult().steamUser.userStats?.killDeathRatio ?? 0" [max]="2" [animate]="true" [textVisibility]="false" title="KDR"></igx-circular-bar>
               <span>{{ searchResult().steamUser.userStats?.killDeathRatio }}</span>
@@ -66,7 +66,7 @@
         @if (user.csgoDetails?.steamPrivate) {
           <span i18n>Private</span>
         } @else if (user.csgoDetails) {
-          <div igxListAction>
+          <div igxListAction class="player-stats">
             <div class="horizontal-center space-between">
               <igx-circular-bar class="icon-avatar" [value]="user.csgoDetails.killDeathRatio ?? 0" [max]="2" [animate]="true" [textVisibility]="false" title="KDR"></igx-circular-bar>
               <span>{{ user.csgoDetails.killDeathRatio }}</span>

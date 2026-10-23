@@ -5,6 +5,17 @@
     height: 66px;
   }
 
+  .player-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 88px;
+
+    > div {
+      flex-wrap: nowrap;
+    }
+  }
+
   // The title link covers the whole list item, so the item stays clickable everywhere
   .item-link {
     color: inherit;
