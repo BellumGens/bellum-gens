@@ -7,6 +7,7 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { Subject } from 'rxjs';
 import { LoginService } from '../../services/login.service';
 import { ApplicationUser } from '../../models/applicationuser';
+import { ServiceWorkerModule } from '@angular/service-worker';
 
 describe('UnauthorizedComponent', () => {
   let component: UnauthorizedComponent;
@@ -18,7 +19,8 @@ describe('UnauthorizedComponent', () => {
 
     await TestBed.configureTestingModule({
         imports: [
-            UnauthorizedComponent
+            UnauthorizedComponent,
+            ServiceWorkerModule.register('', { enabled: false }),
         ],
         providers: [
             provideRouter([]),
