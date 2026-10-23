@@ -10,29 +10,79 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
-
+  lint:
     runs-on: ubuntu-latest
-
-    strategy:
-      matrix:
-        node-version: [24.x]
-
+    # Only the e2e job needs the Cypress binary
+    env:
+      CYPRESS_INSTALL_BINARY: 0
     steps:
     - uses: actions/checkout@v7
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v7
+    - uses: ./.github/actions/setup
       with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: echo "@infragistics:registry=https://packages.infragistics.com/npm/js-licensed/" >> ~/.npmrc
-    - run: echo "//packages.infragistics.com/npm/js-licensed/:_auth=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
-    - run: echo "//packages.infragistics.com/npm/js-licensed/:always-auth=true" >> ~/.npmrc
-    - run: npm ci
+        npm-token: ${{ secrets.NPM_TOKEN }}
     - run: npm run lint
-    - name: Build
-      run: npm run build
-    - run: npm run test:prod -- --coverage
+
+  # The apps resolve the common library from source, so none of the builds depend on each other
+  build:
+    runs-on: ubuntu-latest
+    # Only the e2e job needs the Cypress binary
+    env:
+      CYPRESS_INSTALL_BINARY: 0
+    strategy:
+      matrix:
+        project: [bellum-gens-common, bellum-gens, eb-league]
+    steps:
+    - uses: actions/checkout@v7
+    - uses: ./.github/actions/setup
+      with:
+        npm-token: ${{ secrets.NPM_TOKEN }}
+    - run: npx ng build ${{ matrix.project }} --configuration production
+    - name: Upload app build for e2e
+      if: matrix.project != 'bellum-gens-common'
+      uses: actions/upload-artifact@v7
+      with:
+        name: dist-${{ matrix.project }}
+        path: dist/
+        retention-days: 1
+
+  test:
+    runs-on: ubuntu-latest
+    # Only the e2e job needs the Cypress binary
+    env:
+      CYPRESS_INSTALL_BINARY: 0
+    strategy:
+      matrix:
+        project: [bellum-gens-common, bellum-gens, eb-league]
+    steps:
+    - uses: actions/checkout@v7
+    - uses: ./.github/actions/setup
+      with:
+        npm-token: ${{ secrets.NPM_TOKEN }}
+    - run: npx ng test ${{ matrix.project }} --watch=false --no-progress --coverage
+    - name: Upload coverage
+      uses: actions/upload-artifact@v7
+      with:
+        name: coverage-${{ matrix.project }}
+        path: coverage/
+        retention-days: 1
+
+  coverage:
+    runs-on: ubuntu-latest
+    needs: test
+    # Only the e2e job needs the Cypress binary
+    env:
+      CYPRESS_INSTALL_BINARY: 0
+    steps:
+    - uses: actions/checkout@v7
+    - uses: ./.github/actions/setup
+      with:
+        npm-token: ${{ secrets.NPM_TOKEN }}
+    - name: Download coverage
+      uses: actions/download-artifact@v8
+      with:
+        pattern: coverage-*
+        path: coverage
+        merge-multiple: true
     - name: Merge coverage
       run: npm run coverage:merge
     - name: Publish to coveralls.io
@@ -40,6 +90,21 @@ jobs:
       with:
         github-token: ${{ github.token }}
         file: coverage/lcov.info
+
+  e2e:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - uses: actions/checkout@v7
+    - uses: ./.github/actions/setup
+      with:
+        npm-token: ${{ secrets.NPM_TOKEN }}
+    - name: Download app builds
+      uses: actions/download-artifact@v8
+      with:
+        pattern: dist-*
+        path: dist
+        merge-multiple: true
     - name: Cypress run
       uses: cypress-io/github-action@v7.4.6
       env:
