@@ -94,12 +94,12 @@ describe('AvailabilityComponent', () => {
   });
 
   it('should replace the previous schedule when a different availability is passed', () => {
-    const monday: Availability = { day: DayOfWeek.Monday, available: true, from: new Date('2018-01-15T18:00:00.000Z'), to: new Date('2018-01-15T20:00:00.000Z') };
-    const tuesday: Availability = { day: DayOfWeek.Tuesday, available: true, from: new Date('2018-01-16T18:00:00.000Z'), to: new Date('2018-01-16T20:00:00.000Z') };
-    fixture.componentRef.setInput('availability', [monday]);
+    const setmonday: Availability = { day: DayOfWeek.Monday, available: true, from: new Date('2018-01-15T18:00:00.000Z'), to: new Date('2018-01-15T20:00:00.000Z') };
+    const settuesday: Availability = { day: DayOfWeek.Tuesday, available: true, from: new Date('2018-01-16T18:00:00.000Z'), to: new Date('2018-01-16T20:00:00.000Z') };
+    fixture.componentRef.setInput('availability', [setmonday]);
     fixture.detectChanges();
 
-    fixture.componentRef.setInput('availability', [tuesday]);
+    fixture.componentRef.setInput('availability', [settuesday]);
     fixture.detectChanges();
 
     const available = component.baseAvailability().filter(a => a.available);
@@ -107,8 +107,8 @@ describe('AvailabilityComponent', () => {
   });
 
   it('should reset to the base week when an empty availability is passed after a schedule', () => {
-    const monday: Availability = { day: DayOfWeek.Monday, available: true, from: new Date('2018-01-15T18:00:00.000Z'), to: new Date('2018-01-15T20:00:00.000Z') };
-    fixture.componentRef.setInput('availability', [monday]);
+    const setmonday: Availability = { day: DayOfWeek.Monday, available: true, from: new Date('2018-01-15T18:00:00.000Z'), to: new Date('2018-01-15T20:00:00.000Z') };
+    fixture.componentRef.setInput('availability', [setmonday]);
     fixture.detectChanges();
 
     fixture.componentRef.setInput('availability', []);
@@ -118,8 +118,8 @@ describe('AvailabilityComponent', () => {
   });
 
   it('should keep local edits while the availability input stays the same', () => {
-    const monday: Availability = { day: DayOfWeek.Monday, available: true, from: new Date('2018-01-15T18:00:00.000Z'), to: new Date('2018-01-15T20:00:00.000Z') };
-    fixture.componentRef.setInput('availability', [monday]);
+    const setmonday: Availability = { day: DayOfWeek.Monday, available: true, from: new Date('2018-01-15T18:00:00.000Z'), to: new Date('2018-01-15T20:00:00.000Z') };
+    fixture.componentRef.setInput('availability', [setmonday]);
     fixture.detectChanges();
     const args = { originalEvent: { stopPropagation: vi.fn() } } as any;
 
