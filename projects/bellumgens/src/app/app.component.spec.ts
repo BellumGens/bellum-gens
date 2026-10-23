@@ -414,7 +414,7 @@ describe('AppComponent', () => {
       const drawer = fixture.debugElement.query(By.directive(IgxNavigationDrawerComponent)).componentInstance as IgxNavigationDrawerComponent;
       expect(drawer.pin).toBe(true);
       const titles = Array.from(el().querySelectorAll('igx-nav-drawer [igxDrawerItem][title]')).map(i => i.getAttribute('title'));
-      expect(titles).toEqual(['My Teams', 'Notifications', 'My Strategies', 'Bellum Gens Elite', 'BGE Balkan Circuit', 'Tournaments', 'Partners', 'About us']);
+      expect(titles).toEqual(['My Teams', 'Notifications', 'My Strategies', 'Bellum Gens Elite', 'BGE Balkan Circuit', 'Tournaments', 'Shop', 'Partners', 'About us']);
       expect(badgeValue('team/myteams')).toBe('1');
       expect(badgeValue('notifications')).toBe('1');
     });
@@ -423,7 +423,7 @@ describe('AppComponent', () => {
       await flushUser(null);
 
       const titles = Array.from(el().querySelectorAll('igx-nav-drawer [igxDrawerItem][title]')).map(i => i.getAttribute('title'));
-      expect(titles).toEqual(['Bellum Gens Elite', 'BGE Balkan Circuit', 'Tournaments', 'Partners', 'About us']);
+      expect(titles).toEqual(['Bellum Gens Elite', 'BGE Balkan Circuit', 'Tournaments', 'Shop', 'Partners', 'About us']);
     });
 
     it('should hide the mini navigation badges when there is nothing to report', async () => {

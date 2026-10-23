@@ -1,0 +1,156 @@
+<div class="shop-container">
+  <h2 i18n>Checkout</h2>
+
+  @if (cart.isEmpty()) {
+    <div class="horizontal-center shop-empty">
+      <p i18n>Your cart is empty.</p>
+      <a igxButton="contained" igxRipple routerLink="/shop" i18n>Browse the shop</a>
+    </div>
+  } @else {
+    <div class="checkout-layout">
+      <form class="checkout-form" [formGroup]="form" (ngSubmit)="pay()" novalidate>
+        <h4 i18n>Contact details</h4>
+        <div class="form-grid">
+          <igx-input-group type="border">
+            <igx-prefix><igx-icon>person</igx-icon></igx-prefix>
+            <label igxLabel for="firstName" i18n>First name</label>
+            <input igxInput id="firstName" formControlName="firstName" autocomplete="given-name" />
+            @if (invalid('firstName')) {
+              <igx-hint class="color-error" i18n>First name is required</igx-hint>
+            }
+          </igx-input-group>
+
+          <igx-input-group type="border">
+            <igx-prefix><igx-icon>person</igx-icon></igx-prefix>
+            <label igxLabel for="lastName" i18n>Last name</label>
+            <input igxInput id="lastName" formControlName="lastName" autocomplete="family-name" />
+            @if (invalid('lastName')) {
+              <igx-hint class="color-error" i18n>Last name is required</igx-hint>
+            }
+          </igx-input-group>
+
+          <igx-input-group type="border">
+            <igx-prefix><igx-icon>email</igx-icon></igx-prefix>
+            <label igxLabel for="email" i18n>Email</label>
+            <input igxInput id="email" type="email" formControlName="email" autocomplete="email" />
+            @if (invalid('email')) {
+              <igx-hint class="color-error" i18n>A valid email is required for your receipt</igx-hint>
+            }
+          </igx-input-group>
+
+          <igx-input-group type="border">
+            <igx-prefix><igx-icon>phone</igx-icon></igx-prefix>
+            <label igxLabel for="phoneNumber" i18n>Phone</label>
+            <input igxInput id="phoneNumber" type="tel" formControlName="phoneNumber" autocomplete="tel" />
+            @if (invalid('phoneNumber')) {
+              <igx-hint class="color-error" i18n>A phone number is required for the courier</igx-hint>
+            }
+          </igx-input-group>
+        </div>
+
+        <h4>{{ deliveryNames[cart.deliveryMethod()] }}</h4>
+        <div class="form-grid">
+          <igx-input-group type="border">
+            <igx-prefix><igx-icon>location_city</igx-icon></igx-prefix>
+            <label igxLabel for="city" i18n>City</label>
+            <input igxInput id="city" formControlName="city" autocomplete="address-level2" />
+            @if (invalid('city')) {
+              <igx-hint class="color-error" i18n>City is required</igx-hint>
+            }
+          </igx-input-group>
+
+          <igx-input-group type="border">
+            <igx-prefix><igx-icon>markunread_mailbox</igx-icon></igx-prefix>
+            <label igxLabel for="postalCode" i18n>Postal code</label>
+            <input igxInput id="postalCode" formControlName="postalCode" autocomplete="postal-code" />
+          </igx-input-group>
+
+          <igx-input-group type="border" class="full-width">
+            <igx-prefix><igx-icon>home</igx-icon></igx-prefix>
+            <label igxLabel for="streetAddress" i18n>Street address</label>
+            <input igxInput id="streetAddress" formControlName="streetAddress" autocomplete="street-address" />
+            @if (invalid('streetAddress')) {
+              <igx-hint class="color-error" i18n>Street address is required</igx-hint>
+            }
+          </igx-input-group>
+
+          <igx-input-group type="border" class="full-width">
+            <label igxLabel for="customerNote" i18n>Note for us (optional)</label>
+            <textarea igxInput id="customerNote" formControlName="customerNote" rows="3"></textarea>
+          </igx-input-group>
+        </div>
+
+        <igx-checkbox formControlName="acceptedTerms" class="terms">
+          <span i18n>I have read and accept the <a href="/shop/terms" target="_blank" rel="noopener">terms of sale</a>, including the 14-day right of withdrawal.</span>
+        </igx-checkbox>
+        @if (invalid('acceptedTerms')) {
+          <span class="color-error terms-hint" i18n>Please accept the terms of sale to continue</span>
+        }
+
+        @if (problems().length) {
+          <ul class="problems color-error">
+            @for (problem of problems(); track problem) {
+              <li>{{ problem }}</li>
+            }
+          </ul>
+        }
+
+        <div class="actions">
+          <button type="submit" igxButton="contained" igxRipple class="pay-button" [disabled]="submitting() || cart.quoting() || !cart.quote()?.isValid">
+            @if (submitting()) {
+              <igx-circular-bar [indeterminate]="true" class="button-progress"></igx-circular-bar>
+            } @else {
+              <igx-icon>lock</igx-icon>
+            }
+            <span i18n>Pay {{ cart.quote()?.total | currency:'EUR' }} with Revolut</span>
+          </button>
+          <a igxButton="flat" igxRipple routerLink="/shop/cart" i18n>Back to cart</a>
+        </div>
+        <p class="secure-note" i18n>You will be redirected to Revolut's secure checkout. Cards, Revolut Pay, Apple Pay and Google Pay are accepted. We never see your card details.</p>
+      </form>
+
+      <aside class="order-summary">
+        <h4 i18n>Order summary</h4>
+        @if (cart.quote(); as quote) {
+          <ul class="summary-lines">
+            @for (line of quote.lines; track line.productId + (line.variantId ?? '')) {
+              <li>
+                <span class="line-qty">{{ line.quantity }} ×</span>
+                <span class="line-name">
+                  {{ line.productName }}
+                  @if (line.variantName) {
+                    <span class="line-variant">({{ line.variantName }})</span>
+                  }
+                </span>
+                <span class="line-total">{{ line.lineTotal | currency:'EUR' }}</span>
+              </li>
+            }
+          </ul>
+          <igx-divider></igx-divider>
+          <dl class="totals">
+            <dt i18n>Subtotal</dt>
+            <dd>{{ quote.subtotal | currency:'EUR' }}</dd>
+            @if (quote.discountTotal > 0) {
+              <dt i18n>Discount</dt>
+              <dd class="color-success">-{{ quote.discountTotal | currency:'EUR' }}</dd>
+            }
+            <dt i18n>Shipping</dt>
+            <dd>
+              @if (quote.shippingCost > 0) {
+                {{ quote.shippingCost | currency:'EUR' }}
+              } @else {
+                <span class="color-success" i18n>Free</span>
+              }
+            </dd>
+            <dt class="grand-total" i18n>Total</dt>
+            <dd class="grand-total">{{ quote.total | currency:'EUR' }}</dd>
+          </dl>
+        } @else {
+          <div class="horizontal-center">
+            <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
+          </div>
+        }
+      </aside>
+    </div>
+  }
+</div>

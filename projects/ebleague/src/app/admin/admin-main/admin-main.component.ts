@@ -1,12 +1,16 @@
 import { Component, inject, linkedSignal, signal } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
 import {
   LoginService,
   ApiTournamentsService,
   Tournament, EMPTY_NEW_TOURNAMENT,
-  Promo,
   ApiShopService,
-  TournamentApplicationState
+  TournamentApplicationState,
+  ShopOrder,
+  OrderStatus,
+  ORDER_STATUS_NAMES,
+  DELIVERY_METHOD_NAMES,
+  ProductEditorComponent,
+  PromoEditorComponent
 } from '../../../../../common/src/public_api';
 import { IGridEditEventArgs, RowType } from '@infragistics/igniteui-angular/grids/core';
 import { DefaultSortingStrategy, IGroupingExpression, SortingDirection } from '@infragistics/igniteui-angular/core';
@@ -22,8 +26,7 @@ import { IgxCheckboxComponent } from '@infragistics/igniteui-angular/checkbox';
 import { IGX_CHIPS_DIRECTIVES } from '@infragistics/igniteui-angular/chips';
 import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
 import { FormsModule } from '@angular/forms';
-import { SizeNamePipe } from '../../pipes/size-name.pipe';
-import { NgOptimizedImage } from '@angular/common';
+import { CurrencyPipe } from '@angular/common';
 
 @Component({
   selector: 'app-admin-main',
@@ -31,6 +34,7 @@ import { NgOptimizedImage } from '@angular/common';
   styleUrls: ['./admin-main.component.scss'],
   imports: [
     FormsModule,
+    CurrencyPipe,
     IGX_GRID_DIRECTIVES,
     IgxIconComponent,
     IgxBadgeComponent,
@@ -44,8 +48,8 @@ import { NgOptimizedImage } from '@angular/common';
     IGX_CARD_DIRECTIVES,
     IgxCheckboxComponent,
     IGX_CHIPS_DIRECTIVES,
-    SizeNamePipe,
-    NgOptimizedImage
+    ProductEditorComponent,
+    PromoEditorComponent
   ]
 })
 export class AdminMainComponent {
@@ -63,18 +67,24 @@ export class AdminMainComponent {
     endDate: new Date(t.endDate)
   })) ?? null);
   public tournament = Object.assign({}, EMPTY_NEW_TOURNAMENT);
-  public orders = toSignal(this.shopService.getOrders());
+  public orders = signal<ShopOrder []>([]);
   public registrations = this.apiService.allRegistrations;
-  public promos = signal<Promo []>(null);
   public grouping: IGroupingExpression [] = [
     { dir: SortingDirection.Desc, fieldName: 'tournamentName', ignoreCase: false, strategy: DefaultSortingStrategy.instance() },
     { dir: SortingDirection.Asc, fieldName: 'game', ignoreCase: false, strategy: DefaultSortingStrategy.instance() }
   ];
 
+  public OrderStatus = OrderStatus;
+  public statusNames = ORDER_STATUS_NAMES;
+  public deliveryNames = DELIVERY_METHOD_NAMES;
+  public ordersExportUrl = this.shopService.ordersExportUrl;
+  /** Tracking numbers typed in the order detail rows, keyed by order id. */
+  public tracking = signal<Record<string, string>>({});
+
   constructor() {
     this.authService.getUserRoles().subscribe(data => this.roles.set(data));
     // this.authService.getUsers().subscribe(data => this.users = data);
-    this.authService.getPromoCodes().subscribe(data => this.promos.set(data));
+    this.loadOrders();
   }
 
   public submitRole(role: string) {
@@ -91,10 +101,25 @@ export class AdminMainComponent {
     });
   }
 
-  public editDone(event: IGridEditEventArgs) {
-    const rowData = event.rowData;
-    rowData[event.column.field] = event.newValue;
-    this.shopService.confirmOrder(rowData).subscribe();
+  public loadOrders() {
+    this.shopService.getAdminOrders().subscribe(orders => this.orders.set(orders));
+  }
+
+  public statusName(status: OrderStatus) {
+    return this.statusNames[status];
+  }
+
+  public updateOrderStatus(order: ShopOrder, status: OrderStatus) {
+    this.shopService.updateOrderStatus(order.id, { status, trackingNumber: this.tracking()[order.id] || order.trackingNumber || null })
+      .subscribe(updated => this.replaceOrder(updated));
+  }
+
+  public setTracking(orderId: string, trackingNumber: string) {
+    this.tracking.update(tracking => ({ ...tracking, [orderId]: trackingNumber }));
+  }
+
+  public refundOrder(order: ShopOrder) {
+    this.shopService.refundOrder(order.id).subscribe(updated => this.replaceOrder(updated));
   }
 
   public confirmRegistration(event: IGridEditEventArgs) {
@@ -117,11 +142,7 @@ export class AdminMainComponent {
     }
   }
 
-  public saveOrder(rowContext: RowType) {
-    const deleted = rowContext.deleted;
-    rowContext.grid.transactions.commit(rowContext.grid.data, rowContext.key);
-    if (deleted) {
-      this.shopService.deleteOrder(rowContext.key).subscribe();
-    }
+  private replaceOrder(updated: ShopOrder) {
+    this.orders.update(orders => orders.map(o => o.id === updated.id ? { ...o, ...updated } : o));
   }
 }

@@ -35,6 +35,7 @@ import { QuickSearchComponent } from './search/quick-search/quick-search.compone
 import { SearchComponent } from './search/search/search.component';
 import { LoginComponent } from '../../../common/src/lib/login/login.component';
 import { LanguagesComponent } from '../../../common/src/lib/languages/languages.component';
+import { CartBadgeComponent } from '../../../common/src/lib/shop/cart-badge/cart-badge.component';
 import { battlenet, discord, facebook, heartCare, instagram, linkedin, steam, tiktok, twitch, twitter, youtube, github } from '@igniteui/material-icons-extended';
 import { IgxResourceStringsBG } from 'igniteui-angular-i18n';
 // Type only, so the lazy loaded notifications route stays out of the main bundle
@@ -65,6 +66,7 @@ import type { NotificationsComponent } from './notifications/notifications.compo
     IgxInputDirective,
     IgxSuffixDirective,
     LanguagesComponent,
+    CartBadgeComponent,
     LoginComponent,
     IgxBannerComponent,
     IgxBannerActionsDirective,

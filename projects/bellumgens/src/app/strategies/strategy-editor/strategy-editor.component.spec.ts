@@ -7,7 +7,7 @@ import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { PLATFORM_ID, Provider, signal, WritableSignal } from '@angular/core';
 import { BehaviorSubject, Subject } from 'rxjs';
-import { IDropDroppedEventArgs } from '@infragistics/igniteui-angular/directives';
+import { IDropDroppedEventArgs, IgxDragDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxIconService } from '@infragistics/igniteui-angular/icon';
 import { By } from '@angular/platform-browser';
 import { ConfirmComponent } from '../../../../../common/src/lib/confirm/confirm.component';
@@ -260,6 +260,17 @@ describe('StrategyEditorComponent', () => {
         expect(avatars).toEqual(['alpha', 'bravo']);
       });
 
+      it('puts the brush down when a team member starts to be dragged', async () => {
+        team.set({ teamId: 'team-a', teamName: 'Team A' } as CSGOTeam);
+        members.set([{ userId: 'u1', username: 'alpha', avatarIcon: 'a.png' }] as TeamMember []);
+        await fixture.whenStable();
+        component.selectBrush();
+
+        fixture.debugElement.query(By.css('igx-avatar[title="alpha"]')).triggerEventHandler('dragStart', {});
+
+        expect(component.brushSelected()).toBe(false);
+      });
+
       it('does not re-fetch the team when the strategy updates with the same team', async () => {
         team.set({ teamId: 'team-a', teamName: 'Team A' } as CSGOTeam);
         await fixture.whenStable();
@@ -483,6 +494,72 @@ describe('StrategyEditorComponent', () => {
 
         expect(component.brushSelected()).toBe(false);
         expect(fixture.nativeElement.textContent).not.toContain('Brush Color');
+      });
+
+      it('puts the brush down when a token or utility starts to be dragged', async () => {
+        const draggables = fixture.debugElement.queryAll(By.directive(IgxDragDirective));
+        // Five of each token kind and the utility
+        expect(draggables.length).toBe(15 + component.utility.length);
+
+        for (const draggable of draggables) {
+          component.selectBrush();
+          expect(component.brushSelected()).toBe(true);
+
+          draggable.triggerEventHandler('dragStart', {});
+
+          expect(component.brushSelected()).toBe(false);
+        }
+      });
+
+      it('starts drawing from a pointer down on the board', async () => {
+        component.selectBrush();
+        await fixture.whenStable();
+        const board = fixture.debugElement.query(By.css('canvas.drawing-board'));
+
+        board.triggerEventHandler('pointerdown', pointer(12, 34));
+        fixture.debugElement.query(By.css('.strat-editor-host')).triggerEventHandler('pointermove', pointer(20, 40));
+        fixture.debugElement.query(By.css('.strat-editor-host')).triggerEventHandler('pointerup', {});
+
+        const drawing = component.layers()[1] as FreeflowLayer;
+        expect(drawing).toBeInstanceOf(FreeflowLayer);
+        expect([drawing.x, drawing.y]).toEqual([12, 34]);
+        expect(drawing.paths[0].points[0]).toEqual({ x: 12, y: 34 });
+      });
+
+      it('changes the map from the map selector', async () => {
+        fixture.debugElement.query(By.css('igx-select#mapSelector')).triggerEventHandler('ngModelChange', CSGOMap.Overpass);
+        await fixture.whenStable();
+
+        expect(component.newStrategy().map).toBe(CSGOMap.Overpass);
+        expect((component.layers()[0] as ImageLayer).src).toBe(radar(CSGOMap.Overpass));
+        expect(component.changes()).toBe(true);
+      });
+
+      it('selects a layer and renames it from the layer list', async () => {
+        component.surfaceDrop(dropArgs({ name: 't', src: '/assets/editor/t-pin.png', width: 24, height: 24 }));
+        component.selectBrush();
+        await fixture.whenStable();
+        const token = component.layers()[1];
+        token.selected = false;
+        const item = fixture.debugElement.queryAll(By.css('igx-list-item'))[1];
+
+        const checkbox = item.query(By.css('igx-checkbox'));
+        checkbox.triggerEventHandler('ngModelChange', true);
+        checkbox.triggerEventHandler('change', {});
+        const name = item.query(By.css('input[igxInput]')).nativeElement as HTMLInputElement;
+        name.value = 'Entry T';
+        name.dispatchEvent(new Event('input'));
+        await fixture.whenStable();
+
+        expect(token.selected).toBe(true);
+        expect(component.brushSelected()).toBe(false);
+        expect(token.name).toBe('Entry T');
+      });
+
+      it('does not let the map radar be selected from the layer list', () => {
+        const radarCheckbox = fixture.nativeElement.querySelector('igx-list-item igx-checkbox input') as HTMLInputElement;
+
+        expect(radarCheckbox.disabled).toBe(true);
       });
 
       it('does not save without changes', () => {

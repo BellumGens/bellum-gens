@@ -10,6 +10,7 @@ export const routes: Routes = [
   { path: 'bellumgenselite', loadChildren: () => import('./events/events.routes').then(m => m.routes) },
   { path: 'tournaments', loadChildren: () => import('./tournaments/tournaments.routes').then(m => m.routes) },
   { path: 'partners', loadChildren: () => import('./partners/partners.routes').then(m => m.routes) },
+  { path: 'shop', loadChildren: () => import('./shop/shop.routes').then(m => m.routes) },
   { path: 'bge-stara-zagora-2026', loadComponent: () => import('./elite-stz-2026/elite-stz-2026.component').then(m => m.EliteStz2026Component), data: {
     title: 'Bellum Gens Elite Stara Zagora 2026: Early Bird Signup',
     twitterTitle: 'Bellum Gens Elite Stara Zagora 2026: Early Bird Signup',

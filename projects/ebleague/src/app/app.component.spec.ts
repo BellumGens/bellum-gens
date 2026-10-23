@@ -192,7 +192,7 @@ describe('AppComponent', () => {
         'EBL Seasons', 'Tournaments', 'Shop', 'Tournament format', 'Our partners', 'Our crew', 'Contact us'
       ]);
       expect(items.map(i => i.getAttribute('href'))).toEqual([
-        '/tournaments', '/tournaments/hub', '/shop', '/tournaments/format', '/#partners', '/tournaments/crew', '/#aboutus'
+        '/tournaments', '/tournaments/hub', component.shopUrl, '/tournaments/format', '/#partners', '/tournaments/crew', '/#aboutus'
       ]);
     });
 

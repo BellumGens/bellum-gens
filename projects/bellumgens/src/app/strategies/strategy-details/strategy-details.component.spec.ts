@@ -431,6 +431,27 @@ describe('StrategyDetailsComponent', () => {
         expect(actionsButton(1).getAttribute('aria-expanded')).toBe('false');
       });
 
+      it('keeps the open comment actions marked when another drop-down reports it closed', async () => {
+        actionsButton(1).click();
+        await fixture.whenStable();
+
+        component.actionsClosed('c1');
+        await fixture.whenStable();
+
+        expect(component.openedActionsId()).toBe('c2');
+        expect(actionsButton(1).getAttribute('aria-expanded')).toBe('true');
+      });
+
+      it('leaves an anonymous draft when an edit is cancelled after logging out', async () => {
+        await commentAction(1, 'Edit');
+        authUser.set(null);
+
+        component.cancelEdit();
+
+        expect(component.editedCommentId()).toBeNull();
+        expect(component.newComment()).toEqual({ userId: null, stratId: 'strat-1', comment: null });
+      });
+
       it('edits a comment with the keyboard', async () => {
         const actions = actionsButton(1);
         actions.click();

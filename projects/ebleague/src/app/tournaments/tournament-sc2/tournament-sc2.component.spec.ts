@@ -389,5 +389,31 @@ describe('TournamentSc2Component', () => {
         ['https://replay/1', 'Replay']
       ]);
     });
+
+    it('shows only the media links a match has in its details', async () => {
+      const match = (id: string, links: Partial<TournamentSC2Match>): TournamentSC2Match => ({
+        id, player1: player('p1', 'Serral'), player2: player('p2', 'Maru'), player1Id: 'p1', player2Id: 'p2',
+        player1Points: 0, player2Points: 0, startTime: new Date(2024, 0, 15, 18, 30), maps: [], ...links
+      });
+      const matches = [match('m1', { videoLink: 'https://video/1' }), match('m2', { demoLink: 'https://replay/2' }), match('m3', {})];
+      httpMock.match(req => req.url.includes('sc2matches')).forEach(req => req.flush(matches));
+      httpMock.match(() => true).forEach(req => req.flush(null));
+      await render();
+
+      const grid = fixture.debugElement.queryAll(debugEl => debugEl.componentInstance instanceof IgxGridComponent)
+        .map(debugEl => debugEl.componentInstance as IgxGridComponent)
+        .find(g => g.data === component.sc2matches());
+      grid.expandAll();
+      await render();
+
+      // The match without links gets no links area at all
+      const schedule = Array.from(el().querySelectorAll<HTMLElement>('igx-grid')).find(g => !g.closest('.group-columns'));
+      const linkAreas = Array.from(schedule.querySelectorAll('.match-links'))
+        .map(area => Array.from(area.querySelectorAll('a')).map(a => [a.getAttribute('href'), a.querySelector('span').textContent.trim()]));
+      expect(linkAreas).toEqual([
+        [['https://video/1', 'Video']],
+        [['https://replay/2', 'Replay']]
+      ]);
+    });
   });
 });

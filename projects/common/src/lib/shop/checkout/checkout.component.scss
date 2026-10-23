@@ -1,0 +1,148 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.shop-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.shop-empty {
+  flex-direction: column;
+  gap: 16px;
+  padding: 48px 16px;
+}
+
+.checkout-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
+  gap: 32px;
+  align-items: start;
+
+  @media (max-width: 900px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+
+  h4 {
+    margin: 12px 0 0;
+  }
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+
+  .full-width {
+    grid-column: 1 / -1;
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.terms {
+  margin-top: 8px;
+}
+
+.terms-hint {
+  font-size: 0.9rem;
+}
+
+.problems {
+  margin: 0;
+  padding: 12px 12px 12px 32px;
+  border-radius: 8px;
+  background: rgba(244, 67, 54, 0.1);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.pay-button {
+  igx-icon {
+    margin-right: 8px;
+  }
+
+  .button-progress {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+  }
+}
+
+.secure-note {
+  font-size: 0.9rem;
+  opacity: 0.75;
+  margin: 0;
+}
+
+.order-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.04);
+
+  h4 {
+    margin: 0;
+  }
+}
+
+.summary-lines {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  li {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 8px;
+  }
+
+  .line-variant {
+    opacity: 0.7;
+  }
+
+  .line-total {
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+}
+
+.totals {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 6px 16px;
+  margin: 0;
+
+  dd {
+    margin: 0;
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .grand-total {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-top: 6px;
+  }
+}

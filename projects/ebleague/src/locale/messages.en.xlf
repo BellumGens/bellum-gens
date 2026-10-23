@@ -139,10 +139,6 @@
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
           <context context-type="linenumber">13,14</context>
         </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">117,118</context>
-        </context-group>
       </trans-unit>
       <trans-unit id="7259863416324481753" datatype="html">
         <source>Create username and password</source>
@@ -279,10 +275,6 @@
           <context context-type="linenumber">36,37</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">106,107</context>
-        </context-group>
-        <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
           <context context-type="linenumber">52,53</context>
         </context-group>
@@ -315,16 +307,12 @@
           <context context-type="linenumber">16,17</context>
         </context-group>
         <context-group purpose="location">
-          <context context-type="sourcefile">projects/common/src/lib/shop/orderform/orderform.component.html</context>
-          <context context-type="linenumber">107,108</context>
-        </context-group>
-        <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
           <context context-type="linenumber">20</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">88</context>
+          <context context-type="linenumber">104</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
@@ -363,191 +351,477 @@
           <context context-type="linenumber">64,65</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="6707361102856436710" datatype="html">
+        <source>Products</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
+          <context context-type="linenumber">4,5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="807930220751775675" datatype="html">
+        <source>New product</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
+          <context context-type="linenumber">7,8</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5706531354343599313" datatype="html">
+        <source>Loading products...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
+          <context context-type="linenumber">11,12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4537783421937367363" datatype="html">
+        <source>No products yet. Create the first one.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
+          <context context-type="linenumber">13,14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1859131936150262113" datatype="html">
+        <source>Inactive</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/promo-editor/promo-editor.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6827337628740297789" datatype="html">
+        <source>options</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8953033926734869941" datatype="html">
+        <source>Name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
+          <context context-type="linenumber">44,45</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3833692663709091545" datatype="html">
+        <source>Name is required</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5553009790257288680" datatype="html">
+        <source>URL slug</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
+          <context context-type="linenumber">52,53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5180358026844575602" datatype="html">
+        <source>Leave empty to generate it from the name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
+          <context context-type="linenumber">54</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8419515490539218007" datatype="html">
+        <source>Sort order</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
+          <context context-type="linenumber">58,59</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2559885490456050359" datatype="html">
+        <source>Brand</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
+          <context context-type="linenumber">63,64</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6964530103202862227" datatype="html">
+        <source>Product type</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
+          <context context-type="linenumber">70,71</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="808353450478042657" datatype="html">
+        <source>Price (EUR)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
+          <context context-type="linenumber">77,78</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4719229540858596662" datatype="html">
+        <source>Price must be zero or more</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
+          <context context-type="linenumber">80</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6131874190146381475" datatype="html">
+        <source>Discount (%)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
+          <context context-type="linenumber">85,86</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/promo-editor/promo-editor.component.html</context>
+          <context context-type="linenumber">56,57</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8941660023500929095" datatype="html">
+        <source>Shown as a strike-through price. Leave empty for none.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
+          <context context-type="linenumber">87</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4613338085351943838" datatype="html">
+        <source>Stock</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
+          <context context-type="linenumber">92,93</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
+          <context context-type="linenumber">182,183</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="265166443704627143" datatype="html">
+        <source>Leave empty when stock is not tracked</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
+          <context context-type="linenumber">94</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4902817035128594900" datatype="html">
+        <source>Description</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
+          <context context-type="linenumber">99,100</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-create/tournament-create.component.html</context>
+          <context context-type="linenumber">27,28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8884294348533287566" datatype="html">
+        <source>Main image URL</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
+          <context context-type="linenumber">104,105</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3884222790160182700" datatype="html">
+        <source>Save the product first, then upload its image.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
+          <context context-type="linenumber">115,116</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9179063812327348875" datatype="html">
+        <source>Upload PNG image</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
+          <context context-type="linenumber">119,120</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1245343823699368872" datatype="html">
+        <source>Uploading...</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
+          <context context-type="linenumber">123,124</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4167411494741586301" datatype="html">
+        <source>Gallery image URLs (one per line)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
+          <context context-type="linenumber">129,130</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7154216965883065990" datatype="html">
+        <source>Visible in the shop</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
+          <context context-type="linenumber">133</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2222342560934079216" datatype="html">
+        <source>Options and sizes</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
+          <context context-type="linenumber">139,140</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5030912845329529692" datatype="html">
+        <source>Add jersey sizes</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
+          <context context-type="linenumber">141,142</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4910631867841099191" datatype="html">
+        <source>Add option</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
+          <context context-type="linenumber">144,145</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7199787897746650467" datatype="html">
+        <source>Products with options are ordered by option, and stock is tracked per option. Leave the list empty for simple products.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
+          <context context-type="linenumber">148,150</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3061192590618575679" datatype="html">
+        <source>Option name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
+          <context context-type="linenumber">154,155</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="3804037606764273869" datatype="html">
         <source>Cut</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">projects/common/src/lib/shop/orderform/orderform.component.html</context>
-          <context context-type="linenumber">9,10</context>
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
+          <context context-type="linenumber">158,159</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6252070156626006029" datatype="html">
+        <source>None</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
+          <context context-type="linenumber">162</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
+          <context context-type="linenumber">174</context>
         </context-group>
       </trans-unit>
       <trans-unit id="45739481977493163" datatype="html">
         <source>Size</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">projects/common/src/lib/shop/orderform/orderform.component.html</context>
-          <context context-type="linenumber">19,20</context>
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
+          <context context-type="linenumber">170,171</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="389760964377001932" datatype="html">
-        <source>Remove jersey</source>
+      <trans-unit id="6747622589739373151" datatype="html">
+        <source>Price override</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">projects/common/src/lib/shop/orderform/orderform.component.html</context>
-          <context context-type="linenumber">27,28</context>
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
+          <context context-type="linenumber">186,187</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4320496146171823526" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{ productCount() }}"/> x <x id="INTERPOLATION_1" equiv-text="{{basePrice}}"/> BGN = <x id="INTERPOLATION_2" equiv-text="{{ subtotal() }}"/> BGN</source>
+      <trans-unit id="8204176479746810612" datatype="html">
+        <source>Active</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">projects/common/src/lib/shop/orderform/orderform.component.html</context>
-          <context context-type="linenumber">36,38</context>
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
+          <context context-type="linenumber">193</context>
         </context-group>
-      </trans-unit>
-      <trans-unit id="1943153960391120303" datatype="html">
-        <source>Promo code</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">projects/common/src/lib/shop/orderform/orderform.component.html</context>
-          <context context-type="linenumber">39,40</context>
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/promo-editor/promo-editor.component.html</context>
+          <context context-type="linenumber">87</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-list/tournament-list.component.html</context>
+          <context context-type="linenumber">23,24</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">104,105</context>
+          <context context-type="linenumber">245</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournaments-main/tournaments-main.component.html</context>
+          <context context-type="linenumber">38</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2808523933915213618" datatype="html">
-        <source>Clear promo code</source>
+      <trans-unit id="8875746834087652962" datatype="html">
+        <source>Remove option</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">projects/common/src/lib/shop/orderform/orderform.component.html</context>
-          <context context-type="linenumber">46,47</context>
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
+          <context context-type="linenumber">194,195</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3438893904854626784" datatype="html">
-        <source>Promo code is invalid...</source>
+      <trans-unit id="8916463584035714027" datatype="html">
+        <source>Save product</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">projects/common/src/lib/shop/orderform/orderform.component.html</context>
-          <context context-type="linenumber">53</context>
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
+          <context context-type="linenumber">204,205</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="2335951072585495896" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{ promo() * 100 }}"/>% off = -<x id="INTERPOLATION_1" equiv-text="{{ subtotal() * promo() }}"/> BGN</source>
+      <trans-unit id="7022070615528435141" datatype="html">
+        <source>Delete</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">projects/common/src/lib/shop/orderform/orderform.component.html</context>
-          <context context-type="linenumber">58,60</context>
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
+          <context context-type="linenumber">209,210</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-csgo/admin-csgo.component.html</context>
+          <context context-type="linenumber">190</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-csgo/admin-csgo.component.html</context>
+          <context context-type="linenumber">404,405</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
+          <context context-type="linenumber">271</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
+          <context context-type="linenumber">520,521</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3329104600473653078" datatype="html">
-        <source>Free shipping</source>
+      <trans-unit id="7733836803147774" datatype="html">
+        <source>Delete this product?</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">projects/common/src/lib/shop/orderform/orderform.component.html</context>
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
+          <context context-type="linenumber">216</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2923055308869340757" datatype="html">
+        <source>Products that were already ordered are deactivated instead of deleted, so order history stays intact.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.html</context>
+          <context context-type="linenumber">217,218</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopVariantDefault" datatype="html">
+        <source>Default</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/product-editor/product-editor.component.ts</context>
+          <context context-type="linenumber">278</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4871113601367811353" datatype="html">
+        <source>Promo codes</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/promo-editor/promo-editor.component.html</context>
+          <context context-type="linenumber">4,5</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
+          <context context-type="linenumber">188,189</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="151339262012830941" datatype="html">
+        <source>New code</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/promo-editor/promo-editor.component.html</context>
+          <context context-type="linenumber">7,8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7971211393148566652" datatype="html">
+        <source>No promo codes yet.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/promo-editor/promo-editor.component.html</context>
+          <context context-type="linenumber">11,12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1536850590587257204" datatype="html">
+        <source>Until <x id="INTERPOLATION" equiv-text="{{ promo.expiration | date:&apos;mediumDate&apos; }}"/></source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/promo-editor/promo-editor.component.html</context>
+          <context context-type="linenumber">24,25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6975019379881662969" datatype="html">
+        <source>Used <x id="INTERPOLATION" equiv-text="{{ promo.timesUsed }}"/><x id="START_BLOCK_IF" equiv-text="@if (promo.usageLimit) {"/> / <x id="INTERPOLATION_1" equiv-text="{{ promo.usageLimit }}"/> <x id="CLOSE_BLOCK_IF" equiv-text="}"/> times</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/promo-editor/promo-editor.component.html</context>
+          <context context-type="linenumber">26,27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3322694419069949700" datatype="html">
+        <source>Delete promo code</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/promo-editor/promo-editor.component.html</context>
+          <context context-type="linenumber">29,30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3422022560848111801" datatype="html">
+        <source>New promo code</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/promo-editor/promo-editor.component.html</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8186013988289067040" datatype="html">
+        <source>Code</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/promo-editor/promo-editor.component.html</context>
+          <context context-type="linenumber">48,49</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="947981956933066929" datatype="html">
+        <source>Letters, digits, dashes and underscores only</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/promo-editor/promo-editor.component.html</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2305408576511633994" datatype="html">
+        <source>Valid until (optional)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/promo-editor/promo-editor.component.html</context>
           <context context-type="linenumber">61,62</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3743739810451209476" datatype="html">
-        <source>Total = <x id="INTERPOLATION" equiv-text="{{ subtotal() * (1 - promo()) }}"/> BGN</source>
+      <trans-unit id="8916069629662004956" datatype="html">
+        <source>Usage limit (optional)</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">projects/common/src/lib/shop/orderform/orderform.component.html</context>
-          <context context-type="linenumber">64,65</context>
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/promo-editor/promo-editor.component.html</context>
+          <context context-type="linenumber">65,66</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="515880391246540742" datatype="html">
-        <source>Add one more</source>
+      <trans-unit id="3267552406043933570" datatype="html">
+        <source>Minimum order (EUR, optional)</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">projects/common/src/lib/shop/orderform/orderform.component.html</context>
-          <context context-type="linenumber">71,72</context>
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/promo-editor/promo-editor.component.html</context>
+          <context context-type="linenumber">70,71</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="5342432350421167093" datatype="html">
-        <source>First name</source>
+      <trans-unit id="8188398788637486228" datatype="html">
+        <source>Applies to</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">projects/common/src/lib/shop/orderform/orderform.component.html</context>
-          <context context-type="linenumber">77,78</context>
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/promo-editor/promo-editor.component.html</context>
+          <context context-type="linenumber">75,76</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="1908499290314678195" datatype="html">
-        <source>Clear first name</source>
+      <trans-unit id="1063195851397612585" datatype="html">
+        <source>All products</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">projects/common/src/lib/shop/orderform/orderform.component.html</context>
-          <context context-type="linenumber">84,85</context>
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/promo-editor/promo-editor.component.html</context>
+          <context context-type="linenumber">79</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3586674587150281199" datatype="html">
-        <source>Last name</source>
+      <trans-unit id="4186950346878673266" datatype="html">
+        <source>Save promo code</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">projects/common/src/lib/shop/orderform/orderform.component.html</context>
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/promo-editor/promo-editor.component.html</context>
           <context context-type="linenumber">92,93</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7579320793279445748" datatype="html">
-        <source>Clear last name</source>
+      <trans-unit id="4347337592363652421" datatype="html">
+        <source>Delete this promo code?</source>
         <context-group purpose="location">
-          <context context-type="sourcefile">projects/common/src/lib/shop/orderform/orderform.component.html</context>
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/promo-editor/promo-editor.component.html</context>
+          <context context-type="linenumber">98</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="81300102959565276" datatype="html">
+        <source>Codes that were used by orders are deactivated instead of deleted.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/promo-editor/promo-editor.component.html</context>
           <context context-type="linenumber">99,100</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="336262150804823681" datatype="html">
-        <source>Clear email</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/common/src/lib/shop/orderform/orderform.component.html</context>
-          <context context-type="linenumber">114,115</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
-          <context context-type="linenumber">338,339</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="665546201925711079" datatype="html">
-        <source>Phone #</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/common/src/lib/shop/orderform/orderform.component.html</context>
-          <context context-type="linenumber">124,125</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">94,95</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="4503263884508479200" datatype="html">
-        <source>Clear phone number</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/common/src/lib/shop/orderform/orderform.component.html</context>
-          <context context-type="linenumber">141,142</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="2314075913167237221" datatype="html">
-        <source>City</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/common/src/lib/shop/orderform/orderform.component.html</context>
-          <context context-type="linenumber">149,150</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6270324904893142587" datatype="html">
-        <source>Clear city</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/common/src/lib/shop/orderform/orderform.component.html</context>
-          <context context-type="linenumber">156,157</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="1847047605496409443" datatype="html">
-        <source>Street</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/common/src/lib/shop/orderform/orderform.component.html</context>
-          <context context-type="linenumber">164,165</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="4319438082923496965" datatype="html">
-        <source>Clear street</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/common/src/lib/shop/orderform/orderform.component.html</context>
-          <context context-type="linenumber">171,172</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="220550782947016929" datatype="html">
-        <source>Order</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/common/src/lib/shop/orderform/orderform.component.html</context>
-          <context context-type="linenumber">180,181</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="8012344910054029733" datatype="html">
-        <source>Male</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/common/src/lib/shop/orderform/orderform.component.ts</context>
-          <context context-type="linenumber">46</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="5667840900782067941" datatype="html">
-        <source>Female</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/common/src/lib/shop/orderform/orderform.component.ts</context>
-          <context context-type="linenumber">47</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5259416047008119946" datatype="html">
@@ -630,13 +904,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-create/tournament-create.component.html</context>
           <context context-type="linenumber">22</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="4902817035128594900" datatype="html">
-        <source>Description</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-create/tournament-create.component.html</context>
-          <context context-type="linenumber">27,28</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4425261597270351519" datatype="html">
@@ -730,7 +997,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-csgo/admin-csgo.component.html</context>
-          <context context-type="linenumber">196</context>
+          <context context-type="linenumber">195,196</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-csgo/admin-csgo.component.html</context>
@@ -873,21 +1140,6 @@
           <context context-type="linenumber">115,117</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="8204176479746810612" datatype="html">
-        <source>Active</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-list/tournament-list.component.html</context>
-          <context context-type="linenumber">23,24</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">196</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournaments-main/tournaments-main.component.html</context>
-          <context context-type="linenumber">38</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="5256041485164998577" datatype="html">
         <source>No active tournaments</source>
         <context-group purpose="location">
@@ -1010,6 +1262,174 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournament-registration/registration-success/registration-success.component.html</context>
           <context context-type="linenumber">20,21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopTypeJersey" datatype="html">
+        <source>Jersey</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
+          <context context-type="linenumber">294</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopTypeUmbrella" datatype="html">
+        <source>Umbrella</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
+          <context context-type="linenumber">295</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopTypePen" datatype="html">
+        <source>Pen</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
+          <context context-type="linenumber">296</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopTypePin" datatype="html">
+        <source>Pin</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
+          <context context-type="linenumber">297</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopTypeBracelet" datatype="html">
+        <source>Bracelet</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
+          <context context-type="linenumber">298</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopTypeOther" datatype="html">
+        <source>Other</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
+          <context context-type="linenumber">299</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopStatusAwaitingPayment" datatype="html">
+        <source>Awaiting payment</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
+          <context context-type="linenumber">303</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopStatusPaid" datatype="html">
+        <source>Paid</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
+          <context context-type="linenumber">304</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopStatusShipped" datatype="html">
+        <source>Shipped</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
+          <context context-type="linenumber">305</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopStatusDelivered" datatype="html">
+        <source>Delivered</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
+          <context context-type="linenumber">306</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopStatusCancelled" datatype="html">
+        <source>Cancelled</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
+          <context context-type="linenumber">307</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopStatusRefunded" datatype="html">
+        <source>Refunded</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
+          <context context-type="linenumber">308</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopDeliveryCourier" datatype="html">
+        <source>Courier delivery</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
+          <context context-type="linenumber">312</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopDeliveryPickup" datatype="html">
+        <source>Pick up at an event</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
+          <context context-type="linenumber">313</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopCutMale" datatype="html">
+        <source>Male</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
+          <context context-type="linenumber">317</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopCutFemale" datatype="html">
+        <source>Female</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
+          <context context-type="linenumber">318</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopProductSaved" datatype="html">
+        <source>Product saved!</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
+          <context context-type="linenumber">107</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopProductDeactivated" datatype="html">
+        <source>The product has orders, so it was deactivated instead of deleted.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
+          <context context-type="linenumber">118</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopProductDeleted" datatype="html">
+        <source>Product deleted!</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
+          <context context-type="linenumber">119</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopOrderUpdated" datatype="html">
+        <source>Order updated!</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
+          <context context-type="linenumber">142</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopOrderRefunded" datatype="html">
+        <source>Refund sent to the payment provider.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
+          <context context-type="linenumber">149</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopPromoSaved" datatype="html">
+        <source>Promo code saved!</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
+          <context context-type="linenumber">167</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopPromoDeactivated" datatype="html">
+        <source>The code was used by orders, so it was deactivated instead of deleted.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
+          <context context-type="linenumber">175</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopPromoDeleted" datatype="html">
+        <source>Promo code deleted!</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
+          <context context-type="linenumber">176</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7381827970983494105" datatype="html">
@@ -1362,25 +1782,6 @@
           <context context-type="linenumber">268,269</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7022070615528435141" datatype="html">
-        <source>Delete</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-csgo/admin-csgo.component.html</context>
-          <context context-type="linenumber">190</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-csgo/admin-csgo.component.html</context>
-          <context context-type="linenumber">404,405</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
-          <context context-type="linenumber">271</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
-          <context context-type="linenumber">520,521</context>
-        </context-group>
-      </trans-unit>
       <trans-unit id="989480357041643523" datatype="html">
         <source>Delete group</source>
         <context-group purpose="location">
@@ -1457,15 +1858,15 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">197,198</context>
+          <context context-type="linenumber">246,247</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">249,250</context>
+          <context context-type="linenumber">298,299</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">266,267</context>
+          <context context-type="linenumber">315,316</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
@@ -1488,11 +1889,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">191,192</context>
+          <context context-type="linenumber">240,241</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">242,243</context>
+          <context context-type="linenumber">291,292</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
@@ -1583,7 +1984,7 @@
         <source>Results</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-csgo/admin-csgo.component.html</context>
-          <context context-type="linenumber">363</context>
+          <context context-type="linenumber">362,363</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
@@ -1697,144 +2098,260 @@
           <context context-type="linenumber">48,49</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="6575195871133210332" datatype="html">
-        <source>Orders</source>
+      <trans-unit id="7680340516078789397" datatype="html">
+        <source>Shop orders</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">82</context>
+          <context context-type="linenumber">80</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5158177792461436439" datatype="html">
+        <source>Export CSV</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
+          <context context-type="linenumber">84,85</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1102717806459547726" datatype="html">
+        <source>Refresh</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
+          <context context-type="linenumber">88,89</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1752784976440270196" datatype="html">
+        <source>Order #</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
+          <context context-type="linenumber">93,94</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2575666423611576469" datatype="html">
         <source>Order date</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">85,86</context>
+          <context context-type="linenumber">95,96</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5611592591303869712" datatype="html">
+        <source>Status</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
+          <context context-type="linenumber">97,98</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3448462145758383019" datatype="html">
+        <source>Total</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
+          <context context-type="linenumber">101</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8301535046747035390" datatype="html">
         <source>Full name</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">89,90</context>
+          <context context-type="linenumber">105,106</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="665546201925711079" datatype="html">
+        <source>Phone #</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
+          <context context-type="linenumber">110,111</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2148144896238147595" datatype="html">
         <source>Full address</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">99,100</context>
+          <context context-type="linenumber">112,113</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="4135157573284610192" datatype="html">
-        <source>Shipped</source>
+      <trans-unit id="7372755454773589030" datatype="html">
+        <source>Delivery</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">109,110</context>
+          <context context-type="linenumber">117,118</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1943153960391120303" datatype="html">
+        <source>Promo code</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
+          <context context-type="linenumber">120,121</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8826085152542500645" datatype="html">
+        <source>Tracking #</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
+          <context context-type="linenumber">122,123</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1672932403120194748" datatype="html">
+        <source>Customer note:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
+          <context context-type="linenumber">136</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1172765442989268434" datatype="html">
+        <source>Admin note:</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
+          <context context-type="linenumber">139</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8874505042842315598" datatype="html">
+        <source>Tracking number</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
+          <context context-type="linenumber">144,145</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4591334493057800174" datatype="html">
+        <source>Mark shipped</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
+          <context context-type="linenumber">149,150</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1591077950143553317" datatype="html">
+        <source>Mark delivered</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
+          <context context-type="linenumber">153,154</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
+          <context context-type="linenumber">159,160</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6250742806431534479" datatype="html">
+        <source>Cancel order</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
+          <context context-type="linenumber">165,166</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6173625528214823462" datatype="html">
+        <source>Refund</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
+          <context context-type="linenumber">171,172</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4817576408790559448" datatype="html">
+        <source>Shop catalog</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
+          <context context-type="linenumber">183,184</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9198937618936305417" datatype="html">
         <source>Tournaments and Roles</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">146,147</context>
+          <context context-type="linenumber">195,196</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8861872920583414435" datatype="html">
         <source>Tournament name</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">158,159</context>
+          <context context-type="linenumber">207,208</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">206,207</context>
+          <context context-type="linenumber">255,256</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4222596374849656522" datatype="html">
         <source>Clear tournament name</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">162,163</context>
+          <context context-type="linenumber">211,212</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">210,211</context>
+          <context context-type="linenumber">259,260</context>
         </context-group>
       </trans-unit>
       <trans-unit id="895170020706004881" datatype="html">
         <source>Tournament logo</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">169,170</context>
+          <context context-type="linenumber">218,219</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">218,219</context>
+          <context context-type="linenumber">267,268</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2143577252337766748" datatype="html">
         <source>Clear tournament logo</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">173,174</context>
+          <context context-type="linenumber">222,223</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">222,223</context>
+          <context context-type="linenumber">271,272</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4894998749712021347" datatype="html">
         <source>Tournament description</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">180,181</context>
+          <context context-type="linenumber">229,230</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">230,231</context>
+          <context context-type="linenumber">279,280</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3864080177386682033" datatype="html">
         <source>Clear tournament description</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">184,185</context>
+          <context context-type="linenumber">233,234</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">234,235</context>
+          <context context-type="linenumber">283,284</context>
         </context-group>
       </trans-unit>
       <trans-unit id="126074860850048964" datatype="html">
         <source>End date</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">194,195</context>
+          <context context-type="linenumber">243,244</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">246,247</context>
+          <context context-type="linenumber">295,296</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1280523270210192718" datatype="html">
         <source>New Tournament</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">204,205</context>
+          <context context-type="linenumber">253,254</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6009437916867942799" datatype="html">
         <source>No Roles Defined</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">259</context>
+          <context context-type="linenumber">308</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7756297752217979839" datatype="html">
         <source>New role</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">263,264</context>
+          <context context-type="linenumber">312,313</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2671237193001897863" datatype="html">
@@ -2643,6 +3160,13 @@
           <context context-type="linenumber">326,327</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="336262150804823681" datatype="html">
+        <source>Clear email</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
+          <context context-type="linenumber">338,339</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="3413422463415844699" datatype="html">
         <source>Get email updates from us!</source>
         <context-group purpose="location">
@@ -2662,41 +3186,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/raffle/raffle.component.html</context>
           <context context-type="linenumber">2</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6847115594685057654" datatype="html">
-        <source>Your order has been received! We will call you for additional confirmation!</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/shop/order-success/order-success.component.html</context>
-          <context context-type="linenumber">2,3</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="8785674043474425807" datatype="html">
-        <source>Order the official Esports Business League jersey!</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/shop/shop.component.html</context>
-          <context context-type="linenumber">4,5</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="6905927013039070922" datatype="html">
-        <source>The 2020 Esports Business League jersey is available!</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/shop/shop.component.html</context>
-          <context context-type="linenumber">8,10</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="1270201153719897399" datatype="html">
-        <source>Made of 100% sportswear ventilated polyester, with high quality print, the official jersey is available in limited quantity! The jersey is ideal both for extended gaming sessions and sports activities in the open! Only 300 units of the 2020 jersey are being sold. We have both male and female cuts available. All orders are being shipped C.O.D. Free shipment for orders over 100 BGN.</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/shop/shop.component.html</context>
-          <context context-type="linenumber">10,12</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="7331961524864486254" datatype="html">
-        <source>Price <x id="START_TAG_DEL" ctype="x-del" equiv-text="&lt;del&gt;"/><x id="INTERPOLATION" equiv-text="{{basePrice}}"/> BGN<x id="CLOSE_TAG_DEL" ctype="x-del" equiv-text="&lt;/del&gt;"/> <x id="START_BLOCK_IF" equiv-text="@if (basePromo) {"/><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/><x id="INTERPOLATION_1" equiv-text="{{ basePrice - basePrice * basePromo }}"/> BGN<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/><x id="CLOSE_BLOCK_IF" equiv-text="}"/></source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/shop/shop.component.html</context>
-          <context context-type="linenumber">12,16</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7649531171132885067" datatype="html">
