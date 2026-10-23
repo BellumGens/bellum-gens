@@ -130,7 +130,7 @@
 
   <igx-card class="margin-top">
     <igx-card-header>
-      <igx-avatar igxCardThumbnail shape="circle" src="/assets/wallpapers/csgo-watermark.webp"></igx-avatar>
+      <igx-avatar igxCardThumbnail shape="circle" src="/assets/wallpapers/cs2-icon.svg"></igx-avatar>
       <h1 igxCardHeaderTitle i18n>{{ selectedTournament() ? selectedTournament().name : 'No' }} Participants</h1>
       <h2 igxCardHeaderSubtitle i18n>Drag and drop participants into the groups</h2>
     </igx-card-header>
@@ -165,7 +165,7 @@
         @for (group of groups(); track group.id) {
           <igx-card elevated>
             <igx-card-header>
-              <igx-avatar igxCardThumbnail shape="circle" src="/assets/wallpapers/csgo-watermark.webp"></igx-avatar>
+              <igx-avatar igxCardThumbnail shape="circle" src="/assets/wallpapers/cs2-icon.svg"></igx-avatar>
               @if (!group.inEdit) {
                 <h1 igxCardHeaderTitle>{{group.name}}</h1>
               }
@@ -223,7 +223,7 @@
 
         <igx-card class="new-group-card" elevated>
           <igx-card-header>
-            <igx-avatar igxCardThumbnail shape="circle" src="/assets/wallpapers/csgo-watermark.webp"></igx-avatar>
+            <igx-avatar igxCardThumbnail shape="circle" src="/assets/wallpapers/cs2-icon.svg"></igx-avatar>
             @if (!newGroup.inEdit) {
               <h1 igxCardHeaderTitle i18n>New group</h1>
             }
