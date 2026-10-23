@@ -411,5 +411,30 @@ describe('TournamentCsgoComponent', () => {
         ['https://demo/1', 'Demo']
       ]);
     });
+
+    it('shows only the media links a match has in its details', async () => {
+      const match = (id: string, links: Partial<TournamentCSGOMatch>): TournamentCSGOMatch => ({
+        id, team1: team('team-1', 'Alpha'), team2: team('team-2', 'Bravo'), team1Id: 'team-1', team2Id: 'team-2',
+        startTime: new Date(2024, 0, 15, 18, 30), maps: [], ...links
+      });
+      const matches = [match('m1', { videoLink: 'https://video/1' }), match('m2', { demoLink: 'https://demo/2' }), match('m3', {})];
+      httpMock.match(req => req.url.includes('csgomatches')).forEach(req => req.flush(matches));
+      httpMock.match(() => true).forEach(req => req.flush(null));
+      await render();
+
+      const grid = fixture.debugElement.queryAll(debugEl => debugEl.componentInstance instanceof IgxGridComponent)
+        .map(debugEl => debugEl.componentInstance as IgxGridComponent)
+        .find(g => g.data === component.csgomatches());
+      grid.expandAll();
+      await render();
+
+      // The match without links gets no links area at all
+      const linkAreas = Array.from(grids()[0].querySelectorAll('.match-links'))
+        .map(area => Array.from(area.querySelectorAll('a')).map(a => [a.getAttribute('href'), a.querySelector('span').textContent.trim()]));
+      expect(linkAreas).toEqual([
+        [['https://video/1', 'Video']],
+        [['https://demo/2', 'Demo']]
+      ]);
+    });
   });
 });

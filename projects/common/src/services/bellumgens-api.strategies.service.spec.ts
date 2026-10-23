@@ -466,4 +466,64 @@ describe('ApiStrategiesService', () => {
     expect(req.request.method).toEqual('GET');
     req.error(new ProgressEvent('Not Found'), { status: 404, statusText: 'Not Found' });
   });
+
+  it('should add the first vote to a strategy without votes', () => {
+    const strat = { id: '1' } as CSGOStrategy;
+    const vote: StrategyVote = { userId: 'me', vote: VoteDirection.Up };
+    let updated: CSGOStrategy;
+
+    service.submitStratVote(strat, VoteDirection.Up, 'me').subscribe(result => updated = result);
+    httpMock.expectOne(`${service['_apiEndpoint']}/strategy/vote`).flush(vote);
+
+    expect(updated.votes).toEqual([vote]);
+  });
+
+  it('should change only the voting user\'s vote', () => {
+    const other: StrategyVote = { userId: 'other', vote: VoteDirection.Up };
+    const mine: StrategyVote = { userId: 'me', vote: VoteDirection.Up };
+    const strat = { id: '1', votes: [other, mine] } as CSGOStrategy;
+    let updated: CSGOStrategy;
+
+    service.submitStratVote(strat, VoteDirection.Down, 'me').subscribe(result => updated = result);
+    httpMock.expectOne(`${service['_apiEndpoint']}/strategy/vote`).flush({ userId: 'me', vote: VoteDirection.Down });
+
+    expect(updated.votes).toEqual([other, { userId: 'me', vote: VoteDirection.Down }]);
+  });
+
+  it('should add and delete comments of a strategy that has none listed', () => {
+    const strat = { id: '1' } as CSGOStrategy;
+    const comment = { id: 'c1', stratId: '1', comment: 'Nice' } as StrategyComment;
+    let updated: CSGOStrategy;
+
+    service.submitStratComment(comment, strat).subscribe(result => updated = result);
+    httpMock.expectOne(`${service['_apiEndpoint']}/strategy/comment`).flush(comment);
+    expect(updated.comments).toEqual([comment]);
+
+    service.deleteStratComment(comment, strat).subscribe(result => updated = result);
+    httpMock.expectOne(`${service['_apiEndpoint']}/strategy/comment?id=c1`).flush({});
+    expect(updated.comments).toEqual([]);
+  });
+
+  it('should leave the other cached strategies alone', () => {
+    const voted = { id: 'voted', votes: [] } as CSGOStrategy;
+    const other = { id: 'other', votes: [] } as CSGOStrategy;
+    const otherCached = service.getStrategy('other');
+    httpMock.expectOne(`${service['_apiEndpoint']}/strategy/strat?stratId=other`).flush(other);
+    // The strategies page holds its own copy of the voted strategy
+    const listCopy = { ...voted, title: 'From the list' };
+    service['_strategies'].set([listCopy]);
+
+    const vote: StrategyVote = { userId: 'u', vote: VoteDirection.Up };
+    service.submitStratVote(voted, VoteDirection.Up, 'u').subscribe();
+    httpMock.expectOne(`${service['_apiEndpoint']}/strategy/vote`).flush(vote);
+
+    expect(otherCached()).toBe(other);
+    expect(service['_strategies']()[0]).toEqual({ ...listCopy, votes: [vote] });
+
+    service.deleteStrategy('voted').subscribe();
+    httpMock.expectOne(`${service['_apiEndpoint']}/strategy/strat?id=voted`).flush({});
+
+    expect(service['_strategyCache'].has('other')).toBe(true);
+  });
+
 });

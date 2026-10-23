@@ -244,6 +244,48 @@ describe('OrderStatusComponent', () => {
     expect(fixture.nativeElement.textContent).toContain('on its way');
   });
 
+  it('tells a customer who picks up at an event what happens next', () => {
+    httpMock.expectOne(orderUrl()).flush({ ...order(OrderStatus.Paid, PaymentStatus.Completed), deliveryMethod: DeliveryMethod.EventPickup });
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.textContent).toContain('collect your order at our next event');
+    expect(fixture.nativeElement.textContent).not.toContain('handed to the courier');
+  });
+
+  it('shows a shipped order without a tracking number yet', () => {
+    httpMock.expectOne(orderUrl()).flush(order(OrderStatus.Shipped, PaymentStatus.Completed));
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.textContent).toContain('on its way');
+    expect(fixture.nativeElement.textContent).not.toContain('Tracking number');
+  });
+
+  it('lists the chosen options, the discount with its promo code and free shipping', () => {
+    httpMock.expectOne(orderUrl()).flush({
+      ...order(OrderStatus.Paid, PaymentStatus.Completed),
+      items: [{ productId: 'p1', variantId: 'v1', productName: 'Jersey', variantName: 'Male / L', unitPrice: 30, quantity: 1, lineTotal: 30 }],
+      subtotal: 30,
+      discountTotal: 3,
+      promoCode: 'SAVE10',
+      shippingCost: 0,
+      total: 27
+    });
+    fixture.detectChanges();
+
+    const items: HTMLElement = fixture.nativeElement.querySelector('.order-items');
+    expect(items.querySelector('.line-variant').textContent).toContain('(Male / L)');
+    expect(items.textContent).toContain('(SAVE10)');
+    expect(items.textContent).toContain('Free');
+  });
+
+  it('shows a discount that came without a promo code', () => {
+    httpMock.expectOne(orderUrl()).flush({ ...order(OrderStatus.Paid, PaymentStatus.Completed), discountTotal: 2, total: 19 });
+    fixture.detectChanges();
+
+    const discount = Array.from<HTMLElement>(fixture.nativeElement.querySelectorAll('.order-items dt')).find(dt => dt.textContent.includes('Discount'));
+    expect(discount.textContent.trim()).toBe('Discount');
+  });
+
   it('reports a cancelled order without charging anything', () => {
     httpMock.expectOne(orderUrl()).flush(order(OrderStatus.Cancelled, PaymentStatus.Cancelled));
     fixture.detectChanges();

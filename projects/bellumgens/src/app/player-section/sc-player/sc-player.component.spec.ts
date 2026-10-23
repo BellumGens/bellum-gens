@@ -5,11 +5,13 @@ import { Title } from '@angular/platform-browser';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { By } from '@angular/platform-browser';
+import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { of, Subject } from 'rxjs';
 
 import { ScPlayerComponent } from './sc-player.component';
-import { ApplicationUser, BellumgensApiService, Tournament } from '../../../../../common/src/public_api';
+import { ApplicationUser, BellumgensApiService, SC2Race, Tournament } from '../../../../../common/src/public_api';
 
 const makePlayer = (overrides: Partial<ApplicationUser> = {}): ApplicationUser => ({
   id: 'player-1',
@@ -214,5 +216,34 @@ describe('ScPlayerComponent', () => {
     const results = Array.from(grids[0].querySelectorAll('.color-success, .color-error, .color-warn'))
       .map(r => `${r.className}:${r.textContent.trim()}`);
     expect(results).toEqual(['color-success:Win', 'color-error:Loss', 'color-warn:Pending']);
+  });
+
+  it('shows the races played and links the video and replay of a match when they exist', async () => {
+    const tournament = makeTournament('t1', 'Winter Cup', ['player-1', 'player-2']);
+    Object.assign(tournament.sc2Matches[0], {
+      player1Race: SC2Race.Zerg,
+      player2Race: SC2Race.Terran,
+      videoLink: 'https://youtube.com/watch?v=1',
+      demoLink: 'https://example.com/replay.SC2Replay'
+    });
+    vi.spyOn(apiService, 'getPlayerTournaments').mockReturnValue(of([tournament]));
+    player.set(makePlayer());
+    create();
+    await fixture.whenStable();
+    fixture.detectChanges();
+
+    const rows = Array.from(el().querySelectorAll('igx-grid-row'));
+    expect(rows.length).toBe(2);
+
+    const raceIcons = (row: Element) => fixture.debugElement.queryAll(By.directive(IgxAvatarComponent))
+      .filter(a => row.contains(a.nativeElement) && a.nativeElement.classList.contains('avatar-tiny'))
+      .map(a => (a.componentInstance as IgxAvatarComponent).src);
+    expect(raceIcons(rows[0])).toEqual(['assets/bge/race/zerg.png', 'assets/bge/race/terran.png']);
+    expect(raceIcons(rows[1])).toEqual([]);
+
+    const links = (row: Element) => Array.from(row.querySelectorAll<HTMLAnchorElement>('a.horizontal-center'))
+      .map(a => `${a.querySelector('span').textContent.trim()}:${a.getAttribute('href')}`);
+    expect(links(rows[0])).toEqual(['Video:https://youtube.com/watch?v=1', 'Replay:https://example.com/replay.SC2Replay']);
+    expect(links(rows[1])).toEqual([]);
   });
 });

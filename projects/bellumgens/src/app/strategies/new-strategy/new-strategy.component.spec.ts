@@ -237,6 +237,42 @@ describe('NewStrategyComponent', () => {
       expect(component.selectedMap).toBe(inferno);
     });
 
+    it('picks the side from the side radios', async () => {
+      const radios = fixture.debugElement.queryAll(By.css('igx-radio input')).map(r => r.nativeElement as HTMLInputElement);
+      expect(radios.length).toBe(2);
+
+      radios[1].click();
+      await fixture.whenStable();
+      expect(component.newStrategy().side).toBe(Side.CTSide);
+
+      radios[0].click();
+      await fixture.whenStable();
+      expect(component.newStrategy().side).toBe(Side.TSide);
+    });
+
+    it('toggles whether the strategy is public from the switch', async () => {
+      const visible = component.newStrategy().visible;
+      const toggle = el<HTMLInputElement>('igx-switch input');
+
+      toggle.click();
+      await fixture.whenStable();
+      expect(component.newStrategy().visible).toBe(!visible);
+
+      toggle.click();
+      await fixture.whenStable();
+      expect(component.newStrategy().visible).toBe(visible);
+    });
+
+    it('clears the description from its clear button', async () => {
+      await typeInto('#strategyDescription', 'Everyone rushes B');
+
+      clearButtonFor('#strategyDescription').click();
+      await fixture.whenStable();
+
+      expect(component.newStrategy().description).toBeNull();
+      expect(clearButtonFor('#strategyDescription')).toBeUndefined();
+    });
+
     it('lists every active duty map', () => {
       const items = fixture.debugElement.queryAll(By.css('igx-select-item'));
       expect(items.map(i => (i.nativeElement as HTMLElement).textContent.trim()))

@@ -96,6 +96,33 @@ describe('LoginDialogComponent', () => {
     expect(router.navigate).toHaveBeenCalledWith(['register']);
   });
 
+  it('should log in with what is typed into the form', async () => {
+    vi.spyOn(component.dialog(), 'close').mockImplementation(() => undefined);
+    component.openLogin();
+    await fixture.whenStable();
+    const type = (id: string, value: string) => {
+      const input = document.querySelector<HTMLInputElement>(`#${id}`);
+      input.value = value;
+      input.dispatchEvent(new Event('input'));
+    };
+    const submit = () => document.querySelector<HTMLButtonElement>('button.submit-button');
+    expect(submit().disabled).toBe(true);
+
+    type('username', 'kdinev');
+    type('passwordField', 'secret');
+    document.querySelector<HTMLInputElement>('igx-checkbox[name="rememberme"] input[type="checkbox"]').click();
+    await fixture.whenStable();
+    expect(submit().disabled).toBe(false);
+
+    submit().click();
+
+    const req = httpMock.expectOne(`${loginService['_apiEndpoint']}/login`);
+    expect(req.request.body).toEqual({ username: 'kdinev', password: 'secret', rememberMe: true });
+    req.flush(applicationUser);
+    httpMock.expectOne(`${loginService['_apiBase']}/tournament/registrations`).flush([]);
+    expect(component.dialog().close).toHaveBeenCalled();
+  });
+
   it('should perform login with form data', () => {
     vi.spyOn(component.dialog(), 'close').mockImplementation(() => undefined);
     // Set form data

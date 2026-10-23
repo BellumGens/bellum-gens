@@ -112,6 +112,21 @@ describe('NotificationsComponent', () => {
       expect(reported.at(-1)).toBe(3);
     });
 
+    it('should count no unread applications for a team whose applications could not be loaded', () => {
+      component.teamLoaded(team.teamId, null);
+
+      expect(component.unreadCount()).toBe(2);
+    });
+
+    it('should count a change for a team before its applications have loaded', () => {
+      // As if the team view reported a change before its applications loaded
+      component['teamCounts'].set(new Map());
+
+      component.teamChanged(team.teamId, 1);
+
+      expect(component.unreadCount()).toBe(3);
+    });
+
     it('should report fewer unread notifications once an invitation is accepted', async () => {
       vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
       const player = fixture.debugElement.query(By.directive(PlayerNotificationsComponent)).componentInstance as PlayerNotificationsComponent;

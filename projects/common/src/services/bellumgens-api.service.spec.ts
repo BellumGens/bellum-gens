@@ -849,4 +849,64 @@ describe('BellumgensApiService', () => {
     expect(req2.request.withCredentials).toBe(true);
     req2.error(new ProgressEvent('Server Error'), { status: 500, statusText: 'Could not reject team invite!' });
   });
+
+  it('getPlayerTournaments should send a GET request to the correct URL', () => {
+    service.getPlayerTournaments('123').subscribe();
+    const req = httpMock.expectOne(`${service['_apiEndpoint']}/users/tournaments?userid=123`);
+    expect(req.request.method).toBe('GET');
+    req.flush([]);
+  });
+
+  it('getSignupCount should read the early bird count', () => {
+    const counts: number[] = [];
+    service.getSignupCount().subscribe(count => counts.push(count));
+    const req = httpMock.expectOne(`${service['_apiEndpoint']}/account/earlybirdcount`);
+    expect(req.request.withCredentials).toBe(true);
+    req.flush({ count: 42 });
+
+    service.getSignupCount().subscribe(count => counts.push(count));
+    httpMock.expectOne(`${service['_apiEndpoint']}/account/earlybirdcount`).flush(null);
+
+    expect(counts).toEqual([42, 0]);
+  });
+
+  it('getSignupCount should fail with a readable error', () => {
+    let error: Error;
+    service.getSignupCount().subscribe({ error: e => error = e });
+    httpMock.expectOne(`${service['_apiEndpoint']}/account/earlybirdcount`).flush('', { status: 500, statusText: 'Server Error' });
+
+    expect(error.message).toBe('Failed to get signup count');
+  });
+
+  it('earlyBirdSignup should post the signup and report the server message', () => {
+    const messages: string[] = [];
+    commsService.success.subscribe(message => messages.push(message));
+    const payload = { email: 'early@example.com', firstTime: true };
+
+    service.earlyBirdSignup(payload).subscribe();
+    const req = httpMock.expectOne(`${service['_apiEndpoint']}/account/earlybirdsignup`);
+    expect(req.request.method).toBe('POST');
+    expect(req.request.body).toEqual(payload);
+    expect(req.request.withCredentials).toBe(true);
+    req.flush({ message: 'You are on the list!' });
+
+    expect(messages).toEqual(['You are on the list!']);
+  });
+
+  it('earlyBirdSignup should report a failure, with a fallback message', () => {
+    const errors: string[] = [];
+    commsService.error.subscribe(message => errors.push(message));
+    const payload = { email: 'early@example.com', firstTime: false };
+
+    service.earlyBirdSignup(payload).subscribe({ error: () => undefined });
+    httpMock.expectOne(`${service['_apiEndpoint']}/account/earlybirdsignup`).flush('', { status: 500, statusText: 'Server Error' });
+    // An error without a message of its own
+    service.earlyBirdSignup(payload).subscribe({ error: () => undefined });
+    httpMock.expectOne(`${service['_apiEndpoint']}/account/earlybirdsignup`).error(new ProgressEvent('error'), { status: 0, statusText: '' });
+
+    expect(errors.length).toBe(2);
+    expect(errors[0]).toContain('500 Server Error');
+    expect(errors[1]).toBeTruthy();
+  });
+
 });

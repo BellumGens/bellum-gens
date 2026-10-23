@@ -18,6 +18,116 @@ describe('StrategyEditor', () => {
     expect(strategyEditor).toBeTruthy();
   });
 
+  it('names the surface as asked, or with a random six character id', () => {
+    expect(new StrategyEditor(new ElementRef(canvas), 1, 'board').surfaceName).toBe('board');
+    expect(strategyEditor.surfaceName).toMatch(/^[A-Za-z0-9]{6}$/);
+  });
+
+  it('creates no layer for an unknown layer type', () => {
+    expect(strategyEditor.createLayer(99, { name: 'unknown' } as EditorLayer)).toBeUndefined();
+  });
+
+  it('names new layers by their position when no name is given', () => {
+    strategyEditor.addLayer(strategyEditor.createImageLayer());
+
+    expect(strategyEditor.createImageLayer().name).toBe('Layer_2');
+    expect(strategyEditor.createFreeflowLayer().name).toBe('Layer_2');
+  });
+
+  it('selects the topmost layer under the pointer, but never the background', () => {
+    const meta = (x: number): EditorLayer => ({
+      name: `at ${x}`, type: EditorLayerType.Image, x, y: 0, width: 20, height: 20, movable: true, displayRatio: 1
+    });
+    const background = strategyEditor.createImageLayer('Background', { ...meta(0), width: 1024, height: 1024 });
+    const lower = strategyEditor.createImageLayer('Lower', meta(0));
+    const upper = strategyEditor.createImageLayer('Upper', meta(100));
+    [background, lower, upper].forEach(layer => strategyEditor.addLayer(layer));
+
+    strategyEditor.trySelectLayer({ x: 10, y: 10 });
+    expect(lower.selected).toBe(true);
+    expect(upper.selected).toBe(false);
+
+    strategyEditor.deselectAll();
+    strategyEditor.trySelectLayer({ x: 500, y: 500 });
+    expect(background.selected).toBe(false);
+    expect(strategyEditor['_selectedLayer']).toBeNull();
+  });
+
+  it('does not move anything without a selection, nor a layer that is not movable', () => {
+    const fixed = strategyEditor.createImageLayer('Fixed', {
+      name: 'Fixed', type: EditorLayerType.Image, x: 5, y: 5, width: 20, height: 20, movable: false, displayRatio: 1
+    });
+    strategyEditor.addLayer(fixed);
+    const flip = vi.spyOn(strategyEditor, 'flip').mockImplementation(() => undefined);
+
+    strategyEditor.moveSelected({ x: 10, y: 10 });
+    expect(flip).not.toHaveBeenCalled();
+
+    fixed.selected = true;
+    flip.mockClear();
+    strategyEditor.moveSelected({ x: 10, y: 10 });
+
+    expect([fixed.x, fixed.y]).toEqual([5, 5]);
+    expect(flip).not.toHaveBeenCalled();
+  });
+
+  it('has nothing to deselect without a selection', () => {
+    const flip = vi.spyOn(strategyEditor, 'flip');
+
+    strategyEditor.deselectAll();
+
+    expect(flip).not.toHaveBeenCalled();
+  });
+
+  it('keeps the selection when another layer is removed', () => {
+    const selected = strategyEditor.createImageLayer('Selected');
+    const other = strategyEditor.createImageLayer('Other');
+    strategyEditor.addLayer(selected);
+    strategyEditor.addLayer(other);
+    selected.selected = true;
+
+    strategyEditor.removeLayer(other);
+
+    expect(strategyEditor.layers).toEqual([selected]);
+    expect(strategyEditor['_selectedLayer']).toBe(selected);
+  });
+
+  it('stops listening to a removed or replaced layer, which stays usable', () => {
+    const removed = strategyEditor.createImageLayer('Removed');
+    const replaced = strategyEditor.createImageLayer('Replaced');
+    const replacement = strategyEditor.createImageLayer('Replacement');
+    [removed, replaced].forEach(layer => strategyEditor.addLayer(layer));
+    strategyEditor.removeLayer(removed);
+    strategyEditor.replaceLayer(0, replacement);
+    const flip = vi.spyOn(strategyEditor, 'flip');
+
+    expect(() => {
+      removed.hidden = true;
+      removed.selected = true;
+      replaced.selected = true;
+    }).not.toThrow();
+    expect(flip).not.toHaveBeenCalled();
+    expect(strategyEditor['_selectedLayer']).toBeUndefined();
+
+    replacement.selected = true;
+    expect(strategyEditor['_selectedLayer']).toBe(replacement);
+  });
+
+  it('keeps the selection when a layer it was not tracking is deselected', () => {
+    const current = strategyEditor.createImageLayer('Current');
+    const stale = strategyEditor.createImageLayer('Stale');
+    // Selected before the editor was listening to it
+    stale.selected = true;
+    strategyEditor.addLayer(stale);
+    strategyEditor.addLayer(current);
+    current.selected = true;
+
+    stale.selected = false;
+
+    expect(strategyEditor['_selectedLayer']).toBe(current);
+    expect(current.selected).toBe(true);
+  });
+
   it('should have default width and height', () => {
     expect(strategyEditor['_width']).toBe(1024);
     expect(strategyEditor['_height']).toBe(1024);

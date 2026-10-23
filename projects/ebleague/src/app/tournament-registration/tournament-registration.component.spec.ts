@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { WritableSignal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgModel } from '@angular/forms';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideRouter, Router } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -8,6 +8,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { By } from '@angular/platform-browser';
 import { IgxDropDownComponent } from '@infragistics/igniteui-angular/drop-down';
 import { IgxSelectComponent } from '@infragistics/igniteui-angular/select';
+import { IgxCheckboxComponent } from '@infragistics/igniteui-angular/checkbox';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { of, Subject, throwError } from 'rxjs';
 
@@ -388,6 +389,66 @@ describe('TournamentRegistrationComponent', () => {
 
       expect(openNewTeam).not.toHaveBeenCalled();
       expect(select.value).toBe('team-1');
+    });
+  });
+
+  describe('filling in the form', () => {
+    const render = async () => {
+      await fixture.whenStable();
+      fixture.detectChanges();
+    };
+    const type = (selector: string, value: string) => {
+      const input = el().querySelector<HTMLInputElement>(selector);
+      input.value = value;
+      input.dispatchEvent(new Event('input'));
+    };
+
+    beforeEach(() => {
+      authUser.set(makeUser());
+      create();
+    });
+
+    it('shows the details for the league picked in the game select', async () => {
+      const gameModel = fixture.debugElement.query(By.css('igx-select[name="game"]')).injector.get(NgModel);
+
+      gameModel.viewToModelUpdate(Game.StarCraft2);
+      await render();
+
+      expect(component.application().game).toBe(Game.StarCraft2);
+      expect(component.detailsVisible()).toBe(true);
+      expect(component.application().battleNetId).toBe('Sniper#1234');
+      expect(el().querySelector('#battletag')).not.toBeNull();
+    });
+
+    it('keeps what is typed into the email, battle tag and company fields', async () => {
+      component.selectGame(Game.StarCraft2);
+      await render();
+
+      type('#email', 'typed@example.com');
+      type('#battletag', 'Typed#4321');
+      type('#company', 'Initech');
+
+      expect(component.application()).toEqual(expect.objectContaining({
+        email: 'typed@example.com', battleNetId: 'Typed#4321', companyId: 'Initech'
+      }));
+    });
+
+    it('enables the register button for a complete application with the terms accepted, until it is sent', async () => {
+      const submit = () => el().querySelector<HTMLButtonElement>('button.submit-registration');
+      component.selectGame(Game.StarCraft2);
+      await render();
+      type('#company', 'Initech');
+      await render();
+      expect(submit().disabled).toBe(true);
+
+      el().querySelector<HTMLInputElement>('.accept-terms-checkbox input[type="checkbox"]').click();
+      await render();
+      expect((fixture.debugElement.query(By.directive(IgxCheckboxComponent)).componentInstance as IgxCheckboxComponent).checked).toBe(true);
+      expect(submit().disabled).toBe(false);
+
+      component.inProgress.set(true);
+      await render();
+      expect(submit().disabled).toBe(true);
     });
   });
 

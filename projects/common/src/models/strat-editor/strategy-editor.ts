@@ -1,4 +1,5 @@
 import { ElementRef } from '@angular/core';
+import { Subscription } from 'rxjs';
 import {
   BaseLayer,
   EditorLayerType,
@@ -19,6 +20,8 @@ export class StrategyEditor {
   private _displayRatio: number;
 
   private _selectedLayer: BaseLayer;
+  // The editor's own subscriptions to each layer; ending them leaves the layer's subjects usable
+  private _layerSubscriptions = new Map<BaseLayer, Subscription>();
 
   constructor(private _canvas: ElementRef<HTMLCanvasElement>, displayRatio = 1, name?: string) {
     this._context = this._canvas.nativeElement.getContext('2d');
@@ -131,29 +134,31 @@ export class StrategyEditor {
     }
   }
 
-  private _addLayer(layer) {
-    layer.layerUpdate.subscribe(() => this.flip());
-    layer.layerSelect.subscribe(current => this._selectionChanged(current));
+  private _addLayer(layer: BaseLayer) {
+    this._subLayer(layer);
     this._layers.push(layer);
   }
 
   private _insertLayer(layer: BaseLayer, index: number) {
-    layer.layerUpdate.subscribe(() => this.flip());
-    layer.layerSelect.subscribe(current => this._selectionChanged(current));
+    this._subLayer(layer);
     this._layers.splice(index, 0, layer);
   }
 
   private _replaceLayer(index: number, layer: BaseLayer) {
-    this._layers[index].layerUpdate.unsubscribe();
-    this._layers[index].layerSelect.unsubscribe();
-    layer.layerUpdate.subscribe(() => this.flip());
-    layer.layerSelect.subscribe(current => this._selectionChanged(current));
+    this._unsubLayer(this._layers[index]);
+    this._subLayer(layer);
     this._layers.splice(index, 1, layer);
   }
 
+  private _subLayer(layer: BaseLayer) {
+    const subscription = layer.layerUpdate.subscribe(() => this.flip());
+    subscription.add(layer.layerSelect.subscribe(current => this._selectionChanged(current)));
+    this._layerSubscriptions.set(layer, subscription);
+  }
+
   private _unsubLayer(layer: BaseLayer) {
-    layer.layerUpdate.unsubscribe();
-    layer.layerSelect.unsubscribe();
+    this._layerSubscriptions.get(layer)?.unsubscribe();
+    this._layerSubscriptions.delete(layer);
   }
 
   private _removeLayer(layer: BaseLayer) {

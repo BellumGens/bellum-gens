@@ -461,6 +461,25 @@ describe('CsPlayerComponent', () => {
       expect(component.csgoDetails().primaryRole).toBe(PlaystyleRole.Awper);
     });
 
+    it('saves the roles picked in the selects and keeps each one out of the other select', async () => {
+      vi.spyOn(apiService, 'setPrimaryRole').mockReturnValue(of(null));
+      vi.spyOn(apiService, 'setSecondaryRole').mockReturnValue(of(null));
+      await fixture.whenStable();
+      const [primary, secondary] = fixture.debugElement.queryAll(By.directive(IgxSelectComponent))
+        .map(s => s.componentInstance as IgxSelectComponent);
+      const item = (select: IgxSelectComponent, role: PlaystyleRole) => select.items.find(i => i.value === role);
+
+      primary.selectItem(item(primary, PlaystyleRole.IGL));
+      secondary.selectItem(item(secondary, PlaystyleRole.Lurker));
+      fixture.detectChanges();
+
+      expect(apiService.setPrimaryRole).toHaveBeenCalledWith(ALL_ROLES.find(r => r.id === PlaystyleRole.IGL), 'player-1');
+      expect(apiService.setSecondaryRole).toHaveBeenCalledWith(ALL_ROLES.find(r => r.id === PlaystyleRole.Lurker), 'player-1');
+      expect(item(secondary, PlaystyleRole.IGL).disabled).toBe(true);
+      expect(item(primary, PlaystyleRole.Lurker).disabled).toBe(true);
+      expect(item(primary, PlaystyleRole.Awper).disabled).toBe(false);
+    });
+
     it('does not offer to invite yourself to a team', () => {
       teamsAdmin.set([team('t1', 'Team One')]);
       fixture.detectChanges();

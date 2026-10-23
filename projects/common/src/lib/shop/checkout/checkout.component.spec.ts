@@ -106,6 +106,56 @@ describe('CheckoutComponent', () => {
     expect(component).toBeTruthy();
   });
 
+  it('points out every required field that is missing once payment is attempted', () => {
+    fillCart();
+    component.form.controls.phoneNumber.setValue('');
+
+    component.pay();
+    fixture.detectChanges();
+
+    const text = fixture.nativeElement.textContent;
+    expect(text).toContain('First name is required');
+    expect(text).toContain('Last name is required');
+    expect(text).toContain('A valid email is required for your receipt');
+    expect(text).toContain('A phone number is required for the courier');
+    expect(text).toContain('City is required');
+    expect(text).toContain('Street address is required');
+    expect(text).toContain('Please accept the terms of sale to continue');
+  });
+
+  it('summarizes the options, the discount and free shipping of the order', () => {
+    fillCart();
+    cart['_quote'].set({
+      ...validQuote,
+      lines: [{ productId: 'p1', variantId: 'v1', productName: 'Jersey', variantName: 'Male / L', unitPrice: 30, quantity: 1, lineTotal: 30 }],
+      subtotal: 30,
+      discountTotal: 3,
+      shippingCost: 0,
+      total: 27
+    });
+    fixture.detectChanges();
+
+    const summary: HTMLElement = fixture.nativeElement.querySelector('.order-summary');
+    expect(summary.querySelector('.line-variant').textContent).toContain('(Male / L)');
+    expect(summary.textContent).toContain('Discount');
+    expect(summary.textContent).toContain('-€3.00');
+    expect(summary.textContent).toContain('Free');
+  });
+
+  it('shows the payment in progress until the order is created', () => {
+    fillCart();
+    fillForm();
+
+    component.pay();
+    fixture.detectChanges();
+
+    const payButton: HTMLButtonElement = fixture.nativeElement.querySelector('.pay-button');
+    expect(payButton.disabled).toBe(true);
+    expect(payButton.querySelector('igx-circular-bar')).toBeTruthy();
+
+    httpMock.expectOne(`${api['_apiEndpoint']}/shop/orders`).flush({ orderId: 'o1', orderNumber: 'BG-1', checkoutUrl: 'https://checkout.revolut.com/x' });
+  });
+
   it('does not submit an invalid form', () => {
     fillCart();
 

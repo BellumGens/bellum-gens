@@ -151,6 +151,14 @@ describe('ProductCardComponent', () => {
     expect(component.hasOptions()).toBe(false);
   });
 
+  it('shows the product image instead of the placeholder when there is one', () => {
+    show(product({ imageUrl: '/umbrella.png' }));
+
+    const image: HTMLImageElement = fixture.nativeElement.querySelector('.product-media img');
+    expect(image.getAttribute('src')).toBe('/umbrella.png');
+    expect(fixture.nativeElement.querySelector('.product-placeholder')).toBeNull();
+  });
+
   it('links to the product page by slug', () => {
     show(product());
 

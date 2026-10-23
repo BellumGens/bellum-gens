@@ -93,6 +93,14 @@ describe('CartComponent', () => {
     expect(lines[0].textContent).toContain('30.00');
   });
 
+  it('shows the product image on its line when there is one', () => {
+    fill(umbrella({ imageUrl: '/umbrella.png' }));
+
+    const image: HTMLImageElement = fixture.nativeElement.querySelector('.line-image img');
+    expect(image.getAttribute('src')).toBe('/umbrella.png');
+    expect(image.alt).toBe('Rain Umbrella');
+  });
+
   it('keeps variants of one product on separate lines', () => {
     const jersey = umbrella({
       id: 'jersey',

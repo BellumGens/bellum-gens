@@ -275,6 +275,47 @@ describe('StrategiesComponent', () => {
       expect(openLogin).toHaveBeenCalled();
     });
 
+    it('opens the new strategy dialog from create new strategy when logged in', async () => {
+      user.set({ id: 'user-1' } as ApplicationUser);
+      await fixture.whenStable();
+      const newStrategy = fixture.debugElement.query(By.directive(NewStrategyComponent)).componentInstance as NewStrategyComponent;
+      const open = vi.spyOn(newStrategy, 'open').mockImplementation(() => undefined);
+      const openLogin = vi.spyOn(loginService, 'emitOpenLogin');
+
+      Array.from<HTMLButtonElement>(fixture.nativeElement.querySelectorAll('button'))
+        .find(b => b.textContent.includes('Create new strategy'))
+        .click();
+
+      expect(open).toHaveBeenCalled();
+      expect(openLogin).not.toHaveBeenCalled();
+    });
+
+    it('links the author of a strategy to their profile', async () => {
+      strategiesService['_strategies'].set([strat('1', { owner: 'kdinev', userId: 'user-1' })]);
+      await fixture.whenStable();
+
+      const author = fixture.nativeElement.querySelector('h4[igxCardHeaderSubtitle] a') as HTMLAnchorElement;
+      expect(author.textContent).toBe('kdinev');
+      expect(author.getAttribute('href')).toBe('/players/user-1');
+    });
+
+    it('votes a strategy down from its button', async () => {
+      user.set({ id: 'user-1' } as ApplicationUser);
+      const target = component.strats()[0];
+      const vote = vi.spyOn(strategiesService, 'submitStratVote').mockReturnValue(of(target));
+
+      (fixture.nativeElement.querySelector('igx-icon[title="vote down"]').closest('button') as HTMLButtonElement).click();
+
+      expect(vote).toHaveBeenCalledWith(target, VoteDirection.Down, 'user-1');
+    });
+
+    it('changes the order from the order by select', async () => {
+      fixture.debugElement.query(By.css('igx-select.order-by')).triggerEventHandler('ngModelChange', StratOrderBy.MostRecent);
+      await fixture.whenStable();
+
+      expect(component.order()).toBe(StratOrderBy.MostRecent);
+    });
+
     it('removes a strategy from the list once it is deleted', async () => {
       const target = component.strats()[0];
       const del = vi.spyOn(strategiesService, 'deleteStrategy').mockReturnValue(of(undefined));
