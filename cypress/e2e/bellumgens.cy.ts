@@ -5,6 +5,21 @@ describe('Bellum Gens E2E Tests', () => {
     cy.contains('Esports Events')
   })
 
+  it('Renders the English home page', () => {
+    cy.visit('/')
+    cy.get('html').should('have.attr', 'lang', 'en')
+    cy.title().should('contain', 'Bellum Gens')
+    cy.get('igx-navbar').should('be.visible')
+    cy.get('igx-carousel').should('be.visible')
+    cy.contains('h2', 'About Bellum Gens').should('be.visible')
+  })
+
+  it('Renders the Bulgarian home page', () => {
+    cy.visit('/bg/')
+    cy.get('html').should('have.attr', 'lang', 'bg')
+    cy.contains('h2', 'За Bellum Gens').should('be.visible')
+  })
+
   it('Clicks Learn More about Bellum Gens Elite and navigates to BGE page', () => {
     cy.visit('/')
     // Click the "Learn More about Bellum Gens Elite" link/button

@@ -1,10 +1,12 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, linkedSignal, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import {
   LoginService,
   ApiTournamentsService,
-  Tournament, EMPTY_NEW_TOURNAMENT, TournamentApplication,
-  Order, Promo,
-  ApiShopService
+  Tournament, EMPTY_NEW_TOURNAMENT,
+  Promo,
+  ApiShopService,
+  TournamentApplicationState
 } from '../../../../../common/src/public_api';
 import { IGridEditEventArgs, RowType } from '@infragistics/igniteui-angular/grids/core';
 import { DefaultSortingStrategy, IGroupingExpression, SortingDirection } from '@infragistics/igniteui-angular/core';
@@ -21,13 +23,13 @@ import { IGX_CHIPS_DIRECTIVES } from '@infragistics/igniteui-angular/chips';
 import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
 import { FormsModule } from '@angular/forms';
 import { SizeNamePipe } from '../../pipes/size-name.pipe';
-import { Observable } from 'rxjs';
-import { AsyncPipe } from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-admin-main',
   templateUrl: './admin-main.component.html',
-  styleUrls: ['./admin-main.component.scss'],  imports: [
+  styleUrls: ['./admin-main.component.scss'],
+  imports: [
     FormsModule,
     IGX_GRID_DIRECTIVES,
     IgxIconComponent,
@@ -43,7 +45,7 @@ import { AsyncPipe } from '@angular/common';
     IgxCheckboxComponent,
     IGX_CHIPS_DIRECTIVES,
     SizeNamePipe,
-    AsyncPipe
+    NgOptimizedImage
   ]
 })
 export class AdminMainComponent {
@@ -51,42 +53,42 @@ export class AdminMainComponent {
   private apiService = inject(ApiTournamentsService);
   private shopService = inject(ApiShopService);
 
-  public roles: string [];
+  public roles = signal<string []>(null);
   // public users: AdminAppUserSummary [];
-  public tournaments: Tournament [];
+  private allTournaments = this.apiService.tournaments;
+  // A local copy with parsed dates for the grid's date editors; tournaments created here are appended to it
+  public tournaments = linkedSignal<Tournament []>(() => this.allTournaments()?.map(t => ({
+    ...t,
+    startDate: new Date(t.startDate),
+    endDate: new Date(t.endDate)
+  })) ?? null);
   public tournament = Object.assign({}, EMPTY_NEW_TOURNAMENT);
-  public orders: Observable<Order []>;
-  public registrations: TournamentApplication [];
-  public promos: Promo [];
-  public grouping: IGroupingExpression [];
+  public orders = toSignal(this.shopService.getOrders());
+  public registrations = this.apiService.allRegistrations;
+  public promos = signal<Promo []>(null);
+  public grouping: IGroupingExpression [] = [
+    { dir: SortingDirection.Desc, fieldName: 'tournamentName', ignoreCase: false, strategy: DefaultSortingStrategy.instance() },
+    { dir: SortingDirection.Asc, fieldName: 'game', ignoreCase: false, strategy: DefaultSortingStrategy.instance() }
+  ];
 
   constructor() {
-    this.authService.getUserRoles().subscribe(data => this.roles = data);
+    this.authService.getUserRoles().subscribe(data => this.roles.set(data));
     // this.authService.getUsers().subscribe(data => this.users = data);
-    this.authService.getPromoCodes().subscribe(data => this.promos = data);
-    this.apiService.tournaments.subscribe(data => {
-      if (data) {
-        data.forEach(t => {
-          t.startDate = new Date(t.startDate);
-          t.endDate = new Date(t.endDate);
-        });
-        this.tournaments = data;
-      }
-    });
-    this.orders = this.shopService.getOrders();
-    this.apiService.allRegistrations.subscribe(data => this.registrations = data);
-    this.grouping = [
-      { dir: SortingDirection.Desc, fieldName: 'tournamentName', ignoreCase: false, strategy: DefaultSortingStrategy.instance() },
-      { dir: SortingDirection.Asc, fieldName: 'game', ignoreCase: false, strategy: DefaultSortingStrategy.instance() }
-    ];
+    this.authService.getPromoCodes().subscribe(data => this.promos.set(data));
   }
 
   public submitRole(role: string) {
-    this.authService.submitRole(role).subscribe(() => this.authService.getUserRoles().subscribe(roles => this.roles = roles));
+    this.authService.submitRole(role).subscribe(() => this.authService.getUserRoles().subscribe(roles => this.roles.set(roles)));
   }
 
   public updateTournament(tournament?: Tournament) {
-    this.apiService.createTournament(tournament || this.tournament).subscribe(data => !tournament ? this.tournaments.push(data) : null);
+    this.apiService.createTournament(tournament || this.tournament).subscribe(data => {
+      if (!tournament) {
+        this.tournaments.update(tournaments => [...(tournaments || []), data]);
+        // Start the next new tournament from a blank form
+        this.tournament = Object.assign({}, EMPTY_NEW_TOURNAMENT);
+      }
+    });
   }
 
   public editDone(event: IGridEditEventArgs) {
@@ -97,17 +99,29 @@ export class AdminMainComponent {
 
   public confirmRegistration(event: IGridEditEventArgs) {
     const rowData = event.rowData;
-    rowData[event.column.field] = event.newValue ? 1 : 0;
-    this.apiService.confirmRegistration(rowData).subscribe();
+    // The row keeps the editor's boolean, so the grid sees no pending change once it's saved;
+    // the server receives the state as a number
+    rowData[event.column.field] = event.newValue;
+    this.apiService.confirmRegistration({
+      ...rowData,
+      [event.column.field]: event.newValue ? TournamentApplicationState.Confirmed : TournamentApplicationState.Pending
+    }).subscribe();
   }
 
-  public deleteRegistration(rowContext: RowType) {
+  // Applies the row's pending changes and deletes it on the server only if it was marked deleted
+  public saveRegistration(rowContext: RowType) {
+    const deleted = rowContext.deleted;
     rowContext.grid.transactions.commit(rowContext.grid.data, rowContext.key);
-    this.apiService.deleteRegistration(rowContext.key).subscribe();
+    if (deleted) {
+      this.apiService.deleteRegistration(rowContext.key).subscribe();
+    }
   }
 
-  public deleteOrder(rowContext: RowType) {
+  public saveOrder(rowContext: RowType) {
+    const deleted = rowContext.deleted;
     rowContext.grid.transactions.commit(rowContext.grid.data, rowContext.key);
-    this.shopService.deleteOrder(rowContext.key).subscribe();
+    if (deleted) {
+      this.shopService.deleteOrder(rowContext.key).subscribe();
+    }
   }
 }

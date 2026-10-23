@@ -1,6 +1,6 @@
-import { Component, ViewChild, Input, inject } from '@angular/core';
+import { Component, inject, input, viewChild } from '@angular/core';
 import { IgxDialogComponent } from '@infragistics/igniteui-angular/dialog';
-import { IgxButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
+import { IgxButtonDirective, IgxIconButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
 import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import {
@@ -15,25 +15,25 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-team-application',
   templateUrl: './team-application.component.html',
-  styleUrls: ['./team-application.component.scss'],  imports: [
+  styleUrls: ['./team-application.component.scss'],
+  imports: [
     IgxButtonDirective,
     IgxRippleDirective,
     IgxDialogComponent,
     IGX_INPUT_GROUP_DIRECTIVES,
     FormsModule,
-    IgxIconComponent
+    IgxIconComponent,
+    IgxIconButtonDirective
   ]
 })
 export class TeamApplicationComponent {
   private apiService = inject(BellumgensApiService);
 
-  @ViewChild(IgxDialogComponent, { static: true }) public dialog: IgxDialogComponent;
+  public dialog = viewChild.required(IgxDialogComponent);
 
-  @Input()
-  public authUser: ApplicationUser;
+  public authUser = input<ApplicationUser>();
 
-  @Input()
-  public team: CSGOTeam;
+  public team = input<CSGOTeam>();
 
   public application: TeamApplication = {
     teamId: '',
@@ -43,10 +43,19 @@ export class TeamApplicationComponent {
   };
 
   public submitApplication() {
-    if (this.authUser) {
-      this.application.applicantId = this.authUser.id;
-      this.application.teamId = this.team.teamId;
-      this.apiService.submitApplication(this.application).subscribe(() => this.dialog.close());
+    const authUser = this.authUser();
+    const team = this.team();
+    if (authUser && team) {
+      const application: TeamApplication = {
+        ...this.application,
+        applicantId: authUser.id,
+        teamId: team.teamId
+      };
+      this.apiService.submitApplication(application).subscribe({
+        next: () => this.dialog().close(),
+        // The service already tells the user; the dialog stays open so they can retry
+        error: () => {}
+      });
     }
   }
 }

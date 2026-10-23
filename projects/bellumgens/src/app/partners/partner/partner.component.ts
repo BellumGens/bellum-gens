@@ -1,8 +1,10 @@
 import { isPlatformBrowser, NgOptimizedImage } from '@angular/common';
-import { ChangeDetectionStrategy, Component, HostListener, PLATFORM_ID, inject } from '@angular/core';
+import { Component, PLATFORM_ID, computed, inject, signal } from '@angular/core';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
 import { IgxFlexDirective, IgxIconButtonDirective, IgxLayoutDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
+import { Data } from '@angular/router';
 import { SocialMedia } from '../../../../../common/src/public_api';
 import { BaseDirective } from '../../base/base.component';
 
@@ -19,41 +21,32 @@ import { BaseDirective } from '../../base/base.component';
   ],
   templateUrl: './partner.component.html',
   styleUrl: './partner.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  host: {
+    '(window:resize)': 'resize()'
+  }
 })
 export class PartnerComponent extends BaseDirective {
   private platformId = inject(PLATFORM_ID);
 
-  public social: SocialMedia [];
-  public image: string;
-  public name: string;
-  public url: string;
-  public expose: string [];
+  private data = toSignal(this.activeRoute.data, { initialValue: {} as Data });
 
-  public horizontal = true;
-  public mediaWidth = '550px';
+  public social = computed<SocialMedia []>(() => this.data().social);
+  public image = computed<string>(() => this.data().partnerImage);
+  public name = computed<string>(() => this.data().name);
+  public url = computed<string>(() => this.data().url);
+  public expose = computed<string []>(() => this.data().expose);
+
+  public horizontal = signal(true);
+  public mediaWidth = computed(() => this.horizontal() ? '550px' : '100%');
 
   constructor() {
     super();
-    this.activeRoute.data.subscribe(data => {
-      this.social = data.social;
-      this.image = data.partnerImage;
-      this.name = data.name;
-      this.url = data.url;
-      this.expose = data.expose;
-    });
     if (isPlatformBrowser(this.platformId)) {
       this.resize();
     }
   }
 
-  @HostListener('window:resize')
   public resize() {
-    this.horizontal = window.matchMedia('(min-width: 1024px)').matches;
-    if (!this.horizontal) {
-      this.mediaWidth = '100%';
-    } else {
-      this.mediaWidth = '550px';
-    }
+    this.horizontal.set(window.matchMedia('(min-width: 1024px)').matches);
   }
- }
+}

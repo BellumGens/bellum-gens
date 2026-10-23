@@ -2,12 +2,11 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { JerseySize } from '../../../../common/src/public_api';
 
 @Pipe({
-    name: 'sizeName',
-    standalone: true
+    name: 'sizeName'
 })
 export class SizeNamePipe implements PipeTransform {
   private allSizes = [
-    { text: 'XS', size: JerseySize.S },
+    { text: 'XS', size: JerseySize.XS },
     { text: 'S', size: JerseySize.S },
     { text: 'M', size: JerseySize.M },
     { text: 'L', size: JerseySize.L },
@@ -17,7 +16,7 @@ export class SizeNamePipe implements PipeTransform {
   ];
 
   public transform(size: JerseySize): string {
-    return this.allSizes.find(s => s.size === size).text;
+    return this.allSizes.find(s => s.size === size)?.text ?? '';
   }
 
 }

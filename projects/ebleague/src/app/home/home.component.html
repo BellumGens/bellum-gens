@@ -7,18 +7,6 @@
 </div>
 
 <div class="content-container">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3320904478097217"
-    crossorigin="anonymous"></script>
-  <!-- Display Ad horizontal 1 -->
-  <ins class="adsbygoogle"
-    style="display:block"
-    data-ad-client="ca-pub-3320904478097217"
-    data-ad-slot="9044957402"
-    data-ad-format="auto"
-    data-full-width-responsive="true"></ins>
-  <script>
-    (adsbygoogle = window.adsbygoogle || []).push({});
-  </script>
   <!-- <app-tournament-registration #registration class="content-container-row" [tournamentId]="tournamentId"></app-tournament-registration> -->
 
   <div class="content-container-row about-section">
@@ -146,7 +134,7 @@
     <div class="format-grid">
       <div class="format-card csgo-format-card">
         <div class="format-card-header">
-          <h3 class="navigatable" routerLink="/format" i18n>Counter-Strike League</h3>
+          <h3><a routerLink="/format" i18n>Counter-Strike League</a></h3>
         </div>
         <ul>
           <li i18n>3-7 weeks</li>
@@ -161,7 +149,7 @@
       </div>
       <div class="format-card sc2-format-card">
         <div class="format-card-header">
-          <h3 class="navigatable" routerLink="/format" i18n>StarCraft II League</h3>
+          <h3><a routerLink="/format" i18n>StarCraft II League</a></h3>
         </div>
         <ul>
           <li i18n>3-7 weeks</li>
@@ -344,15 +332,17 @@
           <igx-prefix>
             <igx-icon>email</igx-icon>
           </igx-prefix>
-          <input type="email" id="subemail" #subMail name="subemail" igxInput pattern="^[a-zA-Z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$" [(ngModel)]="userEmail" />
-          @if (subMail.value) {
-            <igx-suffix (click)="userEmail = ''">
-              <igx-icon>clear</igx-icon>
+          <input type="email" id="subemail" name="subemail" igxInput pattern="^[a-zA-Z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$" [(ngModel)]="userEmail" />
+          @if (userEmail()) {
+            <igx-suffix>
+              <button type="button" igxIconButton="flat" (click)="userEmail.set('')" i18n-aria-label aria-label="Clear email">
+                <igx-icon>clear</igx-icon>
+              </button>
             </igx-suffix>
           }
           <igx-hint i18n>Get email updates from us!</igx-hint>
         </igx-input-group>
-        <button type="submit" igxButton="outlined" class="submit-email" [disabled]="subscription.invalid || !userEmail" i18n>Subscribe</button>
+        <button type="submit" igxButton="outlined" class="submit-email" [disabled]="subscription.invalid || !userEmail()" i18n>Subscribe</button>
       </div>
     </form>
   </div>

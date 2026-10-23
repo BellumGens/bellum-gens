@@ -1,0 +1,25 @@
+name: Set up dependencies
+description: Installs Node.js and the npm dependencies, including the licensed Infragistics packages
+
+inputs:
+  node-version:
+    description: The Node.js version to install
+    default: '24.x'
+  npm-token:
+    description: The token for the licensed Infragistics npm registry
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-node@v7
+      with:
+        node-version: ${{ inputs.node-version }}
+        cache: 'npm'
+    - shell: bash
+      run: |
+        echo "@infragistics:registry=https://packages.infragistics.com/npm/js-licensed/" >> ~/.npmrc
+        echo "//packages.infragistics.com/npm/js-licensed/:_auth=${{ inputs.npm-token }}" >> ~/.npmrc
+        echo "//packages.infragistics.com/npm/js-licensed/:always-auth=true" >> ~/.npmrc
+    - shell: bash
+      run: npm ci

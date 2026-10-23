@@ -4,7 +4,7 @@
   @for (provider of providers(); track provider.name) {
     <button
       igxButton="contained" igxRipple
-      class="submit-button navigatable"
+      class="submit-button"
       [style.background]="loginColors[provider.name]"
       (click)="login(provider)"
       [disabled]="disableLogin(provider.name)">
@@ -15,7 +15,7 @@
     </button>
   }
 
-  <span class="highlight navigatable" (click)="openRegistration()" i18n>Create username and password</span>
+  <button type="button" class="highlight text-button" (click)="openRegistration()" i18n>Create username and password</button>
 
   <h6 i18n>Additional Preferences</h6>
 
@@ -32,16 +32,19 @@
         <h2 igxListLineTitle>{{ registration.tournamentName }}</h2>
         <h4 igxListLineSubTitle>{{ registration.game ? 'StarCraft II' : 'Counter-Strike' }}</h4>
         <div class="horizontal-center" igxListAction>
-          <span [ngClass]="{
-            'color-error': registration.state === 0,
-            'color-success': registration.state === 1,
-            'color-warn': registration.state === 2
-          }">{{ regStates[registration?.state ?? 0] }}</span>
+          <span
+            [class.color-error]="registration.state === 0"
+            [class.color-success]="registration.state === 1"
+            [class.color-warn]="registration.state === 2">{{ regStates[registration?.state ?? 0] }}</span>
           @if (!registration.state) {
-            <igx-icon class="navigatable" (click)="weeklyCheckin(registration)" i18n-title title="Check in">where_to_vote</igx-icon>
+            <button type="button" igxIconButton="flat" (click)="weeklyCheckin(registration)" i18n-aria-label aria-label="Check in" i18n-title title="Check in">
+              <igx-icon>where_to_vote</igx-icon>
+            </button>
           }
           @if (!registration.state) {
-            <igx-icon class="highlight navigatable" (click)="confirmReg.open(registration)" i18n-title title="Delete this application">delete_forever</igx-icon>
+            <button type="button" igxIconButton="flat" class="highlight" (click)="confirmReg.open(registration)" i18n-aria-label aria-label="Delete this application" i18n-title title="Delete this application">
+              <igx-icon>delete_forever</igx-icon>
+            </button>
           }
         </div>
       </igx-list-item>

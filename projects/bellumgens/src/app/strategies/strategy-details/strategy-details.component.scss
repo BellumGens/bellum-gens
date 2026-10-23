@@ -24,8 +24,10 @@
     object-fit: contain;
   }
 
+  // Marks the comment being edited without dimming it below WCAG AA text contrast
   .comment-editing {
-    opacity: 0.35;
+    font-style: italic;
+    text-decoration: underline dotted;
   }
 
   @media screen and (max-width: 768px) {

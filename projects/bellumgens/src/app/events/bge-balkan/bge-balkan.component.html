@@ -2,23 +2,11 @@
   <igx-card [elevated]="true">
     <igx-card-header>
       <igx-avatar src="/assets/login/bge-white-2024.svg" igxCardThumbnail shape="circle" />
-      <h1 igxCardHeaderTitle>{{ tournament?.name }}</h1>
-      <a i18n [routerLink]="['../registration/', bgeBalkanId]" igxButton="contained" style="margin-top: 12px" i18n>Sign-up to participate</a>
+      <h1 igxCardHeaderTitle>{{ tournament()?.name }}</h1>
+      <a [routerLink]="['../registration/', bgeBalkanId]" igxButton="contained" style="margin-top: 12px" i18n>Sign-up to participate</a>
     </igx-card-header>
     <igx-card-content>
       <div>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3320904478097217"
-            crossorigin="anonymous"></script>
-        <!-- Display Ad horizontal 1 -->
-        <ins class="adsbygoogle"
-            style="display:block"
-            data-ad-client="ca-pub-3320904478097217"
-            data-ad-slot="9044957402"
-            data-ad-format="auto"
-            data-full-width-responsive="true"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
         <p i18n>BGE Balkan is a regional StarCraft II circuit that takes place every week. Players from the Balkan region compete in a series of matches to earn points and prizes.</p>
         <p i18n>The circuit is open to all players from the Balkan region, and it's free to participate. The top players from each week will earn points that will count towards guaranteed €150 prize pool at the end of the month.</p>
         <p i18n>50% of all donations during game days are added on top of the guaranteed prize pool for the month. You can donate through:</p>
@@ -30,34 +18,38 @@
       </div>
       <div class="participants-container">
         <h3 i18n style="width: 100%">Registered Participants</h3>
-        @if (loading | async) {
+        @if (loading()) {
           <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
         }
-        @for (registration of registrations | async; track registration) {
+        @for (registration of registrations(); track registration) {
           <div class="registration-slot">
-            <igx-avatar [src]="registration.user.sc2Details?.avatarUrl" [initials]="registration.user.username" size="medium" shape="circle">
+            <igx-avatar [src]="registration.user?.sc2Details?.avatarUrl" [initials]="registration.user?.username" size="medium" shape="circle">
             </igx-avatar>
             <igx-avatar [src]="registration.country | countrySVG" shape="circle" [title]="registration.country" class="country-badge-small"></igx-avatar>
-            <a [routerLink]="['/players/', registration.user.id, 'sc']">{{ registration.user?.username || registration.battleTag }}</a>
-            @if (registration.companyId) {
-              <span>[{{ registration.companyId }}]</span>
+            @if (registration.user) {
+              <a [routerLink]="['/players/', registration.user.id, 'sc']">{{ registration.user.username || registration.battleTag }}</a>
+            } @else {
+              <span class="participant-name">{{ registration.battleTag }}</span>
+            }
+            @if (registration.companyId | participantTeam; as team) {
+              <span>[{{ team }}]</span>
             }
           </div>
         }
       </div>
 
       <igx-grid cellSelection="none"
-        [data]="sc2matches | async"
+        [data]="sc2matches()"
         height="650px"
         [groupingExpressions]="grouping"
         i18n-emptyGridMessage
         emptyGridMessage="No matches found..."
-        [isLoading]="loadingMatches | async">
+        [isLoading]="loadingMatches()">
 
         <igx-grid-toolbar>
           <igx-grid-toolbar-title><h3 i18n>Weekly Match Results</h3></igx-grid-toolbar-title>
           <igx-grid-toolbar-actions>
-            <button igxIconButton="flat" igxRipple (click)="refreshMatches()">
+            <button igxIconButton="flat" igxRipple (click)="refreshMatches()" i18n-aria-label aria-label="Refresh matches">
               <igx-icon>refresh</igx-icon>
             </button>
             <a href="https://play.toornament.com/en_US/tournaments/8376728902519046144/matches/schedule" target="_blank" rel="noopener" i18n>Weekly Bracket</a>
@@ -159,14 +151,14 @@
 
       <div class="group-columns">
         <h3 i18n>Monthly Standings</h3>
-        @for (group of groups | async; track group.id) {
+        @for (group of groups(); track group.id) {
           <igx-grid
             cellSelection="none"
             [data]="group.participants">
             <igx-grid-toolbar>
               <igx-grid-toolbar-title><h3>{{group.name}}</h3></igx-grid-toolbar-title>
               <igx-grid-toolbar-actions>
-                <button igxIconButton="flat" igxRipple (click)="refreshGroups()">
+                <button igxIconButton="flat" igxRipple (click)="refreshGroups()" i18n-aria-label aria-label="Refresh standings">
                   <igx-icon>refresh</igx-icon>
                 </button>
               </igx-grid-toolbar-actions>
@@ -196,6 +188,9 @@
               </div>
             </igx-column>
             <igx-column field="companyId" i18n-header header="Team">
+              <ng-template igxCell let-value>
+                {{ value | participantTeam }}
+              </ng-template>
             </igx-column>
             <igx-column field="matches" dataType="number" i18n-header header="Matches" width="8%" minWidth="100px">
             </igx-column>

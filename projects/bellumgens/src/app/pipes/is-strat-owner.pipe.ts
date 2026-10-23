@@ -2,8 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { ApplicationUser, CSGOStrategy } from '../../../../common/src/public_api';
 
 @Pipe({
-    name: 'isStratOwner',
-    standalone: true
+    name: 'isStratOwner'
 })
 export class IsStratOwnerPipe implements PipeTransform {
 

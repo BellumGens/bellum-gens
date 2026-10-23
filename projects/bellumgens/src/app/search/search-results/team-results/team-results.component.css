@@ -1,0 +1,23 @@
+/* The card title link covers the whole card, so the card stays clickable everywhere */
+.result-card {
+  position: relative;
+}
+
+.card-link {
+  color: inherit;
+}
+
+.card-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.card-link:focus-visible {
+  outline: none;
+}
+
+.card-link:focus-visible::after {
+  outline: 2px solid var(--ig-secondary-500);
+  outline-offset: 2px;
+}

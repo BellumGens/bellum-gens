@@ -1,9 +1,9 @@
 <div class="registration-form">
   <h6 i18n>External</h6>
-  @for (provider of loginProviders | async; track provider.name) {
+  @for (provider of loginProviders(); track provider.name) {
     <button
       igxButton="contained"
-      class="login-button navigatable"
+      class="login-button"
       [style.background]="loginColors[provider.name]"
       (click)="login(provider)">
       <igx-icon family="login-icons" [name]="provider.name.toLowerCase()"></igx-icon>

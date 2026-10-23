@@ -1,4 +1,5 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { PLATFORM_ID } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SuccessErrorComponent } from './success-error.component';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
@@ -10,8 +11,8 @@ describe('SuccessErrorComponent', () => {
   let component: SuccessErrorComponent;
   let fixture: ComponentFixture<SuccessErrorComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
         SuccessErrorComponent
@@ -19,7 +20,7 @@ describe('SuccessErrorComponent', () => {
       providers: [provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
     })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SuccessErrorComponent);
@@ -112,5 +113,21 @@ describe('SuccessErrorComponent', () => {
     commService.emitMessage('Test warning');
 
     expect(component.showMessage).toHaveBeenCalledWith('warn', 'Test warning');
+  });
+});
+
+describe('SuccessErrorComponent on the server', () => {
+  it('should not open the snackbar when a message is emitted during SSR', async () => {
+    await TestBed.configureTestingModule({
+      imports: [NoopAnimationsModule, SuccessErrorComponent],
+      providers: [provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting(), { provide: PLATFORM_ID, useValue: 'server' }]
+    }).compileComponents();
+    const fixture = TestBed.createComponent(SuccessErrorComponent);
+    fixture.detectChanges();
+    const open = vi.spyOn(fixture.componentInstance.message(), 'open');
+
+    expect(() => TestBed.inject(CommunicationService).emitError('Request failed')).not.toThrow();
+    expect(open).not.toHaveBeenCalled();
+    expect(fixture.componentInstance.notificationMsg()).toBe('');
   });
 });

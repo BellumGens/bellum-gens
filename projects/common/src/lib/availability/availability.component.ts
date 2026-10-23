@@ -1,4 +1,4 @@
-import { Component, ViewChild, Input, Output, EventEmitter } from '@angular/core';
+import { Component, input, linkedSignal, output, signal, viewChild } from '@angular/core';
 import { Availability, BASE_AVAILABILITY } from '../../models/playeravailability';
 import { IgxTimePickerComponent } from '@infragistics/igniteui-angular/time-picker';
 import { IgxDialogComponent } from '@infragistics/igniteui-angular/dialog';
@@ -8,81 +8,79 @@ import { WeekdayPipe } from '../pipes/weekday.pipe';
 import { DatePipe } from '@angular/common';
 
 @Component({
-    selector: 'bg-availability',
-    templateUrl: './availability.component.html',
-    styleUrls: ['./availability.component.scss'],    imports: [
-      IGX_CHIPS_DIRECTIVES,
-      IgxDialogComponent,
-      IgxTimePickerComponent,
-      IgxLabelDirective,
-      DatePipe,
-      WeekdayPipe
-    ]
+  selector: 'bg-availability',
+  templateUrl: './availability.component.html',
+  styleUrls: ['./availability.component.scss'],
+  imports: [
+    IGX_CHIPS_DIRECTIVES,
+    IgxDialogComponent,
+    IgxTimePickerComponent,
+    IgxLabelDirective,
+    DatePipe,
+    WeekdayPipe
+  ]
 })
 export class AvailabilityComponent {
-  @Input()
-  public set availability(availability: Availability []) {
-    if (availability?.length > 0) {
-      this._availability = availability;
-      this.augmentAvailability();
+  public availability = input<Availability []>([]);
+  public editable = input(false);
+  public availabilityChanged = output<Availability>();
+
+  // Local week schedule: re-seeded from the base week whenever a new availability is passed in, so one
+  // player's or team's schedule never bleeds into the next. Edits made here update it until then.
+  public baseAvailability = linkedSignal<Availability [], Availability []>({
+    source: this.availability,
+    computation: availability => {
+      const base = structuredClone(BASE_AVAILABILITY);
+      if (!availability?.length) {
+        return base;
+      }
+      return base.map(day => {
+        const playerAvailability = availability.find(a => a.day === day.day);
+        return playerAvailability ? {
+          ...day,
+          available: playerAvailability.available,
+          from: new Date(playerAvailability.from),
+          to: new Date(playerAvailability.to)
+        } : day;
+      });
     }
-  }
+  });
 
-  public baseAvailability = structuredClone(BASE_AVAILABILITY);
+  public selectedDay = signal<Availability | null>(null);
 
-  @Input()
-  public editable = false;
-
-  @Output()
-  public availabilityChanged = new EventEmitter<Availability>();
-
-  private _availability: Availability [];
-
-  @ViewChild('from')
-  private from: IgxTimePickerComponent;
-
-  @ViewChild('to')
-  private to: IgxTimePickerComponent;
-
-  @ViewChild(IgxDialogComponent, { static: true })
-  private dialog: IgxDialogComponent;
-
-  public selectedDay: Availability;
+  private from = viewChild<IgxTimePickerComponent>('from');
+  private to = viewChild<IgxTimePickerComponent>('to');
+  private dialog = viewChild.required(IgxDialogComponent);
 
   public daySelected(args: IChipClickEventArgs, day: Availability) {
-    if (this.editable) {
+    if (this.editable()) {
       args.cancel = true;
-      this.selectedDay = day;
-      this.dialog.open();
+      this.selectedDay.set(day);
+      this.dialog().open();
     }
   }
 
   public dayDeselected(args: IBaseChipEventArgs, day: Availability) {
     (args.originalEvent as PointerEvent).stopPropagation();
-    day.available = false;
-    this.availabilityChanged.emit(day);
+    this.updateDay({ ...day, available: false });
   }
 
   public availabilityChange() {
-    this.selectedDay.from = this.from.value as Date;
-    this.selectedDay.to = this.to.value as Date;
-    this.selectedDay.available = true;
-    this.availabilityChanged.emit(this.selectedDay);
-    this.dialog.close();
+    this.updateDay({
+      ...this.selectedDay(),
+      from: this.from().value as Date,
+      to: this.to().value as Date,
+      available: true
+    });
+    this.dialog().close();
   }
 
   public availabilityCancel() {
-    this.dialog.close();
+    this.dialog().close();
   }
 
-  private augmentAvailability() {
-    this._availability.forEach(playerAvailability => {
-      const day = this.baseAvailability.find(a => a.day === playerAvailability.day);
-      day.available = playerAvailability.available
-      day.from = new Date(playerAvailability.from);
-      day.to = new Date(playerAvailability.to);
-    });
+  private updateDay(day: Availability) {
+    this.baseAvailability.update(days => days.map(d => d.day === day.day ? day : d));
+    this.availabilityChanged.emit(day);
   }
 }
-
-

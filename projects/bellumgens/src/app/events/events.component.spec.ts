@@ -54,19 +54,19 @@ describe('EventsComponent', () => {
       let mockDate = new Date('2025-06-03T10:00:00Z');
       vi.setSystemTime(mockDate);
       component.timeLeft();
-      expect(component.days).toBe(1);
-      expect(component.hours).toBe(0);
-      expect(component.minutes).toBe(0);
-      expect(component.seconds).toBe(0);
+      expect(component.days()).toBe(1);
+      expect(component.hours()).toBe(0);
+      expect(component.minutes()).toBe(0);
+      expect(component.seconds()).toBe(0);
 
       mockDate = new Date('2025-06-05T10:00:00Z');
       vi.setSystemTime(mockDate);
       // vi.spyOn(component.sub, 'unsubscribe');
       component.timeLeft();
-      expect(component.days).toBe(0);
-      expect(component.hours).toBe(0);
-      expect(component.minutes).toBe(0);
-      expect(component.seconds).toBe(0);
+      expect(component.days()).toBe(0);
+      expect(component.hours()).toBe(0);
+      expect(component.minutes()).toBe(0);
+      expect(component.seconds()).toBe(0);
       // expect(component.sub.unsubscribe).toHaveBeenCalled();
     } finally {
       vi.useRealTimers();
@@ -78,6 +78,21 @@ describe('EventsComponent', () => {
   //   component.ngOnDestroy();
   //   expect(component.sub.unsubscribe).toHaveBeenCalled();
   // });
+
+  it('should link the BGE Balkan Circuit heading with a real link', () => {
+    const heading = fixture.nativeElement.querySelector('h2#bgebalkan') as HTMLElement;
+    const link = heading.querySelector('a');
+
+    expect(link.textContent.trim()).toBe('BGE Balkan Circuit');
+    expect(link.hasAttribute('href')).toBe(true);
+    expect(heading.hasAttribute('tabindex')).toBe(false);
+  });
+
+  it('should give the venue map a title', () => {
+    const map = fixture.nativeElement.querySelector('iframe.venue-map') as HTMLIFrameElement;
+
+    expect(map.title).toBe('Map of the Summer Theater in Stara Zagora');
+  });
 
   it('should scroll to the correct element', () => {
     const elementId = 'test-id';

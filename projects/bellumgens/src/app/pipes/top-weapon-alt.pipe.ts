@@ -1,8 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-    name: 'topWeaponAlt',
-    standalone: true
+    name: 'topWeaponAlt'
 })
 export class TopWeaponAltPipe implements PipeTransform {
 

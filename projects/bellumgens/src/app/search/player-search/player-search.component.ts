@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, computed, inject, input, signal } from '@angular/core';
+import { Component, Signal, computed, inject, input, signal } from '@angular/core';
 import {
   PLAYER_SEARCH,
   PlayerSearch,
@@ -20,8 +20,8 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-player-search',
   templateUrl: './player-search.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  styleUrls: ['./player-search.component.scss'],  imports: [
+  styleUrls: ['./player-search.component.scss'],
+  imports: [
     FormsModule,
     IGX_RADIO_GROUP_DIRECTIVES,
     IGX_SELECT_DIRECTIVES,
@@ -38,13 +38,11 @@ export class PlayerSearchComponent {
 
 
   public authUser = input<ApplicationUser>();
-
-  public teamAdmin = signal<CSGOTeam []>(null);
+  public teamAdmin: Signal<CSGOTeam []> = computed(() => this.authUser() ? this.authManager.teamsAdmin() : null);
   public role = signal<PlaystyleRole>(PLAYER_SEARCH.role);
   public scheduleOverlap = signal(PLAYER_SEARCH.scheduleOverlap);
   public teamId = signal<string>(PLAYER_SEARCH.teamId);
   public userOverlap = signal(0);
-  public teamName = signal('Select Team');
 
   // Assembled from the individual field signals so the query builder keeps
   // working against a single object.
@@ -63,13 +61,8 @@ export class PlayerSearchComponent {
   ];
   public parseInt = parseInt;
 
-  constructor() {
-    this.authManager.teamsAdmin.subscribe(teams => this.teamAdmin.set(teams));
-  }
-
   public searchPlayers() {
     if (!this.userOverlap()) {
-      this.teamName.set('Select Team');
       this.teamId.set(null);
     }
     this.router.navigate(['search/players', this.searchQuery]);

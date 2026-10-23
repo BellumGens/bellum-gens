@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, inject, signal, viewChild } from '@angular/core';
+import { Component, PLATFORM_ID, inject, signal, viewChild } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { IgxSnackbarComponent } from '@infragistics/igniteui-angular/snackbar';
@@ -7,11 +8,11 @@ import { CommunicationService } from '../../services/communication.service';
 @Component({
     selector: 'bg-success-error',
     templateUrl: './success-error.component.html',
-    changeDetection: ChangeDetectionStrategy.OnPush,
     styleUrls: ['./success-error.component.scss'],    imports: [IgxSnackbarComponent, IgxIconComponent]
 })
 export class SuccessErrorComponent {
   private commService = inject(CommunicationService);
+  private isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
   public message = viewChild.required<IgxSnackbarComponent>('message');
 
@@ -46,6 +47,10 @@ export class SuccessErrorComponent {
   }
 
   public showMessage(type: string, msg?: string) {
+    // The snackbar overlay needs a real DOM, and an error thrown here during SSR takes down the server process
+    if (!this.isBrowser) {
+      return;
+    }
     if (msg) {
       this.notificationMsg.set(msg);
     }

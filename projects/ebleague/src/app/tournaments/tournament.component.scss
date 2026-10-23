@@ -46,6 +46,11 @@
   .score-container {
     margin: 0 16px;
   }
+
+  .match-links {
+    gap: 24px;
+    padding-bottom: 8px;
+  }
   /* END SCHEDULE */
 
   .group-columns {
@@ -62,6 +67,30 @@
       grid-column-gap: 48px;
       grid-row-gap: 16px;
       padding: 48px 0;
+    }
+  }
+
+  @media only screen and (max-width: 720px) {
+    // Give the schedule and group grids the full phone width
+    .overview-container-card {
+      width: 100%;
+      padding-inline: 8px;
+    }
+
+    // Let the grid toolbar title and bracket link wrap instead of overlapping
+    .igx-grid-toolbar {
+      flex-wrap: wrap;
+      row-gap: 4px;
+      padding-block: 8px;
+    }
+
+    .igx-grid-toolbar__title {
+      max-width: 100%;
+      white-space: normal;
+    }
+
+    .igx-grid-toolbar__actions {
+      margin-inline-start: 0;
     }
   }
 }

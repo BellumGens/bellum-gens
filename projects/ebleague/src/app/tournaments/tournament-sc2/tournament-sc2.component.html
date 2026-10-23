@@ -2,19 +2,19 @@
   <igx-card>
     <igx-card-header>
       <igx-avatar src="/assets/wallpapers/sc2-watermark.webp" igxCardThumbnail shape="circle" />
-      <h1 igxCardHeaderTitle>{{ tournament?.name }}</h1>
+      <h1 igxCardHeaderTitle>{{ tournament()?.name }}</h1>
     </igx-card-header>
     <igx-card-content>
       <h4 i18n>Participants</h4>
       <div class="participants-container">
-        @if (loading) {
+        @if (loading()) {
           <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
         }
-        @for (registration of registrations; track registration) {
+        @for (registration of registrations(); track registration) {
           <div class="registration-slot">
-            <igx-avatar [src]="registration.user?.sc2Details?.avatarUrl || ''" [initials]="registration.user.username" size="medium" shape="circle">
+            <igx-avatar [src]="registration.user?.sc2Details?.avatarUrl || ''" [initials]="registration.user?.username" size="medium" shape="circle">
             </igx-avatar>
-            @if (registration.userId === authUser?.id && registration.state === 0) {
+            @if (registration.userId === authUser()?.id && registration.state === 0) {
               <igx-badge
                 type="warning"
                 icon="priority_high"
@@ -23,32 +23,34 @@
                 class="registration-badge-style">
               </igx-badge>
             }
-            <a [href]="environment.bellumgens + '/players/' + (registration.user.csgoDetails?.customUrl || registration.userId)" target="_blank">{{ registration.battleTag }}</a>
-            <span>[{{ registration.companyId }}]</span>
+            <a [href]="environment.bellumgens + '/players/' + (registration.user?.id || registration.userId) + '/sc'" target="_blank">{{ registration.battleTag }}</a>
+            @if (registration.companyId) {
+              <span>[{{ registration.companyId }}]</span>
+            }
           </div>
         }
         <igx-divider></igx-divider>
       </div>
 
       <div class="group-columns">
-        @for (group of groups; track group.id) {
+        @for (group of groups(); track group.id) {
           <igx-grid
             cellSelection="none"
-            [isLoading]="loadingGroups"
+            [isLoading]="loadingGroups()"
             [data]="group.participants">
             <igx-grid-toolbar>
               <igx-grid-toolbar-title>{{group.name}}</igx-grid-toolbar-title>
             </igx-grid-toolbar>
             <igx-column field="user" i18n-header header="Player" width="20%">
-              <div *igxCell="let value">
+              <div *igxCell="let value; let cell = cell">
                 <igx-avatar igxListThumbnail
-                  [src]="$safeNavigationMigration(value.sc2Details?.avatarUrl)"
-                  [initials]="value.username"
+                  [src]="value?.sc2Details?.avatarUrl"
+                  [initials]="value?.username"
                   [size]="'small'"
                   shape="circle">
                 </igx-avatar>
-                <a igxListLineTitle [href]="environment.bellumgens + '/players/' + (value?.customURL || value.id)" target="_blank">
-                  {{ value.username }}
+                <a igxListLineTitle [href]="environment.bellumgens + '/players/' + (value?.id || cell.row.data.userId) + '/sc'" target="_blank">
+                  {{ value?.username }}
                 </a>
               </div>
             </igx-column>
@@ -69,23 +71,23 @@
       </div>
 
       <igx-grid cellSelection="none"
-        [data]="sc2matches"
+        [data]="sc2matches()"
         height="550px"
         i18n-emptyGridMessage
         emptyGridMessage="No matches found..."
-        [isLoading]="loadingMatches"
+        [isLoading]="loadingMatches()"
         [allowFiltering]="true">
 
         <igx-grid-toolbar>
-          <igx-grid-toolbar-title i18n>{{ tournament?.name }} Schedule</igx-grid-toolbar-title>
+          <igx-grid-toolbar-title i18n>{{ tournament()?.name }} Schedule</igx-grid-toolbar-title>
           <igx-grid-toolbar-actions>
             <a href="https://challonge.com/ebleague_starcraft" target="_blank" rel="noopener" i18n>Season 2 bracket is available here</a>
           </igx-grid-toolbar-actions>
         </igx-grid-toolbar>
 
-        <igx-column field="startTime" width="220px" dataType="date" i18n-header header="Start time">
+        <igx-column field="startTime" [width]="narrowScreen() ? '150px' : '220px'" dataType="date" i18n-header header="Start time">
           <ng-template igxCell let-value>
-            {{ value | date:'MMM d, y, h:mm a' }}
+            {{ value | date:(narrowScreen() ? 'short' : 'MMM d, y, h:mm a') }}
           </ng-template>
         </igx-column>
 
@@ -115,7 +117,8 @@
           </div>
         </igx-column>
 
-        <igx-column width="150px" field="videoLink" i18n-header header="Video" [filterable]="false">
+        <!-- On phones the links move to the row details to leave room for the match -->
+        <igx-column width="150px" field="videoLink" i18n-header header="Video" [filterable]="false" [hidden]="narrowScreen()">
           <ng-template igxCell let-value>
             @if (value) {
               <a [href]="value" target="_blank" class="horizontal-center">
@@ -126,7 +129,7 @@
           </ng-template>
         </igx-column>
 
-        <igx-column width="150px" field="demoLink" i18n-header header="Replay" [filterable]="false">
+        <igx-column width="150px" field="demoLink" i18n-header header="Replay" [filterable]="false" [hidden]="narrowScreen()">
           <ng-template igxCell let-value>
             @if (value) {
               <a [href]="value" target="_blank" class="horizontal-center">
@@ -138,6 +141,22 @@
         </igx-column>
 
         <ng-template igxGridDetail let-dataItem>
+          @if (narrowScreen() && (dataItem.videoLink || dataItem.demoLink)) {
+            <div class="horizontal-center match-links">
+              @if (dataItem.videoLink) {
+                <a [href]="dataItem.videoLink" target="_blank" class="horizontal-center">
+                  <igx-icon>link</igx-icon>
+                  <span i18n>Video</span>
+                </a>
+              }
+              @if (dataItem.demoLink) {
+                <a [href]="dataItem.demoLink" target="_blank" class="horizontal-center">
+                  <igx-icon>link</igx-icon>
+                  <span i18n>Replay</span>
+                </a>
+              }
+            </div>
+          }
           @for (map of dataItem.maps; track map.id) {
             <div class="horizontal-center">
               <div class="score-container">

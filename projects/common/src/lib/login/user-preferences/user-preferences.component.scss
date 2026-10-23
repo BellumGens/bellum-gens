@@ -4,6 +4,18 @@
     margin-left: 8px;
   }
 
+  // A text button that keeps the look of the highlighted text it replaced
+  .text-button {
+    justify-self: start;
+    padding: 0;
+    border: none;
+    background: none;
+    font: inherit;
+    font-weight: 600;
+    text-align: start;
+    cursor: pointer;
+  }
+
   // button:not(:disabled) {
   //   color: #fff;
   // }

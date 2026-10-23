@@ -1,4 +1,7 @@
-import { Component, OnInit, ViewChild, ElementRef, PLATFORM_ID, LOCALE_ID, inject } from '@angular/core';
+import {
+  Component, ElementRef, Injector, PLATFORM_ID, LOCALE_ID, OutputEmitterRef, Signal,
+  afterNextRender, computed, effect, inject, linkedSignal, signal, untracked, viewChild
+} from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { RouterLinkActive, RouterLink, RouterOutlet, ActivatedRoute } from '@angular/router';
 
@@ -6,7 +9,7 @@ import { AutoPositionStrategy, HorizontalAlignment, OverlaySettings, PositionSet
 import { IgxDropDownComponent } from '@infragistics/igniteui-angular/drop-down';
 import { IgxInputDirective, IgxInputGroupComponent, IgxLabelDirective, IgxPrefixDirective, IgxSuffixDirective } from '@infragistics/igniteui-angular/input-group';
 import { IgxBannerActionsDirective, IgxBannerComponent } from '@infragistics/igniteui-angular/banner';
-import { IgxButtonDirective, IgxDividerComponent, IgxFlexDirective, IgxLayoutDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
+import { IgxButtonDirective, IgxDividerComponent, IgxFlexDirective, IgxIconButtonDirective, IgxLayoutDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxNavDrawerItemDirective, IgxNavDrawerMiniTemplateDirective, IgxNavDrawerTemplateDirective, IgxNavigationDrawerComponent } from '@infragistics/igniteui-angular/navigation-drawer';
 import { IgxIconComponent, IgxIconService } from '@infragistics/igniteui-angular/icon';
 import { IgxBadgeComponent } from '@infragistics/igniteui-angular/badge';
@@ -34,6 +37,8 @@ import { LoginComponent } from '../../../common/src/lib/login/login.component';
 import { LanguagesComponent } from '../../../common/src/lib/languages/languages.component';
 import { battlenet, discord, facebook, heartCare, instagram, linkedin, steam, tiktok, twitch, twitter, youtube, github } from '@igniteui/material-icons-extended';
 import { IgxResourceStringsBG } from 'igniteui-angular-i18n';
+// Type only, so the lazy loaded notifications route stays out of the main bundle
+import type { NotificationsComponent } from './notifications/notifications.component';
 
 @Component({
   selector: 'app-root',
@@ -68,10 +73,11 @@ import { IgxResourceStringsBG } from 'igniteui-angular-i18n';
     IgxDropDownComponent,
     QuickSearchComponent,
     SuccessErrorComponent,
-    RouterOutlet
+    RouterOutlet,
+    IgxIconButtonDirective
   ]
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   private platformId = inject(PLATFORM_ID);
   private localeId = inject(LOCALE_ID);
   private iconService = inject(IgxIconService);
@@ -80,16 +86,27 @@ export class AppComponent implements OnInit {
   private searchService = inject(ApiSearchService);
   private notificationService = inject(CommunicationService);
   private activatedRoute = inject(ActivatedRoute);
+  private injector = inject(Injector);
 
-  @ViewChild('quickSearch', { static: true }) public quickSearchDropDown: IgxDropDownComponent;
-  @ViewChild('searchGroup', { static: true }) public searchGroup: IgxInputGroupComponent;
-  @ViewChild('searchInput', { static: true }) public searchInput: ElementRef;
-  // @ViewChild('cookiesBanner', { static: true }) public banner: IgxBannerComponent;
+  public quickSearchDropDown = viewChild.required<IgxDropDownComponent>('quickSearch');
+  public searchGroup = viewChild.required<IgxInputGroupComponent>('searchGroup');
+  public searchInput = viewChild.required<ElementRef<HTMLInputElement>>('searchInput');
+  // public banner = viewChild.required<IgxBannerComponent>('cookiesBanner');
 
-  public authUser: ApplicationUser;
-  public teams: CSGOTeam [];
+  private isBrowser = isPlatformBrowser(this.platformId);
+  // The user is only looked up in the browser.
+  public authUser: Signal<ApplicationUser> = this.isBrowser ? this.authManager.applicationUser : signal<ApplicationUser>(null).asReadonly();
+  public teams = signal<CSGOTeam []>(null);
   public searchResult: SearchResult;
-  public unreadNotifications = 0;
+  public searchTerm = signal('');
+  // Whether the search, collapsed behind a toggle on narrow screens, is shown
+  public searchExpanded = signal(false);
+  private serviceUnreadNotifications = computed(() =>
+    this.authUser() ? this.unreadPipe.transform(this.authManager.userNotifications()) : 0
+  );
+  // Unread notifications cached by the LoginService, until the notifications view reports
+  // the total it shows (which also covers the team applications it loads and handles).
+  public unreadNotifications = linkedSignal(() => this.serviceUnreadNotifications());
   public environment = environment;
   public year = new Date().getFullYear();
 
@@ -98,15 +115,13 @@ export class AppComponent implements OnInit {
   private unreadPipe = new UnreadNotificationsPipe();
 
   constructor() {
-    if (isPlatformBrowser(this.platformId)) {
-      this.authManager.applicationUser.subscribe(user => {
-          this.authUser = user;
-          if (user) {
-            this.authManager.userNotifications.subscribe(data => this.unreadNotifications += this.unreadPipe.transform(data));
-            this.apiService.getUserTeams(user.id).subscribe(teams => this.teams = teams);
-          }
+    if (this.isBrowser) {
+      effect(() => {
+        const user = this.authUser();
+        if (user) {
+          untracked(() => this.apiService.getUserTeams(user.id).subscribe(teams => this.teams.set(teams)));
         }
-      );
+      });
       this.activatedRoute.queryParams.subscribe(params => {
         if (params?.message) {
           this.notificationService.emitSuccess(params.message);
@@ -114,25 +129,44 @@ export class AppComponent implements OnInit {
       });
       this.initSvgIcons();
     }
-  }
-
-  public ngOnInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
+    // afterNextRender only runs in the browser.
+    afterNextRender(() => {
       // if (!window.localStorage.getItem('cookiesAccepted')) {
-      //   this.banner.open();
+      //   this.banner().open();
       // }
 
       this.initQuickSearch();
-    }
+    });
   }
 
   // public acceptCookies() {
-  //   this.banner.close();
+  //   this.banner().close();
   //   window.localStorage.setItem('cookiesAccepted', 'true');
   // }
 
-  public notificationsLoaded(args: number) {
-    this.unreadNotifications += args;
+  public routeActivated(component: unknown) {
+    const unreadChanged = (component as Partial<NotificationsComponent>)?.unreadChanged;
+    if (unreadChanged instanceof OutputEmitterRef) {
+      // The subscription ends when the routed component is destroyed
+      unreadChanged.subscribe(unread => this.notificationsLoaded(unread));
+    }
+  }
+
+  public notificationsLoaded(unread: number) {
+    this.unreadNotifications.set(unread);
+  }
+
+  public toggleSearch() {
+    this.searchExpanded.update(expanded => !expanded);
+    if (this.searchExpanded()) {
+      // The input is only displayed once the view updates
+      afterNextRender(() => this.searchInput().nativeElement.focus(), { injector: this.injector });
+    }
+  }
+
+  public clearSearch() {
+    this.searchInput().nativeElement.value = '';
+    this.searchTerm.set('');
   }
 
   private initSvgIcons() {
@@ -159,7 +193,7 @@ export class AppComponent implements OnInit {
   }
 
   private initQuickSearch() {
-    const input = fromEvent(this.searchInput.nativeElement, 'keyup')
+    const input = fromEvent(this.searchInput().nativeElement, 'keyup')
                     .pipe(map<Event, string>(e => (e.currentTarget as HTMLInputElement).value));
     const debouncedInput = input.pipe(debounceTime(300));
     debouncedInput.subscribe(val => {
@@ -171,9 +205,9 @@ export class AppComponent implements OnInit {
         const overlaySettings: OverlaySettings = {
           positionStrategy: new AutoPositionStrategy(positionSettings),
           modal: false,
-          target: this.searchGroup.element.nativeElement
+          target: this.searchGroup().element.nativeElement
         };
-        this.quickSearchDropDown.open(overlaySettings);
+        this.quickSearchDropDown().open(overlaySettings);
         this.searchService.quickSearch(val);
       }
     });

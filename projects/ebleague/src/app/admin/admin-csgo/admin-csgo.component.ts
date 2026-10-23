@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { ChangeDetectorRef, Component, computed, inject, signal } from '@angular/core';
 import {
   EMPTY_NEW_GROUP,
   Tournament,
@@ -9,7 +9,7 @@ import {
   CSGOActiveDutyMap, ACTIVE_DUTY
 } from '../../../../../common/src/public_api';
 import { environment } from '../../../../../common/src/environments/environment';
-import { IDropDroppedEventArgs, IGX_DRAG_DROP_DIRECTIVES, IgxButtonDirective } from '@infragistics/igniteui-angular/directives';
+import { IDropDroppedEventArgs, IGX_DRAG_DROP_DIRECTIVES, IgxButtonDirective, IgxIconButtonDirective } from '@infragistics/igniteui-angular/directives';
 import { IRowDataEventArgs } from '@infragistics/igniteui-angular/grids/core';
 import { IGX_GRID_DIRECTIVES, IgxGridComponent } from '@infragistics/igniteui-angular/grids/grid';
 import { IGX_DIALOG_DIRECTIVES, IgxDialogComponent } from '@infragistics/igniteui-angular/dialog';
@@ -41,6 +41,7 @@ import { FormsModule } from '@angular/forms';
     IGX_INPUT_GROUP_DIRECTIVES,
     IGX_GRID_DIRECTIVES,
     IgxButtonDirective,
+    IgxIconButtonDirective,
     IgxIconComponent,
     IgxAvatarComponent,
     IGX_LIST_DIRECTIVES,
@@ -61,71 +62,68 @@ import { FormsModule } from '@angular/forms';
 })
 export class AdminCsgoComponent {
   private apiService = inject(ApiTournamentsService);
+  private cdr = inject(ChangeDetectorRef);
 
-  public registrations!: TournamentParticipant [];
-  public groups!: TournamentGroup [];
-  public matches!: TournamentCSGOMatch [];
-  public loading = false;
-  public loadingMatches = false;
+  public tournaments = this.apiService.tournaments;
+  public selectedTournament = signal<Tournament>(null);
+  private tournamentId = computed(() => this.selectedTournament()?.id);
+  public registrations = computed<TournamentParticipant []>(() =>
+    this.tournamentId() ? this.apiService.getCsgoRegistrations(this.tournamentId())() : null);
+  public groups = computed<TournamentGroup []>(() =>
+    this.tournamentId() ? this.apiService.getCsgoGroups(this.tournamentId())() : null);
+  public matches = computed<TournamentCSGOMatch []>(() =>
+    this.tournamentId() ? this.apiService.getCsgoMatches(this.tournamentId())() : null);
+  public loading = this.apiService.loadingCSGORegistrations;
+  public loadingMatches = this.apiService.loadingCSGOMatches;
   public environment = environment;
   public newGroup = Object.assign({}, EMPTY_NEW_GROUP);
-  public pipeTrigger = 0;
+  public pipeTrigger = signal(0);
   public mapList: CSGOActiveDutyMap [] = ACTIVE_DUTY;
   public matchInEdit: TournamentCSGOMatch = { startTime: new Date() };
-  public tournaments: Tournament [] = [];
-  public selectedTournament!: Tournament;
-
-  constructor() {
-    this.apiService.tournaments.subscribe(t => this.tournaments = t);
-  }
 
   public selectTournament(tournament: Tournament) {
-    this.apiService.getCsgoRegistrations(tournament.id).subscribe(data => {
-      if (data) {
-        this.registrations = data;
-      }
-    });
-    this.apiService.loadingCSGORegistrations.subscribe(data => this.loading = data);
-    this.apiService.getCsgoGroups(tournament.id).subscribe(data => this.groups = data);
-    this.apiService.loadingCSGOMatches.subscribe(data => this.loadingMatches = data);
-    this.apiService.getCsgoMatches(tournament.id).subscribe(data => {
-      if (data) {
-        this.matches = data;
-      }
-    });
+    this.selectedTournament.set(tournament);
   }
 
+  // The service adds new groups to (and removes deleted ones from) its per-tournament cache
   public submitGroup(group: TournamentGroup) {
     group.inEdit = false;
-    this.apiService.submitCSGOGroup(group).subscribe(data => {
-      if (!this.groups.find(g => g.id === data.id)) {
-        this.groups.push(data);
+    this.apiService.submitCSGOGroup(group, this.tournamentId()).subscribe(() => {
+      if (group === this.newGroup) {
+        // The New group card starts over once its group is created
+        this.newGroup = Object.assign({}, EMPTY_NEW_GROUP);
       }
     });
   }
 
   public deleteGroup(id: string) {
-    const group = this.groups.find(g => g.id === id);
-    this.apiService.deleteGroup(id).subscribe(() => this.groups.splice(this.groups.indexOf(group), 1));
-    this.pipeTrigger++;
+    this.apiService.deleteGroup(id).subscribe(() => {
+      // The members of the deleted group are unassigned again
+      this.registrations()?.filter(r => r.tournamentCSGOGroupId === id).forEach(r => r.tournamentCSGOGroupId = null);
+      this.pipeTrigger.update(trigger => trigger + 1);
+    });
   }
 
   public addToGroup(event: IDropDroppedEventArgs, group: TournamentGroup) {
     this.apiService.addParticipantToGroup(event.dragData, group.id).subscribe();
-    if (!group.participants) {
-      group.participants = [ event.dragData ];
-    } else {
-      group.participants.push(event.dragData);
-    }
-    event.dragData.TournamentCSGOGroupId = group.id;
-    this.pipeTrigger++;
+    group.participants = [ ...(group.participants || []), event.dragData ];
+    event.dragData.tournamentCSGOGroupId = group.id;
+    this.pipeTrigger.update(trigger => trigger + 1);
   }
 
   public removeFromGroup(participant: TournamentParticipant, group: TournamentGroup) {
     this.apiService.removeParticipantFromGroup(participant.id, group.id).subscribe({
-      next: () => group.participants?.splice(group.participants.indexOf(participant), 1)
+      next: () => {
+        group.participants = group.participants?.filter(p => p !== participant);
+        participant.tournamentCSGOGroupId = null;
+        // The groups may list their own copies of the participants, so the unassigned participant is cleared as well
+        const listed = this.registrations()?.find(r => r.id === participant.id);
+        if (listed) {
+          listed.tournamentCSGOGroupId = null;
+        }
+        this.pipeTrigger.update(trigger => trigger + 1);
+      }
     });
-    this.pipeTrigger++;
   }
 
   public submitMatch(grid: IgxGridComponent) {
@@ -160,7 +158,9 @@ export class AdminCsgoComponent {
 
   public deleteMatchMap(map: TournamentMatchMap, maps: TournamentMatchMap []) {
     this.apiService.deleteCSGOMatchMap(map.id).subscribe(() => {
+      // The maps array belongs to the grid row being edited, so it's updated in place
       maps.splice(maps.indexOf(map), 1);
+      this.cdr.markForCheck();
     });
   }
 }

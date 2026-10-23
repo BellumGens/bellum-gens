@@ -1,9 +1,9 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, Signal, inject, signal, untracked } from '@angular/core';
 import { environment } from '../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Order, Product, ProductOrderDetails, Promo } from '../models/order';
 import { map, catchError } from 'rxjs/operators';
-import { BehaviorSubject, throwError } from 'rxjs';
+import { throwError } from 'rxjs';
 import { CommunicationService } from './communication.service';
 
 @Injectable({
@@ -14,25 +14,31 @@ export class ApiShopService {
   private commService = inject(CommunicationService);
 
   private _apiEndpoint = environment.apiEndpoint;
-  private _products = new BehaviorSubject<Product []>(null);
+  private _products = signal<Product []>(null);
+  private _productsReadonly = this._products.asReadonly();
+  private _productsRequested = false;
+  private _cart = signal<ProductOrderDetails []>([]);
 
-  public cart = new BehaviorSubject<ProductOrderDetails []>([]);
+  public readonly cart = this._cart.asReadonly();
 
   public submitOrder(order: Order) {
     return this.http.post<Order>(`${this._apiEndpoint}/shop/order`, order);
   }
 
-  public get products() {
-    if (!this._products.value) {
-      this.http.get<Product []>(`${this._apiEndpoint}/shop/products`).subscribe({
-        next: (products) => this._products.next(products),
-        error: (error) => {
-          this.commService.emitError(error.message);
-          return throwError(() => error);
-        }
-      });
-    }
-    return this._products;
+  public get products(): Signal<Product []> {
+    untracked(() => {
+      if (!this._products() && !this._productsRequested) {
+        this._productsRequested = true;
+        this.http.get<Product []>(`${this._apiEndpoint}/shop/products`).subscribe({
+          next: (products) => this._products.set(products),
+          error: (error) => {
+            this._productsRequested = false;
+            this.commService.emitError(error.message);
+          }
+        });
+      }
+    });
+    return this._productsReadonly;
   }
 
   public deleteOrder(orderId: string) {
@@ -53,7 +59,7 @@ export class ApiShopService {
   }
 
   public addToCart(cartItem: ProductOrderDetails) {
-    this.cart.next([...this.cart.value, cartItem]);
+    this._cart.update(cart => [...cart, cartItem]);
     this.commService.emitSuccess(`${cartItem.product.productName} added to cart!`);
   }
 

@@ -2,8 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { TournamentParticipant } from '../../../../common/src/public_api';
 
 @Pipe({
-    name: 'sortByPoints',
-    standalone: true
+    name: 'sortByPoints'
 })
 export class SortByPointsPipe implements PipeTransform {
 

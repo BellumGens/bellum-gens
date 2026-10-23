@@ -1,6 +1,14 @@
+// A text button that keeps the look of the label it replaced
 .register-link {
+  justify-self: end;
+  padding: 0;
+  border: none;
+  background: none;
+  color: inherit;
+  font: inherit;
   font-size: 0.75rem;
   text-align: end;
+  cursor: pointer;
 }
 
 .login-dialog {

@@ -47,9 +47,6 @@
   }
 
   .editor-freeflow-element {
-    width: 24px;
-    height: 24px;
-    min-width: 24px;
     margin: 4px;
   }
 
@@ -68,5 +65,29 @@
 
   .hidden-layer {
     opacity: 0.6;
+  }
+
+  // Narrow screens: the side panels stack above and below the board, which the component narrows to the page width
+  @media screen and (max-width: 768px) {
+    .strat-editor-host {
+      flex-flow: column;
+      align-items: center;
+      height: auto;
+    }
+
+    .editor-elements {
+      box-sizing: border-box;
+      width: 100%;
+      max-width: none;
+      padding: 0 16px;
+    }
+
+    .editor-elements.list-container {
+      overflow-y: visible;
+    }
+
+    .editor-credits {
+      margin-top: 0;
+    }
   }
 }

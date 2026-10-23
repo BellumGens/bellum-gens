@@ -3841,6 +3841,14 @@
           <context context-type="linenumber">127,130</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="6587634672905862211" datatype="html">
+        <source>Your strategies could not be loaded. Please try again later.</source>
+        <target>Стратегиите ви не можаха да бъдат заредени. Моля, опитайте отново по-късно.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/strategies/strategies.component.ts</context>
+          <context context-type="linenumber">109</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="1673640476085340422" datatype="html">
         <source>Author: <x id="START_LINK" ctype="x-a" equiv-text="&lt;a [routerLink]=&quot;[&apos;/players&apos;, strat.userId]&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ strat.owner }}"/><x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
         <target>Автор: <x id="START_LINK" ctype="x-a" equiv-text="&lt;a [routerLink]=&quot;[&apos;/players&apos;, strat.userId]&quot;&gt;"/><x id="INTERPOLATION" equiv-text="{{ strat.owner }}"/><x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></target>
@@ -5299,6 +5307,262 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-detail/tournament-detail.component.html</context>
           <context context-type="linenumber">169,170</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7435987726117859556" datatype="html">
+        <source>Cancel edit</source>
+        <target>Откажи редакцията</target>
+      </trans-unit>
+      <trans-unit id="4266320720634993254" datatype="html">
+        <source>Navigation menu</source>
+        <target>Меню за навигация</target>
+      </trans-unit>
+      <trans-unit id="3643866539136239218" datatype="html">
+        <source>Clear search</source>
+        <target>Изчисти търсенето</target>
+      </trans-unit>
+      <trans-unit id="336262150804823681" datatype="html">
+        <source>Clear email</source>
+        <target>Изчисти имейла</target>
+      </trans-unit>
+      <trans-unit id="1908499290314678195" datatype="html">
+        <source>Clear first name</source>
+        <target>Изчисти името</target>
+      </trans-unit>
+      <trans-unit id="7579320793279445748" datatype="html">
+        <source>Clear last name</source>
+        <target>Изчисти фамилията</target>
+      </trans-unit>
+      <trans-unit id="9044412112822364442" datatype="html">
+        <source>Clear Discord ID</source>
+        <target>Изчисти Discord ID</target>
+      </trans-unit>
+      <trans-unit id="8847699240210775351" datatype="html">
+        <source>Clear battle tag</source>
+        <target>Изчисти battle tag</target>
+      </trans-unit>
+      <trans-unit id="1680394846540474506" datatype="html">
+        <source>Clear team</source>
+        <target>Изчисти отбора</target>
+      </trans-unit>
+      <trans-unit id="2065079282974468004" datatype="html">
+        <source>This player is not registered! If you own the profile then <x id="START_TAG_BUTTON" ctype="x-button" equiv-text="&lt;button type=&quot;button&quot; (click)=&quot;openLogin()&quot; class=&quot;highlight text-button&quot;&gt;"/>register<x id="CLOSE_TAG_BUTTON" ctype="x-button" equiv-text="&lt;/button&gt;"/> to complete it.</source>
+        <target>Този играч не е регистриран! Ако притежавате профила, <x id="START_TAG_BUTTON" ctype="x-button" equiv-text="&lt;button type=&quot;button&quot; (click)=&quot;openLogin()&quot; class=&quot;highlight text-button&quot;&gt;"/>регистрирайте се<x id="CLOSE_TAG_BUTTON" ctype="x-button" equiv-text="&lt;/button&gt;"/>, за да го довършите.</target>
+      </trans-unit>
+      <trans-unit id="8700906313160445906" datatype="html">
+        <source>Clear title</source>
+        <target>Изчисти заглавието</target>
+      </trans-unit>
+      <trans-unit id="8499912632963768403" datatype="html">
+        <source>Clear description</source>
+        <target>Изчисти описанието</target>
+      </trans-unit>
+      <trans-unit id="4420722297301365560" datatype="html">
+        <source>Clear link</source>
+        <target>Изчисти връзката</target>
+      </trans-unit>
+      <trans-unit id="1005793522224066358" datatype="html">
+        <source>Strategy actions</source>
+        <target>Действия със стратегията</target>
+      </trans-unit>
+      <trans-unit id="6540298259410047676" datatype="html">
+        <source>Comments: <x id="count" equiv-text="strat.comments?.length ?? 0"/></source>
+        <target>Коментари: <x id="count" equiv-text="strat.comments?.length ?? 0"/></target>
+      </trans-unit>
+      <trans-unit id="6929565600314524258" datatype="html">
+        <source>Comment actions</source>
+        <target>Действия с коментара</target>
+      </trans-unit>
+      <trans-unit id="4226610033254671527" datatype="html">
+        <source>Hide layer</source>
+        <target>Скрий слоя</target>
+      </trans-unit>
+      <trans-unit id="4385567779417111571" datatype="html">
+        <source>Remove layer</source>
+        <target>Премахни слоя</target>
+      </trans-unit>
+      <trans-unit id="3047537011717170621" datatype="html">
+        <source>Freeflow brush</source>
+        <target>Свободна четка</target>
+      </trans-unit>
+      <trans-unit id="5231930137256698658" datatype="html">
+        <source>Clear message</source>
+        <target>Изчисти съобщението</target>
+      </trans-unit>
+      <trans-unit id="7800738675096880095" datatype="html">
+        <source>Remove <x id="username" equiv-text="member.username"/> from role</source>
+        <target>Премахни <x id="username" equiv-text="member.username"/> от ролята</target>
+      </trans-unit>
+      <trans-unit id="9182905864150468739" datatype="html">
+        <source>Move <x id="username" equiv-text="member.username"/> to inactive</source>
+        <target>Премести <x id="username" equiv-text="member.username"/> в неактивни</target>
+      </trans-unit>
+      <trans-unit id="5488466320845465302" datatype="html">
+        <source>Remove <x id="username" equiv-text="member.username"/> from team</source>
+        <target>Премахни <x id="username" equiv-text="member.username"/> от отбора</target>
+      </trans-unit>
+      <trans-unit id="5613992837503682068" datatype="html">
+        <source>Clear team name</source>
+        <target>Изчисти името на отбора</target>
+      </trans-unit>
+      <trans-unit id="8972415480841314475" datatype="html">
+        <source>Clear team motto</source>
+        <target>Изчисти девиза на отбора</target>
+      </trans-unit>
+      <trans-unit id="2450097354054432711" datatype="html">
+        <source>Clear team avatar URL</source>
+        <target>Изчисти URL адреса на аватара на отбора</target>
+      </trans-unit>
+      <trans-unit id="4663040583690807740" datatype="html">
+        <source>Clear Discord</source>
+        <target>Изчисти Discord</target>
+      </trans-unit>
+      <trans-unit id="5642684721638809670" datatype="html">
+        <source>Refresh matches</source>
+        <target>Обнови мачовете</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/bge-balkan/bge-balkan.component.html</context>
+          <context context-type="linenumber">52,53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="666756836576955221" datatype="html">
+        <source>Refresh standings</source>
+        <target>Обнови класирането</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/bge-balkan/bge-balkan.component.html</context>
+          <context context-type="linenumber">161,162</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3633668241861229327" datatype="html">
+        <source>Map of the Summer Theater in Stara Zagora</source>
+        <target>Карта на Летния театър в Стара Загора</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
+          <context context-type="linenumber">155</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1983989454569140684" datatype="html">
+        <source>Layer name</source>
+        <target>Име на слоя</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/strategies/strategy-editor/strategy-editor.component.html</context>
+          <context context-type="linenumber">35,36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3891478385025215430" datatype="html">
+        <source>Yellow</source>
+        <target>Жълт</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/strategies/strategy-editor/strategy-editor.component.ts</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4082253113407591781" datatype="html">
+        <source>Blue</source>
+        <target>Син</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/strategies/strategy-editor/strategy-editor.component.ts</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4046446611860328467" datatype="html">
+        <source>Red</source>
+        <target>Червен</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/strategies/strategy-editor/strategy-editor.component.ts</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="119581980963263815" datatype="html">
+        <source>Green</source>
+        <target>Зелен</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/strategies/strategy-editor/strategy-editor.component.ts</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6194760889104675204" datatype="html">
+        <source>Pink</source>
+        <target>Розов</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/strategies/strategy-editor/strategy-editor.component.ts</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3451129084922491008" datatype="html">
+        <source>Select layer</source>
+        <target>Изберете слой</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/strategies/strategy-editor/strategy-editor.component.ts</context>
+          <context context-type="linenumber">91</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3475004687424015839" datatype="html">
+        <source>Vote up: <x id="count" equiv-text="count"/></source>
+        <target>Глас за: <x id="count" equiv-text="count"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/strategies/vote-label.ts</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7995786720820132998" datatype="html">
+        <source>Vote down: <x id="count" equiv-text="count"/></source>
+        <target>Глас против: <x id="count" equiv-text="count"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/bellumgens/src/app/strategies/vote-label.ts</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1405463563837173046" datatype="html">
+        <source>Set up your account</source>
+        <target>Настройте профила си</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/registration/registration.component.html</context>
+          <context context-type="linenumber">3,4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5259416047008119946" datatype="html">
+        <source>Tournament details</source>
+        <target>Детайли за турнира</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-card/tournament-card.component.html</context>
+          <context context-type="linenumber">31,32</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-detail/tournament-detail.component.html</context>
+          <context context-type="linenumber">15,16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4911523777296608973" datatype="html">
+        <source>Delete tournament</source>
+        <target>Изтрий турнира</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-card/tournament-card.component.html</context>
+          <context context-type="linenumber">74,75</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8890553633144307762" datatype="html">
+        <source>Back</source>
+        <target>Назад</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/tournament/tournament-create/tournament-create.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7355648723531214824" datatype="html">
+        <source>You don&apos;t have access to this page. Log in with an account that has access to it, or go back to the home page.</source>
+        <target>Нямате достъп до тази страница. Влезте с профил, който има достъп до нея, или се върнете към началната страница.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/unauthorized/unauthorized.component.html</context>
+          <context context-type="linenumber">3,4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3497245523524615821" datatype="html">
+        <source>Go to the home page</source>
+        <target>Към началната страница</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/unauthorized/unauthorized.component.html</context>
+          <context context-type="linenumber">13,14</context>
         </context-group>
       </trans-unit>
     </body>

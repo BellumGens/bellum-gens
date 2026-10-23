@@ -1,8 +1,7 @@
 import { Pipe, type PipeTransform } from '@angular/core';
 
 @Pipe({
-    name: 'countrySVG',
-    standalone: true
+    name: 'countrySVG'
 })
 export class CountrySVGPipe implements PipeTransform {
 

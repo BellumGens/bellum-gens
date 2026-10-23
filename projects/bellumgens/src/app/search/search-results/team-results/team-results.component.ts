@@ -1,7 +1,6 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
+import { Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { CSGOTeam, ApiSearchService } from '../../../../../../common/src/public_api';
+import { ApiSearchService } from '../../../../../../common/src/public_api';
 import { BaseDirective } from '../../../base/base.component';
 import { QueryParsedPipe } from '../../../pipes/query-parsed.pipe';
 import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
@@ -12,7 +11,6 @@ import { LoadingComponent } from '../../../../../../common/src/lib/loading/loadi
 @Component({
   selector: 'app-team-results',
   templateUrl: './team-results.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrls: ['./team-results.component.css'],  imports: [
     LoadingComponent,
     IGX_CARD_DIRECTIVES,
@@ -24,8 +22,8 @@ import { LoadingComponent } from '../../../../../../common/src/lib/loading/loadi
 export class TeamResultsComponent extends BaseDirective {
   private apiService = inject(ApiSearchService);
 
-  public teams = signal<CSGOTeam []>(null);
-  public loading = toSignal(this.apiService.loadingSearch, { initialValue: false });
+  public teams = this.apiService.teamSearchResult;
+  public loading = this.apiService.loadingSearch;
   public query = signal<string>(null);
 
   constructor() {
@@ -36,6 +34,5 @@ export class TeamResultsComponent extends BaseDirective {
         this.apiService.searchTeams(params.query);
       }
     });
-    this.apiService.teamSearchResult.subscribe(players => this.teams.set(players));
   }
 }

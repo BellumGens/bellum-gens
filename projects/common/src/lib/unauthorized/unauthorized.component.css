@@ -1,0 +1,18 @@
+.unauthorized {
+  flex-direction: column;
+  gap: 16px;
+  text-align: center;
+}
+
+.unauthorized-text {
+  max-width: 480px;
+  margin: 0;
+  color: var(--ig-surface-500-contrast);
+}
+
+.unauthorized-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}

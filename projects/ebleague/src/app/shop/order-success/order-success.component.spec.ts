@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { OrderSuccessComponent } from './order-success.component';
 
@@ -6,12 +6,12 @@ describe('OrderSuccessComponent', () => {
   let component: OrderSuccessComponent;
   let fixture: ComponentFixture<OrderSuccessComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
     imports: [OrderSuccessComponent]
 })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(OrderSuccessComponent);
@@ -21,5 +21,10 @@ describe('OrderSuccessComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should show the order confirmation message', () => {
+    const text = (fixture.nativeElement as HTMLElement).textContent;
+    expect(text).toContain('Your order has been received!');
   });
 });

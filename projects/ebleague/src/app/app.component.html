@@ -1,61 +1,61 @@
 <div igxLayout>
-  <igx-nav-drawer [pinThreshold]="1600" id="navigation" #drawer>
+  <igx-nav-drawer [pinThreshold]="1600" id="navigation" #drawer (pinChange)="drawerPinned.set($event)">
     <ng-template igxDrawer>
       <span igxDrawerItem [isHeader]="true">Esports Business League</span>
-      <span igxDrawerItem igxRipple routerLink="tournaments">
+      <a igxDrawerItem igxRipple routerLink="tournaments">
         <igx-icon>emoji_events</igx-icon>
         <span i18n>EBL Seasons</span>
-      </span>
-      <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournaments/hub">
+      </a>
+      <a igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournaments/hub">
         <igx-icon>military_tech</igx-icon>
         <span i18n>Tournaments</span>
-      </span>
-      <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="shop">
+      </a>
+      <a igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="shop">
         <igx-icon>shopping_cart</igx-icon>
         <span i18n>Shop</span>
-      </span>
-      <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournaments/format">
+      </a>
+      <a igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournaments/format">
         <igx-icon>playlist_add_check</igx-icon>
         <span i18n>Tournament format</span>
-      </span>
-      <span igxDrawerItem igxRipple routerLink="/" fragment="partners">
+      </a>
+      <a igxDrawerItem igxRipple routerLink="/" fragment="partners">
         <igx-icon>people_alt</igx-icon>
         <span i18n>Our partners</span>
-      </span>
-      <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournaments/crew">
+      </a>
+      <a igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournaments/crew">
         <igx-icon>people</igx-icon>
         <span i18n>Our crew</span>
-      </span>
-      <span igxDrawerItem igxRipple routerLink="/" fragment="aboutus">
+      </a>
+      <a igxDrawerItem igxRipple routerLink="/" fragment="aboutus">
         <igx-icon>chat</igx-icon>
         <span i18n>Contact us</span>
-      </span>
+      </a>
     </ng-template>
 
-    @if (drawer.pin) {
+    @if (drawerPinned()) {
       <ng-template igxDrawerMini>
         <span igxDrawerItem [isHeader]="true">&nbsp;</span>
-        <span igxDrawerItem igxRipple routerLink="tournaments" i18n-title title="EBL Seasons">
+        <a igxDrawerItem igxRipple routerLink="tournaments" i18n-title title="EBL Seasons">
           <igx-icon>emoji_events</igx-icon>
-        </span>
-        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournaments/hub" i18n-title title="Tournaments">
+        </a>
+        <a igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournaments/hub" i18n-title title="Tournaments">
           <igx-icon>military_tech</igx-icon>
-        </span>
-        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="shop" i18n-title title="Shop">
+        </a>
+        <a igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="shop" i18n-title title="Shop">
           <igx-icon>shopping_cart</igx-icon>
-        </span>
-        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournaments/format" i18n-title title="Tournament format">
+        </a>
+        <a igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournaments/format" i18n-title title="Tournament format">
           <igx-icon >playlist_add_check</igx-icon>
-        </span>
-        <span igxDrawerItem igxRipple routerLink="/" fragment="partners" i18n-title title="Our partners">
+        </a>
+        <a igxDrawerItem igxRipple routerLink="/" fragment="partners" i18n-title title="Our partners">
           <igx-icon>people_alt</igx-icon>
-        </span>
-        <span igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournaments/crew" i18n-title title="Our crew">
+        </a>
+        <a igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournaments/crew" i18n-title title="Our crew">
           <igx-icon>people</igx-icon>
-        </span>
-        <span igxDrawerItem igxRipple routerLink="/" fragment="aboutus" i18n-title title="Contact us">
+        </a>
+        <a igxDrawerItem igxRipple routerLink="/" fragment="aboutus" i18n-title title="Contact us">
           <igx-icon>chat</igx-icon>
-        </span>
+        </a>
       </ng-template>
     }
   </igx-nav-drawer>
@@ -63,8 +63,12 @@
   <div igxFlex igxLayout igxLayoutDir="columns" class="top-level-container">
     <igx-navbar class="bellum-gens-navbar">
       <igx-navbar-action>
-        <igx-icon class="drawer-action navigatable" (click)="drawer.toggle()">menu</igx-icon>
-        <img [ngSrc]="'/assets/eb-league-logo-blue.webp'" width="130" height="40" class="navigatable" alt="Esports Business League" routerLink="/" />
+        <button type="button" igxIconButton="flat" class="drawer-action" (click)="drawer.toggle()" i18n-aria-label aria-label="Toggle navigation menu" aria-controls="navigation" [attr.aria-expanded]="drawer.isOpen">
+          <igx-icon>menu</igx-icon>
+        </button>
+        <a routerLink="/" class="logo-link">
+          <img [ngSrc]="'/assets/eb-league-logo-blue.webp'" width="130" height="40" alt="Esports Business League" />
+        </a>
       </igx-navbar-action>
 
       <bg-languages></bg-languages>
