@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { Tournament, TournamentStatus } from '../../../models/tournament';
+import { Tournament, TournamentStatus, getTournamentStatus, isUpcomingTournament } from '../../../models/tournament';
 import { ApiTournamentsService } from '../../../services/bellumgens-api.tournaments.service';
 import { LoginService } from '../../../services/login.service';
 import { TournamentCardComponent } from '../tournament-card/tournament-card.component';
@@ -16,7 +16,6 @@ import { FormsModule } from '@angular/forms';
   selector: 'bg-tournament-list',
   templateUrl: './tournament-list.component.html',
   styleUrl: './tournament-list.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     FormsModule,
     TournamentCardComponent,
@@ -35,40 +34,33 @@ export class TournamentListComponent {
   private loginService = inject(LoginService);
   private router = inject(Router);
 
-  public tournaments = signal<Tournament[]>([]);
-  public myTournaments = signal<Tournament[]>([]);
-  public loading = signal(true);
+  private publicTournaments = this.apiService.publicTournaments;
+  private ownTournaments = this.apiService.myTournaments;
+
+  public tournaments = computed<Tournament[]>(() => this.publicTournaments() ?? []);
+  public myTournaments = computed<Tournament[]>(() => this.ownTournaments() ?? []);
+  public loading = this.apiService.loadingTournaments;
   public activeTab = signal(0);
   public inviteCode = '';
 
-  public isLoggedIn = computed(() => !!this.loginService.applicationUser?.value);
+  private authUser = this.loginService.applicationUser;
+  public isLoggedIn = computed(() => !!this.authUser());
 
+  // The API sends no status, so it is derived from the active flag and the dates when missing
   public activeTournaments = computed(() =>
-    this.tournaments().filter(t => t.status === TournamentStatus.Open || t.status === TournamentStatus.InProgress)
+    this.tournaments().filter(t => {
+      const status = getTournamentStatus(t);
+      return (status === TournamentStatus.Open || status === TournamentStatus.InProgress) && !isUpcomingTournament(t);
+    })
   );
 
   public upcomingTournaments = computed(() =>
-    this.tournaments().filter(t => t.status === TournamentStatus.Draft && t.startDate && new Date(t.startDate).getTime() > Date.now())
+    this.tournaments().filter(t => isUpcomingTournament(t))
   );
 
   public completedTournaments = computed(() =>
-    this.tournaments().filter(t => t.status === TournamentStatus.Completed)
+    this.tournaments().filter(t => getTournamentStatus(t) === TournamentStatus.Completed)
   );
-
-  constructor() {
-    this.apiService.publicTournaments.subscribe(data => {
-      if (data) {
-        this.tournaments.set(data);
-        this.loading.set(false);
-      }
-    });
-
-    this.apiService.myTournaments.subscribe(data => {
-      if (data) {
-        this.myTournaments.set(data);
-      }
-    });
-  }
 
   public createTournament() {
     this.router.navigate(['/tournaments/create']);
@@ -79,7 +71,8 @@ export class TournamentListComponent {
   }
 
   public onDeleteTournament(tournament: Tournament) {
-    this.apiService.deleteTournament(tournament.id).subscribe();
+    // The service reports the failure to the user and the card stays in the list
+    this.apiService.deleteTournament(tournament.id).subscribe({ error: () => undefined });
   }
 
   public joinByInvite(dialog: IgxDialogComponent) {
@@ -88,7 +81,9 @@ export class TournamentListComponent {
         next: () => {
           dialog.close();
           this.inviteCode = '';
-        }
+        },
+        // The service reports the failure to the user; the dialog stays open so the code can be corrected
+        error: () => undefined
       });
     }
   }

@@ -4,7 +4,7 @@
 
 html, body {
   height: 100%;
-  min-width: 380px;
+  min-width: 320px;
   background-color: var(--ig-surface-500);
   color: var(--ig-surface-500-contrast);
 }
@@ -19,8 +19,8 @@ html, body {
   cursor: pointer;
 }
 
-.navigatable:focus,
-.navigatable:active {
+// Pointer focus doesn't need an outline, but keyboard focus must stay visible (WCAG 2.4.7)
+.navigatable:focus:not(:focus-visible) {
   outline: none;
 }
 
@@ -70,6 +70,14 @@ a {
   color: var(--ig-secondary-500);
 }
 
+// Links in running text are underlined, so they aren't told apart by colour alone
+p a:not(.igx-button, .igx-icon-button),
+li a:not(.igx-button, .igx-icon-button),
+.about-text a {
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
 .highlight {
   color: var(--ig-secondary-500);
   font-weight: 600;
@@ -91,7 +99,7 @@ textarea {
   grid-column-gap: 48px;
   grid-row-gap: 24px;
   width: 1280px;
-  min-width: 380px;
+  min-width: 320px;
   padding: 16px;
   margin: auto;
   min-height: calc(100% - 45px);
@@ -188,7 +196,7 @@ textarea {
 
 .card-wrapper {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(334px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(334px, 100%), 1fr));
   grid-gap: 16px;
   grid-auto-rows: max-content;
   margin: 24px;
@@ -209,12 +217,12 @@ textarea {
 
 
 .top-level-container {
-  min-width: 380px;
+  min-width: 320px;
 }
 
 .main-content-wrapper {
   height: calc(100% - 45px);
-  min-width: 380px;
+  min-width: 320px;
   display: flex;
 }
 
@@ -250,7 +258,7 @@ textarea {
 }
 
 .subscription-form-input {
-  min-width: 348px;
+  min-width: min(348px, 100%);
 }
 
 .submit-email {
@@ -282,7 +290,13 @@ textarea {
 }
 
 .platinum {
-  max-width: 380px;
+  // Shrinks with its link on phone widths (the partner margins included)
+  max-width: min(380px, calc(100% - 32px));
+  height: auto;
+}
+
+a:has(> .platinum) {
+  max-width: 100%;
 }
 
 .gold {
@@ -364,7 +378,7 @@ input:-webkit-autofill:active  {
   }
 
   .content-container {
-    grid-template-columns: minmax(348px, 1fr);
+    grid-template-columns: minmax(0, 1fr);
     width: 100%;
   }
 

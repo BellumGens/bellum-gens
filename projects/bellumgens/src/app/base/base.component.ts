@@ -3,8 +3,7 @@ import { Title, Meta } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 
 @Directive({
-  selector: 'app-base',
-  standalone: true
+  selector: 'app-base'
 })
 export class BaseDirective {
   protected titleService = inject(Title);

@@ -1,27 +1,16 @@
 <div class="overview-container-card">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3320904478097217"
-      crossorigin="anonymous"></script>
-  <!-- Display Ad horizontal 1 -->
-  <ins class="adsbygoogle"
-      style="display:block"
-      data-ad-client="ca-pub-3320904478097217"
-      data-ad-slot="9044957402"
-      data-ad-format="auto"
-      data-full-width-responsive="true"></ins>
-  <script>
-      (adsbygoogle = window.adsbygoogle || []).push({});
-  </script>
-  <igx-tabs>
+  <!-- Routing tabs: arrow keys move focus, Enter/Space activates the focused tab (navigates) -->
+  <igx-tabs activation="manual">
     <igx-tab-item routerLinkActive #rla1="routerLinkActive"
-      [disabled]="!player?.csgoDetails"
+      [disabled]="!player()?.csgoDetails"
       [selected]="rla1.isActive">
       <igx-tab-header routerLink="cs">
-        <igx-avatar class="tabs-avatar" src="/assets/wallpapers/csgo-watermark.webp" igxPrefix shape="circle" size="small" />
+        <igx-avatar class="tabs-avatar" src="/assets/wallpapers/cs2-icon.svg" igxPrefix shape="circle" size="small" />
         <div igxTabHeaderLabel>Counter-Strike</div>
       </igx-tab-header>
     </igx-tab-item>
     <igx-tab-item routerLinkActive #rla2="routerLinkActive"
-      [disabled]="!player?.sc2Details"
+      [disabled]="!player()?.sc2Details"
       [selected]="rla2.isActive">
       <igx-tab-header routerLink="sc">
         <igx-avatar class="tabs-avatar" src="/assets/wallpapers/sc2-watermark.webp" igxPrefix shape="circle" size="small" />
@@ -37,5 +26,5 @@
     </igx-tab-item> -->
   </igx-tabs>
 
-  <router-outlet></router-outlet>
+  <router-outlet [routerOutletData]="player()"></router-outlet>
 </div>

@@ -1,4 +1,5 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { PLATFORM_ID } from '@angular/core';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SuccessErrorComponent } from './success-error.component';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
@@ -10,8 +11,8 @@ describe('SuccessErrorComponent', () => {
   let component: SuccessErrorComponent;
   let fixture: ComponentFixture<SuccessErrorComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
         SuccessErrorComponent
@@ -19,7 +20,7 @@ describe('SuccessErrorComponent', () => {
       providers: [provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
     })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(SuccessErrorComponent);
@@ -37,54 +38,54 @@ describe('SuccessErrorComponent', () => {
   });
 
   it('should have default icon and class for success', () => {
-    expect(component.icon).toBe('done');
-    expect(component.class).toBe('color-success');
+    expect(component.icon()).toBe('done');
+    expect(component.class()).toBe('color-success');
   });
 
   it('should show success message', () => {
-    vi.spyOn(component.message, 'open').mockImplementation(() => undefined);
+    vi.spyOn(component.message(), 'open').mockImplementation(() => undefined);
     const testMessage = 'Operation successful';
 
     component.showMessage('success', testMessage);
 
-    expect(component.notificationMsg).toBe(testMessage);
-    expect(component.icon).toBe('done');
-    expect(component.class).toBe('color-success');
-    expect(component.message.open).toHaveBeenCalled();
+    expect(component.notificationMsg()).toBe(testMessage);
+    expect(component.icon()).toBe('done');
+    expect(component.class()).toBe('color-success');
+    expect(component.message().open).toHaveBeenCalled();
   });
 
   it('should show error message', () => {
-    vi.spyOn(component.message, 'open').mockImplementation(() => undefined);
+    vi.spyOn(component.message(), 'open').mockImplementation(() => undefined);
     const testMessage = 'Operation failed';
 
     component.showMessage('error', testMessage);
 
-    expect(component.notificationMsg).toBe(testMessage);
-    expect(component.icon).toBe('error');
-    expect(component.class).toBe('color-error');
-    expect(component.message.open).toHaveBeenCalled();
+    expect(component.notificationMsg()).toBe(testMessage);
+    expect(component.icon()).toBe('error');
+    expect(component.class()).toBe('color-error');
+    expect(component.message().open).toHaveBeenCalled();
   });
 
   it('should show warning message', () => {
-    vi.spyOn(component.message, 'open').mockImplementation(() => undefined);
+    vi.spyOn(component.message(), 'open').mockImplementation(() => undefined);
     const testMessage = 'Warning: Check your input';
 
     component.showMessage('warn', testMessage);
 
-    expect(component.notificationMsg).toBe(testMessage);
-    expect(component.icon).toBe('priority_high');
-    expect(component.class).toBe('color-warn');
-    expect(component.message.open).toHaveBeenCalled();
+    expect(component.notificationMsg()).toBe(testMessage);
+    expect(component.icon()).toBe('priority_high');
+    expect(component.class()).toBe('color-warn');
+    expect(component.message().open).toHaveBeenCalled();
   });
 
   it('should use default notification message if none provided', () => {
-    vi.spyOn(component.message, 'open').mockImplementation(() => undefined);
-    const previousMsg = component.notificationMsg;
+    vi.spyOn(component.message(), 'open').mockImplementation(() => undefined);
+    const previousMsg = component.notificationMsg();
 
     component.showMessage('success');
 
-    expect(component.notificationMsg).toBe(previousMsg);
-    expect(component.message.open).toHaveBeenCalled();
+    expect(component.notificationMsg()).toBe(previousMsg);
+    expect(component.message().open).toHaveBeenCalled();
   });
 
   it('should subscribe to communication service on creation', () => {
@@ -112,5 +113,21 @@ describe('SuccessErrorComponent', () => {
     commService.emitMessage('Test warning');
 
     expect(component.showMessage).toHaveBeenCalledWith('warn', 'Test warning');
+  });
+});
+
+describe('SuccessErrorComponent on the server', () => {
+  it('should not open the snackbar when a message is emitted during SSR', async () => {
+    await TestBed.configureTestingModule({
+      imports: [NoopAnimationsModule, SuccessErrorComponent],
+      providers: [provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting(), { provide: PLATFORM_ID, useValue: 'server' }]
+    }).compileComponents();
+    const fixture = TestBed.createComponent(SuccessErrorComponent);
+    fixture.detectChanges();
+    const open = vi.spyOn(fixture.componentInstance.message(), 'open');
+
+    expect(() => TestBed.inject(CommunicationService).emitError('Request failed')).not.toThrow();
+    expect(open).not.toHaveBeenCalled();
+    expect(fixture.componentInstance.notificationMsg()).toBe('');
   });
 });

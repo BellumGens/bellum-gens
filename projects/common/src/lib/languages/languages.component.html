@@ -1,17 +1,19 @@
 <button class="profile-button"
-  i18n-aria-label
-  aria-label="Choose a language"
+  i18n-igxLabel
+  igxLabel="Choose a language"
   igxButton="flat"
   igxRipple
   [igxToggleAction]="languagesDropDown"
+  [igxDropDownItemNavigation]="languagesDropDown"
+  aria-haspopup="listbox"
   [overlaySettings]="overlaySettings">
   <igx-icon family="languages" [name]="localeId"></igx-icon>
   <igx-icon class="drop-down-arrow">arrow_drop_down</igx-icon>
 </button>
 
-<igx-drop-down #languagesDropDown>
+<igx-drop-down #languagesDropDown (selectionChanging)="selectLanguage($event)">
   @for (lang of languageList; track lang.code) {
-    <igx-drop-down-item [selected]="lang.code === localeId" (click)="changeLocale(lang.code)">
+    <igx-drop-down-item [selected]="lang.code === localeId" [value]="lang.code">
       <div class="dd-item-content">
         <igx-icon family="languages" [name]="lang.code"></igx-icon>
         <span [lang]="lang.code">{{ lang.label }}</span>

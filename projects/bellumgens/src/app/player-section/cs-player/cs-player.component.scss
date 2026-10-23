@@ -8,13 +8,19 @@
   /* User Profile */
 
   .team-avatar-link {
-    cursor: pointer;
+    display: inline-flex;
+    border-radius: 50%;
     margin: 0 16px 16px 0;
   }
 
-  .team-avatar-link:focus,
-  .team-avatar-link:active {
-    outline: none;
+  // A text button that keeps the look of the highlighted text it replaced
+  .text-button {
+    padding: 0;
+    border: none;
+    background: none;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
   }
 
   .country-badge-large {
@@ -25,10 +31,21 @@
     height: 52px;
     min-width: 52px;
   }
-
+  
   .stats-progress {
-    width: auto;
-    height: auto;
+    --ig-circular-bar-diameter: 200px;
+    --stroke-thickness: 10px;
+    --scale-factor: 4;
+  }
+
+  .role-select {
+    --ig-input-group-size: 40px;
+    --ig-size: var(--ig-size-small);
+    max-width: 224px;
+
+    + .role-select {
+      margin-block-start: 16px;
+    }
   }
 
   .top-weapon {
@@ -47,10 +64,6 @@
     box-shadow: none;
     border: none;
   }
-
-    .player-detail__stats .igx-circular-bar__text {
-      font-size: 3.55rem;
-    }
 
     .player-detail__stats .igx-card-content {
       text-align: center;
@@ -72,21 +85,34 @@
     }
   }
 
-  @media only screen and (min-width: 1660px) {
+  @media only screen and (min-width: 600px) and (max-width: 1280px) {
     .player-detail__stats.map-pool {
-      grid-column: 3 / -1;
+      grid-column: 1 / -1;
     }
   }
 
-  @media only screen and (min-width: 1760px) {
+  @media only screen and (min-width: 1281px) {
+    .card-wrapper.profile-view-layout {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+    }
+
     .player-detail__stats.map-pool {
-      grid-column: 2 / -1;
+      grid-column: span 3;
+    }
+
+    .stats-progress {
+      --ig-circular-bar-diameter: clamp(140px, 11vw, 200px);
     }
   }
 
-  @media only screen and (min-width: 2330px) {
-    .player-detail__stats.map-pool {
-      grid-column: 2 / 8;
+  @media only screen and (max-width: 599px) {
+    .card-wrapper.profile-view-layout {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .profile-container,
+    .player-detail__stats {
+      max-width: none;
     }
   }
 

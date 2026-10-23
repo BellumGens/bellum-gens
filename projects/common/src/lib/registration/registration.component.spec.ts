@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideRouter } from '@angular/router';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -18,8 +18,8 @@ describe('RegistrationComponent', () => {
   let commsService: CommunicationService;
   let router: Router;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
         
         NoopAnimationsModule,
@@ -32,7 +32,7 @@ describe('RegistrationComponent', () => {
     loginService = TestBed.inject(LoginService);
     httpMock = TestBed.inject(HttpTestingController);
     router = TestBed.inject(Router);
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(RegistrationComponent);
@@ -43,9 +43,13 @@ describe('RegistrationComponent', () => {
   it('should create', () => {
     const spy = vi.spyOn(component as any, 'initUsernameCheck').mockImplementation(() => undefined);
     expect(component).toBeTruthy();
-    expect(component.usernameInput).toBeDefined();
-    component.ngOnInit();
+    expect(component.usernameInput()).toBeDefined();
+    component.ngAfterViewInit();
     expect(spy).toHaveBeenCalled();
+  });
+
+  it('should ask the user to set up their account', () => {
+    expect(fixture.nativeElement.querySelector('h4').textContent.trim()).toBe('Set up your account');
   });
 
   it('should submit registration', () => {
@@ -53,12 +57,13 @@ describe('RegistrationComponent', () => {
     commsService.success.subscribe(success => expect(success).toBe('User registration completed successfully!'));
 
     component.submitRegistration();
-    expect(component.submitInProgress).toBe(true);
+    expect(component.submitInProgress()).toBe(true);
 
     const req = httpMock.expectOne(`${loginService['_apiEndpoint']}/setpassword`);
     expect(req.request.method).toBe('POST');
-    expect(req.request.body).toEqual(component.userAccount);
+    expect(req.request.body).toEqual(component.userAccount());
     req.flush({});
+    expect(component.submitInProgress()).toBe(false);
     expect(router.navigate).toHaveBeenCalledWith(['/']);
   });
 
@@ -67,26 +72,111 @@ describe('RegistrationComponent', () => {
     commsService.error.subscribe(error => expect(error).toBe(errorMessage));
 
     component.submitRegistration();
-    expect(component.submitInProgress).toBe(true);
+    expect(component.submitInProgress()).toBe(true);
 
     const req = httpMock.expectOne(`${loginService['_apiEndpoint']}/setpassword`);
     expect(req.request.method).toBe('POST');
-    expect(req.request.body).toEqual(component.userAccount);
+    expect(req.request.body).toEqual(component.userAccount());
     req.error(new ProgressEvent('Server Error'), { status: 500, statusText: 'Registration failed' });
-    expect(component.error).toBe(errorMessage);
+    expect(component.error()).toBe(errorMessage);
+    expect(component.submitInProgress()).toBe(false);
   });
 
-  // it('should initialize username check', () => {
-  //   vi.spyOn(fromEvent(component.usernameInput.nativeElement, 'input'), 'pipe').mockReturnValue(
-  //     fromEvent(component.usernameInput.nativeElement, 'input').pipe(
-  //       debounceTime(300),
-  //       map((event: any) => event.target.value)
-  //     )
-  //   );
+  it('should update the user account from the form fields', () => {
+    component.updateAccount('username', 'new-user');
+    component.updateAccount('email', 'new@user.com');
+    expect(component.userAccount()).toEqual({ username: 'new-user', password: '', confirmPassword: '', email: 'new@user.com' });
+  });
 
-  //   component.initUsernameCheck();
+  it('should update the user account from the template inputs', () => {
+    const fields = { regusername: 'typed-user', email: 'typed@user.com', password: 'Passw0rd!', confirmPassword: 'Passw0rd!' };
+    for (const [id, value] of Object.entries(fields)) {
+      const input: HTMLInputElement = fixture.nativeElement.querySelector(`#${id}`);
+      input.value = value;
+      input.dispatchEvent(new Event('input'));
+    }
+    expect(component.userAccount()).toEqual({
+      username: 'typed-user',
+      email: 'typed@user.com',
+      password: 'Passw0rd!',
+      confirmPassword: 'Passw0rd!'
+    });
+  });
 
-  //   expect(component.usernameInput.nativeElement).toBeDefined();
-  //   expect(fromEvent(component.usernameInput.nativeElement, 'input').pipe).toHaveBeenCalled();
-  // });
+  it('should populate the account from the authenticated user', () => {
+    httpMock.expectOne(`${loginService['_apiEndpoint']}`).flush({ username: 'auth-user', email: 'auth@user.com' });
+    TestBed.tick();
+    expect(component.userAccount()).toEqual({ username: 'auth-user', password: '', confirmPassword: '', email: 'auth@user.com' });
+  });
+
+  it('should not populate the account from an authenticated user without an email', () => {
+    httpMock.expectOne(`${loginService['_apiEndpoint']}`).flush({ username: 'auth-user', email: null });
+    TestBed.tick();
+    expect(component.userAccount()).toEqual({ username: '', password: '', confirmPassword: '', email: '' });
+  });
+
+  it('should render the registration error', async () => {
+    component.error.set('Registration failed');
+    await fixture.whenStable();
+    expect(fixture.nativeElement.querySelector('.error-hint').textContent.trim()).toBe('Registration failed');
+  });
+
+  describe('username check', () => {
+    const typeUsername = (value: string) => {
+      const input = component.usernameInput().nativeElement;
+      input.value = value;
+      input.dispatchEvent(new Event('input'));
+      input.dispatchEvent(new KeyboardEvent('keyup'));
+    };
+
+    beforeEach(() => {
+      vi.useFakeTimers();
+    });
+
+    afterEach(() => {
+      vi.useRealTimers();
+    });
+
+    it('should flag a username that is already taken', async () => {
+      typeUsername('taken');
+      vi.advanceTimersByTime(300);
+
+      httpMock.expectOne(`${loginService['_apiEndpoint']}/username?username=taken`).flush(true);
+      expect(component.inUse()).toBe(true);
+
+      await fixture.whenStable();
+      expect(fixture.nativeElement.querySelector('igx-hint.color-error').textContent).toContain('Username already taken');
+    });
+
+    it('should clear the flag for an available username', () => {
+      component.inUse.set(true);
+      typeUsername('available');
+      vi.advanceTimersByTime(300);
+
+      httpMock.expectOne(`${loginService['_apiEndpoint']}/username?username=available`).flush(false);
+      expect(component.inUse()).toBe(false);
+    });
+
+    it('should debounce keystrokes and only check the latest value', () => {
+      typeUsername('a');
+      vi.advanceTimersByTime(100);
+      typeUsername('ab');
+      vi.advanceTimersByTime(299);
+      httpMock.expectNone(req => req.url.includes('/username'));
+
+      vi.advanceTimersByTime(1);
+      httpMock.expectOne(`${loginService['_apiEndpoint']}/username?username=ab`).flush(false);
+    });
+
+    it('should ignore the result when the username belongs to the authenticated user', () => {
+      httpMock.expectOne(`${loginService['_apiEndpoint']}`).flush({ username: 'auth-user', email: 'auth@user.com' });
+      TestBed.tick();
+
+      typeUsername('auth-user');
+      vi.advanceTimersByTime(300);
+
+      httpMock.expectOne(`${loginService['_apiEndpoint']}/username?username=auth-user`).flush(true);
+      expect(component.inUse()).toBe(false);
+    });
+  });
 });

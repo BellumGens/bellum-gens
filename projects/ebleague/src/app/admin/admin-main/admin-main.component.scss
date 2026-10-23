@@ -7,7 +7,9 @@
     $drop-area-background: $banner-background,
     $ghost-header-background: $banner-background,
     $group-row-selected-background: $background,
-    $cell-editing-background: $background
+    $cell-editing-background: $background,
+    // The schema default (primary 500) is below 4.5:1 on the group row background
+    $group-label-column-name-text: var(--ig-primary-300)
   );
 
   @include tokens(

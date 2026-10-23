@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideRouter } from '@angular/router';
@@ -33,6 +33,7 @@ describe('ProductCardComponent', () => {
   let api: ApiShopService;
 
   beforeEach(async () => {
+    vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout', 'setInterval', 'clearInterval', 'Date'] });
     localStorage.clear();
     await TestBed.configureTestingModule({
       imports: [ProductCardComponent, NoopAnimationsModule],
@@ -47,6 +48,7 @@ describe('ProductCardComponent', () => {
   });
 
   afterEach(() => {
+    vi.useRealTimers();
     httpMock.verify();
     localStorage.clear();
   });
@@ -54,7 +56,7 @@ describe('ProductCardComponent', () => {
   /** Adding to the cart triggers the cart's debounced re-pricing; answer it so the queue stays clean. */
   const drainQuotes = () => {
     TestBed.tick();
-    tick(300);
+    vi.advanceTimersByTime(300);
     httpMock.match(`${api['_apiEndpoint']}/shop/quote`).forEach(request => request.flush(null));
   };
 
@@ -106,7 +108,7 @@ describe('ProductCardComponent', () => {
     expect(component.soldOut()).toBe(false);
   });
 
-  it('adds a simple product straight to the cart', fakeAsync(() => {
+  it('adds a simple product straight to the cart', () => {
     const simple = product();
     show(simple);
 
@@ -116,9 +118,9 @@ describe('ProductCardComponent', () => {
     expect(cart.items()[0].productId).toBe('p1');
     expect(cart.items()[0].variantId).toBeUndefined();
     drainQuotes();
-  }));
+  });
 
-  it('does not add a product that needs an option chosen', fakeAsync(() => {
+  it('does not add a product that needs an option chosen', () => {
     show(product({ variants: [variant('v1', 'Male / L', 5)] }));
 
     component.addToCart();
@@ -126,16 +128,16 @@ describe('ProductCardComponent', () => {
     expect(component.hasOptions()).toBe(true);
     expect(cart.isEmpty()).toBe(true);
     drainQuotes();
-  }));
+  });
 
-  it('does not add a sold out product', fakeAsync(() => {
+  it('does not add a sold out product', () => {
     show(product({ stockQuantity: 0 }));
 
     component.addToCart();
 
     expect(cart.isEmpty()).toBe(true);
     drainQuotes();
-  }));
+  });
 
   it('hides the add button for products with options', () => {
     show(product({ variants: [variant('v1', 'Male / L', 5)] }));

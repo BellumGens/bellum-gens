@@ -2,8 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 
 @Pipe({
-    name: 'safeVideoLink',
-    standalone: true
+    name: 'safeVideoLink'
 })
 export class SafeVideoLinkPipe implements PipeTransform {
   // eslint-disable-next-line @angular-eslint/prefer-inject

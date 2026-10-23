@@ -1,6 +1,6 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { CSGOTeam, ApiSearchService } from '../../../../../../common/src/public_api';
+import { ApiSearchService } from '../../../../../../common/src/public_api';
 import { BaseDirective } from '../../../base/base.component';
 import { QueryParsedPipe } from '../../../pipes/query-parsed.pipe';
 import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
@@ -22,19 +22,17 @@ import { LoadingComponent } from '../../../../../../common/src/lib/loading/loadi
 export class TeamResultsComponent extends BaseDirective {
   private apiService = inject(ApiSearchService);
 
-  public teams: CSGOTeam [];
-  public loading = false;
-  public query: string;
+  public teams = this.apiService.teamSearchResult;
+  public loading = this.apiService.loadingSearch;
+  public query = signal<string>(null);
 
   constructor() {
     super();
     this.activeRoute.params.subscribe(params => {
       if (params.query) {
-        this.query = params.query;
+        this.query.set(params.query);
         this.apiService.searchTeams(params.query);
       }
     });
-    this.apiService.loadingSearch.subscribe(loading => this.loading = loading);
-    this.apiService.teamSearchResult.subscribe(players => this.teams = players);
   }
 }

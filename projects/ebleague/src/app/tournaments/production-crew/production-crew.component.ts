@@ -8,7 +8,8 @@ import { NgOptimizedImage } from '@angular/common';
 @Component({
   selector: 'app-production-crew',
   templateUrl: './production-crew.component.html',
-  styleUrls: ['./production-crew.component.scss'],  imports: [
+  styleUrls: ['./production-crew.component.scss'],
+  imports: [
     NgOptimizedImage,
     IGX_CARD_DIRECTIVES,
     IgxButtonDirective,
@@ -16,14 +17,10 @@ import { NgOptimizedImage } from '@angular/common';
   ]
 })
 export class ProductionCrewComponent {
-  public crewMembers = CREW_MEMBERS;
+  private localeId = inject(LOCALE_ID);
 
-  constructor() {
-    const localeId = inject(LOCALE_ID);
-
-    if (localeId === 'bg') {
-      this.crewMembers.map((item, i) => Object.assign(item, CREW_MEMBERS_BG[i]));
-    }
-  }
-
+  // Localized copies instead of mutating the shared CREW_MEMBERS constant.
+  public crewMembers = this.localeId === 'bg'
+    ? CREW_MEMBERS.map((item, i) => ({ ...item, ...CREW_MEMBERS_BG[i] }))
+    : CREW_MEMBERS;
 }

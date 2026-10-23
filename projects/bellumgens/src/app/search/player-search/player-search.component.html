@@ -2,14 +2,14 @@
   <div class="form-row">
     <div>
       <label for="lineup" i18n>Players playing as</label>
-      <igx-radio-group class="search-role-group" [(ngModel)]="searchModel.role" name="role" id="lineup">
+      <igx-radio-group class="search-role-group" [(ngModel)]="role" name="role" id="lineup">
         @for (slot of activeLineup; track slot.role) {
           <igx-radio class="search-role" [value]="slot.role">{{ slot.roleName }}</igx-radio>
         }
       </igx-radio-group>
     </div>
 
-    @if (authUser) {
+    @if (authUser()) {
       <div>
         <label for="availability" i18n>A minimum overlap with my</label>
         <div class="search-role-group">
@@ -18,12 +18,12 @@
             <igx-radio class="search-role" [value]="1" i18n>Team practice</igx-radio>
           </igx-radio-group>
         </div>
-        @if (userOverlap && teamAdmin.length) {
+        @if (userOverlap() && teamAdmin()?.length) {
           <!-- IgxSelect: default positioning changed to AutoPositionStrategy (below/above input).
      To preserve overlap behavior: this.select.overlaySettings = { positionStrategy: new IgxSelectOverlapPositionStrategy(this.select) }; -->
-<igx-select type="border" name="teamOverlap" [(ngModel)]="searchModel.teamId">
+<igx-select type="border" name="teamOverlap" [(ngModel)]="teamId">
             <label for="team-select" igxLabel i18n>Select team</label>
-            @for (team of teamAdmin; track team.teamId) {
+            @for (team of teamAdmin(); track team.teamId) {
               <igx-select-item
                 [value]="team.teamId"
                 [text]="team.teamName">
@@ -47,7 +47,7 @@
           [showTicks]="true"
           [primaryTicks]="5"
           [secondaryTicks]="1"
-          [(ngModel)]="searchModel.scheduleOverlap">
+          [(ngModel)]="scheduleOverlap">
           <ng-template igxSliderTickLabel let-value>
             {{ parseInt(value, 10) }}
           </ng-template>

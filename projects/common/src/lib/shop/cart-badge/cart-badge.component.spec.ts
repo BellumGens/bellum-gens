@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideRouter } from '@angular/router';
@@ -28,6 +28,7 @@ describe('CartBadgeComponent', () => {
   let api: ApiShopService;
 
   beforeEach(async () => {
+    vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout', 'setInterval', 'clearInterval', 'Date'] });
     localStorage.clear();
     await TestBed.configureTestingModule({
       imports: [CartBadgeComponent, NoopAnimationsModule],
@@ -42,13 +43,14 @@ describe('CartBadgeComponent', () => {
   });
 
   afterEach(() => {
+    vi.useRealTimers();
     httpMock.verify();
     localStorage.clear();
   });
 
   const drainQuotes = () => {
     TestBed.tick();
-    tick(300);
+    vi.advanceTimersByTime(300);
     httpMock.match(`${api['_apiEndpoint']}/shop/quote`).forEach(request => request.flush(null));
   };
 
@@ -63,16 +65,16 @@ describe('CartBadgeComponent', () => {
     expect(fixture.nativeElement.querySelector('igx-badge')).toBeNull();
   });
 
-  it('shows the number of items once the cart has some', fakeAsync(() => {
+  it('shows the number of items once the cart has some', () => {
     cart.add(umbrella, null, 2);
     fixture.detectChanges();
 
     expect(fixture.nativeElement.querySelector('igx-badge')).not.toBeNull();
     expect(fixture.nativeElement.querySelector('igx-badge').textContent).toContain('2');
     drainQuotes();
-  }));
+  });
 
-  it('hides the badge again when the cart is cleared', fakeAsync(() => {
+  it('hides the badge again when the cart is cleared', () => {
     cart.add(umbrella);
     fixture.detectChanges();
     expect(fixture.nativeElement.querySelector('igx-badge')).not.toBeNull();
@@ -82,5 +84,5 @@ describe('CartBadgeComponent', () => {
 
     expect(fixture.nativeElement.querySelector('igx-badge')).toBeNull();
     drainQuotes();
-  }));
+  });
 });

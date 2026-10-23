@@ -2,4 +2,25 @@
   .notification-disabled {
     opacity: 0.5;
   }
+
+  // On phones the actions move below the text, which keeps the width next to the avatar
+  @media only screen and (max-width: 600px) {
+    .igx-list__item-content {
+      flex-wrap: wrap;
+    }
+
+    .igx-list__item-lines {
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    .igx-list__item-actions {
+      flex-basis: 100%;
+      justify-content: flex-end;
+
+      &:empty {
+        display: none;
+      }
+    }
+  }
 }

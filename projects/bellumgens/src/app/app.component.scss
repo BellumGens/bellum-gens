@@ -18,6 +18,21 @@
     height: 44px;
   }
 
+  .logo-link {
+    display: inline-flex;
+    color: inherit;
+  }
+
+  // The drawer items are links; drop the global link color so the drawer theme colors apply
+  a[igxDrawerItem] {
+    color: revert-layer;
+  }
+
+  // Only shown on narrow screens, where the search collapses behind it
+  .search-toggle {
+    display: none;
+  }
+
   @media only screen and (max-width: 720px) {
     .search-group {
       width: auto;
@@ -25,6 +40,56 @@
 
     .igx-navbar, .igx-navbar__right {
       gap: 0;
+    }
+  }
+
+  // Keep the navbar within phone widths (down to 320px)
+  @media only screen and (max-width: 600px) {
+    .bellum-gens-navbar {
+      .igx-navbar__left,
+      .igx-navbar__right {
+        min-width: 0;
+      }
+
+      .igx-navbar__right {
+        flex: 1 1 auto;
+        justify-content: flex-end;
+      }
+    }
+
+    .logo {
+      width: 88px;
+      height: 32px;
+    }
+
+    // The language and profile buttons only hold icons
+    bg-languages .profile-button,
+    bg-login .profile-button {
+      min-width: auto;
+      padding-inline: 4px;
+    }
+
+    .search-toggle {
+      display: inline-flex;
+      flex-shrink: 0;
+    }
+
+    .search-group {
+      display: none;
+      flex: 1 1 auto;
+      min-width: 0;
+    }
+
+    // The expanded search takes the place of the logo and the language picker
+    .search-expanded {
+      .search-group {
+        display: flex;
+      }
+
+      .logo-link,
+      bg-languages {
+        display: none;
+      }
     }
   }
 }

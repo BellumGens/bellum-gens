@@ -1,9 +1,9 @@
 import { NgOptimizedImage, isPlatformBrowser } from '@angular/common';
-import { Component, PLATFORM_ID, inject } from '@angular/core';
+import { Component, PLATFORM_ID, Signal, computed, effect, inject, signal, untracked } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
-import { IgxButtonDirective, IgxDividerComponent } from '@infragistics/igniteui-angular/directives';
+import { IgxButtonDirective, IgxDividerComponent, IgxIconButtonDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import {
   Game, RegistrationsCount, Tournament,
@@ -22,6 +22,7 @@ import {
     FormsModule,
     // TournamentRegistrationComponent,
     IgxButtonDirective,
+    IgxIconButtonDirective,
     IgxDividerComponent,
     IgxIconComponent,
     IGX_INPUT_GROUP_DIRECTIVES
@@ -33,25 +34,26 @@ export class HomeComponent {
   private socialMedia = inject(SocialMediaService);
   private authManager = inject(LoginService);
 
-  public userEmail: string = '';
+  public userEmail = signal('');
   public gameEnum = Game;
-  public registrations!: RegistrationsCount [];
-  public tournament!: Tournament;
-  public tournamentId!: string;
-  public authUser!: ApplicationUser;
+  // The active tournament and its registration counts are only loaded in the browser.
+  public registrations: Signal<RegistrationsCount []> = this.apiService.registrationsCount;
+  public tournament: Signal<Tournament> = isPlatformBrowser(this.platformId)
+    ? this.apiService.activeTournament
+    : signal<Tournament>(null).asReadonly();
+  public tournamentId = computed(() => this.tournament()?.id ?? null);
+  // The user is only looked up in the browser.
+  public authUser: Signal<ApplicationUser> = isPlatformBrowser(this.platformId)
+    ? this.authManager.applicationUser
+    : signal<ApplicationUser>(null).asReadonly();
 
   constructor() {
-    if (isPlatformBrowser(this.platformId)) {
-      this.apiService.activeTournament.subscribe(data => {
-        if (data) {
-          this.tournament = data;
-          this.tournamentId = data.id;
-          this.apiService.getRegistrationsCount(data.id);
-        }
-      });
-      this.apiService.registrationsCount.subscribe(data => this.registrations = data);
-      this.authManager.applicationUser.subscribe(user => this.authUser = user);
-    }
+    effect(() => {
+      const tournamentId = this.tournamentId();
+      if (tournamentId) {
+        untracked(() => this.apiService.getRegistrationsCount(tournamentId));
+      }
+    });
   }
 
   public openLogin() {
@@ -66,8 +68,9 @@ export class HomeComponent {
   }
 
   public subscribe() {
-    if (this.userEmail) {
-      this.authManager.addSubscriber(this.userEmail).subscribe();
+    const email = this.userEmail();
+    if (email) {
+      this.authManager.addSubscriber(email).subscribe();
     }
   }
 

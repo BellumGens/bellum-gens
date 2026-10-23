@@ -3,3 +3,28 @@
   height: 1.5rem;
   min-width: 1.5rem;
 }
+
+// Keeps the look of the list item title (its color and typography come from igxListLineTitle) while covering the whole item
+.steam-group-button {
+  padding: 0;
+  border: none;
+  background: none;
+  text-align: start;
+  cursor: pointer;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+  }
+
+  &:focus-visible {
+    outline: none;
+  }
+
+  &:focus-visible::after {
+    outline: 2px solid currentColor;
+    outline-offset: -2px;
+  }
+}

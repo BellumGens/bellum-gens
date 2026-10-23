@@ -30,9 +30,13 @@
             "ssr": {
               "entry": "projects/bellumgens/server.ts"
             },
+            "security": {
+              "allowedHosts": [
+                  "bellumgens.com",
+                  "www.bellumgens.com"
+              ]
+            },
             "polyfills": [
-              "zone.js",
-              "hammerjs",
               "@angular/localize/init"
             ],
             "tsConfig": "projects/bellumgens/tsconfig.app.json",
@@ -41,7 +45,6 @@
               "projects/bellumgens/src/favicon.ico",
               "projects/bellumgens/src/assets",
               "projects/bellumgens/src/robots.txt",
-              "projects/bellumgens/src/ads.txt",
               "projects/bellumgens/src/manifest.json"
             ],
             "styles": [
@@ -89,7 +92,7 @@
               ]
             },
             "testing": {
-              "aot": false,
+              "aot": true,
               "optimization": false,
               "extractLicenses": false,
               "assets": [
@@ -98,8 +101,6 @@
                 "projects/bellumgens/src/manifest.json"
               ],
               "polyfills": [
-                "zone.js",
-                "zone.js/testing",
                 "@angular/localize/init"
               ],
               "fileReplacements": [
@@ -219,9 +220,13 @@
             "ssr": {
               "entry": "projects/ebleague/server.ts"
             },
+            "security": {
+              "allowedHosts": [
+                  "eb-league.com",
+                  "www.eb-league.com"
+              ]
+            },
             "polyfills": [
-              "zone.js",
-              "hammerjs",
               "@angular/localize/init"
             ],
             "tsConfig": "projects/ebleague/tsconfig.app.json",
@@ -230,7 +235,6 @@
               "projects/ebleague/src/favicon.ico",
               "projects/ebleague/src/assets",
               "projects/ebleague/src/robots.txt",
-              "projects/ebleague/src/ads.txt",
               "projects/ebleague/src/manifest.json"
             ],
             "styles": [
@@ -278,7 +282,7 @@
               "sourceMap": true
             },
             "testing": {
-              "aot": false,
+              "aot": true,
               "optimization": false,
               "extractLicenses": false,
               "assets": [
@@ -287,8 +291,6 @@
                 "projects/ebleague/src/manifest.json"
               ],
               "polyfills": [
-                "zone.js",
-                "zone.js/testing",
                 "@angular/localize/init"
               ],
               "fileReplacements": [
@@ -410,8 +412,6 @@
           "options": {
             "tsConfig": "projects/common/tsconfig.spec.json",
             "polyfills": [
-              "zone.js",
-              "zone.js/testing",
               "@angular/localize/init"
             ],
             "assets": [

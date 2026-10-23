@@ -1,16 +1,16 @@
 <div class="overview-container-card">
   <igx-card>
     <igx-card-header>
-      <igx-avatar src="/assets/wallpapers/csgo-watermark.webp" igxCardThumbnail shape="circle"></igx-avatar>
-      <h1 igxCardHeaderTitle i18n>{{ tournament?.name }} Counter-Strike League</h1>
+      <igx-avatar src="/assets/wallpapers/cs2-icon.svg" igxCardThumbnail shape="circle"></igx-avatar>
+      <h1 igxCardHeaderTitle i18n>{{ tournament()?.name }} Counter-Strike League</h1>
     </igx-card-header>
     <igx-card-content>
       <h4 i18n>Participants</h4>
       <div class="participants-container">
-        @if (loading) {
+        @if (loading()) {
           <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
         }
-        @for (registration of registrations; track registration.id) {
+        @for (registration of registrations(); track registration.id) {
           <div class="registration-slot">
             <igx-avatar [src]="registration.team.teamAvatar"
               [initials]="registration.team.teamName"
@@ -18,7 +18,7 @@
               size="medium"
               shape="circle">
             </igx-avatar>
-            @if (registration.userId === authUser?.id && registration.state === 0) {
+            @if (registration.userId === authUser()?.id && registration.state === 0) {
               <igx-badge
                 type="warning"
                 icon="priority_high"
@@ -28,30 +28,32 @@
               </igx-badge>
             }
             <a [href]="environment.bellumgens + '/team/' + registration.team.customUrl" target="_blank">{{ registration.team.teamName }}</a>
-            <span>[{{ registration.companyId }}]</span>
+            @if (registration.companyId) {
+              <span>[{{ registration.companyId }}]</span>
+            }
           </div>
         }
         <igx-divider></igx-divider>
       </div>
 
       <igx-grid cellSelection="none"
-        [data]="csgomatches"
+        [data]="csgomatches()"
         height="550px"
         i18n-emptyGridMessage
         emptyGridMessage="No matches found..."
-        [isLoading]="loadingMatches"
+        [isLoading]="loadingMatches()"
         [allowFiltering]="true">
 
         <igx-grid-toolbar>
-          <igx-grid-toolbar-title i18n>{{ tournament?.name }} Schedule</igx-grid-toolbar-title>
+          <igx-grid-toolbar-title i18n>{{ tournament()?.name }} Schedule</igx-grid-toolbar-title>
           <igx-grid-toolbar-actions>
             <a href="https://challonge.com/ebleague_csgo" target="_blank" rel="noopener" i18n>Season 2 bracket is available here</a>
           </igx-grid-toolbar-actions>
         </igx-grid-toolbar>
 
-        <igx-column field="startTime" width="220px" dataType="date" i18n-header header="Start time">
+        <igx-column field="startTime" [width]="narrowScreen() ? '150px' : '220px'" dataType="date" i18n-header header="Start time">
           <ng-template igxCell let-value>
-            {{ value | date:'MMM d, y, h:mm a' }}
+            {{ value | date:(narrowScreen() ? 'short' : 'MMM d, y, h:mm a') }}
           </ng-template>
         </igx-column>
 
@@ -81,7 +83,8 @@
           </div>
         </igx-column>
 
-        <igx-column width="150px" field="videoLink" i18n-header header="Video" [filterable]="false">
+        <!-- On phones the links move to the row details to leave room for the match -->
+        <igx-column width="150px" field="videoLink" i18n-header header="Video" [filterable]="false" [hidden]="narrowScreen()">
           <ng-template igxCell let-value>
             @if (value) {
               <a [href]="value" target="_blank" class="horizontal-center">
@@ -92,7 +95,7 @@
           </ng-template>
         </igx-column>
 
-        <igx-column width="150px" field="demoLink" i18n-header header="Demo" [filterable]="false">
+        <igx-column width="150px" field="demoLink" i18n-header header="Demo" [filterable]="false" [hidden]="narrowScreen()">
           <ng-template igxCell let-value>
             @if (value) {
               <a [href]="value" target="_blank" class="horizontal-center">
@@ -104,6 +107,22 @@
         </igx-column>
 
         <ng-template igxGridDetail let-dataItem>
+          @if (narrowScreen() && (dataItem.videoLink || dataItem.demoLink)) {
+            <div class="horizontal-center match-links">
+              @if (dataItem.videoLink) {
+                <a [href]="dataItem.videoLink" target="_blank" class="horizontal-center">
+                  <igx-icon>link</igx-icon>
+                  <span i18n>Video</span>
+                </a>
+              }
+              @if (dataItem.demoLink) {
+                <a [href]="dataItem.demoLink" target="_blank" class="horizontal-center">
+                  <igx-icon>link</igx-icon>
+                  <span i18n>Demo</span>
+                </a>
+              }
+            </div>
+          }
           @for (map of dataItem.maps; track map.id) {
             <div class="horizontal-center">
               <div class="score-container">
@@ -127,9 +146,10 @@
       </igx-grid>
 
       <div class="group-columns">
-        @for (group of groups; track group.id) {
+        @for (group of groups(); track group.id) {
           <igx-grid
             cellSelection="none"
+            [isLoading]="loadingGroups()"
             [data]="group.participants">
             <igx-grid-toolbar>
               <igx-grid-toolbar-title>{{group.name}}</igx-grid-toolbar-title>

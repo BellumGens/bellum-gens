@@ -1,12 +1,13 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable, Signal, inject, signal, untracked } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SteamGroup, SteamUser } from '../models/steamuser';
-import { Observable, throwError, BehaviorSubject } from 'rxjs';
+import { Observable, Subscription, throwError } from 'rxjs';
 import { CSGOTeam, TeamMember, TeamApplication } from '../models/csgoteam';
 import { Availability } from '../models/playeravailability';
 import { Role } from '../models/playerrole';
 import { CSGOMapPool } from '../models/csgomaps';
-import { map, catchError } from 'rxjs/operators';
+import { CSGODetails } from '../models/csgoplayer';
+import { map, catchError, finalize } from 'rxjs/operators';
 import { UserNotification } from '../models/usernotifications';
 import { environment } from '../environments/environment';
 import { CommunicationService } from './communication.service';
@@ -21,18 +22,31 @@ export class BellumgensApiService {
   private http = inject(HttpClient);
   private commService = inject(CommunicationService);
 
-  public loadingTeams = new BehaviorSubject<boolean>(false);
-  public loadingPlayers = new BehaviorSubject<boolean>(false);
-  public loadingPlayer = new BehaviorSubject<boolean>(false);
+  private _loadingTeams = signal(false);
+  private _loadingPlayers = signal(false);
+  private _loadingPlayer = signal(false);
+  public readonly loadingTeams = this._loadingTeams.asReadonly();
+  public readonly loadingPlayers = this._loadingPlayers.asReadonly();
+  public readonly loadingPlayer = this._loadingPlayer.asReadonly();
 
   private _apiEndpoint = environment.apiEndpoint;
-  private _teamReqInProgress = false;
+  // The id being fetched and its request, so navigating to another id can supersede it
+  private _teamRequest: { teamId: string; subscription: Subscription } = null;
+  private _playerRequest: { userId: string; subscription: Subscription } = null;
 
   // Cache
-  private _currentTeam = new BehaviorSubject<CSGOTeam>(null);
-  private _currentTeamMembers = new BehaviorSubject<TeamMember []>(null);
-  private _currentTeamPractice = new BehaviorSubject<Availability []>(null);
-  private _currentPlayer = new BehaviorSubject<ApplicationUser>(null);
+  private _currentTeam = signal<CSGOTeam>(null);
+  private _currentTeamMembers = signal<TeamMember []>(null);
+  private _currentTeamPractice = signal<Availability []>(null);
+  private _currentPlayer = signal<ApplicationUser>(null);
+  // The id the cached members and schedule were fetched for. They are cached
+  // independently of the current team, so they carry their own key.
+  private _currentTeamMembersId: string = null;
+  private _currentTeamPracticeId: string = null;
+  private readonly currentTeam = this._currentTeam.asReadonly();
+  private readonly currentTeamMembers = this._currentTeamMembers.asReadonly();
+  private readonly currentTeamPractice = this._currentTeamPractice.asReadonly();
+  private readonly currentPlayer = this._currentPlayer.asReadonly();
   private _teamApplications = new Map<string, Observable<TeamApplication[]>>();
 
   public getUserTeams(userId: string) {
@@ -47,35 +61,52 @@ export class BellumgensApiService {
     return this._teamApplications.get(teamId);
   }
 
-  public getTeam(teamId: string) {
-    if (!this._teamReqInProgress) {
-      if (!this._currentTeam.value || this._currentTeam.value.teamId !== teamId || this._currentTeam.value.customUrl !== teamId) {
-        this._teamReqInProgress = true;
-        this.getTeamFromServer(teamId).subscribe(team => {
-          this._currentTeam.next(team);
-          this._teamReqInProgress = false;
+  public getTeam(teamId: string): Signal<CSGOTeam> {
+    untracked(() => {
+      if (this._teamRequest?.teamId === teamId) {
+        return;
+      }
+      const team = this._currentTeam();
+      // Teams are requested either by id or by custom url
+      if (!team || (team.teamId !== teamId && team.customUrl !== teamId)) {
+        // A slower response for the previous team must not overwrite this one
+        this._teamRequest?.subscription.unsubscribe();
+        const request = { teamId, subscription: null as Subscription };
+        this._teamRequest = request;
+        request.subscription = this.getTeamFromServer(teamId).pipe(
+          finalize(() => {
+            if (this._teamRequest === request) {
+              this._teamRequest = null;
+            }
+          })
+        ).subscribe(response => this._currentTeam.set(response));
+      }
+    });
+    return this.currentTeam;
+  }
+
+  public getTeamMembers(teamId: string): Signal<TeamMember []> {
+    untracked(() => {
+      if (!this._currentTeamMembers() || this._currentTeamMembersId !== teamId) {
+        this.getTeamMembersFromServer(teamId).subscribe(members => {
+          this._currentTeamMembersId = teamId;
+          this._currentTeamMembers.set(members);
         });
       }
-    }
-    return this._currentTeam;
+    });
+    return this.currentTeamMembers;
   }
 
-  public getTeamMembers(teamId: string) {
-    if (!this._currentTeamMembers.value || this._currentTeam.value.teamId !== teamId || this._currentTeam.value.customUrl !== teamId) {
-      this.getTeamMembersFromServer(teamId).subscribe(members => {
-        this._currentTeamMembers.next(members);
-      });
-    }
-    return this._currentTeamMembers;
-  }
-
-  public getTeamSchedule(teamId: string) {
-    if (!this._currentTeamPractice.value || this._currentTeam.value.teamId !== teamId || this._currentTeam.value.customUrl !== teamId) {
-      this.getTeamPractice(teamId).subscribe(schedule => {
-        this._currentTeamPractice.next(schedule);
-      });
-    }
-    return this._currentTeamPractice;
+  public getTeamSchedule(teamId: string): Signal<Availability []> {
+    untracked(() => {
+      if (!this._currentTeamPractice() || this._currentTeamPracticeId !== teamId) {
+        this.getTeamPractice(teamId).subscribe(schedule => {
+          this._currentTeamPracticeId = teamId;
+          this._currentTeamPractice.set(schedule);
+        });
+      }
+    });
+    return this.currentTeamPractice;
   }
 
   public registerSteamGroup(group: SteamGroup) {
@@ -120,6 +151,7 @@ export class BellumgensApiService {
   public updateTeamMember(teamMember: TeamMember): Observable<TeamMember> {
     return this.http.put<TeamMember>(`${this._apiEndpoint}/teams/member`, teamMember, { withCredentials: true }).pipe(
       map(response => {
+        this._currentTeamMembersId = null;
         this.commService.emitSuccess(`${teamMember.username} updated successfully!`);
         return response;
       }),
@@ -135,6 +167,7 @@ export class BellumgensApiService {
     return this.http.delete(`${this._apiEndpoint}/teams/removemember?teamId=${teamMember.teamId}&userId=${teamMember.userId}`,
       { withCredentials: true }).pipe(
         map(response => {
+          this._currentTeamMembersId = null;
           this.commService.emitSuccess(`${teamMember.username} removed from team!`);
           return response;
         }),
@@ -148,6 +181,7 @@ export class BellumgensApiService {
   public abandonTeam(team: CSGOTeam) {
     return this.http.delete(`${this._apiEndpoint}/teams/abandon?teamId=${team.teamId}`, { withCredentials: true }).pipe(
       map(response => {
+        this._currentTeamMembersId = null;
         this.commService.emitSuccess(`You're are no longer part of ${team.teamName}`);
         return response;
       }),
@@ -193,6 +227,7 @@ export class BellumgensApiService {
   public approveApplication(application: TeamApplication): Observable<TeamApplication> {
     return this.http.put<TeamApplication>(`${this._apiEndpoint}/teams/approveapplication`, application, { withCredentials: true }).pipe(
       map(response => {
+        this._currentTeamMembersId = null;
         this.commService.emitSuccess(`${application.userName} is now part of your team!`);
         return response;
       }),
@@ -240,6 +275,7 @@ export class BellumgensApiService {
   public setTeamPractice(day: Availability) {
     return this.http.put(`${this._apiEndpoint}/teams/availability`, day, { withCredentials: true }).pipe(
       map(response => {
+        this._currentTeamPracticeId = null;
         this.commService.emitSuccess('Practice schedule updated!');
         return response;
       }),
@@ -250,22 +286,30 @@ export class BellumgensApiService {
     );
   }
 
-  public getPlayer(userId: string) {
-    if (!this.playerMatch(userId)) {
-      this._currentPlayer.next(null);
-      this.loadingPlayer.next(true);
-      this.getPlayerFromServer(userId).subscribe({
-        next: player => {
-          this._currentPlayer.next(player);
-          this.loadingPlayer.next(false);
-        },
-        error: () => {
-          this._currentPlayer.next(null);
-          this.loadingPlayer.next(false);
-        }
+  public getPlayer(userId: string): Signal<ApplicationUser> {
+    untracked(() => {
+      if (this._playerRequest?.userId === userId || this.playerMatch(userId)) {
+        return;
+      }
+      // A slower response for the previous player must not overwrite this one
+      this._playerRequest?.subscription.unsubscribe();
+      this._currentPlayer.set(null);
+      this._loadingPlayer.set(true);
+      const request = { userId, subscription: null as Subscription };
+      this._playerRequest = request;
+      request.subscription = this.getPlayerFromServer(userId).pipe(
+        finalize(() => {
+          if (this._playerRequest === request) {
+            this._playerRequest = null;
+            this._loadingPlayer.set(false);
+          }
+        })
+      ).subscribe({
+        next: player => this._currentPlayer.set(player),
+        error: () => this._currentPlayer.set(null)
       });
-    }
-    return this._currentPlayer;
+    });
+    return this.currentPlayer;
   }
 
   public getPlayerTournaments(userid: string) {
@@ -308,9 +352,10 @@ export class BellumgensApiService {
     );
   }
 
-  public setPrimaryRole(role: Role): Observable<any> {
+  public setPrimaryRole(role: Role, userId: string): Observable<any> {
     return this.http.put(`${this._apiEndpoint}/users/primaryrole?id=${role.id}`, role, { withCredentials: true }).pipe(
       map(response => {
+        this.updateCurrentPlayerDetails(userId, { primaryRole: role.id });
         this.commService.emitSuccess(`Primary role set to ${role.name}`);
         return response;
       }),
@@ -321,9 +366,10 @@ export class BellumgensApiService {
     );
   }
 
-  public setSecondaryRole(role: Role): Observable<any> {
+  public setSecondaryRole(role: Role, userId: string): Observable<any> {
     return this.http.put(`${this._apiEndpoint}/users/secondaryrole?id=${role.id}`, role, { withCredentials: true }).pipe(
       map(response => {
+        this.updateCurrentPlayerDetails(userId, { secondaryRole: role.id });
         this.commService.emitSuccess(`Secondary role set to ${role.name}`);
         return response;
       }),
@@ -354,6 +400,7 @@ export class BellumgensApiService {
   public acceptInvite(notification: UserNotification) {
     return this.http.put(`${this._apiEndpoint}/users/acceptTeamInvite`, notification, { withCredentials: true }).pipe(
       map(response => {
+        this._currentTeamMembersId = null;
         this.commService.emitSuccess('Team invite accepted!');
         return response;
       }),
@@ -405,8 +452,18 @@ export class BellumgensApiService {
     return this.http.get<TeamMember []>(`${this._apiEndpoint}/teams/members?teamid=${teamId}`);
   }
 
+  private updateCurrentPlayerDetails(userId: string, details: Partial<CSGODetails>) {
+    const player = this._currentPlayer();
+    // The PUT can resolve after navigation has swapped the cached player, so only
+    // patch the cache if it still holds the player that was actually edited.
+    if (player?.id === userId && player.csgoDetails) {
+      this._currentPlayer.set({ ...player, csgoDetails: { ...player.csgoDetails, ...details } });
+    }
+  }
+
   private playerMatch(userId: string) {
-    return this._currentPlayer.value && this._currentPlayer.value.steamUser &&
-      (this._currentPlayer.value.steamUser.customURL === userId ||  this._currentPlayer.value.steamUser.steamID64 === userId);
+    const player = this._currentPlayer();
+    return player && player.steamUser &&
+      (player.steamUser.customURL === userId || player.steamUser.steamID64 === userId);
   }
 }

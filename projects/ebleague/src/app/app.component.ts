@@ -1,10 +1,10 @@
-import { Component, OnInit, ViewChild, PLATFORM_ID, LOCALE_ID, inject } from '@angular/core';
+import { Component, PLATFORM_ID, LOCALE_ID, Signal, afterNextRender, inject, signal, viewChild } from '@angular/core';
 import { isPlatformBrowser, NgOptimizedImage } from '@angular/common';
 import { Router, NavigationEnd, RouterLink, RouterLinkActive, RouterOutlet, ActivatedRoute } from '@angular/router';
 import { filter } from 'rxjs/operators';
 
 import { IgxNavDrawerItemDirective, IgxNavDrawerMiniTemplateDirective, IgxNavDrawerTemplateDirective, IgxNavigationDrawerComponent } from '@infragistics/igniteui-angular/navigation-drawer';
-import { IgxDividerComponent, IgxFlexDirective, IgxLayoutDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
+import { IgxDividerComponent, IgxFlexDirective, IgxIconButtonDirective, IgxLayoutDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxIconComponent, IgxIconService } from '@infragistics/igniteui-angular/icon';
 import { IgxNavbarActionDirective, IgxNavbarComponent } from '@infragistics/igniteui-angular/navbar';
 import { changei18n } from '@infragistics/igniteui-angular/core';
@@ -21,7 +21,8 @@ import { shopRedirectUrl } from './guards/shop-redirect.guard';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],  imports: [
+  styleUrls: ['./app.component.scss'],
+  imports: [
     IgxLayoutDirective,
     IgxNavigationDrawerComponent,
     IgxNavDrawerTemplateDirective,
@@ -29,6 +30,7 @@ import { shopRedirectUrl } from './guards/shop-redirect.guard';
     IgxRippleDirective,
     RouterLink,
     IgxIconComponent,
+    IgxIconButtonDirective,
     RouterLinkActive,
     IgxNavDrawerMiniTemplateDirective,
     IgxFlexDirective,
@@ -42,7 +44,7 @@ import { shopRedirectUrl } from './guards/shop-redirect.guard';
     IgxDividerComponent
   ]
 })
-export class AppComponent implements OnInit {
+export class AppComponent {
   private platformId = inject(PLATFORM_ID);
   private localeId = inject(LOCALE_ID);
   private iconService = inject(IgxIconService);
@@ -54,10 +56,13 @@ export class AppComponent implements OnInit {
   // @ViewChild('cookiesBanner', { static: true })
   // private banner: IgxBannerComponent;
 
-  @ViewChild('drawer', { static: true })
-  private navdrawer: IgxNavigationDrawerComponent;
+  private drawer = viewChild.required<IgxNavigationDrawerComponent>('drawer');
 
-  public authUser: ApplicationUser;
+  // The user is only looked up in the browser.
+  public authUser: Signal<ApplicationUser> = isPlatformBrowser(this.platformId)
+    ? this.authManager.applicationUser
+    : signal<ApplicationUser>(null).asReadonly();
+  public drawerPinned = signal(false);
   public environment = environment;
   public year = new Date().getFullYear();
   /** The shop lives on bellumgens.com; link there in the visitor's language. */
@@ -65,9 +70,6 @@ export class AppComponent implements OnInit {
 
   constructor() {
     if (isPlatformBrowser(this.platformId)) {
-      this.authManager.applicationUser.subscribe(data => {
-        this.authUser = data;
-      });
       this.activatedRoute.queryParams.subscribe(params => {
         if (params?.message) {
           this.notificationService.emitSuccess(params.message);
@@ -75,18 +77,16 @@ export class AppComponent implements OnInit {
       });
       this.initSvgIcons();
     }
-  }
 
-  public ngOnInit(): void {
-    if (isPlatformBrowser(this.platformId)) {
+    afterNextRender(() => {
       // if (!window?.localStorage?.getItem('cookiesAccepted')) {
       //   this.banner.open();
       // }
 
       this.router.events.pipe(
         filter(x => x instanceof NavigationEnd)
-      ).subscribe(() => this.navdrawer.close());
-    }
+      ).subscribe(() => this.drawer().close());
+    });
   }
 
   // public acceptCookies() {

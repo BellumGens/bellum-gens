@@ -1,18 +1,18 @@
 <div class="strat-filter-header">
-  <div class="igx-card-header__title">
+  <div igxCardHeaderTitle>
     <span i18n>Showing</span>
-    <button class="navigation-item" igxButton="outlined" igxRipple (click)="viewAll = !viewAll">{{viewAll ? 'all maps' : 'active duty maps'}}</button>
+    <button class="navigation-item" igxButton="outlined" igxRipple (click)="viewAll.set(!viewAll())">{{viewAll() ? 'all maps' : 'active duty maps'}}</button>
   </div>
   <button class="navigation-item"
     igxButton="contained"
     igxRipple
-    (click)="authUser ? newStrategy.open() : openLogin()"
+    (click)="authUser() ? newStrategy.open() : openLogin()"
   i18n>Create new strategy</button>
 </div>
 <div class="strat-filter-header">
   <div class="horizontal">
     <igx-chips-area class="map-filter">
-      @for (map of maps | activeDutyMaps:viewAll; track map.mapId) {
+      @for (map of maps() | activeDutyMaps:viewAll(); track map.mapId) {
         <igx-chip
           [selected]="map.isPlayed"
           [selectable]="true"
@@ -34,82 +34,105 @@
   </div>
 </div>
 
-@if (loading) {
+@if (loading()) {
   <bg-loading></bg-loading>
 }
 
 <div class="card-wrapper">
-  @if (!loading && !strats?.length) {
-    <span class="igx-card-header__subtitle" i18n>No strategies found...</span>
+  @if (!loading() && !strats()?.length) {
+    <span igxCardHeaderSubtitle i18n>No strategies found...</span>
   }
 
-  @for (strat of strats | stratFilter:viewAll:pipeTrigger | sidestrats:maps:order; track strat.id) {
+  @for (strat of strats() | stratFilter:viewAll() | sidestrats:maps():order(); track strat.id) {
     <igx-card elevated>
       <igx-card-header>
         <h2 igxCardHeaderTitle
-          class="strat-title navigatable"
-          [title]="strat.title"
-        [routerLink]="['/strategies', 'details', strat.customUrl]">{{ strat.title }}</h2>
+          class="strat-title"
+          [title]="strat.title"><a class="strat-title-link" [routerLink]="['/strategies', 'details', strat.customUrl]">{{ strat.title }}</a></h2>
         <h4 igxCardHeaderSubtitle i18n>Author: @if (strat.owner) {<a [routerLink]="['/players', strat.userId]">{{ strat.owner }}</a>}</h4>
         <h6 igxCardHeaderSubtitle class="card-smaller-subtitle" i18n>Last Edit: {{ strat.lastUpdated | date }}</h6>
-        <igx-icon class="navigatable" [igxToggleAction]="useractions" [overlaySettings]="overlaySettings">more_vert</igx-icon>
+        <button type="button"
+          igxIconButton="flat"
+          [igxToggleAction]="useractions"
+          [overlaySettings]="overlaySettings"
+          [igxDropDownItemNavigation]="useractions"
+          aria-haspopup="listbox"
+          [attr.aria-expanded]="openedActionsId() === strat.id"
+          i18n-aria-label
+          aria-label="Strategy actions">
+          <igx-icon>more_vert</igx-icon>
+        </button>
       </igx-card-header>
-      <igx-card-media>
+      <!-- The media container defaults to role="img", which can't hold the video or the image link, so it is only a layout box -->
+      <igx-card-media role="none">
         @if (strat.url | isVideo) {
-          <iframe class="video-frame" [src]="strat.url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="video-frame" [src]="strat.url | safeVideoLink" [title]="strat.title" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         }
-        @else if (strat.stratImage) {
-          <img [ngSrc]="strat.stratImage" class="strat-image" width="350" height="315" [routerLink]="['/strategies', 'details', strat.customUrl]" />
+        @else if (strat.stratImage && !brokenImages().has(strat.stratImage)) {
+          <!-- Same destination as the title link, so the image link is left out of the tab order and the accessibility tree -->
+          <a [routerLink]="['/strategies', 'details', strat.customUrl]" tabindex="-1" aria-hidden="true">
+            <img [ngSrc]="strat.stratImage" class="strat-image" width="350" height="315" alt="" (error)="imageFailed(strat.stratImage)" />
+          </a>
         }
       </igx-card-media>
       <igx-card-content>
-        <p class="igx-card-header__subtitle">{{ strat.description | truncateText:130 }}</p>
+        <p igxCardHeaderSubtitle>{{ strat.description | truncateText:130 }}</p>
       </igx-card-content>
       <igx-card-actions class="strategy-actions">
-        <span igxStart class="horizontal-center navigatable" [routerLink]="['/strategies', 'details', strat.customUrl]">
-          <igx-badge [value]="strat.comments ? strat.comments.length : 0" type="info"></igx-badge>
+        <a igxStart
+          class="horizontal-center comments-link"
+          [routerLink]="['/strategies', 'details', strat.customUrl]"
+          [attr.aria-label]="commentsLabel(strat)">
+          <igx-badge [value]="strat.comments ? strat.comments.length : 0" type="info" aria-hidden="true"></igx-badge>
           <span i18n>Comments</span>
-        </span>
-        <button igxEnd igxButton="fab"
-          [ngClass]="strat.votes | hasVoted:0:authUser:pipeTrigger"
+        </a>
+        <button type="button" igxEnd igxButton="fab"
+          [class]="strat.votes | hasVoted:0:authUser()"
+          [attr.aria-pressed]="!!(strat.votes | hasVoted:0:authUser())"
+          [igxLabel]="voteLabel(strat.votes, 0)"
           igxRipple
           (click)="voteStrat(strat, 0)">
           <igx-icon title="vote up">thumb_up</igx-icon>
-          @if (strat.votes | votes:0:pipeTrigger) {
+          @if (strat.votes | votes:0) {
             <span>
-              {{strat.votes | votes:0:pipeTrigger}}
+              {{strat.votes | votes:0}}
             </span>
           }
         </button>
-        <button igxEnd igxButton="fab"
-          [ngClass]="strat.votes | hasVoted:1:authUser:pipeTrigger"
+        <button type="button" igxEnd igxButton="fab"
+          [class]="strat.votes | hasVoted:1:authUser()"
+          [attr.aria-pressed]="!!(strat.votes | hasVoted:1:authUser())"
+          [igxLabel]="voteLabel(strat.votes, 1)"
           igxRipple
           (click)="voteStrat(strat, 1)">
           <igx-icon title="vote down">thumb_down</igx-icon>
-          @if (strat.votes | votes:1:pipeTrigger) {
+          @if (strat.votes | votes:1) {
             <span>
-              {{strat.votes | votes:1:pipeTrigger}}
+              {{strat.votes | votes:1}}
             </span>
           }
         </button>
       </igx-card-actions>
-      <igx-drop-down #useractions (selectionChanging)="$event.cancel = true; useractions.close()">
-        <igx-drop-down-item (click)="shareOnTwitter(strat)">
+      <igx-drop-down #useractions
+        (opening)="openedActionsId.set(strat.id)"
+        (closed)="actionsClosed(strat.id)"
+        (selectionChanging)="strategyAction($event, strat, newStrategy, confirm); useractions.close()">
+        <igx-drop-down-item value="share">
           <div class="dd-item-content">
-            <igx-icon family="login-icons" name="twitter" title="Share Strategy"></igx-icon>
+            <igx-icon family="login-icons" name="twitter"></igx-icon>
             <span i18n>Share</span>
           </div>
         </igx-drop-down-item>
-        @if ((authUser | isStratOwner:strat) || isEditor) {
-          <igx-drop-down-item (click)="newStrategy.open(strat, 'Edit strategy')">
+        @if ((authUser() | isStratOwner:strat) || isEditor()) {
+          <igx-drop-down-item value="edit">
             <div class="dd-item-content">
-              <igx-icon title="Edit Strategy">edit</igx-icon>
+              <igx-icon>edit</igx-icon>
               <span i18n>Edit</span>
             </div>
           </igx-drop-down-item>
-          <igx-drop-down-item (click)="confirm.open(strat)">
+          <igx-drop-down-item value="delete">
             <div class="dd-item-content">
-              <igx-icon title="Delete Strategy">delete_forever</igx-icon>
+              <igx-icon>delete_forever</igx-icon>
               <span i18n>Delete</span>
             </div>
           </igx-drop-down-item>
@@ -118,18 +141,19 @@
     </igx-card>
   }
 
-  @if (hasMore) {
+  @if (hasMore()) {
     <igx-card class="fit-content-card">
       <igx-card-header class="empty-strategy">
-        <h4 class="igx-card-header__title" i18n>Load More...</h4>
+        <h4 igxCardHeaderTitle i18n>Load More...</h4>
       </igx-card-header>
       <igx-card-content class="empty-strategy empty-strategy-content">
-        <igx-avatar icon="sync"
-          class="navigatable"
-          shape="circle"
-          [size]="'large'"
-          (click)="loadMore()">
-        </igx-avatar>
+        <button type="button" class="load-more-button" (click)="loadMore()" i18n-aria-label aria-label="Load More...">
+          <igx-avatar icon="sync"
+            shape="circle"
+            [size]="'large'"
+            aria-hidden="true">
+          </igx-avatar>
+        </button>
       </igx-card-content>
     </igx-card>
   }
@@ -137,8 +161,8 @@
 
 <app-new-strategy #newStrategy
   (strategyAdded)="onStrategyAdded($event)"
-  [team]="team"
-  [authUser]="authUser">
+  [team]="team()"
+  [authUser]="authUser()">
 </app-new-strategy>
 
 <!-- Confirm -->

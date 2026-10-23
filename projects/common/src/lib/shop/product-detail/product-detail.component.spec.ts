@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { ActivatedRoute, convertToParamMap, provideRouter } from '@angular/router';
@@ -55,6 +55,7 @@ describe('ProductDetailComponent', () => {
   let params: BehaviorSubject<ReturnType<typeof convertToParamMap>>;
 
   beforeEach(async () => {
+    vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout', 'setInterval', 'clearInterval', 'Date'] });
     localStorage.clear();
     params = new BehaviorSubject(convertToParamMap({ slug: 'ebl-jersey' }));
     await TestBed.configureTestingModule({
@@ -75,6 +76,7 @@ describe('ProductDetailComponent', () => {
   });
 
   afterEach(() => {
+    vi.useRealTimers();
     httpMock.verify();
     localStorage.clear();
   });
@@ -90,7 +92,7 @@ describe('ProductDetailComponent', () => {
 
   const drainQuotes = () => {
     TestBed.tick();
-    tick(300);
+    vi.advanceTimersByTime(300);
     httpMock.match(`${api['_apiEndpoint']}/shop/quote`).forEach(request => request.flush(null));
   };
 
@@ -171,7 +173,7 @@ describe('ProductDetailComponent', () => {
     expect(component.quantity()).toBe(component.maxQuantity);
   });
 
-  it('adds the selected variant and quantity to the cart', fakeAsync(() => {
+  it('adds the selected variant and quantity to the cart', () => {
     load();
     component.changeQuantity(2);
 
@@ -181,9 +183,9 @@ describe('ProductDetailComponent', () => {
     expect(cart.items()[0].variantId).toBe('v-male-l');
     expect(cart.items()[0].quantity).toBe(3);
     drainQuotes();
-  }));
+  });
 
-  it('adds a product without options directly', fakeAsync(() => {
+  it('adds a product without options directly', () => {
     load(umbrella());
 
     expect(component.hasVariants()).toBe(false);
@@ -191,9 +193,9 @@ describe('ProductDetailComponent', () => {
 
     expect(cart.items()[0].variantId).toBeUndefined();
     drainQuotes();
-  }));
+  });
 
-  it('does not add a sold out product without options', fakeAsync(() => {
+  it('does not add a sold out product without options', () => {
     load(umbrella({ stockQuantity: 0 }));
 
     component.addToCart();
@@ -201,7 +203,7 @@ describe('ProductDetailComponent', () => {
     expect(component.soldOut()).toBe(true);
     expect(cart.isEmpty()).toBe(true);
     drainQuotes();
-  }));
+  });
 
   it('selects a plain option list by id', () => {
     load(umbrella({

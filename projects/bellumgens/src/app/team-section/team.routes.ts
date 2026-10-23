@@ -7,7 +7,8 @@ import { TeamTournamentsComponent } from './team-tournaments/team-tournaments.co
 import { TeamComponent } from './team.component';
 
 export const routes: Routes = [
-  { path: '', component: TeamComponent },
+  // Without a selected team, show the user's teams
+  { path: '', redirectTo: 'myteams', pathMatch: 'full' },
   { path: 'myteams', component: TeamNavComponent },
   { path: ':teamid', component: TeamComponent, children: [
     { path: '', redirectTo: 'details', pathMatch: 'full' },

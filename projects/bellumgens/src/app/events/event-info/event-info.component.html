@@ -2,55 +2,47 @@
   <igx-card [elevated]="true">
     <igx-card-header>
       <igx-avatar src="/assets/login/bge-white-2024.svg" igxCardThumbnail shape="circle" />
-      <h1 igxCardHeaderTitle>{{ tournament?.name }}</h1>
-      <a i18n [routerLink]="['../../registration/', tournamentId]" [disabled]="signUpDisabled" igxButton="contained" style="margin-top: 12px" i18n>Sign-up to participate</a>
+      <h1 igxCardHeaderTitle>{{ tournament()?.name }}</h1>
+      <a i18n [routerLink]="['../../registration/', tournamentId()]" [disabled]="signUpDisabled()" igxButton="contained" style="margin-top: 12px" i18n>Sign-up to participate</a>
     </igx-card-header>
     <igx-card-content>
       <div>
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3320904478097217"
-            crossorigin="anonymous"></script>
-        <!-- Display Ad horizontal 1 -->
-        <ins class="adsbygoogle"
-            style="display:block"
-            data-ad-client="ca-pub-3320904478097217"
-            data-ad-slot="9044957402"
-            data-ad-format="auto"
-            data-full-width-responsive="true"></ins>
-        <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-        <p>{{tournament?.description}}</p>
+        <p>{{ tournament()?.description }}</p>
       </div>
       <div class="participants-container">
         <h3 i18n style="width: 100%">Participants</h3>
-        @if (loading | async) {
+        @if (loading()) {
           <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
         }
-        @for (registration of registrations | async; track registration) {
+        @for (registration of registrations(); track registration) {
           <div class="registration-slot">
-            <igx-avatar [src]="registration.user?.sc2Details?.avatarUrl || ''" [initials]="registration.user.username" size="medium" shape="circle">
+            <igx-avatar [src]="registration.user?.sc2Details?.avatarUrl || ''" [initials]="registration.user?.username" size="medium" shape="circle">
             </igx-avatar>
             <igx-avatar [src]="registration.country | countrySVG" shape="circle" [title]="registration.country" class="country-badge-small"></igx-avatar>
-            <a [routerLink]="['/players/', registration.user.id, 'sc']">{{ registration.user?.username || registration.battleTag }}</a>
-            @if (registration.companyId) {
-              <span>[{{ registration.companyId }}]</span>
+            @if (registration.user) {
+              <a [routerLink]="['/players/', registration.user.id, 'sc']">{{ registration.user.username || registration.battleTag }}</a>
+            } @else {
+              <span class="participant-name">{{ registration.battleTag }}</span>
+            }
+            @if (registration.companyId | participantTeam; as team) {
+              <span>[{{ team }}]</span>
             }
           </div>
         }
       </div>
 
       <igx-grid cellSelection="none"
-        [data]="sc2matches | async"
+        [data]="sc2matches()"
         height="650px"
         [groupingExpressions]="grouping"
         i18n-emptyGridMessage
         emptyGridMessage="No matches found..."
-        [isLoading]="loadingMatches | async">
+        [isLoading]="loadingMatches()">
 
         <igx-grid-toolbar>
           <igx-grid-toolbar-title><h3 i18n>Match Results</h3></igx-grid-toolbar-title>
           <!-- <igx-grid-toolbar-actions>
-            <button igxIconButton="flat" igxRipple (click)="refreshMatches()">
+            <button igxIconButton="flat" igxRipple (click)="refreshMatches()" i18n-aria-label aria-label="Refresh matches">
               <igx-icon>refresh</igx-icon>
             </button>
           </igx-grid-toolbar-actions> -->

@@ -1,4 +1,6 @@
-import { Component, ViewChild, OnDestroy, inject } from '@angular/core';
+import { Component, PLATFORM_ID, inject, signal, viewChild } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { IgxSnackbarComponent } from '@infragistics/igniteui-angular/snackbar';
 import { CommunicationService } from '../../services/communication.service';
@@ -8,16 +10,17 @@ import { CommunicationService } from '../../services/communication.service';
     templateUrl: './success-error.component.html',
     styleUrls: ['./success-error.component.scss'],    imports: [IgxSnackbarComponent, IgxIconComponent]
 })
-export class SuccessErrorComponent implements OnDestroy {
+export class SuccessErrorComponent {
   private commService = inject(CommunicationService);
+  private isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
-  @ViewChild('message', { static: true }) public message: IgxSnackbarComponent;
+  public message = viewChild.required<IgxSnackbarComponent>('message');
 
   public successMsg = 'Success...';
   public errorMsg = 'Error has occurred...';
-  public notificationMsg = '';
-  public icon = 'done';
-  public class = 'color-success';
+  public notificationMsg = signal('');
+  public icon = signal('done');
+  public class = signal('color-success');
 
   private settings = {
     success: {
@@ -35,24 +38,25 @@ export class SuccessErrorComponent implements OnDestroy {
   };
 
   constructor() {
-    this.commService.error.subscribe(message => this.showMessage('error', message));
-    this.commService.success.subscribe(message => this.showMessage('success', message));
-    this.commService.message.subscribe(message => this.showMessage('warn', message));
+    this.commService.error.pipe(takeUntilDestroyed())
+      .subscribe(message => this.showMessage('error', message));
+    this.commService.success.pipe(takeUntilDestroyed())
+      .subscribe(message => this.showMessage('success', message));
+    this.commService.message.pipe(takeUntilDestroyed())
+      .subscribe(message => this.showMessage('warn', message));
   }
 
   public showMessage(type: string, msg?: string) {
-    if (msg) {
-      this.notificationMsg = msg;
+    // The snackbar overlay needs a real DOM, and an error thrown here during SSR takes down the server process
+    if (!this.isBrowser) {
+      return;
     }
-    this.icon = this.settings[type].icon;
-    this.class = this.settings[type].class;
-    this.message.open();
-  }
-
-  public ngOnDestroy() {
-    this.commService.error.unsubscribe();
-    this.commService.success.unsubscribe();
-    this.commService.message.unsubscribe();
+    if (msg) {
+      this.notificationMsg.set(msg);
+    }
+    this.icon.set(this.settings[type].icon);
+    this.class.set(this.settings[type].class);
+    this.message().open();
   }
 }
 

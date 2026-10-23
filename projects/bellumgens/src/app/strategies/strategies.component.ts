@@ -1,7 +1,8 @@
-import { Component, inject } from '@angular/core';
+import { Component, Injector, Signal, inject, signal } from '@angular/core';
+import { toObservable } from '@angular/core/rxjs-interop';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { NgClass, DatePipe, NgOptimizedImage } from '@angular/common';
+import { DatePipe, NgOptimizedImage } from '@angular/common';
 import {
   BellumgensApiService,
   CSGOStrategy, VoteDirection,
@@ -17,13 +18,13 @@ import {
   ACTIVE_DUTY
 } from '../../../../common/src/public_api';
 import { IChipSelectEventArgs, IGX_CHIPS_DIRECTIVES } from '@infragistics/igniteui-angular/chips';
-import { IgxButtonDirective, IgxRippleDirective, IgxToggleActionDirective } from '@infragistics/igniteui-angular/directives';
+import { IgxButtonDirective, IgxIconButtonDirective, IgxRippleDirective, IgxToggleActionDirective } from '@infragistics/igniteui-angular/directives';
 import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
 import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { IGX_SELECT_DIRECTIVES } from '@infragistics/igniteui-angular/select';
 import { IgxBadgeComponent } from '@infragistics/igniteui-angular/badge';
-import { IGX_DROP_DOWN_DIRECTIVES } from '@infragistics/igniteui-angular/drop-down';
+import { IGX_DROP_DOWN_DIRECTIVES, ISelectionEventArgs } from '@infragistics/igniteui-angular/drop-down';
 import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
 import { StratFilterPipe } from '../pipes/strat-filter.pipe';
 import { SideStratsPipe } from '../pipes/sidestrats.pipe';
@@ -37,17 +38,19 @@ import { ActiveDutyMapsPipe } from '../../../../common/src/lib/pipes/active-duty
 import { ConfirmComponent } from '../../../../common/src/lib/confirm/confirm.component';
 import { NewStrategyComponent } from './new-strategy/new-strategy.component';
 import { LoadingComponent } from '../../../../common/src/lib/loading/loading.component';
+import { voteLabel } from './vote-label';
 
 @Component({
   selector: 'app-team-strategies',
   templateUrl: './strategies.component.html',
-  styleUrls: ['./strategies.component.scss'],  imports: [
+  styleUrls: ['./strategies.component.scss'],
+  imports: [
     NgOptimizedImage,
-    NgClass,
     DatePipe,
     RouterLink,
     FormsModule,
     IgxButtonDirective,
+    IgxIconButtonDirective,
     IgxRippleDirective,
     IGX_CHIPS_DIRECTIVES,
     IGX_SELECT_DIRECTIVES,
@@ -80,34 +83,38 @@ export class StrategiesComponent {
   private authManager = inject(LoginService);
   private commService = inject(CommunicationService);
   private socialMedia = inject(SocialMediaStrategyService);
+  private injector = inject(Injector);
 
-  public isEditor: boolean = null;
+  public isEditor = signal<boolean>(null);
 
-  public strats: CSGOStrategy [];
-  public maps: CSGOActiveDutyMap [] = structuredClone(ACTIVE_DUTY);
-  public team: CSGOTeam;
-  public authUser: ApplicationUser;
-  public pipeTrigger = 0;
-  public viewAll = false;
-  public loading = false;
-  public hasMore = false;
+  public strats = signal<CSGOStrategy []>(undefined);
+  public maps = signal<CSGOActiveDutyMap []>(structuredClone(ACTIVE_DUTY).map(map => ({ ...map, isPlayed: true })));
+  public team = signal<CSGOTeam>(undefined);
+  public authUser: Signal<ApplicationUser> = this.authManager.applicationUser;
+  private authUser$ = toObservable(this.authUser);
+  public viewAll = signal(false);
+  public loading = signal(false);
+  public hasMore = signal(false);
   public page = 0;
-  public order = StratOrderBy.TopVoted;
+  public order = signal(StratOrderBy.TopVoted);
 
+  /** Id of the strategy whose actions drop-down is open. */
+  public openedActionsId = signal<string>(null);
   public overlaySettings = GLOBAL_OVERLAY_SETTINGS;
   public stratOrder = StratOrder;
+  public voteLabel = voteLabel;
+  /** Strategy images that failed to load; their cards drop the image instead of showing a broken one. */
+  public brokenImages = signal<ReadonlySet<string>>(new Set());
 
   constructor() {
-    this.maps.forEach(map => map.isPlayed = true);
     this.activatedRoute.url.subscribe(value => {
       if (value?.length && value[0]?.path === 'user') {
-        this.authManager.applicationUser.subscribe(user => {
+        this.authUser$.subscribe(user => {
           if (user) {
-            this.authUser = user;
-            this.apiStrategyService.getUserStrategies(user.id).subscribe(
-              strats => this.strats = strats,
-              error => this.commService.emitError(error.message)
-            );
+            this.apiStrategyService.getUserStrategies(user.id).subscribe({
+              next: strats => this.strats.set(strats),
+              error: () => this.commService.emitError($localize`Your strategies could not be loaded. Please try again later.`)
+            });
           }
         });
       } else {
@@ -115,15 +122,15 @@ export class StrategiesComponent {
           const teamId = params['teamid'];
 
           if (teamId) {
-            this.apiService.getTeam(teamId).subscribe(team => {
+            toObservable(this.apiService.getTeam(teamId), { injector: this.injector }).subscribe(team => {
               if (team) {
-                this.team = team;
-                this.loading = true;
+                this.team.set(team);
+                this.loading.set(true);
                 this.apiStrategyService.getTeamStrats(team.teamId).subscribe(strats => {
-                  this.loading = false;
-                  this.strats = strats;
+                  this.loading.set(false);
+                  this.strats.set(strats);
                 });
-                this.authManager.getUserIsTeamEditor(team.teamId).subscribe(data => this.isEditor = data);
+                this.authManager.getUserIsTeamEditor(team.teamId).subscribe(data => this.isEditor.set(data));
               }
             });
           } else {
@@ -132,17 +139,16 @@ export class StrategiesComponent {
 
               if (query) {
                 this.searchService.searchStrategies(query);
-                this.searchService.loadingSearch.subscribe(loading => this.loading = loading);
-                this.searchService.strategySearchResult.subscribe(strats => this.strats = strats);
+                this.mirror(this.searchService.loadingSearch, loading => this.loading.set(loading));
+                this.mirror(this.searchService.strategySearchResult, strats => this.strats.set(strats));
               } else {
-                this.apiStrategyService.loadingStrategies.subscribe(loading => this.loading = loading);
-                this.apiStrategyService.strategies.subscribe(strats => this.strats = strats);
-                this.apiStrategyService.hasMoreStrats.subscribe(hasMore => this.hasMore = hasMore);
+                this.mirror(this.apiStrategyService.loadingStrategies, loading => this.loading.set(loading));
+                this.mirror(this.apiStrategyService.strategies, strats => this.strats.set(strats));
+                this.mirror(this.apiStrategyService.hasMoreStrats, hasMore => this.hasMore.set(hasMore));
               }
             });
           }
         });
-        this.authManager.applicationUser.subscribe(user => this.authUser = user);
       }
     });
   }
@@ -153,22 +159,55 @@ export class StrategiesComponent {
 
   public changeMaps(event: IChipSelectEventArgs, args: CSGOActiveDutyMap) {
     if (event.originalEvent) {
-      this.maps.find(m => m.mapId === args.mapId).isPlayed = event.selected;
-      this.pipeTrigger++;
+      this.maps.update(maps => maps.map(m => m.mapId === args.mapId ? { ...m, isPlayed: event.selected } : m));
     }
   }
 
   public deleteStrat(args: CSGOStrategy) {
-    this.apiStrategyService.deleteStrategy(args.id).subscribe(() => this.strats.splice(this.strats.indexOf(args), 1));
+    this.apiStrategyService.deleteStrategy(args.id).subscribe({
+      next: () => this.strats.update(strats => strats.filter(s => s !== args)),
+      // The service already tells the user; the strategy just stays in the list
+      error: () => {}
+    });
   }
 
   public shareOnTwitter(strat: CSGOStrategy) {
     this.socialMedia.shareOnTwitter(strat);
   }
 
+  public strategyAction(event: ISelectionEventArgs, strat: CSGOStrategy, newStrategy: NewStrategyComponent, confirm: ConfirmComponent) {
+    // The actions only run commands, they don't keep a selection.
+    event.cancel = true;
+    switch (event.newSelection?.value) {
+      case 'share':
+        this.shareOnTwitter(strat);
+        break;
+      case 'edit':
+        newStrategy.open(strat, 'Edit strategy');
+        break;
+      case 'delete':
+        confirm.open(strat);
+        break;
+    }
+  }
+
+  /** The comments link is named by the comment count, since its badge only reads "badge" to assistive technologies. */
+  public commentsLabel(strat: CSGOStrategy) {
+    return $localize`Comments: ${strat.comments?.length ?? 0}:count:`;
+  }
+
+  public imageFailed(src: string) {
+    this.brokenImages.update(broken => new Set(broken).add(src));
+  }
+
+  public actionsClosed(stratId: string) {
+    if (this.openedActionsId() === stratId) {
+      this.openedActionsId.set(null);
+    }
+  }
+
   public onStrategyAdded(strat: CSGOStrategy) {
-    this.strats.push(strat);
-    this.pipeTrigger++;
+    this.strats.update(strats => [...(strats || []), strat]);
   }
 
   public loadMore() {
@@ -176,10 +215,20 @@ export class StrategiesComponent {
   }
 
   public voteStrat(strat: CSGOStrategy, direction: VoteDirection) {
-    if (!this.authUser) {
+    const authUser = this.authUser();
+    if (!authUser) {
       this.openLogin();
     } else {
-      this.apiStrategyService.submitStratVote(strat, direction, this.authUser.id).subscribe(() => this.pipeTrigger++);
+      // The service emits a new strategy object (its own caches are updated too), so swap it into the list.
+      this.apiStrategyService.submitStratVote(strat, direction, authUser.id).subscribe(updated =>
+        this.strats.update(strats => strats?.map(s => s.id === updated.id ? updated : s))
+      );
     }
+  }
+
+  // Mirrors a service signal into local state while the component is alive; the local state is also
+  // edited directly (votes, deletions, additions), so it can't just be a computed.
+  private mirror<T>(source: Signal<T>, apply: (value: T) => void) {
+    toObservable(source, { injector: this.injector }).subscribe(apply);
   }
 }

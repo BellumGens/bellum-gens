@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { Component, effect, inject, signal, untracked } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
 import {
@@ -19,7 +19,6 @@ import { IgxDatePickerComponent } from '@infragistics/igniteui-angular/date-pick
   selector: 'bg-tournament-create',
   templateUrl: './tournament-create.component.html',
   styleUrl: './tournament-create.component.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
     ReactiveFormsModule,
     IGX_INPUT_GROUP_DIRECTIVES,
@@ -63,20 +62,23 @@ export class TournamentCreateComponent {
       if (params['tournamentId']) {
         this.isEditMode.set(true);
         this.tournamentId.set(params['tournamentId']);
-        this.apiService.getTournament(params['tournamentId']).subscribe(t => {
-          if (t) {
-            this.form.patchValue({
-              name: t.name,
-              description: t.description || '',
-              game: t.game ?? null,
-              visibility: t.visibility || TournamentVisibility.Public,
-              startDate: t.startDate ? new Date(t.startDate) : null,
-              endDate: t.endDate ? new Date(t.endDate) : null,
-              maxParticipants: t.maxParticipants ?? null,
-              prizePool: t.prizePool || ''
-            });
-          }
-        });
+      }
+    });
+    // Fill the form in once the tournament being edited is loaded
+    effect(() => {
+      const id = this.tournamentId();
+      const t = id ? this.apiService.getTournament(id)() : null;
+      if (t) {
+        untracked(() => this.form.patchValue({
+          name: t.name,
+          description: t.description || '',
+          game: t.game ?? null,
+          visibility: t.visibility || TournamentVisibility.Public,
+          startDate: t.startDate ? new Date(t.startDate) : null,
+          endDate: t.endDate ? new Date(t.endDate) : null,
+          maxParticipants: t.maxParticipants ?? null,
+          prizePool: t.prizePool || ''
+        }));
       }
     });
   }

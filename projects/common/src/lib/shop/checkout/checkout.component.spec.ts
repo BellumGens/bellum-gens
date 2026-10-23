@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { provideRouter } from '@angular/router';
@@ -45,6 +45,7 @@ describe('CheckoutComponent', () => {
   let assign: ReturnType<typeof vi.fn>;
 
   beforeEach(async () => {
+    vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout', 'setInterval', 'clearInterval', 'Date'] });
     localStorage.clear();
     await TestBed.configureTestingModule({
       // LoginService (used to prefill the email) depends on SwPush, so the service worker module is registered disabled.
@@ -66,6 +67,7 @@ describe('CheckoutComponent', () => {
   });
 
   afterEach(() => {
+    vi.useRealTimers();
     httpMock.verify();
     localStorage.clear();
   });
@@ -75,7 +77,7 @@ describe('CheckoutComponent', () => {
   /** Answers whatever quote requests the cart's debounced pipeline has issued so far. */
   const flushQuotes = (quote: Quote) => {
     TestBed.tick();
-    tick(300);
+    vi.advanceTimersByTime(300);
     httpMock.match(quoteUrl()).forEach(request => request.flush(quote));
   };
 
@@ -104,7 +106,7 @@ describe('CheckoutComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('does not submit an invalid form', fakeAsync(() => {
+  it('does not submit an invalid form', () => {
     fillCart();
 
     component.pay();
@@ -112,9 +114,9 @@ describe('CheckoutComponent', () => {
     httpMock.expectNone(`${api['_apiEndpoint']}/shop/orders`);
     expect(component.form.touched).toBe(true);
     expect(component.submitting()).toBe(false);
-  }));
+  });
 
-  it('requires the terms of sale to be accepted', fakeAsync(() => {
+  it('requires the terms of sale to be accepted', () => {
     fillCart();
     fillForm();
     component.form.controls.acceptedTerms.setValue(false);
@@ -122,9 +124,9 @@ describe('CheckoutComponent', () => {
     component.pay();
 
     httpMock.expectNone(`${api['_apiEndpoint']}/shop/orders`);
-  }));
+  });
 
-  it('posts the cart and customer details, clears the cart and redirects to Revolut', fakeAsync(() => {
+  it('posts the cart and customer details, clears the cart and redirects to Revolut', () => {
     fillCart();
     fillForm();
 
@@ -142,9 +144,9 @@ describe('CheckoutComponent', () => {
     expect(assign).toHaveBeenCalledWith('https://checkout.revolut.com/x');
     expect(cart.isEmpty()).toBe(true);
     flushQuotes(validQuote);
-  }));
+  });
 
-  it('shows the server problems on a 409 and re-prices the cart', fakeAsync(() => {
+  it('shows the server problems on a 409 and re-prices the cart', () => {
     fillCart();
     fillForm();
 
@@ -158,9 +160,9 @@ describe('CheckoutComponent', () => {
     expect(assign).not.toHaveBeenCalled();
     // The component re-prices the cart after a rejection.
     flushQuotes({ ...validQuote, isValid: false });
-  }));
+  });
 
-  it('explains when payments are unavailable', fakeAsync(() => {
+  it('explains when payments are unavailable', () => {
     fillCart();
     fillForm();
 
@@ -171,9 +173,9 @@ describe('CheckoutComponent', () => {
 
     expect(component.problems().length).toBe(1);
     flushQuotes(validQuote);
-  }));
+  });
 
-  it('explains a rate limited attempt', fakeAsync(() => {
+  it('explains a rate limited attempt', () => {
     fillCart();
     fillForm();
 
@@ -183,9 +185,9 @@ describe('CheckoutComponent', () => {
 
     expect(component.problems()[0]).toContain('Too many attempts');
     flushQuotes(validQuote);
-  }));
+  });
 
-  it('falls back to a general message for an unexpected failure', fakeAsync(() => {
+  it('falls back to a general message for an unexpected failure', () => {
     fillCart();
     fillForm();
 
@@ -196,9 +198,9 @@ describe('CheckoutComponent', () => {
     expect(component.problems()[0]).toContain('could not be placed');
     expect(component.submitting()).toBe(false);
     flushQuotes(validQuote);
-  }));
+  });
 
-  it('refuses to pay a cart the server has since rejected', fakeAsync(() => {
+  it('refuses to pay a cart the server has since rejected', () => {
     fillCart();
     fillForm();
     cart.quote.set({ ...validQuote, isValid: false });
@@ -209,10 +211,11 @@ describe('CheckoutComponent', () => {
     expect(component.problems()[0]).toContain('cart has changed');
     // The page re-prices the cart so the visitor sees what changed.
     flushQuotes(validQuote);
-  }));
+  });
 
   it('prefills the email of the signed in customer', () => {
-    TestBed.inject(LoginService)['_applicationUser'].next({ email: 'ivan@example.com' } as unknown as ApplicationUser);
+    TestBed.inject(LoginService)['_applicationUser'].set({ email: 'ivan@example.com' } as unknown as ApplicationUser);
+    TestBed.tick();
 
     expect(component.form.controls.email.value).toBe('ivan@example.com');
   });
@@ -220,7 +223,8 @@ describe('CheckoutComponent', () => {
   it('keeps an email the customer already typed', () => {
     component.form.controls.email.setValue('other@example.com');
 
-    TestBed.inject(LoginService)['_applicationUser'].next({ email: 'ivan@example.com' } as unknown as ApplicationUser);
+    TestBed.inject(LoginService)['_applicationUser'].set({ email: 'ivan@example.com' } as unknown as ApplicationUser);
+    TestBed.tick();
 
     expect(component.form.controls.email.value).toBe('other@example.com');
   });

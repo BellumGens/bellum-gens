@@ -36,6 +36,8 @@ igx-snackbar {
   left: 16px;
   right: 16px;
   bottom: 16px;
+  width: fit-content;
+  margin-inline: auto;
   z-index: 10000;
 }
 /* END SNACKBAR */

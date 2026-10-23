@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, Signal, inject, signal } from '@angular/core';
 import { ApplicationUser, LoginService } from '../../../../../common/src/public_api';
 import { TeamSearchComponent } from '../team-search/team-search.component';
 import { PlayerSearchComponent } from '../player-search/player-search.component';
@@ -26,10 +26,6 @@ enum SearchType {
 export class SearchComponent {
   private authManager = inject(LoginService);
 
-  public searchType = SearchType.None;
-  public authUser: ApplicationUser;
-
-  constructor() {
-    this.authManager.applicationUser.subscribe(user => this.authUser = user);
-  }
+  public searchType = signal<SearchType>(SearchType.None);
+  public authUser: Signal<ApplicationUser> = this.authManager.applicationUser;
 }

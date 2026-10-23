@@ -1,3 +1,16 @@
-<div class="loading-overview">
+<div class="loading-overview unauthorized">
   <h4 class="highlight">{{ message() }}</h4>
+  <p class="unauthorized-text" i18n>You don't have access to this page. Log in with an account that has access to it, or go back to the home page.</p>
+  <div class="unauthorized-actions">
+    @if (!authUser()) {
+      <button type="button" igxButton="contained" igxRipple (click)="login()">
+        <igx-icon>login</igx-icon>
+        <span i18n>login</span>
+      </button>
+    }
+    <a igxButton="outlined" igxRipple routerLink="/">
+      <igx-icon>home</igx-icon>
+      <span i18n>Go to the home page</span>
+    </a>
+  </div>
 </div>

@@ -7,7 +7,7 @@
 
   <div class="stats" i18n>Signed up users so far: <span class="highlight">{{ count() }}</span></div>
   <div class="discount current-discount" i18n>
-    Current discount: <span class="highlight">{{ discount }}%</span>
+    Current discount: <span class="highlight">{{ discount() }}%</span>
   </div>
   <div class="tiers">
     <div class="tier" i18n>1 – 100 sign-ups: <span class="highlight">10%</span></div>
@@ -20,7 +20,7 @@
     <div class="auth-info" i18n>
       <span class="highlight">Signup deadline has passed.</span> Pre-registration is now closed.
     </div>
-  } @else if (!authUser) {
+  } @else if (!authUser()) {
     <div class="auth-info" i18n>
       <span class="highlight">You need to be logged in</span> to submit the form. Please log in from the profile menu.
     </div>
@@ -28,7 +28,7 @@
 
   <form [formGroup]="form" (ngSubmit)="submit()" class="signup-form">
     <igx-input-group type="border">
-      <label igxLabel i18n>Email</label>
+      <label igxLabel for="email" i18n>Email</label>
       <input igxInput id="email" type="email" formControlName="email" />
     </igx-input-group>
     @if (form.controls.email.touched && form.controls.email.invalid) {
@@ -37,12 +37,12 @@
       </div>
     }
 
-    <igx-checkbox formControlName="firstTime">
-      <span igxLabel i18n>This is my first Bellum Gens Elite event</span>
+    <igx-checkbox formControlName="firstTime" aria-labelledby="first-time-label">
+      <span igxLabel id="first-time-label" i18n>This is my first Bellum Gens Elite event</span>
     </igx-checkbox>
 
-    <igx-checkbox formControlName="agreePrivacy">
-      <span igxLabel i18n>I agree that the provided email address <a href="/privacy" target="_blank" rel="noopener">will receive information about BGE Stara Zagora 2026</a></span>
+    <igx-checkbox formControlName="agreePrivacy" aria-labelledby="agree-privacy-label">
+      <span igxLabel id="agree-privacy-label" i18n>I agree that the provided email address <a href="/privacy" target="_blank" rel="noopener">will receive information about BGE Stara Zagora 2026</a></span>
     </igx-checkbox>
     @if (form.controls.agreePrivacy.touched && form.controls.agreePrivacy.invalid) {
       <div class="error" i18n>
@@ -50,7 +50,7 @@
       </div>
     }
 
-    <button igxButton="contained" type="submit" [disabled]="isPastDeadline || !authUser || submitting()" i18n>Submit</button>
+    <button igxButton="contained" type="submit" [disabled]="isPastDeadline || !authUser() || submitting()" i18n>Submit</button>
   </form>
 
   <!-- Success and error messaging handled via CommunicationService -->

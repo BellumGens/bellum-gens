@@ -2,8 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { UserNotification, NotificationState } from '../../../../common/src/public_api';
 
 @Pipe({
-    name: 'unreadNotifications',
-    standalone: true
+    name: 'unreadNotifications'
 })
 export class UnreadNotificationsPipe implements PipeTransform {
 

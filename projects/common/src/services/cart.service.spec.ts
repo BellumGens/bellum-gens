@@ -1,4 +1,4 @@
-import { TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { CartService } from './cart.service';
@@ -48,11 +48,13 @@ describe('CartService', () => {
   };
 
   beforeEach(() => {
+    vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout', 'setInterval', 'clearInterval', 'Date'] });
     localStorage.clear();
     configure();
   });
 
   afterEach(() => {
+    vi.useRealTimers();
     httpMock.verify();
     localStorage.clear();
   });
@@ -119,10 +121,10 @@ describe('CartService', () => {
     expect(service.promoCode()).toBe('SAVE10');
   });
 
-  it('asks the API for a quote after the cart changes', fakeAsync(() => {
+  it('asks the API for a quote after the cart changes', () => {
     service.add(product());
     TestBed.tick();
-    tick(300);
+    vi.advanceTimersByTime(300);
 
     const req = httpMock.expectOne(`${api['_apiEndpoint']}/shop/quote`);
     expect(req.request.method).toBe('POST');
@@ -132,35 +134,35 @@ describe('CartService', () => {
 
     expect(service.quote()?.total).toBe(21);
     expect(service.quoting()).toBe(false);
-  }));
+  });
 
-  it('debounces rapid changes into a single quote request', fakeAsync(() => {
+  it('debounces rapid changes into a single quote request', () => {
     const p = product();
     service.add(p);
     TestBed.tick();
-    tick(100);
+    vi.advanceTimersByTime(100);
     service.add(p);
     TestBed.tick();
-    tick(300);
+    vi.advanceTimersByTime(300);
 
     const requests = httpMock.match(`${api['_apiEndpoint']}/shop/quote`);
     expect(requests.length).toBe(1);
     expect(requests[0].request.body.lines[0].quantity).toBe(2);
     requests[0].flush(quoteFor(36));
-  }));
+  });
 
-  it('clears the quote when the cart is emptied', fakeAsync(() => {
+  it('clears the quote when the cart is emptied', () => {
     service.add(product());
     TestBed.tick();
-    tick(300);
+    vi.advanceTimersByTime(300);
     httpMock.expectOne(`${api['_apiEndpoint']}/shop/quote`).flush(quoteFor(21));
 
     service.clear();
     TestBed.tick();
-    tick(300);
+    vi.advanceTimersByTime(300);
 
     expect(service.quote()).toBeNull();
     expect(service.promoCode()).toBeNull();
     expect(localStorage.getItem(CartService.storageKey)).toBeNull();
-  }));
+  });
 });

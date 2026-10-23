@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HomeComponent } from './home.component';
 import { provideRouter } from '@angular/router';
@@ -13,8 +13,8 @@ describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
 
-  beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
         
@@ -24,7 +24,7 @@ describe('HomeComponent', () => {
       providers: [provideRouter([]), provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
     })
     .compileComponents();
-  }));
+  });
 
   beforeEach(() => {
     fixture = TestBed.createComponent(HomeComponent);
@@ -60,12 +60,12 @@ describe('HomeComponent', () => {
   });
 
   it('should initialize navigation property', () => {
-    expect(component.navigation).toBeDefined();
-    expect(typeof component.navigation).toBe('boolean');
+    expect(component.navigation()).toBeDefined();
+    expect(typeof component.navigation()).toBe('boolean');
   });
 
   it('should initialize userEmail to null', () => {
-    expect(component.userEmail).toBeNull();
+    expect(component.userEmail()).toBeNull();
   });
 
   it('should have environment property', () => {
@@ -73,13 +73,33 @@ describe('HomeComponent', () => {
   });
 
   it('should have authUser property', () => {
-    expect(component.authUser).toBeDefined();
+    expect(component.authUser()).toBeDefined();
   });
 
   it('should call openLogin method when openLogin is called', () => {
     vi.spyOn(component, 'openLogin').mockImplementation(() => undefined);
     component.openLogin();
     expect(component.openLogin).toHaveBeenCalled();
+  });
+
+  it('should clear the subscription email from a named button that does not submit the form', async () => {
+    const email = fixture.nativeElement.querySelector('#subemail') as HTMLInputElement;
+    const clear = () => email.closest('igx-input-group').querySelector<HTMLButtonElement>('igx-suffix button');
+    expect(clear()).toBeNull();
+
+    email.value = 'fan@example.com';
+    email.dispatchEvent(new Event('input'));
+    await fixture.whenStable();
+
+    expect(clear().type).toBe('button');
+    expect(clear().getAttribute('aria-label')).toBe('Clear email');
+
+    clear().click();
+    await fixture.whenStable();
+
+    expect(component.userEmail()).toBe('');
+    expect(email.value).toBe('');
+    expect(clear()).toBeNull();
   });
 
   // TODO: Add more test cases with UI interactions

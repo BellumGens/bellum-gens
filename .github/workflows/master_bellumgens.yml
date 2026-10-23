@@ -10,35 +10,32 @@ on:
   workflow_dispatch:
 
 jobs:
+  # The apps resolve the common library from source, so they build independently of each other
   build:
     runs-on: ubuntu-latest
     permissions:
       contents: read #This is required for actions/checkout
+    env:
+      CYPRESS_INSTALL_BINARY: 0
+    strategy:
+      matrix:
+        project: [bellum-gens, eb-league]
 
     steps:
       - uses: actions/checkout@v7
 
-      - name: Set up Node.js version
-        uses: actions/setup-node@v7
+      - uses: ./.github/actions/setup
         with:
-          node-version: '24.x'
+          npm-token: ${{ secrets.NPM_TOKEN }}
 
-      - name: npm install, build, and test
-        run: |
-          echo "@infragistics:registry=https://packages.infragistics.com/npm/js-licensed/" >> ~/.npmrc
-          echo "//packages.infragistics.com/npm/js-licensed/:_auth=${{ secrets.NPM_TOKEN }}" >> ~/.npmrc
-          echo "//packages.infragistics.com/npm/js-licensed/:always-auth=true" >> ~/.npmrc
-          npm install --legacy-peer-deps
-          npm run build --if-present
-
-      - name: Zip artifact for deployment
-        run: zip release.zip ./dist/* -r
+      - name: Build
+        run: npx ng build ${{ matrix.project }} --configuration production
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v7
         with:
-          name: node-app
-          path: release.zip
+          name: ${{ matrix.project }}
+          path: dist/
 
   deploy:
     runs-on: ubuntu-latest
@@ -49,43 +46,39 @@ jobs:
     permissions:
       id-token: write #This is required for requesting the JWT
       contents: read #This is required for actions/checkout
+    strategy:
+      matrix:
+        include:
+          # The secrets context is not available in a matrix, so each app names its Azure secrets instead
+          - project: bellum-gens
+            dist: bellumgens
+            client_id: AZUREAPPSERVICE_CLIENTID_F1E837D6C5DE4CFD9C1819F41D4E5A85
+            tenant_id: AZUREAPPSERVICE_TENANTID_6A280898C48A4D87A349A21B2AC458F0
+            subscription_id: AZUREAPPSERVICE_SUBSCRIPTIONID_987EB166EE8A42409D407C781A962941
+          - project: eb-league
+            dist: ebleague
+            client_id: AZUREAPPSERVICE_CLIENTID_317290C79BEF49CBAA0BAD4CDC2B76C5
+            tenant_id: AZUREAPPSERVICE_TENANTID_9F3F13AEBF9D47F1A268EF9B522E89FB
+            subscription_id: AZUREAPPSERVICE_SUBSCRIPTIONID_99C5716295DC4B3AA35E4BDEA96297E7
 
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v8
         with:
-          name: node-app
+          name: ${{ matrix.project }}
+          path: dist
 
-      - name: Unzip artifact for deployment
-        run: unzip release.zip
-
-      - name: Login to Azure bellum-gens
+      - name: Login to Azure ${{ matrix.project }}
         uses: azure/login@v3
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_F1E837D6C5DE4CFD9C1819F41D4E5A85 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_6A280898C48A4D87A349A21B2AC458F0 }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_987EB166EE8A42409D407C781A962941 }}
+          client-id: ${{ secrets[matrix.client_id] }}
+          tenant-id: ${{ secrets[matrix.tenant_id] }}
+          subscription-id: ${{ secrets[matrix.subscription_id] }}
 
-      - name: 'Deploy bellum-gens to Azure Web App'
-        id: deploy-to-webapp-bellumgens
+      - name: 'Deploy ${{ matrix.project }} to Azure Web App'
+        id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'bellum-gens'
+          app-name: ${{ matrix.project }}
           slot-name: 'Production'
-          package: ./dist/bellumgens
-
-      - name: Login to Azure eb-league
-        uses: azure/login@v3
-        with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_317290C79BEF49CBAA0BAD4CDC2B76C5 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_9F3F13AEBF9D47F1A268EF9B522E89FB }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_99C5716295DC4B3AA35E4BDEA96297E7 }}
-
-      - name: 'Deploy eb-league to Azure Web App'
-        id: deploy-to-webapp-ebleague
-        uses: azure/webapps-deploy@v3
-        with:
-          app-name: 'eb-league'
-          slot-name: 'Production'
-          package: ./dist/ebleague
-
+          package: ./dist/${{ matrix.dist }}

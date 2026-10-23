@@ -2,8 +2,7 @@ import { Pipe, type PipeTransform } from '@angular/core';
 import { type DayOfWeek } from '../../models/playeravailability';
 
 @Pipe({
-    name: 'weekday',
-    standalone: true
+    name: 'weekday'
 })
 export class WeekdayPipe implements PipeTransform {
   private weekDays = [

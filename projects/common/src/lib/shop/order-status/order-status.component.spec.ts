@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { ActivatedRoute, convertToParamMap, provideRouter } from '@angular/router';
@@ -42,6 +42,7 @@ describe('OrderStatusComponent', () => {
   const orderUrl = () => `${api['_apiEndpoint']}/shop/orders/o1`;
 
   beforeEach(async () => {
+    vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout', 'setInterval', 'clearInterval', 'Date'] });
     await TestBed.configureTestingModule({
       imports: [OrderStatusComponent, NoopAnimationsModule],
       providers: [
@@ -60,56 +61,57 @@ describe('OrderStatusComponent', () => {
   });
 
   afterEach(() => {
+    vi.useRealTimers();
     fixture.destroy();
     httpMock.verify();
   });
 
-  it('loads the order from the route and stops polling once it is paid', fakeAsync(() => {
+  it('loads the order from the route and stops polling once it is paid', () => {
     httpMock.expectOne(orderUrl()).flush(order(OrderStatus.Paid, PaymentStatus.Completed));
     fixture.detectChanges();
 
     expect(component.order()?.status).toBe(OrderStatus.Paid);
     expect(component.polling()).toBe(false);
 
-    tick(OrderStatusComponent.pollIntervalMs + 10);
+    vi.advanceTimersByTime(OrderStatusComponent.pollIntervalMs + 10);
     httpMock.expectNone(orderUrl());
-  }));
+  });
 
-  it('keeps polling while the payment is pending, then stops when it completes', fakeAsync(() => {
+  it('keeps polling while the payment is pending, then stops when it completes', () => {
     httpMock.expectOne(orderUrl()).flush(order(OrderStatus.AwaitingPayment, PaymentStatus.Pending));
     fixture.detectChanges();
     expect(component.polling()).toBe(true);
     expect(component.paymentPending).toBe(true);
 
-    tick(OrderStatusComponent.pollIntervalMs);
+    vi.advanceTimersByTime(OrderStatusComponent.pollIntervalMs);
     httpMock.expectOne(orderUrl()).flush(order(OrderStatus.AwaitingPayment, PaymentStatus.Pending));
 
-    tick(OrderStatusComponent.pollIntervalMs);
+    vi.advanceTimersByTime(OrderStatusComponent.pollIntervalMs);
     httpMock.expectOne(orderUrl()).flush(order(OrderStatus.Paid, PaymentStatus.Completed));
     fixture.detectChanges();
 
     expect(component.polling()).toBe(false);
-    tick(OrderStatusComponent.pollIntervalMs + 10);
+    vi.advanceTimersByTime(OrderStatusComponent.pollIntervalMs + 10);
     httpMock.expectNone(orderUrl());
-  }));
+  });
 
-  it('offers a retry after a declined payment without polling', fakeAsync(() => {
+  it('offers a retry after a declined payment without polling', () => {
     httpMock.expectOne(orderUrl()).flush(order(OrderStatus.AwaitingPayment, PaymentStatus.Failed));
     fixture.detectChanges();
 
     expect(component.polling()).toBe(false);
     expect(component.order()?.canRetryPayment).toBe(true);
-    tick(OrderStatusComponent.pollIntervalMs + 10);
+    vi.advanceTimersByTime(OrderStatusComponent.pollIntervalMs + 10);
     httpMock.expectNone(orderUrl());
-  }));
+  });
 
-  it('shows the not found state for an unknown order', fakeAsync(() => {
+  it('shows the not found state for an unknown order', () => {
     httpMock.expectOne(orderUrl()).flush('', { status: 404, statusText: 'Not Found' });
     fixture.detectChanges();
 
     expect(component.notFound()).toBe(true);
     expect(component.order()).toBeNull();
-  }));
+  });
 
   it('picks an icon per status', () => {
     httpMock.expectOne(orderUrl()).flush(order(OrderStatus.Paid, PaymentStatus.Completed));
@@ -122,7 +124,7 @@ describe('OrderStatusComponent', () => {
     expect(component.statusIcon(OrderStatus.AwaitingPayment)).toBe('hourglass_top');
   });
 
-  it('sends the customer back to the checkout that is still open', fakeAsync(() => {
+  it('sends the customer back to the checkout that is still open', () => {
     const assign = vi.fn();
     // The component leaves the page through document.location, which jsdom does not allow spying on.
     component['document'] = { location: { assign } } as unknown as Document;
@@ -132,9 +134,9 @@ describe('OrderStatusComponent', () => {
 
     expect(assign).toHaveBeenCalledWith('https://checkout.revolut.com/x');
     fixture.destroy();
-  }));
+  });
 
-  it('does nothing when there is no checkout to return to', fakeAsync(() => {
+  it('does nothing when there is no checkout to return to', () => {
     const assign = vi.fn();
     component['document'] = { location: { assign } } as unknown as Document;
     httpMock.expectOne(orderUrl()).flush(order(OrderStatus.Cancelled, PaymentStatus.Cancelled));
@@ -142,7 +144,7 @@ describe('OrderStatusComponent', () => {
     component.payNow();
 
     expect(assign).not.toHaveBeenCalled();
-  }));
+  });
 
   it('starts a fresh payment when the customer retries', () => {
     const assign = vi.fn();
@@ -178,25 +180,25 @@ describe('OrderStatusComponent', () => {
     expect(component.order()?.canRetryPayment).toBe(true);
   });
 
-  it('gives up polling after the timeout and explains the wait', fakeAsync(() => {
+  it('gives up polling after the timeout and explains the wait', () => {
     httpMock.expectOne(orderUrl()).flush(order(OrderStatus.AwaitingPayment, PaymentStatus.Pending));
     expect(component.polling()).toBe(true);
 
     // Pretend the page has been waiting past the polling window instead of ticking through it.
     component['pollStarted'] = Date.now() - (OrderStatusComponent.pollTimeoutMs + 1000);
-    tick(OrderStatusComponent.pollIntervalMs);
+    vi.advanceTimersByTime(OrderStatusComponent.pollIntervalMs);
     httpMock.expectOne(orderUrl()).flush(order(OrderStatus.AwaitingPayment, PaymentStatus.Pending));
     fixture.detectChanges();
 
     expect(component.polling()).toBe(false);
     expect(component.timedOut()).toBe(true);
     expect(fixture.nativeElement.textContent).toContain('has not been confirmed yet');
-  }));
+  });
 
-  it('polls again when the customer refreshes by hand', fakeAsync(() => {
+  it('polls again when the customer refreshes by hand', () => {
     httpMock.expectOne(orderUrl()).flush(order(OrderStatus.AwaitingPayment, PaymentStatus.Pending));
     component['pollStarted'] = Date.now() - (OrderStatusComponent.pollTimeoutMs + 1000);
-    tick(OrderStatusComponent.pollIntervalMs);
+    vi.advanceTimersByTime(OrderStatusComponent.pollIntervalMs);
     httpMock.expectOne(orderUrl()).flush(order(OrderStatus.AwaitingPayment, PaymentStatus.Pending));
     expect(component.timedOut()).toBe(true);
 
@@ -205,17 +207,17 @@ describe('OrderStatusComponent', () => {
     httpMock.expectOne(orderUrl()).flush(order(OrderStatus.Paid, PaymentStatus.Completed));
     expect(component.timedOut()).toBe(false);
     expect(component.order()?.status).toBe(OrderStatus.Paid);
-  }));
+  });
 
-  it('stops polling once the page is left', fakeAsync(() => {
+  it('stops polling once the page is left', () => {
     httpMock.expectOne(orderUrl()).flush(order(OrderStatus.AwaitingPayment, PaymentStatus.Pending));
     expect(component.polling()).toBe(true);
 
     fixture.destroy();
-    tick(OrderStatusComponent.pollIntervalMs * 3);
+    vi.advanceTimersByTime(OrderStatusComponent.pollIntervalMs * 3);
 
     httpMock.expectNone(orderUrl());
-  }));
+  });
 
   it('empties the cart once the order is paid', () => {
     const cart = TestBed.inject(CartService);

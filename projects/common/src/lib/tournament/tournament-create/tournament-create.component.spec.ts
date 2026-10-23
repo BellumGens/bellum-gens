@@ -102,6 +102,28 @@ describe('TournamentCreateComponent', () => {
     component.cancel();
     expect(spy).toHaveBeenCalledWith(['/tournaments']);
   });
+
+  it('should associate a label with each text field', () => {
+    const el: HTMLElement = fixture.nativeElement;
+    const cases: [string, string][] = [
+      ['name', 'Tournament Name'],
+      ['description', 'Description'],
+      ['maxParticipants', 'Max Participants'],
+      ['prizePool', 'Prize Pool']
+    ];
+
+    for (const [control, label] of cases) {
+      const field = el.querySelector<HTMLInputElement>(`[formcontrolname="${control}"]`);
+      expect(field.id).not.toBe('');
+      expect(field.labels.length).toBe(1);
+      expect(field.labels[0].textContent.trim()).toBe(label);
+    }
+  });
+
+  it('should name the back button', () => {
+    const back: HTMLButtonElement = fixture.nativeElement.querySelector('.create-header button');
+    expect(back.getAttribute('aria-label')).toBe('Back');
+  });
 });
 
 describe('TournamentCreateComponent (edit mode)', () => {
@@ -137,7 +159,7 @@ describe('TournamentCreateComponent (edit mode)', () => {
     expect(component.tournamentId()).toBe('t1');
   });
 
-  it('should fetch tournament and patch form in edit mode', () => {
+  it('should fetch tournament and patch form in edit mode', async () => {
     const req = httpMock.expectOne(r => r.url.includes('/tournament') && r.url.includes('id=t1'));
     req.flush({
       id: 't1',
@@ -146,6 +168,8 @@ describe('TournamentCreateComponent (edit mode)', () => {
       game: Game.CSGO,
       visibility: TournamentVisibility.Private
     });
+    // The form is patched by an effect
+    await fixture.whenStable();
 
     expect(component.form.value.name).toBe('Existing Tournament');
     expect(component.form.value.description).toBe('A description');

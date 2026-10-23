@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, DOCUMENT, LOCALE_ID, PLATFORM_ID, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, DOCUMENT, LOCALE_ID, PLATFORM_ID, effect, inject, signal, untracked } from '@angular/core';
 import { CurrencyPipe, isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -58,8 +58,9 @@ export class CheckoutComponent {
 
   constructor() {
     if (this.isBrowser) {
-      this.login.applicationUser.subscribe(user => {
-        if (user?.email && !this.form.controls.email.value) {
+      effect(() => {
+        const user = this.login.applicationUser();
+        if (user?.email && !untracked(() => this.form.controls.email.value)) {
           this.form.controls.email.setValue(user.email);
         }
       });

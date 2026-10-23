@@ -63,7 +63,8 @@
     width: 64px;
     height: 64px;
     margin-bottom: 16px;
-    opacity: 0.4;
+    // With the 0.7 of the container this keeps the icon above the 3:1 non-text contrast minimum
+    opacity: 0.75;
   }
 
   h3 {
@@ -97,7 +98,8 @@
     justify-content: stretch;
 
     button {
-      flex: 1;
+      // Wraps the buttons instead of clipping their text on phones
+      flex: 1 1 auto;
     }
   }
 

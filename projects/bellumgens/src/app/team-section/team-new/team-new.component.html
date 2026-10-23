@@ -1,4 +1,4 @@
-@if (authUser) {
+@if (authUser()) {
   <igx-dialog #createTeam [closeOnOutsideSelect]="true">
     <span class="highlight" i18n>Import from Steam Group</span>
     <igx-input-group type="search">
@@ -8,8 +8,10 @@
       <label for="searchGroups" igxLabel i18n>Search Groups</label>
       <input #search igxInput id="searchGroups" [(ngModel)]="searchGroups">
       @if (search.value.length > 0) {
-        <igx-suffix (click)="searchGroups = null">
-          <igx-icon>clear</igx-icon>
+        <igx-suffix>
+          <button type="button" igxIconButton="flat" (click)="searchGroups.set(null)" i18n-aria-label aria-label="Clear search">
+            <igx-icon>clear</igx-icon>
+          </button>
         </igx-suffix>
       }
     </igx-input-group>
@@ -17,11 +19,12 @@
       <ng-template igxEmptyList>
         <p i18n>No Steam groups found...</p>
       </ng-template>
-      @for (group of groups | groupsFilter:searchGroups; track group.groupID64) {
-        <igx-list-item (click)="createFromSteam(group)">
+      @for (group of groups() | groupsFilter:searchGroups(); track group.groupID64) {
+        <igx-list-item>
           <igx-avatar igxListThumbnail [src]="group.avatarFull" [initials]="group.groupName" shape="circle">
           </igx-avatar>
-          <div igxListLineTitle>{{ group.groupName }}</div>
+          <!-- The button covers the whole list item, so the item stays clickable everywhere -->
+          <button type="button" igxListLineTitle class="steam-group-button" (click)="createFromSteam(group)">{{ group.groupName }}</button>
         </igx-list-item>
       }
     </igx-list>
@@ -37,8 +40,10 @@
           igxInput
           name="teamName" minlength="2" [required]="true" [(ngModel)]="newTeam.teamName">
           @if (teamName.value.length > 0) {
-            <igx-suffix (click)="newTeam.teamName = null">
-              <igx-icon>clear</igx-icon>
+            <igx-suffix>
+              <button type="button" igxIconButton="flat" (click)="newTeam.teamName = null" i18n-aria-label aria-label="Clear team name">
+                <igx-icon>clear</igx-icon>
+              </button>
             </igx-suffix>
           }
         </igx-input-group>
@@ -56,8 +61,10 @@
             [(ngModel)]="newTeam.description">
           </textarea>
           @if (teamDescripton.value.length > 0) {
-            <igx-suffix (click)="newTeam.description = null">
-              <igx-icon>clear</igx-icon>
+            <igx-suffix>
+              <button type="button" igxIconButton="flat" (click)="newTeam.description = null" i18n-aria-label aria-label="Clear team motto">
+                <igx-icon>clear</igx-icon>
+              </button>
             </igx-suffix>
           }
         </igx-input-group>
@@ -78,8 +85,10 @@
             pattern="^https?:\/\/(?:[a-z\-]+\.)+[a-z]{2,6}(?:\/[^\/#?]+)+\.(?:jpe?g|png|webp)$"
             name="teamAvatar" [(ngModel)]="newTeam.teamAvatar">
             @if (teamAvatar.value?.length > 0) {
-              <igx-suffix (click)="newTeam.teamAvatar = null">
-                <igx-icon>clear</igx-icon>
+              <igx-suffix>
+                <button type="button" igxIconButton="flat" (click)="newTeam.teamAvatar = null" i18n-aria-label aria-label="Clear team avatar URL">
+                  <igx-icon>clear</igx-icon>
+                </button>
               </igx-suffix>
             }
             @if (teamAvatar.invalid) {
@@ -88,9 +97,9 @@
           </igx-input-group>
           <button igxButton
             igxRipple
-            [disabled]="!teamRegistration.touched || teamRegistration.invalid || inProgress"
+            [disabled]="!teamRegistration.touched || teamRegistration.invalid || inProgress()"
             class="submit-button"
-          i18n>{{ inProgress ? 'Submitting...' : 'Submit' }}</button>
+          i18n>{{ inProgress() ? 'Submitting...' : 'Submit' }}</button>
         </form>
       </igx-dialog>
     }

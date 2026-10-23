@@ -37,6 +37,16 @@
   margin-top: 8px;
 }
 
+// A text button that keeps the look of the username heading it is in
+.profile-link {
+  padding: 0;
+  border: none;
+  background: none;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+}
+
 @media only screen and (max-width: 720px) {
   .login-button-text {
     display: none;
