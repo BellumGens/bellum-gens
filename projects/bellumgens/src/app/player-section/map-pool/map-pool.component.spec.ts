@@ -44,4 +44,14 @@ describe('MapPoolComponent', () => {
     expect(component.maps().find(m => m.mapId === 2).isPlayed).toBe(true);
     expect(emitSpy).toHaveBeenCalledWith(expect.objectContaining({ mapId: 2, isPlayed: true }));
   });
+
+  it('leaves naming the map images to the images, not an unnamed img role on their containers', () => {
+    const media: HTMLElement [] = Array.from(fixture.nativeElement.querySelectorAll('igx-card-media'));
+
+    expect(media.length).toBeGreaterThan(0);
+    for (const container of media) {
+      expect(container.getAttribute('role')).toBe('none');
+      expect(container.querySelector('img').getAttribute('alt')).toBeTruthy();
+    }
+  });
 });

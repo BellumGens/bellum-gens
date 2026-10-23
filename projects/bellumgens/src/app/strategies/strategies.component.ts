@@ -38,6 +38,7 @@ import { ActiveDutyMapsPipe } from '../../../../common/src/lib/pipes/active-duty
 import { ConfirmComponent } from '../../../../common/src/lib/confirm/confirm.component';
 import { NewStrategyComponent } from './new-strategy/new-strategy.component';
 import { LoadingComponent } from '../../../../common/src/lib/loading/loading.component';
+import { voteLabel } from './vote-label';
 
 @Component({
   selector: 'app-team-strategies',
@@ -101,6 +102,9 @@ export class StrategiesComponent {
   public openedActionsId = signal<string>(null);
   public overlaySettings = GLOBAL_OVERLAY_SETTINGS;
   public stratOrder = StratOrder;
+  public voteLabel = voteLabel;
+  /** Strategy images that failed to load; their cards drop the image instead of showing a broken one. */
+  public brokenImages = signal<ReadonlySet<string>>(new Set());
 
   constructor() {
     this.activatedRoute.url.subscribe(value => {
@@ -190,6 +194,10 @@ export class StrategiesComponent {
   /** The comments link is named by the comment count, since its badge only reads "badge" to assistive technologies. */
   public commentsLabel(strat: CSGOStrategy) {
     return $localize`Comments: ${strat.comments?.length ?? 0}:count:`;
+  }
+
+  public imageFailed(src: string) {
+    this.brokenImages.update(broken => new Set(broken).add(src));
   }
 
   public actionsClosed(stratId: string) {

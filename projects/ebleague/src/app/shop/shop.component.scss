@@ -1,0 +1,11 @@
+:host {
+  // Scale the heading with the viewport so it fits on phones (WCAG 1.4.10 reflow)
+  h1 {
+    max-width: 100%;
+    padding-inline: 16px;
+    font-size: clamp(1.75rem, 1rem + 4vw, 3.75rem);
+    line-height: 1.2;
+    text-align: center;
+    overflow-wrap: break-word;
+  }
+}

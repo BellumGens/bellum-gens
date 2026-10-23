@@ -19,3 +19,38 @@ a[igxDrawerItem] {
 .logo-link {
   display: inline-flex;
 }
+
+.logo-link img {
+  // Keep the logo legible: the other navbar items compress instead
+  min-width: 104px;
+}
+
+@media only screen and (max-width: 480px) {
+  .drawer-action {
+    margin-right: 4px;
+  }
+
+  :host ::ng-deep .bellum-gens-navbar {
+    nav {
+      gap: 8px;
+      padding-inline: 8px;
+    }
+
+    .igx-navbar__left:not(:empty) {
+      margin-inline-end: 0;
+    }
+
+    .igx-navbar__right {
+      gap: 0;
+    }
+
+    .profile-button {
+      min-width: auto;
+      padding-inline: 8px;
+    }
+
+    .drop-down-arrow {
+      display: none;
+    }
+  }
+}

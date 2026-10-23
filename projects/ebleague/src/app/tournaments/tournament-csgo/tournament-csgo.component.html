@@ -28,7 +28,9 @@
               </igx-badge>
             }
             <a [href]="environment.bellumgens + '/team/' + registration.team.customUrl" target="_blank">{{ registration.team.teamName }}</a>
-            <span>[{{ registration.companyId }}]</span>
+            @if (registration.companyId) {
+              <span>[{{ registration.companyId }}]</span>
+            }
           </div>
         }
         <igx-divider></igx-divider>
@@ -49,9 +51,9 @@
           </igx-grid-toolbar-actions>
         </igx-grid-toolbar>
 
-        <igx-column field="startTime" width="220px" dataType="date" i18n-header header="Start time">
+        <igx-column field="startTime" [width]="narrowScreen() ? '150px' : '220px'" dataType="date" i18n-header header="Start time">
           <ng-template igxCell let-value>
-            {{ value | date:'MMM d, y, h:mm a' }}
+            {{ value | date:(narrowScreen() ? 'short' : 'MMM d, y, h:mm a') }}
           </ng-template>
         </igx-column>
 
@@ -81,7 +83,8 @@
           </div>
         </igx-column>
 
-        <igx-column width="150px" field="videoLink" i18n-header header="Video" [filterable]="false">
+        <!-- On phones the links move to the row details to leave room for the match -->
+        <igx-column width="150px" field="videoLink" i18n-header header="Video" [filterable]="false" [hidden]="narrowScreen()">
           <ng-template igxCell let-value>
             @if (value) {
               <a [href]="value" target="_blank" class="horizontal-center">
@@ -92,7 +95,7 @@
           </ng-template>
         </igx-column>
 
-        <igx-column width="150px" field="demoLink" i18n-header header="Demo" [filterable]="false">
+        <igx-column width="150px" field="demoLink" i18n-header header="Demo" [filterable]="false" [hidden]="narrowScreen()">
           <ng-template igxCell let-value>
             @if (value) {
               <a [href]="value" target="_blank" class="horizontal-center">
@@ -104,6 +107,22 @@
         </igx-column>
 
         <ng-template igxGridDetail let-dataItem>
+          @if (narrowScreen() && (dataItem.videoLink || dataItem.demoLink)) {
+            <div class="horizontal-center match-links">
+              @if (dataItem.videoLink) {
+                <a [href]="dataItem.videoLink" target="_blank" class="horizontal-center">
+                  <igx-icon>link</igx-icon>
+                  <span i18n>Video</span>
+                </a>
+              }
+              @if (dataItem.demoLink) {
+                <a [href]="dataItem.demoLink" target="_blank" class="horizontal-center">
+                  <igx-icon>link</igx-icon>
+                  <span i18n>Demo</span>
+                </a>
+              }
+            </div>
+          }
           @for (map of dataItem.maps; track map.id) {
             <div class="horizontal-center">
               <div class="score-container">

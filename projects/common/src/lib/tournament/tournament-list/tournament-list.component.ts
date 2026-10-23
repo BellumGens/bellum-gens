@@ -1,6 +1,6 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
-import { Tournament, TournamentStatus } from '../../../models/tournament';
+import { Tournament, TournamentStatus, getTournamentStatus, isUpcomingTournament } from '../../../models/tournament';
 import { ApiTournamentsService } from '../../../services/bellumgens-api.tournaments.service';
 import { LoginService } from '../../../services/login.service';
 import { TournamentCardComponent } from '../tournament-card/tournament-card.component';
@@ -46,16 +46,20 @@ export class TournamentListComponent {
   private authUser = this.loginService.applicationUser;
   public isLoggedIn = computed(() => !!this.authUser());
 
+  // The API sends no status, so it is derived from the active flag and the dates when missing
   public activeTournaments = computed(() =>
-    this.tournaments().filter(t => t.status === TournamentStatus.Open || t.status === TournamentStatus.InProgress)
+    this.tournaments().filter(t => {
+      const status = getTournamentStatus(t);
+      return (status === TournamentStatus.Open || status === TournamentStatus.InProgress) && !isUpcomingTournament(t);
+    })
   );
 
   public upcomingTournaments = computed(() =>
-    this.tournaments().filter(t => t.status === TournamentStatus.Draft && t.startDate && new Date(t.startDate).getTime() > Date.now())
+    this.tournaments().filter(t => isUpcomingTournament(t))
   );
 
   public completedTournaments = computed(() =>
-    this.tournaments().filter(t => t.status === TournamentStatus.Completed)
+    this.tournaments().filter(t => getTournamentStatus(t) === TournamentStatus.Completed)
   );
 
   public createTournament() {

@@ -32,4 +32,9 @@ describe('RaffleComponent', () => {
     const compiled = fixture.nativeElement;
     expect(compiled).toBeTruthy();
   });
+
+  it('should give the embedded giveaway frame an accessible title', () => {
+    const frame = (fixture.nativeElement as HTMLElement).querySelector('iframe');
+    expect(frame?.getAttribute('title')).toBeTruthy();
+  });
 });

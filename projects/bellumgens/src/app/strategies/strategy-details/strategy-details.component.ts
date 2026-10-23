@@ -30,6 +30,7 @@ import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
 import { IGX_DROP_DOWN_DIRECTIVES, ISelectionEventArgs } from '@infragistics/igniteui-angular/drop-down';
 import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
 import { LoadingComponent } from '../../../../../common/src/lib/loading/loading.component';
+import { voteLabel } from '../vote-label';
 
 @Component({
   selector: 'app-strategy-details',
@@ -83,6 +84,11 @@ export class StrategyDetailsComponent extends BaseDirective {
   public openedActionsId = signal<string>(null);
   public horizontal = signal(true);
   public overlaySettings = GLOBAL_OVERLAY_SETTINGS;
+  public voteLabel = voteLabel;
+  /** Strategy image that failed to load; it is left out instead of showing a broken image. */
+  public brokenImage = signal<string>(null);
+  /** Names the author link when the strategy comes without its author's name. */
+  public authorFallback = $localize`Profile`;
 
   constructor() {
     super();

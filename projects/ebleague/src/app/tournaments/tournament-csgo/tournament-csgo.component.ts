@@ -6,6 +6,7 @@ import {
   LoginService
 } from '../../../../../common/src/public_api';
 import { BaseDirective } from '../../../../../bellumgens/src/app/base/base.component';
+import { mediaQuery, NARROW_SCREEN_QUERY } from '../../utils/media-query';
 import { environment } from '../../../../../common/src/environments/environment';
 import { CSGOMapnamePipe } from '../../../../../common/src/lib/pipes/csgomapname.pipe';
 import { CSGOMapimagePipe } from '../../../../../common/src/lib/pipes/csgomapimage.pipe';
@@ -52,6 +53,7 @@ export class TournamentCsgoComponent extends BaseDirective {
   public csgomatches = computed(() => this.apiService.getCsgoMatches(this.tournamentId())() ?? undefined);
   public loadingGroups = this.apiService.loadingCSGOGroups;
   public groups = computed(() => this.apiService.getCsgoGroups(this.tournamentId())());
+  public narrowScreen = mediaQuery(NARROW_SCREEN_QUERY);
 
   constructor() {
     super();

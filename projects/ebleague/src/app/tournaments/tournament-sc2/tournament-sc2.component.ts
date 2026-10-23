@@ -2,6 +2,7 @@ import { Component, computed, inject, effect } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs/operators';
 import { BaseDirective } from '../../../../../bellumgens/src/app/base/base.component';
+import { mediaQuery, NARROW_SCREEN_QUERY } from '../../utils/media-query';
 import {
   ApiTournamentsService,
   LoginService
@@ -50,6 +51,7 @@ export class TournamentSc2Component extends BaseDirective {
   public sc2matches = computed(() => this.apiService.getSc2Matches(this.tournamentId())() ?? undefined);
   public loadingGroups = this.apiService.loadingSC2Groups;
   public groups = computed(() => this.apiService.getSc2Groups(this.tournamentId())());
+  public narrowScreen = mediaQuery(NARROW_SCREEN_QUERY);
 
   constructor() {
     super();

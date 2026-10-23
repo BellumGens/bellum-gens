@@ -218,4 +218,50 @@ describe('ApiSearchService', () => {
     expect(service.loadingSearch()).toBeFalsy();
     expect(service.strategySearchResult()).toEqual([]);
   });
+
+  describe('name searches without a cached quick search (deep links and reloads)', () => {
+    const result: SearchResult = {
+      players: [{ id: 'p1', username: 'alpha' } as ApplicationUser],
+      strategies: [{ id: 's1', title: 'alpha', description: '', map: CSGOMap.Dust2, side: Side.TSide, teamId: null, url: '' }],
+      teams: [{ teamName: 'alpha', teamId: 't1', teamAvatar: '', visible: true, description: '' }],
+      steamUser: null
+    };
+
+    const cases: [string, (query: string) => void, () => unknown [], keyof SearchResult][] = [
+      ['searchTeams', query => service.searchTeams(query), () => service.teamSearchResult(), 'teams'],
+      ['searchPlayers', query => service.searchPlayers(query), () => service.playerSearchResult(), 'players'],
+      ['searchStrategies', query => service.searchStrategies(query), () => service.strategySearchResult(), 'strategies']
+    ];
+
+    for (const [name, search, searchResult, key] of cases) {
+      it(`${name} fetches the name search with a loading state and caches it`, () => {
+        search('name=alpha');
+
+        expect(service.loadingSearch()).toBe(true);
+        expect(searchResult()).toEqual([]);
+        const req = httpMock.expectOne(`${service['_apiEndpoint']}/search?name=alpha`);
+        expect(req.request.method).toBe('GET');
+        req.flush(result);
+
+        expect(service.loadingSearch()).toBe(false);
+        expect(searchResult()).toEqual(result[key]);
+        expect(service['_searchResultCache'].get('alpha')).toEqual(result);
+
+        // A second visit is answered from the cache.
+        search('name=alpha');
+        httpMock.expectNone(`${service['_apiEndpoint']}/search?name=alpha`);
+        expect(searchResult()).toEqual(result[key]);
+      });
+
+      it(`${name} ends the loading state when the name search fails`, () => {
+        search('name=alpha');
+        httpMock.expectOne(`${service['_apiEndpoint']}/search?name=alpha`)
+          .error(new ProgressEvent('Server Error'), { status: 500, statusText: 'Server Error' });
+
+        expect(service.loadingSearch()).toBe(false);
+        expect(searchResult()).toEqual([]);
+        expect(service['_searchResultCache'].has('alpha')).toBe(false);
+      });
+    }
+  });
 });

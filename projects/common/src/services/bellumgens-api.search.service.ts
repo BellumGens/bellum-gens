@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, inject, signal } from '@angular/core';
+import { Injectable, WritableSignal, inject, signal } from '@angular/core';
 import { CSGOTeam } from '../models/csgoteam';
 import { SearchResult } from '../models/searchresult';
 import { CSGOStrategy } from '../models/csgostrategy';
@@ -60,10 +60,7 @@ export class ApiSearchService {
       this._teamSearchResult.set(this._teamSearchCache.get(query));
     } else {
       if (query.startsWith('name')) {
-        const val = query.split('=')[1];
-        if (this._searchResultCache.has(val)) {
-          this._teamSearchResult.set(this._searchResultCache.get(val).teams);
-        }
+        this.searchByName(query.split('=')[1], this._teamSearchResult, result => result.teams);
       } else {
         this._teamSearchResult.set([]);
         this._loadingSearch.set(true);
@@ -84,10 +81,7 @@ export class ApiSearchService {
       this._playerSearchResult.set(this._playerSearchCache.get(query));
     } else {
       if (query.startsWith('name')) {
-        const val = query.split('=')[1];
-        if (this._searchResultCache.has(val)) {
-          this._playerSearchResult.set(this._searchResultCache.get(val).players);
-        }
+        this.searchByName(query.split('=')[1], this._playerSearchResult, result => result.players);
       } else {
         this._playerSearchResult.set([]);
         this._loadingSearch.set(true);
@@ -108,10 +102,7 @@ export class ApiSearchService {
       this._strategySearchResult.set(this._strategySearchCache.get(query));
     } else {
       if (query.startsWith('name')) {
-        const val = query.split('=')[1];
-        if (this._searchResultCache.has(val)) {
-          this._strategySearchResult.set(this._searchResultCache.get(val).strategies);
-        }
+        this.searchByName(query.split('=')[1], this._strategySearchResult, result => result.strategies);
       } else {
         this._strategySearchResult.set([]);
         this._loadingSearch.set(true);
@@ -124,6 +115,27 @@ export class ApiSearchService {
           error: () => this._loadingSearch.set(false)
         });
       }
+    }
+  }
+
+  /**
+   * Name searches are answered by the quick search, so reuse its cached result when there is one. A deep link
+   * or a reload of a name search lands here before any quick search ran, so fetch the quick search then.
+   */
+  private searchByName<T>(name: string, result: WritableSignal<T []>, pick: (searchResult: SearchResult) => T []) {
+    if (this._searchResultCache.has(name)) {
+      result.set(pick(this._searchResultCache.get(name)));
+    } else {
+      result.set([]);
+      this._loadingSearch.set(true);
+      this.getQuickSearch(name).subscribe({
+        next: data => {
+          this._searchResultCache.set(name, data);
+          result.set(pick(data));
+          this._loadingSearch.set(false);
+        },
+        error: () => this._loadingSearch.set(false)
+      });
     }
   }
 

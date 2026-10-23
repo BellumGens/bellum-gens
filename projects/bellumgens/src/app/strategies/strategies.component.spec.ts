@@ -392,6 +392,56 @@ describe('StrategiesComponent', () => {
       expect(comments.querySelector('igx-badge').getAttribute('aria-hidden')).toBe('true');
     });
 
+    it('names the media container by its content instead of exposing an unnamed img role around links', async () => {
+      strategiesService['_strategies'].set([strat('1', { stratImage: '/strat-1.png' })]);
+      await fixture.whenStable();
+
+      const media = fixture.nativeElement.querySelector('igx-card-media') as HTMLElement;
+      expect(media.getAttribute('role')).toBe('none');
+      expect(media.querySelector('a')).toBeTruthy();
+    });
+
+    it('titles the video frame of a strategy with the strategy title', async () => {
+      strategiesService['_strategies'].set([strat('1', { url: 'https://www.youtube.com/embed/abc' })]);
+      await fixture.whenStable();
+
+      const frame = fixture.nativeElement.querySelector('igx-card-media iframe') as HTMLIFrameElement;
+      expect(frame.getAttribute('title')).toBe('Strat 1');
+    });
+
+    it('drops a strategy image that fails to load instead of showing it broken', async () => {
+      strategiesService['_strategies'].set([strat('1', { stratImage: '/missing.png' }), strat('2', { stratImage: '/strat-2.png' })]);
+      await fixture.whenStable();
+      expect(fixture.nativeElement.querySelectorAll('img.strat-image').length).toBe(2);
+
+      fixture.nativeElement.querySelector('img.strat-image').dispatchEvent(new Event('error'));
+      await fixture.whenStable();
+
+      const images: HTMLImageElement [] = Array.from(fixture.nativeElement.querySelectorAll('img.strat-image'));
+      expect(images.length).toBe(1);
+      expect(images[0].getAttribute('src')).toContain('/strat-2.png');
+      expect(renderedTitles()).toEqual(['Strat 1', 'Strat 2']);
+    });
+
+    it('names the vote buttons with their action and count and marks the user vote as pressed', async () => {
+      const voteButtons = (): HTMLButtonElement [] =>
+        Array.from<HTMLButtonElement>(fixture.nativeElement.querySelectorAll('.strategy-actions button')).slice(0, 2);
+      expect(voteButtons().map(b => b.getAttribute('aria-label'))).toEqual(['Vote up: 0', 'Vote down: 0']);
+      expect(voteButtons().map(b => b.getAttribute('aria-pressed'))).toEqual(['false', 'false']);
+      expect(voteButtons().every(b => b.type === 'button')).toBe(true);
+
+      user.set({ id: 'user-1' } as ApplicationUser);
+      strategiesService['_strategies'].set([strat('1', { votes: [
+        { vote: VoteDirection.Up, userId: 'user-1' },
+        { vote: VoteDirection.Up, userId: 'user-2' },
+        { vote: VoteDirection.Down, userId: 'user-3' }
+      ] })]);
+      await fixture.whenStable();
+
+      expect(voteButtons().map(b => b.getAttribute('aria-label'))).toEqual(['Vote up: 2', 'Vote down: 1']);
+      expect(voteButtons().map(b => b.getAttribute('aria-pressed'))).toEqual(['true', 'false']);
+    });
+
     it('shares a strategy on twitter', () => {
       const socialMedia = TestBed.inject(SocialMediaStrategyService);
       const share = vi.spyOn(socialMedia, 'shareOnTwitter').mockImplementation(() => undefined);

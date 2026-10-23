@@ -2,13 +2,14 @@
   <igx-card class="strategy-details" elevated [horizontal]="horizontal()">
     <div igxLayout igxLayoutDir="column" igxFlex [igxFlexGrow]="1">
       @if (strat.url | isVideo) {
-        <igx-card-media height="100%">
-          <iframe [src]="strat.url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <!-- The media containers default to an unnamed role="img"; their video and image carry the name -->
+        <igx-card-media height="100%" role="none">
+          <iframe [src]="strat.url | safeVideoLink" [title]="strat.title" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         </igx-card-media>
       }
-      @else if (strat.stratImage) {
-        <igx-card-media class="strategy-image-container">
-          <img [ngSrc]="strat.stratImage" width="900" height="900" [alt]="strat.title" />
+      @else if (strat.stratImage && strat.stratImage !== brokenImage()) {
+        <igx-card-media class="strategy-image-container" role="none">
+          <img [ngSrc]="strat.stratImage" width="900" height="900" [alt]="strat.title" (error)="brokenImage.set(strat.stratImage)" />
         </igx-card-media>
       }
       <igx-card-header>
@@ -16,18 +17,22 @@
         <h3 igxCardHeaderSubtitle>{{ strat.description }}</h3>
         <h5 igxCardHeaderSubtitle class="card-smaller-subtitle">
           @if (strat.userId) {
-            <span i18n>Author: <a [routerLink]="['/players', strat.userId]">{{ strat.owner }}</a></span>
+            <span i18n>Author: <a [routerLink]="['/players', strat.userId]">{{ strat.owner || authorFallback }}</a></span>
           }
           <span i18n>Last Edit: {{ strat.lastUpdated | date }}</span>
         </h5>
         <div class="center strategy-actions">
-          <button igxButton="fab"
+          <button type="button" igxButton="fab"
             igxRipple
-            (click)="shareOnTwitter(strat)">
+            (click)="shareOnTwitter(strat)"
+            i18n-aria-label
+            aria-label="Share">
             <igx-icon family="login-icons" name="twitter" title="Share Strategy"></igx-icon>
           </button>
-          <button igxButton="fab"
+          <button type="button" igxButton="fab"
             [class]="strat.votes | hasVoted:0:authUser()"
+            [attr.aria-pressed]="!!(strat.votes | hasVoted:0:authUser())"
+            [attr.aria-label]="voteLabel(strat.votes, 0)"
             igxRipple
             (click)="voteStrat(strat, 0)">
             <igx-icon title="vote up">thumb_up</igx-icon>
@@ -37,8 +42,10 @@
               </span>
             }
           </button>
-          <button igxButton="fab"
+          <button type="button" igxButton="fab"
             [class]="strat.votes | hasVoted:1:authUser()"
+            [attr.aria-pressed]="!!(strat.votes | hasVoted:1:authUser())"
+            [attr.aria-label]="voteLabel(strat.votes, 1)"
             igxRipple
             (click)="voteStrat(strat, 1)">
             <igx-icon title="vote down">thumb_down</igx-icon>

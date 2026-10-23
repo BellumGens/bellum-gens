@@ -22,4 +22,9 @@ describe('OrderSuccessComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should show the order confirmation message', () => {
+    const text = (fixture.nativeElement as HTMLElement).textContent;
+    expect(text).toContain('Your order has been received!');
+  });
 });

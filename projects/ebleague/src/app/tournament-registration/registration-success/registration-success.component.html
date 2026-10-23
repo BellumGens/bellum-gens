@@ -1,14 +1,22 @@
 <div class="loading-overview">
-  <h4 class="color-success" i18n>Your registration has been submitted successfully!</h4>
-  <p i18n>In order to confirm your registration, you need to pay the registration fee (60 BGN for the StarCraft II league, or 300 BGN for the Counter-Strike league).</p>
-  <p i18n>Your registration will be shown as confirmed within 2 work days of the registration fee transfer.</p>
-  <ul>
-    <li i18n>Bank name: <span class="highlight">United Bulgarian Bank</span></li>
-    <li i18n>Beneficiary: <span class="highlight">Bellum Gens</span></li>
-    <li>IBAN: <span class="highlight">BG90UBBS80021087375040</span></li>
-    <li>BIC/SWIFT: <span class="highlight">UBBSBGSF</span></li>
-  </ul>
-  <p i18n>Please put this uniquely generated registration code into the bank transfer details: <span class="highlight">{{ application?.hash }}</span>. For future reference, this code can be found through your user profile.</p>
-  <p i18n>We've also emailed these details to the email address you've provided (<span class="highlight">{{application?.email}}</span>).</p>
-  <p i18n>If you need an invoice, please contact us at <a href="mailto:info@eb-league.com">info&#64;eb-league.com</a>!</p>
+  @if (application) {
+    <h4 class="color-success" i18n>Your registration has been submitted successfully!</h4>
+    <p i18n>In order to confirm your registration, you need to pay the registration fee (60 BGN for the StarCraft II league, or 300 BGN for the Counter-Strike league).</p>
+    <p i18n>Your registration will be shown as confirmed within 2 work days of the registration fee transfer.</p>
+    <ul>
+      <li i18n>Bank name: <span class="highlight">United Bulgarian Bank</span></li>
+      <li i18n>Beneficiary: <span class="highlight">Bellum Gens</span></li>
+      <li>IBAN: <span class="highlight">BG90UBBS80021087375040</span></li>
+      <li>BIC/SWIFT: <span class="highlight">UBBSBGSF</span></li>
+    </ul>
+    <p i18n>Please put this uniquely generated registration code into the bank transfer details: <span class="highlight">{{ application.hash }}</span>. For future reference, this code can be found through your user profile.</p>
+    @if (application.email) {
+      <p i18n>We've also emailed these details to the email address you've provided (<span class="highlight">{{application.email}}</span>).</p>
+    }
+    <p i18n>If you need an invoice, please contact us at <a href="mailto:info@eb-league.com">info&#64;eb-league.com</a>!</p>
+  } @else {
+    <h4 i18n>There are no registration details to show.</h4>
+    <p i18n>If you have already registered, your registration code can be found through your user profile.</p>
+    <p><a routerLink="/" i18n>Go to the home page</a></p>
+  }
 </div>

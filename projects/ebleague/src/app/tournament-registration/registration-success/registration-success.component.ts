@@ -1,22 +1,20 @@
 import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { TournamentApplication } from '../../../../../common/src/public_api';
 
 @Component({
   selector: 'app-registration-success',
   templateUrl: './registration-success.component.html',
-  styleUrls: ['./registration-success.component.scss']
+  styleUrls: ['./registration-success.component.scss'],
+  imports: [RouterLink]
 })
 export class RegistrationSuccessComponent {
   private router = inject(Router);
 
-  public application: TournamentApplication;
+  public readonly application: TournamentApplication | null = this.getApplication();
 
-  constructor() {
-    const nav = this.router.currentNavigation();
-    if (nav) {
-      this.application = nav.extras.state as TournamentApplication;
-    }
+  private getApplication(): TournamentApplication | null {
+    const state = this.router.currentNavigation()?.extras.state as TournamentApplication | undefined;
+    return state?.hash ? state : null;
   }
-
 }

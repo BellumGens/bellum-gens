@@ -63,14 +63,15 @@
           <igx-icon>more_vert</igx-icon>
         </button>
       </igx-card-header>
-      <igx-card-media>
+      <!-- The media container defaults to role="img", which can't hold the video or the image link, so it is only a layout box -->
+      <igx-card-media role="none">
         @if (strat.url | isVideo) {
-          <iframe class="video-frame" [src]="strat.url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          <iframe class="video-frame" [src]="strat.url | safeVideoLink" [title]="strat.title" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
         }
-        @else if (strat.stratImage) {
+        @else if (strat.stratImage && !brokenImages().has(strat.stratImage)) {
           <!-- Same destination as the title link, so the image link is left out of the tab order and the accessibility tree -->
           <a [routerLink]="['/strategies', 'details', strat.customUrl]" tabindex="-1" aria-hidden="true">
-            <img [ngSrc]="strat.stratImage" class="strat-image" width="350" height="315" alt="" />
+            <img [ngSrc]="strat.stratImage" class="strat-image" width="350" height="315" alt="" (error)="imageFailed(strat.stratImage)" />
           </a>
         }
       </igx-card-media>
@@ -85,8 +86,10 @@
           <igx-badge [value]="strat.comments ? strat.comments.length : 0" type="info" aria-hidden="true"></igx-badge>
           <span i18n>Comments</span>
         </a>
-        <button igxEnd igxButton="fab"
+        <button type="button" igxEnd igxButton="fab"
           [class]="strat.votes | hasVoted:0:authUser()"
+          [attr.aria-pressed]="!!(strat.votes | hasVoted:0:authUser())"
+          [attr.aria-label]="voteLabel(strat.votes, 0)"
           igxRipple
           (click)="voteStrat(strat, 0)">
           <igx-icon title="vote up">thumb_up</igx-icon>
@@ -96,8 +99,10 @@
             </span>
           }
         </button>
-        <button igxEnd igxButton="fab"
+        <button type="button" igxEnd igxButton="fab"
           [class]="strat.votes | hasVoted:1:authUser()"
+          [attr.aria-pressed]="!!(strat.votes | hasVoted:1:authUser())"
+          [attr.aria-label]="voteLabel(strat.votes, 1)"
           igxRipple
           (click)="voteStrat(strat, 1)">
           <igx-icon title="vote down">thumb_down</igx-icon>

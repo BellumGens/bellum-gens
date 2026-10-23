@@ -113,6 +113,53 @@ export interface RegistrationsCount {
   count: number;
 }
 
+const toTime = (date?: Date | string): number | null => {
+  if (!date) {
+    return null;
+  }
+  const time = new Date(date).getTime();
+  return isNaN(time) ? null : time;
+};
+
+/**
+ * The tournament status, derived from the active flag and the dates for tournaments that come without one
+ * (the API sends no status for its tournaments).
+ * Active tournaments are in progress, inactive ones that haven't started yet are open and those that have ended are completed.
+ * Returns null when the status can't be determined.
+ */
+export const getTournamentStatus = (tournament: Tournament, now = Date.now()): TournamentStatus | null => {
+  if (!tournament) {
+    return null;
+  }
+  if (tournament.status) {
+    return tournament.status;
+  }
+  if (tournament.active) {
+    return TournamentStatus.InProgress;
+  }
+  const start = toTime(tournament.startDate);
+  const end = toTime(tournament.endDate);
+  if (start !== null && start > now) {
+    return TournamentStatus.Open;
+  }
+  if (end !== null ? end < now : start !== null) {
+    return TournamentStatus.Completed;
+  }
+  return null;
+};
+
+/**
+ * Whether the tournament starts in the future and is either a draft
+ * or comes without a status and isn't active (the API's tournaments that haven't started yet).
+ */
+export const isUpcomingTournament = (tournament: Tournament, now = Date.now()): boolean => {
+  const start = toTime(tournament?.startDate);
+  if (start === null || start <= now) {
+    return false;
+  }
+  return tournament.status ? tournament.status === TournamentStatus.Draft : !tournament.active;
+};
+
 export const EMPTY_NEW_APPLICATION: TournamentApplication = { game: null, email: '' };
 
 export const EMPTY_NEW_TOURNAMENT: Tournament = {

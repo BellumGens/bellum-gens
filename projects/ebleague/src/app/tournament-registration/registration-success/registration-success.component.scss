@@ -3,6 +3,8 @@
     flex-flow: column;
     align-items: initial;
     justify-content: space-evenly;
+    // The global primary (blue) text colour is below 4.5:1 on the dark background
+    color: var(--ig-surface-500-contrast);
   }
 
   .loading-overview > ul {
