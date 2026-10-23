@@ -317,11 +317,12 @@
   </igx-select>
 
   <igx-input-group type="border">
-    <label igxLabel i18n>Video Link</label>
+    <label igxLabel for="matchVideoLink" i18n>Video Link</label>
     <igx-prefix>
       <igx-icon>link</igx-icon>
     </igx-prefix>
     <input igxInput
+      id="matchVideoLink"
       type="url"
       pattern="^(?:http(s)?:\/\/)[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$"
       #videoLink
@@ -336,11 +337,12 @@
     </igx-input-group>
 
     <igx-input-group type="border">
-      <label igxLabel i18n>Demo Link</label>
+      <label igxLabel for="matchDemoLink" i18n>Demo Link</label>
       <igx-prefix>
         <igx-icon>link</igx-icon>
       </igx-prefix>
       <input igxInput
+        id="matchDemoLink"
         type="url"
         pattern="^(?:http(s)?:\/\/)[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$"
         #demoLink
@@ -366,13 +368,13 @@
       (rightButtonSelect)="submitMatch(matchGrid); newMatchMapDialog.close()">
       <div class="horizontal-center">
         <igx-input-group type="border">
-          <label igxLabel i18n>Points {{ matchInEdit.team1?.teamName }}</label>
-          <input type="number" igxInput [(ngModel)]="matchInEdit.team1Points" />
+          <label igxLabel for="matchTeam1Points" i18n>Points {{ matchInEdit.team1?.teamName }}</label>
+          <input type="number" id="matchTeam1Points" igxInput [(ngModel)]="matchInEdit.team1Points" />
         </igx-input-group>
         <span class="grid-vs-divider">:</span>
         <igx-input-group type="border">
-          <label igxLabel i18n>Points {{ matchInEdit.team2?.teamName }}</label>
-          <input type="number" igxInput [(ngModel)]="matchInEdit.team2Points" />
+          <label igxLabel for="matchTeam2Points" i18n>Points {{ matchInEdit.team2?.teamName }}</label>
+          <input type="number" id="matchTeam2Points" igxInput [(ngModel)]="matchInEdit.team2Points" />
         </igx-input-group>
       </div>
 
@@ -388,13 +390,13 @@
           </igx-select>
           <div class="horizontal-center">
             <igx-input-group type="border">
-              <label igxLabel i18n>Rounds {{ matchInEdit.team1.teamName }}</label>
-              <input type="number" igxInput [(ngModel)]="map.team1Score" />
+              <label igxLabel [for]="'mapTeam1Score' + $index" i18n>Rounds {{ matchInEdit.team1.teamName }}</label>
+              <input type="number" [id]="'mapTeam1Score' + $index" igxInput [(ngModel)]="map.team1Score" />
             </igx-input-group>
             <span class="grid-vs-divider">:</span>
             <igx-input-group type="border">
-              <label igxLabel i18n>Rounds {{ matchInEdit.team2.teamName }}</label>
-              <input type="number" igxInput [(ngModel)]="map.team2Score" />
+              <label igxLabel [for]="'mapTeam2Score' + $index" i18n>Rounds {{ matchInEdit.team2.teamName }}</label>
+              <input type="number" [id]="'mapTeam2Score' + $index" igxInput [(ngModel)]="map.team2Score" />
             </igx-input-group>
           </div>
           <button igxButton class="submit-button delete-map" (click)="deleteMatchMap(map, matchInEdit.maps)">

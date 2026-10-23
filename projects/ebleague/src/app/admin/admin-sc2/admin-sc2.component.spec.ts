@@ -1171,6 +1171,13 @@ describe('AdminSc2Component', () => {
           .forEach(button => expect(button.getAttribute('aria-label') || button.title).toBeTruthy());
       });
 
+      it('gives every text field of the page a label', () => {
+        const fields = Array.from(el().querySelectorAll<HTMLInputElement>('input[igxInput]'));
+        expect(fields.some(f => f.name === 'groupPosition')).toBe(true);
+        const unlabeled = fields.filter(f => !f.labels?.length && !f.getAttribute('aria-label') && !f.getAttribute('aria-labelledby'));
+        expect(unlabeled).toEqual([]);
+      });
+
       it('loads the data of a tournament picked from the tournament select', async () => {
         const tournamentSelect = selectLabelled('Select tournament');
         expect(tournamentSelect.items.map(i => i.element.nativeElement.textContent.trim())).toEqual(['Spring League', 'Autumn League']);
@@ -1735,6 +1742,15 @@ describe('AdminSc2Component', () => {
           expect(component.pipeTrigger()).toBe(trigger + 1);
           expect(members(groupCards()[0])).toEqual(['Delta']);
           expect(unassigned()).toEqual(['Alpha#111', 'Bravo#222', 'Charlie#333']);
+        });
+
+        it('labels the points input of each group member with the player it is for', () => {
+          const points = Array.from(groupCards()[0].querySelectorAll<HTMLInputElement>('input[name="groupPosition"]'));
+          const accessibleName = (input: HTMLInputElement) => input.getAttribute('aria-labelledby').split(' ')
+            .map(id => el().querySelector(`#${id}`).textContent.trim()).join(' ');
+          expect(points.map(accessibleName)).toEqual(['Points Bravo#222', 'Points Delta#444']);
+          expect(points.map(p => Array.from(p.labels).map(l => l.textContent.trim()))).toEqual([['Points'], ['Points']]);
+          expect(new Set(points.map(p => p.id)).size).toBe(points.length);
         });
 
         it('submits the points entered for a group member', async () => {

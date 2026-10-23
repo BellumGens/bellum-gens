@@ -48,6 +48,10 @@ describe('RegistrationComponent', () => {
     expect(spy).toHaveBeenCalled();
   });
 
+  it('should ask the user to set up their account', () => {
+    expect(fixture.nativeElement.querySelector('h4').textContent.trim()).toBe('Set up your account');
+  });
+
   it('should submit registration', () => {
     vi.spyOn(router, 'navigate').mockImplementation(() => undefined);
     commsService.success.subscribe(success => expect(success).toBe('User registration completed successfully!'));

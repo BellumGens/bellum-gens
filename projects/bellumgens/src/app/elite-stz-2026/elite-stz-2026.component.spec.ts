@@ -47,6 +47,21 @@ describe('EliteStz2026Component', () => {
     expect(component).toBeTruthy();
   });
 
+  it('should label the email field and the checkboxes', () => {
+    fixture.detectChanges();
+    const el: HTMLElement = fixture.nativeElement;
+
+    const email = el.querySelector<HTMLInputElement>('#email');
+    expect(email.labels.length).toBe(1);
+    expect(email.labels[0].textContent.trim()).toBe('Email');
+
+    const checkboxes = Array.from(el.querySelectorAll<HTMLInputElement>('igx-checkbox input[type="checkbox"]'));
+    expect(checkboxes.length).toBe(2);
+    const labels = checkboxes.map(input => el.querySelector(`#${input.getAttribute('aria-labelledby')}`)?.textContent.trim());
+    expect(labels[0]).toBe('This is my first Bellum Gens Elite event');
+    expect(labels[1]).toContain('I agree that the provided email address');
+  });
+
   it('should initialize with disabled form controls', () => {
     expect(component.form.get('email')?.disabled).toBe(true);
     expect(component.form.get('firstTime')?.disabled).toBe(true);

@@ -262,6 +262,33 @@ describe('AppComponent', () => {
         expect(el().querySelector('igx-suffix')).toBeNull();
       });
 
+      it('should expand the search collapsed on narrow screens from the toggle and focus the input', async () => {
+        const toggle = el().querySelector<HTMLButtonElement>('.search-toggle');
+        const navbar = el().querySelector('igx-navbar');
+        expect(toggle.type).toBe('button');
+        expect(toggle.getAttribute('aria-label')).toBe('Search');
+        expect(toggle.getAttribute('aria-controls')).toBe('searchInput');
+        expect(toggle.getAttribute('aria-expanded')).toBe('false');
+        expect(navbar.classList).not.toContain('search-expanded');
+
+        toggle.click();
+        await fixture.whenStable();
+
+        expect(component.searchExpanded()).toBe(true);
+        expect(toggle.getAttribute('aria-expanded')).toBe('true');
+        expect(toggle.querySelector('igx-icon').textContent.trim()).toBe('close');
+        expect(navbar.classList).toContain('search-expanded');
+        expect(document.activeElement).toBe(searchInput());
+
+        toggle.click();
+        await fixture.whenStable();
+
+        expect(component.searchExpanded()).toBe(false);
+        expect(toggle.getAttribute('aria-expanded')).toBe('false');
+        expect(toggle.querySelector('igx-icon').textContent.trim()).toBe('search');
+        expect(navbar.classList).not.toContain('search-expanded');
+      });
+
       it('should open the advanced search banner on focus and hide it from the banner action', async () => {
         const banner = fixture.debugElement.query(By.directive(IgxBannerComponent)).componentInstance as IgxBannerComponent;
         expect(banner.collapsed).toBe(true);

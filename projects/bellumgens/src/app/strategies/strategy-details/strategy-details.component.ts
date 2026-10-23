@@ -89,6 +89,10 @@ export class StrategyDetailsComponent extends BaseDirective {
   public brokenImage = signal<string>(null);
   /** Names the author link when the strategy comes without its author's name. */
   public authorFallback = $localize`Profile`;
+  /** The share button only shows the Twitter logo. */
+  public shareLabel = $localize`Share`;
+  /** The comment submit button only shows an icon. */
+  public submitCommentLabel = $localize`Submit`;
 
   constructor() {
     super();

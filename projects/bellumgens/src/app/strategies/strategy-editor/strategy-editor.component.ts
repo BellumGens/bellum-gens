@@ -28,6 +28,20 @@ import { ConfirmComponent } from '../../../../../common/src/lib/confirm/confirm.
 import { FormsModule } from '@angular/forms';
 import { isPlatformBrowser } from '@angular/common';
 
+/** Width taken by the two side panels sharing the row with the board on wide screens. */
+const SIDE_PANELS_WIDTH = 500;
+const BOARD_BORDER_WIDTH = 2;
+const MIN_BOARD_SIZE = 240;
+
+/** Names of the brush colors, whose buttons only show the color. */
+const BRUSH_COLOR_NAMES: Record<string, string> = {
+  '#fff100': $localize`Yellow`,
+  '#5889ff': $localize`Blue`,
+  '#ff282d': $localize`Red`,
+  '#00ee65': $localize`Green`,
+  '#ff63cd': $localize`Pink`
+};
+
 @Component({
   selector: 'app-strategy-editor',
   templateUrl: './strategy-editor.component.html',
@@ -58,6 +72,7 @@ export class StrategyEditorComponent implements OnDestroy {
   private destroyRef = inject(DestroyRef);
 
   public canvas = viewChild.required<ElementRef<HTMLCanvasElement>>('board');
+  public editorHost = viewChild.required<ElementRef<HTMLElement>>('editorHost');
 
   public maps: CSGOActiveDutyMap [] = ACTIVE_DUTY;
   public team = signal<CSGOTeam>(null);
@@ -69,10 +84,11 @@ export class StrategyEditorComponent implements OnDestroy {
   public cts = signal([1, 2, 3, 4, 5]);
   public enemies = signal([1, 2, 3, 4, 5]);
   public brushSelected = signal(false);
-  public colors = Object.assign([], EDITOR_BRUSH_COLORS);
+  public colors = EDITOR_BRUSH_COLORS.map(color => ({ ...color, name: BRUSH_COLOR_NAMES[color.color] ?? color.color }));
   public selectedColor = this.colors[0];
   public saveInProgress = signal(false);
   public changes = signal(false);
+  public selectLayerLabel = $localize`Select layer`;
 
   private _drag = false;
   private _coordinates: PointCoordinate = {
@@ -219,7 +235,7 @@ export class StrategyEditorComponent implements OnDestroy {
 
   private initEditor() {
     const canvas = this.canvas();
-    const size = window.innerHeight - 129;
+    const size = this.boardSize();
     canvas.nativeElement.width = size;
     canvas.nativeElement.height = size;
     this.editor = new StrategyEditor(canvas, size / 1024);
@@ -247,6 +263,17 @@ export class StrategyEditorComponent implements OnDestroy {
       switchMap(team => toObservable(this.apiService.getTeamMembers(team.teamId), { injector: this.injector }))
     ).subscribe(members => this.teammembers.set(members));
     this.intervalId = setInterval(() => this.saveStrat(), 300000);
+  }
+
+  /**
+   * The board is a square as tall as the window allows, narrowed to fit the page width: beside the side panels
+   * on wide screens, and on its own row on narrow ones, where the panels stack around it (see the stylesheet).
+   */
+  private boardSize() {
+    const width = this.editorHost().nativeElement.clientWidth || window.innerWidth;
+    const narrow = window.matchMedia('(max-width: 768px)').matches;
+    const available = width - BOARD_BORDER_WIDTH - (narrow ? 0 : SIDE_PANELS_WIDTH);
+    return Math.floor(Math.max(Math.min(window.innerHeight - 129, available), MIN_BOARD_SIZE));
   }
 
   private setMap(map: CSGOActiveDutyMap) {

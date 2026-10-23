@@ -111,6 +111,15 @@ describe('NewStrategyComponent', () => {
       expect(component.newStrategy()).toEqual({ ...NEW_EMPTY_STRAT, visible: true });
     });
 
+    it('names the dialog by its title', async () => {
+      await openDialog(undefined, 'Edit strategy');
+
+      const dialog = document.querySelector('.igx-dialog__window');
+      const labelledBy = dialog.getAttribute('aria-labelledby');
+      expect(labelledBy).toBeTruthy();
+      expect(document.getElementById(labelledBy)?.textContent.trim()).toBe('Edit strategy');
+    });
+
     it('does not mark a new strategy public by default when it belongs to a team', async () => {
       fixture.componentRef.setInput('team', team);
       await fixture.whenStable();
@@ -246,6 +255,7 @@ describe('NewStrategyComponent', () => {
       expect(component.newStrategy().url).toBe(YOUTUBE_EMBED);
       expect(iframe()).toBeTruthy();
       expect(iframe().getAttribute('src')).toBe(YOUTUBE_EMBED);
+      expect(iframe().getAttribute('title')).toBe('Video');
     });
 
     it('stores the embed link for a Twitch url and shows the video', async () => {

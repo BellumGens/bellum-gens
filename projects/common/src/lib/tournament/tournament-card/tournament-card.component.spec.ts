@@ -115,12 +115,35 @@ describe('TournamentCardComponent', () => {
     }
   });
 
-  it('should label an unknown status as Unknown without a status class', () => {
-    render({ ...mockTournament, status: undefined });
+  it('should render no status chip when the status cannot be determined', () => {
+    render({ ...mockTournament, status: undefined, active: false, startDate: undefined, endDate: undefined });
 
-    expect(component.statusLabel).toBe('Unknown');
-    expect(chips()).toContain('Unknown');
+    expect(component.statusLabel).toBe('');
+    expect(chips().length).toBe(2);
+    expect(chips()).not.toContain('Unknown');
     expect(el().querySelector('igx-chip[class*="status-"]')).toBeNull();
+  });
+
+  it('should derive the status of an API tournament that comes without one', () => {
+    render({ ...mockTournament, status: undefined, active: true });
+    expect(component.status).toBe(TournamentStatus.InProgress);
+    expect(el().querySelector('igx-chip.status-in-progress').textContent.trim()).toBe('In Progress');
+
+    render({ ...mockTournament, status: undefined, active: false, startDate: new Date('2000-01-01'), endDate: new Date('2000-01-02') });
+    expect(el().querySelector('igx-chip.status-completed').textContent.trim()).toBe('Completed');
+
+    render({ ...mockTournament, status: undefined, active: false, startDate: new Date('2999-01-01'), endDate: undefined });
+    expect(el().querySelector('igx-chip.status-open').textContent.trim()).toBe('Open');
+  });
+
+  it('should render the chips as non-focusable options of a named listbox', () => {
+    const badges = el().querySelector('.card-badges');
+    expect(badges.getAttribute('role')).toBe('listbox');
+    expect(badges.getAttribute('aria-label')).toBe('Tournament details');
+    el().querySelectorAll('igx-chip').forEach(chip => {
+      expect(chip.getAttribute('role')).toBe('option');
+      expect(chip.getAttribute('tabindex')).toBe('-1');
+    });
   });
 
   it('should fall back to the public visibility when none is set', () => {
@@ -235,6 +258,13 @@ describe('TournamentCardComponent', () => {
 
     expect(emitted).toEqual(mockTournament);
     expect(managed).toBe(false);
+  });
+
+  it('should name the icon-only delete button', () => {
+    fixture.componentRef.setInput('showManage', true);
+    fixture.detectChanges();
+
+    expect(el().querySelector('button.danger-btn').getAttribute('aria-label')).toBe('Delete tournament');
   });
 
   it('should default detailRoutePrefix to /tournaments', () => {

@@ -216,6 +216,20 @@ describe('EventInfoComponent', () => {
       expect(slots[0].textContent).toContain('[ACME]');
     });
 
+    it('should not render team brackets for participants without a team', async () => {
+      await loadTournament({ regs: [
+        { id: 'r4', country: 'Greece', battleTag: 'Delta#1', companyId: '[]' },
+        { id: 'r5', country: 'Greece', battleTag: 'Echo#2', companyId: '(teamless)' }
+      ] });
+
+      const slots = Array.from(el().querySelectorAll('.registration-slot'));
+      expect(slots.length).toBe(2);
+      slots.forEach(slot => {
+        expect(slot.textContent).not.toContain('[');
+        expect(slot.textContent).not.toContain('teamless');
+      });
+    });
+
     it('should show the empty grid message when there are no matches', async () => {
       await loadTournament();
 

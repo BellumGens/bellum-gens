@@ -25,14 +25,13 @@
           <button type="button" igxButton="fab"
             igxRipple
             (click)="shareOnTwitter(strat)"
-            i18n-aria-label
-            aria-label="Share">
+            [igxLabel]="shareLabel">
             <igx-icon family="login-icons" name="twitter" title="Share Strategy"></igx-icon>
           </button>
           <button type="button" igxButton="fab"
             [class]="strat.votes | hasVoted:0:authUser()"
             [attr.aria-pressed]="!!(strat.votes | hasVoted:0:authUser())"
-            [attr.aria-label]="voteLabel(strat.votes, 0)"
+            [igxLabel]="voteLabel(strat.votes, 0)"
             igxRipple
             (click)="voteStrat(strat, 0)">
             <igx-icon title="vote up">thumb_up</igx-icon>
@@ -45,7 +44,7 @@
           <button type="button" igxButton="fab"
             [class]="strat.votes | hasVoted:1:authUser()"
             [attr.aria-pressed]="!!(strat.votes | hasVoted:1:authUser())"
-            [attr.aria-label]="voteLabel(strat.votes, 1)"
+            [igxLabel]="voteLabel(strat.votes, 1)"
             igxRipple
             (click)="voteStrat(strat, 1)">
             <igx-icon title="vote down">thumb_down</igx-icon>
@@ -112,6 +111,7 @@
             <textarea [disabled]="!authUser()" #commentBox id="comment" name="comment" igxInput [ngModel]="newComment().comment" (ngModelChange)="updateCommentText($event)"></textarea>
             <button igxSuffix
               igxButton="fab"
+              [igxLabel]="submitCommentLabel"
               [disabled]="!newComment().comment">
               <igx-icon>send</igx-icon>
             </button>

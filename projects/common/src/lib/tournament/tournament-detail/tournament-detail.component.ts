@@ -7,12 +7,14 @@ import {
   TournamentParticipant,
   TournamentVisibility,
   TournamentStatus,
-  Game
+  Game,
+  getTournamentStatus
 } from '../../../models/tournament';
 import { ApiTournamentsService } from '../../../services/bellumgens-api.tournaments.service';
 import { LoginService } from '../../../services/login.service';
 import { CountrySVGPipe } from '../../pipes/country-svg.pipe';
 import { RaceIconPipe } from '../../pipes/race-icon.pipe';
+import { ParticipantTeamPipe } from '../../pipes/participant-team.pipe';
 import { map } from 'rxjs/operators';
 import { TournamentSC2Match, TournamentCSGOMatch } from '../../../models/tournament-schedule';
 import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
@@ -39,6 +41,7 @@ import { IGX_TABS_DIRECTIVES } from '@infragistics/igniteui-angular/tabs';
     IgxCircularProgressBarComponent,
     IGX_TABS_DIRECTIVES,
     CountrySVGPipe,
+    ParticipantTeamPipe,
     RaceIconPipe
   ]
 })
@@ -75,10 +78,11 @@ export class TournamentDetailComponent {
     return t && t.status === TournamentStatus.Open && t.visibility !== TournamentVisibility.Private;
   });
 
+  /** The tournament status, derived from the active flag and the dates when the tournament has none. */
+  public status = computed(() => getTournamentStatus(this.tournament()));
+
   public statusLabel = computed(() => {
-    const t = this.tournament();
-    if (!t) return '';
-    switch (t.status) {
+    switch (this.status()) {
       case TournamentStatus.Draft: return 'Draft';
       case TournamentStatus.Open: return 'Open';
       case TournamentStatus.InProgress: return 'In Progress';

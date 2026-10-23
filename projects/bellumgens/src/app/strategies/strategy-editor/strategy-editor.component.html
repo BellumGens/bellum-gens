@@ -1,4 +1,4 @@
-<div class="strat-editor-host"
+<div #editorHost class="strat-editor-host"
   (pointermove)="canvasPointerMove($event)"
   (pointerup)="canvasPointerUp()">
   <div class="editor-elements list-container">
@@ -19,7 +19,7 @@
       <igx-list class="layer-list" [style.--ig-size]="'var(--ig-size-small)'">
         @for (layer of layers(); track layer) {
           <igx-list-item class="layer-info">
-            <igx-checkbox igxListThumbnail [name]="'checkbox_' + layer.name" class="layer-selected" [disabled]="!layer.movable" (change)="deselectBrush()" [(ngModel)]="layer.selected"></igx-checkbox>
+            <igx-checkbox igxListThumbnail [name]="'checkbox_' + layer.name" class="layer-selected" [disabled]="!layer.movable" (change)="deselectBrush()" [(ngModel)]="layer.selected" [aria-label]="selectLayerLabel"></igx-checkbox>
             <igx-input-group type="border" igxListLine [class.hidden-layer]="layer.hidden" [style.--ig-size]="'var(--ig-size-small)'">
               <igx-prefix>
                 <button type="button"
@@ -32,7 +32,7 @@
                   <igx-icon>{{ layer.hidden ? 'visibility' : 'visibility_off'}}</igx-icon>
                 </button>
               </igx-prefix>
-              <input igxInput [name]="'name_' + layer.name" [(ngModel)]="layer.name" />
+              <input igxInput [name]="'name_' + layer.name" [(ngModel)]="layer.name" i18n-aria-label aria-label="Layer name" />
               <igx-suffix>
                 <button type="button" igxIconButton="flat" class="layer-action" (click)="confirm.open(layer)" i18n-aria-label aria-label="Remove layer">
                   <igx-icon>clear</igx-icon>
@@ -129,10 +129,10 @@
     </div>
     @if (brushSelected()) {
       <div class="editor-elements-section">
-        <div i18n>Brush Color</div>
-        <igx-buttongroup>
+        <div id="brushColorLabel" i18n>Brush Color</div>
+        <igx-buttongroup aria-labelledby="brushColorLabel">
           @for (color of colors; track color) {
-            <button igxButton igxRipple [selected]="color.selected" (click)="selectColor(color)">
+            <button type="button" igxButton igxRipple [selected]="color.selected" [igxLabel]="color.name" (click)="selectColor(color)">
               <igx-icon [style.color]="color.color">color_lens</igx-icon>
             </button>
           }

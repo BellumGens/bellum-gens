@@ -202,6 +202,16 @@ describe('StrategyDetailsComponent', () => {
       expect(el().querySelector('.card-smaller-subtitle').textContent).toContain('Last Edit');
     });
 
+    it('names the author link even when the strategy comes without the author name', async () => {
+      await create();
+
+      await loadStrategy(strategy({ owner: null }));
+
+      const author = el().querySelector('.card-smaller-subtitle a') as HTMLAnchorElement;
+      expect(author.getAttribute('href')).toBe('/players/author');
+      expect(author.textContent.trim()).toBe('Profile');
+    });
+
     it('embeds video strategies', async () => {
       await create();
 
@@ -209,7 +219,45 @@ describe('StrategyDetailsComponent', () => {
 
       const iframe = el().querySelector('iframe');
       expect(iframe.getAttribute('src')).toBe('https://www.youtube.com/embed/abc123');
+      expect(iframe.getAttribute('title')).toBe('Mid take');
+      expect(iframe.closest('igx-card-media').getAttribute('role')).toBe('none');
       expect(el().querySelector('.strategy-image-container')).toBeNull();
+    });
+
+    it('drops a strategy image that fails to load instead of showing it broken', async () => {
+      await create();
+      await loadStrategy(strategy({ stratImage: 'https://example.com/missing.png' }));
+      const media = el().querySelector('.strategy-image-container');
+      expect(media.getAttribute('role')).toBe('none');
+
+      media.querySelector('img').dispatchEvent(new Event('error'));
+      await fixture.whenStable();
+
+      expect(el().querySelector('.strategy-image-container')).toBeNull();
+      expect(el().querySelector('h1').textContent).toBe('Mid take');
+
+      // Another image (e.g. a re-saved strategy) is tried again.
+      strategiesService['_strategyCache'].get('strat-1').set(strategy({ stratImage: 'https://example.com/other.png' }));
+      await fixture.whenStable();
+      expect(el().querySelector('.strategy-image-container img')).toBeTruthy();
+    });
+
+    it('names the share and vote buttons and marks the user vote as pressed', async () => {
+      authUser.set(user);
+      await create();
+
+      await loadStrategy(strategy({ votes: [{ userId: 'me', vote: VoteDirection.Down }] }));
+
+      const share = button('Share Strategy');
+      expect(share.getAttribute('aria-label')).toBe('Share');
+      expect(share.type).toBe('button');
+      const up = button('vote up');
+      const down = button('vote down');
+      expect(up.getAttribute('aria-label')).toBe('Vote up: 0');
+      expect(down.getAttribute('aria-label')).toBe('Vote down: 1');
+      expect(up.getAttribute('aria-pressed')).toBe('false');
+      expect(down.getAttribute('aria-pressed')).toBe('true');
+      expect(button('send').getAttribute('aria-label')).toBe('Submit');
     });
 
     it('shows the strategy image when there is no video', async () => {

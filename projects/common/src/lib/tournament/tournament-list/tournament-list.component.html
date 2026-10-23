@@ -124,8 +124,8 @@
 
 <igx-dialog #inviteDialog [isModal]="true" [closeOnEscape]="true" title="Join Tournament" i18n-title>
   <igx-input-group type="border">
-    <label igxLabel i18n>Invite Code</label>
-    <input igxInput name="inviteCode" type="text" [(ngModel)]="inviteCode" />
+    <label igxLabel for="invite-code" i18n>Invite Code</label>
+    <input igxInput id="invite-code" name="inviteCode" type="text" [(ngModel)]="inviteCode" />
     <igx-prefix><igx-icon>vpn_key</igx-icon></igx-prefix>
     <igx-hint i18n>Enter the invite code shared by the tournament organizer</igx-hint>
   </igx-input-group>

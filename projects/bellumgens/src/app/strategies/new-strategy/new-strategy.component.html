@@ -1,6 +1,7 @@
 <igx-dialog #newStrat [closeOnOutsideSelect]="true" (closing)="resetStrategy()">
   <form #strategyForm="ngForm" (ngSubmit)="submitStrategy()">
-    <span>{{ title() }}</span>
+    <!-- The dialog is labelled by its title id, so the title shown in the form carries it -->
+    <span [id]="newStrat.titleId">{{ title() }}</span>
     <igx-input-group type="border">
       <label for="strategyName" igxLabel i18n>Title</label>
       <input #strategyName name="strategyName" id="strategyName" igxInput minlength="2" [required]="true" [(ngModel)]="newStrategy().title">
@@ -69,7 +70,7 @@
       </igx-input-group>
 
       @if (newStrategy().url | isVideo) {
-        <iframe class="video-frame" [src]="newStrategy().url | safeVideoLink" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <iframe class="video-frame" [src]="newStrategy().url | safeVideoLink" i18n-title title="Video" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
       }
 
       <div class="row-wrapper">

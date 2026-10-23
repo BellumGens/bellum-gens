@@ -89,7 +89,7 @@
         <button type="button" igxEnd igxButton="fab"
           [class]="strat.votes | hasVoted:0:authUser()"
           [attr.aria-pressed]="!!(strat.votes | hasVoted:0:authUser())"
-          [attr.aria-label]="voteLabel(strat.votes, 0)"
+          [igxLabel]="voteLabel(strat.votes, 0)"
           igxRipple
           (click)="voteStrat(strat, 0)">
           <igx-icon title="vote up">thumb_up</igx-icon>
@@ -102,7 +102,7 @@
         <button type="button" igxEnd igxButton="fab"
           [class]="strat.votes | hasVoted:1:authUser()"
           [attr.aria-pressed]="!!(strat.votes | hasVoted:1:authUser())"
-          [attr.aria-label]="voteLabel(strat.votes, 1)"
+          [igxLabel]="voteLabel(strat.votes, 1)"
           igxRipple
           (click)="voteStrat(strat, 1)">
           <igx-icon title="vote down">thumb_down</igx-icon>

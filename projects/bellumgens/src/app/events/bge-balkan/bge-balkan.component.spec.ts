@@ -202,6 +202,41 @@ describe('BgeBalkanComponent', () => {
       expect(slots[0].textContent).toContain('[ACME]');
     });
 
+    it('should not render team brackets for participants without a team', async () => {
+      await loadTournament({ regs: [
+        { id: 'r4', country: 'Greece', battleTag: 'Delta#1', companyId: '' },
+        { id: 'r5', country: 'Greece', battleTag: 'Echo#2', companyId: '(teamless)' },
+        { id: 'r6', country: 'Greece', battleTag: 'Foxtrot#3', companyId: '  ' }
+      ] });
+
+      const slots = Array.from(el().querySelectorAll('.registration-slot'));
+      expect(slots.length).toBe(3);
+      slots.forEach(slot => {
+        expect(slot.textContent).not.toContain('[');
+        expect(slot.textContent).not.toContain('teamless');
+      });
+    });
+
+    it('should leave the standings team cell empty for participants without a team', async () => {
+      await loadTournament({
+        groups: [{
+          id: 'g1',
+          name: 'Group A',
+          participants: [{ id: 'p2', user: { username: 'Echo' }, country: 'Greece', companyId: '(teamless)', matches: 0, wins: 0, losses: 0, playerPoints: 0 }]
+        }]
+      });
+
+      const cells = el().querySelector('.group-columns igx-grid igx-grid-row').querySelectorAll('igx-grid-cell');
+      expect(cells[2].textContent.trim()).toBe('');
+    });
+
+    it('should name the icon-only refresh buttons', async () => {
+      await loadTournament({ groups: [{ id: 'g1', name: 'Group A', participants: [] }] });
+
+      expect(el().querySelector('igx-grid igx-grid-toolbar-actions button').getAttribute('aria-label')).toBe('Refresh matches');
+      expect(el().querySelector('.group-columns igx-grid igx-grid-toolbar-actions button').getAttribute('aria-label')).toBe('Refresh standings');
+    });
+
     it('should show the empty grid message when there are no matches', async () => {
       await loadTournament();
 

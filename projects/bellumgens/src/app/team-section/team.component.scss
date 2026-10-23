@@ -2,7 +2,10 @@
   .team-details-header {
     display: flex;
     flex: 0 0 auto;
+    // The actions wrap below the name and description when there is no room next to them
+    flex-wrap: wrap;
     align-items: center;
+    gap: 16px;
     padding-bottom: 16px;
   }
 
@@ -12,6 +15,9 @@
   }
 
   .horizontal-info__left {
-    margin-left: 24px;
+    flex: 1 1 200px;
+    min-width: 0;
+    margin-left: 8px;
+    overflow-wrap: anywhere;
   }
 }

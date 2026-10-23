@@ -497,6 +497,23 @@ describe('AdminMainComponent', () => {
       expect(component.roles()).toEqual(['admin', 'moderator']);
       expect(chips()).toEqual(['admin', 'moderator']);
     });
+
+    it('should label the new role input', async () => {
+      flushInitialRequests();
+      await render();
+
+      expect(Array.from(roleInput().labels).map(l => l.textContent.trim())).toEqual(['New role']);
+    });
+
+    it('should give every text field of the page a label', async () => {
+      flushInitialRequests({ tournaments: [{ id: 't1', name: 'Spring League' }] });
+      await render();
+
+      const fields = Array.from(el().querySelectorAll<HTMLInputElement | HTMLTextAreaElement>('input[igxInput], textarea[igxInput]'));
+      expect(fields.length).toBeGreaterThan(0);
+      const unlabeled = fields.filter(f => !f.labels?.length && !f.getAttribute('aria-label') && !f.getAttribute('aria-labelledby'));
+      expect(unlabeled).toEqual([]);
+    });
   });
 
   describe('Tournament forms', () => {

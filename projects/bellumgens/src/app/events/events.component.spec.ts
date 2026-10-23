@@ -88,6 +88,12 @@ describe('EventsComponent', () => {
     expect(heading.hasAttribute('tabindex')).toBe(false);
   });
 
+  it('should give the venue map a title', () => {
+    const map = fixture.nativeElement.querySelector('iframe.venue-map') as HTMLIFrameElement;
+
+    expect(map.title).toBe('Map of the Summer Theater in Stara Zagora');
+  });
+
   it('should scroll to the correct element', () => {
     const elementId = 'test-id';
     const mockElement = document.createElement('div');

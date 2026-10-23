@@ -1,7 +1,7 @@
 import { Component, input, output } from '@angular/core';
 import { DatePipe, NgOptimizedImage } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { Tournament, TournamentStatus, TournamentVisibility, Game } from '../../../models/tournament';
+import { Tournament, TournamentStatus, TournamentVisibility, Game, getTournamentStatus } from '../../../models/tournament';
 import { IgxCardComponent, IgxCardHeaderComponent, IgxCardContentDirective, IgxCardActionsComponent, IgxCardMediaDirective, IgxCardHeaderTitleDirective, IgxCardHeaderSubtitleDirective } from '@infragistics/igniteui-angular/card';
 import { IgxButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
@@ -36,9 +36,13 @@ export class TournamentCardComponent {
   public manage = output<Tournament>();
   public deleteTournament = output<Tournament>();
 
+  /** The tournament status, derived from the active flag and the dates when the tournament has none. */
+  public get status(): TournamentStatus | null {
+    return getTournamentStatus(this.tournament());
+  }
+
   public get statusBadgeType(): string {
-    const t = this.tournament();
-    switch (t.status) {
+    switch (this.status) {
       case TournamentStatus.Open: return 'success';
       case TournamentStatus.InProgress: return 'warning';
       case TournamentStatus.Completed: return 'info';
@@ -48,14 +52,13 @@ export class TournamentCardComponent {
   }
 
   public get statusLabel(): string {
-    const t = this.tournament();
-    switch (t.status) {
+    switch (this.status) {
       case TournamentStatus.Draft: return 'Draft';
       case TournamentStatus.Open: return 'Open';
       case TournamentStatus.InProgress: return 'In Progress';
       case TournamentStatus.Completed: return 'Completed';
       case TournamentStatus.Cancelled: return 'Cancelled';
-      default: return 'Unknown';
+      default: return '';
     }
   }
 

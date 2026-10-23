@@ -260,8 +260,8 @@
       }
     </igx-chips-area>
     <igx-input-group type="border">
-      <label igxLabel i18n>New role</label>
-      <input type="text" #roleinput igxInput />
+      <label igxLabel for="newRole" i18n>New role</label>
+      <input type="text" id="newRole" #roleinput igxInput />
     </igx-input-group>
     <button igxButton (click)="submitRole(roleinput.value)" i18n>Submit</button>
   </div>

@@ -24,8 +24,8 @@
             } @else {
               <span class="participant-name">{{ registration.battleTag }}</span>
             }
-            @if (registration.companyId) {
-              <span>[{{ registration.companyId }}]</span>
+            @if (registration.companyId | participantTeam; as team) {
+              <span>[{{ team }}]</span>
             }
           </div>
         }
@@ -42,7 +42,7 @@
         <igx-grid-toolbar>
           <igx-grid-toolbar-title><h3 i18n>Match Results</h3></igx-grid-toolbar-title>
           <!-- <igx-grid-toolbar-actions>
-            <button igxIconButton="flat" igxRipple (click)="refreshMatches()">
+            <button igxIconButton="flat" igxRipple (click)="refreshMatches()" i18n-aria-label aria-label="Refresh matches">
               <igx-icon>refresh</igx-icon>
             </button>
           </igx-grid-toolbar-actions> -->

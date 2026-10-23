@@ -3,7 +3,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { DatePipe } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { BaseDirective } from '../../base/base.component';
-import { ApiTournamentsService, CountrySVGPipe, RaceIconPipe } from '../../../../../common/src/public_api';
+import { ApiTournamentsService, CountrySVGPipe, ParticipantTeamPipe, RaceIconPipe } from '../../../../../common/src/public_api';
 import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
 import { IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular/progressbar';
 import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
@@ -24,6 +24,7 @@ import { DefaultSortingStrategy, IGroupingExpression, SortingDirection } from '@
     IgxIconComponent,
     IgxButtonDirective,
     CountrySVGPipe,
+    ParticipantTeamPipe,
     RaceIconPipe
   ],
   templateUrl: './event-info.component.html',

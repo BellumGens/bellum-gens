@@ -23,9 +23,12 @@
   }
 
   /* Strategies */
+  // Scales down with the card on narrow screens instead of overflowing the page
   .video-frame {
-    width: 560px;
-    height: 315px;
+    width: 100%;
+    max-width: 560px;
+    height: auto;
+    aspect-ratio: 16 / 9;
   }
 
   .empty-strategy.empty-strategy-content {

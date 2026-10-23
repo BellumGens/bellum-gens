@@ -1,6 +1,6 @@
 <div class="create-container">
   <header class="create-header">
-    <button igxButton="flat" igxRipple (click)="cancel()">
+    <button igxButton="flat" igxRipple (click)="cancel()" i18n-igxLabel igxLabel="Back">
       <igx-icon>arrow_back</igx-icon>
     </button>
     @if (isEditMode()) {
@@ -15,8 +15,8 @@
       <h3 i18n>Basic Information</h3>
 
       <igx-input-group type="border">
-        <label igxLabel i18n>Tournament Name</label>
-        <input igxInput formControlName="name" />
+        <label igxLabel for="tournament-name" i18n>Tournament Name</label>
+        <input igxInput id="tournament-name" formControlName="name" />
         <igx-prefix><igx-icon>emoji_events</igx-icon></igx-prefix>
         @if (form.controls.name.invalid && form.controls.name.touched) {
           <igx-hint i18n>Tournament name is required</igx-hint>
@@ -24,8 +24,8 @@
       </igx-input-group>
 
       <igx-input-group type="border">
-        <label igxLabel i18n>Description</label>
-        <textarea igxInput formControlName="description" rows="4"></textarea>
+        <label igxLabel for="tournament-description" i18n>Description</label>
+        <textarea igxInput id="tournament-description" formControlName="description" rows="4"></textarea>
         <igx-prefix><igx-icon>description</igx-icon></igx-prefix>
       </igx-input-group>
 
@@ -57,11 +57,11 @@
       <h3 i18n>Settings</h3>
 
       <!-- IgxSelect: default positioning changed to AutoPositionStrategy (below/above input).
-     To preserve overlap behavior: this.select.overlaySettings = { positionStrategy: new IgxSelectOverlapPositionStrategy(this.select) }; -->
-<igx-select type="border" formControlName="visibility" placeholder="Visibility" i18n-placeholder>
+        To preserve overlap behavior: this.select.overlaySettings = { positionStrategy: new IgxSelectOverlapPositionStrategy(this.select) }; -->
+      <igx-select type="border" formControlName="visibility" placeholder="Visibility" i18n-placeholder>
         <label igxLabel i18n>Visibility</label>
         @for (opt of visibilityOptions; track opt.value) {
-          <igx-select-item [value]="opt.value">
+          <igx-select-item [value]="opt.value" [text]="opt.label">
             <igx-icon>{{ opt.icon }}</igx-icon>
             {{ opt.label }}
           </igx-select-item>
@@ -70,14 +70,14 @@
 
       <div class="form-row">
         <igx-input-group type="border">
-          <label igxLabel i18n>Max Participants</label>
-          <input igxInput formControlName="maxParticipants" type="number" min="2" />
+          <label igxLabel for="tournament-max-participants" i18n>Max Participants</label>
+          <input igxInput id="tournament-max-participants" formControlName="maxParticipants" type="number" min="2" />
           <igx-prefix><igx-icon>people</igx-icon></igx-prefix>
         </igx-input-group>
 
         <igx-input-group type="border">
-          <label igxLabel i18n>Prize Pool</label>
-          <input igxInput formControlName="prizePool" />
+          <label igxLabel for="tournament-prize-pool" i18n>Prize Pool</label>
+          <input igxInput id="tournament-prize-pool" formControlName="prizePool" />
           <igx-prefix><igx-icon>payments</igx-icon></igx-prefix>
           <igx-hint i18n>e.g. $10,000 or €5,000</igx-hint>
         </igx-input-group>

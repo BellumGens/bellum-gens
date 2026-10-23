@@ -111,14 +111,41 @@ describe('StrategyEditorComponent', () => {
       await configure();
     });
 
-    it('sizes the canvas to the window and creates the editor after the first render', async () => {
-      await create();
+    const narrowScreen = (narrow: boolean) => vi.spyOn(window, 'matchMedia').mockImplementation(query =>
+      ({ matches: narrow && query === '(max-width: 768px)', media: query, addEventListener: () => undefined }) as unknown as MediaQueryList);
 
+    const canvasSizeFor = async (width: number, height: number) => {
+      vi.stubGlobal('innerWidth', width);
+      vi.stubGlobal('innerHeight', height);
+      try {
+        await create();
+      } finally {
+        vi.unstubAllGlobals();
+      }
       const canvas = fixture.nativeElement.querySelector('canvas.drawing-board') as HTMLCanvasElement;
-      expect(canvas.width).toBe(window.innerHeight - 129);
-      expect(canvas.height).toBe(window.innerHeight - 129);
+      expect(canvas.height).toBe(canvas.width);
+      return canvas.width;
+    };
+
+    it('sizes the canvas to the window height and creates the editor after the first render', async () => {
+      narrowScreen(false);
+
+      expect(await canvasSizeFor(1920, 1080)).toBe(1080 - 129);
       expect(editor()).toBeInstanceOf(StrategyEditor);
       expect(component.layers()).toEqual([]);
+    });
+
+    it('narrows the canvas so it fits beside the side panels', async () => {
+      narrowScreen(false);
+
+      // 1024 wide, less the two side panels and the board border.
+      expect(await canvasSizeFor(1024, 1080)).toBe(1024 - 500 - 2);
+    });
+
+    it('fits the canvas to the width of a phone, where the side panels stack around it', async () => {
+      narrowScreen(true);
+
+      expect(await canvasSizeFor(390, 844)).toBe(390 - 2);
     });
 
     it('registers the editor svg icons', async () => {
@@ -410,6 +437,29 @@ describe('StrategyEditorComponent', () => {
 
         remove.click();
         expect(open).toHaveBeenCalledWith(component.layers()[1]);
+      });
+
+      it('names the brush color buttons by their color', async () => {
+        component.selectBrush();
+        await fixture.whenStable();
+
+        const group = fixture.nativeElement.querySelector('igx-buttongroup') as HTMLElement;
+        expect(fixture.nativeElement.querySelector('#' + group.getAttribute('aria-labelledby')).textContent).toBe('Brush Color');
+        const buttons: HTMLButtonElement [] = Array.from(group.querySelectorAll('button'));
+        expect(buttons.map(b => b.getAttribute('aria-label'))).toEqual(['Yellow', 'Blue', 'Red', 'Green', 'Pink']);
+        expect(buttons.every(b => b.type === 'button')).toBe(true);
+      });
+
+      it('labels the layer selection checkboxes and name inputs', async () => {
+        component.surfaceDrop(dropArgs({ name: 't', src: '/assets/editor/t-pin.png', width: 24, height: 24 }));
+        await fixture.whenStable();
+
+        const items: HTMLElement [] = Array.from(fixture.nativeElement.querySelectorAll('igx-list-item'));
+        expect(items.length).toBe(2);
+        for (const item of items) {
+          expect(item.querySelector('input[igxInput]').getAttribute('aria-label')).toBe('Layer name');
+          expect(item.querySelector('igx-checkbox input').getAttribute('aria-label')).toBe('Select layer');
+        }
       });
 
       it('toggles the brush from a named toggle button', async () => {

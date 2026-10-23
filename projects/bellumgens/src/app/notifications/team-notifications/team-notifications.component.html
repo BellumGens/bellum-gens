@@ -18,7 +18,9 @@
             </button>
           </div>
         } @else {
-          <button igxButton="flat" igxRipple [disabled]="true">{{ notification.state | notificationState }}</button>
+          <div igxListAction>
+            <button igxButton="flat" igxRipple [disabled]="true">{{ notification.state | notificationState }}</button>
+          </div>
         }
       </igx-list-item>
     }

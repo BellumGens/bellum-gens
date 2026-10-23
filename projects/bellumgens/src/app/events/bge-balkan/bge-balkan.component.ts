@@ -1,7 +1,7 @@
 import { Component, computed, inject, effect } from '@angular/core';
 import { BaseDirective } from '../../base/base.component';
 import { RouterLink } from '@angular/router';
-import { ApiTournamentsService, CountrySVGPipe, RaceIconPipe } from '../../../../../common/src/public_api';
+import { ApiTournamentsService, CountrySVGPipe, ParticipantTeamPipe, RaceIconPipe } from '../../../../../common/src/public_api';
 import { DatePipe } from '@angular/common';
 import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
 import { IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular/progressbar';
@@ -26,6 +26,7 @@ import { DefaultSortingStrategy, IGroupingExpression, SortingDirection } from '@
     IgxButtonDirective,
     IgxIconButtonDirective,
     CountrySVGPipe,
+    ParticipantTeamPipe,
     RaceIconPipe
   ]
 })

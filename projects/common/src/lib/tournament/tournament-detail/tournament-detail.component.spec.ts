@@ -339,11 +339,42 @@ describe('TournamentDetailComponent (rendering)', () => {
       expect(statusChip.classList).toContain(cssClass);
     });
 
-    it('shows an empty status label for an unknown status', async () => {
+    it('renders no status chip for an unknown status', async () => {
       await create(baseTournament({ status: 'archived' as TournamentStatus }));
 
       expect(component.statusLabel()).toBe('');
-      expect(chips()[0]).toBe('');
+      expect(chips()).toEqual(['public public']);
+      expect(q('.hero-badges igx-chip[class*="status-"]')).toBeNull();
+    });
+
+    it('derives the status of an API tournament that comes without one', async () => {
+      await create(baseTournament({ status: undefined, active: true }));
+
+      expect(component.status()).toBe(TournamentStatus.InProgress);
+      expect(chips()[0]).toBe('In Progress');
+      expect(q('.hero-badges igx-chip').classList).toContain('status-in-progress');
+    });
+
+    it('derives a completed status from a past end date', async () => {
+      await create(baseTournament({ status: undefined, active: false, endDate: new Date(2000, 0, 1) }));
+
+      expect(component.statusLabel()).toBe('Completed');
+      expect(q('.hero-badges igx-chip').classList).toContain('status-completed');
+    });
+
+    it('renders the chips as non-focusable options of a named listbox', async () => {
+      await create(baseTournament());
+
+      const badges = q('.hero-badges');
+      expect(badges.getAttribute('role')).toBe('listbox');
+      expect(badges.getAttribute('aria-label')).toBe('Tournament details');
+      const chipElements = qa('.hero-badges igx-chip');
+      expect(chipElements.length).toBe(2);
+      chipElements.forEach(chip => {
+        expect(chip.getAttribute('role')).toBe('option');
+        expect(chip.getAttribute('tabindex')).toBe('-1');
+        expect(chip.textContent.trim()).not.toBe('');
+      });
     });
 
     it.each([

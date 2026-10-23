@@ -86,7 +86,7 @@
   </igx-nav-drawer>
 
   <div igxFlex igxLayout igxLayoutDir="columns" class="top-level-container">
-    <igx-navbar class="bellum-gens-navbar">
+    <igx-navbar class="bellum-gens-navbar" [class.search-expanded]="searchExpanded()">
       <igx-navbar-action>
         <button type="button"
           igxIconButton="flat"
@@ -116,6 +116,17 @@
           </igx-suffix>
         }
       </igx-input-group>
+      <!-- On narrow screens the search collapses behind this toggle -->
+      <button type="button"
+        igxIconButton="flat"
+        class="search-toggle"
+        (click)="toggleSearch()"
+        aria-controls="searchInput"
+        [attr.aria-expanded]="searchExpanded()"
+        i18n-aria-label
+        aria-label="Search">
+        <igx-icon>{{ searchExpanded() ? 'close' : 'search' }}</igx-icon>
+      </button>
 
       <bg-languages></bg-languages>
       <bg-login></bg-login>

@@ -1,5 +1,5 @@
 import {
-  Component, ElementRef, PLATFORM_ID, LOCALE_ID, OutputEmitterRef, Signal,
+  Component, ElementRef, Injector, PLATFORM_ID, LOCALE_ID, OutputEmitterRef, Signal,
   afterNextRender, computed, effect, inject, linkedSignal, signal, untracked, viewChild
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
@@ -86,6 +86,7 @@ export class AppComponent {
   private searchService = inject(ApiSearchService);
   private notificationService = inject(CommunicationService);
   private activatedRoute = inject(ActivatedRoute);
+  private injector = inject(Injector);
 
   public quickSearchDropDown = viewChild.required<IgxDropDownComponent>('quickSearch');
   public searchGroup = viewChild.required<IgxInputGroupComponent>('searchGroup');
@@ -98,6 +99,8 @@ export class AppComponent {
   public teams = signal<CSGOTeam []>(null);
   public searchResult: SearchResult;
   public searchTerm = signal('');
+  // Whether the search, collapsed behind a toggle on narrow screens, is shown
+  public searchExpanded = signal(false);
   private serviceUnreadNotifications = computed(() =>
     this.authUser() ? this.unreadPipe.transform(this.authManager.userNotifications()) : 0
   );
@@ -151,6 +154,14 @@ export class AppComponent {
 
   public notificationsLoaded(unread: number) {
     this.unreadNotifications.set(unread);
+  }
+
+  public toggleSearch() {
+    this.searchExpanded.update(expanded => !expanded);
+    if (this.searchExpanded()) {
+      // The input is only displayed once the view updates
+      afterNextRender(() => this.searchInput().nativeElement.focus(), { injector: this.injector });
+    }
   }
 
   public clearSearch() {

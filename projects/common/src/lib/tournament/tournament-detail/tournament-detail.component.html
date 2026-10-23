@@ -11,11 +11,14 @@
       }
       <div class="hero-content">
         <div class="hero-info">
-          <div class="hero-badges">
-            <igx-chip [selectable]="false" [removable]="false" [class.status-open]="t.status === 'open'" [class.status-in-progress]="t.status === 'in-progress'" [class.status-completed]="t.status === 'completed'" [class.status-cancelled]="t.status === 'cancelled'" [class.status-draft]="t.status === 'draft'">
-              {{ statusLabel() }}
-            </igx-chip>
-            <igx-chip [selectable]="false" [removable]="false">
+          <!-- igx-chip has the option role, so the label chips are grouped in a listbox and kept out of the tab order -->
+          <div class="hero-badges" role="listbox" i18n-aria-label aria-label="Tournament details">
+            @if (statusLabel()) {
+              <igx-chip [selectable]="false" [removable]="false" [tabIndex]="-1" [class.status-open]="status() === 'open'" [class.status-in-progress]="status() === 'in-progress'" [class.status-completed]="status() === 'completed'" [class.status-cancelled]="status() === 'cancelled'" [class.status-draft]="status() === 'draft'">
+                {{ statusLabel() }}
+              </igx-chip>
+            }
+            <igx-chip [selectable]="false" [removable]="false" [tabIndex]="-1">
               <igx-icon igxPrefix>{{ visibilityIcon() }}</igx-icon>
               {{ t.visibility || 'public' }}
             </igx-chip>
@@ -108,8 +111,8 @@
                     <igx-avatar [src]="reg.country | countrySVG" shape="circle" [title]="reg.country" class="country-badge"></igx-avatar>
                   }
                   <span class="participant-name">{{ reg.user?.username || reg.battleTag }}</span>
-                  @if (reg.companyId) {
-                    <span class="participant-org">[{{ reg.companyId }}]</span>
+                  @if (reg.companyId | participantTeam; as team) {
+                    <span class="participant-org">[{{ team }}]</span>
                   }
                 </div>
               } @empty {

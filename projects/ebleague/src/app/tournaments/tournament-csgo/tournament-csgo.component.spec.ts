@@ -342,4 +342,74 @@ describe('TournamentCsgoComponent', () => {
     httpMock.verify();
     expect(component.tournament().name).toBe('Season 3');
   });
+
+  it('hides the team brackets for registrations without a team', async () => {
+    flushUser(null);
+    httpMock.expectOne(activeTournamentUrl()).flush(null);
+    flushPage('', {
+      registrations: [
+        makeRegistration('r1', 'u1', TournamentApplicationState.Confirmed, team('team-1', 'Alpha')),
+        { ...makeRegistration('r2', 'u2', TournamentApplicationState.Confirmed, team('team-2', 'Bravo')), companyId: null }
+      ]
+    });
+    await render();
+
+    const slots = Array.from(el().querySelectorAll('.registration-slot'));
+    expect(slots.map(s => s.querySelector(':scope > span')?.textContent ?? null)).toEqual(['[Alpha Inc.]', null]);
+    expect(el().querySelector('.participants-container').textContent).not.toContain('[]');
+  });
+
+  describe('on a narrow screen', () => {
+    let originalMatchMedia: typeof window.matchMedia;
+
+    beforeEach(() => {
+      // Answer the requests of the instance the outer setup created before the screen size was mocked
+      httpMock.match(() => true).forEach(req => req.flush(null));
+      fixture.destroy();
+      originalMatchMedia = window.matchMedia;
+      window.matchMedia = vi.fn().mockReturnValue({
+        matches: true,
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn()
+      }) as unknown as typeof window.matchMedia;
+      fixture = TestBed.createComponent(TournamentCsgoComponent);
+      component = fixture.componentInstance;
+      fixture.detectChanges();
+    });
+
+    afterEach(() => {
+      window.matchMedia = originalMatchMedia;
+    });
+
+    it('moves the media links from their columns to the match details and shortens the start time', async () => {
+      const matches: TournamentCSGOMatch [] = [{
+        id: 'm1', team1: team('team-1', 'Alpha'), team2: team('team-2', 'Bravo'), team1Id: 'team-1', team2Id: 'team-2',
+        startTime: new Date(2024, 0, 15, 18, 30), videoLink: 'https://video/1', demoLink: 'https://demo/1', maps: []
+      }];
+      httpMock.match(req => req.url.includes('csgomatches')).forEach(req => req.flush(matches));
+      httpMock.match(() => true).forEach(req => req.flush(null));
+      await render();
+
+      expect(component.narrowScreen()).toBe(true);
+      const grid = fixture.debugElement.queryAll(debugEl => debugEl.componentInstance instanceof IgxGridComponent)
+        .map(debugEl => debugEl.componentInstance as IgxGridComponent)
+        .find(g => g.data === component.csgomatches());
+      expect(grid.getColumnByName('videoLink').hidden).toBe(true);
+      expect(grid.getColumnByName('demoLink').hidden).toBe(true);
+      expect(grid.getColumnByName('startTime').width).toBe('150px');
+
+      const schedule = grids()[0];
+      const row = schedule.querySelector('igx-grid-row');
+      expect(row.textContent).toMatch(/1\/15\/24, 6:30\sPM/);
+      expect(row.querySelectorAll('a.horizontal-center').length).toBe(0);
+
+      grid.expandAll();
+      await render();
+      const links = Array.from(schedule.querySelectorAll<HTMLAnchorElement>('.match-links a'));
+      expect(links.map(a => [a.getAttribute('href'), a.querySelector('span').textContent.trim()])).toEqual([
+        ['https://video/1', 'Video'],
+        ['https://demo/1', 'Demo']
+      ]);
+    });
+  });
 });

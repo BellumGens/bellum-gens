@@ -31,8 +31,8 @@
             } @else {
               <span class="participant-name">{{ registration.battleTag }}</span>
             }
-            @if (registration.companyId) {
-              <span>[{{ registration.companyId }}]</span>
+            @if (registration.companyId | participantTeam; as team) {
+              <span>[{{ team }}]</span>
             }
           </div>
         }
@@ -49,7 +49,7 @@
         <igx-grid-toolbar>
           <igx-grid-toolbar-title><h3 i18n>Weekly Match Results</h3></igx-grid-toolbar-title>
           <igx-grid-toolbar-actions>
-            <button igxIconButton="flat" igxRipple (click)="refreshMatches()">
+            <button igxIconButton="flat" igxRipple (click)="refreshMatches()" i18n-aria-label aria-label="Refresh matches">
               <igx-icon>refresh</igx-icon>
             </button>
             <a href="https://play.toornament.com/en_US/tournaments/8376728902519046144/matches/schedule" target="_blank" rel="noopener" i18n>Weekly Bracket</a>
@@ -158,7 +158,7 @@
             <igx-grid-toolbar>
               <igx-grid-toolbar-title><h3>{{group.name}}</h3></igx-grid-toolbar-title>
               <igx-grid-toolbar-actions>
-                <button igxIconButton="flat" igxRipple (click)="refreshGroups()">
+                <button igxIconButton="flat" igxRipple (click)="refreshGroups()" i18n-aria-label aria-label="Refresh standings">
                   <igx-icon>refresh</igx-icon>
                 </button>
               </igx-grid-toolbar-actions>
@@ -188,6 +188,9 @@
               </div>
             </igx-column>
             <igx-column field="companyId" i18n-header header="Team">
+              <ng-template igxCell let-value>
+                {{ value | participantTeam }}
+              </ng-template>
             </igx-column>
             <igx-column field="matches" dataType="number" i18n-header header="Matches" width="8%" minWidth="100px">
             </igx-column>

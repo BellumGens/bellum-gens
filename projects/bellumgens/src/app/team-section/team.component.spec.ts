@@ -139,6 +139,37 @@ describe('TeamComponent', () => {
     });
   });
 
+  it('should not render the team header or tabs for the placeholder', async () => {
+    const fixture = TestBed.createComponent(TeamComponent);
+    fixture.detectChanges();
+    flushUser();
+    await fixture.whenStable();
+
+    const el: HTMLElement = fixture.nativeElement;
+    expect(fixture.componentInstance.team()).toEqual(TEAM_PLACEHOLDER);
+    expect(el.querySelector('.team-details-header')).toBeNull();
+    expect(el.querySelector('igx-avatar')).toBeNull();
+    expect(el.querySelector('igx-tabs')).toBeNull();
+    expect(el.textContent).not.toContain(TEAM_PLACEHOLDER.teamName);
+  });
+
+  it('should render the team header and tabs once the team is loaded', async () => {
+    harness = await RouterTestingHarness.create();
+    await navigate(TEAM.teamId);
+    flushUser();
+    await harness.fixture.whenStable();
+    expect(element().querySelector('.team-details-header')).toBeNull();
+    expect(element().querySelector('igx-tabs')).toBeNull();
+
+    httpMock().expectOne(`${API}/teams?teamid=${TEAM.teamId}`).flush(TEAM);
+    TestBed.tick();
+    flushRoles(TEAM.teamId, false, false);
+    await harness.fixture.whenStable();
+
+    expect(element().querySelector('.team-details-header h1').textContent).toContain('Test Team');
+    expect(element().querySelector('igx-tabs')).not.toBeNull();
+  });
+
   describe('with a team route parameter', () => {
     it('should load the team for the route parameter', async () => {
       await openTeam(TEAM);

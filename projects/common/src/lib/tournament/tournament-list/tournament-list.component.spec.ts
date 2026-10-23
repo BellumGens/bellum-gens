@@ -137,6 +137,30 @@ describe('TournamentListComponent', () => {
     expect(cardNames(await showTab(1))).toEqual(['Future draft']);
   });
 
+  it('should derive the tabs of API tournaments that come without a status', async () => {
+    vi.useFakeTimers({ toFake: ['Date'] });
+    vi.setSystemTime(new Date('2026-06-01T12:00:00Z'));
+
+    // The API only sends id, name, description, logo, dates and the active flag (dates as strings)
+    const tournaments = [
+      { id: '1', name: 'Running', active: true, startDate: '2026-05-25T00:00:00Z', endDate: '2026-06-10T00:00:00Z' },
+      { id: '2', name: 'Next month', active: false, startDate: '2026-07-01T00:00:00Z', endDate: '2026-07-05T00:00:00Z' },
+      { id: '3', name: 'Last month', active: false, startDate: '2026-05-01T00:00:00Z', endDate: '2026-05-05T00:00:00Z' }
+    ] as unknown as Tournament[];
+
+    flushInitial(tournaments);
+
+    const active = await showTab(0);
+    expect(cardNames(active)).toEqual(['Running']);
+    expect(active.querySelector('igx-chip.status-in-progress').textContent).toContain('In Progress');
+    const upcoming = await showTab(1);
+    expect(cardNames(upcoming)).toEqual(['Next month']);
+    expect(upcoming.querySelector('igx-chip.status-open').textContent).toContain('Open');
+    const completed = await showTab(2);
+    expect(cardNames(completed)).toEqual(['Last month']);
+    expect(completed.querySelector('igx-chip.status-completed').textContent).toContain('Completed');
+  });
+
   it('should show empty states when there are no tournaments', async () => {
     flushInitial();
 
