@@ -41,9 +41,12 @@ jobs:
         github-token: ${{ github.token }}
         file: coverage/lcov.info
     - name: Cypress run
-      uses: cypress-io/github-action@v7.4.3
+      uses: cypress-io/github-action@v7.4.6
+      env:
+        # The production builds only allow their public hosts; let the SSR servers answer localhost
+        NG_ALLOWED_HOSTS: localhost
       with:
         install: false
-        start: npm run serve:ssr:bellumgens
-        wait-on: 'http://localhost:4000'
+        start: npm run serve:ssr:bellumgens, npm run serve:ssr:ebleague
+        wait-on: 'http://localhost:4000, http://localhost:4001'
         browser: chrome
