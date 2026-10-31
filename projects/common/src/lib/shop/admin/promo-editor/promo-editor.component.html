@@ -1,0 +1,100 @@
+<div class="editor-layout">
+  <aside class="promo-list">
+    <div class="pane-header">
+      <h4 i18n>Promo codes</h4>
+      <button type="button" igxButton="outlined" igxRipple (click)="newPromo()">
+        <igx-icon>add</igx-icon>
+        <span i18n>New code</span>
+      </button>
+    </div>
+    @if (promos().length === 0) {
+      <p i18n>No promo codes yet.</p>
+    } @else {
+      <ul>
+        @for (promo of promos(); track promo.code) {
+          <li [class.selected]="promo.code === editing()?.code">
+            <button type="button" class="promo-row" (click)="edit(promo)">
+              <span class="promo-code">{{ promo.code }}</span>
+              <span class="promo-discount">{{ promo.discount | percent:'1.0-2' }}</span>
+              <span class="promo-meta">
+                @if (!promo.active) {
+                  <igx-chip [selectable]="false" [removable]="false" i18n>Inactive</igx-chip>
+                }
+                @if (promo.expiration) {
+                  <span i18n>Until {{ promo.expiration | date:'mediumDate' }}</span>
+                }
+                <span i18n>Used {{ promo.timesUsed }}@if (promo.usageLimit) { / {{ promo.usageLimit }} } times</span>
+              </span>
+            </button>
+            <button type="button" igxIconButton="flat" igxRipple (click)="askDelete(promo)" i18n-title title="Delete promo code">
+              <igx-icon>delete</igx-icon>
+            </button>
+          </li>
+        }
+      </ul>
+    }
+  </aside>
+
+  <form class="promo-form" [formGroup]="form" (ngSubmit)="save()" novalidate>
+    <h4>
+      @if (editing(); as promo) {
+        {{ promo.code }}
+      } @else {
+        <ng-container i18n>New promo code</ng-container>
+      }
+    </h4>
+
+    <igx-input-group type="border">
+      <label igxLabel for="promoCodeInput" i18n>Code</label>
+      <input igxInput id="promoCodeInput" formControlName="code" autocomplete="off" />
+      @if (form.controls.code.invalid && form.controls.code.touched) {
+        <igx-hint class="color-error" i18n>Letters, digits, dashes and underscores only</igx-hint>
+      }
+    </igx-input-group>
+
+    <igx-input-group type="border">
+      <label igxLabel for="promoDiscount" i18n>Discount (%)</label>
+      <input igxInput id="promoDiscount" type="number" min="0" max="100" step="1" formControlName="discountPercent" />
+    </igx-input-group>
+
+    <igx-date-picker formControlName="expiration" type="border" mode="dialog">
+      <label igxLabel i18n>Valid until (optional)</label>
+    </igx-date-picker>
+
+    <igx-input-group type="border">
+      <label igxLabel for="promoUsage" i18n>Usage limit (optional)</label>
+      <input igxInput id="promoUsage" type="number" min="1" formControlName="usageLimit" />
+    </igx-input-group>
+
+    <igx-input-group type="border">
+      <label igxLabel for="promoMinimum" i18n>Minimum order (EUR, optional)</label>
+      <input igxInput id="promoMinimum" type="number" min="0" step="0.01" formControlName="minimumOrderTotal" />
+    </igx-input-group>
+
+    <igx-select formControlName="brand" type="border">
+      <label igxLabel i18n>Applies to</label>
+      @for (b of brands; track b) {
+        <igx-select-item [value]="b">
+          @if (b === anyBrand) {
+            <ng-container i18n>All products</ng-container>
+          } @else {
+            {{ brandNames[b] }}
+          }
+        </igx-select-item>
+      }
+    </igx-select>
+
+    <igx-checkbox formControlName="active" i18n>Active</igx-checkbox>
+
+    <div class="form-actions">
+      <button type="submit" igxButton="contained" igxRipple [disabled]="saving()">
+        <igx-icon>save</igx-icon>
+        <span i18n>Save promo code</span>
+      </button>
+    </div>
+  </form>
+</div>
+
+<bg-confirm i18n-title title="Delete this promo code?" (ok)="delete($event)">
+  <p i18n>Codes that were used by orders are deactivated instead of deleted.</p>
+</bg-confirm>

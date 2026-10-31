@@ -8,6 +8,9 @@ import { Router } from '@angular/router';
 import { ApplicationUser, CommunicationService, LoginProvider, LoginService, TournamentApplication } from '../../../public_api';
 import { Game, TournamentApplicationState } from '../../../models/tournament';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
+import { By } from '@angular/platform-browser';
+import { IgxSwitchComponent } from '@infragistics/igniteui-angular/switch';
+import { ConfirmComponent } from '../../confirm/confirm.component';
 
 
 describe('UserPreferencesComponent', () => {
@@ -224,5 +227,119 @@ describe('UserPreferencesComponent', () => {
     vi.spyOn(router, 'navigate').mockImplementation(() => undefined);
     component.openRegistration();
     expect(router.navigate).toHaveBeenCalledWith(['register']);
+  });
+
+  describe('in the page', () => {
+    const el = (): HTMLElement => fixture.nativeElement;
+    const buttons = () => Array.from<HTMLButtonElement>(el().querySelectorAll('button'));
+    const adminUrl = () => `${authService['_apiBase']}/admin/tournamentadmin`;
+
+    it('should offer to add the logins the user does not have yet', () => {
+      fixture.detectChanges();
+      vi.spyOn(authService, 'login').mockImplementation(() => undefined);
+      const loginButtons = buttons().filter(b => b.querySelector('igx-icon[family="login-icons"]'));
+
+      expect(loginButtons.map(b => b.querySelector('span').textContent.trim())).toEqual(['Steam', 'Add BattleNet']);
+      expect(loginButtons.map(b => b.disabled)).toEqual([true, false]);
+      expect(loginButtons[0].querySelector('.color-success').textContent).toBe('done');
+
+      loginButtons[1].click();
+
+      expect(authService.login).toHaveBeenCalledWith(providers[1]);
+    });
+
+    it('should not mark any login as added once logged out', () => {
+      authService['_applicationUser'].set(null);
+
+      expect(component.disableLogin('Steam')).toBe(false);
+    });
+
+    it('should save the search visibility when the switch is toggled', async () => {
+      await fixture.whenStable();
+      const visibility = fixture.debugElement.query(By.directive(IgxSwitchComponent));
+      expect((visibility.componentInstance as IgxSwitchComponent).checked).toBe(false);
+
+      visibility.nativeElement.querySelector('input[type="checkbox"]').click();
+
+      const req = httpMock.expectOne(`${authService['_apiEndpoint']}/userinfo`);
+      expect(req.request.body).toEqual({ searchVisible: true, email: 'test-email' });
+      req.flush({});
+      expect(component.preferences().searchVisible).toBe(true);
+    });
+
+    it('should offer the tournament administration to tournament admins only', () => {
+      fixture.detectChanges();
+      expect(buttons().some(b => b.textContent.includes('SC2 Tournament Admin'))).toBe(false);
+
+      httpMock.expectOne(adminUrl()).flush(true);
+      fixture.detectChanges();
+
+      const admin = buttons().find(b => b.textContent.includes('SC2 Tournament Admin'));
+      expect(admin).toBeTruthy();
+      vi.spyOn(router, 'navigate');
+      // Outside the league site the admin is opened there instead of navigating within this app
+      admin.click();
+      expect(router.navigate).not.toHaveBeenCalled();
+    });
+
+    it('should name the state of every registration, pending when it has none', () => {
+      authService['_registrations'].set([
+        { ...registrations[0], state: TournamentApplicationState.Confirmed },
+        { ...registrations[1], state: TournamentApplicationState.Banned },
+        { ...registrations[1], id: '3', state: undefined }
+      ]);
+      fixture.detectChanges();
+
+      const states = Array.from(el().querySelectorAll('[igxListAction] > span')).map(s => `${s.className}:${s.textContent}`);
+      expect(states).toEqual(['color-success:Confirmed', 'color-warn:Banned', ':Pending']);
+      // Only a registration without a state can still be checked in or withdrawn
+      expect(el().querySelectorAll('igx-list-item')[2].querySelectorAll('[igxListAction] button').length).toBe(2);
+      expect(el().querySelectorAll('igx-list-item')[0].querySelectorAll('[igxListAction] button').length).toBe(0);
+    });
+
+    it('should not check in a banned registration', () => {
+      component.weeklyCheckin({ ...registrations[0], state: TournamentApplicationState.Banned });
+
+      httpMock.expectNone(`${authService['_apiBase']}/tournament/checkin?id=${registrations[0].id}`);
+    });
+
+    it('should keep the registration when the check in fails', () => {
+      component.weeklyCheckin(registrations[0]);
+      httpMock.expectOne(`${authService['_apiBase']}/tournament/checkin?id=${registrations[0].id}`)
+        .flush('', { status: 500, statusText: 'Server Error' });
+
+      expect(component.registrations()[0].state).toBe(TournamentApplicationState.Pending);
+    });
+
+    it('should ask for confirmation before deleting a registration and delete it on ok', () => {
+      fixture.detectChanges();
+      const [confirmAccount, confirmReg] = fixture.debugElement.queryAll(By.directive(ConfirmComponent));
+      const open = vi.spyOn(confirmReg.componentInstance as ConfirmComponent, 'open').mockImplementation(() => undefined);
+
+      el().querySelectorAll<HTMLButtonElement>('igx-list-item')[0].querySelector<HTMLButtonElement>('button[aria-label="Delete this application"]').click();
+      expect(open).toHaveBeenCalledWith(registrations[0]);
+
+      confirmReg.triggerEventHandler('ok', registrations[0]);
+      httpMock.expectOne(`${authService['_apiBase']}/tournament/delete?id=${registrations[0].id}`).flush({});
+
+      expect(component.registrations().map(r => r.id)).toEqual(['2']);
+      expect(confirmAccount).toBeTruthy();
+    });
+
+    it('should ask for confirmation before deleting the account and delete it on ok', () => {
+      fixture.detectChanges();
+      const confirmAccount = fixture.debugElement.queryAll(By.directive(ConfirmComponent))[0];
+      const open = vi.spyOn(confirmAccount.componentInstance as ConfirmComponent, 'open').mockImplementation(() => undefined);
+      const deleted = vi.fn();
+      component.userDeleted.subscribe(deleted);
+
+      buttons().find(b => b.textContent.includes('Delete Account Forever')).click();
+      expect(open).toHaveBeenCalled();
+
+      confirmAccount.triggerEventHandler('ok');
+      httpMock.expectOne(`${authService['_apiEndpoint']}/delete?userid=${applicationUser.id}`).flush({});
+
+      expect(deleted).toHaveBeenCalled();
+    });
   });
 });

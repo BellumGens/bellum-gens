@@ -45,6 +45,55 @@ describe('EventsComponent', () => {
     expect(component.qualifiedPlayers[0].name).toBe('Yoon "trigger" Hong');
   });
 
+  it('should render the country, team and qualification of every player and caster when known', () => {
+    const cards = (id: string) => Array.from<HTMLElement>(fixture.nativeElement.querySelectorAll(`#${id} .player-card`));
+    const invited = cards('confirmed-players')[0];
+
+    expect(invited.querySelector('.player-card-name').textContent).toContain('Clem');
+    expect(invited.querySelector('igx-avatar').getAttribute('title')).toBe('France');
+    expect(invited.querySelector('.player-card-team').textContent).toBe('Team Liquid');
+    expect(invited.querySelector('.player-card-source').textContent).toContain('Champion');
+    expect(cards('qualified-players').length).toBe(12);
+    expect(cards('talent')[0].querySelector('.player-card-team').textContent).toBe('Commentator');
+  });
+
+  it('should not show a flag for a player whose country is unknown', () => {
+    fixture.destroy();
+    fixture = TestBed.createComponent(EventsComponent);
+    component = fixture.componentInstance;
+    component.invitedPlayers = [];
+    component.qualifiedPlayers = [{ name: 'Player', country: '', race: 'Protoss', team: 'Team', source: 'Open Qualifier', image: '/p.png' }];
+    component.talent = [];
+    fixture.detectChanges();
+
+    const card: HTMLElement = fixture.nativeElement.querySelector('.player-card');
+    expect(card.querySelector('igx-avatar')).toBeNull();
+    expect(card.querySelector('.player-card-team').textContent).toBe('Team');
+  });
+
+  it('should leave out the country, team and qualification that are not announced yet', () => {
+    const unannounced = { name: 'TBA', country: 'TBA', race: 'Random', team: '', source: '', image: '/assets/bge/players/tba.png' };
+    fixture.destroy();
+    fixture = TestBed.createComponent(EventsComponent);
+    component = fixture.componentInstance;
+    component.invitedPlayers = [unannounced];
+    component.qualifiedPlayers = [{ ...unannounced, source: 'Europe Open Qualifier' }];
+    component.talent = [{ name: 'TBA', country: 'TBA', role: 'Commentator', image: '/assets/bge/talent/tba.png' }];
+    fixture.detectChanges();
+
+    const cards = Array.from<HTMLElement>(fixture.nativeElement.querySelectorAll('.player-card'));
+    expect(cards.length).toBe(3);
+    cards.forEach(card => {
+      expect(card.querySelector('igx-avatar')).toBeNull();
+      expect(card.querySelector('.player-card-name').textContent.trim()).toBe('TBA');
+    });
+    expect(cards[0].querySelector('.player-card-team')).toBeNull();
+    expect(cards[0].querySelector('.player-card-source')).toBeNull();
+    // A qualified player always shows how they qualified
+    expect(cards[1].querySelector('.player-card-source').textContent).toBe('Europe Open Qualifier');
+    expect(cards[2].querySelector('.player-card-team').textContent).toBe('Commentator');
+  });
+
   it('should calculate time left correctly', () => {
     // Only Date is faked so the component's countdown interval keeps using real timers.
     vi.useFakeTimers({ toFake: ['Date'] });

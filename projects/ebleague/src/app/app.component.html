@@ -10,7 +10,7 @@
         <igx-icon>military_tech</igx-icon>
         <span i18n>Tournaments</span>
       </a>
-      <a igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="shop">
+      <a igxDrawerItem igxRipple class="external-item" [href]="shopUrl">
         <igx-icon>shopping_cart</igx-icon>
         <span i18n>Shop</span>
       </a>
@@ -41,7 +41,7 @@
         <a igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournaments/hub" i18n-title title="Tournaments">
           <igx-icon>military_tech</igx-icon>
         </a>
-        <a igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="shop" i18n-title title="Shop">
+        <a igxDrawerItem igxRipple class="external-item" [href]="shopUrl" i18n-title title="Shop">
           <igx-icon>shopping_cart</igx-icon>
         </a>
         <a igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="tournaments/format" i18n-title title="Tournament format">

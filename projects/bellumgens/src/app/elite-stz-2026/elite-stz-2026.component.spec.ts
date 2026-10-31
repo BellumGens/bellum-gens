@@ -80,6 +80,58 @@ describe('EliteStz2026Component', () => {
     expect(component.form.get('email')?.value).toBe('test@example.com');
   });
 
+  it('should enable the form for a user without an email and leave the email to fill in', () => {
+    component.signupDeadline = '2030-01-01T00:00:00Z';
+    authUser.set({ id: '123', username: 'testuser' } as ApplicationUser);
+    TestBed.tick();
+
+    expect(component.form.get('email')?.disabled).toBe(false);
+    expect(component.form.get('email')?.value).toBe('');
+  });
+
+  it('should keep the form disabled for a logged in user once the deadline has passed', () => {
+    component.signupDeadline = '2020-01-01T00:00:00Z';
+    authUser.set({ email: 'test@example.com', id: '123' } as ApplicationUser);
+    fixture.detectChanges();
+    const el: HTMLElement = fixture.nativeElement;
+
+    expect(component.form.get('email')?.disabled).toBe(true);
+    expect(el.querySelector('.auth-info').textContent).toContain('Signup deadline has passed.');
+    expect(el.querySelector<HTMLButtonElement>('button[type="submit"]').disabled).toBe(true);
+  });
+
+  it('should ask a visitor to log in before the deadline', () => {
+    component.signupDeadline = '2030-01-01T00:00:00Z';
+    fixture.detectChanges();
+    const el: HTMLElement = fixture.nativeElement;
+
+    expect(el.querySelector('.auth-info').textContent).toContain('You need to be logged in');
+    expect(el.querySelector<HTMLButtonElement>('button[type="submit"]').disabled).toBe(true);
+  });
+
+  it('should explain the invalid fields when an incomplete form is submitted', () => {
+    component.signupDeadline = '2030-01-01T00:00:00Z';
+    authUser.set({ id: '123' } as ApplicationUser);
+    fixture.detectChanges();
+    const el: HTMLElement = fixture.nativeElement;
+    expect(el.querySelector('.auth-info')).toBeNull();
+    expect(el.querySelectorAll('.error').length).toBe(0);
+
+    el.querySelector<HTMLButtonElement>('button[type="submit"]').click();
+    fixture.detectChanges();
+
+    const errors = Array.from(el.querySelectorAll('.error')).map(e => e.textContent.trim());
+    expect(errors).toEqual(['Please enter a valid email.', 'Please agree to the privacy terms to proceed.']);
+    expect(mockApiService.earlyBirdSignup).not.toHaveBeenCalled();
+  });
+
+  it('should treat a missing signup count as zero', () => {
+    mockApiService.getSignupCount.mockReturnValue(of(null));
+    fixture.detectChanges();
+
+    expect(component.count()).toBe(0);
+  });
+
   it('should fetch signup count on init in browser', () => {
     mockApiService.getSignupCount.mockReturnValue(of(42));
     fixture.detectChanges();
@@ -159,6 +211,16 @@ describe('EliteStz2026Component', () => {
       expect(component.count()).toBe(43);
     });
 
+    it('should treat a missing signup count after submitting as zero', () => {
+      component.count.set(5);
+      mockApiService.earlyBirdSignup.mockReturnValue(of(undefined));
+      mockApiService.getSignupCount.mockReturnValue(of(null));
+
+      component.submit();
+
+      expect(component.count()).toBe(0);
+    });
+
     it('should handle submission error', () => {
       const error = { message: 'Submission failed' };
       mockApiService.earlyBirdSignup.mockReturnValue(throwError(() => error));
@@ -178,5 +240,33 @@ describe('EliteStz2026Component', () => {
         'An error occurred while submitting your pre-registration. Please try again later.'
       );
     });
+  });
+});
+
+describe('EliteStz2026Component on the server', () => {
+  it('should neither load the signup count nor submit', async () => {
+    const api = createSpyObj<BellumgensApiService>('BellumgensApiService', ['getSignupCount', 'earlyBirdSignup']);
+    const user = signal<ApplicationUser | null>({ email: 'test@example.com', id: '123' } as ApplicationUser);
+    await TestBed.configureTestingModule({
+      imports: [EliteStz2026Component, NoopAnimationsModule],
+      providers: [
+        { provide: BellumgensApiService, useValue: api },
+        { provide: CommunicationService, useValue: createSpyObj('CommunicationService', ['emitError']) },
+        { provide: LoginService, useValue: createSpyObj('LoginService', [], { applicationUser: user.asReadonly() }) },
+        { provide: PLATFORM_ID, useValue: 'server' },
+        { provide: ActivatedRoute, useValue: { data: of({}) } }
+      ]
+    }).compileComponents();
+    const fixture = TestBed.createComponent(EliteStz2026Component);
+    const component = fixture.componentInstance;
+    component.signupDeadline = '2030-01-01T00:00:00Z';
+    fixture.detectChanges();
+    component.form.patchValue({ email: 'test@example.com', agreePrivacy: true });
+
+    component.submit();
+
+    expect(api.getSignupCount).not.toHaveBeenCalled();
+    expect(api.earlyBirdSignup).not.toHaveBeenCalled();
+    expect(component.submitting()).toBe(false);
   });
 });

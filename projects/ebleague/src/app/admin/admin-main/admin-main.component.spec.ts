@@ -9,8 +9,8 @@ import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import {
-  ApiTournamentsService, ApiShopService, CommunicationService, Tournament, Game, TournamentApplication, TournamentApplicationState, Order, Promo,
-  EMPTY_NEW_TOURNAMENT, JerseyCut, JerseySize, ProductOrderDetails
+  ApiTournamentsService, ApiShopService, CommunicationService, Tournament, Game, TournamentApplication, TournamentApplicationState,
+  EMPTY_NEW_TOURNAMENT, ShopOrder, OrderStatus, DeliveryMethod, ConfirmComponent
 } from '../../../../../common/src/public_api';
 import { IGridEditEventArgs } from '@infragistics/igniteui-angular/grids/core';
 import { IgxGridComponent } from '@infragistics/igniteui-angular/grids/grid';
@@ -20,11 +20,37 @@ import { createSpyObj } from '../../../../../testing/spy-obj';
 
 interface InitialData {
   roles?: string [];
-  promos?: Promo [];
   tournaments?: Tournament [];
   registrations?: TournamentApplication [];
-  orders?: Order [];
+  orders?: ShopOrder [];
 }
+
+const shopOrder = (order: Partial<ShopOrder> = {}): ShopOrder => ({
+  id: 'order-1',
+  orderSequence: 1,
+  orderNumber: 'BG-2026-000001',
+  email: 'test@example.com',
+  firstName: 'John',
+  lastName: 'Doe',
+  phoneNumber: '+359 888 123 456',
+  city: 'Sofia',
+  streetAddress: 'bul. Vitosha 1',
+  country: 'BG',
+  language: 'bg',
+  deliveryMethod: DeliveryMethod.Courier,
+  subtotal: 30,
+  discountTotal: 0,
+  shippingCost: 6,
+  total: 36,
+  currency: 'EUR',
+  status: OrderStatus.Paid,
+  paymentMethod: 0,
+  orderDate: '2026-09-04T10:00:00Z',
+  expiresOn: '2026-09-04T11:00:00Z',
+  items: [],
+  payments: [],
+  ...order
+});
 
 describe('AdminMainComponent', () => {
   let component: AdminMainComponent;
@@ -35,12 +61,14 @@ describe('AdminMainComponent', () => {
 
   // Answers the requests the component (and its template) issue on creation
   const flushInitialRequests = (data: InitialData = {}) => {
-    const initial = { roles: [], promos: [], tournaments: [], registrations: [], orders: [], ...data };
+    const initial = { roles: [], tournaments: [], registrations: [], orders: [], ...data };
     httpMock.expectOne(`${apiService['_apiEndpoint']}/admin/roles`).flush(initial.roles);
-    httpMock.expectOne(`${apiService['_apiEndpoint']}/admin/promos`).flush(initial.promos);
     httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/tournaments`).flush(initial.tournaments);
     httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/allregistrations`).flush(initial.registrations);
-    httpMock.expectOne(`${shopService['_apiEndpoint']}/shop/orders`).flush(initial.orders);
+    httpMock.expectOne(`${shopService['_apiEndpoint']}/shopadmin/orders`).flush(initial.orders);
+    // The embedded catalog and promo editors load their data on creation
+    httpMock.expectOne(`${shopService['_apiEndpoint']}/shopadmin/products`).flush([]);
+    httpMock.expectOne(`${shopService['_apiEndpoint']}/shopadmin/promos`).flush([]);
   };
 
   const el = (): HTMLElement => fixture.nativeElement;
@@ -191,52 +219,46 @@ describe('AdminMainComponent', () => {
       });
     });
 
-    describe('Order Management - editDone', () => {
-      it('should confirm an order with field updates', () => {
-        const mockOrder: Order = {
-          id: 'order-1',
-          email: 'test@example.com',
-          firstName: 'John',
-          lastName: 'Doe'
-        };
+    describe('Order Management', () => {
+      it('should mark an order as shipped with the tracking number', () => {
+        const paidOrder = shopOrder();
+        component.orders.set([paidOrder]);
+        component.setTracking('order-1', 'SPD-123');
 
-        const gridEditEventArgs: IGridEditEventArgs = {
-          rowData: { ...mockOrder },
-          column: { field: 'firstName' } as any,
-          newValue: 'Jane',
-          oldValue: 'John'
-        } as IGridEditEventArgs;
+        component.updateOrderStatus(paidOrder, OrderStatus.Shipped);
 
-        component.editDone(gridEditEventArgs);
-
-        const req = httpMock.expectOne(`${shopService['_apiEndpoint']}/shop/edit?orderId=order-1`);
+        const req = httpMock.expectOne(`${shopService['_apiEndpoint']}/shopadmin/orders/order-1/status`);
         expect(req.request.method).toBe('PUT');
-        expect(req.request.body.firstName).toBe('Jane');
+        expect(req.request.body).toEqual({ status: OrderStatus.Shipped, trackingNumber: 'SPD-123' });
+        expect(req.request.withCredentials).toBe(true);
 
-        req.flush({});
+        req.flush({ ...paidOrder, status: OrderStatus.Shipped, trackingNumber: 'SPD-123' });
+
+        expect(component.orders()[0].status).toBe(OrderStatus.Shipped);
+        expect(component.orders()[0].trackingNumber).toBe('SPD-123');
       });
 
-      it('should confirm order with multiple field updates', () => {
-        const mockOrder: Order = {
-          id: 'order-2',
-          firstName: 'John',
-          lastName: 'Doe'
-        };
+      it('should request a refund and reflect the returned status', () => {
+        const paidOrder = shopOrder();
+        component.orders.set([paidOrder]);
 
-        const gridEditEventArgs: IGridEditEventArgs = {
-          rowData: { ...mockOrder },
-          column: { field: 'lastName' } as any,
-          newValue: 'Smith',
-          oldValue: 'Doe'
-        } as IGridEditEventArgs;
+        component.refundOrder(paidOrder);
 
-        component.editDone(gridEditEventArgs);
+        const req = httpMock.expectOne(`${shopService['_apiEndpoint']}/shopadmin/orders/order-1/refund`);
+        expect(req.request.method).toBe('POST');
+        req.flush({ ...paidOrder, status: OrderStatus.Refunded });
 
-        const req = httpMock.expectOne(`${shopService['_apiEndpoint']}/shop/edit?orderId=order-2`);
-        expect(req.request.method).toBe('PUT');
-        expect(req.request.body.lastName).toBe('Smith');
+        expect(component.orders()[0].status).toBe(OrderStatus.Refunded);
+      });
 
-        req.flush({});
+      it('should reload orders on demand', () => {
+        component.loadOrders();
+
+        const req = httpMock.expectOne(`${shopService['_apiEndpoint']}/shopadmin/orders`);
+        expect(req.request.method).toBe('GET');
+        req.flush([shopOrder()]);
+
+        expect(component.orders().length).toBe(1);
       });
     });
 
@@ -403,56 +425,6 @@ describe('AdminMainComponent', () => {
         httpMock.expectNone(`${apiService['_apiEndpoint']}/tournament/delete?id=reg-1`);
       });
     });
-
-    describe('Order Management - saveOrder', () => {
-      const createMockRowContext = (key: string, deleted = true) => {
-        const mockRowContext = createSpyObj('RowType', ['grid']);
-        mockRowContext.grid = createSpyObj('IgxGridComponent', ['transactions']);
-        mockRowContext.grid.transactions.commit = vi.fn();
-        mockRowContext.grid.data = [];
-        mockRowContext.key = key;
-        mockRowContext.deleted = deleted;
-        return mockRowContext;
-      };
-
-      it('should delete an order marked deleted', () => {
-        const mockRowContext = createMockRowContext('order-1');
-
-        component.saveOrder(mockRowContext as any);
-
-        expect(mockRowContext.grid.transactions.commit).toHaveBeenCalledWith([], 'order-1');
-
-        const req = httpMock.expectOne(`${shopService['_apiEndpoint']}/shop/order?orderId=order-1`);
-        expect(req.request.method).toBe('DELETE');
-
-        req.flush({});
-      });
-
-      it('should delete multiple orders', () => {
-        const rowContext1 = createMockRowContext('order-1');
-        const rowContext2 = createMockRowContext('order-2');
-
-        component.saveOrder(rowContext1 as any);
-        component.saveOrder(rowContext2 as any);
-
-        let req = httpMock.expectOne(`${shopService['_apiEndpoint']}/shop/order?orderId=order-1`);
-        expect(req.request.method).toBe('DELETE');
-        req.flush({});
-
-        req = httpMock.expectOne(`${shopService['_apiEndpoint']}/shop/order?orderId=order-2`);
-        expect(req.request.method).toBe('DELETE');
-        req.flush({});
-      });
-
-      it('should only commit the changes of an edited order', () => {
-        const mockRowContext = createMockRowContext('order-1', false);
-
-        component.saveOrder(mockRowContext as any);
-
-        expect(mockRowContext.grid.transactions.commit).toHaveBeenCalledWith([], 'order-1');
-        httpMock.expectNone(`${shopService['_apiEndpoint']}/shop/order?orderId=order-1`);
-      });
-    });
   });
 
   describe('Roles', () => {
@@ -523,8 +495,10 @@ describe('AdminMainComponent', () => {
         startDate: '2026-03-01T00:00:00' as unknown as Date, endDate: '2026-05-01T00:00:00' as unknown as Date, active: false
       }
     ];
-    const cards = () => Array.from(el().querySelectorAll('igx-card'));
-    const forms = () => Array.from(el().querySelectorAll('form'));
+    // The shop catalog and promo editors have forms of their own, so only the tournaments section is searched
+    const section = () => Array.from(el().querySelectorAll('h3')).find(h => h.textContent === 'Tournaments and Roles').closest('.content-container');
+    const cards = () => Array.from(section().querySelectorAll('igx-card'));
+    const forms = () => Array.from(section().querySelectorAll('form'));
     const newForm = () => el().querySelector('#newTournamentName').closest('form');
     const type = (input: HTMLInputElement | HTMLTextAreaElement, value: string) => {
       input.value = value;
@@ -829,29 +803,26 @@ describe('AdminMainComponent', () => {
   });
 
   describe('Orders grid', () => {
-    const orders = (): Order [] => [
-      {
-        id: 'order-1', email: 'jane@example.com', firstName: 'Jane', lastName: 'Doe', phoneNumber: '888123456',
-        city: 'Sofia', streetAddress: '1 Main St', promoCode: 'EBL10', confirmed: true, shipped: false,
-        orderProducts: [
-          { cut: JerseyCut.Male, size: JerseySize.L } as ProductOrderDetails,
-          { cut: JerseyCut.Female, size: JerseySize.XS } as ProductOrderDetails
+    const orders = (): ShopOrder [] => [
+      shopOrder({
+        postalCode: '1000', promoCode: 'EBL10', customerNote: 'Please call first',
+        items: [
+          { id: 1, productId: 'p-1', productName: 'Jersey', variantName: 'Male L', unitPrice: 30, quantity: 2, lineTotal: 60 },
+          { id: 2, productId: 'p-2', productName: 'Mousepad', unitPrice: 15, quantity: 1, lineTotal: 15 }
         ]
-      },
-      {
-        id: 'order-2', email: 'john@example.com', firstName: 'John', lastName: 'Roe', phoneNumber: '888654321',
-        city: 'Plovdiv', streetAddress: '2 Side St', confirmed: false, shipped: true
-      }
+      }),
+      shopOrder({
+        id: 'order-2', orderSequence: 2, orderNumber: 'BG-2026-000002', firstName: 'Jane', lastName: 'Roe',
+        status: OrderStatus.AwaitingPayment, deliveryMethod: DeliveryMethod.EventPickup
+      })
     ];
     const grid = () => fixture.debugElement.queryAll(By.directive(IgxGridComponent))[1].componentInstance as IgxGridComponent;
-    const stripButton = (title: string) => grid().nativeElement.querySelector<HTMLButtonElement>(`igx-action-strip button[title="${title}"]`);
-    const hoverRow = async (key: string) => {
-      grid().dataRowList.find(r => r.key === key).nativeElement.dispatchEvent(new MouseEvent('mouseenter'));
-      await render();
-    };
     const cell = (field: string, key = 'order-1'): HTMLElement => grid().dataRowList.find(r => r.key === key).cells
       .find(c => c.column.field === field).nativeElement;
     const cellText = (field: string, key = 'order-1') => cell(field, key).textContent.replace(/\s+/g, ' ').trim();
+    const details = () => grid().nativeElement.querySelector<HTMLElement>('.order-details');
+    const detailButton = (text: string) => Array.from(details().querySelectorAll<HTMLButtonElement>('.order-actions button'))
+      .find(b => b.textContent.includes(text));
 
     beforeEach(async () => {
       flushInitialRequests({ orders: orders() });
@@ -859,89 +830,90 @@ describe('AdminMainComponent', () => {
     });
 
     it('should render the order details', () => {
-      expect(cellText('email')).toBe('jane@example.com');
-      expect(cellText('name')).toBe('Jane Doe');
-      expect(cellText('phoneNumber')).toBe('+359 888123456');
-      expect(cellText('address')).toBe('Sofia, 1 Main St');
+      expect(cellText('orderNumber')).toContain('BG-2026-000001');
+      expect(cellText('status')).toBe('Paid');
+      expect(cell('status').querySelector('.order-status').classList).toContain('status-1');
+      expect(cellText('email')).toBe('test@example.com');
+      expect(cellText('name')).toBe('John Doe');
+      expect(cellText('address')).toBe('bul. Vitosha 1, 1000 Sofia');
+      expect(cellText('deliveryMethod')).toBe('Courier delivery');
       expect(cellText('promoCode')).toBe('EBL10');
 
-      expect(cellText('confirmed')).toBe('check');
-      expect(cell('confirmed').querySelector('igx-icon').classList).toContain('color-success');
-      expect(cellText('shipped')).toBe('close');
-      expect(cell('shipped').querySelector('igx-icon').classList).toContain('color-error');
-
-      expect(cellText('name', 'order-2')).toBe('John Roe');
-      expect(cellText('confirmed', 'order-2')).toBe('close');
-      expect(cell('confirmed', 'order-2').querySelector('igx-icon').classList).toContain('color-error');
-      expect(cellText('shipped', 'order-2')).toBe('check');
-      expect(cell('shipped', 'order-2').querySelector('igx-icon').classList).toContain('color-success');
+      expect(cellText('status', 'order-2')).toBe('Awaiting payment');
+      expect(cellText('deliveryMethod', 'order-2')).toBe('Pick up at an event');
     });
 
-    it('should show the details area when an order is expanded', async () => {
-      expect(grid().nativeElement.querySelector('.details-container')).toBeNull();
+    it('should list the ordered items and the customer note when an order is expanded', async () => {
+      expect(details()).toBeNull();
 
       grid().expandRow('order-1');
       await render();
 
-      expect(grid().nativeElement.querySelector('.details-container')).toBeTruthy();
+      const items = Array.from(details().querySelectorAll('.order-items li'))
+        .map(li => ['.item-qty', '.item-name', '.item-total'].map(part => li.querySelector(part).textContent.trim()));
+      // The variant is set apart from the product name by its margin
+      expect(items).toEqual([
+        ['2 ×', 'Jersey(Male L)', '€60.00'],
+        ['1 ×', 'Mousepad', '€15.00']
+      ]);
+      expect(details().querySelector('.order-note').textContent).toContain('Please call first');
     });
 
-    it('should list the cut and size of each ordered product in the details area', async () => {
+    it('should ship a paid order with the tracking number typed in its details', async () => {
       grid().expandRow('order-1');
       await render();
 
-      const products = Array.from(grid().nativeElement.querySelectorAll('.details-container > .column-center'))
-        .map(p => Array.from(p.querySelectorAll('div')).map(d => d.textContent.trim()));
-      expect(products).toEqual([['Male', 'L'], ['Female', 'XS']]);
-    });
+      const tracking = details().querySelector<HTMLInputElement>('#tracking-order-1');
+      tracking.value = 'SPD-123';
+      tracking.dispatchEvent(new Event('input'));
+      detailButton('Mark shipped').click();
 
-    it('should keep an edited order when its pending changes are saved', async () => {
-      grid().updateCell(true, 'order-2', 'confirmed');
-      await hoverRow('order-2');
-      expect(grid().dataRowList.find(r => r.key === 'order-2').dirty).toBe(true);
-
-      stripButton('Save').click();
+      const req = httpMock.expectOne(`${shopService['_apiEndpoint']}/shopadmin/orders/order-1/status`);
+      expect(req.request.body).toEqual({ status: OrderStatus.Shipped, trackingNumber: 'SPD-123' });
+      req.flush({ ...orders()[0], status: OrderStatus.Shipped, trackingNumber: 'SPD-123' });
       await render();
 
-      httpMock.expectNone(`${shopService['_apiEndpoint']}/shop/order?orderId=order-2`);
-      expect(grid().transactions.getAggregatedChanges(false)).toEqual([]);
-      expect(grid().data.map(o => o.id)).toEqual(['order-1', 'order-2']);
-      expect(grid().data[1].confirmed).toBe(true);
+      expect(cellText('status')).toBe('Shipped');
+      expect(cellText('trackingNumber')).toBe('SPD-123');
     });
 
-    it('should save an order when one of its cells is edited', async () => {
-      const shipped = grid().getCellByKey('order-1', 'shipped');
-
-      shipped.editMode = true;
-      shipped.editValue = true;
-      grid().endEdit(true);
-
-      const req = httpMock.expectOne(`${shopService['_apiEndpoint']}/shop/edit?orderId=order-1`);
-      expect(req.request.method).toBe('PUT');
-      expect(req.request.body).toEqual(expect.objectContaining({ id: 'order-1', shipped: true }));
-      req.flush({});
+    it('should ask for confirmation before refunding an order', async () => {
+      grid().expandRow('order-1');
       await render();
 
-      expect(cellText('shipped')).toBe('check');
+      const confirm = fixture.debugElement.queryAll(By.directive(ConfirmComponent))
+        .map(debugEl => debugEl.componentInstance as ConfirmComponent)
+        .find(c => c.title() === 'Refund this order?');
+      const open = vi.spyOn(confirm, 'open');
+      detailButton('Refund').click();
+
+      expect(open).toHaveBeenCalledWith(expect.objectContaining({ id: 'order-1' }));
+      httpMock.expectNone(`${shopService['_apiEndpoint']}/shopadmin/orders/order-1/refund`);
+
+      confirm.okClicked();
+
+      const req = httpMock.expectOne(`${shopService['_apiEndpoint']}/shopadmin/orders/order-1/refund`);
+      req.flush({ ...orders()[0], status: OrderStatus.Refunded });
+      await render();
+
+      expect(cellText('status')).toBe('Refunded');
     });
 
-    it('should mark an order deleted and remove it on save', async () => {
-      await hoverRow('order-1');
-      expect(stripButton('Save')).toBeNull();
-
-      stripButton('Delete').click();
+    it('should only offer to cancel an order that awaits payment', async () => {
+      grid().expandRow('order-2');
       await render();
 
-      expect(grid().getRowByKey('order-1').deleted).toBe(true);
-      expect(stripButton('Delete')).toBeNull();
+      expect(details().querySelector('input')).toBeNull();
+      expect(detailButton('Refund')).toBeUndefined();
 
-      stripButton('Save').click();
+      detailButton('Cancel order').click();
 
-      const req = httpMock.expectOne(`${shopService['_apiEndpoint']}/shop/order?orderId=order-1`);
-      expect(req.request.method).toBe('DELETE');
-      req.flush({});
+      const req = httpMock.expectOne(`${shopService['_apiEndpoint']}/shopadmin/orders/order-2/status`);
+      expect(req.request.body).toEqual({ status: OrderStatus.Cancelled, trackingNumber: null });
+      req.flush({ ...orders()[1], status: OrderStatus.Cancelled });
+      await render();
 
-      expect(grid().data.map(o => o.id)).toEqual(['order-2']);
+      expect(cellText('status', 'order-2')).toBe('Cancelled');
     });
   });
 });
