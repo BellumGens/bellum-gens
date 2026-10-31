@@ -10,7 +10,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import {
   ApiTournamentsService, ApiShopService, CommunicationService, Tournament, Game, TournamentApplication, TournamentApplicationState,
-  EMPTY_NEW_TOURNAMENT, ShopOrder, OrderStatus, DeliveryMethod
+  EMPTY_NEW_TOURNAMENT, ShopOrder, OrderStatus, DeliveryMethod, ConfirmComponent
 } from '../../../../../common/src/public_api';
 import { IGridEditEventArgs } from '@infragistics/igniteui-angular/grids/core';
 import { IgxGridComponent } from '@infragistics/igniteui-angular/grids/grid';
@@ -875,6 +875,28 @@ describe('AdminMainComponent', () => {
 
       expect(cellText('status')).toBe('Shipped');
       expect(cellText('trackingNumber')).toBe('SPD-123');
+    });
+
+    it('should ask for confirmation before refunding an order', async () => {
+      grid().expandRow('order-1');
+      await render();
+
+      const confirm = fixture.debugElement.queryAll(By.directive(ConfirmComponent))
+        .map(debugEl => debugEl.componentInstance as ConfirmComponent)
+        .find(c => c.title() === 'Refund this order?');
+      const open = vi.spyOn(confirm, 'open');
+      detailButton('Refund').click();
+
+      expect(open).toHaveBeenCalledWith(expect.objectContaining({ id: 'order-1' }));
+      httpMock.expectNone(`${shopService['_apiEndpoint']}/shopadmin/orders/order-1/refund`);
+
+      confirm.okClicked();
+
+      const req = httpMock.expectOne(`${shopService['_apiEndpoint']}/shopadmin/orders/order-1/refund`);
+      req.flush({ ...orders()[0], status: OrderStatus.Refunded });
+      await render();
+
+      expect(cellText('status')).toBe('Refunded');
     });
 
     it('should only offer to cancel an order that awaits payment', async () => {

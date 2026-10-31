@@ -4139,6 +4139,22 @@
           <context context-type="linenumber">19,20</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="5193511429538013048" datatype="html">
+        <source>Refund this order?</source>
+        <target>Да се възстанови ли сумата за тази поръчка?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
+          <context context-type="linenumber">181</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5781865109195984903" datatype="html">
+        <source>The full amount is returned to the customer through Revolut. This cannot be undone.</source>
+        <target>Цялата сума се връща на клиента чрез Revolut. Действието не може да бъде отменено.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
+          <context context-type="linenumber">182,183</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>

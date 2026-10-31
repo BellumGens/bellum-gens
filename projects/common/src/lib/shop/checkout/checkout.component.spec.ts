@@ -176,6 +176,31 @@ describe('CheckoutComponent', () => {
     httpMock.expectNone(`${api['_apiEndpoint']}/shop/orders`);
   });
 
+  it('links the terms of sale to the shop terms page', () => {
+    fillCart();
+
+    const link: HTMLAnchorElement = fixture.nativeElement.querySelector('.terms a');
+    expect(link.getAttribute('href')).toBe('/shop/terms');
+    expect(link.target).toBe('_blank');
+  });
+
+  it('offers a retry instead of a spinner when pricing the order failed', () => {
+    fillCart();
+    cart['_quote'].set(null);
+    cart['_quoteFailed'].set(true);
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelector('.order-summary igx-circular-bar')).toBeNull();
+    const error: HTMLElement = fixture.nativeElement.querySelector('.quote-error');
+    expect(error.textContent).toContain('could not calculate the price');
+
+    error.querySelector('button')!.click();
+    httpMock.expectOne(quoteUrl()).flush(validQuote);
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelector('.quote-error')).toBeNull();
+  });
+
   it('posts the cart and customer details, clears the cart and redirects to Revolut', () => {
     fillCart();
     fillForm();

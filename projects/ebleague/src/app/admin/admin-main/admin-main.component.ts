@@ -10,7 +10,8 @@ import {
   ORDER_STATUS_NAMES,
   DELIVERY_METHOD_NAMES,
   ProductEditorComponent,
-  PromoEditorComponent
+  PromoEditorComponent,
+  ConfirmComponent
 } from '../../../../../common/src/public_api';
 import { IGridEditEventArgs, RowType } from '@infragistics/igniteui-angular/grids/core';
 import { DefaultSortingStrategy, IGroupingExpression, SortingDirection } from '@infragistics/igniteui-angular/core';
@@ -49,7 +50,8 @@ import { CurrencyPipe } from '@angular/common';
     IgxCheckboxComponent,
     IGX_CHIPS_DIRECTIVES,
     ProductEditorComponent,
-    PromoEditorComponent
+    PromoEditorComponent,
+    ConfirmComponent
   ]
 })
 export class AdminMainComponent {

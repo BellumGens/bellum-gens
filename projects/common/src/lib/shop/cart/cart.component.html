@@ -34,7 +34,7 @@
                 <igx-icon>remove</igx-icon>
               </button>
               <span class="quantity-value">{{ item.quantity }}</span>
-              <button type="button" igxIconButton="flat" igxRipple (click)="cart.setQuantity(item, item.quantity + 1)" [disabled]="item.quantity >= 10" i18n-title title="Increase quantity">
+              <button type="button" igxIconButton="flat" igxRipple (click)="cart.setQuantity(item, item.quantity + 1)" [disabled]="item.quantity >= maxQuantity" i18n-title title="Increase quantity">
                 <igx-icon>add</igx-icon>
               </button>
             </div>
@@ -102,6 +102,11 @@
           @if (!quote.isValid) {
             <p class="color-error" i18n>Some items in your cart are no longer available in the selected quantity. Please review the lines marked above.</p>
           }
+        } @else if (cart.quoteFailed() && !cart.quoting()) {
+          <div class="quote-error" role="alert">
+            <p class="color-error" i18n>We could not calculate the price of your cart. Please try again.</p>
+            <button type="button" igxButton="outlined" igxRipple (click)="cart.refresh()" i18n>Try again</button>
+          </div>
         } @else {
           <div class="horizontal-center">
             <igx-circular-bar [indeterminate]="true"></igx-circular-bar>

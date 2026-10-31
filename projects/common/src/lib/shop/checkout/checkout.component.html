@@ -81,7 +81,7 @@
         </div>
 
         <igx-checkbox formControlName="acceptedTerms" class="terms">
-          <span i18n>I have read and accept the <a href="/shop/terms" target="_blank" rel="noopener">terms of sale</a>, including the 14-day right of withdrawal.</span>
+          <span i18n>I have read and accept the <a routerLink="/shop/terms" target="_blank" rel="noopener">terms of sale</a>, including the 14-day right of withdrawal.</span>
         </igx-checkbox>
         @if (invalid('acceptedTerms')) {
           <span class="color-error terms-hint" i18n>Please accept the terms of sale to continue</span>
@@ -145,6 +145,11 @@
             <dt class="grand-total" i18n>Total</dt>
             <dd class="grand-total">{{ quote.total | currency:'EUR' }}</dd>
           </dl>
+        } @else if (cart.quoteFailed() && !cart.quoting()) {
+          <div class="quote-error" role="alert">
+            <p class="color-error" i18n>We could not calculate the price of your cart. Please try again.</p>
+            <button type="button" igxButton="outlined" igxRipple (click)="cart.refresh()" i18n>Try again</button>
+          </div>
         } @else {
           <div class="horizontal-center">
             <igx-circular-bar [indeterminate]="true"></igx-circular-bar>

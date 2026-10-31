@@ -166,7 +166,7 @@
             </button>
           }
           @if (dataItem.status === OrderStatus.Paid || dataItem.status === OrderStatus.Shipped || dataItem.status === OrderStatus.Delivered) {
-            <button type="button" igxButton="flat" igxRipple class="color-error" (click)="refundOrder(dataItem)">
+            <button type="button" igxButton="flat" igxRipple class="color-error" (click)="confirmRefund.open(dataItem)">
               <igx-icon>undo</igx-icon>
               <span i18n>Refund</span>
             </button>
@@ -177,6 +177,10 @@
       <igx-paginator></igx-paginator>
 
     </igx-grid>
+
+    <bg-confirm #confirmRefund i18n-title title="Refund this order?" (ok)="refundOrder($event)">
+      <p i18n>The full amount is returned to the customer through Revolut. This cannot be undone.</p>
+    </bg-confirm>
   </div>
 
   <div class="content-container-row">

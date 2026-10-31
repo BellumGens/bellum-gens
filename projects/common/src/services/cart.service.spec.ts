@@ -209,4 +209,34 @@ describe('CartService', () => {
     expect(service.promoCode()).toBeNull();
     expect(localStorage.getItem(CartService.storageKey)).toBeNull();
   });
+
+  it('caps a line at the per-line maximum when adding or changing it', () => {
+    const p = product();
+    service.add(p, null, 8);
+    service.add(p, null, 5);
+
+    expect(service.items()[0].quantity).toBe(CartService.maxLineQuantity);
+
+    service.setQuantity(service.items()[0], 50);
+
+    expect(service.items()[0].quantity).toBe(CartService.maxLineQuantity);
+  });
+
+  it('reports a failed quote so the page can offer a retry, and clears it on success', () => {
+    service.add(product());
+    TestBed.tick();
+    vi.advanceTimersByTime(300);
+    httpMock.expectOne(`${api['_apiEndpoint']}/shop/quote`).flush('', { status: 500, statusText: 'Server Error' });
+
+    expect(service.quote()).toBeNull();
+    expect(service.quoteFailed()).toBe(true);
+    expect(service.quoting()).toBe(false);
+
+    service.refresh();
+    expect(service.quoting()).toBe(true);
+    httpMock.expectOne(`${api['_apiEndpoint']}/shop/quote`).flush(quoteFor(21));
+
+    expect(service.quoteFailed()).toBe(false);
+    expect(service.quote()?.total).toBe(21);
+  });
 });

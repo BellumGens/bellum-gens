@@ -2,7 +2,7 @@ import { Injectable, PLATFORM_ID, computed, effect, inject, signal } from '@angu
 import { isPlatformBrowser } from '@angular/common';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { of } from 'rxjs';
-import { catchError, debounceTime, switchMap, tap } from 'rxjs/operators';
+import { catchError, debounceTime, map, switchMap, tap } from 'rxjs/operators';
 import { ApiShopService } from './bellumgens-api.shop.service';
 import { CommunicationService } from './communication.service';
 import { CartItem, CartLineRequest, DeliveryMethod, Product, ProductVariant, Quote, QuoteRequest } from '../models/shop';
@@ -22,6 +22,8 @@ interface StoredCart {
 })
 export class CartService {
   public static readonly storageKey = 'bg-shop-cart';
+  /** The most of one product option a single order can hold. */
+  public static readonly maxLineQuantity = 10;
 
   private platformId = inject(PLATFORM_ID);
   private shopApi = inject(ApiShopService);
@@ -33,6 +35,7 @@ export class CartService {
   private _deliveryMethod = signal<DeliveryMethod>(DeliveryMethod.Courier);
   private _quote = signal<Quote | null>(null);
   private _quoting = signal(false);
+  private _quoteFailed = signal(false);
 
   public readonly items = this._items.asReadonly();
   public readonly promoCode = this._promoCode.asReadonly();
@@ -40,6 +43,8 @@ export class CartService {
   /** Latest server quote for the cart, null while empty or before the first response. */
   public readonly quote = this._quote.asReadonly();
   public readonly quoting = this._quoting.asReadonly();
+  /** True when the last quote request failed, so the UI can offer a retry instead of waiting forever. */
+  public readonly quoteFailed = this._quoteFailed.asReadonly();
 
   public readonly count = computed(() => this.items().reduce((sum, item) => sum + item.quantity, 0));
   public readonly isEmpty = computed(() => this.items().length === 0);
@@ -67,14 +72,9 @@ export class CartService {
       this.request$.pipe(
         tap(request => this._quoting.set(request.lines.length > 0)),
         debounceTime(250),
-        switchMap(request => request.lines.length
-          ? this.shopApi.quote(request).pipe(catchError(() => of(null)))
-          : of(null)),
+        switchMap(request => request.lines.length ? this.fetchQuote(request) : of({ quote: null, failed: false })),
         takeUntilDestroyed()
-      ).subscribe(quote => {
-        this._quote.set(quote);
-        this._quoting.set(false);
-      });
+      ).subscribe(result => this.setQuote(result));
     }
   }
 
@@ -86,9 +86,10 @@ export class CartService {
     this._items.update(items => {
       const existing = items.find(i => i.productId === product.id && i.variantId === variantId);
       if (existing) {
-        return items.map(i => i === existing ? { ...i, quantity: i.quantity + quantity, product, variant: variant ?? undefined } : i);
+        const total = Math.min(existing.quantity + quantity, CartService.maxLineQuantity);
+        return items.map(i => i === existing ? { ...i, quantity: total, product, variant: variant ?? undefined } : i);
       }
-      return [...items, { productId: product.id, variantId, quantity, product, variant: variant ?? undefined }];
+      return [...items, { productId: product.id, variantId, quantity: Math.min(quantity, CartService.maxLineQuantity), product, variant: variant ?? undefined }];
     });
     const label = variant ? `${product.name} (${variant.name})` : product.name;
     this.commService.emitSuccess($localize`:@@shopAddedToCart:${label}:name: added to your cart`);
@@ -99,7 +100,8 @@ export class CartService {
       this.remove(item);
       return;
     }
-    this._items.update(items => items.map(i => this.same(i, item) ? { ...i, quantity } : i));
+    const capped = Math.min(quantity, CartService.maxLineQuantity);
+    this._items.update(items => items.map(i => this.same(i, item) ? { ...i, quantity: capped } : i));
   }
 
   public remove(item: CartItem) {
@@ -110,6 +112,7 @@ export class CartService {
     this._items.set([]);
     this._promoCode.set(null);
     this._quote.set(null);
+    this._quoteFailed.set(false);
   }
 
   public setPromoCode(code: string | null) {
@@ -127,10 +130,20 @@ export class CartService {
       return;
     }
     this._quoting.set(true);
-    this.shopApi.quote(this.request()).pipe(catchError(() => of(null))).subscribe(quote => {
-      this._quote.set(quote);
-      this._quoting.set(false);
-    });
+    this.fetchQuote(this.request()).subscribe(result => this.setQuote(result));
+  }
+
+  private fetchQuote(request: QuoteRequest) {
+    return this.shopApi.quote(request).pipe(
+      map(quote => ({ quote, failed: false })),
+      catchError(() => of({ quote: null, failed: true }))
+    );
+  }
+
+  private setQuote(result: { quote: Quote | null, failed: boolean }) {
+    this._quote.set(result.quote);
+    this._quoteFailed.set(result.failed);
+    this._quoting.set(false);
   }
 
   private same(a: CartItem, b: CartItem) {

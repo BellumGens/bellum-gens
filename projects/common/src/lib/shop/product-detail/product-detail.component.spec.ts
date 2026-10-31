@@ -314,4 +314,54 @@ describe('ProductDetailComponent', () => {
     expect(component.product()?.slug).toBe('rain-umbrella');
     expect(component.quantity()).toBe(1);
   });
+
+  it('lowers the quantity to the stock of a newly chosen option', () => {
+    load();
+    component.changeQuantity(3);
+    expect(component.quantity()).toBe(4);
+
+    component.selectCut({ newSelection: { value: JerseyCut.Female } } as never);
+
+    expect(component.selectedVariant()?.id).toBe('v-female-m');
+    expect(component.quantity()).toBe(1);
+    expect(component.canAdd()).toBe(true);
+  });
+
+  it('lowers the quantity when a plain option has less stock', () => {
+    load(umbrella({
+      variants: [
+        { id: 'o1', name: 'Blue', active: true, sortOrder: 0, stockQuantity: 8 },
+        { id: 'o2', name: 'Red', active: true, sortOrder: 1, stockQuantity: 2 }
+      ]
+    }));
+    component.changeQuantity(7);
+
+    component.selectVariant({ newSelection: { value: 'o2' } } as never);
+
+    expect(component.quantity()).toBe(2);
+  });
+
+  it('keeps loading products after one request fails', () => {
+    fixture.detectChanges();
+    httpMock.expectOne(productUrl('ebl-jersey')).flush('', { status: 500, statusText: 'Server Error' });
+    expect(component.notFound()).toBe(true);
+
+    params.next(convertToParamMap({ slug: 'rain-umbrella' }));
+    httpMock.expectOne(productUrl('rain-umbrella')).flush(umbrella());
+    fixture.detectChanges();
+
+    expect(component.notFound()).toBe(false);
+    expect(component.product()?.slug).toBe('rain-umbrella');
+  });
+
+  it('puts the shop title back when leaving the product', () => {
+    const title = TestBed.inject(Title);
+    const shopTitle = title.getTitle();
+    load();
+    expect(title.getTitle()).toBe('EBL Jersey | Bellum Gens Shop');
+
+    fixture.destroy();
+
+    expect(title.getTitle()).toBe(shopTitle);
+  });
 });

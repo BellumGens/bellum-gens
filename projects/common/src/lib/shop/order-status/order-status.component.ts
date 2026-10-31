@@ -2,11 +2,11 @@ import { Component, DOCUMENT, DestroyRef, PLATFORM_ID, computed, inject, signal 
 import { CurrencyPipe, DatePipe, isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { Subscription } from 'rxjs';
 import { IgxButtonDirective, IgxDividerComponent, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular/progressbar';
 import { ApiShopService } from '../../../services/bellumgens-api.shop.service';
-import { CartService } from '../../../services/cart.service';
 import { DELIVERY_METHOD_NAMES, DeliveryMethod, ORDER_STATUS_NAMES, OrderStatus, OrderStatusView, PaymentStatus } from '../../../models/shop';
 
 @Component({
@@ -32,12 +32,13 @@ export class OrderStatusComponent {
 
   private route = inject(ActivatedRoute);
   private shopApi = inject(ApiShopService);
-  private cart = inject(CartService);
   private document = inject(DOCUMENT);
   private isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
   public order = signal<OrderStatusView | null>(null);
   public notFound = signal(false);
+  /** The order could not be loaded for a reason other than not existing (server or network error). */
+  public loadFailed = signal(false);
   public polling = signal(false);
   public timedOut = signal(false);
   public busy = signal(false);
@@ -50,6 +51,7 @@ export class OrderStatusComponent {
   private orderId = '';
   private pollStarted = 0;
   private timer: ReturnType<typeof setTimeout> | null = null;
+  private request: Subscription | null = null;
 
   public awaitingPayment = computed(() => this.order()?.status === OrderStatus.AwaitingPayment);
   public paymentPending = computed(() => {
@@ -61,6 +63,7 @@ export class OrderStatusComponent {
     inject(DestroyRef).onDestroy(() => this.stopPolling());
     this.route.paramMap.pipe(takeUntilDestroyed()).subscribe(params => {
       this.orderId = params.get('id') ?? '';
+      this.order.set(null);
       this.pollStarted = Date.now();
       this.timedOut.set(false);
       this.load();
@@ -104,24 +107,30 @@ export class OrderStatusComponent {
 
   private load() {
     this.stopPolling();
+    this.loadFailed.set(false);
     if (!this.orderId) {
       this.notFound.set(true);
       return;
     }
-    this.shopApi.getOrder(this.orderId).subscribe({
+    this.request = this.shopApi.getOrder(this.orderId).subscribe({
       next: order => {
         this.order.set(order);
         this.notFound.set(false);
-        if (order.status === OrderStatus.Paid) {
-          this.cart.clear();
-        }
+        this.loadFailed.set(false);
         this.schedulePoll(order);
       },
       error: error => {
+        const order = this.order();
         if (error.status === 404) {
           this.notFound.set(true);
+          this.polling.set(false);
+        } else if (order) {
+          // A hiccup while polling: keep the order on screen and try again on the next tick.
+          this.schedulePoll(order);
+        } else {
+          this.loadFailed.set(true);
+          this.polling.set(false);
         }
-        this.polling.set(false);
       }
     });
   }
@@ -147,5 +156,7 @@ export class OrderStatusComponent {
       clearTimeout(this.timer);
       this.timer = null;
     }
+    this.request?.unsubscribe();
+    this.request = null;
   }
 }

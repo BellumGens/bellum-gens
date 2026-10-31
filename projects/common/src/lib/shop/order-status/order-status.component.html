@@ -4,6 +4,11 @@
       <p i18n>We could not find this order. Check the link in your email or contact us at info&#64;bellumgens.com.</p>
       <a igxButton="outlined" igxRipple routerLink="/shop" i18n>Back to the shop</a>
     </div>
+  } @else if (loadFailed() && !order()) {
+    <div class="horizontal-center shop-empty" role="alert">
+      <p i18n>We could not load this order right now. Please try again in a moment.</p>
+      <button type="button" igxButton="contained" igxRipple (click)="refresh()" i18n>Try again</button>
+    </div>
   } @else if (!order()) {
     <div class="horizontal-center shop-loading">
       <igx-circular-bar [indeterminate]="true"></igx-circular-bar>

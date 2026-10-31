@@ -1,0 +1,23 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.shop-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+section {
+  margin-bottom: 24px;
+
+  h3 {
+    margin: 0 0 8px;
+  }
+
+  p {
+    margin: 0 0 12px;
+    line-height: 1.6;
+  }
+}

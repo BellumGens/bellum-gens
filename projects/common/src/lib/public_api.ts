@@ -15,6 +15,7 @@ export * from './shop/cart/cart.component';
 export * from './shop/cart-badge/cart-badge.component';
 export * from './shop/checkout/checkout.component';
 export * from './shop/order-status/order-status.component';
+export * from './shop/terms/terms.component';
 export * from './shop/admin/product-editor/product-editor.component';
 export * from './shop/admin/promo-editor/promo-editor.component';
 

@@ -113,11 +113,36 @@ describe('OrderStatusComponent', () => {
     expect(component.order()).toBeNull();
   });
 
-  it('keeps the page when the order cannot be loaded for another reason', () => {
+  it('offers a retry when the order cannot be loaded for another reason', () => {
     httpMock.expectOne(orderUrl()).flush('', { status: 500, statusText: 'Server Error' });
     fixture.detectChanges();
 
     expect(component.notFound()).toBe(false);
+    expect(component.loadFailed()).toBe(true);
+    expect(component.polling()).toBe(false);
+    expect(fixture.nativeElement.querySelector('igx-circular-bar')).toBeNull();
+    expect(fixture.nativeElement.textContent).toContain('could not load this order');
+
+    (fixture.nativeElement.querySelector('[role="alert"] button') as HTMLButtonElement).click();
+    expect(component.loadFailed()).toBe(false);
+    httpMock.expectOne(orderUrl()).flush(order(OrderStatus.Paid, PaymentStatus.Completed));
+    fixture.detectChanges();
+
+    expect(component.order()?.status).toBe(OrderStatus.Paid);
+  });
+
+  it('keeps polling through a failed request while the payment is pending', () => {
+    httpMock.expectOne(orderUrl()).flush(order(OrderStatus.AwaitingPayment, PaymentStatus.Pending));
+
+    vi.advanceTimersByTime(OrderStatusComponent.pollIntervalMs);
+    httpMock.expectOne(orderUrl()).flush('', { status: 502, statusText: 'Bad Gateway' });
+
+    expect(component.loadFailed()).toBe(false);
+    expect(component.order()?.status).toBe(OrderStatus.AwaitingPayment);
+    expect(component.polling()).toBe(true);
+
+    vi.advanceTimersByTime(OrderStatusComponent.pollIntervalMs);
+    httpMock.expectOne(orderUrl()).flush(order(OrderStatus.Paid, PaymentStatus.Completed));
     expect(component.polling()).toBe(false);
   });
 
@@ -227,13 +252,25 @@ describe('OrderStatusComponent', () => {
     httpMock.expectNone(orderUrl());
   });
 
-  it('empties the cart once the order is paid', () => {
+  it('cancels a request still in flight when the page is left', () => {
+    httpMock.expectOne(orderUrl()).flush(order(OrderStatus.AwaitingPayment, PaymentStatus.Pending));
+    vi.advanceTimersByTime(OrderStatusComponent.pollIntervalMs);
+    const inFlight = httpMock.expectOne(orderUrl());
+
+    fixture.destroy();
+
+    expect(inFlight.cancelled).toBe(true);
+    vi.advanceTimersByTime(OrderStatusComponent.pollIntervalMs * 3);
+    httpMock.expectNone(orderUrl());
+  });
+
+  it('leaves the current cart alone when viewing a paid order', () => {
     const cart = TestBed.inject(CartService);
     cart['_items'].set([{ productId: 'p1', quantity: 1, product: {} as never }]);
 
     httpMock.expectOne(orderUrl()).flush(order(OrderStatus.Paid, PaymentStatus.Completed));
 
-    expect(cart.isEmpty()).toBe(true);
+    expect(cart.isEmpty()).toBe(false);
   });
 
   it('shows the tracking number of a shipped order', () => {

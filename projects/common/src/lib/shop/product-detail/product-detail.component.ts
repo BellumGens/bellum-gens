@@ -1,9 +1,10 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, DestroyRef, computed, inject, signal } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { catchError, switchMap } from 'rxjs/operators';
 import { IGX_SELECT_DIRECTIVES } from '@infragistics/igniteui-angular/select';
 import { ISelectionEventArgs } from '@infragistics/igniteui-angular/drop-down';
 import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
@@ -60,7 +61,7 @@ export class ProductDetailComponent {
   public brandNames = BRAND_NAMES;
   public cutNames = JERSEY_CUT_NAMES;
   public sizeNames = JERSEY_SIZE_NAMES;
-  public maxQuantity = 10;
+  public maxQuantity = CartService.maxLineQuantity;
 
   public activeVariants = computed(() => (this.product()?.variants ?? []).filter(v => v.active));
   public hasVariants = computed(() => this.activeVariants().length > 0);
@@ -106,10 +107,7 @@ export class ProductDetailComponent {
     const stock = this.stock();
     return stock !== null && stock !== undefined && stock <= 5;
   });
-  public atMaxQuantity = computed(() => {
-    const stock = this.stock();
-    return this.quantity() >= this.maxQuantity || (stock !== null && stock !== undefined && this.quantity() >= stock);
-  });
+  public atMaxQuantity = computed(() => this.quantity() >= this.quantityLimit());
   public soldOut = computed(() => {
     const product = this.product();
     if (!product) {
@@ -118,15 +116,28 @@ export class ProductDetailComponent {
     const variant = this.selectedVariant();
     return variant ? isSoldOut(product, variant) : (!this.hasVariants() && isSoldOut(product));
   });
-  public canAdd = computed(() => !!this.product() && !this.soldOut() && (!this.hasVariants() || !!this.selectedVariant()));
+  /** The most that can be added right now: the stock of the selection, capped per cart line. */
+  public quantityLimit = computed(() => {
+    const stock = this.stock();
+    return stock !== null && stock !== undefined ? Math.min(stock, this.maxQuantity) : this.maxQuantity;
+  });
+  public canAdd = computed(() => !!this.product() && !this.soldOut() && (!this.hasVariants() || !!this.selectedVariant())
+    && this.quantity() <= this.quantityLimit());
 
   constructor() {
+    // The shop shell sets its title once from route data, so put it back when leaving a product.
+    const shopTitle = this.title.getTitle();
+    inject(DestroyRef).onDestroy(() => this.title.setTitle(shopTitle));
+
     this.route.paramMap.pipe(
-      switchMap(params => this.shopApi.getProduct(params.get('slug') ?? '')),
+      switchMap(params => this.shopApi.getProduct(params.get('slug') ?? '').pipe(catchError(() => of(null)))),
       takeUntilDestroyed()
-    ).subscribe({
-      next: product => this.show(product),
-      error: () => this.notFound.set(true)
+    ).subscribe(product => {
+      if (product) {
+        this.show(product);
+      } else {
+        this.notFound.set(true);
+      }
     });
   }
 
@@ -135,14 +146,17 @@ export class ProductDetailComponent {
     if (!this.sizes().includes(this.size() as JerseySize)) {
       this.size.set(this.sizes()[0] ?? null);
     }
+    this.clampQuantity();
   }
 
   public selectSize(event: ISelectionEventArgs) {
     this.size.set(event.newSelection.value as JerseySize);
+    this.clampQuantity();
   }
 
   public selectVariant(event: ISelectionEventArgs) {
     this.variantId.set(event.newSelection.value as string);
+    this.clampQuantity();
   }
 
   public sizeAvailable(size: JerseySize) {
@@ -151,8 +165,7 @@ export class ProductDetailComponent {
   }
 
   public changeQuantity(delta: number) {
-    const max = this.stock() ?? this.maxQuantity;
-    this.quantity.set(Math.min(Math.max(1, this.quantity() + delta), Math.max(1, Math.min(max, this.maxQuantity))));
+    this.quantity.set(Math.min(Math.max(1, this.quantity() + delta), Math.max(1, this.quantityLimit())));
   }
 
   public addToCart() {
@@ -175,5 +188,9 @@ export class ProductDetailComponent {
       this.variantId.set(variants[0].id);
     }
     this.quantity.set(1);
+  }
+
+  private clampQuantity() {
+    this.quantity.set(Math.min(this.quantity(), Math.max(1, this.quantityLimit())));
   }
 }

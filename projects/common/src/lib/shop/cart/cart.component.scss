@@ -188,3 +188,14 @@
     opacity: 0.5;
   }
 }
+
+.quote-error {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+
+  p {
+    margin: 0;
+  }
+}

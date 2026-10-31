@@ -6537,6 +6537,162 @@
           <context context-type="linenumber">26,27</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="6846077545013042368" datatype="html">
+        <source>We could not calculate the price of your cart. Please try again.</source>
+        <target>Не успяхме да изчислим цената на количката ви. Моля, опитайте отново.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
+          <context context-type="linenumber">107,108</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">150,151</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6650633628037596693" datatype="html">
+        <source>Try again</source>
+        <target>Опитайте отново</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
+          <context context-type="linenumber">108,109</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">151,152</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
+          <context context-type="linenumber">10,11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2848686588835794905" datatype="html">
+        <source>We could not load this order right now. Please try again in a moment.</source>
+        <target>В момента не можем да заредим тази поръчка. Моля, опитайте отново след малко.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
+          <context context-type="linenumber">9,10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6692962722804229865" datatype="html">
+        <source>Terms of sale</source>
+        <target>Общи условия за продажба</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/terms/terms.component.html</context>
+          <context context-type="linenumber">2,4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1550938659867680511" datatype="html">
+        <source>The seller</source>
+        <target>Продавач</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/terms/terms.component.html</context>
+          <context context-type="linenumber">5,6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4426557198277643429" datatype="html">
+        <source>The shop at bellumgens.com is run by Bellum Gens. You can reach us at info@bellumgens.com with any question about an order.</source>
+        <target>Магазинът на bellumgens.com се управлява от Bellum Gens. Можете да се свържете с нас на info@bellumgens.com с всякакви въпроси относно поръчка.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/terms/terms.component.html</context>
+          <context context-type="linenumber">6,7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5445760017408838000" datatype="html">
+        <source>Orders and prices</source>
+        <target>Поръчки и цени</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/terms/terms.component.html</context>
+          <context context-type="linenumber">10,11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4498031317033226093" datatype="html">
+        <source>Prices are in euro and include all taxes. The total shown at checkout, including any discount and the shipping cost, is the amount you pay.</source>
+        <target>Цените са в евро и включват всички данъци. Сумата, показана при плащане, включително отстъпките и цената на доставката, е сумата, която заплащате.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/terms/terms.component.html</context>
+          <context context-type="linenumber">11,12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2986120360046535557" datatype="html">
+        <source>Your order is confirmed once the payment is received. We send a confirmation to the email address you gave at checkout.</source>
+        <target>Поръчката ви се потвърждава след получаване на плащането. Изпращаме потвърждение на имейл адреса, който сте посочили при плащането.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/terms/terms.component.html</context>
+          <context context-type="linenumber">12,13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4892553839051604445" datatype="html">
+        <source>Payment</source>
+        <target>Плащане</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/terms/terms.component.html</context>
+          <context context-type="linenumber">16,17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="466481788492943661" datatype="html">
+        <source>Payments are processed by Revolut. Cards, Revolut Pay, Apple Pay and Google Pay are accepted. We never see your card details. Orders that are not paid in time are cancelled automatically and nothing is charged.</source>
+        <target>Плащанията се обработват от Revolut. Приемат се карти, Revolut Pay, Apple Pay и Google Pay. Ние никога не виждаме данните на картата ви. Поръчки, които не са платени навреме, се отменят автоматично и нищо не се таксува.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/terms/terms.component.html</context>
+          <context context-type="linenumber">17,18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6526378221522599985" datatype="html">
+        <source>We deliver by courier across Bulgaria, or you can pick up your order at one of our events. The shipping cost is shown before you pay. We email you when the order is handed to the courier.</source>
+        <target>Доставяме с куриер в цяла България, а можете и да вземете поръчката си на някое от нашите събития. Цената на доставката се показва преди плащането. Изпращаме ви имейл, когато поръчката бъде предадена на куриера.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/terms/terms.component.html</context>
+          <context context-type="linenumber">22,23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8102681171053540017" datatype="html">
+        <source>Right of withdrawal</source>
+        <target>Право на отказ</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/terms/terms.component.html</context>
+          <context context-type="linenumber">26,27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3388127125530284437" datatype="html">
+        <source>You can withdraw from your purchase within 14 days of receiving the goods, without giving a reason. To do so, email info@bellumgens.com with your order number.</source>
+        <target>Можете да се откажете от покупката си в срок от 14 дни от получаването на стоките, без да посочвате причина. За целта ни пишете на info@bellumgens.com с номера на поръчката си.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/terms/terms.component.html</context>
+          <context context-type="linenumber">27,28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4785891251500433046" datatype="html">
+        <source>Send the goods back within 14 days of telling us. Unless the goods are faulty, you pay the cost of returning them.</source>
+        <target>Върнете стоките в срок от 14 дни, след като ни уведомите. Освен ако стоките не са дефектни, разходите за връщането им са за ваша сметка.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/terms/terms.component.html</context>
+          <context context-type="linenumber">28,29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5705991703309430275" datatype="html">
+        <source>We refund everything you paid, including the standard delivery cost, within 14 days of receiving your notice, to your original payment method. We may wait until the goods are back with us before refunding.</source>
+        <target>Възстановяваме всички получени от вас плащания, включително стандартната цена за доставка, в срок от 14 дни от получаване на уведомлението ви, по същия начин на плащане. Можем да изчакаме стоките да бъдат върнати при нас, преди да възстановим сумата.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/terms/terms.component.html</context>
+          <context context-type="linenumber">29,30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="721827190175703448" datatype="html">
+        <source>Faulty goods</source>
+        <target>Дефектни стоки</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/terms/terms.component.html</context>
+          <context context-type="linenumber">33,34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2960966876451192847" datatype="html">
+        <source>If something you received is faulty or not as described, contact us and we will repair, replace or refund it, in line with your statutory rights under the Bulgarian Consumer Protection Act.</source>
+        <target>Ако получена от вас стока е дефектна или не отговаря на описанието, свържете се с нас и ще я поправим, заменим или ще ви възстановим сумата, в съответствие с правата ви по Закона за защита на потребителите.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/terms/terms.component.html</context>
+          <context context-type="linenumber">34,35</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>

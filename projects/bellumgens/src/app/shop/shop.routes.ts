@@ -4,7 +4,8 @@ import {
   CheckoutComponent,
   OrderStatusComponent,
   ProductDetailComponent,
-  ProductListComponent
+  ProductListComponent,
+  TermsComponent
 } from '../../../../common/src/public_api';
 import { ShopComponent } from './shop.component';
 
@@ -26,7 +27,8 @@ export const routes: Routes = [
       { path: 'product/:slug', component: ProductDetailComponent },
       { path: 'cart', component: CartComponent },
       { path: 'checkout', component: CheckoutComponent },
-      { path: 'order/:id', component: OrderStatusComponent }
+      { path: 'order/:id', component: OrderStatusComponent },
+      { path: 'terms', component: TermsComponent }
     ]
   }
 ];

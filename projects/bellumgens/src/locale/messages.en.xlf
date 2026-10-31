@@ -143,7 +143,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/app.component.html</context>
-          <context context-type="linenumber">134,135</context>
+          <context context-type="linenumber">135</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/search/player-search/player-search.component.html</context>
@@ -326,7 +326,7 @@
         <source>501+ sign-ups: <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>33%<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
-          <context context-type="linenumber">16,18</context>
+          <context context-type="linenumber">16,19</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9059816325054234375" datatype="html">
@@ -340,7 +340,7 @@
         <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>You need to be logged in<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> to submit the form. Please log in from the profile menu. </source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/elite-stz-2026/elite-stz-2026.component.html</context>
-          <context context-type="linenumber">25,28</context>
+          <context context-type="linenumber">25,29</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4768749765465246664" datatype="html">
@@ -616,7 +616,7 @@
         <source>Player</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/bge-balkan/bge-balkan.component.html</context>
-          <context context-type="linenumber">166,167</context>
+          <context context-type="linenumber">167</context>
         </context-group>
       </trans-unit>
       <trans-unit id="516176798986294299" datatype="html">
@@ -907,7 +907,7 @@
         <source><x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Improve<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> your personal gameplay!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
-          <context context-type="linenumber">174,175</context>
+          <context context-type="linenumber">174,176</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3037299144778852233" datatype="html">
@@ -1119,7 +1119,7 @@
         <source>You need to be logged in to register for the tournament.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.html</context>
-          <context context-type="linenumber">10,12</context>
+          <context context-type="linenumber">10,13</context>
         </context-group>
       </trans-unit>
       <trans-unit id="336262150804823681" datatype="html">
@@ -2372,7 +2372,7 @@
         <source>Bellum Gens is a gaming and esports event organizer and consultant focused on development and popularization of esports in Bulgaria. We help brands connect with gaming audiences through tournaments, streams, and digital channels. <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;mailto:info@bellumgens.com&quot;&gt;"/>Contact us<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> to learn about available opportunities.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/home/home.component.html</context>
-          <context context-type="linenumber">42,43</context>
+          <context context-type="linenumber">42,44</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4944888585886254793" datatype="html">
@@ -2541,7 +2541,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/notifications/team-notifications/team-notifications.component.html</context>
-          <context context-type="linenumber">3</context>
+          <context context-type="linenumber">3,4</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3090613002627213011" datatype="html">
@@ -2737,14 +2737,14 @@
         <source>Now it&apos;s time to complete your profile! Fill in your <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>preferred playstyle<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>, your <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>availability<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> and your <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>preferred map pool<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/player-section/cs-player/cs-player.component.html</context>
-          <context context-type="linenumber">16,17</context>
+          <context context-type="linenumber">16,18</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2065079282974468004" datatype="html">
         <source>This player is not registered! If you own the profile then <x id="START_TAG_BUTTON" ctype="x-button" equiv-text="&lt;button type=&quot;button&quot; (click)=&quot;openLogin()&quot; class=&quot;highlight text-button&quot;&gt;"/>register<x id="CLOSE_TAG_BUTTON" ctype="x-button" equiv-text="&lt;/button&gt;"/> to complete it.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/player-section/cs-player/cs-player.component.html</context>
-          <context context-type="linenumber">21,22</context>
+          <context context-type="linenumber">21,23</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9064910740994863587" datatype="html">
@@ -2793,7 +2793,7 @@
         <source>To do this go to <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span class=&quot;highlight&quot;&gt;"/>Steam Profile --&gt; Edit Profile --&gt; Privacy Settings --&gt; Set: &apos;My profile: Public&apos; and &apos;Game details: public&apos;<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/player-section/cs-player/cs-player.component.html</context>
-          <context context-type="linenumber">103,104</context>
+          <context context-type="linenumber">103,105</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3263044568795523288" datatype="html">
@@ -2846,7 +2846,7 @@
         <source>Result</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/player-section/sc-player/sc-player.component.html</context>
-          <context context-type="linenumber">67,68</context>
+          <context context-type="linenumber">68</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5052150728790721416" datatype="html">
@@ -3626,7 +3626,7 @@
         <source>You need to login to view your teams.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-nav/team-nav.component.html</context>
-          <context context-type="linenumber">9,11</context>
+          <context context-type="linenumber">9,12</context>
         </context-group>
       </trans-unit>
       <trans-unit id="279161701824759015" datatype="html">
@@ -3920,7 +3920,7 @@
         <source>Don&apos;t have an account?</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/login-dialog/login-dialog.component.html</context>
-          <context context-type="linenumber">28,29</context>
+          <context context-type="linenumber">28,30</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6542676228301148432" datatype="html">
@@ -3960,7 +3960,7 @@
         <source>Create username and password</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">18,19</context>
+          <context context-type="linenumber">18,20</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4477372597867894980" datatype="html">
@@ -4185,7 +4185,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
-          <context context-type="linenumber">112,113</context>
+          <context context-type="linenumber">117,118</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/terms/terms.component.html</context>
+          <context context-type="linenumber">21,22</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1943153960391120303" datatype="html">
@@ -4232,7 +4236,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
-          <context context-type="linenumber">92,93</context>
+          <context context-type="linenumber">97,98</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4808411315981120788" datatype="html">
@@ -4247,7 +4251,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
-          <context context-type="linenumber">95</context>
+          <context context-type="linenumber">100</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5972351850683239127" datatype="html">
@@ -4262,7 +4266,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
-          <context context-type="linenumber">98,99</context>
+          <context context-type="linenumber">103,104</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5891064527381218201" datatype="html">
@@ -4281,7 +4285,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
-          <context context-type="linenumber">103,104</context>
+          <context context-type="linenumber">108,109</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3448462145758383019" datatype="html">
@@ -4296,7 +4300,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
-          <context context-type="linenumber">106,107</context>
+          <context context-type="linenumber">111,112</context>
         </context-group>
       </trans-unit>
       <trans-unit id="951647379377002104" datatype="html">
@@ -4306,18 +4310,44 @@
           <context context-type="linenumber">103,104</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="6846077545013042368" datatype="html">
+        <source>We could not calculate the price of your cart. Please try again.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
+          <context context-type="linenumber">107,108</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">150,151</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6650633628037596693" datatype="html">
+        <source>Try again</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
+          <context context-type="linenumber">108,109</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">151,152</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
+          <context context-type="linenumber">10,11</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="8460943836204127071" datatype="html">
         <source>Proceed to checkout</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
-          <context context-type="linenumber">111,112</context>
+          <context context-type="linenumber">116,117</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6703953321803564304" datatype="html">
         <source>Continue shopping</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
-          <context context-type="linenumber">112,113</context>
+          <context context-type="linenumber">117,118</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4776389683576645610" datatype="html">
@@ -4412,7 +4442,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="2154351671035362566" datatype="html">
-        <source>I have read and accept the <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;/shop/terms&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>terms of sale<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>, including the 14-day right of withdrawal.</source>
+        <source>I have read and accept the <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/shop/terms&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>terms of sale<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>, including the 14-day right of withdrawal.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
           <context context-type="linenumber">84,85</context>
@@ -4496,144 +4526,155 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
-          <context context-type="linenumber">65,66</context>
+          <context context-type="linenumber">70,71</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/product-detail/product-detail.component.html</context>
           <context context-type="linenumber">5,6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/terms/terms.component.html</context>
+          <context context-type="linenumber">37,38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2848686588835794905" datatype="html">
+        <source>We could not load this order right now. Please try again in a moment.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
+          <context context-type="linenumber">9,10</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8977100891351110096" datatype="html">
         <source>Order <x id="INTERPOLATION" equiv-text="{{ order.orderNumber }}"/></source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
-          <context context-type="linenumber">15,16</context>
+          <context context-type="linenumber">20,21</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6552342657511192051" datatype="html">
         <source>We are waiting for the payment confirmation from Revolut. This usually takes a few seconds.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
-          <context context-type="linenumber">24,25</context>
+          <context context-type="linenumber">29,30</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6196753135203058907" datatype="html">
         <source>The payment has not been confirmed yet. If you completed it, it will be confirmed shortly and you will receive an email.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
-          <context context-type="linenumber">29,30</context>
+          <context context-type="linenumber">34,35</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8307067438454489828" datatype="html">
         <source>The payment did not go through. You can try again with a different card or payment method.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
-          <context context-type="linenumber">31,32</context>
+          <context context-type="linenumber">36,37</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8886802108494030613" datatype="html">
         <source>This order has not been paid yet.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
-          <context context-type="linenumber">33,34</context>
+          <context context-type="linenumber">38,39</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7759202440346157868" datatype="html">
         <source>Complete payment</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
-          <context context-type="linenumber">37,38</context>
+          <context context-type="linenumber">42,43</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3524315187932958045" datatype="html">
         <source>Try paying again</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
-          <context context-type="linenumber">40,41</context>
+          <context context-type="linenumber">45,46</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8327261190482575398" datatype="html">
         <source>Refresh status</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
-          <context context-type="linenumber">42,43</context>
+          <context context-type="linenumber">47,48</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3779712244710638690" datatype="html">
         <source>Unpaid orders are cancelled automatically at <x id="INTERPOLATION" equiv-text="{{ order.expiresOn | date:&apos;short&apos; }}"/>.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
-          <context context-type="linenumber">44,46</context>
+          <context context-type="linenumber">49,51</context>
         </context-group>
       </trans-unit>
       <trans-unit id="479671540243537529" datatype="html">
         <source>Thank you! Your payment was received and a confirmation was sent to <x id="INTERPOLATION" equiv-text="{{ order.email }}"/>.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
-          <context context-type="linenumber">47,48</context>
+          <context context-type="linenumber">52,53</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3667623827099714416" datatype="html">
         <source>You can collect your order at our next event. We will contact you with the details.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
-          <context context-type="linenumber">49,50</context>
+          <context context-type="linenumber">54,55</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1943776584601765181" datatype="html">
         <source>We will email you again when the order is handed to the courier.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
-          <context context-type="linenumber">51,52</context>
+          <context context-type="linenumber">56,57</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8288836170502588209" datatype="html">
         <source>Your order is on its way.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
-          <context context-type="linenumber">55,56</context>
+          <context context-type="linenumber">60,61</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1549861453376876412" datatype="html">
         <source>Tracking number:</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
-          <context context-type="linenumber">57</context>
+          <context context-type="linenumber">62</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7287448365789388225" datatype="html">
         <source>Your order has been delivered. Enjoy, and see you at the next event!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
-          <context context-type="linenumber">61,62</context>
+          <context context-type="linenumber">66,67</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5641420397057111191" datatype="html">
         <source>This order was cancelled and nothing was charged. Feel free to place a new one.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
-          <context context-type="linenumber">64,65</context>
+          <context context-type="linenumber">69,70</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1931464943584065031" datatype="html">
         <source>This order was refunded. The money returns to your original payment method within a few business days.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
-          <context context-type="linenumber">68,69</context>
+          <context context-type="linenumber">73,74</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6162691442834560200" datatype="html">
         <source>Items</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
-          <context context-type="linenumber">75,76</context>
+          <context context-type="linenumber">80,81</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1882847587197073775" datatype="html">
         <source>Ordered on</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
-          <context context-type="linenumber">120</context>
+          <context context-type="linenumber">125</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6664678750303771482" datatype="html">
@@ -4651,7 +4692,7 @@
         <source>View</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/product-card/product-card.component.html</context>
-          <context context-type="linenumber">30,31</context>
+          <context context-type="linenumber">31</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5871412787804796799" datatype="html">
@@ -4772,6 +4813,111 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/product-list/product-list.component.html</context>
           <context context-type="linenumber">28,29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6692962722804229865" datatype="html">
+        <source>Terms of sale</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/terms/terms.component.html</context>
+          <context context-type="linenumber">2,4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1550938659867680511" datatype="html">
+        <source>The seller</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/terms/terms.component.html</context>
+          <context context-type="linenumber">5,6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4426557198277643429" datatype="html">
+        <source>The shop at bellumgens.com is run by Bellum Gens. You can reach us at info@bellumgens.com with any question about an order.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/terms/terms.component.html</context>
+          <context context-type="linenumber">6,7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5445760017408838000" datatype="html">
+        <source>Orders and prices</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/terms/terms.component.html</context>
+          <context context-type="linenumber">10,11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4498031317033226093" datatype="html">
+        <source>Prices are in euro and include all taxes. The total shown at checkout, including any discount and the shipping cost, is the amount you pay.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/terms/terms.component.html</context>
+          <context context-type="linenumber">11,12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2986120360046535557" datatype="html">
+        <source>Your order is confirmed once the payment is received. We send a confirmation to the email address you gave at checkout.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/terms/terms.component.html</context>
+          <context context-type="linenumber">12,13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4892553839051604445" datatype="html">
+        <source>Payment</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/terms/terms.component.html</context>
+          <context context-type="linenumber">16,17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="466481788492943661" datatype="html">
+        <source>Payments are processed by Revolut. Cards, Revolut Pay, Apple Pay and Google Pay are accepted. We never see your card details. Orders that are not paid in time are cancelled automatically and nothing is charged.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/terms/terms.component.html</context>
+          <context context-type="linenumber">17,18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6526378221522599985" datatype="html">
+        <source>We deliver by courier across Bulgaria, or you can pick up your order at one of our events. The shipping cost is shown before you pay. We email you when the order is handed to the courier.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/terms/terms.component.html</context>
+          <context context-type="linenumber">22,23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8102681171053540017" datatype="html">
+        <source>Right of withdrawal</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/terms/terms.component.html</context>
+          <context context-type="linenumber">26,27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3388127125530284437" datatype="html">
+        <source>You can withdraw from your purchase within 14 days of receiving the goods, without giving a reason. To do so, email info@bellumgens.com with your order number.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/terms/terms.component.html</context>
+          <context context-type="linenumber">27,28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4785891251500433046" datatype="html">
+        <source>Send the goods back within 14 days of telling us. Unless the goods are faulty, you pay the cost of returning them.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/terms/terms.component.html</context>
+          <context context-type="linenumber">28,29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5705991703309430275" datatype="html">
+        <source>We refund everything you paid, including the standard delivery cost, within 14 days of receiving your notice, to your original payment method. We may wait until the goods are back with us before refunding.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/terms/terms.component.html</context>
+          <context context-type="linenumber">29,30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="721827190175703448" datatype="html">
+        <source>Faulty goods</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/terms/terms.component.html</context>
+          <context context-type="linenumber">33,34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2960966876451192847" datatype="html">
+        <source>If something you received is faulty or not as described, contact us and we will repair, replace or refund it, in line with your statutory rights under the Bulgarian Consumer Protection Act.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/terms/terms.component.html</context>
+          <context context-type="linenumber">34,35</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5259416047008119946" datatype="html">
@@ -5282,7 +5428,7 @@
         <source><x id="name" equiv-text="label"/> added to your cart</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/cart.service.ts</context>
-          <context context-type="linenumber">94</context>
+          <context context-type="linenumber">95</context>
         </context-group>
       </trans-unit>
     </body>

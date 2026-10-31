@@ -118,10 +118,22 @@ describe('CartComponent', () => {
     expect(variantLabels).toEqual(['Male / L', 'Female / M']);
   });
 
-  it('prices a line from the product discount', () => {
-    fill(umbrella({ price: 20, discountPercentage: 15 }));
+  it('prices a line from the product discount until the server quotes it', () => {
+    fill(umbrella({ price: 20, discountPercentage: 15 }), 1, quote({ lines: [] }));
 
     expect(component.unitPrice(cart.items()[0])).toBe(17);
+  });
+
+  it('prices a line from the server quote over the price saved with the item', () => {
+    fill(umbrella({ price: 40 }), 2, quote({
+      lines: [{ productId: 'p1', productName: 'Rain Umbrella', unitPrice: 30, quantity: 2, lineTotal: 60 }],
+      subtotal: 60
+    }));
+
+    expect(component.unitPrice(cart.items()[0])).toBe(30);
+    const line: HTMLElement = fixture.nativeElement.querySelector('.cart-line');
+    expect(line.querySelector('.line-unit')?.textContent).toContain('30.00');
+    expect(line.querySelector('.line-total')?.textContent).toContain('60.00');
   });
 
   it('prices a line from the variant override', () => {
@@ -262,5 +274,30 @@ describe('CartComponent', () => {
     expect(cart.quoting()).toBe(false);
     expect(checkout.classList.contains('disabled')).toBe(false);
     expect(checkout.getAttribute('href')).toBe('/shop/checkout');
+  });
+
+  it('offers a retry instead of a spinner when pricing the cart failed', () => {
+    fill();
+    cart['_quote'].set(null);
+    cart['_quoteFailed'].set(true);
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelector('.cart-summary igx-circular-bar')).toBeNull();
+    const error: HTMLElement = fixture.nativeElement.querySelector('.quote-error');
+    expect(error.textContent).toContain('could not calculate the price');
+
+    error.querySelector('button')!.click();
+    httpMock.expectOne(req => req.url.endsWith('/shop/quote')).flush(quote());
+    fixture.detectChanges();
+
+    expect(cart.quoteFailed()).toBe(false);
+    expect(fixture.nativeElement.querySelector('.quote-error')).toBeNull();
+  });
+
+  it('caps the increase button at the per-line limit', () => {
+    fill(umbrella(), CartService.maxLineQuantity);
+
+    const increase: HTMLButtonElement = fixture.nativeElement.querySelectorAll('.line-quantity button')[1];
+    expect(increase.disabled).toBe(true);
   });
 });

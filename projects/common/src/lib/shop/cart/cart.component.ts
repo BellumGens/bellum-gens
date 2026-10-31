@@ -36,16 +36,17 @@ export class CartComponent {
   public promoInput = this.promoForm.controls.code;
   public deliveryMethods = [DeliveryMethod.Courier, DeliveryMethod.EventPickup];
   public deliveryNames = DELIVERY_METHOD_NAMES;
+  public maxQuantity = CartService.maxLineQuantity;
   public canCheckout = computed(() => !!this.cart.quote()?.isValid && !this.cart.quoting());
 
+  /** The server's current price for a line, falling back to the price saved when the item was added. */
   public unitPrice(item: CartItem) {
-    return effectivePrice(item.product, item.variant);
+    return this.quoteLine(item)?.unitPrice ?? effectivePrice(item.product, item.variant);
   }
 
   /** The server's verdict on a line, if any (sold out, option gone, quantity capped). */
   public problem(item: CartItem): string | null {
-    const line = this.cart.quote()?.lines.find(l => l.productId === item.productId && (l.variantId ?? null) === (item.variantId ?? null));
-    return line?.problem ?? null;
+    return this.quoteLine(item)?.problem ?? null;
   }
 
   public applyPromo() {
@@ -59,5 +60,9 @@ export class CartComponent {
 
   public setDelivery(value: unknown) {
     this.cart.setDeliveryMethod(Number(value) as DeliveryMethod);
+  }
+
+  private quoteLine(item: CartItem) {
+    return this.cart.quote()?.lines.find(l => l.productId === item.productId && (l.variantId ?? null) === (item.variantId ?? null));
   }
 }
