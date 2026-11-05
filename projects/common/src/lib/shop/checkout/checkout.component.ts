@@ -49,7 +49,7 @@ export class CheckoutComponent {
     firstName: ['', [Validators.required, Validators.maxLength(100)]],
     lastName: ['', [Validators.required, Validators.maxLength(100)]],
     email: ['', [Validators.required, Validators.pattern(EMAIL_REGEX)]],
-    phoneNumber: ['+359 ', [Validators.required, Validators.pattern(/^\+?[0-9 ()-]{6,20}$/)]],
+    phoneNumber: ['+359 ', [Validators.required, Validators.pattern(/^\+?(?=(?:\D*\d){6})[0-9 ()-]{6,20}$/)]],
     city: ['', [Validators.required, Validators.maxLength(100)]],
     streetAddress: ['', [Validators.required, Validators.maxLength(200)]],
     postalCode: ['', [Validators.maxLength(10)]],
