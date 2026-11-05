@@ -8,8 +8,8 @@ import { CartService } from '../../../services/cart.service';
 import { ApiShopService } from '../../../services/bellumgens-api.shop.service';
 import { Brand, Product, ProductType, ProductVariant } from '../../../models/shop';
 
-const variant = (id: string, name: string, stockQuantity: number | null = null): ProductVariant =>
-  ({ id, name, stockQuantity, active: true, sortOrder: 0 });
+const variant = (id: string, name: string, stockQuantity: number | null = null, extra: Partial<ProductVariant> = {}): ProductVariant =>
+  ({ id, name, stockQuantity, active: true, sortOrder: 0, ...extra });
 
 const product = (overrides: Partial<Product> = {}): Product => ({
   id: 'p1',
@@ -81,6 +81,44 @@ describe('ProductCardComponent', () => {
     expect(component.hasDiscount()).toBe(true);
     expect(component.price()).toBe(17);
     expect(fixture.nativeElement.querySelector('del').textContent).toContain('20.00');
+  });
+
+  it('advertises the cheapest purchasable option as a starting price', () => {
+    show(product({
+      price: 15,
+      variants: [
+        variant('v1', 'Small', 0, { priceOverride: 18 }),
+        variant('v2', 'Medium', 3, { priceOverride: 20 }),
+        variant('v3', 'Large', 3, { priceOverride: 25 }),
+        variant('v4', 'Hidden', 3, { priceOverride: 10, active: false })
+      ]
+    }));
+
+    expect(component.price()).toBe(20);
+    expect(component.priceVaries()).toBe(true);
+    const price = fixture.nativeElement.querySelector('.product-price').textContent as string;
+    expect(price).toContain('From');
+    expect(price).toContain('20.00');
+    expect(price).not.toContain('15.00');
+  });
+
+  it('strikes through the regular price of the advertised option', () => {
+    show(product({
+      price: 15,
+      discountPercentage: 10,
+      variants: [variant('v1', 'Medium', null, { priceOverride: 20 }), variant('v2', 'Large', null, { priceOverride: 30 })]
+    }));
+
+    expect(component.price()).toBe(18);
+    expect(fixture.nativeElement.querySelector('del').textContent).toContain('20.00');
+  });
+
+  it('shows a single price without "From" when every option costs the same', () => {
+    show(product({ price: 15, variants: [variant('v1', 'Male / L', 2), variant('v2', 'Female / M', 2)] }));
+
+    expect(component.price()).toBe(15);
+    expect(component.priceVaries()).toBe(false);
+    expect(fixture.nativeElement.querySelector('.price-from')).toBeNull();
   });
 
   it('is not marked sold out when stock is not tracked', () => {

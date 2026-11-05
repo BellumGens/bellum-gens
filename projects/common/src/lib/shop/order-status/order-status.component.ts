@@ -52,6 +52,7 @@ export class OrderStatusComponent {
   private pollStarted = 0;
   private timer: ReturnType<typeof setTimeout> | null = null;
   private request: Subscription | null = null;
+  private retry: Subscription | null = null;
 
   public awaitingPayment = computed(() => this.order()?.status === OrderStatus.AwaitingPayment);
   public paymentPending = computed(() => {
@@ -60,8 +61,13 @@ export class OrderStatusComponent {
   });
 
   constructor() {
-    inject(DestroyRef).onDestroy(() => this.stopPolling());
+    inject(DestroyRef).onDestroy(() => {
+      this.stopPolling();
+      this.cancelRetry();
+    });
     this.route.paramMap.pipe(takeUntilDestroyed()).subscribe(params => {
+      // A retry started for the previous order must not redirect or reload this one.
+      this.cancelRetry();
       this.orderId = params.get('id') ?? '';
       this.order.set(null);
       this.pollStarted = Date.now();
@@ -95,10 +101,12 @@ export class OrderStatusComponent {
   }
 
   public retryPayment() {
+    this.cancelRetry();
     this.busy.set(true);
-    this.shopApi.retryPayment(this.orderId).subscribe({
+    this.retry = this.shopApi.retryPayment(this.orderId).subscribe({
       next: created => this.document.location.assign(created.checkoutUrl),
       error: () => {
+        this.retry = null;
         this.busy.set(false);
         this.load();
       }
@@ -149,6 +157,12 @@ export class OrderStatusComponent {
     }
     this.polling.set(true);
     this.timer = setTimeout(() => this.load(), OrderStatusComponent.pollIntervalMs);
+  }
+
+  private cancelRetry() {
+    this.retry?.unsubscribe();
+    this.retry = null;
+    this.busy.set(false);
   }
 
   private stopPolling() {

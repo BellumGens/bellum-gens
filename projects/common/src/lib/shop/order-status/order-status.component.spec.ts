@@ -3,7 +3,7 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { ActivatedRoute, convertToParamMap, provideRouter } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
-import { of } from 'rxjs';
+import { BehaviorSubject, of } from 'rxjs';
 import { OrderStatusComponent } from './order-status.component';
 import { ApiShopService } from '../../../services/bellumgens-api.shop.service';
 import { CartService } from '../../../services/cart.service';
@@ -213,6 +213,19 @@ describe('OrderStatusComponent', () => {
     expect(component.order()?.canRetryPayment).toBe(true);
   });
 
+  it('cancels a pending retry when the customer leaves the page', () => {
+    const assign = vi.fn();
+    component['document'] = { location: { assign } } as unknown as Document;
+    httpMock.expectOne(orderUrl()).flush(order(OrderStatus.AwaitingPayment, PaymentStatus.Failed));
+
+    component.retryPayment();
+    const retry = httpMock.expectOne(`${api['_apiEndpoint']}/shop/orders/o1/retry-payment`);
+    fixture.destroy();
+
+    expect(retry.cancelled).toBe(true);
+    expect(assign).not.toHaveBeenCalled();
+  });
+
   it('gives up polling after the timeout and explains the wait', () => {
     httpMock.expectOne(orderUrl()).flush(order(OrderStatus.AwaitingPayment, PaymentStatus.Pending));
     expect(component.polling()).toBe(true);
@@ -357,5 +370,44 @@ describe('OrderStatusComponent without an order id', () => {
     expect(fixture.componentInstance.notFound()).toBe(true);
     expect(fixture.nativeElement.textContent).toContain('could not find this order');
     httpMock.verify();
+  });
+});
+
+describe('OrderStatusComponent when the order changes', () => {
+  it('cancels the retry for the previous order and clears its busy state', async () => {
+    vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout', 'setInterval', 'clearInterval', 'Date'] });
+    const params = new BehaviorSubject(convertToParamMap({ id: 'o1' }));
+    await TestBed.configureTestingModule({
+      imports: [OrderStatusComponent, NoopAnimationsModule],
+      providers: [
+        provideHttpClient(withXhr(), withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        provideRouter([]),
+        { provide: ActivatedRoute, useValue: { paramMap: params } }
+      ]
+    }).compileComponents();
+    const httpMock = TestBed.inject(HttpTestingController);
+    const endpoint = TestBed.inject(ApiShopService)['_apiEndpoint'];
+    const fixture = TestBed.createComponent(OrderStatusComponent);
+    const component = fixture.componentInstance;
+    const assign = vi.fn();
+    component['document'] = { location: { assign } } as unknown as Document;
+    fixture.detectChanges();
+
+    httpMock.expectOne(`${endpoint}/shop/orders/o1`).flush(order(OrderStatus.AwaitingPayment, PaymentStatus.Failed));
+    component.retryPayment();
+    const retry = httpMock.expectOne(`${endpoint}/shop/orders/o1/retry-payment`);
+    expect(component.busy()).toBe(true);
+
+    params.next(convertToParamMap({ id: 'o2' }));
+
+    expect(retry.cancelled).toBe(true);
+    expect(component.busy()).toBe(false);
+    httpMock.expectOne(`${endpoint}/shop/orders/o2`).flush({ ...order(OrderStatus.Paid, PaymentStatus.Completed), id: 'o2' });
+    expect(assign).not.toHaveBeenCalled();
+
+    fixture.destroy();
+    httpMock.verify();
+    vi.useRealTimers();
   });
 });

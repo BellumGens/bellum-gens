@@ -16,8 +16,11 @@
 
   <igx-card-content>
     <div class="product-price">
+      @if (priceVaries()) {
+        <span class="price-from" i18n>From</span>
+      }
       @if (hasDiscount()) {
-        <del>{{ product().price | currency:'EUR' }}</del>
+        <del>{{ regularPrice() | currency:'EUR' }}</del>
       }
       <span class="highlight">{{ price() | currency:'EUR' }}</span>
     </div>
