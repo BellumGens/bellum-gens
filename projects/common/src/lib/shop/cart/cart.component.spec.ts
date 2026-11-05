@@ -101,6 +101,14 @@ describe('CartComponent', () => {
     expect(image.alt).toBe('Rain Umbrella');
   });
 
+  it('names the image link after the product when there is no image', () => {
+    fill(umbrella({ imageUrl: null }));
+
+    const link: HTMLAnchorElement = fixture.nativeElement.querySelector('a.line-image');
+    expect(link.querySelector('img')).toBeNull();
+    expect(link.getAttribute('aria-label')).toBe('Rain Umbrella');
+  });
+
   it('keeps variants of one product on separate lines', () => {
     const jersey = umbrella({
       id: 'jersey',

@@ -16,7 +16,8 @@
   } @else if (order(); as order) {
     <header class="status-header" [class]="'status-' + order.status">
       <igx-icon class="status-icon">{{ statusIcon(order.status) }}</igx-icon>
-      <div>
+      <!-- Polling changes the status in place, so announce it without moving focus. -->
+      <div aria-live="polite" aria-atomic="true">
         <span class="order-number" i18n>Order {{ order.orderNumber }}</span>
         <h2>{{ statusNames[order.status] }}</h2>
       </div>

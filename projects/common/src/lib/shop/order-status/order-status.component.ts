@@ -2,7 +2,7 @@ import { Component, DOCUMENT, DestroyRef, PLATFORM_ID, computed, inject, signal 
 import { CurrencyPipe, DatePipe, isPlatformBrowser } from '@angular/common';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { Subscription } from 'rxjs';
+import { Subscription, timeout } from 'rxjs';
 import { IgxButtonDirective, IgxDividerComponent, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular/progressbar';
@@ -70,6 +70,7 @@ export class OrderStatusComponent {
       this.cancelRetry();
       this.orderId = params.get('id') ?? '';
       this.order.set(null);
+      this.notFound.set(false);
       this.pollStarted = Date.now();
       this.timedOut.set(false);
       this.load();
@@ -120,7 +121,12 @@ export class OrderStatusComponent {
       this.notFound.set(true);
       return;
     }
-    this.request = this.shopApi.getOrder(this.orderId).subscribe({
+    // Bound each request by what is left of the polling window, so a stalled request still ends in the
+    // manual-refresh state. The last request still gets at least one poll interval to answer.
+    const remaining = OrderStatusComponent.pollTimeoutMs - (Date.now() - this.pollStarted);
+    this.request = this.shopApi.getOrder(this.orderId).pipe(
+      timeout(Math.max(remaining, OrderStatusComponent.pollIntervalMs))
+    ).subscribe({
       next: order => {
         this.order.set(order);
         this.notFound.set(false);

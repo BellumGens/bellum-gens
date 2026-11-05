@@ -241,6 +241,43 @@ describe('OrderStatusComponent', () => {
     expect(fixture.nativeElement.textContent).toContain('has not been confirmed yet');
   });
 
+  it('stops waiting when a status request stalls past the polling window', () => {
+    httpMock.expectOne(orderUrl()).flush(order(OrderStatus.AwaitingPayment, PaymentStatus.Pending));
+    component['pollStarted'] = Date.now() - (OrderStatusComponent.pollTimeoutMs - 10000);
+
+    vi.advanceTimersByTime(OrderStatusComponent.pollIntervalMs);
+    const stalled = httpMock.expectOne(orderUrl());
+    expect(component.polling()).toBe(true);
+
+    vi.advanceTimersByTime(10000);
+    fixture.detectChanges();
+
+    expect(stalled.cancelled).toBe(true);
+    expect(component.polling()).toBe(false);
+    expect(component.timedOut()).toBe(true);
+    expect(fixture.nativeElement.textContent).toContain('has not been confirmed yet');
+  });
+
+  it('shows the initial load as failed when the first request stalls', () => {
+    const stalled = httpMock.expectOne(orderUrl());
+
+    vi.advanceTimersByTime(OrderStatusComponent.pollTimeoutMs);
+    fixture.detectChanges();
+
+    expect(stalled.cancelled).toBe(true);
+    expect(component.loadFailed()).toBe(true);
+    expect(fixture.nativeElement.textContent).toContain('Try again');
+  });
+
+  it('announces status changes through a polite live region', () => {
+    httpMock.expectOne(orderUrl()).flush(order(OrderStatus.AwaitingPayment, PaymentStatus.Pending));
+    fixture.detectChanges();
+
+    const region: HTMLElement = fixture.nativeElement.querySelector('.status-header [aria-live]');
+    expect(region.getAttribute('aria-live')).toBe('polite');
+    expect(region.querySelector('h2')).not.toBeNull();
+  });
+
   it('polls again when the customer refreshes by hand', () => {
     httpMock.expectOne(orderUrl()).flush(order(OrderStatus.AwaitingPayment, PaymentStatus.Pending));
     component['pollStarted'] = Date.now() - (OrderStatusComponent.pollTimeoutMs + 1000);
@@ -374,9 +411,15 @@ describe('OrderStatusComponent without an order id', () => {
 });
 
 describe('OrderStatusComponent when the order changes', () => {
-  it('cancels the retry for the previous order and clears its busy state', async () => {
+  let fixture: ComponentFixture<OrderStatusComponent>;
+  let component: OrderStatusComponent;
+  let httpMock: HttpTestingController;
+  let endpoint: string;
+  let params: BehaviorSubject<ReturnType<typeof convertToParamMap>>;
+
+  beforeEach(async () => {
     vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout', 'setInterval', 'clearInterval', 'Date'] });
-    const params = new BehaviorSubject(convertToParamMap({ id: 'o1' }));
+    params = new BehaviorSubject(convertToParamMap({ id: 'o1' }));
     await TestBed.configureTestingModule({
       imports: [OrderStatusComponent, NoopAnimationsModule],
       providers: [
@@ -386,14 +429,22 @@ describe('OrderStatusComponent when the order changes', () => {
         { provide: ActivatedRoute, useValue: { paramMap: params } }
       ]
     }).compileComponents();
-    const httpMock = TestBed.inject(HttpTestingController);
-    const endpoint = TestBed.inject(ApiShopService)['_apiEndpoint'];
-    const fixture = TestBed.createComponent(OrderStatusComponent);
-    const component = fixture.componentInstance;
+    httpMock = TestBed.inject(HttpTestingController);
+    endpoint = TestBed.inject(ApiShopService)['_apiEndpoint'];
+    fixture = TestBed.createComponent(OrderStatusComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+    fixture.destroy();
+    httpMock.verify();
+  });
+
+  it('cancels the retry for the previous order and clears its busy state', () => {
     const assign = vi.fn();
     component['document'] = { location: { assign } } as unknown as Document;
-    fixture.detectChanges();
-
     httpMock.expectOne(`${endpoint}/shop/orders/o1`).flush(order(OrderStatus.AwaitingPayment, PaymentStatus.Failed));
     component.retryPayment();
     const retry = httpMock.expectOne(`${endpoint}/shop/orders/o1/retry-payment`);
@@ -405,9 +456,18 @@ describe('OrderStatusComponent when the order changes', () => {
     expect(component.busy()).toBe(false);
     httpMock.expectOne(`${endpoint}/shop/orders/o2`).flush({ ...order(OrderStatus.Paid, PaymentStatus.Completed), id: 'o2' });
     expect(assign).not.toHaveBeenCalled();
+  });
 
-    fixture.destroy();
-    httpMock.verify();
-    vi.useRealTimers();
+  it('does not keep reporting a missing order after moving to another one', () => {
+    httpMock.expectOne(`${endpoint}/shop/orders/o1`).flush('', { status: 404, statusText: 'Not Found' });
+    expect(component.notFound()).toBe(true);
+
+    params.next(convertToParamMap({ id: 'o2' }));
+    httpMock.expectOne(`${endpoint}/shop/orders/o2`).flush('', { status: 502, statusText: 'Bad Gateway' });
+    fixture.detectChanges();
+
+    expect(component.notFound()).toBe(false);
+    expect(component.loadFailed()).toBe(true);
+    expect(fixture.nativeElement.textContent).toContain('Try again');
   });
 });
