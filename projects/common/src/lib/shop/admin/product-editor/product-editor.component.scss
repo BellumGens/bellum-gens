@@ -133,7 +133,7 @@
 
 .variant-row {
   display: grid;
-  grid-template-columns: minmax(140px, 2fr) minmax(110px, 1fr) minmax(110px, 1fr) minmax(90px, 1fr) minmax(110px, 1fr) minmax(100px, 1fr) auto auto;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 8px;
   align-items: center;
   padding: 8px;
