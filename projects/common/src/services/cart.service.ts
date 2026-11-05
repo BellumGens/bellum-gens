@@ -1,8 +1,8 @@
 import { Injectable, PLATFORM_ID, computed, effect, inject, signal } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
-import { of } from 'rxjs';
-import { catchError, debounceTime, map, switchMap, tap } from 'rxjs/operators';
+import { Subject, merge, of, timer } from 'rxjs';
+import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { ApiShopService } from './bellumgens-api.shop.service';
 import { CommunicationService } from './communication.service';
 import { CartItem, CartLineRequest, DeliveryMethod, Product, ProductVariant, Quote, QuoteRequest } from '../models/shop';
@@ -24,6 +24,7 @@ export class CartService {
   public static readonly storageKey = 'bg-shop-cart';
   /** The most of one product option a single order can hold. */
   public static readonly maxLineQuantity = 10;
+  private static readonly quoteDebounce = 250;
 
   private platformId = inject(PLATFORM_ID);
   private shopApi = inject(ApiShopService);
@@ -59,6 +60,7 @@ export class CartService {
   }));
 
   private request$ = toObservable(this.request);
+  private refresh$ = new Subject<void>();
 
   constructor() {
     this.restore();
@@ -69,10 +71,19 @@ export class CartService {
     });
 
     if (this.isBrowser) {
-      this.request$.pipe(
-        tap(request => this._quoting.set(request.lines.length > 0)),
-        debounceTime(250),
-        switchMap(request => request.lines.length ? this.fetchQuote(request) : of({ quote: null, failed: false })),
+      // Cart changes and manual refreshes share one stream, so any newer request cancels the one in flight
+      // right away; only the start of a request caused by a cart change is debounced.
+      merge(
+        this.request$.pipe(map(request => ({ request, delay: CartService.quoteDebounce }))),
+        this.refresh$.pipe(map(() => ({ request: this.request(), delay: 0 })))
+      ).pipe(
+        tap(({ request }) => this._quoting.set(request.lines.length > 0)),
+        switchMap(({ request, delay }) => {
+          if (!request.lines.length) {
+            return of({ quote: null, failed: false });
+          }
+          return delay ? timer(delay).pipe(switchMap(() => this.fetchQuote(request))) : this.fetchQuote(request);
+        }),
         takeUntilDestroyed()
       ).subscribe(result => this.setQuote(result));
     }
@@ -129,8 +140,7 @@ export class CartService {
     if (!this.isBrowser || this.items().length === 0) {
       return;
     }
-    this._quoting.set(true);
-    this.fetchQuote(this.request()).subscribe(result => this.setQuote(result));
+    this.refresh$.next();
   }
 
   private fetchQuote(request: QuoteRequest) {
@@ -168,7 +178,11 @@ export class CartService {
         this._deliveryMethod.set(DeliveryMethod.EventPickup);
       }
     } catch {
-      window.localStorage.removeItem(CartService.storageKey);
+      try {
+        window.localStorage.removeItem(CartService.storageKey);
+      } catch {
+        // Storage is blocked; the in-memory cart still works.
+      }
     }
   }
 

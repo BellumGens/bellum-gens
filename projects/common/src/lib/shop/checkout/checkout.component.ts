@@ -1,5 +1,6 @@
-import { Component, DOCUMENT, LOCALE_ID, PLATFORM_ID, effect, inject, signal, untracked } from '@angular/core';
+import { Component, DOCUMENT, DestroyRef, LOCALE_ID, PLATFORM_ID, effect, inject, signal, untracked } from '@angular/core';
 import { CurrencyPipe, isPlatformBrowser } from '@angular/common';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { RouterLink } from '@angular/router';
 import { NonNullableFormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
@@ -37,6 +38,7 @@ export class CheckoutComponent {
   private login = inject(LoginService);
   private locale = inject(LOCALE_ID);
   private document = inject(DOCUMENT);
+  private destroyRef = inject(DestroyRef);
   private isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
   public deliveryNames = DELIVERY_METHOD_NAMES;
@@ -88,8 +90,10 @@ export class CheckoutComponent {
     }
 
     const value = this.form.getRawValue();
+    const cartRequest = this.cart.request();
+    const submittedCart = JSON.stringify(cartRequest);
     const request: OrderRequest = {
-      ...this.cart.request(),
+      ...cartRequest,
       ...value,
       phoneNumber: value.phoneNumber.replace(/\s+/g, ' ').trim(),
       country: 'BG',
@@ -98,8 +102,16 @@ export class CheckoutComponent {
 
     this.submitting.set(true);
     this.problems.set([]);
-    this.shopApi.createOrder(request).subscribe({
+    // Leaving checkout cancels the pending order request, so a late response cannot clear the cart or redirect.
+    this.shopApi.createOrder(request).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: created => {
+        if (JSON.stringify(this.cart.request()) !== submittedCart) {
+          // The cart changed while the order was being created; the order no longer matches it.
+          this.submitting.set(false);
+          this.problems.set([$localize`:@@shopCartInvalid:Your cart has changed. Please review it before paying.`]);
+          this.cart.refresh();
+          return;
+        }
         this.cart.clear();
         this.document.location.assign(created.checkoutUrl);
       },

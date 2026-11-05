@@ -78,7 +78,7 @@ describe('CheckoutComponent', () => {
   const flushQuotes = (quote: Quote) => {
     TestBed.tick();
     vi.advanceTimersByTime(300);
-    httpMock.match(quoteUrl()).forEach(request => request.flush(quote));
+    httpMock.match(quoteUrl()).filter(request => !request.cancelled).forEach(request => request.flush(quote));
   };
 
   const fillCart = () => {
@@ -218,6 +218,35 @@ describe('CheckoutComponent', () => {
 
     expect(assign).toHaveBeenCalledWith('https://checkout.revolut.com/x');
     expect(cart.isEmpty()).toBe(true);
+    flushQuotes(validQuote);
+  });
+
+  it('abandons the pending order when the customer leaves checkout', () => {
+    fillCart();
+    fillForm();
+
+    component.pay();
+    const req = httpMock.expectOne(`${api['_apiEndpoint']}/shop/orders`);
+    fixture.destroy();
+
+    expect(req.cancelled).toBe(true);
+    expect(cart.isEmpty()).toBe(false);
+    expect(assign).not.toHaveBeenCalled();
+  });
+
+  it('does not clear or pay for a cart that changed while the order was being created', () => {
+    fillCart();
+    fillForm();
+
+    component.pay();
+    const req = httpMock.expectOne(`${api['_apiEndpoint']}/shop/orders`);
+    cart.add(umbrella);
+    req.flush({ orderId: 'o1', orderNumber: 'BG-1', total: 21, currency: 'EUR', checkoutUrl: 'https://checkout.revolut.com/x', expiresOn: '' });
+
+    expect(assign).not.toHaveBeenCalled();
+    expect(cart.count()).toBe(2);
+    expect(component.submitting()).toBe(false);
+    expect(component.problems()).toEqual(['Your cart has changed. Please review it before paying.']);
     flushQuotes(validQuote);
   });
 

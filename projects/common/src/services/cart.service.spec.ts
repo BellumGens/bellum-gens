@@ -210,6 +210,66 @@ describe('CartService', () => {
     expect(localStorage.getItem(CartService.storageKey)).toBeNull();
   });
 
+  it('cancels a pending quote as soon as the cart changes and keeps quoting until the new one arrives', () => {
+    const p = product();
+    service.add(p);
+    TestBed.tick();
+    vi.advanceTimersByTime(300);
+    const stale = httpMock.expectOne(`${api['_apiEndpoint']}/shop/quote`);
+
+    service.add(p);
+    TestBed.tick();
+
+    expect(stale.cancelled).toBe(true);
+    expect(service.quoting()).toBe(true);
+
+    vi.advanceTimersByTime(300);
+    const fresh = httpMock.expectOne(`${api['_apiEndpoint']}/shop/quote`);
+    expect(fresh.request.body.lines[0].quantity).toBe(2);
+    expect(service.quoting()).toBe(true);
+    fresh.flush(quoteFor(36));
+
+    expect(service.quote()?.total).toBe(36);
+    expect(service.quoting()).toBe(false);
+  });
+
+  it('lets a cart change cancel a manual refresh', () => {
+    const p = product();
+    service.add(p);
+    TestBed.tick();
+    vi.advanceTimersByTime(300);
+    httpMock.expectOne(`${api['_apiEndpoint']}/shop/quote`).flush(quoteFor(21));
+
+    service.refresh();
+    const refresh = httpMock.expectOne(`${api['_apiEndpoint']}/shop/quote`);
+    service.setQuantity(service.items()[0], 2);
+    TestBed.tick();
+
+    expect(refresh.cancelled).toBe(true);
+    vi.advanceTimersByTime(300);
+    httpMock.expectOne(`${api['_apiEndpoint']}/shop/quote`).flush(quoteFor(36));
+    expect(service.quote()?.total).toBe(36);
+  });
+
+  it('still works when browser storage is blocked', () => {
+    TestBed.resetTestingModule();
+    const blocked = vi.spyOn(window, 'localStorage', 'get').mockImplementation(() => {
+      throw new DOMException('Blocked', 'SecurityError');
+    });
+
+    try {
+      configure();
+      service.add(product());
+      TestBed.tick();
+
+      expect(service.count()).toBe(1);
+    } finally {
+      blocked.mockRestore();
+    }
+    vi.advanceTimersByTime(300);
+    httpMock.expectOne(`${api['_apiEndpoint']}/shop/quote`).flush(quoteFor(21));
+  });
+
   it('caps a line at the per-line maximum when adding or changing it', () => {
     const p = product();
     service.add(p, null, 8);
