@@ -24,20 +24,26 @@
     </header>
 
     <section class="status-message">
+      @if (loadFailed()) {
+        <p class="color-error" role="alert" i18n>We could not refresh the status of this order. Please try again in a moment.</p>
+      }
       @switch (order.status) {
         @case (OrderStatus.AwaitingPayment) {
-          @if (paymentPending() && polling()) {
-            <p i18n>We are waiting for the payment confirmation from Revolut. This usually takes a few seconds.</p>
-            <div class="horizontal-center">
-              <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
-            </div>
-          } @else if (paymentPending() && timedOut()) {
-            <p i18n>The payment has not been confirmed yet. If you completed it, it will be confirmed shortly and you will receive an email.</p>
-          } @else if (order.canRetryPayment) {
-            <p i18n>The payment did not go through. You can try again with a different card or payment method.</p>
-          } @else {
-            <p i18n>This order has not been paid yet.</p>
-          }
+          <!-- The message changes in place (e.g. when polling gives up), so announce it without moving focus. -->
+          <div aria-live="polite">
+            @if (paymentPending() && polling()) {
+              <p i18n>We are waiting for the payment confirmation from Revolut. This usually takes a few seconds.</p>
+              <div class="horizontal-center">
+                <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
+              </div>
+            } @else if (paymentPending() && timedOut()) {
+              <p i18n>The payment has not been confirmed yet. If you completed it, it will be confirmed shortly and you will receive an email.</p>
+            } @else if (order.canRetryPayment) {
+              <p i18n>The payment did not go through. You can try again with a different card or payment method.</p>
+            } @else {
+              <p i18n>This order has not been paid yet.</p>
+            }
+          </div>
           <div class="actions">
             @if (order.checkoutUrl && paymentPending()) {
               <button type="button" igxButton="contained" igxRipple (click)="payNow()" i18n>Complete payment</button>

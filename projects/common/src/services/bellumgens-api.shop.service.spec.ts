@@ -261,6 +261,14 @@ describe('ApiShopService', () => {
     retry.flush({});
   });
 
+  it('keeps an order id from changing the request path', () => {
+    service.getOrder('a/b?c').subscribe();
+    httpMock.expectOne(`${service['_apiEndpoint']}/shop/orders/a%2Fb%3Fc`).flush({});
+
+    service.retryPayment('a/b').subscribe();
+    httpMock.expectOne(`${service['_apiEndpoint']}/shop/orders/a%2Fb/retry-payment`).flush({});
+  });
+
   it('updates an order status through the admin API and reports success', () => {
     const messages: string[] = [];
     commsService.success.subscribe(message => messages.push(message));

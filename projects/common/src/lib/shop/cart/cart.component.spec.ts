@@ -98,15 +98,15 @@ describe('CartComponent', () => {
 
     const image: HTMLImageElement = fixture.nativeElement.querySelector('.line-image img');
     expect(image.getAttribute('src')).toBe('/umbrella.png');
-    expect(image.alt).toBe('Rain Umbrella');
   });
 
-  it('names the image link after the product when there is no image', () => {
+  it('keeps the image link out of the tab order and the accessibility tree, next to the named product link', () => {
     fill(umbrella({ imageUrl: null }));
 
     const link: HTMLAnchorElement = fixture.nativeElement.querySelector('a.line-image');
-    expect(link.querySelector('img')).toBeNull();
-    expect(link.getAttribute('aria-label')).toBe('Rain Umbrella');
+    expect(link.getAttribute('tabindex')).toBe('-1');
+    expect(link.getAttribute('aria-hidden')).toBe('true');
+    expect(fixture.nativeElement.querySelector('a.line-name').textContent.trim()).toBe('Rain Umbrella');
   });
 
   it('keeps variants of one product on separate lines', () => {

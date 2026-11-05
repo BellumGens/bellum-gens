@@ -9,6 +9,10 @@ import { IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular/
 import { ApiShopService } from '../../../services/bellumgens-api.shop.service';
 import { DELIVERY_METHOD_NAMES, DeliveryMethod, ORDER_STATUS_NAMES, OrderStatus, OrderStatusView, PaymentStatus } from '../../../models/shop';
 
+/** The customer paid or is paying and the confirmation from the payment provider has not arrived yet. */
+const isPaymentPending = (order: OrderStatusView) => order.status === OrderStatus.AwaitingPayment
+  && (order.paymentStatus === PaymentStatus.Pending || order.paymentStatus === PaymentStatus.Authorised);
+
 @Component({
   selector: 'bg-order-status',
   imports: [
@@ -29,6 +33,10 @@ export class OrderStatusComponent {
   public static readonly pollIntervalMs = 3000;
   /** After this long the page stops polling and offers a manual refresh. */
   public static readonly pollTimeoutMs = 120000;
+  /** The longest a single status request may take before the page gives up on it. */
+  public static readonly requestTimeoutMs = 15000;
+  /** Client errors that mean the link does not identify an order this page can show. */
+  private static readonly notFoundStatuses = [400, 401, 403, 404];
 
   private route = inject(ActivatedRoute);
   private shopApi = inject(ApiShopService);
@@ -37,7 +45,7 @@ export class OrderStatusComponent {
 
   public order = signal<OrderStatusView | null>(null);
   public notFound = signal(false);
-  /** The order could not be loaded for a reason other than not existing (server or network error). */
+  /** The order could not be (re)loaded for a reason other than not existing (server or network error). */
   public loadFailed = signal(false);
   public polling = signal(false);
   public timedOut = signal(false);
@@ -56,8 +64,8 @@ export class OrderStatusComponent {
 
   public awaitingPayment = computed(() => this.order()?.status === OrderStatus.AwaitingPayment);
   public paymentPending = computed(() => {
-    const paymentStatus = this.order()?.paymentStatus;
-    return this.awaitingPayment() && (paymentStatus === PaymentStatus.Pending || paymentStatus === PaymentStatus.Authorised);
+    const order = this.order();
+    return !!order && isPaymentPending(order);
   });
 
   constructor() {
@@ -109,7 +117,8 @@ export class OrderStatusComponent {
       error: () => {
         this.retry = null;
         this.busy.set(false);
-        this.load();
+        // Start a fresh polling window: the customer may have been on the page for longer than the last one.
+        this.refresh();
       }
     });
   }
@@ -121,12 +130,11 @@ export class OrderStatusComponent {
       this.notFound.set(true);
       return;
     }
-    // Bound each request by what is left of the polling window, so a stalled request still ends in the
-    // manual-refresh state. The last request still gets at least one poll interval to answer.
+    // A stalled request must not leave a spinner on screen: bound it by the request limit and by what is left
+    // of the polling window, while still giving the last poll at least one interval to answer.
     const remaining = OrderStatusComponent.pollTimeoutMs - (Date.now() - this.pollStarted);
-    this.request = this.shopApi.getOrder(this.orderId).pipe(
-      timeout(Math.max(remaining, OrderStatusComponent.pollIntervalMs))
-    ).subscribe({
+    const limit = Math.min(OrderStatusComponent.requestTimeoutMs, Math.max(remaining, OrderStatusComponent.pollIntervalMs));
+    this.request = this.shopApi.getOrder(this.orderId).pipe(timeout(limit)).subscribe({
       next: order => {
         this.order.set(order);
         this.notFound.set(false);
@@ -135,10 +143,10 @@ export class OrderStatusComponent {
       },
       error: error => {
         const order = this.order();
-        if (error.status === 404) {
+        if (OrderStatusComponent.notFoundStatuses.includes(error?.status)) {
           this.notFound.set(true);
           this.polling.set(false);
-        } else if (order) {
+        } else if (order && isPaymentPending(order)) {
           // A hiccup while polling: keep the order on screen and try again on the next tick.
           this.schedulePoll(order);
         } else {
@@ -150,9 +158,7 @@ export class OrderStatusComponent {
   }
 
   private schedulePoll(order: OrderStatusView) {
-    const pending = order.status === OrderStatus.AwaitingPayment
-      && (order.paymentStatus === PaymentStatus.Pending || order.paymentStatus === PaymentStatus.Authorised);
-    if (!this.isBrowser || !pending) {
+    if (!this.isBrowser || !isPaymentPending(order)) {
       this.polling.set(false);
       return;
     }

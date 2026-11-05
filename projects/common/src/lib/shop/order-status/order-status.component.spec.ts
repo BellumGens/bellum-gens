@@ -258,15 +258,89 @@ describe('OrderStatusComponent', () => {
     expect(fixture.nativeElement.textContent).toContain('has not been confirmed yet');
   });
 
-  it('shows the initial load as failed when the first request stalls', () => {
+  it('shows the initial load as failed soon after the first request stalls', () => {
     const stalled = httpMock.expectOne(orderUrl());
 
-    vi.advanceTimersByTime(OrderStatusComponent.pollTimeoutMs);
+    vi.advanceTimersByTime(OrderStatusComponent.requestTimeoutMs - 1);
+    expect(component.loadFailed()).toBe(false);
+    vi.advanceTimersByTime(1);
     fixture.detectChanges();
 
     expect(stalled.cancelled).toBe(true);
     expect(component.loadFailed()).toBe(true);
     expect(fixture.nativeElement.textContent).toContain('Try again');
+  });
+
+  it('retries a poll that stalls while the polling window is still open', () => {
+    httpMock.expectOne(orderUrl()).flush(order(OrderStatus.AwaitingPayment, PaymentStatus.Pending));
+
+    vi.advanceTimersByTime(OrderStatusComponent.pollIntervalMs);
+    const stalled = httpMock.expectOne(orderUrl());
+    vi.advanceTimersByTime(OrderStatusComponent.requestTimeoutMs);
+
+    expect(stalled.cancelled).toBe(true);
+    expect(component.polling()).toBe(true);
+    vi.advanceTimersByTime(OrderStatusComponent.pollIntervalMs);
+    httpMock.expectOne(orderUrl()).flush(order(OrderStatus.Paid, PaymentStatus.Completed));
+    expect(component.polling()).toBe(false);
+  });
+
+  it('gives the reload after a failed retry a fresh time limit, however long the page has been open', () => {
+    httpMock.expectOne(orderUrl()).flush(order(OrderStatus.AwaitingPayment, PaymentStatus.Failed));
+    component['pollStarted'] = Date.now() - (OrderStatusComponent.pollTimeoutMs + 60000);
+
+    component.retryPayment();
+    httpMock.expectOne(`${api['_apiEndpoint']}/shop/orders/o1/retry-payment`)
+      .flush('', { status: 502, statusText: 'Bad Gateway' });
+    const reload = httpMock.expectOne(orderUrl());
+    // Slower than a poll interval, well within the request limit.
+    vi.advanceTimersByTime(OrderStatusComponent.pollIntervalMs + 1000);
+
+    expect(reload.cancelled).toBe(false);
+    reload.flush(order(OrderStatus.Cancelled, PaymentStatus.Failed));
+    expect(component.order()?.status).toBe(OrderStatus.Cancelled);
+    expect(component.loadFailed()).toBe(false);
+  });
+
+  it('tells the customer when refreshing an order on screen fails', () => {
+    httpMock.expectOne(orderUrl()).flush(order(OrderStatus.AwaitingPayment, PaymentStatus.Failed));
+
+    component.refresh();
+    httpMock.expectOne(orderUrl()).flush('', { status: 502, statusText: 'Bad Gateway' });
+    fixture.detectChanges();
+
+    expect(component.loadFailed()).toBe(true);
+    expect(component.order()).not.toBeNull();
+    const alert: HTMLElement = fixture.nativeElement.querySelector('.status-message [role="alert"]');
+    expect(alert.textContent).toContain('could not refresh the status');
+
+    component.refresh();
+    httpMock.expectOne(orderUrl()).flush(order(OrderStatus.AwaitingPayment, PaymentStatus.Failed));
+    fixture.detectChanges();
+    expect(fixture.nativeElement.querySelector('.status-message [role="alert"]')).toBeNull();
+  });
+
+  it('treats a link the API refuses to resolve as a missing order', () => {
+    httpMock.expectOne(orderUrl()).flush('', { status: 401, statusText: 'Unauthorized' });
+
+    expect(component.notFound()).toBe(true);
+    expect(component.loadFailed()).toBe(false);
+  });
+
+  it('announces the payment message when polling gives up', () => {
+    httpMock.expectOne(orderUrl()).flush(order(OrderStatus.AwaitingPayment, PaymentStatus.Pending));
+    fixture.detectChanges();
+    const region: HTMLElement = fixture.nativeElement.querySelector('.status-message [aria-live="polite"]');
+    expect(region.textContent).toContain('waiting for the payment confirmation');
+
+    component['pollStarted'] = Date.now() - OrderStatusComponent.pollTimeoutMs;
+    vi.advanceTimersByTime(OrderStatusComponent.pollIntervalMs);
+    httpMock.expectOne(orderUrl()).flush(order(OrderStatus.AwaitingPayment, PaymentStatus.Pending));
+    fixture.detectChanges();
+
+    // Same live element, new text: assistive technology announces the change.
+    expect(fixture.nativeElement.querySelector('.status-message [aria-live="polite"]')).toBe(region);
+    expect(region.textContent).toContain('has not been confirmed yet');
   });
 
   it('announces status changes through a polite live region', () => {

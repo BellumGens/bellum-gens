@@ -79,7 +79,7 @@
               "outputMode": "server",
               "localize": true,
               "outputHashing": "all",
-              "serviceWorker": "projects/bellumgens/src/ngsw-config.json",
+              "serviceWorker": "projects/common/src/ngsw-config.json",
               "i18nMissingTranslation": "error"
             },
             "development": {
@@ -270,7 +270,7 @@
               "outputMode": "server",
               "localize": true,
               "outputHashing": "all",
-              "serviceWorker": "projects/ebleague/src/ngsw-config.json",
+              "serviceWorker": "projects/common/src/ngsw-config.json",
               "i18nMissingTranslation": "error"
             },
             "bg": {

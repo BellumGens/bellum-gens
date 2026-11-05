@@ -12,9 +12,10 @@
       <ul class="cart-lines">
         @for (item of cart.items(); track item.productId + (item.variantId ?? '')) {
           <li class="cart-line" [class.has-problem]="problem(item)">
-            <a class="line-image" [routerLink]="['/shop/product', item.product.slug]" [attr.aria-label]="item.product.name">
+            <!-- The product name next to it is the accessible link; this one is a pointer-only shortcut. -->
+            <a class="line-image" [routerLink]="['/shop/product', item.product.slug]" tabindex="-1" aria-hidden="true">
               @if (item.product.imageUrl) {
-                <img [src]="item.product.imageUrl" [alt]="item.product.name" loading="lazy" />
+                <img [src]="item.product.imageUrl" alt="" loading="lazy" />
               } @else {
                 <igx-icon>shopping_bag</igx-icon>
               }

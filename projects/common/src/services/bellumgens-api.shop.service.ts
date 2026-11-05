@@ -80,11 +80,11 @@ export class ApiShopService {
   }
 
   public getOrder(orderId: string) {
-    return this.http.get<OrderStatusView>(`${this._apiEndpoint}/shop/orders/${orderId}`);
+    return this.http.get<OrderStatusView>(`${this._apiEndpoint}/shop/orders/${encodeURIComponent(orderId)}`);
   }
 
   public retryPayment(orderId: string) {
-    return this.http.post<OrderCreated>(`${this._apiEndpoint}/shop/orders/${orderId}/retry-payment`, null);
+    return this.http.post<OrderCreated>(`${this._apiEndpoint}/shop/orders/${encodeURIComponent(orderId)}/retry-payment`, null);
   }
 
   public getMyOrders() {
