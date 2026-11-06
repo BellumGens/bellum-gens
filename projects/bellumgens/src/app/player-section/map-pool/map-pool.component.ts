@@ -19,7 +19,7 @@ import { NgOptimizedImage } from '@angular/common';
 export class MapPoolComponent {
   public viewAll = input(false);
 
-  public mapPool = input<CSGOMapPool []>();
+  public mapPool = input<CSGOMapPool [] | null>();
 
   public readOnly = input<boolean>();
 

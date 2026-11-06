@@ -80,14 +80,14 @@ describe('PlayerComponent', () => {
 
     const activatedRoute = TestBed.inject(ActivatedRoute) as ActivatedRoute;
     (activatedRoute.params as any).next({ userid: 'player-a' });
-    expect(component.player().id).toBe('player-a');
+    expect(component.player()!.id).toBe('player-a');
 
     // navigating to another player clears the service cache until it loads
     cached.set(null);
     (activatedRoute.params as any).next({ userid: 'player-b' });
-    expect(component.player().id).toBe('player-a');
+    expect(component.player()!.id).toBe('player-a');
 
     cached.set({ id: 'player-b' });
-    expect(component.player().id).toBe('player-b');
+    expect(component.player()!.id).toBe('player-b');
   });
 });

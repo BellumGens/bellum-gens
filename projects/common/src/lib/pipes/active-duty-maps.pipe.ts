@@ -6,7 +6,7 @@ import { type CSGOActiveDutyMap } from '../../public_api';
 })
 export class ActiveDutyMapsPipe implements PipeTransform {
 
-  public transform(maps: CSGOActiveDutyMap [], viewAll: boolean = true, _?: number): CSGOActiveDutyMap [] {
+  public transform(maps: CSGOActiveDutyMap [] | null | undefined, viewAll: boolean = true, _?: number): CSGOActiveDutyMap [] {
     if (maps && !viewAll) {
       return maps.filter(m => m.active);
     } if (!maps) {

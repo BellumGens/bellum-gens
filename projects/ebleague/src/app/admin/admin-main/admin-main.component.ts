@@ -9,6 +9,7 @@ import {
   OrderStatus,
   ORDER_STATUS_NAMES,
   DELIVERY_METHOD_NAMES,
+  DeliveryMethod,
   ProductEditorComponent,
   PromoEditorComponent,
   ConfirmComponent
@@ -28,6 +29,9 @@ import { IGX_CHIPS_DIRECTIVES } from '@infragistics/igniteui-angular/chips';
 import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
 import { FormsModule } from '@angular/forms';
 import { CurrencyPipe } from '@angular/common';
+
+// The API sends the tournament dates as ISO strings
+const toDate = (value?: Date | string): Date | undefined => value ? new Date(value) : undefined;
 
 @Component({
   selector: 'app-admin-main',
@@ -59,14 +63,14 @@ export class AdminMainComponent {
   private apiService = inject(ApiTournamentsService);
   private shopService = inject(ApiShopService);
 
-  public roles = signal<string []>(null);
+  public roles = signal<string [] | null>(null);
   // public users: AdminAppUserSummary [];
   private allTournaments = this.apiService.tournaments;
   // A local copy with parsed dates for the grid's date editors; tournaments created here are appended to it
-  public tournaments = linkedSignal<Tournament []>(() => this.allTournaments()?.map(t => ({
+  public tournaments = linkedSignal<Tournament [] | null>(() => this.allTournaments()?.map(t => ({
     ...t,
-    startDate: new Date(t.startDate),
-    endDate: new Date(t.endDate)
+    startDate: toDate(t.startDate),
+    endDate: toDate(t.endDate)
   })) ?? null);
   public tournament = Object.assign({}, EMPTY_NEW_TOURNAMENT);
   public orders = signal<ShopOrder []>([]);
@@ -111,6 +115,10 @@ export class AdminMainComponent {
     return this.statusNames[status];
   }
 
+  public deliveryName(method: DeliveryMethod) {
+    return this.deliveryNames[method];
+  }
+
   public updateOrderStatus(order: ShopOrder, status: OrderStatus) {
     this.shopService.updateOrderStatus(order.id, { status, trackingNumber: this.tracking()[order.id] || order.trackingNumber || null })
       .subscribe(updated => this.replaceOrder(updated));
@@ -126,19 +134,23 @@ export class AdminMainComponent {
 
   public confirmRegistration(event: IGridEditEventArgs) {
     const rowData = event.rowData;
+    const field = event.column?.field;
+    if (!field) {
+      return;
+    }
     // The row keeps the editor's boolean, so the grid sees no pending change once it's saved;
     // the server receives the state as a number
-    rowData[event.column.field] = event.newValue;
+    rowData[field] = event.newValue;
     this.apiService.confirmRegistration({
       ...rowData,
-      [event.column.field]: event.newValue ? TournamentApplicationState.Confirmed : TournamentApplicationState.Pending
+      [field]: event.newValue ? TournamentApplicationState.Confirmed : TournamentApplicationState.Pending
     }).subscribe();
   }
 
   // Applies the row's pending changes and deletes it on the server only if it was marked deleted
   public saveRegistration(rowContext: RowType) {
     const deleted = rowContext.deleted;
-    rowContext.grid.transactions.commit(rowContext.grid.data, rowContext.key);
+    rowContext.grid.transactions.commit(rowContext.grid.data ?? [], rowContext.key);
     if (deleted) {
       this.apiService.deleteRegistration(rowContext.key).subscribe();
     }

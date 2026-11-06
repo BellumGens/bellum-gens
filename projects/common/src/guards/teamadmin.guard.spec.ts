@@ -29,7 +29,7 @@ describe('TeamadminGuard', () => {
   it('should ask the API whether the user administers the team in the route', () => {
     const guard = configure('browser');
     const httpMock = TestBed.inject(HttpTestingController);
-    let allowed: boolean;
+    let allowed: boolean | undefined;
 
     (guard.canActivate(route) as ReturnType<TeamadminGuard['isTeamAdmin']>).subscribe(result => allowed = result);
     const req = httpMock.expectOne(`${environment.apiEndpoint}/teams/teamadmin?teamid=team-1`);

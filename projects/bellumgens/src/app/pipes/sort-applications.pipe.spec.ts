@@ -25,7 +25,7 @@ describe('SortApplicationsPipe', () => {
       application('e', NotificationState.Rejected)
     ];
 
-    expect(pipe.transform(applications).map(a => a.state)).toEqual([
+    expect(pipe.transform(applications)!.map(a => a.state)).toEqual([
       NotificationState.NotSeen,
       NotificationState.NotSeen,
       NotificationState.Seen,
@@ -37,7 +37,7 @@ describe('SortApplicationsPipe', () => {
   it('should move a handled application after a pending one', () => {
     const applications = [application('a', NotificationState.Accepted), application('b', NotificationState.NotSeen)];
 
-    expect(pipe.transform(applications).map(a => a.applicantId)).toEqual(['b', 'a']);
+    expect(pipe.transform(applications)!.map(a => a.applicantId)).toEqual(['b', 'a']);
   });
 
   it('should not sort the input array in place', () => {

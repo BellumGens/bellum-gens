@@ -35,8 +35,9 @@ export class RegistrationComponent implements AfterViewInit {
   constructor() {
     effect(() => {
       const user = this.authUser();
-      if (user && user.email) {
-        untracked(() => this.userAccount.update(account => ({ ...account, email: user.email, username: user.username })));
+      const email = user?.email;
+      if (user && email) {
+        untracked(() => this.userAccount.update(account => ({ ...account, email, username: user.username })));
       }
     });
   }

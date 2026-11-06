@@ -19,7 +19,7 @@ import { IgxDatePickerComponent } from '@infragistics/igniteui-angular/date-pick
 import { createSpyObj } from '../../../../../testing/spy-obj';
 
 interface InitialData {
-  roles?: string [];
+  roles?: string [] | null;
   tournaments?: Tournament [];
   registrations?: TournamentApplication [];
   orders?: ShopOrder [];
@@ -157,7 +157,7 @@ describe('AdminMainComponent', () => {
         const createdTournament: Tournament = { id: 'tournament-2', ...component.tournament };
         req.flush(createdTournament);
 
-        expect(component.tournaments().length).toBe(1);
+        expect(component.tournaments()!.length).toBe(1);
         // The new tournament form starts over, so submitting again doesn't resend the created tournament
         expect(component.tournament).toEqual(EMPTY_NEW_TOURNAMENT);
         expect(component.tournament).not.toBe(EMPTY_NEW_TOURNAMENT);
@@ -207,9 +207,9 @@ describe('AdminMainComponent', () => {
         apiService['_tournaments'].set(mockTournaments);
 
         expect(component.tournaments()).toBeDefined();
-        expect(component.tournaments().length).toBe(1);
-        expect(component.tournaments()[0].startDate instanceof Date).toBe(true);
-        expect(component.tournaments()[0].endDate instanceof Date).toBe(true);
+        expect(component.tournaments()!.length).toBe(1);
+        expect(component.tournaments()![0].startDate instanceof Date).toBe(true);
+        expect(component.tournaments()![0].endDate instanceof Date).toBe(true);
       });
 
       it('should have no tournaments while the service has none', () => {
@@ -430,7 +430,7 @@ describe('AdminMainComponent', () => {
   describe('Roles', () => {
     // The grids' group-by areas are chips areas as well, so the roles area is the one labeled 'Roles'
     const rolesArea = () => Array.from(el().querySelectorAll('igx-chips-area')).find(a => a.querySelector(':scope > span')?.textContent === 'Roles');
-    const chips = () => Array.from(rolesArea().querySelectorAll('igx-chip')).map(c => c.textContent.trim());
+    const chips = () => Array.from(rolesArea()!.querySelectorAll('igx-chip')).map(c => c.textContent.trim());
     const roleInput = () => el().querySelector<HTMLInputElement>('igx-chips-area ~ igx-input-group input');
     const roleSubmit = () => el().querySelector<HTMLButtonElement>('igx-chips-area ~ button');
 
@@ -453,8 +453,8 @@ describe('AdminMainComponent', () => {
       flushInitialRequests({ roles: ['admin'] });
       await render();
 
-      roleInput().value = 'moderator';
-      roleSubmit().click();
+      roleInput()!.value = 'moderator';
+      roleSubmit()!.click();
 
       const submit = httpMock.expectOne(`${apiService['_apiEndpoint']}/admin/createrole?rolename=moderator`);
       expect(submit.request.method).toBe('PUT');
@@ -474,7 +474,7 @@ describe('AdminMainComponent', () => {
       flushInitialRequests();
       await render();
 
-      expect(Array.from(roleInput().labels).map(l => l.textContent.trim())).toEqual(['New role']);
+      expect(Array.from(roleInput()!.labels!).map(l => l.textContent.trim())).toEqual(['New role']);
     });
 
     it('should give every text field of the page a label', async () => {
@@ -496,10 +496,10 @@ describe('AdminMainComponent', () => {
       }
     ];
     // The shop catalog and promo editors have forms of their own, so only the tournaments section is searched
-    const section = () => Array.from(el().querySelectorAll('h3')).find(h => h.textContent === 'Tournaments and Roles').closest('.content-container');
-    const cards = () => Array.from(section().querySelectorAll('igx-card'));
-    const forms = () => Array.from(section().querySelectorAll('form'));
-    const newForm = () => el().querySelector('#newTournamentName').closest('form');
+    const section = () => Array.from(el().querySelectorAll('h3')).find(h => h.textContent === 'Tournaments and Roles')!.closest('.content-container');
+    const cards = () => Array.from(section()!.querySelectorAll('igx-card'));
+    const forms = () => Array.from(section()!.querySelectorAll('form'));
+    const newForm = () => el().querySelector('#newTournamentName')!.closest('form');
     const type = (input: HTMLInputElement | HTMLTextAreaElement, value: string) => {
       input.value = value;
       input.dispatchEvent(new Event('input'));
@@ -515,14 +515,14 @@ describe('AdminMainComponent', () => {
       await render();
 
       expect(cards().length).toBe(1);
-      expect(cards()[0].querySelector('h4').textContent).toContain('Spring League');
-      expect(cards()[0].querySelector('h5').textContent).toContain('league-1');
-      expect(cards()[0].querySelector<HTMLInputElement>('#leagueName0').value).toBe('Spring League');
-      expect(cards()[0].querySelector<HTMLInputElement>('#leagueLogo0').value).toBe('/logo.png');
-      expect(cards()[0].querySelector<HTMLTextAreaElement>('#leagueDescription0').value).toBe('Spring season');
+      expect(cards()[0].querySelector('h4')!.textContent).toContain('Spring League');
+      expect(cards()[0].querySelector('h5')!.textContent).toContain('league-1');
+      expect(cards()[0].querySelector<HTMLInputElement>('#leagueName0')!.value).toBe('Spring League');
+      expect(cards()[0].querySelector<HTMLInputElement>('#leagueLogo0')!.value).toBe('/logo.png');
+      expect(cards()[0].querySelector<HTMLTextAreaElement>('#leagueDescription0')!.value).toBe('Spring season');
       expect(pickers(forms()[0]).map(p => p.value)).toEqual([new Date('2026-03-01T00:00:00'), new Date('2026-05-01T00:00:00')]);
       // The form is valid but untouched, so it cannot be submitted yet
-      expect(submitButton(forms()[0]).disabled).toBe(true);
+      expect(submitButton(forms()[0])!.disabled).toBe(true);
     });
 
     it('should update an existing tournament from its card', async () => {
@@ -530,17 +530,17 @@ describe('AdminMainComponent', () => {
       await render();
       const form = forms()[0];
 
-      type(form.querySelector<HTMLInputElement>('#leagueName0'), 'Summer League');
-      type(form.querySelector<HTMLInputElement>('#leagueLogo0'), '/summer.png');
-      type(form.querySelector<HTMLTextAreaElement>('#leagueDescription0'), 'Summer season');
+      type(form.querySelector<HTMLInputElement>('#leagueName0')!, 'Summer League');
+      type(form.querySelector<HTMLInputElement>('#leagueLogo0')!, '/summer.png');
+      type(form.querySelector<HTMLTextAreaElement>('#leagueDescription0')!, 'Summer season');
       const [start, end] = pickers(form);
       start.value = new Date(2026, 5, 1);
       end.value = new Date(2026, 7, 1);
-      form.querySelector<HTMLInputElement>('igx-checkbox input').click();
+      form.querySelector<HTMLInputElement>('igx-checkbox input')!.click();
       await render();
 
-      expect(submitButton(form).disabled).toBe(false);
-      submitButton(form).click();
+      expect(submitButton(form)!.disabled).toBe(false);
+      submitButton(form)!.click();
 
       const req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/create`);
       expect(req.request.method).toBe('PUT');
@@ -576,31 +576,31 @@ describe('AdminMainComponent', () => {
       });
       await render();
 
-      expect(component.tournaments()[0]).toEqual(expect.objectContaining({ name: '', logo: '', description: '' }));
-      expect(card.querySelector<HTMLInputElement>('#leagueName0').value).toBe('');
+      expect(component.tournaments()![0]).toEqual(expect.objectContaining({ name: '', logo: '', description: '' }));
+      expect(card.querySelector<HTMLInputElement>('#leagueName0')!.value).toBe('');
       expect(clearButtons(card).length).toBe(0);
     });
 
     it('should create a new tournament and list it', async () => {
       flushInitialRequests();
       await render();
-      const form = newForm();
+      const form = newForm()!;
       const successes: string [] = [];
       TestBed.inject(CommunicationService).success.subscribe(m => successes.push(m));
 
       expect(cards().length).toBe(0);
-      expect(submitButton(form).disabled).toBe(true);
+      expect(submitButton(form)!.disabled).toBe(true);
 
-      type(form.querySelector<HTMLInputElement>('[name="tournamentName"]'), 'Autumn League');
-      type(form.querySelector<HTMLInputElement>('[name="tournamentLogo"]'), '/autumn.png');
-      type(form.querySelector<HTMLTextAreaElement>('[name="tournamentDescription"]'), 'Autumn season');
+      type(form.querySelector<HTMLInputElement>('[name="tournamentName"]')!, 'Autumn League');
+      type(form.querySelector<HTMLInputElement>('[name="tournamentLogo"]')!, '/autumn.png');
+      type(form.querySelector<HTMLTextAreaElement>('[name="tournamentDescription"]')!, 'Autumn season');
       const [start, end] = pickers(form);
       start.value = new Date(2026, 8, 1);
       end.value = new Date(2026, 10, 1);
       await render();
 
-      expect(submitButton(form).disabled).toBe(false);
-      submitButton(form).click();
+      expect(submitButton(form)!.disabled).toBe(false);
+      submitButton(form)!.click();
 
       const req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/create`);
       expect(req.request.method).toBe('PUT');
@@ -617,15 +617,15 @@ describe('AdminMainComponent', () => {
 
       expect(successes).toEqual(['Tournament updated successfully!']);
       expect(cards().length).toBe(1);
-      expect(cards()[0].querySelector('h4').textContent).toContain('Autumn League');
-      expect(cards()[0].querySelector('h5').textContent).toContain('league-2');
+      expect(cards()[0].querySelector('h4')!.textContent).toContain('Autumn League');
+      expect(cards()[0].querySelector('h5')!.textContent).toContain('league-2');
 
       // The new tournament form is cleared, so it cannot resend the created tournament
       expect(component.tournament).toEqual(EMPTY_NEW_TOURNAMENT);
-      expect(form.querySelector<HTMLInputElement>('#newTournamentName').value).toBe('');
-      expect(form.querySelector<HTMLInputElement>('[name="tournamentLogo"]').value).toBe('');
-      expect(form.querySelector<HTMLTextAreaElement>('[name="tournamentDescription"]').value).toBe('');
-      expect(submitButton(form).disabled).toBe(true);
+      expect(form.querySelector<HTMLInputElement>('#newTournamentName')!.value).toBe('');
+      expect(form.querySelector<HTMLInputElement>('[name="tournamentLogo"]')!.value).toBe('');
+      expect(form.querySelector<HTMLTextAreaElement>('[name="tournamentDescription"]')!.value).toBe('');
+      expect(submitButton(form)!.disabled).toBe(true);
     });
 
     it('should label the new tournament name with an id of its own', async () => {
@@ -636,8 +636,8 @@ describe('AdminMainComponent', () => {
       await render();
 
       const input = el().querySelector<HTMLInputElement>('#newTournamentName');
-      expect(input.name).toBe('tournamentName');
-      expect(el().querySelector<HTMLLabelElement>('label[for="newTournamentName"]').textContent).toContain('Tournament name');
+      expect(input!.name).toBe('tournamentName');
+      expect(el().querySelector<HTMLLabelElement>('label[for="newTournamentName"]')!.textContent).toContain('Tournament name');
       const ids = Array.from(el().querySelectorAll('[id]')).map(e => e.id).filter(id => id);
       expect(ids.filter((id, i) => ids.indexOf(id) !== i)).toEqual([]);
     });
@@ -645,12 +645,12 @@ describe('AdminMainComponent', () => {
     it('should clear the new tournament fields from their named clear buttons', async () => {
       flushInitialRequests();
       await render();
-      const form = newForm();
+      const form = newForm()!;
 
       expect(clearButtons(form).length).toBe(0);
-      type(form.querySelector<HTMLInputElement>('[name="tournamentName"]'), 'Autumn League');
-      type(form.querySelector<HTMLInputElement>('[name="tournamentLogo"]'), '/autumn.png');
-      type(form.querySelector<HTMLTextAreaElement>('[name="tournamentDescription"]'), 'Autumn season');
+      type(form.querySelector<HTMLInputElement>('[name="tournamentName"]')!, 'Autumn League');
+      type(form.querySelector<HTMLInputElement>('[name="tournamentLogo"]')!, '/autumn.png');
+      type(form.querySelector<HTMLTextAreaElement>('[name="tournamentDescription"]')!, 'Autumn season');
       await render();
 
       expect(clearButtons(form).map(b => b.getAttribute('aria-label'))).toEqual(clearLabels);
@@ -662,9 +662,9 @@ describe('AdminMainComponent', () => {
       await render();
 
       expect(component.tournament).toEqual(expect.objectContaining({ name: '', logo: '', description: '' }));
-      expect(form.querySelector<HTMLInputElement>('[name="tournamentName"]').value).toBe('');
+      expect(form.querySelector<HTMLInputElement>('[name="tournamentName"]')!.value).toBe('');
       expect(clearButtons(form).length).toBe(0);
-      expect(submitButton(form).disabled).toBe(true);
+      expect(submitButton(form)!.disabled).toBe(true);
     });
   });
 
@@ -683,17 +683,17 @@ describe('AdminMainComponent', () => {
     const actionStrip = () => grid().actionStrip as IgxActionStripComponent;
     const stripButton = (title: string) => grid().nativeElement.querySelector<HTMLButtonElement>(`igx-action-strip button[title="${title}"]`);
     const hoverRow = async (key: string) => {
-      grid().dataRowList.find(r => r.key === key).nativeElement.dispatchEvent(new MouseEvent('mouseenter'));
+      grid().dataRowList.find(r => r.key === key)!.nativeElement.dispatchEvent(new MouseEvent('mouseenter'));
       await render();
     };
     const groupLabels = () => Array.from<HTMLElement>(grid().nativeElement.querySelectorAll('.igx-group-label'))
       .map(g => [
-        g.querySelector('.igx-group-label__column-name').textContent.trim(),
-        g.querySelector('.igx-group-label__text').textContent.trim(),
-        g.querySelector('igx-badge').textContent.trim()
+        g.querySelector('.igx-group-label__column-name')!.textContent.trim(),
+        g.querySelector('.igx-group-label__text')!.textContent.trim(),
+        g.querySelector('igx-badge')!.textContent.trim()
       ].join(' '));
-    const cellElement = (key: string, field: string): HTMLElement => grid().dataRowList.find(r => r.key === key).cells
-      .find(c => c.column.field === field).nativeElement;
+    const cellElement = (key: string, field: string): HTMLElement => grid().dataRowList.find(r => r.key === key)!.cells
+      .find(c => c.column.field === field)!.nativeElement!;
     const stateIcon = (key: string) => cellElement(key, 'state').querySelector('igx-icon');
 
     beforeEach(async () => {
@@ -715,10 +715,10 @@ describe('AdminMainComponent', () => {
         'Game: Counter-Strike 1',
         'Game: StarCraft II 1'
       ]);
-      expect(stateIcon('reg-1').textContent.trim()).toBe('check');
-      expect(stateIcon('reg-1').classList).toContain('color-success');
-      expect(stateIcon('reg-2').textContent.trim()).toBe('close');
-      expect(stateIcon('reg-2').classList).toContain('color-error');
+      expect(stateIcon('reg-1')!.textContent.trim()).toBe('check');
+      expect(stateIcon('reg-1')!.classList).toContain('color-success');
+      expect(stateIcon('reg-2')!.textContent.trim()).toBe('close');
+      expect(stateIcon('reg-2')!.classList).toContain('color-error');
     });
 
     it('should name the game in its cells when the game column is shown', async () => {
@@ -746,7 +746,7 @@ describe('AdminMainComponent', () => {
 
       // The edit is saved right away, so the row has no pending changes left to save
       await hoverRow('reg-2');
-      expect(grid().dataRowList.find(r => r.key === 'reg-2').dirty).toBe(false);
+      expect(grid().dataRowList.find(r => r.key === 'reg-2')!.dirty).toBe(false);
       expect(stripButton('Save')).toBeNull();
       expect(stripButton('Delete')).toBeTruthy();
     });
@@ -758,15 +758,15 @@ describe('AdminMainComponent', () => {
       // Editing through the API leaves the change pending in the batch
       grid().updateCell(true, 'reg-2', 'state');
       await hoverRow('reg-2');
-      expect(grid().dataRowList.find(r => r.key === 'reg-2').dirty).toBe(true);
+      expect(grid().dataRowList.find(r => r.key === 'reg-2')!.dirty).toBe(true);
 
-      stripButton('Save').click();
+      stripButton('Save')!.click();
       await render();
 
       httpMock.expectNone(`${apiService['_apiEndpoint']}/tournament/delete?id=reg-2`);
       expect(grid().transactions.getAggregatedChanges(false)).toEqual([]);
-      expect(grid().data.map(r => r.id)).toEqual(['reg-1', 'reg-2']);
-      expect(grid().data[1].state).toBe(true);
+      expect(grid().data!.map(r => r.id)).toEqual(['reg-1', 'reg-2']);
+      expect(grid().data![1].state).toBe(true);
     });
 
     it('should only offer to delete a pristine registration', async () => {
@@ -785,20 +785,20 @@ describe('AdminMainComponent', () => {
       await render();
 
       await hoverRow('reg-1');
-      stripButton('Delete').click();
+      stripButton('Delete')!.click();
       await render();
 
       expect(grid().getRowByKey('reg-1').deleted).toBe(true);
       expect(stripButton('Delete')).toBeNull();
 
-      stripButton('Save').click();
+      stripButton('Save')!.click();
 
       const req = httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/delete?id=reg-1`);
       expect(req.request.method).toBe('DELETE');
       req.flush({});
 
       expect(grid().transactions.getAggregatedChanges(false)).toEqual([]);
-      expect(grid().data.map(r => r.id)).toEqual(['reg-2']);
+      expect(grid().data!.map(r => r.id)).toEqual(['reg-2']);
     });
   });
 
@@ -817,11 +817,11 @@ describe('AdminMainComponent', () => {
       })
     ];
     const grid = () => fixture.debugElement.queryAll(By.directive(IgxGridComponent))[1].componentInstance as IgxGridComponent;
-    const cell = (field: string, key = 'order-1'): HTMLElement => grid().dataRowList.find(r => r.key === key).cells
-      .find(c => c.column.field === field).nativeElement;
+    const cell = (field: string, key = 'order-1'): HTMLElement => grid().dataRowList.find(r => r.key === key)!.cells
+      .find(c => c.column.field === field)!.nativeElement!;
     const cellText = (field: string, key = 'order-1') => cell(field, key).textContent.replace(/\s+/g, ' ').trim();
     const details = () => grid().nativeElement.querySelector<HTMLElement>('.order-details');
-    const detailButton = (text: string) => Array.from(details().querySelectorAll<HTMLButtonElement>('.order-actions button'))
+    const detailButton = (text: string) => Array.from(details()!.querySelectorAll<HTMLButtonElement>('.order-actions button'))
       .find(b => b.textContent.includes(text));
 
     beforeEach(async () => {
@@ -832,7 +832,7 @@ describe('AdminMainComponent', () => {
     it('should render the order details', () => {
       expect(cellText('orderNumber')).toContain('BG-2026-000001');
       expect(cellText('status')).toBe('Paid');
-      expect(cell('status').querySelector('.order-status').classList).toContain('status-1');
+      expect(cell('status').querySelector('.order-status')!.classList).toContain('status-1');
       expect(cellText('email')).toBe('test@example.com');
       expect(cellText('name')).toBe('John Doe');
       expect(cellText('address')).toBe('bul. Vitosha 1, 1000 Sofia');
@@ -849,24 +849,24 @@ describe('AdminMainComponent', () => {
       grid().expandRow('order-1');
       await render();
 
-      const items = Array.from(details().querySelectorAll('.order-items li'))
-        .map(li => ['.item-qty', '.item-name', '.item-total'].map(part => li.querySelector(part).textContent.trim()));
+      const items = Array.from(details()!.querySelectorAll('.order-items li'))
+        .map(li => ['.item-qty', '.item-name', '.item-total'].map(part => li.querySelector(part)!.textContent.trim()));
       // The variant is set apart from the product name by its margin
       expect(items).toEqual([
         ['2 ×', 'Jersey(Male L)', '€60.00'],
         ['1 ×', 'Mousepad', '€15.00']
       ]);
-      expect(details().querySelector('.order-note').textContent).toContain('Please call first');
+      expect(details()!.querySelector('.order-note')!.textContent).toContain('Please call first');
     });
 
     it('should ship a paid order with the tracking number typed in its details', async () => {
       grid().expandRow('order-1');
       await render();
 
-      const tracking = details().querySelector<HTMLInputElement>('#tracking-order-1');
+      const tracking = details()!.querySelector<HTMLInputElement>('#tracking-order-1')!;
       tracking.value = 'SPD-123';
       tracking.dispatchEvent(new Event('input'));
-      detailButton('Mark shipped').click();
+      detailButton('Mark shipped')!.click();
 
       const req = httpMock.expectOne(`${shopService['_apiEndpoint']}/shopadmin/orders/order-1/status`);
       expect(req.request.body).toEqual({ status: OrderStatus.Shipped, trackingNumber: 'SPD-123' });
@@ -883,9 +883,9 @@ describe('AdminMainComponent', () => {
 
       const confirm = fixture.debugElement.queryAll(By.directive(ConfirmComponent))
         .map(debugEl => debugEl.componentInstance as ConfirmComponent)
-        .find(c => c.title() === 'Refund this order?');
+        .find(c => c.title() === 'Refund this order?')!;
       const open = vi.spyOn(confirm, 'open');
-      detailButton('Refund').click();
+      detailButton('Refund')!.click();
 
       expect(open).toHaveBeenCalledWith(expect.objectContaining({ id: 'order-1' }));
       httpMock.expectNone(`${shopService['_apiEndpoint']}/shopadmin/orders/order-1/refund`);
@@ -903,10 +903,10 @@ describe('AdminMainComponent', () => {
       grid().expandRow('order-2');
       await render();
 
-      expect(details().querySelector('input')).toBeNull();
+      expect(details()!.querySelector('input')).toBeNull();
       expect(detailButton('Refund')).toBeUndefined();
 
-      detailButton('Cancel order').click();
+      detailButton('Cancel order')!.click();
 
       const req = httpMock.expectOne(`${shopService['_apiEndpoint']}/shopadmin/orders/order-2/status`);
       expect(req.request.body).toEqual({ status: OrderStatus.Cancelled, trackingNumber: null });

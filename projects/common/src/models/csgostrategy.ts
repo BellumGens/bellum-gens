@@ -13,7 +13,7 @@ export enum VoteDirection {
 
 export interface CSGOStrategy {
   id: string;
-  teamId: string;
+  teamId: string | null;
   side: Side;
   title: string;
   description: string;
@@ -58,7 +58,7 @@ export const NEW_EMPTY_STRAT: CSGOStrategy = {
 };
 
 export const NEW_EMPTY_COMMENT: StrategyComment = {
-  userId: null,
-  stratId: null,
-  comment: null
+  userId: '',
+  stratId: '',
+  comment: ''
 };

@@ -43,14 +43,14 @@ export class TeamPreferencesComponent {
 
   // Handed down by the parent TeamComponent through the router outlet. The form edits it in place.
   public team = inject(ROUTER_OUTLET_DATA) as Signal<CSGOTeam>;
-  public teammembers = signal<TeamMember []>(undefined);
+  public teammembers = signal<TeamMember [] | null>(null);
 
-  public authUser: Signal<ApplicationUser> = this.authService.applicationUser;
+  public authUser: Signal<ApplicationUser | null> = this.authService.applicationUser;
 
   constructor() {
     toObservable(this.team).pipe(
       map(team => team?.teamId),
-      filter(teamId => !!teamId),
+      filter((teamId): teamId is string => !!teamId),
       distinctUntilChanged(),
       switchMap(teamId => toObservable(this.apiService.getTeamMembers(teamId), { injector: this.injector })),
       takeUntilDestroyed()

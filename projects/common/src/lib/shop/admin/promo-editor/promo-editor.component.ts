@@ -45,9 +45,9 @@ export class PromoEditorComponent {
   public editing = signal<Promo | null>(null);
   public saving = signal(false);
 
-  public brands = [ANY_BRAND, Brand.BellumGens, Brand.EBLeague, Brand.BGEStaraZagora];
+  public readonly brands: readonly (typeof ANY_BRAND | Brand)[] = [ANY_BRAND, Brand.BellumGens, Brand.EBLeague, Brand.BGEStaraZagora];
   public brandNames = BRAND_NAMES;
-  public anyBrand = ANY_BRAND;
+  public readonly anyBrand = ANY_BRAND;
 
   public form = this.fb.group({
     code: ['', [Validators.required, Validators.maxLength(50), Validators.pattern(/^[A-Za-z0-9_-]+$/)]],

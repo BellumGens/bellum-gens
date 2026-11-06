@@ -39,7 +39,7 @@ export class TeamComponent extends BaseDirective {
   private platformId = inject(PLATFORM_ID);
   private injector = inject(Injector);
 
-  public authUser: Signal<ApplicationUser> = this.authManager.applicationUser;
+  public authUser: Signal<ApplicationUser | null> = this.authManager.applicationUser;
   // Handed down to the child routes through the router outlet.
   public team = signal<CSGOTeam>(TEAM_PLACEHOLDER);
   public isAdmin = signal(false);
@@ -52,13 +52,16 @@ export class TeamComponent extends BaseDirective {
       filter(teamId => !!teamId),
       // The service signal still holds the previous team until the requested one arrives
       switchMap(teamId => toObservable(this.apiService.getTeam(teamId), { injector: this.injector }).pipe(
-        filter(team => team?.teamId === teamId || team?.customUrl === teamId)
+        filter((team): team is CSGOTeam => team?.teamId === teamId || team?.customUrl === teamId)
       )),
       takeUntilDestroyed()
     ).subscribe(team => {
       this.team.set(team);
-      this.authManager.getUserIsTeamMember(team.teamId).subscribe(data => this.isMember.set(data));
-      this.authManager.getUserIsTeamAdmin(team.teamId).subscribe(data => this.isAdmin.set(data));
+      const id = team.teamId;
+      if (id) {
+        this.authManager.getUserIsTeamMember(id).subscribe(data => this.isMember.set(data));
+        this.authManager.getUserIsTeamAdmin(id).subscribe(data => this.isAdmin.set(data));
+      }
       this.titleService.setTitle('Counter-Strike Team: ' + team.teamName);
       this.loadSvgs();
     });

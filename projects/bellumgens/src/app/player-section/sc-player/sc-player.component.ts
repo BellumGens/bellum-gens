@@ -28,12 +28,12 @@ export class ScPlayerComponent {
   private apiService = inject(BellumgensApiService);
 
   // Handed down by the parent PlayerComponent through the router outlet.
-  public player = inject(ROUTER_OUTLET_DATA) as Signal<ApplicationUser>;
+  public player = inject(ROUTER_OUTLET_DATA) as Signal<ApplicationUser | null>;
 
   public loading = this.apiService.loadingPlayer;
   public tournaments = signal<Tournament []>([]);
 
-  private tournamentsLoadedFor: string;
+  private tournamentsLoadedFor?: string;
 
   constructor() {
     effect(() => {

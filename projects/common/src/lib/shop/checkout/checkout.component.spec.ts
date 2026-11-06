@@ -136,7 +136,7 @@ describe('CheckoutComponent', () => {
     fixture.detectChanges();
 
     const summary: HTMLElement = fixture.nativeElement.querySelector('.order-summary');
-    expect(summary.querySelector('.line-variant').textContent).toContain('(Male / L)');
+    expect(summary.querySelector('.line-variant')!.textContent).toContain('(Male / L)');
     expect(summary.textContent).toContain('Discount');
     expect(summary.textContent).toContain('-€3.00');
     expect(summary.textContent).toContain('Free');

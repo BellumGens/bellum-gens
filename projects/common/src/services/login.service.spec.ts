@@ -196,8 +196,8 @@ describe('LoginService', () => {
 
   it('should get user notifications', () => {
     const userNotifications: UserNotification[] = [
-      { state: NotificationState.Seen, teamInfo: null, invitingUser: null, sent: '2021-01-01T00:00:00.000Z' },
-      { state: NotificationState.Accepted, teamInfo: null, invitingUser: null, sent: '2021-01-01T00:00:00.000Z' }
+      { state: NotificationState.Seen, teamInfo: {} as CSGOTeam, invitingUser: {} as ApplicationUser, sent: '2021-01-01T00:00:00.000Z' },
+      { state: NotificationState.Accepted, teamInfo: {} as CSGOTeam, invitingUser: {} as ApplicationUser, sent: '2021-01-01T00:00:00.000Z' }
     ];
 
     const result = service.userNotifications;
@@ -448,7 +448,7 @@ describe('LoginService push notifications', () => {
   let router: Router;
   let messages: Subject<unknown>;
   let clicks: Subject<{ action: string; notification: { data: unknown } }>;
-  let swPush: { isEnabled: boolean; requestSubscription: ReturnType<typeof vi.fn>; messages: Subject<unknown>; notificationClicks: Subject<unknown> };
+  let swPush: { isEnabled: boolean; requestSubscription: ReturnType<typeof vi.fn>; messages: Subject<unknown>; notificationClicks: Subject<{ action: string; notification: { data: unknown } }> };
   const user = { id: '1', username: 'test-user' } as ApplicationUser;
   const subscription = { endpoint: 'https://push.example.com/1' } as PushSubscription;
   // The subscription request resolves a promise, so its follow-up runs on a later tick

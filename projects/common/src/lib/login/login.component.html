@@ -10,10 +10,10 @@
 @else if (userCheck()) {
   <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
 }
-@else if (authUser()) {
+@else if (authUser(); as user) {
   <div>
     <button class="profile-button" #profileButton igxButton="flat" igxRipple i18n-title title="Profile" i18n-igxLabel igxLabel="Profile" [igxToggleAction]="userProfile" [overlaySettings]="overlaySettings">
-      <igx-avatar [src]="authUser().csgoDetails?.avatarMedium || authUser().sc2Details?.avatarUrl || ''" [initials]="authUser().username" shape="circle">
+      <igx-avatar [src]="user.csgoDetails?.avatarMedium || user.sc2Details?.avatarUrl || ''" [initials]="user.username" shape="circle">
       </igx-avatar>
       <igx-icon class="drop-down-arrow">arrow_drop_down</igx-icon>
     </button>
@@ -27,12 +27,12 @@
             </igx-tab-header>
             <igx-tab-content class="profile-content">
               <div class="profile-view">
-                <igx-avatar [src]="authUser().csgoDetails?.avatarFull || authUser().sc2Details?.avatarUrl || ''" [initials]="authUser().username" shape="circle" [size]="'large'">
+                <igx-avatar [src]="user.csgoDetails?.avatarFull || user.sc2Details?.avatarUrl || ''" [initials]="user.username" shape="circle" [size]="'large'">
                 </igx-avatar>
                 <h1 igxCardHeaderTitle class="highlight profile-username">
-                  <button type="button" class="profile-link" (click)="navigateToProfile(authUser())">{{ authUser().username }}</button>
+                  <button type="button" class="profile-link" (click)="navigateToProfile(user)">{{ user.username }}</button>
                 </h1>
-                <h4 igxCardHeaderSubtitle>{{ authUser().csgoDetails?.realName || authUser().sc2Details?.battleNetBattleTag }}</h4>
+                <h4 igxCardHeaderSubtitle>{{ user.csgoDetails?.realName || user.sc2Details?.battleNetBattleTag }}</h4>
               </div>
               <button class="submit-button profile-username" igxButton="outlined" igxRipple (click)="logout()">
                 <igx-icon>logout</igx-icon>

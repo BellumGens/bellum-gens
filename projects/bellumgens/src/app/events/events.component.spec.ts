@@ -49,12 +49,12 @@ describe('EventsComponent', () => {
     const cards = (id: string) => Array.from<HTMLElement>(fixture.nativeElement.querySelectorAll(`#${id} .player-card`));
     const invited = cards('confirmed-players')[0];
 
-    expect(invited.querySelector('.player-card-name').textContent).toContain('Clem');
-    expect(invited.querySelector('igx-avatar').getAttribute('title')).toBe('France');
-    expect(invited.querySelector('.player-card-team').textContent).toBe('Team Liquid');
-    expect(invited.querySelector('.player-card-source').textContent).toContain('Champion');
+    expect(invited.querySelector('.player-card-name')!.textContent).toContain('Clem');
+    expect(invited.querySelector('igx-avatar')!.getAttribute('title')).toBe('France');
+    expect(invited.querySelector('.player-card-team')!.textContent).toBe('Team Liquid');
+    expect(invited.querySelector('.player-card-source')!.textContent).toContain('Champion');
     expect(cards('qualified-players').length).toBe(12);
-    expect(cards('talent')[0].querySelector('.player-card-team').textContent).toBe('Commentator');
+    expect(cards('talent')[0].querySelector('.player-card-team')!.textContent).toBe('Commentator');
   });
 
   it('should not show a flag for a player whose country is unknown', () => {
@@ -68,7 +68,7 @@ describe('EventsComponent', () => {
 
     const card: HTMLElement = fixture.nativeElement.querySelector('.player-card');
     expect(card.querySelector('igx-avatar')).toBeNull();
-    expect(card.querySelector('.player-card-team').textContent).toBe('Team');
+    expect(card.querySelector('.player-card-team')!.textContent).toBe('Team');
   });
 
   it('should leave out the country, team and qualification that are not announced yet', () => {
@@ -85,13 +85,13 @@ describe('EventsComponent', () => {
     expect(cards.length).toBe(3);
     cards.forEach(card => {
       expect(card.querySelector('igx-avatar')).toBeNull();
-      expect(card.querySelector('.player-card-name').textContent.trim()).toBe('TBA');
+      expect(card.querySelector('.player-card-name')!.textContent.trim()).toBe('TBA');
     });
     expect(cards[0].querySelector('.player-card-team')).toBeNull();
     expect(cards[0].querySelector('.player-card-source')).toBeNull();
     // A qualified player always shows how they qualified
-    expect(cards[1].querySelector('.player-card-source').textContent).toBe('Europe Open Qualifier');
-    expect(cards[2].querySelector('.player-card-team').textContent).toBe('Commentator');
+    expect(cards[1].querySelector('.player-card-source')!.textContent).toBe('Europe Open Qualifier');
+    expect(cards[2].querySelector('.player-card-team')!.textContent).toBe('Commentator');
   });
 
   it('should calculate time left correctly', () => {
@@ -130,7 +130,7 @@ describe('EventsComponent', () => {
 
   it('should link the BGE Balkan Circuit heading with a real link', () => {
     const heading = fixture.nativeElement.querySelector('h2#bgebalkan') as HTMLElement;
-    const link = heading.querySelector('a');
+    const link = heading.querySelector('a')!;
 
     expect(link.textContent.trim()).toBe('BGE Balkan Circuit');
     expect(link.hasAttribute('href')).toBe(true);

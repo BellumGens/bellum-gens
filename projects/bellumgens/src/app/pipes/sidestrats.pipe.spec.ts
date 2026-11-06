@@ -28,7 +28,7 @@ describe('SideStratsPipe', () => {
   it('keeps only the strategies for maps in the played pool', () => {
     const strats = [strat('mirage', CSGOMap.Mirage), strat('nuke', CSGOMap.Nuke), strat('inferno', CSGOMap.Inferno)];
 
-    expect(pipe.transform(strats, pool, null).map(s => s.id)).toEqual(['mirage', 'inferno']);
+    expect(pipe.transform(strats, pool, StratOrderBy.TopVoted)!.map(s => s.id)).toEqual(['mirage', 'inferno']);
   });
 
   it('orders the most recently updated strategies first', () => {
@@ -41,7 +41,7 @@ describe('SideStratsPipe', () => {
       strat('middle', CSGOMap.Inferno, { lastUpdated: updated('2024-03-01T00:00:00') })
     ];
 
-    expect(pipe.transform(strats, pool, StratOrderBy.MostRecent).map(s => s.id)).toEqual(['new', 'middle', 'old', 'same-as-old']);
+    expect(pipe.transform(strats, pool, StratOrderBy.MostRecent)!.map(s => s.id)).toEqual(['new', 'middle', 'old', 'same-as-old']);
   });
 
   it('orders dates the same way whether they arrive as strings or as dates', () => {
@@ -51,13 +51,13 @@ describe('SideStratsPipe', () => {
       strat('same-as-old', CSGOMap.Inferno, { lastUpdated: new Date('2024-01-01T00:00:00Z') })
     ];
 
-    expect(pipe.transform(strats, pool, StratOrderBy.MostRecent).map(s => s.id)).toEqual(['new', 'old', 'same-as-old']);
+    expect(pipe.transform(strats, pool, StratOrderBy.MostRecent)!.map(s => s.id)).toEqual(['new', 'old', 'same-as-old']);
   });
 
   it('leaves out a strategy for a map that is not in the pool', () => {
     const strats = [strat('mirage', CSGOMap.Mirage), strat('vertigo', CSGOMap.Vertigo)];
 
-    expect(pipe.transform(strats, pool, null).map(s => s.id)).toEqual(['mirage']);
+    expect(pipe.transform(strats, pool, StratOrderBy.TopVoted)!.map(s => s.id)).toEqual(['mirage']);
   });
 
   it('orders the strategies by their vote balance, unvoted ones counting as zero', () => {
@@ -68,13 +68,13 @@ describe('SideStratsPipe', () => {
       strat('mixed', CSGOMap.Inferno, { votes: votes(2, 1) })
     ];
 
-    expect(pipe.transform(strats, pool, StratOrderBy.TopVoted).map(s => s.id)).toEqual(['loved', 'mixed', 'unvoted', 'disliked']);
+    expect(pipe.transform(strats, pool, StratOrderBy.TopVoted)!.map(s => s.id)).toEqual(['loved', 'mixed', 'unvoted', 'disliked']);
   });
 
   it('keeps the order of strategies with the same vote balance', () => {
     const strats = [strat('a', CSGOMap.Mirage, { votes: votes(1, 0) }), strat('b', CSGOMap.Mirage, { votes: votes(2, 1) })];
 
-    expect(pipe.transform(strats, pool, StratOrderBy.TopVoted).map(s => s.id)).toEqual(['a', 'b']);
+    expect(pipe.transform(strats, pool, StratOrderBy.TopVoted)!.map(s => s.id)).toEqual(['a', 'b']);
   });
 
   it('does not change the list it was given', () => {

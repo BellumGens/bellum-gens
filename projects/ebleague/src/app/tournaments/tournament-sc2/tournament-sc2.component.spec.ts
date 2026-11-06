@@ -24,9 +24,9 @@ import { CSGODetails } from '../../../../../common/src/models/csgoplayer';
 const player = (id: string, username: string, overrides: Partial<ApplicationUser> = {}): ApplicationUser => ({
   id,
   username,
-  steamId: null,
-  battleNetId: null,
-  email: null,
+  steamId: '',
+  battleNetId: '',
+  email: '',
   searchVisible: true,
   externalLogins: [],
   steamUserException: false,
@@ -113,7 +113,7 @@ describe('TournamentSc2Component', () => {
   });
 
   it('loads the active tournament data when the route carries no tournament id', async () => {
-    expect(component.tournamentId()).toBeUndefined();
+    expect(component.tournamentId()).toBe('');
     flushUser(null);
     // An empty id loads the active tournament rather than requesting `/tournament?id=undefined`
     httpMock.expectNone(req => req.url.includes('/tournament?id='));
@@ -122,9 +122,9 @@ describe('TournamentSc2Component', () => {
     httpMock.verify();
     await render();
 
-    expect(component.tournament().name).toBe('StarCraft II League');
-    expect(el().querySelector('h1[igxCardHeaderTitle]').textContent.trim()).toBe('StarCraft II League');
-    expect(el().querySelector('igx-grid-toolbar-title').textContent).toContain('StarCraft II League Schedule');
+    expect(component.tournament()!.name).toBe('StarCraft II League');
+    expect(el().querySelector('h1[igxCardHeaderTitle]')!.textContent.trim()).toBe('StarCraft II League');
+    expect(el().querySelector('igx-grid-toolbar-title')!.textContent).toContain('StarCraft II League Schedule');
   });
 
   it('fetches the tournament, registrations, matches and groups for the routed tournament id', async () => {
@@ -150,8 +150,8 @@ describe('TournamentSc2Component', () => {
     expect(component.loadingGroups()).toBe(false);
 
     // Groups are listed newest first
-    expect(component.groups().map(g => g.id)).toEqual(['g2', 'g1']);
-    expect(component.tournament().name).toBe('Season 2');
+    expect(component.groups()!.map(g => g.id)).toEqual(['g2', 'g1']);
+    expect(component.tournament()!.name).toBe('Season 2');
   });
 
   it('shows a progress bar while the registrations are loading', async () => {
@@ -179,7 +179,7 @@ describe('TournamentSc2Component', () => {
         makeRegistration('r2', 'me', TournamentApplicationState.Confirmed, player('me', 'Serral'), 'Serral#5678'),
         makeRegistration('r3', 'other', TournamentApplicationState.Pending, player('other', 'Maru'), 'Maru#1111'),
         // A registration whose user account is gone still renders
-        { id: 'r4', userId: 'gone', state: TournamentApplicationState.Confirmed, user: null, battleTag: 'Ghost#0000', companyId: 'Ghost Inc.' }
+        { id: 'r4', userId: 'gone', state: TournamentApplicationState.Confirmed, user: undefined, battleTag: 'Ghost#0000', companyId: 'Ghost Inc.' }
       ]
     });
     await render();
@@ -190,17 +190,17 @@ describe('TournamentSc2Component', () => {
 
     // StarCraft II players link to the StarCraft II tab of their profile by user id, never by a Counter-Strike url
     const links = slots.map(s => s.querySelector<HTMLAnchorElement>('a'));
-    expect(links.map(a => a.textContent.trim())).toEqual(['Serral#1234', 'Serral#5678', 'Maru#1111', 'Ghost#0000']);
-    expect(links[0].getAttribute('href')).toBe(`${component.environment.bellumgens}/players/me/sc`);
-    expect(links[2].getAttribute('href')).toBe(`${component.environment.bellumgens}/players/other/sc`);
-    expect(links[3].getAttribute('href')).toBe(`${component.environment.bellumgens}/players/gone/sc`);
-    expect(slots[2].querySelector(':scope > span').textContent).toBe('[Maru Inc.]');
+    expect(links.map(a => a!.textContent.trim())).toEqual(['Serral#1234', 'Serral#5678', 'Maru#1111', 'Ghost#0000']);
+    expect(links[0]!.getAttribute('href')).toBe(`${component.environment.bellumgens}/players/me/sc`);
+    expect(links[2]!.getAttribute('href')).toBe(`${component.environment.bellumgens}/players/other/sc`);
+    expect(links[3]!.getAttribute('href')).toBe(`${component.environment.bellumgens}/players/gone/sc`);
+    expect(slots[2].querySelector(':scope > span')!.textContent).toBe('[Maru Inc.]');
 
     // Players without a StarCraft II avatar fall back to their initials
     const avatars = slots.map(s => s.querySelector<HTMLElement>('igx-avatar'));
-    expect(avatars[0].querySelector<HTMLElement>('.igx-avatar__image').style.backgroundImage).toContain('https://example.com/serral.png');
-    expect(avatars[2].classList).toContain('igx-avatar--initials');
-    expect(avatars[2].textContent.trim()).toBe('Ma');
+    expect(avatars[0]!.querySelector<HTMLElement>('.igx-avatar__image')!.style.backgroundImage).toContain('https://example.com/serral.png');
+    expect(avatars[2]!.classList).toContain('igx-avatar--initials');
+    expect(avatars[2]!.textContent.trim()).toBe('Ma');
   });
 
   it('renders a standings grid per group with links to every player', async () => {
@@ -217,7 +217,7 @@ describe('TournamentSc2Component', () => {
             sc2Details: { avatarUrl: 'https://example.com/serral.png' } as ApplicationUser['sc2Details']
           })),
           participant('p2', player('u2', 'Maru')),
-          { id: 'p3', userId: 'u3', state: TournamentApplicationState.Confirmed, user: null, battleTag: 'Ghost#1', companyId: 'Ghost Inc.' }
+          { id: 'p3', userId: 'u3', state: TournamentApplicationState.Confirmed, user: undefined, battleTag: 'Ghost#1', companyId: 'Ghost Inc.' }
         ] },
         { id: 'g2', name: 'Group B', participants: [] }
       ]
@@ -226,7 +226,7 @@ describe('TournamentSc2Component', () => {
 
     const groupGrids = Array.from(el().querySelectorAll<HTMLElement>('.group-columns igx-grid'));
     // The API returns groups oldest first and the page shows them newest first
-    expect(groupGrids.map(g => g.querySelector('igx-grid-toolbar-title').textContent.trim())).toEqual(['Group B', 'Group A']);
+    expect(groupGrids.map(g => g.querySelector('igx-grid-toolbar-title')!.textContent.trim())).toEqual(['Group B', 'Group A']);
 
     const playerLinks = Array.from(groupGrids[1].querySelectorAll<HTMLAnchorElement>('a[igxListLineTitle]'));
     expect(playerLinks.map(a => a.textContent.trim())).toEqual(['Serral', 'Maru', '']);
@@ -237,7 +237,7 @@ describe('TournamentSc2Component', () => {
       `${component.environment.bellumgens}/players/u3/sc`
     ]);
     const avatars = Array.from(groupGrids[1].querySelectorAll<HTMLElement>('igx-avatar'));
-    expect(avatars[0].querySelector<HTMLElement>('.igx-avatar__image').style.backgroundImage).toContain('https://example.com/serral.png');
+    expect(avatars[0].querySelector<HTMLElement>('.igx-avatar__image')!.style.backgroundImage).toContain('https://example.com/serral.png');
     expect(avatars[1].classList).toContain('igx-avatar--initials');
   });
 
@@ -265,7 +265,7 @@ describe('TournamentSc2Component', () => {
     await render();
 
     expect(component.sc2matches()).toEqual(matches);
-    const schedule = Array.from(el().querySelectorAll<HTMLElement>('igx-grid')).find(g => !g.closest('.group-columns'));
+    const schedule = Array.from(el().querySelectorAll<HTMLElement>('igx-grid')).find(g => !g.closest('.group-columns'))!;
     const rows = Array.from(schedule.querySelectorAll('igx-grid-row'));
     expect(rows.length).toBe(3);
 
@@ -285,7 +285,7 @@ describe('TournamentSc2Component', () => {
     const grid = fixture.debugElement.queryAll(debugEl => debugEl.componentInstance instanceof IgxGridComponent)
       .map(debugEl => debugEl.componentInstance as IgxGridComponent)
       .find(g => g.data === component.sc2matches());
-    grid.expandAll();
+    grid!.expandAll();
     await render();
 
     const text = schedule.textContent.replace(/\s+/g, ' ');
@@ -317,7 +317,7 @@ describe('TournamentSc2Component', () => {
     httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament?id=t2`).flush({ id: 't2', name: 'Season 3' });
     flushPage('?tournamentId=t2');
     httpMock.verify();
-    expect(component.tournament().name).toBe('Season 3');
+    expect(component.tournament()!.name).toBe('Season 3');
   });
 
   it('hides the team brackets for players without a team', async () => {
@@ -326,14 +326,14 @@ describe('TournamentSc2Component', () => {
     flushPage('', {
       registrations: [
         makeRegistration('r1', 'u1', TournamentApplicationState.Confirmed, player('u1', 'Serral'), 'Serral#1'),
-        { ...makeRegistration('r2', 'u2', TournamentApplicationState.Confirmed, player('u2', 'Maru'), 'Maru#1'), companyId: null }
+        { ...makeRegistration('r2', 'u2', TournamentApplicationState.Confirmed, player('u2', 'Maru'), 'Maru#1'), companyId: '' }
       ]
     });
     await render();
 
     const slots = Array.from(el().querySelectorAll('.registration-slot'));
     expect(slots.map(s => s.querySelector(':scope > span')?.textContent ?? null)).toEqual(['[Serral Inc.]', null]);
-    expect(el().querySelector('.participants-container').textContent).not.toContain('[]');
+    expect(el().querySelector('.participants-container')!.textContent).not.toContain('[]');
   });
 
   describe('on a narrow screen', () => {
@@ -371,20 +371,20 @@ describe('TournamentSc2Component', () => {
       expect(component.narrowScreen()).toBe(true);
       const grid = fixture.debugElement.queryAll(debugEl => debugEl.componentInstance instanceof IgxGridComponent)
         .map(debugEl => debugEl.componentInstance as IgxGridComponent)
-        .find(g => g.data === component.sc2matches());
+        .find(g => g.data === component.sc2matches())!;
       expect(grid.getColumnByName('videoLink').hidden).toBe(true);
       expect(grid.getColumnByName('demoLink').hidden).toBe(true);
       expect(grid.getColumnByName('startTime').width).toBe('150px');
 
-      const schedule = Array.from(el().querySelectorAll<HTMLElement>('igx-grid')).find(g => !g.closest('.group-columns'));
-      const row = schedule.querySelector('igx-grid-row');
+      const schedule = Array.from(el().querySelectorAll<HTMLElement>('igx-grid')).find(g => !g.closest('.group-columns'))!;
+      const row = schedule.querySelector('igx-grid-row')!;
       expect(row.textContent).toMatch(/1\/15\/24, 6:30\sPM/);
       expect(row.querySelectorAll('a.horizontal-center').length).toBe(0);
 
       grid.expandAll();
       await render();
       const links = Array.from(schedule.querySelectorAll<HTMLAnchorElement>('.match-links a'));
-      expect(links.map(a => [a.getAttribute('href'), a.querySelector('span').textContent.trim()])).toEqual([
+      expect(links.map(a => [a.getAttribute('href'), a.querySelector('span')!.textContent.trim()])).toEqual([
         ['https://video/1', 'Video'],
         ['https://replay/1', 'Replay']
       ]);
@@ -403,13 +403,13 @@ describe('TournamentSc2Component', () => {
       const grid = fixture.debugElement.queryAll(debugEl => debugEl.componentInstance instanceof IgxGridComponent)
         .map(debugEl => debugEl.componentInstance as IgxGridComponent)
         .find(g => g.data === component.sc2matches());
-      grid.expandAll();
+      grid!.expandAll();
       await render();
 
       // The match without links gets no links area at all
       const schedule = Array.from(el().querySelectorAll<HTMLElement>('igx-grid')).find(g => !g.closest('.group-columns'));
-      const linkAreas = Array.from(schedule.querySelectorAll('.match-links'))
-        .map(area => Array.from(area.querySelectorAll('a')).map(a => [a.getAttribute('href'), a.querySelector('span').textContent.trim()]));
+      const linkAreas = Array.from(schedule!.querySelectorAll('.match-links'))
+        .map(area => Array.from(area.querySelectorAll('a')).map(a => [a.getAttribute('href'), a.querySelector('span')!.textContent.trim()]));
       expect(linkAreas).toEqual([
         [['https://video/1', 'Video']],
         [['https://replay/2', 'Replay']]

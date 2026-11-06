@@ -7,7 +7,7 @@ import { StrategyVote, VoteDirection, ApplicationUser } from '../../../../common
 export class HasVotedPipe implements PipeTransform {
   private hasVotedClass = 'user-has-voted';
 
-  public transform(votes: StrategyVote [], direction: VoteDirection, authUser: ApplicationUser): string {
+  public transform(votes: StrategyVote [] | null | undefined, direction: VoteDirection, authUser: ApplicationUser | null): string {
     if (votes) {
       if (authUser) {
         return votes.find(v => v.vote === direction && v.userId === authUser.id) ? this.hasVotedClass : '';

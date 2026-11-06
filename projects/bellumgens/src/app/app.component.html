@@ -6,8 +6,8 @@
         <a igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="team/myteams">
           <igx-icon>people</igx-icon>
           <span i18n>My Teams</span>
-          @if (teams()?.length > 0) {
-            <igx-badge class="notifications-badge" aria-hidden="true" [value]="teams().length" type="info"></igx-badge>
+          @if (teamCount() > 0) {
+            <igx-badge class="notifications-badge" aria-hidden="true" [value]="teamCount()" type="info"></igx-badge>
           }
         </a>
         <a igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="notifications">
@@ -55,8 +55,8 @@
         @if (authUser()) {
           <a igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="team/myteams" i18n-title title="My Teams">
             <igx-icon>people</igx-icon>
-            @if (teams()?.length > 0) {
-              <igx-badge class="notifications-badge" aria-hidden="true" [value]="teams().length" type="info"></igx-badge>
+            @if (teamCount() > 0) {
+              <igx-badge class="notifications-badge" aria-hidden="true" [value]="teamCount()" type="info"></igx-badge>
             }
           </a>
           <a igxDrawerItem igxRipple routerLinkActive="igx-nav-drawer__item--active" routerLink="notifications" i18n-title title="Notifications">

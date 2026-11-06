@@ -55,7 +55,7 @@ describe('PlayerSearchComponent', () => {
   });
 
   const submit = async () => {
-    el().querySelector<HTMLButtonElement>('button.search-button').click();
+    el().querySelector<HTMLButtonElement>('button.search-button')!.click();
     await fixture.whenStable();
   };
 
@@ -164,8 +164,8 @@ describe('PlayerSearchComponent', () => {
       await chooseTeamPractice([team('t1', 'Team One')]);
 
       radioInputs('lineup')[0].click();
-      el().querySelector<HTMLElement>('igx-select-item').click();
-      const thumb = el().querySelector<HTMLElement>('igx-slider igx-thumb');
+      el().querySelector<HTMLElement>('igx-select-item')!.click();
+      const thumb = el().querySelector<HTMLElement>('igx-slider igx-thumb')!;
       for (let i = 0; i < 3; i++) {
         thumb.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
       }
@@ -189,7 +189,7 @@ describe('PlayerSearchComponent', () => {
       await submit();
 
       expect(navigate).toHaveBeenCalledWith(['search/players', 'overlap=0']);
-      expect(component.teamId()).toBeNull();
+      expect(component.teamId()).toBeUndefined();
     });
   });
 });

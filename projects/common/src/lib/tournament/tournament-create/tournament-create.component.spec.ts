@@ -76,29 +76,29 @@ describe('TournamentCreateComponent', () => {
   });
 
   it('should not submit if form is invalid', () => {
-    const spy = vi.spyOn(apiService, 'createTournament').mockImplementation(() => undefined);
+    const spy = vi.spyOn(apiService, 'createTournament').mockReturnValue(of({} as Tournament));
     component.submit();
     expect(spy).not.toHaveBeenCalled();
   });
 
   it('should call createTournament on submit in create mode', () => {
-    const spy = vi.spyOn(apiService, 'createTournament').mockReturnValue(of({} as any));
-    vi.spyOn(router, 'navigate').mockImplementation(() => undefined);
+    const spy = vi.spyOn(apiService, 'createTournament').mockReturnValue(of({} as Tournament));
+    vi.spyOn(router, 'navigate').mockResolvedValue(true);
     component.form.patchValue({ name: 'New Tournament' });
     component.submit();
     expect(spy).toHaveBeenCalled();
   });
 
   it('should navigate to /tournaments after successful create', () => {
-    vi.spyOn(apiService, 'createTournament').mockReturnValue(of({} as any));
-    const navSpy = vi.spyOn(router, 'navigate').mockImplementation(() => undefined);
+    vi.spyOn(apiService, 'createTournament').mockReturnValue(of({} as Tournament));
+    const navSpy = vi.spyOn(router, 'navigate').mockResolvedValue(true);
     component.form.patchValue({ name: 'New Tournament' });
     component.submit();
     expect(navSpy).toHaveBeenCalledWith(['/tournaments']);
   });
 
   it('should navigate to /tournaments on cancel', () => {
-    const spy = vi.spyOn(router, 'navigate').mockImplementation(() => undefined);
+    const spy = vi.spyOn(router, 'navigate').mockResolvedValue(true);
     component.cancel();
     expect(spy).toHaveBeenCalledWith(['/tournaments']);
   });
@@ -113,10 +113,10 @@ describe('TournamentCreateComponent', () => {
     ];
 
     for (const [control, label] of cases) {
-      const field = el.querySelector<HTMLInputElement>(`[formcontrolname="${control}"]`);
+      const field = el.querySelector<HTMLInputElement>(`[formcontrolname="${control}"]`)!;
       expect(field.id).not.toBe('');
-      expect(field.labels.length).toBe(1);
-      expect(field.labels[0].textContent.trim()).toBe(label);
+      expect(field.labels!.length).toBe(1);
+      expect(field.labels![0].textContent.trim()).toBe(label);
     }
   });
 
@@ -127,7 +127,7 @@ describe('TournamentCreateComponent', () => {
 
   describe('from the page', () => {
     const el = (): HTMLElement => fixture.nativeElement;
-    const submitButton = () => el().querySelector<HTMLButtonElement>('button[type="submit"]');
+    const submitButton = () => el().querySelector<HTMLButtonElement>('button[type="submit"]')!;
 
     it('creates the tournament from the submit button, showing progress while it saves', () => {
       const response = new Subject<Tournament>();

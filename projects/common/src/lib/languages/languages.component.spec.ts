@@ -86,7 +86,7 @@ describe('LanguagesComponent', () => {
     it('should render a drop down item per language with its label in its own language', async () => {
       const items = await openDropDown();
       expect(items.length).toBe(2);
-      const labels = items.map(item => item.querySelector('span[lang]'));
+      const labels = items.map(item => item.querySelector('span[lang]')!);
       expect(labels.map(l => l.textContent.trim())).toEqual(['English', 'Български']);
       expect(labels.map(l => l.getAttribute('lang'))).toEqual(['en', 'bg']);
     });

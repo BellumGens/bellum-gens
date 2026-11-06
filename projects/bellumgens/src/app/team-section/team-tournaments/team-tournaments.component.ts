@@ -25,7 +25,7 @@ export class TeamTournamentsComponent {
 
   public tournaments = toSignal(toObservable(this.team).pipe(
     map(team => team?.teamId),
-    filter(teamId => !!teamId),
+    filter((teamId): teamId is string => !!teamId),
     distinctUntilChanged(),
     // A failed request falls back to no tournaments, so other teams can still load theirs
     switchMap(teamId => this.apiService.getTeamTournaments(teamId).pipe(catchError(() => of([] as Tournament []))))

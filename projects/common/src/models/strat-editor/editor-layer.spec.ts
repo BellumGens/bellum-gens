@@ -176,7 +176,7 @@ describe('ImageLayer', () => {
     const imageLayer = new ImageLayer(context, 'Layer', 1, {
       name: 't', type: EditorLayerType.Image, x: 10, y: 10, width: 20, height: 20, movable: true, displayRatio: 1
     });
-    const selections = [];
+    const selections: boolean[] = [];
     imageLayer.layerSelect.subscribe(selection => selections.push(selection.selected));
 
     expect(imageLayer.trySelect({ x: 5, y: 15 })).toBe(false);

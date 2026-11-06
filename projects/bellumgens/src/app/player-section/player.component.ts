@@ -22,10 +22,10 @@ export class PlayerComponent {
   private apiService = inject(BellumgensApiService);
   private activatedRoute = inject(ActivatedRoute);
 
-  private cachedPlayer = signal<Signal<ApplicationUser>>(null);
+  private cachedPlayer = signal<Signal<ApplicationUser | null> | null>(null);
 
   // Keeps showing the previous player while the next one loads (the service cache is cleared meanwhile).
-  public player = linkedSignal<ApplicationUser, ApplicationUser>({
+  public player = linkedSignal<ApplicationUser | null, ApplicationUser | null>({
     source: () => this.cachedPlayer()?.() ?? null,
     computation: (player, previous) => player ?? previous?.value ?? null
   });

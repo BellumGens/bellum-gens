@@ -49,7 +49,7 @@ describe('SearchComponent', () => {
   });
 
   /** Answers the lazy "who is logged in" check triggered by reading `authUser`. */
-  const flushAuthUser = async (user: ApplicationUser) => {
+  const flushAuthUser = async (user: ApplicationUser | null) => {
     httpMock.expectOne(environment.authApiEndpoint).flush(user);
     await fixture.whenStable();
   };

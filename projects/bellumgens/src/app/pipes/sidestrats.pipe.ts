@@ -6,12 +6,12 @@ import { CSGOStrategy, VoteDirection, CSGOMapPool, StratOrderBy } from '../../..
 })
 export class SideStratsPipe implements PipeTransform {
 
-  public transform(strats: CSGOStrategy [], maps: CSGOMapPool [], order: StratOrderBy): CSGOStrategy [] {
+  public transform(strats: CSGOStrategy [] | null, maps: CSGOMapPool [] | null, order: StratOrderBy): CSGOStrategy [] | null {
     // A strategy for a map that is not in the pool is left out rather than failing the whole list
     let filtered = strats && maps && strats.filter(s => maps.find(m => m.mapId === s.map)?.isPlayed);
     if (filtered && order === StratOrderBy.MostRecent) {
       // The API sends ISO strings, so the dates are compared by their time rather than by reference
-      const time = (strategy: CSGOStrategy) => new Date(strategy.lastUpdated).getTime();
+      const time = (strategy: CSGOStrategy) => strategy.lastUpdated ? new Date(strategy.lastUpdated).getTime() : NaN;
       filtered = filtered.sort((a, b) => time(b) - time(a));
     } else if (filtered && order === StratOrderBy.TopVoted) {
       filtered = filtered.sort((a, b) => {

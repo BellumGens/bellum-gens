@@ -9,7 +9,7 @@
       <input #search igxInput id="searchGroups" [(ngModel)]="searchGroups">
       @if (search.value.length > 0) {
         <igx-suffix>
-          <button type="button" igxIconButton="flat" (click)="searchGroups.set(null)" i18n-aria-label aria-label="Clear search">
+          <button type="button" igxIconButton="flat" (click)="searchGroups.set('')" i18n-aria-label aria-label="Clear search">
             <igx-icon>clear</igx-icon>
           </button>
         </igx-suffix>
@@ -41,7 +41,7 @@
           name="teamName" minlength="2" [required]="true" [(ngModel)]="newTeam.teamName">
           @if (teamName.value.length > 0) {
             <igx-suffix>
-              <button type="button" igxIconButton="flat" (click)="newTeam.teamName = null" i18n-aria-label aria-label="Clear team name">
+              <button type="button" igxIconButton="flat" (click)="newTeam.teamName = ''" i18n-aria-label aria-label="Clear team name">
                 <igx-icon>clear</igx-icon>
               </button>
             </igx-suffix>
@@ -62,7 +62,7 @@
           </textarea>
           @if (teamDescripton.value.length > 0) {
             <igx-suffix>
-              <button type="button" igxIconButton="flat" (click)="newTeam.description = null" i18n-aria-label aria-label="Clear team motto">
+              <button type="button" igxIconButton="flat" (click)="newTeam.description = ''" i18n-aria-label aria-label="Clear team motto">
                 <igx-icon>clear</igx-icon>
               </button>
             </igx-suffix>
@@ -86,7 +86,7 @@
             name="teamAvatar" [(ngModel)]="newTeam.teamAvatar">
             @if (teamAvatar.value?.length > 0) {
               <igx-suffix>
-                <button type="button" igxIconButton="flat" (click)="newTeam.teamAvatar = null" i18n-aria-label aria-label="Clear team avatar URL">
+                <button type="button" igxIconButton="flat" (click)="newTeam.teamAvatar = ''" i18n-aria-label aria-label="Clear team avatar URL">
                   <igx-icon>clear</igx-icon>
                 </button>
               </igx-suffix>

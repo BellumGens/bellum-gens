@@ -87,10 +87,10 @@ describe('TournamentHomeComponent', () => {
     await fixture.whenStable();
     fixture.detectChanges();
 
-    expect(clear().type).toBe('button');
-    expect(clear().getAttribute('aria-label')).toBe('Clear email');
+    expect(clear()!.type).toBe('button');
+    expect(clear()!.getAttribute('aria-label')).toBe('Clear email');
 
-    clear().click();
+    clear()!.click();
     await fixture.whenStable();
     fixture.detectChanges();
 
@@ -123,7 +123,7 @@ describe('TournamentHomeComponent', () => {
     it('scrolls to the league description from the learn more button', () => {
       const scroll = vi.spyOn(Element.prototype, 'scrollIntoView').mockImplementation(() => undefined);
 
-      el().querySelector<HTMLButtonElement>('.info-button').click();
+      el().querySelector<HTMLButtonElement>('.info-button')!.click();
 
       expect(scroll).toHaveBeenCalledWith({ behavior: 'smooth' });
       expect(scroll.mock.contexts[0]).toBe(el().querySelector('#moreinfo'));
@@ -151,7 +151,7 @@ describe('TournamentHomeComponent', () => {
     it('opens a prepared tweet from the tweet button', () => {
       const open = vi.spyOn(window, 'open').mockReturnValue(null);
 
-      el().querySelector<HTMLButtonElement>('button.space-out-button').click();
+      el().querySelector<HTMLButtonElement>('button.space-out-button')!.click();
 
       expect(open).toHaveBeenCalledTimes(1);
       expect(open.mock.calls[0][0]).toContain('Hey @EsportBLeague');
@@ -163,12 +163,12 @@ describe('TournamentHomeComponent', () => {
     const subscribeRequests = () => httpMock.match(req => req.method === 'POST' && req.url.endsWith('/subscribe'));
 
     it('subscribes the email typed into the form', async () => {
-      const input = el().querySelector<HTMLInputElement>('#subemail');
+      const input = el().querySelector<HTMLInputElement>('#subemail')!;
       input.value = 'fan@example.com';
       input.dispatchEvent(new Event('input'));
       await render();
       expect(component.userEmail()).toBe('fan@example.com');
-      const submit = el().querySelector<HTMLButtonElement>('button.submit-email');
+      const submit = el().querySelector<HTMLButtonElement>('button.submit-email')!;
       expect(submit.disabled).toBe(false);
 
       submit.click();

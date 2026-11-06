@@ -4,7 +4,7 @@ import { provideRouter } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
-import { ApplicationUser, LoginService } from '../../public_api';
+import { ApplicationUser, CSGODetails, CSGOStats, LoginService, SteamUser } from '../../public_api';
 import { Router } from '@angular/router';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { By } from '@angular/platform-browser';
@@ -17,7 +17,20 @@ describe('LoginComponent', () => {
   let httpMock: HttpTestingController;
   let router: Router;
   let authService: LoginService;
-  let applicationUser: ApplicationUser = {
+  const csgoDetails: CSGODetails = {
+    steamUser: {} as SteamUser,
+    userStats: {} as CSGOStats,
+    headshotPercentage: 50,
+    killDeathRatio: 1,
+    accuracy: 0.2,
+    steamPrivate: false,
+    realName: 'Real Name',
+    customUrl: '123',
+    avatarFull: 'string',
+    avatarMedium: 'string',
+    avatarIcon: 'string'
+  };
+  const applicationUser: ApplicationUser = {
     id: '1',
     steamId: 'test-steam-id',
     battleNetId: 'test-battlenet-id',
@@ -27,19 +40,7 @@ describe('LoginComponent', () => {
     steamUserException: false,
     userStatsException: false,
     registered: true,
-    csgoDetails: {
-      steamUser: null,
-      userStats: null,
-      headshotPercentage: 50,
-      killDeathRatio: 1,
-      accuracy: 0.2,
-      steamPrivate: false,
-      realName: 'Real Name',
-      customUrl: '123',
-      avatarFull: 'string',
-      avatarMedium: 'string',
-      avatarIcon: 'string'
-    },
+    csgoDetails,
     externalLogins: []
   };
 
@@ -100,7 +101,7 @@ describe('LoginComponent', () => {
     expect(component.authUser()).toBe(applicationUser);
     fixture.detectChanges();
 
-    const userProfile = component.userProfile();
+    const userProfile = component.userProfile()!;
     vi.spyOn(userProfile, 'close').mockImplementation(() => undefined);
     component.logout();
     req = httpMock.expectOne(`${authService['_apiEndpoint']}/logout`);
@@ -110,9 +111,9 @@ describe('LoginComponent', () => {
   });
 
   it('navigateToProfile method should call router.navigate with correct params', () => {
-    vi.spyOn(router, 'navigate').mockImplementation(() => undefined);
+    vi.spyOn(router, 'navigate').mockResolvedValue(true);
     component.navigateToProfile(applicationUser);
-    expect(router.navigate).toHaveBeenCalledWith(['/players/', applicationUser.csgoDetails.customUrl]);
+    expect(router.navigate).toHaveBeenCalledWith(['/players/', csgoDetails.customUrl]);
   });
 
   describe('rendering', () => {
@@ -140,9 +141,9 @@ describe('LoginComponent', () => {
       profileButton().click();
       await fixture.whenStable();
     };
-    const profileUsername = (): HTMLElement => document.querySelector('h1.profile-username');
-    const profileLink = (): HTMLButtonElement => profileUsername().querySelector('button');
-    const profileSubtitle = (): string => document.querySelector('[igxCardHeaderSubtitle]').textContent.trim();
+    const profileUsername = (): HTMLElement => document.querySelector<HTMLElement>('h1.profile-username')!;
+    const profileLink = (): HTMLButtonElement => profileUsername().querySelector('button')!;
+    const profileSubtitle = (): string => document.querySelector('[igxCardHeaderSubtitle]')!.textContent.trim();
 
     afterEach(() => {
       component.close();
@@ -201,20 +202,20 @@ describe('LoginComponent', () => {
       expect(profileButton().getAttribute('title')).toBe('Profile');
       expect(profileButton().getAttribute('aria-label')).toBe('Profile');
       const [avatar] = avatars();
-      expect(avatar.src).toBe(applicationUser.csgoDetails.avatarMedium);
+      expect(avatar.src).toBe(csgoDetails.avatarMedium);
       expect(avatar.initials).toBe(applicationUser.username);
     });
 
     it('should render the CS:GO profile of the logged in user', async () => {
-      const user: ApplicationUser = { ...applicationUser, csgoDetails: { ...applicationUser.csgoDetails, avatarFull: 'full-avatar' } };
+      const user: ApplicationUser = { ...applicationUser, csgoDetails: { ...csgoDetails, avatarFull: 'full-avatar' } };
       await logIn(user);
 
       await openProfile();
 
-      expect(component.userProfile().collapsed).toBe(false);
+      expect(component.userProfile()?.collapsed).toBe(false);
       expect(avatars()[1].src).toBe('full-avatar');
       expect(profileUsername().textContent.trim()).toBe(user.username);
-      expect(profileSubtitle()).toBe(user.csgoDetails.realName);
+      expect(profileSubtitle()).toBe(user.csgoDetails?.realName);
     });
 
     it('should render the StarCraft II profile of the logged in user', async () => {
@@ -246,7 +247,7 @@ describe('LoginComponent', () => {
       expect(profileLink().type).toBe('button');
       profileLink().click();
 
-      expect(navigate).toHaveBeenCalledWith(['/players/', applicationUser.csgoDetails.customUrl]);
+      expect(navigate).toHaveBeenCalledWith(['/players/', csgoDetails.customUrl]);
     });
 
     it('should navigate to the StarCraft II player profile when the username is clicked', async () => {
@@ -265,7 +266,7 @@ describe('LoginComponent', () => {
       await openProfile();
 
       const logoutButton = Array.from(document.querySelectorAll<HTMLButtonElement>('igx-tab-content button'))
-        .find(b => b.textContent.includes('logout'));
+        .find(b => b.textContent.includes('logout'))!;
       expect(logoutButton.classList).toContain('submit-button');
       expect(logoutButton.classList).toContain('profile-username');
       logoutButton.click();
@@ -290,7 +291,7 @@ describe('LoginComponent', () => {
       preferences.componentInstance.userDeleted.emit();
       await fixture.whenStable();
 
-      expect(component.userProfile().collapsed).toBe(true);
+      expect(component.userProfile()?.collapsed).toBe(true);
     });
 
     it('should not fail closing the profile when no user is logged in', () => {
@@ -330,7 +331,7 @@ describe('LoginComponent', () => {
         component.navigateToProfile(applicationUser);
 
         expect(navigate).not.toHaveBeenCalled();
-        expect(location.href).toBe(`http://localhost:4200/players/${applicationUser.csgoDetails.customUrl}`);
+        expect(location.href).toBe(`http://localhost:4200/players/${csgoDetails.customUrl}`);
       });
 
       it('should redirect to the StarCraft II player profile in the Bellum Gens app', () => {

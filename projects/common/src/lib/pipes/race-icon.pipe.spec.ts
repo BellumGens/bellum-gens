@@ -28,12 +28,12 @@ describe('RaceIconPipe', () => {
   });
 
   it('should return an empty string for an invalid race', () => {
-    const result = pipe.transform(null as unknown as SC2Race);
+    const result = pipe.transform(null);
     expect(result).toBe('');
   });
 
   it('should return an empty string for undefined', () => {
-    const result = pipe.transform(undefined as unknown as SC2Race);
+    const result = pipe.transform(undefined);
     expect(result).toBe('');
   });
 });

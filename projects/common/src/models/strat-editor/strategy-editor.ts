@@ -19,12 +19,16 @@ export class StrategyEditor {
   private _height = 1024;
   private _displayRatio: number;
 
-  private _selectedLayer: BaseLayer;
+  private _selectedLayer: BaseLayer | null = null;
   // The editor's own subscriptions to each layer; ending them leaves the layer's subjects usable
   private _layerSubscriptions = new Map<BaseLayer, Subscription>();
 
   constructor(private _canvas: ElementRef<HTMLCanvasElement>, displayRatio = 1, name?: string) {
-    this._context = this._canvas.nativeElement.getContext('2d');
+    const context = this._canvas.nativeElement.getContext('2d');
+    if (!context) {
+      throw new Error('Canvas 2D context is not available');
+    }
+    this._context = context;
     this._displayRatio = displayRatio;
     this.surfaceName = name ? name : this.generateId();
   }
@@ -81,12 +85,12 @@ export class StrategyEditor {
     return this._layers;
   }
 
-  public createLayer(type, meta?: EditorLayer): BaseLayer {
+  public createLayer(type: EditorLayerType, meta?: EditorLayer): BaseLayer {
     switch (type) {
       case EditorLayerType.Image:
-        return this.createImageLayer(meta.name, meta);
+        return this.createImageLayer(meta?.name, meta);
       case EditorLayerType.Freeflow:
-        return this.createFreeflowLayer(meta.name, meta);
+        return this.createFreeflowLayer(meta?.name, meta);
     }
   }
 

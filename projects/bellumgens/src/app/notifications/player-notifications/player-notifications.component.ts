@@ -47,9 +47,9 @@ export class PlayerNotificationsComponent {
   public actionInProgress = signal(false);
   public actionText = signal('');
 
-  public authUser: Signal<ApplicationUser> = this.authManager.applicationUser;
+  public authUser: Signal<ApplicationUser | null> = this.authManager.applicationUser;
   // Only pull the notifications once a user is logged in.
-  public notifications = computed<UserNotification []>(() => this.authUser() ? this.authManager.userNotifications() : null);
+  public notifications = computed<UserNotification [] | null>(() => this.authUser() ? this.authManager.userNotifications() : null);
 
   public acceptInvitation(notification: UserNotification) {
     this.actionText.set('Accepting...');

@@ -6,7 +6,7 @@ import { ACTIVE_DUTY, type CSGOMap } from '../../models/csgomaps';
 })
 export class CSGOMapimagePipe implements PipeTransform {
 
-  public transform(map: CSGOMap): string {
+  public transform(map: CSGOMap | null | undefined): string {
     return ACTIVE_DUTY.find(m => m.mapId === map)?.image || '';
   }
 

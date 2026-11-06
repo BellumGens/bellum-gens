@@ -41,11 +41,11 @@ export class UserPreferencesComponent {
   public preferences = linkedSignal<ApplicationUser | null, UserPreferences>({
     source: this.authUser,
     computation: (user, previous) => user
-      ? { searchVisible: user.searchVisible, email: user.email }
+      ? { searchVisible: user.searchVisible, email: user.email ?? '' }
       : previous?.value ?? { searchVisible: true, email: '' }
   });
 
-  public loginColors = LOGIN_ASSETS;
+  public loginColors: Readonly<Record<string, string>> = LOGIN_ASSETS;
   public providers = signal<LoginProvider []>([]);
   // The registrations are cached by the login service and only pulled once a user is logged in.
   public registrations = computed<TournamentApplication []>(() =>
@@ -81,7 +81,11 @@ export class UserPreferencesComponent {
   }
 
   public deleteAccount() {
-    this.authManager.deleteAccount(this.authUser().id).subscribe({
+    const user = this.authUser();
+    if (!user) {
+      return;
+    }
+    this.authManager.deleteAccount(user.id).subscribe({
       next: () => {
         this.userDeleted.emit();
       },
@@ -100,6 +104,9 @@ export class UserPreferencesComponent {
   }
 
   public deleteRegistration(registration: TournamentApplication) {
+    if (!registration.id) {
+      return;
+    }
     this.apiService.deleteRegistration(registration.id).subscribe({
       next: () => this.updateRegistrations(this.registrations().filter(r => r.id !== registration.id)),
       error: () => {}
@@ -107,7 +114,7 @@ export class UserPreferencesComponent {
   }
 
   public disableLogin(provider: string) {
-    return this.authUser() ? this.authUser().externalLogins.includes(provider) : false;
+    return this.authUser()?.externalLogins.includes(provider) ?? false;
   }
 
   public openRegistration() {

@@ -139,7 +139,7 @@ describe('ApiStrategiesService', () => {
       teamId: '123',
       url: 'test'
     });
-    expect(service['_strategyCache'].get(stratId)()).toEqual({
+    expect(service['_strategyCache'].get(stratId)!()).toEqual({
       id: '123456789',
       title: 'Test',
       description: 'Test',
@@ -148,7 +148,7 @@ describe('ApiStrategiesService', () => {
       teamId: '123',
       url: 'test'
     });
-    expect(strat().title).toEqual('Test');
+    expect(strat()?.title).toEqual('Test');
   });
 
   it('should submit strategy', () => {
@@ -168,7 +168,7 @@ describe('ApiStrategiesService', () => {
     expect(req.request.body).toEqual(strat);
     expect(req.request.withCredentials).toEqual(true);
     req.flush(strat);
-    expect(service['_strategyCache'].get(strat.id)()).toEqual(strat);
+    expect(service['_strategyCache'].get(strat.id)!()).toEqual(strat);
 
     const strat2: CSGOStrategy = {
       id: '123456',
@@ -210,7 +210,7 @@ describe('ApiStrategiesService', () => {
     expect(req3.request.body).toEqual(strat3);
     expect(req3.request.withCredentials).toEqual(true);
     req3.flush(strat3);
-    expect(service['_strategyCache'].get(strat3.id)()).toEqual(strat3);
+    expect(service['_strategyCache'].get(strat3.id)!()).toEqual(strat3);
   });
 
   it('should submit strat vote', () => {
@@ -227,7 +227,7 @@ describe('ApiStrategiesService', () => {
     const direction = VoteDirection.Up;
     const userId = '123';
     const vote: StrategyVote = { userId: userId, vote: direction };
-    let updated: CSGOStrategy;
+    let updated: CSGOStrategy | undefined;
     let sub = commsService.success.subscribe(message => expect(message).toEqual('Vote submitted successfully!'));
     service.submitStratVote(strat, direction, userId).subscribe(result => updated = result);
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/strategy/vote`);
@@ -235,13 +235,13 @@ describe('ApiStrategiesService', () => {
     expect(req.request.body).toEqual({ id: strat.id, direction });
     expect(req.request.withCredentials).toEqual(true);
     req.flush(vote);
-    expect(updated.votes).toEqual([vote]);
+    expect(updated?.votes).toEqual([vote]);
     // the given strategy is not mutated
     expect(strat.votes).toEqual([]);
     sub.unsubscribe();
 
     // Should update the vote if the user already voted
-    const voted = updated;
+    const voted = updated!;
     const vote2: StrategyVote = { userId: userId, vote: VoteDirection.Down };
     sub = commsService.success.subscribe(message => expect(message).toEqual('Vote submitted successfully!'));
     service.submitStratVote(voted, VoteDirection.Down, userId).subscribe(result => updated = result);
@@ -250,19 +250,19 @@ describe('ApiStrategiesService', () => {
     expect(req2.request.body).toEqual({ id: strat.id, direction: VoteDirection.Down });
     expect(req2.request.withCredentials).toEqual(true);
     req2.flush(vote2);
-    expect(updated.votes.find(v => v.userId === userId).vote).toEqual(vote2.vote);
-    expect(voted.votes[0].vote).toEqual(direction);
+    expect(updated?.votes?.find(v => v.userId === userId)?.vote).toEqual(vote2.vote);
+    expect(voted.votes![0].vote).toEqual(direction);
     sub.unsubscribe();
 
     // Should remove the vote if the user already voted and the direction is the same
     sub = commsService.success.subscribe(message => expect(message).toEqual('Vote removed successfully!'));
-    service.submitStratVote(updated, VoteDirection.Down, userId).subscribe(result => updated = result);
+    service.submitStratVote(updated!, VoteDirection.Down, userId).subscribe(result => updated = result);
     const req4 = httpMock.expectOne(`${service['_apiEndpoint']}/strategy/vote`);
     expect(req4.request.method).toEqual('POST');
     expect(req4.request.body).toEqual({ id: strat.id, direction: VoteDirection.Down });
     expect(req4.request.withCredentials).toEqual(true);
     req4.flush(null);
-    expect(updated.votes.find(v => v.userId === userId)).toBeUndefined();
+    expect(updated?.votes?.find(v => v.userId === userId)).toBeUndefined();
     sub.unsubscribe();
 
     const errorMessage = `Http failure response for ${service['_apiEndpoint']}/strategy/vote: 500 Could not submit vote!`;
@@ -281,22 +281,22 @@ describe('ApiStrategiesService', () => {
   it('should only remove the voting user\'s vote when a vote is withdrawn', () => {
     const other: StrategyVote = { userId: 'other', vote: VoteDirection.Up };
     const strat = { id: '1', votes: [other] } as CSGOStrategy;
-    let updated: CSGOStrategy;
+    let updated: CSGOStrategy | undefined;
     service.submitStratVote(strat, VoteDirection.Up, 'me').subscribe(result => updated = result);
     httpMock.expectOne(`${service['_apiEndpoint']}/strategy/vote`).flush(null);
-    expect(updated.votes).toEqual([other]);
+    expect(updated?.votes).toEqual([other]);
   });
 
   it('should swap a voted strategy into the cached strategies and strategy cache', () => {
-    const cachedStrat = { id: 'abc', customUrl: 'my-strat', votes: [] } as CSGOStrategy;
-    const other = { id: 'other', votes: [] } as CSGOStrategy;
+    const cachedStrat = { id: 'abc', customUrl: 'my-strat', votes: [] as StrategyVote[] } as CSGOStrategy;
+    const other = { id: 'other', votes: [] as StrategyVote[] } as CSGOStrategy;
     service['_strategies'].set([cachedStrat, other]);
     const byUrl = service.getStrategy('my-strat');
     httpMock.expectOne(`${service['_apiEndpoint']}/strategy/strat?stratId=my-strat`).flush(cachedStrat);
     const list = service['_strategies']();
 
     const vote: StrategyVote = { userId: 'u', vote: VoteDirection.Up };
-    let updated: CSGOStrategy;
+    let updated: CSGOStrategy | undefined;
     service.submitStratVote(cachedStrat, VoteDirection.Up, 'u').subscribe(result => updated = result);
     httpMock.expectOne(`${service['_apiEndpoint']}/strategy/vote`).flush(vote);
 
@@ -304,7 +304,7 @@ describe('ApiStrategiesService', () => {
     expect(service['_strategies']()[0]).toBe(updated);
     expect(service['_strategies']()[1]).toBe(other);
     expect(byUrl()).toBe(updated);
-    expect(updated.votes).toEqual([vote]);
+    expect(updated?.votes).toEqual([vote]);
     expect(cachedStrat.votes).toEqual([]);
   });
 
@@ -321,7 +321,7 @@ describe('ApiStrategiesService', () => {
       comments: []
     };
     service['_strategies'].set([strat]);
-    let updated: CSGOStrategy;
+    let updated: CSGOStrategy | undefined;
     const sub = commsService.success.subscribe(message => expect(message).toEqual('Comment submitted successfully!'));
     service.submitStratComment(comment, strat).subscribe(result => updated = result);
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/strategy/comment`);
@@ -329,13 +329,13 @@ describe('ApiStrategiesService', () => {
     expect(req.request.body).toEqual(comment);
     expect(req.request.withCredentials).toEqual(true);
     req.flush(comment);
-    expect(updated.comments).toEqual([comment]);
+    expect(updated?.comments).toEqual([comment]);
     expect(strat.comments).toEqual([]);
     expect(service['_strategies']()[0]).toBe(updated);
     sub.unsubscribe();
 
     // Should update the comment if the comment is already cached
-    const commented = updated;
+    const commented = updated!;
     const comment2: StrategyComment = { id: '123', stratId: '456', comment: 'Updated test comment', userId: '123', published: new Date() };
     commsService.success.subscribe(message => expect(message).toEqual('Comment edited successfully!'));
     service.submitStratComment(comment2, commented).subscribe(result => updated = result);
@@ -344,9 +344,9 @@ describe('ApiStrategiesService', () => {
     expect(req2.request.body).toEqual(comment2);
     expect(req2.request.withCredentials).toEqual(true);
     req2.flush(comment2);
-    expect(updated.comments.length).toEqual(1);
-    expect(updated.comments.find(c => c.id === comment2.id).comment).toEqual(comment2.comment);
-    expect(commented.comments[0].comment).toEqual('Test');
+    expect(updated?.comments?.length).toEqual(1);
+    expect(updated?.comments?.find(c => c.id === comment2.id)?.comment).toEqual(comment2.comment);
+    expect(commented.comments![0].comment).toEqual('Test');
 
     const errorMessage = `Http failure response for ${service['_apiEndpoint']}/strategy/comment: 500 Could not submit comment!`;
     commsService.error.subscribe(message => expect(message).toEqual(errorMessage));
@@ -373,14 +373,14 @@ describe('ApiStrategiesService', () => {
       url: 'test',
       comments: [{ ...comment, comment: 'Original', _inEdit: false }]
     };
-    let updated: CSGOStrategy;
+    let updated: CSGOStrategy | undefined;
     service.submitStratComment(comment, strat).subscribe(result => updated = result);
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/strategy/comment`);
     expect(req.request.body).toEqual({ id: '123', stratId: '456', comment: 'Edited', userId: '123' });
     expect('_inEdit' in req.request.body).toBe(false);
     expect(comment._inEdit).toBe(true);
     req.flush({ id: '123', stratId: '456', comment: 'Edited', userId: '123' });
-    expect(updated.comments[0].comment).toEqual('Edited');
+    expect(updated?.comments?.[0].comment).toEqual('Edited');
   });
 
   it('should delete strat comment', () => {
@@ -399,15 +399,15 @@ describe('ApiStrategiesService', () => {
         remaining
       ]
     };
-    let updated: CSGOStrategy;
+    let updated: CSGOStrategy | undefined;
     commsService.success.subscribe(message => expect(message).toEqual('Comment deleted successfully!'));
     service.deleteStratComment(comment, strat).subscribe(result => updated = result);
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/strategy/comment?id=${comment.id}`);
     expect(req.request.method).toEqual('DELETE');
     expect(req.request.withCredentials).toEqual(true);
     req.flush({});
-    expect(updated.comments).toEqual([remaining]);
-    expect(strat.comments.length).toEqual(2);
+    expect(updated?.comments).toEqual([remaining]);
+    expect(strat.comments?.length).toEqual(2);
 
     const errorMessage = `Http failure response for ${service['_apiEndpoint']}/strategy/comment?id=${comment.id}: 500 Could not delete comment!`;
     commsService.error.subscribe(message => expect(message).toEqual(errorMessage));
@@ -470,43 +470,43 @@ describe('ApiStrategiesService', () => {
   it('should add the first vote to a strategy without votes', () => {
     const strat = { id: '1' } as CSGOStrategy;
     const vote: StrategyVote = { userId: 'me', vote: VoteDirection.Up };
-    let updated: CSGOStrategy;
+    let updated: CSGOStrategy | undefined;
 
     service.submitStratVote(strat, VoteDirection.Up, 'me').subscribe(result => updated = result);
     httpMock.expectOne(`${service['_apiEndpoint']}/strategy/vote`).flush(vote);
 
-    expect(updated.votes).toEqual([vote]);
+    expect(updated?.votes).toEqual([vote]);
   });
 
   it('should change only the voting user\'s vote', () => {
     const other: StrategyVote = { userId: 'other', vote: VoteDirection.Up };
     const mine: StrategyVote = { userId: 'me', vote: VoteDirection.Up };
     const strat = { id: '1', votes: [other, mine] } as CSGOStrategy;
-    let updated: CSGOStrategy;
+    let updated: CSGOStrategy | undefined;
 
     service.submitStratVote(strat, VoteDirection.Down, 'me').subscribe(result => updated = result);
     httpMock.expectOne(`${service['_apiEndpoint']}/strategy/vote`).flush({ userId: 'me', vote: VoteDirection.Down });
 
-    expect(updated.votes).toEqual([other, { userId: 'me', vote: VoteDirection.Down }]);
+    expect(updated?.votes).toEqual([other, { userId: 'me', vote: VoteDirection.Down }]);
   });
 
   it('should add and delete comments of a strategy that has none listed', () => {
     const strat = { id: '1' } as CSGOStrategy;
     const comment = { id: 'c1', stratId: '1', comment: 'Nice' } as StrategyComment;
-    let updated: CSGOStrategy;
+    let updated: CSGOStrategy | undefined;
 
     service.submitStratComment(comment, strat).subscribe(result => updated = result);
     httpMock.expectOne(`${service['_apiEndpoint']}/strategy/comment`).flush(comment);
-    expect(updated.comments).toEqual([comment]);
+    expect(updated?.comments).toEqual([comment]);
 
     service.deleteStratComment(comment, strat).subscribe(result => updated = result);
     httpMock.expectOne(`${service['_apiEndpoint']}/strategy/comment?id=c1`).flush({});
-    expect(updated.comments).toEqual([]);
+    expect(updated?.comments).toEqual([]);
   });
 
   it('should leave the other cached strategies alone', () => {
-    const voted = { id: 'voted', votes: [] } as CSGOStrategy;
-    const other = { id: 'other', votes: [] } as CSGOStrategy;
+    const voted = { id: 'voted', votes: [] as StrategyVote[] } as CSGOStrategy;
+    const other = { id: 'other', votes: [] as StrategyVote[] } as CSGOStrategy;
     const otherCached = service.getStrategy('other');
     httpMock.expectOne(`${service['_apiEndpoint']}/strategy/strat?stratId=other`).flush(other);
     // The strategies page holds its own copy of the voted strategy

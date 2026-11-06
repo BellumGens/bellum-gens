@@ -53,7 +53,7 @@ describe('RegistrationComponent', () => {
   });
 
   it('should submit registration', () => {
-    vi.spyOn(router, 'navigate').mockImplementation(() => undefined);
+    vi.spyOn(router, 'navigate').mockResolvedValue(true);
     commsService.success.subscribe(success => expect(success).toBe('User registration completed successfully!'));
 
     component.submitRegistration();
@@ -123,10 +123,10 @@ describe('RegistrationComponent', () => {
 
   describe('filling in the form', () => {
     const el = (): HTMLElement => fixture.nativeElement;
-    const registerButton = () => el().querySelector<HTMLButtonElement>('button.submit-button');
+    const registerButton = () => el().querySelector<HTMLButtonElement>('button.submit-button')!;
     const type = async (fields: Record<string, string>) => {
       for (const [id, value] of Object.entries(fields)) {
-        const input = el().querySelector<HTMLInputElement>(`#${id}`);
+        const input = el().querySelector<HTMLInputElement>(`#${id}`)!;
         input.value = value;
         input.dispatchEvent(new Event('input'));
         input.dispatchEvent(new Event('blur'));

@@ -5,7 +5,7 @@ import { Pipe, type PipeTransform } from '@angular/core';
 })
 export class CountrySVGPipe implements PipeTransform {
 
-  public transform(country: string): string {
+  public transform(country: string | null | undefined): string {
     if (!country) {
       return '';
     }

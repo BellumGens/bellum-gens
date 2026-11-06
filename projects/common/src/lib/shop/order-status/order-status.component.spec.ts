@@ -522,7 +522,7 @@ describe('OrderStatusComponent', () => {
     fixture.detectChanges();
 
     const items: HTMLElement = fixture.nativeElement.querySelector('.order-items');
-    expect(items.querySelector('.line-variant').textContent).toContain('(Male / L)');
+    expect(items.querySelector('.line-variant')!.textContent).toContain('(Male / L)');
     expect(items.textContent).toContain('(SAVE10)');
     expect(items.textContent).toContain('Free');
   });
@@ -532,7 +532,7 @@ describe('OrderStatusComponent', () => {
     fixture.detectChanges();
 
     const discount = Array.from<HTMLElement>(fixture.nativeElement.querySelectorAll('.order-items dt')).find(dt => dt.textContent.includes('Discount'));
-    expect(discount.textContent.trim()).toBe('Discount');
+    expect(discount!.textContent.trim()).toBe('Discount');
   });
 
   it('reports a cancelled order without charging anything', () => {

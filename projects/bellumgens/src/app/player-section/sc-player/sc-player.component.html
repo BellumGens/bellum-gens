@@ -3,24 +3,24 @@
   </bg-loading>
 }
 
-@if (player()) {
+@if (player(); as currentPlayer) {
   <div class="card-wrapper profile-view-layout">
     <div class="profile-container">
-      @if (player().sc2Details) {
+      @if (currentPlayer.sc2Details) {
         <div>
-          <igx-avatar [src]="player().sc2Details?.avatarUrl || ''" [initials]="player().sc2Details?.battleNetBattleTag || ''" class="player-avatar">
+          <igx-avatar [src]="currentPlayer.sc2Details?.avatarUrl || ''" [initials]="currentPlayer.sc2Details?.battleNetBattleTag || ''" class="player-avatar">
           </igx-avatar>
         </div>
-        <h1 igxCardHeaderTitle><a [href]="player().sc2Details?.profileUrl" target="_blank" rel="noopener">{{ player().sc2Details?.battleNetBattleTag }}</a></h1>
+        <h1 igxCardHeaderTitle><a [href]="currentPlayer.sc2Details?.profileUrl" target="_blank" rel="noopener">{{ currentPlayer.sc2Details?.battleNetBattleTag }}</a></h1>
       }
-      <h4 igxCardHeaderSubtitle>{{ player().username }}</h4>
+      <h4 igxCardHeaderSubtitle>{{ currentPlayer.username }}</h4>
     </div>
     <div>
     @for (tournament of tournaments(); track tournament.id) {
       <igx-grid
         cellSelection="none"
-        [height]="tournament.sc2Matches.length > 12 ? '650px' : null"
-        [data]="tournament.sc2Matches">
+        [height]="(tournament.sc2Matches?.length ?? 0) > 12 ? '650px' : null"
+        [data]="tournament.sc2Matches ?? null">
 
         <igx-grid-toolbar>
           <igx-grid-toolbar-title>{{tournament.name}}</igx-grid-toolbar-title>

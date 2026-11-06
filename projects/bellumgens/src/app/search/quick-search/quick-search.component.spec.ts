@@ -11,7 +11,12 @@ import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
 import { ApiSearchService, ApplicationUser, CSGODetails, CSGOStrategy, CSGOTeam, SearchResult, SteamUser } from '../../../../../common/src/public_api';
 import { environment } from '../../../../../common/src/environments/environment';
 
-const csgoDetails = (overrides: Partial<CSGODetails> = {}): CSGODetails => ({
+/** The search API's JSON, where missing values come back as `null`. */
+type Json<T> = T extends (infer U) [] ? Json<U> [] : T extends object ? { [K in keyof T]: Json<T[K]> | null } : T;
+type PlayerJson = Json<ApplicationUser>;
+type SearchResultJson = Json<SearchResult>;
+
+const csgoDetails = (overrides: Partial<Json<CSGODetails>> = {}): Json<CSGODetails> => ({
   steamUser: null,
   userStats: null,
   headshotPercentage: 45.6,
@@ -26,7 +31,7 @@ const csgoDetails = (overrides: Partial<CSGODetails> = {}): CSGODetails => ({
   ...overrides
 });
 
-const player = (id: string, username: string, details: CSGODetails, overrides: Partial<ApplicationUser> = {}): ApplicationUser => ({
+const player = (id: string, username: string, details: Json<CSGODetails> | null | undefined, overrides: Partial<PlayerJson> = {}): PlayerJson => ({
   id,
   steamId: id,
   username,
@@ -49,7 +54,7 @@ const team = (teamId: string, teamName: string): CSGOTeam => ({
   visible: true
 });
 
-const strategy = (id: string, title: string, overrides: Partial<CSGOStrategy> = {}): CSGOStrategy => ({
+const strategy = (id: string, title: string, overrides: Partial<Json<CSGOStrategy>> = {}): Json<CSGOStrategy> => ({
   id,
   teamId: null,
   side: 0,
@@ -61,7 +66,7 @@ const strategy = (id: string, title: string, overrides: Partial<CSGOStrategy> = 
   ...overrides
 });
 
-const steamProfile = (country = 'bg', customURL = 'steam-custom'): SteamUser => ({
+const steamProfile = (country: string | null = 'bg', customURL: string | null = 'steam-custom'): Json<SteamUser> => ({
   steamID64: '76561198000000000',
   steamID: 'SteamName',
   avatarIcon: '',
@@ -75,7 +80,7 @@ const steamProfile = (country = 'bg', customURL = 'steam-custom'): SteamUser => 
   groups: []
 });
 
-const steamUser = (overrides: Partial<ApplicationUser> = {}, country = 'bg', customURL = 'steam-custom'): ApplicationUser => ({
+const steamUser = (overrides: Partial<PlayerJson> = {}, country: string | null = 'bg', customURL: string | null = 'steam-custom'): PlayerJson => ({
   ...player('steam-user', 'steam-user', null),
   steamUser: steamProfile(country, customURL),
   userStats: {
@@ -89,7 +94,7 @@ const steamUser = (overrides: Partial<ApplicationUser> = {}, country = 'bg', cus
   ...overrides
 });
 
-const result = (overrides: Partial<SearchResult> = {}): SearchResult => ({
+const result = (overrides: Partial<SearchResultJson> = {}): SearchResultJson => ({
   steamUser: null,
   players: [],
   teams: [],
@@ -136,7 +141,7 @@ describe('QuickSearchComponent', () => {
   };
 
   /** Runs a quick search through the service and answers it with `data`. */
-  const search = async (term: string, data: SearchResult) => {
+  const search = async (term: string, data: SearchResultJson) => {
     apiService.quickSearch(term);
     httpMock.expectOne(searchUrl(term)).flush(data);
     await fixture.whenStable();
@@ -288,7 +293,7 @@ describe('QuickSearchComponent', () => {
 
       const [players] = lists();
       expect(titles(players)).toEqual(['player1', 'player2', 'player3']);
-      const more = moreButton(players);
+      const more = moreButton(players)!;
       expect(more.textContent.trim()).toBe('View more players...');
 
       more.click();
@@ -304,9 +309,9 @@ describe('QuickSearchComponent', () => {
       expect(players.textContent).toContain('Steam Real Name');
       expect(players.textContent).toContain('1.1');
       expect(players.textContent).toContain('51.20%');
-      expect(players.querySelector('igx-avatar.country-badge-small').getAttribute('title')).toBe('bg');
+      expect(players.querySelector('igx-avatar.country-badge-small')!.getAttribute('title')).toBe('bg');
 
-      players.querySelector<HTMLElement>('igx-list-item a.item-link').click();
+      players.querySelector<HTMLElement>('igx-list-item a.item-link')!.click();
       expect(router.navigateByUrl).toHaveBeenLastCalledWith(router.createUrlTree(['/players', 'steam-custom']), expect.anything());
     });
 
@@ -318,7 +323,7 @@ describe('QuickSearchComponent', () => {
       expect(players.querySelector('[igxListAction]')).toBeNull();
       expect(players.querySelector('igx-avatar.country-badge-small')).toBeNull();
 
-      players.querySelector<HTMLElement>('igx-list-item a.item-link').click();
+      players.querySelector<HTMLElement>('igx-list-item a.item-link')!.click();
       expect(router.navigateByUrl).toHaveBeenLastCalledWith(router.createUrlTree(['/players', '76561198000000000']), expect.anything());
     });
 
@@ -344,7 +349,7 @@ describe('QuickSearchComponent', () => {
       expect(teams.textContent).not.toContain('No matching teams...');
       expect(moreButton(teams)).toBeNull();
 
-      teams.querySelector<HTMLElement>('igx-list-item a.item-link').click();
+      teams.querySelector<HTMLElement>('igx-list-item a.item-link')!.click();
       expect(router.navigateByUrl).toHaveBeenLastCalledWith(router.createUrlTree(['/team', 't1-url']), expect.anything());
     });
 
@@ -353,7 +358,7 @@ describe('QuickSearchComponent', () => {
 
       const teams = lists()[1];
       expect(titles(teams)).toEqual(['Team 1', 'Team 2', 'Team 3']);
-      const more = moreButton(teams);
+      const more = moreButton(teams)!;
       expect(more.textContent.trim()).toBe('View more teams...');
 
       more.click();
@@ -369,7 +374,7 @@ describe('QuickSearchComponent', () => {
       expect(moreButton(strategies)).toBeNull();
       const avatar = fixture.debugElement.queryAll(By.css('igx-list-item.result-item igx-avatar[igxListThumbnail]'))
         .map(a => a.injector.get(IgxAvatarComponent))
-        .find(a => a.initials === 'Rush B');
+        .find(a => a.initials === 'Rush B')!;
       expect(avatar.src).toBe('https://example.com/s1.png');
     });
 
@@ -388,7 +393,7 @@ describe('QuickSearchComponent', () => {
 
       const strategies = lists()[2];
       expect(titles(strategies)).toEqual(['Strat 1', 'Strat 2', 'Strat 3']);
-      const more = moreButton(strategies);
+      const more = moreButton(strategies)!;
       expect(more.textContent.trim()).toBe('View more strategies...');
 
       more.click();

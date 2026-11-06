@@ -7,7 +7,7 @@ export interface Role {
 export interface RoleSlot {
   roleName: string;
   role: PlaystyleRole;
-  user: TeamMember;
+  user: TeamMember | null;
 }
 
 export enum PlaystyleRole {

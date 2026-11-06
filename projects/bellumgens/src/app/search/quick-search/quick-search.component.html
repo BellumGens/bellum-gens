@@ -8,32 +8,32 @@
         </div>
       </div>
     </ng-template>
-    @if (searchResult().steamUser?.steamUser) {
+    @if (searchResult().steamUser?.steamUser; as steam) {
       <igx-list-item [isHeader]="true" i18n>Steam User</igx-list-item>
       <igx-list-item class="result-item">
-        <igx-avatar igxListThumbnail [src]="searchResult().steamUser.steamUser.avatarIcon" [initials]="searchResult().steamUser.steamUser.realname" shape="circle">
+        <igx-avatar igxListThumbnail [src]="steam.avatarIcon" [initials]="steam.realname" shape="circle">
         </igx-avatar>
-        @if (searchResult().steamUser.steamUser.country) {
+        @if (steam.country) {
           <igx-avatar
-            [src]="searchResult().steamUser.steamUser.country | countrySVG"
+            [src]="steam.country | countrySVG"
             shape="circle"
-            [title]="searchResult().steamUser.steamUser.country"
+            [title]="steam.country"
             class="country-badge-small">
           </igx-avatar>
         }
         <h2 igxListLineTitle>
-          <a class="item-link" [routerLink]="['/players', searchResult().steamUser.steamUser.customURL || searchResult().steamUser.steamUser.steamID64]">{{ searchResult().steamUser.steamUser.steamID }}</a>
+          <a class="item-link" [routerLink]="['/players', steam.customURL || steam.steamID64]">{{ steam.steamID }}</a>
         </h2>
-        <h4 igxListLineSubTitle>{{ searchResult().steamUser.steamUser.realname }}</h4>
-        @if (!searchResult().steamUser.userStatsException) {
+        <h4 igxListLineSubTitle>{{ steam.realname }}</h4>
+        @if (!searchResult().steamUser?.userStatsException) {
           <div igxListAction class="player-stats">
             <div class="horizontal-center space-between">
-              <igx-circular-bar class="icon-avatar" [value]="searchResult().steamUser.userStats?.killDeathRatio ?? 0" [max]="2" [animate]="true" [textVisibility]="false" title="KDR"></igx-circular-bar>
-              <span>{{ searchResult().steamUser.userStats?.killDeathRatio }}</span>
+              <igx-circular-bar class="icon-avatar" [value]="searchResult().steamUser?.userStats?.killDeathRatio ?? 0" [max]="2" [animate]="true" [textVisibility]="false" title="KDR"></igx-circular-bar>
+              <span>{{ searchResult().steamUser?.userStats?.killDeathRatio }}</span>
             </div>
             <div class="horizontal-center space-between">
               <igx-icon family="weapon-icons" name="headshot" class="icon-avatar"></igx-icon>
-              <span>{{ searchResult().steamUser.userStats?.headshotPercentage | number:'1.2' }}%</span>
+              <span>{{ searchResult().steamUser?.userStats?.headshotPercentage | number:'1.2' }}%</span>
             </div>
           </div>
         } @else {

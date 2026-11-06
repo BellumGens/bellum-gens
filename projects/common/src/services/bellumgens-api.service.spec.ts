@@ -60,7 +60,7 @@ describe('BellumgensApiService', () => {
     const mockteam: CSGOTeam = { teamId: '789', teamName: 'Test Team', visible: true, teamAvatar: 'test.jpg' };
     const team = service.getTeam(teamId);
     expect(team()).toBeNull();
-    expect(service['_teamRequest'].teamId).toBe(teamId);
+    expect(service['_teamRequest']?.teamId).toBe(teamId);
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/teams?teamid=${teamId}`);
     expect(req.request.method).toBe('GET');
     req.flush(mockteam);
@@ -89,7 +89,7 @@ describe('BellumgensApiService', () => {
     const team = computed(() => service.getTeam('789')());
     expect(() => team()).not.toThrow();
     httpMock.expectOne(`${service['_apiEndpoint']}/teams?teamid=789`).flush({ teamId: '789', customUrl: '789', teamName: 'Test Team' });
-    expect(team().teamName).toBe('Test Team');
+    expect(team()?.teamName).toBe('Test Team');
   });
 
   it('getTeamMembers should send a GET request to the correct URL', () => {
@@ -157,7 +157,7 @@ describe('BellumgensApiService', () => {
 
       service.getTeam('team-2');
       httpMock.expectOne(teamUrl('team-2')).flush({ ...cachedTeam, teamId: 'team-2', customUrl: 'other' });
-      expect(service.getTeam('team-2')().teamId).toBe('team-2');
+      expect(service.getTeam('team-2')()?.teamId).toBe('team-2');
     });
 
     it('getTeamMembers should serve cached members for the same team without a cached team', () => {
@@ -209,7 +209,7 @@ describe('BellumgensApiService', () => {
       service.getTeamSchedule('team-1');
       httpMock.expectOne(scheduleUrl('team-1')).flush([]);
 
-      service.setTeamPractice({ teamId: 'team-1', day: DayOfWeek.Monday, available: true, from: null, to: null }).subscribe();
+      service.setTeamPractice({ teamId: 'team-1', day: DayOfWeek.Monday, available: true, from: new Date(2020, 0, 6, 18), to: new Date(2020, 0, 6, 20) }).subscribe();
       httpMock.expectOne(`${service['_apiEndpoint']}/teams/availability`).flush({});
 
       service.getTeamSchedule('team-1');
@@ -574,9 +574,9 @@ describe('BellumgensApiService', () => {
       email: 'test-email',
       searchVisible: true,
       externalLogins: [],
-      steamUser: null,
+      steamUser: undefined,
       steamUserException: false,
-      userStats: null,
+      userStats: undefined,
       userStatsException: true,
       registered: false,
     };
@@ -606,7 +606,7 @@ describe('BellumgensApiService', () => {
   it('getPlayer should not re-request a player that is already cached', () => {
     service['_currentPlayer'].set({ id: '1', steamUser: { steamID64: '765', customURL: 'custom' } } as ApplicationUser);
     const cached = service.getPlayer('custom');
-    expect(cached().id).toBe('1');
+    expect(cached()?.id).toBe('1');
     expect(service.loadingPlayer()).toBe(false);
     httpMock.expectNone(`${service['_apiEndpoint']}/users?userid=custom`);
   });
@@ -620,7 +620,7 @@ describe('BellumgensApiService', () => {
     const reqB = httpMock.expectOne(`${service['_apiEndpoint']}/users?userid=B`);
     expect(reqA.cancelled).toBe(true);
     reqB.flush({ id: 'B', steamUser: { steamID64: 'B' } });
-    expect(player().id).toBe('B');
+    expect(player()?.id).toBe('B');
     expect(service.loadingPlayer()).toBe(false);
   });
 
@@ -629,7 +629,7 @@ describe('BellumgensApiService', () => {
     expect(() => player()).not.toThrow();
     expect(service.loadingPlayer()).toBe(true);
     httpMock.expectOne(`${service['_apiEndpoint']}/users?userid=3`).flush({ id: '3', steamUser: { steamID64: '3' } });
-    expect(player().id).toBe('3');
+    expect(player()?.id).toBe('3');
   });
 
   it('getPlayerGroups should send a GET request to the correct URL', () => {
@@ -732,7 +732,7 @@ describe('BellumgensApiService', () => {
     service.setPrimaryRole(role, 'player-a').subscribe();
     httpMock.expectOne(`${service['_apiEndpoint']}/users/primaryrole?id=${role.id}`).flush({});
 
-    expect(service['_currentPlayer']().csgoDetails.primaryRole).toBe(PlaystyleRole.Awper);
+    expect(service['_currentPlayer']()?.csgoDetails?.primaryRole).toBe(PlaystyleRole.Awper);
   });
 
   it('setPrimaryRole should not patch a different player cached before the response arrives', () => {
@@ -748,7 +748,7 @@ describe('BellumgensApiService', () => {
     req.flush({});
 
     expect(service['_currentPlayer']()).toBe(playerB);
-    expect(playerB.csgoDetails.primaryRole).toBe(PlaystyleRole.NotSet);
+    expect(playerB.csgoDetails?.primaryRole).toBe(PlaystyleRole.NotSet);
   });
 
   it('setSecondaryRole should update the cached player it was issued for', () => {
@@ -758,7 +758,7 @@ describe('BellumgensApiService', () => {
     service.setSecondaryRole(role, 'player-a').subscribe();
     httpMock.expectOne(`${service['_apiEndpoint']}/users/secondaryrole?id=${role.id}`).flush({});
 
-    expect(service['_currentPlayer']().csgoDetails.secondaryRole).toBe(PlaystyleRole.IGL);
+    expect(service['_currentPlayer']()?.csgoDetails?.secondaryRole).toBe(PlaystyleRole.IGL);
   });
 
   it('setSecondaryRole should not patch a different player cached before the response arrives', () => {
@@ -773,7 +773,7 @@ describe('BellumgensApiService', () => {
     req.flush({});
 
     expect(service['_currentPlayer']()).toBe(playerB);
-    expect(playerB.csgoDetails.secondaryRole).toBe(PlaystyleRole.NotSet);
+    expect(playerB.csgoDetails?.secondaryRole).toBe(PlaystyleRole.NotSet);
   });
 
   it('getMapPool should send a GET request to the correct URL', () => {
@@ -807,7 +807,7 @@ describe('BellumgensApiService', () => {
   });
 
   it('acceptInvite should send a PUT request to the correct URL', () => {
-    const notification: UserNotification = { state: NotificationState.NotSeen, teamInfo: null, invitingUser: null, sent: '' };
+    const notification: UserNotification = { state: NotificationState.NotSeen, teamInfo: {} as CSGOTeam, invitingUser: {} as ApplicationUser, sent: '' };
     commsService.success.subscribe(success => expect(success).toBe('Team invite accepted!'));
     service.acceptInvite(notification).subscribe();
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/users/acceptTeamInvite`);
@@ -829,7 +829,7 @@ describe('BellumgensApiService', () => {
   });
 
   it('rejectInvite should send a PUT request to the correct URL', () => {
-    const notification: UserNotification = { state: NotificationState.NotSeen, teamInfo: null, invitingUser: null, sent: '' };
+    const notification: UserNotification = { state: NotificationState.NotSeen, teamInfo: {} as CSGOTeam, invitingUser: {} as ApplicationUser, sent: '' };
     commsService.success.subscribe(success => expect(success).toBe('Team invite rejected!'));
     service.rejectInvite(notification).subscribe();
     const req = httpMock.expectOne(`${service['_apiEndpoint']}/users/rejectTeamInvite`);
@@ -871,11 +871,11 @@ describe('BellumgensApiService', () => {
   });
 
   it('getSignupCount should fail with a readable error', () => {
-    let error: Error;
+    let error: Error | undefined;
     service.getSignupCount().subscribe({ error: e => error = e });
     httpMock.expectOne(`${service['_apiEndpoint']}/account/earlybirdcount`).flush('', { status: 500, statusText: 'Server Error' });
 
-    expect(error.message).toBe('Failed to get signup count');
+    expect(error?.message).toBe('Failed to get signup count');
   });
 
   it('earlyBirdSignup should post the signup and report the server message', () => {

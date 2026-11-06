@@ -65,7 +65,7 @@
         </igx-list-item>
         @for (comment of strat.comments; track comment.id) {
           <igx-list-item>
-            <igx-avatar igxListThumbnail [src]="comment.userAvatar" shape="circle"></igx-avatar>
+            <igx-avatar igxListThumbnail [src]="comment.userAvatar ?? ''" shape="circle"></igx-avatar>
             <h3 [class.comment-editing]="comment.id === editedCommentId()" igxListLineTitle>{{ comment.comment }}</h3>
             <h5 igxListLineSubTitle>{{ comment.published | date }}</h5>
             @if (isOwnComment(comment)) {
@@ -82,8 +82,8 @@
                   <igx-icon>more_vert</igx-icon>
                 </button>
                 <igx-drop-down #useractions
-                  (opening)="openedActionsId.set(comment.id)"
-                  (closed)="actionsClosed(comment.id)"
+                  (opening)="openedActionsId.set(comment.id ?? null)"
+                  (closed)="actionsClosed(comment.id ?? null)"
                   (selectionChanging)="commentAction($event, comment, commentBox, confirm); useractions.close()">
                   <igx-drop-down-item value="edit">
                     <div class="dd-item-content">

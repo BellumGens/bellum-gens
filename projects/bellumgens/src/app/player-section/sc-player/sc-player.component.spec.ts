@@ -15,10 +15,10 @@ import { ApplicationUser, BellumgensApiService, SC2Race, Tournament } from '../.
 
 const makePlayer = (overrides: Partial<ApplicationUser> = {}): ApplicationUser => ({
   id: 'player-1',
-  steamId: null,
+  steamId: '',
   username: 'Serral',
   battleNetId: 'bnet-1',
-  email: null,
+  email: '',
   searchVisible: true,
   externalLogins: [],
   steamUserException: false,
@@ -37,7 +37,7 @@ const makePlayer = (overrides: Partial<ApplicationUser> = {}): ApplicationUser =
 
 const opponent = (id: string, username: string) => ({ id, username, avatarUrl: '' }) as ApplicationUser;
 
-const makeTournament = (id: string, name: string, winners: string []): Tournament => ({
+const makeTournament = (id: string, name: string, winners: (string | null) []): Tournament => ({
   id,
   name,
   sc2Matches: winners.map((winnerPlayerId, i) => ({
@@ -54,12 +54,12 @@ const makeTournament = (id: string, name: string, winners: string []): Tournamen
 describe('ScPlayerComponent', () => {
   let component: ScPlayerComponent;
   let fixture: ComponentFixture<ScPlayerComponent>;
-  let player: WritableSignal<ApplicationUser>;
+  let player: WritableSignal<ApplicationUser | null>;
   let apiService: BellumgensApiService;
   let title: Title;
 
   beforeEach(async () => {
-    player = signal<ApplicationUser>(null);
+    player = signal<ApplicationUser | null>(null);
 
     await TestBed.configureTestingModule({
       imports: [
@@ -110,21 +110,21 @@ describe('ScPlayerComponent', () => {
     player.set(makePlayer());
     create();
 
-    const link = el().querySelector<HTMLAnchorElement>('h1 a');
+    const link = el().querySelector<HTMLAnchorElement>('h1 a')!;
     expect(link.textContent.trim()).toBe('Serral#1234');
     expect(link.getAttribute('href')).toBe('https://starcraft2.com/profile/1');
     expect(el().querySelector('.player-avatar')).not.toBeNull();
-    expect(el().querySelector('h4').textContent.trim()).toBe('Serral');
+    expect(el().querySelector('h4')!.textContent.trim()).toBe('Serral');
   });
 
   it('only renders the username when the player has no StarCraft II details', () => {
     vi.spyOn(apiService, 'getPlayerTournaments').mockReturnValue(of([]));
-    player.set(makePlayer({ sc2Details: null }));
+    player.set(makePlayer({ sc2Details: undefined }));
     create();
 
     expect(el().querySelector('h1')).toBeNull();
     expect(el().querySelector('.player-avatar')).toBeNull();
-    expect(el().querySelector('h4').textContent.trim()).toBe('Serral');
+    expect(el().querySelector('h4')!.textContent.trim()).toBe('Serral');
   });
 
   it('sets the page title from the battle tag', () => {
@@ -166,7 +166,7 @@ describe('ScPlayerComponent', () => {
     player.set(makePlayer({ username: 'Serral (updated)' }));
     fixture.detectChanges();
     expect(apiService.getPlayerTournaments).toHaveBeenCalledTimes(1);
-    expect(el().querySelector('h4').textContent.trim()).toBe('Serral (updated)');
+    expect(el().querySelector('h4')!.textContent.trim()).toBe('Serral (updated)');
 
     player.set(makePlayer({ id: 'player-2', username: 'Maru' }));
     fixture.detectChanges();
@@ -220,7 +220,7 @@ describe('ScPlayerComponent', () => {
 
   it('shows the races played and links the video and replay of a match when they exist', async () => {
     const tournament = makeTournament('t1', 'Winter Cup', ['player-1', 'player-2']);
-    Object.assign(tournament.sc2Matches[0], {
+    Object.assign(tournament.sc2Matches![0], {
       player1Race: SC2Race.Zerg,
       player2Race: SC2Race.Terran,
       videoLink: 'https://youtube.com/watch?v=1',
@@ -242,7 +242,7 @@ describe('ScPlayerComponent', () => {
     expect(raceIcons(rows[1])).toEqual([]);
 
     const links = (row: Element) => Array.from(row.querySelectorAll<HTMLAnchorElement>('a.horizontal-center'))
-      .map(a => `${a.querySelector('span').textContent.trim()}:${a.getAttribute('href')}`);
+      .map(a => `${a.querySelector('span')!.textContent.trim()}:${a.getAttribute('href')}`);
     expect(links(rows[0])).toEqual(['Video:https://youtube.com/watch?v=1', 'Replay:https://example.com/replay.SC2Replay']);
     expect(links(rows[1])).toEqual([]);
   });

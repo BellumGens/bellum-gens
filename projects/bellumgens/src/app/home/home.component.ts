@@ -37,12 +37,12 @@ export class HomeComponent extends BaseDirective {
   public carousel = viewChild(IgxCarouselComponent);
 
   // The user is only looked up in the browser.
-  public authUser: Signal<ApplicationUser> = isPlatformBrowser(this.platformId)
+  public authUser: Signal<ApplicationUser | null> = isPlatformBrowser(this.platformId)
     ? this.authManager.applicationUser
-    : signal<ApplicationUser>(null).asReadonly();
+    : signal<ApplicationUser | null>(null).asReadonly();
   public navigation = signal(true);
   public environment = environment;
-  public userEmail = signal<string>(null);
+  public userEmail = signal('');
 
   constructor() {
     super();

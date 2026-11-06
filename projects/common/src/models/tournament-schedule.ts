@@ -30,11 +30,11 @@ export interface MatchScheduleSlot {
 
 export interface TournamentMatch {
   id?: string;
-  demoLink?: string;
-  videoLink?: string;
+  demoLink?: string | null;
+  videoLink?: string | null;
   startTime?: Date;
   noShow?: boolean;
-  groupId?: string;
+  groupId?: string | null;
   inEdit?: boolean;
   tournamentId?: string;
 }

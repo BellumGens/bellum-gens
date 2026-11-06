@@ -6,7 +6,7 @@ import { StrategyVote, VoteDirection } from '../../../../common/src/public_api';
 })
 export class VotesPipe implements PipeTransform {
 
-  public transform(votes: StrategyVote [], direction = VoteDirection.Up): number {
+  public transform(votes: StrategyVote [] | undefined, direction = VoteDirection.Up): number | undefined {
     return votes && votes.filter(v => v.vote === direction).length;
   }
 

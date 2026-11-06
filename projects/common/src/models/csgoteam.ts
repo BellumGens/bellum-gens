@@ -41,7 +41,7 @@ export interface TeamApplication {
 }
 
 export interface TeamSearch {
-  role: PlaystyleRole;
+  role: PlaystyleRole | null;
   scheduleOverlap: number;
 }
 

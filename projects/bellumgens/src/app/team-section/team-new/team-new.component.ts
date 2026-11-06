@@ -38,20 +38,23 @@ export class TeamNewComponent {
   private apiService = inject(BellumgensApiService);
   private router = inject(Router);
 
-  public authUser = input<ApplicationUser>();
+  public authUser = input<ApplicationUser | null>();
 
   public createTeam = viewChild(IgxDialogComponent);
 
-  public groups = signal<SteamGroup []>(undefined);
-  public searchGroups = signal<string>(undefined);
+  public groups = signal<SteamGroup [] | undefined>(undefined);
+  public searchGroups = signal('');
   public newTeam = Object.assign({}, EMPTY_NEW_TEAM);
   public navigateOnCreate = true;
   public inProgress = signal(false);
 
   public open(navigate = true) {
     this.navigateOnCreate = navigate;
-    this.apiService.getPlayerGroups(this.authUser().steamId).subscribe(groups => this.groups.set(groups));
-    this.createTeam().open();
+    const steamId = this.authUser()?.steamId;
+    if (steamId) {
+      this.apiService.getPlayerGroups(steamId).subscribe(groups => this.groups.set(groups));
+    }
+    this.createTeam()?.open();
   }
 
   public createFromSteam(group: SteamGroup) {
@@ -72,7 +75,7 @@ export class TeamNewComponent {
 
   private teamCreated(team: CSGOTeam) {
     this.inProgress.set(false);
-    this.createTeam().close();
+    this.createTeam()?.close();
     if (this.navigateOnCreate) {
       this.router.navigate(['/team', team.customUrl]);
     }

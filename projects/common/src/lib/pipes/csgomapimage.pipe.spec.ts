@@ -16,13 +16,13 @@ describe('CSGOMapimagePipe', () => {
   it('should return the correct image path for Active Duty maps', () => {
     const map = CSGOMap.Inferno;
     const result = pipe.transform(map);
-    expect(result).toBe(ACTIVE_DUTY.find(m => m.map === 'Inferno').image);
+    expect(result).toBe(ACTIVE_DUTY.find(m => m.map === 'Inferno')!.image);
   });
 
   it('should return the correct image path for non-Active Duty maps', () => {
     const map = CSGOMap.Dust2
     const result = pipe.transform(map);
-    expect(result).toBe(ACTIVE_DUTY.find(m => m.map === 'Dust 2').image);
+    expect(result).toBe(ACTIVE_DUTY.find(m => m.map === 'Dust 2')!.image);
   });
 
   it('should return an empty string if the map is undefined', () => {

@@ -29,7 +29,7 @@ export class ApiTournamentsService {
   private _loadingSC2Groups = signal(false);
   private _loadingTourRegistrations = signal(false);
   private _loadingTournaments = signal(false);
-  private _registrationsCount = signal<RegistrationsCount []>(null);
+  private _registrationsCount = signal<RegistrationsCount [] | null>(null);
 
   public readonly loadingCSGORegistrations = this._loadingCSGORegistrations.asReadonly();
   public readonly loadingSC2Registrations = this._loadingSC2Registrations.asReadonly();
@@ -43,33 +43,33 @@ export class ApiTournamentsService {
 
   private _apiEndpoint = environment.apiEndpoint;
 
-  private _tournaments = signal<Tournament []>(null);
-  private _activeTournament = signal<Tournament>(null);
-  private _companies = signal<string []>(null);
-  private _allRegistrations = signal<TournamentApplication []>(null);
-  private _myTournaments = signal<Tournament []>(null);
-  private _tournamentsById = new Map<string, WritableSignal<Tournament>>();
-  private _tourRegistrations = new Map<string, WritableSignal<TournamentApplication []>>();
-  private _csgoRegistrations = new Map<string, WritableSignal<TournamentParticipant []>>();
-  private _sc2Registrations = new Map<string, WritableSignal<TournamentParticipant []>>();
-  private _csgoMatches = new Map<string, WritableSignal<TournamentCSGOMatch []>>();
-  private _sc2Matches = new Map<string, WritableSignal<TournamentSC2Match []>>();
-  private _csgoGroups = new Map<string, WritableSignal<TournamentCSGOGroup []>>();
-  private _sc2Groups = new Map<string, WritableSignal<TournamentSC2Group []>>();
+  private _tournaments = signal<Tournament [] | null>(null);
+  private _activeTournament = signal<Tournament | null>(null);
+  private _companies = signal<string [] | null>(null);
+  private _allRegistrations = signal<TournamentApplication [] | null>(null);
+  private _myTournaments = signal<Tournament [] | null>(null);
+  private _tournamentsById = new Map<string, WritableSignal<Tournament | null>>();
+  private _tourRegistrations = new Map<string, WritableSignal<TournamentApplication [] | null>>();
+  private _csgoRegistrations = new Map<string, WritableSignal<TournamentParticipant [] | null>>();
+  private _sc2Registrations = new Map<string, WritableSignal<TournamentParticipant [] | null>>();
+  private _csgoMatches = new Map<string, WritableSignal<TournamentCSGOMatch [] | null>>();
+  private _sc2Matches = new Map<string, WritableSignal<TournamentSC2Match [] | null>>();
+  private _csgoGroups = new Map<string, WritableSignal<TournamentCSGOGroup [] | null>>();
+  private _sc2Groups = new Map<string, WritableSignal<TournamentSC2Group [] | null>>();
 
   /** Cache signals that currently have a request in flight, so concurrent reads don't duplicate it. */
-  private _pending = new WeakSet<WritableSignal<unknown>>();
+  private _pending = new WeakSet<WritableSignal<unknown | null>>();
 
-  public get tournaments(): Signal<Tournament []> {
+  public get tournaments(): Signal<Tournament [] | null> {
     return this.lazy(this._tournaments, () => this.getTournaments(), this._loadingTournaments);
   }
 
-  public getTournament(id: string): Signal<Tournament> {
+  public getTournament(id: string): Signal<Tournament | null> {
     return untracked(() => {
       let entry = this._tournamentsById.get(id);
       if (!entry) {
         const listed = this._tournaments()?.find(t => t.id === id);
-        entry = signal<Tournament>(listed ?? null);
+        entry = signal<Tournament | null>(listed ?? null);
         this._tournamentsById.set(id, entry);
         if (!listed) {
           this.fetchInto(entry, this.getTournamentFromServer(id));
@@ -79,23 +79,23 @@ export class ApiTournamentsService {
     });
   }
 
-  public get activeTournament(): Signal<Tournament> {
+  public get activeTournament(): Signal<Tournament | null> {
     return this.lazy(this._activeTournament, () => this.getActiveTournament());
   }
 
-  public get companies(): Signal<string []> {
+  public get companies(): Signal<string [] | null> {
     return this.lazy(this._companies, () => this.getCompanies());
   }
 
-  public get allRegistrations(): Signal<TournamentApplication []> {
+  public get allRegistrations(): Signal<TournamentApplication [] | null> {
     return this.lazy(this._allRegistrations, () => this.getAllRegistrations());
   }
 
-  public tournamentRegistrations(tournamentId: string): Signal<TournamentApplication []> {
+  public tournamentRegistrations(tournamentId: string): Signal<TournamentApplication [] | null> {
     return this.cached(this._tourRegistrations, tournamentId, id => this.getTournamentRegistrations(id), this._loadingTourRegistrations);
   }
 
-  public refreshTournamentRegistrations(tournamentId: string): Signal<TournamentApplication []> {
+  public refreshTournamentRegistrations(tournamentId: string): Signal<TournamentApplication [] | null> {
     return this.refresh(this._tourRegistrations, tournamentId, id => this.getTournamentRegistrations(id), this._loadingTourRegistrations);
   }
 
@@ -105,52 +105,52 @@ export class ApiTournamentsService {
     );
   }
 
-  public getCsgoRegistrations(id: string): Signal<TournamentParticipant []> {
+  public getCsgoRegistrations(id: string): Signal<TournamentParticipant [] | null> {
     return this.cached(this._csgoRegistrations, id, i => this.getCSGORegistrations(i), this._loadingCSGORegistrations);
   }
 
-  public refreshCsgoRegistrations(id: string): Signal<TournamentParticipant []> {
+  public refreshCsgoRegistrations(id: string): Signal<TournamentParticipant [] | null> {
     return this.refresh(this._csgoRegistrations, id, i => this.getCSGORegistrations(i), this._loadingCSGORegistrations);
   }
 
-  public getSc2Registrations(id: string): Signal<TournamentParticipant []> {
+  public getSc2Registrations(id: string): Signal<TournamentParticipant [] | null> {
     return this.cached(this._sc2Registrations, id, i => this.getSC2Registrations(i), this._loadingSC2Registrations);
   }
 
-  public refreshSc2Registrations(id: string): Signal<TournamentParticipant []> {
+  public refreshSc2Registrations(id: string): Signal<TournamentParticipant [] | null> {
     return this.refresh(this._sc2Registrations, id, i => this.getSC2Registrations(i), this._loadingSC2Registrations);
   }
 
-  public getCsgoMatches(id: string): Signal<TournamentCSGOMatch []> {
+  public getCsgoMatches(id: string): Signal<TournamentCSGOMatch [] | null> {
     return this.cached(this._csgoMatches, id, i => this.getCSGOMatches(i), this._loadingCSGOMatches);
   }
 
-  public refreshCsgoMatches(id: string): Signal<TournamentCSGOMatch []> {
+  public refreshCsgoMatches(id: string): Signal<TournamentCSGOMatch [] | null> {
     return this.refresh(this._csgoMatches, id, i => this.getCSGOMatches(i), this._loadingCSGOMatches);
   }
 
-  public getSc2Matches(id: string): Signal<TournamentSC2Match []> {
+  public getSc2Matches(id: string): Signal<TournamentSC2Match [] | null> {
     return this.cached(this._sc2Matches, id, i => this.getSC2Matches(i), this._loadingSC2Matches);
   }
 
-  public refreshSc2Matches(id: string): Signal<TournamentSC2Match []> {
+  public refreshSc2Matches(id: string): Signal<TournamentSC2Match [] | null> {
     return this.refresh(this._sc2Matches, id, i => this.getSC2Matches(i), this._loadingSC2Matches);
   }
 
-  public getCsgoGroups(id: string): Signal<TournamentCSGOGroup []> {
+  public getCsgoGroups(id: string): Signal<TournamentCSGOGroup [] | null> {
     return this.cached(this._csgoGroups, id, i => this.getCSGOGroups(i), this._loadingCSGOGroups);
   }
 
-  public refreshCsgoGroups(id: string): Signal<TournamentCSGOGroup []> {
+  public refreshCsgoGroups(id: string): Signal<TournamentCSGOGroup [] | null> {
     return this.refresh(this._csgoGroups, id, i => this.getCSGOGroups(i), this._loadingCSGOGroups);
   }
 
   /** StarCraft II groups are cached in reverse server order. */
-  public getSc2Groups(id: string): Signal<TournamentSC2Group []> {
+  public getSc2Groups(id: string): Signal<TournamentSC2Group [] | null> {
     return this.cached(this._sc2Groups, id, i => this.getReversedSC2Groups(i), this._loadingSC2Groups);
   }
 
-  public refreshSc2Groups(id: string): Signal<TournamentSC2Group []> {
+  public refreshSc2Groups(id: string): Signal<TournamentSC2Group [] | null> {
     return this.refresh(this._sc2Groups, id, i => this.getReversedSC2Groups(i), this._loadingSC2Groups);
   }
 
@@ -186,9 +186,9 @@ export class ApiTournamentsService {
   }
 
   public resetCheckinState(tournamentId: string) {
-    return this.http.get(`${this._apiEndpoint}/tournament/resetstate?tournamentId=${tournamentId}`, { withCredentials: true }).pipe(
+    return this.http.get<{ message: string }>(`${this._apiEndpoint}/tournament/resetstate?tournamentId=${tournamentId}`, { withCredentials: true }).pipe(
       map(response => {
-        this.commService.emitSuccess(response['message']);
+        this.commService.emitSuccess(response.message);
         return response;
       }),
       catchError(error => {
@@ -199,9 +199,9 @@ export class ApiTournamentsService {
   }
 
   public sendCheckinEmails(tournamentId: string) {
-    return this.http.get(`${this._apiEndpoint}/tournament/sendcheckinemails?tournamentId=${tournamentId}`, { withCredentials: true }).pipe(
+    return this.http.get<{ message: string }>(`${this._apiEndpoint}/tournament/sendcheckinemails?tournamentId=${tournamentId}`, { withCredentials: true }).pipe(
       map(response => {
-        this.commService.emitSuccess(response['message']);
+        this.commService.emitSuccess(response.message);
         return response;
       }),
       catchError(error => {
@@ -458,12 +458,12 @@ export class ApiTournamentsService {
       );
   }
 
-  public get myTournaments(): Signal<Tournament []> {
+  public get myTournaments(): Signal<Tournament [] | null> {
     return this.lazy(this._myTournaments,
       () => this.http.get<Tournament []>(`${this._apiEndpoint}/tournament/mytournaments`, { withCredentials: true }));
   }
 
-  public get publicTournaments(): Signal<Tournament []> {
+  public get publicTournaments(): Signal<Tournament [] | null> {
     return this.tournaments;
   }
 
@@ -508,7 +508,7 @@ export class ApiTournamentsService {
   }
 
   /** Returns `target`, fetching it first when it holds no value and no request is in flight. */
-  private lazy<T>(target: WritableSignal<T>, request: () => Observable<T>, loading?: WritableSignal<boolean>): Signal<T> {
+  private lazy<T>(target: WritableSignal<T | null>, request: () => Observable<T>, loading?: WritableSignal<boolean>): Signal<T | null> {
     untracked(() => {
       if (!target()) {
         this.fetchInto(target, request(), loading);
@@ -518,18 +518,18 @@ export class ApiTournamentsService {
   }
 
   /** Returns the cache signal for `id`, fetching it the first time the id is requested. */
-  private cached<T>(cache: Map<string, WritableSignal<T>>, id: string, request: (id: string) => Observable<T>,
-                    loading: WritableSignal<boolean>): Signal<T> {
+  private cached<T>(cache: Map<string, WritableSignal<T | null>>, id: string, request: (id: string) => Observable<T>,
+                    loading: WritableSignal<boolean>): Signal<T | null> {
     return untracked(() => cache.get(id)?.asReadonly() ?? this.refresh(cache, id, request, loading));
   }
 
   /** Re-fetches `id` into its cache signal (creating it if needed) and returns that signal. */
-  private refresh<T>(cache: Map<string, WritableSignal<T>>, id: string, request: (id: string) => Observable<T>,
-                     loading: WritableSignal<boolean>): Signal<T> {
+  private refresh<T>(cache: Map<string, WritableSignal<T | null>>, id: string, request: (id: string) => Observable<T>,
+                     loading: WritableSignal<boolean>): Signal<T | null> {
     return untracked(() => {
       let entry = cache.get(id);
       if (!entry) {
-        entry = signal<T>(null);
+        entry = signal<T | null>(null);
         cache.set(id, entry);
       }
       this.fetchInto(entry, request(id), loading);
@@ -537,7 +537,7 @@ export class ApiTournamentsService {
     });
   }
 
-  private fetchInto<T>(target: WritableSignal<T>, request: Observable<T>, loading?: WritableSignal<boolean>) {
+  private fetchInto<T>(target: WritableSignal<T | null>, request: Observable<T>, loading?: WritableSignal<boolean>) {
     if (this._pending.has(target)) {
       return;
     }
@@ -555,7 +555,7 @@ export class ApiTournamentsService {
     });
   }
 
-  private addGroupToCache<T extends TournamentGroup>(cache: Map<string, WritableSignal<T []>>, tournamentId: string,
+  private addGroupToCache<T extends TournamentGroup>(cache: Map<string, WritableSignal<T [] | null>>, tournamentId: string | undefined,
                                                      group: T, position: 'start' | 'end') {
     const entry = tournamentId ? cache.get(tournamentId) : undefined;
     if (!entry || !group) {
@@ -567,7 +567,7 @@ export class ApiTournamentsService {
       : position === 'start' ? [group, ...groups] : [...groups, group]);
   }
 
-  private removeGroupFromCache<T extends TournamentGroup>(cache: Map<string, WritableSignal<T []>>, id: string) {
+  private removeGroupFromCache<T extends TournamentGroup>(cache: Map<string, WritableSignal<T [] | null>>, id: string) {
     cache.forEach(entry => entry.update(groups => groups?.some(g => g.id === id) ? groups.filter(g => g.id !== id) : groups));
   }
 

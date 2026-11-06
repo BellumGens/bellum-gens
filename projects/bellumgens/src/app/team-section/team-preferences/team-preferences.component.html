@@ -7,7 +7,7 @@
         <input #teamName igxInput id="teamName" name="teamName" minlength="2" [required]="true" [(ngModel)]="team().teamName" />
         @if (teamName.value.length > 0) {
           <igx-suffix>
-            <button type="button" igxIconButton="flat" (click)="team().teamName = null" i18n-aria-label aria-label="Clear team name">
+            <button type="button" igxIconButton="flat" (click)="team().teamName = ''" i18n-aria-label aria-label="Clear team name">
               <igx-icon>clear</igx-icon>
             </button>
           </igx-suffix>
@@ -24,7 +24,7 @@
           [(ngModel)]="team().teamAvatar" />
           @if (teamAvatar.model?.length > 0) {
             <igx-suffix>
-              <button type="button" igxIconButton="flat" (click)="team().teamAvatar = null" i18n-aria-label aria-label="Clear team avatar URL">
+              <button type="button" igxIconButton="flat" (click)="team().teamAvatar = ''" i18n-aria-label aria-label="Clear team avatar URL">
                 <igx-icon>clear</igx-icon>
               </button>
             </igx-suffix>
@@ -38,7 +38,7 @@
           <textarea #teamDescription igxInput id="teamDescription" name="teamDescription" minlength="2" [required]="true" [(ngModel)]="team().description"></textarea>
           @if (teamDescription.value.length > 0) {
             <igx-suffix>
-              <button type="button" igxIconButton="flat" (click)="team().description = null" i18n-aria-label aria-label="Clear description">
+              <button type="button" igxIconButton="flat" (click)="team().description = ''" i18n-aria-label aria-label="Clear description">
                 <igx-icon>clear</igx-icon>
               </button>
             </igx-suffix>
@@ -49,7 +49,7 @@
           <input #teamDiscord igxInput id="teamDiscord" name="teamDiscord" [(ngModel)]="team().discord" />
           @if (teamDiscord.value.length > 0) {
             <igx-suffix>
-              <button type="button" igxIconButton="flat" (click)="team().discord = null" i18n-aria-label aria-label="Clear Discord">
+              <button type="button" igxIconButton="flat" (click)="team().discord = ''" i18n-aria-label aria-label="Clear Discord">
                 <igx-icon>clear</igx-icon>
               </button>
             </igx-suffix>

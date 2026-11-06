@@ -31,7 +31,7 @@ export class TeamApplicationComponent {
 
   public dialog = viewChild.required(IgxDialogComponent);
 
-  public authUser = input<ApplicationUser>();
+  public authUser = input<ApplicationUser | null>();
 
   public team = input<CSGOTeam>();
 
@@ -45,7 +45,7 @@ export class TeamApplicationComponent {
   public submitApplication() {
     const authUser = this.authUser();
     const team = this.team();
-    if (authUser && team) {
+    if (authUser && team?.teamId) {
       const application: TeamApplication = {
         ...this.application,
         applicantId: authUser.id,

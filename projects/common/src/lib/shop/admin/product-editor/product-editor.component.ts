@@ -76,11 +76,13 @@ export class ProductEditorComponent {
   public brandNames = BRAND_NAMES;
   public types = [ProductType.Jersey, ProductType.Umbrella, ProductType.Pen, ProductType.Pin, ProductType.Bracelet, ProductType.Other];
   public typeNames = PRODUCT_TYPE_NAMES;
-  public cuts = [NONE, JerseyCut.Male, JerseyCut.Female];
+  public readonly cuts: readonly (typeof NONE | JerseyCut)[] = [NONE, JerseyCut.Male, JerseyCut.Female];
   public cutNames = JERSEY_CUT_NAMES;
-  public sizes = [NONE, JerseySize.XS, JerseySize.S, JerseySize.M, JerseySize.L, JerseySize.XL, JerseySize.XXL, JerseySize.XXXL];
+  public readonly sizes: readonly (typeof NONE | JerseySize)[] = [
+    NONE, JerseySize.XS, JerseySize.S, JerseySize.M, JerseySize.L, JerseySize.XL, JerseySize.XXL, JerseySize.XXXL
+  ];
   public sizeNames = JERSEY_SIZE_NAMES;
-  public none = NONE;
+  public readonly none = NONE;
 
   public form = this.fb.group({
     id: [''],

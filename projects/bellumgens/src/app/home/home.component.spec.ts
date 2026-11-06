@@ -18,7 +18,6 @@ describe('HomeComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
-        
         ServiceWorkerModule.register('', { enabled: false }),
         HomeComponent
       ],
@@ -80,7 +79,7 @@ describe('HomeComponent', () => {
     const tweet = vi.spyOn(TestBed.inject(SocialMediaService), 'tweetWithText').mockImplementation(() => undefined);
 
     const button = Array.from<HTMLButtonElement>(fixture.nativeElement.querySelectorAll('button'))
-      .find(b => b.getAttribute('class')?.includes('space-out-button'));
+      .find(b => b.getAttribute('class')?.includes('space-out-button'))!;
     button.click();
 
     expect(tweet).toHaveBeenCalledWith('Hey @BellumGens ...');
@@ -91,8 +90,8 @@ describe('HomeComponent', () => {
     expect(typeof component.navigation()).toBe('boolean');
   });
 
-  it('should initialize userEmail to null', () => {
-    expect(component.userEmail()).toBeNull();
+  it('should initialize userEmail to an empty string', () => {
+    expect(component.userEmail()).toBe('');
   });
 
   it('should have environment property', () => {
@@ -124,17 +123,17 @@ describe('HomeComponent', () => {
 
   it('should clear the subscription email from a named button that does not submit the form', async () => {
     const email = fixture.nativeElement.querySelector('#subemail') as HTMLInputElement;
-    const clear = () => email.closest('igx-input-group').querySelector<HTMLButtonElement>('igx-suffix button');
+    const clear = () => email.closest('igx-input-group')!.querySelector<HTMLButtonElement>('igx-suffix button');
     expect(clear()).toBeNull();
 
     email.value = 'fan@example.com';
     email.dispatchEvent(new Event('input'));
     await fixture.whenStable();
 
-    expect(clear().type).toBe('button');
-    expect(clear().getAttribute('aria-label')).toBe('Clear email');
+    expect(clear()!.type).toBe('button');
+    expect(clear()!.getAttribute('aria-label')).toBe('Clear email');
 
-    clear().click();
+    clear()!.click();
     await fixture.whenStable();
 
     expect(component.userEmail()).toBe('');

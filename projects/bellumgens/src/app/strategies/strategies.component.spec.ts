@@ -47,7 +47,7 @@ describe('StrategiesComponent', () => {
   let url$: BehaviorSubject<UrlSegment []>;
   let parentParams$: BehaviorSubject<Params>;
   let params$: BehaviorSubject<Params>;
-  let user: WritableSignal<ApplicationUser>;
+  let user: WritableSignal<ApplicationUser | null>;
   let loginService: LoginService;
   let strategiesService: ApiStrategiesService;
   let searchService: ApiSearchService;
@@ -72,7 +72,7 @@ describe('StrategiesComponent', () => {
   // Clicks the item with the given label in the open actions drop-down.
   const selectAction = async (label: string) => {
     Array.from<HTMLElement>(document.querySelectorAll('igx-drop-down-item'))
-      .find(i => i.querySelector('.dd-item-content span').textContent.trim() === label)
+      .find(i => i.querySelector('.dd-item-content span')!.textContent.trim() === label)!
       .click();
     await fixture.whenStable();
   };
@@ -133,7 +133,7 @@ describe('StrategiesComponent', () => {
     });
 
     it('mirrors the service strategies, loading and hasMore state', async () => {
-      expect(component.strats().map(s => s.id)).toEqual(['1', '2']);
+      expect(component.strats()!.map(s => s.id)).toEqual(['1', '2']);
       expect(component.hasMore()).toBe(true);
       expect(component.loading()).toBe(false);
 
@@ -143,7 +143,7 @@ describe('StrategiesComponent', () => {
       await fixture.whenStable();
 
       expect(component.loading()).toBe(true);
-      expect(component.strats().map(s => s.id)).toEqual(['3']);
+      expect(component.strats()!.map(s => s.id)).toEqual(['3']);
       expect(component.hasMore()).toBe(false);
       expect(fixture.nativeElement.querySelector('bg-loading')).toBeTruthy();
     });
@@ -165,7 +165,7 @@ describe('StrategiesComponent', () => {
       const loadMore = loadMoreButton();
       expect(loadMore.type).toBe('button');
       expect(loadMore.getAttribute('aria-label')).toBe('Load More...');
-      expect(loadMore.querySelector('igx-avatar[icon="sync"]').getAttribute('aria-hidden')).toBe('true');
+      expect(loadMore.querySelector('igx-avatar[icon="sync"]')!.getAttribute('aria-hidden')).toBe('true');
 
       loadMore.click();
       expect(component.page).toBe(1);
@@ -186,15 +186,15 @@ describe('StrategiesComponent', () => {
     it('filters the rendered list by the selected maps on user interaction only', async () => {
       const inferno = component.maps().find(m => m.mapId === CSGOMap.Inferno);
 
-      component.changeMaps({ selected: false } as IChipSelectEventArgs, inferno);
+      component.changeMaps({ selected: false } as IChipSelectEventArgs, inferno!);
       await fixture.whenStable();
-      expect(component.maps().find(m => m.mapId === CSGOMap.Inferno).isPlayed).toBe(true);
+      expect(component.maps().find(m => m.mapId === CSGOMap.Inferno)!.isPlayed).toBe(true);
       expect(renderedTitles()).toEqual(['Strat 1', 'Strat 2']);
 
-      component.changeMaps({ selected: false, originalEvent: new MouseEvent('click') } as IChipSelectEventArgs, inferno);
+      component.changeMaps({ selected: false, originalEvent: new MouseEvent('click') } as IChipSelectEventArgs, inferno!);
       await fixture.whenStable();
-      expect(component.maps().find(m => m.mapId === CSGOMap.Inferno).isPlayed).toBe(false);
-      expect(component.maps().find(m => m.mapId === CSGOMap.Mirage).isPlayed).toBe(true);
+      expect(component.maps().find(m => m.mapId === CSGOMap.Inferno)!.isPlayed).toBe(false);
+      expect(component.maps().find(m => m.mapId === CSGOMap.Mirage)!.isPlayed).toBe(true);
       expect(renderedTitles()).toEqual(['Strat 2']);
     });
 
@@ -204,7 +204,7 @@ describe('StrategiesComponent', () => {
       expect(renderedTitles()).toEqual(['Strat 1']);
 
       const toggle = Array.from<HTMLButtonElement>(fixture.nativeElement.querySelectorAll('button'))
-        .find(b => b.textContent.includes('active duty maps'));
+        .find(b => b.textContent.includes('active duty maps'))!;
       toggle.click();
       await fixture.whenStable();
 
@@ -241,7 +241,7 @@ describe('StrategiesComponent', () => {
 
     it('submits the vote and swaps the updated strategy into the list when logged in', async () => {
       user.set({ id: 'user-1' } as ApplicationUser);
-      const target = component.strats()[1];
+      const target = component.strats()![1];
       const updated = strat('2', { map: CSGOMap.Mirage, votes: [{ vote: VoteDirection.Down, userId: 'user-1' }] });
       const vote = vi.spyOn(strategiesService, 'submitStratVote').mockReturnValue(of(updated));
 
@@ -249,8 +249,8 @@ describe('StrategiesComponent', () => {
       await fixture.whenStable();
 
       expect(vote).toHaveBeenCalledWith(target, VoteDirection.Down, 'user-1');
-      expect(component.strats()[0].id).toBe('1');
-      expect(component.strats()[1]).toBe(updated);
+      expect(component.strats()![0].id).toBe('1');
+      expect(component.strats()![1]).toBe(updated);
     });
 
     it('offers only sharing to users who neither own the strategy nor edit for the team', async () => {
@@ -268,7 +268,7 @@ describe('StrategiesComponent', () => {
     it('opens the login from create new strategy when logged out', () => {
       const openLogin = vi.spyOn(loginService, 'emitOpenLogin');
       const createButton = Array.from<HTMLButtonElement>(fixture.nativeElement.querySelectorAll('button'))
-        .find(b => b.textContent.includes('Create new strategy'));
+        .find(b => b.textContent.includes('Create new strategy'))!;
 
       createButton.click();
 
@@ -283,7 +283,7 @@ describe('StrategiesComponent', () => {
       const openLogin = vi.spyOn(loginService, 'emitOpenLogin');
 
       Array.from<HTMLButtonElement>(fixture.nativeElement.querySelectorAll('button'))
-        .find(b => b.textContent.includes('Create new strategy'))
+        .find(b => b.textContent.includes('Create new strategy'))!
         .click();
 
       expect(open).toHaveBeenCalled();
@@ -301,7 +301,7 @@ describe('StrategiesComponent', () => {
 
     it('votes a strategy down from its button', async () => {
       user.set({ id: 'user-1' } as ApplicationUser);
-      const target = component.strats()[0];
+      const target = component.strats()![0];
       const vote = vi.spyOn(strategiesService, 'submitStratVote').mockReturnValue(of(target));
 
       (fixture.nativeElement.querySelector('igx-icon[title="vote down"]').closest('button') as HTMLButtonElement).click();
@@ -317,21 +317,21 @@ describe('StrategiesComponent', () => {
     });
 
     it('removes a strategy from the list once it is deleted', async () => {
-      const target = component.strats()[0];
-      const del = vi.spyOn(strategiesService, 'deleteStrategy').mockReturnValue(of(undefined));
+      const target = component.strats()![0];
+      const del = vi.spyOn(strategiesService, 'deleteStrategy').mockReturnValue(of({}));
 
       component.deleteStrat(target);
       await fixture.whenStable();
 
       expect(del).toHaveBeenCalledWith('1');
-      expect(component.strats().map(s => s.id)).toEqual(['2']);
+      expect(component.strats()!.map(s => s.id)).toEqual(['2']);
       expect(renderedTitles()).toEqual(['Strat 2']);
     });
 
     it('keeps a strategy and handles the error when the delete fails', async () => {
       const unhandled = vi.fn();
       config.onUnhandledError = unhandled;
-      const target = component.strats()[0];
+      const target = component.strats()![0];
       vi.spyOn(strategiesService, 'deleteStrategy').mockReturnValue(throwError(() => new Error('delete failed')));
 
       component.deleteStrat(target);
@@ -341,14 +341,14 @@ describe('StrategiesComponent', () => {
       config.onUnhandledError = null;
 
       expect(unhandled).not.toHaveBeenCalled();
-      expect(component.strats().map(s => s.id)).toEqual(['1', '2']);
+      expect(component.strats()!.map(s => s.id)).toEqual(['1', '2']);
     });
 
     it('appends a newly added strategy', async () => {
       component.onStrategyAdded(strat('new'));
       await fixture.whenStable();
 
-      expect(component.strats().map(s => s.id)).toEqual(['1', '2', 'new']);
+      expect(component.strats()!.map(s => s.id)).toEqual(['1', '2', 'new']);
       expect(renderedTitles()).toContain('Strat new');
     });
 
@@ -373,7 +373,7 @@ describe('StrategiesComponent', () => {
       await openActions();
       await selectAction('Share');
 
-      expect(share).toHaveBeenCalledWith(component.strats()[0]);
+      expect(share).toHaveBeenCalledWith(component.strats()![0]);
     });
 
     it('edits and deletes a strategy from the actions drop-down', async () => {
@@ -387,11 +387,11 @@ describe('StrategiesComponent', () => {
 
       await openActions();
       await selectAction('Edit');
-      expect(edit).toHaveBeenCalledWith(component.strats()[0], 'Edit strategy');
+      expect(edit).toHaveBeenCalledWith(component.strats()![0], 'Edit strategy');
 
       await openActions();
       await selectAction('Delete');
-      expect(del).toHaveBeenCalledWith(component.strats()[0]);
+      expect(del).toHaveBeenCalledWith(component.strats()![0]);
     });
 
     it('runs a strategy action with the keyboard', async () => {
@@ -408,7 +408,7 @@ describe('StrategiesComponent', () => {
       button.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', bubbles: true }));
       await fixture.whenStable();
 
-      expect(edit).toHaveBeenCalledWith(component.strats()[0], 'Edit strategy');
+      expect(edit).toHaveBeenCalledWith(component.strats()![0], 'Edit strategy');
     });
 
     it('links the title, image and comments of a strategy to its details', async () => {
@@ -421,7 +421,7 @@ describe('StrategiesComponent', () => {
 
       // The image repeats the title link, so it is kept out of the tab order and the accessibility tree.
       const image = fixture.nativeElement.querySelector('img.strat-image') as HTMLImageElement;
-      const imageLink = image.closest('a');
+      const imageLink = image.closest('a')!;
       expect(imageLink.getAttribute('href')).toBe('/strategies/details/strat-1');
       expect(imageLink.getAttribute('tabindex')).toBe('-1');
       expect(imageLink.getAttribute('aria-hidden')).toBe('true');
@@ -430,7 +430,7 @@ describe('StrategiesComponent', () => {
       const comments = fixture.nativeElement.querySelector('a.comments-link') as HTMLAnchorElement;
       expect(comments.getAttribute('href')).toBe('/strategies/details/strat-1');
       expect(comments.getAttribute('aria-label')).toBe('Comments: 0');
-      expect(comments.querySelector('igx-badge').getAttribute('aria-hidden')).toBe('true');
+      expect(comments.querySelector('igx-badge')!.getAttribute('aria-hidden')).toBe('true');
     });
 
     it('names the media container by its content instead of exposing an unnamed img role around links', async () => {
@@ -487,21 +487,21 @@ describe('StrategiesComponent', () => {
       const socialMedia = TestBed.inject(SocialMediaStrategyService);
       const share = vi.spyOn(socialMedia, 'shareOnTwitter').mockImplementation(() => undefined);
 
-      component.shareOnTwitter(component.strats()[0]);
+      component.shareOnTwitter(component.strats()![0]);
 
-      expect(share).toHaveBeenCalledWith(component.strats()[0]);
+      expect(share).toHaveBeenCalledWith(component.strats()![0]);
     });
   });
 
   describe('when the strategy list starts out empty', () => {
     it('appends an added strategy to an undefined list', async () => {
-      const empty = signal<CSGOStrategy []>(undefined);
+      const empty = signal<CSGOStrategy [] | undefined>(undefined);
       Object.defineProperty(strategiesService, 'strategies', { get: () => empty });
       await create();
 
       component.onStrategyAdded(strat('first'));
 
-      expect(component.strats().map(s => s.id)).toEqual(['first']);
+      expect(component.strats()!.map(s => s.id)).toEqual(['first']);
     });
   });
 
@@ -533,10 +533,10 @@ describe('StrategiesComponent', () => {
   });
 
   describe('team strategies', () => {
-    let team: WritableSignal<CSGOTeam>;
+    let team: WritableSignal<CSGOTeam | null>;
 
     beforeEach(async () => {
-      team = signal<CSGOTeam>(null);
+      team = signal<CSGOTeam | null>(null);
       vi.spyOn(apiService, 'getTeam').mockReturnValue(team.asReadonly());
       vi.spyOn(strategiesService, 'getTeamStrats').mockReturnValue(of([strat('team-1', { teamId: 'team-a' })]));
       vi.spyOn(loginService, 'getUserIsTeamEditor').mockReturnValue(of(true));
@@ -547,19 +547,19 @@ describe('StrategiesComponent', () => {
     it('waits for the team before loading its strategies', () => {
       expect(apiService.getTeam).toHaveBeenCalledWith('team-a');
       expect(strategiesService.getTeamStrats).not.toHaveBeenCalled();
-      expect(component.team()).toBeUndefined();
+      expect(component.team()).toBeNull();
     });
 
     it('loads the team strategies and editor rights once the team resolves', async () => {
       team.set({ teamId: 'team-a', teamName: 'Team A' } as CSGOTeam);
       await fixture.whenStable();
 
-      expect(component.team().teamId).toBe('team-a');
+      expect(component.team()!.teamId).toBe('team-a');
       expect(strategiesService.getTeamStrats).toHaveBeenCalledWith('team-a');
       expect(loginService.getUserIsTeamEditor).toHaveBeenCalledWith('team-a');
       expect(component.isEditor()).toBe(true);
       expect(component.loading()).toBe(false);
-      expect(component.strats().map(s => s.id)).toEqual(['team-1']);
+      expect(component.strats()!.map(s => s.id)).toEqual(['team-1']);
       expect(renderedTitles()).toEqual(['Strat team-1']);
     });
 
@@ -587,7 +587,7 @@ describe('StrategiesComponent', () => {
 
       expect(userStrats).not.toHaveBeenCalled();
       expect(getTeam).not.toHaveBeenCalled();
-      expect(component.strats()).toBeUndefined();
+      expect(component.strats()).toBeNull();
     });
 
     it('loads the logged in user strategies', async () => {
@@ -598,7 +598,7 @@ describe('StrategiesComponent', () => {
       await fixture.whenStable();
 
       expect(userStrats).toHaveBeenCalledWith('user-1');
-      expect(component.strats().map(s => s.id)).toEqual(['mine']);
+      expect(component.strats()!.map(s => s.id)).toEqual(['mine']);
       expect(renderedTitles()).toEqual(['Strat mine']);
     });
 

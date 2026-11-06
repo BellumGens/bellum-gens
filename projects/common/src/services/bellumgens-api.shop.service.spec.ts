@@ -153,7 +153,7 @@ describe('ApiShopService', () => {
     });
 
     it('uploads a product image and reports a failed upload', () => {
-      let url: string;
+      let url: string | undefined;
       service.uploadProductImage('jersey', 'data:image/png;base64,AAA').subscribe(result => url = result.url);
       const req = httpMock.expectOne(`${service['_apiEndpoint']}/shopadmin/products/jersey/image`);
       expect(req.request.body).toEqual({ image: 'data:image/png;base64,AAA' });

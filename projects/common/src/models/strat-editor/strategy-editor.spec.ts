@@ -24,7 +24,7 @@ describe('StrategyEditor', () => {
   });
 
   it('creates no layer for an unknown layer type', () => {
-    expect(strategyEditor.createLayer(99, { name: 'unknown' } as EditorLayer)).toBeUndefined();
+    expect(strategyEditor.createLayer(99 as EditorLayerType, { name: 'unknown' } as EditorLayer)).toBeUndefined();
   });
 
   it('names new layers by their position when no name is given', () => {
@@ -107,7 +107,7 @@ describe('StrategyEditor', () => {
       replaced.selected = true;
     }).not.toThrow();
     expect(flip).not.toHaveBeenCalled();
-    expect(strategyEditor['_selectedLayer']).toBeUndefined();
+    expect(strategyEditor['_selectedLayer']).toBeNull();
 
     replacement.selected = true;
     expect(strategyEditor['_selectedLayer']).toBe(replacement);
@@ -190,7 +190,7 @@ describe('StrategyEditor', () => {
   });
 
   it('should remove a layer', () => {
-    const layer = new ImageLayer(canvas.getContext('2d'), 'Image Layer');
+    const layer = new ImageLayer(canvas.getContext('2d')!, 'Image Layer');
     strategyEditor.addLayer(layer);
     layer.selected = true;
     expect(strategyEditor['_selectedLayer']).toBe(layer);

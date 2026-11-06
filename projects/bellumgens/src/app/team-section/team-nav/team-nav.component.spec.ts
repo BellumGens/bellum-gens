@@ -105,9 +105,9 @@ describe('TeamNavComponent', () => {
       expect(el.textContent).toContain('Create New Counter-Strike Team');
       const cards = el.querySelectorAll('igx-card');
       expect(cards.length).toBe(2);
-      expect(cards[0].querySelector('h3').textContent).toContain('First Team');
+      expect(cards[0].querySelector('h3')!.textContent).toContain('First Team');
       expect(cards[0].textContent).toContain('The first team');
-      expect(cards[1].querySelector('h3').textContent).toContain('Second Team');
+      expect(cards[1].querySelector('h3')!.textContent).toContain('Second Team');
     });
 
     it('should link each card to the team page', async () => {
@@ -140,7 +140,7 @@ describe('TeamNavComponent', () => {
       const groupsReq = httpMock.expectOne(r => r.url.includes('/users/usergroups'));
       expect(groupsReq.request.url).toContain('userid=steam-1');
       groupsReq.flush([]);
-      expect(teamNew.createTeam().isOpen).toBe(true);
+      expect(teamNew.createTeam()!.isOpen).toBe(true);
     });
 
     it('should abandon a team after confirming', async () => {
@@ -210,7 +210,7 @@ describe('TeamNavComponent', () => {
       await flushTeams(TEAMS);
       const confirm = fixture.debugElement.query(By.directive(ConfirmComponent)).componentInstance as ConfirmComponent;
       const abandonButton = fixture.debugElement.queryAll(By.css('igx-card-actions button'))
-        .find(b => (b.nativeElement as HTMLElement).textContent.includes('Abandon'));
+        .find(b => (b.nativeElement as HTMLElement).textContent.includes('Abandon'))!;
       (abandonButton.nativeElement as HTMLButtonElement).click();
       await fixture.whenStable();
 

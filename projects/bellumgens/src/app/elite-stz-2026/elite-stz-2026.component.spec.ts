@@ -51,9 +51,9 @@ describe('EliteStz2026Component', () => {
     fixture.detectChanges();
     const el: HTMLElement = fixture.nativeElement;
 
-    const email = el.querySelector<HTMLInputElement>('#email');
-    expect(email.labels.length).toBe(1);
-    expect(email.labels[0].textContent.trim()).toBe('Email');
+    const email = el.querySelector<HTMLInputElement>('#email')!;
+    expect(email.labels!.length).toBe(1);
+    expect(email.labels![0].textContent.trim()).toBe('Email');
 
     const checkboxes = Array.from(el.querySelectorAll<HTMLInputElement>('igx-checkbox input[type="checkbox"]'));
     expect(checkboxes.length).toBe(2);
@@ -96,8 +96,8 @@ describe('EliteStz2026Component', () => {
     const el: HTMLElement = fixture.nativeElement;
 
     expect(component.form.get('email')?.disabled).toBe(true);
-    expect(el.querySelector('.auth-info').textContent).toContain('Signup deadline has passed.');
-    expect(el.querySelector<HTMLButtonElement>('button[type="submit"]').disabled).toBe(true);
+    expect(el.querySelector('.auth-info')!.textContent).toContain('Signup deadline has passed.');
+    expect(el.querySelector<HTMLButtonElement>('button[type="submit"]')!.disabled).toBe(true);
   });
 
   it('should ask a visitor to log in before the deadline', () => {
@@ -105,8 +105,8 @@ describe('EliteStz2026Component', () => {
     fixture.detectChanges();
     const el: HTMLElement = fixture.nativeElement;
 
-    expect(el.querySelector('.auth-info').textContent).toContain('You need to be logged in');
-    expect(el.querySelector<HTMLButtonElement>('button[type="submit"]').disabled).toBe(true);
+    expect(el.querySelector('.auth-info')!.textContent).toContain('You need to be logged in');
+    expect(el.querySelector<HTMLButtonElement>('button[type="submit"]')!.disabled).toBe(true);
   });
 
   it('should explain the invalid fields when an incomplete form is submitted', () => {
@@ -117,7 +117,7 @@ describe('EliteStz2026Component', () => {
     expect(el.querySelector('.auth-info')).toBeNull();
     expect(el.querySelectorAll('.error').length).toBe(0);
 
-    el.querySelector<HTMLButtonElement>('button[type="submit"]').click();
+    el.querySelector<HTMLButtonElement>('button[type="submit"]')!.click();
     fixture.detectChanges();
 
     const errors = Array.from(el.querySelectorAll('.error')).map(e => e.textContent.trim());

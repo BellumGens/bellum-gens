@@ -59,9 +59,9 @@ export class AppComponent {
   private drawer = viewChild.required<IgxNavigationDrawerComponent>('drawer');
 
   // The user is only looked up in the browser.
-  public authUser: Signal<ApplicationUser> = isPlatformBrowser(this.platformId)
+  public authUser: Signal<ApplicationUser | null> = isPlatformBrowser(this.platformId)
     ? this.authManager.applicationUser
-    : signal<ApplicationUser>(null).asReadonly();
+    : signal<ApplicationUser | null>(null).asReadonly();
   public drawerPinned = signal(false);
   public environment = environment;
   public year = new Date().getFullYear();

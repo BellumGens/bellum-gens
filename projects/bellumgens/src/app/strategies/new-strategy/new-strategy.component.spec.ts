@@ -72,17 +72,17 @@ describe('NewStrategyComponent', () => {
     fixture.debugElement.query(By.css(selector))?.nativeElement as T | undefined;
 
   const typeInto = async (selector: string, value: string) => {
-    const input = el<HTMLInputElement | HTMLTextAreaElement>(selector);
+    const input = el<HTMLInputElement | HTMLTextAreaElement>(selector)!;
     input.value = value;
     input.dispatchEvent(new Event('input'));
     await fixture.whenStable();
   };
 
   const buttons = () => fixture.debugElement.queryAll(By.css('button')).map(b => b.nativeElement as HTMLButtonElement);
-  const editorButton = () => buttons().find(b => b.textContent.includes('Editor'));
-  const submitButton = () => buttons().find(b => b.textContent.includes('Submit'));
+  const editorButton = () => buttons().find(b => b.textContent.includes('Editor'))!;
+  const submitButton = () => buttons().find(b => b.textContent.includes('Submit'))!;
   const clearButtonFor = (selector: string) =>
-    el<HTMLElement>(selector).closest('igx-input-group').querySelector<HTMLButtonElement>('igx-suffix button') ?? undefined;
+    el<HTMLElement>(selector)!.closest('igx-input-group')!.querySelector<HTMLButtonElement>('igx-suffix button') ?? undefined;
   const iframe = () => el<HTMLIFrameElement>('iframe.video-frame');
   const titleText = () => (fixture.nativeElement as HTMLElement).querySelector('form > span')?.textContent.trim();
 
@@ -114,10 +114,10 @@ describe('NewStrategyComponent', () => {
     it('names the dialog by its title', async () => {
       await openDialog(undefined, 'Edit strategy');
 
-      const dialog = document.querySelector('.igx-dialog__window');
+      const dialog = document.querySelector('.igx-dialog__window')!;
       const labelledBy = dialog.getAttribute('aria-labelledby');
       expect(labelledBy).toBeTruthy();
-      expect(document.getElementById(labelledBy)?.textContent.trim()).toBe('Edit strategy');
+      expect(document.getElementById(labelledBy!)?.textContent.trim()).toBe('Edit strategy');
     });
 
     it('does not mark a new strategy public by default when it belongs to a team', async () => {
@@ -137,9 +137,9 @@ describe('NewStrategyComponent', () => {
       expect(component.dialog().isOpen).toBe(true);
       expect(titleText()).toBe('Edit strategy');
       expect(component.newStrategy()).toBe(strat);
-      expect(el<HTMLInputElement>('#strategyName').value).toBe('Existing strat');
-      expect(el<HTMLTextAreaElement>('#strategyDescription').value).toBe('Existing description');
-      expect(el<HTMLInputElement>('#strategyUrl').value).toBe(YOUTUBE_EMBED);
+      expect(el<HTMLInputElement>('#strategyName')!.value).toBe('Existing strat');
+      expect(el<HTMLTextAreaElement>('#strategyDescription')!.value).toBe('Existing description');
+      expect(el<HTMLInputElement>('#strategyUrl')!.value).toBe(YOUTUBE_EMBED);
       expect(iframe()).toBeTruthy();
     });
 
@@ -160,7 +160,7 @@ describe('NewStrategyComponent', () => {
       await fixture.whenStable();
 
       expect(component.newStrategy()).toEqual({ ...NEW_EMPTY_STRAT, visible: true });
-      expect(el<HTMLInputElement>('#strategyName').value).toBe('');
+      expect(el<HTMLInputElement>('#strategyName')!.value).toBe('');
     });
 
     it('resets to a private strategy when the dialog belongs to a team', async () => {
@@ -188,14 +188,14 @@ describe('NewStrategyComponent', () => {
       expect(clearButtonFor('#strategyName')).toBeUndefined();
 
       await typeInto('#strategyName', 'Fast B rush');
-      const clear = clearButtonFor('#strategyName');
+      const clear = clearButtonFor('#strategyName')!;
       expect(clear).toBeTruthy();
 
       clear.click();
       await fixture.whenStable();
 
-      expect(component.newStrategy().title).toBeNull();
-      expect(el<HTMLInputElement>('#strategyName').value).toBe('');
+      expect(component.newStrategy().title).toBe('');
+      expect(el<HTMLInputElement>('#strategyName')!.value).toBe('');
     });
 
     it('renders the clear actions as named buttons that do not submit the form', async () => {
@@ -206,7 +206,7 @@ describe('NewStrategyComponent', () => {
         ['#strategyDescription', 'Clear description'],
         ['#strategyUrl', 'Clear link']
       ]) {
-        const clear = clearButtonFor(selector);
+        const clear = clearButtonFor(selector)!;
         expect(clear.type).toBe('button');
         expect(clear.getAttribute('aria-label')).toBe(name);
       }
@@ -214,11 +214,11 @@ describe('NewStrategyComponent', () => {
 
     it('stores a map selected without clicking an item, as with the keyboard', async () => {
       const select = fixture.debugElement.query(By.directive(IgxSelectComponent)).componentInstance as IgxSelectComponent;
-      const mirage = component.mapList.find(m => m.mapId === CSGOMap.Mirage);
+      const mirage = component.mapList.find(m => m.mapId === CSGOMap.Mirage)!;
       const item = select.items.find(i => i.value === mirage.mapId);
 
       // Enter/Space on a focused item selects it through the same path as the keyboard navigation.
-      select.selectItem(item);
+      select.selectItem(item!);
       await fixture.whenStable();
 
       expect(component.newStrategy().map).toBe(CSGOMap.Mirage);
@@ -226,9 +226,9 @@ describe('NewStrategyComponent', () => {
     });
 
     it('stores the selected map', async () => {
-      const inferno = component.mapList.find(m => m.mapId === CSGOMap.Inferno);
+      const inferno = component.mapList.find(m => m.mapId === CSGOMap.Inferno)!;
       const item = fixture.debugElement.queryAll(By.css('igx-select-item'))
-        .find(i => (i.nativeElement as HTMLElement).textContent.trim() === inferno.map);
+        .find(i => (i.nativeElement as HTMLElement).textContent.trim() === inferno.map)!;
 
       (item.nativeElement as HTMLElement).click();
       await fixture.whenStable();
@@ -252,7 +252,7 @@ describe('NewStrategyComponent', () => {
 
     it('toggles whether the strategy is public from the switch', async () => {
       const visible = component.newStrategy().visible;
-      const toggle = el<HTMLInputElement>('igx-switch input');
+      const toggle = el<HTMLInputElement>('igx-switch input')!;
 
       toggle.click();
       await fixture.whenStable();
@@ -266,10 +266,10 @@ describe('NewStrategyComponent', () => {
     it('clears the description from its clear button', async () => {
       await typeInto('#strategyDescription', 'Everyone rushes B');
 
-      clearButtonFor('#strategyDescription').click();
+      clearButtonFor('#strategyDescription')!.click();
       await fixture.whenStable();
 
-      expect(component.newStrategy().description).toBeNull();
+      expect(component.newStrategy().description).toBe('');
       expect(clearButtonFor('#strategyDescription')).toBeUndefined();
     });
 
@@ -290,15 +290,15 @@ describe('NewStrategyComponent', () => {
 
       expect(component.newStrategy().url).toBe(YOUTUBE_EMBED);
       expect(iframe()).toBeTruthy();
-      expect(iframe().getAttribute('src')).toBe(YOUTUBE_EMBED);
-      expect(iframe().getAttribute('title')).toBe('Video');
+      expect(iframe()!.getAttribute('src')).toBe(YOUTUBE_EMBED);
+      expect(iframe()!.getAttribute('title')).toBe('Video');
     });
 
     it('stores the embed link for a Twitch url and shows the video', async () => {
       await typeInto('#strategyUrl', TWITCH_URL);
 
       expect(component.newStrategy().url).toBe(TWITCH_EMBED);
-      expect(iframe().getAttribute('src')).toBe(TWITCH_EMBED);
+      expect(iframe()!.getAttribute('src')).toBe(TWITCH_EMBED);
     });
 
     it('stores a non-video url as typed without showing a video', async () => {
@@ -322,10 +322,10 @@ describe('NewStrategyComponent', () => {
       await typeInto('#strategyUrl', YOUTUBE_URL);
       expect(clearButtonFor('#strategyUrl')).toBeTruthy();
 
-      clearButtonFor('#strategyUrl').click();
+      clearButtonFor('#strategyUrl')!.click();
       await fixture.whenStable();
 
-      expect(component.newStrategy().url).toBeNull();
+      expect(component.newStrategy().url).toBe('');
       expect(iframe()).toBeUndefined();
     });
   });

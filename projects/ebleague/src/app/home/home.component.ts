@@ -37,15 +37,15 @@ export class HomeComponent {
   public userEmail = signal('');
   public gameEnum = Game;
   // The active tournament and its registration counts are only loaded in the browser.
-  public registrations: Signal<RegistrationsCount []> = this.apiService.registrationsCount;
-  public tournament: Signal<Tournament> = isPlatformBrowser(this.platformId)
+  public registrations: Signal<RegistrationsCount [] | null> = this.apiService.registrationsCount;
+  public tournament: Signal<Tournament | null> = isPlatformBrowser(this.platformId)
     ? this.apiService.activeTournament
-    : signal<Tournament>(null).asReadonly();
+    : signal<Tournament | null>(null).asReadonly();
   public tournamentId = computed(() => this.tournament()?.id ?? null);
   // The user is only looked up in the browser.
-  public authUser: Signal<ApplicationUser> = isPlatformBrowser(this.platformId)
+  public authUser: Signal<ApplicationUser | null> = isPlatformBrowser(this.platformId)
     ? this.authManager.applicationUser
-    : signal<ApplicationUser>(null).asReadonly();
+    : signal<ApplicationUser | null>(null).asReadonly();
 
   constructor() {
     effect(() => {

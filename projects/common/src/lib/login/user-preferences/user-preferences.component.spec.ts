@@ -186,7 +186,7 @@ describe('UserPreferencesComponent', () => {
     req.flush({});
     expect(component.registrations()[0].state).toBe(TournamentApplicationState.Confirmed);
     expect(component.registrations()[1].state).toBe(TournamentApplicationState.Pending);
-    expect(authService['_registrations']()[0].state).toBe(TournamentApplicationState.Confirmed);
+    expect(authService['_registrations']()?.[0].state).toBe(TournamentApplicationState.Confirmed);
 
     fixture.detectChanges();
     const states = fixture.nativeElement.querySelectorAll('[igxListAction] > span');
@@ -208,9 +208,9 @@ describe('UserPreferencesComponent', () => {
   });
 
   it('should open the registration from a button', () => {
-    vi.spyOn(router, 'navigate').mockImplementation(() => undefined);
+    vi.spyOn(router, 'navigate').mockResolvedValue(true);
     const button = Array.from<HTMLButtonElement>(fixture.nativeElement.querySelectorAll('button'))
-      .find(b => b.textContent.trim() === 'Create username and password');
+      .find(b => b.textContent.trim() === 'Create username and password')!;
 
     expect(button.type).toBe('button');
     button.click();
@@ -224,7 +224,7 @@ describe('UserPreferencesComponent', () => {
   });
 
   it('should call openRegistration method', () => {
-    vi.spyOn(router, 'navigate').mockImplementation(() => undefined);
+    vi.spyOn(router, 'navigate').mockResolvedValue(true);
     component.openRegistration();
     expect(router.navigate).toHaveBeenCalledWith(['register']);
   });
@@ -239,9 +239,9 @@ describe('UserPreferencesComponent', () => {
       vi.spyOn(authService, 'login').mockImplementation(() => undefined);
       const loginButtons = buttons().filter(b => b.querySelector('igx-icon[family="login-icons"]'));
 
-      expect(loginButtons.map(b => b.querySelector('span').textContent.trim())).toEqual(['Steam', 'Add BattleNet']);
+      expect(loginButtons.map(b => b.querySelector('span')!.textContent.trim())).toEqual(['Steam', 'Add BattleNet']);
       expect(loginButtons.map(b => b.disabled)).toEqual([true, false]);
-      expect(loginButtons[0].querySelector('.color-success').textContent).toBe('done');
+      expect(loginButtons[0].querySelector('.color-success')!.textContent).toBe('done');
 
       loginButtons[1].click();
 
@@ -278,7 +278,7 @@ describe('UserPreferencesComponent', () => {
       expect(admin).toBeTruthy();
       vi.spyOn(router, 'navigate');
       // Outside the league site the admin is opened there instead of navigating within this app
-      admin.click();
+      admin!.click();
       expect(router.navigate).not.toHaveBeenCalled();
     });
 
@@ -316,7 +316,7 @@ describe('UserPreferencesComponent', () => {
       const [confirmAccount, confirmReg] = fixture.debugElement.queryAll(By.directive(ConfirmComponent));
       const open = vi.spyOn(confirmReg.componentInstance as ConfirmComponent, 'open').mockImplementation(() => undefined);
 
-      el().querySelectorAll<HTMLButtonElement>('igx-list-item')[0].querySelector<HTMLButtonElement>('button[aria-label="Delete this application"]').click();
+      el().querySelectorAll<HTMLButtonElement>('igx-list-item')[0].querySelector<HTMLButtonElement>('button[aria-label="Delete this application"]')!.click();
       expect(open).toHaveBeenCalledWith(registrations[0]);
 
       confirmReg.triggerEventHandler('ok', registrations[0]);
@@ -333,7 +333,7 @@ describe('UserPreferencesComponent', () => {
       const deleted = vi.fn();
       component.userDeleted.subscribe(deleted);
 
-      buttons().find(b => b.textContent.includes('Delete Account Forever')).click();
+      buttons().find(b => b.textContent.includes('Delete Account Forever'))!.click();
       expect(open).toHaveBeenCalled();
 
       confirmAccount.triggerEventHandler('ok');

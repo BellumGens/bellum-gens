@@ -24,7 +24,7 @@ describe('TeamApplicationComponent', () => {
 
   const applyButton = () => fixture.nativeElement.querySelector(':scope > button') as HTMLButtonElement;
   const dialogButton = (label: string) => fixture.debugElement.queryAll(By.css('.igx-dialog__window-actions button'))
-    .find(b => (b.nativeElement as HTMLElement).textContent.includes(label)).nativeElement as HTMLButtonElement;
+    .find(b => (b.nativeElement as HTMLElement).textContent.includes(label))!.nativeElement as HTMLButtonElement;
   const textarea = () => fixture.nativeElement.querySelector('textarea[name="motivation"]') as HTMLTextAreaElement;
   const clearIcon = () => fixture.nativeElement.querySelector('igx-suffix button') as HTMLButtonElement;
 

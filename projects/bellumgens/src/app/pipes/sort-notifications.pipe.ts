@@ -6,7 +6,7 @@ import { UserNotification } from '../../../../common/src/public_api';
 })
 export class SortNotificationsPipe implements PipeTransform {
 
-  public transform(notifications: UserNotification [], _?: number): UserNotification [] {
+  public transform(notifications: UserNotification [] | null | undefined, _?: number): UserNotification [] | null | undefined {
     return notifications && [...notifications].sort((x, y) => x.state - y.state);
   }
 

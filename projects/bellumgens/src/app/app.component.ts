@@ -19,7 +19,6 @@ import {
   LoginService,
   ApplicationUser,
   BellumgensApiService,
-  SearchResult,
   GLOBAL_OVERLAY_SETTINGS,
   CSGOTeam,
   ApiSearchService,
@@ -97,9 +96,9 @@ export class AppComponent {
 
   private isBrowser = isPlatformBrowser(this.platformId);
   // The user is only looked up in the browser.
-  public authUser: Signal<ApplicationUser> = this.isBrowser ? this.authManager.applicationUser : signal<ApplicationUser>(null).asReadonly();
-  public teams = signal<CSGOTeam []>(null);
-  public searchResult: SearchResult;
+  public authUser: Signal<ApplicationUser | null> = this.isBrowser ? this.authManager.applicationUser : signal<ApplicationUser | null>(null).asReadonly();
+  public teams = signal<CSGOTeam [] | null>(null);
+  public teamCount = computed(() => this.teams()?.length ?? 0);
   public searchTerm = signal('');
   // Whether the search, collapsed behind a toggle on narrow screens, is shown
   public searchExpanded = signal(false);
