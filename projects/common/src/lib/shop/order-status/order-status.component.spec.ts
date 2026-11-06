@@ -200,7 +200,7 @@ describe('OrderStatusComponent', () => {
     expect(assign).toHaveBeenCalledWith('https://checkout.revolut.com/retry');
   });
 
-  it('recovers and reloads the order when the retry cannot be started', () => {
+  it('tells the customer and reloads the order when the retry cannot be started', () => {
     httpMock.expectOne(orderUrl()).flush(order(OrderStatus.AwaitingPayment, PaymentStatus.Failed));
 
     component.retryPayment();
@@ -208,9 +208,36 @@ describe('OrderStatusComponent', () => {
     httpMock.expectOne(`${api['_apiEndpoint']}/shop/orders/o1/retry-payment`)
       .flush('', { status: 502, statusText: 'Bad Gateway' });
     httpMock.expectOne(orderUrl()).flush(order(OrderStatus.AwaitingPayment, PaymentStatus.Failed));
+    fixture.detectChanges();
 
     expect(component.busy()).toBe(false);
     expect(component.order()?.canRetryPayment).toBe(true);
+    // The reload succeeding must not hide that the retry itself failed.
+    expect(component.retryFailed()).toBe(true);
+    const alert: HTMLElement = fixture.nativeElement.querySelector('.status-message [role="alert"]');
+    expect(alert.textContent).toContain('could not start a new payment');
+  });
+
+  it('clears the failed retry message when the customer tries again or refreshes', () => {
+    httpMock.expectOne(orderUrl()).flush(order(OrderStatus.AwaitingPayment, PaymentStatus.Failed));
+    component.retryPayment();
+    httpMock.expectOne(`${api['_apiEndpoint']}/shop/orders/o1/retry-payment`)
+      .flush('', { status: 502, statusText: 'Bad Gateway' });
+    httpMock.expectOne(orderUrl()).flush(order(OrderStatus.AwaitingPayment, PaymentStatus.Failed));
+    expect(component.retryFailed()).toBe(true);
+
+    component.retryPayment();
+    expect(component.retryFailed()).toBe(false);
+    httpMock.expectOne(`${api['_apiEndpoint']}/shop/orders/o1/retry-payment`)
+      .flush('', { status: 502, statusText: 'Bad Gateway' });
+    httpMock.expectOne(orderUrl()).flush(order(OrderStatus.AwaitingPayment, PaymentStatus.Failed));
+    expect(component.retryFailed()).toBe(true);
+
+    component.refresh();
+    httpMock.expectOne(orderUrl()).flush(order(OrderStatus.AwaitingPayment, PaymentStatus.Failed));
+    fixture.detectChanges();
+    expect(component.retryFailed()).toBe(false);
+    expect(fixture.nativeElement.textContent).not.toContain('could not start a new payment');
   });
 
   it('cancels a pending retry when the customer leaves the page', () => {
@@ -325,6 +352,67 @@ describe('OrderStatusComponent', () => {
 
     expect(component.notFound()).toBe(true);
     expect(component.loadFailed()).toBe(false);
+  });
+
+  it('keeps polling an order on screen through a refused request', () => {
+    httpMock.expectOne(orderUrl()).flush(order(OrderStatus.AwaitingPayment, PaymentStatus.Pending));
+
+    vi.advanceTimersByTime(OrderStatusComponent.pollIntervalMs);
+    httpMock.expectOne(orderUrl()).flush('', { status: 403, statusText: 'Forbidden' });
+    fixture.detectChanges();
+
+    expect(component.notFound()).toBe(false);
+    expect(component.order()?.status).toBe(OrderStatus.AwaitingPayment);
+    expect(component.polling()).toBe(true);
+    expect(fixture.nativeElement.textContent).not.toContain('could not find this order');
+
+    vi.advanceTimersByTime(OrderStatusComponent.pollIntervalMs);
+    httpMock.expectOne(orderUrl()).flush(order(OrderStatus.Paid, PaymentStatus.Completed));
+    expect(component.order()?.status).toBe(OrderStatus.Paid);
+  });
+
+  it('reports a refused refresh of an order on screen as a failed refresh, not a missing order', () => {
+    httpMock.expectOne(orderUrl()).flush(order(OrderStatus.AwaitingPayment, PaymentStatus.Failed));
+
+    component.refresh();
+    httpMock.expectOne(orderUrl()).flush('', { status: 401, statusText: 'Unauthorized' });
+    fixture.detectChanges();
+
+    expect(component.notFound()).toBe(false);
+    expect(component.loadFailed()).toBe(true);
+    expect(component.order()).not.toBeNull();
+    expect(fixture.nativeElement.textContent).toContain('could not refresh the status');
+  });
+
+  it('shows an order on screen as missing once the API no longer finds it', () => {
+    httpMock.expectOne(orderUrl()).flush(order(OrderStatus.AwaitingPayment, PaymentStatus.Failed));
+
+    component.refresh();
+    httpMock.expectOne(orderUrl()).flush('', { status: 404, statusText: 'Not Found' });
+
+    expect(component.notFound()).toBe(true);
+  });
+
+  it('reports a failed refresh when the polling window ends on a failed request', () => {
+    httpMock.expectOne(orderUrl()).flush(order(OrderStatus.AwaitingPayment, PaymentStatus.Pending));
+    component['pollStarted'] = Date.now() - (OrderStatusComponent.pollTimeoutMs + 1000);
+
+    vi.advanceTimersByTime(OrderStatusComponent.pollIntervalMs);
+    httpMock.expectOne(orderUrl()).flush('', { status: 502, statusText: 'Bad Gateway' });
+    fixture.detectChanges();
+
+    expect(component.polling()).toBe(false);
+    expect(component.timedOut()).toBe(true);
+    expect(component.loadFailed()).toBe(true);
+    expect(fixture.nativeElement.textContent).toContain('could not refresh the status');
+  });
+
+  it('keeps the progress bar out of the live region while waiting for the payment', () => {
+    httpMock.expectOne(orderUrl()).flush(order(OrderStatus.AwaitingPayment, PaymentStatus.Pending));
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelector('.status-message igx-circular-bar')).not.toBeNull();
+    expect(fixture.nativeElement.querySelector('[aria-live] igx-circular-bar')).toBeNull();
   });
 
   it('announces the payment message when polling gives up', () => {

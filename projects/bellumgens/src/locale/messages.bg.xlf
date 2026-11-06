@@ -6585,6 +6585,14 @@
           <context context-type="linenumber">28,29</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="4375089377737046644" datatype="html">
+        <source>We could not start a new payment. Please try again in a moment.</source>
+        <target>Не успяхме да започнем ново плащане. Моля, опитайте отново след малко.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
+          <context context-type="linenumber">51,52</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="6692962722804229865" datatype="html">
         <source>Terms of sale</source>
         <target>Общи условия за продажба</target>

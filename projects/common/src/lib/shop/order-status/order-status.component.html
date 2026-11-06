@@ -33,9 +33,6 @@
           <div aria-live="polite">
             @if (paymentPending() && polling()) {
               <p i18n>We are waiting for the payment confirmation from Revolut. This usually takes a few seconds.</p>
-              <div class="horizontal-center">
-                <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
-              </div>
             } @else if (paymentPending() && timedOut()) {
               <p i18n>The payment has not been confirmed yet. If you completed it, it will be confirmed shortly and you will receive an email.</p>
             } @else if (order.canRetryPayment) {
@@ -44,6 +41,15 @@
               <p i18n>This order has not been paid yet.</p>
             }
           </div>
+          <!-- Outside the live region so the progress bar's updates are not announced along with the message. -->
+          @if (paymentPending() && polling()) {
+            <div class="horizontal-center">
+              <igx-circular-bar [indeterminate]="true"></igx-circular-bar>
+            </div>
+          }
+          @if (retryFailed()) {
+            <p class="color-error" role="alert" i18n>We could not start a new payment. Please try again in a moment.</p>
+          }
           <div class="actions">
             @if (order.checkoutUrl && paymentPending()) {
               <button type="button" igxButton="contained" igxRipple (click)="payNow()" i18n>Complete payment</button>

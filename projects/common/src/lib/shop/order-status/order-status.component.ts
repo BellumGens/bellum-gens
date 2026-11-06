@@ -35,7 +35,11 @@ export class OrderStatusComponent {
   public static readonly pollTimeoutMs = 120000;
   /** The longest a single status request may take before the page gives up on it. */
   public static readonly requestTimeoutMs = 15000;
-  /** Client errors that mean the link does not identify an order this page can show. */
+  /**
+   * Client errors that mean the link does not identify an order this page can show. Only the first load treats
+   * them that way: once an order is on screen, a refusal (an expired session, a WAF challenge) is a transient
+   * failure, not proof that the order is gone. A 404 always means the order no longer exists.
+   */
   private static readonly notFoundStatuses = [400, 401, 403, 404];
 
   private route = inject(ActivatedRoute);
@@ -47,6 +51,8 @@ export class OrderStatusComponent {
   public notFound = signal(false);
   /** The order could not be (re)loaded for a reason other than not existing (server or network error). */
   public loadFailed = signal(false);
+  /** The last attempt to start a new payment failed; cleared when the customer tries again or refreshes. */
+  public retryFailed = signal(false);
   public polling = signal(false);
   public timedOut = signal(false);
   public busy = signal(false);
@@ -62,7 +68,6 @@ export class OrderStatusComponent {
   private request: Subscription | null = null;
   private retry: Subscription | null = null;
 
-  public awaitingPayment = computed(() => this.order()?.status === OrderStatus.AwaitingPayment);
   public paymentPending = computed(() => {
     const order = this.order();
     return !!order && isPaymentPending(order);
@@ -79,9 +84,8 @@ export class OrderStatusComponent {
       this.orderId = params.get('id') ?? '';
       this.order.set(null);
       this.notFound.set(false);
-      this.pollStarted = Date.now();
-      this.timedOut.set(false);
-      this.load();
+      this.retryFailed.set(false);
+      this.restartPolling();
     });
   }
 
@@ -97,9 +101,8 @@ export class OrderStatusComponent {
   }
 
   public refresh() {
-    this.pollStarted = Date.now();
-    this.timedOut.set(false);
-    this.load();
+    this.retryFailed.set(false);
+    this.restartPolling();
   }
 
   public payNow() {
@@ -111,16 +114,25 @@ export class OrderStatusComponent {
 
   public retryPayment() {
     this.cancelRetry();
+    this.retryFailed.set(false);
     this.busy.set(true);
     this.retry = this.shopApi.retryPayment(this.orderId).subscribe({
       next: created => this.document.location.assign(created.checkoutUrl),
       error: () => {
         this.retry = null;
         this.busy.set(false);
-        // Start a fresh polling window: the customer may have been on the page for longer than the last one.
-        this.refresh();
+        this.retryFailed.set(true);
+        // The order may have changed (e.g. the old payment went through after all), so reload it in a fresh
+        // polling window: the customer may have been on the page for longer than the last one.
+        this.restartPolling();
       }
     });
+  }
+
+  private restartPolling() {
+    this.pollStarted = Date.now();
+    this.timedOut.set(false);
+    this.load();
   }
 
   private load() {
@@ -143,12 +155,14 @@ export class OrderStatusComponent {
       },
       error: error => {
         const order = this.order();
-        if (OrderStatusComponent.notFoundStatuses.includes(error?.status)) {
+        if (error?.status === 404 || (!order && OrderStatusComponent.notFoundStatuses.includes(error?.status))) {
           this.notFound.set(true);
           this.polling.set(false);
         } else if (order && isPaymentPending(order)) {
-          // A hiccup while polling: keep the order on screen and try again on the next tick.
+          // A hiccup while polling: keep the order on screen and try again on the next tick. If the window runs
+          // out on a failed request, say so instead of only promising that the payment will be confirmed.
           this.schedulePoll(order);
+          this.loadFailed.set(this.timedOut());
         } else {
           this.loadFailed.set(true);
           this.polling.set(false);

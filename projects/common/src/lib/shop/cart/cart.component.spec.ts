@@ -100,6 +100,14 @@ describe('CartComponent', () => {
     expect(image.getAttribute('src')).toBe('/umbrella.png');
   });
 
+  it('shows a placeholder icon instead of an image when the product has none', () => {
+    fill(umbrella({ imageUrl: null }));
+
+    const link: HTMLElement = fixture.nativeElement.querySelector('.line-image');
+    expect(link.querySelector('img')).toBeNull();
+    expect(link.querySelector('igx-icon')?.textContent?.trim()).toBe('shopping_bag');
+  });
+
   it('keeps the image link out of the tab order and the accessibility tree, next to the named product link', () => {
     fill(umbrella({ imageUrl: null }));
 
