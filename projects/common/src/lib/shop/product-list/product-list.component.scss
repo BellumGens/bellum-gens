@@ -1,0 +1,38 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.shop-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+.shop-header {
+  max-width: 70ch;
+  margin-bottom: 16px;
+
+  p {
+    opacity: 0.85;
+  }
+}
+
+.shop-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.shop-loading,
+.shop-empty {
+  padding: 48px 16px;
+}

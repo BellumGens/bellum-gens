@@ -21,13 +21,13 @@ import { DatePipe } from '@angular/common';
   ]
 })
 export class AvailabilityComponent {
-  public availability = input<Availability []>([]);
+  public availability = input<Availability [] | null>([]);
   public editable = input(false);
   public availabilityChanged = output<Availability>();
 
   // Local week schedule: re-seeded from the base week whenever a new availability is passed in, so one
   // player's or team's schedule never bleeds into the next. Edits made here update it until then.
-  public baseAvailability = linkedSignal<Availability [], Availability []>({
+  public baseAvailability = linkedSignal<Availability [] | null, Availability []>({
     source: this.availability,
     computation: availability => {
       const base = structuredClone(BASE_AVAILABILITY);
@@ -66,10 +66,14 @@ export class AvailabilityComponent {
   }
 
   public availabilityChange() {
+    const day = this.selectedDay();
+    if (!day) {
+      return;
+    }
     this.updateDay({
-      ...this.selectedDay(),
-      from: this.from().value as Date,
-      to: this.to().value as Date,
+      ...day,
+      from: this.from()?.value as Date,
+      to: this.to()?.value as Date,
       available: true
     });
     this.dialog().close();

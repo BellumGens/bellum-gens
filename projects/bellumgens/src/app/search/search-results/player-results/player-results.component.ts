@@ -34,7 +34,7 @@ export class PlayerResultsComponent extends BaseDirective {
   public players = this.apiService.playerSearchResult;
   public loading = this.apiService.loadingSearch;
   public roles = ALL_ROLES;
-  public query = signal<string>(null);
+  public query = signal<string | null>(null);
 
   constructor() {
     super();

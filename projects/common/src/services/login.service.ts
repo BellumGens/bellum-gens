@@ -2,7 +2,7 @@ import { Injectable, Signal, inject, signal, untracked } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { throwError, Subject } from 'rxjs';
 import { LoginProvider } from '../models/login-provider';
-import { Promo } from '../models/order';
+import { Promo } from '../models/shop';
 import { ApplicationUser, UserPreferences } from '../models/applicationuser';
 import { map, catchError } from 'rxjs/operators';
 import { environment } from '../environments/environment';
@@ -32,13 +32,13 @@ export class LoginService {
 
   private _apiEndpoint = environment.authApiEndpoint;
   private _apiBase = environment.apiEndpoint;
-  private _applicationUser = signal<ApplicationUser>(null);
+  private _applicationUser = signal<ApplicationUser | null>(null);
   private _applicationUserReadonly = this._applicationUser.asReadonly();
-  private _userNotifications = signal<UserNotification []>(null);
+  private _userNotifications = signal<UserNotification [] | null>(null);
   private _userNotificationsReadonly = this._userNotifications.asReadonly();
-  private _registrations = signal<TournamentApplication []>(null);
+  private _registrations = signal<TournamentApplication [] | null>(null);
   private _registrationsReadonly = this._registrations.asReadonly();
-  private _teamsAdmin = signal<CSGOTeam []>(null);
+  private _teamsAdmin = signal<CSGOTeam [] | null>(null);
   private _teamsAdminReadonly = this._teamsAdmin.asReadonly();
 
   public emitOpenLogin() {
@@ -54,7 +54,7 @@ export class LoginService {
   }
 
   /** Lazily loads the current user's tournament registrations on first access. */
-  public get tournamentRegistrations(): Signal<TournamentApplication []> {
+  public get tournamentRegistrations(): Signal<TournamentApplication [] | null> {
     untracked(() => {
       if (!this._registrations()) {
         this.getRegistrations();
@@ -69,7 +69,7 @@ export class LoginService {
   }
 
   /** Lazily loads the teams the current user administers on first access. */
-  public get teamsAdmin(): Signal<CSGOTeam []> {
+  public get teamsAdmin(): Signal<CSGOTeam [] | null> {
     untracked(() => {
       if (!this._teamsAdmin()) {
         this.getUserTeamsAdmin().subscribe(teams => this._teamsAdmin.set(teams));
@@ -89,7 +89,7 @@ export class LoginService {
   }
 
   /** Lazily checks for a logged in user on first access. `null` means no (known) user. */
-  public get applicationUser(): Signal<ApplicationUser> {
+  public get applicationUser(): Signal<ApplicationUser | null> {
     untracked(() => {
       if (!this._applicationUser() && !this._userCheckInProgress()) {
         this._userCheckInProgress.set(true);
@@ -110,7 +110,7 @@ export class LoginService {
   }
 
   /** Lazily loads the current user's notifications on first access. */
-  public get userNotifications(): Signal<UserNotification []> {
+  public get userNotifications(): Signal<UserNotification [] | null> {
     untracked(() => {
       if (!this._userNotifications() && !this._notificationsCheckInProgress) {
         this._notificationsCheckInProgress = true;
@@ -270,8 +270,8 @@ export class LoginService {
       })
       .then(sub => {
         this.addPushSubscriber(sub).subscribe();
-        this.swPush.messages.subscribe((message: PushNotificationWrapper) => {
-          this.commService.emitMessage(message.notification.title);
+        this.swPush.messages.subscribe(message => {
+          this.commService.emitMessage((message as PushNotificationWrapper).notification.title);
 
           // Update the app user with new notifications and teams
           this.getAppUser().subscribe(user => this._applicationUser.set(user));

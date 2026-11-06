@@ -45,6 +45,7 @@
               "projects/bellumgens/src/favicon.ico",
               "projects/bellumgens/src/assets",
               "projects/bellumgens/src/robots.txt",
+              "projects/bellumgens/src/llms.txt",
               "projects/bellumgens/src/manifest.json"
             ],
             "styles": [
@@ -78,7 +79,7 @@
               "outputMode": "server",
               "localize": true,
               "outputHashing": "all",
-              "serviceWorker": "projects/bellumgens/src/ngsw-config.json",
+              "serviceWorker": "projects/common/src/ngsw-config.json",
               "i18nMissingTranslation": "error"
             },
             "development": {
@@ -235,6 +236,7 @@
               "projects/ebleague/src/favicon.ico",
               "projects/ebleague/src/assets",
               "projects/ebleague/src/robots.txt",
+              "projects/ebleague/src/llms.txt",
               "projects/ebleague/src/manifest.json"
             ],
             "styles": [
@@ -268,7 +270,7 @@
               "outputMode": "server",
               "localize": true,
               "outputHashing": "all",
-              "serviceWorker": "projects/ebleague/src/ngsw-config.json",
+              "serviceWorker": "projects/common/src/ngsw-config.json",
               "i18nMissingTranslation": "error"
             },
             "bg": {

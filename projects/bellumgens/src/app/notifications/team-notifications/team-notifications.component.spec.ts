@@ -39,7 +39,7 @@ describe('TeamNotificationsComponent', () => {
     Array.from(fixture.nativeElement.querySelectorAll('igx-list-item:not(.igx-list__header)'));
 
   const itemFor = (userName: string): HTMLElement =>
-    listItems().find(item => item.textContent.includes(userName));
+    listItems().find(item => item.textContent.includes(userName))!;
 
   const buttonsOf = (item: HTMLElement): HTMLButtonElement [] => Array.from(item.querySelectorAll('button'));
 
@@ -109,7 +109,7 @@ describe('TeamNotificationsComponent', () => {
     expect(pending.textContent).toContain('has applied to join your team!');
     expect(pending.textContent).toContain('Application: Let me in');
     expect(pending.textContent).toContain('Jan 15, 2024');
-    expect(pending.querySelector('a').getAttribute('href')).toBe('/players/player-1');
+    expect(pending.querySelector('a')!.getAttribute('href')).toBe('/players/player-1');
   });
 
   it('should show approve and reject buttons for pending applications', async () => {
@@ -138,7 +138,7 @@ describe('TeamNotificationsComponent', () => {
     const navigateSpy = vi.spyOn(router, 'navigateByUrl').mockResolvedValue(true);
     await loadApplications(createApplications());
 
-    itemFor('PlayerOne').querySelector('a').click();
+    itemFor('PlayerOne').querySelector('a')!.click();
 
     expect(navigateSpy).toHaveBeenCalled();
     expect(router.serializeUrl(navigateSpy.mock.calls[0][0] as never)).toBe('/players/player-1');
@@ -166,7 +166,7 @@ describe('TeamNotificationsComponent', () => {
 
     expect(component.actionInProgress()).toBe(false);
     expect(changed).toHaveBeenCalledWith(-1);
-    expect(component.applications().find(a => a.applicantId === 'player-1').state).toBe(NotificationState.Accepted);
+    expect(component.applications()!.find(a => a.applicantId === 'player-1')!.state).toBe(NotificationState.Accepted);
 
     const approved = itemFor('PlayerOne');
     expect(approved.classList).toContain('notification-disabled');
@@ -214,7 +214,7 @@ describe('TeamNotificationsComponent', () => {
 
       expect(component.actionInProgress()).toBe(false);
       expect(changed).not.toHaveBeenCalled();
-      expect(component.applications().find(a => a.applicantId === 'player-1').state).toBe(NotificationState.NotSeen);
+      expect(component.applications()!.find(a => a.applicantId === 'player-1')!.state).toBe(NotificationState.NotSeen);
       const buttons = buttonsOf(itemFor('PlayerOne'));
       expect(buttons.map(b => b.textContent.trim())).toEqual(['Approve', 'Reject']);
       expect(buttons.every(b => !b.disabled)).toBe(true);
@@ -224,12 +224,12 @@ describe('TeamNotificationsComponent', () => {
   it('should only replace the handled application', async () => {
     const applications = createApplications();
     await loadApplications(applications);
-    const untouched = component.applications().find(a => a.applicantId === 'player-2');
+    const untouched = component.applications()!.find(a => a.applicantId === 'player-2');
 
-    component.approveApplication(component.applications().find(a => a.applicantId === 'player-1'));
+    component.approveApplication(component.applications()!.find(a => a.applicantId === 'player-1')!);
     httpMock.expectOne(`${apiEndpoint}/teams/approveapplication`)
       .flush({ ...applications[0], state: NotificationState.Accepted });
 
-    expect(component.applications().find(a => a.applicantId === 'player-2')).toBe(untouched);
+    expect(component.applications()!.find(a => a.applicantId === 'player-2')).toBe(untouched);
   });
 });

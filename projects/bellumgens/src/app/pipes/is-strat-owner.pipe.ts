@@ -6,7 +6,7 @@ import { ApplicationUser, CSGOStrategy } from '../../../../common/src/public_api
 })
 export class IsStratOwnerPipe implements PipeTransform {
 
-  public transform(authUser: ApplicationUser, strat: CSGOStrategy): any {
+  public transform(authUser: ApplicationUser | null, strat: CSGOStrategy | null): boolean {
     if (authUser && strat) {
       return strat.userId === authUser.id;
     }

@@ -6,7 +6,7 @@ import { TournamentParticipant } from '../../../../common/src/public_api';
 })
 export class NotInGroupPipe implements PipeTransform {
 
-  public transform(value: TournamentParticipant [], key: string, _?: number): any {
+  public transform(value: TournamentParticipant [] | null | undefined, key: keyof TournamentParticipant, _?: number): TournamentParticipant [] | null {
     if (value) {
       return value.filter(r => !r[key]);
     }

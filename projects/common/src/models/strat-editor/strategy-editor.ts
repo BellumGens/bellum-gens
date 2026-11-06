@@ -1,4 +1,5 @@
 import { ElementRef } from '@angular/core';
+import { Subscription } from 'rxjs';
 import {
   BaseLayer,
   EditorLayerType,
@@ -18,10 +19,16 @@ export class StrategyEditor {
   private _height = 1024;
   private _displayRatio: number;
 
-  private _selectedLayer: BaseLayer;
+  private _selectedLayer: BaseLayer | null = null;
+  // The editor's own subscriptions to each layer; ending them leaves the layer's subjects usable
+  private _layerSubscriptions = new Map<BaseLayer, Subscription>();
 
   constructor(private _canvas: ElementRef<HTMLCanvasElement>, displayRatio = 1, name?: string) {
-    this._context = this._canvas.nativeElement.getContext('2d');
+    const context = this._canvas.nativeElement.getContext('2d');
+    if (!context) {
+      throw new Error('Canvas 2D context is not available');
+    }
+    this._context = context;
     this._displayRatio = displayRatio;
     this.surfaceName = name ? name : this.generateId();
   }
@@ -78,12 +85,12 @@ export class StrategyEditor {
     return this._layers;
   }
 
-  public createLayer(type, meta?: EditorLayer): BaseLayer {
+  public createLayer(type: EditorLayerType, meta?: EditorLayer): BaseLayer {
     switch (type) {
       case EditorLayerType.Image:
-        return this.createImageLayer(meta.name, meta);
+        return this.createImageLayer(meta?.name, meta);
       case EditorLayerType.Freeflow:
-        return this.createFreeflowLayer(meta.name, meta);
+        return this.createFreeflowLayer(meta?.name, meta);
     }
   }
 
@@ -131,29 +138,31 @@ export class StrategyEditor {
     }
   }
 
-  private _addLayer(layer) {
-    layer.layerUpdate.subscribe(() => this.flip());
-    layer.layerSelect.subscribe(current => this._selectionChanged(current));
+  private _addLayer(layer: BaseLayer) {
+    this._subLayer(layer);
     this._layers.push(layer);
   }
 
   private _insertLayer(layer: BaseLayer, index: number) {
-    layer.layerUpdate.subscribe(() => this.flip());
-    layer.layerSelect.subscribe(current => this._selectionChanged(current));
+    this._subLayer(layer);
     this._layers.splice(index, 0, layer);
   }
 
   private _replaceLayer(index: number, layer: BaseLayer) {
-    this._layers[index].layerUpdate.unsubscribe();
-    this._layers[index].layerSelect.unsubscribe();
-    layer.layerUpdate.subscribe(() => this.flip());
-    layer.layerSelect.subscribe(current => this._selectionChanged(current));
+    this._unsubLayer(this._layers[index]);
+    this._subLayer(layer);
     this._layers.splice(index, 1, layer);
   }
 
+  private _subLayer(layer: BaseLayer) {
+    const subscription = layer.layerUpdate.subscribe(() => this.flip());
+    subscription.add(layer.layerSelect.subscribe(current => this._selectionChanged(current)));
+    this._layerSubscriptions.set(layer, subscription);
+  }
+
   private _unsubLayer(layer: BaseLayer) {
-    layer.layerUpdate.unsubscribe();
-    layer.layerSelect.unsubscribe();
+    this._layerSubscriptions.get(layer)?.unsubscribe();
+    this._layerSubscriptions.delete(layer);
   }
 
   private _removeLayer(layer: BaseLayer) {

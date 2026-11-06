@@ -31,7 +31,7 @@ describe('AvailabilityComponent', () => {
     return args;
   };
   const dialogButton = (label: string): HTMLButtonElement => Array.from(document.querySelectorAll<HTMLButtonElement>('.igx-dialog__window-actions button'))
-    .find(b => b.textContent.trim() === label);
+    .find(b => b.textContent.trim() === label)!;
   const timePickers = (): IgxTimePickerComponent[] => fixture.debugElement.queryAll(By.directive(IgxTimePickerComponent))
     .map(de => de.componentInstance);
 
@@ -65,7 +65,7 @@ describe('AvailabilityComponent', () => {
     fixture.componentRef.setInput('availability', [setmonday]);
     fixture.detectChanges();
 
-    const day = component.baseAvailability().find(a => a.day === DayOfWeek.Monday);
+    const day = component.baseAvailability().find(a => a.day === DayOfWeek.Monday)!;
     expect(day.available).toBe(true);
     expect(day.from).toEqual(setmonday.from);
     expect(day.to).toEqual(setmonday.to);
@@ -77,7 +77,7 @@ describe('AvailabilityComponent', () => {
     fixture.componentRef.setInput('availability', [serialized]);
     fixture.detectChanges();
 
-    const day = component.baseAvailability().find(a => a.day === DayOfWeek.Monday);
+    const day = component.baseAvailability().find(a => a.day === DayOfWeek.Monday)!;
     expect(day.from).toEqual(monday.from);
     expect(day.to).toEqual(monday.to);
   });
@@ -123,10 +123,10 @@ describe('AvailabilityComponent', () => {
     fixture.detectChanges();
     const args = { originalEvent: { stopPropagation: vi.fn() } } as any;
 
-    component.dayDeselected(args, component.baseAvailability().find(a => a.day === DayOfWeek.Monday));
+    component.dayDeselected(args, component.baseAvailability().find(a => a.day === DayOfWeek.Monday)!);
     fixture.detectChanges();
 
-    expect(component.baseAvailability().find(a => a.day === DayOfWeek.Monday).available).toBe(false);
+    expect(component.baseAvailability().find(a => a.day === DayOfWeek.Monday)!.available).toBe(false);
   });
 
   it('should mark a day unavailable and emit on deselect', () => {
@@ -168,7 +168,7 @@ describe('AvailabilityComponent', () => {
     });
 
     it('should render the time range only for the available days', () => {
-      expect(chipSubtext(DayOfWeek.Monday).textContent.trim()).toBe('18:00-20:30');
+      expect(chipSubtext(DayOfWeek.Monday)!.textContent.trim()).toBe('18:00-20:30');
       expect(chipSubtext(DayOfWeek.Sunday)).toBeNull();
       expect(chipSubtext(DayOfWeek.Tuesday)).toBeNull();
     });
@@ -223,7 +223,7 @@ describe('AvailabilityComponent', () => {
       await fixture.whenStable();
 
       expect(args.cancel).toBe(true);
-      expect(component.selectedDay().day).toBe(DayOfWeek.Monday);
+      expect(component.selectedDay()?.day).toBe(DayOfWeek.Monday);
       expect(component['dialog']().isOpen).toBe(true);
       const title = fixture.debugElement.query(By.css('[igxDialogTitle]')).nativeElement;
       expect(title.querySelector('.highlight').textContent).toBe('Mondays');
@@ -246,7 +246,7 @@ describe('AvailabilityComponent', () => {
       expect(emitted[0]).toEqual(expect.objectContaining({ day: DayOfWeek.Wednesday, available: true, from, to }));
       expect(component.baseAvailability()[DayOfWeek.Wednesday]).toEqual(emitted[0]);
       expect(component['dialog']().isOpen).toBe(false);
-      expect(chipSubtext(DayOfWeek.Wednesday).textContent.trim()).toBe('19:15-22:45');
+      expect(chipSubtext(DayOfWeek.Wednesday)!.textContent.trim()).toBe('19:15-22:45');
       expect(chip(DayOfWeek.Wednesday).componentInstance.removable).toBe(true);
     });
 
@@ -261,7 +261,7 @@ describe('AvailabilityComponent', () => {
       expect(emitted.length).toBe(0);
       expect(component['dialog']().isOpen).toBe(false);
       expect(component.baseAvailability()[DayOfWeek.Monday]).toEqual(monday);
-      expect(chipSubtext(DayOfWeek.Monday).textContent.trim()).toBe('18:00-20:30');
+      expect(chipSubtext(DayOfWeek.Monday)!.textContent.trim()).toBe('18:00-20:30');
     });
 
     it('should make a day unavailable when its chip is removed', async () => {

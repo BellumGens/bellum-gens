@@ -1,6 +1,6 @@
 import { Component, ElementRef, Injector, OnDestroy, PLATFORM_ID, afterNextRender, inject, signal, viewChild, DestroyRef } from '@angular/core';
 import { toObservable, takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { distinctUntilChanged, filter, share, switchMap, tap } from 'rxjs';
+import { distinctUntilChanged, filter, map, share, switchMap, tap } from 'rxjs';
 import {
   CSGOActiveDutyMap,
   ACTIVE_DUTY,
@@ -11,6 +11,7 @@ import {
   BellumgensApiService,
   STRAT_UTILITIES,
   EDITOR_BRUSH_COLORS,
+  EditorBrushColor,
   CSGOStrategy,
   BaseLayer, PointCoordinate, ImageLayer, FreeflowLayer,
   ApiStrategiesService
@@ -32,6 +33,10 @@ import { isPlatformBrowser } from '@angular/common';
 const SIDE_PANELS_WIDTH = 500;
 const BOARD_BORDER_WIDTH = 2;
 const MIN_BOARD_SIZE = 240;
+
+interface NamedBrushColor extends EditorBrushColor {
+  name: string;
+}
 
 /** Names of the brush colors, whose buttons only show the color. */
 const BRUSH_COLOR_NAMES: Record<string, string> = {
@@ -75,16 +80,16 @@ export class StrategyEditorComponent implements OnDestroy {
   public editorHost = viewChild.required<ElementRef<HTMLElement>>('editorHost');
 
   public maps: CSGOActiveDutyMap [] = ACTIVE_DUTY;
-  public team = signal<CSGOTeam>(null);
-  public teammembers = signal<TeamMember []>([]);
-  public newStrategy = signal<CSGOStrategy>(null);
+  public team = signal<CSGOTeam | null>(null);
+  public teammembers = signal<TeamMember [] | null>([]);
+  public newStrategy = signal<CSGOStrategy | null>(null);
   public utility = STRAT_UTILITIES;
   public layers = signal<BaseLayer []>([]);
   public ts = signal([1, 2, 3, 4, 5]);
   public cts = signal([1, 2, 3, 4, 5]);
   public enemies = signal([1, 2, 3, 4, 5]);
   public brushSelected = signal(false);
-  public colors = EDITOR_BRUSH_COLORS.map(color => ({ ...color, name: BRUSH_COLOR_NAMES[color.color] ?? color.color }));
+  public colors: NamedBrushColor [] = EDITOR_BRUSH_COLORS.map(color => ({ ...color, name: BRUSH_COLOR_NAMES[color.color] ?? color.color }));
   public selectedColor = this.colors[0];
   public saveInProgress = signal(false);
   public changes = signal(false);
@@ -95,10 +100,11 @@ export class StrategyEditorComponent implements OnDestroy {
     x: 0,
     y: 0
   };
-  private _drawLayer: FreeflowLayer;
-  private intervalId;
+  private _drawLayer: FreeflowLayer | null = null;
+  private intervalId?: ReturnType<typeof setInterval>;
 
-  private editor: StrategyEditor;
+  // Created once the view is rendered in the browser (see initEditor), before any of the editing handlers can run.
+  private editor!: StrategyEditor;
 
   constructor() {
     if (isPlatformBrowser(this.platformId)) {
@@ -113,8 +119,11 @@ export class StrategyEditorComponent implements OnDestroy {
     clearInterval(this.intervalId);
   }
 
-  public changeMap(map: CSGOMap) {
-    this.setMap(this.maps.find(m => m.mapId === map));
+  public changeMap(mapId: CSGOMap) {
+    const activeMap = this.maps.find(m => m.mapId === mapId);
+    if (activeMap) {
+      this.setMap(activeMap);
+    }
     this.changes.set(true);
   }
 
@@ -148,12 +157,13 @@ export class StrategyEditorComponent implements OnDestroy {
   }
 
   public saveStrat() {
-    if (this.changes() && this.newStrategy()) {
+    const current = this.newStrategy();
+    if (this.changes() && current) {
       this.saveInProgress.set(true);
       this.editor.deselectAll();
       this.deselectBrush();
       const strat: CSGOStrategy = {
-        ...this.newStrategy(),
+        ...current,
         stratImage: this.canvas().nativeElement.toDataURL('image/png'),
         editorMetadata: this.editor.save()
       };
@@ -194,7 +204,7 @@ export class StrategyEditorComponent implements OnDestroy {
         this._coordinates.x = offsetX;
         this._coordinates.y = offsetY;
       } else {
-        this._drawLayer.addPoint(Object.assign({}, this._coordinates));
+        this._drawLayer?.addPoint(Object.assign({}, this._coordinates));
         this._coordinates.x = offsetX;
         this._coordinates.y = offsetY;
       }
@@ -226,7 +236,7 @@ export class StrategyEditorComponent implements OnDestroy {
     this._drawLayer = null;
   }
 
-  public selectColor(color) {
+  public selectColor(color: NamedBrushColor) {
     this.selectedColor.selected = false;
     color.selected = true;
     this.selectedColor = color;
@@ -243,7 +253,7 @@ export class StrategyEditorComponent implements OnDestroy {
     const strat$ = this.route.params.pipe(
       filter(params => !!params['stratid']),
       switchMap(params => toObservable(this.apiStrategyService.getStrategy(params['stratid']), { injector: this.injector })),
-      filter(strat => !!strat),
+      filter((strat): strat is CSGOStrategy => !!strat),
       takeUntilDestroyed(this.destroyRef),
       share()
     );
@@ -252,13 +262,17 @@ export class StrategyEditorComponent implements OnDestroy {
       if (strat.editorMetadata) {
         this.editor.restore(strat.editorMetadata);
       }
-      this.setMap(this.maps.find(m => m.mapId === strat.map));
+      const activeMap = this.maps.find(m => m.mapId === strat.map);
+      if (activeMap) {
+        this.setMap(activeMap);
+      }
     });
     strat$.pipe(
-      filter(strat => !!strat.teamId),
-      distinctUntilChanged((previous, current) => previous.teamId === current.teamId),
-      switchMap(strat => toObservable(this.apiService.getTeam(strat.teamId), { injector: this.injector })),
-      filter(team => !!team),
+      map(strat => strat.teamId),
+      filter((teamId): teamId is string => !!teamId),
+      distinctUntilChanged(),
+      switchMap(teamId => toObservable(this.apiService.getTeam(teamId), { injector: this.injector })),
+      filter((team): team is CSGOTeam & { teamId: string } => !!team?.teamId),
       tap(team => this.team.set(team)),
       switchMap(team => toObservable(this.apiService.getTeamMembers(team.teamId), { injector: this.injector }))
     ).subscribe(members => this.teammembers.set(members));
@@ -276,11 +290,12 @@ export class StrategyEditorComponent implements OnDestroy {
     return Math.floor(Math.max(Math.min(window.innerHeight - 129, available), MIN_BOARD_SIZE));
   }
 
-  private setMap(map: CSGOActiveDutyMap) {
+  private setMap(activeMap: CSGOActiveDutyMap) {
+    const radar = activeMap.radar?.[0] ?? '';
     const layers = this.editor.layers;
-    if (!layers.length || (layers[0] as ImageLayer).src !== map.radar[0]) {
+    if (!layers.length || (layers[0] as ImageLayer).src !== radar) {
       const layer = this.editor.createImageLayer('Map Radar');
-      layer.src = map.radar[0];
+      layer.src = radar;
       layer.width = 1024;
       layer.height = 1024;
       layer.movable = false;

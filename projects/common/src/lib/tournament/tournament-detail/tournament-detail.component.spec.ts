@@ -154,12 +154,12 @@ describe('TournamentDetailComponent (rendering)', () => {
   let component: TournamentDetailComponent;
   let params$: BehaviorSubject<Params>;
   let apiService: SpyObj<ApiTournamentsService>;
-  let authUser: WritableSignal<ApplicationUser>;
+  let authUser: WritableSignal<ApplicationUser | null>;
   let loadingSC2Registrations: WritableSignal<boolean>;
-  let tournaments: Map<string, WritableSignal<Tournament>>;
-  let sc2Registrations: Map<string, WritableSignal<TournamentParticipant []>>;
-  let sc2Matches: Map<string, WritableSignal<TournamentSC2Match []>>;
-  let csgoMatches: Map<string, WritableSignal<TournamentCSGOMatch []>>;
+  let tournaments: Map<string, WritableSignal<Tournament | null>>;
+  let sc2Registrations: Map<string, WritableSignal<TournamentParticipant [] | null>>;
+  let sc2Matches: Map<string, WritableSignal<TournamentSC2Match [] | null>>;
+  let csgoMatches: Map<string, WritableSignal<TournamentCSGOMatch [] | null>>;
 
   const appUser = (id: string, username: string, overrides: Partial<ApplicationUser> = {}): ApplicationUser =>
     ({ id, username, ...overrides } as ApplicationUser);
@@ -168,16 +168,18 @@ describe('TournamentDetailComponent (rendering)', () => {
     ({ id, userId: `u-${id}`, state: 0, companyId: null, ...overrides } as TournamentParticipant);
 
   // Per-id cache signals, created on first read the way the real service does
-  const entry = <T>(cache: Map<string, WritableSignal<T>>, id: string): WritableSignal<T> => {
-    if (!cache.has(id)) {
-      cache.set(id, signal<T>(null));
+  const entry = <T>(cache: Map<string, WritableSignal<T | null>>, id: string): WritableSignal<T | null> => {
+    let cached = cache.get(id);
+    if (!cached) {
+      cached = signal<T | null>(null);
+      cache.set(id, cached);
     }
-    return cache.get(id);
+    return cached;
   };
 
   const el = (): HTMLElement => fixture.nativeElement;
   const text = (): string => el().textContent.replace(/\s+/g, ' ');
-  const q = (selector: string): HTMLElement => el().querySelector(selector);
+  const q = (selector: string): HTMLElement | null => el().querySelector<HTMLElement>(selector);
   const qa = (selector: string): HTMLElement [] => Array.from(el().querySelectorAll<HTMLElement>(selector));
   const chips = (): string [] => qa('.hero-badges igx-chip').map(c => c.textContent.replace(/\s+/g, ' ').trim());
 
@@ -190,13 +192,13 @@ describe('TournamentDetailComponent (rendering)', () => {
   // panels only render on the next change detection. Open the tab the way a user would.
   const openTab = async (label: string) => {
     const header = qa('igx-tab-header').find(h => h.textContent.includes(label));
-    header.click();
+    header!.click();
     await render();
   };
 
   const create = async (tournament?: Tournament) => {
     if (tournament) {
-      entry(tournaments, tournament.id).set(tournament);
+      entry(tournaments, tournament.id!).set(tournament);
     }
     fixture = TestBed.createComponent(TournamentDetailComponent);
     component = fixture.componentInstance;
@@ -215,7 +217,7 @@ describe('TournamentDetailComponent (rendering)', () => {
 
   beforeEach(async () => {
     params$ = new BehaviorSubject<Params>({ tournamentId: 't1' });
-    authUser = signal<ApplicationUser>(null);
+    authUser = signal<ApplicationUser | null>(null);
     loadingSC2Registrations = signal(false);
     tournaments = new Map();
     sc2Registrations = new Map();
@@ -255,12 +257,12 @@ describe('TournamentDetailComponent (rendering)', () => {
 
     it('renders the tournament once the service responds', async () => {
       await create();
-      tournaments.get('t1').set(baseTournament());
+      tournaments.get('t1')!.set(baseTournament());
       await render();
 
       expect(component.loading()).toBe(false);
       expect(q('.detail-container')).toBeTruthy();
-      expect(q('h1').textContent).toContain('Winter Cup');
+      expect(q('h1')!.textContent).toContain('Winter Cup');
       expect(qa(':scope > .loading-container').length).toBe(0);
     });
 
@@ -298,13 +300,13 @@ describe('TournamentDetailComponent (rendering)', () => {
         maxParticipants: 64
       }));
 
-      expect(q('h1').textContent.trim()).toBe('Winter Cup');
-      expect(q('.hero-description').textContent).toContain('The coldest cup');
-      expect(q('.hero-prize').textContent).toContain('$1000');
-      expect(q('.hero-date').textContent).toContain('January 10, 2026');
-      expect(q('.hero-date').textContent).toContain('January 12, 2026');
-      expect(q('.hero-bg').style.backgroundImage).toContain('https://cdn/logo.png');
-      expect(q('.stats-strip .stat-value').textContent.trim()).toBe('64');
+      expect(q('h1')!.textContent.trim()).toBe('Winter Cup');
+      expect(q('.hero-description')!.textContent).toContain('The coldest cup');
+      expect(q('.hero-prize')!.textContent).toContain('$1000');
+      expect(q('.hero-date')!.textContent).toContain('January 10, 2026');
+      expect(q('.hero-date')!.textContent).toContain('January 12, 2026');
+      expect(q('.hero-bg')!.style.backgroundImage).toContain('https://cdn/logo.png');
+      expect(q('.stats-strip .stat-value')!.textContent.trim()).toBe('64');
     });
 
     it('omits optional sections the tournament does not have', async () => {
@@ -320,8 +322,8 @@ describe('TournamentDetailComponent (rendering)', () => {
     it('shows the start date without an end date', async () => {
       await create(baseTournament({ startDate: new Date(2026, 4, 1) }));
 
-      expect(q('.hero-date').textContent).toContain('May 1, 2026');
-      expect(q('.hero-date').textContent).not.toContain('–');
+      expect(q('.hero-date')!.textContent).toContain('May 1, 2026');
+      expect(q('.hero-date')!.textContent).not.toContain('–');
     });
 
     it.each([
@@ -334,7 +336,7 @@ describe('TournamentDetailComponent (rendering)', () => {
       await create(baseTournament({ status }));
 
       expect(component.statusLabel()).toBe(label);
-      const statusChip = q('.hero-badges igx-chip');
+      const statusChip = q('.hero-badges igx-chip')!;
       expect(statusChip.textContent.trim()).toBe(label);
       expect(statusChip.classList).toContain(cssClass);
     });
@@ -352,20 +354,20 @@ describe('TournamentDetailComponent (rendering)', () => {
 
       expect(component.status()).toBe(TournamentStatus.InProgress);
       expect(chips()[0]).toBe('In Progress');
-      expect(q('.hero-badges igx-chip').classList).toContain('status-in-progress');
+      expect(q('.hero-badges igx-chip')!.classList).toContain('status-in-progress');
     });
 
     it('derives a completed status from a past end date', async () => {
       await create(baseTournament({ status: undefined, active: false, endDate: new Date(2000, 0, 1) }));
 
       expect(component.statusLabel()).toBe('Completed');
-      expect(q('.hero-badges igx-chip').classList).toContain('status-completed');
+      expect(q('.hero-badges igx-chip')!.classList).toContain('status-completed');
     });
 
     it('renders the chips as non-focusable options of a named listbox', async () => {
       await create(baseTournament());
 
-      const badges = q('.hero-badges');
+      const badges = q('.hero-badges')!;
       expect(badges.getAttribute('role')).toBe('listbox');
       expect(badges.getAttribute('aria-label')).toBe('Tournament details');
       const chipElements = qa('.hero-badges igx-chip');
@@ -387,7 +389,7 @@ describe('TournamentDetailComponent (rendering)', () => {
       await create(baseTournament({ visibility }));
 
       expect(component.visibilityIcon()).toBe(icon);
-      expect(q('.hero-badges igx-chip:nth-of-type(2) igx-icon').textContent.trim()).toBe(icon);
+      expect(q('.hero-badges igx-chip:nth-of-type(2) igx-icon')!.textContent.trim()).toBe(icon);
       expect(chips()[1]).toBe(`${icon} ${label}`);
     });
   });
@@ -420,7 +422,7 @@ describe('TournamentDetailComponent (rendering)', () => {
       expect(component.isOwner()).toBe(true);
       expect(manageLink()).toBeTruthy();
       expect(manageLink().getAttribute('href')).toBe('/tournaments/manage/t1');
-      expect(q('.invite-code-box code').textContent.trim()).toBe('SECRET-42');
+      expect(q('.invite-code-box code')!.textContent.trim()).toBe('SECRET-42');
     });
 
     it('shows the manage link but no invite box to an owner of a tournament without an invite code', async () => {
@@ -515,11 +517,11 @@ describe('TournamentDetailComponent (rendering)', () => {
 
       const cards = qa('.participants-grid .participant-card');
       expect(cards.length).toBe(2);
-      expect(cards[0].querySelector('.participant-name').textContent.trim()).toBe('Serral');
-      expect(cards[0].querySelector('.participant-org').textContent.trim()).toBe('[ENCE]');
+      expect(cards[0].querySelector('.participant-name')!.textContent.trim()).toBe('Serral');
+      expect(cards[0].querySelector('.participant-org')!.textContent.trim()).toBe('[ENCE]');
       expect(cards[0].querySelector('.country-badge')).toBeTruthy();
-      expect(cards[0].querySelector('.country-badge').getAttribute('title')).toBe('Finland');
-      expect(cards[1].querySelector('.participant-name').textContent.trim()).toBe('Clem#1234');
+      expect(cards[0].querySelector('.country-badge')!.getAttribute('title')).toBe('Finland');
+      expect(cards[1].querySelector('.participant-name')!.textContent.trim()).toBe('Clem#1234');
       expect(cards[1].querySelector('.participant-org')).toBeNull();
       expect(cards[1].querySelector('.country-badge')).toBeNull();
       expect(text()).not.toContain('No participants registered yet');
@@ -531,14 +533,14 @@ describe('TournamentDetailComponent (rendering)', () => {
       await openTab('Participants');
 
       expect(qa('.participant-card').length).toBe(0);
-      expect(q('.participants-grid .empty-state').textContent).toContain('No participants registered yet');
+      expect(q('.participants-grid .empty-state')!.textContent).toContain('No participants registered yet');
     });
 
     it('shows the empty state for a CS:GO tournament', async () => {
       await create(baseTournament({ game: Game.CSGO }));
       await openTab('Participants');
 
-      expect(q('.participants-grid .empty-state').textContent).toContain('No participants registered yet');
+      expect(q('.participants-grid .empty-state')!.textContent).toContain('No participants registered yet');
     });
 
     it('shows a spinner in place of the list while registrations load', async () => {
@@ -554,7 +556,7 @@ describe('TournamentDetailComponent (rendering)', () => {
       await render();
 
       expect(q('.detail-container igx-tab-content .loading-container')).toBeNull();
-      expect(q('.participant-name').textContent.trim()).toBe('Maru');
+      expect(q('.participant-name')!.textContent.trim()).toBe('Maru');
     });
   });
 
@@ -581,15 +583,15 @@ describe('TournamentDetailComponent (rendering)', () => {
       expect(rows.length).toBe(2);
 
       const [first, second] = rows;
-      expect(first.querySelector('.match-time').textContent).toContain('Mar 3, 6:30 PM');
+      expect(first.querySelector('.match-time')!.textContent).toContain('Mar 3, 6:30 PM');
       const firstPlayers = first.querySelectorAll('.match-players > .player');
       expect(firstPlayers[0].textContent).toContain('Serral');
       expect(firstPlayers[0].classList).toContain('winner');
       expect(firstPlayers[1].textContent).toContain('Maru');
       expect(firstPlayers[1].classList).not.toContain('winner');
-      expect(first.querySelector('.match-score').textContent.replace(/\s+/g, '')).toBe('3:1');
+      expect(first.querySelector('.match-score')!.textContent.replace(/\s+/g, '')).toBe('3:1');
       expect(first.querySelectorAll('.race-icon').length).toBe(2);
-      expect(first.querySelector('.match-actions a').getAttribute('href')).toBe('https://twitch.tv/vod/1');
+      expect(first.querySelector('.match-actions a')!.getAttribute('href')).toBe('https://twitch.tv/vod/1');
 
       const secondPlayers = second.querySelectorAll('.match-players > .player');
       expect(secondPlayers[0].classList).not.toContain('winner');
@@ -605,7 +607,7 @@ describe('TournamentDetailComponent (rendering)', () => {
       await openTab('Matches');
 
       expect(qa('.match-row').length).toBe(0);
-      expect(q('.matches-section .empty-state').textContent).toContain('No matches scheduled yet');
+      expect(q('.matches-section .empty-state')!.textContent).toContain('No matches scheduled yet');
     });
 
     it('renders nothing in the matches section until SC2 matches load', async () => {
@@ -613,7 +615,7 @@ describe('TournamentDetailComponent (rendering)', () => {
       await openTab('Matches');
 
       expect(q('.matches-section')).toBeTruthy();
-      expect(q('.matches-section').children.length).toBe(0);
+      expect(q('.matches-section')!.children.length).toBe(0);
     });
 
     it('renders no SC2 match section for a CS:GO tournament', async () => {
@@ -634,8 +636,8 @@ describe('TournamentDetailComponent (rendering)', () => {
       await create(baseTournament());
 
       await openTab('Participants');
-      expect(q('h1').textContent).toContain('Winter Cup');
-      expect(q('.participant-name').textContent.trim()).toBe('Serral');
+      expect(q('h1')!.textContent).toContain('Winter Cup');
+      expect(q('.participant-name')!.textContent.trim()).toBe('Serral');
 
       params$.next({ tournamentId: 't2' });
       await render();
@@ -643,7 +645,7 @@ describe('TournamentDetailComponent (rendering)', () => {
       expect(apiService.getTournament).toHaveBeenCalledWith('t2');
       expect(apiService.getSc2Registrations).toHaveBeenCalledWith('t2');
       expect(apiService.getSc2Matches).toHaveBeenCalledWith('t2');
-      expect(q('h1').textContent).toContain('Spring Cup');
+      expect(q('h1')!.textContent).toContain('Spring Cup');
       expect(chips()[0]).toBe('Completed');
       expect(qa('.participant-name').map(n => n.textContent.trim())).toEqual(['Clem']);
     });

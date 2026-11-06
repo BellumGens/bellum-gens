@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { WritableSignal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgModel } from '@angular/forms';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideRouter, Router } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
@@ -8,6 +8,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { By } from '@angular/platform-browser';
 import { IgxDropDownComponent } from '@infragistics/igniteui-angular/drop-down';
 import { IgxSelectComponent } from '@infragistics/igniteui-angular/select';
+import { IgxCheckboxComponent } from '@infragistics/igniteui-angular/checkbox';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { of, Subject, throwError } from 'rxjs';
 
@@ -48,7 +49,7 @@ const team = (teamId: string, teamName: string): CSGOTeam => ({
 describe('TournamentRegistrationComponent', () => {
   let component: TournamentRegistrationComponent;
   let fixture: ComponentFixture<TournamentRegistrationComponent>;
-  let authUser: WritableSignal<ApplicationUser>;
+  let authUser: WritableSignal<ApplicationUser | null>;
   let tournamentsService: ApiTournamentsService;
   let userService: BellumgensApiService;
   let router: Router;
@@ -91,9 +92,9 @@ describe('TournamentRegistrationComponent', () => {
 
   const el = (): HTMLElement => fixture.nativeElement;
   const details = () => el().querySelector('.application-details');
-  const gameLabel = () => el().querySelector('igx-select[name="game"] label').textContent.trim();
+  const gameLabel = () => el().querySelector('igx-select[name="game"] label')!.textContent.trim();
   const submitForm = () => {
-    el().querySelector('form').dispatchEvent(new Event('submit'));
+    el().querySelector('form')!.dispatchEvent(new Event('submit'));
     fixture.detectChanges();
   };
 
@@ -145,7 +146,7 @@ describe('TournamentRegistrationComponent', () => {
       fixture.detectChanges();
 
       expect(component.detailsVisible()).toBe(false);
-      expect(details().classList).not.toContain('application-details-show');
+      expect(details()!.classList).not.toContain('application-details-show');
       expect(el().querySelector('igx-select#team')).toBeNull();
       expect(el().querySelector('#battletag')).toBeNull();
       expect(userService.getUserTeams).not.toHaveBeenCalled();
@@ -163,10 +164,10 @@ describe('TournamentRegistrationComponent', () => {
       expect(scroll).toHaveBeenCalledWith({ behavior: 'smooth' });
       expect(component.application().game).toBe(Game.CSGO);
       expect(component.detailsVisible()).toBe(true);
-      expect(details().classList).toContain('application-details-show');
+      expect(details()!.classList).toContain('application-details-show');
       expect(userService.getUserTeams).toHaveBeenCalledWith('user-1');
-      expect(component.userTeams().map(t => t.teamName)).toEqual(['Alpha', 'Bravo']);
-      const teamSelect = el().querySelector('igx-select#team');
+      expect(component.userTeams()!.map(t => t.teamName)).toEqual(['Alpha', 'Bravo']);
+      const teamSelect = el().querySelector('igx-select#team')!;
       expect(teamSelect).not.toBeNull();
       expect(teamSelect.textContent).toContain('Alpha');
       expect(teamSelect.textContent).toContain('Bravo');
@@ -175,7 +176,7 @@ describe('TournamentRegistrationComponent', () => {
     });
 
     it('warns a Counter-Strike applicant without a Steam account', () => {
-      authUser.set(makeUser({ steamId: null }));
+      authUser.set(makeUser({ steamId: undefined }));
       create();
 
       component.selectGame(Game.CSGO);
@@ -203,7 +204,7 @@ describe('TournamentRegistrationComponent', () => {
 
       expect(component.application().battleNetId).toBe('Sniper#1234');
       expect(component.detailsVisible()).toBe(true);
-      expect(details().classList).toContain('application-details-show');
+      expect(details()!.classList).toContain('application-details-show');
       expect(el().querySelector('#battletag')).not.toBeNull();
       expect(el().querySelector('igx-select#team')).toBeNull();
       expect(userService.getUserTeams).not.toHaveBeenCalled();
@@ -252,7 +253,7 @@ describe('TournamentRegistrationComponent', () => {
       const event = new MouseEvent('click', { bubbles: true, cancelable: true });
       const stop = vi.spyOn(event, 'stopPropagation');
 
-      el().querySelector('.accept-terms-checkbox .highlight').dispatchEvent(event);
+      el().querySelector('.accept-terms-checkbox .highlight')!.dispatchEvent(event);
 
       expect(scroll).toHaveBeenCalledWith({ behavior: 'smooth' });
       expect(stop).toHaveBeenCalled();
@@ -264,7 +265,7 @@ describe('TournamentRegistrationComponent', () => {
     it('offers the terms as a keyboard reachable link', () => {
       create();
 
-      const link = el().querySelector<HTMLAnchorElement>('.accept-terms-checkbox .highlight');
+      const link = el().querySelector<HTMLAnchorElement>('.accept-terms-checkbox .highlight')!;
       expect(link.tagName).toBe('A');
       expect(link.getAttribute('href')).toBe('#terms');
       expect(link.textContent.trim()).toBe('terms and conditions');
@@ -291,20 +292,20 @@ describe('TournamentRegistrationComponent', () => {
       ['Clear email', 'Clear battle tag', 'Clear company'].forEach(label => {
         const button = clearButton(label);
         expect(button).not.toBeNull();
-        expect(button.type).toBe('button');
+        expect(button!.type).toBe('button');
       });
     });
 
     it('clears the email', async () => {
-      clearButton('Clear email').click();
+      clearButton('Clear email')!.click();
       await render();
 
-      expect(component.application().email).toBeNull();
+      expect(component.application().email).toBe('');
       expect(clearButton('Clear email')).toBeNull();
     });
 
     it('clears the battle tag', async () => {
-      clearButton('Clear battle tag').click();
+      clearButton('Clear battle tag')!.click();
       await render();
 
       expect(component.application().battleNetId).toBeNull();
@@ -312,7 +313,7 @@ describe('TournamentRegistrationComponent', () => {
     });
 
     it('clears the company', async () => {
-      clearButton('Clear company').click();
+      clearButton('Clear company')!.click();
       await render();
 
       expect(component.application().companyId).toBeNull();
@@ -324,7 +325,7 @@ describe('TournamentRegistrationComponent', () => {
     let openNewTeam: ReturnType<typeof vi.spyOn>;
 
     const keydown = (key: string) => {
-      el().querySelector('igx-select#team input').dispatchEvent(new KeyboardEvent('keydown', { key, bubbles: true }));
+      el().querySelector('igx-select#team input')!.dispatchEvent(new KeyboardEvent('keydown', { key, bubbles: true }));
       fixture.detectChanges();
     };
 
@@ -345,7 +346,7 @@ describe('TournamentRegistrationComponent', () => {
       const option = select.items.find(i => i.value === component.newTeamOption);
       const close = vi.spyOn(select, 'close');
 
-      option.element.nativeElement.click();
+      option!.element.nativeElement.click();
       fixture.detectChanges();
       await fixture.whenStable();
 
@@ -360,7 +361,7 @@ describe('TournamentRegistrationComponent', () => {
       expect(select.collapsed).toBe(false);
 
       keydown('End');
-      expect(select.focusedItem.value).toBe(component.newTeamOption);
+      expect(select.focusedItem!.value).toBe(component.newTeamOption);
       const close = vi.spyOn(select, 'close');
       keydown('Enter');
       await fixture.whenStable();
@@ -383,11 +384,71 @@ describe('TournamentRegistrationComponent', () => {
       select.open();
       fixture.detectChanges();
 
-      select.items.find(i => i.value === 'team-1').element.nativeElement.click();
+      select.items.find(i => i.value === 'team-1')!.element.nativeElement.click();
       fixture.detectChanges();
 
       expect(openNewTeam).not.toHaveBeenCalled();
       expect(select.value).toBe('team-1');
+    });
+  });
+
+  describe('filling in the form', () => {
+    const render = async () => {
+      await fixture.whenStable();
+      fixture.detectChanges();
+    };
+    const type = (selector: string, value: string) => {
+      const input = el().querySelector<HTMLInputElement>(selector)!;
+      input.value = value;
+      input.dispatchEvent(new Event('input'));
+    };
+
+    beforeEach(() => {
+      authUser.set(makeUser());
+      create();
+    });
+
+    it('shows the details for the league picked in the game select', async () => {
+      const gameModel = fixture.debugElement.query(By.css('igx-select[name="game"]')).injector.get(NgModel);
+
+      gameModel.viewToModelUpdate(Game.StarCraft2);
+      await render();
+
+      expect(component.application().game).toBe(Game.StarCraft2);
+      expect(component.detailsVisible()).toBe(true);
+      expect(component.application().battleNetId).toBe('Sniper#1234');
+      expect(el().querySelector('#battletag')).not.toBeNull();
+    });
+
+    it('keeps what is typed into the email, battle tag and company fields', async () => {
+      component.selectGame(Game.StarCraft2);
+      await render();
+
+      type('#email', 'typed@example.com');
+      type('#battletag', 'Typed#4321');
+      type('#company', 'Initech');
+
+      expect(component.application()).toEqual(expect.objectContaining({
+        email: 'typed@example.com', battleNetId: 'Typed#4321', companyId: 'Initech'
+      }));
+    });
+
+    it('enables the register button for a complete application with the terms accepted, until it is sent', async () => {
+      const submit = () => el().querySelector<HTMLButtonElement>('button.submit-registration');
+      component.selectGame(Game.StarCraft2);
+      await render();
+      type('#company', 'Initech');
+      await render();
+      expect(submit()!.disabled).toBe(true);
+
+      el().querySelector<HTMLInputElement>('.accept-terms-checkbox input[type="checkbox"]')!.click();
+      await render();
+      expect((fixture.debugElement.query(By.directive(IgxCheckboxComponent)).componentInstance as IgxCheckboxComponent).checked).toBe(true);
+      expect(submit()!.disabled).toBe(false);
+
+      component.inProgress.set(true);
+      await render();
+      expect(submit()!.disabled).toBe(true);
     });
   });
 
@@ -402,7 +463,7 @@ describe('TournamentRegistrationComponent', () => {
       create();
       await fixture.whenStable();
 
-      expect(submitButton().disabled).toBe(true);
+      expect(submitButton()!.disabled).toBe(true);
     });
 
     it('registers for the tournament and navigates to the success page', () => {
@@ -423,7 +484,7 @@ describe('TournamentRegistrationComponent', () => {
         companyId: 'Acme'
       }));
       expect(component.inProgress()).toBe(true);
-      expect(submitButton().disabled).toBe(true);
+      expect(submitButton()!.disabled).toBe(true);
 
       response.next(saved);
       response.complete();

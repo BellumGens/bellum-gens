@@ -1,6 +1,7 @@
 import { Component, Injector, Signal, inject, signal } from '@angular/core';
 import { toObservable } from '@angular/core/rxjs-interop';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Params, RouterLink } from '@angular/router';
+import { of } from 'rxjs';
 import { FormsModule } from '@angular/forms';
 import { DatePipe, NgOptimizedImage } from '@angular/common';
 import {
@@ -85,12 +86,12 @@ export class StrategiesComponent {
   private socialMedia = inject(SocialMediaStrategyService);
   private injector = inject(Injector);
 
-  public isEditor = signal<boolean>(null);
+  public isEditor = signal(false);
 
-  public strats = signal<CSGOStrategy []>(undefined);
+  public strats = signal<CSGOStrategy [] | null>(null);
   public maps = signal<CSGOActiveDutyMap []>(structuredClone(ACTIVE_DUTY).map(map => ({ ...map, isPlayed: true })));
-  public team = signal<CSGOTeam>(undefined);
-  public authUser: Signal<ApplicationUser> = this.authManager.applicationUser;
+  public team = signal<CSGOTeam | null>(null);
+  public authUser: Signal<ApplicationUser | null> = this.authManager.applicationUser;
   private authUser$ = toObservable(this.authUser);
   public viewAll = signal(false);
   public loading = signal(false);
@@ -99,7 +100,7 @@ export class StrategiesComponent {
   public order = signal(StratOrderBy.TopVoted);
 
   /** Id of the strategy whose actions drop-down is open. */
-  public openedActionsId = signal<string>(null);
+  public openedActionsId = signal<string | null>(null);
   public overlaySettings = GLOBAL_OVERLAY_SETTINGS;
   public stratOrder = StratOrder;
   public voteLabel = voteLabel;
@@ -118,19 +119,23 @@ export class StrategiesComponent {
           }
         });
       } else {
-        this.activatedRoute.parent.parent.params.subscribe(params => {
+        // Strategies of a team are listed under the team's route
+        (this.activatedRoute.parent?.parent?.params ?? of<Params>({})).subscribe(params => {
           const teamId = params['teamid'];
 
           if (teamId) {
             toObservable(this.apiService.getTeam(teamId), { injector: this.injector }).subscribe(team => {
               if (team) {
                 this.team.set(team);
+              }
+              const id = team?.teamId;
+              if (id) {
                 this.loading.set(true);
-                this.apiStrategyService.getTeamStrats(team.teamId).subscribe(strats => {
+                this.apiStrategyService.getTeamStrats(id).subscribe(strats => {
                   this.loading.set(false);
                   this.strats.set(strats);
                 });
-                this.authManager.getUserIsTeamEditor(team.teamId).subscribe(data => this.isEditor.set(data));
+                this.authManager.getUserIsTeamEditor(id).subscribe(data => this.isEditor.set(data));
               }
             });
           } else {
@@ -165,7 +170,7 @@ export class StrategiesComponent {
 
   public deleteStrat(args: CSGOStrategy) {
     this.apiStrategyService.deleteStrategy(args.id).subscribe({
-      next: () => this.strats.update(strats => strats.filter(s => s !== args)),
+      next: () => this.strats.update(strats => strats && strats.filter(s => s !== args)),
       // The service already tells the user; the strategy just stays in the list
       error: () => {}
     });
@@ -221,7 +226,7 @@ export class StrategiesComponent {
     } else {
       // The service emits a new strategy object (its own caches are updated too), so swap it into the list.
       this.apiStrategyService.submitStratVote(strat, direction, authUser.id).subscribe(updated =>
-        this.strats.update(strats => strats?.map(s => s.id === updated.id ? updated : s))
+        this.strats.update(strats => strats && strats.map(s => s.id === updated.id ? updated : s))
       );
     }
   }

@@ -85,6 +85,9 @@ export class EliteStz2026Component extends BaseDirective implements OnInit {
   }
 
   public submit() {
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
     if (!this.authUser() || this.form.invalid) {
       this.form.markAllAsTouched();
       return;
@@ -94,7 +97,6 @@ export class EliteStz2026Component extends BaseDirective implements OnInit {
       email: this.form.value.email as string,
       firstTime: !!this.form.value.firstTime
     };
-    if (!isPlatformBrowser(this.platformId)) return;
     this.apiService.earlyBirdSignup(payload).subscribe({
       next: () => {
         this.submitting.set(false);

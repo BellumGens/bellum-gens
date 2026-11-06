@@ -27,5 +27,5 @@ export class SearchComponent {
   private authManager = inject(LoginService);
 
   public searchType = signal<SearchType>(SearchType.None);
-  public authUser: Signal<ApplicationUser> = this.authManager.applicationUser;
+  public authUser: Signal<ApplicationUser | null> = this.authManager.applicationUser;
 }

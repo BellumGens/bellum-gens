@@ -15,7 +15,7 @@ import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 export class LoginButtonsComponent {
   private authManager = inject(LoginService);
 
-  public loginColors = LOGIN_ASSETS;
+  public loginColors: Readonly<Record<string, string>> = LOGIN_ASSETS;
   public loginProviders = toSignal(this.authManager.loginProviders, { initialValue: [] as LoginProvider [] });
 
   public login(provider: LoginProvider) {

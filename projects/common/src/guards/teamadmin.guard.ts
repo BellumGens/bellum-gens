@@ -19,7 +19,11 @@ export class TeamadminGuard  {
 
   public canActivate(
     next: ActivatedRouteSnapshot) {
-    return this.isBrowser ? this.isTeamAdmin(next.parent.params.teamid) : true;
+    if (!this.isBrowser) {
+      return true;
+    }
+    const teamId: string | undefined = next.parent?.params['teamid'];
+    return teamId ? this.isTeamAdmin(teamId) : false;
   }
 
   public isTeamAdmin(teamid: string) {

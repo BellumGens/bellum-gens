@@ -7,6 +7,7 @@ import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/com
 
 
 describe('ApiSearchService', () => {
+  // The API sends no steam user when the query does not resolve to one
   let service: ApiSearchService;
   let httpMock: HttpTestingController;
   let commService: CommunicationService;
@@ -121,9 +122,9 @@ describe('ApiSearchService', () => {
         email: 'test-email',
         searchVisible: true,
         externalLogins: [],
-        steamUser: null,
+        steamUser: undefined,
         steamUserException: false,
-        userStats: null,
+        userStats: undefined,
         userStatsException: true,
         registered: false,
       }
@@ -227,7 +228,7 @@ describe('ApiSearchService', () => {
       steamUser: null
     };
 
-    const cases: [string, (query: string) => void, () => unknown [], keyof SearchResult][] = [
+    const cases: [string, (query: string) => void, () => unknown [] | null, keyof SearchResult][] = [
       ['searchTeams', query => service.searchTeams(query), () => service.teamSearchResult(), 'teams'],
       ['searchPlayers', query => service.searchPlayers(query), () => service.playerSearchResult(), 'players'],
       ['searchStrategies', query => service.searchStrategies(query), () => service.strategySearchResult(), 'strategies']

@@ -42,7 +42,7 @@ export abstract class BaseLayer {
   public selectedBorderWidth = 1;
   public movable: boolean;
   public selectable = true;
-  public type: EditorLayerType;
+  public abstract type: EditorLayerType;
 
   public name: string;
   public x: number;
@@ -82,7 +82,7 @@ export abstract class BaseLayer {
     this.y = meta ? meta.y : 0;
     this.width = meta ? meta.width : 0;
     this.height = meta ? meta.height : 0;
-    this.movable = meta ? meta.movable : true;
+    this.movable = meta ? meta.movable ?? false : true;
     this._originalDR = meta ? meta.displayRatio : 0;
     this.displayRatio = displayRatio;
     if (this._originalDR && this._originalDR !== this.displayRatio) {
@@ -100,37 +100,38 @@ export abstract class BaseLayer {
     return false;
   }
 
-  public abstract draw();
+  public abstract draw(): void;
 }
 
 export class ImageLayer extends BaseLayer {
   public src: string;
-  public image: HTMLImageElement;
+  public image?: HTMLImageElement;
   public circle = false;
+  public type = EditorLayerType.Image;
 
   constructor(private _context: CanvasRenderingContext2D, name: string, displayRatio = 1, meta?: EditorLayer) {
     super(name, displayRatio, meta);
-    this.src = meta ? meta.src : '';
-    this.circle = meta ? meta.circle : false;
-    this.type = EditorLayerType.Image;
+    this.src = meta?.src ?? '';
+    this.circle = meta?.circle ?? false;
   }
 
   public draw() {
     if (!this.hidden) {
       if (!this.image) {
-        this.image = new Image();
-        this.image.crossOrigin = 'Anonymous';
-        this.image.src = this.src;
-        this.image.width = Math.round(this.width * this.displayRatio);
-        this.image.height = Math.round(this.height * this.displayRatio);
-        this.image.onload = () => {
+        const image = new Image();
+        this.image = image;
+        image.crossOrigin = 'Anonymous';
+        image.src = this.src;
+        image.width = Math.round(this.width * this.displayRatio);
+        image.height = Math.round(this.height * this.displayRatio);
+        image.onload = () => {
           if (this.selected) {
             this.drawSelectedBorder();
           }
           if (this.circle) {
             this.beginCircle();
           }
-          this._context.drawImage(this.image,
+          this._context.drawImage(image,
                                   this.x,
                                   this.y,
                                   Math.round(this.width * this.displayRatio),
@@ -192,14 +193,14 @@ export class FreeflowLayer extends BaseLayer {
   public paths: FreeflowPath [];
   public color = '#ff0000';
   public selectable = false;
+  public type = EditorLayerType.Freeflow;
 
-  private _currentPath: FreeflowPath;
+  private _currentPath: FreeflowPath | null = null;
 
   constructor(private _context: CanvasRenderingContext2D, name: string, displayRatio = 1, meta?: EditorLayer) {
     super(name, displayRatio, meta);
-    this.paths = meta ? meta.paths : [];
-    this.color = meta ? meta.color : '#ff0000';
-    this.type = EditorLayerType.Freeflow;
+    this.paths = meta?.paths ?? [];
+    this.color = meta?.color ?? '#ff0000';
     this.movable = false;
     if (this._originalDR && this.displayRatio !== this._originalDR) {
       this.paths.forEach((path) => {
@@ -212,19 +213,19 @@ export class FreeflowLayer extends BaseLayer {
   }
 
   public createPath() {
-    const path = {points: []};
+    const path: FreeflowPath = {points: []};
     this.paths.push(path);
     this._currentPath = path;
   }
 
   public addPoint(point: PointCoordinate) {
-    this._currentPath.points.push(point);
+    this._currentPath?.points.push(point);
     this.layerUpdate.next(this);
   }
 
   public closePath() {
     if (this._currentPath) {
-      this.optimize();
+      this.optimize(this._currentPath);
     }
     this._currentPath = null;
   }
@@ -248,18 +249,19 @@ export class FreeflowLayer extends BaseLayer {
     this.drawFinish.next(this);
   }
 
-  private optimize() {
-    const length = this._currentPath.points.length;
-    const newPoints = [];
+  private optimize(path: FreeflowPath) {
+    const length = path.points.length;
+    const newPoints: PointCoordinate[] = [];
     if (length < 2) {
       return;
     }
-    let start = this._currentPath.points[0];
-    let slope = (this._currentPath.points[1].x - start.x) / (this._currentPath.points[1].y - start.y);
-        let currentSlope; let current;
+    let start = path.points[0];
+    let slope = (path.points[1].x - start.x) / (path.points[1].y - start.y);
+    let currentSlope: number;
+    let current: PointCoordinate;
     newPoints.push(start);
     for (let i = 1; i < length; i++) {
-      current = this._currentPath.points[i];
+      current = path.points[i];
       currentSlope = (current.x - start.x) / (current.y - start.y);
       if (!isNaN(currentSlope) && currentSlope !== slope) {
         newPoints.push(current);
@@ -270,6 +272,6 @@ export class FreeflowLayer extends BaseLayer {
         newPoints.push(current);
       }
     }
-    this._currentPath.points = newPoints;
+    path.points = newPoints;
   }
 }

@@ -33,10 +33,19 @@ import { DefaultSortingStrategy, IGroupingExpression, SortingDirection } from '@
 export class EventInfoComponent extends BaseDirective {
   private apiService = inject(ApiTournamentsService);
 
-  public tournamentId = signal<string>(undefined);
-  public tournament = computed(() => this.tournamentId() ? this.apiService.getTournament(this.tournamentId())() : null);
-  public registrations = computed(() => this.tournamentId() ? this.apiService.getSc2Registrations(this.tournamentId())() : undefined);
-  public sc2matches = computed(() => this.tournamentId() ? this.apiService.getSc2Matches(this.tournamentId())() : undefined);
+  public tournamentId = signal<string | undefined>(undefined);
+  public tournament = computed(() => {
+    const id = this.tournamentId();
+    return id ? this.apiService.getTournament(id)() : null;
+  });
+  public registrations = computed(() => {
+    const id = this.tournamentId();
+    return id ? this.apiService.getSc2Registrations(id)() : null;
+  });
+  public sc2matches = computed(() => {
+    const id = this.tournamentId();
+    return id ? this.apiService.getSc2Matches(id)() : null;
+  });
   public loading = this.apiService.loadingSC2Registrations;
   public loadingMatches = this.apiService.loadingSC2Matches;
   public grouping: IGroupingExpression [] = [
@@ -49,7 +58,10 @@ export class EventInfoComponent extends BaseDirective {
     '5670bc9c-26e4-44d8-db50-08dd4cd5c5da',
     '0e92f9ed-ca3d-450f-70e3-08dd81aa33d9'
   ];
-  public signUpDisabled = computed(() => this.closedTournaments.includes(this.tournamentId()));
+  public signUpDisabled = computed(() => {
+    const id = this.tournamentId();
+    return !!id && this.closedTournaments.includes(id);
+  });
 
   constructor() {
     super();
@@ -70,17 +82,20 @@ export class EventInfoComponent extends BaseDirective {
       const t = this.tournament();
       if (t) {
         this.titleService.setTitle(t.name);
-        this.meta.updateTag({ name: 'description', content: t.description });
+        this.meta.updateTag({ name: 'description', content: t.description ?? '' });
         this.meta.updateTag({ name: 'twitter:title', content: t.name });
-        this.meta.updateTag({ name: 'twitter:description', content: t.description });
-        this.meta.updateTag({ name: 'og:image', content: t.logo });
+        this.meta.updateTag({ name: 'twitter:description', content: t.description ?? '' });
+        this.meta.updateTag({ name: 'og:image', content: t.logo ?? '' });
         this.meta.updateTag({ name: 'og:title', content: t.name });
-        this.meta.updateTag({ name: 'og:description', content: t.description });
+        this.meta.updateTag({ name: 'og:description', content: t.description ?? '' });
       }
     });
   }
 
   public refreshMatches() {
-    this.apiService.refreshSc2Matches(this.tournamentId());
+    const id = this.tournamentId();
+    if (id) {
+      this.apiService.refreshSc2Matches(id);
+    }
   }
 }

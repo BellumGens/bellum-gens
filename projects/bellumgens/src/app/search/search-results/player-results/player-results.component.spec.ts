@@ -11,7 +11,10 @@ import { IgxIconService } from '@infragistics/igniteui-angular/icon';
 import { ApplicationUser, CSGODetails, PlaystyleRole } from '../../../../../../common/src/public_api';
 import { environment } from '../../../../../../common/src/environments/environment';
 
-const csgoDetails = (overrides: Partial<CSGODetails> = {}): CSGODetails => ({
+/** The search API's JSON, where missing values come back as `null`. */
+type Json<T> = T extends (infer U) [] ? Json<U> [] : T extends object ? { [K in keyof T]: Json<T[K]> | null } : T;
+
+const csgoDetails = (overrides: Partial<Json<CSGODetails>> = {}): Json<CSGODetails> => ({
   steamUser: null,
   userStats: null,
   primaryRole: PlaystyleRole.IGL,
@@ -28,7 +31,7 @@ const csgoDetails = (overrides: Partial<CSGODetails> = {}): CSGODetails => ({
   ...overrides
 });
 
-const player = (id: string, username: string, details?: CSGODetails): ApplicationUser => ({
+const player = (id: string, username: string, details?: Json<CSGODetails>): Json<ApplicationUser> => ({
   id,
   steamId: id,
   username,
@@ -105,7 +108,7 @@ describe('PlayerResultsComponent', () => {
       httpMock.expectNone(() => true);
       expect(component.query()).toBeNull();
       expect(component.players()).toBeNull();
-      expect(el().querySelector('h4').textContent).toContain('results for players with no search criteria');
+      expect(el().querySelector('h4')!.textContent).toContain('results for players with no search criteria');
       expect(el().querySelectorAll('igx-card').length).toBe(0);
     });
 
@@ -123,8 +126,8 @@ describe('PlayerResultsComponent', () => {
       req.flush([]);
       await fixture.whenStable();
       expect(el().querySelector('bg-loading')).toBeNull();
-      expect(el().querySelector('h4 .highlight').textContent.trim()).toBe('0');
-      expect(el().querySelector('h4').textContent)
+      expect(el().querySelector('h4 .highlight')!.textContent.trim()).toBe('0');
+      expect(el().querySelector('h4')!.textContent)
         .toContain('results for players playing as IGL with availability overlap of at least 5 hours');
     });
 
@@ -137,7 +140,7 @@ describe('PlayerResultsComponent', () => {
       ]);
       await fixture.whenStable();
 
-      expect(el().querySelector('h4 .highlight').textContent.trim()).toBe('3');
+      expect(el().querySelector('h4 .highlight')!.textContent.trim()).toBe('3');
       const cards = el().querySelectorAll('igx-card');
       expect(cards.length).toBe(3);
 
@@ -205,7 +208,7 @@ describe('PlayerResultsComponent', () => {
 
       expect(component.loading()).toBe(false);
       expect(el().querySelector('bg-loading')).toBeNull();
-      expect(el().querySelector('h4 .highlight').textContent.trim()).toBe('0');
+      expect(el().querySelector('h4 .highlight')!.textContent.trim()).toBe('0');
     });
   });
 

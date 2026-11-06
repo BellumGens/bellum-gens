@@ -36,7 +36,7 @@ describe('TeamSearchComponent', () => {
   });
 
   const submit = async () => {
-    el().querySelector<HTMLButtonElement>('button.search-button').click();
+    el().querySelector<HTMLButtonElement>('button.search-button')!.click();
     await fixture.whenStable();
   };
 
@@ -100,7 +100,7 @@ describe('TeamSearchComponent', () => {
   it('should include the schedule overlap in the search query', async () => {
     fixture.componentRef.setInput('authUser', { id: 'user-id', username: 'TestUser' } as ApplicationUser);
     await fixture.whenStable();
-    const thumb = el().querySelector<HTMLElement>('igx-slider igx-thumb');
+    const thumb = el().querySelector<HTMLElement>('igx-slider igx-thumb')!;
     for (let i = 0; i < 5; i++) {
       thumb.dispatchEvent(new KeyboardEvent('keydown', { key: 'ArrowRight', bubbles: true }));
     }

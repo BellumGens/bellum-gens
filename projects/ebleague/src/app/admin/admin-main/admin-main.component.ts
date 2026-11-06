@@ -1,12 +1,19 @@
 import { Component, inject, linkedSignal, signal } from '@angular/core';
-import { toSignal } from '@angular/core/rxjs-interop';
 import {
   LoginService,
   ApiTournamentsService,
   Tournament, EMPTY_NEW_TOURNAMENT,
-  Promo,
   ApiShopService,
-  TournamentApplicationState
+  TournamentApplicationState,
+  ShopOrder,
+  OrderStatus,
+  PaymentStatus,
+  ORDER_STATUS_NAMES,
+  DELIVERY_METHOD_NAMES,
+  DeliveryMethod,
+  ProductEditorComponent,
+  PromoEditorComponent,
+  ConfirmComponent
 } from '../../../../../common/src/public_api';
 import { IGridEditEventArgs, RowType } from '@infragistics/igniteui-angular/grids/core';
 import { DefaultSortingStrategy, IGroupingExpression, SortingDirection } from '@infragistics/igniteui-angular/core';
@@ -22,8 +29,10 @@ import { IgxCheckboxComponent } from '@infragistics/igniteui-angular/checkbox';
 import { IGX_CHIPS_DIRECTIVES } from '@infragistics/igniteui-angular/chips';
 import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
 import { FormsModule } from '@angular/forms';
-import { SizeNamePipe } from '../../pipes/size-name.pipe';
-import { NgOptimizedImage } from '@angular/common';
+import { CurrencyPipe } from '@angular/common';
+
+// The API sends the tournament dates as ISO strings
+const toDate = (value?: Date | string): Date | undefined => value ? new Date(value) : undefined;
 
 @Component({
   selector: 'app-admin-main',
@@ -31,6 +40,7 @@ import { NgOptimizedImage } from '@angular/common';
   styleUrls: ['./admin-main.component.scss'],
   imports: [
     FormsModule,
+    CurrencyPipe,
     IGX_GRID_DIRECTIVES,
     IgxIconComponent,
     IgxBadgeComponent,
@@ -44,8 +54,9 @@ import { NgOptimizedImage } from '@angular/common';
     IGX_CARD_DIRECTIVES,
     IgxCheckboxComponent,
     IGX_CHIPS_DIRECTIVES,
-    SizeNamePipe,
-    NgOptimizedImage
+    ProductEditorComponent,
+    PromoEditorComponent,
+    ConfirmComponent
   ]
 })
 export class AdminMainComponent {
@@ -53,28 +64,34 @@ export class AdminMainComponent {
   private apiService = inject(ApiTournamentsService);
   private shopService = inject(ApiShopService);
 
-  public roles = signal<string []>(null);
+  public roles = signal<string [] | null>(null);
   // public users: AdminAppUserSummary [];
   private allTournaments = this.apiService.tournaments;
   // A local copy with parsed dates for the grid's date editors; tournaments created here are appended to it
-  public tournaments = linkedSignal<Tournament []>(() => this.allTournaments()?.map(t => ({
+  public tournaments = linkedSignal<Tournament [] | null>(() => this.allTournaments()?.map(t => ({
     ...t,
-    startDate: new Date(t.startDate),
-    endDate: new Date(t.endDate)
+    startDate: toDate(t.startDate),
+    endDate: toDate(t.endDate)
   })) ?? null);
   public tournament = Object.assign({}, EMPTY_NEW_TOURNAMENT);
-  public orders = toSignal(this.shopService.getOrders());
+  public orders = signal<ShopOrder []>([]);
   public registrations = this.apiService.allRegistrations;
-  public promos = signal<Promo []>(null);
   public grouping: IGroupingExpression [] = [
     { dir: SortingDirection.Desc, fieldName: 'tournamentName', ignoreCase: false, strategy: DefaultSortingStrategy.instance() },
     { dir: SortingDirection.Asc, fieldName: 'game', ignoreCase: false, strategy: DefaultSortingStrategy.instance() }
   ];
 
+  public OrderStatus = OrderStatus;
+  public statusNames = ORDER_STATUS_NAMES;
+  public deliveryNames = DELIVERY_METHOD_NAMES;
+  public ordersExportUrl = this.shopService.ordersExportUrl;
+  /** Tracking numbers typed in the order detail rows, keyed by order id. */
+  public tracking = signal<Record<string, string>>({});
+
   constructor() {
     this.authService.getUserRoles().subscribe(data => this.roles.set(data));
     // this.authService.getUsers().subscribe(data => this.users = data);
-    this.authService.getPromoCodes().subscribe(data => this.promos.set(data));
+    this.loadOrders();
   }
 
   public submitRole(role: string) {
@@ -91,37 +108,73 @@ export class AdminMainComponent {
     });
   }
 
-  public editDone(event: IGridEditEventArgs) {
-    const rowData = event.rowData;
-    rowData[event.column.field] = event.newValue;
-    this.shopService.confirmOrder(rowData).subscribe();
+  public loadOrders() {
+    this.shopService.getAdminOrders().subscribe(orders => this.orders.set(orders));
+  }
+
+  public statusName(status: OrderStatus) {
+    return this.statusNames[status];
+  }
+
+  public deliveryName(method: DeliveryMethod) {
+    return this.deliveryNames[method];
+  }
+
+  public updateOrderStatus(order: ShopOrder, status: OrderStatus) {
+    this.shopService.updateOrderStatus(order.id, { status, trackingNumber: this.tracking()[order.id] || order.trackingNumber || null })
+      .subscribe(updated => this.replaceOrder(updated));
+  }
+
+  public setTracking(orderId: string, trackingNumber: string) {
+    this.tracking.update(tracking => ({ ...tracking, [orderId]: trackingNumber }));
+  }
+
+  /**
+   * Paid orders can be refunded, and so can a cancelled order holding a completed payment: one that was paid after
+   * it expired, when its stock was no longer available.
+   */
+  public canRefund(order: ShopOrder) {
+    switch (order.status) {
+      case OrderStatus.Paid:
+      case OrderStatus.Shipped:
+      case OrderStatus.Delivered:
+        return true;
+      case OrderStatus.Cancelled:
+        return !!order.payments?.some(payment => payment.status === PaymentStatus.Completed);
+      default:
+        return false;
+    }
+  }
+
+  public refundOrder(order: ShopOrder) {
+    this.shopService.refundOrder(order.id).subscribe(updated => this.replaceOrder(updated));
   }
 
   public confirmRegistration(event: IGridEditEventArgs) {
     const rowData = event.rowData;
+    const field = event.column?.field;
+    if (!field) {
+      return;
+    }
     // The row keeps the editor's boolean, so the grid sees no pending change once it's saved;
     // the server receives the state as a number
-    rowData[event.column.field] = event.newValue;
+    rowData[field] = event.newValue;
     this.apiService.confirmRegistration({
       ...rowData,
-      [event.column.field]: event.newValue ? TournamentApplicationState.Confirmed : TournamentApplicationState.Pending
+      [field]: event.newValue ? TournamentApplicationState.Confirmed : TournamentApplicationState.Pending
     }).subscribe();
   }
 
   // Applies the row's pending changes and deletes it on the server only if it was marked deleted
   public saveRegistration(rowContext: RowType) {
     const deleted = rowContext.deleted;
-    rowContext.grid.transactions.commit(rowContext.grid.data, rowContext.key);
+    rowContext.grid.transactions.commit(rowContext.grid.data ?? [], rowContext.key);
     if (deleted) {
       this.apiService.deleteRegistration(rowContext.key).subscribe();
     }
   }
 
-  public saveOrder(rowContext: RowType) {
-    const deleted = rowContext.deleted;
-    rowContext.grid.transactions.commit(rowContext.grid.data, rowContext.key);
-    if (deleted) {
-      this.shopService.deleteOrder(rowContext.key).subscribe();
-    }
+  private replaceOrder(updated: ShopOrder) {
+    this.orders.update(orders => orders.map(o => o.id === updated.id ? { ...o, ...updated } : o));
   }
 }

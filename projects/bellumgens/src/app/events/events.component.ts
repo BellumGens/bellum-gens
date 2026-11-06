@@ -74,7 +74,7 @@ export class EventsComponent extends BaseDirective {
   public minutes = signal(0);
   public hours = signal(0);
   public days = signal(0);
-  public sub: Subscription;
+  public sub?: Subscription;
 
   public ticketsUrl = 'https://www.eventim.bg/en/tickets/bellum-gens-elite-stara-zagora-2025-stara-zagora-leten-teatr-662711/event.html';
 
@@ -110,7 +110,7 @@ export class EventsComponent extends BaseDirective {
 
   public scrollTo(id: string) {
     const element = document.getElementById(id);
-    element.scrollIntoView({ behavior: 'smooth' });
+    element?.scrollIntoView({ behavior: 'smooth' });
   }
 
   // public ngOnDestroy() {

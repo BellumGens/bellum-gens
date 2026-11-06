@@ -24,7 +24,7 @@ export class TeamResultsComponent extends BaseDirective {
 
   public teams = this.apiService.teamSearchResult;
   public loading = this.apiService.loadingSearch;
-  public query = signal<string>(null);
+  public query = signal<string | null>(null);
 
   constructor() {
     super();

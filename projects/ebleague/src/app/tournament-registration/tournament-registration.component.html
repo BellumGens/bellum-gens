@@ -28,7 +28,7 @@
       <input type="email" id="email" #userMail name="email" [required]="true" igxInput pattern="^[a-zA-Z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$" [(ngModel)]="application().email" />
       @if (userMail.value) {
         <igx-suffix>
-          <button type="button" igxIconButton="flat" (click)="application().email = null" i18n-aria-label aria-label="Clear email">
+          <button type="button" igxIconButton="flat" (click)="application().email = ''" i18n-aria-label aria-label="Clear email">
             <igx-icon>clear</igx-icon>
           </button>
         </igx-suffix>

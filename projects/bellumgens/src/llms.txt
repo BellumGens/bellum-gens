@@ -1,0 +1,33 @@
+# Bellum Gens
+
+> Bellum Gens is a gaming and esports event organizer and consultant from Bulgaria, focused on developing and popularizing esports in Bulgaria and the Balkans. It runs the Bellum Gens Elite StarCraft II events in Stara Zagora, the Esports Business League for companies, an official merchandise shop, and a free Counter-Strike team management and strategy platform.
+
+- The site is available in English at https://bellumgens.com and in Bulgarian under https://bellumgens.com/bg.
+- Bellum Gens helps brands reach gaming audiences through tournaments, streams and digital channels. Business enquiries: info@bellumgens.com.
+- The project is open source: https://github.com/BellumGens/bellum-gens
+
+## Events
+
+- [Bellum Gens Elite Stara Zagora](https://bellumgens.com/bellumgenselite): The premier StarCraft II LAN event in Bulgaria, with top players from around the world competing for a €10,000 prize pool at the Summer Theater in Stara Zagora. Invited and qualified players, casters and event details.
+- [Bellum Gens Elite Stara Zagora 2026 early bird signup](https://bellumgens.com/bge-stara-zagora-2026): Pre-registration for the 2026 edition of Bellum Gens Elite Stara Zagora.
+- [Bellum Gens Elite Weekly Balkan Circuit](https://bellumgens.com/bellumgenselite/bge-balkan-circuit): A weekly StarCraft II competition for players from the Balkan region, where players earn points towards monthly cash prizes.
+- [Tournaments](https://bellumgens.com/tournaments): Browse and join esports tournaments, or create and manage your own.
+
+## Shop
+
+- [Official merchandise](https://bellumgens.com/shop): Bellum Gens, Esports Business League and BGE Stara Zagora merchandise such as jerseys, umbrellas and pens. Prices are in EUR, payment is handled by Revolut, and orders are delivered across Bulgaria or handed over at an event.
+- [Cart](https://bellumgens.com/shop/cart): The visitor's cart, with delivery options and promo codes.
+
+## Counter-Strike teams and strategies
+
+- [Counter-Strike strategies](https://bellumgens.com/strategies): Browse public Counter-Strike strategies or create your own with the free online strategy editor.
+- [Team section](https://bellumgens.com/team): Find a team that matches your skill and manage rosters, roles, strategies and practice schedules. Requires signing in.
+
+## Partners
+
+- [Partners and sponsors](https://bellumgens.com/partners): The companies and organizations that support Bellum Gens events.
+
+## Optional
+
+- [Esports Business League](https://eb-league.com): The sister site for the amateur Counter-Strike and StarCraft II league for companies, also run by Bellum Gens.
+- [Source code](https://github.com/BellumGens/bellum-gens): The open source code behind bellumgens.com and eb-league.com.

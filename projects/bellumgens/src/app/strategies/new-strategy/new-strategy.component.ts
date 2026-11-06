@@ -47,9 +47,9 @@ export class NewStrategyComponent {
 
   public dialog = viewChild.required<IgxDialogComponent>('newStrat');
 
-  public team = input<CSGOTeam>();
+  public team = input<CSGOTeam | null>();
 
-  public authUser = input<ApplicationUser>();
+  public authUser = input<ApplicationUser | null>();
 
   public strategyAdded = output<CSGOStrategy>();
 
@@ -118,6 +118,6 @@ export class NewStrategyComponent {
   private strategyToSubmit(): CSGOStrategy {
     const team = this.team();
     const strategy = this.newStrategy();
-    return team ? { ...strategy, teamId: team.teamId } : strategy;
+    return team ? { ...strategy, teamId: team.teamId ?? null } : strategy;
   }
 }

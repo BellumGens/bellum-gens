@@ -21,9 +21,9 @@ import { FormsModule } from '@angular/forms';
 export class TeamSearchComponent {
   private router = inject(Router);
 
-  public authUser = input<ApplicationUser>();
+  public authUser = input<ApplicationUser | null>();
 
-  public role = signal<PlaystyleRole>(TEAM_SEARCH.role);
+  public role = signal<PlaystyleRole | null>(TEAM_SEARCH.role);
   public scheduleOverlap = signal(TEAM_SEARCH.scheduleOverlap);
 
   // Assembled from the individual field signals so the query builder keeps

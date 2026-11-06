@@ -66,7 +66,7 @@ describe('AppComponent', () => {
   });
 
   // The login button looks up the logged in user and the external login providers on every platform
-  const flushUserCheck = (user: ApplicationUser = null) => {
+  const flushUserCheck = (user: ApplicationUser | null = null) => {
     httpMock.expectOne(loginService['_apiEndpoint']).flush(user);
     httpMock.expectOne(`${loginService['_apiEndpoint']}/ExternalLogins?returnUrl=%2F`).flush([]);
   };
@@ -139,7 +139,7 @@ describe('AppComponent', () => {
     it('should toggle the drawer from the menu button and close it on navigation', async () => {
       flushFlags();
       flushUserCheck();
-      const menu = el().querySelector<HTMLButtonElement>('button.drawer-action');
+      const menu = el().querySelector<HTMLButtonElement>('button.drawer-action')!;
 
       expect(drawer().isOpen).toBe(false);
       expect(menu.getAttribute('aria-expanded')).toBe('false');
@@ -157,7 +157,7 @@ describe('AppComponent', () => {
     it('should expose the menu toggle as a named button controlling the drawer', () => {
       flushFlags();
       flushUserCheck();
-      const menu = el().querySelector<HTMLButtonElement>('igx-navbar-action button.drawer-action');
+      const menu = el().querySelector<HTMLButtonElement>('igx-navbar-action button.drawer-action')!;
 
       expect(menu).not.toBeNull();
       expect(menu.type).toBe('button');
@@ -170,11 +170,11 @@ describe('AppComponent', () => {
     it('should link the logo to the home page', () => {
       flushFlags();
       flushUserCheck();
-      const logo = el().querySelector<HTMLImageElement>('igx-navbar-action img');
+      const logo = el().querySelector<HTMLImageElement>('igx-navbar-action img')!;
       const link = logo.closest('a');
 
       expect(link).not.toBeNull();
-      expect(link.getAttribute('href')).toBe('/');
+      expect(link!.getAttribute('href')).toBe('/');
       expect(logo.getAttribute('alt')).toBe('Esports Business League');
     });
 
@@ -188,11 +188,11 @@ describe('AppComponent', () => {
         expect(item.tagName).toBe('A');
         expect(item.getAttribute('href')).toBeTruthy();
       });
-      expect(items.map(i => i.querySelector('span').textContent.trim())).toEqual([
+      expect(items.map(i => i.querySelector('span')!.textContent.trim())).toEqual([
         'EBL Seasons', 'Tournaments', 'Shop', 'Tournament format', 'Our partners', 'Our crew', 'Contact us'
       ]);
       expect(items.map(i => i.getAttribute('href'))).toEqual([
-        '/tournaments', '/tournaments/hub', '/shop', '/tournaments/format', '/#partners', '/tournaments/crew', '/#aboutus'
+        '/tournaments', '/tournaments/hub', component.shopUrl, '/tournaments/format', '/#partners', '/tournaments/crew', '/#aboutus'
       ]);
     });
 
@@ -245,7 +245,7 @@ describe('AppComponent', () => {
       flushFlags();
       flushUserCheck();
 
-      expect(el().querySelector('footer').textContent).toContain(`Copyright © Bellum Gens, 2019-${component.year}`);
+      expect(el().querySelector('footer')!.textContent).toContain(`Copyright © Bellum Gens, 2019-${component.year}`);
     });
   });
 

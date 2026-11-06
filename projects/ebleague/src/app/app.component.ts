@@ -16,6 +16,7 @@ import { environment } from '../../../common/src/environments/environment';
 import { SuccessErrorComponent } from '../../../common/src/lib/success-error/success-error.component';
 import { LoginComponent } from '../../../common/src/lib/login/login.component';
 import { LanguagesComponent } from '../../../common/src/lib/languages/languages.component';
+import { shopRedirectUrl } from './guards/shop-redirect.guard';
 
 @Component({
   selector: 'app-root',
@@ -58,12 +59,14 @@ export class AppComponent {
   private drawer = viewChild.required<IgxNavigationDrawerComponent>('drawer');
 
   // The user is only looked up in the browser.
-  public authUser: Signal<ApplicationUser> = isPlatformBrowser(this.platformId)
+  public authUser: Signal<ApplicationUser | null> = isPlatformBrowser(this.platformId)
     ? this.authManager.applicationUser
-    : signal<ApplicationUser>(null).asReadonly();
+    : signal<ApplicationUser | null>(null).asReadonly();
   public drawerPinned = signal(false);
   public environment = environment;
   public year = new Date().getFullYear();
+  /** The shop lives on bellumgens.com; link there in the visitor's language. */
+  public shopUrl = shopRedirectUrl('/shop', this.localeId);
 
   constructor() {
     if (isPlatformBrowser(this.platformId)) {

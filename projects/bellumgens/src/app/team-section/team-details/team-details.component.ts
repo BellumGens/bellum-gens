@@ -1,7 +1,7 @@
 import { Component, ElementRef, Injector, Signal, inject, signal, viewChildren } from '@angular/core';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { distinctUntilChanged, filter, map, switchMap } from 'rxjs/operators';
-import { IDropDroppedEventArgs, IGX_DRAG_DROP_DIRECTIVES } from '@infragistics/igniteui-angular/directives';
+import { IDragStartEventArgs, IDropDroppedEventArgs, IGX_DRAG_DROP_DIRECTIVES } from '@infragistics/igniteui-angular/directives';
 import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
 import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
 import {
@@ -19,6 +19,7 @@ import {
 import { RouterLink, ROUTER_OUTLET_DATA } from '@angular/router';
 import { BaseDirective } from '../../base/base.component';
 
+/** A role of the active roster, which stays empty until a member is assigned to it. */
 @Component({
   selector: 'app-team-details',
   templateUrl: './team-details.component.html',
@@ -46,8 +47,8 @@ export class TeamDetailsComponent extends BaseDirective {
   public isAdmin = signal(false);
   public activeMembers = signal<TeamMember []>([]);
   public inactiveMembers = signal<TeamMember []>([]);
-  public authUser: Signal<ApplicationUser> = this.authService.applicationUser;
-  public teamPractice = signal<Availability []>(null);
+  public authUser: Signal<ApplicationUser | null> = this.authService.applicationUser;
+  public teamPractice = signal<Availability [] | null>(null);
 
   public roleSlots = signal<RoleSlot []>([
     { roleName: 'IGL', role: PlaystyleRole.IGL, user: null },
@@ -62,7 +63,7 @@ export class TeamDetailsComponent extends BaseDirective {
 
     const teamId$ = toObservable(this.team).pipe(
       map(team => team?.teamId),
-      filter(teamId => !!teamId),
+      filter((teamId): teamId is string => !!teamId),
       distinctUntilChanged()
     );
     teamId$.pipe(
@@ -75,7 +76,7 @@ export class TeamDetailsComponent extends BaseDirective {
     ).subscribe(schedule => this.teamPractice.set(schedule));
     teamId$.pipe(
       switchMap(teamId => toObservable(this.apiService.getTeamMembers(teamId), { injector: this.injector })),
-      filter(members => !!members),
+      filter((members): members is TeamMember [] => !!members),
       takeUntilDestroyed()
     ).subscribe(members => {
       this.roleSlots.update(slots => slots.map(slot => ({ ...slot, user: members.find(m => m.role === slot.role) || null })));
@@ -85,6 +86,9 @@ export class TeamDetailsComponent extends BaseDirective {
   }
 
   public removeFromRole(role: RoleSlot) {
+    if (!role.user) {
+      return;
+    }
     const user: TeamMember = { ...role.user, role: PlaystyleRole.NotSet };
     this.setRoleUser(role, null);
     this.activeMembers.update(members => [...members, user]);
@@ -117,7 +121,7 @@ export class TeamDetailsComponent extends BaseDirective {
     this.apiService.updateTeamMember(user).subscribe();
   }
 
-  public roleDragging(args) {
+  public roleDragging(args: IDragStartEventArgs) {
     if (!this.isAdmin()) {
       args.cancel = true;
     } else {
@@ -149,7 +153,7 @@ export class TeamDetailsComponent extends BaseDirective {
     this.apiService.setTeamPractice({ ...day, teamId: this.team().teamId }).subscribe();
   }
 
-  private setRoleUser(role: RoleSlot, user: TeamMember) {
+  private setRoleUser(role: RoleSlot, user: TeamMember | null) {
     this.roleSlots.update(slots => slots.map(slot => slot.role === role.role ? { ...slot, user } : slot));
   }
 }

@@ -20,6 +20,5 @@ runs:
       run: |
         echo "@infragistics:registry=https://packages.infragistics.com/npm/js-licensed/" >> ~/.npmrc
         echo "//packages.infragistics.com/npm/js-licensed/:_auth=${{ inputs.npm-token }}" >> ~/.npmrc
-        echo "//packages.infragistics.com/npm/js-licensed/:always-auth=true" >> ~/.npmrc
     - shell: bash
       run: npm ci

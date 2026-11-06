@@ -46,7 +46,7 @@ export class SuccessErrorComponent {
       .subscribe(message => this.showMessage('warn', message));
   }
 
-  public showMessage(type: string, msg?: string) {
+  public showMessage(type: keyof SuccessErrorComponent['settings'], msg?: string) {
     // The snackbar overlay needs a real DOM, and an error thrown here during SSR takes down the server process
     if (!this.isBrowser) {
       return;

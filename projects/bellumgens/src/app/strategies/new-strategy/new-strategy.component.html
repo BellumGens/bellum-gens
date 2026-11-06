@@ -7,7 +7,7 @@
       <input #strategyName name="strategyName" id="strategyName" igxInput minlength="2" [required]="true" [(ngModel)]="newStrategy().title">
       @if (strategyName.value.length > 0) {
         <igx-suffix>
-          <button type="button" igxIconButton="flat" (click)="newStrategy().title = null" i18n-aria-label aria-label="Clear title">
+          <button type="button" igxIconButton="flat" (click)="newStrategy().title = ''" i18n-aria-label aria-label="Clear title">
             <igx-icon>clear</igx-icon>
           </button>
         </igx-suffix>
@@ -20,7 +20,7 @@
       </textarea>
       @if (strategyDescription.value.length > 0) {
         <igx-suffix>
-          <button type="button" igxIconButton="flat" (click)="newStrategy().description = null" i18n-aria-label aria-label="Clear description">
+          <button type="button" igxIconButton="flat" (click)="newStrategy().description = ''" i18n-aria-label aria-label="Clear description">
             <igx-icon>clear</igx-icon>
           </button>
         </igx-suffix>
@@ -62,7 +62,7 @@
         (ngModelChange)="urlChanged($event)" />
         @if (strategyUrl.value.length > 0) {
           <igx-suffix>
-            <button type="button" igxIconButton="flat" (click)="newStrategy().url = null" i18n-aria-label aria-label="Clear link">
+            <button type="button" igxIconButton="flat" (click)="newStrategy().url = ''" i18n-aria-label aria-label="Clear link">
               <igx-icon>clear</igx-icon>
             </button>
           </igx-suffix>

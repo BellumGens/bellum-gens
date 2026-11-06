@@ -38,9 +38,18 @@ export class BgeBalkanComponent extends BaseDirective {
   public tournament = this.apiService.getTournament(this.bgeBalkanId);
   public tournamentId = computed(() => this.tournament()?.id);
   // The tournament's data is loaded once the tournament itself is known
-  public registrations = computed(() => this.tournamentId() ? this.apiService.getSc2Registrations(this.tournamentId())() : undefined);
-  public groups = computed(() => this.tournamentId() ? this.apiService.getSc2Groups(this.tournamentId())() : undefined);
-  public sc2matches = computed(() => this.tournamentId() ? this.apiService.getSc2Matches(this.tournamentId())() : undefined);
+  public registrations = computed(() => {
+    const id = this.tournamentId();
+    return id ? this.apiService.getSc2Registrations(id)() : null;
+  });
+  public groups = computed(() => {
+    const id = this.tournamentId();
+    return id ? this.apiService.getSc2Groups(id)() : null;
+  });
+  public sc2matches = computed(() => {
+    const id = this.tournamentId();
+    return id ? this.apiService.getSc2Matches(id)() : null;
+  });
   public loading = this.apiService.loadingSC2Registrations;
   public loadingMatches = this.apiService.loadingSC2Matches;
   public grouping: IGroupingExpression [] = [
@@ -61,10 +70,16 @@ export class BgeBalkanComponent extends BaseDirective {
   }
 
   public refreshGroups() {
-    this.apiService.refreshSc2Groups(this.tournamentId());
+    const id = this.tournamentId();
+    if (id) {
+      this.apiService.refreshSc2Groups(id);
+    }
   }
 
   public refreshMatches() {
-    this.apiService.refreshSc2Matches(this.tournamentId());
+    const id = this.tournamentId();
+    if (id) {
+      this.apiService.refreshSc2Matches(id);
+    }
   }
 }

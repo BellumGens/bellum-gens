@@ -6,7 +6,7 @@ import { type SC2Map, SC2_MAPS } from '../../models/sc2maps';
 })
 export class Sc2MapNamePipe implements PipeTransform {
 
-  public transform(map: SC2Map): string {
+  public transform(map: SC2Map | null | undefined): string {
     return SC2_MAPS.find(m => m.id === map)?.map || '';
   }
 

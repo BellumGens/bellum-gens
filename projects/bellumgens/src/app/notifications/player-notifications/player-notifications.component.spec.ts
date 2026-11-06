@@ -16,18 +16,19 @@ describe('NotificationsComponent', () => {
   const apiEndpoint = 'https://localhost:44348/api';
   const authApiEndpoint = 'https://localhost:44348/api/account';
   const mockUser = { id: 'user-1', username: 'TestUser' } as ApplicationUser;
+  const inviter = { id: 'inviter-1', username: 'Inviter' } as ApplicationUser;
 
   const createNotifications = (): UserNotification [] => [
     {
       state: NotificationState.Accepted,
       teamInfo: { teamId: 'team-2', teamName: 'Old Team', customUrl: 'old-team', teamAvatar: 'old.png' } as CSGOTeam,
-      invitingUser: null,
+      invitingUser: inviter,
       sent: '2024-01-10T10:00:00Z'
     },
     {
       state: NotificationState.NotSeen,
       teamInfo: { teamId: 'team-1', teamName: 'New Team', customUrl: 'new-team', teamAvatar: 'new.png' } as CSGOTeam,
-      invitingUser: null,
+      invitingUser: inviter,
       sent: '2024-01-15T10:00:00Z'
     }
   ];
@@ -36,11 +37,11 @@ describe('NotificationsComponent', () => {
     Array.from(fixture.nativeElement.querySelectorAll('igx-list-item:not(.igx-list__header)'));
 
   const itemFor = (teamName: string): HTMLElement =>
-    listItems().find(item => item.textContent.includes(teamName));
+    listItems().find(item => item.textContent.includes(teamName))!;
 
   const buttonsOf = (item: HTMLElement): HTMLButtonElement [] => Array.from(item.querySelectorAll('button'));
 
-  const logIn = async (user: ApplicationUser = mockUser) => {
+  const logIn = async (user: ApplicationUser | null = mockUser) => {
     httpMock.expectOne(authApiEndpoint).flush(user);
     await fixture.whenStable();
   };
@@ -104,7 +105,7 @@ describe('NotificationsComponent', () => {
     expect(items.length).toBe(2);
     expect(items[0].textContent).toContain('You have been invited to join New Team');
     expect(items[0].textContent).toContain('Jan 15, 2024');
-    expect(items[0].querySelector('a').getAttribute('href')).toBe('/team/new-team');
+    expect(items[0].querySelector('a')!.getAttribute('href')).toBe('/team/new-team');
     expect(items[1].textContent).toContain('Old Team');
   });
 
@@ -134,7 +135,7 @@ describe('NotificationsComponent', () => {
     const changed = vi.fn();
     component.changed.subscribe(changed);
     await loadNotifications(createNotifications());
-    const notification = component.notifications().find(n => n.teamInfo.teamId === 'team-1');
+    const notification = component.notifications()!.find(n => n.teamInfo.teamId === 'team-1')!;
 
     buttonsOf(itemFor('New Team'))[0].click();
     await fixture.whenStable();
@@ -167,7 +168,7 @@ describe('NotificationsComponent', () => {
     const changed = vi.fn();
     component.changed.subscribe(changed);
     await loadNotifications(createNotifications());
-    const notification = component.notifications().find(n => n.teamInfo.teamId === 'team-1');
+    const notification = component.notifications()!.find(n => n.teamInfo.teamId === 'team-1')!;
 
     buttonsOf(itemFor('New Team'))[1].click();
     await fixture.whenStable();
@@ -201,7 +202,7 @@ describe('NotificationsComponent', () => {
       const changed = vi.fn();
       component.changed.subscribe(changed);
       await loadNotifications(createNotifications());
-      const notification = component.notifications().find(n => n.teamInfo.teamId === 'team-1');
+      const notification = component.notifications()!.find(n => n.teamInfo.teamId === 'team-1')!;
 
       buttonsOf(itemFor('New Team'))[index].click();
       await fixture.whenStable();
@@ -227,16 +228,16 @@ describe('NotificationsComponent', () => {
       {
         state: NotificationState.Seen,
         teamInfo: { teamId: 'team-3', teamName: 'Third Team', customUrl: 'third-team', teamAvatar: 'third.png' } as CSGOTeam,
-        invitingUser: null,
+        invitingUser: inviter,
         sent: '2024-01-20T10:00:00Z'
       }
     ]);
-    expect(listItems().map(i => i.querySelector('a').textContent)).toEqual(['New Team', 'Third Team']);
+    expect(listItems().map(i => i.querySelector('a')!.textContent)).toEqual(['New Team', 'Third Team']);
 
     buttonsOf(itemFor('New Team'))[0].click();
     httpMock.expectOne(`${apiEndpoint}/users/acceptTeamInvite`).flush({});
     await fixture.whenStable();
 
-    expect(listItems().map(i => i.querySelector('a').textContent)).toEqual(['Third Team', 'New Team']);
+    expect(listItems().map(i => i.querySelector('a')!.textContent)).toEqual(['Third Team', 'New Team']);
   });
 });

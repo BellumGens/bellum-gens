@@ -71,6 +71,9 @@ export class TournamentListComponent {
   }
 
   public onDeleteTournament(tournament: Tournament) {
+    if (!tournament.id) {
+      return;
+    }
     // The service reports the failure to the user and the card stays in the list
     this.apiService.deleteTournament(tournament.id).subscribe({ error: () => undefined });
   }

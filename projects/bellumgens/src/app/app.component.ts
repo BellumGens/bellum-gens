@@ -19,7 +19,6 @@ import {
   LoginService,
   ApplicationUser,
   BellumgensApiService,
-  SearchResult,
   GLOBAL_OVERLAY_SETTINGS,
   CSGOTeam,
   ApiSearchService,
@@ -35,6 +34,7 @@ import { QuickSearchComponent } from './search/quick-search/quick-search.compone
 import { SearchComponent } from './search/search/search.component';
 import { LoginComponent } from '../../../common/src/lib/login/login.component';
 import { LanguagesComponent } from '../../../common/src/lib/languages/languages.component';
+import { CartBadgeComponent } from '../../../common/src/lib/shop/cart-badge/cart-badge.component';
 import { battlenet, discord, facebook, heartCare, instagram, linkedin, steam, tiktok, twitch, twitter, youtube, github } from '@igniteui/material-icons-extended';
 import { IgxResourceStringsBG } from 'igniteui-angular-i18n';
 // Type only, so the lazy loaded notifications route stays out of the main bundle
@@ -65,6 +65,7 @@ import type { NotificationsComponent } from './notifications/notifications.compo
     IgxInputDirective,
     IgxSuffixDirective,
     LanguagesComponent,
+    CartBadgeComponent,
     LoginComponent,
     IgxBannerComponent,
     IgxBannerActionsDirective,
@@ -95,9 +96,9 @@ export class AppComponent {
 
   private isBrowser = isPlatformBrowser(this.platformId);
   // The user is only looked up in the browser.
-  public authUser: Signal<ApplicationUser> = this.isBrowser ? this.authManager.applicationUser : signal<ApplicationUser>(null).asReadonly();
-  public teams = signal<CSGOTeam []>(null);
-  public searchResult: SearchResult;
+  public authUser: Signal<ApplicationUser | null> = this.isBrowser ? this.authManager.applicationUser : signal<ApplicationUser | null>(null).asReadonly();
+  public teams = signal<CSGOTeam [] | null>(null);
+  public teamCount = computed(() => this.teams()?.length ?? 0);
   public searchTerm = signal('');
   // Whether the search, collapsed behind a toggle on narrow screens, is shown
   public searchExpanded = signal(false);
