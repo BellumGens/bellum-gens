@@ -165,7 +165,7 @@
               <span i18n>Cancel order</span>
             </button>
           }
-          @if (dataItem.status === OrderStatus.Paid || dataItem.status === OrderStatus.Shipped || dataItem.status === OrderStatus.Delivered) {
+          @if (canRefund(dataItem)) {
             <button type="button" igxButton="flat" igxRipple class="color-error" (click)="confirmRefund.open(dataItem)">
               <igx-icon>undo</igx-icon>
               <span i18n>Refund</span>

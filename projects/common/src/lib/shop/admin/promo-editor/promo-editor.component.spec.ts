@@ -156,14 +156,15 @@ describe('PromoEditorComponent', () => {
     load();
   });
 
-  it('sends the expiry as an ISO timestamp', () => {
+  it('sends the expiry as the end of the chosen day, so the code works through that day', () => {
     load();
-    component.form.patchValue({ code: 'XMAS', discountPercent: 20, expiration: new Date(Date.UTC(2026, 11, 24, 12)) });
+    // The date picker gives the start of the chosen day in local time.
+    component.form.patchValue({ code: 'XMAS', discountPercent: 20, expiration: new Date(2026, 11, 24) });
 
     component.save();
 
     const req = httpMock.expectOne(r => r.method === 'POST');
-    expect(req.request.body.expiration).toBe('2026-12-24T12:00:00.000Z');
+    expect(req.request.body.expiration).toBe(new Date(2026, 11, 24, 23, 59, 59, 999).toISOString());
     req.flush(promo({ code: 'XMAS', discount: 0.2 }));
     load();
   });

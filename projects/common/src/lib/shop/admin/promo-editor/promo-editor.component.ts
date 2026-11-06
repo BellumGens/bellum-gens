@@ -14,6 +14,16 @@ import { BRAND_NAMES, Brand, Promo } from '../../../../models/shop';
 
 const ANY_BRAND = -1;
 
+/**
+ * The server treats a code as usable while its expiration is in the future, and the date picker gives the start of
+ * the chosen day. Storing the end of that day keeps the code valid through the day the admin picked.
+ */
+const endOfDay = (date: Date) => {
+  const end = new Date(date);
+  end.setHours(23, 59, 59, 999);
+  return end;
+};
+
 /** Admin editor for promo codes: discount, validity window, usage limit and brand restriction. */
 @Component({
   selector: 'bg-promo-editor',
@@ -97,7 +107,7 @@ export class PromoEditorComponent {
     const promo: Promo = {
       code: raw.code.trim().toUpperCase(),
       discount: Math.round(Number(raw.discountPercent) * 100) / 10000,
-      expiration: raw.expiration ? new Date(raw.expiration).toISOString() : null,
+      expiration: raw.expiration ? endOfDay(raw.expiration).toISOString() : null,
       active: raw.active,
       usageLimit: raw.usageLimit === null || `${raw.usageLimit}` === '' ? null : Number(raw.usageLimit),
       minimumOrderTotal: raw.minimumOrderTotal === null || `${raw.minimumOrderTotal}` === '' ? null : Number(raw.minimumOrderTotal),

@@ -243,6 +243,40 @@ describe('ProductEditorComponent', () => {
     load();
   });
 
+  it('sends the stock it loaded with each edit, so the server keeps stock that orders took meanwhile', () => {
+    load();
+    component.edit(jersey());
+    component.addVariant();
+    component.variants.controls[0].patchValue({ stockQuantity: 9 });
+    component.variants.controls[2].patchValue({ name: 'Male / XL', stockQuantity: 3 });
+
+    component.save();
+
+    const req = httpMock.expectOne(r => r.method === 'PUT' && r.url === `${productsUrl()}/jersey`);
+    const [maleL, femaleM, added] = req.request.body.variants;
+    expect(maleL).toEqual(expect.objectContaining({ stockQuantity: 9, originalStockQuantity: 5 }));
+    expect(femaleM).toEqual(expect.objectContaining({ stockQuantity: 2, originalStockQuantity: 2 }));
+    // A new option has no stock on the server yet, so its stock is set as given.
+    expect(added).toEqual(expect.objectContaining({ stockQuantity: 3, originalStockQuantity: null }));
+
+    req.flush(jersey());
+    load();
+  });
+
+  it('sends the product stock it loaded for a product without options', () => {
+    load();
+    component.edit(umbrella());
+    component.form.patchValue({ stockQuantity: 10 });
+
+    component.save();
+
+    const req = httpMock.expectOne(r => r.method === 'PUT' && r.url === `${productsUrl()}/p1`);
+    expect(req.request.body.stockQuantity).toBe(10);
+    expect(req.request.body.originalStockQuantity).toBe(4);
+    req.flush(umbrella());
+    load();
+  });
+
   it('loads a product that lists neither gallery images nor options', () => {
     load();
 

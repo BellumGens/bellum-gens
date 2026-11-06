@@ -98,9 +98,11 @@ export class ApiShopService {
   }
 
   public saveProduct(product: Product) {
-    const request = product.id
-      ? this.http.put<Product>(`${this._apiEndpoint}/shopadmin/products/${product.id}`, product, { withCredentials: true })
-      : this.http.post<Product>(`${this._apiEndpoint}/shopadmin/products`, product, { withCredentials: true });
+    // A new product has no id yet and is sent without one: the server assigns it, and an empty string would not bind to its Guid.
+    const { id, ...created } = product;
+    const request = id
+      ? this.http.put<Product>(`${this._apiEndpoint}/shopadmin/products/${id}`, product, { withCredentials: true })
+      : this.http.post<Product>(`${this._apiEndpoint}/shopadmin/products`, created, { withCredentials: true });
     return request.pipe(
       tap(() => {
         this.refreshProducts();
@@ -209,12 +211,17 @@ interface OrderError {
   error?: { problems?: string[]; quote?: Quote } | string | null;
 }
 
-/** Extracts the readable problems from an order creation failure (409 with problems, or a plain text body). */
+/**
+ * Extracts the readable problems from an order creation failure: the problems of a 409, or the plain text of another
+ * client error. Server and gateway errors (5xx) and rate limiting (429) give none, so the caller shows its own
+ * localized message instead of the server's English text.
+ */
 export const orderProblems = (error: OrderError): string[] => {
   if (error?.status === 409 && error.error && typeof error.error === 'object' && error.error.problems?.length) {
     return error.error.problems;
   }
-  if (typeof error?.error === 'string' && error.error.length) {
+  const clientError = !!error?.status && error.status >= 400 && error.status < 500 && error.status !== 429;
+  if (clientError && typeof error.error === 'string' && error.error.length) {
     return [error.error];
   }
   return [];

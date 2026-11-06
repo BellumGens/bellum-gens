@@ -35,6 +35,8 @@ type VariantForm = FormGroup<{
   sku: FormControl<string>;
   priceOverride: FormControl<number | null>;
   stockQuantity: FormControl<number | null>;
+  /** The stock when the variant was loaded; null for a new variant. */
+  originalStockQuantity: FormControl<number | null>;
   active: FormControl<boolean>;
   sortOrder: FormControl<number>;
 }>;
@@ -96,6 +98,9 @@ export class ProductEditorComponent {
     imageUrl: [''],
     galleryUrls: [''],
     stockQuantity: [null as number | null, [Validators.min(0)]],
+    // The stock when the product was loaded. The server applies the change from it, so stock that orders took or
+    // released while the editor was open is kept instead of being overwritten.
+    originalStockQuantity: [null as number | null],
     active: [true],
     sortOrder: [0],
     variants: this.fb.array<VariantForm>([])
@@ -141,6 +146,7 @@ export class ProductEditorComponent {
       imageUrl: '',
       galleryUrls: '',
       stockQuantity: null,
+      originalStockQuantity: null,
       active: true,
       sortOrder: this.products().length
     });
@@ -161,6 +167,7 @@ export class ProductEditorComponent {
       imageUrl: product.imageUrl ?? '',
       galleryUrls: (product.galleryUrls ?? []).join('\n'),
       stockQuantity: product.stockQuantity ?? null,
+      originalStockQuantity: product.stockQuantity ?? null,
       active: product.active,
       sortOrder: product.sortOrder
     });
@@ -207,6 +214,7 @@ export class ProductEditorComponent {
       imageUrl: raw.imageUrl.trim() || null,
       galleryUrls: raw.galleryUrls.split(/\r?\n/).map(u => u.trim()).filter(u => u.length > 0),
       stockQuantity: raw.variants.length > 0 || raw.stockQuantity === null || `${raw.stockQuantity}` === '' ? null : Number(raw.stockQuantity),
+      originalStockQuantity: raw.originalStockQuantity,
       active: raw.active,
       sortOrder: Number(raw.sortOrder) || 0,
       variants: raw.variants.map((v, index) => ({
@@ -217,6 +225,7 @@ export class ProductEditorComponent {
         sku: v.sku.trim() || null,
         priceOverride: v.priceOverride === null || `${v.priceOverride}` === '' ? null : Number(v.priceOverride),
         stockQuantity: v.stockQuantity === null || `${v.stockQuantity}` === '' ? null : Number(v.stockQuantity),
+        originalStockQuantity: v.originalStockQuantity,
         active: v.active,
         sortOrder: index
       }))
@@ -289,6 +298,8 @@ export class ProductEditorComponent {
       sku: [variant?.sku ?? ''],
       priceOverride: [variant?.priceOverride ?? null as number | null],
       stockQuantity: [variant?.stockQuantity ?? null as number | null],
+      // Only a saved variant has stock on the server to apply a change to.
+      originalStockQuantity: [variant?.id ? variant.stockQuantity ?? null : null as number | null],
       active: [variant?.active ?? true],
       sortOrder: [variant?.sortOrder ?? this.variants.length]
     }) as VariantForm;

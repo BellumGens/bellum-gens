@@ -130,7 +130,10 @@ describe('ApiShopService', () => {
 
     it('creates a new product and updates an existing one, reloading the storefront', () => {
       service.saveProduct({ ...product, id: '' }).subscribe();
-      httpMock.expectOne(r => r.method === 'POST' && r.url === `${service['_apiEndpoint']}/shopadmin/products`).flush(product);
+      const create = httpMock.expectOne(r => r.method === 'POST' && r.url === `${service['_apiEndpoint']}/shopadmin/products`);
+      // The server assigns the id; an empty string would fail to bind to its Guid with a 400.
+      expect('id' in create.request.body).toBe(false);
+      create.flush(product);
       httpMock.expectOne(`${service['_apiEndpoint']}/shop/products`).flush([product]);
 
       service.saveProduct(product).subscribe();
@@ -353,8 +356,15 @@ describe('ApiShopService', () => {
       expect(orderProblems({ status: 409, error: { problems: ['Umbrella: Sold out.'] } })).toEqual(['Umbrella: Sold out.']);
     });
 
-    it('falls back to a plain text body', () => {
-      expect(orderProblems({ status: 503, error: 'Payments are temporarily unavailable.' })).toEqual(['Payments are temporarily unavailable.']);
+    it('falls back to the plain text body of a client error', () => {
+      expect(orderProblems({ status: 409, error: 'Promo code has expired.' })).toEqual(['Promo code has expired.']);
+      expect(orderProblems({ status: 400, error: 'Only paid orders can be refunded.' })).toEqual(['Only paid orders can be refunded.']);
+    });
+
+    it('leaves server errors and rate limiting to the caller, which shows a localized message', () => {
+      expect(orderProblems({ status: 503, error: 'Payments are temporarily unavailable.' })).toEqual([]);
+      expect(orderProblems({ status: 502, error: 'The payment could not be started. Please try again.' })).toEqual([]);
+      expect(orderProblems({ status: 429, error: 'Too many requests.' })).toEqual([]);
     });
 
     it('returns nothing for unknown shapes', () => {

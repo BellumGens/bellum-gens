@@ -264,6 +264,18 @@ describe('CartComponent', () => {
     expect(fixture.nativeElement.textContent).toContain('2.50');
   });
 
+  it('blocks checkout and says why while a promo code does not apply', () => {
+    fill();
+
+    showQuote(quote({ promoCode: 'SUMMER10', promoApplied: false, promoProblem: 'Promo code has expired.', isValid: false }));
+
+    const checkout = fixture.nativeElement.querySelector('.checkout-button');
+    expect(checkout.getAttribute('aria-disabled')).toBe('true');
+    expect(fixture.nativeElement.textContent).toContain('Remove it to continue to checkout');
+    // The lines themselves are fine, so the page does not claim items are unavailable.
+    expect(fixture.nativeElement.textContent).not.toContain('no longer available in the selected quantity');
+  });
+
   it('disables checkout while the quote is invalid', () => {
     fill();
 

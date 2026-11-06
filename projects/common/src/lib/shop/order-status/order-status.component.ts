@@ -7,6 +7,7 @@ import { IgxButtonDirective, IgxDividerComponent, IgxRippleDirective } from '@in
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular/progressbar';
 import { ApiShopService } from '../../../services/bellumgens-api.shop.service';
+import { CartService } from '../../../services/cart.service';
 import { DELIVERY_METHOD_NAMES, DeliveryMethod, ORDER_STATUS_NAMES, OrderStatus, OrderStatusView, PaymentStatus } from '../../../models/shop';
 
 /** The customer paid or is paying and the confirmation from the payment provider has not arrived yet. */
@@ -44,6 +45,7 @@ export class OrderStatusComponent {
 
   private route = inject(ActivatedRoute);
   private shopApi = inject(ApiShopService);
+  private cart = inject(CartService);
   private document = inject(DOCUMENT);
   private isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
@@ -151,6 +153,7 @@ export class OrderStatusComponent {
         this.order.set(order);
         this.notFound.set(false);
         this.loadFailed.set(false);
+        this.settleCart(order);
         this.schedulePoll(order);
       },
       error: error => {
@@ -169,6 +172,21 @@ export class OrderStatusComponent {
         }
       }
     });
+  }
+
+  /**
+   * The cart is kept after placing an order in case the payment is abandoned. Once the order placed from it is paid,
+   * the cart is emptied; once it can no longer be paid, the cart is kept for a new order.
+   */
+  private settleCart(order: OrderStatusView) {
+    if (this.cart.pendingOrder()?.id !== order.id) {
+      return;
+    }
+    if (order.status === OrderStatus.Paid || order.status === OrderStatus.Shipped || order.status === OrderStatus.Delivered) {
+      this.cart.clear();
+    } else if (order.status === OrderStatus.Cancelled || order.status === OrderStatus.Refunded) {
+      this.cart.forgetPendingOrder();
+    }
   }
 
   private schedulePoll(order: OrderStatusView) {

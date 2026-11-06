@@ -131,8 +131,10 @@
         <p>{{ deliveryNames[order.deliveryMethod] }}</p>
         <p>
           {{ order.firstName }} {{ order.lastName }}<br />
-          {{ order.streetAddress }}<br />
-          {{ order.postalCode }} {{ order.city }}, {{ order.country }}<br />
+          @if (order.deliveryMethod === DeliveryMethod.Courier) {
+            {{ order.streetAddress }}<br />
+            {{ order.postalCode }} {{ order.city }}, {{ order.country }}<br />
+          }
           {{ order.phoneNumber }}
         </p>
         <p class="order-date"><span i18n>Ordered on</span> {{ order.orderDate | date:'medium' }}</p>

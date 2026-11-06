@@ -43,6 +43,7 @@ describe('OrderStatusComponent', () => {
 
   beforeEach(async () => {
     vi.useFakeTimers({ toFake: ['setTimeout', 'clearTimeout', 'setInterval', 'clearInterval', 'Date'] });
+    localStorage.clear();
     await TestBed.configureTestingModule({
       imports: [OrderStatusComponent, NoopAnimationsModule],
       providers: [
@@ -63,7 +64,12 @@ describe('OrderStatusComponent', () => {
   afterEach(() => {
     vi.useRealTimers();
     fixture.destroy();
+    // Tests that put items in the cart also start its re-pricing; that is the cart's business, not this page's.
+    httpMock.match(request => request.url.endsWith('/shop/quote'))
+      .filter(request => !request.cancelled)
+      .forEach(request => request.flush(null));
     httpMock.verify();
+    localStorage.clear();
   });
 
   it('loads the order from the route and stops polling once it is paid', () => {
@@ -483,6 +489,49 @@ describe('OrderStatusComponent', () => {
     httpMock.expectOne(orderUrl()).flush(order(OrderStatus.Paid, PaymentStatus.Completed));
 
     expect(cart.isEmpty()).toBe(false);
+  });
+
+  it('empties the cart once the order placed from it is paid', () => {
+    const cart = TestBed.inject(CartService);
+    cart['_items'].set([{ productId: 'p1', quantity: 1, product: {} as never }]);
+    cart.setPendingOrder('o1', 'fp');
+
+    httpMock.expectOne(orderUrl()).flush(order(OrderStatus.AwaitingPayment, PaymentStatus.Pending));
+    expect(cart.isEmpty()).toBe(false);
+
+    vi.advanceTimersByTime(OrderStatusComponent.pollIntervalMs);
+    httpMock.expectOne(orderUrl()).flush(order(OrderStatus.Paid, PaymentStatus.Completed));
+
+    expect(cart.isEmpty()).toBe(true);
+    expect(cart.pendingOrder()).toBeNull();
+  });
+
+  it('keeps the cart for a new order once the order placed from it can no longer be paid', () => {
+    const cart = TestBed.inject(CartService);
+    cart['_items'].set([{ productId: 'p1', quantity: 1, product: {} as never }]);
+    cart.setPendingOrder('o1', 'fp');
+
+    httpMock.expectOne(orderUrl()).flush(order(OrderStatus.Cancelled, PaymentStatus.Cancelled));
+
+    expect(cart.isEmpty()).toBe(false);
+    expect(cart.pendingOrder()).toBeNull();
+  });
+
+  it('shows no delivery address for an order picked up at an event', () => {
+    httpMock.expectOne(orderUrl()).flush({
+      ...order(OrderStatus.Paid, PaymentStatus.Completed),
+      deliveryMethod: DeliveryMethod.EventPickup,
+      city: null,
+      streetAddress: null,
+      postalCode: null
+    });
+    fixture.detectChanges();
+
+    const details: HTMLElement = fixture.nativeElement.querySelector('.order-details');
+    expect(details.textContent).toContain('Ivan Petrov');
+    expect(details.textContent).toContain('+359 888');
+    expect(details.textContent).not.toContain('null');
+    expect(details.textContent).not.toContain(', BG');
   });
 
   it('shows the tracking number of a shipped order', () => {

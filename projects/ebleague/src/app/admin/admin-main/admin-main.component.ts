@@ -7,6 +7,7 @@ import {
   TournamentApplicationState,
   ShopOrder,
   OrderStatus,
+  PaymentStatus,
   ORDER_STATUS_NAMES,
   DELIVERY_METHOD_NAMES,
   DeliveryMethod,
@@ -126,6 +127,23 @@ export class AdminMainComponent {
 
   public setTracking(orderId: string, trackingNumber: string) {
     this.tracking.update(tracking => ({ ...tracking, [orderId]: trackingNumber }));
+  }
+
+  /**
+   * Paid orders can be refunded, and so can a cancelled order holding a completed payment: one that was paid after
+   * it expired, when its stock was no longer available.
+   */
+  public canRefund(order: ShopOrder) {
+    switch (order.status) {
+      case OrderStatus.Paid:
+      case OrderStatus.Shipped:
+      case OrderStatus.Delivered:
+        return true;
+      case OrderStatus.Cancelled:
+        return !!order.payments?.some(payment => payment.status === PaymentStatus.Completed);
+      default:
+        return false;
+    }
   }
 
   public refundOrder(order: ShopOrder) {

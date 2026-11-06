@@ -49,30 +49,35 @@
         </div>
 
         <h4>{{ deliveryNames[cart.deliveryMethod()] }}</h4>
+        @if (!courier()) {
+          <p i18n>You can collect your order at our next event. We will contact you with the details.</p>
+        }
         <div class="form-grid">
-          <igx-input-group type="border">
-            <igx-prefix><igx-icon>location_city</igx-icon></igx-prefix>
-            <label igxLabel for="city" i18n>City</label>
-            <input igxInput id="city" formControlName="city" autocomplete="address-level2" />
-            @if (invalid('city')) {
-              <igx-hint class="color-error" i18n>City is required</igx-hint>
-            }
-          </igx-input-group>
+          @if (courier()) {
+            <igx-input-group type="border">
+              <igx-prefix><igx-icon>location_city</igx-icon></igx-prefix>
+              <label igxLabel for="city" i18n>City</label>
+              <input igxInput id="city" formControlName="city" autocomplete="address-level2" />
+              @if (invalid('city')) {
+                <igx-hint class="color-error" i18n>City is required</igx-hint>
+              }
+            </igx-input-group>
 
-          <igx-input-group type="border">
-            <igx-prefix><igx-icon>markunread_mailbox</igx-icon></igx-prefix>
-            <label igxLabel for="postalCode" i18n>Postal code</label>
-            <input igxInput id="postalCode" formControlName="postalCode" autocomplete="postal-code" />
-          </igx-input-group>
+            <igx-input-group type="border">
+              <igx-prefix><igx-icon>markunread_mailbox</igx-icon></igx-prefix>
+              <label igxLabel for="postalCode" i18n>Postal code</label>
+              <input igxInput id="postalCode" formControlName="postalCode" autocomplete="postal-code" />
+            </igx-input-group>
 
-          <igx-input-group type="border" class="full-width">
-            <igx-prefix><igx-icon>home</igx-icon></igx-prefix>
-            <label igxLabel for="streetAddress" i18n>Street address</label>
-            <input igxInput id="streetAddress" formControlName="streetAddress" autocomplete="street-address" />
-            @if (invalid('streetAddress')) {
-              <igx-hint class="color-error" i18n>Street address is required</igx-hint>
-            }
-          </igx-input-group>
+            <igx-input-group type="border" class="full-width">
+              <igx-prefix><igx-icon>home</igx-icon></igx-prefix>
+              <label igxLabel for="streetAddress" i18n>Street address</label>
+              <input igxInput id="streetAddress" formControlName="streetAddress" autocomplete="street-address" />
+              @if (invalid('streetAddress')) {
+                <igx-hint class="color-error" i18n>Street address is required</igx-hint>
+              }
+            </igx-input-group>
+          }
 
           <igx-input-group type="border" class="full-width">
             <label igxLabel for="customerNote" i18n>Note for us (optional)</label>
@@ -96,7 +101,7 @@
         }
 
         <div class="actions">
-          <button type="submit" igxButton="contained" igxRipple class="pay-button" [disabled]="submitting() || cart.quoting() || !cart.quote()?.isValid">
+          <button type="submit" igxButton="contained" igxRipple class="pay-button" [disabled]="submitting() || !cart.canCheckout()">
             @if (submitting()) {
               <igx-circular-bar [indeterminate]="true" class="button-progress"></igx-circular-bar>
             } @else {

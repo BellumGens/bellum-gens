@@ -37,7 +37,14 @@ export class CartComponent {
   public deliveryMethods = [DeliveryMethod.Courier, DeliveryMethod.EventPickup];
   public deliveryNames = DELIVERY_METHOD_NAMES;
   public maxQuantity = CartService.maxLineQuantity;
-  public canCheckout = computed(() => !!this.cart.quote()?.isValid && !this.cart.quoting());
+  public canCheckout = this.cart.canCheckout;
+  /** Some lines cannot be fulfilled as requested (sold out, option gone, quantity capped). */
+  public hasLineProblems = computed(() => !!this.cart.quote()?.lines.some(line => line.problem));
+  /** The customer entered a promo code that does not apply; checkout waits until they remove it. */
+  public promoBlocksCheckout = computed(() => {
+    const quote = this.cart.quote();
+    return !!quote?.promoCode && !quote.promoApplied;
+  });
 
   /** The server's current price for a line, falling back to the price saved when the item was added. */
   public unitPrice(item: CartItem) {

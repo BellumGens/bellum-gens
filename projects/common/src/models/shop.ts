@@ -60,6 +60,11 @@ export interface ProductVariant {
   priceOverride?: number | null;
   /** Null when stock is not tracked. */
   stockQuantity?: number | null;
+  /**
+   * Sent when saving from the admin editor: the stock it loaded. The server applies the change from this value,
+   * so units that orders took or released while the editor was open are kept.
+   */
+  originalStockQuantity?: number | null;
   active: boolean;
   sortOrder: number;
 }
@@ -77,6 +82,11 @@ export interface Product {
   galleryUrls: string[];
   /** Null when stock is not tracked (or when the product uses variants). */
   stockQuantity?: number | null;
+  /**
+   * Sent when saving from the admin editor: the stock it loaded. The server applies the change from this value,
+   * so units that orders took or released while the editor was open are kept.
+   */
+  originalStockQuantity?: number | null;
   active: boolean;
   sortOrder: number;
   createdOn?: string;
@@ -138,8 +148,9 @@ export interface CustomerDetails {
   firstName: string;
   lastName: string;
   phoneNumber: string;
-  city: string;
-  streetAddress: string;
+  /** Required for courier delivery; null for event pickup. */
+  city: string | null;
+  streetAddress: string | null;
   postalCode?: string | null;
   country: string;
   language: string;
@@ -202,8 +213,9 @@ export interface OrderStatusView {
   firstName: string;
   lastName: string;
   phoneNumber: string;
-  city: string;
-  streetAddress: string;
+  /** Null for orders picked up at an event. */
+  city: string | null;
+  streetAddress: string | null;
   postalCode?: string | null;
   country: string;
   deliveryMethod: DeliveryMethod;
@@ -226,8 +238,9 @@ export interface ShopOrder {
   firstName: string;
   lastName: string;
   phoneNumber: string;
-  city: string;
-  streetAddress: string;
+  /** Null for orders picked up at an event. */
+  city: string | null;
+  streetAddress: string | null;
   postalCode?: string | null;
   country: string;
   language: string;

@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
-import { provideRouter } from '@angular/router';
+import { Router, provideRouter } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { CheckoutComponent } from './checkout.component';
@@ -9,7 +9,7 @@ import { CartService } from '../../../services/cart.service';
 import { ApiShopService } from '../../../services/bellumgens-api.shop.service';
 import { LoginService } from '../../../services/login.service';
 import { ApplicationUser } from '../../../models/applicationuser';
-import { Brand, Product, ProductType, Quote } from '../../../models/shop';
+import { Brand, DeliveryMethod, Product, ProductType, Quote } from '../../../models/shop';
 
 const umbrella: Product = {
   id: 'p1',
@@ -201,7 +201,7 @@ describe('CheckoutComponent', () => {
     expect(fixture.nativeElement.querySelector('.quote-error')).toBeNull();
   });
 
-  it('posts the cart and customer details, clears the cart and redirects to Revolut', () => {
+  it('posts the cart and customer details and redirects to Revolut, keeping the cart until the order is paid', () => {
     fillCart();
     fillForm();
 
@@ -217,7 +217,143 @@ describe('CheckoutComponent', () => {
     req.flush({ orderId: 'o1', orderNumber: 'BG-2026-000001', total: 21, currency: 'EUR', checkoutUrl: 'https://checkout.revolut.com/x', expiresOn: '' });
 
     expect(assign).toHaveBeenCalledWith('https://checkout.revolut.com/x');
-    expect(cart.isEmpty()).toBe(true);
+    // Backing out of the payment must not lose the cart; the order page empties it once the order is paid.
+    expect(cart.isEmpty()).toBe(false);
+    expect(cart.pendingOrder()?.id).toBe('o1');
+    flushQuotes(validQuote);
+  });
+
+  describe('paying again for an order already placed', () => {
+    const ordersUrl = () => `${api['_apiEndpoint']}/shop/orders`;
+    const created = (orderId: string, checkoutUrl: string) =>
+      ({ orderId, orderNumber: 'BG-1', total: 21, currency: 'EUR', checkoutUrl, expiresOn: '' });
+    const view = (overrides: Record<string, unknown>) => ({ id: 'o1', status: 0, canRetryPayment: false, checkoutUrl: null, ...overrides });
+
+    /** Places the first order, as if the customer then came back from the payment page. */
+    const placeFirstOrder = () => {
+      fillCart();
+      fillForm();
+      component.pay();
+      httpMock.expectOne(ordersUrl()).flush(created('o1', 'https://checkout.revolut.com/first'));
+      assign.mockClear();
+      component.submitting.set(false);
+    };
+
+    it('reopens the checkout that is still open instead of placing a second order', () => {
+      placeFirstOrder();
+
+      component.pay();
+
+      httpMock.expectOne(`${ordersUrl()}/o1`).flush(view({ checkoutUrl: 'https://checkout.revolut.com/first' }));
+      httpMock.expectNone(r => r.method === 'POST' && r.url === ordersUrl());
+      expect(assign).toHaveBeenCalledWith('https://checkout.revolut.com/first');
+      flushQuotes(validQuote);
+    });
+
+    it('starts a new payment for the same order after a declined one', () => {
+      placeFirstOrder();
+
+      component.pay();
+
+      httpMock.expectOne(`${ordersUrl()}/o1`).flush(view({ canRetryPayment: true }));
+      httpMock.expectOne(`${ordersUrl()}/o1/retry-payment`).flush(created('o1', 'https://checkout.revolut.com/retry'));
+      expect(assign).toHaveBeenCalledWith('https://checkout.revolut.com/retry');
+      flushQuotes(validQuote);
+    });
+
+    it('shows the order when it was paid already', async () => {
+      placeFirstOrder();
+      const navigate = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
+
+      component.pay();
+
+      httpMock.expectOne(`${ordersUrl()}/o1`).flush(view({ status: 1 }));
+      expect(navigate).toHaveBeenCalledWith(['/shop/order', 'o1']);
+      expect(assign).not.toHaveBeenCalled();
+      expect(component.submitting()).toBe(false);
+      flushQuotes(validQuote);
+    });
+
+    it('places a new order once the earlier one can no longer be paid', () => {
+      placeFirstOrder();
+
+      component.pay();
+
+      httpMock.expectOne(`${ordersUrl()}/o1`).flush(view({ status: 4 }));
+      httpMock.expectOne(r => r.method === 'POST' && r.url === ordersUrl()).flush(created('o2', 'https://checkout.revolut.com/second'));
+      expect(assign).toHaveBeenCalledWith('https://checkout.revolut.com/second');
+      expect(cart.pendingOrder()?.id).toBe('o2');
+      flushQuotes(validQuote);
+    });
+
+    it('places a new order when the customer changed their details', () => {
+      placeFirstOrder();
+      component.form.controls.streetAddress.setValue('bul. Bulgaria 2');
+
+      component.pay();
+
+      httpMock.expectNone(`${ordersUrl()}/o1`);
+      httpMock.expectOne(r => r.method === 'POST' && r.url === ordersUrl()).flush(created('o2', 'https://checkout.revolut.com/second'));
+      expect(cart.pendingOrder()?.id).toBe('o2');
+      flushQuotes(validQuote);
+    });
+  });
+
+  describe('picking up at an event', () => {
+    beforeEach(() => {
+      cart.setDeliveryMethod(DeliveryMethod.EventPickup);
+      TestBed.tick();
+    });
+
+    it('asks for no address', () => {
+      fillCart();
+      fixture.detectChanges();
+
+      expect(fixture.nativeElement.querySelector('#city')).toBeNull();
+      expect(fixture.nativeElement.querySelector('#streetAddress')).toBeNull();
+      expect(fixture.nativeElement.textContent).toContain('collect your order at our next event');
+      flushQuotes(validQuote);
+    });
+
+    it('places the order without an address', () => {
+      fillCart();
+      component.form.patchValue({
+        firstName: 'Ivan',
+        lastName: 'Petrov',
+        email: 'ivan@example.com',
+        phoneNumber: '+359 888 123 456',
+        acceptedTerms: true
+      });
+
+      component.pay();
+
+      const req = httpMock.expectOne(`${api['_apiEndpoint']}/shop/orders`);
+      expect(req.request.body.deliveryMethod).toBe(DeliveryMethod.EventPickup);
+      expect(req.request.body.city).toBeNull();
+      expect(req.request.body.streetAddress).toBeNull();
+      expect(req.request.body.postalCode).toBeNull();
+      req.flush({ orderId: 'o1', orderNumber: 'BG-1', total: 15, currency: 'EUR', checkoutUrl: 'https://checkout.revolut.com/x', expiresOn: '' });
+      flushQuotes(validQuote);
+    });
+
+    it('asks for the address again when switching back to courier delivery', () => {
+      cart.setDeliveryMethod(DeliveryMethod.Courier);
+      TestBed.tick();
+
+      expect(component.form.controls.city.enabled).toBe(true);
+      expect(component.form.controls.city.valid).toBe(false);
+    });
+  });
+
+  it('does not let the customer pay while a promo code does not apply', () => {
+    fillCart();
+    fillForm();
+    cart['_quote'].set({ ...validQuote, promoCode: 'SUMMER10', promoApplied: false, promoProblem: 'Promo code has expired.' });
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelector('.pay-button').disabled).toBe(true);
+    component.pay();
+    httpMock.expectNone(`${api['_apiEndpoint']}/shop/orders`);
     flushQuotes(validQuote);
   });
 

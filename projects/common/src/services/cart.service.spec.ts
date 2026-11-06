@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
-import { CartService } from './cart.service';
+import { CartService, fingerprint } from './cart.service';
 import { ApiShopService } from './bellumgens-api.shop.service';
 import { Brand, DeliveryMethod, Product, ProductType, ProductVariant, Quote } from '../models/shop';
 
@@ -135,6 +135,54 @@ describe('CartService', () => {
 
     expect(service.count()).toBe(2);
     expect(service.promoCode()).toBe('SAVE10');
+  });
+
+  it('blocks checkout while a promo code the customer entered does not apply', () => {
+    service.add(product());
+    TestBed.tick();
+    vi.advanceTimersByTime(300);
+    httpMock.match(r => r.url.endsWith('/shop/quote')).forEach(r => r.flush(null));
+    const quote = {
+      lines: [{ productId: 'p1', unitPrice: 15, quantity: 1, lineTotal: 15 }],
+      subtotal: 15, discountTotal: 0, shippingCost: 6, total: 21, currency: 'EUR', freeShipping: false, isValid: true
+    };
+
+    service['_quote'].set({ ...quote, promoApplied: false });
+    expect(service.canCheckout()).toBe(true);
+
+    service['_quote'].set({ ...quote, promoCode: 'SUMMER10', promoApplied: false, promoProblem: 'Promo code has expired.' });
+    expect(service.canCheckout()).toBe(false);
+
+    service['_quote'].set({ ...quote, promoCode: 'SUMMER10', promoApplied: true, discountTotal: 1.5 });
+    expect(service.canCheckout()).toBe(true);
+
+    service['_quote'].set({ ...quote, promoApplied: false, isValid: false });
+    expect(service.canCheckout()).toBe(false);
+  });
+
+  it('remembers the order placed from the cart across reloads, and forgets it when cleared', () => {
+    service.add(product());
+    service.setPendingOrder('o1', 'fp-1');
+    TestBed.tick();
+
+    TestBed.resetTestingModule();
+    configure();
+
+    expect(service.pendingOrder()).toEqual({ id: 'o1', fingerprint: 'fp-1' });
+    expect(service.pendingOrderFor('fp-1')).toBe('o1');
+    expect(service.pendingOrderFor('fp-2')).toBeNull();
+
+    service.clear();
+    expect(service.pendingOrder()).toBeNull();
+    httpMock.match(r => r.url.endsWith('/shop/quote')).forEach(r => r.flush(null));
+  });
+
+  it('fingerprints a request without keeping its contents', () => {
+    const request = { email: 'ivan@example.com', city: 'Sofia' };
+
+    expect(fingerprint(request)).toBe(fingerprint({ ...request }));
+    expect(fingerprint(request)).not.toBe(fingerprint({ ...request, city: 'Plovdiv' }));
+    expect(fingerprint(request)).not.toContain('ivan');
   });
 
   it('restores the event pickup delivery choice', () => {

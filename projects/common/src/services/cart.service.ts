@@ -7,15 +7,39 @@ import { ApiShopService } from './bellumgens-api.shop.service';
 import { CommunicationService } from './communication.service';
 import { CartItem, CartLineRequest, DeliveryMethod, Product, ProductVariant, Quote, QuoteRequest } from '../models/shop';
 
+/** An order placed from the cart that has not been paid yet. */
+export interface PendingOrder {
+  id: string;
+  /** Fingerprint of the order request it was placed with, so checkout can tell whether the cart still matches it. */
+  fingerprint: string;
+}
+
 interface StoredCart {
   items: CartItem[];
   promoCode: string | null;
   deliveryMethod: DeliveryMethod;
+  pendingOrder?: PendingOrder | null;
 }
+
+/**
+ * A short, stable fingerprint of a value. Lets the cart recognise an order request without keeping the
+ * customer's details in storage. Not a security measure.
+ */
+export const fingerprint = (value: unknown) => {
+  const text = JSON.stringify(value);
+  let hash = 5381;
+  for (let i = 0; i < text.length; i++) {
+    hash = ((hash << 5) + hash + text.charCodeAt(i)) | 0;
+  }
+  return `${text.length.toString(36)}-${(hash >>> 0).toString(36)}`;
+};
 
 /**
  * The shopping cart. Lives in memory, mirrored to localStorage in the browser, and re-priced by the API
  * whenever its contents change so the totals shown are always the server's.
+ *
+ * Placing an order does not empty the cart: the customer may still back out of the payment. The order is kept as
+ * the pending order instead, so paying again resumes it, and the cart is emptied once the order is paid.
  */
 @Injectable({
   providedIn: 'root'
@@ -37,6 +61,7 @@ export class CartService {
   private _quote = signal<Quote | null>(null);
   private _quoting = signal(false);
   private _quoteFailed = signal(false);
+  private _pendingOrder = signal<PendingOrder | null>(null);
 
   public readonly items = this._items.asReadonly();
   public readonly promoCode = this._promoCode.asReadonly();
@@ -46,9 +71,20 @@ export class CartService {
   public readonly quoting = this._quoting.asReadonly();
   /** True when the last quote request failed, so the UI can offer a retry instead of waiting forever. */
   public readonly quoteFailed = this._quoteFailed.asReadonly();
+  /** The unpaid order last placed from this cart, if any. */
+  public readonly pendingOrder = this._pendingOrder.asReadonly();
 
   public readonly count = computed(() => this.items().reduce((sum, item) => sum + item.quantity, 0));
   public readonly isEmpty = computed(() => this.items().length === 0);
+
+  /**
+   * Whether the latest quote allows placing the order. Besides unavailable lines, a promo code that does not apply
+   * blocks checkout until it is removed: the API refuses such an order rather than charge more than the customer expects.
+   */
+  public readonly canCheckout = computed(() => {
+    const quote = this.quote();
+    return !!quote?.isValid && (!quote.promoCode || quote.promoApplied) && !this.quoting();
+  });
 
   public readonly lines = computed<CartLineRequest[]>(() =>
     this.items().map(item => ({ productId: item.productId, variantId: item.variantId, quantity: item.quantity })));
@@ -66,7 +102,12 @@ export class CartService {
     this.restore();
 
     effect(() => {
-      const snapshot: StoredCart = { items: this.items(), promoCode: this.promoCode(), deliveryMethod: this.deliveryMethod() };
+      const snapshot: StoredCart = {
+        items: this.items(),
+        promoCode: this.promoCode(),
+        deliveryMethod: this.deliveryMethod(),
+        pendingOrder: this.pendingOrder()
+      };
       this.persist(snapshot);
     });
 
@@ -124,6 +165,22 @@ export class CartService {
     this._promoCode.set(null);
     this._quote.set(null);
     this._quoteFailed.set(false);
+    this._pendingOrder.set(null);
+  }
+
+  /** Remembers the order just placed from the cart, with the fingerprint of the request it was placed with. */
+  public setPendingOrder(id: string, requestFingerprint: string) {
+    this._pendingOrder.set({ id, fingerprint: requestFingerprint });
+  }
+
+  /** The pending order's id when it was placed with this exact request, so paying again can resume it. */
+  public pendingOrderFor(requestFingerprint: string) {
+    const pending = this.pendingOrder();
+    return pending?.fingerprint === requestFingerprint ? pending.id : null;
+  }
+
+  public forgetPendingOrder() {
+    this._pendingOrder.set(null);
   }
 
   public setPromoCode(code: string | null) {
@@ -177,6 +234,9 @@ export class CartService {
       if (stored.deliveryMethod === DeliveryMethod.EventPickup) {
         this._deliveryMethod.set(DeliveryMethod.EventPickup);
       }
+      if (typeof stored.pendingOrder?.id === 'string' && typeof stored.pendingOrder.fingerprint === 'string') {
+        this._pendingOrder.set({ id: stored.pendingOrder.id, fingerprint: stored.pendingOrder.fingerprint });
+      }
     } catch {
       try {
         window.localStorage.removeItem(CartService.storageKey);
@@ -191,7 +251,7 @@ export class CartService {
       return;
     }
     try {
-      if (snapshot.items.length === 0 && !snapshot.promoCode) {
+      if (snapshot.items.length === 0 && !snapshot.promoCode && !snapshot.pendingOrder) {
         window.localStorage.removeItem(CartService.storageKey);
       } else {
         window.localStorage.setItem(CartService.storageKey, JSON.stringify(snapshot));

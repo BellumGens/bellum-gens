@@ -100,8 +100,11 @@
             <dt class="grand-total" i18n>Total</dt>
             <dd class="grand-total">{{ quote.total | currency:'EUR' }}</dd>
           </dl>
-          @if (!quote.isValid) {
+          @if (hasLineProblems()) {
             <p class="color-error" i18n>Some items in your cart are no longer available in the selected quantity. Please review the lines marked above.</p>
+          }
+          @if (promoBlocksCheckout()) {
+            <p class="color-error" i18n>The promo code does not apply. Remove it to continue to checkout.</p>
           }
         } @else if (cart.quoteFailed() && !cart.quoting()) {
           <div class="quote-error" role="alert">

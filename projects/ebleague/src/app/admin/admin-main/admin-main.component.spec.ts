@@ -10,7 +10,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import {
   ApiTournamentsService, ApiShopService, CommunicationService, Tournament, Game, TournamentApplication, TournamentApplicationState,
-  EMPTY_NEW_TOURNAMENT, ShopOrder, OrderStatus, DeliveryMethod, ConfirmComponent
+  EMPTY_NEW_TOURNAMENT, ShopOrder, OrderStatus, PaymentStatus, DeliveryMethod, ConfirmComponent
 } from '../../../../../common/src/public_api';
 import { IGridEditEventArgs } from '@infragistics/igniteui-angular/grids/core';
 import { IgxGridComponent } from '@infragistics/igniteui-angular/grids/grid';
@@ -249,6 +249,18 @@ describe('AdminMainComponent', () => {
         req.flush({ ...paidOrder, status: OrderStatus.Refunded });
 
         expect(component.orders()[0].status).toBe(OrderStatus.Refunded);
+      });
+
+      it('should offer a refund for paid orders and for cancelled orders that hold a completed payment', () => {
+        const completed = { id: 'pay-1', orderId: 'order-1', provider: 0, amount: 36, currency: 'EUR', status: PaymentStatus.Completed, createdOn: '', updatedOn: '' };
+
+        expect(component.canRefund(shopOrder({ status: OrderStatus.Paid }))).toBe(true);
+        expect(component.canRefund(shopOrder({ status: OrderStatus.Shipped }))).toBe(true);
+        expect(component.canRefund(shopOrder({ status: OrderStatus.Delivered }))).toBe(true);
+        expect(component.canRefund(shopOrder({ status: OrderStatus.Cancelled, payments: [completed] }))).toBe(true);
+        expect(component.canRefund(shopOrder({ status: OrderStatus.Cancelled, payments: [{ ...completed, status: PaymentStatus.Cancelled }] }))).toBe(false);
+        expect(component.canRefund(shopOrder({ status: OrderStatus.AwaitingPayment }))).toBe(false);
+        expect(component.canRefund(shopOrder({ status: OrderStatus.Refunded, payments: [completed] }))).toBe(false);
       });
 
       it('should reload orders on demand', () => {
