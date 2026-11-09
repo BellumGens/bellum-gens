@@ -23,4 +23,16 @@ describe('EB League E2E Tests', { baseUrl: 'http://localhost:4001' }, () => {
     cy.location('pathname').should('include', '/tournaments/format')
     cy.contains('h1', 'EB-League Counter-Strike').should('be.visible')
   })
+
+  // The shop moved to bellumgens.com; the production server answers old links with a permanent redirect.
+  it('Redirects shop links to the bellumgens.com shop, keeping the language and query', () => {
+    cy.request({ url: '/shop/product/eb-league-umbrella?ref=mail', followRedirect: false }).then(response => {
+      expect(response.status).to.eq(301)
+      expect(response.headers['location']).to.eq('https://bellumgens.com/shop/product/eb-league-umbrella?ref=mail')
+    })
+    cy.request({ url: '/bg/shop/cart', followRedirect: false }).then(response => {
+      expect(response.status).to.eq(301)
+      expect(response.headers['location']).to.eq('https://bellumgens.com/bg/shop/cart')
+    })
+  })
 })
