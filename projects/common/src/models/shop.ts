@@ -34,7 +34,9 @@ export enum OrderStatus {
   Shipped,
   Delivered,
   Cancelled,
-  Refunded
+  Refunded,
+  /** Placed with cash on delivery: nothing is paid online, the courier collects the payment. */
+  Confirmed
 }
 
 export enum PaymentStatus {
@@ -48,6 +50,18 @@ export enum PaymentStatus {
 export enum DeliveryMethod {
   Courier,
   EventPickup
+}
+
+/**
+ * The delivery methods the storefront offers. Event pickup is left out until the next event is announced;
+ * add it back here to offer it again.
+ */
+export const AVAILABLE_DELIVERY_METHODS: readonly DeliveryMethod[] = [DeliveryMethod.Courier];
+
+export enum PaymentMethod {
+  Revolut,
+  /** Наложен платеж: paid to the courier on delivery. Courier delivery only. */
+  CashOnDelivery
 }
 
 export interface ProductVariant {
@@ -158,14 +172,19 @@ export interface CustomerDetails {
   acceptedTerms: boolean;
 }
 
-export type OrderRequest = QuoteRequest & CustomerDetails;
+export type OrderRequest = QuoteRequest & CustomerDetails & {
+  paymentMethod: PaymentMethod;
+  /** The unpaid order placed earlier from the same cart; the new order replaces it and releases its stock. */
+  replacesOrderId?: string | null;
+};
 
 export interface OrderCreated {
   orderId: string;
   orderNumber: string;
   total: number;
   currency: string;
-  checkoutUrl: string;
+  /** The provider's checkout; null for a cash on delivery order, which has nothing to pay online. */
+  checkoutUrl?: string | null;
   paymentToken?: string | null;
   expiresOn: string;
 }
@@ -219,6 +238,7 @@ export interface OrderStatusView {
   postalCode?: string | null;
   country: string;
   deliveryMethod: DeliveryMethod;
+  paymentMethod: PaymentMethod;
   orderDate: string;
   paidOn?: string | null;
   shippedOn?: string | null;
@@ -252,7 +272,7 @@ export interface ShopOrder {
   total: number;
   currency: string;
   status: OrderStatus;
-  paymentMethod: number;
+  paymentMethod: PaymentMethod;
   customerNote?: string | null;
   adminNote?: string | null;
   trackingNumber?: string | null;
@@ -318,12 +338,18 @@ export const ORDER_STATUS_NAMES: Record<OrderStatus, string> = {
   [OrderStatus.Shipped]: $localize`:@@shopStatusShipped:Shipped`,
   [OrderStatus.Delivered]: $localize`:@@shopStatusDelivered:Delivered`,
   [OrderStatus.Cancelled]: $localize`:@@shopStatusCancelled:Cancelled`,
-  [OrderStatus.Refunded]: $localize`:@@shopStatusRefunded:Refunded`
+  [OrderStatus.Refunded]: $localize`:@@shopStatusRefunded:Refunded`,
+  [OrderStatus.Confirmed]: $localize`:@@shopStatusConfirmed:Confirmed`
 };
 
 export const DELIVERY_METHOD_NAMES: Record<DeliveryMethod, string> = {
   [DeliveryMethod.Courier]: $localize`:@@shopDeliveryCourier:Courier delivery`,
   [DeliveryMethod.EventPickup]: $localize`:@@shopDeliveryPickup:Pick up at an event`
+};
+
+export const PAYMENT_METHOD_NAMES: Record<PaymentMethod, string> = {
+  [PaymentMethod.Revolut]: $localize`:@@shopPaymentOnline:Pay online by card`,
+  [PaymentMethod.CashOnDelivery]: $localize`:@@shopPaymentCashOnDelivery:Cash on delivery`
 };
 
 export const JERSEY_CUT_NAMES: Record<JerseyCut, string> = {

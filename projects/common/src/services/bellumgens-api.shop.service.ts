@@ -153,10 +153,6 @@ export class ApiShopService {
     );
   }
 
-  public get ordersExportUrl() {
-    return `${this._apiEndpoint}/shopadmin/orders/export.csv`;
-  }
-
   public getPromos() {
     return this.http.get<Promo[]>(`${this._apiEndpoint}/shopadmin/promos`, { withCredentials: true });
   }

@@ -215,7 +215,7 @@
     font-weight: 600;
 
     &.status-0 { color: var(--ig-warn-500); }
-    &.status-1, &.status-2, &.status-3 { color: var(--ig-success-500); }
+    &.status-1, &.status-2, &.status-3, &.status-6 { color: var(--ig-success-500); }
     &.status-4 { color: var(--ig-error-500); }
     &.status-5 { color: var(--ig-warn-500); }
   }

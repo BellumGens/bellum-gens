@@ -5,7 +5,7 @@ import { Subject, merge, of, timer } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { ApiShopService } from './bellumgens-api.shop.service';
 import { CommunicationService } from './communication.service';
-import { CartItem, CartLineRequest, DeliveryMethod, Product, ProductVariant, Quote, QuoteRequest } from '../models/shop';
+import { AVAILABLE_DELIVERY_METHODS, CartItem, CartLineRequest, DeliveryMethod, Product, ProductVariant, Quote, QuoteRequest } from '../models/shop';
 
 /** An order placed from the cart that has not been paid yet. */
 export interface PendingOrder {
@@ -231,7 +231,8 @@ export class CartService {
         this._items.set(stored.items.filter(i => i?.productId && i.product && i.quantity > 0));
       }
       this._promoCode.set(stored.promoCode ?? null);
-      if (stored.deliveryMethod === DeliveryMethod.EventPickup) {
+      // A method saved while it was offered (e.g. event pickup) falls back to courier once it no longer is.
+      if (stored.deliveryMethod === DeliveryMethod.EventPickup && AVAILABLE_DELIVERY_METHODS.includes(DeliveryMethod.EventPickup)) {
         this._deliveryMethod.set(DeliveryMethod.EventPickup);
       }
       if (typeof stored.pendingOrder?.id === 'string' && typeof stored.pendingOrder.fingerprint === 'string') {

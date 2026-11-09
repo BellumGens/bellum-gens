@@ -69,8 +69,15 @@
             <p i18n>We will email you again when the order is handed to the courier.</p>
           }
         }
+        @case (OrderStatus.Confirmed) {
+          <p i18n>Thank you! Your order was received and a confirmation was sent to {{ order.email }}.</p>
+          <p i18n>You will pay {{ order.total | currency:'EUR' }} to the courier on delivery. We will email you again when the order is handed to the courier.</p>
+        }
         @case (OrderStatus.Shipped) {
           <p i18n>Your order is on its way.</p>
+          @if (order.paymentMethod === PaymentMethod.CashOnDelivery) {
+            <p i18n>Please have {{ order.total | currency:'EUR' }} ready for the courier.</p>
+          }
           @if (order.trackingNumber) {
             <p><span i18n>Tracking number:</span> <span class="highlight">{{ order.trackingNumber }}</span></p>
           }
@@ -137,6 +144,8 @@
           }
           {{ order.phoneNumber }}
         </p>
+        <h4 i18n>Payment</h4>
+        <p>{{ paymentNames[order.paymentMethod] }}</p>
         <p class="order-date"><span i18n>Ordered on</span> {{ order.orderDate | date:'medium' }}</p>
       </section>
     </div>

@@ -49,18 +49,23 @@
 
       <aside class="cart-summary">
         <h4 i18n>Delivery</h4>
-        <igx-radio-group [value]="cart.deliveryMethod()" (change)="setDelivery($event.value)">
-          @for (method of deliveryMethods; track method) {
-            <igx-radio [value]="method">{{ deliveryNames[method] }}</igx-radio>
-          }
-        </igx-radio-group>
+        @if (deliveryMethods.length > 1) {
+          <igx-radio-group [value]="cart.deliveryMethod()" (change)="setDelivery($event.value)">
+            @for (method of deliveryMethods; track method) {
+              <igx-radio [value]="method">{{ deliveryNames[method] }}</igx-radio>
+            }
+          </igx-radio-group>
+        } @else {
+          <p class="delivery-method">{{ deliveryNames[cart.deliveryMethod()] }}</p>
+        }
 
         <h4 i18n>Promo code</h4>
+        <!-- The code applies when the field loses focus; Enter submits the form and applies it too. -->
         <form class="promo-form" [formGroup]="promoForm" (ngSubmit)="applyPromo()">
           <igx-input-group type="border">
             <igx-prefix><igx-icon>local_offer</igx-icon></igx-prefix>
             <label igxLabel for="promoCode" i18n>Promo code</label>
-            <input igxInput id="promoCode" formControlName="code" autocomplete="off" />
+            <input igxInput id="promoCode" formControlName="code" autocomplete="off" (blur)="applyPromo()" />
             @if (promoInput.value) {
               <igx-suffix>
                 <button type="button" igxIconButton="flat" (click)="clearPromo()" i18n-aria-label aria-label="Clear promo code">
@@ -74,7 +79,6 @@
               <igx-hint class="color-success" i18n>Promo code applied</igx-hint>
             }
           </igx-input-group>
-          <button type="submit" igxButton="outlined" igxRipple [disabled]="!promoInput.value" i18n>Apply</button>
         </form>
 
         <igx-divider></igx-divider>

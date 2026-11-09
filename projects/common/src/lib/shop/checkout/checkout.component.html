@@ -85,6 +85,15 @@
           </igx-input-group>
         </div>
 
+        @if (courier()) {
+          <h4 id="paymentMethodHeading" i18n>Payment</h4>
+          <igx-radio-group formControlName="paymentMethod" class="payment-methods" aria-labelledby="paymentMethodHeading">
+            @for (method of paymentMethods; track method) {
+              <igx-radio [value]="method">{{ paymentNames[method] }}</igx-radio>
+            }
+          </igx-radio-group>
+        }
+
         <igx-checkbox formControlName="acceptedTerms" class="terms">
           <span i18n>I have read and accept the <a routerLink="/shop/terms" target="_blank" rel="noopener">terms of sale</a>, including the 14-day right of withdrawal.</span>
         </igx-checkbox>
@@ -104,14 +113,24 @@
           <button type="submit" igxButton="contained" igxRipple class="pay-button" [disabled]="submitting() || !cart.canCheckout()">
             @if (submitting()) {
               <igx-circular-bar [indeterminate]="true" class="button-progress"></igx-circular-bar>
+            } @else if (cashOnDelivery()) {
+              <igx-icon>local_shipping</igx-icon>
             } @else {
               <igx-icon>lock</igx-icon>
             }
-            <span i18n>Pay {{ cart.quote()?.total | currency:'EUR' }} with Revolut</span>
+            @if (cashOnDelivery()) {
+              <span i18n>Place order for {{ cart.quote()?.total | currency:'EUR' }}</span>
+            } @else {
+              <span i18n>Pay {{ cart.quote()?.total | currency:'EUR' }} with Revolut</span>
+            }
           </button>
           <a igxButton="flat" igxRipple routerLink="/shop/cart" i18n>Back to cart</a>
         </div>
-        <p class="secure-note" i18n>You will be redirected to Revolut's secure checkout. Cards, Revolut Pay, Apple Pay and Google Pay are accepted. We never see your card details.</p>
+        @if (cashOnDelivery()) {
+          <p class="secure-note" i18n>You pay the courier when your order arrives. We will send a confirmation to your email right away.</p>
+        } @else {
+          <p class="secure-note" i18n>You will be redirected to Revolut's secure checkout. Cards, Revolut Pay, Apple Pay and Google Pay are accepted. We never see your card details.</p>
+        }
       </form>
 
       <aside class="order-summary">

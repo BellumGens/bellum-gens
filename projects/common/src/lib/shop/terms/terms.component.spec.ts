@@ -22,6 +22,17 @@ describe('TermsComponent', () => {
     expect(text).toContain('info@bellumgens.com');
   });
 
+  it('explains paying on delivery at no extra cost, and how such orders are refunded', () => {
+    const text = fixture.nativeElement.textContent;
+    expect(text).toContain('cash on delivery');
+    expect(text).toContain('Paying on delivery costs nothing extra.');
+    expect(text).toContain('orders paid on delivery are refunded by bank transfer');
+  });
+
+  it('does not offer event pickup while it is not available', () => {
+    expect(fixture.nativeElement.textContent).not.toContain('pick up');
+  });
+
   it('links back to the shop', () => {
     const link: HTMLAnchorElement = fixture.nativeElement.querySelector('a');
     expect(link.getAttribute('href')).toBe('/shop');

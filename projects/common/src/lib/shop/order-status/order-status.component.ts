@@ -8,7 +8,9 @@ import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular/progressbar';
 import { ApiShopService } from '../../../services/bellumgens-api.shop.service';
 import { CartService } from '../../../services/cart.service';
-import { DELIVERY_METHOD_NAMES, DeliveryMethod, ORDER_STATUS_NAMES, OrderStatus, OrderStatusView, PaymentStatus } from '../../../models/shop';
+import {
+  DELIVERY_METHOD_NAMES, DeliveryMethod, ORDER_STATUS_NAMES, OrderStatus, OrderStatusView, PAYMENT_METHOD_NAMES, PaymentMethod, PaymentStatus
+} from '../../../models/shop';
 
 /** The customer paid or is paying and the confirmation from the payment provider has not arrived yet. */
 const isPaymentPending = (order: OrderStatusView) => order.status === OrderStatus.AwaitingPayment
@@ -61,8 +63,10 @@ export class OrderStatusComponent {
 
   public statusNames = ORDER_STATUS_NAMES;
   public deliveryNames = DELIVERY_METHOD_NAMES;
+  public paymentNames = PAYMENT_METHOD_NAMES;
   public OrderStatus = OrderStatus;
   public DeliveryMethod = DeliveryMethod;
+  public PaymentMethod = PaymentMethod;
 
   private orderId = '';
   private pollStarted = 0;
@@ -93,7 +97,8 @@ export class OrderStatusComponent {
 
   public statusIcon(status: OrderStatus) {
     switch (status) {
-      case OrderStatus.Paid: return 'check_circle';
+      case OrderStatus.Paid:
+      case OrderStatus.Confirmed: return 'check_circle';
       case OrderStatus.Shipped: return 'local_shipping';
       case OrderStatus.Delivered: return 'inventory_2';
       case OrderStatus.Cancelled: return 'cancel';
@@ -119,7 +124,14 @@ export class OrderStatusComponent {
     this.retryFailed.set(false);
     this.busy.set(true);
     this.retry = this.shopApi.retryPayment(this.orderId).subscribe({
-      next: created => this.document.location.assign(created.checkoutUrl),
+      next: created => {
+        if (created.checkoutUrl) {
+          this.document.location.assign(created.checkoutUrl);
+        } else {
+          this.cancelRetry();
+          this.restartPolling();
+        }
+      },
       error: () => {
         this.retry = null;
         this.busy.set(false);
@@ -175,14 +187,15 @@ export class OrderStatusComponent {
   }
 
   /**
-   * The cart is kept after placing an order in case the payment is abandoned. Once the order placed from it is paid,
-   * the cart is emptied; once it can no longer be paid, the cart is kept for a new order.
+   * The cart is kept after placing an order in case the payment is abandoned. Once the order placed from it is paid
+   * (or confirmed, for cash on delivery), the cart is emptied; once it can no longer be paid, the cart is kept for a new order.
    */
   private settleCart(order: OrderStatusView) {
     if (this.cart.pendingOrder()?.id !== order.id) {
       return;
     }
-    if (order.status === OrderStatus.Paid || order.status === OrderStatus.Shipped || order.status === OrderStatus.Delivered) {
+    if (order.status === OrderStatus.Paid || order.status === OrderStatus.Shipped || order.status === OrderStatus.Delivered
+      || order.status === OrderStatus.Confirmed) {
       this.cart.clear();
     } else if (order.status === OrderStatus.Cancelled || order.status === OrderStatus.Refunded) {
       this.cart.forgetPendingOrder();

@@ -8,7 +8,7 @@ import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { IgxRadioComponent, IgxRadioGroupDirective } from '@infragistics/igniteui-angular/radio';
 import { IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular/progressbar';
 import { CartService } from '../../../services/cart.service';
-import { CartItem, DELIVERY_METHOD_NAMES, DeliveryMethod, effectivePrice } from '../../../models/shop';
+import { AVAILABLE_DELIVERY_METHODS, CartItem, DELIVERY_METHOD_NAMES, DeliveryMethod, effectivePrice } from '../../../models/shop';
 
 @Component({
   selector: 'bg-cart',
@@ -34,7 +34,7 @@ export class CartComponent {
 
   public promoForm = new FormGroup({ code: new FormControl(this.cart.promoCode() ?? '', { nonNullable: true }) });
   public promoInput = this.promoForm.controls.code;
-  public deliveryMethods = [DeliveryMethod.Courier, DeliveryMethod.EventPickup];
+  public deliveryMethods = AVAILABLE_DELIVERY_METHODS;
   public deliveryNames = DELIVERY_METHOD_NAMES;
   public maxQuantity = CartService.maxLineQuantity;
   public canCheckout = this.cart.canCheckout;
@@ -56,6 +56,7 @@ export class CartComponent {
     return this.quoteLine(item)?.problem ?? null;
   }
 
+  /** Applied when the customer leaves the field or presses Enter; an unchanged code does not ask for a new quote. */
   public applyPromo() {
     this.cart.setPromoCode(this.promoInput.value);
   }

@@ -3,7 +3,7 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { CartService, fingerprint } from './cart.service';
 import { ApiShopService } from './bellumgens-api.shop.service';
-import { Brand, DeliveryMethod, Product, ProductType, ProductVariant, Quote } from '../models/shop';
+import { AVAILABLE_DELIVERY_METHODS, Brand, DeliveryMethod, Product, ProductType, ProductVariant, Quote } from '../models/shop';
 
 const product = (overrides: Partial<Product> = {}): Product => ({
   id: 'p1',
@@ -185,7 +185,9 @@ describe('CartService', () => {
     expect(fingerprint(request)).not.toContain('ivan');
   });
 
-  it('restores the event pickup delivery choice', () => {
+  it('falls back to courier delivery when the saved delivery method is no longer offered', () => {
+    // Event pickup is not offered until the next event is announced.
+    expect(AVAILABLE_DELIVERY_METHODS).not.toContain(DeliveryMethod.EventPickup);
     service.add(product());
     service.setDeliveryMethod(DeliveryMethod.EventPickup);
     TestBed.tick();
@@ -193,7 +195,7 @@ describe('CartService', () => {
     TestBed.resetTestingModule();
     configure();
 
-    expect(service.deliveryMethod()).toBe(DeliveryMethod.EventPickup);
+    expect(service.deliveryMethod()).toBe(DeliveryMethod.Courier);
   });
 
   it('discards a stored cart it cannot read', () => {

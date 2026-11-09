@@ -7,7 +7,7 @@ import { BehaviorSubject, of } from 'rxjs';
 import { OrderStatusComponent } from './order-status.component';
 import { ApiShopService } from '../../../services/bellumgens-api.shop.service';
 import { CartService } from '../../../services/cart.service';
-import { DeliveryMethod, OrderStatus, OrderStatusView, PaymentStatus } from '../../../models/shop';
+import { DeliveryMethod, OrderStatus, OrderStatusView, PaymentMethod, PaymentStatus } from '../../../models/shop';
 
 const order = (status: OrderStatus, paymentStatus: PaymentStatus | null): OrderStatusView => ({
   id: 'o1',
@@ -28,6 +28,7 @@ const order = (status: OrderStatus, paymentStatus: PaymentStatus | null): OrderS
   streetAddress: 'bul. Vitosha 1',
   country: 'BG',
   deliveryMethod: DeliveryMethod.Courier,
+  paymentMethod: PaymentMethod.Revolut,
   orderDate: '2026-09-04T10:00:00Z',
   expiresOn: '2026-09-04T11:00:00Z',
   checkoutUrl: status === OrderStatus.AwaitingPayment ? 'https://checkout.revolut.com/x' : null,
@@ -548,6 +549,49 @@ describe('OrderStatusComponent', () => {
 
     expect(fixture.nativeElement.textContent).toContain('collect your order at our next event');
     expect(fixture.nativeElement.textContent).not.toContain('handed to the courier');
+  });
+
+  describe('cash on delivery', () => {
+    const cashOrder = (status: OrderStatus) => ({ ...order(status, null), paymentMethod: PaymentMethod.CashOnDelivery });
+
+    it('confirms the order and tells the customer what to pay the courier, without polling', () => {
+      httpMock.expectOne(orderUrl()).flush(cashOrder(OrderStatus.Confirmed));
+      fixture.detectChanges();
+
+      const text = fixture.nativeElement.textContent;
+      expect(text).toContain('Confirmed');
+      expect(text).toContain('confirmation was sent to ivan@example.com');
+      expect(text).toContain('You will pay €21.00 to the courier on delivery');
+      expect(text).toContain('Cash on delivery');
+      expect(component.statusIcon(OrderStatus.Confirmed)).toBe('check_circle');
+      expect(component.polling()).toBe(false);
+    });
+
+    it('empties the cart once the order placed from it is confirmed', () => {
+      const cart = TestBed.inject(CartService);
+      cart['_items'].set([{ productId: 'p1', quantity: 1, product: {} as never }]);
+      cart.setPendingOrder('o1', 'fp');
+
+      httpMock.expectOne(orderUrl()).flush(cashOrder(OrderStatus.Confirmed));
+
+      expect(cart.isEmpty()).toBe(true);
+      expect(cart.pendingOrder()).toBeNull();
+    });
+
+    it('reminds the customer to have the amount ready once the order ships', () => {
+      httpMock.expectOne(orderUrl()).flush(cashOrder(OrderStatus.Shipped));
+      fixture.detectChanges();
+
+      expect(fixture.nativeElement.textContent).toContain('Please have €21.00 ready for the courier');
+    });
+
+    it('does not ask an order paid online to have money ready for the courier', () => {
+      httpMock.expectOne(orderUrl()).flush(order(OrderStatus.Shipped, PaymentStatus.Completed));
+      fixture.detectChanges();
+
+      expect(fixture.nativeElement.textContent).not.toContain('ready for the courier');
+      expect(fixture.nativeElement.textContent).toContain('Pay online by card');
+    });
   });
 
   it('shows a shipped order without a tracking number yet', () => {

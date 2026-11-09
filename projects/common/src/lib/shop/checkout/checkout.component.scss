@@ -1,6 +1,7 @@
 :host {
   display: block;
   width: 100%;
+  min-height: calc(100% - 40px);
 }
 
 .shop-container {
@@ -48,6 +49,12 @@
   @media (max-width: 600px) {
     grid-template-columns: 1fr;
   }
+}
+
+.payment-methods {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .terms {

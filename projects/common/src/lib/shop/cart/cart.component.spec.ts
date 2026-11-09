@@ -236,6 +236,36 @@ describe('CartComponent', () => {
     expect(fixture.nativeElement.textContent).toContain('Promo code has expired.');
   });
 
+  it('applies the promo code when the field loses focus, without an apply button', () => {
+    fill();
+    const input: HTMLInputElement = fixture.nativeElement.querySelector('#promoCode');
+
+    input.value = 'save10';
+    input.dispatchEvent(new Event('input'));
+    expect(cart.promoCode()).toBeNull();
+    input.dispatchEvent(new Event('blur'));
+
+    expect(cart.promoCode()).toBe('SAVE10');
+    expect(fixture.nativeElement.querySelector('.promo-form button[type="submit"]')).toBeNull();
+  });
+
+  it('applies the promo code when Enter submits the field', () => {
+    fill();
+    component.promoInput.setValue('save10');
+
+    fixture.nativeElement.querySelector('.promo-form').dispatchEvent(new Event('submit'));
+
+    expect(cart.promoCode()).toBe('SAVE10');
+  });
+
+  it('offers courier delivery only while event pickup is not available', () => {
+    fill();
+
+    expect(fixture.nativeElement.querySelector('igx-radio-group')).toBeNull();
+    expect(fixture.nativeElement.querySelector('.delivery-method').textContent).toContain('Courier delivery');
+    expect(fixture.nativeElement.textContent).not.toContain('Pick up at an event');
+  });
+
   it('switches the delivery method and puts it on the next quote request', () => {
     fill();
 

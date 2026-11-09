@@ -6721,6 +6721,118 @@
           <context context-type="linenumber">34,35</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="4593716912035578345" datatype="html">
+        <source>Place order for <x id="INTERPOLATION" equiv-text="{{ cart.quote()?.total | currency:&apos;EUR&apos; }}"/></source>
+        <target>Поръчай за <x id="INTERPOLATION" equiv-text="{{ cart.quote()?.total | currency:&apos;EUR&apos; }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">122,123</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3247923413266408665" datatype="html">
+        <source>You pay the courier when your order arrives. We will send a confirmation to your email right away.</source>
+        <target>Плащате на куриера при получаване на поръчката. Веднага ще изпратим потвърждение на имейла ви.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">130,131</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6798005505777725078" datatype="html">
+        <source>Thank you! Your order was received and a confirmation was sent to <x id="INTERPOLATION" equiv-text="{{ order.email }}"/>.</source>
+        <target>Благодарим ви! Поръчката ви е приета и потвърждение беше изпратено на <x id="INTERPOLATION" equiv-text="{{ order.email }}"/>.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
+          <context context-type="linenumber">73,74</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3991778394399457966" datatype="html">
+        <source>You will pay <x id="INTERPOLATION" equiv-text="{{ order.total | currency:&apos;EUR&apos; }}"/> to the courier on delivery. We will email you again when the order is handed to the courier.</source>
+        <target>Ще платите <x id="INTERPOLATION" equiv-text="{{ order.total | currency:&apos;EUR&apos; }}"/> на куриера при доставка. Ще ви уведомим по имейл, когато поръчката бъде предадена на куриера.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
+          <context context-type="linenumber">74,76</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7687191862285621774" datatype="html">
+        <source>Please have <x id="INTERPOLATION" equiv-text="{{ order.total | currency:&apos;EUR&apos; }}"/> ready for the courier.</source>
+        <target>Моля, подгответе <x id="INTERPOLATION" equiv-text="{{ order.total | currency:&apos;EUR&apos; }}"/> за куриера.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
+          <context context-type="linenumber">79,80</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopStatusConfirmed" datatype="html">
+        <source>Confirmed</source>
+        <target>Потвърдена</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
+          <context context-type="linenumber">338</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopPaymentOnline" datatype="html">
+        <source>Pay online by card</source>
+        <target>Онлайн плащане с карта</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
+          <context context-type="linenumber">347</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopPaymentCashOnDelivery" datatype="html">
+        <source>Cash on delivery</source>
+        <target>Наложен платеж</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
+          <context context-type="linenumber">348</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4053226695099363496" datatype="html">
+        <source>An order paid online is confirmed once the payment is received. An order paid on delivery is confirmed once it is placed. Either way, we send a confirmation to the email address you gave at checkout.</source>
+        <target>Поръчка, платена онлайн, се потвърждава след получаване на плащането. Поръчка с наложен платеж се потвърждава веднага след направата ѝ. И в двата случая изпращаме потвърждение на имейл адреса, който сте посочили при поръчката.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/terms/terms.component.html</context>
+          <context context-type="linenumber">12,13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1973925753029125880" datatype="html">
+        <source>You can pay online or in cash on delivery.</source>
+        <target>Можете да платите онлайн или с наложен платеж.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/terms/terms.component.html</context>
+          <context context-type="linenumber">17,18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1900228622226038193" datatype="html">
+        <source>Online payments are processed by Revolut. Cards, Revolut Pay, Apple Pay and Google Pay are accepted. We never see your card details. Orders that are not paid in time are cancelled automatically and nothing is charged.</source>
+        <target>Онлайн плащанията се обработват от Revolut. Приемат се карти, Revolut Pay, Apple Pay и Google Pay. Ние никога не виждаме данните на картата ви. Поръчки, които не са платени навреме, се отменят автоматично и нищо не се таксува.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/terms/terms.component.html</context>
+          <context context-type="linenumber">18,19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7617188598135798870" datatype="html">
+        <source>With cash on delivery (наложен платеж), you pay the order total to the courier when the parcel arrives. Paying on delivery costs nothing extra.</source>
+        <target>При наложен платеж плащате общата сума на поръчката на куриера при получаване на пратката. Плащането при доставка не се таксува допълнително.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/terms/terms.component.html</context>
+          <context context-type="linenumber">19,20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3579934859812520539" datatype="html">
+        <source>We deliver by courier across Bulgaria. The shipping cost is shown before you place your order. We email you when the order is handed to the courier.</source>
+        <target>Доставяме с куриер в цяла България. Цената на доставката се показва, преди да направите поръчката. Изпращаме ви имейл, когато поръчката бъде предадена на куриера.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/terms/terms.component.html</context>
+          <context context-type="linenumber">24,25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6056320906309372738" datatype="html">
+        <source>We refund everything you paid, including the standard delivery cost, within 14 days of receiving your notice. Online payments are refunded to your original payment method; orders paid on delivery are refunded by bank transfer to an account you give us. We may wait until the goods are back with us before refunding.</source>
+        <target>Възстановяваме всички получени от вас плащания, включително стандартната цена за доставка, в срок от 14 дни от получаване на уведомлението ви. Онлайн плащанията се възстановяват по същия начин на плащане, а поръчките с наложен платеж – с банков превод по сметка, която ни посочите. Можем да изчакаме стоките да бъдат върнати при нас, преди да възстановим сумата.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/terms/terms.component.html</context>
+          <context context-type="linenumber">31,32</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>

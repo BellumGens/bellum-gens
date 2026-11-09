@@ -10,9 +10,9 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import {
   ApiTournamentsService, ApiShopService, CommunicationService, Tournament, Game, TournamentApplication, TournamentApplicationState,
-  EMPTY_NEW_TOURNAMENT, ShopOrder, OrderStatus, PaymentStatus, DeliveryMethod, ConfirmComponent
+  EMPTY_NEW_TOURNAMENT, ShopOrder, OrderStatus, PaymentStatus, PaymentMethod, DeliveryMethod, ConfirmComponent
 } from '../../../../../common/src/public_api';
-import { IGridEditEventArgs } from '@infragistics/igniteui-angular/grids/core';
+import { IGridEditEventArgs, IgxExporterEvent } from '@infragistics/igniteui-angular/grids/core';
 import { IgxGridComponent } from '@infragistics/igniteui-angular/grids/grid';
 import { IgxActionStripComponent } from '@infragistics/igniteui-angular/action-strip';
 import { IgxDatePickerComponent } from '@infragistics/igniteui-angular/date-picker';
@@ -44,7 +44,7 @@ const shopOrder = (order: Partial<ShopOrder> = {}): ShopOrder => ({
   total: 36,
   currency: 'EUR',
   status: OrderStatus.Paid,
-  paymentMethod: 0,
+  paymentMethod: PaymentMethod.Revolut,
   orderDate: '2026-09-04T10:00:00Z',
   expiresOn: '2026-09-04T11:00:00Z',
   items: [],
@@ -261,6 +261,44 @@ describe('AdminMainComponent', () => {
         expect(component.canRefund(shopOrder({ status: OrderStatus.Cancelled, payments: [{ ...completed, status: PaymentStatus.Cancelled }] }))).toBe(false);
         expect(component.canRefund(shopOrder({ status: OrderStatus.AwaitingPayment }))).toBe(false);
         expect(component.canRefund(shopOrder({ status: OrderStatus.Refunded, payments: [completed] }))).toBe(false);
+      });
+
+      it('should not offer a provider refund for an order paid on delivery', () => {
+        expect(component.canRefund(shopOrder({ status: OrderStatus.Delivered, paymentMethod: PaymentMethod.CashOnDelivery }))).toBe(false);
+      });
+
+      it('should export the hidden items column along with the visible ones', () => {
+        const event = { options: { ignoreColumnsVisibility: false } } as unknown as IgxExporterEvent;
+
+        component.includeHiddenColumns(event);
+
+        expect(event.options.ignoreColumnsVisibility).toBe(true);
+      });
+
+      it('should export the readable text the order cells show', () => {
+        const order = shopOrder({
+          status: OrderStatus.Confirmed,
+          paymentMethod: PaymentMethod.CashOnDelivery,
+          postalCode: '1000',
+          items: [
+            { productId: 'p1', productName: 'Umbrella', unitPrice: 15, quantity: 2, lineTotal: 30 },
+            { productId: 'p2', productName: 'Jersey', variantName: 'Male / L', unitPrice: 30, quantity: 1, lineTotal: 30 }
+          ]
+        });
+
+        expect(component.formatStatus(order.status)).toBe('Confirmed');
+        expect(component.formatDelivery(order.deliveryMethod)).toBe('Courier delivery');
+        expect(component.formatPayment(order.paymentMethod)).toBe('Cash on delivery');
+        expect(component.formatName(undefined, order)).toBe('John Doe');
+        expect(component.formatAddress(undefined, order)).toBe('bul. Vitosha 1, 1000 Sofia');
+        expect(component.formatItems(order.items)).toBe('2× Umbrella | 1× Jersey (Male / L)');
+      });
+
+      it('should leave the address empty for an order picked up at an event', () => {
+        const order = shopOrder({ deliveryMethod: DeliveryMethod.EventPickup, city: null, streetAddress: null, postalCode: null });
+
+        expect(component.formatAddress(undefined, order)).toBe('');
+        expect(component.formatItems(undefined)).toBe('');
       });
 
       it('should reload orders on demand', () => {

@@ -4155,6 +4155,54 @@
           <context context-type="linenumber">182,183</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="shopStatusConfirmed" datatype="html">
+        <source>Confirmed</source>
+        <target>Потвърдена</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
+          <context context-type="linenumber">338</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopPaymentOnline" datatype="html">
+        <source>Pay online by card</source>
+        <target>Онлайн плащане с карта</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
+          <context context-type="linenumber">347</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopPaymentCashOnDelivery" datatype="html">
+        <source>Cash on delivery</source>
+        <target>Наложен платеж</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
+          <context context-type="linenumber">348</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4892553839051604445" datatype="html">
+        <source>Payment</source>
+        <target>Плащане</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
+          <context context-type="linenumber">120,121</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2423017385830616912" datatype="html">
+        <source>Mark returned</source>
+        <target>Отбележи като върната</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
+          <context context-type="linenumber">175,176</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="6162691442834560200" datatype="html">
+        <source>Items</source>
+        <target>Артикули</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
+          <context context-type="linenumber">122</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>

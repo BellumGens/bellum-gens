@@ -1,6 +1,6 @@
 import { Component, DOCUMENT, DestroyRef, LOCALE_ID, PLATFORM_ID, computed, effect, inject, signal, untracked } from '@angular/core';
 import { CurrencyPipe, isPlatformBrowser } from '@angular/common';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { takeUntilDestroyed, toSignal } from '@angular/core/rxjs-interop';
 import { Router, RouterLink } from '@angular/router';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
@@ -9,17 +9,19 @@ import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input
 import { IgxButtonDirective, IgxDividerComponent, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { IgxCheckboxComponent } from '@infragistics/igniteui-angular/checkbox';
+import { IgxRadioComponent, IgxRadioGroupDirective } from '@infragistics/igniteui-angular/radio';
 import { IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular/progressbar';
 import { ApiShopService, orderProblems } from '../../../services/bellumgens-api.shop.service';
 import { CartService, fingerprint } from '../../../services/cart.service';
 import { LoginService } from '../../../services/login.service';
 import { EMAIL_REGEX } from '../../../models/misc';
-import { DELIVERY_METHOD_NAMES, DeliveryMethod, OrderRequest, OrderStatus } from '../../../models/shop';
+import { DELIVERY_METHOD_NAMES, DeliveryMethod, OrderRequest, OrderStatus, PAYMENT_METHOD_NAMES, PaymentMethod } from '../../../models/shop';
 
 /** Where to send the customer once the order is ready: the provider's checkout, or the order page. */
 type CheckoutTarget = { checkoutUrl: string } | { orderId: string };
 
-const PAID_STATUSES = [OrderStatus.Paid, OrderStatus.Shipped, OrderStatus.Delivered];
+/** Orders that need no further payment: paid online, or placed with cash on delivery. */
+const SETTLED_STATUSES = [OrderStatus.Paid, OrderStatus.Shipped, OrderStatus.Delivered, OrderStatus.Confirmed];
 
 @Component({
   selector: 'bg-checkout',
@@ -33,6 +35,8 @@ const PAID_STATUSES = [OrderStatus.Paid, OrderStatus.Shipped, OrderStatus.Delive
     IgxDividerComponent,
     IgxIconComponent,
     IgxCheckboxComponent,
+    IgxRadioComponent,
+    IgxRadioGroupDirective,
     IgxCircularProgressBarComponent
   ],
   templateUrl: './checkout.component.html',
@@ -50,12 +54,16 @@ export class CheckoutComponent {
   private isBrowser = isPlatformBrowser(inject(PLATFORM_ID));
 
   public deliveryNames = DELIVERY_METHOD_NAMES;
+  public paymentNames = PAYMENT_METHOD_NAMES;
+  public paymentMethods = [PaymentMethod.Revolut, PaymentMethod.CashOnDelivery];
   public submitting = signal(false);
   public problems = signal<string[]>([]);
   /** Only courier delivery needs an address; an order picked up at an event has none. */
   public courier = computed(() => this.cart.deliveryMethod() === DeliveryMethod.Courier);
 
   public form = this.fb.group({
+    /** Cash on delivery (наложен платеж) is collected by the courier, so it is only offered for courier delivery. */
+    paymentMethod: [PaymentMethod.Revolut],
     firstName: ['', [Validators.required, Validators.maxLength(100)]],
     lastName: ['', [Validators.required, Validators.maxLength(100)]],
     email: ['', [Validators.required, Validators.pattern(EMAIL_REGEX)]],
@@ -67,10 +75,17 @@ export class CheckoutComponent {
     acceptedTerms: [false, [Validators.requiredTrue]]
   });
 
+  private paymentMethod = toSignal(this.form.controls.paymentMethod.valueChanges, { initialValue: this.form.controls.paymentMethod.value });
+  /** The order is paid to the courier; placing it needs no online payment. */
+  public cashOnDelivery = computed(() => this.courier() && this.paymentMethod() === PaymentMethod.CashOnDelivery);
+
   constructor() {
     // Disabled controls are not validated, so the address is only required while it is shown.
     effect(() => {
       const courier = this.courier();
+      if (!courier) {
+        this.form.controls.paymentMethod.setValue(PaymentMethod.Revolut);
+      }
       const { city, streetAddress, postalCode } = this.form.controls;
       for (const control of [city, streetAddress, postalCode]) {
         if (courier) {
@@ -117,6 +132,7 @@ export class CheckoutComponent {
     const request: OrderRequest = {
       ...cartRequest,
       ...value,
+      paymentMethod: this.cashOnDelivery() ? PaymentMethod.CashOnDelivery : PaymentMethod.Revolut,
       city: courier ? value.city : null,
       streetAddress: courier ? value.streetAddress : null,
       postalCode: courier ? value.postalCode : null,
@@ -126,13 +142,23 @@ export class CheckoutComponent {
     };
     const requestFingerprint = fingerprint(request);
     const pendingId = this.cart.pendingOrderFor(requestFingerprint);
+    // An unpaid order placed from this cart with other details (e.g. another payment method) is replaced by the new
+    // one, which releases its stock instead of holding it twice until it expires.
+    const replacing: OrderRequest = { ...request, replacesOrderId: this.cart.pendingOrder()?.id ?? null };
 
     this.submitting.set(true);
     this.problems.set([]);
     // Leaving checkout cancels the pending order request, so a late response cannot redirect.
-    const target$ = pendingId ? this.resumeOrder(pendingId, request, requestFingerprint) : this.placeOrder(request, requestFingerprint);
+    const target$ = pendingId ? this.resumeOrder(pendingId, request, requestFingerprint) : this.placeOrder(replacing, requestFingerprint);
     target$.pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       next: target => {
+        if (!('checkoutUrl' in target)) {
+          // Nothing left to pay online (a cash on delivery order, or one paid already): show the order, which
+          // empties the cart. The order exists whether or not the cart changed meanwhile.
+          this.submitting.set(false);
+          this.router.navigate(['/shop/order', target.orderId]);
+          return;
+        }
         if (JSON.stringify(this.cart.request()) !== submittedCart) {
           // The cart changed while the order was being created; the order no longer matches it.
           this.submitting.set(false);
@@ -141,12 +167,7 @@ export class CheckoutComponent {
           return;
         }
         // The cart is kept until the order is paid, so backing out of the payment does not lose it.
-        if ('checkoutUrl' in target) {
-          this.document.location.assign(target.checkoutUrl);
-        } else {
-          this.submitting.set(false);
-          this.router.navigate(['/shop/order', target.orderId]);
-        }
+        this.document.location.assign(target.checkoutUrl);
       },
       error: error => {
         this.submitting.set(false);
@@ -165,10 +186,14 @@ export class CheckoutComponent {
     });
   }
 
+  /**
+   * Places the order and remembers it as the cart's pending order. A cash on delivery order comes back without a
+   * checkout: the order page it leads to sees it confirmed and empties the cart.
+   */
   private placeOrder(request: OrderRequest, requestFingerprint: string): Observable<CheckoutTarget> {
     return this.shopApi.createOrder(request).pipe(
       tap(created => this.cart.setPendingOrder(created.orderId, requestFingerprint)),
-      map(created => ({ checkoutUrl: created.checkoutUrl }))
+      map(created => created.checkoutUrl ? { checkoutUrl: created.checkoutUrl } : { orderId: created.orderId })
     );
   }
 
@@ -187,10 +212,13 @@ export class CheckoutComponent {
           return of({ checkoutUrl: order.checkoutUrl });
         }
         if (order.canRetryPayment) {
-          return this.shopApi.retryPayment(orderId).pipe(map(created => ({ checkoutUrl: created.checkoutUrl })));
+          return this.shopApi.retryPayment(orderId).pipe(
+            map(created => created.checkoutUrl ? { checkoutUrl: created.checkoutUrl } : { orderId })
+          );
         }
-        if (order.status === OrderStatus.AwaitingPayment || PAID_STATUSES.includes(order.status)) {
-          // Paid already, or a payment is still being confirmed: the order page shows which, and empties the cart once paid.
+        if (order.status === OrderStatus.AwaitingPayment || SETTLED_STATUSES.includes(order.status)) {
+          // Paid or placed already, or a payment is still being confirmed: the order page shows which, and empties
+          // the cart once nothing is left to pay.
           return of({ orderId });
         }
         return placeAgain();

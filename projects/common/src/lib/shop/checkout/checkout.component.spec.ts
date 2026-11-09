@@ -9,7 +9,7 @@ import { CartService } from '../../../services/cart.service';
 import { ApiShopService } from '../../../services/bellumgens-api.shop.service';
 import { LoginService } from '../../../services/login.service';
 import { ApplicationUser } from '../../../models/applicationuser';
-import { Brand, DeliveryMethod, Product, ProductType, Quote } from '../../../models/shop';
+import { Brand, DeliveryMethod, PaymentMethod, Product, ProductType, Quote } from '../../../models/shop';
 
 const umbrella: Product = {
   id: 'p1',
@@ -88,8 +88,9 @@ describe('CheckoutComponent', () => {
     fixture.detectChanges();
   };
 
-  const fillForm = () => {
+  const fillForm = (paymentMethod = PaymentMethod.Revolut) => {
     component.form.setValue({
+      paymentMethod,
       firstName: 'Ivan',
       lastName: 'Petrov',
       email: 'ivan@example.com',
@@ -212,6 +213,7 @@ describe('CheckoutComponent', () => {
     expect(req.request.body.lines).toEqual([{ productId: 'p1', variantId: undefined, quantity: 1 }]);
     expect(req.request.body.email).toBe('ivan@example.com');
     expect(req.request.body.acceptedTerms).toBe(true);
+    expect(req.request.body.replacesOrderId).toBeNull();
     expect(req.request.body.country).toBe('BG');
     expect(['bg', 'en']).toContain(req.request.body.language);
     req.flush({ orderId: 'o1', orderNumber: 'BG-2026-000001', total: 21, currency: 'EUR', checkoutUrl: 'https://checkout.revolut.com/x', expiresOn: '' });
@@ -221,6 +223,97 @@ describe('CheckoutComponent', () => {
     expect(cart.isEmpty()).toBe(false);
     expect(cart.pendingOrder()?.id).toBe('o1');
     flushQuotes(validQuote);
+  });
+
+  describe('cash on delivery', () => {
+    const ordersUrl = () => `${api['_apiEndpoint']}/shop/orders`;
+
+    it('offers paying online or on delivery, online by default', () => {
+      fillCart();
+
+      const radios = fixture.nativeElement.querySelectorAll('.payment-methods igx-radio');
+      expect(radios.length).toBe(2);
+      expect(fixture.nativeElement.querySelector('.payment-methods').textContent).toContain('Cash on delivery');
+      expect(component.cashOnDelivery()).toBe(false);
+      expect(fixture.nativeElement.querySelector('.pay-button').textContent).toContain('with Revolut');
+    });
+
+    it('places the order instead of paying, and says the courier collects the payment', () => {
+      fillCart();
+      fillForm(PaymentMethod.CashOnDelivery);
+      fixture.detectChanges();
+
+      expect(component.cashOnDelivery()).toBe(true);
+      const payButton: HTMLElement = fixture.nativeElement.querySelector('.pay-button');
+      expect(payButton.textContent).toContain('Place order for €21.00');
+      expect(payButton.textContent).not.toContain('Revolut');
+      expect(fixture.nativeElement.textContent).toContain('You pay the courier when your order arrives');
+      expect(fixture.nativeElement.textContent).not.toContain("redirected to Revolut");
+    });
+
+    it('posts a cash on delivery order and shows it, without going to Revolut', () => {
+      const navigate = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
+      fillCart();
+      fillForm(PaymentMethod.CashOnDelivery);
+
+      component.pay();
+
+      const req = httpMock.expectOne(ordersUrl());
+      expect(req.request.body.paymentMethod).toBe(PaymentMethod.CashOnDelivery);
+      expect(req.request.body.deliveryMethod).toBe(DeliveryMethod.Courier);
+      req.flush({ orderId: 'o1', orderNumber: 'BG-1', total: 21, currency: 'EUR', checkoutUrl: null, expiresOn: '' });
+
+      expect(assign).not.toHaveBeenCalled();
+      expect(navigate).toHaveBeenCalledWith(['/shop/order', 'o1']);
+      expect(component.submitting()).toBe(false);
+      // The order page empties the cart once it sees the order confirmed.
+      expect(cart.pendingOrder()?.id).toBe('o1');
+      flushQuotes(validQuote);
+    });
+
+    it('shows a placed order even when the cart changed while it was being placed', () => {
+      const navigate = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
+      fillCart();
+      fillForm(PaymentMethod.CashOnDelivery);
+
+      component.pay();
+      const req = httpMock.expectOne(ordersUrl());
+      cart.add(umbrella);
+      req.flush({ orderId: 'o1', orderNumber: 'BG-1', total: 21, currency: 'EUR', checkoutUrl: null, expiresOn: '' });
+
+      expect(navigate).toHaveBeenCalledWith(['/shop/order', 'o1']);
+      expect(component.problems()).toEqual([]);
+      flushQuotes(validQuote);
+    });
+
+    it('shows the order already placed instead of placing it twice', () => {
+      const navigate = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
+      fillCart();
+      fillForm(PaymentMethod.CashOnDelivery);
+      component.pay();
+      httpMock.expectOne(ordersUrl()).flush({ orderId: 'o1', orderNumber: 'BG-1', total: 21, currency: 'EUR', checkoutUrl: null, expiresOn: '' });
+      navigate.mockClear();
+
+      component.pay();
+
+      httpMock.expectOne(`${ordersUrl()}/o1`).flush({ id: 'o1', status: 6, canRetryPayment: false, checkoutUrl: null });
+      httpMock.expectNone(r => r.method === 'POST' && r.url === ordersUrl());
+      expect(navigate).toHaveBeenCalledWith(['/shop/order', 'o1']);
+      flushQuotes(validQuote);
+    });
+
+    it('is not offered for an order picked up at an event', () => {
+      fillCart();
+      component.form.controls.paymentMethod.setValue(PaymentMethod.CashOnDelivery);
+      cart.setDeliveryMethod(DeliveryMethod.EventPickup);
+      TestBed.tick();
+      fixture.detectChanges();
+
+      expect(fixture.nativeElement.querySelector('.payment-methods')).toBeNull();
+      expect(component.cashOnDelivery()).toBe(false);
+      expect(component.form.controls.paymentMethod.value).toBe(PaymentMethod.Revolut);
+      flushQuotes(validQuote);
+    });
   });
 
   describe('paying again for an order already placed', () => {
@@ -286,14 +379,34 @@ describe('CheckoutComponent', () => {
       flushQuotes(validQuote);
     });
 
-    it('places a new order when the customer changed their details', () => {
+    it('places a new order replacing the earlier one when the customer changed their details', () => {
       placeFirstOrder();
       component.form.controls.streetAddress.setValue('bul. Bulgaria 2');
 
       component.pay();
 
       httpMock.expectNone(`${ordersUrl()}/o1`);
-      httpMock.expectOne(r => r.method === 'POST' && r.url === ordersUrl()).flush(created('o2', 'https://checkout.revolut.com/second'));
+      const req = httpMock.expectOne(r => r.method === 'POST' && r.url === ordersUrl());
+      // The server releases the stock the earlier order holds, so the cart does not hold it twice.
+      expect(req.request.body.replacesOrderId).toBe('o1');
+      req.flush(created('o2', 'https://checkout.revolut.com/second'));
+      expect(cart.pendingOrder()?.id).toBe('o2');
+      flushQuotes(validQuote);
+    });
+
+    it('replaces the unpaid online order when the customer switches to cash on delivery', () => {
+      const navigate = vi.spyOn(TestBed.inject(Router), 'navigate').mockResolvedValue(true);
+      placeFirstOrder();
+      component.form.controls.paymentMethod.setValue(PaymentMethod.CashOnDelivery);
+
+      component.pay();
+
+      httpMock.expectNone(`${ordersUrl()}/o1`);
+      const req = httpMock.expectOne(r => r.method === 'POST' && r.url === ordersUrl());
+      expect(req.request.body.paymentMethod).toBe(PaymentMethod.CashOnDelivery);
+      expect(req.request.body.replacesOrderId).toBe('o1');
+      req.flush({ ...created('o2', ''), checkoutUrl: null });
+      expect(navigate).toHaveBeenCalledWith(['/shop/order', 'o2']);
       expect(cart.pendingOrder()?.id).toBe('o2');
       flushQuotes(validQuote);
     });

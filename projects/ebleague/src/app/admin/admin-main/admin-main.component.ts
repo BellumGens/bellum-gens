@@ -11,11 +11,13 @@ import {
   ORDER_STATUS_NAMES,
   DELIVERY_METHOD_NAMES,
   DeliveryMethod,
+  PAYMENT_METHOD_NAMES,
+  PaymentMethod,
   ProductEditorComponent,
   PromoEditorComponent,
   ConfirmComponent
 } from '../../../../../common/src/public_api';
-import { IGridEditEventArgs, RowType } from '@infragistics/igniteui-angular/grids/core';
+import { IGridEditEventArgs, IgxExporterEvent, RowType } from '@infragistics/igniteui-angular/grids/core';
 import { DefaultSortingStrategy, IGroupingExpression, SortingDirection } from '@infragistics/igniteui-angular/core';
 import { IGX_GRID_DIRECTIVES } from '@infragistics/igniteui-angular/grids/grid';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
@@ -82,9 +84,28 @@ export class AdminMainComponent {
   ];
 
   public OrderStatus = OrderStatus;
+  public PaymentMethod = PaymentMethod;
   public statusNames = ORDER_STATUS_NAMES;
   public deliveryNames = DELIVERY_METHOD_NAMES;
-  public ordersExportUrl = this.shopService.ordersExportUrl;
+  public paymentNames = PAYMENT_METHOD_NAMES;
+
+  // Column formatters: the cell templates show these values in the grid, and the exporter writes them to the file.
+  public formatStatus = (status: OrderStatus) => this.statusNames[status] ?? '';
+  public formatDelivery = (method: DeliveryMethod) => this.deliveryNames[method] ?? '';
+  public formatPayment = (method: PaymentMethod) => this.paymentNames[method] ?? '';
+  public formatName = (_: unknown, order?: ShopOrder) => order ? `${order.firstName} ${order.lastName}`.trim() : '';
+  /** Empty for an order picked up at an event, which has no address. */
+  public formatAddress = (_: unknown, order?: ShopOrder) => {
+    if (!order) {
+      return '';
+    }
+    const place = [order.postalCode, order.city].filter(Boolean).join(' ');
+    return [order.streetAddress, place].filter(Boolean).join(', ');
+  };
+  /** One line per order, e.g. "2× Umbrella | 1× Jersey (Male / L)". */
+  public formatItems = (items: ShopOrder['items'] | null | undefined) => (items ?? [])
+    .map(item => `${item.quantity}× ${item.productName}${item.variantName ? ` (${item.variantName})` : ''}`)
+    .join(' | ');
   /** Tracking numbers typed in the order detail rows, keyed by order id. */
   public tracking = signal<Record<string, string>>({});
 
@@ -120,6 +141,15 @@ export class AdminMainComponent {
     return this.deliveryNames[method];
   }
 
+  public paymentName(method: PaymentMethod) {
+    return this.paymentNames[method];
+  }
+
+  /** The Items column is hidden in the grid but belongs in the exported file. */
+  public includeHiddenColumns(event: IgxExporterEvent) {
+    event.options.ignoreColumnsVisibility = true;
+  }
+
   public updateOrderStatus(order: ShopOrder, status: OrderStatus) {
     this.shopService.updateOrderStatus(order.id, { status, trackingNumber: this.tracking()[order.id] || order.trackingNumber || null })
       .subscribe(updated => this.replaceOrder(updated));
@@ -131,9 +161,13 @@ export class AdminMainComponent {
 
   /**
    * Paid orders can be refunded, and so can a cancelled order holding a completed payment: one that was paid after
-   * it expired, when its stock was no longer available.
+   * it expired, when its stock was no longer available. Cash on delivery was paid to the courier, not through Revolut,
+   * so it cannot be refunded from here.
    */
   public canRefund(order: ShopOrder) {
+    if (order.paymentMethod === PaymentMethod.CashOnDelivery) {
+      return false;
+    }
     switch (order.status) {
       case OrderStatus.Paid:
       case OrderStatus.Shipped:

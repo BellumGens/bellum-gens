@@ -79,10 +79,8 @@
       <igx-grid-toolbar>
         <igx-grid-toolbar-title i18n>Shop orders</igx-grid-toolbar-title>
         <igx-grid-toolbar-actions>
-          <a igxButton="flat" igxRipple [href]="ordersExportUrl" target="_blank" rel="noopener">
-            <igx-icon>download</igx-icon>
-            <span i18n>Export CSV</span>
-          </a>
+          <!-- Exports the loaded orders, including the hidden Items column, as Excel, CSV or PDF. -->
+          <igx-grid-toolbar-exporter filename="orders" (exportStarted)="includeHiddenColumns($event)"></igx-grid-toolbar-exporter>
           <button type="button" igxButton="flat" igxRipple (click)="loadOrders()">
             <igx-icon>refresh</igx-icon>
             <span i18n>Refresh</span>
@@ -94,7 +92,8 @@
       </igx-column>
       <igx-column field="orderDate" dataType="date" width="165px" [sortable]="true" i18n-header header="Order date">
       </igx-column>
-      <igx-column field="status" width="150px" [sortable]="true" i18n-header header="Status">
+      <!-- The formatters give the exported file the text the cell templates show. -->
+      <igx-column field="status" width="150px" [sortable]="true" [formatter]="formatStatus" i18n-header header="Status">
         <span *igxCell="let value" [class]="'order-status status-' + value">{{ statusName(value) }}</span>
       </igx-column>
       <igx-column field="total" dataType="currency" width="120px" [sortable]="true" i18n-header header="Total">
@@ -102,20 +101,24 @@
       </igx-column>
       <igx-column field="email" i18n-header header="Email">
       </igx-column>
-      <igx-column field="name" i18n-header header="Full name">
+      <igx-column field="name" [formatter]="formatName" i18n-header header="Full name">
         <span *igxCell="let cell = cell">
           {{ cell.row.data.firstName }} {{ cell.row.data.lastName }}
         </span>
       </igx-column>
       <igx-column field="phoneNumber" i18n-header header="Phone #">
       </igx-column>
-      <igx-column field="address" i18n-header header="Full address">
-        <span *igxCell="let cell = cell">
-          {{ cell.row.data.streetAddress }}, {{ cell.row.data.postalCode }} {{ cell.row.data.city }}
-        </span>
+      <igx-column field="address" [formatter]="formatAddress" i18n-header header="Full address">
+        <span *igxCell="let cell = cell">{{ formatAddress(null, cell.row.data) }}</span>
       </igx-column>
-      <igx-column field="deliveryMethod" width="140px" i18n-header header="Delivery">
+      <igx-column field="deliveryMethod" width="140px" [formatter]="formatDelivery" i18n-header header="Delivery">
         <span *igxCell="let value">{{ deliveryName(value) }}</span>
+      </igx-column>
+      <igx-column field="paymentMethod" width="160px" [formatter]="formatPayment" i18n-header header="Payment">
+        <span *igxCell="let value">{{ paymentName(value) }}</span>
+      </igx-column>
+      <!-- Hidden in the grid, where the detail row lists the items; exported as one line per order. -->
+      <igx-column field="items" [hidden]="true" [filterable]="false" [formatter]="formatItems" i18n-header header="Items">
       </igx-column>
       <igx-column field="promoCode" width="120px" i18n-header header="Promo code">
       </igx-column>
@@ -139,7 +142,7 @@
           <p class="order-note"><b i18n>Admin note:</b> {{ dataItem.adminNote }}</p>
         }
         <div class="order-actions">
-          @if (dataItem.status === OrderStatus.Paid) {
+          @if (dataItem.status === OrderStatus.Paid || dataItem.status === OrderStatus.Confirmed) {
             <igx-input-group type="border" class="tracking-input">
               <label igxLabel [for]="'tracking-' + dataItem.id" i18n>Tracking number</label>
               <input igxInput [id]="'tracking-' + dataItem.id" [name]="'tracking-' + dataItem.id" [ngModel]="tracking()[dataItem.id]" (ngModelChange)="setTracking(dataItem.id, $event)" />
@@ -159,10 +162,17 @@
               <span i18n>Mark delivered</span>
             </button>
           }
-          @if (dataItem.status === OrderStatus.AwaitingPayment) {
+          @if (dataItem.status === OrderStatus.AwaitingPayment || dataItem.status === OrderStatus.Confirmed) {
             <button type="button" igxButton="outlined" igxRipple (click)="updateOrderStatus(dataItem, OrderStatus.Cancelled)">
               <igx-icon>cancel</igx-icon>
               <span i18n>Cancel order</span>
+            </button>
+          }
+          @if (dataItem.status === OrderStatus.Shipped && dataItem.paymentMethod === PaymentMethod.CashOnDelivery) {
+            <!-- The customer refused the parcel: it comes back unpaid and its items return to stock. -->
+            <button type="button" igxButton="outlined" igxRipple (click)="updateOrderStatus(dataItem, OrderStatus.Cancelled)">
+              <igx-icon>assignment_return</igx-icon>
+              <span i18n>Mark returned</span>
             </button>
           }
           @if (canRefund(dataItem)) {

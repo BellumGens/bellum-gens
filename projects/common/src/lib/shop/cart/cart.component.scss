@@ -27,6 +27,7 @@
   grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
   gap: 32px;
   align-items: start;
+  min-height: calc(100% - 40px);
 
   @media (max-width: 900px) {
     grid-template-columns: 1fr;
@@ -146,14 +147,12 @@
   }
 }
 
-.promo-form {
-  display: flex;
-  gap: 8px;
-  align-items: flex-start;
+.delivery-method {
+  margin: 0;
+}
 
-  igx-input-group {
-    flex: 1;
-  }
+.promo-form {
+  display: block;
 }
 
 .totals {

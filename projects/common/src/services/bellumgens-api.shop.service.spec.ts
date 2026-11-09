@@ -3,7 +3,7 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { ApiShopService, orderProblems } from './bellumgens-api.shop.service';
 import { CommunicationService } from './communication.service';
-import { Brand, DeliveryMethod, OrderRequest, OrderStatus, Product, ProductType } from '../models/shop';
+import { Brand, DeliveryMethod, OrderRequest, OrderStatus, PaymentMethod, Product, ProductType } from '../models/shop';
 
 describe('ApiShopService', () => {
   let service: ApiShopService;
@@ -217,10 +217,6 @@ describe('ApiShopService', () => {
     expect(messages).toEqual(['Refund sent to the payment provider.']);
   });
 
-  it('links to the order export', () => {
-    expect(service.ordersExportUrl).toBe(`${service['_apiEndpoint']}/shopadmin/orders/export.csv`);
-  });
-
   it('quotes a cart', () => {
     service.quote({ lines: [{ productId: 'p1', quantity: 2 }], promoCode: 'SAVE10', deliveryMethod: DeliveryMethod.Courier }).subscribe();
 
@@ -242,7 +238,8 @@ describe('ApiShopService', () => {
       streetAddress: 'x',
       country: 'BG',
       language: 'bg',
-      acceptedTerms: true
+      acceptedTerms: true,
+      paymentMethod: PaymentMethod.Revolut
     };
 
     service.createOrder(order).subscribe();
