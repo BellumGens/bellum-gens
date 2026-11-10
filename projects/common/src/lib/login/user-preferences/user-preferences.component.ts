@@ -52,6 +52,7 @@ export class UserPreferencesComponent {
     this.authUser() ? this.authManager.tournamentRegistrations() ?? [] : []
   );
   public isTournamentAdmin = signal(false);
+  public isAdmin = signal(false);
   public regStates = [$localize`Pending`, $localize`Confirmed`, $localize`Banned`];
 
   public userDeleted = output<void>();
@@ -59,7 +60,10 @@ export class UserPreferencesComponent {
   constructor() {
     effect(() => {
       if (this.authUser()) {
-        untracked(() => this.authManager.getUserIsTournamentAdmin().subscribe(data => this.isTournamentAdmin.set(data)));
+        untracked(() => {
+          this.authManager.getUserIsTournamentAdmin().subscribe(data => this.isTournamentAdmin.set(data));
+          this.authManager.getUserIsAppAdmin().subscribe(data => this.isAdmin.set(data));
+        });
       }
     });
     this.authManager.loginProviders.subscribe(providers => this.providers.set(providers));
@@ -126,6 +130,14 @@ export class UserPreferencesComponent {
       this.router.navigate(['/admin/sc2']);
     } else {
       window.location.href = `${environment.ebleague}/admin/sc2`;
+    }
+  }
+
+  public navigateToAppAdmin() {
+    if (window.location.href.startsWith(environment.ebleague)) {
+      this.router.navigate(['/admin']);
+    } else {
+      window.location.href = `${environment.ebleague}/admin`;
     }
   }
 

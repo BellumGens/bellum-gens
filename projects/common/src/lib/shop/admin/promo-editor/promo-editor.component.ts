@@ -8,6 +8,7 @@ import { IgxCheckboxComponent } from '@infragistics/igniteui-angular/checkbox';
 import { IgxButtonDirective, IgxIconButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { IgxChipComponent } from '@infragistics/igniteui-angular/chips';
+import { IGX_LIST_DIRECTIVES } from '@infragistics/igniteui-angular/list';
 import { ApiShopService } from '../../../../services/bellumgens-api.shop.service';
 import { ConfirmComponent } from '../../../confirm/confirm.component';
 import { BRAND_NAMES, Brand, Promo } from '../../../../models/shop';
@@ -34,6 +35,7 @@ const endOfDay = (date: Date) => {
     IGX_INPUT_GROUP_DIRECTIVES,
     IGX_SELECT_DIRECTIVES,
     IGX_DATE_PICKER_DIRECTIVES,
+    IGX_LIST_DIRECTIVES,
     IgxCheckboxComponent,
     IgxButtonDirective,
     IgxIconButtonDirective,

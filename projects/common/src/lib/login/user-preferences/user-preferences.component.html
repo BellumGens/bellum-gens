@@ -49,6 +49,14 @@
         </div>
       </igx-list-item>
     }
+    @if (isAdmin()) {
+      <igx-list-item>
+        <button igxButton="flat" igxRipple class="submit-button" (click)="navigateToAppAdmin()">
+          <igx-icon>admin_panel_settings</igx-icon>
+          <span i18n>App Admin</span>
+        </button>
+      </igx-list-item>
+    }
     @if (isTournamentAdmin()) {
       <igx-list-item>
         <button igxButton="flat" igxRipple class="submit-button" (click)="navigateToEventAdmin()">
