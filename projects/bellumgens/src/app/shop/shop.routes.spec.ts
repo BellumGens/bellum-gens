@@ -5,7 +5,7 @@ import {
   ProductDetailComponent,
   ProductListComponent,
   TermsComponent
-} from '../../../../common/src/public_api';
+} from 'bellum-gens-common';
 import { ShopComponent } from './shop.component';
 import { routes } from './shop.routes';
 

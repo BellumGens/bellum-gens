@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { UserNotification } from '../../../../common/src/public_api';
+import { UserNotification } from 'bellum-gens-common/models';
 
 @Pipe({
     name: 'sortNotifications'

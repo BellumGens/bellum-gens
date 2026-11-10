@@ -3,8 +3,8 @@ import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/com
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductEditorComponent } from './product-editor.component';
-import { ApiShopService } from '../../../../services/bellumgens-api.shop.service';
-import { Brand, JerseyCut, JerseySize, Product, ProductType } from '../../../../models/shop';
+import { ApiShopService } from 'bellum-gens-common/services';
+import { Brand, JerseyCut, JerseySize, Product, ProductType } from 'bellum-gens-common/models';
 
 const EMPTY_GUID = '00000000-0000-0000-0000-000000000000';
 
@@ -71,16 +71,42 @@ describe('ProductEditorComponent', () => {
     fixture.detectChanges();
   };
 
+  const listItems = () => Array.from<HTMLElement>(fixture.nativeElement.querySelectorAll('igx-list-item'));
+
   it('lists the catalog it loads on creation', () => {
     load();
 
     expect(component.loading()).toBe(false);
     expect(component.products().length).toBe(2);
     // One item per product, followed by the item that starts a new product
-    const items = Array.from<HTMLElement>(fixture.nativeElement.querySelectorAll('igx-list-item'));
+    const items = listItems();
     expect(items.length).toBe(3);
     expect(items[0].textContent).toContain('Rain Umbrella');
     expect(items[2].textContent).toContain('New product');
+  });
+
+  it('opens a product from its list item and marks it as selected', () => {
+    load();
+
+    listItems()[1].click();
+    fixture.detectChanges();
+
+    expect(component.selectedId()).toBe('jersey');
+    expect(component.form.controls.name.value).toBe('EBL Jersey');
+    expect(listItems().map(i => i.classList.contains('igx-list-item--selected'))).toEqual([false, true, false]);
+  });
+
+  it('starts a new product from the last list item', () => {
+    load();
+    component.edit(jersey());
+    fixture.detectChanges();
+
+    listItems()[2].click();
+    fixture.detectChanges();
+
+    expect(component.isNew()).toBe(true);
+    expect(component.form.controls.name.value).toBe('');
+    expect(listItems().some(i => i.classList.contains('igx-list-item--selected'))).toBe(false);
   });
 
   it('stops loading when the catalog cannot be fetched', () => {

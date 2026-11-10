@@ -1,10 +1,14 @@
 import { Component, Signal, computed, effect, inject, linkedSignal, output, signal, untracked } from '@angular/core';
-import { UserPreferences, ApplicationUser } from '../../../models/applicationuser';
-import { LoginService } from '../../../services/login.service';
-import { LoginProvider } from '../../../models/login-provider';
-import { LOGIN_ASSETS } from '../../../models/misc';
-import { TournamentApplication, TournamentApplicationState } from '../../../models/tournament';
-import { ApiTournamentsService } from '../../../services/bellumgens-api.tournaments.service';
+import {
+  UserPreferences,
+  ApplicationUser,
+  LoginProvider,
+  LOGIN_ASSETS,
+  TournamentApplication,
+  TournamentApplicationState
+} from 'bellum-gens-common/models';
+import { LoginService, ApiTournamentsService } from 'bellum-gens-common/services';
+import { environment } from 'bellum-gens-common/environments';
 import { Router } from '@angular/router';
 import { ConfirmComponent } from '../../confirm/confirm.component';
 import { FormsModule } from '@angular/forms';
@@ -12,7 +16,6 @@ import { IgxButtonDirective, IgxDividerComponent, IgxIconButtonDirective, IgxRip
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { IgxSwitchComponent } from '@infragistics/igniteui-angular/switch';
 import { IGX_LIST_DIRECTIVES } from '@infragistics/igniteui-angular/list';
-import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'bg-user-preferences',

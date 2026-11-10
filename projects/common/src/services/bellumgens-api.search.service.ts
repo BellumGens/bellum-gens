@@ -1,13 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, WritableSignal, inject, signal } from '@angular/core';
-import { CSGOTeam } from '../models/csgoteam';
-import { SearchResult } from '../models/searchresult';
-import { CSGOStrategy } from '../models/csgostrategy';
+import { CSGOTeam, SearchResult, CSGOStrategy, ApplicationUser } from 'bellum-gens-common/models';
+import { environment } from 'bellum-gens-common/environments';
 import { throwError } from 'rxjs';
-import { environment } from '../environments/environment';
 import { catchError, map } from 'rxjs/operators';
 import { CommunicationService } from './communication.service';
-import { ApplicationUser } from '../models/applicationuser';
 
 @Injectable({
   providedIn: 'root'

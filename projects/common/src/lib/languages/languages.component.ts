@@ -2,7 +2,7 @@ import { Component, LOCALE_ID, inject } from '@angular/core';
 import { IGX_DROP_DOWN_DIRECTIVES, ISelectionEventArgs } from '@infragistics/igniteui-angular/drop-down';
 import { IgxButtonDirective, IgxRippleDirective, IgxToggleActionDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
-import { GLOBAL_OVERLAY_SETTINGS } from '../../models/misc';
+import { GLOBAL_OVERLAY_SETTINGS } from 'bellum-gens-common/models';
 
 @Component({
   selector: 'bg-languages',

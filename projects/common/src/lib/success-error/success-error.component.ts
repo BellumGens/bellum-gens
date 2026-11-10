@@ -3,7 +3,7 @@ import { isPlatformBrowser } from '@angular/common';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { IgxSnackbarComponent } from '@infragistics/igniteui-angular/snackbar';
-import { CommunicationService } from '../../services/communication.service';
+import { CommunicationService } from 'bellum-gens-common/services';
 
 @Component({
     selector: 'bg-success-error',

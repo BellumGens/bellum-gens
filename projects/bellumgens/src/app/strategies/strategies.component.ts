@@ -6,18 +6,25 @@ import { FormsModule } from '@angular/forms';
 import { DatePipe, NgOptimizedImage } from '@angular/common';
 import {
   BellumgensApiService,
-  CSGOStrategy, VoteDirection,
-  CSGOTeam,
   LoginService,
-  ApplicationUser,
-  GLOBAL_OVERLAY_SETTINGS, StratOrder, StratOrderBy,
   SocialMediaStrategyService,
   ApiSearchService,
   ApiStrategiesService,
-  CommunicationService,
+  CommunicationService
+} from 'bellum-gens-common/services';
+import {
+  CSGOStrategy,
+  VoteDirection,
+  CSGOTeam,
+  ApplicationUser,
+  GLOBAL_OVERLAY_SETTINGS,
+  StratOrder,
+  StratOrderBy,
   CSGOActiveDutyMap,
   ACTIVE_DUTY
-} from '../../../../common/src/public_api';
+} from 'bellum-gens-common/models';
+import { ActiveDutyMapsPipe } from 'bellum-gens-common/pipes';
+import { ConfirmComponent, LoadingComponent } from 'bellum-gens-common';
 import { IChipSelectEventArgs, IGX_CHIPS_DIRECTIVES } from '@infragistics/igniteui-angular/chips';
 import { IgxButtonDirective, IgxIconButtonDirective, IgxRippleDirective, IgxToggleActionDirective } from '@infragistics/igniteui-angular/directives';
 import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
@@ -35,10 +42,7 @@ import { HasVotedPipe } from '../pipes/has-voted.pipe';
 import { IsVideoPipe } from '../pipes/is-video.pipe';
 import { SafeVideoLinkPipe } from '../pipes/safe-video-link.pipe';
 import { TruncateTextPipe } from '../pipes/truncate-text.pipe';
-import { ActiveDutyMapsPipe } from '../../../../common/src/lib/pipes/active-duty-maps.pipe';
-import { ConfirmComponent } from '../../../../common/src/lib/confirm/confirm.component';
 import { NewStrategyComponent } from './new-strategy/new-strategy.component';
-import { LoadingComponent } from '../../../../common/src/lib/loading/loading.component';
 import { voteLabel } from './vote-label';
 
 @Component({

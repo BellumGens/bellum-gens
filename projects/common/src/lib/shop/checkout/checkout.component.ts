@@ -12,13 +12,18 @@ import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { IgxCheckboxComponent } from '@infragistics/igniteui-angular/checkbox';
 import { IgxRadioComponent, IgxRadioGroupDirective } from '@infragistics/igniteui-angular/radio';
 import { IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular/progressbar';
-import { ApiShopService, orderProblems } from '../../../services/bellumgens-api.shop.service';
-import { CartService, fingerprint } from '../../../services/cart.service';
-import { LoginService } from '../../../services/login.service';
-import { EMAIL_REGEX } from '../../../models/misc';
+import { ApiShopService, orderProblems, CartService, fingerprint, LoginService } from 'bellum-gens-common/services';
 import {
-  DELIVERY_METHOD_NAMES, DeliveryMethod, OrderRequest, OrderStatus, PAYMENT_METHOD_NAMES, POSTAL_CODE_PATTERN, PaymentMethod, SavedAddress
-} from '../../../models/shop';
+  EMAIL_REGEX,
+  DELIVERY_METHOD_NAMES,
+  DeliveryMethod,
+  OrderRequest,
+  OrderStatus,
+  PAYMENT_METHOD_NAMES,
+  POSTAL_CODE_PATTERN,
+  PaymentMethod,
+  SavedAddress
+} from 'bellum-gens-common/models';
 
 /** The form fields a saved address fills in. */
 const ADDRESS_FIELDS = ['firstName', 'lastName', 'phoneNumber', 'city', 'streetAddress', 'postalCode'] as const;

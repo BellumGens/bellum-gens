@@ -1,4 +1,4 @@
-import { ACTIVE_DUTY, CSGOMap } from '../../public_api';
+import { ACTIVE_DUTY, CSGOMap } from 'bellum-gens-common/models';
 import { CSGOMapimagePipe } from './csgomapimage.pipe';
 
 

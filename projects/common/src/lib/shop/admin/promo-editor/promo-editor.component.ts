@@ -9,9 +9,9 @@ import { IgxButtonDirective, IgxIconButtonDirective, IgxRippleDirective } from '
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { IgxChipComponent } from '@infragistics/igniteui-angular/chips';
 import { IGX_LIST_DIRECTIVES } from '@infragistics/igniteui-angular/list';
-import { ApiShopService } from '../../../../services/bellumgens-api.shop.service';
+import { ApiShopService } from 'bellum-gens-common/services';
+import { BRAND_NAMES, Brand, Promo } from 'bellum-gens-common/models';
 import { ConfirmComponent } from '../../../confirm/confirm.component';
-import { BRAND_NAMES, Brand, Promo } from '../../../../models/shop';
 
 const ANY_BRAND = -1;
 

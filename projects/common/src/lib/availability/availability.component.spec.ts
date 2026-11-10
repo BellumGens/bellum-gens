@@ -5,7 +5,7 @@ import { IChipClickEventArgs, IgxChipComponent } from '@infragistics/igniteui-an
 import { IgxTimePickerComponent } from '@infragistics/igniteui-angular/time-picker';
 
 import { AvailabilityComponent } from './availability.component';
-import { Availability, DayOfWeek } from '../../models/playeravailability';
+import { Availability, DayOfWeek } from 'bellum-gens-common/models';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('AvailabilityComponent', () => {

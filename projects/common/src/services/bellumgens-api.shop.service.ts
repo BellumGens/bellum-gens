@@ -2,8 +2,7 @@ import { Injectable, Signal, inject, signal, untracked } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import { environment } from '../environments/environment';
-import { CommunicationService } from './communication.service';
+import { environment } from 'bellum-gens-common/environments';
 import {
   AddressRequest,
   Brand,
@@ -21,7 +20,8 @@ import {
   SavedAddress,
   ShopOrder,
   WebhookRegistration
-} from '../models/shop';
+} from 'bellum-gens-common/models';
+import { CommunicationService } from './communication.service';
 
 @Injectable({
   providedIn: 'root'

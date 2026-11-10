@@ -9,8 +9,8 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { QueryParsedPipe } from 'projects/bellumgens/src/app/pipes/query-parsed.pipe';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
-import { CSGOTeam } from '../../../../../../common/src/public_api';
-import { environment } from '../../../../../../common/src/environments/environment';
+import { CSGOTeam } from 'bellum-gens-common/models';
+import { environment } from 'bellum-gens-common/environments';
 
 const team = (teamId: string, teamName: string, description: string): CSGOTeam => ({
   teamId,

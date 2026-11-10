@@ -4,8 +4,8 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { provideRouter } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CartComponent } from './cart.component';
-import { CartService } from '../../../services/cart.service';
-import { Brand, DeliveryMethod, Product, ProductType, Quote } from '../../../models/shop';
+import { CartService } from 'bellum-gens-common/services';
+import { Brand, DeliveryMethod, Product, ProductType, Quote } from 'bellum-gens-common/models';
 
 const umbrella = (overrides: Partial<Product> = {}): Product => ({
   id: 'p1',

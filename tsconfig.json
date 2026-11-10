@@ -16,6 +16,21 @@
       "bellum-gens-common": [
         "./projects/common/src/public_api.ts"
       ],
+      "bellum-gens-common/environments": [
+        "./projects/common/src/environments/index.ts"
+      ],
+      "bellum-gens-common/models": [
+        "./projects/common/src/models/index.ts"
+      ],
+      "bellum-gens-common/services": [
+        "./projects/common/src/services/index.ts"
+      ],
+      "bellum-gens-common/guards": [
+        "./projects/common/src/guards/index.ts"
+      ],
+      "bellum-gens-common/pipes": [
+        "./projects/common/src/lib/pipes/index.ts"
+      ],
       "projects/*": [
         "./projects/*"
       ]

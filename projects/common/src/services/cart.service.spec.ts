@@ -3,7 +3,7 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { CartService, fingerprint } from './cart.service';
 import { ApiShopService } from './bellumgens-api.shop.service';
-import { AVAILABLE_DELIVERY_METHODS, Brand, DeliveryMethod, Product, ProductType, ProductVariant, Quote } from '../models/shop';
+import { AVAILABLE_DELIVERY_METHODS, Brand, DeliveryMethod, Product, ProductType, ProductVariant, Quote } from 'bellum-gens-common/models';
 
 const product = (overrides: Partial<Product> = {}): Product => ({
   id: 'p1',

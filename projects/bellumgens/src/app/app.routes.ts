@@ -3,7 +3,7 @@ import { HomeComponent } from './home/home.component';
 import { TeamResultsComponent } from './search/search-results/team-results/team-results.component';
 import { PlayerResultsComponent } from './search/search-results/player-results/player-results.component';
 import { EmailconfirmComponent } from './emailconfirm/emailconfirm.component';
-import { RegistrationComponent, UnauthorizedComponent } from '../../../common/src/public_api';
+import { RegistrationComponent, UnauthorizedComponent } from 'bellum-gens-common';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },

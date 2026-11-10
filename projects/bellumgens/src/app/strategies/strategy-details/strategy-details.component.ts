@@ -9,18 +9,16 @@ import {
   VoteDirection,
   NEW_EMPTY_COMMENT,
   StrategyComment,
-  LoginService,
   ApplicationUser,
-  GLOBAL_OVERLAY_SETTINGS,
-  SocialMediaStrategyService,
-  ApiStrategiesService
-} from '../../../../../common/src/public_api';
-import { environment } from '../../../../../common/src/environments/environment.prod';
+  GLOBAL_OVERLAY_SETTINGS
+} from 'bellum-gens-common/models';
+import { LoginService, SocialMediaStrategyService, ApiStrategiesService } from 'bellum-gens-common/services';
+import { prodEnvironment } from 'bellum-gens-common/environments';
+import { ConfirmComponent, LoadingComponent } from 'bellum-gens-common';
 import { VotesPipe } from '../../pipes/votes.pipe';
 import { HasVotedPipe } from '../../pipes/has-voted.pipe';
 import { IsVideoPipe } from '../../pipes/is-video.pipe';
 import { SafeVideoLinkPipe } from '../../pipes/safe-video-link.pipe';
-import { ConfirmComponent } from '../../../../../common/src/lib/confirm/confirm.component';
 import { FormsModule } from '@angular/forms';
 import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
 import { IgxButtonDirective, IgxDividerComponent, IgxFlexDirective, IgxIconButtonDirective, IgxLayoutDirective, IgxRippleDirective, IgxToggleActionDirective } from '@infragistics/igniteui-angular/directives';
@@ -29,7 +27,6 @@ import { IGX_LIST_DIRECTIVES } from '@infragistics/igniteui-angular/list';
 import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
 import { IGX_DROP_DOWN_DIRECTIVES, ISelectionEventArgs } from '@infragistics/igniteui-angular/drop-down';
 import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
-import { LoadingComponent } from '../../../../../common/src/lib/loading/loading.component';
 import { voteLabel } from '../vote-label';
 
 @Component({
@@ -100,8 +97,8 @@ export class StrategyDetailsComponent extends BaseDirective {
       map(params => params['stratid'] as string),
       filter(stratid => !!stratid),
       tap(stratid => {
-        this.meta.updateTag({ name: 'og:image', content: `${environment.rootApiEndpoint}/Content/Strats/${stratid}.png` });
-        this.meta.updateTag({ name: 'twitter:image', content: `${environment.rootApiEndpoint}/Content/Strats/${stratid}.png` });
+        this.meta.updateTag({ name: 'og:image', content: `${prodEnvironment.rootApiEndpoint}/Content/Strats/${stratid}.png` });
+        this.meta.updateTag({ name: 'twitter:image', content: `${prodEnvironment.rootApiEndpoint}/Content/Strats/${stratid}.png` });
       }),
       switchMap(stratid => toObservable(this.apiService.getStrategy(stratid), { injector: this.injector })),
       filter((strat): strat is CSGOStrategy => !!strat),

@@ -4,14 +4,17 @@ import {
   TournamentParticipant,
   EMPTY_NEW_GROUP,
   Tournament,
-  ApiTournamentsService,
-  TournamentSC2Match, TournamentMatchMap,
-  SC2_MAPS, SC2LadderMap,
-  CommunicationService,
+  TournamentSC2Match,
+  TournamentMatchMap,
+  SC2_MAPS,
+  SC2LadderMap,
   TournamentApplication,
   TournamentApplicationState
-} from '../../../../../common/src/public_api';
-import { environment } from '../../../../../common/src/environments/environment';
+} from 'bellum-gens-common/models';
+import { ApiTournamentsService, CommunicationService } from 'bellum-gens-common/services';
+import { environment } from 'bellum-gens-common/environments';
+import { Sc2MapNamePipe } from 'bellum-gens-common/pipes';
+import { ConfirmComponent } from 'bellum-gens-common';
 import { IDropDroppedEventArgs, IGX_DRAG_DROP_DIRECTIVES, IgxButtonDirective, IgxIconButtonDirective, IgxRippleDirective, IgxTextSelectionDirective } from '@infragistics/igniteui-angular/directives';
 import { IGridEditEventArgs, IRowDataEventArgs, RowType } from '@infragistics/igniteui-angular/grids/core';
 import { IGX_GRID_DIRECTIVES, IgxGridComponent } from '@infragistics/igniteui-angular/grids/grid';
@@ -32,8 +35,6 @@ import { DefaultSortingStrategy, IGroupingExpression, SortingDirection } from '@
 import { IGX_RADIO_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/radio';
 import { GetPlayersPipe } from '../../pipes/get-players.pipe';
 import { NotInGroupPipe } from '../../pipes/not-in-group.pipe';
-import { Sc2MapNamePipe } from '../../../../../common/src/lib/pipes/sc2-map-name.pipe';
-import { ConfirmComponent } from '../../../../../common/src/lib/confirm/confirm.component';
 import { DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 

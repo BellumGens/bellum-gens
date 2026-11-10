@@ -1,7 +1,9 @@
 import { Component, inject, PLATFORM_ID, signal } from '@angular/core';
 import { DecimalPipe, isPlatformBrowser } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { ALL_ROLES, ApiSearchService } from '../../../../../../common/src/public_api';
+import { ALL_ROLES } from 'bellum-gens-common/models';
+import { ApiSearchService } from 'bellum-gens-common/services';
+import { LoadingComponent } from 'bellum-gens-common';
 import { BaseDirective } from '../../../base/base.component';
 import { IgxIconComponent, IgxIconService } from '@infragistics/igniteui-angular/icon';
 import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
@@ -9,7 +11,6 @@ import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
 import { IGX_CHIPS_DIRECTIVES } from '@infragistics/igniteui-angular/chips';
 import { IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular/progressbar';
 import { QueryParsedPipe } from '../../../pipes/query-parsed.pipe';
-import { LoadingComponent } from '../../../../../../common/src/lib/loading/loading.component';
 
 @Component({
   selector: 'app-player-results',

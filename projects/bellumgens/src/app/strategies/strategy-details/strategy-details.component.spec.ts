@@ -10,21 +10,19 @@ import { By } from '@angular/platform-browser';
 import { PLATFORM_ID, Provider, WritableSignal } from '@angular/core';
 import { BehaviorSubject, config as rxjsConfig } from 'rxjs';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
+import { ApiStrategiesService, LoginService, SocialMediaStrategyService } from 'bellum-gens-common/services';
 import {
-  ApiStrategiesService,
   ApplicationUser,
   CSGOMap,
   CSGOStrategy,
   GLOBAL_OVERLAY_SETTINGS,
-  LoginService,
   NEW_EMPTY_COMMENT,
   Side,
-  SocialMediaStrategyService,
   StrategyComment,
   VoteDirection
-} from '../../../../../common/src/public_api';
-import { ConfirmComponent } from '../../../../../common/src/lib/confirm/confirm.component';
-import { environment } from '../../../../../common/src/environments/environment.prod';
+} from 'bellum-gens-common/models';
+import { ConfirmComponent } from 'bellum-gens-common';
+import { prodEnvironment } from 'bellum-gens-common/environments';
 
 const comment = (id: string, overrides: Partial<StrategyComment> = {}): StrategyComment => ({
   id,
@@ -168,7 +166,7 @@ describe('StrategyDetailsComponent', () => {
 
       await loadStrategy(strategy({ lastUpdated: new Date(2024, 0, 15) }));
 
-      const image = `${environment.rootApiEndpoint}/Content/Strats/strat-1.png`;
+      const image = `${prodEnvironment.rootApiEndpoint}/Content/Strats/strat-1.png`;
       expect(meta.updateTag).toHaveBeenCalledWith({ name: 'og:image', content: image });
       expect(meta.updateTag).toHaveBeenCalledWith({ name: 'twitter:image', content: image });
       expect(component.strat()!.id).toBe('strat-1');

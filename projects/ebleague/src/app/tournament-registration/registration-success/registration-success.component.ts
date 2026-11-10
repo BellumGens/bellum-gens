@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import { TournamentApplication } from '../../../../../common/src/public_api';
+import { TournamentApplication } from 'bellum-gens-common/models';
 
 @Component({
   selector: 'app-registration-success',

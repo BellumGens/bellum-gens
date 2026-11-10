@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { UserNotification, NotificationState } from '../../../../common/src/public_api';
+import { UserNotification, NotificationState } from 'bellum-gens-common/models';
 
 @Pipe({
     name: 'unreadNotifications'

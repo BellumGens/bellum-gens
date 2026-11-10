@@ -1,4 +1,4 @@
-import { DayOfWeek } from '../../public_api';
+import { DayOfWeek } from 'bellum-gens-common/models';
 import { WeekdayPipe } from './weekday.pipe';
 
 

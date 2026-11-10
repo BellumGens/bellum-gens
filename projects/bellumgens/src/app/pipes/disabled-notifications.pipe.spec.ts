@@ -1,5 +1,5 @@
 import { DisabledNotificationsPipe } from './disabled-notifications.pipe';
-import { NotificationState } from '../../../../common/src/public_api';
+import { NotificationState } from 'bellum-gens-common/models';
 
 describe('DisabledNotificationsPipe', () => {
   const pipe = new DisabledNotificationsPipe();

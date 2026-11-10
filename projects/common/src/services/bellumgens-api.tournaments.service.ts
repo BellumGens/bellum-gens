@@ -2,17 +2,21 @@ import { Injectable, Signal, WritableSignal, inject, signal, untracked } from '@
 import { HttpClient } from '@angular/common/http';
 import { CommunicationService } from './communication.service';
 import { Observable, throwError } from 'rxjs';
-import { environment } from '../environments/environment';
-import { map, catchError, finalize, tap } from 'rxjs/operators';
-import { TournamentApplication,
+import { environment } from 'bellum-gens-common/environments';
+import {
+  TournamentApplication,
   RegistrationsCount,
   Tournament,
   TournamentCSGOGroup,
   TournamentGroup,
   TournamentSC2Group,
-  TournamentParticipant
- } from '../models/tournament';
-import { TournamentCSGOMatch, TournamentSC2Match, TournamentCSGOMatchMap, TournamentSC2MatchMap } from '../models/tournament-schedule';
+  TournamentParticipant,
+  TournamentCSGOMatch,
+  TournamentSC2Match,
+  TournamentCSGOMatchMap,
+  TournamentSC2MatchMap
+} from 'bellum-gens-common/models';
+import { map, catchError, finalize, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'

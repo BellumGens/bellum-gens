@@ -1,13 +1,14 @@
 import { Component, computed, inject, PLATFORM_ID } from '@angular/core';
 import { DecimalPipe, isPlatformBrowser } from '@angular/common';
-import { SearchResult, ApiSearchService } from '../../../../../common/src/public_api';
+import { SearchResult } from 'bellum-gens-common/models';
+import { ApiSearchService } from 'bellum-gens-common/services';
+import { CountrySVGPipe } from 'bellum-gens-common/pipes';
 import { IgxIconComponent, IgxIconService } from '@infragistics/igniteui-angular/icon';
 import { IGX_LIST_DIRECTIVES } from '@infragistics/igniteui-angular/list';
 import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
 import { IgxButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular/progressbar';
 import { ReduceQuickSearchResultPipe } from '../../pipes/reduce-quick-search-result.pipe';
-import { CountrySVGPipe } from '../../../../../common/src/lib/pipes/country-svg.pipe';
 import { RouterLink } from '@angular/router';
 
 const EMPTY_SEARCH_RESULT: SearchResult = { steamUser: null, players: [], teams: [], strategies: [] };

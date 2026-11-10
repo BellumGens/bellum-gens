@@ -6,7 +6,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { PlayerComponent } from './player.component';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
-import { BellumgensApiService } from 'bellum-gens-common';
+import { BellumgensApiService } from 'bellum-gens-common/services';
 import { signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 

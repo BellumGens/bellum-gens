@@ -4,7 +4,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { TournamentsMainComponent } from './tournaments-main.component';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { provideRouter, Router, UrlTree } from '@angular/router';
-import { ApiTournamentsService, Tournament } from 'projects/common/src/public_api';
+import { ApiTournamentsService } from 'bellum-gens-common/services';
+import { Tournament } from 'bellum-gens-common/models';
 
 describe('TournamentsMainComponent', () => {
   let component: TournamentsMainComponent;

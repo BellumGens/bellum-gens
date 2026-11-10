@@ -5,11 +5,17 @@ import { Router, provideRouter } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { CheckoutComponent } from './checkout.component';
-import { CartService } from '../../../services/cart.service';
-import { ApiShopService } from '../../../services/bellumgens-api.shop.service';
-import { LoginService } from '../../../services/login.service';
-import { ApplicationUser } from '../../../models/applicationuser';
-import { Brand, DeliveryMethod, PaymentMethod, Product, ProductType, Quote, SavedAddress } from '../../../models/shop';
+import { CartService, ApiShopService, LoginService } from 'bellum-gens-common/services';
+import {
+  ApplicationUser,
+  Brand,
+  DeliveryMethod,
+  PaymentMethod,
+  Product,
+  ProductType,
+  Quote,
+  SavedAddress
+} from 'bellum-gens-common/models';
 
 const umbrella: Product = {
   id: 'p1',

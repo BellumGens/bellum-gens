@@ -6,13 +6,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { By } from '@angular/platform-browser';
-import {
-  ApplicationUser,
-  CSGOTeam,
-  CommunicationService,
-  NotificationState,
-  TeamApplication
-} from '../../../../../common/src/public_api';
+import { ApplicationUser, CSGOTeam, NotificationState, TeamApplication } from 'bellum-gens-common/models';
+import { CommunicationService } from 'bellum-gens-common/services';
 
 const USER = { id: 'user-1', steamId: 'steam-1', username: 'Applicant' } as ApplicationUser;
 const TEAM = { teamId: 'team-1', teamName: 'Test Team', customUrl: 'test-team', visible: true } as CSGOTeam;

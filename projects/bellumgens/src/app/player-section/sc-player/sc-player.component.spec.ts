@@ -11,7 +11,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { of, Subject } from 'rxjs';
 
 import { ScPlayerComponent } from './sc-player.component';
-import { ApplicationUser, BellumgensApiService, SC2Race, Tournament } from '../../../../../common/src/public_api';
+import { ApplicationUser, SC2Race, Tournament } from 'bellum-gens-common/models';
+import { BellumgensApiService } from 'bellum-gens-common/services';
 
 const makePlayer = (overrides: Partial<ApplicationUser> = {}): ApplicationUser => ({
   id: 'player-1',

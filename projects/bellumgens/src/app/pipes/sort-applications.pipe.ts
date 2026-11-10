@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { TeamApplication } from '../../../../common/src/public_api';
+import { TeamApplication } from 'bellum-gens-common/models';
 
 @Pipe({
     name: 'sortApplications'

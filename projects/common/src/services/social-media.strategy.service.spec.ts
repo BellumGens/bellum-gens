@@ -1,7 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { SocialMediaStrategyService } from './social-media.strategy.service';
-import { CSGOStrategy, Side } from '../models/csgostrategy';
-import { CSGOMap } from '../public_api';
+import { CSGOStrategy, Side, CSGOMap } from 'bellum-gens-common/models';
 
 
 describe('SocialMediaStrategyService', () => {

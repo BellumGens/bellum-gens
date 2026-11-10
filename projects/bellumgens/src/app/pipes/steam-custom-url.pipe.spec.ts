@@ -1,5 +1,5 @@
 import { SteamCustomUrlPipe } from './steam-custom-url.pipe';
-import { SteamUser } from '../../../../common/src/public_api';
+import { SteamUser } from 'bellum-gens-common/models';
 
 describe('SteamCustomUrlPipe', () => {
   const pipe = new SteamCustomUrlPipe();

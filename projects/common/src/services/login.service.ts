@@ -1,18 +1,24 @@
 import { Injectable, Signal, inject, signal, untracked } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { throwError, Subject } from 'rxjs';
-import { LoginProvider } from '../models/login-provider';
-import { Promo } from '../models/shop';
-import { ApplicationUser, UserPreferences } from '../models/applicationuser';
+import {
+  LoginProvider,
+  Promo,
+  ApplicationUser,
+  UserPreferences,
+  NotificationActions,
+  PushNotificationWrapper,
+  UserNotification,
+  UserRegistration,
+  UserLogin,
+  TournamentApplication,
+  CSGOTeam
+} from 'bellum-gens-common/models';
+import { environment } from 'bellum-gens-common/environments';
 import { map, catchError } from 'rxjs/operators';
-import { environment } from '../environments/environment';
 import { SwPush } from '@angular/service-worker';
-import { NotificationActions, PushNotificationWrapper, UserNotification } from '../models/usernotifications';
 import { Router } from '@angular/router';
 import { CommunicationService } from './communication.service';
-import { UserRegistration, UserLogin } from '../models/userlogin';
-import { TournamentApplication } from '../models/tournament';
-import { CSGOTeam } from '../models/csgoteam';
 
 @Injectable({
   providedIn: 'root'

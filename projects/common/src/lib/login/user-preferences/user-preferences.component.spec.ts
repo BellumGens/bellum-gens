@@ -5,8 +5,8 @@ import { provideRouter } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { Router } from '@angular/router';
-import { ApplicationUser, CommunicationService, LoginProvider, LoginService, TournamentApplication } from '../../../public_api';
-import { Game, TournamentApplicationState } from '../../../models/tournament';
+import { ApplicationUser, LoginProvider, TournamentApplication, Game, TournamentApplicationState } from 'bellum-gens-common/models';
+import { CommunicationService, LoginService } from 'bellum-gens-common/services';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { By } from '@angular/platform-browser';
 import { IgxSwitchComponent } from '@infragistics/igniteui-angular/switch';
@@ -275,6 +275,21 @@ describe('UserPreferencesComponent', () => {
       fixture.detectChanges();
 
       const admin = buttons().find(b => b.textContent.includes('SC2 Tournament Admin'));
+      expect(admin).toBeTruthy();
+      vi.spyOn(router, 'navigate');
+      // Outside the league site the admin is opened there instead of navigating within this app
+      admin!.click();
+      expect(router.navigate).not.toHaveBeenCalled();
+    });
+
+    it('should offer the app administration to app admins only', () => {
+      fixture.detectChanges();
+      expect(buttons().some(b => b.textContent.includes('App Admin'))).toBe(false);
+
+      httpMock.expectOne(`${authService['_apiBase']}/admin`).flush(true);
+      fixture.detectChanges();
+
+      const admin = buttons().find(b => b.textContent.includes('App Admin'));
       expect(admin).toBeTruthy();
       vi.spyOn(router, 'navigate');
       // Outside the league site the admin is opened there instead of navigating within this app

@@ -6,8 +6,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { Router } from '@angular/router';
 
 import { RegistrationComponent } from './registration.component';
-import { LoginService } from '../../services/login.service';
-import { CommunicationService } from '../../public_api';
+import { LoginService, CommunicationService } from 'bellum-gens-common/services';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 describe('RegistrationComponent', () => {

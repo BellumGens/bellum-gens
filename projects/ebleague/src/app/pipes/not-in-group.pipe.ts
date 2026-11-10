@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { TournamentParticipant } from '../../../../common/src/public_api';
+import { TournamentParticipant } from 'bellum-gens-common/models';
 
 @Pipe({
     name: 'notInGroup'

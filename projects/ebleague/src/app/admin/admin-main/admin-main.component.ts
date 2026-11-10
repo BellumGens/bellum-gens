@@ -1,9 +1,8 @@
 import { Component, inject, linkedSignal, signal } from '@angular/core';
+import { LoginService, ApiTournamentsService, ApiShopService } from 'bellum-gens-common/services';
 import {
-  LoginService,
-  ApiTournamentsService,
-  Tournament, EMPTY_NEW_TOURNAMENT,
-  ApiShopService,
+  Tournament,
+  EMPTY_NEW_TOURNAMENT,
   TournamentApplicationState,
   ShopOrder,
   OrderStatus,
@@ -12,11 +11,9 @@ import {
   DELIVERY_METHOD_NAMES,
   DeliveryMethod,
   PAYMENT_METHOD_NAMES,
-  PaymentMethod,
-  ProductEditorComponent,
-  PromoEditorComponent,
-  ConfirmComponent
-} from '../../../../../common/src/public_api';
+  PaymentMethod
+} from 'bellum-gens-common/models';
+import { ProductEditorComponent, PromoEditorComponent, ConfirmComponent } from 'bellum-gens-common';
 import { IGridEditEventArgs, IgxExporterEvent, RowType } from '@infragistics/igniteui-angular/grids/core';
 import { DefaultSortingStrategy, IGroupingExpression, SortingDirection } from '@infragistics/igniteui-angular/core';
 import { IGX_GRID_DIRECTIVES } from '@infragistics/igniteui-angular/grids/grid';

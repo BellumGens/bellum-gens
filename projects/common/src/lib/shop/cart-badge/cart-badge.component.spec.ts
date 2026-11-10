@@ -4,9 +4,8 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { provideRouter } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CartBadgeComponent } from './cart-badge.component';
-import { CartService } from '../../../services/cart.service';
-import { ApiShopService } from '../../../services/bellumgens-api.shop.service';
-import { Brand, Product, ProductType } from '../../../models/shop';
+import { CartService, ApiShopService } from 'bellum-gens-common/services';
+import { Brand, Product, ProductType } from 'bellum-gens-common/models';
 
 const umbrella: Product = {
   id: 'p1',

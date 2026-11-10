@@ -1,9 +1,9 @@
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { computed } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { CSGOStrategy, Side, StrategyComment, StrategyVote, VoteDirection } from '../models/csgostrategy';
+import { CSGOStrategy, Side, StrategyComment, StrategyVote, VoteDirection, CSGOMap } from 'bellum-gens-common/models';
+import { CommunicationService } from './communication.service';
 import { ApiStrategiesService } from './bellumgens-api.strategies.service';
-import { CSGOMap, CommunicationService } from '../public_api';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 describe('ApiStrategiesService', () => {

@@ -1,5 +1,5 @@
 import { CSGOMapnamePipe } from './csgomapname.pipe';
-import { CSGOMap } from '../../models/csgomaps';
+import { CSGOMap } from 'bellum-gens-common/models';
 
 
 describe('CSGOMapnamePipe', () => {

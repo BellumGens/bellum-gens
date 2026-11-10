@@ -1,11 +1,11 @@
 import { Component, OnInit, PLATFORM_ID, Signal, computed, effect, inject, signal, untracked } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { isPlatformBrowser, DatePipe } from '@angular/common';
-import { ApplicationUser, BellumgensApiService, CommunicationService, LoginService } from '../../../../common/src/public_api';
+import { ApplicationUser, EarlyBird } from 'bellum-gens-common/models';
+import { BellumgensApiService, CommunicationService, LoginService } from 'bellum-gens-common/services';
 import { IgxButtonDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxCheckboxComponent } from '@infragistics/igniteui-angular/checkbox';
 import { IgxInputDirective, IgxInputGroupComponent, IgxLabelDirective } from '@infragistics/igniteui-angular/input-group';
-import { EarlyBird } from '../../../../common/src/models/subscribers';
 import { BaseDirective } from '../base/base.component';
 
 @Component({

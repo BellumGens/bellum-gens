@@ -2,12 +2,7 @@
   "extends": "./tsconfig.app.json",
   "compilerOptions": {
     "outDir": "../../out-tsc/app-server-bellumgens",
-    "baseUrl": ".",
-    "paths": {
-      "bellum-gens-common": [
-        "dist/common"
-      ],
-    }
+    "baseUrl": "."
   },
   "angularCompilerOptions": {
     "entryModule": "app/app.server.module#AppServerModule"

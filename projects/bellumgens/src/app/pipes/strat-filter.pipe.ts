@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { ACTIVE_DUTY, CSGOActiveDutyMap, CSGOStrategy } from '../../../../common/src/public_api';
+import { ACTIVE_DUTY, CSGOActiveDutyMap, CSGOStrategy } from 'bellum-gens-common/models';
 
 @Pipe({
     name: 'stratFilter'

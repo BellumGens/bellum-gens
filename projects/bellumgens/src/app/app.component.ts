@@ -15,26 +15,16 @@ import { IgxIconComponent, IgxIconService } from '@infragistics/igniteui-angular
 import { IgxBadgeComponent } from '@infragistics/igniteui-angular/badge';
 import { IgxNavbarActionDirective, IgxNavbarComponent } from '@infragistics/igniteui-angular/navbar';
 
-import {
-  LoginService,
-  ApplicationUser,
-  BellumgensApiService,
-  GLOBAL_OVERLAY_SETTINGS,
-  CSGOTeam,
-  ApiSearchService,
-  CommunicationService
-} from '../../../common/src/public_api';
+import { LoginService, BellumgensApiService, ApiSearchService, CommunicationService } from 'bellum-gens-common/services';
+import { ApplicationUser, GLOBAL_OVERLAY_SETTINGS, CSGOTeam } from 'bellum-gens-common/models';
+import { environment } from 'bellum-gens-common/environments';
+import { SuccessErrorComponent, LoginComponent, LanguagesComponent, CartBadgeComponent } from 'bellum-gens-common';
 
 import { fromEvent } from 'rxjs';
 import { map, debounceTime } from 'rxjs/operators';
 import { UnreadNotificationsPipe } from './pipes/unread-notifications.pipe';
-import { environment } from '../../../common/src/environments/environment';
-import { SuccessErrorComponent } from '../../../common/src/lib/success-error/success-error.component';
 import { QuickSearchComponent } from './search/quick-search/quick-search.component';
 import { SearchComponent } from './search/search/search.component';
-import { LoginComponent } from '../../../common/src/lib/login/login.component';
-import { LanguagesComponent } from '../../../common/src/lib/languages/languages.component';
-import { CartBadgeComponent } from '../../../common/src/lib/shop/cart-badge/cart-badge.component';
 import { battlenet, discord, facebook, heartCare, instagram, linkedin, steam, tiktok, twitch, twitter, youtube, github } from '@igniteui/material-icons-extended';
 import { IgxResourceStringsBG } from 'igniteui-angular-i18n';
 // Type only, so the lazy loaded notifications route stays out of the main bundle

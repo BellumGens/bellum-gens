@@ -6,14 +6,8 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { By } from '@angular/platform-browser';
-import {
-  ApplicationUser,
-  CSGOTeam,
-  LoginService,
-  NotificationState,
-  TeamApplication,
-  UserNotification
-} from '../../../../common/src/public_api';
+import { ApplicationUser, CSGOTeam, NotificationState, TeamApplication, UserNotification } from 'bellum-gens-common/models';
+import { LoginService } from 'bellum-gens-common/services';
 import { PlayerNotificationsComponent } from './player-notifications/player-notifications.component';
 import { TeamNotificationsComponent } from './team-notifications/team-notifications.component';
 

@@ -6,11 +6,17 @@ import { Subscription, timeout } from 'rxjs';
 import { IgxButtonDirective, IgxDividerComponent, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular/progressbar';
-import { ApiShopService } from '../../../services/bellumgens-api.shop.service';
-import { CartService } from '../../../services/cart.service';
+import { ApiShopService, CartService } from 'bellum-gens-common/services';
 import {
-  DELIVERY_METHOD_NAMES, DeliveryMethod, ORDER_STATUS_NAMES, OrderStatus, OrderStatusView, PAYMENT_METHOD_NAMES, PaymentMethod, PaymentStatus
-} from '../../../models/shop';
+  DELIVERY_METHOD_NAMES,
+  DeliveryMethod,
+  ORDER_STATUS_NAMES,
+  OrderStatus,
+  OrderStatusView,
+  PAYMENT_METHOD_NAMES,
+  PaymentMethod,
+  PaymentStatus
+} from 'bellum-gens-common/models';
 
 /** The customer paid or is paying and the confirmation from the payment provider has not arrived yet. */
 const isPaymentPending = (order: OrderStatusView) => order.status === OrderStatus.AwaitingPayment

@@ -4,18 +4,10 @@ import { distinctUntilChanged, filter, map, switchMap } from 'rxjs/operators';
 import { IDragStartEventArgs, IDropDroppedEventArgs, IGX_DRAG_DROP_DIRECTIVES } from '@infragistics/igniteui-angular/directives';
 import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
 import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
-import {
-  PlaystyleRole, RoleSlot,
-  TeamMember,
-  CSGOTeam,
-  BellumgensApiService,
-  Availability,
-  LoginService,
-  ApplicationUser,
-  AvailabilityComponent,
-  ConfirmComponent,
-  CountrySVGPipe
-} from '../../../../../common/src/public_api';
+import { PlaystyleRole, RoleSlot, TeamMember, CSGOTeam, Availability, ApplicationUser } from 'bellum-gens-common/models';
+import { BellumgensApiService, LoginService } from 'bellum-gens-common/services';
+import { AvailabilityComponent, ConfirmComponent } from 'bellum-gens-common';
+import { CountrySVGPipe } from 'bellum-gens-common/pipes';
 import { RouterLink, ROUTER_OUTLET_DATA } from '@angular/router';
 import { BaseDirective } from '../../base/base.component';
 

@@ -1,10 +1,10 @@
 import { Component, input, linkedSignal, output, signal, viewChild } from '@angular/core';
-import { Availability, BASE_AVAILABILITY } from '../../models/playeravailability';
+import { Availability, BASE_AVAILABILITY } from 'bellum-gens-common/models';
+import { WeekdayPipe } from 'bellum-gens-common/pipes';
 import { IgxTimePickerComponent } from '@infragistics/igniteui-angular/time-picker';
 import { IgxDialogComponent } from '@infragistics/igniteui-angular/dialog';
 import { IBaseChipEventArgs, IChipClickEventArgs, IGX_CHIPS_DIRECTIVES } from '@infragistics/igniteui-angular/chips';
 import { IgxLabelDirective } from '@infragistics/igniteui-angular/input-group';
-import { WeekdayPipe } from '../pipes/weekday.pipe';
 import { DatePipe } from '@angular/common';
 
 @Component({

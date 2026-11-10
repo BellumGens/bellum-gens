@@ -3,7 +3,7 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { ApiShopService, orderProblems } from './bellumgens-api.shop.service';
 import { CommunicationService } from './communication.service';
-import { Brand, DeliveryMethod, OrderRequest, OrderStatus, PaymentMethod, Product, ProductType } from '../models/shop';
+import { Brand, DeliveryMethod, OrderRequest, OrderStatus, PaymentMethod, Product, ProductType } from 'bellum-gens-common/models';
 
 describe('ApiShopService', () => {
   let service: ApiShopService;

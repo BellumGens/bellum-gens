@@ -10,11 +10,9 @@ import { BehaviorSubject, Subject } from 'rxjs';
 import { IDropDroppedEventArgs, IgxDragDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxIconService } from '@infragistics/igniteui-angular/icon';
 import { By } from '@angular/platform-browser';
-import { ConfirmComponent } from '../../../../../common/src/lib/confirm/confirm.component';
+import { ConfirmComponent } from 'bellum-gens-common';
 import {
   ACTIVE_DUTY,
-  ApiStrategiesService,
-  BellumgensApiService,
   CSGOMap,
   CSGOStrategy,
   CSGOTeam,
@@ -25,7 +23,8 @@ import {
   Side,
   StrategyEditor,
   TeamMember
-} from '../../../../../common/src/public_api';
+} from 'bellum-gens-common/models';
+import { ApiStrategiesService, BellumgensApiService } from 'bellum-gens-common/services';
 
 const radar = (map: CSGOMap) => ACTIVE_DUTY.find(m => m.mapId === map)!.radar![0];
 

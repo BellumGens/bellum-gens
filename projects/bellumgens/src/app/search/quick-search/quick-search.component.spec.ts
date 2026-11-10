@@ -8,8 +8,9 @@ import { PLATFORM_ID } from '@angular/core';
 import { IgxIconService } from '@infragistics/igniteui-angular/icon';
 import { By } from '@angular/platform-browser';
 import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
-import { ApiSearchService, ApplicationUser, CSGODetails, CSGOStrategy, CSGOTeam, SearchResult, SteamUser } from '../../../../../common/src/public_api';
-import { environment } from '../../../../../common/src/environments/environment';
+import { ApiSearchService } from 'bellum-gens-common/services';
+import { ApplicationUser, CSGODetails, CSGOStrategy, CSGOTeam, SearchResult, SteamUser } from 'bellum-gens-common/models';
+import { environment } from 'bellum-gens-common/environments';
 
 /** The search API's JSON, where missing values come back as `null`. */
 type Json<T> = T extends (infer U) [] ? Json<U> [] : T extends object ? { [K in keyof T]: Json<T[K]> | null } : T;

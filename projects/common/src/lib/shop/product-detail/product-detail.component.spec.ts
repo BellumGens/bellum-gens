@@ -6,9 +6,8 @@ import { Title } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BehaviorSubject } from 'rxjs';
 import { ProductDetailComponent } from './product-detail.component';
-import { ApiShopService } from '../../../services/bellumgens-api.shop.service';
-import { CartService } from '../../../services/cart.service';
-import { Brand, JerseyCut, JerseySize, Product, ProductType, ProductVariant } from '../../../models/shop';
+import { ApiShopService, CartService } from 'bellum-gens-common/services';
+import { Brand, JerseyCut, JerseySize, Product, ProductType, ProductVariant } from 'bellum-gens-common/models';
 
 const jerseyVariant = (id: string, cut: JerseyCut, size: JerseySize, stockQuantity: number | null): ProductVariant =>
   ({ id, name: `${cut === JerseyCut.Male ? 'Male' : 'Female'} / ${JerseySize[size]}`, cut, size, stockQuantity, active: true, sortOrder: 0 });

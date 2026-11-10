@@ -9,11 +9,18 @@ import { signal, WritableSignal } from '@angular/core';
 import { Params } from '@angular/router';
 
 import { TournamentDetailComponent } from './tournament-detail.component';
-import { Tournament, TournamentParticipant, TournamentStatus, TournamentVisibility, Game } from '../../../models/tournament';
-import { SC2Race, TournamentCSGOMatch, TournamentSC2Match } from '../../../models/tournament-schedule';
-import { ApplicationUser } from '../../../models/applicationuser';
-import { ApiTournamentsService } from '../../../services/bellumgens-api.tournaments.service';
-import { LoginService } from '../../../services/login.service';
+import {
+  Tournament,
+  TournamentParticipant,
+  TournamentStatus,
+  TournamentVisibility,
+  Game,
+  SC2Race,
+  TournamentCSGOMatch,
+  TournamentSC2Match,
+  ApplicationUser
+} from 'bellum-gens-common/models';
+import { ApiTournamentsService, LoginService } from 'bellum-gens-common/services';
 import { createSpyObj, SpyObj } from '../../../../../testing/spy-obj';
 
 describe('TournamentDetailComponent', () => {

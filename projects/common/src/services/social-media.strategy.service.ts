@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CSGOStrategy } from '../models/csgostrategy';
+import { CSGOStrategy } from 'bellum-gens-common/models';
 import { SocialMediaService } from './social-media.service';
 
 @Injectable({

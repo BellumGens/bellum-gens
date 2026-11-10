@@ -1,5 +1,5 @@
 import { RaceIconPipe } from './race-icon.pipe';
-import { SC2Race } from 'bellum-gens-common';
+import { SC2Race } from 'bellum-gens-common/models';
 
 describe('RaceIconPipe', () => {
   let pipe: RaceIconPipe;

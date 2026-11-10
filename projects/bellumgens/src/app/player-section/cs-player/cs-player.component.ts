@@ -5,17 +5,15 @@ import {
   ALL_ROLES,
   ApplicationUser,
   Availability,
-  AvailabilityComponent,
-  BellumgensApiService,
-  CountrySVGPipe,
   CSGODetails,
   CSGOMapPool,
   CSGOTeam,
-  LoadingComponent,
-  LoginService,
   PlaystyleRole,
   WeaponDescriptor
-} from '../../../../../common/src/public_api';
+} from 'bellum-gens-common/models';
+import { AvailabilityComponent, LoadingComponent } from 'bellum-gens-common';
+import { BellumgensApiService, LoginService } from 'bellum-gens-common/services';
+import { CountrySVGPipe } from 'bellum-gens-common/pipes';
 import { FormsModule } from '@angular/forms';
 import { RouterLink, ActivatedRoute, ROUTER_OUTLET_DATA } from '@angular/router';
 import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';

@@ -1,6 +1,7 @@
 import { Component, computed, effect, inject, output, signal } from '@angular/core';
 import { UnreadNotificationsPipe } from '../pipes/unread-notifications.pipe';
-import { CSGOTeam, LoginService, NotificationState, TeamApplication } from '../../../../common/src/public_api';
+import { CSGOTeam, NotificationState, TeamApplication } from 'bellum-gens-common/models';
+import { LoginService } from 'bellum-gens-common/services';
 import { TeamNotificationsComponent } from './team-notifications/team-notifications.component';
 import { PlayerNotificationsComponent } from './player-notifications/player-notifications.component';
 

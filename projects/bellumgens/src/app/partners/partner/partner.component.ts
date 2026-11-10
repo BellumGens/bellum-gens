@@ -5,7 +5,7 @@ import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
 import { IgxFlexDirective, IgxIconButtonDirective, IgxLayoutDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { Data } from '@angular/router';
-import { SocialMedia } from '../../../../../common/src/public_api';
+import { SocialMedia } from 'bellum-gens-common/models';
 import { BaseDirective } from '../../base/base.component';
 
 @Component({

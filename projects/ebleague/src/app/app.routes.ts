@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { RegistrationComponent, UnauthorizedComponent } from '../../../common/src/public_api';
+import { RegistrationComponent, UnauthorizedComponent } from 'bellum-gens-common';
 import { NewsComponent } from './news/news.component';
 import { shopRedirectGuard } from './guards/shop-redirect.guard';
 

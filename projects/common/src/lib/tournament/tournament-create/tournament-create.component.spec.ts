@@ -7,8 +7,8 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { Subject, of, throwError } from 'rxjs';
 
 import { TournamentCreateComponent } from './tournament-create.component';
-import { ApiTournamentsService } from '../../../services/bellumgens-api.tournaments.service';
-import { TournamentVisibility, Game, GAMES, Tournament, TournamentStatus } from '../../../models/tournament';
+import { ApiTournamentsService } from 'bellum-gens-common/services';
+import { TournamentVisibility, Game, GAMES, Tournament, TournamentStatus } from 'bellum-gens-common/models';
 
 describe('TournamentCreateComponent', () => {
   let component: TournamentCreateComponent;

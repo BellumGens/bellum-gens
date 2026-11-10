@@ -2,7 +2,7 @@ import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { IgxBadgeComponent } from '@infragistics/igniteui-angular/badge';
-import { CartService } from '../../../services/cart.service';
+import { CartService } from 'bellum-gens-common/services';
 
 @Component({
   selector: 'bg-cart-badge',
