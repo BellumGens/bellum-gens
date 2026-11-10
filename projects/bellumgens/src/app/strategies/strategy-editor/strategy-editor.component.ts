@@ -8,14 +8,17 @@ import {
   StrategyEditor,
   CSGOTeam,
   TeamMember,
-  BellumgensApiService,
   STRAT_UTILITIES,
   EDITOR_BRUSH_COLORS,
   EditorBrushColor,
   CSGOStrategy,
-  BaseLayer, PointCoordinate, ImageLayer, FreeflowLayer,
-  ApiStrategiesService
-} from '../../../../../common/src/public_api';
+  BaseLayer,
+  PointCoordinate,
+  ImageLayer,
+  FreeflowLayer
+} from 'bellum-gens-common/models';
+import { BellumgensApiService, ApiStrategiesService } from 'bellum-gens-common/services';
+import { ConfirmComponent } from 'bellum-gens-common';
 import { ActivatedRoute } from '@angular/router';
 import { IDropDroppedEventArgs, IGX_DRAG_DROP_DIRECTIVES, IgxButtonDirective, IgxIconButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxIconComponent, IgxIconService } from '@infragistics/igniteui-angular/icon';
@@ -25,7 +28,6 @@ import { IGX_LIST_DIRECTIVES } from '@infragistics/igniteui-angular/list';
 import { IgxCheckboxComponent } from '@infragistics/igniteui-angular/checkbox';
 import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
 import { IGX_BUTTON_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/button-group';
-import { ConfirmComponent } from '../../../../../common/src/lib/confirm/confirm.component';
 import { FormsModule } from '@angular/forms';
 import { isPlatformBrowser } from '@angular/common';
 

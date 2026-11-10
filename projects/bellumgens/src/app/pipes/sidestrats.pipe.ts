@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { CSGOStrategy, VoteDirection, CSGOMapPool, StratOrderBy } from '../../../../common/src/public_api';
+import { CSGOStrategy, VoteDirection, CSGOMapPool, StratOrderBy } from 'bellum-gens-common/models';
 
 @Pipe({
     name: 'sidestrats'

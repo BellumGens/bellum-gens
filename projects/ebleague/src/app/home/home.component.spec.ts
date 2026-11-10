@@ -7,7 +7,8 @@ import { provideRouter } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { PLATFORM_ID } from '@angular/core';
-import { ApiTournamentsService, Game, LoginService, RegistrationsCount } from '../../../../common/src/public_api';
+import { ApiTournamentsService, LoginService } from 'bellum-gens-common/services';
+import { Game, RegistrationsCount } from 'bellum-gens-common/models';
 
 describe('TournamentHomeComponent', () => {
   let component: HomeComponent;

@@ -1,5 +1,6 @@
 import { Component, OnInit, inject, input, output, signal } from '@angular/core';
-import { TeamApplication, CSGOTeam, BellumgensApiService } from '../../../../../common/src/public_api';
+import { TeamApplication, CSGOTeam } from 'bellum-gens-common/models';
+import { BellumgensApiService } from 'bellum-gens-common/services';
 import { NotificationStatePipe } from '../../pipes/notification-state.pipe';
 import { SortApplicationsPipe } from '../../pipes/sort-applications.pipe';
 import { DisabledNotificationsPipe } from '../../pipes/disabled-notifications.pipe';

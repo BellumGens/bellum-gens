@@ -8,18 +8,17 @@ import { ActivatedRoute, Params, provideRouter } from '@angular/router';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { BehaviorSubject, of } from 'rxjs';
 import { IgxGridComponent } from '@infragistics/igniteui-angular/grids/grid';
+import { ApiTournamentsService, LoginService } from 'bellum-gens-common/services';
 import {
-  ApiTournamentsService,
   ApplicationUser,
-  LoginService,
   Tournament,
   TournamentSC2Group,
   TournamentSC2Match,
   TournamentParticipant,
-  TournamentApplicationState
-} from '../../../../../common/src/public_api';
-import { SC2Map } from '../../../../../common/src/models/sc2maps';
-import { CSGODetails } from '../../../../../common/src/models/csgoplayer';
+  TournamentApplicationState,
+  SC2Map,
+  CSGODetails
+} from 'bellum-gens-common/models';
 
 const player = (id: string, username: string, overrides: Partial<ApplicationUser> = {}): ApplicationUser => ({
   id,

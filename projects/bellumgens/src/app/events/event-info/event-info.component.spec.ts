@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { EventInfoComponent } from './event-info.component';
-import { ApiTournamentsService } from '../../../../../common/src/public_api';
+import { ApiTournamentsService } from 'bellum-gens-common/services';
 import { BehaviorSubject, of } from 'rxjs';
 import { ActivatedRoute, Params, provideRouter } from '@angular/router';
 import { Title, Meta } from '@angular/platform-browser';

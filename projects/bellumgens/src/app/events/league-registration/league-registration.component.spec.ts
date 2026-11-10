@@ -3,15 +3,8 @@ import { LeagueRegistrationComponent } from './league-registration.component';
 import { BehaviorSubject } from 'rxjs';
 import { ActivatedRoute, Params, provideRouter } from '@angular/router';
 import { By } from '@angular/platform-browser';
-import {
-  ApiTournamentsService,
-  ApplicationUser,
-  CommunicationService,
-  Game,
-  LoginService,
-  Tournament,
-  TournamentApplication
-} from '../../../../../common/src/public_api';
+import { ApiTournamentsService, CommunicationService, LoginService } from 'bellum-gens-common/services';
+import { ApplicationUser, Game, Tournament, TournamentApplication } from 'bellum-gens-common/models';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { SwPush } from '@angular/service-worker';

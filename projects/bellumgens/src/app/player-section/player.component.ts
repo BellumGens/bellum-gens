@@ -3,7 +3,8 @@ import { Component, Signal, ViewEncapsulation, inject, linkedSignal, signal } fr
 import { IGX_TABS_DIRECTIVES } from '@infragistics/igniteui-angular/tabs';
 import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
 import { ActivatedRoute, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { ApplicationUser, BellumgensApiService } from '../../../../common/src/public_api';
+import { ApplicationUser } from 'bellum-gens-common/models';
+import { BellumgensApiService } from 'bellum-gens-common/services';
 
 @Component({
   selector: 'app-player',

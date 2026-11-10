@@ -1,5 +1,8 @@
 import { Component, effect, inject, signal, Signal } from '@angular/core';
-import { ApplicationUser, BellumgensApiService, LoadingComponent, RaceIconPipe, Tournament } from '../../../../../common/src/public_api';
+import { ApplicationUser, Tournament } from 'bellum-gens-common/models';
+import { BellumgensApiService } from 'bellum-gens-common/services';
+import { LoadingComponent } from 'bellum-gens-common';
+import { RaceIconPipe } from 'bellum-gens-common/pipes';
 import { IgxCardHeaderTitleDirective, IgxCardHeaderSubtitleDirective } from '@infragistics/igniteui-angular/card';
 import { ROUTER_OUTLET_DATA } from '@angular/router';
 import { Title } from '@angular/platform-browser';

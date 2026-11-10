@@ -9,18 +9,9 @@ import { Observable, config, of, throwError } from 'rxjs';
 import { WritableSignal, signal } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import type { Mock } from 'vitest';
-import {
-  ApplicationUser,
-  Availability,
-  BellumgensApiService,
-  CSGOTeam,
-  ConfirmComponent,
-  DayOfWeek,
-  LoginService,
-  PlaystyleRole,
-  TEAM_PLACEHOLDER,
-  TeamMember
-} from '../../../../../common/src/public_api';
+import { ApplicationUser, Availability, CSGOTeam, DayOfWeek, PlaystyleRole, TEAM_PLACEHOLDER, TeamMember } from 'bellum-gens-common/models';
+import { BellumgensApiService, LoginService } from 'bellum-gens-common/services';
+import { ConfirmComponent } from 'bellum-gens-common';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { IDragStartEventArgs, IDropDroppedEventArgs } from '@infragistics/igniteui-angular/directives';
 

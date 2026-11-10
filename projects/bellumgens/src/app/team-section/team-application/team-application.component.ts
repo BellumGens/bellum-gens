@@ -3,12 +3,8 @@ import { IgxDialogComponent } from '@infragistics/igniteui-angular/dialog';
 import { IgxButtonDirective, IgxIconButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
 import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
-import {
-  ApplicationUser,
-  TeamApplication, CSGOTeam,
-  NotificationState,
-  BellumgensApiService
-} from '../../../../../common/src/public_api';
+import { ApplicationUser, TeamApplication, CSGOTeam, NotificationState } from 'bellum-gens-common/models';
+import { BellumgensApiService } from 'bellum-gens-common/services';
 
 import { FormsModule } from '@angular/forms';
 

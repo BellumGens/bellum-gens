@@ -1,14 +1,8 @@
 import { Component, effect, inject, signal, untracked } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators, ReactiveFormsModule } from '@angular/forms';
-import {
-  Tournament,
-  TournamentVisibility,
-  TournamentStatus,
-  Game,
-  GAMES
-} from '../../../models/tournament';
-import { ApiTournamentsService } from '../../../services/bellumgens-api.tournaments.service';
+import { Tournament, TournamentVisibility, TournamentStatus, Game, GAMES } from 'bellum-gens-common/models';
+import { ApiTournamentsService } from 'bellum-gens-common/services';
 import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
 import { IgxButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';

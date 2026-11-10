@@ -1,12 +1,7 @@
 import { Component, Signal, computed, inject, output, signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
-import {
-  LoginService,
-  ApplicationUser,
-  UserNotification,
-  NotificationState,
-  BellumgensApiService
-} from '../../../../../common/src/public_api';
+import { LoginService, BellumgensApiService } from 'bellum-gens-common/services';
+import { ApplicationUser, UserNotification, NotificationState } from 'bellum-gens-common/models';
 import { NotificationStatePipe } from '../../pipes/notification-state.pipe';
 import { SortNotificationsPipe } from '../../pipes/sort-notifications.pipe';
 import { DisabledNotificationsPipe } from '../../pipes/disabled-notifications.pipe';

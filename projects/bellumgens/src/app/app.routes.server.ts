@@ -70,7 +70,7 @@ export const serverRoutes: ServerRoute[] = [
     renderMode: RenderMode.Client
   },
   // The catalog is rendered on the server so products are crawlable; the cart, checkout and
-  // order pages depend on browser state (localStorage, the payment redirect) and render on the client.
+  // order pages depend on browser state (localStorage, the payment redirect, the signed-in user) and render on the client.
   {
     path: 'shop',
     renderMode: RenderMode.Server
@@ -89,6 +89,10 @@ export const serverRoutes: ServerRoute[] = [
   },
   {
     path: 'shop/order/:id',
+    renderMode: RenderMode.Client
+  },
+  {
+    path: 'shop/orders',
     renderMode: RenderMode.Client
   },
   {

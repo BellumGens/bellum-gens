@@ -1,8 +1,8 @@
 import { Component, computed, inject, signal } from '@angular/core';
 import { IgxChipComponent } from '@infragistics/igniteui-angular/chips';
 import { IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular/progressbar';
-import { ApiShopService } from '../../../services/bellumgens-api.shop.service';
-import { BRAND_NAMES, Brand, PRODUCT_TYPE_NAMES, ProductType } from '../../../models/shop';
+import { ApiShopService } from 'bellum-gens-common/services';
+import { BRAND_NAMES, Brand, PRODUCT_TYPE_NAMES, ProductType } from 'bellum-gens-common/models';
 import { ProductCardComponent } from '../product-card/product-card.component';
 
 @Component({

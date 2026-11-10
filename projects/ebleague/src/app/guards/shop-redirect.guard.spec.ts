@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { DOCUMENT, LOCALE_ID, PLATFORM_ID } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { shopRedirectGuard, shopRedirectUrl } from './shop-redirect.guard';
-import { environment } from '../../../../common/src/environments/environment';
+import { environment } from 'bellum-gens-common/environments';
 
 describe('shopRedirectGuard', () => {
   const state = { url: '/shop/cart?x=1' } as RouterStateSnapshot;

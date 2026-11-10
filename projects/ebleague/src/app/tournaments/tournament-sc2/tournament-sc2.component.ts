@@ -3,12 +3,9 @@ import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs/operators';
 import { BaseDirective } from '../../../../../bellumgens/src/app/base/base.component';
 import { mediaQuery, NARROW_SCREEN_QUERY } from '../../utils/media-query';
-import {
-  ApiTournamentsService,
-  LoginService
-} from '../../../../../common/src/public_api';
-import { environment } from '../../../../../common/src/environments/environment';
-import { Sc2MapNamePipe } from '../../../../../common/src/lib/pipes/sc2-map-name.pipe';
+import { ApiTournamentsService, LoginService } from 'bellum-gens-common/services';
+import { environment } from 'bellum-gens-common/environments';
+import { Sc2MapNamePipe } from 'bellum-gens-common/pipes';
 import { DatePipe } from '@angular/common';
 import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
 import { IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular/progressbar';

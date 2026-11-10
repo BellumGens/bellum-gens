@@ -2,7 +2,7 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { TestBed } from '@angular/core/testing';
 import { ApiSearchService } from './bellumgens-api.search.service';
 import { CommunicationService } from './communication.service';
-import { ApplicationUser, CSGOMap, CSGOTeam, SearchResult, Side } from '../public_api';
+import { ApplicationUser, CSGOMap, CSGOTeam, SearchResult, Side } from 'bellum-gens-common/models';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 

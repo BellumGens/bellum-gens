@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { StrategyVote, VoteDirection } from '../../../../common/src/public_api';
+import { StrategyVote, VoteDirection } from 'bellum-gens-common/models';
 
 @Pipe({
     name: 'votes'

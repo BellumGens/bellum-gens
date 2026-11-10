@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { ApplicationUser, CSGOStrategy } from '../../../../common/src/public_api';
+import { ApplicationUser, CSGOStrategy } from 'bellum-gens-common/models';
 
 @Pipe({
     name: 'isStratOwner'

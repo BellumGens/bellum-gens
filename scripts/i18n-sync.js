@@ -54,7 +54,10 @@ function fail(message) {
 // ── XLIFF 1.2 helpers ────────────────────────────────────────────────────────
 
 const ENTITIES = { lt: '<', gt: '>', amp: '&', quot: '"', apos: "'" };
-const decode = s => s.replace(/&(lt|gt|amp|quot|apos);/g, (_, e) => ENTITIES[e]);
+const decode = s => s
+  .replace(/&#x([0-9a-f]+);/gi, (_, hex) => String.fromCodePoint(parseInt(hex, 16)))
+  .replace(/&#(\d+);/g, (_, dec) => String.fromCodePoint(Number(dec)))
+  .replace(/&(lt|gt|amp|quot|apos);/g, (_, e) => ENTITIES[e]);
 const encode = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 const TOKEN = /(\{\$[A-Za-z0-9_]+\})/;
 

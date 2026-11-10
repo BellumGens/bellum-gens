@@ -3,7 +3,7 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { ApiShopService, orderProblems } from './bellumgens-api.shop.service';
 import { CommunicationService } from './communication.service';
-import { Brand, DeliveryMethod, OrderRequest, OrderStatus, PaymentMethod, Product, ProductType } from '../models/shop';
+import { Brand, DeliveryMethod, OrderRequest, OrderStatus, PaymentMethod, Product, ProductType } from 'bellum-gens-common/models';
 
 describe('ApiShopService', () => {
   let service: ApiShopService;
@@ -249,6 +249,24 @@ describe('ApiShopService', () => {
     expect(req.request.withCredentials).toBe(true);
     expect(req.request.body).toEqual(order);
     req.flush({});
+  });
+
+  it('reads, saves and removes the signed-in customer\'s addresses with credentials', () => {
+    const address = { firstName: 'A', lastName: 'B', phoneNumber: '+359 1', city: 'Sofia', streetAddress: 'x', postalCode: '1000' };
+
+    service.getAddresses().subscribe();
+    service.saveAddress(address).subscribe();
+    service.deleteAddress('a/1').subscribe();
+
+    const list = httpMock.expectOne(r => r.method === 'GET' && r.url === `${service['_apiEndpoint']}/shop/addresses`);
+    const save = httpMock.expectOne(r => r.method === 'POST' && r.url === `${service['_apiEndpoint']}/shop/addresses`);
+    const remove = httpMock.expectOne(`${service['_apiEndpoint']}/shop/addresses/a%2F1`);
+    expect([list, save, remove].every(req => req.request.withCredentials)).toBe(true);
+    expect(save.request.body).toEqual(address);
+    expect(remove.request.method).toBe('DELETE');
+    list.flush([]);
+    save.flush({});
+    remove.flush(null);
   });
 
   it('reads and retries an order', () => {

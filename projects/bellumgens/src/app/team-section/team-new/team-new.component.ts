@@ -1,11 +1,6 @@
 import { Component, inject, input, signal, viewChild } from '@angular/core';
-import {
-  ApplicationUser,
-  BellumgensApiService,
-  CSGOTeam,
-  SteamGroup,
-  EMPTY_NEW_TEAM
-} from '../../../../../common/src/public_api';
+import { ApplicationUser, CSGOTeam, SteamGroup, EMPTY_NEW_TEAM } from 'bellum-gens-common/models';
+import { BellumgensApiService } from 'bellum-gens-common/services';
 import { IgxDialogComponent } from '@infragistics/igniteui-angular/dialog';
 import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';

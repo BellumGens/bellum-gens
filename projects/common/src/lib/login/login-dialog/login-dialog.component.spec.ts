@@ -6,7 +6,8 @@ import { provideRouter } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
-import { ApplicationUser, CommunicationService, LoginService } from '../../../public_api';
+import { ApplicationUser } from 'bellum-gens-common/models';
+import { CommunicationService, LoginService } from 'bellum-gens-common/services';
 
 import { LoginDialogComponent } from './login-dialog.component';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';

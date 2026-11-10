@@ -5,12 +5,7 @@
     "types": [
       "node",
       "@angular/localize"
-    ],
-    "paths": {
-      "bellum-gens-common": [
-        "../../dist/common"
-      ]
-    }
+    ]
   },
   "files": [
     "src/main.ts",

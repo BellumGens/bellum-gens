@@ -5,7 +5,7 @@ import { provideRouter, Router } from '@angular/router';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
-import { ApplicationUser, CSGOTeam, NotificationState, UserNotification } from 'bellum-gens-common';
+import { ApplicationUser, CSGOTeam, NotificationState, UserNotification } from 'bellum-gens-common/models';
 
 describe('NotificationsComponent', () => {
   let component: PlayerNotificationsComponent;

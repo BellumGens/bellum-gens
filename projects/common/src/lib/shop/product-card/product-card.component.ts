@@ -5,8 +5,8 @@ import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
 import { IgxButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { IgxChipComponent } from '@infragistics/igniteui-angular/chips';
-import { CartService } from '../../../services/cart.service';
-import { BRAND_NAMES, Product, ProductVariant, effectivePrice, isSoldOut } from '../../../models/shop';
+import { CartService } from 'bellum-gens-common/services';
+import { BRAND_NAMES, Product, ProductVariant, effectivePrice, isSoldOut } from 'bellum-gens-common/models';
 
 @Component({
   selector: 'bg-product-card',

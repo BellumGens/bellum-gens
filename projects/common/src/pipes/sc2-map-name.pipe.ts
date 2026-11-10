@@ -1,5 +1,5 @@
 import { Pipe, type PipeTransform } from '@angular/core';
-import { type SC2Map, SC2_MAPS } from '../../models/sc2maps';
+import { type SC2Map, SC2_MAPS } from 'bellum-gens-common/models';
 
 @Pipe({
     name: 'sc2MapName'

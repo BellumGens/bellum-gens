@@ -8,10 +8,20 @@ import { provideRouter } from '@angular/router';
 import { By } from '@angular/platform-browser';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
+import { ApiTournamentsService, ApiShopService, CommunicationService } from 'bellum-gens-common/services';
 import {
-  ApiTournamentsService, ApiShopService, CommunicationService, Tournament, Game, TournamentApplication, TournamentApplicationState,
-  EMPTY_NEW_TOURNAMENT, ShopOrder, OrderStatus, PaymentStatus, PaymentMethod, DeliveryMethod, ConfirmComponent
-} from '../../../../../common/src/public_api';
+  Tournament,
+  Game,
+  TournamentApplication,
+  TournamentApplicationState,
+  EMPTY_NEW_TOURNAMENT,
+  ShopOrder,
+  OrderStatus,
+  PaymentStatus,
+  PaymentMethod,
+  DeliveryMethod
+} from 'bellum-gens-common/models';
+import { ConfirmComponent } from 'bellum-gens-common';
 import { IGridEditEventArgs, IgxExporterEvent } from '@infragistics/igniteui-angular/grids/core';
 import { IgxGridComponent } from '@infragistics/igniteui-angular/grids/grid';
 import { IgxActionStripComponent } from '@infragistics/igniteui-angular/action-strip';

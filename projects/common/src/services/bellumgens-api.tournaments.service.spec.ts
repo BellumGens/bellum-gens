@@ -3,9 +3,16 @@ import { computed, signal } from '@angular/core';
 
 import { ApiTournamentsService } from './bellumgens-api.tournaments.service';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
-import { TournamentCSGOMatch, TournamentSC2Match } from '../models/tournament-schedule';
-import { CommunicationService, TournamentApplication, TournamentCSGOGroup, TournamentParticipant, TournamentSC2Group } from '../public_api';
-import { Game } from '../models/tournament';
+import {
+  TournamentCSGOMatch,
+  TournamentSC2Match,
+  TournamentApplication,
+  TournamentCSGOGroup,
+  TournamentParticipant,
+  TournamentSC2Group,
+  Game
+} from 'bellum-gens-common/models';
+import { CommunicationService } from './communication.service';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { Observable, config as rxjsConfig } from 'rxjs';
 

@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { NotificationState } from '../../../../common/src/public_api';
+import { NotificationState } from 'bellum-gens-common/models';
 
 @Pipe({
     name: 'notificationState'

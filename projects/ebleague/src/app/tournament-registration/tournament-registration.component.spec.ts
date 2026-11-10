@@ -14,15 +14,8 @@ import { of, Subject, throwError } from 'rxjs';
 
 import { TournamentRegistrationComponent } from './tournament-registration.component';
 import { TeamNewComponent } from '../../../../bellumgens/src/app/team-section/team-new/team-new.component';
-import {
-  ApiTournamentsService,
-  ApplicationUser,
-  BellumgensApiService,
-  CSGOTeam,
-  Game,
-  LoginService,
-  TournamentApplication
-} from '../../../../common/src/public_api';
+import { ApiTournamentsService, BellumgensApiService, LoginService } from 'bellum-gens-common/services';
+import { ApplicationUser, CSGOTeam, Game, TournamentApplication } from 'bellum-gens-common/models';
 
 const makeUser = (overrides: Partial<ApplicationUser> = {}): ApplicationUser => ({
   id: 'user-1',

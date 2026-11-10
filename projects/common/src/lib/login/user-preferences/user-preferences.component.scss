@@ -16,6 +16,20 @@
     cursor: pointer;
   }
 
+  // The registrations are secondary in the settings, so they use the compact list size of the admin lists
+  .registration-list {
+    --ig-size: var(--ig-size-small);
+  }
+
+  .registration-title {
+    font-size: 0.9375rem;
+    line-height: 1.3;
+  }
+
+  .registration-game {
+    font-size: 0.8125rem;
+  }
+
   // button:not(:disabled) {
   //   color: #fff;
   // }

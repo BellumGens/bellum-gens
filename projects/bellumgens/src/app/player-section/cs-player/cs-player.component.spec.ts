@@ -16,14 +16,13 @@ import {
   ALL_ROLES,
   ApplicationUser,
   Availability,
-  BellumgensApiService,
   CSGOMap,
   CSGOMapPool,
   CSGOTeam,
   DayOfWeek,
-  LoginService,
   PlaystyleRole
-} from '../../../../../common/src/public_api';
+} from 'bellum-gens-common/models';
+import { BellumgensApiService, LoginService } from 'bellum-gens-common/services';
 
 const makePlayer = (overrides: Partial<ApplicationUser> = {}): ApplicationUser => ({
   id: 'player-1',

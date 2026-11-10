@@ -8,7 +8,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { IgxCarouselComponent } from '@infragistics/igniteui-angular/carousel';
 import { By } from '@angular/platform-browser';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
-import { ApplicationUser, LoginService, SocialMediaService } from '../../../../common/src/public_api';
+import { ApplicationUser } from 'bellum-gens-common/models';
+import { LoginService, SocialMediaService } from 'bellum-gens-common/services';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;

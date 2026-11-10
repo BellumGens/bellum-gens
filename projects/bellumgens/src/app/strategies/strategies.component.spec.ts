@@ -13,19 +13,13 @@ import { IChipSelectEventArgs } from '@infragistics/igniteui-angular/chips';
 import {
   ApiSearchService,
   ApiStrategiesService,
-  ApplicationUser,
   BellumgensApiService,
   CommunicationService,
-  CSGOMap,
-  CSGOStrategy,
-  CSGOTeam,
   LoginService,
-  Side,
-  SocialMediaStrategyService,
-  StratOrderBy,
-  VoteDirection
-} from '../../../../common/src/public_api';
-import { ConfirmComponent } from '../../../../common/src/lib/confirm/confirm.component';
+  SocialMediaStrategyService
+} from 'bellum-gens-common/services';
+import { ApplicationUser, CSGOMap, CSGOStrategy, CSGOTeam, Side, StratOrderBy, VoteDirection } from 'bellum-gens-common/models';
+import { ConfirmComponent } from 'bellum-gens-common';
 import { NewStrategyComponent } from './new-strategy/new-strategy.component';
 
 const strat = (id: string, overrides: Partial<CSGOStrategy> = {}): CSGOStrategy => ({

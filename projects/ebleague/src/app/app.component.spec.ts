@@ -17,7 +17,8 @@ import {
 } from '@infragistics/igniteui-angular/core';
 import { IgxResourceStringsBG } from 'igniteui-angular-i18n';
 import { heartCare } from '@igniteui/material-icons-extended';
-import { ApplicationUser, CommunicationService, LoginService } from '../../../common/src/public_api';
+import { ApplicationUser } from 'bellum-gens-common/models';
+import { CommunicationService, LoginService } from 'bellum-gens-common/services';
 
 describe('AppComponent', () => {
   let component: AppComponent;

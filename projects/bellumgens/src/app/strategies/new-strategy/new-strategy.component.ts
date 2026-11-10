@@ -1,13 +1,6 @@
 import { Component, inject, input, output, signal, viewChild } from '@angular/core';
-import {
-  CSGOStrategy,
-  NEW_EMPTY_STRAT,
-  CSGOTeam,
-  ApplicationUser,
-  CSGOActiveDutyMap,
-  ACTIVE_DUTY,
-  ApiStrategiesService
-} from '../../../../../common/src/public_api';
+import { CSGOStrategy, NEW_EMPTY_STRAT, CSGOTeam, ApplicationUser, CSGOActiveDutyMap, ACTIVE_DUTY } from 'bellum-gens-common/models';
+import { ApiStrategiesService } from 'bellum-gens-common/services';
 import { IGX_DIALOG_DIRECTIVES, IgxDialogComponent } from '@infragistics/igniteui-angular/dialog';
 import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';

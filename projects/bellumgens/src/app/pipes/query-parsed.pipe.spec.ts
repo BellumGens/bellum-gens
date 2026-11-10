@@ -1,5 +1,5 @@
 import { QueryParsedPipe } from './query-parsed.pipe';
-import { PlaystyleRole } from '../../../../common/src/public_api';
+import { PlaystyleRole } from 'bellum-gens-common/models';
 
 describe('QueryParsedPipe', () => {
   const pipe = new QueryParsedPipe();

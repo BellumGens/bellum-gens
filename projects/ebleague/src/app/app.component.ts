@@ -9,13 +9,10 @@ import { IgxIconComponent, IgxIconService } from '@infragistics/igniteui-angular
 import { IgxNavbarActionDirective, IgxNavbarComponent } from '@infragistics/igniteui-angular/navbar';
 import { battlenet, discord, facebook, heartCare, instagram, linkedin, steam, twitch, twitter, youtube } from '@igniteui/material-icons-extended';
 
-import { LoginService, ApplicationUser, CommunicationService } from '../../../common/src/public_api';
-import { environment } from '../../../common/src/environments/environment';
-import { SuccessErrorComponent } from '../../../common/src/lib/success-error/success-error.component';
-import { LoginComponent } from '../../../common/src/lib/login/login.component';
-import { LanguagesComponent } from '../../../common/src/lib/languages/languages.component';
-import { LANGUAGES } from '../../../common/src/lib/languages/languages';
-import { localizeIgniteUI } from '../../../common/src/lib/languages/igx-resource-strings';
+import { LoginService, CommunicationService } from 'bellum-gens-common/services';
+import { ApplicationUser } from 'bellum-gens-common/models';
+import { environment } from 'bellum-gens-common/environments';
+import { SuccessErrorComponent, LoginComponent, LanguagesComponent, LANGUAGES, localizeIgniteUI } from 'bellum-gens-common';
 import { shopRedirectUrl } from './guards/shop-redirect.guard';
 
 @Component({

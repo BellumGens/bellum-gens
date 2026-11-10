@@ -6,8 +6,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
-import { ApplicationUser, CSGOTeam, PlaystyleRole } from '../../../../../common/src/public_api';
-import { environment } from '../../../../../common/src/environments/environment';
+import { ApplicationUser, CSGOTeam, PlaystyleRole } from 'bellum-gens-common/models';
+import { environment } from 'bellum-gens-common/environments';
 
 const authUser = { id: 'user-id', username: 'TestUser' } as ApplicationUser;
 

@@ -2,9 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable, Signal, WritableSignal, inject, signal, untracked } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
-import { CSGOMapPool } from '../models/csgomaps';
-import { environment } from '../environments/environment';
-import { CSGOStrategy, StrategyComment, StrategyVote, VoteDirection } from '../models/csgostrategy';
+import { CSGOMapPool, CSGOStrategy, StrategyComment, StrategyVote, VoteDirection } from 'bellum-gens-common/models';
+import { environment } from 'bellum-gens-common/environments';
 import { CommunicationService } from './communication.service';
 
 @Injectable({

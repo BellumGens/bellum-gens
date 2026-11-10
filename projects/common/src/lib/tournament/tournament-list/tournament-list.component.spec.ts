@@ -9,11 +9,8 @@ import { config } from 'rxjs';
 import { IgxDialogComponent } from '@infragistics/igniteui-angular/dialog';
 
 import { TournamentListComponent } from './tournament-list.component';
-import { ApiTournamentsService } from '../../../services/bellumgens-api.tournaments.service';
-import { LoginService } from '../../../services/login.service';
-import { CommunicationService } from '../../../services/communication.service';
-import { Tournament, TournamentStatus } from '../../../models/tournament';
-import { ApplicationUser } from '../../../models/applicationuser';
+import { ApiTournamentsService, LoginService, CommunicationService } from 'bellum-gens-common/services';
+import { Tournament, TournamentStatus, ApplicationUser } from 'bellum-gens-common/models';
 
 describe('TournamentListComponent', () => {
   let component: TournamentListComponent;

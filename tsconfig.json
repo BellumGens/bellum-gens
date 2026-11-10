@@ -16,6 +16,9 @@
       "bellum-gens-common": [
         "./projects/common/src/public_api.ts"
       ],
+      "bellum-gens-common/*": [
+        "./projects/common/src/*/index.ts"
+      ],
       "projects/*": [
         "./projects/*"
       ]

@@ -4,7 +4,7 @@ import { TeamNotificationsComponent } from './team-notifications.component';
 import { provideRouter, Router } from '@angular/router';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
-import { CSGOTeam, NotificationState, TeamApplication } from 'bellum-gens-common';
+import { CSGOTeam, NotificationState, TeamApplication } from 'bellum-gens-common/models';
 
 describe('TeamNotificationsComponent', () => {
   let component: TeamNotificationsComponent;

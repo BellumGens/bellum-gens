@@ -1,8 +1,8 @@
 import { DOCUMENT, LOCALE_ID, PLATFORM_ID, inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { CanActivateFn } from '@angular/router';
-import { environment } from '../../../../common/src/environments/environment';
-import { SOURCE_LOCALE, matchLocale } from '../../../../common/src/lib/languages/languages';
+import { environment } from 'bellum-gens-common/environments';
+import { SOURCE_LOCALE, matchLocale } from 'bellum-gens-common';
 
 /**
  * Builds the bellumgens.com URL for a shop path, keeping the language the visitor was using.

@@ -8,18 +8,17 @@ import { ActivatedRoute, Params, provideRouter } from '@angular/router';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { BehaviorSubject, of } from 'rxjs';
 import { IgxGridComponent } from '@infragistics/igniteui-angular/grids/grid';
+import { ApiTournamentsService, LoginService } from 'bellum-gens-common/services';
 import {
-  ApiTournamentsService,
   ApplicationUser,
-  LoginService,
   Tournament,
   TournamentCSGOGroup,
   TournamentCSGOMatch,
   TournamentParticipant,
-  TournamentApplicationState
-} from '../../../../../common/src/public_api';
-import { CSGOMap } from '../../../../../common/src/models/csgomaps';
-import { CSGOTeam } from '../../../../../common/src/models/csgoteam';
+  TournamentApplicationState,
+  CSGOMap,
+  CSGOTeam
+} from 'bellum-gens-common/models';
 
 const team = (teamId: string, teamName: string): CSGOTeam => ({
   teamId,

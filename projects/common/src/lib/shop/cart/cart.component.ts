@@ -7,8 +7,8 @@ import { IgxButtonDirective, IgxDividerComponent, IgxIconButtonDirective, IgxRip
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { IgxRadioComponent, IgxRadioGroupDirective } from '@infragistics/igniteui-angular/radio';
 import { IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular/progressbar';
-import { CartService } from '../../../services/cart.service';
-import { AVAILABLE_DELIVERY_METHODS, CartItem, DELIVERY_METHOD_NAMES, DeliveryMethod, effectivePrice } from '../../../models/shop';
+import { CartService } from 'bellum-gens-common/services';
+import { AVAILABLE_DELIVERY_METHODS, CartItem, DELIVERY_METHOD_NAMES, DeliveryMethod, effectivePrice } from 'bellum-gens-common/models';
 
 @Component({
   selector: 'bg-cart',

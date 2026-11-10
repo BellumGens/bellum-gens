@@ -1,5 +1,5 @@
 import { SortWeaponsPipe } from './sort-weapons.pipe';
-import { WeaponDescriptor } from '../../../../common/src/public_api';
+import { WeaponDescriptor } from 'bellum-gens-common/models';
 
 describe('SortWeaponsPipe', () => {
   const pipe = new SortWeaponsPipe();

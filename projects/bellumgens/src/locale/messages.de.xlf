@@ -101,6 +101,10 @@
           <context context-type="sourcefile">projects/bellumgens/src/app/app.component.html</context>
           <context context-type="linenumber">83</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">27,29</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="3687194426938367329" datatype="html">
         <source>Partners</source>
@@ -447,7 +451,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/strategies/strategy-details/strategy-details.component.ts</context>
-          <context context-type="linenumber">95</context>
+          <context context-type="linenumber">92</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/availability/availability.component.html</context>
@@ -689,6 +693,10 @@
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.html</context>
           <context context-type="linenumber">80,81</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">112,113</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="3724068243287682962" datatype="html">
         <source>Team</source>
@@ -891,11 +899,15 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">72</context>
+          <context context-type="linenumber">63</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">89</context>
+          <context context-type="linenumber">80</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">113</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2840244450736259781" datatype="html">
@@ -1419,7 +1431,7 @@
         <target>Bitte melde dich zuerst an</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">67</context>
+          <context context-type="linenumber">58</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8282620512337325099" datatype="html">
@@ -1427,11 +1439,11 @@
         <target>Albanien</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">70</context>
+          <context context-type="linenumber">61</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">83</context>
+          <context context-type="linenumber">74</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3028691365115610369" datatype="html">
@@ -1439,11 +1451,11 @@
         <target>Bosnien und Herzegowina</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">71</context>
+          <context context-type="linenumber">62</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">88</context>
+          <context context-type="linenumber">79</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6839230987909572003" datatype="html">
@@ -1451,11 +1463,11 @@
         <target>Kroatien</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">73</context>
+          <context context-type="linenumber">64</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">90</context>
+          <context context-type="linenumber">81</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7017590323423025630" datatype="html">
@@ -1463,11 +1475,11 @@
         <target>Griechenland</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">74</context>
+          <context context-type="linenumber">65</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">99</context>
+          <context context-type="linenumber">90</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6185974288757792753" datatype="html">
@@ -1475,11 +1487,11 @@
         <target>Kosovo</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">75</context>
+          <context context-type="linenumber">66</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">104</context>
+          <context context-type="linenumber">95</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8310342568647317562" datatype="html">
@@ -1487,11 +1499,11 @@
         <target>Montenegro</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">76</context>
+          <context context-type="linenumber">67</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">112</context>
+          <context context-type="linenumber">103</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3422261352287393759" datatype="html">
@@ -1499,11 +1511,11 @@
         <target>Nordmazedonien</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">77</context>
+          <context context-type="linenumber">68</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">114</context>
+          <context context-type="linenumber">105</context>
         </context-group>
       </trans-unit>
       <trans-unit id="545992063382313902" datatype="html">
@@ -1511,11 +1523,11 @@
         <target>Rumänien</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">78</context>
+          <context context-type="linenumber">69</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">118</context>
+          <context context-type="linenumber">109</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7676611321967250180" datatype="html">
@@ -1523,11 +1535,11 @@
         <target>Serbien</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">79</context>
+          <context context-type="linenumber">70</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">121</context>
+          <context context-type="linenumber">112</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2012353003398074522" datatype="html">
@@ -1535,11 +1547,11 @@
         <target>Slowenien</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">80</context>
+          <context context-type="linenumber">71</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">123</context>
+          <context context-type="linenumber">114</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1907015897505457162" datatype="html">
@@ -1547,7 +1559,7 @@
         <target>Andorra</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">84</context>
+          <context context-type="linenumber">75</context>
         </context-group>
       </trans-unit>
       <trans-unit id="21641575311466062" datatype="html">
@@ -1555,7 +1567,7 @@
         <target>Österreich</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">85</context>
+          <context context-type="linenumber">76</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8624069568371048571" datatype="html">
@@ -1563,7 +1575,7 @@
         <target>Belarus</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">86</context>
+          <context context-type="linenumber">77</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6787546539374733271" datatype="html">
@@ -1571,7 +1583,7 @@
         <target>Belgien</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">87</context>
+          <context context-type="linenumber">78</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7127846603485222320" datatype="html">
@@ -1579,7 +1591,7 @@
         <target>Zypern</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">91</context>
+          <context context-type="linenumber">82</context>
         </context-group>
       </trans-unit>
       <trans-unit id="724957661944599897" datatype="html">
@@ -1587,7 +1599,7 @@
         <target>Tschechien</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">92</context>
+          <context context-type="linenumber">83</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7969063643194139319" datatype="html">
@@ -1595,7 +1607,7 @@
         <target>Dänemark</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">93</context>
+          <context context-type="linenumber">84</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2245078127040642216" datatype="html">
@@ -1603,7 +1615,7 @@
         <target>Estland</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">94</context>
+          <context context-type="linenumber">85</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8812557643580169825" datatype="html">
@@ -1611,7 +1623,7 @@
         <target>Finnland</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">95</context>
+          <context context-type="linenumber">86</context>
         </context-group>
       </trans-unit>
       <trans-unit id="956678847762152494" datatype="html">
@@ -1619,7 +1631,7 @@
         <target>Frankreich</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">96</context>
+          <context context-type="linenumber">87</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7133553227204944356" datatype="html">
@@ -1627,11 +1639,11 @@
         <target>Georgien</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">97</context>
+          <context context-type="linenumber">88</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">141</context>
+          <context context-type="linenumber">132</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6014862663057951430" datatype="html">
@@ -1639,7 +1651,7 @@
         <target>Deutschland</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">98</context>
+          <context context-type="linenumber">89</context>
         </context-group>
       </trans-unit>
       <trans-unit id="67794167649611006" datatype="html">
@@ -1647,7 +1659,7 @@
         <target>Ungarn</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">100</context>
+          <context context-type="linenumber">91</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4451202090740543367" datatype="html">
@@ -1655,7 +1667,7 @@
         <target>Island</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">101</context>
+          <context context-type="linenumber">92</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5378112888361106499" datatype="html">
@@ -1663,7 +1675,7 @@
         <target>Irland</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">102</context>
+          <context context-type="linenumber">93</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2427223107800831324" datatype="html">
@@ -1671,7 +1683,7 @@
         <target>Italien</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">103</context>
+          <context context-type="linenumber">94</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2875990908335702580" datatype="html">
@@ -1679,7 +1691,7 @@
         <target>Lettland</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">105</context>
+          <context context-type="linenumber">96</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3917311667237336403" datatype="html">
@@ -1687,7 +1699,7 @@
         <target>Liechtenstein</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">106</context>
+          <context context-type="linenumber">97</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6546239914534670998" datatype="html">
@@ -1695,7 +1707,7 @@
         <target>Litauen</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">107</context>
+          <context context-type="linenumber">98</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5913366966339102148" datatype="html">
@@ -1703,7 +1715,7 @@
         <target>Luxemburg</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">108</context>
+          <context context-type="linenumber">99</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7731013350359057223" datatype="html">
@@ -1711,7 +1723,7 @@
         <target>Malta</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">109</context>
+          <context context-type="linenumber">100</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8249619021597991822" datatype="html">
@@ -1719,7 +1731,7 @@
         <target>Moldau</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">110</context>
+          <context context-type="linenumber">101</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1736943888981108041" datatype="html">
@@ -1727,7 +1739,7 @@
         <target>Monaco</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">111</context>
+          <context context-type="linenumber">102</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3783587393795767345" datatype="html">
@@ -1735,7 +1747,7 @@
         <target>Niederlande</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">113</context>
+          <context context-type="linenumber">104</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6321687538487059592" datatype="html">
@@ -1743,7 +1755,7 @@
         <target>Norwegen</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">115</context>
+          <context context-type="linenumber">106</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2356316679035829946" datatype="html">
@@ -1751,7 +1763,7 @@
         <target>Polen</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">116</context>
+          <context context-type="linenumber">107</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1825932113518847029" datatype="html">
@@ -1759,7 +1771,7 @@
         <target>Portugal</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">117</context>
+          <context context-type="linenumber">108</context>
         </context-group>
       </trans-unit>
       <trans-unit id="185815212249169742" datatype="html">
@@ -1767,7 +1779,7 @@
         <target>Russland</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">119</context>
+          <context context-type="linenumber">110</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4251280664350448901" datatype="html">
@@ -1775,7 +1787,7 @@
         <target>San Marino</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">120</context>
+          <context context-type="linenumber">111</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1331379005917484978" datatype="html">
@@ -1783,7 +1795,7 @@
         <target>Slowakei</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">122</context>
+          <context context-type="linenumber">113</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3847673789207378086" datatype="html">
@@ -1791,7 +1803,7 @@
         <target>Spanien</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">124</context>
+          <context context-type="linenumber">115</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7108948537958128740" datatype="html">
@@ -1799,7 +1811,7 @@
         <target>Schweden</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">125</context>
+          <context context-type="linenumber">116</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6173123073967909836" datatype="html">
@@ -1807,7 +1819,7 @@
         <target>Schweiz</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">126</context>
+          <context context-type="linenumber">117</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4346283537747431562" datatype="html">
@@ -1815,7 +1827,7 @@
         <target>Ukraine</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">127</context>
+          <context context-type="linenumber">118</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7303091661854783304" datatype="html">
@@ -1823,7 +1835,7 @@
         <target>Vereinigtes Königreich</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">128</context>
+          <context context-type="linenumber">119</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7908523999517252381" datatype="html">
@@ -1831,7 +1843,7 @@
         <target>Vatikanstadt</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">129</context>
+          <context context-type="linenumber">120</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1209826884150356967" datatype="html">
@@ -1839,7 +1851,7 @@
         <target>Afghanistan</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">132</context>
+          <context context-type="linenumber">123</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5004849258025239958" datatype="html">
@@ -1847,7 +1859,7 @@
         <target>Armenien</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">133</context>
+          <context context-type="linenumber">124</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2036677760731944610" datatype="html">
@@ -1855,7 +1867,7 @@
         <target>Aserbaidschan</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">134</context>
+          <context context-type="linenumber">125</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4493078792980020324" datatype="html">
@@ -1863,7 +1875,7 @@
         <target>Bahrain</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">135</context>
+          <context context-type="linenumber">126</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7586179551119829690" datatype="html">
@@ -1871,7 +1883,7 @@
         <target>Bangladesch</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">136</context>
+          <context context-type="linenumber">127</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3404169924630177375" datatype="html">
@@ -1879,7 +1891,7 @@
         <target>Bhutan</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">137</context>
+          <context context-type="linenumber">128</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6884420559133272313" datatype="html">
@@ -1887,7 +1899,7 @@
         <target>Brunei</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">138</context>
+          <context context-type="linenumber">129</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7848663861484285422" datatype="html">
@@ -1895,7 +1907,7 @@
         <target>Kambodscha</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">139</context>
+          <context context-type="linenumber">130</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5134090110001463731" datatype="html">
@@ -1903,7 +1915,7 @@
         <target>China</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">140</context>
+          <context context-type="linenumber">131</context>
         </context-group>
       </trans-unit>
       <trans-unit id="212820117866187249" datatype="html">
@@ -1911,7 +1923,7 @@
         <target>Indien</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">142</context>
+          <context context-type="linenumber">133</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5303806780432428245" datatype="html">
@@ -1919,7 +1931,7 @@
         <target>Indonesien</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">143</context>
+          <context context-type="linenumber">134</context>
         </context-group>
       </trans-unit>
       <trans-unit id="362851695433968241" datatype="html">
@@ -1927,7 +1939,7 @@
         <target>Iran</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">144</context>
+          <context context-type="linenumber">135</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1031090001427437760" datatype="html">
@@ -1935,7 +1947,7 @@
         <target>Irak</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">145</context>
+          <context context-type="linenumber">136</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7015687759738910427" datatype="html">
@@ -1943,7 +1955,7 @@
         <target>Israel</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">146</context>
+          <context context-type="linenumber">137</context>
         </context-group>
       </trans-unit>
       <trans-unit id="80663871075536039" datatype="html">
@@ -1951,7 +1963,7 @@
         <target>Japan</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">147</context>
+          <context context-type="linenumber">138</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1308416951779533325" datatype="html">
@@ -1959,7 +1971,7 @@
         <target>Jordanien</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">148</context>
+          <context context-type="linenumber">139</context>
         </context-group>
       </trans-unit>
       <trans-unit id="621094494471295638" datatype="html">
@@ -1967,7 +1979,7 @@
         <target>Kasachstan</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">149</context>
+          <context context-type="linenumber">140</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6639775332361598247" datatype="html">
@@ -1975,7 +1987,7 @@
         <target>Kuwait</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">150</context>
+          <context context-type="linenumber">141</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6229118554878370786" datatype="html">
@@ -1983,7 +1995,7 @@
         <target>Kirgisistan</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">151</context>
+          <context context-type="linenumber">142</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4473457771422323359" datatype="html">
@@ -1991,7 +2003,7 @@
         <target>Laos</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">152</context>
+          <context context-type="linenumber">143</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7791127373754886139" datatype="html">
@@ -1999,7 +2011,7 @@
         <target>Libanon</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">153</context>
+          <context context-type="linenumber">144</context>
         </context-group>
       </trans-unit>
       <trans-unit id="284282390173344035" datatype="html">
@@ -2007,7 +2019,7 @@
         <target>Malaysia</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">154</context>
+          <context context-type="linenumber">145</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5099084320487592164" datatype="html">
@@ -2015,7 +2027,7 @@
         <target>Malediven</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">155</context>
+          <context context-type="linenumber">146</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1368100063883641774" datatype="html">
@@ -2023,7 +2035,7 @@
         <target>Mongolei</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">156</context>
+          <context context-type="linenumber">147</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5816956679305721210" datatype="html">
@@ -2031,7 +2043,7 @@
         <target>Myanmar</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">157</context>
+          <context context-type="linenumber">148</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5857558127981009083" datatype="html">
@@ -2039,7 +2051,7 @@
         <target>Nepal</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">158</context>
+          <context context-type="linenumber">149</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4719742396933932796" datatype="html">
@@ -2047,7 +2059,7 @@
         <target>Oman</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">159</context>
+          <context context-type="linenumber">150</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9146974172614086551" datatype="html">
@@ -2055,7 +2067,7 @@
         <target>Pakistan</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">160</context>
+          <context context-type="linenumber">151</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8104197835427883104" datatype="html">
@@ -2063,7 +2075,7 @@
         <target>Palästina</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">161</context>
+          <context context-type="linenumber">152</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8818655556476681482" datatype="html">
@@ -2071,7 +2083,7 @@
         <target>Philippinen</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">162</context>
+          <context context-type="linenumber">153</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8884008684136621484" datatype="html">
@@ -2079,7 +2091,7 @@
         <target>Katar</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">163</context>
+          <context context-type="linenumber">154</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7893693635471733470" datatype="html">
@@ -2087,7 +2099,7 @@
         <target>Saudi-Arabien</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">164</context>
+          <context context-type="linenumber">155</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4830118002486243553" datatype="html">
@@ -2095,7 +2107,7 @@
         <target>Singapur</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">165</context>
+          <context context-type="linenumber">156</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8249064893455428481" datatype="html">
@@ -2103,7 +2115,7 @@
         <target>Südkorea</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">166</context>
+          <context context-type="linenumber">157</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7766766928661785123" datatype="html">
@@ -2111,7 +2123,7 @@
         <target>Sri Lanka</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">167</context>
+          <context context-type="linenumber">158</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3855305254439093484" datatype="html">
@@ -2119,7 +2131,7 @@
         <target>Syrien</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">168</context>
+          <context context-type="linenumber">159</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5517910262648168251" datatype="html">
@@ -2127,7 +2139,7 @@
         <target>Tadschikistan</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">169</context>
+          <context context-type="linenumber">160</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1812990033467917873" datatype="html">
@@ -2135,7 +2147,7 @@
         <target>Taiwan</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">170</context>
+          <context context-type="linenumber">161</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2040543873210054611" datatype="html">
@@ -2143,7 +2155,7 @@
         <target>Thailand</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">171</context>
+          <context context-type="linenumber">162</context>
         </context-group>
       </trans-unit>
       <trans-unit id="536132288864070221" datatype="html">
@@ -2151,7 +2163,7 @@
         <target>Türkei</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">172</context>
+          <context context-type="linenumber">163</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9141606215802528913" datatype="html">
@@ -2159,7 +2171,7 @@
         <target>Turkmenistan</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">173</context>
+          <context context-type="linenumber">164</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4392438521753358690" datatype="html">
@@ -2167,7 +2179,7 @@
         <target>Vereinigte Arabische Emirate</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">174</context>
+          <context context-type="linenumber">165</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4082876576192670199" datatype="html">
@@ -2175,7 +2187,7 @@
         <target>Usbekistan</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">175</context>
+          <context context-type="linenumber">166</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1715874233028631360" datatype="html">
@@ -2183,7 +2195,7 @@
         <target>Vietnam</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">176</context>
+          <context context-type="linenumber">167</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5144971260883559528" datatype="html">
@@ -2191,7 +2203,7 @@
         <target>Jemen</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">177</context>
+          <context context-type="linenumber">168</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2234013645418722908" datatype="html">
@@ -2199,7 +2211,7 @@
         <target>Antigua und Barbuda</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">180</context>
+          <context context-type="linenumber">171</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2575998129003872734" datatype="html">
@@ -2207,7 +2219,7 @@
         <target>Argentinien</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">181</context>
+          <context context-type="linenumber">172</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5530828807984079663" datatype="html">
@@ -2215,7 +2227,7 @@
         <target>Bahamas</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">182</context>
+          <context context-type="linenumber">173</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1075324242640516651" datatype="html">
@@ -2223,7 +2235,7 @@
         <target>Barbados</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">183</context>
+          <context context-type="linenumber">174</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6597121833699637826" datatype="html">
@@ -2231,7 +2243,7 @@
         <target>Belize</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">184</context>
+          <context context-type="linenumber">175</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6842720336797727339" datatype="html">
@@ -2239,7 +2251,7 @@
         <target>Bolivien</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">185</context>
+          <context context-type="linenumber">176</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5414293408829797992" datatype="html">
@@ -2247,7 +2259,7 @@
         <target>Brasilien</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">186</context>
+          <context context-type="linenumber">177</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3486679398271885916" datatype="html">
@@ -2255,7 +2267,7 @@
         <target>Kanada</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">187</context>
+          <context context-type="linenumber">178</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6268459440891516871" datatype="html">
@@ -2263,7 +2275,7 @@
         <target>Chile</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">188</context>
+          <context context-type="linenumber">179</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1188282719459309656" datatype="html">
@@ -2271,7 +2283,7 @@
         <target>Kolumbien</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">189</context>
+          <context context-type="linenumber">180</context>
         </context-group>
       </trans-unit>
       <trans-unit id="852177379378387675" datatype="html">
@@ -2279,7 +2291,7 @@
         <target>Costa Rica</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">190</context>
+          <context context-type="linenumber">181</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2504672715999212143" datatype="html">
@@ -2287,7 +2299,7 @@
         <target>Kuba</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">191</context>
+          <context context-type="linenumber">182</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9115400918128734980" datatype="html">
@@ -2295,7 +2307,7 @@
         <target>Dominica</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">192</context>
+          <context context-type="linenumber">183</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4719460798898909432" datatype="html">
@@ -2303,7 +2315,7 @@
         <target>Dominikanische Republik</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">193</context>
+          <context context-type="linenumber">184</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3753386582290088847" datatype="html">
@@ -2311,7 +2323,7 @@
         <target>Ecuador</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">194</context>
+          <context context-type="linenumber">185</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4251019598823492681" datatype="html">
@@ -2319,7 +2331,7 @@
         <target>Grenada</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">195</context>
+          <context context-type="linenumber">186</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2246799843509663005" datatype="html">
@@ -2327,7 +2339,7 @@
         <target>Guatemala</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">196</context>
+          <context context-type="linenumber">187</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3975233823881069207" datatype="html">
@@ -2335,7 +2347,7 @@
         <target>Guyana</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">197</context>
+          <context context-type="linenumber">188</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2845697602867633165" datatype="html">
@@ -2343,7 +2355,7 @@
         <target>Haiti</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">198</context>
+          <context context-type="linenumber">189</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5032618727171063903" datatype="html">
@@ -2351,7 +2363,7 @@
         <target>Honduras</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">199</context>
+          <context context-type="linenumber">190</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3315113630985882291" datatype="html">
@@ -2359,7 +2371,7 @@
         <target>Jamaika</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">200</context>
+          <context context-type="linenumber">191</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8147072510678737075" datatype="html">
@@ -2367,7 +2379,7 @@
         <target>Mexiko</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">201</context>
+          <context context-type="linenumber">192</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1562013926672647714" datatype="html">
@@ -2375,7 +2387,7 @@
         <target>Nicaragua</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">202</context>
+          <context context-type="linenumber">193</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7803448958935133459" datatype="html">
@@ -2383,7 +2395,7 @@
         <target>Panama</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">203</context>
+          <context context-type="linenumber">194</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5162288429120066886" datatype="html">
@@ -2391,7 +2403,7 @@
         <target>Paraguay</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">204</context>
+          <context context-type="linenumber">195</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2132839256314048281" datatype="html">
@@ -2399,7 +2411,7 @@
         <target>Peru</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">205</context>
+          <context context-type="linenumber">196</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2123946206863913146" datatype="html">
@@ -2407,7 +2419,7 @@
         <target>St. Kitts und Nevis</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">206</context>
+          <context context-type="linenumber">197</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1586762200046703444" datatype="html">
@@ -2415,7 +2427,7 @@
         <target>Suriname</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">207</context>
+          <context context-type="linenumber">198</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2766960236982030800" datatype="html">
@@ -2423,7 +2435,7 @@
         <target>Trinidad und Tobago</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">208</context>
+          <context context-type="linenumber">199</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6133495983093212227" datatype="html">
@@ -2431,7 +2443,7 @@
         <target>Vereinigte Staaten</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">209</context>
+          <context context-type="linenumber">200</context>
         </context-group>
       </trans-unit>
       <trans-unit id="976142842851961456" datatype="html">
@@ -2439,7 +2451,7 @@
         <target>Uruguay</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">210</context>
+          <context context-type="linenumber">201</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8420291181849337180" datatype="html">
@@ -2447,7 +2459,7 @@
         <target>Venezuela</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">211</context>
+          <context context-type="linenumber">202</context>
         </context-group>
       </trans-unit>
       <trans-unit id="797743923912773831" datatype="html">
@@ -2455,7 +2467,7 @@
         <target>Australien</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">214</context>
+          <context context-type="linenumber">205</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7688915885626198194" datatype="html">
@@ -2463,7 +2475,7 @@
         <target>Fidschi</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">215</context>
+          <context context-type="linenumber">206</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3050899002311904259" datatype="html">
@@ -2471,7 +2483,7 @@
         <target>Kiribati</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">216</context>
+          <context context-type="linenumber">207</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2592002115951925734" datatype="html">
@@ -2479,7 +2491,7 @@
         <target>Marshallinseln</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">217</context>
+          <context context-type="linenumber">208</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2869766744074512908" datatype="html">
@@ -2487,7 +2499,7 @@
         <target>Mikronesien</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">218</context>
+          <context context-type="linenumber">209</context>
         </context-group>
       </trans-unit>
       <trans-unit id="217956830164259077" datatype="html">
@@ -2495,7 +2507,7 @@
         <target>Nauru</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">219</context>
+          <context context-type="linenumber">210</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3591085113786124083" datatype="html">
@@ -2503,7 +2515,7 @@
         <target>Neuseeland</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">220</context>
+          <context context-type="linenumber">211</context>
         </context-group>
       </trans-unit>
       <trans-unit id="680993875033620982" datatype="html">
@@ -2511,7 +2523,7 @@
         <target>Palau</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">221</context>
+          <context context-type="linenumber">212</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2090013391283494370" datatype="html">
@@ -2519,7 +2531,7 @@
         <target>Papua-Neuguinea</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">222</context>
+          <context context-type="linenumber">213</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3921381038816272025" datatype="html">
@@ -2527,7 +2539,7 @@
         <target>Samoa</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">223</context>
+          <context context-type="linenumber">214</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1353381156110688148" datatype="html">
@@ -2535,7 +2547,7 @@
         <target>Salomonen</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">224</context>
+          <context context-type="linenumber">215</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6930151682144775692" datatype="html">
@@ -2543,7 +2555,7 @@
         <target>Tonga</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">225</context>
+          <context context-type="linenumber">216</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3086562963920355958" datatype="html">
@@ -2551,7 +2563,7 @@
         <target>Tuvalu</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">226</context>
+          <context context-type="linenumber">217</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3911861600857028021" datatype="html">
@@ -2559,7 +2571,7 @@
         <target>Vanuatu</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">227</context>
+          <context context-type="linenumber">218</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5236769307780685681" datatype="html">
@@ -2567,7 +2579,7 @@
         <target>Registrierung erfolgreich!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">282</context>
+          <context context-type="linenumber">273</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3157590919027597260" datatype="html">
@@ -2575,7 +2587,7 @@
         <target>Registrierung erfolgreich aktualisiert!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/league-registration/league-registration.component.ts</context>
-          <context context-type="linenumber">284</context>
+          <context context-type="linenumber">275</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3439168359581909499" datatype="html">
@@ -3595,7 +3607,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/strategies/strategy-details/strategy-details.component.ts</context>
-          <context context-type="linenumber">93</context>
+          <context context-type="linenumber">90</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7585826646011739428" datatype="html">
@@ -3659,11 +3671,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">69</context>
+          <context context-type="linenumber">85</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">72</context>
+          <context context-type="linenumber">88</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2469997684135721882" datatype="html">
@@ -3679,7 +3691,7 @@
         <target>Deine Strategien konnten nicht geladen werden. Bitte versuche es später noch einmal.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/strategies/strategies.component.ts</context>
-          <context context-type="linenumber">117</context>
+          <context context-type="linenumber">121</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6540298259410047676" datatype="html">
@@ -3687,7 +3699,7 @@
         <target>Kommentare: <x id="count" equiv-text="strat.comments?.length ?? 0"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/strategies/strategies.component.ts</context>
-          <context context-type="linenumber">201</context>
+          <context context-type="linenumber">205</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1673640476085340422" datatype="html">
@@ -3735,7 +3747,7 @@
         <target>Profil</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/strategies/strategy-details/strategy-details.component.ts</context>
-          <context context-type="linenumber">91</context>
+          <context context-type="linenumber">88</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/login.component.html</context>
@@ -3843,7 +3855,7 @@
         <target>Gelb</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/strategies/strategy-editor/strategy-editor.component.ts</context>
-          <context context-type="linenumber">43</context>
+          <context context-type="linenumber">45</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4082253113407591781" datatype="html">
@@ -3851,7 +3863,7 @@
         <target>Blau</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/strategies/strategy-editor/strategy-editor.component.ts</context>
-          <context context-type="linenumber">44</context>
+          <context context-type="linenumber">46</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4046446611860328467" datatype="html">
@@ -3859,7 +3871,7 @@
         <target>Rot</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/strategies/strategy-editor/strategy-editor.component.ts</context>
-          <context context-type="linenumber">45</context>
+          <context context-type="linenumber">47</context>
         </context-group>
       </trans-unit>
       <trans-unit id="119581980963263815" datatype="html">
@@ -3867,7 +3879,7 @@
         <target>Grün</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/strategies/strategy-editor/strategy-editor.component.ts</context>
-          <context context-type="linenumber">46</context>
+          <context context-type="linenumber">48</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6194760889104675204" datatype="html">
@@ -3875,7 +3887,7 @@
         <target>Pink</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/strategies/strategy-editor/strategy-editor.component.ts</context>
-          <context context-type="linenumber">47</context>
+          <context context-type="linenumber">49</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3451129084922491008" datatype="html">
@@ -3883,7 +3895,7 @@
         <target>Ebene auswählen</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/strategies/strategy-editor/strategy-editor.component.ts</context>
-          <context context-type="linenumber">96</context>
+          <context context-type="linenumber">98</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3475004687424015839" datatype="html">
@@ -4039,7 +4051,7 @@
         <target><x id="username" equiv-text="member.username"/> aus der Rolle entfernen</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-details/team-details.component.ts</context>
-          <context context-type="linenumber">135</context>
+          <context context-type="linenumber">127</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9182905864150468739" datatype="html">
@@ -4047,7 +4059,7 @@
         <target><x id="username" equiv-text="member.username"/> auf inaktiv setzen</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-details/team-details.component.ts</context>
-          <context context-type="linenumber">139</context>
+          <context context-type="linenumber">131</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5488466320845465302" datatype="html">
@@ -4055,7 +4067,7 @@
         <target><x id="username" equiv-text="member.username"/> aus dem Team entfernen</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/team-section/team-details/team-details.component.ts</context>
-          <context context-type="linenumber">143</context>
+          <context context-type="linenumber">135</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6169559049543839177" datatype="html">
@@ -4470,12 +4482,24 @@
           <context context-type="linenumber">23,24</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="8417842421847722492" datatype="html">
+        <source>My orders</source>
+        <target>Meine Bestellungen</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">32,33</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-history/order-history.component.html</context>
+          <context context-type="linenumber">2,4</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="6008054525649887988" datatype="html">
         <source>Tournament Registrations</source>
         <target>Turnieranmeldungen</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">27,29</context>
+          <context context-type="linenumber">35,37</context>
         </context-group>
       </trans-unit>
       <trans-unit id="510526722664146848" datatype="html">
@@ -4483,11 +4507,11 @@
         <target>Einchecken</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">40</context>
+          <context context-type="linenumber">48</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">40,41</context>
+          <context context-type="linenumber">48,49</context>
         </context-group>
       </trans-unit>
       <trans-unit id="639936982205063071" datatype="html">
@@ -4495,11 +4519,19 @@
         <target>Diese Anmeldung löschen</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">45</context>
+          <context context-type="linenumber">53</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">45,46</context>
+          <context context-type="linenumber">53,54</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1399532688070996684" datatype="html">
+        <source>App Admin</source>
+        <target>App-Admin</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">64,65</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7452914169697446489" datatype="html">
@@ -4507,7 +4539,7 @@
         <target>SC2-Turnieradmin</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">56,57</context>
+          <context context-type="linenumber">72,73</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7893114882018865592" datatype="html">
@@ -4515,7 +4547,7 @@
         <target>Account endgültig löschen</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">64,65</context>
+          <context context-type="linenumber">80,81</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1829407837180331792" datatype="html">
@@ -4523,7 +4555,7 @@
         <target>Wenn du auf OK klickst, wird dein Benutzeraccount dauerhaft gelöscht...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">70,71</context>
+          <context context-type="linenumber">86,87</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2221100321668875234" datatype="html">
@@ -4531,7 +4563,7 @@
         <target>Wenn du auf OK klickst, wird deine Turnieranmeldung dauerhaft gelöscht...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">73,74</context>
+          <context context-type="linenumber">89,90</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4416413576346763682" datatype="html">
@@ -4539,7 +4571,7 @@
         <target>Ausstehend</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.ts</context>
-          <context context-type="linenumber">55</context>
+          <context context-type="linenumber">61</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1902234206836707099" datatype="html">
@@ -4547,7 +4579,7 @@
         <target>Bestätigt</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.ts</context>
-          <context context-type="linenumber">55</context>
+          <context context-type="linenumber">61</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2999492056553212422" datatype="html">
@@ -4555,7 +4587,7 @@
         <target>Gesperrt</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.ts</context>
-          <context context-type="linenumber">55</context>
+          <context context-type="linenumber">61</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1405463563837173046" datatype="html">
@@ -4649,6 +4681,10 @@
           <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
           <context context-type="linenumber">7,8</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-history/order-history.component.html</context>
+          <context context-type="linenumber">39,40</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="6762504134540024018" datatype="html">
         <source>Quantity</source>
@@ -4710,16 +4746,28 @@
           <context context-type="linenumber">23,24</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="3352466411115509199" datatype="html">
+        <source>We currently deliver within Bulgaria only.</source>
+        <target>Wir liefern derzeit nur innerhalb Bulgariens.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
+          <context context-type="linenumber">61,63</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">58,59</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="1943153960391120303" datatype="html">
         <source>Promo code</source>
         <target>Gutscheincode</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
-          <context context-type="linenumber">62,63</context>
+          <context context-type="linenumber">63,64</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
-          <context context-type="linenumber">67,68</context>
+          <context context-type="linenumber">68,69</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2808523933915213618" datatype="html">
@@ -4727,7 +4775,7 @@
         <target>Gutscheincode löschen</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
-          <context context-type="linenumber">71,72</context>
+          <context context-type="linenumber">72,73</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5910548035629840004" datatype="html">
@@ -4735,7 +4783,7 @@
         <target>Gutscheincode angewendet</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
-          <context context-type="linenumber">79</context>
+          <context context-type="linenumber">80</context>
         </context-group>
       </trans-unit>
       <trans-unit id="870418232806327600" datatype="html">
@@ -4743,11 +4791,11 @@
         <target>Zwischensumme</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
-          <context context-type="linenumber">88,89</context>
+          <context context-type="linenumber">89,90</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
-          <context context-type="linenumber">155,156</context>
+          <context context-type="linenumber">194,195</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
@@ -4759,11 +4807,11 @@
         <target>Rabatt</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
-          <context context-type="linenumber">91,92</context>
+          <context context-type="linenumber">92,93</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
-          <context context-type="linenumber">158,159</context>
+          <context context-type="linenumber">197,198</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
@@ -4775,11 +4823,11 @@
         <target>Versand</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
-          <context context-type="linenumber">94,95</context>
+          <context context-type="linenumber">95,96</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
-          <context context-type="linenumber">161,162</context>
+          <context context-type="linenumber">200,201</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
@@ -4791,15 +4839,15 @@
         <target>Kostenlos</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
-          <context context-type="linenumber">99,100</context>
+          <context context-type="linenumber">100,101</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
-          <context context-type="linenumber">101,102</context>
+          <context context-type="linenumber">102,103</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
-          <context context-type="linenumber">166,167</context>
+          <context context-type="linenumber">205,206</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
@@ -4811,11 +4859,11 @@
         <target>Gesamt</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
-          <context context-type="linenumber">104,105</context>
+          <context context-type="linenumber">105,106</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
-          <context context-type="linenumber">169,170</context>
+          <context context-type="linenumber">208,209</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
@@ -4827,7 +4875,7 @@
         <target>Einige Artikel in deinem Warenkorb sind in der gewählten Menge nicht mehr verfügbar. Bitte prüfe die oben markierten Positionen.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
-          <context context-type="linenumber">108,109</context>
+          <context context-type="linenumber">109,110</context>
         </context-group>
       </trans-unit>
       <trans-unit id="240257178075088619" datatype="html">
@@ -4835,7 +4883,7 @@
         <target>Der Gutscheincode ist nicht gültig. Entferne ihn, um zur Kasse zu gehen.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
-          <context context-type="linenumber">111,112</context>
+          <context context-type="linenumber">112,113</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6846077545013042368" datatype="html">
@@ -4843,11 +4891,11 @@
         <target>Wir konnten den Preis deines Warenkorbs nicht berechnen. Bitte versuche es noch einmal.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
-          <context context-type="linenumber">115,116</context>
+          <context context-type="linenumber">116,117</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
-          <context context-type="linenumber">174,175</context>
+          <context context-type="linenumber">213,214</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6650633628037596693" datatype="html">
@@ -4855,11 +4903,15 @@
         <target>Erneut versuchen</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
-          <context context-type="linenumber">116,117</context>
+          <context context-type="linenumber">117,118</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
-          <context context-type="linenumber">175,176</context>
+          <context context-type="linenumber">214,215</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-history/order-history.component.html</context>
+          <context context-type="linenumber">17,18</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
@@ -4871,7 +4923,7 @@
         <target>Zur Kasse</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
-          <context context-type="linenumber">124,125</context>
+          <context context-type="linenumber">125,126</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6703953321803564304" datatype="html">
@@ -4879,7 +4931,7 @@
         <target>Weiter einkaufen</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
-          <context context-type="linenumber">125,126</context>
+          <context context-type="linenumber">126,127</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4776389683576645610" datatype="html">
@@ -4950,12 +5002,40 @@
           <context context-type="linenumber">67,68</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="1774623326857813183" datatype="html">
+        <source>Saved address</source>
+        <target>Gespeicherte Adresse</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">66,67</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8035280614643172424" datatype="html">
+        <source>New address</source>
+        <target>Neue Adresse</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">70</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2491713153759731624" datatype="html">
+        <source>Remove this saved address</source>
+        <target>Diese gespeicherte Adresse entfernen</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">74</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">74,75</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="2314075913167237221" datatype="html">
         <source>City</source>
         <target>Stadt</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
-          <context context-type="linenumber">59,60</context>
+          <context context-type="linenumber">83,84</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8196693563065832060" datatype="html">
@@ -4963,7 +5043,7 @@
         <target>Stadt ist erforderlich</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
-          <context context-type="linenumber">62</context>
+          <context context-type="linenumber">86</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7450324673386885301" datatype="html">
@@ -4971,7 +5051,7 @@
         <target>Postleitzahl</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
-          <context context-type="linenumber">68,69</context>
+          <context context-type="linenumber">92,93</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1489529088540992154" datatype="html">
@@ -4979,7 +5059,7 @@
         <target>Straße und Hausnummer</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
-          <context context-type="linenumber">74,75</context>
+          <context context-type="linenumber">102,103</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4828301915611932087" datatype="html">
@@ -4987,7 +5067,15 @@
         <target>Straße und Hausnummer sind erforderlich</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
-          <context context-type="linenumber">77</context>
+          <context context-type="linenumber">105</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7765932246689711510" datatype="html">
+        <source>Save this address to my account</source>
+        <target>Diese Adresse in meinem Konto speichern</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">117</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1757596382251562510" datatype="html">
@@ -4995,7 +5083,7 @@
         <target>Anmerkung für uns (optional)</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
-          <context context-type="linenumber">83,84</context>
+          <context context-type="linenumber">122,123</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4892553839051604445" datatype="html">
@@ -5003,7 +5091,7 @@
         <target>Zahlung</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
-          <context context-type="linenumber">89,90</context>
+          <context context-type="linenumber">128,129</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
@@ -5019,7 +5107,7 @@
         <target>Ich habe die <x id="START_LINK" ctype="x-a" equiv-text="&lt;a routerLink=&quot;/shop/terms&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;"/>Verkaufsbedingungen<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> einschließlich des 14-tägigen Widerrufsrechts gelesen und akzeptiere sie.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
-          <context context-type="linenumber">98,99</context>
+          <context context-type="linenumber">137,138</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1922076098697885125" datatype="html">
@@ -5027,7 +5115,7 @@
         <target>Bitte akzeptiere die Verkaufsbedingungen, um fortzufahren</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
-          <context context-type="linenumber">101,102</context>
+          <context context-type="linenumber">140,141</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4593716912035578345" datatype="html">
@@ -5035,7 +5123,7 @@
         <target>Zahlungspflichtig bestellen (<x id="INTERPOLATION" equiv-text="{{ cart.quote()?.total | currency:&apos;EUR&apos; }}"/>)</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
-          <context context-type="linenumber">122,123</context>
+          <context context-type="linenumber">161,162</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8678404962788128999" datatype="html">
@@ -5043,7 +5131,7 @@
         <target><x id="INTERPOLATION" equiv-text="{{ cart.quote()?.total | currency:&apos;EUR&apos; }}"/> mit Revolut bezahlen</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
-          <context context-type="linenumber">124,125</context>
+          <context context-type="linenumber">163,164</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2438394539246700277" datatype="html">
@@ -5051,7 +5139,7 @@
         <target>Zurück zum Warenkorb</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
-          <context context-type="linenumber">127,128</context>
+          <context context-type="linenumber">166,167</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3247923413266408665" datatype="html">
@@ -5059,7 +5147,7 @@
         <target>Du bezahlst den Kurier, wenn deine Bestellung ankommt. Wir senden dir sofort eine Bestätigung per E-Mail.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
-          <context context-type="linenumber">130,131</context>
+          <context context-type="linenumber">169,170</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1487095934476017709" datatype="html">
@@ -5067,7 +5155,7 @@
         <target>Du wirst zum sicheren Checkout von Revolut weitergeleitet. Akzeptiert werden Karten, Revolut Pay, Apple Pay und Google Pay. Wir sehen deine Kartendaten nie.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
-          <context context-type="linenumber">132,133</context>
+          <context context-type="linenumber">171,172</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6784365883106685930" datatype="html">
@@ -5075,7 +5163,31 @@
         <target>Bestellübersicht</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
-          <context context-type="linenumber">137,138</context>
+          <context context-type="linenumber">176,177</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopPostalCodeRequired" datatype="html">
+        <source>Postal code is required</source>
+        <target>Postleitzahl ist erforderlich</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.ts</context>
+          <context context-type="linenumber">160</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopPostalCodeFormat" datatype="html">
+        <source>A Bulgarian postal code has 4 digits</source>
+        <target>Eine bulgarische Postleitzahl hat 4 Ziffern</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.ts</context>
+          <context context-type="linenumber">161</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopAddressRemoveFailed" datatype="html">
+        <source>The address could not be removed. Please try again.</source>
+        <target>Die Adresse konnte nicht entfernt werden. Bitte versuche es erneut.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.ts</context>
+          <context context-type="linenumber">178</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopCartInvalid" datatype="html">
@@ -5083,11 +5195,11 @@
         <target>Dein Warenkorb hat sich geändert. Bitte überprüfe ihn vor dem Bezahlen.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.ts</context>
-          <context context-type="linenumber">123</context>
+          <context context-type="linenumber">238</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.ts</context>
-          <context context-type="linenumber">165</context>
+          <context context-type="linenumber">285</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopPaymentsUnavailable" datatype="html">
@@ -5095,7 +5207,7 @@
         <target>Zahlungen sind vorübergehend nicht möglich. Bitte versuche es in ein paar Minuten noch einmal.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.ts</context>
-          <context context-type="linenumber">178</context>
+          <context context-type="linenumber">298</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopTooManyAttempts" datatype="html">
@@ -5103,7 +5215,7 @@
         <target>Zu viele Versuche. Bitte warte eine Minute und versuche es dann noch einmal.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.ts</context>
-          <context context-type="linenumber">180</context>
+          <context context-type="linenumber">300</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopOrderFailed" datatype="html">
@@ -5111,7 +5223,63 @@
         <target>Die Bestellung konnte nicht aufgegeben werden. Bitte versuche es noch einmal.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.ts</context>
-          <context context-type="linenumber">182</context>
+          <context context-type="linenumber">302</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3140036779961551092" datatype="html">
+        <source>Loading your orders</source>
+        <target>Deine Bestellungen werden geladen</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-history/order-history.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-history/order-history.component.html</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8091919214056242856" datatype="html">
+        <source>Sign in to see the orders you placed from your account.</source>
+        <target>Melde dich an, um die Bestellungen zu sehen, die du über dein Konto aufgegeben hast.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-history/order-history.component.html</context>
+          <context context-type="linenumber">11,12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5207635742003539443" datatype="html">
+        <source>Sign in</source>
+        <target>Anmelden</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-history/order-history.component.html</context>
+          <context context-type="linenumber">12,13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1868114704591469197" datatype="html">
+        <source>We could not load your orders right now. Please try again in a moment.</source>
+        <target>Wir konnten deine Bestellungen gerade nicht laden. Bitte versuche es gleich noch einmal.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-history/order-history.component.html</context>
+          <context context-type="linenumber">16,17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8977100891351110096" datatype="html">
+        <source>Order <x id="INTERPOLATION" equiv-text="{{ order.orderNumber }}"/></source>
+        <target>Bestellung <x id="INTERPOLATION" equiv-text="{{ order.orderNumber }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-history/order-history.component.html</context>
+          <context context-type="linenumber">26,27</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
+          <context context-type="linenumber">21,22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7134554357549382820" datatype="html">
+        <source>You have not placed any orders yet.</source>
+        <target>Du hast noch keine Bestellungen aufgegeben.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-history/order-history.component.html</context>
+          <context context-type="linenumber">38,39</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6757279725033067279" datatype="html">
@@ -5148,14 +5316,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
           <context context-type="linenumber">9,10</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="8977100891351110096" datatype="html">
-        <source>Order <x id="INTERPOLATION" equiv-text="{{ order.orderNumber }}"/></source>
-        <target>Bestellung <x id="INTERPOLATION" equiv-text="{{ order.orderNumber }}"/></target>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/common/src/lib/shop/order-status/order-status.component.html</context>
-          <context context-type="linenumber">21,22</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8690318815747174570" datatype="html">
@@ -5562,9 +5722,9 @@
           <context context-type="linenumber">19,20</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="3579934859812520539" datatype="html">
-        <source>We deliver by courier across Bulgaria. The shipping cost is shown before you place your order. We email you when the order is handed to the courier.</source>
-        <target>Wir liefern per Kurier innerhalb ganz Bulgariens. Die Versandkosten werden angezeigt, bevor Sie Ihre Bestellung aufgeben. Wir benachrichtigen Sie per E-Mail, sobald die Bestellung an den Kurier übergeben wurde.</target>
+      <trans-unit id="13592933573213277" datatype="html">
+        <source>We currently deliver by courier within Bulgaria only; we do not ship abroad. The shipping cost is shown before you place your order. We email you when the order is handed to the courier.</source>
+        <target>Wir liefern derzeit nur per Kurier innerhalb Bulgariens; ins Ausland versenden wir nicht. Die Versandkosten werden angezeigt, bevor Sie Ihre Bestellung aufgeben. Wir benachrichtigen Sie per E-Mail, sobald die Bestellung an den Kurier übergeben wurde.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/terms/terms.component.html</context>
           <context context-type="linenumber">24,25</context>
@@ -6003,7 +6163,7 @@
         <target>Trikot</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">327</context>
+          <context context-type="linenumber">352</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopTypeUmbrella" datatype="html">
@@ -6011,7 +6171,7 @@
         <target>Regenschirm</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">328</context>
+          <context context-type="linenumber">353</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopTypePen" datatype="html">
@@ -6019,7 +6179,7 @@
         <target>Kugelschreiber</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">329</context>
+          <context context-type="linenumber">354</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopTypePin" datatype="html">
@@ -6027,7 +6187,7 @@
         <target>Anstecker</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">330</context>
+          <context context-type="linenumber">355</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopTypeBracelet" datatype="html">
@@ -6035,7 +6195,7 @@
         <target>Armband</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">331</context>
+          <context context-type="linenumber">356</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopTypeOther" datatype="html">
@@ -6043,7 +6203,7 @@
         <target>Sonstiges</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">332</context>
+          <context context-type="linenumber">357</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopStatusAwaitingPayment" datatype="html">
@@ -6051,7 +6211,7 @@
         <target>Zahlung ausstehend</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">336</context>
+          <context context-type="linenumber">361</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopStatusPaid" datatype="html">
@@ -6059,7 +6219,7 @@
         <target>Bezahlt</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">337</context>
+          <context context-type="linenumber">362</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopStatusShipped" datatype="html">
@@ -6067,7 +6227,7 @@
         <target>Versandt</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">338</context>
+          <context context-type="linenumber">363</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopStatusDelivered" datatype="html">
@@ -6075,7 +6235,7 @@
         <target>Zugestellt</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">339</context>
+          <context context-type="linenumber">364</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopStatusCancelled" datatype="html">
@@ -6083,7 +6243,7 @@
         <target>Storniert</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">340</context>
+          <context context-type="linenumber">365</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopStatusRefunded" datatype="html">
@@ -6091,7 +6251,7 @@
         <target>Erstattet</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">341</context>
+          <context context-type="linenumber">366</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopStatusConfirmed" datatype="html">
@@ -6099,7 +6259,7 @@
         <target>Bestätigt</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">342</context>
+          <context context-type="linenumber">367</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopDeliveryCourier" datatype="html">
@@ -6107,7 +6267,7 @@
         <target>Lieferung per Kurier</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">346</context>
+          <context context-type="linenumber">382</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopDeliveryPickup" datatype="html">
@@ -6115,7 +6275,7 @@
         <target>Abholung bei einem Event</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">347</context>
+          <context context-type="linenumber">383</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopPaymentOnline" datatype="html">
@@ -6123,7 +6283,7 @@
         <target>Online per Karte bezahlen</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">351</context>
+          <context context-type="linenumber">387</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopPaymentCashOnDelivery" datatype="html">
@@ -6131,7 +6291,7 @@
         <target>Nachnahme</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">352</context>
+          <context context-type="linenumber">388</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopCutMale" datatype="html">
@@ -6139,7 +6299,7 @@
         <target>Herren</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">356</context>
+          <context context-type="linenumber">392</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopCutFemale" datatype="html">
@@ -6147,7 +6307,7 @@
         <target>Damen</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">357</context>
+          <context context-type="linenumber">393</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopProductSaved" datatype="html">
@@ -6155,7 +6315,7 @@
         <target>Produkt gespeichert!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">109</context>
+          <context context-type="linenumber">125</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopProductDeactivated" datatype="html">
@@ -6163,7 +6323,7 @@
         <target>Zu diesem Produkt gibt es Bestellungen, daher wurde es deaktiviert statt gelöscht.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">120</context>
+          <context context-type="linenumber">136</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopProductDeleted" datatype="html">
@@ -6171,7 +6331,7 @@
         <target>Produkt gelöscht!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">121</context>
+          <context context-type="linenumber">137</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopOrderUpdated" datatype="html">
@@ -6179,7 +6339,7 @@
         <target>Bestellung aktualisiert!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">144</context>
+          <context context-type="linenumber">160</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopOrderRefunded" datatype="html">
@@ -6187,7 +6347,7 @@
         <target>Erstattung an den Zahlungsanbieter übermittelt.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">151</context>
+          <context context-type="linenumber">167</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopPromoSaved" datatype="html">
@@ -6195,7 +6355,7 @@
         <target>Gutscheincode gespeichert!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">165</context>
+          <context context-type="linenumber">181</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopPromoDeactivated" datatype="html">
@@ -6203,7 +6363,7 @@
         <target>Der Code wurde in Bestellungen verwendet, daher wurde er deaktiviert statt gelöscht.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">173</context>
+          <context context-type="linenumber">189</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopPromoDeleted" datatype="html">
@@ -6211,7 +6371,7 @@
         <target>Gutscheincode gelöscht!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">174</context>
+          <context context-type="linenumber">190</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopAddedToCart" datatype="html">
@@ -6219,7 +6379,7 @@
         <target><x id="name" equiv-text="label"/> wurde deinem Warenkorb hinzugefügt</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/cart.service.ts</context>
-          <context context-type="linenumber">147</context>
+          <context context-type="linenumber">156</context>
         </context-group>
       </trans-unit>
     </body>

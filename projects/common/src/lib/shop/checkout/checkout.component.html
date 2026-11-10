@@ -52,8 +52,32 @@
         @if (!courier()) {
           <p i18n>You can collect your order at our next event. We will contact you with the details.</p>
         }
+        @if (courier()) {
+          <p class="delivery-country">
+            <igx-icon aria-hidden="true">public</igx-icon>
+            <span i18n>We currently deliver within Bulgaria only.</span>
+          </p>
+        }
         <div class="form-grid">
           @if (courier()) {
+            @if (addresses().length) {
+              <div class="saved-address full-width">
+                <igx-select [formControl]="addressChoice" type="border">
+                  <label igxLabel i18n>Saved address</label>
+                  @for (address of addresses(); track address.id) {
+                    <igx-select-item [value]="address.id">{{ addressLabel(address) }}</igx-select-item>
+                  }
+                  <igx-select-item value="" i18n>New address</igx-select-item>
+                </igx-select>
+                @if (addressChoice.value) {
+                  <button type="button" igxIconButton="flat" igxRipple (click)="removeAddress(addressChoice.value)"
+                    i18n-aria-label aria-label="Remove this saved address" i18n-title title="Remove this saved address">
+                    <igx-icon>delete</igx-icon>
+                  </button>
+                }
+              </div>
+            }
+
             <igx-input-group type="border">
               <igx-prefix><igx-icon>location_city</igx-icon></igx-prefix>
               <label igxLabel for="city" i18n>City</label>
@@ -66,10 +90,14 @@
             <igx-input-group type="border">
               <igx-prefix><igx-icon>markunread_mailbox</igx-icon></igx-prefix>
               <label igxLabel for="postalCode" i18n>Postal code</label>
-              <input igxInput id="postalCode" formControlName="postalCode" autocomplete="postal-code" />
+              <input igxInput id="postalCode" formControlName="postalCode" autocomplete="postal-code" inputmode="numeric" maxlength="4" />
+              <!-- One hint with the message for the error: a hint in an @else branch is not projected into the input group. -->
+              @if (invalid('postalCode')) {
+                <igx-hint class="color-error">{{ postalCodeError() }}</igx-hint>
+              }
             </igx-input-group>
 
-            <igx-input-group type="border" class="full-width">
+            <igx-input-group type="border">
               <igx-prefix><igx-icon>home</igx-icon></igx-prefix>
               <label igxLabel for="streetAddress" i18n>Street address</label>
               <input igxInput id="streetAddress" formControlName="streetAddress" autocomplete="street-address" />
@@ -77,6 +105,17 @@
                 <igx-hint class="color-error" i18n>Street address is required</igx-hint>
               }
             </igx-input-group>
+
+            <!-- Fixed: the shop only delivers within Bulgaria. -->
+            <igx-input-group type="border">
+              <igx-prefix><igx-icon>flag</igx-icon></igx-prefix>
+              <label igxLabel for="country" i18n>Country</label>
+              <input igxInput id="country" value="Bulgaria" i18n-value readonly autocomplete="off" />
+            </igx-input-group>
+
+            @if (signedIn() && !savedAddressInForm()) {
+              <igx-checkbox [formControl]="saveAddress" class="full-width" i18n>Save this address to my account</igx-checkbox>
+            }
           }
 
           <igx-input-group type="border" class="full-width">

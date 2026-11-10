@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { SteamGroup } from '../../../../common/src/public_api';
+import { SteamGroup } from 'bellum-gens-common/models';
 
 @Pipe({
     name: 'groupsFilter'

@@ -1,7 +1,8 @@
 import { Component, computed, inject, effect } from '@angular/core';
 import { BaseDirective } from '../../base/base.component';
 import { RouterLink } from '@angular/router';
-import { ApiTournamentsService, CountrySVGPipe, ParticipantTeamPipe, RaceIconPipe } from '../../../../../common/src/public_api';
+import { ApiTournamentsService } from 'bellum-gens-common/services';
+import { CountrySVGPipe, ParticipantTeamPipe, RaceIconPipe } from 'bellum-gens-common/pipes';
 import { DatePipe } from '@angular/common';
 import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
 import { IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular/progressbar';

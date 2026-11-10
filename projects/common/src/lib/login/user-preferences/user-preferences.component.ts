@@ -1,18 +1,21 @@
 import { Component, Signal, computed, effect, inject, linkedSignal, output, signal, untracked } from '@angular/core';
-import { UserPreferences, ApplicationUser } from '../../../models/applicationuser';
-import { LoginService } from '../../../services/login.service';
-import { LoginProvider } from '../../../models/login-provider';
-import { LOGIN_ASSETS } from '../../../models/misc';
-import { TournamentApplication, TournamentApplicationState } from '../../../models/tournament';
-import { ApiTournamentsService } from '../../../services/bellumgens-api.tournaments.service';
-import { Router } from '@angular/router';
+import {
+  UserPreferences,
+  ApplicationUser,
+  LoginProvider,
+  LOGIN_ASSETS,
+  TournamentApplication,
+  TournamentApplicationState
+} from 'bellum-gens-common/models';
+import { LoginService, ApiTournamentsService, PAGE_LOCATION } from 'bellum-gens-common/services';
+import { environment } from 'bellum-gens-common/environments';
+import { Router, RouterLink } from '@angular/router';
 import { ConfirmComponent } from '../../confirm/confirm.component';
 import { FormsModule } from '@angular/forms';
 import { IgxButtonDirective, IgxDividerComponent, IgxIconButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { IgxSwitchComponent } from '@infragistics/igniteui-angular/switch';
 import { IGX_LIST_DIRECTIVES } from '@infragistics/igniteui-angular/list';
-import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'bg-user-preferences',
@@ -27,13 +30,15 @@ import { environment } from '../../../environments/environment';
     FormsModule,
     IGX_LIST_DIRECTIVES,
     ConfirmComponent,
-    IgxIconButtonDirective
+    IgxIconButtonDirective,
+    RouterLink
   ]
 })
 export class UserPreferencesComponent {
   private authManager = inject(LoginService);
   private apiService = inject(ApiTournamentsService);
   private router = inject(Router);
+  private location = inject(PAGE_LOCATION);
 
   public authUser: Signal<ApplicationUser | null> = this.authManager.applicationUser;
 
@@ -52,14 +57,20 @@ export class UserPreferencesComponent {
     this.authUser() ? this.authManager.tournamentRegistrations() ?? [] : []
   );
   public isTournamentAdmin = signal(false);
+  public isAdmin = signal(false);
   public regStates = [$localize`Pending`, $localize`Confirmed`, $localize`Banned`];
 
   public userDeleted = output<void>();
+  /** The user followed a link out of the preferences, e.g. to their orders. */
+  public navigated = output<void>();
 
   constructor() {
     effect(() => {
       if (this.authUser()) {
-        untracked(() => this.authManager.getUserIsTournamentAdmin().subscribe(data => this.isTournamentAdmin.set(data)));
+        untracked(() => {
+          this.authManager.getUserIsTournamentAdmin().subscribe(data => this.isTournamentAdmin.set(data));
+          this.authManager.getUserIsAppAdmin().subscribe(data => this.isAdmin.set(data));
+        });
       }
     });
     this.authManager.loginProviders.subscribe(providers => this.providers.set(providers));
@@ -122,10 +133,19 @@ export class UserPreferencesComponent {
   }
 
   public navigateToEventAdmin() {
-    if (window.location.href.startsWith(environment.ebleague)) {
-      this.router.navigate(['/admin/sc2']);
+    this.navigateToLeague('/admin/sc2');
+  }
+
+  public navigateToAppAdmin() {
+    this.navigateToLeague('/admin');
+  }
+
+  /** Routes within the league site, or opens the page there when on another site. */
+  private navigateToLeague(path: string) {
+    if (this.location.href.startsWith(environment.ebleague)) {
+      this.router.navigate([path]);
     } else {
-      window.location.href = `${environment.ebleague}/admin/sc2`;
+      this.location.href = `${environment.ebleague}${path}`;
     }
   }
 

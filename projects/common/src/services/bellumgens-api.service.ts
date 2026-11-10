@@ -1,19 +1,24 @@
 import { Injectable, Signal, inject, signal, untracked } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { SteamGroup, SteamUser } from '../models/steamuser';
+import {
+  SteamGroup,
+  SteamUser,
+  CSGOTeam,
+  TeamMember,
+  TeamApplication,
+  Availability,
+  Role,
+  CSGOMapPool,
+  CSGODetails,
+  UserNotification,
+  Tournament,
+  ApplicationUser,
+  EarlyBird
+} from 'bellum-gens-common/models';
+import { environment } from 'bellum-gens-common/environments';
 import { Observable, Subscription, throwError } from 'rxjs';
-import { CSGOTeam, TeamMember, TeamApplication } from '../models/csgoteam';
-import { Availability } from '../models/playeravailability';
-import { Role } from '../models/playerrole';
-import { CSGOMapPool } from '../models/csgomaps';
-import { CSGODetails } from '../models/csgoplayer';
 import { map, catchError, finalize } from 'rxjs/operators';
-import { UserNotification } from '../models/usernotifications';
-import { environment } from '../environments/environment';
 import { CommunicationService } from './communication.service';
-import { Tournament } from '../models/tournament';
-import { ApplicationUser } from '../models/applicationuser';
-import { EarlyBird } from '../models/subscribers';
 
 @Injectable({
   providedIn: 'root'

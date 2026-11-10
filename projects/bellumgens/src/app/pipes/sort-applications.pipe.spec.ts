@@ -1,5 +1,5 @@
 import { SortApplicationsPipe } from './sort-applications.pipe';
-import { NotificationState, TeamApplication } from '../../../../common/src/public_api';
+import { NotificationState, TeamApplication } from 'bellum-gens-common/models';
 
 const application = (applicantId: string, state: NotificationState): TeamApplication =>
   ({ applicantId, teamId: 'team-1', message: '', state });

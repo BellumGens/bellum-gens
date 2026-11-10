@@ -5,15 +5,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ActivatedRoute, ROUTER_OUTLET_DATA, provideRouter } from '@angular/router';
 import { WritableSignal, signal } from '@angular/core';
 import { Observable } from 'rxjs';
-import {
-  ApplicationUser,
-  BellumgensApiService,
-  CSGOTeam,
-  LoginService,
-  PlaystyleRole,
-  TEAM_PLACEHOLDER,
-  TeamMember
-} from '../../../../../common/src/public_api';
+import { ApplicationUser, CSGOTeam, PlaystyleRole, TEAM_PLACEHOLDER, TeamMember } from 'bellum-gens-common/models';
+import { BellumgensApiService, LoginService } from 'bellum-gens-common/services';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';

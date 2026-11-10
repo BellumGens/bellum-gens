@@ -4,10 +4,9 @@ import { AdminSc2Component } from './admin-sc2.component';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
+import { ApiTournamentsService, CommunicationService } from 'bellum-gens-common/services';
 import {
-  ApiTournamentsService,
   ApplicationUser,
-  CommunicationService,
   SC2_MAPS,
   Tournament,
   TournamentGroup,
@@ -15,7 +14,8 @@ import {
   TournamentParticipant,
   TournamentApplication,
   TournamentApplicationState
-} from 'projects/common/src/public_api';
+} from 'bellum-gens-common/models';
+import { ConfirmComponent } from 'bellum-gens-common';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { By } from '@angular/platform-browser';
 import { IgxGridComponent } from '@infragistics/igniteui-angular/grids/grid';
@@ -25,7 +25,6 @@ import { IgxDatePickerComponent } from '@infragistics/igniteui-angular/date-pick
 import { IgxTimePickerComponent } from '@infragistics/igniteui-angular/time-picker';
 import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
 import { IDropDroppedEventArgs, IgxDropDirective } from '@infragistics/igniteui-angular/directives';
-import { ConfirmComponent } from '../../../../../common/src/lib/confirm/confirm.component';
 import { createSpyObj, SpyObj } from '../../../../../testing/spy-obj';
 
 describe('AdminSc2Component', () => {

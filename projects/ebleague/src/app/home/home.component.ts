@@ -5,13 +5,8 @@ import { RouterLink } from '@angular/router';
 import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
 import { IgxButtonDirective, IgxDividerComponent, IgxIconButtonDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
-import {
-  Game, RegistrationsCount, Tournament,
-  ApiTournamentsService,
-  LoginService,
-  ApplicationUser,
-  SocialMediaService
-} from '../../../../common/src/public_api';
+import { Game, RegistrationsCount, Tournament, ApplicationUser } from 'bellum-gens-common/models';
+import { ApiTournamentsService, LoginService, SocialMediaService } from 'bellum-gens-common/services';
 
 @Component({
   templateUrl: './home.component.html',

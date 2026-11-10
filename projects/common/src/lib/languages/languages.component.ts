@@ -2,7 +2,8 @@ import { Component, DOCUMENT, LOCALE_ID, inject } from '@angular/core';
 import { IGX_DROP_DOWN_DIRECTIVES, ISelectionEventArgs } from '@infragistics/igniteui-angular/drop-down';
 import { IgxButtonDirective, IgxRippleDirective, IgxToggleActionDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
-import { GLOBAL_OVERLAY_SETTINGS } from '../../models/misc';
+import { GLOBAL_OVERLAY_SETTINGS } from 'bellum-gens-common/models';
+import { PAGE_LOCATION } from 'bellum-gens-common/services';
 import { LANGUAGES, LOCALE_CODES, LOCALE_COOKIE } from './languages';
 
 const LOCALE_PREFIX = new RegExp(`^/(${LOCALE_CODES.join('|')})(/|$)`);
@@ -23,6 +24,7 @@ const ONE_YEAR = 60 * 60 * 24 * 365;
 export class LanguagesComponent {
   private document = inject(DOCUMENT);
   public localeId = inject(LOCALE_ID);
+  private location = inject(PAGE_LOCATION);
 
   public overlaySettings = GLOBAL_OVERLAY_SETTINGS;
   public languageList = LANGUAGES;
@@ -39,12 +41,12 @@ export class LanguagesComponent {
     // instead of the one the browser asks for.
     this.document.cookie = `${LOCALE_COOKIE}=${lang}; path=/; max-age=${ONE_YEAR}; samesite=lax`;
 
-    let path = window.location.pathname;
+    let path = this.location.pathname;
     if (LOCALE_PREFIX.test(path)) {
       path = path.replace(LOCALE_PREFIX, `/${lang}/`);
     } else {
       path = `/${lang}${path}`;
     }
-    window.location.href = window.location.origin + path;
+    this.location.href = this.location.origin + path;
   }
 }

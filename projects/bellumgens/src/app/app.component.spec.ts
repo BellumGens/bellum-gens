@@ -13,15 +13,9 @@ import { IgxBannerComponent } from '@infragistics/igniteui-angular/banner';
 import { IgxNavigationDrawerComponent } from '@infragistics/igniteui-angular/navigation-drawer';
 import { BannerResourceStringsEN, changei18n, getCurrentResourceStrings } from '@infragistics/igniteui-angular/core';
 import { IgxResourceStringsBG } from 'igniteui-angular-i18n';
-import {
-  ApplicationUser,
-  CSGOTeam,
-  CommunicationService,
-  NotificationState,
-  SearchResult,
-  UserNotification
-} from '../../../common/src/public_api';
-import { environment } from '../../../common/src/environments/environment';
+import { ApplicationUser, CSGOTeam, NotificationState, SearchResult, UserNotification } from 'bellum-gens-common/models';
+import { CommunicationService } from 'bellum-gens-common/services';
+import { environment } from 'bellum-gens-common/environments';
 
 const authUser = { id: 'user-1', username: 'TestUser' } as ApplicationUser;
 
@@ -104,6 +98,7 @@ describe('AppComponent', () => {
     // The user preferences in the login drop down load their own data once a user is known.
     httpMock.expectOne(loginProvidersUrl).flush([]);
     httpMock.expectOne(`${environment.apiEndpoint}/admin/tournamentadmin`).flush(false);
+    httpMock.expectOne(`${environment.apiEndpoint}/admin`).flush(false);
     httpMock.expectOne(`${environment.apiEndpoint}/tournament/registrations`).flush([]);
     await fixture.whenStable();
   };
@@ -471,6 +466,7 @@ describe('AppComponent', () => {
       // The user preferences in the login drop down load their own data for the user.
       httpMock.expectOne(loginProvidersUrl).flush([]);
       httpMock.expectOne(`${environment.apiEndpoint}/admin/tournamentadmin`).flush(false);
+      httpMock.expectOne(`${environment.apiEndpoint}/admin`).flush(false);
       httpMock.expectOne(`${environment.apiEndpoint}/tournament/registrations`).flush([]);
       await fixture.whenStable();
 

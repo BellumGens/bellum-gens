@@ -4,6 +4,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { By } from '@angular/platform-browser';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 
+import { PAGE_LOCATION } from 'bellum-gens-common/services';
 import { LanguagesComponent } from './languages.component';
 
 describe('LanguagesComponent', () => {
@@ -28,21 +29,16 @@ describe('LanguagesComponent', () => {
   };
 
   beforeEach(async () => {
+    // jsdom does not implement navigation, so the location the component reads and writes is stubbed.
+    location = { origin: 'http://localhost:4200', pathname: '/', href: 'http://localhost:4200/' };
     await TestBed.configureTestingModule({
       imports: [
         NoopAnimationsModule,
         LanguagesComponent
-      ]
+      ],
+      providers: [{ provide: PAGE_LOCATION, useFactory: () => location }]
     })
     .compileComponents();
-
-    // jsdom does not implement navigation, so the location the component reads and writes is stubbed.
-    location = { origin: 'http://localhost:4200', pathname: '/', href: 'http://localhost:4200/' };
-    vi.stubGlobal('location', location);
-  });
-
-  afterEach(() => {
-    vi.unstubAllGlobals();
   });
 
   describe('with the default locale', () => {

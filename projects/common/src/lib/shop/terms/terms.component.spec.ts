@@ -33,6 +33,10 @@ describe('TermsComponent', () => {
     expect(fixture.nativeElement.textContent).not.toContain('pick up');
   });
 
+  it('says that delivery is within Bulgaria only', () => {
+    expect(fixture.nativeElement.textContent).toContain('within Bulgaria only; we do not ship abroad');
+  });
+
   it('links back to the shop', () => {
     const link: HTMLAnchorElement = fixture.nativeElement.querySelector('a');
     expect(link.getAttribute('href')).toBe('/shop');
