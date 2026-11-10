@@ -11,7 +11,10 @@ describe('shopRedirectGuard', () => {
   it('builds bellumgens.com URLs with the language prefix', () => {
     expect(shopRedirectUrl('/shop', 'bg')).toBe(`${environment.bellumgens}/bg/shop`);
     expect(shopRedirectUrl('/shop/product/umbrella', 'bg-BG')).toBe(`${environment.bellumgens}/bg/shop/product/umbrella`);
-    expect(shopRedirectUrl('/shop/cart', 'en-US')).toBe(`${environment.bellumgens}/shop/cart`);
+    expect(shopRedirectUrl('/shop/cart', 'en-US')).toBe(`${environment.bellumgens}/en/shop/cart`);
+    expect(shopRedirectUrl('/shop', 'de')).toBe(`${environment.bellumgens}/de/shop`);
+    expect(shopRedirectUrl('/shop', 'nb')).toBe(`${environment.bellumgens}/nb/shop`);
+    expect(shopRedirectUrl('/shop', 'ja')).toBe(`${environment.bellumgens}/en/shop`);
   });
 
   it('redirects the browser and blocks the navigation', () => {

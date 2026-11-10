@@ -7,15 +7,15 @@ import { IgxNavDrawerItemDirective, IgxNavDrawerMiniTemplateDirective, IgxNavDra
 import { IgxDividerComponent, IgxFlexDirective, IgxIconButtonDirective, IgxLayoutDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxIconComponent, IgxIconService } from '@infragistics/igniteui-angular/icon';
 import { IgxNavbarActionDirective, IgxNavbarComponent } from '@infragistics/igniteui-angular/navbar';
-import { changei18n } from '@infragistics/igniteui-angular/core';
 import { battlenet, discord, facebook, heartCare, instagram, linkedin, steam, twitch, twitter, youtube } from '@igniteui/material-icons-extended';
-import { IgxResourceStringsBG } from 'igniteui-angular-i18n';
 
 import { LoginService, ApplicationUser, CommunicationService } from '../../../common/src/public_api';
 import { environment } from '../../../common/src/environments/environment';
 import { SuccessErrorComponent } from '../../../common/src/lib/success-error/success-error.component';
 import { LoginComponent } from '../../../common/src/lib/login/login.component';
 import { LanguagesComponent } from '../../../common/src/lib/languages/languages.component';
+import { LANGUAGES } from '../../../common/src/lib/languages/languages';
+import { localizeIgniteUI } from '../../../common/src/lib/languages/igx-resource-strings';
 import { shopRedirectUrl } from './guards/shop-redirect.guard';
 
 @Component({
@@ -106,11 +106,8 @@ export class AppComponent {
     //this.iconService.addSvgIcon('omen', '/assets/partners/omen.svg', 'partners');
     //this.iconService.addSvgIcon('paysafe', '/assets/partners/paysafe.svg', 'partners');
 
-    this.iconService.addSvgIcon('en', '/assets/country-flags/svg/united-kingdom.svg', 'languages');
-    this.iconService.addSvgIcon('bg', '/assets/country-flags/svg/bulgaria.svg', 'languages');
+    LANGUAGES.forEach(l => this.iconService.addSvgIcon(l.code, `/assets/country-flags/svg/${l.flag}.svg`, 'languages'));
 
-    if (this.localeId === 'bg') {
-      changei18n(IgxResourceStringsBG);
-    }
+    localizeIgniteUI(this.localeId);
   }
 }

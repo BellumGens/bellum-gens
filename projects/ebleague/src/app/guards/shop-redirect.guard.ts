@@ -2,12 +2,14 @@ import { DOCUMENT, LOCALE_ID, PLATFORM_ID, inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { CanActivateFn } from '@angular/router';
 import { environment } from '../../../../common/src/environments/environment';
+import { SOURCE_LOCALE, matchLocale } from '../../../../common/src/lib/languages/languages';
 
-/** Builds the bellumgens.com URL for a shop path, keeping the language the visitor was using. */
-export const shopRedirectUrl = (url: string, locale: string): string => {
-  const lang = locale.toLowerCase().startsWith('bg') ? '/bg' : '';
-  return `${environment.bellumgens}${lang}${url}`;
-};
+/**
+ * Builds the bellumgens.com URL for a shop path, keeping the language the visitor was using.
+ * The locale prefix is always set, as bellumgens.com would otherwise pick one from the browser language.
+ */
+export const shopRedirectUrl = (url: string, locale: string): string =>
+  `${environment.bellumgens}/${matchLocale(locale) ?? SOURCE_LOCALE}${url}`;
 
 /**
  * The shop moved to bellumgens.com. The Express server answers direct hits with a 301; this guard covers

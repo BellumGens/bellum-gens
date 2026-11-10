@@ -24,6 +24,7 @@
     "i18n": "npm run i18n:bellumgens && npm run i18n:ebleague",
     "i18n:bellumgens": "ng extract-i18n bellum-gens --out-file projects/bellumgens/src/locale/messages.en.xlf",
     "i18n:ebleague": "ng extract-i18n eb-league --out-file projects/ebleague/src/locale/messages.en.xlf",
+    "i18n:sync": "node scripts/i18n-sync.js",
     "cypress:open": "concurrently --kill-others --success first \"ng serve bellum-gens --port=4000\" \"ng serve eb-league --port=4001\" \"node scripts/cypress.js open --config-file=cypress.config.ts\"",
     "cypress:run": "node scripts/e2e.js --config-file=cypress.config.ts --browser chrome"
   },

@@ -95,10 +95,17 @@ describe('AppComponent', () => {
 
       expect(flushFlags()).toEqual([
         '/assets/country-flags/svg/united-kingdom.svg',
-        '/assets/country-flags/svg/bulgaria.svg'
+        '/assets/country-flags/svg/bulgaria.svg',
+        '/assets/country-flags/svg/germany.svg',
+        '/assets/country-flags/svg/france.svg',
+        '/assets/country-flags/svg/netherlands.svg',
+        '/assets/country-flags/svg/norway.svg',
+        '/assets/country-flags/svg/sweden.svg',
+        '/assets/country-flags/svg/republic-of-poland.svg',
+        '/assets/country-flags/svg/romania.svg'
       ]);
-      expect(iconService.isSvgIconCached('en', 'languages')).toBe(true);
-      expect(iconService.isSvgIconCached('bg', 'languages')).toBe(true);
+      ['en', 'bg', 'de', 'fr', 'nl', 'nb', 'sv', 'pl', 'ro']
+        .forEach(code => expect(iconService.isSvgIconCached(code, 'languages')).toBe(true));
     });
 
     it('should expose the logged in user', () => {

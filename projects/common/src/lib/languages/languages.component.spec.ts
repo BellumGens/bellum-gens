@@ -54,10 +54,10 @@ describe('LanguagesComponent', () => {
       expect(component).toBeTruthy();
     });
 
-    it('should have language list with English and Bulgarian', () => {
-      expect(component.languageList.length).toBe(2);
-      expect(component.languageList[0]).toEqual({ code: 'en', label: 'English' });
-      expect(component.languageList[1]).toEqual({ code: 'bg', label: 'Български' });
+    it('should list every supported language, starting with English and Bulgarian', () => {
+      expect(component.languageList.map(l => l.code)).toEqual(['en', 'bg', 'de', 'fr', 'nl', 'nb', 'sv', 'pl', 'ro']);
+      expect(component.languageList[0]).toEqual({ code: 'en', label: 'English', flag: 'united-kingdom' });
+      expect(component.languageList[1]).toEqual({ code: 'bg', label: 'Български', flag: 'bulgaria' });
     });
 
     it('should have overlay settings', () => {
@@ -85,10 +85,11 @@ describe('LanguagesComponent', () => {
 
     it('should render a drop down item per language with its label in its own language', async () => {
       const items = await openDropDown();
-      expect(items.length).toBe(2);
+      expect(items.length).toBe(9);
       const labels = items.map(item => item.querySelector('span[lang]')!);
-      expect(labels.map(l => l.textContent.trim())).toEqual(['English', 'Български']);
-      expect(labels.map(l => l.getAttribute('lang'))).toEqual(['en', 'bg']);
+      expect(labels.map(l => l.textContent.trim()))
+        .toEqual(['English', 'Български', 'Deutsch', 'Français', 'Nederlands', 'Norsk', 'Svenska', 'Polski', 'Română']);
+      expect(labels.map(l => l.getAttribute('lang'))).toEqual(['en', 'bg', 'de', 'fr', 'nl', 'nb', 'sv', 'pl', 'ro']);
     });
 
     it('should prefix the current path with the chosen locale when the path has no locale', async () => {
@@ -128,6 +129,28 @@ describe('LanguagesComponent', () => {
 
       expect(location.href).toBe('http://localhost:4200/bg/');
     });
+
+    it('should switch between any of the supported locales', () => {
+      location.pathname = '/nb/shop/cart';
+
+      component.changeLocale('ro');
+
+      expect(location.href).toBe('http://localhost:4200/ro/shop/cart');
+    });
+
+    it('should only treat a whole first path segment as the locale', () => {
+      location.pathname = '/players/en/bgplayer';
+
+      component.changeLocale('de');
+
+      expect(location.href).toBe('http://localhost:4200/de/players/en/bgplayer');
+    });
+
+    it('should remember the chosen locale in a cookie for the server', () => {
+      component.changeLocale('fr');
+
+      expect(document.cookie).toContain('locale=fr');
+    });
   });
 
   describe('with a selected locale', () => {
@@ -136,7 +159,7 @@ describe('LanguagesComponent', () => {
 
       expect(component.localeId).toBe('bg');
       const selected = (await openDropDown()).map(item => item.classList.contains('igx-drop-down__item--selected'));
-      expect(selected).toEqual([false, true]);
+      expect(selected).toEqual([false, true, false, false, false, false, false, false, false]);
     });
   });
 });

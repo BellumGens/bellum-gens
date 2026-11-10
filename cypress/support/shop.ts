@@ -19,9 +19,8 @@ export const OrderStatus = { AwaitingPayment: 0, Paid: 1, Shipped: 2, Cancelled:
 export const PaymentStatus = { Pending: 0, Completed: 2, Failed: 3 } as const;
 
 /**
- * The path English pages are served under. In production the hosting layer redirects /shop/... to /en/shop/...,
- * but the SSR server the tests run against (scripts/e2e.js) does not: it answers a page that is not prerendered
- * (the shop pages among them) only under its locale's base href, so the tests use the prefixed path directly.
+ * The path English pages are served under. The SSR server redirects pages without a locale (/shop/...) to the
+ * browser's language, so the tests use the English prefix directly to stay independent of the browser locale.
  */
 export const EN = '/en';
 

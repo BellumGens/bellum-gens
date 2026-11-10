@@ -5,7 +5,7 @@ import {
 import { isPlatformBrowser } from '@angular/common';
 import { RouterLinkActive, RouterLink, RouterOutlet, ActivatedRoute } from '@angular/router';
 
-import { AutoPositionStrategy, HorizontalAlignment, OverlaySettings, PositionSettings, changei18n } from '@infragistics/igniteui-angular/core';
+import { AutoPositionStrategy, HorizontalAlignment, OverlaySettings, PositionSettings } from '@infragistics/igniteui-angular/core';
 import { IgxDropDownComponent } from '@infragistics/igniteui-angular/drop-down';
 import { IgxInputDirective, IgxInputGroupComponent, IgxLabelDirective, IgxPrefixDirective, IgxSuffixDirective } from '@infragistics/igniteui-angular/input-group';
 import { IgxBannerActionsDirective, IgxBannerComponent } from '@infragistics/igniteui-angular/banner';
@@ -34,9 +34,10 @@ import { QuickSearchComponent } from './search/quick-search/quick-search.compone
 import { SearchComponent } from './search/search/search.component';
 import { LoginComponent } from '../../../common/src/lib/login/login.component';
 import { LanguagesComponent } from '../../../common/src/lib/languages/languages.component';
+import { LANGUAGES } from '../../../common/src/lib/languages/languages';
+import { localizeIgniteUI } from '../../../common/src/lib/languages/igx-resource-strings';
 import { CartBadgeComponent } from '../../../common/src/lib/shop/cart-badge/cart-badge.component';
 import { battlenet, discord, facebook, heartCare, instagram, linkedin, steam, tiktok, twitch, twitter, youtube, github } from '@igniteui/material-icons-extended';
-import { IgxResourceStringsBG } from 'igniteui-angular-i18n';
 // Type only, so the lazy loaded notifications route stays out of the main bundle
 import type { NotificationsComponent } from './notifications/notifications.component';
 
@@ -185,12 +186,9 @@ export class AppComponent {
     //this.iconService.addSvgIcon('omen', '/assets/partners/omen.svg', 'partners');
     //this.iconService.addSvgIcon('paysafe', '/assets/partners/paysafe.svg', 'partners');
 
-    this.iconService.addSvgIcon('en', '/assets/country-flags/svg/united-kingdom.svg', 'languages');
-    this.iconService.addSvgIcon('bg', '/assets/country-flags/svg/bulgaria.svg', 'languages');
+    LANGUAGES.forEach(l => this.iconService.addSvgIcon(l.code, `/assets/country-flags/svg/${l.flag}.svg`, 'languages'));
 
-    if (this.localeId === 'bg') {
-      changei18n(IgxResourceStringsBG);
-    }
+    localizeIgniteUI(this.localeId);
   }
 
   private initQuickSearch() {

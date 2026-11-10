@@ -8,41 +8,41 @@ import express from 'express';
 import compression from 'compression';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { LOCALE_CODES, SOURCE_LOCALE } from '../common/src/lib/languages/languages';
+import { localeRedirect } from '../common/src/server/locale-redirect';
 
 const app = express();
 app.use(compression());
 
-export function server(lang: string): express.Express {
-  const app = express();
+export function server(): express.Express {
+  const site = express();
+  // The engine picks the localized build from the locale prefix of the URL.
   const angularApp = new AngularNodeAppEngine();
   const serverDistFolder = dirname(fileURLToPath(import.meta.url));
-  const browserDistFolder = resolve(serverDistFolder, '../browser', lang);
+  const browserDistFolder = resolve(serverDistFolder, '../browser');
 
   /**
-   * Example Express Rest API endpoints can be defined here.
-   * Uncomment and define endpoints as necessary.
-   *
-   * Example:
-   * ```ts
-   * app.get('/api/**', (req, res) => {
-   *   // Handle API request
-   * });
-   * ```
+   * Serve static files of each localized build under its locale prefix.
    */
+  for (const locale of LOCALE_CODES) {
+    site.use(`/${locale}`, express.static(resolve(browserDistFolder, locale), { maxAge: '1y' }));
+  }
 
   /**
-   * Serve static files from /browser
+   * Files referenced by absolute path (/assets, /favicon.ico, /robots.txt...) are the same in every build.
+   * Only files are served here: pages without a locale fall through to the redirect below.
    */
-  app.use(
-    express.static(browserDistFolder, {
-      maxAge: '1y'
-    }),
-  );
+  site.use(express.static(resolve(browserDistFolder, SOURCE_LOCALE), { maxAge: '1y', index: false, redirect: false }));
+
+  /**
+   * Send first loads without a locale in the URL to the visitor's language.
+   */
+  site.use(localeRedirect());
 
   /**
    * Handle all other requests by rendering the Angular application.
    */
-  app.use('/{*splat}', (req, res, next) => {
+  site.use('/{*splat}', (req, res, next) => {
     angularApp
       .handle(req)
       .then((response) =>
@@ -51,7 +51,7 @@ export function server(lang: string): express.Express {
       .catch(next);
   });
 
-  return app;
+  return site;
 }
 
 /**
@@ -60,11 +60,7 @@ export function server(lang: string): express.Express {
  */
 if (isMainModule(import.meta.url)) {
   const port = process.env['PORT'] || 4000;
-  const appBG = server('bg');
-  const appEN = server('en');
-  app.use('/bg', appBG);
-  app.use('/en', appEN);
-  app.use('', appEN);
+  app.use(server());
   app.listen(port, () => {
     console.log(`Node Express server listening on http://localhost:${port}`);
   });
