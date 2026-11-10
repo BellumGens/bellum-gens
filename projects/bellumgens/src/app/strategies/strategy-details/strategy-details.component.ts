@@ -13,7 +13,7 @@ import {
   GLOBAL_OVERLAY_SETTINGS
 } from 'bellum-gens-common/models';
 import { LoginService, SocialMediaStrategyService, ApiStrategiesService } from 'bellum-gens-common/services';
-import { prodEnvironment } from 'bellum-gens-common/environments';
+import { environment } from 'bellum-gens-common/environments';
 import { ConfirmComponent, LoadingComponent } from 'bellum-gens-common';
 import { VotesPipe } from '../../pipes/votes.pipe';
 import { HasVotedPipe } from '../../pipes/has-voted.pipe';
@@ -97,8 +97,8 @@ export class StrategyDetailsComponent extends BaseDirective {
       map(params => params['stratid'] as string),
       filter(stratid => !!stratid),
       tap(stratid => {
-        this.meta.updateTag({ name: 'og:image', content: `${prodEnvironment.rootApiEndpoint}/Content/Strats/${stratid}.png` });
-        this.meta.updateTag({ name: 'twitter:image', content: `${prodEnvironment.rootApiEndpoint}/Content/Strats/${stratid}.png` });
+        this.meta.updateTag({ name: 'og:image', content: `${environment.publicRootApiEndpoint}/Content/Strats/${stratid}.png` });
+        this.meta.updateTag({ name: 'twitter:image', content: `${environment.publicRootApiEndpoint}/Content/Strats/${stratid}.png` });
       }),
       switchMap(stratid => toObservable(this.apiService.getStrategy(stratid), { injector: this.injector })),
       filter((strat): strat is CSGOStrategy => !!strat),

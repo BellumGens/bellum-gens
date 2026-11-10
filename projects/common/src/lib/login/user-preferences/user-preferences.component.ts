@@ -7,7 +7,7 @@ import {
   TournamentApplication,
   TournamentApplicationState
 } from 'bellum-gens-common/models';
-import { LoginService, ApiTournamentsService } from 'bellum-gens-common/services';
+import { LoginService, ApiTournamentsService, PAGE_LOCATION } from 'bellum-gens-common/services';
 import { environment } from 'bellum-gens-common/environments';
 import { Router } from '@angular/router';
 import { ConfirmComponent } from '../../confirm/confirm.component';
@@ -37,6 +37,7 @@ export class UserPreferencesComponent {
   private authManager = inject(LoginService);
   private apiService = inject(ApiTournamentsService);
   private router = inject(Router);
+  private location = inject(PAGE_LOCATION);
 
   public authUser: Signal<ApplicationUser | null> = this.authManager.applicationUser;
 
@@ -129,18 +130,19 @@ export class UserPreferencesComponent {
   }
 
   public navigateToEventAdmin() {
-    if (window.location.href.startsWith(environment.ebleague)) {
-      this.router.navigate(['/admin/sc2']);
-    } else {
-      window.location.href = `${environment.ebleague}/admin/sc2`;
-    }
+    this.navigateToLeague('/admin/sc2');
   }
 
   public navigateToAppAdmin() {
-    if (window.location.href.startsWith(environment.ebleague)) {
-      this.router.navigate(['/admin']);
+    this.navigateToLeague('/admin');
+  }
+
+  /** Routes within the league site, or opens the page there when on another site. */
+  private navigateToLeague(path: string) {
+    if (this.location.href.startsWith(environment.ebleague)) {
+      this.router.navigate([path]);
     } else {
-      window.location.href = `${environment.ebleague}/admin`;
+      this.location.href = `${environment.ebleague}${path}`;
     }
   }
 

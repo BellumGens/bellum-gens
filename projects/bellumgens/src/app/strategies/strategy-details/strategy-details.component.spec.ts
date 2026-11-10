@@ -22,7 +22,7 @@ import {
   VoteDirection
 } from 'bellum-gens-common/models';
 import { ConfirmComponent } from 'bellum-gens-common';
-import { prodEnvironment } from 'bellum-gens-common/environments';
+import { environment } from 'bellum-gens-common/environments';
 
 const comment = (id: string, overrides: Partial<StrategyComment> = {}): StrategyComment => ({
   id,
@@ -166,7 +166,7 @@ describe('StrategyDetailsComponent', () => {
 
       await loadStrategy(strategy({ lastUpdated: new Date(2024, 0, 15) }));
 
-      const image = `${prodEnvironment.rootApiEndpoint}/Content/Strats/strat-1.png`;
+      const image = `${environment.publicRootApiEndpoint}/Content/Strats/strat-1.png`;
       expect(meta.updateTag).toHaveBeenCalledWith({ name: 'og:image', content: image });
       expect(meta.updateTag).toHaveBeenCalledWith({ name: 'twitter:image', content: image });
       expect(component.strat()!.id).toBe('strat-1');

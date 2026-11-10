@@ -6,7 +6,7 @@ import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular/progressbar';
 import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
 import { IGX_TABS_DIRECTIVES } from '@infragistics/igniteui-angular/tabs';
-import { LoginService } from 'bellum-gens-common/services';
+import { LoginService, PAGE_LOCATION } from 'bellum-gens-common/services';
 import { ApplicationUser, GLOBAL_OVERLAY_SETTINGS } from 'bellum-gens-common/models';
 import { environment } from 'bellum-gens-common/environments';
 import { Router } from '@angular/router';
@@ -36,6 +36,7 @@ import { IgxCardHeaderTitleDirective, IgxCardHeaderSubtitleDirective } from '@in
 export class LoginComponent {
   private authManager = inject(LoginService);
   private router = inject(Router);
+  private location = inject(PAGE_LOCATION);
 
   public dialog = viewChild.required(LoginDialogComponent);
   public userProfile = viewChild(IgxDropDownComponent);
@@ -59,7 +60,7 @@ export class LoginComponent {
   }
 
   public navigateToProfile(user: ApplicationUser) {
-    if (window.location.href.startsWith(environment.bellumgens)) {
+    if (this.location.href.startsWith(environment.bellumgens)) {
       if (user.csgoDetails) {
         this.router.navigate(['/players/', user.csgoDetails.customUrl]);
       } else if (user.sc2Details) {
@@ -67,9 +68,9 @@ export class LoginComponent {
       }
     } else {
       if (user.csgoDetails) {
-        window.location.href = `${environment.bellumgens}/players/${user.csgoDetails.customUrl}`;
+        this.location.href = `${environment.bellumgens}/players/${user.csgoDetails.customUrl}`;
       } else if (user.sc2Details) {
-        window.location.href = `${environment.bellumgens}/players/${user.sc2Details.battleNetId}`;
+        this.location.href = `${environment.bellumgens}/players/${user.sc2Details.battleNetId}`;
       }
     }
   }

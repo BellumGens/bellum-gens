@@ -5,7 +5,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { ApplicationUser, CSGODetails, CSGOStats, SteamUser } from 'bellum-gens-common/models';
-import { LoginService } from 'bellum-gens-common/services';
+import { LoginService, PAGE_LOCATION } from 'bellum-gens-common/services';
 import { Router } from '@angular/router';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { By } from '@angular/platform-browser';
@@ -18,6 +18,7 @@ describe('LoginComponent', () => {
   let httpMock: HttpTestingController;
   let router: Router;
   let authService: LoginService;
+  let location: { href: string };
   const csgoDetails: CSGODetails = {
     steamUser: {} as SteamUser,
     userStats: {} as CSGOStats,
@@ -46,14 +47,21 @@ describe('LoginComponent', () => {
   };
 
   beforeEach(async () => {
+    // jsdom does not implement navigation, so the location the component reads and writes is stubbed.
+    // It starts within the Bellum Gens app.
+    location = { href: 'http://localhost:4200/' };
     await TestBed.configureTestingModule({
       imports: [
-        
         NoopAnimationsModule,
         ServiceWorkerModule.register('', { enabled: false }),
         LoginComponent
       ],
-      providers: [provideRouter([]), provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
+      providers: [
+        provideRouter([]),
+        provideHttpClient(withXhr(), withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        { provide: PAGE_LOCATION, useFactory: () => location }
+      ]
     })
     .compileComponents();
     authService = TestBed.inject(LoginService);
@@ -316,16 +324,8 @@ describe('LoginComponent', () => {
     });
 
     describe('outside of the Bellum Gens app', () => {
-      let location: { href: string };
-
       beforeEach(() => {
-        // jsdom does not implement navigation, so the location the component reads and writes is stubbed.
-        location = { href: 'http://localhost:4201/tournaments' };
-        vi.stubGlobal('location', location);
-      });
-
-      afterEach(() => {
-        vi.unstubAllGlobals();
+        location.href = 'http://localhost:4201/tournaments';
       });
 
       it('should redirect to the CS:GO player profile in the Bellum Gens app', () => {

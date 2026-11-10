@@ -19,6 +19,7 @@ import {
   Game
 } from 'bellum-gens-common/models';
 import { CommunicationService } from './communication.service';
+import { PAGE_LOCATION } from './page-location';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 
@@ -26,8 +27,11 @@ describe('LoginService', () => {
   let service: LoginService;
   let commsService: CommunicationService;
   let httpMock: HttpTestingController;
+  let location: { href: string };
 
   beforeEach(() => {
+    // jsdom does not implement navigation, so the location the service reads and writes is stubbed.
+    location = { href: 'http://localhost:4200/' };
     TestBed.configureTestingModule({
     imports: [
         ServiceWorkerModule.register('', { enabled: false })
@@ -36,7 +40,8 @@ describe('LoginService', () => {
           LoginService,
           { provide: SwPush, useValue: {} },
           provideHttpClient(withXhr(), withInterceptorsFromDi()),
-          provideHttpClientTesting()
+          provideHttpClientTesting(),
+          { provide: PAGE_LOCATION, useFactory: () => location }
       ]
     });
     service = TestBed.inject(LoginService);
@@ -408,11 +413,11 @@ describe('LoginService', () => {
   });
 
   it('should send the user to the login provider and back to the current page', () => {
-    const page = window.location.href.split('#')[0];
-    service.login({ name: 'Steam', url: `${page}#external?provider=Steam`, state: '' });
+    const page = 'http://localhost:4200/players/some-player';
+    location.href = page;
+    service.login({ name: 'Steam', url: 'https://localhost:44348/api/account/externallogin?provider=Steam', state: '' });
 
-    expect(window.location.hash).toBe(`#external?provider=Steam&returnUrl=${page}`);
-    window.location.hash = '';
+    expect(location.href).toBe(`https://localhost:44348/api/account/externallogin?provider=Steam&returnUrl=${page}`);
   });
 
   it('should report a failed logout and keep the user', () => {

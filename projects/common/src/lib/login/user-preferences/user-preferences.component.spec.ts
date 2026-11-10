@@ -6,7 +6,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { Router } from '@angular/router';
 import { ApplicationUser, LoginProvider, TournamentApplication, Game, TournamentApplicationState } from 'bellum-gens-common/models';
-import { CommunicationService, LoginService } from 'bellum-gens-common/services';
+import { CommunicationService, LoginService, PAGE_LOCATION } from 'bellum-gens-common/services';
+import { environment } from 'bellum-gens-common/environments';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { By } from '@angular/platform-browser';
 import { IgxSwitchComponent } from '@infragistics/igniteui-angular/switch';
@@ -20,6 +21,7 @@ describe('UserPreferencesComponent', () => {
   let commsService: CommunicationService;
   let router: Router;
   let authService: LoginService;
+  let location: { href: string };
   const providers: LoginProvider [] = [
     { name: 'Steam', state: 'test', url: 'test' },
     { name: 'BattleNet', state: 'test', url: 'test' }
@@ -44,6 +46,8 @@ describe('UserPreferencesComponent', () => {
   ];
 
   beforeEach(async () => {
+    // Starts outside the league site; jsdom cannot navigate to another document
+    location = { href: `${environment.bellumgens}/` };
     await TestBed.configureTestingModule({
       imports: [
 
@@ -51,7 +55,12 @@ describe('UserPreferencesComponent', () => {
         ServiceWorkerModule.register('', { enabled: false }),
         UserPreferencesComponent
       ],
-      providers: [provideRouter([]), provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
+      providers: [
+        provideRouter([]),
+        provideHttpClient(withXhr(), withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        { provide: PAGE_LOCATION, useFactory: () => location }
+      ]
     }).compileComponents();
     authService = TestBed.inject(LoginService);
     httpMock = TestBed.inject(HttpTestingController);
@@ -280,6 +289,7 @@ describe('UserPreferencesComponent', () => {
       // Outside the league site the admin is opened there instead of navigating within this app
       admin!.click();
       expect(router.navigate).not.toHaveBeenCalled();
+      expect(location.href).toBe(`${environment.ebleague}/admin/sc2`);
     });
 
     it('should offer the app administration to app admins only', () => {
@@ -295,6 +305,19 @@ describe('UserPreferencesComponent', () => {
       // Outside the league site the admin is opened there instead of navigating within this app
       admin!.click();
       expect(router.navigate).not.toHaveBeenCalled();
+      expect(location.href).toBe(`${environment.ebleague}/admin`);
+    });
+
+    it('should route to the administration within the league site', () => {
+      location.href = `${environment.ebleague}/tournaments`;
+      const navigate = vi.spyOn(router, 'navigate').mockResolvedValue(true);
+
+      component.navigateToAppAdmin();
+      expect(navigate).toHaveBeenLastCalledWith(['/admin']);
+
+      component.navigateToEventAdmin();
+      expect(navigate).toHaveBeenLastCalledWith(['/admin/sc2']);
+      expect(location.href).toBe(`${environment.ebleague}/tournaments`);
     });
 
     it('should name the state of every registration, pending when it has none', () => {

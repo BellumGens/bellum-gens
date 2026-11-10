@@ -8,3 +8,4 @@ export * from './communication.service';
 export * from './login.service';
 export * from './social-media.service';
 export * from './social-media.strategy.service';
+export * from './page-location';

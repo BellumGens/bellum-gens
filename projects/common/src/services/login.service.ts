@@ -19,6 +19,7 @@ import { map, catchError } from 'rxjs/operators';
 import { SwPush } from '@angular/service-worker';
 import { Router } from '@angular/router';
 import { CommunicationService } from './communication.service';
+import { PAGE_LOCATION } from './page-location';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,7 @@ export class LoginService {
   private swPush = inject(SwPush);
   private router = inject(Router);
   private commService = inject(CommunicationService);
+  private location = inject(PAGE_LOCATION);
 
   private _userCheckInProgress = signal(false);
   public readonly userCheckInProgress = this._userCheckInProgress.asReadonly();
@@ -174,7 +176,7 @@ export class LoginService {
   }
 
   public login(provider: LoginProvider) {
-    window.location.href = `${provider.url}&returnUrl=${window.location.href}`;
+    this.location.href = `${provider.url}&returnUrl=${this.location.href}`;
   }
 
   public loginWithForm(logininfo: UserLogin) {

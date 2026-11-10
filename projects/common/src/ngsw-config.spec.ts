@@ -1,6 +1,6 @@
 import { Generator } from '@angular/service-worker/config';
 import ngswConfig from './ngsw-config.json';
-import { prodEnvironment } from 'bellum-gens-common/environments';
+import { environment } from './environments/environment.prod';
 
 /**
  * The service worker caches API responses for a day in a cache shared by everyone using the browser, so
@@ -9,7 +9,7 @@ import { prodEnvironment } from 'bellum-gens-common/environments';
  * the config with Angular's own generator and match URLs the way the worker does.
  */
 describe('ngsw-config', () => {
-  const api = prodEnvironment.apiEndpoint;
+  const api = environment.apiEndpoint;
   let patterns: RegExp[];
 
   beforeAll(async () => {
