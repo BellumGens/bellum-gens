@@ -76,8 +76,11 @@ describe('ProductEditorComponent', () => {
 
     expect(component.loading()).toBe(false);
     expect(component.products().length).toBe(2);
-    expect(fixture.nativeElement.querySelectorAll('igx-list-item').length).toBe(2);
-    expect(fixture.nativeElement.textContent).toContain('Rain Umbrella');
+    // One item per product, followed by the item that starts a new product
+    const items = Array.from<HTMLElement>(fixture.nativeElement.querySelectorAll('igx-list-item'));
+    expect(items.length).toBe(3);
+    expect(items[0].textContent).toContain('Rain Umbrella');
+    expect(items[2].textContent).toContain('New product');
   });
 
   it('stops loading when the catalog cannot be fetched', () => {

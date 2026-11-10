@@ -104,6 +104,7 @@ describe('AppComponent', () => {
     // The user preferences in the login drop down load their own data once a user is known.
     httpMock.expectOne(loginProvidersUrl).flush([]);
     httpMock.expectOne(`${environment.apiEndpoint}/admin/tournamentadmin`).flush(false);
+    httpMock.expectOne(`${environment.apiEndpoint}/admin`).flush(false);
     httpMock.expectOne(`${environment.apiEndpoint}/tournament/registrations`).flush([]);
     await fixture.whenStable();
   };
@@ -471,6 +472,7 @@ describe('AppComponent', () => {
       // The user preferences in the login drop down load their own data for the user.
       httpMock.expectOne(loginProvidersUrl).flush([]);
       httpMock.expectOne(`${environment.apiEndpoint}/admin/tournamentadmin`).flush(false);
+      httpMock.expectOne(`${environment.apiEndpoint}/admin`).flush(false);
       httpMock.expectOne(`${environment.apiEndpoint}/tournament/registrations`).flush([]);
       await fixture.whenStable();
 
