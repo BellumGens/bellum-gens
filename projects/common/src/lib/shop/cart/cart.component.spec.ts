@@ -266,6 +266,12 @@ describe('CartComponent', () => {
     expect(fixture.nativeElement.textContent).not.toContain('Pick up at an event');
   });
 
+  it('says that delivery is within Bulgaria only', () => {
+    fill();
+
+    expect(fixture.nativeElement.querySelector('.delivery-country').textContent).toContain('We currently deliver within Bulgaria only.');
+  });
+
   it('switches the delivery method and puts it on the next quote request', () => {
     fill();
 

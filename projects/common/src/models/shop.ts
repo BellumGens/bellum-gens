@@ -176,7 +176,32 @@ export type OrderRequest = QuoteRequest & CustomerDetails & {
   paymentMethod: PaymentMethod;
   /** The unpaid order placed earlier from the same cart; the new order replaces it and releases its stock. */
   replacesOrderId?: string | null;
+  /** Keep the delivery address in the signed-in customer's address book (or mark a saved one as just used). */
+  saveAddress?: boolean;
 };
+
+/** The only country the shop delivers to. */
+export const DELIVERY_COUNTRY = 'BG';
+
+/** Bulgarian postal codes have four digits. */
+export const POSTAL_CODE_PATTERN = /^\d{4}$/;
+
+/** A delivery address a signed-in customer saved to their account. Always in Bulgaria. */
+export interface SavedAddress {
+  id: string;
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  city: string;
+  streetAddress: string;
+  /** Several Bulgarian towns share a name; the postal code tells them apart. */
+  postalCode: string;
+  country: string;
+  createdOn: string;
+  lastUsedOn: string;
+}
+
+export type AddressRequest = Pick<SavedAddress, 'firstName' | 'lastName' | 'phoneNumber' | 'city' | 'streetAddress' | 'postalCode'>;
 
 export interface OrderCreated {
   orderId: string;

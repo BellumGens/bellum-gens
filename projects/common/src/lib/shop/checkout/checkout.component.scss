@@ -51,6 +51,24 @@
   }
 }
 
+.delivery-country {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+}
+
+.saved-address {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  igx-select {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
 .payment-methods {
   display: flex;
   flex-direction: column;

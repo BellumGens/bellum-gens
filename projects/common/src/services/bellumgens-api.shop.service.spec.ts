@@ -251,6 +251,24 @@ describe('ApiShopService', () => {
     req.flush({});
   });
 
+  it('reads, saves and removes the signed-in customer\'s addresses with credentials', () => {
+    const address = { firstName: 'A', lastName: 'B', phoneNumber: '+359 1', city: 'Sofia', streetAddress: 'x', postalCode: '1000' };
+
+    service.getAddresses().subscribe();
+    service.saveAddress(address).subscribe();
+    service.deleteAddress('a/1').subscribe();
+
+    const list = httpMock.expectOne(r => r.method === 'GET' && r.url === `${service['_apiEndpoint']}/shop/addresses`);
+    const save = httpMock.expectOne(r => r.method === 'POST' && r.url === `${service['_apiEndpoint']}/shop/addresses`);
+    const remove = httpMock.expectOne(`${service['_apiEndpoint']}/shop/addresses/a%2F1`);
+    expect([list, save, remove].every(req => req.request.withCredentials)).toBe(true);
+    expect(save.request.body).toEqual(address);
+    expect(remove.request.method).toBe('DELETE');
+    list.flush([]);
+    save.flush({});
+    remove.flush(null);
+  });
+
   it('reads and retries an order', () => {
     service.getOrder('o1').subscribe();
     httpMock.expectOne(`${service['_apiEndpoint']}/shop/orders/o1`).flush({});
