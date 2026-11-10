@@ -34,11 +34,11 @@
 
   <h6 i18n>Tournament Registrations</h6>
 
-  <igx-list>
+  <igx-list class="registration-list">
     @for (registration of registrations(); track registration.id) {
       <igx-list-item>
-        <h2 igxListLineTitle>{{ registration.tournamentName }}</h2>
-        <h4 igxListLineSubTitle>{{ registration.game ? 'StarCraft II' : 'Counter-Strike' }}</h4>
+        <span igxListLineTitle class="registration-title">{{ registration.tournamentName }}</span>
+        <span igxListLineSubTitle class="registration-game">{{ registration.game ? 'StarCraft II' : 'Counter-Strike' }}</span>
         <div class="horizontal-center" igxListAction>
           <span
             [class.color-error]="registration.state === 0"
