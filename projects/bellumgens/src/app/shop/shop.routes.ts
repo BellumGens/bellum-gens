@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import {
   CartComponent,
   CheckoutComponent,
+  OrderHistoryComponent,
   OrderStatusComponent,
   ProductDetailComponent,
   ProductListComponent,
@@ -28,6 +29,7 @@ export const routes: Routes = [
       { path: 'cart', component: CartComponent },
       { path: 'checkout', component: CheckoutComponent },
       { path: 'order/:id', component: OrderStatusComponent },
+      { path: 'orders', component: OrderHistoryComponent },
       { path: 'terms', component: TermsComponent }
     ]
   }

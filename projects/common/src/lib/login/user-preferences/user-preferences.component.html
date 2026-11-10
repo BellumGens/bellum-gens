@@ -24,6 +24,14 @@
     <igx-switch class="horizontal-info__right" #teamVisibility id="userVisibility" name="userVisibility" [ngModel]="preferences().searchVisible" (ngModelChange)="setSearchVisible($event)"></igx-switch>
   </div>
 
+  <h6 i18n>Shop</h6>
+
+  <!-- The shop lives on Bellum Gens; from the league site the route redirects there. -->
+  <a igxButton="flat" igxRipple class="submit-button" routerLink="/shop/orders" (click)="navigated.emit()">
+    <igx-icon aria-hidden="true">receipt_long</igx-icon>
+    <span i18n>My orders</span>
+  </a>
+
   <h6 i18n>Tournament Registrations</h6>
 
   <igx-list>

@@ -6929,6 +6929,62 @@
           <context context-type="linenumber">156</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="8417842421847722492" datatype="html">
+        <source>My orders</source>
+        <target>Моите поръчки</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">32,33</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-history/order-history.component.html</context>
+          <context context-type="linenumber">2,4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3140036779961551092" datatype="html">
+        <source>Loading your orders</source>
+        <target>Зареждане на поръчките ви</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-history/order-history.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-history/order-history.component.html</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8091919214056242856" datatype="html">
+        <source>Sign in to see the orders you placed from your account.</source>
+        <target>Влезте, за да видите поръчките, направени от вашия профил.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-history/order-history.component.html</context>
+          <context context-type="linenumber">11,12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5207635742003539443" datatype="html">
+        <source>Sign in</source>
+        <target>Вход</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-history/order-history.component.html</context>
+          <context context-type="linenumber">12,13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1868114704591469197" datatype="html">
+        <source>We could not load your orders right now. Please try again in a moment.</source>
+        <target>В момента не можем да заредим поръчките ви. Моля, опитайте отново след малко.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-history/order-history.component.html</context>
+          <context context-type="linenumber">16,17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7134554357549382820" datatype="html">
+        <source>You have not placed any orders yet.</source>
+        <target>Все още нямате направени поръчки.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-history/order-history.component.html</context>
+          <context context-type="linenumber">38,39</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>

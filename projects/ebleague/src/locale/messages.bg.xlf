@@ -4214,6 +4214,14 @@
           <context context-type="linenumber">122</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="8417842421847722492" datatype="html">
+        <source>My orders</source>
+        <target>Моите поръчки</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">32,33</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>

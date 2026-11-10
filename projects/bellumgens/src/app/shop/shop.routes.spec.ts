@@ -1,6 +1,7 @@
 import {
   CartComponent,
   CheckoutComponent,
+  OrderHistoryComponent,
   OrderStatusComponent,
   ProductDetailComponent,
   ProductListComponent,
@@ -18,15 +19,16 @@ describe('shop routes', () => {
     expect(routes.length).toBe(1);
     expect(shopRoute.path).toBe('');
     expect(shopRoute.component).toBe(ShopComponent);
-    expect(children.length).toBe(6);
+    expect(children.length).toBe(7);
   });
 
-  it('routes the catalog, product page, cart, checkout, order status and terms', () => {
+  it('routes the catalog, product page, cart, checkout, order status, order history and terms', () => {
     expect(childFor('')?.component).toBe(ProductListComponent);
     expect(childFor('product/:slug')?.component).toBe(ProductDetailComponent);
     expect(childFor('cart')?.component).toBe(CartComponent);
     expect(childFor('checkout')?.component).toBe(CheckoutComponent);
     expect(childFor('order/:id')?.component).toBe(OrderStatusComponent);
+    expect(childFor('orders')?.component).toBe(OrderHistoryComponent);
     expect(childFor('terms')?.component).toBe(TermsComponent);
   });
 

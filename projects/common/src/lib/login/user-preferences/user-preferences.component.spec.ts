@@ -243,6 +243,19 @@ describe('UserPreferencesComponent', () => {
     const buttons = () => Array.from<HTMLButtonElement>(el().querySelectorAll('button'));
     const adminUrl = () => `${authService['_apiBase']}/admin/tournamentadmin`;
 
+    it('should link to the orders of the user and report leaving the preferences', () => {
+      fixture.detectChanges();
+      const navigated = vi.fn();
+      component.navigated.subscribe(navigated);
+      vi.spyOn(router, 'navigateByUrl').mockResolvedValue(true);
+
+      const link = Array.from<HTMLAnchorElement>(el().querySelectorAll('a')).find(a => a.textContent?.includes('My orders'));
+      expect(link?.getAttribute('href')).toBe('/shop/orders');
+      link!.click();
+
+      expect(navigated).toHaveBeenCalled();
+    });
+
     it('should offer to add the logins the user does not have yet', () => {
       fixture.detectChanges();
       vi.spyOn(authService, 'login').mockImplementation(() => undefined);

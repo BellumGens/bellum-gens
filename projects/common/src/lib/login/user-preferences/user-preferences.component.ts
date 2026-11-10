@@ -9,7 +9,7 @@ import {
 } from 'bellum-gens-common/models';
 import { LoginService, ApiTournamentsService, PAGE_LOCATION } from 'bellum-gens-common/services';
 import { environment } from 'bellum-gens-common/environments';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ConfirmComponent } from '../../confirm/confirm.component';
 import { FormsModule } from '@angular/forms';
 import { IgxButtonDirective, IgxDividerComponent, IgxIconButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
@@ -30,7 +30,8 @@ import { IGX_LIST_DIRECTIVES } from '@infragistics/igniteui-angular/list';
     FormsModule,
     IGX_LIST_DIRECTIVES,
     ConfirmComponent,
-    IgxIconButtonDirective
+    IgxIconButtonDirective,
+    RouterLink
   ]
 })
 export class UserPreferencesComponent {
@@ -60,6 +61,8 @@ export class UserPreferencesComponent {
   public regStates = [$localize`Pending`, $localize`Confirmed`, $localize`Banned`];
 
   public userDeleted = output<void>();
+  /** The user followed a link out of the preferences, e.g. to their orders. */
+  public navigated = output<void>();
 
   constructor() {
     effect(() => {

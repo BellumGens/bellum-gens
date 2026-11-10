@@ -161,11 +161,33 @@
           <context context-type="linenumber">23,24</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="1147358182484006761" datatype="html">
+        <source>Shop</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">27,29</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/app.component.html</context>
+          <context context-type="linenumber">15,16</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/app.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8417842421847722492" datatype="html">
+        <source>My orders</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">32,33</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="6008054525649887988" datatype="html">
         <source>Tournament Registrations</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">27,29</context>
+          <context context-type="linenumber">35,37</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
@@ -176,54 +198,54 @@
         <source>Check in</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">40</context>
+          <context context-type="linenumber">48</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">40,41</context>
+          <context context-type="linenumber">48,49</context>
         </context-group>
       </trans-unit>
       <trans-unit id="639936982205063071" datatype="html">
         <source>Delete this application</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">45</context>
+          <context context-type="linenumber">53</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">45,46</context>
+          <context context-type="linenumber">53,54</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1399532688070996684" datatype="html">
         <source>App Admin</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">56,57</context>
+          <context context-type="linenumber">64,65</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7452914169697446489" datatype="html">
         <source>SC2 Tournament Admin</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">64,65</context>
+          <context context-type="linenumber">72,73</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7893114882018865592" datatype="html">
         <source>Delete Account Forever</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">72,73</context>
+          <context context-type="linenumber">80,81</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7515883357904500238" datatype="html">
         <source>Are you sure?</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">77</context>
+          <context context-type="linenumber">85</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">80</context>
+          <context context-type="linenumber">88</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-csgo/admin-csgo.component.html</context>
@@ -254,28 +276,28 @@
         <source>Pressing OK will delete your user account permanently...</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">78,79</context>
+          <context context-type="linenumber">86,87</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2221100321668875234" datatype="html">
         <source>Pressing OK will delete your tournament registration permanently...</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
-          <context context-type="linenumber">81,82</context>
+          <context context-type="linenumber">89,90</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4416413576346763682" datatype="html">
         <source>Pending</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.ts</context>
-          <context context-type="linenumber">56</context>
+          <context context-type="linenumber">61</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1902234206836707099" datatype="html">
         <source>Confirmed</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.ts</context>
-          <context context-type="linenumber">56</context>
+          <context context-type="linenumber">61</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
@@ -290,7 +312,7 @@
         <source>Banned</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.ts</context>
-          <context context-type="linenumber">56</context>
+          <context context-type="linenumber">61</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1405463563837173046" datatype="html">
@@ -1366,42 +1388,42 @@
         <source>Courier delivery</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">371</context>
+          <context context-type="linenumber">382</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopDeliveryPickup" datatype="html">
         <source>Pick up at an event</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">372</context>
+          <context context-type="linenumber">383</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopPaymentOnline" datatype="html">
         <source>Pay online by card</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">376</context>
+          <context context-type="linenumber">387</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopPaymentCashOnDelivery" datatype="html">
         <source>Cash on delivery</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">377</context>
+          <context context-type="linenumber">388</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopCutMale" datatype="html">
         <source>Male</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">381</context>
+          <context context-type="linenumber">392</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopCutFemale" datatype="html">
         <source>Female</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">382</context>
+          <context context-type="linenumber">393</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopProductSaved" datatype="html">
@@ -2596,17 +2618,6 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournaments-main/tournaments-main.component.html</context>
           <context context-type="linenumber">3,4</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="1147358182484006761" datatype="html">
-        <source>Shop</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/app.component.html</context>
-          <context context-type="linenumber">15,16</context>
-        </context-group>
-        <context-group purpose="location">
-          <context context-type="sourcefile">projects/ebleague/src/app/app.component.html</context>
-          <context context-type="linenumber">45</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4057281158299329097" datatype="html">

@@ -367,6 +367,17 @@ export const ORDER_STATUS_NAMES: Record<OrderStatus, string> = {
   [OrderStatus.Confirmed]: $localize`:@@shopStatusConfirmed:Confirmed`
 };
 
+/** The Material icon shown next to an order in each status. */
+export const ORDER_STATUS_ICONS: Record<OrderStatus, string> = {
+  [OrderStatus.AwaitingPayment]: 'hourglass_top',
+  [OrderStatus.Paid]: 'check_circle',
+  [OrderStatus.Shipped]: 'local_shipping',
+  [OrderStatus.Delivered]: 'inventory_2',
+  [OrderStatus.Cancelled]: 'cancel',
+  [OrderStatus.Refunded]: 'undo',
+  [OrderStatus.Confirmed]: 'check_circle'
+};
+
 export const DELIVERY_METHOD_NAMES: Record<DeliveryMethod, string> = {
   [DeliveryMethod.Courier]: $localize`:@@shopDeliveryCourier:Courier delivery`,
   [DeliveryMethod.EventPickup]: $localize`:@@shopDeliveryPickup:Pick up at an event`

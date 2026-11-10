@@ -10,6 +10,7 @@ import { ApiShopService, CartService } from 'bellum-gens-common/services';
 import {
   DELIVERY_METHOD_NAMES,
   DeliveryMethod,
+  ORDER_STATUS_ICONS,
   ORDER_STATUS_NAMES,
   OrderStatus,
   OrderStatusView,
@@ -102,15 +103,7 @@ export class OrderStatusComponent {
   }
 
   public statusIcon(status: OrderStatus) {
-    switch (status) {
-      case OrderStatus.Paid:
-      case OrderStatus.Confirmed: return 'check_circle';
-      case OrderStatus.Shipped: return 'local_shipping';
-      case OrderStatus.Delivered: return 'inventory_2';
-      case OrderStatus.Cancelled: return 'cancel';
-      case OrderStatus.Refunded: return 'undo';
-      default: return 'hourglass_top';
-    }
+    return ORDER_STATUS_ICONS[status];
   }
 
   public refresh() {
