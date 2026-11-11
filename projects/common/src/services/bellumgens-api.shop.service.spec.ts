@@ -217,6 +217,41 @@ describe('ApiShopService', () => {
     expect(messages).toEqual(['Refund sent to the payment provider.']);
   });
 
+  it('reads the storefront settings without credentials', () => {
+    service.getSettings().subscribe();
+
+    const req = httpMock.expectOne(`${service['_apiEndpoint']}/shop/settings`);
+    expect(req.request.method).toBe('GET');
+    expect(req.request.withCredentials).toBe(false);
+    req.flush({ shippingCost: 6, freeShippingThreshold: 50, maxQuantityPerLine: 10, currency: 'EUR' });
+  });
+
+  it('reads and saves the admin settings, reporting the outcome', () => {
+    const messages: string[] = [];
+    const errors: string[] = [];
+    commsService.success.subscribe(message => messages.push(message));
+    commsService.error.subscribe(message => errors.push(message));
+    const changed = { shippingCost: 5, freeShippingThreshold: 60, maxQuantityPerLine: 4 };
+
+    service.getAdminSettings().subscribe();
+    const read = httpMock.expectOne(`${service['_apiEndpoint']}/shopadmin/settings`);
+    expect(read.request.withCredentials).toBe(true);
+    read.flush({ shippingCost: 6, freeShippingThreshold: 50, maxQuantityPerLine: 10 });
+
+    service.saveSettings(changed).subscribe();
+    const save = httpMock.expectOne(`${service['_apiEndpoint']}/shopadmin/settings`);
+    expect(save.request.method).toBe('PUT');
+    expect(save.request.withCredentials).toBe(true);
+    expect(save.request.body).toEqual(changed);
+    save.flush(changed);
+
+    service.saveSettings(changed).subscribe({ error: () => undefined });
+    httpMock.expectOne(`${service['_apiEndpoint']}/shopadmin/settings`).flush('Invalid settings.', { status: 400, statusText: 'Bad Request' });
+
+    expect(messages).toEqual(['Shop settings saved!']);
+    expect(errors).toEqual(['Invalid settings.']);
+  });
+
   it('quotes a cart', () => {
     service.quote({ lines: [{ productId: 'p1', quantity: 2 }], promoCode: 'SAVE10', deliveryMethod: DeliveryMethod.Courier }).subscribe();
 

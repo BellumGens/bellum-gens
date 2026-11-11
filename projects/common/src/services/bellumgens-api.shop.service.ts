@@ -19,6 +19,8 @@ import {
   QuoteRequest,
   SavedAddress,
   ShopOrder,
+  ShopSettings,
+  ShopSettingsView,
   WebhookRegistration
 } from 'bellum-gens-common/models';
 import { CommunicationService } from './communication.service';
@@ -71,6 +73,11 @@ export class ApiShopService {
 
   public checkPromo(code: string) {
     return this.http.get<PromoView>(`${this._apiEndpoint}/shop/promo`, { params: { code } });
+  }
+
+  /** The shipping cost, free shipping threshold and per-line quantity limit the server prices carts with. */
+  public getSettings() {
+    return this.http.get<ShopSettingsView>(`${this._apiEndpoint}/shop/settings`);
   }
 
   public quote(request: QuoteRequest) {
@@ -189,6 +196,17 @@ export class ApiShopService {
         ? $localize`:@@shopPromoDeactivated:The code was used by orders, so it was deactivated instead of deleted.`
         : $localize`:@@shopPromoDeleted:Promo code deleted!`)),
       catchError(error => this.fail<{ code: string; deactivated: boolean }>(error))
+    );
+  }
+
+  public getAdminSettings() {
+    return this.http.get<ShopSettings>(`${this._apiEndpoint}/shopadmin/settings`, { withCredentials: true });
+  }
+
+  public saveSettings(settings: ShopSettings) {
+    return this.http.put<ShopSettings>(`${this._apiEndpoint}/shopadmin/settings`, settings, { withCredentials: true }).pipe(
+      tap(() => this.commService.emitSuccess($localize`:@@shopSettingsSaved:Shop settings saved!`)),
+      catchError(error => this.fail<ShopSettings>(error))
     );
   }
 

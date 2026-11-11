@@ -315,6 +315,25 @@ export interface OrderStatusUpdate {
   note?: string | null;
 }
 
+/** The shop pricing rules the admin edits: shipping prices and the per-line quantity limit. */
+export interface ShopSettings {
+  shippingCost: number;
+  /** Orders whose discounted subtotal reaches this amount ship for free. */
+  freeShippingThreshold: number;
+  maxQuantityPerLine: number;
+  updatedOn?: string;
+  /** The id of the admin who last saved the settings. */
+  updatedBy?: string | null;
+}
+
+/** The pricing rules the storefront shows customers. */
+export interface ShopSettingsView {
+  shippingCost: number;
+  freeShippingThreshold: number;
+  maxQuantityPerLine: number;
+  currency: string;
+}
+
 export interface Promo {
   code: string;
   /** Fraction, e.g. 0.1 for 10% off. */

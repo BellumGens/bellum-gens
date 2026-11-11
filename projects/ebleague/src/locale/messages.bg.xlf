@@ -4222,6 +4222,98 @@
           <context context-type="linenumber">32,33</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="680243029016410875" datatype="html">
+        <source>Courier shipping cost (EUR)</source>
+        <target>Цена на доставка с куриер (EUR)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/settings-editor/settings-editor.component.html</context>
+          <context context-type="linenumber">3,4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7492462286842167444" datatype="html">
+        <source>Enter an amount between 0 and <x id="INTERPOLATION" equiv-text="{{ limits.maxShippingCost }}"/></source>
+        <target>Въведете сума между 0 и <x id="INTERPOLATION" equiv-text="{{ limits.maxShippingCost }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/settings-editor/settings-editor.component.html</context>
+          <context context-type="linenumber">6,7</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/settings-editor/settings-editor.component.html</context>
+          <context context-type="linenumber">14,15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7927523875163787868" datatype="html">
+        <source>Free shipping from (EUR)</source>
+        <target>Безплатна доставка от (EUR)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/settings-editor/settings-editor.component.html</context>
+          <context context-type="linenumber">11,12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4762509839062015503" datatype="html">
+        <source>Applies to the order total after discounts. Set to 0 for free shipping on every order.</source>
+        <target>Важи за сумата на поръчката след отстъпките. Въведете 0 за безплатна доставка на всички поръчки.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/settings-editor/settings-editor.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2099843666663900464" datatype="html">
+        <source>Maximum quantity per cart line</source>
+        <target>Максимално количество на ред в количката</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/settings-editor/settings-editor.component.html</context>
+          <context context-type="linenumber">21,22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9010210215334068752" datatype="html">
+        <source>Enter a whole number between 1 and <x id="INTERPOLATION" equiv-text="{{ limits.maxQuantityPerLine }}"/></source>
+        <target>Въведете цяло число между 1 и <x id="INTERPOLATION" equiv-text="{{ limits.maxQuantityPerLine }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/settings-editor/settings-editor.component.html</context>
+          <context context-type="linenumber">24,25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4893182903784587286" datatype="html">
+        <source>Placed orders keep the shipping cost they were placed with. New prices apply to carts within a minute.</source>
+        <target>Направените поръчки запазват цената на доставката, с която са поръчани. Новите цени важат за количките до минута.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/settings-editor/settings-editor.component.html</context>
+          <context context-type="linenumber">28,30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5550126009216036505" datatype="html">
+        <source>Save settings</source>
+        <target>Запази настройките</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/settings-editor/settings-editor.component.html</context>
+          <context context-type="linenumber">33,34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="409245494399438073" datatype="html">
+        <source>Last changed <x id="INTERPOLATION" equiv-text="{{ updatedOn | date:&apos;medium&apos; }}"/></source>
+        <target>Последна промяна <x id="INTERPOLATION" equiv-text="{{ updatedOn | date:&apos;medium&apos; }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/settings-editor/settings-editor.component.html</context>
+          <context context-type="linenumber">36,38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopSettingsSaved" datatype="html">
+        <source>Shop settings saved!</source>
+        <target>Настройките на магазина са запазени!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
+          <context context-type="linenumber">208</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5274812932412591206" datatype="html">
+        <source>Shipping and cart limits</source>
+        <target>Доставка и ограничения на количката</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
+          <context context-type="linenumber">207,208</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>

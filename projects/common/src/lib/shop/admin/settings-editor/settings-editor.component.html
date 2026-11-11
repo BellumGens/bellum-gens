@@ -1,0 +1,39 @@
+<form class="settings-form" [formGroup]="form" (ngSubmit)="save()" novalidate>
+  <igx-input-group type="border">
+    <label igxLabel for="shopShippingCost" i18n>Courier shipping cost (EUR)</label>
+    <input igxInput id="shopShippingCost" type="number" min="0" [max]="limits.maxShippingCost" step="0.01" formControlName="shippingCost" />
+    @if (form.controls.shippingCost.invalid && form.controls.shippingCost.touched) {
+      <igx-hint class="color-error" i18n>Enter an amount between 0 and {{ limits.maxShippingCost }}</igx-hint>
+    }
+  </igx-input-group>
+
+  <igx-input-group type="border">
+    <label igxLabel for="shopFreeShipping" i18n>Free shipping from (EUR)</label>
+    <input igxInput id="shopFreeShipping" type="number" min="0" [max]="limits.maxFreeShippingThreshold" step="0.01" formControlName="freeShippingThreshold" />
+    @if (form.controls.freeShippingThreshold.invalid && form.controls.freeShippingThreshold.touched) {
+      <igx-hint class="color-error" i18n>Enter an amount between 0 and {{ limits.maxFreeShippingThreshold }}</igx-hint>
+    } @else {
+      <igx-hint i18n>Applies to the order total after discounts. Set to 0 for free shipping on every order.</igx-hint>
+    }
+  </igx-input-group>
+
+  <igx-input-group type="border">
+    <label igxLabel for="shopMaxQuantity" i18n>Maximum quantity per cart line</label>
+    <input igxInput id="shopMaxQuantity" type="number" min="1" [max]="limits.maxQuantityPerLine" step="1" formControlName="maxQuantityPerLine" />
+    @if (form.controls.maxQuantityPerLine.invalid && form.controls.maxQuantityPerLine.touched) {
+      <igx-hint class="color-error" i18n>Enter a whole number between 1 and {{ limits.maxQuantityPerLine }}</igx-hint>
+    }
+  </igx-input-group>
+
+  <p class="settings-note" i18n>Placed orders keep the shipping cost they were placed with. New prices apply to carts within a minute.</p>
+
+  <div class="form-actions">
+    <button type="submit" igxButton="contained" igxRipple [disabled]="saving() || settings() === null || form.pristine">
+      <igx-icon>save</igx-icon>
+      <span i18n>Save settings</span>
+    </button>
+    @if (settings()?.updatedOn; as updatedOn) {
+      <span class="settings-updated" i18n>Last changed {{ updatedOn | date:'medium' }}</span>
+    }
+  </div>
+</form>

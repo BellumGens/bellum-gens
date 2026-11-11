@@ -19,6 +19,7 @@ export * from './shop/order-history/order-history.component';
 export * from './shop/terms/terms.component';
 export * from './shop/admin/product-editor/product-editor.component';
 export * from './shop/admin/promo-editor/promo-editor.component';
+export * from './shop/admin/settings-editor/settings-editor.component';
 
 /* Login */
 export * from './login/login.component';

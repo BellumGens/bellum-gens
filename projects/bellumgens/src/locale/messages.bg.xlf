@@ -6985,6 +6985,14 @@
           <context context-type="linenumber">38,39</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="shopSettingsSaved" datatype="html">
+        <source>Shop settings saved!</source>
+        <target>Настройките на магазина са запазени!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
+          <context context-type="linenumber">208</context>
+        </context-group>
+      </trans-unit>
     </body>
   </file>
 </xliff>

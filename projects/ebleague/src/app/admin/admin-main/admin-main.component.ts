@@ -13,7 +13,7 @@ import {
   PAYMENT_METHOD_NAMES,
   PaymentMethod
 } from 'bellum-gens-common/models';
-import { ProductEditorComponent, PromoEditorComponent, ConfirmComponent } from 'bellum-gens-common';
+import { ProductEditorComponent, PromoEditorComponent, ShopSettingsEditorComponent, ConfirmComponent } from 'bellum-gens-common';
 import { IGridEditEventArgs, IgxExporterEvent, RowType } from '@infragistics/igniteui-angular/grids/core';
 import { DefaultSortingStrategy, IGroupingExpression, SortingDirection } from '@infragistics/igniteui-angular/core';
 import { IGX_GRID_DIRECTIVES } from '@infragistics/igniteui-angular/grids/grid';
@@ -55,6 +55,7 @@ const toDate = (value?: Date | string): Date | undefined => value ? new Date(val
     IGX_CHIPS_DIRECTIVES,
     ProductEditorComponent,
     PromoEditorComponent,
+    ShopSettingsEditorComponent,
     ConfirmComponent
   ]
 })
