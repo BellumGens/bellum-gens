@@ -2,7 +2,8 @@ import { Component, LOCALE_ID, inject } from '@angular/core';
 import { IGX_DROP_DOWN_DIRECTIVES, ISelectionEventArgs } from '@infragistics/igniteui-angular/drop-down';
 import { IgxButtonDirective, IgxRippleDirective, IgxToggleActionDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
-import { GLOBAL_OVERLAY_SETTINGS } from '../../models/misc';
+import { GLOBAL_OVERLAY_SETTINGS } from 'bellum-gens-common/models';
+import { PAGE_LOCATION } from 'bellum-gens-common/services';
 
 @Component({
   selector: 'bg-languages',
@@ -18,6 +19,7 @@ import { GLOBAL_OVERLAY_SETTINGS } from '../../models/misc';
 })
 export class LanguagesComponent {
   public localeId = inject(LOCALE_ID);
+  private location = inject(PAGE_LOCATION);
 
   public overlaySettings = GLOBAL_OVERLAY_SETTINGS;
   public languageList = [
@@ -33,14 +35,14 @@ export class LanguagesComponent {
   }
 
   public changeLocale(lang: string) {
-    let path = window.location.pathname;
+    let path = this.location.pathname;
     const pattern = /\/(en|bg)\/?/;
     if (path.match(pattern)) {
       path = path.replace(pattern, `/${lang}/`);
     } else {
       path = `/${lang}${path}`;
     }
-    window.location.href = window.location.origin + path;
+    this.location.href = this.location.origin + path;
   }
 }
 

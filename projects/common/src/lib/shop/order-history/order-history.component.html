@@ -1,0 +1,47 @@
+<div class="shop-container">
+  <h2 i18n>My orders</h2>
+
+  @if (!user() && userCheck()) {
+    <div class="horizontal-center shop-loading">
+      <igx-circular-bar [indeterminate]="true" i18n-aria-label aria-label="Loading your orders"></igx-circular-bar>
+    </div>
+  } @else if (!user()) {
+    <div class="horizontal-center shop-empty">
+      <igx-icon class="empty-icon" aria-hidden="true">receipt_long</igx-icon>
+      <p i18n>Sign in to see the orders you placed from your account.</p>
+      <button type="button" igxButton="contained" igxRipple (click)="signIn()" i18n>Sign in</button>
+    </div>
+  } @else if (loadFailed()) {
+    <div class="horizontal-center shop-empty" role="alert">
+      <p i18n>We could not load your orders right now. Please try again in a moment.</p>
+      <button type="button" igxButton="contained" igxRipple (click)="load()" i18n>Try again</button>
+    </div>
+  } @else if (orders(); as orders) {
+    @if (orders.length) {
+      <igx-list class="order-list">
+        @for (order of orders; track order.id) {
+          <igx-list-item>
+            <igx-icon igxListThumbnail class="status-icon" [class]="'status-' + order.status" aria-hidden="true">{{ statusIcons[order.status] }}</igx-icon>
+            <!-- The link covers the whole row (see the styles), so it is the only focusable element in it. -->
+            <a igxListLineTitle class="order-link" [routerLink]="['/shop/order', order.id]" i18n>Order {{ order.orderNumber }}</a>
+            <span igxListLineSubTitle class="order-summary">{{ order.orderDate | date:'medium' }} · {{ summary(order) }}</span>
+            <div igxListAction class="order-meta">
+              <span>{{ statusNames[order.status] }}</span>
+              <span class="order-total">{{ order.total | currency:'EUR' }}</span>
+            </div>
+          </igx-list-item>
+        }
+      </igx-list>
+    } @else {
+      <div class="horizontal-center shop-empty">
+        <igx-icon class="empty-icon" aria-hidden="true">receipt_long</igx-icon>
+        <p i18n>You have not placed any orders yet.</p>
+        <a igxButton="contained" igxRipple routerLink="/shop" i18n>Browse the shop</a>
+      </div>
+    }
+  } @else {
+    <div class="horizontal-center shop-loading">
+      <igx-circular-bar [indeterminate]="true" i18n-aria-label aria-label="Loading your orders"></igx-circular-bar>
+    </div>
+  }
+</div>

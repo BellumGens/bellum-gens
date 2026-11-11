@@ -1,5 +1,5 @@
 import { SideStratsPipe } from './sidestrats.pipe';
-import { CSGOMap, CSGOMapPool, CSGOStrategy, Side, StratOrderBy, StrategyVote, VoteDirection } from '../../../../common/src/public_api';
+import { CSGOMap, CSGOMapPool, CSGOStrategy, Side, StratOrderBy, StrategyVote, VoteDirection } from 'bellum-gens-common/models';
 
 const strat = (id: string, map: CSGOMap, overrides: Partial<CSGOStrategy> = {}): CSGOStrategy => ({
   id,

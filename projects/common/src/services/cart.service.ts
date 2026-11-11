@@ -5,7 +5,16 @@ import { Subject, merge, of, timer } from 'rxjs';
 import { catchError, map, switchMap, tap } from 'rxjs/operators';
 import { ApiShopService } from './bellumgens-api.shop.service';
 import { CommunicationService } from './communication.service';
-import { AVAILABLE_DELIVERY_METHODS, CartItem, CartLineRequest, DeliveryMethod, Product, ProductVariant, Quote, QuoteRequest } from '../models/shop';
+import {
+  AVAILABLE_DELIVERY_METHODS,
+  CartItem,
+  CartLineRequest,
+  DeliveryMethod,
+  Product,
+  ProductVariant,
+  Quote,
+  QuoteRequest
+} from 'bellum-gens-common/models';
 
 /** An order placed from the cart that has not been paid yet. */
 export interface PendingOrder {

@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { WeaponDescriptor } from '../../../../common/src/public_api';
+import { WeaponDescriptor } from 'bellum-gens-common/models';
 
 @Pipe({
     name: 'sortWeapons'

@@ -2,14 +2,23 @@ import { computed } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { BellumgensApiService } from './bellumgens-api.service';
-import { SteamGroup, SteamUser } from '../models/steamuser';
-import { CSGOTeam, TeamMember, TeamApplication } from '../models/csgoteam';
-import { Availability, DayOfWeek } from '../models/playeravailability';
-import { PlaystyleRole, Role } from '../models/playerrole';
-import { CSGOMap, CSGOMapPool } from '../models/csgomaps';
-import { NotificationState, UserNotification } from '../models/usernotifications';
+import {
+  SteamGroup,
+  SteamUser,
+  CSGOTeam,
+  TeamMember,
+  TeamApplication,
+  Availability,
+  DayOfWeek,
+  PlaystyleRole,
+  Role,
+  CSGOMap,
+  CSGOMapPool,
+  NotificationState,
+  UserNotification,
+  ApplicationUser
+} from 'bellum-gens-common/models';
 import { CommunicationService } from './communication.service';
-import { ApplicationUser } from '../public_api';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 
 

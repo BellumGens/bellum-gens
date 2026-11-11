@@ -14,8 +14,8 @@ import { IgxTimePickerComponent } from '@infragistics/igniteui-angular/time-pick
 import { config, of, throwError } from 'rxjs';
 
 import { AdminCsgoComponent } from './admin-csgo.component';
+import { ApiTournamentsService } from 'bellum-gens-common/services';
 import {
-  ApiTournamentsService,
   CSGOMap,
   CSGOTeam,
   Tournament,
@@ -24,8 +24,8 @@ import {
   TournamentCSGOMatchMap,
   TournamentGroup,
   TournamentParticipant
-} from '../../../../../common/src/public_api';
-import { ConfirmComponent } from '../../../../../common/src/lib/confirm/confirm.component';
+} from 'bellum-gens-common/models';
+import { ConfirmComponent } from 'bellum-gens-common';
 
 const team = (teamId: string, teamName: string): CSGOTeam => ({
   teamId,

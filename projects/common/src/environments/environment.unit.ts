@@ -3,6 +3,8 @@ export const environment = {
   ebleague: 'http://localhost:4201',
   bellumgens: 'http://localhost:4200',
   rootApiEndpoint: 'https://localhost:44348',
+  // Public API root for links fetched from outside, e.g. social media previews, so it is never a local endpoint
+  publicRootApiEndpoint: 'https://api.bellumgens.com',
   authApiEndpoint: 'https://localhost:44348/api/account',
   apiEndpoint: 'https://localhost:44348/api',
   distFolderEbleague: 'dist/ebleague/browser',

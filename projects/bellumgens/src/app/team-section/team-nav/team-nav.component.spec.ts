@@ -8,7 +8,9 @@ import { TeamNewComponent } from '../team-new/team-new.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { By } from '@angular/platform-browser';
-import { ApplicationUser, CSGOTeam, ConfirmComponent, LoginService } from '../../../../../common/src/public_api';
+import { ApplicationUser, CSGOTeam } from 'bellum-gens-common/models';
+import { ConfirmComponent } from 'bellum-gens-common';
+import { LoginService } from 'bellum-gens-common/services';
 
 const TEAMS: CSGOTeam [] = [
   { teamId: 'team-1', teamName: 'First Team', teamAvatar: '', description: 'The first team', customUrl: 'first-team', visible: true },

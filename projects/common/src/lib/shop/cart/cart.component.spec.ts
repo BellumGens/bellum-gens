@@ -4,8 +4,8 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { provideRouter } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { CartComponent } from './cart.component';
-import { CartService } from '../../../services/cart.service';
-import { Brand, DeliveryMethod, Product, ProductType, Quote } from '../../../models/shop';
+import { CartService } from 'bellum-gens-common/services';
+import { Brand, DeliveryMethod, Product, ProductType, Quote } from 'bellum-gens-common/models';
 
 const umbrella = (overrides: Partial<Product> = {}): Product => ({
   id: 'p1',
@@ -264,6 +264,12 @@ describe('CartComponent', () => {
     expect(fixture.nativeElement.querySelector('igx-radio-group')).toBeNull();
     expect(fixture.nativeElement.querySelector('.delivery-method').textContent).toContain('Courier delivery');
     expect(fixture.nativeElement.textContent).not.toContain('Pick up at an event');
+  });
+
+  it('says that delivery is within Bulgaria only', () => {
+    fill();
+
+    expect(fixture.nativeElement.querySelector('.delivery-country').textContent).toContain('We currently deliver within Bulgaria only.');
   });
 
   it('switches the delivery method and puts it on the next quote request', () => {

@@ -5,8 +5,9 @@ import { provideRouter } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { Router } from '@angular/router';
-import { ApplicationUser, CommunicationService, LoginProvider, LoginService, TournamentApplication } from '../../../public_api';
-import { Game, TournamentApplicationState } from '../../../models/tournament';
+import { ApplicationUser, LoginProvider, TournamentApplication, Game, TournamentApplicationState } from 'bellum-gens-common/models';
+import { CommunicationService, LoginService, PAGE_LOCATION } from 'bellum-gens-common/services';
+import { environment } from 'bellum-gens-common/environments';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { By } from '@angular/platform-browser';
 import { IgxSwitchComponent } from '@infragistics/igniteui-angular/switch';
@@ -20,6 +21,7 @@ describe('UserPreferencesComponent', () => {
   let commsService: CommunicationService;
   let router: Router;
   let authService: LoginService;
+  let location: { href: string };
   const providers: LoginProvider [] = [
     { name: 'Steam', state: 'test', url: 'test' },
     { name: 'BattleNet', state: 'test', url: 'test' }
@@ -44,6 +46,8 @@ describe('UserPreferencesComponent', () => {
   ];
 
   beforeEach(async () => {
+    // Starts outside the league site; jsdom cannot navigate to another document
+    location = { href: `${environment.bellumgens}/` };
     await TestBed.configureTestingModule({
       imports: [
 
@@ -51,7 +55,12 @@ describe('UserPreferencesComponent', () => {
         ServiceWorkerModule.register('', { enabled: false }),
         UserPreferencesComponent
       ],
-      providers: [provideRouter([]), provideHttpClient(withXhr(), withInterceptorsFromDi()), provideHttpClientTesting()]
+      providers: [
+        provideRouter([]),
+        provideHttpClient(withXhr(), withInterceptorsFromDi()),
+        provideHttpClientTesting(),
+        { provide: PAGE_LOCATION, useFactory: () => location }
+      ]
     }).compileComponents();
     authService = TestBed.inject(LoginService);
     httpMock = TestBed.inject(HttpTestingController);
@@ -234,6 +243,19 @@ describe('UserPreferencesComponent', () => {
     const buttons = () => Array.from<HTMLButtonElement>(el().querySelectorAll('button'));
     const adminUrl = () => `${authService['_apiBase']}/admin/tournamentadmin`;
 
+    it('should link to the orders of the user and report leaving the preferences', () => {
+      fixture.detectChanges();
+      const navigated = vi.fn();
+      component.navigated.subscribe(navigated);
+      vi.spyOn(router, 'navigateByUrl').mockResolvedValue(true);
+
+      const link = Array.from<HTMLAnchorElement>(el().querySelectorAll('a')).find(a => a.textContent?.includes('My orders'));
+      expect(link?.getAttribute('href')).toBe('/shop/orders');
+      link!.click();
+
+      expect(navigated).toHaveBeenCalled();
+    });
+
     it('should offer to add the logins the user does not have yet', () => {
       fixture.detectChanges();
       vi.spyOn(authService, 'login').mockImplementation(() => undefined);
@@ -280,6 +302,35 @@ describe('UserPreferencesComponent', () => {
       // Outside the league site the admin is opened there instead of navigating within this app
       admin!.click();
       expect(router.navigate).not.toHaveBeenCalled();
+      expect(location.href).toBe(`${environment.ebleague}/admin/sc2`);
+    });
+
+    it('should offer the app administration to app admins only', () => {
+      fixture.detectChanges();
+      expect(buttons().some(b => b.textContent.includes('App Admin'))).toBe(false);
+
+      httpMock.expectOne(`${authService['_apiBase']}/admin`).flush(true);
+      fixture.detectChanges();
+
+      const admin = buttons().find(b => b.textContent.includes('App Admin'));
+      expect(admin).toBeTruthy();
+      vi.spyOn(router, 'navigate');
+      // Outside the league site the admin is opened there instead of navigating within this app
+      admin!.click();
+      expect(router.navigate).not.toHaveBeenCalled();
+      expect(location.href).toBe(`${environment.ebleague}/admin`);
+    });
+
+    it('should route to the administration within the league site', () => {
+      location.href = `${environment.ebleague}/tournaments`;
+      const navigate = vi.spyOn(router, 'navigate').mockResolvedValue(true);
+
+      component.navigateToAppAdmin();
+      expect(navigate).toHaveBeenLastCalledWith(['/admin']);
+
+      component.navigateToEventAdmin();
+      expect(navigate).toHaveBeenLastCalledWith(['/admin/sc2']);
+      expect(location.href).toBe(`${environment.ebleague}/tournaments`);
     });
 
     it('should name the state of every registration, pending when it has none', () => {

@@ -4,8 +4,8 @@ import { IgxButtonDirective, IgxDividerComponent } from '@infragistics/igniteui-
 import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { IgxCheckboxComponent } from '@infragistics/igniteui-angular/checkbox';
-import { LoginService } from '../../../services/login.service';
-import { UserLogin } from '../../../models/userlogin';
+import { LoginService } from 'bellum-gens-common/services';
+import { UserLogin } from 'bellum-gens-common/models';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { LoginButtonsComponent } from '../login-buttons/login-buttons.component';

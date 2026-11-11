@@ -8,15 +8,13 @@ import {
   TournamentVisibility,
   TournamentStatus,
   Game,
-  getTournamentStatus
-} from '../../../models/tournament';
-import { ApiTournamentsService } from '../../../services/bellumgens-api.tournaments.service';
-import { LoginService } from '../../../services/login.service';
-import { CountrySVGPipe } from '../../pipes/country-svg.pipe';
-import { RaceIconPipe } from '../../pipes/race-icon.pipe';
-import { ParticipantTeamPipe } from '../../pipes/participant-team.pipe';
+  getTournamentStatus,
+  TournamentSC2Match,
+  TournamentCSGOMatch
+} from 'bellum-gens-common/models';
+import { ApiTournamentsService, LoginService } from 'bellum-gens-common/services';
+import { CountrySVGPipe, RaceIconPipe, ParticipantTeamPipe } from 'bellum-gens-common/pipes';
 import { map } from 'rxjs/operators';
-import { TournamentSC2Match, TournamentCSGOMatch } from '../../../models/tournament-schedule';
 import { IGX_CARD_DIRECTIVES } from '@infragistics/igniteui-angular/card';
 import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';

@@ -3,12 +3,8 @@ import { toObservable, takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { filter, map, switchMap } from 'rxjs';
 
 import { RouterLinkActive, RouterLink, RouterOutlet } from '@angular/router';
-import {
-  ApplicationUser,
-  CSGOTeam, TEAM_PLACEHOLDER,
-  BellumgensApiService,
-  LoginService
-} from '../../../../common/src/public_api';
+import { ApplicationUser, CSGOTeam, TEAM_PLACEHOLDER } from 'bellum-gens-common/models';
+import { BellumgensApiService, LoginService } from 'bellum-gens-common/services';
 import { isPlatformBrowser } from '@angular/common';
 import { BaseDirective } from '../base/base.component';
 import { IgxIconComponent, IgxIconService } from '@infragistics/igniteui-angular/icon';

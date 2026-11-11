@@ -5,9 +5,8 @@ import { ActivatedRoute, convertToParamMap, provideRouter } from '@angular/route
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { BehaviorSubject, of } from 'rxjs';
 import { OrderStatusComponent } from './order-status.component';
-import { ApiShopService } from '../../../services/bellumgens-api.shop.service';
-import { CartService } from '../../../services/cart.service';
-import { DeliveryMethod, OrderStatus, OrderStatusView, PaymentMethod, PaymentStatus } from '../../../models/shop';
+import { ApiShopService, CartService } from 'bellum-gens-common/services';
+import { DeliveryMethod, OrderStatus, OrderStatusView, PaymentMethod, PaymentStatus } from 'bellum-gens-common/models';
 
 const order = (status: OrderStatus, paymentStatus: PaymentStatus | null): OrderStatusView => ({
   id: 'o1',

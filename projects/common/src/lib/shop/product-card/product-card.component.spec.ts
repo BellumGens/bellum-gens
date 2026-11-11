@@ -4,9 +4,8 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { provideRouter } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductCardComponent } from './product-card.component';
-import { CartService } from '../../../services/cart.service';
-import { ApiShopService } from '../../../services/bellumgens-api.shop.service';
-import { Brand, Product, ProductType, ProductVariant } from '../../../models/shop';
+import { CartService, ApiShopService } from 'bellum-gens-common/services';
+import { Brand, Product, ProductType, ProductVariant } from 'bellum-gens-common/models';
 
 const variant = (id: string, name: string, stockQuantity: number | null = null, extra: Partial<ProductVariant> = {}): ProductVariant =>
   ({ id, name, stockQuantity, active: true, sortOrder: 0, ...extra });

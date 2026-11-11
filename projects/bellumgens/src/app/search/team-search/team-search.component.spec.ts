@@ -6,7 +6,7 @@ import { Router, provideRouter } from '@angular/router';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
-import { ApplicationUser, PlaystyleRole } from '../../../../../common/src/public_api';
+import { ApplicationUser, PlaystyleRole } from 'bellum-gens-common/models';
 
 describe('TeamSearchComponent', () => {
   let component: TeamSearchComponent;

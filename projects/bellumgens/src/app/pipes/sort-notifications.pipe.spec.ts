@@ -1,5 +1,5 @@
 import { SortNotificationsPipe } from './sort-notifications.pipe';
-import { ApplicationUser, CSGOTeam, NotificationState, UserNotification } from '../../../../common/src/public_api';
+import { ApplicationUser, CSGOTeam, NotificationState, UserNotification } from 'bellum-gens-common/models';
 
 const notification = (teamId: string, state: NotificationState): UserNotification =>
   ({ state, teamInfo: { teamId } as CSGOTeam, invitingUser: { id: 'inviter-1', username: 'Inviter' } as ApplicationUser, sent: '' });

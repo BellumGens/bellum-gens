@@ -1,4 +1,4 @@
-import { StrategyVote, VoteDirection } from '../../../../common/src/public_api';
+import { StrategyVote, VoteDirection } from 'bellum-gens-common/models';
 
 /**
  * Accessible name of a vote button. The buttons only show an icon and, once there are votes, their count,

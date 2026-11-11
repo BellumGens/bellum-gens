@@ -2,36 +2,36 @@
   <aside class="promo-list">
     <div class="pane-header">
       <h4 i18n>Promo codes</h4>
-      <button type="button" igxButton="outlined" igxRipple (click)="newPromo()">
-        <igx-icon>add</igx-icon>
-        <span i18n>New code</span>
-      </button>
     </div>
     @if (promos().length === 0) {
       <p i18n>No promo codes yet.</p>
     } @else {
-      <ul>
+      <igx-list>
         @for (promo of promos(); track promo.code) {
-          <li [class.selected]="promo.code === editing()?.code">
-            <button type="button" class="promo-row" (click)="edit(promo)">
-              <span class="promo-code">{{ promo.code }}</span>
-              <span class="promo-discount">{{ promo.discount | percent:'1.0-2' }}</span>
-              <span class="promo-meta">
-                @if (!promo.active) {
-                  <igx-chip [selectable]="false" [removable]="false" i18n>Inactive</igx-chip>
-                }
-                @if (promo.expiration) {
-                  <span i18n>Until {{ promo.expiration | date:'mediumDate' }}</span>
-                }
-                <span i18n>Used {{ promo.timesUsed }}@if (promo.usageLimit) { / {{ promo.usageLimit }} } times</span>
-              </span>
-            </button>
-            <button type="button" igxIconButton="flat" igxRipple (click)="askDelete(promo)" i18n-title title="Delete promo code">
+          <igx-list-item [selected]="promo.code === editing()?.code" [attr.aria-current]="promo.code === editing()?.code ? 'true' : null" (click)="edit(promo)">
+            <span igxListLineTitle class="promo-code">
+              {{ promo.code }}
+              @if (!promo.active) {
+                <igx-chip class="inactive-chip" [selectable]="false" [removable]="false" i18n>Inactive</igx-chip>
+              }
+            </span>
+            <span igxListLineSubTitle>
+              {{ promo.discount | percent:'1.0-2' }}
+              @if (promo.expiration) {
+                · <ng-container i18n>Until {{ promo.expiration | date:'mediumDate' }}</ng-container>
+              }
+              · <ng-container i18n>Used {{ promo.timesUsed }}@if (promo.usageLimit) { / {{ promo.usageLimit }} } times</ng-container>
+            </span>
+            <button igxListAction type="button" igxIconButton="flat" igxRipple (click)="$event.stopPropagation(); askDelete(promo)" i18n-title title="Delete promo code">
               <igx-icon>delete</igx-icon>
             </button>
-          </li>
+          </igx-list-item>
         }
-      </ul>
+        <igx-list-item (click)="newPromo()">
+          <igx-icon>add</igx-icon>
+          <span i18n>New code</span>
+        </igx-list-item>
+      </igx-list>
     }
   </aside>
 

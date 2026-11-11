@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { ALL_ROLES } from '../../../../common/src/public_api';
+import { ALL_ROLES } from 'bellum-gens-common/models';
 
 @Pipe({
     name: 'queryParsed'

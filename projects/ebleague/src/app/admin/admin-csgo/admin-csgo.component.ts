@@ -4,11 +4,15 @@ import {
   Tournament,
   TournamentGroup,
   TournamentParticipant,
-  ApiTournamentsService,
-  TournamentCSGOMatch, TournamentMatchMap,
-  CSGOActiveDutyMap, ACTIVE_DUTY
-} from '../../../../../common/src/public_api';
-import { environment } from '../../../../../common/src/environments/environment';
+  TournamentCSGOMatch,
+  TournamentMatchMap,
+  CSGOActiveDutyMap,
+  ACTIVE_DUTY
+} from 'bellum-gens-common/models';
+import { ApiTournamentsService } from 'bellum-gens-common/services';
+import { environment } from 'bellum-gens-common/environments';
+import { CSGOMapnamePipe, CSGOMapimagePipe } from 'bellum-gens-common/pipes';
+import { ConfirmComponent } from 'bellum-gens-common';
 import { IDropDroppedEventArgs, IGX_DRAG_DROP_DIRECTIVES, IgxButtonDirective, IgxIconButtonDirective } from '@infragistics/igniteui-angular/directives';
 import { IRowDataEventArgs } from '@infragistics/igniteui-angular/grids/core';
 import { IGX_GRID_DIRECTIVES, IgxGridComponent } from '@infragistics/igniteui-angular/grids/grid';
@@ -25,9 +29,6 @@ import { IGX_DATE_PICKER_DIRECTIVES } from '@infragistics/igniteui-angular/date-
 import { IGX_TIME_PICKER_DIRECTIVES } from '@infragistics/igniteui-angular/time-picker';
 import { IgxCheckboxComponent } from '@infragistics/igniteui-angular/checkbox';
 import { NotInGroupPipe } from '../../pipes/not-in-group.pipe';
-import { CSGOMapnamePipe } from '../../../../../common/src/lib/pipes/csgomapname.pipe';
-import { CSGOMapimagePipe } from '../../../../../common/src/lib/pipes/csgomapimage.pipe';
-import { ConfirmComponent } from '../../../../../common/src/lib/confirm/confirm.component';
 import { DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 

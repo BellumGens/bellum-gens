@@ -3,7 +3,7 @@ import { provideRouter } from '@angular/router';
 import { formatDate } from '@angular/common';
 
 import { TournamentCardComponent } from './tournament-card.component';
-import { Tournament, TournamentStatus, TournamentVisibility, Game } from '../../../models/tournament';
+import { Tournament, TournamentStatus, TournamentVisibility, Game } from 'bellum-gens-common/models';
 
 describe('TournamentCardComponent', () => {
   let component: TournamentCardComponent;

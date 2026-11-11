@@ -2,10 +2,6 @@
   <aside class="product-list-pane">
     <div class="pane-header">
       <h4 i18n>Products</h4>
-      <button type="button" igxButton="outlined" igxRipple (click)="newProduct()">
-        <igx-icon>add</igx-icon>
-        <span i18n>New product</span>
-      </button>
     </div>
     @if (loading()) {
       <p i18n>Loading products...</p>
@@ -14,18 +10,20 @@
     } @else {
       <igx-list>
         @for (product of products(); track product.id) {
-          <igx-list-item [class.selected]="product.id === selectedId()">
-            <button type="button" class="product-row" [attr.aria-pressed]="product.id === selectedId()" (click)="edit(product)">
-              <span igxListLineTitle>
-                {{ product.name }}
-                @if (!product.active) {
-                  <igx-chip class="inactive-chip" [selectable]="false" [removable]="false" i18n>Inactive</igx-chip>
-                }
-              </span>
-              <span igxListLineSubTitle>{{ brandNames[product.brand] }} · {{ product.price | currency:'EUR' }} · {{ product.variants?.length || 0 }} <ng-container i18n>options</ng-container></span>
-            </button>
+          <igx-list-item [selected]="product.id === selectedId()" (click)="edit(product)">
+            <span igxListLineTitle>
+              {{ product.name }}
+              @if (!product.active) {
+                <igx-chip class="inactive-chip" [selectable]="false" [removable]="false" i18n>Inactive</igx-chip>
+              }
+            </span>
+            <span igxListLineSubTitle>{{ brandNames[product.brand] }} · {{ product.price | currency:'EUR' }} · {{ product.variants?.length || 0 }} <ng-container i18n>options</ng-container></span>
           </igx-list-item>
         }
+        <igx-list-item (click)="newProduct()">
+          <igx-icon>add</igx-icon>
+          <span i18n>New product</span>
+        </igx-list-item>
       </igx-list>
     }
   </aside>

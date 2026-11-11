@@ -10,7 +10,7 @@ import { RouterTestingHarness } from '@angular/router/testing';
 import { IgxIconService } from '@infragistics/igniteui-angular/icon';
 import { TeamComponent } from './team.component';
 import { TeamApplicationComponent } from './team-application/team-application.component';
-import { ApplicationUser, CSGOTeam, TEAM_PLACEHOLDER } from '../../../../common/src/public_api';
+import { ApplicationUser, CSGOTeam, TEAM_PLACEHOLDER } from 'bellum-gens-common/models';
 
 const API = 'https://localhost:44348/api';
 const AUTH_API = `${API}/account`;

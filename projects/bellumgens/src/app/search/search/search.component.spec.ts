@@ -8,8 +8,9 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { By } from '@angular/platform-browser';
-import { ApplicationUser, LoginService } from '../../../../../common/src/public_api';
-import { environment } from '../../../../../common/src/environments/environment';
+import { ApplicationUser } from 'bellum-gens-common/models';
+import { LoginService } from 'bellum-gens-common/services';
+import { environment } from 'bellum-gens-common/environments';
 import { PlayerSearchComponent } from '../player-search/player-search.component';
 import { TeamSearchComponent } from '../team-search/team-search.component';
 

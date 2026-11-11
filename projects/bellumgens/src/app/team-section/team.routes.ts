@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { TeamadminGuard } from '../../../../common/src/public_api';
+import { TeamadminGuard } from 'bellum-gens-common/guards';
 import { TeamDetailsComponent } from './team-details/team-details.component';
 import { TeamNavComponent } from './team-nav/team-nav.component';
 import { TeamPreferencesComponent } from './team-preferences/team-preferences.component';

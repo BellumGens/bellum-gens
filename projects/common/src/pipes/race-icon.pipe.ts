@@ -1,5 +1,5 @@
 import { Pipe, type PipeTransform } from '@angular/core';
-import { type SC2Race } from '../../public_api';
+import { type SC2Race } from 'bellum-gens-common/models';
 
 @Pipe({
   name: 'raceIcon',

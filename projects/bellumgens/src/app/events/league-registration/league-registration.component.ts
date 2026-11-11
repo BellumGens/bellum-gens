@@ -1,18 +1,9 @@
 import { Component, Signal, computed, effect, inject, signal, untracked } from '@angular/core';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map } from 'rxjs/operators';
-import {
-  ApplicationUser,
-  LoginService,
-  ApiTournamentsService,
-  StartsWithPipe,
-  TournamentApplication,
-  Game,
-  CountrySVGPipe,
-  CommunicationService,
-  BATTLE_TAG_REGEX,
-  EMAIL_REGEX
-} from '../../../../../common/src/public_api';
+import { ApplicationUser, TournamentApplication, Game, BATTLE_TAG_REGEX, EMAIL_REGEX } from 'bellum-gens-common/models';
+import { LoginService, ApiTournamentsService, CommunicationService } from 'bellum-gens-common/services';
+import { StartsWithPipe, CountrySVGPipe } from 'bellum-gens-common/pipes';
 import { FormsModule } from '@angular/forms';
 import { IGX_DRAG_DROP_DIRECTIVES, IgxButtonDirective } from '@infragistics/igniteui-angular/directives';
 import { IGX_DROP_DOWN_DIRECTIVES, IgxAutocompleteDirective } from '@infragistics/igniteui-angular/drop-down';

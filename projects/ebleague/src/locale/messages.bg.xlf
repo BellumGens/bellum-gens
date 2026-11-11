@@ -194,6 +194,14 @@
           <context context-type="linenumber">49,50</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="1399532688070996684" datatype="html">
+        <source>App Admin</source>
+        <target>Администрация на приложението</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">56,57</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="7893114882018865592" datatype="html">
         <source>Delete Account Forever</source>
         <target>Изтрий акаунта завинаги</target>
@@ -1064,6 +1072,7 @@
       </trans-unit>
       <trans-unit id="8558919497900554182" datatype="html">
         <source><x id="INTERPOLATION" equiv-text="{{ selectedTournament ? selectedTournament.name : &apos;No&apos; }}"/> StarCraft II matches</source>
+        <target><x id="INTERPOLATION" equiv-text="{{ selectedTournament ? selectedTournament.name : &apos;Няма&apos; }}"/> StarCraft II мачове</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
           <context context-type="linenumber">23</context>
@@ -1471,6 +1480,7 @@
       </trans-unit>
       <trans-unit id="3687194426938367329" datatype="html">
         <source>Partners</source>
+        <target>Партньори</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
           <context context-type="linenumber">141,143</context>
@@ -1774,6 +1784,7 @@
       </trans-unit>
       <trans-unit id="2501489806101473286" datatype="html">
         <source>About us</source>
+        <target>За нас</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/home/home.component.html</context>
           <context context-type="linenumber">379,380</context>
@@ -4201,6 +4212,14 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
           <context context-type="linenumber">122</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8417842421847722492" datatype="html">
+        <source>My orders</source>
+        <target>Моите поръчки</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">32,33</context>
         </context-group>
       </trans-unit>
     </body>

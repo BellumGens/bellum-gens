@@ -5,8 +5,8 @@ import { provideRouter, ActivatedRoute } from '@angular/router';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { Subject } from 'rxjs';
-import { LoginService } from '../../services/login.service';
-import { ApplicationUser } from '../../models/applicationuser';
+import { LoginService } from 'bellum-gens-common/services';
+import { ApplicationUser } from 'bellum-gens-common/models';
 import { ServiceWorkerModule } from '@angular/service-worker';
 
 describe('UnauthorizedComponent', () => {

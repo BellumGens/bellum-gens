@@ -1,7 +1,7 @@
 import { Component, input, output } from '@angular/core';
 import { DatePipe, NgOptimizedImage } from '@angular/common';
 import { RouterLink } from '@angular/router';
-import { Tournament, TournamentStatus, TournamentVisibility, Game, getTournamentStatus } from '../../../models/tournament';
+import { Tournament, TournamentStatus, TournamentVisibility, Game, getTournamentStatus } from 'bellum-gens-common/models';
 import { IgxCardComponent, IgxCardHeaderComponent, IgxCardContentDirective, IgxCardActionsComponent, IgxCardMediaDirective, IgxCardHeaderTitleDirective, IgxCardHeaderSubtitleDirective } from '@infragistics/igniteui-angular/card';
 import { IgxButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';

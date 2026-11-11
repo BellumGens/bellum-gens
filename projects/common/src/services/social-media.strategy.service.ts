@@ -1,14 +1,16 @@
-import { Injectable } from '@angular/core';
-import { CSGOStrategy } from '../models/csgostrategy';
+import { Injectable, inject } from '@angular/core';
+import { CSGOStrategy } from 'bellum-gens-common/models';
 import { SocialMediaService } from './social-media.service';
+import { PAGE_LOCATION } from './page-location';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SocialMediaStrategyService extends SocialMediaService {
+  private location = inject(PAGE_LOCATION);
 
   public shareOnTwitter(strat: CSGOStrategy) {
-    window.location.href = `${this._twitterShare}${this.stratTextForTwitter(strat)}`;
+    this.location.href = `${this._twitterShare}${this.stratTextForTwitter(strat)}`;
   }
 
   private stratTextForTwitter(strat: CSGOStrategy) {

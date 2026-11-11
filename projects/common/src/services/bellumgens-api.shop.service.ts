@@ -2,9 +2,9 @@ import { Injectable, Signal, inject, signal, untracked } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
-import { environment } from '../environments/environment';
-import { CommunicationService } from './communication.service';
+import { environment } from 'bellum-gens-common/environments';
 import {
+  AddressRequest,
   Brand,
   OrderCreated,
   OrderRequest,
@@ -17,9 +17,11 @@ import {
   PromoView,
   Quote,
   QuoteRequest,
+  SavedAddress,
   ShopOrder,
   WebhookRegistration
-} from '../models/shop';
+} from 'bellum-gens-common/models';
+import { CommunicationService } from './communication.service';
 
 @Injectable({
   providedIn: 'root'
@@ -89,6 +91,20 @@ export class ApiShopService {
 
   public getMyOrders() {
     return this.http.get<OrderStatusView[]>(`${this._apiEndpoint}/shop/orders/mine`, { withCredentials: true });
+  }
+
+  /** The signed-in customer's saved delivery addresses, the most recently used first. */
+  public getAddresses() {
+    return this.http.get<SavedAddress[]>(`${this._apiEndpoint}/shop/addresses`, { withCredentials: true });
+  }
+
+  /** Saves an address to the signed-in customer's account; saving one already there marks it as just used. */
+  public saveAddress(address: AddressRequest) {
+    return this.http.post<SavedAddress>(`${this._apiEndpoint}/shop/addresses`, address, { withCredentials: true });
+  }
+
+  public deleteAddress(id: string) {
+    return this.http.delete<void>(`${this._apiEndpoint}/shop/addresses/${encodeURIComponent(id)}`, { withCredentials: true });
   }
 
   // Administration

@@ -4,8 +4,8 @@ import { HttpTestingController, provideHttpClientTesting } from '@angular/common
 import { provideRouter } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ProductListComponent } from './product-list.component';
-import { ApiShopService } from '../../../services/bellumgens-api.shop.service';
-import { Brand, Product, ProductType } from '../../../models/shop';
+import { ApiShopService } from 'bellum-gens-common/services';
+import { Brand, Product, ProductType } from 'bellum-gens-common/models';
 
 const product = (id: string, name: string, brand: Brand, type: ProductType): Product => ({
   id,

@@ -2,11 +2,12 @@ import { Routes } from '@angular/router';
 import {
   CartComponent,
   CheckoutComponent,
+  OrderHistoryComponent,
   OrderStatusComponent,
   ProductDetailComponent,
   ProductListComponent,
   TermsComponent
-} from '../../../../common/src/public_api';
+} from 'bellum-gens-common';
 import { ShopComponent } from './shop.component';
 
 const seo = {
@@ -28,6 +29,7 @@ export const routes: Routes = [
       { path: 'cart', component: CartComponent },
       { path: 'checkout', component: CheckoutComponent },
       { path: 'order/:id', component: OrderStatusComponent },
+      { path: 'orders', component: OrderHistoryComponent },
       { path: 'terms', component: TermsComponent }
     ]
   }

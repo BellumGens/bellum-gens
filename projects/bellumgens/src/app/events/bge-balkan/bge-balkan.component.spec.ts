@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { BgeBalkanComponent } from './bge-balkan.component';
-import { ApiTournamentsService } from '../../../../../common/src/public_api';
+import { ApiTournamentsService } from 'bellum-gens-common/services';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
 import { ServiceWorkerModule } from '@angular/service-worker';

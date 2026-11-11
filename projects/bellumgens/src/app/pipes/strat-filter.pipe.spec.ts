@@ -1,4 +1,4 @@
-import { CSGOMap, CSGOStrategy } from '../../../../common/src/public_api';
+import { CSGOMap, CSGOStrategy } from 'bellum-gens-common/models';
 import { StratFilterPipe } from './strat-filter.pipe';
 
 describe('StratFilterPipe', () => {

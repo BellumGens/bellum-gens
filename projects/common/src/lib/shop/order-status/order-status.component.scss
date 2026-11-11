@@ -1,6 +1,7 @@
 :host {
   display: block;
   width: 100%;
+  min-height: calc(100% - 40px);
 }
 
 .shop-container {

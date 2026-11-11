@@ -2,7 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { IgxButtonDirective, IgxRippleDirective } from '@infragistics/igniteui-angular/directives';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
-import { LoginService } from '../../services/login.service';
+import { LoginService } from 'bellum-gens-common/services';
 
 @Component({
   selector: 'bg-unauthorized',

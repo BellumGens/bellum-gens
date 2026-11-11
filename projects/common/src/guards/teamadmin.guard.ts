@@ -1,6 +1,6 @@
 import { Injectable, PLATFORM_ID, inject } from '@angular/core';
 import { ActivatedRouteSnapshot } from '@angular/router';
-import { LoginService } from '../services/login.service';
+import { LoginService } from 'bellum-gens-common/services';
 import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({

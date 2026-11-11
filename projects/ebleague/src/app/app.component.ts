@@ -11,11 +11,10 @@ import { changei18n } from '@infragistics/igniteui-angular/core';
 import { battlenet, discord, facebook, heartCare, instagram, linkedin, steam, twitch, twitter, youtube } from '@igniteui/material-icons-extended';
 import { IgxResourceStringsBG } from 'igniteui-angular-i18n';
 
-import { LoginService, ApplicationUser, CommunicationService } from '../../../common/src/public_api';
-import { environment } from '../../../common/src/environments/environment';
-import { SuccessErrorComponent } from '../../../common/src/lib/success-error/success-error.component';
-import { LoginComponent } from '../../../common/src/lib/login/login.component';
-import { LanguagesComponent } from '../../../common/src/lib/languages/languages.component';
+import { LoginService, CommunicationService } from 'bellum-gens-common/services';
+import { ApplicationUser } from 'bellum-gens-common/models';
+import { environment } from 'bellum-gens-common/environments';
+import { SuccessErrorComponent, LoginComponent, LanguagesComponent } from 'bellum-gens-common';
 import { shopRedirectUrl } from './guards/shop-redirect.guard';
 
 @Component({

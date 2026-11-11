@@ -1,7 +1,7 @@
 import { DOCUMENT, LOCALE_ID, PLATFORM_ID, inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { CanActivateFn } from '@angular/router';
-import { environment } from '../../../../common/src/environments/environment';
+import { environment } from 'bellum-gens-common/environments';
 
 /** Builds the bellumgens.com URL for a shop path, keeping the language the visitor was using. */
 export const shopRedirectUrl = (url: string, locale: string): string => {

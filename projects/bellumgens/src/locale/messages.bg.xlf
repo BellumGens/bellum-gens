@@ -1099,7 +1099,7 @@
       </trans-unit> -->
       <trans-unit id="2943688585171103132" datatype="html">
         <source>The Venue</source>
-        <source>Мястото</source>
+        <target>Мястото</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/bellumgens/src/app/events/events.component.html</context>
           <context context-type="linenumber">195,196</context>
@@ -4449,6 +4449,14 @@
           <context context-type="linenumber">49,50</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="1399532688070996684" datatype="html">
+        <source>App Admin</source>
+        <target>Администрация на приложението</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">56,57</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="7893114882018865592" datatype="html">
         <source>Delete Account Forever</source>
         <target>Изтрий акаунта завинаги</target>
@@ -6831,6 +6839,150 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/terms/terms.component.html</context>
           <context context-type="linenumber">31,32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3352466411115509199" datatype="html">
+        <source>We currently deliver within Bulgaria only.</source>
+        <target>В момента доставяме само в рамките на България.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/cart/cart.component.html</context>
+          <context context-type="linenumber">61,63</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">58,59</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1774623326857813183" datatype="html">
+        <source>Saved address</source>
+        <target>Запазен адрес</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">66,67</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8035280614643172424" datatype="html">
+        <source>New address</source>
+        <target>Нов адрес</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">70</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2491713153759731624" datatype="html">
+        <source>Remove this saved address</source>
+        <target>Премахни този запазен адрес</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">74</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">74,75</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5516170570431233038" datatype="html">
+        <source>A Bulgarian postal code has 4 digits</source>
+        <target>Българският пощенски код е от 4 цифри</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">95</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7765932246689711510" datatype="html">
+        <source>Save this address to my account</source>
+        <target>Запази адреса в профила ми</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.html</context>
+          <context context-type="linenumber">116</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopAddressRemoveFailed" datatype="html">
+        <source>The address could not be removed. Please try again.</source>
+        <target>Адресът не можа да бъде премахнат. Моля, опитайте отново.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.ts</context>
+          <context context-type="linenumber">166</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="13592933573213277" datatype="html">
+        <source>We currently deliver by courier within Bulgaria only; we do not ship abroad. The shipping cost is shown before you place your order. We email you when the order is handed to the courier.</source>
+        <target>В момента доставяме с куриер само в рамките на България; не изпращаме в чужбина. Цената на доставката се показва, преди да направите поръчката. Изпращаме ви имейл, когато поръчката бъде предадена на куриера.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/terms/terms.component.html</context>
+          <context context-type="linenumber">24,25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopPostalCodeRequired" datatype="html">
+        <source>Postal code is required</source>
+        <target>Пощенският код е задължителен</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.ts</context>
+          <context context-type="linenumber">155</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopPostalCodeFormat" datatype="html">
+        <source>A Bulgarian postal code has 4 digits</source>
+        <target>Българският пощенски код е от 4 цифри</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/checkout/checkout.component.ts</context>
+          <context context-type="linenumber">156</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8417842421847722492" datatype="html">
+        <source>My orders</source>
+        <target>Моите поръчки</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/login/user-preferences/user-preferences.component.html</context>
+          <context context-type="linenumber">32,33</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-history/order-history.component.html</context>
+          <context context-type="linenumber">2,4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3140036779961551092" datatype="html">
+        <source>Loading your orders</source>
+        <target>Зареждане на поръчките ви</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-history/order-history.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-history/order-history.component.html</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="8091919214056242856" datatype="html">
+        <source>Sign in to see the orders you placed from your account.</source>
+        <target>Влезте, за да видите поръчките, направени от вашия профил.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-history/order-history.component.html</context>
+          <context context-type="linenumber">11,12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5207635742003539443" datatype="html">
+        <source>Sign in</source>
+        <target>Вход</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-history/order-history.component.html</context>
+          <context context-type="linenumber">12,13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="1868114704591469197" datatype="html">
+        <source>We could not load your orders right now. Please try again in a moment.</source>
+        <target>В момента не можем да заредим поръчките ви. Моля, опитайте отново след малко.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-history/order-history.component.html</context>
+          <context context-type="linenumber">16,17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7134554357549382820" datatype="html">
+        <source>You have not placed any orders yet.</source>
+        <target>Все още нямате направени поръчки.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/order-history/order-history.component.html</context>
+          <context context-type="linenumber">38,39</context>
         </context-group>
       </trans-unit>
     </body>

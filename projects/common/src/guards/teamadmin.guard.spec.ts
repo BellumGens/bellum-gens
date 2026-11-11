@@ -6,7 +6,7 @@ import { TeamadminGuard } from './teamadmin.guard';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/common/http';
-import { environment } from '../environments/environment';
+import { environment } from 'bellum-gens-common/environments';
 
 describe('TeamadminGuard', () => {
   const route = { parent: { params: { teamid: 'team-1' } } } as unknown as ActivatedRouteSnapshot;

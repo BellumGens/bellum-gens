@@ -8,8 +8,7 @@ import { IgxButtonDirective, IgxDividerComponent, IgxIconButtonDirective, IgxRip
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { IgxChipComponent } from '@infragistics/igniteui-angular/chips';
 import { IGX_LIST_DIRECTIVES } from '@infragistics/igniteui-angular/list';
-import { ApiShopService } from '../../../../services/bellumgens-api.shop.service';
-import { ConfirmComponent } from '../../../confirm/confirm.component';
+import { ApiShopService } from 'bellum-gens-common/services';
 import {
   BRAND_NAMES,
   Brand,
@@ -21,7 +20,8 @@ import {
   Product,
   ProductType,
   ProductVariant
-} from '../../../../models/shop';
+} from 'bellum-gens-common/models';
+import { ConfirmComponent } from '../../../confirm/confirm.component';
 
 /** Sentinel for "no cut" / "no size" in the selects, since a select item cannot carry null. */
 const NONE = -1;

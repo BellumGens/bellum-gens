@@ -1,5 +1,5 @@
 import { ActiveDutyMapsPipe } from './active-duty-maps.pipe';
-import { CSGOActiveDutyMap, CSGOMap, CSGOMapPool } from '../../public_api';
+import { CSGOActiveDutyMap, CSGOMap, CSGOMapPool } from 'bellum-gens-common/models';
 
 describe('ActiveDutyMapsPipe', () => {
   let pipe: ActiveDutyMapsPipe;

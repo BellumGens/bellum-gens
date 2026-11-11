@@ -1,13 +1,7 @@
 import { Component, Signal, effect, inject, input, signal, untracked } from '@angular/core';
-import {
-  EMPTY_NEW_APPLICATION, Game, GAMES,
-  ApplicationUser,
-  LoginService,
-  ApiTournamentsService,
-  BellumgensApiService,
-  CSGOTeam,
-  BATTLE_TAG_REGEX
-} from '../../../../common/src/public_api';
+import { EMPTY_NEW_APPLICATION, Game, GAMES, ApplicationUser, CSGOTeam, BATTLE_TAG_REGEX } from 'bellum-gens-common/models';
+import { LoginService, ApiTournamentsService, BellumgensApiService } from 'bellum-gens-common/services';
+import { StartsWithPipe } from 'bellum-gens-common/pipes';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { IGX_DRAG_DROP_DIRECTIVES, IgxIconButtonDirective } from '@infragistics/igniteui-angular/directives';
@@ -18,7 +12,6 @@ import { IgxAvatarComponent } from '@infragistics/igniteui-angular/avatar';
 import { IgxCheckboxComponent } from '@infragistics/igniteui-angular/checkbox';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { TeamNewComponent } from '../../../../bellumgens/src/app/team-section/team-new/team-new.component';
-import { StartsWithPipe } from '../../../../common/src/lib/pipes/starts-with.pipe';
 
 @Component({
   selector: 'app-tournament-registration',

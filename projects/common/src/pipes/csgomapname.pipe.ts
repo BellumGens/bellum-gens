@@ -1,5 +1,5 @@
 import { Pipe, type PipeTransform } from '@angular/core';
-import { ACTIVE_DUTY, type CSGOMap } from '../../models/csgomaps';
+import { ACTIVE_DUTY, type CSGOMap } from 'bellum-gens-common/models';
 
 @Pipe({
     name: 'csgomapname'

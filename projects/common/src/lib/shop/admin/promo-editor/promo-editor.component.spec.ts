@@ -3,8 +3,8 @@ import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/com
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { PromoEditorComponent } from './promo-editor.component';
-import { ApiShopService } from '../../../../services/bellumgens-api.shop.service';
-import { Brand, Promo } from '../../../../models/shop';
+import { ApiShopService } from 'bellum-gens-common/services';
+import { Brand, Promo } from 'bellum-gens-common/models';
 
 const promo = (overrides: Partial<Promo> = {}): Promo => ({
   code: 'SAVE10',
@@ -44,12 +44,50 @@ describe('PromoEditorComponent', () => {
     fixture.detectChanges();
   };
 
+  const listItems = () => Array.from<HTMLElement>(fixture.nativeElement.querySelectorAll('igx-list-item'));
+
   it('lists the promo codes it loads on creation', () => {
     load([promo(), promo({ code: 'BGE50', discount: 0.5, active: false, timesUsed: 0 })]);
 
     expect(component.promos().length).toBe(2);
     expect(fixture.nativeElement.textContent).toContain('SAVE10');
     expect(fixture.nativeElement.textContent).toContain('Inactive');
+  });
+
+  it('opens a code from its list item and marks it as the current one', () => {
+    load([promo(), promo({ code: 'OTHER' })]);
+
+    listItems()[1].click();
+    fixture.detectChanges();
+
+    expect(component.editing()?.code).toBe('OTHER');
+    expect(listItems().map(i => i.classList.contains('igx-list-item--selected'))).toEqual([false, true, false]);
+    expect(listItems().map(i => i.getAttribute('aria-current'))).toEqual([null, 'true', null]);
+  });
+
+  it('starts a new code from the last list item', () => {
+    load();
+    component.edit(promo());
+    fixture.detectChanges();
+
+    const items = listItems();
+    expect(items[items.length - 1].textContent).toContain('New code');
+    items[items.length - 1].click();
+    fixture.detectChanges();
+
+    expect(component.editing()).toBeNull();
+    expect(component.form.controls.code.enabled).toBe(true);
+  });
+
+  it('asks to delete a code from its list item without opening it', () => {
+    load();
+    const open = vi.spyOn(component.confirm(), 'open');
+
+    (listItems()[0].querySelector('button[title="Delete promo code"]') as HTMLButtonElement).click();
+    fixture.detectChanges();
+
+    expect(open).toHaveBeenCalledWith('SAVE10');
+    expect(component.editing()).toBeNull();
   });
 
   it('shows an empty state with no codes', () => {

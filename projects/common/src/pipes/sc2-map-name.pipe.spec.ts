@@ -1,4 +1,4 @@
-import { SC2Map } from '../../public_api';
+import { SC2Map } from 'bellum-gens-common/models';
 import { Sc2MapNamePipe } from './sc2-map-name.pipe';
 
 

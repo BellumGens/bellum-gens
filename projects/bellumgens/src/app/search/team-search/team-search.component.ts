@@ -1,5 +1,5 @@
 import { Component, computed, inject, input, signal } from '@angular/core';
-import { PlaystyleRole, TeamSearch, TEAM_SEARCH, ApplicationUser } from '../../../../../common/src/public_api';
+import { PlaystyleRole, TeamSearch, TEAM_SEARCH, ApplicationUser } from 'bellum-gens-common/models';
 import { Router } from '@angular/router';
 
 import { IGX_RADIO_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/radio';

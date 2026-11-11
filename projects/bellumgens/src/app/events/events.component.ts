@@ -5,8 +5,7 @@ import { IgxButtonDirective, IgxDividerComponent } from '@infragistics/igniteui-
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { BaseDirective } from '../base/base.component';
 import { RouterLink } from '@angular/router';
-import { CountrySVGPipe } from '../../../../common/src/lib/pipes/country-svg.pipe';
-import { Sc2RaceThumbPipe } from '../../../../common/src/lib/pipes/sc2-race-thumb.pipe';
+import { CountrySVGPipe, Sc2RaceThumbPipe } from 'bellum-gens-common/pipes';
 import { Subscription } from 'rxjs';
 
 @Component({

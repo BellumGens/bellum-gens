@@ -12,8 +12,7 @@ import { IgxButtonDirective, IgxIconButtonDirective, IgxRippleDirective } from '
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';
 import { IgxChipComponent } from '@infragistics/igniteui-angular/chips';
 import { IgxCircularProgressBarComponent } from '@infragistics/igniteui-angular/progressbar';
-import { ApiShopService } from '../../../services/bellumgens-api.shop.service';
-import { CartService } from '../../../services/cart.service';
+import { ApiShopService, CartService } from 'bellum-gens-common/services';
 import {
   BRAND_NAMES,
   JERSEY_CUT_NAMES,
@@ -25,7 +24,7 @@ import {
   effectivePrice,
   isSoldOut,
   variantStock
-} from '../../../models/shop';
+} from 'bellum-gens-common/models';
 
 @Component({
   selector: 'bg-product-detail',

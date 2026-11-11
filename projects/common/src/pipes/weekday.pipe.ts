@@ -1,5 +1,5 @@
 import { Pipe, type PipeTransform } from '@angular/core';
-import { type DayOfWeek } from '../../models/playeravailability';
+import { type DayOfWeek } from 'bellum-gens-common/models';
 
 @Pipe({
     name: 'weekday'

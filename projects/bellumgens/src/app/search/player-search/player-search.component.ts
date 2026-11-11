@@ -1,12 +1,6 @@
 import { Component, Signal, computed, inject, input, signal } from '@angular/core';
-import {
-  PLAYER_SEARCH,
-  PlayerSearch,
-  PlaystyleRole,
-  ApplicationUser,
-  LoginService,
-  CSGOTeam
-} from '../../../../../common/src/public_api';
+import { PLAYER_SEARCH, PlayerSearch, PlaystyleRole, ApplicationUser, CSGOTeam } from 'bellum-gens-common/models';
+import { LoginService } from 'bellum-gens-common/services';
 import { Router } from '@angular/router';
 
 import { IGX_RADIO_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/radio';

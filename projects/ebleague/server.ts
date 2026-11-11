@@ -8,7 +8,7 @@ import express from 'express';
 import compression from 'compression';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { environment } from '../common/src/environments/environment';
+import { environment } from 'bellum-gens-common/environments';
 
 const app = express();
 app.use(compression());

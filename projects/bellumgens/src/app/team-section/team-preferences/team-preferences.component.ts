@@ -1,13 +1,9 @@
 import { Component, Injector, Signal, inject, signal } from '@angular/core';
 import { takeUntilDestroyed, toObservable } from '@angular/core/rxjs-interop';
 import { distinctUntilChanged, filter, map, switchMap } from 'rxjs/operators';
-import {
-  BellumgensApiService,
-  CSGOTeam, TeamMember,
-  ApplicationUser,
-  LoginService,
-  CountrySVGPipe
-} from '../../../../../common/src/public_api';
+import { BellumgensApiService, LoginService } from 'bellum-gens-common/services';
+import { CSGOTeam, TeamMember, ApplicationUser } from 'bellum-gens-common/models';
+import { CountrySVGPipe } from 'bellum-gens-common/pipes';
 import { RouterLink, ROUTER_OUTLET_DATA } from '@angular/router';
 import { IGX_INPUT_GROUP_DIRECTIVES } from '@infragistics/igniteui-angular/input-group';
 import { IgxIconComponent } from '@infragistics/igniteui-angular/icon';

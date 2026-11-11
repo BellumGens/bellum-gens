@@ -8,14 +8,8 @@ import { provideHttpClient, withInterceptorsFromDi, withXhr } from '@angular/com
 import { config, of, throwError } from 'rxjs';
 
 import { NewStrategyComponent } from './new-strategy.component';
-import {
-  ApiStrategiesService,
-  CSGOMap,
-  CSGOStrategy,
-  CSGOTeam,
-  NEW_EMPTY_STRAT,
-  Side
-} from '../../../../../common/src/public_api';
+import { ApiStrategiesService } from 'bellum-gens-common/services';
+import { CSGOMap, CSGOStrategy, CSGOTeam, NEW_EMPTY_STRAT, Side } from 'bellum-gens-common/models';
 
 const YOUTUBE_URL = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
 const YOUTUBE_EMBED = 'https://www.youtube.com/embed/dQw4w9WgXcQ';

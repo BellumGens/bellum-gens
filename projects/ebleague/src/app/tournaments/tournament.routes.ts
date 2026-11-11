@@ -5,7 +5,7 @@ import { TournamentCsgoComponent } from './tournament-csgo/tournament-csgo.compo
 import { TournamentSc2Component } from './tournament-sc2/tournament-sc2.component';
 import { ProductionCrewComponent } from './production-crew/production-crew.component';
 import { TournamentsMainComponent } from './tournaments-main/tournaments-main.component';
-import { TournamentListComponent, TournamentCreateComponent, TournamentDetailComponent } from '../../../../common/src/public_api';
+import { TournamentListComponent, TournamentCreateComponent, TournamentDetailComponent } from 'bellum-gens-common';
 
 export const routes: Routes = [
   { path: '', component: TournamentComponent, children: [

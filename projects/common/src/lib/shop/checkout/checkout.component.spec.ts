@@ -5,11 +5,17 @@ import { Router, provideRouter } from '@angular/router';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { CheckoutComponent } from './checkout.component';
-import { CartService } from '../../../services/cart.service';
-import { ApiShopService } from '../../../services/bellumgens-api.shop.service';
-import { LoginService } from '../../../services/login.service';
-import { ApplicationUser } from '../../../models/applicationuser';
-import { Brand, DeliveryMethod, PaymentMethod, Product, ProductType, Quote } from '../../../models/shop';
+import { CartService, ApiShopService, LoginService } from 'bellum-gens-common/services';
+import {
+  ApplicationUser,
+  Brand,
+  DeliveryMethod,
+  PaymentMethod,
+  Product,
+  ProductType,
+  Quote,
+  SavedAddress
+} from 'bellum-gens-common/models';
 
 const umbrella: Product = {
   id: 'p1',
@@ -120,6 +126,7 @@ describe('CheckoutComponent', () => {
     expect(text).toContain('A valid email is required for your receipt');
     expect(text).toContain('A phone number is required for the courier');
     expect(text).toContain('City is required');
+    expect(text).toContain('Postal code is required');
     expect(text).toContain('Street address is required');
     expect(text).toContain('Please accept the terms of sale to continue');
   });
@@ -603,5 +610,255 @@ describe('CheckoutComponent', () => {
 
   it('checks out in the language the storefront is running in', () => {
     expect(['bg', 'en']).toContain(component.language);
+  });
+
+  describe('delivering within Bulgaria', () => {
+    it('says so, and fixes the country', () => {
+      fillCart();
+
+      expect(fixture.nativeElement.querySelector('.delivery-country').textContent).toContain('We currently deliver within Bulgaria only.');
+      const country: HTMLInputElement = fixture.nativeElement.querySelector('#country');
+      expect(country.value).toBe('Bulgaria');
+      expect(country.readOnly).toBe(true);
+      flushQuotes(validQuote);
+    });
+
+    it('requires a four-digit postal code, since several towns share a name', () => {
+      fillCart();
+      const postalCode = component.form.controls.postalCode;
+
+      for (const [value, valid] of [['', false], ['100', false], ['10000', false], ['SW1A', false], ['1000', true]] as const) {
+        postalCode.setValue(value);
+        expect(postalCode.valid).toBe(valid);
+      }
+      // Typed into the field, as the customer would, so the page updates the hint.
+      const input: HTMLInputElement = fixture.nativeElement.querySelector('#postalCode');
+      const type = (value: string) => {
+        input.value = value;
+        input.dispatchEvent(new Event('input'));
+        input.dispatchEvent(new Event('blur'));
+        fixture.detectChanges();
+      };
+      type('');
+      expect(fixture.nativeElement.textContent).toContain('Postal code is required');
+      type('100');
+      expect(fixture.nativeElement.textContent).toContain('A Bulgarian postal code has 4 digits');
+      expect(fixture.nativeElement.textContent).not.toContain('Postal code is required');
+      type('1000');
+      expect(fixture.nativeElement.textContent).not.toContain('A Bulgarian postal code has 4 digits');
+      flushQuotes(validQuote);
+    });
+
+    it('does not place a courier order without a postal code', () => {
+      fillCart();
+      fillForm();
+      component.form.controls.postalCode.setValue('');
+
+      component.pay();
+
+      httpMock.expectNone(`${api['_apiEndpoint']}/shop/orders`);
+      flushQuotes(validQuote);
+    });
+
+    it('sends Bulgaria as the country of the order', () => {
+      fillCart();
+      fillForm();
+
+      component.pay();
+
+      const req = httpMock.expectOne(`${api['_apiEndpoint']}/shop/orders`);
+      expect(req.request.body.country).toBe('BG');
+      req.flush({ orderId: 'o1', orderNumber: 'BG-1', total: 21, currency: 'EUR', checkoutUrl: 'https://checkout.revolut.com/x', expiresOn: '' });
+      flushQuotes(validQuote);
+    });
+  });
+
+  describe('saved addresses', () => {
+    const addressesUrl = () => `${api['_apiEndpoint']}/shop/addresses`;
+    const ordersUrl = () => `${api['_apiEndpoint']}/shop/orders`;
+    const saved = (id: string, streetAddress: string, overrides: Partial<SavedAddress> = {}): SavedAddress => ({
+      id,
+      firstName: 'Ivan',
+      lastName: 'Petrov',
+      phoneNumber: '+359 888 123 456',
+      city: 'Sofia',
+      streetAddress,
+      postalCode: '1000',
+      country: 'BG',
+      createdOn: '',
+      lastUsedOn: '',
+      ...overrides
+    });
+    const home = saved('a1', 'bul. Vitosha 1');
+    const work = saved('a2', 'ul. Rakovski 10', { city: 'Plovdiv', postalCode: '4000' });
+
+    const signIn = (addresses: SavedAddress[]) => {
+      TestBed.inject(LoginService)['_applicationUser'].set({ id: 'u1', email: 'ivan@example.com' } as unknown as ApplicationUser);
+      TestBed.tick();
+      const req = httpMock.expectOne(addressesUrl());
+      expect(req.request.method).toBe('GET');
+      expect(req.request.withCredentials).toBe(true);
+      req.flush(addresses);
+      fixture.detectChanges();
+    };
+
+    it('does not look up addresses or offer to save one for a guest', () => {
+      fillCart();
+
+      httpMock.expectNone(addressesUrl());
+      expect(fixture.nativeElement.querySelector('.saved-address')).toBeNull();
+      expect(fixture.nativeElement.textContent).not.toContain('Save this address to my account');
+      flushQuotes(validQuote);
+    });
+
+    it('fills the form with the most recently used address', () => {
+      fillCart();
+      signIn([home, work]);
+
+      expect(component.addressChoice.value).toBe('a1');
+      expect(component.form.controls.streetAddress.value).toBe('bul. Vitosha 1');
+      expect(component.form.controls.city.value).toBe('Sofia');
+      expect(component.form.controls.firstName.value).toBe('Ivan');
+      expect(fixture.nativeElement.querySelector('.saved-address')).toBeTruthy();
+      // Already saved, so there is nothing to offer to save.
+      expect(fixture.nativeElement.textContent).not.toContain('Save this address to my account');
+      flushQuotes(validQuote);
+    });
+
+    it('does not replace an address the customer already started typing', () => {
+      fillCart();
+      component.form.controls.city.setValue('Varna');
+
+      signIn([home]);
+
+      expect(component.addressChoice.value).toBe('');
+      expect(component.form.controls.city.value).toBe('Varna');
+      flushQuotes(validQuote);
+    });
+
+    it('switches to another saved address, and clears the address for a new one', () => {
+      fillCart();
+      signIn([home, work]);
+
+      component.addressChoice.setValue('a2');
+      expect(component.form.controls.city.value).toBe('Plovdiv');
+      expect(component.form.controls.postalCode.value).toBe('4000');
+
+      component.addressChoice.setValue('');
+      expect(component.form.controls.city.value).toBe('');
+      expect(component.form.controls.streetAddress.value).toBe('');
+      expect(component.form.controls.firstName.value).toBe('Ivan');
+      flushQuotes(validQuote);
+    });
+
+    it('treats an edited saved address as a new one the customer can save', () => {
+      fillCart();
+      signIn([home]);
+
+      component.form.controls.streetAddress.setValue('bul. Vitosha 2');
+      fixture.detectChanges();
+
+      expect(component.addressChoice.value).toBe('');
+      expect(fixture.nativeElement.textContent).toContain('Save this address to my account');
+      flushQuotes(validQuote);
+    });
+
+    it('asks to save a new address with the order when the customer ticks the box', () => {
+      fillCart();
+      signIn([]);
+      fillForm();
+      component.saveAddress.setValue(true);
+
+      component.pay();
+
+      const req = httpMock.expectOne(ordersUrl());
+      expect(req.request.body.saveAddress).toBe(true);
+      req.flush({ orderId: 'o1', orderNumber: 'BG-1', total: 21, currency: 'EUR', checkoutUrl: 'https://checkout.revolut.com/x', expiresOn: '' });
+      flushQuotes(validQuote);
+    });
+
+    it('does not save a new address unless asked', () => {
+      fillCart();
+      signIn([]);
+      fillForm();
+
+      component.pay();
+
+      const req = httpMock.expectOne(ordersUrl());
+      expect(req.request.body.saveAddress).toBe(false);
+      req.flush({ orderId: 'o1', orderNumber: 'BG-1', total: 21, currency: 'EUR', checkoutUrl: 'https://checkout.revolut.com/x', expiresOn: '' });
+      flushQuotes(validQuote);
+    });
+
+    it('marks a saved address used for the order as the most recently used', () => {
+      fillCart();
+      signIn([work, home]);
+      component.addressChoice.setValue('a2');
+      component.form.patchValue({ email: 'ivan@example.com', acceptedTerms: true });
+
+      component.pay();
+
+      const req = httpMock.expectOne(ordersUrl());
+      expect(req.request.body.saveAddress).toBe(true);
+      expect(req.request.body.city).toBe('Plovdiv');
+      req.flush({ orderId: 'o1', orderNumber: 'BG-1', total: 21, currency: 'EUR', checkoutUrl: 'https://checkout.revolut.com/x', expiresOn: '' });
+      flushQuotes(validQuote);
+    });
+
+    it('keeps the save choice out of the order fingerprint, so it does not count as changed details', () => {
+      fillCart();
+      signIn([]);
+      fillForm();
+      component.pay();
+      httpMock.expectOne(ordersUrl()).flush({ orderId: 'o1', orderNumber: 'BG-1', total: 21, currency: 'EUR', checkoutUrl: 'https://checkout.revolut.com/first', expiresOn: '' });
+      component.submitting.set(false);
+
+      component.saveAddress.setValue(true);
+      component.pay();
+
+      // Same cart and details: the order already placed is resumed instead of being replaced.
+      httpMock.expectOne(`${ordersUrl()}/o1`).flush({ id: 'o1', status: 0, canRetryPayment: false, checkoutUrl: 'https://checkout.revolut.com/first' });
+      httpMock.expectNone(r => r.method === 'POST' && r.url === ordersUrl());
+      flushQuotes(validQuote);
+    });
+
+    it('removes a saved address', () => {
+      fillCart();
+      signIn([home, work]);
+
+      fixture.nativeElement.querySelector('.saved-address button[aria-label="Remove this saved address"]').click();
+
+      const req = httpMock.expectOne(`${addressesUrl()}/a1`);
+      expect(req.request.method).toBe('DELETE');
+      req.flush(null);
+      expect(component.addresses()).toEqual([work]);
+      expect(component.addressChoice.value).toBe('');
+      flushQuotes(validQuote);
+    });
+
+    it('tells the customer when a saved address could not be removed', () => {
+      fillCart();
+      signIn([home]);
+
+      component.removeAddress('a1');
+      httpMock.expectOne(`${addressesUrl()}/a1`).flush('Boom', { status: 500, statusText: 'Server Error' });
+
+      expect(component.addresses()).toEqual([home]);
+      expect(component.problems()).toEqual(['The address could not be removed. Please try again.']);
+      flushQuotes(validQuote);
+    });
+
+    it('lets the customer type an address when the address book cannot be loaded', () => {
+      fillCart();
+      TestBed.inject(LoginService)['_applicationUser'].set({ id: 'u1' } as unknown as ApplicationUser);
+      TestBed.tick();
+      httpMock.expectOne(addressesUrl()).flush('Boom', { status: 500, statusText: 'Server Error' });
+      fixture.detectChanges();
+
+      expect(component.addresses()).toEqual([]);
+      expect(fixture.nativeElement.querySelector('#city')).toBeTruthy();
+      expect(fixture.nativeElement.textContent).toContain('Save this address to my account');
+      flushQuotes(validQuote);
+    });
   });
 });
