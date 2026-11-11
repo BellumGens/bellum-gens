@@ -76,9 +76,11 @@ describe('AdminMainComponent', () => {
     httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/tournaments`).flush(initial.tournaments);
     httpMock.expectOne(`${apiService['_apiEndpoint']}/tournament/allregistrations`).flush(initial.registrations);
     httpMock.expectOne(`${shopService['_apiEndpoint']}/shopadmin/orders`).flush(initial.orders);
-    // The embedded catalog and promo editors load their data on creation
+    // The embedded catalog, promo and settings editors load their data on creation
     httpMock.expectOne(`${shopService['_apiEndpoint']}/shopadmin/products`).flush([]);
     httpMock.expectOne(`${shopService['_apiEndpoint']}/shopadmin/promos`).flush([]);
+    httpMock.expectOne(`${shopService['_apiEndpoint']}/shopadmin/settings`)
+      .flush({ shippingCost: 6, freeShippingThreshold: 50, maxQuantityPerLine: 10 });
   };
 
   const el = (): HTMLElement => fixture.nativeElement;

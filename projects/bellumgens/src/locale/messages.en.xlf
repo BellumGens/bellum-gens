@@ -5488,189 +5488,196 @@
         <source>Jersey</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">352</context>
+          <context context-type="linenumber">371</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopTypeUmbrella" datatype="html">
         <source>Umbrella</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">353</context>
+          <context context-type="linenumber">372</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopTypePen" datatype="html">
         <source>Pen</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">354</context>
+          <context context-type="linenumber">373</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopTypePin" datatype="html">
         <source>Pin</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">355</context>
+          <context context-type="linenumber">374</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopTypeBracelet" datatype="html">
         <source>Bracelet</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">356</context>
+          <context context-type="linenumber">375</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopTypeOther" datatype="html">
         <source>Other</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">357</context>
+          <context context-type="linenumber">376</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopStatusAwaitingPayment" datatype="html">
         <source>Awaiting payment</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">361</context>
+          <context context-type="linenumber">380</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopStatusPaid" datatype="html">
         <source>Paid</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">362</context>
+          <context context-type="linenumber">381</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopStatusShipped" datatype="html">
         <source>Shipped</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">363</context>
+          <context context-type="linenumber">382</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopStatusDelivered" datatype="html">
         <source>Delivered</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">364</context>
+          <context context-type="linenumber">383</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopStatusCancelled" datatype="html">
         <source>Cancelled</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">365</context>
+          <context context-type="linenumber">384</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopStatusRefunded" datatype="html">
         <source>Refunded</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">366</context>
+          <context context-type="linenumber">385</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopStatusConfirmed" datatype="html">
         <source>Confirmed</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">367</context>
+          <context context-type="linenumber">386</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopDeliveryCourier" datatype="html">
         <source>Courier delivery</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">382</context>
+          <context context-type="linenumber">401</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopDeliveryPickup" datatype="html">
         <source>Pick up at an event</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">383</context>
+          <context context-type="linenumber">402</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopPaymentOnline" datatype="html">
         <source>Pay online by card</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">387</context>
+          <context context-type="linenumber">406</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopPaymentCashOnDelivery" datatype="html">
         <source>Cash on delivery</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">388</context>
+          <context context-type="linenumber">407</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopCutMale" datatype="html">
         <source>Male</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">392</context>
+          <context context-type="linenumber">411</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopCutFemale" datatype="html">
         <source>Female</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">393</context>
+          <context context-type="linenumber">412</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopProductSaved" datatype="html">
         <source>Product saved!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">125</context>
+          <context context-type="linenumber">132</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopProductDeactivated" datatype="html">
         <source>The product has orders, so it was deactivated instead of deleted.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">136</context>
+          <context context-type="linenumber">143</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopProductDeleted" datatype="html">
         <source>Product deleted!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">137</context>
+          <context context-type="linenumber">144</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopOrderUpdated" datatype="html">
         <source>Order updated!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">160</context>
+          <context context-type="linenumber">167</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopOrderRefunded" datatype="html">
         <source>Refund sent to the payment provider.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">167</context>
+          <context context-type="linenumber">174</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopPromoSaved" datatype="html">
         <source>Promo code saved!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">181</context>
+          <context context-type="linenumber">188</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopPromoDeactivated" datatype="html">
         <source>The code was used by orders, so it was deactivated instead of deleted.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">189</context>
+          <context context-type="linenumber">196</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopPromoDeleted" datatype="html">
         <source>Promo code deleted!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">190</context>
+          <context context-type="linenumber">197</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopSettingsSaved" datatype="html">
+        <source>Shop settings saved!</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
+          <context context-type="linenumber">208</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopAddedToCart" datatype="html">

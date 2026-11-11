@@ -739,7 +739,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">259</context>
+          <context context-type="linenumber">264</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/tournaments/tournaments-main/tournaments-main.component.html</context>
@@ -948,6 +948,82 @@
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/promo-editor/promo-editor.component.html</context>
           <context context-type="linenumber">99,100</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="680243029016410875" datatype="html">
+        <source>Courier shipping cost (EUR)</source>
+        <target>Verzendkosten koerier (EUR)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/settings-editor/settings-editor.component.html</context>
+          <context context-type="linenumber">3,4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7492462286842167444" datatype="html">
+        <source>Enter an amount between 0 and <x id="INTERPOLATION" equiv-text="{{ limits.maxShippingCost }}"/></source>
+        <target>Voer een bedrag in tussen 0 en <x id="INTERPOLATION" equiv-text="{{ limits.maxShippingCost }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/settings-editor/settings-editor.component.html</context>
+          <context context-type="linenumber">6,7</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/settings-editor/settings-editor.component.html</context>
+          <context context-type="linenumber">14,15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="7927523875163787868" datatype="html">
+        <source>Free shipping from (EUR)</source>
+        <target>Gratis verzending vanaf (EUR)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/settings-editor/settings-editor.component.html</context>
+          <context context-type="linenumber">11,12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4762509839062015503" datatype="html">
+        <source>Applies to the order total after discounts. Set to 0 for free shipping on every order.</source>
+        <target>Geldt voor het ordertotaal na kortingen. Stel 0 in voor gratis verzending op elke bestelling.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/settings-editor/settings-editor.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="2099843666663900464" datatype="html">
+        <source>Maximum quantity per cart line</source>
+        <target>Maximale hoeveelheid per winkelwagenregel</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/settings-editor/settings-editor.component.html</context>
+          <context context-type="linenumber">21,22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="9010210215334068752" datatype="html">
+        <source>Enter a whole number between 1 and <x id="INTERPOLATION" equiv-text="{{ limits.maxQuantityPerLine }}"/></source>
+        <target>Voer een geheel getal in tussen 1 en <x id="INTERPOLATION" equiv-text="{{ limits.maxQuantityPerLine }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/settings-editor/settings-editor.component.html</context>
+          <context context-type="linenumber">24,25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4893182903784587286" datatype="html">
+        <source>Placed orders keep the shipping cost they were placed with. New prices apply to carts within a minute.</source>
+        <target>Geplaatste bestellingen behouden de verzendkosten waarmee ze zijn geplaatst. Nieuwe prijzen gelden binnen een minuut voor winkelwagens.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/settings-editor/settings-editor.component.html</context>
+          <context context-type="linenumber">28,30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5550126009216036505" datatype="html">
+        <source>Save settings</source>
+        <target>Instellingen opslaan</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/settings-editor/settings-editor.component.html</context>
+          <context context-type="linenumber">33,34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="409245494399438073" datatype="html">
+        <source>Last changed <x id="INTERPOLATION" equiv-text="{{ updatedOn | date:&apos;medium&apos; }}"/></source>
+        <target>Laatst gewijzigd <x id="INTERPOLATION" equiv-text="{{ updatedOn | date:&apos;medium&apos; }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/settings-editor/settings-editor.component.html</context>
+          <context context-type="linenumber">36,38</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5259416047008119946" datatype="html">
@@ -1443,7 +1519,7 @@
         <target>Jersey</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">352</context>
+          <context context-type="linenumber">371</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopTypeUmbrella" datatype="html">
@@ -1451,7 +1527,7 @@
         <target>Paraplu</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">353</context>
+          <context context-type="linenumber">372</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopTypePen" datatype="html">
@@ -1459,7 +1535,7 @@
         <target>Pen</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">354</context>
+          <context context-type="linenumber">373</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopTypePin" datatype="html">
@@ -1467,7 +1543,7 @@
         <target>Pin</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">355</context>
+          <context context-type="linenumber">374</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopTypeBracelet" datatype="html">
@@ -1475,7 +1551,7 @@
         <target>Armband</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">356</context>
+          <context context-type="linenumber">375</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopTypeOther" datatype="html">
@@ -1483,7 +1559,7 @@
         <target>Overig</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">357</context>
+          <context context-type="linenumber">376</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopStatusAwaitingPayment" datatype="html">
@@ -1491,7 +1567,7 @@
         <target>Wacht op betaling</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">361</context>
+          <context context-type="linenumber">380</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopStatusPaid" datatype="html">
@@ -1499,7 +1575,7 @@
         <target>Betaald</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">362</context>
+          <context context-type="linenumber">381</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopStatusShipped" datatype="html">
@@ -1507,7 +1583,7 @@
         <target>Verzonden</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">363</context>
+          <context context-type="linenumber">382</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopStatusDelivered" datatype="html">
@@ -1515,7 +1591,7 @@
         <target>Bezorgd</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">364</context>
+          <context context-type="linenumber">383</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopStatusCancelled" datatype="html">
@@ -1523,7 +1599,7 @@
         <target>Geannuleerd</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">365</context>
+          <context context-type="linenumber">384</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopStatusRefunded" datatype="html">
@@ -1531,7 +1607,7 @@
         <target>Terugbetaald</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">366</context>
+          <context context-type="linenumber">385</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopStatusConfirmed" datatype="html">
@@ -1539,7 +1615,7 @@
         <target>Bevestigd</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">367</context>
+          <context context-type="linenumber">386</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopDeliveryCourier" datatype="html">
@@ -1547,7 +1623,7 @@
         <target>Bezorging per koerier</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">382</context>
+          <context context-type="linenumber">401</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopDeliveryPickup" datatype="html">
@@ -1555,7 +1631,7 @@
         <target>Ophalen op een evenement</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">383</context>
+          <context context-type="linenumber">402</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopPaymentOnline" datatype="html">
@@ -1563,7 +1639,7 @@
         <target>Online betalen met kaart</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">387</context>
+          <context context-type="linenumber">406</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopPaymentCashOnDelivery" datatype="html">
@@ -1571,7 +1647,7 @@
         <target>Onder rembours</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">388</context>
+          <context context-type="linenumber">407</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopCutMale" datatype="html">
@@ -1579,7 +1655,7 @@
         <target>Heren</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">392</context>
+          <context context-type="linenumber">411</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopCutFemale" datatype="html">
@@ -1587,7 +1663,7 @@
         <target>Dames</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/models/shop.ts</context>
-          <context context-type="linenumber">393</context>
+          <context context-type="linenumber">412</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopProductSaved" datatype="html">
@@ -1595,7 +1671,7 @@
         <target>Product opgeslagen!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">125</context>
+          <context context-type="linenumber">132</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopProductDeactivated" datatype="html">
@@ -1603,7 +1679,7 @@
         <target>Het product heeft bestellingen, dus het is gedeactiveerd in plaats van verwijderd.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">136</context>
+          <context context-type="linenumber">143</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopProductDeleted" datatype="html">
@@ -1611,7 +1687,7 @@
         <target>Product verwijderd!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">137</context>
+          <context context-type="linenumber">144</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopOrderUpdated" datatype="html">
@@ -1619,7 +1695,7 @@
         <target>Bestelling bijgewerkt!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">160</context>
+          <context context-type="linenumber">167</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopOrderRefunded" datatype="html">
@@ -1627,7 +1703,7 @@
         <target>Terugbetaling verzonden naar de betaalprovider.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">167</context>
+          <context context-type="linenumber">174</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopPromoSaved" datatype="html">
@@ -1635,7 +1711,7 @@
         <target>Kortingscode opgeslagen!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">181</context>
+          <context context-type="linenumber">188</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopPromoDeactivated" datatype="html">
@@ -1643,7 +1719,7 @@
         <target>De code is door bestellingen gebruikt, dus hij is gedeactiveerd in plaats van verwijderd.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">189</context>
+          <context context-type="linenumber">196</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopPromoDeleted" datatype="html">
@@ -1651,7 +1727,15 @@
         <target>Kortingscode verwijderd!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">190</context>
+          <context context-type="linenumber">197</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shopSettingsSaved" datatype="html">
+        <source>Shop settings saved!</source>
+        <target>Winkelinstellingen opgeslagen!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
+          <context context-type="linenumber">208</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7381827970983494105" datatype="html">
@@ -2107,15 +2191,15 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">260,261</context>
+          <context context-type="linenumber">265,266</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">312,313</context>
+          <context context-type="linenumber">317,318</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">329,330</context>
+          <context context-type="linenumber">334,335</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
@@ -2139,11 +2223,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">254,255</context>
+          <context context-type="linenumber">259,260</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">305,306</context>
+          <context context-type="linenumber">310,311</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-sc2/admin-sc2.component.html</context>
@@ -2570,12 +2654,20 @@
           <context context-type="linenumber">197,198</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="5274812932412591206" datatype="html">
+        <source>Shipping and cart limits</source>
+        <target>Verzending en winkelwagenlimieten</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
+          <context context-type="linenumber">207,208</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="9198937618936305417" datatype="html">
         <source>Tournaments and Roles</source>
         <target>Toernooien en rollen</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">209,210</context>
+          <context context-type="linenumber">214,215</context>
         </context-group>
       </trans-unit>
       <trans-unit id="8861872920583414435" datatype="html">
@@ -2583,11 +2675,11 @@
         <target>Toernooinaam</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">221,222</context>
+          <context context-type="linenumber">226,227</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">269,270</context>
+          <context context-type="linenumber">274,275</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4222596374849656522" datatype="html">
@@ -2595,11 +2687,11 @@
         <target>Toernooinaam wissen</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">225,226</context>
+          <context context-type="linenumber">230,231</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">273,274</context>
+          <context context-type="linenumber">278,279</context>
         </context-group>
       </trans-unit>
       <trans-unit id="895170020706004881" datatype="html">
@@ -2607,11 +2699,11 @@
         <target>Toernooilogo</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">232,233</context>
+          <context context-type="linenumber">237,238</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">281,282</context>
+          <context context-type="linenumber">286,287</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2143577252337766748" datatype="html">
@@ -2619,11 +2711,11 @@
         <target>Toernooilogo wissen</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">236,237</context>
+          <context context-type="linenumber">241,242</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">285,286</context>
+          <context context-type="linenumber">290,291</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4894998749712021347" datatype="html">
@@ -2631,11 +2723,11 @@
         <target>Toernooibeschrijving</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">243,244</context>
+          <context context-type="linenumber">248,249</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">293,294</context>
+          <context context-type="linenumber">298,299</context>
         </context-group>
       </trans-unit>
       <trans-unit id="3864080177386682033" datatype="html">
@@ -2643,11 +2735,11 @@
         <target>Toernooibeschrijving wissen</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">247,248</context>
+          <context context-type="linenumber">252,253</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">297,298</context>
+          <context context-type="linenumber">302,303</context>
         </context-group>
       </trans-unit>
       <trans-unit id="126074860850048964" datatype="html">
@@ -2655,11 +2747,11 @@
         <target>Einddatum</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">257,258</context>
+          <context context-type="linenumber">262,263</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">309,310</context>
+          <context context-type="linenumber">314,315</context>
         </context-group>
       </trans-unit>
       <trans-unit id="1280523270210192718" datatype="html">
@@ -2667,7 +2759,7 @@
         <target>Nieuw toernooi</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">267,268</context>
+          <context context-type="linenumber">272,273</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6009437916867942799" datatype="html">
@@ -2675,7 +2767,7 @@
         <target>Geen rollen gedefinieerd</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">322</context>
+          <context context-type="linenumber">327</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7756297752217979839" datatype="html">
@@ -2683,7 +2775,7 @@
         <target>Nieuwe rol</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/ebleague/src/app/admin/admin-main/admin-main.component.html</context>
-          <context context-type="linenumber">326,327</context>
+          <context context-type="linenumber">331,332</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2671237193001897863" datatype="html">
