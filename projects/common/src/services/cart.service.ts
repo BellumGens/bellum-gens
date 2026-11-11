@@ -55,8 +55,8 @@ export const fingerprint = (value: unknown) => {
 })
 export class CartService {
   public static readonly storageKey = 'bg-shop-cart';
-  /** The most of one product option a single order can hold. */
-  public static readonly maxLineQuantity = 10;
+  /** The per-line limit used until the shop settings are loaded; matches the server's default. */
+  public static readonly defaultMaxLineQuantity = 10;
   private static readonly quoteDebounce = 250;
 
   private platformId = inject(PLATFORM_ID);
@@ -82,6 +82,10 @@ export class CartService {
   public readonly quoteFailed = this._quoteFailed.asReadonly();
   /** The unpaid order last placed from this cart, if any. */
   public readonly pendingOrder = this._pendingOrder.asReadonly();
+
+  /** The most of one product option a single order can hold, as set by the admin. Reading it loads the shop settings. */
+  public readonly maxLineQuantity = computed(() =>
+    this.shopApi.settings()?.maxQuantityPerLine ?? CartService.defaultMaxLineQuantity);
 
   public readonly count = computed(() => this.items().reduce((sum, item) => sum + item.quantity, 0));
   public readonly isEmpty = computed(() => this.items().length === 0);
@@ -144,13 +148,14 @@ export class CartService {
       return;
     }
     const variantId = variant?.id;
+    const max = this.maxLineQuantity();
     this._items.update(items => {
       const existing = items.find(i => i.productId === product.id && i.variantId === variantId);
       if (existing) {
-        const total = Math.min(existing.quantity + quantity, CartService.maxLineQuantity);
+        const total = Math.min(existing.quantity + quantity, max);
         return items.map(i => i === existing ? { ...i, quantity: total, product, variant: variant ?? undefined } : i);
       }
-      return [...items, { productId: product.id, variantId, quantity: Math.min(quantity, CartService.maxLineQuantity), product, variant: variant ?? undefined }];
+      return [...items, { productId: product.id, variantId, quantity: Math.min(quantity, max), product, variant: variant ?? undefined }];
     });
     const label = variant ? `${product.name} (${variant.name})` : product.name;
     this.commService.emitSuccess($localize`:@@shopAddedToCart:${label}:name: added to your cart`);
@@ -161,7 +166,7 @@ export class CartService {
       this.remove(item);
       return;
     }
-    const capped = Math.min(quantity, CartService.maxLineQuantity);
+    const capped = Math.min(quantity, this.maxLineQuantity());
     this._items.update(items => items.map(i => this.same(i, item) ? { ...i, quantity: capped } : i));
   }
 

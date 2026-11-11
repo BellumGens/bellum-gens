@@ -36,7 +36,7 @@ export class CartComponent {
   public promoInput = this.promoForm.controls.code;
   public deliveryMethods = AVAILABLE_DELIVERY_METHODS;
   public deliveryNames = DELIVERY_METHOD_NAMES;
-  public maxQuantity = CartService.maxLineQuantity;
+  public maxQuantity = this.cart.maxLineQuantity;
   public canCheckout = this.cart.canCheckout;
   /** Some lines cannot be fulfilled as requested (sold out, option gone, quantity capped). */
   public hasLineProblems = computed(() => !!this.cart.quote()?.lines.some(line => line.problem));

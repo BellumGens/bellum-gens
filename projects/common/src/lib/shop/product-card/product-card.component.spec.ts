@@ -48,6 +48,8 @@ describe('ProductCardComponent', () => {
 
   afterEach(() => {
     vi.useRealTimers();
+    // Adding to the cart reads the per-line limit, which loads the storefront settings.
+    httpMock.match(`${api['_apiEndpoint']}/shop/settings`);
     httpMock.verify();
     localStorage.clear();
   });

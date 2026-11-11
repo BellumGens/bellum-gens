@@ -55,6 +55,8 @@ describe('CartService', () => {
 
   afterEach(() => {
     vi.useRealTimers();
+    // Adding to the cart reads the per-line limit, which loads the storefront settings; tests that care flush it themselves.
+    httpMock.match(`${api['_apiEndpoint']}/shop/settings`);
     httpMock.verify();
     localStorage.clear();
   });
@@ -320,16 +322,43 @@ describe('CartService', () => {
     httpMock.expectOne(`${api['_apiEndpoint']}/shop/quote`).flush(quoteFor(21));
   });
 
-  it('caps a line at the per-line maximum when adding or changing it', () => {
+  it('caps a line at the default per-line maximum until the settings are loaded', () => {
     const p = product();
     service.add(p, null, 8);
     service.add(p, null, 5);
 
-    expect(service.items()[0].quantity).toBe(CartService.maxLineQuantity);
+    expect(service.items()[0].quantity).toBe(CartService.defaultMaxLineQuantity);
 
     service.setQuantity(service.items()[0], 50);
 
-    expect(service.items()[0].quantity).toBe(CartService.maxLineQuantity);
+    expect(service.items()[0].quantity).toBe(CartService.defaultMaxLineQuantity);
+  });
+
+  it('caps a line at the per-line maximum the admin set', () => {
+    expect(service.maxLineQuantity()).toBe(CartService.defaultMaxLineQuantity);
+    httpMock.expectOne(`${api['_apiEndpoint']}/shop/settings`)
+      .flush({ shippingCost: 6, freeShippingThreshold: 50, maxQuantityPerLine: 20, currency: 'EUR' });
+    expect(service.maxLineQuantity()).toBe(20);
+
+    const p = product();
+    service.add(p, null, 15);
+    expect(service.items()[0].quantity).toBe(15);
+    service.add(p, null, 15);
+    expect(service.items()[0].quantity).toBe(20);
+
+    service.setQuantity(service.items()[0], 50);
+    expect(service.items()[0].quantity).toBe(20);
+  });
+
+  it('keeps the default per-line maximum when the settings fail to load, and picks up the limit from a later load', () => {
+    expect(service.maxLineQuantity()).toBe(CartService.defaultMaxLineQuantity);
+    httpMock.expectOne(`${api['_apiEndpoint']}/shop/settings`).flush('', { status: 500, statusText: 'Server Error' });
+
+    expect(service.maxLineQuantity()).toBe(CartService.defaultMaxLineQuantity);
+    expect(api.settings()).toBeNull();
+    httpMock.expectOne(`${api['_apiEndpoint']}/shop/settings`)
+      .flush({ shippingCost: 6, freeShippingThreshold: 50, maxQuantityPerLine: 5, currency: 'EUR' });
+    expect(service.maxLineQuantity()).toBe(5);
   });
 
   it('reports a failed quote so the page can offer a retry, and clears it on success', () => {

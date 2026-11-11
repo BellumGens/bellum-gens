@@ -34,10 +34,13 @@ describe('ShopSettingsEditorComponent', () => {
   });
 
   afterEach(() => {
+    // The labels read the storefront currency; tests that care flush it themselves.
+    httpMock.match(`${api['_apiEndpoint']}/shop/settings`);
     httpMock.verify();
   });
 
   const settingsUrl = () => `${api['_apiEndpoint']}/shopadmin/settings`;
+  const input = (id: string): HTMLInputElement => fixture.nativeElement.querySelector(`#${id}`);
 
   const load = (loaded: ShopSettings = settings()) => {
     httpMock.expectOne(r => r.method === 'GET' && r.url === settingsUrl()).flush(loaded);
@@ -112,5 +115,81 @@ describe('ShopSettingsEditorComponent', () => {
     expect(component.saving()).toBe(false);
     expect(component.form.controls.freeShippingThreshold.value).toBe(70);
     expect(error).toHaveBeenCalledWith('The field FreeShippingThreshold is invalid.');
+  });
+
+  it('reports a failed load instead of showing placeholder values, and retries on demand', () => {
+    httpMock.expectOne(r => r.method === 'GET' && r.url === settingsUrl()).flush('', { status: 500, statusText: 'Server Error' });
+    fixture.detectChanges();
+
+    const alert: HTMLElement = fixture.nativeElement.querySelector('[role="alert"]');
+    expect(alert.textContent).toContain('could not be loaded');
+    expect(component.form.disabled).toBe(true);
+    expect(saveButton().disabled).toBe(true);
+
+    alert.querySelector('button')!.click();
+    load(settings({ shippingCost: 4 }));
+
+    expect(fixture.nativeElement.querySelector('[role="alert"]')).toBeNull();
+    expect(component.form.enabled).toBe(true);
+    expect(component.form.controls.shippingCost.value).toBe(4);
+  });
+
+  it('locks the inputs while loading and saving so no edit is overwritten by the response', () => {
+    expect(component.form.disabled).toBe(true);
+    load();
+    expect(component.form.enabled).toBe(true);
+
+    component.form.controls.shippingCost.setValue(7);
+    component.form.markAsDirty();
+    component.save();
+    expect(component.form.disabled).toBe(true);
+
+    httpMock.expectOne(r => r.method === 'PUT' && r.url === settingsUrl()).flush(settings({ shippingCost: 7 }));
+    expect(component.form.enabled).toBe(true);
+    expect(component.form.controls.shippingCost.value).toBe(7);
+  });
+
+  it('accepts amounts in whole cents only', () => {
+    load();
+    const cost = component.form.controls.shippingCost;
+
+    cost.setValue(6.555);
+    expect(cost.invalid).toBe(true);
+    cost.setValue(6.55);
+    expect(cost.valid).toBe(true);
+
+    component.form.controls.freeShippingThreshold.setValue(49.999);
+    component.save();
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.textContent).toContain('with at most 2 decimals');
+  });
+
+  it('ties the error hints to their inputs and focuses the first invalid input', () => {
+    load();
+    expect(input('shopShippingCost').getAttribute('aria-describedby')).toBeNull();
+    expect(input('shopFreeShipping').getAttribute('aria-describedby')).toBe('shopFreeShippingHint');
+
+    component.form.controls.freeShippingThreshold.setValue(-1);
+    component.form.controls.maxQuantityPerLine.setValue(101);
+    const focus = vi.spyOn(input('shopFreeShipping'), 'focus');
+    component.save();
+    fixture.detectChanges();
+
+    const freeShipping = input('shopFreeShipping');
+    expect(freeShipping.getAttribute('aria-describedby')).toBe('shopFreeShippingError');
+    expect(fixture.nativeElement.querySelector('#shopFreeShippingError').textContent).toContain('Enter an amount between 0 and 100000');
+    expect(input('shopMaxQuantity').getAttribute('aria-describedby')).toBe('shopMaxQuantityError');
+    expect(focus).toHaveBeenCalled();
+  });
+
+  it('labels the amounts with the currency the shop charges in', () => {
+    load();
+    httpMock.expectOne(`${api['_apiEndpoint']}/shop/settings`)
+      .flush({ shippingCost: 6, freeShippingThreshold: 50, maxQuantityPerLine: 10, currency: 'BGN' });
+    fixture.detectChanges();
+
+    expect(fixture.nativeElement.querySelector('label[for="shopShippingCost"]').textContent).toContain('(BGN)');
+    expect(fixture.nativeElement.querySelector('label[for="shopFreeShipping"]').textContent).toContain('(BGN)');
   });
 });

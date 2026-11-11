@@ -4222,32 +4222,48 @@
           <context context-type="linenumber">32,33</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="680243029016410875" datatype="html">
-        <source>Courier shipping cost (EUR)</source>
-        <target>Цена на доставка с куриер (EUR)</target>
+      <trans-unit id="1775630374675964026" datatype="html">
+        <source>The shop settings could not be loaded.</source>
+        <target>Настройките на магазина не можаха да бъдат заредени.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/settings-editor/settings-editor.component.html</context>
           <context context-type="linenumber">3,4</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7492462286842167444" datatype="html">
-        <source>Enter an amount between 0 and <x id="INTERPOLATION" equiv-text="{{ limits.maxShippingCost }}"/></source>
-        <target>Въведете сума между 0 и <x id="INTERPOLATION" equiv-text="{{ limits.maxShippingCost }}"/></target>
+      <trans-unit id="6650633628037596693" datatype="html">
+        <source>Try again</source>
+        <target>Опитайте отново</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/settings-editor/settings-editor.component.html</context>
           <context context-type="linenumber">6,7</context>
         </context-group>
+      </trans-unit>
+      <trans-unit id="9092226571342794105" datatype="html">
+        <source>Courier shipping cost</source>
+        <target>Цена на доставка с куриер</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/settings-editor/settings-editor.component.html</context>
           <context context-type="linenumber">14,15</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7927523875163787868" datatype="html">
-        <source>Free shipping from (EUR)</source>
-        <target>Безплатна доставка от (EUR)</target>
+      <trans-unit id="5038640257306418215" datatype="html">
+        <source>Enter an amount between 0 and <x id="INTERPOLATION" equiv-text="{{ limits.maxShippingCost }}"/>, with at most 2 decimals</source>
+        <target>Въведете сума между 0 и <x id="INTERPOLATION" equiv-text="{{ limits.maxShippingCost }}"/>, с най-много 2 знака след десетичната запетая</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/settings-editor/settings-editor.component.html</context>
-          <context context-type="linenumber">11,12</context>
+          <context context-type="linenumber">18,19</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/settings-editor/settings-editor.component.html</context>
+          <context context-type="linenumber">28,29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3555976524605738789" datatype="html">
+        <source>Free shipping from</source>
+        <target>Безплатна доставка от</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/settings-editor/settings-editor.component.html</context>
+          <context context-type="linenumber">24,25</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4762509839062015503" datatype="html">

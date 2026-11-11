@@ -35,7 +35,7 @@
                 <igx-icon>remove</igx-icon>
               </button>
               <span class="quantity-value">{{ item.quantity }}</span>
-              <button type="button" igxIconButton="flat" igxRipple (click)="cart.setQuantity(item, item.quantity + 1)" [disabled]="item.quantity >= maxQuantity" i18n-title title="Increase quantity">
+              <button type="button" igxIconButton="flat" igxRipple (click)="cart.setQuantity(item, item.quantity + 1)" [disabled]="item.quantity >= maxQuantity()" i18n-title title="Increase quantity">
                 <igx-icon>add</igx-icon>
               </button>
             </div>
