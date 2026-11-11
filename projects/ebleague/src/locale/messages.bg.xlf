@@ -950,32 +950,48 @@
           <context context-type="linenumber">99,100</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="680243029016410875" datatype="html">
-        <source>Courier shipping cost (EUR)</source>
-        <target>Цена на доставка с куриер (EUR)</target>
+      <trans-unit id="1775630374675964026" datatype="html">
+        <source>The shop settings could not be loaded.</source>
+        <target>Настройките на магазина не можаха да бъдат заредени.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/settings-editor/settings-editor.component.html</context>
           <context context-type="linenumber">3,4</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7492462286842167444" datatype="html">
-        <source>Enter an amount between 0 and <x id="INTERPOLATION" equiv-text="{{ limits.maxShippingCost }}"/></source>
-        <target>Въведете сума между 0 и <x id="INTERPOLATION" equiv-text="{{ limits.maxShippingCost }}"/></target>
+      <trans-unit id="6650633628037596693" datatype="html">
+        <source>Try again</source>
+        <target>Опитайте отново</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/settings-editor/settings-editor.component.html</context>
           <context context-type="linenumber">6,7</context>
         </context-group>
+      </trans-unit>
+      <trans-unit id="9092226571342794105" datatype="html">
+        <source>Courier shipping cost</source>
+        <target>Цена на доставка с куриер</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/settings-editor/settings-editor.component.html</context>
-          <context context-type="linenumber">14,15</context>
+          <context context-type="linenumber">14</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="7927523875163787868" datatype="html">
-        <source>Free shipping from (EUR)</source>
-        <target>Безплатна доставка от (EUR)</target>
+      <trans-unit id="5038640257306418215" datatype="html">
+        <source>Enter an amount between 0 and <x id="INTERPOLATION" equiv-text="{{ limits.maxShippingCost }}"/>, with at most 2 decimals</source>
+        <target>Въведете сума между 0 и <x id="INTERPOLATION" equiv-text="{{ limits.maxShippingCost }}"/>, с най-много 2 знака след десетичната запетая</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/settings-editor/settings-editor.component.html</context>
-          <context context-type="linenumber">11,12</context>
+          <context context-type="linenumber">18,19</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/settings-editor/settings-editor.component.html</context>
+          <context context-type="linenumber">28,29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="3555976524605738789" datatype="html">
+        <source>Free shipping from</source>
+        <target>Безплатна доставка от</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">projects/common/src/lib/shop/admin/settings-editor/settings-editor.component.html</context>
+          <context context-type="linenumber">24</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4762509839062015503" datatype="html">
@@ -983,7 +999,7 @@
         <target>Важи за сумата на поръчката след отстъпките. Въведете 0 за безплатна доставка на всички поръчки.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/settings-editor/settings-editor.component.html</context>
-          <context context-type="linenumber">16</context>
+          <context context-type="linenumber">30</context>
         </context-group>
       </trans-unit>
       <trans-unit id="2099843666663900464" datatype="html">
@@ -991,7 +1007,7 @@
         <target>Максимално количество на ред в количката</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/settings-editor/settings-editor.component.html</context>
-          <context context-type="linenumber">21,22</context>
+          <context context-type="linenumber">36,37</context>
         </context-group>
       </trans-unit>
       <trans-unit id="9010210215334068752" datatype="html">
@@ -999,7 +1015,7 @@
         <target>Въведете цяло число между 1 и <x id="INTERPOLATION" equiv-text="{{ limits.maxQuantityPerLine }}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/settings-editor/settings-editor.component.html</context>
-          <context context-type="linenumber">24,25</context>
+          <context context-type="linenumber">40,41</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4893182903784587286" datatype="html">
@@ -1007,7 +1023,7 @@
         <target>Направените поръчки запазват цената на доставката, с която са поръчани. Новите цени важат за количките до минута.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/settings-editor/settings-editor.component.html</context>
-          <context context-type="linenumber">28,30</context>
+          <context context-type="linenumber">44,46</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5550126009216036505" datatype="html">
@@ -1015,7 +1031,7 @@
         <target>Запази настройките</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/settings-editor/settings-editor.component.html</context>
-          <context context-type="linenumber">33,34</context>
+          <context context-type="linenumber">49,50</context>
         </context-group>
       </trans-unit>
       <trans-unit id="409245494399438073" datatype="html">
@@ -1023,7 +1039,7 @@
         <target>Последна промяна <x id="INTERPOLATION" equiv-text="{{ updatedOn | date:&apos;medium&apos; }}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/lib/shop/admin/settings-editor/settings-editor.component.html</context>
-          <context context-type="linenumber">36,38</context>
+          <context context-type="linenumber">52,54</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5259416047008119946" datatype="html">
@@ -1671,7 +1687,7 @@
         <target>Продуктът е запазен!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">132</context>
+          <context context-type="linenumber">147</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopProductDeactivated" datatype="html">
@@ -1679,7 +1695,7 @@
         <target>Продуктът има поръчки, затова беше деактивиран вместо изтрит.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">143</context>
+          <context context-type="linenumber">158</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopProductDeleted" datatype="html">
@@ -1687,7 +1703,7 @@
         <target>Продуктът е изтрит!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">144</context>
+          <context context-type="linenumber">159</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopOrderUpdated" datatype="html">
@@ -1695,7 +1711,7 @@
         <target>Поръчката е обновена!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">167</context>
+          <context context-type="linenumber">182</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopOrderRefunded" datatype="html">
@@ -1703,7 +1719,7 @@
         <target>Възстановяването е изпратено към платежния доставчик.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">174</context>
+          <context context-type="linenumber">189</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopPromoSaved" datatype="html">
@@ -1711,7 +1727,7 @@
         <target>Промо кодът е запазен!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">188</context>
+          <context context-type="linenumber">203</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopPromoDeactivated" datatype="html">
@@ -1719,7 +1735,7 @@
         <target>Кодът е използван в поръчки, затова беше деактивиран вместо изтрит.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">196</context>
+          <context context-type="linenumber">211</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopPromoDeleted" datatype="html">
@@ -1727,7 +1743,7 @@
         <target>Промо кодът е изтрит!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">197</context>
+          <context context-type="linenumber">212</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopSettingsSaved" datatype="html">
@@ -1735,7 +1751,7 @@
         <target>Настройките на магазина са запазени!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">208</context>
+          <context context-type="linenumber">231</context>
         </context-group>
       </trans-unit>
       <trans-unit id="7381827970983494105" datatype="html">

@@ -76,6 +76,8 @@ describe('ProductDetailComponent', () => {
 
   afterEach(() => {
     vi.useRealTimers();
+    // The page reads the per-line limit, which loads the storefront settings; tests that care flush it themselves.
+    httpMock.match(`${api['_apiEndpoint']}/shop/settings`);
     httpMock.verify();
     localStorage.clear();
   });
@@ -234,7 +236,17 @@ describe('ProductDetailComponent', () => {
 
     component.changeQuantity(50);
 
-    expect(component.quantity()).toBe(component.maxQuantity);
+    expect(component.quantity()).toBe(CartService.defaultMaxLineQuantity);
+  });
+
+  it('caps the quantity at the per line maximum the admin set', () => {
+    load(umbrella());
+    httpMock.expectOne(`${api['_apiEndpoint']}/shop/settings`)
+      .flush({ shippingCost: 6, freeShippingThreshold: 50, maxQuantityPerLine: 4, currency: 'EUR' });
+
+    component.changeQuantity(50);
+
+    expect(component.quantity()).toBe(4);
   });
 
   it('adds the selected variant and quantity to the cart', () => {

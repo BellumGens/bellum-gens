@@ -60,7 +60,7 @@ export class ProductDetailComponent {
   public brandNames = BRAND_NAMES;
   public cutNames = JERSEY_CUT_NAMES;
   public sizeNames = JERSEY_SIZE_NAMES;
-  public maxQuantity = CartService.maxLineQuantity;
+  public maxQuantity = this.cart.maxLineQuantity;
 
   public activeVariants = computed(() => (this.product()?.variants ?? []).filter(v => v.active));
   public hasVariants = computed(() => this.activeVariants().length > 0);
@@ -118,7 +118,7 @@ export class ProductDetailComponent {
   /** The most that can be added right now: the stock of the selection, capped per cart line. */
   public quantityLimit = computed(() => {
     const stock = this.stock();
-    return stock !== null && stock !== undefined ? Math.min(stock, this.maxQuantity) : this.maxQuantity;
+    return stock !== null && stock !== undefined ? Math.min(stock, this.maxQuantity()) : this.maxQuantity();
   });
   public canAdd = computed(() => !!this.product() && !this.soldOut() && (!this.hasVariants() || !!this.selectedVariant())
     && this.quantity() <= this.quantityLimit());

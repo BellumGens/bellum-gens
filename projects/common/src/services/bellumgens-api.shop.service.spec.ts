@@ -226,6 +226,29 @@ describe('ApiShopService', () => {
     req.flush({ shippingCost: 6, freeShippingThreshold: 50, maxQuantityPerLine: 10, currency: 'EUR' });
   });
 
+  it('loads the storefront settings once, on first read', () => {
+    expect(service.settings()).toBeNull();
+    expect(service.settings()).toBeNull();
+
+    httpMock.expectOne(`${service['_apiEndpoint']}/shop/settings`)
+      .flush({ shippingCost: 6, freeShippingThreshold: 50, maxQuantityPerLine: 10, currency: 'EUR' });
+
+    expect(service.settings()?.maxQuantityPerLine).toBe(10);
+    httpMock.expectNone(`${service['_apiEndpoint']}/shop/settings`);
+  });
+
+  it('applies saved admin settings to the loaded storefront settings', () => {
+    service.settings();
+    httpMock.expectOne(`${service['_apiEndpoint']}/shop/settings`)
+      .flush({ shippingCost: 6, freeShippingThreshold: 50, maxQuantityPerLine: 10, currency: 'EUR' });
+
+    service.saveSettings({ shippingCost: 5, freeShippingThreshold: 60, maxQuantityPerLine: 4 }).subscribe();
+    httpMock.expectOne(`${service['_apiEndpoint']}/shopadmin/settings`)
+      .flush({ shippingCost: 5, freeShippingThreshold: 60, maxQuantityPerLine: 4 });
+
+    expect(service.settings()).toEqual({ shippingCost: 5, freeShippingThreshold: 60, maxQuantityPerLine: 4, currency: 'EUR' });
+  });
+
   it('reads and saves the admin settings, reporting the outcome', () => {
     const messages: string[] = [];
     const errors: string[] = [];

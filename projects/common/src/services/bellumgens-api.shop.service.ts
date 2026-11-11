@@ -36,6 +36,9 @@ export class ApiShopService {
   private _products = signal<Product[] | null>(null);
   private _productsReadonly = this._products.asReadonly();
   private _productsRequested = false;
+  private _settings = signal<ShopSettingsView | null>(null);
+  private _settingsReadonly = this._settings.asReadonly();
+  private _settingsRequested = false;
 
   // Storefront
 
@@ -75,7 +78,19 @@ export class ApiShopService {
     return this.http.get<PromoView>(`${this._apiEndpoint}/shop/promo`, { params: { code } });
   }
 
-  /** The shipping cost, free shipping threshold and per-line quantity limit the server prices carts with. */
+  /**
+   * The shipping cost, free shipping threshold, per-line quantity limit and currency the server prices carts with,
+   * null until they are loaded. Loaded on first read; a failed load is tried again on the next read.
+   */
+  public get settings(): Signal<ShopSettingsView | null> {
+    untracked(() => {
+      if (!this._settingsRequested) {
+        this.loadSettings();
+      }
+    });
+    return this._settingsReadonly;
+  }
+
   public getSettings() {
     return this.http.get<ShopSettingsView>(`${this._apiEndpoint}/shop/settings`);
   }
@@ -205,7 +220,16 @@ export class ApiShopService {
 
   public saveSettings(settings: ShopSettings) {
     return this.http.put<ShopSettings>(`${this._apiEndpoint}/shopadmin/settings`, settings, { withCredentials: true }).pipe(
-      tap(() => this.commService.emitSuccess($localize`:@@shopSettingsSaved:Shop settings saved!`)),
+      tap(saved => {
+        // The storefront limits follow the saved settings right away in this app.
+        this._settings.update(current => current ? {
+          ...current,
+          shippingCost: saved.shippingCost,
+          freeShippingThreshold: saved.freeShippingThreshold,
+          maxQuantityPerLine: saved.maxQuantityPerLine
+        } : current);
+        this.commService.emitSuccess($localize`:@@shopSettingsSaved:Shop settings saved!`);
+      }),
       catchError(error => this.fail<ShopSettings>(error))
     );
   }
@@ -226,6 +250,15 @@ export class ApiShopService {
         this._products.update(products => products ?? []);
         this.commService.emitError(error.message);
       }
+    });
+  }
+
+  private loadSettings() {
+    this._settingsRequested = true;
+    this.getSettings().subscribe({
+      next: settings => this._settings.set(settings),
+      // Callers fall back to their defaults; the next read tries again.
+      error: () => this._settingsRequested = false
     });
   }
 

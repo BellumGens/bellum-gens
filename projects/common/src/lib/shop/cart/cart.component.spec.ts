@@ -60,6 +60,8 @@ describe('CartComponent', () => {
   });
 
   afterEach(() => {
+    // The page reads the per-line limit, which loads the storefront settings; tests that care flush it themselves.
+    httpMock.match(req => req.url.endsWith('/shop/settings'));
     httpMock.verify();
     localStorage.clear();
   });
@@ -359,9 +361,20 @@ describe('CartComponent', () => {
   });
 
   it('caps the increase button at the per-line limit', () => {
-    fill(umbrella(), CartService.maxLineQuantity);
+    fill(umbrella(), CartService.defaultMaxLineQuantity);
 
     const increase: HTMLButtonElement = fixture.nativeElement.querySelectorAll('.line-quantity button')[1];
     expect(increase.disabled).toBe(true);
+  });
+
+  it('caps the increase button at the per-line limit the admin set', () => {
+    fill(umbrella(), 3);
+    httpMock.expectOne(req => req.url.endsWith('/shop/settings'))
+      .flush({ shippingCost: 6, freeShippingThreshold: 50, maxQuantityPerLine: 3, currency: 'EUR' });
+    fixture.detectChanges();
+
+    const increase: HTMLButtonElement = fixture.nativeElement.querySelectorAll('.line-quantity button')[1];
+    expect(increase.disabled).toBe(true);
+    expect(component.maxQuantity()).toBe(3);
   });
 });

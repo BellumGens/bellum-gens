@@ -5621,70 +5621,70 @@
         <source>Product saved!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">132</context>
+          <context context-type="linenumber">147</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopProductDeactivated" datatype="html">
         <source>The product has orders, so it was deactivated instead of deleted.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">143</context>
+          <context context-type="linenumber">158</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopProductDeleted" datatype="html">
         <source>Product deleted!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">144</context>
+          <context context-type="linenumber">159</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopOrderUpdated" datatype="html">
         <source>Order updated!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">167</context>
+          <context context-type="linenumber">182</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopOrderRefunded" datatype="html">
         <source>Refund sent to the payment provider.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">174</context>
+          <context context-type="linenumber">189</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopPromoSaved" datatype="html">
         <source>Promo code saved!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">188</context>
+          <context context-type="linenumber">203</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopPromoDeactivated" datatype="html">
         <source>The code was used by orders, so it was deactivated instead of deleted.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">196</context>
+          <context context-type="linenumber">211</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopPromoDeleted" datatype="html">
         <source>Promo code deleted!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">197</context>
+          <context context-type="linenumber">212</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopSettingsSaved" datatype="html">
         <source>Shop settings saved!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">208</context>
+          <context context-type="linenumber">231</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopAddedToCart" datatype="html">
         <source><x id="name" equiv-text="label"/> added to your cart</source>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/cart.service.ts</context>
-          <context context-type="linenumber">156</context>
+          <context context-type="linenumber">161</context>
         </context-group>
       </trans-unit>
     </body>

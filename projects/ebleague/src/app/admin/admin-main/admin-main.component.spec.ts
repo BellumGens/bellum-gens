@@ -81,6 +81,9 @@ describe('AdminMainComponent', () => {
     httpMock.expectOne(`${shopService['_apiEndpoint']}/shopadmin/promos`).flush([]);
     httpMock.expectOne(`${shopService['_apiEndpoint']}/shopadmin/settings`)
       .flush({ shippingCost: 6, freeShippingThreshold: 50, maxQuantityPerLine: 10 });
+    // The settings editor labels its amounts with the storefront currency
+    httpMock.expectOne(`${shopService['_apiEndpoint']}/shop/settings`)
+      .flush({ shippingCost: 6, freeShippingThreshold: 50, maxQuantityPerLine: 10, currency: 'EUR' });
   };
 
   const el = (): HTMLElement => fixture.nativeElement;

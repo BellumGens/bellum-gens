@@ -6315,7 +6315,7 @@
         <target>Produs salvat!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">132</context>
+          <context context-type="linenumber">147</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopProductDeactivated" datatype="html">
@@ -6323,7 +6323,7 @@
         <target>Produsul are comenzi, așa că a fost dezactivat în loc să fie șters.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">143</context>
+          <context context-type="linenumber">158</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopProductDeleted" datatype="html">
@@ -6331,7 +6331,7 @@
         <target>Produs șters!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">144</context>
+          <context context-type="linenumber">159</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopOrderUpdated" datatype="html">
@@ -6339,7 +6339,7 @@
         <target>Comandă actualizată!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">167</context>
+          <context context-type="linenumber">182</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopOrderRefunded" datatype="html">
@@ -6347,7 +6347,7 @@
         <target>Rambursarea a fost trimisă către procesatorul de plăți.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">174</context>
+          <context context-type="linenumber">189</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopPromoSaved" datatype="html">
@@ -6355,7 +6355,7 @@
         <target>Cod promoțional salvat!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">188</context>
+          <context context-type="linenumber">203</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopPromoDeactivated" datatype="html">
@@ -6363,7 +6363,7 @@
         <target>Codul a fost folosit în comenzi, așa că a fost dezactivat în loc să fie șters.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">196</context>
+          <context context-type="linenumber">211</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopPromoDeleted" datatype="html">
@@ -6371,7 +6371,7 @@
         <target>Cod promoțional șters!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">197</context>
+          <context context-type="linenumber">212</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopSettingsSaved" datatype="html">
@@ -6379,7 +6379,7 @@
         <target>Setările magazinului au fost salvate!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/bellumgens-api.shop.service.ts</context>
-          <context context-type="linenumber">208</context>
+          <context context-type="linenumber">231</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shopAddedToCart" datatype="html">
@@ -6387,7 +6387,7 @@
         <target><x id="name" equiv-text="label"/> a fost adăugat în coș</target>
         <context-group purpose="location">
           <context context-type="sourcefile">projects/common/src/services/cart.service.ts</context>
-          <context context-type="linenumber">156</context>
+          <context context-type="linenumber">161</context>
         </context-group>
       </trans-unit>
     </body>
