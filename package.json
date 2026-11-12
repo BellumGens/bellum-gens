@@ -20,6 +20,7 @@
     "dev:ssr": "concurrently --kill-others \"npm run dev:ssr:bellumgens\" \"npm run dev:ssr:ebleague\"",
     "dev:ssr:bellumgens": "ng serve bellum-gens --configuration=development --port=4200",
     "dev:ssr:ebleague": "ng serve eb-league --configuration=development --port=4201",
+    "serve:ssr": "concurrently --kill-others \"npm run serve:ssr:bellumgens\" \"npm run serve:ssr:ebleague\"",
     "serve:ssr:bellumgens": "node dist/bellumgens/server/server.mjs",
     "serve:ssr:ebleague": "node dist/ebleague/server/server.mjs",
     "i18n": "npm run i18n:bellumgens && npm run i18n:ebleague",

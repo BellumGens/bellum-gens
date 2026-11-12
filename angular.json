@@ -92,7 +92,14 @@
             "development": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true,
+              "security": {
+                "allowedHosts": [
+                  "bellumgens.com",
+                  "www.bellumgens.com",
+                  "localhost"
+                ]
+              }
             },
             "bg": {
               "localize": [
@@ -386,7 +393,14 @@
             "development": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true,
+              "security": {
+                "allowedHosts": [
+                  "eb-league.com",
+                  "www.eb-league.com",
+                  "localhost"
+                ]
+              }
             },
             "testing": {
               "aot": true,
